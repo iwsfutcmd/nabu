@@ -19,7 +19,7 @@ from nabu.cli import app
 from nabu.compiler import compile_course, load_profiles
 from nabu.corecli import CoreCli
 from nabu.review import fingerprint, provenance_text, sentence_text, shown_of, story_text
-from nabu.schema.models import BundleUnit, NextBundleUnit
+from nabu.schema.models import NextBundleUnit
 
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLES = ROOT / "apps" / "web" / "public" / "bundles"
@@ -33,10 +33,10 @@ APC_S1 = (
 )
 
 
-def _bundle_units(course: str) -> list[BundleUnit]:
+def _bundle_units(course: str) -> list[NextBundleUnit]:
     """The committed bundle's units, as the app reads them."""
     return [
-        BundleUnit.model_validate_json(Path(f).read_text(encoding="utf-8"))
+        NextBundleUnit.model_validate_json(Path(f).read_text(encoding="utf-8"))
         for f in sorted(glob.glob(str(BUNDLES / course / "units" / "*.json")))
     ]
 

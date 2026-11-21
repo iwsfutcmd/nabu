@@ -381,7 +381,7 @@ def test_the_vocalized_apc_story_glosses_against_unvocalized_keys(
     lexicon = yaml.safe_load((ROOT / "lexicons" / "apc" / "lexemes.yaml").read_text("utf-8"))
     # The language's whole glossary, as its lexicon spells it.
     entries = [
-        {"kc": lexeme["id"], "text": spelling}
+        {"id": lexeme["id"], "text": spelling}
         for lexeme in lexicon["lexemes"]
         for spelling in lexeme.get("spelled", {}).get(orth, [])
     ]
@@ -406,7 +406,7 @@ def test_the_vocalized_apc_story_glosses_against_unvocalized_keys(
                 continue
             vocalized += bool(set(t["surface"]) & HARAKAT)
             covering = [m for m in matches if m["tokenStart"] <= i < m["tokenEnd"]]
-            assert [m["kc"] for m in covering] == [t["lexemes"][0]["lexeme"]], (
+            assert [m["id"] for m in covering] == [t["lexemes"][0]["lexeme"]], (
                 t["surface"],
                 matches,
             )

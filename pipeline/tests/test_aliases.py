@@ -25,10 +25,11 @@ def _doc(path: Path) -> dict[str, Any]:
 
 def _targets(alias: dict[str, Any]) -> list[str]:
     by_item = cast(dict[str, list[str]], alias.get("byItem") or {})
+    seeds = cast(list[str], alias.get("seeds") or [])
     return [
         *([str(alias["part"])] if "part" in alias else []),
         *(part for parts in by_item.values() for part in parts),
-        *(str(part) for part in alias.get("seeds") or []),
+        *seeds,
     ]
 
 
@@ -62,7 +63,7 @@ def test_a_table_fits_its_schema_and_names_what_its_course_has(course: str) -> N
     letters = {
         str(grapheme["id"])
         for unit in sorted((folder / "units").glob("*.yaml"))
-        for grapheme in _doc(unit).get("graphemes") or []
+        for grapheme in cast(list[dict[str, Any]], _doc(unit).get("graphemes") or [])
     }
     known = set(language.index) | set(language.rules()) | language.feature_values() | letters
     assert _lost(table, known) == []

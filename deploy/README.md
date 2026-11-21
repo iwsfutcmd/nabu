@@ -86,4 +86,10 @@ docker compose -f deploy/compose.yaml --env-file deploy/.env up -d --build
 ```
 
 Back up first. The API applies new migrations when it starts. Migrations are only ever added,
-never edited (CLAUDE.md), so an upgrade never rewrites old data in place.
+never edited (CLAUDE.md), so a migration never rewrites old data in place.
+
+One upgrade does rewrite data: the first start of a version with the lexical model (on main since
+2026-11-21) rewrites every stored learner event of the shape before it in the new one, in place
+(`apps/api/src/upgrade.ts`), and logs how many it rewrote and which it left as they were. The dump
+you take before that upgrade is the server's only copy of the old rows; each learner's device
+keeps its own old events aside.
