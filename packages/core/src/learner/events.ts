@@ -6,7 +6,7 @@
  */
 import type { AnswerSubmitted, ExerciseRef, LearnerEvent, OrthographyId, PartId, Prediction, ProgressReset } from "@nabu/schema";
 import { lessonNodes } from "../lesson/nodes.ts";
-import type { CourseView } from "../lesson/course.ts";
+import { lexemesById, type CourseView } from "../lesson/course.ts";
 import type { Exercise } from "../lesson/exercise.ts";
 import type { LessonEvent } from "../lesson/player.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
@@ -129,8 +129,14 @@ export const learnerEventOf = (
           // A word looked up on the card before answering (D16): the fold rates the answer Hard at best.
           ...(e.hinted === true ? { hinted: true as const } : {}),
         },
-        // Miss labels come with stated correspondences (ADR 0148): none until a profile states them.
-        outcome: { kind: e.graded.verdict, notes: [...e.graded.notes], labels: [], parts: [...creditOf(e.ex, e.graded, course.profiles)] },
+        // What the miss is (ADR 0148), and the fixed correspondences an orthographic miss was against.
+        outcome: {
+          kind: e.graded.verdict,
+          notes: [...e.graded.notes],
+          labels: [...(e.graded.labels ?? [])],
+          ...(e.graded.correspondences !== undefined && e.graded.correspondences.length > 0 ? { correspondences: [...e.graded.correspondences] } : {}),
+          parts: [...creditOf(e.ex, e.graded, course.profiles, lexemesById(course))],
+        },
         ...(extra.prediction === undefined ? {} : { prediction: extra.prediction }),
       };
     }

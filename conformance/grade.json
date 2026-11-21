@@ -1912,12 +1912,16 @@
         ]
       },
       "expected": {
-        "verdict": "CORRECT_MARKS",
+        "verdict": "WRONG_WORD",
         "notes": [
           "accent"
-        ]
+        ],
+        "labels": [
+          "phonemic"
+        ],
+        "correspondences": []
       },
-      "note": "cancion is no word of the course: the accent is noted, the answer counts"
+      "note": "ADR 0148: the accent carries sound, so a missing one is a miss, never noted and accepted. cancion stresses its next-to-last syllable: phonemic. The same sounds otherwise, so the sound explains it: WRONG_WORD, not the judge's"
     },
     {
       "id": "grade/es/accent-misplaced",
@@ -1933,11 +1937,15 @@
         ]
       },
       "expected": {
-        "verdict": "CORRECT_MARKS",
+        "verdict": "WRONG_WORD",
         "notes": [
           "accent"
+        ],
+        "labels": [
+          "phonemic"
         ]
-      }
+      },
+      "note": "ADR 0148: an accent moved stresses another syllable: phonemic"
     },
     {
       "id": "grade/es/accent-word-esta",
@@ -2043,12 +2051,15 @@
         "answer": "Mi mamá esta en la cocina"
       },
       "expected": {
-        "verdict": "CORRECT_MARKS",
+        "verdict": "WRONG_WORD",
         "notes": [
           "accent"
+        ],
+        "labels": [
+          "phonemic"
         ]
       },
-      "note": "with no lexicon the grader cannot know esta is a word"
+      "note": "with no lexicon the grader cannot know esta is a word; the accent left out is a phonemic miss all the same (ADR 0148)"
     },
     {
       "id": "grade/es/accent-word-unit",
@@ -2072,7 +2083,7 @@
         ],
         "alignment": [
           {
-            "op": "match",
+            "op": "substitute",
             "expected": "Cómo",
             "actual": "Como",
             "note": "accent-word"
@@ -2092,9 +2103,16 @@
             "expected": "usted",
             "actual": "usted"
           }
+        ],
+        "labels": [
+          "lexical",
+          "orthographic"
+        ],
+        "correspondences": [
+          "es-Latn/standard:stress"
         ]
       },
-      "note": "the unit whose marks spell another word carries the note, so feedback can name both words: Cómo and Como (W4)"
+      "note": "the unit whose marks spell another word carries the note, so feedback can name both words: Cómo and Como (W4). The accent is a required mark (ADR 0148): a substitution. como says what cómo says (its stress where the rule puts it): orthographic, against the stress statement; and another word of the course: lexical"
     },
     {
       "id": "grade/es/accent-word-units",
@@ -2118,13 +2136,13 @@
         ],
         "alignment": [
           {
-            "op": "match",
+            "op": "substitute",
             "expected": "Cómo",
             "actual": "Como",
             "note": "accent-word"
           },
           {
-            "op": "match",
+            "op": "substitute",
             "expected": "está",
             "actual": "esta",
             "note": "accent-word"
@@ -2134,9 +2152,14 @@
             "expected": "usted",
             "actual": "usted"
           }
+        ],
+        "labels": [
+          "lexical",
+          "phonemic",
+          "orthographic"
         ]
       },
-      "note": "one note for the answer, carried by each unit that raised it"
+      "note": "one note for the answer, carried by each unit that raised it; the labels are the union of the units' (como orthographic and lexical, esta phonemic and lexical)"
     },
     {
       "id": "grade/es/accent-unit",
@@ -2152,7 +2175,7 @@
         ]
       },
       "expected": {
-        "verdict": "CORRECT_MARKS",
+        "verdict": "WRONG_WORD",
         "notes": [
           "accent"
         ],
@@ -2173,14 +2196,17 @@
             "actual": "la"
           },
           {
-            "op": "match",
+            "op": "substitute",
             "expected": "canción",
             "actual": "cancion",
             "note": "accent"
           }
+        ],
+        "labels": [
+          "phonemic"
         ]
       },
-      "note": "a noted mark that makes no other word is the unit's note too"
+      "note": "a missing accent is a miss (ADR 0148), and the unit carries the note: cancion says another stress (phonemic); the same sounds otherwise, so not the judge's question (WRONG_WORD)"
     },
     {
       "id": "grade/es/contrast-unit",
@@ -2234,12 +2260,15 @@
         ]
       },
       "expected": {
-        "verdict": "CORRECT_MARKS",
+        "verdict": "WRONG_WORD",
         "notes": [
           "accent"
+        ],
+        "labels": [
+          "phonemic"
         ]
       },
-      "note": "¿ and ? are punctuation; que is no word of this lexicon"
+      "note": "¿ and ? are punctuation; que is no word of this lexicon, and Que and bola say another stress than Qué and bolá (ADR 0148)"
     },
     {
       "id": "grade/es/question-que",
@@ -2276,11 +2305,15 @@
         ]
       },
       "expected": {
-        "verdict": "CORRECT_MARKS",
+        "verdict": "WRONG_WORD",
         "notes": [
           "accent"
+        ],
+        "labels": [
+          "phonemic"
         ]
-      }
+      },
+      "note": "ADR 0148: pinguino says gi where ping\u00fcino says gwi, another sound (phonemic). Only its mark differs and the profile states its sounds, so it is no question of meaning: never the judge's (WRONG_WORD)."
     },
     {
       "id": "grade/es/nfd-answer",
@@ -3979,12 +4012,18 @@
         "answer": "سد"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "sound-alike"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "fa-Arab/standard:s"
         ]
       },
-      "note": "س for ص: the right sound, the wrong letter (ADR 0142). Never a typo."
+      "note": "س for ص: the right sound, the wrong letter (ADR 0142). Never a typo: orthographic, against the correspondence of s (ADR 0148). The sound explains it, so it is no question for the judge: WRONG_WORD"
     },
     {
       "id": "grade/fa/sound-alike-another-word",
@@ -4015,12 +4054,15 @@
         "answer": "سندلی"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "sound-alike"
+        ],
+        "labels": [
+          "orthographic"
         ]
       },
-      "note": "A word long enough for a typo: a sound-alike letter is still no typo."
+      "note": "A word long enough for a typo: a sound-alike letter is still no typo, nor a slip (ADR 0148: orthographic)."
     },
     {
       "id": "grade/fa/sound-alike-two-words",
@@ -4031,12 +4073,19 @@
         "answer": "هال شما چتور است"
       },
       "expected": {
-        "verdict": "WRONG",
+        "verdict": "WRONG_WORD",
         "notes": [
           "sound-alike"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "fa-Arab/standard:h",
+          "fa-Arab/standard:t"
         ]
       },
-      "note": "ه for ح and ت for ط in one sentence."
+      "note": "ه for ح and ت for ط in one sentence: each correspondence once, in the order the answer differed by them."
     },
     {
       "id": "grade/fa/not-sound-alike",
@@ -4051,6 +4100,1146 @@
         "notes": []
       },
       "note": "A letter left out is no sound-alike letter."
+    },
+    {
+      "id": "grade/labels/es-caza",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Mi casa es grande",
+        "answer": "Mi caza es grande",
+        "lexemes": {
+          "casa": [
+            "lexeme:casa|form:Number=Sing"
+          ],
+          "caza": [
+            "lexeme:caza|form:Number=Sing"
+          ],
+          "cada": [
+            "lexeme:cada"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "sound-alike"
+        ],
+        "labels": [
+          "lexical",
+          "orthographic"
+        ],
+        "correspondences": [
+          "es-Latn/standard:s"
+        ]
+      },
+      "note": "ADR 0148's table: caza for casa says the same (seseo) and is another lexeme of the course: orthographic and lexical, never a slip, though z and s are a slip apart."
+    },
+    {
+      "id": "grade/labels/es-ke-tal-accented",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "¿Qué tal?",
+        "answer": "ké tal"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "sound-alike"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "es-Latn/standard:k"
+        ]
+      },
+      "note": "ADR 0148's table: ké tal for qué tal: k is a spelling of /k/ (kilo), so the sound is right and the letter wrong."
+    },
+    {
+      "id": "grade/labels/es-ke-tal",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "¿Qué tal?",
+        "answer": "ke tal"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "phonemic",
+          "orthographic"
+        ],
+        "correspondences": [
+          "es-Latn/standard:k"
+        ]
+      },
+      "note": "ADR 0148: ke tal is orthographic for the k and phonemic for the unstressed que (qué's accent stresses it)."
+    },
+    {
+      "id": "grade/labels/es-esta",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Mamá está aquí",
+        "answer": "Mamá esta aquí",
+        "lexemes": {
+          "está": [
+            "lexeme:estar|form:Mood=Ind;Number=Sing;Person=3;Tense=Pres;VerbForm=Fin"
+          ],
+          "esta": [
+            "lexeme:este|form:Gender=Fem;Number=Sing"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent-word"
+        ],
+        "labels": [
+          "lexical",
+          "phonemic"
+        ],
+        "correspondences": []
+      },
+      "note": "ADR 0148: esta for está says /ˈesta/, another sound, and is another lexeme: phonemic and lexical, with the note accent-word."
+    },
+    {
+      "id": "grade/labels/es-cafe",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Quiero un café",
+        "answer": "Quiero un cafe"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent"
+        ],
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "ADR 0148's table: cafe for café is phonemic (the stress moves), no longer accepted with a note."
+    },
+    {
+      "id": "grade/labels/es-tambien",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Yo también",
+        "answer": "Yo tambien"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent"
+        ],
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "ADR 0148: a mark that carries sound is never excused as a mark: tambien is phonemic alone."
+    },
+    {
+      "id": "grade/labels/es-hablo-accent",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Yo hablo",
+        "answer": "Yo háblo"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "es-Latn/standard:stress"
+        ]
+      },
+      "note": "háblo says what hablo says (the rule already stresses ha): the accent is a wrong spelling of the right sound, orthographic, against the stress statement."
+    },
+    {
+      "id": "grade/labels/es-examen",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Tengo un examen",
+        "answer": "Tengo un exámen"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "es-Latn/standard:stress"
+        ]
+      },
+      "note": "exámen for examen: an accent where the rule puts the stress anyway: orthographic."
+    },
+    {
+      "id": "grade/labels/es-tu",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Tú tienes hambre",
+        "answer": "Tu tienes hambre",
+        "lexemes": {
+          "tú": [
+            "lexeme:tú|form:Number=Sing;Person=2"
+          ],
+          "tu": [
+            "lexeme:tu|form:Number=Sing;Person=2"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent-word"
+        ],
+        "labels": [
+          "lexical",
+          "phonemic"
+        ]
+      },
+      "note": "tu for tú: unstressed, and another lexeme (the possessive): phonemic and lexical."
+    },
+    {
+      "id": "grade/labels/es-pinguino",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "El pingüino come",
+        "answer": "El pinguino come"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent"
+        ],
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "pinguino says gi where ping\u00fcino says gwi: phonemic. A mark that carries sound is never excused: the statement explains it, so the judge is not asked (WRONG_WORD)."
+    },
+    {
+      "id": "grade/labels/es-bolber",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Quiero volver",
+        "answer": "Quiero bolber"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "sound-alike"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "es-Latn/standard:b"
+        ],
+        "alignment": [
+          {
+            "op": "match"
+          },
+          {
+            "op": "match",
+            "expected": "volver",
+            "actual": "bolber",
+            "kind": "typo",
+            "labels": [
+              "orthographic"
+            ]
+          }
+        ]
+      },
+      "note": "bolber for volver is inside the typo budget (v and b are neighbours), but says the same by a fixed correspondence: orthographic, never a slip."
+    },
+    {
+      "id": "grade/labels/es-aser",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Voy a hacer la tarea",
+        "answer": "Voy a aser la tarea"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "es-Latn/standard:~h",
+          "es-Latn/standard:s"
+        ]
+      },
+      "note": "ADR 0148: aser for hacer, the h and the c both; the test runs on the whole form."
+    },
+    {
+      "id": "grade/labels/es-havlar",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Quiero hablar",
+        "answer": "Quiero havlar"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "es-Latn/standard:b"
+        ]
+      },
+      "note": "ADR 0148: havlar, a typo today, is the right sound with the wrong letter."
+    },
+    {
+      "id": "grade/labels/es-ablar",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Quiero hablar",
+        "answer": "Quiero ablar"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "es-Latn/standard:~h"
+        ]
+      },
+      "note": "ablar for hablar: the silent h left out says the same: orthographic."
+    },
+    {
+      "id": "grade/labels/es-hablas",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Yo hablo español",
+        "answer": "Yo hablas español",
+        "lexemes": {
+          "hablo": [
+            "lexeme:hablar|form:Mood=Ind;Number=Sing;Person=1;Tense=Pres;VerbForm=Fin"
+          ],
+          "habla": [
+            "lexeme:hablar|form:Mood=Ind;Number=Sing;Person=3;Tense=Pres;VerbForm=Fin"
+          ],
+          "hablas": [
+            "lexeme:hablar|form:Mood=Ind;Number=Sing;Person=2;Tense=Pres;VerbForm=Fin"
+          ],
+          "hablar": [
+            "lexeme:hablar"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [],
+        "labels": [
+          "grammatical",
+          "phonemic"
+        ]
+      },
+      "note": "ADR 0148: hablas for hablo, no slip (two edits): another sound, and another form of the same lexeme: phonemic and grammatical. The judge's (WRONG)."
+    },
+    {
+      "id": "grade/labels/es-habla",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Yo hablo",
+        "answer": "Yo habla",
+        "lexemes": {
+          "hablo": [
+            "lexeme:hablar|form:Mood=Ind;Number=Sing;Person=1;Tense=Pres;VerbForm=Fin"
+          ],
+          "habla": [
+            "lexeme:hablar|form:Mood=Ind;Number=Sing;Person=3;Tense=Pres;VerbForm=Fin"
+          ],
+          "hablas": [
+            "lexeme:hablar|form:Mood=Ind;Number=Sing;Person=2;Tense=Pres;VerbForm=Fin"
+          ],
+          "hablar": [
+            "lexeme:hablar"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ],
+        "labels": [
+          "grammatical",
+          "slip"
+        ]
+      },
+      "note": "ADR 0148: habla for hablo is grammatical and slip: the slip explains the difference, so the sound question is not asked, and the lexicon says it is another form of hablar."
+    },
+    {
+      "id": "grade/labels/es-habla-contrast",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Yo hablo",
+        "answer": "Yo habla"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ],
+        "labels": [
+          "grammatical",
+          "slip"
+        ]
+      },
+      "note": "Where the lexicon does not know the typed word, the profile's contrast set still says it is another form: grammatical and slip."
+    },
+    {
+      "id": "grade/labels/es-hablar",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Yo hablo",
+        "answer": "Yo hablar",
+        "lexemes": {
+          "hablo": [
+            "lexeme:hablar|form:Mood=Ind;Number=Sing;Person=1;Tense=Pres;VerbForm=Fin"
+          ],
+          "habla": [
+            "lexeme:hablar|form:Mood=Ind;Number=Sing;Person=3;Tense=Pres;VerbForm=Fin"
+          ],
+          "hablas": [
+            "lexeme:hablar|form:Mood=Ind;Number=Sing;Person=2;Tense=Pres;VerbForm=Fin"
+          ],
+          "hablar": [
+            "lexeme:hablar"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "grammatical",
+          "phonemic"
+        ]
+      },
+      "note": "The lemma typed for a form: the same lexeme in another form (its own id is the lemma's form)."
+    },
+    {
+      "id": "grade/labels/es-cada",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Mi casa es grande",
+        "answer": "Mi cada es grande",
+        "lexemes": {
+          "casa": [
+            "lexeme:casa|form:Number=Sing"
+          ],
+          "caza": [
+            "lexeme:caza|form:Number=Sing"
+          ],
+          "cada": [
+            "lexeme:cada"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [],
+        "labels": [
+          "lexical",
+          "slip"
+        ],
+        "correspondences": []
+      },
+      "note": "ADR 0148: cada for casa is lexical and slip: a slip apart, onto another lexeme of the course."
+    },
+    {
+      "id": "grade/labels/es-nesa",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "La mesa es grande",
+        "answer": "La nesa es grande",
+        "lexemes": {
+          "casa": [
+            "lexeme:casa|form:Number=Sing"
+          ],
+          "caza": [
+            "lexeme:caza|form:Number=Sing"
+          ],
+          "cada": [
+            "lexeme:cada"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": [],
+        "labels": [
+          "slip"
+        ],
+        "correspondences": []
+      },
+      "note": "ADR 0148: nesa for mesa is a slip and nothing else: accepted."
+    },
+    {
+      "id": "grade/labels/es-gato",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Tengo un perro",
+        "answer": "Tengo un gato",
+        "lexemes": {
+          "perro": [
+            "lexeme:perro|form:Number=Sing"
+          ],
+          "gato": [
+            "lexeme:gato|form:Number=Sing"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "lexical"
+        ]
+      },
+      "note": "ADR 0148: gato for perro is lexical: no attempt at the word, so the sound is not asked."
+    },
+    {
+      "id": "grade/labels/es-word-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Yo hablo español",
+        "answer": "Yo español"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "lexical"
+        ],
+        "alignment": [
+          {
+            "op": "match"
+          },
+          {
+            "op": "delete",
+            "expected": "hablo",
+            "labels": [
+              "lexical"
+            ]
+          },
+          {
+            "op": "match"
+          }
+        ]
+      },
+      "note": "A word left out is lexical."
+    },
+    {
+      "id": "grade/labels/es-word-added",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Yo hablo",
+        "answer": "Yo no hablo"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "lexical"
+        ],
+        "alignment": [
+          {
+            "op": "match"
+          },
+          {
+            "op": "insert",
+            "actual": "no",
+            "labels": [
+              "lexical"
+            ]
+          },
+          {
+            "op": "match"
+          }
+        ]
+      },
+      "note": "A word added is lexical."
+    },
+    {
+      "id": "grade/labels/es-order",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Mi casa es grande",
+        "answer": "Es mi casa grande"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "order"
+        ],
+        "correspondences": []
+      },
+      "note": "The accepted answer's words in another order: order, and nothing else (a word moved aligns as one left out and one added)."
+    },
+    {
+      "id": "grade/labels/es-order-swapped",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "me gusta la música",
+        "answer": "la música me gusta"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "order"
+        ]
+      },
+      "note": "Tiles in another order, aligned as substitutions: still order alone."
+    },
+    {
+      "id": "grade/labels/es-order-and-a-miss",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Mi casa es grande",
+        "answer": "Es mi caza grande"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "lexical",
+          "orthographic"
+        ]
+      },
+      "note": "Moved and misspelt: the words are not the accepted answer's, so not order: a word left out and added (lexical) and caza (orthographic)."
+    },
+    {
+      "id": "grade/labels/es-exact",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Mi casa es grande",
+        "answer": "Mi casa es grande"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "labels": [],
+        "correspondences": []
+      },
+      "note": "An answer accepted as it is has no labels."
+    },
+    {
+      "id": "grade/labels/es-typo",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Mi abuela cocina frijoles negros",
+        "answer": "Mi abuela cocina frijolrs negros"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
+        ],
+        "correspondences": []
+      },
+      "note": "A slip alone is a typo, accepted (ADR 0148)."
+    },
+    {
+      "id": "grade/labels/es-free-variant",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Quiero hablar",
+        "answer": "Quiero havlar",
+        "statement": {
+          "sound": {
+            "from": "spelling"
+          },
+          "correspondences": [
+            {
+              "says": "b",
+              "written": [
+                "b",
+                "v"
+              ],
+              "kind": "free"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "notes": [
+          "spelling-variant"
+        ],
+        "labels": [],
+        "correspondences": []
+      },
+      "note": "A free correspondence (b and v, stated free for this vector): the same sound spelled as no norm forbids is that word, an accepted variant."
+    },
+    {
+      "id": "grade/labels/es-free-another-lexeme",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Quiero hablar",
+        "answer": "Quiero havlar",
+        "statement": {
+          "sound": {
+            "from": "spelling"
+          },
+          "correspondences": [
+            {
+              "says": "b",
+              "written": [
+                "b",
+                "v"
+              ],
+              "kind": "free"
+            }
+          ]
+        },
+        "lexemes": {
+          "hablar": [
+            "lexeme:hablar"
+          ],
+          "havlar": [
+            "lexeme:havlar"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "lexical"
+        ],
+        "correspondences": []
+      },
+      "note": "Never a variant where the course writes the typed word as another lexeme's: lexical (the free place is no miss of its own)."
+    },
+    {
+      "id": "grade/labels/apc-free-variant",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ana men beirut",
+        "answer": "ana min beirut",
+        "statement": {
+          "sound": {
+            "from": "spelling"
+          },
+          "correspondences": [
+            {
+              "says": "e",
+              "written": [
+                "e",
+                "i"
+              ],
+              "kind": "free"
+            }
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": []
+      },
+      "note": "Arabizi's e or i, stated free for this vector (ADR 0148: no norm picks one): an accepted variant."
+    },
+    {
+      "id": "grade/labels/apc-min-for-men",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ana men beirut",
+        "answer": "ana min beirut",
+        "statement": {
+          "sound": {
+            "from": "spelling"
+          },
+          "correspondences": [
+            {
+              "says": "e",
+              "written": [
+                "e",
+                "i"
+              ],
+              "kind": "free"
+            }
+          ]
+        },
+        "lexemes": {
+          "men": [
+            "lexeme:men.from"
+          ],
+          "min": [
+            "lexeme:min"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "lexical"
+        ]
+      },
+      "note": "min \"who\" for men \"from\", were e and i free: a form the course writes of another lexeme, lexical, not a variant."
+    },
+    {
+      "id": "grade/labels/fa-another-lexeme",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "صد",
+        "answer": "سد",
+        "lexemes": {
+          "صد": [
+            "lexeme:sad"
+          ],
+          "سد": [
+            "lexeme:sadd"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "sound-alike"
+        ],
+        "labels": [
+          "lexical",
+          "orthographic"
+        ],
+        "correspondences": [
+          "fa-Arab/standard:s"
+        ]
+      },
+      "note": "سد 'dam' for صد 'hundred': a sound-alike spelling that is another lexeme of the course: orthographic and lexical."
+    },
+    {
+      "id": "grade/labels/chg-scribe-variant",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "پادشاه",
+        "answer": "بادشاه",
+        "lexemes": {
+          "پادشاه": [
+            "lexeme:padishah"
+          ],
+          "بادشاه": [
+            "lexeme:padishah"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
+        ]
+      },
+      "note": "ADR 0148: a scribe's spelling of the answer's own lexeme in the same form is never another word: a slip, accepted (WRONG_WORD before, by string)."
+    },
+    {
+      "id": "grade/labels/chg-scribe-by-string",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "پادشاه",
+        "answer": "بادشاه",
+        "lexicon": [
+          "پادشاه",
+          "بادشاه"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "lexical",
+          "slip"
+        ]
+      },
+      "note": "With words alone and no lexemes (as before ADR 0148), a word of the course is taken for another lexeme's."
+    },
+    {
+      "id": "grade/labels/chg-from-reading",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "باردی",
+        "answer": "بردی",
+        "statement": {
+          "sound": {
+            "from": "reading",
+            "scheme": "schluessel"
+          }
+        },
+        "readings": {
+          "باردی": [
+            "bardi"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "chg-Arab/standard:a"
+        ]
+      },
+      "note": "A sound read off the pinned reading (sound from: reading, Schluessel's statement): بردی can be read bardi too, the a left unwritten, so it is the right sound with the wrong spelling, against the correspondence of a."
+    },
+    {
+      "id": "grade/labels/chg-from-reading-unpinned",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "باردی",
+        "answer": "بردی",
+        "statement": {
+          "sound": {
+            "from": "reading",
+            "scheme": "schluessel"
+          }
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
+        ]
+      },
+      "note": "A word with no pinned reading is not asked the sound question: the slip stands."
+    },
+    {
+      "id": "grade/labels/chg-from-reading-other-sound",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "accept": "باردی",
+        "answer": "باری",
+        "statement": {
+          "sound": {
+            "from": "reading",
+            "scheme": "schluessel"
+          }
+        },
+        "readings": {
+          "باردی": [
+            "bardi"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
+        ]
+      },
+      "note": "باری cannot be read bardi: no same sound, so a letter left out stays a slip."
+    },
+    {
+      "id": "grade/labels/yue-homophone",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "我哋去飲茶啦",
+        "answer": "我哋去飲茶喇"
+      },
+      "expected": {
+        "verdict": "PARTIAL",
+        "notes": [
+          "ime-homophone"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": []
+      },
+      "note": "A homophone character is a possible spelling of its syllable (ADR 0148): orthographic, PARTIAL as before."
+    },
+    {
+      "id": "grade/labels/uz-no-sound",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men kitob oldim",
+        "answer": "Men kotab oldim"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "lexical"
+        ]
+      },
+      "note": "A profile that states no sound: the sound question is never asked (no orthographic, no phonemic); a miss no slip explains is lexical."
+    },
+    {
+      "id": "grade/labels/uz-cyrl-refused-fold",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "accept": "Ўзбек",
+        "answer": "Узбек"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "uzbek-letters"
+        ],
+        "labels": [
+          "orthographic"
+        ]
+      },
+      "note": "A fold the profile refuses (a Russian letter for an Uzbek one): the right word, written as the orthography never writes it: orthographic, and WRONG as the policy says."
+    },
+    {
+      "id": "grade/labels/chg-Latn-required-mark",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "Kiši öydä",
+        "answer": "Kisi öydä"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "translit-sounds"
+        ],
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "A required mark carries sound (ADR 0134 as amended): with no sound statement, kisi for kiši is phonemic; WRONG, as before."
+    },
+    {
+      "id": "grade/labels/chg-Latn-required-mark-word",
+      "op": "grade",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "accept": "bärdi",
+        "answer": "bardi",
+        "lexicon": [
+          "bardi",
+          "bärdi"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "translit-marks-word"
+        ],
+        "labels": [
+          "lexical",
+          "phonemic"
+        ]
+      },
+      "note": "bardi \"went\" for bärdi \"gave\": the required marks make another word: phonemic and lexical, WRONG_WORD as before."
+    },
+    {
+      "id": "grade/labels/grc-marks-word",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "τίς λέγει",
+        "answer": "τις λέγει",
+        "lexicon": [
+          "τις",
+          "τίς",
+          "λέγει"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "greek-marks-word"
+        ],
+        "labels": [
+          "lexical"
+        ]
+      },
+      "note": "Greek keeps its noted marks (ADR 0148: until its buttons): a mark left out that makes another word is lexical."
+    },
+    {
+      "id": "grade/labels/grc-marks-noted",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ὁ ἄνθρωπος λέγει",
+        "answer": "ο ανθρωπος λεγει"
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "labels": []
+      },
+      "note": "A policy is not a miss: grc's marks left out are noted, no label."
+    },
+    {
+      "id": "grade/labels/zh-Latn-tone",
+      "op": "grade",
+      "args": {
+        "profile": "zh-Latn/pinyin",
+        "accept": "shàn",
+        "answer": "shan"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "A tone mark left out is a required mark: phonemic."
+    },
+    {
+      "id": "grade/labels/yue-Latn-slip-onto-syllable",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "accept": "ngo5 hai6 hok6 saang1",
+        "answer": "ngo5 hai6 hok6 sang1",
+        "lexicon": [
+          "sang1"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "lexical",
+          "slip"
+        ]
+      },
+      "note": "A slip onto another syllable of the course: lexical and slip."
     }
   ]
 }

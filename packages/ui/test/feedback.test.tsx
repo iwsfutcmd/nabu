@@ -165,7 +165,8 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
   it("a missing accent is marked in the answer and in the solution", () => {
     const age = typedCard((id) => id === "s.u05.25");
     const html = feedbackOf(age, { tag: "text", text: "Yasiel tambien tiene veinticuatro años" });
-    expect(html).toContain('data-verdict="CORRECT_MARKS"');
+    // The accent carries sound (ADR 0148): no longer accepted with a note.
+    expect(html).toContain('data-verdict="WRONG_WORD"');
     expect(block(html, "data-answer-diff")).toContain('data-highlight="true">tambien</span>');
     expect(block(html, "data-solution")).toContain('data-highlight="true">también</span>');
     expect(meaningsOf(html)).toBe("");

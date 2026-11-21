@@ -30,8 +30,12 @@ A profile with id `<lang>/<slug>` lives in `<lang>.<slug>.yaml`.
 
 What an orthography writes of the sound, and what it loses, stated as data and read by `@nabu/core`
 (`packages/core/src/project/`; core-cli `sound-*` and `reading-*`; `conformance/projection.json`). Every
-statement is marked REVIEW. Until grading and the cards read it (stages 5 and 6 of
-docs/migration-design.md), nothing a learner sees changes: `soundAlike` and a scheme's `variants` stay.
+statement is marked REVIEW. Grading reads it (ADR 0148, "What a miss is"; `grade` in
+`packages/core/src/match/grade.ts`): a typed word that says what the expected one says is an orthographic
+miss by a fixed correspondence and an accepted variant (`CORRECT_VARIANT`) by free ones alone; one with
+the same sounds and another stress (*tambien*) is phonemic; and the grade lists the correspondences an
+orthographic miss differed by (`<profile id>:<id>`). The cards do not read it yet (stage 5's other half):
+`soundAlike` (spelling-choice cards) and a scheme's `variants` stay.
 
 ### The writing side: a profile
 
@@ -75,7 +79,10 @@ correspondences:                   # the lossy part only
   same and not free (so *quasa* is no spelling of *casa*: qu says k only before e or i). A traded letter keeps
   its capital and the marks preparing took from it. No stress-mark variants.
 - `sound: { from: reading, scheme }` says a word's sound is its token's pinned reading in that scheme; core
-  compiles it as such, and the writing side's operations refuse it.
+  compiles it as such, and the writing side's operations refuse it. Grading takes the readings the course's
+  tokens pin on the expected spelling (`Spellings.readings`), and a typed spelling says the same where the
+  scheme's statement relates it to one of them (`compareByReading`, core `project/by-reading.ts`); a word with
+  no pinned reading is not asked the sound question. No profile states it yet.
 
 es (`es-Latn.standard.yaml`) states Cuban Spanish as the course teaches it: seseo, yeísmo, b and v, silent h
 (ch apart), g before e or i and j, gu and gü, qu, c and k, the trill, y as the vowel at a word's end after a

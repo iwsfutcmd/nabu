@@ -6,12 +6,12 @@
  *
  * Request: { id, op, ...args }. Response: { id, ok: true, result } or { id, ok: false, error }.
  */
-import { caseFold, checkTaggedText, readingProjection, type ReadingProjection, type SpellingProjection, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, readingSyllables, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry, type WordForm } from "@nabu/core";
+import { caseFold, checkTaggedText, compileProfile, readingProjection, type ReadingProjection, type SpellingProjection, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, readingSyllables, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry, type LexemeForm, type WordForm } from "@nabu/core";
 import { TONE_SYSTEMS } from "@nabu/core/speech";
 import { directionOf, scriptOf } from "@nabu/i18n";
 import { formKey, parseFormKey } from "@nabu/core/lesson";
-import type { TaggedText, Token } from "@nabu/schema";
-import { loadProfiles } from "./load.ts";
+import type { OrthographyProfile, TaggedText, Token } from "@nabu/schema";
+import { loadProfileData, loadProfiles } from "./load.ts";
 
 type Id = number | string | null;
 export type Response = { readonly id: Id; readonly ok: true; readonly result: unknown } | { readonly id: Id; readonly ok: false; readonly error: string };
@@ -26,11 +26,34 @@ const profile = (args: Args): CompiledProfile => {
   return p;
 };
 
+/**
+ * A profile with another sound statement (`statement`: its `sound`, `stress` and `correspondences`
+ * in place of the profile's), so a vector can exercise a correspondence no profile states yet: a
+ * free one (an accepted variant), a sound read off a scheme's pinned readings.
+ */
+const restated = new Map<string, CompiledProfile>();
+const profileFor = (args: Args): CompiledProfile => {
+  const p = profile(args);
+  const statement = args["statement"];
+  if (statement === undefined) return p;
+  if (typeof statement !== "object" || statement === null || Array.isArray(statement)) throw new Error('"statement" must be an object of sound, stress and correspondences');
+  const key = `${p.id}\u0000${JSON.stringify(statement)}`;
+  let compiled = restated.get(key);
+  if (compiled === undefined) {
+    const { sound: _sound, stress: _stress, correspondences: _correspondences, ...rest } = p.source;
+    const made = compileProfile({ ...rest, ...(statement as Partial<OrthographyProfile>) }, loadProfileData());
+    if (!made.ok) throw new Error(`statement: ${JSON.stringify(made.error)}`);
+    compiled = made.value;
+    restated.set(key, compiled);
+  }
+  return compiled;
+};
+
 const acceptCache = new Map<string, CompiledAcceptSet>();
 const acceptSet = (args: Args): CompiledAcceptSet => {
-  const p = profile(args);
+  const p = profileFor(args);
   const source = String(args["accept"]);
-  const key = `${p.id}\u0000${source}`;
+  const key = `${p.id}\u0000${JSON.stringify(args["statement"] ?? null)}\u0000${source}`;
   let set = acceptCache.get(key);
   if (set === undefined) {
     const compiled = compileAcceptSet(source, p);
@@ -144,7 +167,24 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
       typeof given === "object" && given !== null && !Array.isArray(given)
         ? new Map(Object.entries(given).map(([w, fs]) => [lexiconKey(set.profile, w), Array.isArray(fs) ? fs.map(wordForm) : []]))
         : undefined;
-    return grade(set, text(a, "answer"), { ...(lexicon && { lexicon }), ...(inflected && { inflected }), ...(forms && { forms }) });
+    // Whose form each word is: { word: [form key, …] }, each form key's lexemes its own (ADR 0148).
+    const written = a["lexemes"];
+    const lexemes =
+      typeof written === "object" && written !== null && !Array.isArray(written)
+        ? new Map(
+            Object.entries(written).map(([w, keys]): [string, LexemeForm[]] => [
+              lexiconKey(set.profile, w),
+              (Array.isArray(keys) ? keys.map(String) : []).flatMap((form) => parseFormKey(form).map(({ lexeme }) => ({ lexeme, form }))),
+            ]),
+          )
+        : undefined;
+    // The readings tokens pin on each word, for a sound read off a scheme: { word: [reading, …] }.
+    const pinned = a["readings"];
+    const readings =
+      typeof pinned === "object" && pinned !== null && !Array.isArray(pinned)
+        ? new Map(Object.entries(pinned).map(([w, rs]) => [lexiconKey(set.profile, w), Array.isArray(rs) ? rs.map(String) : []]))
+        : undefined;
+    return grade(set, text(a, "answer"), { ...(lexicon && { lexicon }), ...(inflected && { inflected }), ...(forms && { forms }), ...(lexemes && { lexemes }), ...(readings && { readings }) });
   },
   /** A word's vowel marks as the learner wrote them, against its vocalized form (ADR 0054). */
   "grade-vowels": (a) => gradeVowels(profile(a).marks, text(a, "expected"), text(a, "answer")),

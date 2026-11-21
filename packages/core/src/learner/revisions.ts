@@ -45,7 +45,9 @@ const later = (a: Revision, b: Revision): boolean => {
 const claimed = (claim: "accept" | "reject") => (answer: AnswerSubmitted): AnswerSubmitted["outcome"] => ({
   kind: CLAIMED[claim],
   notes: [...answer.outcome.notes, claim === "accept" ? "learner-accepted" : "learner-rejected"],
-  labels: [...answer.outcome.labels],
+  // An answer the learner says is right is no miss; one they say is wrong keeps what the grader found (ADR 0148).
+  labels: claim === "accept" ? [] : [...answer.outcome.labels],
+  ...(claim === "reject" && answer.outcome.correspondences !== undefined ? { correspondences: [...answer.outcome.correspondences] } : {}),
   parts: answer.outcome.parts.map((k) => (asksOf(answer.exercise.template, k.part) ? { ...k, status: claim === "accept" ? "right" : "wrong" } : k)),
 });
 

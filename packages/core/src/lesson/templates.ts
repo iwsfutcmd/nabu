@@ -2216,7 +2216,7 @@ const graded = (grader: Grader, ex: { readonly orthography: string; readonly acc
   // The accepted wording nearest the shown text: the shown text itself, which every set holds.
   const onShown = g.matched === grader.grade(ex.orthography, ex.accept, surfaceOf(solution)).matched;
   const verdict = g.verdict === "CORRECT_ALT" && onShown ? "CORRECT" : g.verdict === "CORRECT" && !onShown ? "CORRECT_ALT" : g.verdict;
-  return { verdict, notes: g.notes, solution, alignment: g.alignment, closestIsSolution: onShown };
+  return { verdict, notes: g.notes, solution, alignment: g.alignment, closestIsSolution: onShown, labels: g.labels, correspondences: g.correspondences };
 };
 
 const mismatch = (ex: Exercise, response: Response): never => {
@@ -2294,7 +2294,7 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
       // mark left out is noted unless it spells another word.
       if (typedByProfile(ex.scheme)) {
         const g = grader.grade(ex.reading.orthography, literalAccept(surfaceOf(ex.reading)), response.text);
-        return { verdict: g.verdict, notes: g.notes, solution: ex.reading, alignment: g.alignment };
+        return { verdict: g.verdict, notes: g.notes, solution: ex.reading, alignment: g.alignment, labels: g.labels, correspondences: g.correspondences };
       }
       const g = gradeReading(ex.scheme, surfaceOf(ex.reading), response.text);
       return { verdict: g.verdict, notes: g.notes, solution: ex.reading };

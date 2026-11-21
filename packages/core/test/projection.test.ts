@@ -8,15 +8,37 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { OrthographyProfile, ReadingScheme, Token } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { soundAlikeOnly } from "../src/match/grade.ts";
 import { letterVariants, openLetters, readingFeatures } from "../src/match/pronounce.ts";
-import { compileProfile } from "../src/profile/compile.ts";
+import { compileProfile, type CompiledProfile } from "../src/profile/compile.ts";
 import { readingProjection, readingSchemes } from "../src/profile/schemes.ts";
 import { compileProjection, type SpellingProjection } from "../src/project/sound.ts";
 import { compileReadingProjection } from "../src/project/reading.ts";
 import { profileOf } from "../src/lesson/index.ts";
 import { graphemes } from "../src/text/graphemes.ts";
 import { loadCourse, manifestOf } from "./learner-fixtures.ts";
+
+/**
+ * The grader's sound-alike test before ADR 0148 (removed from match/grade.ts when grading came to
+ * read the statement), kept here as the reference the statement is checked against: whether two
+ * words differ only in letters of the profile's `soundAlike` sets, at least one, compared as the
+ * profile's letters, case folded and marks stripped.
+ */
+const soundAlikeOnly = (profile: CompiledProfile, expected: string, actual: string): boolean => {
+  const sets = profile.soundAlike;
+  if (sets === undefined) return false;
+  const plain = (t: string): string => (profile.marks?.strip(profile.fold(t)) ?? profile.fold(t)).normalize("NFC");
+  const e = profile.letters(plain(expected));
+  const a = profile.letters(plain(actual));
+  if (e.length !== a.length) return false;
+  let apart = 0;
+  for (const [i, letter] of e.entries()) {
+    const other = a[i] as string;
+    if (letter === other) continue;
+    if (!sets.alike(letter, other)) return false;
+    apart += 1;
+  }
+  return apart > 0;
+};
 
 const BUNDLES = resolve(import.meta.dirname, "../../../apps/web/public/bundles");
 

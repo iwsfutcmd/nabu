@@ -1528,7 +1528,7 @@
     },
     "feedback.note.accent": {
       "message": "Mind the accent marks: they are part of the spelling.",
-      "description": "Feedback note for Spanish: the answer left out an accent mark (cancion for canción) or put one in the wrong place. The answer still counts."
+      "description": "Feedback note for Spanish: the answer left out an accent mark (cancion for canción), added one or put one in the wrong place. The accent carries sound, so the answer does not count (ADR 0148)."
     },
     "feedback.note.accent-word": {
       "message": "The accent mark makes it another word (está “is”, esta “this”).",
@@ -1649,6 +1649,10 @@
     "feedback.note.speech-words": {
       "message": "The words didn't come through: compare with the sentence.",
       "description": "Feedback note: speech recognition heard different words."
+    },
+    "feedback.note.spelling-variant": {
+      "message": "Another way to spell this word: the course writes it otherwise.",
+      "description": "Generic feedback note: the answer spelled a word in another accepted way (a spelling no norm rules out, such as Arabizi e or i), so it counts. The course shows its own spelling beside it."
     },
     "feedback.note.ta-marbuta": {
       "message": "Watch the ta marbuta (ة) at the end of the word.",

@@ -1,10 +1,10 @@
 /** Shared helpers for learner tests: courses from the committed bundles, and event builders. */
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
-import type { AliasTable, BundleManifest, LearnerEvent, PartCredit, PartId, Prediction } from "@nabu/schema";
+import type { AliasTable, BundleManifest, LearnerEvent, PartCredit, PartId, Prediction, TaggedText } from "@nabu/schema";
 import { askedParts } from "../src/learner/credit.ts";
 import { exerciseRefOf } from "../src/learner/events.ts";
-import { asksOf, readCourse, skillOf, type CourseView, type Exercise } from "../src/lesson/index.ts";
+import { asksOf, lexemeIdsOf, lexemesById, readCourse, skillOf, type CourseView, type Exercise } from "../src/lesson/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
 const BUNDLES = join(ROOT, "apps/web/public/bundles");
@@ -46,12 +46,23 @@ export interface EventFactory {
 
 /**
  * The credits the player logs for a whole answer (creditOf): the words asked about, the rest given,
- * each part with the skill the card exercises it by; a part the card cannot show is given.
+ * each part with the skill the card exercises it by; a part the card cannot show is given. A typed
+ * answer typed exactly right also shows each of its words' spelling leftovers (ADR 0148), where the
+ * bundle lists one for the orthography: none does yet.
  */
-const creditsOf = (ex: Exercise, correct: boolean): PartCredit[] => {
+const creditsOf = (course: CourseView, ex: Exercise, correct: boolean): PartCredit[] => {
   const asked = askedParts(ex);
   const status = correct ? "right" : "wrong";
   const credit = (part: PartId, said: PartCredit["status"]): PartCredit => ({ part, skill: skillOf(ex.template, part), status: asksOf(ex.template, part) ? said : "given" });
+  if (asked === undefined && correct && (ex.template === "translate-type.l1-l2" || ex.template === "listen-type")) {
+    const lexemes = lexemesById(course);
+    // Tests hand in cards of their own making, some with no canonical answer.
+    const tokens = (ex as { readonly canonical?: TaggedText }).canonical?.tokens ?? [];
+    const leftovers = [
+      ...new Set(tokens.flatMap((t) => lexemeIdsOf(t)).filter((id) => (lexemes.get(id)?.leftovers?.spelling as readonly string[] | undefined)?.includes(ex.orthography) === true)),
+    ];
+    return [...ex.parts.map((part) => credit(part, status)), ...leftovers.map((part): PartCredit => ({ part, skill: "write-script", status: "right" }))];
+  }
   if (asked === undefined) return ex.parts.map((part) => credit(part, status));
   return [...new Set([...asked, ...ex.parts])].map((part) => credit(part, asked.includes(part) ? status : "given"));
 };
@@ -90,7 +101,7 @@ export const eventFactory = (course: CourseView, bundle: string): EventFactory =
       attempt,
       // Self-rated speaking (tier 0) carries the learner's rating, as the player logs it (ADR 0099).
       input: { method: "choice", latencyMs, ...(ex.template === "speak.tier-0" ? { selfRating: correct ? ("good" as const) : ("again" as const) } : {}) },
-      outcome: { kind: correct ? "CORRECT" : "WRONG", notes: [], labels: [], parts: creditsOf(ex, correct) },
+      outcome: { kind: correct ? "CORRECT" : "WRONG", notes: [], labels: [], parts: creditsOf(course, ex, correct) },
       ...(prediction === undefined ? {} : { prediction }),
     }),
     completed: (mode, node, summary) => ({

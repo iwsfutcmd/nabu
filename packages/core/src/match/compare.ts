@@ -28,9 +28,18 @@ export type Comparison =
       readonly note?: string | undefined;
       /** The marks an answer must write (the profile's `required`) differ (ADR 0134). */
       readonly required?: boolean;
+      /** The marks required differ and nothing else does: the letters are the same. */
+      readonly marksOnly?: boolean;
+      /** A fold the profile's policy rejects made the two equal: a policy's refusal, not another word. */
+      readonly rejected?: boolean;
     };
 
-export const COST = { insert: 1, delete: 1, mismatch: 1, fold: 0.001, typo: 0.3, homophone: 0.5 } as const;
+/**
+ * A pair that says the same by the profile's statement (ADR 0148: ke for qué, سد for صد) costs less
+ * than another substitution, so the aligner keeps it a pair and prefers the accepted wording it
+ * sounds like; still more than any typo, so a slip is always the nearer explanation.
+ */
+export const COST = { insert: 1, delete: 1, mismatch: 1, sound: 0.6, fold: 0.001, typo: 0.3, homophone: 0.5 } as const;
 
 const rejects = (policy: Policy): boolean => policy === "reject" || policy === "reject-with-note";
 
@@ -153,6 +162,10 @@ const requiredMarksDiffer = (marks: Marks, e: string, a: string): RequiredDiffer
   return found.marks || found.letters ? found : undefined;
 };
 
+/** Whether two units have the same sounds by the profile's statement, whatever the stress (spelling projections only). */
+const soundsAlike = (profile: CompiledProfile, expected: string, actual: string): boolean =>
+  profile.projection?.from === "spelling" && profile.projection.compare(expected, actual).sounds;
+
 export const compareUnits = (profile: CompiledProfile, expected: string, actual: string): Comparison => {
   if (expected === actual) return { kind: "exact", cost: 0, folds: NONE };
   let e = profile.fold(expected);
@@ -164,7 +177,7 @@ export const compareUnits = (profile: CompiledProfile, expected: string, actual:
   const settle = (): Comparison => {
     const rejecting = folds.find((f) => rejects(f.policy));
     return rejecting !== undefined
-      ? { kind: "mismatch", cost: COST.mismatch, folds, note: rejecting.policy === "reject-with-note" ? rejecting.note ?? rejecting.id : undefined }
+      ? { kind: "mismatch", cost: COST.mismatch, folds, note: rejecting.policy === "reject-with-note" ? rejecting.note ?? rejecting.id : undefined, rejected: true }
       : { kind: "fold", cost: COST.fold * folds.length, folds };
   };
 
@@ -189,7 +202,7 @@ export const compareUnits = (profile: CompiledProfile, expected: string, actual:
     if (differs !== undefined) {
       const sameLetters = profile.marks.strip(e) === profile.marks.strip(a);
       const note = differs.marks ? profile.marks.requiredNote : profile.marks.requiredLettersNote;
-      return { kind: "mismatch", cost: COST.mismatch, folds, required: true, ...(sameLetters && { note }) };
+      return { kind: "mismatch", cost: soundsAlike(profile, expected, actual) ? COST.sound : COST.mismatch, folds, required: true, ...(sameLetters && { note, marksOnly: true }) };
     }
     const me = profile.marks.strip(e);
     const ma = profile.marks.strip(a);
@@ -224,7 +237,7 @@ export const compareUnits = (profile: CompiledProfile, expected: string, actual:
 
   // A fold that rejects explains the mismatch even when other differences remain.
   const rejecting = folds.find((f) => f.policy === "reject-with-note");
-  return { kind: "mismatch", cost: COST.mismatch, folds, note: rejecting?.note ?? rejecting?.id };
+  return { kind: "mismatch", cost: soundsAlike(profile, expected, actual) ? COST.sound : COST.mismatch, folds, note: rejecting?.note ?? rejecting?.id };
 };
 
 const startsAt = (word: readonly string[], at: number, part: readonly string[]): boolean =>

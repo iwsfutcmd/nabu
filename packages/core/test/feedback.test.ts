@@ -99,8 +99,10 @@ describe("what a wrong answer marks (P3)", () => {
   });
 
   it("a missing accent is marked in the answer and the solution, and so are marks that make another word", () => {
+    // The accent carries sound (ADR 0148): tambien is a miss, the same sounds with another stress.
     const marks = graded(age, "Yasiel tambien tiene veinticuatro años");
-    expect(marks.verdict).toBe("CORRECT_MARKS");
+    expect(marks.verdict).toBe("WRONG_WORD");
+    expect(marks.labels).toEqual(["phonemic"]);
     const diff = answerDiff(marks.alignment, marks.solution, " ");
     expect(surfaces(diff.text, diff.marked)).toEqual(["tambien"]);
     expect(surfaces(marks.solution, solutionMarks(marks.alignment, marks.solution, profile))).toEqual(["también"]);

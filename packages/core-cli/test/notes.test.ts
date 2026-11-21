@@ -8,7 +8,7 @@ import { describe, expect, it } from "vitest";
 import { loadRawProfiles } from "../src/load.ts";
 
 const keys = new Set(Object.keys(sourceCatalog().messages));
-const ENGINE_DEFAULTS = ["marks", "variant", "zwnj", "apostrophe", "script-mismatch", "ime-homophone"];
+const ENGINE_DEFAULTS = ["marks", "variant", "zwnj", "apostrophe", "script-mismatch", "ime-homophone", "spelling-variant"];
 const VERDICTS = ["CORRECT", "CORRECT_ALT", "CORRECT_MARKS", "CORRECT_VARIANT", "CORRECT_WITH_TYPO", "CORRECT_PROVISIONAL", "PARTIAL", "WRONG_WORD", "WRONG", "SKIPPED"];
 
 const profileNotes = (): string[] =>

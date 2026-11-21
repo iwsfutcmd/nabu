@@ -7,8 +7,14 @@
  */
 import { compileLattice, type Lattice, type LatticeAlternative, type LatticeWarning } from "../accept/lattice.ts";
 import { parseAcceptSet, type NotationError, type NotationWarning } from "../accept/notation.ts";
+import type { MissLabel } from "@nabu/schema";
 import type { CompiledProfile } from "../profile/compile.ts";
+import { readingProjection } from "../profile/schemes.ts";
+import { compareByReading } from "../project/by-reading.ts";
+import type { ReadingProjection } from "../project/reading.ts";
+import type { SoundComparison } from "../project/sound.ts";
 import { err, ok, type Result } from "../result.ts";
+import { graphemes } from "../text/graphemes.ts";
 import { compareUnits, contrastOf, COST, type Comparison, type MatchKind, type WordForm } from "./compare.ts";
 
 export type Verdict =
@@ -23,16 +29,30 @@ export type Verdict =
   | "WRONG"
   | "SKIPPED";
 
+export type { MissLabel };
+
+/**
+ * What a miss can be (ADR 0148), worst first: the order a grade lists its labels in, and the one in
+ * which the worst decides what feedback says first.
+ */
+export const MISS_LABELS: readonly MissLabel[] = ["lexical", "grammatical", "regularised", "scope", "order", "phonemic", "orthographic", "slip"];
+
+const byWorst = (labels: Iterable<MissLabel>): readonly MissLabel[] => {
+  const set = new Set(labels);
+  return MISS_LABELS.filter((l) => set.has(l));
+};
+
 /**
  * How one unit of the answer lines up with the closest accepted answer. A unit that raised a
  * feedback note carries it (`note`, the first it raised): the accent mark that makes como of cómo
- * (accent-word), the ending that trades hablo for hablas (contrast-ending).
+ * (accent-word), the ending that trades hablo for hablas (contrast-ending). A unit that is a miss
+ * carries its labels (ADR 0148), worst first; a slip alone is a typo, accepted.
  */
 export type AlignOp =
-  | { readonly op: "match"; readonly expected: string; readonly actual: string; readonly kind: MatchKind; readonly folds?: readonly string[]; readonly note?: string }
-  | { readonly op: "substitute"; readonly expected: string; readonly actual: string; readonly note?: string }
-  | { readonly op: "insert"; readonly actual: string }
-  | { readonly op: "delete"; readonly expected: string };
+  | { readonly op: "match"; readonly expected: string; readonly actual: string; readonly kind: MatchKind; readonly folds?: readonly string[]; readonly note?: string; readonly labels?: readonly MissLabel[] }
+  | { readonly op: "substitute"; readonly expected: string; readonly actual: string; readonly note?: string; readonly labels?: readonly MissLabel[] }
+  | { readonly op: "insert"; readonly actual: string; readonly labels?: readonly MissLabel[] }
+  | { readonly op: "delete"; readonly expected: string; readonly labels?: readonly MissLabel[] };
 
 export interface Grade {
   readonly verdict: Verdict;
@@ -43,6 +63,13 @@ export interface Grade {
   readonly canonical: boolean;
   readonly cost: number;
   readonly alignment: readonly AlignOp[];
+  /** What the miss is (ADR 0148): the union of its units' labels, worst first. Empty for an answer accepted as it is. */
+  readonly labels: readonly MissLabel[];
+  /**
+   * The fixed correspondences an orthographic miss differed by, each once, as full ids
+   * (`<orthography id>:<id>`, the correspondence's `says`; `stress` for the stress statement).
+   */
+  readonly correspondences: readonly string[];
 }
 
 export interface CompiledAcceptSet {
@@ -50,6 +77,8 @@ export interface CompiledAcceptSet {
   readonly lattice: Lattice;
   /** Unit comparisons, shared by every grade() against this set (pure; bounded). */
   readonly comparisons: Map<string, Comparison>;
+  /** Unit comparisons by sound (a spelling projection's), shared the same way. */
+  readonly sounds: Map<string, SoundComparison>;
   readonly paths: number;
   readonly warnings: readonly (NotationWarning | LatticeWarning)[];
 }
@@ -58,7 +87,7 @@ export const compileAcceptSet = (source: string, profile: CompiledProfile): Resu
   const parsed = parseAcceptSet(source);
   if (!parsed.ok) return err(parsed.error);
   const lattice = compileLattice(parsed.value, profile);
-  return ok({ profile, lattice, comparisons: new Map(), paths: parsed.value.paths, warnings: [...parsed.value.warnings, ...lattice.warnings] });
+  return ok({ profile, lattice, comparisons: new Map(), sounds: new Map(), paths: parsed.value.paths, warnings: [...parsed.value.warnings, ...lattice.warnings] });
 };
 
 export interface GradeOptions {
@@ -78,6 +107,35 @@ export interface GradeOptions {
    * that stand in one of theirs (ADR 0084).
    */
   readonly forms?: ReadonlyMap<string, readonly WordForm[]>;
+  /**
+   * Whose form each word is (ADR 0148: by lexeme, never by string), keyed by `lexiconKey`: every
+   * lexeme a token of the course spelled so writes, with the token's form key, and each lexicon lemma
+   * with its own id. A typed word that shares a form key with the expected one is the same word
+   * spelled another way; one that shares a lexeme only is another form of it (grammatical); one
+   * that shares none is another lexeme's (lexical). Where a word has no entry, `lexicon` decides as
+   * before: a word of it is another lexeme's.
+   */
+  readonly lexemes?: ReadonlyMap<string, readonly LexemeForm[]>;
+  /**
+   * For a profile whose sound is a pinned reading (`sound: {from: reading}`): the readings the
+   * course's tokens give each spelling in the profile's scheme, keyed by `lexiconKey`. A word with
+   * none is not asked the sound question.
+   */
+  readonly readings?: ReadonlyMap<string, readonly string[]>;
+  /** The scheme such a profile's sound is read in, compiled; by default the scheme its id names. */
+  readonly scheme?: ReadingProjection;
+}
+
+/** A lexeme a spelling writes, and the form key of the token (or lemma) that writes it so. */
+export interface LexemeForm {
+  readonly lexeme: string;
+  readonly form: string;
+  /**
+   * The lexemes of the form the spelling leaves unwritten (ADR 0136: fa's ezafe after a word that
+   * does not show it), joined by `+`; absent where it writes them all. Two spellings of one form are
+   * one word spelled two ways only where they write the same lexemes.
+   */
+  readonly unwritten?: string;
 }
 
 /**
@@ -96,27 +154,6 @@ const OP_NONE = 0;
 const OP_INSERT = 1;
 const OP_DELETE = 2;
 const OP_SUB = 3;
-
-/**
- * Whether two words differ only in letters the script writes for one sound (ADR 0142), at least one
- * of them: compared as the profile's letters, case folded and marks stripped.
- */
-export const soundAlikeOnly = (profile: CompiledProfile, expected: string, actual: string): boolean => {
-  const sets = profile.soundAlike;
-  if (sets === undefined) return false;
-  const plain = (t: string): string => (profile.marks?.strip(profile.fold(t)) ?? profile.fold(t)).normalize("NFC");
-  const e = profile.letters(plain(expected));
-  const a = profile.letters(plain(actual));
-  if (e.length !== a.length) return false;
-  let apart = 0;
-  for (const [i, letter] of e.entries()) {
-    const other = a[i] as string;
-    if (letter === other) continue;
-    if (!sets.alike(letter, other)) return false;
-    apart += 1;
-  }
-  return apart > 0;
-};
 
 /** Closest path: minimal-cost alignment of the answer's units against any lattice path. */
 const align = (set: CompiledAcceptSet, units: readonly string[]) => {
@@ -230,6 +267,55 @@ const RANK: Readonly<Record<Verdict, number>> = {
 const APOSTROPHES = /['‘’`]/u;
 const MODIFIER_APOSTROPHES = /[ʻʼ]/u;
 
+/** What one unit of the alignment is as a miss: its labels, and whether it is a miss a slip, the sound or the marks explain. */
+interface Miss {
+  readonly labels: readonly MissLabel[];
+  /**
+   * A slip, the same sounds (whatever the stress) or marks that make another word of the course
+   * explain it: no question of meaning, so the outcome is WRONG_WORD at worst, never the judge's.
+   */
+  readonly explained: boolean;
+  /** A homophone character typed for the expected one (yue's IME slips): PARTIAL, when every miss is one. */
+  readonly homophone?: boolean;
+}
+
+/** Whose form a typed word is, beside the expected one. */
+type Relation = "same" | "grammatical" | "lexical" | "none";
+
+/** Levenshtein distance over letters (comparison keys, never shown). */
+const letterDistance = (a: readonly string[], b: readonly string[]): number => {
+  let prev = Array.from({ length: b.length + 1 }, (_, j) => j);
+  for (let i = 1; i <= a.length; i++) {
+    const row = [i];
+    for (let j = 1; j <= b.length; j++) row[j] = Math.min((prev[j] as number) + 1, (row[j - 1] as number) + 1, (prev[j - 1] as number) + (a[i - 1] === b[j - 1] ? 0 : 1));
+    prev = row;
+  }
+  return prev[b.length] as number;
+};
+
+/**
+ * Grades an answer (ADR 0148, "What a miss is"), unit by unit of its closest accepted answer, in
+ * this order:
+ * 1. The profile's policies (equivalences, character variants, the marks, a ZWNJ, an apostrophe):
+ *    right with their notes, no label. A typed word that says what the expected one says by free
+ *    correspondences alone is that word (CORRECT_VARIANT), unless the course writes it as another
+ *    lexeme's.
+ * 2. A difference inside the typo budget is a slip, accepted, unless the two say the same by a fixed
+ *    correspondence (orthographic, no slip), or the typed word is another lexeme's form (lexical and
+ *    slip) or another form of the expected word's lexeme (grammatical and slip; a contrast set
+ *    decides where the course does not know the typed word).
+ * 3. What a slip does not explain: is the sound right (orthographic, else phonemic: asked only of an
+ *    attempt at the word), and whose form is it (grammatical, lexical). A word left out or added is
+ *    lexical, and an unexplained word that is no attempt and no form of the course is lexical too.
+ * 4. A homophone character (yue): orthographic, PARTIAL as before.
+ * 5. An answer whose words are an accepted answer's in another order: order, and nothing else.
+ * The verdict is a view of the labels: none, the policies' verdict; a slip alone, CORRECT_WITH_TYPO;
+ * else not accepted: PARTIAL where every miss is a homophone character, WRONG_WORD where a slip, the
+ * same sounds or marks that make another word explain every miss, else WRONG (what the judge is
+ * asked about, as before). Marks that alone differ are explained too where the profile states its
+ * sounds (pinguino for pingüino says another sound: WRONG_WORD); where it states none, a required
+ * mark that makes no other word stays WRONG (kisi for kiši, as before).
+ */
 export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOptions = {}): Grade => {
   const { profile } = set;
   const normalized = profile.normalize(answer);
@@ -262,60 +348,228 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
     }
   };
 
+  // Each word keyed and looked up once a grade.
+  const keys = new Map<string, string>();
+  const keyOf = (unit: string): string => {
+    let k = keys.get(unit);
+    if (k === undefined) {
+      k = lexiconKey(profile, unit);
+      keys.set(unit, k);
+    }
+    return k;
+  };
+  const formsOf = (unit: string): readonly LexemeForm[] => {
+    const k = keyOf(unit);
+    const known = options.lexemes?.get(k);
+    if (known !== undefined && known.length > 0) return known;
+    // A word the course writes whose lexemes the caller did not give: a lexeme of its own.
+    return options.lexicon?.has(k) === true ? [{ lexeme: `?${k}`, form: `?${k}` }] : [];
+  };
+  const relation = (expected: string, actual: string): Relation => {
+    const typed = formsOf(actual);
+    if (typed.length === 0) return "none";
+    const own = formsOf(expected);
+    const shared = new Set(own.filter((e) => typed.some((t) => t.lexeme === e.lexeme)).map((e) => e.lexeme));
+    if (shared.size === 0) return "lexical";
+    // Another spelling of the same lexeme in the same form (a scribe's variant) is never another word:
+    // the two write the same forms of their lexemes, the same morphemes written. Where one is also a
+    // form the other is not (خانوادهٔ, the noun with its ezafe, beside خانواده), it is another form.
+    const same = (a: LexemeForm, b: LexemeForm): boolean => a.form === b.form && (a.unwritten ?? "") === (b.unwritten ?? "");
+    const covers = (xs: readonly LexemeForm[], ys: readonly LexemeForm[]): boolean => xs.filter((x) => shared.has(x.lexeme)).every((x) => ys.some((y) => same(x, y)));
+    return covers(own, typed) && covers(typed, own) ? "same" : "grammatical";
+  };
+  const formLabel = (r: Relation): readonly MissLabel[] => (r === "grammatical" ? ["grammatical"] : r === "lexical" ? ["lexical"] : []);
+
+  // The sound question (ADR 0148): each pair asked once per accept set, as the units are compared.
+  const projection = profile.projection;
+  const scheme = projection?.from === "reading" ? (options.scheme ?? readingProjection(projection.scheme)) : undefined;
+  const soundOf = (expected: string, actual: string): SoundComparison | undefined => {
+    if (projection === undefined) return undefined;
+    if (projection.from === "reading") {
+      const readings = options.readings?.get(keyOf(expected));
+      return scheme === undefined || readings === undefined || readings.length === 0 ? undefined : compareByReading(scheme, readings, expected, actual);
+    }
+    const k = `${expected}\u0000${actual}`;
+    let c = set.sounds.get(k);
+    if (c === undefined) {
+      if (set.sounds.size >= 8192) set.sounds.clear();
+      c = projection.compare(expected, actual);
+      set.sounds.set(k, c);
+    }
+    return c;
+  };
+
+  const correspondences: string[] = [];
+  /** The labels a pair with the same sounds gets, its places' notes raised and its fixed correspondences kept. */
+  const bySound = (c: SoundComparison, quiet = false): readonly MissLabel[] => {
+    if (!quiet) for (const d of c.differs) note(d.note);
+    const fixed = c.differs.filter((d) => d.kind === "fixed");
+    for (const d of fixed) {
+      if (d.rule === undefined) continue;
+      const id = `${profile.id}:${d.rule}`;
+      if (!correspondences.includes(id)) correspondences.push(id);
+    }
+    // The same sounds with another stress (ke for qué, tambien for también): the stress is phonemic,
+    // and a fixed letter place beside it (the k) orthographic.
+    if (!c.same) return fixed.length > 0 ? ["phonemic", "orthographic"] : ["phonemic"];
+    // Free places are no miss: the same sound spelled as no norm forbids.
+    return fixed.length > 0 ? ["orthographic"] : [];
+  };
+  /** Whether a typed word is an attempt at the expected one: the sound question is asked of it only then. */
+  const attempt = (expected: string, actual: string, r: Relation, c: SoundComparison | undefined): boolean => {
+    if (c?.sounds === true || r === "grammatical" || r === "same") return true;
+    const e = graphemes(profile.fold(expected));
+    const a = graphemes(profile.fold(actual));
+    return letterDistance(e, a) <= Math.max(e.length, a.length) / 2;
+  };
+
+  // The misses by their place in the alignment; slips alone are kept apart: they are accepted.
+  const misses = new Map<number, Miss>();
+  const slips: MissLabel[] = [];
   if (units.length === 0) raise("WRONG");
   // Each unit's op carries the note it raised, so feedback can say which words it is about
-  // (cómo and como, W4).
+  // (cómo and como, W4), and its labels.
   const alignment: AlignOp[] = [];
   for (const op of ops) {
     raised = undefined;
-    // The right sound with the wrong letter (ADR 0142: سد for صد): never a typo, and another word of
-    // the course where it spells one.
-    if ((op.op === "substitute" || op.op === "match") && profile.soundAlike !== undefined && soundAlikeOnly(profile, op.expected, op.actual)) {
-      raise(options.lexicon?.has(lexiconKey(profile, op.actual)) === true ? "WRONG_WORD" : "WRONG");
-      note(profile.soundAlike.note);
-      alignment.push(raised === undefined ? op : { ...op, note: raised });
+    const at = alignment.length;
+    const done = (shown: AlignOp, miss?: Miss): void => {
+      const labelled = miss === undefined ? shown : { ...shown, labels: byWorst(miss.labels) };
+      alignment.push(raised === undefined || labelled.op === "insert" || labelled.op === "delete" ? labelled : { ...labelled, note: raised });
+      if (miss === undefined) return;
+      if (miss.labels.length === 1 && miss.labels[0] === "slip") slips.push("slip");
+      else misses.set(at, miss);
+    };
+    // A word left out or added (a sentence's words in another order are told apart below).
+    if (op.op === "insert" || op.op === "delete") {
+      done(op, { labels: ["lexical"], explained: false });
       continue;
     }
-    if (op.op !== "match") {
-      const c = op.op === "substitute" ? compare(op.expected, op.actual) : undefined;
-      const actual = op.op === "substitute" ? op.actual : undefined;
-      if (
-        c?.kind === "mismatch" &&
-        c.required === true &&
-        actual !== undefined &&
-        profile.marks?.distinguishes === true &&
-        options.lexicon?.has(lexiconKey(profile, actual)) === true
-      ) {
-        // Required marks that spell another word of the course (bardi for bärdi, ADR 0134).
-        raise("WRONG_WORD");
-        note(profile.marks.wordNote ?? c.note);
-      } else {
-        raise("WRONG");
-        if (c?.kind === "mismatch") note(c.note);
+    const { expected, actual } = op;
+    const c = compare(expected, actual);
+
+    // 1. The policies.
+    if (c.kind === "exact" || c.kind === "case" || c.kind === "fold") {
+      let another: Relation | undefined;
+      for (const f of c.folds) {
+        // Marks a profile notes but that tell words apart (grc, ADR 0087): left out or added, they can spell another word.
+        if (f.kind === "marks" && profile.marks?.distinguishes === true) {
+          const r = relation(expected, actual);
+          if (r === "lexical" || r === "grammatical") {
+            another = r;
+            note(profile.marks.wordNote ?? f.note ?? f.id);
+            continue;
+          }
+        }
+        applyPolicy(f.policy, f.kind === "marks" ? "CORRECT_MARKS" : f.kind === "variant" ? "CORRECT_VARIANT" : verdict, f.note ?? f.id);
       }
-      alignment.push(op.op === "substitute" && raised !== undefined ? { ...op, note: raised } : op);
+      done(op, another === undefined ? undefined : { labels: formLabel(another), explained: true });
       continue;
     }
-    const c = compare(op.expected, op.actual);
-    for (const f of c.folds) {
-      // Marks that tell words apart (ADR 0076): left out or added, they can spell another word (esta for está).
-      if (f.kind === "marks" && profile.marks?.distinguishes === true && options.lexicon?.has(lexiconKey(profile, op.actual)) === true) {
-        raise("WRONG_WORD");
-        note(profile.marks.wordNote ?? f.note ?? f.id);
+    if (c.kind === "homophone") {
+      for (const f of c.folds) applyPolicy(f.policy, f.kind === "marks" ? "CORRECT_MARKS" : f.kind === "variant" ? "CORRECT_VARIANT" : verdict, f.note ?? f.id);
+      // 4. A homophone character (ADR 0148: a possible spelling of its syllable): orthographic, where the profile does not accept it.
+      if (profile.homophones?.policy === "partial-credit") {
+        note("ime-homophone");
+        done(op, { labels: ["orthographic"], explained: true, homophone: true });
+      } else {
+        applyPolicy(profile.homophones?.policy, "PARTIAL", "ime-homophone");
+        done(op);
+      }
+      continue;
+    }
+
+    const r = relation(expected, actual);
+    const sound = c.kind === "mismatch" && c.rejected === true ? undefined : soundOf(expected, actual);
+    // 1. A free correspondence: the same word, spelled as no norm forbids.
+    if (sound?.free === true && r !== "lexical" && r !== "grammatical" && !(c.kind === "mismatch" && c.required === true)) {
+      for (const f of c.folds) applyPolicy(f.policy, f.kind === "marks" ? "CORRECT_MARKS" : f.kind === "variant" ? "CORRECT_VARIANT" : verdict, f.note ?? f.id);
+      raise("CORRECT_VARIANT");
+      note(sound.differs.find((d) => d.note !== undefined)?.note ?? "spelling-variant");
+      done({ op: "match", expected, actual, kind: "fold" });
+      continue;
+    }
+
+    // 2. The slip.
+    if (c.kind === "typo") {
+      for (const f of c.folds) applyPolicy(f.policy, f.kind === "marks" ? "CORRECT_MARKS" : f.kind === "variant" ? "CORRECT_VARIANT" : verdict, f.note ?? f.id);
+      // A typo that trades a meaningful ending for another (erratum 46) changes what the answer says.
+      const word = lexiconKey(profile, expected);
+      const contrast = contrastOf(profile, expected, actual, options.inflected?.has(word) === true, options.forms?.get(word));
+      if (contrast !== undefined) note(contrast.note);
+      // The right sound by a fixed correspondence (havlar, سد for صد): which letter was the question, never a typo.
+      if (sound?.sounds === true) {
+        done(op, { labels: [...bySound(sound), ...formLabel(r)], explained: true });
         continue;
       }
-      applyPolicy(f.policy, f.kind === "marks" ? "CORRECT_MARKS" : f.kind === "variant" ? "CORRECT_VARIANT" : verdict, f.note ?? f.id);
+      const form: readonly MissLabel[] = r === "lexical" || r === "grammatical" ? formLabel(r) : contrast !== undefined ? ["grammatical"] : [];
+      if (form.length === 0) raise("CORRECT_WITH_TYPO");
+      done(op, { labels: ["slip", ...form], explained: true });
+      continue;
     }
-    if (c.kind === "homophone") applyPolicy(profile.homophones?.policy, "PARTIAL", "ime-homophone");
-    else if (c.kind === "typo") {
-      // A typo that makes another word, or trades a meaningful ending for another (erratum 46),
-      // changes what the answer says.
-      const word = lexiconKey(profile, op.expected);
-      const contrast = contrastOf(profile, op.expected, op.actual, options.inflected?.has(word) === true, options.forms?.get(word));
-      if (contrast !== undefined) note(contrast.note);
-      raise(contrast !== undefined || options.lexicon?.has(lexiconKey(profile, op.actual)) === true ? "WRONG_WORD" : "CORRECT_WITH_TYPO");
+
+    // 3. What a slip does not explain.
+    if (c.kind !== "mismatch") {
+      done(op);
+      continue;
     }
-    alignment.push(raised === undefined ? op : { ...op, note: raised });
+    const markWord = c.required === true && profile.marks?.distinguishes === true && (r === "lexical" || r === "grammatical");
+    note(markWord ? (profile.marks?.wordNote ?? c.note) : c.note);
+    // A fold the profile refuses (Russian letters for Uzbek ones): the right word, written as the
+    // orthography never writes it. Wrong, as the policy says.
+    if (c.rejected === true) {
+      done(op, { labels: ["orthographic"], explained: false });
+      continue;
+    }
+    const labels: MissLabel[] = [];
+    // Where the marks make another word, its note says it all (accent-word): the places' notes are not repeated.
+    if (sound !== undefined && attempt(expected, actual, r, sound)) labels.push(...(sound.sounds ? bySound(sound, markWord) : ["phonemic" as const]));
+    // A required mark carries sound (ADR 0134 as amended, ADR 0148): where no statement asks the sound
+    // question, a word whose required marks differ says another sound all the same (kisi for kiši).
+    else if (sound === undefined && c.required === true) labels.push("phonemic");
+    labels.push(...formLabel(r));
+    // The same lexeme in the same form, spelled as the course spells it elsewhere: its spelling is the miss.
+    if (labels.length === 0) labels.push(r === "same" ? "orthographic" : "lexical");
+    // (regularised, the right lexeme and form built by rule where a part is listed, would be asked
+    // here, of the forms a lexicon ships with blocking off: none ships yet. scope needs ADR 0147's
+    // prompt tags: it is never produced.)
+    // Required marks explain a miss where they make another word of the course (bardi for bärdi), as
+    // before ADR 0148; the same sounds explain it whatever the marks (tambien, ke for qué).
+    // And where the profile states its sounds, marks that alone differ are the statement's to judge
+    // (pinguino says another sound): a mark that carries sound is never a question of meaning, so
+    // never the judge's, who would excuse it.
+    const explained = sound?.sounds === true || r === "same" || markWord || (c.marksOnly === true && sound !== undefined);
+    done(op, { labels, explained });
+  }
+
+  // 5. The accepted answer's words in another order: order, and nothing else.
+  // Only words out of their place: none matched where it stands and missed all the same.
+  if (misses.size > 0 && [...misses.keys()].every((i) => alignment[i]?.op !== "match")) {
+    const theirs = profile.units(alt.normalized);
+    if (theirs.length === units.length) {
+      const left = [...theirs];
+      const same = units.every((u) => {
+        const i = left.findIndex((t) => {
+          const k = compare(t, u).kind;
+          return k === "exact" || k === "case" || k === "fold";
+        });
+        if (i < 0) return false;
+        left.splice(i, 1);
+        return true;
+      });
+      if (same) {
+        correspondences.length = 0;
+        for (const [i] of misses) {
+          misses.set(i, { labels: ["order"], explained: false });
+          alignment[i] = { ...(alignment[i] as AlignOp), labels: ["order"] };
+        }
+      }
+    }
+  }
+
+  if (misses.size > 0) {
+    const all = [...misses.values()];
+    raise(all.every((m) => m.homophone === true) ? "PARTIAL" : all.every((m) => m.explained) ? "WRONG_WORD" : "WRONG");
   }
   raised = undefined;
   if (final.flags.includes("zwnj") && profile.zwnj !== undefined) applyPolicy(profile.zwnj.policy, verdict, profile.zwnj.note ?? "zwnj");
@@ -325,5 +579,15 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
   if (profile.scriptMismatch !== undefined && Array.from(normalized).some((c) => profile.scriptMismatch!.chars.has(c))) {
     applyPolicy(profile.scriptMismatch.policy, verdict, profile.scriptMismatch.note ?? "script-mismatch");
   }
-  return { verdict, notes, matched: alt.normalized, canonical: final.canonical, cost: Math.round(cost * 1000) / 1000, alignment };
+  const labels = byWorst([...slips, ...[...misses.values()].flatMap((m) => m.labels)]);
+  return {
+    verdict,
+    notes,
+    matched: alt.normalized,
+    canonical: final.canonical,
+    cost: Math.round(cost * 1000) / 1000,
+    alignment,
+    labels,
+    correspondences: labels.includes("orthographic") ? correspondences : [],
+  };
 };

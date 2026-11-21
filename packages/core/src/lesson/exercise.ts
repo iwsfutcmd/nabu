@@ -4,7 +4,7 @@
  * grade is in them, so a lesson can be serialized, replayed and tested.
  */
 import type { BundleAudioItem, PartId, Persons, Question, SchemeId, Skill, TaggedText } from "@nabu/schema";
-import type { AlignOp, Verdict } from "../match/grade.ts";
+import type { AlignOp, MissLabel, Verdict } from "../match/grade.ts";
 import type { SpeechResult } from "../speech/score.ts";
 
 export type TemplateId =
@@ -520,6 +520,10 @@ export interface Outcome {
    * wording than the solution (我嘅書喺邊度呀 for 我嘅書呢), which the alignment then lines up with.
    */
   readonly closestIsSolution?: boolean | undefined;
+  /** For answers graded through an accept set: what the miss is (ADR 0148), worst first; none for an answer accepted as it is. */
+  readonly labels?: readonly MissLabel[] | undefined;
+  /** The fixed correspondences an orthographic miss differed by (`<orthography id>:<id>`). */
+  readonly correspondences?: readonly string[] | undefined;
   readonly skipped?: SkipReason | undefined;
   /**
    * The learner rated their own speaking (tier 0, or no microphone for scored speaking): nothing was

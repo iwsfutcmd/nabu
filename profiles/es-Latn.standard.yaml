@@ -1,8 +1,12 @@
 # profiles/es-Latn.standard.yaml
 # Spanish in Latin script, as the RAE and ASALE spell it (Ortografía, 2010), for the es course (Cuban Spanish, ADR 0076).
 # Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
-#  - Accent marks (tilde, diéresis) left out or misplaced are accepted with a note (CORRECT_MARKS), unless the answer
-#    then spells another word of the course (está/esta, sí/si, él/el, habló/hablo): that is WRONG_WORD.
+#  - The acute accent and the diaeresis carry sound (ADR 0148, amending ADR 0076): they are required marks, so one
+#    left out, added or moved is never folded away nor a typo. The sound statement below labels the miss: tambien
+#    for también and pinguino for pingüino say another sound (phonemic), háblo for hablo the same with the accent
+#    where the rule already puts the stress (orthographic); esta for está, tu for tú are another word of the course
+#    too (lexical). Not accepted either way (WRONG_WORD), with the note accent (accent-word where it makes another
+#    word). Until ADR 0148 a missing accent was accepted with a note (CORRECT_MARKS).
 #  - ñ is a letter of its own, not n with a mark: año and ano are different words.
 id: es-Latn/standard
 lang: es-Latn
@@ -16,15 +20,17 @@ normalize:
   - whitespace: collapse
 match:
   case: { locale: es }
-  # REVIEW: the acute accent and the diaeresis (pingüino). Not the tilde of ñ, which makes another letter.
-  marks: { set: "[\u0301\u0308]", policy: accept-with-note, note: accent, distinguishes: true, wordNote: accent-word }
+  # REVIEW: the acute accent and the diaeresis (pingüino), required (ADR 0148: they carry sound). Not the tilde of ñ,
+  # which makes another letter. The policy and its note are what a mark outside `required` would get: there is none.
+  marks: { set: "[\u0301\u0308]", policy: accept-with-note, note: accent, distinguishes: true, wordNote: accent-word,
+           required: "[\u0301\u0308]", requiredNote: accent }
   typo:
     model: keyboard
     layout: cldr-kbd:es
     maxRatio: 0.2
     # REVIEW (ADR 0066): endings one or two letters apart that change the meaning: person and tense on verbs
     # (hablo, habla, hablas, hablan; hablé, habló; hable), gender and number on nouns and adjectives (niño, niña,
-    # niños). Compared without accents, so hablé/habló is a contrast here, and habló/hablo is the marks rule above.
+    # niños). A word whose accent differs (habló/hablo, hablé/habló) is never a typo: the required marks above.
     contrasts:
       - { id: ending, note: contrast-ending, members: [o, a, e, os, as, es, an, en, amos, emos, imos, aste, iste, aron, ieron, io, i, aba, abas, aban, ia, ias, ian] }
       - { id: pronoun, note: contrast-pronoun, members: [yo, tu, el, ella, ellos, ellas, usted, ustedes, nosotros, nosotras] }

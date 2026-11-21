@@ -3,14 +3,14 @@
  * for one taught orthography and one support language. Assembling it is pure;
  * the shell fetches the files (gameplan §7.5 stage 9) and passes them in.
  */
-import type { BundleAudio, BundleAudioItem, BundleClip, BundleFile, BundleGrapheme, BundleLabel, BundleLexeme, BundleLexicon, BundleManifest, BundleRule, BundleSentence, BundleUnit, CourseNames, DataTable, Facet, KeyboardLayout, OrthographyProfile, PartId, PlacementPolicy, TaggedText, Token, UdFeatures } from "@nabu/schema";
+import type { BundleAudio, BundleAudioItem, BundleClip, BundleFile, BundleGrapheme, BundleLabel, BundleLexeme, BundleLexicon, BundleManifest, BundleRule, BundleSentence, BundleUnit, CourseNames, DataTable, Facet, KeyboardLayout, OrthographyProfile, PartId, PlacementPolicy, SchemeId, TaggedText, Token, UdFeatures } from "@nabu/schema";
 import { keyboardDistance, type WordForm } from "../match/compare.ts";
-import { compileAcceptSet, grade, lexiconKey, type CompiledAcceptSet, type Grade } from "../match/grade.ts";
+import { compileAcceptSet, grade, lexiconKey, type CompiledAcceptSet, type Grade, type LexemeForm } from "../match/grade.ts";
 import { compileProfile, type CompiledProfile } from "../profile/compile.ts";
 import { err, ok, type Result } from "../result.ts";
 import { graphemes } from "../text/graphemes.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
-import { baseOf, effectiveFeats, kindOf, nodeOf } from "./lexemes.ts";
+import { baseOf, effectiveFeats, formKey, kindOf, lexemeFormKey, lexemesOf, nodeOf } from "./lexemes.ts";
 
 export interface CourseView {
   readonly id: string;
@@ -425,6 +425,17 @@ export interface Spellings {
    * (ADR 0084): a verb's infinitive is no perfect, whatever else its lexeme is written as.
    */
   readonly forms: ReadonlyMap<string, readonly WordForm[]>;
+  /**
+   * Whose form each word is (ADR 0148: decided by lexeme, never by string): every lexeme a token of
+   * one unit spelled so writes, with the token's form key (`formKey`), and each lexicon lemma with
+   * its own id as its form.
+   */
+  readonly lexemes: ReadonlyMap<string, readonly LexemeForm[]>;
+  /**
+   * Where the profile's sound is a pinned reading (`sound: {from: reading}`): the readings tokens
+   * spelled so pin in its scheme, each once.
+   */
+  readonly readings: ReadonlyMap<string, readonly string[]>;
 }
 
 /**
@@ -552,7 +563,46 @@ const buildSpellings = (course: CourseView, orthography: string): Spellings => {
       }
     }
   }
-  return { words, inflected, forms: new Map([...forms].map(([k, fs]) => [k, [...fs.keys()].sort().map((id) => fs.get(id) as WordForm)])) };
+  // Whose form each word is: the lexemes of the tokens that are one unit of it (a Han token of
+  // several characters says nothing of each), and each lemma as the lexicon cites it.
+  const lexemeForms = new Map<string, Map<string, LexemeForm>>();
+  const write = (k: string, these: readonly LexemeForm[]): void => {
+    const all = lexemeForms.get(k) ?? new Map<string, LexemeForm>();
+    for (const f of these) all.set(`${f.lexeme}\u0000${f.form}\u0000${f.unwritten ?? ""}`, f);
+    lexemeForms.set(k, all);
+  };
+  const scheme = profile.projection?.from === "reading" ? profile.projection.scheme : undefined;
+  const readings = new Map<string, Set<string>>();
+  for (const text of texts) {
+    for (const t of text.tokens) {
+      if (t.kind !== "lexical") continue;
+      const ks = keys(t.surface);
+      if (ks.length !== 1) continue;
+      const k = ks[0] as string;
+      const fk = formKey(t);
+      const unwritten = lexemesOf(t)
+        .filter((l) => l.surface === "")
+        .map((l) => l.lexeme)
+        .sort()
+        .join("+");
+      if (fk !== undefined) write(k, lexemesOf(t).map((l) => ({ lexeme: l.lexeme, form: fk, ...(unwritten !== "" && { unwritten }) })));
+      const reading = scheme === undefined ? undefined : t.readings?.[scheme as SchemeId];
+      if (reading !== undefined) readings.set(k, (readings.get(k) ?? new Set<string>()).add(reading.normalize("NFC")));
+    }
+  }
+  for (const lexeme of allLexemes(course)) {
+    for (const cited of lexeme.forms?.[orthography] ?? []) {
+      const ks = keys(surfaceOf(cited));
+      if (ks.length === 1) write(ks[0] as string, [{ lexeme: lexeme.id, form: lexemeFormKey(lexeme.id) }]);
+    }
+  }
+  return {
+    words,
+    inflected,
+    forms: new Map([...forms].map(([k, fs]) => [k, [...fs.keys()].sort().map((id) => fs.get(id) as WordForm)])),
+    lexemes: new Map([...lexemeForms].map(([k, fs]) => [k, [...fs.values()]])),
+    readings: new Map([...readings].map(([k, rs]) => [k, [...rs]])),
+  };
 };
 
 /**
@@ -605,8 +655,8 @@ export const createGrader = (course: CourseView): Grader => {
         set = compiled.value;
         sets.set(key, set);
       }
-      const { words, inflected, forms } = spellingsIn(course, orthography);
-      return grade(set, answer, { lexicon: words, inflected, forms });
+      const { words, inflected, forms, lexemes, readings } = spellingsIn(course, orthography);
+      return grade(set, answer, { lexicon: words, inflected, forms, lexemes, readings });
     },
   };
 };

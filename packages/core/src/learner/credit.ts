@@ -8,12 +8,12 @@
  * show). For typed answers the closest-path alignment decides per word: a lexeme whose word was
  * matched is right even when the answer as a whole was wrong.
  */
-import type { PartCredit, PartId, SchemeId, TaggedText, Token } from "@nabu/schema";
-import type { AlignOp, Verdict } from "../match/grade.ts";
+import type { BundleLexeme, PartCredit, PartId, SchemeId, TaggedText, Token } from "@nabu/schema";
+import type { AlignOp, MissLabel, Verdict } from "../match/grade.ts";
 import type { CompiledProfile } from "../profile/compile.ts";
 import { isCorrect, type Exercise, type Facet, type Outcome, type SelfRating } from "../lesson/exercise.ts";
 import { asksOf, formsOf, skillOf, TEMPLATES } from "../lesson/templates.ts";
-import { askedOfToken, lexemeIdsOf } from "../lesson/lexemes.ts";
+import { askedOfToken, baseIdOf, baseOf, featureId, lexemeIdsOf } from "../lesson/lexemes.ts";
 
 export type Rating = "again" | "hard" | "good" | "easy";
 
@@ -69,35 +69,65 @@ export const askedParts = (ex: Exercise): readonly PartId[] | undefined => {
 };
 
 /**
- * Per word of a typed answer: right when every unit of the word was matched in the alignment.
+ * What a typed answer shows of one word of the canonical answer, from its units' labels (ADR 0148):
+ * `right` (matched, or a slip alone); `spelling` (orthographic alone: the right sound, the wrong
+ * letter); `form` (grammatical without lexical: the right lexeme in another form); else `wrong`.
+ */
+type WordStatus = "right" | "spelling" | "form" | "wrong";
+
+/**
+ * Per word of a typed answer, its status, the units of the word each lined up with in the alignment.
  * Units are compared without vowel marks: the displayed words carry the marks a course's
  * vocalization adds (ADR 0053), while the accept sets they are matched against may not.
  */
-const wordCredit = (canonical: TaggedText, alignment: readonly AlignOp[], profile: CompiledProfile): ReadonlyMap<PartId, "right" | "wrong"> => {
+const wordStatuses = (canonical: TaggedText, alignment: readonly AlignOp[], profile: CompiledProfile): readonly { readonly token: Token; readonly status: WordStatus }[] => {
   const key = (unit: string): string => profile.marks?.strip(unit) ?? unit;
-  const matched = new Map<string, number>();
+  const byUnit = new Map<string, AlignOp[]>();
   for (const op of alignment) {
-    if (op.op === "match" && op.kind !== "typo") matched.set(key(op.expected), (matched.get(key(op.expected)) ?? 0) + 1);
+    if (op.op === "insert") continue;
+    const k = key(op.expected);
+    byUnit.set(k, [...(byUnit.get(k) ?? []), op]);
   }
-  const out = new Map<PartId, "right" | "wrong">();
+  const out: { token: Token; status: WordStatus }[] = [];
   for (const token of canonical.tokens) {
     if (token.kind !== "lexical" && token.kind !== "number") continue;
     const units = profile.units(profile.normalize(token.surface)).map(key);
-    const right = units.length > 0 && units.every((u) => (matched.get(u) ?? 0) > 0);
-    for (const lexeme of lexemeIdsOf(token)) {
-      // A lexeme is wrong if any of its words was wrong.
-      if (out.get(lexeme) !== "wrong") out.set(lexeme, right ? "right" : "wrong");
+    const labels = new Set<MissLabel>();
+    let found = units.length > 0;
+    let matched = true;
+    for (const u of units) {
+      const op = byUnit.get(u)?.shift();
+      if (op === undefined) {
+        found = false;
+        break;
+      }
+      if (op.op !== "match") matched = false;
+      for (const l of op.labels ?? []) labels.add(l);
     }
+    const only = (allowed: readonly MissLabel[]): boolean => [...labels].every((l) => allowed.includes(l));
+    const status: WordStatus = !found
+      ? "wrong"
+      : matched && only(["slip"])
+        ? "right"
+        : labels.size > 0 && only(["orthographic"])
+          ? "spelling"
+          : labels.has("grammatical") && !labels.has("lexical")
+            ? "form"
+            : "wrong";
+    out.push({ token, status });
   }
   return out;
 };
 
+
 /**
  * Per-part credit for one graded answer, each part with the skill the card exercises it by.
  * `profiles` resolves the answer's orthography for word-level credit on typed answers. A part the
- * card cannot show (`asksOf`) is given, whatever the answer.
+ * card cannot show (`asksOf`) is given, whatever the answer. `lexemes` (the course's, by id) says
+ * which words have a spelling leftover in the answer's orthography (ADR 0148): a typed word right
+ * shows it (`write-script`, right), and a word of the right sound with the wrong letter misses it.
  */
-export const creditOf = (ex: Exercise, outcome: Outcome, profiles: ReadonlyMap<string, CompiledProfile>): readonly PartCredit[] => {
+export const creditOf = (ex: Exercise, outcome: Outcome, profiles: ReadonlyMap<string, CompiledProfile>, lexemes?: ReadonlyMap<string, BundleLexeme>): readonly PartCredit[] => {
   const right = isCorrect(outcome.verdict);
   const credit = (part: PartId, status: PartCredit["status"]): PartCredit => ({ part, skill: skillOf(ex.template, part), status: asksOf(ex.template, part) ? status : "given" });
   const asked = askedParts(ex);
@@ -105,11 +135,38 @@ export const creditOf = (ex: Exercise, outcome: Outcome, profiles: ReadonlyMap<s
     const set = new Set(asked);
     return unique([...asked, ...ex.parts]).map((part) => credit(part, set.has(part) ? (right ? "right" : "wrong") : "given"));
   }
-  if (!right && (ex.template === "translate-type.l1-l2" || ex.template === "listen-type") && outcome.alignment !== undefined) {
+  // Typed answers are credited word by word.
+  if ((ex.template === "translate-type.l1-l2" || ex.template === "listen-type") && outcome.alignment !== undefined) {
     const profile = profiles.get(ex.orthography);
     if (profile !== undefined) {
-      const words = wordCredit(ex.canonical, outcome.alignment, profile);
-      return ex.parts.map((part) => credit(part, words.get(part) ?? "wrong"));
+      const words = new Map<PartId, "right" | "wrong">();
+      // A part is wrong if any of its words was wrong.
+      const mark = (part: PartId, status: "right" | "wrong"): void => {
+        if (words.get(part) !== "wrong") words.set(part, status);
+      };
+      const script = new Map<PartId, "right" | "wrong">();
+      const leftover = (part: PartId): boolean => (lexemes?.get(part)?.leftovers?.spelling as readonly string[] | undefined)?.includes(ex.orthography) === true;
+      for (const { token, status } of wordStatuses(ex.canonical, outcome.alignment, profile)) {
+        const ids = lexemeIdsOf(token);
+        const base = baseIdOf(token);
+        if (status === "right" || status === "spelling") {
+          for (const id of ids) mark(id, "right");
+          if (status === "right") for (const id of ids) if (leftover(id) && script.get(id) !== "wrong") script.set(id, "right");
+          if (status === "spelling" && base !== undefined) script.set(base, "wrong");
+        } else if (status === "form" && base !== undefined) {
+          // The right lexeme in another form: the form's values, and what else the token writes, missed.
+          mark(base, "right");
+          for (const id of ids) if (id !== base) mark(id, "wrong");
+          for (const [name, said] of Object.entries(baseOf(token)?.feats ?? {})) for (const value of said.split(",")) mark(featureId(name, value), "wrong");
+        } else for (const id of ids) mark(id, "wrong");
+      }
+      // What no word carries (a rule, a value no word missed) follows the answer: shown where the
+      // miss was only a slip or a spelling.
+      const labels = outcome.labels ?? [];
+      const rest: "right" | "wrong" = right || (labels.length > 0 && labels.every((l) => l === "slip" || l === "orthographic")) ? "right" : "wrong";
+      const credits = ex.parts.map((part) => credit(part, right ? "right" : (words.get(part) ?? rest)));
+      const scripted = [...script].map(([part, status]): PartCredit => ({ part, skill: "write-script", status }));
+      return [...credits, ...scripted];
     }
   }
   // Speech (Phase 9): the words said wrong are debited, the words said well credited, even when the
