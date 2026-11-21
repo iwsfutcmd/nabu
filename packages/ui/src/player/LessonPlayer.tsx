@@ -10,7 +10,6 @@
  */
 import type { Verdict } from "@nabu/core";
 import {
-  allKcs,
   cameBack,
   countsAs,
   draftOf,
@@ -154,7 +153,7 @@ export interface LessonPlayerProps {
   /** The learner chose vowel marks or vertical text: the app keeps the choice for the course. */
   readonly onDisplayChange?: ((choice: DisplayChoice) => void) | undefined;
   /**
-   * The words (KC ids) the learner knows (ADR 0100), for vowel marks on new words only (P12).
+   * The words (lexeme ids) the learner knows (ADR 0100), for vowel marks on new words only (P12).
    * Without it every word counts as new.
    */
   readonly known?: ReadonlySet<string> | undefined;
@@ -263,7 +262,6 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const also = useOtherReadings(course, tapped, toggles.glossRuby);
   // The words this lesson introduces (P1): the card that first presents one says so.
   const introduces = useMemo(() => new Set<string>(course.units.flatMap((u) => u.nodes).find((n) => n.id === lessonId)?.introduces ?? []), [course, lessonId]);
-  const kinds = useMemo(() => new Map(allKcs(course).map((k) => [k.id as string, k.kind])), [course]);
 
   useEffect(() => {
     if (state.tag === "presenting") dispatch({ tag: "ready" });
@@ -288,7 +286,7 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
           title={t.format(state.summary.completed ? FINISHED[kind] : "player.finished.stopped")}
           summary={state.summary}
           result={props.summary?.(state.summary)}
-          words={props.replay === true ? [] : taughtIn(state.session.queue, introduces, kinds)}
+          words={props.replay === true ? [] : taughtIn(state.session.queue, introduces)}
           missed={kind === "placement" ? [] : missedOf(state.session)}
           missedExtra={props.missedExtra}
           accepted={kind === "placement" ? [] : acceptedOf(state.session, props.judged)}
@@ -316,7 +314,7 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   // Why this card is back: an earlier mistake, or a skip (P4).
   const back = cameBack(state.session, ex);
   // The lesson's new words this card shows first (P1): none came on a card before it.
-  const fresh = newOnCard(ex, state.session.queue.slice(0, state.session.position), introduces, kinds);
+  const fresh = newOnCard(ex, state.session.queue.slice(0, state.session.position), introduces);
   const glossing = {
     tapped,
     onTap: (word: WordTap): void => {
@@ -392,7 +390,7 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
             </p>
           )}
           {/* A first look at the lesson's new words (P1): never more than the card gives away. */}
-          <NewWordsTag course={course} template={ex.template} kcs={fresh} ruby={ruby} marks={marks} />
+          <NewWordsTag course={course} template={ex.template} lexemes={fresh} ruby={ruby} marks={marks} />
         </div>
       )}
       <h2 className={styles.instruction} id={ids.instruction}>
@@ -430,7 +428,7 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         {/* The solution shows its marks unless the learner hid them (a vocalize card's always: they are its answer). */}
         {active.tag === "feedback" && <Feedback ex={ex} outcome={active.outcome} response={active.response} course={course} ruby={ruby} marks={ex.template === "vocalize" || ex.template === "vocalize-build" || marks !== "hide" ? "show" : "hide"} glossing={glossing} />}
       </div>
-      {active.tag === "feedback" && <NewWordsAnswered course={course} template={ex.template} kcs={fresh} ruby={ruby} marks={marks} />}
+      {active.tag === "feedback" && <NewWordsAnswered course={course} template={ex.template} lexemes={fresh} ruby={ruby} marks={marks} />}
       {active.tag === "feedback" && props.feedbackExtra?.(ex, active.outcome, active.response, (verdict) => dispatch({ tag: "revise", exercise: ex.id, verdict }))}
 
       {/*

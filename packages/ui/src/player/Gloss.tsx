@@ -44,7 +44,7 @@ export interface GlossEntryProps {
 export const GlossEntry = ({ gloss: g, ruby, marks, note }: GlossEntryProps): JSX.Element => {
   const t = useTranslator();
   return (
-    <div className={styles.glossEntry} data-gloss-kc={g.kc}>
+    <div className={styles.glossEntry} data-gloss-id={g.id}>
       <dt>
         {g.unwritten === true ? (
           <span className={styles.glossNote} data-gloss-unwritten="">
@@ -71,9 +71,9 @@ export const GlossEntry = ({ gloss: g, ruby, marks, note }: GlossEntryProps): JS
 /** The list GlossEntry rows go in. */
 export const GlossList = ({ children }: { readonly children: ReactNode }): JSX.Element => <dl className={styles.glossList}>{children}</dl>;
 
-/** The form a word is pinned as (form:pres-2s, ADR 0076), after its meaning: "present tense: you (tú)". */
-export const FormNote = ({ kc, meaning }: { readonly kc: string; readonly meaning: TaggedText }): JSX.Element => (
-  <span className={styles.glossNote} data-gloss-form={kc}>
+/** The form a word is pinned as (ADR 0076), after its meaning: "present tense: you (tú)". */
+export const FormNote = ({ id, meaning }: { readonly id: string; readonly meaning: TaggedText }): JSX.Element => (
+  <span className={styles.glossNote} data-gloss-form={id}>
     <T text={meaning} />
   </span>
 );

@@ -2,7 +2,7 @@
  * How the language being learned is shown (P12): the profile's default for vowel marks, the
  * learner's choice for a course, and marks on new words only.
  */
-import { createGrader, sampleExercise, start, step, type CourseView } from "@nabu/core/lesson";
+import { allLexemes, createGrader, isLexeme, sampleExercise, start, step, type CourseView } from "@nabu/core/lesson";
 import type { OrthographyProfile, TaggedText } from "@nabu/schema";
 import type { JSX } from "react";
 import { describe, expect, it } from "vitest";
@@ -51,7 +51,7 @@ describe("vowel marks on new words only (P12)", () => {
     expect(sentence).toBeDefined();
     const all = words(render(<T text={text} marks="new" />));
     expect(all.every((w) => MARK.test(w)), "no status: every word is new").toBe(true);
-    const [first] = sentence?.kcs ?? [];
+    const [first] = (sentence?.parts ?? []).filter(isLexeme);
     const html = render(
       <WordStatusProvider course={course} known={new Set([first as string])}>
         <T text={text} marks="new" />
@@ -66,7 +66,7 @@ describe("vowel marks on new words only (P12)", () => {
     if (ex?.template !== "choose-translation") throw new Error("fa has a choose-translation card");
     const [presenting] = start("lesson", [ex]);
     const [answering] = step(presenting, { tag: "ready" });
-    const known = new Set(course.units.flatMap((u) => u.kcs.map((k) => k.id as string)));
+    const known = new Set(allLexemes(course).map((l) => l.id));
     const play = (extra: { display?: DisplayChoice; known?: ReadonlySet<string> }): string =>
       render(<LessonPlayer course={course} lessonId="lesson" exercises={[ex]} grader={createGrader(course)} imageUrl={(p) => p} language="Persian" initialState={answering} {...extra} />);
     const prompt = (html: string): string => html.slice(html.indexOf('data-ink-container="prompt"'), html.indexOf("data-options"));

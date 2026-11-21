@@ -184,7 +184,7 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
   if (ex === undefined) throw new Error(`${course.id} has no ${TEMPLATE[screen]} exercise`);
   const initialState = useMemo(() => stateFor(screen, ex, course, grader), [screen, ex, course, grader]);
   // New words (P1): played as the lesson that introduces one of the card's words.
-  const lessonId = screen === "new-words" ? (lessonNodes(course).find((n) => n.node.introduces.some((kc) => ex.kcs.includes(kc)))?.node.id ?? "story") : "story";
+  const lessonId = screen === "new-words" ? (lessonNodes(course).find((n) => n.node.introduces.some((id) => ex.parts.includes(id)))?.node.id ?? "story") : "story";
   return (
     <LessonPlayer
       key={`${course.id}:${screen}:${writingMode}`}

@@ -1,16 +1,17 @@
 /** A fill-in's instruction says what it asks (ADR 0132): which word, or which form. */
 import type { Exercise } from "@nabu/core/lesson";
+import type { Question } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { instructionOf, INSTRUCTIONS } from "../src/player/ExerciseView.tsx";
 
-const card = (template: "gap-fill" | "story-complete", asks?: "word" | "form"): Exercise =>
-  ({ template, id: template, item: "s.1", kcs: [], orthography: "es-Latn/standard", options: [], answer: 0, ...(asks === undefined ? {} : { asks }) }) as unknown as Exercise;
+const card = (template: "gap-fill" | "story-complete", asks?: Question): Exercise =>
+  ({ template, id: template, item: "s.1", parts: [], orthography: "es-Latn/standard", options: [], answer: 0, ...(asks === undefined ? {} : { asks }) }) as unknown as Exercise;
 
 describe("a fill-in's instruction", () => {
   it("says which word or which form it asks", () => {
-    expect(instructionOf(card("gap-fill", "word"))).toBe("player.instruction.gap-fill-word");
+    expect(instructionOf(card("gap-fill", "lexeme"))).toBe("player.instruction.gap-fill-word");
     expect(instructionOf(card("gap-fill", "form"))).toBe("player.instruction.gap-fill-form");
-    expect(instructionOf(card("story-complete", "word"))).toBe("player.instruction.story-complete-word");
+    expect(instructionOf(card("story-complete", "lexeme"))).toBe("player.instruction.story-complete-word");
     expect(instructionOf(card("story-complete", "form"))).toBe("player.instruction.story-complete-form");
   });
 

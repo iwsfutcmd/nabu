@@ -7,10 +7,10 @@
  *   ADR 0152; a form the word has of itself is marked) and its readings.
  * - Forms and patterns: each with its glossary entry and the words that carry it.
  * - Letters: what a script track teaches.
- * - Sentences: each with its translation, what it accepts, the KCs it lists, and its words.
+ * - Sentences: each with its translation, what it accepts, the parts it lists, and its words.
  *
  * Search (dataMatcher) is by letters whatever the vowel marks, by reading, by meaning, or by id: an
- * id of a KC finds the sentences that list it. Every text goes through <T> in its own language and
+ * id of a part finds the sentences that list it. Every text goes through <T> in its own language and
  * direction; ids and tags are code. The list follows a query only once an IME has committed it.
  * Nothing here is recorded.
  */
@@ -44,10 +44,10 @@ const VIEW_MESSAGES = { words: "data.view.words", forms: "data.view.forms", lett
 type Translator = ReturnType<typeof useTranslator>;
 
 /**
- * An id, as code. One that names its KC by the word itself (sense:係) is text in the course's script,
+ * An id, as code. One that names its lexeme by the word itself (lexeme:係) is text in the course's script,
  * set in that script's face: the interface's has no letters for it.
  */
-const Id = ({ id, ...marks }: { id: EntryId; "data-entry-id"?: string; "data-listed-kc"?: string }): JSX.Element => (
+const Id = ({ id, ...marks }: { id: EntryId; "data-entry-id"?: string; "data-listed-part"?: string }): JSX.Element => (
   <code className={styles.code} {...marks}>
     {id.text === undefined ? id.id : <T text={id.text} />}
   </code>
@@ -115,8 +115,8 @@ const Carried = ({
 const Word = ({ t, row, ruby }: { t: Translator; row: WordRow; ruby: SchemeId | false }): JSX.Element => {
   const [lemma, ...variants] = row.forms;
   return (
-    <li className={styles.row} data-data-row={row.kc.id}>
-      <div className={styles.head} data-ink-container={`data:${row.kc.id}`}>
+    <li className={styles.row} data-data-row={row.id.id}>
+      <div className={styles.head} data-ink-container={`data:${row.id.id}`}>
         {lemma !== undefined && <T className={styles.form} text={lemma} ruby={ruby} />}
         {variants.map((v, i) => (
           <T key={i} className={styles.variant} text={v} ruby={ruby} />
@@ -148,9 +148,9 @@ const Word = ({ t, row, ruby }: { t: Translator; row: WordRow; ruby: SchemeId | 
 const CARRIERS = 12;
 
 const Form = ({ t, row, ruby }: { t: Translator; row: FormRow; ruby: SchemeId | false }): JSX.Element => (
-  <li className={styles.row} data-data-row={row.kc.id}>
+  <li className={styles.row} data-data-row={row.id.id}>
     {row.gloss !== undefined && (
-      <div className={styles.head} data-ink-container={`data:${row.kc.id}`}>
+      <div className={styles.head} data-ink-container={`data:${row.id.id}`}>
         <T className={styles.entry} text={row.gloss} />
       </div>
     )}
@@ -174,8 +174,8 @@ const Form = ({ t, row, ruby }: { t: Translator; row: FormRow; ruby: SchemeId | 
 );
 
 const Letter = ({ row }: { row: LetterRow }): JSX.Element => (
-  <li className={styles.row} data-data-row={row.kc.id}>
-    <div className={styles.head} data-ink-container={`data:${row.kc.id}`}>
+  <li className={styles.row} data-data-row={row.id.id}>
+    <div className={styles.head} data-ink-container={`data:${row.id.id}`}>
       {row.forms.map((f, i) => (
         <T key={i} className={i === 0 ? styles.form : styles.variant} text={f} />
       ))}
@@ -196,8 +196,8 @@ const Sentence = ({ t, course, row, ruby }: { t: Translator; course: CourseView;
       </div>
       {row.translation !== undefined && <T as="p" className={list.gloss} text={row.translation} />}
       <Entry id={{ id: sentence.id }} tags={row.tags}>
-        {row.listed.map((kc) => (
-          <Id key={kc.id} id={kc} data-listed-kc="" />
+        {row.listed.map((part) => (
+          <Id key={part.id} id={part} data-listed-part="" />
         ))}
       </Entry>
       {(reverse !== undefined || (accept !== undefined && row.translation !== undefined)) && (
@@ -233,9 +233,9 @@ export const DataBrowser = ({ course, reading, view: opensOn, query: opensWith =
   const ruby = useMemo(() => defaultRuby(course.profiles.get(course.orthography)?.source, reading), [course, reading]);
   const matcher = useMemo(() => dataMatcher(course, query), [course, query]);
   const shown = useMemo((): readonly { readonly unit: number; readonly key: string; readonly node: JSX.Element }[] => {
-    if (view === "words") return data.words.filter(matcher.words).map((row) => ({ unit: row.unit, key: row.kc.id, node: <Word key={row.kc.id} t={t} row={row} ruby={ruby} /> }));
-    if (view === "forms") return data.forms.filter(matcher.forms).map((row) => ({ unit: row.unit, key: row.kc.id, node: <Form key={row.kc.id} t={t} row={row} ruby={ruby} /> }));
-    if (view === "letters") return data.letters.filter(matcher.letters).map((row) => ({ unit: row.unit, key: row.kc.id, node: <Letter key={row.kc.id} row={row} /> }));
+    if (view === "words") return data.words.filter(matcher.words).map((row) => ({ unit: row.unit, key: row.id.id, node: <Word key={row.id.id} t={t} row={row} ruby={ruby} /> }));
+    if (view === "forms") return data.forms.filter(matcher.forms).map((row) => ({ unit: row.unit, key: row.id.id, node: <Form key={row.id.id} t={t} row={row} ruby={ruby} /> }));
+    if (view === "letters") return data.letters.filter(matcher.letters).map((row) => ({ unit: row.unit, key: row.id.id, node: <Letter key={row.id.id} row={row} /> }));
     return data.sentences.filter(matcher.sentences).map((row) => ({ unit: row.unit, key: row.sentence.id, node: <Sentence key={row.sentence.id} t={t} course={course} row={row} ruby={ruby} /> }));
   }, [view, data, matcher, t, ruby, course]);
   const page = shown.slice(0, pages * PAGE);

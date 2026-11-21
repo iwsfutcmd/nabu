@@ -13,7 +13,7 @@
  * Homographs (ADR 0140): inside `HomographsProvider`, <T> marks the words whose spelling the course
  * reads more than one way.
  */
-import { allKcs, homographsOf, type CourseView } from "@nabu/core/lesson";
+import { homographsOf, lexemesInOrder, type CourseView } from "@nabu/core/lesson";
 import type { SchemeId } from "@nabu/schema";
 import { surfaceOf } from "@nabu/core/text";
 import { createContext, use, useMemo, type JSX, type ReactNode } from "react";
@@ -23,15 +23,15 @@ export type Marks = "show" | "hide" | "new";
 
 interface WordStatus {
   /**
-   * Whether a word is one the learner is still learning: by the KCs its token names (its sense and
-   * morphs), else by its surface among the course's forms in that orthography.
+   * Whether a word is one the learner is still learning: by the lexemes its token writes, else by
+   * its surface among the course's forms in that orthography.
    */
-  readonly isNew: (kcs: readonly string[], surface: string, orthography: string) => boolean;
+  readonly isNew: (lexemes: readonly string[], surface: string, orthography: string) => boolean;
   /**
-   * Whether the learner has shown a word's reading (ADR 0131): every KC its token names, else the
-   * KC of its form, read right on a reading card. A word no KC writes keeps its reading.
+   * Whether the learner has shown a word's reading (ADR 0131): every lexeme its token writes, else
+   * the lexeme of its form, read right on a reading card. A word no lexeme writes keeps its reading.
    */
-  readonly readingShown: (kcs: readonly string[], surface: string, orthography: string) => boolean;
+  readonly readingShown: (lexemes: readonly string[], surface: string, orthography: string) => boolean;
 }
 
 const WordStatusContext = createContext<WordStatus | null>(null);
@@ -39,9 +39,9 @@ const WordStatusContext = createContext<WordStatus | null>(null);
 export const useWordStatus = (): WordStatus | null => use(WordStatusContext);
 
 /**
- * Which words the learner knows, for <T>'s `marks="new"`. A token names its KCs (its sense and its
- * morphs); a word card's form names none, so it is looked up among the course's forms as written. A
- * token whose KCs are all known is known; anything else (a name, a word no KC writes) is new.
+ * Which words the learner knows, for <T>'s `marks="new"`. A token names the lexemes it writes; a
+ * word card's form names none, so it is looked up among the course's forms as written. A token whose
+ * lexemes are all known is known; anything else (a name, a word no lexeme writes) is new.
  */
 export const WordStatusProvider = ({
   course,
@@ -58,22 +58,22 @@ export const WordStatusProvider = ({
   const value = useMemo((): WordStatus | null => {
     if (known === undefined && readings === undefined) return null;
     const byForm = new Map<string, string>();
-    for (const kc of allKcs(course)) {
-      for (const [orthography, forms] of Object.entries(kc.forms ?? {})) {
-        for (const form of forms) byForm.set(`${orthography}\u0000${surfaceOf(form).normalize("NFC")}`, kc.id);
+    for (const lexeme of lexemesInOrder(course)) {
+      for (const [orthography, forms] of Object.entries(lexeme.forms ?? {})) {
+        for (const form of forms) byForm.set(`${orthography}\u0000${surfaceOf(form).normalize("NFC")}`, lexeme.id);
       }
     }
-    const named = (kcs: readonly string[], surface: string, orthography: string): readonly string[] =>
-      kcs.length > 0 ? kcs : [byForm.get(`${orthography}\u0000${surface.normalize("NFC")}`)].filter((kc) => kc !== undefined);
+    const named = (lexemes: readonly string[], surface: string, orthography: string): readonly string[] =>
+      lexemes.length > 0 ? lexemes : [byForm.get(`${orthography}\u0000${surface.normalize("NFC")}`)].filter((id) => id !== undefined);
     return {
-      isNew: (kcs, surface, orthography) => {
-        const words = named(kcs, surface, orthography);
-        return known === undefined || words.length === 0 || words.some((kc) => !known.has(kc));
+      isNew: (lexemes, surface, orthography) => {
+        const words = named(lexemes, surface, orthography);
+        return known === undefined || words.length === 0 || words.some((id) => !known.has(id));
       },
-      readingShown: (kcs, surface, orthography) => {
+      readingShown: (lexemes, surface, orthography) => {
         if (readings === undefined || orthography !== course.orthography) return false;
-        const words = named(kcs, surface, orthography);
-        return words.length > 0 && words.every((kc) => readings.has(kc));
+        const words = named(lexemes, surface, orthography);
+        return words.length > 0 && words.every((id) => readings.has(id));
       },
     };
   }, [course, known, readings]);
@@ -93,11 +93,11 @@ export const FadeReadings = ({ on, open = false, children }: { readonly on: bool
   return <FadeContext value={value}>{children}</FadeContext>;
 };
 
-/** Whether a word's ruby is left off here (by its token's KCs and surface): readings fade, and the learner has shown its reading. */
-export const useReadingFaded = (): ((kcs: readonly string[], surface: string, orthography: string) => boolean) => {
+/** Whether a word's ruby is left off here (by its token's lexemes and surface): readings fade, and the learner has shown its reading. */
+export const useReadingFaded = (): ((lexemes: readonly string[], surface: string, orthography: string) => boolean) => {
   const fade = use(FadeContext).on;
   const status = useWordStatus();
-  return (kcs, surface, orthography) => fade && status !== null && status.readingShown(kcs, surface, orthography);
+  return (lexemes, surface, orthography) => fade && status !== null && status.readingShown(lexemes, surface, orthography);
 };
 
 /** Whether a word whose reading has faded keeps what the script leaves unwritten (ADR 0141), rather than nothing. */

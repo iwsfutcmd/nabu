@@ -85,12 +85,12 @@ const sampleReports = (course: CourseView): readonly ReportEntry[] => {
   const claim = (n: number, item: string, text: string): AnswerReported => ({
     ...stamp(n),
     type: "answer_reported",
-    schema: 1,
+    schema: 2,
     course: course.id,
     orthography: course.orthography as OrthographyId,
     support: course.supportKey,
     answer: `00000000-0000-7000-8000-00000000020${String(n)}`,
-    exercise: { id: `translate-type.l1-l2:${item}`, template: "translate-type.l1-l2", item, kcs: [] },
+    exercise: { id: `translate-type.l1-l2:${item}`, template: "translate-type.l1-l2", item, parts: [] },
     text,
   });
   const [accepted, pending] = producible;

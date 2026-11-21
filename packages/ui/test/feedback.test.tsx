@@ -1,5 +1,5 @@
 import type { AlignOp } from "@nabu/core";
-import { allSentences, createGrader, gradeExercise, sampleExercise, seededRng, start, step, type Exercise, type Outcome, type PlayerEvent, type PlayerState, type Response, type TranslateType } from "@nabu/core/lesson";
+import { allSentences, baseIdOf, createGrader, gradeExercise, sampleExercise, seededRng, start, step, type Exercise, type Outcome, type PlayerEvent, type PlayerState, type Response, type TranslateType } from "@nabu/core/lesson";
 import { allStories, storyScript } from "@nabu/core/story";
 import { surfaceOf } from "@nabu/core/text";
 import type { SchemeId, TaggedText } from "@nabu/schema";
@@ -115,7 +115,7 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
     const form = s?.forms[es.orthography];
     const translation = s?.translations[es.supportKey];
     if (s === undefined || form?.reverse === undefined || translation === undefined) throw new Error("es has no such sentence");
-    return { template: "translate-type.l1-l2", id: `translate-type.l1-l2:${s.id}`, item: s.id, kcs: s.kcs, orthography: es.orthography, prompt: translation.text, accept: form.reverse, canonical: form.text };
+    return { template: "translate-type.l1-l2", id: `translate-type.l1-l2:${s.id}`, item: s.id, parts: s.parts, orthography: es.orthography, prompt: translation.text, accept: form.reverse, canonical: form.text };
   };
   // ¿Tú tienes hambre?
   const hungry = typedCard((id) => id === "s.u04.29");
@@ -177,39 +177,43 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
     expect(block(html, "data-answer-diff")).toContain('data-highlight="true">hablas</span>');
     const meanings = meaningsOf(html);
     expect(meanings).toContain("What the marked word means:");
-    expect(meanings).toMatch(/data-gloss-kc="sense:hablar"><dt>.*>hablas<.*<\/dt><dd>.*>speak</su);
-    expect(meanings).toMatch(/data-gloss-form="form:pres-2s">.*>you<.*>tú</su);
+    expect(meanings).toMatch(/data-gloss-id="lexeme:hablar"><dt>.*>hablas<.*<\/dt><dd>.*>speak</su);
+    // The form is the language's label for its values (present, second person singular).
+    expect(meanings).toMatch(/data-gloss-form="form:[^"]*Person=2;Tense=Pres[^"]*">.*>you<.*>tú</su);
   });
 
   it("marks that make another word: what that word means (Tu for Tú)", () => {
     const html = feedbackOf(hungry, { tag: "text", text: "Tu tienes hambre" });
     expect(html).toContain('data-verdict="WRONG_WORD"');
-    expect(meaningsOf(html)).toMatch(/data-gloss-kc="sense:tu"><dt>.*<\/dt><dd>.*>your</su);
+    expect(meaningsOf(html)).toMatch(/data-gloss-id="lexeme:tu"><dt>.*<\/dt><dd>.*>your</su);
   });
 
   it("a wrong choice among words of the course: what the chosen word means; nothing for a right one", () => {
-    const gap = Array.from({ length: 30 }, (_, seed) => sampleExercise(es, "gap-fill", seed + 1)).find((c) => c?.template === "gap-fill" && c.asks === "word");
+    const gap = Array.from({ length: 30 }, (_, seed) => sampleExercise(es, "gap-fill", seed + 1)).find((c) => c?.template === "gap-fill" && c.asks === "lexeme");
     if (gap?.template !== "gap-fill") throw new Error("es has a gap-fill card that asks which word");
     const wrong = (gap.answer + 1) % gap.options.length;
     const meanings = meaningsOf(feedbackOf(gap, { tag: "choice", index: wrong }));
     expect(meanings).toContain("What you chose means:");
     expect(meanings).toContain(`>${surfaceOf(gap.options[wrong] as TaggedText)}<`);
-    expect(meanings).toMatch(/data-gloss-kc="sense:/u);
+    expect(meanings).toMatch(/data-gloss-id="lexeme:/u);
     expect(meaningsOf(feedbackOf(gap, { tag: "choice", index: gap.answer }))).toBe("");
   });
 
   it("a wrong choice: what the right word means too, before what the chosen one means", () => {
-    // A gap whose right and chosen options are words of different senses.
-    const senseOf = (text: TaggedText | undefined): string | undefined => text?.tokens.find((tk) => tk.kind === "word")?.sense;
+    // A gap whose right and chosen options are words of different lexemes.
+    const lexemeOf = (text: TaggedText | undefined): string | undefined => {
+      const word = text?.tokens.find((tk) => tk.kind === "word");
+      return word === undefined ? undefined : baseIdOf(word);
+    };
     const cards = Array.from({ length: 30 }, (_, seed) => sampleExercise(es, "gap-fill", seed + 1));
-    const gap = cards.find((c) => c?.template === "gap-fill" && c.asks === "word" && senseOf(c.options[c.answer]) !== undefined && senseOf(c.options[(c.answer + 1) % c.options.length]) !== undefined && senseOf(c.options[c.answer]) !== senseOf(c.options[(c.answer + 1) % c.options.length]));
-    if (gap?.template !== "gap-fill") throw new Error("es has a gap-fill card of two senses");
+    const gap = cards.find((c) => c?.template === "gap-fill" && c.asks === "lexeme" && lexemeOf(c.options[c.answer]) !== undefined && lexemeOf(c.options[(c.answer + 1) % c.options.length]) !== undefined && lexemeOf(c.options[c.answer]) !== lexemeOf(c.options[(c.answer + 1) % c.options.length]));
+    if (gap?.template !== "gap-fill") throw new Error("es has a gap-fill card of two lexemes");
     const chosen = (gap.answer + 1) % gap.options.length;
     const html = feedbackOf(gap, { tag: "choice", index: chosen });
     const right = block(html, 'data-meanings="right"');
     expect(right).toContain("The right word means:");
-    expect(right).toContain(`data-gloss-kc="sense:${senseOf(gap.options[gap.answer]) ?? ""}"`);
-    expect(block(html, 'data-meanings="chosen"')).toContain(`data-gloss-kc="sense:${senseOf(gap.options[chosen]) ?? ""}"`);
+    expect(right).toContain(`data-gloss-id="${lexemeOf(gap.options[gap.answer]) ?? ""}"`);
+    expect(block(html, 'data-meanings="chosen"')).toContain(`data-gloss-id="${lexemeOf(gap.options[chosen]) ?? ""}"`);
     expect(html.indexOf('data-meanings="right"')).toBeLessThan(html.indexOf('data-meanings="chosen"'));
     // A right choice: no meanings at all.
     expect(feedbackOf(gap, { tag: "choice", index: gap.answer })).not.toContain("data-meanings");
@@ -229,7 +233,8 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
     const forms = meaningsOf(html);
     expect(forms.startsWith('data-meanings="forms"')).toBe(true);
     expect(forms).toContain("What each form says:");
-    expect(forms).toMatch(/data-gloss-form="form:/u);
+    // Chaghatay's endings are affix lexemes (lexeme:past-3pl), each glossed as its form.
+    expect(forms).toMatch(/data-gloss-form="(?:lexeme|form):/u);
     const right = surfaceOf(gap.options[gap.answer] as TaggedText);
     const wrong = surfaceOf(gap.options[chosen] as TaggedText);
     expect(forms.indexOf(`>${right}<`)).toBeGreaterThan(-1);

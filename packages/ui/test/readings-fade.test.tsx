@@ -4,7 +4,7 @@
  * a lesson or story that shows readings so. Cantonese and Chaghatay start that way.
  */
 import { allSentences, type Exercise, type Outcome, type Response } from "@nabu/core/lesson";
-import type { OrthographyProfile, SchemeId, TaggedText, Token } from "@nabu/schema";
+import type { OrthographyProfile, SchemeId, TaggedText } from "@nabu/schema";
 import { readFileSync } from "node:fs";
 import type { JSX } from "react";
 import { describe, expect, it } from "vitest";
@@ -27,9 +27,9 @@ const lzh = DEMO_ORTHOGRAPHIES.get("lzh-Hant/standard");
 const chg = parse(readFileSync(new URL("../../../profiles/chg-Arab.standard.yaml", import.meta.url), "utf8")) as OrthographyProfile;
 const course = loadCourse("yue");
 
-const word = (surface: string, jyutping: string, sense: string): TaggedText["tokens"][number] => {
+const word = (surface: string, jyutping: string, lexeme: string): TaggedText["tokens"][number] => {
   const syllables = jyutping.split(" ");
-  return { surface, kind: "word", sense: sense as NonNullable<Token["sense"]>, readings: { [JYUTPING]: jyutping }, ruby: { [JYUTPING]: [...surface].map((base, i) => ({ base, text: syllables[i] ?? "" })) } };
+  return { surface, kind: "word", lexemes: [{ lexeme: `lexeme:${lexeme}` }], readings: { [JYUTPING]: jyutping }, ruby: { [JYUTPING]: [...surface].map((base, i) => ({ base, text: syllables[i] ?? "" })) } };
 };
 const sentence = (orthography: string): TaggedText => ({
   lang: "yue-Hant-HK" as TaggedText["lang"],
@@ -38,7 +38,7 @@ const sentence = (orthography: string): TaggedText => ({
 });
 const text = sentence(ORTH);
 /** The learner has read 書 right on a reading card. */
-const shown: ReadonlySet<string> = new Set(["sense:syu"]);
+const shown: ReadonlySet<string> = new Set(["lexeme:syu"]);
 const rts = (html: string): readonly string[] => [...html.matchAll(/<rt[^>]*>([^<]*)<\/rt>/gu)].map((m) => m[1] as string);
 const inSession = (fade: boolean, node: JSX.Element, open = false): JSX.Element => (
   <WordStatusProvider course={course} known={undefined} readings={shown}>
@@ -99,7 +99,7 @@ describe("readings on new words only (ADR 0131)", () => {
   it("keep the reading of a word marked as wrong: the word feedback corrects shows it, as the rest of the sentence does", () => {
     expect(rts(render(inSession(true, <T text={text} ruby={JYUTPING} highlight={[2]} />)))).toEqual(["ngo5", "ge3", "syu1"]);
     // Only the marked word: another shown reading still fades.
-    const shownToo = new Set(["sense:syu", "sense:ngo"]);
+    const shownToo = new Set(["lexeme:syu", "lexeme:ngo"]);
     const html = render(
       <WordStatusProvider course={course} known={undefined} readings={shownToo}>
         <FadeReadings on>
@@ -165,7 +165,7 @@ describe("a tapped word's gloss always shows its reading (ADR 0131 amendment)", 
   };
   const panel = (ruby: SchemeId | false): string =>
     render(
-      <WordStatusProvider course={chgCourse} known={undefined} readings={new Set(["sense:ashligh", "form:poss3"])}>
+      <WordStatusProvider course={chgCourse} known={undefined} readings={new Set(["lexeme:ashligh", "lexeme:poss3"])}>
         <FadeReadings on>
           <Panel ruby={ruby} />
         </FadeReadings>
@@ -177,11 +177,11 @@ describe("a tapped word's gloss always shows its reading (ADR 0131 amendment)", 
     expect(html).toContain("data-gloss-word");
     // ašliǧi over the word, ašliǧ over its stem (spelled as its dictionary form); the suffix has none.
     expect(rts(html)).toEqual(["ašliǧi", "ašliǧ"]);
-    expect(html.indexOf("data-gloss-word")).toBeLessThan(html.indexOf("data-gloss-kc"));
+    expect(html.indexOf("data-gloss-word")).toBeLessThan(html.indexOf("data-gloss-id"));
   });
 
   it("shows no headword for a word an entry glosses whole: the entry's form has the reading", () => {
-    const whole = { text: sentence, token: sentence.tokens.findIndex((k) => k.kind === "word" && k.morphs === undefined) };
+    const whole = { text: sentence, token: sentence.tokens.findIndex((k) => k.kind === "word" && (k.lexemes?.length ?? 0) === 1) };
     const Whole = (): JSX.Element => <GlossPanel open glosses={useGlosses(chgCourse, whole)} word={wordOf(whole)} ruby={SCHLUESSEL} marks="show" />;
     const html = render(<Whole />);
     expect(html).not.toContain("data-gloss-word");

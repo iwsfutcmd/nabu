@@ -1,5 +1,5 @@
 import type { CompleteTranslation, Outcome } from "@nabu/core/lesson";
-import type { KcId, SchemeId, TaggedText } from "@nabu/schema";
+import type { SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { gapFillOf } from "../src/player/Views.tsx";
 import { T } from "../src/T.tsx";
@@ -19,7 +19,7 @@ const ex: CompleteTranslation = {
   template: "complete-translation",
   id: "complete-translation:s.u02.16",
   item: "s.u02.16",
-  kcs: ["sense:媽媽" as KcId],
+  parts: ["lexeme:媽媽"],
   orthography: "yue-Hant-HK/standard",
   prompt: { lang: "en-Latn" as TaggedText["lang"], orthography: "en-Latn/standard" as TaggedText["orthography"], tokens: [{ surface: "This is my mum.", kind: "word" }] },
   before: yue([word("呢個", "ni1 go3"), word("係", "hai6"), word("我", "ngo5")]),

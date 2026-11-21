@@ -15,7 +15,7 @@
  *   profile's mark set for display only, never in the data.
  */
 import { openLetters } from "@nabu/core";
-import { kcsOfToken } from "@nabu/core/learner";
+import { lexemeIdsOf } from "@nabu/core/lesson";
 import { graphemeCount, parseExemplarSet } from "@nabu/core/text";
 import { directionOf, fontStackFor, scriptOf } from "@nabu/i18n";
 import type { SchemeId, TaggedText, Token } from "@nabu/schema";
@@ -178,7 +178,7 @@ export const useShowsRuby = (): ((text: TaggedText, scheme: SchemeId) => boolean
   const keepOpen = useOpenLettersKept();
   // A faded word may keep what the script leaves unwritten (ADR 0141).
   const shows = (t: Token, scheme: SchemeId, orthography: string): boolean =>
-    !faded(kcsOfToken(t), t.surface, orthography) || (keepOpen && (t.ruby?.[scheme] ?? []).some((segment) => openLetters(scheme, segment.text) !== ""));
+    !faded(lexemeIdsOf(t), t.surface, orthography) || (keepOpen && (t.ruby?.[scheme] ?? []).some((segment) => openLetters(scheme, segment.text) !== ""));
   return (text, scheme) => text.tokens.some((t) => (t.ruby?.[scheme]?.length ?? 0) > 0 && shows(t, scheme, text.orthography));
 };
 
@@ -192,11 +192,11 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
   const markSet = marks === "show" ? undefined : profile?.match?.marks?.set;
   const strip = useMemo(() => markStripper(markSet), [markSet]);
   // "new": a word the learner knows loses its marks; one still being learned (or unknown) keeps them.
-  const known = (token: Token): boolean => status !== null && !status.isNew(kcsOfToken(token), token.surface, text.orthography);
+  const known = (token: Token): boolean => status !== null && !status.isNew(lexemeIdsOf(token), token.surface, text.orthography);
   // Readings on new words only (ADR 0131): a word whose reading the learner has shown goes without,
   // unless it is marked (the word feedback corrects) or tapped (the word looked up): those show it.
   const looked = (index: number): boolean => highlight?.includes(index) === true || pressed === index;
-  const fadedAt = (token: Token, index: number): boolean => ruby !== false && !looked(index) && faded(kcsOfToken(token), token.surface, text.orthography);
+  const fadedAt = (token: Token, index: number): boolean => ruby !== false && !looked(index) && faded(lexemeIdsOf(token), token.surface, text.orthography);
   // A faded reading goes, or keeps only what the script leaves unwritten (ADR 0141).
   const rubyOf = (token: Token, index: number): SchemeId | false => (fadedAt(token, index) && !keepOpen ? false : ruby);
   const stripOf = (token: Token): RegExp | undefined => (marks === "hide" || (marks === "new" && known(token)) ? strip : undefined);

@@ -23,7 +23,7 @@
  * reader hears the title and the score with the button (its description), and a stray Enter does
  * what Continue did before.
  */
-import { allKcs, answerDiff, answerTextOf, gradeExercise, promptOf, solutionMarks, solutionOf, type AnswerDiff, type CourseView, type Exercise, type Grader, type Missed, type Response, type SessionSummary } from "@nabu/core/lesson";
+import { answerDiff, answerTextOf, gradeExercise, promptOf, solutionMarks, solutionOf, type AnswerDiff, type CourseView, type Exercise, type Grader, lexemesById, type Missed, type Response, type SessionSummary } from "@nabu/core/lesson";
 import { textOfSurface } from "@nabu/core/text";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, type JSX, type ReactNode } from "react";
@@ -101,7 +101,7 @@ export interface SessionEndProps {
   readonly summary: SessionSummary;
   /** Said in place of the title and the score (a placement test's result, S5). */
   readonly result?: ReactNode;
-  /** The words the session taught (KC ids), in the order it showed them. */
+  /** The words the session taught (lexeme ids), in the order it showed them. */
   readonly words: readonly string[];
   readonly missed: readonly Missed[];
   /**
@@ -127,27 +127,27 @@ export interface SessionEndProps {
 }
 
 interface Word {
-  readonly kc: string;
+  readonly lexeme: string;
   readonly form: TaggedText;
   readonly gloss: TaggedText | undefined;
 }
 
-/** The course's words by KC id: their first form in the orthography being learned, and their meaning. */
-const useWords = (course: CourseView, kcs: readonly string[]): readonly Word[] => {
-  const byId = useMemo(() => new Map(allKcs(course).map((k) => [k.id as string, k])), [course]);
-  return kcs.flatMap((kc) => {
-    const k = byId.get(kc);
-    const form = k?.forms?.[course.orthography]?.[0];
-    return form === undefined ? [] : [{ kc, form, gloss: k?.gloss?.[course.supportKey] }];
+/** The course's words by lexeme id: their first form in the orthography being learned, and their meaning. */
+const useWords = (course: CourseView, lexemes: readonly string[]): readonly Word[] => {
+  const byId = lexemesById(course);
+  return lexemes.flatMap((lexeme) => {
+    const entry = byId.get(lexeme);
+    const form = entry?.forms?.[course.orthography]?.[0];
+    return form === undefined ? [] : [{ lexeme, form, gloss: entry?.gloss?.[course.supportKey] }];
   });
 };
 
 /** A new word: itself, its meaning, and its clip behind a play button (never played by itself). */
 const NewWord = ({ course, word, url, ruby, marks }: { readonly course: CourseView; readonly word: Word; readonly url: (path: string) => string; readonly ruby: SchemeId | false; readonly marks: Marks }): JSX.Element => {
-  const audio = course.audio[word.kc];
+  const audio = course.audio[word.lexeme];
   const player = useClipPlayer(audio, url);
   return (
-    <li className={styles.endWord} data-end-word={word.kc} data-ink-container={`word:${word.kc}`}>
+    <li className={styles.endWord} data-end-word={word.lexeme} data-ink-container={`word:${word.lexeme}`}>
       <T text={word.form} ruby={ruby} marks={marks} className={styles.endWordForm} />
       {word.gloss !== undefined && <T text={word.gloss} className={styles.newWordGloss} />}
       {audio !== undefined && <AudioButtons player={player} audio={audio} label={false} />}
@@ -246,16 +246,16 @@ const nextLabel = (t: ReturnType<typeof useTranslator>, to: NextTo): string => {
 const dataOf = (to: NextTo): string => (to.kind === "lesson" ? `lesson ${String(to.number)}` : to.kind);
 
 export const SessionEnd = (props: SessionEndProps): JSX.Element => {
-  const { course, grader, imageUrl, summary, words: kcs, missed, progress, xp, next, onExit, ruby, marks } = props;
+  const { course, grader, imageUrl, summary, words: lexemes, missed, progress, xp, next, onExit, ruby, marks } = props;
   const accepted = props.accepted ?? [];
   const t = useTranslator();
   const base = useId();
   const ids = { title: `${base}-title`, score: `${base}-score`, words: `${base}-words`, missed: `${base}-missed`, accepted: `${base}-accepted`, progress: `${base}-progress` };
-  const words = useWords(course, kcs);
+  const words = useWords(course, lexemes);
   const known = useWords(course, progress?.known?.words ?? []);
   const heading = useRef<HTMLDivElement>(null);
   const primary = useRef<HTMLButtonElement>(null);
-  const synthetic = words.some((w) => course.audio[w.kc]?.normal.synthetic === true);
+  const synthetic = words.some((w) => course.audio[w.lexeme]?.normal.synthetic === true);
   const scored = props.result === undefined && summary.exercises > 0;
 
   // The next step takes the focus (described by the title and the score), and the screen shows its
@@ -302,7 +302,7 @@ export const SessionEnd = (props: SessionEndProps): JSX.Element => {
           </h3>
           <ul className={styles.endList}>
             {words.map((w) => (
-              <NewWord key={w.kc} course={course} word={w} url={imageUrl} ruby={ruby} marks={marks} />
+              <NewWord key={w.lexeme} course={course} word={w} url={imageUrl} ruby={ruby} marks={marks} />
             ))}
           </ul>
           {synthetic && <p className={styles.synthetic}>{t.format("player.audio.synthetic")}</p>}
@@ -350,7 +350,7 @@ export const SessionEnd = (props: SessionEndProps): JSX.Element => {
                 <span>{t.format("player.end.known", { count: known.length })}</span>
                 <span className={styles.endKnown} data-ink-container="known">
                   {known.map((w) => (
-                    <T key={w.kc} text={w.form} ruby={ruby} marks={marks} />
+                    <T key={w.lexeme} text={w.form} ruby={ruby} marks={marks} />
                   ))}
                 </span>
                 <span className={styles.muted}>{t.format("player.end.known.total", { total: progress.known.total })}</span>

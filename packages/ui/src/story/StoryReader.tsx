@@ -66,7 +66,7 @@ export interface StoryReaderProps {
   readonly display?: DisplayChoice | undefined;
   /** The learner chose vowel marks or vertical text: the app keeps the choice for the course. */
   readonly onDisplayChange?: ((choice: DisplayChoice) => void) | undefined;
-  /** The words (KC ids) the learner knows (ADR 0100), for vowel marks on new words only (P12). */
+  /** The words (lexeme ids) the learner knows (ADR 0100), for vowel marks on new words only (P12). */
   readonly known?: ReadonlySet<string> | undefined;
   /** The words whose reading the learner has shown (ADR 0131), for readings on new words only. */
   readonly readingsShown?: ReadonlySet<string> | undefined;

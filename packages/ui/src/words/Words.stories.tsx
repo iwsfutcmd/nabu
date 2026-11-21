@@ -1,5 +1,5 @@
 import { skillsAsked, type LearnedWord } from "@nabu/core/learner";
-import type { CourseView } from "@nabu/core/lesson";
+import { lexemesOfUnit, type CourseView } from "@nabu/core/lesson";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, type JSX } from "react";
 import type { NabuGlobals } from "../../.storybook/toolbar.ts";
@@ -23,17 +23,17 @@ const sampleWords = (course: CourseView): LearnedWord[] => {
   const unit = course.units[0];
   if (unit === undefined) return [];
   const asked = skillsAsked(course);
-  return unit.kcs.flatMap((kc, i): LearnedWord[] => {
-    const form = kc.forms?.[course.orthography]?.[0];
-    if ((kc.kind !== "sense" && kc.kind !== "form") || form === undefined) return [];
+  return lexemesOfUnit(course, unit).flatMap((lexeme, i): LearnedWord[] => {
+    const form = lexeme.forms?.[course.orthography]?.[0];
+    if (form === undefined) return [];
     const band = i % 3;
-    const skills = asked(kc.id).map((skill, k) => ({ skill, shown: band === 0 || k < band }));
+    const skills = asked(lexeme.id).map((skill, k) => ({ skill, shown: band === 0 || k < band }));
     return [
       {
-        kc: kc.id,
+        lexeme: lexeme.id,
         unit: unit.id,
         form,
-        gloss: kc.gloss?.[course.supportKey],
+        gloss: lexeme.gloss?.[course.supportKey],
         strength: band === 0 ? 0.97 : band === 1 ? 0.62 : 0.4,
         due: band === 2,
         reviews: 3 + i,

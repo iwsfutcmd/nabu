@@ -90,9 +90,9 @@ describe("the end of a lesson (P9)", () => {
     const introduced = lessonNodes(course)[1]?.node.introduces ?? [];
     const words = [...html.matchAll(/data-end-word="([^"]+)"/gu)].map((m) => m[1]);
     expect(words.length).toBeGreaterThan(0);
-    expect(words.every((kc) => introduced.includes(kc as never))).toBe(true);
+    expect(words.every((id) => introduced.includes(id as never))).toBe(true);
     // A play button where the word has a clip; nothing that plays by itself.
-    const clipped = words.filter((kc) => course.audio[kc as string] !== undefined);
+    const clipped = words.filter((id) => course.audio[id as string] !== undefined);
     expect(clipped.length).toBeGreaterThan(0);
     expect(html.match(/data-action="play"/gu)?.length).toBe(clipped.length);
     expect(html).not.toContain("autoplay");

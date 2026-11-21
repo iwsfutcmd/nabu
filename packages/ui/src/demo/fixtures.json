@@ -65,7 +65,11 @@
             "surface": "کتاب\u200cها",
             "kind": "word",
             "tileGroup": 0,
-            "sense": "کتاب"
+            "lexemes": [
+              {
+                "lexeme": "lexeme:کتاب"
+              }
+            ]
           },
           {
             "surface": " ",
@@ -388,19 +392,19 @@
             "surface": "tilini",
             "kind": "word",
             "tileGroup": 2,
-            "sense": "til",
-            "morphs": [
+            "lexemes": [
               {
+                "lexeme": "lexeme:til",
                 "surface": "til",
-                "kc": "sense:til"
+                "base": true
               },
               {
-                "surface": "i",
-                "kc": "form:poss-3"
+                "lexeme": "lexeme:poss-3",
+                "surface": "i"
               },
               {
-                "surface": "ni",
-                "kc": "form:acc"
+                "lexeme": "lexeme:acc",
+                "surface": "ni"
               }
             ]
           },
@@ -412,18 +416,19 @@
             "surface": "oʻrganyapman",
             "kind": "word",
             "tileGroup": 3,
-            "morphs": [
+            "lexemes": [
               {
+                "lexeme": "lexeme:oʻrganmoq",
                 "surface": "oʻrgan",
-                "kc": "sense:oʻrganmoq"
+                "base": true
               },
               {
-                "surface": "yap",
-                "kc": "form:prog"
+                "lexeme": "lexeme:prog",
+                "surface": "yap"
               },
               {
-                "surface": "man",
-                "kc": "form:1sg"
+                "lexeme": "lexeme:cop-1sg",
+                "surface": "man"
               }
             ]
           },

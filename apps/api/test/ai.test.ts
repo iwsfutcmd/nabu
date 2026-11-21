@@ -8,6 +8,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import type { EvalGate, JudgeVerdict, LearnerEvent, OrthographyId } from "@nabu/schema";
 import { ROLEPLAY_HISTORY } from "@nabu/core/ai";
 import { replay } from "@nabu/core/learner";
+import { skillOf, type TemplateId } from "@nabu/core/lesson";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createAccounts } from "../src/accounts.ts";
 import { createCourses } from "../src/ai/courses.ts";
@@ -166,7 +167,7 @@ const YUE = "yue-Hant-HK/standard" as OrthographyId;
 
 const base = (course = "yue", orthography: OrthographyId = YUE) => ({
   id: id(),
-  schema: 1 as const,
+  schema: 2 as const,
   device: "d",
   course,
   orthography,
@@ -179,14 +180,23 @@ const base = (course = "yue", orthography: OrthographyId = YUE) => ({
 });
 
 /** A typed answer to s.12 (我係學生 "I am a student") graded WRONG. */
-const typedAnswer = (raw: string, template = "translate-type.l1-l2"): LearnerEvent =>
+const typedAnswer = (raw: string, template: TemplateId = "translate-type.l1-l2"): LearnerEvent =>
   ({
     ...base(),
     type: "answer_submitted",
-    exercise: { id: "x", template, item: "s.12", kcs: ["sense:我", "sense:係", "sense:學生"] },
+    exercise: { id: "x", template, item: "s.12", parts: ["lexeme:我", "lexeme:係", "lexeme:學生"] },
     attempt: 1,
     input: { method: "text", raw, latencyMs: 6000 },
-    outcome: { kind: "WRONG", notes: [], kcs: [{ kc: "sense:我", status: "right" }, { kc: "sense:係", status: "wrong" }, { kc: "sense:學生", status: "right" }] },
+    outcome: {
+      kind: "WRONG",
+      notes: [],
+      labels: [],
+      parts: [
+        { part: "lexeme:我", skill: skillOf(template, "lexeme:我"), status: "right" },
+        { part: "lexeme:係", skill: skillOf(template, "lexeme:係"), status: "wrong" },
+        { part: "lexeme:學生", skill: skillOf(template, "lexeme:學生"), status: "right" },
+      ],
+    },
   }) as unknown as LearnerEvent;
 
 const upload = async (token: string, events: readonly unknown[]): Promise<{ accepted: number; duplicates: number; refused: number }> => {
@@ -368,21 +378,21 @@ describe("the review queue", () => {
 });
 
 describe("roleplay", () => {
-  /** A completed yum-cha lesson in which the learner recognized these KCs. */
-  const lesson = (kcs: readonly string[]): unknown[] => {
+  /** A completed yum-cha lesson in which the learner recognized these lexemes. */
+  const lesson = (lexemes: readonly string[]): unknown[] => {
     const session = id();
     const at = (s: number) => ({ ...base(), session, clientTime: new Date(clock - 3_600_000 + s * 1000).toISOString() });
     return [
-      { ...at(0), type: "session_started", mode: "lesson", node: "yue.yum-cha", seed: 1, exercises: kcs.length, planner: "t" },
-      ...kcs.map((kc, i) => ({
+      { ...at(0), type: "session_started", mode: "lesson", node: "yue.yum-cha", seed: 1, exercises: lexemes.length, planner: "t" },
+      ...lexemes.map((part, i) => ({
         ...at(1 + i),
         type: "answer_submitted",
-        exercise: { id: `r${i}`, template: "choose-translation", item: "s.1", kcs: [kc] },
+        exercise: { id: `r${i}`, template: "choose-translation", item: "s.1", parts: [part] },
         attempt: 1,
         input: { method: "choice", latencyMs: 3000 },
-        outcome: { kind: "CORRECT", notes: [], kcs: [{ kc, status: "right" }] },
+        outcome: { kind: "CORRECT", notes: [], labels: [], parts: [{ part, skill: skillOf("choose-translation", part), status: "right" }] },
       })),
-      { ...at(60), type: "session_completed", mode: "lesson", node: "yue.yum-cha", summary: { completed: true, exercises: kcs.length, correctFirstTry: kcs.length, retries: 0, skipped: 0 } },
+      { ...at(60), type: "session_completed", mode: "lesson", node: "yue.yum-cha", summary: { completed: true, exercises: lexemes.length, correctFirstTry: lexemes.length, retries: 0, skipped: 0 } },
     ];
   };
   const ask = (token: string, history: unknown[] = []) =>
@@ -391,7 +401,7 @@ describe("roleplay", () => {
   it("opens only after the scenario's node, and keeps model turns inside the learner's words", async () => {
     const { token } = await signUp();
     expect((await ask(token)).status).toBe(403);
-    await upload(token, lesson(["sense:早晨", "sense:你好", "sense:呀", "sense:飲茶", "sense:啦", "sense:去"]));
+    await upload(token, lesson(["lexeme:早晨", "lexeme:你好", "lexeme:呀", "lexeme:飲茶", "lexeme:啦", "lexeme:去"]));
     // Over budget (several unknown words), then another script, then a turn in known words.
     model.replies.push({ reply: "早晨！你食咗早餐未呀？" }, { reply: "Hello！早晨呀！" }, { reply: "早晨呀！去飲茶啦！", translation: "Morning! Let's go for yum cha!" });
     const res = await ask(token);
@@ -418,7 +428,7 @@ describe("roleplay", () => {
 
   it("keeps a long conversation going on its latest turns", async () => {
     const { token } = await signUp();
-    await upload(token, lesson(["sense:早晨", "sense:你好", "sense:呀"]));
+    await upload(token, lesson(["lexeme:早晨", "lexeme:你好", "lexeme:呀"]));
     // More turns than the model sees (ROLEPLAY_HISTORY): the oldest drop out, nothing is refused.
     const history = Array.from({ length: ROLEPLAY_HISTORY + 4 }, (_, i) => ({ role: i % 2 === 0 ? "character" : "learner", text: `早晨呀！${i}` }));
     model.replies.push({ reply: "你好呀！" });
@@ -433,7 +443,7 @@ describe("roleplay", () => {
 
   it("shows nothing rather than an unchecked turn", async () => {
     const { token } = await signUp();
-    await upload(token, lesson(["sense:早晨"]));
+    await upload(token, lesson(["lexeme:早晨"]));
     model.replies.push({ reply: "Good morning!" }, { reply: "Bonjour" }, { reply: "Guten Morgen" });
     const res = await ask(token);
     expect(res.status).toBe(503);

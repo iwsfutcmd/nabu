@@ -4,6 +4,7 @@
  * against the RFC's own example; notifications localized for every UI locale).
  */
 import { createDecipheriv, createECDH, createHmac, createPublicKey, verify } from "node:crypto";
+import { skillOf } from "@nabu/core/lesson";
 import { DEFAULT_GAME, DEFAULT_LEAGUE, gameConfig, leagueWeek, localDateOf, type GameState, type LeagueConfig } from "@nabu/core/game";
 import { directionOf, PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
 import type { LearnerEvent, OrthographyId } from "@nabu/schema";
@@ -65,17 +66,17 @@ const session = (at: number, right: number, latencyMs = 3000, tz = "UTC"): Learn
   const s = id();
   const base = (offset: number) => {
     const t = new Date(at + offset * 1000).toISOString();
-    return { id: id(), schema: 1 as const, device: "d", course: "fa", orthography: "fa-Arab/standard" as OrthographyId, support: "en", bundle: "0".repeat(64), session: s, clientTime: t, localDate: t.slice(0, 10), tz };
+    return { id: id(), schema: 2 as const, device: "d", course: "fa", orthography: "fa-Arab/standard" as OrthographyId, support: "en", bundle: "0".repeat(64), session: s, clientTime: t, localDate: t.slice(0, 10), tz };
   };
   return [
     { ...base(0), type: "session_started", mode: "lesson", node: "fa.greetings", seed: 1, exercises: right, planner: "t" },
     ...Array.from({ length: right }, (_, i) => ({
       ...base(1 + i * 4),
       type: "answer_submitted",
-      exercise: { id: `x${i}`, template: "choose-translation", item: "s.1", kcs: ["sense:salam"] },
+      exercise: { id: `x${i}`, template: "choose-translation", item: "s.1", parts: ["lexeme:salam"] },
       attempt: 1,
       input: { method: "choice", latencyMs },
-      outcome: { kind: "CORRECT", notes: [], kcs: [{ kc: "sense:salam", status: "right" }] },
+      outcome: { kind: "CORRECT", notes: [], labels: [], parts: [{ part: "lexeme:salam", skill: skillOf("choose-translation", "lexeme:salam"), status: "right" }] },
     })),
     { ...base(2 + right * 4), type: "session_completed", mode: "lesson", node: "fa.greetings", summary: { completed: true, exercises: right, correctFirstTry: right, retries: 0, skipped: 0 } },
   ] as unknown as LearnerEvent[];

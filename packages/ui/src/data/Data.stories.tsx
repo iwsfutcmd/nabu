@@ -39,8 +39,8 @@ type Story = StoryObj<typeof meta>;
  */
 const queryOf = (course: CourseView, view: DataView): string => {
   const data = courseData(course);
-  if (view === "words") return (data.words.find((w) => w.written.some((x) => x.carries?.asked === true)) ?? data.words.find((w) => w.written.length > 0))?.kc.id ?? "";
-  if (view === "forms") return (data.forms.find((f) => f.carriers.length > 0) ?? data.forms[0])?.kc.id ?? "";
+  if (view === "words") return (data.words.find((w) => w.written.some((x) => x.carries?.asked === true)) ?? data.words.find((w) => w.written.length > 0))?.id.id ?? "";
+  if (view === "forms") return (data.forms.find((f) => f.carriers.length > 0) ?? data.forms[0])?.id.id ?? "";
   // A sentence whose id is no part of another's (s.i-am.1 is of s.i-am.10): one row.
   return (data.sentences.find((s) => data.sentences.filter((o) => o.sentence.id.includes(s.sentence.id)).length === 1) ?? data.sentences[0])?.sentence.id ?? "";
 };

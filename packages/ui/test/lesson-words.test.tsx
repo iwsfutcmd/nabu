@@ -2,7 +2,7 @@
  * Words in lessons (P1): tap-for-gloss on a card's target text where its meaning gives nothing away,
  * and a first look at the lesson's new words, on the card that first presents them.
  */
-import { allKcs, createGrader, gradeExercise, lessonNodes, sampleExercise, start, step, type CourseView, type Draft, type Exercise, type PlayerState, type TemplateId } from "@nabu/core/lesson";
+import { createGrader, gradeExercise, isLexeme, lessonNodes, lexemesById, sampleExercise, start, step, type CourseView, type Draft, type Exercise, type PlayerState, type TemplateId } from "@nabu/core/lesson";
 import { describe, expect, it } from "vitest";
 import { LessonPlayer } from "../src/player/LessonPlayer.tsx";
 import { newOnCard } from "../src/player/NewWords.tsx";
@@ -63,41 +63,42 @@ describe("tap-for-gloss in a lesson (P1)", () => {
 
 describe("a first look at new words (P1)", () => {
   const course = loadCourse("apc", "apc-Arab/standard");
-  const kinds = new Map(allKcs(course).map((k) => [k.id as string, k.kind]));
 
   it("marks a word new on the first card that presents it, and only there", () => {
     const ex = card(course, "choose-translation");
-    const introduces = new Set<string>(ex.kcs.slice(0, 1));
-    expect(newOnCard(ex, [], introduces, kinds)).toEqual(ex.kcs.slice(0, 1));
+    const first = ex.parts.filter(isLexeme).slice(0, 1);
+    expect(first).toHaveLength(1);
+    const introduces = new Set<string>(first);
+    expect(newOnCard(ex, [], introduces)).toEqual(first);
     // Shown on an earlier card, it is not new any more; a word the lesson does not teach never is.
-    expect(newOnCard(ex, [ex], introduces, kinds)).toEqual([]);
-    expect(newOnCard(ex, [], new Set(), kinds)).toEqual([]);
+    expect(newOnCard(ex, [ex], introduces)).toEqual([]);
+    expect(newOnCard(ex, [], new Set())).toEqual([]);
   });
 
   it("names the new word where the card shows it anyway, and its meaning once answered", () => {
     const ex = card(course, "choose-translation");
     if (ex.template !== "choose-translation") throw new Error("not a choice");
-    const node = lessonNodes(course).find((n) => n.node.introduces.some((kc) => ex.kcs.includes(kc)));
+    const node = lessonNodes(course).find((n) => n.node.introduces.some((id) => isLexeme(id) && ex.parts.includes(id)));
     if (node === undefined) throw new Error("no lesson introduces the card's words");
-    const fresh = ex.kcs.filter((kc) => node.node.introduces.includes(kc));
+    const fresh = ex.parts.filter((id) => isLexeme(id) && node.node.introduces.includes(id));
     const before = play(course, ex, stateOf(course, ex), node.node.id);
     expect(before).toContain("data-new-word-tag");
     expect(before).toContain(fresh.length === 1 ? ">New word<" : ">New words<");
     // The word, from the start (the prompt shows it), but not yet what it means: that is the question.
-    for (const kc of fresh) expect(before).toContain(`data-new-word="${kc}"`);
+    for (const id of fresh) expect(before).toContain(`data-new-word="${id}"`);
     expect(before).not.toContain("data-new-words-answered");
     const after = play(course, ex, stateOf(course, ex, { tag: "choice", index: ex.answer }), node.node.id);
     expect(after).toContain("data-new-words-answered");
     // Each new word with its meaning, in the support language's own tag.
     const block = after.slice(after.indexOf("data-new-words-answered"));
-    const gloss = allKcs(course).find((k) => k.id === fresh[0])?.gloss?.[course.supportKey];
+    const gloss = lexemesById(course).get(fresh[0] ?? "")?.gloss?.[course.supportKey];
     expect(gloss).toBeDefined();
     expect(block).toContain(`lang="${gloss?.lang ?? ""}"`);
   });
 
   it("says only the tag on a pairs card: its pairs are the words and their meanings", () => {
     const ex = card(course, "match-pairs");
-    const node = lessonNodes(course).find((n) => n.node.introduces.some((kc) => ex.kcs.includes(kc)));
+    const node = lessonNodes(course).find((n) => n.node.introduces.some((id) => ex.parts.includes(id)));
     if (node === undefined) throw new Error("no lesson introduces the pairs' words");
     const html = play(course, ex, stateOf(course, ex), node.node.id);
     expect(html).toContain("data-new-word-tag");

@@ -140,8 +140,8 @@ describe("<T>", () => {
       lang: "tok-Qaap",
       orthography: "tok-Qaap/sitelen-pona",
       tokens: [
-        { surface: "\u{F1934}", kind: "word", sense: "mi", ruby: { lasina: [{ base: "\u{F1934}", text: "mi" }] } },
-        { surface: "\u{F1936}", kind: "word", sense: "moku", ruby: { lasina: [{ base: "\u{F1936}", text: "moku" }] } },
+        { surface: "\u{F1934}", kind: "word", lexemes: [{ lexeme: "lexeme:mi" }], ruby: { lasina: [{ base: "\u{F1934}", text: "mi" }] } },
+        { surface: "\u{F1936}", kind: "word", lexemes: [{ lexeme: "lexeme:moku" }], ruby: { lasina: [{ base: "\u{F1936}", text: "moku" }] } },
       ],
     } as unknown as TaggedText;
     const html = render(

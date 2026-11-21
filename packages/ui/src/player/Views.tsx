@@ -1077,7 +1077,7 @@ export const PartsWholeView = (props: Props<PartsWhole>): JSX.Element => {
         gloss="always"
       />
       <PartsList
-        parts={ex.parts}
+        parts={ex.wordParts}
         lang={ex.whole.lang}
         label={t.format("player.parts.label")}
         ruby={props.ruby}
@@ -1156,7 +1156,7 @@ export const WholePartsView = (props: Props<WholeParts>): JSX.Element => {
           const chosen = picked.includes(i);
           return (
             <button
-              key={part.kc}
+              key={part.id}
               type="button"
               className={`${styles.tile} ${styles.partTile}`}
               aria-pressed={chosen}
@@ -1531,15 +1531,15 @@ export const MatchPairsView = (props: Props<MatchPairs>): JSX.Element => {
   const voice = useRef<HTMLAudioElement | null>(null);
   const voices = useClipElements();
   const { element: voiceFor, release } = voices;
-  const clipOf = (i: number) => props.course.audio[ex.kcs[i] ?? ""]?.normal;
+  const clipOf = (i: number) => props.course.audio[ex.parts[i] ?? ""]?.normal;
   const { imageUrl, sound } = props;
   useEffect(() => {
     if (sound === false) return;
-    for (const kc of ex.kcs) {
-      const clip = props.course.audio[kc]?.normal;
+    for (const part of ex.parts) {
+      const clip = props.course.audio[part]?.normal;
       if (clip !== undefined) voiceFor(clip, imageUrl(clip.path));
     }
-  }, [ex.kcs, imageUrl, props.course.audio, sound, voiceFor]);
+  }, [ex.parts, imageUrl, props.course.audio, sound, voiceFor]);
   useEffect(() => release, [release]);
   const say = (i: number): void => {
     const clip = clipOf(i);

@@ -12,7 +12,7 @@ import { fileReports, ISSUES_COLLECTION } from "../src/report-issues.ts";
 
 const { privateKey, publicKey } = generateKeyPairSync("rsa", { modulusLength: 2048, privateKeyEncoding: { type: "pkcs8", format: "pem" }, publicKeyEncoding: { type: "spki", format: "pem" } });
 const ROOT = "https://firestore.googleapis.com/v1/projects/nabu-test/databases/(default)/documents";
-const meta = { schema: 1 as const, device: "d", session: "00000000-0000-7000-8000-00000000abcd", clientTime: "2026-11-04T15:08:00.000+02:00", localDate: "2026-11-04", tz: "Asia/Beirut", bundle: "b".repeat(64) };
+const meta = { schema: 2 as const, device: "d", session: "00000000-0000-7000-8000-00000000abcd", clientTime: "2026-11-04T15:08:00.000+02:00", localDate: "2026-11-04", tz: "Asia/Beirut", bundle: "b".repeat(64) };
 
 const correction = (id: string): SentenceReported => ({
   ...meta,
@@ -33,7 +33,7 @@ const claim: AnswerReported = {
   orthography: "fa-Arab/standard" as OrthographyId,
   support: "en",
   answer: "00000000-0000-7000-8000-000000000010",
-  exercise: { id: "translate-type.l1-l2:s.6", template: "translate-type.l1-l2", item: "s.6", kcs: [] },
+  exercise: { id: "translate-type.l1-l2:s.6", template: "translate-type.l1-l2", item: "s.6", parts: [] },
   text: "درود مریم",
 };
 

@@ -31,12 +31,13 @@ describe("demo fixtures", () => {
     }
   });
 
-  it.each(targets)("%s: NFC, ruby bases and morphs concatenate to the surface", (target) => {
+  it.each(targets)("%s: NFC, ruby bases and lexemes concatenate to the surface", (target) => {
     for (const text of allTexts(target)) {
       for (const token of text.tokens) {
         expect(token.surface.normalize("NFC")).toBe(token.surface);
         for (const segments of Object.values(token.ruby ?? {})) expect(segments.map((s) => s.base).join("")).toBe(token.surface);
-        if (token.morphs) expect(token.morphs.map((m) => m.surface).join("")).toBe(token.surface);
+        const lexemes = token.lexemes ?? [];
+        if (lexemes.length > 1) expect(lexemes.map((l) => l.surface ?? "").join("")).toBe(token.surface);
       }
     }
   });

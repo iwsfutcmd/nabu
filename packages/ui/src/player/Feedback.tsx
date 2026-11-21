@@ -127,22 +127,22 @@ const useForms = (course: CourseView, outcome: Outcome, chosen: TaggedText | und
     return [right, chosen].map((word) => ({ word, meanings: formMeanings(course, word) }));
   }, [course, outcome, chosen]);
 
-/** Each form as written, then what each KC of its form means; a bare form shows alone. */
+/** Each form as written, then what each part of its form means; a bare form shows alone. */
 const Forms = ({ forms, label, ruby, marks }: { readonly forms: readonly FormShown[]; readonly label: string; readonly ruby: SchemeId | false; readonly marks: "show" | "hide" }): JSX.Element => (
   <div className={styles.solution} data-meanings="forms">
     <span className={styles.label}>{label}</span>
     <GlossList>
       {forms.flatMap(({ word, meanings }, i) =>
-        meanings.sense === undefined
+        meanings.lexeme === undefined
           ? []
           : [
               <GlossEntry
                 key={i}
-                gloss={{ kc: meanings.sense, form: word, meaning: undefined, span: "whole" }}
+                gloss={{ id: meanings.lexeme, form: word, meaning: undefined, span: "whole" }}
                 ruby={ruby}
                 marks={marks}
                 note={meanings.forms.map((f) => (
-                  <FormNote key={f.kc} kc={f.kc} meaning={f.meaning} />
+                  <FormNote key={f.id} id={f.id} meaning={f.meaning} />
                 ))}
               />,
             ],
@@ -159,10 +159,10 @@ const Meanings = ({ meant, label, ruby, marks, data }: { readonly meant: readonl
       <GlossList>
         {meant.flatMap(({ word, meanings }, w) =>
           meanings.flatMap((m, r) => {
-            const form = m.form === undefined ? undefined : <FormNote kc={m.form.kc} meaning={m.form.meaning} />;
+            const form = m.form === undefined ? undefined : <FormNote id={m.form.id} meaning={m.form.meaning} />;
             // A reading known only by its form: the word itself, then what the form says.
             if (m.glosses.length === 0) {
-              return m.form === undefined ? [] : [<GlossEntry key={`${w}:${r}`} gloss={{ kc: m.form.kc, form: word, meaning: undefined, span: "whole" }} ruby={ruby} marks={marks} note={form} />];
+              return m.form === undefined ? [] : [<GlossEntry key={`${w}:${r}`} gloss={{ id: m.form.id, form: word, meaning: undefined, span: "whole" }} ruby={ruby} marks={marks} note={form} />];
             }
             return m.glosses.map((g, i) => <GlossEntry key={`${w}:${r}:${i}`} gloss={g} ruby={ruby} marks={marks} note={i === m.glosses.length - 1 ? form : undefined} />);
           }),

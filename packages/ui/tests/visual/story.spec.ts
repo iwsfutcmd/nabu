@@ -50,7 +50,7 @@ for (const cell of cells()) {
         expect(await transcript.locator("[data-line]").count()).toBeGreaterThanOrEqual(4);
         // Words are buttons for tap-for-gloss; one is open, and the panel explains it.
         await expect(transcript.locator("button[aria-pressed=true]")).toHaveCount(1);
-        await expect(page.locator("[data-gloss-panel] [data-gloss-kc]")).not.toHaveCount(0);
+        await expect(page.locator("[data-gloss-panel] [data-gloss-id]")).not.toHaveCount(0);
         await expect(transcript.locator("[data-action=translate][aria-expanded=true]")).toHaveCount(1);
         // Only the lines' text may turn: the transcript, the names, the buttons and the translations
         // stay horizontal, as the chrome does (ADR 0118).

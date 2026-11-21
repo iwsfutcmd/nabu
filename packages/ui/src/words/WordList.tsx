@@ -11,7 +11,7 @@
  *   (wordMatcher). The field takes the direction of what is typed, and the list follows a query
  *   only once an IME has committed it: nothing filters on a half-composed syllable.
  */
-import { orderWords, wordCounts, wordMatcher, type LearnedWord, type Skill, type WordOrder } from "@nabu/core/learner";
+import { orderWords, wordCounts, wordMatcher, type AskedSkill, type LearnedWord, type WordOrder } from "@nabu/core/learner";
 import type { CourseView } from "@nabu/core/lesson";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { useId, useMemo, useState, type JSX } from "react";
@@ -42,21 +42,26 @@ type WordFilter = "all" | "known" | "learning";
 const FILTERS: readonly WordFilter[] = ["all", "known", "learning"];
 const FILTER_MESSAGES = { all: "words.filter.all", known: "words.filter.known", learning: "words.filter.learning" } as const;
 
-const SKILL_MESSAGES: Readonly<Record<Skill, "words.skill.recognize" | "words.skill.produce" | "words.skill.listen">> = {
+/** The skills a word (a lexeme) is known by; a feature value's (read-off, choose) are no word's. */
+type WordSkillName = "recognize" | "produce" | "listen";
+
+const SKILL_MESSAGES: Readonly<Record<WordSkillName, "words.skill.recognize" | "words.skill.produce" | "words.skill.listen">> = {
   recognize: "words.skill.recognize",
   produce: "words.skill.produce",
   listen: "words.skill.listen",
 };
 
+const isWordSkill = (skill: AskedSkill): skill is WordSkillName => skill in SKILL_MESSAGES;
+
 const Word = ({ course, word, url, ruby }: { course: CourseView; word: LearnedWord; url: (path: string) => string; ruby: SchemeId | false }): JSX.Element => {
   const t = useTranslator();
-  const audio = course.audio[word.kc];
+  const audio = course.audio[word.lexeme];
   const player = useClipPlayer(audio, url);
   const band = strengthBand(word);
-  const missing = word.skills.filter((s) => !s.shown).map((s) => s.skill);
+  const missing = word.skills.filter((s) => !s.shown).map((s) => s.skill).filter(isWordSkill);
   return (
-    <li className={styles.word} data-word={word.kc} data-strength={band} data-known={word.known}>
-      <div className={styles.texts} data-ink-container={`word:${word.kc}`}>
+    <li className={styles.word} data-word={word.lexeme} data-strength={band} data-known={word.known}>
+      <div className={styles.texts} data-ink-container={`word:${word.lexeme}`}>
         <T as="p" className={styles.form} text={word.form} ruby={ruby} />
         {word.gloss !== undefined && <T as="p" className={styles.gloss} text={word.gloss} />}
       </div>
@@ -213,7 +218,7 @@ export const WordList = ({ course, words, url, reading }: WordListProps): JSX.El
               )}
               <ul className={styles.words}>
                 {g.words.map((w) => (
-                  <Word key={w.kc} course={course} word={w} url={url} ruby={ruby} />
+                  <Word key={w.lexeme} course={course} word={w} url={url} ruby={ruby} />
                 ))}
               </ul>
             </section>

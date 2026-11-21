@@ -31,7 +31,7 @@ const SEED = 7;
  */
 const draftFor = (screen: Screen, ex: Exercise): Draft | undefined => {
   if (ex.template === "parts-whole" && screen === "build-wrong") {
-    const own = ex.parts.find((p) => p.base === true)?.text;
+    const own = ex.wordParts.find((p) => p.base === true)?.text;
     return { tag: "text", text: own === undefined ? "?" : surfaceOf(own) };
   }
   if (ex.template !== "whole-parts") return undefined;

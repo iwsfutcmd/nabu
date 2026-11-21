@@ -5,7 +5,7 @@
  */
 import type { WordPart } from "@nabu/core/lesson";
 import { directionOf } from "@nabu/i18n";
-import type { KcId, SchemeId } from "@nabu/schema";
+import type { SchemeId } from "@nabu/schema";
 import type { JSX } from "react";
 import type { Marks } from "../marks.tsx";
 import { T } from "../T.tsx";
@@ -34,7 +34,7 @@ interface PartsListProps {
   readonly marks: Marks;
   readonly id?: string | undefined;
   /** A form the word has of itself (the Data page): marked, and said with `note`. */
-  readonly ofItself?: KcId | undefined;
+  readonly ofItself?: string | undefined;
   readonly note?: string | undefined;
 }
 
@@ -43,14 +43,14 @@ export const PartsList = ({ parts, lang, label, ruby, marks, id, ofItself, note 
   <ul className={styles.parts} dir={directionOf(lang)} aria-label={label} id={id} data-parts="">
     {parts.map((part) => (
       <li
-        key={part.kc}
+        key={part.id}
         className={styles.part}
-        data-part={part.kc}
+        data-part={part.id}
         data-part-own={part.base === true ? "" : undefined}
-        data-of-itself={part.kc === ofItself ? "" : undefined}
+        data-of-itself={part.id === ofItself ? "" : undefined}
       >
         <PartLabel part={part} ruby={ruby} marks={marks} />
-        {part.kc === ofItself && note !== undefined && <span className={styles.partNote}>{note}</span>}
+        {part.id === ofItself && note !== undefined && <span className={styles.partNote}>{note}</span>}
       </li>
     ))}
   </ul>
