@@ -7,6 +7,7 @@ orthographies:
 - uz-Cyrl/standard
 support:
 - en-Latn/standard
+lexicon: uz
 names:
   en:
     course: Uzbek
@@ -14,20 +15,56 @@ license: CC0-1.0
 provenance:
   author: human:fixture
   status: draft
+own:
+  lexicon:
+    language: uz
+    license: CC0-1.0
+    provenance:
+      author: human:fixture
+      status: draft
+    lexemes:
+    - id: lexeme:men
+      pos: PRON
+      gloss:
+        en: I
+      spelled:
+        uz-Latn/standard:
+        - men
+    - id: lexeme:salom
+      pos: INTJ
+      gloss:
+        en: hello
+      spelled:
+        uz-Latn/standard:
+        - salom
+    - id: lexeme:talaba
+      pos: NOUN
+      gloss:
+        en: student
+      spelled:
+        uz-Latn/standard:
+        - talaba
+        - talabaman
+  language:
+    id: uz
+    license: CC0-1.0
+    provenance:
+      author: human:fixture
+      status: draft
+    dimensions:
+      NOUN:
+      - Number
+    rules:
+    - id: rule:copula-man
+      gloss:
+        en: I am (suffix -man)
 units:
 - id: basics
-  kcs:
-  - id: sense:salom
-    gloss:
-      en: hello
-    forms:
-      uz-Latn/standard:
-      - salom
   nodes:
   - id: basics.1
     kind: lesson
     introduces:
-    - sense:salom
+    - lexeme:salom
   - id: basics.script
     kind: script
     convert:
@@ -44,7 +81,7 @@ units:
         text: Salom!
         tokens:
         - surface: Salom
-          sense: salom
+          lexeme: salom
         reverse: Salom
       uz-Cyrl/standard:
         text: Салом!
@@ -60,7 +97,7 @@ units:
         text: Salom!
         tokens:
         - surface: Salom
-          sense: salom
+          lexeme: salom
         reverse: Salom
     translations:
       en: Hello!

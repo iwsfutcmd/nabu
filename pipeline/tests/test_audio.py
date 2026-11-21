@@ -3,15 +3,17 @@
 - Synthesis reads pinned readings: the polyphone fixture 行 in 銀行 (hong4) and 行路 (haang4)
   is spoken as pinned, which the synthesizer's own phoneme trace confirms.
 - Clips are reproducible, carry a license and provenance, and their timings point at tokens.
-- Human recordings are ingested with their license and never touched by regeneration.
+- Human recordings are ingested with their license and never touched by regeneration; nor is
+  the clip of a form (a lexeme with feature values, a token built of several), which no voice
+  plans.
 - With the speech models (NABU_SPEECH=1): forced alignment recovers token onsets, and the
   round-trip check (Whisper) rejects audio a recognizer cannot understand.
 """
 
 from __future__ import annotations
 
+import hashlib
 import os
-import re
 import shutil
 import wave
 from collections.abc import Iterator
@@ -19,7 +21,9 @@ from pathlib import Path
 from typing import Any, ClassVar
 
 import pytest
+import yaml
 
+from nabu import yamlio
 from nabu.audio import espeak, jyutping
 from nabu.audio.course import (
     Item,
@@ -34,10 +38,12 @@ from nabu.audio.course import (
 from nabu.audio.ingest import Recording, ingest
 from nabu.audio.providers import Clip, EspeakProvider, Request
 from nabu.compiler import compile_course
-from nabu.schema.models import AudioVoice, BundleUnit
+from nabu.formkey import is_form
+from nabu.items import Content
+from nabu.schema.models import AudioVoice
 
 from .conftest import REQUIRE_TOOLS, ROOT, CoreCli
-from .units import kc, sentence, token, unit
+from .units import content, grapheme, lexeme, sentence, token, unit
 
 SPEECH = os.environ.get("NABU_SPEECH") == "1"
 YUE_VOICE = AudioVoice(
@@ -115,18 +121,33 @@ ESPEAK_AUDIO = (
 @pytest.fixture
 def yue_copy(tmp_path: Path) -> Path:
     """The yue course's first unit, without audio: enough to synthesize, round-trip and
-    recompile in seconds (the whole course is ten units)."""
+    recompile in seconds (the whole course is ten units). Its lexicon is the repo's, found
+    beside the copy as lexicons/ is beside courses/."""
     course = tmp_path / "yue"
     shutil.copytree(ROOT / "courses" / "yue", course, ignore=shutil.ignore_patterns("audio"))
-    path = course / "course.yaml"  # edited as text: other tests rewrite its lines verbatim
-    text, n = re.subn(r"(?m)^units: \[.*\]$", "units: [units/intro.yaml]", path.read_text("utf-8"))
-    assert n == 1
+    (tmp_path / "lexicons").symlink_to(ROOT / "lexicons")
+    path = course / "course.yaml"
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    assert len(data["units"]) > 1 and "audio" in data
+    data["units"] = ["units/intro.yaml"]
     # These tests are about eSpeak NG reading pinned Jyutping, whatever voice the course ships.
-    text, n = re.subn(r"(?ms)^audio:\n.*\Z", ESPEAK_AUDIO, text)
-    assert n == 1
-    path.write_text(text, encoding="utf-8")
-    (tmp_path / "images").symlink_to(ROOT / "courses" / "images")
+    # Its voices are written as text: other tests rewrite their lines verbatim.
+    del data["audio"]
+    path.write_text(yamlio.dump(data) + ESPEAK_AUDIO, encoding="utf-8")
     return course
+
+
+def _said_by_a_woman(unit_file: Path, sentence_id: str) -> None:
+    """Tags a sentence of a unit file as a woman's (ADR 0147: who speaks is a tag)."""
+    data = yaml.safe_load(unit_file.read_text(encoding="utf-8"))
+    said = next(s for s in data["sentences"] if s["id"] == sentence_id)
+    tags = said.setdefault("tags", [])
+    persons = next((t["persons"] for t in tags if "persons" in t), None)
+    if persons is None:
+        tags.append({"persons": {"speaker": "f"}})
+    else:
+        persons["speaker"] = "f"
+    unit_file.write_text(yamlio.dump(data), encoding="utf-8")
 
 
 def _compiled(cli: CoreCli, course: Path):
@@ -138,11 +159,11 @@ def _compiled(cli: CoreCli, course: Path):
 @needs_espeak
 def test_course_audio_round_trip(core_cli: CoreCli, yue_copy: Path) -> None:
     _, compiled = _compiled(core_cli, yue_copy)
-    items, skipped = plan(compiled.units, YUE_VOICE)
+    items, skipped = plan(compiled.content, YUE_VOICE)
     assert skipped == []
     by_id = {i.item: i for i in items}
-    assert by_id["sense:早晨"].input == "zou2 san4"  # a word KC, read from its pinned reading
-    report = synthesize_course(yue_copy, compiled.units, YUE_VOICE)
+    assert by_id["lexeme:早晨"].input == "zou2 san4"  # a lexeme, read from its pinned reading
+    report = synthesize_course(yue_copy, compiled.content, YUE_VOICE)
     assert report.synthesized == len(items)  # one clip an item: the player slows it (ADR 0062)
     index = read_index(audio_dir(yue_copy))
     assert all(c.license == "CC0-1.0" and c.synthetic for c in index.clips)
@@ -150,7 +171,7 @@ def test_course_audio_round_trip(core_cli: CoreCli, yue_copy: Path) -> None:
         c.provenance.author == f"generated:espeak-ng@{espeak.version()}" for c in index.clips
     )
     # Unchanged inputs are kept; regenerating changes nothing.
-    again = synthesize_course(yue_copy, compiled.units, YUE_VOICE)
+    again = synthesize_course(yue_copy, compiled.content, YUE_VOICE)
     assert (again.synthesized, again.kept) == (0, len(items))
     # The compiler packages them: every sentence clip's timings point at word tokens.
     diags, recompiled = _compiled(core_cli, yue_copy)
@@ -161,20 +182,57 @@ def test_course_audio_round_trip(core_cli: CoreCli, yue_copy: Path) -> None:
     assert sentence.timings[0].startMs == 0
 
 
-def test_a_word_card_reads_the_reading_its_form_pins() -> None:
-    """A word KC's clip reads the reading the compiler pinned on its form (ADR 0117), the one its
-    card shows, never one the planner looks up in the sentences: here the sentence says 呢 ne1
-    (the particle) and the form pins ni1 ("this"). A form without one is skipped."""
+def test_a_word_card_reads_the_reading_its_spelling_pins() -> None:
+    """A lexeme's clip reads the reading the compiler pinned on its entry's spelling (ADR 0117),
+    the one its card shows, never one the planner looks up in the sentences: here the sentence
+    says 呢 ne1 (the particle) and the entry pins ni1 ("this"). An entry without one is skipped."""
     orth = "yue-Hant-HK/standard"
-    particle = token("呢", sense="呢-sfp", readings={"jyutping": "ne1"})
-    this = token("呢", sense="呢", readings={"jyutping": "ni1"})
-    course = unit(
-        sentences=[sentence("s.1", {orth: [particle]})],
-        kcs=[kc("sense:呢", {orth: [[this]]}), kc("sense:O", {orth: [[token("O")]]})],
+    particle = token("呢", lexeme="呢-sfp", readings={"jyutping": "ne1"})
+    this = token("呢", lexeme="呢", readings={"jyutping": "ni1"})
+    course = content(
+        unit(sentences=[sentence("s.1", {orth: [particle]})]),
+        lexemes=[lexeme("呢", {orth: [[this]]}), lexeme("O", {orth: [[token("O")]]})],
     )
-    items, skipped = plan([course], YUE_VOICE)
-    assert {i.item: i.input for i in items}["sense:呢"] == "ni1"
-    assert skipped == ["sense:O"]
+    items, skipped = plan(course, YUE_VOICE)
+    assert {i.item: i.input for i in items}["lexeme:呢"] == "ni1"
+    assert skipped == ["lexeme:O"]
+
+
+def test_an_entry_is_read_as_a_word_card() -> None:
+    """A lexeme and a script track's letter are entries: each is said alone, as its card shows
+    it, a word card whatever a sentence beside it is. An entry with no spelling in the voice's
+    orthography (an ending, written only inside a token) is no item of the voice's."""
+    orth = "uz-Latn/standard"
+    text_voice = AudioVoice(
+        id="narrator",
+        provider="espeak-ng",
+        voice="uz",
+        orthography=orth,
+        reading="text",
+        license="CC0-1.0",
+    )
+    hello = [token("Salom", lexeme="salom"), token("!", kind="punct")]
+    course = content(
+        unit(
+            sentences=[sentence("s.1", {orth: hello})],
+            graphemes=[grapheme("o-turned", {orth: [[token("o\u02bb")]]})],
+        ),
+        lexemes=[
+            lexeme("salom", {orth: [[token("salom")]]}),
+            lexeme("dat"),
+            lexeme("xayr", {"uz-Cyrl/standard": [[token("хайр")]]}),
+        ],
+    )
+    items, skipped = plan(course, text_voice)
+    assert skipped == []
+    by_id = {i.item: i for i in items}
+    assert list(by_id) == ["s.1", "lexeme:salom", "grapheme:o-turned"]
+    assert (by_id["s.1"].kind, by_id["s.1"].input) == ("sentence", "Salom!")
+    word, letter = by_id["lexeme:salom"], by_id["grapheme:o-turned"]
+    assert (word.kind, word.words, word.input, word.expected) == ("word", 1, "salom", "salom")
+    assert (letter.kind, letter.words, letter.input) == ("word", 1, "o\u02bb")
+    # One span, over the whole card: a word card's clip times its own spelling.
+    assert [(s.token, s.start, s.end) for s in word.spans] == [(0, 0, 5)]
 
 
 @needs_espeak
@@ -183,7 +241,7 @@ def test_check_runs_the_round_trip_again_and_keeps_the_clips(
 ) -> None:
     """`nabu audio check`: a new recognizer's verdicts, the clips and their trace untouched."""
     _, compiled = _compiled(core_cli, yue_copy)
-    synthesize_course(yue_copy, compiled.units, YUE_VOICE)
+    synthesize_course(yue_copy, compiled.content, YUE_VOICE)
     before = read_index(audio_dir(yue_copy)).clips
     heard: list[tuple[str, int]] = []
 
@@ -191,7 +249,7 @@ def test_check_runs_the_round_trip_again_and_keeps_the_clips(
         heard.append((item.item, clip.sample_rate))
         return {"asrModel": "stand-in", "asrText": item.expected, "cer": 0.0, "status": "pass"}
 
-    counts = check_course(yue_copy, compiled.units, [YUE_VOICE], check)
+    counts = check_course(yue_copy, compiled.content, [YUE_VOICE], check)
     after = read_index(audio_dir(yue_copy)).clips
     assert counts == {"pass": len(before)} and len(heard) == len(before)
     assert {rate for _, rate in heard} == {16_000}
@@ -204,7 +262,7 @@ def test_check_runs_the_round_trip_again_and_keeps_the_clips(
 @needs_espeak
 def test_a_changed_reading_makes_clips_stale(core_cli: CoreCli, yue_copy: Path) -> None:
     _, compiled = _compiled(core_cli, yue_copy)
-    synthesize_course(yue_copy, compiled.units, YUE_VOICE)
+    synthesize_course(yue_copy, compiled.content, YUE_VOICE)
     unit = yue_copy / "units" / "intro.yaml"
     unit.write_text(
         unit.read_text(encoding="utf-8").replace("zou2 san4", "zou2 san1"), encoding="utf-8"
@@ -217,7 +275,7 @@ def test_a_changed_reading_makes_clips_stale(core_cli: CoreCli, yue_copy: Path) 
 def test_clips_of_a_voice_that_left_the_cast_are_stale(core_cli: CoreCli, yue_copy: Path) -> None:
     """Switching a course to another voice (a hosted one, say) drops the old clips."""
     _, compiled = _compiled(core_cli, yue_copy)
-    synthesize_course(yue_copy, compiled.units, YUE_VOICE)
+    synthesize_course(yue_copy, compiled.content, YUE_VOICE)
     course = yue_copy / "course.yaml"
     course.write_text(
         course.read_text(encoding="utf-8").replace(
@@ -242,7 +300,7 @@ def test_prune_lets_the_stale_clips_go_and_keeps_the_rest(
     """generate keeps a stale clip until its new one is made; prune makes none and drops it, so the
     course builds clean at once."""
     _, compiled = _compiled(core_cli, yue_copy)
-    synthesize_course(yue_copy, compiled.units, YUE_VOICE)
+    synthesize_course(yue_copy, compiled.content, YUE_VOICE)
     before = read_index(audio_dir(yue_copy)).clips
     unit = yue_copy / "units" / "intro.yaml"
     unit.write_text(
@@ -251,7 +309,7 @@ def test_prune_lets_the_stale_clips_go_and_keeps_the_rest(
     diags, compiled = _compiled(core_cli, yue_copy)
     stale = [d for d in diags.items if d.lint == "audio.stale"]
     assert stale
-    report = synthesize_course(yue_copy, compiled.units, YUE_VOICE, prune=True)
+    report = synthesize_course(yue_copy, compiled.content, YUE_VOICE, prune=True)
     assert report.dropped == len(stale) and report.synthesized == 0
     after = read_index(audio_dir(yue_copy)).clips
     assert len(after) == len(before) - len(stale)
@@ -290,7 +348,7 @@ def test_a_cast_reads_at_random_and_by_grammar(core_cli: CoreCli, yue_copy: Path
         update={"id": "narrator-f", "voice": "yue-Latn-jyutping+f3", "speaker": "f"}
     )
     _, compiled = _compiled(core_cli, yue_copy)
-    report = synthesize_course(yue_copy, compiled.units, [man, woman])
+    report = synthesize_course(yue_copy, compiled.content, [man, woman])
     voices = _voices(yue_copy)
     assert sum(report.shares.values()) == len(voices)
     assert 0.3 < report.shares["narrator-f"] / len(voices) < 0.7, report.shares
@@ -299,22 +357,17 @@ def test_a_cast_reads_at_random_and_by_grammar(core_cli: CoreCli, yue_copy: Path
 
     # The sentence the man reads now is said by a woman.
     said = next(i for i, v in sorted(voices.items()) if i.startswith("s.") and v == man.voice)
-    unit = yue_copy / "units" / "intro.yaml"
-    text = unit.read_text(encoding="utf-8")
-    assert text.count(f"- id: {said}\n") == 1
-    unit.write_text(
-        text.replace(f"- id: {said}\n", f"- id: {said}\n  persons: {{speaker: f}}\n"), "utf-8"
-    )
+    _said_by_a_woman(yue_copy / "units" / "intro.yaml", said)
     diags, compiled = _compiled(core_cli, yue_copy)
     stale = [d.message for d in diags.items if d.lint == "audio.stale"]
     assert [m.split(":")[0] for m in stale] == [said], stale
     assert "narrator-f reads it now" in stale[0]
 
     # Running the man alone leaves the woman's clips, and the stale one, as they are.
-    synthesize_course(yue_copy, compiled.units, [man, woman], only="narrator")
+    synthesize_course(yue_copy, compiled.content, [man, woman], only="narrator")
     after = _voices(yue_copy)
     assert after == voices
-    synthesize_course(yue_copy, compiled.units, [man, woman])
+    synthesize_course(yue_copy, compiled.content, [man, woman])
     after = _voices(yue_copy)
     assert after == {**voices, said: woman.voice}
 
@@ -341,7 +394,7 @@ def test_human_recordings_keep_their_license(
     assert entries[0]["durationMs"] < s.duration_ms + 150
     # Regeneration leaves recordings alone.
     _, compiled = _compiled(core_cli, yue_copy)
-    synthesize_course(yue_copy, compiled.units, YUE_VOICE)
+    synthesize_course(yue_copy, compiled.content, YUE_VOICE)
     humans = [c for c in read_index(audio_dir(yue_copy)).clips if not c.synthetic]
     assert {c.speed for c in humans} == {"normal", "slow"}
     assert all(c.provenance.author == "human:Fixture" for c in humans)
@@ -632,24 +685,20 @@ def voice(monkeypatch: pytest.MonkeyPatch) -> _Voice:
     return fake
 
 
-def _twins_course(root: Path) -> list[BundleUnit]:
-    """A sentence and a word said alike: 早晨 (zou2 san4), so one identity and one file. Units
-    as the compiler gives them: the word's form pins its reading (ADR 0117)."""
+def _twins_course(root: Path) -> Content:
+    """A sentence and a lexeme said alike: 早晨 (zou2 san4), so one identity and one file.
+    Content as the compiler gives it: the entry's spelling pins its reading (ADR 0117)."""
     (root / "audio").mkdir(parents=True)
     (root / "course.yaml").write_text("id: twins\n", encoding="utf-8")
     orth = "yue-Hant-HK/standard"
-    morning = token("早晨", readings={"jyutping": "zou2 san4"})
-    return [
-        unit(
-            sentences=[sentence("s.1", {orth: [morning]})],
-            kcs=[kc("sense:早晨", {orth: [[morning]]})],
-        )
-    ]
+    morning = token("早晨", lexeme="早晨", readings={"jyutping": "zou2 san4"})
+    return content(
+        unit(sentences=[sentence("s.1", {orth: [morning]})]),
+        lexemes=[lexeme("早晨", {orth: [[morning]]})],
+    )
 
 
 def _clips_match_files(course: Path) -> set[str]:
-    import hashlib
-
     adir = audio_dir(course)
     clips = read_index(adir).clips
     assert all(hashlib.sha256((adir / c.file).read_bytes()).hexdigest() == c.sha256 for c in clips)
@@ -659,12 +708,12 @@ def _clips_match_files(course: Path) -> set[str]:
 @needs_ffmpeg
 def test_items_said_alike_share_one_clip(tmp_path: Path, voice: _Voice) -> None:
     """Twins made in one run take one synthesis; neither writes over the other's file."""
-    units = _twins_course(tmp_path)
-    report = synthesize_course(tmp_path, units, YUE_VOICE)
+    course = _twins_course(tmp_path)
+    report = synthesize_course(tmp_path, course, YUE_VOICE)
     assert voice.said == ["zou2 san4"]
     assert report.synthesized == 2
     assert len(_clips_match_files(tmp_path)) == 1
-    assert {c.item for c in read_index(audio_dir(tmp_path)).clips} == {"s.1", "sense:早晨"}
+    assert {c.item for c in read_index(audio_dir(tmp_path)).clips} == {"s.1", "lexeme:早晨"}
 
 
 @needs_ffmpeg
@@ -672,8 +721,8 @@ def test_a_clip_written_over_by_its_twin_is_mended_from_it(tmp_path: Path, voice
     """Before twins shared clips, making one wrote over the other's file and left its entry
     naming bytes no longer there (es: s.u01.32 and es.story.u01#3). The next run shares the clip
     that is there and makes nothing."""
-    units = _twins_course(tmp_path)
-    synthesize_course(tmp_path, units, YUE_VOICE)
+    course = _twins_course(tmp_path)
+    synthesize_course(tmp_path, course, YUE_VOICE)
     index = audio_dir(tmp_path) / "index.yaml"
     entry = index.read_text(encoding="utf-8").split("- item: s.1", 1)[1]
     sha = entry.split("sha256: ", 1)[1].split("\n", 1)[0]
@@ -681,6 +730,99 @@ def test_a_clip_written_over_by_its_twin_is_mended_from_it(tmp_path: Path, voice
     with pytest.raises(AssertionError):
         _clips_match_files(tmp_path)
     voice.said.clear()
-    report = synthesize_course(tmp_path, units, YUE_VOICE)
+    report = synthesize_course(tmp_path, course, YUE_VOICE)
     assert voice.said == [] and report.kept == 2
     assert len(_clips_match_files(tmp_path)) == 1
+
+
+#: The clip of a form (formkey.is_form): a lexeme in one form, and a token built of several.
+PARTICIPLE = "lexeme:ra7|form:Aspect=Part;Gender=Masc;Number=Sing"
+BUILT = "lexeme:badd+lexeme:poss-1sg"
+
+
+def _keep_a_clip(course: Path, item: str, sound: bytes) -> dict[str, Any]:
+    """Adds a synthetic clip of `item` to the course's audio index, with its file, as an earlier
+    run of some voice left it; its entry, as the index holds it."""
+    adir = audio_dir(course)
+    (adir / "clips").mkdir(parents=True, exist_ok=True)
+    digest = hashlib.sha256(sound).hexdigest()
+    rel = f"clips/{digest[:16]}.mp3"
+    (adir / rel).write_bytes(sound)
+    entry: dict[str, Any] = {
+        "item": item,
+        "speed": "normal",
+        "file": rel,
+        "sha256": digest,
+        "durationMs": 500,
+        "license": "CC0-1.0",
+        "provenance": {"author": "generated:fake@1", "status": "draft"},
+        "synthetic": True,
+        "synthesis": {
+            "provider": "fake",
+            "version": "1",
+            "voice": YUE_VOICE.voice,
+            "input": item,
+            "rate": 1.0,
+            "inputHash": hashlib.sha256(item.encode("utf-8")).hexdigest(),
+        },
+    }
+    index = adir / "index.yaml"
+    clips: list[dict[str, Any]] = (
+        yaml.safe_load(index.read_text(encoding="utf-8"))["clips"] if index.exists() else []
+    )
+    index.write_text(yamlio.dump({"version": 1, "clips": [*clips, entry]}), encoding="utf-8")
+    return entry
+
+
+@needs_ffmpeg
+def test_the_clip_of_a_form_is_kept_as_a_recording_is(tmp_path: Path, voice: _Voice) -> None:
+    """No voice plans a form: no card says a form alone. Its clip (a word that is a form of
+    another lexeme now, or built of several) stays in the index with its file through a run and
+    through `prune`, where the clip of an item the course no longer has goes."""
+    course = _twins_course(tmp_path)
+    kept = [
+        _keep_a_clip(tmp_path, PARTICIPLE, b"a participle"),
+        _keep_a_clip(tmp_path, BUILT, b"a built word"),
+    ]
+    gone = _keep_a_clip(tmp_path, "lexeme:gone", b"a word the course dropped")
+    adir = audio_dir(tmp_path)
+
+    def entries() -> dict[str, dict[str, Any]]:
+        clips = read_index(adir).clips
+        return {c.item: c.model_dump(mode="json", by_alias=True, exclude_none=True) for c in clips}
+
+    report = synthesize_course(tmp_path, course, YUE_VOICE)
+    assert report.synthesized == 2 and voice.said == ["zou2 san4"]
+    after = entries()
+    assert set(after) == {"s.1", "lexeme:早晨", PARTICIPLE, BUILT}
+    assert [after[e["item"]] for e in kept] == kept  # as they were, to the letter
+    assert all((adir / e["file"]).read_bytes() for e in kept)
+    assert not (adir / gone["file"]).exists() and report.removed == 1
+
+    # Nothing is stale, so prune drops nothing; the forms' clips are still no voice's to drop.
+    voice.said.clear()
+    pruned = synthesize_course(tmp_path, course, YUE_VOICE, prune=True)
+    assert (pruned.dropped, pruned.synthesized, pruned.removed) == (0, 0, 0)
+    assert voice.said == []
+    assert [entries()[e["item"]] for e in kept] == kept
+    assert len(_clips_match_files(tmp_path)) == 3
+
+    # A run of one voice of a cast leaves them too, whoever it is.
+    other = YUE_VOICE.model_copy(update={"id": "narrator-f", "voice": "yue-Latn-jyutping+f3"})
+    synthesize_course(tmp_path, course, [YUE_VOICE, other], only="narrator-f")
+    assert [entries()[e["item"]] for e in kept] == kept
+
+
+def test_the_clip_of_a_form_ships_in_no_bundle(core_cli: CoreCli) -> None:
+    """The compiler knows a form's clip by the forms the course's tokens write: it is neither an
+    unknown item nor in the bundle's audio, since no card says a form alone. fa keeps two (budan
+    in the past and negated)."""
+    fa = ROOT / "courses" / "fa"
+    forms = {c.item for c in read_index(audio_dir(fa)).clips if is_form(c.item)}
+    assert forms
+    diags, compiled = compile_course(fa, core_cli)
+    assert compiled is not None
+    assert not forms & set(compiled.audio_items)
+    assert compiled.audio_items  # the course's other clips ship
+    unknown = [d.message for d in diags.items if d.lint == "audio.unknown-item"]
+    assert not [m for m in unknown if any(m.startswith(f"{f}:") for f in forms)]

@@ -38,8 +38,8 @@ from nabu.audio.providers import (
     onsets_of,
 )
 from nabu.compiler import compile_course
-from nabu.items import iter_items
-from nabu.schema.models import AudioVoice, BundleUnit, TokenModel
+from nabu.items import Content, iter_items
+from nabu.schema.models import AudioVoice, TokenModel
 
 from .conftest import ROOT, CoreCli
 
@@ -123,14 +123,14 @@ def test_settled_means_the_spelling_alone_gives_the_pinned_reading() -> None:
 
 
 @pytest.fixture(scope="module")
-def yue_units() -> list[BundleUnit]:
+def yue_units() -> Content:
     with CoreCli() as cli:
         _, compiled = compile_course(ROOT / "courses" / "yue", cli)
     assert compiled is not None
-    return compiled.units
+    return compiled.content
 
 
-def _sentences(units: list[BundleUnit]) -> dict[str, Sequence[TokenModel]]:
+def _sentences(units: Content) -> dict[str, Sequence[TokenModel]]:
     """Each sentence's Cantonese tokens, by its id."""
     orth = "yue-Hant-HK/standard"
     return {
@@ -139,7 +139,7 @@ def _sentences(units: list[BundleUnit]) -> dict[str, Sequence[TokenModel]]:
 
 
 def test_a_pronouncing_voice_reads_text_with_ipa_where_the_spelling_is_not_enough(
-    yue_units: list[BundleUnit],
+    yue_units: Content,
 ) -> None:
     items, skipped = plan(yue_units, voice("elevenlabs", pronounce="jyutping"))
     assert skipped == []
@@ -160,20 +160,20 @@ def test_a_pronouncing_voice_reads_text_with_ipa_where_the_spelling_is_not_enoug
         reading = (token.readings or {})["jyutping"]
         assert piece in (token.surface, f"/{jyutping.ipa(reading)}/")
         assert (piece == token.surface) == jyutping.settled(token.surface, reading)
-    assert by_id["sense:學生"].input == f"/{jyutping.ipa('hok6 saang1')}/"
+    assert by_id["lexeme:學生"].input == f"/{jyutping.ipa('hok6 saang1')}/"
 
 
 def test_each_item_says_what_it_is_and_how_many_words_it_has(
-    yue_units: list[BundleUnit],
+    yue_units: Content,
 ) -> None:
     """A word card is text with no closing punctuation as written (ADR 0094), whatever a voice
     is given (here IPA between slashes); its words are its word tokens, so a Cantonese sentence,
     written without spaces, has several."""
     items, _ = plan(yue_units, voice("elevenlabs", pronounce="jyutping"))
     by_id = {i.item: i for i in items}
-    kcs = {i.id for i in iter_items(yue_units) if i.kind == "kc"}
-    assert by_id["sense:學生"].input.endswith("/") and by_id["sense:學生"].kind == "word"
-    assert all(i.kind == "word" for i in items if i.item in kcs)
+    entries = {i.id for i in iter_items(yue_units) if i.kind == "entry"}
+    assert by_id["lexeme:學生"].input.endswith("/") and by_id["lexeme:學生"].kind == "word"
+    assert all(i.kind == "word" for i in items if i.item in entries)
     tokens = _sentences(yue_units)
     sentences = [by_id[k] for k in tokens if k in by_id and not k.startswith("drill.")]
     assert sentences and all(i.kind == "sentence" for i in sentences)
@@ -182,11 +182,11 @@ def test_each_item_says_what_it_is_and_how_many_words_it_has(
     assert any(" " not in i.input and i.words > 2 for i in sentences)
     # The numbers drill says each number alone, unpunctuated: a word card too.
     assert by_id["drill.numbers.1"].kind == "word"
-    request = by_id["sense:學生"].request("v", 1.0, 2)
+    request = by_id["lexeme:學生"].request("v", 1.0, 2)
     assert (request.kind, request.words, request.take) == ("word", 1, 2)
 
 
-def test_an_unknown_pronounce_scheme_is_refused(yue_units: list[BundleUnit]) -> None:
+def test_an_unknown_pronounce_scheme_is_refused(yue_units: Content) -> None:
     with pytest.raises(ValueError, match="no IPA conversion"):
         plan(yue_units, voice("elevenlabs", pronounce="yale"))
 
@@ -325,7 +325,7 @@ def test_onsets_skip_what_the_provider_normalized() -> None:
 
 @pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="needs ffmpeg")
 def test_a_provider_failing_midway_keeps_the_clips_already_made(
-    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, yue_units: list[BundleUnit]
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, yue_units: Content
 ) -> None:
     monkeypatch.setenv("ELEVENLABS_API_KEY", "test-key")
     course = tmp_path / "yue"

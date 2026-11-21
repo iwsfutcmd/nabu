@@ -120,17 +120,23 @@ def report(
     )
 
 
+def copy_courses(tmp_path: Path, *ids: str) -> Path:
+    """Courses as the repo keeps them, without audio: courses/<id> beside the pictures they share,
+    and their languages' lexicons under lexicons/."""
+    out = tmp_path / "courses"
+    for c in ids:
+        shutil.copytree(REPO / "courses" / c, out / c, ignore=shutil.ignore_patterns("audio"))
+        shutil.copytree(REPO / "lexicons" / c, tmp_path / "lexicons" / c)
+        # Without the audio directory the audio settings would point nowhere.
+        source = (out / c / "course.yaml").read_text(encoding="utf-8")
+        (out / c / "course.yaml").write_text(source.split("\naudio:")[0] + "\n", encoding="utf-8")
+    shutil.copytree(REPO / "courses" / "images", out / "images")
+    return out
+
+
 @pytest.fixture
 def courses(tmp_path: Path) -> Path:
-    for c in ("yue", "fa"):
-        shutil.copytree(REPO / "courses" / c, tmp_path / c, ignore=shutil.ignore_patterns("audio"))
-        # Without the audio directory the audio settings would point nowhere.
-        source = (tmp_path / c / "course.yaml").read_text(encoding="utf-8")
-        (tmp_path / c / "course.yaml").write_text(
-            source.split("\naudio:")[0] + "\n", encoding="utf-8"
-        )
-    shutil.copytree(REPO / "courses" / "images", tmp_path / "images")
-    return tmp_path
+    return copy_courses(tmp_path, "yue", "fa")
 
 
 def test_promote_adds_weighted_alternatives_and_the_course_still_compiles(
@@ -206,18 +212,26 @@ def test_promote_adds_weighted_alternatives_and_the_course_still_compiles(
 
 def test_author_prompt_lists_what_was_taught_up_to_the_node() -> None:
     values = prompt_values(load_course(REPO / "courses" / "uz"), "uz.my", 3)
-    assert "sense:kitob: kitob / китоб (book)" in values["kcs"]
-    assert "sense:salom" in values["kcs"] and "sense:ism" in values["kcs"]
+    # Each lexeme with its spellings and gloss, from the language's lexicon; an ending by its
+    # allomorphs.
+    assert "lexeme:kitob: kitob / китоб (book)" in values["kcs"]
+    assert "lexeme:salom" in values["kcs"] and "lexeme:ism" in values["kcs"]
+    assert "lexeme:poss-1sg: m, im / м, им (-(i)m: my)" in values["kcs"]
+    assert "sense:" not in values["kcs"]
     assert values["orthographies"] == "uz-Latn/standard, uz-Cyrl/standard"
-    assert values["introduces"].startswith("form:poss-1sg-im")
+    assert values["introduces"].startswith("lexeme:poss-1sg")
     prompt = load_prompt("author")
     render(prompt.source, values)  # every placeholder filled
 
 
+def test_author_prompt_lists_rules_with_their_gloss() -> None:
+    values = prompt_values(load_course(REPO / "courses" / "yue"), "yue.who", 3)
+    assert "rule:a-not-a: (a rule) (" in values["kcs"]
+
+
 def test_draft_writes_reviewable_sources_with_provenance_and_lints(tmp_path: Path) -> None:
-    course = tmp_path / "uz"
-    shutil.copytree(REPO / "courses" / "uz", course, ignore=shutil.ignore_patterns("audio"))
-    shutil.copytree(REPO / "courses" / "images", tmp_path / "images")
+    course = copy_courses(tmp_path, "uz") / "uz"
+    lexicon = (tmp_path / "lexicons" / "uz" / "lexemes.yaml").read_text(encoding="utf-8")
     answer = {
         "sentences": [
             {
@@ -225,15 +239,16 @@ def test_draft_writes_reviewable_sources_with_provenance_and_lints(tmp_path: Pat
                     "uz-Latn/standard": {
                         "text": "Bu kitobim.",
                         "tokens": [
-                            {"surface": "Bu", "kc": "sense:bu"},
-                            {"surface": "kitobim", "kc": "sense:kitob"},
+                            {"surface": "Bu", "kc": "lexeme:bu"},
+                            {"surface": "kitobim", "kc": "lexeme:kitob"},
                         ],
                     },
                     "uz-Cyrl/standard": {
                         "text": "Бу китобим.",
                         "tokens": [
+                            # An id of the course before the lexical model: its alias says.
                             {"surface": "Бу", "kc": "sense:bu"},
-                            {"surface": "китобим", "kc": "sense:kitob"},
+                            {"surface": "китобим", "kc": "lexeme:kitob"},
                         ],
                     },
                 },
@@ -244,8 +259,8 @@ def test_draft_writes_reviewable_sources_with_provenance_and_lints(tmp_path: Pat
                     "uz-Latn/standard": {
                         "text": "Bu qalam.",
                         "tokens": [
-                            {"surface": "Bu", "kc": "sense:bu"},
-                            {"surface": "qalam", "kc": "sense:qalam"},
+                            {"surface": "Bu", "kc": "lexeme:bu"},
+                            {"surface": "qalam", "kc": "lexeme:qalam"},
                         ],
                     }
                 },
@@ -261,13 +276,29 @@ def test_draft_writes_reviewable_sources_with_provenance_and_lints(tmp_path: Pat
     data = yaml.safe_load(out.read_text(encoding="utf-8"))
     assert out == course / "drafts" / "uz.my.yaml"
     assert [s["id"] for s in data["sentences"]] == ["draft.uz.my.1", "draft.uz.my.2"]
-    assert data["sentences"][0]["provenance"] == {
-        "author": f"llm:qwen-2.5-test@{hash_}",
-        "status": "draft",
-    }
-    assert data["sentences"][0]["forms"]["uz-Latn/standard"]["reverse"] == "Bu kitobim."
+    provenance = {"author": f"llm:qwen-2.5-test@{hash_}", "status": "draft"}
+    assert data["sentences"][0]["provenance"] == provenance
+    first = data["sentences"][0]["forms"]
+    assert first["uz-Latn/standard"]["reverse"] == "Bu kitobim."
+    # Tokens name lexemes, in both orthographies alike.
+    assert first["uz-Latn/standard"]["tokens"] == [
+        {"surface": "Bu", "lexeme": "bu"},
+        {"surface": "kitobim", "lexeme": "kitob"},
+    ]
+    assert [t["lexeme"] for t in first["uz-Cyrl/standard"]["tokens"]] == ["bu", "kitob"]
     assert data["sentences"][0]["translations"]["en"] == "This is my book.\nIt's my book."
-    # The second draft uses a word the course lacks and has no Cyrillic form: the findings say so.
-    assert any("qalam" in f for f in findings), findings
+    # A word the lexicon lacks is drafted as an entry for a person to finish and move.
+    assert data["lexemes"] == [
+        {
+            "id": "lexeme:qalam",
+            "pos": "X",
+            "spelled": {"uz-Latn/standard": ["qalam"]},
+            "provenance": provenance,
+        }
+    ]
+    assert any("lexeme:qalam" in f and "not in the lexicon" in f for f in findings), findings
+    # The second draft has no Cyrillic form: the findings say so.
     assert any("uz-Cyrl" in f for f in findings), findings
     assert "uz.my" in calls[0][2]["messages"][1]["content"]
+    # The language's lexicon is left alone: the entries wait in the drafts file.
+    assert (tmp_path / "lexicons" / "uz" / "lexemes.yaml").read_text(encoding="utf-8") == lexicon

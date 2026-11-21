@@ -6,6 +6,7 @@ orthographies:
 - fa-Arab/standard
 support:
 - en-Latn/standard
+lexicon: fa
 names:
   en:
     course: Persian
@@ -13,6 +14,25 @@ license: CC0-1.0
 provenance:
   author: human:fixture
   status: draft
+own:
+  lexicon:
+    language: fa
+    license: CC0-1.0
+    provenance:
+      author: human:fixture
+      status: draft
+    lexemes:
+    - id: lexeme:کتاب
+      pos: NOUN
+      gloss:
+        en: book
+  language:
+    id: fa
+    license: CC0-1.0
+    provenance:
+      author: human:fixture
+      status: draft
+    dimensions: {}
 vocalization:
 - orthography: fa-Arab/standard
   license: CC0-1.0
@@ -23,15 +43,11 @@ vocalization:
     کتاب: کِتابی
 units:
 - id: basics
-  kcs:
-  - id: sense:کتاب
-    gloss:
-      en: book
   nodes:
   - id: basics.1
     kind: lesson
     introduces:
-    - sense:کتاب
+    - lexeme:کتاب
   sentences:
   - id: s.1
     node: basics.1
@@ -40,7 +56,7 @@ units:
         text: کتاب
         tokens:
         - surface: کتاب
-          sense: کتاب
+          lexeme: کتاب
         reverse: کتاب
     translations:
       en: book

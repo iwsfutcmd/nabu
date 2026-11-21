@@ -1,10 +1,11 @@
 """Cantonese in Jyutping, written from the characters' pinned readings (ADR 0126).
 
 yue's second orthography, yue-Latn/jyutping, is never written by hand. Every sentence, story line,
-word (KC) form and character name in it comes from the Hong Kong characters' form: each word
-token's pinned Jyutping becomes the word, its characters the word's ruby (`characters`), and the
-text joins the words with spaces and Latin punctuation. `nabu jyutping <course>` writes it into the
-course's units; the compiler checks the two agree (`enrich.transliteration-mismatch`).
+character name and lexicon entry's spelling in it comes from the Hong Kong characters' form: each
+word token's pinned Jyutping becomes the word, its characters the word's ruby (`characters`), and
+the text joins the words with spaces and Latin punctuation. `nabu jyutping <course>` writes it into
+the course's units and its language's lexicon; the compiler checks the two agree
+(`enrich.transliteration-mismatch`).
 
 Accept sets (`reverse`) are converted too: each character of an alternative takes the reading the
 sentence pins for it, else the one the course pins for that word everywhere, else PyCantonese's.
@@ -18,9 +19,11 @@ import re
 from collections import Counter
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any, cast
 
 import regex
+import yaml
 
 HANT = "yue-Hant-HK/standard"
 LATN = "yue-Latn/jyutping"
@@ -33,6 +36,7 @@ HAN = regex.compile(r"\p{Han}")
 SYLLABLE = regex.compile(r"[a-z]+[1-6]")
 #: Accept-set notation (packages/core/src/accept/notation.ts): what is not text.
 SPECIALS = set("()[]|\\@#\n")
+LEXEME = "lexeme:"
 
 
 def syllables(reading: str) -> list[str]:
@@ -56,7 +60,8 @@ def _pieces(text: str, tokens: list[dict[str, Any]]) -> Iterator[tuple[str, Any]
 
 
 def _split(surface: str, parts: list[str], reading: list[str]) -> list[str]:
-    """The Jyutping of each part of a word (its morphs), a space after every part but the last."""
+    """The Jyutping of each part of a token that writes several lexemes (each one's characters), a
+    space after every part but the last."""
     out: list[str] = []
     at = 0
     for i, part in enumerate(parts):
@@ -65,7 +70,7 @@ def _split(surface: str, parts: list[str], reading: list[str]) -> list[str]:
         out.append(piece + (" " if i < len(parts) - 1 else ""))
         at += n
     if at != len(surface):
-        raise ValueError(f"morphs of {surface!r} do not cover it")
+        raise ValueError(f"the lexemes of {surface!r} do not cover it")
     return out
 
 
@@ -79,13 +84,14 @@ def latin_token(token: dict[str, Any]) -> dict[str, Any]:
         raise ValueError(f"{token['surface']!r}: {reading!r} does not line up with its characters")
     out: dict[str, Any] = {"surface": " ".join(syl)}
     for key, value in token.items():
-        if key in ("surface", "readings", "morphs"):
+        if key in ("surface", "readings", "lexemes"):
             continue
         out[key] = value
-    morphs = token.get("morphs")
-    if morphs:
-        parts = _split(token["surface"], [m["surface"] for m in morphs], syl)
-        out["morphs"] = [{**m, "surface": p} for m, p in zip(morphs, parts, strict=True)]
+    # A token that writes several lexemes: each keeps its share of the syllables.
+    written = token.get("lexemes")
+    if written:
+        parts = _split(token["surface"], [w["surface"] for w in written], syl)
+        out["lexemes"] = [{**w, "surface": p} for w, p in zip(written, parts, strict=True)]
     out["readings"] = {LAYER: token["surface"]}
     return out
 
@@ -113,8 +119,9 @@ class Lexicon:
 
     words: dict[str, Counter[str]] = field(default_factory=dict[str, Counter[str]])
     chars: dict[str, Counter[str]] = field(default_factory=dict[str, Counter[str]])
-    #: Each KC's readings (by the tokens and morphs that name it).
-    kcs: dict[str, Counter[str]] = field(default_factory=dict[str, Counter[str]])
+    #: Each lexeme's readings, by its id (lexeme:我): those of the tokens that write it alone or
+    #: as their base, and its share of the tokens that write it with others.
+    lexemes: dict[str, Counter[str]] = field(default_factory=dict[str, Counter[str]])
 
     def add(self, token: dict[str, Any]) -> None:
         surface: str = token["surface"]
@@ -127,13 +134,16 @@ class Lexicon:
         self.words.setdefault(surface, Counter())[reading] += 1
         for c, s in zip(surface, syl, strict=True):
             self.chars.setdefault(c, Counter())[s] += 1
-        if token.get("sense") is not None:
-            self.kcs.setdefault(f"sense:{token['sense']}", Counter())[reading] += 1
-        morphs = cast(list[dict[str, str]], token.get("morphs") or [])
-        if morphs:
-            parts = _split(surface, [m["surface"] for m in morphs], syl)
-            for m, p in zip(morphs, parts, strict=True):
-                self.kcs.setdefault(m["kc"], Counter())[p.strip()] += 1
+        if token.get("lexeme") is not None:
+            self.lexemes.setdefault(f"{LEXEME}{token['lexeme']}", Counter())[reading] += 1
+        written = cast(list[dict[str, Any]], token.get("lexemes") or [])
+        if written:
+            base = next((w for w in written if w.get("base")), None)
+            if base is not None:
+                self.lexemes.setdefault(f"{LEXEME}{base['lexeme']}", Counter())[reading] += 1
+            parts = _split(surface, [str(w["surface"]) for w in written], syl)
+            for w, p in zip(written, parts, strict=True):
+                self.lexemes.setdefault(f"{LEXEME}{w['lexeme']}", Counter())[p.strip()] += 1
 
 
 def forms_in(data: Any) -> Iterator[dict[str, Any]]:
@@ -141,7 +151,7 @@ def forms_in(data: Any) -> Iterator[dict[str, Any]]:
     if isinstance(data, dict):
         mapping = cast(dict[str, Any], data)
         forms = mapping.get("forms")
-        # Sentences and story lines map an orthography to a form; KC forms are lists of words.
+        # Sentences and story lines map an orthography to a form; a letter's forms are lists.
         if isinstance(forms, dict) and isinstance(cast(dict[str, Any], forms).get(HANT), dict):
             yield cast(dict[str, Any], forms)
         for v in mapping.values():
@@ -342,27 +352,43 @@ def _flow(value: Any) -> Any:
 
 
 def _flow_line(value: Any) -> str:
+    """A mapping or a list as one line of flow YAML."""
     from nabu import yamlio
 
     return yamlio.dump(_flow(value), width=10**9).strip()
 
 
-def _form_block(form: dict[str, Any], indent: str, lex: Lexicon, report: list[str]) -> list[str]:
-    """The yue-Latn/jyutping block written beside a Hant form block."""
+def _scalar_line(value: str) -> str:
+    """A string as a YAML scalar after `key: `: plain when safe."""
     from nabu import yamlio
 
+    return yamlio.dump({"k": value}, width=10**9)[len("k: ") :].rstrip("\n")
+
+
+def latin_of(form: dict[str, Any], lex: Lexicon, report: list[str]) -> dict[str, Any]:
+    """The yue-Latn/jyutping form of a Hant form: its text and tokens, and its accept set."""
     text, tokens = latin_form(form["text"], form.get("tokens") or [])
-    latin: dict[str, Any] = {"text": text, "tokens": _flow(tokens)}
+    latin: dict[str, Any] = {"text": text, "tokens": tokens}
     if "reverse" in form:
         got = latin_reverse(form["reverse"], form.get("tokens") or [], lex)
         report += got.unsure
         latin["reverse"] = got.text
-    block = yamlio.dump({LATN: latin}, width=10**9).rstrip("\n").split("\n")
+    return latin
+
+
+def _form_block(latin: dict[str, Any], indent: str) -> list[str]:
+    """The yue-Latn/jyutping block written beside a Hant form block."""
+    from nabu import yamlio
+
+    shown = {**latin, "tokens": _flow(latin["tokens"])}
+    block = yamlio.dump({LATN: shown}, width=10**9).rstrip("\n").split("\n")
     return [f"{indent}{line}" for line in block]
 
 
 _FORM_HEAD = re.compile(rf"^(\s*){re.escape(HANT)}:\s*$")
 _LATN_HEAD = re.compile(rf"^(\s*){re.escape(LATN)}:\s*$")
+_HANT_SCALAR = re.compile(rf"^(\s*){re.escape(HANT)}:\s+(\S.*)$")
+_LATN_SCALAR = re.compile(rf"^(\s*){re.escape(LATN)}:\s+(\S.*)$")
 _FLOW_ITEM = re.compile(r"^(\s*- )(\{.*\})\s*$")
 
 
@@ -370,12 +396,27 @@ def _indent(line: str) -> int:
     return len(line) - len(line.lstrip(" "))
 
 
+def _block_end(lines: list[str], start: int, base: int) -> int:
+    """Where the block that begins before `start`, at indent `base`, ends."""
+    j = start
+    while j < len(lines) and (not lines[j].strip() or _indent(lines[j]) > base):
+        j += 1
+    return j
+
+
+def _parent_key(lines: list[str], at: int) -> str:
+    """The key a line's mapping hangs from: the last line before it that is indented less."""
+    own = _indent(lines[at])
+    for k in range(at - 1, -1, -1):
+        if lines[k].strip() and _indent(lines[k]) < own:
+            return lines[k].strip().removeprefix("- ")
+    return ""
+
+
 def rewrite_unit(source: str, lex: Lexicon) -> tuple[str, list[str]]:
     """A unit's text with its Jyutping written in: a yue-Latn/jyutping block after every Hant form
-    block (an old one replaced), and the Jyutping of every KC form and character name. Everything
-    else is left as written."""
-    import yaml
-
+    block, and the Jyutping of every character name. A block or a name that already says what
+    the characters give is left exactly as it is written, and so is everything else."""
     lines = source.split("\n")
     out: list[str] = []
     report: list[str] = []
@@ -385,55 +426,214 @@ def rewrite_unit(source: str, lex: Lexicon) -> tuple[str, list[str]]:
         head = _FORM_HEAD.match(line)
         if head:
             base = _indent(line)
-            j = i + 1
-            while j < len(lines) and (not lines[j].strip() or _indent(lines[j]) > base):
-                j += 1
+            j = _block_end(lines, i + 1, base)
             block = lines[i:j]
             form = yaml.safe_load("\n".join(x[base:] for x in block))[HANT]
             out += block
-            # An old Jyutping block right after it is written again.
+            latin = latin_of(form, lex, report)
+            # The Jyutping block right after it stays if it says the same, else is written again.
+            end = j
+            written: list[str] | None = None
             if j < len(lines) and _LATN_HEAD.match(lines[j]) and _indent(lines[j]) == base:
-                j += 1
-                while j < len(lines) and (not lines[j].strip() or _indent(lines[j]) > base):
-                    j += 1
-            out += _form_block(form, " " * base, lex, report)
-            i = j
+                end = _block_end(lines, j + 1, base)
+                written = lines[j:end]
+            if written is not None and _says(written, base) == latin:
+                out += written
+            else:
+                out += _form_block(latin, " " * base)
+            i = end
             continue
+        name = _HANT_SCALAR.match(line)
+        if name and _parent_key(lines, i) == "name:":
+            # A character's name, one key a line: its Jyutping is the line after it.
+            hant = yaml.safe_load(name.group(2))
+            if isinstance(hant, str):
+                latin_name = word_text(hant, lex, report)
+                out.append(line)
+                after = _LATN_SCALAR.match(lines[i + 1]) if i + 1 < len(lines) else None
+                if after and after.group(1) == name.group(1):
+                    same = yaml.safe_load(after.group(2)) == latin_name
+                    fresh = f"{name.group(1)}{LATN}: {_scalar_line(latin_name)}"
+                    out.append(lines[i + 1] if same else fresh)
+                    i += 2
+                else:
+                    out.append(f"{name.group(1)}{LATN}: {_scalar_line(latin_name)}")
+                    i += 1
+                continue
         item = _FLOW_ITEM.match(line)
         if item:
+            # A character written on one line: {id: …, name: {yue-Hant-HK/standard: …}}.
             value = yaml.safe_load(item.group(2))
-            changed = False
-            if isinstance(value, dict):
-                for key in ("forms", "name"):
-                    spot = value.get(key)  # pyright: ignore[reportUnknownMemberType, reportUnknownVariableType]
-                    if isinstance(spot, dict) and HANT in spot:
-                        hant = spot[HANT]  # pyright: ignore[reportUnknownVariableType]
-                        if key == "forms":
-                            kc = str(value.get("id"))  # pyright: ignore[reportUnknownMemberType, reportUnknownArgumentType]
-                            latin = [kc_reading(kc, str(f), lex, report) for f in hant]  # pyright: ignore[reportUnknownVariableType, reportUnknownArgumentType]
-                        else:
-                            latin = word_text(str(hant), lex, report)  # pyright: ignore[reportUnknownArgumentType]
-                        new = {k: v for k, v in spot.items() if k != LATN}  # pyright: ignore[reportUnknownVariableType]
-                        new[LATN] = latin
-                        value[key] = new
-                        changed = True
-            if changed:
-                out.append(item.group(1) + _flow_line(value))
-                i += 1
-                continue
+            spot = value.get("name") if isinstance(value, dict) else None  # pyright: ignore[reportUnknownMemberType, reportUnknownVariableType]
+            if isinstance(spot, dict) and isinstance(spot.get(HANT), str):  # pyright: ignore[reportUnknownMemberType]
+                latin_name = word_text(str(spot[HANT]), lex, report)  # pyright: ignore[reportUnknownArgumentType]
+                if spot.get(LATN) != latin_name:  # pyright: ignore[reportUnknownMemberType]
+                    new = {k: v for k, v in spot.items() if k != LATN}  # pyright: ignore[reportUnknownVariableType]
+                    new[LATN] = latin_name
+                    out.append(item.group(1) + _flow_line({**value, "name": new}))
+                    i += 1
+                    continue
         out.append(line)
         i += 1
     return "\n".join(out), report
 
 
-def kc_reading(kc: str, form: str, lex: Lexicon, report: list[str]) -> str:
-    """A KC form's Jyutping: what the course's tokens and morphs of that KC read it as."""
-    counts = lex.kcs.get(kc)
+def _says(block: list[str], base: int) -> Any:
+    """What a written yue-Latn/jyutping block says, as data."""
+    return yaml.safe_load("\n".join(x[base:] for x in block))[LATN]
+
+
+# ----------------------------------------------------------------------- and into the lexicon
+
+
+def _pair(node: yaml.Node | None, key: str) -> tuple[yaml.Node, yaml.Node] | None:
+    if not isinstance(node, yaml.MappingNode):
+        return None
+    for k, v in node.value:
+        if isinstance(k, yaml.ScalarNode) and k.value == key:
+            return k, v
+    return None
+
+
+def _value(node: yaml.Node | None, key: str) -> yaml.Node | None:
+    found = _pair(node, key)
+    return None if found is None else found[1]
+
+
+def _items(node: yaml.Node | None) -> list[yaml.Node]:
+    return list(node.value) if isinstance(node, yaml.SequenceNode) else []
+
+
+def _strings(node: yaml.Node | None) -> list[str] | None:
+    """A sequence of scalars as its strings, or None if it is anything else."""
+    if not isinstance(node, yaml.SequenceNode):
+        return None
+    if not all(isinstance(x, yaml.ScalarNode) for x in node.value):
+        return None
+    return [str(x.value) for x in node.value]
+
+
+def rewrite_lexicon(
+    source: str, lex: Lexicon, at: tuple[str, ...] = ("lexemes",)
+) -> tuple[str, list[str]]:
+    """A lexicon's text with the Jyutping of every spelling written in: wherever an entry, one of
+    its allomorphs or one of its forms is spelled in characters (`spelled`), the same in
+    yue-Latn/jyutping, as the course's tokens read that lexeme. A spelling that already says so
+    is left exactly as it is written, and so is everything else. `at`: where the entries are
+    (a one-file course keeps them under own, lexicon, lexemes)."""
+    root = cast(yaml.Node | None, yaml.compose(source))  # pyright: ignore[reportUnknownMemberType]
+    entries: yaml.Node | None = root
+    for key in at:
+        entries = _value(entries, key)
+    report: list[str] = []
+    edits: list[tuple[int, int, str]] = []
+    for entry in _items(entries):
+        ident = _value(entry, "id")
+        if not isinstance(ident, yaml.ScalarNode):
+            continue
+        lexeme = str(ident.value)
+        spots = [entry, *_items(_value(entry, "allomorphs")), *_items(_value(entry, "forms"))]
+        for spot in spots:
+            spelled = _value(spot, "spelled")
+            hant = _pair(spelled, HANT)
+            forms = None if hant is None else _strings(hant[1])
+            if hant is None or not forms:
+                continue
+            latin = [lexeme_reading(lexeme, f, lex, report) for f in forms]
+            written = _pair(spelled, LATN)
+            if written is not None:
+                if _strings(written[1]) == latin:
+                    continue
+                span = source[written[1].start_mark.index : written[1].end_mark.index]
+                end = written[1].end_mark.index - (len(span) - len(span.rstrip("\n")))
+                edits.append((written[1].start_mark.index, end, _flow_line(latin)))
+                continue
+            key_node, value = hant
+            if not getattr(value, "flow_style", False):
+                raise ValueError(
+                    f"{lexeme}: write its {HANT} spellings on one line ([…]) to add their Jyutping"
+                )
+            at_end = value.end_mark.index
+            if getattr(spelled, "flow_style", False):
+                edits.append((at_end, at_end, f", {LATN}: {_flow_line(latin)}"))
+            else:
+                pad = " " * key_node.start_mark.column
+                edits.append((at_end, at_end, f"\n{pad}{LATN}: {_flow_line(latin)}"))
+    text = source
+    for start, end, new in sorted(edits, reverse=True):
+        text = text[:start] + new + text[end:]
+    return text, report
+
+
+@dataclass
+class Rewritten:
+    """One file of a course as `nabu jyutping` writes it."""
+
+    path: Path
+    old: str
+    new: str
+    #: Readings taken from PyCantonese or chosen among the course's, for a person to check.
+    unsure: list[str]
+
+
+def _lexicon_file(course_file: Path, data: dict[str, Any]) -> tuple[Path, tuple[str, ...]] | None:
+    """Where a course's lexicon entries are written: its own (a one-file course keeps them in
+    course.yaml, under own, lexicon, lexemes), else its language's lexemes.yaml."""
+    if isinstance(data.get("own"), dict):
+        return course_file, ("own", "lexicon", "lexemes")
+    code = data.get("lexicon")
+    if not isinstance(code, str):
+        return None
+    from nabu.compiler.build import lexicons_dir
+
+    return lexicons_dir(course_file) / code / "lexemes.yaml", ("lexemes",)
+
+
+def rewrite_course(course: Path) -> list[Rewritten]:
+    """Every file of a course with its Jyutping written in: each unit (a units/ folder's, and
+    those course.yaml names), and the lexicon its words are spelled in. Nothing is written here."""
+    course_file = course / "course.yaml" if course.is_dir() else course
+    data = cast(dict[str, Any], yaml.safe_load(course_file.read_text(encoding="utf-8")) or {})
+    paths = sorted((course_file.parent / "units").glob("*.yaml"))
+    for item in cast(list[Any], data.get("units") or []):
+        if isinstance(item, str) and (course_file.parent / item) not in paths:
+            paths.append(course_file.parent / item)
+    sources = {p: p.read_text(encoding="utf-8") for p in paths}
+    inline = [
+        cast(dict[str, Any], u)
+        for u in cast(list[Any], data.get("units") or [])
+        if isinstance(u, dict)
+    ]
+    lex = lexicon_of([*(yaml.safe_load(s) for s in sources.values()), *inline])
+    out: list[Rewritten] = []
+    for path, source in sources.items():
+        new, unsure = rewrite_unit(source, lex)
+        out.append(Rewritten(path, source, new, unsure))
+    if inline:
+        source = course_file.read_text(encoding="utf-8")
+        new, unsure = rewrite_unit(source, lex)
+        out.append(Rewritten(course_file, source, new, unsure))
+    found = _lexicon_file(course_file, data)
+    if found is not None and found[0].is_file():
+        path, at = found
+        done = next((r for r in out if r.path == path), None)
+        source = done.new if done is not None else path.read_text(encoding="utf-8")
+        new, unsure = rewrite_lexicon(source, lex, at)
+        if done is not None:
+            done.new, done.unsure = new, [*done.unsure, *unsure]
+        else:
+            out.append(Rewritten(path, source, new, unsure))
+    return out
+
+
+def lexeme_reading(lexeme: str, form: str, lex: Lexicon, report: list[str]) -> str:
+    """A spelling's Jyutping: what the course's tokens of that lexeme read it as."""
+    counts = lex.lexemes.get(lexeme)
     if counts:
         fits = [r for r, _ in counts.most_common() if len(syllables(r)) == len(form)]
         if fits:
             if len(fits) > 1:
-                report.append(f"{form} ({kc}): {', '.join(fits)}; took {fits[0]}")
+                report.append(f"{form} ({lexeme}): {', '.join(fits)}; took {fits[0]}")
             return fits[0]
     return word_text(form, lex, report)
 

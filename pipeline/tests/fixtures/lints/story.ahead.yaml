@@ -6,6 +6,7 @@ orthographies:
 - uz-Latn/standard
 support:
 - en-Latn/standard
+lexicon: uz
 names:
   en:
     course: Uzbek
@@ -13,44 +14,72 @@ license: CC0-1.0
 provenance:
   author: human:fixture
   status: draft
+own:
+  lexicon:
+    language: uz
+    license: CC0-1.0
+    provenance:
+      author: human:fixture
+      status: draft
+    lexemes:
+    - id: lexeme:kitob
+      pos: NOUN
+      gloss:
+        en: book
+      spelled:
+        uz-Latn/standard:
+        - kitob
+    - id: lexeme:men
+      pos: PRON
+      gloss:
+        en: I
+      spelled:
+        uz-Latn/standard:
+        - men
+    - id: lexeme:salom
+      pos: INTJ
+      gloss:
+        en: hello
+      spelled:
+        uz-Latn/standard:
+        - salom
+    - id: lexeme:talaba
+      pos: NOUN
+      gloss:
+        en: student
+      spelled:
+        uz-Latn/standard:
+        - talaba
+        - talabaman
+  language:
+    id: uz
+    license: CC0-1.0
+    provenance:
+      author: human:fixture
+      status: draft
+    dimensions:
+      NOUN:
+      - Number
+    rules:
+    - id: rule:copula-man
+      gloss:
+        en: I am (suffix -man)
 units:
 - id: basics
-  kcs:
-  - id: sense:salom
-    gloss:
-      en: hello
-    forms:
-      uz-Latn/standard:
-      - salom
-  - id: sense:men
-    gloss:
-      en: I
-    forms:
-      uz-Latn/standard:
-      - men
-  - id: sense:talaba
-    gloss:
-      en: student
-    forms:
-      uz-Latn/standard:
-      - talaba
-      - talabaman
-  - id: construction:copula-man
-    gloss:
-      en: I am (suffix -man)
   nodes:
   - id: basics.1
     kind: lesson
     introduces:
-    - sense:salom
-    - sense:men
-    - construction:copula-man
+    - lexeme:salom
+    - lexeme:men
+    - rule:copula-man
+    - lexeme:kitob
   - id: basics.story
     kind: story
   - id: basics.2
     kind: lesson
     introduces:
-    - sense:talaba
+    - lexeme:talaba
   sentences:
   - id: s.1
     node: basics.1
@@ -59,7 +88,7 @@ units:
         text: Salom!
         tokens:
         - surface: Salom
-          sense: salom
+          lexeme: salom
         reverse: Salom
     translations:
       en: |-
@@ -72,9 +101,9 @@ units:
         text: Salom, men!
         tokens:
         - surface: Salom
-          sense: salom
+          lexeme: salom
         - surface: men
-          sense: men
+          lexeme: men
         reverse: Salom, men
     translations:
       en: Hello, me!
@@ -85,29 +114,42 @@ units:
         text: Salom, talaba!
         tokens:
         - surface: Salom
-          sense: salom
+          lexeme: salom
         - surface: talaba
-          sense: talaba
+          lexeme: talaba
         reverse: Salom, talaba
     translations:
       en: Hello, student!
   - id: s.4
     node: basics.1
-    constructions:
-    - construction:copula-man
+    uses:
+    - rule:copula-man
     forms:
       uz-Latn/standard:
         text: Men talabaman.
         tokens:
         - surface: Men
-          sense: men
+          lexeme: men
         - surface: talabaman
-          sense: talaba
+          lexeme: talaba
         reverse: '[Men] talabaman'
     translations:
       en: |-
         I am a student.
         I'm a student.
+  - id: s.5
+    node: basics.1
+    forms:
+      uz-Latn/standard:
+        text: Salom, kitob!
+        tokens:
+        - surface: Salom
+          lexeme: salom
+        - surface: kitob
+          lexeme: kitob
+        reverse: Salom, kitob
+    translations:
+      en: Hello, book!
   stories:
   - id: basics.story
     node: basics.story
@@ -125,23 +167,23 @@ units:
             text: Salom!
             tokens:
             - surface: Salom
-              sense: salom
+              lexeme: salom
         translations:
           en: Hello!
     - line:
         speaker: aziz
         ask: complete
-        gap: sense:talaba
+        gap: lexeme:talaba
         distractors:
-        - sense:salom
+        - lexeme:kitob
         forms:
           uz-Latn/standard:
             text: Men talabaman.
             tokens:
             - surface: Men
-              sense: men
+              lexeme: men
             - surface: talabaman
-              sense: talaba
+              lexeme: talaba
         translations:
           en: I'm a student.
     - choose:

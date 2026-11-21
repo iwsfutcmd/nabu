@@ -1,32 +1,32 @@
 """yue in Jyutping (ADR 0126): written from the characters' pinned readings, never by hand.
 
 `nabu jyutping` writes the yue-Latn/jyutping form of every Hant form (text, tokens with their
-characters as ruby, accept sets), every KC form and character name; the compiler checks each
-sentence's agrees, and the course's are up to date."""
+characters as ruby, accept sets), every spelling in the lexicon and every character name; the
+compiler checks each sentence's agrees, and the course's are up to date."""
 
 from __future__ import annotations
 
+import re
 import shutil
 from pathlib import Path
-from typing import Any, cast
+from typing import Any
 
 import pytest
-import yaml
 
 from nabu import jyutping
 from nabu.compiler import compile_course
 
 from .conftest import ROOT, CoreCli
-from .test_courses import build, bundled, sentences
+from .test_courses import build, sentences
 
 HANT = "yue-Hant-HK/standard"
 LATN = "yue-Latn/jyutping"
 
 
-def token(surface: str, reading: str, sense: str | None = None, **extra: Any) -> dict[str, Any]:
+def token(surface: str, reading: str, lexeme: str | None = None, **extra: Any) -> dict[str, Any]:
     t: dict[str, Any] = {"surface": surface, "readings": {"jyutping": reading}, **extra}
-    if sense is not None:
-        t["sense"] = sense
+    if lexeme is not None:
+        t["lexeme"] = lexeme
     return t
 
 
@@ -43,17 +43,29 @@ def test_a_form_is_its_words_readings_spaced_with_latin_punctuation() -> None:
     assert text == "hai6, ngo5 hai6 hok6 saang1."
     assert tokens[3] == {
         "surface": "hok6 saang1",
-        "sense": "學生",
+        "lexeme": "學生",
         "readings": {"characters": "學生"},
     }
 
 
-def test_morphs_keep_their_share_of_the_syllables() -> None:
-    morphs = [{"surface": "呢", "kc": "sense:呢"}, {"surface": "本", "kc": "sense:本"}]
-    _, [t] = jyutping.latin_form("呢本", [token("呢本", "ni1 bun2", "呢", morphs=morphs)])
-    # The morphs make up the word: the space goes with the first.
-    assert [m["surface"] for m in t["morphs"]] == ["ni1 ", "bun2"]
-    assert [m["kc"] for m in t["morphs"]] == ["sense:呢", "sense:本"]
+def test_the_lexemes_a_token_writes_keep_their_share_of_the_syllables() -> None:
+    written = [{"lexeme": "我", "surface": "我", "base": True}, {"lexeme": "pl", "surface": "哋"}]
+    _, [t] = jyutping.latin_form("我哋", [token("我哋", "ngo5 dei6", lexemes=written)])
+    # The lexemes make up the token: the space goes with the first.
+    assert t["lexemes"] == [
+        {"lexeme": "我", "surface": "ngo5 ", "base": True},
+        {"lexeme": "pl", "surface": "dei6"},
+    ]
+    assert t["readings"] == {"characters": "我哋"}
+
+
+def test_a_lexeme_read_alone_and_in_a_token_of_several_is_counted_both_ways() -> None:
+    lex = jyutping.Lexicon()
+    lex.add(token("我", "ngo5", "我"))
+    written = [{"lexeme": "我", "surface": "我", "base": True}, {"lexeme": "pl", "surface": "哋"}]
+    lex.add(token("我哋", "ngo5 dei6", lexemes=written))
+    assert lex.lexemes["lexeme:我"] == {"ngo5": 2, "ngo5 dei6": 1}
+    assert lex.lexemes["lexeme:pl"] == {"dei6": 1}
 
 
 def test_a_reading_that_does_not_line_up_is_refused() -> None:
@@ -101,12 +113,44 @@ def test_a_line_that_adds_no_answer_in_jyutping_is_left_out() -> None:
 
 
 def test_the_course_is_up_to_date() -> None:
-    """`nabu jyutping ../courses/yue --check`: every unit as the characters write it."""
-    units = sorted((ROOT / "courses" / "yue" / "units").glob("*.yaml"))
-    lex = jyutping.lexicon_of(yaml.safe_load(u.read_text(encoding="utf-8")) for u in units)
-    for unit in units:
-        source = unit.read_text(encoding="utf-8")
-        assert jyutping.rewrite_unit(source, lex)[0] == source, f"run `nabu jyutping`: {unit}"
+    """`nabu jyutping ../courses/yue --check`: every unit and the lexicon as the characters
+    write them."""
+    files = jyutping.rewrite_course(ROOT / "courses" / "yue")
+    assert ROOT / "lexicons" / "yue" / "lexemes.yaml" in [f.path for f in files]
+    for f in files:
+        assert f.new == f.old, f"run `nabu jyutping`: {f.path}"
+
+
+LEXICON = """language: yue
+lexemes:
+- id: lexeme:我
+  pos: PRON
+  gloss: {en: I}
+  spelled: {yue-Hant-HK/standard: [我]}
+- id: lexeme:pl
+  realises: {Number: Plur}
+  allomorphs:
+  - {spelled: {yue-Hant-HK/standard: [哋], yue-Latn/jyutping: [dei1]}}
+- id: lexeme:學生
+  pos: NOUN
+  spelled:
+    yue-Hant-HK/standard: [學生]
+    yue-Latn/jyutping: [hok6 saang1]
+"""
+
+
+def test_a_lexicon_spelling_is_written_as_the_tokens_of_its_lexeme_read_it() -> None:
+    lex = jyutping.Lexicon()
+    written = [{"lexeme": "我", "surface": "我", "base": True}, {"lexeme": "pl", "surface": "哋"}]
+    lex.add(token("我哋", "ngo5 dei6", lexemes=written))
+    lex.add(token("學生", "hok6 saang1", "學生"))
+    new, _ = jyutping.rewrite_lexicon(LEXICON, lex)
+    # Added where missing, mended where wrong, and every other line as it was.
+    assert new == LEXICON.replace(
+        "spelled: {yue-Hant-HK/standard: [我]}",
+        "spelled: {yue-Hant-HK/standard: [我], yue-Latn/jyutping: [ngo5]}",
+    ).replace("yue-Latn/jyutping: [dei1]", "yue-Latn/jyutping: [dei6]")
+    assert jyutping.rewrite_lexicon(new, lex)[0] == new
 
 
 def test_every_yue_sentence_and_word_is_in_both_orthographies(core_cli: CoreCli) -> None:
@@ -122,10 +166,9 @@ def test_every_yue_sentence_and_word_is_in_both_orthographies(core_cli: CoreCli)
             segments = t["ruby"]["characters"]
             assert "".join(seg["base"] for seg in segments) == t["surface"], s["id"]
             assert "".join(seg["text"] for seg in segments) == t["readings"]["characters"]
-    for unit in bundled(compiled):
-        for kc in cast(list[dict[str, Any]], unit["kcs"]):
-            if HANT in kc.get("forms", {}):
-                assert LATN in kc["forms"], kc["id"]
+    for lexeme in compiled.lexicon.lexemes:
+        if HANT in (lexeme.forms or {}):
+            assert LATN in (lexeme.forms or {}), lexeme.id
 
 
 def test_clip_timings_say_whose_tokens_they_time(core_cli: CoreCli) -> None:
@@ -141,10 +184,13 @@ def intro(tmp_path: Path) -> Path:
     shutil.copytree(ROOT / "courses" / "yue", course, ignore=shutil.ignore_patterns("audio"))
     path = course / "course.yaml"
     data = path.read_text(encoding="utf-8")
-    lines = [ln for ln in data.split("\n") if not ln.startswith("units:")]
-    head, _, _ = "\n".join(lines).partition("\naudio:")
+    data, n = re.subn(r"(?m)^units:\n(- .*\n)+", "", data)
+    assert n == 1
+    head, _, _ = data.partition("\naudio:")
     path.write_text(head + "\nunits: [units/intro.yaml]\n", encoding="utf-8")
     (tmp_path / "images").symlink_to(ROOT / "courses" / "images")
+    # The language's lexicon, read where the compiler looks for it: beside the course.
+    (tmp_path / "lexicons").symlink_to(ROOT / "lexicons")
     return course
 
 

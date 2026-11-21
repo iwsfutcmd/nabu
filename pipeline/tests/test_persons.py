@@ -1,4 +1,5 @@
-"""A sentence's persons (who speaks, who is spoken to) reach the bundle as authored."""
+"""A sentence's persons (who speaks, who is spoken to) reach the bundle as authored, as a tag of
+the sentence (ADR 0147)."""
 
 from __future__ import annotations
 
@@ -20,6 +21,16 @@ def _compile(core_cli: CoreCli, tmp_path: Path, course: dict[str, Any]) -> Any:
     return compile_course(path, core_cli)
 
 
+def _tag(sentence: dict[str, Any], **persons: str) -> None:
+    sentence["tags"] = [{"persons": persons}]
+
+
+def _persons(compiled: Any) -> Any:
+    """The first sentence's persons, as the bundle tags them."""
+    [tag] = unit_json(compiled.units[0])["sentences"][0]["tags"]
+    return tag["persons"]
+
+
 def _besides_coverage(diags: Any) -> list[str]:
     """Diagnostics other than curriculum.one-gender: these one-sentence courses tag one gender."""
     return [d.format() for d in diags.items if d.lint != "curriculum.one-gender"]
@@ -27,24 +38,20 @@ def _besides_coverage(diags: Any) -> list[str]:
 
 def test_persons_reach_the_bundle(core_cli: CoreCli, tmp_path: Path) -> None:
     course = copy.deepcopy(FA)
-    course["units"][0]["sentences"][0]["persons"] = {"addressee": "f", "speaker": "m"}
+    _tag(course["units"][0]["sentences"][0], addressee="f", speaker="m")
     diags, compiled = _compile(core_cli, tmp_path, course)
     assert _besides_coverage(diags) == []
-    assert unit_json(compiled.units[0])["sentences"][0]["persons"] == {
-        "addressee": "f",
-        "speaker": "m",
-    }
+    assert _persons(compiled) == {"addressee": "f", "speaker": "m"}
 
 
 def test_every_number_of_addressees_is_a_person(core_cli: CoreCli, tmp_path: Path) -> None:
     """One person where only number is marked (Cantonese 你), two where there is a dual."""
     for addressee in ("sg", "du", "pl"):
         course = copy.deepcopy(FA)
-        course["units"][0]["sentences"][0]["persons"] = {"addressee": addressee, "speaker": "f"}
+        _tag(course["units"][0]["sentences"][0], addressee=addressee, speaker="f")
         diags, compiled = _compile(core_cli, tmp_path, course)
         assert _besides_coverage(diags) == []
-        persons = unit_json(compiled.units[0])["sentences"][0]["persons"]
-        assert persons == {"addressee": addressee, "speaker": "f"}
+        assert _persons(compiled) == {"addressee": addressee, "speaker": "f"}
 
 
 def test_one_gender_alone_is_a_warning(core_cli: CoreCli, tmp_path: Path) -> None:
@@ -52,7 +59,7 @@ def test_one_gender_alone_is_a_warning(core_cli: CoreCli, tmp_path: Path) -> Non
     other gender too clears it (ADR 0075)."""
     course = copy.deepcopy(FA)
     first = course["units"][0]["sentences"][0]
-    first["persons"] = {"speaker": "m", "addressee": "m"}
+    _tag(first, speaker="m", addressee="m")
     diags, _ = _compile(core_cli, tmp_path, course)
     warned = [d for d in diags.items if d.lint == "curriculum.one-gender"]
     assert [d.severity for d in warned] == ["warning", "warning"]
@@ -60,25 +67,39 @@ def test_one_gender_alone_is_a_warning(core_cli: CoreCli, tmp_path: Path) -> Non
 
     second = copy.deepcopy(first)
     second["id"] = "s.2"
-    second["persons"] = {"speaker": "f", "addressee": "pl"}
+    _tag(second, speaker="f", addressee="pl")
     course["units"][0]["sentences"].append(second)
     diags, _ = _compile(core_cli, tmp_path, course)
     warned = [d.message for d in diags.items if d.lint == "curriculum.one-gender"]
     assert len(warned) == 1 and "spoken to" in warned[0], warned  # plural is not a gender
 
-    second["persons"] = {"speaker": "f", "addressee": "f"}
+    _tag(second, speaker="f", addressee="f")
     diags, _ = _compile(core_cli, tmp_path, course)
     assert [d.format() for d in diags.items] == []
 
 
 def test_untagged_sentences_carry_none(core_cli: CoreCli, tmp_path: Path) -> None:
     _, compiled = _compile(core_cli, tmp_path, copy.deepcopy(FA))
-    assert "persons" not in unit_json(compiled.units[0])["sentences"][0]
+    assert "tags" not in unit_json(compiled.units[0])["sentences"][0]
 
 
 def test_an_unknown_person_is_a_schema_error(core_cli: CoreCli, tmp_path: Path) -> None:
     course = copy.deepcopy(FA)
-    course["units"][0]["sentences"][0]["persons"] = {"addressee": "dual"}
+    _tag(course["units"][0]["sentences"][0], addressee="dual")
     diags, compiled = _compile(core_cli, tmp_path, course)
     assert compiled is None
     assert [d.lint for d in diags.items] == ["parse.schema"]
+
+
+def test_a_register_and_persons_are_tags_side_by_side(core_cli: CoreCli, tmp_path: Path) -> None:
+    """A register the language declares is a tag beside the persons, in the order authored."""
+    course = copy.deepcopy(FA)
+    course["own"]["language"]["registers"] = ["formal"]
+    s = course["units"][0]["sentences"][0]
+    s["tags"] = [{"register": "formal"}, {"persons": {"speaker": "f", "addressee": "m"}}]
+    diags, compiled = _compile(core_cli, tmp_path, course)
+    assert _besides_coverage(diags) == []
+    assert unit_json(compiled.units[0])["sentences"][0]["tags"] == [
+        {"register": "formal"},
+        {"persons": {"speaker": "f", "addressee": "m"}},
+    ]

@@ -34,15 +34,18 @@ UZ_CYRL = "uz-Cyrl/standard"
 
 @pytest.fixture
 def courses(tmp_path: Path) -> Path:
-    """fa, yue and uz without audio, each compiling only its first unit (fast to check)."""
+    """fa, yue and uz without audio, each compiling only its first unit (fast to check), with a
+    copy of their lexicons beside them (where the compiler looks, and what a word's correction
+    edits)."""
     out = tmp_path / "courses"
     for course in ("fa", "yue", "uz"):
         shutil.copytree(
             ROOT / "courses" / course, out / course, ignore=shutil.ignore_patterns("audio")
         )
+        shutil.copytree(ROOT / "lexicons" / course, tmp_path / "lexicons" / course)
         path = out / course / "course.yaml"
         text, n = re.subn(
-            r"(?m)^units: \[.*\]$", "units: [units/intro.yaml]", path.read_text("utf-8")
+            r"(?m)^units:\n(- .*\n)+", "units: [units/intro.yaml]\n", path.read_text("utf-8")
         )
         assert n == 1
         path.write_text(text, encoding="utf-8")
@@ -83,10 +86,21 @@ def written(courses: Path, outcome: Outcome) -> None:
         file.write_text(text, encoding="utf-8")
 
 
+def lexicon(courses: Path, language: str) -> str:
+    return (courses.parent / "lexicons" / language / "lexemes.yaml").read_text(encoding="utf-8")
+
+
+def entries(text: str) -> list[dict[str, Any]]:
+    return cast(list[dict[str, Any]], yaml.safe_load(text)["lexemes"])
+
+
 def first_word(text: str, orth: str) -> dict[str, Any]:
-    """The unit's first KC with a form in `orth`."""
-    kcs = cast(list[dict[str, Any]], yaml.safe_load(text)["kcs"])
-    return next(k for k in kcs if cast(dict[str, Any], k.get("forms", {})).get(orth))
+    """The lexicon's first lexeme with a spelling in `orth` and a gloss."""
+    return next(
+        k
+        for k in entries(text)
+        if cast(dict[str, Any], k.get("spelled", {})).get(orth) and "gloss" in k
+    )
 
 
 def changed_lines(before: str, after: str) -> list[tuple[str, str]]:
@@ -175,10 +189,10 @@ def test_a_reading_changes_one_value_and_nothing_else(courses: Path, core_cli: C
     }
     outcome = apply([row("yue", "s.6", shown, fix)], courses, core_cli)
     assert [a.row.item for a in outcome.applied] == ["s.6"]
-    assert outcome.applied[0].where == "courses/yue/units/intro.yaml:128"
+    assert outcome.applied[0].where == "courses/yue/units/intro.yaml:104"
     written(courses, outcome)
     after = unit(courses, "yue")
-    token = "{surface: 呀, sense: 呀, readings: {jyutping: %s}}"
+    token = "{surface: 呀, lexeme: 呀, readings: {jyutping: %s}}"
     [(was, now)] = changed_lines(before, after)
     assert was.endswith(token % "aa3" + "]")
     assert now == was.replace(token % "aa3", token % "aa4")
@@ -278,8 +292,8 @@ def test_a_spelling_fix_moves_the_token_and_flags_nothing_it_cannot_see(
     assert changed_lines(before, unit(courses, "uz")) == [
         ("      text: Раҳмат!", "      text: Рахмат!"),
         (
-            "      tokens: [{surface: Раҳмат, sense: rahmat}]",
-            "      tokens: [{surface: Рахмат, sense: rahmat}]",
+            "      tokens: [{surface: Раҳмат, lexeme: rahmat}]",
+            "      tokens: [{surface: Рахмат, lexeme: rahmat}]",
         ),
     ]
 
@@ -310,17 +324,20 @@ def test_a_story_line_is_found_by_its_step(courses: Path, core_cli: CoreCli) -> 
     assert after["translations"]["en"] == "Morning!"
 
 
-def test_a_word_s_form_and_gloss_change_and_nothing_else(courses: Path, core_cli: CoreCli) -> None:
-    """A word (ADR 0057): the KC's first form and its gloss, edited in place."""
-    before = unit(courses, "fa")
-    kc = first_word(before, FA)
-    form, gloss = kc["forms"][FA][0], kc["gloss"]["en"]
+def test_a_word_s_spelling_and_gloss_change_in_the_lexicon_and_nothing_else(
+    courses: Path, core_cli: CoreCli
+) -> None:
+    """A word (ADR 0057): its lexeme's first spelling and its gloss, edited in place in the
+    language's lexicon; the units are left alone."""
+    before, units = lexicon(courses, "fa"), unit(courses, "fa")
+    word = first_word(before, FA)
+    form, gloss = word["spelled"][FA][0], word["gloss"]["en"]
     plural = form + "ها"
     outcome = apply(
         [
             row(
                 "fa",
-                kc["id"],
+                word["id"],
                 {"forms": {FA: {"text": form}}, "translation": gloss},
                 {"forms": {FA: {"text": plural}}, "translation": f"{gloss} (plural)"},
             )
@@ -329,38 +346,103 @@ def test_a_word_s_form_and_gloss_change_and_nothing_else(courses: Path, core_cli
         core_cli,
     )
     assert len(outcome.applied) == 1, outcome.skipped
+    assert outcome.applied[0].where.startswith("lexicons/fa/lexemes.yaml:")
     assert any("may need the same change" in c for c in outcome.applied[0].checks)
     written(courses, outcome)
-    after = unit(courses, "fa")
-    word = next(
-        k for k in cast(list[dict[str, Any]], yaml.safe_load(after)["kcs"]) if k["id"] == kc["id"]
+    after = lexicon(courses, "fa")
+    [now] = [k for k in entries(after) if k["id"] == word["id"]]
+    assert now["spelled"][FA][0] == plural
+    assert now["gloss"]["en"] == f"{gloss} (plural)"
+    assert len(changed_lines(before, after)) == 2
+    assert unit(courses, "fa") == units
+
+
+def test_a_word_named_by_its_old_id_is_found_through_the_course_s_aliases(
+    courses: Path, core_cli: CoreCli
+) -> None:
+    """A correction made before the lexical model names the word's old id: aliases.yaml says
+    which lexeme it became. An old id that became no lexeme of its own is not a word."""
+    table = yaml.safe_load((courses / "fa" / "aliases.yaml").read_text(encoding="utf-8"))
+    aliases = cast(dict[str, dict[str, Any]], table["aliases"])
+    old, lexeme = next(
+        (k, a["part"])
+        for k, a in aliases.items()
+        if k.startswith("sense:") and a.get("part") == "lexeme:ketab"
     )
-    assert word["forms"][FA][0] == plural
-    assert word["gloss"]["en"] == f"{gloss} (plural)"
-    assert len(changed_lines(before, after)) == 1
+    before = lexicon(courses, "fa")
+    [word] = [k for k in entries(before) if k["id"] == lexeme]
+    gloss = word["gloss"]["en"]
+    outcome = apply(
+        [
+            row("fa", old, {"forms": {}, "translation": gloss}, {"translation": "a book"}),
+            row(
+                "fa", "form:nothing-such", {"forms": {}, "translation": gloss}, {"translation": "x"}
+            ),
+        ],
+        courses,
+        core_cli,
+    )
+    assert [a.row.item for a in outcome.applied] == [old]
+    assert [s.reason for s in outcome.skipped] == ["form:nothing-such is not in the course source"]
+    written(courses, outcome)
+    [now] = [k for k in entries(lexicon(courses, "fa")) if k["id"] == lexeme]
+    assert now["gloss"]["en"] == "a book"
+
+
+def test_a_one_file_course_s_word_is_its_own_lexicon_s(tmp_path: Path, core_cli: CoreCli) -> None:
+    """A course kept in one file carries its lexicon under `own`: a word's correction edits it
+    there."""
+    course = tmp_path / "courses" / "clean"
+    course.mkdir(parents=True)
+    source = (ROOT / "pipeline" / "tests" / "fixtures" / "clean.yaml").read_text(encoding="utf-8")
+    (course / "course.yaml").write_text(source, encoding="utf-8")
+    data = yaml.safe_load(source)
+    word = next(
+        k
+        for k in cast(list[dict[str, Any]], data["own"]["lexicon"]["lexemes"])
+        if "gloss" in k and "en" in k["gloss"]
+    )
+    gloss = word["gloss"]["en"]
+    outcome = apply(
+        [
+            row(
+                "clean",
+                word["id"],
+                {"forms": {}, "translation": gloss},
+                {"translation": f"{gloss}, really"},
+            )
+        ],
+        tmp_path / "courses",
+        core_cli,
+    )
+    assert len(outcome.applied) == 1, outcome.skipped
+    written(tmp_path / "courses", outcome)
+    after = yaml.safe_load((course / "course.yaml").read_text(encoding="utf-8"))
+    [now] = [k for k in after["own"]["lexicon"]["lexemes"] if k["id"] == word["id"]]
+    assert now["gloss"]["en"] == f"{gloss}, really"
 
 
 def test_a_word_s_reading_or_marks_alone_are_left_for_a_person(
     courses: Path, core_cli: CoreCli
 ) -> None:
-    kc = first_word(unit(courses, "yue"), YUE)
-    form = kc["forms"][YUE][0]
+    word = first_word(lexicon(courses, "yue"), YUE)
+    form = word["spelled"][YUE][0]
     reading = {"token": 0, "surface": form, "scheme": "jyutping", "reading": "x1"}
-    fa_kc = first_word(unit(courses, "fa"), FA)
-    fa_form = fa_kc["forms"][FA][0]
+    fa_word = first_word(lexicon(courses, "fa"), FA)
+    fa_form = fa_word["spelled"][FA][0]
     outcome = apply(
         [
             row(
                 "yue",
-                kc["id"],
+                word["id"],
                 {"forms": {YUE: {"text": form, "readings": [{**reading, "reading": "y2"}]}}},
                 {"forms": {YUE: {"readings": [reading]}}},
             ),
             row(
                 "fa",
-                fa_kc["id"],
+                fa_word["id"],
                 {"forms": {FA: {"text": fa_form}}},
-                {"forms": {FA: {"text": fa_form[0] + "َ" + fa_form[1:]}}},
+                {"forms": {FA: {"text": fa_form[0] + "\u064e" + fa_form[1:]}}},
             ),
         ],
         courses,
@@ -398,7 +480,7 @@ def test_what_cannot_be_applied_is_listed_with_why_and_where(
     assert reasons[3] == "nothing to change: a note only (sounds too formal)"
     assert reasons[4] == "s.9999 is not in the course source"
     assert reasons[5] == "status rejected"
-    assert all(s.where == "courses/fa/units/intro.yaml:94" for s in outcome.skipped[:4])
+    assert all(s.where == "courses/fa/units/intro.yaml:71" for s in outcome.skipped[:4])
     text = summary(outcome)
     assert "<bdi>سلام، مریم!</bdi>" in text or "سلام، مریم!" in text
     assert "### Not applied" in text

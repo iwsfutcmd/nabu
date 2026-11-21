@@ -261,6 +261,71 @@ baselines only from the pinned container). The converter's own test is the stron
 course comes through with no unexplained derivability findings, and each finding left is a question for the
 owner.
 
+## The switch (deliverable 3): where it stands, and how to carry on
+
+The owner said "go" on 2026-11-21. It is built on the branch `ccr-aebe970e-q9o4q4`, and nothing of it is on
+the main branch: it lands whole or not at all. [migration-design.md](migration-design.md), "Deliverable 3",
+has the build order, how the branch does it and what each stage found. This section is the short version for
+whoever continues, a person or a model with no memory of the work.
+
+**How the branch is laid out**
+- **The courses are flipped by a script** (`cd pipeline && uv run nabu flip`): `courses/<id>/course.yaml` and
+  `units/` are in the new shape, `lexicons/<lang>/` holds the lexicon, the audio index names each word clip
+  by its lexeme. They are written from the main branch's courses and must be exactly what the flip writes
+  (a test says so). **Never edit `courses/`, `lexicons/` or `docs/migration/` by hand on this branch.** A
+  course is changed on the main branch, in the old shape; then merge and run the flip.
+- **The converter** (`pipeline/src/nabu/migrate/`) stays until the last stage: the flip runs it.
+- **One of everything.** The compiler, core and the app are changed in place. What runs today is the main
+  branch's, and each stage is checked against it.
+
+**Done**
+1. Stage 1: `schemas/bundle.next.schema.json` (format version 2), `WrittenLexeme` on a token, a form's key,
+   a language's named rules, a one-file course's `own` lexicon.
+2. Stage 2, the compiler (`pipeline/src/nabu/compiler/`, `nabu/lexicon.py`, `nabu/items.py`,
+   `nabu/formkey.py`): all ten courses compile with the main branch's diagnostics and no other, and
+   `docs/prototypes/switch-check/compare.py` finds every sentence, accept set, translation, story line,
+   question and option the same as in the main branch's bundles.
+
+**Not done** (in this order)
+1. Stage 2's rest: the pipeline's tests and the tools that read or write course files. Done: the lint
+   fixtures, `test_lints.py`, `test_cast.py`, `test_audio.py`. Part-way: `nabu/jyutping.py` (its tests fail).
+   Not started: the other compiler tests, the other audio tests, corrections, review, reports promote, the
+   LLM drafting (`ai/author.py`), the LibreLingo importer. `uv run pytest` and `pyright` say what is left.
+   The yue course prints an `info` line per sentence until `jyutping.latin_form` writes the new tokens.
+2. Stages 3 and 4, core: started in a second working tree (branch `switch-core`), where the token schema has
+   lost `sense`, `form` and `morphs` and `@nabu/schema` gives the new shapes their final names, so `tsc`
+   lists every place that still assumes a KC. `packages/core/src/lesson/lexemes.ts` is written; the rest is
+   not.
+3. Stages 5 to 7.
+
+**The shapes, in one place** (the schemas are the authority)
+- A lexeme is `lexeme:<name>`; a feature value `feature:Tense=Past`; a rule `rule:<name>`; a letter
+  `grapheme:<name>`. A part is one of these, or a lexeme and what of it (`lexeme:mano|Gender`).
+- A source token names its one lexeme (`lexeme: tener`, `feats: {…}`) or lists several (`lexemes: [{lexeme,
+  surface, base, feats}]`). A compiled token always lists them, with full ids (`lexemes: [{lexeme:
+  "lexeme:tener", feats}]`). Its base is the one marked, or its only one.
+- A unit has no `kcs`. Its nodes `introduces` lexemes, feature values, rules and letters; it lists only its
+  script track's `graphemes`. A sentence has `uses` (rules) and `tags` (persons, register) in the source, and
+  `parts` and `tags` in a bundle. A story line's `gap` is a lexeme and its `asks` is `lexeme` or `form`.
+- A bundle has one lexicon file (`BundleLexicon`: lexemes, labels, rules). A lexeme's `feats` there are
+  every lexical feature it has; its `parts` are what it has to learn beyond itself.
+- A course kept in one file (a test's) carries its lexicon in `own: {lexicon, language}`, as
+  `pipeline/tests/fixtures/clean.yaml` does. Tests build compiled content with `pipeline/tests/units.py`.
+- Lints that changed name: `curriculum.unknown` (was `-kc`), `curriculum.unused`, `lexeme.inflected-form`,
+  `lexeme.reading`. New: `parse.token-lexemes`, `parse.token-relation`, `lexicon.kind`, `lexicon.form`,
+  `lexicon.undeclared`, `lexicon.order`. Gone: `curriculum.cycle`, `curriculum.order` (no prerequisites).
+
+**Decided while building, for the owner to overrule** (each is in the design note)
+- A feature value is taught from the node that introduces it: before that, a token that has it only shows it.
+- A form, for a choice that asks one thing, is everything a token has: the values chosen on it and those its
+  lexeme has of itself, so a feminine noun stands with feminine nouns however each is feminine.
+- An ending, and a clitic a script only writes joined, has no spelling of its own in a bundle: no card and no
+  glossary entry, as before.
+- The eight clips of words that are forms now are kept in the course under a form's key and are in no
+  bundle: no card says a form alone. My advice is to drop them; none was checked by a person.
+- A stored gender (`lexeme:mano|Gender`) is listed as a part and credited by nothing until grading has
+  labels (stage 5).
+
 ## How to work
 
 - Conventional commits; small commits on a branch, landed together when a deliverable is done.

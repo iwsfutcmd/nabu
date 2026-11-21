@@ -42,6 +42,7 @@ from nabu.compiler import compile_course
 from nabu.schema.models import AudioVoice, Provenance
 
 from .conftest import ROOT, CoreCli
+from .units import part_of
 
 REVISION = "9445f41ee5f38bd3a34eb16b0279dc05f9997fc2"
 
@@ -180,6 +181,7 @@ def test_clips_without_timings_get_them_by_forced_alignment(
     course = tmp_path / "uz"
     shutil.copytree(ROOT / "courses" / "uz", course, ignore=shutil.ignore_patterns("audio"))
     (tmp_path / "images").symlink_to(ROOT / "courses" / "images")
+    (tmp_path / "lexicons").symlink_to(ROOT / "lexicons")
     source = tmp_path / "cosyvoice"
     (source / "asset").mkdir(parents=True)
     (source / "asset" / "zero_shot_prompt.wav").write_bytes(b"prompt")
@@ -191,7 +193,7 @@ def test_clips_without_timings_get_them_by_forced_alignment(
     cast_reference(course, v, "Salom!", NavoiyProvider.INSTRUCT, 0, fake(engine, v, REF))
     diags, compiled = compile_course(course, core_cli)
     assert compiled is not None
-    intro = [u.model_copy(update={"stories": []}) for u in compiled.units if u.id == "intro"]
+    intro = part_of(compiled.content, "intro", stories=False)
     synthesize_course(course, intro, v, None, compiled.written)
     adir = audio_dir(course)
     assert all(c.timings is None for c in read_index(adir).clips)

@@ -29,7 +29,22 @@ import yaml
 
 from nabu.corrections import Edit, flow_scalar
 from nabu.provenance import signed_off
-from nabu.schema.models import BundleSentence, BundleStory, BundleUnit, SignOffs, TaggedText
+from nabu.schema.models import (
+    BundleSentence,
+    BundleStory,
+    BundleUnit,
+    NextBundleSentence,
+    NextBundleStory,
+    NextBundleUnit,
+    SignOffs,
+    TaggedText,
+)
+
+#: A compiled unit, sentence or story: the compiler's (the lexical model's) or a bundle the app
+#: was given before it. What a reviewer saw of either is the same text.
+Unit = BundleUnit | NextBundleUnit
+Sentence = BundleSentence | NextBundleSentence
+Story = BundleStory | NextBundleStory
 
 
 def _text(tagged: TaggedText) -> str:
@@ -43,14 +58,14 @@ def _block(forms: Mapping[str, TaggedText], translations: Mapping[str, TaggedTex
     ]
 
 
-def sentence_text(sentence: BundleSentence) -> str:
+def sentence_text(sentence: Sentence) -> str:
     """What a reviewer saw of a compiled sentence (signoffText's sentence form)."""
     forms = {o: f.text for o, f in sentence.forms.items()}
     translations = {k: t.text for k, t in sentence.translations.items()}
     return "\n".join([f"sentence\t{sentence.id}", *_block(forms, translations)])
 
 
-def story_text(story: BundleStory) -> str:
+def story_text(story: Story) -> str:
     """What a reviewer saw of a compiled story: its lines, in order."""
     out = [f"story\t{story.id}"]
     for i, step in enumerate(story.steps):
@@ -64,7 +79,7 @@ def fingerprint(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-def shown_of(units: Sequence[BundleUnit]) -> dict[tuple[str, str], str]:
+def shown_of(units: Sequence[Unit]) -> dict[tuple[str, str], str]:
     """Every signable item of a compiled course: (kind, id) → fingerprint."""
     out: dict[tuple[str, str], str] = {}
     for unit in units:
@@ -133,9 +148,14 @@ def _edit(source: str, node: yaml.MappingNode, author: str, reviewer: str, day: 
     text = provenance_text(author, reviewer, day)
     existing = _get(node, "provenance")
     if existing is not None:
-        _key, value = existing
+        key, value = existing
+        if isinstance(value, yaml.MappingNode) and not value.flow_style:
+            # A provenance written a key a line: the one line after the key takes its place.
+            start = source.index(":", key.end_mark.index) + 1
+            span = source[start : value.end_mark.index]
+            return Edit(start, start + len(span.rstrip()), " " + text)
         span = source[value.start_mark.index : value.end_mark.index]
-        trail = len(span) - len(span.rstrip("\n"))
+        trail = len(span) - len(span.rstrip())
         return Edit(value.start_mark.index, value.end_mark.index - trail, text)
     first = _get(node, "id")
     if first is None:
@@ -150,7 +170,7 @@ def apply(
     signoffs: SignOffs,
     course_dir: Path,
     units: list[Path],
-    compiled_units: Sequence[BundleUnit],
+    compiled_units: Sequence[Unit],
     course_author: str,
     reviewer: str,
 ) -> Outcome:

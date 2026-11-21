@@ -1,6 +1,10 @@
 """Writes lints/<lint-id>.yaml: one course per lint that makes exactly that lint fire (and maybe
 others), each a small mutation of clean.yaml.
 
+Every fixture is a course kept in one file, so it carries its own lexicon (`own`: its language's
+lexicon and declaration), as clean.yaml does. A mutation may change the course, its units or
+that lexicon.
+
 Run: uv run python tests/fixtures/make_lint_fixtures.py"""
 
 from __future__ import annotations
@@ -18,20 +22,44 @@ from nabu import yamlio
 
 HERE = Path(__file__).parent
 CLEAN: dict[str, Any] = yaml.safe_load((HERE / "clean.yaml").read_text(encoding="utf-8"))
+DRAFT = {"author": "human:fixture", "status": "draft"}
+
+
+def own(language: str, lexemes: list[dict[str, Any]], **declared: Any) -> dict[str, Any]:
+    """A one-file course's own lexicon: its lexemes (sorted by id, as a lexicon is) and what its
+    language declares (`declared`: features, rules and the like; no category inflects unless
+    `dimensions` says so)."""
+    return {
+        "lexicon": {
+            "language": language,
+            "license": "CC0-1.0",
+            "provenance": dict(DRAFT),
+            "lexemes": sorted(lexemes, key=lambda entry: str(entry["id"])),
+        },
+        "language": {
+            "id": language,
+            "license": "CC0-1.0",
+            "provenance": dict(DRAFT),
+            "dimensions": {},
+            **declared,
+        },
+    }
+
 
 YUE: dict[str, Any] = {
     "id": "clean-yue",
     "target": "yue-Hant-HK",
     "orthographies": ["yue-Hant-HK/standard"],
     "support": ["en-Latn/standard"],
+    "lexicon": "yue",
     "names": {"en": {"course": "Cantonese"}},
     "license": "CC0-1.0",
     "provenance": {"author": "human:fixture", "status": "draft"},
+    "own": own("yue", [{"id": "lexeme:我哋", "pos": "PRON", "gloss": {"en": "we"}}]),
     "units": [
         {
             "id": "basics",
-            "kcs": [{"id": "sense:我哋", "gloss": {"en": "we"}}],
-            "nodes": [{"id": "basics.1", "kind": "lesson", "introduces": ["sense:我哋"]}],
+            "nodes": [{"id": "basics.1", "kind": "lesson", "introduces": ["lexeme:我哋"]}],
             "sentences": [
                 {
                     "id": "s.1",
@@ -42,7 +70,7 @@ YUE: dict[str, Any] = {
                             "tokens": [
                                 {
                                     "surface": "我哋",
-                                    "sense": "我哋",
+                                    "lexeme": "我哋",
                                     "readings": {"jyutping": "ngo5 dei6"},
                                 }
                             ],
@@ -63,9 +91,11 @@ FA: dict[str, Any] = {
     "target": "fa-Arab-IR",
     "orthographies": ["fa-Arab/standard"],
     "support": ["en-Latn/standard"],
+    "lexicon": "fa",
     "names": {"en": {"course": "Persian"}},
     "license": "CC0-1.0",
     "provenance": {"author": "human:fixture", "status": "draft"},
+    "own": own("fa", [{"id": f"lexeme:{FA_WORD}", "pos": "NOUN", "gloss": {"en": "book"}}]),
     "vocalization": [
         {
             "orthography": "fa-Arab/standard",
@@ -77,8 +107,7 @@ FA: dict[str, Any] = {
     "units": [
         {
             "id": "basics",
-            "kcs": [{"id": f"sense:{FA_WORD}", "gloss": {"en": "book"}}],
-            "nodes": [{"id": "basics.1", "kind": "lesson", "introduces": [f"sense:{FA_WORD}"]}],
+            "nodes": [{"id": "basics.1", "kind": "lesson", "introduces": [f"lexeme:{FA_WORD}"]}],
             "sentences": [
                 {
                     "id": "s.1",
@@ -86,7 +115,7 @@ FA: dict[str, Any] = {
                     "forms": {
                         "fa-Arab/standard": {
                             "text": FA_WORD,
-                            "tokens": [{"surface": FA_WORD, "sense": FA_WORD}],
+                            "tokens": [{"surface": FA_WORD, "lexeme": FA_WORD}],
                             "reverse": FA_WORD,
                         }
                     },
@@ -104,26 +133,37 @@ GRC: dict[str, Any] = {
     "target": "grc-Grek",
     "orthographies": [GRC_ORTH],
     "support": ["en-Latn/standard"],
+    "lexicon": "grc",
     "names": {"en": {"course": "Ancient Greek"}},
     "license": "CC0-1.0",
     "provenance": {"author": "human:fixture", "status": "draft"},
+    "own": own(
+        "grc",
+        [
+            {
+                "id": "lexeme:ναί",
+                "pos": "INTJ",
+                "gloss": {"en": "yes"},
+                "spelled": {GRC_ORTH: ["ναί"]},
+            }
+        ],
+    ),
     "units": [
         {
             "id": "abc",
-            "kcs": [
+            "graphemes": [
                 {"id": "grapheme:α", "gloss": {"en": "alpha: a"}, "forms": {GRC_ORTH: ["α", "Α"]}},
                 {"id": "grapheme:ι", "gloss": {"en": "iota: i"}, "forms": {GRC_ORTH: ["ι", "Ι"]}},
                 {"id": "grapheme:ν", "gloss": {"en": "nu: n"}, "forms": {GRC_ORTH: ["ν", "Ν"]}},
-                {"id": "sense:ναί", "gloss": {"en": "yes"}, "forms": {GRC_ORTH: ["ναί"]}},
             ],
             "nodes": [
                 {
                     "id": "abc.1",
                     "kind": "script",
                     "introduces": ["grapheme:α", "grapheme:ι", "grapheme:ν"],
-                    "alphabet": {"orthography": GRC_ORTH, "words": ["sense:ναί"]},
+                    "alphabet": {"orthography": GRC_ORTH, "lexemes": ["lexeme:ναί"]},
                 },
-                {"id": "abc.2", "kind": "lesson", "introduces": ["sense:ναί"]},
+                {"id": "abc.2", "kind": "lesson", "introduces": ["lexeme:ναί"]},
             ],
             "sentences": [
                 {
@@ -133,7 +173,7 @@ GRC: dict[str, Any] = {
                         GRC_ORTH: {
                             "text": "ναί.",
                             "tokens": [
-                                {"surface": "ναί", "sense": "ναί", "readings": {"attic": "ναί"}}
+                                {"surface": "ναί", "lexeme": "ναί", "readings": {"attic": "ναί"}}
                             ],
                             "reverse": "ναί",
                         }
@@ -155,19 +195,23 @@ HBO: dict[str, Any] = {
     "target": "hbo-Hebr",
     "orthographies": [HBO_ORTH],
     "support": ["en-Latn/standard"],
+    "lexicon": "hbo",
     "names": {"en": {"course": "Biblical Hebrew"}},
     "license": "CC0-1.0",
     "provenance": {"author": "human:fixture", "status": "draft"},
+    "own": own(
+        "hbo",
+        [
+            {"id": "lexeme:erets", "pos": "NOUN", "gloss": {"en": "earth"}},
+            {"id": "lexeme:al", "pos": "ADP", "gloss": {"en": "on"}},
+        ],
+    ),
     "units": [
         {
             "id": "basics",
-            "kcs": [
-                {"id": "sense:erets", "gloss": {"en": "earth"}},
-                {"id": "sense:al", "gloss": {"en": "on"}},
-            ],
             "nodes": [
-                {"id": "basics.1", "kind": "lesson", "introduces": ["sense:erets"]},
-                {"id": "basics.2", "kind": "lesson", "introduces": ["sense:al"]},
+                {"id": "basics.1", "kind": "lesson", "introduces": ["lexeme:erets"]},
+                {"id": "basics.2", "kind": "lesson", "introduces": ["lexeme:al"]},
             ],
             "sentences": [
                 {
@@ -179,7 +223,7 @@ HBO: dict[str, Any] = {
                             "tokens": [
                                 {
                                     "surface": HA_ARETS,
-                                    "sense": "erets",
+                                    "lexeme": "erets",
                                     "readings": {"tiberian": "hāʾā́reṣ"},
                                 }
                             ],
@@ -195,10 +239,10 @@ HBO: dict[str, Any] = {
                         HBO_ORTH: {
                             "text": AL + "\u05be" + HA_ARETS,
                             "tokens": [
-                                {"surface": AL, "sense": "al", "readings": {"tiberian": "ʿal-"}},
+                                {"surface": AL, "lexeme": "al", "readings": {"tiberian": "ʿal-"}},
                                 {
                                     "surface": HA_ARETS,
-                                    "sense": "erets",
+                                    "lexeme": "erets",
                                     "readings": {"tiberian": "hāʾā́reṣ"},
                                 },
                             ],
@@ -212,6 +256,137 @@ HBO: dict[str, Any] = {
     ],
 }
 """A Biblical Hebrew course: עַל bound to הָאָרֶץ by a maqaf, its reading's final hyphen saying so."""
+
+ES_ORTH = "es-Latn/standard"
+
+
+def es_sentence(
+    ident: str, node: str, text: str, tokens: list[dict[str, Any]], english: str
+) -> dict[str, Any]:
+    """A Spanish sentence of the ES course: its text, its tokens, itself as its reverse set."""
+    return {
+        "id": ident,
+        "node": node,
+        "forms": {ES_ORTH: {"text": text, "tokens": tokens, "reverse": text.rstrip(".")}},
+        "translations": {"en": english},
+    }
+
+
+def es_noun(
+    article: str, gender: str, surface: str, lexeme: str, **feats: str
+) -> list[dict[str, Any]]:
+    """An article and the noun it agrees with: the article is lexeme 1, the noun lexeme 2, its
+    head."""
+    return [
+        {
+            "surface": article,
+            "lexeme": "el",
+            "feats": {"Gender": gender, "Number": "Sing"},
+            "n": 1,
+            "head": 2,
+            "rel": "det",
+        },
+        {"surface": surface, "lexeme": lexeme, "feats": {"Number": "Sing", **feats}, "n": 2},
+    ]
+
+
+ES: dict[str, Any] = {
+    "id": "clean-es",
+    "target": "es-Latn-CU",
+    "orthographies": [ES_ORTH],
+    "support": ["en-Latn/standard"],
+    "lexicon": "es",
+    "iPlusOne": 2,
+    "names": {"en": {"course": "Spanish"}},
+    "license": "CC0-1.0",
+    "provenance": {"author": "human:fixture", "status": "draft"},
+    "own": own(
+        "es",
+        [
+            {"id": "lexeme:el", "pos": "DET", "gloss": {"en": "the"}, "spelled": {ES_ORTH: ["el"]}},
+            {
+                "id": "lexeme:casa",
+                "pos": "NOUN",
+                "gloss": {"en": "house"},
+                "spelled": {ES_ORTH: ["casa"]},
+            },
+            {
+                "id": "lexeme:mano",
+                "pos": "NOUN",
+                "feats": {"Gender": "Fem"},
+                "gloss": {"en": "hand"},
+                "spelled": {ES_ORTH: ["mano"]},
+            },
+            {
+                "id": "lexeme:libro",
+                "pos": "NOUN",
+                "gloss": {"en": "book"},
+                "spelled": {ES_ORTH: ["libro"]},
+            },
+            {
+                "id": "lexeme:hermano",
+                "pos": "NOUN",
+                "chooses": ["Gender"],
+                "gloss": {"en": "brother"},
+                "spelled": {ES_ORTH: ["hermano"]},
+            },
+        ],
+        dimensions={"NOUN": ["Number"], "DET": ["Gender", "Number"]},
+        lexical={"NOUN": ["Gender"]},
+        features={"Gender": ["Fem", "Masc"], "Number": ["Plur", "Sing"]},
+        defaults=[
+            {"id": "gender-a", "when": {"pos": "NOUN", "ends": "a"}, "gives": {"Gender": "Fem"}},
+            {"id": "gender-o", "when": {"pos": "NOUN", "ends": "o"}, "gives": {"Gender": "Masc"}},
+        ],
+    ),
+    "units": [
+        {
+            "id": "basics",
+            "nodes": [
+                {
+                    "id": "basics.1",
+                    "kind": "lesson",
+                    "introduces": ["lexeme:el", "lexeme:casa", "lexeme:mano", "lexeme:libro"],
+                },
+                {
+                    "id": "basics.2",
+                    "kind": "lesson",
+                    "introduces": ["lexeme:hermano", "feature:Gender=Fem"],
+                },
+            ],
+            "sentences": [
+                es_sentence(
+                    "s.1",
+                    "basics.1",
+                    "La casa.",
+                    es_noun("La", "Fem", "casa", "casa"),
+                    "The house.",
+                ),
+                es_sentence(
+                    "s.2", "basics.1", "La mano.", es_noun("La", "Fem", "mano", "mano"), "The hand."
+                ),
+                es_sentence(
+                    "s.3",
+                    "basics.1",
+                    "El libro.",
+                    es_noun("El", "Masc", "libro", "libro"),
+                    "The book.",
+                ),
+                es_sentence(
+                    "s.4",
+                    "basics.2",
+                    "La hermana.",
+                    es_noun("La", "Fem", "hermana", "hermano", Gender="Fem"),
+                    "The sister.",
+                ),
+            ],
+        }
+    ],
+}
+"""A Spanish course with a noun's gender of itself (ADR 0145): casa feminine by the default for
+-a, libro masculine by the one for -o, mano feminine as its entry stores (no default gives it, so
+it is a part to learn), hermano choosing its gender on each token (hermana). The feminine is
+taught from the second lesson, which the sister brings in."""
 
 Course = dict[str, Any]
 
@@ -228,6 +403,26 @@ def uz_form(c: Course, i: int = 0) -> dict[str, Any]:
     return sentence(c, i)["forms"]["uz-Latn/standard"]
 
 
+def lexemes(c: Course) -> list[dict[str, Any]]:
+    """The entries of the course's own lexicon."""
+    return c["own"]["lexicon"]["lexemes"]
+
+
+def entry(c: Course, ident: str) -> dict[str, Any]:
+    return next(e for e in lexemes(c) if e["id"] == ident)
+
+
+def add_lexeme(c: Course, new: dict[str, Any]) -> None:
+    """An entry more, in its place: a lexicon is sorted by id."""
+    lexemes(c).append(new)
+    lexemes(c).sort(key=lambda e: str(e["id"]))
+
+
+def language(c: Course) -> dict[str, Any]:
+    """What the course's own language declares."""
+    return c["own"]["language"]
+
+
 def with_cyrl(c: Course) -> None:
     c["orthographies"] = ["uz-Latn/standard", "uz-Cyrl/standard"]
     for s in unit(c)["sentences"]:
@@ -237,8 +432,31 @@ def with_cyrl(c: Course) -> None:
             else {"text": "—", "reverse": "—"}
         )
     unit(c)["sentences"] = unit(c)["sentences"][:1]
-    unit(c)["kcs"] = unit(c)["kcs"][:1]
-    unit(c)["nodes"][0]["introduces"] = ["sense:salom"]
+    unit(c)["nodes"][0]["introduces"] = ["lexeme:salom"]
+
+
+def with_copula(c: Course) -> None:
+    """The copula -man as a lexeme of its own (a value head: first person singular), which a
+    token writes after its base, in place of the rule the clean course names for it."""
+    add_lexeme(
+        c,
+        {
+            "id": "lexeme:cop-1sg",
+            "realises": {"Number": "Sing", "Person": "1"},
+            "gloss": {"en": "I am (suffix -man)"},
+        },
+    )
+    language(c)["features"] = {"Number": ["Sing"], "Person": ["1"]}
+    introduces = unit(c)["nodes"][0]["introduces"]
+    introduces[introduces.index("rule:copula-man")] = "lexeme:cop-1sg"
+    del next(s for s in unit(c)["sentences"] if s["id"] == "s.4")["uses"]
+
+
+TALABAMAN = [
+    {"lexeme": "talaba", "surface": "talaba", "base": True},
+    {"lexeme": "cop-1sg", "surface": "man"},
+]
+"""talabaman as the two lexemes it writes: the noun, and the copula on it."""
 
 
 def m(fn: Callable[[Course], None], base: Course = CLEAN) -> Callable[[], Course]:
@@ -260,53 +478,82 @@ def set_(path: list[Any], value: Any) -> Callable[[Course], None]:
     return go
 
 
-def _cycle(c: Course) -> None:
-    kcs = unit(c)["kcs"]
-    kcs[0]["prerequisites"] = ["sense:men"]
-    kcs[1]["prerequisites"] = ["sense:salom"]
-
-
-def _order(c: Course) -> None:
-    u = unit(c)
-    u["kcs"][2]["prerequisites"] = ["construction:copula-man"]
-    u["nodes"] = [
-        {
-            "id": "basics.1",
-            "kind": "lesson",
-            "introduces": ["sense:salom", "sense:men", "sense:talaba"],
-        },
-        {"id": "basics.2", "kind": "lesson", "introduces": ["construction:copula-man"]},
-    ]
-    u["sentences"][3]["node"] = "basics.2"
-
-
 def _late(c: Course) -> None:
     u = unit(c)
     u["nodes"] = [
         {
             "id": "basics.1",
             "kind": "lesson",
-            "introduces": ["sense:salom", "sense:men", "construction:copula-man"],
+            "introduces": ["lexeme:salom", "lexeme:men", "rule:copula-man"],
         },
-        {"id": "basics.2", "kind": "lesson", "introduces": ["sense:talaba"]},
+        {"id": "basics.2", "kind": "lesson", "introduces": ["lexeme:talaba"]},
     ]
 
 
 def _shadowed(c: Course) -> None:
-    unit(c)["kcs"].append(
-        {"id": "construction:salom-men", "forms": {"uz-Latn/standard": ["salom men"]}}
+    """A greeting listed whole, salom men, which the sentence that writes it is an example of."""
+    add_lexeme(
+        c,
+        {
+            "id": "lexeme:salom-men",
+            "pos": "INTJ",
+            "gloss": {"en": "hello from me"},
+            "spelled": {"uz-Latn/standard": ["salom men"]},
+        },
     )
-    unit(c)["nodes"][0]["introduces"].append("construction:salom-men")
-    sentence(c, 1)["constructions"] = ["construction:salom-men"]
+    unit(c)["nodes"][0]["introduces"].append("lexeme:salom-men")
+    sentence(c, 1)["uses"] = ["lexeme:salom-men"]
 
 
 def _never(c: Course) -> None:
-    unit(c)["nodes"][0]["introduces"].remove("sense:talaba")
+    unit(c)["nodes"][0]["introduces"].remove("lexeme:talaba")
 
 
 def _unused(c: Course) -> None:
-    unit(c)["kcs"].append({"id": "sense:kitob", "gloss": {"en": "book"}})
-    unit(c)["nodes"][0]["introduces"].append("sense:kitob")
+    add_lexeme(c, {"id": "lexeme:kitob", "pos": "NOUN", "gloss": {"en": "book"}})
+    unit(c)["nodes"][0]["introduces"].append("lexeme:kitob")
+
+
+def _unknown_feature(c: Course) -> None:
+    """talaba in the plural, a value the fixture's language does not declare."""
+    uz_form(c, 2)["tokens"][1]["feats"] = {"Number": "Plur"}
+
+
+def _no_kind(c: Course) -> None:
+    """An entry with neither a part of speech, a value it realises nor a head."""
+    del entry(c, "lexeme:men")["pos"]
+
+
+def _form_unwritten(c: Course) -> None:
+    """talaba's plural pinned with no spelling: a form that says nothing of how it is written."""
+    language(c)["features"] = {"Number": ["Plur", "Sing"]}
+    entry(c, "lexeme:talaba")["forms"] = [{"feats": {"Number": "Plur"}, "status": "pinned"}]
+
+
+def _token_names_and_lists(c: Course) -> None:
+    """Salom, in a sentence that brings in nothing but men, names its lexeme and lists two as
+    well."""
+    uz_form(c, 1)["tokens"][0]["lexemes"] = [
+        {"lexeme": "salom", "surface": "Sal"},
+        {"lexeme": "men", "surface": "om"},
+    ]
+
+
+def _head_without_relation(c: Course) -> None:
+    """men points at Salom and does not say how it relates to it."""
+    first, second = uz_form(c, 1)["tokens"]
+    first["n"] = 1
+    second.update(n=2, head=1)
+
+
+def _inflected(c: Course) -> None:
+    """talabaman, one of talaba's spellings, written in the sentence as talaba and the copula."""
+    with_copula(c)
+    s4 = next(s for s in unit(c)["sentences"] if s["id"] == "s.4")
+    s4["forms"]["uz-Latn/standard"]["tokens"][1] = {
+        "surface": "talabaman",
+        "lexemes": copy.deepcopy(TALABAMAN),
+    }
 
 
 def _iplus(c: Course) -> None:
@@ -346,7 +593,7 @@ def _script_untaught(c: Course) -> None:
 
 def _script_no_letter(c: Course) -> None:
     """The rough breathing taught as its spacing sign (U+1FFE), on no letter (ADR 0124)."""
-    unit(c)["kcs"].append(
+    unit(c)["graphemes"].append(
         {
             "id": "grapheme:rough",
             "gloss": {"en": "rough breathing: h"},
@@ -359,19 +606,19 @@ def _script_no_letter(c: Course) -> None:
 def _script_no_reading_scheme(c: Course) -> None:
     """An alphabet node (ADR 0088) in an orthography whose profile names no reading for its track
     (ADR 0133)."""
-    unit(c)["kcs"].append({"id": "grapheme:s", "forms": {"uz-Latn/standard": ["s"]}})
+    unit(c)["graphemes"] = [{"id": "grapheme:s", "forms": {"uz-Latn/standard": ["s"]}}]
     unit(c)["nodes"].append(
         {
             "id": "basics.abc",
             "kind": "script",
             "introduces": ["grapheme:s"],
-            "alphabet": {"orthography": "uz-Latn/standard", "words": ["sense:salom"]},
+            "alphabet": {"orthography": "uz-Latn/standard", "lexemes": ["lexeme:salom"]},
         }
     )
 
 
 def _script_no_reading(c: Course) -> None:
-    """No sentence spells ναί, and its KC entry gives no Attic reading (ADR 0133)."""
+    """No sentence spells ναί, and its entry gives no Attic reading (ADR 0133)."""
     unit(c)["sentences"].clear()
     unit(c)["nodes"].pop()
 
@@ -385,7 +632,7 @@ def _script_missing(c: Course) -> None:
             "forms": {
                 "uz-Latn/standard": {
                     "text": "Salom!",
-                    "tokens": [{"surface": "Salom", "sense": "salom"}],
+                    "tokens": [{"surface": "Salom", "lexeme": "salom"}],
                     "reverse": "Salom",
                 }
             },
@@ -411,11 +658,11 @@ def _translit(c: Course) -> None:
     s = sentence(c)
     s["forms"]["uz-Latn/standard"] = {
         "text": "Oʻzbek!",
-        "tokens": [{"surface": "Oʻzbek", "sense": "salom"}],
+        "tokens": [{"surface": "Oʻzbek", "lexeme": "salom"}],
         "reverse": "Oʻzbek",
     }
     s["forms"]["uz-Cyrl/standard"] = {"text": "Ўзбек!", "reverse": "Ўзбек"}
-    unit(c)["kcs"][0]["forms"] = {"uz-Latn/standard": ["oʻzbek"]}
+    entry(c, "lexeme:salom")["spelled"] = {"uz-Latn/standard": ["oʻzbek"]}
 
 
 def _no_license(c: Course) -> None:
@@ -440,7 +687,7 @@ STORY: dict[str, Any] = {
                 "forms": {
                     "uz-Latn/standard": {
                         "text": "Salom!",
-                        "tokens": [{"surface": "Salom", "sense": "salom"}],
+                        "tokens": [{"surface": "Salom", "lexeme": "salom"}],
                     }
                 },
                 "translations": {"en": "Hello!"},
@@ -450,14 +697,14 @@ STORY: dict[str, Any] = {
             "line": {
                 "speaker": "aziz",
                 "ask": "complete",
-                "gap": "sense:talaba",
-                "distractors": ["sense:salom"],
+                "gap": "lexeme:talaba",
+                "distractors": ["lexeme:kitob"],
                 "forms": {
                     "uz-Latn/standard": {
                         "text": "Men talabaman.",
                         "tokens": [
-                            {"surface": "Men", "sense": "men"},
-                            {"surface": "talabaman", "sense": "talaba"},
+                            {"surface": "Men", "lexeme": "men"},
+                            {"surface": "talabaman", "lexeme": "talaba"},
                         ],
                     }
                 },
@@ -475,7 +722,39 @@ STORY: dict[str, Any] = {
 }
 
 
+KITOB_SENTENCE: dict[str, Any] = {
+    "id": "s.5",
+    "node": "basics.1",
+    "forms": {
+        "uz-Latn/standard": {
+            "text": "Salom, kitob!",
+            "tokens": [
+                {"surface": "Salom", "lexeme": "salom"},
+                {"surface": "kitob", "lexeme": "kitob"},
+            ],
+            "reverse": "Salom, kitob",
+        }
+    },
+    "translations": {"en": "Hello, book!"},
+}
+"""A sentence that writes kitob, so that the story's question has another noun to offer."""
+
+
 def with_story(c: Course) -> None:
+    """The clean story, and what its question needs: a gap is offered a word of its own part of
+    speech that the course writes (ADR 0132), so the course gets a second noun, kitob, and a
+    sentence that writes it."""
+    add_lexeme(
+        c,
+        {
+            "id": "lexeme:kitob",
+            "pos": "NOUN",
+            "gloss": {"en": "book"},
+            "spelled": {"uz-Latn/standard": ["kitob"]},
+        },
+    )
+    unit(c)["nodes"][0]["introduces"].append("lexeme:kitob")
+    unit(c)["sentences"].append(copy.deepcopy(KITOB_SENTENCE))
     unit(c)["nodes"].append({"id": "basics.story", "kind": "story"})
     unit(c)["stories"] = [copy.deepcopy(STORY)]
 
@@ -501,8 +780,8 @@ def _story_stranger(c: Course) -> None:
 
 def _story_ahead(c: Course) -> None:
     with_story(c)
-    unit(c)["nodes"][0]["introduces"].remove("sense:talaba")
-    unit(c)["nodes"].append({"id": "basics.2", "kind": "lesson", "introduces": ["sense:talaba"]})
+    unit(c)["nodes"][0]["introduces"].remove("lexeme:talaba")
+    unit(c)["nodes"].append({"id": "basics.2", "kind": "lesson", "introduces": ["lexeme:talaba"]})
 
 
 def _story_bad_answer(c: Course) -> None:
@@ -511,21 +790,17 @@ def _story_bad_answer(c: Course) -> None:
 
 
 def _story_unattested_form(c: Course) -> None:
-    # The gap is talaba with the copula -man: no sentence writes salom so (ADR 0132).
+    # The gap is talaba with the copula -man on it: no sentence writes kitob so (ADR 0132).
     with_story(c)
-    gap = story(c)["steps"][1]["line"]["forms"]["uz-Latn/standard"]["tokens"][1]
-    gap["morphs"] = [
-        {"surface": "talaba", "kc": "sense:talaba"},
-        {"surface": "man", "kc": "construction:copula-man"},
-    ]
+    with_copula(c)
+    tokens = story(c)["steps"][1]["line"]["forms"]["uz-Latn/standard"]["tokens"]
+    tokens[1] = {"surface": "talabaman", "lexemes": copy.deepcopy(TALABAMAN)}
 
 
 def _story_other_pos(c: Course) -> None:
     # A noun's gap offered an interjection: grammar alone rules it out (ADR 0132).
     with_story(c)
-    kcs = {k["id"]: k for k in unit(c)["kcs"]}
-    kcs["sense:talaba"]["pos"] = "NOUN"
-    kcs["sense:salom"]["pos"] = "INTJ"
+    story(c)["steps"][1]["line"]["distractors"] = ["lexeme:salom"]
 
 
 # ---- roleplay scenario cards: a clean card after the first lesson, then one mutation per lint
@@ -572,10 +847,10 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         ),
     ),
     "parse.missing-asset": (
-        "A KC image whose file does not exist.",
+        "A lexeme's picture whose file does not exist.",
         m(
             set_(
-                ["units", 0, "kcs", 0, "image"],
+                ["own", "lexicon", "lexemes", 0, "image"],
                 {
                     "file": "images/no-such-picture.svg",
                     "license": "CC0-1.0",
@@ -593,7 +868,7 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         m(
             set_(
                 ["units", 0, "sentences", 0, "forms", "uz-Latn/standard", "tokens"],
-                [{"surface": "Xayr", "sense": "salom"}],
+                [{"surface": "Xayr", "lexeme": "salom"}],
             )
         ),
     ),
@@ -610,7 +885,7 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         m(
             lambda c: uz_form(c).update(
                 text="Salom z̃",
-                tokens=[{"surface": "Salom", "sense": "salom"}, {"surface": "z"}, {"surface": "̃"}],
+                tokens=[{"surface": "Salom", "lexeme": "salom"}, {"surface": "z"}, {"surface": "̃"}],
             )
         ),
     ),
@@ -618,7 +893,7 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         "Ş is not in the Uzbek exemplars.",
         m(
             lambda c: uz_form(c).update(
-                text="Şalom!", tokens=[{"surface": "Şalom", "sense": "salom"}], reverse="Şalom"
+                text="Şalom!", tokens=[{"surface": "Şalom", "lexeme": "salom"}], reverse="Şalom"
             )
         ),
     ),
@@ -630,7 +905,7 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         "A Cyrillic а inside a Latin word.",
         m(
             lambda c: uz_form(c).update(
-                text="Sаlom!", tokens=[{"surface": "Sаlom", "sense": "salom"}], reverse="Sаlom"
+                text="Sаlom!", tokens=[{"surface": "Sаlom", "lexeme": "salom"}], reverse="Sаlom"
             )
         ),
     ),
@@ -638,7 +913,7 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         "ASCII apostrophe where Uzbek content needs U+02BB.",
         m(
             lambda c: uz_form(c).update(
-                text="O'zbek!", tokens=[{"surface": "O'zbek", "sense": "salom"}], reverse="O'zbek"
+                text="O'zbek!", tokens=[{"surface": "O'zbek", "lexeme": "salom"}], reverse="O'zbek"
             )
         ),
     ),
@@ -647,7 +922,7 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         m(
             lambda c: sentence(c)["forms"]["yue-Hant-HK/standard"].update(
                 text="\U0002a6a5",
-                tokens=[{"surface": "\U0002a6a5", "sense": "我哋"}],
+                tokens=[{"surface": "\U0002a6a5", "lexeme": "我哋"}],
                 reverse="\U0002a6a5",
             ),
             YUE,
@@ -727,27 +1002,49 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
             )
         ),
     ),
-    "curriculum.unknown-kc": (
-        "A token's sense is not defined.",
-        m(lambda c: uz_form(c)["tokens"][0].update(sense="xayr")),
+    "parse.token-lexemes": (
+        "A token names its lexeme and lists two as well.",
+        m(_token_names_and_lists),
+    ),
+    "parse.token-relation": (
+        "A token points at its head and gives no relation to it.",
+        m(_head_without_relation),
+    ),
+    "lexicon.kind": (
+        "An entry with neither a part of speech, a value nor a head.",
+        m(_no_kind),
+    ),
+    "lexicon.form": (
+        "A pinned form with no spelling.",
+        m(_form_unwritten),
+    ),
+    "lexicon.undeclared": (
+        "A token in the plural, which the language does not declare.",
+        m(_unknown_feature),
+    ),
+    "lexicon.order": (
+        "A lexicon whose entries are not sorted by id.",
+        m(lambda c: lexemes(c).reverse()),
+    ),
+    "curriculum.unknown": (
+        "A token's lexeme is not in the lexicon.",
+        m(lambda c: uz_form(c)["tokens"][0].update(lexeme="xayr")),
     ),
     "curriculum.unknown-node": (
         "A sentence in a node that does not exist.",
         m(set_(["units", 0, "sentences", 0, "node"], "basics.9")),
     ),
-    "curriculum.never-introduced": ("sense:talaba is used but no node introduces it.", m(_never)),
-    "curriculum.introduced-late": ("A node-1 sentence uses a KC node 2 introduces.", m(_late)),
+    "curriculum.never-introduced": ("lexeme:talaba is used but no node introduces it.", m(_never)),
+    "curriculum.introduced-late": ("A node-1 sentence uses a lexeme node 2 introduces.", m(_late)),
     "curriculum.i-plus-one": (
-        "Men talabaman brings in sense:talaba and the copula at once.",
+        "Men talabaman brings in lexeme:talaba and the copula's rule at once.",
         m(_iplus),
     ),
     "curriculum.one-gender": (
         "The only sentence that names its speaker has a man speaking (ADR 0075).",
-        m(set_(["units", 0, "sentences", 0, "persons"], {"speaker": "m"})),
+        m(set_(["units", 0, "sentences", 0, "tags"], [{"persons": {"speaker": "m"}}])),
     ),
-    "curriculum.cycle": ("salom requires men requires salom.", m(_cycle)),
-    "curriculum.order": ("A KC is introduced before its prerequisite.", m(_order)),
-    "curriculum.unused-kc": ("sense:kitob is introduced but never used.", m(_unused)),
+    "curriculum.unused": ("lexeme:kitob is introduced but never used.", m(_unused)),
     "grading.accept-syntax": (
         "An unclosed parenthesis.",
         m(lambda c: uz_form(c).update(reverse="Salom (dunyo")),
@@ -773,28 +1070,23 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         m(lambda c: uz_form(c).pop("reverse")),
     ),
     "glossary.dead-entry": (
-        "A glossary form that no sentence contains.",
-        m(lambda c: unit(c)["kcs"][0]["forms"]["uz-Latn/standard"].append("assalomu alaykum")),
-    ),
-    "glossary.shadowed": ("salom loses to the longer entry salom men.", m(_shadowed)),
-    "kc.inflected-form": (
-        "talabaman, a form of sense:talaba, is analysed as talaba+man in the sentence.",
+        "A spelling of an entry that no sentence contains.",
         m(
-            lambda c: next(s for s in unit(c)["sentences"] if s["id"] == "s.4")["forms"][
-                "uz-Latn/standard"
-            ]["tokens"][1].update(
-                morphs=[
-                    {"surface": "talaba", "kc": "sense:talaba"},
-                    {"surface": "man", "kc": "construction:copula-man"},
-                ]
+            lambda c: entry(c, "lexeme:salom")["spelled"]["uz-Latn/standard"].append(
+                "assalomu alaykum"
             )
         ),
     ),
-    "kc.reading": (
+    "glossary.shadowed": ("salom loses to the longer entry salom men.", m(_shadowed)),
+    "lexeme.inflected-form": (
+        "talabaman, a spelling of lexeme:talaba, is written as talaba+man in the sentence.",
+        m(_inflected),
+    ),
+    "lexeme.reading": (
         "我哋's card is given ngo4 dei6, which no token gives it: the sentence pins ngo5 dei6.",
         m(
-            lambda c: unit(c)["kcs"][0].update(
-                forms={"yue-Hant-HK/standard": ["我哋"]}, readings={"jyutping": "ngo4 dei6"}
+            lambda c: entry(c, "lexeme:我哋").update(
+                spelled={"yue-Hant-HK/standard": ["我哋"]}, readings={"jyutping": "ngo4 dei6"}
             ),
             YUE,
         ),
@@ -804,8 +1096,8 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         m(
             lambda c: uz_form(c).update(
                 tokens=[
-                    {"surface": "Sa", "sense": "salom", "tile": 0},
-                    {"surface": "lom", "sense": "salom", "tile": 1},
+                    {"surface": "Sa", "lexeme": "salom", "tile": 0},
+                    {"surface": "lom", "lexeme": "salom", "tile": 1},
                 ]
             )
         ),
@@ -828,7 +1120,7 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         m(_script_untaught, GRC),
     ),
     "script.no-letter": (
-        "A grapheme KC for the rough breathing written as its spacing sign, on no letter.",
+        "A grapheme for the rough breathing written as its spacing sign, on no letter.",
         m(_script_no_letter, GRC),
     ),
     "script.no-reading-scheme": (
@@ -836,7 +1128,7 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         m(_script_no_reading_scheme),
     ),
     "script.missing-reading": (
-        "The alphabet node's word ναί, which no sentence spells and whose KC gives no reading.",
+        "The alphabet node's word ναί, which no sentence spells and whose entry gives no reading.",
         m(_script_no_reading, GRC),
     ),
     "script.missing-form": (
@@ -851,7 +1143,7 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     "story.ahead": ("The story uses talaba, which a later node introduces.", m(_story_ahead)),
     "story.question": ("A question whose answer is option 5 of 2.", m(_story_bad_answer)),
     "story.distractor-form": (
-        "A gap with the copula -man; no sentence writes the distractor salom so.",
+        "A gap with the copula -man; no sentence writes the distractor kitob so.",
         m(_story_unattested_form),
     ),
     "story.distractor-pos": (

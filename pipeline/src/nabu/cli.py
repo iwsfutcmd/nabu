@@ -301,30 +301,26 @@ def jyutping_command(
 ) -> None:
     """Write the Cantonese course's Jyutping orthography from its characters (ADR 0126).
 
-    Every Hant form gets a yue-Latn/jyutping form from its tokens' pinned readings, every KC form
-    and character name its Jyutping, every accept set its Jyutping alternatives. Readings taken
-    from PyCantonese or chosen among the course's are listed for a person to check.
+    Every Hant form gets a yue-Latn/jyutping form from its tokens' pinned readings, every
+    spelling in the lexicon and every character name its Jyutping, every accept set its Jyutping
+    alternatives. Readings taken from PyCantonese or chosen among the course's are listed for a
+    person to check.
     """
-    import yaml
-
     from nabu import jyutping
 
-    units = sorted((course / "units").glob("*.yaml"))
-    lex = jyutping.lexicon_of(yaml.safe_load(u.read_text(encoding="utf-8")) for u in units)
+    try:
+        files = jyutping.rewrite_course(course)
+    except ValueError as e:
+        typer.echo(f"✗ {course}: {e}", err=True)
+        raise typer.Exit(code=1) from e
     stale: list[str] = []
     report: list[str] = []
-    for unit in units:
-        source = unit.read_text(encoding="utf-8")
-        try:
-            new, unsure = jyutping.rewrite_unit(source, lex)
-        except ValueError as e:
-            typer.echo(f"✗ {unit}: {e}", err=True)
-            raise typer.Exit(code=1) from e
-        report += [f"{unit.name}: {u}" for u in unsure]
-        if new != source:
-            stale.append(unit.name)
+    for done in files:
+        report += [f"{done.path.name}: {u}" for u in done.unsure]
+        if done.new != done.old:
+            stale.append(done.path.name)
             if not check:
-                unit.write_text(new, encoding="utf-8")
+                done.path.write_text(done.new, encoding="utf-8")
     for line in sorted(set(report)):
         typer.echo(f"  ? {line}")
     if check and stale:

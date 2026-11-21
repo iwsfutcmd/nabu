@@ -16,7 +16,7 @@ from nabu.paths import REPO
 app = typer.Typer(
     no_args_is_help=True,
     add_completion=False,
-    help="Corrections to sentences and story lines → the course source.",
+    help="Corrections to sentences, story lines and words → the course source.",
 )
 
 
@@ -46,7 +46,8 @@ def apply_command(
         ),
     ] = None,
 ) -> None:
-    """Write corrections into the unit files, check the courses still compile, list the rest."""
+    """Write corrections into the unit and lexicon files, check the courses still compile, list
+    the rest."""
     from nabu.compiler import compile_course
     from nabu.corecli import CoreCli
     from nabu.corrections import apply, read_rows

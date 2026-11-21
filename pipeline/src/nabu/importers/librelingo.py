@@ -5,10 +5,14 @@ Our own parser of LibreLingo's documented layout: course.yaml (Course, Modules) 
 librelingo-yaml-loader is AGPL and cannot be a dependency of MIT/Apache code, so nothing of it is
 used.
 
-Output is Nabu course source in draft status. Each phrase becomes a sentence with whitespace
-tokens; new words become sense KCs, introduced by one lesson node per skill. Readings cannot be
-recovered and are left for the compiler's enrich.missing-reading lint to flag. Check each course's
-own content license before importing; it is carried over from course.yaml.
+Output is Nabu course source in draft status, kept in one file: course.yaml with its units and
+its own lexicon and language declaration (`own`), since an imported course's words are not yet
+any language's lexicon (lexicons/<lang>/). Each phrase becomes a sentence with whitespace tokens;
+new words become lexemes, introduced by one lesson node per skill. LibreLingo gives no part of
+speech, so each lexeme is drafted as X for a person to settle (REVIEW), and the language declares
+nothing but itself. Readings cannot be recovered and are left for the compiler's
+enrich.missing-reading lint to flag. Check each course's own content license before importing;
+it is carried over from course.yaml.
 """
 
 from __future__ import annotations
@@ -33,11 +37,21 @@ def slug(text: str) -> str:
     return SLUG.sub("-", ascii_.lower()).strip("-") or "x"
 
 
+LEXEME = "lexeme:"
+
+
 @dataclass
 class Imported:
     course: dict[str, Any]
     units: dict[str, dict[str, Any]] = field(default_factory=lambda: {})
+    #: The course's own lexicon: a lexeme for each new word, sorted by id.
+    lexemes: list[dict[str, Any]] = field(default_factory=lambda: [])
     warnings: list[str] = field(default_factory=lambda: [])
+
+
+def lexeme_name(surface: str) -> str:
+    """A new word's lexeme name: the word, spaces as underscores (a lexeme id has none)."""
+    return surface.replace(" ", "_")
 
 
 def _load(path: Path) -> Any:
@@ -58,6 +72,11 @@ def import_course(
     target = str(meta["Language"]["IETF BCP 47"])
     license_ = str(meta.get("License", {}).get("Short name", "NOASSERTION")).replace(" ", "-")
     support_key = support.split("-")[0]
+    language = target.split("-")[0].lower()
+    provenance = {
+        "author": f"human:librelingo-{slug(str(meta['Language']['Name']))}",
+        "status": "draft",
+    }
     out = Imported(
         course={
             "id": course_id,
@@ -69,14 +88,12 @@ def import_course(
             # What the app calls it (ADR 0109): LibreLingo names the language, in the support one.
             "names": {support_key: {"course": str(meta["Language"]["Name"])}},
             "license": license_,
-            "provenance": {
-                "author": f"human:librelingo-{slug(str(meta['Language']['Name']))}",
-                "status": "draft",
-            },
+            "provenance": provenance,
+            "lexicon": language,
             "units": [],
         }
     )
-    seen_kcs: set[str] = set()
+    seen: set[str] = set()
     for module_dir in cast(list[str], course_yaml.get("Modules", [])):
         module_path = root / module_dir
         module = _load(module_path / "module.yaml")
@@ -84,7 +101,6 @@ def import_course(
         unit: dict[str, Any] = {
             "id": unit_id,
             "title": {support_key: str(module["Module"]["Name"])},
-            "kcs": [],
             "nodes": [],
             "sentences": [],
         }
@@ -94,28 +110,30 @@ def import_course(
             introduces: list[str] = []
             for word in cast(list[dict[str, Any]], skill.get("New words") or []):
                 surface = str(word["Word"]).strip()
-                kc = f"sense:{surface.replace(' ', '_')}"
-                if kc not in seen_kcs:
-                    seen_kcs.add(kc)
-                    unit["kcs"].append(
+                name = lexeme_name(surface)
+                if name not in seen:
+                    seen.add(name)
+                    out.lexemes.append(
                         {
-                            "id": kc,
+                            "id": f"{LEXEME}{name}",
+                            # No part of speech in LibreLingo: other, until a person says. REVIEW
+                            "pos": "X",
                             "gloss": {support_key: str(word["Translation"])},
-                            "forms": {orthography: [surface]},
+                            "spelled": {orthography: [surface]},
                         }
                     )
-                    introduces.append(kc)
+                    introduces.append(f"{LEXEME}{name}")
             unit["nodes"].append({"id": node_id, "kind": "lesson", "introduces": introduces})
-            senses = {kc.removeprefix("sense:").replace("_", " ") for kc in seen_kcs}
+            words = {name.replace("_", " ") for name in seen}
             for i, phrase in enumerate(cast(list[dict[str, Any]], skill.get("Phrases") or [])):
                 text = str(phrase["Phrase"]).strip()
                 tokens: list[dict[str, Any]] = []
                 for m in WORD.finditer(text):
                     token: dict[str, Any] = {"surface": m.group(0)}
-                    if m.group(0).lower() in senses or m.group(0) in senses:
-                        token["sense"] = (
-                            m.group(0) if m.group(0) in senses else m.group(0).lower()
-                        ).replace(" ", "_")
+                    if m.group(0).lower() in words or m.group(0) in words:
+                        token["lexeme"] = lexeme_name(
+                            m.group(0) if m.group(0) in words else m.group(0).lower()
+                        )
                     tokens.append(token)
                 unit["sentences"].append(
                     {
@@ -142,15 +160,30 @@ def import_course(
                     }
                 )
         out.units[unit_id] = unit
-        out.course["units"].append(f"units/{unit_id}.yaml")
+        out.course["units"].append(unit)
+    out.lexemes.sort(key=lambda e: str(e["id"]))
+    out.course["own"] = {
+        "lexicon": {
+            "language": language,
+            "license": license_,
+            "provenance": provenance,
+            "lexemes": out.lexemes,
+        },
+        "language": {
+            "id": language,
+            "license": license_,
+            "provenance": provenance,
+            "dimensions": {},
+        },
+    }
     return out
 
 
 def write(imported: Imported, out_dir: Path) -> None:
-    (out_dir / "units").mkdir(parents=True, exist_ok=True)
-    header = "# Imported from LibreLingo by `nabu import-librelingo`. Draft: review every item.\n"
+    """The course as one file, out_dir/course.yaml: its units and its own lexicon inside it."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    header = (
+        "# Imported from LibreLingo by `nabu import-librelingo`. Draft: review every item,\n"
+        "# and give each lexeme its part of speech (X until then).\n"
+    )
     (out_dir / "course.yaml").write_text(header + yamlio.dump(imported.course), encoding="utf-8")
-    for unit_id, unit in imported.units.items():
-        (out_dir / "units" / f"{unit_id}.yaml").write_text(
-            header + yamlio.dump(unit), encoding="utf-8"
-        )

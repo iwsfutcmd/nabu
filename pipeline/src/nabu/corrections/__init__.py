@@ -8,13 +8,17 @@ comments and formatting stay:
 - **Text**: the form's `text`. Its tokens follow when every word is still there (a punctuation
   fix), or when each change falls inside one word (a spelling fix): that token's `surface`
   changes, and its reading is flagged if the correction did not also give one. A change that adds,
-  removes or splits words needs new tokens and senses, so it is left for a person, with the place.
+  removes or splits words, or falls in a token that writes several lexemes, needs new tokens, so
+  it is left for a person, with the place.
 - **Translation**: a sentence's first accepted translation, edited inside its accept notation when
   the change touches only plain text (`(Hello|Hi), Maryam!` keeps its alternatives); otherwise
   the line is replaced and the variants it accepted are flagged. A story line's, replaced.
-- **Words** (ADR 0057): a KC's first form in an orthography (what word exercises show) and its
-  gloss. Sentences and stories that write the word are listed to check, not changed. A word's
-  reading comes from the sentences that pin it, so a reading correction is left for a person.
+- **Words** (ADR 0057): a lexeme's first spelling in an orthography (what word exercises show)
+  and its gloss, in its language's lexicon (lexicons/<lang>/lexemes.yaml, or a one-file course's
+  `own` lexicon). The item is the lexeme's id; an older correction names the id the word had
+  before the lexical model, which the course's aliases.yaml turns into the lexeme's. Sentences
+  and stories that write the word are listed to check, not changed. A word's reading comes from
+  the sentences that pin it, so a reading correction is left for a person.
 
 Every edit first checks that the source still says what the learner saw (`shown`); if not, the
 correction is skipped with the reason, never applied to text it was not about. Nothing is dropped
@@ -145,7 +149,8 @@ def _apply_edits(text: str, edits: list[Edit]) -> str:
 
 @dataclass
 class Entry:
-    """A sentence, a story step's `line`, or a word (a KC), in its unit file."""
+    """A sentence or a story step's `line` in its unit file, or a word (a lexeme) in its
+    lexicon."""
 
     file: Path
     node: yaml.MappingNode
@@ -167,9 +172,6 @@ def locate(units: list[Path], texts: dict[Path, str], item: str, step: int | Non
             for s in _items(_get(root, "sentences")):
                 if _scalar(_get(s, "id")) == item and isinstance(s, yaml.MappingNode):
                     return Entry(file, s, s.start_mark.line + 1)
-            for k in _items(_get(root, "kcs")):
-                if _scalar(_get(k, "id")) == item and isinstance(k, yaml.MappingNode):
-                    return Entry(file, k, k.start_mark.line + 1, word=True)
         else:
             for story in _items(_get(root, "stories")):
                 if _scalar(_get(story, "id")) != item:
@@ -181,6 +183,59 @@ def locate(units: list[Path], texts: dict[Path, str], item: str, step: int | Non
                     if isinstance(line, yaml.MappingNode)
                     else None
                 )
+    return None
+
+
+LEXEME = "lexeme:"
+
+
+def lexicon_file(course: Path) -> tuple[Path, tuple[str, ...]] | None:
+    """Where a course's words are kept, and where in that file the entries are: its language's
+    lexemes.yaml, or a one-file course's own lexicon (course.yaml, under own, lexicon, lexemes)."""
+    course_file = course / "course.yaml"
+    if not course_file.is_file():
+        return None
+    data = yaml.safe_load(course_file.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        return None
+    data = cast(dict[str, Any], data)
+    if isinstance(data.get("own"), dict):
+        return course_file, ("own", "lexicon", "lexemes")
+    code = data.get("lexicon")
+    if not isinstance(code, str):
+        return None
+    from nabu.compiler.build import lexicons_dir
+
+    return lexicons_dir(course_file) / code / "lexemes.yaml", ("lexemes",)
+
+
+def lexeme_of(course: Path, item: str) -> str | None:
+    """The lexeme a word's correction is about: its id, or the id it had before the lexical model
+    (sense:ketab) as the course's aliases.yaml says it became one. None for an id that became no
+    lexeme of its own (a form that is a token's feature values now, a lexeme's gender)."""
+    if item.startswith(LEXEME):
+        return item
+    path = course / "aliases.yaml"
+    if not path.is_file():
+        return None
+    table: Any = yaml.safe_load(path.read_text(encoding="utf-8"))
+    found: Any = cast(dict[str, Any], table).get("aliases") if isinstance(table, dict) else None
+    aliases = cast(dict[str, Any], found) if isinstance(found, dict) else {}
+    alias = aliases.get(item)
+    part = cast(dict[str, Any], alias).get("part") if isinstance(alias, dict) else None
+    if isinstance(part, str) and part.startswith(LEXEME) and "|" not in part:
+        return part
+    return None
+
+
+def locate_word(file: Path, text: str, at: tuple[str, ...], lexeme: str) -> Entry | None:
+    """A lexeme's entry in a lexicon file."""
+    node = cast(yaml.Node | None, yaml.compose(text))  # pyright: ignore[reportUnknownMemberType]
+    for key in at:
+        node = _get(node, key)
+    for entry in _items(node):
+        if _scalar(_get(entry, "id")) == lexeme and isinstance(entry, yaml.MappingNode):
+            return Entry(file, entry, entry.start_mark.line + 1, word=True)
     return None
 
 
@@ -313,7 +368,7 @@ class Outcome:
     applied: list[Applied] = field(default_factory=lambda: [])
     skipped: list[Skipped] = field(default_factory=lambda: [])
     files: dict[Path, str] = field(default_factory=lambda: {})
-    """Edited unit files and their new text."""
+    """Edited unit and lexicon files and their new text."""
 
 
 class Conflict(Exception):
@@ -325,11 +380,11 @@ def _label(row: SentenceCorrection) -> str:
 
 
 def _apply_word(row: SentenceCorrection, entry: Entry, text: str) -> tuple[list[Edit], Applied]:
-    """A word: its first form in each orthography, and its gloss (ADR 0057)."""
+    """A word: its lexeme's first spelling in each orthography, and its gloss (ADR 0057)."""
     applied = Applied(row, "")
     edits: list[Edit] = []
     fixed, shown = row.correction, row.shown
-    forms = _get(entry.node, "forms")
+    forms = _get(entry.node, "spelled")
     for orth, change in (fixed.forms or {}).items():
         if change.readings:
             raise Conflict(
@@ -342,7 +397,7 @@ def _apply_word(row: SentenceCorrection, entry: Entry, text: str) -> tuple[list[
         current = _scalar(first)
         before = (shown.forms or {}).get(orth)
         if first is None or current is None or before is None or before.text is None:
-            raise Conflict(f"no {orth} form in the source")
+            raise Conflict(f"no {orth} spelling in the lexicon")
         unmark = unmarker(str(orth))
         if unmark(_nfc(current)) != unmark(_nfc(before.text)):
             raise Conflict(f"the source changed since: {orth} now reads {current!r}")
@@ -358,17 +413,17 @@ def _apply_word(row: SentenceCorrection, entry: Entry, text: str) -> tuple[list[
                 f"are they right? The learner wrote {change.text!r}"
             )
         edits.append(_replace(first, new, text, flow=_flow(_get(forms, str(orth)))))
-        applied.changes.append(f"{orth} form: {current} → {new}")
+        applied.changes.append(f"{orth} spelling: {current} → {new}")
         applied.checks.append(
-            f"{orth}: sentences, stories and the vocalization that write {current!r} "
-            "may need the same change"
+            f"{orth}: sentences, stories, other spellings of the lexeme and the vocalization "
+            f"that write {current!r} may need the same change"
         )
     if fixed.translation is not None:
         gloss = _get(entry.node, "gloss")
         node = _get(gloss, row.support)
         current = _scalar(node)
         if node is None or current is None:
-            raise Conflict(f"no {row.support} gloss in the source")
+            raise Conflict(f"no {row.support} gloss in the lexicon")
         if _nfc(current) != _nfc(shown.translation or ""):
             raise Conflict(f"the source changed since: the gloss now reads {current!r}")
         edits.append(_replace(node, fixed.translation, text, flow=_flow(gloss)))
@@ -456,9 +511,10 @@ def _apply_one(
             applied.changes.append(f"{orth} text: {current} → {new}")
             for k, surface in sorted(moved.items()):
                 token = tokens[k]
-                if _get(token, "morphs") is not None:
+                if _get(token, "lexemes") is not None:
                     raise Conflict(
-                        f"{orth}: {surfaces[k]!r} has morphs: its tokens need writing by hand"
+                        f"{orth}: {surfaces[k]!r} writes several lexemes, each with its letters: "
+                        "its token needs writing by hand"
                     )
                 surface_node = _get(token, "surface")
                 if surface_node is not None:
@@ -534,8 +590,9 @@ def _support_orth(key: str) -> str:
 
 
 def apply(rows: list[SentenceCorrection], courses: Path, cli: Any) -> Outcome:
-    """Applies each row in order to an in-memory copy of the unit files (`Outcome.files`); a
-    later row about an item an earlier one changed meets the changed text, and is skipped."""
+    """Applies each row in order to an in-memory copy of the unit and lexicon files
+    (`Outcome.files`); a later row about an item an earlier one changed meets the changed text,
+    and is skipped."""
     out = Outcome()
     texts: dict[Path, str] = {}
     root = courses.parent
@@ -544,12 +601,14 @@ def apply(rows: list[SentenceCorrection], courses: Path, cli: Any) -> Outcome:
             out.skipped.append(Skipped(row, f"status {row.status}"))
             continue
         units = sorted((courses / row.course / "units").glob("*.yaml"))
-        if not units:
+        if not units and not (courses / row.course / "course.yaml").is_file():
             out.skipped.append(Skipped(row, f"no course {row.course!r} in {courses}"))
             continue
         for u in units:
             texts.setdefault(u, u.read_text(encoding="utf-8"))
         entry = locate(units, texts, row.item, row.step)
+        if entry is None and row.step is None:
+            entry = _locate_word(courses / row.course, row.item, texts)
         if entry is None:
             out.skipped.append(Skipped(row, f"{_label(row)} is not in the course source"))
             continue
@@ -566,6 +625,17 @@ def apply(rows: list[SentenceCorrection], courses: Path, cli: Any) -> Outcome:
         out.applied.append(applied)
         out.files[entry.file] = texts[entry.file]
     return out
+
+
+def _locate_word(course: Path, item: str, texts: dict[Path, str]) -> Entry | None:
+    """A word's entry, read from the text earlier rows left (a lexicon two corrections edit)."""
+    lexeme = lexeme_of(course, item)
+    found = lexicon_file(course)
+    if lexeme is None or found is None or not found[0].is_file():
+        return None
+    file, at = found
+    texts.setdefault(file, file.read_text(encoding="utf-8"))
+    return locate_word(file, texts[file], at, lexeme)
 
 
 # ------------------------------------------------------------------------------------- summary
