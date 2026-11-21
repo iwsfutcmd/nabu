@@ -513,6 +513,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   ba3d.still, jem3a.uni); multi-word patterns are `construction:` KCs (used-to, was-doing, shu-excl).
 - Spelling: -o/-a (his/her, him/her; enno, la2anno) are ـه/ـها as Kline writes them, ـو/ـا accepted; -on (their) is ـهن.
   Vowel marks put a damma before ـه (بَيُّه): the voice says -o from it. New vocalizations mark ج as a sun letter.
+- Vowel marks write the helping vowel in every cluster that ends a word (the owner, 2026-11-21): خِبِز, بِنِت, كِنِت,
+  فيلِم; a damma after a damma inside the stem (صُبُح), a kasra before the past's -t (رُحِت). A new vocalization follows
+  it; the Arabizi stays as written (khebz). No word stores it: it is a rule (docs/lexical-forms/apc.md).
 - A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
   and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
 - Nouns pin their gender and number as es's do (ADR 0132 amendment): form:fem on a feminine noun (ahwe, teta, Beirut),

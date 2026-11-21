@@ -151,29 +151,35 @@ def to_arabic(form: str) -> str:
 
 # --- to the vowel-marked text the voices read ----------------------------------------------------
 
-# A consonant with no vowel before another: the clusters the course's vocalization writes a helping
-# vowel into at the end of a word are the stated set below (REVIEW).
-SONORANTS = "\u0631\u0644\u0645\u0646"  # ر ل م ن
-NO_HELPER_AFTER = "\u062a\u062f\u0637\u0636"  # ت د ط ض: a cluster that ends in a stop takes none
+# The helping vowel (the owner, 2026-11-21): a word that ends in two consonants says a short vowel
+# between them, in every such cluster. The form stores none (a sukun): the rule writes it. It is
+# not said before an ending or a word that begins with a vowel, which a word alone cannot show.
+PAST_T = "\u062a"  # the past's -t is an ending: the vowel before it never echoes the stem's
 
 
 def helper_at(segs: list[Seg]) -> int | None:
-    """Where a helping vowel is said: between the last two consonants of a word that ends in two
-    different ones (خبز khebez), unless the last is a t or d (bent, sabt) or the two are alike."""
+    """Where the helping vowel stands: on the last consonant but one of a word that ends in two
+    different ones (خبز khebez, بنت benet, كنت kenet, فيلم filem). A doubled letter is no cluster,
+    and a glide that closes a diphthong (law) is no consonant."""
     said = [k for k, s in enumerate(segs) if not s.silent]
     if len(said) < 3:
         return None
     a, b = segs[said[-2]], segs[said[-1]]
-    if a.vowel or b.vowel or b.geminate or a.geminate or a.feminine or b.letter in NO_HELPER_AFTER or a.letter == b.letter:
+    if a.vowel or b.vowel or b.geminate or a.geminate or a.feminine or a.letter == b.letter:
         return None
     if a.letter in (WAW, YA):  # a glide closes a diphthong: bayt, law
         return None
-    if a.letter in SONORANTS and b.letter not in SONORANTS:  # falling: bent, 3end, kalb
-        return None
-    prev = segs[said[-3]]
-    if prev.long or not prev.vowel:
+    if not segs[said[-3]].vowel:  # three consonants in a row: not this rule
         return None
     return said[-2]
+
+
+def helper_vowel(segs: list[Seg], k: int) -> str:
+    """The helping vowel's quality: u after a u or o inside the stem (shoghol, sobo7, 3omor), i
+    everywhere else, and before the past's -t (ru7et)."""
+    said = [j for j, s in enumerate(segs) if not s.silent]
+    prev, last = segs[said[said.index(k) - 1]], segs[said[-1]]
+    return "u" if prev.vowel in ("u", "o") and not prev.long and last.letter != PAST_T else "i"
 
 
 def to_marked(form: str) -> str:
@@ -196,6 +202,7 @@ def to_marked(form: str) -> str:
 
 def _marked(form: str) -> str:
     segs = parse(form)
+    helper = helper_at(segs)
     out: list[str] = []
     skip: set[int] = set()
     for k, s in enumerate(segs):
@@ -225,8 +232,10 @@ def _marked(form: str) -> str:
         elif s.vowel:
             sign = {"e": KASRA, "o": DAMMA}.get(s.vowel) or SIGN_OF[s.vowel]
             text += sign + (TA_MARBUTA if s.feminine else "")
+        elif k == helper:
+            text += DAMMA if helper_vowel(segs, k) == "u" else KASRA  # the helping vowel, by rule
         elif not s.final and not is_article_lam(segs, k):
-            text += SUKUN  # a helping vowel is not written (HELPER_IN_MARKS)
+            text += SUKUN
         out.append(text)
     # A long vowel's silent letter is written after its length letter's consonant, where the word has it.
     if skip:
@@ -340,8 +349,8 @@ LENGTH = "\u02d0"
 
 
 def to_phonemes(form: str) -> list[str]:
-    """The word's phonemes (IPA), with the helping vowel where one is said. A long vowel that ends
-    the word is said short."""
+    """The word's phonemes (IPA), with the helping vowel where the rule says one. A long vowel
+    that ends the word is said short."""
     if "+" in form:
         return [p for piece in form.split("+") for p in to_phonemes(piece)]
     segs = parse(form)
@@ -357,5 +366,6 @@ def to_phonemes(form: str) -> list[str]:
             out += ["a", "n"]
         elif s.vowel:
             out.append(s.vowel + (LENGTH if s.long and not s.final else ""))
-    del helper  # a helping vowel is said or not: it is no phoneme of the word
+        elif k == helper:
+            out.append(helper_vowel(segs, k))
     return out

@@ -106,8 +106,8 @@ them and an editor may drop what it cannot show. [apc.yaml](apc.yaml) does so. O
 
 ### What the form does not write
 
-- **A helping vowel.** خبز is said *khebz* or *khebez*. The form has a sukun there, and the marks the voices
-  read write none (the owner, 2026-11-20); see "Free and fixed" below.
+- **A helping vowel.** خبز has no vowel between its last two consonants and is said *khebez*. The form has a
+  sukun there: the vowel is a rule's, and the rule writes it in the marks ("The helping vowel", below).
 - **Stress.** Kline gives no stress rule (the notes, §1.5). Al-Masri, *Colloquial Arabic (Levantine)* (2015,
   p. xxi–xxii), says stress does not tell words apart in Arabic and follows weight: it falls on the heaviest
   syllable (a long vowel outweighs a short one), on the first of them where they are equal, and a word's last
@@ -165,7 +165,7 @@ break them, the word is on the review list.
 | a silent letter | the letter, bare |
 | a short vowel before the silent ه of *their* | on the ه, with a sukun before it (بيتْهُن) |
 | a clitic's last consonant | a sukun (بْهَيدا), but none on و "and" |
-| a helping vowel | not written |
+| the helping vowel | written by its rule: a kasra, or a damma after a damma inside the stem |
 
 ### To Arabizi (apc-Latn/arabizi)
 
@@ -207,9 +207,37 @@ majority ([apc-review.md](apc-review.md), last section).
 | U+065C, U+065D | e o |
 | a long vowel | long, but short at the end of a word |
 | a silent letter | nothing |
+| the helping vowel | i, or u after a u or o inside the stem |
 
 - The values are Kline's (p. 3–4). Long e spelled with alef and long e spelled with ya come out as one
   phoneme. Kline lists several qualities for each letter and does not set them apart. REVIEW.
+
+## The helping vowel
+
+The owner's ruling (2026-11-21): the vowel is entirely predictable, so no word stores it; and a learner has
+to learn when to say it, so the marks write it and the rule is a part to learn (ADR 0146: what a rule gives
+is no part of a lexeme). Asked which clusters: "every cluster, that's what Alice does".
+
+- **Where:** a word that ends in two consonants says a short vowel between them, whatever the consonants:
+  خِبِز *khebez*, بِنِت *benet*, كِنِت *kenet*, فيلِم *filem*.
+- **Where not:** in a doubled letter (بَسّ), after a glide that closes a diphthong (لَو), and where a vowel
+  follows the cluster: اِسِم *esem* but اِسْمي *esmi*. A word's marks show the word said alone, so they
+  write the vowel wherever the word ends in the cluster, whatever word comes next.
+- **Which vowel:** a kasra. After a damma inside the stem it is a damma (شُغُل, صُبُح, عُمُر). Before the
+  past's -t it is a kasra whatever the stem's vowel (رُحِت): that is an ending, not the stem.
+- **Stress** is where it would be without the vowel: كِنِت and أَكَلِت "I ate" are stressed as *kent* and
+  *akalt* are. So "I ate" and أَكَلِت "she ate" are written alike and differ in stress, which the marks do
+  not show. This is how Levantine is described; no source in the library says it of Lebanese. REVIEW.
+- **What stores it:** nothing. The form has a sukun. The projections to the marks and to phonemes write the
+  vowel. Arabizi may write it or leave it out (*khebz*, *khebez*), and the course's mostly leaves it out.
+- **What a learner has:** the rule, as a part of its own: a mark card can ask خِبِز against خِبْز, and a
+  miss is the rule's, not the word's. Not built: no rule is written yet.
+- **Inside a word,** a stem that ends in a cluster takes the vowel before an ending that begins with a
+  consonant that is said (بِنِتْكُن, عِنِدْكُن, بَعِدْني). The form does not yet say where an ending begins,
+  so the projection does not write these three, and they are on the review list.
+- **Sources:** Kline gives no rule and spells such words both ways (the notes, §1.4). The study of it is
+  Haddad (1984), "Epenthesis and sonority in Lebanese Arabic", which is not in the library and was not
+  read. The rule here is a speaker's usage, as the owner reports it.
 
 ## A verb's form
 
@@ -314,11 +342,9 @@ Kline says neither script has a codified spelling (p. 3, 9), and shows one word 
 - a or e for the long vowel written ا (*ktab*, *kamen*). Kline writes both with no rule (the notes, §1.3).
 - A loan in its own language's spelling (*merci*, *football*, *taxi*, *bus*). Listed on the word.
 
-**Decided by the owner (2026-11-20):**
-- A helping vowel is not written in the marks the voices read. The course writes one in 22 words (خِبِز,
-  شُغُل) and none in others of the same shape (صُبْح, إِبْن, شَهْر): those 22 change when the projection
-  replaces the course's vowel marks, and not before. Two of the 82 reviewed clips were made from marks with
-  the vowel (`s.food.7`, `s.food.16`).
+**Decided by the owner (2026-11-21):**
+- The helping vowel is written in the marks the voices read, in every cluster that ends a word, by rule
+  ("The helping vowel", above). The course's marks follow it since that day.
 
 **Not decided here, and on the review list:**
 - Whether a doubled letter may be written once in Arabizi (*bas*, *nos*, *hala2*). It is not free here: the
@@ -342,8 +368,11 @@ Kline says neither script has a codified spelling (p. 3, 9), and shows one word 
 - **The affixes' lexical forms and their conditions.** [apc.yaml](apc.yaml) lists every shape the sentences
   write for each suffix and clitic, with counts, and no forms.
 - **Patterns other than the form I active participle.**
-- **Stress** as code (a general rule is cited above), and **the helping vowel's place:** no source for the
-  second.
+- **Stress** as code (a general rule is cited above).
+- **The helping vowel inside a word,** before an ending that begins with a consonant: the form does not say
+  where an ending begins. Before the silent ه of *their* the course writes it in two words (إِبِنْهُن,
+  بِنِتْهُن) and not in two others (عِنْدْهُن, بَعْدْهُن), and it is not written before the past's -t with
+  a pronoun after it (سْمِعْتْني).
 - **A sign for a q that is said q.**
 - **The course's 7 sentences that pair no word across the two scripts** (*inshalla* written as three words in
   Arabic; the month names of two words) are left out of the count.
@@ -359,15 +388,19 @@ what was done.
    - All three stand, and the choice is no longer marked REVIEW.
    - What Unicode says of each is quoted under "Why these three signs". That a rounded zero marks a letter
      as not read is still unsourced; the notation does not rest on it.
-2. **The helping vowel, written in the marks the voices read or not:** *"sounds good."*
-   - Read as: as drafted. The form writes a sukun there, and the marks write no vowel.
-   - The question was put as either-or and the answer names neither side. If the owner meant the vowel
-     written, this is the ruling to undo.
-   - The question said this decides 18 of the 82 reviewed clips. It decides 2 (`s.food.7`, `s.food.16`). Of
-     the other 16, 15 turn on the sukun of the glide in هَيدا and هَيدي and 1 on الحمدلله: both are on the
-     review list.
-   - Nothing in the course changes now. Its 22 words written with a helping vowel keep it until the
-     projection replaces the course's vowel marks.
+2. **The helping vowel, written in the marks the voices read or not:** *"sounds good"*; then, on
+   2026-11-21, *"that epenthetic vowel is entirely predictable, but at the same time it's important for
+   the learner to learn when to insert it"*, *"Every cluster, that's what Alice does"*, and *"fix
+   everything"*.
+   - The first answer was read as "not written". That reading was wrong, and the second day's answers
+     replace it: nothing stores the vowel, the rule writes it, and the rule is what a learner learns
+     ("The helping vowel", above).
+   - The course follows the rule since 2026-11-21. In `vocalization.yaml` and in the story lines written
+     with their marks, 43 words that end in a cluster gained the vowel; هَالأَكَل, whose vowel was a
+     fatha, is هَالأَكِل; and three stems took it before an ending that begins with a consonant
+     (بِنِتْكُن, عِنِدْكُن, بَعِدْني). The Arabizi is unchanged.
+   - 133 clips were made again from the new marks. A listener had checked 7 of them (`s.fam.12`,
+     `s.fam.13`, `s.fam.14`, `s.fam.31`, `s.fam.32`, `s.fam.34`, `s.food.30`): those are drafts again.
 3. **Long a said e:** *"stored on each word"*.
    - As drafted: a word's form writes U+065C and its alef.
    - One rule stays, since a template has no word to store the vowel on: the active participle's long a is
@@ -395,6 +428,8 @@ what was done.
 **What the rulings leave open.** None of it blocks anything:
 
 - the participle template's rule for a and e (ruling 3);
+- the helping vowel inside a word, before the silent ه of *their* and before the past's -t with a pronoun
+  after it ("What is not done");
 - what this note still marks REVIEW: stress, the stop written ذ in آذار, the phonemes' qualities, and the
   letters the feminine ending is -a after;
 - the review list's lines for a speaker, the two under ruling 5 among them;

@@ -14,9 +14,11 @@ restored from the notes, and what was accepted as drafted. The older ADRs they a
 **Tasks B and C were started the same night, without the owner, who has answered both since:**
 - **Task B, apc:** a draft of all three deliverables is in [lexical-forms/](lexical-forms/apc.md): the schema
   note, a worked entry for every KC, and the review list. The owner ruled on its six questions on
-  2026-11-20 (the note's last section, with how each answer was read): the three signs stand, a helping
-  vowel is not written, long a said e is stored on each word, the review list is for a speaker, what was
-  missing was deduced, and the shadda on *mara* was a mistake, fixed in the course. No conjugation rule and
+  2026-11-20 (the note's last section, with how each answer was read): the three signs stand, long a said e
+  is stored on each word, the review list is for a speaker, what was missing was deduced, and the shadda on
+  *mara* was a mistake, fixed in the course. The helping vowel was ruled on again on 2026-11-21: no word
+  stores it, a rule writes it in every cluster that ends a word, and the rule is what a learner learns; the
+  course's vowel marks follow it. No conjugation rule and
   no affix form is written (the note's "What is not done"). Nothing reads it.
 - **Task C:** [the design note](migration-design.md) gives the formats, the ids, the event change and the
   order. The owner approved it on 2026-11-20 with three changes, recorded at its end: the lexicon is flat

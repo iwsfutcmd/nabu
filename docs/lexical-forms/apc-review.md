@@ -11,12 +11,12 @@ Lebanese, not a verdict: the course may be right and the convention wrong.
 ## In numbers
 
 - **1025** distinct words in the sentences and stories (Arabic, its marks and its Arabizi together).
-- **932** come back exactly in all three: the Arabic spelling, the vowel marks, and the Arabizi among the spellings the correspondences give.
-- **84** have a lexical form and do not come back in one of the three.
+- **950** come back exactly in all three: the Arabic spelling, the vowel marks, and the Arabizi among the spellings the correspondences give.
+- **66** have a lexical form and do not come back in one of the three.
 - **9** have no lexical form.
-- **358** sense KCs with **415** listed forms: 367 come back, 41 do not, 2 have no form, 5 are written in one script only.
+- **358** sense KCs with **415** listed forms: 373 come back, 35 do not, 2 have no form, 5 are written in one script only.
 - **41** verbs with citation forms, 40 of them with radicals and a Form and 1 a listed stem; 251 of their forms in the sentences are pinned, since no conjugation rule is written yet.
-- **82** clips a listener marked right: for 64 the projection writes the very marks the voice was given; for 18 it writes other marks for a word; 0 were given text the sentences no longer hold.
+- **82** clips a listener marked right: for 58 the projection writes the very marks the voice was given; for 16 it writes other marks for a word; 8 were given text the sentences no longer hold.
 
 ## 1. Not paired by the prototype's reader (10)
 
@@ -73,10 +73,12 @@ A loan kept in its French or English spelling (merci, football, taxi), or two di
 - تْلاتَعْشَر / tleta3sh (u16-dates:apc.story.birthday#1): Arabizi not read: تْلاتَعْشَر cannot be read as tleta3sh: arabizi: tleta3sh is not among the projected spellings (tlata3shar first)
 - سرفيس / servees (u18-getting-around:s.road.1): Arabizi not read: سِرْفيس cannot be read as servees: arabizi: servees is not among the projected spellings (serfis first)
 
-## 5. The marks and the Arabizi give different vowels (14)
+## 5. The marks and the Arabizi give different vowels (18)
 
 One of the two is wrong, or the word is said both ways. The drafted form follows the Arabizi where it has a vowel and the marks where it has none.
 
+- عندكن / 3endkon (u02-family:s.fam.37): vowel: marked i, none in Arabizi: arabizi: 3endkon is not among the projected spellings (3enedkon first)
+- بنتكن / bentkon (u02-family:s.fam.38): vowel: marked i, none in Arabizi: arabizi: bentkon is not among the projected spellings (benetkon first)
 - بقرا / b2ra (u06-day:s.day.15): vowel: marked i, none in Arabizi: arabizi: b2ra is not among the projected spellings (be2ra first)
 - بحكي / b7ki (u06-day:s.day.23): vowel: marked i, none in Arabizi: arabizi: b7ki is not among the projected spellings (be7ki first)
 - بتحكي / bt7ki (u06-day:s.day.24): vowel: marked i, none in Arabizi: arabizi: bt7ki is not among the projected spellings (bte7ki first)
@@ -90,36 +92,11 @@ One of the two is wrong, or the word is said both ways. The drafted form follows
 - بعتلي / ba3atli (u14-phone:s.phone.30): vowel: Arabizi a where the marks have a sukun: marks: projected بَعَتْلي, pinned بْعَتْلي
 - خمستعشر / khamsta3shar (u16-dates:s.date.7): vowel: marked i, none in Arabizi: arabizi: khamsta3shar is not among the projected spellings (khamesta3shar first)
 - تسعتعشر / tsa3ta3shar (u16-dates:s.date.11): vowel: marked i, none in Arabizi: arabizi: tsa3ta3shar is not among the projected spellings (tesa3ta3shar first)
+- بعدني / ba3dni (u17-childhood:s.child.20): vowel: marked i, none in Arabizi: arabizi: ba3dni is not among the projected spellings (ba3edni first)
 - عملي / 3emli (u18-getting-around:s.road.26): vowel: Arabizi e where the marks have a sukun; vowel: marked i, none in Arabizi: marks: projected عِمِلي, pinned عْمِلي; arabizi: 3emli is not among the projected spellings (3emeli first)
+- بَعِدْني / ba3dni (u19-work:apc.story.new-job#5): vowel: marked i, none in Arabizi: arabizi: ba3dni is not among the projected spellings (ba3edni first)
 
-## 6. The marks write a vowel the Arabizi leaves out, between a word's last two consonants (22)
-
-A helping vowel (خِبِز khebz): the drafted form leaves it out, as the Arabizi does, and the projection writes none. Kline writes shames but wa2t, and kalb beside kalib (the notes, §1.4): no rule. The voices were given these marks, so they said the vowel. By the owner's ruling (2026-11-20) the marks write none: these words change when the projection replaces the course's vowel marks, and not before.
-
-- خبز / khebz (u03-food:s.food.7): helping vowel: in the marks, not in Arabizi: marks: projected خِبْز, pinned خِبِز
-- الأكل / el akl (u03-food:s.food.12): helping vowel: in the marks, not in Arabizi: marks: projected الأَكْل, pinned الأَكِل
-- الخبز / el khebz (u03-food:s.food.16): helping vowel: in the marks, not in Arabizi: marks: projected الخِبْز, pinned الخِبِز
-- الأَكِل / el akl (u03-food:apc.story.teta-lunch#1): helping vowel: in the marks, not in Arabizi: marks: projected الأَكْل, pinned الأَكِل
-- بالشغل / bel shoghl (u04-home:s.home.17): helping vowel: in the marks, not in Arabizi: marks: projected بِالشُّغْل, pinned بِالشُّغُل
-- الشُّغُل / el shoghl (u04-home:apc.story.new-house#2): helping vowel: in the marks, not in Arabizi: marks: projected الشُّغْل, pinned الشُّغُل
-- خِبِز / khebz (u05-numbers:apc.story.dekkene#0): helping vowel: in the marks, not in Arabizi: marks: projected خِبْز, pinned خِبِز
-- الخِبِز / el khebz (u05-numbers:apc.story.dekkene#10): helping vowel: in the marks, not in Arabizi: marks: projected الخِبْز, pinned الخِبِز
-- عالشغل / 3al shoghl (u06-day:s.day.6): helping vowel: in the marks, not in Arabizi: marks: projected عَالشُّغْل, pinned عَالشُّغُل
-- عَالشُّغُل / 3al shoghl (u06-day:apc.story.my-day#5): helping vowel: in the marks, not in Arabizi: marks: projected عَالشُّغْل, pinned عَالشُّغُل
-- البحر / el ba7r (u07-likes:s.like.4): helping vowel: in the marks, not in Arabizi: marks: projected البَحْر, pinned البَحِر
-- عالبحر / 3al ba7r (u07-likes:s.like.18): helping vowel: in the marks, not in Arabizi: marks: projected عَالبَحْر, pinned عَالبَحِر
-- البَحِر / el ba7r (u07-likes:apc.story.sea-or-mountain#0): helping vowel: in the marks, not in Arabizi: marks: projected البَحْر, pinned البَحِر
-- عَالبَحِر / 3al ba7r (u07-likes:apc.story.sea-or-mountain#10): helping vowel: in the marks, not in Arabizi: marks: projected عَالبَحْر, pinned عَالبَحِر
-- الشغل / el shoghl (u08-time:s.time.18): helping vowel: in the marks, not in Arabizi: marks: projected الشُّغْل, pinned الشُّغُل
-- عالضهر / 3al dohr (u08-time:s.time.19): helping vowel: in the marks, not in Arabizi: marks: projected عَالضُّهْر, pinned عَالضُّهُر
-- الضهر / el dohr (u08-time:s.time.20): helping vowel: in the marks, not in Arabizi: marks: projected الضُّهْر, pinned الضُّهُر
-- الضُّهُر / el dohr (u08-time:apc.story.free-on-saturday#9): helping vowel: in the marks, not in Arabizi: marks: projected الضُّهْر, pinned الضُّهُر
-- الشهر / el shahr (u12-trip:s.trip.16): helping vowel: in the marks, not in Arabizi: marks: projected الشَّهْر, pinned الشَّهِر
-- بطن / batn (u13-health:s.health.9): helping vowel: in the marks, not in Arabizi: marks: projected بَطْن, pinned بَطِن
-- شُغُل / shoghl (u19-work:apc.story.new-job#3): helping vowel: in the marks, not in Arabizi: marks: projected شُغْل, pinned شُغُل
-- هالأكل / hal akl (u20-celebrations:s.party.29): helping vowel: in the marks, not in Arabizi: marks: projected هَالأَكْل, pinned هَالأَكَل
-
-## 7. Doubled in one script and not in the other (10)
+## 6. Doubled in one script and not in the other (10)
 
 A doubled letter tells words apart (mara, a woman; marra, once), so the projection writes it twice and takes nothing else. Here the marks have a shadda and the Arabizi one letter (bas, nos), or the Arabizi doubles a letter the marks leave single (a loan's spelling: dollar).
 
@@ -134,19 +111,19 @@ A doubled letter tells words apart (mara, a woman; marra, once), so the projecti
 - ونُصّ / w nos (u08-time:apc.story.free-on-saturday#6): doubled in the marks, written once in Arabizi: arabizi: w nos is not among the projected spellings (wnoss first)
 - هَلَّق / hala2 (u19-work:apc.story.new-job#0): doubled in the marks, written once in Arabizi: arabizi: hala2 is not among the projected spellings (halla2 first)
 
-## 8. A letter is written and the Arabizi does not say it (1)
+## 7. A letter is written and the Arabizi does not say it (1)
 
 Arabizi writes the word as it is said, Arabic as it is built (3enna, written with its d).
 
 - عندنا / 3enna (u12-trip:s.trip.13): written, not said: د: marks: projected عِنْدنا, pinned عِنْدْنا
 
-## 9. A letter with two sounds, said as the one the projection does not write (1)
+## 8. A letter with two sounds, said as the one the projection does not write (1)
 
 The course spells a stop with its own letter nearly everywhere, so each of these letters has one sound in it; here the letter is the fricative's and the Arabizi the stop's. Either the word is respelled or the lexical form needs a sign for it (the note, 'Letters whose sound is not their letter's').
 
 - بآذار / b adar (u16-dates:s.date.15): letter and sound: ذ written d in Arabizi: arabizi: b adar is not among the projected spellings (bazar first)
 
-## 10. ay and aw: the marks and the Arabizi differ, or the glide has no sukun (11)
+## 9. ay and aw: the marks and the Arabizi differ, or the glide has no sukun (11)
 
 The course writes a diphthong's glide with a sukun in some words (عَيْلِة) and without in others (هَيدا); and the marks write ay where the Arabizi has a long e (7zeiran).
 
@@ -162,7 +139,7 @@ The course writes a diphthong's glide with a sukun in some words (عَيْلِة
 - بهيدي / b hayde (u11-people:s.ppl.15): marks: projected بْهَيْدي, pinned بْهَيدي
 - بحزيران / b 7zeiran (u16-dates:s.date.18): diphthong: the marks write ay, Arabizi ei: marks: projected بْحْزيران, pinned بْحْزَيْران
 
-## 11. The marks do not follow the convention the other words follow (13)
+## 10. The marks do not follow the convention the other words follow (13)
 
 Each differs from what the projection writes in its own way: the difference is on the line.
 
@@ -180,7 +157,7 @@ Each differs from what the projection writes in its own way: the difference is o
 - فيها / fiya (u13-health:s.health.16): marks: projected فِيها, pinned فيها
 - الله / allah (u20-celebrations:s.party.2): marks: projected اَلْلَه, pinned الله
 
-## 12. Deduced, not found in a source (11)
+## 11. Deduced, not found in a source (11)
 
 A citation form the course does not write and Kline does not list, or a radical no form shows. The
 owner's ruling (2026-11-20) is to deduce what needs to be deduced, so each is filled in, and its line
@@ -198,7 +175,7 @@ says from what. They are listed for a speaker to correct, not for a ruling.
 - `sense:3azam` 3azam / ye3zem: Kline does not list it. The course writes the past (3azamni) and e3zmak, where the present vowel has dropped: a vowel that drops there is i or u, never a (ta3mli, tedrso; yitla3o keeps its a), and it is cited i, as in 3emel and 3eref. The prefix is the course's e-; Kline's ya- before ع (p. 75) is what the course writes in ba3mel and ba3ref.
 - `sense:3ajab` 3ajab / ye3jeb: Kline does not list it. The course writes the past (3ajabni, 3ajabetni) and no present: the present is cited as 3azam's, the one other verb of its shape, and no form of the course depends on it.
 
-## 13. The reviewed clips whose marks the projection does not write (18)
+## 12. The reviewed clips whose marks the projection does not write (24)
 
 A reviewed clip depends on the exact text its voice was given (the handoff's Task C). These would be read
 from other marks if the projection replaced the course's vocalization as it stands.
@@ -207,22 +184,28 @@ from other marks if the projection replaced the course's vocalization as it stan
 - `s.fam.1`: هَيدا سامي.: the projection writes other marks for هَيدا
 - `s.fam.10`: هَيدا خَيّي.: the projection writes other marks for هَيدا
 - `s.fam.11`: هَيدي إِخْتي.: the projection writes other marks for هَيدي
+- `s.fam.12`: عِنْدي خَيّ وإِخْت.: not a word of the sentences as the compiler marks them: وإِخْت
+- `s.fam.13`: عِنْدَك إِخْت؟: not a word of the sentences as the compiler marks them: إِخْت
+- `s.fam.14`: لَأ، ما عِنْدي إِخْت.: not a word of the sentences as the compiler marks them: إِخْت
 - `s.fam.2`: مين هَيدا؟: the projection writes other marks for هَيدا
 - `s.fam.21`: هَيدي تيتا.: the projection writes other marks for هَيدي
 - `s.fam.22`: وهَيدا جِدّو.: the projection writes other marks for وهَيدا
 - `s.fam.23`: هَيدي عَيِلْتي.: the projection writes other marks for هَيدي
 - `s.fam.27`: هَيدا إِبْني.: the projection writes other marks for هَيدا
 - `s.fam.28`: وهَيدي بِنْتي.: the projection writes other marks for وهَيدي
+- `s.fam.31`: إيه، عِنْدي إِبْن وبِنْت.: not a word of the sentences as the compiler marks them: إِبْن, وبِنْت
+- `s.fam.32`: شو اِسْم بِنْتَك؟: not a word of the sentences as the compiler marks them: اِسْم
+- `s.fam.34`: عِنْدي بِنْت.: not a word of the sentences as the compiler marks them: بِنْت
 - `s.fam.4`: هَيدي مايا.: the projection writes other marks for هَيدي
 - `s.fam.5`: هَيدا بَيّ سامي.: the projection writes other marks for هَيدا
 - `s.fam.6`: هَيدا بَيّي.: the projection writes other marks for هَيدا
 - `s.fam.7`: هَيدي إِمّ سامي.: the projection writes other marks for هَيدي
 - `s.fam.8`: هَيدي إِمّي.: the projection writes other marks for هَيدي
 - `s.fam.9`: مين هَيدا؟ بَيَّك؟: the projection writes other marks for هَيدا
-- `s.food.16`: بَدَّك لَبَن مَع الخِبِز؟: the projection writes other marks for الخِبِز
-- `s.food.7`: بَدّي خِبِز.: the projection writes other marks for خِبِز
+- `s.food.30`: صَحْن حُمُّص، تْفَضَّل.: not a word of the sentences as the compiler marks them: صَحْن
+- `s.like.21`: بَدّي شوف فيلْم.: not a word of the sentences as the compiler marks them: فيلْم
 
-## 14. How the course's Arabizi spells what is left free
+## 13. How the course's Arabizi spells what is left free
 
 Not a list of faults: each row is a correspondence with more than one spelling, and how often the
 course's sentences use each (distinct words). The projection writes the commoner one first.
