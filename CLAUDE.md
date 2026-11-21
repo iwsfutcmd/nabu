@@ -198,12 +198,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `readingsShown`: never in a tapped word's gloss or the word list, nor on a word tapped (`pressed`) or marked (`highlight`).
   Pass `readingsShown` wherever `known` goes. A gloss always shows a reading, readings off or not (`glossRuby`); a word
   glossed by its parts heads its panel with its own reading. The feedback's right answer is tappable too.
-- Writing side (ADR 0142): a profile's `soundAlike` sets (fa) make a word apart only by them the right sound with the
-  wrong letter: never a typo, WRONG (`sound-alike`) or WRONG_WORD; `spelling-choice` (write-script) offers the word among
-  its sound-alike spellings (yue: homophone characters, the Jyutping given). A homophone typing (唔洗 for 唔使) is wrong,
-  however common: the course teaches the character the word is written with.
+- Writing side (ADR 0142, 0148): a typed word that says what the expected one says by a fixed correspondence of its
+  profile's statement (fa سد for صد, es bolber for volver) has the right sound and the wrong letter: never a typo, the
+  label orthographic (Losses and labels notes); `spelling-choice` (write-script) offers the word among its other
+  spellings of that sound (`projection.spellings`; yue: homophone characters, the Jyutping given). A homophone typing
+  (唔洗 for 唔使) is wrong, however common: the course teaches the character the word is written with.
 - Reading side (ADR 0139–0141): a feature card (`reading-feature`) asks one place a script leaves open (`readingFeatures`:
-  a scheme's `variants` letter or an attested tone), options differing there alone; homographs (`homographsOf`) are marked
+  a place the scheme's statement leaves open, by the word's own letters where the scheme names the orthography, or an
+  attested tone), options differing there alone; homographs (`homographsOf`) are marked
   in lessons and stories (`HomographsProvider`) and a tap lists the other readings; the readings choice Unwritten (`open`)
   keeps only `openLetters` over words read before. All from scheme data: never a list of letters or tones in code.
 - Listening or speaking turned off for good (Preferences, D41/D45; never a break) is asked of no word and never due: pass `facetsOff`
@@ -377,7 +379,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Pronunciation cards (ADR 0054, in context since ADR 0095, answered by choice since ADR 0098): `vocalize` (abjads:
   the word with its marks among attested variants, never typed marks) and `transcribe` (typed; a ruby scheme whose
   data gives a syllable shape: only Jyutping so far; `char-read` is its multiple-choice twin, tone variants first, or
-  where the scheme lists `variants` (letters the script writes alike: chg's vowels), homographs then those, ADR 0131) are
+  where the scheme's statement leaves letters open (what the same letter also writes: chg's vowels), homographs then
+  those, ADR 0131) are
   sentence templates asking about one word (`word`, marked with `<T emphasis>`); only that word is credited; a lesson
   plans one where it can. Optional marks: the profile's `match.marks.optional`, and `optionalBefore` for marks optional
   before a letter (apc, ar: the fatha before ا or ى, never before a hamza's seat; ADR 0054 amendment); orthographies
@@ -668,7 +671,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - courses/chg is Chaghatay (literary Turki), read and written only (no audio; the script facets are its alphabet track's). One
   orthography, chg-Arab/standard, set in Nastaliq (Noto Nastaliq Urdu). Every word token pins `readings: {schluessel:
   …}`, Schluessel's transliteration (2018), shown as ruby over the whole word (the scheme's `ruby: word`), over new words until the learner chooses, and asked by
-  char-read cards whose wrong options trade a vowel the script leaves open (the scheme's `variants`, REVIEW), then typed
+  char-read cards whose wrong options trade a vowel the script leaves open (the scheme's statement, REVIEW), then typed
   (transcribe, `typedByProfile`: graded by chg-Latn/schluessel) once a choice card has shown it (ADR 0131): a vowel's
   marks are `required` there (ä ö ü ā ī ū ē à: left out or moved, wrong) and so are those of š ž ḫ ǧ
   (`requiredLetters`: s for š is another sound; the letter traded for another is still a slip), another consonant's
@@ -758,10 +761,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   compiler ships it (file role `aliases`); only `upgrade` reads it. Renaming or removing a lexeme, rule or taught
   feature value changes the table's right-hand sides with it (pipeline/tests/test_aliases.py).
 - Old events are the `…V1` types of schemas/learner-event.v1.schema.json, which only `upgrade` and the restore of an
-  old download read. Still to follow on main: stages 5 and 6 of the switch (losses and labels, ADR 0148; what a
-  learner sees) are not built: `outcome.labels` is always empty and `story_line_read` is never emitted.
+  old download read. `outcome.labels` and `outcome.correspondences` come from the grade (Losses and labels notes).
+  `story_line_read` and `displayed` are in the schema and never emitted (ADR 0146's "seen is logged" is not built).
 - A token of letters is of kind `lexical` (beside `punct`, `space`, `number`, `symbol`); the UI writes it as
-  `data-kind`. A bundle's `formatVersion` is 3 (`BUNDLE_FORMAT` in core, `FORMAT_VERSION` in the compiler): raise both
+  `data-kind`. A bundle's `formatVersion` is 4 (`BUNDLE_FORMAT` in core, `FORMAT_VERSION` in the compiler): raise both
   when a bundle's shape or a token's changes, so a device refuses a cached bundle it cannot read and fetches the new
   one. A session kept part-way is tied to its bundle and starts afresh.
 - Tags, features and relations are Universal Dependencies' and a gloss's abbreviations the Leipzig Glossing Rules'
@@ -774,6 +777,43 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Schema files are written compactly by hand: add a definition as text. Re-dumping a file with a JSON library rewrites
   every line. Examples live in schemas/examples/<dir>/{valid,invalid} and are listed in `EXAMPLES`
   (packages/schema/test/schemas.test.ts): a new schema gets both kinds.
+
+## Losses and labels notes (see docs/adr/0148; 0153, Proposed)
+- A profile states what its orthography writes of the sound (`sound`, `stress`, `correspondences`; profiles/README.md,
+  "The sound statement"): a letter no correspondence names says itself, so `[]` means nothing is lost. `kind: fixed`
+  (the norm picks one spelling: another is an orthographic miss, and which one is the word's spelling leftover) or
+  `free` (an accepted variant, never where the typed word is another lexeme's form). No `sound`: the sound question is
+  never asked (characters, logographs, the support language). Every statement is REVIEW.
+- A scheme states the reading's side: `of` an orthography and a relation (each piece of the reading with the ways the
+  script writes it, `""` where it does not; nothing implied), or, over a script that lists a reading per sign, only the
+  sets a reading card may trade within (`loses`: Pinyin's tones). `sound: {from: reading, scheme}` makes a word's sound
+  its token's pinned reading, related to what was typed by that scheme.
+- Core runs them (@nabu/core `project`: `profile.projection` `read`, `compare`, `spellings`; `readingProjection(id)`
+  `spells`, `variants`, `open`; core-cli `sound-*` and `reading-*`). `cd pipeline && uv run nabu projections
+  ../courses/<id>` lists words with another spelling of their sound and readings the relation cannot account for; the
+  compiler warns of those (`projection.unaccounted`, the review list; each course's are in tests/test_courses.py
+  `EXPECTED_WARNINGS`) and writes each bundle lexeme's `leftovers`. Never a list of sound-alike letters or open vowels
+  in code, and never the matching in Python.
+- A grade carries `labels` (worst first: lexical, grammatical, regularised, scope, order, phonemic, orthographic, slip;
+  regularised and scope are defined and never produced yet) and `correspondences`; each pair of its alignment carries
+  its own. The order (match/grade.ts): the profile's policies and free correspondences; then the slip, unless the two
+  say the same by a fixed correspondence or the typed word is another form of the word or another lexeme's
+  (`Spellings.lexemes`: decided by lexeme and form, never by string); then the sound (asked only of an attempt at the
+  word) and whose form it is.
+- Verdicts are views of the labels: a slip alone is `CORRECT_WITH_TYPO`; `PARTIAL` is only homophone characters;
+  `WRONG_WORD` is a miss a slip, the same sounds or its marks explain, and is never the judge's (`judgeable` is
+  `WRONG` alone); the rest is `WRONG`. `WRONG_WORD` no longer means "another word": what feedback says follows the
+  labels.
+- Spanish is strict (ADR 0148): accents and the diaeresis are required marks, so tambien is phonemic, bolber and exámen
+  orthographic, esta for está lexical and phonemic. grc keeps its notes until the app can put Greek's marks on.
+- Credit follows the labels (learner/credit.ts): the right sound with the wrong letter shows the word and misses its
+  spelling (`write-script`); the right lexeme in another form shows the lexeme and misses the form; a typed word that
+  is right shows `write-script` where its bundle lexeme's `leftovers.spelling` lists the orthography, never where the
+  course's `facets` leave write-script out. The fold counts misses per correspondence (`state.letters`,
+  `missedLetters`): counted, never scheduled.
+- A new correspondence needs vectors in conformance/projection.json and grade.json (both harnesses), its courses'
+  bundles rebuilt and their lessons looked at: a fixed one adds spelling-choice cards and makes a same-sound letter a
+  miss; a free one accepts what the accept sets carried by hand.
 
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match
@@ -792,7 +832,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from the demo's bundles and the UI catalog (apps/web/landing.ts, `landing.*` messages): never hand-edit it; a new
   course appears there by itself.
 - ADRs 0013–0143 are Accepted (2026-11-18, the owner), and 0145–0151 (2026-11-20: the lexical model; the older ADRs
-  they amend say so in their headers). 0144 and 0152 are Proposed. A new ADR is Proposed until the owner accepts it.
+  they amend say so in their headers). 0144, 0152 and 0153 are Proposed. A new ADR is Proposed until the owner accepts it.
   docs/gameplan-errata.md lists where the gameplan was wrong.
 - The lexical model follows docs/migration-design.md, which the owner approved on 2026-11-20 with three changes: the
   lexicon is flat (lexicons/<lang>/lexemes.yaml; units point at it, it is never arranged by unit), old events may be
