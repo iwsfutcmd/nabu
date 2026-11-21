@@ -6,7 +6,7 @@
  */
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import type { AliasTable, AnswerSubmitted, AnswerSubmittedV1, LearnerEvent, LearnerEventV1, OutcomeRevisedV1, SessionCompletedV1 } from "@nabu/schema";
+import type { AliasTable, AnswerSubmitted, AnswerSubmittedV1, KcId, LearnerEvent, LearnerEventV1, OutcomeRevisedV1, SessionCompletedV1 } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { dueFacets, isOld, learnedWords, replay, upgrade, upgradeLog } from "../src/learner/index.ts";
 import { replayBefore } from "./fold-before-r2.ts";
@@ -46,10 +46,10 @@ const answered = (template: AnswerSubmittedV1["exercise"]["template"], item: str
   ...META,
   id: "00000000-0000-7000-8000-000000000001",
   type: "answer_submitted",
-  exercise: { id: `${template}:${item}`, template, item, kcs: kcs.map(([kc]) => kc), ...more },
+  exercise: { id: `${template}:${item}`, template, item, kcs: kcs.map(([kc]) => kc as KcId), ...more },
   attempt: 1,
   input: { method: "choice", latencyMs: 4000 },
-  outcome: { kind: "CORRECT", notes: [], kcs: kcs.map(([kc, status]) => ({ kc, status })) },
+  outcome: { kind: "CORRECT", notes: [], kcs: kcs.map(([kc, status]) => ({ kc: kc as KcId, status })) },
 });
 
 const creditsOf = (e: LearnerEvent): readonly (readonly [string, string, string])[] => (e.type === "answer_submitted" || e.type === "outcome_revised" ? e.outcome.parts.map((c) => [c.part, c.skill, c.status] as const) : []);
@@ -161,7 +161,7 @@ describe("an old event in the new shape", () => {
       mode: "placement",
       summary: { completed: true, exercises: 12, correctFirstTry: 9, retries: 0, skipped: 0 },
       placed: ["n.1"],
-      seeded: ["sense:casa", "form:pres-1s", "form:pres-3s", "form:fem-pl", "form:dat-ga", "construction:used-to", "grapheme:alif"],
+      seeded: ["sense:casa", "form:pres-1s", "form:pres-3s", "form:fem-pl", "form:dat-ga", "construction:used-to", "grapheme:alif"] as KcId[],
     };
     const e = upgrade(placed, ALIASES);
     if (e.type !== "session_completed") throw new Error("not a session");
@@ -176,7 +176,7 @@ describe("an old event in the new shape", () => {
       id: "00000000-0000-7000-8000-000000000003",
       type: "outcome_revised",
       answer: answer.id,
-      outcome: { kind: "CORRECT_PROVISIONAL", notes: ["judge"], kcs: [{ kc: "sense:hablar", status: "right" }, { kc: "form:pres-1s", status: "right" }] },
+      outcome: { kind: "CORRECT_PROVISIONAL", notes: ["judge"], kcs: [{ kc: "sense:hablar" as KcId, status: "right" }, { kc: "form:pres-1s" as KcId, status: "right" }] },
       by: "judge",
     };
     const [revised] = upgradeLog([revision, answer], () => ALIASES);
