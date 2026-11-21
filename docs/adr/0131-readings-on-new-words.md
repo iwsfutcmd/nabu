@@ -176,4 +176,6 @@ tile, ikkinči stood over the tile's top edge in Firefox.
     0.38, its rounding).
   - A tile given a tall word's lift grows to hold its reading in both.
 - **Tappable answers:** the feedback's right answer, and the nearest correct version, are tappable for a
-  word's gloss, as an answered card's prompt is, where they are in a language the course teaches.
+  word's gloss, as an answered card's prompt is, where they are in a language the course teaches. A right
+  sentence typed whole (translate-type, listen-type) comes again under its verdict for that, readings or not:
+  the field holds only letters. An answered word bank's tiles of that language open their gloss too.

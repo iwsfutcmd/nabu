@@ -197,7 +197,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (`DisplayChoice.readings`); <T> fades a word's ruby only inside `FadeReadings` (lessons, stories), by core
   `readingsShown`: never in a tapped word's gloss or the word list, nor on a word tapped (`pressed`) or marked (`highlight`).
   Pass `readingsShown` wherever `known` goes. A gloss always shows a reading, readings off or not (`glossRuby`); a word
-  glossed by its parts heads its panel with its own reading. The feedback's right answer is tappable too.
+  glossed by its parts heads its panel with its own reading. The feedback's right answer is tappable too (a right sentence
+  typed whole comes again to tap), and so are an answered word bank's tiles.
 - Writing side (ADR 0142): a profile's `soundAlike` sets (fa) make a word apart only by them the right sound with the
   wrong letter: never a typo, WRONG (`sound-alike`) or WRONG_WORD; `spelling-choice` (write-script) offers the word among
   its sound-alike spellings (yue: homophone characters, the Jyutping given). A homophone typing (唔洗 for 唔使) is wrong,

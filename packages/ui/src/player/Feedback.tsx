@@ -226,7 +226,17 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks, glossing 
     ruby !== false &&
     solution !== undefined &&
     showsRuby(solution, ruby);
-  const showSolution = outcome.solution !== undefined && (outcome.verdict !== "CORRECT" || withReadings);
+  // A right sentence typed whole, in the language being learned (translate-type, listen-type): the field
+  // holds only letters, so the sentence comes again for its words to be looked up (P1), in a lesson that
+  // glosses them. Cards that show their sentence already (a gap, a word in its sentence) need no second.
+  const solutionIsTarget = useIsTarget(solution?.orthography ?? "");
+  const toLookUp =
+    outcome.verdict === "CORRECT" &&
+    response?.tag === "text" &&
+    (ex.template === "translate-type.l1-l2" || ex.template === "listen-type") &&
+    glossing !== undefined &&
+    solutionIsTarget;
+  const showSolution = outcome.solution !== undefined && (outcome.verdict !== "CORRECT" || withReadings || toLookUp);
   const solutionLabel = right ? undefined : t.format("player.feedback.solution");
   const profile = course.profiles.get(ex.orthography);
   const joiner = profile?.unitKind === "grapheme" ? "" : " ";

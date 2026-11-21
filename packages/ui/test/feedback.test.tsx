@@ -1,7 +1,7 @@
 import type { AlignOp } from "@nabu/core";
 import { allSentences, baseIdOf, createGrader, gradeExercise, sampleExercise, seededRng, start, step, type Exercise, type Outcome, type PlayerEvent, type PlayerState, type Response, type TranslateType } from "@nabu/core/lesson";
 import { allStories, storyScript } from "@nabu/core/story";
-import { surfaceOf } from "@nabu/core/text";
+import { surfaceOf, wordIndexes } from "@nabu/core/text";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { CourseUiProvider } from "../src/context.tsx";
@@ -160,6 +160,23 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
     expect(block(english, "data-solution")).not.toContain("<button");
     // Without a lesson's glossing (the end of a session), no buttons.
     expect(block(feedbackOf(hungry, { tag: "text", text: "Tú hambre" }), "data-solution")).not.toContain("<button");
+  });
+
+  it("a right sentence typed whole comes again for its words to be looked up, in a lesson that glosses them (P1)", () => {
+    const glossing = { tapped: undefined, onTap: (): void => undefined };
+    const typed: Response = { tag: "text", text: surfaceOf(hungry.canonical) };
+    const right = gradeExercise(hungry, typed, grader);
+    expect(right.verdict).toBe("CORRECT");
+    const html = render(
+      <CourseUiProvider course={es}>
+        <Feedback ex={hungry} outcome={right} response={typed} course={es} ruby={false} marks="show" glossing={glossing} />
+      </CourseUiProvider>,
+    );
+    const solution = block(html, "data-solution");
+    expect(solution).not.toContain("Correct answer:");
+    expect(solution.match(/<button type="button"/gu)?.length).toBe(wordIndexes(hungry.canonical).length);
+    // Without a lesson's glossing (the end of a session), nothing to look up: the field says it all.
+    expect(feedbackOf(hungry, typed)).not.toContain("data-solution");
   });
 
   it("a missing accent is marked in the answer and in the solution", () => {
