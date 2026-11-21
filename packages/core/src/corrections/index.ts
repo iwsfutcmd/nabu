@@ -18,9 +18,9 @@
  * Tokens are addressed by their place among the form's words (its source tokens: not spaces or
  * punctuation), with the word's surface, so a reading never lands on another word.
  */
-import type { BundleKc, BundleStory, BundleUnit, CorrectionFields, CorrectedForm, LearnerEvent, OrthographyId, SchemeId, SentenceCorrection, SentenceReported, TaggedText, TokenReading } from "@nabu/schema";
+import type { BundleGrapheme, BundleLexeme, BundleStory, BundleUnit, CorrectionFields, CorrectedForm, LearnerEvent, OrthographyId, SchemeId, SentenceCorrection, SentenceReported, TaggedText, TokenReading } from "@nabu/schema";
 import type { EventMeta } from "../learner/events.ts";
-import type { CourseView } from "../lesson/course.ts";
+import { entryOf, type CourseView } from "../lesson/course.ts";
 import type { Exercise } from "../lesson/exercise.ts";
 import { err, ok, type Result } from "../result.ts";
 import { graphemeCount } from "../text/graphemes.ts";
@@ -63,24 +63,26 @@ const sentencesOf = (course: CourseView, unit: BundleUnit): readonly Correctable
 const linesOf = (course: CourseView, story: BundleStory): readonly Correctable[] =>
   story.steps.flatMap((s, step) => (s.line === undefined ? [] : [{ kind: "line" as const, item: story.id, step, forms: s.line.forms, translation: s.line.translations[course.supportKey] }]));
 
-/** A word: a KC's first form in each orthography (what word exercises show) and its gloss. */
-const wordOf = (course: CourseView, kc: BundleKc): Correctable | undefined => {
-  const forms = Object.fromEntries(Object.entries(kc.forms ?? {}).flatMap(([o, fs]) => (fs[0] === undefined ? [] : [[o, fs[0]]])));
-  return Object.keys(forms).length === 0 ? undefined : { kind: "word", item: kc.id, forms, translation: kc.gloss?.[course.supportKey] };
+/** A word: a lexeme's (or a letter's) first spelling in each orthography (what word exercises show) and its gloss. */
+const wordOf = (course: CourseView, entry: BundleLexeme | BundleGrapheme): Correctable | undefined => {
+  const forms = Object.fromEntries(Object.entries(entry.forms ?? {}).flatMap(([o, fs]) => (fs[0] === undefined ? [] : [[o, fs[0]]])));
+  return Object.keys(forms).length === 0 ? undefined : { kind: "word", item: entry.id, forms, translation: entry.gloss?.[course.supportKey] };
 };
 
 /** Everything a learner can correct, unit by unit: the sentences, then each story's lines. */
 export const correctablesByUnit = (course: CourseView): readonly UnitCorrectables[] =>
   course.units.map((unit) => ({ unit, sentences: sentencesOf(course, unit), stories: (unit.stories ?? []).map((story) => ({ story, lines: linesOf(course, story) })) }));
 
-/** One sentence (by id) or story line (story id and step), if the course has it and it can be corrected. */
+/** One sentence or word (by id) or story line (story id and step), if the course has it and it can be corrected. */
 export const correctable = (course: CourseView, item: string, step?: number): Correctable | undefined => {
+  if (step === undefined && item.includes(":")) {
+    const entry = entryOf(course, item);
+    if (entry !== undefined && entry.id === item) return wordOf(course, entry);
+  }
   for (const unit of course.units) {
     if (step === undefined) {
       const found = sentencesOf(course, unit).find((c) => c.item === item);
       if (found !== undefined) return found;
-      const kc = unit.kcs.find((k) => k.id === item);
-      if (kc !== undefined) return wordOf(course, kc);
     } else {
       const story = unit.stories?.find((s) => s.id === item);
       if (story !== undefined) return linesOf(course, story).find((c) => c.step === step);
@@ -93,8 +95,8 @@ export const correctable = (course: CourseView, item: string, step?: number): Co
  * What a learner can correct from an exercise: the sentence or word it was built from; for
  * match-pairs, every pair's word.
  */
-export const correctablesOf = (course: CourseView, ex: Pick<Exercise, "template" | "item" | "kcs">): readonly Correctable[] =>
-  (ex.template === "match-pairs" ? ex.kcs : [ex.item]).flatMap((item) => correctable(course, item) ?? []);
+export const correctablesOf = (course: CourseView, ex: Pick<Exercise, "template" | "item" | "parts">): readonly Correctable[] =>
+  (ex.template === "match-pairs" ? ex.parts : [ex.item]).flatMap((item) => correctable(course, item) ?? []);
 
 /** Each word's pinned readings, in the order the form's words come. */
 const readingsOf = (text: TaggedText): readonly TokenReading[] =>
@@ -194,7 +196,7 @@ export const sentenceReportedOf = (
 ): SentenceReported => ({
   id: meta.id,
   type: "sentence_reported",
-  schema: 1,
+  schema: 2,
   device: meta.device,
   ...(meta.user === undefined ? {} : { user: meta.user }),
   course: course.id,

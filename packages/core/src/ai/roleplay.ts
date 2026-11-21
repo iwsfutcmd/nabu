@@ -4,7 +4,7 @@
  * new ones) and every character belongs to the orthography; otherwise it is generated again.
  */
 import type { CourseView } from "../lesson/course.ts";
-import { allKcs, profileOf } from "../lesson/course.ts";
+import { lexemesInOrder, profileOf } from "../lesson/course.ts";
 import type { CompiledProfile } from "../profile/compile.ts";
 import { retrievability, type LearnerState } from "../learner/state.ts";
 import { glossUnits } from "../match/gloss.ts";
@@ -16,11 +16,11 @@ import { surfaceOf } from "../text/tagged-text.ts";
  */
 export const ROLEPLAY_HISTORY = 16;
 
-/** KCs whose recognition the learner would likely recall now (R ≥ θ), with their forms in the orthography. */
+/** Lexemes whose recognition the learner would likely recall now (R ≥ θ), with their spellings in the orthography. */
 export const knownForms = (course: CourseView, state: LearnerState, now: string, theta = 0.7): readonly string[] =>
-  allKcs(course)
-    .filter((kc) => retrievability(state, kc.id, "recognize", course.orthography, now) >= theta)
-    .flatMap((kc) => (kc.forms?.[course.orthography] ?? []).map(surfaceOf));
+  lexemesInOrder(course)
+    .filter((lexeme) => retrievability(state, lexeme.id, "recognize", course.orthography, now) >= theta)
+    .flatMap((lexeme) => (lexeme.forms?.[course.orthography] ?? []).map(surfaceOf));
 
 export interface TurnCheck {
   /** Units of the turn not in the known vocabulary (folded, as glossing matches). */

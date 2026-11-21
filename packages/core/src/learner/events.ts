@@ -4,7 +4,7 @@
  * the device, the measured latency. Credit is assigned here (§8.5), once, at
  * answer time; projections fold the result.
  */
-import type { AnswerSubmitted, KcId, LearnerEvent, OrthographyId, Prediction, ProgressReset } from "@nabu/schema";
+import type { AnswerSubmitted, ExerciseRef, LearnerEvent, OrthographyId, PartId, Prediction, ProgressReset } from "@nabu/schema";
 import { lessonNodes } from "../lesson/nodes.ts";
 import type { CourseView } from "../lesson/course.ts";
 import type { Exercise } from "../lesson/exercise.ts";
@@ -32,8 +32,8 @@ export interface SessionMeta {
 }
 
 
-/** The KCs the placed nodes introduce (ADR 0111), once each, in path order. */
-export const placedKcs = (course: CourseView, placed: readonly string[]): KcId[] => {
+/** What the placed nodes introduce (ADR 0111): lexemes, feature values, rules and letters, once each, in path order. */
+export const placedParts = (course: CourseView, placed: readonly string[]): PartId[] => {
   const nodes = new Set(placed);
   return [...new Set(lessonNodes(course).flatMap((n) => (nodes.has(n.node.id) ? n.node.introduces : [])))];
 };
@@ -45,7 +45,7 @@ export const placedKcs = (course: CourseView, placed: readonly string[]): KcId[]
 export const progressResetOf = (course: CourseView, meta: EventMeta): ProgressReset => ({
   id: meta.id,
   type: "progress_reset",
-  schema: 1,
+  schema: 2,
   device: meta.device,
   ...(meta.user === undefined ? {} : { user: meta.user }),
   course: course.id,
@@ -70,13 +70,13 @@ const METHOD: Readonly<Record<string, AnswerSubmitted["input"]["method"]>> = { c
  * What was presented; a fill-in says what it asked (ADR 0132), so its mistake is asked again as the
  * same question; a reading card its tradition, where it names one (ADR 0138).
  */
-export const exerciseRefOf = (ex: Exercise) => {
+export const exerciseRefOf = (ex: Exercise): ExerciseRef => {
   const reading = readingOf(ex);
   return {
     id: ex.id,
     template: ex.template,
     item: ex.item,
-    kcs: [...ex.kcs],
+    parts: [...ex.parts],
     ...((ex.template === "gap-fill" || ex.template === "story-complete") && ex.asks !== undefined ? { asks: ex.asks } : {}),
     ...(reading === undefined ? {} : { reading }),
   };
@@ -96,7 +96,7 @@ export const learnerEventOf = (
 ): LearnerEvent | undefined => {
   const base = {
     id: meta.id,
-    schema: 1 as const,
+    schema: 2 as const,
     device: meta.device,
     ...(meta.user === undefined ? {} : { user: meta.user }),
     course: course.id,
@@ -129,7 +129,8 @@ export const learnerEventOf = (
           // A word looked up on the card before answering (D16): the fold rates the answer Hard at best.
           ...(e.hinted === true ? { hinted: true as const } : {}),
         },
-        outcome: { kind: e.graded.verdict, notes: [...e.graded.notes], kcs: [...creditOf(e.ex, e.graded, course.profiles)] },
+        // Miss labels come with stated correspondences (ADR 0148): none until a profile states them.
+        outcome: { kind: e.graded.verdict, notes: [...e.graded.notes], labels: [], parts: [...creditOf(e.ex, e.graded, course.profiles)] },
         ...(extra.prediction === undefined ? {} : { prediction: extra.prediction }),
       };
     }
@@ -145,8 +146,8 @@ export const learnerEventOf = (
         mode: session.mode,
         ...node,
         summary: { ...e.summary },
-        // A placement test's nodes, and the KCs they introduce for the fold to seed (ADR 0111).
-        ...(extra.placed === undefined ? {} : { placed: [...extra.placed], seeded: placedKcs(course, extra.placed) }),
+        // A placement test's nodes, and what they introduce for the fold to seed (ADR 0111).
+        ...(extra.placed === undefined ? {} : { placed: [...extra.placed], seeded: placedParts(course, extra.placed) }),
       };
   }
 };

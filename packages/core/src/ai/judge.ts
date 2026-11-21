@@ -23,11 +23,12 @@ export const GATE_MIN_ADVERSARIAL = 20;
 export const judgeable = (e: AnswerSubmitted): boolean =>
   JUDGED_TEMPLATES.has(e.exercise.template) && e.outcome.kind === "WRONG" && (e.input.raw ?? "").trim() !== "";
 
-/** The outcome a judge accept revises an answer to (§8.3): provisional, every wrong KC now right. */
+/** The outcome a judge accept revises an answer to (§8.3): provisional, every wrong part now right. */
 export const provisionalOutcome = (e: AnswerSubmitted): AnswerSubmitted["outcome"] => ({
   kind: "CORRECT_PROVISIONAL",
   notes: [...e.outcome.notes.filter((n) => n !== "judge"), "judge"],
-  kcs: e.outcome.kcs.map((c) => (c.status === "wrong" ? { ...c, status: "right" } : c)),
+  labels: [],
+  parts: e.outcome.parts.map((c) => (c.status === "wrong" ? { ...c, status: "right" } : c)),
 });
 
 /** Whether a verdict accepts: "accept" with confidence at or above θ. */

@@ -11,7 +11,7 @@
  *
  * The shell does the I/O (fetching, checking hashes, storing) and passes in which paths it has.
  */
-import type { BundleAudioItem, BundleFile, BundleManifest, BundleUnit } from "@nabu/schema";
+import type { BundleAudioItem, BundleFile, BundleLexeme, BundleManifest } from "@nabu/schema";
 import { coreFiles, type CourseView } from "../lesson/course.ts";
 
 export { coreFiles };
@@ -118,19 +118,13 @@ export const restrictMedia = (course: CourseView, has: (path: string) => boolean
     if (kept !== item) audioChanged = true;
     if (kept !== undefined) audio[id] = kept;
   }
-  let unitsChanged = false;
-  const units = course.units.map((unit): BundleUnit => {
-    if (!unit.kcs.some((k) => k.image !== undefined && !has(k.image))) return unit;
-    unitsChanged = true;
-    return {
-      ...unit,
-      kcs: unit.kcs.map((k) => {
-        if (k.image === undefined || has(k.image)) return k;
-        const { image: _image, ...rest } = k;
-        return rest;
-      }),
-    };
+  // Pictures are the lexemes': a lexicon without those the device lacks, or the course's own.
+  const lacking = course.lexicon.lexemes.some((l) => l.image !== undefined && !has(l.image));
+  if (!audioChanged && !lacking) return course;
+  const lexemes = course.lexicon.lexemes.map((l): BundleLexeme => {
+    if (l.image === undefined || has(l.image)) return l;
+    const { image: _image, ...rest } = l;
+    return rest;
   });
-  if (!audioChanged && !unitsChanged) return course;
-  return { ...course, audio: audioChanged ? audio : course.audio, units: unitsChanged ? units : course.units };
+  return { ...course, audio: audioChanged ? audio : course.audio, lexicon: lacking ? { ...course.lexicon, lexemes } : course.lexicon };
 };

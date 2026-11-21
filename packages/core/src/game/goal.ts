@@ -23,7 +23,7 @@ export interface GoalMeta {
 export const goalSetOf = (days: number | null, meta: GoalMeta): GoalSet => ({
   id: meta.id,
   type: "goal_set",
-  schema: 1,
+  schema: 2,
   device: meta.device,
   clientTime: meta.clientTime,
   localDate: meta.localDate,

@@ -15,7 +15,7 @@
 import type { AnswerReported, LearnerEvent, SentenceReported } from "@nabu/schema";
 import { literalAccept } from "../accept/notation.ts";
 import { correctionStatus, latestCorrections, later, type CorrectionStatus } from "../corrections/index.ts";
-import { allKcs, allSentences, type CourseView, type Grader } from "../lesson/course.ts";
+import { allSentences, entryOf, type CourseView, type Grader } from "../lesson/course.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 
 /**
@@ -31,10 +31,10 @@ export type ClaimStatus = "accepted" | "rejected" | "pending" | "gone" | "unchec
 /** Templates whose claimed text is the whole answer an accept set grades. */
 const CHECKED: ReadonlySet<string> = new Set(["translate-type.l1-l2", "translate-tap.l1-l2", "translate-tap.l2-l1", "listen-type", "listen-tap"]);
 
-/** Whether the course still has the item: a sentence, a word (KC), or a story (its questions' items are "story/step"). */
+/** Whether the course still has the item: a sentence, a word (a lexeme or a letter), or a story (its questions' items are "story/step"). */
 const present = (course: CourseView, item: string): boolean =>
   allSentences(course).some((s) => s.id === item) ||
-  allKcs(course).some((k) => k.id === item) ||
+  entryOf(course, item)?.id === item ||
   course.units.some((u) => (u.stories ?? []).some((s) => item === s.id || item.startsWith(`${s.id}/`)));
 
 /** The accept set the claimed answer is graded against, as the course has it now, and its orthography. */

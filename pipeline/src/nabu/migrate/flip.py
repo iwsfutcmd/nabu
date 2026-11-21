@@ -23,6 +23,8 @@ import tempfile
 from dataclasses import dataclass, field
 from pathlib import Path
 
+import yaml
+
 from nabu import migrate, yamlio
 from nabu.formkey import form_key
 from nabu.migrate import report
@@ -194,7 +196,27 @@ def renamed_index(text: str, names: dict[str, str], where: str, out: Flipped) ->
             out.clips["of a form"] = out.clips.get("of a form", 0) + 1
         return f"{match.group(1)}{_quoted(new)}"
 
-    return _ITEM.sub(rename, text)
+    return _in_order(_ITEM.sub(rename, text))
+
+
+def _in_order(text: str) -> str:
+    """The index's clips in the order its own writer keeps them (by item, then speed), each
+    entry's text as it was: a renamed item has another place, and the next `nabu audio` write
+    would otherwise move every such entry."""
+    head, found, body = text.partition("\nclips:\n")
+    if not found:
+        return text
+    entries = re.split(r"(?m)^(?=- item: )", body)
+    lead, clips = entries[0], entries[1:]
+
+    def key(entry: str) -> tuple[str, str]:
+        # An entry begins with its item and its speed, as the writer lists a clip's fields.
+        clip = obj(seq(yaml.safe_load("\n".join(entry.split("\n", 2)[:2])))[0])
+        return str(clip["item"]), str(clip["speed"])
+
+    if clips and not clips[-1].endswith("\n"):
+        clips[-1] += "\n"
+    return head + found + lead + "".join(sorted(clips, key=key))
 
 
 def _quoted(item: str) -> str:

@@ -1,11 +1,13 @@
 /**
- * The words a learner has met in a course (the word list): every word KC (kinds sense and form)
- * with a written form in the orthography being learned, practised at least once. A word is
+ * The words a learner has met in a course (the word list): every lexeme the course cites in the
+ * orthography being learned (it has a spelling there), practised at least once. A word is
  * practised when any of its cards has a review: the language's facets (shared by every
  * orthography) or the script facets of this orthography (§6.3).
  *
  * A practised word is known once it has shown every skill the course asks of it (ADR 0100), and
- * is being learned until then.
+ * is being learned until then. A feature value is asked skills of its own (ADR 0146: read off a
+ * form, chosen), which sessions aim at as they do at a word's; it is no word, and the list leaves
+ * it out until a learner is shown a rule's entry.
  *
  * A learner may turn a facet off for good: listening, in Preferences on their device (D41). No
  * session practises it then, so it is left out of the skills a word is asked for (`facetsOff`
@@ -15,33 +17,39 @@
  *
  * Pure: the state is the replayed log, `now` the caller's clock.
  */
-import type { BundleKc, SchemeId, TaggedText } from "@nabu/schema";
+import type { SchemeId, TaggedText } from "@nabu/schema";
 import { courseExclusions } from "../lesson/exclusions.ts";
-import type { CourseView } from "../lesson/course.ts";
-import type { Facet, TemplateId } from "../lesson/exercise.ts";
+import { lexemesInOrder, unitIndexOf, type CourseView } from "../lesson/course.ts";
+import { kindOf } from "../lesson/lexemes.ts";
+import type { Facet, Skill, TemplateId } from "../lesson/exercise.ts";
 import { textMatcher } from "../lesson/search.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
 import { chosenTraditionKey } from "../lesson/traditions.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 import { cardKey, DESIRED_RETENTION, parseCardKey, retrievability, type LearnerState } from "./state.ts";
 
-/** A skill a word is known by (ADR 0100): recognizing it, producing it, hearing it. */
-export type Skill = "recognize" | "produce" | "listen";
+/**
+ * A skill a part is known by (ADR 0100, 0146). A lexeme: recognizing it, producing it, hearing it.
+ * A feature value: reading it off a form, choosing it.
+ */
+export type AskedSkill = "recognize" | "produce" | "listen" | "read-off" | "choose";
 
-const SKILLS: readonly Skill[] = ["recognize", "produce", "listen"];
+/** The skills a learner can turn off for good (D41): those that are facets of a lexeme. */
+const SKILLS: readonly AskedSkill[] = ["recognize", "produce", "listen"];
 
 /** No facet turned off: every function's default, which leaves everything as the course has it. */
 export const NONE_OFF: ReadonlySet<Facet> = new Set<Facet>();
 
 export interface WordSkill {
-  readonly skill: Skill;
+  readonly skill: AskedSkill;
   /** Shown: a first try right on a later day than the word was met, and not missed since. */
   readonly shown: boolean;
 }
 
 export interface LearnedWord {
-  readonly kc: string;
-  /** The unit that teaches it (the first, if several list it). */
+  /** Its lexeme's id. */
+  readonly lexeme: string;
+  /** The unit that first teaches it. */
   readonly unit: string;
   /** Its lemma, as word cards show it, in the orthography being learned. */
   readonly form: TaggedText;
@@ -69,44 +77,46 @@ export interface LearnedWord {
   readonly skills: readonly WordSkill[];
 }
 
-const WORD_KINDS: ReadonlySet<BundleKc["kind"]> = new Set(["sense", "form"]);
-
 /**
- * The skills a course asks of each of its words (ADR 0100): recognizing it; producing it where a
- * sentence uses it (a word is produced by typing a sentence); and hearing it where the course plans
- * listening (its facets, ADR 0071; a good voice, ADR 0091) and the word can be heard, in its own clip
- * or in a sentence's. A skill the learner turned off for good is asked of no word (D41).
+ * The skills a course asks of each of its parts (ADR 0100, 0146). Of a lexeme: recognizing it;
+ * producing it where a sentence uses it (a word is produced by typing a sentence); and hearing it
+ * where the course plans listening (its facets, ADR 0071; a good voice, ADR 0091) and the word can
+ * be heard, in its own clip or in a sentence's. Of a feature value a sentence teaches: reading it
+ * off a form, and choosing it where a sentence that has it can be typed. Of anything else (a rule,
+ * a letter, something of a lexeme), none. A skill the learner turned off for good is asked of no
+ * word (D41).
  */
-const skillsOf = (course: CourseView, off: ReadonlySet<Skill>): ((kc: string) => readonly Skill[]) => {
+const skillsOf = (course: CourseView, off: ReadonlySet<AskedSkill>): ((part: string) => readonly AskedSkill[]) => {
   const excluded = courseExclusions(course);
-  const wordKcs = new Set(course.units.flatMap((u) => u.kcs.filter((k) => WORD_KINDS.has(k.kind)).map((k) => k.id as string)));
-  const plans = (skill: Skill): boolean => !off.has(skill) && (Object.keys(TEMPLATES) as TemplateId[]).some((t) => TEMPLATES[t].facet === skill && !excluded.has(t));
+  const lexemes = new Set(course.lexicon.lexemes.map((l) => l.id as string));
+  const plans = (skill: "recognize" | "produce" | "listen"): boolean => !off.has(skill) && (Object.keys(TEMPLATES) as TemplateId[]).some((t) => TEMPLATES[t].facet === skill && !excluded.has(t));
   const written = new Set<string>();
   const heard = new Set<string>(Object.keys(course.audio));
   for (const unit of course.units)
     for (const s of unit.sentences) {
       if (s.forms[course.orthography] === undefined) continue;
-      for (const kc of s.kcs) written.add(kc);
-      if (course.audio[s.id] !== undefined) for (const kc of s.kcs) heard.add(kc);
+      for (const part of s.parts) written.add(part);
+      if (course.audio[s.id] !== undefined) for (const part of s.parts) heard.add(part);
     }
   const recognize = plans("recognize");
   const produce = plans("produce");
   const listen = plans("listen");
-  return (kc) =>
-    wordKcs.has(kc)
-      ? [...(recognize ? (["recognize"] as const) : []), ...(produce && written.has(kc) ? (["produce"] as const) : []), ...(listen && heard.has(kc) ? (["listen"] as const) : [])]
-      : [];
+  return (part) => {
+    if (lexemes.has(part)) return [...(recognize ? (["recognize"] as const) : []), ...(produce && written.has(part) ? (["produce"] as const) : []), ...(listen && heard.has(part) ? (["listen"] as const) : [])];
+    if (kindOf(part) === "feature" && !part.includes("|") && written.has(part)) return [...(recognize ? (["read-off"] as const) : []), ...(produce ? (["choose"] as const) : [])];
+    return [];
+  };
 };
 
 /** Per course, per set of skills turned off (as their names, in order: "" for none). */
-const asked = new WeakMap<CourseView, Map<string, (kc: string) => readonly Skill[]>>();
+const asked = new WeakMap<CourseView, Map<string, (part: string) => readonly AskedSkill[]>>();
 
 /**
  * The same, memoised per course and per skills turned off: planning asks it on every plan. Only the
  * skills among `facetsOff` count here (a facet such as speak is no skill a word is known by).
  */
-export const skillsAsked = (course: CourseView, facetsOff: ReadonlySet<Facet> = NONE_OFF): ((kc: string) => readonly Skill[]) => {
-  const off = SKILLS.filter((s) => facetsOff.has(s));
+export const skillsAsked = (course: CourseView, facetsOff: ReadonlySet<Facet> = NONE_OFF): ((part: string) => readonly AskedSkill[]) => {
+  const off = SKILLS.filter((s) => (facetsOff as ReadonlySet<string>).has(s));
   const key = off.join(" ");
   let byOff = asked.get(course);
   if (byOff === undefined) {
@@ -121,12 +131,12 @@ export const skillsAsked = (course: CourseView, facetsOff: ReadonlySet<Facet> = 
 };
 
 interface Practised {
-  readonly facet: Facet;
+  readonly skill: Skill;
   readonly reps: number;
 }
 
 /**
- * Every practised word of the course, in course order (unit, then the unit's own order); due where
+ * Every practised word of the course, in the order the course teaches them; due where
  * a facet's recall at `now` is below `desired` (the learner's target retention). `facetsOff`: the
  * facets the learner turned off for good (D41), asked of no word and never due.
  */
@@ -139,40 +149,37 @@ export const learnedWords = (
 ): readonly LearnedWord[] => {
   const orthography = course.orthography;
   const asked = skillsAsked(course, facetsOff);
-  // One pass over the cards, by KC: the language's facets, and the script facets of this orthography.
+  // One pass over the cards, by part: the language's skills, and the script facets of this orthography.
   const practised = new Map<string, Practised[]>();
   for (const [key, card] of Object.entries(state.cards)) {
     const ref = parseCardKey(key);
     if (card.reps === 0 || (ref.orthography !== undefined && ref.orthography !== orthography)) continue;
-    practised.set(ref.kc, [...(practised.get(ref.kc) ?? []), { facet: ref.facet, reps: card.reps }]);
+    practised.set(ref.part, [...(practised.get(ref.part) ?? []), { skill: ref.skill, reps: card.reps }]);
   }
-  const seen = new Set<string>();
+  const units = unitIndexOf(course);
   const out: LearnedWord[] = [];
-  for (const unit of course.units) {
-    for (const kc of unit.kcs) {
-      const facets = practised.get(kc.id);
-      const form = kc.forms?.[orthography]?.[0];
-      if (seen.has(kc.id) || !WORD_KINDS.has(kc.kind) || facets === undefined || form === undefined) continue;
-      seen.add(kc.id);
-      const recallOf = (of: readonly Practised[]): readonly number[] => of.map((f) => retrievability(state, kc.id, f.facet, orthography, now));
-      // What counts is the facets not turned off (D41). A word practised in nothing else is still
-      // listed, with the strength it has, and is never due.
-      const counted = recallOf(facets.filter((f) => !facetsOff.has(f.facet)));
-      const recall = counted.length > 0 ? counted : recallOf(facets);
-      const strength = recall.reduce((sum, r) => sum + r, 0) / recall.length;
-      const skills = asked(kc.id).map((skill) => ({ skill, shown: state.shown[cardKey(kc.id, skill, orthography)] !== undefined }));
-      out.push({
-        kc: kc.id,
-        unit: unit.id,
-        form,
-        gloss: kc.gloss?.[course.supportKey],
-        strength,
-        due: counted.some((r) => r < desired),
-        reviews: facets.reduce((sum, f) => sum + f.reps, 0),
-        known: skills.length > 0 && skills.every((s) => s.shown),
-        skills,
-      });
-    }
+  for (const lexeme of lexemesInOrder(course)) {
+    const skillsPractised = practised.get(lexeme.id);
+    const form = lexeme.forms?.[orthography]?.[0];
+    if (skillsPractised === undefined || form === undefined) continue;
+    const recallOf = (of: readonly Practised[]): readonly number[] => of.map((f) => retrievability(state, lexeme.id, f.skill, orthography, now));
+    // What counts is the facets not turned off (D41). A word practised in nothing else is still
+    // listed, with the strength it has, and is never due.
+    const counted = recallOf(skillsPractised.filter((f) => !(facetsOff as ReadonlySet<string>).has(f.skill)));
+    const recall = counted.length > 0 ? counted : recallOf(skillsPractised);
+    const strength = recall.reduce((sum, r) => sum + r, 0) / recall.length;
+    const skills = asked(lexeme.id).map((skill) => ({ skill, shown: state.shown[cardKey(lexeme.id, skill, orthography)] !== undefined }));
+    out.push({
+      lexeme: lexeme.id,
+      unit: course.units[units.get(lexeme.id) ?? -1]?.id ?? "",
+      form,
+      gloss: lexeme.gloss?.[course.supportKey],
+      strength,
+      due: counted.some((r) => r < desired),
+      reviews: skillsPractised.reduce((sum, f) => sum + f.reps, 0),
+      known: skills.length > 0 && skills.every((s) => s.shown),
+      skills,
+    });
   }
   return out;
 };
@@ -192,8 +199,8 @@ export type WordOrder = "course" | "alphabetical" | "weakest";
  */
 export const orderWords = (words: readonly LearnedWord[], order: WordOrder): readonly LearnedWord[] => {
   if (order === "course") return words;
-  const position = new Map(words.map((w, i) => [w.kc, i]));
-  const tie = (a: LearnedWord, b: LearnedWord): number => (position.get(a.kc) ?? 0) - (position.get(b.kc) ?? 0);
+  const position = new Map(words.map((w, i) => [w.lexeme, i]));
+  const tie = (a: LearnedWord, b: LearnedWord): number => (position.get(a.lexeme) ?? 0) - (position.get(b.lexeme) ?? 0);
   if (order === "weakest") return [...words].sort((a, b) => (a.due === b.due ? a.strength - b.strength || tie(a, b) : a.due ? -1 : 1));
   const lang = words[0]?.form.lang;
   const collator = new Intl.Collator(lang, { sensitivity: "base" });
@@ -223,7 +230,7 @@ export const readingsShown = (course: CourseView, state: LearnerState, reading?:
   const tradition = chosenTraditionKey(course, reading);
   for (const key of Object.keys(state.shown)) {
     const ref = parseCardKey(key);
-    if (ref.facet === "read-script" && ref.orthography === course.orthography && ref.reading === tradition) out.add(ref.kc);
+    if (ref.skill === "read-script" && ref.orthography === course.orthography && ref.reading === tradition) out.add(ref.part);
   }
   return out;
 };

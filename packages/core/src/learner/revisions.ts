@@ -12,6 +12,7 @@
  * When an answer has several, the latest (device time, then id) wins.
  */
 import type { AnswerReported, AnswerSubmitted, LearnerEvent, OutcomeRevised } from "@nabu/schema";
+import { asksOf } from "../lesson/templates.ts";
 import type { Verdict } from "../match/grade.ts";
 
 /** The verdict a learner's claim gives their answer: right, or wrong. */
@@ -37,11 +38,15 @@ const later = (a: Revision, b: Revision): boolean => {
   return t !== 0 ? t > 0 : a.id > b.id;
 };
 
-/** The learner's claim as an outcome: every KC of the answer right, or every one wrong. */
+/**
+ * The learner's claim as an outcome: every part of the answer right, or every one wrong. A part
+ * the card could not show (`asksOf`: a lexeme's own gender) stays given: no answer says anything of it.
+ */
 const claimed = (claim: "accept" | "reject") => (answer: AnswerSubmitted): AnswerSubmitted["outcome"] => ({
   kind: CLAIMED[claim],
   notes: [...answer.outcome.notes, claim === "accept" ? "learner-accepted" : "learner-rejected"],
-  kcs: answer.outcome.kcs.map((k) => ({ ...k, status: claim === "accept" ? "right" : "wrong" })),
+  labels: [...answer.outcome.labels],
+  parts: answer.outcome.parts.map((k) => (asksOf(answer.exercise.template, k.part) ? { ...k, status: claim === "accept" ? "right" : "wrong" } : k)),
 });
 
 const revisionOf = (e: OutcomeRevised | AnswerReported): Revision => ({

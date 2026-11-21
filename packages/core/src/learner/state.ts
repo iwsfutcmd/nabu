@@ -1,14 +1,16 @@
 /**
  * Learner state as a projection of the event log (gameplan §1 decision 5):
- * FSRS cards per (KC, facet), the performance model, XP, path progress and
- * open mistakes. `replay` is a pure fold: the same events, in any order and
- * with any duplicates, give the same state.
+ * FSRS cards per part and skill (ADR 0146), the performance model, XP, path
+ * progress and open mistakes. `replay` is a pure fold: the same events, in any
+ * order and with any duplicates, give the same state. It reads one shape of
+ * event (schema 2): an older log is upgraded before it is folded (upgrade.ts).
  */
-import type { AnswerSubmitted, Asks, ExerciseSkipped, KcCredit, LearnerEvent, SessionCompleted } from "@nabu/schema";
+import type { AnswerSubmitted, ExerciseSkipped, LearnerEvent, PartCredit, Question, SessionCompleted, Skill } from "@nabu/schema";
 import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type Card, type FSRS, type Grade } from "ts-fsrs";
-import type { Facet, TemplateId } from "../lesson/exercise.ts";
-import { SPEAKING, TEMPLATES } from "../lesson/templates.ts";
-import { facetOf, ratingOf, type Pace, type Rating } from "./credit.ts";
+import type { SkillRef, TemplateId } from "../lesson/exercise.ts";
+import { kindOf } from "../lesson/lexemes.ts";
+import { asksOf, skillOf, SPEAKING, TEMPLATES } from "../lesson/templates.ts";
+import { ratingOf, type Pace, type Rating } from "./credit.ts";
 import { initialPerformance, learn, type Performance, type PerformanceDraft } from "./performance.ts";
 import { withRevisions } from "./revisions.ts";
 
@@ -32,39 +34,40 @@ export interface Mistake {
   readonly at: string;
   /**
    * The word the card asked about, where it asked about one word of its sentence (a blank, a word's
-   * marks or reading): the KCs its answer credited, sorted. A mistakes session asks that word again,
+   * marks or reading): the parts its answer credited, sorted. A mistakes session asks that word again,
    * and only an answer about it closes the mistake. Absent where the card asked the whole sentence.
    */
   readonly ask?: readonly string[];
   /**
-   * What a fill-in (gap-fill) asked of that word (ADR 0132): which word (`ask` is its sense) or which
-   * form (`ask` is its form KCs). It is asked again as the same question, and only an answer to that
-   * question closes it. Absent on other cards, and on a fill-in's mistake from before ADR 0132, whose
-   * `ask` is all of the word's KCs.
+   * What a fill-in (gap-fill) asked of that word (ADR 0132): which lexeme (`ask` is its base) or
+   * which form (`ask` is what its form credits). It is asked again as the same question, and only an
+   * answer to that question closes it. Absent on other cards, and on a fill-in's mistake from before
+   * ADR 0132, whose `ask` is everything the word carried.
    */
-  readonly asks?: Asks;
+  readonly asks?: Question;
 }
 
 /**
- * The word an answer was about (`Mistake.ask`): the KCs credited right or wrong, where the rest of the
- * sentence was given; undefined where nothing was given (the whole sentence was asked).
+ * The word an answer was about (`Mistake.ask`): the parts credited right or wrong, where the rest of
+ * the sentence was given; undefined where nothing the card could ask was given (the whole sentence
+ * was asked: a part it cannot show, such as a lexeme's own gender, is always given).
  */
-export const askOf = (credits: readonly KcCredit[]): readonly string[] | undefined =>
-  credits.some((c) => c.status === "given") ? [...new Set(credits.filter((c) => c.status !== "given").map((c) => String(c.kc)))].sort() : undefined;
+export const askOf = (credits: readonly PartCredit[]): readonly string[] | undefined =>
+  credits.some((c) => c.status === "given" && !c.part.includes("|")) ? [...new Set(credits.filter((c) => c.status !== "given").map((c) => String(c.part)))].sort() : undefined;
 
 /** Whether two mistakes ask the same thing: the same word, or both the whole sentence. */
 export const sameAsk = (a: readonly string[] | undefined, b: readonly string[] | undefined): boolean =>
-  a === undefined || b === undefined ? a === b : a.length === b.length && a.every((kc, i) => kc === b[i]);
+  a === undefined || b === undefined ? a === b : a.length === b.length && a.every((part, i) => part === b[i]);
 
 /**
  * Whether an answer (its `ask` and `asks`) is about what a mistake asked: the same word and, for a
  * fill-in, the same question (ADR 0132). A fill-in's mistake from before ADR 0132 asked the word and
  * its form at once: an answer to either question about that word closes it.
  */
-export const sameQuestion = (mistake: Pick<Mistake, "ask" | "asks">, ask: readonly string[] | undefined, asks: Asks | undefined): boolean => {
+export const sameQuestion = (mistake: Pick<Mistake, "ask" | "asks">, ask: readonly string[] | undefined, asks: Question | undefined): boolean => {
   if (mistake.asks === undefined && asks !== undefined) {
     const before = mistake.ask;
-    return before !== undefined && ask !== undefined && ask.length > 0 && ask.every((kc) => before.includes(kc));
+    return before !== undefined && ask !== undefined && ask.length > 0 && ask.every((part) => before.includes(part));
   }
   return mistake.asks === asks && sameAsk(mistake.ask, ask);
 };
@@ -76,19 +79,20 @@ export interface LearnerState {
   readonly completedNodes: readonly string[];
   readonly mistakes: readonly Mistake[];
   /**
-   * Recent first-try answer times per template, per unit of length (ms per (PACE_OVERHEAD + KCs)): the
+   * Recent first-try answer times per template, per unit of length (ms per (PACE_OVERHEAD + parts)): the
    * learner's usual, which an answer's pace is judged against (§9.2, ADR 0096).
    */
   readonly latencies: Readonly<Partial<Record<TemplateId, readonly number[]>>>;
-  /** Facets already rated in the current session: each at most once per session (§9.2). */
+  /** Cards already rated in the current session: each at most once per session (§9.2). */
   readonly rated: { readonly session: string; readonly keys: readonly string[] };
-  /** Known words (ADR 0100): the local date each KC was first met (its first answer). */
+  /** Known words (ADR 0100): the local date each part was first met (its first answer). */
   readonly met: Readonly<Record<string, string>>;
   /**
-   * Known words (ADR 0100): the local date each skill (a recognize, produce or listen card) was
-   * last shown: a first try right, not self-rated, on a later day than the KC was met and than the
-   * skill was last missed. A miss takes it away. A word's reading (read-script, a reading card) is
-   * witnessed the same way (ADR 0131): its ruby fades once shown, though no word needs it to be known.
+   * Known words (ADR 0100): the local date each skill (a recognize, produce or listen card of a
+   * lexeme; a feature value read off or chosen) was last shown: a first try right, not self-rated,
+   * on a later day than the part was met and than the skill was last missed. A miss takes it away. A
+   * word's reading (read-script, a reading card) is witnessed the same way (ADR 0131): its ruby
+   * fades once shown, though no word needs it to be known.
    */
   readonly shown: Readonly<Record<string, string>>;
   /** The local date each skill was last missed (a first try wrong, or the answer revealed). */
@@ -112,8 +116,8 @@ export const DESIRED_RETENTION = 0.9;
 export const XP = { answer: 1, session: 10, perfect: 5, perfectFrom: 5 } as const;
 const LATENCY_WINDOW = 25;
 /**
- * Pace (ADR 0096). An answer's time is compared per unit of length, its KCs plus a fixed part for
- * reading the card and deciding (PACE_OVERHEAD KCs' worth), against the learner's usual for the
+ * Pace (ADR 0096). An answer's time is compared per unit of length, its parts plus a fixed part for
+ * reading the card and deciding (PACE_OVERHEAD parts' worth), against the learner's usual for the
  * template: more than PACE_SLOW times it is slow (Hard), at most PACE_FAST times it is fast (Easy
  * on a typed card already sure). Being slower than one's own median, as before, made half of all
  * right answers Hard.
@@ -141,30 +145,41 @@ export const emptyLearnerState = (): LearnerState => ({
 });
 
 /**
- * Facets keyed to the language are shared by every orthography of a course;
+ * Skills keyed to the language are shared by every orthography of a course;
  * read-script and write-script are tracked per orthography (§6.3), so switching
  * scripts keeps what was learned about the language.
  */
-export const SCRIPT_FACETS: ReadonlySet<Facet> = new Set<Facet>(["read-script", "write-script"]);
+export const SCRIPT_FACETS: ReadonlySet<Skill> = new Set<Skill>(["read-script", "write-script"]);
+
+/** Every skill a card is kept by (ADR 0146): the six facets, and a feature value chosen or read off. */
+export const SKILLS: ReadonlySet<string> = new Set<Skill>(["recognize", "produce", "listen", "speak", "read-script", "write-script", "choose", "read-off"]);
 
 /**
- * The card of a (KC, facet): "kc|facet", or "kc|facet|orthography" for a script facet; a reading
- * in one of several traditions (ADR 0138) is "kc|read-script|orthography|tradition".
+ * The card of a part and a skill: "part|skill", or "part|skill|orthography" for a script facet; a
+ * reading in one of several traditions (ADR 0138) is "part|read-script|orthography|tradition".
  */
-export const cardKey = (kc: string, facet: Facet, orthography: string, reading?: string): string =>
-  !SCRIPT_FACETS.has(facet) ? `${kc}|${facet}` : facet === "read-script" && reading !== undefined ? `${kc}|${facet}|${orthography}|${reading}` : `${kc}|${facet}|${orthography}`;
+export const cardKey = (part: string, skill: Skill, orthography: string, reading?: string): string =>
+  !SCRIPT_FACETS.has(skill) ? `${part}|${skill}` : skill === "read-script" && reading !== undefined ? `${part}|${skill}|${orthography}|${reading}` : `${part}|${skill}|${orthography}`;
 
 export interface CardRef {
-  readonly kc: string;
-  readonly facet: Facet;
+  readonly part: string;
+  readonly skill: Skill;
   readonly orthography?: string | undefined;
   /** The reading tradition of a read-script card, where its orthography has several (ADR 0138). */
   readonly reading?: string | undefined;
 }
 
+/**
+ * A card key's part and skill. A part may hold a bar itself (lexeme:mano|Gender): the skill is the
+ * first segment after the part's first that names one.
+ */
 export const parseCardKey = (key: string): CardRef => {
-  const [kc = "", facet = "", orthography, reading] = key.split("|");
-  return { kc, facet: facet as Facet, orthography, ...(reading === undefined ? {} : { reading }) };
+  const segments = key.split("|");
+  const found = segments.findIndex((segment, i) => i > 0 && SKILLS.has(segment));
+  const at = found < 0 ? 1 : found;
+  const orthography = segments[at + 1];
+  const reading = segments[at + 2];
+  return { part: segments.slice(0, at).join("|"), skill: (segments[at] ?? "") as Skill, orthography, ...(reading === undefined ? {} : { reading }) };
 };
 
 const scheduler: FSRS = fsrs(generatorParameters({ request_retention: DESIRED_RETENTION, enable_fuzz: false }));
@@ -187,14 +202,15 @@ const fromCard = (c: Card): StoredCard => ({
   last_review: c.last_review?.toISOString(),
 });
 
-/** FSRS retrievability of a (KC, facet) in an orthography (and reading tradition, ADR 0138) at `now`: 0 when never practised. */
-export const retrievability = (state: LearnerState, kc: string, facet: Facet, orthography: string, now: string, reading?: string): number => {
-  const card = state.cards[cardKey(kc, facet, orthography, reading)];
+/** FSRS retrievability of a part by a skill in an orthography (and reading tradition, ADR 0138) at `now`: 0 when never practised. */
+export const retrievability = (state: LearnerState, part: string, skill: Skill, orthography: string, now: string, reading?: string): number => {
+  const card = state.cards[cardKey(part, skill, orthography, reading)];
   return card === undefined ? 0 : scheduler.get_retrievability(toCard(card), new Date(now), false);
 };
 
-export const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, orthography: string, now: string, reading?: string): number =>
-  kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, orthography, now, reading), 0) / kcs.length;
+/** The mean of it over parts, each by its own skill. */
+export const meanRetrievability = (state: LearnerState, refs: readonly SkillRef[], orthography: string, now: string, reading?: string): number =>
+  refs.length === 0 ? 0 : refs.reduce((sum, ref) => sum + retrievability(state, ref.part, ref.skill, orthography, now, reading), 0) / refs.length;
 
 const GRADES: Readonly<Record<Rating, Grade>> = { again: FsrsRating.Again, hard: FsrsRating.Hard, good: FsrsRating.Good, easy: FsrsRating.Easy };
 
@@ -229,10 +245,10 @@ const addXp = (d: Draft, date: string, amount: number): void => {
   d.xp.byDate[date] = (d.xp.byDate[date] ?? 0) + amount;
 };
 
-const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, rating: Rating): void => {
+const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, part: string, skill: Skill, rating: Rating): void => {
   const { session, clientTime: at } = e;
   if (d.rated.session !== session) d.rated = { session, keys: [] };
-  const key = cardKey(kc, facet, e.orthography, e.exercise.reading);
+  const key = cardKey(part, skill, e.orthography, e.exercise.reading);
   if (d.rated.keys.includes(key)) return; // within-session repetitions are learning steps
   d.rated.keys.push(key);
   const now = new Date(at);
@@ -243,28 +259,31 @@ const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet:
   d.cards[key] = fromCard(scheduler.next(card, now, GRADES[grade]).card);
 };
 
-/** The skills a word is known by (ADR 0100): recognizing it, producing it, hearing it. */
-export const SKILL_FACETS: ReadonlySet<Facet> = new Set<Facet>(["recognize", "produce", "listen"]);
+/**
+ * The skills a part is known by (ADR 0100, 0146): a lexeme by recognizing it, producing it and
+ * hearing it; a feature value by reading it off a form and choosing it.
+ */
+export const SKILL_FACETS: ReadonlySet<Skill> = new Set<Skill>(["recognize", "produce", "listen", "read-off", "choose"]);
 
 /**
- * The skills a first try shows or misses: those a word is known by, and reading it (ADR 0131: a
+ * The skills a first try shows or misses: those a part is known by, and reading a word (ADR 0131: a
  * reading card in context or a word's reading card), which says when its reading's ruby may fade.
  */
-export const WITNESSED_FACETS: ReadonlySet<Facet> = new Set<Facet>([...SKILL_FACETS, "read-script"]);
+export const WITNESSED_FACETS: ReadonlySet<Skill> = new Set<Skill>([...SKILL_FACETS, "read-script"]);
 
 /**
- * A skill shown or missed (ADR 0100). It is shown only on a later day than the word was met and
+ * A skill shown or missed (ADR 0100). It is shown only on a later day than the part was met and
  * than the skill was last missed: after a night, and again after a night once it slips (D2, D3).
  */
-const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, right: boolean): void => {
-  if (!WITNESSED_FACETS.has(facet)) return;
-  const key = cardKey(kc, facet, e.orthography, e.exercise.reading);
+const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, part: string, skill: Skill, right: boolean): void => {
+  if (!WITNESSED_FACETS.has(skill)) return;
+  const key = cardKey(part, skill, e.orthography, e.exercise.reading);
   if (!right) {
     delete d.shown[key];
     d.missed[key] = e.localDate;
     return;
   }
-  const met = d.met[kc];
+  const met = d.met[part];
   const missed = d.missed[key];
   if (met !== undefined && e.localDate > met && (missed === undefined || e.localDate > missed)) d.shown[key] = e.localDate;
 };
@@ -273,39 +292,42 @@ const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, fac
  * A first try (or a wrong retry) on a card: a mistake on the same item, template and word closes,
  * and a wrong answer opens one. A card about another word of the sentence leaves it open.
  */
-const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined, asks?: Asks): void => {
+const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean, ask: readonly string[] | undefined, asks?: Question): void => {
   d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template && sameQuestion(m, ask, asks)));
   if (wrong) d.mistakes = [...d.mistakes, { item, template, at, ...(ask === undefined ? {} : { ask }), ...(asks === undefined ? {} : { asks }) }].slice(-MISTAKES_KEPT);
 };
 
 /** What a fill-in's answer asked of its word (ADR 0132), where it asked about one word. */
-const questionOf = (e: AnswerSubmitted): Asks | undefined => (askOf(e.outcome.kcs) === undefined ? undefined : e.exercise.asks);
+const questionOf = (e: AnswerSubmitted): Question | undefined => (askOf(e.outcome.parts) === undefined ? undefined : e.exercise.asks);
+
+/** An exercise's parts a card of its template can show, each with the skill it shows it by. */
+const shownBy = (template: TemplateId, parts: readonly string[]): readonly SkillRef[] => parts.filter((part) => asksOf(template, part)).map((part) => ({ part, skill: skillOf(template, part) }));
 
 const answered = (d: Draft, e: AnswerSubmitted): void => {
-  const { template, item, kcs } = e.exercise;
-  const facet = facetOf(template);
+  const { template, item, parts } = e.exercise;
+  const facet = TEMPLATES[template].facet;
   const correct = e.outcome.kind.startsWith("CORRECT");
   // The performance model learns from first tries only; retries are biased. Its memory feature is
   // the recall of what the answer is credited to (a blank's word), as the planner predicts it.
   if (e.attempt === 1) {
-    const credited = e.outcome.kcs.filter((c) => c.status !== "given").map((c) => c.kc);
-    const r = meanRetrievability(d, credited.length > 0 ? credited : kcs, facet, e.orthography, e.clientTime, e.exercise.reading);
-    learn(d.performance, { template, facet, item, kcs, r }, correct);
+    const credited: readonly SkillRef[] = e.outcome.parts.filter((c) => c.status !== "given").map((c) => ({ part: c.part, skill: c.skill }));
+    const r = meanRetrievability(d, credited.length > 0 ? credited : shownBy(template, parts), e.orthography, e.clientTime, e.exercise.reading);
+    learn(d.performance, { template, facet, item, parts, r }, correct);
   }
   // Pace: this answer's time per unit of length against the learner's usual for the template. Only
   // first tries make the usual (a retry is quicker for having just seen the answer).
   const recent = d.latencies[template] ?? [];
   const typical = median(recent);
-  const perUnit = e.input.latencyMs / (PACE_OVERHEAD + kcs.length);
+  const perUnit = e.input.latencyMs / (PACE_OVERHEAD + parts.length);
   const pace: Pace = typical === undefined ? "usual" : perUnit > PACE_SLOW * typical ? "slow" : perUnit <= PACE_FAST * typical ? "fast" : "usual";
   if (e.attempt === 1) d.latencies[template] = [...recent, perUnit].slice(-LATENCY_WINDOW);
   const typed = TEMPLATES[template].modality.input === "text";
   // A word's meaning looked up on the card before answering (D16): a hint, except on a speaking card,
   // which shows what the sentence means anyway and asks for it to be said (D16c).
   const hinted = e.input.hinted === true && !SPEAKING.has(template);
-  for (const credit of e.outcome.kcs) {
+  for (const credit of e.outcome.parts) {
     const rating = ratingOf(credit.status, e.outcome.kind, e.outcome.notes, pace, e.input.selfRating, typed, hinted);
-    if (rating !== undefined) rate(d, e, credit.kc, facet, rating);
+    if (rating !== undefined) rate(d, e, credit.part, credit.skill, rating);
   }
   // Known words (ADR 0100): which skills a first try showed or missed, then what the learner has met.
   // A miss counts against a word only where the grading pins it there: a word card, or a sentence
@@ -313,43 +335,48 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   // hinted first try (D16) shows no skill and misses none; it still counts in recent practice.
   if (e.attempt === 1 && e.input.selfRating === undefined) {
     d.recent = [...d.recent, correct].slice(-RECENT_WINDOW);
-    const credited = e.outcome.kcs.filter((c) => c.status !== "given");
+    const credited = e.outcome.parts.filter((c) => c.status !== "given");
     const pinned = credited.length === 1 || credited.some((c) => c.status === "right");
-    if (!hinted) for (const c of credited) if (c.status === "right" || pinned) witness(d, e, c.kc, facet, c.status === "right");
+    if (!hinted) for (const c of credited) if (c.status === "right" || pinned) witness(d, e, c.part, c.skill, c.status === "right");
   }
-  for (const credit of e.outcome.kcs) d.met[credit.kc] ??= e.localDate;
+  for (const credit of e.outcome.parts) d.met[credit.part] ??= e.localDate;
   if (correct) addXp(d, e.localDate, XP.answer);
   // A mistake stays open through the lesson's own retry; a later first try that is right closes it.
   // Story questions are not mistakes to practice: they only make sense inside their story.
   if (template !== "speak.tier-0" && template !== "match-pairs" && template !== "letter-pairs" && !STORY_TEMPLATES.has(template) && (!correct || e.attempt === 1))
-    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.kcs), questionOf(e));
+    noteMistake(d, item, template, e.clientTime, !correct, askOf(e.outcome.parts), questionOf(e));
 };
 
 const skipped = (d: Draft, e: ExerciseSkipped): void => {
   if (e.reason !== "skip") return; // can't listen / can't speak: no update
-  const facet = facetOf(e.exercise.template);
+  const { template, parts } = e.exercise;
   if (e.attempt === 1) d.recent = [...d.recent, false].slice(-RECENT_WINDOW);
-  for (const kc of e.exercise.kcs) {
-    rate(d, e, kc, facet, "again"); // the answer was revealed
-    if (e.exercise.kcs.length === 1) witness(d, e, kc, facet, false); // pinned on the word (ADR 0100)
-    d.met[kc] ??= e.localDate;
+  const shown = shownBy(template, parts);
+  for (const { part, skill } of shown) {
+    rate(d, e, part, skill, "again"); // the answer was revealed
+    if (shown.length === 1) witness(d, e, part, skill, false); // pinned on the word (ADR 0100)
   }
+  for (const part of parts) d.met[part] ??= e.localDate;
   // A revealed answer records no credit, so not which word the card asked: the sentence's default one.
   noteMistake(d, e.exercise.item, e.exercise.template, e.clientTime, true, undefined);
 };
 
+/** The skill a placement seeds a part by (ADR 0111): the reading side's first. */
+export const seededSkill = (part: string): Skill => (kindOf(part) === "feature" ? "read-off" : "recognize");
+
 const completed = (d: Draft, e: SessionCompleted): void => {
-  // A placement test marks the nodes the learner placed out of as done (§9.5), and seeds their KCs
-  // (ADR 0111): a recognize card each, as if recalled with ease at the end of the test, so the
-  // planner counts them as seen, review brings them back at long intervals and the word list shows
-  // them. A KC with a card already keeps it. A test the learner stopped part-way places by its
-  // answers so far too (D9), as a stopped session: without the session's XP below.
+  // A placement test marks the nodes the learner placed out of as done (§9.5), and seeds what they
+  // introduce (ADR 0111): a card each (a lexeme, a rule or a letter recognized, a feature value read
+  // off a form), as if recalled with ease at the end of the test, so the planner counts them as
+  // seen, review brings them back at long intervals and the word list shows them. A part with a card
+  // already keeps it. A test the learner stopped part-way places by its answers so far too (D9), as
+  // a stopped session: without the session's XP below.
   if (e.mode === "placement") {
     for (const node of e.placed ?? []) if (!d.completedNodes.includes(node)) d.completedNodes.push(node);
     const at = new Date(e.clientTime);
-    for (const kc of e.seeded ?? []) {
-      d.met[kc] ??= e.localDate;
-      const key = cardKey(kc, "recognize", e.orthography);
+    for (const part of e.seeded ?? []) {
+      d.met[part] ??= e.localDate;
+      const key = cardKey(part, seededSkill(part), e.orthography);
       if (d.cards[key] === undefined) d.cards[key] = fromCard(scheduler.next(createEmptyCard(at), at, GRADES.easy).card);
     }
   }
@@ -396,12 +423,14 @@ const applyOne = (d: Draft, e: LearnerEvent): void => {
       return;
     // Revisions rewrite earlier answers: replay applies them (withRevisions), not this fold. The
     // weekly goal is the game's (ADR 0107): it changes nothing the learner model holds.
+    // A story line read says which forms were displayed (ADR 0146): nothing this fold holds yet.
     case "session_started":
     case "exercise_presented":
     case "answer_reported":
     case "sentence_reported":
     case "outcome_revised":
     case "goal_set":
+    case "story_line_read":
       return;
   }
 };
@@ -427,6 +456,7 @@ const FOLDS: Readonly<Record<LearnerEvent["type"], boolean>> = {
   sentence_reported: false,
   outcome_revised: false,
   goal_set: false,
+  story_line_read: false,
 };
 
 /**

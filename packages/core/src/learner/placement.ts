@@ -47,7 +47,7 @@ export const placementTest = (course: CourseView, seed: number, exclude: Readonl
   const used = new Set<string>();
   // The sentences that use most of what a node introduces probe it best.
   const ranked = ({ unit, node }: LessonNode): readonly BundleSentence[] =>
-    [...sentencesOf(course, unit, node)].sort((a, b) => node.introduces.filter((k) => b.kcs.includes(k)).length - node.introduces.filter((k) => a.kcs.includes(k)).length);
+    [...sentencesOf(course, unit, node)].sort((a, b) => node.introduces.filter((k) => b.parts.includes(k)).length - node.introduces.filter((k) => a.parts.includes(k)).length);
   const probe = (n: LessonNode, templates: readonly TemplateId[], fresh: boolean): Exercise | undefined => {
     const ctx: MakeContext = { course, rng, introduced: [] };
     const sentences = ranked(n);
