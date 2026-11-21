@@ -206,7 +206,7 @@ is drawn by the item's id (ADR 0078).
 |  | Clips |
 |---|---|
 | clips | 1222 |
-| clips a person checked | 82 |
+| clips a person checked | 74 |
 | clips keyed by a KC | 354 |
 | clips renamed with their item | 348 |
 | clips whose item is no lexeme of its own now | 6 |
