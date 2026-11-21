@@ -2116,6 +2116,7 @@ export const makeVocalizeBuild = (ctx: MakeContext, s: BundleSentence): Vocalize
     letters,
     marks: [...marks.set],
     optional: [...marks.optional],
+    ...(marks.optionalBefore.size === 0 ? {} : { optionalBefore: Object.fromEntries([...marks.optionalBefore].map(([letter, ms]) => [letter, [...ms]])) }),
     combos: letters.map((l, i) => attested(l, i === 0 ? "initial" : i === letters.length - 1 ? "final" : "medial")),
   };
 };
@@ -2282,8 +2283,9 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
     }
     case "vocalize-build": {
       if (response.tag !== "text") return mismatch(ex, response);
-      // Letter by letter (ADR 0137): the marks each letter has, optional ones (sukun) not counted.
-      const g = gradeVowels({ set: new Set(ex.marks), optional: new Set(ex.optional) }, surfaceOf(ex.vocalized), response.text);
+      // Letter by letter (ADR 0137): the marks each letter has, optional ones (sukun, a fatha before an alif) not counted.
+      const optionalBefore = new Map(Object.entries(ex.optionalBefore ?? {}).map(([letter, ms]) => [letter, new Set(ms)]));
+      const g = gradeVowels({ set: new Set(ex.marks), optional: new Set(ex.optional), optionalBefore }, surfaceOf(ex.vocalized), response.text);
       return { verdict: g.verdict, notes: g.notes, solution: ex.vocalized };
     }
     case "transcribe": {

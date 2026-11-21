@@ -4,6 +4,7 @@
 - Date: 2026-11-04
 - Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this:
   [0148](0148-projections-and-misses.md) (options come from leftovers)
+- Amended 2026-11-21 (Proposed): a fatha before an alif may be written or not (below)
 
 ## Context
 
@@ -80,3 +81,33 @@ rebuilds a missed card from its KC.
   - Pinyin, Yale or kana readings (each needs a syllable shape and a field tag);
   - a vocalize card for whole phrases;
   - accepting dialect variants of a Jyutping syllable.
+
+## Amendment (2026-11-21, Proposed): a fatha before an alif
+
+**Context.** A learner building مرحبا's marks on the buttons (`vocalize-build`, ADR 0137) put a
+fatha on the ب: مَرْحَبَا. apc's vocalization writes مَرْحَبا, so the card said the ب was off. Both
+are right. The fatha before an alif spells the *a* the alif writes anyway: fully vocalized Arabic
+writes it (كِتَابٌ), and apc's draft leaves it out (but for عَالبيت, هَالجِمْعَة).
+
+**Decision.** A profile can make marks optional on a letter before certain letters:
+`match.marks.optionalBefore`, a list of `{marks, letters}`. Such a mark may be written or left
+out there, as the optional marks may anywhere; the same mark before any other letter counts.
+- **apc-Arab and ar-Arab (REVIEW):** the fatha before a plain alif (ا) or an alif maqsura (ى).
+- **Not before a hamza's seat** (أ, إ, آ): a fatha there is a vowel of its own (مْأَخَّر).
+- **Only the fatha.** The kasra of bi- before the article's alif (بِالبيت) still counts. So do a
+  kasra before ي and a damma before و: in Lebanese those letters also write ē, ō and the
+  diphthongs, so the mark says which.
+- **Not Persian.** fa writes no fatha before ا, and its profile keeps one there wrong
+  (conformance `vowels/fa/extra`).
+
+**Where.** `gradeVowels`, `hasVowelMarks`, `attestedMarks` and `vocalizationVariants`
+(@nabu/core match/pronounce.ts) all compare a letter's marks through the same function, which
+knows the letter after it. So a choice card never offers the word with that fatha added or left
+out as a wrong option, and a word whose only mark is such a fatha has nothing to ask. A
+`vocalize-build` card carries the profile's `optionalBefore`, as it carries `optional`.
+
+**Consequences.** Nine vectors in conformance/pronounce.json, in both harnesses: the fatha written
+and left out, before ى, beside a shadda; the kasra, the hamza's seat, a fatha elsewhere and a
+missing shadda, which still count; ar-Arab as apc. No apc lesson changes: the draft writes the
+fatha before an alif only before the article's (عَالبيت, هَالجِمْعَة), and no option relied on it.
+

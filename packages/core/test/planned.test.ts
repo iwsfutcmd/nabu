@@ -28,7 +28,7 @@ import {
   type TemplateId,
 } from "../src/lesson/index.ts";
 import { gradeVowels, withoutMarks } from "../src/match/pronounce.ts";
-import { surfaceOf } from "../src/text/index.ts";
+import { graphemes, surfaceOf } from "../src/text/index.ts";
 import { rightAnswer, wrongAnswer } from "./answers.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 import { plannedCards, walkPath, type PlannedSession } from "./planned.ts";
@@ -315,6 +315,29 @@ describe("a word's pronunciation in its sentence (ADR 0054, 0095, 0098)", () => 
       const [answering] = step(presenting, { tag: "ready" });
       expect(answering.tag === "answering" ? answering.draft : undefined).toEqual({ tag: "choice", index: null });
     }
+  });
+
+  it("a fatha before an alif may be written or not, where the profile says so (apc-Arab, ADR 0054 as amended)", () => {
+    const { course } = walked("apc", "apc-Arab/standard");
+    const grader = createGrader(course);
+    const cards = planned("apc", "apc-Arab/standard", "vocalize-build");
+    // Each word's letters before a plain alif, with the fatha put on (مَرْحَبا as مَرْحَبَا) and with a kasra.
+    const before = (ex: Exercise, mark: string): string | undefined => {
+      if (ex.template !== "vocalize-build") return undefined;
+      const gs = graphemes(surfaceOf(ex.vocalized));
+      const at = gs.findIndex((g, i) => i + 1 < gs.length && gs[i + 1] === "\u0627" && !g.normalize("NFD").includes("\u064E"));
+      return at < 0 ? undefined : gs.map((g, i) => (i === at ? `${g}${mark}`.normalize("NFC") : g)).join("");
+    };
+    const asked = cards.filter((ex) => before(ex, "\u064E") !== undefined);
+    expect(asked.length).toBeGreaterThan(0);
+    for (const ex of asked) {
+      if (ex.template !== "vocalize-build") continue;
+      expect(ex.optionalBefore, ex.id).toEqual({ "\u0627": ["\u064E"], "\u0649": ["\u064E"] });
+      expect(gradeExercise(ex, { tag: "text", text: before(ex, "\u064E") ?? "" }, grader).verdict, ex.id).toBe("CORRECT");
+      expect(gradeExercise(ex, { tag: "text", text: before(ex, "\u0650") ?? "" }, grader).verdict, ex.id).toBe("WRONG");
+    }
+    // Persian writes no fatha there, and its profile says nothing of it: a fatha before ا is off (conformance vowels/fa/extra).
+    expect(walked("fa").course.profiles.get("fa-Arab/standard")?.marks?.optionalBefore.size).toBe(0);
   });
 
   it("and Cantonese a word's Jyutping to type: the sentence without ruby, every tone counting", () => {

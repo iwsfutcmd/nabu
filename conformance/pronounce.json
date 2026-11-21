@@ -1,5 +1,5 @@
 {
-  "$comment": "Pronunciation as the script leaves it out (ADR 0054). grade-vowels: an abjad word with the learner's vowel marks against its vocalized form; letters must not change, sukun is optional where the profile says so, marks compare per letter after NFC. grade-reading: a typed romanization (Jyutping) syllable by syllable, spaces, hyphens and case ignored, tones required. reading-syllables and reading-tone: a typed reading's syllables and a syllable's tone, as a reading scheme's data (profiles/schemes, ADR 0109) shapes them; the pipeline's nabu.schemes passes the same vectors (pipeline/tests/test_schemes.py).",
+  "$comment": "Pronunciation as the script leaves it out (ADR 0054). grade-vowels: an abjad word with the learner's vowel marks against its vocalized form; letters must not change, sukun is optional where the profile says so, and so is a fatha before a plain alif where it says so (ADR 0054 as amended), marks compare per letter after NFC. grade-reading: a typed romanization (Jyutping) syllable by syllable, spaces, hyphens and case ignored, tones required. reading-syllables and reading-tone: a typed reading's syllables and a syllable's tone, as a reading scheme's data (profiles/schemes, ADR 0109) shapes them; the pipeline's nabu.schemes passes the same vectors (pipeline/tests/test_schemes.py).",
   "vectors": [
     {
       "id": "vowels/fa/right",
@@ -243,6 +243,137 @@
       "note": "Shadda is not optional: بحب without it is off."
     },
     {
+      "id": "vowels/apc/fatha-before-alif",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "مَرْحَبا",
+        "answer": "مَرْحَبَا"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [],
+        "off": []
+      },
+      "note": "A fatha before a plain alif may be written (REVIEW): it spells the a the alif writes anyway. The vocalization leaves it out."
+    },
+    {
+      "id": "vowels/apc/fatha-before-alif-left-out",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "عَالبيت",
+        "answer": "عالبيت"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "off": []
+      },
+      "note": "Or left out, where the vocalization writes it (ʿa before the article's alif)."
+    },
+    {
+      "id": "vowels/apc/fatha-before-alif-maqsura",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "أَحْلى",
+        "answer": "أَحْلَى"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "Likewise before a final alif maqsura."
+    },
+    {
+      "id": "vowels/apc/kasra-before-alif",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "بِالمَطْبَخ",
+        "answer": "بالمَطْبَخ"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          0
+        ]
+      },
+      "note": "Only the fatha: the kasra of bi- before the article's alif still counts."
+    },
+    {
+      "id": "vowels/apc/fatha-before-hamza",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "مْأَخَّر",
+        "answer": "مَأَخَّر"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          0
+        ]
+      },
+      "note": "Only before a plain alif: a fatha before the hamza's seat (أ) is a vowel of its own."
+    },
+    {
+      "id": "vowels/apc/fatha-before-alif-shadda",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "يَلّا",
+        "answer": "يَلَّا"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "The fatha beside a shadda before the alif may be written too."
+    },
+    {
+      "id": "vowels/apc/fatha-before-alif-no-shadda",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "يَلّا",
+        "answer": "يَلَا"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          1
+        ]
+      },
+      "note": "But the shadda still counts: a fatha does not stand for it."
+    },
+    {
+      "id": "vowels/apc/fatha-elsewhere",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "مَرْحَبا",
+        "answer": "مرْحَبا"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          0
+        ]
+      },
+      "note": "A fatha before any other letter counts as before: مَ is before ر."
+    },
+    {
       "id": "vowels/ar/right",
       "op": "grade-vowels",
       "args": {
@@ -275,6 +406,19 @@
         ]
       },
       "note": "كُتُبٌ (books) for كَتَبَ (he wrote): three letters off."
+    },
+    {
+      "id": "vowels/ar/fatha-before-alif",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "expected": "كِتاب",
+        "answer": "كِتَاب"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "Arabic as Lebanese (REVIEW). Persian is not: vowels/fa/extra."
     },
     {
       "id": "vowels/uz/no-marks",

@@ -51,6 +51,11 @@ export interface CompiledProfile {
     readonly set: ReadonlySet<string>;
     /** Marks a learner supplying the vowel marks may write or leave out (ADR 0054). */
     readonly optional: ReadonlySet<string>;
+    /**
+     * Marks a learner supplying the vowel marks may write or leave out on a letter before another
+     * (ADR 0054 as amended): by the letter after (NFC), the marks (the fatha before an alif).
+     */
+    readonly optionalBefore: ReadonlyMap<string, ReadonlySet<string>>;
     /** Marks an answer must write as the expected word does: never folded, never a typo (ADR 0134). */
     readonly required: ReadonlySet<string>;
     readonly requiredNote?: string | undefined;
@@ -179,6 +184,19 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
       const set = new Set(parseExemplarSet(match.marks.set));
       const optional = new Set(match.marks.optional === undefined ? [] : parseExemplarSet(match.marks.optional));
       const required = new Set(match.marks.required === undefined ? [] : parseExemplarSet(match.marks.required));
+      // By the letter after, the marks a learner may write or not on the letter before it.
+      const optionalBefore = new Map<string, Set<string>>();
+      for (const rule of match.marks.optionalBefore ?? []) {
+        const ms = parseExemplarSet(rule.marks);
+        for (const m of ms) if (!set.has(m)) throw new Error(`optionalBefore: ${JSON.stringify(m)} is not a mark of the set`);
+        for (const letter of parseExemplarSet(rule.letters)) {
+          const key = letter.normalize("NFC");
+          if (Array.from(key.normalize("NFD")).some((c) => set.has(c))) throw new Error(`optionalBefore: ${JSON.stringify(letter)} is not a letter without vowel marks`);
+          const on = optionalBefore.get(key) ?? new Set<string>();
+          optionalBefore.set(key, on);
+          for (const m of ms) on.add(m);
+        }
+      }
       // A letter of `requiredLetters` is its bare letter and the marks of the set it carries.
       const requiredOn = new Map<string, Set<string>>();
       for (const letter of match.marks.requiredLetters === undefined ? [] : parseExemplarSet(match.marks.requiredLetters)) {
@@ -196,6 +214,7 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
         strip: (t) => Array.from(t.normalize("NFD")).filter((c) => !set.has(c)).join("").normalize("NFC"),
         set,
         optional,
+        optionalBefore,
         required,
         requiredNote: match.marks.requiredNote,
         requiredOn,
