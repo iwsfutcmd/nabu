@@ -40,9 +40,11 @@ from nabu.audio.providers import (
     trim_edges,
 )
 from nabu.compiler import compile_course
-from nabu.schema.models import AudioVoice, BundleUnit, Provenance
+from nabu.compiler.build import Compiled
+from nabu.schema.models import AudioVoice, NextBundleUnit, Provenance
 
 from .conftest import ROOT, CoreCli
+from .units import part_of
 
 REVISION = "55c38a613e316499829eef60b006edc6da9499e2"
 ORTH = "apc-Arab/standard"
@@ -149,32 +151,35 @@ def test_version_and_settings_name_the_checkpoint_and_the_reference() -> None:
 
 
 @pytest.fixture(scope="module")
-def apc(core_cli: CoreCli) -> Any:
+def apc(core_cli: CoreCli) -> Compiled:
     diags, compiled = compile_course(ROOT / "courses" / "apc", core_cli)
     assert compiled is not None, [d.format() for d in diags.items]
     return compiled
 
 
-def test_a_vowel_marks_voice_reads_the_marks_and_is_checked_against_the_letters(apc: Any) -> None:
-    items = {i.item: i for i in plan(apc.units, voice(), apc.written)[0]}
+def test_a_vowel_marks_voice_reads_the_marks_and_is_checked_against_the_letters(
+    apc: Compiled,
+) -> None:
+    items = {i.item: i for i in plan(apc.content, voice(), apc.written)[0]}
     bathroom = items["s.home.15"]
     assert "الحَمّام" in bathroom.input
     assert FATHA not in bathroom.expected
     # A word card reads the lemma's marks too (ADR 0061: حمّام, not الحمّام).
-    assert items["sense:7ammem"].input == "حَمّام"
-    assert FATHA not in items["sense:7ammem"].expected
+    assert items["lexeme:7ammem"].input == "حَمّام"
+    assert FATHA not in items["lexeme:7ammem"].expected
     # Without vowelMarks the voice reads the text as the source writes it.
-    plain = {i.item: i for i in plan(apc.units, voice(vowelMarks=False), apc.written)[0]}
+    plain = {i.item: i for i in plan(apc.content, voice(vowelMarks=False), apc.written)[0]}
     assert FATHA not in plain["s.home.15"].input
 
 
 @pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="needs ffmpeg")
 def test_a_new_reference_makes_the_clips_cloned_from_the_old_one_stale(
-    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, apc: Any, core_cli: CoreCli
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, apc: Compiled, core_cli: CoreCli
 ) -> None:
     course = tmp_path / "apc"
     shutil.copytree(ROOT / "courses" / "apc", course, ignore=shutil.ignore_patterns("audio"))
     (tmp_path / "images").symlink_to(ROOT / "courses" / "images")
+    (tmp_path / "lexicons").symlink_to(ROOT / "lexicons")
     engine = FakeEngine()
     monkeypatch.setitem(providers.PROVIDERS, "omnivoice", lambda v, r: fake(engine, v, r))
     v = voice()
@@ -189,11 +194,13 @@ def test_a_new_reference_makes_the_clips_cloned_from_the_old_one_stale(
     assert engine.calls[-1]["instruct"] == "male, young adult"
     assert reference_of(adir, read_index(adir), "beirut-m") is not None
 
-    intro = [u for u in apc.units if u.id == "intro"]
     # The man's voice alone, within the course's cast: its share of the items (ADR 0078).
+    assert apc.course.audio is not None and apc.course.audio.voices is not None
     cast = list(apc.course.audio.voices)
     assert [x.voice for x in cast] == ["beirut-m", "beirut-f"]
-    report = synthesize_course(course, intro, cast, None, apc.written, only=cast[0].id)
+    report = synthesize_course(
+        course, part_of(apc.content, "intro"), cast, None, apc.written, only=cast[0].id
+    )
     index = read_index(adir)
     assert report.synthesized == len(index.clips) == report.shares[cast[0].id] > 0
     assert {c.synthesis.voice for c in index.clips if c.synthesis} == {"beirut-m"}
@@ -276,10 +283,10 @@ def test_live_the_course_voice_speaks_lebanese() -> None:
     assert cer(transcribe(clip, lebanese), "أنا منيح") <= 0.15
 
 
-def test_story_lines_are_read_too(apc: Any) -> None:
+def test_story_lines_are_read_too(apc: Compiled) -> None:
     """Each story line is an audio item "<story>#<step>", read like a sentence."""
-    items = {i.item: i for i in plan(apc.units, voice(), apc.written)[0]}
-    units: list[BundleUnit] = apc.units
+    items = {i.item: i for i in plan(apc.content, voice(), apc.written)[0]}
+    units: list[NextBundleUnit] = list(apc.units)
     lines = [
         (story.id, step)
         for unit in units
@@ -329,7 +336,7 @@ def test_a_clip_the_model_says_nothing_for_is_tried_again_with_the_next_seeds() 
 
 @pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="needs ffmpeg")
 def test_an_item_the_voice_says_nothing_for_gets_no_clip(
-    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, apc: Any
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, apc: Compiled
 ) -> None:
     course = tmp_path / "apc"
     shutil.copytree(ROOT / "courses" / "apc", course, ignore=shutil.ignore_patterns("audio"))
@@ -338,15 +345,16 @@ def test_an_item_the_voice_says_nothing_for_gets_no_clip(
     cast_reference(course, v, "مَرْحَبا!", "male", 7, fake(engine, v, REF))
     hushed = Hushed(silent=99)
     monkeypatch.setitem(providers.PROVIDERS, "omnivoice", lambda vv, r: fake(hushed, vv, r))
-    intro = [u.model_copy(update={"stories": []}) for u in apc.units if u.id == "intro"]
-    report = synthesize_course(course, intro, v, None, apc.written)
+    report = synthesize_course(
+        course, part_of(apc.content, "intro", stories=False), v, None, apc.written
+    )
     assert report.synthesized == 0 and report.silent
     assert read_index(audio_dir(course)).clips == []
 
 
 @pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="needs ffmpeg")
 def test_a_rejected_clip_is_made_again_as_its_next_take(
-    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, apc: Any
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, apc: Compiled
 ) -> None:
     """ADR 0060: a clip a listener judged wrong is sampled again with another seed; the others
     stay as they are."""
@@ -359,8 +367,8 @@ def test_a_rejected_clip_is_made_again_as_its_next_take(
     monkeypatch.setitem(providers.PROVIDERS, "omnivoice", lambda v, r: fake(engine, v, r))
     v = voice()
     cast_reference(course, v, "مَرْحَبا!", "male", 7, fake(engine, v, REF))
-    intro = [u.model_copy(update={"stories": []}) for u in apc.units if u.id == "intro"]
-    synthesize_course(course, intro, v, None, apc.written)
+    part = part_of(apc.content, "intro", stories=False)
+    synthesize_course(course, part, v, None, apc.written)
     adir = audio_dir(course)
     first = read_index(adir).clips
     target = first[0].item
@@ -376,7 +384,7 @@ def test_a_rejected_clip_is_made_again_as_its_next_take(
     apply_verdicts(course, verdicts, "human:ben")
 
     engine.calls.clear()
-    report = synthesize_course(course, intro, v, None, apc.written)
+    report = synthesize_course(course, part, v, None, apc.written)
     assert report.synthesized == 1 and report.kept == len(first) - 1
     clips = {(c.item, c.speed): c for c in read_index(adir).clips}
     for speed, rate in (("normal", 1.0),):
@@ -388,7 +396,7 @@ def test_a_rejected_clip_is_made_again_as_its_next_take(
         }
     # A first take keeps its seed; the new take keeps its place on the next run.
     assert seed_of(Request("x", "v", 1.0)) == seed_of(Request("x", "v", 1.0, 0))
-    assert synthesize_course(course, intro, v, None, apc.written).synthesized == 0
+    assert synthesize_course(course, part, v, None, apc.written).synthesized == 0
 
 
 def test_a_clip_loses_the_silence_around_its_speech_but_keeps_short_margins() -> None:

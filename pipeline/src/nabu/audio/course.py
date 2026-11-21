@@ -989,7 +989,9 @@ def apply_verdicts(course_dir: Path, verdicts: AudioVerdicts, reviewer: str) -> 
             result.right += 1
         else:
             result.wrong += 1
-    write_index(adir, index.model_copy(update={"clips": clips}))
+    if clips != list(index.clips):
+        # Nothing applied (every verdict skipped, or each already in the index): the file stays.
+        write_index(adir, index.model_copy(update={"clips": clips}))
     return result
 
 

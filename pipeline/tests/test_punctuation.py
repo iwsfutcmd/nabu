@@ -86,13 +86,13 @@ def test_a_final_stop_voice_reads_word_cards_as_sentences(core_cli: CoreCli) -> 
         "reading": "text",
         "license": "Apache-2.0",
     }
-    plain = {i.item: i for i in plan(compiled.units, AudioVoice.model_validate(base))[0]}
+    plain = {i.item: i for i in plan(compiled.content, AudioVoice.model_validate(base))[0]}
     stopped = {
         i.item: i
-        for i in plan(compiled.units, AudioVoice.model_validate({**base, "finalStop": True}))[0]
+        for i in plan(compiled.content, AudioVoice.model_validate({**base, "finalStop": True}))[0]
     }
     assert plain.keys() == stopped.keys()
-    assert (plain["sense:salom"].input, stopped["sense:salom"].input) == ("salom", "salom.")
+    assert (plain["lexeme:salom"].input, stopped["lexeme:salom"].input) == ("salom", "salom.")
     # A sentence keeps its own punctuation, and its token spans.
     assert stopped["s.1"].input == plain["s.1"].input == "Salom!"
     assert stopped["s.1"].spans == plain["s.1"].spans

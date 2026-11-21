@@ -28,6 +28,7 @@ def fa(tmp_path: Path) -> Path:
     course = tmp_path / "fa"
     shutil.copytree(ROOT / "courses" / "fa", course)
     (tmp_path / "images").symlink_to(ROOT / "courses" / "images")
+    (tmp_path / "lexicons").symlink_to(ROOT / "lexicons")
     return course
 
 

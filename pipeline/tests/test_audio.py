@@ -38,6 +38,7 @@ from nabu.audio.course import (
 from nabu.audio.ingest import Recording, ingest
 from nabu.audio.providers import Clip, EspeakProvider, Request
 from nabu.compiler import compile_course
+from nabu.formkey import is_form
 from nabu.items import Content
 from nabu.schema.models import AudioVoice
 
@@ -766,7 +767,9 @@ def _keep_a_clip(course: Path, item: str, sound: bytes) -> dict[str, Any]:
         },
     }
     index = adir / "index.yaml"
-    clips = yaml.safe_load(index.read_text(encoding="utf-8"))["clips"] if index.exists() else []
+    clips: list[dict[str, Any]] = (
+        yaml.safe_load(index.read_text(encoding="utf-8"))["clips"] if index.exists() else []
+    )
     index.write_text(yamlio.dump({"version": 1, "clips": [*clips, entry]}), encoding="utf-8")
     return entry
 
@@ -808,3 +811,18 @@ def test_the_clip_of_a_form_is_kept_as_a_recording_is(tmp_path: Path, voice: _Vo
     other = YUE_VOICE.model_copy(update={"id": "narrator-f", "voice": "yue-Latn-jyutping+f3"})
     synthesize_course(tmp_path, course, [YUE_VOICE, other], only="narrator-f")
     assert [entries()[e["item"]] for e in kept] == kept
+
+
+def test_the_clip_of_a_form_ships_in_no_bundle(core_cli: CoreCli) -> None:
+    """The compiler knows a form's clip by the forms the course's tokens write: it is neither an
+    unknown item nor in the bundle's audio, since no card says a form alone. fa keeps two (budan
+    in the past and negated)."""
+    fa = ROOT / "courses" / "fa"
+    forms = {c.item for c in read_index(audio_dir(fa)).clips if is_form(c.item)}
+    assert forms
+    diags, compiled = compile_course(fa, core_cli)
+    assert compiled is not None
+    assert not forms & set(compiled.audio_items)
+    assert compiled.audio_items  # the course's other clips ship
+    unknown = [d.message for d in diags.items if d.lint == "audio.unknown-item"]
+    assert not [m for m in unknown if any(m.startswith(f"{f}:") for f in forms)]

@@ -7,7 +7,8 @@ from __future__ import annotations
 from collections.abc import Mapping, Sequence
 from typing import Any, Literal
 
-from nabu.items import Content
+from nabu.compiler.tokens import ids_of
+from nabu.items import Content, iter_items
 from nabu.schema.models import (
     BundleGrapheme,
     BundleLexeme,
@@ -163,3 +164,22 @@ def content(
     """A course's compiled content: its units, and its lexemes as its lexicon."""
     listed = [units] if isinstance(units, BundleUnit) else list(units)
     return Content(listed, lexicon(lexemes))
+
+
+def part_of(whole: Content, unit_id: str, stories: bool = True) -> Content:
+    """One unit of a compiled course (its stories or not) and the lexemes its text writes: enough
+    of the course to synthesize in seconds, as a course of that unit alone would be."""
+    units = [u for u in whole.units if u.id == unit_id]
+    assert units, unit_id
+    if not stories:
+        units = [u.model_copy(update={"stories": []}) for u in units]
+    written = {
+        name
+        for item in iter_items(Content(units))
+        for tokens in item.forms.values()
+        for t in tokens
+        for name in ids_of(t.model_dump(mode="json", exclude_none=True))
+    }
+    lexemes = [x for x in whole.lexicon.lexemes if str(x.id) in written]
+    assert lexemes, unit_id
+    return Content(units, whole.lexicon.model_copy(update={"lexemes": lexemes}))
