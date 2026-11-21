@@ -10,16 +10,24 @@
  * - Search: by letters, whatever the vowel marks, by reading (Jyutping, pinyin…), or by meaning
  *   (wordMatcher). The field takes the direction of what is typed, and the list follows a query
  *   only once an IME has committed it: nothing filters on a half-composed syllable.
+ * - A word's parts (ADR 0146, 0148; core `partsOf`): its entry opens to each thing asked of it, the
+ *   skills, its own form, its spelling and its reading where they are parts, each shown or not
+ *   yet, with how many are shown. Closed, the entry is as before but for the button that opens it.
+ * - Rules and forms (core `ruleEntries`): after the words, each rule and form the learner has met
+ *   by its label, with how many of the skills asked of it are shown; found by the same search.
  */
-import { orderWords, wordCounts, wordMatcher, type AskedSkill, type LearnedWord, type WordOrder } from "@nabu/core/learner";
-import type { CourseView } from "@nabu/core/lesson";
+import { orderWords, ruleMatcher, wordCounts, wordMatcher, type AskedSkill, type LearnedWord, type PartStatus, type RuleEntry, type WordOrder, type WordPart } from "@nabu/core/learner";
+import { ownFeatureLabel, type CourseView } from "@nabu/core/lesson";
+import { orthographyName } from "@nabu/i18n";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { useId, useMemo, useState, type JSX } from "react";
-import { Input, Label, Radio, RadioGroup, SearchField } from "react-aria-components";
+import { Button, Disclosure, DisclosurePanel, Input, Label, Radio, RadioGroup, SearchField } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
+import { ExpandIcon } from "../icons.tsx";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
-import { defaultRuby } from "../player/Readings.tsx";
+import { defaultRuby, schemeName } from "../player/Readings.tsx";
 import { T } from "../T.tsx";
+import { WithSlots } from "../WithWords.tsx";
 import styles from "./Words.module.css";
 
 export interface WordListProps {
@@ -29,6 +37,15 @@ export interface WordListProps {
   readonly url: (path: string) => string;
   /** The reading layer the learner chose for the orthography (ADR 0071), if any: shown as ruby as the player shows it. */
   readonly reading?: SchemeId | false | undefined;
+  /**
+   * What is asked of each word, each shown or not (core `partsOf`): a word's entry opens to them.
+   * Without it, or for a word with none, the entry does not open.
+   */
+  readonly parts?: ((lexeme: string) => readonly WordPart[]) | undefined;
+  /** The rules and forms the learner has met (core `ruleEntries`), listed after the words. */
+  readonly rules?: readonly RuleEntry[] | undefined;
+  /** For Storybook and tests: these words' entries start open. */
+  readonly opened?: readonly string[] | undefined;
 }
 
 /** How remembered a word is, in three words: due for review, strong, or fading. */
@@ -53,7 +70,101 @@ const SKILL_MESSAGES: Readonly<Record<WordSkillName, "words.skill.recognize" | "
 
 const isWordSkill = (skill: AskedSkill): skill is WordSkillName => skill in SKILL_MESSAGES;
 
-const Word = ({ course, word, url, ruby }: { course: CourseView; word: LearnedWord; url: (path: string) => string; ruby: SchemeId | false }): JSX.Element => {
+const STATUS_MESSAGES: Readonly<Record<PartStatus, "words.part.status.shown" | "words.part.status.not-shown" | "words.part.status.not-asked">> = {
+  shown: "words.part.status.shown",
+  "not-shown": "words.part.status.not-shown",
+  "not-asked": "words.part.status.not-asked",
+};
+
+/** The parts a word's entry lists: a lexeme is asked no feature value's skills (read-off, choose). */
+const listedParts = (parts: readonly WordPart[]): readonly WordPart[] => parts.filter((p) => p.kind !== "skill" || isWordSkill(p.skill));
+
+/** A part's key, unique within its word. */
+const partKey = (part: WordPart): string =>
+  part.kind === "skill" ? `skill:${part.skill}` : part.kind === "feature" ? part.part : part.kind === "spelling" ? `spelling:${part.orthography}` : `reading:${part.orthography}:${part.scheme}`;
+
+/** An id, where the course names nothing: in the interface's own face, left to right. */
+const Code = ({ children }: { readonly children: string }): JSX.Element => (
+  <code className={styles.code} dir="ltr">
+    {children}
+  </code>
+);
+
+/** What a part is called: a skill's name, its own form by the language's label, the orthography or the scheme it is in. */
+const PartName = ({ course, part }: { readonly course: CourseView; readonly part: WordPart }): JSX.Element => {
+  const t = useTranslator();
+  switch (part.kind) {
+    case "skill":
+      return <>{isWordSkill(part.skill) ? t.format(SKILL_MESSAGES[part.skill]) : <Code>{part.skill}</Code>}</>;
+    case "feature": {
+      const label = ownFeatureLabel(course, part.part);
+      // The dimension, as an id, only where the language labels no such form.
+      return <WithSlots id="words.part.feature" slots={{ label: label === undefined ? <Code>{part.part.slice(part.part.indexOf("|") + 1)}</Code> : <T text={label} /> }} />;
+    }
+    case "spelling":
+      return <>{t.format("words.part.spelling", { orthography: orthographyName(t, course, part.orthography) })}</>;
+    case "reading": {
+      const name = schemeName(t, part.scheme);
+      return name === undefined ? <WithSlots id="words.part.reading" slots={{ scheme: <Code>{part.scheme}</Code> }} /> : <>{t.format("words.part.reading", { scheme: name })}</>;
+    }
+  }
+};
+
+/** A word's parts, each shown or not (ADR 0146): a disclosure, closed until the learner opens it. */
+const Parts = ({ course, lexeme, parts, open }: { readonly course: CourseView; readonly lexeme: string; readonly parts: readonly WordPart[]; readonly open: boolean }): JSX.Element => {
+  const t = useTranslator();
+  const asked = parts.filter((p) => p.status !== "not-asked");
+  const shown = asked.filter((p) => p.status === "shown").length;
+  return (
+    <Disclosure className={styles.partsBox} defaultExpanded={open} data-word-parts={lexeme} data-parts-shown={shown} data-parts-asked={asked.length}>
+      {({ isExpanded }) => (
+        <>
+          <Button slot="trigger" className={styles.partsToggle} data-action="word-parts">
+            <span>{t.format("words.parts.toggle")}</span>
+            <span className={styles.partsCount}>{t.format("words.parts.count", { shown, all: asked.length })}</span>
+            <ExpandIcon size={16} open={isExpanded} />
+          </Button>
+          <DisclosurePanel className={styles.partsPanel}>
+            <ul className={styles.parts}>
+              {parts.map((part) => (
+                <li key={partKey(part)} className={styles.part} data-part={partKey(part)} data-part-kind={part.kind} data-part-status={part.status}>
+                  <span className={styles.partName}>
+                    <PartName course={course} part={part} />
+                  </span>
+                  <span className={styles.partStatus}>
+                    {t.format(STATUS_MESSAGES[part.status])}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </DisclosurePanel>
+        </>
+      )}
+    </Disclosure>
+  );
+};
+
+/** A rule's or a form's entry (ADR 0146): its label, and how many of the skills asked of it are shown. */
+const Rule = ({ entry }: { readonly entry: RuleEntry }): JSX.Element => {
+  const t = useTranslator();
+  return (
+    <li className={styles.rule} data-rule={entry.part} data-rule-kind={entry.kind} data-rule-shown={entry.shown} data-rule-asked={entry.skills.length}>
+      {entry.label === undefined ? (
+        <p className={styles.ruleLabel}>
+          <Code>{entry.part}</Code>
+        </p>
+      ) : (
+        <T as="p" className={styles.ruleLabel} text={entry.label} />
+      )}
+      <p className={styles.partsCount}>{t.format("words.parts.count", { shown: entry.shown, all: entry.skills.length })}</p>
+    </li>
+  );
+};
+
+/** Whether a rule's or form's entry is known: every skill asked of it shown. */
+const ruleKnown = (entry: RuleEntry): boolean => entry.skills.length > 0 && entry.shown === entry.skills.length;
+
+const Word = ({ course, word, url, ruby, parts, open }: { course: CourseView; word: LearnedWord; url: (path: string) => string; ruby: SchemeId | false; parts: readonly WordPart[]; open: boolean }): JSX.Element => {
   const t = useTranslator();
   const audio = course.audio[word.lexeme];
   const player = useClipPlayer(audio, url);
@@ -91,13 +202,14 @@ const Word = ({ course, word, url, ruby }: { course: CourseView; word: LearnedWo
         </span>
         {t.format(BAND_MESSAGES[band])}
       </p>
+      {parts.length > 0 && <Parts course={course} lexeme={word.lexeme} parts={parts} open={open} />}
     </li>
   );
 };
 
 const titleOf = (course: CourseView, unit: string): TaggedText | undefined => course.units.find((u) => u.id === unit)?.title?.[course.supportKey];
 
-export const WordList = ({ course, words, url, reading }: WordListProps): JSX.Element => {
+export const WordList = ({ course, words, url, reading, parts, rules, opened }: WordListProps): JSX.Element => {
   const t = useTranslator();
   const listId = useId();
   const [order, setOrder] = useState<WordOrder>("course");
@@ -116,6 +228,12 @@ export const WordList = ({ course, words, url, reading }: WordListProps): JSX.El
         .filter(wordMatcher(course, query)),
     [words, order, filter, course, query],
   );
+  // The rules and forms met, as the filter and the search have them: known ones under Known, the rest under Learning.
+  const shownRules = useMemo(
+    () => (rules ?? []).filter((r) => filter === "all" || (filter === "known") === ruleKnown(r)).filter(ruleMatcher(course, query)),
+    [rules, filter, course, query],
+  );
+  const open = useMemo(() => new Set(opened ?? []), [opened]);
   // How many of each unit's words are known, for the unit headings.
   const byUnit = useMemo(() => {
     const out = new Map<string, { known: number; count: number }>();
@@ -201,7 +319,7 @@ export const WordList = ({ course, words, url, reading }: WordListProps): JSX.El
         </RadioGroup>
       </div>
       <div id={listId}>
-        {shown.length === 0 ? (
+        {shown.length === 0 && shownRules.length === 0 ? (
           <p className={styles.muted} role="status" data-words-none-found="">
             {t.format("words.none-found")}
           </p>
@@ -218,11 +336,23 @@ export const WordList = ({ course, words, url, reading }: WordListProps): JSX.El
               )}
               <ul className={styles.words}>
                 {g.words.map((w) => (
-                  <Word key={w.lexeme} course={course} word={w} url={url} ruby={ruby} />
+                  <Word key={w.lexeme} course={course} word={w} url={url} ruby={ruby} parts={parts === undefined ? [] : listedParts(parts(w.lexeme))} open={open.has(w.lexeme)} />
                 ))}
               </ul>
             </section>
           ))
+        )}
+        {shownRules.length > 0 && (
+          <section aria-labelledby={`${listId}-rules`} data-rule-entries="">
+            <h2 className={styles.unit} id={`${listId}-rules`}>
+              {t.format("words.rules.title")}
+            </h2>
+            <ul className={styles.words}>
+              {shownRules.map((r) => (
+                <Rule key={r.part} entry={r} />
+              ))}
+            </ul>
+          </section>
         )}
       </div>
     </div>

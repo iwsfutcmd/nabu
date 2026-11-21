@@ -219,6 +219,16 @@ export const wordMatcher = (course: CourseView, query: string): ((word: LearnedW
 };
 
 /**
+ * Whether a rule's or a form's entry (`ruleEntries`) matches what the learner typed, as the word
+ * list's search box finds words (`textMatcher`): by its label, case-folded in the label's own
+ * language, or by its id (rule:used-to, feature:Tense=Past). An empty query matches every entry.
+ */
+export const ruleMatcher = (course: CourseView, query: string): ((entry: RuleEntry) => boolean) => {
+  const matches = textMatcher(course, query);
+  return (entry) => matches({ target: [], support: entry.label === undefined ? [] : [entry.label], ids: [entry.part] });
+};
+
+/**
  * The words whose reading the learner has shown in the course's orthography (ADR 0131): a reading
  * card (a word read in its sentence, or on its own) right on a first try, on a later day than the
  * word was met, and not missed since; where the orthography is read in several traditions, in the

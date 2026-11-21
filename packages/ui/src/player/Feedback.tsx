@@ -7,48 +7,25 @@
  * What was wrong, and why (P3, ADR 0121): a gap where the answer left something out, the solution's
  * words the answer left out or got wrong marked, and for a wrong word of the course (an option
  * chosen, a word put in place of another, a slip that made another word) what that word means.
+ *
+ * What the miss is (ADR 0148): a line for each of its labels, the worst first, naming the words it is
+ * about (`labelLines`); the headline says "a different word" only of a lexical miss.
  */
 import { answerDiff, chosenWordOf, closestAnswer, diffParts, isCorrect, nearMiss, otherWordsOf, solutionMarks, type AnswerDiff, type CourseView, type Exercise, type Outcome, type Response } from "@nabu/core/lesson";
-import type { Verdict } from "@nabu/core";
+import type { AlignOp, MissLabel, Verdict } from "@nabu/core";
 import { formMeanings, wordMeanings, writtenMeanings, type FormMeanings, type WordMeaning } from "@nabu/core/story";
 import { textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
 import type { SchemeId, TaggedText } from "@nabu/schema";
-import { Fragment, useMemo, type JSX } from "react";
+import { useMemo, type JSX } from "react";
 import { useIsTarget, useTranslator } from "../context.tsx";
 import { CorrectIcon, WrongIcon } from "../icons.tsx";
 import { T, useShowsRuby, type TProps } from "../T.tsx";
+import { WithWords } from "../WithWords.tsx";
 import { FormNote, GlossEntry, GlossList } from "./Gloss.tsx";
 import { PartsList } from "./Parts.tsx";
 import type { Glossing } from "./shared.ts";
 import styles from "./Player.module.css";
-
-/** Marks where a word goes in a message: a private-use character no message holds. */
-const SLOT = "\uE000";
-
-/**
- * A message with words of the answer's language in it (cómo and como): each word through <T>, with
- * its own lang, dir and fonts, the rest as the UI's text. The words reach the message as
- * placeholders, so a translation puts them where its grammar wants them.
- */
-const WithWords = ({ id, words }: { readonly id: MessageId; readonly words: Readonly<Record<string, TaggedText>> }): JSX.Element => {
-  const t = useTranslator();
-  const names = Object.keys(words);
-  const slot = (i: number): string => `${SLOT}${i}${SLOT}`;
-  const parts = t.formatToParts(id, Object.fromEntries(names.map((name, i) => [name, slot(i)])));
-  return (
-    <>
-      {parts.map((part, i) => {
-        // <T> isolates its word itself.
-        if (part.type === "bidiIsolation") return null;
-        const value = "value" in part && typeof part.value === "string" ? part.value : "";
-        const name = names.find((_, k) => slot(k) === value);
-        const word = name === undefined ? undefined : words[name];
-        return word === undefined ? <Fragment key={i}>{value}</Fragment> : <T key={i} text={word} />;
-      })}
-    </>
-  );
-};
 
 /**
  * An answer with the parts that differ marked (§11.6), and a gap where it left something out (P3):
@@ -185,6 +162,58 @@ const HEADLINES: Readonly<Record<Verdict, MessageId>> = {
   SKIPPED: "feedback.verdict.skipped",
 };
 
+/**
+ * The labels whose line waits while the judge may still accept the answer (ADR 0148): a learner is
+ * not told "another word" and then "right".
+ */
+const HELD: ReadonlySet<MissLabel> = new Set<MissLabel>(["lexical", "grammatical", "order"]);
+
+/** One line of the feedback for a label of the miss (ADR 0148): the pairs of words it is about, expected then typed. */
+export interface LabelLine {
+  readonly label: MissLabel;
+  readonly pairs: readonly (readonly [string, string])[];
+}
+
+/**
+ * What the feedback says of a miss's labels (ADR 0148), the worst first, one line a label:
+ * - none for an accepted answer: the only label one carries is a slip, which its headline says
+ *   ("Correct, but watch the typo"), and a judge's accept leaves nothing missed;
+ * - a word a profile note is about (the op carries a note the feedback shows: accent-word beside
+ *   lexical, sound-alike beside orthographic, contrast-* beside grammatical) is that note's: the note
+ *   is the more specific, so the labels of that pair get no line of their own. A label keeps its
+ *   line where some word it is about has no note shown, and then names only those words; a label no
+ *   word carries (a word left out, added) is said without words;
+ * - `held`: while the judge may still accept the answer, lexical, grammatical and order wait.
+ */
+export const labelLines = (outcome: Outcome, shownNote: (note: string) => boolean, held: boolean): readonly LabelLine[] => {
+  if (isCorrect(outcome.verdict)) return [];
+  const ops = outcome.alignment ?? [];
+  const noted = (op: AlignOp): boolean => (op.op === "match" || op.op === "substitute") && op.note !== undefined && shownNote(op.note);
+  return (outcome.labels ?? []).flatMap((label): LabelLine[] => {
+    if (held && HELD.has(label)) return [];
+    const about = ops.filter((op) => op.labels?.includes(label) === true);
+    const open = about.filter((op) => !noted(op));
+    if (about.length > 0 && open.length === 0) return [];
+    const seen = new Set<string>();
+    const pairs = open.flatMap((op): (readonly [string, string])[] => {
+      if ((op.op !== "match" && op.op !== "substitute") || op.expected === op.actual) return [];
+      const key = `${op.expected}\u0000${op.actual}`;
+      if (seen.has(key)) return [];
+      seen.add(key);
+      return [[op.expected, op.actual]];
+    });
+    return [{ label, pairs }];
+  });
+};
+
+/**
+ * The headline (ADR 0148): WRONG_WORD says "a different word" only where the miss is one (its labels
+ * include lexical: cada for casa, esta for está); a miss the same sounds or its marks explain
+ * (bolber for volver, tambien for también) is WRONG_WORD too, and it is not another word.
+ */
+const headlineOf = (outcome: Outcome): MessageId =>
+  outcome.verdict === "WRONG_WORD" && outcome.labels?.includes("lexical") !== true ? "feedback.verdict.wrong" : HEADLINES[outcome.verdict];
+
 export interface FeedbackProps {
   readonly ex: Exercise;
   readonly outcome: Outcome;
@@ -198,6 +227,11 @@ export interface FeedbackProps {
    * they are in a language the course teaches. The card is answered: a meaning gives nothing away.
    */
   readonly glossing?: Glossing | undefined;
+  /**
+   * The judge may still accept the answer (asked, not answered: ADR 0148): the labels lexical,
+   * grammatical and order wait until it has answered no.
+   */
+  readonly held?: boolean | undefined;
 }
 
 /** <T>'s tap props for a text of the feedback (`key`), where it is the language being learned. */
@@ -207,7 +241,7 @@ const useTaps = (glossing: Glossing | undefined, key: string, text: TaggedText |
   return { onTokenPress: (token) => glossing.onTap({ key, text, token }), pressed: glossing.tapped?.key === key ? glossing.tapped.token : undefined };
 };
 
-export const Feedback = ({ ex, outcome, response, course, ruby, marks, glossing }: FeedbackProps): JSX.Element => {
+export const Feedback = ({ ex, outcome, response, course, ruby, marks, glossing, held = false }: FeedbackProps): JSX.Element => {
   const t = useTranslator();
   const showsRuby = useShowsRuby();
   // A self-rating checked nothing (P5): neither right nor wrong, and no solution to compare with.
@@ -267,16 +301,32 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks, glossing 
     });
   };
   const base = outcome.solution;
+  const lines = neutral ? [] : labelLines(outcome, (note) => notes.includes(`feedback.note.${note}` as MessageId), held);
   const solutionTaps = useTaps(glossing, "feedback-solution", showSolution ? outcome.solution : undefined);
   const closestTaps = useTaps(glossing, "feedback-closest", closest?.text);
   return (
     <div className={styles.feedback} data-feedback="" data-verdict={neutral ? "SELF_RATED" : outcome.verdict} data-right={(right && !neutral) || undefined}>
       <p className={styles.feedbackHeadline}>
         {!neutral && <span className={right ? styles.correctIcon : styles.wrongIcon}>{right ? <CorrectIcon /> : <WrongIcon />}</span>}
-        {t.format(neutral ? "feedback.verdict.self-rated" : outcome.verdict === "PARTIAL" && (ex.template === "speak" || ex.template === "listen-speak") ? "feedback.verdict.speech-close" : HEADLINES[outcome.verdict])}
+        {t.format(neutral ? "feedback.verdict.self-rated" : outcome.verdict === "PARTIAL" && (ex.template === "speak" || ex.template === "listen-speak") ? "feedback.verdict.speech-close" : headlineOf(outcome))}
       </p>
-      {notes.length > 0 && (
+      {(lines.length > 0 || notes.length > 0) && (
         <ul className={styles.notes}>
+          {lines.map(({ label, pairs }) => {
+            const id = `feedback.label.${label}` as const;
+            const paired = `${id}-pair`;
+            return (
+              <li key={label} data-label={label}>
+                {base === undefined || pairs.length === 0 || !t.has(paired)
+                  ? t.format(id)
+                  : pairs.map(([expected, answer]) => (
+                      <span key={`${expected}\u0000${answer}`} className={styles.labelPair} data-label-pair="">
+                        <WithWords id={paired} words={{ expected: textOfSurface(base, expected), answer: textOfSurface(base, answer) }} />
+                      </span>
+                    ))}
+              </li>
+            );
+          })}
           {notes.flatMap((id) => {
             const note = id.slice("feedback.note.".length);
             const paired = `${id}-pair`;

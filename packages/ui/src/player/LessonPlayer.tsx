@@ -114,6 +114,11 @@ export interface LessonPlayerProps {
    * the end of the session lists them, said to be a model's, also where it answered after Continue.
    */
   readonly judged?: ReadonlySet<string> | undefined;
+  /**
+   * Whether the judge may still accept an answer (asked, or to be asked, and not answered no: ADR
+   * 0148): its feedback holds back the labels lexical, grammatical and order until it has.
+   */
+  readonly judging?: ((ex: Exercise, outcome: Outcome) => boolean) | undefined;
   /** What can score speech (Phase 9): the device's calibration, and the server when the app has one. */
   readonly speech?: SpeechServices | undefined;
   /** Debug mode: label each card with its kind (template id), to test every kind of card. */
@@ -426,7 +431,7 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
 
       <div className={styles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
         {/* The solution shows its marks unless the learner hid them (a vocalize card's always: they are its answer). */}
-        {active.tag === "feedback" && <Feedback ex={ex} outcome={active.outcome} response={active.response} course={course} ruby={ruby} marks={ex.template === "vocalize" || ex.template === "vocalize-build" || marks !== "hide" ? "show" : "hide"} glossing={glossing} />}
+        {active.tag === "feedback" && <Feedback ex={ex} outcome={active.outcome} response={active.response} course={course} ruby={ruby} marks={ex.template === "vocalize" || ex.template === "vocalize-build" || marks !== "hide" ? "show" : "hide"} glossing={glossing} held={props.judging?.(ex, active.outcome) === true} />}
       </div>
       {active.tag === "feedback" && <NewWordsAnswered course={course} template={ex.template} lexemes={fresh} ruby={ruby} marks={marks} />}
       {active.tag === "feedback" && props.feedbackExtra?.(ex, active.outcome, active.response, (verdict) => dispatch({ tag: "revise", exercise: ex.id, verdict }))}

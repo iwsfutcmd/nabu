@@ -95,18 +95,24 @@ type Explain = { readonly tag: "idle" } | { readonly tag: "loading" } | ({ reado
 export interface SessionHelp {
   readonly explained: ReadonlyMap<string, Explained>;
   readonly judged: ReadonlySet<string>;
+  /** The exercises whose answers the judge answered no to (or could not be asked of, but by being unreachable). */
+  readonly refused: ReadonlySet<string>;
   readonly explain: (answer: string, explained: Explained) => void;
   readonly judge: (exercise: string) => void;
+  readonly refuse: (exercise: string) => void;
 }
 
 export const useSessionHelp = (): SessionHelp => {
   const [explained, setExplained] = useState<ReadonlyMap<string, Explained>>(new Map());
   const [judged, setJudged] = useState<ReadonlySet<string>>(new Set());
+  const [refused, setRefused] = useState<ReadonlySet<string>>(new Set());
   // The same functions all session: the judge may answer once its card has gone.
   const [explain] = useState(() => (answer: string, e: Explained): void => setExplained((m) => new Map(m).set(answer, e)));
   const [judge] = useState(() => (exercise: string): void => setJudged((s) => new Set(s).add(exercise)));
-  return useMemo(() => ({ explained, judged, explain, judge }), [explained, judged, explain, judge]);
+  const [refuse] = useState(() => (exercise: string): void => setRefused((s) => new Set(s).add(exercise)));
+  return useMemo(() => ({ explained, judged, refused, explain, judge, refuse }), [explained, judged, refused, explain, judge, refuse]);
 };
+
 
 /** Whether to offer to explain an answer: one graded wrong, with text (`text`), of a kind the server explains. */
 const explainable = (answer: AnswerSubmitted | undefined, text: string, status: AiStatus): answer is AnswerSubmitted =>
@@ -274,6 +280,8 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
             keeping.current?.judge(answer.exercise.id);
           }
         }
+        // It answered no: the feedback says what the miss is in full (ADR 0148).
+        if (res.revision?.type !== "outcome_revised") keeping.current?.refuse(answer.exercise.id);
         if (live) setJudge(res.revision === undefined ? "idle" : "accepted");
       },
       (e: unknown) => {
@@ -281,7 +289,10 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
         if (!isHttpError(e) || e.status === 503) {
           void queueJudge(store, answer);
           if (live) setJudge("queued");
-        } else if (live) setJudge("idle");
+        } else {
+          keeping.current?.refuse(answer.exercise.id);
+          if (live) setJudge("idle");
+        }
       },
     );
     return () => {

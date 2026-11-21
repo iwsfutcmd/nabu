@@ -35,6 +35,7 @@ export {
   partsOf,
   readingsShown,
   ruleEntries,
+  ruleMatcher,
   skillsAsked,
   wordCounts,
   wordMatcher,

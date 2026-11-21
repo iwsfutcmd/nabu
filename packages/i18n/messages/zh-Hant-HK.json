@@ -1006,6 +1006,54 @@
       "message": ".input {$count :number}\n{{尚餘{$count}個詞塊}}",
       "source": "0ed82389e564a2"
     },
+    "feedback.label.grammatical": {
+      "message": "詞對了，但形式不同。",
+      "source": "095a99f2bd8234"
+    },
+    "feedback.label.grammatical-pair": {
+      "message": "詞對了，但形式不同：應該是{$expected}，不是{$answer}。",
+      "source": "0fae3165d11b44"
+    },
+    "feedback.label.lexical": {
+      "message": "是另一個詞。",
+      "source": "0464d9e0a1c749"
+    },
+    "feedback.label.lexical-pair": {
+      "message": "是另一個詞：應該是{$expected}，不是{$answer}。",
+      "source": "00cbef3d6a1fa6"
+    },
+    "feedback.label.order": {
+      "message": "詞都對，但次序不同。",
+      "source": "1e8155b215b91b"
+    },
+    "feedback.label.orthographic": {
+      "message": "讀音對，寫法錯了。",
+      "source": "1a02360424ffef"
+    },
+    "feedback.label.orthographic-pair": {
+      "message": "讀音對，寫法錯了：應該是{$expected}，不是{$answer}。",
+      "source": "0db155643f0c20"
+    },
+    "feedback.label.phonemic": {
+      "message": "這樣寫是另一個音。",
+      "source": "1dbac2f93cea4d"
+    },
+    "feedback.label.phonemic-pair": {
+      "message": "這樣寫是另一個音：應該是{$expected}，不是{$answer}。",
+      "source": "1f2b1e3b9c0799"
+    },
+    "feedback.label.regularised": {
+      "message": "這是按規則變出的形式；這個詞有自己的形式。",
+      "source": "1a20eaf6c730de"
+    },
+    "feedback.label.scope": {
+      "message": "意思對，但說法的語體不同。",
+      "source": "0f3f53cec2be34"
+    },
+    "feedback.label.slip": {
+      "message": "打字時手滑了。",
+      "source": "16308edf82a8dd"
+    },
     "feedback.note.accent": {
       "message": "請留意重音符號：它們是拼寫的一部分。",
       "source": "1b290478c21d88"
@@ -2169,6 +2217,42 @@
     "words.title": {
       "message": "你學過的詞語",
       "source": "048579200c802a"
+    },
+    "words.part.feature": {
+      "message": "本身的形式：{$label}",
+      "source": "0241744ee1e911"
+    },
+    "words.part.reading": {
+      "message": "{$scheme}的讀法",
+      "source": "1035713fa5ed27"
+    },
+    "words.part.spelling": {
+      "message": "{$orthography}的寫法",
+      "source": "062f75aee0b8b5"
+    },
+    "words.part.status.not-asked": {
+      "message": "尚未問到",
+      "source": "1d4762290a3dc8"
+    },
+    "words.part.status.not-shown": {
+      "message": "未做到",
+      "source": "0dbef09fa59ed8"
+    },
+    "words.part.status.shown": {
+      "message": "已做到",
+      "source": "12f56d08b9f921"
+    },
+    "words.parts.count": {
+      "message": ".input {$shown :number}\n.input {$all :number}\n{{{$all}項中{$shown}項}}",
+      "source": "1bcdeaae1ec8ba"
+    },
+    "words.parts.toggle": {
+      "message": "要學的部分",
+      "source": "0f60c0e1d5220a"
+    },
+    "words.rules.title": {
+      "message": "你遇過的規則和形式",
+      "source": "0a2b378f782a7a"
     }
   }
 }

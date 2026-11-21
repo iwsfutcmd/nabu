@@ -1,5 +1,5 @@
-import { skillsAsked, type LearnedWord } from "@nabu/core/learner";
-import { lexemesOfUnit, type CourseView } from "@nabu/core/lesson";
+import { cardKey, emptyLearnerState, languageSkills, partsOf, skillsAsked, type LearnedWord, type LearnerState, type RuleEntry } from "@nabu/core/learner";
+import { glossOfPart, lexemesOfUnit, type CourseView } from "@nabu/core/lesson";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, type JSX } from "react";
 import type { NabuGlobals } from "../../.storybook/toolbar.ts";
@@ -44,9 +44,69 @@ const sampleWords = (course: CourseView): LearnedWord[] => {
   });
 };
 
-const Demo = ({ loaded }: { loaded: LoadedCourse }): JSX.Element => {
-  const words = useMemo(() => sampleWords(loaded.course), [loaded]);
-  return <WordList course={loaded.course} words={words} url={loaded.imageUrl} />;
+/**
+ * A learner who has met everything the first two units introduce, and shown every other skill
+ * asked of each of it (and every other spelling and reading part): what the core's readers
+ * (`partsOf`, `ruleEntries`) make of it is what the stories show.
+ */
+const sampleState = (course: CourseView): LearnerState => {
+  const met: Record<string, string> = {};
+  const shown: Record<string, string> = {};
+  const at = "2026-03-01";
+  let k = 0;
+  for (const unit of course.units.slice(0, 2)) {
+    for (const node of unit.nodes) {
+      for (const part of node.introduces) {
+        met[part] = at;
+        for (const skill of languageSkills(part)) if (k++ % 2 === 0) shown[cardKey(part, skill, course.orthography)] = at;
+        for (const skill of ["write-script", "read-script"] as const) if (k++ % 2 === 0) shown[cardKey(part, skill, course.orthography)] = at;
+      }
+    }
+  }
+  return { ...emptyLearnerState(), met, shown };
+};
+
+/**
+ * The rules and taught forms of the whole course, met, each with two skills asked and one, both or
+ * neither shown in turn; labelled as core labels them (`glossOfPart`), an id where nothing names it.
+ * (A course with neither, Uzbek, shows no section: nothing met, nothing listed.)
+ */
+const sampleRules = (course: CourseView): readonly RuleEntry[] =>
+  course.units
+    .flatMap((u) => u.nodes.flatMap((n) => n.introduces))
+    .filter((part, i, all) => (part.startsWith("rule:") || part.startsWith("feature:")) && all.indexOf(part) === i)
+    .slice(0, 4)
+    .map((part, i): RuleEntry => {
+      const kind = part.startsWith("rule:") ? "rule" : "feature";
+      const skills = (kind === "rule" ? (["recognize", "produce"] as const) : (["read-off", "choose"] as const)).map((skill, k) => ({ skill, shown: k < i % 3 }));
+      return { part: part, kind, label: glossOfPart(course, part), skills, shown: skills.filter((k) => k.shown).length };
+    });
+
+const Demo = ({ loaded, opened, rules }: { loaded: LoadedCourse; opened?: boolean; rules?: boolean }): JSX.Element => {
+  const sampled = useMemo(() => sampleWords(loaded.course), [loaded]);
+  const state = useMemo(() => sampleState(loaded.course), [loaded]);
+  // With parts shown, each word's skills are the state's, so its entry and its parts agree.
+  const words = useMemo(
+    () =>
+      opened !== true && rules !== true
+        ? sampled
+        : sampled.map((w) => {
+            const skills = partsOf(loaded.course, state, w.lexeme).flatMap((p) => (p.kind === "skill" ? [{ skill: p.skill, shown: p.status === "shown" }] : []));
+            return { ...w, skills, known: skills.length > 0 && skills.every((k) => k.shown) };
+          }),
+    [sampled, state, loaded, opened, rules],
+  );
+  if (opened !== true && rules !== true) return <WordList course={loaded.course} words={words} url={loaded.imageUrl} />;
+  return (
+    <WordList
+      course={loaded.course}
+      words={words}
+      url={loaded.imageUrl}
+      parts={(lexeme) => partsOf(loaded.course, state, lexeme)}
+      rules={rules === true ? sampleRules(loaded.course) : []}
+      opened={opened === true ? words.slice(0, 2).map((w) => w.lexeme) : []}
+    />
+  );
 };
 
 const meta = {
@@ -67,4 +127,16 @@ type Story = StoryObj<typeof meta>;
 export const WordListStory: Story = {
   name: "Word list",
   render: (_args, { loaded }) => <Demo loaded={loaded["course"] as LoadedCourse} />,
+};
+
+/** A word's entry opened to its parts (ADR 0146): each skill, form, spelling or reading asked of it, shown or not yet. */
+export const OpenedEntry: Story = {
+  name: "Opened entry",
+  render: (_args, { loaded }) => <Demo loaded={loaded["course"] as LoadedCourse} opened />,
+};
+
+/** After the words, the rules and forms the learner has met, each with how many of its skills are shown. */
+export const RulesAndForms: Story = {
+  name: "Rules and forms",
+  render: (_args, { loaded }) => <Demo loaded={loaded["course"] as LoadedCourse} rules />,
 };

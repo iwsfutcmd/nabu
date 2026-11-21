@@ -3,7 +3,7 @@ export { courseData, dataMatcher, type Carrier, type CourseData, type DataMatche
 export { textMatcher, type Searched } from "./search.ts";
 export { courseExclusions, facetExclusions, PARTS, partsExclusions, speechExclusions, speechSupportOf, voiceExclusions, type SpeechSupport } from "./exclusions.ts";
 export { lessonNodes, type LessonNode } from "./nodes.ts";
-export { allLexemes, allSentences, assembleCourse, BUNDLE_FORMAT, coreFiles, createGrader, entryOf, glossOfPart, graphemesById, introducedAt, labelOf, lexemeOf, lexemesById, lexemesInOrder, lexemesOfUnit, marked, MEDIA_ROLES, prepareGrading, profileOf, readCourse, ruleOf, spellingsIn, unitIndexOf, type CourseError, type CourseFiles, type CourseView, type Grader, type Spellings } from "./course.ts";
+export { allLexemes, allSentences, assembleCourse, BUNDLE_FORMAT, coreFiles, createGrader, entryOf, glossOfPart, graphemesById, introducedAt, labelOf, lexemeOf, lexemesById, lexemesInOrder, lexemesOfUnit, marked, MEDIA_ROLES, ownFeatureLabel, prepareGrading, profileOf, readCourse, ruleOf, spellingsIn, unitIndexOf, type CourseError, type CourseFiles, type CourseView, type Grader, type Spellings } from "./course.ts";
 export { analysed, askedOfToken, baseIdOf, baseOf, bound, effectiveFeats, featureId, formKey, formPartsOf, formSignature, isLexeme, kindOf, lexemeFormKey, lexemeIdsOf, lexemesOf, nodeOf, parseFormKey, sameKind, sentencePersons, sentenceRegister, type PartKind } from "./lexemes.ts";
 export { placedBy, runTest, type AdaptiveTest, type TestBlock, type TestRun, type TestStep } from "./adaptive.ts";
 export { answerDiff, closestAnswer, diffParts, nearMiss, otherWordsOf, solutionMarks, type AnswerDiff, type DiffPart } from "./diff.ts";

@@ -750,6 +750,11 @@
   padding-inline-start: var(--nabu-space-5);
 }
 
+/* A label's words, pair by pair (ADR 0148): each pair a sentence of its own, under the one before. */
+.labelPair {
+  display: block;
+}
+
 .solution {
   display: flex;
   flex-direction: column;

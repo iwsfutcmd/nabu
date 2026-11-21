@@ -6,8 +6,10 @@
  * alphabetically or weakest first. A learner who has practised nothing is told how words get there.
  * With listening turned off for good on the device, words are known without being heard and
  * listening is never due, on the course page as in the list (D41); a break changes neither.
+ * Each word's entry opens to its parts (partsOf: its skills, its own form, its spelling), each shown
+ * or not yet; after the words, the rules and forms met (ruleEntries), found by the same search.
  */
-import { continueOf, learnedWords, paceOf, replay, skillsAsked, wordCounts } from "@nabu/core/learner";
+import { continueOf, learnedWords, paceOf, partsOf, replay, ruleEntries, skillsAsked, wordCounts, type WordPart } from "@nabu/core/learner";
 import { asksOf, lessonNodes, lexemesInOrder, skillOf, type Facet, type TemplateId } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { LearnerEvent, PartCredit } from "@nabu/schema";
@@ -215,4 +217,66 @@ test("listening turned off for good: words are known without being heard, and it
   await page.locator("[data-action=listening-on]").click();
   await expect(page.locator("[data-listening-off]")).toHaveCount(0);
   await shows(on);
+});
+
+/** A part's key in the word list (`data-part`): its kind, and what of it. */
+const partKey = (p: WordPart): string =>
+  p.kind === "skill" ? `skill:${p.skill}` : p.kind === "feature" ? p.part : p.kind === "spelling" ? `spelling:${p.orthography}` : `reading:${p.orthography}:${p.scheme}`;
+
+test("a word's entry opens to its parts, as core reads them; the rules and forms met follow the words", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(String(e)));
+  const course = loadCourse("es", "es-Latn/standard");
+  const node = lessonNodes(course)[4]?.node.id;
+  if (node === undefined) throw new Error("es has five lessons");
+  const history = freshIds(historyBefore(course, node, NOW));
+  const state = replay(history);
+  const words = learnedWords(course, state, NOW.toISOString());
+  const listed = (lexeme: string): readonly WordPart[] => partsOf(course, state, lexeme).filter((p) => p.kind !== "skill" || p.skill === "recognize" || p.skill === "produce" || p.skill === "listen");
+  // A word with a part beyond its skills (a spelling the sounds could write otherwise), some shown.
+  const word = words.find((w) => listed(w.lexeme).some((p) => p.kind === "spelling")) ?? words[0];
+  if (word === undefined) throw new Error("es's first lessons teach words");
+  const parts = listed(word.lexeme);
+  const asked = parts.filter((p) => p.status !== "not-asked");
+  const rules = ruleEntries(course, state);
+  expect(rules.length).toBeGreaterThan(0);
+
+  await page.clock.setFixedTime(NOW);
+  await seedLog(page, history);
+  await page.goto("/?sound=off#/es/es-Latn.standard/words");
+  await page.reload();
+  const list = page.locator("[data-word-list=es]");
+  const entry = list.locator(`[data-word="${word.lexeme}"]`);
+  await expect(entry).toBeVisible();
+  // Closed: the button says how many are shown; the parts are hidden.
+  const toggle = entry.locator("[data-action=word-parts]");
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+  await expect(entry.locator("[data-word-parts]")).toHaveAttribute("data-parts-shown", String(asked.filter((p) => p.status === "shown").length));
+  await expect(entry.locator("[data-word-parts]")).toHaveAttribute("data-parts-asked", String(asked.length));
+  await expect(entry.locator("[data-part]").first()).toBeHidden();
+  // Opened by keyboard: every part, in core's order, with its status.
+  await toggle.focus();
+  await page.keyboard.press("Enter");
+  await expect(toggle).toHaveAttribute("aria-expanded", "true");
+  await expect(entry.locator("[data-part]").first()).toBeVisible();
+  expect(await entry.locator("[data-part]").evaluateAll((els) => els.map((e) => [e.getAttribute("data-part"), e.getAttribute("data-part-status")]))).toEqual(parts.map((p) => [partKey(p), p.status]));
+  expect(await seriousAxeViolations(page, "[data-words-page]")).toEqual([]);
+  // And closed again.
+  await page.keyboard.press("Enter");
+  await expect(toggle).toHaveAttribute("aria-expanded", "false");
+
+  // The rules and forms met, after the words, in course order, each with how many of its skills are shown.
+  const entries = list.locator("[data-rule-entries] [data-rule]");
+  expect(await entries.evaluateAll((els) => els.map((e) => [e.getAttribute("data-rule"), e.getAttribute("data-rule-shown"), e.getAttribute("data-rule-asked")]))).toEqual(
+    rules.map((r) => [r.part, String(r.shown), String(r.skills.length)]),
+  );
+  // Found by the search box: by id, here (es labels few values on their own); a word that is no entry hides the section.
+  const first = rules[0];
+  if (first === undefined) throw new Error("es has an entry");
+  await page.locator("[data-field=word-search]").fill(first.part);
+  await expect(list.locator(`[data-rule="${first.part}"]`)).toBeVisible();
+  await page.locator("[data-field=word-search]").fill("zzzz");
+  await expect(list.locator("[data-rule-entries]")).toHaveCount(0);
+  await expect(list.locator("[data-words-none-found]")).toBeVisible();
+  expect(errors).toEqual([]);
 });
