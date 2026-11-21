@@ -55,8 +55,15 @@ export default {
         transform: ["/rotate/"],
         "/^(margin|padding|inset|border-width|border-style|border-color|scroll-margin|scroll-padding)$/": [SIDE_SPECIFIC_SHORTHAND],
         "/^(background-position|object-position|transform-origin)$/": ["/\\b(left|right)\\b/"],
+        // Italics depend on the script: only some have them (@nabu/i18n italicAllowed).
+        "font-style": ["/^(italic|oblique)\\b/"],
       },
-      { message: (p, v) => `"${p}: ${v}" is physical; use logical values (gameplan §11.9).` },
+      {
+        message: (p, v) =>
+          p === "font-style"
+            ? `"${p}: ${v}" slants every script; use var(--nabu-italic, normal), italic only where the script has italics.`
+            : `"${p}: ${v}" is physical; use logical values (gameplan §11.9).`,
+      },
     ],
     // Selectors that pin a direction would let physical CSS back in through :dir()/[dir].
     "selector-disallowed-list": [["/\\[dir=/"], { message: () => "Style by :dir() only to mirror icons; never by [dir] attribute." }],

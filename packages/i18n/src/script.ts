@@ -30,6 +30,7 @@ export interface ScriptInfo {
 
 const SCRIPTS = scriptMetadata as Readonly<Record<string, Omit<ScriptInfo, "code" | "vertical">>>;
 const VERTICAL = overlay.vertical as Readonly<Record<string, { mode: VerticalMode; policy: "toggle" | "always" }>>;
+const ITALIC: ReadonlySet<string> = new Set(overlay.italic);
 
 export const scriptInfo = (code: string): ScriptInfo | undefined => {
   const s = SCRIPTS[code];
@@ -58,4 +59,14 @@ export const engineDirectionOf = (tag: string): Direction | undefined => {
   } catch {
     return undefined;
   }
+};
+
+/**
+ * Whether text in a language tag may be set in italics, by its (explicit or likely) script: only the
+ * scripts with an italic style in print (the overlay's `italic`: Latin, Cyrillic, Greek, Armenian).
+ * Everything else stays upright, whatever italic its surroundings are set in.
+ */
+export const italicAllowed = (tag: string): boolean => {
+  const script = scriptOf(tag);
+  return script !== undefined && ITALIC.has(script);
 };

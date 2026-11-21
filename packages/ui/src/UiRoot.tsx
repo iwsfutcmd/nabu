@@ -1,4 +1,4 @@
-import { uiFontStack, type Direction } from "@nabu/i18n";
+import { italicAllowed, uiFontStack, type Direction } from "@nabu/i18n";
 import { type CSSProperties, type JSX, type ReactNode } from "react";
 import { I18nProvider } from "react-aria-components";
 import { useTranslator } from "./context.tsx";
@@ -28,7 +28,7 @@ export const UiRoot = ({ children, dir }: UiRootProps): JSX.Element => {
 };
 
 /**
- * The chrome's `lang`, `dir` and font, for what React Aria portals out of the root (a modal
+ * The chrome's `lang`, `dir`, font and italics, for what React Aria portals out of the root (a modal
  * dialog's content): put them on an element inside the dialog with `chromeClass`.
  */
 export const useChrome = (): { readonly lang: string; readonly dir: Direction; readonly style: CSSProperties } => {
@@ -36,7 +36,14 @@ export const useChrome = (): { readonly lang: string; readonly dir: Direction; r
   const font = uiFontStack(t.locale);
   // A UI font stack that names a family loaded with its text (fonts.ts) loads it too.
   useFonts(font.family);
-  return { lang: t.locale, dir: t.dir, style: { "--nabu-ui-font": font.family, "--nabu-ui-line-height": String(font.lineHeight) } as CSSProperties };
+  // What the chrome's italics are: italic only where the UI language's script has italics; upright
+  // elsewhere (an Arabic or Persian interface). Styles use `var(--nabu-italic, normal)`, never `italic`.
+  const italic = italicAllowed(t.locale) ? "italic" : "normal";
+  return {
+    lang: t.locale,
+    dir: t.dir,
+    style: { "--nabu-ui-font": font.family, "--nabu-ui-line-height": String(font.lineHeight), "--nabu-italic": italic } as CSSProperties,
+  };
 };
 
 /** The class that applies the chrome's font (with useChrome's style). */

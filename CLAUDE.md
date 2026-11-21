@@ -54,6 +54,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Visual baselines are only valid from the pinned container; never update them from a bare host run.
 - Lint rules and their fixtures live in packages/lint. A new rule needs a fixture that proves it fires.
 - Write invisible characters (ZWNJ, bidi controls) as \u escapes in source, never literally.
+- Italics only where the script has them (@nabu/i18n `italicAllowed`, data/script-overlay.json `italic`: Latin,
+  Cyrillic, Greek, Armenian): <T> sets any other upright (`data-upright`), whatever its surroundings; chrome italics are
+  `font-style: var(--nabu-italic, normal)`, which useChrome sets by the UI language's script. stylelint rejects a
+  literal italic or oblique.
 - Grading lives in @nabu/core (accept/, match/, normalize/, profile/); profiles get their data passed in.
 - A new grading behaviour needs conformance vectors (conformance/*.json) that pass in both harnesses.
 - Endings that carry meaning (ADR 0066): a profile's `typo.contrasts` (person, possessive, case endings, pronouns;

@@ -552,7 +552,7 @@
 .partNote {
   color: var(--nabu-color-muted);
   font-size: 0.8125rem;
-  font-style: italic;
+  font-style: var(--nabu-italic, normal);
 }
 
 .tile[data-correct] {

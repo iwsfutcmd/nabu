@@ -20,7 +20,7 @@ export { cldrLocaleId, formatTag, maximize, parentChain, parentOf, parseTag, sam
 export { courseBlurb, courseName, orthographyHint, orthographyName, schemeName, toneName, type Named, type SchemeNamesByLanguage } from "./names.ts";
 export { negotiateLocale, parseAcceptLanguage, type Negotiated, type NegotiationInput } from "./negotiate.ts";
 export { pseudoLocalizeMessage, pseudoLocalizeText, type PseudoLocale } from "./pseudo.ts";
-export { directionOf, engineDirectionOf, scriptInfo, type Direction, type ScriptInfo, type VerticalMode } from "./script.ts";
+export { directionOf, engineDirectionOf, italicAllowed, scriptInfo, type Direction, type ScriptInfo, type VerticalMode } from "./script.ts";
 export { parseExemplarSet } from "@nabu/core/text";
 export { default as exemplars } from "./generated/exemplars.json" with { type: "json" };
 export { default as cldrMeta } from "./generated/cldr-meta.json" with { type: "json" };

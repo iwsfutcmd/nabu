@@ -38,6 +38,15 @@ describe("stylelint (repo config)", () => {
     );
   });
 
+  it("rejects a slant set for every script: italics come from --nabu-italic", async () => {
+    const warnings = await lint("italic.module.css");
+    expect(warnings.map((w) => [w.line, w.rule, w.severity])).toEqual([
+      [2, "declaration-property-value-disallowed-list", "error"],
+      [3, "declaration-property-value-disallowed-list", "error"],
+    ]);
+    expect(warnings[0]?.text).toContain("var(--nabu-italic, normal)");
+  });
+
   it("accepts the logical equivalents", async () => {
     expect(await lint("logical.module.css")).toEqual([]);
   });
