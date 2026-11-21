@@ -336,8 +336,8 @@ whoever continues, a person or a model with no memory of the work.
 
 ## The switch, second session (2026-11-21): where it stands
 
-Everything below is on the branch `ccr-aebe970e-q9o4q4` (nothing on main). The branch does not pass
-its checks yet: it is work in progress, pushed so that none of it is lost.
+**Superseded by "The switch on main" at the end of this file.** Kept for what it lists as done,
+checked and decided while building; its "Not done" list is no longer the state of things.
 
 ### Done
 
@@ -413,3 +413,78 @@ its KCs. **No real exported log has been checked: the owner's is needed.**
 
 `packages/core/test/planned.ts` walks a course; `/tmp` scratch files are gone with the container.
 `docs/prototypes/switch-check/compare.py` compares old and new bundles. The old tree is `origin/main`.
+
+## The switch on main (2026-11-21): what landed, what follows
+
+Asked when the switch should reach main, the owner chose **"Land when green"** (once every check
+passes; the renames of stage 7 and stages 5 and 6 follow on main), and **"Land without it"** (not
+waiting for a real exported log through `upgrade`). `docs/migration-design.md`, "The landing", is
+the record; this section says where to carry on.
+
+### Done, and on main
+
+- **Stages 1 to 4:** the bundle's shape, the compiler, core, the log. The app, the API and every
+  tool run on lexemes, feature values, rules and labels; events are schema 2; old logs are rewritten
+  once, on the device and on the server, by `upgrade`.
+- **The converter is gone** (`pipeline/src/nabu/migrate`, its tests, `nabu migrate`, `nabu flip`,
+  `pnpm migrate`): it read the courses in the old shape. Its plans are in `docs/migration/plans/`,
+  its last reports in `docs/migration/`. Lexicons, units and alias tables are sources now.
+  `pipeline/tests/test_aliases.py` holds each alias table to its schema and to what its course has.
+- **CLAUDE.md** describes the model as it is ("Lexical model notes"); `deploy/README.md` says the
+  one upgrade that rewrites stored events in place.
+
+### The checks, on the tree that landed
+
+`pnpm lint`, `pnpm typecheck`, `pnpm codegen:check`, `pnpm license-check`, `pnpm check:catalogs`,
+`pnpm courses` and the bundles' stale check pass. `pnpm test` as CI runs it: core 722 (the simulation
+among them), pipeline 1,360, i18n 1,067, core-cli 701, schema 310, ui 152, api 109 (on PGlite, and on
+Postgres 16 beside it), web 78, references 48, lint 11. Conformance: 630 vectors in TypeScript, 631
+in Python. The e2e suite: 207 passed. The visual matrix in the pinned container: 778 passed, after
+136 baselines were rewritten there (what each shows is in the design note, "The landing").
+
+Three things were changed to get there, each stated where it was made: three simulation checks rest
+on three learners instead of one (`packages/core/test/simulation.test.ts`; nothing was retuned);
+sixteen glosses and notes of the apc and chg lexicons say a change in a word instead of with an
+arrow, which the interface font lacks; three pipeline tests read the bundle in the new shape.
+
+**Not run here:** the deploy job (compose build and `deploy/smoke.sh`) and the Android build. CI
+runs both on main.
+
+### What follows, in the order I would take it
+
+1. **`Next` leaves the names.** `schemas/{course-source,bundle,learner-event}.next.schema.json` take
+   the names of the files they replace; the old bundle and course-source schemas go; the old event
+   schema is kept under a name of its own, since `upgrade` and the restore of an old download read
+   it. `packages/schema/src/index.ts` already exports the new types under their final names, so most
+   of the change is the pipeline (about 30 source files, mostly `pipeline/src/nabu/compiler` and its
+   tests) and the generated code.
+2. **The token kind `word` becomes `lexical`** (about 460 lines in 76 files: courses, bundles,
+   conformance vectors, core, UI, Python). Bundles and vectors change, so it needs both harnesses
+   and `pnpm bundles`; no baseline should.
+3. **What still says KC where a person reads it:** `courses/es/README.md`, a comment in
+   `courses/es/course.yaml`, the `iPlusOne` and `consistentReadings` descriptions in the
+   course-source schema, the texts of the lints `curriculum.never-introduced` and
+   `audio.unknown-item`.
+4. **Stages 5 and 6** (losses and labels, ADR 0148; what a learner sees). The largest piece: 22
+   profiles and 8 schemes each need a reviewed statement of their correspondences.
+5. **A real log.** When the owner next opens the app, their device rewrites its log. If anything
+   looks wrong in Your progress or the word list, the old events are in the IndexedDB store
+   `events-before-lexical` on that device: export them before anything else.
+
+### Smaller things found and left
+
+- `docs/prototypes/apc-lexical-forms/build.py` reads the course by its KCs: it cannot rebuild
+  `docs/lexical-forms/` until it is ported to the lexicon. `docs/prototypes/switch-check/compare.py`
+  compared old and new bundles and has nothing to compare with now.
+- No e2e test seeds an old log and watches the app rewrite it; the unit tests do, on a fake
+  IndexedDB (`apps/web/tests/unit/upgrade-log.test.ts`).
+- CLAUDE.md, outside the switch: "Register is the same idea, not yet modelled" although sentences
+  carry `register` tags (ADR 0147); the Chaghatay ezafe example (*malik-i*) is written in the course
+  as one token with no unwritten lexeme; corrections still address words by their index among a
+  form's words.
+- The eight words that are forms of another lexeme now (apc *kifak*, *esmak*, *esmi*, *baddi*,
+  *baddak*, *raye7*; fa *nist*, *bud*) are glossed part by part where they were glossed whole
+  ("how" and "your", not "how are you?"): the sentence's translation still says the whole. The
+  owner has not ruled on their eight clips (my advice: drop them, a sentence's clip says each).
+- For the owner to overrule, as before: everything under "Decided while building" above, and the
+  three-learner checks in the simulation.

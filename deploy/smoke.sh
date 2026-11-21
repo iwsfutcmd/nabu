@@ -31,7 +31,7 @@ SESSION=$(python3 -c "import uuid; print(uuid.uuid4())")
 EVENT=$(python3 -c "import uuid; print(uuid.uuid4())")
 BUNDLE=$("${CURL[@]}" "$BASE/bundles/fa/manifest.json" | json "['id']")
 cat > /tmp/nabu-smoke-events.json <<EOF
-{"events":[{"type":"session_started","id":"$EVENT","schema":1,"device":"smoke","course":"fa","orthography":"fa-Arab/standard","support":"en","bundle":"$BUNDLE","session":"$SESSION","clientTime":"2026-03-01T09:00:00.000Z","localDate":"2026-03-01","tz":"UTC","mode":"lesson","node":"fa.greetings","seed":1,"exercises":1,"planner":"smoke"}]}
+{"events":[{"type":"session_started","id":"$EVENT","schema":2,"device":"smoke","course":"fa","orthography":"fa-Arab/standard","support":"en","bundle":"$BUNDLE","session":"$SESSION","clientTime":"2026-03-01T09:00:00.000Z","localDate":"2026-03-01","tz":"UTC","mode":"lesson","node":"fa.greetings","seed":1,"exercises":1,"planner":"smoke"}]}
 EOF
 UPLOAD=$("${CURL[@]}" "${AUTH[@]}" -H 'Content-Type: application/json' --data @/tmp/nabu-smoke-events.json "$BASE/v1/events")
 echo "$UPLOAD" | json "['accepted']" | grep -qx 1
