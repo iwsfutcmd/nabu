@@ -911,6 +911,141 @@ done:
   the courses' other documents, the glossary, the lints' texts, the schemas' descriptions. The gameplan is
   not edited; its errata say its KCs are lexemes, feature values, rules and letters.
 
+## Stages 5 and 6: the design (2026-11-21)
+
+The owner said "Do stages 5-6". This is what is built, on the branch, and lands whole (ADR 0148, "Done in one
+go"). It is the contract each piece is built against; where it reads ADR 0148 or 0146 narrowly, it says so.
+
+### The statement: what an orthography writes of the sound, and what it loses
+
+A profile states it (`schemas/orthography-profile.schema.json`), marked REVIEW:
+
+```yaml
+sound: {from: spelling}            # an accepted answer's sound is what these read off its spelling
+# sound: {from: reading, scheme: schluessel}   or: its sound is its token's pinned reading in this scheme
+stress:                            # only where a mark writes stress and a rule places it otherwise (es)
+  mark: "\u0301"
+  vowels: [a, e, i, o, u]
+  weak: [i, u]                     # beside another vowel, no syllable of its own unless it carries the mark
+  default: [{when: {ends: "[aeiouns]"}, on: penult}, {on: last}]
+correspondences:                   # the lossy part only
+  - {says: b, written: [b, v], kind: fixed, note: sound-alike}
+  - {says: s, written: [c], kind: fixed, when: {before: "[eiéí]"}, note: sound-alike}
+  - {says: s, written: [s, z], kind: fixed, note: sound-alike}
+  - {says: "", written: [h], kind: fixed, note: sound-alike}
+```
+
+- **A letter no correspondence names is written as itself and says itself.** So a statement lists what is
+  lossy and nothing else, and an orthography that loses nothing states `correspondences: []`.
+- **`says`** names a sound in the profile's own notation: it is only ever compared for equality. `""` is a
+  letter that is written and not said (Spanish h). **`written`** lists the ways it is written here; `""`
+  (not written) is allowed only in a reading relation (below). **`when`** holds on the written side: `at`
+  the start or end of the word, `before` or `after` one of a set of letters.
+- **Reading is forwards and decided:** at each place the longest `written` that matches where its `when`
+  holds wins, the earlier correspondence on a tie. A narrower context is written before a wider one.
+- **`kind`:** `fixed`, the norm picks one spelling for each lexeme, so another of them is a miss and which
+  one is that lexeme's leftover; `free`, no norm picks one, so each is right.
+- **Stress** is made explicit before reading (a word of two syllables or more with no mark gets it where
+  `default` puts it), so *esta* and *está* read as different sounds and *háblo* as the sound of *hablo*.
+- **`match.marks`, `equivalences`, `variants` (a table of character variants) and `typo` stay:** they are
+  matching policy. `soundAlike` is removed; its sets are fixed correspondences.
+
+A reading scheme states the other relation (`schemas/reading-scheme.schema.json`), for the orthography it
+annotates:
+
+```yaml
+of: chg-Arab/standard
+correspondences:
+  - {says: o, written: [و], kind: fixed}
+  - {says: a, written: [ا, "", ه], kind: fixed}
+```
+
+- **`says`** is a piece of the reading in the scheme's own notation; **`written`** how the orthography
+  writes it, `""` where it does not. Here nothing is implied: a piece no correspondence names is not
+  accounted for.
+- **A scheme over a script that lists a reading for each sign** (characters, logographs) states
+  `correspondences: []`: one reading a morpheme is listing, not a rule (ADR 0148). Its attested tones and
+  the profile's table of homophone characters stay what they are.
+- A scheme's `variants` is removed; the sets were the pieces one letter writes alike, which the
+  correspondences now say with the letter.
+
+### What core does with it (`packages/core/src/project/`)
+
+- `read(spelling)`: its sites in order, each `{says, written, rule, kind}` (`rule` the correspondence, or
+  none for a letter as itself). A site that says nothing is kept.
+- `compare(expected, typed)`: whether the two say the same, and where their spellings differ, each place
+  with its correspondence and kind. The same sound with every difference free is an accepted variant.
+- `spellings(spelling)`: the other spellings of its sound, one place traded for another fixed way of
+  writing it. Spelling cards' options.
+- `spells(reading, spelling)`: whether the scheme's relation lets this spelling be read so, by dynamic
+  programming over the two, with the sites. `readings(reading, spelling?)`: the readings one piece away that
+  the same letter also writes. Reading cards' options, and the pieces minimal ruby keeps (ADR 0141).
+- Compiled once per profile and scheme, as `typo` is. Pure, and inside the grading budget.
+
+### What a miss is: the order of grading
+
+1. **The accept set, after normalization and the profile's policies,** as today. New here: a typed word
+   that says what an accepted word says, by free correspondences alone, is that word (`CORRECT_VARIANT`
+   with the correspondence's note).
+2. **The slip.** A difference inside the typo budget is labelled **slip** and accepted, unless the typed
+   word says what the expected one says by a fixed correspondence (**orthographic**, no slip), or is a form
+   the course writes of another lexeme (**lexical** + slip) or another form of the expected word's own
+   (**grammatical** + slip; a profile's contrast sets still decide this where the lexicon has no such
+   form).
+3. **What a slip does not explain** is asked two questions. The sound: **orthographic** where the typed
+   word says what the expected one says, else **phonemic**; a mark that carries sound is a required mark,
+   so it is never folded away. Whose form: **grammatical**, **lexical**, or nothing where the course does
+   not write the typed word. A word left out or added is **lexical**.
+4. **A sentence whose words are an accepted answer's in another order** is **order**, and nothing else.
+
+- **Labels** (worst first): lexical, grammatical, regularised, scope, order, phonemic, orthographic, slip.
+  `order` joins the event schema's `MissLabel`. **regularised** is asked of the forms a lexicon ships with
+  blocking off; none ships until rules are written, so it is built and tested on a fixture and never
+  fires in a course. **scope** needs ADR 0147's prompt tags and is not produced.
+- **The sound of the expected word** is `read` off its spelling (`from: spelling`), or, with
+  `from: reading`, the pinned readings of the course's tokens spelled so (the bundle carries them already;
+  nothing new is shipped). Where a word has none, the sound is not asked.
+- **Whose form** is asked of the course's own tokens: every spelling a token has, with its base lexeme and
+  form (`spellingsIn`). Another lexeme is decided by lexeme, never by string.
+- **The outcome from the set:** no label, the policy's verdict as now; slip alone,
+  `CORRECT_WITH_TYPO`; else not accepted: `PARTIAL` where every labelled word is a homophone character
+  (as now), `WRONG_WORD` where a slip, the sound or a required mark explains every difference, else `WRONG`.
+  The judge is asked about `WRONG` alone, as now.
+- **An event** carries `outcome.labels` and `outcome.correspondences` (new, optional): the ids of the
+  correspondences an orthographic miss was against, `<orthography>:<says>`.
+
+### Credit, the bundle and the fold
+
+- **Credit per label** (`creditOf`): slip, right. Orthographic alone: the lexeme right by the card's skill,
+  and wrong by `write-script` in that orthography, which is where a lexeme's spelling leftover is
+  remembered. Grammatical without lexical: the base lexeme right; the feature values its form chooses, and
+  the other lexemes the token writes, wrong. Anything else, wrong.
+- **A lexeme's leftovers** are in the bundle (`leftovers` on a lexeme: the orthographies in which a fixed
+  correspondence could have spelled it otherwise; the schemes in which its letters leave its reading
+  open). The compiler works them out with core, and reports as `projection.unaccounted` each pinned
+  reading a scheme's statement cannot relate to its spelling: the review list.
+- **The leftover is no new part id.** ADR 0146 counts a spelling or a reading leftover as a part of its
+  lexeme; here it is the lexeme by the skill `write-script` or `read-script`, which is how it is already
+  remembered, and asked only of a lexeme the bundle says has one. Known words are counted as before.
+- **The fold counts** misses per correspondence (`state.letters`), and keeps no memory for them (ADR 0148).
+
+### Cards
+
+- `spelling-choice` takes its options from `spellings` (and, where a profile lists homophone characters,
+  from those, as now). So every course whose statement has a fixed correspondence gets the card.
+- `char-read`, `reading-feature` and the minimal ruby take theirs from the scheme's `readings`.
+- `vocalize` and `vocalize-build` keep the profile's marks, which are what an abjad's letters lose.
+
+### Stage 6: what a learner sees
+
+- **Feedback** lists every label, the worst first, each with the word it is about, as notes are now
+  (`feedback.label.*`, in every catalog).
+- **The word list:** an entry opens to its parts: the skills asked of it, its own features where they are
+  parts (*la mano*), its spelling and reading leftovers, each shown or not, and a count ("3 of 5"). A
+  lexeme's own feature is shown by a typed answer that got the agreeing word right.
+- **Rules and forms have entries:** each named rule and each taught feature value, by its label, with the
+  skills shown of those asked.
+
 ## The owner's decisions (2026-11-20)
 
 The eight questions this note ended with, and what the owner answered. The sections above are rewritten to
