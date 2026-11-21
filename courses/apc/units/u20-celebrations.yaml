@@ -16,8 +16,8 @@ kcs:
 - {id: 'sense:3azam', pos: VERB, gloss: {en: invite}, forms: {apc-Arab/standard: [عزم], apc-Latn/arabizi: [3azam]}, notes: {en: '3azamni: he invited me; 3azmetna: she invited us.'}}
 - {id: 'form:obj-1pl', gloss: {en: '-na: us (on a verb)'}, notes: {en: '3azmetna: she invited us. Arabic script: نا (عزمتنا). The same ending as ''our''.'}}
 - {id: 'sense:3ajab', pos: VERB, gloss: {en: 'please (3ajabni: I liked it)'}, forms: {apc-Arab/standard: [عجب], apc-Latn/arabizi: [3ajab]}, notes: {en: 'The thing liked is the subject: 3ajabni el fostan, I liked the
-      dress (the dress pleased me); 3ajabetni el 7afle, I liked the party.'}}
-- {id: 'form:obj-2pl', gloss: {en: '-kon: you (on a verb, to several people)'}, notes: {en: '3ajabetkon? Did you like it? Arabic script: كن.'}}
+      dress (the dress pleased me); 3ajbetni el 7afle, I liked the party.'}}
+- {id: 'form:obj-2pl', gloss: {en: '-kon: you (on a verb, to several people)'}, notes: {en: '3ajbetkon? Did you like it? Arabic script: كن.'}}
 - {id: 'sense:za3len', pos: ADJ, gloss: {en: upset; sad; cross}, forms: {apc-Arab/standard: [زعلان], apc-Latn/arabizi: [za3len]}, notes: {en: 'A woman: زعلانة, za3lene.'}}
 - {id: 'sense:lesh', pos: ADV, features: {PronType: Int}, gloss: {en: why}, forms: {apc-Arab/standard: [ليش], apc-Latn/arabizi: [lesh]}, notes: {en: Also le (ليه).}}
 - {id: 'sense:m3asseb', pos: ADJ, gloss: {en: angry; annoyed}, forms: {apc-Arab/standard: [معصّب], apc-Latn/arabizi: [m3asseb]}, notes: {en: 'A woman: معصّبة, m3assbe.'}}
@@ -319,11 +319,11 @@ sentences:
         الحفلة عجبتني
         حبّيت الحفلة
     apc-Latn/arabizi:
-      text: 3ajabetni el 7afle.
-      tokens: [{surface: 3ajabetni, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: 3ajabet, kc: 'sense:3ajab'}, {surface: ni, kc: 'form:obj-1sg'}]}, {surface: el, sense: el}, {surface: 7afle, sense: 7afle, form: 'form:fem'}]
+      text: 3ajbetni el 7afle.
+      tokens: [{surface: 3ajbetni, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: 3ajbet, kc: 'sense:3ajab'}, {surface: ni, kc: 'form:obj-1sg'}]}, {surface: el, sense: el}, {surface: 7afle, sense: 7afle, form: 'form:fem'}]
       reverse: |-
-        (3ajabetni|3ajbetni|3ajabitni|3ajabetne) (el|l|il) (7afle|7afla|7afli|hafle)
-        el 7afle 3ajabetni
+        (3ajbetni|3ajabetni|3ajabitni|3ajabetne) (el|l|il) (7afle|7afla|7afli|hafle)
+        el 7afle (3ajbetni|3ajabetni)
         7abbet el 7afle
   translations:
     en: |-
@@ -368,12 +368,12 @@ sentences:
         الحفلة عجبتكن
         حبّيتوا الحفلة
     apc-Latn/arabizi:
-      text: 3ajabetkon el 7afle?
-      tokens: [{surface: 3ajabetkon, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: 3ajabet, kc: 'sense:3ajab'}, {surface: kon, kc: 'form:obj-2pl'}]}, {surface: el, sense: el}, {surface: 7afle,
+      text: 3ajbetkon el 7afle?
+      tokens: [{surface: 3ajbetkon, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: 3ajbet, kc: 'sense:3ajab'}, {surface: kon, kc: 'form:obj-2pl'}]}, {surface: el, sense: el}, {surface: 7afle,
           sense: 7afle, form: 'form:fem'}]
       reverse: |-
-        (3ajabetkon|3ajbetkon|3ajabitkon|3ajabetkun) (el|l|il) (7afle|7afla|7afli|hafle)
-        el 7afle 3ajabetkon
+        (3ajbetkon|3ajabetkon|3ajabitkon|3ajabetkun) (el|l|il) (7afle|7afla|7afli|hafle)
+        el 7afle (3ajbetkon|3ajabetkon)
         7abbeto el 7afle
   translations:
     en: |-
