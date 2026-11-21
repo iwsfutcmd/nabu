@@ -225,9 +225,10 @@ is no part of a lexeme). Asked which clusters: "every cluster, that's what Alice
   write the vowel wherever the word ends in the cluster, whatever word comes next.
 - **Which vowel:** a kasra. After a damma inside the stem it is a damma (شُغُل, صُبُح, عُمُر). Before the
   past's -t it is a kasra whatever the stem's vowel (رُحِت): that is an ending, not the stem.
-- **Stress** is where it would be without the vowel: كِنِت and أَكَلِت "I ate" are stressed as *kent* and
-  *akalt* are. So "I ate" and أَكَلِت "she ate" are written alike and differ in stress, which the marks do
-  not show. This is how Levantine is described; no source in the library says it of Lebanese. REVIEW.
+- **Stress** is where it would be without the vowel. A speaker's forms, through the owner (2026-11-21):
+  "I ate" is *akálet*. "She ate" is *áklit*, another shape, so the marks tell the two apart (أَكَلِت,
+  أَكْلِت). What the marks do not show is the stress itself: a voice reading أَكَلِت has to put it on the
+  second syllable.
 - **What stores it:** nothing. The form has a sukun. The projections to the marks and to phonemes write the
   vowel. Arabizi may write it or leave it out (*khebz*, *khebez*), and the course's mostly leaves it out.
 - **What a learner has:** the rule, as a part of its own: a mark card can ask خِبِز against خِبْز, and a
@@ -364,7 +365,10 @@ Kline says neither script has a codified spelling (p. 3, 9), and shows one word 
 ## What is not done
 
 - **Conjugation.** No rule gives a verb's forms from its radicals. Kline's affixes and stem changes are in the
-  notes (§3), ready to be written as rules. Until then the forms are pinned.
+  notes (§3), ready to be written as rules. Until then the forms are pinned. One point where a speaker and
+  Kline differ has to be settled first: "she ate" is *áklit* for the speaker (2026-11-21) and of the shape
+  *katabet* in Kline (p. 96–97), and the course writes both shapes (عَزْمِتْنا *3azmetna*; عَجَبِتْني
+  *3ajabetni*).
 - **The affixes' lexical forms and their conditions.** [apc.yaml](apc.yaml) lists every shape the sentences
   write for each suffix and clitic, with counts, and no forms.
 - **Patterns other than the form I active participle.**
