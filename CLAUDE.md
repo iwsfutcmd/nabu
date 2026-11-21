@@ -42,7 +42,6 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - pnpm courses                     # compile every course in courses/ (lint only; diagnostics as file:line)
 - cd pipeline && uv run nabu build ../courses/<id>   # write the bundle to dist/<id>; `uv run nabu lints` lists lints
 - pnpm bundles                     # rebuild apps/web/public/bundles (committed; CI fails if stale)
-- pnpm migrate                     # reconvert every course to the lexical model (committed; tests fail if stale)
 - pnpm test:e2e                    # lesson per course by keyboard and touch, IME composition, axe
 - pnpm license-check               # what ships (web, API, mobile) has only allowed licenses (packages/lint/src/licenses.ts)
 - pnpm check:catalogs              # every UI catalog in packages/i18n/messages passes the catalog check (ADR 0070)
@@ -62,16 +61,18 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A typo that spells another word of the course is WRONG_WORD (the lexicon). Key lexicon words and lookups with
   `lexiconKey` (marks the profile ignores stripped), or a vocalized course's marked words never match typed answers.
 - Contrast sets can be prefixes (`at: start`, `after` proclitics) and can apply only to inflected words (`inflected`,
-  ADR 0081): bundled tokens carry their `form`, and createGrader passes the words whose sense has one. A slip that makes
+  ADR 0081): bundled tokens carry their lexemes' `feats`, and createGrader passes the words of every lexeme some token
+  writes outside its part of speech's `bare` cell (language.yaml; `spellingsIn`). A slip that makes
   a word ungrammatical is WRONG_WORD even when it looks like a typo; a noun's first letter stays a typo.
 - Profile policies marked REVIEW await Ben's linguistic sign-off.
 
 ## Phase 2 notes (see docs/adr/0027–0033)
-- Course sources: courses/<id>/course.yaml + units/*.yaml (schemas/course-source.schema.json). Every orthography's
-  form is pinned; tokens are aligned to `text`; translations and `reverse` are accept sets.
+- Course sources: courses/<id>/course.yaml + units/*.yaml (schemas/course-source.next.schema.json until its rename),
+  their lexemes in lexicons/<lang>/ (Lexical model notes). Every orthography's form is pinned; tokens are aligned to
+  `text`; translations and `reverse` are accept sets.
 - Fixture courses fa, yue, uz, apc are LLM-drafted (`llm:` provenance, status draft) and await native review.
-  Ten units each (ADR 0050); courses/REVIEW.md lists what a reviewer should check first. Tests pin intro.yaml's
-  sentences, readings and glossary forms: change them with care.
+  Ten units each (ADR 0050; apc twenty, ADR 0080); courses/REVIEW.md lists what a reviewer should check first.
+  Tests pin intro.yaml's sentences, readings and glossary forms: change them with care.
 - A new lint needs a registry entry (pipeline/src/nabu/compiler/diagnostics.py) and a fixture: add a mutation to
   pipeline/tests/fixtures/make_lint_fixtures.py and run it. clean.yaml must stay diagnostic-free.
 - Write course YAML with nabu.yamlio.dump (keeps invisibles as \u escapes), never yaml.safe_dump.
@@ -86,8 +87,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   show the planner's candidates (`lessonCandidates`). Distractors come from the item's own unit or an earlier one
   (ADR 0050), so adding a unit never changes earlier lessons. The player shell and views are @nabu/ui/player; views
   render state and dispatch PlayerEvents, never grade or advance themselves.
-- After changing courses/ or profiles/, run `pnpm bundles`: the web app, Storybook and tests read the committed bundles.
-  After changing courses/, run `pnpm migrate` too (the lexical model's converted copies, until the switch).
+- After changing courses/, lexicons/ or profiles/, run `pnpm bundles`: the web app, Storybook and tests read the
+  committed bundles.
 - Typing is left to the device keyboard or IME; on-screen keyboards are deferred (ADR 0034). Keep the field IME-safe.
   A new text field for language text spreads `keyboardHint` (ADR 0143), so the Android app can switch the keyboard.
 - Check stays enabled while an IME composes: a press is held until compositionend (core `queued`) and moves focus to
@@ -96,10 +97,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   composing through `useSettledSubmit` (@nabu/ui); never disable a button while composing (ADR 0118, D39).
 - Distractors must not give the answer away (P2): rank them (`pickRanked`) by the answer's final punctuation, length,
   shared words and capital. Match-pairs show `cardGloss` (first sense, no notes); tap-for-gloss shows the full gloss.
-- A gap-fill asks one thing (ADR 0132, `asks`): which word (options share the answer's form signature, lesson/signature.ts,
-  and its KC's UD `pos` and `features` exactly; none the accept set takes in the gap, none whose gloss shares a meaning)
-  or which form (the answer's own word in other attested forms; the answer must have a form). It credits the sense or the
-  form KCs; a mistake keeps `asks` and is asked again as the same question. KCs' `pos` and `features` are drafted (REVIEW).
+- A gap-fill asks one thing (ADR 0132, `asks`): which lexeme (options share the answer's form signature, `formSignature`
+  in lesson/lexemes.ts, its lexeme's own features included, and its lexeme's UD `pos`; none the accept set takes in the
+  gap, none whose gloss shares a meaning) or which form (the answer's own lexeme in other attested forms; the answer must
+  have a form to credit, `formPartsOf`). It credits the base lexeme or the form's parts; a mistake keeps `asks` and is
+  asked again as the same question. Lexemes' `pos` and `feats` are drafted (REVIEW).
 - Letters placed to build a word (word-write) show as the word they spell: one token, one run of text (`data-spelled-word`),
   so a script whose letters join shows them joined and marks sit on their letters. Never lay letter tiles side by side as
   the answer; pressing the word or Backspace takes back the last letter.
@@ -122,9 +124,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A lesson's review (ADR 0097): earlier lessons' sentences picked by need (`reviewSentences`), at most a quarter of
   its cards, marked `review: true` (the player labels them). Never pick review in course order.
 - The planner is pure: (request, state, bundle, now, seed) → plan. Re-tune CALIBRATION_WEIGHT only against
-  test/simulation.test.ts (every course within ±5pp of 85%, no lesson dropping a new KC); golden files:
-  UPDATE_GOLDEN=1 after a deliberate change. Every new KC of a lesson is presented in it (a hard constraint, ADR 0050).
-- Card keys: "kc|facet", and "kc|facet|orthography" for read-script/write-script (§6.3).
+  test/simulation.test.ts (every course within ±5pp of 85%, no lesson dropping a new part); golden files:
+  UPDATE_GOLDEN=1 after a deliberate change. Every new part of a lesson is presented in it (a hard constraint, ADR 0050).
+- Card keys: "part|skill", and "part|skill|orthography" for read-script/write-script (§6.3).
 - The web app stamps events (apps/web/src/clock.ts, session.ts) and keeps them in IndexedDB (store.ts).
 - A running lesson or story holds the route against Back and Forward (navigation.ts, ADR 0108): Back, or Android's
   back button, asks as the quit button does; a new navigation (a link, a typed address, a reminder, an e2e `goto`)
@@ -139,7 +141,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - e2e sessions depend on the log and clock: fix the clock (page.clock.setFixedTime), seed history through
   window.nabu, and plan with the solver's `planned()`. Seeded history that gets uploaded needs `freshIds()`.
 - The API (apps/api) runs on PGlite unless DATABASE_URL is set; migrations are SQL in src/db/migrations.ts
-  (append, never edit). Events are validated against schemas/learner-event.schema.json with Ajv.
+  (append, never edit). Events are validated against schemas/learner-event.next.schema.json (until its rename) with Ajv.
 - API tests open their database with test/database.ts: PGlite, or with NABU_TEST_DATABASE_URL a fresh Postgres
   database per test file (CI's api-postgres job).
 - Sync is optional: the web app talks to a server only with VITE_NABU_API (dev: .env.development) or ?api=.
@@ -159,10 +161,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Calibration: `pnpm --filter @nabu/core simulate --out f.jsonl`, then `cd pipeline && uv run nabu calibration f.jsonl`
   or `uv run python notebooks/calibration.py f.jsonl`.
 - Count open mistakes with @nabu/core/learner `practicableMistakes` (the course page does), never `state.mistakes`:
-  a session leaves out templates on a break, items the course no longer makes, and items needing unseen KCs.
+  a session leaves out templates on a break, items the course no longer makes, and items needing unseen parts.
   A card about one word of its sentence keeps that word (`Mistake.ask`): the session asks it again (`MakeContext.ask`),
   and only an answer about it closes the mistake (ADR 0037 amendment).
-- The word list (`#/<course>/<orth>/words`): @nabu/core/learner `learnedWords` (word KCs with a reviewed card; script
+- The word list (`#/<course>/<orth>/words`): @nabu/core/learner `learnedWords` (lexemes with a reviewed card; script
   facets count only in their orthography; each known or learning, ADR 0100), `orderWords`, `wordMatcher` (letters as
   the profile compares them, marks stripped; readings with or without tones; glosses folded in their own language);
   @nabu/ui/words WordList. It reads the log; it records nothing.
@@ -175,9 +177,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Known (ADR 0100): every skill `skillsAsked(course)` asks of a word (recognize; produce where a sentence uses it; listen
   where the voice is good and the word can be heard) is in the fold's `shown`: a first try right, not self-rated, on a
   later local date than `met` and than its last `missed`. Never store known status; change the fold.
-- A miss counts against a word only where the grading pins it (a one-word card, `askedKcs`, word-level credit); a
+- A miss counts against a word only where the grading pins it (a one-word card, `askedParts`, word-level credit); a
   sentence missed as a whole leaves its words alone. Gap-fill is recognition; production is typing (D4).
-- A new word is presented only by a card credited to it (`creditedKcs`), never as a pronunciation card's context.
+- A new word is presented only by a card credited to it (`creditedParts`), never as a pronunciation card's context.
 - Sessions aim at the skills words lack (ADR 0101): `NEED_GAIN`, typing and listening slots that only come in where the
   session can still reach its target, `focus` blanks. Callers pass `today`, the learner's local date (web
   `localDate(now)`; the e2e solver UTC, as its browser). Tune against the simulation, which checks typing too.
@@ -213,13 +215,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   reads it; after changing a reading, regenerate (the compiler warns `audio.stale`), then `pnpm bundles`.
 - Synthesize from pinned readings (Jyutping), never raw characters, except a voice that reads only characters (yue's
   VoxCPM2, ADR 0094: the round trip and the audio check catch its readings). Human recordings: `nabu audio ingest`.
-- A word's reading is the one the compiler pins on its KC form (`nabu.compiler.readings`, ADR 0117: every scheme, the
-  sense's most common in lessons first): its card, its clip and minimal pairs all read that; never look one up by
-  spelling. A change to the order can make clips stale: `test_readings.py` checks every course's, grc's too.
-- Readings are fixed by their words (ADR 0135): tokens annotated alike (spelling, sense, form, morphs, `context`,
-  bound or not) read alike in every scheme and vocalization. With `consistentReadings: true` (course.yaml; on in apc,
-  es, fa, grc, hbo, lzh, tok, uz) a form read two ways is an error, elsewhere a warning: annotate what tells them apart (a
-  sense, a form, a morph, a `context` such as hbo's `pause`/`nesiga`), or mark a free variant `readingVariant`; never
+- A word's reading is the one the compiler pins on its lexeme's spelling (`nabu.compiler.readings`, ADR 0117: every
+  scheme, the lexeme's most common in lessons first): its card, its clip and minimal pairs all read that; never look
+  one up by spelling. A change to the order can make clips stale: `test_readings.py` checks every course's, grc's too.
+- Readings are fixed by their words (ADR 0135): tokens annotated alike (spelling, the lexemes they write with the
+  feature values chosen on each, `context`, bound or not) read alike in every scheme and vocalization. With
+  `consistentReadings: true` (course.yaml; on in apc, es, fa, grc, hbo, lzh, tok, uz) a form read two ways is an error,
+  elsewhere a warning: annotate what tells them apart (another lexeme, a feature value, a lexeme the script does not
+  write, a `context` such as hbo's `pause`/`nesiga`), or mark a free variant `readingVariant`; never
   change a reading to hide it. A token pinning no reading takes its form's, so pin a form once.
 - One synthesized clip an item, at normal speed: "slow" is the player slowing it (0.75×, pitch kept;
   ADR 0062). Never synthesize slow clips; a recorded slow take (`ingest`) still plays as it is.
@@ -262,8 +265,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Stories: `stories:` in a unit (schemas/course-source), each on a node of kind story. Lines compile like sentence
   forms and need every course orthography; questions are `choose` steps or lines with `ask: complete|arrange`.
 - A story question asks one thing, and its wrong options fail for that reason only (ADR 0132). A `complete` line asks
-  which word (`asks: word`, the default: distractor KCs of the gap's `pos` and features, each shown as the course writes
-  it in the gap's form, unit or earlier) or which form (`asks: form`: the gap's word in other attested forms). A wrong
+  which lexeme (`asks: lexeme`, the default: `distractors` are lexemes of the gap's `pos`, each shown as the course
+  writes it in the gap's form, unit or earlier) or which form (`asks: form`: the gap's lexeme in other attested forms,
+  `distractors` as feature values). A wrong
   word makes the line false or absurd, never another sensible line (pears for grapes, tea for wine, three for seven); a
   wrong form makes it ungrammatical, never one the line also takes. Nothing else may mark the answer (a manuscript
   spelling, a capital). `story.distractor-form` and `story.distractor-pos` are errors.
@@ -326,7 +330,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 
 ## Phase 10 notes (see docs/adr/0047–0048)
 - Offline: @nabu/core/offline (coreFiles, downloadPlan, restrictMedia). The manifest's units list their `assets`;
-  never make a template depend on media without the builder checking course.audio or kc.image (restrictMedia drops them).
+  never make a template depend on media without the builder checking course.audio or lexeme.image (restrictMedia
+  drops them).
 - The service worker is apps/web/sw/sw.ts (built by vite-sw.ts, its own tsconfig with the WebWorker lib). Code it
   shares with the app (idb.ts, outbox.ts, http.ts, caches.ts) must not touch window or import React.
 - Files under `assets/` come from the HTTP cache (hashed names); the worker precaches only the UI catalogs listed under
@@ -358,10 +363,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - The UI (`@nabu/ui/corrections`) gives every field its own text's lang/dir/font; never normalize while composing.
 - Modal content renders outside UiRoot: wrap it with `useChrome()` (lang, dir, font) and `chromeClass`.
 - `nabu corrections apply <jsonl>` edits values in place and skips anything whose `shown` no longer matches the
-  source; changes that need new tokens or senses are listed with file:line, never guessed. Regenerate audio after.
+  source; changes that need new tokens or lexemes are listed with file:line, never guessed. Regenerate audio after.
 - "My answer should be accepted" also covers story questions (answerTextOf); promote skips them (no accept set).
-- Words are correctable too (ADR 0057): `item` is the KC id; `correctablesOf(course, ex)` gives what an exercise
-  offers (each pair's word for match-pairs). apply edits the KC's first form and gloss; readings stay with sentences.
+- Words are correctable too (ADR 0057): `item` is the lexeme id (an older correction's KC id goes through the course's
+  aliases.yaml); `correctablesOf(course, ex)` gives what an exercise offers (each pair's word for match-pairs). apply
+  edits the lexeme's first spelling and gloss in its lexicon; readings stay with sentences.
 
 ## Vowel marks notes (see docs/adr/0053)
 - Course sources stay as written; `vocalization:` files (courses/<id>/vocalization.yaml) give words their marks
@@ -396,18 +402,21 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `claimStatus`/`reportsOf`; never a server route, never stored. Confirmations say where a report goes (`useReportsReach`).
 
 ## Morphology notes (see docs/adr/0061)
-- A KC's forms are its lemma (first: what word cards show) and its variants, never an inflected word; the compiler's
-  `kc.inflected-form` catches forms the sentences analyse into several KCs. Verbs: infinitive (ichmoq, خوردن).
-- Taps on analysed words show their morphs (`glossAt`); annotate morphs rather than listing inflected forms.
+- A lexeme's `spelled` forms are its lemma (first: what word cards show) and its variants, never an inflected word (a
+  form no rule gives yet is one of its `forms`); the compiler's `lexeme.inflected-form` catches a spelling the sentences
+  write with several lexemes. Verbs: infinitive (ichmoq, خوردن).
+- Taps on a token that writes several lexemes show each (`glossAt`); list a token's `lexemes` rather than adding
+  inflected spellings.
 - A morpheme the script does not write, or writes only as a mark on a letter it shares (the ezafe: fa کتابِ, chg ملک
-  malik-i), is a morph with an empty surface, last in its word (ADR 0136); a tap glosses it as unwritten. Never a
-  sentence-level tag for something one word carries.
+  malik-i), is a lexeme with an empty surface, last in its token's `lexemes` (`{lexeme: ezafe, surface: ''}`, ADR 0136);
+  a tap glosses it as unwritten. Never a sentence-level tag for something one word carries.
 
 ## Persons and register notes (see docs/adr/0056, 0075)
-- `persons` on a sentence (speaker m/f; addressee m/f, sg (number but no gender: yue 你), du, pl) is shown as tags
-  under l1-l2 prompts and gap-fill hints; tag where the target marks gender/number and English cannot, and keep the accept set to the
-  forms that fit. Untagged means every form is accepted. The same goes for "it" and a bare "this": unless the
-  sentence names the thing, accept both genders (mish b3id / mish b3ide, jarrbo / jarrba).
+- A `persons` tag in a sentence's `tags` (`- {persons: {addressee: m}}`, read with `sentencePersons`: speaker m/f;
+  addressee m/f, sg (number but no gender: yue 你), du, pl) is shown as tags under l1-l2 prompts and gap-fill hints;
+  tag where the target marks gender/number and English cannot, and keep the accept set to the forms that fit.
+  Untagged means every form is accepted. The same goes for "it" and a bare "this": unless the sentence names the
+  thing, accept both genders (mish b3id / mish b3ide, jarrbo / jarrba).
 - Exercise every person the language marks, never one default (ADR 0075): a woman speaking as well as a man, to a
   woman, to one/two/several people. Draft the set together (kifak / kifik / kifkon) and check the spread per course
   before committing (counts in docs/adr/0075). Never let "a man speaking to one man" be the norm.
@@ -415,9 +424,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   uz sen/siz), Korean/Japanese honorifics. When a register language arrives: an ADR, a tag the prompt shows, accept
   sets that fit it, and every level exercised. Gendered plurals (Hebrew atem/aten) will need a gendered pl.
 - A course's voices share its items (ADR 0078): each sentence, word and story character gets one voice at random
-  (seeded by its id: `assignment` in nabu/audio/course.py), except where grammar says who speaks (`persons.speaker`, a
-  story character's `speaker`): then a voice of that gender, if cast. A one-voice cast reads everything (a man reading a
-  woman's line is fine). Checked clips keep their voice. Set a character's `speaker` only where the text fixes it
+  (seeded by its id: `assignment` in nabu/audio/course.py), except where grammar says who speaks (a `persons` tag's
+  `speaker`, a story character's `speaker`): then a voice of that gender, if cast. A one-voice cast reads everything
+  (a man reading a woman's line is fine). Checked clips keep their voice. Set a character's `speaker` only where the text fixes it
   (agreement, kinship words), never from a name alone. Adding a voice re-draws about half the items: regenerate.
 
 ## Account data notes (see docs/adr/0067, 0069)
@@ -434,7 +443,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A sign-off pins the sha256 of `signoffText` (@nabu/core/corrections); its Python twin is nabu/review. Change both,
   with the pinned text in packages/core/test/signoff.test.ts and pipeline/tests/test_review.py.
 - Release builds (ADR 0073): `uv run nabu build ../courses/<id> --release` keeps only reviewed sentences, stories and
-  scenarios, and script tracks: an alphabet node keeps its letters and the words whose KCs reviewed content uses (D51);
+  scenarios, and script tracks: an alphabet node keeps its letters and the lexemes reviewed content uses (D51);
   script tracks alone are no release. Committed bundles and the demo stay full builds. The manifest's summary counts come from
   `compiled.counted` (compiler/counts.py): count through `count()`, never by editing the dicts.
 - Review workspace (ADR 0074): reviewer accounts (`PUT /admin/v1/reviewers {email, handle, courses}`) work at `#/review`
@@ -457,15 +466,15 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Reading traditions (ADR 0138): an orthography's ruby layers whose scheme has an `answer` (`readingTraditions`). Reading
   cards ask the learner's (the layer last chosen, kept when readings are off: web `storedTradition`; pass it as `reading`
   to `plan`, `readingsShown`, `practicableMistakes`). Where there are several (lzh: Pinyin, Jyutping, Baxter) a card names
-  its `tradition` and its read-script card is that tradition's (`kc|read-script|orth|scheme`); with one, keys are as
+  its `tradition` and its read-script card is that tradition's (`part|read-script|orth|scheme`); with one, keys are as
   before. Typed readings come after a choice card in that tradition. Pinyin is typed with marks or tone numbers
   (`toneNumbers` step), its tones `required`; Baxter's ASCII is case folded, no typo leeway.
 - An orthography may pin several ruby layers (lzh: pinyin, jyutping, baxter). Every Han word token pins all of them,
-  chosen by sense (說.yue is yuè / jyut6 / ywet), one reading in all three: never Pinyin of one word with Baxter of
+  chosen by lexeme (說.yue is yuè / jyut6 / ywet), one reading in all three: never Pinyin of one word with Baxter of
   another (見 "see" jiàn / gin3 / kenH, "appear, have an audience" xiàn / jin6 / henH). The compiler checks they line up per character. Jyutping is the
   literary reading; Baxter is Baxter & Sagart 2014 ASCII from the Guangyun. The player shows one layer or none.
 - A layer's `lang` tags its ruby text (`<rt lang>`): zh-Latn-pinyin, yue-Latn-jyutping, ltc-Latn-x-baxter.
-- Senses spelled alike are KCs with a suffix (知, 知.zhi); a token names its sense, and glossAt glosses it as that.
+- Lexemes spelled alike take a suffix (知, 知.zhi); a token names its lexeme, and glossAt glosses it as that.
 - Each unit's lessons teach the words of its story, an authentic passage; stories may use no word taught later.
 - Target-language text is sized apart from the rest: a profile's `fonts.scale` (lzh 1.25), times the learner's size
   for the language being learned (Preferences; `--nabu-target-scale` on <T> text marked `data-target`). Render course
@@ -479,17 +488,21 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Cuban Spanish notes (see docs/adr/0076–0077)
 - courses/es: thirty units A1–B2 for heritage speakers; courses/es/README.md is the brief, syllabus and conventions.
   Cuban forms are canonical (guagua, ¿Qué tú quieres?); pan-Hispanic ones are accepted, never the reverse.
-- Verb tenses are `form:` KCs on the token (form:pres-1s, form:pret-3s, form:impf, form:subj…), not morphs;
-  `iPlusOne: 2`. A unit that first teaches a tense defines its form KC.
-- Gender and number are `form:` on the token too (ADR 0132 amendment): form:fem, form:pl, form:fem-pl (masculine
-  singular bare) on every agreeing noun, adjective, determiner and pronoun, by its agreement in the line (mi casa:
-  mi form:fem; el agua: form:fem), never by its ending alone; a new sentence's tokens need them. Pronouns and
-  single-word names pin theirs (ella form:fem; ustedes, nos, les form:pl; Cuba, Marisol form:fem).
+- Verb tenses are feature values in the token's `feats` (tengo: `{Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+  VerbForm: Fin}`), never a lexeme of their own; `iPlusOne: 2`. The node that first teaches a tense introduces its value
+  (`feature:Tense=Past`), and lexicons/es/language.yaml's `labels` name the forms ("past tense (preterite): I (yo)").
+- A noun's gender is its lexeme's (ADR 0132 amendment): stored in lexicons/es/lexemes.yaml (`feats: {Gender: Fem}`)
+  only where language.yaml's `defaults` do not give it (mano, Cuba, Marisol; casa and agua are feminine by their -a), or
+  chosen on its tokens where its entry says `chooses: [Gender]` (tío, tía). A noun's token chooses its number (casa
+  `{Number: Sing}`); every agreeing adjective, determiner and pronoun chooses gender and number by its agreement in the
+  line (mi casa: mi `{Gender: Fem, Number: Sing}`), never by its ending alone; a new sentence's tokens need them.
+  Pronouns choose theirs (ella `{Gender: Fem, Number: Sing}`; ustedes, nos, les `{Number: Plur}`).
 - es-Latn/standard: a missing accent is CORRECT_MARKS; one that spells another word of the course is WRONG_WORD
   (`marks.distinguishes`, the grader's lexicon). ñ is a letter, not a mark.
-- A finished placement seeds the placed nodes' KCs (ADR 0111): `seeded` on the event (`placedKcs`), a recognize card
-  each in the fold. Placement is adaptive (ADR 0077: a block per unit, gallop then bisect, then node steps); `placement: {production:
-  typed}` makes its production typed. The test is data and `runTest` a pure function: never make it stateful.
+- A finished placement seeds what the placed nodes introduce (ADR 0111): `seeded` on the event (`placedParts`), a card
+  each in the fold (recognize; read-off for a feature value). Placement is adaptive (ADR 0077: a block per unit,
+  gallop then bisect, then node steps); `placement: {production: typed}` makes its production typed. The test is
+  data and `runTest` a pure function: never make it stateful.
 - Two voices clone Cuban recordings (`nabu audio cast --recording`; a man's CC BY, a woman's CC0); clips are CC-BY-NC-4.0
   (OmniVoice weights) and credit the recording. Cut a reference on whole words, no breath at either end.
 
@@ -509,8 +522,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   and check every Arabic spelling on a page image (`pdftoppm -png -f N -l N`).
 
 ## apc twenty units notes (see docs/adr/0080)
-- apc has twenty units, checked against Kline (2022). Senses spelled alike take a suffix (ra7.fut, fi.can, men.than,
-  ba3d.still, jem3a.uni); multi-word patterns are `construction:` KCs (used-to, was-doing, shu-excl).
+- apc has twenty units, checked against Kline (2022). Lexemes spelled alike take a suffix (ra7.fut, fi.can, men.than,
+  ba3d.still, jem3a.uni); multi-word patterns are rules (lexicons/apc/language.yaml `rules`: rule:used-to,
+  rule:was-doing, rule:shu-excl), named in a sentence's `uses`.
 - Spelling: -o/-a (his/her, him/her; enno, la2anno) are ـه/ـها as Kline writes them, ـو/ـا accepted; -on (their) is ـهن.
   Vowel marks put a damma before ـه (بَيُّه): the voice says -o from it. New vocalizations mark ج as a sun letter.
 - Vowel marks write the helping vowel in every cluster that ends a word (the owner, 2026-11-21): خِبِز, بِنِت, كِنِت,
@@ -520,15 +534,17 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   vowel or the silent ه of their (إِبْنْهُن, ebnon). "She" in the past has the speaker's shape (3ajbetni, 3azmetna).
 - A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
   and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
-- Nouns pin their gender and number as es's do (ADR 0132 amendment): form:fem on a feminine noun (ahwe, teta, Beirut),
-  form:pl on a plural (wlad: no gender in the plural); adjectives, hayde, hiyye, enti agree; in both scripts alike.
-  So `iPlusOne` is 2. The verb-prefix contrast names verb forms (`forms`), so a noun's first letter stays a typo.
+- Gender and number as es's (ADR 0132 amendment): a noun's gender is its lexeme's, stored only where language.yaml's
+  `defaults` do not give it (teta, Beirut `feats: {Gender: Fem}`; ahwe, قهوة, by its ة); its token chooses its number
+  (ahwe `{Number: Sing}`, wlad `{Number: Plur}`); adjectives, hayde, hiyye, enti choose gender and number where they
+  agree (kbire `{Gender: Fem, Number: Sing}`); in both scripts alike. So `iPlusOne` is 2. The verb-prefix contrast
+  names verb forms (`forms`), so a noun's first letter stays a typo.
 
 ## Biblical Hebrew notes (see docs/adr/0082–0084, 0089)
 - courses/hbo is Biblical Hebrew, never Modern: no voice may read its text. Voices read the pinned `tiberian`
   reading (SBL transliteration, acute on non-final stress, final "-" for maqaf-bound words), which
   nabu/audio/tiberian.py turns into phonemes. The voice is Piper's Arabic `ar_JO-kareem-medium` (ADR 0089), given
-  IPA (`tiberian.piper`, `PIPER_PHONEME_SCHEMES` in nabu/audio/course.py): Khan's vowels and stress, Arabic-bent
+  IPA (`tiberian.piper`, the scheme's plug-in in nabu/schemes.py): Khan's vowels and stress, Arabic-bent
   consonants (vav [w], alveolar [r], ṭ ṣ as the voice's t̪ s̪, [jj], no aspiration). After a reading changes,
   `nabu audio generate ../courses/hbo` (speech group; minutes; MIT), `nabu audio align ../courses/hbo` (word
   timings), then `pnpm bundles`. It is read, not heard: its `facets` leave out listen and its voice is iffy (ADR 0091:
@@ -546,13 +562,17 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   vowel, the echo vowel, uvular resh, [ɟɟ]). A sound rule changes only with a page of Khan; listed rules are not modelled.
   The voice's Arabic consonants (ADR 0089) are Ben's choice, not Khan's: keep them apart (`arabic=True`).
 - References (ADR 0084; notes in nabu/notes/hbo): Khan for sounds, Joüon–Muraoka for forms and stems,
-  Holladay for glosses. Contrast sets limited by `forms` (words pinned as those forms) carry the verb's person
-  prefixes and endings and agreement; a noun's first letter and an infinitive's -ôṯ stay typos.
-- A noun's form joins gender, number and state (ADR 0132 amendment): f, f-pl, f-cstr, f-pl-cstr beside pl, cstr,
-  pl-cstr (masculine bare); nouns always plural pin pl (מַיִם, פָּנָיו), אֱלֹהִים as God none. הִיא, אַתְּ, זֹאת f;
-  הֵם, אֵלֶּה pl. A new sentence's nouns need them; the ending contrast (`forms: [form:f, …]`) reaches them.
-- Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are KCs by
-  stem; prefixes and suffixes are morphs; verb forms are `form:` KCs by conjugation and person (iPlusOne 2).
+  Holladay for glosses. Contrast sets limited by `forms` (words whose tokens stand in those forms: a part of speech and
+  feature values, `FormCondition`) carry the verb's person prefixes and endings and agreement; a noun's first letter
+  and an infinitive's -ôṯ stay typos.
+- A noun's gender is its lexeme's, stored only where language.yaml's `defaults` (-â, -t feminine) do not give it; its
+  token chooses number and state (ADR 0132 amendment): `{Number: Sing}`, `{Number: Plur}`, `{Definite: Cons, Number:
+  Sing}`; nouns always plural choose Plur (מַיִם), אֱלֹהִים as God Sing. הִיא, אַתְּ, זֹאת `{Gender: Fem, Number:
+  Sing}`; הֵם, אֵלֶּה plural. A new sentence's nouns need them; the agreement contrast (`forms: [{pos: [NOUN, …], feats:
+  {Gender: Fem}}, …]`) reaches them.
+- Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are lexemes by
+  stem (hithallekh beside halakh); prefixes and suffixes are lexemes the token writes (הַ ha in הַשָּׁמַיִם); verb forms
+  are feature values by conjugation and person (iPlusOne 2).
 - A sentence's `reverse` lists its own order, then the other order of subject and predicate where Biblical Hebrew has
   both and the English translation would be the same (ADR 0084): nominal and participle clauses, plain qatal/yiqtol,
   a distinct jussive. Never a subject before wayyiqtol or weqatal; not identity clauses (קין אחי), the blessing
@@ -565,7 +585,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - courses/yue is checked against Matthews & Yip, *Cantonese: A Comprehensive Grammar* (2011); notes in `nabu/notes/yue/`.
   Its text layer's Chinese characters are wrong (read them from page images) and its Yale shows ā ē ī ō ū as A B C D E.
   M&Y write Hong Kong speech (你 léih, the n/l merger): compare tones and changed tones, never the initials.
-- Particles: 呀 aa3 (sense 呀) softens a question or statement but never makes one; aa4 (àh, sense 呀.q) turns a
+- Particles: 呀 aa3 (lexeme 呀) softens a question or statement but never makes one; aa4 (àh, lexeme 呀.q) turns a
   statement into a question.
   No 嘅呀 (ge + a is 㗎, outside the script audit); 嗎 is formal (你好嗎). 喇 laa3 a new situation, 啦 laa1 requests.
 - 俾 puts the thing first (俾錢你). 好 + adjective is a weak "very": English accept sets keep very/really/so optional.
@@ -578,7 +598,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   Whisper's own (it writes Mandarin), and compares differing characters by reading (homophones free, a tone apart half).
   `nabu audio check <course>` re-runs the check on existing clips.
 - Jyutping (ADR 0126): yue's second orthography, yue-Latn/jyutping, Jyutping the text and the characters its ruby
-  (scheme `characters`). Never written by hand: after changing a yue sentence, word or story line, run
+  (scheme `characters`). Never written by hand: after changing a yue sentence, lexicon entry or story line, run
   `cd pipeline && uv run nabu jyutping ../courses/yue` (it lists readings it took from PyCantonese for a person to
   check); the compiler and `--check` (tests) catch a stale one. Tones are never typos there (contrast sets).
 
@@ -604,13 +624,16 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (needs piper-tts in the pipeline venv). The voice is Piper's Greek rapunzelina given IPA (`attic.piper`), a stopgap
   rated bad (ADR 0091): its clips (CC-BY-NC-SA-4.0) are heard only in the audio check, never shipped.
 - Grave = acute (silent); missing marks are CORRECT_MARKS unless they spell another course word. Write graves and
-  enclitic accents as editions do, in every accept-set alternative too. KC forms are lemmas (a grave-only variant
-  is a dead glossary entry). Units read public-domain passages (Perseus); take only facts from CGCG and the CGL.
-- The alphabet track asks a word as its KC's Attic reading in Latin, lengths kept (χώρᾱ chōrā, ADR 0133). A lemma no
-  sentence spells gets `readings: {attic: …}` on its KC entry, with the lengths its inflected tokens show.
-- Nouns, adjectives, pronouns and the article pin gender, case and number as one form (ADR 0132 amendment), each
-  left out when masculine, nominative, singular: ὁ bare, τὴν f-acc, τῶν gen-pl, τὸ n (a neuter is one form as
-  subject, object or address), ὦ παῖδες pl. A new sentence's tokens need them; ἐγώ, σύ pin case only.
+  enclitic accents as editions do, in every accept-set alternative too. A lexeme's spellings are lemmas (a grave-only
+  variant is a dead glossary entry). Units read public-domain passages (Perseus); take only facts from CGCG and the CGL.
+- The alphabet track asks a word as its lexeme's Attic reading in Latin, lengths kept (χώρᾱ chōrā, ADR 0133). A lemma
+  no sentence spells gets `readings: {attic: …}` on its lexicon entry (ἀγορά: ᾰ̓γορᾱ́), with the lengths its inflected
+  tokens show.
+- A noun's gender is its lexeme's (stored where language.yaml's `defaults` do not give it; παῖς `chooses: [Gender]`);
+  its tokens choose case and number. Adjectives, pronouns and the article choose gender, case and number (ADR 0132
+  amendment), every value written: ὁ `{Case: Nom, Gender: Masc, Number: Sing}`, τὴν `{Case: Acc, Gender: Fem, Number:
+  Sing}`, τὸ `{Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}` (a neuter is one form as subject, object or address).
+  A new sentence's tokens need them; ἐγώ, σύ choose case and number only.
 
 ## Voice quality notes (see docs/adr/0091)
 - A course's `audio.quality` says how far learners may rely on its clips. good (default): everywhere. iffy (a stopgap
@@ -622,19 +645,19 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Rule templates out through `courseExclusions`, never by hand in one caller (lessons, practice, placement, gallery).
 
 ## Script tracks notes (see docs/adr/0088, 0133)
-- A `script` node with `alphabet: {orthography, words}` teaches an orthography's letters (grapheme KCs, by their forms:
-  letters, diphthongs, marks); the compiler adds the graphemes each word credits and its reading in Latin (ADR 0133):
-  the profile's `scriptTrack: {reading}` names the scheme, the scheme's `latin` its Latin orthography. A word is its
-  KC's pinned reading (the word card's), through the scheme's `latin` plug-in where its text is not Latin (Attic:
-  nabu/greek_translit.py); a letter is the plug-in's rendering, or its grapheme KC's form in that orthography (chg).
+- A `script` node with `alphabet: {orthography, lexemes}` teaches an orthography's letters (the unit's `graphemes`, by
+  their forms: letters, diphthongs, marks); the compiler adds the letters each lexeme credits and its reading in Latin
+  (ADR 0133): the profile's `scriptTrack: {reading}` names the scheme, the scheme's `latin` its Latin orthography. A word
+  is its lexeme's pinned reading (the word card's), through the scheme's `latin` plug-in where its text is not Latin
+  (Attic: nabu/greek_translit.py); a letter is the plug-in's rendering, or its grapheme's form in that orthography (chg).
   Never a romanization of the spelling. `script.untaught-letter` stops a word with untaught letters.
 - Its four templates (letter-read, letter-pairs, word-read, word-write; @nabu/core/lesson/script.ts) are built only
   for script nodes: never add them to SENTENCE_TEMPLATES (every course's lessons and goldens would change).
 - The row (`scriptPathOf`) sits above the units and never gates them; a script node is planned as `{mode: "lesson"}`.
-  Grapheme KCs are not glossary entries. Convert nodes (uz, apc) still do not run.
+  Letters (`grapheme:`) are not glossary entries. Convert nodes (uz, apc) still do not run.
 - A script track's letters and marks come from the profile (core-cli `letters` and `unicode-set`), never a list in code;
-  a form with no letter is `script.no-letter` (ADR 0124). A word no sentence spells needs its KC entry's `readings`
-  (`script.missing-reading`): a KC may give the reading of a form no token spells (ADR 0133).
+  a form with no letter is `script.no-letter` (ADR 0124). A word no sentence spells needs its lexicon entry's
+  `readings` (`script.missing-reading`): an entry may give the reading of a spelling no token spells (ADR 0133).
 
 ## Chaghatay notes (see docs/adr/0128-0129)
 - courses/chg is Chaghatay (literary Turki), read and written only (no audio; the script facets are its alphabet track's). One
@@ -645,36 +668,42 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   marks are `required` there (ä ö ü ā ī ū ē à: left out or moved, wrong) and so are those of š ž ḫ ǧ
   (`requiredLetters`: s for š is another sound; the letter traded for another is still a slip), another consonant's
   noted (ADR 0134 and its amendment);
-  every sense KC pins its own (a verb's stem never stands alone). Never a second, Latin orthography (ADR 0129).
+  every lexeme pins its own in the lexicon (a verb's stem never stands alone). Never a second, Latin orthography (ADR
+  0129).
   A line's readings stand level, a gap over its tallest word's ink, inside their box (ruby-lift.ts, ADR 0131 amendments).
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
   joined, a ZWNJ after a final vowel ه; Persian punctuation added. The Latin is his reading, not letter for letter.
-- Suffixes are morphs with form KCs (form:dat, form:past-1s, form:pres, form:mis …); verbs are cited as stems with
-  a hyphen (bar-). Homographs take a suffix (bar.go, at.name, kim.that, yuz.face).
+- Suffixes are affix lexemes (`realises` a feature value, `allomorphs` by spelling: dat, past-1s, pres, mis …) in a
+  token's `lexemes`; verbs are cited as stems with a hyphen (bar-). Homographs take a suffix (bar.go, at.name,
+  kim.that, yuz.face).
 - Schluessel's book is CC BY-NC-ND: take facts from it (letters, suffixes, spellings, glosses), never his example
   sentences or the documents he composed (ch. 7). Stories are public-domain passages (Babur, the Tadhkira, Abu
   'l-Ghazi, Navai, Qasim Beg, the Prophets, a risāla) as he types them, in the source's spellings (فادشاه, پز, tep),
   with his reading in the Latin. PDF page = book page + 35; check Arabic on page images. Notes in `nabu/notes/chg/`.
 - "You": sän tagged to one person, sizlär to several, siz (polite or plural) untagged; accept sets take the forms
   that fit. No gender: he/she in English accept sets.
-- The Arabic alphabet track (units/abc.yaml) asks a word as its KC's pinned Schluessel reading, a letter as its grapheme
-  KC's chg-Latn/schluessel form (the scheme's `latin`, ADR 0133; that profile is the track's Latin side, not a course
-  orthography); no verb stems (their hyphen).
+- The Arabic alphabet track (units/abc.yaml) asks a word as its lexeme's pinned Schluessel reading, a letter as its
+  grapheme's chg-Latn/schluessel form (the scheme's `latin`, ADR 0133; that profile is the track's Latin side, not a
+  course orthography); no verb stems (their hyphen).
 
 ## Word parts notes (see docs/adr/0152, Proposed)
 - Two cards ask a word by its parts: `parts-whole` (the sentence with the word left out, its own word and its forms
   given; typed) and `whole-parts` (the word marked in its sentence, its parts picked among others in any order). A
   course switches them on with `wordParts: true` (course.yaml; on in apc, chg, es, fa, grc, hbo, uz; yue has one form,
   nothing to tell it from); elsewhere `courseExclusions` leaves them out.
-- A part is the word's own word (its sense's first form), a word written with it (a `sense:` morph: a clitic, an
-  article) or a form (any other morph KC, and the pinned `form` unless the word has it of itself: `ownFormsOf`, pinned
-  where the word is written as its lemma). Parts come from tokens (`wordPartsOf`, lesson/templates.ts) and a form's
-  label from its glossary entry: never a list of forms, endings or genders in code.
-- The cards ask and credit forms only (`formsOf`, `askedKcs`); a word the card shows is given. A word with no form gets
-  no card. Never credit a part whose text the card shows, and never make a built word the card hands over (its own
-  word typed as shown and accepted: fa's unwritten ezafe).
-- Other parts offered (`otherParts`): from the unit or earlier, at least one a form, never a form whose name overlaps
-  one the word carries (`overlapping`: f beside f-pl; REVIEW). What the sentence means shows only once answered.
+- A part is the word's own lexeme (its first spelling), another lexeme its token writes (a clitic, an article; an
+  ending or suffixed pronoun no orthography spells, `bound`, is named by its gloss) or its form (`formPart`: the
+  language's label for the token's feature values, `labelOf`, unless the word has them of itself: `ownFormsOf`, the
+  values its tokens choose where it is written as its lemma). Parts come from tokens (`wordPartsOf`,
+  lesson/templates.ts) and a form's name from its label in language.yaml: never a list of forms, endings or genders in
+  code.
+- The cards ask and credit forms only (`formsOf`: bound lexemes, and the feature values a named form chooses that the
+  sentence teaches; `askedParts`); a word the card shows is given. A word with no form gets no card. Never credit a part
+  whose text the card shows, and never make a built word the card hands over (its own word typed as shown and accepted:
+  fa's unwritten ezafe).
+- Other parts offered (`otherParts`): from the unit or earlier, at least one a form, never a form whose label overlaps
+  the one the word stands in (`overlapping`: feminine beside feminine plural; REVIEW). What the sentence means shows
+  only once answered.
 - A built word is read first (each form recognized right, the fold's `shown`), never takes a sentence's typing slot
   (ADR 0101: it waits while a sentence could still take one) and has a slot of its own where the session can afford it
   (planner `builds`). One of each card a session. Their `prior`s are guesses (REVIEW on real logs).
@@ -689,39 +718,53 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   code (`nabu/no-manual-tagged-text`); ids and tags are code, in the interface's own face, left to right.
 - One search matcher: @nabu/core/lesson `textMatcher` (letters as the profile compares them, readings with or without
   tones, support text in its own language, ids). The word list's `wordMatcher` and the Data page's `dataMatcher` call
-  it; never write another. A sentence is also found by a KC it lists (form:dat).
+  it; never write another. A sentence is also found by a part it lists (feature:Case=Dat, lexeme:dat).
 
-## Lexical model migration notes (see docs/migration-design.md, ADRs 0145–0149)
-- The migration lands in the note's order, each deliverable whole: the schemas (built), a converter that writes a lexicon
-  and a converted course beside the old ones (built), then one switch of all ten courses. Until the switch nothing a
-  learner sees changes, and no code outside tests and the converter may name a `Next*` type or read a lexicon.
-- The converter (pipeline/src/nabu/migrate, `pnpm migrate`) writes lexicons/<lang>/, courses/<id>/next/,
-  courses/<id>/aliases.yaml and docs/migration/. Never edit those by hand. After changing a course's source or its
-  audio index, run `pnpm migrate` as well as `pnpm bundles`: pipeline/tests/test_migrate.py fails where a committed
-  file is out of date.
-- The converter decides nothing. What a course does not say is in its conversion plan
-  (pipeline/src/nabu/migrate/plans/<id>.yaml, drafted, REVIEW): a form KC's feature values or the lexeme it is, what a
-  bare token says, the citation cell, gender defaults, senses that are forms or built words, relation rules. A new
-  `form:` or `construction:` KC needs its entry there; a course with no plan does not convert.
-- A converted course must say everything the old one did: the checks (migrate/checks.py) compare text and tokens item
-  by item, refuse two annotations that became one, and account for every lexeme a token writes by its entry, a pinned
-  form or an allomorph. A finding (docs/migration/<id>.md) is a question for a reviewer, never an error.
-- Letters are compared, never marks (migrate/source.py `fold`): a new script's optional marks go there.
-- The new shapes: schemas/language.schema.json (a language's dimensions, features, defaults, classes; a category is a
-  UD tag), lexicon.schema.json (`Lexeme`; `status: listed` needs its `statement`, `pinned` is never a learner's part),
-  course-source.next.schema.json and learner-event.next.schema.json (each derived from the shape it replaces: at the
-  switch they take its place and lose the `Next`), aliases.schema.json (what each KC id became).
+## Lexical model notes (see docs/migration-design.md, ADRs 0145–0151)
+- There are no KCs. The units are the lexeme (`lexeme:tener`: a stem, a clitic and an affix alike), the feature value
+  (`feature:Tense=Past`, what a `form:` KC was), the rule (`rule:used-to`, what a `construction:` KC was), the letter
+  (`grapheme:α`), the part (any of these, or something of a lexeme: `lexeme:mano|Gender`, which no card asks yet: always
+  given), the label (what a form is called: `labelOf`, the most specific whose values the form has) and the form key
+  (`lexeme:ra7|form:Aspect=Part;Gender=Masc;Number=Sing`, several lexemes joined by `+`: a form's clip).
+- Lexemes are in lexicons/<lang>/lexemes.yaml (schemas/lexicon.schema.json: `pos` or `realises`; `feats` only where no
+  default gives them; `chooses`; `spelled` per orthography, the first shown; `forms` no rule gives yet, `listed` with its
+  `statement` or `pinned`, never a learner's part; `allomorphs`; `readings`). A language's dimensions, lexical features,
+  `citation` and `bare` cells, features, `defaults`, `labels` and `rules` are in lexicons/<lang>/language.yaml
+  (schemas/language.schema.json; a category is a UD tag). Letters are a unit's `graphemes`; a sentence names the rules
+  it is an example of in `uses`. A token names the `lexeme` it writes and the `feats` chosen there, or its `lexemes`
+  (each with `surface`, `base`, `feats`), with `n`, `head`, `rel` where agreement or government matters.
+- A lexeme, a rule or a letter is known by the facets' skills; a feature value by `read-off` (credited by a recognize or
+  listen card) and `choose` (a produce or speak card). A read-script or write-script card gives a feature value no
+  credit. A card key is "part|skill", a script skill's with its orthography (Phase 4 notes).
+- A node's `introduces` holds lexemes, feature values, rules and letters. A feature value is introduced by the first
+  node whose own sentences choose it on a token (a noun's own gender is no token's choice). The compiler lists a
+  sentence's `parts`: its lexemes, the feature values its node has taught by then, its `uses`, a lexeme's own part where
+  an agreeing token shows it (la mano). `iPlusOne` counts new lexemes, feature values and rules.
+- The lexicon is flat (the owner): one list a language, sorted by id. No entry names a unit; a unit's nodes point at it
+  and the unit defines nothing but its script track's `graphemes`. Words follow the order nodes introduce them
+  (`lexemesInOrder`), never the lexicon's.
+- Lexicons and units are sources, edited directly. The converter is gone: docs/migration/plans/<id>.yaml (its plans) and
+  docs/migration/<id>.md (its last reports, what a reviewer should look at) are a record, never regenerated.
+- Events are schema 2 (`exercise.parts`; `outcome.parts`, each with its skill; `outcome.labels`). `upgrade(event,
+  aliases)` (packages/core/src/learner/upgrade.ts) is the one reader of schema 1: the device rewrites its log once
+  (apps/web/src/upgrade-log.ts), the server its rows (apps/api/src/upgrade.ts), a download of the old shape is restored
+  through it. The fold, the game's replay and the server's projections read schema 2 alone.
+- courses/<id>/aliases.yaml (schemas/aliases.schema.json) is the kept record of what each old KC id became. The
+  compiler ships it (file role `aliases`); only `upgrade` reads it. Renaming or removing a lexeme, rule or taught
+  feature value changes the table's right-hand sides with it (pipeline/tests/test_aliases.py).
+- Still to follow on main, as commits of their own: the live schemas are still schemas/course-source.next.schema.json,
+  bundle.next.schema.json and learner-event.next.schema.json, and their generated types carry `Next`
+  (packages/schema/src/index.ts exports them under the final names; old events are the `…V1` types). The files without
+  `.next` for those three are the old shapes, kept until that rename (the old learner-event shape is what `upgrade`
+  reads). The token kind is still `word` and becomes `lexical`. Stages 5 and 6 of the switch (losses and labels, ADR
+  0148; what a learner sees) are not built: `outcome.labels` is always empty and `story_line_read` is never emitted.
 - Tags, features and relations are Universal Dependencies' and a gloss's abbreviations the Leipzig Glossing Rules'
   (the owner, 2026-11-21: "ideally we use UD/Leipzig, unless we run into trouble"); a departure is stated where it is
   made (apc `Aspect=Part`). A lexeme takes one tag, where UD tags a word in its sentence: the one whose dimensions it
   inflects for, else the one its distribution in its own language gives; never its English gloss's.
-- The lexicon is flat (the owner): lexicons/<lang>/lexemes.yaml, sorted by id. No entry names a unit; a unit's nodes
-  point at it and the unit defines nothing but its script track's `graphemes`.
 - Nothing inside is a "word" (the owner): the units are lexeme, form, feature, part and token. A token lists the
   `lexemes` it writes, stems, clitics and affixes alike; never add a level between a token and a lexeme. "Word" is for
   what a learner is shown (messages, card and page names).
-- Old events are upgraded, not kept: one `upgrade(event, aliases)`, the logs rewritten once, no reader of schema 1 after
-  the switch. Keeping old apps working is no goal.
 - Schema files are written compactly by hand: add a definition as text. Re-dumping a file with a JSON library rewrites
   every line. Examples live in schemas/examples/<dir>/{valid,invalid} and are listed in `EXAMPLES`
   (packages/schema/test/schemas.test.ts): a new schema gets both kinds.
@@ -742,17 +785,19 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main, under a landing page written
   from the demo's bundles and the UI catalog (apps/web/landing.ts, `landing.*` messages): never hand-edit it; a new
   course appears there by itself.
-- ADRs 0013–0143 are Accepted (2026-11-18, the owner), and 0145–0151 (2026-11-20: the lexical model, decided and not
-  yet built; the older ADRs they amend say so in their headers and still describe the code until the migration lands).
-  0144 and 0152 are Proposed. A new ADR is Proposed until the owner accepts it. docs/gameplan-errata.md lists where the
-  gameplan was wrong.
-- The lexical model's migration follows docs/migration-design.md, which the owner approved on 2026-11-20 with three
-  changes: the lexicon is flat (lexicons/<lang>/lexemes.yaml; units point at it, it is never arranged by unit), old
-  events may be rewritten (one `upgrade` function; no reader of the old shape is kept), and nothing in the new formats
-  is a "word" (a token lists its `lexemes`; "word" is for what a learner is shown). Its deliverables land in its
-  order, each whole. The owner said "go" on the switch on 2026-11-21, with the defaults the note lists. docs/lexical-forms/ (apc's lexical-form schema, entries and review list; rebuilt by
-  docs/prototypes/apc-lexical-forms/build.py, never by hand) has the owner's rulings on its six questions
-  (2026-11-20, the note's last section); its rules and affix forms are not written, and nothing reads it.
+- ADRs 0013–0143 are Accepted (2026-11-18, the owner), and 0145–0151 (2026-11-20: the lexical model; the older ADRs
+  they amend say so in their headers). 0144 and 0152 are Proposed. A new ADR is Proposed until the owner accepts it.
+  docs/gameplan-errata.md lists where the gameplan was wrong.
+- The lexical model follows docs/migration-design.md, which the owner approved on 2026-11-20 with three changes: the
+  lexicon is flat (lexicons/<lang>/lexemes.yaml; units point at it, it is never arranged by unit), old events may be
+  rewritten (one `upgrade` function; no reader of the old shape is kept), and nothing in the new formats is a "word" (a
+  token lists its `lexemes`; "word" is for what a learner is shown). The switch's stages 1 to 4 landed on main on
+  2026-11-21, the converter removed. The owner chose to land once the checks were green, before the renames and stages
+  5 and 6 (Lexical model notes), and without waiting for a real exported log to be put through `upgrade` (28 simulated
+  learners' logs were); a device keeps its old events aside in the IndexedDB store `events-before-lexical`, so a fault
+  found later can be fixed and the rewrite done again. docs/lexical-forms/ (apc's lexical-form schema, entries and
+  review list; rebuilt by docs/prototypes/apc-lexical-forms/build.py, never by hand) has the owner's rulings on its six
+  questions (2026-11-20, the note's last section); its rules and affix forms are not written, and nothing reads it.
   docs/handoff-lexical-model.md says where each task stands.
 - Fresh cloud container setup:
   - `pnpm i`
