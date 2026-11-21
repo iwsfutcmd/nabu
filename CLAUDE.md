@@ -760,6 +760,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Old events are the `…V1` types of schemas/learner-event.v1.schema.json, which only `upgrade` and the restore of an
   old download read. Still to follow on main: stages 5 and 6 of the switch (losses and labels, ADR 0148; what a
   learner sees) are not built: `outcome.labels` is always empty and `story_line_read` is never emitted.
+- A token of letters is of kind `lexical` (beside `punct`, `space`, `number`, `symbol`); the UI writes it as
+  `data-kind`. A bundle's `formatVersion` is 3 (`BUNDLE_FORMAT` in core, `FORMAT_VERSION` in the compiler): raise both
+  when a bundle's shape or a token's changes, so a device refuses a cached bundle it cannot read and fetches the new
+  one. A session kept part-way is tied to its bundle and starts afresh.
 - Tags, features and relations are Universal Dependencies' and a gloss's abbreviations the Leipzig Glossing Rules'
   (the owner, 2026-11-21: "ideally we use UD/Leipzig, unless we run into trouble"); a departure is stated where it is
   made (apc `Aspect=Part`). A lexeme takes one tag, where UD tags a word in its sentence: the one whose dimensions it
@@ -794,10 +798,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   lexicon is flat (lexicons/<lang>/lexemes.yaml; units point at it, it is never arranged by unit), old events may be
   rewritten (one `upgrade` function; no reader of the old shape is kept), and nothing in the new formats is a "word" (a
   token lists its `lexemes`; "word" is for what a learner is shown). The switch's stages 1 to 4 landed on main on
-  2026-11-21, the converter removed. The owner chose to land once the checks were green, before the renames and stages
-  5 and 6 (Lexical model notes), and without waiting for a real exported log to be put through `upgrade` (28 simulated
+  2026-11-21, the converter removed. The owner chose to land once the checks were green, before stages 5 and 6
+  (Lexical model notes), and without waiting for a real exported log to be put through `upgrade` (28 simulated
   learners' logs were); a device keeps its old events aside in the IndexedDB store `events-before-lexical`, so a fault
-  found later can be fixed and the rewrite done again. docs/lexical-forms/ (apc's lexical-form schema, entries and
+  found later can be fixed and the rewrite done again. The names followed the same day (`Next` out of the schemas and
+  types, the token kind `lexical`, the bundle format 3). docs/lexical-forms/ (apc's lexical-form schema, entries and
   review list; written by docs/prototypes/apc-lexical-forms/build.py, never by hand: the script reads the course as
   it was before the switch, by its KCs, and must be ported to the lexicon before it can run again) has the owner's
   rulings on its six questions (2026-11-20, the note's last section); its rules and affix forms are not written, and

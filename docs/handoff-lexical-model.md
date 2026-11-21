@@ -454,41 +454,55 @@ check were run by hand and write their pages. CI could not be started on the bra
 session (the integration may not dispatch workflows), so main's own run is the first of the whole
 workflow.
 
-### What follows, in the order I would take it
+### After the landing, the same day
 
-1. **`Next` leaves the names.** `schemas/{course-source,bundle,learner-event}.next.schema.json` take
-   the names of the files they replace; the old bundle and course-source schemas go; the old event
-   schema is kept under a name of its own, since `upgrade` and the restore of an old download read
-   it. `packages/schema/src/index.ts` already exports the new types under their final names, so most
-   of the change is the pipeline (about 30 source files, mostly `pipeline/src/nabu/compiler` and its
-   tests) and the generated code.
-2. **The token kind `word` becomes `lexical`** (about 460 lines in 76 files: courses, bundles,
-   conformance vectors, core, UI, Python). Bundles and vectors change, so it needs both harnesses
-   and `pnpm bundles`; no baseline should.
-3. **What still says KC where a person reads it:** `courses/es/README.md`, a comment in
-   `courses/es/course.yaml`, the `iPlusOne` and `consistentReadings` descriptions in the
-   course-source schema, the texts of the lints `curriculum.never-introduced` and
-   `audio.unknown-item`.
-4. **Stages 5 and 6** (losses and labels, ADR 0148; what a learner sees). The largest piece: 22
-   profiles and 8 schemes each need a reviewed statement of their correspondences.
-5. **A real log.** When the owner next opens the app, their device rewrites its log. If anything
-   looks wrong in Your progress or the word list, the old events are in the IndexedDB store
+The owner asked for the rest ("Fix the remaining stuff?"). Done, each as a commit of its own on main:
+
+- **`Next` left the names.** `schemas/{course-source,bundle,learner-event}.schema.json` are the lexical
+  model's; the event shape of before is `schemas/learner-event.v1.schema.json` (types `…V1`), read by
+  `upgrade` and by the restore of an old download. No data changed.
+- **The token kind `word` is `lexical`, and the bundle format is 3.** A device refuses a cached bundle of
+  format 2 and fetches the new one. No log was touched: no event carries a token.
+- **The documents an author reads** (the Spanish course's brief, the courses' README, the review list, the
+  choice doubts, the glossary, the sources-of-truth note) say how a lexeme, a token and a label are
+  written; the lints' texts and the schemas' descriptions no longer say KC.
+- **`docs/prototypes/apc-lexical-forms`** reads the lexicon and the units again, and rebuilt
+  `docs/lexical-forms/`. Its numbers for what comes back from a lexical form are what they were.
+- **An e2e test of the rewrite** (`apps/web/tests/e2e/old-log.spec.ts`): a database of version 3 with a
+  real old log, opened by the app as it is.
+- **hbo:** *regel* "foot" and *ayin* "eye", written only in the dual, store `Gender: Fem`. The old form
+  tag for a dual named no gender, so the converter had nothing to store and the default made them
+  masculine.
+
+Read into the design note's "What 'word' still names", for the owner to overrule (the note's "After the
+landing: the names" has the reasons): a correction still addresses a token by its index among a form's
+lexical tokens, and the functions that serve the word list and the cards keep "word" in their names.
+
+### What follows
+
+1. **Stages 5 and 6** (losses and labels, ADR 0148; what a learner sees). The largest piece: 22
+   profiles and 8 schemes each need a reviewed statement of their correspondences. It changes grading, so
+   it wants the owner's go and is not something to slip in beside other work.
+2. **A real log.** When the owner next opens the app, their device rewrites its log. If anything looks
+   wrong in Your progress or the word list, the old events are in the IndexedDB store
    `events-before-lexical` on that device: export them before anything else.
+3. **Other sessions** working on this repo need to merge main before they go on: the bundle format, the
+   token kind and the schemas' names changed under them.
 
 ### Smaller things found and left
 
-- `docs/prototypes/apc-lexical-forms/build.py` reads the course by its KCs: it cannot rebuild
-  `docs/lexical-forms/` until it is ported to the lexicon. `docs/prototypes/switch-check/compare.py`
-  compared old and new bundles and has nothing to compare with now.
-- No e2e test seeds an old log and watches the app rewrite it; the unit tests do, on a fake
-  IndexedDB (`apps/web/tests/unit/upgrade-log.test.ts`).
-- CLAUDE.md, outside the switch: "Register is the same idea, not yet modelled" although sentences
-  carry `register` tags (ADR 0147); the Chaghatay ezafe example (*malik-i*) is written in the course
-  as one token with no unwritten lexeme; corrections still address words by their index among a
-  form's words.
-- The eight words that are forms of another lexeme now (apc *kifak*, *esmak*, *esmi*, *baddi*,
-  *baddak*, *raye7*; fa *nist*, *bud*) are glossed part by part where they were glossed whole
-  ("how" and "your", not "how are you?"): the sentence's translation still says the whole. The
-  owner has not ruled on their eight clips (my advice: drop them, a sentence's clip says each).
+- **chg's ezafe** is still said in the reading alone (*malik-i*): ADR 0136 left an ezafe lexeme for chg
+  to whoever edits those units. It needs a decision on where the course introduces it.
+- **The apc prototype's participle check** covers nine forms where it covered thirteen: *raye7* is
+  *ra7*'s participle now and the script takes a participle's analysis from an entry of its own. Hanging
+  it on a verb's `Aspect=Part` forms is not built. Two notes in its `authored.yaml` still say "KC".
+- **The eight words that are forms of another lexeme now** (apc *kifak*, *esmak*, *esmi*, *baddi*,
+  *baddak*, *raye7*; fa *nist*, *bud*) are glossed part by part where they were glossed whole ("how"
+  and "your", not "how are you?"); the sentence's translation still says the whole. The owner has not
+  ruled on their eight clips (my advice: drop them, a sentence's clip says each).
+- **Stale by the way, not from the switch:** the "Used for" table of `courses/images/README.md`;
+  `courses/README.md` speaks of "these four" courses and of real courses living in other repositories.
+- `docs/prototypes/switch-check/compare.py` compares two directories of bundles; the old ones are at
+  commit `1e1e7d65`, and they are format 1.
 - For the owner to overrule, as before: everything under "Decided while building" above, and the
   three-learner checks in the simulation.

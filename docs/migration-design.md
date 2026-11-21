@@ -882,6 +882,35 @@ before that upgrade.
   sign-off is undone by the switch.
 - *The self-hosting guide* said an upgrade never rewrites data in place; this one does.
 
+### After the landing: the names (2026-11-21)
+
+The owner asked for the rest. What "What 'word' still names" proposed for each of its places, and what was
+done:
+
+- **`Next` left the names.** The three schemas took the names of the files they replaced, and the generated
+  types and models follow. The shape of an event before the switch is `schemas/learner-event.v1.schema.json`
+  (types `…V1`): `upgrade` and the restore of an old download read it, and nothing else does.
+- **The token kind `word` is `lexical`.** A bundle's tokens changed with it, so the bundle format is 3: a
+  device refuses a cached bundle whose tokens still say `word` and fetches the new one, and a session kept
+  part-way starts afresh, since it is tied to its bundle. No event, report or correction carries a token:
+  no log was touched.
+- **A correction still addresses a token by its index among a form's lexical tokens** (ADR 0051: not spaces
+  or punctuation), with its surface. The note had proposed an index among all of a form's tokens, with the
+  events' rewrite; the rewrite landed without it, and making the change now would rewrite every stored
+  correction a second time to no gain: the number is the same one under the new name of the kind, and it
+  survives a change of spacing or punctuation, which an index among all tokens does not. For the owner to
+  overrule.
+- **Names that serve what a learner is shown keep the word:** `learnedWords`, `wordMatcher` and `orderWords`
+  make the word list; `wordMeanings` the feedback on a wrong word; `WordPart` the cards that ask a word by
+  its parts. The note had proposed the lexeme's name for the fold's and the planner's; nothing in the
+  fold's state or an event is named a word, and these functions name a page and a card, as the template ids
+  do. For the owner to overrule.
+- **A reading scheme's `ruby: word`** (a reading set over the whole token, not over each character) was
+  not in the note's list and is as it was.
+- **What still said KC where a person reads it** says what is so: the conventions of the Spanish course and
+  the courses' other documents, the glossary, the lints' texts, the schemas' descriptions. The gameplan is
+  not edited; its errata say its KCs are lexemes, feature values, rules and letters.
+
 ## The owner's decisions (2026-11-20)
 
 The eight questions this note ended with, and what the owner answered. The sections above are rewritten to
