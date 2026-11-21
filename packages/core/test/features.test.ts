@@ -4,7 +4,8 @@
  */
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { askedKcs, kcsOfToken } from "../src/learner/credit.ts";
+import { askedParts } from "../src/learner/credit.ts";
+import { lexemeIdsOf } from "../src/lesson/lexemes.ts";
 import { emptyLearnerState, plan } from "../src/learner/index.ts";
 import { lessonNodes, sampleExercise, type Exercise } from "../src/lesson/index.ts";
 import { homographsOf, otherReadings } from "../src/lesson/index.ts";
@@ -61,7 +62,7 @@ describe("feature cards (ADR 0139)", () => {
         // Jyutping's tone is a syllable's last letter; Schluessel's and Pinyin's a letter: one place either way.
         expect(places.size, `${id} ${ex.id}`).toBe(1);
         expect(ex.options.length).toBeGreaterThanOrEqual(3);
-        expect(askedKcs(ex)).toEqual(kcsOfToken(ex.prompt.tokens[ex.word] as never));
+        expect(askedParts(ex)).toEqual(lexemeIdsOf(ex.prompt.tokens[ex.word] as never));
       }
     }
   });
@@ -124,7 +125,7 @@ describe("spelling choice (ADR 0142)", () => {
       expect(apart).toHaveLength(1);
     }
     // The right option is the sentence's own word, credited; the others are no word of it.
-    expect(askedKcs(ex)?.length).toBeGreaterThan(0);
+    expect(askedParts(ex)?.length).toBeGreaterThan(0);
     expect(ex.reading).toBeUndefined();
   });
 

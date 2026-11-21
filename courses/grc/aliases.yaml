@@ -38,6 +38,7 @@ aliases:
   grapheme:subscript: {part: 'grapheme:subscript'}
   sense:chairo: {part: 'lexeme:chairo'}
   form:impv-2s:
+    seeds: ['feature:Mood=Imp']
     byItem:
       grc.story.a-greek-boy#0: ['feature:Mood=Imp']
       grc.story.a-rooster#4: ['feature:Mood=Imp']
@@ -64,6 +65,7 @@ aliases:
       s.08.21: ['feature:Mood=Imp']
       s.08.25: ['feature:Mood=Imp']
   form:impv-2p:
+    seeds: ['feature:Mood=Imp']
     byItem:
       grc.story.a-rooster#1: ['feature:Mood=Imp', 'feature:Number=Plur']
       grc.story.wait-for-us#3: ['feature:Mood=Imp', 'feature:Number=Plur']
@@ -86,6 +88,7 @@ aliases:
   sense:kai: {part: 'lexeme:kai'}
   sense:eimi: {part: 'lexeme:eimi'}
   form:pres-1s:
+    seeds: ['feature:Tense=Pres']
     byItem:
       grc.story.where-to#2: ['feature:Tense=Pres']
       grc.story.wiser#0: ['feature:Tense=Pres']
@@ -146,6 +149,7 @@ aliases:
       s.10.7: ['feature:Tense=Pres']
       s.10.8: ['feature:Tense=Pres']
   form:pres-2s:
+    seeds: ['feature:Tense=Pres']
     byItem:
       grc.story.a-rooster#4: ['feature:Tense=Pres']
       s.01.15: ['feature:Tense=Pres']
@@ -173,6 +177,7 @@ aliases:
       s.08.25: ['feature:Tense=Pres']
       s.08.7: ['feature:Tense=Pres']
   form:pres-3s:
+    seeds: ['feature:Tense=Pres']
     byItem:
       grc.story.a-greek-boy#1: ['feature:Tense=Pres']
       grc.story.my-little-house#0: ['feature:Tense=Pres']
@@ -273,6 +278,7 @@ aliases:
   sense:tenikade: {part: 'lexeme:tenikade'}
   sense:aphikneomai: {part: 'lexeme:aphikneomai'}
   form:perf-2s:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       grc.story.not-one-woman#5: ['feature:Aspect=Perf']
       grc.story.why-so-early#0: ['feature:Aspect=Perf']
@@ -287,6 +293,7 @@ aliases:
   sense:men: {part: 'lexeme:men'}
   sense:oun: {part: 'lexeme:oun'}
   form:f:
+    seeds: ['feature:Gender=Fem']
     byItem:
       grc.story.my-little-house#4: ['feature:Gender=Fem']
       grc.story.not-one-woman#0: ['feature:Gender=Fem']
@@ -344,6 +351,7 @@ aliases:
       s.06.23: ['feature:Case=Voc']
       s.06.9: ['feature:Case=Voc']
   form:voc:
+    seeds: ['feature:Case=Voc']
     byItem:
       grc.story.a-rooster#0: ['feature:Case=Voc']
       grc.story.where-to#0: ['feature:Case=Voc']
@@ -374,6 +382,7 @@ aliases:
   sense:treis: {part: 'lexeme:treis'}
   sense:gignomai: {part: 'lexeme:gignomai'}
   form:pres-3p:
+    seeds: ['feature:Tense=Pres']
     byItem:
       grc.story.the-sea#3: ['feature:Number=Plur', 'feature:Tense=Pres']
       grc.story.two-sons#0: ['feature:Number=Plur', 'feature:Tense=Pres']
@@ -428,6 +437,7 @@ aliases:
     byItem:
       s.02.26: ['feature:Case=Acc', 'feature:Number=Plur']
   form:n:
+    seeds: ['feature:Gender=Neut']
     byItem:
       grc.story.a-rooster#4: ['feature:Case=Acc', 'feature:Case=Voc', 'feature:Gender=Neut']
       grc.story.my-little-house#0: ['feature:Case=Acc', 'feature:Case=Voc', 'feature:Gender=Neut']
@@ -468,6 +478,7 @@ aliases:
       s.10.21: ['feature:Case=Acc', 'feature:Case=Voc', 'feature:Gender=Neut']
       s.10.23: ['feature:Case=Acc', 'feature:Case=Voc', 'feature:Gender=Neut']
   form:acc:
+    seeds: ['feature:Case=Acc']
     byItem:
       grc.story.a-rooster#0: ['feature:Case=Acc']
       grc.story.wait-for-us#0: ['feature:Case=Acc']
@@ -491,6 +502,7 @@ aliases:
       s.08.6: ['feature:Case=Acc']
       s.09.27: ['feature:Case=Acc']
   form:gen:
+    seeds: ['feature:Case=Gen']
     byItem:
       grc.story.two-sons#0: ['feature:Case=Gen']
       grc.story.wait-for-us#0: ['feature:Case=Gen']
@@ -512,6 +524,7 @@ aliases:
       s.10.11: ['feature:Case=Gen']
       s.10.8: ['feature:Case=Gen']
   form:pl:
+    seeds: ['feature:Number=Plur']
     byItem:
       grc.story.the-sea#4: ['feature:Case=Voc', 'feature:Number=Plur']
       grc.story.two-sons#0: ['feature:Case=Voc', 'feature:Number=Plur']
@@ -608,6 +621,7 @@ aliases:
   sense:ara: {part: 'lexeme:ara'}
   sense:hemeis: {part: 'lexeme:hemeis'}
   form:pres-1p:
+    seeds: ['feature:Tense=Pres']
     byItem:
       grc.story.a-rooster#0: ['feature:Number=Plur', 'feature:Tense=Pres']
       s.04.20: ['feature:Number=Plur', 'feature:Tense=Pres']
@@ -618,6 +632,7 @@ aliases:
       s.08.6: ['feature:Number=Plur', 'feature:Tense=Pres']
   sense:hymeis: {part: 'lexeme:hymeis'}
   form:pres-2p:
+    seeds: ['feature:Tense=Pres']
     byItem:
       s.04.21: ['feature:Number=Plur', 'feature:Tense=Pres']
       s.04.23: ['feature:Number=Plur', 'feature:Tense=Pres']
@@ -633,6 +648,7 @@ aliases:
   sense:oikogenes: {part: 'lexeme:oikogenes'}
   sense:katabaino: {part: 'lexeme:katabaino'}
   form:aor-1s:
+    seeds: ['feature:Tense=Past']
     byItem:
       grc.story.wait-for-us#0: ['feature:Tense=Past']
       s.05.2: ['feature:Tense=Past']
@@ -648,6 +664,7 @@ aliases:
   sense:ariston: {part: 'lexeme:ariston'}
   sense:phemi: {part: 'lexeme:phemi'}
   form:impf-3s:
+    seeds: ['feature:Aspect=Imp']
     byItem:
       grc.story.a-rooster#0: ['feature:Aspect=Imp', 'feature:Tense=Past']
       grc.story.a-rooster#3: ['feature:Aspect=Imp', 'feature:Tense=Past']
@@ -666,6 +683,7 @@ aliases:
   sense:polemarchos: {part: 'lexeme:polemarchos'}
   sense:keleuo: {part: 'lexeme:keleuo'}
   form:inf:
+    seeds: ['feature:VerbForm=Inf']
     byItem:
       grc.story.wait-for-us#2: ['feature:VerbForm=Inf']
       grc.story.wiser#1: ['feature:VerbForm=Inf']
@@ -680,6 +698,7 @@ aliases:
   sense:houtos: {part: 'lexeme:houtos'}
   sense:opisthen: {part: 'lexeme:opisthen'}
   form:fut-1p:
+    seeds: ['feature:Tense=Fut']
     byItem:
       grc.story.wait-for-us#5: ['feature:Number=Plur', 'feature:Tense=Fut']
       s.05.32: ['feature:Number=Plur', 'feature:Tense=Fut']
@@ -716,6 +735,7 @@ aliases:
   sense:oros: {part: 'lexeme:oros'}
   sense:epi: {part: 'lexeme:epi'}
   form:pres-3p-mid:
+    seeds: ['feature:Voice=Mid']
     byItem:
       grc.story.the-sea#0: ['feature:Number=Plur', 'feature:Tense=Pres', 'feature:Voice=Mid']
       s.07.3: ['feature:Number=Plur', 'feature:Tense=Pres', 'feature:Voice=Mid']
@@ -730,6 +750,7 @@ aliases:
   sense:boao: {part: 'lexeme:boao'}
   sense:tacha: {part: 'lexeme:tacha'}
   form:ptc:
+    seeds: ['feature:VerbForm=Part']
     byItem:
       grc.story.my-little-house#1: ['feature:VerbForm=Part']
       grc.story.the-sea#3: ['feature:VerbForm=Part']
@@ -740,6 +761,7 @@ aliases:
   sense:entha: {part: 'lexeme:entha'}
   sense:theo: {part: 'lexeme:theo'}
   form:impf-3p:
+    seeds: ['feature:Aspect=Imp']
     byItem:
       grc.story.the-sea#4: ['feature:Aspect=Imp', 'feature:Number=Plur', 'feature:Tense=Past']
       s.07.26: ['feature:Aspect=Imp', 'feature:Number=Plur', 'feature:Tense=Past']
@@ -754,6 +776,7 @@ aliases:
   sense:deuteros: {part: 'lexeme:deuteros'}
   sense:tritos: {part: 'lexeme:tritos'}
   form:dat:
+    seeds: ['feature:Case=Dat']
     byItem:
       grc.story.a-rooster#0: ['feature:Case=Dat']
       grc.story.my-little-house#0: ['feature:Case=Dat']
@@ -777,12 +800,14 @@ aliases:
   sense:apodidomi: {part: 'lexeme:apodidomi'}
   sense:ameleo: {part: 'lexeme:ameleo'}
   form:aor-subj-2p:
+    seeds: ['feature:Mood=Sub']
     byItem:
       grc.story.a-rooster#1: ['feature:Mood=Sub', 'feature:Number=Plur', 'feature:Tense=Past']
       s.08.11: ['feature:Mood=Sub', 'feature:Number=Plur', 'feature:Tense=Past']
       s.08.12: ['feature:Mood=Sub', 'feature:Number=Plur', 'feature:Tense=Past']
       s.08.14: ['feature:Mood=Sub', 'feature:Number=Plur', 'feature:Tense=Past']
   form:fut-3s:
+    seeds: ['feature:Tense=Fut']
     byItem:
       grc.story.a-rooster#3: ['feature:Tense=Fut']
       s.08.16: ['feature:Tense=Fut']
@@ -815,6 +840,7 @@ aliases:
   sense:kata: {part: 'lexeme:kata'}
   sense:paidion: {part: 'lexeme:paidion'}
   form:aor-3s:
+    seeds: ['feature:Tense=Past']
     byItem:
       grc.story.my-little-house#3: ['feature:Tense=Past']
       s.09.22: ['feature:Tense=Past']
@@ -825,6 +851,7 @@ aliases:
   sense:thelazo: {part: 'lexeme:thelazo'}
   sense:diaitaomai: {part: 'lexeme:diaitaomai'}
   form:impf-1s:
+    seeds: ['feature:Aspect=Imp']
     byItem:
       grc.story.my-little-house#5: ['feature:Aspect=Imp', 'feature:Tense=Past']
       s.09.29: ['feature:Aspect=Imp', 'feature:Tense=Past']
@@ -842,6 +869,7 @@ aliases:
   sense:anthropos: {part: 'lexeme:anthropos'}
   sense:sophos: {part: 'lexeme:sophos'}
   form:comp:
+    seeds: ['feature:Degree=Cmp']
     byItem:
       grc.story.wiser#0: ['feature:Degree=Cmp']
       s.10.11: ['feature:Degree=Cmp']

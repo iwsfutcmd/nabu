@@ -60,7 +60,7 @@ describe("script track: the Greek alphabet (grc)", () => {
       ["τ", "t"],
       ["ν", "n"],
     ]);
-    const words = track.flatMap((n) => n.node.alphabet.words);
+    const words = track.flatMap((n) => n.node.alphabet.lexemes);
     const latin = new Map(words.map((w) => [surfaceOf(w.text), surfaceOf(w.latin)]));
     expect(latin.get("Σωκράτης")).toBe("Sōkratēs");
     expect(latin.get("ὁδός")).toBe("hodos");
@@ -79,8 +79,8 @@ describe("script track: the Greek alphabet (grc)", () => {
         expect(SCRIPT_TEMPLATES.has(ex.template)).toBe(true);
         expect(gradeExercise(ex, right(ex), grader).verdict).toBe("CORRECT");
       }
-      const presented = new Set(session.exercises.flatMap((ex) => ex.kcs));
-      for (const kc of n.node.introduces) expect(presented, `${n.node.id}: ${kc}`).toContain(kc);
+      const presented = new Set(session.exercises.flatMap((ex) => ex.parts));
+      for (const part of n.node.introduces) expect(presented, `${n.node.id}: ${part}`).toContain(part);
       // Words are read before they are written.
       const firstWrite = session.exercises.findIndex((ex) => ex.template === "word-write");
       if (firstWrite >= 0) expect(session.exercises.slice(0, firstWrite).some((ex) => ex.template !== "word-write")).toBe(true);
@@ -95,7 +95,7 @@ describe("script track: the Greek alphabet (grc)", () => {
 
   it("offers only letters and words taught by then", () => {
     for (const [i, n] of track.entries()) {
-      const allowed = new Set(track.slice(0, i + 1).flatMap((t) => [...t.node.alphabet.letters, ...t.node.alphabet.words]).map((x) => surfaceOf(x.latin)));
+      const allowed = new Set(track.slice(0, i + 1).flatMap((t) => [...t.node.alphabet.letters, ...t.node.alphabet.lexemes]).map((x) => surfaceOf(x.latin)));
       const session = plan(grc, emptyLearnerState(), { mode: "lesson", node: n.node.id }, { now: NOW, seed: 11 });
       for (const ex of session.exercises) {
         if (ex.template === "letter-read" || ex.template === "word-read") for (const o of ex.options) expect(allowed).toContain(surfaceOf(o));
@@ -124,7 +124,7 @@ describe("script track: the Greek alphabet (grc)", () => {
   });
 
   it("keeps letters out of the glossary and the sentence templates", () => {
-    expect(courseGlossary(grc).compiled.entries.some((e) => e.kc.startsWith("grapheme:"))).toBe(false);
+    expect(courseGlossary(grc).compiled.entries.some((e) => e.id.startsWith("grapheme:"))).toBe(false);
     for (const t of SCRIPT_TEMPLATES) expect(SENTENCE_TEMPLATES[t]).toBeUndefined();
   });
 });
@@ -148,7 +148,7 @@ describe("script track: the Arabic alphabet of Chaghatay (chg)", () => {
     expect(first?.letters.map((l) => [surfaceOf(l.text), surfaceOf(l.latin)])).toContainEqual(["ب", "b"]);
     // The Latin side is tagged with the transliteration's own profile, which the course does not teach.
     expect(first?.letters.every((l) => l.latin.orthography === "chg-Latn/schluessel")).toBe(true);
-    const latin = new Map(track.flatMap((n) => n.node.alphabet.words).map((w) => [surfaceOf(w.text), surfaceOf(w.latin)]));
+    const latin = new Map(track.flatMap((n) => n.node.alphabet.lexemes).map((w) => [surfaceOf(w.text), surfaceOf(w.latin)]));
     expect(latin.get("نان")).toBe("nan");
     expect(latin.get("چای")).toBe("čay");
   });
@@ -165,8 +165,8 @@ describe("script track: the Arabic alphabet of Chaghatay (chg)", () => {
         expect(SCRIPT_TEMPLATES.has(ex.template)).toBe(true);
         expect(gradeExercise(ex, right(ex), grader).verdict).toBe("CORRECT");
       }
-      const presented = new Set(session.exercises.flatMap((ex) => ex.kcs));
-      for (const kc of n.node.introduces) expect(presented, `${n.node.id}: ${kc}`).toContain(kc);
+      const presented = new Set(session.exercises.flatMap((ex) => ex.parts));
+      for (const part of n.node.introduces) expect(presented, `${n.node.id}: ${part}`).toContain(part);
       factory.session();
       events.push(factory.started("lesson", n.node.id, session.exercises.length));
       for (const ex of session.exercises) events.push(factory.answer(ex, true, 1));

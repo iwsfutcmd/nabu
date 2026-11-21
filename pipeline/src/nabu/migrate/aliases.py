@@ -116,6 +116,8 @@ def build(conv: Converter, units: list[Json]) -> tuple[Json, Json]:
                 # sentence, to the values it chose there that the course teaches (a sentence's
                 # parts); where the sentence is not known, to nothing: the id alone says no more
                 # than its values, and nothing old counts towards a rule (ADR 0146).
+                if fp is not None and fp.introduces:
+                    alias["seeds"] = yamlio.FlowList([f"feature:{v}" for v in fp.introduces])
                 if by_form.get(kc):
                     alias["byItem"] = {
                         item: yamlio.FlowList(parts) for item, parts in sorted(by_form[kc].items())

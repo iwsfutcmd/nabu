@@ -26,13 +26,20 @@
           "$ref": "common.schema.json#/$defs/PartId"
         },
         "byItem": {
-          "description": "By sentence or story line id: the parts the id stood for in it.",
+          "description": "By sentence or story line id: the parts the id stood for in it. For a form KC that is feature values now: the values it chose there that the course teaches by then (the sentence's parts).",
           "type": "object",
           "additionalProperties": {
             "type": "array",
             "uniqueItems": true,
             "items": { "$ref": "common.schema.json#/$defs/PartId" }
           }
+        },
+        "seeds": {
+          "description": "What a placement that seeded the id seeds now (ADR 0111: a finished placement seeds what its nodes introduce): for a form KC that is feature values now, the values a node introduces in its place. Absent where `part` says it.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/PartId" }
         }
       }
     }

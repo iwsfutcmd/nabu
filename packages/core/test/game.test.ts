@@ -72,7 +72,7 @@ const session = (p: Practice): LearnerEvent[] => {
   const mode = p.mode ?? "lesson";
   const base = (offset: number) => ({
     id: uuid(),
-    schema: 1 as const,
+    schema: 2 as const,
     device: "d",
     course: "fa",
     orthography: "fa-Arab/standard" as OrthographyId,
@@ -88,10 +88,10 @@ const session = (p: Practice): LearnerEvent[] => {
   const answers: LearnerEvent[] = [...Array.from({ length: right }, () => true), ...Array.from({ length: wrong }, () => false)].map((ok, i) => ({
     ...base(1 + i),
     type: "answer_submitted",
-    exercise: { id: `x${i}`, template: "choose-translation", item: "s.1", kcs: ["sense:salam"] },
+    exercise: { id: `x${i}`, template: "choose-translation", item: "s.1", parts: ["lexeme:salam"] },
     attempt: 1,
     input: { method: "choice", latencyMs: 2000 },
-    outcome: { kind: ok ? "CORRECT" : "WRONG", notes: [], kcs: [{ kc: "sense:salam", status: ok ? "right" : "wrong" }] },
+    outcome: { kind: ok ? "CORRECT" : "WRONG", notes: [], labels: [], parts: [{ part: "lexeme:salam", skill: "recognize", status: ok ? "right" : "wrong" }] },
   })) as unknown as LearnerEvent[];
   return [
     { ...base(0), type: "session_started", mode, seed: 1, exercises: right + wrong, planner: "t" },
@@ -551,14 +551,14 @@ describe("quests and achievements", () => {
       e.type === "session_started"
         ? { ...e, mode: "placement" }
         : e.type === "session_completed"
-          ? ({ ...e, mode: "placement", summary: { ...e.summary, completed: false }, placed: ["fa.greetings"], seeded: ["sense:salam"] } as unknown as LearnerEvent)
+          ? ({ ...e, mode: "placement", summary: { ...e.summary, completed: false }, placed: ["fa.greetings"], seeded: ["lexeme:salam"] } as unknown as LearnerEvent)
           : e,
     );
     expect(replayGame(online(stopped), NO_QUESTS, clock).xp.total).toBe(6);
     const model = replay(stopped);
     expect(model.xp.total).toBe(6);
     expect(model.completedNodes).toEqual(["fa.greetings"]);
-    expect(model.cards["sense:salam|recognize"]).toBeDefined();
+    expect(model.cards["lexeme:salam|recognize"]).toBeDefined();
     // The same test run to its end pays the session's XP as well.
     const finished = stopped.map((e): LearnerEvent => (e.type === "session_completed" ? { ...e, summary: { ...e.summary, completed: true } } : e));
     expect(replayGame(online(finished), NO_QUESTS, clock).xp.total).toBe(6 + 6 + 5);
@@ -720,7 +720,7 @@ describe("the session gate", () => {
       clientTime: time,
       localDate: localDateOf(time, answer.tz) ?? "",
       answer: answer.id,
-      outcome: { kind: "CORRECT_PROVISIONAL", notes: ["judge"], kcs: answer.outcome.kcs.map((k) => ({ ...k, status: "right" })) },
+      outcome: { kind: "CORRECT_PROVISIONAL", notes: ["judge"], labels: [], parts: answer.outcome.parts.map((k) => ({ ...k, status: "right" })) },
       by: "judge",
       judge: { model: "m", promptHash: "000000000000", confidence: 0.9 },
     } as unknown as LearnerEvent;

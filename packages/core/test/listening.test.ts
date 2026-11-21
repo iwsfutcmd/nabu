@@ -8,12 +8,13 @@ import type { BundleAudioItem } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { emptyLearnerState, plan, replay } from "../src/learner/index.ts";
 import {
-  allKcs,
+  allLexemes,
   allSentences,
   createGrader,
   gradeExercise,
   isCorrect,
-  KC_LISTENING,
+  LEXEME_LISTENING,
+  lexemesOfUnit,
   profileOf,
   LISTENING,
   lessonNodes,
@@ -32,10 +33,10 @@ const clip = (item: string): BundleAudioItem => ({
   normal: { path: `audio/${item}.mp3`, durationMs: 1000, synthetic: true, license: "CC0-1.0", timings: [{ token: 0, startMs: 0, endMs: 500 }] },
 });
 
-/** A course view where every sentence and KC has a clip. */
+/** A course view where every sentence and lexeme has a clip. */
 const withAudio = (course: CourseView): CourseView => ({
   ...course,
-  audio: Object.fromEntries([...allSentences(course).map((s) => s.id), ...allKcs(course).map((k) => k.id)].map((id) => [id, clip(id)])),
+  audio: Object.fromEntries([...allSentences(course).map((s) => s.id), ...allLexemes(course).map((k) => k.id)].map((id) => [id, clip(id)])),
 });
 
 const ctxOf = (course: CourseView, seed = 3): MakeContext => ({ course, rng: seededRng(seed), introduced: [] });
@@ -69,7 +70,7 @@ describe("listening templates", () => {
 
   it("listen-select offers the word's written form among others", () => {
     const ctx = ctxOf(fa);
-    const made = allKcs(fa).flatMap((kc) => KC_LISTENING.map((make) => make(ctx, kc))).filter((e): e is Exercise => e?.template === "listen-select");
+    const made = allLexemes(fa).flatMap((lexeme) => LEXEME_LISTENING.map((make) => make(ctx, lexeme))).filter((e): e is Exercise => e?.template === "listen-select");
     expect(made.length).toBeGreaterThan(3);
     for (const ex of made) {
       if (ex.template !== "listen-select") continue;
@@ -79,29 +80,34 @@ describe("listening templates", () => {
   });
 
   /**
-   * A copy of the course with one more word: `like`'s KC respelled `surface` (with its reading), and
-   * a sentence that says it, unless `said` is false.
+   * A copy of the course with one more word: `like`'s lexeme respelled `surface` (with its reading),
+   * introduced by the first unit's first node, and a sentence that says it, unless `said` is false.
    */
   const withWord = (course: CourseView, like: string, surface: string, reading?: string, said = true): CourseView => {
     const [unit, ...rest] = course.units;
     if (unit === undefined) throw new Error("no unit");
-    const kc = unit.kcs.find((k) => k.forms?.[course.orthography]?.[0]?.tokens.map((t) => t.surface).join("") === like);
-    const form = kc?.forms?.[course.orthography]?.[0];
-    if (kc === undefined || form === undefined) throw new Error(`no word ${like}`);
+    const lexeme = lexemesOfUnit(course, unit).find((k) => k.forms?.[course.orthography]?.[0]?.tokens.map((t) => t.surface).join("") === like);
+    const form = lexeme?.forms?.[course.orthography]?.[0];
+    if (lexeme === undefined || form === undefined) throw new Error(`no word ${like}`);
     const token = { ...form.tokens[0], surface, ...(reading === undefined ? {} : { readings: { jyutping: reading } }) } as (typeof form.tokens)[0];
     const respelled = { ...form, tokens: [token] };
-    const extra = { ...kc, id: `sense:${surface}` as typeof kc.id, forms: { [course.orthography]: [respelled] } };
+    const extra = { ...lexeme, id: `lexeme:${surface}`, forms: { [course.orthography]: [respelled] } };
     const sentence = unit.sentences.find((x) => x.forms[course.orthography] !== undefined);
     const carrier = sentence === undefined || !said ? [] : [{ ...sentence, id: `s.carrier.${surface}`, forms: { [course.orthography]: { ...sentence.forms[course.orthography], text: respelled } } }];
-    return withAudio({ ...course, units: [{ ...unit, kcs: [...unit.kcs, extra], sentences: [...unit.sentences, ...carrier] }, ...rest] as CourseView["units"] });
+    const [node, ...nodes] = unit.nodes;
+    if (node === undefined) throw new Error("no node");
+    const units = [{ ...unit, nodes: [{ ...node, introduces: [...node.introduces, extra.id] }, ...nodes], sentences: [...unit.sentences, ...carrier] }, ...rest] as CourseView["units"];
+    // The lexicon stays sorted by id.
+    const lexemes = [...course.lexicon.lexemes, extra].sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+    return withAudio({ ...course, units, lexicon: { ...course.lexicon, lexemes } });
   };
 
   /** Every pair the template offers, over several seeds (each draw picks one rival per word). */
   const pairsOf = (course: CourseView): string[] => [
     ...new Set(
       [1, 2, 3, 4, 5, 6, 7, 8].flatMap((seed) =>
-        allKcs(course).flatMap((kc) => {
-          const ex = KC_LISTENING[1]?.(ctxOf(course, seed), kc);
+        allLexemes(course).flatMap((lexeme) => {
+          const ex = LEXEME_LISTENING[1]?.(ctxOf(course, seed), lexeme);
           return ex?.template === "minimal-pair" ? [ex.options.map((o) => surfaceOf(o)).sort().join("/")] : [];
         }),
       ),
@@ -146,8 +152,8 @@ describe("listening templates", () => {
   });
 
   it("a missed word-level exercise comes back in mistakes mode", () => {
-    const ex = allKcs(fa)
-      .map((k) => KC_LISTENING[0]?.(ctxOf(fa), k))
+    const ex = allLexemes(fa)
+      .map((k) => LEXEME_LISTENING[0]?.(ctxOf(fa), k))
       .find((e) => e !== undefined);
     if (ex === undefined) throw new Error("no listen-select in fa");
     const events = eventFactory(fa, manifestOf("fa").id);

@@ -81,6 +81,7 @@ aliases:
   grapheme:3: {part: 'grapheme:3'}
   grapheme:2: {part: 'grapheme:2'}
   form:fem:
+    seeds: ['feature:Gender=Fem']
     byItem:
       apc.story.birthday#6: ['feature:Gender=Fem']
       apc.story.birthday#7: ['feature:Gender=Fem']
@@ -230,6 +231,7 @@ aliases:
   sense:wlad: {part: 'lexeme:wlad'}
   form:poss-2pl: {part: 'lexeme:poss-2pl'}
   form:pl:
+    seeds: ['feature:Number=Plur']
     byItem:
       apc.story.neighbours#7: ['feature:Number=Plur']
       apc.story.teta-childhood#8: ['feature:Number=Plur']
@@ -272,6 +274,7 @@ aliases:
   sense:sa77tein: {part: 'lexeme:sa77tein'}
   sense:3a-albak: {part: 'lexeme:3a-albak'}
   form:imp-2fs:
+    seeds: ['feature:Mood=Imp']
     byItem:
       apc.story.dress#4: ['feature:Gender=Fem', 'feature:Mood=Imp']
       apc.story.teta-lunch#4: ['feature:Gender=Fem', 'feature:Mood=Imp']
@@ -307,6 +310,7 @@ aliases:
   sense:tabbouleh: {part: 'lexeme:tabbouleh'}
   sense:sa7n: {part: 'lexeme:sa7n'}
   form:imp-2pl:
+    seeds: ['feature:Mood=Imp']
     byItem:
       s.food.35: ['feature:Mood=Imp', 'feature:Number=Plur']
       s.food.36: ['feature:Mood=Imp', 'feature:Number=Plur']
@@ -370,6 +374,7 @@ aliases:
   sense:sene: {part: 'lexeme:sene'}
   sense:ra2m: {part: 'lexeme:ra2m'}
   form:impf-1sg:
+    seeds: ['feature:Aspect=Imp', 'feature:Mood=Ind']
     byItem:
       apc.story.dress#9: ['feature:Aspect=Imp', 'feature:Mood=Ind']
       apc.story.free-on-saturday#1: ['feature:Aspect=Imp', 'feature:Mood=Ind']
@@ -439,6 +444,7 @@ aliases:
   sense:ra7: {part: 'lexeme:ra7'}
   sense:3emel: {part: 'lexeme:3emel'}
   form:impf-2ms:
+    seeds: ['feature:Aspect=Imp', 'feature:Mood=Ind']
     byItem:
       apc.story.dress#0: ['feature:Aspect=Imp', 'feature:Mood=Ind']
       apc.story.my-day#0: ['feature:Aspect=Imp', 'feature:Mood=Ind']
@@ -462,10 +468,12 @@ aliases:
   sense:eshteghel: {part: 'lexeme:eshteghel'}
   sense:2ara: {part: 'lexeme:2ara'}
   form:impf-3ms:
+    seeds: ['feature:Aspect=Imp', 'feature:Mood=Ind']
     byItem:
       s.day.12: ['feature:Aspect=Imp', 'feature:Mood=Ind']
       s.day.16: ['feature:Aspect=Imp', 'feature:Mood=Ind']
   form:impf-3fs:
+    seeds: ['feature:Aspect=Imp', 'feature:Mood=Ind']
     byItem:
       apc.story.neighbours#3: ['feature:Aspect=Imp', 'feature:Gender=Fem', 'feature:Mood=Ind']
       s.day.13: ['feature:Aspect=Imp', 'feature:Gender=Fem', 'feature:Mood=Ind']
@@ -474,6 +482,7 @@ aliases:
   sense:nem: {part: 'lexeme:nem'}
   sense:masa: {part: 'lexeme:masa'}
   form:impf-1pl:
+    seeds: ['feature:Aspect=Imp', 'feature:Mood=Ind']
     byItem:
       apc.story.free-on-saturday#2: ['feature:Aspect=Imp', 'feature:Mood=Ind', 'feature:Number=Plur']
       apc.story.free-on-saturday#9: ['feature:Aspect=Imp', 'feature:Mood=Ind', 'feature:Number=Plur']
@@ -509,6 +518,7 @@ aliases:
   sense:3arabe: {part: 'lexeme:3arabe'}
   sense:englize: {part: 'lexeme:englize'}
   form:impf-2fs:
+    seeds: ['feature:Aspect=Imp', 'feature:Mood=Ind']
     byItem:
       apc.story.saturday-night#0: ['feature:Aspect=Imp', 'feature:Gender=Fem', 'feature:Mood=Ind']
       apc.story.sea-or-mountain#4: ['feature:Aspect=Imp', 'feature:Gender=Fem', 'feature:Mood=Ind']
@@ -524,6 +534,7 @@ aliases:
   sense:enti: {part: 'lexeme:enti'}
   sense:m2akhkhar: {part: 'lexeme:m2akhkhar'}
   form:impf-2pl:
+    seeds: ['feature:Aspect=Imp', 'feature:Mood=Ind']
     byItem:
       s.day.34: ['feature:Aspect=Imp', 'feature:Mood=Ind', 'feature:Number=Plur']
       s.day.35: ['feature:Aspect=Imp', 'feature:Mood=Ind', 'feature:Number=Plur']
@@ -543,6 +554,7 @@ aliases:
   sense:musi2a: {part: 'lexeme:musi2a'}
   sense:sama3: {part: 'lexeme:sama3'}
   form:subj-1sg:
+    seeds: ['feature:Mood=Sub']
     byItem:
       apc.story.dress#3: ['feature:Aspect=Imp', 'feature:Mood=Sub']
       apc.story.new-job#7: ['feature:Aspect=Imp', 'feature:Mood=Sub']
@@ -595,6 +607,7 @@ aliases:
   sense:ktab: {part: 'lexeme:ktab'}
   sense:shi: {part: 'lexeme:shi'}
   form:subj-2ms:
+    seeds: ['feature:Mood=Sub']
     byItem:
       apc.story.teta-calls#6: ['feature:Aspect=Imp', 'feature:Mood=Sub']
       apc.story.village#0: ['feature:Aspect=Imp', 'feature:Mood=Sub']
@@ -614,6 +627,7 @@ aliases:
       s.trip.3: ['feature:Aspect=Imp', 'feature:Mood=Sub']
   sense:badd: {part: 'lexeme:badd'}
   form:subj-1pl:
+    seeds: ['feature:Mood=Sub']
     byItem:
       apc.story.birthday#5: ['feature:Aspect=Imp', 'feature:Mood=Sub', 'feature:Number=Plur']
       apc.story.saturday-night#2: ['feature:Aspect=Imp', 'feature:Mood=Sub', 'feature:Number=Plur']
@@ -668,6 +682,7 @@ aliases:
   sense:kam: {part: 'lexeme:kam'}
   sense:shahr: {part: 'lexeme:shahr'}
   form:past-1sg:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       apc.story.new-job#1: ['feature:Aspect=Perf']
       apc.story.teta-calls#4: ['feature:Aspect=Perf']
@@ -705,6 +720,7 @@ aliases:
   sense:mat3am: {part: 'lexeme:mat3am'}
   sense:sou2: {part: 'lexeme:sou2'}
   form:past-2ms:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       apc.story.teta-calls#1: ['feature:Aspect=Perf']
       apc.story.weekend#0: ['feature:Aspect=Perf']
@@ -723,6 +739,7 @@ aliases:
   sense:zar: {part: 'lexeme:zar'}
   sense:sa7eb: {part: 'lexeme:sa7eb'}
   form:past-3ms:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       apc.story.teta-childhood#5: ['feature:Aspect=Perf']
       apc.story.teta-childhood#6: ['feature:Aspect=Perf']
@@ -742,6 +759,7 @@ aliases:
       s.work.20: ['feature:Aspect=Perf']
       s.work.28: ['feature:Aspect=Perf']
   form:past-3fs:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       s.child.15: ['feature:Aspect=Perf', 'feature:Gender=Fem']
       s.child.17: ['feature:Aspect=Perf', 'feature:Gender=Fem']
@@ -756,6 +774,7 @@ aliases:
   sense:rje3: {part: 'lexeme:rje3'}
   sense:wesel: {part: 'lexeme:wesel'}
   form:past-1pl:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       apc.story.teta-childhood#1: ['feature:Aspect=Perf', 'feature:Number=Plur']
       apc.story.teta-childhood#3: ['feature:Aspect=Perf', 'feature:Number=Plur']
@@ -780,6 +799,7 @@ aliases:
   sense:mabsout: {part: 'lexeme:mabsout'}
   sense:sa77: {part: 'lexeme:sa77'}
   form:past-2fs:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       apc.story.teta-childhood#0: ['feature:Aspect=Perf', 'feature:Gender=Fem']
       apc.story.weekend#5: ['feature:Aspect=Perf', 'feature:Gender=Fem']
@@ -791,6 +811,7 @@ aliases:
       s.phone.12: ['feature:Aspect=Perf', 'feature:Gender=Fem']
   sense:safar: {part: 'lexeme:safar'}
   form:past-2pl:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       s.child.10: ['feature:Aspect=Perf', 'feature:Number=Plur']
       s.past.36: ['feature:Aspect=Perf', 'feature:Number=Plur']
@@ -834,6 +855,7 @@ aliases:
   sense:amerkene: {part: 'lexeme:amerkene'}
   sense:henne: {part: 'lexeme:henne'}
   form:impf-3pl:
+    seeds: ['feature:Aspect=Imp', 'feature:Mood=Ind']
     byItem:
       apc.story.neighbours#10: ['feature:Aspect=Imp', 'feature:Mood=Ind', 'feature:Number=Plur']
       apc.story.neighbours#6: ['feature:Aspect=Imp', 'feature:Mood=Ind', 'feature:Number=Plur']
@@ -848,6 +870,7 @@ aliases:
   sense:ahl: {part: 'lexeme:ahl'}
   sense:jiren: {part: 'lexeme:jiren'}
   form:past-3pl:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       s.child.11: ['feature:Aspect=Perf', 'feature:Number=Plur']
       s.child.16: ['feature:Aspect=Perf', 'feature:Number=Plur']
@@ -861,6 +884,7 @@ aliases:
   sense:nezel: {part: 'lexeme:nezel'}
   sense:day3a: {part: 'lexeme:day3a'}
   form:subj-3ms:
+    seeds: ['feature:Mood=Sub']
     byItem:
       apc.story.birthday#2: ['feature:Aspect=Imp', 'feature:Mood=Sub']
       apc.story.village#3: ['feature:Aspect=Imp', 'feature:Mood=Sub']
@@ -868,6 +892,7 @@ aliases:
       s.trip.10: ['feature:Aspect=Imp', 'feature:Mood=Sub']
       s.trip.9: ['feature:Aspect=Imp', 'feature:Mood=Sub']
   form:subj-3fs:
+    seeds: ['feature:Mood=Sub']
     byItem:
       s.child.15: ['feature:Aspect=Imp', 'feature:Gender=Fem', 'feature:Mood=Sub']
       s.child.17: ['feature:Aspect=Imp', 'feature:Gender=Fem', 'feature:Mood=Sub']
@@ -883,6 +908,7 @@ aliases:
   sense:shanta: {part: 'lexeme:shanta'}
   sense:akhad: {part: 'lexeme:akhad'}
   form:subj-2fs:
+    seeds: ['feature:Mood=Sub']
     byItem:
       apc.story.new-job#8: ['feature:Aspect=Imp', 'feature:Gender=Fem', 'feature:Mood=Sub']
       apc.story.sick-day#5: ['feature:Aspect=Imp', 'feature:Gender=Fem', 'feature:Mood=Sub']
@@ -898,6 +924,7 @@ aliases:
       s.trip.28: ['feature:Aspect=Imp', 'feature:Gender=Fem', 'feature:Mood=Sub']
       s.trip.29: ['feature:Aspect=Imp', 'feature:Gender=Fem', 'feature:Mood=Sub']
   form:subj-2pl:
+    seeds: ['feature:Mood=Sub']
     byItem:
       apc.story.village#5: ['feature:Aspect=Imp', 'feature:Mood=Sub', 'feature:Number=Plur']
       s.child.10: ['feature:Aspect=Imp', 'feature:Mood=Sub', 'feature:Number=Plur']
@@ -907,6 +934,7 @@ aliases:
       s.trip.31: ['feature:Aspect=Imp', 'feature:Mood=Sub', 'feature:Number=Plur']
       s.work.10: ['feature:Aspect=Imp', 'feature:Mood=Sub', 'feature:Number=Plur']
   form:subj-3pl:
+    seeds: ['feature:Mood=Sub']
     byItem:
       s.child.11: ['feature:Aspect=Imp', 'feature:Mood=Sub', 'feature:Number=Plur']
       s.child.16: ['feature:Aspect=Imp', 'feature:Mood=Sub', 'feature:Number=Plur']

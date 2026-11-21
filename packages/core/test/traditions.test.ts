@@ -73,7 +73,7 @@ describe("reading traditions (ADR 0138)", () => {
       expect("tradition" in ex && ex.tradition !== undefined).toBe(false);
       expect("reading" in exerciseRefOf(ex)).toBe(false);
     }
-    expect(cardKey("sense:x", "read-script", "yue-Hant-HK/standard")).toBe("sense:x|read-script|yue-Hant-HK/standard");
+    expect(cardKey("lexeme:x", "read-script", "yue-Hant-HK/standard")).toBe("lexeme:x|read-script|yue-Hant-HK/standard");
   });
 
   it("each tradition keeps its own cards, fading and due dates", () => {
@@ -86,18 +86,18 @@ describe("reading traditions (ADR 0138)", () => {
     events.session();
     const log = [met, events.answer(ex, true, 1)];
     const state = replay(log);
-    const keys = Object.keys(state.cards).filter((k) => parseCardKey(k).facet === "read-script");
+    const keys = Object.keys(state.cards).filter((k) => parseCardKey(k).skill === "read-script");
     expect(keys.length).toBeGreaterThan(0);
     for (const k of keys) expect(parseCardKey(k)).toMatchObject({ orthography: "lzh-Hant/standard", reading: "baxter" });
     // Read in Baxter, so its Baxter ruby fades on new words only; its Pinyin does not.
-    const words = keys.map((k) => parseCardKey(k).kc);
+    const words = keys.map((k) => parseCardKey(k).part);
     expect([...readingsShown(lzh, state, S("baxter"))].sort()).toEqual([...new Set(words)].sort());
     expect(readingsShown(lzh, state, S("pinyin")).size).toBe(0);
     expect(readingsShown(lzh, state).size).toBe(0);
     // Due in Baxter only, and only for a learner reading in Baxter.
     const later = "2027-03-01T08:00:00.000Z";
-    expect(dueFacets(state, "lzh-Hant/standard", later, 0.9, new Set(), "baxter").filter((f) => parseCardKey(f.key).facet === "read-script").length).toBe(keys.length);
-    expect(dueFacets(state, "lzh-Hant/standard", later, 0.9, new Set(), "pinyin").filter((f) => parseCardKey(f.key).facet === "read-script")).toEqual([]);
+    expect(dueFacets(state, "lzh-Hant/standard", later, 0.9, new Set(), "baxter").filter((f) => parseCardKey(f.key).skill === "read-script").length).toBe(keys.length);
+    expect(dueFacets(state, "lzh-Hant/standard", later, 0.9, new Set(), "pinyin").filter((f) => parseCardKey(f.key).skill === "read-script")).toEqual([]);
   });
 
   it("typed readings come after a choice card has shown them, in that tradition", () => {

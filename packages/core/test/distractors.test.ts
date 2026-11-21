@@ -1,6 +1,6 @@
 import type { BundleSentence, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { allKcs, allSentences, seededRng } from "../src/lesson/index.ts";
+import { allLexemes, allSentences, lexemesInOrder, seededRng } from "../src/lesson/index.ts";
 import { cardGloss, makeChooseTranslation, makeGapFill, makeMatchPairs, type MakeContext } from "../src/lesson/templates.ts";
 import { surfaceOf } from "../src/text/tagged-text.ts";
 import { loadCourse } from "./learner-fixtures.ts";
@@ -58,20 +58,21 @@ describe("short glosses on match-pairs cards (W7)", () => {
   it("keeps a gloss's first sense, without notes", () => {
     const yue = loadCourse("yue");
     const gloss = (id: string): TaggedText => {
-      const g = allKcs(yue).find((k) => k.id === id)?.gloss?.["en"];
+      const g = allLexemes(yue).find((k) => k.id === id)?.gloss?.["en"];
       if (g === undefined) throw new Error(`no gloss for ${id}`);
       return g;
     };
-    expect(surfaceOf(cardGloss(gloss("sense:呀")))).toBe("sentence-final particle: softens a statement or a question");
-    expect(surfaceOf(cardGloss(gloss("sense:呀")))).not.toContain("aa3");
-    for (const k of allKcs(yue)) {
+    expect(surfaceOf(cardGloss(gloss("lexeme:呀")))).toBe("sentence-final particle: softens a statement or a question");
+    expect(surfaceOf(cardGloss(gloss("lexeme:呀")))).not.toContain("aa3");
+    for (const k of allLexemes(yue)) {
       const g = k.gloss?.["en"];
       if (g !== undefined) expect(cardGloss(g).tokens.some((t) => t.kind === "word"), k.id).toBe(true);
     }
   });
 
   it("puts the short glosses on the card, each meaning once", () => {
-    const words = allKcs(es).filter((k) => k.kind === "sense" && k.gloss?.["en"] !== undefined && k.forms?.[es.orthography] !== undefined).slice(0, 12);
+    // The lexemes the course introduces first, as a unit's word list was before (no affixes: they have no spelling).
+    const words = lexemesInOrder(es).filter((k) => k.gloss?.["en"] !== undefined && k.forms?.[es.orthography] !== undefined).slice(0, 12);
     const ex = makeMatchPairs(ctx(3), words);
     if (ex === undefined) throw new Error("es makes match-pairs");
     const right = ex.right.map(surfaceOf);

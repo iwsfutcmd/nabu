@@ -3,7 +3,7 @@
  * marked, a missing accent and marks that make another word among them; a gap where units were left out;
  * the solution's words marked where the answer lines up with it; and what a wrong word means.
  */
-import type { KcId, SenseId, TaggedText, Token } from "@nabu/schema";
+import type { LexemeId, TaggedText, Token } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import {
   allSentences,
@@ -24,6 +24,7 @@ import {
   type Outcome,
   type TranslateType,
 } from "../src/lesson/index.ts";
+import { lexemeIdsOf } from "../src/lesson/lexemes.ts";
 import { makeTranslateType } from "../src/lesson/templates.ts";
 import type { AlignOp } from "../src/match/grade.ts";
 import { wordMeanings, writtenMeanings, type WordMeaning } from "../src/story/index.ts";
@@ -190,27 +191,41 @@ describe("what a wrong word means (P3)", () => {
   const base = hungry.canonical;
   const word = (surface: string): TaggedText => textOfSurface(base, surface);
   const analysed = (token: Token): TaggedText => ({ ...base, tokens: [token] });
-  const readings = (meanings: readonly WordMeaning[]): readonly (readonly string[])[] => meanings.map((m) => [...m.glosses.map((g) => g.kc as string), ...(m.form === undefined ? [] : [m.form.kc as string])]);
+  // A form is named by the language's label for its values (ADR 0146): form:<POS>:<values>.
+  const PRES_1S = "form::Mood=Ind;Number=Sing;Person=1;Tense=Pres;VerbForm=Fin";
+  const PRES_2S = "form::Mood=Ind;Number=Sing;Person=2;Tense=Pres;VerbForm=Fin";
+  const readings = (meanings: readonly WordMeaning[]): readonly (readonly string[])[] => meanings.map((m) => [...m.glosses.map((g) => g.id), ...(m.form === undefined ? [] : [m.form.id])]);
 
   it("a word the learner wrote: each reading the course gives it, with the form it is pinned as", () => {
     const hablas = writtenMeanings(es, word("hablas"));
-    expect(readings(hablas)).toEqual([["sense:hablar", "form:pres-2s"]]);
+    expect(readings(hablas)).toEqual([["lexeme:hablar", PRES_2S]]);
     expect(surfaceOf(hablas[0]?.form?.meaning as TaggedText)).toContain("you");
     // Como is comer's "I eat" and the word como, "like".
-    expect(readings(writtenMeanings(es, word("como")))).toEqual(expect.arrayContaining([["sense:comer", "form:pres-1s"], ["sense:como.like"]]));
+    expect(readings(writtenMeanings(es, word("como")))).toEqual(expect.arrayContaining([["lexeme:comer", PRES_1S], ["lexeme:como.like"]]));
     // esta, where está was asked: the demonstrative, feminine (ADR 0132's agreement forms).
-    expect(readings(writtenMeanings(es, word("esta")))).toEqual([["sense:este", "form:fem"]]);
+    expect(readings(writtenMeanings(es, word("esta")))).toEqual([["lexeme:este", "form::Gender=Fem;Number=Sing"]]);
   });
 
-  it("a word the course glosses whole is shown whole, not again in its parts (Lebanese بدك)", () => {
+  it("a word the course glosses whole is shown whole, not again in its parts (Lebanese bta3rfo)", () => {
+    const apc = loadCourse("apc", "apc-Latn/arabizi");
+    const s = allSentences(apc).find((x) => x.forms["apc-Latn/arabizi"] !== undefined);
+    if (s === undefined) throw new Error("apc has sentences");
+    const base = s.forms["apc-Latn/arabizi"]?.text as TaggedText;
+    // bta3rfo is 3eref "you (pl) know" whole, and 3eref + -o in another sentence: shown whole only.
+    const meanings = writtenMeanings(apc, textOfSurface(base, "bta3rfo"));
+    expect(readings(meanings)).toEqual([["lexeme:3eref", "form::Aspect=Imp;Mood=Ind;Number=Plur;Person=2"]]);
+    expect(meanings.every((m) => m.glosses.every((g) => g.span === "whole"))).toBe(true);
+  });
+
+  it("a word the course glosses nowhere whole is shown in its parts (Lebanese بدك)", () => {
     const apc = loadCourse("apc", "apc-Arab/standard");
     const s = allSentences(apc).find((x) => x.forms["apc-Arab/standard"] !== undefined);
     if (s === undefined) throw new Error("apc has sentences");
     const base = s.forms["apc-Arab/standard"]?.text as TaggedText;
-    // baddak "you want" (to a man), and baddik, "you want" to a woman, which a sentence also writes as badd + -ik.
+    // baddak "you want" (to a man) and baddik (to a woman) are badd with -ak or -ik: built words now, no entry of their own.
     const meanings = writtenMeanings(apc, textOfSurface(base, "بدك"));
-    expect(readings(meanings)).toEqual([["sense:baddak"], ["sense:baddak", "form:poss-2fs"]]);
-    expect(meanings.every((m) => m.glosses.every((g) => g.span === "whole"))).toBe(true);
+    expect(readings(meanings)).toEqual([["lexeme:badd", "lexeme:poss-2ms"], ["lexeme:badd", "lexeme:poss-2fs"]]);
+    expect(meanings.every((m) => m.glosses.every((g) => g.span === "part"))).toBe(true);
   });
 
   it("a slip that makes no word of the course means nothing", () => {
@@ -219,33 +234,33 @@ describe("what a wrong word means (P3)", () => {
   });
 
   it("a chosen word by its own analysis: an inflected form by its sense, never an entry spelled alike", () => {
-    const como = wordMeanings(es, analysed({ surface: "Como", kind: "word", sense: "comer" as SenseId, form: "form:pres-1s" as KcId }));
-    expect(readings(como)).toEqual([["sense:comer", "form:pres-1s"]]);
+    const como = wordMeanings(es, analysed({ surface: "Como", kind: "word", lexemes: [{ lexeme: "lexeme:comer" as LexemeId, feats: { Mood: "Ind", Number: "Sing", Person: "1", Tense: "Pres", VerbForm: "Fin" } }] }));
+    expect(readings(como)).toEqual([["lexeme:comer", PRES_1S]]);
     expect(como[0]?.glosses[0]?.meaning).toBeDefined();
   });
 
   it("a word of a phrase: its own entry alone, else the phrase it is part of", () => {
-    expect(readings(wordMeanings(es, analysed({ surface: "por", kind: "word", sense: "por-favor" as SenseId })))).toEqual([["sense:por"]]);
-    const dias = wordMeanings(es, analysed({ surface: "días", kind: "word", sense: "buenos-días" as SenseId }));
-    expect(readings(dias)).toEqual([["sense:buenos-días"]]);
+    expect(readings(wordMeanings(es, analysed({ surface: "por", kind: "word", lexemes: [{ lexeme: "lexeme:por-favor" as LexemeId }] })))).toEqual([["lexeme:por"]]);
+    const dias = wordMeanings(es, analysed({ surface: "días", kind: "word", lexemes: [{ lexeme: "lexeme:buenos-días" as LexemeId }] }));
+    expect(readings(dias)).toEqual([["lexeme:buenos-días"]]);
     expect(dias[0]?.glosses[0]?.span).toBe("phrase");
   });
 
   it("a word analysed into morphs is glossed morph by morph (uz)", () => {
     const uz = loadCourse("uz", "uz-Latn/standard");
-    const analysedWord = (t: Token): boolean => new Set((t.morphs ?? []).map((m) => m.kc)).size > 1;
+    const analysedWord = (t: Token): boolean => lexemeIdsOf(t).length > 1;
     const text = allSentences(uz)
       .flatMap((s) => s.forms["uz-Latn/standard"]?.text ?? [])
       .find((t) => t.tokens.some(analysedWord));
     const token = text?.tokens.find(analysedWord);
     if (text === undefined || token === undefined) throw new Error("uz has an analysed word");
     const meanings = wordMeanings(uz, { ...text, tokens: [token] });
-    expect(meanings[0]?.glosses.map((g) => g.kc)).toEqual((token.morphs ?? []).map((m) => m.kc));
+    expect(meanings[0]?.glosses.map((g) => g.id)).toEqual(lexemeIdsOf(token));
     expect(meanings[0]?.glosses.every((g) => g.span === "part")).toBe(true);
   });
 
-  it("a KC's form among a card's options is glossed by its entry", () => {
-    expect(readings(wordMeanings(es, word("hablar")))).toEqual([["sense:hablar"]]);
+  it("a lexeme's form among a card's options is glossed by its entry", () => {
+    expect(readings(wordMeanings(es, word("hablar")))).toEqual([["lexeme:hablar"]]);
   });
 
   it("nothing for text in another orthography than the one being learned", () => {

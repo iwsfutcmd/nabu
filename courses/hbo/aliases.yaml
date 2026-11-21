@@ -15,6 +15,7 @@ aliases:
   sense:elohim: {part: 'lexeme:elohim'}
   sense:amar: {part: 'lexeme:amar'}
   form:wayyiqtol-3ms:
+    seeds: ['feature:Tense=Past']
     byItem:
       hbo.story.at-the-well#0: ['feature:Tense=Past']
       hbo.story.at-the-well#1: ['feature:Tense=Past']
@@ -155,6 +156,7 @@ aliases:
       s.20.9: ['feature:Tense=Past']
   sense:hayah: {part: 'lexeme:hayah'}
   form:juss:
+    seeds: ['feature:Mood=Jus']
     byItem:
       hbo.story.a-time-for-everything#5: ['feature:Aspect=Imp', 'feature:Mood=Jus']
       hbo.story.a-time-for-everything#6: ['feature:Aspect=Imp', 'feature:Mood=Jus']
@@ -183,6 +185,7 @@ aliases:
   sense:ki: {part: 'lexeme:ki'}
   sense:qara: {part: 'lexeme:qara'}
   form:qatal-3ms:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       hbo.story.go-forth#6: ['feature:Aspect=Perf']
       hbo.story.here-i-am#0: ['feature:Aspect=Perf']
@@ -223,6 +226,7 @@ aliases:
   sense:be: {part: 'lexeme:be'}
   sense:reshit: {part: 'lexeme:reshit'}
   form:qatal-3fs:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       hbo.story.i-am-a-hebrew#2: ['feature:Aspect=Perf', 'feature:Gender=Fem']
       hbo.story.in-the-beginning#2: ['feature:Aspect=Perf', 'feature:Gender=Fem']
@@ -237,6 +241,7 @@ aliases:
       s.17.14: ['feature:Aspect=Perf', 'feature:Gender=Fem']
       s.18.7: ['feature:Aspect=Perf', 'feature:Gender=Fem']
   form:f:
+    seeds: ['feature:Gender=Fem']
     byItem:
       hbo.story.i-am-a-hebrew#0: ['feature:Gender=Fem']
       hbo.story.i-am-a-hebrew#4: ['feature:Gender=Fem']
@@ -315,6 +320,7 @@ aliases:
   sense:ruach: {part: 'lexeme:ruach'}
   sense:rachaf: {part: 'lexeme:rachaf'}
   form:ptc-fs:
+    seeds: ['feature:VerbForm=Part']
     byItem:
       hbo.story.in-the-beginning#4: ['feature:Gender=Fem', 'feature:VerbForm=Part']
       hbo.story.jonah-runs-away#5: ['feature:Gender=Fem', 'feature:VerbForm=Part']
@@ -330,6 +336,7 @@ aliases:
       s.15.9: ['feature:Gender=Fem', 'feature:VerbForm=Part']
       s.16.13: ['feature:Gender=Fem', 'feature:VerbForm=Part']
   form:pl:
+    seeds: ['feature:Number=Plur']
     byItem:
       hbo.story.a-time-for-everything#0: ['feature:Number=Plur']
       hbo.story.a-time-for-everything#6: ['feature:Number=Plur']
@@ -437,6 +444,7 @@ aliases:
   sense:qol: {part: 'lexeme:qol'}
   sense:shama: {part: 'lexeme:shama'}
   form:wayyiqtol-3mp:
+    seeds: ['feature:Tense=Past']
     byItem:
       hbo.story.here-i-am#19: ['feature:Number=Plur', 'feature:Tense=Past']
       hbo.story.i-am-a-hebrew#3: ['feature:Number=Plur', 'feature:Tense=Past']
@@ -450,6 +458,7 @@ aliases:
       s.16.17: ['feature:Number=Plur', 'feature:Tense=Past']
       s.18.10: ['feature:Number=Plur', 'feature:Tense=Past']
   form:qatal-1cs:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       hbo.story.my-brothers-keeper#7: ['feature:Aspect=Perf']
       hbo.story.speak-lord#6: ['feature:Aspect=Perf']
@@ -471,6 +480,7 @@ aliases:
   sense:tokh: {part: 'lexeme:tokh'}
   sense:hithallekh: {part: 'lexeme:hithallekh'}
   form:ptc-ms:
+    seeds: ['feature:VerbForm=Part']
     byItem:
       hbo.story.hear-o-israel#3: ['feature:VerbForm=Part']
       hbo.story.i-am-a-hebrew#10: ['feature:VerbForm=Part']
@@ -526,6 +536,7 @@ aliases:
   sense:anokhi: {part: 'lexeme:anokhi'}
   sense:yare: {part: 'lexeme:yare'}
   form:wayyiqtol-1cs:
+    seeds: ['feature:Tense=Past']
     byItem:
       hbo.story.what-have-you-done#4: ['feature:Tense=Past']
       hbo.story.what-have-you-done#9: ['feature:Tense=Past']
@@ -538,6 +549,7 @@ aliases:
       s.04.36: ['feature:Tense=Past']
   sense:erom: {part: 'lexeme:erom'}
   form:cstr:
+    seeds: ['feature:Definite=Cons']
     byItem:
       hbo.story.a-time-for-everything#0: ['feature:Definite=Cons']
       hbo.story.at-the-well#10: ['feature:Definite=Cons']
@@ -586,6 +598,7 @@ aliases:
   sense:ha.q: {part: 'lexeme:ha.q'}
   sense:akhal: {part: 'lexeme:akhal'}
   form:qatal-2ms:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       hbo.story.here-i-am#6: ['feature:Aspect=Perf']
       hbo.story.in-the-name-of-the-lord#2: ['feature:Aspect=Perf']
@@ -603,6 +616,7 @@ aliases:
       s.14.8: ['feature:Aspect=Perf']
       s.15.16: ['feature:Aspect=Perf']
   form:inf:
+    seeds: ['feature:VerbForm=Inf']
     byItem:
       hbo.story.a-time-for-everything#1: ['feature:VerbForm=Inf']
       hbo.story.a-time-for-everything#2: ['feature:VerbForm=Inf']
@@ -658,6 +672,7 @@ aliases:
   sense:zot: {part: 'lexeme:zot'}
   sense:asah: {part: 'lexeme:asah'}
   form:qatal-2fs:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       hbo.story.what-have-you-done#7: ['feature:Aspect=Perf', 'feature:Gender=Fem']
       s.04.27: ['feature:Aspect=Perf', 'feature:Gender=Fem']
@@ -665,6 +680,7 @@ aliases:
       s.14.9: ['feature:Aspect=Perf', 'feature:Gender=Fem']
       s.18.19: ['feature:Aspect=Perf', 'feature:Gender=Fem']
   form:wayyiqtol-3fs:
+    seeds: ['feature:Tense=Past']
     byItem:
       hbo.story.at-the-well#10: ['feature:Gender=Fem', 'feature:Tense=Past']
       hbo.story.at-the-well#3: ['feature:Gender=Fem', 'feature:Tense=Past']
@@ -706,6 +722,7 @@ aliases:
   sense:dam: {part: 'lexeme:dam'}
   sense:tsaaq: {part: 'lexeme:tsaaq'}
   form:ptc-mp:
+    seeds: ['feature:VerbForm=Part']
     byItem:
       hbo.story.my-brothers-keeper#9: ['feature:Number=Plur', 'feature:VerbForm=Part']
       hbo.story.seeking-my-brothers#1: ['feature:Number=Plur', 'feature:VerbForm=Part']
@@ -720,6 +737,7 @@ aliases:
   sense:avram: {part: 'lexeme:avram'}
   sense:halakh: {part: 'lexeme:halakh'}
   form:impv-ms:
+    seeds: ['feature:Mood=Imp']
     byItem:
       hbo.story.at-the-well#4: ['feature:Mood=Imp']
       hbo.story.go-forth#1: ['feature:Mood=Imp']
@@ -766,6 +784,7 @@ aliases:
       s.17.9: ['feature:Mood=Imp']
       s.20.13: ['feature:Mood=Imp']
   form:impv-fs:
+    seeds: ['feature:Mood=Imp']
     byItem:
       hbo.story.at-the-well#2: ['feature:Gender=Fem', 'feature:Mood=Imp']
       hbo.story.where-you-go#2: ['feature:Gender=Fem', 'feature:Mood=Imp']
@@ -782,6 +801,7 @@ aliases:
       s.16.21: ['feature:Gender=Fem', 'feature:Mood=Imp']
       s.17.10: ['feature:Gender=Fem', 'feature:Mood=Imp']
   form:impv-mp:
+    seeds: ['feature:Mood=Imp']
     byItem:
       hbo.story.i-am-a-hebrew#4: ['feature:Mood=Imp', 'feature:Number=Plur']
       hbo.story.the-wise-king#10: ['feature:Mood=Imp', 'feature:Number=Plur']
@@ -810,6 +830,7 @@ aliases:
   sense:moledet: {part: 'lexeme:moledet'}
   sense:hirah: {part: 'lexeme:hirah'}
   form:yiqtol-1cs:
+    seeds: ['feature:Aspect=Imp']
     byItem:
       hbo.story.at-the-well#9: ['feature:Aspect=Imp']
       hbo.story.go-forth#2: ['feature:Aspect=Imp']
@@ -850,6 +871,7 @@ aliases:
   sense:barakh: {part: 'lexeme:barakh'}
   sense:gadal: {part: 'lexeme:gadal'}
   form:coh:
+    seeds: ['feature:Mood=Opt']
     byItem:
       hbo.story.go-forth#5: ['feature:Aspect=Imp', 'feature:Mood=Opt']
       hbo.story.i-am-a-hebrew#4: ['feature:Aspect=Imp', 'feature:Mood=Opt']
@@ -882,6 +904,7 @@ aliases:
   sense:seh: {part: 'lexeme:seh'}
   sense:ayyeh: {part: 'lexeme:ayyeh'}
   form:yiqtol-3ms:
+    seeds: ['feature:Aspect=Imp']
     byItem:
       hbo.story.here-i-am#18: ['feature:Aspect=Imp']
       hbo.story.in-the-name-of-the-lord#4: ['feature:Aspect=Imp']
@@ -934,6 +957,7 @@ aliases:
   sense:im: {part: 'lexeme:im'}
   sense:killah: {part: 'lexeme:killah'}
   form:qatal-3cp:
+    seeds: ['feature:Aspect=Perf']
     byItem:
       hbo.story.at-the-well#9: ['feature:Aspect=Perf', 'feature:Number=Plur']
       hbo.story.the-wise-king#11: ['feature:Aspect=Perf', 'feature:Number=Plur']
@@ -965,6 +989,7 @@ aliases:
   sense:shaal: {part: 'lexeme:shaal'}
   sense:biqqesh: {part: 'lexeme:biqqesh'}
   form:yiqtol-2ms:
+    seeds: ['feature:Aspect=Imp']
     byItem:
       hbo.story.i-am-a-hebrew#8: ['feature:Aspect=Imp']
       hbo.story.seeking-my-brothers#10: ['feature:Aspect=Imp']
@@ -980,6 +1005,7 @@ aliases:
       s.13.21: ['feature:Aspect=Imp']
       s.18.18: ['feature:Aspect=Imp']
   form:yiqtol-2fs:
+    seeds: ['feature:Aspect=Imp']
     byItem:
       hbo.story.where-you-go#5: ['feature:Aspect=Imp', 'feature:Gender=Fem']
       hbo.story.where-you-go#7: ['feature:Aspect=Imp', 'feature:Gender=Fem']
@@ -995,6 +1021,7 @@ aliases:
   sense:baar: {part: 'lexeme:baar'}
   sense:eyn: {part: 'lexeme:eyn'}
   form:ptc-pass:
+    seeds: ['feature:Voice=Pass']
     byItem:
       hbo.story.a-time-for-everything#1: ['feature:VerbForm=Part', 'feature:Voice=Pass']
       hbo.story.the-burning-bush#1: ['feature:VerbForm=Part', 'feature:Voice=Pass']
@@ -1015,6 +1042,7 @@ aliases:
   sense:naal: {part: 'lexeme:naal'}
   sense:regel: {part: 'lexeme:regel'}
   form:du:
+    seeds: ['feature:Number=Dual']
     byItem:
       hbo.story.the-burning-bush#11: ['feature:Number=Dual']
       s.10.27: ['feature:Number=Dual']
@@ -1045,6 +1073,7 @@ aliases:
   sense:em: {part: 'lexeme:em'}
   sense:kibbed: {part: 'lexeme:kibbed'}
   form:inf-abs:
+    seeds: ['feature:VerbForm=InfAbs']
     byItem:
       hbo.story.the-ten-words#3: ['feature:VerbForm=InfAbs']
       hbo.story.the-wise-king#13: ['feature:VerbForm=InfAbs']
@@ -1053,6 +1082,7 @@ aliases:
   sense:lemaan: {part: 'lexeme:lemaan'}
   sense:heerikh: {part: 'lexeme:heerikh'}
   form:yiqtol-3mp:
+    seeds: ['feature:Aspect=Imp']
     byItem:
       hbo.story.in-the-name-of-the-lord#5: ['feature:Aspect=Imp', 'feature:Number=Plur']
       hbo.story.my-shepherd#5: ['feature:Aspect=Imp', 'feature:Number=Plur']
@@ -1065,6 +1095,7 @@ aliases:
   sense:naaf: {part: 'lexeme:naaf'}
   sense:ganav: {part: 'lexeme:ganav'}
   form:yiqtol-2mp:
+    seeds: ['feature:Aspect=Imp']
     byItem:
       hbo.story.the-wise-king#17: ['feature:Aspect=Imp', 'feature:Number=Plur']
       s.11.26: ['feature:Aspect=Imp', 'feature:Number=Plur']
@@ -1073,6 +1104,7 @@ aliases:
   sense:ed: {part: 'lexeme:ed'}
   sense:sheqer: {part: 'lexeme:sheqer'}
   form:weqatal-2ms:
+    seeds: ['feature:Tense=Fut']
     byItem:
       hbo.story.hear-o-israel#1: ['feature:Tense=Fut']
       hbo.story.hear-o-israel#4: ['feature:Tense=Fut']
@@ -1089,6 +1121,7 @@ aliases:
   sense:nefesh: {part: 'lexeme:nefesh'}
   sense:meod: {part: 'lexeme:meod'}
   form:weqatal-3cp:
+    seeds: ['feature:Tense=Fut']
     byItem:
       hbo.story.hear-o-israel#3: ['feature:Number=Plur', 'feature:Tense=Fut']
       s.12.20: ['feature:Number=Plur', 'feature:Tense=Fut']
@@ -1116,6 +1149,7 @@ aliases:
   sense:eli: {part: 'lexeme:eli'}
   sense:naar: {part: 'lexeme:naar'}
   form:weqatal-3ms:
+    seeds: ['feature:Tense=Fut']
     byItem:
       hbo.story.in-the-name-of-the-lord#5: ['feature:Tense=Fut']
       hbo.story.speak-lord#10: ['feature:Tense=Fut']
@@ -1150,6 +1184,7 @@ aliases:
   sense:chai: {part: 'lexeme:chai'}
   sense:yeled: {part: 'lexeme:yeled'}
   form:wayyiqtol-3fp:
+    seeds: ['feature:Tense=Past']
     byItem:
       hbo.story.the-wise-king#4: ['feature:Gender=Fem', 'feature:Number=Plur', 'feature:Tense=Past']
       s.16.14: ['feature:Gender=Fem', 'feature:Number=Plur', 'feature:Tense=Past']
@@ -1225,5 +1260,6 @@ aliases:
   sense:sim: {part: 'lexeme:sim'}
   sense:ayin.eye: {part: 'lexeme:ayin.eye'}
   form:ptc-pass-fs:
+    seeds: ['feature:Voice=Pass']
     byItem:
       s.20.24: ['feature:Gender=Fem', 'feature:VerbForm=Part', 'feature:Voice=Pass']

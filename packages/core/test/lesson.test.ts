@@ -1,6 +1,7 @@
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import {
+  allLexemes,
   allSentences,
   cardGallery,
   countsAs,
@@ -10,6 +11,8 @@ import {
   isCorrect,
   isRetry,
   lessonNodes,
+  lexemesById,
+  lexemesInOrder,
   LISTENING,
   missedOf,
   placedBy,
@@ -77,14 +80,14 @@ describe("matching pairs", () => {
 
   it("keeps synonyms glossed alike apart: Classical Chinese 汝 and 爾 are both \"you\"", () => {
     const course = loadCourse("lzh");
-    const kcs = course.units.flatMap((u) => u.kcs);
-    const you = kcs.filter((k) => k.id === "sense:汝" || k.id === "sense:爾");
+    const lexemes = lexemesInOrder(course);
+    const you = lexemes.filter((k) => k.id === "lexeme:汝" || k.id === "lexeme:爾");
     expect(you.map((k) => k.gloss?.["en"] === undefined ? "" : surfaceOf(k.gloss["en"]))).toEqual(["you", "you"]);
-    const others = kcs.filter((k) => ["sense:吾", "sense:其", "sense:誰", "sense:何"].includes(k.id));
+    const others = lexemes.filter((k) => ["lexeme:吾", "lexeme:其", "lexeme:誰", "lexeme:何"].includes(k.id));
     for (let seed = 1; seed <= 40; seed++) {
       const ex = makeMatchPairs({ course, rng: seededRng(seed), introduced: [] }, [...you, ...others]);
       if (ex === undefined) throw new Error("no pairs");
-      expect(ex.kcs.filter((k) => k === "sense:汝" || k === "sense:爾").length).toBeLessThanOrEqual(1);
+      expect(ex.parts.filter((k) => k === "lexeme:汝" || k === "lexeme:爾").length).toBeLessThanOrEqual(1);
       expect(distinct(ex.right)).toBe(true);
     }
   });
@@ -110,11 +113,11 @@ describe("who speaks and who is spoken to (persons)", () => {
     const course = loadCourse("apc", "apc-Arab/standard");
     const words = (s: (typeof course.units)[number]["sentences"][number]): number => s.forms["apc-Arab/standard"]?.text.tokens.filter((t) => t.kind === "word").length ?? 0;
     // A sentence each template can make a card of: a gap-fill needs two fair options (ADR 0132).
-    const sentence = allSentences(course).find((s) => s.production && words(s) >= 2 && SENTENCE_TEMPLATES["gap-fill"]?.({ course, rng: seededRng(5), introduced: s.kcs }, s) !== undefined);
+    const sentence = allSentences(course).find((s) => s.production && words(s) >= 2 && SENTENCE_TEMPLATES["gap-fill"]?.({ course, rng: seededRng(5), introduced: s.parts }, s) !== undefined);
     if (sentence === undefined) throw new Error("no apc sentence");
     // The blank in complete-translation is a word the lesson introduces.
-    const ctx = { course, rng: seededRng(5), introduced: sentence.kcs };
-    const tagged = { ...sentence, persons: { addressee: "f" as const, speaker: "m" as const } };
+    const ctx = { course, rng: seededRng(5), introduced: sentence.parts };
+    const tagged = { ...sentence, tags: [{ persons: { addressee: "f" as const, speaker: "m" as const } }] };
     for (const template of ["translate-type.l1-l2", "translate-tap.l1-l2", "complete-translation", "gap-fill"] as const) {
       const ex = SENTENCE_TEMPLATES[template]?.(ctx, tagged);
       expect(ex && "persons" in ex ? ex.persons : undefined, template).toEqual({ addressee: "f", speaker: "m" });
@@ -131,7 +134,7 @@ describe("who speaks and who is spoken to (persons)", () => {
     const course = loadCourse("apc", "apc-Arab/standard");
     const s = allSentences(course).find((x) => x.id === "s.like.33");
     if (s === undefined) throw new Error("no s.like.33");
-    const ex = SENTENCE_TEMPLATES["gap-fill"]?.({ course, rng: seededRng(1), introduced: s.kcs }, s);
+    const ex = SENTENCE_TEMPLATES["gap-fill"]?.({ course, rng: seededRng(1), introduced: s.parts }, s);
     expect(ex?.template).toBe("gap-fill");
     expect(ex && "persons" in ex ? ex.persons : undefined).toEqual({ addressee: "pl" });
   });
@@ -674,14 +677,14 @@ describe("listening cards say what was heard means", () => {
     it(`${id}: a heard word comes with its gloss, a heard sentence with its translation`, () => {
       const course = loadCourse(id, orthography);
       const gallery = cardGallery(course, 7);
-      const kcs = new Map(course.units.flatMap((u) => u.kcs).map((k) => [String(k.id), k] as const));
+      const lexemes = lexemesById(course);
       const sentences = new Map(course.units.flatMap((u) => u.sentences).map((s) => [s.id, s]));
       let words = 0;
       for (const { exercise: ex } of gallery) {
         if (ex === undefined) continue;
         if (ex.template === "listen-select" || ex.template === "minimal-pair") {
           words += 1;
-          expect(ex.translation, ex.id).toEqual(kcs.get(ex.item)?.gloss?.[course.supportKey]);
+          expect(ex.translation, ex.id).toEqual(lexemes.get(ex.item)?.gloss?.[course.supportKey]);
           expect(ex.translation, ex.id).toBeDefined();
         }
         if (ex.template === "listen-tap" || ex.template === "listen-type") {
@@ -969,8 +972,8 @@ describe("a Chaghatay word's reading typed, once read right by choice (ADR 0131)
 
   it("is planned only for words whose reading the learner has shown", () => {
     expect(planned(emptyLearnerState()).filter((ex) => ex.template === "transcribe")).toEqual([]);
-    const kcs = chg.units.flatMap((u) => u.kcs).map((k) => String(k.id));
-    const shown = { ...emptyLearnerState(), shown: Object.fromEntries(kcs.map((kc) => [`${kc}|read-script|chg-Arab/standard`, "2026-02-01"])) };
+    const lexemes = allLexemes(chg).map((k) => String(k.id));
+    const shown = { ...emptyLearnerState(), shown: Object.fromEntries(lexemes.map((id) => [`${id}|read-script|chg-Arab/standard`, "2026-02-01"])) };
     expect(planned(shown).filter((ex) => ex.template === "transcribe").length).toBeGreaterThan(0);
   });
 

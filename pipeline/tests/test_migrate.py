@@ -104,17 +104,21 @@ def test_a_flipped_file_keeps_its_comments() -> None:
 
 def test_a_word_clip_is_renamed_and_nothing_else_changes() -> None:
     index = (
-        "version: 1\nclips:\n- item: s.1\n  speed: normal\n- item: sense:casa\n  speed: normal\n"
+        "version: 1\nclips:\n- item: s.1\n  speed: normal\n- item: sense:casa\n  speed: slow\n"
+        "- item: sense:casa\n  speed: normal\n"
         "  synthesis:\n    input: casa\n- item: sense:raye7\n  speed: normal\n"
     )
     names = {"sense:casa": "lexeme:casa", "sense:raye7": "lexeme:ra7|form:Aspect=Part;Number=Sing"}
     out = flip.Flipped()
+    # Each entry's own text stays as it was; the entries stand in the order the index's writer
+    # keeps them (by item, then speed), where a renamed item has another place.
     assert flip.renamed_index(index, names, "x", out) == (
-        "version: 1\nclips:\n- item: s.1\n  speed: normal\n- item: lexeme:casa\n  speed: normal\n"
-        "  synthesis:\n    input: casa\n- item: lexeme:ra7|form:Aspect=Part;Number=Sing\n"
-        "  speed: normal\n"
+        "version: 1\nclips:\n- item: lexeme:casa\n  speed: normal\n"
+        "  synthesis:\n    input: casa\n- item: lexeme:casa\n  speed: slow\n"
+        "- item: lexeme:ra7|form:Aspect=Part;Number=Sing\n"
+        "  speed: normal\n- item: s.1\n  speed: normal\n"
     )
-    assert out.clips == {"renamed": 2, "of a form": 1} and out.errors == []
+    assert out.clips == {"renamed": 3, "of a form": 1} and out.errors == []
     # A clip whose word has no name in the new shape stops the flip.
     flip.renamed_index("- item: sense:gone\n", names, "x", out)
     assert out.errors == ["x: the clip of sense:gone has no name in the new shape"]

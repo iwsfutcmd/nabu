@@ -17,6 +17,7 @@ aliases:
   sense:tú: {part: 'lexeme:tú'}
   sense:estar: {part: 'lexeme:estar'}
   form:pres-1s:
+    seeds: ['feature:Tense=Pres']
     byItem:
       es.story.u01#6: ['feature:Tense=Pres']
       es.story.u01#8: ['feature:Tense=Pres']
@@ -276,6 +277,7 @@ aliases:
       s.u30.33: ['feature:Tense=Pres']
   sense:cómo: {part: 'lexeme:cómo'}
   form:pres-2s:
+    seeds: ['feature:Tense=Pres']
     byItem:
       es.story.u01#0: ['feature:Tense=Pres']
       es.story.u01#5: ['feature:Tense=Pres']
@@ -406,6 +408,7 @@ aliases:
       s.u30.6: ['feature:Tense=Pres']
   sense:usted: {part: 'lexeme:usted'}
   form:pres-3s:
+    seeds: ['feature:Tense=Pres']
     byItem:
       es.story.u01#12: ['feature:Tense=Pres']
       es.story.u01#2: ['feature:Tense=Pres']
@@ -946,6 +949,7 @@ aliases:
       s.u30.5: ['feature:Tense=Pres']
       s.u30.8: ['feature:Tense=Pres']
   form:fem:
+    seeds: ['feature:Gender=Fem']
     byItem:
       es.story.u01#0: ['feature:Gender=Fem']
       es.story.u02#0: ['feature:Gender=Fem']
@@ -1631,6 +1635,7 @@ aliases:
   sense:hijo: {part: 'lexeme:hijo'}
   sense:nosotros: {part: 'lexeme:nosotros'}
   form:pres-1p:
+    seeds: ['feature:Tense=Pres']
     byItem:
       es.story.u02#9: ['feature:Number=Plur', 'feature:Tense=Pres']
       es.story.u05#17: ['feature:Number=Plur', 'feature:Tense=Pres']
@@ -1697,6 +1702,7 @@ aliases:
   sense:grande: {part: 'lexeme:grande'}
   sense:ellos: {part: 'lexeme:ellos'}
   form:pres-3p:
+    seeds: ['feature:Tense=Pres']
     byItem:
       es.story.u02#10: ['feature:Number=Plur', 'feature:Tense=Pres']
       es.story.u02#9: ['feature:Number=Plur', 'feature:Tense=Pres']
@@ -1810,6 +1816,7 @@ aliases:
   sense:puro: {part: 'lexeme:puro'}
   sense:mijo: {part: 'lexeme:mijo'}
   form:pl:
+    seeds: ['feature:Number=Plur']
     byItem:
       es.story.u02#9: ['feature:Number=Plur']
       es.story.u04#2: ['feature:Number=Plur']
@@ -2319,6 +2326,7 @@ aliases:
   sense:siempre: {part: 'lexeme:siempre'}
   sense:acostarse: {part: 'lexeme:acostarse'}
   form:ger:
+    seeds: ['feature:VerbForm=Ger']
     byItem:
       es.story.u07#0: ['feature:VerbForm=Ger']
       es.story.u07#13: ['feature:VerbForm=Ger']
@@ -2357,6 +2365,7 @@ aliases:
   sense:shopping: {part: 'lexeme:shopping'}
   sense:ayer: {part: 'lexeme:ayer'}
   form:pret-1s:
+    seeds: ['feature:Tense=Past']
     byItem:
       es.story.u09#1: ['feature:Tense=Past']
       es.story.u09#2: ['feature:Tense=Past']
@@ -2400,6 +2409,7 @@ aliases:
       s.u29.33: ['feature:Tense=Past']
       s.u30.28: ['feature:Tense=Past']
   form:pret-3s:
+    seeds: ['feature:Tense=Past']
     byItem:
       es.story.u09#10: ['feature:Tense=Past']
       es.story.u09#13: ['feature:Tense=Past']
@@ -2518,6 +2528,7 @@ aliases:
       s.u30.4: ['feature:Tense=Past']
       s.u30.7: ['feature:Tense=Past']
   form:pret-2s:
+    seeds: ['feature:Tense=Past']
     byItem:
       es.story.u09#0: ['feature:Tense=Past']
       es.story.u13#0: ['feature:Tense=Past']
@@ -2546,6 +2557,7 @@ aliases:
   sense:pelota: {part: 'lexeme:pelota'}
   sense:televisión: {part: 'lexeme:televisión'}
   form:pret-1p:
+    seeds: ['feature:Tense=Past']
     byItem:
       es.story.u09#3: ['feature:Number=Plur', 'feature:Tense=Past']
       es.story.u09#8: ['feature:Number=Plur', 'feature:Tense=Past']
@@ -2569,6 +2581,7 @@ aliases:
       s.u26.14: ['feature:Number=Plur', 'feature:Tense=Past']
       s.u26.28: ['feature:Number=Plur', 'feature:Tense=Past']
   form:pret-3p:
+    seeds: ['feature:Tense=Past']
     byItem:
       es.story.u09#2: ['feature:Number=Plur', 'feature:Tense=Past']
       es.story.u13#14: ['feature:Number=Plur', 'feature:Tense=Past']
@@ -2649,6 +2662,7 @@ aliases:
   sense:español: {part: 'lexeme:español'}
   sense:tilde: {part: 'lexeme:tilde'}
   form:impf:
+    seeds: ['feature:Tense=Imp']
     byItem:
       es.story.u12#0: ['feature:Tense=Imp']
       es.story.u12#1: ['feature:Tense=Imp']
@@ -2843,6 +2857,7 @@ aliases:
   sense:enamorarse: {part: 'lexeme:enamorarse'}
   sense:casarse: {part: 'lexeme:casarse'}
   form:imp-tu:
+    seeds: ['feature:Mood=Imp']
     byItem:
       es.story.u14#1: ['feature:Mood=Imp']
       es.story.u14#18: ['feature:Mood=Imp']
@@ -2896,6 +2911,7 @@ aliases:
   sense:mojo: {part: 'lexeme:mojo'}
   sense:naranja-agria: {part: 'lexeme:naranja-agria'}
   form:imp-ud:
+    seeds: ['feature:Mood=Imp']
     byItem:
       es.story.u18#10: ['feature:Mood=Imp']
       es.story.u18#13: ['feature:Mood=Imp']
@@ -2925,6 +2941,7 @@ aliases:
   sense:ofelia: {part: 'lexeme:ofelia'}
   sense:olla-de-presión: {part: 'lexeme:olla-de-presión'}
   form:imp-neg:
+    seeds: ['feature:Mood=Imp']
     byItem:
       es.story.u14#18: ['feature:Mood=Imp']
       es.story.u14#6: ['feature:Mood=Imp']
@@ -2987,6 +3004,7 @@ aliases:
   sense:buena-vista: {part: 'lexeme:buena-vista'}
   sense:compay-segundo: {part: 'lexeme:compay-segundo'}
   form:part:
+    seeds: ['feature:VerbForm=Part']
     byItem:
       es.story.u17#0: ['feature:Tense=Past', 'feature:VerbForm=Part']
       es.story.u17#1: ['feature:Tense=Past', 'feature:VerbForm=Part']
@@ -3109,6 +3127,7 @@ aliases:
   sense:molestia: {part: 'lexeme:molestia'}
   sense:momento: {part: 'lexeme:momento'}
   form:cond:
+    seeds: ['feature:Mood=Cnd']
     byItem:
       es.story.u19#11: ['feature:Mood=Cnd']
       es.story.u19#15: ['feature:Mood=Cnd']
@@ -3153,6 +3172,7 @@ aliases:
       s.u29.35: ['feature:Mood=Cnd', 'feature:Number=Plur']
       s.u30.10: ['feature:Mood=Cnd']
   form:subj-past:
+    seeds: ['feature:Mood=Sub']
     byItem:
       es.story.u19#14: ['feature:Mood=Sub', 'feature:Tense=Imp']
       es.story.u27#19: ['feature:Mood=Sub', 'feature:Number=Plur', 'feature:Tense=Imp']
@@ -3198,6 +3218,7 @@ aliases:
   sense:nochebuena: {part: 'lexeme:nochebuena'}
   sense:diciembre: {part: 'lexeme:diciembre'}
   form:fut:
+    seeds: ['feature:Tense=Fut']
     byItem:
       es.story.u20#1: ['feature:Number=Plur', 'feature:Tense=Fut']
       es.story.u20#11: ['feature:Number=Plur', 'feature:Tense=Fut']
@@ -3259,6 +3280,7 @@ aliases:
   sense:quinceañera: {part: 'lexeme:quinceañera'}
   sense:vals: {part: 'lexeme:vals'}
   form:subj:
+    seeds: ['feature:Mood=Sub']
     byItem:
       es.story.u21#14: ['feature:Mood=Sub', 'feature:Tense=Pres']
       es.story.u21#16: ['feature:Mood=Sub', 'feature:Tense=Pres']

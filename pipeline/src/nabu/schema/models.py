@@ -3324,7 +3324,16 @@ class Alias(BaseModel):
     ] = None
     byItem: Annotated[
         dict[str, list[PartId]] | None,
-        Field(description="By sentence or story line id: the parts the id stood for in it."),
+        Field(
+            description="By sentence or story line id: the parts the id stood for in it. For a form KC that is feature values now: the values it chose there that the course teaches by then (the sentence's parts)."
+        ),
+    ] = None
+    seeds: Annotated[
+        list[PartId] | None,
+        Field(
+            description="What a placement that seeded the id seeds now (ADR 0111: a finished placement seeds what its nodes introduce): for a form KC that is feature values now, the values a node introduces in its place. Absent where `part` says it.",
+            min_length=1,
+        ),
     ] = None
 
 

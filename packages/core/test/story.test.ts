@@ -5,9 +5,9 @@
 import type { LearnerEvent, SchemeId, TaggedText, Token } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { learnerEventOf, pathOf, replay, type EventMeta, type SessionMeta } from "../src/learner/index.ts";
-import { allKcs, answerTextOf, createGrader, gradeExercise, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
+import { allLexemes, answerTextOf, lexemesById, createGrader, gradeExercise, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
 import { allStories, courseGlossary, glossAt, glossLine, startStory, stepStory, storyAt, storyScript, type StoryScript, type StoryState } from "../src/story/index.ts";
-import { signatureKey } from "../src/lesson/signature.ts";
+import { baseIdOf, formSignature, lexemesOf } from "../src/lesson/lexemes.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
@@ -121,17 +121,22 @@ describe("story scripts", () => {
     expect(seen.size).toBeGreaterThan(1); // the right option is not always first
   });
 
-  it("a completed line keeps its gap token's sense, and shows each distractor in the gap's form (ADR 0132)", () => {
+  it("a completed line keeps its gap token's lexeme, and shows each distractor in the gap's form (ADR 0132)", () => {
     const course = loadCourse("uz", "uz-Cyrl/standard");
     const q = scriptOf(course).steps.find((s) => s.tag === "question" && s.ex.template === "story-complete");
     if (q?.tag !== "question" || q.ex.template !== "story-complete") throw new Error("no complete question");
     const answer = q.ex.options[q.ex.answer] as TaggedText;
     expect(surfaceOf(answer)).toBe("талабаман");
-    expect(q.ex.asks).toBe("word");
+    expect(q.ex.asks).toBe("lexeme");
+    const lexemes = lexemesById(course);
+    const signature = (t: TaggedText): string => {
+      const token = t.tokens[0] as Token;
+      return formSignature(token, lexemes.get(baseIdOf(token) ?? "")).join(" ");
+    };
     // Each option is a word the course writes, in the learner's orthography, analysed as the answer is.
     for (const o of q.ex.options) {
       expect(o.orthography).toBe("uz-Cyrl/standard");
-      expect(signatureKey(o.tokens[0] as Token)).toBe(signatureKey(answer.tokens[0] as Token));
+      expect(signature(o)).toBe(signature(answer));
     }
     expect(surfaceOf(q.ex.before)).toBe("Ҳа, мен ");
   });
@@ -244,7 +249,7 @@ describe("the story player", () => {
       template: "story-arrange",
       id: "x",
       item: "x",
-      kcs: [],
+      parts: [],
       orthography: "yue-Hant-HK/standard",
       prompt: line?.line?.translations["en"] as TaggedText,
       tiles: ["係", "我", "係", "學生"].map((surface) => ({ lang: "yue-Hant-HK", orthography: "yue-Hant-HK/standard", tokens: [{ surface, kind: "word" }] }) as unknown as TaggedText),
@@ -273,7 +278,7 @@ describe("tap-for-gloss on story lines", () => {
         if (marked) vocalized += 1;
         const [hit, ...more] = glossAt(course, glossary, glosses, line.text, i);
         expect(more).toEqual([]);
-        expect(hit?.kc).toBe(`sense:${token.sense ?? ""}`);
+        expect(hit?.id).toBe(baseIdOf(token));
         expect(hit?.form).toBeDefined();
         expect(hit?.meaning).toBeDefined();
         const match = glosses.find((g) => g.tokenStart <= i && i < g.tokenEnd);
@@ -293,21 +298,22 @@ describe("tap-for-gloss on story lines", () => {
     if (line === undefined) throw new Error("no 我哋 line");
     const token = line.text.tokens[0];
     const hits = glossAt(course, glossary, glossLine(course, glossary, line.text), line.text, 0);
-    expect(hits.map((h) => [h.kc, surfaceOf(h.form), h.span])).toEqual((token?.morphs ?? []).map((m) => [m.kc, m.surface, "part"]));
+    expect(hits.map((h) => [h.id, surfaceOf(h.form), h.span])).toEqual((token === undefined ? [] : lexemesOf(token)).map((l) => [l.lexeme, l.surface, "part"]));
     expect(hits.length).toBe(2);
     expect(hits.every((h) => h.meaning !== undefined)).toBe(true);
-    // 我 is spelled as its dictionary form: the entry is that form, with the reading its KC pins.
+    // 我 is spelled as its dictionary form: the entry is that form, with the reading its lexeme pins.
     expect(hits[0]?.form.tokens[0]?.ruby?.["jyutping" as SchemeId]?.map((s) => s.text)).toEqual(["ngo5"]);
   });
 
   it("a morph the word does not spell is glossed as unwritten: the Persian ezafe (ADR 0136)", () => {
     const course = loadCourse("fa");
     const glossary = courseGlossary(course);
-    const line = scriptOf(course).lines.find((l) => l.text.tokens.some((t) => t.morphs?.some((m) => m.surface === "")));
+    const unwritten = (t: Token): boolean => lexemesOf(t).some((l) => l.surface === "");
+    const line = scriptOf(course).lines.find((l) => l.text.tokens.some(unwritten));
     if (line === undefined) throw new Error("no line with an ezafe");
-    const at = line.text.tokens.findIndex((t) => t.morphs?.some((m) => m.surface === ""));
+    const at = line.text.tokens.findIndex(unwritten);
     const hits = glossAt(course, glossary, glossLine(course, glossary, line.text), line.text, at);
-    const ezafe = hits.find((h) => h.kc === "construction:ezafe");
+    const ezafe = hits.find((h) => h.id === "lexeme:ezafe");
     expect(ezafe?.unwritten).toBe(true);
     expect(ezafe?.meaning).toBeDefined();
     // Its form is the whole word, never an empty one; the word's stem is glossed as written.
@@ -320,12 +326,12 @@ describe("tap-for-gloss on story lines", () => {
     const glossary = courseGlossary(course);
     for (const line of scriptOf(course).lines) {
       for (const [i, token] of line.text.tokens.entries()) {
-        const morphs = token.morphs ?? [];
-        if (new Set(morphs.map((m) => m.kc)).size < 2) continue;
+        const morphs = lexemesOf(token);
+        if (new Set(morphs.map((m) => m.lexeme)).size < 2) continue;
         const hits = glossAt(course, glossary, glossLine(course, glossary, line.text), line.text, i);
-        expect(hits.map((h) => h.kc)).toEqual(morphs.map((m) => m.kc));
+        expect(hits.map((h) => h.id)).toEqual(morphs.map((m) => m.lexeme));
         for (const [k, h] of hits.entries()) {
-          const lemma = allKcs(course).find((kc) => kc.id === h.kc)?.forms?.["uz-Latn/standard"]?.[0];
+          const lemma = allLexemes(course).find((l) => l.id === h.id)?.forms?.["uz-Latn/standard"]?.[0];
           if (lemma === undefined || surfaceOf(lemma) === morphs[k]?.surface) expect(h.lemma).toBeUndefined();
           else expect(h.lemma).toEqual(lemma);
         }
@@ -343,12 +349,13 @@ describe("tap-for-gloss on story lines", () => {
       for (const line of storyScript(course, story, seededRng(1)).lines) {
         const glosses = glossLine(course, glossary, line.text);
         for (const [i, token] of line.text.tokens.entries()) {
-          if (token.kind !== "word" || token.sense === undefined || token.morphs !== undefined) continue;
+          const sense = baseIdOf(token);
+          if (token.kind !== "word" || sense === undefined || lexemesOf(token).length > 1) continue;
           const hits = glossAt(course, glossary, glosses, line.text, i);
           const whole = hits.filter((h) => h.span === "whole");
           if (whole.length === 0) continue;
-          expect(whole.map((h) => h.kc), `${surfaceOf(line.text)} ${token.surface}`).toEqual([`sense:${token.sense}`]);
-          if (token.sense.includes(".")) homographs += 1;
+          expect(whole.map((h) => h.id), `${surfaceOf(line.text)} ${token.surface}`).toEqual([sense]);
+          if (sense.includes(".")) homographs += 1;
         }
       }
     }
@@ -356,7 +363,7 @@ describe("tap-for-gloss on story lines", () => {
     expect(homographs).toBeGreaterThanOrEqual(5);
   });
 
-  it("falls back to the token's own sense when no entry reaches it", () => {
+  it("falls back to the token's own lexeme when no entry reaches it", () => {
     const course = loadCourse("fa");
     const glossary = courseGlossary(course);
     // kitab-e: ketab with the ezafe kasra the story writes, and the vocalization's marks.
@@ -365,7 +372,7 @@ describe("tap-for-gloss on story lines", () => {
     if (line === undefined) throw new Error("no ezafe line");
     const at = line.text.tokens.findIndex(ezafe);
     const [hit] = glossAt(course, glossary, glossLine(course, glossary, line.text), line.text, at);
-    expect(hit?.kc).toBe("sense:ketab");
+    expect(hit?.id).toBe("lexeme:ketab");
   });
 });
 
@@ -397,6 +404,6 @@ describe("stories on the path and in the learner model", () => {
     expect(state.mistakes).toEqual([]);
     expect(state.xp.total).toBeGreaterThan(0);
     // Its questions credit the words of their lines.
-    expect(Object.keys(state.cards).some((k) => k.startsWith("sense:man|recognize"))).toBe(true);
+    expect(Object.keys(state.cards).some((k) => k.startsWith("lexeme:man|recognize"))).toBe(true);
   });
 });

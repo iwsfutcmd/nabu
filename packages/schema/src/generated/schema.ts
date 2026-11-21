@@ -1397,11 +1397,17 @@ export interface Alias {
    */
   readonly part?: string;
   /**
-   * By sentence or story line id: the parts the id stood for in it.
+   * By sentence or story line id: the parts the id stood for in it. For a form KC that is feature values now: the values it chose there that the course teaches by then (the sentence's parts).
    */
   readonly byItem?: {
     readonly [k: string]: readonly PartId[];
   };
+  /**
+   * What a placement that seeded the id seeds now (ADR 0111: a finished placement seeds what its nodes introduce): for a form KC that is feature values now, the values a node introduces in its place. Absent where `part` says it.
+   *
+   * @minItems 1
+   */
+  readonly seeds?: readonly PartId[];
 }
 /**
  * A course's audio clips (courses/<id>/audio/index.yaml), written by `nabu audio` and checked in. Every clip carries its SPDX license and provenance; synthesized clips record their exact input so a changed reading re-synthesizes only the clips it affects (§10.1).

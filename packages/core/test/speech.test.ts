@@ -9,6 +9,7 @@ import { describe, expect, it } from "vitest";
 import { creditOf } from "../src/learner/index.ts";
 import { allSentences, createGrader, gradeExercise, seededRng } from "../src/lesson/index.ts";
 import { makeSpeakScored } from "../src/lesson/templates.ts";
+import { baseIdOf } from "../src/lesson/lexemes.ts";
 import {
   calibrate,
   classify,
@@ -228,15 +229,15 @@ describe("grading speech", () => {
     const sentence = allSentences(yue).find((x) => x.id === "s.12"); // 我係學生。
     const ex = sentence === undefined ? undefined : makeSpeakScored({ course: yue, rng: seededRng(1), introduced: [] }, sentence);
     if (ex === undefined) throw new Error("no speak exercise");
-    const words = ex.prompt.tokens.flatMap((t, i) => (t.sense === undefined ? [] : [i]));
+    const words = ex.prompt.tokens.flatMap((t, i) => (baseIdOf(t) === undefined ? [] : [i]));
     const [first, second] = words;
     if (first === undefined || second === undefined) throw new Error("need two words");
     const outcome = gradeExercise(ex, { tag: "speech", result: { silent: false, tone: tones(true, ...words.map((w) => w !== first)) } }, createGrader(yue));
     expect(outcome.verdict).toBe("PARTIAL");
     const credit = creditOf(ex, outcome, yue.profiles);
-    const kcOf = (i: number) => `sense:${ex.prompt.tokens[i]?.sense ?? ""}`;
-    expect(credit.find((c) => c.kc === kcOf(first))?.status).toBe("wrong");
-    expect(credit.find((c) => c.kc === kcOf(second))?.status).toBe("right");
+    const lexemeAt = (i: number) => { const t = ex.prompt.tokens[i]; return t === undefined ? undefined : baseIdOf(t); };
+    expect(credit.find((c) => c.part === lexemeAt(first))?.status).toBe("wrong");
+    expect(credit.find((c) => c.part === lexemeAt(second))?.status).toBe("right");
   });
 });
 
