@@ -94,8 +94,9 @@ class Language:
     """A language's lexicon and declaration, with where each entry stands in its file."""
 
     code: str
-    root: Path
-    """The folder its lexicon is kept under (the repo's lexicons/)."""
+    folder: Path
+    """Where its files are kept (lexicons/<lang>/, or a one-file course's own folder): what an
+    entry's picture is relative to."""
     lexicon: Lexicon
     declared: LanguageDeclaration
     doc: Doc
@@ -223,7 +224,7 @@ def load_language(
         declared = LanguageDeclaration.model_validate(language_doc.data)
     except ValidationError as error:
         return None, _errors(language_doc, error)
-    return Language(code, root, lexicon, declared, lexemes_doc, language_doc), []
+    return Language(code, folder, lexicon, declared, lexemes_doc, language_doc), []
 
 
 def sorted_feats(feats: Mapping[str, str] | None) -> dict[str, str]:

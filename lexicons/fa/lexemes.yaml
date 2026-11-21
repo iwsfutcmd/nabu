@@ -6,28 +6,34 @@ lexemes:
 - id: lexeme:1pl
   realises: {Number: Plur, Person: '1'}
   gloss: {en: '-im: we (verb ending; هستیم: we are)'}
-  spelled: {fa-Arab/standard: [یم]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [یم]}}
 - id: lexeme:1sg
   realises: {Number: Sing, Person: '1'}
   gloss: {en: '-am: I (verb ending)'}
-  spelled: {fa-Arab/standard: [م]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [م]}}
 - id: lexeme:2pl
   realises: {Number: Plur, Person: '2'}
   gloss: {en: '-id: you, polite or more than one (verb ending)'}
-  spelled: {fa-Arab/standard: [ید]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [ید]}}
 - id: lexeme:2sg
   realises: {Number: Sing, Person: '2'}
   gloss: {en: '-i: you, one person (verb ending)'}
-  spelled: {fa-Arab/standard: [ی]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [ی]}}
 - id: lexeme:3pl
   realises: {Number: Plur, Person: '3'}
   gloss: {en: '-and: they (verb ending)'}
-  spelled: {fa-Arab/standard: [ند]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [ند]}}
 - id: lexeme:3sg
   realises: {Number: Sing, Person: '3'}
   gloss: {en: '-ad: he, she, it (verb ending)'}
   notes: {en: 'دارد (dārad): has. In speech it is -e: داره (dāre).'}
-  spelled: {fa-Arab/standard: [د]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [د]}}
 - id: lexeme:ab
   pos: NOUN
   gloss: {en: water}
@@ -260,7 +266,8 @@ lexemes:
   realises: {Degree: Cmp}
   gloss: {en: '-tar: -er, more (comparative)'}
   notes: {en: "Joined with a ZWNJ: گران\u200cتر, more expensive; ارزان\u200cتر, cheaper."}
-  spelled: {fa-Arab/standard: [تر]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [تر]}}
 - id: lexeme:dadan
   pos: VERB
   gloss: {en: to give (present stem ده-)}
@@ -519,7 +526,8 @@ lexemes:
   realises: {Definite: Ind}
   gloss: {en: '-i: a, some, any (indefinite ending)'}
   notes: {en: 'رنگی: a colour; چه رنگی؟ what colour? On a noun with an adjective it goes on the adjective: شهرِ بزرگی, a big city.'}
-  spelled: {fa-Arab/standard: [ی]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [ی]}}
 - id: lexeme:inja
   pos: ADV
   feats: {PronType: Dem}
@@ -753,7 +761,8 @@ lexemes:
   realises: {Aspect: Imp}
   gloss: {en: 'mi-: present tense (verb prefix)'}
   notes: {en: "Joined with a ZWNJ: می\u200cکنم. The present also means 'I am doing' and often 'I will do'."}
-  spelled: {fa-Arab/standard: [می]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [می]}}
 - id: lexeme:mive
   pos: NOUN
   gloss: {en: fruit}
@@ -802,7 +811,8 @@ lexemes:
   realises: {Polarity: Neg}
   gloss: {en: 'na-, ne-: not (verb prefix)'}
   notes: {en: "ندارم: I don't have. Before می\u200c it is ne-: نمی\u200cخورم, I don't eat."}
-  spelled: {fa-Arab/standard: [ن]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [ن]}}
 - id: lexeme:nim
   pos: NUM
   feats: {NumType: Card}
@@ -892,12 +902,14 @@ lexemes:
   realises: {Number: Plur}
   gloss: {en: '-hā: plural'}
   notes: {en: "Joined to the noun with a zero-width non-joiner: کتاب\u200cها, not کتابها or کتاب ها."}
-  spelled: {fa-Arab/standard: [ها]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [ها]}}
 - id: lexeme:pl-an
   realises: {Number: Plur}
   gloss: {en: '-ān: plural (people and living things)'}
   notes: {en: "دوستان (friends) is more formal than دوست\u200cها."}
-  spelled: {fa-Arab/standard: [ان]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [ان]}}
 - id: lexeme:pool
   pos: NOUN
   gloss: {en: money}
@@ -911,13 +923,15 @@ lexemes:
   feats: {Number: Sing, Person: '1', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-am: my (joined to a noun)'}
   notes: {en: "پدرم (pedar-am) means the same as پدرِ من. After a silent -e it is written \u200cام: خانه\u200cام."}
-  spelled: {fa-Arab/standard: [م]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [م]}}
 - id: lexeme:poss-2sg
   pos: PRON
   feats: {Number: Sing, Person: '2', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-at: your (one person, familiar; joined to a noun)'}
   notes: {en: 'اتاقت (otāq-at) means the same as اتاقِ تو. Spoken: -et (otāqet).'}
-  spelled: {fa-Arab/standard: [ت]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [ت]}}
 - id: lexeme:ra
   pos: PART
   gloss: {en: 'را: marks a definite object'}
@@ -1095,7 +1109,8 @@ lexemes:
   realises: {Mood: Sub}
   gloss: {en: 'be-: imperative and subjunctive (verb prefix)'}
   notes: {en: 'بروید: go (polite)! بپیچید: turn! برو: go (to a friend)! The same form follows verbs like ''want'' and ''can''.'}
-  spelled: {fa-Arab/standard: [ب]}
+  allomorphs:
+  - {spelled: {fa-Arab/standard: [ب]}}
 - id: lexeme:ta
   pos: ADP
   gloss: {en: until; to (a time or place)}

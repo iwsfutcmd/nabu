@@ -7,12 +7,14 @@ lexemes:
   realises: {Case: Abl}
   gloss: {en: '-dan: from; out of'}
   notes: {en: 'Qayerdansiz? Where are you from? Ishdan: from work.'}
-  spelled: {uz-Latn/standard: [dan], uz-Cyrl/standard: [дан]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [dan], uz-Cyrl/standard: [дан]}}
 - id: lexeme:acc
   realises: {Case: Acc}
   gloss: {en: '-ni: the (definite object)'}
   notes: {en: 'Choyingizni iching: drink your tea. An object that is not definite takes nothing: choy iching.'}
-  spelled: {uz-Latn/standard: [ni], uz-Cyrl/standard: [ни]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [ni], uz-Cyrl/standard: [ни]}}
 - id: lexeme:aka
   pos: NOUN
   gloss: {en: older brother}
@@ -149,7 +151,8 @@ lexemes:
   pos: PART
   gloss: {en: '-chi: and ...? what about ...?'}
   notes: {en: 'Sizchi? And you?'}
-  spelled: {uz-Latn/standard: [chi], uz-Cyrl/standard: [чи]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [chi], uz-Cyrl/standard: [чи]}}
 - id: lexeme:chiroyli
   pos: ADJ
   gloss: {en: 'beautiful, pretty, nice'}
@@ -168,24 +171,29 @@ lexemes:
   realises: {Degree: Cmp}
   gloss: {en: '-roq: -er, more (comparative)'}
   notes: {en: 'Arzonroq: cheaper. Arzonroq qiling! Make it cheaper!'}
-  spelled: {uz-Latn/standard: [roq], uz-Cyrl/standard: [роқ]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [roq], uz-Cyrl/standard: [роқ]}}
 - id: lexeme:cop-1pl
   realises: {Number: Plur, Person: '1'}
   gloss: {en: '-miz: we are (suffix on the predicate)'}
-  spelled: {uz-Latn/standard: [miz], uz-Cyrl/standard: [миз]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [miz], uz-Cyrl/standard: [миз]}}
 - id: lexeme:cop-1sg
   realises: {Number: Sing, Person: '1'}
   gloss: {en: '-man: I am (suffix on the predicate)'}
-  spelled: {uz-Latn/standard: [man], uz-Cyrl/standard: [ман]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [man], uz-Cyrl/standard: [ман]}}
 - id: lexeme:cop-2
   realises: {Person: '2', Polite: Form}
   gloss: {en: '-siz: you are (polite; suffix on the predicate)'}
-  spelled: {uz-Latn/standard: [siz], uz-Cyrl/standard: [сиз]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [siz], uz-Cyrl/standard: [сиз]}}
 - id: lexeme:count
   head: {takes: [NUM], makes: NUM}
   gloss: {en: '-ta: counting suffix'}
   notes: {en: 'Ikkita kitob: two books. Nechta? How many? Numbers work with or without it.'}
-  spelled: {uz-Latn/standard: [ta], uz-Cyrl/standard: [та]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [ta], uz-Cyrl/standard: [та]}}
 - id: lexeme:dam
   pos: NOUN
   gloss: {en: rest}
@@ -466,7 +474,8 @@ lexemes:
   realises: {Case: Loc}
   gloss: {en: '-da: in, at, on'}
   notes: {en: 'Uyda: at home. Toshkentda: in Tashkent. Men uydaman: I am at home.'}
-  spelled: {uz-Latn/standard: [da], uz-Cyrl/standard: [да]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [da], uz-Cyrl/standard: [да]}}
 - id: lexeme:maktab
   pos: NOUN
   gloss: {en: school}
@@ -535,7 +544,8 @@ lexemes:
   realises: {Polarity: Neg}
   gloss: {en: '-ma: not (on verbs)'}
   notes: {en: 'Ye + -ma + -y + -man = yemayman: I don''t eat.'}
-  spelled: {uz-Latn/standard: [ma], uz-Cyrl/standard: [ма]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [ma], uz-Cyrl/standard: [ма]}}
 - id: lexeme:nima
   pos: PRON
   feats: {PronType: Int}
@@ -653,22 +663,26 @@ lexemes:
   realises: {Tense: Past}
   gloss: {en: '-di: past tense (he, she, it did)'}
   notes: {en: 'Keldi: he/she came. With a person ending: keldim, keldingiz, keldik.'}
-  spelled: {uz-Latn/standard: [di], uz-Cyrl/standard: [ди]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [di], uz-Cyrl/standard: [ди]}}
 - id: lexeme:past-1pl
   realises: {Number: Plur, Person: '1'}
   gloss: {en: '-k: we (past tense)'}
   notes: {en: 'Keldik: we came.'}
-  spelled: {uz-Latn/standard: [k], uz-Cyrl/standard: [к]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [k], uz-Cyrl/standard: [к]}}
 - id: lexeme:past-1sg
   realises: {Number: Sing, Person: '1'}
   gloss: {en: '-m: I (past tense)'}
   notes: {en: 'Keldim: I came.'}
-  spelled: {uz-Latn/standard: [m], uz-Cyrl/standard: [м]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [m], uz-Cyrl/standard: [м]}}
 - id: lexeme:past-2
   realises: {Person: '2', Polite: Form}
   gloss: {en: '-ngiz: you (past tense, polite)'}
   notes: {en: 'Keldingiz: you came.'}
-  spelled: {uz-Latn/standard: [ngiz], uz-Cyrl/standard: [нгиз]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [ngiz], uz-Cyrl/standard: [нгиз]}}
 - id: lexeme:payshanba
   pos: PROPN
   gloss: {en: Thursday}
@@ -691,7 +705,8 @@ lexemes:
   realises: {Number: Plur}
   gloss: {en: '-lar: plural (-s)'}
   notes: {en: 'Not used after numbers: ikki kitob, two books.'}
-  spelled: {uz-Latn/standard: [lar], uz-Cyrl/standard: [лар]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [lar], uz-Cyrl/standard: [лар]}}
 - id: lexeme:pomidor
   pos: NOUN
   gloss: {en: 'tomato, tomatoes'}
@@ -744,7 +759,8 @@ lexemes:
   realises: {Aspect: Prog}
   gloss: {en: '-yap: right now (present continuous)'}
   notes: {en: 'Nima qilyapsiz? What are you doing? Kitob oʻqiyapman: I am reading. He/she: -yapti.'}
-  spelled: {uz-Latn/standard: [yap], uz-Cyrl/standard: [яп]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [yap], uz-Cyrl/standard: [яп]}}
 - id: lexeme:pul
   pos: NOUN
   gloss: {en: money}
@@ -754,7 +770,8 @@ lexemes:
   feats: {PartType: Int}
   gloss: {en: '-mi: yes/no question'}
   notes: {en: 'Bormi? Is there? Yaxshimisiz? Are you well?'}
-  spelled: {uz-Latn/standard: [mi], uz-Cyrl/standard: [ми]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [mi], uz-Cyrl/standard: [ми]}}
 - id: lexeme:qachon
   pos: ADV
   feats: {PronType: Int}
@@ -954,7 +971,8 @@ lexemes:
   realises: {Case: Ter}
   gloss: {en: '-gacha: until, up to, as far as'}
   notes: {en: 'Toʻqqizdan beshgacha: from nine to five.'}
-  spelled: {uz-Latn/standard: [gacha], uz-Cyrl/standard: [гача]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [gacha], uz-Cyrl/standard: [гача]}}
 - id: lexeme:togri
   pos: ADV
   gloss: {en: 'straight; right, correct'}
@@ -1059,7 +1077,8 @@ lexemes:
   realises: {Mood: Des}
   gloss: {en: '-moqchi: want to; be going to'}
   notes: {en: 'Olmoqchiman: I want to buy. Bormoqchimiz: we want to go, we plan to go.'}
-  spelled: {uz-Latn/standard: [moqchi], uz-Cyrl/standard: [моқчи]}
+  allomorphs:
+  - {spelled: {uz-Latn/standard: [moqchi], uz-Cyrl/standard: [моқчи]}}
 - id: lexeme:xayr
   pos: INTJ
   gloss: {en: goodbye}

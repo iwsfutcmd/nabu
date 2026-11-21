@@ -348,14 +348,6 @@ export type Slug2 = string;
  */
 export type Spdx2 = string;
 /**
- * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
- */
-export type LangTag2 = string & { readonly __brand: "LangTag" };
-/**
- * An SPDX license expression.
- */
-export type Spdx3 = string;
-/**
  * A word's part of speech: a Universal Dependencies UPOS tag (ADR 0132). A word question offers only words of the answer's part of speech.
  */
 export type PartOfSpeech1 =
@@ -381,37 +373,81 @@ export type PartOfSpeech1 =
  */
 export type UdFeatures4 = Readonly<Record<string, string>>;
 /**
+ * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
+ */
+export type UdFeatures5 = Readonly<Record<string, string>>;
+/**
+ * A lexeme's one lexical form (ADR 0145): in its own script, fully specified, every spelling and the phonemes projected from it. Its shape depends on the kind of lexeme: a string in the language's notation (docs/lexical-forms/<lang>.md); a base's radicals, Form and vowels; a pattern's templates; a listed item's parts; a logograph with what picks its reading.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "LexicalForm".
+ */
+export type LexicalForm = string | RadicalForm | PatternForm | ListedParts | Logograph;
+/**
+ * It belongs to this class of its language.
+ */
+export type Slug3 = string;
+/**
+ * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
+ */
+export type UdFeatures6 = Readonly<Record<string, string>>;
+/**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcId2 = string & { readonly __brand: "KcId" };
-/**
- * The path node (kind story) the story is read at.
- */
-export type Slug3 = string;
 /**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcId3 = string & { readonly __brand: "KcId" };
 /**
- * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
+ * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  */
-export type Asks1 = "word" | "form";
+export type LangTag2 = string & { readonly __brand: "LangTag" };
 /**
- * It belongs to this class of its language.
+ * An SPDX license expression.
  */
-export type Slug4 = string;
+export type Spdx3 = string;
+/**
+ * A word's part of speech: a Universal Dependencies UPOS tag (ADR 0132). A word question offers only words of the answer's part of speech.
+ */
+export type PartOfSpeech2 =
+  | "ADJ"
+  | "ADP"
+  | "ADV"
+  | "AUX"
+  | "CCONJ"
+  | "DET"
+  | "INTJ"
+  | "NOUN"
+  | "NUM"
+  | "PART"
+  | "PRON"
+  | "PROPN"
+  | "PUNCT"
+  | "SCONJ"
+  | "SYM"
+  | "VERB"
+  | "X";
 /**
  * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
  */
-export type UdFeatures5 = Readonly<Record<string, string>>;
+export type UdFeatures7 = Readonly<Record<string, string>>;
 /**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcId4 = string & { readonly __brand: "KcId" };
 /**
+ * The path node (kind story) the story is read at.
+ */
+export type Slug4 = string;
+/**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcId5 = string & { readonly __brand: "KcId" };
+/**
+ * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
+ */
+export type Asks1 = "word" | "form";
 /**
  * A learner event in the shape the lexical model needs (docs/migration-design.md, deliverable 1): schema 2. Credit is per part and skill, a miss carries its labels, and what was shown is logged. Nothing writes or reads it until the switch, when every stored event is upgraded to it, it replaces learner-event.schema.json, and the `Next` names lose their prefix. No event stays in the old shape.
  *
@@ -584,42 +620,6 @@ export type Uuid28 = string;
  * UUIDv7, generated on the device. Uploads are idempotent on it.
  */
 export type Uuid29 = string;
-/**
- * A word's part of speech: a Universal Dependencies UPOS tag (ADR 0132). A word question offers only words of the answer's part of speech.
- */
-export type PartOfSpeech2 =
-  | "ADJ"
-  | "ADP"
-  | "ADV"
-  | "AUX"
-  | "CCONJ"
-  | "DET"
-  | "INTJ"
-  | "NOUN"
-  | "NUM"
-  | "PART"
-  | "PRON"
-  | "PROPN"
-  | "PUNCT"
-  | "SCONJ"
-  | "SYM"
-  | "VERB"
-  | "X";
-/**
- * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
- */
-export type UdFeatures6 = Readonly<Record<string, string>>;
-/**
- * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
- */
-export type UdFeatures7 = Readonly<Record<string, string>>;
-/**
- * A lexeme's one lexical form (ADR 0145): in its own script, fully specified, every spelling and the phonemes projected from it. Its shape depends on the kind of lexeme: a string in the language's notation (docs/lexical-forms/<lang>.md); a base's radicals, Form and vowels; a pattern's templates; a listed item's parts; a logograph with what picks its reading.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "LexicalForm".
- */
-export type LexicalForm = string | RadicalForm | PatternForm | ListedParts | Logograph;
 /**
  * Dotted lowercase key, e.g. exercise.action.check.
  *
@@ -897,7 +897,7 @@ export interface NabuSchemaIndex {
   readonly SentenceForm: SentenceForm;
   readonly SourceToken: SourceToken;
   readonly DrillSpec: DrillSpec;
-  readonly ImageAsset: ImageAsset;
+  readonly ImageAsset: ImageAsset1;
   readonly CourseAudio: CourseAudio;
   readonly AudioVoice: AudioVoice;
   readonly AudioPace: AudioPace;
@@ -912,7 +912,7 @@ export interface NabuSchemaIndex {
   readonly DataTable: DataTable;
   readonly KeyboardLayout: KeyboardLayout;
   readonly LanguageDeclaration: LanguageDeclaration;
-  readonly Condition: Condition;
+  readonly Condition: Condition2;
   readonly Default: Default;
   readonly FeatureLabel: FeatureLabel;
   readonly NamedRule: NamedRule;
@@ -2710,6 +2710,7 @@ export interface NextCourseSource {
    * A language as a lexicon is kept for it (ADR 0145: one lexicon per language): its BCP 47 language subtag, with no script, region or variant.
    */
   readonly lexicon: string;
+  readonly own?: OwnLexicon;
   readonly variety?: LangTag2;
   /**
    * The registers the course teaches, of its language's.
@@ -3282,6 +3283,469 @@ export interface VocalizationSource {
   readonly uncertain?: readonly string[];
 }
 /**
+ * The lexicon of a course kept in one file (a test's fixture, an imported course, a draft): its language's lexicon and declaration written here, which the compiler then reads instead of lexicons/<lang>/. A course of the repo has none: a language's lexicon is its courses' together, never one course's.
+ */
+export interface OwnLexicon {
+  readonly lexicon: Lexicon;
+  readonly language: LanguageDeclaration;
+}
+/**
+ * A language's lexicon (lexicons/<lang>/lexemes.yaml; ADR 0145): every lexeme, in one list sorted by id. It is flat (the owner, 2026-11-20): no entry says which unit of which course teaches it. Courses point at it.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Lexicon".
+ */
+export interface Lexicon {
+  readonly language: LanguageCode;
+  readonly license: Spdx;
+  readonly provenance: Provenance3;
+  readonly lexemes: readonly Lexeme[];
+}
+/**
+ * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
+ */
+export interface Provenance3 {
+  readonly author: string;
+  readonly status: "draft" | "reviewed" | "published";
+  readonly reviewedBy?: string;
+  readonly reviewedAt?: string;
+}
+/**
+ * One lexeme. What kind it is shows in what it has: a part of speech (casa, tener); `realises`, a value head, a feature value with a meaning (PAST, uz -ga); `head`, a function head (AGENT, a participle's pattern). An entry has one of the three.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Lexeme".
+ */
+export interface Lexeme {
+  readonly id: LexemeId;
+  readonly pos?: PartOfSpeech1;
+  readonly realises?: UdFeatures4;
+  readonly head?: FunctionHead;
+  readonly feats?: UdFeatures5;
+  /**
+   * Features its language declares lexical for its category that this lexeme's tokens choose instead: hermano, whose tokens are masculine or feminine. By ADR 0145 a noun's feminine is a derivative, and a lexeme of its own where it is listed; until that is decided for a lexeme, the value stays on its tokens, and the entry says so here.
+   *
+   * @minItems 1
+   */
+  readonly chooses?: readonly string[];
+  /**
+   * The classes of its language it belongs to: tener [e-ie, go].
+   *
+   * @minItems 1
+   */
+  readonly classes?: readonly Slug[];
+  /**
+   * Its meaning, by support language.
+   */
+  readonly gloss?: {
+    readonly [k: string]: string;
+  };
+  /**
+   * Notes shown with it, by support language.
+   */
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+  readonly image?: ImageAsset;
+  readonly form?: LexicalForm;
+  /**
+   * The forms and stems no rule gives yet (ADR 0145): each listed or pinned.
+   *
+   * @minItems 1
+   */
+  readonly forms?: readonly LexemeForm[];
+  /**
+   * Its forms by context, where it has several and no rule gives them (uz -ga, -ka after k, -qa after q).
+   *
+   * @minItems 1
+   */
+  readonly allomorphs?: readonly Allomorph[];
+  readonly scope?: Scope;
+  readonly concept?: ConceptId;
+  /**
+   * A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.
+   */
+  readonly base?: string;
+  /**
+   * A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.
+   */
+  readonly pattern?: string;
+  /**
+   * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
+   */
+  readonly spelled?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
+  };
+  /**
+   * Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it.
+   */
+  readonly readings?: {
+    readonly [k: string]: string;
+  };
+  readonly provenance?: Provenance;
+}
+/**
+ * Its picture. In a lexicon the file is relative to the lexicon's own file.
+ */
+export interface ImageAsset {
+  /**
+   * SVG, PNG or WebP, relative to course.yaml.
+   */
+  readonly file: string;
+  readonly license: Spdx;
+  readonly provenance: Provenance;
+  /**
+   * Where it came from (URL or description), for attribution.
+   */
+  readonly source?: string;
+}
+/**
+ * A Semitic base (ADR 0145): its radicals, stored (a hollow verb's middle one shows only in some forms); its Form or stem, as its language names them (apc I to X and Q; hbo qal, nifal); and the vowels its Form leaves open. The root class is never stored: it follows from the radicals.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "RadicalForm".
+ */
+export interface RadicalForm {
+  /**
+   * @minItems 2
+   * @maxItems 5
+   */
+  readonly radicals: readonly string[];
+  readonly form: string;
+  /**
+   * By the slot its language names (apc: past, present).
+   */
+  readonly vowels?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * A pattern (ADR 0145, 0150): its own letters and vowels around numbered slots for a base's radicals, one template per root class.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "PatternForm".
+ */
+export interface PatternForm {
+  readonly templates: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * A listed item whose form is its parts' (darse cuenta; writer, an author): only its meaning is listed. `inflects` names the part that takes the forms (me di cuenta).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ListedParts".
+ */
+export interface ListedParts {
+  /**
+   * @minItems 2
+   */
+  readonly parts: readonly LexemeId[];
+  readonly inflects?: LexemeId;
+}
+/**
+ * The one exception to a single tier (ADR 0145): a character cannot say its sound, so the form is the character with what picks its reading, in the notation of its tradition (lzh: its Qieyun position; yue: a reading only where the table gives several or a tone changes).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Logograph".
+ */
+export interface Logograph {
+  readonly written: string;
+  readonly reading?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "LexemeForm".
+ */
+export interface LexemeForm {
+  readonly feats: UdFeatures1;
+  /**
+   * The whole form, in the language's lexical-form notation (fue).
+   */
+  readonly form?: string;
+  /**
+   * A stem the regular endings go on (tuv).
+   */
+  readonly stem?: string;
+  /**
+   * listed: the language has no rule for it, so it is a part to learn; it needs its `statement`. pinned: a rule gives it and ours is not written yet; stored and checked, never counted, never a learner's part.
+   */
+  readonly status: "listed" | "pinned";
+  readonly statement?: Provenance4;
+  readonly scope?: Scope;
+  /**
+   * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
+   */
+  readonly spelled?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
+  };
+  /**
+   * Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it.
+   */
+  readonly readings?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
+ */
+export interface Provenance4 {
+  readonly author: string;
+  readonly status: "draft" | "reviewed" | "published";
+  readonly reviewedBy?: string;
+  readonly reviewedAt?: string;
+}
+/**
+ * Where a lexeme or a form is said (ADR 0145): a range of varieties and a range of registers. Everywhere unless stated.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Scope".
+ */
+export interface Scope {
+  /**
+   * @minItems 1
+   */
+  readonly varieties?: readonly LangTag1[];
+  /**
+   * @minItems 1
+   */
+  readonly registers?: readonly RegisterId[];
+}
+/**
+ * One form of a lexeme by context. With no condition it is the one used elsewhere, or one whose condition no one has stated yet. It has `form`, or the spellings pinned until its language has a lexical-form notation.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Allomorph".
+ */
+export interface Allomorph {
+  readonly form?: string;
+  readonly after?: Condition;
+  readonly before?: Condition1;
+  /**
+   * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
+   */
+  readonly spelled?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
+  };
+  /**
+   * Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it.
+   */
+  readonly readings?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * What it stands after.
+ */
+export interface Condition {
+  readonly pos?: PartOfSpeech;
+  /**
+   * The lexical form ends in this (Spanish -a; uz -k).
+   */
+  readonly ends?: string;
+  /**
+   * The lexical form begins with this.
+   */
+  readonly starts?: string;
+  readonly class?: Slug3;
+  readonly feats?: UdFeatures6;
+}
+/**
+ * What it stands before.
+ */
+export interface Condition1 {
+  readonly pos?: PartOfSpeech;
+  /**
+   * The lexical form ends in this (Spanish -a; uz -k).
+   */
+  readonly ends?: string;
+  /**
+   * The lexical form begins with this.
+   */
+  readonly starts?: string;
+  readonly class?: Slug3;
+  readonly feats?: UdFeatures6;
+}
+/**
+ * What a language declares beside its lexicon (lexicons/<lang>/language.yaml; ADR 0145, 0148): the varieties and registers a scope ranges over, the dimensions of each category, the features and values its tokens and lexemes carry, its defaults and its classes. A category is a UD tag: no category system is declared (the owner, round 6). Every statement here is content: drafted `llm:` and REVIEW until signed off.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "LanguageDeclaration".
+ */
+export interface LanguageDeclaration {
+  readonly id: LanguageCode;
+  readonly license: Spdx;
+  readonly provenance: Provenance;
+  /**
+   * The varieties a scope may name (ADR 0145), as BCP 47 tags: es-CU, es-ES, apc-LB.
+   *
+   * @minItems 1
+   */
+  readonly varieties?: readonly LangTag1[];
+  /**
+   * The registers a scope may name.
+   *
+   * @minItems 1
+   */
+  readonly registers?: readonly RegisterId[];
+  /**
+   * For each category, the inflectional features every member must choose a value of (ADR 0145: what makes a head a value head). Spanish NOUN: [Number]; apc VERB: [Aspect, Person, Gender, Number].
+   */
+  readonly dimensions: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
+  };
+  /**
+   * For each category, the features a member has of itself, the same in all its forms (ADR 0145: a lexical feature; a Spanish noun's gender). A lexeme stores one only where no default gives it, and it is then a part to learn (ADR 0146). A lexeme whose forms name the feature chooses it on its tokens instead (hermano, hermana), which the converter reports.
+   */
+  readonly lexical?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
+  };
+  /**
+   * For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell.
+   */
+  readonly citation?: {
+    readonly [k: string]: UdFeatures1;
+  };
+  /**
+   * Every feature the language's tokens and lexemes may carry, with its values: UD's names where UD has the feature (Tense: [Past, Pres]), the language's own where it has none.
+   */
+  readonly features?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
+  };
+  /**
+   * The language's stated defaults (ADR 0148: a default is a rule; ADR 0146: what one gives is no part of a lexeme). Spanish: a noun in -a is feminine.
+   */
+  readonly defaults?: readonly Default[];
+  /**
+   * The language's stated classes (ADR 0148: stated, never counted). A lexeme that belongs to one stores it, and it is a part to learn (ADR 0146).
+   */
+  readonly classes?: readonly LexicalClass[];
+  /**
+   * What a learner is shown for a feature value, or for several together where the language has one name for them (ADR 0146: a built gloss is a message over the names of feature values, which are language data). The most specific label whose values a form has names it.
+   */
+  readonly labels?: readonly FeatureLabel[];
+  /**
+   * The rules the language names and has not written yet (docs/migration-design.md: rules come after the switch, one at a time, each a file of its own with its vectors). A rule named here is its name and what a learner is shown for it: what a `construction:` KC was. A sentence names the ones it is an example of (`uses`), and a node the ones it introduces.
+   */
+  readonly rules?: readonly NamedRule[];
+}
+/**
+ * One default: where `when` holds of a lexeme, it has `gives` unless its entry says otherwise.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Default".
+ */
+export interface Default {
+  readonly id: Slug;
+  readonly when: Condition2;
+  readonly gives: UdFeatures1;
+  /**
+   * What a reviewer should know, by support language.
+   */
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Condition".
+ */
+export interface Condition2 {
+  readonly pos?: PartOfSpeech;
+  /**
+   * The lexical form ends in this (Spanish -a; uz -k).
+   */
+  readonly ends?: string;
+  /**
+   * The lexical form begins with this.
+   */
+  readonly starts?: string;
+  readonly class?: Slug3;
+  readonly feats?: UdFeatures6;
+}
+/**
+ * One class: a lexical feature a rule reads and no form gives (Spanish e-ie; the -go verbs).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "LexicalClass".
+ */
+export interface LexicalClass {
+  readonly id: Slug;
+  readonly pos: PartOfSpeech;
+  /**
+   * What a learner is shown for it, by support language (pensar: e → ie).
+   */
+  readonly gloss?: {
+    readonly [k: string]: string;
+  };
+  /**
+   * What a reviewer should know, by support language.
+   */
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * The name of a set of feature values, by support language: preterite, I (Tense=Past, Person=1, Number=Sing). `pos` narrows it to one category where the same values read otherwise on another.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "FeatureLabel".
+ */
+export interface FeatureLabel {
+  readonly feats: UdFeatures1;
+  readonly pos?: PartOfSpeech;
+  readonly gloss: {
+    readonly [k: string]: string;
+  };
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+  readonly was?: KcId2;
+}
+/**
+ * A rule by its name, with what a learner is shown for it. It says nothing of what the rule does: that is the rule's own file, once it is written.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "NamedRule".
+ */
+export interface NamedRule {
+  readonly id: RuleId;
+  /**
+   * What a learner is shown for it, by support language (apc used-to: kent + a verb without b-).
+   */
+  readonly gloss?: {
+    readonly [k: string]: string;
+  };
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+  readonly was?: KcId3;
+}
+/**
  * A course as authored: courses/<id>/course.yaml plus its units (gameplan §7.1–7.3). Content is keyed by target language; each support language is a layer (§7.2).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -3304,7 +3768,7 @@ export interface CourseSource {
   readonly support: readonly OrthographyId[];
   readonly names?: CourseNames4;
   readonly license?: Spdx3;
-  readonly provenance?: Provenance3;
+  readonly provenance?: Provenance5;
   /**
    * The facets the course practises (§8.5, ADR 0071); by default all of them. Exercises of any other facet are never planned: a course for a written language leaves out listen and speak, and one that shows its readings without drilling them leaves out read-script.
    *
@@ -3366,7 +3830,7 @@ export interface CourseNames4 {
 /**
  * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
  */
-export interface Provenance3 {
+export interface Provenance5 {
   readonly author: string;
   readonly status: "draft" | "reviewed" | "published";
   readonly reviewedBy?: string;
@@ -3408,8 +3872,8 @@ export interface KnowledgeComponentSource {
   readonly id: KcId1;
   readonly prerequisites?: readonly KcId1[];
   readonly cefr?: Cefr;
-  readonly pos?: PartOfSpeech1;
-  readonly features?: UdFeatures4;
+  readonly pos?: PartOfSpeech2;
+  readonly features?: UdFeatures7;
   /**
    * Short meaning per support language.
    */
@@ -3431,7 +3895,7 @@ export interface KnowledgeComponentSource {
   readonly readings?: {
     readonly [k: string]: string;
   };
-  readonly image?: ImageAsset;
+  readonly image?: ImageAsset1;
   readonly notes?: {
     readonly [k: string]: string;
   };
@@ -3442,7 +3906,7 @@ export interface KnowledgeComponentSource {
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ImageAsset".
  */
-export interface ImageAsset {
+export interface ImageAsset1 {
   /**
    * SVG, PNG or WebP, relative to course.yaml.
    */
@@ -3536,7 +4000,7 @@ export interface SourceToken {
   readonly surface: string;
   readonly kind?: TokenKind;
   readonly sense?: SenseId1;
-  readonly form?: KcId2;
+  readonly form?: KcId4;
   readonly readings?: {
     readonly [k: string]: string;
   };
@@ -3570,7 +4034,7 @@ export interface SourceToken {
  */
 export interface StorySource {
   readonly id: string;
-  readonly node: Slug3;
+  readonly node: Slug4;
   /**
    * The title per support language (key: e.g. en).
    */
@@ -3620,7 +4084,7 @@ export interface StoryLineSource {
    * Ask before showing the line. complete: choose the word missing at `gap`; arrange: build the line from its tiles, given its translation.
    */
   readonly ask?: "complete" | "arrange";
-  readonly gap?: KcId3;
+  readonly gap?: KcId5;
   readonly asks?: Asks1;
   /**
    * complete. asks word: other sense KCs, each shown as the course writes it in the gap's form (a token of the story's unit or an earlier one with that sense and the gap's form signature; story.distractor-form where there is none). asks form: form KCs, each shown as the gap's word in the attested form that has it; left out, the compiler chooses two attested forms.
@@ -3699,172 +4163,6 @@ export interface KeyboardLayout {
      */
     readonly keys: readonly string[];
   }[];
-}
-/**
- * What a language declares beside its lexicon (lexicons/<lang>/language.yaml; ADR 0145, 0148): the varieties and registers a scope ranges over, the dimensions of each category, the features and values its tokens and lexemes carry, its defaults and its classes. A category is a UD tag: no category system is declared (the owner, round 6). Every statement here is content: drafted `llm:` and REVIEW until signed off.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "LanguageDeclaration".
- */
-export interface LanguageDeclaration {
-  readonly id: LanguageCode;
-  readonly license: Spdx;
-  readonly provenance: Provenance;
-  /**
-   * The varieties a scope may name (ADR 0145), as BCP 47 tags: es-CU, es-ES, apc-LB.
-   *
-   * @minItems 1
-   */
-  readonly varieties?: readonly LangTag1[];
-  /**
-   * The registers a scope may name.
-   *
-   * @minItems 1
-   */
-  readonly registers?: readonly RegisterId[];
-  /**
-   * For each category, the inflectional features every member must choose a value of (ADR 0145: what makes a head a value head). Spanish NOUN: [Number]; apc VERB: [Aspect, Person, Gender, Number].
-   */
-  readonly dimensions: {
-    /**
-     * @minItems 1
-     */
-    readonly [k: string]: readonly string[];
-  };
-  /**
-   * For each category, the features a member has of itself, the same in all its forms (ADR 0145: a lexical feature; a Spanish noun's gender). A lexeme stores one only where no default gives it, and it is then a part to learn (ADR 0146). A lexeme whose forms name the feature chooses it on its tokens instead (hermano, hermana), which the converter reports.
-   */
-  readonly lexical?: {
-    /**
-     * @minItems 1
-     */
-    readonly [k: string]: readonly string[];
-  };
-  /**
-   * For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell.
-   */
-  readonly citation?: {
-    readonly [k: string]: UdFeatures1;
-  };
-  /**
-   * Every feature the language's tokens and lexemes may carry, with its values: UD's names where UD has the feature (Tense: [Past, Pres]), the language's own where it has none.
-   */
-  readonly features?: {
-    /**
-     * @minItems 1
-     */
-    readonly [k: string]: readonly string[];
-  };
-  /**
-   * The language's stated defaults (ADR 0148: a default is a rule; ADR 0146: what one gives is no part of a lexeme). Spanish: a noun in -a is feminine.
-   */
-  readonly defaults?: readonly Default[];
-  /**
-   * The language's stated classes (ADR 0148: stated, never counted). A lexeme that belongs to one stores it, and it is a part to learn (ADR 0146).
-   */
-  readonly classes?: readonly LexicalClass[];
-  /**
-   * What a learner is shown for a feature value, or for several together where the language has one name for them (ADR 0146: a built gloss is a message over the names of feature values, which are language data). The most specific label whose values a form has names it.
-   */
-  readonly labels?: readonly FeatureLabel[];
-  /**
-   * The rules the language names and has not written yet (docs/migration-design.md: rules come after the switch, one at a time, each a file of its own with its vectors). A rule named here is its name and what a learner is shown for it: what a `construction:` KC was. A sentence names the ones it is an example of (`uses`), and a node the ones it introduces.
-   */
-  readonly rules?: readonly NamedRule[];
-}
-/**
- * One default: where `when` holds of a lexeme, it has `gives` unless its entry says otherwise.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Default".
- */
-export interface Default {
-  readonly id: Slug;
-  readonly when: Condition;
-  readonly gives: UdFeatures1;
-  /**
-   * What a reviewer should know, by support language.
-   */
-  readonly notes?: {
-    readonly [k: string]: string;
-  };
-}
-/**
- * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Condition".
- */
-export interface Condition {
-  readonly pos?: PartOfSpeech;
-  /**
-   * The lexical form ends in this (Spanish -a; uz -k).
-   */
-  readonly ends?: string;
-  /**
-   * The lexical form begins with this.
-   */
-  readonly starts?: string;
-  readonly class?: Slug4;
-  readonly feats?: UdFeatures5;
-}
-/**
- * One class: a lexical feature a rule reads and no form gives (Spanish e-ie; the -go verbs).
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "LexicalClass".
- */
-export interface LexicalClass {
-  readonly id: Slug;
-  readonly pos: PartOfSpeech;
-  /**
-   * What a learner is shown for it, by support language (pensar: e → ie).
-   */
-  readonly gloss?: {
-    readonly [k: string]: string;
-  };
-  /**
-   * What a reviewer should know, by support language.
-   */
-  readonly notes?: {
-    readonly [k: string]: string;
-  };
-}
-/**
- * The name of a set of feature values, by support language: preterite, I (Tense=Past, Person=1, Number=Sing). `pos` narrows it to one category where the same values read otherwise on another.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "FeatureLabel".
- */
-export interface FeatureLabel {
-  readonly feats: UdFeatures1;
-  readonly pos?: PartOfSpeech;
-  readonly gloss: {
-    readonly [k: string]: string;
-  };
-  readonly notes?: {
-    readonly [k: string]: string;
-  };
-  readonly was?: KcId4;
-}
-/**
- * A rule by its name, with what a learner is shown for it. It says nothing of what the rule does: that is the rule's own file, once it is written.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NamedRule".
- */
-export interface NamedRule {
-  readonly id: RuleId;
-  /**
-   * What a learner is shown for it, by support language (apc used-to: kent + a verb without b-).
-   */
-  readonly gloss?: {
-    readonly [k: string]: string;
-  };
-  readonly notes?: {
-    readonly [k: string]: string;
-  };
-  readonly was?: KcId5;
 }
 /**
  * A session began: a lesson (one path node), review, mistakes or placement.
@@ -5192,296 +5490,6 @@ export interface GoalSet {
    * Practice days a week the learner aims for (the app offers 3 to 7), or null: no goal.
    */
   readonly days: number | null;
-}
-/**
- * A language's lexicon (lexicons/<lang>/lexemes.yaml; ADR 0145): every lexeme, in one list sorted by id. It is flat (the owner, 2026-11-20): no entry says which unit of which course teaches it. Courses point at it.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Lexicon".
- */
-export interface Lexicon {
-  readonly language: LanguageCode;
-  readonly license: Spdx;
-  readonly provenance: Provenance4;
-  readonly lexemes: readonly Lexeme[];
-}
-/**
- * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
- */
-export interface Provenance4 {
-  readonly author: string;
-  readonly status: "draft" | "reviewed" | "published";
-  readonly reviewedBy?: string;
-  readonly reviewedAt?: string;
-}
-/**
- * One lexeme. What kind it is shows in what it has: a part of speech (casa, tener); `realises`, a value head, a feature value with a meaning (PAST, uz -ga); `head`, a function head (AGENT, a participle's pattern). An entry has one of the three.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Lexeme".
- */
-export interface Lexeme {
-  readonly id: LexemeId;
-  readonly pos?: PartOfSpeech2;
-  readonly realises?: UdFeatures6;
-  readonly head?: FunctionHead;
-  readonly feats?: UdFeatures7;
-  /**
-   * Features its language declares lexical for its category that this lexeme's tokens choose instead: hermano, whose tokens are masculine or feminine. By ADR 0145 a noun's feminine is a derivative, and a lexeme of its own where it is listed; until that is decided for a lexeme, the value stays on its tokens, and the entry says so here.
-   *
-   * @minItems 1
-   */
-  readonly chooses?: readonly string[];
-  /**
-   * The classes of its language it belongs to: tener [e-ie, go].
-   *
-   * @minItems 1
-   */
-  readonly classes?: readonly Slug[];
-  /**
-   * Its meaning, by support language.
-   */
-  readonly gloss?: {
-    readonly [k: string]: string;
-  };
-  /**
-   * Notes shown with it, by support language.
-   */
-  readonly notes?: {
-    readonly [k: string]: string;
-  };
-  readonly image?: ImageAsset1;
-  readonly form?: LexicalForm;
-  /**
-   * The forms and stems no rule gives yet (ADR 0145): each listed or pinned.
-   *
-   * @minItems 1
-   */
-  readonly forms?: readonly LexemeForm[];
-  /**
-   * Its forms by context, where it has several and no rule gives them (uz -ga, -ka after k, -qa after q).
-   *
-   * @minItems 1
-   */
-  readonly allomorphs?: readonly Allomorph[];
-  readonly scope?: Scope;
-  readonly concept?: ConceptId;
-  /**
-   * A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.
-   */
-  readonly base?: string;
-  /**
-   * A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.
-   */
-  readonly pattern?: string;
-  /**
-   * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
-   */
-  readonly spelled?: {
-    /**
-     * @minItems 1
-     */
-    readonly [k: string]: readonly string[];
-  };
-  /**
-   * Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it.
-   */
-  readonly readings?: {
-    readonly [k: string]: string;
-  };
-  readonly provenance?: Provenance;
-}
-/**
- * A picture of a sense KC for select-image (gameplan §8.2). No text inside the image; licensed and attributed like any other asset.
- */
-export interface ImageAsset1 {
-  /**
-   * SVG, PNG or WebP, relative to course.yaml.
-   */
-  readonly file: string;
-  readonly license: Spdx;
-  readonly provenance: Provenance;
-  /**
-   * Where it came from (URL or description), for attribution.
-   */
-  readonly source?: string;
-}
-/**
- * A Semitic base (ADR 0145): its radicals, stored (a hollow verb's middle one shows only in some forms); its Form or stem, as its language names them (apc I to X and Q; hbo qal, nifal); and the vowels its Form leaves open. The root class is never stored: it follows from the radicals.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "RadicalForm".
- */
-export interface RadicalForm {
-  /**
-   * @minItems 2
-   * @maxItems 5
-   */
-  readonly radicals: readonly string[];
-  readonly form: string;
-  /**
-   * By the slot its language names (apc: past, present).
-   */
-  readonly vowels?: {
-    readonly [k: string]: string;
-  };
-}
-/**
- * A pattern (ADR 0145, 0150): its own letters and vowels around numbered slots for a base's radicals, one template per root class.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "PatternForm".
- */
-export interface PatternForm {
-  readonly templates: {
-    readonly [k: string]: string;
-  };
-}
-/**
- * A listed item whose form is its parts' (darse cuenta; writer, an author): only its meaning is listed. `inflects` names the part that takes the forms (me di cuenta).
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "ListedParts".
- */
-export interface ListedParts {
-  /**
-   * @minItems 2
-   */
-  readonly parts: readonly LexemeId[];
-  readonly inflects?: LexemeId;
-}
-/**
- * The one exception to a single tier (ADR 0145): a character cannot say its sound, so the form is the character with what picks its reading, in the notation of its tradition (lzh: its Qieyun position; yue: a reading only where the table gives several or a tone changes).
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Logograph".
- */
-export interface Logograph {
-  readonly written: string;
-  readonly reading?: {
-    readonly [k: string]: string;
-  };
-}
-/**
- * A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "LexemeForm".
- */
-export interface LexemeForm {
-  readonly feats: UdFeatures1;
-  /**
-   * The whole form, in the language's lexical-form notation (fue).
-   */
-  readonly form?: string;
-  /**
-   * A stem the regular endings go on (tuv).
-   */
-  readonly stem?: string;
-  /**
-   * listed: the language has no rule for it, so it is a part to learn; it needs its `statement`. pinned: a rule gives it and ours is not written yet; stored and checked, never counted, never a learner's part.
-   */
-  readonly status: "listed" | "pinned";
-  readonly statement?: Provenance5;
-  readonly scope?: Scope;
-  /**
-   * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
-   */
-  readonly spelled?: {
-    /**
-     * @minItems 1
-     */
-    readonly [k: string]: readonly string[];
-  };
-  /**
-   * Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it.
-   */
-  readonly readings?: {
-    readonly [k: string]: string;
-  };
-}
-/**
- * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
- */
-export interface Provenance5 {
-  readonly author: string;
-  readonly status: "draft" | "reviewed" | "published";
-  readonly reviewedBy?: string;
-  readonly reviewedAt?: string;
-}
-/**
- * Where a lexeme or a form is said (ADR 0145): a range of varieties and a range of registers. Everywhere unless stated.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Scope".
- */
-export interface Scope {
-  /**
-   * @minItems 1
-   */
-  readonly varieties?: readonly LangTag1[];
-  /**
-   * @minItems 1
-   */
-  readonly registers?: readonly RegisterId[];
-}
-/**
- * One form of a lexeme by context. With no condition it is the one used elsewhere, or one whose condition no one has stated yet. It has `form`, or the spellings pinned until its language has a lexical-form notation.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Allomorph".
- */
-export interface Allomorph {
-  readonly form?: string;
-  readonly after?: Condition1;
-  readonly before?: Condition2;
-  /**
-   * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
-   */
-  readonly spelled?: {
-    /**
-     * @minItems 1
-     */
-    readonly [k: string]: readonly string[];
-  };
-  /**
-   * Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it.
-   */
-  readonly readings?: {
-    readonly [k: string]: string;
-  };
-}
-/**
- * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
- */
-export interface Condition1 {
-  readonly pos?: PartOfSpeech;
-  /**
-   * The lexical form ends in this (Spanish -a; uz -k).
-   */
-  readonly ends?: string;
-  /**
-   * The lexical form begins with this.
-   */
-  readonly starts?: string;
-  readonly class?: Slug4;
-  readonly feats?: UdFeatures5;
-}
-/**
- * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
- */
-export interface Condition2 {
-  readonly pos?: PartOfSpeech;
-  /**
-   * The lexical form ends in this (Spanish -a; uz -k).
-   */
-  readonly ends?: string;
-  /**
-   * The lexical form begins with this.
-   */
-  readonly starts?: string;
-  readonly class?: Slug4;
-  readonly feats?: UdFeatures5;
 }
 /**
  * UI messages for one locale (gameplan §11.2). Each message is MessageFormat 2 source; placeholders are bidi-isolated by the formatter, never by hand-inserted control characters.

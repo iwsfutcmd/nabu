@@ -475,7 +475,9 @@ lexemes:
   pos: ADP
   gloss: {en: in; at}
   notes: {en: 'Written joined in Arabic script: ببيروت, بالبيت (b + el). In Arabizi often bel: bel bet.'}
-  spelled: {apc-Arab/standard: [ب], apc-Latn/arabizi: [b]}
+  spelled: {apc-Latn/arabizi: [b]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [ب]}}
 - id: lexeme:b3at
   pos: VERB
   gloss: {en: send}
@@ -639,7 +641,8 @@ lexemes:
   realises: {Number: Dual}
   gloss: {en: '-en: two (on a noun)'}
   notes: {en: 'yom → yomen, two days; sa3a → sa3ten, two hours. Arabic script: ين (يومين; ساعتين, with the ة as ت).'}
-  spelled: {apc-Arab/standard: [ين], apc-Latn/arabizi: [en]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [ين], apc-Latn/arabizi: [en]}}
 - id: lexeme:ebn
   pos: NOUN
   gloss: {en: son}
@@ -657,8 +660,9 @@ lexemes:
   pos: DET
   gloss: {en: the}
   notes: {en: 'Written joined to its noun in Arabic script: الشاي. Before t, d, s, sh, z, n, r… it sounds like the noun''s first letter: esh-shay.'}
-  spelled: {apc-Arab/standard: [ال], apc-Latn/arabizi: [el]}
+  spelled: {apc-Latn/arabizi: [el]}
   allomorphs:
+  - {spelled: {apc-Arab/standard: [ال]}}
   - {spelled: {apc-Arab/standard: [ال], apc-Latn/arabizi: [l]}}
 - id: lexeme:el7amdella
   pos: INTJ
@@ -829,7 +833,9 @@ lexemes:
   feats: {PronType: Dem}
   gloss: {en: this (joined to a noun)}
   notes: {en: 'Written joined in Arabic script: هالجمعة, this week.'}
-  spelled: {apc-Arab/standard: [هال], apc-Latn/arabizi: [hal]}
+  spelled: {apc-Latn/arabizi: [hal]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [هال]}}
 - id: lexeme:hala2
   pos: ADV
   gloss: {en: now}
@@ -1073,7 +1079,8 @@ lexemes:
   feats: {Case: Dat, Gender: Masc, Number: Sing, Person: '2', PronType: Prs}
   gloss: {en: '-lak: to you; for you (on a verb, to a man)'}
   notes: {en: 'sarlak: it''s been … for you; 2ellak: he told you. Arabic script: لك joined to the verb.'}
-  spelled: {apc-Arab/standard: [لك], apc-Latn/arabizi: [lak]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [لك], apc-Latn/arabizi: [lak]}}
 - id: lexeme:la2
   pos: INTJ
   gloss: {en: 'no'}
@@ -1423,55 +1430,64 @@ lexemes:
   feats: {Case: Acc, Number: Plur, Person: '1', PronType: Prs}
   gloss: {en: '-na: us (on a verb)'}
   notes: {en: '3azmetna: she invited us. Arabic script: نا (عزمتنا). The same ending as ''our''.'}
-  spelled: {apc-Arab/standard: [نا], apc-Latn/arabizi: [na]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [نا], apc-Latn/arabizi: [na]}}
 - id: lexeme:obj-1sg
   pos: PRON
   feats: {Case: Acc, Number: Sing, Person: '1', PronType: Prs}
   gloss: {en: '-ni: me (on a verb)'}
   notes: {en: 'sme3tni: you heard me; fhemtni: you understood me. Arabic script: ني (سمعتني).'}
-  spelled: {apc-Arab/standard: [ني], apc-Latn/arabizi: [ni]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [ني], apc-Latn/arabizi: [ni]}}
 - id: lexeme:obj-2fs
   pos: PRON
   feats: {Case: Acc, Gender: Fem, Number: Sing, Person: '2', PronType: Prs}
   gloss: {en: '-ik: you (on a verb, to a woman)'}
   notes: {en: 'b7ebbik: I love you. Arabic script: the same ك as -ak.'}
-  spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ik]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ik]}}
 - id: lexeme:obj-2ms
   pos: PRON
   feats: {Case: Acc, Gender: Masc, Number: Sing, Person: '2', PronType: Prs}
   gloss: {en: '-ak: you (on a verb, to a man)'}
   notes: {en: 'b7ebbak: I love you; fhemtak: I understood you. Arabic script: ك.'}
-  spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ak]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ak]}}
 - id: lexeme:obj-2pl
   pos: PRON
   feats: {Case: Acc, Number: Plur, Person: '2', PronType: Prs}
   gloss: {en: '-kon: you (on a verb, to several people)'}
   notes: {en: '3ajbetkon? Did you like it? Arabic script: كن.'}
-  spelled: {apc-Arab/standard: [كن], apc-Latn/arabizi: [kon]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [كن], apc-Latn/arabizi: [kon]}}
 - id: lexeme:obj-3fs
   pos: PRON
   feats: {Case: Acc, Gender: Fem, Number: Sing, Person: '3', PronType: Prs}
   gloss: {en: '-a: her; it (on a verb)'}
   notes: {en: 'shefta: I saw her. Arabic script: ها (شفتها), also written ا (شفتا).'}
-  spelled: {apc-Arab/standard: [ها], apc-Latn/arabizi: [a]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [ها], apc-Latn/arabizi: [a]}}
 - id: lexeme:obj-3ms
   pos: PRON
   feats: {Case: Acc, Gender: Masc, Number: Sing, Person: '3', PronType: Prs}
   gloss: {en: '-o: him; it (on a verb)'}
   notes: {en: 'shefto: I saw him; ba3rfo: I know him. Arabic script: ه (شفته), also written و (شفتو).'}
-  spelled: {apc-Arab/standard: [ه], apc-Latn/arabizi: [o]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [ه], apc-Latn/arabizi: [o]}}
 - id: lexeme:poss-1pl
   pos: PRON
   feats: {Number: Plur, Person: '1', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-na: our'}
   notes: {en: 'betna: our house. Arabic script: نا joined to the noun (بيتنا).'}
-  spelled: {apc-Arab/standard: [نا], apc-Latn/arabizi: [na]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [نا], apc-Latn/arabizi: [na]}}
 - id: lexeme:poss-1sg
   pos: PRON
   feats: {Number: Sing, Person: '1', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-i: my (ending on a noun)'}
   notes: {en: 'Arabic script: ي joined to the noun (بيّي). Often heard and typed -e: bayye, emme.'}
-  spelled: {apc-Arab/standard: [ي], apc-Latn/arabizi: [i]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [ي], apc-Latn/arabizi: [i]}}
 - id: lexeme:poss-2fs
   pos: PRON
   feats: {Gender: Fem, Number: Sing, Person: '2', Poss: 'Yes', PronType: Prs}
@@ -1493,7 +1509,8 @@ lexemes:
   feats: {Number: Plur, Person: '2', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-kon: your (to several people)'}
   notes: {en: 'kifkon? how are you (all)?; 3endkon: you have. Arabic script: كن joined to the word (كيفكن).'}
-  spelled: {apc-Arab/standard: [كن], apc-Latn/arabizi: [kon]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [كن], apc-Latn/arabizi: [kon]}}
 - id: lexeme:poss-3fs
   pos: PRON
   feats: {Gender: Fem, Number: Sing, Person: '3', Poss: 'Yes', PronType: Prs}
@@ -1507,13 +1524,15 @@ lexemes:
   feats: {Gender: Masc, Number: Sing, Person: '3', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-o: his'}
   notes: {en: 'Arabic script: ه joined to the noun (بيّه), also written و (بيّو).'}
-  spelled: {apc-Arab/standard: [ه], apc-Latn/arabizi: [o]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [ه], apc-Latn/arabizi: [o]}}
 - id: lexeme:poss-3pl
   pos: PRON
   feats: {Number: Plur, Person: '3', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-on: their (ending on a noun)'}
   notes: {en: 'beton: their house; 3endon: they have. Arabic script: هن joined to the noun (بيتهن), as Kline (2022) writes it; also written ـن (بيتن).'}
-  spelled: {apc-Arab/standard: [هن], apc-Latn/arabizi: ['on']}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [هن], apc-Latn/arabizi: ['on']}}
 - id: lexeme:ra2as
   pos: VERB
   gloss: {en: dance}
@@ -2025,7 +2044,9 @@ lexemes:
   pos: CCONJ
   gloss: {en: and}
   notes: {en: 'Written joined to the next word in Arabic script: وإنت.'}
-  spelled: {apc-Arab/standard: [و], apc-Latn/arabizi: [w]}
+  spelled: {apc-Latn/arabizi: [w]}
+  allomorphs:
+  - {spelled: {apc-Arab/standard: [و]}}
 - id: lexeme:wa22ef
   pos: VERB
   gloss: {en: 'stop (a car, someone)'}

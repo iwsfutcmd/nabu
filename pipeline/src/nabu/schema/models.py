@@ -6789,6 +6789,19 @@ class BundleStoryStep(BaseModel):
     choose: Choose1 | None = None
 
 
+class OwnLexicon(BaseModel):
+    """
+    The lexicon of a course kept in one file (a test's fixture, an imported course, a draft): its language's lexicon and declaration written here, which the compiler then reads instead of lexicons/<lang>/. A course of the repo has none: a language's lexicon is its courses' together, never one course's.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    lexicon: Lexicon
+    language: LanguageDeclaration
+
+
 class NextStorySource(BaseModel):
     """
     A short story: lines of dialogue or narration, read in the learner's orthography, with questions along the way. A tap glosses a token from the lexemes it writes.
@@ -7044,6 +7057,13 @@ class NextCourseSource(BaseModel):
         LanguageCode,
         Field(description="The language whose lexicon the course draws on (lexicons/<lang>/)."),
     ]
+    own: Annotated[
+        OwnLexicon | None,
+        Field(
+            description="The lexicon of a course kept in one file (a test's fixture, an imported course, a draft): its language's lexicon and declaration written here, which the compiler then reads instead of lexicons/<lang>/. A course of the repo has none: a language's lexicon is its courses' together, never one course's.",
+            title="OwnLexicon",
+        ),
+    ] = None
     variety: Annotated[
         LangTag | None,
         Field(

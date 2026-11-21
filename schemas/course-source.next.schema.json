@@ -79,6 +79,17 @@
       "description": "The language whose lexicon the course draws on (lexicons/<lang>/).",
       "$ref": "common.schema.json#/$defs/LanguageCode"
     },
+    "own": {
+      "title": "OwnLexicon",
+      "description": "The lexicon of a course kept in one file (a test's fixture, an imported course, a draft): its language's lexicon and declaration written here, which the compiler then reads instead of lexicons/<lang>/. A course of the repo has none: a language's lexicon is its courses' together, never one course's.",
+      "type": "object",
+      "required": ["lexicon", "language"],
+      "additionalProperties": false,
+      "properties": {
+        "lexicon": { "$ref": "lexicon.schema.json" },
+        "language": { "$ref": "language.schema.json" }
+      }
+    },
     "variety": {
       "description": "The variety the course teaches, one of its language's (ADR 0145: an utterance has one). Dialect tags on prompts are derived from it (ADR 0147).",
       "$ref": "common.schema.json#/$defs/LangTag"

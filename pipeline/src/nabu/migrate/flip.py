@@ -25,6 +25,7 @@ from pathlib import Path
 
 from nabu import migrate, yamlio
 from nabu.formkey import form_key
+from nabu.migrate import report
 from nabu.migrate.audio import KC_KINDS, renamed
 from nabu.migrate.source import fold, obj, seq
 
@@ -242,6 +243,8 @@ def plan(repo: Path, ref: str) -> Flipped:
                     "The voice an item keeps whatever its id draws (ADR 0078): read before a "
                     "voice is drawn."
                 ) + _body(assignment)
+            # What the conversion found: the report a reviewer reads.
+            files[f"docs/migration/{cid}.md"] = written[f"docs/migration/{cid}.md"]
             lost: list[str] = []
             course_old = (old / "courses" / cid / "course.yaml").read_text(encoding="utf-8")
             files[f"courses/{cid}/course.yaml"] = with_comments(
@@ -276,6 +279,7 @@ def plan(repo: Path, ref: str) -> Flipped:
                 out.stale += sorted(
                     p.relative_to(repo).as_posix() for p in beside.rglob("*") if p.is_file()
                 )
+        files[migrate.SUMMARY] = report.summary(migrations)
     return out
 
 

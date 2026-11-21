@@ -706,11 +706,23 @@ def compile_course(
     course = _validate(CourseSource, doc, diags)
     if course is None:
         return diags, None
-    language, problems = lx.load_language(lexicons or lexicons_dir(course_file), course.lexicon)
-    for problem in problems:
-        diags.report("parse.schema", problem.message, problem.loc)
-    if language is None:
-        return diags, None
+    if course.own is not None:
+        # A course kept in one file carries its lexicon itself.
+        language = lx.Language(
+            course.lexicon,
+            course_file.parent,
+            course.own.lexicon,
+            course.own.language,
+            doc.sub("own", "lexicon"),
+            doc.sub("own", "language"),
+        )
+    else:
+        found, problems = lx.load_language(lexicons or lexicons_dir(course_file), course.lexicon)
+        for problem in problems:
+            diags.report("parse.schema", problem.message, problem.loc)
+        if found is None:
+            return diags, None
+        language = found
     ctx = Ctx(
         diags,
         cli,
@@ -854,7 +866,7 @@ def _images(ctx: Ctx, used: set[str], compiled: Compiled) -> dict[str, str]:
     """The pictures of the course's lexemes → content-addressed bundle paths; licenses and
     provenance join the summary. A picture's file is relative to its lexicon's own file."""
     out: dict[str, str] = {}
-    lexicon_dir = Path(ctx.lang.root) / ctx.lang.code
+    lexicon_dir = ctx.lang.folder
     for entry in ctx.lang.lexicon.lexemes:
         image = entry.image
         if image is None or str(entry.id) not in used:
@@ -943,8 +955,9 @@ def _nfc_and_invisibles(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Un
         doc.lines,
     )
     docs = [course_doc, *(u.doc for u in units if u.doc.data is not None)]
-    # The language's own files: an entry's spellings hold what any orthography of it allows.
-    own = [ctx.lang.doc, ctx.lang.declared_doc]
+    # The language's own files: an entry's spellings hold what any orthography of it allows. A
+    # one-file course's lexicon is in the course's own document, checked with it.
+    own = [] if course.own is not None else [ctx.lang.doc, ctx.lang.declared_doc]
     in_language = _language_invisibles(ctx, ctx.lang.code)
     for d in [*docs, *own]:
         for path, value in _strings(d.data):

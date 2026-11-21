@@ -591,10 +591,21 @@ def build(conv: Converter) -> Built:
         for o, more in variants_found.items():
             spelled_out.setdefault(o, [])
             spelled_out[o] += [v for v in more if v not in spelled_out[o]]
-        for o, counted in unlisted.items():
-            spelled_out[o] = [
-                v for v, _ in sorted(counted.items(), key=lambda kv: (-kv[1], kv[0])) if v
-            ]
+        # An orthography the entry has no spelling in and its tokens write it in (apc w, el and
+        # b, always joined to the next word in Arabic letters): that is how it is written inside
+        # a token there, an allomorph, never a spelling a card shows or a glossary looks up.
+        joined: Json = {
+            o: [v for v, _ in sorted(counted.items(), key=lambda kv: (-kv[1], kv[0])) if v]
+            for o, counted in unlisted.items()
+        }
+        joined = {o: vs for o, vs in joined.items() if vs}
+        if joined:
+            allomorphs.insert(0, {"spelled": joined})
+        # A spelling the entry has in an orthography the course does not teach (chg's words in
+        # the Latin of Schluessel's transliteration, which its script track asks them in) stays.
+        for o, fs in obj(kc.get("forms")).items():
+            if str(o) not in orths and fs:
+                spelled_out[str(o)] = [str(f) for f in fs]
         if spelled_out:
             entry["spelled"] = spelled_out
         if forms_by_orth and pos in ("VERB", "AUX") and citation:
@@ -662,11 +673,10 @@ def build(conv: Converter) -> Built:
         if forms:
             entry["forms"] = forms
         if allomorphs:
-            if not forms_by_orth and len(allomorphs) == 1 and "spelled" in allomorphs[0]:
-                # Written one way everywhere: that is its spelling, not an allomorph.
-                entry["spelled"] = allomorphs[0]["spelled"]
-            else:
-                entry["allomorphs"] = allomorphs
+            # An entry with no spelling of its own (an ending, written only inside a token) has
+            # none here either, however few ways it is written: a spelling is what a card shows
+            # and a tap looks up, and neither is ever an ending alone.
+            entry["allomorphs"] = allomorphs
         for written in (entry, *forms, *allomorphs):
             if "spelled" in written:
                 written["spelled"] = _in_order(obj(written["spelled"]), orths)
