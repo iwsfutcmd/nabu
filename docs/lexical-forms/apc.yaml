@@ -1,4 +1,4 @@
-# Worked entries for every KC of courses/apc, in apc's lexical form (docs/lexical-forms/apc.md).
+# Worked entries for every spelled lexeme of courses/apc, in apc's lexical form (docs/lexical-forms/apc.md).
 # Written by docs/prototypes/apc-lexical-forms/build.py from the course, the drafting step
 # (derive.py) and authored.yaml: do not edit by hand. Every entry is a draft for review.
 #   form     the lexical form: Arabic script, every vowel written. U+065C is e, U+065D is o,
@@ -12,7 +12,7 @@ variety: apc-LB (Beirut)
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@apc-lexical-forms-v1', status: draft}
 lexemes:
-- id: "sense:marhaba"
+- id: "lexeme:marhaba"
   unit: "intro"
   pos: INTJ
   gloss: "hello"
@@ -20,7 +20,7 @@ lexemes:
   - form: "مَرْحَبَا"
     gives: {arabic: "مرحبا", marked: "مَرْحَبا", arabizi: ["mar7aba"], phonemes: "marħaba"}
     course: {arabic: "مرحبا", marked: "مَرْحَبا", arabizi: "mar7aba"}
-- id: "sense:shukran"
+- id: "lexeme:shukran"
   unit: "intro"
   pos: INTJ
   gloss: "thank you"
@@ -28,7 +28,7 @@ lexemes:
   - form: "شُكْرًا"
     gives: {arabic: "شكرا", marked: "شُكْراً", arabizi: ["shokran", "shukran", "chokran", "chukran"], phonemes: "ʃukran"}
     course: {arabic: "شكرا", marked: "شُكْراً", arabizi: "shukran"}
-- id: "sense:merci"
+- id: "lexeme:merci"
   unit: "intro"
   pos: INTJ
   gloss: "thanks (from French)"
@@ -37,7 +37,7 @@ lexemes:
     gives: {arabic: "ميرسي", marked: "ميرْسي", arabizi: ["mersi", "merse", "meirsi", "meirse"], phonemes: "meːrsi"}
     course: {arabic: "ميرسي", marked: "ميرْسي", arabizi: "merci"}
     review: ["arabizi: merci is not among the projected spellings (mersi first)"]
-- id: "sense:ma3-essalame"
+- id: "lexeme:ma3-essalame"
   unit: "intro"
   pos: INTJ
   gloss: "goodbye (literally 'with safety')"
@@ -45,7 +45,7 @@ lexemes:
   - form: "مَع ا\u06dfل\u06dfسَّلَام\u065cة"
     gives: {arabic: "مع السلامة", marked: "مَع السَّلامِة", arabizi: ["ma3 essalame", "ma3 esalame", "ma3 elssalame", "ma3 elsalame"], phonemes: "maʕ sːalaːme"}
     course: {arabic: "مع السلامة", marked: "مَع السَّلامِة", arabizi: "ma3 essalame"}
-- id: "sense:yalla"
+- id: "lexeme:yalla"
   unit: "intro"
   pos: INTJ
   gloss: "come on; OK then; let's go"
@@ -53,15 +53,15 @@ lexemes:
   - form: "يَلَّا"
     gives: {arabic: "يلا", marked: "يَلّا", arabizi: ["yalla"], phonemes: "jalːa"}
     course: {arabic: "يلّا", marked: "يَلّا", arabizi: "yalla"}
-- id: "sense:kifak"
+- id: "lexeme:kif"
   unit: "intro"
-  pos: INTJ
-  gloss: "how are you?"
+  pos: ADV
+  gloss: "how"
   forms:
-  - form: "كِيفَك"
-    gives: {arabic: "كيفك", marked: "كيفَك", arabizi: ["kifak", "keefak"], phonemes: "kiːfak"}
-    course: {arabic: "كيفك", marked: "", arabizi: "kifak"}
-- id: "sense:mni7"
+  - form: "كِيف"
+    gives: {arabic: "كيف", marked: "كيف", arabizi: ["kif", "keef"], phonemes: "kiːf"}
+    course: {arabic: "كيف", marked: "كيف", arabizi: "kif"}
+- id: "lexeme:mni7"
   unit: "intro"
   pos: ADJ
   gloss: "good; fine"
@@ -69,7 +69,7 @@ lexemes:
   - form: "مْنِيح"
     gives: {arabic: "منيح", marked: "مْنيح", arabizi: ["mni7", "mnee7"], phonemes: "mniːħ"}
     course: {arabic: "منيح", marked: "مْنيح", arabizi: "mni7"}
-- id: "sense:el7amdella"
+- id: "lexeme:el7amdella"
   unit: "intro"
   pos: INTJ
   gloss: "thank God"
@@ -78,7 +78,7 @@ lexemes:
     gives: {arabic: "الحمدلله", marked: "الحَمْدِلْلَه", arabizi: ["el7amdella", "el7amdilla", "l7amdella", "l7amdilla"], phonemes: "lħamdilla"}
     course: {arabic: "الحمدلله", marked: "الحَمْدِلله", arabizi: "el7amdella"}
     review: ["marks: projected الحَمْدِلْلَه, pinned الحَمْدِلله"]
-- id: "sense:ana"
+- id: "lexeme:ana"
   unit: "intro"
   pos: PRON
   gloss: "I"
@@ -86,7 +86,7 @@ lexemes:
   - form: "أَنَا"
     gives: {arabic: "أنا", marked: "أَنا", arabizi: ["ana"], phonemes: "ʔana"}
     course: {arabic: "أنا", marked: "أَنا", arabizi: "ana"}
-- id: "sense:enta"
+- id: "lexeme:enta"
   unit: "intro"
   pos: PRON
   gloss: "you"
@@ -94,13 +94,13 @@ lexemes:
   - form: "إِنْتَ"
     gives: {arabic: "إنت", marked: "إِنْتَ", arabizi: ["enta", "inta"], phonemes: "ʔinta"}
     course: {arabic: "إنت", marked: "إِنْتَ", arabizi: "enta"}
-- id: "sense:w"
+- id: "lexeme:w"
   unit: "intro"
   pos: CCONJ
   gloss: "and"
   forms:
   - {course: {arabic: "", arabizi: "w"}, review: ["one script only: Written joined to the next word in Arabic script: وإنت."]}
-- id: "sense:sami"
+- id: "lexeme:sami"
   unit: "intro"
   pos: PROPN
   gloss: "Sami (a name)"
@@ -108,7 +108,7 @@ lexemes:
   - form: "سَامِي"
     gives: {arabic: "سامي", marked: "سامي", arabizi: ["sami", "same"], phonemes: "saːmi"}
     course: {arabic: "سامي", marked: "سامي", arabizi: "Sami"}
-- id: "sense:shu"
+- id: "lexeme:shu"
   unit: "intro"
   pos: PRON
   gloss: "what"
@@ -116,23 +116,16 @@ lexemes:
   - form: "شُو"
     gives: {arabic: "شو", marked: "شو", arabizi: ["sho", "shu", "cho", "chu"], phonemes: "ʃu"}
     course: {arabic: "شو", marked: "شو", arabizi: "shu"}
-- id: "sense:esmak"
+- id: "lexeme:esm"
   unit: "intro"
   pos: NOUN
-  gloss: "your name"
+  gloss: "name"
   forms:
-  - form: "اِسْمَك"
-    gives: {arabic: "اسمك", marked: "اِسْمَك", arabizi: ["esmak", "ismak"], phonemes: "ismak"}
-    course: {arabic: "اسمك", marked: "اِسْمَك", arabizi: "esmak"}
-- id: "sense:esmi"
-  unit: "intro"
-  pos: NOUN
-  gloss: "my name"
-  forms:
-  - form: "اِسْمِي"
-    gives: {arabic: "اسمي", marked: "اِسْمي", arabizi: ["esmi", "esme", "ismi", "isme"], phonemes: "ismi"}
-    course: {arabic: "اسمي", marked: "اِسْمي", arabizi: "esmi"}
-- id: "sense:ahwe"
+  - form: "اِسْم"
+    gives: {arabic: "اسم", marked: "اِسِم", arabizi: ["esm", "esem", "ism", "isem"], phonemes: "isim"}
+    course: {arabic: "اسم", marked: "اِسِم", arabizi: "esm"}
+    review: ["helping vowel: in the marks, not in Arabizi"]
+- id: "lexeme:ahwe"
   unit: "intro"
   pos: NOUN
   gloss: "coffee"
@@ -140,7 +133,7 @@ lexemes:
   - form: "قَهْو\u065cة"
     gives: {arabic: "قهوة", marked: "قَهْوِة", arabizi: ["2ahwe", "ahwe"], phonemes: "ʔahwe"}
     course: {arabic: "قهوة", marked: "قَهْوِة", arabizi: "ahwe"}
-- id: "sense:shay"
+- id: "lexeme:shay"
   unit: "intro"
   pos: NOUN
   gloss: "tea"
@@ -148,23 +141,15 @@ lexemes:
   - form: "شَاي"
     gives: {arabic: "شاي", marked: "شاي", arabizi: ["shay", "chay"], phonemes: "ʃaːj"}
     course: {arabic: "شاي", marked: "شاي", arabizi: "shay"}
-- id: "sense:baddi"
+- id: "lexeme:badd"
   unit: "intro"
   pos: VERB
-  gloss: "I want"
+  gloss: "want (with an ending: baddo, badda, badna)"
   forms:
-  - form: "بَدِّي"
-    gives: {arabic: "بدي", marked: "بَدّي", arabizi: ["baddi", "badde"], phonemes: "badːi"}
-    course: {arabic: "بدّي", marked: "بَدّي", arabizi: "baddi"}
-- id: "sense:baddak"
-  unit: "intro"
-  pos: VERB
-  gloss: "you want"
-  forms:
-  - form: "بَدَّك"
-    gives: {arabic: "بدك", marked: "بَدَّك", arabizi: ["baddak"], phonemes: "badːak"}
-    course: {arabic: "بدّك", marked: "بَدَّك", arabizi: "baddak"}
-- id: "sense:la2"
+  - form: "بَدّ"
+    gives: {arabic: "بد", marked: "بَدّ", arabizi: ["badd"], phonemes: "badː"}
+    course: {arabic: "بدّ", marked: "بَدّ", arabizi: "badd"}
+- id: "lexeme:la2"
   unit: "intro"
   pos: INTJ
   gloss: "no"
@@ -172,7 +157,7 @@ lexemes:
   - form: "لَأ"
     gives: {arabic: "لأ", marked: "لَأ", arabizi: ["la2"], phonemes: "laʔ"}
     course: {arabic: "لأ", marked: "لَأ", arabizi: "la2"}
-- id: "sense:eh"
+- id: "lexeme:eh"
   unit: "intro"
   pos: INTJ
   gloss: "yes"
@@ -180,7 +165,7 @@ lexemes:
   - form: "إ\u065cيه"
     gives: {arabic: "إيه", marked: "إيه", arabizi: ["eh", "eih"], phonemes: "ʔeːh"}
     course: {arabic: "إيه", marked: "إيه", arabizi: "eh"}
-- id: "sense:hayda"
+- id: "lexeme:hayda"
   unit: "u02-family"
   pos: PRON
   gloss: "this (masculine)"
@@ -189,7 +174,7 @@ lexemes:
     gives: {arabic: "هيدا", marked: "هَيْدا", arabizi: ["hayda"], phonemes: "hajda"}
     course: {arabic: "هيدا", marked: "هَيدا", arabizi: "hayda"}
     review: ["marks: projected هَيْدا, pinned هَيدا"]
-- id: "sense:meen"
+- id: "lexeme:meen"
   unit: "u02-family"
   pos: PRON
   gloss: "who"
@@ -197,7 +182,7 @@ lexemes:
   - form: "مِين"
     gives: {arabic: "مين", marked: "مين", arabizi: ["min", "meen"], phonemes: "miːn"}
     course: {arabic: "مين", marked: "مين", arabizi: "meen"}
-- id: "sense:maya"
+- id: "lexeme:maya"
   unit: "u02-family"
   pos: PROPN
   gloss: "Maya (a name)"
@@ -205,7 +190,7 @@ lexemes:
   - form: "مَايَا"
     gives: {arabic: "مايا", marked: "مايا", arabizi: ["maya"], phonemes: "maːja"}
     course: {arabic: "مايا", marked: "مايا", arabizi: "Maya"}
-- id: "sense:hayde"
+- id: "lexeme:hayde"
   unit: "u02-family"
   pos: PRON
   gloss: "this (feminine)"
@@ -214,7 +199,7 @@ lexemes:
     gives: {arabic: "هيدي", marked: "هَيْدي", arabizi: ["haydi", "hayde"], phonemes: "hajdi"}
     course: {arabic: "هيدي", marked: "هَيدي", arabizi: "hayde"}
     review: ["marks: projected هَيْدي, pinned هَيدي"]
-- id: "sense:bayy"
+- id: "lexeme:bayy"
   unit: "u02-family"
   pos: NOUN
   gloss: "father; dad"
@@ -222,7 +207,7 @@ lexemes:
   - form: "بَيّ"
     gives: {arabic: "بي", marked: "بَيّ", arabizi: ["bayy"], phonemes: "bajː"}
     course: {arabic: "بيّ", marked: "بَيّ", arabizi: "bayy"}
-- id: "sense:emm"
+- id: "lexeme:emm"
   unit: "u02-family"
   pos: NOUN
   gloss: "mother; mom"
@@ -230,7 +215,7 @@ lexemes:
   - form: "إِمّ"
     gives: {arabic: "إم", marked: "إِمّ", arabizi: ["emm", "imm"], phonemes: "ʔimː"}
     course: {arabic: "إمّ", marked: "إِمّ", arabizi: "emm"}
-- id: "sense:khayy"
+- id: "lexeme:khayy"
   unit: "u02-family"
   pos: NOUN
   gloss: "brother"
@@ -238,7 +223,7 @@ lexemes:
   - form: "خَيّ"
     gives: {arabic: "خي", marked: "خَيّ", arabizi: ["khayy", "5ayy"], phonemes: "xajː"}
     course: {arabic: "خيّ", marked: "خَيّ", arabizi: "khayy"}
-- id: "sense:ekht"
+- id: "lexeme:ekht"
   unit: "u02-family"
   pos: NOUN
   gloss: "sister"
@@ -247,7 +232,7 @@ lexemes:
     gives: {arabic: "إخت", marked: "إِخِت", arabizi: ["ekht", "ekhet", "e5t", "e5et"], phonemes: "ʔixit"}
     course: {arabic: "إخت", marked: "إِخِت", arabizi: "ekht"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:3end"
+- id: "lexeme:3end"
   unit: "u02-family"
   pos: ADP
   gloss: "at; have (with an ending: 3endi, I have)"
@@ -256,7 +241,7 @@ lexemes:
     gives: {arabic: "عند", marked: "عِنِد", arabizi: ["3end", "3ened", "3ind", "3ined"], phonemes: "ʕinid"}
     course: {arabic: "عند", marked: "عِنِد", arabizi: "3end"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:ma"
+- id: "lexeme:ma"
   unit: "u02-family"
   pos: PART
   gloss: "not (before a verb or 3endi)"
@@ -264,24 +249,7 @@ lexemes:
   - form: "مَا"
     gives: {arabic: "ما", marked: "ما", arabizi: ["ma"], phonemes: "ma"}
     course: {arabic: "ما", marked: "ما", arabizi: "ma"}
-- id: "sense:esm"
-  unit: "u02-family"
-  pos: NOUN
-  gloss: "name"
-  forms:
-  - form: "اِسْم"
-    gives: {arabic: "اسم", marked: "اِسِم", arabizi: ["esm", "esem", "ism", "isem"], phonemes: "isim"}
-    course: {arabic: "اسم", marked: "اِسِم", arabizi: "esm"}
-    review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:kif"
-  unit: "u02-family"
-  pos: ADV
-  gloss: "how"
-  forms:
-  - form: "كِيف"
-    gives: {arabic: "كيف", marked: "كيف", arabizi: ["kif", "keef"], phonemes: "kiːf"}
-    course: {arabic: "كيف", marked: "كيف", arabizi: "kif"}
-- id: "sense:teta"
+- id: "lexeme:teta"
   unit: "u02-family"
   pos: NOUN
   gloss: "grandma"
@@ -289,7 +257,7 @@ lexemes:
   - form: "ت\u065cيتَا"
     gives: {arabic: "تيتا", marked: "تيتا", arabizi: ["teta", "teita"], phonemes: "teːta"}
     course: {arabic: "تيتا", marked: "تيتا", arabizi: "teta"}
-- id: "sense:jeddo"
+- id: "lexeme:jeddo"
   unit: "u02-family"
   pos: NOUN
   gloss: "grandpa"
@@ -297,7 +265,7 @@ lexemes:
   - form: "جِدُّو"
     gives: {arabic: "جدو", marked: "جِدّو", arabizi: ["jeddo", "jeddu", "jiddo", "jiddu"], phonemes: "ʒidːu"}
     course: {arabic: "جدّو", marked: "جِدّو", arabizi: "jeddo"}
-- id: "sense:3ayle"
+- id: "lexeme:3ayle"
   unit: "u02-family"
   pos: NOUN
   gloss: "family"
@@ -305,7 +273,7 @@ lexemes:
   - form: "عَيْل\u065cة"
     gives: {arabic: "عيلة", marked: "عَيْلِة", arabizi: ["3ayle"], phonemes: "ʕajle"}
     course: {arabic: "عيلة", marked: "عَيْلِة", arabizi: "3ayle"}
-- id: "sense:kbir"
+- id: "lexeme:kbir"
   unit: "u02-family"
   pos: ADJ
   gloss: "big; old (of people); older"
@@ -313,10 +281,7 @@ lexemes:
   - form: "كْبِير"
     gives: {arabic: "كبير", marked: "كْبير", arabizi: ["kbir", "kbeer"], phonemes: "kbiːr"}
     course: {arabic: "كبير", marked: "كْبير", arabizi: "kbir"}
-  - form: "كْبِير\u065cة"
-    gives: {arabic: "كبيرة", marked: "كْبيرِة", arabizi: ["kbire", "kbeere"], phonemes: "kbiːre"}
-    course: {arabic: "كبيرة", marked: "كْبيرِة", arabizi: "kbire"}
-- id: "sense:zghir"
+- id: "lexeme:zghir"
   unit: "u02-family"
   pos: ADJ
   gloss: "small; little; young"
@@ -324,10 +289,7 @@ lexemes:
   - form: "زْغِير"
     gives: {arabic: "زغير", marked: "زْغير", arabizi: ["zghir", "zgheer", "z8ir", "z8eer"], phonemes: "zɣiːr"}
     course: {arabic: "زغير", marked: "زْغير", arabizi: "zghir"}
-  - form: "زْغِير\u065cة"
-    gives: {arabic: "زغيرة", marked: "زْغيرِة", arabizi: ["zghire", "zgheere", "z8ire", "z8eere"], phonemes: "zɣiːre"}
-    course: {arabic: "زغيرة", marked: "زْغيرِة", arabizi: "zghire"}
-- id: "sense:ebn"
+- id: "lexeme:ebn"
   unit: "u02-family"
   pos: NOUN
   gloss: "son"
@@ -336,7 +298,7 @@ lexemes:
     gives: {arabic: "إبن", marked: "إِبِن", arabizi: ["ebn", "eben", "ibn", "iben"], phonemes: "ʔibin"}
     course: {arabic: "إبن", marked: "إِبِن", arabizi: "ebn"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:bent"
+- id: "lexeme:bent"
   unit: "u02-family"
   pos: NOUN
   gloss: "daughter; girl"
@@ -345,7 +307,7 @@ lexemes:
     gives: {arabic: "بنت", marked: "بِنِت", arabizi: ["bent", "benet", "bint", "binet"], phonemes: "binit"}
     course: {arabic: "بنت", marked: "بِنِت", arabizi: "bent"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:7elo"
+- id: "lexeme:7elo"
   unit: "u02-family"
   pos: ADJ
   gloss: "nice; pretty; sweet"
@@ -353,10 +315,7 @@ lexemes:
   - form: "حِلُو"
     gives: {arabic: "حلو", marked: "حِلو", arabizi: ["7elo", "7elu", "7ilo", "7ilu"], phonemes: "ħilu"}
     course: {arabic: "حلو", marked: "حِلو", arabizi: "7elo"}
-  - form: "حِلْو\u065cة"
-    gives: {arabic: "حلوة", marked: "حِلْوِة", arabizi: ["7elwe", "7ilwe"], phonemes: "ħilwe"}
-    course: {arabic: "حلوة", marked: "حِلْوِة", arabizi: "7elwe"}
-- id: "sense:wlad"
+- id: "lexeme:wlad"
   unit: "u02-family"
   pos: NOUN
   gloss: "children; kids"
@@ -364,7 +323,7 @@ lexemes:
   - form: "وْلَاد"
     gives: {arabic: "ولاد", marked: "وْلاد", arabizi: ["wlad"], phonemes: "wlaːd"}
     course: {arabic: "ولاد", marked: "وْلاد", arabizi: "wlad"}
-- id: "sense:tfaddal"
+- id: "lexeme:tfaddal"
   unit: "u03-food"
   pos: INTJ
   gloss: "here you are; please, go ahead; come in"
@@ -372,10 +331,7 @@ lexemes:
   - form: "تْفَضَّل"
     gives: {arabic: "تفضل", marked: "تْفَضَّل", arabizi: ["tfaddal"], phonemes: "tfadˤːal"}
     course: {arabic: "تفضّل", marked: "تْفَضَّل", arabizi: "tfaddal"}
-  - form: "تْفَضَّلِي"
-    gives: {arabic: "تفضلي", marked: "تْفَضَّلي", arabizi: ["tfaddali", "tfaddale"], phonemes: "tfadˤːali"}
-    course: {arabic: "تفضّلي", marked: "تْفَضَّلي", arabizi: "tfaddali"}
-- id: "sense:akal"
+- id: "lexeme:akal"
   unit: "u03-food"
   pos: VERB
   gloss: "eat"
@@ -391,46 +347,30 @@ lexemes:
   - form: "ك\u065dول"
     gives: {arabic: "كول", marked: "كول", arabizi: ["kol"], phonemes: "koːl"}
     course: {arabic: "كول", marked: "كول", arabizi: "kol"}
-  - form: "ب\u065cاكُل"
-    gives: {arabic: "باكل", marked: "باكُل", arabizi: ["bekol", "bekul"], phonemes: "beːkul"}
-    course: {arabic: "باكل", marked: "باكُل", arabizi: "bekol"}
-  - form: "آ\u065cكُل"
-    gives: {arabic: "آكل", marked: "آكُل", arabizi: ["ekol", "ekul"], phonemes: "ʔeːkul"}
-    course: {arabic: "آكل", marked: "آكُل", arabizi: "ekol"}
-  - form: "مْن\u065cاكُل"
-    gives: {arabic: "مناكل", marked: "مْناكُل", arabizi: ["mnekol", "mnekul"], phonemes: "mneːkul"}
-    course: {arabic: "مناكل", marked: "مْناكُل", arabizi: "mnekol"}
-  - form: "أَكَلْت"
-    gives: {arabic: "أكلت", marked: "أَكَلِت", arabizi: ["akalt", "akalet"], phonemes: "ʔakalit"}
-    course: {arabic: "أكلت", marked: "أَكَلِت", arabizi: "akalt"}
-    review: ["helping vowel: in the marks, not in Arabizi"]
   - form: "أَكَل"
     gives: {arabic: "أكل", marked: "أَكَل", arabizi: ["akal"], phonemes: "ʔakal"}
     course: {arabic: "أكل", marked: "أَكَل", arabizi: "akal"}
-  - form: "أَكَلْنَا"
-    gives: {arabic: "أكلنا", marked: "أَكَلْنا", arabizi: ["akalna"], phonemes: "ʔakalna"}
-    course: {arabic: "أكلنا", marked: "أَكَلْنا", arabizi: "akalna"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "imp-2pl", form: "كِلُوا\u06df", arabic: "كلوا", arabizi: "kilo"}
-  - {features: "imp-2fs", form: "كِلِي", arabic: "كِلي", arabizi: "kili"}
-  - {features: "impf-1sg", form: "ب\u065cاكُل", arabic: "باكل", arabizi: "bekol"}
-  - {features: "impf-2ms+w", form: "و+بْت\u065cاكُل", arabic: "وبْتاكُل", arabizi: "w btekol"}
-  - {features: "impf-1sg", form: "ب\u065cاكُل", arabic: "باكُل", arabizi: "bekol"}
-  - {features: "subj-1sg", form: "آ\u065cكُل", arabic: "آكل", arabizi: "ekol"}
-  - {features: "impf-1pl", form: "مْن\u065cاكُل", arabic: "مناكل", arabizi: "mnekol"}
-  - {features: "past-1sg", form: "أَكَلْت", arabic: "أكلت", arabizi: "akalt"}
-  - {features: "past-3ms", form: "أَكَل", arabic: "أكل", arabizi: "akal"}
-  - {features: "past-1pl", form: "أَكَلْنَا", arabic: "أكلنا", arabizi: "akalna"}
-  - {features: "past-2pl", form: "أَكَلْتُوا\u06df", arabic: "أكلتوا", arabizi: "akalto"}
-  - {features: "past-1pl", form: "أَكَلْنَا", arabic: "أَكَلْنا", arabizi: "akalna"}
-  - {features: "past-1pl+w", form: "و+أَكَلْنَا", arabic: "وأَكَلْنا", arabizi: "w akalna"}
-  - {features: "impf-1pl+w", form: "و+مْن\u065cاكُل", arabic: "ومْناكُل", arabizi: "w mnekol"}
-  - {features: "past-3pl", form: "أَكَلُوا\u06df", arabic: "أكلوا", arabizi: "akalo"}
-  - {features: "subj-1pl", form: "ن\u065cاكُل", arabic: "ناكل", arabizi: "nekol"}
-  - {features: "subj-2pl", form: "ت\u065cاكْلُوا\u06df", arabic: "تاكلوا", arabizi: "teklo"}
-  - {features: "subj-1pl+w", form: "و+ن\u065cاكُل", arabic: "وناكُل", arabizi: "w nekol"}
-  - {features: "subj-3pl", form: "ي\u065cاكْلُوا\u06df", arabic: "ياكلوا", arabizi: "yeklo"}
-- id: "sense:shereb"
+  - {features: "Mood=Imp;Number=Plur;Person=2", form: "كِلُوا\u06df", arabic: "كلوا", arabizi: "kilo"}
+  - {features: "Gender=Fem;Mood=Imp;Number=Sing;Person=2", form: "كِلِي", arabic: "كِلي", arabizi: "kili"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "ب\u065cاكُل", arabic: "باكل", arabizi: "bekol"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2+w", form: "و+بْت\u065cاكُل", arabic: "وبْتاكُل", arabizi: "w btekol"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "ب\u065cاكُل", arabic: "باكُل", arabizi: "bekol"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "آ\u065cكُل", arabic: "آكل", arabizi: "ekol"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=1", form: "مْن\u065cاكُل", arabic: "مناكل", arabizi: "mnekol"}
+  - {features: "Aspect=Perf;Number=Sing;Person=1", form: "أَكَلْت", arabic: "أكلت", arabizi: "akalt"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=3", form: "أَكَل", arabic: "أكل", arabizi: "akal"}
+  - {features: "Aspect=Perf;Number=Plur;Person=1", form: "أَكَلْنَا", arabic: "أكلنا", arabizi: "akalna"}
+  - {features: "Aspect=Perf;Number=Plur;Person=2", form: "أَكَلْتُوا\u06df", arabic: "أكلتوا", arabizi: "akalto"}
+  - {features: "Aspect=Perf;Number=Plur;Person=1", form: "أَكَلْنَا", arabic: "أَكَلْنا", arabizi: "akalna"}
+  - {features: "Aspect=Perf;Number=Plur;Person=1+w", form: "و+أَكَلْنَا", arabic: "وأَكَلْنا", arabizi: "w akalna"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=1+w", form: "و+مْن\u065cاكُل", arabic: "ومْناكُل", arabizi: "w mnekol"}
+  - {features: "Aspect=Perf;Number=Plur;Person=3", form: "أَكَلُوا\u06df", arabic: "أكلوا", arabizi: "akalo"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=1", form: "ن\u065cاكُل", arabic: "ناكل", arabizi: "nekol"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=2", form: "ت\u065cاكْلُوا\u06df", arabic: "تاكلوا", arabizi: "teklo"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=1+w", form: "و+ن\u065cاكُل", arabic: "وناكُل", arabizi: "w nekol"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=3", form: "ي\u065cاكْلُوا\u06df", arabic: "ياكلوا", arabizi: "yeklo"}
+- id: "lexeme:shereb"
   unit: "u03-food"
   pos: VERB
   gloss: "drink"
@@ -446,36 +386,20 @@ lexemes:
   - form: "اِشْرَب"
     gives: {arabic: "اشرب", marked: "اِشْرَب", arabizi: ["eshrab", "echrab", "ishrab", "ichrab"], phonemes: "iʃrab"}
     course: {arabic: "اشرب", marked: "اِشْرَب", arabizi: "eshrab"}
-  - form: "بِشْرَب"
-    gives: {arabic: "بشرب", marked: "بِشْرَب", arabizi: ["beshrab", "bechrab", "bishrab", "bichrab"], phonemes: "biʃrab"}
-    course: {arabic: "بشرب", marked: "بِشْرَب", arabizi: "bishrab"}
-  - form: "مْنِشْرَب"
-    gives: {arabic: "منشرب", marked: "مْنِشْرَب", arabizi: ["mneshrab", "mnechrab", "mnishrab", "mnichrab"], phonemes: "mniʃrab"}
-    course: {arabic: "منشرب", marked: "مْنِشْرَب", arabizi: "mnishrab"}
-  - form: "بْتِشْرَبِي"
-    gives: {arabic: "بتشربي", marked: "بْتِشْرَبي", arabizi: ["bteshrabi", "bteshrabe", "btechrabi", "btechrabe"], phonemes: "btiʃrabi"}
-    course: {arabic: "بتشربي", marked: "بْتِشْرَبي", arabizi: "btishrabi"}
-  - form: "تِشْرَب"
-    gives: {arabic: "تشرب", marked: "تِشْرَب", arabizi: ["teshrab", "techrab", "tishrab", "tichrab"], phonemes: "tiʃrab"}
-    course: {arabic: "تشرب", marked: "تِشْرَب", arabizi: "tishrab"}
-  - form: "شْرِبْت"
-    gives: {arabic: "شربت", marked: "شْرِبِت", arabizi: ["shrebt", "shrebet", "shribt", "shribet"], phonemes: "ʃribit"}
-    course: {arabic: "شربت", marked: "شْرِبِت", arabizi: "shrebt"}
-    review: ["helping vowel: in the marks, not in Arabizi"]
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "imp-2pl", form: "اِشْرَبُوا\u06df", arabic: "اشربوا", arabizi: "eshrabo"}
-  - {features: "impf-1sg", form: "بِشْرَب", arabic: "بشرب", arabizi: "bishrab"}
-  - {features: "impf-1pl", form: "مْنِشْرَب", arabic: "منشرب", arabizi: "mnishrab"}
-  - {features: "impf-2fs", form: "بْتِشْرَبِي", arabic: "بتشربي", arabizi: "btishrabi"}
-  - {features: "impf-2pl", form: "بْتِشْرَبُوا\u06df", arabic: "بتشربوا", arabizi: "btishrabo"}
-  - {features: "impf-1sg+w", form: "و+بِشْرَب", arabic: "وبِشْرَب", arabizi: "w bishrab"}
-  - {features: "subj-2ms", form: "تِشْرَب", arabic: "تشرب", arabizi: "tishrab"}
-  - {features: "past-1sg", form: "شْرِبْت", arabic: "شربت", arabizi: "shrebt"}
-  - {features: "past-1pl+w", form: "و+شْرِبْنَا", arabic: "وشْرِبْنا", arabizi: "w shrebna"}
-  - {features: "impf-3pl", form: "بْيِشْرَبُوا\u06df", arabic: "بيشربوا", arabizi: "byishrabo"}
-  - {features: "impf-1pl", form: "مْنِشْرَب", arabic: "مْنِشْرَب", arabizi: "mnishrab"}
-  - {features: "subj-3fs", form: "تِشْرَب", arabic: "تشرب", arabizi: "tishrab"}
-- id: "sense:sa77tein"
+  - {features: "Mood=Imp;Number=Plur;Person=2", form: "اِشْرَبُوا\u06df", arabic: "اشربوا", arabizi: "eshrabo"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بِشْرَب", arabic: "بشرب", arabizi: "bishrab"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=1", form: "مْنِشْرَب", arabic: "منشرب", arabizi: "mnishrab"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2", form: "بْتِشْرَبِي", arabic: "بتشربي", arabizi: "btishrabi"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=2", form: "بْتِشْرَبُوا\u06df", arabic: "بتشربوا", arabizi: "btishrabo"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1+w", form: "و+بِشْرَب", arabic: "وبِشْرَب", arabizi: "w bishrab"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=2", form: "تِشْرَب", arabic: "تشرب", arabizi: "tishrab"}
+  - {features: "Aspect=Perf;Number=Sing;Person=1", form: "شْرِبْت", arabic: "شربت", arabizi: "shrebt"}
+  - {features: "Aspect=Perf;Number=Plur;Person=1+w", form: "و+شْرِبْنَا", arabic: "وشْرِبْنا", arabizi: "w shrebna"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=3", form: "بْيِشْرَبُوا\u06df", arabic: "بيشربوا", arabizi: "byishrabo"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=1", form: "مْنِشْرَب", arabic: "مْنِشْرَب", arabizi: "mnishrab"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=3", form: "تِشْرَب", arabic: "تشرب", arabizi: "tishrab"}
+- id: "lexeme:sa77tein"
   unit: "u03-food"
   pos: INTJ
   gloss: "enjoy your meal; to your health"
@@ -484,7 +408,7 @@ lexemes:
     gives: {arabic: "صحتين", marked: "صَحّْتين", arabizi: ["sa77ten", "sa77tein"], phonemes: "sˤaħːteːn"}
     course: {arabic: "صحتين", marked: "صَحْتين", arabizi: "sa77tein"}
     review: ["doubled in Arabizi, no shadda in the course's marks", "marks: projected صَحّْتين, pinned صَحْتين"]
-- id: "sense:3a-albak"
+- id: "lexeme:3a-albak"
   unit: "u03-food"
   pos: INTJ
   gloss: "and to you (the answer to sa77tein)"
@@ -492,7 +416,7 @@ lexemes:
   - form: "عَ قَلْبَك"
     gives: {arabic: "ع قلبك", marked: "عَ قَلْبَك", arabizi: ["3a 2albak", "3a albak"], phonemes: "ʕa ʔalbak"}
     course: {arabic: "ع قلبك", marked: "عَ قَلْبَك", arabizi: "3a albak"}
-- id: "sense:khebz"
+- id: "lexeme:khebz"
   unit: "u03-food"
   pos: NOUN
   gloss: "bread"
@@ -501,7 +425,7 @@ lexemes:
     gives: {arabic: "خبز", marked: "خِبِز", arabizi: ["khebz", "khebez", "khibz", "khibez"], phonemes: "xibiz"}
     course: {arabic: "خبز", marked: "خِبِز", arabizi: "khebz"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:may"
+- id: "lexeme:may"
   unit: "u03-food"
   pos: NOUN
   gloss: "water"
@@ -509,7 +433,7 @@ lexemes:
   - form: "مَي"
     gives: {arabic: "مي", marked: "مَي", arabizi: ["may"], phonemes: "maj"}
     course: {arabic: "مي", marked: "مَي", arabizi: "may"}
-- id: "sense:sukkar"
+- id: "lexeme:sukkar"
   unit: "u03-food"
   pos: NOUN
   gloss: "sugar"
@@ -517,7 +441,7 @@ lexemes:
   - form: "سُكَّر"
     gives: {arabic: "سكر", marked: "سُكَّر", arabizi: ["sokkar", "sukkar"], phonemes: "sukːar"}
     course: {arabic: "سكّر", marked: "سُكَّر", arabizi: "sukkar"}
-- id: "sense:ma3"
+- id: "lexeme:ma3"
   unit: "u03-food"
   pos: ADP
   gloss: "with"
@@ -525,13 +449,13 @@ lexemes:
   - form: "مَع"
     gives: {arabic: "مع", marked: "مَع", arabizi: ["ma3"], phonemes: "maʕ"}
     course: {arabic: "مع", marked: "مَع", arabizi: "ma3"}
-- id: "sense:el"
+- id: "lexeme:el"
   unit: "u03-food"
   pos: DET
   gloss: "the"
   forms:
   - {course: {arabic: "", arabizi: "el"}, review: ["one script only: Written joined to its noun in Arabic script: الشاي. Before t, d, s, sh, z, n, r… it sounds like the noun's first letter: esh-shay."]}
-- id: "sense:akl"
+- id: "lexeme:akl"
   unit: "u03-food"
   pos: NOUN
   gloss: "food"
@@ -540,7 +464,7 @@ lexemes:
     gives: {arabic: "أكل", marked: "أَكِل", arabizi: ["akl", "akel"], phonemes: "ʔakil"}
     course: {arabic: "أكل", marked: "أَكَل", arabizi: "akl"}
     review: ["helping vowel: in the marks, not in Arabizi", "marks: projected أَكِل, pinned أَكَل"]
-- id: "sense:man2oushe"
+- id: "lexeme:man2oushe"
   unit: "u03-food"
   pos: NOUN
   gloss: "man'oushe (flatbread with za'atar or cheese)"
@@ -548,7 +472,7 @@ lexemes:
   - form: "مَنْقُوش\u065cة"
     gives: {arabic: "منقوشة", marked: "مَنْقوشِة", arabizi: ["man2ushe", "man2uche", "man2oushe", "man2ouche"], phonemes: "manʔuːʃe"}
     course: {arabic: "منقوشة", marked: "مَنْقوشِة", arabizi: "man2oushe"}
-- id: "sense:za3tar"
+- id: "lexeme:za3tar"
   unit: "u03-food"
   pos: NOUN
   gloss: "za'atar (thyme and sesame mix)"
@@ -556,7 +480,7 @@ lexemes:
   - form: "زَعْتَر"
     gives: {arabic: "زعتر", marked: "زَعْتَر", arabizi: ["za3tar"], phonemes: "zaʕtar"}
     course: {arabic: "زعتر", marked: "زَعْتَر", arabizi: "za3tar"}
-- id: "sense:jebne"
+- id: "lexeme:jebne"
   unit: "u03-food"
   pos: NOUN
   gloss: "cheese"
@@ -564,7 +488,7 @@ lexemes:
   - form: "جِبْن\u065cة"
     gives: {arabic: "جبنة", marked: "جِبْنِة", arabizi: ["jebne", "jibne"], phonemes: "ʒibne"}
     course: {arabic: "جبنة", marked: "جِبْنِة", arabizi: "jebne"}
-- id: "sense:laban"
+- id: "lexeme:laban"
   unit: "u03-food"
   pos: NOUN
   gloss: "yogurt"
@@ -572,7 +496,7 @@ lexemes:
   - form: "لَبَن"
     gives: {arabic: "لبن", marked: "لَبَن", arabizi: ["laban"], phonemes: "laban"}
     course: {arabic: "لبن", marked: "لَبَن", arabizi: "laban"}
-- id: "sense:bala"
+- id: "lexeme:bala"
   unit: "u03-food"
   pos: ADP
   gloss: "without"
@@ -580,7 +504,7 @@ lexemes:
   - form: "بَلَا"
     gives: {arabic: "بلا", marked: "بَلا", arabizi: ["bala"], phonemes: "bala"}
     course: {arabic: "بلا", marked: "بَلا", arabizi: "bala"}
-- id: "sense:tayyeb"
+- id: "lexeme:tayyeb"
   unit: "u03-food"
   pos: ADJ
   gloss: "tasty; delicious"
@@ -588,10 +512,7 @@ lexemes:
   - form: "طَيِّب"
     gives: {arabic: "طيب", marked: "طَيِّب", arabizi: ["tayyeb", "tayyib"], phonemes: "tˤajːib"}
     course: {arabic: "طيّب", marked: "طَيِّب", arabizi: "tayyeb"}
-  - form: "طَيّْب\u065cة"
-    gives: {arabic: "طيبة", marked: "طَيّْبِة", arabizi: ["tayybe"], phonemes: "tˤajːbe"}
-    course: {arabic: "طيّبة", marked: "طَيّْبِة", arabizi: "tayybe"}
-- id: "sense:ktir"
+- id: "lexeme:ktir"
   unit: "u03-food"
   pos: ADV
   gloss: "very; a lot; too"
@@ -599,7 +520,7 @@ lexemes:
   - form: "كْتِير"
     gives: {arabic: "كتير", marked: "كْتير", arabizi: ["ktir", "kteer"], phonemes: "ktiːr"}
     course: {arabic: "كتير", marked: "كْتير", arabizi: "ktir"}
-- id: "sense:shway"
+- id: "lexeme:shway"
   unit: "u03-food"
   pos: ADV
   gloss: "a little; a bit"
@@ -607,7 +528,7 @@ lexemes:
   - form: "شْوَي"
     gives: {arabic: "شوي", marked: "شْوَي", arabizi: ["shway", "chway"], phonemes: "ʃwaj"}
     course: {arabic: "شوي", marked: "شْوَي", arabizi: "shway"}
-- id: "sense:bas"
+- id: "lexeme:bas"
   unit: "u03-food"
   pos: CCONJ
   gloss: "only; just; but"
@@ -616,7 +537,7 @@ lexemes:
     gives: {arabic: "بس", marked: "بَسّ", arabizi: ["bass"], phonemes: "basː"}
     course: {arabic: "بسّ", marked: "بَسّ", arabizi: "bas"}
     review: ["doubled in the marks, written once in Arabizi", "arabizi: bas is not among the projected spellings (bass first)"]
-- id: "sense:jou3an"
+- id: "lexeme:jou3an"
   unit: "u03-food"
   pos: ADJ
   gloss: "hungry"
@@ -624,10 +545,7 @@ lexemes:
   - form: "جُوعَان"
     gives: {arabic: "جوعان", marked: "جوعان", arabizi: ["ju3an", "jou3an"], phonemes: "ʒuːʕaːn"}
     course: {arabic: "جوعان", marked: "جوعان", arabizi: "jou3an"}
-  - form: "جُوعَان\u065cة"
-    gives: {arabic: "جوعانة", marked: "جوعانِة", arabizi: ["ju3ane", "jou3ane"], phonemes: "ʒuːʕaːne"}
-    course: {arabic: "جوعانة", marked: "جوعانِة", arabizi: "jou3ane"}
-- id: "sense:3atshan"
+- id: "lexeme:3atshan"
   unit: "u03-food"
   pos: ADJ
   gloss: "thirsty"
@@ -635,7 +553,7 @@ lexemes:
   - form: "عَطْشَان"
     gives: {arabic: "عطشان", marked: "عَطْشان", arabizi: ["3atshan", "3atchan"], phonemes: "ʕatˤʃaːn"}
     course: {arabic: "عطشان", marked: "عَطْشان", arabizi: "3atshan"}
-- id: "sense:kamen"
+- id: "lexeme:kamen"
   unit: "u03-food"
   pos: ADV
   gloss: "more; another; also"
@@ -643,7 +561,7 @@ lexemes:
   - form: "كَم\u065cان"
     gives: {arabic: "كمان", marked: "كَمان", arabizi: ["kamen"], phonemes: "kameːn"}
     course: {arabic: "كمان", marked: "كَمان", arabizi: "kamen"}
-- id: "sense:fenjen"
+- id: "lexeme:fenjen"
   unit: "u03-food"
   pos: NOUN
   gloss: "cup (for coffee)"
@@ -651,7 +569,7 @@ lexemes:
   - form: "فِنْج\u065cان"
     gives: {arabic: "فنجان", marked: "فِنْجان", arabizi: ["fenjen", "finjen"], phonemes: "finʒeːn"}
     course: {arabic: "فنجان", marked: "فِنْجان", arabizi: "fenjen"}
-- id: "sense:7ummus"
+- id: "lexeme:7ummus"
   unit: "u03-food"
   pos: NOUN
   gloss: "hummus"
@@ -659,7 +577,7 @@ lexemes:
   - form: "حُمُّص"
     gives: {arabic: "حمص", marked: "حُمُّص", arabizi: ["7ommos", "7ommus", "7ummos", "7ummus"], phonemes: "ħumːusˤ"}
     course: {arabic: "حمّص", marked: "حُمُّص", arabizi: "7ummus"}
-- id: "sense:tabbouleh"
+- id: "lexeme:tabbouleh"
   unit: "u03-food"
   pos: NOUN
   gloss: "tabbouleh (parsley salad)"
@@ -667,7 +585,7 @@ lexemes:
   - form: "تَبُّول\u065cة"
     gives: {arabic: "تبولة", marked: "تَبّولِة", arabizi: ["tabbule", "tabboule"], phonemes: "tabːuːle"}
     course: {arabic: "تبّولة", marked: "تَبّولِة", arabizi: "tabboule"}
-- id: "sense:sa7n"
+- id: "lexeme:sa7n"
   unit: "u03-food"
   pos: NOUN
   gloss: "plate; dish"
@@ -676,7 +594,7 @@ lexemes:
     gives: {arabic: "صحن", marked: "صَحِن", arabizi: ["sa7n", "sa7en"], phonemes: "sˤaħin"}
     course: {arabic: "صحن", marked: "صَحِن", arabizi: "sa7n"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:wen"
+- id: "lexeme:wen"
   unit: "u04-home"
   pos: ADV
   gloss: "where"
@@ -684,7 +602,7 @@ lexemes:
   - form: "و\u065cين"
     gives: {arabic: "وين", marked: "وين", arabizi: ["wen", "wein"], phonemes: "weːn"}
     course: {arabic: "وين", marked: "وين", arabizi: "wen"}
-- id: "sense:bet"
+- id: "lexeme:bet"
   unit: "u04-home"
   pos: NOUN
   gloss: "house; home"
@@ -692,7 +610,7 @@ lexemes:
   - form: "ب\u065cيت"
     gives: {arabic: "بيت", marked: "بيت", arabizi: ["bet", "beit"], phonemes: "beːt"}
     course: {arabic: "بيت", marked: "بيت", arabizi: "bet"}
-- id: "sense:hon"
+- id: "lexeme:hon"
   unit: "u04-home"
   pos: ADV
   gloss: "here"
@@ -700,7 +618,7 @@ lexemes:
   - form: "ه\u065dون"
     gives: {arabic: "هون", marked: "هون", arabizi: ["hon"], phonemes: "hoːn"}
     course: {arabic: "هون", marked: "هون", arabizi: "hon"}
-- id: "sense:honik"
+- id: "lexeme:honik"
   unit: "u04-home"
   pos: ADV
   gloss: "there; over there"
@@ -708,7 +626,7 @@ lexemes:
   - form: "ه\u065dونِيك"
     gives: {arabic: "هونيك", marked: "هونيك", arabizi: ["honik", "honeek"], phonemes: "hoːniːk"}
     course: {arabic: "هونيك", marked: "هونيك", arabizi: "honik"}
-- id: "sense:beirut"
+- id: "lexeme:beirut"
   unit: "u04-home"
   pos: PROPN
   gloss: "Beirut"
@@ -716,13 +634,13 @@ lexemes:
   - form: "ب\u065cيرُوت"
     gives: {arabic: "بيروت", marked: "بيروت", arabizi: ["berut", "berout", "beirut", "beirout"], phonemes: "beːruːt"}
     course: {arabic: "بيروت", marked: "بيروت", arabizi: "Beirut"}
-- id: "sense:b"
+- id: "lexeme:b"
   unit: "u04-home"
   pos: ADP
   gloss: "in; at"
   forms:
   - {course: {arabic: "", arabizi: "b"}, review: ["one script only: Written joined in Arabic script: ببيروت, بالبيت (b + el). In Arabizi often bel: bel bet."]}
-- id: "sense:lebnen"
+- id: "lexeme:lebnen"
   unit: "u04-home"
   pos: PROPN
   gloss: "Lebanon"
@@ -730,7 +648,7 @@ lexemes:
   - form: "لِبْن\u065cان"
     gives: {arabic: "لبنان", marked: "لِبْنان", arabizi: ["lebnen", "libnen"], phonemes: "libneːn"}
     course: {arabic: "لبنان", marked: "لِبْنان", arabizi: "Lebnen"}
-- id: "sense:men"
+- id: "lexeme:men"
   unit: "u04-home"
   pos: ADP
   gloss: "from; of"
@@ -738,7 +656,7 @@ lexemes:
   - form: "مِن"
     gives: {arabic: "من", marked: "مِن", arabizi: ["men", "min"], phonemes: "min"}
     course: {arabic: "من", marked: "مِن", arabizi: "men"}
-- id: "sense:fi"
+- id: "lexeme:fi"
   unit: "u04-home"
   pos: VERB
   gloss: "there is; there are"
@@ -746,7 +664,7 @@ lexemes:
   - form: "فِي"
     gives: {arabic: "في", marked: "في", arabizi: ["fi", "fe"], phonemes: "fi"}
     course: {arabic: "في", marked: "في", arabizi: "fi"}
-- id: "sense:ghorfe"
+- id: "lexeme:ghorfe"
   unit: "u04-home"
   pos: NOUN
   gloss: "room; bedroom"
@@ -754,7 +672,7 @@ lexemes:
   - form: "غُرْف\u065cة"
     gives: {arabic: "غرفة", marked: "غُرْفِة", arabizi: ["ghorfe", "ghurfe", "8orfe", "8urfe"], phonemes: "ɣurfe"}
     course: {arabic: "غرفة", marked: "غُرْفِة", arabizi: "ghorfe"}
-- id: "sense:matbakh"
+- id: "lexeme:matbakh"
   unit: "u04-home"
   pos: NOUN
   gloss: "kitchen"
@@ -762,7 +680,7 @@ lexemes:
   - form: "مَطْبَخ"
     gives: {arabic: "مطبخ", marked: "مَطْبَخ", arabizi: ["matbakh", "matba5"], phonemes: "matˤbax"}
     course: {arabic: "مطبخ", marked: "مَطْبَخ", arabizi: "matbakh"}
-- id: "sense:salon"
+- id: "lexeme:salon"
   unit: "u04-home"
   pos: NOUN
   gloss: "living room"
@@ -770,7 +688,7 @@ lexemes:
   - form: "صَال\u065dون"
     gives: {arabic: "صالون", marked: "صالون", arabizi: ["salon"], phonemes: "sˤaːloːn"}
     course: {arabic: "صالون", marked: "صالون", arabizi: "salon"}
-- id: "sense:7ammem"
+- id: "lexeme:7ammem"
   unit: "u04-home"
   pos: NOUN
   gloss: "bathroom; toilet"
@@ -778,7 +696,7 @@ lexemes:
   - form: "حَمّ\u065cام"
     gives: {arabic: "حمام", marked: "حَمّام", arabizi: ["7ammem"], phonemes: "ħamːeːm"}
     course: {arabic: "حمّام", marked: "حَمّام", arabizi: "7ammem"}
-- id: "sense:shoghl"
+- id: "lexeme:shoghl"
   unit: "u04-home"
   pos: NOUN
   gloss: "work; job"
@@ -787,7 +705,7 @@ lexemes:
     gives: {arabic: "شغل", marked: "شُغُل", arabizi: ["shoghl", "shoghol", "shoghel", "sho8l"], phonemes: "ʃuɣul"}
     course: {arabic: "شغل", marked: "شُغُل", arabizi: "shoghl"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:madrase"
+- id: "lexeme:madrase"
   unit: "u04-home"
   pos: NOUN
   gloss: "school"
@@ -795,7 +713,7 @@ lexemes:
   - form: "مَدْرَس\u065cة"
     gives: {arabic: "مدرسة", marked: "مَدْرَسِة", arabizi: ["madrase"], phonemes: "madrase"}
     course: {arabic: "مدرسة", marked: "مَدْرَسِة", arabizi: "madrase"}
-- id: "sense:dekkene"
+- id: "lexeme:dekkene"
   unit: "u04-home"
   pos: NOUN
   gloss: "corner shop; small grocery"
@@ -803,7 +721,7 @@ lexemes:
   - form: "دِكّ\u065cان\u065cة"
     gives: {arabic: "دكانة", marked: "دِكّانِة", arabizi: ["dekkene", "dikkene"], phonemes: "dikːeːne"}
     course: {arabic: "دكّانة", marked: "دِكّانِة", arabizi: "dekkene"}
-- id: "sense:shere3"
+- id: "lexeme:shere3"
   unit: "u04-home"
   pos: NOUN
   gloss: "street"
@@ -811,7 +729,7 @@ lexemes:
   - form: "ش\u065cارِع"
     gives: {arabic: "شارع", marked: "شارِع", arabizi: ["shere3", "sheri3", "chere3", "cheri3"], phonemes: "ʃeːriʕ"}
     course: {arabic: "شارع", marked: "شارِع", arabizi: "shere3"}
-- id: "sense:2arib"
+- id: "lexeme:2arib"
   unit: "u04-home"
   pos: ADJ
   gloss: "near; close"
@@ -819,7 +737,7 @@ lexemes:
   - form: "قَرِيب"
     gives: {arabic: "قريب", marked: "قَريب", arabizi: ["2arib", "2areeb", "arib", "areeb"], phonemes: "ʔariːb"}
     course: {arabic: "قريب", marked: "قَريب", arabizi: "2arib"}
-- id: "sense:b3id"
+- id: "lexeme:b3id"
   unit: "u04-home"
   pos: ADJ
   gloss: "far"
@@ -827,10 +745,7 @@ lexemes:
   - form: "بْعِيد"
     gives: {arabic: "بعيد", marked: "بْعيد", arabizi: ["b3id", "b3eed"], phonemes: "bʕiːd"}
     course: {arabic: "بعيد", marked: "بْعيد", arabizi: "b3id"}
-  - form: "بْعِيد\u065cة"
-    gives: {arabic: "بعيدة", marked: "بْعيدِة", arabizi: ["b3ide", "b3eede"], phonemes: "bʕiːde"}
-    course: {arabic: "بعيدة", marked: "بْعيدِة", arabizi: "b3ide"}
-- id: "sense:mish"
+- id: "lexeme:mish"
   unit: "u04-home"
   pos: PART
   gloss: "not (before a word that is not a verb)"
@@ -838,7 +753,7 @@ lexemes:
   - form: "مِش"
     gives: {arabic: "مش", marked: "مِش", arabizi: ["mesh", "mech", "mish", "mich"], phonemes: "miʃ"}
     course: {arabic: "مش", marked: "مِش", arabizi: "mish"}
-- id: "sense:fo2"
+- id: "lexeme:fo2"
   unit: "u04-home"
   pos: ADV
   gloss: "upstairs; up; above"
@@ -846,7 +761,7 @@ lexemes:
   - form: "ف\u065dوق"
     gives: {arabic: "فوق", marked: "فوق", arabizi: ["fo2"], phonemes: "foːʔ"}
     course: {arabic: "فوق", marked: "فوق", arabizi: "fo2"}
-- id: "sense:ta7t"
+- id: "lexeme:ta7t"
   unit: "u04-home"
   pos: ADV
   gloss: "downstairs; down; under"
@@ -855,7 +770,7 @@ lexemes:
     gives: {arabic: "تحت", marked: "تَحِت", arabizi: ["ta7t", "ta7et"], phonemes: "taħit"}
     course: {arabic: "تحت", marked: "تَحِت", arabizi: "ta7t"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:7add"
+- id: "lexeme:7add"
   unit: "u04-home"
   pos: ADP
   gloss: "next to"
@@ -863,7 +778,7 @@ lexemes:
   - form: "حَدّ"
     gives: {arabic: "حد", marked: "حَدّ", arabizi: ["7add"], phonemes: "ħadː"}
     course: {arabic: "حدّ", marked: "حَدّ", arabizi: "7add"}
-- id: "sense:3a"
+- id: "lexeme:3a"
   unit: "u04-home"
   pos: ADP
   gloss: "to; on"
@@ -871,7 +786,7 @@ lexemes:
   - form: "عَ"
     gives: {arabic: "ع", marked: "عَ", arabizi: ["3a"], phonemes: "ʕa"}
     course: {arabic: "ع", marked: "عَ", arabizi: "3a"}
-- id: "sense:yamin"
+- id: "lexeme:yamin"
   unit: "u04-home"
   pos: NOUN
   gloss: "right (side)"
@@ -879,7 +794,7 @@ lexemes:
   - form: "يَمِين"
     gives: {arabic: "يمين", marked: "يَمين", arabizi: ["yamin", "yameen"], phonemes: "jamiːn"}
     course: {arabic: "يمين", marked: "يَمين", arabizi: "yamin"}
-- id: "sense:shmel"
+- id: "lexeme:shmel"
   unit: "u04-home"
   pos: NOUN
   gloss: "left (side)"
@@ -887,7 +802,7 @@ lexemes:
   - form: "شْم\u065cال"
     gives: {arabic: "شمال", marked: "شْمال", arabizi: ["shmel", "chmel"], phonemes: "ʃmeːl"}
     course: {arabic: "شمال", marked: "شْمال", arabizi: "shmel"}
-- id: "sense:dighri"
+- id: "lexeme:dighri"
   unit: "u04-home"
   pos: ADV
   gloss: "straight ahead"
@@ -895,7 +810,7 @@ lexemes:
   - form: "دِغْرِي"
     gives: {arabic: "دغري", marked: "دِغْري", arabizi: ["deghri", "deghre", "de8ri", "de8re"], phonemes: "diɣri"}
     course: {arabic: "دغري", marked: "دِغْري", arabizi: "dighri"}
-- id: "sense:wa7ad"
+- id: "lexeme:wa7ad"
   unit: "u05-numbers"
   pos: NUM
   gloss: "one"
@@ -903,7 +818,7 @@ lexemes:
   - form: "وَاحَد"
     gives: {arabic: "واحد", marked: "واحَد", arabizi: ["wa7ad"], phonemes: "waːħad"}
     course: {arabic: "واحد", marked: "واحَد", arabizi: "wa7ad"}
-- id: "sense:tnen"
+- id: "lexeme:tnen"
   unit: "u05-numbers"
   pos: NUM
   gloss: "two"
@@ -911,7 +826,7 @@ lexemes:
   - form: "تْن\u065cين"
     gives: {arabic: "تنين", marked: "تْنين", arabizi: ["tnen", "tnein"], phonemes: "tneːn"}
     course: {arabic: "تنين", marked: "تْنين", arabizi: "tnen"}
-- id: "sense:tlete"
+- id: "lexeme:tlete"
   unit: "u05-numbers"
   pos: NUM
   gloss: "three"
@@ -919,7 +834,7 @@ lexemes:
   - form: "تْل\u065cات\u065cة"
     gives: {arabic: "تلاتة", marked: "تْلاتِة", arabizi: ["tlete"], phonemes: "tleːte"}
     course: {arabic: "تلاتة", marked: "تْلاتِة", arabizi: "tlete"}
-- id: "sense:arb3a"
+- id: "lexeme:arb3a"
   unit: "u05-numbers"
   pos: NUM
   gloss: "four"
@@ -927,7 +842,7 @@ lexemes:
   - form: "أَرْبْعَة"
     gives: {arabic: "أربعة", marked: "أَرْبْعَة", arabizi: ["arb3a"], phonemes: "ʔarbʕa"}
     course: {arabic: "أربعة", marked: "أَرْبْعَة", arabizi: "arb3a"}
-- id: "sense:khamse"
+- id: "lexeme:khamse"
   unit: "u05-numbers"
   pos: NUM
   gloss: "five"
@@ -935,7 +850,7 @@ lexemes:
   - form: "خَمْس\u065cة"
     gives: {arabic: "خمسة", marked: "خَمْسِة", arabizi: ["khamse", "5amse"], phonemes: "xamse"}
     course: {arabic: "خمسة", marked: "خَمْسِة", arabizi: "khamse"}
-- id: "sense:sette"
+- id: "lexeme:sette"
   unit: "u05-numbers"
   pos: NUM
   gloss: "six"
@@ -943,7 +858,7 @@ lexemes:
   - form: "سِتّ\u065cة"
     gives: {arabic: "ستة", marked: "سِتِّة", arabizi: ["sette", "sitte"], phonemes: "sitːe"}
     course: {arabic: "ستّة", marked: "سِتِّة", arabizi: "sette"}
-- id: "sense:sab3a"
+- id: "lexeme:sab3a"
   unit: "u05-numbers"
   pos: NUM
   gloss: "seven"
@@ -951,7 +866,7 @@ lexemes:
   - form: "سَبْعَة"
     gives: {arabic: "سبعة", marked: "سَبْعَة", arabizi: ["sab3a"], phonemes: "sabʕa"}
     course: {arabic: "سبعة", marked: "سَبْعَة", arabizi: "sab3a"}
-- id: "sense:tmene"
+- id: "lexeme:tmene"
   unit: "u05-numbers"
   pos: NUM
   gloss: "eight"
@@ -959,7 +874,7 @@ lexemes:
   - form: "تْم\u065cان\u065cة"
     gives: {arabic: "تمانة", marked: "تْمانِة", arabizi: ["tmene"], phonemes: "tmeːne"}
     course: {arabic: "تمانة", marked: "تْمانِة", arabizi: "tmene"}
-- id: "sense:tes3a"
+- id: "lexeme:tes3a"
   unit: "u05-numbers"
   pos: NUM
   gloss: "nine"
@@ -967,7 +882,7 @@ lexemes:
   - form: "تِسْعَة"
     gives: {arabic: "تسعة", marked: "تِسْعَة", arabizi: ["tes3a", "tis3a"], phonemes: "tisʕa"}
     course: {arabic: "تسعة", marked: "تِسْعَة", arabizi: "tes3a"}
-- id: "sense:3ashra"
+- id: "lexeme:3ashra"
   unit: "u05-numbers"
   pos: NUM
   gloss: "ten"
@@ -975,7 +890,7 @@ lexemes:
   - form: "عَشْرَة"
     gives: {arabic: "عشرة", marked: "عَشْرَة", arabizi: ["3ashra", "3achra"], phonemes: "ʕaʃra"}
     course: {arabic: "عشرة", marked: "عَشْرَة", arabizi: "3ashra"}
-- id: "sense:dollar"
+- id: "lexeme:dollar"
   unit: "u05-numbers"
   pos: NOUN
   gloss: "dollar"
@@ -984,7 +899,7 @@ lexemes:
     gives: {arabic: "دولار", marked: "دولّار", arabizi: ["dollar"], phonemes: "doːlːaːr"}
     course: {arabic: "دولار", marked: "دولار", arabizi: "dollar"}
     review: ["doubled in Arabizi, no shadda in the course's marks", "marks: projected دولّار, pinned دولار"]
-- id: "sense:lira"
+- id: "lexeme:lira"
   unit: "u05-numbers"
   pos: NOUN
   gloss: "lira (Lebanese pound)"
@@ -992,7 +907,7 @@ lexemes:
   - form: "لِيرَة"
     gives: {arabic: "ليرة", marked: "ليرَة", arabizi: ["lira", "leera"], phonemes: "liːra"}
     course: {arabic: "ليرة", marked: "ليرَة", arabizi: "lira"}
-- id: "sense:2addesh"
+- id: "lexeme:2addesh"
   unit: "u05-numbers"
   pos: ADV
   gloss: "how much; how many"
@@ -1000,7 +915,7 @@ lexemes:
   - form: "قَدّ\u065cيش"
     gives: {arabic: "قديش", marked: "قَدّيش", arabizi: ["2addesh", "2addech", "2addeish", "2addeich"], phonemes: "ʔadːeːʃ"}
     course: {arabic: "قدّيش", marked: "قَدّيش", arabizi: "2addesh"}
-- id: "sense:masari"
+- id: "lexeme:masari"
   unit: "u05-numbers"
   pos: NOUN
   gloss: "money"
@@ -1008,7 +923,7 @@ lexemes:
   - form: "مَصَارِي"
     gives: {arabic: "مصاري", marked: "مَصاري", arabizi: ["masari", "masare"], phonemes: "masˤaːri"}
     course: {arabic: "مصاري", marked: "مَصاري", arabizi: "masari"}
-- id: "sense:3eshrin"
+- id: "lexeme:3eshrin"
   unit: "u05-numbers"
   pos: NUM
   gloss: "twenty"
@@ -1016,13 +931,13 @@ lexemes:
   - form: "عِشْرِين"
     gives: {arabic: "عشرين", marked: "عِشْرين", arabizi: ["3eshrin", "3eshreen", "3echrin", "3echreen"], phonemes: "ʕiʃriːn"}
     course: {arabic: "عشرين", marked: "عِشْرين", arabizi: "3eshrin"}
-- id: "sense:miyye"
+- id: "lexeme:miyye"
   unit: "u05-numbers"
   pos: NUM
   gloss: "a hundred"
   forms:
   - {course: {arabic: "مية", marked: "مِيِّة", arabizi: "mit"}, review: ["مِيِّة cannot be read as mit"]}
-- id: "sense:alf"
+- id: "lexeme:alf"
   unit: "u05-numbers"
   pos: NUM
   gloss: "a thousand"
@@ -1031,7 +946,7 @@ lexemes:
     gives: {arabic: "ألف", marked: "أَلِف", arabizi: ["alf", "alef"], phonemes: "ʔalif"}
     course: {arabic: "ألف", marked: "أَلِف", arabizi: "alf"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:khamsin"
+- id: "lexeme:khamsin"
   unit: "u05-numbers"
   pos: NUM
   gloss: "fifty"
@@ -1039,7 +954,7 @@ lexemes:
   - form: "خَمْسِين"
     gives: {arabic: "خمسين", marked: "خَمْسين", arabizi: ["khamsin", "khamseen", "5amsin", "5amseen"], phonemes: "xamsiːn"}
     course: {arabic: "خمسين", marked: "خَمْسين", arabizi: "khamsin"}
-- id: "sense:ghali"
+- id: "lexeme:ghali"
   unit: "u05-numbers"
   pos: ADJ
   gloss: "expensive"
@@ -1047,7 +962,7 @@ lexemes:
   - form: "غَالِي"
     gives: {arabic: "غالي", marked: "غالي", arabizi: ["ghali", "ghale", "8ali", "8ale"], phonemes: "ɣaːli"}
     course: {arabic: "غالي", marked: "غالي", arabizi: "ghali"}
-- id: "sense:rkhis"
+- id: "lexeme:rkhis"
   unit: "u05-numbers"
   pos: ADJ
   gloss: "cheap"
@@ -1055,10 +970,7 @@ lexemes:
   - form: "رْخِيص"
     gives: {arabic: "رخيص", marked: "رْخيص", arabizi: ["rkhis", "rkhees", "r5is", "r5ees"], phonemes: "rxiːsˤ"}
     course: {arabic: "رخيص", marked: "رْخيص", arabizi: "rkhis"}
-  - form: "رْخِيص\u065cة"
-    gives: {arabic: "رخيصة", marked: "رْخيصِة", arabizi: ["rkhise", "rkheese", "r5ise", "r5eese"], phonemes: "rxiːsˤe"}
-    course: {arabic: "رخيصة", marked: "رْخيصِة", arabizi: "rkhise"}
-- id: "sense:3mol-ma3rouf"
+- id: "lexeme:3mol-ma3rouf"
   unit: "u05-numbers"
   pos: INTJ
   gloss: "please (to a man)"
@@ -1066,7 +978,7 @@ lexemes:
   - form: "عْم\u065dول مَعْرُوف"
     gives: {arabic: "عمول معروف", marked: "عْمول مَعْروف", arabizi: ["3mol ma3ruf", "3mol ma3rouf"], phonemes: "ʕmoːl maʕruːf"}
     course: {arabic: "عمول معروف", marked: "عْمول مَعْروف", arabizi: "3mol ma3rouf"}
-- id: "sense:7sab"
+- id: "lexeme:7sab"
   unit: "u05-numbers"
   pos: NOUN
   gloss: "bill; check"
@@ -1074,7 +986,7 @@ lexemes:
   - form: "حْسَاب"
     gives: {arabic: "حساب", marked: "حْساب", arabizi: ["7sab"], phonemes: "ħsaːb"}
     course: {arabic: "حساب", marked: "حْساب", arabizi: "7sab"}
-- id: "sense:law-sama7t"
+- id: "lexeme:law-sama7t"
   unit: "u05-numbers"
   pos: INTJ
   gloss: "excuse me; please (to a man)"
@@ -1083,7 +995,7 @@ lexemes:
     gives: {arabic: "لو سمحت", marked: "لَو سَمَحِت", arabizi: ["law sama7t", "law sama7et"], phonemes: "law samaħit"}
     course: {arabic: "لو سمحت", marked: "لَو سَمَحِت", arabizi: "law sama7t"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:3omr"
+- id: "lexeme:3omr"
   unit: "u05-numbers"
   pos: NOUN
   gloss: "age (literally 'life')"
@@ -1092,7 +1004,7 @@ lexemes:
     gives: {arabic: "عمر", marked: "عُمُر", arabizi: ["3omr", "3omor", "3omer", "3umr"], phonemes: "ʕumur"}
     course: {arabic: "عمر", marked: "عُمُر", arabizi: "3omr"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:sene"
+- id: "lexeme:sene"
   unit: "u05-numbers"
   pos: NOUN
   gloss: "year"
@@ -1100,7 +1012,7 @@ lexemes:
   - form: "سِن\u065cة"
     gives: {arabic: "سنة", marked: "سِنِة", arabizi: ["sene", "sine"], phonemes: "sine"}
     course: {arabic: "سنة", marked: "سِنِة", arabizi: "sene"}
-- id: "sense:ra2m"
+- id: "lexeme:ra2m"
   unit: "u05-numbers"
   pos: NOUN
   gloss: "number (phone number)"
@@ -1109,7 +1021,7 @@ lexemes:
     gives: {arabic: "رقم", marked: "رَقِم", arabizi: ["ra2m", "ra2em"], phonemes: "raʔim"}
     course: {arabic: "رقم", marked: "رَقِم", arabizi: "ra2m"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:sob7"
+- id: "lexeme:sob7"
   unit: "u06-day"
   pos: NOUN
   gloss: "morning"
@@ -1118,7 +1030,7 @@ lexemes:
     gives: {arabic: "صبح", marked: "صُبُح", arabizi: ["sob7", "sobo7", "sobe7", "sub7"], phonemes: "sˤubuħ"}
     course: {arabic: "صبح", marked: "صُبُح", arabizi: "sob7"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:fi2"
+- id: "lexeme:fi2"
   unit: "u06-day"
   pos: VERB
   gloss: "wake up"
@@ -1136,9 +1048,9 @@ lexemes:
     gives: {arabic: "بفيق", marked: "بْفيق", arabizi: ["bfi2", "bfee2"], phonemes: "bfiːʔ"}
     course: {arabic: "بفيق", marked: "بْفيق", arabizi: "bfi2"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "impf-1sg", form: "بْفِيق", arabic: "بفيق", arabizi: "bfi2"}
-  - {features: "impf-1sg", form: "بْفِيق", arabic: "بْفيق", arabizi: "bfi2"}
-- id: "sense:bakkir"
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بْفِيق", arabic: "بفيق", arabizi: "bfi2"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بْفِيق", arabic: "بْفيق", arabizi: "bfi2"}
+- id: "lexeme:bakkir"
   unit: "u06-day"
   pos: ADV
   gloss: "early"
@@ -1146,7 +1058,7 @@ lexemes:
   - form: "بَكِّير"
     gives: {arabic: "بكير", marked: "بَكّير", arabizi: ["bakkir", "bakkeer"], phonemes: "bakːiːr"}
     course: {arabic: "بكّير", marked: "بَكّير", arabizi: "bakkir"}
-- id: "sense:ra7"
+- id: "lexeme:ra7"
   unit: "u06-day"
   pos: VERB
   gloss: "go"
@@ -1162,60 +1074,39 @@ lexemes:
   - form: "بْرُوح"
     gives: {arabic: "بروح", marked: "بْروح", arabizi: ["bru7", "brou7"], phonemes: "bruːħ"}
     course: {arabic: "بروح", marked: "بْروح", arabizi: "bru7"}
-  - form: "مْنْرُوح"
-    gives: {arabic: "منروح", marked: "مْنْروح", arabizi: ["mnru7", "mnrou7"], phonemes: "mnruːħ"}
-    course: {arabic: "منروح", marked: "مْنْروح", arabizi: "mnru7"}
-  - form: "بْتْرُوحِي"
-    gives: {arabic: "بتروحي", marked: "بْتْروحي", arabizi: ["btru7i", "btru7e", "btrou7i", "btrou7e"], phonemes: "btruːħi"}
-    course: {arabic: "بتروحي", marked: "بْتْروحي", arabizi: "btru7i"}
-  - form: "نْرُوح"
-    gives: {arabic: "نروح", marked: "نْروح", arabizi: ["nru7", "nrou7"], phonemes: "nruːħ"}
-    course: {arabic: "نروح", marked: "نْروح", arabizi: "nru7"}
-  - form: "بْتْرُوح"
-    gives: {arabic: "بتروح", marked: "بْتْروح", arabizi: ["btru7", "btrou7"], phonemes: "btruːħ"}
-    course: {arabic: "بتروح", marked: "بْتْروح", arabizi: "btru7"}
-  - form: "رُحْت"
-    gives: {arabic: "رحت", marked: "رُحِت", arabizi: ["ro7t", "ro7ot", "ro7et", "ru7t"], phonemes: "ruħit"}
-    course: {arabic: "رحت", marked: "رُحِت", arabizi: "ru7t"}
-    review: ["helping vowel: in the marks, not in Arabizi"]
   - form: "رَاح"
     gives: {arabic: "راح", marked: "راح", arabizi: ["ra7"], phonemes: "raːħ"}
     course: {arabic: "راح", marked: "راح", arabizi: "ra7"}
-  - form: "رَاحِت"
-    gives: {arabic: "راحت", marked: "راحِت", arabizi: ["ra7et", "ra7it"], phonemes: "raːħit"}
-    course: {arabic: "راحت", marked: "راحِت", arabizi: "ra7et"}
-  - form: "رُحْنَا"
-    gives: {arabic: "رحنا", marked: "رُحْنا", arabizi: ["ro7na", "ru7na"], phonemes: "ruħna"}
-    course: {arabic: "رحنا", marked: "رُحْنا", arabizi: "ru7na"}
-  - form: "رُحْتِي"
-    gives: {arabic: "رحتي", marked: "رُحْتي", arabizi: ["ro7ti", "ro7te", "ru7ti", "ru7te"], phonemes: "ruħti"}
-    course: {arabic: "رحتي", marked: "رُحْتي", arabizi: "ru7ti"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "impf-1sg", form: "بْرُوح", arabic: "بروح", arabizi: "bru7"}
-  - {features: "impf-1pl", form: "مْنْرُوح", arabic: "منروح", arabizi: "mnru7"}
-  - {features: "impf-2fs", form: "بْتْرُوحِي", arabic: "بتروحي", arabizi: "btru7i"}
-  - {features: "impf-2pl", form: "بْتْرُوحُوا\u06df", arabic: "بتروحوا", arabizi: "btru7o"}
-  - {features: "impf-1sg", form: "بْرُوح", arabic: "بْروح", arabizi: "bru7"}
-  - {features: "subj-1pl", form: "نْرُوح", arabic: "نروح", arabizi: "nru7"}
-  - {features: "subj-1pl", form: "نْرُوح", arabic: "نْروح", arabizi: "nru7"}
-  - {features: "impf-2ms", form: "بْتْرُوح", arabic: "بتروح", arabizi: "btru7"}
-  - {features: "impf-1pl", form: "مْنْرُوح", arabic: "مْنْروح", arabizi: "mnru7"}
-  - {features: "past-1sg", form: "رُحْت", arabic: "رحت", arabizi: "ru7t"}
-  - {features: "past-3ms", form: "رَاح", arabic: "راح", arabizi: "ra7"}
-  - {features: "past-3fs", form: "رَاحِت", arabic: "راحت", arabizi: "ra7et"}
-  - {features: "past-1pl", form: "رُحْنَا", arabic: "رحنا", arabizi: "ru7na"}
-  - {features: "past-2fs", form: "رُحْتِي", arabic: "رحتي", arabizi: "ru7ti"}
-  - {features: "past-2pl", form: "رُحْتُوا\u06df", arabic: "رحتوا", arabizi: "ru7to"}
-  - {features: "past-1sg", form: "رُحْت", arabic: "رُحِت", arabizi: "ru7t"}
-  - {features: "past-2fs", form: "رُحْتِي", arabic: "رُحْتي", arabizi: "ru7ti"}
-  - {features: "past-3pl", form: "رَاحُوا\u06df", arabic: "راحوا", arabizi: "ra7o"}
-  - {features: "subj-1sg", form: "رُوح", arabic: "روح", arabizi: "ru7"}
-  - {features: "subj-3ms", form: "يْرُوح", arabic: "يروح", arabizi: "yru7"}
-  - {features: "subj-2ms", form: "تْرُوح", arabic: "تروح", arabizi: "tru7"}
-  - {features: "subj-2fs", form: "تْرُوحِي", arabic: "تروحي", arabizi: "tru7i"}
-  - {features: "subj-2fs", form: "تْرُوحِي", arabic: "تْروحي", arabizi: "tru7i"}
-  - {features: "past-2ms", form: "رُحْت", arabic: "رحت", arabizi: "ru7t"}
-- id: "sense:3emel"
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بْرُوح", arabic: "بروح", arabizi: "bru7"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=1", form: "مْنْرُوح", arabic: "منروح", arabizi: "mnru7"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2", form: "بْتْرُوحِي", arabic: "بتروحي", arabizi: "btru7i"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=2", form: "بْتْرُوحُوا\u06df", arabic: "بتروحوا", arabizi: "btru7o"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بْرُوح", arabic: "بْروح", arabizi: "bru7"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=1", form: "نْرُوح", arabic: "نروح", arabizi: "nru7"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=1", form: "نْرُوح", arabic: "نْروح", arabizi: "nru7"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2", form: "بْتْرُوح", arabic: "بتروح", arabizi: "btru7"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=1", form: "مْنْرُوح", arabic: "مْنْروح", arabizi: "mnru7"}
+  - {features: "Aspect=Perf;Number=Sing;Person=1", form: "رُحْت", arabic: "رحت", arabizi: "ru7t"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=3", form: "رَاح", arabic: "راح", arabizi: "ra7"}
+  - {features: "Aspect=Perf;Gender=Fem;Number=Sing;Person=3", form: "رَاحِت", arabic: "راحت", arabizi: "ra7et"}
+  - {features: "Aspect=Perf;Number=Plur;Person=1", form: "رُحْنَا", arabic: "رحنا", arabizi: "ru7na"}
+  - {features: "Aspect=Perf;Gender=Fem;Number=Sing;Person=2", form: "رُحْتِي", arabic: "رحتي", arabizi: "ru7ti"}
+  - {features: "Aspect=Perf;Number=Plur;Person=2", form: "رُحْتُوا\u06df", arabic: "رحتوا", arabizi: "ru7to"}
+  - {features: "Aspect=Perf;Number=Sing;Person=1", form: "رُحْت", arabic: "رُحِت", arabizi: "ru7t"}
+  - {features: "Aspect=Perf;Gender=Fem;Number=Sing;Person=2", form: "رُحْتِي", arabic: "رُحْتي", arabizi: "ru7ti"}
+  - {features: "Aspect=Part;Gender=Masc;Number=Sing", form: "رَايِح", arabic: "رايح", arabizi: "raye7"}
+  - {features: "Aspect=Part;Gender=Fem;Number=Sing", form: "رَايْحَة", arabic: "رايحة", arabizi: "ray7a"}
+  - {features: "Aspect=Part;Number=Plur", form: "رَايْحِين", arabic: "رايحين", arabizi: "ray7in"}
+  - {features: "Aspect=Part;Gender=Fem;Number=Sing", form: "رَايْحَة", arabic: "رايْحَة", arabizi: "ray7a"}
+  - {features: "Aspect=Perf;Number=Plur;Person=3", form: "رَاحُوا\u06df", arabic: "راحوا", arabizi: "ra7o"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "رُوح", arabic: "روح", arabizi: "ru7"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=3", form: "يْرُوح", arabic: "يروح", arabizi: "yru7"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=2", form: "تْرُوح", arabic: "تروح", arabizi: "tru7"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=2", form: "تْرُوحِي", arabic: "تروحي", arabizi: "tru7i"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=2", form: "تْرُوحِي", arabic: "تْروحي", arabizi: "tru7i"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=2", form: "رُحْت", arabic: "رحت", arabizi: "ru7t"}
+- id: "lexeme:3emel"
   unit: "u06-day"
   pos: VERB
   gloss: "do; make"
@@ -1232,42 +1123,26 @@ lexemes:
   - form: "بَعْمِل"
     gives: {arabic: "بعمل", marked: "بَعْمِل", arabizi: ["ba3mel", "ba3mil"], phonemes: "baʕmil"}
     course: {arabic: "بعمل", marked: "بَعْمِل", arabizi: "ba3mel"}
-  - form: "بْتَعْمِل"
-    gives: {arabic: "بتعمل", marked: "بْتَعْمِل", arabizi: ["bta3mel", "bta3mil"], phonemes: "btaʕmil"}
-    course: {arabic: "بتعمل", marked: "بْتَعْمِل", arabizi: "bta3mel"}
-  - form: "بْتَعْمْلِي"
-    gives: {arabic: "بتعملي", marked: "بْتَعْمْلي", arabizi: ["bta3mli", "bta3mle"], phonemes: "btaʕmli"}
-    course: {arabic: "بتعملي", marked: "بْتَعْمْلي", arabizi: "bta3mli"}
-  - form: "تَعْمِل"
-    gives: {arabic: "تعمل", marked: "تَعْمِل", arabizi: ["ta3mel", "ta3mil"], phonemes: "taʕmil"}
-    course: {arabic: "تعمل", marked: "تَعْمِل", arabizi: "ta3mel"}
-  - form: "عْمِلْت"
-    gives: {arabic: "عملت", marked: "عْمِلِت", arabizi: ["3melt", "3melet", "3milt", "3milet"], phonemes: "ʕmilit"}
-    course: {arabic: "عملت", marked: "عْمِلِت", arabizi: "3melt"}
-    review: ["helping vowel: in the marks, not in Arabizi"]
-  - form: "مْنَعْمِل"
-    gives: {arabic: "منعمل", marked: "مْنَعْمِل", arabizi: ["mna3mel", "mna3mil"], phonemes: "mnaʕmil"}
-    course: {arabic: "منعمل", marked: "مْنَعْمِل", arabizi: "mna3mel"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "impf-1sg", form: "بَعْمِل", arabic: "بعمل", arabizi: "ba3mel"}
-  - {features: "impf-2ms", form: "بْتَعْمِل", arabic: "بتعمل", arabizi: "bta3mel"}
-  - {features: "impf-2fs", form: "بْتَعْمْلِي", arabic: "بتعملي", arabizi: "bta3mli"}
-  - {features: "impf-2pl", form: "بْتَعْمْلُوا\u06df", arabic: "بتعملوا", arabizi: "bta3mlo"}
-  - {features: "impf-2ms", form: "بْتَعْمِل", arabic: "بْتَعْمِل", arabizi: "bta3mel"}
-  - {features: "subj-2ms", form: "تَعْمِل", arabic: "تعمل", arabizi: "ta3mel"}
-  - {features: "past-2ms", form: "عْمِلْت", arabic: "عملت", arabizi: "3melt"}
-  - {features: "past-2ms", form: "عْمِلْت", arabic: "عْمِلِت", arabizi: "3melt"}
-  - {features: "impf-1pl", form: "مْنَعْمِل", arabic: "منعمل", arabizi: "mna3mel"}
-  - {features: "impf-2fs", form: "بْتَعْمْلِي", arabic: "بْتَعْمْلي", arabizi: "bta3mli"}
-  - {features: "past-3pl", form: "عِمْلُوا\u06df", arabic: "عملوا", arabizi: "3emlo"}
-  - {features: "subj-3fs", form: "تَعْمِل", arabic: "تعمل", arabizi: "ta3mel"}
-  - {features: "subj-2fs", form: "تَعْمْلِي", arabic: "تعملي", arabizi: "ta3mli"}
-  - {features: "subj-2pl", form: "تَعْمْلُوا\u06df", arabic: "تعملوا", arabizi: "ta3mlo"}
-  - {features: "subj-2ms", form: "تَعْمِل", arabic: "تَعْمِل", arabizi: "ta3mel"}
-  - {features: "subj-2pl", form: "تَعْمْلُوا\u06df", arabic: "تَعْمْلوا", arabizi: "ta3mlo"}
-  - {features: "subj-1pl", form: "نَعْمِل", arabic: "نَعْمِل", arabizi: "na3mel"}
-  - {features: "subj-2fs", form: "تَعْمْلِي", arabic: "تَعْمْلي", arabizi: "ta3mli"}
-- id: "sense:eshteghel"
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بَعْمِل", arabic: "بعمل", arabizi: "ba3mel"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2", form: "بْتَعْمِل", arabic: "بتعمل", arabizi: "bta3mel"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2", form: "بْتَعْمْلِي", arabic: "بتعملي", arabizi: "bta3mli"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=2", form: "بْتَعْمْلُوا\u06df", arabic: "بتعملوا", arabizi: "bta3mlo"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2", form: "بْتَعْمِل", arabic: "بْتَعْمِل", arabizi: "bta3mel"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=2", form: "تَعْمِل", arabic: "تعمل", arabizi: "ta3mel"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=2", form: "عْمِلْت", arabic: "عملت", arabizi: "3melt"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=2", form: "عْمِلْت", arabic: "عْمِلِت", arabizi: "3melt"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=1", form: "مْنَعْمِل", arabic: "منعمل", arabizi: "mna3mel"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2", form: "بْتَعْمْلِي", arabic: "بْتَعْمْلي", arabizi: "bta3mli"}
+  - {features: "Aspect=Perf;Number=Plur;Person=3", form: "عِمْلُوا\u06df", arabic: "عملوا", arabizi: "3emlo"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=3", form: "تَعْمِل", arabic: "تعمل", arabizi: "ta3mel"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=2", form: "تَعْمْلِي", arabic: "تعملي", arabizi: "ta3mli"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=2", form: "تَعْمْلُوا\u06df", arabic: "تعملوا", arabizi: "ta3mlo"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=2", form: "تَعْمِل", arabic: "تَعْمِل", arabizi: "ta3mel"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=2", form: "تَعْمْلُوا\u06df", arabic: "تَعْمْلوا", arabizi: "ta3mlo"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=1", form: "نَعْمِل", arabic: "نَعْمِل", arabizi: "na3mel"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=2", form: "تَعْمْلِي", arabic: "تَعْمْلي", arabizi: "ta3mli"}
+- id: "lexeme:eshteghel"
   unit: "u06-day"
   pos: VERB
   gloss: "work"
@@ -1282,28 +1157,22 @@ lexemes:
   - form: "بِشْتِغِل"
     gives: {arabic: "بشتغل", marked: "بِشْتِغِل", arabizi: ["beshteghel", "beshteghil", "beshte8el", "beshte8il"], phonemes: "biʃtiɣil"}
     course: {arabic: "بشتغل", marked: "بِشْتِغِل", arabizi: "bishteghel"}
-  - form: "بْتِشْتِغِل"
-    gives: {arabic: "بتشتغل", marked: "بْتِشْتِغِل", arabizi: ["bteshteghel", "bteshteghil", "bteshte8el", "bteshte8il"], phonemes: "btiʃtiɣil"}
-    course: {arabic: "بتشتغل", marked: "بْتِشْتِغِل", arabizi: "btishteghel"}
-  - form: "بْيِشْتِغِل"
-    gives: {arabic: "بيشتغل", marked: "بْيِشْتِغِل", arabizi: ["byeshteghel", "byeshteghil", "byeshte8el", "byeshte8il"], phonemes: "bjiʃtiɣil"}
-    course: {arabic: "بيشتغل", marked: "بْيِشْتِغِل", arabizi: "byishteghel"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "impf-1sg", form: "بِشْتِغِل", arabic: "بشتغل", arabizi: "bishteghel"}
-  - {features: "impf-2ms", form: "بْتِشْتِغِل", arabic: "بتشتغل", arabizi: "btishteghel"}
-  - {features: "impf-3ms", form: "بْيِشْتِغِل", arabic: "بيشتغل", arabizi: "byishteghel"}
-  - {features: "impf-3fs", form: "بْتِشْتِغِل", arabic: "بتشتغل", arabizi: "btishteghel"}
-  - {features: "impf-2fs", form: "بْتِشْتِغْلِي", arabic: "بتشتغلي", arabizi: "btishteghli"}
-  - {features: "impf-1sg", form: "بِشْتِغِل", arabic: "بِشْتِغِل", arabizi: "bishteghel"}
-  - {features: "impf-3pl", form: "بْيِشْتِغْلُوا\u06df", arabic: "بيشتغلوا", arabizi: "byishteghlo"}
-  - {features: "impf-3pl", form: "بْيِشْتِغْلُوا\u06df", arabic: "بْيِشْتِغْلوا", arabizi: "byishteghlo"}
-  - {features: "subj-1sg", form: "اِشْتِغِل", arabic: "اشتغل", arabizi: "eshteghel"}
-  - {features: "subj-3ms", form: "يِشْتِغِل", arabic: "يشتغل", arabizi: "yishteghel"}
-  - {features: "subj-1sg", form: "اِشْتِغِل", arabic: "اِشْتِغِل", arabizi: "eshteghel"}
-  - {features: "subj-2ms", form: "تِشْتِغِل", arabic: "تشتغل", arabizi: "tishteghel"}
-  - {features: "subj-2fs", form: "تِشْتِغْلِي", arabic: "تشتغلي", arabizi: "tishteghli"}
-  - {features: "impf-2ms", form: "بْتِشْتِغِل", arabic: "بْتِشْتِغِل", arabizi: "btishteghel"}
-- id: "sense:2ara"
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بِشْتِغِل", arabic: "بشتغل", arabizi: "bishteghel"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2", form: "بْتِشْتِغِل", arabic: "بتشتغل", arabizi: "btishteghel"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=3", form: "بْيِشْتِغِل", arabic: "بيشتغل", arabizi: "byishteghel"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=3", form: "بْتِشْتِغِل", arabic: "بتشتغل", arabizi: "btishteghel"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2", form: "بْتِشْتِغْلِي", arabic: "بتشتغلي", arabizi: "btishteghli"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بِشْتِغِل", arabic: "بِشْتِغِل", arabizi: "bishteghel"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=3", form: "بْيِشْتِغْلُوا\u06df", arabic: "بيشتغلوا", arabizi: "byishteghlo"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=3", form: "بْيِشْتِغْلُوا\u06df", arabic: "بْيِشْتِغْلوا", arabizi: "byishteghlo"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "اِشْتِغِل", arabic: "اشتغل", arabizi: "eshteghel"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=3", form: "يِشْتِغِل", arabic: "يشتغل", arabizi: "yishteghel"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "اِشْتِغِل", arabic: "اِشْتِغِل", arabizi: "eshteghel"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=2", form: "تِشْتِغِل", arabic: "تشتغل", arabizi: "tishteghel"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=2", form: "تِشْتِغْلِي", arabic: "تشتغلي", arabizi: "tishteghli"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2", form: "بْتِشْتِغِل", arabic: "بْتِشْتِغِل", arabizi: "btishteghel"}
+- id: "lexeme:2ara"
   unit: "u06-day"
   pos: VERB
   gloss: "read"
@@ -1322,22 +1191,13 @@ lexemes:
     gives: {arabic: "بقرا", marked: "بِقْرا", arabizi: ["be2ra", "bi2ra"], phonemes: "biʔra"}
     course: {arabic: "بقرا", marked: "بِقْرا", arabizi: "b2ra"}
     review: ["vowel: marked i, none in Arabizi", "arabizi: b2ra is not among the projected spellings (be2ra first)"]
-  - form: "بْتِقْرَا"
-    gives: {arabic: "بتقرا", marked: "بْتِقْرا", arabizi: ["bte2ra", "bti2ra"], phonemes: "btiʔra"}
-    course: {arabic: "بتقرا", marked: "بْتِقْرا", arabizi: "bti2ra"}
-  - form: "بْيِقْرَا"
-    gives: {arabic: "بيقرا", marked: "بْيِقْرا", arabizi: ["bye2ra", "byi2ra"], phonemes: "bjiʔra"}
-    course: {arabic: "بيقرا", marked: "بْيِقْرا", arabizi: "byi2ra"}
-  - form: "اِقْرَا"
-    gives: {arabic: "اقرا", marked: "اِقْرا", arabizi: ["e2ra", "i2ra"], phonemes: "iʔra"}
-    course: {arabic: "اقرا", marked: "اِقْرا", arabizi: "e2ra"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "impf-2ms", form: "بْتِقْرَا", arabic: "بتقرا", arabizi: "bti2ra"}
-  - {features: "impf-1sg", form: "بِقْرَا", arabic: "بقرا", arabizi: "b2ra"}
-  - {features: "impf-3ms", form: "بْيِقْرَا", arabic: "بيقرا", arabizi: "byi2ra"}
-  - {features: "impf-1sg", form: "بِقْرَا", arabic: "بِقْرا", arabizi: "b2ra"}
-  - {features: "subj-1sg", form: "اِقْرَا", arabic: "اقرا", arabizi: "e2ra"}
-- id: "sense:nem"
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2", form: "بْتِقْرَا", arabic: "بتقرا", arabizi: "bti2ra"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بِقْرَا", arabic: "بقرا", arabizi: "b2ra"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=3", form: "بْيِقْرَا", arabic: "بيقرا", arabizi: "byi2ra"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بِقْرَا", arabic: "بِقْرا", arabizi: "b2ra"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "اِقْرَا", arabic: "اقرا", arabizi: "e2ra"}
+- id: "lexeme:nem"
   unit: "u06-day"
   pos: VERB
   gloss: "sleep; go to bed"
@@ -1355,16 +1215,13 @@ lexemes:
   - form: "بْن\u065cام"
     gives: {arabic: "بنام", marked: "بْنام", arabizi: ["bnem"], phonemes: "bneːm"}
     course: {arabic: "بنام", marked: "بْنام", arabizi: "bnem"}
-  - form: "بْتْن\u065cام"
-    gives: {arabic: "بتنام", marked: "بْتْنام", arabizi: ["btnem"], phonemes: "btneːm"}
-    course: {arabic: "بتنام", marked: "بْتْنام", arabizi: "btnem"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "impf-3fs", form: "بْتْن\u065cام", arabic: "بتنام", arabizi: "btnem"}
-  - {features: "impf-1sg+w", form: "و+بْن\u065cام", arabic: "وبْنام", arabizi: "w bnem"}
-  - {features: "impf-1sg", form: "بْن\u065cام", arabic: "بنام", arabizi: "bnem"}
-  - {features: "subj-1sg", form: "ن\u065cام", arabic: "نام", arabizi: "nem"}
-  - {features: "subj-2fs", form: "تْن\u065cامِي", arabic: "تنامي", arabizi: "tnemi"}
-- id: "sense:masa"
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=3", form: "بْتْن\u065cام", arabic: "بتنام", arabizi: "btnem"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1+w", form: "و+بْن\u065cام", arabic: "وبْنام", arabizi: "w bnem"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بْن\u065cام", arabic: "بنام", arabizi: "bnem"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "ن\u065cام", arabic: "نام", arabizi: "nem"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=2", form: "تْن\u065cامِي", arabic: "تنامي", arabizi: "tnemi"}
+- id: "lexeme:masa"
   unit: "u06-day"
   pos: NOUN
   gloss: "evening"
@@ -1372,7 +1229,7 @@ lexemes:
   - form: "مَسَا"
     gives: {arabic: "مسا", marked: "مَسا", arabizi: ["masa"], phonemes: "masa"}
     course: {arabic: "مسا", marked: "مَسا", arabizi: "masa"}
-- id: "sense:yom"
+- id: "lexeme:yom"
   unit: "u06-day"
   pos: NOUN
   gloss: "day"
@@ -1380,7 +1237,7 @@ lexemes:
   - form: "ي\u065dوم"
     gives: {arabic: "يوم", marked: "يوم", arabizi: ["yom"], phonemes: "joːm"}
     course: {arabic: "يوم", marked: "يوم", arabizi: "yom"}
-- id: "sense:kell"
+- id: "lexeme:kell"
   unit: "u06-day"
   pos: DET
   gloss: "every; all"
@@ -1388,7 +1245,7 @@ lexemes:
   - form: "كِلّ"
     gives: {arabic: "كل", marked: "كِلّ", arabizi: ["kell", "kill"], phonemes: "kilː"}
     course: {arabic: "كلّ", marked: "كِلّ", arabizi: "kell"}
-- id: "sense:dayman"
+- id: "lexeme:dayman"
   unit: "u06-day"
   pos: ADV
   gloss: "always"
@@ -1396,7 +1253,7 @@ lexemes:
   - form: "دَايْمًا"
     gives: {arabic: "دايما", marked: "دايْماً", arabizi: ["dayman"], phonemes: "daːjman"}
     course: {arabic: "دايما", marked: "دايْماً", arabizi: "dayman"}
-- id: "sense:ba3dein"
+- id: "lexeme:ba3dein"
   unit: "u06-day"
   pos: ADV
   gloss: "then; later; afterwards"
@@ -1404,7 +1261,7 @@ lexemes:
   - form: "بَعْد\u065cين"
     gives: {arabic: "بعدين", marked: "بَعْدين", arabizi: ["ba3den", "ba3dein"], phonemes: "baʕdeːn"}
     course: {arabic: "بعدين", marked: "بَعْدين", arabizi: "ba3dein"}
-- id: "sense:hala2"
+- id: "lexeme:hala2"
   unit: "u06-day"
   pos: ADV
   gloss: "now"
@@ -1413,7 +1270,7 @@ lexemes:
     gives: {arabic: "هلق", marked: "هَلَّق", arabizi: ["halla2"], phonemes: "halːaʔ"}
     course: {arabic: "هلّق", marked: "هَلَّق", arabizi: "hala2"}
     review: ["doubled in the marks, written once in Arabizi", "arabizi: hala2 is not among the projected spellings (halla2 first)"]
-- id: "sense:7aka"
+- id: "lexeme:7aka"
   unit: "u06-day"
   pos: VERB
   gloss: "speak; talk"
@@ -1431,20 +1288,16 @@ lexemes:
     gives: {arabic: "بحكي", marked: "بِحْكي", arabizi: ["be7ki", "be7ke", "bi7ki", "bi7ke"], phonemes: "biħki"}
     course: {arabic: "بحكي", marked: "بِحْكي", arabizi: "b7ki"}
     review: ["vowel: marked i, none in Arabizi", "arabizi: b7ki is not among the projected spellings (be7ki first)"]
-  - form: "بْتِحْكِي"
-    gives: {arabic: "بتحكي", marked: "بْتِحْكي", arabizi: ["bte7ki", "bte7ke", "bti7ki", "bti7ke"], phonemes: "btiħki"}
-    course: {arabic: "بتحكي", marked: "بْتِحْكي", arabizi: "bt7ki"}
-    review: ["vowel: marked i, none in Arabizi", "arabizi: bt7ki is not among the projected spellings (bte7ki first)"]
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "impf-1sg", form: "بِحْكِي", arabic: "بحكي", arabizi: "b7ki"}
-  - {features: "impf-2ms", form: "بْتِحْكِي", arabic: "بتحكي", arabizi: "bt7ki"}
-  - {features: "impf-2pl", form: "بْتِحْكُوا\u06df", arabic: "بتحكوا", arabizi: "bti7ko"}
-  - {features: "impf-3pl", form: "بْيِحْكُوا\u06df", arabic: "بيحكوا", arabizi: "byi7ko"}
-  - {features: "impf-3fs", form: "بْتِحْكِي", arabic: "بْتِحْكي", arabizi: "bt7ki"}
-  - {features: "subj-3fs", form: "تِحْكِي", arabic: "تحكي", arabizi: "t7ki"}
-  - {features: "subj-2pl", form: "تِحْكُوا\u06df", arabic: "تحكوا", arabizi: "ti7ko"}
-  - {features: "subj-3pl", form: "يِحْكُوا\u06df", arabic: "يحكوا", arabizi: "yi7ko"}
-- id: "sense:3arabe"
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بِحْكِي", arabic: "بحكي", arabizi: "b7ki"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2", form: "بْتِحْكِي", arabic: "بتحكي", arabizi: "bt7ki"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=2", form: "بْتِحْكُوا\u06df", arabic: "بتحكوا", arabizi: "bti7ko"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=3", form: "بْيِحْكُوا\u06df", arabic: "بيحكوا", arabizi: "byi7ko"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=3", form: "بْتِحْكِي", arabic: "بْتِحْكي", arabizi: "bt7ki"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=3", form: "تِحْكِي", arabic: "تحكي", arabizi: "t7ki"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=2", form: "تِحْكُوا\u06df", arabic: "تحكوا", arabizi: "ti7ko"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=3", form: "يِحْكُوا\u06df", arabic: "يحكوا", arabizi: "yi7ko"}
+- id: "lexeme:3arabe"
   unit: "u06-day"
   pos: NOUN
   gloss: "Arabic"
@@ -1452,7 +1305,7 @@ lexemes:
   - form: "عَرَبِي"
     gives: {arabic: "عربي", marked: "عَرَبي", arabizi: ["3arabi", "3arabe"], phonemes: "ʕarabi"}
     course: {arabic: "عربي", marked: "عَرَبي", arabizi: "3arabe"}
-- id: "sense:englize"
+- id: "lexeme:englize"
   unit: "u06-day"
   pos: NOUN
   gloss: "English"
@@ -1460,7 +1313,7 @@ lexemes:
   - form: "إِنْگْلِيزِي"
     gives: {arabic: "إنكليزي", marked: "إِنْكْليزي", arabizi: ["englizi", "englize", "engleezi", "engleeze"], phonemes: "ʔingliːzi"}
     course: {arabic: "إنكليزي", marked: "إِنْكْليزي", arabizi: "englize"}
-- id: "sense:enti"
+- id: "lexeme:enti"
   unit: "u06-day"
   pos: PRON
   gloss: "you (to a woman)"
@@ -1468,7 +1321,7 @@ lexemes:
   - form: "إِنْتِي"
     gives: {arabic: "إنتي", marked: "إِنْتي", arabizi: ["enti", "ente", "inti", "inte"], phonemes: "ʔinti"}
     course: {arabic: "إنتي", marked: "إِنْتي", arabizi: "enti"}
-- id: "sense:m2akhkhar"
+- id: "lexeme:m2akhkhar"
   unit: "u06-day"
   pos: ADJ
   gloss: "late"
@@ -1476,10 +1329,7 @@ lexemes:
   - form: "مْأَخَّر"
     gives: {arabic: "مأخر", marked: "مْأَخَّر", arabizi: ["m2akhkhar", "m2a55ar"], phonemes: "mʔaxːar"}
     course: {arabic: "مأخّر", marked: "مْأَخَّر", arabizi: "m2akhkhar"}
-  - form: "مْأَخّْرَة"
-    gives: {arabic: "مأخرة", marked: "مْأَخّْرَة", arabizi: ["m2akhkhra", "m2a55ra"], phonemes: "mʔaxːra"}
-    course: {arabic: "مأخّرة", marked: "مْأَخّْرَة", arabizi: "m2akhkhra"}
-- id: "sense:ento"
+- id: "lexeme:ento"
   unit: "u06-day"
   pos: PRON
   gloss: "you (to several people)"
@@ -1487,7 +1337,7 @@ lexemes:
   - form: "إِنْتُو"
     gives: {arabic: "إنتو", marked: "إِنْتو", arabizi: ["ento", "entu", "into", "intu"], phonemes: "ʔintu"}
     course: {arabic: "إنتو", marked: "إِنْتو", arabizi: "ento"}
-- id: "sense:7abb"
+- id: "lexeme:7abb"
   unit: "u07-likes"
   pos: VERB
   gloss: "like; love"
@@ -1503,30 +1353,24 @@ lexemes:
   - form: "بْحِبّ"
     gives: {arabic: "بحب", marked: "بْحِبّ", arabizi: ["b7ebb", "b7ibb"], phonemes: "bħibː"}
     course: {arabic: "بحبّ", marked: "بْحِبّ", arabizi: "b7ebb"}
-  - form: "بْتْحِبّ"
-    gives: {arabic: "بتحب", marked: "بْتْحِبّ", arabizi: ["bt7ebb", "bt7ibb"], phonemes: "btħibː"}
-    course: {arabic: "بتحبّ", marked: "بْتْحِبّ", arabizi: "bt7ebb"}
-  - form: "مْنْحِبّ"
-    gives: {arabic: "منحب", marked: "مْنْحِبّ", arabizi: ["mn7ebb", "mn7ibb"], phonemes: "mnħibː"}
-    course: {arabic: "منحبّ", marked: "مْنْحِبّ", arabizi: "mn7ebb"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "impf-1sg", form: "بْحِبّ", arabic: "بحبّ", arabizi: "b7ebb"}
-  - {features: "impf-2ms", form: "بْتْحِبّ", arabic: "بتحبّ", arabizi: "bt7ebb"}
-  - {features: "impf-1sg+w", form: "و+بْحِبّ", arabic: "وبحبّ", arabizi: "w b7ebb"}
-  - {features: "impf-2fs", form: "بْتْحِبِّي", arabic: "بتحبّي", arabizi: "bt7ebbi"}
-  - {features: "impf-2pl", form: "بْتْحِبُّوا\u06df", arabic: "بتحبّوا", arabizi: "bt7ebbo"}
-  - {features: "impf-2ms", form: "بْتْحِبّ", arabic: "بْتْحِبّ", arabizi: "bt7ebb"}
-  - {features: "impf-1sg", form: "بْحِبّ", arabic: "بْحِبّ", arabizi: "b7ebb"}
-  - {features: "impf-2fs", form: "بْتْحِبِّي", arabic: "بْتْحِبّي", arabizi: "bt7ebbi"}
-  - {features: "impf-1sg+w", form: "و+بْحِبّ", arabic: "وبْحِبّ", arabizi: "w b7ebb"}
-  - {features: "impf-1pl", form: "مْنْحِبّ", arabic: "منحبّ", arabizi: "mn7ebb"}
-  - {features: "impf-3pl", form: "بْيْحِبُّوا\u06df", arabic: "بيحبّوا", arabizi: "by7ebbo"}
-  - {features: "impf-3pl", form: "بْيْحِبُّوا\u06df", arabic: "بْيْحِبّوا", arabizi: "by7ebbo"}
-  - {features: "impf-1sg+obj-2ms", form: "بْحِبَّك", arabic: "بحبّك", arabizi: "b7ebbak"}
-  - {features: "impf-1sg+obj-2fs", form: "بْحِبِّك", arabic: "بحبّك", arabizi: "b7ebbik"}
-  - {features: "impf-1sg+obj-2ms", form: "بْحِبَّك", arabic: "بْحِبَّك", arabizi: "b7ebbak"}
-  - {features: "impf-1sg+obj-2fs", form: "بْحِبِّك", arabic: "بْحِبِّك", arabizi: "b7ebbik"}
-- id: "sense:ba7r"
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بْحِبّ", arabic: "بحبّ", arabizi: "b7ebb"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2", form: "بْتْحِبّ", arabic: "بتحبّ", arabizi: "bt7ebb"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1+w", form: "و+بْحِبّ", arabic: "وبحبّ", arabizi: "w b7ebb"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2", form: "بْتْحِبِّي", arabic: "بتحبّي", arabizi: "bt7ebbi"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=2", form: "بْتْحِبُّوا\u06df", arabic: "بتحبّوا", arabizi: "bt7ebbo"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2", form: "بْتْحِبّ", arabic: "بْتْحِبّ", arabizi: "bt7ebb"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بْحِبّ", arabic: "بْحِبّ", arabizi: "b7ebb"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2", form: "بْتْحِبِّي", arabic: "بْتْحِبّي", arabizi: "bt7ebbi"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1+w", form: "و+بْحِبّ", arabic: "وبْحِبّ", arabizi: "w b7ebb"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=1", form: "مْنْحِبّ", arabic: "منحبّ", arabizi: "mn7ebb"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=3", form: "بْيْحِبُّوا\u06df", arabic: "بيحبّوا", arabizi: "by7ebbo"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=3", form: "بْيْحِبُّوا\u06df", arabic: "بْيْحِبّوا", arabizi: "by7ebbo"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1+obj-2ms", form: "بْحِبَّك", arabic: "بحبّك", arabizi: "b7ebbak"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1+obj-2fs", form: "بْحِبِّك", arabic: "بحبّك", arabizi: "b7ebbik"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1+obj-2ms", form: "بْحِبَّك", arabic: "بْحِبَّك", arabizi: "b7ebbak"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1+obj-2fs", form: "بْحِبِّك", arabic: "بْحِبِّك", arabizi: "b7ebbik"}
+- id: "lexeme:ba7r"
   unit: "u07-likes"
   pos: NOUN
   gloss: "sea; the beach"
@@ -1535,7 +1379,7 @@ lexemes:
     gives: {arabic: "بحر", marked: "بَحِر", arabizi: ["ba7r", "ba7er"], phonemes: "baħir"}
     course: {arabic: "بحر", marked: "بَحِر", arabizi: "ba7r"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:jabal"
+- id: "lexeme:jabal"
   unit: "u07-likes"
   pos: NOUN
   gloss: "mountain; the mountains"
@@ -1543,7 +1387,7 @@ lexemes:
   - form: "جَبَل"
     gives: {arabic: "جبل", marked: "جَبَل", arabizi: ["jabal"], phonemes: "ʒabal"}
     course: {arabic: "جبل", marked: "جَبَل", arabizi: "jabal"}
-- id: "sense:aw"
+- id: "lexeme:aw"
   unit: "u07-likes"
   pos: CCONJ
   gloss: "or"
@@ -1551,7 +1395,7 @@ lexemes:
   - form: "أَو"
     gives: {arabic: "أو", marked: "أَو", arabizi: ["aw"], phonemes: "ʔaw"}
     course: {arabic: "أو", marked: "أَو", arabizi: "aw"}
-- id: "sense:aktar"
+- id: "lexeme:aktar"
   unit: "u07-likes"
   pos: ADV
   gloss: "more; most; better"
@@ -1559,7 +1403,7 @@ lexemes:
   - form: "أَكْتَر"
     gives: {arabic: "أكتر", marked: "أَكْتَر", arabizi: ["aktar"], phonemes: "ʔaktar"}
     course: {arabic: "أكتر", marked: "أَكْتَر", arabizi: "aktar"}
-- id: "sense:abadan"
+- id: "lexeme:abadan"
   unit: "u07-likes"
   pos: ADV
   gloss: "(not) at all; never"
@@ -1567,7 +1411,7 @@ lexemes:
   - form: "أَبَدًا"
     gives: {arabic: "أبدا", marked: "أَبَداً", arabizi: ["abadan"], phonemes: "ʔabadan"}
     course: {arabic: "أبدا", marked: "أَبَداً", arabizi: "abadan"}
-- id: "sense:musi2a"
+- id: "lexeme:musi2a"
   unit: "u07-likes"
   pos: NOUN
   gloss: "music"
@@ -1575,7 +1419,7 @@ lexemes:
   - form: "مُوسِيقَى"
     gives: {arabic: "موسيقى", marked: "موسيقى", arabizi: ["musi2a", "musee2a", "mousi2a", "mousee2a"], phonemes: "muːsiːʔa"}
     course: {arabic: "موسيقى", marked: "موسيقى", arabizi: "musi2a"}
-- id: "sense:sama3"
+- id: "lexeme:sama3"
   unit: "u07-likes"
   pos: VERB
   gloss: "listen; hear"
@@ -1592,20 +1436,17 @@ lexemes:
   - form: "بِسْمَع"
     gives: {arabic: "بسمع", marked: "بِسْمَع", arabizi: ["besma3", "bisma3"], phonemes: "bismaʕ"}
     course: {arabic: "بسمع", marked: "بِسْمَع", arabizi: "bisma3"}
-  - form: "اِسْمَع"
-    gives: {arabic: "اسمع", marked: "اِسْمَع", arabizi: ["esma3", "isma3"], phonemes: "ismaʕ"}
-    course: {arabic: "اسمع", marked: "اِسْمَع", arabizi: "esma3"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "impf-1sg", form: "بِسْمَع", arabic: "بسمع", arabizi: "bisma3"}
-  - {features: "subj-1sg", form: "اِسْمَع", arabic: "اسمع", arabizi: "esma3"}
-  - {features: "impf-1sg", form: "بِسْمَع", arabic: "بِسْمَع", arabizi: "bisma3"}
-  - {features: "subj-1sg", form: "اِسْمَع", arabic: "اِسْمَع", arabizi: "esma3"}
-  - {features: "subj-1pl+w", form: "و+نِسْمَع", arabic: "ونِسْمَع", arabizi: "w nisma3"}
-  - {features: "impf-1pl", form: "مْنِسْمَع", arabic: "مْنِسْمَع", arabizi: "mnisma3"}
-  - {features: "past-2ms+obj-1sg", form: "سْمِعِتْنِي", arabic: "سمعتني", arabizi: "sme3tni"}
-  - {features: "past-2fs+obj-1sg", form: "سْمِعْتِينِي", arabic: "سمعتيني", arabizi: "sme3tini"}
-  - {features: "past-2ms+obj-1sg", form: "سْمِعِتْنِي", arabic: "سْمِعِتْني", arabizi: "sme3tni"}
-- id: "sense:ktab"
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بِسْمَع", arabic: "بسمع", arabizi: "bisma3"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "اِسْمَع", arabic: "اسمع", arabizi: "esma3"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بِسْمَع", arabic: "بِسْمَع", arabizi: "bisma3"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "اِسْمَع", arabic: "اِسْمَع", arabizi: "esma3"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=1+w", form: "و+نِسْمَع", arabic: "ونِسْمَع", arabizi: "w nisma3"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=1", form: "مْنِسْمَع", arabic: "مْنِسْمَع", arabizi: "mnisma3"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=2+obj-1sg", form: "سْمِعِتْنِي", arabic: "سمعتني", arabizi: "sme3tni"}
+  - {features: "Aspect=Perf;Gender=Fem;Number=Sing;Person=2+obj-1sg", form: "سْمِعْتِينِي", arabic: "سمعتيني", arabizi: "sme3tini"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=2+obj-1sg", form: "سْمِعِتْنِي", arabic: "سْمِعِتْني", arabizi: "sme3tni"}
+- id: "lexeme:ktab"
   unit: "u07-likes"
   pos: NOUN
   gloss: "book"
@@ -1613,7 +1454,7 @@ lexemes:
   - form: "كْتَاب"
     gives: {arabic: "كتاب", marked: "كْتاب", arabizi: ["ktab"], phonemes: "ktaːb"}
     course: {arabic: "كتاب", marked: "كْتاب", arabizi: "ktab"}
-- id: "sense:shi"
+- id: "lexeme:shi"
   unit: "u07-likes"
   pos: PRON
   gloss: "something; anything"
@@ -1621,15 +1462,7 @@ lexemes:
   - form: "شِي"
     gives: {arabic: "شي", marked: "شي", arabizi: ["shi", "she", "chi", "che"], phonemes: "ʃi"}
     course: {arabic: "شي", marked: "شي", arabizi: "shi"}
-- id: "sense:badd"
-  unit: "u07-likes"
-  pos: VERB
-  gloss: "want (with an ending: baddo, badda, badna)"
-  forms:
-  - form: "بَدّ"
-    gives: {arabic: "بد", marked: "بَدّ", arabizi: ["badd"], phonemes: "badː"}
-    course: {arabic: "بدّ", marked: "بَدّ", arabizi: "badd"}
-- id: "sense:film"
+- id: "lexeme:film"
   unit: "u07-likes"
   pos: NOUN
   gloss: "film; movie"
@@ -1638,7 +1471,7 @@ lexemes:
     gives: {arabic: "فيلم", marked: "فيلِم", arabizi: ["film", "filem", "feelm", "feelem"], phonemes: "fiːlim"}
     course: {arabic: "فيلم", marked: "فيلِم", arabizi: "film"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:shef"
+- id: "lexeme:shef"
   unit: "u07-likes"
   pos: VERB
   gloss: "see; watch"
@@ -1654,16 +1487,13 @@ lexemes:
   - form: "شُوف"
     gives: {arabic: "شوف", marked: "شوف", arabizi: ["shuf", "shouf", "chuf", "chouf"], phonemes: "ʃuːf"}
     course: {arabic: "شوف", marked: "شوف", arabizi: "shuf"}
-  - form: "مْنْشُوف"
-    gives: {arabic: "منشوف", marked: "مْنْشوف", arabizi: ["mnshuf", "mnshouf", "mnchuf", "mnchouf"], phonemes: "mnʃuːf"}
-    course: {arabic: "منشوف", marked: "مْنْشوف", arabizi: "mnshuf"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "subj-1sg", form: "شُوف", arabic: "شوف", arabizi: "shuf"}
-  - {features: "impf-1pl", form: "مْنْشُوف", arabic: "منشوف", arabizi: "mnshuf"}
-  - {features: "impf-1pl", form: "مْنْشُوف", arabic: "مْنْشوف", arabizi: "mnshuf"}
-  - {features: "past-1sg+obj-3ms", form: "شِفْتُه\u06df", arabic: "شفته", arabizi: "shefto"}
-  - {features: "past-1sg+obj-3fs", form: "شِفْتَه\u06dfا", arabic: "شفتها", arabizi: "shefta"}
-- id: "sense:football"
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "شُوف", arabic: "شوف", arabizi: "shuf"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=1", form: "مْنْشُوف", arabic: "منشوف", arabizi: "mnshuf"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=1", form: "مْنْشُوف", arabic: "مْنْشوف", arabizi: "mnshuf"}
+  - {features: "Aspect=Perf;Number=Sing;Person=1+obj-3ms", form: "شِفْتُه\u06df", arabic: "شفته", arabizi: "shefto"}
+  - {features: "Aspect=Perf;Number=Sing;Person=1+obj-3fs", form: "شِفْتَه\u06dfا", arabic: "شفتها", arabizi: "shefta"}
+- id: "lexeme:football"
   unit: "u07-likes"
   pos: NOUN
   gloss: "football; soccer"
@@ -1672,7 +1502,7 @@ lexemes:
     gives: {arabic: "فوتبول", marked: "فوتْبول", arabizi: ["futbul", "futboul", "foutbul", "foutboul"], phonemes: "fuːtbuːl"}
     course: {arabic: "فوتبول", marked: "فوتْبول", arabizi: "football"}
     review: ["Arabizi not read: فوتْبول cannot be read as football", "arabizi: football is not among the projected spellings (futbul first)"]
-- id: "sense:le3eb"
+- id: "lexeme:le3eb"
   unit: "u07-likes"
   pos: VERB
   gloss: "play"
@@ -1689,11 +1519,11 @@ lexemes:
     gives: {arabic: "بتلعب", marked: "بْتِلْعَب", arabizi: ["btel3ab", "btil3ab"], phonemes: "btilʕab"}
     course: {arabic: "بتلعب", marked: "بْتِلْعَب", arabizi: "btil3ab"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "impf-2ms", form: "بْتِلْعَب", arabic: "بتلعب", arabizi: "btil3ab"}
-  - {features: "impf-2pl", form: "بْتِلْعَبُوا\u06df", arabic: "بتلعبوا", arabizi: "btil3abo"}
-  - {features: "subj-1sg", form: "اِلْعَب", arabic: "العب", arabizi: "el3ab"}
-  - {features: "subj-1pl", form: "نِلْعَب", arabic: "نِلْعَب", arabizi: "nel3ab"}
-- id: "sense:3am"
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2", form: "بْتِلْعَب", arabic: "بتلعب", arabizi: "btil3ab"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=2", form: "بْتِلْعَبُوا\u06df", arabic: "بتلعبوا", arabizi: "btil3abo"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "اِلْعَب", arabic: "العب", arabizi: "el3ab"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=1", form: "نِلْعَب", arabic: "نِلْعَب", arabizi: "nel3ab"}
+- id: "lexeme:3am"
   unit: "u07-likes"
   pos: AUX
   gloss: "-ing: right now (before a verb)"
@@ -1701,7 +1531,7 @@ lexemes:
   - form: "عَم"
     gives: {arabic: "عم", marked: "عَم", arabizi: ["3am"], phonemes: "ʕam"}
     course: {arabic: "عم", marked: "عَم", arabizi: "3am"}
-- id: "sense:ghanne"
+- id: "lexeme:ghanne"
   unit: "u07-likes"
   pos: VERB
   gloss: "sing"
@@ -1717,10 +1547,10 @@ lexemes:
     gives: {arabic: "غني", marked: "غَنّي", arabizi: ["ghanni", "ghanne", "8anni", "8anne"], phonemes: "ɣanːi"}
     course: {arabic: "غنّي", marked: "غَنّي", arabizi: "ghanne"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "subj-1sg", form: "غَنِّي", arabic: "غنّي", arabizi: "ghanne"}
-  - {features: "impf-2fs+w", form: "و+بْتْغَنِّي", arabic: "وبْتْغَنّي", arabizi: "w btghanne"}
-  - {features: "impf-1sg", form: "بْغَنِّي", arabic: "بْغَنّي", arabizi: "bghanne"}
-- id: "sense:ra2as"
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "غَنِّي", arabic: "غنّي", arabizi: "ghanne"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2+w", form: "و+بْتْغَنِّي", arabic: "وبْتْغَنّي", arabizi: "w btghanne"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بْغَنِّي", arabic: "بْغَنّي", arabizi: "bghanne"}
+- id: "lexeme:ra2as"
   unit: "u07-likes"
   pos: VERB
   gloss: "dance"
@@ -1738,9 +1568,9 @@ lexemes:
     gives: {arabic: "ارقص", marked: "اُرْقُص", arabizi: ["or2os", "or2us", "ur2os", "ur2us"], phonemes: "urʔusˤ"}
     course: {arabic: "ارقص", marked: "اُرْقُص", arabizi: "or2os"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "subj-1sg", form: "اُرْقُص", arabic: "ارقص", arabizi: "or2os"}
-  - {features: "subj-1sg", form: "اُرْقُص", arabic: "اُرْقُص", arabizi: "or2os"}
-- id: "sense:a7la"
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "اُرْقُص", arabic: "ارقص", arabizi: "or2os"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "اُرْقُص", arabic: "اُرْقُص", arabizi: "or2os"}
+- id: "lexeme:a7la"
   unit: "u07-likes"
   pos: ADJ
   gloss: "nicer; prettier; better"
@@ -1748,7 +1578,7 @@ lexemes:
   - form: "أَحْلَى"
     gives: {arabic: "أحلى", marked: "أَحْلى", arabizi: ["a7la"], phonemes: "ʔaħla"}
     course: {arabic: "أحلى", marked: "أَحْلى", arabizi: "a7la"}
-- id: "sense:bukra"
+- id: "lexeme:bukra"
   unit: "u08-time"
   pos: ADV
   gloss: "tomorrow"
@@ -1756,7 +1586,7 @@ lexemes:
   - form: "بُكْرَا"
     gives: {arabic: "بكرا", marked: "بُكْرا", arabizi: ["bokra", "bukra"], phonemes: "bukra"}
     course: {arabic: "بكرا", marked: "بُكْرا", arabizi: "bukra"}
-- id: "sense:emta"
+- id: "lexeme:emta"
   unit: "u08-time"
   pos: ADV
   gloss: "when"
@@ -1764,7 +1594,7 @@ lexemes:
   - form: "إِمْتَى"
     gives: {arabic: "إمتى", marked: "إِمْتى", arabizi: ["emta", "imta"], phonemes: "ʔimta"}
     course: {arabic: "إمتى", marked: "إِمْتى", arabizi: "emta"}
-- id: "sense:sawa"
+- id: "lexeme:sawa"
   unit: "u08-time"
   pos: ADV
   gloss: "together"
@@ -1772,7 +1602,7 @@ lexemes:
   - form: "سَوَا"
     gives: {arabic: "سوا", marked: "سَوا", arabizi: ["sawa"], phonemes: "sawa"}
     course: {arabic: "سوا", marked: "سَوا", arabizi: "sawa"}
-- id: "sense:fadi"
+- id: "lexeme:fadi"
   unit: "u08-time"
   pos: ADJ
   gloss: "free (not busy)"
@@ -1780,7 +1610,7 @@ lexemes:
   - form: "فَاضِي"
     gives: {arabic: "فاضي", marked: "فاضي", arabizi: ["fadi", "fade"], phonemes: "faːdˤi"}
     course: {arabic: "فاضي", marked: "فاضي", arabizi: "fadi"}
-- id: "sense:mashghoul"
+- id: "lexeme:mashghoul"
   unit: "u08-time"
   pos: ADJ
   gloss: "busy"
@@ -1788,7 +1618,7 @@ lexemes:
   - form: "مَشْغُول"
     gives: {arabic: "مشغول", marked: "مَشْغول", arabizi: ["mashghul", "mashghoul", "mash8ul", "mash8oul"], phonemes: "maʃɣuːl"}
     course: {arabic: "مشغول", marked: "مَشْغول", arabizi: "mashghoul"}
-- id: "sense:nhar"
+- id: "lexeme:nhar"
   unit: "u08-time"
   pos: NOUN
   gloss: "day; daytime"
@@ -1796,7 +1626,7 @@ lexemes:
   - form: "نْهَار"
     gives: {arabic: "نهار", marked: "نْهار", arabizi: ["nhar"], phonemes: "nhaːr"}
     course: {arabic: "نهار", marked: "نْهار", arabizi: "nhar"}
-- id: "sense:sabt"
+- id: "lexeme:sabt"
   unit: "u08-time"
   pos: NOUN
   gloss: "Saturday"
@@ -1805,7 +1635,7 @@ lexemes:
     gives: {arabic: "سبت", marked: "سَبِت", arabizi: ["sabt", "sabet"], phonemes: "sabit"}
     course: {arabic: "سبت", marked: "سَبِت", arabizi: "sabt"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:a7ad"
+- id: "lexeme:a7ad"
   unit: "u08-time"
   pos: NOUN
   gloss: "Sunday"
@@ -1813,7 +1643,7 @@ lexemes:
   - form: "أَحَد"
     gives: {arabic: "أحد", marked: "أَحَد", arabizi: ["a7ad"], phonemes: "ʔaħad"}
     course: {arabic: "أحد", marked: "أَحَد", arabizi: "a7ad"}
-- id: "sense:jem3a"
+- id: "lexeme:jem3a"
   unit: "u08-time"
   pos: NOUN
   gloss: "Friday; week"
@@ -1821,13 +1651,13 @@ lexemes:
   - form: "جِمْعَة"
     gives: {arabic: "جمعة", marked: "جِمْعَة", arabizi: ["jem3a", "jim3a"], phonemes: "ʒimʕa"}
     course: {arabic: "جمعة", marked: "جِمْعَة", arabizi: "jem3a"}
-- id: "sense:hal"
+- id: "lexeme:hal"
   unit: "u08-time"
   pos: DET
   gloss: "this (joined to a noun)"
   forms:
   - {course: {arabic: "", arabizi: "hal"}, review: ["one script only: Written joined in Arabic script: هالجمعة, this week."]}
-- id: "sense:khamis"
+- id: "lexeme:khamis"
   unit: "u08-time"
   pos: NOUN
   gloss: "Thursday"
@@ -1835,7 +1665,7 @@ lexemes:
   - form: "خَمِيس"
     gives: {arabic: "خميس", marked: "خَميس", arabizi: ["khamis", "khamees", "5amis", "5amees"], phonemes: "xamiːs"}
     course: {arabic: "خميس", marked: "خَميس", arabizi: "khamis"}
-- id: "sense:sa3a"
+- id: "lexeme:sa3a"
   unit: "u08-time"
   pos: NOUN
   gloss: "hour; o'clock; watch"
@@ -1843,7 +1673,7 @@ lexemes:
   - form: "سَاعَة"
     gives: {arabic: "ساعة", marked: "ساعَة", arabizi: ["sa3a"], phonemes: "saːʕa"}
     course: {arabic: "ساعة", marked: "ساعَة", arabizi: "sa3a"}
-- id: "sense:nos"
+- id: "lexeme:nos"
   unit: "u08-time"
   pos: NOUN
   gloss: "half"
@@ -1852,7 +1682,7 @@ lexemes:
     gives: {arabic: "نص", marked: "نُصّ", arabizi: ["noss", "nuss"], phonemes: "nusˤː"}
     course: {arabic: "نصّ", marked: "نُصّ", arabizi: "nos"}
     review: ["doubled in the marks, written once in Arabizi", "arabizi: nos is not among the projected spellings (noss first)"]
-- id: "sense:rebe3"
+- id: "lexeme:rebe3"
   unit: "u08-time"
   pos: NOUN
   gloss: "quarter"
@@ -1860,7 +1690,7 @@ lexemes:
   - form: "رِبِع"
     gives: {arabic: "ربع", marked: "رِبِع", arabizi: ["rebe3", "rebi3", "ribe3", "ribi3"], phonemes: "ribiʕ"}
     course: {arabic: "ربع", marked: "رِبِع", arabizi: "rebe3"}
-- id: "sense:da2i2a"
+- id: "lexeme:da2i2a"
   unit: "u08-time"
   pos: NOUN
   gloss: "minute"
@@ -1868,7 +1698,7 @@ lexemes:
   - form: "دَقِيقَة"
     gives: {arabic: "دقيقة", marked: "دَقيقَة", arabizi: ["da2i2a", "da2ee2a"], phonemes: "daʔiːʔa"}
     course: {arabic: "دقيقة", marked: "دَقيقَة", arabizi: "da2i2a"}
-- id: "sense:stanna"
+- id: "lexeme:stanna"
   unit: "u08-time"
   pos: VERB
   gloss: "wait (to a man)"
@@ -1883,9 +1713,9 @@ lexemes:
     gives: {arabic: "استنى", marked: "اسْتَنّى", arabizi: ["stanna"], phonemes: "stanːa"}
     course: {arabic: "استنّى", marked: "اسْتَنّى", arabizi: "stanna"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "imp-2fs", form: "ا\u06dfسْتَنِّي", arabic: "استنّي", arabizi: "stanni"}
-  - {features: "imp-2pl", form: "ا\u06dfسْتَنُّوا\u06df", arabic: "استنّوا", arabizi: "stanno"}
-- id: "sense:2abel"
+  - {features: "Gender=Fem;Mood=Imp;Number=Sing;Person=2", form: "ا\u06dfسْتَنِّي", arabic: "استنّي", arabizi: "stanni"}
+  - {features: "Mood=Imp;Number=Plur;Person=2", form: "ا\u06dfسْتَنُّوا\u06df", arabic: "استنّوا", arabizi: "stanno"}
+- id: "lexeme:2abel"
   unit: "u08-time"
   pos: ADP
   gloss: "before"
@@ -1893,7 +1723,7 @@ lexemes:
   - form: "قَبِل"
     gives: {arabic: "قبل", marked: "قَبِل", arabizi: ["2abel", "2abil", "abel", "abil"], phonemes: "ʔabil"}
     course: {arabic: "قبل", marked: "قَبِل", arabizi: "2abel"}
-- id: "sense:dohr"
+- id: "lexeme:dohr"
   unit: "u08-time"
   pos: NOUN
   gloss: "noon; midday"
@@ -1902,7 +1732,7 @@ lexemes:
     gives: {arabic: "ضهر", marked: "ضُهُر", arabizi: ["dohr", "dohor", "doher", "duhr"], phonemes: "dˤuhur"}
     course: {arabic: "ضهر", marked: "ضُهُر", arabizi: "dohr"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:ba3d"
+- id: "lexeme:ba3d"
   unit: "u08-time"
   pos: ADP
   gloss: "after"
@@ -1911,7 +1741,7 @@ lexemes:
     gives: {arabic: "بعد", marked: "بَعِد", arabizi: ["ba3d", "ba3ed"], phonemes: "baʕid"}
     course: {arabic: "بعد", marked: "بَعِد", arabizi: "ba3d"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:lel"
+- id: "lexeme:lel"
   unit: "u08-time"
   pos: NOUN
   gloss: "night"
@@ -1919,7 +1749,7 @@ lexemes:
   - form: "ل\u065cيل"
     gives: {arabic: "ليل", marked: "ليل", arabizi: ["lel", "leil"], phonemes: "leːl"}
     course: {arabic: "ليل", marked: "ليل", arabizi: "lel"}
-- id: "sense:3otle"
+- id: "lexeme:3otle"
   unit: "u08-time"
   pos: NOUN
   gloss: "holiday; day off"
@@ -1927,7 +1757,7 @@ lexemes:
   - form: "عُطْل\u065cة"
     gives: {arabic: "عطلة", marked: "عُطْلِة", arabizi: ["3otle", "3utle"], phonemes: "ʕutˤle"}
     course: {arabic: "عطلة", marked: "عُطْلِة", arabizi: "3otle"}
-- id: "sense:kam"
+- id: "lexeme:kam"
   unit: "u08-time"
   pos: DET
   gloss: "how many; a few"
@@ -1935,7 +1765,7 @@ lexemes:
   - form: "كَم"
     gives: {arabic: "كم", marked: "كَم", arabizi: ["kam"], phonemes: "kam"}
     course: {arabic: "كم", marked: "كَم", arabizi: "kam"}
-- id: "sense:shahr"
+- id: "lexeme:shahr"
   unit: "u08-time"
   pos: NOUN
   gloss: "month"
@@ -1944,7 +1774,7 @@ lexemes:
     gives: {arabic: "شهر", marked: "شَهِر", arabizi: ["shahr", "shaher", "chahr", "chaher"], phonemes: "ʃahir"}
     course: {arabic: "شهر", marked: "شَهِر", arabizi: "shahr"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:mbere7"
+- id: "lexeme:mbere7"
   unit: "u09-past"
   pos: ADV
   gloss: "yesterday"
@@ -1952,7 +1782,7 @@ lexemes:
   - form: "مْب\u065cارِح"
     gives: {arabic: "مبارح", marked: "مْبارِح", arabizi: ["mbere7", "mberi7"], phonemes: "mbeːriħ"}
     course: {arabic: "مبارح", marked: "مْبارِح", arabizi: "mbere7"}
-- id: "sense:mat3am"
+- id: "lexeme:mat3am"
   unit: "u09-past"
   pos: NOUN
   gloss: "restaurant"
@@ -1960,7 +1790,7 @@ lexemes:
   - form: "مَطْعَم"
     gives: {arabic: "مطعم", marked: "مَطْعَم", arabizi: ["mat3am"], phonemes: "matˤʕam"}
     course: {arabic: "مطعم", marked: "مَطْعَم", arabizi: "mat3am"}
-- id: "sense:sou2"
+- id: "lexeme:sou2"
   unit: "u09-past"
   pos: NOUN
   gloss: "market"
@@ -1968,7 +1798,7 @@ lexemes:
   - form: "سُوق"
     gives: {arabic: "سوق", marked: "سوق", arabizi: ["su2", "sou2"], phonemes: "suːʔ"}
     course: {arabic: "سوق", marked: "سوق", arabizi: "sou2"}
-- id: "sense:eshtara"
+- id: "lexeme:eshtara"
   unit: "u09-past"
   pos: VERB
   gloss: "buy"
@@ -1984,14 +1814,14 @@ lexemes:
     gives: {arabic: "اشتريت", marked: "اِشْتَريت", arabizi: ["eshtarit", "eshtareet", "echtarit", "echtareet"], phonemes: "iʃtariːt"}
     course: {arabic: "اشتريت", marked: "اِشْتَريت", arabizi: "eshtarit"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "past-2ms", form: "اِشْتَرِيت", arabic: "اشتريت", arabizi: "eshtarit"}
-  - {features: "past-1sg", form: "اِشْتَرِيت", arabic: "اشتريت", arabizi: "eshtarit"}
-  - {features: "past-2fs", form: "اِشْتَرَيْتِي", arabic: "اشتريتي", arabizi: "eshtarayti"}
-  - {features: "past-2pl", form: "اِشْتَرَيْتُوا\u06df", arabic: "اشتريتوا", arabizi: "eshtarayto"}
-  - {features: "subj-1sg", form: "اِشْتِرِي", arabic: "اشتري", arabizi: "eshtiri"}
-  - {features: "past-1pl", form: "اِشْتَرَيْنَا", arabic: "اشترينا", arabizi: "eshtarayna"}
-  - {features: "subj-1sg", form: "اِشْتِرِي", arabic: "اِشْتِري", arabizi: "eshtiri"}
-- id: "sense:zar"
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=2", form: "اِشْتَرِيت", arabic: "اشتريت", arabizi: "eshtarit"}
+  - {features: "Aspect=Perf;Number=Sing;Person=1", form: "اِشْتَرِيت", arabic: "اشتريت", arabizi: "eshtarit"}
+  - {features: "Aspect=Perf;Gender=Fem;Number=Sing;Person=2", form: "اِشْتَرَيْتِي", arabic: "اشتريتي", arabizi: "eshtarayti"}
+  - {features: "Aspect=Perf;Number=Plur;Person=2", form: "اِشْتَرَيْتُوا\u06df", arabic: "اشتريتوا", arabizi: "eshtarayto"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "اِشْتِرِي", arabic: "اشتري", arabizi: "eshtiri"}
+  - {features: "Aspect=Perf;Number=Plur;Person=1", form: "اِشْتَرَيْنَا", arabic: "اشترينا", arabizi: "eshtarayna"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "اِشْتِرِي", arabic: "اِشْتِري", arabizi: "eshtiri"}
+- id: "lexeme:zar"
   unit: "u09-past"
   pos: VERB
   gloss: "visit"
@@ -2009,14 +1839,14 @@ lexemes:
     course: {arabic: "زرت", marked: "زِرِت", arabizi: "zert"}
     review: ["helping vowel: in the marks, not in Arabizi"]
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "past-2ms", form: "زِرْت", arabic: "زرت", arabizi: "zert"}
-  - {features: "past-1sg", form: "زِرْت", arabic: "زرت", arabizi: "zert"}
-  - {features: "past-1sg", form: "زِرْت", arabic: "زِرِت", arabizi: "zert"}
-  - {features: "past-3pl", form: "زَارُوا\u06df", arabic: "زاروا", arabizi: "zaro"}
-  - {features: "subj-1pl", form: "نْزُور", arabic: "نْزور", arabizi: "nzur"}
-  - {features: "subj-2ms+obj-1sg", form: "تْزُورْنِي", arabic: "تْزورْني", arabizi: "tzurni"}
-  - {features: "subj-1sg+obj-2fs", form: "زُورِك", arabic: "زورِك", arabizi: "zurik"}
-- id: "sense:sa7eb"
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=2", form: "زِرْت", arabic: "زرت", arabizi: "zert"}
+  - {features: "Aspect=Perf;Number=Sing;Person=1", form: "زِرْت", arabic: "زرت", arabizi: "zert"}
+  - {features: "Aspect=Perf;Number=Sing;Person=1", form: "زِرْت", arabic: "زِرِت", arabizi: "zert"}
+  - {features: "Aspect=Perf;Number=Plur;Person=3", form: "زَارُوا\u06df", arabic: "زاروا", arabizi: "zaro"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=1", form: "نْزُور", arabic: "نْزور", arabizi: "nzur"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=2+obj-1sg", form: "تْزُورْنِي", arabic: "تْزورْني", arabizi: "tzurni"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1+obj-2fs", form: "زُورِك", arabic: "زورِك", arabizi: "zurik"}
+- id: "lexeme:sa7eb"
   unit: "u09-past"
   pos: NOUN
   gloss: "friend (a man)"
@@ -2027,7 +1857,7 @@ lexemes:
   - form: "صَاحِب"
     gives: {arabic: "صاحب", marked: "صاحِب", arabizi: ["sa7eb", "sa7ib"], phonemes: "sˤaːħib"}
     course: {arabic: "صاحب", marked: "صاحِب", arabizi: "sa7eb"}
-- id: "sense:rje3"
+- id: "lexeme:rje3"
   unit: "u09-past"
   pos: VERB
   gloss: "come back; go back"
@@ -2044,10 +1874,10 @@ lexemes:
     gives: {arabic: "رجع", marked: "رِجِع", arabizi: ["reje3", "reji3", "rije3", "riji3"], phonemes: "riʒiʕ"}
     course: {arabic: "رجع", marked: "رِجِع", arabizi: "reje3"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "past-3ms", form: "رِجِع", arabic: "رجع", arabizi: "reje3"}
-  - {features: "past-3pl", form: "رِجْعُوا\u06df", arabic: "رجعوا", arabizi: "rej3o"}
-  - {features: "impf-1sg", form: "بِرْجَع", arabic: "برجع", arabizi: "berja3"}
-- id: "sense:wesel"
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=3", form: "رِجِع", arabic: "رجع", arabizi: "reje3"}
+  - {features: "Aspect=Perf;Number=Plur;Person=3", form: "رِجْعُوا\u06df", arabic: "رجعوا", arabizi: "rej3o"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بِرْجَع", arabic: "برجع", arabizi: "berja3"}
+- id: "lexeme:wesel"
   unit: "u09-past"
   pos: VERB
   gloss: "arrive"
@@ -2064,10 +1894,10 @@ lexemes:
     gives: {arabic: "وصلت", marked: "وِصْلِت", arabizi: ["weslet", "weslit", "wislet", "wislit"], phonemes: "wisˤlit"}
     course: {arabic: "وصلت", marked: "وِصْلِت", arabizi: "weslet"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "past-3fs", form: "وِصْلِت", arabic: "وصلت", arabizi: "weslet"}
-  - {features: "impf-1sg", form: "بُوصَل", arabic: "بوصل", arabizi: "busal"}
-  - {features: "impf-1sg", form: "بُوصَل", arabic: "بوصَل", arabizi: "busal"}
-- id: "sense:terwi2a"
+  - {features: "Aspect=Perf;Gender=Fem;Number=Sing;Person=3", form: "وِصْلِت", arabic: "وصلت", arabizi: "weslet"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بُوصَل", arabic: "بوصل", arabizi: "busal"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بُوصَل", arabic: "بوصَل", arabizi: "busal"}
+- id: "lexeme:terwi2a"
   unit: "u09-past"
   pos: NOUN
   gloss: "breakfast"
@@ -2075,7 +1905,7 @@ lexemes:
   - form: "تِرْوِيقَة"
     gives: {arabic: "ترويقة", marked: "تِرْويقَة", arabizi: ["terwi2a", "terwee2a", "tirwi2a", "tirwee2a"], phonemes: "tirwiːʔa"}
     course: {arabic: "ترويقة", marked: "تِرْويقَة", arabizi: "terwi2a"}
-- id: "sense:ghada"
+- id: "lexeme:ghada"
   unit: "u09-past"
   pos: NOUN
   gloss: "lunch"
@@ -2083,7 +1913,7 @@ lexemes:
   - form: "غَدَا"
     gives: {arabic: "غدا", marked: "غَدا", arabizi: ["ghada", "8ada"], phonemes: "ɣada"}
     course: {arabic: "غدا", marked: "غَدا", arabizi: "ghada"}
-- id: "sense:3asha"
+- id: "lexeme:3asha"
   unit: "u09-past"
   pos: NOUN
   gloss: "dinner"
@@ -2091,7 +1921,7 @@ lexemes:
   - form: "عَشَا"
     gives: {arabic: "عشا", marked: "عَشا", arabizi: ["3asha", "3acha"], phonemes: "ʕaʃa"}
     course: {arabic: "عشا", marked: "عَشا", arabizi: "3asha"}
-- id: "sense:madi"
+- id: "lexeme:madi"
   unit: "u09-past"
   pos: ADJ
   gloss: "last; past (week, year)"
@@ -2099,8 +1929,7 @@ lexemes:
   - form: "مَاضِي"
     gives: {arabic: "ماضي", marked: "ماضي", arabizi: ["madi", "made"], phonemes: "maːdˤi"}
     course: {arabic: "ماضي", marked: "ماضي", arabizi: "madi"}
-  - {course: {arabic: "", arabizi: "madye"}, review: ["one script only: el jem3a el madye: last week; el sene el madye: last year."]}
-- id: "sense:kan"
+- id: "lexeme:kan"
   unit: "u09-past"
   pos: AUX
   gloss: "was; were (the verb 'be' in the past)"
@@ -2116,32 +1945,22 @@ lexemes:
   - form: "ك\u065cان"
     gives: {arabic: "كان", marked: "كان", arabizi: ["ken"], phonemes: "keːn"}
     course: {arabic: "كان", marked: "كان", arabizi: "ken"}
-  - form: "كِنْت"
-    gives: {arabic: "كنت", marked: "كِنِت", arabizi: ["kent", "kenet", "kint", "kinet"], phonemes: "kinit"}
-    course: {arabic: "كنت", marked: "كِنِت", arabizi: "kent"}
-    review: ["helping vowel: in the marks, not in Arabizi"]
-  - form: "ك\u065cانِت"
-    gives: {arabic: "كانت", marked: "كانِت", arabizi: ["kenet", "kenit"], phonemes: "keːnit"}
-    course: {arabic: "كانت", marked: "كانِت", arabizi: "kenet"}
-  - form: "كِنْتِي"
-    gives: {arabic: "كنتي", marked: "كِنْتي", arabizi: ["kenti", "kente", "kinti", "kinte"], phonemes: "kinti"}
-    course: {arabic: "كنتي", marked: "كِنْتي", arabizi: "kenti"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "past-1sg", form: "كِنْت", arabic: "كنت", arabizi: "kent"}
-  - {features: "past-3fs", form: "ك\u065cانِت", arabic: "كانت", arabizi: "kenet"}
-  - {features: "past-2ms", form: "كِنْت", arabic: "كنت", arabizi: "kent"}
-  - {features: "past-2fs", form: "كِنْتِي", arabic: "كنتي", arabizi: "kenti"}
-  - {features: "past-2pl", form: "كِنْتُوا\u06df", arabic: "كنتوا", arabizi: "kento"}
-  - {features: "past-2ms", form: "كِنْت", arabic: "كِنِت", arabizi: "kent"}
-  - {features: "past-1sg", form: "كِنْت", arabic: "كِنِت", arabizi: "kent"}
-  - {features: "past-3ms+w", form: "و+ك\u065cان", arabic: "وكان", arabizi: "w ken"}
-  - {features: "past-3pl", form: "ك\u065cانُوا\u06df", arabic: "كانوا", arabizi: "keno"}
-  - {features: "subj-3ms", form: "يْكُون", arabic: "يْكون", arabizi: "ykoun"}
-  - {features: "past-1pl", form: "كِنَّا", arabic: "كنّا", arabizi: "kenna"}
-  - {features: "past-3ms", form: "ك\u065cان", arabic: "كان", arabizi: "ken"}
-  - {features: "past-2fs", form: "كِنْتِي", arabic: "كِنْتي", arabizi: "kenti"}
-  - {features: "past-1pl", form: "كِنَّا", arabic: "كِنّا", arabizi: "kenna"}
-- id: "sense:7afle"
+  - {features: "Aspect=Perf;Number=Sing;Person=1", form: "كِنْت", arabic: "كنت", arabizi: "kent"}
+  - {features: "Aspect=Perf;Gender=Fem;Number=Sing;Person=3", form: "ك\u065cانِت", arabic: "كانت", arabizi: "kenet"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=2", form: "كِنْت", arabic: "كنت", arabizi: "kent"}
+  - {features: "Aspect=Perf;Gender=Fem;Number=Sing;Person=2", form: "كِنْتِي", arabic: "كنتي", arabizi: "kenti"}
+  - {features: "Aspect=Perf;Number=Plur;Person=2", form: "كِنْتُوا\u06df", arabic: "كنتوا", arabizi: "kento"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=2", form: "كِنْت", arabic: "كِنِت", arabizi: "kent"}
+  - {features: "Aspect=Perf;Number=Sing;Person=1", form: "كِنْت", arabic: "كِنِت", arabizi: "kent"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=3+w", form: "و+ك\u065cان", arabic: "وكان", arabizi: "w ken"}
+  - {features: "Aspect=Perf;Number=Plur;Person=3", form: "ك\u065cانُوا\u06df", arabic: "كانوا", arabizi: "keno"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=3", form: "يْكُون", arabic: "يْكون", arabizi: "ykoun"}
+  - {features: "Aspect=Perf;Number=Plur;Person=1", form: "كِنَّا", arabic: "كنّا", arabizi: "kenna"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=3", form: "ك\u065cان", arabic: "كان", arabizi: "ken"}
+  - {features: "Aspect=Perf;Gender=Fem;Number=Sing;Person=2", form: "كِنْتِي", arabic: "كِنْتي", arabizi: "kenti"}
+  - {features: "Aspect=Perf;Number=Plur;Person=1", form: "كِنَّا", arabic: "كِنّا", arabizi: "kenna"}
+- id: "lexeme:7afle"
   unit: "u09-past"
   pos: NOUN
   gloss: "party"
@@ -2149,7 +1968,7 @@ lexemes:
   - form: "حَفْل\u065cة"
     gives: {arabic: "حفلة", marked: "حَفْلِة", arabizi: ["7afle"], phonemes: "ħafle"}
     course: {arabic: "حفلة", marked: "حَفْلِة", arabizi: "7afle"}
-- id: "sense:ta3ban"
+- id: "lexeme:ta3ban"
   unit: "u09-past"
   pos: ADJ
   gloss: "tired"
@@ -2157,7 +1976,7 @@ lexemes:
   - form: "تَعْبَان"
     gives: {arabic: "تعبان", marked: "تَعْبان", arabizi: ["ta3ban"], phonemes: "taʕbaːn"}
     course: {arabic: "تعبان", marked: "تَعْبان", arabizi: "ta3ban"}
-- id: "sense:mabsout"
+- id: "lexeme:mabsout"
   unit: "u09-past"
   pos: ADJ
   gloss: "happy; having a good time"
@@ -2165,10 +1984,7 @@ lexemes:
   - form: "مَبْسُوط"
     gives: {arabic: "مبسوط", marked: "مَبْسوط", arabizi: ["mabsut", "mabsout"], phonemes: "mabsuːtˤ"}
     course: {arabic: "مبسوط", marked: "مَبْسوط", arabizi: "mabsout"}
-  - form: "مَبْسُوطَة"
-    gives: {arabic: "مبسوطة", marked: "مَبْسوطَة", arabizi: ["mabsuta", "mabsouta"], phonemes: "mabsuːtˤa"}
-    course: {arabic: "مبسوطة", marked: "مَبْسوطَة", arabizi: "mabsouta"}
-- id: "sense:sa77"
+- id: "lexeme:sa77"
   unit: "u09-past"
   pos: INTJ
   gloss: "right; true; correct"
@@ -2176,7 +1992,7 @@ lexemes:
   - form: "صَحّ"
     gives: {arabic: "صح", marked: "صَحّ", arabizi: ["sa77"], phonemes: "sˤaħː"}
     course: {arabic: "صحّ", marked: "صَحّ", arabizi: "sa77"}
-- id: "sense:safar"
+- id: "lexeme:safar"
   unit: "u09-past"
   pos: VERB
   gloss: "travel; go away (on a trip)"
@@ -2194,26 +2010,10 @@ lexemes:
     course: {arabic: "سافرت", marked: "سافَرِت", arabizi: "safart"}
     review: ["helping vowel: in the marks, not in Arabizi"]
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "past-1sg", form: "سَافَرْت", arabic: "سافرت", arabizi: "safart"}
-  - {features: "subj-1sg", form: "سَافِر", arabic: "سافر", arabizi: "safer"}
-  - {features: "subj-3pl", form: "يْس\u065cافْرُوا\u06df", arabic: "يسافروا", arabizi: "ysefro"}
-- id: "sense:raye7"
-  unit: "u10-plans"
-  pos: VERB
-  gloss: "going (a man going somewhere)"
-  participle:
-    head: participle
-    of: "sense:ra7"
-    note: "Kline, p. 123 (raye7). Folds into ra7 at the migration."
-    by the template: {masculine: "رَايِح", feminine: "رَايْحَة", plural: "رَايْحِين"}
-  forms:
-  - form: "رَايِح"
-    gives: {arabic: "رايح", marked: "رايِح", arabizi: ["raye7", "rayi7"], phonemes: "raːjiħ"}
-    course: {arabic: "رايح", marked: "رايِح", arabizi: "raye7"}
-  - form: "رَايْحَة"
-    gives: {arabic: "رايحة", marked: "رايْحَة", arabizi: ["ray7a"], phonemes: "raːjħa"}
-    course: {arabic: "رايحة", marked: "رايْحَة", arabizi: "ray7a"}
-- id: "sense:ta"
+  - {features: "Aspect=Perf;Number=Sing;Person=1", form: "سَافَرْت", arabic: "سافرت", arabizi: "safart"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "سَافِر", arabic: "سافر", arabizi: "safer"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=3", form: "يْس\u065cافْرُوا\u06df", arabic: "يسافروا", arabizi: "ysefro"}
+- id: "lexeme:ta"
   unit: "u10-plans"
   pos: SCONJ
   gloss: "let's; so that (before a verb without b-)"
@@ -2221,7 +2021,7 @@ lexemes:
   - form: "تَا"
     gives: {arabic: "تا", marked: "تا", arabizi: ["ta"], phonemes: "ta"}
     course: {arabic: "تا", marked: "تا", arabizi: "ta"}
-- id: "sense:lele"
+- id: "lexeme:lele"
   unit: "u10-plans"
   pos: NOUN
   gloss: "night; tonight (el lele)"
@@ -2229,7 +2029,7 @@ lexemes:
   - form: "ل\u065cيل\u065cة"
     gives: {arabic: "ليلة", marked: "ليلِة", arabizi: ["lele", "leile"], phonemes: "leːle"}
     course: {arabic: "ليلة", marked: "ليلِة", arabizi: "lele"}
-- id: "sense:tele3"
+- id: "lexeme:tele3"
   unit: "u10-plans"
   pos: VERB
   gloss: "go out; go up"
@@ -2246,13 +2046,13 @@ lexemes:
     gives: {arabic: "تطلع", marked: "تِطْلَع", arabizi: ["tetla3", "titla3"], phonemes: "titˤlaʕ"}
     course: {arabic: "تطلع", marked: "تِطْلَع", arabizi: "titla3"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "subj-2ms", form: "تِطْلَع", arabic: "تطلع", arabizi: "titla3"}
-  - {features: "subj-1pl", form: "نِطْلَع", arabic: "نطلع", arabizi: "netla3"}
-  - {features: "impf-1pl", form: "مْنِطْلَع", arabic: "منطلع", arabizi: "mnitla3"}
-  - {features: "subj-3pl", form: "يِطْلَعُوا\u06df", arabic: "يطلعوا", arabizi: "yitla3o"}
-  - {features: "subj-1sg", form: "اِطْلَع", arabic: "اطلع", arabizi: "etla3"}
-  - {features: "subj-1pl", form: "نِطْلَع", arabic: "نِطْلَع", arabizi: "netla3"}
-- id: "sense:ta2s"
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=2", form: "تِطْلَع", arabic: "تطلع", arabizi: "titla3"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=1", form: "نِطْلَع", arabic: "نطلع", arabizi: "netla3"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=1", form: "مْنِطْلَع", arabic: "منطلع", arabizi: "mnitla3"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=3", form: "يِطْلَعُوا\u06df", arabic: "يطلعوا", arabizi: "yitla3o"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "اِطْلَع", arabic: "اطلع", arabizi: "etla3"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=1", form: "نِطْلَع", arabic: "نِطْلَع", arabizi: "netla3"}
+- id: "lexeme:ta2s"
   unit: "u10-plans"
   pos: NOUN
   gloss: "weather"
@@ -2261,7 +2061,7 @@ lexemes:
     gives: {arabic: "طقس", marked: "طَقِس", arabizi: ["ta2s", "ta2es"], phonemes: "tˤaʔis"}
     course: {arabic: "طقس", marked: "طَقِس", arabizi: "ta2s"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:shob"
+- id: "lexeme:shob"
   unit: "u10-plans"
   pos: NOUN
   gloss: "hot (weather); heat"
@@ -2269,7 +2069,7 @@ lexemes:
   - form: "ش\u065dوب"
     gives: {arabic: "شوب", marked: "شوب", arabizi: ["shob", "chob"], phonemes: "ʃoːb"}
     course: {arabic: "شوب", marked: "شوب", arabizi: "shob"}
-- id: "sense:bard"
+- id: "lexeme:bard"
   unit: "u10-plans"
   pos: NOUN
   gloss: "cold (weather); the cold"
@@ -2278,7 +2078,7 @@ lexemes:
     gives: {arabic: "برد", marked: "بَرِد", arabizi: ["bard", "bared"], phonemes: "barid"}
     course: {arabic: "برد", marked: "بَرِد", arabizi: "bard"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:shams"
+- id: "lexeme:shams"
   unit: "u10-plans"
   pos: NOUN
   gloss: "sun"
@@ -2287,7 +2087,7 @@ lexemes:
     gives: {arabic: "شمس", marked: "شَمِس", arabizi: ["shams", "shames", "chams", "chames"], phonemes: "ʃamis"}
     course: {arabic: "شمس", marked: "شَمِس", arabizi: "shams"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:matar"
+- id: "lexeme:matar"
   unit: "u10-plans"
   pos: NOUN
   gloss: "rain"
@@ -2295,7 +2095,7 @@ lexemes:
   - form: "مَطَر"
     gives: {arabic: "مطر", marked: "مَطَر", arabizi: ["matar"], phonemes: "matˤar"}
     course: {arabic: "مطر", marked: "مَطَر", arabizi: "matar"}
-- id: "sense:talj"
+- id: "lexeme:talj"
   unit: "u10-plans"
   pos: NOUN
   gloss: "snow"
@@ -2304,7 +2104,7 @@ lexemes:
     gives: {arabic: "تلج", marked: "تَلِج", arabizi: ["talj", "talej"], phonemes: "taliʒ"}
     course: {arabic: "تلج", marked: "تَلِج", arabizi: "talj"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:nehna"
+- id: "lexeme:nehna"
   unit: "u10-plans"
   pos: PRON
   gloss: "we"
@@ -2312,7 +2112,7 @@ lexemes:
   - form: "نِحْنَا"
     gives: {arabic: "نحنا", marked: "نِحْنا", arabizi: ["ne7na", "ni7na"], phonemes: "niħna"}
     course: {arabic: "نحنا", marked: "نِحْنا", arabizi: "ne7na"}
-- id: "sense:shabeb"
+- id: "lexeme:shabeb"
   unit: "u10-plans"
   pos: NOUN
   gloss: "guys; young people; friends"
@@ -2320,7 +2120,7 @@ lexemes:
   - form: "شَب\u065cاب"
     gives: {arabic: "شباب", marked: "شَباب", arabizi: ["shabeb", "chabeb"], phonemes: "ʃabeːb"}
     course: {arabic: "شباب", marked: "شَباب", arabizi: "shabeb"}
-- id: "sense:sahra"
+- id: "lexeme:sahra"
   unit: "u10-plans"
   pos: NOUN
   gloss: "evening out; party; get-together"
@@ -2328,7 +2128,7 @@ lexemes:
   - form: "سَهْرَة"
     gives: {arabic: "سهرة", marked: "سَهْرَة", arabizi: ["sahra"], phonemes: "sahra"}
     course: {arabic: "سهرة", marked: "سَهْرَة", arabizi: "sahra"}
-- id: "sense:7abibi"
+- id: "lexeme:7abibi"
   unit: "u10-plans"
   pos: NOUN
   gloss: "my dear; buddy (to a man)"
@@ -2336,13 +2136,13 @@ lexemes:
   - form: "حَبِيبِي"
     gives: {arabic: "حبيبي", marked: "حَبيبي", arabizi: ["7abibi", "7abibe", "7abeebi", "7abeebe"], phonemes: "ħabiːbi"}
     course: {arabic: "حبيبي", marked: "حَبيبي", arabizi: "7abibi"}
-- id: "sense:inshalla"
+- id: "lexeme:inshalla"
   unit: "u10-plans"
   pos: INTJ
   gloss: "God willing; hopefully"
   forms:
   - {course: {arabic: "إن شاء الله", marked: "إِن شاء الله", arabizi: "inshalla"}, review: ["إِن شاء الله is 3 words and inshalla is 1"]}
-- id: "sense:mumken"
+- id: "lexeme:mumken"
   unit: "u10-plans"
   pos: ADV
   gloss: "maybe; possible"
@@ -2350,7 +2150,7 @@ lexemes:
   - form: "مُمْكِن"
     gives: {arabic: "ممكن", marked: "مُمْكِن", arabizi: ["momken", "momkin", "mumken", "mumkin"], phonemes: "mumkin"}
     course: {arabic: "ممكن", marked: "مُمْكِن", arabizi: "mumken"}
-- id: "sense:3eref"
+- id: "lexeme:3eref"
   unit: "u10-plans"
   pos: VERB
   gloss: "know"
@@ -2367,12 +2167,12 @@ lexemes:
     gives: {arabic: "بعرف", marked: "بَعْرِف", arabizi: ["ba3ref", "ba3rif"], phonemes: "baʕrif"}
     course: {arabic: "بعرف", marked: "بَعْرِف", arabizi: "ba3ref"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "impf-1sg", form: "بَعْرِف", arabic: "بعرف", arabizi: "ba3ref"}
-  - {features: "impf-1sg", form: "بَعْرِف", arabic: "بَعْرِف", arabizi: "ba3ref"}
-  - {features: "impf-2ms+obj-3ms", form: "بْتَعْرْفُه\u06df", arabic: "بتعرفه", arabizi: "bta3rfo"}
-  - {features: "impf-1sg+obj-3fs", form: "بَعْرْفَه\u06dfا", arabic: "بعرفها", arabizi: "ba3rfa"}
-  - {features: "impf-2pl", form: "بْتَعْرْفُوا\u06df", arabic: "بتعرفوا", arabizi: "bta3rfo"}
-- id: "sense:akid"
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بَعْرِف", arabic: "بعرف", arabizi: "ba3ref"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بَعْرِف", arabic: "بَعْرِف", arabizi: "ba3ref"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2+obj-3ms", form: "بْتَعْرْفُه\u06df", arabic: "بتعرفه", arabizi: "bta3rfo"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1+obj-3fs", form: "بَعْرْفَه\u06dfا", arabic: "بعرفها", arabizi: "ba3rfa"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Plur;Person=2", form: "بْتَعْرْفُوا\u06df", arabic: "بتعرفوا", arabizi: "bta3rfo"}
+- id: "lexeme:akid"
   unit: "u10-plans"
   pos: INTJ
   gloss: "sure; of course"
@@ -2380,7 +2180,7 @@ lexemes:
   - form: "أَكِيد"
     gives: {arabic: "أكيد", marked: "أَكيد", arabizi: ["akid", "akeed"], phonemes: "ʔakiːd"}
     course: {arabic: "أكيد", marked: "أَكيد", arabizi: "akid"}
-- id: "sense:ya3ni"
+- id: "lexeme:ya3ni"
   unit: "u10-plans"
   pos: INTJ
   gloss: "I mean; well; so-so"
@@ -2388,7 +2188,7 @@ lexemes:
   - form: "يَعْنِي"
     gives: {arabic: "يعني", marked: "يَعْني", arabizi: ["ya3ni", "ya3ne"], phonemes: "jaʕni"}
     course: {arabic: "يعني", marked: "يَعْني", arabizi: "ya3ni"}
-- id: "sense:khalas"
+- id: "lexeme:khalas"
   unit: "u10-plans"
   pos: INTJ
   gloss: "OK then; enough; that's it"
@@ -2396,7 +2196,7 @@ lexemes:
   - form: "خَلَص"
     gives: {arabic: "خلص", marked: "خَلَص", arabizi: ["khalas", "5alas"], phonemes: "xalasˤ"}
     course: {arabic: "خلص", marked: "خَلَص", arabizi: "khalas"}
-- id: "sense:ma3lesh"
+- id: "lexeme:ma3lesh"
   unit: "u10-plans"
   pos: INTJ
   gloss: "never mind; it's OK; sorry"
@@ -2404,7 +2204,7 @@ lexemes:
   - form: "مَعْل\u065cيش"
     gives: {arabic: "معليش", marked: "مَعْليش", arabizi: ["ma3lesh", "ma3lech", "ma3leish", "ma3leich"], phonemes: "maʕleːʃ"}
     course: {arabic: "معليش", marked: "مَعْليش", arabizi: "ma3lesh"}
-- id: "sense:walla"
+- id: "lexeme:walla"
   unit: "u10-plans"
   pos: INTJ
   gloss: "really; I swear"
@@ -2413,7 +2213,7 @@ lexemes:
     gives: {arabic: "والله", marked: "والْلَه", arabizi: ["walla"], phonemes: "waːlla"}
     course: {arabic: "والله", marked: "والله", arabizi: "walla"}
     review: ["marks: projected والْلَه, pinned والله"]
-- id: "sense:ya-reit"
+- id: "lexeme:ya-reit"
   unit: "u10-plans"
   pos: INTJ
   gloss: "I wish; if only"
@@ -2421,7 +2221,7 @@ lexemes:
   - form: "يَا ر\u065cيت"
     gives: {arabic: "يا ريت", marked: "يا ريت", arabizi: ["ya ret", "ya reit"], phonemes: "ja reːt"}
     course: {arabic: "يا ريت", marked: "يا ريت", arabizi: "ya reit"}
-- id: "sense:mazbout"
+- id: "lexeme:mazbout"
   unit: "u10-plans"
   pos: INTJ
   gloss: "exactly; right; correct"
@@ -2429,7 +2229,7 @@ lexemes:
   - form: "مَزْبُوط"
     gives: {arabic: "مزبوط", marked: "مَزْبوط", arabizi: ["mazbut", "mazbout"], phonemes: "mazbuːtˤ"}
     course: {arabic: "مزبوط", marked: "مَزْبوط", arabizi: "mazbout"}
-- id: "sense:ahla-w-sahla"
+- id: "lexeme:ahla-w-sahla"
   unit: "u10-plans"
   pos: INTJ
   gloss: "welcome"
@@ -2438,7 +2238,7 @@ lexemes:
     gives: {arabic: "أهلا وسهلا", marked: "أَهْلا وْسَهْلا", arabizi: ["ahla wsahla"], phonemes: "ʔahla wsahla"}
     course: {arabic: "أهلا وسهلا", marked: "أَهْلا وسَهْلا", arabizi: "ahla w sahla"}
     review: ["marks: projected أَهْلا وْسَهْلا, pinned أَهْلا وسَهْلا"]
-- id: "sense:huwwe"
+- id: "lexeme:huwwe"
   unit: "u11-people"
   pos: PRON
   gloss: "he"
@@ -2447,7 +2247,7 @@ lexemes:
     gives: {arabic: "هو", marked: "هُوِّ", arabizi: ["howwe", "howwi", "huwwe", "huwwi"], phonemes: "huwːi"}
     course: {arabic: "هو", marked: "هُوّ", arabizi: "huwwe"}
     review: ["marks: projected هُوِّ, pinned هُوّ"]
-- id: "sense:hiyye"
+- id: "lexeme:hiyye"
   unit: "u11-people"
   pos: PRON
   gloss: "she"
@@ -2456,7 +2256,7 @@ lexemes:
     gives: {arabic: "هي", marked: "هِيِّ", arabizi: ["heyye", "heyyi", "hiyye", "hiyyi"], phonemes: "hijːi"}
     course: {arabic: "هي", marked: "هِيّ", arabizi: "hiyye"}
     review: ["marks: projected هِيِّ, pinned هِيّ"]
-- id: "sense:jar"
+- id: "lexeme:jar"
   unit: "u11-people"
   pos: NOUN
   gloss: "neighbour"
@@ -2464,7 +2264,7 @@ lexemes:
   - form: "جَار"
     gives: {arabic: "جار", marked: "جار", arabizi: ["jar"], phonemes: "ʒaːr"}
     course: {arabic: "جار", marked: "جار", arabizi: "jar"}
-- id: "sense:zalame"
+- id: "lexeme:zalame"
   unit: "u11-people"
   pos: NOUN
   gloss: "man; guy"
@@ -2472,7 +2272,7 @@ lexemes:
   - form: "زَلَم\u065cة"
     gives: {arabic: "زلمة", marked: "زَلَمِة", arabizi: ["zalame"], phonemes: "zalame"}
     course: {arabic: "زلمة", marked: "زَلَمِة", arabizi: "zalame"}
-- id: "sense:mara"
+- id: "lexeme:mara"
   unit: "u11-people"
   pos: NOUN
   gloss: "woman; wife"
@@ -2480,7 +2280,7 @@ lexemes:
   - form: "مَرَة"
     gives: {arabic: "مرة", marked: "مَرَة", arabizi: ["mara"], phonemes: "mara"}
     course: {arabic: "مرة", marked: "مَرَة", arabizi: "mara"}
-- id: "sense:seken"
+- id: "lexeme:seken"
   unit: "u11-people"
   pos: VERB
   gloss: "living (somewhere): I live, you live"
@@ -2494,7 +2294,7 @@ lexemes:
   - form: "س\u065cاكِن"
     gives: {arabic: "ساكن", marked: "ساكِن", arabizi: ["seken", "sekin"], phonemes: "seːkin"}
     course: {arabic: "ساكن", marked: "ساكِن", arabizi: "seken"}
-- id: "sense:bineye"
+- id: "lexeme:bineye"
   unit: "u11-people"
   pos: NOUN
   gloss: "building (of flats)"
@@ -2502,7 +2302,7 @@ lexemes:
   - form: "بِن\u065cاي\u065cة"
     gives: {arabic: "بناية", marked: "بِنايِة", arabizi: ["beneye", "bineye"], phonemes: "bineːje"}
     course: {arabic: "بناية", marked: "بِنايِة", arabizi: "bineye"}
-- id: "sense:lebnene"
+- id: "lexeme:lebnene"
   unit: "u11-people"
   pos: ADJ
   gloss: "Lebanese"
@@ -2510,7 +2310,7 @@ lexemes:
   - form: "لِبْن\u065cانِي"
     gives: {arabic: "لبناني", marked: "لِبْناني", arabizi: ["lebneni", "lebnene", "libneni", "libnene"], phonemes: "libneːni"}
     course: {arabic: "لبناني", marked: "لِبْناني", arabizi: "lebnene"}
-- id: "sense:amerkene"
+- id: "lexeme:amerkene"
   unit: "u11-people"
   pos: ADJ
   gloss: "American"
@@ -2518,7 +2318,7 @@ lexemes:
   - form: "أَم\u065cيرْك\u065cانِي"
     gives: {arabic: "أميركاني", marked: "أَميرْكاني", arabizi: ["amerkeni", "amerkene", "ameirkeni", "ameirkene"], phonemes: "ʔameːrkeːni"}
     course: {arabic: "أميركاني", marked: "أَميرْكاني", arabizi: "amerkene"}
-- id: "sense:henne"
+- id: "lexeme:henne"
   unit: "u11-people"
   pos: PRON
   gloss: "they"
@@ -2527,7 +2327,7 @@ lexemes:
     gives: {arabic: "هن", marked: "هِنِّ", arabizi: ["henne", "henni", "hinne", "hinni"], phonemes: "hinːi"}
     course: {arabic: "هنّ", marked: "هِنّ", arabizi: "henne"}
     review: ["marks: projected هِنِّ, pinned هِنّ"]
-- id: "sense:rfi2"
+- id: "lexeme:rfi2"
   unit: "u11-people"
   pos: NOUN
   gloss: "friend"
@@ -2535,7 +2335,7 @@ lexemes:
   - form: "رْفِيق"
     gives: {arabic: "رفيق", marked: "رْفيق", arabizi: ["rfi2", "rfee2"], phonemes: "rfiːʔ"}
     course: {arabic: "رفيق", marked: "رْفيق", arabizi: "rfi2"}
-- id: "sense:ahl"
+- id: "lexeme:ahl"
   unit: "u11-people"
   pos: NOUN
   gloss: "parents; family"
@@ -2544,7 +2344,7 @@ lexemes:
     gives: {arabic: "أهل", marked: "أَهِل", arabizi: ["ahl", "ahel"], phonemes: "ʔahil"}
     course: {arabic: "أهل", marked: "أَهِل", arabizi: "ahl"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:jiren"
+- id: "lexeme:jiren"
   unit: "u11-people"
   pos: NOUN
   gloss: "neighbours"
@@ -2552,7 +2352,7 @@ lexemes:
   - form: "جِير\u065cان"
     gives: {arabic: "جيران", marked: "جيران", arabizi: ["jiren", "jeeren"], phonemes: "ʒiːreːn"}
     course: {arabic: "جيران", marked: "جيران", arabizi: "jiren"}
-- id: "sense:ra7.fut"
+- id: "lexeme:ra7.fut"
   unit: "u12-trip"
   pos: AUX
   gloss: "will; going to (before a verb)"
@@ -2560,7 +2360,7 @@ lexemes:
   - form: "رَح"
     gives: {arabic: "رح", marked: "رَح", arabizi: ["ra7"], phonemes: "raħ"}
     course: {arabic: "رح", marked: "رَح", arabizi: "ra7"}
-- id: "sense:nezel"
+- id: "lexeme:nezel"
   unit: "u12-trip"
   pos: VERB
   gloss: "go down (to the city, the beach)"
@@ -2574,7 +2374,7 @@ lexemes:
     source: "kline 75"
   participle:
     head: participle
-    of: "sense:nezel"
+    of: "lexeme:nezel"
     note: "The KC's first form, nezel نازل, is the participle; nenzal is the verb."
     by the template: {masculine: "ن\u065cازِل", feminine: "ن\u065cازْل\u065cة", plural: "ن\u065cازْلِين"}
   forms:
@@ -2582,8 +2382,9 @@ lexemes:
     gives: {arabic: "ننزل", marked: "نِنْزَل", arabizi: ["nenzal", "ninzal"], phonemes: "ninzal"}
     course: {arabic: "ننزل", marked: "نِنْزَل", arabizi: "nenzal"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "subj-1pl", form: "نِنْزَل", arabic: "ننزل", arabizi: "nenzal"}
-- id: "sense:day3a"
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=1", form: "نِنْزَل", arabic: "ننزل", arabizi: "nenzal"}
+  - {features: "Aspect=Part;Gender=Masc;Number=Sing", form: "ن\u065cازِل", arabic: "نازل", arabizi: "nezel"}
+- id: "lexeme:day3a"
   unit: "u12-trip"
   pos: NOUN
   gloss: "village; home village"
@@ -2591,7 +2392,7 @@ lexemes:
   - form: "ضَيْعَة"
     gives: {arabic: "ضيعة", marked: "ضَيْعَة", arabizi: ["day3a"], phonemes: "dˤajʕa"}
     course: {arabic: "ضيعة", marked: "ضَيْعَة", arabizi: "day3a"}
-- id: "sense:siyyara"
+- id: "lexeme:siyyara"
   unit: "u12-trip"
   pos: NOUN
   gloss: "car"
@@ -2599,7 +2400,7 @@ lexemes:
   - form: "سِيَّارَة"
     gives: {arabic: "سيارة", marked: "سِيّارَة", arabizi: ["seyyara", "siyyara"], phonemes: "sijːaːra"}
     course: {arabic: "سيّارة", marked: "سِيّارَة", arabizi: "siyyara"}
-- id: "sense:jeye"
+- id: "lexeme:jeye"
   unit: "u12-trip"
   pos: ADJ
   gloss: "coming; next (week, month)"
@@ -2607,7 +2408,7 @@ lexemes:
   - form: "ج\u065cاي"
     gives: {arabic: "جاي", marked: "جاي", arabizi: ["jey"], phonemes: "ʒeːj"}
     course: {arabic: "جاي", marked: "جاي", arabizi: "jey"}
-- id: "sense:ba3d-bukra"
+- id: "lexeme:ba3d-bukra"
   unit: "u12-trip"
   pos: ADV
   gloss: "the day after tomorrow"
@@ -2615,7 +2416,7 @@ lexemes:
   - form: "بَعْد بُكْرَا"
     gives: {arabic: "بعد بكرا", marked: "بَعِد بُكْرا", arabizi: ["ba3d bokra", "ba3d bukra", "ba3ed bokra", "ba3ed bukra"], phonemes: "baʕid bukra"}
     course: {arabic: "بعد بكرا", marked: "", arabizi: "ba3d bukra"}
-- id: "sense:sayfiyye"
+- id: "lexeme:sayfiyye"
   unit: "u12-trip"
   pos: NOUN
   gloss: "summer"
@@ -2623,7 +2424,7 @@ lexemes:
   - form: "صَيْفِيّ\u065cة"
     gives: {arabic: "صيفية", marked: "صَيْفِيِّة", arabizi: ["sayfeyye", "sayfiyye"], phonemes: "sˤajfijːe"}
     course: {arabic: "صيفيّة", marked: "صَيْفِيِّة", arabizi: "sayfiyye"}
-- id: "sense:shanta"
+- id: "lexeme:shanta"
   unit: "u12-trip"
   pos: NOUN
   gloss: "bag; suitcase"
@@ -2631,7 +2432,7 @@ lexemes:
   - form: "شَنْطَة"
     gives: {arabic: "شنطة", marked: "شَنْطَة", arabizi: ["shanta", "chanta"], phonemes: "ʃantˤa"}
     course: {arabic: "شنطة", marked: "شَنْطَة", arabizi: "shanta"}
-- id: "sense:akhad"
+- id: "lexeme:akhad"
   unit: "u12-trip"
   pos: VERB
   gloss: "take"
@@ -2647,15 +2448,12 @@ lexemes:
   - form: "آ\u065cخُد"
     gives: {arabic: "آخد", marked: "آخُد", arabizi: ["ekhod", "ekhud", "e5od", "e5ud"], phonemes: "ʔeːxud"}
     course: {arabic: "آخد", marked: "آخُد", arabizi: "ekhod"}
-  - form: "خ\u065dود"
-    gives: {arabic: "خود", marked: "خود", arabizi: ["khod", "5od"], phonemes: "xoːd"}
-    course: {arabic: "خود", marked: "خود", arabizi: "khod"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "subj-1sg", form: "آ\u065cخُد", arabic: "آخد", arabizi: "ekhod"}
-  - {features: "subj-3ms", form: "ي\u065cاخُد", arabic: "ياخُد", arabizi: "yekhod"}
-  - {features: "subj-2fs", form: "ت\u065cاخْدِي", arabic: "تاخدي", arabizi: "tekhdi"}
-  - {features: "impf-1sg", form: "ب\u065cاخُد", arabic: "باخُد", arabizi: "bekhod"}
-- id: "sense:mrid"
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "آ\u065cخُد", arabic: "آخد", arabizi: "ekhod"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=3", form: "ي\u065cاخُد", arabic: "ياخُد", arabizi: "yekhod"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=2", form: "ت\u065cاخْدِي", arabic: "تاخدي", arabizi: "tekhdi"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "ب\u065cاخُد", arabic: "باخُد", arabizi: "bekhod"}
+- id: "lexeme:mrid"
   unit: "u13-health"
   pos: ADJ
   gloss: "sick; ill"
@@ -2663,7 +2461,7 @@ lexemes:
   - form: "مْرِيض"
     gives: {arabic: "مريض", marked: "مْريض", arabizi: ["mrid", "mreed"], phonemes: "mriːdˤ"}
     course: {arabic: "مريض", marked: "مْريض", arabizi: "mrid"}
-- id: "sense:shu-bak"
+- id: "lexeme:shu-bak"
   unit: "u13-health"
   pos: INTJ
   gloss: "what's wrong? (to a man)"
@@ -2671,7 +2469,7 @@ lexemes:
   - form: "شُو بَك"
     gives: {arabic: "شو بك", marked: "شو بَك", arabizi: ["sho bak", "shu bak", "cho bak", "chu bak"], phonemes: "ʃu bak"}
     course: {arabic: "شو بك", marked: "", arabizi: "shu bak"}
-- id: "sense:ras"
+- id: "lexeme:ras"
   unit: "u13-health"
   pos: NOUN
   gloss: "head"
@@ -2679,7 +2477,7 @@ lexemes:
   - form: "رَاس"
     gives: {arabic: "راس", marked: "راس", arabizi: ["ras"], phonemes: "raːs"}
     course: {arabic: "راس", marked: "راس", arabizi: "ras"}
-- id: "sense:wja3"
+- id: "lexeme:wja3"
   unit: "u13-health"
   pos: NOUN
   gloss: "pain; ache"
@@ -2687,7 +2485,7 @@ lexemes:
   - form: "وْجَع"
     gives: {arabic: "وجع", marked: "وْجَع", arabizi: ["wja3"], phonemes: "wʒaʕ"}
     course: {arabic: "وجع", marked: "وْجَع", arabizi: "wja3"}
-- id: "sense:batn"
+- id: "lexeme:batn"
   unit: "u13-health"
   pos: NOUN
   gloss: "stomach; belly"
@@ -2696,7 +2494,7 @@ lexemes:
     gives: {arabic: "بطن", marked: "بَطِن", arabizi: ["batn", "baten"], phonemes: "batˤin"}
     course: {arabic: "بطن", marked: "بَطِن", arabizi: "batn"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:fi.can"
+- id: "lexeme:fi.can"
   unit: "u13-health"
   pos: VERB
   gloss: "can (with an ending: fiyyi, fik…)"
@@ -2704,7 +2502,7 @@ lexemes:
   - form: "فِي"
     gives: {arabic: "في", marked: "في", arabizi: ["fi", "fe"], phonemes: "fi"}
     course: {arabic: "في", marked: "في", arabizi: "fi"}
-- id: "sense:a7san"
+- id: "lexeme:a7san"
   unit: "u13-health"
   pos: ADJ
   gloss: "better; best"
@@ -2712,7 +2510,7 @@ lexemes:
   - form: "أَحْسَن"
     gives: {arabic: "أحسن", marked: "أَحْسَن", arabizi: ["a7san"], phonemes: "ʔaħsan"}
     course: {arabic: "أحسن", marked: "أَحْسَن", arabizi: "a7san"}
-- id: "sense:lezem"
+- id: "lexeme:lezem"
   unit: "u13-health"
   pos: VERB
   gloss: "must; have to; should"
@@ -2723,7 +2521,7 @@ lexemes:
   - form: "ل\u065cازِم"
     gives: {arabic: "لازم", marked: "لازِم", arabizi: ["lezem", "lezim"], phonemes: "leːzim"}
     course: {arabic: "لازم", marked: "لازِم", arabizi: "lezem"}
-- id: "sense:rte7"
+- id: "lexeme:rte7"
   unit: "u13-health"
   pos: VERB
   gloss: "rest"
@@ -2741,10 +2539,10 @@ lexemes:
     course: {arabic: "ارتاح", marked: "اِرْتاح", arabizi: "rte7"}
     review: ["Arabizi not read: اِرْتاح cannot be read as rte7", "arabizi: rte7 is not among the projected spellings (erta7 first)"]
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "subj-2ms", form: "تِرْت\u065cاح", arabic: "ترتاح", arabizi: "tirte7"}
-  - {features: "subj-2fs", form: "تِرْت\u065cاحِي", arabic: "ترتاحي", arabizi: "tirte7i"}
-  - {features: "subj-2fs", form: "تِرْت\u065cاحِي", arabic: "تِرْتاحي", arabizi: "tirte7i"}
-- id: "sense:7akim"
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=2", form: "تِرْت\u065cاح", arabic: "ترتاح", arabizi: "tirte7"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=2", form: "تِرْت\u065cاحِي", arabic: "ترتاحي", arabizi: "tirte7i"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=2", form: "تِرْت\u065cاحِي", arabic: "تِرْتاحي", arabizi: "tirte7i"}
+- id: "lexeme:7akim"
   unit: "u13-health"
   pos: NOUN
   gloss: "doctor"
@@ -2752,7 +2550,7 @@ lexemes:
   - form: "حَكِيم"
     gives: {arabic: "حكيم", marked: "حَكيم", arabizi: ["7akim", "7akeem"], phonemes: "ħakiːm"}
     course: {arabic: "حكيم", marked: "حَكيم", arabizi: "7akim"}
-- id: "sense:dawa"
+- id: "lexeme:dawa"
   unit: "u13-health"
   pos: NOUN
   gloss: "medicine"
@@ -2760,7 +2558,7 @@ lexemes:
   - form: "دَوَا"
     gives: {arabic: "دوا", marked: "دَوا", arabizi: ["dawa"], phonemes: "dawa"}
     course: {arabic: "دوا", marked: "دَوا", arabizi: "dawa"}
-- id: "sense:salemtak"
+- id: "lexeme:salemtak"
   unit: "u13-health"
   pos: INTJ
   gloss: "get well soon (to a man)"
@@ -2768,7 +2566,7 @@ lexemes:
   - form: "سَل\u065cامْتَك"
     gives: {arabic: "سلامتك", marked: "سَلامْتَك", arabizi: ["salemtak"], phonemes: "saleːmtak"}
     course: {arabic: "سلامتك", marked: "سَلامْتَك", arabizi: "salemtak"}
-- id: "sense:alo"
+- id: "lexeme:alo"
   unit: "u14-phone"
   pos: INTJ
   gloss: "hello? (on the phone)"
@@ -2776,7 +2574,7 @@ lexemes:
   - form: "أَلُو"
     gives: {arabic: "ألو", marked: "أَلو", arabizi: ["alo", "alu"], phonemes: "ʔalu"}
     course: {arabic: "ألو", marked: "أَلو", arabizi: "alo"}
-- id: "sense:telefon"
+- id: "lexeme:telefon"
   unit: "u14-phone"
   pos: NOUN
   gloss: "phone; phone call"
@@ -2784,7 +2582,7 @@ lexemes:
   - form: "تِلِف\u065dون"
     gives: {arabic: "تلفون", marked: "تِلِفون", arabizi: ["telefon", "telifon", "tilefon", "tilifon"], phonemes: "tilifoːn"}
     course: {arabic: "تلفون", marked: "تِلِفون", arabizi: "telefon"}
-- id: "sense:de22"
+- id: "lexeme:de22"
   unit: "u14-phone"
   pos: VERB
   gloss: "call (on the phone); ring; knock"
@@ -2801,13 +2599,13 @@ lexemes:
     gives: {arabic: "دق", marked: "دِقّ", arabizi: ["de22", "di22"], phonemes: "diʔː"}
     course: {arabic: "دقّ", marked: "دِقّ", arabizi: "de22"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "subj-1sg", form: "دِقّ", arabic: "دقّ", arabizi: "de22"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "دِقّ", arabic: "دقّ", arabizi: "de22"}
   - {features: "+la-1sg", form: "دِقِّلِّي", arabic: "دقّلي", arabizi: "de22elli"}
-  - {features: "imp-2fs+la-1sg", form: "دِقِّيلِي", arabic: "دقّيلي", arabizi: "de22ili"}
-  - {features: "imp-2pl+la-1sg", form: "دِقُّولِي", arabic: "دقّولي", arabizi: "de22uli"}
-  - {features: "impf-2ms+la-1sg", form: "بْتْدِقِّلِّي", arabic: "بْتْدِقِّلّي", arabizi: "btde22elli"}
-  - {features: "past-2ms", form: "دَقّ\u065cيت", arabic: "دقّيت", arabizi: "da22et"}
-- id: "sense:7ada"
+  - {features: "Gender=Fem;Mood=Imp;Number=Sing;Person=2+la-1sg", form: "دِقِّيلِي", arabic: "دقّيلي", arabizi: "de22ili"}
+  - {features: "Mood=Imp;Number=Plur;Person=2+la-1sg", form: "دِقُّولِي", arabic: "دقّولي", arabizi: "de22uli"}
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2+la-1sg", form: "بْتْدِقِّلِّي", arabic: "بْتْدِقِّلّي", arabizi: "btde22elli"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=2", form: "دَقّ\u065cيت", arabic: "دقّيت", arabizi: "da22et"}
+- id: "lexeme:7ada"
   unit: "u14-phone"
   pos: PRON
   gloss: "someone; anyone; (with ma) no one"
@@ -2815,7 +2613,7 @@ lexemes:
   - form: "حَدَا"
     gives: {arabic: "حدا", marked: "حَدا", arabizi: ["7ada"], phonemes: "ħada"}
     course: {arabic: "حدا", marked: "حَدا", arabizi: "7ada"}
-- id: "sense:fehem"
+- id: "lexeme:fehem"
   unit: "u14-phone"
   pos: VERB
   gloss: "understand"
@@ -2833,11 +2631,11 @@ lexemes:
     course: {arabic: "فهمت", marked: "فْهِمِت", arabizi: "fhemt"}
     review: ["helping vowel: in the marks, not in Arabizi"]
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "past-1sg", form: "فْهِمْت", arabic: "فهمت", arabizi: "fhemt"}
-  - {features: "past-2ms+obj-1sg", form: "فْهِمِتْنِي", arabic: "فهمتني", arabizi: "fhemtni"}
-  - {features: "past-1sg+obj-2ms", form: "فْهِمْتَك", arabic: "فهمتك", arabizi: "fhemtak"}
-  - {features: "past-2pl+obj-1sg", form: "فْهِمْتُونِي", arabic: "فهمتوني", arabizi: "fhemtuni"}
-- id: "sense:2al"
+  - {features: "Aspect=Perf;Number=Sing;Person=1", form: "فْهِمْت", arabic: "فهمت", arabizi: "fhemt"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=2+obj-1sg", form: "فْهِمِتْنِي", arabic: "فهمتني", arabizi: "fhemtni"}
+  - {features: "Aspect=Perf;Number=Sing;Person=1+obj-2ms", form: "فْهِمْتَك", arabic: "فهمتك", arabizi: "fhemtak"}
+  - {features: "Aspect=Perf;Number=Plur;Person=2+obj-1sg", form: "فْهِمْتُونِي", arabic: "فهمتوني", arabizi: "fhemtuni"}
+- id: "lexeme:2al"
   unit: "u14-phone"
   pos: VERB
   gloss: "say; tell"
@@ -2854,11 +2652,11 @@ lexemes:
     gives: {arabic: "قال", marked: "قال", arabizi: ["2al", "al"], phonemes: "ʔaːl"}
     course: {arabic: "قال", marked: "قال", arabizi: "2al"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "past-3ms", form: "قَال", arabic: "قال", arabizi: "2al"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=3", form: "قَال", arabic: "قال", arabizi: "2al"}
   - {features: "+la-1sg", form: "قِلِّي", arabic: "قلّي", arabizi: "2elli"}
-  - {features: "imp-2fs+la-1sg", form: "قُولِيلِي", arabic: "قوليلي", arabizi: "2ulili"}
+  - {features: "Gender=Fem;Mood=Imp;Number=Sing;Person=2+la-1sg", form: "قُولِيلِي", arabic: "قوليلي", arabizi: "2ulili"}
   - {features: "+la-1sg", form: "قِلِّي", arabic: "قِلّي", arabizi: "2elli"}
-- id: "sense:wa2t"
+- id: "lexeme:wa2t"
   unit: "u14-phone"
   pos: NOUN
   gloss: "time"
@@ -2867,7 +2665,7 @@ lexemes:
     gives: {arabic: "وقت", marked: "وَقِت", arabizi: ["wa2t", "wa2et"], phonemes: "waʔit"}
     course: {arabic: "وقت", marked: "وَقِت", arabizi: "wa2t"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:resele"
+- id: "lexeme:resele"
   unit: "u14-phone"
   pos: NOUN
   gloss: "message; letter"
@@ -2875,7 +2673,7 @@ lexemes:
   - form: "رِس\u065cال\u065cة"
     gives: {arabic: "رسالة", marked: "رِسالِة", arabizi: ["resele", "risele"], phonemes: "riseːle"}
     course: {arabic: "رسالة", marked: "رِسالِة", arabizi: "resele"}
-- id: "sense:b3at"
+- id: "lexeme:b3at"
   unit: "u14-phone"
   pos: VERB
   gloss: "send"
@@ -2894,8 +2692,8 @@ lexemes:
     course: {arabic: "بعت", marked: "بْعَت", arabizi: "b3at"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
   - {features: "+la-1sg", form: "بْعَتْلِي", arabic: "بعتلي", arabizi: "b3atli"}
-  - {features: "past-3ms+la-1sg", form: "بَعَتْلِي", arabic: "بعتلي", arabizi: "ba3atli"}
-- id: "sense:tyeb"
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=3+la-1sg", form: "بَعَتْلِي", arabic: "بعتلي", arabizi: "ba3atli"}
+- id: "lexeme:tyeb"
   unit: "u15-shopping"
   pos: NOUN
   gloss: "clothes"
@@ -2903,7 +2701,7 @@ lexemes:
   - form: "تْي\u065cاب"
     gives: {arabic: "تياب", marked: "تْياب", arabizi: ["tyeb"], phonemes: "tjeːb"}
     course: {arabic: "تياب", marked: "تْياب", arabizi: "tyeb"}
-- id: "sense:2amis"
+- id: "lexeme:2amis"
   unit: "u15-shopping"
   pos: NOUN
   gloss: "shirt"
@@ -2911,7 +2709,7 @@ lexemes:
   - form: "قَمِيص"
     gives: {arabic: "قميص", marked: "قَميص", arabizi: ["2amis", "2amees", "amis", "amees"], phonemes: "ʔamiːsˤ"}
     course: {arabic: "قميص", marked: "قَميص", arabizi: "2amis"}
-- id: "sense:bantalon"
+- id: "lexeme:bantalon"
   unit: "u15-shopping"
   pos: NOUN
   gloss: "trousers; pants"
@@ -2919,7 +2717,7 @@ lexemes:
   - form: "بَنْطَل\u065dون"
     gives: {arabic: "بنطلون", marked: "بَنْطَلون", arabizi: ["bantalon"], phonemes: "bantˤaloːn"}
     course: {arabic: "بنطلون", marked: "بَنْطَلون", arabizi: "bantalon"}
-- id: "sense:fostan"
+- id: "lexeme:fostan"
   unit: "u15-shopping"
   pos: NOUN
   gloss: "dress"
@@ -2927,7 +2725,7 @@ lexemes:
   - form: "فُسْتَان"
     gives: {arabic: "فستان", marked: "فُسْتان", arabizi: ["fostan", "fustan"], phonemes: "fustaːn"}
     course: {arabic: "فستان", marked: "فُسْتان", arabizi: "fostan"}
-- id: "sense:sobbat"
+- id: "lexeme:sobbat"
   unit: "u15-shopping"
   pos: NOUN
   gloss: "shoe; shoes"
@@ -2935,7 +2733,7 @@ lexemes:
   - form: "صُبَّاط"
     gives: {arabic: "صباط", marked: "صُبّاط", arabizi: ["sobbat", "subbat"], phonemes: "sˤubːaːtˤ"}
     course: {arabic: "صبّاط", marked: "صُبّاط", arabizi: "sobbat"}
-- id: "sense:lon"
+- id: "lexeme:lon"
   unit: "u15-shopping"
   pos: NOUN
   gloss: "colour"
@@ -2943,7 +2741,7 @@ lexemes:
   - form: "ل\u065dون"
     gives: {arabic: "لون", marked: "لون", arabizi: ["lon"], phonemes: "loːn"}
     course: {arabic: "لون", marked: "لون", arabizi: "lon"}
-- id: "sense:abyad"
+- id: "lexeme:abyad"
   unit: "u15-shopping"
   pos: ADJ
   gloss: "white"
@@ -2951,10 +2749,7 @@ lexemes:
   - form: "أَبْيَض"
     gives: {arabic: "أبيض", marked: "أَبْيَض", arabizi: ["abyad"], phonemes: "ʔabjadˤ"}
     course: {arabic: "أبيض", marked: "أَبْيَض", arabizi: "abyad"}
-  - form: "بَيْضَا"
-    gives: {arabic: "بيضا", marked: "بَيْضا", arabizi: ["bayda"], phonemes: "bajdˤa"}
-    course: {arabic: "بيضا", marked: "بَيْضا", arabizi: "bayda"}
-- id: "sense:aswad"
+- id: "lexeme:aswad"
   unit: "u15-shopping"
   pos: ADJ
   gloss: "black"
@@ -2962,10 +2757,7 @@ lexemes:
   - form: "أَسْوَد"
     gives: {arabic: "أسود", marked: "أَسْوَد", arabizi: ["aswad"], phonemes: "ʔaswad"}
     course: {arabic: "أسود", marked: "أَسْوَد", arabizi: "aswad"}
-  - form: "سَوْدَا"
-    gives: {arabic: "سودا", marked: "سَوْدا", arabizi: ["sawda"], phonemes: "sawda"}
-    course: {arabic: "سودا", marked: "سَوْدا", arabizi: "sawda"}
-- id: "sense:a7mar"
+- id: "lexeme:a7mar"
   unit: "u15-shopping"
   pos: ADJ
   gloss: "red"
@@ -2973,10 +2765,7 @@ lexemes:
   - form: "أَحْمَر"
     gives: {arabic: "أحمر", marked: "أَحْمَر", arabizi: ["a7mar"], phonemes: "ʔaħmar"}
     course: {arabic: "أحمر", marked: "أَحْمَر", arabizi: "a7mar"}
-  - form: "حَمْرَا"
-    gives: {arabic: "حمرا", marked: "حَمْرا", arabizi: ["7amra"], phonemes: "ħamra"}
-    course: {arabic: "حمرا", marked: "حَمْرا", arabizi: "7amra"}
-- id: "sense:azra2"
+- id: "lexeme:azra2"
   unit: "u15-shopping"
   pos: ADJ
   gloss: "blue"
@@ -2984,10 +2773,7 @@ lexemes:
   - form: "أَزْرَق"
     gives: {arabic: "أزرق", marked: "أَزْرَق", arabizi: ["azra2"], phonemes: "ʔazraʔ"}
     course: {arabic: "أزرق", marked: "أَزْرَق", arabizi: "azra2"}
-  - form: "زَرْقَا"
-    gives: {arabic: "زرقا", marked: "زَرْقا", arabizi: ["zar2a"], phonemes: "zarʔa"}
-    course: {arabic: "زرقا", marked: "زَرْقا", arabizi: "zar2a"}
-- id: "sense:akhdar"
+- id: "lexeme:akhdar"
   unit: "u15-shopping"
   pos: ADJ
   gloss: "green"
@@ -2995,10 +2781,7 @@ lexemes:
   - form: "أَخْضَر"
     gives: {arabic: "أخضر", marked: "أَخْضَر", arabizi: ["akhdar", "a5dar"], phonemes: "ʔaxdˤar"}
     course: {arabic: "أخضر", marked: "أَخْضَر", arabizi: "akhdar"}
-  - form: "خَضْرَا"
-    gives: {arabic: "خضرا", marked: "خَضْرا", arabizi: ["khadra", "5adra"], phonemes: "xadˤra"}
-    course: {arabic: "خضرا", marked: "خَضْرا", arabizi: "khadra"}
-- id: "sense:arkhas"
+- id: "lexeme:arkhas"
   unit: "u15-shopping"
   pos: ADJ
   gloss: "cheaper; cheapest"
@@ -3006,7 +2789,7 @@ lexemes:
   - form: "أَرْخَص"
     gives: {arabic: "أرخص", marked: "أَرْخَص", arabizi: ["arkhas", "ar5as"], phonemes: "ʔarxasˤ"}
     course: {arabic: "أرخص", marked: "أَرْخَص", arabizi: "arkhas"}
-- id: "sense:men.than"
+- id: "lexeme:men.than"
   unit: "u15-shopping"
   pos: ADP
   gloss: "than"
@@ -3014,7 +2797,7 @@ lexemes:
   - form: "مِن"
     gives: {arabic: "من", marked: "مِن", arabizi: ["men", "min"], phonemes: "min"}
     course: {arabic: "من", marked: "مِن", arabizi: "men"}
-- id: "sense:aghla"
+- id: "lexeme:aghla"
   unit: "u15-shopping"
   pos: ADJ
   gloss: "more expensive; most expensive"
@@ -3022,7 +2805,7 @@ lexemes:
   - form: "أَغْلَى"
     gives: {arabic: "أغلى", marked: "أَغْلى", arabizi: ["aghla", "a8la"], phonemes: "ʔaɣla"}
     course: {arabic: "أغلى", marked: "أَغْلى", arabizi: "aghla"}
-- id: "sense:akbar"
+- id: "lexeme:akbar"
   unit: "u15-shopping"
   pos: ADJ
   gloss: "bigger; older"
@@ -3030,7 +2813,7 @@ lexemes:
   - form: "أَكْبَر"
     gives: {arabic: "أكبر", marked: "أَكْبَر", arabizi: ["akbar"], phonemes: "ʔakbar"}
     course: {arabic: "أكبر", marked: "أَكْبَر", arabizi: "akbar"}
-- id: "sense:azghar"
+- id: "lexeme:azghar"
   unit: "u15-shopping"
   pos: ADJ
   gloss: "smaller; younger"
@@ -3038,7 +2821,7 @@ lexemes:
   - form: "أَزْغَر"
     gives: {arabic: "أزغر", marked: "أَزْغَر", arabizi: ["azghar", "az8ar"], phonemes: "ʔazɣar"}
     course: {arabic: "أزغر", marked: "أَزْغَر", arabizi: "azghar"}
-- id: "sense:7a22"
+- id: "lexeme:7a22"
   unit: "u15-shopping"
   pos: NOUN
   gloss: "price (what something costs)"
@@ -3046,7 +2829,7 @@ lexemes:
   - form: "حَقّ"
     gives: {arabic: "حق", marked: "حَقّ", arabizi: ["7a22"], phonemes: "ħaʔː"}
     course: {arabic: "حقّ", marked: "حَقّ", arabizi: "7a22"}
-- id: "sense:jarrab"
+- id: "lexeme:jarrab"
   unit: "u15-shopping"
   pos: VERB
   gloss: "try; try on"
@@ -3063,10 +2846,10 @@ lexemes:
     gives: {arabic: "جرب", marked: "جَرِّب", arabizi: ["jarreb", "jarrib"], phonemes: "ʒarːib"}
     course: {arabic: "جرّب", marked: "جَرِّب", arabizi: "jarreb"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "subj-1sg+obj-3ms", form: "جَرّْبُه\u06df", arabic: "جرّبه", arabizi: "jarrbo"}
-  - {features: "imp-2fs", form: "جَرّْبِي", arabic: "جرّبي", arabizi: "jarrbi"}
-  - {features: "subj-1sg+obj-3ms", form: "جَرّْبُه\u06df", arabic: "جَرّْبُه", arabizi: "jarrbo"}
-- id: "sense:2yes"
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1+obj-3ms", form: "جَرّْبُه\u06df", arabic: "جرّبه", arabizi: "jarrbo"}
+  - {features: "Gender=Fem;Mood=Imp;Number=Sing;Person=2", form: "جَرّْبِي", arabic: "جرّبي", arabizi: "jarrbi"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1+obj-3ms", form: "جَرّْبُه\u06df", arabic: "جَرّْبُه", arabizi: "jarrbo"}
+- id: "lexeme:2yes"
   unit: "u15-shopping"
   pos: NOUN
   gloss: "size"
@@ -3074,7 +2857,7 @@ lexemes:
   - form: "قْي\u065cاس"
     gives: {arabic: "قياس", marked: "قْياس", arabizi: ["2yes", "yes"], phonemes: "ʔjeːs"}
     course: {arabic: "قياس", marked: "قْياس", arabizi: "2yes"}
-- id: "sense:lebes"
+- id: "lexeme:lebes"
   unit: "u15-shopping"
   pos: VERB
   gloss: "wear; put on (clothes)"
@@ -3091,10 +2874,10 @@ lexemes:
     gives: {arabic: "البس", marked: "اِلْبُس", arabizi: ["elbos", "elbus", "ilbos", "ilbus"], phonemes: "ilbus"}
     course: {arabic: "البس", marked: "اِلْبُس", arabizi: "elbos"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "subj-2ms", form: "تِلْبُس", arabic: "تلبس", arabizi: "tilbos"}
-  - {features: "subj-2pl", form: "تِلْبْسُوا\u06df", arabic: "تلبسوا", arabizi: "tilbso"}
-  - {features: "subj-1sg", form: "اِلْبُس", arabic: "البس", arabizi: "elbos"}
-- id: "sense:7da3sh"
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=2", form: "تِلْبُس", arabic: "تلبس", arabizi: "tilbos"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=2", form: "تِلْبْسُوا\u06df", arabic: "تلبسوا", arabizi: "tilbso"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "اِلْبُس", arabic: "البس", arabizi: "elbos"}
+- id: "lexeme:7da3sh"
   unit: "u16-dates"
   pos: NUM
   gloss: "eleven"
@@ -3103,7 +2886,7 @@ lexemes:
     gives: {arabic: "حدعشر", marked: "حْدَعْشَر", arabizi: ["7da3shar", "7da3char"], phonemes: "ħdaʕʃar"}
     course: {arabic: "حدعشر", marked: "حْدَعْشَر", arabizi: "7da3sh"}
     review: ["Arabizi not read: حْدَعْشَر cannot be read as 7da3sh", "arabizi: 7da3sh is not among the projected spellings (7da3shar first)"]
-- id: "sense:tna3sh"
+- id: "lexeme:tna3sh"
   unit: "u16-dates"
   pos: NUM
   gloss: "twelve"
@@ -3112,7 +2895,7 @@ lexemes:
     gives: {arabic: "تنعشر", marked: "تْنَعْشَر", arabizi: ["tna3shar", "tna3char"], phonemes: "tnaʕʃar"}
     course: {arabic: "تنعشر", marked: "تْنَعْشَر", arabizi: "tna3sh"}
     review: ["Arabizi not read: تْنَعْشَر cannot be read as tna3sh", "arabizi: tna3sh is not among the projected spellings (tna3shar first)"]
-- id: "sense:tleta3sh"
+- id: "lexeme:tleta3sh"
   unit: "u16-dates"
   pos: NUM
   gloss: "thirteen"
@@ -3121,7 +2904,7 @@ lexemes:
     gives: {arabic: "تلاتعشر", marked: "تْلاتَعْشَر", arabizi: ["tlata3shar", "tlata3char"], phonemes: "tlaːtaʕʃar"}
     course: {arabic: "تلاتعشر", marked: "تْلاتَعْشَر", arabizi: "tleta3sh"}
     review: ["Arabizi not read: تْلاتَعْشَر cannot be read as tleta3sh", "arabizi: tleta3sh is not among the projected spellings (tlata3shar first)"]
-- id: "sense:arba3ta3sh"
+- id: "lexeme:arba3ta3sh"
   unit: "u16-dates"
   pos: NUM
   gloss: "fourteen"
@@ -3130,7 +2913,7 @@ lexemes:
     gives: {arabic: "أربعتعشر", marked: "أَرْبَعْتَعْشَر", arabizi: ["arba3ta3shar", "arba3ta3char"], phonemes: "ʔarbaʕtaʕʃar"}
     course: {arabic: "أربعتعشر", marked: "أَرْبَعْتَعْشَر", arabizi: "arba3ta3sh"}
     review: ["Arabizi not read: أَرْبَعْتَعْشَر cannot be read as arba3ta3sh", "arabizi: arba3ta3sh is not among the projected spellings (arba3ta3shar first)"]
-- id: "sense:khamsta3sh"
+- id: "lexeme:khamsta3sh"
   unit: "u16-dates"
   pos: NUM
   gloss: "fifteen"
@@ -3139,7 +2922,7 @@ lexemes:
     gives: {arabic: "خمستعشر", marked: "خَمِسْتَعْشَر", arabizi: ["khamesta3shar", "khamesta3char", "khamista3shar", "khamista3char"], phonemes: "xamistaʕʃar"}
     course: {arabic: "خمستعشر", marked: "خَمِسْتَعْشَر", arabizi: "khamsta3sh"}
     review: ["Arabizi not read: خَمِسْتَعْشَر cannot be read as khamsta3sh", "arabizi: khamsta3sh is not among the projected spellings (khamesta3shar first)"]
-- id: "sense:setta3sh"
+- id: "lexeme:setta3sh"
   unit: "u16-dates"
   pos: NUM
   gloss: "sixteen"
@@ -3148,7 +2931,7 @@ lexemes:
     gives: {arabic: "ستعشر", marked: "سِتَّعْشَر", arabizi: ["setta3shar", "setta3char", "sitta3shar", "sitta3char"], phonemes: "sitːaʕʃar"}
     course: {arabic: "ستّعشر", marked: "سِتَّعْشَر", arabizi: "setta3sh"}
     review: ["Arabizi not read: سِتَّعْشَر cannot be read as setta3sh", "arabizi: setta3sh is not among the projected spellings (setta3shar first)"]
-- id: "sense:saba3ta3sh"
+- id: "lexeme:saba3ta3sh"
   unit: "u16-dates"
   pos: NUM
   gloss: "seventeen"
@@ -3157,7 +2940,7 @@ lexemes:
     gives: {arabic: "سبعتعشر", marked: "سَبَعْتَعْشَر", arabizi: ["saba3ta3shar", "saba3ta3char"], phonemes: "sabaʕtaʕʃar"}
     course: {arabic: "سبعتعشر", marked: "سَبَعْتَعْشَر", arabizi: "saba3ta3sh"}
     review: ["Arabizi not read: سَبَعْتَعْشَر cannot be read as saba3ta3sh", "arabizi: saba3ta3sh is not among the projected spellings (saba3ta3shar first)"]
-- id: "sense:tmenta3sh"
+- id: "lexeme:tmenta3sh"
   unit: "u16-dates"
   pos: NUM
   gloss: "eighteen"
@@ -3166,7 +2949,7 @@ lexemes:
     gives: {arabic: "تمانتعشر", marked: "تْمانْتَعْشَر", arabizi: ["tmanta3shar", "tmanta3char"], phonemes: "tmaːntaʕʃar"}
     course: {arabic: "تمانتعشر", marked: "تْمانْتَعْشَر", arabizi: "tmenta3sh"}
     review: ["Arabizi not read: تْمانْتَعْشَر cannot be read as tmenta3sh", "arabizi: tmenta3sh is not among the projected spellings (tmanta3shar first)"]
-- id: "sense:tsa3ta3sh"
+- id: "lexeme:tsa3ta3sh"
   unit: "u16-dates"
   pos: NUM
   gloss: "nineteen"
@@ -3175,7 +2958,7 @@ lexemes:
     gives: {arabic: "تسعتعشر", marked: "تِسَعْتَعْشَر", arabizi: ["tesa3ta3shar", "tesa3ta3char", "tisa3ta3shar", "tisa3ta3char"], phonemes: "tisaʕtaʕʃar"}
     course: {arabic: "تسعتعشر", marked: "تِسَعْتَعْشَر", arabizi: "tsa3ta3sh"}
     review: ["Arabizi not read: تِسَعْتَعْشَر cannot be read as tsa3ta3sh", "arabizi: tsa3ta3sh is not among the projected spellings (tesa3ta3shar first)"]
-- id: "sense:tleten"
+- id: "lexeme:tleten"
   unit: "u16-dates"
   pos: NUM
   gloss: "thirty"
@@ -3183,7 +2966,7 @@ lexemes:
   - form: "تْل\u065cات\u065cين"
     gives: {arabic: "تلاتين", marked: "تْلاتين", arabizi: ["tleten", "tletein"], phonemes: "tleːteːn"}
     course: {arabic: "تلاتين", marked: "تْلاتين", arabizi: "tleten"}
-- id: "sense:kanoun-tene"
+- id: "lexeme:kanoun-tene"
   unit: "u16-dates"
   pos: PROPN
   gloss: "January"
@@ -3191,7 +2974,7 @@ lexemes:
   - form: "كَانُون ا\u06dfلْت\u065cانِي"
     gives: {arabic: "كانون التاني", marked: "كانون التاني", arabizi: ["kanun elteni", "kanun eltene", "kanun lteni", "kanun ltene"], phonemes: "kaːnuːn lteːni"}
     course: {arabic: "كانون التاني", marked: "", arabizi: "kanoun el tene"}
-- id: "sense:shbat"
+- id: "lexeme:shbat"
   unit: "u16-dates"
   pos: PROPN
   gloss: "February"
@@ -3199,7 +2982,7 @@ lexemes:
   - form: "شْبَاط"
     gives: {arabic: "شباط", marked: "شْباط", arabizi: ["shbat", "chbat"], phonemes: "ʃbaːtˤ"}
     course: {arabic: "شباط", marked: "شْباط", arabizi: "shbat"}
-- id: "sense:adar"
+- id: "lexeme:adar"
   unit: "u16-dates"
   pos: PROPN
   gloss: "March"
@@ -3208,7 +2991,7 @@ lexemes:
     gives: {arabic: "آذار", marked: "آذار", arabizi: ["azar"], phonemes: "ʔaːzaːr"}
     course: {arabic: "آذار", marked: "آذار", arabizi: "adar"}
     review: ["letter and sound: ذ written d in Arabizi", "arabizi: adar is not among the projected spellings (azar first)"]
-- id: "sense:nisan"
+- id: "lexeme:nisan"
   unit: "u16-dates"
   pos: PROPN
   gloss: "April"
@@ -3216,7 +2999,7 @@ lexemes:
   - form: "نِيسَان"
     gives: {arabic: "نيسان", marked: "نيسان", arabizi: ["nisan", "neesan"], phonemes: "niːsaːn"}
     course: {arabic: "نيسان", marked: "نيسان", arabizi: "nisan"}
-- id: "sense:ayyar"
+- id: "lexeme:ayyar"
   unit: "u16-dates"
   pos: PROPN
   gloss: "May"
@@ -3224,7 +3007,7 @@ lexemes:
   - form: "أَيَّار"
     gives: {arabic: "أيار", marked: "أَيّار", arabizi: ["ayyar"], phonemes: "ʔajːaːr"}
     course: {arabic: "أيّار", marked: "أَيّار", arabizi: "ayyar"}
-- id: "sense:7zeiran"
+- id: "lexeme:7zeiran"
   unit: "u16-dates"
   pos: PROPN
   gloss: "June"
@@ -3233,7 +3016,7 @@ lexemes:
     gives: {arabic: "حزيران", marked: "حْزيران", arabizi: ["7zeran", "7zeiran"], phonemes: "ħzeːraːn"}
     course: {arabic: "حزيران", marked: "حْزَيْران", arabizi: "7zeiran"}
     review: ["diphthong: the marks write ay, Arabizi ei", "marks: projected حْزيران, pinned حْزَيْران"]
-- id: "sense:tammouz"
+- id: "lexeme:tammouz"
   unit: "u16-dates"
   pos: PROPN
   gloss: "July"
@@ -3241,7 +3024,7 @@ lexemes:
   - form: "تَمُّوز"
     gives: {arabic: "تموز", marked: "تَمّوز", arabizi: ["tammuz", "tammouz"], phonemes: "tamːuːz"}
     course: {arabic: "تمّوز", marked: "تَمّوز", arabizi: "tammouz"}
-- id: "sense:ab"
+- id: "lexeme:ab"
   unit: "u16-dates"
   pos: PROPN
   gloss: "August"
@@ -3249,7 +3032,7 @@ lexemes:
   - form: "آب"
     gives: {arabic: "آب", marked: "آب", arabizi: ["ab"], phonemes: "ʔaːb"}
     course: {arabic: "آب", marked: "آب", arabizi: "ab"}
-- id: "sense:aylul"
+- id: "lexeme:aylul"
   unit: "u16-dates"
   pos: PROPN
   gloss: "September"
@@ -3257,7 +3040,7 @@ lexemes:
   - form: "أَيْلُول"
     gives: {arabic: "أيلول", marked: "أَيْلول", arabizi: ["aylul", "ayloul"], phonemes: "ʔajluːl"}
     course: {arabic: "أيلول", marked: "أَيْلول", arabizi: "aylul"}
-- id: "sense:tishrin-awwal"
+- id: "lexeme:tishrin-awwal"
   unit: "u16-dates"
   pos: PROPN
   gloss: "October"
@@ -3265,7 +3048,7 @@ lexemes:
   - form: "تِشْرِين ا\u06dfلْأَوَّل"
     gives: {arabic: "تشرين الأول", marked: "تِشْرين الأَوَّل", arabizi: ["teshrin elawwal", "teshrin lawwal", "teshrin ilawwal", "teshreen elawwal"], phonemes: "tiʃriːn lʔawːal"}
     course: {arabic: "تشرين الأوّل", marked: "", arabizi: "tishrin el awwal"}
-- id: "sense:tishrin-tene"
+- id: "lexeme:tishrin-tene"
   unit: "u16-dates"
   pos: PROPN
   gloss: "November"
@@ -3273,7 +3056,7 @@ lexemes:
   - form: "تِشْرِين ا\u06dfلْت\u065cانِي"
     gives: {arabic: "تشرين التاني", marked: "تِشْرين التاني", arabizi: ["teshrin elteni", "teshrin eltene", "teshrin lteni", "teshrin ltene"], phonemes: "tiʃriːn lteːni"}
     course: {arabic: "تشرين التاني", marked: "", arabizi: "tishrin el tene"}
-- id: "sense:kanoun-awwal"
+- id: "lexeme:kanoun-awwal"
   unit: "u16-dates"
   pos: PROPN
   gloss: "December"
@@ -3281,7 +3064,7 @@ lexemes:
   - form: "كَانُون ا\u06dfلْأَوَّل"
     gives: {arabic: "كانون الأول", marked: "كانون الأَوَّل", arabizi: ["kanun elawwal", "kanun lawwal", "kanun ilawwal", "kanoun elawwal"], phonemes: "kaːnuːn lʔawːal"}
     course: {arabic: "كانون الأوّل", marked: "", arabizi: "kanoun el awwal"}
-- id: "sense:3id-milad"
+- id: "lexeme:3id-milad"
   unit: "u16-dates"
   pos: NOUN
   gloss: "birthday"
@@ -3289,7 +3072,7 @@ lexemes:
   - form: "عِيد مِيلَاد"
     gives: {arabic: "عيد ميلاد", marked: "عيد ميلاد", arabizi: ["3id milad", "3id meelad", "3eed milad", "3eed meelad"], phonemes: "ʕiːd miːlaːd"}
     course: {arabic: "عيد ميلاد", marked: "", arabizi: "3id milad"}
-- id: "sense:kell-sene"
+- id: "lexeme:kell-sene"
   unit: "u16-dates"
   pos: INTJ
   gloss: "happy birthday; many happy returns (to a man)"
@@ -3298,7 +3081,7 @@ lexemes:
     gives: {arabic: "كل سنة وإنت سالم", marked: "كِلّ سِنِة وِإْنْتَ سالِم", arabizi: ["kell sene we2nta salem", "kell sene we2nta salim", "kell sene wi2nta salem", "kell sene wi2nta salim"], phonemes: "kilː sine wiʔnta saːlim"}
     course: {arabic: "كلّ سنة وإنت سالم", marked: "", arabizi: "kell sene w enta salem"}
     review: ["hamza: not written in Arabizi", "arabizi: kell sene w enta salem is not among the projected spellings (kellsenewe2ntasalem first)"]
-- id: "sense:marra"
+- id: "lexeme:marra"
   unit: "u16-dates"
   pos: NOUN
   gloss: "time (once, twice…); once"
@@ -3306,7 +3089,7 @@ lexemes:
   - form: "مَرَّة"
     gives: {arabic: "مرة", marked: "مَرَّة", arabizi: ["marra"], phonemes: "marːa"}
     course: {arabic: "مرّة", marked: "مَرَّة", arabizi: "marra"}
-- id: "sense:awwal"
+- id: "lexeme:awwal"
   unit: "u16-dates"
   pos: ADJ
   gloss: "first"
@@ -3314,7 +3097,7 @@ lexemes:
   - form: "أَوَّل"
     gives: {arabic: "أول", marked: "أَوَّل", arabizi: ["awwal"], phonemes: "ʔawːal"}
     course: {arabic: "أوّل", marked: "أَوَّل", arabizi: "awwal"}
-- id: "sense:tene"
+- id: "lexeme:tene"
   unit: "u16-dates"
   pos: ADJ
   gloss: "second; other"
@@ -3322,7 +3105,7 @@ lexemes:
   - form: "ت\u065cانِي"
     gives: {arabic: "تاني", marked: "تاني", arabizi: ["teni", "tene"], phonemes: "teːni"}
     course: {arabic: "تاني", marked: "تاني", arabizi: "tene"}
-- id: "sense:lamma"
+- id: "lexeme:lamma"
   unit: "u17-childhood"
   pos: SCONJ
   gloss: "when (not a question)"
@@ -3330,7 +3113,7 @@ lexemes:
   - form: "لَمَّا"
     gives: {arabic: "لما", marked: "لَمّا", arabizi: ["lamma"], phonemes: "lamːa"}
     course: {arabic: "لمّا", marked: "لَمّا", arabizi: "lamma"}
-- id: "sense:3ash"
+- id: "lexeme:3ash"
   unit: "u17-childhood"
   pos: VERB
   gloss: "live (one's life); live somewhere"
@@ -3347,10 +3130,10 @@ lexemes:
     gives: {arabic: "عاش", marked: "عاش", arabizi: ["3ash", "3ach"], phonemes: "ʕaːʃ"}
     course: {arabic: "عاش", marked: "عاش", arabizi: "3ash"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "subj-1pl", form: "نْعِيش", arabic: "نعيش", arabizi: "n3ish"}
-  - {features: "subj-2fs", form: "تْعِيشِي", arabic: "تعيشي", arabizi: "t3ishi"}
-  - {features: "subj-1pl", form: "نْعِيش", arabic: "نْعيش", arabizi: "n3ish"}
-- id: "sense:m3allem"
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=1", form: "نْعِيش", arabic: "نعيش", arabizi: "n3ish"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=2", form: "تْعِيشِي", arabic: "تعيشي", arabizi: "t3ishi"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=1", form: "نْعِيش", arabic: "نْعيش", arabizi: "n3ish"}
+- id: "lexeme:m3allem"
   unit: "u17-childhood"
   pos: NOUN
   gloss: "teacher"
@@ -3362,7 +3145,7 @@ lexemes:
   - form: "مْعَلِّم"
     gives: {arabic: "معلم", marked: "مْعَلِّم", arabizi: ["m3allem", "m3allim"], phonemes: "mʕalːim"}
     course: {arabic: "معلّم", marked: "مْعَلِّم", arabizi: "m3allem"}
-- id: "sense:ba3d.still"
+- id: "lexeme:ba3d.still"
   unit: "u17-childhood"
   pos: ADV
   gloss: "still (with an ending: ba3dni, ba3dak…)"
@@ -3371,7 +3154,7 @@ lexemes:
     gives: {arabic: "بعد", marked: "بَعِد", arabizi: ["ba3d", "ba3ed"], phonemes: "baʕid"}
     course: {arabic: "بعد", marked: "بَعِد", arabizi: "ba3d"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:la7al"
+- id: "lexeme:la7al"
   unit: "u17-childhood"
   pos: ADV
   gloss: "alone; by oneself (with an ending: la7ali, la7alo…)"
@@ -3379,7 +3162,7 @@ lexemes:
   - form: "لَحَال"
     gives: {arabic: "لحال", marked: "لَحال", arabizi: ["la7al"], phonemes: "laħaːl"}
     course: {arabic: "لحال", marked: "لَحال", arabizi: "la7al"}
-- id: "sense:ma-3ad"
+- id: "lexeme:ma-3ad"
   unit: "u17-childhood"
   pos: PART
   gloss: "no longer; not … any more"
@@ -3387,7 +3170,7 @@ lexemes:
   - form: "مَا عَاد"
     gives: {arabic: "ما عاد", marked: "ما عاد", arabizi: ["ma 3ad"], phonemes: "ma ʕaːd"}
     course: {arabic: "ما عاد", marked: "", arabizi: "ma 3ad"}
-- id: "sense:servees"
+- id: "lexeme:servees"
   unit: "u18-getting-around"
   pos: NOUN
   gloss: "service (a shared taxi on a fixed route)"
@@ -3396,7 +3179,7 @@ lexemes:
     gives: {arabic: "سرفيس", marked: "سِرْفيس", arabizi: ["serfis", "serfees", "sirfis", "sirfees"], phonemes: "sirfiːs"}
     course: {arabic: "سرفيس", marked: "سِرْفيس", arabizi: "servees"}
     review: ["Arabizi not read: سِرْفيس cannot be read as servees", "arabizi: servees is not among the projected spellings (serfis first)"]
-- id: "sense:taxi"
+- id: "lexeme:taxi"
   unit: "u18-getting-around"
   pos: NOUN
   gloss: "taxi"
@@ -3405,7 +3188,7 @@ lexemes:
     gives: {arabic: "تاكسي", marked: "تاكْسي", arabizi: ["taksi", "takse"], phonemes: "taːksi"}
     course: {arabic: "تاكسي", marked: "تاكْسي", arabizi: "taxi"}
     review: ["Arabizi not read: تاكْسي cannot be read as taxi", "arabizi: taxi is not among the projected spellings (taksi first)"]
-- id: "sense:bus"
+- id: "lexeme:bus"
   unit: "u18-getting-around"
   pos: NOUN
   gloss: "bus"
@@ -3414,7 +3197,7 @@ lexemes:
     gives: {arabic: "باص", marked: "باص", arabizi: ["bas"], phonemes: "baːsˤ"}
     course: {arabic: "باص", marked: "باص", arabizi: "bus"}
     review: ["Arabizi not read: باص cannot be read as bus", "arabizi: bus is not among the projected spellings (bas first)"]
-- id: "sense:tari2"
+- id: "lexeme:tari2"
   unit: "u18-getting-around"
   pos: NOUN
   gloss: "road; way"
@@ -3422,7 +3205,7 @@ lexemes:
   - form: "طَرِيق"
     gives: {arabic: "طريق", marked: "طَريق", arabizi: ["tari2", "taree2"], phonemes: "tˤariːʔ"}
     course: {arabic: "طريق", marked: "طَريق", arabizi: "tari2"}
-- id: "sense:3aj2a"
+- id: "lexeme:3aj2a"
   unit: "u18-getting-around"
   pos: NOUN
   gloss: "traffic; traffic jam; crowd"
@@ -3430,7 +3213,7 @@ lexemes:
   - form: "عَجْقَة"
     gives: {arabic: "عجقة", marked: "عَجْقَة", arabizi: ["3aj2a"], phonemes: "ʕaʒʔa"}
     course: {arabic: "عجقة", marked: "عَجْقَة", arabizi: "3aj2a"}
-- id: "sense:2a3ed"
+- id: "lexeme:2a3ed"
   unit: "u18-getting-around"
   pos: VERB
   gloss: "sitting; staying (somewhere)"
@@ -3443,7 +3226,7 @@ lexemes:
   - form: "قَاعِد"
     gives: {arabic: "قاعد", marked: "قاعِد", arabizi: ["2a3ed", "2a3id", "a3ed", "a3id"], phonemes: "ʔaːʕid"}
     course: {arabic: "قاعد", marked: "قاعِد", arabizi: "2a3ed"}
-- id: "sense:wa2ef"
+- id: "lexeme:wa2ef"
   unit: "u18-getting-around"
   pos: VERB
   gloss: "standing; stopped; waiting"
@@ -3455,7 +3238,7 @@ lexemes:
   - form: "وَاقِف"
     gives: {arabic: "واقف", marked: "واقِف", arabizi: ["wa2ef", "wa2if"], phonemes: "waːʔif"}
     course: {arabic: "واقف", marked: "واقِف", arabizi: "wa2ef"}
-- id: "sense:laff"
+- id: "lexeme:laff"
   unit: "u18-getting-around"
   pos: VERB
   gloss: "turn"
@@ -3472,8 +3255,8 @@ lexemes:
     gives: {arabic: "لف", marked: "لِفّ", arabizi: ["leff", "liff"], phonemes: "lifː"}
     course: {arabic: "لفّ", marked: "لِفّ", arabizi: "liff"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "imp-2fs", form: "لِفِّي", arabic: "لفّي", arabizi: "liffi"}
-- id: "sense:ishara"
+  - {features: "Gender=Fem;Mood=Imp;Number=Sing;Person=2", form: "لِفِّي", arabic: "لفّي", arabizi: "liffi"}
+- id: "lexeme:ishara"
   unit: "u18-getting-around"
   pos: NOUN
   gloss: "traffic light; sign"
@@ -3481,7 +3264,7 @@ lexemes:
   - form: "إِشَارَة"
     gives: {arabic: "إشارة", marked: "إِشارَة", arabizi: ["eshara", "echara", "ishara", "ichara"], phonemes: "ʔiʃaːra"}
     course: {arabic: "إشارة", marked: "إِشارَة", arabizi: "ishara"}
-- id: "sense:wa22ef"
+- id: "lexeme:wa22ef"
   unit: "u18-getting-around"
   pos: VERB
   gloss: "stop (a car, someone)"
@@ -3497,9 +3280,9 @@ lexemes:
     gives: {arabic: "وقف", marked: "وَقِّف", arabizi: ["wa22ef", "wa22if"], phonemes: "waʔːif"}
     course: {arabic: "وقّف", marked: "وَقِّف", arabizi: "wa22ef"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "imp-2fs", form: "وَقّْفِي", arabic: "وقّفي", arabizi: "wa22fi"}
-  - {features: "imp-2pl", form: "وَقّْفُوا\u06df", arabic: "وقّفوا", arabizi: "wa22fo"}
-- id: "sense:jem3a.uni"
+  - {features: "Gender=Fem;Mood=Imp;Number=Sing;Person=2", form: "وَقّْفِي", arabic: "وقّفي", arabizi: "wa22fi"}
+  - {features: "Mood=Imp;Number=Plur;Person=2", form: "وَقّْفُوا\u06df", arabic: "وقّفوا", arabizi: "wa22fo"}
+- id: "lexeme:jem3a.uni"
   unit: "u19-work"
   pos: NOUN
   gloss: "university"
@@ -3507,7 +3290,7 @@ lexemes:
   - form: "ج\u065cامْعَة"
     gives: {arabic: "جامعة", marked: "جامْعَة", arabizi: ["jem3a"], phonemes: "ʒeːmʕa"}
     course: {arabic: "جامعة", marked: "جامْعَة", arabizi: "jem3a"}
-- id: "sense:tilmiz"
+- id: "lexeme:tilmiz"
   unit: "u19-work"
   pos: NOUN
   gloss: "student; pupil"
@@ -3515,7 +3298,7 @@ lexemes:
   - form: "تِلْمِيذ"
     gives: {arabic: "تلميذ", marked: "تِلْميذ", arabizi: ["telmiz", "telmeez", "tilmiz", "tilmeez"], phonemes: "tilmiːz"}
     course: {arabic: "تلميذ", marked: "تِلْميذ", arabizi: "tilmiz"}
-- id: "sense:daras"
+- id: "lexeme:daras"
   unit: "u19-work"
   pos: VERB
   gloss: "study"
@@ -3532,11 +3315,11 @@ lexemes:
     gives: {arabic: "بدرس", marked: "بِدْرُس", arabizi: ["bedros", "bedrus", "bidros", "bidrus"], phonemes: "bidrus"}
     course: {arabic: "بدرس", marked: "بِدْرُس", arabizi: "bedros"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "impf-2ms", form: "بْتِدْرُس", arabic: "بتدرس", arabizi: "btidros"}
-  - {features: "impf-1sg", form: "بِدْرُس", arabic: "بدرس", arabizi: "bedros"}
-  - {features: "subj-2pl", form: "تِدْرْسُوا\u06df", arabic: "تدرسوا", arabizi: "tedrso"}
-  - {features: "subj-1sg", form: "اِدْرُس", arabic: "اِدْرُس", arabizi: "edros"}
-- id: "sense:dars"
+  - {features: "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2", form: "بْتِدْرُس", arabic: "بتدرس", arabizi: "btidros"}
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بِدْرُس", arabic: "بدرس", arabizi: "bedros"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Plur;Person=2", form: "تِدْرْسُوا\u06df", arabic: "تدرسوا", arabizi: "tedrso"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1", form: "اِدْرُس", arabic: "اِدْرُس", arabizi: "edros"}
+- id: "lexeme:dars"
   unit: "u19-work"
   pos: NOUN
   gloss: "lesson; class"
@@ -3545,7 +3328,7 @@ lexemes:
     gives: {arabic: "درس", marked: "دَرِس", arabizi: ["dars", "dares"], phonemes: "daris"}
     course: {arabic: "درس", marked: "دَرِس", arabizi: "dars"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:emte7an"
+- id: "lexeme:emte7an"
   unit: "u19-work"
   pos: NOUN
   gloss: "exam; test"
@@ -3553,7 +3336,7 @@ lexemes:
   - form: "اِمْتِحَان"
     gives: {arabic: "امتحان", marked: "اِمْتِحان", arabizi: ["emte7an", "emti7an", "imte7an", "imti7an"], phonemes: "imtiħaːn"}
     course: {arabic: "امتحان", marked: "اِمْتِحان", arabizi: "emte7an"}
-- id: "sense:mhandes"
+- id: "lexeme:mhandes"
   unit: "u19-work"
   pos: NOUN
   gloss: "engineer"
@@ -3564,7 +3347,7 @@ lexemes:
   - form: "مْهَنْدِس"
     gives: {arabic: "مهندس", marked: "مْهَنْدِس", arabizi: ["mhandes", "mhandis"], phonemes: "mhandis"}
     course: {arabic: "مهندس", marked: "مْهَنْدِس", arabizi: "mhandes"}
-- id: "sense:sherke"
+- id: "lexeme:sherke"
   unit: "u19-work"
   pos: NOUN
   gloss: "company; firm"
@@ -3572,7 +3355,7 @@ lexemes:
   - form: "شِرْك\u065cة"
     gives: {arabic: "شركة", marked: "شِرْكِة", arabizi: ["sherke", "shirke", "cherke", "chirke"], phonemes: "ʃirke"}
     course: {arabic: "شركة", marked: "شِرْكِة", arabizi: "sherke"}
-- id: "sense:mudir"
+- id: "lexeme:mudir"
   unit: "u19-work"
   pos: NOUN
   gloss: "boss; manager; director"
@@ -3583,7 +3366,7 @@ lexemes:
   - form: "مُدِير"
     gives: {arabic: "مدير", marked: "مُدير", arabizi: ["modir", "modeer", "mudir", "mudeer"], phonemes: "mudiːr"}
     course: {arabic: "مدير", marked: "مُدير", arabizi: "mudir"}
-- id: "sense:sar"
+- id: "lexeme:sar"
   unit: "u19-work"
   pos: VERB
   gloss: "become; (with -li) it's been"
@@ -3600,11 +3383,11 @@ lexemes:
     gives: {arabic: "صار", marked: "صار", arabizi: ["sar"], phonemes: "sˤaːr"}
     course: {arabic: "صار", marked: "صار", arabizi: "sar"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "past-3ms", form: "صَار", arabic: "صار", arabizi: "sar"}
-  - {features: "past-3ms+la-1sg", form: "صَارْلِي", arabic: "صارلي", arabizi: "sarli"}
-  - {features: "past-3ms+la-2ms", form: "صَارْلَك", arabic: "صارلك", arabizi: "sarlak"}
-  - {features: "past-1sg", form: "صِرْت", arabic: "صِرِت", arabizi: "sert"}
-- id: "sense:iza"
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=3", form: "صَار", arabic: "صار", arabizi: "sar"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=3+la-1sg", form: "صَارْلِي", arabic: "صارلي", arabizi: "sarli"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=3+la-2ms", form: "صَارْلَك", arabic: "صارلك", arabizi: "sarlak"}
+  - {features: "Aspect=Perf;Number=Sing;Person=1", form: "صِرْت", arabic: "صِرِت", arabizi: "sert"}
+- id: "lexeme:iza"
   unit: "u19-work"
   pos: SCONJ
   gloss: "if"
@@ -3612,7 +3395,7 @@ lexemes:
   - form: "إِذَا"
     gives: {arabic: "إذا", marked: "إِذا", arabizi: ["eza", "iza"], phonemes: "ʔiza"}
     course: {arabic: "إذا", marked: "إِذا", arabizi: "iza"}
-- id: "sense:la2anno"
+- id: "lexeme:la2anno"
   unit: "u19-work"
   pos: SCONJ
   gloss: "because"
@@ -3620,7 +3403,7 @@ lexemes:
   - form: "لَأَنُّه\u06df"
     gives: {arabic: "لأنه", marked: "لَأَنُّه", arabizi: ["la2anno", "la2annu"], phonemes: "laʔanːu"}
     course: {arabic: "لأنّه", marked: "لَأَنُّه", arabizi: "la2anno"}
-- id: "sense:enno"
+- id: "lexeme:enno"
   unit: "u19-work"
   pos: SCONJ
   gloss: "that (after know, say, think)"
@@ -3628,7 +3411,7 @@ lexemes:
   - form: "إِنُّه\u06df"
     gives: {arabic: "إنه", marked: "إِنُّه", arabizi: ["enno", "ennu", "inno", "innu"], phonemes: "ʔinːu"}
     course: {arabic: "إنّه", marked: "إِنُّه", arabizi: "enno"}
-- id: "sense:fakkar"
+- id: "lexeme:fakkar"
   unit: "u19-work"
   pos: VERB
   gloss: "think"
@@ -3645,9 +3428,9 @@ lexemes:
     gives: {arabic: "بفكر", marked: "بْفَكِّر", arabizi: ["bfakker", "bfakkir"], phonemes: "bfakːir"}
     course: {arabic: "بفكّر", marked: "بْفَكِّر", arabizi: "bfakker"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "impf-1sg", form: "بْفَكِّر", arabic: "بفكّر", arabizi: "bfakker"}
-  - {features: "impf-2fs", form: "بْتْفَكّْرِي", arabic: "بتفكّري", arabizi: "btfakkri"}
-- id: "sense:mabrouk"
+  - {features: "Aspect=Imp;Mood=Ind;Number=Sing;Person=1", form: "بْفَكِّر", arabic: "بفكّر", arabizi: "bfakker"}
+  - {features: "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2", form: "بْتْفَكّْرِي", arabic: "بتفكّري", arabizi: "btfakkri"}
+- id: "lexeme:mabrouk"
   unit: "u20-celebrations"
   pos: INTJ
   gloss: "congratulations!"
@@ -3655,7 +3438,7 @@ lexemes:
   - form: "مَبْرُوك"
     gives: {arabic: "مبروك", marked: "مَبْروك", arabizi: ["mabruk", "mabrouk"], phonemes: "mabruːk"}
     course: {arabic: "مبروك", marked: "مَبْروك", arabizi: "mabrouk"}
-- id: "sense:allah-ybarek"
+- id: "lexeme:allah-ybarek"
   unit: "u20-celebrations"
   pos: INTJ
   gloss: "thank you (the answer to mabrouk)"
@@ -3663,7 +3446,7 @@ lexemes:
   - form: "اَلْلَه يْبَارِك فِيك"
     gives: {arabic: "الله يبارك فيك", marked: "اَلْلَه يْبارِك فيك", arabizi: ["allah ybarek fik", "allah ybarek feek", "allah ybarik fik", "allah ybarik feek"], phonemes: "allah jbaːrik fiːk"}
     course: {arabic: "الله يبارك فيك", marked: "", arabizi: "allah ybarek fik"}
-- id: "sense:3irs"
+- id: "lexeme:3irs"
   unit: "u20-celebrations"
   pos: NOUN
   gloss: "wedding"
@@ -3672,7 +3455,7 @@ lexemes:
     gives: {arabic: "عرس", marked: "عِرِس", arabizi: ["3ers", "3eres", "3irs", "3ires"], phonemes: "ʕiris"}
     course: {arabic: "عرس", marked: "عِرِس", arabizi: "3irs"}
     review: ["helping vowel: in the marks, not in Arabizi"]
-- id: "sense:hdiyye"
+- id: "lexeme:hdiyye"
   unit: "u20-celebrations"
   pos: NOUN
   gloss: "present; gift"
@@ -3680,7 +3463,7 @@ lexemes:
   - form: "هْدِيّ\u065cة"
     gives: {arabic: "هدية", marked: "هْدِيِّة", arabizi: ["hdeyye", "hdiyye"], phonemes: "hdijːe"}
     course: {arabic: "هديّة", marked: "هْدِيِّة", arabizi: "hdiyye"}
-- id: "sense:3azam"
+- id: "lexeme:3azam"
   unit: "u20-celebrations"
   pos: VERB
   gloss: "invite"
@@ -3698,12 +3481,12 @@ lexemes:
     gives: {arabic: "عزم", marked: "عَزَم", arabizi: ["3azam"], phonemes: "ʕazam"}
     course: {arabic: "عزم", marked: "عَزَم", arabizi: "3azam"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "past-3ms+obj-1sg", form: "عَزَمْنِي", arabic: "عزمني", arabizi: "3azamni"}
-  - {features: "past-3fs+obj-1pl", form: "عَزْمِتْنَا", arabic: "عزمتنا", arabizi: "3azmetna"}
-  - {features: "subj-1sg+obj-2ms", form: "اِعْزْمَك", arabic: "اعزمك", arabizi: "e3zmak"}
-  - {features: "subj-1sg+obj-2fs", form: "اِعْزْمِك", arabic: "اعزمك", arabizi: "e3zmik"}
-  - {features: "subj-1sg+obj-2ms", form: "اِعْزْمَك", arabic: "اِعْزْمَك", arabizi: "e3zmak"}
-- id: "sense:3ajab"
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=3+obj-1sg", form: "عَزَمْنِي", arabic: "عزمني", arabizi: "3azamni"}
+  - {features: "Aspect=Perf;Gender=Fem;Number=Sing;Person=3+obj-1pl", form: "عَزْمِتْنَا", arabic: "عزمتنا", arabizi: "3azmetna"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1+obj-2ms", form: "اِعْزْمَك", arabic: "اعزمك", arabizi: "e3zmak"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1+obj-2fs", form: "اِعْزْمِك", arabic: "اعزمك", arabizi: "e3zmik"}
+  - {features: "Aspect=Imp;Mood=Sub;Number=Sing;Person=1+obj-2ms", form: "اِعْزْمَك", arabic: "اِعْزْمَك", arabizi: "e3zmak"}
+- id: "lexeme:3ajab"
   unit: "u20-celebrations"
   pos: VERB
   gloss: "please (3ajabni: I liked it)"
@@ -3721,11 +3504,11 @@ lexemes:
     gives: {arabic: "عجب", marked: "عَجَب", arabizi: ["3ajab"], phonemes: "ʕaʒab"}
     course: {arabic: "عجب", marked: "عَجَب", arabizi: "3ajab"}
   pinned:  # the forms its sentences write; the rules that would give them are not written
-  - {features: "past-3ms+obj-1sg", form: "عَجَبْنِي", arabic: "عجبني", arabizi: "3ajabni"}
-  - {features: "past-3fs+obj-1sg", form: "عَجْبِتْنِي", arabic: "عجبتني", arabizi: "3ajbetni"}
-  - {features: "past-3ms+obj-2ms", form: "عَجَبَك", arabic: "عجبك", arabizi: "3ajabak"}
-  - {features: "past-3fs+obj-2pl", form: "عَجْبِتْكُن", arabic: "عجبتكن", arabizi: "3ajbetkon"}
-- id: "sense:za3len"
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=3+obj-1sg", form: "عَجَبْنِي", arabic: "عجبني", arabizi: "3ajabni"}
+  - {features: "Aspect=Perf;Gender=Fem;Number=Sing;Person=3+obj-1sg", form: "عَجْبِتْنِي", arabic: "عجبتني", arabizi: "3ajbetni"}
+  - {features: "Aspect=Perf;Gender=Masc;Number=Sing;Person=3+obj-2ms", form: "عَجَبَك", arabic: "عجبك", arabizi: "3ajabak"}
+  - {features: "Aspect=Perf;Gender=Fem;Number=Sing;Person=3+obj-2pl", form: "عَجْبِتْكُن", arabic: "عجبتكن", arabizi: "3ajbetkon"}
+- id: "lexeme:za3len"
   unit: "u20-celebrations"
   pos: ADJ
   gloss: "upset; sad; cross"
@@ -3733,7 +3516,7 @@ lexemes:
   - form: "زَعْل\u065cان"
     gives: {arabic: "زعلان", marked: "زَعْلان", arabizi: ["za3len"], phonemes: "zaʕleːn"}
     course: {arabic: "زعلان", marked: "زَعْلان", arabizi: "za3len"}
-- id: "sense:lesh"
+- id: "lexeme:lesh"
   unit: "u20-celebrations"
   pos: ADV
   gloss: "why"
@@ -3741,7 +3524,7 @@ lexemes:
   - form: "ل\u065cيش"
     gives: {arabic: "ليش", marked: "ليش", arabizi: ["lesh", "lech", "leish", "leich"], phonemes: "leːʃ"}
     course: {arabic: "ليش", marked: "ليش", arabizi: "lesh"}
-- id: "sense:m3asseb"
+- id: "lexeme:m3asseb"
   unit: "u20-celebrations"
   pos: ADJ
   gloss: "angry; annoyed"
@@ -3752,7 +3535,7 @@ lexemes:
   - form: "مْعَصِّب"
     gives: {arabic: "معصب", marked: "مْعَصِّب", arabizi: ["m3asseb", "m3assib"], phonemes: "mʕasˤːib"}
     course: {arabic: "معصّب", marked: "مْعَصِّب", arabizi: "m3asseb"}
-- id: "sense:khayef"
+- id: "lexeme:khayef"
   unit: "u20-celebrations"
   pos: ADJ
   gloss: "afraid; scared; worried"
@@ -3763,7 +3546,7 @@ lexemes:
   - form: "خَايِف"
     gives: {arabic: "خايف", marked: "خايِف", arabizi: ["khayef", "khayif", "5ayef", "5ayif"], phonemes: "xaːjif"}
     course: {arabic: "خايف", marked: "خايِف", arabizi: "khayef"}
-- id: "sense:ya-7aram"
+- id: "lexeme:ya-7aram"
   unit: "u20-celebrations"
   pos: INTJ
   gloss: "what a pity!; poor thing!"
@@ -3771,7 +3554,7 @@ lexemes:
   - form: "يَا حَرَام"
     gives: {arabic: "يا حرام", marked: "يا حَرام", arabizi: ["ya 7aram"], phonemes: "ja ħaraːm"}
     course: {arabic: "يا حرام", marked: "", arabizi: "ya 7aram"}
-- id: "sense:lek"
+- id: "lexeme:lek"
   unit: "u20-celebrations"
   pos: INTJ
   gloss: "look!; hey (to a man)"
@@ -3779,169 +3562,180 @@ lexemes:
   - form: "ل\u065cيك"
     gives: {arabic: "ليك", marked: "ليك", arabizi: ["lek", "leik"], phonemes: "leːk"}
     course: {arabic: "ليك", marked: "ليك", arabizi: "lek"}
-# The course's form KCs and clitics, with every shape its sentences write for each (Arabic,
+# The course's affixes and clitics (lexemes), the labels of its forms (feature values, as a form
+# key writes them) and its rules, with every shape its sentences write for each (Arabic,
 # Arabizi, how many words). These are allomorphs to be given lexical forms and conditions when
 # the rules are written; a suffix's form begins with its vowel, on a tatweel (docs/lexical-forms/apc.md).
 morphemes:
-- id: "sense:w"
+- id: "lexeme:poss-2ms"
+  gloss: "-ak: your (to a man)"
+  shapes: [{arabic: "ك", arabizi: "ak", words: "39"}, {arabic: "ك", arabizi: "k", words: "1"}]
+- id: "lexeme:w"
   gloss: "and"
   shapes: [{arabic: "و", arabizi: "w", words: "65"}]
-- id: "form:fem"
-  gloss: "feminine: a feminine noun (ahwe, madrase, teta), or the -e / -a ending on an adjective with one (kbir → kbire)"
-  shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:poss-1sg"
+- id: "lexeme:poss-1sg"
   gloss: "-i: my (ending on a noun)"
-  shapes: [{arabic: "ي", arabizi: "i", words: "89"}]
-- id: "form:poss-2ms"
-  gloss: "-ak: your (to a man)"
-  shapes: [{arabic: "ك", arabizi: "ak", words: "23"}, {arabic: "ك", arabizi: "k", words: "1"}]
-- id: "form:poss-3ms"
+  shapes: [{arabic: "ي", arabizi: "i", words: "115"}]
+- id: "form:Gender=Fem;Number=Sing"
+  gloss: "feminine: a feminine noun (ahwe, madrase, teta), or the -e / -a ending on an adjective with one (kbir becomes kbire)"
+  shapes: []  # a feature a word carries with no letters of its own, or a pattern
+- id: "lexeme:poss-3ms"
   gloss: "-o: his"
   shapes: [{arabic: "ه", arabizi: "o", words: "10"}]
-- id: "form:poss-3fs"
+- id: "lexeme:poss-3fs"
   gloss: "-a: her"
   shapes: [{arabic: "ها", arabizi: "a", words: "10"}, {arabic: "ها", arabizi: "ya", words: "1"}]
-- id: "form:poss-2fs"
+- id: "lexeme:poss-2fs"
   gloss: "-ik: your (to a woman)"
-  shapes: [{arabic: "ك", arabizi: "ik", words: "19"}, {arabic: "كي", arabizi: "iki", words: "2"}]
-- id: "form:poss-2pl"
+  shapes: [{arabic: "ك", arabizi: "ik", words: "21"}, {arabic: "كي", arabizi: "iki", words: "2"}]
+- id: "form:Number=Plur"
+  gloss: "plural: a plural noun (wlad, jiren), or the -in ending on an adjective with one (jou3an becomes jou3anin)"
+  shapes: []  # a feature a word carries with no letters of its own, or a pattern
+- id: "lexeme:poss-2pl"
   gloss: "-kon: your (to several people)"
   shapes: [{arabic: "كن", arabizi: "kon", words: "10"}]
-- id: "form:pl"
-  gloss: "plural: a plural noun (wlad, jiren), or the -in ending on an adjective with one (jou3an → jou3anin)"
-  shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:imp-2fs"
+- id: "form:Gender=Fem;Mood=Imp;Number=Sing;Person=2"
   gloss: "-i: telling a woman to do something"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "sense:el"
+- id: "lexeme:el"
   gloss: "the"
   shapes: [{arabic: "ال", arabizi: "el", words: "256"}, {arabic: "ال", arabizi: "l", words: "69"}]
-- id: "form:imp-2pl"
+- id: "form:Mood=Imp;Number=Plur;Person=2"
   gloss: "-o: telling several people to do something"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "sense:b"
+- id: "form:Gender[psor]=Fem;Number[psor]=Sing;Person[psor]=2"
+  gloss: "-ik: your (to a woman)"
+  shapes: []  # a feature a word carries with no letters of its own, or a pattern
+- id: "lexeme:b"
   gloss: "in; at"
   shapes: [{arabic: "ب", arabizi: "b", words: "67"}]
-- id: "form:poss-1pl"
+- id: "lexeme:poss-1pl"
   gloss: "-na: our"
   shapes: [{arabic: "نا", arabizi: "na", words: "10"}]
-- id: "sense:3a"
+- id: "lexeme:3a"
   gloss: "to; on"
   shapes: [{arabic: "ع", arabizi: "3a", words: "69"}]
-- id: "form:impf-1sg"
+- id: "form:Aspect=Imp;Mood=Ind;Number=Sing;Person=1"
   gloss: "b-: I (present)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:impf-2ms"
+- id: "form:Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2"
   gloss: "bt-: you (present, to a man)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:impf-3ms"
+- id: "form:Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=3"
   gloss: "bi-: he (present)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:impf-3fs"
+- id: "form:Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=3"
   gloss: "bt-: she (present)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:impf-1pl"
+- id: "form:Aspect=Imp;Mood=Ind;Number=Plur;Person=1"
   gloss: "mn-: we (present)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:impf-2fs"
+- id: "form:Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2"
   gloss: "bt-…-i: you (present, to a woman)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:impf-2pl"
+- id: "form:Aspect=Imp;Mood=Ind;Number=Plur;Person=2"
   gloss: "bt-…-o: you (present, to several people)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:subj-1sg"
+- id: "form:Aspect=Imp;Mood=Sub;Number=Sing;Person=1"
   gloss: "e- / no b-: I (after baddi, b7ebb, 3am…)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:subj-2ms"
+- id: "form:Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=2"
   gloss: "t-: you (after baddak, 3am…; to a man)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:subj-1pl"
+- id: "form:Aspect=Imp;Mood=Sub;Number=Plur;Person=1"
   gloss: "n-: we (after badna, ta…)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "sense:hal"
+- id: "lexeme:hal"
   gloss: "this (joined to a noun)"
   shapes: [{arabic: "هال", arabizi: "hal", words: "9"}]
-- id: "form:past-1sg"
+- id: "form:Aspect=Perf;Number=Sing;Person=1"
   gloss: "-t: I (past)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:past-2ms"
+- id: "form:Aspect=Perf;Gender=Masc;Number=Sing;Person=2"
   gloss: "-t: you (past, to a man)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:past-3ms"
+- id: "form:Aspect=Perf;Gender=Masc;Number=Sing;Person=3"
   gloss: "he (past): the bare verb"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:past-3fs"
+- id: "form:Aspect=Perf;Gender=Fem;Number=Sing;Person=3"
   gloss: "-et: she (past)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:past-1pl"
+- id: "form:Aspect=Perf;Number=Plur;Person=1"
   gloss: "-na: we (past)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:past-2fs"
+- id: "form:Aspect=Perf;Gender=Fem;Number=Sing;Person=2"
   gloss: "-ti: you (past, to a woman)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:past-2pl"
+- id: "form:Aspect=Perf;Number=Plur;Person=2"
   gloss: "-to: you (past, to several people)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:impf-3pl"
+- id: "form:Aspect=Imp;Mood=Ind;Number=Plur;Person=3"
   gloss: "bi-…-o: they (present)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:poss-3pl"
+- id: "lexeme:poss-3pl"
   gloss: "-on: their (ending on a noun)"
   shapes: [{arabic: "هن", arabizi: "on", words: "10"}]
-- id: "form:past-3pl"
+- id: "form:Aspect=Perf;Number=Plur;Person=3"
   gloss: "-o: they (past)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:subj-3ms"
+- id: "form:Aspect=Imp;Gender=Masc;Mood=Sub;Number=Sing;Person=3"
   gloss: "y-: he (after ra7, baddo, lezem…)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:subj-3fs"
+- id: "form:Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=3"
   gloss: "t-: she (after ra7, badda…)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:dual"
+- id: "lexeme:dual"
   gloss: "-en: two (on a noun)"
   shapes: [{arabic: "ين", arabizi: "en", words: "4"}]
-- id: "form:subj-2fs"
+- id: "form:Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=2"
   gloss: "t-…-i: you (to a woman, after ra7, baddik…)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:subj-2pl"
+- id: "form:Aspect=Imp;Mood=Sub;Number=Plur;Person=2"
   gloss: "t-…-o: you (to several people, after ra7, badkon…)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:subj-3pl"
+- id: "form:Aspect=Imp;Mood=Sub;Number=Plur;Person=3"
   gloss: "y-…-o: they (after ra7, baddon…)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:la-1sg"
+- id: "form:Number[psor]=Plur;Person[psor]=2"
+  gloss: "-kon: your (to several people)"
+  shapes: []  # a feature a word carries with no letters of its own, or a pattern
+- id: "lexeme:la-1sg"
   gloss: "-li: to me; for me (on a verb)"
   shapes: [{arabic: "لي", arabizi: "li", words: "7"}, {arabic: "لي", arabizi: "elli", words: "5"}]
-- id: "form:obj-1sg"
+- id: "lexeme:obj-1sg"
   gloss: "-ni: me (on a verb)"
   shapes: [{arabic: "ني", arabizi: "ni", words: "11"}]
-- id: "form:obj-2ms"
+- id: "lexeme:obj-2ms"
   gloss: "-ak: you (on a verb, to a man)"
   shapes: [{arabic: "ك", arabizi: "ak", words: "6"}]
-- id: "form:obj-2fs"
+- id: "lexeme:obj-2fs"
   gloss: "-ik: you (on a verb, to a woman)"
   shapes: [{arabic: "ك", arabizi: "ik", words: "4"}]
-- id: "form:obj-3ms"
+- id: "lexeme:obj-3ms"
   gloss: "-o: him; it (on a verb)"
   shapes: [{arabic: "ه", arabizi: "o", words: "4"}]
-- id: "form:obj-3fs"
+- id: "lexeme:obj-3fs"
   gloss: "-a: her; it (on a verb)"
   shapes: [{arabic: "ها", arabizi: "a", words: "2"}]
-- id: "construction:used-to"
+- id: "rule:used-to"
   gloss: "kent + a verb without b-: used to; would"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "construction:was-doing"
+- id: "rule:was-doing"
   gloss: "kent 3am + verb: was …ing"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern
-- id: "form:la-2ms"
+- id: "lexeme:la-2ms"
   gloss: "-lak: to you; for you (on a verb, to a man)"
   shapes: [{arabic: "لك", arabizi: "lak", words: "1"}]
-- id: "form:obj-1pl"
+- id: "lexeme:obj-1pl"
   gloss: "-na: us (on a verb)"
   shapes: [{arabic: "نا", arabizi: "na", words: "1"}]
-- id: "form:obj-2pl"
+- id: "lexeme:obj-2pl"
   gloss: "-kon: you (on a verb, to several people)"
   shapes: [{arabic: "كن", arabizi: "kon", words: "1"}]
-- id: "construction:shu-excl"
+- id: "rule:shu-excl"
   gloss: "shu + adjective: how …!"
+  shapes: []  # a feature a word carries with no letters of its own, or a pattern
+- id: "form:Gender=Fem"
+  pos: PROPN
+  gloss: "feminine: a feminine noun (ahwe, madrase, teta), or the -e / -a ending on an adjective with one (kbir becomes kbire)"
   shapes: []  # a feature a word carries with no letters of its own, or a pattern

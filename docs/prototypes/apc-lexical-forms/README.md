@@ -20,7 +20,7 @@ uv run --frozen python ../docs/prototypes/apc-lexical-forms/check.py -v  # every
 | File | What |
 |---|---|
 | `lexform.py` | The notation: a lexical form parsed into its sounds, and the four projections (the course's Arabic, the vowel-marked text, Arabizi with every free spelling, phonemes) |
-| `course.py` | `courses/apc` read as the compiler reads it: each Arabic word with its marks, the Arabizi tokens that say it, and its analysis |
+| `course.py` | `courses/apc` read as the compiler reads it: each Arabic word with its marks, the Arabizi tokens that say it, and its analysis (the lexeme it writes and the feature values it chooses there, or the lexemes it lists: stem, clitics and affixes); the lexemes from `lexicons/apc`, in the order the nodes introduce them |
 | `derive.py` | A first draft of a word's form from its Arabic, its marks and its Arabizi, read together letter by letter; where they disagree it keeps a note |
 | `check.py` | Drafts every word, projects it back and compares |
 | `authored.yaml` | What a person adds: each verb's radicals, Form and citation forms with their source and, where one was deduced, from what (`basis`); which head each participle-shaped word is; and the active participle's template |
@@ -28,8 +28,11 @@ uv run --frozen python ../docs/prototypes/apc-lexical-forms/check.py -v  # every
 
 ## Inputs
 
-`courses/apc` as committed (units, `vocalization.yaml`, `audio/index.yaml`) and `authored.yaml`. Nothing is
-fetched. Kline (2022) was read for `authored.yaml` and the note; none of his text is here.
+`courses/apc` as committed (units, `vocalization.yaml`, `audio/index.yaml`), its lexicon `lexicons/apc`
+(`lexemes.yaml`, and `language.yaml` for the bare cells, the labels and the rules) and `authored.yaml`.
+Nothing is fetched. An entry is a lexeme spelled on its own; an affix (a lexeme no orthography spells alone),
+a label (the feature values a form KC became) and a rule are listed under `morphemes`.
+Kline (2022) was read for `authored.yaml` and the note; none of his text is here.
 
 ## What it showed
 

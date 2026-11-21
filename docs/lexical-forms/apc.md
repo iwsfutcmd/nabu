@@ -8,7 +8,7 @@
   script and fully specified, and [ADR 0148](../adr/0148-projections-and-misses.md) projects every spelling and
   the phonemes from it. apc (North Levantine Arabic, Beirut) comes first.
 - Beside this note:
-  - [apc.yaml](apc.yaml): a worked entry for every KC of `courses/apc` (358 words, 41 of them verbs with their
+  - [apc.yaml](apc.yaml): a worked entry for every lexeme of `courses/apc` (352 words, 41 of them verbs with their
     radicals, and the course's affixes with every shape its sentences write).
   - [apc-review.md](apc-review.md): everything the course pins that the projections do not give back, with why.
   - [../prototypes/apc-lexical-forms](../prototypes/apc-lexical-forms/): the code that drafted the entries, runs
@@ -25,12 +25,12 @@
   among the spellings the correspondences give. **65** have a form and differ in one of the three. **9** have
   no form. Ten of those 74 are the prototype's own doing, not the course's: its reader paired the wrong
   Arabizi word (the review list's first section).
-- Of the **415** forms the KCs list, 373 come back, 35 do not, 2 have no form and 5 are written in one script.
+- Of the **354** spellings the entries list, 314 come back, 34 do not, 2 have no form and 4 are written in one script.
 - Of the **74** clips a listener marked right, the projection writes the very marks the voice was given for
   **58**. For 16 it writes other marks for one word: هَيدا or هَيدي in 15 (the course leaves the sukun off
   their glide), الحمدلله in 1.
 - No conjugation rule is written. A verb's entry has its radicals, Form, vowels and citation forms (one verb,
-  *stanna*, is a listed stem with no radicals); the 251 forms the sentences write are kept as **pinned**
+  *stanna*, is a listed stem with no radicals); the 256 forms the sentences write are kept as **pinned**
   forms (ADR 0145: derivable, the rule not yet written).
 
 ## The notation
@@ -294,8 +294,10 @@ class (ADR 0150 draws them). The active participle of form I, from Kline (p. 122
 - **The feminine ending is -a after ر ع ق ص ض ط ظ and -e elsewhere** (Kline, p. 16). His own words add ح, غ
   and ء; the template uses the longer list. REVIEW.
 - Forms II to X take m- before the past with its last vowel turned to e or i (p. 125). Not built.
-- The template gives all 13 participle forms the course writes for *raye7*, *seken*, *2a3ed*, *wa2ef* and
-  *nezel*.
+- The template gives all 9 participle forms the course writes for *seken*, *2a3ed*, *wa2ef* and *nezel*.
+  The four of *raye7* are no longer compared: since the switch to the lexical model *raye7* is *ra7*'s
+  participle and no entry of its own, and the script takes a participle's analysis from an entry
+  (`authored.yaml`). Hanging it on a verb's `Aspect=Part` forms is not built.
 
 ## The participle's two heads
 

@@ -1,4 +1,4 @@
-"""Write docs/lexical-forms/apc.yaml (a worked entry for every KC of courses/apc) and
+"""Write docs/lexical-forms/apc.yaml (a worked entry for every lexeme of courses/apc) and
 docs/lexical-forms/apc-review.md (what the course pins that the projections do not give back).
 
 Run from pipeline/, which has PyYAML:
@@ -16,12 +16,14 @@ import yaml
 
 import lexform as lf
 from check import compare, shape_of
-from course import COURSE, ROOT, Course, load, nfc, unmark
+from course import COURSE, ROOT, Course, Feats, feats_text, load, nfc, unmark
 from derive import Draft, draft
 
 HERE = Path(__file__).resolve().parent
 OUT = ROOT / "docs" / "lexical-forms"
 SPECIAL = {lf.E_SIGN, lf.O_SIGN, lf.SILENT}
+# The lexemes written joined to a word that are words themselves: listed with the affixes too.
+CLITICS = ("lexeme:el", "lexeme:w", "lexeme:b", "lexeme:3a", "lexeme:hal")
 
 
 def q(text: str) -> str:
@@ -113,6 +115,66 @@ def from_template(template: str, radicals: list[str], back: set[str]) -> str:
 # --- the entries ----------------------------------------------------------------------------------
 
 
+def is_affix(course: Course, lexeme: str) -> bool:
+    """A lexeme no orthography spells on its own: an ending, written only as its allomorphs."""
+    entry = course.lexicon.get(lexeme)
+    return entry is not None and not entry.get("spelled")
+
+
+def form_tag(course: Course, lexeme: str | None, feats: Feats) -> str:
+    """The form a token stands in, as a form key writes its feature values; empty where the token
+    chooses none, or chooses its part of speech's bare cell (a verb's command to a man)."""
+    pos = course.lexicon.get(lexeme or "", {}).get("pos")
+    if not feats or (pos in course.bare and feats == course.bare[pos]):
+        return ""
+    return feats_text(feats)
+
+
+def morphemes_in_order(course: Course) -> list[tuple[str, str, str | None]]:
+    """The affixes, clitics, labels and rules, each (id, gloss, part of speech), in the order the
+    nodes introduce them. A label, which no node introduces, comes after what the node of the first
+    sentence that chooses its feature values introduces; one no token chooses, at the end."""
+    at = {node: n for n, node in enumerate(course.nodes)}
+    last = len(course.nodes)
+
+    def morpheme(part: str) -> bool:
+        return part in course.rules or part in CLITICS or is_affix(course, part)
+
+    def entry(part: str) -> tuple[str, str, str | None]:
+        source = course.rules.get(part) or course.lexicon[part]
+        return part, source.get("gloss", {}).get("en", ""), None
+
+    keyed: list[tuple[tuple[int, int], tuple[str, str, str | None]]] = []
+    for k, part in enumerate(course.order):
+        if morpheme(part):
+            keyed.append(((at[course.introduced_by[part]], k), entry(part)))
+    rest = [p for p in sorted(course.lexicon) if morpheme(p) and p not in course.introduced_by]
+    rest += [p for p in course.rules if p not in course.introduced_by]
+    keyed.extend(((last + 1, k), entry(p)) for k, p in enumerate(rest))
+    for label in course.labels:
+        feats = tuple(sorted((str(k), str(v)) for k, v in label["feats"].items()))
+        node = next(
+            (
+                course.node_of[w.item]
+                for w in course.words
+                if set(feats) <= set(w.feats) and (not label.get("pos") or course.lexicon.get(w.lexeme or "", {}).get("pos") == label["pos"])
+            ),
+            None,
+        )
+        keyed.append(((at[node] if node in at else last, len(course.order)), ("form:" + feats_text(feats), label.get("gloss", {}).get("en", ""), label.get("pos"))))
+    return [e for _, e in sorted(keyed, key=lambda x: x[0])]
+
+
+def participle_of(feats: Feats) -> str | None:
+    """Which of the participle's three forms the feature values are (ADR 0145: a value of the verb's aspect)."""
+    f = dict(feats)
+    if f.get("Aspect") != "Part":
+        return None
+    if f.get("Number") == "Plur":
+        return "plural"
+    return "feminine" if f.get("Gender") == "Fem" else "masculine"
+
+
 def projections(form: str) -> dict[str, Any]:
     words = form.split()
     spelt = [""]
@@ -176,7 +238,7 @@ HEADINGS = {
     "other": "The marks do not follow the convention the other words follow",
 }
 WHY = {
-    "reader": "Not a finding about the course: in these sentences the two scripts order or split their words differently (a phrase that is one KC), and the reader took the wrong Arabizi token for the Arabic word. They are counted among the words that do not come back.",
+    "reader": "Not a finding about the course: in these sentences the two scripts order or split their words differently (a phrase that is one lexeme), and the reader took the wrong Arabizi token for the Arabic word. They are counted among the words that do not come back.",
     "none": "The Arabic and the Arabizi could not be read as one word, letter by letter.",
     "sun": "These come back, since the form was drafted from the marks: but the marks have no shadda on a sun letter after the article, where other words of the course have one (\u0627\u0644\u0633\u064e\u0651\u0644\u0627\u0645\u0650\u0629, \u0627\u0644\u062c\u0651\u0627\u0645\u0652\u0639\u064e\u0629). Kline counts jim a sun letter in Lebanese (p. 8).",
     "loan": "A loan kept in its French or English spelling (merci, football, taxi), or two different forms of a word in the two scripts (the teens: Arabic with -ar, Arabizi without). No correspondence gives the spelling; it has to be listed with the word, or the Arabizi changed.",
@@ -201,11 +263,11 @@ def main() -> None:
     # Every distinct word of the sentences and stories, drafted and projected back.
     drafts: dict[tuple[str, str | None, str], tuple[Draft, list[str], str]] = {}
     choices: collections.Counter[str] = collections.Counter()
-    by_sense: dict[str, list[tuple[str, str, str, Draft]]] = collections.defaultdict(list)
+    by_sense: dict[str, list[tuple[str, str, str, Draft, Feats]]] = collections.defaultdict(list)
     morph_shapes: dict[str, collections.Counter[tuple[str, str]]] = collections.defaultdict(collections.Counter)
     for w in course.words:
-        for (kc, a), (_, l) in zip(w.morphs, w.latin_morphs, strict=False):
-            if kc.startswith("form:") or kc in ("sense:el", "sense:w", "sense:b", "sense:3a", "sense:hal"):
+        for (kc, a), (_, l) in zip(w.lexemes, w.latin_lexemes, strict=False):
+            if is_affix(course, kc) or kc in CLITICS:
                 morph_shapes[kc][(unmark(a), l)] += 1
         key = (w.arabic, w.marked, w.arabizi)
         if key not in drafts:
@@ -216,16 +278,16 @@ def main() -> None:
             drafts[key] = (d, problems, w.item)
             for c in d.choices:
                 choices[c] += 1
-        if w.sense:
+        if w.lexeme:
             d = drafts[key][0]
-            tag = (w.form or "").replace("form:", "")
-            extra = "+".join(k.replace("form:", "").replace("sense:", "") for k, _ in w.morphs if k != f"sense:{w.sense}")
-            entry = (tag + ("+" + extra if extra else ""), w.arabic, w.arabizi, d)
-            if entry[:3] not in [e[:3] for e in by_sense[w.sense]]:
-                by_sense[w.sense].append(entry)
+            tag = form_tag(course, w.lexeme, w.feats)
+            extra = "+".join(k.replace("lexeme:", "") for k, _ in w.lexemes if k != w.lexeme)
+            entry = (tag + ("+" + extra if extra else ""), w.arabic, w.arabizi, d, w.feats)
+            if entry[:3] not in [e[:3] for e in by_sense[w.lexeme]]:
+                by_sense[w.lexeme].append(entry)
 
     out: list[str] = []
-    out.append("# Worked entries for every KC of courses/apc, in apc's lexical form (docs/lexical-forms/apc.md).")
+    out.append("# Worked entries for every spelled lexeme of courses/apc, in apc's lexical form (docs/lexical-forms/apc.md).")
     out.append("# Written by docs/prototypes/apc-lexical-forms/build.py from the course, the drafting step")
     out.append("# (derive.py) and authored.yaml: do not edit by hand. Every entry is a draft for review.")
     out.append("#   form     the lexical form: Arabic script, every vowel written. U+065C is e, U+065D is o,")
@@ -244,15 +306,17 @@ def main() -> None:
     counts: collections.Counter[str] = collections.Counter()
     verb_lines: list[str] = []
     deduced_lines: list[str] = []
-    for kc_id, kc in course.kcs.items():
-        if not kc_id.startswith("sense:"):
-            continue
+    # Every lexeme spelled on its own, in the order the nodes introduce them (an affix is a morpheme).
+    spelled = [i for i in course.order if course.lexicon.get(i, {}).get("spelled")]
+    spelled += sorted(i for i, e in course.lexicon.items() if e.get("spelled") and i not in spelled)
+    for kc_id in spelled:
+        kc = course.lexicon[kc_id]
         counts["lexemes"] += 1
-        forms = kc.get("forms", {})
+        forms = kc.get("spelled", {})
         arab = [nfc(x) for x in forms.get("apc-Arab/standard", [])]
         latn = list(forms.get("apc-Latn/arabizi", []))
         out.append(f"- id: {q(kc_id)}")
-        out.append(f"  unit: {q(course.unit_of[kc_id])}")
+        out.append(f"  unit: {q(course.unit_of.get(kc_id, ''))}")
         out.append(f"  pos: {kc.get('pos', '?')}")
         out.append(f"  gloss: {q(kc.get('gloss', {}).get('en', ''))}")
         verb = verbs.get(kc_id)
@@ -304,24 +368,23 @@ def main() -> None:
                     made = {k: from_template(tpl[k], base["radicals"], back) for k in ("masculine", "feminine", "plural")}
                     out.append("    by the template: " + flow(made))
                     # Compare with what the course writes for it.
-                    want = {"": "masculine", "fem": "feminine", "pl": "plural"}
-                    for tag, a, l, d in by_sense.get(kc_id[6:], []):
-                        which = want.get(tag)
-                        if which is None or (part.get("forms") and unmark(a) not in part["forms"] and tag == ""):
+                    for _tag, a, l, d, feats in by_sense.get(kc_id, []):
+                        which = participle_of(feats)
+                        if which is None or (part.get("forms") and unmark(a) not in part["forms"] and which == "masculine"):
                             continue
                         if d.form is not None and d.form != made[which]:
                             verb_lines.append(f"- `{kc_id}` {which}: the template gives {made[which]} ({lf.to_arabizi(made[which])[0]}), the course writes {a} / {l}, drafted {d.form}")
                         elif d.form is not None:
                             counts["participle forms the template gives"] += 1
-        # The forms the KC lists.
+        # The spellings the lexeme lists.
         out.append("  forms:")
         for n in range(max(len(arab), len(latn))):
             a = arab[n] if n < len(arab) else ""
             l = latn[n] if n < len(latn) else ""
-            counts["KC forms"] += 1
+            counts["listed forms"] += 1
             if not a or not l:
                 out.append(f"  - {flow({'course': {'arabic': a, 'arabizi': l}, 'review': ['one script only: ' + (kc.get('notes', {}).get('en', '') or 'no note')]})}")
-                counts["KC forms in one script"] += 1
+                counts["listed forms in one script"] += 1
                 continue
             marked = course.marks_of(a)
             d = draft(a, marked, l)
@@ -330,7 +393,7 @@ def main() -> None:
             if d.form is None:
                 out.append(f"  - {flow({'course': {'arabic': a, 'marked': marked or '', 'arabizi': l}, 'review': [d.why]})}")
                 review["none"].append(f"`{kc_id}` {a} / {l}: {d.why}")
-                counts["KC forms with no lexical form"] += 1
+                counts["listed forms with no lexical form"] += 1
                 continue
             problems = compare(d.form, a, marked, l)
             entry: dict[str, Any] = {"form": d.form, "gives": projections(d.form), "course": {"arabic": a, "marked": marked or "", "arabizi": l}}
@@ -342,12 +405,12 @@ def main() -> None:
             if "review" in entry:
                 out.append("    review: [" + ", ".join(q(x) for x in entry["review"]) + "]")
             if problems:
-                counts["KC forms that do not come back"] += 1
+                counts["listed forms that do not come back"] += 1
             else:
-                counts["KC forms that come back"] += 1
+                counts["listed forms that come back"] += 1
         # A verb's other forms in the sentences: pinned until the conjugation is written.
         if verb is not None:
-            rest = [(tag, a, l, d) for tag, a, l, d in by_sense.get(kc_id[6:], []) if tag]
+            rest = [(tag, a, l, d) for tag, a, l, d, _ in by_sense.get(kc_id, []) if tag]
             if rest:
                 out.append("  pinned:  # the forms its sentences write; the rules that would give them are not written")
                 for tag, a, l, d in rest:
@@ -355,18 +418,17 @@ def main() -> None:
                     counts["pinned verb forms"] += 1
 
     # Affixes and clitics: the shapes the sentences write for each.
-    out.append("# The course's form KCs and clitics, with every shape its sentences write for each (Arabic,")
+    out.append("# The course's affixes and clitics (lexemes), the labels of its forms (feature values, as a form")
+    out.append("# key writes them) and its rules, with every shape its sentences write for each (Arabic,")
     out.append("# Arabizi, how many words). These are allomorphs to be given lexical forms and conditions when")
     out.append("# the rules are written; a suffix's form begins with its vowel, on a tatweel (docs/lexical-forms/apc.md).")
     out.append("morphemes:")
-    for kc_id in course.kcs:
-        if kc_id.startswith("sense:") and kc_id not in ("sense:el", "sense:w", "sense:b", "sense:3a", "sense:hal"):
-            continue
-        if kc_id.startswith("grapheme:"):
-            continue
+    for kc_id, gloss, pos in morphemes_in_order(course):
         shapes = morph_shapes.get(kc_id)
         out.append(f"- id: {q(kc_id)}")
-        out.append(f"  gloss: {q(course.kcs[kc_id].get('gloss', {}).get('en', ''))}")
+        if pos:
+            out.append(f"  pos: {pos}")
+        out.append(f"  gloss: {q(gloss)}")
         if shapes:
             out.append("  shapes: [" + ", ".join(flow({"arabic": a, "arabizi": l, "words": str(n)}) for (a, l), n in shapes.most_common()) + "]")
         else:
@@ -441,7 +503,7 @@ def main() -> None:
     md.append(f"- **{came_back}** come back exactly in all three: the Arabic spelling, the vowel marks, and the Arabizi among the spellings the correspondences give.")
     md.append(f"- **{total - came_back - len([1 for (d, p, i) in drafts.values() if d.form is None])}** have a lexical form and do not come back in one of the three.")
     md.append(f"- **{len([1 for (d, p, i) in drafts.values() if d.form is None])}** have no lexical form.")
-    md.append(f"- **{counts['lexemes']}** sense KCs with **{counts['KC forms']}** listed forms: {counts['KC forms that come back']} come back, {counts['KC forms that do not come back']} do not, {counts['KC forms with no lexical form']} have no form, {counts['KC forms in one script']} are written in one script only.")
+    md.append(f"- **{counts['lexemes']}** lexemes with **{counts['listed forms']}** listed forms: {counts['listed forms that come back']} come back, {counts['listed forms that do not come back']} do not, {counts['listed forms with no lexical form']} have no form, {counts['listed forms in one script']} are written in one script only.")
     md.append(f"- **{counts['verbs']}** verbs with citation forms, {counts['verbs'] - counts['listed verbs']} of them with radicals and a Form and {counts['listed verbs']} a listed stem; {counts['pinned verb forms']} of their forms in the sentences are pinned, since no conjugation rule is written yet.")
     md.append(f"- **{len(reviewed)}** clips a listener marked right: for {clip_ok} the projection writes the very marks the voice was given; for {clip_bad} it writes other marks for a word; {clip_unknown} were given text the sentences no longer hold.")
     md.append("")

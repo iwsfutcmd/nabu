@@ -13,26 +13,26 @@ from derive import Draft, draft
 
 
 # The words the course writes joined to the next in Arabic script, besides the article.
-PROCLITICS = {"sense:w", "sense:b", "sense:3a"}
+PROCLITICS = {"lexeme:w", "lexeme:b", "lexeme:3a"}
 
 
 def shape_of(word: Word) -> tuple[frozenset[int], frozenset[int]]:
     """Where an article's alef stands among the word's letters, and where a clitic before the word
-    ends (the conjunction, b-, 3a-: the morphs before the word's own that are words themselves),
-    both from the course's morphs."""
+    ends (the conjunction, b-, 3a-: the lexemes before the word's own that are words themselves),
+    both from the lexemes the course's token lists."""
     at = 0
     articles: set[int] = set()
     starts: set[int] = set()
     leading = True
-    for kc, surface in word.morphs:
+    for lexeme, surface in word.lexemes:
         letters = unmark(surface)
-        if kc == "sense:el":
+        if lexeme == "lexeme:el":
             articles.add(at)
-        elif leading and kc == "sense:hal" and letters.endswith("\u0627\u0644"):
+        elif leading and lexeme == "lexeme:hal" and letters.endswith("\u0627\u0644"):
             # hal: the demonstrative's h, then the article.
             starts.add(at + len(letters) - 2)
             articles.add(at + len(letters) - 2)
-        elif leading and kc in PROCLITICS:
+        elif leading and lexeme in PROCLITICS:
             starts.add(at + len(letters))
         else:
             leading = False

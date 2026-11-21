@@ -14,13 +14,13 @@ Lebanese, not a verdict: the course may be right and the convention wrong.
 - **951** come back exactly in all three: the Arabic spelling, the vowel marks, and the Arabizi among the spellings the correspondences give.
 - **65** have a lexical form and do not come back in one of the three.
 - **9** have no lexical form.
-- **358** sense KCs with **415** listed forms: 373 come back, 35 do not, 2 have no form, 5 are written in one script only.
-- **41** verbs with citation forms, 40 of them with radicals and a Form and 1 a listed stem; 251 of their forms in the sentences are pinned, since no conjugation rule is written yet.
+- **352** lexemes with **354** listed forms: 314 come back, 34 do not, 2 have no form, 4 are written in one script only.
+- **41** verbs with citation forms, 40 of them with radicals and a Form and 1 a listed stem; 256 of their forms in the sentences are pinned, since no conjugation rule is written yet.
 - **74** clips a listener marked right: for 58 the projection writes the very marks the voice was given; for 16 it writes other marks for a word; 0 were given text the sentences no longer hold.
 
 ## 1. Not paired by the prototype's reader (10)
 
-Not a finding about the course: in these sentences the two scripts order or split their words differently (a phrase that is one KC), and the reader took the wrong Arabizi token for the Arabic word. They are counted among the words that do not come back.
+Not a finding about the course: in these sentences the two scripts order or split their words differently (a phrase that is one lexeme), and the reader took the wrong Arabizi token for the Arabic word. They are counted among the words that do not come back.
 
 - وسهلا / w (u10-plans:s.plans.28)
 - التاني / el (u16-dates:s.date.13)
@@ -37,8 +37,8 @@ Not a finding about the course: in these sentences the two scripts order or spli
 
 The Arabic and the Arabizi could not be read as one word, letter by letter.
 
-- `sense:miyye` مية / mit: مِيِّة cannot be read as mit
-- `sense:inshalla` إن شاء الله / inshalla: إِن شاء الله is 3 words and inshalla is 1
+- `lexeme:miyye` مية / mit: مِيِّة cannot be read as mit
+- `lexeme:inshalla` إن شاء الله / inshalla: إِن شاء الله is 3 words and inshalla is 1
 - الفوتبول / el football (u07-likes:s.like.23): الفوتْبول cannot be read as el football
 - بالتاكسي / bel taxi (u18-getting-around:s.road.3): بِالتّاكْسي cannot be read as bel taxi
 - التاكسي / el taxi (u18-getting-around:s.road.4): التّاكْسي cannot be read as el taxi
@@ -162,17 +162,17 @@ A citation form the course does not write and Kline does not list, or a radical 
 owner's ruling (2026-11-20) is to deduce what needs to be deduced, so each is filled in, and its line
 says from what. They are listed for a speaker to correct, not for a ruling.
 
-- `sense:fi2` fe2 / yfi2: Kline does not list it. The course writes only bfi2, which gives the present. The past is a hollow verb's, and its long a is cited e, as in shef, ken and nem. Where the course's hollow verbs keep a, a back consonant stands before it (ra7, 2al, sar, 3ash) or ر after it (zar); whether ق after it does the same is for a speaker. The course never writes the form.
-- `sense:2ara` 2ara / ye2ra: The third radical is stored as ي, as the verb is conjugated: Kline classes it with the defective verbs, and where a defective verb's last radical shows it is ي. Standard Arabic's hamza shows in no form of the verb.
-- `sense:nem` nem / ynem: The middle radical shows in no form of the verb, and no form depends on which it is. It is stored as و, the letter Arabic dictionaries file the word under; the course has no other word of the root, and shared radicals link nothing (ADR 0145).
-- `sense:ra2as` ra2as / yer2os: Kline does not list it. The course writes only or2os (I dance): the present vowel is o, and the past is the one the course names the verb by. The prefix is cited ye-, as the course writes its other verbs of this class (edros, elbos, ekol, ekhod); in or2os it writes o.
-- `sense:stanna` stanna / yestanna: Kline does not list it. The course writes its commands (stanna, stanni, stanno): the stem is stann- with a defective verb's endings, and a command in -a goes with a present in -a (yestanna). No form shows a third radical or a Form's prefix apart from st-, so no radicals and no Form are stored: the usual account (form X of ʔ-n-y) is etymology, which the model does not formalise (ADR 0145).
-- `sense:seken`, of sakan / yeskon: The verb is cited sakan / yeskon: its radicals are the participle's own, and its vowels are cited as those of 2a3ad / ye23od (Kline, p. 75), by analogy. No form of the course depends on them.
-- `sense:rte7` rte7 / yerte7: The middle radical shows in no form of a hollow form VIII verb, and no form depends on which it is. It is stored as و, the letter Arabic dictionaries file the word under; that links it to nothing, ra7 (go) included (ADR 0145: shared radicals only sort together).
-- `sense:jarrab` jarrab / yjarreb: Kline gives its participle mjarreb (p. 125), not the verb. A form II verb's citation forms follow from its radicals, as Kline cites them (p. 80: wa22af / ywa22ef), and the course's jarrbi and jarrbo agree.
-- `sense:fakkar` fakkar / yfakker: Kline does not list it. A form II verb's citation forms follow from its radicals, as Kline cites them (p. 80: wa22af / ywa22ef), and the course's bfakker and btfakkri agree.
-- `sense:3azam` 3azam / ye3zem: Kline does not list it. The course writes the past (3azamni) and e3zmak, where the present vowel has dropped: a vowel that drops there is i or u, never a (ta3mli, tedrso; yitla3o keeps its a), and it is cited i, as in 3emel and 3eref. The prefix is the course's e-; Kline's ya- before ع (p. 75) is what the course writes in ba3mel and ba3ref.
-- `sense:3ajab` 3ajab / ye3jeb: Kline does not list it. The course writes the past (3ajabni, 3ajabetni) and no present: the present is cited as 3azam's, the one other verb of its shape, and no form of the course depends on it.
+- `lexeme:fi2` fe2 / yfi2: Kline does not list it. The course writes only bfi2, which gives the present. The past is a hollow verb's, and its long a is cited e, as in shef, ken and nem. Where the course's hollow verbs keep a, a back consonant stands before it (ra7, 2al, sar, 3ash) or ر after it (zar); whether ق after it does the same is for a speaker. The course never writes the form.
+- `lexeme:2ara` 2ara / ye2ra: The third radical is stored as ي, as the verb is conjugated: Kline classes it with the defective verbs, and where a defective verb's last radical shows it is ي. Standard Arabic's hamza shows in no form of the verb.
+- `lexeme:nem` nem / ynem: The middle radical shows in no form of the verb, and no form depends on which it is. It is stored as و, the letter Arabic dictionaries file the word under; the course has no other word of the root, and shared radicals link nothing (ADR 0145).
+- `lexeme:ra2as` ra2as / yer2os: Kline does not list it. The course writes only or2os (I dance): the present vowel is o, and the past is the one the course names the verb by. The prefix is cited ye-, as the course writes its other verbs of this class (edros, elbos, ekol, ekhod); in or2os it writes o.
+- `lexeme:stanna` stanna / yestanna: Kline does not list it. The course writes its commands (stanna, stanni, stanno): the stem is stann- with a defective verb's endings, and a command in -a goes with a present in -a (yestanna). No form shows a third radical or a Form's prefix apart from st-, so no radicals and no Form are stored: the usual account (form X of ʔ-n-y) is etymology, which the model does not formalise (ADR 0145).
+- `lexeme:seken`, of sakan / yeskon: The verb is cited sakan / yeskon: its radicals are the participle's own, and its vowels are cited as those of 2a3ad / ye23od (Kline, p. 75), by analogy. No form of the course depends on them.
+- `lexeme:rte7` rte7 / yerte7: The middle radical shows in no form of a hollow form VIII verb, and no form depends on which it is. It is stored as و, the letter Arabic dictionaries file the word under; that links it to nothing, ra7 (go) included (ADR 0145: shared radicals only sort together).
+- `lexeme:jarrab` jarrab / yjarreb: Kline gives its participle mjarreb (p. 125), not the verb. A form II verb's citation forms follow from its radicals, as Kline cites them (p. 80: wa22af / ywa22ef), and the course's jarrbi and jarrbo agree.
+- `lexeme:fakkar` fakkar / yfakker: Kline does not list it. A form II verb's citation forms follow from its radicals, as Kline cites them (p. 80: wa22af / ywa22ef), and the course's bfakker and btfakkri agree.
+- `lexeme:3azam` 3azam / ye3zem: Kline does not list it. The course writes the past (3azamni) and e3zmak, where the present vowel has dropped: a vowel that drops there is i or u, never a (ta3mli, tedrso; yitla3o keeps its a), and it is cited i, as in 3emel and 3eref. The prefix is the course's e-; Kline's ya- before ع (p. 75) is what the course writes in ba3mel and ba3ref.
+- `lexeme:3ajab` 3ajab / ye3jeb: Kline does not list it. The course writes the past (3ajabni, 3ajabetni) and no present: the present is cited as 3azam's, the one other verb of its shape, and no form of the course depends on it.
 
 ## 12. The reviewed clips whose marks the projection does not write (16)
 
