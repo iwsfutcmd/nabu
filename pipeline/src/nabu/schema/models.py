@@ -3950,7 +3950,7 @@ class LanguageDeclaration(BaseModel):
     lexical: Annotated[
         dict[PartOfSpeech, LexicalAdditionalProperty] | None,
         Field(
-            description="For each category, the features a member has of itself, the same in all its forms (ADR 0145: a lexical feature; a Spanish noun's gender). A lexeme stores one only where no default gives it, and it is then a part to learn (ADR 0146). A lexeme whose forms name the feature chooses it on its tokens instead (hermano, hermana), which the converter reports."
+            description="For each category, the features a member has of itself, the same in all its forms (ADR 0145: a lexical feature; a Spanish noun's gender). A lexeme stores one only where no default gives it, and it is then a part to learn (ADR 0146). A lexeme whose forms name the feature chooses it on its tokens instead (hermano, hermana), which the converter's reports list (docs/migration)."
         ),
     ] = None
     citation: Annotated[
@@ -5518,7 +5518,7 @@ class TokenModel(BaseModel):
 
 class AliasTable(BaseModel):
     """
-    What each KC id of a course became (courses/<id>/aliases.yaml; docs/migration-design.md): the table `upgrade` reads to turn an event of the old shape into the new one. Written by the converter, never by hand.
+    What each KC id of a course became (courses/<id>/aliases.yaml; docs/migration-design.md): the table `upgrade` reads to turn an event of the old shape into the new one. Written by the converter that made the switch and kept by hand since: a lexeme, rule or feature value that is renamed or removed takes the table's right-hand sides with it (pipeline/tests/test_aliases.py).
     """
 
     model_config = ConfigDict(
@@ -5927,7 +5927,7 @@ type NextLearnerEvent = Annotated[
     | NextGoalSet
     | StoryLineRead,
     Field(
-        description="A learner event in the shape the lexical model needs (docs/migration-design.md, deliverable 1): schema 2. Credit is per part and skill, a miss carries its labels, and what was shown is logged. Nothing writes or reads it until the switch, when every stored event is upgraded to it, it replaces learner-event.schema.json, and the `Next` names lose their prefix. No event stays in the old shape.",
+        description="A learner event in the shape the lexical model needs (docs/migration-design.md, deliverable 1): schema 2. Credit is per part and skill, a miss carries its labels, and what was shown is logged. The shape of every event since the switch: stored events of the old shape are upgraded to it once, and it takes the name learner-event when the old shape's file takes another.schema.json, and the `Next` names lose their prefix. No event stays in the old shape.",
         title="NextLearnerEvent",
     ),
 ]
@@ -6997,7 +6997,7 @@ class BundleUnit(BaseModel):
 
 class NextCourseSource(BaseModel):
     """
-    A course in the shape the lexical model needs (docs/migration-design.md, deliverable 1): the same course.yaml, pointing at its language's lexicon. Written by the converter beside the course it converts (courses/<id>/next/) and read by nothing until the switch, when it replaces course-source.schema.json and the `Next` names lose their prefix. What did not change is referenced from that file.
+    A course in the shape the lexical model needs (docs/migration-design.md, deliverable 1): the same course.yaml, pointing at its language's lexicon. The shape of every course's sources since the switch (courses/<id>/course.yaml and units/); it takes the name course-source when the old shape's file goes.schema.json and the `Next` names lose their prefix. What did not change is referenced from that file.
     """
 
     model_config = ConfigDict(

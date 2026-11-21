@@ -697,10 +697,11 @@ fault is found in the stage that made it.
 - **Stages 1 to 4 and 7 change nothing a learner sees** but ids under the hood. Stage 5 changes grading
   (ADR 0148: stricter in es, and wherever a profile states a fixed correspondence) and is the largest: 22
   profiles and 8 schemes each need a reviewed statement.
-- **Proposed to the owner, not decided:** land stages 1 to 4 and 7 as the switch, and stage 5 with stage 6
-  as a deliverable of its own right after. Nothing in 1 to 4 waits on 5: a schema 2 event's `labels` may be
-  empty until grading has labels, so the log is not rewritten twice. One landing of all seven is the note's
-  first plan and stays the plan until the owner says otherwise.
+- **Decided by the owner on 2026-11-21 ("Land when green"):** stages 1 to 4 land on main as soon as every
+  check passes, with the part of stage 7 that cannot wait (below, "The landing"). The rest of stage 7 and
+  stages 5 and 6 follow on main as commits of their own. Nothing in 1 to 4 waits on 5: a schema 2 event's
+  `labels` may be empty until grading has labels, so the log is not rewritten twice. One landing of all
+  seven was this note's first plan.
 - **Taken with the "go"** ("For the owner", above): a proper name's gender moves to its lexeme in es (the
   plan's `lexical`), before the converter's last run; a form's clip is keyed by its lexeme and its feature
   values in stage 2.
@@ -722,8 +723,9 @@ today" is the main branch:
 - **The compiler, core and the app are changed in place,** not copied: there is one of each at every
   commit of the branch, and the old compiler and bundles are the main branch's. Each stage's check
   compares with those.
-- **The converter stays on the branch until the last stage,** since the flip runs it; its plans are kept
-  as the record of what was decided, since a drafted entry's provenance names its plan.
+- **The converter stayed on the branch until the landing,** since the flip ran it; its plans are kept
+  as the record of what was decided (`docs/migration/plans/`), since a drafted entry's provenance names
+  its plan.
 
 ### Stage 1, as built: the new bundle's shape
 

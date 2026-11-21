@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://nabu.invalid/schemas/v0/learner-event.next.schema.json",
   "title": "NextLearnerEvent",
-  "description": "A learner event in the shape the lexical model needs (docs/migration-design.md, deliverable 1): schema 2. Credit is per part and skill, a miss carries its labels, and what was shown is logged. Nothing writes or reads it until the switch, when every stored event is upgraded to it, it replaces learner-event.schema.json, and the `Next` names lose their prefix. No event stays in the old shape.",
+  "description": "A learner event in the shape the lexical model needs (docs/migration-design.md, deliverable 1): schema 2. Credit is per part and skill, a miss carries its labels, and what was shown is logged. The shape of every event since the switch: stored events of the old shape are upgraded to it once, and it takes the name learner-event when the old shape's file takes another.schema.json, and the `Next` names lose their prefix. No event stays in the old shape.",
   "oneOf": [
     { "$ref": "#/$defs/NextSessionStarted" },
     { "$ref": "#/$defs/NextExercisePresented" },

@@ -36,7 +36,7 @@
       }
     },
     "lexical": {
-      "description": "For each category, the features a member has of itself, the same in all its forms (ADR 0145: a lexical feature; a Spanish noun's gender). A lexeme stores one only where no default gives it, and it is then a part to learn (ADR 0146). A lexeme whose forms name the feature chooses it on its tokens instead (hermano, hermana), which the converter reports.",
+      "description": "For each category, the features a member has of itself, the same in all its forms (ADR 0145: a lexical feature; a Spanish noun's gender). A lexeme stores one only where no default gives it, and it is then a part to learn (ADR 0146). A lexeme whose forms name the feature chooses it on its tokens instead (hermano, hermana), which the converter's reports list (docs/migration).",
       "type": "object",
       "propertyNames": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
       "additionalProperties": {

@@ -344,10 +344,9 @@ export const lexemesInOrder = (course: CourseView): readonly BundleLexeme[] => {
  * What the language calls a form (schemas/language.schema.json `labels`: "present tense: I"), for
  * a lexeme of a part of speech: the most specific label whose values the form has, one for its
  * part of speech before one for any, the first listed where two say as much. `feats`: every value
- * the form has (those chosen on its token and its lexeme's own). The converter's `named` is the
- * same rule (pipeline/src/nabu/migrate/lexicon.py), until rules name forms themselves.
+ * the form has (those chosen on its token and its lexeme's own).
  */
-export const labelOf = (course: CourseView, feats: UdFeatures, pos?: string  ): BundleLabel | undefined => {
+export const labelOf = (course: CourseView, feats: UdFeatures, pos?: string): BundleLabel | undefined => {
   let best: BundleLabel | undefined;
   let size = -1;
   for (const label of course.lexicon.labels ?? []) {

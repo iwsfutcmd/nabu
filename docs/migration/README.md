@@ -1,14 +1,15 @@
 # The ten courses, converted to the lexical model
 
-Written by `cd pipeline && uv run nabu migrate ../courses`; do not edit by hand. It
-belongs to [the migration's design note](../migration-design.md), deliverable 2: the
-converter writes each course's lexicon (`lexicons/<lang>/`), the course in the new shape
-(`courses/<id>/next/`), its alias table (`courses/<id>/aliases.yaml`) and a report here.
-Nothing in the app reads any of it until the switch.
+The last reports of the converter that turned the ten courses into the lexical model
+([the migration's design note](../migration-design.md), deliverables 2 and 3). It ran for the
+last time when the switch landed on main (2026-11-21) and went with the old sources, so nothing
+writes these pages again. They stay as the record of what it found: each finding is a question
+for a reviewer, never an error.
 
-Each course has a conversion plan (`pipeline/src/nabu/migrate/plans/<id>.yaml`): what
-cannot be read off the course, stated by a drafter and awaiting review (REVIEW). The
-converter applies it and decides nothing; a report lists what it found, each a question.
+Each course had a conversion plan ([`plans/<id>.yaml`](plans)): what could not be read off the
+course, stated by a drafter and awaiting review (REVIEW). The converter applied it and decided
+nothing. The lexicons (`lexicons/<lang>/`), the courses' units and their alias tables
+(`courses/<id>/aliases.yaml`) are sources now, edited where they are.
 
 | Course | Lexemes | Pinned forms | Sentences and lines | Relations drafted | Word clips renamed | Findings | Checks |
 |---|---|---|---|---|---|---|---|

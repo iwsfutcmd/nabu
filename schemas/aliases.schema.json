@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://nabu.invalid/schemas/v0/aliases.schema.json",
   "title": "AliasTable",
-  "description": "What each KC id of a course became (courses/<id>/aliases.yaml; docs/migration-design.md): the table `upgrade` reads to turn an event of the old shape into the new one. Written by the converter, never by hand.",
+  "description": "What each KC id of a course became (courses/<id>/aliases.yaml; docs/migration-design.md): the table `upgrade` reads to turn an event of the old shape into the new one. Written by the converter that made the switch and kept by hand since: a lexeme, rule or feature value that is renamed or removed takes the table's right-hand sides with it (pipeline/tests/test_aliases.py).",
   "type": "object",
   "required": ["course", "aliases"],
   "additionalProperties": false,

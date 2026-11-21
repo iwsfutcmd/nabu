@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://nabu.invalid/schemas/v0/course-source.next.schema.json",
   "title": "NextCourseSource",
-  "description": "A course in the shape the lexical model needs (docs/migration-design.md, deliverable 1): the same course.yaml, pointing at its language's lexicon. Written by the converter beside the course it converts (courses/<id>/next/) and read by nothing until the switch, when it replaces course-source.schema.json and the `Next` names lose their prefix. What did not change is referenced from that file.",
+  "description": "A course in the shape the lexical model needs (docs/migration-design.md, deliverable 1): the same course.yaml, pointing at its language's lexicon. The shape of every course's sources since the switch (courses/<id>/course.yaml and units/); it takes the name course-source when the old shape's file goes.schema.json and the `Next` names lose their prefix. What did not change is referenced from that file.",
   "type": "object",
   "required": ["id", "target", "orthographies", "support", "units", "lexicon"],
   "additionalProperties": false,

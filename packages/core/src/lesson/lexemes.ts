@@ -72,7 +72,7 @@ const featsText = (feats: UdFeatures | undefined, join: string): string =>
     .join(join);
 
 /** One lexeme in one form, as a string to key by (schemas/common.schema.json `FormKey`). */
-export const lexemeFormKey = (lexeme: LexemeId, feats?: UdFeatures  ): FormKey => {
+export const lexemeFormKey = (lexeme: LexemeId, feats?: UdFeatures): FormKey => {
   const said = featsText(feats, ";");
   return said === "" ? lexeme : `${lexeme}|form:${said}`;
 };
