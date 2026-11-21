@@ -4,16 +4,16 @@
  * "pleased"). A reader of the script cannot tell them apart from the spelling: the player marks them,
  * and a tap names the other readings with what they mean.
  */
-import type { KcId, SchemeId, TaggedText, Token } from "@nabu/schema";
-import { kcsOfToken } from "../learner/credit.ts";
+import type { LexemeId, SchemeId, TaggedText, Token } from "@nabu/schema";
 import { readingScheme, readingTag } from "../profile/schemes.ts";
-import { allKcs, allSentences, type CourseView } from "./course.ts";
+import { allSentences, lexemesById, type CourseView } from "./course.ts";
+import { baseIdOf, lexemeIdsOf } from "./lexemes.ts";
 import { cardGloss } from "./templates.ts";
 
-/** One reading of a homograph: how it is read, the words it reads, and what the first of them means. */
+/** One reading of a homograph: how it is read, the lexemes read so, and what its word means (its base's gloss). */
 export interface HomographReading {
   readonly reading: string;
-  readonly kcs: readonly KcId[];
+  readonly lexemes: readonly LexemeId[];
   readonly meaning: TaggedText | undefined;
 }
 
@@ -42,7 +42,7 @@ export const homographsOf = (course: CourseView, scheme: SchemeId): ReadonlyMap<
   cache.set(course, byScheme);
   const known = byScheme.get(scheme);
   if (known !== undefined) return known;
-  const kcs = new Map(allKcs(course).map((k) => [k.id as string, k]));
+  const lexemes = lexemesById(course);
   const keyOf = readingKey(scheme);
   const found = new Map<string, HomographReading[]>();
   for (const s of allSentences(course)) {
@@ -52,10 +52,10 @@ export const homographsOf = (course: CourseView, scheme: SchemeId): ReadonlyMap<
       const surface = t.surface.normalize("NFC");
       const readings = found.get(surface) ?? [];
       if (readings.some((r) => keyOf(r.reading) === keyOf(reading))) continue;
-      const words = kcsOfToken(t);
-      const sense = words.find((k) => k.startsWith("sense:")) ?? words[0];
-      const gloss = sense === undefined ? undefined : kcs.get(sense)?.gloss?.[course.supportKey];
-      readings.push({ reading, kcs: words, meaning: gloss === undefined ? undefined : cardGloss(gloss) });
+      const written = lexemeIdsOf(t);
+      const base = baseIdOf(t) ?? written[0];
+      const gloss = base === undefined ? undefined : lexemes.get(base)?.gloss?.[course.supportKey];
+      readings.push({ reading, lexemes: written, meaning: gloss === undefined ? undefined : cardGloss(gloss) });
       found.set(surface, readings);
     }
   }

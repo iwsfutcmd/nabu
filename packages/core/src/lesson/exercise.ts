@@ -289,6 +289,8 @@ export interface Transcribe extends Common {
  * label. The cards ask the forms and are credited to them; the lexemes are given.
  */
 export interface WordPart {
+  /** What tells it from every other part offered: a lexeme's id, or a named form's (its values, and its part of speech where the name is one's). */
+  readonly id: string;
   /**
    * What it is credited to: a lexeme, or the feature values a form's label names (each a part; a
    * label of several values is one thing to pick and several to credit).

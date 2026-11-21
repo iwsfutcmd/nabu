@@ -98,5 +98,10 @@ labels:
 - {feats: {Case: Dat, Gender: Masc, Number: Plur}, gloss: {en: 'the dative plural (masculine; also ἡμῖν): to, for (ἡμῖν, to us)'}, was: 'form:dat-pl'}
 - {feats: {Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, gloss: {en: 'the comparative: more …, -er (σοφώτερος, wiser); the one compared in the genitive (than)'}, was: 'form:comp'}
 - {feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}, gloss: {en: 'the comparative, feminine: more …, -er (σοφωτέρα, wiser, of a woman)'}, was: 'form:comp-f'}
+- {feats: {Case: 'Nom,Voc', Number: Plur}, gloss: {en: 'the plural (masculine; also ἡμεῖς, ὑμεῖς), as subject or called: -οι, -ες (ἀδελφοί, brothers)'}, was: 'form:pl'}
+- {feats: {Case: Acc, Number: Plur}, gloss: {en: 'the accusative plural (masculine; also ἡμᾶς, ὑμᾶς): the objects (παῖδας, children)'}, was: 'form:acc-pl'}
+- {feats: {Case: Acc, Number: Sing}, gloss: {en: 'the accusative (masculine; also με, σε): the object of a verb (ἀδελφὸν ἔχω, I have a brother)'}, was: 'form:acc'}
+- {feats: {Case: Dat, Number: Sing}, gloss: {en: 'the dative (masculine; also μοι, σοι): to, for (τῷ Ἀσκληπιῷ, to Asclepius; ὄνομά μοι, my name is)'}, was: 'form:dat'}
+- {feats: {Case: Dat, Number: Plur}, gloss: {en: 'the dative plural (masculine; also ἡμῖν): to, for (ἡμῖν, to us)'}, was: 'form:dat-pl'}
 rules:
 - {id: 'rule:esti-moi', gloss: {en: 'ἔστι μοι + a noun: I have (word for word, there is to me)'}, was: 'construction:esti-moi'}

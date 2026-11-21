@@ -1,10 +1,10 @@
 /**
  * The Phase 3 template catalog (gameplan §8.1–8.2). Each template is data plus
- * pure functions: `make` instantiates it from a sentence or KC (undefined when
+ * pure functions: `make` instantiates it from a sentence or lexeme (undefined when
  * not eligible), `grade` turns a response into an outcome. Randomness comes
  * from the injected seeded Rng only.
  */
-import type { Asks, BundleKc, BundleSentence, KcId, Persons, SchemeId, TaggedText, Token } from "@nabu/schema";
+import type { BundleLabel, BundleLexeme, BundleSentence, PartId, Persons, Question, SchemeId, Skill, TaggedText, Token, UdFeatures } from "@nabu/schema";
 import { literalAccept } from "../accept/notation.ts";
 import { glossUnits } from "../match/gloss.ts";
 import { compileAcceptSet, grade, type CompiledAcceptSet } from "../match/grade.ts";
@@ -14,15 +14,14 @@ import { graphemes } from "../text/graphemes.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 import { tilesOf } from "./tiles.ts";
 import { readingTradition, traditionKey } from "./traditions.ts";
-import { allKcs, allSentences, lexiconOf, profileOf, type CourseView, type Grader } from "./course.ts";
-import { askedOfToken, formSignature, senseKcOf, sameKind } from "./signature.ts";
+import { allSentences, labelOf, lexemesById, lexemesInOrder, marked, profileOf, spellingsIn, unitIndexOf, type CourseView, type Grader } from "./course.ts";
+import { askedOfToken, baseIdOf, baseOf, bound, effectiveFeats, featureId, formPartsOf, formSignature, kindOf, lexemeIdsOf, lexemesOf, sameKind, sentencePersons } from "./lexemes.ts";
 import type {
   CharRead,
   ChooseTranslation,
   CompleteTranslation,
   Exercise,
   Facet,
-  FacetRef,
   GapFill,
   ListenSelect,
   ListenSpeak,
@@ -33,6 +32,7 @@ import type {
   Outcome,
   PartsWhole,
   ReadingDisambiguation,
+  SkillRef,
   Transcribe,
   Vocalize,
   VocalizeBuild,
@@ -71,7 +71,7 @@ export interface TemplateInfo {
   readonly prior: number;
   /** At most this many a session (§9.4 variety); three where unset. */
   readonly perSession?: number;
-  /** It can present a word for the first time: a new KC is recognized before it is produced or read. */
+  /** It can present a word for the first time: a new lexeme is recognized before it is produced or read. */
   readonly presents?: true;
   /** The learner rates it themselves (tier-0 speaking): no verdict, never a filler (P5, L6). */
   readonly selfRated?: true;
@@ -145,32 +145,54 @@ export const LISTENING: ReadonlySet<TemplateId> = new Set(
 /** Templates that need the microphone: "can't speak now" leaves them out. */
 export const SPEAKING: ReadonlySet<TemplateId> = new Set((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => TEMPLATES[t].modality.mic));
 
-/** Which (KC, facet) pairs an instance exercises (§8.5 credit assignment). */
-export const facets = (ex: Exercise): readonly FacetRef[] => ex.kcs.map((kc) => ({ kc, facet: TEMPLATES[ex.template].facet }));
+/**
+ * The skill a card of a template exercises a part by (ADR 0146). A lexeme, a rule and a letter: the
+ * template's facet. A feature value: chosen where the card is typed, said or written, read off a
+ * form where it is read or heard.
+ */
+export const skillOf = (template: TemplateId, part: PartId): Skill => {
+  const facet = TEMPLATES[template].facet;
+  if (kindOf(part) !== "feature") return facet;
+  return facet === "produce" || facet === "speak" || facet === "write-script" ? "choose" : "read-off";
+};
+
+/**
+ * Whether a card of a template can give evidence of a part. Something of a lexeme
+ * (lexeme:mano|Gender) is asked by no card yet: it is listed, and given. A card about a script
+ * reads and writes letters: it shows nothing of a feature value.
+ */
+export const asksOf = (template: TemplateId, part: PartId): boolean => {
+  if (part.includes("|")) return false;
+  const facet = TEMPLATES[template].facet;
+  return !(kindOf(part) === "feature" && (facet === "read-script" || facet === "write-script"));
+};
+
+/** Which parts an instance exercises, each by which skill (§8.5 credit assignment). */
+export const skills = (ex: Exercise): readonly SkillRef[] => ex.parts.filter((part) => asksOf(ex.template, part)).map((part) => ({ part, skill: skillOf(ex.template, part) }));
 
 // ------------------------------------------------------------------------------------ context
 
 export interface MakeContext {
   readonly course: CourseView;
   readonly rng: Rng;
-  /** KCs the current node introduces: new words get the recognition templates first. */
-  readonly introduced: readonly KcId[];
+  /** What the current node introduces (lexemes, feature values, rules, letters): new words get the recognition templates first. */
+  readonly introduced: readonly string[];
   /**
    * Words the session wants typed (ADR 0101): a sentence's blank is one of them where it has one,
    * before a word the node introduces.
    */
   readonly focus?: ReadonlySet<string> | undefined;
   /**
-   * A mistake's word (its KCs, sorted, as its answer credited them): a card about one word of its
+   * A mistake's word (its parts, sorted, as its answer credited them): a card about one word of its
    * sentence asks that word again, before any other.
    */
   readonly ask?: readonly string[] | undefined;
   /**
-   * What a fill-in mistake asked of its word (ADR 0132): which word (`ask` is its sense) or which
-   * form (`ask` is its form signature). It is asked again as the same question. Absent for other
-   * cards, and for a fill-in's mistake from before ADR 0132 (`ask` is all of the word's KCs).
+   * What a fill-in mistake asked of its word (ADR 0132): which lexeme (`ask` is its base) or which
+   * form (`ask` is what its form credits). It is asked again as the same question. Absent for other
+   * cards (`ask` is the word's lexemes).
    */
-  readonly asks?: Asks | undefined;
+  readonly asks?: Question | undefined;
   /**
    * The reading tradition the learner reads in (ADR 0138: the ruby layer they last chose), where
    * the orthography has several: reading cards ask it. Absent or not one of them: the first.
@@ -178,14 +200,32 @@ export interface MakeContext {
   readonly reading?: SchemeId | undefined;
 }
 
+const partSets = new WeakMap<BundleSentence, ReadonlySet<PartId>>();
+
+/** A sentence's parts as a set: what its tokens' feature values are checked against (those the course teaches by then). */
+const taughtIn = (s: BundleSentence): ReadonlySet<PartId> => {
+  let set = partSets.get(s);
+  if (set === undefined) {
+    set = new Set(s.parts);
+    partSets.set(s, set);
+  }
+  return set;
+};
+
 /**
- * Whether a token is the word a mistake asks again (`MakeContext.ask`): exactly its KCs, or, for a
- * fill-in's mistake (`MakeContext.asks`), exactly what that question credits of it.
+ * Whether a token is the word a mistake asks again (`MakeContext.ask`): exactly its lexemes, or, for
+ * a fill-in's mistake (`MakeContext.asks`), exactly what that question credits of it in its sentence.
  */
-const asked = (ctx: MakeContext, token: Token): boolean => {
+const asked = (ctx: MakeContext, s: BundleSentence, token: Token): boolean => {
   if (ctx.ask === undefined) return false;
-  const kcs = [...new Set((ctx.asks === undefined ? tokenKcs(token) : askedOfToken(token, ctx.asks)).map(String))].sort();
-  return kcs.length > 0 && kcs.length === ctx.ask.length && kcs.every((kc, i) => kc === ctx.ask?.[i]);
+  const parts = [...new Set((ctx.asks === undefined ? lexemeIdsOf(token) : askedOfToken(token, ctx.asks, taughtIn(s))).map(String))].sort();
+  return parts.length > 0 && parts.length === ctx.ask.length && parts.every((part, i) => part === ctx.ask?.[i]);
+};
+
+/** Whether a token's base is a lexeme the current node introduces. */
+const introduces = (ctx: MakeContext, token: Token): boolean => {
+  const base = baseIdOf(token);
+  return base !== undefined && ctx.introduced.includes(base);
 };
 
 const id = (template: TemplateId, item: string): string => `${template}:${item}`;
@@ -275,7 +315,10 @@ const translationOf = (course: CourseView, s: BundleSentence): { readonly text: 
   s.translations[course.supportKey];
 
 /** The sentence's speaker and addressee, for an exercise that writes it in the target language. */
-const personsOf = (s: BundleSentence): { readonly persons?: Persons } => (s.persons === undefined ? {} : { persons: s.persons });
+const personsOf = (s: BundleSentence): { readonly persons?: Persons } => {
+  const persons = sentencePersons(s);
+  return persons === undefined ? {} : { persons };
+};
 
 const producible = (course: CourseView, s: BundleSentence): string | undefined => (s.production ? formOf(course, s)?.reverse : undefined);
 
@@ -381,16 +424,18 @@ const withAnswer = <T>(ctx: MakeContext, answer: T, others: readonly T[]): { rea
   return { options: [...others.slice(0, at), answer, ...others.slice(at)], answer: at };
 };
 
-/** Each sentence's and KC's unit, by position in the course (built once per course). */
+/**
+ * Each sentence's unit, and the unit that first teaches each lexeme, rule, feature value and letter,
+ * by position in the course (built once per course).
+ */
 const unitIndex = new WeakMap<CourseView, ReadonlyMap<string, number>>();
 
 const unitOf = (course: CourseView, id: string): number => {
   let index = unitIndex.get(course);
   if (index === undefined) {
-    const built = new Map<string, number>();
+    const built = new Map<string, number>(unitIndexOf(course));
     for (const [i, u] of course.units.entries()) {
       for (const s of u.sentences) if (!built.has(s.id)) built.set(s.id, i);
-      for (const k of u.kcs) if (!built.has(k.id)) built.set(k.id, i);
     }
     index = built;
     unitIndex.set(course, index);
@@ -427,32 +472,33 @@ const sentencesThrough = (course: CourseView, at: number): readonly BundleSenten
 
 const otherSentences = (ctx: MakeContext, s: BundleSentence): readonly BundleSentence[] => sentencesThrough(ctx.course, unitOf(ctx.course, s.id)).filter((o) => o.id !== s.id);
 
-const otherKcs = (ctx: MakeContext, kc: BundleKc): readonly BundleKc[] => {
-  const before = known(ctx.course, kc.id);
-  return allKcs(ctx.course).filter((k) => k.id !== kc.id && before(k.id));
+/** The other lexemes of a lexeme's unit and earlier ones, in the order the course teaches them. */
+const otherLexemes = (ctx: MakeContext, lexeme: BundleLexeme): readonly BundleLexeme[] => {
+  const before = known(ctx.course, lexeme.id);
+  return lexemesInOrder(ctx.course).filter((k) => k.id !== lexeme.id && before(k.id));
 };
 
-// ------------------------------------------------------------------------------------ KC templates
+// ------------------------------------------------------------------------------------ lexeme templates
 
-const pictured = (ctx: MakeContext, kc: BundleKc): boolean =>
-  kc.image !== undefined && (kc.forms?.[ctx.course.orthography]?.length ?? 0) > 0 && kc.gloss?.[ctx.course.supportKey] !== undefined;
+const pictured = (ctx: MakeContext, lexeme: BundleLexeme): boolean =>
+  lexeme.image !== undefined && (lexeme.forms?.[ctx.course.orthography]?.length ?? 0) > 0 && lexeme.gloss?.[ctx.course.supportKey] !== undefined;
 
-export const makeSelectImage = (ctx: MakeContext, kc: BundleKc): SelectImage | undefined => {
-  if (!pictured(ctx, kc)) return undefined;
+export const makeSelectImage = (ctx: MakeContext, lexeme: BundleLexeme): SelectImage | undefined => {
+  if (!pictured(ctx, lexeme)) return undefined;
   const { orthography, supportKey } = ctx.course;
-  const option = (k: BundleKc) => ({ text: k.forms?.[orthography]?.[0] as TaggedText, image: k.image as string });
-  const pool = otherKcs(ctx, kc).filter((k) => pictured(ctx, k) && k.image !== kc.image);
-  const others = pickDistinct(ctx, pool.map((k) => option(k).text), [option(kc).text], 2);
+  const option = (k: BundleLexeme) => ({ text: k.forms?.[orthography]?.[0] as TaggedText, image: k.image as string });
+  const pool = otherLexemes(ctx, lexeme).filter((k) => pictured(ctx, k) && k.image !== lexeme.image);
+  const others = pickDistinct(ctx, pool.map((k) => option(k).text), [option(lexeme).text], 2);
   if (others.length < 2) return undefined;
-  const otherOptions = others.map((t) => option(pool.find((k) => k.forms?.[orthography]?.[0] === t) as BundleKc));
-  const { options, answer } = withAnswer(ctx, option(kc), otherOptions);
+  const otherOptions = others.map((t) => option(pool.find((k) => k.forms?.[orthography]?.[0] === t) as BundleLexeme));
+  const { options, answer } = withAnswer(ctx, option(lexeme), otherOptions);
   return {
     template: "select-image",
-    id: id("select-image", kc.id),
-    item: kc.id,
-    kcs: [kc.id],
+    id: id("select-image", lexeme.id),
+    item: lexeme.id,
+    parts: [lexeme.id],
     orthography,
-    prompt: kc.gloss?.[supportKey] as TaggedText,
+    prompt: lexeme.gloss?.[supportKey] as TaggedText,
     options,
     answer,
   };
@@ -481,10 +527,10 @@ export const cardGloss = (text: TaggedText): TaggedText => {
   return out.some((t) => t.kind === "word") ? { ...text, tokens: out } : text;
 };
 
-export const makeMatchPairs = (ctx: MakeContext, kcs: readonly BundleKc[]): MatchPairs | undefined => {
+export const makeMatchPairs = (ctx: MakeContext, lexemes: readonly BundleLexeme[]): MatchPairs | undefined => {
   const { orthography, supportKey } = ctx.course;
-  const usable = kcs.filter((k) => k.kind === "sense" && (k.forms?.[orthography]?.length ?? 0) > 0 && k.gloss?.[supportKey] !== undefined);
-  const byText = (t: TaggedText) => usable.find((k) => k.forms?.[orthography]?.[0] === t) as BundleKc;
+  const usable = lexemes.filter((k) => (k.forms?.[orthography]?.length ?? 0) > 0 && k.gloss?.[supportKey] !== undefined);
+  const byText = (t: TaggedText) => usable.find((k) => k.forms?.[orthography]?.[0] === t) as BundleLexeme;
   // Distinct in both columns. Two words alike, or two meanings alike (synonyms glossed alike, as
   // Classical Chinese 汝 and 爾 are both "you"), would make either pairing right, and the card
   // accepts only one. The draws are pickDistinct's, so cards without such a pair are unchanged.
@@ -508,7 +554,7 @@ export const makeMatchPairs = (ctx: MakeContext, kcs: readonly BundleKc[]): Matc
     template: "match-pairs",
     id: id("match-pairs", chosen.map((t) => byText(t).id).join("+")),
     item: byText(chosen[0] as TaggedText).id,
-    kcs: chosen.map((t) => byText(t).id),
+    parts: chosen.map((t) => byText(t).id),
     orthography,
     left: chosen,
     right: order.map((i) => glosses[i] as TaggedText),
@@ -530,7 +576,7 @@ export const makeChooseTranslation = (ctx: MakeContext, s: BundleSentence): Choo
     template: "choose-translation",
     id: id("choose-translation", s.id),
     item: s.id,
-    kcs: s.kcs,
+    parts: s.parts,
     orthography: ctx.course.support,
     prompt: form.text,
     options,
@@ -562,7 +608,7 @@ const makeTap = (
     template,
     id: id(template, s.id),
     item: s.id,
-    kcs: s.kcs,
+    parts: s.parts,
     orthography: answer.orthography,
     prompt,
     tiles: order.map((i) => all[i] as TaggedText),
@@ -601,7 +647,7 @@ export const makeTranslateType = (ctx: MakeContext, s: BundleSentence): Translat
     template: "translate-type.l1-l2",
     id: id("translate-type.l1-l2", s.id),
     item: s.id,
-    kcs: s.kcs,
+    parts: s.parts,
     orthography: ctx.course.orthography,
     prompt: translation.text,
     accept,
@@ -611,16 +657,16 @@ export const makeTranslateType = (ctx: MakeContext, s: BundleSentence): Translat
 };
 
 /**
- * The word to blank out: one the session wants typed (ADR 0101), else one carrying a KC this node
+ * The word to blank out: one the session wants typed (ADR 0101), else one writing a lexeme this node
  * introduces, else the last word.
  */
-const blankIndex = (ctx: MakeContext, text: TaggedText): number | undefined => {
+const blankIndex = (ctx: MakeContext, s: BundleSentence, text: TaggedText): number | undefined => {
   const indexes = words(text);
   if (indexes.length < 2) return undefined;
-  const kcsAt = (i: number): readonly string[] => tokenKcs(text.tokens[i] as Token);
-  const again = indexes.find((i) => asked(ctx, text.tokens[i] as Token));
-  const focus = ctx.focus === undefined ? undefined : indexes.find((i) => kcsAt(i).some((k) => ctx.focus?.has(k) === true));
-  const fresh = indexes.find((i) => kcsAt(i).some((k) => ctx.introduced.includes(k as KcId)));
+  const lexemesAt = (i: number): readonly string[] => lexemeIdsOf(text.tokens[i] as Token);
+  const again = indexes.find((i) => asked(ctx, s, text.tokens[i] as Token));
+  const focus = ctx.focus === undefined ? undefined : indexes.find((i) => lexemesAt(i).some((k) => ctx.focus?.has(k) === true));
+  const fresh = indexes.find((i) => lexemesAt(i).some((k) => ctx.introduced.includes(k)));
   return again ?? focus ?? fresh ?? indexes[indexes.length - 1];
 };
 
@@ -629,13 +675,13 @@ export const makeCompleteTranslation = (ctx: MakeContext, s: BundleSentence): Co
   const translation = translationOf(ctx.course, s);
   const accept = producible(ctx.course, s);
   if (form === undefined || translation === undefined || accept === undefined) return undefined;
-  const at = blankIndex(ctx, form.text);
+  const at = blankIndex(ctx, s, form.text);
   if (at === undefined) return undefined;
   return {
     template: "complete-translation",
     id: id("complete-translation", s.id),
     item: s.id,
-    kcs: s.kcs,
+    parts: s.parts,
     orthography: ctx.course.orthography,
     prompt: translation.text,
     before: slice(form.text, 0, at),
@@ -649,26 +695,28 @@ export const makeCompleteTranslation = (ctx: MakeContext, s: BundleSentence): Co
 
 // ------------------------------------------------------------------------------------ gap-fill (ADR 0132)
 
-/** A word a fill-in may offer: a word token of a sentence of the course, as an option, with its sense and form signature. */
+/** A word a fill-in may offer: a word token of a sentence of the course, as an option, with its base lexeme and form signature. */
 interface Attested {
   readonly option: TaggedText;
   readonly sentence: string;
-  readonly sense: string;
-  readonly signature: readonly KcId[];
+  readonly lexeme: string;
+  readonly signature: readonly string[];
   readonly signatureKey: string;
+  /** What it carries beside its base (ADR 0152): what a parts card may offer of it. */
+  readonly carried: Carried;
 }
 
 interface AttestedWords {
   readonly bySignature: ReadonlyMap<string, readonly Attested[]>;
-  readonly bySense: ReadonlyMap<string, readonly Attested[]>;
+  readonly byLexeme: ReadonlyMap<string, readonly Attested[]>;
 }
 
 const attestedUpTo = new WeakMap<CourseView, Map<number, AttestedWords>>();
 
 /**
  * The words a sentence's fill-in may offer: those of the sentences of its unit and earlier ones (ADR
- * 0050), by form signature (a word question's options) and by sense (a form question's). Built once
- * per course and unit; options are made once, so their keys are computed once.
+ * 0050), by form signature (a lexeme question's options) and by lexeme (a form question's). Built
+ * once per course and unit; options are made once, so their keys are computed once.
  */
 const attestedFor = (ctx: MakeContext, s: BundleSentence): AttestedWords => {
   const at = unitOf(ctx.course, s.id);
@@ -680,68 +728,59 @@ const attestedFor = (ctx: MakeContext, s: BundleSentence): AttestedWords => {
   let built = byUnit.get(at);
   if (built === undefined) {
     const bySignature = new Map<string, Attested[]>();
-    const bySense = new Map<string, Attested[]>();
+    const byLexeme = new Map<string, Attested[]>();
+    const lexemes = lexemesById(ctx.course);
     for (const o of sentencesThrough(ctx.course, at)) {
       const text = formOf(ctx.course, o)?.text;
       if (text === undefined) continue;
       for (const i of alone(text)) {
         const token = text.tokens[i] as Token;
-        const sense = senseKcOf(token);
-        if (sense === undefined) continue;
-        const signature = formSignature(token);
-        const word: Attested = { option: single(text, token), sentence: o.id, sense, signature, signatureKey: signature.join(" ") };
+        const lexeme = baseIdOf(token);
+        if (lexeme === undefined) continue;
+        const signature = formSignature(token, lexemes.get(lexeme));
+        const word: Attested = { option: single(text, token), sentence: o.id, lexeme, signature, signatureKey: signature.join(" "), carried: carriedOf(ctx.course, token) };
         bySignature.set(word.signatureKey, [...(bySignature.get(word.signatureKey) ?? []), word]);
-        bySense.set(sense, [...(bySense.get(sense) ?? []), word]);
+        byLexeme.set(lexeme, [...(byLexeme.get(lexeme) ?? []), word]);
       }
     }
-    built = { bySignature, bySense };
+    built = { bySignature, byLexeme };
     byUnit.set(at, built);
   }
   return built;
 };
 
 /**
- * A text's words that are a sense on their own: not a word of a phrase KC (por of por favor, مع of
- * مع السلامة), whose words stand next to each other with its sense, and alone are only part of it.
- * Only these are blanked or offered (ADR 0132). A word the text repeats apart (este … esta) is its own.
+ * A text's words that are a lexeme on their own: not a word of a lexeme written as several (por of
+ * por favor, مع of مع السلامة), whose words stand next to each other with it as their base, and
+ * alone are only part of it. Only these are blanked or offered (ADR 0132). A word the text repeats
+ * apart (este … esta) is its own.
  */
 const alone = (text: TaggedText): readonly number[] => {
   const all = words(text);
-  const senseAt = (k: number): string | undefined => (all[k] === undefined ? undefined : (text.tokens[all[k]] as Token).sense);
+  const baseAt = (k: number): string | undefined => (all[k] === undefined ? undefined : baseIdOf(text.tokens[all[k]] as Token));
   return all.filter((_, k) => {
-    const sense = senseAt(k);
-    return sense !== undefined && senseAt(k - 1) !== sense && senseAt(k + 1) !== sense;
+    const base = baseAt(k);
+    return base !== undefined && baseAt(k - 1) !== base && baseAt(k + 1) !== base;
   });
-};
-
-const kcMaps = new WeakMap<CourseView, ReadonlyMap<string, BundleKc>>();
-
-const kcById = (course: CourseView): ReadonlyMap<string, BundleKc> => {
-  let map = kcMaps.get(course);
-  if (map === undefined) {
-    map = new Map(allKcs(course).map((k) => [k.id as string, k]));
-    kcMaps.set(course, map);
-  }
-  return map;
 };
 
 const MEANING_BREAK = /^[;；,，/、]$/u;
 const meaningSets = new WeakMap<CourseView, Map<string, ReadonlySet<string>>>();
 
 /**
- * A KC's meanings in the support language: its gloss split where it lists meanings (; , /), notes in
- * parentheses left out, each meaning's words in its language's lower case. ay- "to say" and de- "to
- * say, tell" share "to say".
+ * A lexeme's meanings in the support language: its gloss split where it lists meanings (; , /), notes
+ * in parentheses left out, each meaning's words in its language's lower case. ay- "to say" and de-
+ * "to say, tell" share "to say".
  */
-const meaningsOf = (course: CourseView, kc: string): ReadonlySet<string> => {
-  let byKc = meaningSets.get(course);
-  if (byKc === undefined) {
-    byKc = new Map();
-    meaningSets.set(course, byKc);
+const meaningsOf = (course: CourseView, lexeme: string): ReadonlySet<string> => {
+  let byLexeme = meaningSets.get(course);
+  if (byLexeme === undefined) {
+    byLexeme = new Map();
+    meaningSets.set(course, byLexeme);
   }
-  let meanings = byKc.get(kc);
+  let meanings = byLexeme.get(lexeme);
   if (meanings === undefined) {
-    const gloss = kcById(course).get(kc)?.gloss?.[course.supportKey];
+    const gloss = lexemesById(course).get(lexeme)?.gloss?.[course.supportKey];
     const found = new Set<string>();
     let current: string[] = [];
     let depth = 0;
@@ -758,7 +797,7 @@ const meaningsOf = (course: CourseView, kc: string): ReadonlySet<string> => {
     }
     close();
     meanings = found;
-    byKc.set(kc, meanings);
+    byLexeme.set(lexeme, meanings);
   }
   return meanings;
 };
@@ -794,7 +833,7 @@ const acceptSetOf = (course: CourseView, s: BundleSentence): CompiledAcceptSet |
 const takes = (course: CourseView, s: BundleSentence, before: TaggedText, option: TaggedText, after: TaggedText): boolean => {
   const set = acceptSetOf(course, s);
   if (set === undefined) return false;
-  const { words: lexicon, inflected, forms } = lexiconOf(course, course.orthography);
+  const { words: lexicon, inflected, forms } = spellingsIn(course, course.orthography);
   return isCorrect(grade(set, `${surfaceOf(before)}${surfaceOf(option)}${surfaceOf(after)}`, { lexicon, inflected, forms }).verdict);
 };
 
@@ -834,90 +873,91 @@ interface GapParts {
 }
 
 /**
- * Which word (ADR 0132): two other words in the answer's form (its form signature) and of its part
- * of speech and features, from the unit or earlier; never one whose meaning the answer's gloss
- * shares, or one the sentence's accept set takes in the gap. Each with the answer's case (P2): a
- * capital that only marks the sentence's first word must not mark the answer.
+ * Which lexeme (ADR 0132): two other words in the answer's form (its form signature) and of its part
+ * of speech, from the unit or earlier; never one whose meaning the answer's gloss shares, or one the
+ * sentence's accept set takes in the gap. Each with the answer's case (P2): a capital that only
+ * marks the sentence's first word must not mark the answer.
  */
-const wordQuestion = (ctx: MakeContext, gap: GapParts): readonly TaggedText[] | undefined => {
-  const sense = senseKcOf(gap.target);
-  if (sense === undefined) return undefined;
-  const kcs = kcById(ctx.course);
-  const own = kcs.get(sense);
-  const signature = formSignature(gap.target).join(" ");
+const lexemeQuestion = (ctx: MakeContext, gap: GapParts): readonly TaggedText[] | undefined => {
+  const lexeme = baseIdOf(gap.target);
+  if (lexeme === undefined) return undefined;
+  const lexemes = lexemesById(ctx.course);
+  const own = lexemes.get(lexeme);
+  const signature = formSignature(gap.target, own).join(" ");
   const pool = (attestedFor(ctx, gap.s).bySignature.get(signature) ?? []).filter(
-    (c) => c.sentence !== gap.s.id && c.sense !== sense && sameKind(own, kcs.get(c.sense)) && !sharesMeaning(ctx.course, sense, c.sense),
+    (c) => c.sentence !== gap.s.id && c.lexeme !== lexeme && sameKind(own, lexemes.get(c.lexeme)) && !sharesMeaning(ctx.course, lexeme, c.lexeme),
   );
   const capital = capitalized(ctx.course, gap.correct);
   const order = ranked(ctx, pool, (c) => (capitalized(ctx.course, c.option) === capital ? 1 : 0));
-  return pickTwo(ctx, order, gap.correct, (c) => c.sense, (c) => !takes(ctx.course, gap.s, gap.before, c.option, gap.after));
+  return pickTwo(ctx, order, gap.correct, (c) => c.lexeme, (c) => !takes(ctx.course, gap.s, gap.before, c.option, gap.after));
 };
 
 /**
- * Which form (ADR 0132): the answer's own word (its sense) in two other forms the course writes in the
- * unit or earlier, the forms nearest the answer's first (most of its form KCs shared); never one the
- * sentence's accept set takes in the gap. The answer must have a form to credit: a bare word asks
- * which word only.
+ * Which form (ADR 0132): the answer's own lexeme in two other forms the course writes in the unit or
+ * earlier, the forms nearest the answer's first (most of its signature shared); never one the
+ * sentence's accept set takes in the gap. The answer must have a form to credit (`formPartsOf`: a
+ * lexeme written with it, or a feature value chosen on it that the course teaches by then): a word
+ * with none asks which lexeme only.
  */
 const formQuestion = (ctx: MakeContext, gap: GapParts): readonly TaggedText[] | undefined => {
-  const sense = senseKcOf(gap.target);
-  const signature = formSignature(gap.target);
-  if (sense === undefined || signature.length === 0) return undefined;
+  const lexeme = baseIdOf(gap.target);
+  if (lexeme === undefined || formPartsOf(gap.target, taughtIn(gap.s)).length === 0) return undefined;
+  const signature = formSignature(gap.target, lexemesById(ctx.course).get(lexeme));
   const key = signature.join(" ");
   const own = new Set<string>(signature);
-  const pool = (attestedFor(ctx, gap.s).bySense.get(sense) ?? []).filter((c) => c.sentence !== gap.s.id && c.signatureKey !== key);
+  const pool = (attestedFor(ctx, gap.s).byLexeme.get(lexeme) ?? []).filter((c) => c.sentence !== gap.s.id && c.signatureKey !== key);
   const capital = capitalized(ctx.course, gap.correct);
   const order = ranked(ctx, pool, (c) => (capitalized(ctx.course, c.option) === capital ? 4 : 0) + c.signature.filter((k) => own.has(k)).length - Math.abs(c.signature.length - signature.length) * 0.5);
   return pickTwo(ctx, order, gap.correct, (c) => c.signatureKey, (c) => !takes(ctx.course, gap.s, gap.before, c.option, gap.after));
 };
 
-const WORD_FIRST: readonly Asks[] = ["word", "form"];
-const FORM_FIRST: readonly Asks[] = ["form", "word"];
+const LEXEME_FIRST: readonly Question[] = ["lexeme", "form"];
+const FORM_FIRST: readonly Question[] = ["form", "lexeme"];
 
 /** A word a fill-in may blank, and the questions to try on it, in order. */
 interface Blank {
   readonly at: number;
-  readonly asks: readonly Asks[];
+  readonly asks: readonly Question[];
 }
 
 /**
  * The words a fill-in may blank, best first, each with what to ask of it (ADR 0132). A mistake's word
  * is asked again as the question it was (`MakeContext.ask`, `asks`), and nothing else. Otherwise the
- * words the session wants typed (ADR 0101), then words carrying a KC the node introduces, each asked
- * about what made it the choice: its sense, which word; a KC of its form, which form. Then the rest,
- * from the last word, which word first. A word needs a sense of its own (`alone`): what a question
- * credits.
+ * words the session wants typed (ADR 0101), then words carrying something the node introduces, each
+ * asked about what made it the choice: its base lexeme, which lexeme; a part of its form, which form.
+ * Then the rest, from the last word, which lexeme first. A word needs a lexeme of its own (`alone`):
+ * what a question credits.
  */
-const blanksOf = (ctx: MakeContext, text: TaggedText): readonly Blank[] => {
+const blanksOf = (ctx: MakeContext, s: BundleSentence, text: TaggedText): readonly Blank[] => {
   if (words(text).length < 2) return [];
   const indexes = alone(text);
   if (ctx.ask !== undefined) {
-    const again = indexes.find((i) => asked(ctx, text.tokens[i] as Token));
-    return again === undefined ? [] : [{ at: again, asks: ctx.asks === undefined ? WORD_FIRST : [ctx.asks] }];
+    const again = indexes.find((i) => asked(ctx, s, text.tokens[i] as Token));
+    return again === undefined ? [] : [{ at: again, asks: ctx.asks === undefined ? LEXEME_FIRST : [ctx.asks] }];
   }
-  const by = (has: (kc: string) => boolean): readonly Blank[] =>
+  const by = (has: (part: string) => boolean): readonly Blank[] =>
     indexes.flatMap((at) => {
       const token = text.tokens[at] as Token;
-      if (has(senseKcOf(token) as string)) return [{ at, asks: WORD_FIRST }];
-      return formSignature(token).some(has) ? [{ at, asks: FORM_FIRST }] : [];
+      if (has(baseIdOf(token) as string)) return [{ at, asks: LEXEME_FIRST }];
+      return formPartsOf(token, taughtIn(s)).some(has) ? [{ at, asks: FORM_FIRST }] : [];
     });
-  const focus = ctx.focus === undefined ? [] : by((kc) => ctx.focus?.has(kc) === true);
-  const fresh = by((kc) => ctx.introduced.includes(kc as KcId));
-  const rest = [...indexes].reverse().map((at) => ({ at, asks: WORD_FIRST }));
+  const focus = ctx.focus === undefined ? [] : by((part) => ctx.focus?.has(part) === true);
+  const fresh = by((part) => ctx.introduced.includes(part));
+  const rest = [...indexes].reverse().map((at) => ({ at, asks: LEXEME_FIRST }));
   const out: Blank[] = [];
   for (const b of [...focus, ...fresh, ...rest]) if (!out.some((o) => o.at === b.at)) out.push(b);
   return out;
 };
 
 /**
- * A target sentence with a gap; choose what fits (ADR 0132). The card asks one thing: which word, or
- * which form. The first blank (blanksOf) whose question can be built is asked; none, no card.
+ * A target sentence with a gap; choose what fits (ADR 0132). The card asks one thing: which lexeme,
+ * or which form. The first blank (blanksOf) whose question can be built is asked; none, no card.
  */
 export const makeGapFill = (ctx: MakeContext, s: BundleSentence): GapFill | undefined => {
   const form = formOf(ctx.course, s);
   const translation = translationOf(ctx.course, s);
   if (form === undefined || translation === undefined) return undefined;
-  for (const blank of blanksOf(ctx, form.text)) {
+  for (const blank of blanksOf(ctx, s, form.text)) {
     const target = form.text.tokens[blank.at] as Token;
     const gap: GapParts = {
       s,
@@ -927,14 +967,14 @@ export const makeGapFill = (ctx: MakeContext, s: BundleSentence): GapFill | unde
       after: slice(form.text, blank.at + 1, form.text.tokens.length),
     };
     for (const asks of blank.asks) {
-      const others = asks === "word" ? wordQuestion(ctx, gap) : formQuestion(ctx, gap);
+      const others = asks === "lexeme" ? lexemeQuestion(ctx, gap) : formQuestion(ctx, gap);
       if (others === undefined) continue;
       const { options, answer } = withAnswer(ctx, gap.correct, others);
       return {
         template: "gap-fill",
         id: id("gap-fill", s.id),
         item: s.id,
-        kcs: s.kcs,
+        parts: s.parts,
         orthography: ctx.course.orthography,
         hint: translation.text,
         before: gap.before,
@@ -964,27 +1004,58 @@ const writtenAlike = (course: CourseView, a: string, b: string): boolean => {
   return verdict === "CORRECT" || verdict === "CORRECT_ALT" || verdict === "CORRECT_MARKS" || verdict === "CORRECT_VARIANT";
 };
 
+/** A label as something to pick: what names it apart from every other (its values, and its part of speech where it has one). */
+export const labelId = (label: BundleLabel): string => `form:${label.pos ?? ""}:${featsKey(label.feats)}`;
+
+const featsKey = (feats: UdFeatures): string =>
+  Object.keys(feats)
+    .sort()
+    .map((name) => `${name}=${feats[name] ?? ""}`)
+    .join(";");
+
+/** The feature values a set names, each as a part (feature:Tense=Past). */
+const valuesOf = (feats: UdFeatures | undefined): readonly PartId[] =>
+  Object.keys(feats ?? {})
+    .sort()
+    .flatMap((name) => ((feats ?? {})[name] ?? "").split(",").map((value) => featureId(name, value)));
+
 /**
- * A KC as a part of a word: a word of the course by its first form (and its gloss cut for a card), a
- * form by its gloss, whole (it names the form: "-(i)m: my"). Undefined where the course lacks either.
+ * A lexeme as a part of a word (ADR 0152). One the course cites (it has a spelling): its first
+ * spelling in the orthography being learned, and its gloss cut for a card. One written only inside
+ * words (an ending, a suffixed pronoun: `bound`): its gloss, whole (it names the form: "-(i)m: my").
+ * Undefined where the course lacks either.
  */
-const partOf = (course: CourseView, kc: KcId, base: boolean): WordPart | undefined => {
-  const entry = kcById(course).get(kc);
+const lexemePart = (course: CourseView, id: string, base: boolean): WordPart | undefined => {
+  const entry = lexemesById(course).get(id);
   const gloss = entry?.gloss?.[course.supportKey];
   if (entry === undefined || gloss === undefined) return undefined;
-  if (!(kc as string).startsWith("sense:")) return { kc, gloss };
+  if (bound(entry)) return { id, parts: [id], gloss };
   const text = entry.forms?.[course.orthography]?.[0];
-  return text === undefined ? undefined : { kc, text, gloss: cardGloss(gloss), ...(base ? { base: true as const } : {}) };
+  return text === undefined ? undefined : { id, parts: [id], text, gloss: cardGloss(gloss), ...(base ? { base: true as const } : {}) };
 };
 
 /**
- * A word's parts (ADR 0152), in the word's order: its own word (its sense's first form, the lemma),
- * and what it carries here: each morph the course marks on it (an ending, a clitic, an article written
- * with it) and the form its source pins it as (es, grc, hbo), which stands next after its own word. A
- * pinned form the word has of itself is no part (`ownFormsOf`: a noun's own gender): nothing is built
- * with it. Undefined for a word that carries no form (a word with nothing added, or with other words
- * alone: a clitic, an article; the cards ask forms, `formsOf`), or with a part the course has no entry
- * for.
+ * The form a token's base stands in, as a part of the word (ADR 0152): what the language calls its
+ * feature values there (`labelOf`: those chosen on the token and its lexeme's own), credited to the
+ * values chosen on the token. Undefined for a token that chooses none, or whose form has no name.
+ */
+const formPart = (course: CourseView, token: Token): WordPart | undefined => {
+  const base = baseOf(token);
+  if (base === undefined || Object.keys(base.feats ?? {}).length === 0) return undefined;
+  const entry = lexemesById(course).get(base.lexeme);
+  const label = labelOf(course, effectiveFeats(token, entry), entry?.pos);
+  const gloss = label?.gloss[course.supportKey];
+  return label === undefined || gloss === undefined ? undefined : { id: labelId(label), parts: valuesOf(base.feats), gloss };
+};
+
+/**
+ * A word's parts (ADR 0152), in the word's order: its base lexeme (as the course cites it, the
+ * lemma), and what it carries here: each other lexeme its token writes (an ending, a clitic, an
+ * article written with it) and the form its base stands in (es, grc, hbo), which stands next after
+ * the base. A form the word has of itself is no part (`ownFormsOf`: a noun's own number): nothing is
+ * built with it. Undefined for a word that carries no form (a word with nothing added, or with other
+ * words alone: a clitic, an article; the cards ask forms, `formsOf`), or with a part the course has
+ * no entry for.
  */
 const wordPartsOf = (course: CourseView, token: Token): readonly WordPart[] | undefined => {
   let byToken = wordParts.get(course);
@@ -1003,99 +1074,126 @@ const wordPartsOf = (course: CourseView, token: Token): readonly WordPart[] | un
 /** Words' parts, per course and token: a plan asks them of every word of every sentence it considers. */
 const wordParts = new WeakMap<CourseView, WeakMap<Token, readonly WordPart[] | null>>();
 
-/** A word as its token writes it, without the morphs beside it: its own morph, else the whole token. */
-const ownSurface = (token: Token, sense: KcId): string => token.morphs?.find((m) => m.kc === sense)?.surface ?? token.surface;
+/** A word as its token writes it, without the lexemes beside it: its base's own letters, else the whole token. */
+const ownSurface = (token: Token): string => baseOf(token)?.surface ?? token.surface;
 
-/** Per course: each sense's pinned forms, each with the spellings of the word under it. */
-const pinnedForms = new WeakMap<CourseView, Map<string, Map<KcId, Set<string>>>>();
-const ownForms = new WeakMap<CourseView, Map<string, ReadonlySet<KcId>>>();
+/** Per course: each lexeme's forms (the values chosen on its tokens), each with the spellings of the word under it. */
+const chosenForms = new WeakMap<CourseView, Map<string, Map<string, Set<string>>>>();
+const ownForms = new WeakMap<CourseView, Map<string, ReadonlySet<string>>>();
 
 /**
- * The forms a word has of itself (ADR 0152): those the course pins on it where it is written as its
- * lemma. אֶרֶץ is feminine as it stands, so nothing is added to it by that, in whatever shape a suffix
- * leaves it (אַרְצְךָ); casa's feminine likewise, while casas's feminine plural is added. Read off the
- * course's own sentences: no list of genders or inherent forms is written anywhere.
+ * The forms a word has of itself (ADR 0152): the values its tokens choose where it is written as
+ * its lemma. מַיִם is plural as it stands, so nothing is added to it by that, in whatever shape a
+ * suffix leaves it; casa's singular likewise, while casas's plural is added. Read off the course's
+ * own sentences: no list of inherent forms is written anywhere. (A noun's gender is its lexeme's,
+ * and no token chooses it.)
  */
-const ownFormsOf = (course: CourseView, sense: KcId, lemma: string): ReadonlySet<KcId> => {
-  let pinned = pinnedForms.get(course);
-  if (pinned === undefined) {
-    pinned = new Map();
+const ownFormsOf = (course: CourseView, lexeme: string, lemma: string): ReadonlySet<string> => {
+  let chosen = chosenForms.get(course);
+  if (chosen === undefined) {
+    chosen = new Map();
     for (const s of allSentences(course)) {
       for (const token of formOf(course, s)?.text.tokens ?? []) {
-        const of = senseKcOf(token);
-        if (token.kind !== "word" || of === undefined || token.form === undefined) continue;
-        const forms = pinned.get(of) ?? new Map<KcId, Set<string>>();
-        const spellings = forms.get(token.form) ?? new Set<string>();
-        spellings.add(ownSurface(token, of));
-        forms.set(token.form, spellings);
-        pinned.set(of, forms);
+        const base = baseOf(token);
+        if (token.kind !== "word" || base === undefined || Object.keys(base.feats ?? {}).length === 0) continue;
+        const forms = chosen.get(base.lexeme) ?? new Map<string, Set<string>>();
+        const key = featsKey(base.feats ?? {});
+        const spellings = forms.get(key) ?? new Set<string>();
+        spellings.add(ownSurface(token));
+        forms.set(key, spellings);
+        chosen.set(base.lexeme, forms);
       }
     }
-    pinnedForms.set(course, pinned);
+    chosenForms.set(course, chosen);
   }
-  const bySense = ownForms.get(course) ?? new Map<string, ReadonlySet<KcId>>();
-  ownForms.set(course, bySense);
-  let own = bySense.get(sense);
+  const byLexeme = ownForms.get(course) ?? new Map<string, ReadonlySet<string>>();
+  ownForms.set(course, byLexeme);
+  let own = byLexeme.get(lexeme);
   if (own === undefined) {
-    own = new Set([...(pinned.get(sense) ?? [])].filter(([, spellings]) => [...spellings].some((spelling) => writtenAlike(course, spelling, lemma))).map(([form]) => form));
-    bySense.set(sense, own);
+    own = new Set([...(chosen.get(lexeme) ?? [])].filter(([, spellings]) => [...spellings].some((spelling) => writtenAlike(course, spelling, lemma))).map(([form]) => form));
+    byLexeme.set(lexeme, own);
   }
   return own;
 };
 
-const partsOfWord = (course: CourseView, token: Token): readonly WordPart[] | undefined => {
-  const sense = senseKcOf(token);
-  if (token.kind !== "word" || sense === undefined) return undefined;
-  const lemma = kcById(course).get(sense)?.forms?.[course.orthography]?.[0];
+/** A token's lexemes as parts, in the order it writes them, each once; and its base's form, whether or not the word has it of itself. */
+const laidOut = (course: CourseView, token: Token): { readonly lexemes: readonly (WordPart | undefined)[]; readonly form: WordPart | undefined; readonly ofItself: boolean } | undefined => {
+  const base = baseOf(token);
+  if (token.kind !== "word" || base === undefined) return undefined;
+  const lemma = lexemesById(course).get(base.lexeme)?.forms?.[course.orthography]?.[0];
   if (lemma === undefined) return undefined;
-  const morphs = token.morphs ?? [];
-  const own = morphs.find((m) => m.kc === sense);
-  const kcs: KcId[] = morphs.length === 0 ? [sense] : own === undefined ? [sense, ...morphs.map((m) => m.kc)] : morphs.map((m) => m.kc);
-  if (token.form !== undefined && !kcs.includes(token.form) && !ownFormsOf(course, sense, surfaceOf(lemma)).has(token.form)) kcs.splice(kcs.indexOf(sense) + 1, 0, token.form);
-  const each = [...new Set(kcs)];
-  if (each.length < 2) return undefined;
-  const parts = each.flatMap((kc) => partOf(course, kc, kc === sense) ?? []);
-  return parts.length === each.length && formsOf(parts).length > 0 ? parts : undefined;
+  const ids = lexemeIdsOf(token);
+  const form = formPart(course, token);
+  const ofItself = Object.keys(base.feats ?? {}).length > 0 && ownFormsOf(course, base.lexeme, surfaceOf(lemma)).has(featsKey(base.feats ?? {}));
+  return { lexemes: ids.map((id) => lexemePart(course, id, id === base.lexeme)), form, ofItself };
+};
+
+/** Parts in the word's order: the form stands next after the base. */
+const ordered = (lexemes: readonly WordPart[], form: WordPart | undefined): readonly WordPart[] => {
+  if (form === undefined) return lexemes;
+  const at = lexemes.findIndex((p) => p.base === true);
+  return [...lexemes.slice(0, at + 1), form, ...lexemes.slice(at + 1)];
+};
+
+const partsOfWord = (course: CourseView, token: Token): readonly WordPart[] | undefined => {
+  const laid = laidOut(course, token);
+  if (laid === undefined || laid.lexemes.some((p) => p === undefined)) return undefined;
+  const base = baseOf(token);
+  // A form the token chooses and the language has no name for is a part the course has no entry for.
+  const unnamed = laid.form === undefined && !laid.ofItself && Object.keys(base?.feats ?? {}).length > 0 && bareOf(course, token) === false;
+  if (unnamed) return undefined;
+  const parts = ordered(laid.lexemes as readonly WordPart[], laid.ofItself ? undefined : laid.form);
+  return parts.length >= 2 && parts.some((p) => p.text === undefined) ? parts : undefined;
+};
+
+/**
+ * Whether a token stands in the cell its lexeme is cited in, where its language names one for its
+ * part of speech (the lexicon's `bare`); undefined where it names none.
+ */
+const bareOf = (course: CourseView, token: Token): boolean | undefined => {
+  const entry = lexemesById(course).get(baseOf(token)?.lexeme ?? "");
+  if (entry?.pos === undefined || course.lexicon.bare?.[entry.pos] === undefined) return undefined;
+  return !marked(course.lexicon, token, entry);
 };
 
 /** What a word's token carries, laid out for reading (the Data page). */
 export interface TokenParts {
-  /** Its own word, the words written with it and its forms, in the word's order, as the parts cards label them. */
+  /** Its base lexeme, the lexemes written with it and its form, in the word's order, as the parts cards label them. */
   readonly parts: readonly WordPart[];
-  /** The pinned form the word has of itself (a noun's own gender): listed among `parts`, though nothing is built with it. */
-  readonly ofItself?: KcId | undefined;
+  /** The form the word has of itself (a noun always plural): listed among `parts` (by its `id`), though nothing is built with it. */
+  readonly ofItself?: string | undefined;
   /** Whether the parts cards can ask this word (ADR 0152): it carries a form that is added to it. */
   readonly asked: boolean;
 }
 
 /**
- * Everything a word's token carries (ADR 0152), for browsing: `partsOfWord`'s parts, and its pinned
- * form even where the word has it of itself, marked so. A part the course has no entry for is left
- * out. Undefined for a token that is no word of the course.
+ * Everything a word's token carries (ADR 0152), for browsing: `partsOfWord`'s parts, and its form
+ * even where the word has it of itself, marked so. A part the course has no entry for is left out.
+ * Undefined for a token that is no word of the course.
  */
 export const tokenParts = (course: CourseView, token: Token): TokenParts | undefined => {
-  const sense = senseKcOf(token);
-  if (token.kind !== "word" || sense === undefined) return undefined;
-  const lemma = kcById(course).get(sense)?.forms?.[course.orthography]?.[0];
-  if (lemma === undefined) return undefined;
-  const morphs = token.morphs ?? [];
-  const kcs: KcId[] = morphs.length === 0 || !morphs.some((m) => m.kc === sense) ? [sense, ...morphs.map((m) => m.kc)] : morphs.map((m) => m.kc);
-  const pinned = token.form !== undefined && !kcs.includes(token.form) ? token.form : undefined;
-  if (pinned !== undefined) kcs.splice(kcs.indexOf(sense) + 1, 0, pinned);
-  const ofItself = pinned !== undefined && ownFormsOf(course, sense, surfaceOf(lemma)).has(pinned) ? pinned : undefined;
-  return { parts: [...new Set(kcs)].flatMap((kc) => partOf(course, kc, kc === sense) ?? []), ofItself, asked: wordPartsOf(course, token) !== undefined };
+  const laid = laidOut(course, token);
+  if (laid === undefined) return undefined;
+  const lexemes = laid.lexemes.flatMap((p) => p ?? []);
+  const withBase = lexemes.some((p) => p.base === true);
+  const parts = withBase ? ordered(lexemes, laid.form) : [...lexemes, ...(laid.form === undefined ? [] : [laid.form])];
+  return { parts, ofItself: laid.ofItself ? laid.form?.id : undefined, asked: wordPartsOf(course, token) !== undefined };
 };
 
 /**
- * What a parts card asks, and is credited to (ADR 0152): the word's forms (its endings, prefixes and
- * pinned form), which the card names. Its words (its own, a clitic, an article) are given: the card
- * shows each as the course writes it, with what it means, so an answer says nothing of them.
+ * What a parts card asks, and is credited to (ADR 0152): the word's forms, which the card names. A
+ * lexeme written only inside words (an ending, a suffixed pronoun), and the feature values a named
+ * form chooses that the sentence teaches (`taught`: the sentence's parts). Its other lexemes (its
+ * base, a clitic, an article) are given: the card shows each as the course cites it, with what it
+ * means, so an answer says nothing of them.
  */
-const formsOf = (parts: readonly WordPart[]): readonly KcId[] => parts.filter((p) => p.text === undefined).map((p) => p.kc);
+export const formsOf = (parts: readonly WordPart[], taught: ReadonlySet<string>): readonly PartId[] => [
+  ...new Set(parts.filter((p) => p.text === undefined).flatMap((p) => p.parts.filter((part) => kindOf(part) !== "feature" || taught.has(part)))),
+];
 
-const sameKcs = (kcs: readonly KcId[], asked: readonly string[]): boolean => {
-  const sorted = [...new Set(kcs.map(String))].sort();
-  return sorted.length === asked.length && sorted.every((kc, i) => kc === asked[i]);
+const sameParts = (parts: readonly PartId[], asked: readonly string[]): boolean => {
+  const sorted = [...new Set(parts.map(String))].sort();
+  return sorted.length === asked.length && sorted.every((part, i) => part === asked[i]);
 };
 
 interface PartsWord {
@@ -1108,22 +1206,23 @@ interface PartsWord {
  * The words of a text a parts card may ask (ADR 0152), best first. A mistake's word is asked again
  * (`MakeContext.ask`: its forms, as its answer was credited), and nothing else. Otherwise a word that
  * carries a form the session wants typed (ADR 0101), then one that carries a form the node introduces,
- * then one with a word the node introduces; then the rest; in each group from the last word. A word
- * needs a sense of its own (`alone`) and a form (`wordPartsOf`).
+ * then one with a lexeme the node introduces; then the rest; in each group from the last word. A word
+ * needs a lexeme of its own (`alone`) and a form the card can credit (`wordPartsOf`, `formsOf`).
  */
-const partsWords = (ctx: MakeContext, text: TaggedText): readonly PartsWord[] => {
+const partsWords = (ctx: MakeContext, s: BundleSentence, text: TaggedText): readonly PartsWord[] => {
+  const taught = taughtIn(s);
   const all = alone(text).flatMap((at): PartsWord[] => {
     const token = text.tokens[at] as Token;
     const parts = wordPartsOf(ctx.course, token);
-    return parts === undefined ? [] : [{ at, token, parts }];
+    return parts === undefined || formsOf(parts, taught).length === 0 ? [] : [{ at, token, parts }];
   });
   const asked = ctx.ask;
-  if (asked !== undefined) return all.filter((w) => sameKcs(formsOf(w.parts), asked)).slice(0, 1);
+  if (asked !== undefined) return all.filter((w) => sameParts(formsOf(w.parts, taught), asked)).slice(0, 1);
   const rank = (w: PartsWord): number => {
-    const forms = formsOf(w.parts);
-    if (forms.some((kc) => ctx.focus?.has(kc) === true)) return 3;
-    if (forms.some((kc) => ctx.introduced.includes(kc))) return 2;
-    return w.parts.some((p) => ctx.introduced.includes(p.kc)) ? 1 : 0;
+    const forms = formsOf(w.parts, taught);
+    if (forms.some((part) => ctx.focus?.has(part) === true)) return 3;
+    if (forms.some((part) => ctx.introduced.includes(part))) return 2;
+    return w.parts.some((p) => p.parts.some((part) => ctx.introduced.includes(part))) ? 1 : 0;
   };
   return [...all]
     .reverse()
@@ -1141,7 +1240,7 @@ const acceptOfWord = (token: Token): string => {
 /**
  * Parts to whole (ADR 0152): the sentence with one word left out, what it means, and the word's parts;
  * the learner types the word. The first word (`partsWords`) the card does not give away: none whose
- * own word, or a word beside it, typed as the card shows it, would be accepted for it (کتابِ with its
+ * base, or a lexeme beside it, typed as the card shows it, would be accepted for it (کتابِ with its
  * unwritten ezafe).
  */
 export const makePartsWhole = (ctx: MakeContext, s: BundleSentence): PartsWhole | undefined => {
@@ -1149,8 +1248,8 @@ export const makePartsWhole = (ctx: MakeContext, s: BundleSentence): PartsWhole 
   const translation = translationOf(ctx.course, s);
   if (form === undefined || translation === undefined) return undefined;
   const { orthography } = ctx.course;
-  const { words: lexicon, inflected, forms } = lexiconOf(ctx.course, orthography);
-  for (const { at, token, parts } of partsWords(ctx, form.text)) {
+  const { words: lexicon, inflected, forms } = spellingsIn(ctx.course, orthography);
+  for (const { at, token, parts } of partsWords(ctx, s, form.text)) {
     const accept = acceptOfWord(token);
     const set = compileAcceptSet(accept, profileOf(ctx.course, orthography));
     if (!set.ok) continue;
@@ -1160,12 +1259,12 @@ export const makePartsWhole = (ctx: MakeContext, s: BundleSentence): PartsWhole 
       template: "parts-whole",
       id: id("parts-whole", s.id),
       item: s.id,
-      kcs: s.kcs,
+      parts: s.parts,
       orthography,
       hint: translation.text,
       before: slice(form.text, 0, at),
       after: slice(form.text, at + 1, form.text.tokens.length),
-      parts,
+      wordParts: parts,
       whole: single(form.text, token),
       accept,
       ...personsOf(s),
@@ -1174,18 +1273,27 @@ export const makePartsWhole = (ctx: MakeContext, s: BundleSentence): PartsWhole 
   return undefined;
 };
 
-/** The parts of a form's name (form:f-pl-cstr: f, pl, cstr). */
-const nameParts = (kc: string): readonly string[] => kc.slice(kc.indexOf(":") + 1).split("-");
+/**
+ * The values a named form adds to a word of a part of speech: those that are not the cell its
+ * lexemes are cited in (the lexicon's `bare`; all of them where the language names no such cell).
+ * "Feminine" adds the feminine; "feminine plural", the feminine and the plural.
+ */
+const addedBy = (course: CourseView, label: BundleLabel, pos: string | undefined): readonly string[] => {
+  const cell = pos === undefined ? undefined : course.lexicon.bare?.[pos];
+  return Object.keys(label.feats)
+    .filter((name) => cell?.[name] !== label.feats[name])
+    .map((name) => `${name}=${label.feats[name] ?? ""}`);
+};
 
 /**
- * Whether two forms may both be true of one word, as far as their names say: one's name is made of
- * parts of the other's (feminine beside feminine plural; plural beside plural construct). Forms carry
- * no feature values yet (ADR 0145), so the names are what there is: REVIEW with each course's forms.
+ * Whether two named forms may both be true of one word (of a part of speech): everything one adds
+ * the other adds too (feminine beside feminine plural; plural beside plural construct). Two that
+ * each add something the other does not are apart (I beside you; the present beside the past).
  */
-const overlapping = (a: string, b: string): boolean => {
-  const x = nameParts(a);
-  const y = nameParts(b);
-  return x.every((p) => y.includes(p)) || y.every((p) => x.includes(p));
+const overlapping = (course: CourseView, a: BundleLabel, b: BundleLabel, pos: string | undefined): boolean => {
+  const x = addedBy(course, a, pos);
+  const y = addedBy(course, b, pos);
+  return x.every((v) => y.includes(v)) || y.every((v) => x.includes(v));
 };
 
 /** How many letters two words begin alike with, in their own lower case. */
@@ -1198,60 +1306,106 @@ const sharedStart = (course: CourseView, a: TaggedText, b: TaggedText): number =
 };
 
 /**
+ * What a bound lexeme is one of: its part of speech and the features it has or realises (a suffixed
+ * pronoun of one person beside one of another; a case ending beside another case's).
+ */
+const familyOf = (lexeme: BundleLexeme | undefined): string =>
+  `${lexeme?.pos ?? ""}|${Object.keys({ ...(lexeme?.feats ?? {}), ...(lexeme?.realises ?? {}) })
+    .sort()
+    .join(",")}`;
+
+/** What a token carries beside its base (ADR 0152): the bound lexemes written with it, and the label of its base's form. */
+interface Carried {
+  readonly lexemes: readonly string[];
+  readonly label: BundleLabel | undefined;
+}
+
+const carriedOf = (course: CourseView, token: Token): Carried => {
+  const base = baseOf(token);
+  const lexemes = lexemesById(course);
+  const entry = lexemes.get(base?.lexeme ?? "");
+  const chooses = Object.keys(base?.feats ?? {}).length > 0;
+  return {
+    lexemes: lexemesOf(token)
+      .filter((l) => l !== base)
+      .map((l) => l.lexeme),
+    label: chooses ? labelOf(course, effectiveFeats(token, entry), entry?.pos) : undefined,
+  };
+};
+
+/**
  * Parts a word does not have, to offer beside its own (ADR 0152), from its unit or earlier (ADR
- * 0050). Up to two other words of its kind (ADR 0132's `sameKind`), those that begin most like its
- * own first: never one whose meaning its own shares, or that the course writes as this word. And up
- * to three forms or clitics the course's words carry: those this very word takes elsewhere first,
- * then those of words of its kind, then any; never one that may be true of this word too
- * (`overlapping` with a form it carries, its pinned form included where that is no part).
+ * 0050). Up to two other lexemes of its kind (ADR 0132's `sameKind`), those that begin most like its
+ * base first: never one whose meaning its own shares, or that the course writes as this word. And up
+ * to three forms or clitics the course's words carry: those this very lexeme takes elsewhere first,
+ * then those of lexemes of its kind, then any; never one that may be true of this word too (a named
+ * form `overlapping` the one it stands in, whether or not that is a part of it).
  */
 const otherParts = (ctx: MakeContext, s: BundleSentence, token: Token, whole: TaggedText, parts: readonly WordPart[]): readonly WordPart[] => {
   const { course } = ctx;
-  const kcs = kcById(course);
-  const sense = senseKcOf(token) as KcId;
-  const kind = kcs.get(sense);
-  const own = new Set<string>(parts.map((p) => p.kc));
-  const carried = formSignature(token);
+  const lexemes = lexemesById(course);
+  const lexeme = baseIdOf(token) as string;
+  const kind = lexemes.get(lexeme);
+  const own = new Set<string>(parts.map((p) => p.id));
+  const carried = carriedOf(course, token);
   const attested = attestedFor(ctx, s);
   const before = known(course, s.id);
   const base = parts.find((p) => p.base === true)?.text;
   const wholeKey = keyOf(course, whole);
 
-  const wordPool = allKcs(course)
+  const wordPool = lexemesInOrder(course)
     .filter(
       (k) =>
-        (k.id as string).startsWith("sense:") &&
+        !bound(k) &&
         !own.has(k.id) &&
         before(k.id) &&
         sameKind(kind, k) &&
-        !sharesMeaning(course, sense, k.id) &&
-        !(attested.bySense.get(k.id) ?? []).some((w) => keyOf(course, w.option) === wholeKey),
+        !sharesMeaning(course, lexeme, k.id) &&
+        !(attested.byLexeme.get(k.id) ?? []).some((w) => keyOf(course, w.option) === wholeKey),
     )
-    .flatMap((k) => partOf(course, k.id, false) ?? []);
+    .flatMap((k) => lexemePart(course, k.id, false) ?? []);
   const taken = parts.flatMap((p) => p.text ?? []);
   const wordTexts = new Map(wordPool.map((p) => [p.text as TaggedText, p]));
   const words = pickRanked(ctx, [...wordTexts.keys()], taken, 2, (text) => (base === undefined ? 0 : sharedStart(course, base, text))).flatMap((text) => wordTexts.get(text) ?? []);
 
-  const nearness = new Map<KcId, number>();
-  for (const [other, attestedWords] of attested.bySense) {
-    const near = other === sense ? 2 : sameKind(kind, kcs.get(other)) ? 1 : 0;
+  // Every form and clitic the words of the unit and earlier carry, each with how near its word is to
+  // this one, and as the part it would be offered as.
+  const nearness = new Map<string, number>();
+  const offered = new Map<string, WordPart>();
+  const consider = (part: WordPart | undefined, near: number): void => {
+    if (part === undefined || own.has(part.id)) return;
+    offered.set(part.id, part);
+    if ((nearness.get(part.id) ?? -1) < near) nearness.set(part.id, near);
+  };
+  for (const [other, attestedWords] of attested.byLexeme) {
+    const near = other === lexeme ? 2 : sameKind(kind, lexemes.get(other)) ? 1 : 0;
     for (const w of attestedWords) {
-      for (const kc of w.signature) {
-        if (own.has(kc) || carried.some((c) => overlapping(c, kc))) continue;
-        if ((nearness.get(kc) ?? -1) < near) nearness.set(kc, near);
-      }
+      for (const id of w.carried.lexemes) consider(lexemePart(course, id, false), near);
+      const label = w.carried.label;
+      const gloss = label?.gloss[course.supportKey];
+      if (label === undefined || gloss === undefined) continue;
+      if (carried.label !== undefined && overlapping(course, carried.label, label, kind?.pos)) continue;
+      consider({ id: labelId(label), parts: valuesOf(label.feats), gloss }, near);
     }
   }
-  const families = new Set(carried.map((c) => nameParts(c)[0]));
-  const ordered = ctx.rng
+  // A form of the kind this word carries first: one that adds a value its own adds, a bound lexeme
+  // of the family of one written with it.
+  const adds = new Set(carried.label === undefined ? [] : addedBy(course, carried.label, kind?.pos));
+  const families = new Set(carried.lexemes.map((id) => familyOf(lexemes.get(id))));
+  const labels = new Map((course.lexicon.labels ?? []).map((l) => [labelId(l), l]));
+  const akin = (id: string): boolean => {
+    const label = labels.get(id);
+    return label === undefined ? families.has(familyOf(lexemes.get(id))) : addedBy(course, label, kind?.pos).some((v) => adds.has(v));
+  };
+  const order = ctx.rng
     .shuffle([...nearness.keys()].sort())
-    .map((kc) => ({ kc, score: (nearness.get(kc) ?? 0) + (families.has(nameParts(kc)[0]) ? 0.5 : 0) }))
+    .map((id) => ({ id, score: (nearness.get(id) ?? 0) + (akin(id) ? 0.5 : 0) }))
     .sort((a, b) => b.score - a.score);
   const formParts: WordPart[] = [];
   const shown = new Set<string>([...parts, ...words].map((p) => surfaceOf(p.text ?? p.gloss)));
-  for (const { kc } of ordered) {
+  for (const { id } of order) {
     if (formParts.length === 3) break;
-    const part = partOf(course, kc, false);
+    const part = offered.get(id);
     const label = part === undefined ? undefined : surfaceOf(part.text ?? part.gloss);
     if (part === undefined || label === undefined || shown.has(label)) continue;
     shown.add(label);
@@ -1269,15 +1423,15 @@ export const makeWholeParts = (ctx: MakeContext, s: BundleSentence): WholeParts 
   const form = formOf(ctx.course, s);
   const translation = translationOf(ctx.course, s);
   if (form === undefined || translation === undefined) return undefined;
-  for (const { at, token, parts } of partsWords(ctx, form.text)) {
+  for (const { at, token, parts } of partsWords(ctx, s, form.text)) {
     const others = otherParts(ctx, s, token, single(form.text, token), parts);
-    if (others.length < 2 || formsOf(others).length === 0) continue;
+    if (others.length < 2 || !others.some((p) => p.text === undefined)) continue;
     const shuffled = ctx.rng.shuffle([...parts.map((part, own) => ({ part, own })), ...others.map((part) => ({ part, own: -1 }))]);
     return {
       template: "whole-parts",
       id: id("whole-parts", s.id),
       item: s.id,
-      kcs: s.kcs,
+      parts: s.parts,
       orthography: ctx.course.orthography,
       prompt: form.text,
       word: at,
@@ -1359,8 +1513,8 @@ export const makeSpellingChoice = (ctx: MakeContext, s: BundleSentence): GapFill
   const translation = translationOf(ctx.course, s);
   if (form === undefined || translation === undefined) return undefined;
   const askable = (t: Token): boolean => t.kind === "word" && soundAlikeSpellings(ctx, t).length >= 2;
-  const again = form.text.tokens.findIndex((t) => askable(t) && asked(ctx, t));
-  const fresh = form.text.tokens.findIndex((t) => askable(t) && ctx.introduced.some((k) => k === `sense:${t.sense}`));
+  const again = form.text.tokens.findIndex((t) => askable(t) && asked(ctx, s, t));
+  const fresh = form.text.tokens.findIndex((t) => askable(t) && introduces(ctx, t));
   const at = again >= 0 ? again : fresh >= 0 ? fresh : form.text.tokens.findIndex(askable);
   const target = form.text.tokens[at];
   if (target === undefined) return undefined;
@@ -1378,7 +1532,7 @@ export const makeSpellingChoice = (ctx: MakeContext, s: BundleSentence): GapFill
     template: "spelling-choice",
     id: id("spelling-choice", `${s.id}:${target.surface}`),
     item: s.id,
-    kcs: s.kcs,
+    parts: s.parts,
     orthography: ctx.course.orthography,
     hint: translation.text,
     before: slice(form.text, 0, at),
@@ -1469,8 +1623,8 @@ export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | un
   const form = formOf(ctx.course, s);
   if (scheme === undefined || form === undefined) return undefined;
   const readable = (t: Token): boolean => t.kind === "word" && t.readings?.[scheme] !== undefined;
-  const again = form.text.tokens.findIndex((t) => readable(t) && asked(ctx, t));
-  const fresh = form.text.tokens.findIndex((t) => readable(t) && ctx.introduced.some((k) => k === `sense:${t.sense}`));
+  const again = form.text.tokens.findIndex((t) => readable(t) && asked(ctx, s, t));
+  const fresh = form.text.tokens.findIndex((t) => readable(t) && introduces(ctx, t));
   const word = again >= 0 ? again : fresh >= 0 ? fresh : form.text.tokens.findIndex(readable);
   const target = form.text.tokens[word];
   if (target === undefined) return undefined;
@@ -1500,7 +1654,7 @@ export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | un
     template: "char-read",
     id: id("char-read", `${s.id}:${target.surface}`),
     item: s.id,
-    kcs: s.kcs,
+    parts: s.parts,
     orthography: options[0]?.orthography ?? ctx.course.orthography,
     prompt: { ...form.text, tokens: form.text.tokens.map(stripRuby) },
     word,
@@ -1525,8 +1679,8 @@ export const makeReadingFeature = (ctx: MakeContext, s: BundleSentence): CharRea
   const attested = courseSyllables(ctx.course, scheme);
   const places = form.text.tokens.map((t) => (t.kind === "word" && t.readings?.[scheme] !== undefined ? readingFeatures(scheme, t.readings[scheme], attested).filter((f) => f.length >= 2) : []));
   const askable = (t: Token): boolean => (places[form.text.tokens.indexOf(t)]?.length ?? 0) > 0;
-  const again = form.text.tokens.findIndex((t) => askable(t) && asked(ctx, t));
-  const fresh = form.text.tokens.findIndex((t) => askable(t) && ctx.introduced.some((k) => k === `sense:${t.sense}`));
+  const again = form.text.tokens.findIndex((t) => askable(t) && asked(ctx, s, t));
+  const fresh = form.text.tokens.findIndex((t) => askable(t) && introduces(ctx, t));
   const word = again >= 0 ? again : fresh >= 0 ? fresh : form.text.tokens.findIndex(askable);
   const target = form.text.tokens[word];
   if (target === undefined) return undefined;
@@ -1541,7 +1695,7 @@ export const makeReadingFeature = (ctx: MakeContext, s: BundleSentence): CharRea
     template: "reading-feature",
     id: id("reading-feature", `${s.id}:${target.surface}`),
     item: s.id,
-    kcs: s.kcs,
+    parts: s.parts,
     orthography: options[0]?.orthography ?? ctx.course.orthography,
     prompt: { ...form.text, tokens: form.text.tokens.map(stripRuby) },
     word,
@@ -1584,7 +1738,7 @@ export const makeReadingDisambiguation = (ctx: MakeContext, s: BundleSentence): 
         template: "reading-disambiguation",
         id: id("reading-disambiguation", `${s.id}:${ti}:${si}`),
         item: s.id,
-        kcs: token.sense === undefined ? s.kcs : [`sense:${token.sense}` as KcId],
+        parts: baseIdOf(token) === undefined ? s.parts : [baseIdOf(token) as PartId],
         orthography: options[0]?.orthography ?? ctx.course.orthography,
         context: form.text,
         focus: { token: ti, segment: si },
@@ -1605,7 +1759,7 @@ export const makeSpeak = (ctx: MakeContext, s: BundleSentence): Speak | undefine
     template: "speak.tier-0",
     id: id("speak.tier-0", s.id),
     item: s.id,
-    kcs: s.kcs,
+    parts: s.parts,
     orthography: ctx.course.orthography,
     prompt: form.text,
     translation: translation.text,
@@ -1655,7 +1809,7 @@ export const makeToneIdentify = (ctx: MakeContext, s: BundleSentence): ToneIdent
     template: "tone-identify",
     id: id("tone-identify", s.id),
     item: s.id,
-    kcs: s.kcs,
+    parts: s.parts,
     orthography: ctx.course.orthography,
     audio,
     syllable: form.text,
@@ -1701,7 +1855,7 @@ export const makeListenType = (ctx: MakeContext, s: BundleSentence): ListenType 
     template: "listen-type",
     id: id("listen-type", s.id),
     item: s.id,
-    kcs: s.kcs,
+    parts: s.parts,
     orthography: ctx.course.orthography,
     audio,
     accept: heardAccept(form.text),
@@ -1710,23 +1864,23 @@ export const makeListenType = (ctx: MakeContext, s: BundleSentence): ListenType 
   };
 };
 
-const writtenForm = (ctx: MakeContext, kc: BundleKc): TaggedText | undefined => kc.forms?.[ctx.course.orthography]?.[0];
+const writtenForm = (ctx: MakeContext, lexeme: BundleLexeme): TaggedText | undefined => lexeme.forms?.[ctx.course.orthography]?.[0];
 
-/** A heard word's meaning (its gloss in the support language), for the feedback; nothing if the KC has none. */
-const meaningOf = (ctx: MakeContext, kc: BundleKc): { readonly translation?: TaggedText } => {
-  const gloss = kc.gloss?.[ctx.course.supportKey];
+/** A heard word's meaning (its gloss in the support language), for the feedback; nothing if the lexeme has none. */
+const meaningOf = (ctx: MakeContext, lexeme: BundleLexeme): { readonly translation?: TaggedText } => {
+  const gloss = lexeme.gloss?.[ctx.course.supportKey];
   return gloss === undefined ? {} : { translation: gloss };
 };
 
-export const makeListenSelect = (ctx: MakeContext, kc: BundleKc): ListenSelect | undefined => {
-  const audio = audioOf(ctx, kc.id);
-  const word = writtenForm(ctx, kc);
+export const makeListenSelect = (ctx: MakeContext, lexeme: BundleLexeme): ListenSelect | undefined => {
+  const audio = audioOf(ctx, lexeme.id);
+  const word = writtenForm(ctx, lexeme);
   if (audio === undefined || word === undefined) return undefined;
-  const pool = otherKcs(ctx, kc).flatMap((k) => writtenForm(ctx, k) ?? []);
+  const pool = otherLexemes(ctx, lexeme).flatMap((k) => writtenForm(ctx, k) ?? []);
   const others = pickDistinct(ctx, pool, [word], 2);
   if (others.length < 2) return undefined;
   const { options, answer } = withAnswer(ctx, word, others);
-  return { template: "listen-select", id: id("listen-select", kc.id), item: kc.id, kcs: [kc.id], orthography: ctx.course.orthography, audio, options, answer, ...meaningOf(ctx, kc) };
+  return { template: "listen-select", id: id("listen-select", lexeme.id), item: lexeme.id, parts: [lexeme.id], orthography: ctx.course.orthography, audio, options, answer, ...meaningOf(ctx, lexeme) };
 };
 
 const distance = <T>(a: readonly T[], b: readonly T[]): number => {
@@ -1740,7 +1894,7 @@ const distance = <T>(a: readonly T[], b: readonly T[]): number => {
 };
 
 /**
- * A word's pinned reading in a scheme: its words' readings, as the compiler pins them on a KC's
+ * A word's pinned reading in a scheme: its words' readings, as the compiler pins them on a lexeme's
  * forms (ADR 0117), the reading its card shows and its clip was read from; undefined where a word
  * has none.
  */
@@ -1772,67 +1926,64 @@ const minimallyApart = (ctx: MakeContext, a: TaggedText, b: TaggedText): boolean
 };
 
 /**
- * The earlier words minimally apart from each KC's word, per course: they depend on the course
+ * The earlier words minimally apart from each lexeme's word, per course: they depend on the course
  * alone, and finding them compares the word with every earlier word's letters, which a plan did
  * for every word card it considered.
  */
 const rivalsOf = new WeakMap<CourseView, Map<string, readonly TaggedText[]>>();
 
-const rivals = (ctx: MakeContext, kc: BundleKc, word: TaggedText): readonly TaggedText[] => {
-  let byKc = rivalsOf.get(ctx.course);
-  if (byKc === undefined) {
-    byKc = new Map();
-    rivalsOf.set(ctx.course, byKc);
+const rivals = (ctx: MakeContext, lexeme: BundleLexeme, word: TaggedText): readonly TaggedText[] => {
+  let byLexeme = rivalsOf.get(ctx.course);
+  if (byLexeme === undefined) {
+    byLexeme = new Map();
+    rivalsOf.set(ctx.course, byLexeme);
   }
-  let found = byKc.get(kc.id);
+  let found = byLexeme.get(lexeme.id);
   if (found === undefined) {
-    found = otherKcs(ctx, kc).flatMap((k) => {
+    found = otherLexemes(ctx, lexeme).flatMap((k) => {
       const other = writtenForm(ctx, k);
       return other !== undefined && keyOf(ctx.course, other) !== keyOf(ctx.course, word) && minimallyApart(ctx, word, other) ? [other] : [];
     });
-    byKc.set(kc.id, found);
+    byLexeme.set(lexeme.id, found);
   }
   return found;
 };
 
-export const makeMinimalPair = (ctx: MakeContext, kc: BundleKc): MinimalPair | undefined => {
-  const audio = audioOf(ctx, kc.id);
-  const word = writtenForm(ctx, kc);
+export const makeMinimalPair = (ctx: MakeContext, lexeme: BundleLexeme): MinimalPair | undefined => {
+  const audio = audioOf(ctx, lexeme.id);
+  const word = writtenForm(ctx, lexeme);
   if (audio === undefined || word === undefined) return undefined;
-  const rival = ctx.rng.shuffle(rivals(ctx, kc, word))[0];
+  const rival = ctx.rng.shuffle(rivals(ctx, lexeme, word))[0];
   if (rival === undefined) return undefined;
   const { options, answer } = withAnswer(ctx, word, [rival]);
-  return { template: "minimal-pair", id: id("minimal-pair", kc.id), item: kc.id, kcs: [kc.id], orthography: ctx.course.orthography, audio, options, answer, ...meaningOf(ctx, kc) };
+  return { template: "minimal-pair", id: id("minimal-pair", lexeme.id), item: lexeme.id, parts: [lexeme.id], orthography: ctx.course.orthography, audio, options, answer, ...meaningOf(ctx, lexeme) };
 };
 
 // ------------------------------------------------------------------------------------ pronunciation in context (ADR 0054, 0095)
-
-/** The KCs a token carries: its sense and its morphs. */
-const tokenKcs = (t: Token): readonly string[] => [...(t.sense === undefined ? [] : [`sense:${t.sense}`]), ...(t.morphs ?? []).map((m) => m.kc as string)];
 
 /**
  * The word of a sentence a pronunciation card asks about, among those that qualify: the first the
  * lesson introduces, else the sentence's last. Words `preferred` says yes to come first in each.
  */
-const pronouncedWord = (ctx: MakeContext, text: TaggedText, qualifies: (t: Token, index: number) => boolean, preferred: (index: number) => boolean = () => true): number | undefined => {
-  const all = text.tokens.flatMap((t, i) => (t.kind === "word" && tokenKcs(t).length > 0 && qualifies(t, i) ? [i] : []));
+const pronouncedWord = (ctx: MakeContext, s: BundleSentence, text: TaggedText, qualifies: (t: Token, index: number) => boolean, preferred: (index: number) => boolean = () => true): number | undefined => {
+  const all = text.tokens.flatMap((t, i) => (t.kind === "word" && lexemeIdsOf(t).length > 0 && qualifies(t, i) ? [i] : []));
   const pick = (pool: readonly number[]): number | undefined => {
-    const fresh = pool.find((i) => tokenKcs(text.tokens[i] as Token).some((k) => ctx.introduced.includes(k as KcId)));
+    const fresh = pool.find((i) => lexemeIdsOf(text.tokens[i] as Token).some((k) => ctx.introduced.includes(k)));
     return fresh ?? pool.at(-1);
   };
   // A mistake's word is asked again wherever it qualifies, preferred or not.
-  return all.find((i) => asked(ctx, text.tokens[i] as Token)) ?? pick(all.filter(preferred)) ?? pick(all);
+  return all.find((i) => asked(ctx, s, text.tokens[i] as Token)) ?? pick(all.filter(preferred)) ?? pick(all);
 };
 
 /**
- * The same word in another orthography of the sentence: the token with the same sense and morphs,
+ * The same word in another orthography of the sentence: the token that writes the same lexemes,
  * at the same occurrence. Undefined where the orthographies split the sentence into other words.
  */
 const twinOf = (s: BundleSentence, text: TaggedText, index: number, orthography: string): TaggedText | undefined => {
   const other = s.forms[orthography]?.text;
   const target = text.tokens[index];
   if (other === undefined || target === undefined) return undefined;
-  const key = (t: Token): string => JSON.stringify(tokenKcs(t));
+  const key = (t: Token): string => JSON.stringify(lexemeIdsOf(t));
   const occurrence = text.tokens.slice(0, index).filter((t) => t.kind === "word" && key(t) === key(target)).length;
   const twin = other.tokens.filter((t) => t.kind === "word" && key(t) === key(target))[occurrence];
   return twin === undefined ? undefined : single(other, twin);
@@ -1894,14 +2045,14 @@ export const makeVocalize = (ctx: MakeContext, s: BundleSentence): Vocalize | un
   if (marks === undefined || marks.policy !== "ignore" || form === undefined || translation === undefined) return undefined;
   const spelledIn = (profile.source.match?.marks?.spelledIn ?? []).filter((o) => o !== ctx.course.orthography);
   const spelledAt = (i: number): TaggedText | undefined => spelledIn.map((o) => twinOf(s, form.text, i, o)).find((t) => t !== undefined);
-  const word = pronouncedWord(ctx, form.text, (t) => hasVowelMarks(marks, t.surface), (i) => spelledAt(i) !== undefined);
+  const word = pronouncedWord(ctx, s, form.text, (t) => hasVowelMarks(marks, t.surface), (i) => spelledAt(i) !== undefined);
   if (word === undefined) return undefined;
   const bare = (t: Token): Token => {
     const { ruby: _ruby, ...rest } = t;
     return {
       ...rest,
       surface: withoutMarks(marks, t.surface),
-      ...(t.morphs === undefined ? {} : { morphs: t.morphs.map((m) => ({ ...m, surface: withoutMarks(marks, m.surface) })) }),
+      ...(t.lexemes === undefined ? {} : { lexemes: t.lexemes.map((l) => (l.surface === undefined ? l : { ...l, surface: withoutMarks(marks, l.surface) })) }),
     };
   };
   const token = form.text.tokens[word] as Token;
@@ -1916,7 +2067,7 @@ export const makeVocalize = (ctx: MakeContext, s: BundleSentence): Vocalize | un
     template: "vocalize",
     id: id("vocalize", s.id),
     item: s.id,
-    kcs: s.kcs,
+    parts: s.parts,
     orthography: ctx.course.orthography,
     prompt: { ...form.text, tokens: form.text.tokens.map(bare) },
     word,
@@ -1939,7 +2090,7 @@ export const makeVocalizeBuild = (ctx: MakeContext, s: BundleSentence): Vocalize
   const form = formOf(ctx.course, s);
   const translation = translationOf(ctx.course, s);
   if (profile.source.input?.markBuilder !== true || marks === undefined || marks.policy !== "ignore" || form === undefined || translation === undefined) return undefined;
-  const word = pronouncedWord(ctx, form.text, (t) => hasVowelMarks(marks, t.surface));
+  const word = pronouncedWord(ctx, s, form.text, (t) => hasVowelMarks(marks, t.surface));
   if (word === undefined) return undefined;
   const token = form.text.tokens[word] as Token;
   const bare = (t: Token): Token => {
@@ -1947,7 +2098,7 @@ export const makeVocalizeBuild = (ctx: MakeContext, s: BundleSentence): Vocalize
     return {
       ...rest,
       surface: withoutMarks(marks, t.surface),
-      ...(t.morphs === undefined ? {} : { morphs: t.morphs.map((m) => ({ ...m, surface: withoutMarks(marks, m.surface) })) }),
+      ...(t.lexemes === undefined ? {} : { lexemes: t.lexemes.map((l) => (l.surface === undefined ? l : { ...l, surface: withoutMarks(marks, l.surface) })) }),
     };
   };
   const letters = graphemes(withoutMarks(marks, token.surface));
@@ -1956,7 +2107,7 @@ export const makeVocalizeBuild = (ctx: MakeContext, s: BundleSentence): Vocalize
     template: "vocalize-build",
     id: id("vocalize-build", s.id),
     item: s.id,
-    kcs: s.kcs,
+    parts: s.parts,
     orthography: ctx.course.orthography,
     prompt: { ...form.text, tokens: form.text.tokens.map(bare) },
     word,
@@ -1977,7 +2128,7 @@ export const makeTranscribe = (ctx: MakeContext, s: BundleSentence): Transcribe 
   // Typed syllable by syllable (Jyutping), or as text its answer orthography's profile grades (ADR 0131).
   const typed = scheme !== undefined && (transcribable(scheme) || (typedByProfile(scheme) && ctx.course.profiles.has(readingTag(scheme)?.orthography ?? "")));
   if (scheme === undefined || !typed || form === undefined || translation === undefined) return undefined;
-  const word = pronouncedWord(ctx, form.text, (t) => t.readings?.[scheme] !== undefined);
+  const word = pronouncedWord(ctx, s, form.text, (t) => t.readings?.[scheme] !== undefined);
   if (word === undefined) return undefined;
   const reading = readingText(scheme, (form.text.tokens[word] as Token).readings?.[scheme] as string);
   const tradition = traditionKey(ctx.course, scheme);
@@ -1985,7 +2136,7 @@ export const makeTranscribe = (ctx: MakeContext, s: BundleSentence): Transcribe 
     template: "transcribe",
     id: id("transcribe", s.id),
     item: s.id,
-    kcs: s.kcs,
+    parts: s.parts,
     orthography: reading.orthography,
     prompt: { ...form.text, tokens: form.text.tokens.map(stripRuby) },
     word,
@@ -2011,11 +2162,11 @@ const writtenIn = (spelled: TaggedText, word: TaggedText, answer: string): boole
   return letter(theirs).test(answer) && !letter(ours).test(answer);
 };
 
-/** KC templates that need a clip of the word. */
-export const KC_LISTENING: readonly ((ctx: MakeContext, kc: BundleKc) => Exercise | undefined)[] = [makeListenSelect, makeMinimalPair];
+/** Lexeme templates that need a clip of the word. */
+export const LEXEME_LISTENING: readonly ((ctx: MakeContext, lexeme: BundleLexeme) => Exercise | undefined)[] = [makeListenSelect, makeMinimalPair];
 
-/** Templates built from one KC, by id: mistakes mode rebuilds a missed one. */
-export const KC_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeContext, kc: BundleKc) => Exercise | undefined>>> = {
+/** Templates built from one lexeme, by id: mistakes mode rebuilds a missed one. */
+export const LEXEME_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeContext, lexeme: BundleLexeme) => Exercise | undefined>>> = {
   "select-image": makeSelectImage,
   "listen-select": makeListenSelect,
   "minimal-pair": makeMinimalPair,

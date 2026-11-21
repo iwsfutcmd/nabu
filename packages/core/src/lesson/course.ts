@@ -276,6 +276,24 @@ export const unitIndexOf = (course: CourseView): ReadonlyMap<string, number> => 
   return map;
 };
 
+/** The lexemes a unit's nodes are the first to introduce, in the order they do: the unit's own words. */
+export const lexemesOfUnit = (course: CourseView, unit: BundleUnit): readonly BundleLexeme[] => {
+  const at = course.units.indexOf(unit);
+  const units = unitIndexOf(course);
+  const lexemes = lexemesById(course);
+  const seen = new Set<string>();
+  const out: BundleLexeme[] = [];
+  for (const node of unit.nodes) {
+    for (const id of node.introduces) {
+      const lexeme = lexemes.get(id);
+      if (lexeme === undefined || seen.has(id) || units.get(id) !== at) continue;
+      seen.add(id);
+      out.push(lexeme);
+    }
+  }
+  return out;
+};
+
 const lexemeOrders = new WeakMap<readonly BundleUnit[], WeakMap<BundleLexicon, readonly BundleLexeme[]>>();
 
 /**
@@ -309,19 +327,26 @@ export const lexemesInOrder = (course: CourseView): readonly BundleLexeme[] => {
   return list;
 };
 
-const sameFeats = (a: UdFeatures, b: UdFeatures): boolean => {
-  const names = Object.keys(a);
-  return names.length === Object.keys(b).length && names.every((name) => a[name] === b[name]);
-};
-
 /**
- * What the language calls a set of feature values (ADR 0150: "present tense: I"), for a lexeme of
- * a part of speech: the label that names exactly these values, one for that part of speech before
- * one for any.
+ * What the language calls a form (schemas/language.schema.json `labels`: "present tense: I"), for
+ * a lexeme of a part of speech: the most specific label whose values the form has, one for its
+ * part of speech before one for any, the first listed where two say as much. `feats`: every value
+ * the form has (those chosen on its token and its lexeme's own). The converter's `named` is the
+ * same rule (pipeline/src/nabu/migrate/lexicon.py), until rules name forms themselves.
  */
 export const labelOf = (course: CourseView, feats: UdFeatures, pos?: string | undefined): BundleLabel | undefined => {
-  const named = (course.lexicon.labels ?? []).filter((l) => sameFeats(l.feats, feats));
-  return named.find((l) => l.pos !== undefined && l.pos === pos) ?? named.find((l) => l.pos === undefined);
+  let best: BundleLabel | undefined;
+  let size = -1;
+  for (const label of course.lexicon.labels ?? []) {
+    if (label.pos !== undefined && label.pos !== pos) continue;
+    const names = Object.keys(label.feats);
+    if (names.some((name) => feats[name] !== label.feats[name])) continue;
+    if (names.length > size || (names.length === size && label.pos !== undefined && best?.pos === undefined)) {
+      best = label;
+      size = names.length;
+    }
+  }
+  return best;
 };
 
 /** A rule the language names (rule:copula-drop), with what the course says of it. */
@@ -525,7 +550,7 @@ const buildSpellings = (course: CourseView, orthography: string): Spellings => {
 const spellings = new WeakMap<readonly BundleUnit[], Map<string, { readonly profile: CompiledProfile; readonly spellings: Spellings }>>();
 
 /** What a course spells in an orthography, for grading (exported for tests). */
-export const spellingsOf = (course: CourseView, orthography: string): Spellings => {
+export const spellingsIn = (course: CourseView, orthography: string): Spellings => {
   let byOrthography = spellings.get(course.units);
   if (byOrthography === undefined) {
     byOrthography = new Map();
@@ -545,7 +570,7 @@ export const spellingsOf = (course: CourseView, orthography: string): Spellings 
  * a grader, and a course of thirty units takes a moment. An app calls it while the learner reads.
  */
 export const prepareGrading = (course: CourseView): void => {
-  for (const orthography of [course.orthography, course.support]) if (course.profiles.has(orthography)) spellingsOf(course, orthography);
+  for (const orthography of [course.orthography, course.support]) if (course.profiles.has(orthography)) spellingsIn(course, orthography);
 };
 
 /**
@@ -567,7 +592,7 @@ export const createGrader = (course: CourseView): Grader => {
         set = compiled.value;
         sets.set(key, set);
       }
-      const { words, inflected, forms } = spellingsOf(course, orthography);
+      const { words, inflected, forms } = spellingsIn(course, orthography);
       return grade(set, answer, { lexicon: words, inflected, forms });
     },
   };

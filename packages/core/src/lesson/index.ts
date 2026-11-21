@@ -3,7 +3,8 @@ export { courseData, dataMatcher, type Carrier, type CourseData, type DataMatche
 export { textMatcher, type Searched } from "./search.ts";
 export { courseExclusions, facetExclusions, PARTS, partsExclusions, speechExclusions, speechSupportOf, voiceExclusions, type SpeechSupport } from "./exclusions.ts";
 export { lessonNodes, type LessonNode } from "./nodes.ts";
-export { allKcs, allSentences, assembleCourse, coreFiles, createGrader, MEDIA_ROLES, prepareGrading, profileOf, readCourse, type CourseError, type CourseFiles, type CourseView, type Grader } from "./course.ts";
+export { allLexemes, allSentences, assembleCourse, coreFiles, createGrader, entryOf, glossOfPart, graphemesById, introducedAt, labelOf, lexemeOf, lexemesById, lexemesInOrder, lexemesOfUnit, marked, MEDIA_ROLES, prepareGrading, profileOf, readCourse, ruleOf, spellingsIn, unitIndexOf, type CourseError, type CourseFiles, type CourseView, type Grader, type Spellings } from "./course.ts";
+export { analysed, askedOfToken, baseIdOf, baseOf, bound, effectiveFeats, featureId, formKey, formPartsOf, formSignature, isLexeme, kindOf, lexemeFormKey, lexemeIdsOf, lexemesOf, nodeOf, parseFormKey, sameKind, sentencePersons, type PartKind } from "./lexemes.ts";
 export { placedBy, runTest, type AdaptiveTest, type TestBlock, type TestRun, type TestStep } from "./adaptive.ts";
 export { answerDiff, closestAnswer, diffParts, nearMiss, otherWordsOf, solutionMarks, type AnswerDiff, type DiffPart } from "./diff.ts";
 export * from "./exercise.ts";
@@ -36,7 +37,7 @@ export {
 } from "./player.ts";
 export { doneOf, firstTriesOf, resume, type Done } from "./resume.ts";
 export { seededRng, type Rng } from "./rng.ts";
-export { answerTextOf, cardGloss, chosenWordOf, facets, gradeExercise, KC_LISTENING, LISTENING, makeListenSpeak, makePartsWhole, makeSpeakScored, makeToneIdentify, makeWholeParts, promptOf, rubySchemeOf, SPEAKING, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo, type TokenParts } from "./templates.ts";
+export { answerTextOf, asksOf, cardGloss, chosenWordOf, formsOf, gradeExercise, LEXEME_LISTENING, LISTENING, makeListenSpeak, makePartsWhole, makeSpeakScored, makeToneIdentify, makeWholeParts, promptOf, rubySchemeOf, skillOf, skills, SPEAKING, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo, type TokenParts } from "./templates.ts";
 export { chosenTraditionKey, readingTradition, readingTraditions, traditionKey } from "./traditions.ts";
 export { homographsOf, otherReadings, otherReadingsAt, readingAsText, type HomographReading } from "./homographs.ts";
 export { makeLetterPairs, makeLetterRead, makeWordRead, makeWordWrite, SCRIPT_TEMPLATES, scriptCandidates, scriptNodes, type ScriptNode } from "./script.ts";

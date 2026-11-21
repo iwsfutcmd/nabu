@@ -758,7 +758,51 @@ def _labels(conv: Converter) -> list[Json]:
                     label[key] = kc[key]
             label["was"] = kc_id
             out.append(label)
+    # A token may state more than its form's KC names (an ending that shows a person, a part of
+    # speech the plan gives other values), and then another form's label would name it (the
+    # most specific label whose values a form has: a negative command would be called a
+    # command). Such a form gets a label of its own, with its KC's words.
+    for forms in conv.items.values():
+        for toks in forms.values():
+            for tok in toks:
+                for part in tok.parts:
+                    kc = None if part.form is None else conv.kcs.get(part.form)
+                    if kc is None or not part.said or not (kc.get("gloss") or kc.get("notes")):
+                        continue
+                    found = named(out, part.said, part.pos)
+                    if found is not None and found["was"] == part.form:
+                        continue
+                    feats = dict(sorted(part.said.items()))
+                    same = [x for x in out if x["feats"] == feats]
+                    if any(x.get("pos") in (None, part.pos) and x["was"] != part.form for x in same):
+                        if part.pos is None or any(x.get("pos") == part.pos for x in same):
+                            continue
+                        label = {"feats": feats, "pos": part.pos}
+                    else:
+                        label = {"feats": feats}
+                    for key in ("gloss", "notes"):
+                        if kc.get(key):
+                            label[key] = kc[key]
+                    label["was"] = part.form
+                    out.append(label)
     return out
+
+
+def named(labels: list[Json], feats: Feats, pos: str | None) -> Json | None:
+    """The label that names a form (schemas/language.schema.json): the most specific one whose
+    values the form has, one for its part of speech before one for any, the first listed where
+    two say as much. Core's `labelOf` is the same rule."""
+    best: Json | None = None
+    best_key: tuple[int, bool, int] | None = None
+    for i, label in enumerate(labels):
+        if "pos" in label and label["pos"] != pos:
+            continue
+        if any(str(feats.get(k)) != str(v) for k, v in obj(label["feats"]).items()):
+            continue
+        key = (len(label["feats"]), "pos" in label, -i)
+        if best_key is None or key > best_key:
+            best, best_key = label, key
+    return best
 
 
 def _rules(conv: Converter) -> list[Json]:

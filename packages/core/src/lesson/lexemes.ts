@@ -5,12 +5,18 @@
  * onto. A choice that asks one thing (ADR 0132) asks a token by its base (which lexeme) or by
  * everything else about it (which form). Pure; shared by lessons, stories, credit and the word list.
  */
-import type { BundleLexeme, FormKey, LexemeId, PartId, Question, Token, UdFeatures, WrittenLexeme } from "@nabu/schema";
+import type { BundleLexeme, BundleTag, FormKey, LexemeId, PartId, Persons, Question, Token, UdFeatures, WrittenLexeme } from "@nabu/schema";
 
 export type { Question };
 
 const LEXEME = "lexeme:";
 const FEATURE = "feature:";
+
+/** Who speaks and who is spoken to in a sentence (ADR 0056), where its tags say: what a prompt shows and voices are cast by. */
+export const sentencePersons = (s: { readonly tags?: readonly BundleTag[] | undefined }): Persons | undefined => {
+  for (const tag of s.tags ?? []) if ("persons" in tag) return tag.persons;
+  return undefined;
+};
 
 /** What a part or a teachable is: a lexeme, a feature value, a rule or a letter. */
 export type PartKind = "lexeme" | "feature" | "rule" | "grapheme";
@@ -43,6 +49,12 @@ export const baseOf = (token: Token): WrittenLexeme | undefined => {
 
 /** The id of a token's base lexeme. */
 export const baseIdOf = (token: Token): LexemeId | undefined => baseOf(token)?.lexeme;
+
+/**
+ * Whether a lexeme is written only inside words (an ending, a suffixed pronoun): the course cites
+ * no spelling of it in any orthography. A parts card names it by its gloss, and asks it (ADR 0152).
+ */
+export const bound = (lexeme: BundleLexeme): boolean => Object.values(lexeme.forms ?? {}).every((spellings) => spellings.length === 0);
 
 /** Whether a token is analysed: it names a lexeme. */
 export const analysed = (token: Token): boolean => lexemesOf(token).length > 0;
@@ -88,19 +100,21 @@ export const parseFormKey = (key: FormKey): readonly { readonly lexeme: LexemeId
 export const effectiveFeats = (token: Token, lexeme: BundleLexeme | undefined): UdFeatures => ({ ...(lexeme?.feats ?? {}), ...(baseOf(token)?.feats ?? {}) });
 
 /**
- * A token's form signature (ADR 0132): everything it writes but which lexeme its base is. The other
- * lexemes it writes with it (an ending, a clitic, an article), each with its own values, and the
- * feature values its base has there (`effectiveFeats`). A lexeme question's options share the
- * answer's signature and part of speech, so only meaning tells them apart; a form question's share
- * its lexeme, so only grammar does. `lexeme`: the entry of the token's base, for what it has of itself.
+ * A token's form signature (ADR 0132): everything it writes but which lexeme its base is, as a
+ * sorted list. The other lexemes it writes with it (an ending, a clitic, an article), each with its
+ * own values, and the feature values its base has there (`effectiveFeats`), each as Name=Value. A
+ * lexeme question's options share the answer's signature and part of speech, so only meaning tells
+ * them apart; a form question's share its lexeme, so only grammar does, and the nearest forms are
+ * those that share most of it. `lexeme`: the entry of the token's base, for what it has of itself.
  */
-export const formSignature = (token: Token, lexeme: BundleLexeme | undefined): string => {
+export const formSignature = (token: Token, lexeme: BundleLexeme | undefined): readonly string[] => {
   const base = baseOf(token);
   const others = lexemesOf(token)
     .filter((l) => l !== base)
-    .map((l) => lexemeFormKey(l.lexeme, l.feats))
-    .sort();
-  return [...others, featsText(effectiveFeats(token, lexeme), ";")].filter((x) => x !== "").join(" ");
+    .map((l) => lexemeFormKey(l.lexeme, l.feats));
+  const feats = effectiveFeats(token, lexeme);
+  const values = Object.keys(feats).flatMap((name) => (feats[name] ?? "").split(",").map((value) => `${name}=${value}`));
+  return [...new Set([...others, ...values])].sort();
 };
 
 /**

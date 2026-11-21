@@ -1,7 +1,7 @@
 /**
  * Script tracks (ADR 0088): lessons that teach an orthography's letters to a learner who reads the
  * support language's script, from a course's alphabet nodes. Each node brings in a few letters
- * (grapheme KCs) and words of the course spelled with the letters taught so far, each with its
+ * (graphemes) and words of the course spelled with the letters taught so far, each with its
  * Latin spelling (bundled by the compiler). Its exercises are built here and nowhere else, so no
  * lesson, review or golden file of a course without a track changes.
  */
@@ -61,9 +61,9 @@ export const makeLetterRead = (ctx: MakeContext, letter: ScriptItem, pool: reado
   const { options, answer } = withAnswer(ctx, letter.latin, others.map((o) => o.latin));
   return {
     template: "letter-read",
-    id: id("letter-read", letter.kc),
-    item: letter.kc,
-    kcs: letter.letters,
+    id: id("letter-read", letter.id),
+    item: letter.id,
+    parts: letter.letters,
     orthography: letter.latin.orthography,
     prompt: letter.text,
     options,
@@ -80,9 +80,9 @@ export const makeLetterPairs = (ctx: MakeContext, letters: readonly ScriptItem[]
   const order = ctx.rng.shuffle(chosen.map((_, i) => i));
   return {
     template: "letter-pairs",
-    id: id("letter-pairs", chosen.map((l) => l.kc).join("+")),
-    item: (chosen[0] as ScriptItem).kc,
-    kcs: chosen.flatMap((l) => l.letters),
+    id: id("letter-pairs", chosen.map((l) => l.id).join("+")),
+    item: (chosen[0] as ScriptItem).id,
+    parts: chosen.flatMap((l) => l.letters),
     orthography: (chosen[0] as ScriptItem).text.orthography,
     left: chosen.map((l) => l.text),
     right: order.map((i) => (chosen[i] as ScriptItem).latin),
@@ -97,9 +97,9 @@ export const makeWordRead = (ctx: MakeContext, word: ScriptItem, pool: readonly 
   const { options, answer } = withAnswer(ctx, word.latin, others.map((o) => o.latin));
   return {
     template: "word-read",
-    id: id("word-read", word.kc),
-    item: word.kc,
-    kcs: word.letters,
+    id: id("word-read", word.id),
+    item: word.id,
+    parts: word.letters,
     orthography: word.latin.orthography,
     prompt: word.text,
     options,
@@ -125,9 +125,9 @@ export const makeWordWrite = (ctx: MakeContext, word: ScriptItem, letters: reado
   const order = ctx.rng.shuffle(all.map((_, i) => i));
   return {
     template: "word-write",
-    id: id("word-write", word.kc),
-    item: word.kc,
-    kcs: word.letters,
+    id: id("word-write", word.id),
+    item: word.id,
+    parts: word.letters,
     orthography: word.text.orthography,
     prompt: word.latin,
     tiles: order.map((i) => all[i] as TaggedText),
@@ -143,9 +143,9 @@ export const scriptCandidates = (ctx: MakeContext, at: ScriptNode, exclude: Read
   const track = scriptNodes(ctx.course);
   const index = track.findIndex((n) => n.node.id === at.node.id);
   const earlier = track.slice(0, Math.max(0, index));
-  const { letters, words } = at.node.alphabet;
+  const { letters, lexemes: words } = at.node.alphabet;
   const earlierLetters = earlier.flatMap((n) => n.node.alphabet.letters);
-  const earlierWords = earlier.flatMap((n) => n.node.alphabet.words);
+  const earlierWords = earlier.flatMap((n) => n.node.alphabet.lexemes);
   const allLetters = [...earlierLetters, ...letters];
   const allWords = [...earlierWords, ...words];
   const out: Exercise[] = [];

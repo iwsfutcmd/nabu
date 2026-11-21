@@ -98,11 +98,11 @@ const sentenceStarts = (text: TaggedText): ReadonlySet<number> => {
   return starts;
 };
 
-/** The token in lower case, its morphs and ruby bases with it (they spell its surface). */
+/** The token in lower case, its lexemes' letters and ruby bases with it (they spell its surface). */
 const lowered = (lower: Lower, token: Token, lang: string, surface: string): Token => ({
   ...token,
   surface,
-  ...(token.morphs === undefined ? {} : { morphs: token.morphs.map((m) => ({ ...m, surface: lower(lang, m.surface) })) }),
+  ...(token.lexemes === undefined ? {} : { lexemes: token.lexemes.map((l) => (l.surface === undefined ? l : { ...l, surface: lower(lang, l.surface) })) }),
   ...(token.ruby === undefined
     ? {}
     : { ruby: Object.fromEntries(Object.entries(token.ruby).map(([scheme, segments]) => [scheme, segments.map((s) => ({ ...s, base: lower(lang, s.base) }))])) }),
