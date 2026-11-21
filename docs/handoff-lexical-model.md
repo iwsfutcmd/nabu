@@ -333,3 +333,83 @@ whoever continues, a person or a model with no memory of the work.
 - Shell heredocs can turn `\uXXXX` into the literal character: build escapes in code, then grep for literal
   invisibles before committing.
 - When you stop, say what is done, what isn't, and what you need from the owner, in that order.
+
+## The switch, second session (2026-11-21): where it stands
+
+Everything below is on the branch `ccr-aebe970e-q9o4q4` (nothing on main). The branch does not pass
+its checks yet: it is work in progress, pushed so that none of it is lost.
+
+### Done
+
+- **Stage 2 (compiler):** finished. The pipeline's tools (Jyutping, corrections, sign-offs, the
+  authoring assistant, the LibreLingo importer) and every pipeline test read the new shape. The
+  whole pipeline suite passed (1,390) before the merge below; it has not been rerun since.
+- **Stage 3 (core):** every source module of `packages/core` is on lexemes, feature values, rules
+  and labels. Old against new, a walked path of each course plans card-for-card identical sessions
+  until one of two meant differences shows (below). `packages/ui` is ported (152 tests, lint clean).
+- **Stage 4 (the log):** events are schema 2 (`exercise.parts`, `outcome.parts` with a skill each,
+  `outcome.labels: []`). `packages/core/src/learner/upgrade.ts` is the one reader of schema 1
+  (`upgrade`, `upgradeLog`), with tests and a real old log as a fixture
+  (`test/golden/es-old-log.jsonl`, and what the old fold said of it). The fold's oracle
+  (`test/fold-before-r2.ts`) folds parts. The API takes schema 2 only, rewrites its stored rows at
+  startup (`apps/api/src/upgrade.ts`) and exports every row (109 tests). The web app rewrites the
+  device's log before anything reads it (`apps/web/src/upgrade-log.ts`), keeps the old events
+  aside, restores a file of the old shape, never uploads an old event, and refuses a bundle of
+  another format (`BUNDLE_FORMAT`).
+- **Conformance:** grade vectors name forms as part of speech and feature values; new `form-key`
+  vectors (TS 630, Python 645 pass); glossary entries are keyed `id`.
+
+### Checked on logs
+
+28 simulated learners (a month each, every course and script) logged by the old tree, upgraded and
+folded by the new one: every upgraded event is valid schema 2; the fold equals its oracle; lessons
+done, XP and open mistakes are identical. In chg, lzh, tok, uz and yue every word, known or
+learning, due flag and card is identical. In es, grc and hbo the words are identical and form cards
+merge into feature values (fewer cards). In apc six words and in fa two merge into the lexeme they
+are a form of, and fa's *hast* "there is" is listed. A due flag flips for 0 to 3 words a learner in
+courses with forms, because an answer's pace is per unit of length and a sentence's parts are not
+its KCs. **No real exported log has been checked: the owner's is needed.**
+
+### Decided while building (for the owner to overrule)
+
+- A feature value is a part by two skills: `read-off` on a card that is read or heard, `choose` on
+  one that is typed, said or written. A read-script or write-script card gives it no credit.
+- An old form KC's credit goes, sentence by sentence, to the feature values the form chose there
+  that the course teaches (`byItem` in the alias table); elsewhere to nothing. This replaces
+  deliverable 2's "old credits for a form KC have nowhere to go": with that, a learner's forms
+  would all have looked unseen and their sentences would have left review.
+- An alias says what a placement seeds (`seeds`).
+- A form is named by the most specific label whose values it has (the language schema's rule); the
+  converter adds a label where a token states more than its KC named (10 labels).
+- The grader's `inflected` words: tokens of a lexeme some token writes outside its part of
+  speech's bare cell (`bare` in language.yaml and the bundle's lexicon).
+- Words follow the order nodes introduce them (the lexicon is flat): seeded picks differ from
+  before in places. A form's memory is per feature value: *hablo* and *habla* are both the present.
+- The device's and the server's rewrite keep nothing readable in the old shape; a course whose
+  alias table cannot be fetched is rewritten by name and done again when the table is in reach.
+
+### Not done, in order
+
+1. **A node may introduce a feature value none of its own sentences shows** (a noun's gender is its
+   lexeme's, so *feminine* introduced with bare nouns has nothing to present): the value is never
+   seen and blocks later sentences (`allSeen` in the planner). apc, grc and hbo; six simulation
+   checks fail on it. Fix in the converter (`migrate/course.py`): introduce a value at the first
+   node, at or after its old one, whose own sentences choose it. Then flip, bundles, simulation.
+2. **simulation.test.ts:** uz-Latn's weak learner is at 79.3% (floor 80; it was 80.6), and one es
+   pacing check compares counts of 0 to 9 known words. Look at both after 1; do not retune first.
+3. **Web app tests:** `apps/web/tests/unit` is part ported (an agent stopped at the usage limit;
+   its new `upgrade-log.test.ts` is unfinished). `apps/web/tests/e2e` and its solver are not
+   ported: `data-gloss-kc` is `data-gloss-id`, `data-listed-kc` is `data-listed-part`.
+4. **Every check on the merged tree:** `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm conformance`,
+   `pnpm courses`, the pipeline's pytest, ruff and pyright, `pnpm test:e2e`, the visual matrix in
+   Docker (baselines will change where word order did), `pnpm license-check`, `pnpm check:catalogs`.
+5. **Docs:** "Stages 2 to 4, as built" in the design note; CLAUDE.md still speaks of KCs.
+6. **Stage 7, the flip:** the old schemas, readers and the converter go, `Next` leaves the names,
+   the token kind `word` becomes `lexical`; the mobile build. Then land on main, whole.
+7. **Stages 5 and 6** (losses and labels; what a learner sees) are not started. My advice stands:
+   land 1 to 4 and 7 as the switch, and 5 with 6 after.
+
+### How to work on it
+
+`packages/core/test/planned.ts` walks a course; `/tmp` scratch files are gone with the container.
+`docs/prototypes/switch-check/compare.py` compares old and new bundles. The old tree is `origin/main`.
