@@ -170,8 +170,9 @@ The same model as es (ADR 0132's second amendment). Genders were chosen by hand;
 - רָעָה "evil" feminine, and its masculine רָע (Psalm 23) is the same lexeme (`lexeme:raah.evil`,
   `chooses: [Gender]`), its token `{Gender: Masc, Number: Sing}`.
 - Always plural, plural: מַיִם, שָׁמַיִם, פָּנִים (also with a suffix: פָּנָיו), רַחֲמִים. אֱלֹהִים as God stays
-  singular; אֱלֹהֵי keeps `pl-cstr` (its spelling), as ADR 0084 has it.
-- The duals (רַגְלַיִם, עֵינַי) are feminine and keep `du`: no masculine dual is written yet.
+  singular; אֱלֹהֵי keeps `{Definite: Cons, Number: Plur}` (its spelling), as ADR 0084 has it.
+- The duals (רַגְלַיִם, עֵינַי) choose `{Number: Dual}`; their lexemes (`lexeme:regel`, `lexeme:ayin.eye`) store
+  `Gender: Fem`, which no ending shows. No masculine dual is written yet.
 - Story questions: in-the-beginning asks יְהִי אוֹר (חֹשֶׁךְ, תֹהוּ), no longer הַמָּיִם; at-the-well #2 asks the
   form of מִכַּדֵּךְ (כַּדָּהּ, כַּד); my-brothers-keeper #2 and a-time-for-everything #6 ask the form (אָחִי,
   אָחִיךָ; פָּנָיַ, מִפְּנֵי); the-ten-words #3 asks הָאֲדָמָה (the wind, the woman), as אִמֶּךָ and אִמֵּךְ

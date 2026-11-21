@@ -408,9 +408,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   write with several lexemes. Verbs: infinitive (ichmoq, خوردن).
 - Taps on a token that writes several lexemes show each (`glossAt`); list a token's `lexemes` rather than adding
   inflected spellings.
-- A morpheme the script does not write, or writes only as a mark on a letter it shares (the ezafe: fa کتابِ, chg ملک
-  malik-i), is a lexeme with an empty surface, last in its token's `lexemes` (`{lexeme: ezafe, surface: ''}`, ADR 0136);
-  a tap glosses it as unwritten. Never a sentence-level tag for something one word carries.
+- A morpheme the script does not write, or writes only as a mark on a letter it shares (the ezafe: fa کتابِ), is a
+  lexeme with an empty surface, last in its token's `lexemes` (`{lexeme: ezafe, surface: ''}`, ADR 0136); a tap glosses
+  it as unwritten. Never a sentence-level tag for something one word carries. chg's three (ملک malik-i) still say it in
+  the reading alone, until the course has an ezafe lexeme (ADR 0136 left it to whoever edits those units).
 
 ## Persons and register notes (see docs/adr/0056, 0075)
 - A `persons` tag in a sentence's `tags` (`- {persons: {addressee: m}}`, read with `sentencePersons`: speaker m/f;
@@ -421,9 +422,12 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Exercise every person the language marks, never one default (ADR 0075): a woman speaking as well as a man, to a
   woman, to one/two/several people. Draft the set together (kifak / kifik / kifkon) and check the spread per course
   before committing (counts in docs/adr/0075). Never let "a man speaking to one man" be the norm.
-- Register is the same idea, not yet modelled: Javanese speech levels (ngoko/krama/krama inggil), T–V (fa تو/شما,
-  uz sen/siz), Korean/Japanese honorifics. When a register language arrives: an ADR, a tag the prompt shows, accept
-  sets that fit it, and every level exercised. Gendered plurals (Hebrew atem/aten) will need a gendered pl.
+- Register is the same idea, half modelled: a sentence may carry a `register` tag (`- {register: formal}`: es, fa, uz;
+  a language declares its `registers` in language.yaml) and the AI judge is told it (`sentenceRegister`), but no prompt
+  shows it and no accept set is held to it (ADR 0147's prompt tags are not built). Speech levels are not modelled at
+  all: Javanese (ngoko/krama/krama inggil), Korean/Japanese honorifics. When a register language arrives: an ADR, a tag
+  the prompt shows, accept sets that fit it, and every level exercised. Gendered plurals (Hebrew atem/aten) will need
+  a gendered pl.
 - A course's voices share its items (ADR 0078): each sentence, word and story character gets one voice at random
   (seeded by its id: `assignment` in nabu/audio/course.py), except where grammar says who speaks (a `persons` tag's
   `speaker`, a story character's `speaker`): then a voice of that gender, if cast. A one-voice cast reads everything
