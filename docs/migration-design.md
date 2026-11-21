@@ -835,6 +835,53 @@ is listed; no "which form" question on a bare noun whose gender is its own.
   (on the path 0.6 then 3.0). Those three checks now rest on three learners each, as the pacing check's
   rate already did. Nothing was retuned.
 
+### The landing (2026-11-21)
+
+Asked when the switch should reach main, the owner chose "Land when green": once every check passes, not
+after all seven stages. Asked whether landing should wait for a real exported log through `upgrade` (stage
+4's own test of done), the owner chose "Land without it".
+
+**What lands, as one push:**
+- Stages 1 to 4.
+- **Of stage 7, what cannot wait.** The converter, the flip and their tests read the courses in the shape
+  before the lexical model, which main no longer holds: they are gone, with `pnpm migrate` and the CLI's
+  `migrate` and `flip`. The conversion plans are kept in `docs/migration/plans/` and the last reports in
+  `docs/migration/`, as the record. Each course's alias table stays where it was, since `upgrade` reads it;
+  nothing writes the tables again, so a test holds each to its schema and to what its course has
+  (`pipeline/tests/test_aliases.py`). CLAUDE.md describes the model as it is.
+
+**What follows on main, each as a commit of its own:**
+1. `Next` leaves the names: the three `.next` schemas take the names of the files they replace, the old
+   bundle and course-source schemas go, the old event schema is kept under a name of its own for
+   `upgrade` and for restoring an old download, and the generated types follow (about 30 source files,
+   mostly the compiler).
+2. The token kind `word` becomes `lexical` (about 460 lines in 76 files: courses, bundles, conformance
+   vectors, core, UI, Python).
+3. What still says KC where a person reads it: `courses/es/README.md`, a comment in
+   `courses/es/course.yaml`, two descriptions in the course-source schema, the texts of the lints
+   `curriculum.never-introduced` and `audio.unknown-item`.
+4. Stages 5 and 6.
+
+**No real log was put through `upgrade` before the landing.** What stands in for it is under "Checked",
+above. If a real log shows a fault: a device keeps its old events in the IndexedDB store
+`events-before-lexical` and notes the shape its log is in (`LOG_SHAPE`), so a corrected `upgrade` can
+rewrite it again from what was kept, as a course whose alias table was out of reach already is. A server
+rewrites its rows in place and keeps no copy: `deploy/README.md` tells an operator to dump the database
+before that upgrade.
+
+**Found by the checks on the way to green,** beside what "Checked" lists:
+- *The visual matrix* failed in two ways. 121 pictures differed, all where the model changed what is
+  shown: the Data page (ids, and forms as affixes, labels and rules), the cards that ask a word by its
+  parts, and two Lebanese player stories whose sample card changed. 12 runs failed a check of their
+  own: the sample Lebanese card is *kifak* now (a built word since the switch), one part it offers is the
+  label "feminine", and that label's gloss held an arrow, a character the interface font lacks. The
+  arrow was in the old course's gloss too, where no tested card showed it. Sixteen texts of the apc and
+  chg lexicons say it in a word now (*kbir becomes kbire*).
+- *Three pipeline tests* still read the committed bundle and the matcher in the old shape: they had
+  passed in a tree that still held the old bundles. The pinned sign-off text is unchanged, so no
+  sign-off is undone by the switch.
+- *The self-hosting guide* said an upgrade never rewrites data in place; this one does.
+
 ## The owner's decisions (2026-11-20)
 
 The eight questions this note ended with, and what the owner answered. The sections above are rewritten to

@@ -796,8 +796,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   5 and 6 (Lexical model notes), and without waiting for a real exported log to be put through `upgrade` (28 simulated
   learners' logs were); a device keeps its old events aside in the IndexedDB store `events-before-lexical`, so a fault
   found later can be fixed and the rewrite done again. docs/lexical-forms/ (apc's lexical-form schema, entries and
-  review list; rebuilt by docs/prototypes/apc-lexical-forms/build.py, never by hand) has the owner's rulings on its six
-  questions (2026-11-20, the note's last section); its rules and affix forms are not written, and nothing reads it.
+  review list; written by docs/prototypes/apc-lexical-forms/build.py, never by hand: the script reads the course as
+  it was before the switch, by its KCs, and must be ported to the lexicon before it can run again) has the owner's
+  rulings on its six questions (2026-11-20, the note's last section); its rules and affix forms are not written, and
+  nothing reads it.
   docs/handoff-lexical-model.md says where each task stands.
 - Fresh cloud container setup:
   - `pnpm i`
