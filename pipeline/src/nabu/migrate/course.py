@@ -6,6 +6,7 @@ What changes is what the tokens, the nodes and the story questions name.
 
 from __future__ import annotations
 
+import collections
 from typing import Any
 
 from nabu import yamlio
@@ -23,6 +24,23 @@ class CourseWriter:
         self.findings: list[Finding] = []
         self.introduced: dict[str, str] = {}
         """Each teachable and the node that introduces it."""
+        self.waiting: list[str] = []
+        """Feature values a node was to introduce and none of its own sentences chooses: each
+        waits for the first node after it whose sentences do (a noun's gender is its lexeme's,
+        so *feminine* brought in with bare nouns has nothing a lesson could present)."""
+        self.shows: dict[str, set[str]] = collections.defaultdict(set)
+        """Each node's feature values: those its own sentences' tokens choose."""
+        for _, unit in conv.course.units:
+            for sentence in seq(unit.get("sentences")):
+                if sentence.get("node") is None:
+                    continue
+                for toks in conv.items.get(str(sentence["id"]), {}).values():
+                    for tok in toks:
+                        for part in tok.parts:
+                            for name, said in part.feats.items():
+                                self.shows[str(sentence["node"])] |= {
+                                    f"feature:{name}={value}" for value in str(said).split(",")
+                                }
 
     # What a KC id is called now
 
@@ -75,20 +93,32 @@ class CourseWriter:
     def node(self, node: Json) -> Json:
         out: Json = {"id": node["id"], "kind": node["kind"]}
         for key in ("introduces", "reinforces"):
-            if key not in node:
+            if key not in node and key != "introduces":
                 continue
             new: list[str] = []
-            for kc in node[key]:
+            shown = self.shows[str(node["id"])]
+            for kc in seq(node.get(key)):
                 for teachable in self.teaches(str(kc), str(node["id"])):
                     if key == "introduces":
                         if teachable in self.introduced:
                             continue
+                        if teachable.startswith("feature:") and teachable not in shown:
+                            # Nothing here shows it: it waits for the first node that does.
+                            if teachable not in self.waiting:
+                                self.waiting.append(teachable)
+                            continue
                         self.introduced[teachable] = str(node["id"])
                     if teachable not in new:
                         new.append(teachable)
+            if key == "introduces":
+                for value in [v for v in self.waiting if v in shown]:
+                    self.waiting.remove(value)
+                    if value not in self.introduced:
+                        self.introduced[value] = str(node["id"])
+                        new.append(value)
             if new:
                 out[key] = yamlio.FlowList(new)
-            elif node[key]:
+            elif node.get(key):
                 self.findings.append(
                     Finding(
                         "node-empty",
@@ -247,6 +277,17 @@ class CourseWriter:
         return out
 
     def course(self) -> Json:
+        # Written after the units: a value that waited for a node to show it and found none.
+        for value in self.waiting:
+            self.findings.append(
+                Finding(
+                    "value-unshown",
+                    value,
+                    "a node was to introduce it and no lesson's sentence chooses it from there "
+                    "on: no node introduces it",
+                )
+            )
+        self.waiting = []
         data = self.conv.course.data
         out: Json = {}
         plan_course: Json = obj(self.plan.data.get("course"))
