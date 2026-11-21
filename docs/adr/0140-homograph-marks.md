@@ -2,6 +2,7 @@
 
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-17
+- Amended by: [ADR 0132](0132-a-choice-asks-one-thing.md)'s amendment of 2026-11-21 (no mark among a choice's options)
 
 ## Context
 

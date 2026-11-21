@@ -6,7 +6,7 @@ import { allSentences, homographsOf, type CourseView } from "@nabu/core/lesson";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import type { JSX } from "react";
 import { describe, expect, it } from "vitest";
-import { HomographsProvider } from "../src/marks.tsx";
+import { ChoiceWords, HomographsProvider } from "../src/marks.tsx";
 import { GlossPanel, useOtherReadings } from "../src/player/Gloss.tsx";
 import { T } from "../src/T.tsx";
 import { loadCourse } from "./course.ts";
@@ -50,6 +50,19 @@ describe("homograph marks (ADR 0140)", () => {
         </HomographsProvider>,
       ),
     ).not.toContain("data-homograph");
+  });
+
+  it("never mark one option of a choice apart from the others (ADR 0132), while the sentence around it keeps its marks", () => {
+    const word: TaggedText = { ...text, tokens: [text.tokens[at] as TaggedText["tokens"][number]] };
+    const html = render(
+      <HomographsProvider course={chg} scheme={SCHLUESSEL}>
+        <T text={text} />
+        <ChoiceWords texts={[word]}>
+          <T text={word} />
+        </ChoiceWords>
+      </HomographsProvider>,
+    );
+    expect([...html.matchAll(/data-homograph="true"/gu)]).toHaveLength(1);
   });
 
   it("name the other readings in a tapped word's gloss, each with what it means", () => {

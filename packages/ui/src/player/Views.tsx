@@ -56,6 +56,7 @@ import {
   useEffect,
   useId,
   useLayoutEffect,
+  useMemo,
   useRef,
   useState,
   type JSX,
@@ -63,6 +64,7 @@ import {
 } from "react";
 import { Radio, RadioGroup } from "react-aria-components";
 import { useOrthography, useTranslator } from "../context.tsx";
+import { ChoiceWords } from "../marks.tsx";
 import { T, type TProps } from "../T.tsx";
 import { AnswerInput } from "./AnswerInput.tsx";
 import {
@@ -109,6 +111,11 @@ interface OptionsProps {
   readonly onSelect: (index: number) => void;
   /** The instruction and prompt, read as focus lands on the first option (P10). */
   readonly describedBy?: string | undefined;
+  /**
+   * The options' text, where they are text: their words are shown alike (`ChoiceWords`), so no option
+   * stands out by a homograph's underline or by the reading or marks a new word keeps (ADR 0132).
+   */
+  readonly texts?: readonly TaggedText[] | undefined;
 }
 
 /** Radio choices (arrow keys follow the chrome direction), with number-key shortcuts. */
@@ -121,9 +128,29 @@ const Options = ({
   grid = false,
   onSelect,
   describedBy: description,
+  texts,
 }: OptionsProps): JSX.Element => {
   const t = useTranslator();
   const number = new Intl.NumberFormat(t.formattingLocale);
+  const items = options.map((content, i) => (
+  <Radio
+    key={i}
+    value={String(i)}
+    autoFocus={i === 0}
+    className={styles.option}
+    data-option={i}
+    data-correct={(outcome !== undefined && i === answer) || undefined}
+    data-wrong={
+      (outcome !== undefined && i === selected && i !== answer) ||
+      undefined
+    }
+  >
+    <span className={styles.optionNumber} aria-hidden="true">
+      {number.format(i + 1)}
+    </span>
+    {content}
+  </Radio>
+));
   return (
     <RadioGroup
       className={grid ? styles.optionGrid : styles.options}
@@ -137,25 +164,7 @@ const Options = ({
       orientation={grid ? "horizontal" : "vertical"}
       data-options=""
     >
-      {options.map((content, i) => (
-        <Radio
-          key={i}
-          value={String(i)}
-          autoFocus={i === 0}
-          className={styles.option}
-          data-option={i}
-          data-correct={(outcome !== undefined && i === answer) || undefined}
-          data-wrong={
-            (outcome !== undefined && i === selected && i !== answer) ||
-            undefined
-          }
-        >
-          <span className={styles.optionNumber} aria-hidden="true">
-            {number.format(i + 1)}
-          </span>
-          {content}
-        </Radio>
-      ))}
+      {texts === undefined ? items : <ChoiceWords texts={texts}>{items}</ChoiceWords>}
     </RadioGroup>
   );
 };
@@ -287,6 +296,7 @@ const AnswerAudio = ({
 export const SelectImageView = (props: Props<SelectImage>): JSX.Element => {
   const { ex, imageUrl } = props;
   const t = useTranslator();
+  const optionTexts = useMemo(() => ex.options.map((o) => o.text), [ex.options]);
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
   return (
     <div className={styles.body}>
@@ -300,6 +310,7 @@ export const SelectImageView = (props: Props<SelectImage>): JSX.Element => {
       </div>
       <AnswerAudio props={props} />
       <Options
+        texts={optionTexts}
         grid
         describedBy={describedBy(props.ids, ["prompt"])}
         options={ex.options.map((o, i) => (
@@ -402,6 +413,7 @@ export const ChooseTranslationView = (
     <div className={styles.body}>
       <TargetPrompt text={ex.prompt} props={props} gloss="answered" />
       <Options
+        texts={ex.options}
         describedBy={describedBy(props.ids, ["prompt"])}
         options={ex.options.map((o, i) => (
           <T key={i} text={o} />
@@ -466,6 +478,7 @@ export const CharReadView = (
         </div>
       )}
       <Options
+        texts={ex.options}
         grid
         describedBy={describedBy(
           props.ids,
@@ -492,12 +505,15 @@ const GapSentence = ({
   before,
   after,
   fill,
+  options,
   props,
   gloss,
 }: {
   before: TaggedText;
   after: TaggedText;
   fill: TaggedText | undefined;
+  /** Where the fill is a chosen option: the options, whose words it is shown alike with (`ChoiceWords`). */
+  options?: readonly TaggedText[] | undefined;
   props: ViewProps & Partial<ViewExtras>;
   gloss?: GlossWhen;
 }): JSX.Element => {
@@ -522,8 +538,12 @@ const GapSentence = ({
         aria-label={t.format("player.blank.label")}
         data-gap=""
       >
-        {fill === undefined ? null : (
+        {fill === undefined ? null : options === undefined ? (
           <T text={fill} ruby={props.ruby} marks={props.marks} />
+        ) : (
+          <ChoiceWords texts={options}>
+            <T text={fill} ruby={props.ruby} marks={props.marks} />
+          </ChoiceWords>
         )}
       </span>
       <T
@@ -563,10 +583,12 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
         before={ex.before}
         after={ex.after}
         fill={selected === null ? undefined : ex.options[selected]}
+        options={ex.options}
         props={props}
         gloss="always"
       />
       <Options
+        texts={ex.options}
         grid
         describedBy={describedBy(props.ids, ["hint", "gap"])}
         options={ex.options.map((o, i) => (
@@ -711,122 +733,125 @@ const WordBank = ({
     if (text !== undefined && token !== undefined) glossing?.onTap({ key: tileKey(i), text, token });
   };
   const looked = (i: number): boolean | undefined => (glossable ? glossing?.tapped?.key === tileKey(i) : undefined);
+  // Every tile alike (ADR 0132): a new word's tile would stand out from the rest by its reading.
   return (
-    <div
-      ref={region}
-      className={styles.target}
-      dir={directionOf(ex.canonical.lang)}
-      data-target-region=""
-      data-writing-mode={mode}
-    >
+    <ChoiceWords texts={ex.tiles}>
       <div
-        className={styles.answerRow}
-        role="group"
-        aria-label={t.format("player.wordbank.answer-label")}
-        data-answer-row=""
-        onDragOver={(e) => e.preventDefault()}
-        onDrop={(e) => {
-          e.preventDefault();
-          const i = Number(e.dataTransfer.getData("text/plain"));
-          if (Number.isInteger(i)) add(i, false);
-        }}
+        ref={region}
+        className={styles.target}
+        dir={directionOf(ex.canonical.lang)}
+        data-target-region=""
+        data-writing-mode={mode}
       >
-        <span id={removeHint} hidden>
-          {t.format(
-            spelling ? "player.wordbank.remove-last" : "player.wordbank.remove",
-          )}
-        </span>
-        {spelling && order.length > 0 && (
-          <button
-            type="button"
-            className={`${styles.tile} ${styles.spelled}`}
-            disabled={locked}
-            aria-describedby={removeHint}
-            data-ink-container="tile"
-            data-spelled-word={order.join(" ")}
-            onClick={() => remove(order.length - 1, true)}
-          >
-            <T
-              text={textOfSurface(
-                ex.canonical,
-                order
-                  .map((i) => surfaceOf(ex.tiles[i] as TaggedText))
-                  .join(ex.joiner)
-                  .normalize("NFC"),
-              )}
-              marks={props.marks}
-            />
-          </button>
-        )}
-        {!spelling &&
-          order.map((tileIndex, position) => (
+        <div
+          className={styles.answerRow}
+          role="group"
+          aria-label={t.format("player.wordbank.answer-label")}
+          data-answer-row=""
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e) => {
+            e.preventDefault();
+            const i = Number(e.dataTransfer.getData("text/plain"));
+            if (Number.isInteger(i)) add(i, false);
+          }}
+        >
+          <span id={removeHint} hidden>
+            {t.format(
+              spelling ? "player.wordbank.remove-last" : "player.wordbank.remove",
+            )}
+          </span>
+          {spelling && order.length > 0 && (
             <button
-              key={`${tileIndex}`}
               type="button"
-              className={styles.tile}
-              disabled={locked && !glossable}
-              aria-describedby={locked ? undefined : removeHint}
-              aria-pressed={looked(tileIndex)}
+              className={`${styles.tile} ${styles.spelled}`}
+              disabled={locked}
+              aria-describedby={removeHint}
               data-ink-container="tile"
-              data-placed-tile={tileIndex}
-              onClick={() => (glossable ? lookUp(tileIndex) : remove(position, true))}
+              data-spelled-word={order.join(" ")}
+              onClick={() => remove(order.length - 1, true)}
             >
               <T
-                text={ex.tiles[tileIndex] as TaggedText}
-                ruby={tileRuby}
+                text={textOfSurface(
+                  ex.canonical,
+                  order
+                    .map((i) => surfaceOf(ex.tiles[i] as TaggedText))
+                    .join(ex.joiner)
+                    .normalize("NFC"),
+                )}
                 marks={props.marks}
               />
             </button>
-          ))}
+          )}
+          {!spelling &&
+            order.map((tileIndex, position) => (
+              <button
+                key={`${tileIndex}`}
+                type="button"
+                className={styles.tile}
+                disabled={locked && !glossable}
+                aria-describedby={locked ? undefined : removeHint}
+                aria-pressed={looked(tileIndex)}
+                data-ink-container="tile"
+                data-placed-tile={tileIndex}
+                onClick={() => (glossable ? lookUp(tileIndex) : remove(position, true))}
+              >
+                <T
+                  text={ex.tiles[tileIndex] as TaggedText}
+                  ruby={tileRuby}
+                  marks={props.marks}
+                />
+              </button>
+            ))}
+        </div>
+        <div
+          className={styles.bank}
+          role="group"
+          aria-label={t.format("exercise.wordbank.label")}
+          aria-describedby={describedBy(props.ids, parts)}
+          data-word-bank=""
+        >
+          {ex.tiles.map((tile, i) => {
+            const key = remaining.indexOf(i);
+            return placed.has(i) ? (
+              <span
+                key={i}
+                className={`${styles.tile} ${styles.tileSlot}`}
+                aria-hidden="true"
+              >
+                <T text={tile} ruby={tileRuby} marks={props.marks} />
+              </span>
+            ) : (
+              <button
+                key={i}
+                type="button"
+                className={styles.tile}
+                disabled={locked && !glossable}
+                draggable={!locked}
+                autoFocus={i === remaining[0] && order.length === 0}
+                aria-pressed={looked(i)}
+                data-ink-container="tile"
+                data-tile={i}
+                onDragStart={(e) =>
+                  e.dataTransfer.setData("text/plain", String(i))
+                }
+                onClick={() => (glossable ? lookUp(i) : add(i, true))}
+              >
+                {key >= 0 && key < 9 && (
+                  <span
+                    className={styles.tileNumber}
+                    aria-hidden="true"
+                    data-tile-key={key + 1}
+                  >
+                    {number.format(key + 1)}
+                  </span>
+                )}
+                <T text={tile} ruby={tileRuby} marks={props.marks} />
+              </button>
+            );
+          })}
+        </div>
       </div>
-      <div
-        className={styles.bank}
-        role="group"
-        aria-label={t.format("exercise.wordbank.label")}
-        aria-describedby={describedBy(props.ids, parts)}
-        data-word-bank=""
-      >
-        {ex.tiles.map((tile, i) => {
-          const key = remaining.indexOf(i);
-          return placed.has(i) ? (
-            <span
-              key={i}
-              className={`${styles.tile} ${styles.tileSlot}`}
-              aria-hidden="true"
-            >
-              <T text={tile} ruby={tileRuby} marks={props.marks} />
-            </span>
-          ) : (
-            <button
-              key={i}
-              type="button"
-              className={styles.tile}
-              disabled={locked && !glossable}
-              draggable={!locked}
-              autoFocus={i === remaining[0] && order.length === 0}
-              aria-pressed={looked(i)}
-              data-ink-container="tile"
-              data-tile={i}
-              onDragStart={(e) =>
-                e.dataTransfer.setData("text/plain", String(i))
-              }
-              onClick={() => (glossable ? lookUp(i) : add(i, true))}
-            >
-              {key >= 0 && key < 9 && (
-                <span
-                  className={styles.tileNumber}
-                  aria-hidden="true"
-                  data-tile-key={key + 1}
-                >
-                  {number.format(key + 1)}
-                </span>
-              )}
-              <T text={tile} ruby={tileRuby} marks={props.marks} />
-            </button>
-          );
-        })}
-      </div>
-    </div>
+    </ChoiceWords>
   );
 };
 
@@ -1119,6 +1144,8 @@ export const WholePartsView = (props: Props<WholeParts>): JSX.Element => {
   const t = useTranslator();
   const picked = props.draft.tag === "tiles" ? props.draft.order : [];
   const answered = props.outcome !== undefined;
+  // The parts' words alike (ADR 0132): the word's own lexeme, often new, would keep a reading the others lose.
+  const partTexts = useMemo(() => ex.options.flatMap((part) => (part.text === undefined ? [] : [part.text])), [ex.options]);
   const pick = (order: readonly number[]): void =>
     dispatch({ tag: "input", draft: { tag: "tiles", order } });
   const toggle = (i: number): void => {
@@ -1158,36 +1185,38 @@ export const WholePartsView = (props: Props<WholeParts>): JSX.Element => {
         <T as="p" text={ex.translation} />
       </div>
       <AnswerAudio props={props} />
-      <div
-        className={styles.bank}
-        role="group"
-        aria-label={t.format("player.parts.options")}
-        data-parts-options=""
-      >
-        {ex.options.map((part, i) => {
-          const own = ex.solution.includes(i);
-          const chosen = picked.includes(i);
-          return (
-            <button
-              key={part.id}
-              type="button"
-              className={`${styles.tile} ${styles.partTile}`}
-              aria-pressed={chosen}
-              disabled={locked}
-              autoFocus={i === 0}
-              {...(i === 0 && described !== undefined
-                ? { "aria-describedby": described }
-                : {})}
-              data-part-option={i}
-              data-correct={(answered && own) || undefined}
-              data-wrong={(answered && !own && chosen) || undefined}
-              onClick={() => toggle(i)}
-            >
-              <PartLabel part={part} ruby={props.ruby} marks={props.marks} />
-            </button>
-          );
-        })}
-      </div>
+      <ChoiceWords texts={partTexts}>
+        <div
+          className={styles.bank}
+          role="group"
+          aria-label={t.format("player.parts.options")}
+          data-parts-options=""
+        >
+          {ex.options.map((part, i) => {
+            const own = ex.solution.includes(i);
+            const chosen = picked.includes(i);
+            return (
+              <button
+                key={part.id}
+                type="button"
+                className={`${styles.tile} ${styles.partTile}`}
+                aria-pressed={chosen}
+                disabled={locked}
+                autoFocus={i === 0}
+                {...(i === 0 && described !== undefined
+                  ? { "aria-describedby": described }
+                  : {})}
+                data-part-option={i}
+                data-correct={(answered && own) || undefined}
+                data-wrong={(answered && !own && chosen) || undefined}
+                onClick={() => toggle(i)}
+              >
+                <PartLabel part={part} ruby={props.ruby} marks={props.marks} />
+              </button>
+            );
+          })}
+        </div>
+      </ChoiceWords>
     </div>
   );
 };
@@ -1293,6 +1322,7 @@ export const VocalizeView = (props: Props<Vocalize>): JSX.Element => {
         />
       ) : (
         <Options
+          texts={ex.options}
           grid
           describedBy={describedBy(props.ids, ["prompt", "hint"])}
           options={ex.options.map((o, i) => (
@@ -2223,6 +2253,7 @@ export const ListenChoiceView = (
         translation={ex.translation}
       />
       <Options
+        texts={ex.options}
         describedBy={describedBy(props.ids, [])}
         options={ex.options.map((o, i) => (
           <T key={i} text={o} ruby={props.ruby} marks={props.marks} />
@@ -2275,6 +2306,7 @@ export const StoryChooseView = (props: Props<StoryChoose>): JSX.Element => {
         labelId="player.prompt.question"
       />
       <Options
+        texts={ex.options}
         describedBy={describedBy(props.ids, ["prompt"])}
         options={ex.options.map((o, i) => (
           <T key={i} text={o} />
@@ -2300,9 +2332,11 @@ export const StoryCompleteView = (props: Props<StoryComplete>): JSX.Element => {
         before={ex.before}
         after={ex.after}
         fill={selected === null ? undefined : ex.options[selected]}
+        options={ex.options}
         props={props}
       />
       <Options
+        texts={ex.options}
         grid
         describedBy={describedBy(props.ids, ["gap"])}
         options={ex.options.map((o, i) => (

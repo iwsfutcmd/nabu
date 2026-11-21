@@ -3,6 +3,7 @@
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-16
 - Amended by: [0141](0141-minimal-ruby.md) (a third choice: what the script leaves unwritten over words read before)
+- Amended by: [ADR 0132](0132-a-choice-asks-one-thing.md)'s amendment of 2026-11-21 (a choice's words keep or lose their readings together)
 - Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this:
   [0148](0148-projections-and-misses.md) (a scheme's `variants` become stated correspondences)
 

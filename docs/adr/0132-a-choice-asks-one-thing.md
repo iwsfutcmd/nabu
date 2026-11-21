@@ -272,3 +272,27 @@ and a few pronouns: ὁ and ἡ were both bare, so a word question could offer a
 - **Kept so** by test/choice-asks.test.ts: a noun keeps one gender wherever its course writes it (but the
   listed nouns that name a man or a woman), and a word question on a feminine word offers only feminine words.
   REVIEW: [courses/choice-doubts.md](../../courses/choice-doubts.md) lists the genders chosen by hand.
+
+## Amendment: a choice's words are shown alike (2026-11-21)
+
+The project owner found a Chaghatay gap-fill whose answer, اوی awī "game birds", had a dashed underline
+and its two wrong options none. The underline is the homograph mark (ADR 0140): the course reads اوی
+both awī and öy "house". It told the answer apart by something the card did not ask.
+
+The player marks a word by what the learner knows of it in three ways, and each can do the same among
+options. A homograph is underlined (ADR 0140). Where readings fade (ADR 0131, 0141), a word whose reading
+the learner has shown loses it, so the one new word, often the answer, keeps its reading among bare ones.
+Where vowel marks show on new words only (P12, Persian), it keeps its marks.
+
+**A choice's words are shown alike.** Inside `ChoiceWords` (@nabu/ui marks.tsx), no word is marked a
+homograph, and every word of the options keeps its reading and its marks where any of them would, or loses
+them together where none would (core `choiceWords`: any word new, every reading shown, per orthography).
+Inside it are:
+
+- every multiple-choice option that is text (`Options`' `texts`: gap-fill, story `complete`, select-image,
+  choose-translation, char-read, vocalize, listen-select, story-choose);
+- the gap a chosen option fills, judged with the options (`GapSentence`'s `options`);
+- word-bank and story-arrange tiles, the answer row's too;
+- the parts a `whole-parts` card offers.
+
+The sentence around a gap, the prompt and match-pairs keep their own marks: they mark no option apart.

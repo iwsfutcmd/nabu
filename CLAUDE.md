@@ -102,6 +102,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   gap, none whose gloss shares a meaning) or which form (the answer's own lexeme in other attested forms; the answer must
   have a form to credit, `formPartsOf`). It credits the base lexeme or the form's parts; a mistake keeps `asks` and is
   asked again as the same question. Lexemes' `pos` and `feats` are drafted (REVIEW).
+- A choice's words are shown alike (ADR 0132 amendment): options, the gap a chosen option fills, word-bank tiles and
+  whole-parts tiles render inside `ChoiceWords` (@nabu/ui marks.tsx; core `choiceWords`): no homograph mark, and
+  readings and vowel marks kept on all where any word would keep its own. Pass `texts` to `Options` where options are text.
 - Letters placed to build a word (word-write) show as the word they spell: one token, one run of text (`data-spelled-word`),
   so a script whose letters join shows them joined and marks sit on their letters. Never lay letter tiles side by side as
   the answer; pressing the word or Backspace takes back the last letter.

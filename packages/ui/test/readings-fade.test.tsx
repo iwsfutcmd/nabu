@@ -10,7 +10,7 @@ import type { JSX } from "react";
 import { describe, expect, it } from "vitest";
 import { parse } from "yaml";
 import { DEMO_ORTHOGRAPHIES } from "../src/demo/profiles.ts";
-import { FadeReadings, WordStatusProvider } from "../src/marks.tsx";
+import { ChoiceWords, FadeReadings, WordStatusProvider } from "../src/marks.tsx";
 import { useDisplay } from "../src/player/Display.tsx";
 import { Feedback } from "../src/player/Feedback.tsx";
 import { GlossPanel, useGlosses, wordOf } from "../src/player/Gloss.tsx";
@@ -72,6 +72,34 @@ describe("readings before the learner chooses (ADR 0131)", () => {
     expect(html).toContain('data-readings-shown="new"');
     expect(html).not.toContain('role="switch"');
     expect(render(<Control chosen={false} />)).toContain('data-readings-shown="off"');
+  });
+});
+
+describe("a choice's words, alike (ADR 0132)", () => {
+  const option = (surface: string, jyutping: string, lexeme: string): TaggedText => ({ ...text, tokens: [word(surface, jyutping, lexeme)] });
+  const known = option("書", "syu1", "syu");
+  const fresh = option("我", "ngo5", "ngo");
+  const choice = (options: readonly TaggedText[], open = false): JSX.Element =>
+    inSession(
+      true,
+      <ChoiceWords texts={options}>
+        {options.map((o, i) => (
+          <T key={i} text={o} ruby={JYUTPING} />
+        ))}
+      </ChoiceWords>,
+      open,
+    );
+
+  it("keep every option's reading where one of them is new, so the new word does not stand out", () => {
+    expect(rts(render(choice([known, fresh])))).toEqual(["syu1", "ngo5"]);
+    // Outside a choice, the word read before goes bare.
+    expect(rts(render(inSession(true, <T text={known} ruby={JYUTPING} />)))).toEqual([]);
+  });
+
+  it("leave every option bare, or with only what the script leaves unwritten, where all were read before", () => {
+    const again = option("書", "syu1", "syu");
+    expect(rts(render(choice([known, again])))).toEqual([]);
+    expect(rts(render(choice([known, again], true)))).toEqual(["\u00B71", "\u00B71"]);
   });
 });
 
