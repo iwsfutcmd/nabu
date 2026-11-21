@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import glob
 import json
+import re
 import shutil
 from pathlib import Path
 from typing import Any
@@ -18,7 +19,7 @@ from nabu.cli import app
 from nabu.compiler import compile_course, load_profiles
 from nabu.corecli import CoreCli
 from nabu.review import fingerprint, provenance_text, sentence_text, shown_of, story_text
-from nabu.schema.models import BundleUnit
+from nabu.schema.models import BundleUnit, NextBundleUnit
 
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLES = ROOT / "apps" / "web" / "public" / "bundles"
@@ -50,14 +51,16 @@ def test_the_fingerprint_text_is_pinned() -> None:
 
 
 @pytest.fixture(scope="module")
-def apc_compiled() -> list[BundleUnit]:
+def apc_compiled() -> list[NextBundleUnit]:
     with CoreCli() as cli:
         diags, compiled = compile_course(ROOT / "courses" / "apc", cli, load_profiles(), {})
     assert compiled is not None, [d.format() for d in diags.items]
     return compiled.units
 
 
-def test_the_compile_and_the_bundles_fingerprint_alike(apc_compiled: list[BundleUnit]) -> None:
+def test_the_compile_and_the_bundles_fingerprint_alike(
+    apc_compiled: list[NextBundleUnit],
+) -> None:
     # The app hashes the bundle; the CLI hashes its own compile: they must agree, item by item.
     assert shown_of(apc_compiled) == shown_of(_bundle_units("apc"))
 
@@ -76,11 +79,14 @@ def course(tmp_path: Path) -> Path:
     out = tmp_path / "courses" / "apc"
     shutil.copytree(ROOT / "courses" / "apc", out, ignore=shutil.ignore_patterns("audio"))
     shutil.copytree(ROOT / "courses" / "images", tmp_path / "courses" / "images")
+    # The language's lexicon, where the compiler looks for it (a sign-off never edits it).
+    (tmp_path / "lexicons").mkdir()
+    (tmp_path / "lexicons" / "apc").symlink_to(ROOT / "lexicons" / "apc")
     return out
 
 
 def test_apply_signs_off_what_was_seen_and_skips_the_rest(
-    course: Path, tmp_path: Path, apc_compiled: list[BundleUnit]
+    course: Path, tmp_path: Path, apc_compiled: list[NextBundleUnit]
 ) -> None:
     shown = shown_of(apc_compiled)
     story = next(s.id for u in apc_compiled for s in u.stories or [])
@@ -127,9 +133,14 @@ def test_apply_signs_off_what_was_seen_and_skips_the_rest(
         "- id: s.1\n  provenance: {author: 'llm:claude@6914f241714e', status: reviewed, "
         "reviewedBy: 'human:ben', reviewedAt: '2026-11-07'}\n  node: apc.greetings" in after
     )
+    # The story's provenance, written a key a line, is now one line in its place.
+    assert (
+        "  provenance: {author: 'llm:claude@ec206a97f12b', status: reviewed, "
+        "reviewedBy: 'human:ben', reviewedAt: '2026-11-06'}\n  characters:" in after
+    )
     # Everything else is as it was, line for line (only additions and the story's provenance).
     removed = [line for line in before.splitlines() if line not in after.splitlines()]
-    assert all("provenance:" in line for line in removed), removed
+    assert all(re.match(r"\s*(provenance|author|status):", line) for line in removed), removed
 
     with CoreCli() as cli:
         diags, compiled = compile_course(course, cli, load_profiles(), {})
@@ -177,7 +188,7 @@ def test_the_file_can_say_who_signed_off(course: Path, tmp_path: Path) -> None:
 
 
 def test_the_admin_export_applies_each_reviewers_file(
-    course: Path, tmp_path: Path, apc_compiled: list[BundleUnit]
+    course: Path, tmp_path: Path, apc_compiled: list[NextBundleUnit]
 ) -> None:
     shown = shown_of(apc_compiled)
     one = {"item": "s.1", "kind": "sentence", "shown": shown[("sentence", "s.1")]}

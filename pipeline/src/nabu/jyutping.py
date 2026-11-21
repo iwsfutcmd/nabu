@@ -19,6 +19,7 @@ import re
 from collections import Counter
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any, cast
 
 import regex
@@ -562,6 +563,67 @@ def rewrite_lexicon(
     for start, end, new in sorted(edits, reverse=True):
         text = text[:start] + new + text[end:]
     return text, report
+
+
+@dataclass
+class Rewritten:
+    """One file of a course as `nabu jyutping` writes it."""
+
+    path: Path
+    old: str
+    new: str
+    #: Readings taken from PyCantonese or chosen among the course's, for a person to check.
+    unsure: list[str]
+
+
+def _lexicon_file(course_file: Path, data: dict[str, Any]) -> tuple[Path, tuple[str, ...]] | None:
+    """Where a course's lexicon entries are written: its own (a one-file course keeps them in
+    course.yaml, under own, lexicon, lexemes), else its language's lexemes.yaml."""
+    if isinstance(data.get("own"), dict):
+        return course_file, ("own", "lexicon", "lexemes")
+    code = data.get("lexicon")
+    if not isinstance(code, str):
+        return None
+    from nabu.compiler.build import lexicons_dir
+
+    return lexicons_dir(course_file) / code / "lexemes.yaml", ("lexemes",)
+
+
+def rewrite_course(course: Path) -> list[Rewritten]:
+    """Every file of a course with its Jyutping written in: each unit (a units/ folder's, and
+    those course.yaml names), and the lexicon its words are spelled in. Nothing is written here."""
+    course_file = course / "course.yaml" if course.is_dir() else course
+    data = cast(dict[str, Any], yaml.safe_load(course_file.read_text(encoding="utf-8")) or {})
+    paths = sorted((course_file.parent / "units").glob("*.yaml"))
+    for item in cast(list[Any], data.get("units") or []):
+        if isinstance(item, str) and (course_file.parent / item) not in paths:
+            paths.append(course_file.parent / item)
+    sources = {p: p.read_text(encoding="utf-8") for p in paths}
+    inline = [
+        cast(dict[str, Any], u)
+        for u in cast(list[Any], data.get("units") or [])
+        if isinstance(u, dict)
+    ]
+    lex = lexicon_of([*(yaml.safe_load(s) for s in sources.values()), *inline])
+    out: list[Rewritten] = []
+    for path, source in sources.items():
+        new, unsure = rewrite_unit(source, lex)
+        out.append(Rewritten(path, source, new, unsure))
+    if inline:
+        source = course_file.read_text(encoding="utf-8")
+        new, unsure = rewrite_unit(source, lex)
+        out.append(Rewritten(course_file, source, new, unsure))
+    found = _lexicon_file(course_file, data)
+    if found is not None and found[0].is_file():
+        path, at = found
+        done = next((r for r in out if r.path == path), None)
+        source = done.new if done is not None else path.read_text(encoding="utf-8")
+        new, unsure = rewrite_lexicon(source, lex, at)
+        if done is not None:
+            done.new, done.unsure = new, [*done.unsure, *unsure]
+        else:
+            out.append(Rewritten(path, source, new, unsure))
+    return out
 
 
 def lexeme_reading(lexeme: str, form: str, lex: Lexicon, report: list[str]) -> str:

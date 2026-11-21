@@ -11,12 +11,17 @@ import unicodedata
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, field
 from pathlib import Path
+from typing import TYPE_CHECKING
 
 from pydantic import ValidationError
 
-from nabu.compiler.diagnostics import Loc
-from nabu.compiler.source import Doc, load_doc
 from nabu.schema.models import Default, LanguageDeclaration, Lexeme, Lexicon
+
+if TYPE_CHECKING:
+    # The compiler's package imports this module: its own are imported where they are used, so
+    # that this one can be imported first.
+    from nabu.compiler.diagnostics import Loc
+    from nabu.compiler.source import Doc
 
 LEXEME = "lexeme:"
 RULE = "rule:"
@@ -202,6 +207,9 @@ def load_language(
     root: Path, code: str, display: Mapping[Path, str] | None = None
 ) -> tuple[Language | None, list[LexiconError]]:
     """A language's lexicon from `root` (the repo's lexicons/), or what is wrong with it."""
+    from nabu.compiler.diagnostics import Loc
+    from nabu.compiler.source import load_doc
+
     folder = root / code
     shown = display or {}
     docs: list[Doc] = []
