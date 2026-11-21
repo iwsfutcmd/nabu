@@ -13,8 +13,15 @@ normalize:
   - whitespace: collapse
 match:
   case: none
-  marks: { set: "[\u064B-\u0652\u0670]", policy: ignore, optional: "[\u0652]" }   # harakat optional in answers
-  # REVIEW: sukun is optional when a learner writes the vowel marks (ADR 0054); the drafts disagree on it.
+  marks:
+    set: "[\u064B-\u0652\u0670]"   # harakat optional in answers
+    policy: ignore
+    # REVIEW: sukun is optional when a learner writes the vowel marks (ADR 0054); the drafts disagree on it.
+    optional: "[\u0652]"
+    # REVIEW: so is a fatha before a plain alif or alif maqsura (ADR 0054 as amended): it spells the a the
+    # alif writes anyway, and vocalized texts write it or not (مَرْحَبا, مَرْحَبَا). Any other mark there counts
+    # (بِالبيت: bi- before the article's alif), and so does the fatha before a hamza's alif (أ).
+    optionalBefore: [{ marks: "[\u064E]", letters: "[\u0627\u0649]" }]
   equivalences:
     - { id: persian-keyboard, map: { "\u06A9": "\u0643", "\u06CC": "\u064A" }, policy: accept }          # keheh/Farsi yeh typed on a Persian keyboard
     - { id: hamza-seat, map: { "\u0623": "\u0627", "\u0625": "\u0627", "\u0622": "\u0627", "\u0671": "\u0627" }, policy: accept-with-note, note: hamza }

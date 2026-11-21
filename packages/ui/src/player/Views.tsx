@@ -44,7 +44,7 @@ import {
   type ToneScore,
   type ToneSystem,
 } from "@nabu/core/speech";
-import { surfaceOf, textOfSurface } from "@nabu/core/text";
+import { surfaceOf, textOfSurface, wordIndexes } from "@nabu/core/text";
 import {
   directionOf,
   orthographyName,
@@ -700,6 +700,17 @@ const WordBank = ({
       ),
   );
   const tileRuby = intoTarget ? props.ruby : false;
+  // Once answered, a tile of the language being learned is a word to look up (P1): a tap opens its
+  // gloss, placed or not. Tiles in the learner's own language, and letters spelling a word, stay put.
+  const glossing = props.glossing;
+  const glossable = props.outcome !== undefined && intoTarget && !spelling && glossing !== undefined;
+  const tileKey = (i: number): string => `tile:${String(i)}`;
+  const lookUp = (i: number): void => {
+    const text = ex.tiles[i];
+    const token = text === undefined ? undefined : wordIndexes(text)[0];
+    if (text !== undefined && token !== undefined) glossing?.onTap({ key: tileKey(i), text, token });
+  };
+  const looked = (i: number): boolean | undefined => (glossable ? glossing?.tapped?.key === tileKey(i) : undefined);
   return (
     <div
       ref={region}
@@ -753,11 +764,12 @@ const WordBank = ({
               key={`${tileIndex}`}
               type="button"
               className={styles.tile}
-              disabled={locked}
-              aria-describedby={removeHint}
+              disabled={locked && !glossable}
+              aria-describedby={locked ? undefined : removeHint}
+              aria-pressed={looked(tileIndex)}
               data-ink-container="tile"
               data-placed-tile={tileIndex}
-              onClick={() => remove(position, true)}
+              onClick={() => (glossable ? lookUp(tileIndex) : remove(position, true))}
             >
               <T
                 text={ex.tiles[tileIndex] as TaggedText}
@@ -789,15 +801,16 @@ const WordBank = ({
               key={i}
               type="button"
               className={styles.tile}
-              disabled={locked}
+              disabled={locked && !glossable}
               draggable={!locked}
               autoFocus={i === remaining[0] && order.length === 0}
+              aria-pressed={looked(i)}
               data-ink-container="tile"
               data-tile={i}
               onDragStart={(e) =>
                 e.dataTransfer.setData("text/plain", String(i))
               }
-              onClick={() => add(i, true)}
+              onClick={() => (glossable ? lookUp(i) : add(i, true))}
             >
               {key >= 0 && key < 9 && (
                 <span

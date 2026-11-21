@@ -526,6 +526,20 @@
               "$ref": "#/$defs/UnicodeSetPattern",
               "description": "Marks of the set a learner supplying a word's vowel marks (the vocalize exercise, ADR 0054) may write or leave out: sukun, where the course's conventions differ."
             },
+            "optionalBefore": {
+              "description": "Marks a learner supplying a word's vowel marks (ADR 0054 as amended) may write or leave out on a letter, where the letter after it is one of `letters`: the fatha before the alif that writes its long a (مَرْحَبا and مَرْحَبَا are the same word). The same mark elsewhere counts as the others do.",
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["marks", "letters"],
+                "additionalProperties": false,
+                "properties": {
+                  "marks": { "$ref": "#/$defs/UnicodeSetPattern", "description": "The marks, of the set." },
+                  "letters": { "$ref": "#/$defs/UnicodeSetPattern", "description": "The letters before which they may be written or not: whole letters, as NFC writes them (a plain alif, never one carrying a hamza)." }
+                }
+              }
+            },
             "required": {
               "$ref": "#/$defs/UnicodeSetPattern",
               "description": "Marks of the set an answer must write as the expected word does (ADR 0134): one left out, added, changed or moved is never folded away by the policy and never a typo, and the word is wrong (WRONG_WORD where it spells another word of the course, with `wordNote`). Chaghatay's transliteration: the vowel marks (ä ö ü ā ī ū ē à), which say what the Arabic script leaves out. Its consonant marks keep the policy, but for `requiredLetters`."

@@ -236,13 +236,17 @@ export const glossAt = (course: CourseView, glossary: StoryGlossary, glosses: re
   // A homograph (知 "know", 知 "wise"; ADR 0071): an entry over this word alone, spelled as the
   // word is, glosses the lexeme the token names rather than whichever entry the glossary met first.
   const named = own !== undefined && isWord(own) ? baseIdOf(own) : undefined;
-  const spells = (id: string): boolean => (lexemes.get(id)?.forms?.[text.orthography] ?? []).some((f) => surfaceOf(f).normalize("NFC") === own?.surface.normalize("NFC"));
+  // The named lexeme's own form spelled as the word is: the entry it glosses is that form, with that
+  // lexeme's readings (bir "one", never the verb bär- that بیر also spells).
+  const spelling = (id: string): TaggedText | undefined =>
+    (lexemes.get(id)?.forms?.[text.orthography] ?? []).find((f) => surfaceOf(f).normalize("NFC") === own?.surface.normalize("NFC"));
   const hits = glossesAt(glosses, token).flatMap((g): Gloss[] => {
     const form = glossary.forms[g.entry];
     if (form === undefined) return [];
     const span = g.partial ? "part" : g.tokenEnd - g.tokenStart > 1 ? "phrase" : "whole";
-    const id = span === "whole" && named !== undefined && named !== g.id && spells(named) ? named : g.id;
-    return [{ id, form, meaning: meaning(id), span }];
+    const namedForm = span === "whole" && named !== undefined && named !== g.id ? spelling(named) : undefined;
+    const id = namedForm === undefined ? g.id : (named ?? g.id);
+    return [{ id, form: namedForm ?? form, meaning: meaning(id), span }];
   });
   if (hits.length > 0) return hits;
   if (own === undefined || !isWord(own)) return [];

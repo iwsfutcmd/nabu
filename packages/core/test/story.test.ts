@@ -5,7 +5,7 @@
 import type { LearnerEvent, SchemeId, TaggedText, Token } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { learnerEventOf, pathOf, replay, type EventMeta, type SessionMeta } from "../src/learner/index.ts";
-import { allLexemes, answerTextOf, lexemesById, createGrader, gradeExercise, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
+import { allLexemes, allSentences, answerTextOf, lexemesById, createGrader, gradeExercise, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
 import { allStories, courseGlossary, glossAt, glossLine, startStory, stepStory, storyAt, storyScript, type StoryScript, type StoryState } from "../src/story/index.ts";
 import { baseIdOf, formSignature, lexemeIdsOf, lexemesOf } from "../src/lesson/lexemes.ts";
 import { surfaceOf } from "../src/text/index.ts";
@@ -314,6 +314,29 @@ describe("tap-for-gloss on story lines", () => {
     expect(hits.every((h) => h.meaning !== undefined)).toBe(true);
     // 我 is spelled as its dictionary form: the entry is that form, with the reading its lexeme pins.
     expect(hits[0]?.form.tokens[0]?.ruby?.["jyutping" as SchemeId]?.map((s) => s.text)).toEqual(["ngo5"]);
+  });
+
+  it("a homograph is glossed as the word its token names, with that word's own form and reading (بیر: bir, not bär-)", () => {
+    const course = loadCourse("chg");
+    const glossary = courseGlossary(course);
+    const schluessel = "schluessel" as SchemeId;
+    const sentence = allSentences(course)
+      .map((x) => x.forms[course.orthography]?.text)
+      .find((t) => t?.tokens.some((k) => k.surface === "بیر" && baseIdOf(k) !== undefined && k.readings?.[schluessel] === "bir"));
+    if (sentence === undefined) throw new Error("no بیر 'one' sentence");
+    const at = sentence.tokens.findIndex((k) => k.surface === "بیر");
+    const named = baseIdOf(sentence.tokens[at] as Token);
+    const reading = (h: { readonly form: TaggedText } | undefined): readonly string[] | undefined => h?.form.tokens[0]?.ruby?.[schluessel]?.map((r) => r.text);
+    // In its sentence, and alone (a word-bank tile): the same lexeme, its form and its reading.
+    const inLine = glossAt(course, glossary, glossLine(course, glossary, sentence), sentence, at);
+    const tile = { ...sentence, tokens: [sentence.tokens[at] as Token] };
+    const alone = glossAt(course, glossary, glossLine(course, glossary, tile), tile, 0);
+    for (const hits of [inLine, alone]) {
+      const whole = hits.find((h) => h.span === "whole");
+      expect(whole?.id).toBe(named);
+      expect(surfaceOf(whole?.form ?? tile)).toBe("بیر");
+      expect(reading(whole)).toEqual(["bir"]);
+    }
   });
 
   it("a morph the word does not spell is glossed as unwritten: the Persian ezafe (ADR 0136)", () => {

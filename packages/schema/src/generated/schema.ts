@@ -637,13 +637,21 @@ export type UnicodeSetPattern1 = string;
  */
 export type UnicodeSetPattern2 = string;
 /**
+ * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
+ */
+export type UnicodeSetPattern3 = string;
+/**
+ * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
+ */
+export type UnicodeSetPattern4 = string;
+/**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
 export type NoteId1 = string;
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern3 = string;
+export type UnicodeSetPattern5 = string;
 /**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
@@ -682,11 +690,11 @@ export type SchemeId3 = string & { readonly __brand: "SchemeId" };
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern4 = string;
+export type UnicodeSetPattern6 = string;
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern5 = string;
+export type UnicodeSetPattern7 = string;
 /**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
@@ -5026,9 +5034,18 @@ export interface MatchPolicy {
     readonly policy: Policy;
     readonly note?: NoteId;
     readonly optional?: UnicodeSetPattern1;
-    readonly required?: UnicodeSetPattern2;
+    /**
+     * Marks a learner supplying a word's vowel marks (ADR 0054 as amended) may write or leave out on a letter, where the letter after it is one of `letters`: the fatha before the alif that writes its long a (مَرْحَبا and مَرْحَبَا are the same word). The same mark elsewhere counts as the others do.
+     *
+     * @minItems 1
+     */
+    readonly optionalBefore?: readonly {
+      readonly marks: UnicodeSetPattern2;
+      readonly letters: UnicodeSetPattern3;
+    }[];
+    readonly required?: UnicodeSetPattern4;
     readonly requiredNote?: NoteId1;
-    readonly requiredLetters?: UnicodeSetPattern3;
+    readonly requiredLetters?: UnicodeSetPattern5;
     readonly requiredLettersNote?: NoteId2;
     /**
      * Marks that tell words apart (ADR 0076): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies.
@@ -5356,8 +5373,8 @@ export interface CorrespondenceContext {
    * At the start or the end of a token, or of a lexeme a token writes.
    */
   readonly at?: "start" | "end";
-  readonly before?: UnicodeSetPattern4;
-  readonly after?: UnicodeSetPattern5;
+  readonly before?: UnicodeSetPattern6;
+  readonly after?: UnicodeSetPattern7;
 }
 /**
  * A reading scheme (ADR 0109): how a token's pinned reading is written, such as Jyutping, Pinyin, Baxter's Middle Chinese, sitelen Lasina, the Tiberian reading or Attic with its vowel lengths. Data in profiles/schemes/<id>.yaml: the pipeline reads it (nabu.schemes, which adds what voices do with readings) and core gets it through @nabu/schema/schemes. What a scheme can be used for follows from what it gives: shown as options or asked for (`answer`), typed (`typed`), heard as tones (`tones`).

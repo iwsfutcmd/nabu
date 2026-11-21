@@ -379,8 +379,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   data gives a syllable shape: only Jyutping so far; `char-read` is its multiple-choice twin, tone variants first, or
   where the scheme lists `variants` (letters the script writes alike: chg's vowels), homographs then those, ADR 0131) are
   sentence templates asking about one word (`word`, marked with `<T emphasis>`); only that word is credited; a lesson
-  plans one where it can. Optional marks: the profile's `match.marks.optional`; orthographies that spell the vowels
-  (apc: Arabizi), `match.marks.spelledIn`.
+  plans one where it can. Optional marks: the profile's `match.marks.optional`, and `optionalBefore` for marks optional
+  before a letter (apc, ar: the fatha before ا or ى, never before a hamza's seat; ADR 0054 amendment); orthographies
+  that spell the vowels (apc: Arabizi), `match.marks.spelledIn`.
 - Where a profile sets `input.markBuilder` (hbo, apc), `vocalize-build` asks the same word's marks put on its letters
   from buttons (ADR 0137), only once a vocalize card has shown them (`shown`); graded by `gradeVowels`. Never a text
   field for marks; never a list of marks in code (the letter stays chosen while the course attests more marks on it).
