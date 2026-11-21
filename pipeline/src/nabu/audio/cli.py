@@ -12,8 +12,8 @@ import typer
 
 from nabu.audio.course import Item, Written
 from nabu.audio.providers import Clip
-from nabu.items import iter_items
-from nabu.schema.models import AudioVoice, BundleUnit
+from nabu.items import Content, iter_items
+from nabu.schema.models import AudioVoice
 
 app = typer.Typer(no_args_is_help=True, add_completion=False, help="A course's audio clips.")
 
@@ -33,7 +33,7 @@ def phonemes_of(orthography: str) -> str:
     return espeak_voice_of(profiles()[orthography], espeak.has_voice)
 
 
-def _compiled(course: Path) -> tuple[Path, Any, list[BundleUnit], Written]:
+def _compiled(course: Path) -> tuple[Path, Any, Content, Written]:
     from nabu.compiler import compile_course
     from nabu.corecli import CoreCli
 
@@ -45,7 +45,7 @@ def _compiled(course: Path) -> tuple[Path, Any, list[BundleUnit], Written]:
         typer.echo(f"✗ {course} does not compile", err=True)
         raise typer.Exit(code=1)
     course_dir = course if course.is_dir() else course.parent
-    return course_dir, compiled.course, compiled.units, compiled.written
+    return course_dir, compiled.course, compiled.content, compiled.written
 
 
 def round_trip_of(source: Any) -> Callable[[Item, Clip], dict[str, Any]]:

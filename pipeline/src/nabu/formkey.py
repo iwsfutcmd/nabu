@@ -35,3 +35,14 @@ def parse_form_key(key: str) -> list[tuple[str, dict[str, str]]]:
         feats = dict(pair.split("=", 1) for pair in said.split(";")) if said else {}
         out.append((lexeme, feats))
     return out
+
+
+def is_form(item: str) -> bool:
+    """Whether an item's id is the key of a form (a lexeme with feature values, or a token built
+    of several lexemes), not of a lexeme's own entry."""
+    return item.startswith("lexeme:") and ("|form:" in item or "+" in item)
+
+
+def token_key(lexemes: Sequence[tuple[str, Mapping[str, str] | None]]) -> str | None:
+    """A token's key, or None for a token that names no lexeme."""
+    return form_key(lexemes) if lexemes else None

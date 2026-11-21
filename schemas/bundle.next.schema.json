@@ -249,6 +249,7 @@
         "reinforces": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/TeachableId" } },
         "sentences": { "type": "array", "items": { "type": "string" } },
         "alphabet": {
+          "title": "NextBundleAlphabet",
           "description": "An alphabet node's letters and practice lexemes, each with its reading in Latin letters (ADR 0088, 0133).",
           "type": "object",
           "required": ["orthography", "letters", "lexemes"],

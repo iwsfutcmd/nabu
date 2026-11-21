@@ -26,18 +26,17 @@ from nabu.analyzers import Analyzer, versions
 from nabu.compiler.build import Compiled
 from nabu.compiler.script import latin_orthographies
 from nabu.drills.rbnf import icu_version
-from nabu.items import iter_items, unit_json
+from nabu.formkey import form_key
+from nabu.items import Content, iter_items, lexicon_json, unit_json
 from nabu.paths import I18N_GENERATED, PROFILES
-from nabu.schema.models import (
-    BundleAudio,
-    BundleManifest,
-    BundleUnit,
-    CourseSource,
-    OrthographyProfile,
-)
+from nabu.schema.models import NextBundleAudio as BundleAudio
+from nabu.schema.models import NextBundleManifest as BundleManifest
+from nabu.schema.models import NextBundleUnit as BundleUnit
+from nabu.schema.models import NextCourseSource as CourseSource
+from nabu.schema.models import OrthographyProfile
 
-#: 1: credits are defined once, in the manifest's `credits` (ADR 0110).
-FORMAT_VERSION = 1
+#: 2: lexemes where a bundle had KCs (ADR 0145). 1 defined credits once (ADR 0110).
+FORMAT_VERSION = 2
 
 
 def canonical(data: Any) -> bytes:
@@ -145,13 +144,27 @@ def _strings(data: object) -> set[str]:
 
 
 def unit_assets(unit: BundleUnit, compiled: Compiled) -> list[str]:
-    """The media a unit's items use (Phase 10 per-unit downloads): the images it names, and the
-    bundled clips of every item id it names (its sentences, drills and story lines). An item
-    another unit owns but this one uses is included, so a downloaded unit never misses a clip."""
-    # Story lines are items by position ("<story>#<step>"), a string the unit itself never holds.
-    lines = {item.id for item in iter_items([unit]) if item.kind == "line"}
-    named = _strings(unit_json(unit)) | lines
-    images = {p for p in named if p in compiled.images}
+    """The media a unit's items use (Phase 10 per-unit downloads): the pictures of the lexemes it
+    names, and the bundled clips of every item id it names (its sentences, drills and story
+    lines, and the lexemes its nodes and tokens name). An item another unit also uses is
+    included in each, so a downloaded unit never misses a clip."""
+    # Story lines are items by position ("<story>#<step>"), a string the unit itself never holds;
+    # neither does it hold the key of a form one of its tokens writes.
+    items = list(iter_items(Content([unit])))
+    lines = {item.id for item in items if item.kind == "line"}
+    forms = {
+        form_key([(str(part.lexeme), part.feats) for part in t.lexemes])
+        for item in items
+        for tokens in item.forms.values()
+        for t in tokens
+        if t.lexemes
+    }
+    named = _strings(unit_json(unit)) | lines | forms
+    images = {
+        lexeme.image
+        for lexeme in compiled.lexicon.lexemes
+        if lexeme.image is not None and str(lexeme.id) in named and lexeme.image in compiled.images
+    }
     clips = {
         clip.path
         for item in sorted(named & compiled.audio_items.keys())
@@ -180,7 +193,9 @@ def write_bundle(
 
     def put(role: str, name: str, data: bytes, license_: str, source: str | None = None) -> str:
         digest = sha256(data)
-        rel = f"{role}s/{name}.{digest[:16]}.json"
+        # A role's files in a folder of their own; the one lexicon and alias table at the root.
+        folder = "" if role in ("lexicon", "aliases") else f"{role}s/"
+        rel = f"{folder}{name}.{digest[:16]}.json"
         (out_dir / rel).parent.mkdir(parents=True, exist_ok=True)
         (out_dir / rel).write_bytes(data)
         entry: dict[str, Any] = {
@@ -199,6 +214,15 @@ def write_bundle(
     for unit in compiled.units:
         rel = put("unit", unit.id, canonical(unit_json(unit)), course.license or "NOASSERTION")
         units.append({"id": unit.id, "file": rel, "assets": unit_assets(unit, compiled)})
+    put(
+        "lexicon",
+        "lexicon",
+        canonical(lexicon_json(compiled.lexicon)),
+        course.license or "NOASSERTION",
+    )
+    if compiled.aliases is not None:
+        # What each KC id of the course became: what upgrading an older log reads.
+        put("aliases", "aliases", canonical(compiled.aliases), course.license or "NOASSERTION")
 
     seen: set[str] = set()
     latin = latin_orthographies(compiled.course, profiles)
@@ -275,6 +299,9 @@ def write_bundle(
         "target": course.target,
         "orthographies": compiled.orthographies,
         "support": compiled.support,
+        "lexicon": course.lexicon,
+        **({"variety": course.variety} if course.variety is not None else {}),
+        **({"registers": list(course.registers)} if course.registers else {}),
         # What the app calls the course and its orthographies (ADR 0109): course data, not messages.
         **({"names": names_of(course)} if course.names else {}),
         # Only where the course names them (ADR 0071): other manifests stay as they were.

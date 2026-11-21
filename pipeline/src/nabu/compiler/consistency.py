@@ -1,10 +1,10 @@
 """Readings fixed by their words (ADR 0135).
 
-A word's reading follows from how it is written, its sense, its form and its morphs: two tokens
-annotated alike read alike. Where they do not, either the course has a mistake, or a distinction
-it has not annotated (two senses of one spelling, an unwritten morpheme, a gendered suffix): the
-fix is a sense, a form or a morph, never a reading that hides the cause. A token marked
-`readingVariant` is free variation and is left out.
+A token's reading follows from how it is written and what it writes, the lexemes and the feature
+values chosen on each: two tokens annotated alike read alike. Where they do not, either the course
+has a mistake, or a distinction it has not annotated (two lexemes of one spelling, a lexeme the
+script does not write, a gendered suffix): the fix is a lexeme or a feature value, never a reading
+that hides the cause. A token marked `readingVariant` is free variation and is left out.
 
 The check covers every reading scheme a course's tokens pin, and the vowel marks a vocalization
 gives (ADR 0053) where the course has one: a word's marked form is its reading then.
@@ -28,16 +28,20 @@ from collections.abc import Callable, Iterator, Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import TYPE_CHECKING, Any, cast
 
+from nabu.compiler import tokens as tk
 from nabu.compiler.diagnostics import Diagnostics, Loc
-from nabu.schema.models import CourseSource, SentenceForm, SourceToken
+from nabu.lexicon import Language
+from nabu.schema.models import NextCourseSource as CourseSource
+from nabu.schema.models import NextSentenceForm as SentenceForm
+from nabu.schema.models import NextToken as SourceToken
 from nabu.schemes import plugins, schemes
 
 if TYPE_CHECKING:
     from nabu.compiler.build import Unit
 
-#: How a word is annotated: (orthography, as written, sense, form, its morphs' KCs, its context,
-#: whether it is bound to the next word).
-Key = tuple[str, str, str | None, str | None, tuple[str, ...], str | None, bool]
+#: How a token is annotated: (orthography, as written, what it writes (its lexemes, each with the
+#: feature values chosen there, as a form's key), its context, whether it is bound to the next).
+Key = tuple[str, str, str | None, str | None, bool]
 #: The kind of reading compared: a scheme's id, or MARKS for a vocalization's marked form.
 MARKS = ":marks"
 
@@ -63,23 +67,12 @@ def _readings(token: Mapping[str, Any]) -> dict[str, str]:
 
 def key_of(orth: str, written: str, token: Mapping[str, Any], bound: bool) -> Key:
     """How a compiled token (a dict) is annotated."""
-    found = cast(list[dict[str, Any]], token.get("morphs") or [])
-    morphs = tuple(str(m.get("kc", "")) for m in found)
-    sense, form, context = token.get("sense"), token.get("form"), token.get("_context")
-    return (
-        orth,
-        written,
-        None if sense is None else str(sense),
-        None if form is None else str(form),
-        morphs,
-        None if context is None else str(context),
-        bound,
-    )
+    context = token.get("_context")
+    return (orth, written, tk.analysis(token), None if context is None else str(context), bound)
 
 
 def _source_key(orth: str, t: SourceToken, bound: bool) -> Key:
-    morphs = tuple(str(m.kc) for m in t.morphs or [])
-    return (orth, t.surface, t.sense, t.form, morphs, t.context, bound)
+    return (orth, t.surface, tk.source_analysis(t), t.context, bound)
 
 
 def _binds(scheme: str, nxt: Mapping[str, Any] | None) -> bool:
@@ -202,12 +195,10 @@ def report(observed: Observed, diags: Diagnostics, course: CourseSource) -> None
     for (key, kind), by in observed.readings.items():
         if len(by) < 2:
             continue
-        orth, written, sense, form, morphs, context, bound = key
+        orth, written, analysis, context, bound = key
         parts = (
             repr(written),
-            f"({sense})" if sense else "",
-            form or "",
-            " ".join(morphs),
+            f"({analysis})" if analysis else "",
             f"in {context}" if context else "",
             "bound" if bound else "",
         )
@@ -220,27 +211,26 @@ def report(observed: Observed, diags: Diagnostics, course: CourseSource) -> None
             lint,
             f"{orth}: {what} reads {label} {first!r} ×{len(firsts)} "
             f"(first at {firsts[0].file}:{firsts[0].line}) and {others}: annotate what tells "
-            "them apart (a sense, a form, a morph), or mark a free variant `readingVariant`",
+            "them apart (a lexeme, a feature value), or mark a free variant `readingVariant`",
             values[1][1][0],
         )
 
 
-def check_own(diags: Diagnostics, units: Sequence[Unit], orthographies: Sequence[str]) -> None:
-    """A KC entry's own readings (ADR 0117) against its first forms' spelling, where the scheme's
+def check_own(diags: Diagnostics, lang: Language, orthographies: Sequence[str]) -> None:
+    """An entry's own readings (ADR 0117) against its first spellings, where the scheme's
     readings spell their words (`reading.spelling`; a citation's accent as the scheme cites)."""
-    for unit in units:
-        for ki, kc in enumerate(unit.source.kcs):
-            for scheme, reading in (kc.readings or {}).items():
-                p = plugins(scheme) if scheme in schemes() else None
-                if p is None or p.spelling is None:
-                    continue
-                spelled = p.spelling(reading)
-                firsts = [(kc.forms or {}).get(o, [None])[0] for o in orthographies]
-                written = [f for f in firsts if f is not None]
-                cite: Callable[[str], str] = p.cite or (lambda w: w)
-                if written and not any(spelled in (w, cite(w)) for w in written):
-                    diags.report(
-                        "reading.spelling",
-                        f"{kc.id} reads {reading!r}, which spells {spelled!r}, not {written[0]!r}",
-                        unit.doc.loc("kcs", ki, "readings", scheme),
-                    )
+    for entry in lang.lexicon.lexemes:
+        for scheme, reading in (entry.readings or {}).items():
+            p = plugins(scheme) if scheme in schemes() else None
+            if p is None or p.spelling is None:
+                continue
+            spelled = p.spelling(reading)
+            firsts = [(entry.spelled or {}).get(o, [None])[0] for o in orthographies]
+            written = [f for f in firsts if f is not None]
+            cite: Callable[[str], str] = p.cite or (lambda w: w)
+            if written and not any(spelled in (w, cite(w)) for w in written):
+                diags.report(
+                    "reading.spelling",
+                    f"{entry.id} reads {reading!r}, which spells {spelled!r}, not {written[0]!r}",
+                    lang.loc(str(entry.id), "readings", scheme),
+                )

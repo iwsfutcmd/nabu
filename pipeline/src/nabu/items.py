@@ -1,25 +1,27 @@
-"""A compiled course's units and the items in them: every sentence, word KC and story line, as
+"""A compiled course's content and the items in it: every sentence, lexeme and story line, as
 voices read them, clips are made and checked for them, and a release keeps them.
 
-The compiler's units are the bundle's own models (`BundleUnit`, generated from schemas/), so a
+The compiler's units and lexicon are the bundle's own models (generated from schemas/), so a
 mistyped key or a changed shape fails as the course compiles, never in a long audio run.
 `iter_items` is the one walk over a course's items: nothing else goes through sentences, story
-lines and KCs by hand to find what is said. This module needs nothing of the compiler, so the
+lines and lexemes by hand to find what is said. This module needs nothing of the compiler, so the
 audio code and the compiler can both use it.
 """
 
 from __future__ import annotations
 
-from collections.abc import Iterable, Iterator, Mapping, Sequence
-from dataclasses import dataclass
-from typing import Any, Literal
+from collections.abc import Iterator, Mapping, Sequence
+from dataclasses import dataclass, field
+from typing import Any, Literal, cast
 
-from nabu.schema.models import BundleUnit, TokenModel
+from nabu.schema.models import BundleLexicon, Persons, TokenModel
+from nabu.schema.models import NextBundleSentence as BundleSentence
+from nabu.schema.models import NextBundleUnit as BundleUnit
 
 #: Tokens that are words: what a voice says, and what a reading belongs to.
 WORD_KINDS = ("word", "number")
 
-type ItemKind = Literal["sentence", "kc", "line"]
+type ItemKind = Literal["sentence", "entry", "line"]
 #: A speaker's gender, where the grammar fixes it (ADR 0075, 0078).
 type Gender = Literal["m", "f"]
 
@@ -29,16 +31,31 @@ def line_item(story: str, step: int) -> str:
     return f"{story}#{step}"
 
 
+def _no_lexicon() -> BundleLexicon:
+    return BundleLexicon.model_validate({"language": "und", "lexemes": []})
+
+
+@dataclass(frozen=True)
+class Content:
+    """What a course is made of once compiled: its units, and its lexicon (the course's lexemes,
+    which no unit holds)."""
+
+    units: Sequence[BundleUnit]
+    lexicon: BundleLexicon = field(default_factory=_no_lexicon)
+
+
 @dataclass(frozen=True)
 class CourseItem:
-    """A sentence, a word KC or a story line: something a voice says and a clip is of."""
+    """A sentence, an entry (a lexeme, or a letter of a script track, said alone) or a story
+    line: something a voice says and a clip is of."""
 
     id: str
     kind: ItemKind
-    #: What is said, by orthography: a sentence's or a line's tokens, a KC's first form's (its
-    #: lemma, what a word card shows). A KC with no form in an orthography has no entry for it.
+    #: What is said, by orthography: a sentence's or a line's tokens, a lexeme's first spelling's
+    #: (its lemma, what a word card shows). A lexeme with no spelling in an orthography has no
+    #: entry for it.
     forms: Mapping[str, Sequence[TokenModel]]
-    #: The speaker's gender where the grammar says who speaks: a sentence's `persons.speaker`, a
+    #: The speaker's gender where the grammar says who speaks: a sentence's `persons` tag, a
     #: story character's `speaker` (ADR 0078).
     said_by: Gender | None = None
     #: A story line's story, and the character who says it (None: the narrator).
@@ -46,19 +63,33 @@ class CourseItem:
     character: str | None = None
 
 
-def iter_items(units: Iterable[BundleUnit]) -> Iterator[CourseItem]:
-    """Every item of the units in the order voices read them: each sentence, then each KC, then
-    each story line, in course order. A story's questions are no items."""
-    units = list(units)
+def speaker_of(sentence: BundleSentence) -> Gender | None:
+    """Who says a sentence, where a tag of it says (ADR 0147)."""
+    for tag in sentence.tags or []:
+        persons = getattr(tag, "persons", None)
+        if persons is not None:
+            return cast(Persons, persons).speaker
+    return None
+
+
+def iter_items(content: Content) -> Iterator[CourseItem]:
+    """Every item of a course in the order voices read them: each sentence, then each lexeme
+    and each letter of a script track, then each story line, in course order. A story's
+    questions are no items."""
+    units = list(content.units)
     for unit in units:
         for s in unit.sentences:
             forms = {orth: form.text.tokens for orth, form in s.forms.items()}
-            said_by = s.persons.speaker if s.persons is not None else None
-            yield CourseItem(s.id, "sentence", forms, said_by)
+            yield CourseItem(s.id, "sentence", forms, speaker_of(s))
+    for lexeme in content.lexicon.lexemes:
+        first = {orth: forms[0].tokens for orth, forms in (lexeme.forms or {}).items() if forms}
+        yield CourseItem(str(lexeme.id), "entry", first)
     for unit in units:
-        for kc in unit.kcs:
-            first = {orth: forms[0].tokens for orth, forms in (kc.forms or {}).items() if forms}
-            yield CourseItem(kc.id, "kc", first)
+        for grapheme in unit.graphemes or []:
+            first = {
+                orth: forms[0].tokens for orth, forms in (grapheme.forms or {}).items() if forms
+            }
+            yield CourseItem(grapheme.id, "entry", first)
     for unit in units:
         for story in unit.stories or []:
             genders: dict[str, Gender | None] = {c.id: c.speaker for c in story.characters}
@@ -74,3 +105,8 @@ def iter_items(units: Iterable[BundleUnit]) -> Iterator[CourseItem]:
 def unit_json(unit: BundleUnit) -> dict[str, Any]:
     """A unit as its bundle file holds it (JSON: no nulls, schema names such as `register`)."""
     return unit.model_dump(mode="json", by_alias=True, exclude_none=True)
+
+
+def lexicon_json(lexicon: BundleLexicon) -> dict[str, Any]:
+    """A bundle's lexicon as its file holds it."""
+    return lexicon.model_dump(mode="json", by_alias=True, exclude_none=True)

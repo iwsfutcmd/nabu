@@ -1978,18 +1978,19 @@ export interface NextBundleNode {
   readonly introduces: readonly TeachableId[];
   readonly reinforces: readonly TeachableId[];
   readonly sentences: readonly string[];
-  /**
-   * An alphabet node's letters and practice lexemes, each with its reading in Latin letters (ADR 0088, 0133).
-   */
-  readonly alphabet?: {
-    readonly orthography: string;
-    readonly letters: readonly NextScriptItem[];
-    readonly lexemes: readonly NextScriptItem[];
-  };
+  readonly alphabet?: NextBundleAlphabet;
   readonly convert?: {
     readonly from: string;
     readonly to: string;
   };
+}
+/**
+ * An alphabet node's letters and practice lexemes, each with its reading in Latin letters (ADR 0088, 0133).
+ */
+export interface NextBundleAlphabet {
+  readonly orthography: string;
+  readonly letters: readonly NextScriptItem[];
+  readonly lexemes: readonly NextScriptItem[];
 }
 /**
  * A letter or a lexeme of an alphabet node: what it is, how the orthography writes it, and its reading in Latin letters (ADR 0133): a lexeme's pinned reading in its track's scheme's `latin`, a letter as that scheme writes it.

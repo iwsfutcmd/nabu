@@ -8,12 +8,13 @@ reviewed or published (generated drills are reviewed by construction), and then:
   story node goes with its story; a practice node stays while its unit keeps a lesson; a scenario
   stays while the node it follows does.
 - **Script tracks** (ADR 0073's amendment, D51): an alphabet node stays, with its letters, which
-  are the profile's. It keeps the words whose KCs the release keeps and its reviewed sentences or
-  stories use; with none, it teaches its letters alone. Tracks go along with reviewed content:
-  with nothing reviewed there is no release.
+  are the profile's. It keeps the lexemes its reviewed sentences or stories use; with none, it
+  teaches its letters alone. Tracks go along with reviewed content: with nothing reviewed there
+  is no release.
 - **Units:** a unit with no node left goes.
-- **Media:** only the clips of what is kept (sentences, story lines, the words of kept units), and
-  the images of kept units' words.
+- **The lexicon:** the lexemes the kept units name (a node's, a token's, an alphabet's).
+- **Media:** only the clips of what is kept (sentences, story lines, kept lexemes), and the
+  pictures of kept lexemes.
 - **The manifest** says `release: true`; its provenance and license counts are of what is kept.
 
 The demo and the committed bundles stay full builds: drafts are what reviewers read.
@@ -25,9 +26,12 @@ from dataclasses import dataclass, field, replace
 
 from nabu.compiler.build import Compiled
 from nabu.compiler.counts import add_count
-from nabu.items import iter_items
+from nabu.items import Content, iter_items
+from nabu.lexicon import LEXEME
 from nabu.provenance import signed_off
-from nabu.schema.models import BundleNode, BundleUnit, Provenance
+from nabu.schema.models import NextBundleNode as BundleNode
+from nabu.schema.models import NextBundleUnit as BundleUnit
+from nabu.schema.models import Provenance
 
 
 @dataclass
@@ -50,7 +54,7 @@ def _nodes(unit: BundleUnit, sentences: set[str], stories: set[str]) -> list[Bun
     nodes: list[BundleNode] = []
     for node in unit.nodes:
         if node.alphabet is not None:
-            nodes.append(node)  # its words are chosen once the units are (_alphabet_words)
+            nodes.append(node)  # its lexemes are chosen once the units are (_alphabet_lexemes)
         elif node.kind in ("lesson", "script"):
             node = node.model_copy(
                 update={"sentences": [s for s in node.sentences if s in sentences]}
@@ -66,8 +70,8 @@ def _nodes(unit: BundleUnit, sentences: set[str], stories: set[str]) -> list[Bun
     return [n for n in nodes if n.kind in ("lesson", "script", "story") or lessons]
 
 
-def _alphabet_words(unit: BundleUnit, kcs: set[str], report: ReleaseReport) -> BundleUnit:
-    """The unit with each alphabet node's words cut to those whose KCs are in `kcs`."""
+def _alphabet_lexemes(unit: BundleUnit, kept: set[str], report: ReleaseReport) -> BundleUnit:
+    """The unit with each alphabet node's lexemes cut to those in `kept`."""
     if all(n.alphabet is None for n in unit.nodes):
         return unit
     nodes: list[BundleNode] = []
@@ -75,12 +79,33 @@ def _alphabet_words(unit: BundleUnit, kcs: set[str], report: ReleaseReport) -> B
         if node.alphabet is None:
             nodes.append(node)
             continue
-        words = [w for w in node.alphabet.words if w.kc in kcs]
-        _count(report.kept, "alphabet words", len(words))
-        _count(report.dropped, "alphabet words", len(node.alphabet.words) - len(words))
-        alphabet = node.alphabet.model_copy(update={"words": words})
+        lexemes = [w for w in node.alphabet.lexemes if str(w.id) in kept]
+        _count(report.kept, "alphabet words", len(lexemes))
+        _count(report.dropped, "alphabet words", len(node.alphabet.lexemes) - len(lexemes))
+        alphabet = node.alphabet.model_copy(update={"lexemes": lexemes})
         nodes.append(node.model_copy(update={"alphabet": alphabet}))
     return unit.model_copy(update={"nodes": nodes})
+
+
+def _named(units: list[BundleUnit]) -> set[str]:
+    """The lexemes the units name: those a node introduces or reinforces, a sentence or a story
+    writes, or an alphabet node practises."""
+    out: set[str] = set()
+    for unit in units:
+        for node in unit.nodes:
+            out.update(str(t) for t in [*node.introduces, *node.reinforces])
+            if node.alphabet is not None:
+                out.update(str(w.id) for w in node.alphabet.lexemes)
+        for s in unit.sentences:
+            out.update(str(part).partition("|")[0] for part in s.parts)
+        for story in unit.stories or []:
+            out.update(str(part).partition("|")[0] for part in story.parts)
+            for step in story.steps:
+                for option in (step.line.options or []) if step.line is not None else []:
+                    for text in option.values():
+                        for t in text.tokens:
+                            out.update(str(part.lexeme) for part in t.lexemes or [])
+    return {name for name in out if name.startswith(LEXEME)}
 
 
 def release(compiled: Compiled) -> tuple[Compiled, ReleaseReport]:
@@ -110,11 +135,10 @@ def release(compiled: Compiled) -> tuple[Compiled, ReleaseReport]:
             continue
         units.append(unit)
         _count(report.kept, "units")
-    # An alphabet node's words: those whose KCs the release keeps and reviewed content uses.
-    defined = {k.id for u in units for k in u.kcs}
-    used = {kc for u in units for s in u.sentences for kc in s.kcs}
-    used |= {kc for u in units for s in u.stories or [] for kc in s.kcs}
-    units = [_alphabet_words(u, defined & used, report) for u in units]
+    # An alphabet node's lexemes: those reviewed content uses.
+    used = {str(part) for u in units for s in u.sentences for part in s.parts}
+    used |= {str(part) for u in units for s in u.stories or [] for part in s.parts}
+    units = [_alphabet_lexemes(u, used, report) for u in units]
     # A scenario follows a lesson or story node, of any unit: it stays while that node does.
     kept_nodes = {n.id for u in units for n in u.nodes}
     for i, unit in enumerate(units):
@@ -124,9 +148,13 @@ def release(compiled: Compiled) -> tuple[Compiled, ReleaseReport]:
         units[i] = unit.model_copy(update={"scenarios": scenarios})
         _count(report.kept, "scenarios", len(scenarios))
         _count(report.dropped, "scenarios", len(unit.scenarios) - len(scenarios))
-    # What a kept unit has (its sentences, its stories' lines, its words) keeps its clips.
-    items = {item.id for item in iter_items(units)}
-    images = {k.image for u in units for k in u.kcs if k.image}
+    # The lexicon: the lexemes the kept units name.
+    named = _named(units)
+    lexemes = [lexeme for lexeme in compiled.lexicon.lexemes if str(lexeme.id) in named]
+    lexicon = compiled.lexicon.model_copy(update={"lexemes": lexemes})
+    # What a kept unit has (its sentences, its stories' lines, its lexemes) keeps its clips.
+    items = {item.id for item in iter_items(Content(units, lexicon))}
+    images = {lexeme.image for lexeme in lexemes if lexeme.image}
     audio_items = {k: v for k, v in compiled.audio_items.items() if k in items}
     files = {clip.path for item in audio_items.values() for clip in item.values()}
     # The summary counts sentences and clips by item id, images by their bundle path.
@@ -138,6 +166,7 @@ def release(compiled: Compiled) -> tuple[Compiled, ReleaseReport]:
     out = replace(
         compiled,
         units=units,
+        lexicon=lexicon,
         provenance=provenance,
         licenses=licenses,
         counted=counted,

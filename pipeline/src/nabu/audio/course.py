@@ -1,6 +1,6 @@
 """A course's audio (gameplan §10): plan, synthesize, check and index its clips.
 
-`nabu audio <course>` compiles the course, then for each sentence, word KC and story line (item
+`nabu audio <course>` compiles the course, then for each sentence, lexeme and story line (item
 "<story>#<step>") reads the course voice's orthography:
 - the voice reads the **pinned reading** when it has one (Jyutping for Cantonese), never raw
   characters, so polyphones are said as the content says. A reading in a phoneme scheme (the
@@ -56,7 +56,8 @@ from nabu.audio.providers import (
     provider,
 )
 from nabu.audio.punctuation import closed, with_final_stop
-from nabu.items import WORD_KINDS, CourseItem, iter_items
+from nabu.formkey import is_form
+from nabu.items import WORD_KINDS, Content, CourseItem, iter_items
 from nabu.provenance import signed_off
 from nabu.schema.models import (
     AudioIndex,
@@ -64,7 +65,6 @@ from nabu.schema.models import (
     AudioRejection,
     AudioVerdicts,
     AudioVoice,
-    BundleUnit,
     ReferenceVoice,
     TokenModel,
     TokenTiming,
@@ -89,7 +89,7 @@ class Span:
 
 @dataclass(frozen=True)
 class Item:
-    item: str  # sentence id or KC id
+    item: str  # a sentence's id, a lexeme's, or a story line's
     input: str
     spans: tuple[Span, ...]
     expected: str  # what a listener should hear, in the orthography (for the round-trip check)
@@ -352,15 +352,39 @@ def checked_voices(index: AudioIndex, voices: Sequence[AudioVoice]) -> dict[str,
     return out
 
 
+#: The voices a course pins (courses/<id>/audio/assignment.yaml): an item that keeps its voice
+#: whatever its id draws. Written when the lexical model renamed every word's item (a voice is
+#: drawn from a seed of the id, so a renamed item would have drawn again).
+ASSIGNMENT = "assignment.yaml"
+
+
+def pinned_voices(adir: Path, voices: Sequence[AudioVoice]) -> dict[str, str]:
+    """The items whose voice the course pins, and the id of that voice, where the cast has it."""
+    path = adir / ASSIGNMENT
+    if not path.is_file():
+        return {}
+    data = cast("dict[str, Any]", yaml.safe_load(path.read_text(encoding="utf-8")) or {})
+    cast_ids = {v.id for v in voices}
+    pinned = cast("dict[str, Any]", data.get("voices") or {})
+    return {str(item): str(voice) for item, voice in pinned.items() if str(voice) in cast_ids}
+
+
+def kept_voices(adir: Path, index: AudioIndex, voices: Sequence[AudioVoice]) -> dict[str, str]:
+    """The items that keep a voice whatever their id draws: one the course pins, and above it
+    one a person checked a clip in (ADR 0078)."""
+    return {**pinned_voices(adir, voices), **checked_voices(index, voices)}
+
+
 def assignment(
-    units: Sequence[BundleUnit],
+    content: Content,
     voices: Sequence[AudioVoice],
     checked: Mapping[str, str] | None = None,
 ) -> dict[str, str]:
-    """Every sentence, word KC and story line, and the id of the cast voice that reads it
-    (pick_voice). A story character keeps one voice through the story. An item a person checked
-    keeps the voice it was checked in (a story character: that of its first checked line), unless
-    the item's grammar wants the other gender and the cast has a voice of it."""
+    """Every sentence, lexeme and story line, and the id of the cast voice that reads it
+    (pick_voice). A story character keeps one voice through the story. An item a person checked,
+    or whose voice the course pins (`kept_voices`), keeps that voice (a story character: that of
+    its first checked line), unless the item's grammar wants the other gender and the cast has
+    a voice of it."""
     by_id = {v.id: v for v in voices}
     kept = checked or {}
 
@@ -378,7 +402,7 @@ def assignment(
     out: dict[str, str] = {}
     # A story's lines by who says them: one voice for each character, one for the narrator.
     lines: dict[tuple[str | None, str | None], list[CourseItem]] = {}
-    for item in iter_items(units):
+    for item in iter_items(content):
         if item.kind == "line":
             lines.setdefault((item.story, item.character), []).append(item)
         else:
@@ -438,29 +462,30 @@ def _sentence(
 
 
 def plan(
-    units: Sequence[BundleUnit],
+    content: Content,
     voice: AudioVoice,
     written: Written | None = None,
     voices: Sequence[AudioVoice] | None = None,
     checked: Mapping[str, str] | None = None,
 ) -> tuple[list[Item], list[str]]:
-    """Sentences, word KCs and story lines the voice can read, in that order (nabu.items), and the
+    """Sentences, lexemes and story lines the voice can read, in that order (nabu.items), and the
     ones it cannot (no pinned reading). Given the course's whole cast (`voices`, and the voices
     people `checked`), only the items the assignment gives this voice (ADR 0078); alone, every
-    item. `units` are the compiler's: a word KC is read from the reading it pinned on the KC's
-    form (ADR 0117). A story line is read like a sentence; its id is "<story>#<step>".
+    item. `content` is the compiler's: a lexeme is read from the reading it pinned on the
+    entry's spelling (ADR 0117). A story line is read like a sentence; its id is
+    "<story>#<step>".
     `written`: the source's own surfaces where the compiler added vowel marks."""
-    owner = assignment(units, voices or [voice], checked)
+    owner = assignment(content, voices or [voice], checked)
     items: list[Item] = []
     skipped: list[str] = []
     if voice.pronounce is not None:
         _ipa(voice.pronounce)
     scheme = _scheme(voice)
-    for item in iter_items(units):
+    for item in iter_items(content):
         tokens = item.forms.get(voice.orthography)
         if tokens is None or owner.get(item.id) != voice.id:
             continue
-        if item.kind == "kc":
+        if item.kind == "entry":
             planned = _word_card(item, tokens, voice, scheme, written or {})
         else:
             planned = _sentence(item, tokens, voice, written or {})
@@ -640,7 +665,7 @@ def take_of(old: Any, item: Item, tts: Provider) -> int:
 
 def synthesize_course(
     course_dir: Path,
-    units: Sequence[BundleUnit],
+    content: Content,
     voices: AudioVoice | Sequence[AudioVoice],
     check: Callable[[Item, Clip], dict[str, Any]] | None = None,
     written: Written | None = None,
@@ -658,8 +683,8 @@ def synthesize_course(
     cast_ = [voices] if isinstance(voices, AudioVoice) else list(voices)
     adir = audio_dir(course_dir)
     index = read_index(adir)
-    checked = checked_voices(index, cast_)
-    owner = assignment(units, cast_, checked)
+    checked = kept_voices(adir, index, cast_)
+    owner = assignment(content, cast_, checked)
     running = [v for v in cast_ if only in (None, v.id)]
     clips_dir = adir / "clips"
     clips_dir.mkdir(parents=True, exist_ok=True)
@@ -667,7 +692,7 @@ def synthesize_course(
     previous = {(c.item, c.speed): c for c in index.clips if c.synthetic}
     report = Report()
     for v in cast_:
-        report.shares[v.id] = len(plan(units, v, written, cast_, checked)[0])
+        report.shares[v.id] = len(plan(content, v, written, cast_, checked)[0])
     #: The clips to make, voice by voice.
     wanted: list[Job] = []
     kept: list[Any] = []
@@ -678,7 +703,7 @@ def synthesize_course(
         settings = tts.settings()
         author = f"generated:{tts.name}@{version}"
         rate = tts.speed(1.0)
-        items, skipped = plan(units, voice, written, cast_, checked)
+        items, skipped = plan(content, voice, written, cast_, checked)
         report.skipped += skipped
         for item in items:
             key = (item.item, SPEED)
@@ -723,6 +748,9 @@ def synthesize_course(
     others = [
         c for key, c in previous.items() if key not in claimed and owner.get(c.item) in resting
     ]
+    # A form's clip (formkey.is_form) is no voice's to plan: no card says a form alone. It is
+    # kept as it is, as a recording is.
+    others += [c for key, c in previous.items() if key not in claimed and is_form(c.item)]
     fresh: list[dict[str, Any]] = []
     # Everything but the clips (the reference voices) is kept as it was.
     references = {
@@ -810,7 +838,7 @@ def ipa_phones(word: str) -> list[str]:
 
 def align_course(
     course_dir: Path,
-    units: Sequence[BundleUnit],
+    content: Content,
     voice: AudioVoice,
     phonemes: str,
     written: Written | None = None,
@@ -829,7 +857,9 @@ def align_course(
     adir = audio_dir(course_dir)
     index = read_index(adir)
     cast_ = voices or [voice]
-    items = {i.item: i for i in plan(units, voice, written, cast_, checked_voices(index, cast_))[0]}
+    items = {
+        i.item: i for i in plan(content, voice, written, cast_, kept_voices(adir, index, cast_))[0]
+    }
     clips = list(index.clips)
     done = 0
     for k, clip in enumerate(clips):
@@ -874,7 +904,7 @@ def align_course(
 
 def check_course(
     course_dir: Path,
-    units: Sequence[BundleUnit],
+    content: Content,
     voices: Sequence[AudioVoice],
     check: Callable[[Item, Clip], dict[str, Any]],
     written: Written | None = None,
@@ -884,9 +914,9 @@ def check_course(
     saved as it goes. Clips said alike share a file, heard once. Returns the clips by status."""
     adir = audio_dir(course_dir)
     index = read_index(adir)
-    checked = checked_voices(index, voices)
+    checked = kept_voices(adir, index, voices)
     reads = {
-        (v.voice, i.item): i for v in voices for i in plan(units, v, written, voices, checked)[0]
+        (v.voice, i.item): i for v in voices for i in plan(content, v, written, voices, checked)[0]
     }
     clips = list(index.clips)
     heard: dict[str, Clip] = {}

@@ -10,7 +10,7 @@ from __future__ import annotations
 import hashlib
 import json
 import unicodedata
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, cast
@@ -19,34 +19,41 @@ import regex
 import yaml
 from pydantic import BaseModel, ValidationError
 
+from nabu import lexicon as lx
 from nabu import sitelen_pona
 from nabu.analyzers import Analyzer, analyzers_by_tool
 from nabu.compiler import consistency
 from nabu.compiler import text as tx
+from nabu.compiler import tokens as tk
 from nabu.compiler.audio import ShippedClip, check_audio
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.diagnostics import Diagnostics, Loc
-from nabu.compiler.readings import pin_kc_readings
+from nabu.compiler.readings import pin_lexeme_readings
 from nabu.compiler.scenarios import compile_scenarios
 from nabu.compiler.script import compile_alphabets, with_alphabets
 from nabu.compiler.source import Doc, load_doc
 from nabu.compiler.stories import LineForm, compile_stories
 from nabu.corecli import CoreCli
 from nabu.drills.rbnf import icu_version, spellout, transform
+from nabu.items import Content
 from nabu.paths import I18N_GENERATED, PROFILES
 from nabu.schema.models import (
-    BundleUnit,
-    CourseSource,
+    BundleLexicon,
     LogographsStep,
     OrthographyProfile,
-    SentenceForm,
-    SentenceSource,
-    UnitSource,
+    Persons,
     VocalizationSource,
 )
+from nabu.schema.models import NextBundleUnit as BundleUnit
+from nabu.schema.models import NextCourseSource as CourseSource
+from nabu.schema.models import NextSentenceForm as SentenceForm
+from nabu.schema.models import NextSentenceSource as SentenceSource
+from nabu.schema.models import NextUnitSource as UnitSource
 from nabu.schemes import plugins, schemes
 
-I_PLUS_ONE_KINDS = ("sense", "form", "construction")
+#: What counts towards a sentence's new material (i+1): lexemes, the feature values a node
+#: introduces and rules. A script track's letters do not.
+I_PLUS_ONE_KINDS = ("lexeme", "feature", "rule")
 CORRECT = ("CORRECT", "CORRECT_ALT")
 
 
@@ -79,6 +86,12 @@ class Compiled:
     course: CourseSource
     #: The bundle's units, as its schema types them (nabu.items walks the items in them).
     units: list[BundleUnit] = field(default_factory=lambda: [])
+    #: The bundle's lexicon: the course's lexemes, the labels of its feature values, its rules.
+    lexicon: BundleLexicon = field(
+        default_factory=lambda: BundleLexicon.model_validate({"language": "und", "lexemes": []})
+    )
+    #: What each KC id of the course became (its aliases.yaml), where the course has one.
+    aliases: dict[str, Any] | None = None
     orthographies: list[str] = field(default_factory=lambda: [])
     support: list[str] = field(default_factory=lambda: [])
     licenses: dict[str, int] = field(default_factory=lambda: {})
@@ -92,6 +105,11 @@ class Compiled:
     audio_items: dict[str, dict[str, ShippedClip]] = field(default_factory=lambda: {})
     # (item, orthography) → token surfaces as written, where vowel marks were added (ADR 0053)
     written: dict[tuple[str, str], list[str]] = field(default_factory=lambda: {})
+
+    @property
+    def content(self) -> Content:
+        """The course's units and lexicon together: what its items are walked from."""
+        return Content(self.units, self.lexicon)
 
 
 @dataclass
@@ -111,6 +129,10 @@ class Ctx:
     profiles: dict[str, OrthographyProfile]
     exemplars: dict[str, dict[str, list[str]]]
     analyzers: dict[str, Analyzer]
+    #: The course's language: its lexicon and what it declares.
+    lang: lx.Language
+    #: Rules the compiler names itself (a drill's), with what a learner is shown for each.
+    made_rules: dict[str, dict[str, Any]] = field(default_factory=lambda: {})
     vocalization: dict[str, Vocalized] = field(default_factory=lambda: {})
     written: dict[tuple[str, str], list[str]] = field(default_factory=lambda: {})
     # Each orthography's script (`script_of`), as it is first needed.
@@ -371,18 +393,28 @@ def compile_form(
             d: dict[str, Any] = {"surface": t.surface}
             if t.kind is not None:
                 d["kind"] = t.kind
-            if t.sense is not None:
-                d["sense"] = t.sense
+            if t.lexeme is not None and t.lexemes:
+                diags.report(
+                    "parse.token-lexemes",
+                    f"{t.surface!r} names its lexeme ({t.lexeme}) and lists several: one or the "
+                    "other",
+                    doc.loc(*at, "tokens"),
+                )
+            if t.feats and t.lexeme is None:
+                diags.report(
+                    "parse.token-lexemes",
+                    f"{t.surface!r} has feature values and names no lexeme to have them",
+                    doc.loc(*at, "tokens"),
+                )
+            parts = tk.written(t)
+            if parts:
+                d["lexemes"] = parts
             if t.readings:
                 d["readings"] = dict(t.readings)
-            if t.morphs:
-                d["morphs"] = [m.model_dump() for m in t.morphs]
             if t.variants:
                 d["variants"] = list(t.variants)
             if t.tile is not None:
                 d["tileGroup"] = t.tile
-            if t.form is not None:
-                d["form"] = t.form
             if t.vocalized is not None:
                 d["_vocalized"] = t.vocalized
             if t.readingVariant:
@@ -458,7 +490,7 @@ def compile_form(
                 "not-nfc": "text.not-nfc",
                 "splits-grapheme": "text.splits-grapheme",
                 "ruby-mismatch": "enrich.ruby-unaligned",
-                "morphs-mismatch": "parse.token-mismatch",
+                "lexemes-mismatch": "parse.token-mismatch",
                 "lang-outside-orthography": "parse.unknown-orthography",
             }.get(issue, "parse.token-mismatch")
             diags.report(lint, f"TaggedText invariant: {issue}", loc)
@@ -552,8 +584,8 @@ def mark_vowels(
     """Gives each word its vowel marks (ADR 0053), from the token's own `vocalized`, else the
     course's vocalization of its surface. A word written with some marks keeps them and takes
     the rest from the vocalization of its letters. A word with several vocalizations and no
-    `vocalized` of its own stays as written, with a warning (`warn`). Morphs are marked to
-    match."""
+    `vocalized` of its own stays as written, with a warning (`warn`). Where the token writes
+    several lexemes, each one's letters are marked to match."""
     lex = ctx.vocalization.get(orth)
     profile = ctx.profiles.get(orth)
     for t in toks:
@@ -601,25 +633,26 @@ def mark_vowels(
                 continue
         if marked == surface:
             continue
-        morphs = cast(list[dict[str, Any]], t.get("morphs") or [])
-        if morphs:
-            pieces = _split_marked(marked, [str(m["surface"]) for m in morphs], marks)
+        parts = tk.lexemes_of(t)
+        letters = tk.split_surfaces(parts)
+        if letters is not None:
+            pieces = _split_marked(marked, letters, marks)
             if pieces is None:
                 continue
-            for m, piece in zip(morphs, pieces, strict=True):
-                m["surface"] = piece
+            for part, piece in zip(parts, pieces, strict=True):
+                part["surface"] = piece
         t["_written"] = surface
         t["surface"] = marked
 
 
-def marked(ctx: Ctx, orth: str, text: dict[str, Any], kc: str | None) -> dict[str, Any]:
-    """A word form (TaggedText) with its vowel marks. KC forms are strings with no token of
-    their own to choose between vocalizations, so an ambiguous one stays as written. The KC's
-    first form, which voices read, keeps its written surfaces in `ctx.written`."""
+def marked(ctx: Ctx, orth: str, text: dict[str, Any], lexeme: str | None) -> dict[str, Any]:
+    """An entry's spelling (TaggedText) with its vowel marks. A spelling is a string with no
+    token of its own to choose between vocalizations, so an ambiguous one stays as written. The
+    entry's first spelling, which voices read, keeps its written surfaces in `ctx.written`."""
     tokens: list[dict[str, Any]] = text["tokens"]
     mark_vowels(ctx, orth, tokens, Loc("", 0), warn=False)
-    if kc is not None and any("_written" in t for t in tokens):
-        ctx.written[(kc, orth)] = [str(t.get("_written", t["surface"])) for t in tokens]
+    if lexeme is not None and any("_written" in t for t in tokens):
+        ctx.written[(lexeme, orth)] = [str(t.get("_written", t["surface"])) for t in tokens]
     for t in tokens:
         t.pop("_written", None)
     return text
@@ -640,15 +673,27 @@ def _course_file(path: Path) -> Path:
     return path / "course.yaml" if path.is_dir() else path
 
 
+def lexicons_dir(course_file: Path) -> Path:
+    """Where a course's lexicons are kept: the repo's lexicons/, beside courses/; for a course
+    kept elsewhere (a test's), a lexicons/ folder beside it or above it."""
+    here = course_file.parent
+    for folder in (here, here.parent, here.parent.parent):
+        if (folder / "lexicons").is_dir():
+            return folder / "lexicons"
+    return here.parent.parent / "lexicons"
+
+
 def compile_course(
     path: Path,
     cli: CoreCli,
     profiles: dict[str, OrthographyProfile] | None = None,
     analyzers: dict[str, Analyzer] | None = None,
     audio: bool = True,
+    lexicons: Path | None = None,
 ) -> tuple[Diagnostics, Compiled | None]:
     """`audio=False` leaves out the checks of the audio index: the audio commands write that
-    index, so a broken one must not stop them mending it."""
+    index, so a broken one must not stop them mending it. `lexicons`: where the course's
+    language keeps its lexicon, if not the repo's lexicons/."""
     diags = Diagnostics()
     course_file = _course_file(path)
     base = course_file.parent.parent
@@ -656,19 +701,24 @@ def compile_course(
     def display(p: Path) -> str:
         return p.relative_to(base).as_posix()
 
+    # ---- stage 1: parse
+    doc = load_doc(course_file, display(course_file))
+    course = _validate(CourseSource, doc, diags)
+    if course is None:
+        return diags, None
+    language, problems = lx.load_language(lexicons or lexicons_dir(course_file), course.lexicon)
+    for problem in problems:
+        diags.report("parse.schema", problem.message, problem.loc)
+    if language is None:
+        return diags, None
     ctx = Ctx(
         diags,
         cli,
         profiles if profiles is not None else load_profiles(),
         load_exemplars(),
         analyzers if analyzers is not None else analyzers_by_tool(),
+        language,
     )
-
-    # ---- stage 1: parse
-    doc = load_doc(course_file, display(course_file))
-    course = _validate(CourseSource, doc, diags)
-    if course is None:
-        return diags, None
     units: list[Unit] = []
     for i, item in enumerate(course.units):
         if isinstance(item, str):
@@ -707,9 +757,10 @@ def compile_course(
                     )
 
     _nfc_and_invisibles(ctx, course, doc, units)
+    _lexicon(ctx, course, doc)
     # A form pinned once fills its other tokens' readings (ADR 0135).
     ctx.observed.prepare(units)
-    consistency.check_own(diags, units, list(course.orthographies))
+    consistency.check_own(diags, ctx.lang, list(course.orthographies))
 
     # ---- stages 2–3: forms → TaggedText
     compiled_forms: dict[tuple[int, int], dict[str, dict[str, Any]]] = {}
@@ -725,59 +776,73 @@ def compile_course(
             _transliteration(ctx, unit, si, s)
 
     # ---- stage 5: curriculum
-    sentence_kcs = _curriculum(ctx, course, units, compiled_forms)
-    stories = compile_stories(ctx, course, units, compiled_forms)
+    taught = _taught(ctx, units)
+    sentence_parts = _curriculum(ctx, course, units, compiled_forms, taught)
+    stories = compile_stories(ctx, course, units, compiled_forms, taught)
     scenarios = compile_scenarios(ctx, course, units)
     consistency.report(ctx.observed, diags, course)
     # ---- stage 6: grading
     _grading(ctx, course, units)
-    # ---- stage 7: glossary, tiles (script tracks once KC readings are pinned, below)
-    _glossary(ctx, course, units, compiled_forms, stories.lines)
+    # ---- stage 7: glossary, tiles (script tracks once readings are pinned, below)
+    used = _used(units, compiled_forms, stories.lines, taught)
+    _glossary(ctx, course, units, compiled_forms, stories.lines, used)
     # ---- stage 9: packaging lints
     compiled = Compiled(
         course=course, orthographies=list(course.orthographies), support=list(course.support)
     )
     _packaging(ctx, course, units, compiled)
-    image_paths = _images(ctx, course_file.parent, units, compiled)
+    image_paths = _images(ctx, used, compiled)
     if diags.errors:
         return diags, None
-    # From here on the course is the bundle's typed units: a key mistyped or a shape changed
-    # fails here, as the course compiles.
+    # From here on the course is the bundle's typed units and lexicon: a key mistyped or a shape
+    # changed fails here, as the course compiles.
     bundled = [
         BundleUnit.model_validate(
-            _bundle_unit(ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths)
+            _bundle_unit(ctx, course, ui, unit, compiled_forms, sentence_parts)
             | ({"stories": stories.by_unit[ui]} if ui in stories.by_unit else {})
             | ({"scenarios": scenarios[ui]} if ui in scenarios else {})
         )
         for ui, unit in enumerate(units)
     ]
+    lexicon = BundleLexicon.model_validate(_bundle_lexicon(ctx, course, used, image_paths))
     compiled.written = ctx.written
-    # Every word of a KC's forms takes one reading per scheme, which word cards show, voices read
-    # and minimal pairs compare (ADR 0117); a KC's entry may choose its first form's (`readings`).
-    entries = {kc.id: (unit, ki, kc) for unit in units for ki, kc in enumerate(unit.source.kcs)}
-    compiled.units, refused = pin_kc_readings(
+    # Every word of an entry's spellings takes one reading per scheme, which word cards show,
+    # voices read and minimal pairs compare (ADR 0117); an entry may choose its first
+    # spelling's (`readings`).
+    compiled.units = bundled
+    compiled.lexicon, refused = pin_lexeme_readings(
+        lexicon,
         bundled,
         list(course.orthographies),
         lambda orth: _ruby_schemes(ctx.profiles[orth]),
         lambda orth: _script(ctx, orth),
-        {kc_id: kc.readings for kc_id, (_, _, kc) in entries.items() if kc.readings},
+        {
+            str(entry.id): entry.readings
+            for entry in ctx.lang.lexicon.lexemes
+            if entry.readings and str(entry.id) in used
+        },
     )
     for r in refused:
-        unit, ki, _ = entries[r.kc]
         ctx.diags.report(
-            "kc.reading", f"{r.kc}: {r.message}", unit.doc.loc("kcs", ki, "readings", r.scheme)
+            "lexeme.reading",
+            f"{r.lexeme}: {r.message}",
+            ctx.lang.loc(r.lexeme, "readings", r.scheme),
         )
-    # ---- stage 7: script tracks, which ask a word as its KC's pinned reading (ADR 0133)
+    # ---- stage 7: script tracks, which ask a lexeme as its pinned reading (ADR 0133)
     alphabets = compile_alphabets(
         diags,
         course,
         units,
-        compiled.units,
+        compiled.lexicon,
+        ctx.lang,
         ctx.profiles,
         lambda o, t: support_text(ctx, o, t, course.target),
         ctx.cli,
     )
     compiled.units = with_alphabets(compiled.units, alphabets)
+    aliases = course_file.parent / "aliases.yaml"
+    if aliases.is_file():
+        compiled.aliases = yaml.safe_load(aliases.read_text(encoding="utf-8"))
     if audio:
         check_audio(ctx, course, course_file, display, compiled)
     if diags.errors:
@@ -785,29 +850,30 @@ def compile_course(
     return diags, compiled
 
 
-def _images(ctx: Ctx, course_dir: Path, units: list[Unit], compiled: Compiled) -> dict[str, str]:
-    """KC images → content-addressed bundle paths; licenses and provenance join the summary."""
+def _images(ctx: Ctx, used: set[str], compiled: Compiled) -> dict[str, str]:
+    """The pictures of the course's lexemes → content-addressed bundle paths; licenses and
+    provenance join the summary. A picture's file is relative to its lexicon's own file."""
     out: dict[str, str] = {}
-    for unit in units:
-        for ki, kc in enumerate(unit.source.kcs):
-            image = kc.image
-            if image is None:
-                continue
-            path = course_dir / image.file
-            if not path.is_file():
-                ctx.diags.report(
-                    "parse.missing-asset",
-                    f"{kc.id}: no image file {image.file}",
-                    unit.doc.loc("kcs", ki, "image", "file"),
-                )
-                continue
-            data = path.read_bytes()
-            digest = hashlib.sha256(data).hexdigest()
-            rel = f"images/{path.stem}.{digest[:16]}{path.suffix}"
-            compiled.images[rel] = (data, image.license, image.source)
-            out[kc.id] = rel
-            p = image.provenance
-            count(compiled, Counted(rel, image.license, p.status, p.author))
+    lexicon_dir = Path(ctx.lang.root) / ctx.lang.code
+    for entry in ctx.lang.lexicon.lexemes:
+        image = entry.image
+        if image is None or str(entry.id) not in used:
+            continue
+        path = lexicon_dir / image.file
+        if not path.is_file():
+            ctx.diags.report(
+                "parse.missing-asset",
+                f"{entry.id}: no image file {image.file}",
+                ctx.lang.loc(str(entry.id), "image", "file"),
+            )
+            continue
+        data = path.read_bytes()
+        digest = hashlib.sha256(data).hexdigest()
+        rel = f"images/{path.stem}.{digest[:16]}{path.suffix}"
+        compiled.images[rel] = (data, image.license, image.source)
+        out[str(entry.id)] = rel
+        p = image.provenance
+        count(compiled, Counted(rel, image.license, p.status, p.author))
     return out
 
 
@@ -830,8 +896,8 @@ def _duplicates(ctx: Ctx, units: list[Unit]) -> None:
 
     for unit in units:
         check("unit", unit.source.id, unit.doc.loc("id"))
-        for i, kc in enumerate(unit.source.kcs):
-            check("kc", kc.id, unit.doc.loc("kcs", i))
+        for i, grapheme in enumerate(unit.source.graphemes or []):
+            check("letter", grapheme.id, unit.doc.loc("graphemes", i))
         for i, node in enumerate(unit.source.nodes):
             check("node", node.id, unit.doc.loc("nodes", i))
         for i, s in enumerate(unit.source.sentences):
@@ -840,6 +906,8 @@ def _duplicates(ctx: Ctx, units: list[Unit]) -> None:
             check("story", story.id, unit.doc.loc("stories", i))
         for i, card in enumerate(unit.source.scenarios or []):
             check("scenario", card.id, unit.doc.loc("scenarios", i))
+    for i, entry in enumerate(ctx.lang.lexicon.lexemes):
+        check("lexeme", str(entry.id), ctx.lang.doc.loc("lexemes", i))
 
 
 def _strings(
@@ -875,11 +943,14 @@ def _nfc_and_invisibles(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Un
         doc.lines,
     )
     docs = [course_doc, *(u.doc for u in units if u.doc.data is not None)]
-    for d in docs:
+    # The language's own files: an entry's spellings hold what any orthography of it allows.
+    own = [ctx.lang.doc, ctx.lang.declared_doc]
+    in_language = _language_invisibles(ctx, ctx.lang.code)
+    for d in [*docs, *own]:
         for path, value in _strings(d.data):
             if unicodedata.normalize("NFC", value) != value:
                 ctx.diags.report("text.not-nfc", f"{value!r} is not NFC", d.loc(*path))
-            here = allowed
+            here = in_language if any(d is o for o in own) else allowed
             if d is course_doc and len(path) > 1 and path[0] == "names":
                 # A name is text in the language it is given in (ADR 0109): a Persian name keeps
                 # its ZWNJ whatever course it names.
@@ -945,11 +1016,11 @@ def _jyutping(ctx: Ctx, loc: Loc, hant: SentenceForm, pinned: SentenceForm) -> N
 def _sitelen_pona(ctx: Ctx, loc: Loc, latin: SentenceForm, pinned: SentenceForm) -> None:
     """A tok sentence's pinned sitelen pona against its sitelen Lasina (ADR 0086): the words as
     their logographs, each name as the cartouche its sitelen pona token pins."""
-    by_sense = {t.sense: t.surface for t in pinned.tokens or [] if t.sense is not None}
+    by_lexeme = {t.lexeme: t.surface for t in pinned.tokens or [] if t.lexeme is not None}
     names = {
-        t.surface: by_sense[t.sense]
+        t.surface: by_lexeme[t.lexeme]
         for t in latin.tokens or []
-        if t.sense is not None and t.surface[:1].isupper() and t.sense in by_sense
+        if t.lexeme is not None and t.surface[:1].isupper() and t.lexeme in by_lexeme
     }
     try:
         converted = sitelen_pona.to_sitelen_pona(latin.text, names)
@@ -1047,7 +1118,7 @@ def _drills(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Unit]) -> None
                     "id": f"drill.{drill.kind}.{value}",
                     "node": f"drill.{drill.kind}",
                     "forms": forms,
-                    "constructions": [f"construction:{drill.kind}"],
+                    "uses": [f"rule:{drill.kind}"],
                     "translations": {support_lang: f"{value}\n{english}"},
                     "provenance": {
                         "author": f"generated:cldr-rbnf@icu{icu_version() or 'absent'}",
@@ -1058,14 +1129,15 @@ def _drills(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Unit]) -> None
             )
         if not sentences:
             continue
+        # What a drill practises is a rule the compiler names itself: the spellout's.
+        ctx.made_rules[f"rule:{drill.kind}"] = {"gloss": {support_lang: drill.kind}}
         data = {
             "id": f"drill-{drill.kind}",
-            "kcs": [{"id": f"construction:{drill.kind}", "gloss": {support_lang: drill.kind}}],
             "nodes": [
                 {
                     "id": f"drill.{drill.kind}",
                     "kind": "practice",
-                    "introduces": [f"construction:{drill.kind}"],
+                    "introduces": [f"rule:{drill.kind}"],
                 }
             ],
             "sentences": sentences,
@@ -1082,8 +1154,130 @@ def _drills(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Unit]) -> None
 # ------------------------------------------------------------ stage 5: curriculum
 
 
-def _kind(kc: str) -> str:
-    return kc.split(":", 1)[0]
+@dataclass
+class Taught:
+    """What the course's nodes introduce, and where on the path."""
+
+    #: Each node's place on the path.
+    node_pos: dict[str, int] = field(default_factory=lambda: {})
+    #: Each teachable and the place of the node that introduces it.
+    introduced: dict[str, int] = field(default_factory=lambda: {})
+    #: Where each is introduced, for a diagnostic.
+    where: dict[str, Loc] = field(default_factory=lambda: {})
+
+    def values(self, position: int) -> set[str]:
+        """The feature values the course has taught by a place on the path: those a node there
+        or before it introduces. A token names every value it has; these are the ones a learner
+        is taught and credited. One a later node introduces is, until then, only how the token
+        is written: a jussive is met before the imperfect it is a form of is taught."""
+        return {
+            t for t, at in self.introduced.items() if lx.kind_of(t) == "feature" and at <= position
+        }
+
+
+def _taught(ctx: Ctx, units: list[Unit]) -> Taught:
+    """The path's teaching order, and that everything a node names exists: a lexeme of the
+    language's lexicon, a feature value it declares, a rule it names, a letter a unit lists."""
+    lang = ctx.lang
+    rules = set(lang.rules()) | set(ctx.made_rules)
+    values = lang.feature_values()
+    letters = {str(g.id) for unit in units for g in unit.source.graphemes or []}
+
+    def known(teachable: str) -> str | None:
+        kind = lx.kind_of(teachable)
+        if kind == "lexeme":
+            return None if teachable in lang.index else "is not in the lexicon"
+        if kind == "rule":
+            return None if teachable in rules else "is no rule the language names"
+        if kind == "feature":
+            return None if teachable in values else "is no value the language declares"
+        return None if teachable in letters else "is no letter a unit lists"
+
+    out = Taught()
+    position = 0
+    for unit in units:
+        for ni, node in enumerate(unit.source.nodes):
+            out.node_pos[node.id] = position
+            loc = unit.doc.loc("nodes", ni)
+            for teachable in [*(node.introduces or []), *(node.reinforces or [])]:
+                wrong = known(str(teachable))
+                if wrong is not None:
+                    ctx.diags.report("curriculum.unknown", f"{teachable} {wrong}", loc)
+            for teachable in node.introduces or []:
+                if str(teachable) not in out.introduced:
+                    out.introduced[str(teachable)] = position
+                    out.where[str(teachable)] = loc
+            position += 1
+    return out
+
+
+def parts_of(
+    ctx: Ctx,
+    taught: Taught,
+    position: int,
+    tokens: list[dict[str, Any]],
+    into: list[str] | None = None,
+) -> list[str]:
+    """The parts a form's tokens can give evidence of (ADR 0146), each once, in the order the
+    tokens write them: each lexeme, the feature values chosen on it that the course has taught
+    by the form's place on the path (`position`), and a lexeme's own part where a token that
+    agrees with it shows it (the article of la mano)."""
+    out: list[str] = [] if into is None else into
+    written = [part for t in tokens for part in tk.lexemes_of(t)]
+    values = taught.values(position)
+    for part in written:
+        refs = [str(part["lexeme"]), *lx.taught_values(tk.feats_of(part), values)]
+        out += [r for r in refs if r not in out]
+    numbered = {int(part["n"]): part for part in written if "n" in part}
+    for part in written:
+        head = numbered.get(int(part["head"])) if "head" in part else None
+        entry = None if head is None else ctx.lang.get(str(head["lexeme"]))
+        if entry is None:
+            continue
+        stored = entry.feats or {}
+        for own in ctx.lang.parts(entry):
+            feature = own.partition("|")[2]
+            if tk.feats_of(part).get(feature) == str(stored.get(feature)) and own not in out:
+                out.append(own)
+    return out
+
+
+def _relations(ctx: Ctx, name: str, tokens: list[dict[str, Any]], loc: Loc) -> None:
+    """A form's relations hold together: a lexeme with a head has a relation and the other way
+    round, numbers count the lexemes the form writes, and a head is one of them. And every
+    feature value a token names is one its language declares."""
+    written = [part for t in tokens for part in tk.lexemes_of(t)]
+    values = ctx.lang.feature_values()
+    numbers = {int(part["n"]) for part in written if "n" in part}
+    for i, part in enumerate(written, 1):
+        what = str(part["lexeme"])
+        for feature, said in tk.feats_of(part).items():
+            for value in str(said).split(","):
+                if lx.feature_id(feature, value) not in values:
+                    ctx.diags.report(
+                        "lexicon.undeclared",
+                        f"{name}: {what} has {feature}={value}, which the language does not "
+                        "declare",
+                        loc,
+                    )
+        if "n" in part and int(part["n"]) != i:
+            ctx.diags.report(
+                "parse.token-relation",
+                f"{name}: {what} is lexeme {i} of the form and says {part['n']}",
+                loc,
+            )
+        if ("head" in part) != ("rel" in part):
+            ctx.diags.report(
+                "parse.token-relation",
+                f"{name}: {what} has a head or a relation, not both",
+                loc,
+            )
+        elif "head" in part and (int(part["head"]) not in numbers or "n" not in part):
+            ctx.diags.report(
+                "parse.token-relation",
+                f"{name}: {what} points at lexeme {part['head']}, which the form does not number",
+                loc,
+            )
 
 
 def _curriculum(
@@ -1091,93 +1285,34 @@ def _curriculum(
     course: CourseSource,
     units: list[Unit],
     forms: dict[tuple[int, int], dict[str, dict[str, Any]]],
+    taught: Taught,
 ) -> dict[tuple[int, int], list[str]]:
+    """Each sentence's parts, and the path's order: what a sentence writes is in the lexicon and
+    introduced by its node or an earlier one, and it brings in no more new material than the
+    course allows (i+1)."""
     diags = ctx.diags
-    defined: dict[str, Loc] = {}
-    prereqs: dict[str, list[str]] = {}
-    for unit in units:
-        for i, kc in enumerate(unit.source.kcs):
-            defined[kc.id] = unit.doc.loc("kcs", i)
-            prereqs[kc.id] = list(kc.prerequisites or [])
-
-    node_pos: dict[str, int] = {}
-    introduced_at: dict[str, int] = {}
-    position = 0
-    for unit in units:
-        for ni, node in enumerate(unit.source.nodes):
-            node_pos[node.id] = position
-            for kc in [*(node.introduces or []), *(node.reinforces or [])]:
-                if kc not in defined:
-                    diags.report(
-                        "curriculum.unknown-kc", f"{kc} is not defined", unit.doc.loc("nodes", ni)
-                    )
-            for kc in node.introduces or []:
-                introduced_at.setdefault(kc, position)
-            position += 1
-
-    for unit in units:
-        for i, kc in enumerate(unit.source.kcs):
-            for p in kc.prerequisites or []:
-                if p not in defined:
-                    diags.report(
-                        "curriculum.unknown-kc",
-                        f"prerequisite {p} of {kc.id} is not defined",
-                        unit.doc.loc("kcs", i),
-                    )
-
-    # cycles in the prerequisite DAG
-    state: dict[str, int] = {}
-
-    def visit(kc: str, stack: list[str]) -> None:
-        state[kc] = 1
-        for p in prereqs.get(kc, []):
-            if state.get(p) == 1:
-                cycle = [*stack[stack.index(p) :], p] if p in stack else [kc, p]
-                diags.report("curriculum.cycle", " → ".join(cycle), defined[kc])
-            elif state.get(p) is None and p in defined:
-                visit(p, [*stack, p])
-        state[kc] = 2
-
-    for kc in defined:
-        if state.get(kc) is None:
-            visit(kc, [kc])
-
-    # the path must be a topological order
-    for unit in units:
-        for ni, node in enumerate(unit.source.nodes):
-            here = node_pos[node.id]
-            for kc in node.introduces or []:
-                for p in prereqs.get(kc, []):
-                    if introduced_at.get(p, 10**9) > here:
-                        diags.report(
-                            "curriculum.order",
-                            f"{node.id} introduces {kc} before its prerequisite {p}",
-                            unit.doc.loc("nodes", ni),
-                        )
-
-    # sentences: KCs, introduction order, i+1
+    lang = ctx.lang
+    rules = set(lang.rules()) | set(ctx.made_rules)
     k = course.iPlusOne or 1
     out: dict[tuple[int, int], list[str]] = {}
     ordered: list[tuple[int, int, int]] = []
     for ui, unit in enumerate(units):
         for si, s in enumerate(unit.source.sentences):
-            if s.node not in node_pos:
+            if s.node not in taught.node_pos:
                 diags.report(
                     "curriculum.unknown-node",
                     f"{s.id}: no node {s.node!r}",
                     unit.doc.loc("sentences", si, "node"),
                 )
                 continue
-            kcs: list[str] = []
+            parts: list[str] = []
             for orth in course.orthographies:
-                for t in forms.get((ui, si), {}).get(orth, {}).get("tokens", []):
-                    refs = [f"sense:{t['sense']}"] if "sense" in t else []
-                    refs += [t["form"]] if "form" in t else []
-                    refs += [m["kc"] for m in t.get("morphs", [])]
-                    kcs += [r for r in dict.fromkeys(refs) if r not in kcs]
-            kcs += [c for c in dict.fromkeys(s.constructions or []) if c not in kcs]
-            out[(ui, si)] = kcs
-            ordered.append((node_pos[s.node], ui, si))
+                tokens = forms.get((ui, si), {}).get(orth, {}).get("tokens", [])
+                parts_of(ctx, taught, taught.node_pos[s.node], tokens, parts)
+                _relations(ctx, s.id, tokens, unit.doc.loc("sentences", si, "forms", orth))
+            parts += [u for u in dict.fromkeys(str(u) for u in s.uses or []) if u not in parts]
+            out[(ui, si)] = parts
+            ordered.append((taught.node_pos[s.node], ui, si))
 
     seen: set[str] = set()
     used: set[str] = set()
@@ -1185,45 +1320,168 @@ def _curriculum(
         unit = units[ui]
         s = unit.source.sentences[si]
         loc = unit.doc.loc("sentences", si)
-        kcs = out[(ui, si)]
-        used.update(kcs)
-        for kc in kcs:
-            if kc not in defined:
+        # A lexeme's own part (lexeme:mano|Gender) is taught with its lexeme, never apart.
+        named = [part for part in out[(ui, si)] if "|" not in part]
+        used.update(named)
+        for part in named:
+            kind = lx.kind_of(part)
+            if (kind == "lexeme" and part not in lang.index) or (
+                kind == "rule" and part not in rules
+            ):
                 diags.report(
-                    "curriculum.unknown-kc", f"{s.id} uses {kc}, which is not defined", loc
+                    "curriculum.unknown",
+                    f"{s.id} uses {part}, which the language's lexicon does not have",
+                    loc,
                 )
-            elif kc not in introduced_at:
+            elif part not in taught.introduced:
                 diags.report(
                     "curriculum.never-introduced",
-                    f"{s.id} uses {kc}, which no node introduces",
+                    f"{s.id} uses {part}, which no node introduces",
                     loc,
                 )
-            elif introduced_at[kc] > pos:
+            elif taught.introduced[part] > pos:
                 diags.report(
                     "curriculum.introduced-late",
-                    f"{s.id} (node {s.node}) uses {kc} before the node that introduces it",
+                    f"{s.id} (node {s.node}) uses {part} before the node that introduces it",
                     loc,
                 )
-        new = [kc for kc in kcs if _kind(kc) in I_PLUS_ONE_KINDS and kc not in seen]
+        new = [part for part in named if lx.kind_of(part) in I_PLUS_ONE_KINDS and part not in seen]
         if len(new) > k:
             diags.report(
                 "curriculum.i-plus-one",
-                f"{s.id} brings in {len(new)} new knowledge components "
-                f"({', '.join(new)}); at most {k}",
+                f"{s.id} brings in {len(new)} new things to learn ({', '.join(new)}); at most {k}",
                 loc,
             )
-        seen.update(kcs)
+        seen.update(named)
 
-    for unit in units:
-        for i, kc in enumerate(unit.source.kcs):
-            if kc.id not in used and _kind(kc.id) in I_PLUS_ONE_KINDS:
-                diags.report(
-                    "curriculum.unused-kc",
-                    f"{kc.id} is never used in a sentence",
-                    unit.doc.loc("kcs", i),
-                )
+    for teachable, loc in taught.where.items():
+        if teachable not in used and lx.kind_of(teachable) in I_PLUS_ONE_KINDS:
+            diags.report("curriculum.unused", f"{teachable} is never used in a sentence", loc)
     _one_gender(units, diags)
     return out
+
+
+def _used(
+    units: list[Unit],
+    forms: dict[tuple[int, int], dict[str, dict[str, Any]]],
+    story_lines: list[LineForm],
+    taught: Taught,
+) -> set[str]:
+    """The lexemes of the language the course is made of: those a node introduces, a token of a
+    sentence or a story writes, or an alphabet node practises. The bundle ships these; the
+    lexicon may hold more, which another course of the language teaches."""
+    out = {t for t in taught.introduced if lx.kind_of(t) == "lexeme"}
+    for by_orth in forms.values():
+        for form in by_orth.values():
+            for t in form["tokens"]:
+                out.update(tk.ids_of(t))
+    for line in story_lines:
+        for t in line.tokens:
+            out.update(tk.ids_of(t))
+    for unit in units:
+        for node in unit.source.nodes:
+            out.update(str(t) for t in node.reinforces or [] if lx.kind_of(str(t)) == "lexeme")
+            if node.alphabet is not None:
+                out.update(str(lexeme) for lexeme in node.alphabet.lexemes)
+    return out
+
+
+def _lexicon(ctx: Ctx, course: CourseSource, doc: Doc) -> None:
+    """What a schema cannot say of a lexicon and its language (docs/migration-design.md, "Left
+    to lints"): an entry is one kind of lexeme, a form says how it is written, a listed form
+    has its statement, and every value, class, variety and register named is one the language
+    declares."""
+    lang = ctx.lang
+    diags = ctx.diags
+    declared = lang.declared
+    values = lang.feature_values()
+    classes = {str(c.id) for c in declared.classes or []}
+
+    def feats_ok(feats: Mapping[str, str] | None, what: str, loc: Loc) -> None:
+        for feature, said in (feats or {}).items():
+            for value in str(said).split(","):
+                if lx.feature_id(str(feature), value) not in values:
+                    diags.report(
+                        "lexicon.undeclared",
+                        f"{what}: {feature}={value} is no value the language declares",
+                        loc,
+                    )
+
+    if course.variety is not None and str(course.variety) not in (declared.varieties or []):
+        diags.report(
+            "lexicon.undeclared",
+            f"the course teaches {course.variety}, which {lang.code} does not declare",
+            doc.loc("variety"),
+        )
+    for register in course.registers or []:
+        if str(register) not in (declared.registers or []):
+            diags.report(
+                "lexicon.undeclared",
+                f"the course teaches the register {register}, which {lang.code} does not declare",
+                doc.loc("registers"),
+            )
+    if lang.lexicon.language != lang.code or declared.id != lang.code:
+        diags.report(
+            "lexicon.undeclared",
+            f"lexicons/{lang.code} holds the lexicon of {lang.lexicon.language} and the "
+            f"declaration of {declared.id}",
+            lang.doc.loc("language"),
+        )
+    ids = [str(entry.id) for entry in lang.lexicon.lexemes]
+    if ids != sorted(ids):
+        first = next(i for i, (a, b) in enumerate(zip(ids, sorted(ids), strict=True)) if a != b)
+        diags.report(
+            "lexicon.order",
+            f"{ids[first]} is out of place: a lexicon is sorted by id, so an entry never moves",
+            lang.doc.loc("lexemes", first),
+        )
+    for entry in lang.lexicon.lexemes:
+        ident = str(entry.id)
+        loc = lang.loc(ident)
+        kinds = [
+            k
+            for k, v in (("pos", entry.pos), ("realises", entry.realises), ("head", entry.head))
+            if v is not None
+        ]
+        if len(kinds) != 1 and not (not kinds and entry.form is not None):
+            diags.report(
+                "lexicon.kind",
+                f"{ident} has {', '.join(kinds) or 'no part of speech, value or head'}: an entry "
+                "is one of the three",
+                loc,
+            )
+        feats_ok(entry.feats, ident, loc)
+        feats_ok(entry.realises, ident, loc)
+        for name in entry.classes or []:
+            if str(name) not in classes:
+                diags.report(
+                    "lexicon.undeclared", f"{ident}: {name} is no class the language states", loc
+                )
+        own = lang.own_features(entry)
+        for feature in entry.chooses or []:
+            if feature not in own:
+                diags.report(
+                    "lexicon.undeclared",
+                    f"{ident} chooses {feature}, which no {entry.pos} of the language has of "
+                    "itself",
+                    loc,
+                )
+        for fi, form in enumerate(entry.forms or []):
+            floc = lang.loc(ident, "forms", fi)
+            feats_ok(form.feats, ident, floc)
+            if form.form is None and form.stem is None and not form.spelled:
+                diags.report("lexicon.form", f"{ident}: a form with no spelling", floc)
+            if form.status == "listed" and form.statement is None:
+                diags.report(
+                    "lexicon.form",
+                    f"{ident}: a listed form needs its statement, that the language has no rule "
+                    "for it (ADR 0145)",
+                    floc,
+                )
+    for li, label in enumerate(declared.labels or []):
+        feats_ok(label.feats, "a label", lang.declared_doc.loc("labels", li))
+    for di, default in enumerate(declared.defaults or []):
+        feats_ok(default.gives, f"default {default.id}", lang.declared_doc.loc("defaults", di))
 
 
 _GENDERS = {"m": "a man", "f": "a woman"}
@@ -1236,7 +1494,8 @@ def _one_gender(units: list[Unit], diags: Diagnostics) -> None:
         first: dict[str, tuple[Unit, int]] = {}
         for unit in units:
             for si, s in enumerate(unit.source.sentences):
-                value = getattr(s.persons, role, None) if s.persons is not None else None
+                persons = persons_of(s)
+                value = getattr(persons, role, None) if persons is not None else None
                 if value in _GENDERS and value not in first:
                     first[value] = (unit, si)
         if len(first) == 1:
@@ -1246,8 +1505,17 @@ def _one_gender(units: list[Unit], diags: Diagnostics) -> None:
                 "curriculum.one-gender",
                 f"every sentence tagged with its {role} has {_GENDERS[value]} {said}, "
                 f"none {_GENDERS[other]}: tag both, as the language marks both (ADR 0075)",
-                unit.doc.loc("sentences", si, "persons"),
+                unit.doc.loc("sentences", si, "tags"),
             )
+
+
+def persons_of(s: SentenceSource) -> Persons | None:
+    """Who says a sentence and who it is said to, where a tag of it says (ADR 0147)."""
+    for tag in s.tags or []:
+        persons = getattr(tag, "persons", None)
+        if persons is not None:
+            return cast(Persons, persons)
+    return None
 
 
 # ------------------------------------------------------------ stage 6: grading
@@ -1326,29 +1594,32 @@ def _glossary(
     units: list[Unit],
     forms: dict[tuple[int, int], dict[str, dict[str, Any]]],
     story_lines: list[LineForm],
+    used: set[str],
 ) -> None:
     """Simulate tap-for-gloss with the runtime matcher (core-cli `gloss`: longest match, exact
-    and folded passes side by side) over every sentence and story line."""
+    and folded passes side by side) over every sentence and story line. The glossary is the
+    course's lexemes, each as its entry spells it; a letter is no word to tap (ADR 0088)."""
     diags = ctx.diags
     cli = ctx.cli
+    lang = ctx.lang
     for orth in course.orthographies:
         entries: list[tuple[str, str, list[str], Loc]] = []
-        for unit in units:
-            for ki, kc in enumerate(unit.source.kcs):
-                if kc.id.startswith("grapheme:"):
-                    continue  # a letter is no word to tap (ADR 0088)
-                for fi, surface in enumerate((kc.forms or {}).get(orth, [])):
-                    entries.append(
-                        (
-                            kc.id,
-                            surface,
-                            cast(list[str], cli.result("fold-units", profile=orth, text=surface)),
-                            unit.doc.loc("kcs", ki, "forms", orth, fi),
-                        )
+        for entry in lang.lexicon.lexemes:
+            ident = str(entry.id)
+            if ident not in used:
+                continue
+            for fi, surface in enumerate(lang.spelled(entry, orth)):
+                entries.append(
+                    (
+                        ident,
+                        surface,
+                        cast(list[str], cli.result("fold-units", profile=orth, text=surface)),
+                        lang.loc(ident, "spelled", orth, fi),
                     )
+                )
         if not entries:
             continue
-        glossary = [{"kc": kc, "text": surface} for kc, surface, _u, _l in entries]
+        glossary = [{"kc": ident, "text": surface} for ident, surface, _u, _l in entries]
         hits = [0] * len(entries)
         shadowed: set[str] = set()
         texts: list[tuple[str, list[dict[str, Any]], Loc]] = []
@@ -1374,9 +1645,9 @@ def _glossary(
                 hits[m["entry"]] += 1
             # a word whose own entry would gloss it alone, but a longer entry wins here
             for ti, t in enumerate(tokens):
-                if "sense" not in t:
+                sense = tk.base_id(t)
+                if sense is None:
                     continue
-                sense = f"sense:{t['sense']}"
                 own = [ei for ei, e in enumerate(entries) if e[0] == sense]
                 tu = cast(list[str], cli.result("fold-units", profile=orth, text=t["surface"]))
                 if not own or not tu or not any(entries[ei][2] == tu for ei in own):
@@ -1419,42 +1690,41 @@ def _glossary(
                     f"runtime units {units_}",
                     loc,
                 )
-        # A KC form is a lemma or a variant of one, never a word the sentences analyse into
-        # several KCs (ADR 0061): bormoq, not boraman (bor+a+man).
+        # An entry is spelled as its lemma or a variant of it, never as a token the sentences
+        # write with several lexemes (ADR 0061): bormoq, not boraman (bor+a+man).
         analysed: dict[str, list[list[dict[str, Any]]]] = {}
         for _name, tokens, _loc in texts:
             for t in tokens:
-                if len({m["kc"] for m in t.get("morphs", [])}) > 1:
+                if len(set(tk.ids_of(t))) > 1:
                     key = unicodedata.normalize("NFC", t["surface"])
-                    analysed.setdefault(key, []).append(t["morphs"])
-        for kc, surface, _u, loc in entries:
-            for morphs in analysed.get(unicodedata.normalize("NFC", surface), []):
-                if kc in {m["kc"] for m in morphs}:
-                    parts = "+".join(m["surface"] for m in morphs)
+                    analysed.setdefault(key, []).append(tk.lexemes_of(t))
+        for ident, surface, _u, loc in entries:
+            for written in analysed.get(unicodedata.normalize("NFC", surface), []):
+                if ident in {part["lexeme"] for part in written}:
+                    parts = "+".join(str(part.get("surface", "")) for part in written)
                     diags.report(
-                        "kc.inflected-form",
-                        f"{kc} form {surface!r} is an inflected word ({parts}): give the lemma; "
-                        "a tap on the word reaches it through its morphs",
+                        "lexeme.inflected-form",
+                        f"{ident} is spelled {surface!r}, a token of several lexemes ({parts}): "
+                        "give the lemma; a tap on the token reaches it through its lexemes",
                         loc,
                     )
                     break
-        # A KC's first form is its lemma (ADR 0061): a word card shows it, and a tap on an
-        # inflected word reaches it through the word's morphs, so it need not occur as written.
+        # An entry's first spelling is its lemma (ADR 0061): a word card shows it, and a tap on
+        # an inflected token reaches it through the token's lexemes, so it need not occur as
+        # written.
         annotated = {
-            kc_
-            for _name, tokens, _loc in texts
-            for t in tokens
-            for kc_ in ([f"sense:{t['sense']}"] if "sense" in t else [])
-            + [m["kc"] for m in t.get("morphs", [])]
+            ident for _name, tokens, _loc in texts for t in tokens for ident in tk.ids_of(t)
         }
         lemmas = {
-            (kc.id, (kc.forms or {}).get(orth, [""])[0]) for unit in units for kc in unit.source.kcs
+            (str(entry.id), (entry.spelled or {}).get(orth, [""])[0])
+            for entry in lang.lexicon.lexemes
         }
-        for ei, (kc, surface, _u, loc) in enumerate(entries):
-            if hits[ei] == 0 and not ((kc, surface) in lemmas and kc in annotated):
+        for ei, (ident, surface, _u, loc) in enumerate(entries):
+            if hits[ei] == 0 and not ((ident, surface) in lemmas and ident in annotated):
                 diags.report(
                     "glossary.dead-entry",
-                    f"{kc} form {surface!r} is never reached in any {orth} sentence or story",
+                    f"{ident} is spelled {surface!r}, which is never reached in any {orth} "
+                    "sentence or story",
                     loc,
                 )
 
@@ -1519,8 +1789,7 @@ def _bundle_unit(
     ui: int,
     unit: Unit,
     forms: dict[tuple[int, int], dict[str, dict[str, Any]]],
-    kcs: dict[tuple[int, int], list[str]],
-    images: dict[str, str],
+    parts: dict[tuple[int, int], list[str]],
 ) -> dict[str, Any]:
     src = unit.source
     target = course.target
@@ -1564,15 +1833,14 @@ def _bundle_unit(
             "node": s.node,
             "forms": out_forms,
             "translations": translations,
-            "kcs": kcs.get((ui, si), []),
+            "parts": parts.get((ui, si), []),
             "production": s.production if s.production is not None else True,
             "provenance": provenance.model_dump(exclude_none=True) if provenance else None,
             "license": s.license or course.license,
         }
-        if s.register_ is not None:
-            sentence["register"] = s.register_
-        if s.persons is not None:
-            sentence["persons"] = s.persons.model_dump(exclude_none=True)
+        tags = bundle_tags(s, support_tt)
+        if tags:
+            sentence["tags"] = tags
         sentences.append(sentence)
 
     nodes: list[dict[str, Any]] = []
@@ -1580,8 +1848,8 @@ def _bundle_unit(
         n: dict[str, Any] = {
             "id": node.id,
             "kind": node.kind,
-            "introduces": list(node.introduces or []),
-            "reinforces": list(node.reinforces or []),
+            "introduces": [str(t) for t in node.introduces or []],
+            "reinforces": [str(t) for t in node.reinforces or []],
             "sentences": list(node.convert.sentences)
             if node.convert
             else [s.id for s in src.sentences if s.node == node.id],
@@ -1590,37 +1858,128 @@ def _bundle_unit(
             n["convert"] = {"from": node.convert.from_, "to": node.convert.to}
         nodes.append(n)
 
-    kc_out: list[dict[str, Any]] = []
-    for kc in src.kcs:
-        k: dict[str, Any] = {
-            "id": kc.id,
-            "kind": _kind(kc.id),
-            "prerequisites": list(kc.prerequisites or []),
-        }
-        if kc.cefr is not None:
-            k["cefr"] = kc.cefr
-        # A word question offers only words of the answer's part of speech and features (ADR 0132).
-        if kc.pos is not None:
-            k["pos"] = kc.pos
-        if kc.features:
-            k["features"] = dict(kc.features)
-        if kc.gloss:
-            k["gloss"] = {lang: support_tt(lang, g) for lang, g in kc.gloss.items()}
-        if kc.forms:
-            k["forms"] = {
-                orth: [
-                    marked(ctx, orth, support_text(ctx, orth, f, target), kc.id if i == 0 else None)
-                    for i, f in enumerate(fs)
-                ]
-                for orth, fs in kc.forms.items()
+    graphemes: list[dict[str, Any]] = []
+    for grapheme in src.graphemes or []:
+        g: dict[str, Any] = {"id": grapheme.id}
+        if grapheme.gloss:
+            g["gloss"] = {lang: support_tt(lang, text) for lang, text in grapheme.gloss.items()}
+        if grapheme.forms:
+            g["forms"] = {
+                orth: [marked(ctx, orth, support_text(ctx, orth, f, target), None) for f in fs]
+                for orth, fs in grapheme.forms.items()
             }
-        if kc.id in images:
-            k["image"] = images[kc.id]
-        kc_out.append(k)
+        graphemes.append(g)
 
-    out: dict[str, Any] = {"id": src.id, "kcs": kc_out, "nodes": nodes, "sentences": sentences}
+    out: dict[str, Any] = {"id": src.id, "nodes": nodes, "sentences": sentences}
+    if graphemes:
+        out["graphemes"] = graphemes
     if src.cefr is not None:
         out["cefr"] = src.cefr
     if src.title:
         out["title"] = {lang: support_tt(lang, t) for lang, t in src.title.items()}
+    return out
+
+
+def bundle_tags(
+    s: SentenceSource, support_tt: Callable[[str, str], dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """A sentence's tags as a bundle has them (ADR 0147): a closed set's value as it is, an
+    authored situation as text in each support language."""
+    out: list[dict[str, Any]] = []
+    for tag in s.tags or []:
+        persons = getattr(tag, "persons", None)
+        register = getattr(tag, "register_", None) or getattr(tag, "register", None)
+        situation = getattr(tag, "situation", None)
+        if persons is not None:
+            out.append({"persons": cast(Persons, persons).model_dump(exclude_none=True)})
+        elif register is not None:
+            out.append({"register": str(register)})
+        elif situation is not None:
+            said = cast(dict[str, str], situation)
+            out.append({"situation": {lang: support_tt(lang, text) for lang, text in said.items()}})
+    return out
+
+
+def _bundle_lexicon(
+    ctx: Ctx, course: CourseSource, used: set[str], images: dict[str, str]
+) -> dict[str, Any]:
+    """The bundle's lexicon: the course's lexemes as the language's lexicon has them, in its
+    order (sorted by id), each with every lexical feature it has (stored, or by a default), the
+    parts it has to learn beyond itself, its gloss and its spellings; the labels of the
+    language's feature values; the rules the course names."""
+    lang = ctx.lang
+    target = course.target
+    support_by_key = {support_key(ctx, o): o for o in course.support}
+
+    def support_tt(key: str, text: str) -> dict[str, Any]:
+        return support_text(ctx, support_by_key.get(key, course.support[0]), text, target)
+
+    def gloss_of(gloss: Any) -> dict[str, Any]:
+        return {str(k): support_tt(str(k), str(text)) for k, text in dict(gloss).items()}
+
+    lexemes: list[dict[str, Any]] = []
+    for entry in lang.lexicon.lexemes:
+        ident = str(entry.id)
+        if ident not in used:
+            continue
+        k: dict[str, Any] = {"id": ident}
+        # A choice that asks which lexeme offers only lexemes of the answer's part of speech and
+        # lexical features (ADR 0132).
+        if entry.pos is not None:
+            k["pos"] = entry.pos
+        if entry.realises:
+            k["realises"] = dict(entry.realises)
+        if entry.head is not None:
+            k["head"] = entry.head.model_dump(exclude_none=True)
+        feats = lang.lexical(entry)
+        if feats:
+            k["feats"] = feats
+        if entry.chooses:
+            k["chooses"] = list(entry.chooses)
+        own = lang.parts(entry)
+        if own:
+            k["parts"] = own
+        if entry.gloss:
+            k["gloss"] = gloss_of(entry.gloss)
+        orths = list(entry.spelled or {})
+        forms = {
+            str(orth): [
+                marked(
+                    ctx,
+                    str(orth),
+                    support_text(ctx, str(orth), f, target),
+                    ident if i == 0 else None,
+                )
+                for i, f in enumerate(lang.spelled(entry, str(orth)))
+            ]
+            for orth in orths
+        }
+        if forms:
+            k["forms"] = forms
+        if ident in images:
+            k["image"] = images[ident]
+        lexemes.append(k)
+
+    out: dict[str, Any] = {"language": lang.code, "lexemes": lexemes}
+    labels: list[dict[str, Any]] = []
+    for label in lang.declared.labels or []:
+        if not label.gloss:
+            continue
+        shown: dict[str, Any] = {"feats": lx.sorted_feats(label.feats)}
+        if label.pos is not None:
+            shown["pos"] = label.pos
+        shown["gloss"] = gloss_of(label.gloss)
+        labels.append(shown)
+    if labels:
+        out["labels"] = labels
+    rules: list[dict[str, Any]] = []
+    for rule in lang.declared.rules or []:
+        named: dict[str, Any] = {"id": str(rule.id)}
+        if rule.gloss:
+            named["gloss"] = gloss_of(rule.gloss)
+        rules.append(named)
+    for ident, made in ctx.made_rules.items():
+        rules.append({"id": ident, "gloss": gloss_of(made["gloss"])})
+    if rules:
+        out["rules"] = sorted(rules, key=lambda r: str(r["id"]))
     return out

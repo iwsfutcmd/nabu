@@ -25,6 +25,7 @@ export type TextIssue =
   | { readonly code: "splits-grapheme"; readonly token: number }
   | { readonly code: "ruby-mismatch"; readonly token: number; readonly scheme: string }
   | { readonly code: "morphs-mismatch"; readonly token: number }
+  | { readonly code: "lexemes-mismatch"; readonly token: number }
   | { readonly code: "variant-not-nfc"; readonly token: number }
   | { readonly code: "lang-outside-orthography" };
 
@@ -33,8 +34,8 @@ const subtags = (tag: string): string[] => tag.split("-");
 /**
  * Invariants a JSON Schema cannot express (schemas/tagged-text.schema.json
  * $comment): NFC everywhere, token boundaries on grapheme-cluster boundaries,
- * ruby bases and morph surfaces that concatenate to their token, and a
- * language tag within the orthography's language. Empty means valid.
+ * ruby bases, morph surfaces and lexemes' letters that concatenate to their
+ * token, and a language tag within the orthography's language. Empty means valid.
  */
 export const checkTaggedText = (text: TaggedText): readonly TextIssue[] => {
   const issues: TextIssue[] = [];
@@ -49,6 +50,16 @@ export const checkTaggedText = (text: TaggedText): readonly TextIssue[] => {
     }
     if (token.morphs !== undefined && token.morphs.map((m) => m.surface).join("") !== token.surface) {
       issues.push({ code: "morphs-mismatch", token: i });
+    }
+    // A token that writes several lexemes says which letters are each one's: together, the token.
+    // Its only lexeme needs none (the whole token), and a base is marked on one at most.
+    const lexemes = token.lexemes ?? [];
+    const lettered = lexemes.filter((l) => l.surface !== undefined);
+    const several = lexemes.length > 1 || lettered.length > 0;
+    if (several && (lettered.length !== lexemes.length || lettered.map((l) => l.surface).join("") !== token.surface)) {
+      issues.push({ code: "lexemes-mismatch", token: i });
+    } else if (lexemes.filter((l) => l.base === true).length > 1) {
+      issues.push({ code: "lexemes-mismatch", token: i });
     }
     if (token.variants?.some((v) => v.normalize("NFC") !== v)) issues.push({ code: "variant-not-nfc", token: i });
   });

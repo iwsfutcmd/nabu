@@ -21,12 +21,14 @@ from typing import TYPE_CHECKING
 
 from pydantic import ValidationError
 
-from nabu.audio.course import INDEX, assignment, audio_dir, checked_voices, held_back, plan
+from nabu.audio.course import INDEX, assignment, audio_dir, held_back, kept_voices, plan
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.source import Doc, load_doc
+from nabu.formkey import form_key, is_form
 from nabu.items import WORD_KINDS, iter_items
 from nabu.provenance import signed_off
-from nabu.schema.models import AudioClip, AudioIndex, BundleClip, CourseSource, TokenTiming
+from nabu.schema.models import AudioClip, AudioIndex, BundleClip, TokenTiming
+from nabu.schema.models import NextCourseSource as CourseSource
 
 if TYPE_CHECKING:
     from nabu.compiler.build import Compiled, Ctx
@@ -115,19 +117,27 @@ def check_audio(
     if loaded is None:
         return
     doc, index = loaded
-    # Every sentence, word KC and story line ("<story>#<step>"), by id.
-    known = {item.id: item for item in iter_items(compiled.units)}
+    # Every sentence, lexeme and story line ("<story>#<step>"), by id.
+    known = {item.id: item for item in iter_items(compiled.content)}
+    # Every form a token of the course writes, by its key: a clip may say one (formkey.is_form).
+    forms = {
+        form_key([(str(part.lexeme), part.feats) for part in t.lexemes])
+        for item in known.values()
+        for tokens in item.forms.values()
+        for t in tokens
+        if t.lexemes
+    }
     human_required = course.audio is not None and course.audio.humanRequired is True
     voices = course.audio.voices if course.audio is not None and course.audio.voices else []
     # What each voice of the cast would read now, by (provider, voice).
     planned: dict[tuple[str, str], dict[str, str]] = {}
     # Which voice of the cast reads each item (ADR 0078); a person's check keeps a clip's voice.
-    checked = checked_voices(index, voices)
-    owner = assignment(compiled.units, voices, checked) if voices else {}
+    checked = kept_voices(adir, index, voices)
+    owner = assignment(compiled.content, voices, checked) if voices else {}
     by_id = {v.id: v for v in voices}
     for voice in voices:
         try:
-            reads = plan(compiled.units, voice, compiled.written, voices, checked)[0]
+            reads = plan(compiled.content, voice, compiled.written, voices, checked)[0]
         except ValueError as error:
             ctx.diags.report("audio.schema", f"voice {voice.id}: {error}", doc.loc())
             continue
@@ -177,10 +187,14 @@ def check_audio(
             )
             continue
         said = known.get(clip.item)
+        if said is None and is_form(clip.item) and clip.item in forms:
+            # The clip of a form a token writes (lexeme:ra7|form:Aspect=Part…): kept in the
+            # course, and in no bundle, since no card says a form alone.
+            continue
         if said is None:
             ctx.diags.report(
                 "audio.unknown-item",
-                f"{clip.item}: no such sentence, story line or KC in the course",
+                f"{clip.item}: no such sentence, story line or lexeme in the course",
                 loc,
             )
             continue
@@ -224,8 +238,8 @@ def check_audio(
                     loc,
                 )
                 continue
-        # Sentence clips time the sentence's tokens; a word KC's clip times its own form.
-        if clip.timings is not None and said.kind != "kc":
+        # Sentence clips time the sentence's tokens; an entry's clip times its own spelling.
+        if clip.timings is not None and said.kind != "entry":
             ok = any(
                 all(
                     t.token < len(tokens) and tokens[t.token].kind in WORD_KINDS

@@ -1,32 +1,33 @@
-"""Alphabet nodes (ADR 0088): a script track's letters and words, with their readings in Latin.
+"""Alphabet nodes (ADR 0088): a script track's letters and the lexemes it practises them on,
+with their readings in Latin.
 
 What a letter and a mark are is the orthography's profile's to say (ADR 0124), so a track in any
 script needs code only where its reading scheme's text is not Latin:
 - **letters** are the units the profile cuts text into (its `letters`, longest first, else
   grapheme clusters) after its normalization and case folding, without the marks of its mark set
   (`match.marks.set`): Σωκράτης is σ ω κ ρ α τ η σ, the fold making Σ and the final ς one σ;
-- a grapheme KC whose first form is one letter carrying marks of the profile's mark set is **that
+- a grapheme whose first form is one letter carrying marks of the profile's mark set is **that
   mark** (the rough breathing: ἁ, ὁ, ῥ; the iota subscript: ᾳ, ῃ, ῳ), and a word has it where any
   of its letters carries it;
-- any other grapheme KC is **its letters** (a letter, a diphthong: α; αι), as any of its forms
+- any other grapheme is **its letters** (a letter, a diphthong: α; αι), as any of its forms
   spells them (σ, ς, Σ; a final form no fold makes one, Hebrew ך beside כ, is listed among its
   letter's forms), and a word has it where those letters stand together.
 
-A word of an alphabet node must be spelled with the letters taught by then
+A lexeme of an alphabet node must be spelled with the letters taught by then
 (`script.untaught-letter`); marks are not checked: the words are shown as the course writes them.
-A grapheme KC whose first form has no letter would be in every word (`script.no-letter`).
+A grapheme whose first form has no letter would be in every word (`script.no-letter`).
 
 What the track asks its letters and words as is their reading (ADR 0133), in Latin letters for a
 learner who cannot read the script yet: the orthography's profile names the scheme
 (`scriptTrack.reading`), and the scheme the orthography of its Latin (`latin`, which needs a
-profile): `script.no-reading-scheme`. A word's Latin is its KC's pinned reading (ADR 0117), the one
+profile): `script.no-reading-scheme`. A lexeme's Latin is its pinned reading (ADR 0117), the one
 its word card shows and its clip says, written in Latin by the scheme's `latin` plug-in where the
-scheme's text is not Latin (Attic: χώρᾱ is chōrā), as it stands otherwise (Schluessel); a word
-whose KC has none is `script.missing-reading` (give the KC entry its `readings`). A letter has no
-reading: it is the plug-in's rendering of the letter (α is a), or, where the scheme has no plug-in
-(an abjad's letter stands for several sounds), its grapheme KC's own first form in the Latin
-orthography (chg's ب is b). Each word needs a form in the orthography, and such a letter one in
-the Latin (`script.missing-form`). The track is compiled once KC readings are pinned.
+scheme's text is not Latin (Attic: χώρᾱ is chōrā), as it stands otherwise (Schluessel); a lexeme
+with none is `script.missing-reading` (give its entry `readings`). A letter has no reading: it is
+the plug-in's rendering of the letter (α is a), or, where the scheme has no plug-in (an abjad's
+letter stands for several sounds), its grapheme's own first form in the Latin orthography (chg's
+ب is b). Each lexeme needs a spelling in the orthography, and such a letter a form in the Latin
+(`script.missing-form`). The track is compiled once the lexemes' readings are pinned.
 """
 
 from __future__ import annotations
@@ -39,13 +40,15 @@ from typing import TYPE_CHECKING, Any
 
 from nabu.compiler.diagnostics import Diagnostics, Loc
 from nabu.items import WORD_KINDS
+from nabu.lexicon import GRAPHEME, Language
 from nabu.schema.models import (
-    Alphabet,
-    BundleUnit,
-    CourseSource,
-    KnowledgeComponentSource,
+    BundleLexicon,
+    GraphemeSource,
+    NextBundleAlphabet,
     OrthographyProfile,
 )
+from nabu.schema.models import NextBundleUnit as BundleUnit
+from nabu.schema.models import NextCourseSource as CourseSource
 from nabu.schemes import plugins, schemes
 
 if TYPE_CHECKING:
@@ -127,7 +130,7 @@ def _within(word: tuple[str, ...], letters: tuple[str, ...]) -> bool:
 
 @dataclass(frozen=True)
 class Grapheme:
-    kc: str
+    id: str
     form: str
     #: A letter or a diphthong: its letters, as each of its forms spells them. A mark: none.
     spellings: frozenset[tuple[str, ...]]
@@ -140,16 +143,15 @@ class Grapheme:
         return any(_within(word.letters, s) for s in self.spellings)
 
 
-def grapheme(kc: str, forms: list[str], read: Reader) -> Grapheme | None:
-    """A grapheme KC by its forms (the module's docstring); None if its first form has no
-    letter."""
+def grapheme(ident: str, forms: list[str], read: Reader) -> Grapheme | None:
+    """A grapheme by its forms (the module's docstring); None if its first form has no letter."""
     first = read(forms[0])
     if first.marks and len(first.letters) == 1:
-        return Grapheme(kc, forms[0], frozenset(), first.marks)
+        return Grapheme(ident, forms[0], frozenset(), first.marks)
     if not first.letters:
         return None
     spellings = frozenset(s for s in (read(f).letters for f in forms) if s)
-    return Grapheme(kc, forms[0], spellings, frozenset())
+    return Grapheme(ident, forms[0], spellings, frozenset())
 
 
 def _item(
@@ -157,30 +159,30 @@ def _item(
     orth: str,
     latin_orth: str,
     latin: str,
-    kc: str,
+    ident: str,
     text: str,
     letters: list[str],
 ) -> dict[str, Any]:
-    """A bundled ScriptItem: the KC, its written form and its Latin."""
+    """A bundled script item: what it is, its written form and its Latin."""
     return {
-        "kc": kc,
+        "id": ident,
         "letters": letters,
         "text": tagged(orth, text),
         "latin": tagged(latin_orth, latin),
     }
 
 
-def _readings(units: list[BundleUnit]) -> Callable[[str, str, str], str | None]:
-    """(KC, orthography, scheme) → the reading pinned on the words of the KC's first form in the
-    orthography (ADR 0117), its words' readings joined by spaces; None where a word has none."""
+def _readings(lexicon: BundleLexicon) -> Callable[[str, str, str], str | None]:
+    """(lexeme, orthography, scheme) → the reading pinned on the words of the lexeme's first
+    spelling in the orthography (ADR 0117), its words' readings joined by spaces; None where a
+    word has none."""
     firsts = {
-        kc.id: {orth: texts[0] for orth, texts in (kc.forms or {}).items() if texts}
-        for unit in units
-        for kc in unit.kcs
+        str(lexeme.id): {orth: texts[0] for orth, texts in (lexeme.forms or {}).items() if texts}
+        for lexeme in lexicon.lexemes
     }
 
-    def reading(kc: str, orth: str, scheme: str) -> str | None:
-        text = firsts.get(kc, {}).get(orth)
+    def reading(lexeme: str, orth: str, scheme: str) -> str | None:
+        text = firsts.get(lexeme, {}).get(orth)
         if text is None:
             return None
         words = [(t.readings or {}).get(scheme) for t in text.tokens if t.kind in WORD_KINDS]
@@ -193,20 +195,20 @@ def _readings(units: list[BundleUnit]) -> Callable[[str, str, str], str | None]:
 
 def _letter_latin(
     diags: Diagnostics,
-    kcs: dict[str, tuple[Unit, int, KnowledgeComponentSource]],
+    graphemes: dict[str, tuple[Unit, int, GraphemeSource]],
     t: Track,
     node_id: str,
     g: Grapheme,
     where: Loc,
 ) -> str | None:
-    """A letter's Latin: the scheme's plug-in's rendering of it, or its KC's own first form in the
+    """A letter's Latin: the scheme's plug-in's rendering of it, or its own first form in the
     Latin orthography (the module's docstring)."""
     if t.write is not None:
         return t.write(g.form)
-    found = kcs.get(g.kc)
+    found = graphemes.get(g.id)
     own = (found[2].forms or {}).get(t.latin, []) if found is not None else []
     if not own:
-        diags.report("script.missing-form", f"{node_id}: {g.kc} has no {t.latin} form", where)
+        diags.report("script.missing-form", f"{node_id}: {g.id} has no {t.latin} form", where)
         return None
     return own[0]
 
@@ -215,17 +217,23 @@ def compile_alphabets(
     diags: Diagnostics,
     course: CourseSource,
     units: list[Unit],
-    bundled: list[BundleUnit],
+    lexicon: BundleLexicon,
+    lang: Language,
     profiles: dict[str, OrthographyProfile],
     tagged: Callable[[str, str], dict[str, Any]],
     cli: CoreCli,
 ) -> dict[str, dict[str, Any]]:
-    """Each alphabet node's bundled `alphabet` (node id → {orthography, letters, words}), in course
-    order, with the lints. `bundled`: the units with their KC readings pinned (ADR 0117), which a
-    word's Latin is written from; `tagged(orthography, text)` makes a TaggedText; `cli` reads text
-    as its profile does."""
-    kcs = {kc.id: (unit, ki, kc) for unit in units for ki, kc in enumerate(unit.source.kcs)}
-    reading_of = _readings(bundled)
+    """Each alphabet node's bundled `alphabet` (node id → {orthography, letters, lexemes}), in
+    course order, with the lints. `lexicon`: the bundle's, with its readings pinned (ADR 0117),
+    which a lexeme's Latin is written from; `lang`: the language's lexicon, for an entry's
+    spelling and its place in its file; `tagged(orthography, text)` makes a TaggedText; `cli`
+    reads text as its profile does."""
+    graphemes = {
+        str(g.id): (unit, gi, g)
+        for unit in units
+        for gi, g in enumerate(unit.source.graphemes or [])
+    }
+    reading_of = _readings(lexicon)
     out: dict[str, dict[str, Any]] = {}
     taught: dict[str, list[Grapheme]] = {}  # orthography → graphemes taught so far
     readers: dict[str, Reader] = {}
@@ -262,26 +270,27 @@ def compile_alphabets(
             if read is None:
                 read = readers[orth] = Reader.of(cli, orth, profile)
 
-            letter_latin = partial(_letter_latin, diags, kcs, t, node.id)
+            letter_latin = partial(_letter_latin, diags, graphemes, t, node.id)
             new: list[tuple[Grapheme, str]] = []
-            for kc_id in node.introduces or []:
-                found = kcs.get(kc_id)
-                if found is None or not kc_id.startswith("grapheme:"):
+            for teachable in node.introduces or []:
+                ident = str(teachable)
+                found = graphemes.get(ident)
+                if found is None or not ident.startswith(GRAPHEME):
                     continue
-                kc_unit, ki, kc = found
-                forms = (kc.forms or {}).get(orth, [])
+                g_unit, gi, source = found
+                forms = (source.forms or {}).get(orth, [])
                 if not forms:
                     continue
-                g = grapheme(kc_id, list(forms), read)
+                g = grapheme(ident, list(forms), read)
                 if g is None:
                     diags.report(
                         "script.no-letter",
-                        f"{kc_id}: {forms[0]!r} has no letter of {orth}, nor one carrying a mark "
+                        f"{ident}: {forms[0]!r} has no letter of {orth}, nor one carrying a mark "
                         "of its profile: it would be in every word",
-                        kc_unit.doc.loc("kcs", ki, "forms", orth, 0),
+                        g_unit.doc.loc("graphemes", gi, "forms", orth, 0),
                     )
                     continue
-                latin = letter_latin(g, kc_unit.doc.loc("kcs", ki, "forms"))
+                latin = letter_latin(g, g_unit.doc.loc("graphemes", gi, "forms"))
                 if latin is None:
                     continue
                 new.append((g, latin))
@@ -289,14 +298,15 @@ def compile_alphabets(
             taught[orth] = so_far
             known = {letter for g in so_far for s in g.spellings for letter in s}
 
-            words: list[dict[str, Any]] = []
-            for wi, kc_id in enumerate(alphabet.words):
-                found = kcs.get(kc_id)
-                forms = (found[2].forms or {}).get(orth, []) if found is not None else []
-                wloc = unit.doc.loc("nodes", ni, "alphabet", "words", wi)
+            lexemes: list[dict[str, Any]] = []
+            for wi, named in enumerate(alphabet.lexemes):
+                ident = str(named)
+                entry = lang.get(ident)
+                forms = [] if entry is None else lang.spelled(entry, orth)
+                wloc = unit.doc.loc("nodes", ni, "alphabet", "lexemes", wi)
                 if not forms:
                     diags.report(
-                        "script.missing-form", f"{node.id}: {kc_id} has no {orth} form", wloc
+                        "script.missing-form", f"{node.id}: {ident} has no {orth} spelling", wloc
                     )
                     continue
                 word = forms[0]
@@ -305,37 +315,37 @@ def compile_alphabets(
                 if missing:
                     diags.report(
                         "script.untaught-letter",
-                        f"{node.id}: {word!r} ({kc_id}) needs {' '.join(missing)}, not taught yet",
+                        f"{node.id}: {word!r} ({ident}) needs {' '.join(missing)}, not taught yet",
                         wloc,
                     )
                     continue
-                reading = reading_of(kc_id, orth, t.scheme)
+                reading = reading_of(ident, orth, t.scheme)
                 if reading is None:
                     diags.report(
                         "script.missing-reading",
-                        f"{node.id}: {word!r} ({kc_id}) has no {t.scheme} reading: no sentence "
-                        "spells it, so give its KC entry `readings`",
+                        f"{node.id}: {word!r} ({ident}) has no {t.scheme} reading: no sentence "
+                        "spells it, so give its entry `readings`",
                         wloc,
                     )
                     continue
                 latin = t.write(reading) if t.write is not None else reading
-                words.append(
+                lexemes.append(
                     _item(
                         tagged,
                         orth,
                         t.latin,
                         latin,
-                        kc_id,
+                        ident,
                         word,
-                        [g.kc for g in so_far if g.occurs(spelled)],
+                        [g.id for g in so_far if g.occurs(spelled)],
                     )
                 )
             out[node.id] = {
                 "orthography": orth,
                 "letters": [
-                    _item(tagged, orth, t.latin, latin, g.kc, g.form, [g.kc]) for g, latin in new
+                    _item(tagged, orth, t.latin, latin, g.id, g.form, [g.id]) for g, latin in new
                 ],
-                "words": words,
+                "lexemes": lexemes,
             }
     return out
 
@@ -350,7 +360,7 @@ def with_alphabets(
             out.append(unit)
             continue
         nodes = [
-            n.model_copy(update={"alphabet": Alphabet.model_validate(alphabets[n.id])})
+            n.model_copy(update={"alphabet": NextBundleAlphabet.model_validate(alphabets[n.id])})
             if n.id in alphabets
             else n
             for n in unit.nodes

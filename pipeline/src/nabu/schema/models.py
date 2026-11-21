@@ -902,7 +902,7 @@ class GraphemeSource(BaseModel):
     notes: dict[str, NotesAdditionalProperty] | None = None
 
 
-class Alphabet2(BaseModel):
+class Alphabet1(BaseModel):
     """
     script nodes that teach an orthography from scratch (ADR 0088): lexemes for reading and writing practice, each one whose citation form the letters taught by this node and the ones before it spell.
     """
@@ -1053,7 +1053,7 @@ type FormsAdditionalProperty3Item = Annotated[str, Field(min_length=1)]
 type FormsAdditionalProperty3 = Annotated[list[FormsAdditionalProperty3Item], Field(min_length=1)]
 
 
-class Alphabet3(BaseModel):
+class Alphabet2(BaseModel):
     """
     script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell.
     """
@@ -1076,7 +1076,7 @@ class PathNodeSource(BaseModel):
     introduces: list[KcId] | None = None
     reinforces: list[KcId] | None = None
     alphabet: Annotated[
-        Alphabet3 | None,
+        Alphabet2 | None,
         Field(
             description="script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell."
         ),
@@ -3673,7 +3673,7 @@ class NextPathNodeSource(BaseModel):
     introduces: list[TeachableId] | None = None
     reinforces: list[TeachableId] | None = None
     alphabet: Annotated[
-        Alphabet2 | None,
+        Alphabet1 | None,
         Field(
             description="script nodes that teach an orthography from scratch (ADR 0088): lexemes for reading and writing practice, each one whose citation form the letters taught by this node and the ones before it spell."
         ),
@@ -6291,7 +6291,7 @@ class NextScriptItem(BaseModel):
     latin: TaggedText
 
 
-class Alphabet(BaseModel):
+class NextBundleAlphabet(BaseModel):
     """
     An alphabet node's letters and practice lexemes, each with its reading in Latin letters (ADR 0088, 0133).
     """
@@ -6321,9 +6321,10 @@ class NextBundleNode(BaseModel):
     reinforces: list[TeachableId]
     sentences: list[str]
     alphabet: Annotated[
-        Alphabet | None,
+        NextBundleAlphabet | None,
         Field(
-            description="An alphabet node's letters and practice lexemes, each with its reading in Latin letters (ADR 0088, 0133)."
+            description="An alphabet node's letters and practice lexemes, each with its reading in Latin letters (ADR 0088, 0133).",
+            title="NextBundleAlphabet",
         ),
     ] = None
     convert: Convert | None = None
@@ -6520,7 +6521,7 @@ class ScriptItem(BaseModel):
     latin: TaggedText
 
 
-class Alphabet1(BaseModel):
+class Alphabet(BaseModel):
     """
     An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0133).
     """
@@ -6545,7 +6546,7 @@ class BundleNode(BaseModel):
     reinforces: list[KcId]
     sentences: list[str]
     alphabet: Annotated[
-        Alphabet1 | None,
+        Alphabet | None,
         Field(
             description="An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0133)."
         ),

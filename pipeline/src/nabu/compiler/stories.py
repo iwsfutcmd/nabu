@@ -5,33 +5,34 @@ A story is read at a path node of kind `story`. Its lines compile exactly like s
 a learner reading Arabizi or Cyrillic gets the same story. Its questions:
 - `choose`: a comprehension question in the support language;
 - a line with `ask: complete`: choose what is missing at `gap`, asking one thing (ADR 0132): which
-  word (`asks: word`, the default: each distractor KC shown as the course writes it in the gap's
-  form) or which form (`asks: form`: the gap's word in other forms the course writes). Options are
-  words of sentences and story lines of the story's unit or earlier ones, resolved here;
+  lexeme (`asks: lexeme`, the default: each distractor lexeme shown as the course writes it in the
+  gap's form) or which form (`asks: form`: the gap's lexeme in other forms the course writes).
+  Options are tokens of sentences and story lines of the story's unit or earlier ones, resolved
+  here;
 - a line with `ask: arrange`: build the line from its tiles, given its translation.
 
-Words are glossed on tap from the course glossary (KC forms) by the runtime longest-match
-matcher; stage 7 counts story lines when it looks for dead glossary entries.
+Words are glossed on tap from the course glossary (its lexemes' spellings) by the runtime
+longest-match matcher; stage 7 counts story lines when it looks for dead glossary entries.
 """
 
 from __future__ import annotations
 
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, cast
 
+from nabu.compiler import tokens as tk
 from nabu.compiler.source import Doc
+from nabu.formkey import lexeme_form_key
 from nabu.items import line_item
+from nabu.lexicon import Language, kind_of
 
 if TYPE_CHECKING:
-    from nabu.compiler.build import Ctx, Unit
-    from nabu.schema.models import (
-        CourseSource,
-        KnowledgeComponentSource,
-        StoryChoiceSource,
-        StoryLineSource,
-        StorySource,
-    )
+    from nabu.compiler.build import Ctx, Taught, Unit
+    from nabu.schema.models import Lexeme, StoryChoiceSource
+    from nabu.schema.models import NextCourseSource as CourseSource
+    from nabu.schema.models import NextStoryLineSource as StoryLineSource
+    from nabu.schema.models import NextStorySource as StorySource
 
 Path = tuple[str | int, ...]
 
@@ -52,24 +53,24 @@ class Stories:
     lines: list[LineForm] = field(default_factory=lambda: [])
 
 
-def token_kcs(token: dict[str, Any]) -> list[str]:
-    refs = [f"sense:{token['sense']}"] if "sense" in token else []
-    refs += [token["form"]] if "form" in token else []
-    refs += [m["kc"] for m in token.get("morphs", [])]
-    return list(dict.fromkeys(refs))
-
-
-def sense_kc(token: dict[str, Any]) -> str | None:
-    return f"sense:{token['sense']}" if "sense" in token else None
-
-
-def signature(token: dict[str, Any]) -> tuple[str, ...]:
-    """A word's form signature (ADR 0132): its morph KCs but its sense, and its pinned form."""
-    sense = sense_kc(token)
-    kcs = {m["kc"] for m in token.get("morphs", []) if m["kc"] != sense}
-    if "form" in token:
-        kcs.add(token["form"])
-    return tuple(sorted(kcs))
+def signature(token: Mapping[str, Any], lang: Language) -> tuple[str, ...]:
+    """A token's form signature (ADR 0132): everything it writes but which lexeme its base is.
+    The feature values its base has there (those chosen on the token, and those its lexeme has
+    of itself: a feminine noun stands with feminine nouns, whichever way each is feminine), and
+    the other lexemes it writes with it (an ending, a clitic, an article), each with its own
+    values. Two tokens with one signature differ only in their lexeme; two of one lexeme with
+    different signatures only in their form."""
+    base = tk.base_of(token)
+    entry = None if base is None else lang.get(str(base["lexeme"]))
+    chosen = tk.feats_of(base or {})
+    has = chosen if entry is None else lang.effective(entry, chosen)
+    said = [f"{name}={value}" for name, value in sorted(has.items())]
+    others = [
+        lexeme_form_key(str(part["lexeme"]), tk.feats_of(part))
+        for part in tk.lexemes_of(token)
+        if part is not base
+    ]
+    return (*sorted(others), *said)
 
 
 def _capitalized(surface: str) -> bool:
@@ -118,21 +119,26 @@ class _Compiler:
         course: CourseSource,
         units: list[Unit],
         compiled_forms: dict[tuple[int, int], dict[str, dict[str, Any]]],
+        taught: Taught,
     ) -> None:
-        from nabu.compiler.build import compile_form, marked, support_key, support_text
+        from nabu.compiler.build import (
+            compile_form,
+            marked,
+            parts_of,
+            support_key,
+            support_text,
+        )
 
         self.ctx = ctx
         self.course = course
+        self.parts_of: Callable[..., list[str]] = parts_of
         self.compile_form: Callable[..., dict[str, Any] | None] = compile_form
         self.support_text: Callable[..., dict[str, Any]] = support_text
         self.marked: Callable[..., dict[str, Any]] = marked
         self.support_keys = [support_key(ctx, o) for o in course.support]
         self.support_by_key = dict(zip(self.support_keys, course.support, strict=True))
+        self.taught = taught
         self.nodes: dict[str, tuple[int, str]] = {}
-        self.introduced: dict[str, int] = {}
-        self.defined: set[str] = set()
-        self.kc_forms: dict[str, dict[str, list[str]]] = {}
-        self.kcs: dict[str, KnowledgeComponentSource] = {}
         # The words the course writes, by orthography, in course order (sentences, then story lines
         # as they compile): what a `complete` question's options are taken from (ADR 0132).
         self.attested: dict[str, list[Attested]] = {}
@@ -144,29 +150,22 @@ class _Compiler:
                     continue
                 for orth, tagged in compiled_forms.get((ui, si), {}).items():
                     self.attest(orth, ui, sentence.id, tagged)
-        position = 0
         for unit in units:
-            for kc in unit.source.kcs:
-                self.defined.add(kc.id)
-                self.kc_forms[kc.id] = dict(kc.forms or {})
-                self.kcs[kc.id] = kc
             for node in unit.source.nodes:
-                self.nodes[node.id] = (position, node.kind)
-                for kc in node.introduces or []:
-                    self.introduced.setdefault(kc, position)
-                position += 1
+                self.nodes[node.id] = (taught.node_pos[node.id], node.kind)
 
     def attest(self, orth: str, unit: int, item: str, tagged: dict[str, Any]) -> None:
         words = self.attested.setdefault(orth, [])
         tokens = [t for t in tagged["tokens"] if t.get("kind", "word") in ("word", "number")]
-        senses = [t.get("sense") for t in tokens]
+        senses = [tk.base_id(t) for t in tokens]
         for i, t in enumerate(tokens):
-            # A word of a phrase KC (مع of مع السلامة, por of por favor) is only part of its sense:
-            # alone, it is no option. A phrase's words stand next to each other with its sense.
-            phrase = (i > 0 and senses[i - 1] == t.get("sense")) or (
-                i + 1 < len(senses) and senses[i + 1] == t.get("sense")
+            # A token of a lexeme written as several (مع of مع السلامة, por of por favor) is only
+            # part of it: alone, it is no option. Its tokens stand next to each other.
+            phrase = senses[i] is not None and (
+                (i > 0 and senses[i - 1] == senses[i])
+                or (i + 1 < len(senses) and senses[i + 1] == senses[i])
             )
-            if "sense" in t and not phrase:
+            if senses[i] is not None and not phrase:
                 words.append(Attested(unit, item, t, str(tagged["lang"])))
 
     def report(self, lint: str, message: str, doc: Doc, at: Path) -> None:
@@ -223,14 +222,14 @@ class _Compiler:
                 }
             )
         steps: list[dict[str, Any]] = []
-        kcs: list[str] = []
+        parts: list[str] = []
         for si, step in enumerate(story.steps):
             at: Path = (*base, "steps", si)
             if step.line is not None:
                 line = self.line(story, step.line, doc, (*at, "line"), speakers, position, out, si)
                 if line is None:
                     return None
-                kcs += [k for k in line["kcs"] if k not in kcs]
+                parts += [k for k in line["parts"] if k not in parts]
                 steps.append({"line": line})
             elif step.choose is not None:
                 steps.append({"choose": self.choose(story, step.choose, doc, (*at, "choose"))})
@@ -241,7 +240,7 @@ class _Compiler:
             "title": self.texts(dict(story.title), f"{story.id}: the title", doc, (*base, "title")),
             "characters": characters,
             "steps": steps,
-            "kcs": kcs,
+            "parts": parts,
             "license": story.license or self.course.license,
         }
         if provenance is not None:
@@ -295,26 +294,32 @@ class _Compiler:
                 doc,
                 (*at, "forms"),
             )
-        kcs: list[str] = []
+        parts: list[str] = []
         for tagged in forms.values():
-            for t in tagged["tokens"]:
-                kcs += [k for k in token_kcs(t) if k not in kcs]
-        for kc in kcs:
-            if kc not in self.defined:
+            self.parts_of(self.ctx, self.taught, position, tagged["tokens"], parts)
+        introduced = self.taught.introduced
+        for part in parts:
+            if "|" in part:
+                continue  # a lexeme's own part is taught with its lexeme
+            if kind_of(part) == "lexeme" and part not in self.ctx.lang.index:
                 self.report(
-                    "curriculum.unknown-kc", f"{story.id} uses {kc}, which is not defined", doc, at
-                )
-            elif kc not in self.introduced:
-                self.report(
-                    "curriculum.never-introduced",
-                    f"{story.id} uses {kc}, which no node introduces",
+                    "curriculum.unknown",
+                    f"{story.id} uses {part}, which the language's lexicon does not have",
                     doc,
                     at,
                 )
-            elif self.introduced[kc] > position:
+            elif part not in introduced:
+                self.report(
+                    "curriculum.never-introduced",
+                    f"{story.id} uses {part}, which no node introduces",
+                    doc,
+                    at,
+                )
+            elif introduced[part] > position:
                 self.report(
                     "story.ahead",
-                    f"{story.id} (node {story.node}) uses {kc} before the node that introduces it",
+                    f"{story.id} (node {story.node}) uses {part} before the node that introduces "
+                    "it",
                     doc,
                     at,
                 )
@@ -323,7 +328,7 @@ class _Compiler:
             "translations": self.texts(
                 dict(line.translations), f"{story.id}: a line", doc, (*at, "translations")
             ),
-            "kcs": kcs,
+            "parts": parts,
         }
         if line.speaker is not None:
             bundle["speaker"] = line.speaker
@@ -357,55 +362,68 @@ class _Compiler:
                     bad(f"nothing to arrange: the {orth} line is one tile", "ask")
             return
         # complete
-        asks = line.asks or "word"
-        if line.gap is None or (asks == "word" and not line.distractors):
+        asks = line.asks or "lexeme"
+        if asks == "use":
+            # ADR 0147's third question: a contrast only a passage decides. It needs its language
+            # to mark the contrast as context-only, which none declares yet.
+            bad("asks: use is for a contrast its language marks as context-only; none does", "asks")
+            return
+        if line.gap is None or (asks == "lexeme" and not line.distractors):
             bad("ask: complete needs a gap and distractors", "ask")
             return
-        bundle["gap"] = line.gap
-        if line.distractors:
-            bundle["distractors"] = list(line.distractors)
+        gap = str(line.gap)
+        bundle["gap"] = gap
+        lang = self.ctx.lang
         whole = True
         for orth, tagged in forms.items():
-            hits = [t for t in tagged["tokens"] if line.gap in token_kcs(t)]
+            hits = [t for t in tagged["tokens"] if gap in tk.ids_of(t)]
             if len(hits) != 1:
+                bad(f"{len(hits)} tokens of the {orth} line write {gap}; the gap needs one", "gap")
+                whole = False
+                continue
+            if tk.base_id(hits[0]) != gap:
                 bad(
-                    f"{len(hits)} words of the {orth} line are {line.gap}; the gap needs one", "gap"
+                    f"{gap} is not the base of {hits[0]['surface']!r}: a question asks a token by "
+                    "the lexeme its others are merged onto",
+                    "gap",
                 )
                 whole = False
                 continue
             if asks == "form":
                 continue
-            # Until a question resolves (story.distractor-form), the app shows a distractor by its
-            # first form: it must have one, and read otherwise than the answer.
+            # A distractor is shown as the course writes it; it must have a spelling to be
+            # one, and read otherwise than the answer.
             answer = self.ctx.cli.result("fold-units", profile=orth, text=hits[0]["surface"])
-            for kc in line.distractors or []:
-                shown = self.kc_forms.get(kc, {}).get(orth)
-                if kc not in self.defined or not shown:
-                    bad(f"distractor {kc} has no {orth} form to show", "distractors")
+            for d in line.distractors or []:
+                if not isinstance(d, str):
+                    continue  # a built word is found among the course's tokens (resolve)
+                entry = lang.get(d)
+                shown = [] if entry is None else lang.spelled(entry, orth)
+                if not shown:
+                    bad(f"distractor {d} has no {orth} spelling to show", "distractors")
                 elif self.ctx.cli.result("fold-units", profile=orth, text=shown[0]) == answer:
-                    bad(f"distractor {kc} reads like the answer in {orth}", "distractors")
-        if whole and line.gap.startswith("sense:"):
+                    bad(f"distractor {d} reads like the answer in {orth}", "distractors")
+        if whole:
             self.pending.append(_Pending(story.id, line, forms, doc, at, bundle, self.unit, item))
-        elif whole:
-            bad(f"the gap {line.gap} is not a word's sense: a question credits a sense", "gap")
 
     # ---------------------------------------------------------------- options (ADR 0132)
 
     def resolve(self, p: _Pending) -> None:
-        """A `complete` line's wrong options, as words the course writes in the story's unit or an
-        earlier one: each distractor's sense in the gap's form (asks word), or the gap's word in
-        other forms (asks form). Each is chosen in the course's first orthography and taken from
-        the same sentence or line in the others. Resolved, the bundle gets `asks` and `options`."""
+        """A `complete` line's wrong options, as tokens the course writes in the story's unit or
+        an earlier one: each distractor lexeme in the gap's form (asks lexeme), or the gap's
+        lexeme in other forms (asks form). Each is chosen in the course's first orthography and
+        taken from the same sentence or line in the others. Resolved, the bundle gets `asks` and
+        `options`."""
         line = p.line
-        asks = line.asks or "word"
-        gap_kc = str(line.gap)
+        asks = line.asks or "lexeme"
+        gap_id = str(line.gap)
         orths = [o for o in self.course.orthographies if o in p.forms]
-        gaps = {o: next(t for t in p.forms[o]["tokens"] if line.gap in token_kcs(t)) for o in orths}
+        gaps = {o: next(t for t in p.forms[o]["tokens"] if tk.base_id(t) == gap_id) for o in orths}
         first = orths[0]
         gap = gaps[first]
-        gap_sense = sense_kc(gap)
-        gap_sig = signature(gap)
-        shown_sig = " ".join(gap_sig) or "no form KC"
+        lang = self.ctx.lang
+        gap_sig = signature(gap, lang)
+        shown_sig = " ".join(gap_sig) or "no form of its own"
 
         def form_issue(message: str) -> None:
             self.report(
@@ -416,88 +434,123 @@ class _Compiler:
             return [a for a in self.attested.get(orth, []) if a.unit <= p.unit and a.item != p.item]
 
         def unlike(orth: str) -> Callable[[Attested], bool]:
-            """Whether a word's capital differs from the gap's: case must not mark the answer."""
+            """Whether a token's capital differs from the gap's: case must not mark the answer."""
             cap = _capitalized(str(gaps[orth]["surface"]))
             return lambda a: _capitalized(str(a.token["surface"])) != cap
 
-        def pick(orth: str, sense: str, sig: tuple[str, ...], item: str | None) -> Attested | None:
-            """The word in `orth`: in another orthography, the same sentence's or line's word of
-            that sense (Arabizi writes apart the article Arabic joins, so its form may differ);
-            else one of that sense and form, the gap's case first."""
-            mine = [a for a in pool(orth) if sense_kc(a.token) == sense]
+        def pick(orth: str, what: Wanted, item: str | None) -> Attested | None:
+            """The token in `orth`: in another orthography, the same sentence's or line's token
+            of that lexeme (Arabizi writes apart the article Arabic joins, so its form may
+            differ); else one of that lexeme and form, the gap's case first."""
+            mine = [a for a in pool(orth) if what.is_of(a.token)]
             same = [a for a in mine if a.item == item]
             if same:
-                return min(same, key=lambda a: (signature(a.token) != sig, unlike(orth)(a)))
-            found = sorted((a for a in mine if signature(a.token) == sig), key=unlike(orth))
+                return min(
+                    same, key=lambda a: (signature(a.token, lang) != what.sig, unlike(orth)(a))
+                )
+            found = sorted((a for a in mine if what.fits(a.token, lang)), key=unlike(orth))
             return found[0] if found else None
 
-        chosen: list[tuple[str, tuple[str, ...], str]] = []
+        chosen: list[tuple[Wanted, str]] = []
         resolved = True
-        if asks == "word":
-            own = self.kcs.get(gap_sense or "")
-            for kc in line.distractors or []:
-                theirs = self.kcs.get(kc)
-                if own is not None and theirs is not None and _other_kind(own, theirs):
-                    self.report(
-                        "story.distractor-pos",
-                        f"{p.story}: {kc} is {_kind(theirs)}, the gap {line.gap} {_kind(own)}",
-                        p.doc,
-                        (*p.at, "distractors"),
-                    )
-                a = pick(first, kc, gap_sig, None)
-                if a is None:
+        if asks == "lexeme":
+            own = lang.get(gap_id)
+            for d in line.distractors or []:
+                if isinstance(d, dict):
                     form_issue(
-                        f"no word of {kc} in the gap's form ({shown_sig}) in its unit or earlier"
+                        "asks which lexeme, and a distractor is feature values: those are "
+                        "another form of the gap's own"
                     )
                     resolved = False
                     continue
-                chosen.append((kc, gap_sig, a.item))
+                ids = [str(x) for x in d] if isinstance(d, list) else [str(d)]
+                name = "+".join(ids)
+                theirs = lang.get(ids[0]) if len(ids) == 1 else None
+                if own is not None and theirs is not None and _other_kind(lang, own, theirs):
+                    self.report(
+                        "story.distractor-pos",
+                        f"{p.story}: {name} is {_kind(lang, theirs)}, "
+                        f"the gap {gap_id} {_kind(lang, own)}",
+                        p.doc,
+                        (*p.at, "distractors"),
+                    )
+                # A built word is offered whole, as a token writes its lexemes in that order;
+                # another lexeme, in the gap's form.
+                wanted = Wanted(ids, None if len(ids) > 1 else gap_sig)
+                a = pick(first, wanted, None)
+                if a is None:
+                    form_issue(
+                        f"no token of {name} in the gap's form ({shown_sig}) in its unit or earlier"
+                    )
+                    resolved = False
+                    continue
+                chosen.append((Wanted(ids, signature(a.token, lang)), a.item))
         else:
             if not gap_sig:
-                form_issue(f"asks form, but the gap {gap['surface']} has no form KC to ask about")
+                form_issue(f"asks form, but the gap {gap['surface']} has no form to ask about")
                 return
             mine = set(gap_sig)
             others = [
                 a
                 for a in pool(first)
-                if sense_kc(a.token) == gap_sense and signature(a.token) != gap_sig
+                if tk.base_id(a.token) == gap_id and signature(a.token, lang) != gap_sig
             ]
 
             def nearness(a: Attested) -> tuple[int, int]:
-                sig = signature(a.token)
+                sig = signature(a.token, lang)
                 return (-len(mine.intersection(sig)), abs(len(sig) - len(gap_sig)))
 
             others.sort(key=lambda a: (*nearness(a), unlike(first)(a)))
+
+            def reads(surface: object) -> str:
+                return str(self.ctx.cli.result("fold-units", profile=first, text=str(surface)))
+
+            # Two options must not read alike (פָּנַי beside פְּנֵי, apart only by their points): a
+            # form that reads like the answer or like an option already chosen is passed over.
+            read = {reads(gap["surface"])}
             if line.distractors:
-                for kc in line.distractors:
-                    with_it = [a for a in others if kc in signature(a.token)]
+                for d in line.distractors:
+                    with_it = [a for a in others if _has(a.token, d, lang)]
                     if not with_it:
-                        form_issue(f"no form of {line.gap} with {kc} in its unit or earlier")
+                        form_issue(f"no form of {gap_id} with {_show(d)} in its unit or earlier")
                         resolved = False
                         continue
-                    chosen.append((gap_kc, signature(with_it[0].token), with_it[0].item))
+                    apart = next(
+                        (a for a in with_it if reads(a.token["surface"]) not in read), None
+                    )
+                    a = apart or with_it[0]
+                    read.add(reads(a.token["surface"]))
+                    chosen.append((Wanted([gap_id], signature(a.token, lang)), a.item))
             else:
                 taken: set[tuple[str, ...]] = set()
                 for a in others:
-                    sig = signature(a.token)
-                    if sig not in taken and len(chosen) < 2:
+                    sig = signature(a.token, lang)
+                    if (
+                        sig not in taken
+                        and len(chosen) < 2
+                        and reads(a.token["surface"]) not in read
+                    ):
                         taken.add(sig)
-                        chosen.append((gap_kc, sig, a.item))
+                        read.add(reads(a.token["surface"]))
+                        chosen.append((Wanted([gap_id], sig), a.item))
                 if len(chosen) < 2:
                     form_issue(
-                        f"{len(chosen)} other forms of {line.gap} in its unit or earlier; "
+                        f"{len(chosen)} other forms of {gap_id} in its unit or earlier; "
                         "asks form needs two"
                     )
                     resolved = False
         if not resolved or not chosen:
             return
         options: list[dict[str, Any]] = []
-        for sense, sig, item in chosen:
+        for wanted, item in chosen:
             per: dict[str, Any] = {}
             for orth in orths:
-                a = pick(orth, sense, sig, item)
+                a = pick(orth, wanted, item)
                 if a is None:
-                    form_issue(f"no {orth} word of {sense} in the form {' '.join(sig) or 'bare'}")
+                    form_issue(
+                        f"no {orth} token of {'+'.join(wanted.ids)} in the form "
+                        f"{' '.join(wanted.sig or ()) or 'bare'}"
+                    )
                     return
                 per[orth] = {
                     "lang": a.lang,
@@ -551,28 +604,77 @@ class _Compiler:
         }
 
 
-def _other_kind(gap: KnowledgeComponentSource, other: KnowledgeComponentSource) -> bool:
-    """Where both have a part of speech, whether it or their features differ (ADR 0132)."""
+@dataclass(frozen=True)
+class Wanted:
+    """An option to find among the course's tokens: a lexeme in a form (its signature), or a
+    token built of several lexemes, written in that order."""
+
+    ids: list[str]
+    sig: tuple[str, ...] | None
+
+    def is_of(self, token: Mapping[str, Any]) -> bool:
+        if len(self.ids) > 1:
+            return tk.ids_of(token) == self.ids
+        return tk.base_id(token) == self.ids[0]
+
+    def fits(self, token: Mapping[str, Any], lang: Language) -> bool:
+        return self.is_of(token) and (self.sig is None or signature(token, lang) == self.sig)
+
+
+def _has(token: Mapping[str, Any], distractor: object, lang: Language) -> bool:
+    """Whether a form of the gap's lexeme is the one a distractor names: a lexeme written with
+    it (an ending), or feature values it has there (chosen, or its lexeme's own)."""
+    base = tk.base_of(token)
+    if isinstance(distractor, str):
+        return any(p["lexeme"] == distractor for p in tk.lexemes_of(token) if p is not base)
+    if isinstance(distractor, dict):
+        entry = None if base is None else lang.get(str(base["lexeme"]))
+        chosen = tk.feats_of(base or {})
+        said = chosen if entry is None else lang.effective(entry, chosen)
+        named = cast(dict[str, Any], distractor)
+        return all(said.get(str(k)) == str(v) for k, v in named.items())
+    return False
+
+
+def _show(distractor: object) -> str:
+    if isinstance(distractor, dict):
+        named = cast(dict[str, Any], distractor)
+        return "|".join(f"{k}={v}" for k, v in sorted(named.items()))
+    return str(distractor)
+
+
+def _features(lang: Language, entry: Lexeme) -> dict[str, str]:
+    """What kind of lexeme an entry is beyond its part of speech: its lexical features, but
+    those its category has of itself or chooses (a noun's gender), which are part of the form a
+    token stands in (`signature`)."""
+    own = set(lang.own_features(entry))
+    return {k: v for k, v in lang.lexical(entry).items() if k not in own}
+
+
+def _other_kind(lang: Language, gap: Lexeme, other: Lexeme) -> bool:
+    """Where both have a part of speech, whether it or their features differ (ADR 0132): a
+    classifier stands only against classifiers."""
     if gap.pos is None or other.pos is None:
         return False
-    return gap.pos != other.pos or dict(gap.features or {}) != dict(other.features or {})
+    return gap.pos != other.pos or _features(lang, gap) != _features(lang, other)
 
 
-def _kind(kc: KnowledgeComponentSource) -> str:
-    features = ",".join(f"{k}={v}" for k, v in sorted((kc.features or {}).items()))
-    return f"{kc.pos}{'[' + features + ']' if features else ''}"
+def _kind(lang: Language, entry: Lexeme) -> str:
+    features = ",".join(f"{k}={v}" for k, v in sorted(_features(lang, entry).items()))
+    return f"{entry.pos}{'[' + features + ']' if features else ''}"
 
 
 def compile_stories(
     ctx: Ctx,
     course: CourseSource,
     units: list[Unit],
-    compiled_forms: dict[tuple[int, int], dict[str, dict[str, Any]]] | None = None,
+    compiled_forms: dict[tuple[int, int], dict[str, dict[str, Any]]],
+    taught: Taught,
 ) -> Stories:
     """Every unit's stories, compiled and checked; and every line form for stage 7. A `complete`
     line's options are resolved once every line is compiled (they may come from any story of the
     unit or an earlier one)."""
-    c = _Compiler(ctx, course, units, compiled_forms or {})
+    c = _Compiler(ctx, course, units, compiled_forms, taught)
     out = Stories()
     told: dict[str, str] = {}  # story node → story id
     for ui, unit in enumerate(units):

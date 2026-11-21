@@ -24,8 +24,34 @@ class Lint:
 
 _LINTS = [
     # 1 · parse
-    Lint("parse.schema", "error", 1, "Source does not match schemas/course-source.schema.json."),
-    Lint("parse.duplicate-id", "error", 1, "Two units, KCs, nodes or sentences share an id."),
+    Lint(
+        "parse.schema",
+        "error",
+        1,
+        "A course, a unit or its language's lexicon does not match its schema, or the lexicon "
+        "is not there.",
+    ),
+    Lint(
+        "parse.duplicate-id",
+        "error",
+        1,
+        "Two units, nodes, sentences or letters of a course, or two lexemes of a lexicon, share "
+        "an id.",
+    ),
+    Lint(
+        "parse.token-lexemes",
+        "error",
+        1,
+        "A token names its one lexeme and lists several, or has feature values and no lexeme to "
+        "have them: it names one, or lists them.",
+    ),
+    Lint(
+        "parse.token-relation",
+        "error",
+        1,
+        "A token's relation does not hold together: a head with no relation or the other way "
+        "round, a number out of order, or a head the form does not number.",
+    ),
     Lint(
         "parse.unknown-orthography",
         "error",
@@ -39,7 +65,38 @@ _LINTS = [
         "Tokens do not spell out the form's text in order, or a word is left untokenized.",
     ),
     Lint(
-        "parse.missing-asset", "error", 1, "An asset (a KC image) names a file that does not exist."
+        "parse.missing-asset",
+        "error",
+        1,
+        "An asset (a lexeme's picture) names a file that does not exist.",
+    ),
+    Lint(
+        "lexicon.kind",
+        "error",
+        1,
+        "A lexicon entry is not one kind of lexeme: it has a part of speech, or is a value head "
+        "(`realises`), or a function head (`head`), one of the three (ADR 0145).",
+    ),
+    Lint(
+        "lexicon.form",
+        "error",
+        1,
+        "A form of an entry says nothing of how it is written, or is listed with no statement "
+        "that the language has no rule for it (ADR 0145).",
+    ),
+    Lint(
+        "lexicon.undeclared",
+        "error",
+        1,
+        "A feature value, a class, a variety or a register is named that the language does not "
+        "declare (lexicons/<lang>/language.yaml).",
+    ),
+    Lint(
+        "lexicon.order",
+        "error",
+        1,
+        "A lexicon is not sorted by id: an entry's place never moves, so a diff shows only what "
+        "changed.",
     ),
     Lint(
         "course.names",
@@ -140,10 +197,11 @@ _LINTS = [
     ),
     # 5 · curriculum
     Lint(
-        "curriculum.unknown-kc",
+        "curriculum.unknown",
         "error",
         5,
-        "A knowledge component is referenced but never defined.",
+        "A node, a sentence or a story names a lexeme its language's lexicon does not have, a "
+        "feature value it does not declare, a rule it does not name, or a letter no unit lists.",
     ),
     Lint(
         "curriculum.unknown-node",
@@ -166,9 +224,12 @@ _LINTS = [
         5,
         "A sentence brings in more new KCs than the course allows (default 1).",
     ),
-    Lint("curriculum.cycle", "error", 5, "The prerequisite graph has a cycle."),
-    Lint("curriculum.order", "error", 5, "A node introduces a KC before its prerequisites."),
-    Lint("curriculum.unused-kc", "warning", 5, "A KC is defined but no sentence uses it."),
+    Lint(
+        "curriculum.unused",
+        "warning",
+        5,
+        "A node introduces a lexeme, a feature value or a rule that no sentence uses.",
+    ),
     Lint(
         "curriculum.one-gender",
         "warning",
@@ -264,17 +325,18 @@ _LINTS = [
     ),
     # 7 · glossary and segmentation simulation
     Lint(
-        "kc.inflected-form",
+        "lexeme.inflected-form",
         "error",
         7,
-        "A KC form is a word the sentences analyse into several KCs: forms are lemmas (ADR 0061).",
+        "An entry is spelled as a token the sentences write with several lexemes: an entry is "
+        "spelled as its lemma (ADR 0061).",
     ),
     Lint(
-        "kc.reading",
+        "lexeme.reading",
         "error",
         7,
-        "A KC's own reading (`readings`, ADR 0117) is one no token gives its word, is for a "
-        "first form of several words, or is in a scheme no orthography of its forms pins.",
+        "An entry's own reading (`readings`, ADR 0117) is one no token gives its word, is for a "
+        "first spelling of several words, or is in a scheme no orthography it is spelled in pins.",
     ),
     Lint(
         "glossary.dead-entry",
