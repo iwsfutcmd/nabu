@@ -447,8 +447,12 @@ on three learners instead of one (`packages/core/test/simulation.test.ts`; nothi
 sixteen glosses and notes of the apc and chg lexicons say a change in a word instead of with an
 arrow, which the interface font lacks; three pipeline tests read the bundle in the new shape.
 
-**Not run here:** the deploy job (compose build and `deploy/smoke.sh`) and the Android build. CI
-runs both on main.
+**Not run here:** the deploy job's compose build and the Android build; CI runs both on main. The
+smoke test's API calls (sign up, upload, read back, export, delete) were replayed against a local
+API and pass; its event said schema 1 and was corrected. The Pages workflow's landing page and audio
+check were run by hand and write their pages. CI could not be started on the branch from this
+session (the integration may not dispatch workflows), so main's own run is the first of the whole
+workflow.
 
 ### What follows, in the order I would take it
 
