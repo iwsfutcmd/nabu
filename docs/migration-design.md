@@ -705,6 +705,26 @@ fault is found in the stage that made it.
   plan's `lexical`), before the converter's last run; a form's clip is keyed by its lexeme and its feature
   values in stage 2.
 
+### How the branch builds it
+
+The table above says the old goes last. On the branch that builds the switch it goes first, and "what runs
+today" is the main branch:
+
+- **The sources are flipped by a script, at the start** (`cd pipeline && uv run nabu flip`, in
+  `nabu/migrate/flip.py`). It reads the courses of the main branch in today's shape, converts them, and
+  writes the lexicons, each course's `course.yaml` and units in the new shape, its alias table, its pinned
+  voices and its audio index with every word clip under its new name (2,193: 2,185 a lexeme's, 8 a form's
+  key). Nothing else of an index entry changes, and every comment of the old files is carried to the line
+  it stood before.
+- **A course is still edited on the main branch, in today's shape,** until the switch lands. A change there
+  reaches the branch by merging and running the flip again, never by hand: a test holds the branch's
+  courses to exactly what the flip writes from the main branch.
+- **The compiler, core and the app are changed in place,** not copied: there is one of each at every
+  commit of the branch, and the old compiler and bundles are the main branch's. Each stage's check
+  compares with those.
+- **The converter stays on the branch until the last stage,** since the flip runs it; its plans are kept
+  as the record of what was decided, since a drafted entry's provenance names its plan.
+
 ### Stage 1, as built: the new bundle's shape
 
 `schemas/bundle.next.schema.json`, format version 2, with examples that fit and that do not

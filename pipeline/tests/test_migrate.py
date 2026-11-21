@@ -1,9 +1,12 @@
 """The converter to the lexical model (docs/migration-design.md, deliverable 2): every course
-comes through with its checks passing and matches what is committed, and each thing the
-converter does is pinned on a course small enough to read."""
+comes through with its checks passing, and each thing the converter does is pinned on a course
+small enough to read. The courses it converts are the main branch's, in today's shape: the branch
+that builds the switch holds them flipped (`nabu flip`), and must hold exactly what the flip
+writes."""
 
 from __future__ import annotations
 
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -13,7 +16,8 @@ from typer.testing import CliRunner
 
 from nabu import migrate
 from nabu.cli import app
-from nabu.migrate import checks, plan
+from nabu.formkey import form_key, parse_form_key
+from nabu.migrate import checks, flip, plan
 from nabu.migrate.lexicon import _ends, offsets, runs  # pyright: ignore[reportPrivateUsage]
 from nabu.migrate.report import SECTIONS
 from nabu.migrate.source import fold
@@ -24,11 +28,23 @@ Json = dict[str, Any]
 
 COURSES = sorted(p.parent.name for p in (ROOT / "courses").glob("*/course.yaml"))
 PROVENANCE = {"author": "llm:claude@migrate-test-v1", "status": "draft"}
+MAIN = "origin/main"
 
 
 @pytest.fixture(scope="module")
-def converted() -> dict[str, migrate.Migration]:
-    return {c: migrate.migrate(ROOT / "courses" / c) for c in COURSES}
+def main_courses(tmp_path_factory: pytest.TempPathFactory) -> Path:
+    """The main branch's courses, in today's shape."""
+    into = tmp_path_factory.mktemp("main")
+    try:
+        flip.old_tree(ROOT, MAIN, into)
+    except subprocess.CalledProcessError:
+        pytest.skip(f"no {MAIN} to read today's courses from")
+    return into / "courses"
+
+
+@pytest.fixture(scope="module")
+def converted(main_courses: Path) -> dict[str, migrate.Migration]:
+    return {c: migrate.migrate(main_courses / c) for c in COURSES}
 
 
 # Every course of the repo
@@ -46,15 +62,72 @@ def test_a_course_comes_through(course: str, converted: dict[str, migrate.Migrat
     assert {f.kind for f in m.findings} <= {kind for kind, _, _ in SECTIONS}
 
 
+def test_the_work_tree_is_the_main_branch_flipped(main_courses: Path) -> None:
+    """The lexicons, the courses, their alias tables and audio indexes are what `nabu flip`
+    writes from the main branch, and nothing of the old layout is left."""
+    assert main_courses.exists()
+    flipped = flip.plan(ROOT, MAIN)
+    assert flipped.errors == []
+    assert flipped.lost_comments == []
+    assert flip.out_of_date(ROOT, flipped) == [], "run `nabu flip`"
+
+
 @pytest.mark.parametrize("course", COURSES)
-def test_what_is_committed_is_what_it_writes(
-    course: str, converted: dict[str, migrate.Migration]
-) -> None:
-    assert migrate.stale(converted[course]) == [], "run `nabu migrate ../courses`"
+def test_the_report_is_what_it_writes(course: str, converted: dict[str, migrate.Migration]) -> None:
+    m = converted[course]
+    rel = f"docs/migration/{course}.md"
+    assert (ROOT / rel).read_text(encoding="utf-8") == m.files[rel], "run `nabu migrate`"
 
 
 def test_the_summary_is_what_it_writes(converted: dict[str, migrate.Migration]) -> None:
     assert not migrate.summary_stale([converted[c] for c in COURSES])
+
+
+def test_a_flipped_file_keeps_its_comments() -> None:
+    old = (
+        "# The course.\n# Two lines of it.\nid: x\n# Why two.\niPlusOne: 2\n"
+        "audio:\n  # No clip ships.\n  quality: bad\nunits:\n# A story.\n- id: s.1\n"
+    )
+    new = (
+        "id: x\nlexicon: x\niPlusOne: 2\naudio:\n  quality: bad\n  voices: []\nunits:\n- id: s.1\n"
+    )
+    lost: list[str] = []
+    assert flip.with_comments(old, new, "x", lost) == (
+        "# The course.\n# Two lines of it.\nid: x\nlexicon: x\n# Why two.\niPlusOne: 2\n"
+        "audio:\n  # No clip ships.\n  quality: bad\n  voices: []\nunits:\n# A story.\n- id: s.1\n"
+    )
+    assert lost == []
+    # A comment on what the new file does not have is said, never dropped in silence.
+    flip.with_comments("id: x\nkcs:\n# About a KC.\n- {id: 'sense:a'}\n", "id: x\n", "x", lost)
+    assert len(lost) == 1 and "About a KC." in lost[0]
+
+
+def test_a_word_clip_is_renamed_and_nothing_else_changes() -> None:
+    index = (
+        "version: 1\nclips:\n- item: s.1\n  speed: normal\n- item: sense:casa\n  speed: normal\n"
+        "  synthesis:\n    input: casa\n- item: sense:raye7\n  speed: normal\n"
+    )
+    names = {"sense:casa": "lexeme:casa", "sense:raye7": "lexeme:ra7|form:Aspect=Part;Number=Sing"}
+    out = flip.Flipped()
+    assert flip.renamed_index(index, names, "x", out) == (
+        "version: 1\nclips:\n- item: s.1\n  speed: normal\n- item: lexeme:casa\n  speed: normal\n"
+        "  synthesis:\n    input: casa\n- item: lexeme:ra7|form:Aspect=Part;Number=Sing\n"
+        "  speed: normal\n"
+    )
+    assert out.clips == {"renamed": 2, "of a form": 1} and out.errors == []
+    # A clip whose word has no name in the new shape stops the flip.
+    flip.renamed_index("- item: sense:gone\n", names, "x", out)
+    assert out.errors == ["x: the clip of sense:gone has no name in the new shape"]
+
+
+def test_a_forms_key_names_its_lexemes_and_their_values() -> None:
+    key = form_key([("lexeme:esm", {"Number": "Sing"}), ("lexeme:poss-2ms", None)])
+    assert key == "lexeme:esm|form:Number=Sing+lexeme:poss-2ms"
+    assert parse_form_key(key) == [("lexeme:esm", {"Number": "Sing"}), ("lexeme:poss-2ms", {})]
+    # Values in the order of their names, whatever order they were given in.
+    one = form_key([("lexeme:ra7", {"Number": "Sing", "Aspect": "Part", "Gender": "Masc"})])
+    assert one == "lexeme:ra7|form:Aspect=Part;Gender=Masc;Number=Sing"
+    assert form_key([("lexeme:casa", {})]) == "lexeme:casa"
 
 
 @pytest.mark.parametrize("course", COURSES)
@@ -546,14 +619,9 @@ def test_a_file_it_no_longer_writes_is_out_of_date_and_removed(
     assert migrate.stale(spanish, repo) == []
 
 
-def test_the_command_checks_a_course_and_writes_nothing() -> None:
-    result = CliRunner().invoke(app, ["migrate", str(ROOT / "courses" / "tok"), "--check"])
-    assert result.exit_code == 0, result.output
-
-
-def test_two_courses_of_one_language_are_refused() -> None:
+def test_two_courses_of_one_language_are_refused(main_courses: Path) -> None:
     """A language has one lexicon, and merging two courses' entries is not built."""
-    tok = str(ROOT / "courses" / "tok")
+    tok = str(main_courses / "tok")
     result = CliRunner().invoke(app, ["migrate", tok, tok, "--check"])
     assert result.exit_code == 1
     assert "already wrote lexicons/tok" in result.output

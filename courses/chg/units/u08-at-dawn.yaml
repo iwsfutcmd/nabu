@@ -8,223 +8,19 @@ id: u08-at-dawn
 title:
   en: At dawn
 cefr: A2
-kcs:
-- id: sense:ikkawlan
-  pos: NUM
-  gloss:
-    en: the two of them, both together
-  forms:
-    chg-Arab/standard:
-    - ایکاولان
-    chg-Latn/schluessel:
-    - ikkäwlän
-  readings:
-    schluessel: ikkäwlän
-- id: sense:chiq
-  pos: VERB
-  gloss:
-    en: to go out, come out; to climb
-  forms:
-    chg-Arab/standard:
-    - چیق-
-    chg-Latn/schluessel:
-    - čiq-
-  readings:
-    schluessel: čiq
-- id: sense:kir
-  pos: VERB
-  gloss:
-    en: to go in, enter
-  forms:
-    chg-Arab/standard:
-    - کیر-
-    chg-Latn/schluessel:
-    - kir-
-  readings:
-    schluessel: kir
-- id: sense:safar
-  pos: NOUN
-  gloss:
-    en: journey
-  forms:
-    chg-Arab/standard:
-    - سفر
-    chg-Latn/schluessel:
-    - safar
-  readings:
-    schluessel: safar
-- id: sense:azm
-  pos: NOUN
-  gloss:
-    en: resolve, intention
-  forms:
-    chg-Arab/standard:
-    - عزم
-    chg-Latn/schluessel:
-    - ʿazm
-  readings:
-    schluessel: ʿazm
-  notes:
-    en: 'ʿazm qil- "to set out (for)": safargä ʿazm qildi "he set out on a journey".'
-- id: sense:nachcha
-  pos: DET
-  features:
-    PronType: Ind
-  gloss:
-    en: some, several; how many?
-  forms:
-    chg-Arab/standard:
-    - نچه
-    chg-Latn/schluessel:
-    - näččä
-  readings:
-    schluessel: näččä
-  notes:
-    en: näččändä kündin keyin "some days later". In the Tadhkira it is näččändä.
-- id: sense:keyin
-  pos: ADP
-  gloss:
-    en: after, later
-  forms:
-    chg-Arab/standard:
-    - کیین
-    chg-Latn/schluessel:
-    - keyin
-  readings:
-    schluessel: keyin
-  notes:
-    en: 'After a noun with -din: üč kündin keyin "after three days".'
-- id: sense:tang
-  pos: NOUN
-  gloss:
-    en: dawn
-  forms:
-    chg-Arab/standard:
-    - تانک
-    chg-Latn/schluessel:
-    - taŋ
-  readings:
-    schluessel: taŋ
-- id: sense:at.shoot
-  pos: VERB
-  gloss:
-    en: to shoot; (of the dawn) to break
-  forms:
-    chg-Arab/standard:
-    - ات-
-    chg-Latn/schluessel:
-    - at-
-  readings:
-    schluessel: at
-  notes:
-    en: taŋ at- "dawn breaks".
-- id: sense:yaru
-  pos: VERB
-  gloss:
-    en: to grow light, shine
-  forms:
-    chg-Arab/standard:
-    - یارو-
-    chg-Latn/schluessel:
-    - yaru-
-  readings:
-    schluessel: yaru
-- id: sense:arta
-  pos: NOUN
-  gloss:
-    en: early morning; the next day
-  forms:
-    chg-Arab/standard:
-    - ارته
-    chg-Latn/schluessel:
-    - ärtä
-  readings:
-    schluessel: ärtä
-  notes:
-    en: ärtäsi "the next morning".
-- id: sense:kanara
-  pos: NOUN
-  gloss:
-    en: edge, side; an out-of-the-way place
-  forms:
-    chg-Arab/standard:
-    - کناره
-    chg-Latn/schluessel:
-    - kanāra
-  readings:
-    schluessel: kanāra
-- id: sense:qon
-  pos: VERB
-  gloss:
-    en: to stop for the night, camp
-  forms:
-    chg-Arab/standard:
-    - قون-
-    chg-Latn/schluessel:
-    - qon-
-  readings:
-    schluessel: qon
-- id: sense:qop
-  pos: VERB
-  gloss:
-    en: to get up, rise
-  forms:
-    chg-Arab/standard:
-    - قوپ-
-    chg-Latn/schluessel:
-    - qoṗ-
-  readings:
-    schluessel: qoṗ
-- id: form:pcp
-  gloss:
-    en: '-ǧan, -gän (-qan, -kän): who did, which was; (with -da) when'
-  notes:
-    en: 'The past participle: kälgän kiši "the man who came". With -da it says when: taŋ atqanda "when dawn broke", šaharǧa kälgändä "when he came to the city".'
-- id: form:let
-  gloss:
-    en: '-ali, -äli (-li after a vowel): let us …!'
-  notes:
-    en: kiräli "let us go in", barali "let us go", turmayli "let us not stay".
 nodes:
-- id: chg.u08.out-and-in
-  kind: lesson
-  introduces:
-  - sense:chiq
-  - sense:kir
-  - sense:ikkawlan
-- id: chg.u08.the-journey
-  kind: lesson
-  introduces:
-  - sense:safar
-  - sense:azm
-  - sense:nachcha
-  - sense:keyin
-- id: chg.u08.at-dawn
-  kind: lesson
-  introduces:
-  - sense:tang
-  - sense:at.shoot
-  - sense:yaru
-  - sense:arta
-  - form:pcp
-- id: chg.u08.lets-go
-  kind: lesson
-  introduces:
-  - form:let
-  - sense:kanara
-  - sense:qon
-  - sense:qop
-- id: chg.u08.story
-  kind: story
+- {id: chg.u08.out-and-in, kind: lesson, introduces: ['lexeme:chiq', 'lexeme:kir', 'lexeme:ikkawlan']}
+- {id: chg.u08.the-journey, kind: lesson, introduces: ['lexeme:safar', 'lexeme:azm', 'lexeme:nachcha', 'lexeme:keyin']}
+- {id: chg.u08.at-dawn, kind: lesson, introduces: ['lexeme:tang', 'lexeme:at.shoot', 'lexeme:yaru', 'lexeme:arta', 'lexeme:pcp']}
+- {id: chg.u08.lets-go, kind: lesson, introduces: ['lexeme:let', 'lexeme:kanara', 'lexeme:qon', 'lexeme:qop']}
+- {id: chg.u08.story, kind: story}
 sentences:
 - id: s.08.1
   node: chg.u08.out-and-in
   forms:
     chg-Arab/standard:
       text: شهردین چیقتیم.
-      tokens:
-      - {surface: شهردین, sense: shahar, readings: {schluessel: šahardin}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: چیقتیم, sense: chiq, readings: {schluessel: čiqtim}, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: تیم, kc: 'form:past-1s'}]}
+      tokens: [{surface: شهردین, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: šahardin}}, {surface: چیقتیم, lexemes: [{lexeme: chiq, surface: چیق, base: true}, {lexeme: past-1s, surface: تیم}], readings: {schluessel: čiqtim}}]
       reverse: '[من] (شهردین|شهردن) (چیقتیم|چقتیم|جقتیم)'
   translations:
     en: I (went out of|left) the (city|town).
@@ -233,10 +29,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول اویغه کیردی.
-      tokens:
-      - {surface: اول, sense: ul, readings: {schluessel: ul}}
-      - {surface: اویغه, sense: oy, readings: {schluessel: öygä}, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: کیردی, sense: kir, readings: {schluessel: kirdi}, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: دی, kc: 'form:past-3'}]}
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: اویغه, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: öygä}}, {surface: کیردی, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: kirdi}}]
       reverse: اول (اویغه|اویکه|اویقه|اویغا) (کیردی|کردی)
   translations:
     en: (He|She) (went into|entered) the house.
@@ -245,10 +38,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایکاولان بزارغه باردوق.
-      tokens:
-      - {surface: ایکاولان, sense: ikkawlan, readings: {schluessel: ikkäwlän}}
-      - {surface: بزارغه, sense: bazar, readings: {schluessel: bazārǧa}, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: باردوق, sense: bar.go, readings: {schluessel: barduq}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دوق, kc: 'form:past-1p'}]}
+      tokens: [{surface: ایکاولان, lexeme: ikkawlan, readings: {schluessel: ikkäwlän}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: باردوق, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: barduq}}]
       reverse: '[بیز] (ایکاولان|ایکولان) (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) (باردوق|باردوک)'
   translations:
     en: The two of us went to the (market|bazaar).
@@ -257,10 +47,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: انینک بیلان باردیم.
-      tokens:
-      - {surface: انینک, sense: ul, readings: {schluessel: aniŋ}, morphs: [{surface: ا, kc: 'sense:ul'}, {surface: نینک, kc: 'form:gen'}]}
-      - {surface: بیلان, sense: bila, readings: {schluessel: bilän}}
-      - {surface: باردیم, sense: bar.go, readings: {schluessel: bardim}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیم, kc: 'form:past-1s'}]}
+      tokens: [{surface: انینک, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: aniŋ}}, {surface: بیلان, lexeme: bila, readings: {schluessel: bilän}}, {surface: باردیم, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: bardim}}]
       reverse: انینک بیلان باردیم
   translations:
     en: I went with (him|her).
@@ -269,11 +56,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "دروازه\u200cدین چیقیب، تاغغه باردیلار."
-      tokens:
-      - {surface: "دروازه\u200cدین", sense: darwaza, readings: {schluessel: darwāzadin}, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: چیقیب, sense: chiq, readings: {schluessel: čiqip}, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: یب, kc: 'form:cv-p'}]}
-      - {surface: تاغغه, sense: tagh, readings: {schluessel: taǧǧa}, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: باردیلار, sense: bar.go, readings: {schluessel: bardilar}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      tokens: [{surface: "دروازه\u200cدین", lexemes: [{lexeme: darwaza, surface: "دروازه\u200c", base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: darwāzadin}}, {surface: چیقیب, lexemes: [{lexeme: chiq, surface: چیق, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: čiqip}}, {surface: تاغغه, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: taǧǧa}}, {surface: باردیلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: bardilar}}]
       reverse: "(دروازه\u200cدین|دروازه\u200cدن) (چیقیب|چقیب|جقیب) (تاغغه|تاغکه|تاغقه|تاغغا) باردیلار\n(دروازه\u200cدین|دروازه\u200cدن) (چیقیب|چقیب|جقیب) (تاغغه|تاغکه|تاغقه|تاغغا) باردی"
   translations:
     en: They went out of the gate and went to the mountain.
@@ -282,10 +65,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بلالار باغغه کیردیلار.
-      tokens:
-      - {surface: بلالار, sense: bala, readings: {schluessel: balalar}, morphs: [{surface: بلا, kc: 'sense:bala'}, {surface: لار, kc: 'form:pl'}]}
-      - {surface: باغغه, sense: bagh, readings: {schluessel: bāǧǧa}, morphs: [{surface: باغ, kc: 'sense:bagh'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: کیردیلار, sense: kir, readings: {schluessel: kirdilär}, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      tokens: [{surface: بلالار, lexemes: [{lexeme: bala, surface: بلا, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: balalar}}, {surface: باغغه, lexemes: [{lexeme: bagh, surface: باغ, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bāǧǧa}}, {surface: کیردیلار, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: kirdilär}}]
       reverse: |-
         (بلالار|بالالار) (باغغه|باغکه|باغقه|باغغا) (کیردیلار|کردیلار)
         (بلالار|بالالار) (باغغه|باغکه|باغقه|باغغا) (کیردی|کردی)
@@ -296,13 +76,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "انینک بیلان ایکاولان شهرنینک دروازه\u200cسیدین چیقتی."
-      tokens:
-      - {surface: انینک, sense: ul, readings: {schluessel: aniŋ}, morphs: [{surface: ا, kc: 'sense:ul'}, {surface: نینک, kc: 'form:gen'}]}
-      - {surface: بیلان, sense: bila, readings: {schluessel: bilän}}
-      - {surface: ایکاولان, sense: ikkawlan, readings: {schluessel: ikkäwlän}}
-      - {surface: شهرنینک, sense: shahar, readings: {schluessel: šaharniŋ}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: نینک, kc: 'form:gen'}]}
-      - {surface: "دروازه\u200cسیدین", sense: darwaza, readings: {schluessel: darwāzasidin}, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: سی, kc: 'form:poss3'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: چیقتی, sense: chiq, readings: {schluessel: čiqti}, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: تی, kc: 'form:past-3'}]}
+      tokens: [{surface: انینک, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: aniŋ}}, {surface: بیلان, lexeme: bila, readings: {schluessel: bilän}}, {surface: ایکاولان, lexeme: ikkawlan, readings: {schluessel: ikkäwlän}}, {surface: شهرنینک, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: šaharniŋ}}, {surface: "دروازه\u200cسیدین", lexemes: [{lexeme: darwaza, surface: "دروازه\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: abl, surface: دین}], readings: {schluessel: darwāzasidin}}, {surface: چیقتی, lexemes: [{lexeme: chiq, surface: چیق, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: čiqti}}]
       reverse: "انینک بیلان (ایکاولان|ایکولان) شهرنینک (دروازه\u200cسیدین|دروازه\u200cسیدن) (چیقتی|چقتی|جقتی)"
   translations:
     en: The two of them went out of the city gate together.
@@ -311,8 +85,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سفر.
-      tokens:
-      - {surface: سفر, sense: safar, readings: {schluessel: safar}}
+      tokens: [{surface: سفر, lexeme: safar, readings: {schluessel: safar}}]
       reverse: سفر
   translations:
     en: (A|The) journey.
@@ -321,10 +94,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سفرغه عزم قیلدیم.
-      tokens:
-      - {surface: سفرغه, sense: safar, readings: {schluessel: safargä}, morphs: [{surface: سفر, kc: 'sense:safar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: عزم, sense: azm, readings: {schluessel: ʿazm}}
-      - {surface: قیلدیم, sense: qil, readings: {schluessel: qildim}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیم, kc: 'form:past-1s'}]}
+      tokens: [{surface: سفرغه, lexemes: [{lexeme: safar, surface: سفر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: safargä}}, {surface: عزم, lexeme: azm, readings: {schluessel: ʿazm}}, {surface: قیلدیم, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: qildim}}]
       reverse: '[من] (سفرغه|سفرکه|سفرقه|سفرغا) عزم (قیلدیم|قلدیم)'
   translations:
     en: I set out on a journey.
@@ -333,10 +103,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: نچه کشی کلدی.
-      tokens:
-      - {surface: نچه, sense: nachcha, readings: {schluessel: näččä}}
-      - {surface: کشی, sense: kishi, readings: {schluessel: kiši}}
-      - {surface: کلدی, sense: kal, readings: {schluessel: käldi}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+      tokens: [{surface: نچه, lexeme: nachcha, readings: {schluessel: näččä}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}]
       reverse: (نچه|نچچه) (کشی|کیشی) (کلدی|کیلدی)
   translations:
     en: (Some|Several) (people|men) came.
@@ -345,11 +112,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اوچ کوندین کیین کلدی.
-      tokens:
-      - {surface: اوچ, sense: uch, readings: {schluessel: üč}}
-      - {surface: کوندین, sense: kun, readings: {schluessel: kündin}, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: کیین, sense: keyin, readings: {schluessel: keyin}}
-      - {surface: کلدی, sense: kal, readings: {schluessel: käldi}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دی, kc: 'form:past-3'}]}
+      tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: کوندین, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: kündin}}, {surface: کیین, lexeme: keyin, readings: {schluessel: keyin}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}]
       reverse: اوچ (کوندین|کوندن) (کیین|کین) (کلدی|کیلدی)
   translations:
     en: (He|She) came (three days later|after three days).
@@ -358,12 +121,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: نچنده کوندین کیین، کاشغرغه باردوق.
-      tokens:
-      - {surface: نچنده, sense: nachcha, readings: {schluessel: näččändä}}
-      - {surface: کوندین, sense: kun, readings: {schluessel: kündin}, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: کیین, sense: keyin, readings: {schluessel: keyin}}
-      - {surface: کاشغرغه, sense: kashghar, readings: {schluessel: Kašǧarǧa}, morphs: [{surface: کاشغر, kc: 'sense:kashghar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: باردوق, sense: bar.go, readings: {schluessel: barduq}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دوق, kc: 'form:past-1p'}]}
+      tokens: [{surface: نچنده, lexeme: nachcha, readings: {schluessel: näččändä}}, {surface: کوندین, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: kündin}}, {surface: کیین, lexeme: keyin, readings: {schluessel: keyin}}, {surface: کاشغرغه, lexemes: [{lexeme: kashghar, surface: کاشغر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Kašǧarǧa}}, {surface: باردوق, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: barduq}}]
       reverse: نچنده (کوندین|کوندن) (کیین|کین) (کاشغرغه|کاشغرکه|کاشغرقه|کاشغرغا) (باردوق|باردوک)
   translations:
     en: (Some|Several) days later we went to Kashgar.
@@ -372,10 +130,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سفرغه عزم قیلدیلار.
-      tokens:
-      - {surface: سفرغه, sense: safar, readings: {schluessel: safargä}, morphs: [{surface: سفر, kc: 'sense:safar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: عزم, sense: azm, readings: {schluessel: ʿazm}}
-      - {surface: قیلدیلار, sense: qil, readings: {schluessel: qildilar}, morphs: [{surface: قیل, kc: 'sense:qil'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      tokens: [{surface: سفرغه, lexemes: [{lexeme: safar, surface: سفر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: safargä}}, {surface: عزم, lexeme: azm, readings: {schluessel: ʿazm}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: qildilar}}]
       reverse: |-
         (سفرغه|سفرکه|سفرقه|سفرغا) عزم (قیلدیلار|قلدیلار)
         (سفرغه|سفرکه|سفرقه|سفرغا) عزم (قیلدی|قلدی)
@@ -386,13 +141,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: نچنده کوندین کیین، بیر شهرغه کلدیلار.
-      tokens:
-      - {surface: نچنده, sense: nachcha, readings: {schluessel: näččändä}}
-      - {surface: کوندین, sense: kun, readings: {schluessel: kündin}, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: کیین, sense: keyin, readings: {schluessel: keyin}}
-      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
-      - {surface: شهرغه, sense: shahar, readings: {schluessel: šahargä}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: کلدیلار, sense: kal, readings: {schluessel: käldilär}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      tokens: [{surface: نچنده, lexeme: nachcha, readings: {schluessel: näččändä}}, {surface: کوندین, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: kündin}}, {surface: کیین, lexeme: keyin, readings: {schluessel: keyin}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: شهرغه, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: šahargä}}, {surface: کلدیلار, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: käldilär}}]
       reverse: |-
         نچنده (کوندین|کوندن) (کیین|کین) (بیر|بر) (شهرغه|شهرکه|شهرقه|شهرغا) (کلدیلار|کیلدیلار)
         نچنده (کوندین|کوندن) (کیین|کین) (بیر|بر) (شهرغه|شهرکه|شهرقه|شهرغا) (کلدی|کیلدی)
@@ -403,8 +152,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تانک.
-      tokens:
-      - {surface: تانک, sense: tang, readings: {schluessel: taŋ}}
+      tokens: [{surface: تانک, lexeme: tang, readings: {schluessel: taŋ}}]
       reverse: تانک
   translations:
     en: (Dawn|The dawn).
@@ -413,9 +161,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تانک اتتی.
-      tokens:
-      - {surface: تانک, sense: tang, readings: {schluessel: taŋ}}
-      - {surface: اتتی, sense: at.shoot, readings: {schluessel: atti}, morphs: [{surface: ات, kc: 'sense:at.shoot'}, {surface: تی, kc: 'form:past-3'}]}
+      tokens: [{surface: تانک, lexeme: tang, readings: {schluessel: taŋ}}, {surface: اتتی, lexemes: [{lexeme: at.shoot, surface: ات, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: atti}}]
       reverse: تانک اتتی
   translations:
     en: (Dawn|The dawn) broke.
@@ -424,9 +170,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: کون یارودی.
-      tokens:
-      - {surface: کون, sense: kun, readings: {schluessel: kün}}
-      - {surface: یارودی, sense: yaru, readings: {schluessel: yarudi}, morphs: [{surface: یارو, kc: 'sense:yaru'}, {surface: دی, kc: 'form:past-3'}]}
+      tokens: [{surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: یارودی, lexemes: [{lexeme: yaru, surface: یارو, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: yarudi}}]
       reverse: کون یارودی
   translations:
     en: (It grew light|The sun shone|The day dawned).
@@ -435,10 +179,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "ارته\u200cسی تانک یارودی."
-      tokens:
-      - {surface: "ارته\u200cسی", sense: arta, readings: {schluessel: ärtäsi}, morphs: [{surface: "ارته\u200c", kc: 'sense:arta'}, {surface: سی, kc: 'form:poss3'}]}
-      - {surface: تانک, sense: tang, readings: {schluessel: taŋ}}
-      - {surface: یارودی, sense: yaru, readings: {schluessel: yarudi}, morphs: [{surface: یارو, kc: 'sense:yaru'}, {surface: دی, kc: 'form:past-3'}]}
+      tokens: [{surface: "ارته\u200cسی", lexemes: [{lexeme: arta, surface: "ارته\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: ärtäsi}}, {surface: تانک, lexeme: tang, readings: {schluessel: taŋ}}, {surface: یارودی, lexemes: [{lexeme: yaru, surface: یارو, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: yarudi}}]
       reverse: "ارته\u200cسی تانک یارودی"
   translations:
     en: The next (morning|day) (dawn broke|it grew light).
@@ -447,9 +188,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: کلکان کشی.
-      tokens:
-      - {surface: کلکان, sense: kal, readings: {schluessel: kälgän}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: کان, kc: 'form:pcp'}]}
-      - {surface: کشی, sense: kishi, readings: {schluessel: kiši}}
+      tokens: [{surface: کلکان, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: kälgän}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
       reverse: (کلکان|کیلکان) (کشی|کیشی)
   translations:
     en: The (person|man) who came.
@@ -458,10 +197,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تانک اتقانده، چیقتوق.
-      tokens:
-      - {surface: تانک, sense: tang, readings: {schluessel: taŋ}}
-      - {surface: اتقانده, sense: at.shoot, readings: {schluessel: atqanda}, morphs: [{surface: ات, kc: 'sense:at.shoot'}, {surface: قان, kc: 'form:pcp'}, {surface: ده, kc: 'form:loc'}]}
-      - {surface: چیقتوق, sense: chiq, readings: {schluessel: čiqtuq}, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: توق, kc: 'form:past-1p'}]}
+      tokens: [{surface: تانک, lexeme: tang, readings: {schluessel: taŋ}}, {surface: اتقانده, lexemes: [{lexeme: at.shoot, surface: ات, base: true}, {lexeme: pcp, surface: قان}, {lexeme: loc, surface: ده}], readings: {schluessel: atqanda}}, {surface: چیقتوق, lexemes: [{lexeme: chiq, surface: چیق, base: true}, {lexeme: past-1p, surface: توق}], readings: {schluessel: čiqtuq}}]
       reverse: تانک (اتقانده|اتقاندا) [بیز] (چیقتوق|چقتوق|جقتوق)
   translations:
     en: When (dawn|the dawn) broke, we went out.
@@ -470,11 +206,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شهرغه کلکانده، بزارغه باردیم.
-      tokens:
-      - {surface: شهرغه, sense: shahar, readings: {schluessel: šahargä}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: کلکانده, sense: kal, readings: {schluessel: kälgändä}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: کان, kc: 'form:pcp'}, {surface: ده, kc: 'form:loc'}]}
-      - {surface: بزارغه, sense: bazar, readings: {schluessel: bazārǧa}, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: باردیم, sense: bar.go, readings: {schluessel: bardim}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: دیم, kc: 'form:past-1s'}]}
+      tokens: [{surface: شهرغه, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: šahargä}}, {surface: کلکانده, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: pcp, surface: کان}, {lexeme: loc, surface: ده}], readings: {schluessel: kälgändä}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: باردیم, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: bardim}}]
       reverse: (شهرغه|شهرکه|شهرقه|شهرغا) (کلکانده|کلکاندا|کیلکانده|کیلکاندا) (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) باردیم
   translations:
     en: When I came to the (city|town), I went to the (market|bazaar).
@@ -483,10 +215,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بزاردین الغان نان.
-      tokens:
-      - {surface: بزاردین, sense: bazar, readings: {schluessel: bazārdin}, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: الغان, sense: al, readings: {schluessel: alǧan}, morphs: [{surface: ال, kc: 'sense:al'}, {surface: غان, kc: 'form:pcp'}]}
-      - {surface: نان, sense: nan, readings: {schluessel: nan}}
+      tokens: [{surface: بزاردین, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: bazārdin}}, {surface: الغان, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pcp, surface: غان}], readings: {schluessel: alǧan}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}]
       reverse: (بزاردین|بزاردن|بازاردین|بازاردن) (الغان|آلغان) نان
   translations:
     en: The bread (bought|I bought|we bought|that was bought) (in|at|from) the (market|bazaar).
@@ -495,8 +224,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: کیرالی!
-      tokens:
-      - {surface: کیرالی, sense: kir, readings: {schluessel: kiräli}, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: الی, kc: 'form:let'}]}
+      tokens: [{surface: کیرالی, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: let, surface: الی}], readings: {schluessel: kiräli}}]
       reverse: (کیرالی|کرالی)
   translations:
     en: Let's (go in|enter)!
@@ -505,9 +233,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بزارغه بارالی!
-      tokens:
-      - {surface: بزارغه, sense: bazar, readings: {schluessel: bazārǧa}, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: بارالی, sense: bar.go, readings: {schluessel: barali}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: الی, kc: 'form:let'}]}
+      tokens: [{surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: بارالی, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: let, surface: الی}], readings: {schluessel: barali}}]
       reverse: (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارالی
   translations:
     en: Let's go to the (market|bazaar)!
@@ -516,9 +242,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: چای ایچالی.
-      tokens:
-      - {surface: چای, sense: chay, readings: {schluessel: čay}}
-      - {surface: ایچالی, sense: ich, readings: {schluessel: ičäli}, morphs: [{surface: ایچ, kc: 'sense:ich'}, {surface: الی, kc: 'form:let'}]}
+      tokens: [{surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچالی, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: let, surface: الی}], readings: {schluessel: ičäli}}]
       reverse: چای ایچالی
   translations:
     en: Let's drink (tea|some tea).
@@ -527,10 +251,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: «کیرالی،» دیب، کیردیلار.
-      tokens:
-      - {surface: کیرالی, sense: kir, readings: {schluessel: kiräli}, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: الی, kc: 'form:let'}]}
-      - {surface: دیب, sense: de, readings: {schluessel: dep}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: ب, kc: 'form:cv-p'}]}
-      - {surface: کیردیلار, sense: kir, readings: {schluessel: kirdilär}, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      tokens: [{surface: کیرالی, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: let, surface: الی}], readings: {schluessel: kiräli}}, {surface: دیب, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: dep}}, {surface: کیردیلار, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: kirdilär}}]
       reverse: |-
         (کیرالی|کرالی) دیب (کیردیلار|کردیلار)
         (کیرالی|کرالی) دیب (کیردی|کردی)
@@ -541,10 +262,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "بیر کناره\u200cده قوندوق."
-      tokens:
-      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
-      - {surface: "کناره\u200cده", sense: kanara, readings: {schluessel: kanārada}, morphs: [{surface: "کناره\u200c", kc: 'sense:kanara'}, {surface: ده, kc: 'form:loc'}]}
-      - {surface: قوندوق, sense: qon, readings: {schluessel: qonduq}, morphs: [{surface: قون, kc: 'sense:qon'}, {surface: دوق, kc: 'form:past-1p'}]}
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: "کناره\u200cده", lexemes: [{lexeme: kanara, surface: "کناره\u200c", base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: kanārada}}, {surface: قوندوق, lexemes: [{lexeme: qon, surface: قون, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: qonduq}}]
       reverse: "(بیر|بر) (کناره\u200cده|کناره\u200cدا) (قوندوق|قوندوک)"
   translations:
     en: We (stopped for the night|camped|spent the night) (in an out-of-the-way place|at the edge|on the edge).
@@ -553,9 +271,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قوپوب، چیقتیم.
-      tokens:
-      - {surface: قوپوب, sense: qop, readings: {schluessel: qoṗup}, morphs: [{surface: قوپ, kc: 'sense:qop'}, {surface: وب, kc: 'form:cv-p'}]}
-      - {surface: چیقتیم, sense: chiq, readings: {schluessel: čiqtim}, morphs: [{surface: چیق, kc: 'sense:chiq'}, {surface: تیم, kc: 'form:past-1s'}]}
+      tokens: [{surface: قوپوب, lexemes: [{lexeme: qop, surface: قوپ, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: qoṗup}}, {surface: چیقتیم, lexemes: [{lexeme: chiq, surface: چیق, base: true}, {lexeme: past-1s, surface: تیم}], readings: {schluessel: čiqtim}}]
       reverse: (قوپوب|قوفوب) (چیقتیم|چقتیم|جقتیم)
   translations:
     en: I got up and went out.
@@ -564,11 +280,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایکاولان قوپوب، شهرغه کیردیلار.
-      tokens:
-      - {surface: ایکاولان, sense: ikkawlan, readings: {schluessel: ikkäwlän}}
-      - {surface: قوپوب, sense: qop, readings: {schluessel: qoṗup}, morphs: [{surface: قوپ, kc: 'sense:qop'}, {surface: وب, kc: 'form:cv-p'}]}
-      - {surface: شهرغه, sense: shahar, readings: {schluessel: šahargä}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: کیردیلار, sense: kir, readings: {schluessel: kirdilär}, morphs: [{surface: کیر, kc: 'sense:kir'}, {surface: دیلار, kc: 'form:past-3pl'}]}
+      tokens: [{surface: ایکاولان, lexeme: ikkawlan, readings: {schluessel: ikkäwlän}}, {surface: قوپوب, lexemes: [{lexeme: qop, surface: قوپ, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: qoṗup}}, {surface: شهرغه, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: šahargä}}, {surface: کیردیلار, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: kirdilär}}]
       reverse: |-
         (ایکاولان|ایکولان) (قوپوب|قوفوب) (شهرغه|شهرکه|شهرقه|شهرغا) (کیردیلار|کردیلار)
         (ایکاولان|ایکولان) (قوپوب|قوفوب) (شهرغه|شهرکه|شهرقه|شهرغا) (کیردی|کردی)
@@ -584,42 +296,27 @@ stories:
       forms:
         chg-Arab/standard:
           text: "انینک بلان ایکولان شهرنینک دروازه\u200cسیدین جقتی."
-          tokens:
-          - {surface: انینک, sense: ul, readings: {schluessel: aniŋ}, morphs: [{surface: ا, kc: 'sense:ul'}, {surface: نینک, kc: 'form:gen'}]}
-          - {surface: بلان, sense: bila, readings: {schluessel: bilän}}
-          - {surface: ایکولان, sense: ikkawlan, readings: {schluessel: ikkäwlän}}
-          - {surface: شهرنینک, sense: shahar, readings: {schluessel: šaharniŋ}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: نینک, kc: 'form:gen'}]}
-          - {surface: "دروازه\u200cسیدین", sense: darwaza, readings: {schluessel: darwāzasidin}, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: سی, kc: 'form:poss3'}, {surface: دین, kc: 'form:abl'}]}
-          - {surface: جقتی, sense: chiq, readings: {schluessel: čiqti}, morphs: [{surface: جق, kc: 'sense:chiq'}, {surface: تی, kc: 'form:past-3'}]}
+          tokens: [{surface: انینک, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: aniŋ}}, {surface: بلان, lexeme: bila, readings: {schluessel: bilän}}, {surface: ایکولان, lexeme: ikkawlan, readings: {schluessel: ikkäwlän}}, {surface: شهرنینک, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: šaharniŋ}}, {surface: "دروازه\u200cسیدین", lexemes: [{lexeme: darwaza, surface: "دروازه\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: abl, surface: دین}], readings: {schluessel: darwāzasidin}}, {surface: جقتی, lexemes: [{lexeme: chiq, surface: جق, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: čiqti}}]
       translations:
         en: With him, the two of them went out of the city gate.
   - line:
       forms:
         chg-Arab/standard:
           text: "سفرکا عزم قلدی\u200cلار."
-          tokens:
-          - {surface: سفرکا, sense: safar, readings: {schluessel: safargä}, morphs: [{surface: سفر, kc: 'sense:safar'}, {surface: کا, kc: 'form:dat'}]}
-          - {surface: عزم, sense: azm, readings: {schluessel: ʿazm}}
-          - {surface: "قلدی\u200cلار", sense: qil, readings: {schluessel: qildilar}, morphs: [{surface: قل, kc: 'sense:qil'}, {surface: "دی\u200cلار", kc: 'form:past-3pl'}]}
+          tokens: [{surface: سفرکا, lexemes: [{lexeme: safar, surface: سفر, base: true}, {lexeme: dat, surface: کا}], readings: {schluessel: safargä}}, {surface: عزم, lexeme: azm, readings: {schluessel: ʿazm}}, {surface: "قلدی\u200cلار", lexemes: [{lexeme: qil, surface: قل, base: true}, {lexeme: past-3pl, surface: "دی\u200cلار"}], readings: {schluessel: qildilar}}]
       translations:
         en: They set out on a journey.
   - line:
       ask: complete
-      gap: sense:kal
+      gap: lexeme:kal
       asks: form
       distractors:
-      - form:cv-p
-      - form:loc
+      - lexeme:cv-p
+      - lexeme:loc
       forms:
         chg-Arab/standard:
           text: "نجنده کوندین کین، بر شهرکه کلدی\u200cلار."
-          tokens:
-          - {surface: نجنده, sense: nachcha, readings: {schluessel: näččändä}}
-          - {surface: کوندین, sense: kun, readings: {schluessel: kündin}, morphs: [{surface: کون, kc: 'sense:kun'}, {surface: دین, kc: 'form:abl'}]}
-          - {surface: کین, sense: keyin, readings: {schluessel: keyin}}
-          - {surface: بر, sense: bir, readings: {schluessel: bir}}
-          - {surface: شهرکه, sense: shahar, readings: {schluessel: šahargä}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: که, kc: 'form:dat'}]}
-          - {surface: "کلدی\u200cلار", sense: kal, readings: {schluessel: käldilär}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: "دی\u200cلار", kc: 'form:past-3pl'}]}
+          tokens: [{surface: نجنده, lexeme: nachcha, readings: {schluessel: näččändä}}, {surface: کوندین, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: kündin}}, {surface: کین, lexeme: keyin, readings: {schluessel: keyin}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: شهرکه, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dat, surface: که}], readings: {schluessel: šahargä}}, {surface: "کلدی\u200cلار", lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3pl, surface: "دی\u200cلار"}], readings: {schluessel: käldilär}}]
       translations:
         en: Some days later they came to a city.
   - choose:
@@ -634,24 +331,14 @@ stories:
       forms:
         chg-Arab/standard:
           text: "«تانک اتقاندا، کرالی،» دیب، بر کناره\u200cدا قوندی\u200cلار."
-          tokens:
-          - {surface: تانک, sense: tang, readings: {schluessel: taŋ}}
-          - {surface: اتقاندا, sense: at.shoot, readings: {schluessel: atqanda}, morphs: [{surface: ات, kc: 'sense:at.shoot'}, {surface: قان, kc: 'form:pcp'}, {surface: دا, kc: 'form:loc'}]}
-          - {surface: کرالی, sense: kir, readings: {schluessel: kiräli}, morphs: [{surface: کر, kc: 'sense:kir'}, {surface: الی, kc: 'form:let'}]}
-          - {surface: دیب, sense: de, readings: {schluessel: dep}, morphs: [{surface: دی, kc: 'sense:de'}, {surface: ب, kc: 'form:cv-p'}]}
-          - {surface: بر, sense: bir, readings: {schluessel: bir}}
-          - {surface: "کناره\u200cدا", sense: kanara, readings: {schluessel: kanārada}, morphs: [{surface: "کناره\u200c", kc: 'sense:kanara'}, {surface: دا, kc: 'form:loc'}]}
-          - {surface: "قوندی\u200cلار", sense: qon, readings: {schluessel: qondilar}, morphs: [{surface: قون, kc: 'sense:qon'}, {surface: "دی\u200cلار", kc: 'form:past-3pl'}]}
+          tokens: [{surface: تانک, lexeme: tang, readings: {schluessel: taŋ}}, {surface: اتقاندا, lexemes: [{lexeme: at.shoot, surface: ات, base: true}, {lexeme: pcp, surface: قان}, {lexeme: loc, surface: دا}], readings: {schluessel: atqanda}}, {surface: کرالی, lexemes: [{lexeme: kir, surface: کر, base: true}, {lexeme: let, surface: الی}], readings: {schluessel: kiräli}}, {surface: دیب, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: dep}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: "کناره\u200cدا", lexemes: [{lexeme: kanara, surface: "کناره\u200c", base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: kanārada}}, {surface: "قوندی\u200cلار", lexemes: [{lexeme: qon, surface: قون, base: true}, {lexeme: past-3pl, surface: "دی\u200cلار"}], readings: {schluessel: qondilar}}]
       translations:
         en: “When dawn breaks, let us go in,” they said, and they stopped for the night at the edge of the city.
   - line:
       forms:
         chg-Arab/standard:
           text: "ارته\u200cسی تانک یارودی."
-          tokens:
-          - {surface: "ارته\u200cسی", sense: arta, readings: {schluessel: ärtäsi}, morphs: [{surface: "ارته\u200c", kc: 'sense:arta'}, {surface: سی, kc: 'form:poss3'}]}
-          - {surface: تانک, sense: tang, readings: {schluessel: taŋ}}
-          - {surface: یارودی, sense: yaru, readings: {schluessel: yarudi}, morphs: [{surface: یارو, kc: 'sense:yaru'}, {surface: دی, kc: 'form:past-3'}]}
+          tokens: [{surface: "ارته\u200cسی", lexemes: [{lexeme: arta, surface: "ارته\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: ärtäsi}}, {surface: تانک, lexeme: tang, readings: {schluessel: taŋ}}, {surface: یارودی, lexemes: [{lexeme: yaru, surface: یارو, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: yarudi}}]
       translations:
         en: The next morning, dawn broke.
   - line:
@@ -659,12 +346,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "بو ایکولان قوفوب، شهریکه کردی\u200cلار."
-          tokens:
-          - {surface: بو, sense: bu, readings: {schluessel: bu}}
-          - {surface: ایکولان, sense: ikkawlan, readings: {schluessel: ikkäwlän}}
-          - {surface: قوفوب, sense: qop, readings: {schluessel: qoṗup}, morphs: [{surface: قوف, kc: 'sense:qop'}, {surface: وب, kc: 'form:cv-p'}]}
-          - {surface: شهریکه, sense: shahar, readings: {schluessel: šahargä}, morphs: [{surface: شهری, kc: 'sense:shahar'}, {surface: که, kc: 'form:dat'}]}
-          - {surface: "کردی\u200cلار", sense: kir, readings: {schluessel: kirdilär}, morphs: [{surface: کر, kc: 'sense:kir'}, {surface: "دی\u200cلار", kc: 'form:past-3pl'}]}
+          tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: ایکولان, lexeme: ikkawlan, readings: {schluessel: ikkäwlän}}, {surface: قوفوب, lexemes: [{lexeme: qop, surface: قوف, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: qoṗup}}, {surface: شهریکه, lexemes: [{lexeme: shahar, surface: شهری, base: true}, {lexeme: dat, surface: که}], readings: {schluessel: šahargä}}, {surface: "کردی\u200cلار", lexemes: [{lexeme: kir, surface: کر, base: true}, {lexeme: past-3pl, surface: "دی\u200cلار"}], readings: {schluessel: kirdilär}}]
       translations:
         en: The two of them got up and went into the city.
   - choose:

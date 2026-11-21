@@ -10,6 +10,7 @@ const ROOT = resolve(import.meta.dirname, "../../..");
 const PROFILES_DIR = join(ROOT, "profiles");
 const EXAMPLES_DIR = join(SCHEMAS_DIR, "examples");
 const COURSES_DIR = join(ROOT, "courses");
+const LEXICONS_DIR = join(ROOT, "lexicons");
 
 const makeAjv = (): Ajv2020 => {
   const ajv = new Ajv2020({ strict: true, allErrors: true });
@@ -83,8 +84,9 @@ describe("reading schemes in /profiles/schemes (ADR 0109)", () => {
 
 describe("fixture courses in /courses", () => {
   const ajv = makeAjv();
-  const course = ajv.getSchema(ID("course-source.schema.json"))!;
-  const unit = ajv.getSchema(`${ID("course-source.schema.json")}#/$defs/UnitSource`)!;
+  const course = ajv.getSchema(ID("course-source.next.schema.json"))!;
+  const unit = ajv.getSchema(`${ID("course-source.next.schema.json")}#/$defs/NextUnitSource`)!;
+  const aliases = ajv.getSchema(ID("aliases.schema.json"))!;
   const courses = readdirSync(COURSES_DIR, { withFileTypes: true })
     .filter((d) => d.isDirectory() && readdirSync(join(COURSES_DIR, d.name)).includes("course.yaml"))
     .map((d) => d.name)
@@ -92,18 +94,53 @@ describe("fixture courses in /courses", () => {
   it("exist", () => expect(courses).toEqual(expect.arrayContaining(["apc", "fa", "uz", "yue"])));
   for (const name of courses) {
     const dir = join(COURSES_DIR, name);
-    it(`${name}/course.yaml is a valid CourseSource`, () => {
+    it(`${name}/course.yaml is a valid course source`, () => {
       const ok = course(load(join(dir, "course.yaml")));
       expect(course.errors ?? []).toEqual([]);
       expect(ok).toBe(true);
     });
     for (const path of filesIn(join(dir, "units"))) {
-      it(`${name}/units/${path.split("/").at(-1)} is a valid UnitSource`, () => {
+      it(`${name}/units/${path.split("/").at(-1)} is a valid unit`, () => {
         const ok = unit(load(path));
         expect(unit.errors ?? []).toEqual([]);
         expect(ok).toBe(true);
       });
     }
+    it(`${name}/aliases.yaml is a valid alias table`, () => {
+      const ok = aliases(load(join(dir, "aliases.yaml")));
+      expect(aliases.errors ?? []).toEqual([]);
+      expect(ok).toBe(true);
+    });
+  }
+});
+
+describe("lexicons in /lexicons", () => {
+  const ajv = makeAjv();
+  const lexicon = ajv.getSchema(ID("lexicon.schema.json"))!;
+  const language = ajv.getSchema(ID("language.schema.json"))!;
+  const languages = readdirSync(LEXICONS_DIR, { withFileTypes: true })
+    .filter((d) => d.isDirectory())
+    .map((d) => d.name)
+    .sort();
+  it("exist", () => expect(languages).toEqual(expect.arrayContaining(["apc", "es", "yue"])));
+  for (const name of languages) {
+    it(`${name}/lexemes.yaml is a valid lexicon, sorted by id`, () => {
+      const data = load(join(LEXICONS_DIR, name, "lexemes.yaml")) as { readonly language: string; readonly lexemes: readonly { readonly id: string }[] };
+      const ok = lexicon(data);
+      expect(lexicon.errors ?? []).toEqual([]);
+      expect(ok).toBe(true);
+      expect(data.language).toBe(name);
+      const ids = data.lexemes.map((l) => l.id);
+      expect(ids).toEqual([...ids].sort((a, b) => (a < b ? -1 : a > b ? 1 : 0)));
+      expect(new Set(ids).size).toBe(ids.length);
+    });
+    it(`${name}/language.yaml is a valid declaration`, () => {
+      const data = load(join(LEXICONS_DIR, name, "language.yaml")) as { readonly id: string };
+      const ok = language(data);
+      expect(language.errors ?? []).toEqual([]);
+      expect(ok).toBe(true);
+      expect(data.id).toBe(name);
+    });
   }
 });
 

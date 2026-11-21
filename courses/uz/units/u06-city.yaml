@@ -2,41 +2,16 @@
 # getting around (avtobusda, piyoda), asking the way (Kechirasiz, ... qayerda?), left, right, straight on.
 # Drafted by an LLM (provenance llm:..., status draft): every sentence awaits review by a native speaker.
 id: city
-title: {en: Around town}
+title:
+  en: Around town
 cefr: A1
-kcs:
-- {id: 'sense:bozor', pos: NOUN, gloss: {en: 'bazaar, market'}, forms: {uz-Latn/standard: [bozor, bozormi, bozorda], uz-Cyrl/standard: [бозор, бозорми, бозорда]}}
-- {id: 'sense:bormoq', pos: VERB, gloss: {en: to go}, forms: {uz-Latn/standard: [bormoq], uz-Cyrl/standard: [бормоқ]}, notes: {en: 'Boraman: I go, I will go. Boring: go (polite).'}}
-- {id: 'form:dat-ga', gloss: {en: '-ga: to, toward; for'}, notes: {en: '-ka after k (parkka), -qa after q (qishloqqa). Men + -ga = menga: to me.'}}
-- {id: 'sense:ish', pos: NOUN, gloss: {en: 'work, job'}, forms: {uz-Latn/standard: [ish], uz-Cyrl/standard: [иш]}}
-- {id: 'sense:maktab', pos: NOUN, gloss: {en: school}, forms: {uz-Latn/standard: [maktab], uz-Cyrl/standard: [мактаб]}}
-- {id: 'sense:kelmoq', pos: VERB, gloss: {en: to come}, forms: {uz-Latn/standard: [kelmoq], uz-Cyrl/standard: [келмоқ]}}
-- {id: 'form:abl-dan', gloss: {en: '-dan: from; out of'}, notes: {en: 'Qayerdansiz? Where are you from? Ishdan: from work.'}}
-- {id: 'sense:ozbekiston', pos: PROPN, gloss: {en: Uzbekistan}, forms: {uz-Latn/standard: [Oʻzbekiston], uz-Cyrl/standard: [Ўзбекистон]}}
-- {id: 'sense:angliya', pos: PROPN, gloss: {en: England}, forms: {uz-Latn/standard: [Angliya], uz-Cyrl/standard: [Англия]}}
-- {id: 'sense:avtobus', pos: NOUN, gloss: {en: bus}, forms: {uz-Latn/standard: [avtobus], uz-Cyrl/standard: [автобус]}, notes: {en: 'Avtobusda: by bus (in the bus).'}}
-- {id: 'sense:metro', pos: NOUN, gloss: {en: 'metro, subway, underground'}, forms: {uz-Latn/standard: [metro], uz-Cyrl/standard: [метро]}}
-- {id: 'sense:piyoda', pos: ADV, gloss: {en: on foot}, forms: {uz-Latn/standard: [piyoda], uz-Cyrl/standard: [пиёда]}}
-- {id: 'sense:mashina', pos: NOUN, gloss: {en: car}, forms: {uz-Latn/standard: [mashina], uz-Cyrl/standard: [машина]}}
-- {id: 'sense:bilan', pos: ADP, gloss: {en: with; by means of}, forms: {uz-Latn/standard: [bilan], uz-Cyrl/standard: [билан]}, notes: {en: 'Akam bilan: with my older brother.'}}
-- {id: 'sense:kechirmoq', pos: VERB, gloss: {en: to forgive}, forms: {uz-Latn/standard: [kechirasiz], uz-Cyrl/standard: [кечирасиз]}, notes: {en: 'Kechirasiz: excuse me; sorry (lit. you will forgive).'}}
-- {id: 'sense:uzoq', pos: ADJ, gloss: {en: far; long}, forms: {uz-Latn/standard: [uzoq], uz-Cyrl/standard: [узоқ]}}
-- {id: 'sense:yaqin', pos: ADJ, gloss: {en: 'near, close'}, forms: {uz-Latn/standard: [yaqin], uz-Cyrl/standard: [яқин]}}
-- {id: 'sense:togri', pos: ADV, gloss: {en: 'straight; right, correct'}, forms: {uz-Latn/standard: [toʻgʻri], uz-Cyrl/standard: [тўғри]}}
-- {id: 'sense:chap', pos: NOUN, gloss: {en: left}, forms: {uz-Latn/standard: [chap], uz-Cyrl/standard: [чап]}}
-- {id: 'sense:burilmoq', pos: VERB, gloss: {en: to turn}, forms: {uz-Latn/standard: [burilmoq], uz-Cyrl/standard: [бурилмоқ]}}
-- {id: 'sense:ong', pos: NOUN, gloss: {en: right (side)}, forms: {uz-Latn/standard: [oʻngga], uz-Cyrl/standard: [ўнгга]}}
-- {id: 'sense:keyin', pos: ADV, gloss: {en: 'then, after that; later'}, forms: {uz-Latn/standard: [keyin], uz-Cyrl/standard: [кейин]}}
-- {id: 'sense:shahar', pos: NOUN, gloss: {en: 'city, town'}, forms: {uz-Latn/standard: [shahar], uz-Cyrl/standard: [шаҳар]}}
-- {id: 'sense:markaz', pos: NOUN, gloss: {en: 'centre, center'}, forms: {uz-Latn/standard: [markaz], uz-Cyrl/standard: [марказ]}, notes: {en: 'Shahar markazi: the city centre.'}}
-- {id: 'sense:bekat', pos: NOUN, gloss: {en: 'stop, station'}, forms: {uz-Latn/standard: [bekat], uz-Cyrl/standard: [бекат]}, notes: {en: 'Metro bekati: metro station. Avtobus bekati: bus stop.'}}
 nodes:
-- {id: uz.city.go, kind: lesson, introduces: ['sense:bozor', 'sense:bormoq', 'form:dat-ga', 'sense:ish', 'sense:maktab']}
-- {id: uz.city.from, kind: lesson, introduces: ['sense:kelmoq', 'form:abl-dan', 'sense:ozbekiston', 'sense:angliya']}
-- {id: uz.city.transport, kind: lesson, introduces: ['sense:avtobus', 'sense:metro', 'sense:piyoda', 'sense:mashina', 'sense:bilan']}
-- {id: uz.city.asking, kind: lesson, introduces: ['sense:kechirmoq', 'sense:uzoq', 'sense:yaqin']}
-- {id: uz.city.directions, kind: lesson, introduces: ['sense:togri', 'sense:chap', 'sense:burilmoq', 'sense:ong', 'sense:keyin']}
-- {id: uz.city.town, kind: lesson, introduces: ['sense:shahar', 'sense:markaz', 'sense:bekat']}
+- {id: uz.city.go, kind: lesson, introduces: ['lexeme:bozor', 'lexeme:bormoq', 'lexeme:dat', 'lexeme:ish', 'lexeme:maktab']}
+- {id: uz.city.from, kind: lesson, introduces: ['lexeme:kelmoq', 'lexeme:abl', 'lexeme:ozbekiston', 'lexeme:angliya']}
+- {id: uz.city.transport, kind: lesson, introduces: ['lexeme:avtobus', 'lexeme:metro', 'lexeme:piyoda', 'lexeme:mashina', 'lexeme:bilan']}
+- {id: uz.city.asking, kind: lesson, introduces: ['lexeme:kechirmoq', 'lexeme:uzoq', 'lexeme:yaqin']}
+- {id: uz.city.directions, kind: lesson, introduces: ['lexeme:togri', 'lexeme:chap', 'lexeme:burilmoq', 'lexeme:ong', 'lexeme:keyin']}
+- {id: uz.city.town, kind: lesson, introduces: ['lexeme:shahar', 'lexeme:markaz', 'lexeme:bekat']}
 - {id: uz.city.story, kind: story}
 sentences:
 - id: s.city.1
@@ -44,11 +19,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Bozor katta.
-      tokens: [{surface: Bozor, sense: bozor}, {surface: katta, sense: katta}]
+      tokens: [{surface: Bozor, lexeme: bozor}, {surface: katta, lexeme: katta}]
       reverse: Bozor katta
     uz-Cyrl/standard:
       text: Бозор катта.
-      tokens: [{surface: Бозор, sense: bozor}, {surface: катта, sense: katta}]
+      tokens: [{surface: Бозор, lexeme: bozor}, {surface: катта, lexeme: katta}]
       reverse: Бозор катта
   translations:
     en: The (bazaar|market) is (big|large).
@@ -57,11 +32,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Men boraman.
-      tokens: [{surface: Men, sense: men}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Men, lexeme: men}, {surface: boraman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1sg, surface: man}]}]
       reverse: '[Men] boraman'
     uz-Cyrl/standard:
       text: Мен бораман.
-      tokens: [{surface: Мен, sense: men}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Мен, lexeme: men}, {surface: бораман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1sg, surface: ман}]}]
       reverse: '[Мен] бораман'
   translations:
     en: |-
@@ -73,11 +48,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Men uyga boraman.
-      tokens: [{surface: Men, sense: men}, {surface: uyga, sense: uy, morphs: [{surface: uy, kc: 'sense:uy'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Men, lexeme: men}, {surface: uyga, lexemes: [{lexeme: uy, surface: uy, base: true}, {lexeme: dat, surface: ga}]}, {surface: boraman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1sg, surface: man}]}]
       reverse: '[Men] uyga (boraman|boryapman|ketaman|ketyapman)'
     uz-Cyrl/standard:
       text: Мен уйга бораман.
-      tokens: [{surface: Мен, sense: men}, {surface: уйга, sense: uy, morphs: [{surface: уй, kc: 'sense:uy'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Мен, lexeme: men}, {surface: уйга, lexemes: [{lexeme: uy, surface: уй, base: true}, {lexeme: dat, surface: га}]}, {surface: бораман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1sg, surface: ман}]}]
       reverse: '[Мен] уйга (бораман|боряпман|кетаман|кетяпман)'
   translations:
     en: |-
@@ -89,13 +64,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Men bozorga boraman.
-      tokens: [{surface: Men, sense: men}, {surface: bozorga, sense: bozor, morphs: [{surface: bozor, kc: 'sense:bozor'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Men, lexeme: men}, {surface: bozorga, lexemes: [{lexeme: bozor, surface: bozor, base: true}, {lexeme: dat, surface: ga}]}, {surface: boraman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1sg, surface: man}]}]
       reverse: |-
         [Men] bozorga (boraman|boryapman|ketyapman)
         Men bozorga ketaman
     uz-Cyrl/standard:
       text: Мен бозорга бораман.
-      tokens: [{surface: Мен, sense: men}, {surface: бозорга, sense: bozor, morphs: [{surface: бозор, kc: 'sense:bozor'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Мен, lexeme: men}, {surface: бозорга, lexemes: [{lexeme: bozor, surface: бозор, base: true}, {lexeme: dat, surface: га}]}, {surface: бораман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1sg, surface: ман}]}]
       reverse: '[Мен] бозорга (бораман|боряпман|кетяпман)'
   translations:
     en: |-
@@ -107,13 +82,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Siz qayerga borasiz?
-      tokens: [{surface: Siz, sense: siz}, {surface: qayerga, sense: qayer, morphs: [{surface: qayer, kc: 'sense:qayer'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: borasiz, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+      tokens: [{surface: Siz, lexeme: siz}, {surface: qayerga, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: dat, surface: ga}]}, {surface: borasiz, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-2, surface: siz}]}]
       reverse: |-
         [Siz] qayerga (borasiz|boryapsiz|ketyapsiz)
         [Sen] qayerga (borasan|boryapsan|ketyapsan)
     uz-Cyrl/standard:
       text: Сиз қаерга борасиз?
-      tokens: [{surface: Сиз, sense: siz}, {surface: қаерга, sense: qayer, morphs: [{surface: қаер, kc: 'sense:qayer'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: борасиз, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      tokens: [{surface: Сиз, lexeme: siz}, {surface: қаерга, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: dat, surface: га}]}, {surface: борасиз, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-2, surface: сиз}]}]
       reverse: |-
         [Сиз] қаерга (борасиз|боряпсиз|кетяпсиз)
         [Сен] қаерга (борасан|боряпсан|кетяпсан)
@@ -127,11 +102,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Akam ishga boradi.
-      tokens: [{surface: Akam, sense: aka, morphs: [{surface: Aka, kc: 'sense:aka'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: ishga, sense: ish, morphs: [{surface: ish, kc: 'sense:ish'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: boradi, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: di, kc: 'form:pres-3sg-di'}]}]
+      tokens: [{surface: Akam, lexemes: [{lexeme: aka, surface: Aka, base: true}, {lexeme: poss-1sg, surface: m}]}, {surface: ishga, lexemes: [{lexeme: ish, surface: ish, base: true}, {lexeme: dat, surface: ga}]}, {surface: boradi, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: pres-3sg, surface: di}]}]
       reverse: '[Mening] akam ishga (boradi|ketadi)'
     uz-Cyrl/standard:
       text: Акам ишга боради.
-      tokens: [{surface: Акам, sense: aka, morphs: [{surface: Ака, kc: 'sense:aka'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: ишга, sense: ish, morphs: [{surface: иш, kc: 'sense:ish'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: боради, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}]}]
+      tokens: [{surface: Акам, lexemes: [{lexeme: aka, surface: Ака, base: true}, {lexeme: poss-1sg, surface: м}]}, {surface: ишга, lexemes: [{lexeme: ish, surface: иш, base: true}, {lexeme: dat, surface: га}]}, {surface: боради, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: pres-3sg, surface: ди}]}]
       reverse: '[Менинг] акам ишга (боради|кетади)'
   translations:
     en: |-
@@ -142,11 +117,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Biz maktabga boramiz.
-      tokens: [{surface: Biz, sense: biz}, {surface: maktabga, sense: maktab, morphs: [{surface: maktab, kc: 'sense:maktab'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: boramiz, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: miz, kc: 'form:cop-1pl-miz'}]}]
+      tokens: [{surface: Biz, lexeme: biz}, {surface: maktabga, lexemes: [{lexeme: maktab, surface: maktab, base: true}, {lexeme: dat, surface: ga}]}, {surface: boramiz, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1pl, surface: miz}]}]
       reverse: '[Biz] maktabga (boramiz|boryapmiz)'
     uz-Cyrl/standard:
       text: Биз мактабга борамиз.
-      tokens: [{surface: Биз, sense: biz}, {surface: мактабга, sense: maktab, morphs: [{surface: мактаб, kc: 'sense:maktab'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: борамиз, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: миз, kc: 'form:cop-1pl-miz'}]}]
+      tokens: [{surface: Биз, lexeme: biz}, {surface: мактабга, lexemes: [{lexeme: maktab, surface: мактаб, base: true}, {lexeme: dat, surface: га}]}, {surface: борамиз, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1pl, surface: миз}]}]
       reverse: '[Биз] мактабга (борамиз|боряпмиз)'
   translations:
     en: |-
@@ -158,11 +133,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Aziz uyga keladi.
-      tokens: [{surface: Aziz, sense: aziz}, {surface: uyga, sense: uy, morphs: [{surface: uy, kc: 'sense:uy'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: keladi, sense: kelmoq, morphs: [{surface: kel, kc: 'sense:kelmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: di, kc: 'form:pres-3sg-di'}]}]
+      tokens: [{surface: Aziz, lexeme: aziz}, {surface: uyga, lexemes: [{lexeme: uy, surface: uy, base: true}, {lexeme: dat, surface: ga}]}, {surface: keladi, lexemes: [{lexeme: kelmoq, surface: kel, base: true}, {lexeme: pres, surface: a}, {lexeme: pres-3sg, surface: di}]}]
       reverse: Aziz uyga keladi
     uz-Cyrl/standard:
       text: Азиз уйга келади.
-      tokens: [{surface: Азиз, sense: aziz}, {surface: уйга, sense: uy, morphs: [{surface: уй, kc: 'sense:uy'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: келади, sense: kelmoq, morphs: [{surface: кел, kc: 'sense:kelmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}]}]
+      tokens: [{surface: Азиз, lexeme: aziz}, {surface: уйга, lexemes: [{lexeme: uy, surface: уй, base: true}, {lexeme: dat, surface: га}]}, {surface: келади, lexemes: [{lexeme: kelmoq, surface: кел, base: true}, {lexeme: pres, surface: а}, {lexeme: pres-3sg, surface: ди}]}]
       reverse: Азиз уйга келади
   translations:
     en: |-
@@ -173,13 +148,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Siz qayerdansiz?
-      tokens: [{surface: Siz, sense: siz}, {surface: qayerdansiz, sense: qayer, morphs: [{surface: qayer, kc: 'sense:qayer'}, {surface: dan, kc: 'form:abl-dan'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+      tokens: [{surface: Siz, lexeme: siz}, {surface: qayerdansiz, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: abl, surface: dan}, {lexeme: cop-2, surface: siz}]}]
       reverse: |-
         [Siz] (qayerdansiz|qayerliksiz)
         [Sen] (qayerdansan|qayerliksan)
     uz-Cyrl/standard:
       text: Сиз қаердансиз?
-      tokens: [{surface: Сиз, sense: siz}, {surface: қаердансиз, sense: qayer, morphs: [{surface: қаер, kc: 'sense:qayer'}, {surface: дан, kc: 'form:abl-dan'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      tokens: [{surface: Сиз, lexeme: siz}, {surface: қаердансиз, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: abl, surface: дан}, {lexeme: cop-2, surface: сиз}]}]
       reverse: |-
         [Сиз] (қаердансиз|қаерликсиз)
         [Сен] (қаердансан|қаерликсан)
@@ -190,11 +165,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Men Samarqanddanman.
-      tokens: [{surface: Men, sense: men}, {surface: Samarqanddanman, sense: samarqand, morphs: [{surface: Samarqand, kc: 'sense:samarqand'}, {surface: dan, kc: 'form:abl-dan'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Men, lexeme: men}, {surface: Samarqanddanman, lexemes: [{lexeme: samarqand, surface: Samarqand, base: true}, {lexeme: abl, surface: dan}, {lexeme: cop-1sg, surface: man}]}]
       reverse: '[Men] (Samarqanddanman|samarqandlikman)'
     uz-Cyrl/standard:
       text: Мен Самарқандданман.
-      tokens: [{surface: Мен, sense: men}, {surface: Самарқандданман, sense: samarqand, morphs: [{surface: Самарқанд, kc: 'sense:samarqand'}, {surface: дан, kc: 'form:abl-dan'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Мен, lexeme: men}, {surface: Самарқандданман, lexemes: [{lexeme: samarqand, surface: Самарқанд, base: true}, {lexeme: abl, surface: дан}, {lexeme: cop-1sg, surface: ман}]}]
       reverse: '[Мен] (Самарқандданман|самарқандликман)'
   translations:
     en: I('m| am) from Samarkand.
@@ -203,11 +178,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Men Oʻzbekistondanman.
-      tokens: [{surface: Men, sense: men}, {surface: Oʻzbekistondanman, sense: ozbekiston, morphs: [{surface: Oʻzbekiston, kc: 'sense:ozbekiston'}, {surface: dan, kc: 'form:abl-dan'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Men, lexeme: men}, {surface: Oʻzbekistondanman, lexemes: [{lexeme: ozbekiston, surface: Oʻzbekiston, base: true}, {lexeme: abl, surface: dan}, {lexeme: cop-1sg, surface: man}]}]
       reverse: '[Men] (Oʻzbekistondanman|oʻzbekistonlikman)'
     uz-Cyrl/standard:
       text: Мен Ўзбекистонданман.
-      tokens: [{surface: Мен, sense: men}, {surface: Ўзбекистонданман, sense: ozbekiston, morphs: [{surface: Ўзбекистон, kc: 'sense:ozbekiston'}, {surface: дан, kc: 'form:abl-dan'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Мен, lexeme: men}, {surface: Ўзбекистонданман, lexemes: [{lexeme: ozbekiston, surface: Ўзбекистон, base: true}, {lexeme: abl, surface: дан}, {lexeme: cop-1sg, surface: ман}]}]
       reverse: '[Мен] (Ўзбекистонданман|ўзбекистонликман)'
   translations:
     en: I('m| am) from Uzbekistan.
@@ -216,13 +191,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Siz Angliyadanmisiz?
-      tokens: [{surface: Siz, sense: siz}, {surface: Angliyadanmisiz, sense: angliya, morphs: [{surface: Angliya, kc: 'sense:angliya'}, {surface: dan, kc: 'form:abl-dan'}, {surface: mi, kc: 'form:q-mi'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+      tokens: [{surface: Siz, lexeme: siz}, {surface: Angliyadanmisiz, lexemes: [{lexeme: angliya, surface: Angliya, base: true}, {lexeme: abl, surface: dan}, {lexeme: q, surface: mi}, {lexeme: cop-2, surface: siz}]}]
       reverse: |-
         [Siz] (Angliyadanmisiz|angliyalikmisiz)
         [Sen] (Angliyadanmisan|angliyalikmisan)
     uz-Cyrl/standard:
       text: Сиз Англияданмисиз?
-      tokens: [{surface: Сиз, sense: siz}, {surface: Англияданмисиз, sense: angliya, morphs: [{surface: Англия, kc: 'sense:angliya'}, {surface: дан, kc: 'form:abl-dan'}, {surface: ми, kc: 'form:q-mi'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      tokens: [{surface: Сиз, lexeme: siz}, {surface: Англияданмисиз, lexemes: [{lexeme: angliya, surface: Англия, base: true}, {lexeme: abl, surface: дан}, {lexeme: q, surface: ми}, {lexeme: cop-2, surface: сиз}]}]
       reverse: |-
         [Сиз] (Англияданмисиз|англияликмисиз)
         [Сен] (Англияданмисан|англияликмисан)
@@ -233,14 +208,14 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Akam ishdan keladi.
-      tokens: [{surface: Akam, sense: aka, morphs: [{surface: Aka, kc: 'sense:aka'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: ishdan, sense: ish, morphs: [{surface: ish, kc: 'sense:ish'}, {surface: dan, kc: 'form:abl-dan'}]}, {surface: keladi, sense: kelmoq, morphs: [{surface: kel, kc: 'sense:kelmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: di, kc: 'form:pres-3sg-di'}]}]
+      tokens: [{surface: Akam, lexemes: [{lexeme: aka, surface: Aka, base: true}, {lexeme: poss-1sg, surface: m}]}, {surface: ishdan, lexemes: [{lexeme: ish, surface: ish, base: true}, {lexeme: abl, surface: dan}]}, {surface: keladi, lexemes: [{lexeme: kelmoq, surface: kel, base: true}, {lexeme: pres, surface: a}, {lexeme: pres-3sg, surface: di}]}]
       reverse: |-
         [Mening] akam ishdan keladi
         Akam ishdan uyga keladi
         Akam ishdan qaytadi
     uz-Cyrl/standard:
       text: Акам ишдан келади.
-      tokens: [{surface: Акам, sense: aka, morphs: [{surface: Ака, kc: 'sense:aka'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: ишдан, sense: ish, morphs: [{surface: иш, kc: 'sense:ish'}, {surface: дан, kc: 'form:abl-dan'}]}, {surface: келади, sense: kelmoq, morphs: [{surface: кел, kc: 'sense:kelmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}]}]
+      tokens: [{surface: Акам, lexemes: [{lexeme: aka, surface: Ака, base: true}, {lexeme: poss-1sg, surface: м}]}, {surface: ишдан, lexemes: [{lexeme: ish, surface: иш, base: true}, {lexeme: abl, surface: дан}]}, {surface: келади, lexemes: [{lexeme: kelmoq, surface: кел, base: true}, {lexeme: pres, surface: а}, {lexeme: pres-3sg, surface: ди}]}]
       reverse: |-
         [Менинг] акам ишдан келади
         Акам ишдан уйга келади
@@ -255,11 +230,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Men avtobusda boraman.
-      tokens: [{surface: Men, sense: men}, {surface: avtobusda, sense: avtobus, morphs: [{surface: avtobus, kc: 'sense:avtobus'}, {surface: da, kc: 'form:loc-da'}]}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Men, lexeme: men}, {surface: avtobusda, lexemes: [{lexeme: avtobus, surface: avtobus, base: true}, {lexeme: loc, surface: da}]}, {surface: boraman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1sg, surface: man}]}]
       reverse: '[Men] (avtobusda|avtobus bilan) boraman'
     uz-Cyrl/standard:
       text: Мен автобусда бораман.
-      tokens: [{surface: Мен, sense: men}, {surface: автобусда, sense: avtobus, morphs: [{surface: автобус, kc: 'sense:avtobus'}, {surface: да, kc: 'form:loc-da'}]}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Мен, lexeme: men}, {surface: автобусда, lexemes: [{lexeme: avtobus, surface: автобус, base: true}, {lexeme: loc, surface: да}]}, {surface: бораман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1sg, surface: ман}]}]
       reverse: '[Мен] (автобусда|автобус билан) бораман'
   translations:
     en: |-
@@ -272,11 +247,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Biz metroda boramiz.
-      tokens: [{surface: Biz, sense: biz}, {surface: metroda, sense: metro, morphs: [{surface: metro, kc: 'sense:metro'}, {surface: da, kc: 'form:loc-da'}]}, {surface: boramiz, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: miz, kc: 'form:cop-1pl-miz'}]}]
+      tokens: [{surface: Biz, lexeme: biz}, {surface: metroda, lexemes: [{lexeme: metro, surface: metro, base: true}, {lexeme: loc, surface: da}]}, {surface: boramiz, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1pl, surface: miz}]}]
       reverse: '[Biz] (metroda|metro bilan) boramiz'
     uz-Cyrl/standard:
       text: Биз метрода борамиз.
-      tokens: [{surface: Биз, sense: biz}, {surface: метрода, sense: metro, morphs: [{surface: метро, kc: 'sense:metro'}, {surface: да, kc: 'form:loc-da'}]}, {surface: борамиз, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: миз, kc: 'form:cop-1pl-miz'}]}]
+      tokens: [{surface: Биз, lexeme: biz}, {surface: метрода, lexemes: [{lexeme: metro, surface: метро, base: true}, {lexeme: loc, surface: да}]}, {surface: борамиз, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1pl, surface: миз}]}]
       reverse: '[Биз] (метрода|метро билан) борамиз'
   translations:
     en: |-
@@ -288,11 +263,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Men piyoda boraman.
-      tokens: [{surface: Men, sense: men}, {surface: piyoda, sense: piyoda}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Men, lexeme: men}, {surface: piyoda, lexeme: piyoda}, {surface: boraman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1sg, surface: man}]}]
       reverse: '[Men] piyoda boraman'
     uz-Cyrl/standard:
       text: Мен пиёда бораман.
-      tokens: [{surface: Мен, sense: men}, {surface: пиёда, sense: piyoda}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Мен, lexeme: men}, {surface: пиёда, lexeme: piyoda}, {surface: бораман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1sg, surface: ман}]}]
       reverse: '[Мен] пиёда бораман'
   translations:
     en: |-
@@ -305,13 +280,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Otam ishga mashinada boradi.
-      tokens: [{surface: Otam, sense: ota, morphs: [{surface: Ota, kc: 'sense:ota'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: ishga, sense: ish, morphs: [{surface: ish, kc: 'sense:ish'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: mashinada, sense: mashina, morphs: [{surface: mashina, kc: 'sense:mashina'}, {surface: da, kc: 'form:loc-da'}]}, {surface: boradi, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: di, kc: 'form:pres-3sg-di'}]}]
+      tokens: [{surface: Otam, lexemes: [{lexeme: ota, surface: Ota, base: true}, {lexeme: poss-1sg, surface: m}]}, {surface: ishga, lexemes: [{lexeme: ish, surface: ish, base: true}, {lexeme: dat, surface: ga}]}, {surface: mashinada, lexemes: [{lexeme: mashina, surface: mashina, base: true}, {lexeme: loc, surface: da}]}, {surface: boradi, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: pres-3sg, surface: di}]}]
       reverse: |-
         [Mening] (otam|dadam) ishga (mashinada|mashina bilan) boradi(|lar)
         [Mening] (otam|dadam) (mashinada|mashina bilan) ishga boradi(|lar)
     uz-Cyrl/standard:
       text: Отам ишга машинада боради.
-      tokens: [{surface: Отам, sense: ota, morphs: [{surface: Ота, kc: 'sense:ota'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: ишга, sense: ish, morphs: [{surface: иш, kc: 'sense:ish'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: машинада, sense: mashina, morphs: [{surface: машина, kc: 'sense:mashina'}, {surface: да, kc: 'form:loc-da'}]}, {surface: боради, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}]}]
+      tokens: [{surface: Отам, lexemes: [{lexeme: ota, surface: Ота, base: true}, {lexeme: poss-1sg, surface: м}]}, {surface: ишга, lexemes: [{lexeme: ish, surface: иш, base: true}, {lexeme: dat, surface: га}]}, {surface: машинада, lexemes: [{lexeme: mashina, surface: машина, base: true}, {lexeme: loc, surface: да}]}, {surface: боради, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: pres-3sg, surface: ди}]}]
       reverse: |-
         [Менинг] (отам|дадам) ишга (машинада|машина билан) боради(|лар)
         [Менинг] (отам|дадам) (машинада|машина билан) ишга боради(|лар)
@@ -324,11 +299,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Akam bilan boraman.
-      tokens: [{surface: Akam, sense: aka, morphs: [{surface: Aka, kc: 'sense:aka'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: bilan, sense: bilan}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Akam, lexemes: [{lexeme: aka, surface: Aka, base: true}, {lexeme: poss-1sg, surface: m}]}, {surface: bilan, lexeme: bilan}, {surface: boraman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1sg, surface: man}]}]
       reverse: '[Men] akam bilan boraman'
     uz-Cyrl/standard:
       text: Акам билан бораман.
-      tokens: [{surface: Акам, sense: aka, morphs: [{surface: Ака, kc: 'sense:aka'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: билан, sense: bilan}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Акам, lexemes: [{lexeme: aka, surface: Ака, base: true}, {lexeme: poss-1sg, surface: м}]}, {surface: билан, lexeme: bilan}, {surface: бораман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1sg, surface: ман}]}]
       reverse: '[Мен] акам билан бораман'
   translations:
     en: |-
@@ -340,13 +315,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Kechirasiz, bozor qayerda?
-      tokens: [{surface: Kechirasiz, sense: kechirmoq, morphs: [{surface: Kechir, kc: 'sense:kechirmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}]}, {surface: bozor, sense: bozor}, {surface: qayerda, sense: qayer, morphs: [{surface: qayer, kc: 'sense:qayer'}, {surface: da, kc: 'form:loc-da'}]}]
+      tokens: [{surface: Kechirasiz, lexemes: [{lexeme: kechirmoq, surface: Kechir, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-2, surface: siz}]}, {surface: bozor, lexeme: bozor}, {surface: qayerda, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: loc, surface: da}]}]
       reverse: |-
         Kechirasiz bozor qayerda
         Uzr, bozor qayerda
     uz-Cyrl/standard:
       text: Кечирасиз, бозор қаерда?
-      tokens: [{surface: Кечирасиз, sense: kechirmoq, morphs: [{surface: Кечир, kc: 'sense:kechirmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}]}, {surface: бозор, sense: bozor}, {surface: қаерда, sense: qayer, morphs: [{surface: қаер, kc: 'sense:qayer'}, {surface: да, kc: 'form:loc-da'}]}]
+      tokens: [{surface: Кечирасиз, lexemes: [{lexeme: kechirmoq, surface: Кечир, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-2, surface: сиз}]}, {surface: бозор, lexeme: bozor}, {surface: қаерда, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: loc, surface: да}]}]
       reverse: |-
         Кечирасиз бозор қаерда
         Узр, бозор қаерда
@@ -357,11 +332,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Bozor uzoqmi?
-      tokens: [{surface: Bozor, sense: bozor}, {surface: uzoqmi, sense: uzoq, morphs: [{surface: uzoq, kc: 'sense:uzoq'}, {surface: mi, kc: 'form:q-mi'}]}]
+      tokens: [{surface: Bozor, lexeme: bozor}, {surface: uzoqmi, lexemes: [{lexeme: uzoq, surface: uzoq, base: true}, {lexeme: q, surface: mi}]}]
       reverse: Bozor uzoqmi
     uz-Cyrl/standard:
       text: Бозор узоқми?
-      tokens: [{surface: Бозор, sense: bozor}, {surface: узоқми, sense: uzoq, morphs: [{surface: узоқ, kc: 'sense:uzoq'}, {surface: ми, kc: 'form:q-mi'}]}]
+      tokens: [{surface: Бозор, lexeme: bozor}, {surface: узоқми, lexemes: [{lexeme: uzoq, surface: узоқ, base: true}, {lexeme: q, surface: ми}]}]
       reverse: Бозор узоқми
   translations:
     en: Is the (bazaar|market) far [away]?
@@ -370,11 +345,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Yoʻq, bozor yaqin.
-      tokens: [{surface: Yoʻq, sense: yoq}, {surface: bozor, sense: bozor}, {surface: yaqin, sense: yaqin}]
+      tokens: [{surface: Yoʻq, lexeme: yoq}, {surface: bozor, lexeme: bozor}, {surface: yaqin, lexeme: yaqin}]
       reverse: Yoʻq bozor yaqin
     uz-Cyrl/standard:
       text: Йўқ, бозор яқин.
-      tokens: [{surface: Йўқ, sense: yoq}, {surface: бозор, sense: bozor}, {surface: яқин, sense: yaqin}]
+      tokens: [{surface: Йўқ, lexeme: yoq}, {surface: бозор, lexeme: bozor}, {surface: яқин, lexeme: yaqin}]
       reverse: Йўқ бозор яқин
   translations:
     en: No, the (bazaar|market) is (near|close|nearby|close by).
@@ -383,11 +358,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Maktab uyimizdan uzoq emas.
-      tokens: [{surface: Maktab, sense: maktab}, {surface: uyimizdan, sense: uy, morphs: [{surface: uy, kc: 'sense:uy'}, {surface: imiz, kc: 'form:poss-1pl-imiz'}, {surface: dan, kc: 'form:abl-dan'}]}, {surface: uzoq, sense: uzoq}, {surface: emas, sense: emas}]
+      tokens: [{surface: Maktab, lexeme: maktab}, {surface: uyimizdan, lexemes: [{lexeme: uy, surface: uy, base: true}, {lexeme: poss-1pl, surface: imiz}, {lexeme: abl, surface: dan}]}, {surface: uzoq, lexeme: uzoq}, {surface: emas, lexeme: emas}]
       reverse: Maktab [bizning] uyimizdan uzoq emas
     uz-Cyrl/standard:
       text: Мактаб уйимиздан узоқ эмас.
-      tokens: [{surface: Мактаб, sense: maktab}, {surface: уйимиздан, sense: uy, morphs: [{surface: уй, kc: 'sense:uy'}, {surface: имиз, kc: 'form:poss-1pl-imiz'}, {surface: дан, kc: 'form:abl-dan'}]}, {surface: узоқ, sense: uzoq}, {surface: эмас, sense: emas}]
+      tokens: [{surface: Мактаб, lexeme: maktab}, {surface: уйимиздан, lexemes: [{lexeme: uy, surface: уй, base: true}, {lexeme: poss-1pl, surface: имиз}, {lexeme: abl, surface: дан}]}, {surface: узоқ, lexeme: uzoq}, {surface: эмас, lexeme: emas}]
       reverse: Мактаб [бизнинг] уйимиздан узоқ эмас
   translations:
     en: The school( isn't| is not|'s not) far from our (house|home).
@@ -396,11 +371,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Toʻgʻri boring.
-      tokens: [{surface: Toʻgʻri, sense: togri}, {surface: boring, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: ing, kc: 'form:imp-ing'}]}]
+      tokens: [{surface: Toʻgʻri, lexeme: togri}, {surface: boring, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: imp, surface: ing}]}]
       reverse: (Toʻgʻri|Toʻgʻriga) (boring|bor)
     uz-Cyrl/standard:
       text: Тўғри боринг.
-      tokens: [{surface: Тўғри, sense: togri}, {surface: боринг, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: инг, kc: 'form:imp-ing'}]}]
+      tokens: [{surface: Тўғри, lexeme: togri}, {surface: боринг, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: imp, surface: инг}]}]
       reverse: (Тўғри|Тўғрига) (боринг|бор)
   translations:
     en: Go straight [on|ahead].
@@ -409,11 +384,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Bozor chapda.
-      tokens: [{surface: Bozor, sense: bozor}, {surface: chapda, sense: chap, morphs: [{surface: chap, kc: 'sense:chap'}, {surface: da, kc: 'form:loc-da'}]}]
+      tokens: [{surface: Bozor, lexeme: bozor}, {surface: chapda, lexemes: [{lexeme: chap, surface: chap, base: true}, {lexeme: loc, surface: da}]}]
       reverse: Bozor (chapda|chap tomonda)
     uz-Cyrl/standard:
       text: Бозор чапда.
-      tokens: [{surface: Бозор, sense: bozor}, {surface: чапда, sense: chap, morphs: [{surface: чап, kc: 'sense:chap'}, {surface: да, kc: 'form:loc-da'}]}]
+      tokens: [{surface: Бозор, lexeme: bozor}, {surface: чапда, lexemes: [{lexeme: chap, surface: чап, base: true}, {lexeme: loc, surface: да}]}]
       reverse: Бозор (чапда|чап томонда)
   translations:
     en: The (bazaar|market) is (on|to) the left.
@@ -422,11 +397,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Chapga buriling.
-      tokens: [{surface: Chapga, sense: chap, morphs: [{surface: Chap, kc: 'sense:chap'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: buriling, sense: burilmoq, morphs: [{surface: buril, kc: 'sense:burilmoq'}, {surface: ing, kc: 'form:imp-ing'}]}]
+      tokens: [{surface: Chapga, lexemes: [{lexeme: chap, surface: Chap, base: true}, {lexeme: dat, surface: ga}]}, {surface: buriling, lexemes: [{lexeme: burilmoq, surface: buril, base: true}, {lexeme: imp, surface: ing}]}]
       reverse: Chapga (buriling|qayriling|buril|qayril)
     uz-Cyrl/standard:
       text: Чапга бурилинг.
-      tokens: [{surface: Чапга, sense: chap, morphs: [{surface: Чап, kc: 'sense:chap'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бурилинг, sense: burilmoq, morphs: [{surface: бурил, kc: 'sense:burilmoq'}, {surface: инг, kc: 'form:imp-ing'}]}]
+      tokens: [{surface: Чапга, lexemes: [{lexeme: chap, surface: Чап, base: true}, {lexeme: dat, surface: га}]}, {surface: бурилинг, lexemes: [{lexeme: burilmoq, surface: бурил, base: true}, {lexeme: imp, surface: инг}]}]
       reverse: Чапга (бурилинг|қайрилинг|бурил|қайрил)
   translations:
     en: Turn left.
@@ -435,11 +410,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Oʻngga buriling.
-      tokens: [{surface: Oʻngga, sense: ong, morphs: [{surface: Oʻng, kc: 'sense:ong'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: buriling, sense: burilmoq, morphs: [{surface: buril, kc: 'sense:burilmoq'}, {surface: ing, kc: 'form:imp-ing'}]}]
+      tokens: [{surface: Oʻngga, lexemes: [{lexeme: ong, surface: Oʻng, base: true}, {lexeme: dat, surface: ga}]}, {surface: buriling, lexemes: [{lexeme: burilmoq, surface: buril, base: true}, {lexeme: imp, surface: ing}]}]
       reverse: Oʻngga (buriling|qayriling|buril|qayril)
     uz-Cyrl/standard:
       text: Ўнгга бурилинг.
-      tokens: [{surface: Ўнгга, sense: ong, morphs: [{surface: Ўнг, kc: 'sense:ong'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бурилинг, sense: burilmoq, morphs: [{surface: бурил, kc: 'sense:burilmoq'}, {surface: инг, kc: 'form:imp-ing'}]}]
+      tokens: [{surface: Ўнгга, lexemes: [{lexeme: ong, surface: Ўнг, base: true}, {lexeme: dat, surface: га}]}, {surface: бурилинг, lexemes: [{lexeme: burilmoq, surface: бурил, base: true}, {lexeme: imp, surface: инг}]}]
       reverse: Ўнгга (бурилинг|қайрилинг|бурил|қайрил)
   translations:
     en: Turn right.
@@ -448,11 +423,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Keyin toʻgʻri boring.
-      tokens: [{surface: Keyin, sense: keyin}, {surface: toʻgʻri, sense: togri}, {surface: boring, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: ing, kc: 'form:imp-ing'}]}]
+      tokens: [{surface: Keyin, lexeme: keyin}, {surface: toʻgʻri, lexeme: togri}, {surface: boring, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: imp, surface: ing}]}]
       reverse: Keyin (toʻgʻri|toʻgʻriga) (boring|bor)
     uz-Cyrl/standard:
       text: Кейин тўғри боринг.
-      tokens: [{surface: Кейин, sense: keyin}, {surface: тўғри, sense: togri}, {surface: боринг, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: инг, kc: 'form:imp-ing'}]}]
+      tokens: [{surface: Кейин, lexeme: keyin}, {surface: тўғри, lexeme: togri}, {surface: боринг, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: imp, surface: инг}]}]
       reverse: Кейин (тўғри|тўғрига) (боринг|бор)
   translations:
     en: Then go straight [on|ahead].
@@ -461,11 +436,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Toshkent katta shahar.
-      tokens: [{surface: Toshkent, sense: toshkent}, {surface: katta, sense: katta}, {surface: shahar, sense: shahar}]
+      tokens: [{surface: Toshkent, lexeme: toshkent}, {surface: katta, lexeme: katta}, {surface: shahar, lexeme: shahar}]
       reverse: Toshkent katta shahar
     uz-Cyrl/standard:
       text: Тошкент катта шаҳар.
-      tokens: [{surface: Тошкент, sense: toshkent}, {surface: катта, sense: katta}, {surface: шаҳар, sense: shahar}]
+      tokens: [{surface: Тошкент, lexeme: toshkent}, {surface: катта, lexeme: katta}, {surface: шаҳар, lexeme: shahar}]
       reverse: Тошкент катта шаҳар
   translations:
     en: Tashkent is a (big|large) city.
@@ -474,14 +449,14 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Men shahar markaziga boraman.
-      tokens: [{surface: Men, sense: men}, {surface: shahar, sense: shahar}, {surface: markaziga, sense: markaz, morphs: [{surface: markaz, kc: 'sense:markaz'}, {surface: i, kc: 'form:poss-3-si'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Men, lexeme: men}, {surface: shahar, lexeme: shahar}, {surface: markaziga, lexemes: [{lexeme: markaz, surface: markaz, base: true}, {lexeme: poss-3, surface: i}, {lexeme: dat, surface: ga}]}, {surface: boraman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1sg, surface: man}]}]
       reverse: |-
         [Men] shahar markaziga boraman
         Men shahar markaziga boryapman
         Men shahar markaziga ketyapman
     uz-Cyrl/standard:
       text: Мен шаҳар марказига бораман.
-      tokens: [{surface: Мен, sense: men}, {surface: шаҳар, sense: shahar}, {surface: марказига, sense: markaz, morphs: [{surface: марказ, kc: 'sense:markaz'}, {surface: и, kc: 'form:poss-3-si'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      tokens: [{surface: Мен, lexeme: men}, {surface: шаҳар, lexeme: shahar}, {surface: марказига, lexemes: [{lexeme: markaz, surface: марказ, base: true}, {lexeme: poss-3, surface: и}, {lexeme: dat, surface: га}]}, {surface: бораман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1sg, surface: ман}]}]
       reverse: |-
         [Мен] шаҳар марказига бораман
         Мен шаҳар марказига боряпман
@@ -496,11 +471,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Metro bekati qayerda?
-      tokens: [{surface: Metro, sense: metro}, {surface: bekati, sense: bekat, morphs: [{surface: bekat, kc: 'sense:bekat'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: qayerda, sense: qayer, morphs: [{surface: qayer, kc: 'sense:qayer'}, {surface: da, kc: 'form:loc-da'}]}]
+      tokens: [{surface: Metro, lexeme: metro}, {surface: bekati, lexemes: [{lexeme: bekat, surface: bekat, base: true}, {lexeme: poss-3, surface: i}]}, {surface: qayerda, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: loc, surface: da}]}]
       reverse: Metro bekati qayerda
     uz-Cyrl/standard:
       text: Метро бекати қаерда?
-      tokens: [{surface: Метро, sense: metro}, {surface: бекати, sense: bekat, morphs: [{surface: бекат, kc: 'sense:bekat'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: қаерда, sense: qayer, morphs: [{surface: қаер, kc: 'sense:qayer'}, {surface: да, kc: 'form:loc-da'}]}]
+      tokens: [{surface: Метро, lexeme: metro}, {surface: бекати, lexemes: [{lexeme: bekat, surface: бекат, base: true}, {lexeme: poss-3, surface: и}]}, {surface: қаерда, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: loc, surface: да}]}]
       reverse: Метро бекати қаерда
   translations:
     en: Where('s| is) the (metro|subway|underground) station?
@@ -509,29 +484,26 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Avtobus bekati yaqin.
-      tokens: [{surface: Avtobus, sense: avtobus}, {surface: bekati, sense: bekat, morphs: [{surface: bekat, kc: 'sense:bekat'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: yaqin, sense: yaqin}]
+      tokens: [{surface: Avtobus, lexeme: avtobus}, {surface: bekati, lexemes: [{lexeme: bekat, surface: bekat, base: true}, {lexeme: poss-3, surface: i}]}, {surface: yaqin, lexeme: yaqin}]
       reverse: Avtobus bekati yaqin
     uz-Cyrl/standard:
       text: Автобус бекати яқин.
-      tokens: [{surface: Автобус, sense: avtobus}, {surface: бекати, sense: bekat, morphs: [{surface: бекат, kc: 'sense:bekat'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: яқин, sense: yaqin}]
+      tokens: [{surface: Автобус, lexeme: avtobus}, {surface: бекати, lexemes: [{lexeme: bekat, surface: бекат, base: true}, {lexeme: poss-3, surface: и}]}, {surface: яқин, lexeme: yaqin}]
       reverse: Автобус бекати яқин
   translations:
     en: The bus stop is (near|close|nearby|close by).
 - id: s.city.32
   node: uz.city.go
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     uz-Latn/standard:
       text: Sizlar qayerga borasizlar?
-      tokens: [{surface: Sizlar, sense: siz, morphs: [{surface: Siz, kc: 'sense:siz'}, {surface: lar, kc: 'form:plural-lar'}]}, {surface: qayerga, sense: qayer, morphs: [{surface: qayer, kc: 'sense:qayer'},
-            {surface: ga, kc: 'form:dat-ga'}]}, {surface: borasizlar, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}, {
-              surface: lar, kc: 'form:plural-lar'}]}]
+      tokens: [{surface: Sizlar, lexemes: [{lexeme: siz, surface: Siz, base: true}, {lexeme: pl, surface: lar}]}, {surface: qayerga, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: dat, surface: ga}]}, {surface: borasizlar, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-2, surface: siz}, {lexeme: pl, surface: lar}]}]
       reverse: '[(Sizlar|Siz)] qayerga ((borasizlar|borasiz)|(boryapsizlar|boryapsiz)|(ketyapsizlar|ketyapsiz))'
     uz-Cyrl/standard:
       text: Сизлар қаерга борасизлар?
-      tokens: [{surface: Сизлар, sense: siz, morphs: [{surface: Сиз, kc: 'sense:siz'}, {surface: лар, kc: 'form:plural-lar'}]}, {surface: қаерга, sense: qayer, morphs: [{surface: қаер, kc: 'sense:qayer'},
-            {surface: га, kc: 'form:dat-ga'}]}, {surface: борасизлар, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}, {
-              surface: лар, kc: 'form:plural-lar'}]}]
+      tokens: [{surface: Сизлар, lexemes: [{lexeme: siz, surface: Сиз, base: true}, {lexeme: pl, surface: лар}]}, {surface: қаерга, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: dat, surface: га}]}, {surface: борасизлар, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-2, surface: сиз}, {lexeme: pl, surface: лар}]}]
       reverse: '[(Сизлар|Сиз)] қаерга ((борасизлар|борасиз)|(боряпсизлар|боряпсиз)|(кетяпсизлар|кетяпсиз))'
   translations:
     en: |-
@@ -542,119 +514,153 @@ sentences:
 stories:
 - id: uz.story.city
   node: uz.city.story
-  title: {en: 'Excuse me, where is the bazaar?'}
-  provenance: {author: 'llm:claude@887599f213ef', status: draft}
+  title:
+    en: Excuse me, where is the bazaar?
+  provenance:
+    author: llm:claude@887599f213ef
+    status: draft
   characters:
-  - {id: aziz, name: {uz-Latn/standard: Aziz, uz-Cyrl/standard: Азиз}}
-  - {id: yolovchi, name: {uz-Latn/standard: Yoʻlovchi, uz-Cyrl/standard: Йўловчи}}
+  - id: aziz
+    name:
+      uz-Latn/standard: Aziz
+      uz-Cyrl/standard: Азиз
+  - id: yolovchi
+    name:
+      uz-Latn/standard: Yoʻlovchi
+      uz-Cyrl/standard: Йўловчи
   steps:
   - line:
       speaker: aziz
       forms:
         uz-Latn/standard:
           text: Kechirasiz! Bozor qayerda?
-          tokens: [{surface: Kechirasiz, sense: kechirmoq, morphs: [{surface: Kechir, kc: 'sense:kechirmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}]}, {surface: Bozor, sense: bozor}, {surface: qayerda, sense: qayer, morphs: [{surface: qayer, kc: 'sense:qayer'}, {surface: da, kc: 'form:loc-da'}]}]
+          tokens: [{surface: Kechirasiz, lexemes: [{lexeme: kechirmoq, surface: Kechir, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-2, surface: siz}]}, {surface: Bozor, lexeme: bozor}, {surface: qayerda, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: loc, surface: da}]}]
         uz-Cyrl/standard:
           text: Кечирасиз! Бозор қаерда?
-          tokens: [{surface: Кечирасиз, sense: kechirmoq, morphs: [{surface: Кечир, kc: 'sense:kechirmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}]}, {surface: Бозор, sense: bozor}, {surface: қаерда, sense: qayer, morphs: [{surface: қаер, kc: 'sense:qayer'}, {surface: да, kc: 'form:loc-da'}]}]
-      translations: {en: 'Excuse me! Where is the bazaar?'}
+          tokens: [{surface: Кечирасиз, lexemes: [{lexeme: kechirmoq, surface: Кечир, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-2, surface: сиз}]}, {surface: Бозор, lexeme: bozor}, {surface: қаерда, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: loc, surface: да}]}]
+      translations:
+        en: Excuse me! Where is the bazaar?
   - line:
       speaker: yolovchi
       forms:
         uz-Latn/standard:
           text: Bozormi? U yer uzoq emas.
-          tokens: [{surface: Bozormi, sense: bozor, morphs: [{surface: Bozor, kc: 'sense:bozor'}, {surface: mi, kc: 'form:q-mi'}]}, {surface: U, sense: u}, {surface: yer, sense: yer}, {surface: uzoq, sense: uzoq}, {surface: emas, sense: emas}]
+          tokens: [{surface: Bozormi, lexemes: [{lexeme: bozor, surface: Bozor, base: true}, {lexeme: q, surface: mi}]}, {surface: U, lexeme: u}, {surface: yer, lexeme: yer}, {surface: uzoq, lexeme: uzoq}, {surface: emas, lexeme: emas}]
         uz-Cyrl/standard:
           text: Бозорми? У ер узоқ эмас.
-          tokens: [{surface: Бозорми, sense: bozor, morphs: [{surface: Бозор, kc: 'sense:bozor'}, {surface: ми, kc: 'form:q-mi'}]}, {surface: У, sense: u}, {surface: ер, sense: yer}, {surface: узоқ, sense: uzoq}, {surface: эмас, sense: emas}]
-      translations: {en: 'The bazaar? It''s not far.'}
+          tokens: [{surface: Бозорми, lexemes: [{lexeme: bozor, surface: Бозор, base: true}, {lexeme: q, surface: ми}]}, {surface: У, lexeme: u}, {surface: ер, lexeme: yer}, {surface: узоқ, lexeme: uzoq}, {surface: эмас, lexeme: emas}]
+      translations:
+        en: The bazaar? It's not far.
   - line:
       speaker: aziz
       forms:
         uz-Latn/standard:
           text: Men piyoda boraman.
-          tokens: [{surface: Men, sense: men}, {surface: piyoda, sense: piyoda}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+          tokens: [{surface: Men, lexeme: men}, {surface: piyoda, lexeme: piyoda}, {surface: boraman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1sg, surface: man}]}]
         uz-Cyrl/standard:
           text: Мен пиёда бораман.
-          tokens: [{surface: Мен, sense: men}, {surface: пиёда, sense: piyoda}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
-      translations: {en: I'm going on foot.}
+          tokens: [{surface: Мен, lexeme: men}, {surface: пиёда, lexeme: piyoda}, {surface: бораман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1sg, surface: ман}]}]
+      translations:
+        en: I'm going on foot.
   - line:
       speaker: yolovchi
       ask: arrange
       forms:
         uz-Latn/standard:
           text: Yaxshi. Toʻgʻri boring, keyin chapga buriling.
-          tokens: [{surface: Yaxshi, sense: yaxshi}, {surface: Toʻgʻri, sense: togri}, {surface: boring, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: ing, kc: 'form:imp-ing'}]}, {surface: keyin, sense: keyin}, {surface: chapga, sense: chap, morphs: [{surface: chap, kc: 'sense:chap'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: buriling, sense: burilmoq, morphs: [{surface: buril, kc: 'sense:burilmoq'}, {surface: ing, kc: 'form:imp-ing'}]}]
+          tokens: [{surface: Yaxshi, lexeme: yaxshi}, {surface: Toʻgʻri, lexeme: togri}, {surface: boring, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: imp, surface: ing}]}, {surface: keyin, lexeme: keyin}, {surface: chapga, lexemes: [{lexeme: chap, surface: chap, base: true}, {lexeme: dat, surface: ga}]}, {surface: buriling, lexemes: [{lexeme: burilmoq, surface: buril, base: true}, {lexeme: imp, surface: ing}]}]
         uz-Cyrl/standard:
           text: Яхши. Тўғри боринг, кейин чапга бурилинг.
-          tokens: [{surface: Яхши, sense: yaxshi}, {surface: Тўғри, sense: togri}, {surface: боринг, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: инг, kc: 'form:imp-ing'}]}, {surface: кейин, sense: keyin}, {surface: чапга, sense: chap, morphs: [{surface: чап, kc: 'sense:chap'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бурилинг, sense: burilmoq, morphs: [{surface: бурил, kc: 'sense:burilmoq'}, {surface: инг, kc: 'form:imp-ing'}]}]
-      translations: {en: 'Good. Go straight on, then turn left.'}
+          tokens: [{surface: Яхши, lexeme: yaxshi}, {surface: Тўғри, lexeme: togri}, {surface: боринг, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: imp, surface: инг}]}, {surface: кейин, lexeme: keyin}, {surface: чапга, lexemes: [{lexeme: chap, surface: чап, base: true}, {lexeme: dat, surface: га}]}, {surface: бурилинг, lexemes: [{lexeme: burilmoq, surface: бурил, base: true}, {lexeme: imp, surface: инг}]}]
+      translations:
+        en: Good. Go straight on, then turn left.
   - choose:
-      prompt: {en: 'Which way does Aziz have to turn?'}
-      options: [{en: left}, {en: right}, {en: back}]
+      prompt:
+        en: Which way does Aziz have to turn?
+      options:
+      - en: left
+      - en: right
+      - en: back
       answer: 0
   - line:
       speaker: yolovchi
       forms:
         uz-Latn/standard:
           text: Bozor metro bekati yonida.
-          tokens: [{surface: Bozor, sense: bozor}, {surface: metro, sense: metro}, {surface: bekati, sense: bekat, morphs: [{surface: bekat, kc: 'sense:bekat'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: yonida, sense: yon, morphs: [{surface: yon, kc: 'sense:yon'}, {surface: i, kc: 'form:poss-3-si'}, {surface: da, kc: 'form:loc-da'}]}]
+          tokens: [{surface: Bozor, lexeme: bozor}, {surface: metro, lexeme: metro}, {surface: bekati, lexemes: [{lexeme: bekat, surface: bekat, base: true}, {lexeme: poss-3, surface: i}]}, {surface: yonida, lexemes: [{lexeme: yon, surface: yon, base: true}, {lexeme: poss-3, surface: i}, {lexeme: loc, surface: da}]}]
         uz-Cyrl/standard:
           text: Бозор метро бекати ёнида.
-          tokens: [{surface: Бозор, sense: bozor}, {surface: метро, sense: metro}, {surface: бекати, sense: bekat, morphs: [{surface: бекат, kc: 'sense:bekat'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: ёнида, sense: yon, morphs: [{surface: ён, kc: 'sense:yon'}, {surface: и, kc: 'form:poss-3-si'}, {surface: да, kc: 'form:loc-da'}]}]
-      translations: {en: The bazaar is next to the metro station.}
+          tokens: [{surface: Бозор, lexeme: bozor}, {surface: метро, lexeme: metro}, {surface: бекати, lexemes: [{lexeme: bekat, surface: бекат, base: true}, {lexeme: poss-3, surface: и}]}, {surface: ёнида, lexemes: [{lexeme: yon, surface: ён, base: true}, {lexeme: poss-3, surface: и}, {lexeme: loc, surface: да}]}]
+      translations:
+        en: The bazaar is next to the metro station.
   - line:
       speaker: aziz
       forms:
         uz-Latn/standard:
           text: Rahmat! Siz ham bozorga borasizmi?
-          tokens: [{surface: Rahmat, sense: rahmat}, {surface: Siz, sense: siz}, {surface: ham, sense: ham}, {surface: bozorga, sense: bozor, morphs: [{surface: bozor, kc: 'sense:bozor'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: borasizmi, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}, {surface: mi, kc: 'form:q-mi'}]}]
+          tokens: [{surface: Rahmat, lexeme: rahmat}, {surface: Siz, lexeme: siz}, {surface: ham, lexeme: ham}, {surface: bozorga, lexemes: [{lexeme: bozor, surface: bozor, base: true}, {lexeme: dat, surface: ga}]}, {surface: borasizmi, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-2, surface: siz}, {lexeme: q, surface: mi}]}]
         uz-Cyrl/standard:
           text: Раҳмат! Сиз ҳам бозорга борасизми?
-          tokens: [{surface: Раҳмат, sense: rahmat}, {surface: Сиз, sense: siz}, {surface: ҳам, sense: ham}, {surface: бозорга, sense: bozor, morphs: [{surface: бозор, kc: 'sense:bozor'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: борасизми, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}, {surface: ми, kc: 'form:q-mi'}]}]
-      translations: {en: 'Thank you! Are you going to the bazaar too?'}
+          tokens: [{surface: Раҳмат, lexeme: rahmat}, {surface: Сиз, lexeme: siz}, {surface: ҳам, lexeme: ham}, {surface: бозорга, lexemes: [{lexeme: bozor, surface: бозор, base: true}, {lexeme: dat, surface: га}]}, {surface: борасизми, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-2, surface: сиз}, {lexeme: q, surface: ми}]}]
+      translations:
+        en: Thank you! Are you going to the bazaar too?
   - line:
       speaker: yolovchi
       forms:
         uz-Latn/standard:
           text: Yoʻq, men ishga boraman.
-          tokens: [{surface: Yoʻq, sense: yoq}, {surface: men, sense: men}, {surface: ishga, sense: ish, morphs: [{surface: ish, kc: 'sense:ish'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+          tokens: [{surface: Yoʻq, lexeme: yoq}, {surface: men, lexeme: men}, {surface: ishga, lexemes: [{lexeme: ish, surface: ish, base: true}, {lexeme: dat, surface: ga}]}, {surface: boraman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1sg, surface: man}]}]
         uz-Cyrl/standard:
           text: Йўқ, мен ишга бораман.
-          tokens: [{surface: Йўқ, sense: yoq}, {surface: мен, sense: men}, {surface: ишга, sense: ish, morphs: [{surface: иш, kc: 'sense:ish'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
-      translations: {en: 'No, I''m going to work.'}
+          tokens: [{surface: Йўқ, lexeme: yoq}, {surface: мен, lexeme: men}, {surface: ишга, lexemes: [{lexeme: ish, surface: иш, base: true}, {lexeme: dat, surface: га}]}, {surface: бораман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1sg, surface: ман}]}]
+      translations:
+        en: No, I'm going to work.
   - line:
       speaker: aziz
       ask: complete
-      gap: sense:chap
-      distractors: ['sense:maktab', 'sense:ish']
+      gap: lexeme:chap
+      distractors:
+      - lexeme:maktab
+      - lexeme:ish
       forms:
         uz-Latn/standard:
           text: Toʻgʻri, keyin chapga. Rahmat!
-          tokens: [{surface: Toʻgʻri, sense: togri}, {surface: keyin, sense: keyin}, {surface: chapga, sense: chap, morphs: [{surface: chap, kc: 'sense:chap'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: Rahmat, sense: rahmat}]
+          tokens: [{surface: Toʻgʻri, lexeme: togri}, {surface: keyin, lexeme: keyin}, {surface: chapga, lexemes: [{lexeme: chap, surface: chap, base: true}, {lexeme: dat, surface: ga}]}, {surface: Rahmat, lexeme: rahmat}]
         uz-Cyrl/standard:
           text: Тўғри, кейин чапга. Раҳмат!
-          tokens: [{surface: Тўғри, sense: togri}, {surface: кейин, sense: keyin}, {surface: чапга, sense: chap, morphs: [{surface: чап, kc: 'sense:chap'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: Раҳмат, sense: rahmat}]
-      translations: {en: 'Straight on, then left. Thank you!'}
+          tokens: [{surface: Тўғри, lexeme: togri}, {surface: кейин, lexeme: keyin}, {surface: чапга, lexemes: [{lexeme: chap, surface: чап, base: true}, {lexeme: dat, surface: га}]}, {surface: Раҳмат, lexeme: rahmat}]
+      translations:
+        en: Straight on, then left. Thank you!
   - line:
       speaker: yolovchi
       forms:
         uz-Latn/standard:
           text: Xayr! Bozorda olma juda yaxshi.
-          tokens: [{surface: Xayr, sense: xayr}, {surface: Bozorda, sense: bozor, morphs: [{surface: Bozor, kc: 'sense:bozor'}, {surface: da, kc: 'form:loc-da'}]}, {surface: olma, sense: olma}, {surface: juda, sense: juda}, {surface: yaxshi, sense: yaxshi}]
+          tokens: [{surface: Xayr, lexeme: xayr}, {surface: Bozorda, lexemes: [{lexeme: bozor, surface: Bozor, base: true}, {lexeme: loc, surface: da}]}, {surface: olma, lexeme: olma}, {surface: juda, lexeme: juda}, {surface: yaxshi, lexeme: yaxshi}]
         uz-Cyrl/standard:
           text: Хайр! Бозорда олма жуда яхши.
-          tokens: [{surface: Хайр, sense: xayr}, {surface: Бозорда, sense: bozor, morphs: [{surface: Бозор, kc: 'sense:bozor'}, {surface: да, kc: 'form:loc-da'}]}, {surface: олма, sense: olma}, {surface: жуда, sense: juda}, {surface: яхши, sense: yaxshi}]
-      translations: {en: Bye! The apples at the bazaar are very good.}
+          tokens: [{surface: Хайр, lexeme: xayr}, {surface: Бозорда, lexemes: [{lexeme: bozor, surface: Бозор, base: true}, {lexeme: loc, surface: да}]}, {surface: олма, lexeme: olma}, {surface: жуда, lexeme: juda}, {surface: яхши, lexeme: yaxshi}]
+      translations:
+        en: Bye! The apples at the bazaar are very good.
   - choose:
-      prompt: {en: 'Where is the passer-by going?'}
-      options: [{en: to work}, {en: to the bazaar}, {en: home}]
+      prompt:
+        en: Where is the passer-by going?
+      options:
+      - en: to work
+      - en: to the bazaar
+      - en: home
       answer: 0
 scenarios:
 - id: uz.directions
   after: uz.city.town
-  title: {en: Lost in Tashkent}
-  setting: {en: 'A busy street corner in Tashkent, near the metro and Chorsu Bazaar.'}
-  character: {en: 'A friendly passer-by in a hurry, who gives short, quick directions.'}
-  goal: {en: 'Say excuse me, ask where the bazaar and the metro station are, ask whether they are near or far, and repeat the directions.'}
-  provenance: {author: 'llm:claude@887599f213ef', status: draft}
+  title:
+    en: Lost in Tashkent
+  setting:
+    en: A busy street corner in Tashkent, near the metro and Chorsu Bazaar.
+  character:
+    en: A friendly passer-by in a hurry, who gives short, quick directions.
+  goal:
+    en: Say excuse me, ask where the bazaar and the metro station are, ask whether they are near or far, and repeat the directions.
+  provenance:
+    author: llm:claude@887599f213ef
+    status: draft

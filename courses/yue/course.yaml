@@ -4,59 +4,98 @@
 # usage and accept sets. Page-referenced notes are in the reference library (nabu/notes/yue).
 id: yue
 target: yue-Hant-HK
-orthographies: [yue-Hant-HK/standard, yue-Latn/jyutping]
-support: [en-Latn/standard]
+orthographies:
+- yue-Hant-HK/standard
+- yue-Latn/jyutping
+support:
+- en-Latn/standard
+lexicon: yue
+variety: yue-HK
 # What the app calls the course and its orthographies, and what the course list says of them, by
 # language (ADR 0109).
 names:
   en:
     course: Cantonese
-    blurb: "Cantonese as Hong Kong speaks it, with Jyutping to help you read."
+    blurb: Cantonese as Hong Kong speaks it, with Jyutping to help you read.
     orthographies:
       yue-Hant-HK/standard: Traditional characters
       yue-Latn/jyutping: Jyutping
     hints:
-      yue-Hant-HK/standard: "Chinese characters, with their Jyutping above them."
-      yue-Latn/jyutping: "Jyutping, the romanization, with the characters above it."
+      yue-Hant-HK/standard: Chinese characters, with their Jyutping above them.
+      yue-Latn/jyutping: Jyutping, the romanization, with the characters above it.
   # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
   # await review as those do.
   ar:
-    course: "الكانتونية"
+    course: الكانتونية
     orthographies:
-      yue-Hant-HK/standard: "الرموز التقليدية"
-      yue-Latn/jyutping: "جيوتبينغ"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      yue-Hant-HK/standard: الرموز التقليدية
+      yue-Latn/jyutping: جيوتبينغ
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   fa:
-    course: "کانتونی"
+    course: کانتونی
     orthographies:
       yue-Hant-HK/standard: "نویسه\u200cهای سنتی"
       yue-Latn/jyutping: "جیوت\u200cپینگ"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   uz:
-    course: "Kanton tili"
+    course: Kanton tili
     orthographies:
-      yue-Hant-HK/standard: "Anʼanaviy iyerogliflar"
-      yue-Latn/jyutping: "Jyutping"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      yue-Hant-HK/standard: Anʼanaviy iyerogliflar
+      yue-Latn/jyutping: Jyutping
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   uz-Cyrl:
-    course: "Кантон тили"
+    course: Кантон тили
     orthographies:
-      yue-Hant-HK/standard: "Анъанавий иероглифлар"
-      yue-Latn/jyutping: "Жютпинг"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      yue-Hant-HK/standard: Анъанавий иероглифлар
+      yue-Latn/jyutping: Жютпинг
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   zh-Hant-HK:
-    course: "粵語"
+    course: 粵語
     orthographies:
-      yue-Hant-HK/standard: "繁體字"
-      yue-Latn/jyutping: "粵拼"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      yue-Hant-HK/standard: 繁體字
+      yue-Latn/jyutping: 粵拼
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
 license: CC-BY-SA-4.0
-provenance: {author: 'llm:claude@4c3f4acef278', status: draft}
+provenance:
+  author: llm:claude@4c3f4acef278
+  status: draft
 # No cards on a word's parts (`wordParts`, ADR 0152): the course's words carry one form, the pronouns'
 # plural 哋, with no other form to tell it from.
-units: [units/intro.yaml, units/u02-family.yaml, units/u03-numbers.yaml, units/u04-food.yaml, units/u05-places.yaml, units/u06-time.yaml, units/u07-transport.yaml, units/u08-shopping.yaml, units/u09-past.yaml, units/u10-plans.yaml]
+units:
+- units/intro.yaml
+- units/u02-family.yaml
+- units/u03-numbers.yaml
+- units/u04-food.yaml
+- units/u05-places.yaml
+- units/u06-time.yaml
+- units/u07-transport.yaml
+- units/u08-shopping.yaml
+- units/u09-past.yaml
+- units/u10-plans.yaml
 drills:
-- {kind: numbers, orthography: yue-Hant-HK/standard, values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
+- kind: numbers
+  orthography: yue-Hant-HK/standard
+  values:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
 # Audio (ADR 0094): VoxCPM2 cloning two news anchors it designed (no real person's voice), chosen by the owner
 # in the November 2026 voice bench. Each clip clones its anchor with the anchor's transcript. A word card is said
 # after 跟住我讀： ("repeat after me") and cut out by forced alignment; a sentence is slowed toward 4.3 syllables a
@@ -64,9 +103,31 @@ drills:
 # (ADR 0060) are where a wrong reading is caught. Clips Apache-2.0, as the weights.
 audio:
   voices:
-  - {id: anchor-f, provider: voxcpm, voice: anchor-f, speaker: f, model: 'openbmb/VoxCPM2@7936080b41163874f38610f46f438e2c0757f9fd',
-    language: yue, orthography: yue-Hant-HK/standard, reading: text, license: Apache-2.0, carrier: {text: 跟住我讀：},
-    pace: {target: 4.3, maxStretch: 1.6}}
-  - {id: anchor-m, provider: voxcpm, voice: anchor-m, speaker: m, model: 'openbmb/VoxCPM2@7936080b41163874f38610f46f438e2c0757f9fd',
-    language: yue, orthography: yue-Hant-HK/standard, reading: text, license: Apache-2.0, carrier: {text: 跟住我讀：},
-    pace: {target: 4.3, maxStretch: 1.6}}
+  - id: anchor-f
+    provider: voxcpm
+    voice: anchor-f
+    speaker: f
+    model: openbmb/VoxCPM2@7936080b41163874f38610f46f438e2c0757f9fd
+    language: yue
+    orthography: yue-Hant-HK/standard
+    reading: text
+    license: Apache-2.0
+    carrier:
+      text: 跟住我讀：
+    pace:
+      target: 4.3
+      maxStretch: 1.6
+  - id: anchor-m
+    provider: voxcpm
+    voice: anchor-m
+    speaker: m
+    model: openbmb/VoxCPM2@7936080b41163874f38610f46f438e2c0757f9fd
+    language: yue
+    orthography: yue-Hant-HK/standard
+    reading: text
+    license: Apache-2.0
+    carrier:
+      text: 跟住我讀：
+    pace:
+      target: 4.3
+      maxStretch: 1.6

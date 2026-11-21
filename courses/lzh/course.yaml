@@ -4,46 +4,74 @@
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a reviewer.
 id: lzh
 target: lzh-Hant
-orthographies: [lzh-Hant/standard]
-support: [en-Latn/standard]
+orthographies:
+- lzh-Hant/standard
+support:
+- en-Latn/standard
+lexicon: lzh
 # What the app calls the course and its orthographies, and what the course list says of them, by
 # language (ADR 0109).
 names:
   en:
     course: Classical Chinese
-    blurb: "The written language of the Chinese classics, learned through their own passages."
+    blurb: The written language of the Chinese classics, learned through their own passages.
     orthographies:
       lzh-Hant/standard: Traditional characters
   # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
   # await review as those do.
   ar:
-    course: "الصينية الكلاسيكية"
+    course: الصينية الكلاسيكية
     orthographies:
-      lzh-Hant/standard: "الرموز التقليدية"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      lzh-Hant/standard: الرموز التقليدية
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   fa:
-    course: "چینی کلاسیک"
+    course: چینی کلاسیک
     orthographies:
       lzh-Hant/standard: "نویسه\u200cهای سنتی"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   uz:
-    course: "Klassik xitoy tili"
+    course: Klassik xitoy tili
     orthographies:
-      lzh-Hant/standard: "Anʼanaviy iyerogliflar"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      lzh-Hant/standard: Anʼanaviy iyerogliflar
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   uz-Cyrl:
-    course: "Классик хитой тили"
+    course: Классик хитой тили
     orthographies:
-      lzh-Hant/standard: "Анъанавий иероглифлар"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      lzh-Hant/standard: Анъанавий иероглифлар
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   zh-Hant-HK:
-    course: "文言文"
+    course: 文言文
     orthographies:
-      lzh-Hant/standard: "繁體字"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      lzh-Hant/standard: 繁體字
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
 license: CC-BY-SA-4.0
-provenance: {author: 'llm:claude@52f9ac56dcce', status: draft}
-facets: [recognize, produce, read-script]
+provenance:
+  author: llm:claude@52f9ac56dcce
+  status: draft
+facets:
+- recognize
+- produce
+- read-script
 # Every reading is fixed by its word's spelling, sense, form and morphs (ADR 0135): one read otherwise is an error.
 consistentReadings: true
-units: [units/u01-the-master-said.yaml, units/u02-to-know-what-you-know.yaml, units/u03-at-fifteen.yaml, units/u04-who-knows-others.yaml, units/u05-the-joy-of-fish.yaml, units/u06-the-sword-and-the-boat.yaml, units/u07-waiting-for-rabbits.yaml, units/u08-spear-and-shield.yaml, units/u09-fish-and-bears-paw.yaml, units/u10-moonlight.yaml]
+units:
+- units/u01-the-master-said.yaml
+- units/u02-to-know-what-you-know.yaml
+- units/u03-at-fifteen.yaml
+- units/u04-who-knows-others.yaml
+- units/u05-the-joy-of-fish.yaml
+- units/u06-the-sword-and-the-boat.yaml
+- units/u07-waiting-for-rabbits.yaml
+- units/u08-spear-and-shield.yaml
+- units/u09-fish-and-bears-paw.yaml
+- units/u10-moonlight.yaml

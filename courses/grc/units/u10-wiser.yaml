@@ -7,107 +7,19 @@ id: u10-wiser
 title:
   en: Wiser than this man
 cefr: A2
-kcs:
-- id: sense:anthropos
-  pos: NOUN
-  gloss:
-    en: human being, person; man
-  forms:
-    grc-Grek/polytonic:
-    - ἄνθρωπος
-- id: sense:sophos
-  pos: ADJ
-  gloss:
-    en: wise, clever
-  forms:
-    grc-Grek/polytonic:
-    - σοφός
-- id: form:comp
-  gloss:
-    en: 'the comparative: more …, -er (σοφώτερος, wiser); the one compared in the genitive (than)'
-- id: sense:aner
-  pos: NOUN
-  gloss:
-    en: man; husband
-  forms:
-    grc-Grek/polytonic:
-    - ἀνήρ
-  notes:
-    en: ὦ ἄνδρες Ἀθηναῖοι, "men of Athens", is how a speaker addressed the Athenian assembly and courts.
-- id: sense:oida
-  pos: VERB
-  gloss:
-    en: to know
-  forms:
-    grc-Grek/polytonic:
-    - οἶδα
-  notes:
-    en: 'οἶδα is a perfect ("I have seen, and so know") used as a present: οἶδα I know, οἶσθα you know; to know εἰδέναι, knowing εἰδώς.'
-- id: sense:oude
-  pos: PART
-  features:
-    Polarity: Neg
-  gloss:
-    en: and not, nor; not even
-  forms:
-    grc-Grek/polytonic:
-    - οὐδέ
-- id: sense:oiomai
-  pos: VERB
-  gloss:
-    en: to think, suppose, believe
-  forms:
-    grc-Grek/polytonic:
-    - οἴομαι
-- id: sense:hosper
-  pos: SCONJ
-  gloss:
-    en: just as, as
-  forms:
-    grc-Grek/polytonic:
-    - ὥσπερ
-- id: form:comp-f
-  gloss:
-    en: 'the comparative, feminine: more …, -er (σοφωτέρα, wiser, of a woman)'
 nodes:
-- id: grc.u10.this-man
-  kind: lesson
-  introduces:
-  - sense:anthropos
-  - sense:sophos
-  - form:comp
-  - sense:aner
-  - form:comp-f
-- id: grc.u10.i-know
-  kind: lesson
-  introduces:
-  - sense:oida
-  - sense:oude
-- id: grc.u10.i-think
-  kind: lesson
-  introduces:
-  - sense:oiomai
-- id: grc.u10.just-as
-  kind: lesson
-  introduces:
-  - sense:hosper
-- id: grc.u10.story
-  kind: story
+- {id: grc.u10.this-man, kind: lesson, introduces: ['lexeme:anthropos', 'lexeme:sophos', 'feature:Degree=Cmp', 'lexeme:aner']}
+- {id: grc.u10.i-know, kind: lesson, introduces: ['lexeme:oida', 'lexeme:oude']}
+- {id: grc.u10.i-think, kind: lesson, introduces: ['lexeme:oiomai']}
+- {id: grc.u10.just-as, kind: lesson, introduces: ['lexeme:hosper']}
+- {id: grc.u10.story, kind: story}
 sentences:
 - id: s.10.1
   node: grc.u10.this-man
   forms:
     grc-Grek/polytonic:
       text: ὁ ἄνθρωπος.
-      tokens:
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: ἄνθρωπος
-        sense: anthropos
-        readings:
-          attic: ᾰ̓́νθρωπος
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: ἄνθρωπος, lexeme: anthropos, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: ᾰ̓́νθρωπος}}]
       reverse: ὁ ἄνθρωπος
   translations:
     en: The (man|person|human being).
@@ -116,19 +28,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οὗτος ὁ ἄνθρωπος.
-      tokens:
-      - surface: οὗτος
-        sense: houtos
-        readings:
-          attic: οὗτος
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: ἄνθρωπος
-        sense: anthropos
-        readings:
-          attic: ᾰ̓́νθρωπος
+      tokens: [{surface: οὗτος, lexeme: houtos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: οὗτος}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: ὁ}}, {surface: ἄνθρωπος, lexeme: anthropos, feats: {Case: Nom, Number: Sing}, n: 3, readings: {attic: ᾰ̓́νθρωπος}}]
       reverse: |-
         οὗτος ὁ ἄνθρωπος
         ὁ ἄνθρωπος οὗτος
@@ -139,11 +39,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: σοφός.
-      tokens:
-      - surface: σοφός
-        sense: sophos
-        readings:
-          attic: σοφός
+      tokens: [{surface: σοφός, lexeme: sophos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: σοφός}}]
       reverse: σοφός
   translations:
     en: (Wise|Clever).
@@ -152,24 +48,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ Σωκράτης σοφός ἐστιν.
-      tokens:
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: Σωκράτης
-        sense: sokrates
-        readings:
-          attic: Σωκρᾰ́της
-      - surface: σοφός
-        sense: sophos
-        readings:
-          attic: σοφός
-      - surface: ἐστιν
-        sense: eimi
-        form: form:pres-3s
-        readings:
-          attic: ἐστῐν
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: Σωκράτης, lexeme: sokrates, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: Σωκρᾰ́της}}, {surface: σοφός, lexeme: sophos, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod, readings: {attic: σοφός}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
       reverse: |-
         ὁ Σωκράτης σοφός ἐστιν
         σοφός ἐστι[ν] [ὁ] Σωκράτης
@@ -183,35 +62,18 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: σοφώτερος.
-      tokens:
-      - surface: σοφώτερος
-        sense: sophos
-        form: form:comp
-        readings:
-          attic: σοφώτερος
+      tokens: [{surface: σοφώτερος, lexeme: sophos, feats: {Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, readings: {attic: σοφώτερος}}]
       reverse: σοφώτερος
   translations:
     en: (Wiser|Cleverer).
 - id: s.10.6
   node: grc.u10.this-man
+  tags:
+  - {persons: {speaker: m}}
   forms:
     grc-Grek/polytonic:
       text: ἐγὼ σοφώτερός εἰμι.
-      tokens:
-      - surface: ἐγὼ
-        sense: ego
-        readings:
-          attic: ἐγὼ
-      - surface: σοφώτερός
-        sense: sophos
-        form: form:comp
-        readings:
-          attic: σοφώτερός
-      - surface: εἰμι
-        sense: eimi
-        form: form:pres-1s
-        readings:
-          attic: εἰμῐ
+      tokens: [{surface: ἐγὼ, lexeme: ego, feats: {Case: Nom, Number: Sing}, readings: {attic: ἐγὼ}}, {surface: σοφώτερός, lexeme: sophos, feats: {Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, readings: {attic: σοφώτερός}}, {surface: εἰμι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ}}]
       reverse: |-
         ἐγὼ σοφώτερός εἰμι
         σοφώτερός εἰμι
@@ -219,28 +81,14 @@ sentences:
         σοφώτερος ἐγώ εἰμι
   translations:
     en: (I am|I'm) (wiser|cleverer).
-  persons:
-    speaker: m
 - id: s.10.7
   node: grc.u10.this-man
+  tags:
+  - {persons: {speaker: f}}
   forms:
     grc-Grek/polytonic:
       text: ἐγὼ σοφωτέρα εἰμί.
-      tokens:
-      - surface: ἐγὼ
-        sense: ego
-        readings:
-          attic: ἐγὼ
-      - surface: σοφωτέρα
-        sense: sophos
-        form: form:comp-f
-        readings:
-          attic: σοφωτέρᾱ
-      - surface: εἰμί
-        sense: eimi
-        form: form:pres-1s
-        readings:
-          attic: εἰμῐ́
+      tokens: [{surface: ἐγὼ, lexeme: ego, feats: {Case: Nom, Number: Sing}, readings: {attic: ἐγὼ}}, {surface: σοφωτέρα, lexeme: sophos, feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}, readings: {attic: σοφωτέρᾱ}}, {surface: εἰμί, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ́}}]
       reverse: |-
         ἐγὼ σοφωτέρα εἰμί
         σοφωτέρα εἰμί
@@ -248,39 +96,14 @@ sentences:
         σοφωτέρα ἐγώ εἰμι
   translations:
     en: (I am|I'm) (wiser|cleverer).
-  persons:
-    speaker: f
 - id: s.10.8
   node: grc.u10.this-man
+  tags:
+  - {persons: {speaker: m}}
   forms:
     grc-Grek/polytonic:
       text: τούτου τοῦ ἀνθρώπου σοφώτερός εἰμι.
-      tokens:
-      - surface: τούτου
-        sense: houtos
-        form: form:gen
-        readings:
-          attic: τούτου
-      - surface: τοῦ
-        sense: ho
-        form: form:gen
-        readings:
-          attic: τοῦ
-      - surface: ἀνθρώπου
-        sense: anthropos
-        form: form:gen
-        readings:
-          attic: ᾰ̓νθρώπου
-      - surface: σοφώτερός
-        sense: sophos
-        form: form:comp
-        readings:
-          attic: σοφώτερός
-      - surface: εἰμι
-        sense: eimi
-        form: form:pres-1s
-        readings:
-          attic: εἰμῐ
+      tokens: [{surface: τούτου, lexeme: houtos, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τούτου}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τοῦ}}, {surface: ἀνθρώπου, lexeme: anthropos, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: ᾰ̓νθρώπου}}, {surface: σοφώτερός, lexeme: sophos, feats: {Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, readings: {attic: σοφώτερός}}, {surface: εἰμι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ}}]
       reverse: |-
         τούτου τοῦ ἀνθρώπου σοφώτερός εἰμι
         σοφώτερός εἰμι τούτου τοῦ ἀνθρώπου
@@ -288,22 +111,12 @@ sentences:
         τούτου τοῦ ἀνθρώπου ἐγὼ σοφώτερός εἰμι
   translations:
     en: (I am|I'm) (wiser|cleverer) than this (man|person).
-  persons:
-    speaker: m
 - id: s.10.9
   node: grc.u10.this-man
   forms:
     grc-Grek/polytonic:
       text: ὁ ἀνήρ.
-      tokens:
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: ἀνήρ
-        sense: aner
-        readings:
-          attic: ᾰ̓νήρ
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: ἀνήρ, lexeme: aner, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: ᾰ̓νήρ}}]
       reverse: ὁ ἀνήρ
   translations:
     en: The (man|husband).
@@ -312,21 +125,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὦ ἄνδρες Ἀθηναῖοι.
-      tokens:
-      - surface: ὦ
-        sense: o
-        readings:
-          attic: ὦ
-      - surface: ἄνδρες
-        sense: aner
-        form: form:pl
-        readings:
-          attic: ᾰ̓́νδρες
-      - surface: Ἀθηναῖοι
-        sense: athenaios
-        form: form:pl
-        readings:
-          attic: Ᾰ̓θηναῖοι
+      tokens: [{surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: ἄνδρες, lexeme: aner, feats: {Case: 'Nom,Voc', Number: Plur}, n: 2, readings: {attic: ᾰ̓́νδρες}}, {surface: Ἀθηναῖοι, lexeme: athenaios, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, n: 3, head: 2, rel: amod, readings: {attic: Ᾰ̓θηναῖοι}}]
       reverse: |-
         ὦ ἄνδρες Ἀθηναῖοι
         ἄνδρες Ἀθηναῖοι
@@ -337,35 +136,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ παῖς σοφώτερός ἐστι τοῦ πατρός.
-      tokens:
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: παῖς
-        sense: pais
-        readings:
-          attic: παῖς
-      - surface: σοφώτερός
-        sense: sophos
-        form: form:comp
-        readings:
-          attic: σοφώτερός
-      - surface: ἐστι
-        sense: eimi
-        form: form:pres-3s
-        readings:
-          attic: ἐστῐ
-      - surface: τοῦ
-        sense: ho
-        form: form:gen
-        readings:
-          attic: τοῦ
-      - surface: πατρός
-        sense: pater
-        form: form:gen
-        readings:
-          attic: πᾰτρός
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, readings: {attic: παῖς}}, {surface: σοφώτερός, lexeme: sophos, feats: {Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod, readings: {attic: σοφώτερός}}, {surface: ἐστι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: τοῦ}}, {surface: πατρός, lexeme: pater, feats: {Case: Gen, Number: Sing}, n: 6, readings: {attic: πᾰτρός}}]
       reverse: |-
         ὁ παῖς σοφώτερός ἐστι τοῦ πατρός
         ὁ παῖς τοῦ πατρὸς σοφώτερός ἐστι[ν]
@@ -378,11 +149,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οἶδα.
-      tokens:
-      - surface: οἶδα
-        sense: oida
-        readings:
-          attic: οἶδᾰ
+      tokens: [{surface: οἶδα, lexeme: oida, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: οἶδᾰ}}]
       reverse: οἶδα
   translations:
     en: I know.
@@ -391,48 +158,27 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οὐκ οἶδα.
-      tokens:
-      - surface: οὐκ
-        sense: ou
-        readings:
-          attic: οὐκ
-      - surface: οἶδα
-        sense: oida
-        readings:
-          attic: οἶδᾰ
+      tokens: [{surface: οὐκ, lexeme: ou, readings: {attic: οὐκ}}, {surface: οἶδα, lexeme: oida, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: οἶδᾰ}}]
       reverse: οὐκ οἶδα
   translations:
     en: (I do not|I don't) know.
 - id: s.10.14
   node: grc.u10.i-know
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: οἶσθα;
-      tokens:
-      - surface: οἶσθα
-        sense: oida
-        form: form:perf-2s
-        readings:
-          attic: οἶσθᾰ
+      tokens: [{surface: οἶσθα, lexeme: oida, feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: οἶσθᾰ}}]
       reverse: οἶσθα
   translations:
     en: Do you know?
-  persons:
-    addressee: sg
 - id: s.10.15
   node: grc.u10.i-know
   forms:
     grc-Grek/polytonic:
       text: οὐδὲ οἶδα.
-      tokens:
-      - surface: οὐδὲ
-        sense: oude
-        readings:
-          attic: οὐδὲ
-      - surface: οἶδα
-        sense: oida
-        readings:
-          attic: οἶδᾰ
+      tokens: [{surface: οὐδὲ, lexeme: oude, readings: {attic: οὐδὲ}}, {surface: οἶδα, lexeme: oida, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: οἶδᾰ}}]
       reverse: οὐδὲ οἶδα
   translations:
     en: (Nor do I know|(I do not|I don't) know either|Neither do I know).
@@ -441,20 +187,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τοῦτο οὐκ οἶδα.
-      tokens:
-      - surface: τοῦτο
-        sense: houtos
-        form: form:n
-        readings:
-          attic: τοῦτο
-      - surface: οὐκ
-        sense: ou
-        readings:
-          attic: οὐκ
-      - surface: οἶδα
-        sense: oida
-        readings:
-          attic: οἶδᾰ
+      tokens: [{surface: τοῦτο, lexeme: houtos, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τοῦτο}}, {surface: οὐκ, lexeme: ou, readings: {attic: οὐκ}}, {surface: οἶδα, lexeme: oida, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: οἶδᾰ}}]
       reverse: |-
         τοῦτο οὐκ οἶδα
         οὐκ οἶδα τοῦτο
@@ -465,24 +198,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οὐκ οἶδα, ὦ Σώκρατες.
-      tokens:
-      - surface: οὐκ
-        sense: ou
-        readings:
-          attic: οὐκ
-      - surface: οἶδα
-        sense: oida
-        readings:
-          attic: οἶδᾰ
-      - surface: ὦ
-        sense: o
-        readings:
-          attic: ὦ
-      - surface: Σώκρατες
-        sense: sokrates
-        form: form:voc
-        readings:
-          attic: Σώκρᾰτες
+      tokens: [{surface: οὐκ, lexeme: ou, readings: {attic: οὐκ}}, {surface: οἶδα, lexeme: oida, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: οἶδᾰ}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: Σώκρατες, lexeme: sokrates, feats: {Case: Voc, Number: Sing}, readings: {attic: Σώκρᾰτες}}]
       reverse: |-
         οὐκ οἶδα ὦ Σώκρατες
         οὐκ οἶδα Σώκρατες
@@ -494,12 +210,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οἴομαι.
-      tokens:
-      - surface: οἴομαι
-        sense: oiomai
-        form: form:pres-1s
-        readings:
-          attic: οἴομαι
+      tokens: [{surface: οἴομαι, lexeme: oiomai, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: οἴομαι}}]
       reverse: οἴομαι
   translations:
     en: I (think|suppose|believe) (so|).
@@ -508,16 +219,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οὐκ οἴομαι.
-      tokens:
-      - surface: οὐκ
-        sense: ou
-        readings:
-          attic: οὐκ
-      - surface: οἴομαι
-        sense: oiomai
-        form: form:pres-1s
-        readings:
-          attic: οἴομαι
+      tokens: [{surface: οὐκ, lexeme: ou, readings: {attic: οὐκ}}, {surface: οἴομαι, lexeme: oiomai, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: οἴομαι}}]
       reverse: οὐκ οἴομαι
   translations:
     en: (I do not|I don't) (think|suppose|believe) so.
@@ -526,12 +228,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: εἰδέναι.
-      tokens:
-      - surface: εἰδέναι
-        sense: oida
-        form: form:inf
-        readings:
-          attic: εἰδέναι
+      tokens: [{surface: εἰδέναι, lexeme: oida, feats: {VerbForm: Inf}, readings: {attic: εἰδέναι}}]
       reverse: εἰδέναι
   translations:
     en: To know.
@@ -540,26 +237,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οὗτος οἴεταί τι εἰδέναι.
-      tokens:
-      - surface: οὗτος
-        sense: houtos
-        readings:
-          attic: οὗτος
-      - surface: οἴεταί
-        sense: oiomai
-        form: form:pres-3s
-        readings:
-          attic: οἴεταί
-      - surface: τι
-        sense: tis.indef
-        form: form:n
-        readings:
-          attic: τῐ
-      - surface: εἰδέναι
-        sense: oida
-        form: form:inf
-        readings:
-          attic: εἰδέναι
+      tokens: [{surface: οὗτος, lexeme: houtos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: οὗτος}}, {surface: οἴεταί, lexeme: oiomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: οἴεταί}}, {surface: τι, lexeme: tis.indef, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τῐ}}, {surface: εἰδέναι, lexeme: oida, feats: {VerbForm: Inf}, readings: {attic: εἰδέναι}}]
       reverse: |-
         οὗτος οἴεταί τι εἰδέναι
         οὗτος οἴεται εἰδέναι τι
@@ -570,16 +248,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οὐκ εἰδώς.
-      tokens:
-      - surface: οὐκ
-        sense: ou
-        readings:
-          attic: οὐκ
-      - surface: εἰδώς
-        sense: oida
-        form: form:ptc
-        readings:
-          attic: εἰδώς
+      tokens: [{surface: οὐκ, lexeme: ou, readings: {attic: οὐκ}}, {surface: εἰδώς, lexeme: oida, feats: {VerbForm: Part}, readings: {attic: εἰδώς}}]
       reverse: οὐκ εἰδώς
   translations:
     en: (Not knowing|Without knowing).
@@ -588,31 +257,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οἴεταί τι εἰδέναι οὐκ εἰδώς.
-      tokens:
-      - surface: οἴεταί
-        sense: oiomai
-        form: form:pres-3s
-        readings:
-          attic: οἴεταί
-      - surface: τι
-        sense: tis.indef
-        form: form:n
-        readings:
-          attic: τῐ
-      - surface: εἰδέναι
-        sense: oida
-        form: form:inf
-        readings:
-          attic: εἰδέναι
-      - surface: οὐκ
-        sense: ou
-        readings:
-          attic: οὐκ
-      - surface: εἰδώς
-        sense: oida
-        form: form:ptc
-        readings:
-          attic: εἰδώς
+      tokens: [{surface: οἴεταί, lexeme: oiomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: οἴεταί}}, {surface: τι, lexeme: tis.indef, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τῐ}}, {surface: εἰδέναι, lexeme: oida, feats: {VerbForm: Inf}, readings: {attic: εἰδέναι}}, {surface: οὐκ, lexeme: ou, readings: {attic: οὐκ}}, {surface: εἰδώς, lexeme: oida, feats: {VerbForm: Part}, readings: {attic: εἰδώς}}]
       reverse: οἴεταί τι εἰδέναι οὐκ εἰδώς
   translations:
     en: |-
@@ -626,11 +271,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὥσπερ.
-      tokens:
-      - surface: ὥσπερ
-        sense: hosper
-        readings:
-          attic: ὥσπερ
+      tokens: [{surface: ὥσπερ, lexeme: hosper, readings: {attic: ὥσπερ}}]
       reverse: ὥσπερ
   translations:
     en: (Just as|As|Just like).
@@ -639,19 +280,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὥσπερ ὁ πατήρ.
-      tokens:
-      - surface: ὥσπερ
-        sense: hosper
-        readings:
-          attic: ὥσπερ
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: πατήρ
-        sense: pater
-        readings:
-          attic: πᾰτήρ
+      tokens: [{surface: ὥσπερ, lexeme: hosper, readings: {attic: ὥσπερ}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: ὁ}}, {surface: πατήρ, lexeme: pater, feats: {Case: Nom, Number: Sing}, n: 3, readings: {attic: πᾰτήρ}}]
       reverse: ὥσπερ ὁ πατήρ
   translations:
     en: (Just like|Like|Just as) (the|my|his|her) father.
@@ -660,19 +289,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὥσπερ οὐκ οἶδα.
-      tokens:
-      - surface: ὥσπερ
-        sense: hosper
-        readings:
-          attic: ὥσπερ
-      - surface: οὐκ
-        sense: ou
-        readings:
-          attic: οὐκ
-      - surface: οἶδα
-        sense: oida
-        readings:
-          attic: οἶδᾰ
+      tokens: [{surface: ὥσπερ, lexeme: hosper, readings: {attic: ὥσπερ}}, {surface: οὐκ, lexeme: ou, readings: {attic: οὐκ}}, {surface: οἶδα, lexeme: oida, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: οἶδᾰ}}]
       reverse: ὥσπερ οὐκ οἶδα
   translations:
     en: (Just as|As) (I do not|I don't) know.
@@ -681,40 +298,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐγὼ δέ, ὥσπερ οὖν οὐκ οἶδα, οὐδὲ οἴομαι.
-      tokens:
-      - surface: ἐγὼ
-        sense: ego
-        readings:
-          attic: ἐγὼ
-      - surface: δέ
-        sense: de
-        readings:
-          attic: δέ
-      - surface: ὥσπερ
-        sense: hosper
-        readings:
-          attic: ὥσπερ
-      - surface: οὖν
-        sense: oun
-        readings:
-          attic: οὖν
-      - surface: οὐκ
-        sense: ou
-        readings:
-          attic: οὐκ
-      - surface: οἶδα
-        sense: oida
-        readings:
-          attic: οἶδᾰ
-      - surface: οὐδὲ
-        sense: oude
-        readings:
-          attic: οὐδὲ
-      - surface: οἴομαι
-        sense: oiomai
-        form: form:pres-1s
-        readings:
-          attic: οἴομαι
+      tokens: [{surface: ἐγὼ, lexeme: ego, feats: {Case: Nom, Number: Sing}, readings: {attic: ἐγὼ}}, {surface: δέ, lexeme: de, readings: {attic: δέ}}, {surface: ὥσπερ, lexeme: hosper, readings: {attic: ὥσπερ}}, {surface: οὖν, lexeme: oun, readings: {attic: οὖν}}, {surface: οὐκ, lexeme: ou, readings: {attic: οὐκ}}, {surface: οἶδα, lexeme: oida, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: οἶδᾰ}}, {surface: οὐδὲ, lexeme: oude, readings: {attic: οὐδὲ}}, {surface: οἴομαι, lexeme: oiomai, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: οἴομαι}}]
       reverse: |-
         ἐγὼ δέ ὥσπερ οὖν οὐκ οἶδα οὐδὲ οἴομαι
         ἐγὼ δέ ὥσπερ οὐκ οἶδα οὐδὲ οἴομαι
@@ -734,48 +318,15 @@ stories:
   - line:
       speaker: socrates
       ask: complete
-      gap: sense:eimi
+      gap: lexeme:eimi
       asks: form
       distractors:
-      - form:pres-3s
-      - form:pres-3p
+      - {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}
+      - {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}
       forms:
         grc-Grek/polytonic:
           text: τούτου μὲν τοῦ ἀνθρώπου ἐγὼ σοφώτερός εἰμι·
-          tokens:
-          - surface: τούτου
-            sense: houtos
-            form: form:gen
-            readings:
-              attic: τούτου
-          - surface: μὲν
-            sense: men
-            readings:
-              attic: μὲν
-          - surface: τοῦ
-            sense: ho
-            form: form:gen
-            readings:
-              attic: τοῦ
-          - surface: ἀνθρώπου
-            sense: anthropos
-            form: form:gen
-            readings:
-              attic: ᾰ̓νθρώπου
-          - surface: ἐγὼ
-            sense: ego
-            readings:
-              attic: ἐγὼ
-          - surface: σοφώτερός
-            sense: sophos
-            form: form:comp
-            readings:
-              attic: σοφώτερός
-          - surface: εἰμι
-            sense: eimi
-            form: form:pres-1s
-            readings:
-              attic: εἰμῐ
+          tokens: [{surface: τούτου, lexeme: houtos, feats: {Case: Gen, Gender: Masc, Number: Sing}, readings: {attic: τούτου}}, {surface: μὲν, lexeme: men, readings: {attic: μὲν}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: τοῦ}}, {surface: ἀνθρώπου, lexeme: anthropos, feats: {Case: Gen, Number: Sing}, n: 4, readings: {attic: ᾰ̓νθρώπου}}, {surface: ἐγὼ, lexeme: ego, feats: {Case: Nom, Number: Sing}, readings: {attic: ἐγὼ}}, {surface: σοφώτερός, lexeme: sophos, feats: {Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, readings: {attic: σοφώτερός}}, {surface: εἰμι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ}}]
       translations:
         en: '“I am wiser than this man:'
   - line:
@@ -783,43 +334,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: ἀλλ’ οὗτος μὲν οἴεταί τι εἰδέναι οὐκ εἰδώς,
-          tokens:
-          - surface: ἀλλ’
-            sense: alla
-            readings:
-              attic: ᾰ̓λλ’
-          - surface: οὗτος
-            sense: houtos
-            readings:
-              attic: οὗτος
-          - surface: μὲν
-            sense: men
-            readings:
-              attic: μὲν
-          - surface: οἴεταί
-            sense: oiomai
-            form: form:pres-3s
-            readings:
-              attic: οἴεταί
-          - surface: τι
-            sense: tis.indef
-            form: form:n
-            readings:
-              attic: τῐ
-          - surface: εἰδέναι
-            sense: oida
-            form: form:inf
-            readings:
-              attic: εἰδέναι
-          - surface: οὐκ
-            sense: ou
-            readings:
-              attic: οὐκ
-          - surface: εἰδώς
-            sense: oida
-            form: form:ptc
-            readings:
-              attic: εἰδώς
+          tokens: [{surface: ἀλλ’, lexeme: alla, readings: {attic: ᾰ̓λλ’}}, {surface: οὗτος, lexeme: houtos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: οὗτος}}, {surface: μὲν, lexeme: men, readings: {attic: μὲν}}, {surface: οἴεταί, lexeme: oiomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: οἴεταί}}, {surface: τι, lexeme: tis.indef, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, readings: {attic: τῐ}}, {surface: εἰδέναι, lexeme: oida, feats: {VerbForm: Inf}, readings: {attic: εἰδέναι}}, {surface: οὐκ, lexeme: ou, readings: {attic: οὐκ}}, {surface: εἰδώς, lexeme: oida, feats: {VerbForm: Part}, readings: {attic: εἰδώς}}]
       translations:
         en: he thinks he knows something when he does not,
   - line:
@@ -828,40 +343,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: ἐγὼ δέ, ὥσπερ οὖν οὐκ οἶδα, οὐδὲ οἴομαι.
-          tokens:
-          - surface: ἐγὼ
-            sense: ego
-            readings:
-              attic: ἐγὼ
-          - surface: δέ
-            sense: de
-            readings:
-              attic: δέ
-          - surface: ὥσπερ
-            sense: hosper
-            readings:
-              attic: ὥσπερ
-          - surface: οὖν
-            sense: oun
-            readings:
-              attic: οὖν
-          - surface: οὐκ
-            sense: ou
-            readings:
-              attic: οὐκ
-          - surface: οἶδα
-            sense: oida
-            readings:
-              attic: οἶδᾰ
-          - surface: οὐδὲ
-            sense: oude
-            readings:
-              attic: οὐδὲ
-          - surface: οἴομαι
-            sense: oiomai
-            form: form:pres-1s
-            readings:
-              attic: οἴομαι
+          tokens: [{surface: ἐγὼ, lexeme: ego, feats: {Case: Nom, Number: Sing}, readings: {attic: ἐγὼ}}, {surface: δέ, lexeme: de, readings: {attic: δέ}}, {surface: ὥσπερ, lexeme: hosper, readings: {attic: ὥσπερ}}, {surface: οὖν, lexeme: oun, readings: {attic: οὖν}}, {surface: οὐκ, lexeme: ou, readings: {attic: οὐκ}}, {surface: οἶδα, lexeme: oida, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: οἶδᾰ}}, {surface: οὐδὲ, lexeme: oude, readings: {attic: οὐδὲ}}, {surface: οἴομαι, lexeme: oiomai, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: οἴομαι}}]
       translations:
         en: but I, as I do not know, do not think I know either.”
   - choose:

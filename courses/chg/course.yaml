@@ -10,54 +10,93 @@
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a reviewer.
 id: chg
 target: chg-Arab
-orthographies: [chg-Arab/standard]
-support: [en-Latn/standard]
+orthographies:
+- chg-Arab/standard
+support:
+- en-Latn/standard
+lexicon: chg
 # What the app calls the course and its orthographies, and what the course list says of them, by
 # language (ADR 0109).
 names:
   en:
     course: Chaghatay
-    blurb: "The literary Turki of Central Asia, read in the words of Babur, Navai and the manuscripts."
+    blurb: The literary Turki of Central Asia, read in the words of Babur, Navai and the manuscripts.
     orthographies:
       chg-Arab/standard: Arabic script
     hints:
-      chg-Arab/standard: "As the manuscripts write it."
+      chg-Arab/standard: As the manuscripts write it.
   # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
   # await review as those do.
   ar:
-    course: "الجغتائية"
+    course: الجغتائية
     orthographies:
-      chg-Arab/standard: "الحروف العربية"
-    provenance: {author: 'llm:claude@chg-draft-v1', status: draft}
+      chg-Arab/standard: الحروف العربية
+    provenance:
+      author: llm:claude@chg-draft-v1
+      status: draft
   fa:
-    course: "جغتایی"
+    course: جغتایی
     orthographies:
-      chg-Arab/standard: "خط عربی"
-    provenance: {author: 'llm:claude@chg-draft-v1', status: draft}
+      chg-Arab/standard: خط عربی
+    provenance:
+      author: llm:claude@chg-draft-v1
+      status: draft
   uz:
-    course: "Chigʻatoy tili"
+    course: Chigʻatoy tili
     orthographies:
-      chg-Arab/standard: "Arab yozuvi"
-    provenance: {author: 'llm:claude@chg-draft-v1', status: draft}
+      chg-Arab/standard: Arab yozuvi
+    provenance:
+      author: llm:claude@chg-draft-v1
+      status: draft
   uz-Cyrl:
-    course: "Чиғатой тили"
+    course: Чиғатой тили
     orthographies:
-      chg-Arab/standard: "Араб ёзуви"
-    provenance: {author: 'llm:claude@chg-draft-v1', status: draft}
+      chg-Arab/standard: Араб ёзуви
+    provenance:
+      author: llm:claude@chg-draft-v1
+      status: draft
   zh-Hant-HK:
-    course: "察合台文"
+    course: 察合台文
     orthographies:
-      chg-Arab/standard: "阿拉伯字母"
-    provenance: {author: 'llm:claude@chg-draft-v1', status: draft}
+      chg-Arab/standard: 阿拉伯字母
+    provenance:
+      author: llm:claude@chg-draft-v1
+      status: draft
 license: CC-BY-SA-4.0
-provenance: {author: 'llm:claude@chg-draft-v1', status: draft}
+provenance:
+  author: llm:claude@chg-draft-v1
+  status: draft
 # A Chaghatay word is a stem and its suffixes: a new word with a new suffix is two KCs.
 iPlusOne: 2
 # Read and written (as lzh, ADR 0071): no one speaks Chaghatay today, and the course has no audio. The script facets
 # are the alphabet track's (units/abc.yaml: reading letters and words, writing words from letters).
-facets: [recognize, produce, read-script, write-script]
+facets:
+- recognize
+- produce
+- read-script
+- write-script
 # The course asks words by their parts (ADR 0152): a word built from its own word and the forms it
 # carries (parts-whole), and a word's parts picked out (whole-parts). REVIEW: the forms its tokens
 # carry, and the glossary entries that name them, have not been checked for this by a reader.
 wordParts: true
-units: [units/abc.yaml, units/u01-a-small-country.yaml, units/u02-seven-towns.yaml, units/u03-the-pears-of-andijan.yaml, units/u04-do-you-have-a-king.yaml, units/u05-they-drink-wine.yaml, units/u06-king-at-twelve.yaml, units/u07-four-men-and-a-pheasant.yaml, units/u08-at-dawn.yaml, units/u09-the-orphan.yaml, units/u10-the-seven-sleepers.yaml, units/u11-the-pavilion-at-osh.yaml, units/u12-the-kalmyks-came.yaml, units/u13-the-giant.yaml, units/u14-a-coin-of-decius.yaml, units/u15-the-old-womans-box.yaml, units/u16-the-call-at-dawn.yaml, units/u17-where-are-you-from.yaml, units/u18-the-first-smith.yaml, units/u19-the-red-tent.yaml]
+units:
+- units/abc.yaml
+- units/u01-a-small-country.yaml
+- units/u02-seven-towns.yaml
+- units/u03-the-pears-of-andijan.yaml
+- units/u04-do-you-have-a-king.yaml
+- units/u05-they-drink-wine.yaml
+- units/u06-king-at-twelve.yaml
+- units/u07-four-men-and-a-pheasant.yaml
+- units/u08-at-dawn.yaml
+- units/u09-the-orphan.yaml
+- units/u10-the-seven-sleepers.yaml
+- units/u11-the-pavilion-at-osh.yaml
+- units/u12-the-kalmyks-came.yaml
+- units/u13-the-giant.yaml
+- units/u14-a-coin-of-decius.yaml
+- units/u15-the-old-womans-box.yaml
+- units/u16-the-call-at-dawn.yaml
+- units/u17-where-are-you-from.yaml
+- units/u18-the-first-smith.yaml
+- units/u19-the-red-tent.yaml

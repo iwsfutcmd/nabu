@@ -3,55 +3,29 @@
 # woman); kan (was); meals, the market, last week.
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
 id: u09-past
-title: {en: 'What did you do yesterday?'}
+title:
+  en: What did you do yesterday?
 cefr: A2
-kcs:
-- {id: 'form:past-1sg', gloss: {en: '-t: I (past)'}, notes: {en: 'ru7t: I went; akalt: I ate. The same word means ''you (a man)'': context decides.'}}
-- {id: 'sense:mbere7', pos: ADV, gloss: {en: yesterday}, forms: {apc-Arab/standard: [مبارح], apc-Latn/arabizi: [mbere7]}}
-- {id: 'sense:mat3am', pos: NOUN, gloss: {en: restaurant}, forms: {apc-Arab/standard: [مطعم], apc-Latn/arabizi: [mat3am]}}
-- {id: 'sense:sou2', pos: NOUN, gloss: {en: market}, forms: {apc-Arab/standard: [سوق], apc-Latn/arabizi: [sou2]}}
-- {id: 'form:past-2ms', gloss: {en: '-t: you (past, to a man)'}, notes: {en: 'shu 3melt? What did you do? Spelled like ''I'': ru7t, 3melt.'}}
-- {id: 'sense:eshtara', pos: VERB, gloss: {en: buy}, forms: {apc-Arab/standard: [اشتريت], apc-Latn/arabizi: [eshtarit]}}
-- {id: 'sense:zar', pos: VERB, gloss: {en: visit}, forms: {apc-Arab/standard: [زرت], apc-Latn/arabizi: [zert]}}
-- {id: 'sense:sa7eb', pos: NOUN, gloss: {en: friend (a man)}, forms: {apc-Arab/standard: [صاحب], apc-Latn/arabizi: [sa7eb]}, notes: {en: 'sa7bi: my friend. A woman friend: صاحبة, sa7be.'}}
-- {id: 'form:past-3ms', gloss: {en: 'he (past): the bare verb'}, notes: {en: 'ra7: he went; akal: he ate.'}}
-- {id: 'form:past-3fs', gloss: {en: '-et: she (past)'}, notes: {en: 'ra7et: she went; kenet: she was. Arabic script: ت at the end (راحت).'}}
-- {id: 'sense:rje3', pos: VERB, gloss: {en: come back; go back}, forms: {apc-Arab/standard: [رجع], apc-Latn/arabizi: [reje3]}, notes: {en: 'reje3: he came back; rje3t: I came back (the first vowel drops before an ending that starts with a consonant).'}}
-- {id: 'sense:wesel', pos: VERB, gloss: {en: arrive}, forms: {apc-Arab/standard: [وصلت], apc-Latn/arabizi: [weslet]}}
-- {id: 'form:past-1pl', gloss: {en: '-na: we (past)'}, notes: {en: 'ru7na: we went; akalna: we ate.'}}
-- {id: 'sense:terwi2a', pos: NOUN, gloss: {en: breakfast}, forms: {apc-Arab/standard: [ترويقة], apc-Latn/arabizi: [terwi2a]}}
-- {id: 'sense:ghada', pos: NOUN, gloss: {en: lunch}, forms: {apc-Arab/standard: [غدا], apc-Latn/arabizi: [ghada]}}
-- {id: 'sense:3asha', pos: NOUN, gloss: {en: dinner}, forms: {apc-Arab/standard: [عشا], apc-Latn/arabizi: [3asha]}}
-- {id: 'sense:madi', pos: ADJ, gloss: {en: 'last; past (week, year)'}, forms: {apc-Arab/standard: [ماضي], apc-Latn/arabizi: [madi, madye]}, notes: {en: 'el jem3a el madye: last week; el sene el madye: last year.'}}
-- {id: 'sense:kan', pos: AUX, gloss: {en: was; were (the verb 'be' in the past)}, forms: {apc-Arab/standard: [كان, كنت, كانت, كنتي], apc-Latn/arabizi: [ken, kent, kenet, kenti]}, notes: {en: 'ken: he was; kenet: she was; kent: I was, you (a man) were. In Beirut the a of كان is said e, as in kenet: ken, also written kan.'}}
-- {id: 'sense:7afle', pos: NOUN, gloss: {en: party}, forms: {apc-Arab/standard: [حفلة], apc-Latn/arabizi: [7afle]}}
-- {id: 'sense:ta3ban', pos: ADJ, gloss: {en: tired}, forms: {apc-Arab/standard: [تعبان], apc-Latn/arabizi: [ta3ban]}}
-- {id: 'sense:mabsout', pos: ADJ, gloss: {en: happy; having a good time}, forms: {apc-Arab/standard: [مبسوط, مبسوطة], apc-Latn/arabizi: [mabsout, mabsouta]}}
-- {id: 'sense:sa77', pos: INTJ, gloss: {en: right; true; correct}, forms: {apc-Arab/standard: [صحّ], apc-Latn/arabizi: [sa77]}, notes: {en: 'sa77? Right? Isn''t it?'}}
-- {id: 'form:past-2fs', gloss: {en: '-ti: you (past, to a woman)'}, notes: {en: 'ru7ti: you went; kenti: you were.'}}
-- {id: 'sense:safar', pos: VERB, gloss: {en: travel; go away (on a trip)}, forms: {apc-Arab/standard: [سافرت], apc-Latn/arabizi: [safart]}}
-- {id: 'form:past-2pl', gloss: {en: '-to: you (past, to several people)'}, notes: {en: 'ru7to: you went; akalto: you ate. Arabic script: توا (رحتوا).'}}
 nodes:
-- {id: apc.past.i-went, kind: lesson, introduces: ['form:past-1sg', 'sense:mbere7', 'sense:mat3am', 'sense:sou2']}
-- {id: apc.past.you-did, kind: lesson, introduces: ['form:past-2ms', 'sense:eshtara', 'sense:zar', 'sense:sa7eb']}
-- {id: apc.past.he-she, kind: lesson, introduces: ['form:past-3ms', 'form:past-3fs', 'sense:rje3', 'sense:wesel']}
-- {id: apc.past.we-ate, kind: lesson, introduces: ['form:past-1pl', 'sense:terwi2a', 'sense:ghada', 'sense:3asha', 'sense:madi']}
-- {id: apc.past.it-was, kind: lesson, introduces: ['sense:kan', 'sense:7afle', 'sense:ta3ban', 'sense:mabsout', 'sense:sa77']}
-- {id: apc.past.you-f, kind: lesson, introduces: ['form:past-2fs', 'sense:safar']}
-- {id: apc.past.you-pl, kind: lesson, introduces: ['form:past-2pl']}
+- {id: apc.past.i-went, kind: lesson, introduces: ['feature:Aspect=Perf', 'lexeme:mbere7', 'lexeme:mat3am', 'lexeme:sou2']}
+- {id: apc.past.you-did, kind: lesson, introduces: ['lexeme:eshtara', 'lexeme:zar', 'lexeme:sa7eb']}
+- {id: apc.past.he-she, kind: lesson, introduces: ['lexeme:rje3', 'lexeme:wesel']}
+- {id: apc.past.we-ate, kind: lesson, introduces: ['lexeme:terwi2a', 'lexeme:ghada', 'lexeme:3asha', 'lexeme:madi']}
+- {id: apc.past.it-was, kind: lesson, introduces: ['lexeme:kan', 'lexeme:7afle', 'lexeme:ta3ban', 'lexeme:mabsout', 'lexeme:sa77']}
+- {id: apc.past.you-f, kind: lesson, introduces: ['lexeme:safar']}
+- {id: apc.past.you-pl, kind: lesson}
 - {id: apc.past.story, kind: story}
 sentences:
 - id: s.past.1
   node: apc.past.i-went
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: رحت عالبحر.
-      tokens: [{surface: رحت, sense: ra7, form: 'form:past-1sg'}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
+      tokens: [{surface: رحت, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: عالبحر, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: ba7r, surface: بحر, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: (رحت|أنا رحت) (عالبحر|ع البحر|على البحر)
     apc-Latn/arabizi:
       text: ru7t 3al ba7r.
-      tokens: [{surface: ru7t, sense: ra7, form: 'form:past-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
+      tokens: [{surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 4}]
       reverse: ((ru7t|re7et|re7t|ri7t|ro7t)|ana (ru7t|re7et|re7t|ri7t|ro7t)) (3al|3a l|3a el) (ba7r|ba7er|bahr)
   translations:
     en: |-
@@ -59,20 +33,17 @@ sentences:
       You went to the beach.
 - id: s.past.2
   node: apc.past.i-went
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: مبارح رحت عالبحر.
-      tokens: [{surface: مبارح, sense: mbere7}, {surface: رحت, sense: ra7, form: 'form:past-1sg'}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {
-              surface: بحر, kc: 'sense:ba7r'}]}]
+      tokens: [{surface: مبارح, lexeme: mbere7}, {surface: رحت, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: عالبحر, lexemes: [{lexeme: 3a, surface: ع, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: ba7r, surface: بحر, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: |-
         (مبارح|مبارحة) رحت (عالبحر|ع البحر|على البحر)
         رحت عالبحر مبارح
         أنا رحت عالبحر مبارح
     apc-Latn/arabizi:
       text: mbere7 ru7t 3al ba7r.
-      tokens: [{surface: mbere7, sense: mbere7}, {surface: ru7t, sense: ra7, form: 'form:past-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r,
-          sense: ba7r}]
+      tokens: [{surface: mbere7, lexeme: mbere7}, {surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 5}]
       reverse: |-
         (mbere7|mbare7|embere7|mberi7) (ru7t|re7et|re7t|ri7t|ro7t) (3al|3a l|3a el) (ba7r|ba7er|bahr)
         ru7t 3al ba7r mbere7
@@ -84,15 +55,14 @@ sentences:
       Yesterday you went to the beach.
 - id: s.past.3
   node: apc.past.i-went
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: أكلت منقوشة.
-      tokens: [{surface: أكلت, sense: akal, form: 'form:past-1sg'}, {surface: منقوشة, sense: man2oushe, form: 'form:fem'}]
+      tokens: [{surface: أكلت, lexeme: akal, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: منقوشة, lexeme: man2oushe, feats: {Number: Sing}}]
       reverse: (أكلت|أنا أكلت) منقوشة
     apc-Latn/arabizi:
       text: akalt man2oushe.
-      tokens: [{surface: akalt, sense: akal, form: 'form:past-1sg'}, {surface: man2oushe, sense: man2oushe, form: 'form:fem'}]
+      tokens: [{surface: akalt, lexeme: akal, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: man2oushe, lexeme: man2oushe, feats: {Number: Sing}}]
       reverse: ((akalt|2akalt)|ana (akalt|2akalt)) (man2oushe|manoushe|man2ushi|mankoushe)
   translations:
     en: |-
@@ -102,15 +72,14 @@ sentences:
       You ate a man'oushe.
 - id: s.past.4
   node: apc.past.i-went
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: رحت عالمطعم.
-      tokens: [{surface: رحت, sense: ra7, form: 'form:past-1sg'}, {surface: عالمطعم, sense: mat3am, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: مطعم, kc: 'sense:mat3am'}]}]
+      tokens: [{surface: رحت, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: عالمطعم, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: mat3am, surface: مطعم, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: (رحت|أنا رحت) (عالمطعم|ع المطعم|على المطعم)
     apc-Latn/arabizi:
       text: ru7t 3al mat3am.
-      tokens: [{surface: ru7t, sense: ra7, form: 'form:past-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: mat3am, sense: mat3am}]
+      tokens: [{surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}, n: 4}]
       reverse: ((ru7t|re7et|re7t|ri7t|ro7t)|ana (ru7t|re7et|re7t|ri7t|ro7t)) (3al|3a l|3a el) (mat3am|mat3em)
   translations:
     en: |-
@@ -119,19 +88,16 @@ sentences:
       You went to the restaurant.
 - id: s.past.5
   node: apc.past.i-went
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: رحت عالسوق الصبح.
-      tokens: [{surface: رحت, sense: ra7, form: 'form:past-1sg'}, {surface: عالسوق, sense: sou2, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: سوق, kc: 'sense:sou2'}]},
-        {surface: الصبح, sense: sob7, morphs: [{surface: ال, kc: 'sense:el'}, {surface: صبح, kc: 'sense:sob7'}]}]
+      tokens: [{surface: رحت, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: عالسوق, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: sou2, surface: سوق, base: true, feats: {Number: Sing}, n: 4}]}, {surface: الصبح, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: sob7, surface: صبح, base: true, feats: {Number: Sing}, n: 6}]}]
       reverse: |-
         (رحت|أنا رحت) (عالسوق|ع السوق|على السوق) (الصبح|عالصبح)
         (الصبح|عالصبح) (رحت|أنا رحت) (عالسوق|ع السوق|على السوق)
     apc-Latn/arabizi:
       text: ru7t 3al sou2 el sob7.
-      tokens: [{surface: ru7t, sense: ra7, form: 'form:past-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: sou2, sense: sou2}, {surface: el,
-          sense: el}, {surface: sob7, sense: sob7}]
+      tokens: [{surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: sou2, lexeme: sou2, feats: {Number: Sing}, n: 4}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: sob7, lexeme: sob7, feats: {Number: Sing}, n: 6}]
       reverse: |-
         ((ru7t|re7et|re7t|ri7t|ro7t)|ana (ru7t|re7et|re7t|ri7t|ro7t)) (3al|3a l|3a el) (sou2|souk|souq) (el|l|3al) (sob7|sub7)
         (el|l|3al) (sob7|sub7) ((ru7t|re7et|re7t|ri7t|ro7t)|ana (ru7t|re7et|re7t|ri7t|ro7t)) (3al|3a l|3a el) (sou2|souk|souq)
@@ -143,17 +109,16 @@ sentences:
       You went to the market in the morning.
 - id: s.past.6
   node: apc.past.i-went
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: شربت قهوة كتير.
-      tokens: [{surface: شربت, sense: shereb, form: 'form:past-1sg'}, {surface: قهوة, sense: ahwe, form: 'form:fem'}, {surface: كتير, sense: ktir}]
+      tokens: [{surface: شربت, lexeme: shereb, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: كتير, lexeme: ktir}]
       reverse: |-
         (شربت|أنا شربت) قهوة كتير
         شربت كتير قهوة
     apc-Latn/arabizi:
       text: shrebt ahwe ktir.
-      tokens: [{surface: shrebt, sense: shereb, form: 'form:past-1sg'}, {surface: ahwe, sense: ahwe, form: 'form:fem'}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: shrebt, lexeme: shereb, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: ktir, lexeme: ktir}]
       reverse: |-
         ((shrebt|sherebt|shribt)|ana (shrebt|sherebt|shribt)) (ahwe|2ahwe) (ktir|kteer|kter|ktiir)
         shrebt ktir ahwe
@@ -166,19 +131,19 @@ sentences:
       You drank a lot of coffee.
 - id: s.past.7
   node: apc.past.you-did
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: شو عملت مبارح؟
-      tokens: [{surface: شو, sense: shu}, {surface: عملت, sense: 3emel, form: 'form:past-2ms'}, {surface: مبارح, sense: mbere7}]
+      tokens: [{surface: شو, lexeme: shu}, {surface: عملت, lexeme: 3emel, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: مبارح, lexeme: mbere7}]
       reverse: |-
         شو عملت (مبارح|مبارحة)
         (مبارح|مبارحة) شو عملت
         إنت شو عملت مبارح
     apc-Latn/arabizi:
       text: shu 3melt mbere7?
-      tokens: [{surface: shu, sense: shu}, {surface: 3melt, sense: 3emel, form: 'form:past-2ms'}, {surface: mbere7, sense: mbere7}]
+      tokens: [{surface: shu, lexeme: shu}, {surface: 3melt, lexeme: 3emel, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: mbere7, lexeme: mbere7}]
       reverse: |-
         (shu|sho) (3melt|3malt|3amalt) (mbere7|mbare7|embere7|mberi7)
         (mbere7|mbare7|embere7|mberi7) (shu|sho) (3melt|3malt|3amalt)
@@ -187,18 +152,18 @@ sentences:
     en: What did you do yesterday?
 - id: s.past.8
   node: apc.past.you-did
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: شو اشتريت؟
-      tokens: [{surface: شو, sense: shu}, {surface: اشتريت, sense: eshtara, form: 'form:past-2ms'}]
+      tokens: [{surface: شو, lexeme: shu}, {surface: اشتريت, lexeme: eshtara, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}]
       reverse: |-
         شو اشتريت
         إنت شو اشتريت
     apc-Latn/arabizi:
       text: shu eshtarit?
-      tokens: [{surface: shu, sense: shu}, {surface: eshtarit, sense: eshtara, form: 'form:past-2ms'}]
+      tokens: [{surface: shu, lexeme: shu}, {surface: eshtarit, lexeme: eshtara, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}]
       reverse: |-
         (shu|sho) (eshtarit|shtarit|ishtarit|eshtarayt|shtarayt|eshtaret|shtaret)
         enta shu eshtarit
@@ -208,15 +173,14 @@ sentences:
       What have you bought?
 - id: s.past.9
   node: apc.past.you-did
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: اشتريت خبز وجبنة.
-      tokens: [{surface: اشتريت, sense: eshtara, form: 'form:past-1sg'}, {surface: خبز, sense: khebz}, {surface: وجبنة, sense: jebne, form: 'form:fem', morphs: [{surface: و, kc: 'sense:w'}, {surface: جبنة, kc: 'sense:jebne'}]}]
+      tokens: [{surface: اشتريت, lexeme: eshtara, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: خبز, lexeme: khebz, feats: {Number: Sing}}, {surface: وجبنة, lexemes: [{lexeme: w, surface: و}, {lexeme: jebne, surface: جبنة, base: true, feats: {Number: Sing}}]}]
       reverse: (اشتريت|أنا اشتريت) خبز (وجبنة|و جبنة)
     apc-Latn/arabizi:
       text: eshtarit khebz w jebne.
-      tokens: [{surface: eshtarit, sense: eshtara, form: 'form:past-1sg'}, {surface: khebz, sense: khebz}, {surface: w, sense: w}, {surface: jebne, sense: jebne, form: 'form:fem'}]
+      tokens: [{surface: eshtarit, lexeme: eshtara, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: khebz, lexeme: khebz, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: jebne, lexeme: jebne, feats: {Number: Sing}}]
       reverse: ((eshtarit|shtarit|ishtarit|eshtarayt|shtarayt|eshtaret|shtaret)|ana (eshtarit|shtarit|ishtarit|eshtarayt|shtarayt|eshtaret|shtaret)) (khebz|5ebz|khibz|khebez) (w|wa) (jebne|jibne|jebni)
   translations:
     en: |-
@@ -225,16 +189,16 @@ sentences:
       You bought bread and cheese.
 - id: s.past.10
   node: apc.past.you-did
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: زرت تيتا؟
-      tokens: [{surface: زرت, sense: zar, form: 'form:past-2ms'}, {surface: تيتا, sense: teta, form: 'form:fem'}]
+      tokens: [{surface: زرت, lexeme: zar, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}]
       reverse: (زرت|إنت زرت) تيتا
     apc-Latn/arabizi:
       text: zert teta?
-      tokens: [{surface: zert, sense: zar, form: 'form:past-2ms'}, {surface: teta, sense: teta, form: 'form:fem'}]
+      tokens: [{surface: zert, lexeme: zar, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: teta, lexeme: teta, feats: {Number: Sing}}]
       reverse: ((zert|zort|zirt)|(enta|inta) (zert|zirt)) (teta|tayta)
   translations:
     en: |-
@@ -243,19 +207,16 @@ sentences:
       Have you visited grandma?
 - id: s.past.11
   node: apc.past.you-did
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: إيه، زرت تيتا مع صاحبي.
-      tokens: [{surface: إيه, sense: eh}, {surface: زرت, sense: zar, form: 'form:past-1sg'}, {surface: تيتا, sense: teta, form: 'form:fem'}, {surface: مع, sense: ma3}, {surface: صاحبي, sense: sa7eb, morphs: [{surface: صاحب,
-              kc: 'sense:sa7eb'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      tokens: [{surface: إيه, lexeme: eh}, {surface: زرت, lexeme: zar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: مع, lexeme: ma3, n: 4, head: 5, rel: case}, {surface: صاحبي, lexemes: [{lexeme: sa7eb, surface: صاحب, base: true, feats: {Number: Sing}, n: 5}, {lexeme: poss-1sg, surface: ي}]}]
       reverse: |-
         إيه (زرت|أنا زرت) تيتا مع (صاحبي|رفيقي|صاحبتي|رفيقتي)
         إي زرت تيتا مع صاحبي
     apc-Latn/arabizi:
       text: eh, zert teta ma3 sa7bi.
-      tokens: [{surface: eh, sense: eh}, {surface: zert, sense: zar, form: 'form:past-1sg'}, {surface: teta, sense: teta, form: 'form:fem'}, {surface: ma3, sense: ma3}, {surface: sa7bi, sense: sa7eb, morphs: [{surface: sa7b,
-              kc: 'sense:sa7eb'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      tokens: [{surface: eh, lexeme: eh}, {surface: zert, lexeme: zar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: ma3, lexeme: ma3, n: 4, head: 5, rel: case}, {surface: sa7bi, lexemes: [{lexeme: sa7eb, surface: sa7b, base: true, feats: {Number: Sing}, n: 5}, {lexeme: poss-1sg, surface: i}]}]
       reverse: (eh|ee|e) ((zert|zort|zirt)|ana (zert|zirt)) (teta|tayta) (ma3|ma3a) (sa7bi|sa7be|sahbi|sahbe|rfi2i|rfi2e|sa7bti|sa7bte|sahbti|rfi2ti|rfi2te)
   translations:
     en: |-
@@ -263,17 +224,14 @@ sentences:
       Yes, I went to see (grandma|granny) with my friend.
 - id: s.past.12
   node: apc.past.he-she
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: سامي راح عالشغل.
-      tokens: [{surface: سامي, sense: sami}, {surface: راح, sense: ra7, form: 'form:past-3ms'}, {surface: عالشغل, sense: shoghl, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: شغل,
-              kc: 'sense:shoghl'}]}]
+      tokens: [{surface: سامي, lexeme: sami}, {surface: راح, lexeme: ra7, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: عالشغل, lexemes: [{lexeme: 3a, surface: ع, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: سامي راح (عالشغل|ع الشغل|على الشغل)
     apc-Latn/arabizi:
       text: Sami ra7 3al shoghl.
-      tokens: [{surface: Sami, sense: sami}, {surface: ra7, sense: ra7, form: 'form:past-3ms'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: shoghl,
-          sense: shoghl}]
+      tokens: [{surface: Sami, lexeme: sami}, {surface: ra7, lexeme: ra7, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}, n: 5}]
       reverse: Sami (ra7|rah) (3al|3a l|3a el) (shoghl|shoghol|sho8l|shughl)
   translations:
     en: |-
@@ -281,17 +239,14 @@ sentences:
       Sami has gone to work.
 - id: s.past.13
   node: apc.past.he-she
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: مايا راحت عالسوق.
-      tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: راحت, sense: ra7, form: 'form:past-3fs'}, {surface: عالسوق, sense: sou2, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: سوق,
-              kc: 'sense:sou2'}]}]
+      tokens: [{surface: مايا, lexeme: maya}, {surface: راحت, lexeme: ra7, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: عالسوق, lexemes: [{lexeme: 3a, surface: ع, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: sou2, surface: سوق, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: مايا راحت (عالسوق|ع السوق|على السوق)
     apc-Latn/arabizi:
       text: Maya ra7et 3al sou2.
-      tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: ra7et, sense: ra7, form: 'form:past-3fs'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: sou2,
-          sense: sou2}]
+      tokens: [{surface: Maya, lexeme: maya}, {surface: ra7et, lexeme: ra7, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: sou2, lexeme: sou2, feats: {Number: Sing}, n: 5}]
       reverse: Maya (ra7et|ra7at|rahet) (3al|3a l|3a el) (sou2|souk|souq)
   translations:
     en: |-
@@ -299,17 +254,14 @@ sentences:
       Maya has gone to the market.
 - id: s.past.14
   node: apc.past.he-she
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: بيّي رجع عالبيت.
-      tokens: [{surface: بيّي, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: رجع, sense: rje3, form: 'form:past-3ms'}, {surface: عالبيت, sense: bet,
-          morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      tokens: [{surface: بيّي, lexemes: [{lexeme: bayy, surface: بيّ, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: رجع, lexeme: rje3, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: عالبيت, lexemes: [{lexeme: 3a, surface: ع, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 6}]}]
       reverse: بيّي رجع (عالبيت|ع البيت|على البيت)
     apc-Latn/arabizi:
       text: bayyi reje3 3al bet.
-      tokens: [{surface: bayyi, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: reje3, sense: rje3, form: 'form:past-3ms'}, {surface: 3al, sense: 3a,
-          morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
+      tokens: [{surface: bayyi, lexemes: [{lexeme: bayy, surface: bayy, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: reje3, lexeme: rje3, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 4, head: 6, rel: case}, {lexeme: el, surface: l, n: 5, head: 6, rel: det}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 6}]
       reverse: (bayyi|bayye|bayi|baye|beyyi|beyye) (reje3|rije3|rje3|rij3) (3al|3a l|3a el) (bet|beit|bayt)
   translations:
     en: |-
@@ -319,15 +271,14 @@ sentences:
       My father has come back home.
 - id: s.past.15
   node: apc.past.he-she
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: إمتى وصلت مايا؟
-      tokens: [{surface: إمتى, sense: emta}, {surface: وصلت, sense: wesel, form: 'form:past-3fs'}, {surface: مايا, sense: maya, form: 'form:fem'}]
+      tokens: [{surface: إمتى, lexeme: emta}, {surface: وصلت, lexeme: wesel, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: مايا, lexeme: maya}]
       reverse: (إمتى|امتى) وصلت مايا
     apc-Latn/arabizi:
       text: emta weslet Maya?
-      tokens: [{surface: emta, sense: emta}, {surface: weslet, sense: wesel, form: 'form:past-3fs'}, {surface: Maya, sense: maya, form: 'form:fem'}]
+      tokens: [{surface: emta, lexeme: emta}, {surface: weslet, lexeme: wesel, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: Maya, lexeme: maya}]
       reverse: (emta|imta|emtah) (weslet|wislet|wasalet) Maya
   translations:
     en: |-
@@ -335,15 +286,14 @@ sentences:
       When did Maya get here?
 - id: s.past.16
   node: apc.past.he-she
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: سامي أكل كتير!
-      tokens: [{surface: سامي, sense: sami}, {surface: أكل, sense: akal, form: 'form:past-3ms'}, {surface: كتير, sense: ktir}]
+      tokens: [{surface: سامي, lexeme: sami}, {surface: أكل, lexeme: akal, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: كتير, lexeme: ktir}]
       reverse: سامي أكل كتير
     apc-Latn/arabizi:
       text: Sami akal ktir!
-      tokens: [{surface: Sami, sense: sami}, {surface: akal, sense: akal, form: 'form:past-3ms'}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: Sami, lexeme: sami}, {surface: akal, lexeme: akal, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: ktir, lexeme: ktir}]
       reverse: Sami (akal|2akal) (ktir|kteer|kter|ktiir)
   translations:
     en: |-
@@ -351,31 +301,29 @@ sentences:
       Sami has eaten a lot!
 - id: s.past.17
   node: apc.past.we-ate
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: رحنا عالجبل.
-      tokens: [{surface: رحنا, sense: ra7, form: 'form:past-1pl'}, {surface: عالجبل, sense: jabal, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}]
+      tokens: [{surface: رحنا, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: عالجبل, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: jabal, surface: جبل, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: (رحنا|نحنا رحنا) (عالجبل|ع الجبل|على الجبل)
     apc-Latn/arabizi:
       text: ru7na 3al jabal.
-      tokens: [{surface: ru7na, sense: ra7, form: 'form:past-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: jabal, sense: jabal}]
+      tokens: [{surface: ru7na, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}, n: 4}]
       reverse: ((ru7na|re7na|ro7na)|(ne7na|na7na) (ru7na|re7na|ro7na)) (3al|3a l|3a el) (jabal|jabel|jbal)
   translations:
     en: We went to the mountains.
 - id: s.past.18
   node: apc.past.we-ate
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: أكلنا ترويقة سوا.
-      tokens: [{surface: أكلنا, sense: akal, form: 'form:past-1pl'}, {surface: ترويقة, sense: terwi2a, form: 'form:fem'}, {surface: سوا, sense: sawa}]
+      tokens: [{surface: أكلنا, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: ترويقة, lexeme: terwi2a, feats: {Number: Sing}}, {surface: سوا, lexeme: sawa}]
       reverse: |-
         (أكلنا|نحنا أكلنا) (ترويقة|الترويقة) سوا
         تروّقنا سوا
     apc-Latn/arabizi:
       text: akalna terwi2a sawa.
-      tokens: [{surface: akalna, sense: akal, form: 'form:past-1pl'}, {surface: terwi2a, sense: terwi2a, form: 'form:fem'}, {surface: sawa, sense: sawa}]
+      tokens: [{surface: akalna, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: terwi2a, lexeme: terwi2a, feats: {Number: Sing}}, {surface: sawa, lexeme: sawa}]
       reverse: |-
         ((akalna|2akalna)|(ne7na|na7na) (akalna|2akalna)) ((terwi2a|tarwi2a|terwe2a)|el (terwi2a|tarwi2a)) (sawa|sawe)
         (trawwa2na|trawa2na) (sawa|sawe)
@@ -383,18 +331,16 @@ sentences:
     en: We (had|ate) breakfast together.
 - id: s.past.19
   node: apc.past.we-ate
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: أكلنا الغدا عند تيتا.
-      tokens: [{surface: أكلنا, sense: akal, form: 'form:past-1pl'}, {surface: الغدا, sense: ghada, morphs: [{surface: ال, kc: 'sense:el'}, {surface: غدا, kc: 'sense:ghada'}]}, {surface: عند, sense: 3end},
-        {surface: تيتا, sense: teta, form: 'form:fem'}]
+      tokens: [{surface: أكلنا, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: الغدا, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: ghada, surface: غدا, base: true, feats: {Number: Sing}, n: 3}]}, {surface: عند, lexeme: 3end, n: 4, head: 5, rel: case}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}, n: 5}]
       reverse: |-
         (أكلنا|نحنا أكلنا) (الغدا|الغداء|غدا) عند تيتا
         (تغدّينا|نحنا تغدّينا) عند تيتا
     apc-Latn/arabizi:
       text: akalna el ghada 3end teta.
-      tokens: [{surface: akalna, sense: akal, form: 'form:past-1pl'}, {surface: el, sense: el}, {surface: ghada, sense: ghada}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta, form: 'form:fem'}]
+      tokens: [{surface: akalna, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: ghada, lexeme: ghada, feats: {Number: Sing}, n: 3}, {surface: 3end, lexeme: 3end, n: 4, head: 5, rel: case}, {surface: teta, lexeme: teta, feats: {Number: Sing}, n: 5}]
       reverse: |-
         ((akalna|2akalna)|(ne7na|na7na) (akalna|2akalna)) [(el|l|il)] (ghada|8ada|ghade) (3end|3and|3ind) (teta|tayta)
         (tghaddena|tghadena|tghaddayna|t8adena) (3end|3and|3ind) (teta|tayta)
@@ -404,19 +350,16 @@ sentences:
       We had lunch at my grandma's.
 - id: s.past.20
   node: apc.past.we-ate
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: بعد العشا رحنا عالبيت.
-      tokens: [{surface: بعد, sense: ba3d}, {surface: العشا, sense: 3asha, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: عشا, kc: 'sense:3asha'}]}, {surface: رحنا, sense: ra7, form: 'form:past-1pl'},
-        {surface: عالبيت, sense: bet, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      tokens: [{surface: بعد, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: العشا, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: 3asha, surface: عشا, base: true, feats: {Number: Sing}, n: 3}]}, {surface: رحنا, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: عالبيت, lexemes: [{lexeme: 3a, surface: ع, n: 5, head: 7, rel: case}, {lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 7}]}]
       reverse: |-
         بعد (العشا|العشاء) رحنا (عالبيت|ع البيت|على البيت)
         رحنا عالبيت بعد العشا
     apc-Latn/arabizi:
       text: ba3d el 3asha ru7na 3al bet.
-      tokens: [{surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: 3asha, sense: 3asha, form: 'form:fem'}, {surface: ru7na, sense: ra7, form: 'form:past-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a,
-              kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
+      tokens: [{surface: ba3d, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: 3asha, lexeme: 3asha, feats: {Number: Sing}, n: 3}, {surface: ru7na, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 7}]
       reverse: |-
         (ba3d|ba3ed) (el|l|il) (3asha|3ashe) (ru7na|re7na|ro7na) (3al|3a l|3a el) (bet|beit|bayt)
         ru7na 3al bet ba3d el 3asha
@@ -426,21 +369,17 @@ sentences:
       We went home after dinner.
 - id: s.past.21
   node: apc.past.we-ate
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: الجمعة الماضية رحنا عالبحر.
-      tokens: [{surface: الجمعة, sense: jem3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: الماضية, sense: madi, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'},
-            {surface: ماضية, kc: 'sense:madi'}]}, {surface: رحنا, sense: ra7, form: 'form:past-1pl'}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'},
-            {surface: بحر, kc: 'sense:ba7r'}]}]
+      tokens: [{surface: الجمعة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: jem3a, surface: جمعة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: الماضية, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: madi, surface: ماضية, base: true, feats: {Gender: Fem, Number: Sing}, n: 4, head: 2, rel: amod}]}, {surface: رحنا, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: عالبحر, lexemes: [{lexeme: 3a, surface: ع, n: 6, head: 8, rel: case}, {lexeme: el, surface: ال, n: 7, head: 8, rel: det}, {lexeme: ba7r, surface: بحر, base: true, feats: {Number: Sing}, n: 8}]}]
       reverse: |-
         الجمعة الماضية رحنا (عالبحر|ع البحر|على البحر)
         الجمعة اللي فاتت رحنا (عالبحر|ع البحر|على البحر)
         رحنا (عالبحر|ع البحر|على البحر) الجمعة (الماضية|اللي فاتت)
     apc-Latn/arabizi:
       text: el jem3a el madye ru7na 3al ba7r.
-      tokens: [{surface: el, sense: el}, {surface: jem3a, sense: jem3a, form: 'form:fem'}, {surface: el, sense: el}, {surface: madye, sense: madi, form: 'form:fem'}, {surface: ru7na, sense: ra7, form: 'form:past-1pl'}, {
-          surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: jem3a, lexeme: jem3a, feats: {Number: Sing}, n: 2}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: madye, lexeme: madi, feats: {Gender: Fem, Number: Sing}, n: 4, head: 2, rel: amod}, {surface: ru7na, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 6, head: 8, rel: case}, {lexeme: el, surface: l, n: 7, head: 8, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 8}]
       reverse: |-
         (el|l) (jem3a|jum3a) ((el|l) (madye|madiye)|(elli|lli) (fetet|fatet)) (ru7na|ro7na) (3al|3a l) (ba7r|bahr)
         (ru7na|ro7na) (3al|3a l) (ba7r|bahr) (el|l) (jem3a|jum3a) ((el|l) (madye|madiye)|(elli|lli) (fetet|fatet))
@@ -452,15 +391,14 @@ sentences:
       We went to the (beach|sea) last Friday.
 - id: s.past.22
   node: apc.past.it-was
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: كنت بالبيت.
-      tokens: [{surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: بالبيت, sense: bet, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      tokens: [{surface: كنت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: بالبيت, lexemes: [{lexeme: b, surface: ب, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: (كنت|أنا كنت) بالبيت
     apc-Latn/arabizi:
       text: kent bel bet.
-      tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
+      tokens: [{surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: el, n: 3, head: 4, rel: det}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 4}]
       reverse: ((kent|kint|kunt)|ana (kent|kint|kunt)) (bel|bil|b el) (bet|beit|bayt)
   translations:
     en: |-
@@ -468,33 +406,31 @@ sentences:
       You were at home.
 - id: s.past.23
   node: apc.past.it-was
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: الحفلة كانت حلوة؟
-      tokens: [{surface: الحفلة, sense: 7afle, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: حفلة, kc: 'sense:7afle'}]}, {surface: كانت, sense: kan, form: 'form:past-3fs'}, {surface: حلوة, sense: 7elo,
-          form: 'form:fem'}]
+      tokens: [{surface: الحفلة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: 7afle, surface: حفلة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: كانت, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: حلوة, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}]
       reverse: الحفلة كانت حلوة
     apc-Latn/arabizi:
       text: el 7afle kenet 7elwe?
-      tokens: [{surface: el, sense: el}, {surface: 7afle, sense: 7afle, form: 'form:fem'}, {surface: kenet, sense: kan, form: 'form:past-3fs'}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: 7afle, lexeme: 7afle, feats: {Number: Sing}, n: 2}, {surface: kenet, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: 7elwe, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}]
       reverse: (el|l|il) (7afle|7afli|hafle|7afla) (kenet|kanet|kenit) (7elwe|7ilwe|helwe|7elwi)
   translations:
     en: Was the party (nice|good|fun)?
 - id: s.past.24
   node: apc.past.it-was
-  register: colloquial
-  persons: {speaker: m}
+  tags:
+  - {persons: {speaker: m}}
   forms:
     apc-Arab/standard:
       text: كنت تعبان كتير.
-      tokens: [{surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: تعبان, sense: ta3ban}, {surface: كتير, sense: ktir}]
+      tokens: [{surface: كنت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: تعبان, lexeme: ta3ban, feats: {Gender: Masc, Number: Sing}}, {surface: كتير, lexeme: ktir}]
       reverse: |-
         (كنت|أنا كنت) تعبان كتير
         كنت كتير تعبان
     apc-Latn/arabizi:
       text: kent ta3ban ktir.
-      tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: ta3ban, sense: ta3ban}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: ta3ban, lexeme: ta3ban, feats: {Gender: Masc, Number: Sing}}, {surface: ktir, lexeme: ktir}]
       reverse: |-
         ((kent|kint|kunt)|ana (kent|kint|kunt)) (ta3ban|ta3ben|t3ban) (ktir|kteer|kter|ktiir)
         kent ktir ta3ban
@@ -504,19 +440,19 @@ sentences:
       You were very tired.
 - id: s.past.25
   node: apc.past.it-was
-  register: colloquial
-  persons: {speaker: m}
+  tags:
+  - {persons: {speaker: m}}
   forms:
     apc-Arab/standard:
       text: كنت مبسوط كتير.
-      tokens: [{surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: مبسوط, sense: mabsout}, {surface: كتير, sense: ktir}]
+      tokens: [{surface: كنت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: مبسوط, lexeme: mabsout, feats: {Gender: Masc, Number: Sing}}, {surface: كتير, lexeme: ktir}]
       reverse: |-
         (كنت|أنا كنت) مبسوط كتير
         (انبسطت|أنا انبسطت) كتير
         كنت كتير مبسوط
     apc-Latn/arabizi:
       text: kent mabsout ktir.
-      tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: mabsout, sense: mabsout}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: mabsout, lexeme: mabsout, feats: {Gender: Masc, Number: Sing}}, {surface: ktir, lexeme: ktir}]
       reverse: |-
         ((kent|kint|kunt)|ana (kent|kint|kunt)) (mabsout|mabsoot|mabsot) (ktir|kteer|kter|ktiir)
         [ana] (enbasatt|enbasat|inbasatt|inbasat|nbasatt) (ktir|kteer|kter|ktiir)
@@ -529,12 +465,12 @@ sentences:
       You were very happy.
 - id: s.past.26
   node: apc.past.it-was
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: مبارح كنت مشغول، صحّ؟
-      tokens: [{surface: مبارح, sense: mbere7}, {surface: كنت, sense: kan, form: 'form:past-2ms'}, {surface: مشغول, sense: mashghoul}, {surface: صحّ, sense: sa77}]
+      tokens: [{surface: مبارح, lexeme: mbere7}, {surface: كنت, lexeme: kan, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: مشغول, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}}, {surface: صحّ, lexeme: sa77}]
       reverse: |-
         (مبارح|مبارحة) كنت مشغول (صحّ|صح)
         كنت مشغول (مبارح|مبارحة) (صحّ|صح)
@@ -542,7 +478,7 @@ sentences:
         مبارح كنت مشغول مش هيك
     apc-Latn/arabizi:
       text: mbere7 kent mashghoul, sa77?
-      tokens: [{surface: mbere7, sense: mbere7}, {surface: kent, sense: kan, form: 'form:past-2ms'}, {surface: mashghoul, sense: mashghoul}, {surface: sa77, sense: sa77}]
+      tokens: [{surface: mbere7, lexeme: mbere7}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: mashghoul, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}}, {surface: sa77, lexeme: sa77}]
       reverse: |-
         (mbere7|mbare7|embere7|mberi7) (kent|kint|kunt) (mashghoul|mash8oul|mashghol) (sa77|sa7|sah)
         (kent|kint|kunt) (mashghoul|mash8oul|mashghol) (mbere7|mbare7|embere7|mberi7) (sa77|sa7|sah)
@@ -555,19 +491,19 @@ sentences:
       You were busy yesterday, weren't you?
 - id: s.past.27
   node: apc.past.you-f
-  register: colloquial
-  persons: {addressee: f}
+  tags:
+  - {persons: {addressee: f}}
   forms:
     apc-Arab/standard:
       text: مايا، وين رحتي مبارح؟
-      tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: وين, sense: wen}, {surface: رحتي, sense: ra7, form: 'form:past-2fs'}, {surface: مبارح, sense: mbere7}]
+      tokens: [{surface: مايا, lexeme: maya}, {surface: وين, lexeme: wen}, {surface: رحتي, lexeme: ra7, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {surface: مبارح, lexeme: mbere7}]
       reverse: |-
         مايا وين رحتي (مبارح|مبارحة)
         وين رحتي مبارح مايا
         مايا مبارح وين رحتي
     apc-Latn/arabizi:
       text: Maya, wen ru7ti mbere7?
-      tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: wen, sense: wen}, {surface: ru7ti, sense: ra7, form: 'form:past-2fs'}, {surface: mbere7, sense: mbere7}]
+      tokens: [{surface: Maya, lexeme: maya}, {surface: wen, lexeme: wen}, {surface: ru7ti, lexeme: ra7, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {surface: mbere7, lexeme: mbere7}]
       reverse: |-
         Maya (wen|wein|wayn) (ru7ti|ru7te|ro7ti) (mbere7|mbare7|embere7|mberi7)
         wen ru7ti mbere7 Maya
@@ -578,16 +514,16 @@ sentences:
       Where did you go yesterday, Maya?
 - id: s.past.28
   node: apc.past.you-f
-  register: colloquial
-  persons: {addressee: f}
+  tags:
+  - {persons: {addressee: f}}
   forms:
     apc-Arab/standard:
       text: كنتي مبسوطة؟
-      tokens: [{surface: كنتي, sense: kan, form: 'form:past-2fs'}, {surface: مبسوطة, sense: mabsout, form: 'form:fem'}]
+      tokens: [{surface: كنتي, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {surface: مبسوطة, lexeme: mabsout, feats: {Gender: Fem, Number: Sing}}]
       reverse: (كنتي مبسوطة|إنتي كنتي مبسوطة|انبسطتي)
     apc-Latn/arabizi:
       text: kenti mabsouta?
-      tokens: [{surface: kenti, sense: kan, form: 'form:past-2fs'}, {surface: mabsouta, sense: mabsout, form: 'form:fem'}]
+      tokens: [{surface: kenti, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {surface: mabsouta, lexeme: mabsout, feats: {Gender: Fem, Number: Sing}}]
       reverse: |-
         (kenti|kinti|kente) (mabsouta|mabsoota|mabsota)
         (enti|inti) (kenti|kinti|kente) (mabsouta|mabsoota|mabsota)
@@ -598,17 +534,16 @@ sentences:
       Were you happy?
 - id: s.past.29
   node: apc.past.you-f
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: سافرت مبارح.
-      tokens: [{surface: سافرت, sense: safar, form: 'form:past-1sg'}, {surface: مبارح, sense: mbere7}]
+      tokens: [{surface: سافرت, lexeme: safar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: مبارح, lexeme: mbere7}]
       reverse: |-
         (سافرت|أنا سافرت) (مبارح|مبارحة)
         (مبارح|مبارحة) (سافرت|أنا سافرت)
     apc-Latn/arabizi:
       text: safart mbere7.
-      tokens: [{surface: safart, sense: safar, form: 'form:past-1sg'}, {surface: mbere7, sense: mbere7}]
+      tokens: [{surface: safart, lexeme: safar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: mbere7, lexeme: mbere7}]
       reverse: |-
         ((safart|sefart|safaret)|ana (safart|sefart)) (mbere7|mbare7|embere7|mberi7)
         (mbere7|mbare7|embere7|mberi7) ((safart|sefart|safaret)|ana (safart|sefart))
@@ -619,46 +554,44 @@ sentences:
       You travelled yesterday.
 - id: s.past.30
   node: apc.past.i-went
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: المطعم قريب.
-      tokens: [{surface: المطعم, sense: mat3am, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مطعم, kc: 'sense:mat3am'}]}, {surface: قريب, sense: 2arib}]
+      tokens: [{surface: المطعم, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: mat3am, surface: مطعم, base: true, feats: {Number: Sing}, n: 2}]}, {surface: قريب, lexeme: 2arib, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: المطعم قريب
     apc-Latn/arabizi:
       text: el mat3am 2arib.
-      tokens: [{surface: el, sense: el}, {surface: mat3am, sense: mat3am}, {surface: 2arib, sense: 2arib}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}, n: 2}, {surface: 2arib, lexeme: 2arib, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) (mat3am|mat3em) (2arib|arib|2rib|2areeb|areeb)
   translations:
     en: The restaurant is (close|near|nearby|close by).
 - id: s.past.31
   node: apc.past.i-went
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: السوق بعيد.
-      tokens: [{surface: السوق, sense: sou2, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سوق, kc: 'sense:sou2'}]}, {surface: بعيد, sense: b3id}]
+      tokens: [{surface: السوق, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: sou2, surface: سوق, base: true, feats: {Number: Sing}, n: 2}]}, {surface: بعيد, lexeme: b3id, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: السوق بعيد
     apc-Latn/arabizi:
       text: el sou2 b3id.
-      tokens: [{surface: el, sense: el}, {surface: sou2, sense: sou2}, {surface: b3id, sense: b3id}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: sou2, lexeme: sou2, feats: {Number: Sing}, n: 2}, {surface: b3id, lexeme: b3id, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) (sou2|souk|souq) (b3id|ba3id|b3eed)
   translations:
     en: The market is (far|far away).
 - id: s.past.32
   node: apc.past.it-was
-  register: colloquial
-  persons: {speaker: f}
+  tags:
+  - {persons: {speaker: f}}
   forms:
     apc-Arab/standard:
       text: كنت تعبانة كتير.
-      tokens: [{surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: تعبانة, sense: ta3ban, form: 'form:fem'}, {surface: كتير, sense: ktir}]
+      tokens: [{surface: كنت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: تعبانة, lexeme: ta3ban, feats: {Gender: Fem, Number: Sing}}, {surface: كتير, lexeme: ktir}]
       reverse: |-
         (كنت|أنا كنت) تعبانة كتير
         كنت كتير تعبانة
     apc-Latn/arabizi:
       text: kent ta3bane ktir.
-      tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: ta3bane, sense: ta3ban, form: 'form:fem'}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: ta3bane, lexeme: ta3ban, feats: {Gender: Fem, Number: Sing}}, {surface: ktir, lexeme: ktir}]
       reverse: |-
         ((kent|kint|kunt)|ana (kent|kint|kunt)) (ta3bane|ta3bena|t3bane|ta3bana) (ktir|kteer|kter|ktiir)
         kent ktir ta3bane
@@ -666,19 +599,19 @@ sentences:
     en: I was (very|really) tired.
 - id: s.past.33
   node: apc.past.it-was
-  register: colloquial
-  persons: {speaker: f}
+  tags:
+  - {persons: {speaker: f}}
   forms:
     apc-Arab/standard:
       text: كنت مبسوطة كتير.
-      tokens: [{surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: مبسوطة, sense: mabsout, form: 'form:fem'}, {surface: كتير, sense: ktir}]
+      tokens: [{surface: كنت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: مبسوطة, lexeme: mabsout, feats: {Gender: Fem, Number: Sing}}, {surface: كتير, lexeme: ktir}]
       reverse: |-
         (كنت|أنا كنت) مبسوطة كتير
         (انبسطت|أنا انبسطت) كتير
         كنت كتير مبسوطة
     apc-Latn/arabizi:
       text: kent mabsouta ktir.
-      tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: mabsouta, sense: mabsout, form: 'form:fem'}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: mabsouta, lexeme: mabsout, feats: {Gender: Fem, Number: Sing}}, {surface: ktir, lexeme: ktir}]
       reverse: |-
         ((kent|kint|kunt)|ana (kent|kint|kunt)) (mabsouta|mabsoota|mabsota) (ktir|kteer|kter|ktiir)
         ((enbasatt|inbasatt|nbasatt)|ana (enbasatt|inbasatt|nbasatt)) (ktir|kteer|kter|ktiir)
@@ -689,18 +622,18 @@ sentences:
       I had a (great|really good|very good) time.
 - id: s.past.34
   node: apc.past.you-f
-  register: colloquial
-  persons: {addressee: f}
+  tags:
+  - {persons: {addressee: f}}
   forms:
     apc-Arab/standard:
       text: شو اشتريتي؟
-      tokens: [{surface: شو, sense: shu}, {surface: اشتريتي, sense: eshtara, form: 'form:past-2fs'}]
+      tokens: [{surface: شو, lexeme: shu}, {surface: اشتريتي, lexeme: eshtara, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}]
       reverse: |-
         شو اشتريتي
         إنتي شو اشتريتي
     apc-Latn/arabizi:
       text: shu eshtarayti?
-      tokens: [{surface: shu, sense: shu}, {surface: eshtarayti, sense: eshtara, form: 'form:past-2fs'}]
+      tokens: [{surface: shu, lexeme: shu}, {surface: eshtarayti, lexeme: eshtara, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}]
       reverse: |-
         (shu|sho) (eshtarayti|shtarayti|ishtarayti|eshtarayte)
         enti shu eshtarayti
@@ -710,12 +643,12 @@ sentences:
       What have you bought?
 - id: s.past.35
   node: apc.past.you-f
-  register: colloquial
-  persons: {addressee: f}
+  tags:
+  - {persons: {addressee: f}}
   forms:
     apc-Arab/standard:
       text: مبارح كنتي مشغولة، صحّ؟
-      tokens: [{surface: مبارح, sense: mbere7}, {surface: كنتي, sense: kan, form: 'form:past-2fs'}, {surface: مشغولة, sense: mashghoul, form: 'form:fem'}, {surface: صحّ, sense: sa77}]
+      tokens: [{surface: مبارح, lexeme: mbere7}, {surface: كنتي, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {surface: مشغولة, lexeme: mashghoul, feats: {Gender: Fem, Number: Sing}}, {surface: صحّ, lexeme: sa77}]
       reverse: |-
         (مبارح|مبارحة) كنتي مشغولة (صحّ|صح)
         كنتي مشغولة (مبارح|مبارحة) (صحّ|صح)
@@ -723,7 +656,7 @@ sentences:
         مبارح كنتي مشغولة مش هيك
     apc-Latn/arabizi:
       text: mbere7 kenti mashghoule, sa77?
-      tokens: [{surface: mbere7, sense: mbere7}, {surface: kenti, sense: kan, form: 'form:past-2fs'}, {surface: mashghoule, sense: mashghoul, form: 'form:fem'}, {surface: sa77, sense: sa77}]
+      tokens: [{surface: mbere7, lexeme: mbere7}, {surface: kenti, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {surface: mashghoule, lexeme: mashghoul, feats: {Gender: Fem, Number: Sing}}, {surface: sa77, lexeme: sa77}]
       reverse: |-
         (mbere7|mbare7|embere7|mberi7) (kenti|kinti|kente) (mashghoule|mashghoula|mash8oule) (sa77|sa7|sah)
         (kenti|kinti|kente) (mashghoule|mashghoula|mash8oule) (mbere7|mbare7|embere7|mberi7) (sa77|sa7|sah)
@@ -736,18 +669,18 @@ sentences:
       You were busy yesterday, weren't you?
 - id: s.past.36
   node: apc.past.you-pl
-  register: colloquial
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
       text: وين رحتوا مبارح؟
-      tokens: [{surface: وين, sense: wen}, {surface: رحتوا, sense: ra7, form: 'form:past-2pl'}, {surface: مبارح, sense: mbere7}]
+      tokens: [{surface: وين, lexeme: wen}, {surface: رحتوا, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '2'}}, {surface: مبارح, lexeme: mbere7}]
       reverse: |-
         وين (رحتوا|رحتو) (مبارح|مبارحة)
         مبارح وين رحتوا
     apc-Latn/arabizi:
       text: wen ru7to mbere7?
-      tokens: [{surface: wen, sense: wen}, {surface: ru7to, sense: ra7, form: 'form:past-2pl'}, {surface: mbere7, sense: mbere7}]
+      tokens: [{surface: wen, lexeme: wen}, {surface: ru7to, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '2'}}, {surface: mbere7, lexeme: mbere7}]
       reverse: |-
         (wen|wein|wayn) (ru7to|ru7tu|ro7to|ro7tu) (mbere7|mbare7|embere7|mberi7)
         mbere7 wen ru7to
@@ -755,18 +688,18 @@ sentences:
     en: Where did you go yesterday?
 - id: s.past.37
   node: apc.past.you-pl
-  register: colloquial
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
       text: شو أكلتوا؟
-      tokens: [{surface: شو, sense: shu}, {surface: أكلتوا, sense: akal, form: 'form:past-2pl'}]
+      tokens: [{surface: شو, lexeme: shu}, {surface: أكلتوا, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '2'}}]
       reverse: |-
         شو (أكلتوا|أكلتو|اكلتوا|اكلتو)
         إنتو شو أكلتوا
     apc-Latn/arabizi:
       text: shu akalto?
-      tokens: [{surface: shu, sense: shu}, {surface: akalto, sense: akal, form: 'form:past-2pl'}]
+      tokens: [{surface: shu, lexeme: shu}, {surface: akalto, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '2'}}]
       reverse: |-
         (shu|sho) (akalto|akaltu|2akalto|2akaltu)
         ento shu akalto
@@ -777,18 +710,18 @@ sentences:
       What have you eaten?
 - id: s.past.38
   node: apc.past.you-pl
-  register: colloquial
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
       text: كنتوا مبسوطين؟
-      tokens: [{surface: كنتوا, sense: kan, form: 'form:past-2pl'}, {surface: مبسوطين, sense: mabsout, form: 'form:pl'}]
+      tokens: [{surface: كنتوا, lexeme: kan, feats: {Aspect: Perf, Number: Plur, Person: '2'}}, {surface: مبسوطين, lexeme: mabsout, feats: {Number: Plur}}]
       reverse: |-
         (كنتوا|كنتو) مبسوطين
         (انبسطتوا|انبسطتو)
     apc-Latn/arabizi:
       text: kento mabsoutin?
-      tokens: [{surface: kento, sense: kan, form: 'form:past-2pl'}, {surface: mabsoutin, sense: mabsout, form: 'form:pl'}]
+      tokens: [{surface: kento, lexeme: kan, feats: {Aspect: Perf, Number: Plur, Person: '2'}}, {surface: mabsoutin, lexeme: mabsout, feats: {Number: Plur}}]
       reverse: |-
         (kento|kentu|kinto|kintu) (mabsoutin|mabsootin|mabsotin)
         (enbasatto|inbasatto|nbasatto|enbasattu)
@@ -798,18 +731,18 @@ sentences:
       Were you happy?
 - id: s.past.39
   node: apc.past.you-pl
-  register: colloquial
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
       text: شو اشتريتوا؟
-      tokens: [{surface: شو, sense: shu}, {surface: اشتريتوا, sense: eshtara, form: 'form:past-2pl'}]
+      tokens: [{surface: شو, lexeme: shu}, {surface: اشتريتوا, lexeme: eshtara, feats: {Aspect: Perf, Number: Plur, Person: '2'}}]
       reverse: |-
         شو (اشتريتوا|اشتريتو)
         إنتو شو اشتريتوا
     apc-Latn/arabizi:
       text: shu eshtarayto?
-      tokens: [{surface: shu, sense: shu}, {surface: eshtarayto, sense: eshtara, form: 'form:past-2pl'}]
+      tokens: [{surface: shu, lexeme: shu}, {surface: eshtarayto, lexeme: eshtara, feats: {Aspect: Perf, Number: Plur, Person: '2'}}]
       reverse: |-
         (shu|sho) (eshtarayto|shtarayto|ishtarayto|eshtaraytu)
         ento shu eshtarayto
@@ -820,144 +753,166 @@ sentences:
 stories:
 - id: apc.story.weekend
   node: apc.past.story
-  title: {en: Last week}
-  provenance: {author: 'llm:claude@6914f241714e', status: draft}
+  title:
+    en: Last week
+  provenance:
+    author: llm:claude@6914f241714e
+    status: draft
   characters:
-  - {id: maya, speaker: f, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
-  - {id: sami, speaker: m, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - id: maya
+    speaker: f
+    name:
+      apc-Arab/standard: مايا
+      apc-Latn/arabizi: Maya
+  - id: sami
+    speaker: m
+    name:
+      apc-Arab/standard: سامي
+      apc-Latn/arabizi: Sami
   steps:
   - line:
       speaker: maya
       forms:
         apc-Arab/standard:
           text: سامي! شو عْمِلِت الجِمْعَة الماضْيِة؟
-          tokens: [{surface: سامي, sense: sami}, {surface: شو, sense: shu}, {surface: عْمِلِت, sense: 3emel, form: 'form:past-2ms'}, {surface: الجِمْعَة, sense: jem3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'},
-                {surface: جِمْعَة, kc: 'sense:jem3a'}]}, {surface: الماضْيِة, sense: madi, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: ماضْيِة, kc: 'sense:madi'}]}]
+          tokens: [{surface: سامي, lexeme: sami}, {surface: شو, lexeme: shu}, {surface: عْمِلِت, lexeme: 3emel, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: الجِمْعَة, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: jem3a, surface: جِمْعَة, base: true, feats: {Number: Sing}, n: 5}]}, {surface: الماضْيِة, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: madi, surface: ماضْيِة, base: true, feats: {Gender: Fem, Number: Sing}, n: 7, head: 5, rel: amod}]}]
         apc-Latn/arabizi:
           text: Sami! shu 3melt el jem3a el madye?
-          tokens: [{surface: Sami, sense: sami}, {surface: shu, sense: shu}, {surface: 3melt, sense: 3emel, form: 'form:past-2ms'}, {surface: el, sense: el}, {surface: jem3a, sense: jem3a, form: 'form:fem'}, {surface: el,
-              sense: el}, {surface: madye, sense: madi, form: 'form:fem'}]
-      translations: {en: 'Sami! What did you do last week?'}
+          tokens: [{surface: Sami, lexeme: sami}, {surface: shu, lexeme: shu}, {surface: 3melt, lexeme: 3emel, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: jem3a, lexeme: jem3a, feats: {Number: Sing}, n: 5}, {surface: el, lexeme: el, n: 6, head: 7, rel: det}, {surface: madye, lexeme: madi, feats: {Gender: Fem, Number: Sing}, n: 7, head: 5, rel: amod}]
+      translations:
+        en: Sami! What did you do last week?
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: رُحِت عَالجَبَل مَع خَيّي.
-          tokens: [{surface: رُحِت, sense: ra7, form: 'form:past-1sg'}, {surface: عَالجَبَل, sense: jabal, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: جَبَل, kc: 'sense:jabal'}]},
-            {surface: مَع, sense: ma3}, {surface: خَيّي, sense: khayy, morphs: [{surface: خَيّ, kc: 'sense:khayy'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+          tokens: [{surface: رُحِت, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: عَالجَبَل, lexemes: [{lexeme: 3a, surface: عَ, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: jabal, surface: جَبَل, base: true, feats: {Number: Sing}, n: 4}]}, {surface: مَع, lexeme: ma3, n: 5, head: 6, rel: case}, {surface: خَيّي, lexemes: [{lexeme: khayy, surface: خَيّ, base: true, feats: {Number: Sing}, n: 6}, {lexeme: poss-1sg, surface: ي}]}]
         apc-Latn/arabizi:
           text: ru7t 3al jabal ma3 khayyi.
-          tokens: [{surface: ru7t, sense: ra7, form: 'form:past-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: jabal, sense: jabal}, {
-              surface: ma3, sense: ma3}, {surface: khayyi, sense: khayy, morphs: [{surface: khayy, kc: 'sense:khayy'}, {surface: i, kc: 'form:poss-1sg'}]}]
-      translations: {en: I went to the mountains with my brother.}
+          tokens: [{surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}, n: 4}, {surface: ma3, lexeme: ma3, n: 5, head: 6, rel: case}, {surface: khayyi, lexemes: [{lexeme: khayy, surface: khayy, base: true, feats: {Number: Sing}, n: 6}, {lexeme: poss-1sg, surface: i}]}]
+      translations:
+        en: I went to the mountains with my brother.
   - line:
       speaker: maya
       forms:
         apc-Arab/standard:
           text: حِلو! كِنِت مَبْسوط؟
-          tokens: [{surface: حِلو, sense: 7elo}, {surface: كِنِت, sense: kan, form: 'form:past-2ms'}, {surface: مَبْسوط, sense: mabsout}]
+          tokens: [{surface: حِلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: كِنِت, lexeme: kan, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: مَبْسوط, lexeme: mabsout, feats: {Gender: Masc, Number: Sing}}]
         apc-Latn/arabizi:
           text: 7elo! kent mabsout?
-          tokens: [{surface: 7elo, sense: 7elo}, {surface: kent, sense: kan, form: 'form:past-2ms'}, {surface: mabsout, sense: mabsout}]
-      translations: {en: 'Nice! Did you have a good time?'}
+          tokens: [{surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: mabsout, lexeme: mabsout, feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: Nice! Did you have a good time?
   - line:
       speaker: sami
       ask: complete
-      gap: 'sense:terwi2a'
-      distractors: ['sense:ghorfe', 'sense:dekkene']
+      gap: lexeme:terwi2a
+      distractors:
+      - lexeme:ghorfe
+      - lexeme:dekkene
       forms:
         apc-Arab/standard:
           text: إيه، كْتير! أَكَلْنا تِرْويقَة طَيّْبِة وشْرِبْنا قَهْوِة.
-          tokens: [{surface: إيه, sense: eh}, {surface: كْتير, sense: ktir}, {surface: أَكَلْنا, sense: akal, form: 'form:past-1pl'}, {surface: تِرْويقَة, sense: terwi2a, form: 'form:fem'}, {surface: طَيّْبِة, sense: tayyeb,
-              form: 'form:fem'}, {surface: وشْرِبْنا, sense: shereb, form: 'form:past-1pl', morphs: [{surface: و, kc: 'sense:w'}, {surface: شْرِبْنا, kc: 'sense:shereb'}]}, {surface: قَهْوِة, sense: ahwe, form: 'form:fem'}]
+          tokens: [{surface: إيه, lexeme: eh}, {surface: كْتير, lexeme: ktir}, {surface: أَكَلْنا, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: تِرْويقَة, lexeme: terwi2a, feats: {Number: Sing}, n: 4}, {surface: طَيّْبِة, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: وشْرِبْنا, lexemes: [{lexeme: w, surface: و}, {lexeme: shereb, surface: شْرِبْنا, base: true, feats: {Aspect: Perf, Number: Plur, Person: '1'}}]}, {surface: قَهْوِة, lexeme: ahwe, feats: {Number: Sing}}]
         apc-Latn/arabizi:
           text: eh, ktir! akalna terwi2a tayybe w shrebna ahwe.
-          tokens: [{surface: eh, sense: eh}, {surface: ktir, sense: ktir}, {surface: akalna, sense: akal, form: 'form:past-1pl'}, {surface: terwi2a, sense: terwi2a, form: 'form:fem'}, {surface: tayybe, sense: tayyeb, form: 'form:fem'},
-            {surface: w, sense: w}, {surface: shrebna, sense: shereb, form: 'form:past-1pl'}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
-      translations: {en: 'Yes, very! We had a tasty breakfast and drank coffee.'}
+          tokens: [{surface: eh, lexeme: eh}, {surface: ktir, lexeme: ktir}, {surface: akalna, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: terwi2a, lexeme: terwi2a, feats: {Number: Sing}, n: 4}, {surface: tayybe, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: w, lexeme: w}, {surface: shrebna, lexeme: shereb, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
+      translations:
+        en: Yes, very! We had a tasty breakfast and drank coffee.
   - choose:
       prompt:
         en: Who did Sami go to the mountains with?
-      options: [{en: His brother}, {en: Maya}, {en: His grandma}]
+      options:
+      - en: His brother
+      - en: Maya
+      - en: His grandma
       answer: 0
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: وإِنْتي؟ وين رُحْتي؟
-          tokens: [{surface: وإِنْتي, sense: enti, form: 'form:fem', morphs: [{surface: و, kc: 'sense:w'}, {surface: إِنْتي, kc: 'sense:enti'}]}, {surface: وين, sense: wen}, {surface: رُحْتي, sense: ra7, form: 'form:past-2fs'}]
+          tokens: [{surface: وإِنْتي, lexemes: [{lexeme: w, surface: و}, {lexeme: enti, surface: إِنْتي, base: true, feats: {Gender: Fem, Number: Sing}}]}, {surface: وين, lexeme: wen}, {surface: رُحْتي, lexeme: ra7, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}]
         apc-Latn/arabizi:
           text: w enti? wen ru7ti?
-          tokens: [{surface: w, sense: w}, {surface: enti, sense: enti, form: 'form:fem'}, {surface: wen, sense: wen}, {surface: ru7ti, sense: ra7, form: 'form:past-2fs'}]
-      translations: {en: 'And you? Where did you go?'}
+          tokens: [{surface: w, lexeme: w}, {surface: enti, lexeme: enti, feats: {Gender: Fem, Number: Sing}}, {surface: wen, lexeme: wen}, {surface: ru7ti, lexeme: ra7, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}]
+      translations:
+        en: And you? Where did you go?
   - line:
       speaker: maya
       forms:
         apc-Arab/standard:
           text: أَنا كِنِت بِالبيت. كِنِت تَعْبانِة.
-          tokens: [{surface: أَنا, sense: ana}, {surface: كِنِت, sense: kan, form: 'form:past-1sg'}, {surface: بِالبيت, sense: bet, morphs: [{surface: بِ, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'},
-                {surface: بيت, kc: 'sense:bet'}]}, {surface: كِنِت, sense: kan, form: 'form:past-1sg'}, {surface: تَعْبانِة, sense: ta3ban, form: 'form:fem'}]
+          tokens: [{surface: أَنا, lexeme: ana}, {surface: كِنِت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: بِالبيت, lexemes: [{lexeme: b, surface: بِ, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 5}]}, {surface: كِنِت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: تَعْبانِة, lexeme: ta3ban, feats: {Gender: Fem, Number: Sing}}]
         apc-Latn/arabizi:
           text: ana kent bel bet. kent ta3bane.
-          tokens: [{surface: ana, sense: ana}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet,
-              sense: bet}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: ta3bane, sense: ta3ban, form: 'form:fem'}]
-      translations: {en: I was at home. I was tired.}
+          tokens: [{surface: ana, lexeme: ana}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 5}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: ta3bane, lexeme: ta3ban, feats: {Gender: Fem, Number: Sing}}]
+      translations:
+        en: I was at home. I was tired.
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: ونْهار الأَحَد؟
-          tokens: [{surface: ونْهار, sense: nhar, morphs: [{surface: و, kc: 'sense:w'}, {surface: نْهار, kc: 'sense:nhar'}]}, {surface: الأَحَد, sense: a7ad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَحَد,
-                  kc: 'sense:a7ad'}]}]
+          tokens: [{surface: ونْهار, lexemes: [{lexeme: w, surface: و}, {lexeme: nhar, surface: نْهار, base: true, feats: {Number: Sing}}]}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}, n: 4}]}]
         apc-Latn/arabizi:
           text: w nhar el a7ad?
-          tokens: [{surface: w, sense: w}, {surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: a7ad, sense: a7ad}]
-      translations: {en: 'And on Sunday?'}
+          tokens: [{surface: w, lexeme: w}, {surface: nhar, lexeme: nhar, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}, n: 4}]
+      translations:
+        en: And on Sunday?
   - line:
       speaker: maya
       ask: arrange
       forms:
         apc-Arab/standard:
           text: نْهار الأَحَد زِرِت تيتا، وأَكَلْنا الغَدا سَوا.
-          tokens: [{surface: نْهار, sense: nhar}, {surface: الأَحَد, sense: a7ad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَحَد, kc: 'sense:a7ad'}]}, {surface: زِرِت, sense: zar, form: 'form:past-1sg'},
-            {surface: تيتا, sense: teta, form: 'form:fem'}, {surface: وأَكَلْنا, sense: akal, form: 'form:past-1pl', morphs: [{surface: و, kc: 'sense:w'}, {surface: أَكَلْنا, kc: 'sense:akal'}]}, {surface: الغَدا, sense: ghada,
-              morphs: [{surface: ال, kc: 'sense:el'}, {surface: غَدا, kc: 'sense:ghada'}]}, {surface: سَوا, sense: sawa}]
+          tokens: [{surface: نْهار, lexeme: nhar, feats: {Number: Sing}}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}, n: 3}]}, {surface: زِرِت, lexeme: zar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: وأَكَلْنا, lexemes: [{lexeme: w, surface: و}, {lexeme: akal, surface: أَكَلْنا, base: true, feats: {Aspect: Perf, Number: Plur, Person: '1'}}]}, {surface: الغَدا, lexemes: [{lexeme: el, surface: ال, n: 8, head: 9, rel: det}, {lexeme: ghada, surface: غَدا, base: true, feats: {Number: Sing}, n: 9}]}, {surface: سَوا, lexeme: sawa}]
         apc-Latn/arabizi:
           text: nhar el a7ad zert teta, w akalna el ghada sawa.
-          tokens: [{surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: a7ad, sense: a7ad}, {surface: zert, sense: zar, form: 'form:past-1sg'}, {surface: teta, sense: teta, form: 'form:fem'}, {surface: w, sense: w},
-            {surface: akalna, sense: akal, form: 'form:past-1pl'}, {surface: el, sense: el}, {surface: ghada, sense: ghada}, {surface: sawa, sense: sawa}]
-      translations: {en: 'On Sunday I visited grandma, and we had lunch together.'}
+          tokens: [{surface: nhar, lexeme: nhar, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}, n: 3}, {surface: zert, lexeme: zar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: akalna, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: el, lexeme: el, n: 8, head: 9, rel: det}, {surface: ghada, lexeme: ghada, feats: {Number: Sing}, n: 9}, {surface: sawa, lexeme: sawa}]
+      translations:
+        en: On Sunday I visited grandma, and we had lunch together.
   - choose:
       prompt:
         en: What did Maya do on Sunday?
-      options: [{en: She visited her grandma}, {en: She went to the beach}, {en: She worked}]
+      options:
+      - en: She visited her grandma
+      - en: She went to the beach
+      - en: She worked
       answer: 0
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: وكان الأَكِل طَيِّب؟
-          tokens: [{surface: وكان, sense: kan, form: 'form:past-3ms', morphs: [{surface: و, kc: 'sense:w'}, {surface: كان, kc: 'sense:kan'}]}, {surface: الأَكِل, sense: akl, morphs: [{surface: ال, kc: 'sense:el'},
-                {surface: أَكِل, kc: 'sense:akl'}]}, {surface: طَيِّب, sense: tayyeb}]
+          tokens: [{surface: وكان, lexemes: [{lexeme: w, surface: و}, {lexeme: kan, surface: كان, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}]}, {surface: الأَكِل, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: akl, surface: أَكِل, base: true, feats: {Number: Sing}, n: 4}]}, {surface: طَيِّب, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}, n: 5, head: 4, rel: amod}]
         apc-Latn/arabizi:
           text: w ken el akl tayyeb?
-          tokens: [{surface: w, sense: w}, {surface: ken, sense: kan, form: 'form:past-3ms'}, {surface: el, sense: el}, {surface: akl, sense: akl}, {surface: tayyeb, sense: tayyeb}]
-      translations: {en: 'And was the food good?'}
+          tokens: [{surface: w, lexeme: w}, {surface: ken, lexeme: kan, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: akl, lexeme: akl, feats: {Number: Sing}, n: 4}, {surface: tayyeb, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}, n: 5, head: 4, rel: amod}]
+      translations:
+        en: And was the food good?
   - line:
       speaker: maya
       forms:
         apc-Arab/standard:
           text: إيه، طَيِّب كْتير!
-          tokens: [{surface: إيه, sense: eh}, {surface: طَيِّب, sense: tayyeb}, {surface: كْتير, sense: ktir}]
+          tokens: [{surface: إيه, lexeme: eh}, {surface: طَيِّب, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}}, {surface: كْتير, lexeme: ktir}]
         apc-Latn/arabizi:
           text: eh, tayyeb ktir!
-          tokens: [{surface: eh, sense: eh}, {surface: tayyeb, sense: tayyeb}, {surface: ktir, sense: ktir}]
-      translations: {en: 'Yes, really tasty!'}
+          tokens: [{surface: eh, lexeme: eh}, {surface: tayyeb, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}}, {surface: ktir, lexeme: ktir}]
+      translations:
+        en: Yes, really tasty!
 scenarios:
 - id: apc.weekend-catch-up
   after: apc.past.story
-  title: {en: 'How was your weekend?'}
-  setting: {en: Monday morning at the office in Beirut. A colleague stops by your desk with two coffees.}
-  character: {en: 'Rami, a talkative colleague who wants to hear all about your weekend and to tell you about his.'}
-  goal: {en: 'Tell Rami where you went and what you did (what you ate, who you saw, whether you were tired or had a good time), and ask about his weekend.'}
-  provenance: {author: 'llm:claude@6914f241714e', status: draft}
+  title:
+    en: How was your weekend?
+  setting:
+    en: Monday morning at the office in Beirut. A colleague stops by your desk with two coffees.
+  character:
+    en: Rami, a talkative colleague who wants to hear all about your weekend and to tell you about his.
+  goal:
+    en: Tell Rami where you went and what you did (what you ate, who you saw, whether you were tired or had a good time), and ask about his weekend.
+  provenance:
+    author: llm:claude@6914f241714e
+    status: draft

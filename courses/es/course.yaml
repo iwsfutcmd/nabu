@@ -4,50 +4,67 @@
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
 id: es
 target: es-Latn-CU
-orthographies: [es-Latn/standard]
-support: [en-Latn/standard]
+orthographies:
+- es-Latn/standard
+support:
+- en-Latn/standard
+lexicon: es
+variety: es-CU
 # What the app calls the course and its orthographies, and what the course list says of them, by
 # language (ADR 0109).
 names:
   en:
     course: Cuban Spanish
-    blurb: "Spanish as Cuban families speak it, in Cuba and in Miami: for heritage speakers, and from the start."
+    blurb: 'Spanish as Cuban families speak it, in Cuba and in Miami: for heritage speakers, and from the start.'
     orthographies:
       es-Latn/standard: Spanish spelling
   # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
   # await review as those do.
   ar:
-    course: "الإسبانية الكوبية"
+    course: الإسبانية الكوبية
     orthographies:
-      es-Latn/standard: "الإملاء الإسباني"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      es-Latn/standard: الإملاء الإسباني
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   fa:
-    course: "اسپانیایی کوبایی"
+    course: اسپانیایی کوبایی
     orthographies:
-      es-Latn/standard: "املای اسپانیایی"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      es-Latn/standard: املای اسپانیایی
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   uz:
-    course: "Kuba ispan tili"
+    course: Kuba ispan tili
     orthographies:
-      es-Latn/standard: "Ispan imlosi"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      es-Latn/standard: Ispan imlosi
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   uz-Cyrl:
-    course: "Куба испан тили"
+    course: Куба испан тили
     orthographies:
-      es-Latn/standard: "Испан имлоси"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      es-Latn/standard: Испан имлоси
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   zh-Hant-HK:
-    course: "古巴西班牙語"
+    course: 古巴西班牙語
     orthographies:
-      es-Latn/standard: "西班牙文拼寫"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      es-Latn/standard: 西班牙文拼寫
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
 license: CC-BY-SA-4.0
-provenance: {author: 'llm:claude@1ebc6e7db77a', status: draft}
+provenance:
+  author: llm:claude@1ebc6e7db77a
+  status: draft
 # A Spanish verb is fusional: a new verb in a new tense is two KCs on one word (sense + form), so a
 # sentence may bring in two.
 iPlusOne: 2
 # Placement (ADR 0077) has production typed, so it also checks spelling and accent marks.
-placement: {production: typed}
+placement:
+  production: typed
 # Audio (ADR 0076, 0078): OmniVoice cloning two Cuban speakers from the archive of Radio La Voz de la
 # Victoria (Ciénaga de Zapata, Matanzas), with `nabu audio cast --recording`; OmniVoice's voice design
 # has no Cuban accent, and cloning carries the speaker's. A man's voice, an actor in the station's
@@ -56,14 +73,60 @@ placement: {production: typed}
 # rest are shared at random. The weights are CC-BY-NC (OmniVoice's training data), so the clips are too.
 audio:
   voices:
-  - {id: coral-m, provider: omnivoice, voice: coral-m, speaker: m, model: 'k2-fsa/OmniVoice@c5fdb5ccb189668d56333f77ba2629f4cd7535f4',
-    language: es, orthography: es-Latn/standard, reading: text, finalStop: true, license: CC-BY-NC-4.0}
-  - {id: zapata-f, provider: omnivoice, voice: zapata-f, speaker: f, model: 'k2-fsa/OmniVoice@c5fdb5ccb189668d56333f77ba2629f4cd7535f4',
-    language: es, orthography: es-Latn/standard, reading: text, finalStop: true, license: CC-BY-NC-4.0}
+  - id: coral-m
+    provider: omnivoice
+    voice: coral-m
+    speaker: m
+    model: k2-fsa/OmniVoice@c5fdb5ccb189668d56333f77ba2629f4cd7535f4
+    language: es
+    orthography: es-Latn/standard
+    reading: text
+    finalStop: true
+    license: CC-BY-NC-4.0
+  - id: zapata-f
+    provider: omnivoice
+    voice: zapata-f
+    speaker: f
+    model: k2-fsa/OmniVoice@c5fdb5ccb189668d56333f77ba2629f4cd7535f4
+    language: es
+    orthography: es-Latn/standard
+    reading: text
+    finalStop: true
+    license: CC-BY-NC-4.0
 # Every reading is fixed by its word's spelling, sense, form and morphs (ADR 0135): one read otherwise is an error.
 consistentReadings: true
 # The course asks words by their parts (ADR 0152): a word built from its own word and the forms it
 # carries (parts-whole), and a word's parts picked out (whole-parts). REVIEW: the forms its tokens
 # carry, and the glossary entries that name them, have not been checked for this by a reader.
 wordParts: true
-units: [units/u01-que-bola.yaml, units/u02-la-familia.yaml, units/u03-la-casa.yaml, units/u04-la-comida.yaml, units/u05-los-numeros.yaml, units/u06-el-barrio.yaml, units/u07-el-dia.yaml, units/u08-de-compras.yaml, units/u09-ayer.yaml, units/u10-el-viaje.yaml, units/u11-las-tildes.yaml, units/u12-cuando-era-nino.yaml, units/u13-los-cuentos-de-abuela.yaml, units/u14-la-cocina-cubana.yaml, units/u15-la-carta.yaml, units/u16-la-musica.yaml, units/u17-pelota-y-domino.yaml, units/u18-la-salud.yaml, units/u19-con-respeto.yaml, units/u20-nochebuena.yaml, units/u21-los-consejos.yaml, units/u22-la-llamada.yaml, units/u23-refranes.yaml, units/u24-la-historia.yaml, units/u25-la-habana.yaml, units/u26-el-campo.yaml, units/u27-marti.yaml, units/u28-si-pudiera.yaml, units/u29-quien-soy.yaml, units/u30-el-brindis.yaml]
+units:
+- units/u01-que-bola.yaml
+- units/u02-la-familia.yaml
+- units/u03-la-casa.yaml
+- units/u04-la-comida.yaml
+- units/u05-los-numeros.yaml
+- units/u06-el-barrio.yaml
+- units/u07-el-dia.yaml
+- units/u08-de-compras.yaml
+- units/u09-ayer.yaml
+- units/u10-el-viaje.yaml
+- units/u11-las-tildes.yaml
+- units/u12-cuando-era-nino.yaml
+- units/u13-los-cuentos-de-abuela.yaml
+- units/u14-la-cocina-cubana.yaml
+- units/u15-la-carta.yaml
+- units/u16-la-musica.yaml
+- units/u17-pelota-y-domino.yaml
+- units/u18-la-salud.yaml
+- units/u19-con-respeto.yaml
+- units/u20-nochebuena.yaml
+- units/u21-los-consejos.yaml
+- units/u22-la-llamada.yaml
+- units/u23-refranes.yaml
+- units/u24-la-historia.yaml
+- units/u25-la-habana.yaml
+- units/u26-el-campo.yaml
+- units/u27-marti.yaml
+- units/u28-si-pudiera.yaml
+- units/u29-quien-soy.yaml
+- units/u30-el-brindis.yaml

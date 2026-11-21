@@ -7,194 +7,20 @@ id: u06-not-one-woman
 title:
   en: Not one woman is here
 cefr: A2
-kcs:
-- id: sense:gyne
-  pos: NOUN
-  gloss:
-    en: woman; wife
-  forms:
-    grc-Grek/polytonic:
-    - γυνή
-  notes:
-    en: 'Its other forms are built on γυναικ-: of the woman τῆς γυναικός, the women αἱ γυναῖκες.'
-- id: sense:oudeis
-  pos: PRON
-  features:
-    PronType: Neg
-  gloss:
-    en: no one, nobody; (with a noun) no, not one
-  forms:
-    grc-Grek/polytonic:
-    - οὐδείς
-  notes:
-    en: οὐδείς for a man or a masculine word, οὐδεμία for a woman, οὐδέν for a thing ("nothing").
-- id: sense:pareimi
-  pos: VERB
-  gloss:
-    en: to be here, be present
-  forms:
-    grc-Grek/polytonic:
-    - πάρειμι
-- id: sense:entautha
-  pos: ADV
-  features:
-    PronType: Dem
-  gloss:
-    en: here, there
-  forms:
-    grc-Grek/polytonic:
-    - ἐνταῦθα
-    - ἐνταυθοῖ
-  notes:
-    en: ἐνταυθοῖ, "(to) here", is how the women of Aristophanes say it.
-- id: sense:emos
-  pos: DET
-  features:
-    Poss: 'Yes'
-    PronType: Prs
-  gloss:
-    en: my, mine
-  forms:
-    grc-Grek/polytonic:
-    - ἐμός
-- id: sense:kometis
-  pos: NOUN
-  gloss:
-    en: a woman of the same village or quarter; neighbour
-  forms:
-    grc-Grek/polytonic:
-    - κωμῆτις
-- id: sense:plen
-  pos: ADP
-  gloss:
-    en: (with the genitive) except
-  forms:
-    grc-Grek/polytonic:
-    - πλήν
-- id: sense:hode
-  pos: PRON
-  features:
-    PronType: Dem
-  gloss:
-    en: this (one) here
-  forms:
-    grc-Grek/polytonic:
-    - ὅδε
-  notes:
-    en: 'ὅδε, ἥδε, τόδε point at what is right in front of you: ἥδε ἐξέρχεται, "here she comes out".'
-- id: sense:exerchomai
-  pos: VERB
-  gloss:
-    en: to come out, go out
-  forms:
-    grc-Grek/polytonic:
-    - ἐξέρχομαι
-- id: sense:kalonike
-  pos: PROPN
-  gloss:
-    en: Calonice (Lysistrata's neighbour)
-  forms:
-    grc-Grek/polytonic:
-    - Καλονίκη
-- id: sense:lysistrate
-  pos: PROPN
-  gloss:
-    en: Lysistrata (the Athenian woman of Aristophanes' play)
-  forms:
-    grc-Grek/polytonic:
-    - Λυσιστράτη
-- id: sense:me
-  pos: PART
-  features:
-    Polarity: Neg
-  gloss:
-    en: not (in commands and wishes)
-  forms:
-    grc-Grek/polytonic:
-    - μή
-  notes:
-    en: 'μή with an imperative forbids: μὴ σκυ^θρώπαζε, "don''t scowl!". Statements take οὐ.'
-- id: sense:skythropazo
-  pos: VERB
-  gloss:
-    en: to look sullen, scowl
-  forms:
-    grc-Grek/polytonic:
-    - σκυθρωπάζω
-  readings:
-    attic: σκῠθρωπᾰ́ζω
-- id: sense:syntaratto
-  pos: VERB
-  gloss:
-    en: to throw into confusion, upset
-  forms:
-    grc-Grek/polytonic:
-    - συνταράττω
-  notes:
-    en: συ^ντετάραξαι, "you have been upset" (you are upset), is its perfect.
-- id: sense:hetoimos
-  pos: ADJ
-  gloss:
-    en: ready
-  forms:
-    grc-Grek/polytonic:
-    - ἕτοιμος
-  notes:
-    en: A woman says ἑτοίμη εἰμί, a man ἕτοιμός εἰμι.
-- id: form:f-pl
-  gloss:
-    en: 'feminine plural, as subject or called: αἱ γυναῖκες, the women'
 nodes:
-- id: grc.u06.women
-  kind: lesson
-  introduces:
-  - sense:gyne
-  - sense:pareimi
-  - sense:oudeis
-  - sense:entautha
-  - form:f-pl
-- id: grc.u06.my-neighbour
-  kind: lesson
-  introduces:
-  - sense:emos
-  - sense:kometis
-  - sense:plen
-  - sense:hode
-- id: grc.u06.she-comes-out
-  kind: lesson
-  introduces:
-  - sense:exerchomai
-  - sense:kalonike
-  - sense:lysistrate
-- id: grc.u06.dont-scowl
-  kind: lesson
-  introduces:
-  - sense:me
-  - sense:skythropazo
-  - sense:syntaratto
-- id: grc.u06.ready
-  kind: lesson
-  introduces:
-  - sense:hetoimos
-- id: grc.u06.story
-  kind: story
+- {id: grc.u06.women, kind: lesson, introduces: ['lexeme:gyne', 'lexeme:pareimi', 'lexeme:oudeis', 'lexeme:entautha']}
+- {id: grc.u06.my-neighbour, kind: lesson, introduces: ['lexeme:emos', 'lexeme:kometis', 'lexeme:plen', 'lexeme:hode']}
+- {id: grc.u06.she-comes-out, kind: lesson, introduces: ['lexeme:exerchomai', 'lexeme:kalonike', 'lexeme:lysistrate']}
+- {id: grc.u06.dont-scowl, kind: lesson, introduces: ['lexeme:me', 'lexeme:skythropazo', 'lexeme:syntaratto']}
+- {id: grc.u06.ready, kind: lesson, introduces: ['lexeme:hetoimos']}
+- {id: grc.u06.story, kind: story}
 sentences:
 - id: s.06.1
   node: grc.u06.women
   forms:
     grc-Grek/polytonic:
       text: ἡ γυνή.
-      tokens:
-      - surface: ἡ
-        sense: ho
-        form: form:f
-        readings:
-          attic: ἡ
-      - surface: γυνή
-        sense: gyne
-        form: form:f
-        readings:
-          attic: γῠνή
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: γυνή, lexeme: gyne, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: γῠνή}}]
       reverse: ἡ γυνή
   translations:
     en: The (woman|wife).
@@ -203,17 +29,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: αἱ γυναῖκες.
-      tokens:
-      - surface: αἱ
-        sense: ho
-        form: form:f-pl
-        readings:
-          attic: αἱ
-      - surface: γυναῖκες
-        sense: gyne
-        form: form:f-pl
-        readings:
-          attic: γῠναῖκες
+      tokens: [{surface: αἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Fem, Number: Plur}, n: 1, head: 2, rel: det, readings: {attic: αἱ}}, {surface: γυναῖκες, lexeme: gyne, feats: {Case: 'Nom,Voc', Number: Plur}, n: 2, readings: {attic: γῠναῖκες}}]
       reverse: αἱ γυναῖκες
   translations:
     en: The (women|wives).
@@ -222,17 +38,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: γυνὴ πάρεστιν.
-      tokens:
-      - surface: γυνὴ
-        sense: gyne
-        form: form:f
-        readings:
-          attic: γῠνὴ
-      - surface: πάρεστιν
-        sense: pareimi
-        form: form:pres-3s
-        readings:
-          attic: πᾰ́ρεστῐν
+      tokens: [{surface: γυνὴ, lexeme: gyne, feats: {Case: Nom, Number: Sing}, readings: {attic: γῠνὴ}}, {surface: πάρεστιν, lexeme: pareimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: πᾰ́ρεστῐν}}]
       reverse: |-
         γυνὴ πάρεστιν
         πάρεστι[ν] γυνή
@@ -244,22 +50,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οὐδεμία γυνὴ πάρεστιν.
-      tokens:
-      - surface: οὐδεμία
-        sense: oudeis
-        form: form:f
-        readings:
-          attic: οὐδεμῐ́ᾰ
-      - surface: γυνὴ
-        sense: gyne
-        form: form:f
-        readings:
-          attic: γῠνὴ
-      - surface: πάρεστιν
-        sense: pareimi
-        form: form:pres-3s
-        readings:
-          attic: πᾰ́ρεστῐν
+      tokens: [{surface: οὐδεμία, lexeme: oudeis, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: οὐδεμῐ́ᾰ}}, {surface: γυνὴ, lexeme: gyne, feats: {Case: Nom, Number: Sing}, readings: {attic: γῠνὴ}}, {surface: πάρεστιν, lexeme: pareimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: πᾰ́ρεστῐν}}]
       reverse: |-
         οὐδεμία γυνὴ πάρεστιν
         οὐδεμία πάρεστι[ν] γυνή
@@ -273,16 +64,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οὐδεὶς πάρεστιν.
-      tokens:
-      - surface: οὐδεὶς
-        sense: oudeis
-        readings:
-          attic: οὐδεὶς
-      - surface: πάρεστιν
-        sense: pareimi
-        form: form:pres-3s
-        readings:
-          attic: πᾰ́ρεστῐν
+      tokens: [{surface: οὐδεὶς, lexeme: oudeis, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: οὐδεὶς}}, {surface: πάρεστιν, lexeme: pareimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: πᾰ́ρεστῐν}}]
       reverse: |-
         οὐδεὶς πάρεστιν
         πάρεστι[ν] οὐδείς
@@ -294,16 +76,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐνταῦθα πάρειμι.
-      tokens:
-      - surface: ἐνταῦθα
-        sense: entautha
-        readings:
-          attic: ἐνταῦθᾰ
-      - surface: πάρειμι
-        sense: pareimi
-        form: form:pres-1s
-        readings:
-          attic: πᾰ́ρειμῐ
+      tokens: [{surface: ἐνταῦθα, lexeme: entautha, readings: {attic: ἐνταῦθᾰ}}, {surface: πάρειμι, lexeme: pareimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: πᾰ́ρειμῐ}}]
       reverse: |-
         ἐνταῦθα πάρειμι
         πάρειμι ἐνταῦθα
@@ -315,26 +88,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ποῦ εἰσιν αἱ γυναῖκες;
-      tokens:
-      - surface: ποῦ
-        sense: pou
-        readings:
-          attic: ποῦ
-      - surface: εἰσιν
-        sense: eimi
-        form: form:pres-3p
-        readings:
-          attic: εἰσῐν
-      - surface: αἱ
-        sense: ho
-        form: form:f-pl
-        readings:
-          attic: αἱ
-      - surface: γυναῖκες
-        sense: gyne
-        form: form:f-pl
-        readings:
-          attic: γῠναῖκες
+      tokens: [{surface: ποῦ, lexeme: pou, readings: {attic: ποῦ}}, {surface: εἰσιν, lexeme: eimi, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰσῐν}}, {surface: αἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Fem, Number: Plur}, n: 3, head: 4, rel: det, readings: {attic: αἱ}}, {surface: γυναῖκες, lexeme: gyne, feats: {Case: 'Nom,Voc', Number: Plur}, n: 4, readings: {attic: γῠναῖκες}}]
       reverse: |-
         ποῦ εἰσιν αἱ γυναῖκες
         ποῦ αἱ γυναῖκές εἰσι[ν]
@@ -346,26 +100,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: αἱ γυναῖκες οὐ πάρεισιν.
-      tokens:
-      - surface: αἱ
-        sense: ho
-        form: form:f-pl
-        readings:
-          attic: αἱ
-      - surface: γυναῖκες
-        sense: gyne
-        form: form:f-pl
-        readings:
-          attic: γῠναῖκες
-      - surface: οὐ
-        sense: ou
-        readings:
-          attic: οὐ
-      - surface: πάρεισιν
-        sense: pareimi
-        form: form:pres-3p
-        readings:
-          attic: πᾰ́ρεισῐν
+      tokens: [{surface: αἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Fem, Number: Plur}, n: 1, head: 2, rel: det, readings: {attic: αἱ}}, {surface: γυναῖκες, lexeme: gyne, feats: {Case: 'Nom,Voc', Number: Plur}, n: 2, readings: {attic: γῠναῖκες}}, {surface: οὐ, lexeme: ou, readings: {attic: οὐ}}, {surface: πάρεισιν, lexeme: pareimi, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: πᾰ́ρεισῐν}}]
       reverse: |-
         αἱ γυναῖκες οὐ πάρεισιν
         οὐ πάρεισι[ν] αἱ γυναῖκες
@@ -377,21 +112,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: πάρει, ὦ Ξανθίππη;
-      tokens:
-      - surface: πάρει
-        sense: pareimi
-        form: form:pres-2s
-        readings:
-          attic: πᾰ́ρει
-      - surface: ὦ
-        sense: o
-        readings:
-          attic: ὦ
-      - surface: Ξανθίππη
-        sense: xanthippe
-        form: form:f-voc
-        readings:
-          attic: Ξᾰνθῐ́ππη
+      tokens: [{surface: πάρει, lexeme: pareimi, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: πᾰ́ρει}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: Ξανθίππη, lexeme: xanthippe, feats: {Case: Voc, Number: Sing}, readings: {attic: Ξᾰνθῐ́ππη}}]
       reverse: |-
         πάρει ὦ Ξανθίππη
         πάρει Ξανθίππη
@@ -403,22 +124,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ ἐμὴ μήτηρ.
-      tokens:
-      - surface: ἡ
-        sense: ho
-        form: form:f
-        readings:
-          attic: ἡ
-      - surface: ἐμὴ
-        sense: emos
-        form: form:f
-        readings:
-          attic: ἐμὴ
-      - surface: μήτηρ
-        sense: meter
-        form: form:f
-        readings:
-          attic: μήτηρ
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 3, rel: det, readings: {attic: ἡ}}, {surface: ἐμὴ, lexeme: emos, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: ἐμὴ}}, {surface: μήτηρ, lexeme: meter, feats: {Case: Nom, Number: Sing}, n: 3, readings: {attic: μήτηρ}}]
       reverse: |-
         ἡ ἐμὴ μήτηρ
         ἡ μήτηρ ἡ ἐμή
@@ -429,19 +135,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ ἐμὸς πατήρ.
-      tokens:
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: ἐμὸς
-        sense: emos
-        readings:
-          attic: ἐμὸς
-      - surface: πατήρ
-        sense: pater
-        readings:
-          attic: πᾰτήρ
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 3, rel: det, readings: {attic: ὁ}}, {surface: ἐμὸς, lexeme: emos, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: ἐμὸς}}, {surface: πατήρ, lexeme: pater, feats: {Case: Nom, Number: Sing}, n: 3, readings: {attic: πᾰτήρ}}]
       reverse: |-
         ὁ ἐμὸς πατήρ
         ὁ πατὴρ ὁ ἐμός
@@ -452,17 +146,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ κωμῆτις.
-      tokens:
-      - surface: ἡ
-        sense: ho
-        form: form:f
-        readings:
-          attic: ἡ
-      - surface: κωμῆτις
-        sense: kometis
-        form: form:f
-        readings:
-          attic: κωμῆτῐς
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: κωμῆτις, lexeme: kometis, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: κωμῆτῐς}}]
       reverse: ἡ κωμῆτις
   translations:
     en: The (neighbour|neighbor).
@@ -471,22 +155,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ ἐμὴ κωμῆτις.
-      tokens:
-      - surface: ἡ
-        sense: ho
-        form: form:f
-        readings:
-          attic: ἡ
-      - surface: ἐμὴ
-        sense: emos
-        form: form:f
-        readings:
-          attic: ἐμὴ
-      - surface: κωμῆτις
-        sense: kometis
-        form: form:f
-        readings:
-          attic: κωμῆτῐς
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 3, rel: det, readings: {attic: ἡ}}, {surface: ἐμὴ, lexeme: emos, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: ἐμὴ}}, {surface: κωμῆτις, lexeme: kometis, feats: {Case: Nom, Number: Sing}, n: 3, readings: {attic: κωμῆτῐς}}]
       reverse: |-
         ἡ ἐμὴ κωμῆτις
         ἡ κωμῆτις ἡ ἐμή
@@ -497,22 +166,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἥδε ἡ γυνή.
-      tokens:
-      - surface: ἥδε
-        sense: hode
-        form: form:f
-        readings:
-          attic: ἥδε
-      - surface: ἡ
-        sense: ho
-        form: form:f
-        readings:
-          attic: ἡ
-      - surface: γυνή
-        sense: gyne
-        form: form:f
-        readings:
-          attic: γῠνή
+      tokens: [{surface: ἥδε, lexeme: hode, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἥδε}}, {surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: ἡ}}, {surface: γυνή, lexeme: gyne, feats: {Case: Nom, Number: Sing}, n: 3, readings: {attic: γῠνή}}]
       reverse: |-
         ἥδε ἡ γυνή
         ἡ γυνὴ ἥδε
@@ -523,21 +177,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: πλὴν τῆς κωμήτιδος.
-      tokens:
-      - surface: πλὴν
-        sense: plen
-        readings:
-          attic: πλὴν
-      - surface: τῆς
-        sense: ho
-        form: form:f-gen
-        readings:
-          attic: τῆς
-      - surface: κωμήτιδος
-        sense: kometis
-        form: form:f-gen
-        readings:
-          attic: κωμήτῐδος
+      tokens: [{surface: πλὴν, lexeme: plen, n: 1, head: 3, rel: case, readings: {attic: πλὴν}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῆς}}, {surface: κωμήτιδος, lexeme: kometis, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: κωμήτῐδος}}]
       reverse: πλὴν τῆς κωμήτιδος
   translations:
     en: Except (the|my) (neighbour|neighbor).
@@ -546,36 +186,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οὐδεμία πάρεστιν πλὴν τῆς ἐμῆς κωμήτιδος.
-      tokens:
-      - surface: οὐδεμία
-        sense: oudeis
-        form: form:f
-        readings:
-          attic: οὐδεμῐ́ᾰ
-      - surface: πάρεστιν
-        sense: pareimi
-        form: form:pres-3s
-        readings:
-          attic: πᾰ́ρεστῐν
-      - surface: πλὴν
-        sense: plen
-        readings:
-          attic: πλὴν
-      - surface: τῆς
-        sense: ho
-        form: form:f-gen
-        readings:
-          attic: τῆς
-      - surface: ἐμῆς
-        sense: emos
-        form: form:f-gen
-        readings:
-          attic: ἐμῆς
-      - surface: κωμήτιδος
-        sense: kometis
-        form: form:f-gen
-        readings:
-          attic: κωμήτῐδος
+      tokens: [{surface: οὐδεμία, lexeme: oudeis, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: οὐδεμῐ́ᾰ}}, {surface: πάρεστιν, lexeme: pareimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: πᾰ́ρεστῐν}}, {surface: πλὴν, lexeme: plen, n: 3, head: 6, rel: case, readings: {attic: πλὴν}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 4, head: 6, rel: det, readings: {attic: τῆς}}, {surface: ἐμῆς, lexeme: emos, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: ἐμῆς}}, {surface: κωμήτιδος, lexeme: kometis, feats: {Case: Gen, Number: Sing}, n: 6, readings: {attic: κωμήτῐδος}}]
       reverse: |-
         οὐδεμία πάρεστιν πλὴν τῆς ἐμῆς κωμήτιδος
         πλὴν τῆς ἐμῆς κωμήτιδος οὐδεμία πάρεστι[ν]
@@ -587,12 +198,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐξέρχομαι.
-      tokens:
-      - surface: ἐξέρχομαι
-        sense: exerchomai
-        form: form:pres-1s
-        readings:
-          attic: ἐξέρχομαι
+      tokens: [{surface: ἐξέρχομαι, lexeme: exerchomai, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐξέρχομαι}}]
       reverse: ἐξέρχομαι
   translations:
     en: (I am|I'm) (coming|going) out.
@@ -601,22 +207,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡ γυνὴ ἐξέρχεται.
-      tokens:
-      - surface: ἡ
-        sense: ho
-        form: form:f
-        readings:
-          attic: ἡ
-      - surface: γυνὴ
-        sense: gyne
-        form: form:f
-        readings:
-          attic: γῠνὴ
-      - surface: ἐξέρχεται
-        sense: exerchomai
-        form: form:pres-3s
-        readings:
-          attic: ἐξέρχεται
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: γυνὴ, lexeme: gyne, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: γῠνὴ}}, {surface: ἐξέρχεται, lexeme: exerchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐξέρχεται}}]
       reverse: |-
         ἡ γυνὴ ἐξέρχεται
         ἐξέρχεται ἡ γυνή
@@ -627,17 +218,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἥδε ἐξέρχεται.
-      tokens:
-      - surface: ἥδε
-        sense: hode
-        form: form:f
-        readings:
-          attic: ἥδε
-      - surface: ἐξέρχεται
-        sense: exerchomai
-        form: form:pres-3s
-        readings:
-          attic: ἐξέρχεται
+      tokens: [{surface: ἥδε, lexeme: hode, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἥδε}}, {surface: ἐξέρχεται, lexeme: exerchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐξέρχεται}}]
       reverse: |-
         ἥδε ἐξέρχεται
         ἐξέρχεται ἥδε
@@ -650,12 +231,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: Καλονίκη.
-      tokens:
-      - surface: Καλονίκη
-        sense: kalonike
-        form: form:f
-        readings:
-          attic: Κᾰλονῑ́κη
+      tokens: [{surface: Καλονίκη, lexeme: kalonike, feats: {Case: Nom, Number: Sing}, readings: {attic: Κᾰλονῑ́κη}}]
       reverse: Καλονίκη
   translations:
     en: Calonice.
@@ -664,21 +240,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: χαῖρε, ὦ Καλονίκη.
-      tokens:
-      - surface: χαῖρε
-        sense: chairo
-        form: form:impv-2s
-        readings:
-          attic: χαῖρε
-      - surface: ὦ
-        sense: o
-        readings:
-          attic: ὦ
-      - surface: Καλονίκη
-        sense: kalonike
-        form: form:f-voc
-        readings:
-          attic: Κᾰλονῑ́κη
+      tokens: [{surface: χαῖρε, lexeme: chairo, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: χαῖρε}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: Καλονίκη, lexeme: kalonike, feats: {Case: Voc, Number: Sing}, readings: {attic: Κᾰλονῑ́κη}}]
       reverse: |-
         χαῖρε ὦ Καλονίκη
         χαῖρε Καλονίκη
@@ -690,21 +252,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: χαῖρε, ὦ Λυσιστράτη.
-      tokens:
-      - surface: χαῖρε
-        sense: chairo
-        form: form:impv-2s
-        readings:
-          attic: χαῖρε
-      - surface: ὦ
-        sense: o
-        readings:
-          attic: ὦ
-      - surface: Λυσιστράτη
-        sense: lysistrate
-        form: form:f-voc
-        readings:
-          attic: Λῡσῐστρᾰ́τη
+      tokens: [{surface: χαῖρε, lexeme: chairo, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: χαῖρε}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: Λυσιστράτη, lexeme: lysistrate, feats: {Case: Voc, Number: Sing}, readings: {attic: Λῡσῐστρᾰ́τη}}]
       reverse: |-
         χαῖρε ὦ Λυσιστράτη
         χαῖρε Λυσιστράτη
@@ -716,28 +264,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: καὶ σύ γε, ὦ Λυσιστράτη.
-      tokens:
-      - surface: καὶ
-        sense: kai
-        readings:
-          attic: καὶ
-      - surface: σύ
-        sense: sy
-        readings:
-          attic: σῠ́
-      - surface: γε
-        sense: ge
-        readings:
-          attic: γε
-      - surface: ὦ
-        sense: o
-        readings:
-          attic: ὦ
-      - surface: Λυσιστράτη
-        sense: lysistrate
-        form: form:f-voc
-        readings:
-          attic: Λῡσῐστρᾰ́τη
+      tokens: [{surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: σύ, lexeme: sy, feats: {Case: Nom, Number: Sing}, readings: {attic: σῠ́}}, {surface: γε, lexeme: ge, readings: {attic: γε}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: Λυσιστράτη, lexeme: lysistrate, feats: {Case: Voc, Number: Sing}, readings: {attic: Λῡσῐστρᾰ́τη}}]
       reverse: |-
         καὶ σύ γε ὦ Λυσιστράτη
         καὶ σύ γε Λυσιστράτη
@@ -749,36 +276,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἐκ τῆς οἰκίας ἐξέρχεται ἡ Καλονίκη.
-      tokens:
-      - surface: ἐκ
-        sense: ek
-        readings:
-          attic: ἐκ
-      - surface: τῆς
-        sense: ho
-        form: form:f-gen
-        readings:
-          attic: τῆς
-      - surface: οἰκίας
-        sense: oikia
-        form: form:f-gen
-        readings:
-          attic: οἰκῐ́ᾱς
-      - surface: ἐξέρχεται
-        sense: exerchomai
-        form: form:pres-3s
-        readings:
-          attic: ἐξέρχεται
-      - surface: ἡ
-        sense: ho
-        form: form:f
-        readings:
-          attic: ἡ
-      - surface: Καλονίκη
-        sense: kalonike
-        form: form:f
-        readings:
-          attic: Κᾰλονῑ́κη
+      tokens: [{surface: ἐκ, lexeme: ek, n: 1, head: 3, rel: case, readings: {attic: ἐκ}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῆς}}, {surface: οἰκίας, lexeme: oikia, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: οἰκῐ́ᾱς}}, {surface: ἐξέρχεται, lexeme: exerchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐξέρχεται}}, {surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: ἡ}}, {surface: Καλονίκη, lexeme: kalonike, feats: {Case: Nom, Number: Sing}, n: 6, readings: {attic: Κᾰλονῑ́κη}}]
       reverse: |-
         ἐκ τῆς οἰκίας ἐξέρχεται ἡ Καλονίκη
         ἡ Καλονίκη ἐξέρχεται ἐκ τῆς οἰκίας
@@ -791,108 +289,54 @@ sentences:
     en: Calonice is (coming|going) out of the house.
 - id: s.06.25
   node: grc.u06.dont-scowl
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: μὴ σκυθρώπαζε.
-      tokens:
-      - surface: μὴ
-        sense: me
-        readings:
-          attic: μὴ
-      - surface: σκυθρώπαζε
-        sense: skythropazo
-        form: form:impv-2s
-        readings:
-          attic: σκῠθρώπᾰζε
+      tokens: [{surface: μὴ, lexeme: me, readings: {attic: μὴ}}, {surface: σκυθρώπαζε, lexeme: skythropazo, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: σκῠθρώπᾰζε}}]
       reverse: μὴ σκυθρώπαζε
   translations:
     en: (Don't|Do not) (scowl|frown|look so sullen|look so gloomy)!
-  persons:
-    addressee: sg
 - id: s.06.26
   node: grc.u06.dont-scowl
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     grc-Grek/polytonic:
       text: μὴ σκυθρωπάζετε.
-      tokens:
-      - surface: μὴ
-        sense: me
-        readings:
-          attic: μὴ
-      - surface: σκυθρωπάζετε
-        sense: skythropazo
-        form: form:impv-2p
-        readings:
-          attic: σκῠθρωπᾰ́ζετε
+      tokens: [{surface: μὴ, lexeme: me, readings: {attic: μὴ}}, {surface: σκυθρωπάζετε, lexeme: skythropazo, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {attic: σκῠθρωπᾰ́ζετε}}]
       reverse: μὴ σκυθρωπάζετε
   translations:
     en: (Don't|Do not) (scowl|frown|look so sullen|look so gloomy)!
-  persons:
-    addressee: pl
 - id: s.06.27
   node: grc.u06.dont-scowl
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: τί σκυθρωπάζεις;
-      tokens:
-      - surface: τί
-        sense: ti
-        readings:
-          attic: τῐ́
-      - surface: σκυθρωπάζεις
-        sense: skythropazo
-        form: form:pres-2s
-        readings:
-          attic: σκῠθρωπᾰ́ζεις
+      tokens: [{surface: τί, lexeme: ti, readings: {attic: τῐ́}}, {surface: σκυθρωπάζεις, lexeme: skythropazo, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: σκῠθρωπᾰ́ζεις}}]
       reverse: τί σκυθρωπάζεις
   translations:
     en: Why are you (scowling|frowning|looking so sullen|looking so gloomy)?
-  persons:
-    addressee: sg
 - id: s.06.28
   node: grc.u06.dont-scowl
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: τί συντετάραξαι;
-      tokens:
-      - surface: τί
-        sense: ti
-        readings:
-          attic: τῐ́
-      - surface: συντετάραξαι
-        sense: syntaratto
-        form: form:perf-2s
-        readings:
-          attic: σῠντετᾰ́ρᾰξαι
+      tokens: [{surface: τί, lexeme: ti, readings: {attic: τῐ́}}, {surface: συντετάραξαι, lexeme: syntaratto, feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: σῠντετᾰ́ρᾰξαι}}]
       reverse: τί συντετάραξαι
   translations:
     en: (Why are you so upset|Why are you upset|What has upset you|What's upset you|Why are you troubled)?
-  persons:
-    addressee: sg
 - id: s.06.29
   node: grc.u06.dont-scowl
   forms:
     grc-Grek/polytonic:
       text: μὴ σκυθρώπαζε, ὦ τέκνον.
-      tokens:
-      - surface: μὴ
-        sense: me
-        readings:
-          attic: μὴ
-      - surface: σκυθρώπαζε
-        sense: skythropazo
-        form: form:impv-2s
-        readings:
-          attic: σκῠθρώπᾰζε
-      - surface: ὦ
-        sense: o
-        readings:
-          attic: ὦ
-      - surface: τέκνον
-        sense: teknon
-        form: form:n
-        readings:
-          attic: τέκνον
+      tokens: [{surface: μὴ, lexeme: me, readings: {attic: μὴ}}, {surface: σκυθρώπαζε, lexeme: skythropazo, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: σκῠθρώπᾰζε}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: τέκνον, lexeme: teknon, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: τέκνον}}]
       reverse: |-
         μὴ σκυθρώπαζε ὦ τέκνον
         [ὦ] τέκνον μὴ σκυ^θρώπαζε
@@ -901,188 +345,102 @@ sentences:
     en: (Don't|Do not) (scowl|frown|look so sullen|look so gloomy), (child|my child|dear)!
 - id: s.06.30
   node: grc.u06.dont-scowl
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     grc-Grek/polytonic:
       text: μὴ περιμένετε.
-      tokens:
-      - surface: μὴ
-        sense: me
-        readings:
-          attic: μὴ
-      - surface: περιμένετε
-        sense: perimeno
-        form: form:impv-2p
-        readings:
-          attic: περῐμένετε
+      tokens: [{surface: μὴ, lexeme: me, readings: {attic: μὴ}}, {surface: περιμένετε, lexeme: perimeno, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {attic: περῐμένετε}}]
       reverse: μὴ περιμένετε
   translations:
     en: (Don't|Do not) wait!
-  persons:
-    addressee: pl
 - id: s.06.31
   node: grc.u06.dont-scowl
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: μὴ λέγε.
-      tokens:
-      - surface: μὴ
-        sense: me
-        readings:
-          attic: μὴ
-      - surface: λέγε
-        sense: lego
-        form: form:impv-2s
-        readings:
-          attic: λέγε
+      tokens: [{surface: μὴ, lexeme: me, readings: {attic: μὴ}}, {surface: λέγε, lexeme: lego, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: λέγε}}]
       reverse: μὴ λέγε
   translations:
     en: (Don't|Do not) (say it|say that|speak|talk)!
-  persons:
-    addressee: sg
 - id: s.06.32
   node: grc.u06.ready
+  tags:
+  - {persons: {speaker: f}}
   forms:
     grc-Grek/polytonic:
       text: ἑτοίμη εἰμί.
-      tokens:
-      - surface: ἑτοίμη
-        sense: hetoimos
-        form: form:f
-        readings:
-          attic: ἑτοίμη
-      - surface: εἰμί
-        sense: eimi
-        form: form:pres-1s
-        readings:
-          attic: εἰμῐ́
+      tokens: [{surface: ἑτοίμη, lexeme: hetoimos, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἑτοίμη}}, {surface: εἰμί, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ́}}]
       reverse: |-
         ἑτοίμη εἰμί
         εἰμὶ ἑτοίμη
         ἐγὼ ἑτοίμη εἰμί
   translations:
     en: (I am|I'm) ready.
-  persons:
-    speaker: f
 - id: s.06.33
   node: grc.u06.ready
+  tags:
+  - {persons: {speaker: m}}
   forms:
     grc-Grek/polytonic:
       text: ἕτοιμός εἰμι.
-      tokens:
-      - surface: ἕτοιμός
-        sense: hetoimos
-        readings:
-          attic: ἕτοιμός
-      - surface: εἰμι
-        sense: eimi
-        form: form:pres-1s
-        readings:
-          attic: εἰμῐ
+      tokens: [{surface: ἕτοιμός, lexeme: hetoimos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ἕτοιμός}}, {surface: εἰμι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ}}]
       reverse: |-
         ἕτοιμός εἰμι
         εἰμὶ ἕτοιμος
         ἐγὼ ἕτοιμός εἰμι
   translations:
     en: (I am|I'm) ready.
-  persons:
-    speaker: m
 - id: s.06.34
   node: grc.u06.ready
+  tags:
+  - {persons: {addressee: f}}
   forms:
     grc-Grek/polytonic:
       text: ἑτοίμη εἶ;
-      tokens:
-      - surface: ἑτοίμη
-        sense: hetoimos
-        form: form:f
-        readings:
-          attic: ἑτοίμη
-      - surface: εἶ
-        sense: eimi
-        form: form:pres-2s
-        readings:
-          attic: εἶ
+      tokens: [{surface: ἑτοίμη, lexeme: hetoimos, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἑτοίμη}}, {surface: εἶ, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: εἶ}}]
       reverse: |-
         ἑτοίμη εἶ
         ἆρα ἑτοίμη εἶ
         σὺ ἑτοίμη εἶ
   translations:
     en: Are you ready?
-  persons:
-    addressee: f
 - id: s.06.35
   node: grc.u06.ready
+  tags:
+  - {persons: {addressee: m}}
   forms:
     grc-Grek/polytonic:
       text: ἕτοιμος εἶ;
-      tokens:
-      - surface: ἕτοιμος
-        sense: hetoimos
-        readings:
-          attic: ἕτοιμος
-      - surface: εἶ
-        sense: eimi
-        form: form:pres-2s
-        readings:
-          attic: εἶ
+      tokens: [{surface: ἕτοιμος, lexeme: hetoimos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ἕτοιμος}}, {surface: εἶ, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: εἶ}}]
       reverse: |-
         ἕτοιμος εἶ
         ἆρα ἕτοιμος εἶ
         σὺ ἕτοιμος εἶ
   translations:
     en: Are you ready?
-  persons:
-    addressee: m
 - id: s.06.36
   node: grc.u06.ready
+  tags:
+  - {persons: {speaker: f}}
   forms:
     grc-Grek/polytonic:
       text: ἕτοιμαί ἐσμεν.
-      tokens:
-      - surface: ἕτοιμαί
-        sense: hetoimos
-        form: form:f-pl
-        readings:
-          attic: ἕτοιμαί
-      - surface: ἐσμεν
-        sense: eimi
-        form: form:pres-1p
-        readings:
-          attic: ἐσμεν
+      tokens: [{surface: ἕτοιμαί, lexeme: hetoimos, feats: {Case: 'Nom,Voc', Gender: Fem, Number: Plur}, readings: {attic: ἕτοιμαί}}, {surface: ἐσμεν, lexeme: eimi, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐσμεν}}]
       reverse: |-
         ἕτοιμαί ἐσμεν
         ἐσμὲν ἕτοιμαι
         ἡμεῖς ἕτοιμαί ἐσμεν
   translations:
     en: We are ready.
-  persons:
-    speaker: f
 - id: s.06.37
   node: grc.u06.ready
   forms:
     grc-Grek/polytonic:
       text: αἱ γυναῖκες ἕτοιμαί εἰσιν.
-      tokens:
-      - surface: αἱ
-        sense: ho
-        form: form:f-pl
-        readings:
-          attic: αἱ
-      - surface: γυναῖκες
-        sense: gyne
-        form: form:f-pl
-        readings:
-          attic: γῠναῖκες
-      - surface: ἕτοιμαί
-        sense: hetoimos
-        form: form:f-pl
-        readings:
-          attic: ἕτοιμαί
-      - surface: εἰσιν
-        sense: eimi
-        form: form:pres-3p
-        readings:
-          attic: εἰσῐν
+      tokens: [{surface: αἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Fem, Number: Plur}, n: 1, head: 2, rel: det, readings: {attic: αἱ}}, {surface: γυναῖκες, lexeme: gyne, feats: {Case: 'Nom,Voc', Number: Plur}, n: 2, readings: {attic: γῠναῖκες}}, {surface: ἕτοιμαί, lexeme: hetoimos, feats: {Case: 'Nom,Voc', Gender: Fem, Number: Plur}, n: 3, head: 2, rel: amod, readings: {attic: ἕτοιμαί}}, {surface: εἰσιν, lexeme: eimi, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰσῐν}}]
       reverse: |-
         αἱ γυναῖκες ἕτοιμαί εἰσιν
         ἕτοιμαί εἰσι[ν] αἱ γυναῖκες
@@ -1091,20 +449,12 @@ sentences:
     en: The (women|wives) are ready.
 - id: s.06.38
   node: grc.u06.ready
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     grc-Grek/polytonic:
       text: ἕτοιμοί ἐστε;
-      tokens:
-      - surface: ἕτοιμοί
-        sense: hetoimos
-        form: form:pl
-        readings:
-          attic: ἕτοιμοί
-      - surface: ἐστε
-        sense: eimi
-        form: form:pres-2p
-        readings:
-          attic: ἐστε
+      tokens: [{surface: ἕτοιμοί, lexeme: hetoimos, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: ἕτοιμοί}}, {surface: ἐστε, lexeme: eimi, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστε}}]
       reverse: |-
         ἕτοιμοί ἐστε
         ἕτοιμαί ἐστε
@@ -1114,8 +464,6 @@ sentences:
         ὑμεῖς ἕτοιμαί ἐστε
   translations:
     en: Are you ready?
-  persons:
-    addressee: pl
 stories:
 - id: grc.story.not-one-woman
   node: grc.u06.story
@@ -1132,41 +480,14 @@ stories:
   - line:
       speaker: lysistrate
       ask: complete
-      gap: sense:gyne
+      gap: lexeme:gyne
       distractors:
-      - sense:glotta
-      - sense:nyx
+      - lexeme:glotta
+      - lexeme:nyx
       forms:
         grc-Grek/polytonic:
           text: νῦν δ’ οὐδεμία πάρεστιν ἐνταυθοῖ γυνή·
-          tokens:
-          - surface: νῦν
-            sense: nyn
-            readings:
-              attic: νῦν
-          - surface: δ’
-            sense: de
-            readings:
-              attic: δ’
-          - surface: οὐδεμία
-            sense: oudeis
-            form: form:f
-            readings:
-              attic: οὐδεμῐ́ᾰ
-          - surface: πάρεστιν
-            sense: pareimi
-            form: form:pres-3s
-            readings:
-              attic: πᾰ́ρεστῐν
-          - surface: ἐνταυθοῖ
-            sense: entautha
-            readings:
-              attic: ἐνταυθοῖ
-          - surface: γυνή
-            sense: gyne
-            form: form:f
-            readings:
-              attic: γῠνή
+          tokens: [{surface: νῦν, lexeme: nyn, readings: {attic: νῦν}}, {surface: δ’, lexeme: de, readings: {attic: δ’}}, {surface: οὐδεμία, lexeme: oudeis, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: οὐδεμῐ́ᾰ}}, {surface: πάρεστιν, lexeme: pareimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: πᾰ́ρεστῐν}}, {surface: ἐνταυθοῖ, lexeme: entautha, readings: {attic: ἐνταυθοῖ}}, {surface: γυνή, lexeme: gyne, feats: {Case: Nom, Number: Sing}, readings: {attic: γῠνή}}]
       translations:
         en: “But now there is not one woman here,
   - line:
@@ -1174,40 +495,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: πλὴν ἥ γ’ ἐμὴ κωμῆτις ἥδ’ ἐξέρχεται.
-          tokens:
-          - surface: πλὴν
-            sense: plen
-            readings:
-              attic: πλὴν
-          - surface: ἥ
-            sense: ho
-            form: form:f
-            readings:
-              attic: ἥ
-          - surface: γ’
-            sense: ge
-            readings:
-              attic: γ’
-          - surface: ἐμὴ
-            sense: emos
-            form: form:f
-            readings:
-              attic: ἐμὴ
-          - surface: κωμῆτις
-            sense: kometis
-            form: form:f
-            readings:
-              attic: κωμῆτῐς
-          - surface: ἥδ’
-            sense: hode
-            form: form:f
-            readings:
-              attic: ἥδ’
-          - surface: ἐξέρχεται
-            sense: exerchomai
-            form: form:pres-3s
-            readings:
-              attic: ἐξέρχεται
+          tokens: [{surface: πλὴν, lexeme: plen, n: 1, head: 5, rel: case, readings: {attic: πλὴν}}, {surface: ἥ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 2, head: 5, rel: det, readings: {attic: ἥ}}, {surface: γ’, lexeme: ge, readings: {attic: γ’}}, {surface: ἐμὴ, lexeme: emos, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det, readings: {attic: ἐμὴ}}, {surface: κωμῆτις, lexeme: kometis, feats: {Case: Nom, Number: Sing}, n: 5, readings: {attic: κωμῆτῐς}}, {surface: ἥδ’, lexeme: hode, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: ἥδ’}}, {surface: ἐξέρχεται, lexeme: exerchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐξέρχεται}}]
       translations:
         en: 'except my neighbour: here she comes out.'
   - choose:
@@ -1223,21 +511,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: χαῖρ’ ὦ Καλονίκη.
-          tokens:
-          - surface: χαῖρ’
-            sense: chairo
-            form: form:impv-2s
-            readings:
-              attic: χαῖρ’
-          - surface: ὦ
-            sense: o
-            readings:
-              attic: ὦ
-          - surface: Καλονίκη
-            sense: kalonike
-            form: form:f-voc
-            readings:
-              attic: Κᾰλονῑ́κη
+          tokens: [{surface: χαῖρ’, lexeme: chairo, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: χαῖρ’}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: Καλονίκη, lexeme: kalonike, feats: {Case: Voc, Number: Sing}, readings: {attic: Κᾰλονῑ́κη}}]
       translations:
         en: Hello, Calonice.”
   - line:
@@ -1246,28 +520,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: καὶ σύ γ’ ὦ Λυσιστράτη.
-          tokens:
-          - surface: καὶ
-            sense: kai
-            readings:
-              attic: καὶ
-          - surface: σύ
-            sense: sy
-            readings:
-              attic: σῠ́
-          - surface: γ’
-            sense: ge
-            readings:
-              attic: γ’
-          - surface: ὦ
-            sense: o
-            readings:
-              attic: ὦ
-          - surface: Λυσιστράτη
-            sense: lysistrate
-            form: form:f-voc
-            readings:
-              attic: Λῡσῐστρᾰ́τη
+          tokens: [{surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: σύ, lexeme: sy, feats: {Case: Nom, Number: Sing}, readings: {attic: σῠ́}}, {surface: γ’, lexeme: ge, readings: {attic: γ’}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: Λυσιστράτη, lexeme: lysistrate, feats: {Case: Voc, Number: Sing}, readings: {attic: Λῡσῐστρᾰ́τη}}]
       translations:
         en: “Hello to you too, Lysistrata.
   - line:
@@ -1275,34 +528,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: τί συντετάραξαι; μὴ σκυθρώπαζ’ ὦ τέκνον.
-          tokens:
-          - surface: τί
-            sense: ti
-            readings:
-              attic: τῐ́
-          - surface: συντετάραξαι
-            sense: syntaratto
-            form: form:perf-2s
-            readings:
-              attic: σῠντετᾰ́ρᾰξαι
-          - surface: μὴ
-            sense: me
-            readings:
-              attic: μὴ
-          - surface: σκυθρώπαζ’
-            sense: skythropazo
-            form: form:impv-2s
-            readings:
-              attic: σκῠθρώπᾰζ’
-          - surface: ὦ
-            sense: o
-            readings:
-              attic: ὦ
-          - surface: τέκνον
-            sense: teknon
-            form: form:n
-            readings:
-              attic: τέκνον
+          tokens: [{surface: τί, lexeme: ti, readings: {attic: τῐ́}}, {surface: συντετάραξαι, lexeme: syntaratto, feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: σῠντετᾰ́ρᾰξαι}}, {surface: μὴ, lexeme: me, readings: {attic: μὴ}}, {surface: σκυθρώπαζ’, lexeme: skythropazo, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: σκῠθρώπᾰζ’}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: τέκνον, lexeme: teknon, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, readings: {attic: τέκνον}}]
       translations:
         en: What has upset you? Don't scowl, child.”
   - choose:

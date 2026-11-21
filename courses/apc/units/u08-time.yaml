@@ -2,56 +2,30 @@
 # hal- (this: hal jem3a), telling the time (el sa3a tlete w nos), before and after, holidays.
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
 id: u08-time
-title: {en: Days and times}
+title:
+  en: Days and times
 cefr: A2
-kcs:
-- {id: 'sense:bukra', pos: ADV, gloss: {en: tomorrow}, forms: {apc-Arab/standard: [بكرا], apc-Latn/arabizi: [bukra]}}
-- {id: 'sense:emta', pos: ADV, features: {PronType: Int}, gloss: {en: when}, forms: {apc-Arab/standard: [إمتى], apc-Latn/arabizi: [emta]}}
-- {id: 'sense:sawa', pos: ADV, gloss: {en: together}, forms: {apc-Arab/standard: [سوا], apc-Latn/arabizi: [sawa]}}
-- {id: 'sense:fadi', pos: ADJ, gloss: {en: free (not busy)}, forms: {apc-Arab/standard: [فاضي], apc-Latn/arabizi: [fadi]}}
-- {id: 'sense:mashghoul', pos: ADJ, gloss: {en: busy}, forms: {apc-Arab/standard: [مشغول], apc-Latn/arabizi: [mashghoul]}}
-- {id: 'sense:nhar', pos: NOUN, gloss: {en: day; daytime}, forms: {apc-Arab/standard: [نهار], apc-Latn/arabizi: [nhar]}, notes: {en: 'nhar el sabt: (on) Saturday.'}}
-- {id: 'sense:sabt', pos: NOUN, gloss: {en: Saturday}, forms: {apc-Arab/standard: [سبت], apc-Latn/arabizi: [sabt]}, notes: {en: 'el sabt, nhar el sabt: (on) Saturday.'}}
-- {id: 'sense:a7ad', pos: NOUN, gloss: {en: Sunday}, forms: {apc-Arab/standard: [أحد], apc-Latn/arabizi: [a7ad]}}
-- {id: 'sense:jem3a', pos: NOUN, gloss: {en: Friday; week}, forms: {apc-Arab/standard: [جمعة], apc-Latn/arabizi: [jem3a]}, notes: {en: 'el jem3a: Friday; hal jem3a: this week.'}}
-- {id: 'sense:hal', pos: DET, features: {PronType: Dem}, gloss: {en: this (joined to a noun)}, forms: {apc-Latn/arabizi: [hal]}, notes: {en: 'Written joined in Arabic script: هالجمعة, this week.'}}
-- {id: 'sense:khamis', pos: NOUN, gloss: {en: Thursday}, forms: {apc-Arab/standard: [خميس], apc-Latn/arabizi: [khamis]}}
-- {id: 'sense:sa3a', pos: NOUN, gloss: {en: hour; o'clock; watch}, forms: {apc-Arab/standard: [ساعة], apc-Latn/arabizi: [sa3a]}, notes: {en: '2addesh el sa3a? What time is it? el sa3a tlete: it''s three o''clock.'}}
-- {id: 'sense:nos', pos: NOUN, gloss: {en: half}, forms: {apc-Arab/standard: [نصّ], apc-Latn/arabizi: [nos]}, notes: {en: 'w nos: and a half (half past).'}}
-- {id: 'sense:rebe3', pos: NOUN, gloss: {en: quarter}, forms: {apc-Arab/standard: [ربع], apc-Latn/arabizi: [rebe3]}, notes: {en: 'w rebe3: and a quarter (quarter past).'}}
-- {id: 'sense:da2i2a', pos: NOUN, gloss: {en: minute}, forms: {apc-Arab/standard: [دقيقة], apc-Latn/arabizi: [da2i2a]}}
-- {id: 'sense:stanna', pos: VERB, gloss: {en: wait (to a man)}, forms: {apc-Arab/standard: [استنّى], apc-Latn/arabizi: [stanna]}, notes: {en: 'To a woman: استنّي, stanne.'}}
-- {id: 'sense:2abel', pos: ADP, gloss: {en: before}, forms: {apc-Arab/standard: [قبل], apc-Latn/arabizi: [2abel]}}
-- {id: 'sense:dohr', pos: NOUN, gloss: {en: noon; midday}, forms: {apc-Arab/standard: [ضهر], apc-Latn/arabizi: [dohr]}, notes: {en: '3al dohr: at noon; ba3d el dohr: in the afternoon.'}}
-- {id: 'sense:ba3d', pos: ADP, gloss: {en: after}, forms: {apc-Arab/standard: [بعد], apc-Latn/arabizi: [ba3d]}}
-- {id: 'sense:lel', pos: NOUN, gloss: {en: night}, forms: {apc-Arab/standard: [ليل], apc-Latn/arabizi: [lel]}, notes: {en: 'bel lel: at night.'}}
-- {id: 'sense:3otle', pos: NOUN, gloss: {en: holiday; day off}, forms: {apc-Arab/standard: [عطلة], apc-Latn/arabizi: [3otle]}}
-- {id: 'sense:kam', pos: DET, features: {PronType: Int}, gloss: {en: how many; a few}, forms: {apc-Arab/standard: [كم], apc-Latn/arabizi: [kam]}}
-- {id: 'sense:shahr', pos: NOUN, gloss: {en: month}, forms: {apc-Arab/standard: [شهر], apc-Latn/arabizi: [shahr]}}
 nodes:
-- {id: apc.time.when, kind: lesson, introduces: ['sense:bukra', 'sense:emta', 'sense:sawa', 'sense:fadi', 'sense:mashghoul']}
-- {id: apc.time.days, kind: lesson, introduces: ['sense:nhar', 'sense:sabt', 'sense:a7ad', 'sense:jem3a', 'sense:hal', 'sense:khamis']}
-- {id: apc.time.clock, kind: lesson, introduces: ['sense:sa3a', 'sense:nos', 'sense:rebe3', 'sense:da2i2a', 'sense:stanna']}
-- {id: apc.time.day-parts, kind: lesson, introduces: ['sense:2abel', 'sense:dohr', 'sense:ba3d', 'sense:lel']}
-- {id: apc.time.calendar, kind: lesson, introduces: ['sense:3otle', 'sense:kam', 'sense:shahr']}
+- {id: apc.time.when, kind: lesson, introduces: ['lexeme:bukra', 'lexeme:emta', 'lexeme:sawa', 'lexeme:fadi', 'lexeme:mashghoul']}
+- {id: apc.time.days, kind: lesson, introduces: ['lexeme:nhar', 'lexeme:sabt', 'lexeme:a7ad', 'lexeme:jem3a', 'lexeme:hal', 'lexeme:khamis']}
+- {id: apc.time.clock, kind: lesson, introduces: ['lexeme:sa3a', 'lexeme:nos', 'lexeme:rebe3', 'lexeme:da2i2a', 'lexeme:stanna']}
+- {id: apc.time.day-parts, kind: lesson, introduces: ['lexeme:2abel', 'lexeme:dohr', 'lexeme:ba3d', 'lexeme:lel']}
+- {id: apc.time.calendar, kind: lesson, introduces: ['lexeme:3otle', 'lexeme:kam', 'lexeme:shahr']}
 - {id: apc.time.story, kind: story}
 sentences:
 - id: s.time.1
   node: apc.time.when
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: بكرا منروح عالبحر.
-      tokens: [{surface: بكرا, sense: bukra}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {
-              surface: بحر, kc: 'sense:ba7r'}]}]
+      tokens: [{surface: بكرا, lexeme: bukra}, {surface: منروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: عالبحر, lexemes: [{lexeme: 3a, surface: ع, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: ba7r, surface: بحر, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: |-
         (بكرا|بكرة) منروح (عالبحر|ع البحر|على البحر)
         منروح عالبحر بكرا
         بكرا رح نروح عالبحر
     apc-Latn/arabizi:
       text: bukra mnru7 3al ba7r.
-      tokens: [{surface: bukra, sense: bukra}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r,
-          sense: ba7r}]
+      tokens: [{surface: bukra, lexeme: bukra}, {surface: mnru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 5}]
       reverse: |-
         (bukra|bokra|bukrah) (mnru7|mnrou7|mnro7) (3al|3a l|3a el) (ba7r|ba7er|bahr)
         mnru7 3al ba7r bukra
@@ -63,20 +37,18 @@ sentences:
       Tomorrow we('ll| will) go to the (beach|sea).
 - id: s.time.2
   node: apc.time.when
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: إمتى بتروح عالشغل؟
-      tokens: [{surface: إمتى, sense: emta}, {surface: بتروح, sense: ra7, form: 'form:impf-2ms'}, {surface: عالشغل, sense: shoghl, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {
-              surface: شغل, kc: 'sense:shoghl'}]}]
+      tokens: [{surface: إمتى, lexeme: emta}, {surface: بتروح, lexeme: ra7, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: عالشغل, lexemes: [{lexeme: 3a, surface: ع, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: |-
         (إمتى|امتى) بتروح (عالشغل|ع الشغل|على الشغل)
         إنت (إمتى|امتى) بتروح (عالشغل|ع الشغل|على الشغل)
     apc-Latn/arabizi:
       text: emta btru7 3al shoghl?
-      tokens: [{surface: emta, sense: emta}, {surface: btru7, sense: ra7, form: 'form:impf-2ms'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: shoghl,
-          sense: shoghl}]
+      tokens: [{surface: emta, lexeme: emta}, {surface: btru7, lexeme: ra7, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}, n: 5}]
       reverse: |-
         (emta|imta|emtah) (btru7|btrou7|btro7) (3al|3a l|3a el) (shoghl|shoghol|sho8l|shughl)
         enta emta btru7 3al shoghl
@@ -87,15 +59,14 @@ sentences:
       When does she go to work?
 - id: s.time.3
   node: apc.time.when
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: منروح سوا؟
-      tokens: [{surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: سوا, sense: sawa}]
+      tokens: [{surface: منروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: سوا, lexeme: sawa}]
       reverse: منروح سوا
     apc-Latn/arabizi:
       text: mnru7 sawa?
-      tokens: [{surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: sawa, sense: sawa}]
+      tokens: [{surface: mnru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: sawa, lexeme: sawa}]
       reverse: (mnru7|mnrou7|mnro7) (sawa|sawe)
   translations:
     en: |-
@@ -104,19 +75,19 @@ sentences:
       Are we going together?
 - id: s.time.4
   node: apc.time.when
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: إنت فاضي بكرا؟
-      tokens: [{surface: إنت, sense: enta}, {surface: فاضي, sense: fadi}, {surface: بكرا, sense: bukra}]
+      tokens: [{surface: إنت, lexeme: enta}, {surface: فاضي, lexeme: fadi, feats: {Gender: Masc, Number: Sing}}, {surface: بكرا, lexeme: bukra}]
       reverse: |-
         [إنت] فاضي (بكرا|بكرة)
         بكرا إنت فاضي
         بكرا فاضي
     apc-Latn/arabizi:
       text: enta fadi bukra?
-      tokens: [{surface: enta, sense: enta}, {surface: fadi, sense: fadi}, {surface: bukra, sense: bukra}]
+      tokens: [{surface: enta, lexeme: enta}, {surface: fadi, lexeme: fadi, feats: {Gender: Masc, Number: Sing}}, {surface: bukra, lexeme: bukra}]
       reverse: |-
         [(enta|inta)] (fadi|fade) (bukra|bokra|bukrah)
         bukra enta fadi
@@ -125,19 +96,19 @@ sentences:
     en: Are you free tomorrow?
 - id: s.time.5
   node: apc.time.when
-  register: colloquial
-  persons: {speaker: m}
+  tags:
+  - {persons: {speaker: m}}
   forms:
     apc-Arab/standard:
       text: لأ، أنا مشغول بكرا.
-      tokens: [{surface: لأ, sense: la2}, {surface: أنا, sense: ana}, {surface: مشغول, sense: mashghoul}, {surface: بكرا, sense: bukra}]
+      tokens: [{surface: لأ, lexeme: la2}, {surface: أنا, lexeme: ana}, {surface: مشغول, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}}, {surface: بكرا, lexeme: bukra}]
       reverse: |-
         (لأ|لا) [أنا] مشغول (بكرا|بكرة)
         لأ بكرا أنا مشغول
         لأ بكرا مشغول
     apc-Latn/arabizi:
       text: la2, ana mashghoul bukra.
-      tokens: [{surface: la2, sense: la2}, {surface: ana, sense: ana}, {surface: mashghoul, sense: mashghoul}, {surface: bukra, sense: bukra}]
+      tokens: [{surface: la2, lexeme: la2}, {surface: ana, lexeme: ana}, {surface: mashghoul, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}}, {surface: bukra, lexeme: bukra}]
       reverse: |-
         (la2|la) [ana] (mashghoul|mash8oul|mashghol) (bukra|bokra|bukrah)
         la2 bukra ana mashghoul
@@ -146,19 +117,17 @@ sentences:
     en: No, I('m| am) busy tomorrow.
 - id: s.time.6
   node: apc.time.days
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: كلّ نهار بشرب قهوة مع تيتا.
-      tokens: [{surface: كلّ, sense: kell}, {surface: نهار, sense: nhar}, {surface: بشرب, sense: shereb, form: 'form:impf-1sg'}, {surface: قهوة, sense: ahwe, form: 'form:fem'}, {surface: مع, sense: ma3}, {surface: تيتا, sense: teta, form: 'form:fem'}]
+      tokens: [{surface: كلّ, lexeme: kell, n: 1, head: 2, rel: det}, {surface: نهار, lexeme: nhar, feats: {Number: Sing}, n: 2}, {surface: بشرب, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: مع, lexeme: ma3, n: 5, head: 6, rel: case}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}, n: 6}]
       reverse: |-
         كلّ (نهار|يوم) بشرب قهوة مع تيتا
         بشرب قهوة مع تيتا كلّ (نهار|يوم)
         أنا بشرب قهوة مع تيتا كلّ يوم
     apc-Latn/arabizi:
       text: kell nhar bishrab ahwe ma3 teta.
-      tokens: [{surface: kell, sense: kell}, {surface: nhar, sense: nhar}, {surface: bishrab, sense: shereb, form: 'form:impf-1sg'}, {surface: ahwe, sense: ahwe, form: 'form:fem'}, {surface: ma3, sense: ma3}, {surface: teta,
-          sense: teta, form: 'form:fem'}]
+      tokens: [{surface: kell, lexeme: kell, n: 1, head: 2, rel: det}, {surface: nhar, lexeme: nhar, feats: {Number: Sing}, n: 2}, {surface: bishrab, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: ma3, lexeme: ma3, n: 5, head: 6, rel: case}, {surface: teta, lexeme: teta, feats: {Number: Sing}, n: 6}]
       reverse: |-
         (kell|kil|kel|kull) (nhar|nehar|yom) (bishrab|beshrab|bshrab) (ahwe|2ahwe) (ma3|ma3a) (teta|tayta)
         (bishrab|beshrab|bshrab) (ahwe|2ahwe) (ma3|ma3a) (teta|tayta) (kell|kil|kel|kull) (nhar|nehar|yom)
@@ -170,19 +139,19 @@ sentences:
       Every day I drink coffee with my grandma.
 - id: s.time.7
   node: apc.time.days
-  register: colloquial
-  persons: {speaker: m}
+  tags:
+  - {persons: {speaker: m}}
   forms:
     apc-Arab/standard:
       text: أنا فاضي نهار السبت.
-      tokens: [{surface: أنا, sense: ana}, {surface: فاضي, sense: fadi}, {surface: نهار, sense: nhar}, {surface: السبت, sense: sabt, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سبت, kc: 'sense:sabt'}]}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: فاضي, lexeme: fadi, feats: {Gender: Masc, Number: Sing}}, {surface: نهار, lexeme: nhar, feats: {Number: Sing}}, {surface: السبت, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: sabt, surface: سبت, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: |-
         [أنا] فاضي نهار السبت
         أنا فاضي السبت
         نهار السبت أنا فاضي
     apc-Latn/arabizi:
       text: ana fadi nhar el sabt.
-      tokens: [{surface: ana, sense: ana}, {surface: fadi, sense: fadi}, {surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: sabt, sense: sabt}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: fadi, lexeme: fadi, feats: {Gender: Masc, Number: Sing}}, {surface: nhar, lexeme: nhar, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: sabt, lexeme: sabt, feats: {Number: Sing}, n: 5}]
       reverse: |-
         [ana] (fadi|fade) (nhar|nehar) (el|l|il) (sabt|sabet)
         ana fadi el sabt
@@ -191,20 +160,17 @@ sentences:
     en: I('m| am) free on Saturday.
 - id: s.time.8
   node: apc.time.days
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: نهار الأحد مناكل عند تيتا.
-      tokens: [{surface: نهار, sense: nhar}, {surface: الأحد, sense: a7ad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أحد, kc: 'sense:a7ad'}]}, {surface: مناكل, sense: akal, form: 'form:impf-1pl'},
-        {surface: عند, sense: 3end}, {surface: تيتا, sense: teta, form: 'form:fem'}]
+      tokens: [{surface: نهار, lexeme: nhar, feats: {Number: Sing}}, {surface: الأحد, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: a7ad, surface: أحد, base: true, feats: {Number: Sing}, n: 3}]}, {surface: مناكل, lexeme: akal, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: عند, lexeme: 3end, n: 5, head: 6, rel: case}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}, n: 6}]
       reverse: |-
         نهار (الأحد|الاحد) مناكل عند تيتا
         الأحد مناكل عند تيتا
         مناكل عند تيتا نهار الأحد
     apc-Latn/arabizi:
       text: nhar el a7ad mnekol 3end teta.
-      tokens: [{surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: a7ad, sense: a7ad}, {surface: mnekol, sense: akal, form: 'form:impf-1pl'}, {surface: 3end, sense: 3end}, {surface: teta,
-          sense: teta, form: 'form:fem'}]
+      tokens: [{surface: nhar, lexeme: nhar, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}, n: 3}, {surface: mnekol, lexeme: akal, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: 3end, lexeme: 3end, n: 5, head: 6, rel: case}, {surface: teta, lexeme: teta, feats: {Number: Sing}, n: 6}]
       reverse: |-
         (nhar|nehar) (el|l|il) (a7ad|ahad|2a7ad) (mnekol|mnakol) (3end|3and|3ind) (teta|tayta)
         el a7ad mnekol 3end teta
@@ -216,18 +182,17 @@ sentences:
       On Sunday we eat at my grandma's.
 - id: s.time.9
   node: apc.time.days
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: نهار الجمعة بشتغل.
-      tokens: [{surface: نهار, sense: nhar}, {surface: الجمعة, sense: jem3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: بشتغل, sense: eshteghel, form: 'form:impf-1sg'}]
+      tokens: [{surface: نهار, lexeme: nhar, feats: {Number: Sing}}, {surface: الجمعة, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: jem3a, surface: جمعة, base: true, feats: {Number: Sing}, n: 3}]}, {surface: بشتغل, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]
       reverse: |-
         نهار الجمعة بشتغل
         بشتغل نهار الجمعة
         نهار الجمعة أنا بشتغل
     apc-Latn/arabizi:
       text: nhar el jem3a bishteghel.
-      tokens: [{surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: jem3a, sense: jem3a, form: 'form:fem'}, {surface: bishteghel, sense: eshteghel, form: 'form:impf-1sg'}]
+      tokens: [{surface: nhar, lexeme: nhar, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: jem3a, lexeme: jem3a, feats: {Number: Sing}, n: 3}, {surface: bishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]
       reverse: |-
         (nhar|nehar) (el|l|il) (jem3a|jum3a|jim3a) (bishteghel|beshteghel|bishtighil)
         bishteghel nhar el jem3a
@@ -238,19 +203,19 @@ sentences:
       I work on (Friday|Fridays).
 - id: s.time.10
   node: apc.time.days
-  register: colloquial
-  persons: {speaker: m}
+  tags:
+  - {persons: {speaker: m}}
   forms:
     apc-Arab/standard:
       text: هالجمعة أنا مشغول.
-      tokens: [{surface: هالجمعة, sense: jem3a, form: 'form:fem', morphs: [{surface: هال, kc: 'sense:hal'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: أنا, sense: ana}, {surface: مشغول, sense: mashghoul}]
+      tokens: [{surface: هالجمعة, lexemes: [{lexeme: hal, surface: هال, n: 1, head: 2, rel: det}, {lexeme: jem3a, surface: جمعة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: أنا, lexeme: ana}, {surface: مشغول, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}}]
       reverse: |-
         هالجمعة [أنا] مشغول
         أنا مشغول هالجمعة
         مشغول هالجمعة
     apc-Latn/arabizi:
       text: hal jem3a ana mashghoul.
-      tokens: [{surface: hal, sense: hal}, {surface: jem3a, sense: jem3a, form: 'form:fem'}, {surface: ana, sense: ana}, {surface: mashghoul, sense: mashghoul}]
+      tokens: [{surface: hal, lexeme: hal, n: 1, head: 2, rel: det}, {surface: jem3a, lexeme: jem3a, feats: {Number: Sing}, n: 2}, {surface: ana, lexeme: ana}, {surface: mashghoul, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}}]
       reverse: |-
         (hal|hel) (jem3a|jum3a|jim3a) [ana] (mashghoul|mash8oul|mashghol)
         ana mashghoul hal jem3a
@@ -261,18 +226,17 @@ sentences:
       I('m| am) busy this week.
 - id: s.time.11
   node: apc.time.days
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: الخميس منشوف فيلم.
-      tokens: [{surface: الخميس, sense: khamis, morphs: [{surface: ال, kc: 'sense:el'}, {surface: خميس, kc: 'sense:khamis'}]}, {surface: منشوف, sense: shef, form: 'form:impf-1pl'}, {surface: فيلم, sense: film}]
+      tokens: [{surface: الخميس, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: khamis, surface: خميس, base: true, feats: {Number: Sing}, n: 2}]}, {surface: منشوف, lexeme: shef, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: فيلم, lexeme: film, feats: {Number: Sing}}]
       reverse: |-
         (الخميس|نهار الخميس) منشوف (فيلم|فلم)
         منشوف فيلم الخميس
         منشوف فيلم نهار الخميس
     apc-Latn/arabizi:
       text: el khamis mnshuf film.
-      tokens: [{surface: el, sense: el}, {surface: khamis, sense: khamis}, {surface: mnshuf, sense: shef, form: 'form:impf-1pl'}, {surface: film, sense: film}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: khamis, lexeme: khamis, feats: {Number: Sing}, n: 2}, {surface: mnshuf, lexeme: shef, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: film, lexeme: film, feats: {Number: Sing}}]
       reverse: |-
         ((el|l|il)|nhar (el|l|il)) (khamis|5amis|khamees) (mnshuf|mnshouf) (film|filem)
         mnshuf film el khamis
@@ -283,15 +247,14 @@ sentences:
       On Thursday we('ll| will) (watch|see) a (film|movie).
 - id: s.time.12
   node: apc.time.clock
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: قدّيش الساعة؟
-      tokens: [{surface: قدّيش, sense: 2addesh}, {surface: الساعة, sense: sa3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}]
+      tokens: [{surface: قدّيش, lexeme: 2addesh}, {surface: الساعة, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: sa3a, surface: ساعة, base: true, feats: {Number: Sing}, n: 3}]}]
       reverse: (قدّيش|أدّيش) الساعة
     apc-Latn/arabizi:
       text: 2addesh el sa3a?
-      tokens: [{surface: 2addesh, sense: 2addesh}, {surface: el, sense: el}, {surface: sa3a, sense: sa3a, form: 'form:fem'}]
+      tokens: [{surface: 2addesh, lexeme: 2addesh}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: sa3a, lexeme: sa3a, feats: {Number: Sing}, n: 3}]
       reverse: (2addesh|addesh|2adesh|2addeish) (el|l|il) (sa3a|se3a|saa3a)
   translations:
     en: |-
@@ -299,15 +262,14 @@ sentences:
       What's the time?
 - id: s.time.13
   node: apc.time.clock
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: الساعة تلاتة.
-      tokens: [{surface: الساعة, sense: sa3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}, {surface: تلاتة, sense: tlete}]
+      tokens: [{surface: الساعة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: sa3a, surface: ساعة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: تلاتة, lexeme: tlete}]
       reverse: الساعة تلاتة
     apc-Latn/arabizi:
       text: el sa3a tlete.
-      tokens: [{surface: el, sense: el}, {surface: sa3a, sense: sa3a, form: 'form:fem'}, {surface: tlete, sense: tlete}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: sa3a, lexeme: sa3a, feats: {Number: Sing}, n: 2}, {surface: tlete, lexeme: tlete}]
       reverse: (el|l|il) (sa3a|se3a|saa3a) (tlete|tleti|tlate|tlata)
   translations:
     en: |-
@@ -317,16 +279,14 @@ sentences:
       It's 3 o'clock.
 - id: s.time.14
   node: apc.time.clock
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: الساعة خمسة ونصّ.
-      tokens: [{surface: الساعة, sense: sa3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}, {surface: خمسة, sense: khamse}, {surface: ونصّ, sense: nos, morphs: [{surface: و,
-              kc: 'sense:w'}, {surface: نصّ, kc: 'sense:nos'}]}]
+      tokens: [{surface: الساعة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: sa3a, surface: ساعة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: خمسة, lexeme: khamse}, {surface: ونصّ, lexemes: [{lexeme: w, surface: و}, {lexeme: nos, surface: نصّ, base: true, feats: {Number: Sing}}]}]
       reverse: الساعة خمسة (ونصّ|و نصّ)
     apc-Latn/arabizi:
       text: el sa3a khamse w nos.
-      tokens: [{surface: el, sense: el}, {surface: sa3a, sense: sa3a, form: 'form:fem'}, {surface: khamse, sense: khamse}, {surface: w, sense: w}, {surface: nos, sense: nos}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: sa3a, lexeme: sa3a, feats: {Number: Sing}, n: 2}, {surface: khamse, lexeme: khamse}, {surface: w, lexeme: w}, {surface: nos, lexeme: nos, feats: {Number: Sing}}]
       reverse: (el|l|il) (sa3a|se3a|saa3a) (khamse|khamsi|5amse|khamsa) (w|wa) (nos|noss|nus)
   translations:
     en: |-
@@ -337,16 +297,14 @@ sentences:
       It's five-thirty.
 - id: s.time.15
   node: apc.time.clock
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: الساعة سبعة وربع.
-      tokens: [{surface: الساعة, sense: sa3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}, {surface: سبعة, sense: sab3a}, {surface: وربع, sense: rebe3, morphs: [{surface: و,
-              kc: 'sense:w'}, {surface: ربع, kc: 'sense:rebe3'}]}]
+      tokens: [{surface: الساعة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: sa3a, surface: ساعة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: سبعة, lexeme: sab3a}, {surface: وربع, lexemes: [{lexeme: w, surface: و}, {lexeme: rebe3, surface: ربع, base: true, feats: {Number: Sing}}]}]
       reverse: الساعة سبعة (وربع|و ربع)
     apc-Latn/arabizi:
       text: el sa3a sab3a w rebe3.
-      tokens: [{surface: el, sense: el}, {surface: sa3a, sense: sa3a, form: 'form:fem'}, {surface: sab3a, sense: sab3a}, {surface: w, sense: w}, {surface: rebe3, sense: rebe3}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: sa3a, lexeme: sa3a, feats: {Number: Sing}, n: 2}, {surface: sab3a, lexeme: sab3a}, {surface: w, lexeme: w}, {surface: rebe3, lexeme: rebe3, feats: {Number: Sing}}]
       reverse: (el|l|il) (sa3a|se3a|saa3a) (sab3a|saba3a|sab3e) (w|wa) (rebe3|rob3|rebi3|ribe3)
   translations:
     en: |-
@@ -356,15 +314,14 @@ sentences:
       It's 7:15.
 - id: s.time.16
   node: apc.time.clock
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: دقيقة!
-      tokens: [{surface: دقيقة, sense: da2i2a, form: 'form:fem'}]
+      tokens: [{surface: دقيقة, lexeme: da2i2a, feats: {Number: Sing}}]
       reverse: دقيقة
     apc-Latn/arabizi:
       text: da2i2a!
-      tokens: [{surface: da2i2a, sense: da2i2a, form: 'form:fem'}]
+      tokens: [{surface: da2i2a, lexeme: da2i2a, feats: {Number: Sing}}]
       reverse: (da2i2a|de2i2a|d2i2a)
   translations:
     en: |-
@@ -372,16 +329,16 @@ sentences:
       Just a sec!
 - id: s.time.17
   node: apc.time.clock
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: استنّى دقيقة.
-      tokens: [{surface: استنّى, sense: stanna}, {surface: دقيقة, sense: da2i2a, form: 'form:fem'}]
+      tokens: [{surface: استنّى, lexeme: stanna, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: دقيقة, lexeme: da2i2a, feats: {Number: Sing}}]
       reverse: (استنّى|استنا) دقيقة
     apc-Latn/arabizi:
       text: stanna da2i2a.
-      tokens: [{surface: stanna, sense: stanna}, {surface: da2i2a, sense: da2i2a, form: 'form:fem'}]
+      tokens: [{surface: stanna, lexeme: stanna, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: da2i2a, lexeme: da2i2a, feats: {Number: Sing}}]
       reverse: (stanna|estanna|stana) (da2i2a|de2i2a|d2i2a)
   translations:
     en: |-
@@ -390,19 +347,17 @@ sentences:
       (Hang|Hold) on a minute.
 - id: s.time.18
   node: apc.time.day-parts
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: قبل الشغل بشرب قهوة.
-      tokens: [{surface: قبل, sense: 2abel}, {surface: الشغل, sense: shoghl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شغل, kc: 'sense:shoghl'}]}, {surface: بشرب, sense: shereb, form: 'form:impf-1sg'},
-        {surface: قهوة, sense: ahwe, form: 'form:fem'}]
+      tokens: [{surface: قبل, lexeme: 2abel, n: 1, head: 3, rel: case}, {surface: الشغل, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}, n: 3}]}, {surface: بشرب, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}]
       reverse: |-
         قبل الشغل بشرب قهوة
         بشرب قهوة قبل الشغل
         قبل الشغل أنا بشرب قهوة
     apc-Latn/arabizi:
       text: 2abel el shoghl bishrab ahwe.
-      tokens: [{surface: 2abel, sense: 2abel}, {surface: el, sense: el}, {surface: shoghl, sense: shoghl}, {surface: bishrab, sense: shereb, form: 'form:impf-1sg'}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
+      tokens: [{surface: 2abel, lexeme: 2abel, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}, n: 3}, {surface: bishrab, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
       reverse: |-
         (2abel|abel|2abl) (el|l|il) (shoghl|shoghol|sho8l|shughl) (bishrab|beshrab|bshrab) (ahwe|2ahwe)
         bishrab ahwe 2abel el shoghl
@@ -413,19 +368,16 @@ sentences:
       I drink coffee before work.
 - id: s.time.19
   node: apc.time.day-parts
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: عالضهر باكل مع بيّي.
-      tokens: [{surface: عالضهر, sense: dohr, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: ضهر, kc: 'sense:dohr'}]}, {surface: باكل, sense: akal, form: 'form:impf-1sg'},
-        {surface: مع, sense: ma3}, {surface: بيّي, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      tokens: [{surface: عالضهر, lexemes: [{lexeme: 3a, surface: ع, n: 1, head: 3, rel: case}, {lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: dohr, surface: ضهر, base: true, feats: {Number: Sing}, n: 3}]}, {surface: باكل, lexeme: akal, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: مع, lexeme: ma3, n: 5, head: 6, rel: case}, {surface: بيّي, lexemes: [{lexeme: bayy, surface: بيّ, base: true, feats: {Number: Sing}, n: 6}, {lexeme: poss-1sg, surface: ي}]}]
       reverse: |-
         (عالضهر|عالظهر|ع الضهر|ع الظهر|على الضهر|على الظهر) باكل مع بيّي
         باكل مع بيّي عالضهر
     apc-Latn/arabizi:
       text: 3al dohr bekol ma3 bayyi.
-      tokens: [{surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: dohr, sense: dohr}, {surface: bekol, sense: akal, form: 'form:impf-1sg'}, {surface: ma3,
-          sense: ma3}, {surface: bayyi, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      tokens: [{surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 1, head: 3, rel: case}, {lexeme: el, surface: l, n: 2, head: 3, rel: det}]}, {surface: dohr, lexeme: dohr, feats: {Number: Sing}, n: 3}, {surface: bekol, lexeme: akal, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ma3, lexeme: ma3, n: 5, head: 6, rel: case}, {surface: bayyi, lexemes: [{lexeme: bayy, surface: bayy, base: true, feats: {Number: Sing}, n: 6}, {lexeme: poss-1sg, surface: i}]}]
       reverse: |-
         (3al|3a l|3a el) (dohr|duhr|do7or|dehr|dihr) (bekol|bakol|b2akol) (ma3|ma3a) (bayyi|bayye|bayi|baye|beyyi|beyye)
         bekol ma3 bayyi 3al dohr
@@ -435,18 +387,16 @@ sentences:
       I (eat|have lunch) with my (dad|father) at noon.
 - id: s.time.20
   node: apc.time.day-parts
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: بعد الضهر بنام شوي.
-      tokens: [{surface: بعد, sense: ba3d}, {surface: الضهر, sense: dohr, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ضهر, kc: 'sense:dohr'}]}, {surface: بنام, sense: nem, form: 'form:impf-1sg'},
-        {surface: شوي, sense: shway}]
+      tokens: [{surface: بعد, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: الضهر, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: dohr, surface: ضهر, base: true, feats: {Number: Sing}, n: 3}]}, {surface: بنام, lexeme: nem, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: شوي, lexeme: shway}]
       reverse: |-
         بعد (الضهر|الظهر) بنام (شوي|شوية)
         بنام شوي بعد الضهر
     apc-Latn/arabizi:
       text: ba3d el dohr bnem shway.
-      tokens: [{surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: dohr, sense: dohr}, {surface: bnem, sense: nem, form: 'form:impf-1sg'}, {surface: shway, sense: shway}]
+      tokens: [{surface: ba3d, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: dohr, lexeme: dohr, feats: {Number: Sing}, n: 3}, {surface: bnem, lexeme: nem, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: shway, lexeme: shway}]
       reverse: |-
         (ba3d|ba3ed) (el|l|il) (dohr|duhr|do7or|dehr|dihr) (bnem|bnam) (shway|shwayy|shwei|shwai)
         bnem shway ba3d el dohr
@@ -458,19 +408,16 @@ sentences:
       I take a nap in the afternoon.
 - id: s.time.21
   node: apc.time.day-parts
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: بالليل بقرا كتاب.
-      tokens: [{surface: بالليل, sense: lel, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: ليل, kc: 'sense:lel'}]}, {surface: بقرا, sense: 2ara, form: 'form:impf-1sg'},
-        {surface: كتاب, sense: ktab}]
+      tokens: [{surface: بالليل, lexemes: [{lexeme: b, surface: ب, n: 1, head: 3, rel: case}, {lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: lel, surface: ليل, base: true, feats: {Number: Sing}, n: 3}]}, {surface: بقرا, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: كتاب, lexeme: ktab, feats: {Number: Sing}}]
       reverse: |-
         بالليل بقرا كتاب
         بقرا كتاب بالليل
     apc-Latn/arabizi:
       text: bel lel b2ra ktab.
-      tokens: [{surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: lel, sense: lel}, {surface: b2ra, sense: 2ara, form: 'form:impf-1sg'}, {surface: ktab,
-          sense: ktab}]
+      tokens: [{surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 1, head: 3, rel: case}, {lexeme: el, surface: el, n: 2, head: 3, rel: det}]}, {surface: lel, lexeme: lel, feats: {Number: Sing}, n: 3}, {surface: b2ra, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ktab, lexeme: ktab, feats: {Number: Sing}}]
       reverse: |-
         (bel|bil|b el) (lel|leil|layl) (b2ra|be2ra|bi2ra|b2ara) (ktab|kteb|kitab)
         b2ra ktab bel lel
@@ -480,18 +427,16 @@ sentences:
       I read a book at night.
 - id: s.time.22
   node: apc.time.day-parts
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: بعد الشغل منروح سوا؟
-      tokens: [{surface: بعد, sense: ba3d}, {surface: الشغل, sense: shoghl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شغل, kc: 'sense:shoghl'}]}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'},
-        {surface: سوا, sense: sawa}]
+      tokens: [{surface: بعد, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: الشغل, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}, n: 3}]}, {surface: منروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: سوا, lexeme: sawa}]
       reverse: |-
         بعد الشغل منروح سوا
         منروح سوا بعد الشغل
     apc-Latn/arabizi:
       text: ba3d el shoghl mnru7 sawa?
-      tokens: [{surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: shoghl, sense: shoghl}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: sawa, sense: sawa}]
+      tokens: [{surface: ba3d, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}, n: 3}, {surface: mnru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: sawa, lexeme: sawa}]
       reverse: |-
         (ba3d|ba3ed) (el|l|il) (shoghl|shoghol|sho8l|shughl) (mnru7|mnrou7|mnro7) (sawa|sawe)
         mnru7 sawa ba3d el shoghl
@@ -501,15 +446,14 @@ sentences:
       Shall we go together after work?
 - id: s.time.23
   node: apc.time.calendar
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: بكرا عطلة!
-      tokens: [{surface: بكرا, sense: bukra}, {surface: عطلة, sense: 3otle, form: 'form:fem'}]
+      tokens: [{surface: بكرا, lexeme: bukra}, {surface: عطلة, lexeme: 3otle, feats: {Number: Sing}}]
       reverse: (بكرا|بكرة) عطلة
     apc-Latn/arabizi:
       text: bukra 3otle!
-      tokens: [{surface: bukra, sense: bukra}, {surface: 3otle, sense: 3otle, form: 'form:fem'}]
+      tokens: [{surface: bukra, lexeme: bukra}, {surface: 3otle, lexeme: 3otle, feats: {Number: Sing}}]
       reverse: (bukra|bokra|bukrah) (3otle|3otli|3otla|3etle)
   translations:
     en: |-
@@ -517,31 +461,29 @@ sentences:
       Tomorrow's a (holiday|day off)!
 - id: s.time.24
   node: apc.time.calendar
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: كم يوم؟
-      tokens: [{surface: كم, sense: kam}, {surface: يوم, sense: yom}]
+      tokens: [{surface: كم, lexeme: kam, n: 1, head: 2, rel: det}, {surface: يوم, lexeme: yom, feats: {Number: Sing}, n: 2}]
       reverse: (كم|كام) يوم
     apc-Latn/arabizi:
       text: kam yom?
-      tokens: [{surface: kam, sense: kam}, {surface: yom, sense: yom}]
+      tokens: [{surface: kam, lexeme: kam, n: 1, head: 2, rel: det}, {surface: yom, lexeme: yom, feats: {Number: Sing}, n: 2}]
       reverse: (kam|kem) (yom|yawm|youm)
   translations:
     en: How many days?
 - id: s.time.25
   node: apc.time.calendar
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: عندي عطلة شهر.
-      tokens: [{surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: عطلة, sense: 3otle, form: 'form:fem'}, {surface: شهر, sense: shahr}]
+      tokens: [{surface: عندي, lexemes: [{lexeme: 3end, surface: عند, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: ي, n: 2}]}, {surface: عطلة, lexeme: 3otle, feats: {Number: Sing}}, {surface: شهر, lexeme: shahr, feats: {Number: Sing}}]
       reverse: |-
         (عندي|أنا عندي) عطلة شهر
         (عندي|أنا عندي) شهر عطلة
     apc-Latn/arabizi:
       text: 3endi 3otle shahr.
-      tokens: [{surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 3otle, sense: 3otle, form: 'form:fem'}, {surface: shahr, sense: shahr}]
+      tokens: [{surface: 3endi, lexemes: [{lexeme: 3end, surface: 3end, base: true, n: 1, head: 2, rel: case}, {lexeme: poss-1sg, surface: i, n: 2}]}, {surface: 3otle, lexeme: 3otle, feats: {Number: Sing}}, {surface: shahr, lexeme: shahr, feats: {Number: Sing}}]
       reverse: |-
         ((3endi|3ende|3andi|3indi)|ana (3endi|3ende|3andi|3indi)) (3otle|3otli|3otla|3etle) (shahr|shaher)
         ((3endi|3ende|3andi|3indi)|ana (3endi|3ende|3andi|3indi)) (shahr|shaher) (3otle|3otli|3otla|3etle)
@@ -552,20 +494,18 @@ sentences:
       I('ve| have) got a month off.
 - id: s.time.26
   node: apc.time.calendar
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: شو بتعمل بالعطلة؟
-      tokens: [{surface: شو, sense: shu}, {surface: بتعمل, sense: 3emel, form: 'form:impf-2ms'}, {surface: بالعطلة, sense: 3otle, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: عطلة,
-              kc: 'sense:3otle'}]}]
+      tokens: [{surface: شو, lexeme: shu}, {surface: بتعمل, lexeme: 3emel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: بالعطلة, lexemes: [{lexeme: b, surface: ب, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: 3otle, surface: عطلة, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: |-
         شو بتعمل بالعطلة
         إنت شو بتعمل بالعطلة
     apc-Latn/arabizi:
       text: shu bta3mel bel 3otle?
-      tokens: [{surface: shu, sense: shu}, {surface: bta3mel, sense: 3emel, form: 'form:impf-2ms'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: 3otle,
-          sense: 3otle, form: 'form:fem'}]
+      tokens: [{surface: shu, lexeme: shu}, {surface: bta3mel, lexeme: 3emel, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: 3otle, lexeme: 3otle, feats: {Number: Sing}, n: 5}]
       reverse: |-
         (shu|sho) (bta3mel|bte3mel|bta3mil) (bel|bil|b el) (3otle|3otli|3otla|3etle)
         enta shu bta3mel bel 3otle
@@ -576,32 +516,31 @@ sentences:
       What does she do on holiday?
 - id: s.time.27
   node: apc.time.day-parts
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: بحبّ الليل.
-      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الليل, sense: lel, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليل, kc: 'sense:lel'}]}]
+      tokens: [{surface: بحبّ, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: الليل, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: lel, surface: ليل, base: true, feats: {Number: Sing}, n: 3}]}]
       reverse: (بحبّ|أنا بحبّ) الليل
     apc-Latn/arabizi:
       text: b7ebb el lel.
-      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: lel, sense: lel}]
+      tokens: [{surface: b7ebb, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: lel, lexeme: lel, feats: {Number: Sing}, n: 3}]
       reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (el|l|il) (lel|leil|layl)
   translations:
     en: I (love|like) (the night|nighttime).
 - id: s.time.28
   node: apc.time.when
-  register: colloquial
-  persons: {addressee: f}
+  tags:
+  - {persons: {addressee: f}}
   forms:
     apc-Arab/standard:
       text: إنتي فاضية بكرا؟
-      tokens: [{surface: إنتي, sense: enti, form: 'form:fem'}, {surface: فاضية, sense: fadi, form: 'form:fem'}, {surface: بكرا, sense: bukra}]
+      tokens: [{surface: إنتي, lexeme: enti, feats: {Gender: Fem, Number: Sing}}, {surface: فاضية, lexeme: fadi, feats: {Gender: Fem, Number: Sing}}, {surface: بكرا, lexeme: bukra}]
       reverse: |-
         [إنتي] فاضية (بكرا|بكرة)
         بكرا فاضية
     apc-Latn/arabizi:
       text: enti fadye bukra?
-      tokens: [{surface: enti, sense: enti, form: 'form:fem'}, {surface: fadye, sense: fadi, form: 'form:fem'}, {surface: bukra, sense: bukra}]
+      tokens: [{surface: enti, lexeme: enti, feats: {Gender: Fem, Number: Sing}}, {surface: fadye, lexeme: fadi, feats: {Gender: Fem, Number: Sing}}, {surface: bukra, lexeme: bukra}]
       reverse: |-
         [(enti|inti)] (fadye|fadie|fadyi|fadya) (bukra|bokra|bukrah)
         bukra fadye
@@ -609,16 +548,16 @@ sentences:
     en: Are you free tomorrow?
 - id: s.time.29
   node: apc.time.when
-  register: colloquial
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
       text: إنتو فاضيين بكرا؟
-      tokens: [{surface: إنتو, sense: ento, form: 'form:pl'}, {surface: فاضيين, sense: fadi, form: 'form:pl'}, {surface: بكرا, sense: bukra}]
+      tokens: [{surface: إنتو, lexeme: ento, feats: {Number: Plur}}, {surface: فاضيين, lexeme: fadi, feats: {Number: Plur}}, {surface: بكرا, lexeme: bukra}]
       reverse: '[إنتو] فاضيين (بكرا|بكرة)'
     apc-Latn/arabizi:
       text: ento fadyin bukra?
-      tokens: [{surface: ento, sense: ento, form: 'form:pl'}, {surface: fadyin, sense: fadi, form: 'form:pl'}, {surface: bukra, sense: bukra}]
+      tokens: [{surface: ento, lexeme: ento, feats: {Number: Plur}}, {surface: fadyin, lexeme: fadi, feats: {Number: Plur}}, {surface: bukra, lexeme: bukra}]
       reverse: '[(ento|into|entu)] (fadyin|fadyeen|fadiyin|fadiyeen) (bukra|bokra|bukrah)'
   translations:
     en: |-
@@ -626,18 +565,18 @@ sentences:
       Are you all free tomorrow?
 - id: s.time.30
   node: apc.time.when
-  register: colloquial
-  persons: {speaker: f}
+  tags:
+  - {persons: {speaker: f}}
   forms:
     apc-Arab/standard:
       text: أنا مشغولة اليوم.
-      tokens: [{surface: أنا, sense: ana}, {surface: مشغولة, sense: mashghoul, form: 'form:fem'}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: مشغولة, lexeme: mashghoul, feats: {Gender: Fem, Number: Sing}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: |-
         [أنا] مشغولة اليوم
         اليوم [أنا] مشغولة
     apc-Latn/arabizi:
       text: ana mashghoule el yom.
-      tokens: [{surface: ana, sense: ana}, {surface: mashghoule, sense: mashghoul, form: 'form:fem'}, {surface: el, sense: el}, {surface: yom, sense: yom}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: mashghoule, lexeme: mashghoul, feats: {Gender: Fem, Number: Sing}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: yom, lexeme: yom, feats: {Number: Sing}, n: 4}]
       reverse: |-
         [ana] (mashghoule|mashghoula|mash8oule) (el|l|il) (yom|yawm|youm)
         (el|l|il) (yom|yawm|youm) [ana] (mashghoule|mashghoula|mash8oule)
@@ -647,16 +586,16 @@ sentences:
       Today I('m| am) busy.
 - id: s.time.31
   node: apc.time.clock
-  register: colloquial
-  persons: {addressee: f}
+  tags:
+  - {persons: {addressee: f}}
   forms:
     apc-Arab/standard:
       text: استنّي دقيقة.
-      tokens: [{surface: استنّي, sense: stanna, form: 'form:imp-2fs'}, {surface: دقيقة, sense: da2i2a, form: 'form:fem'}]
+      tokens: [{surface: استنّي, lexeme: stanna, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: دقيقة, lexeme: da2i2a, feats: {Number: Sing}}]
       reverse: استنّي دقيقة
     apc-Latn/arabizi:
       text: stanni da2i2a.
-      tokens: [{surface: stanni, sense: stanna, form: 'form:imp-2fs'}, {surface: da2i2a, sense: da2i2a, form: 'form:fem'}]
+      tokens: [{surface: stanni, lexeme: stanna, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: da2i2a, lexeme: da2i2a, feats: {Number: Sing}}]
       reverse: (stanni|estanni|stanne|stani) (da2i2a|de2i2a|d2i2a)
   translations:
     en: |-
@@ -665,16 +604,16 @@ sentences:
       (Hang|Hold) on a minute.
 - id: s.time.32
   node: apc.time.clock
-  register: colloquial
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
       text: استنّوا دقيقة.
-      tokens: [{surface: استنّوا, sense: stanna, form: 'form:imp-2pl'}, {surface: دقيقة, sense: da2i2a, form: 'form:fem'}]
+      tokens: [{surface: استنّوا, lexeme: stanna, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: دقيقة, lexeme: da2i2a, feats: {Number: Sing}}]
       reverse: (استنّوا|استنّو) دقيقة
     apc-Latn/arabizi:
       text: stanno da2i2a.
-      tokens: [{surface: stanno, sense: stanna, form: 'form:imp-2pl'}, {surface: da2i2a, sense: da2i2a, form: 'form:fem'}]
+      tokens: [{surface: stanno, lexeme: stanna, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: da2i2a, lexeme: da2i2a, feats: {Number: Sing}}]
       reverse: (stanno|estanno|stannu|stano) (da2i2a|de2i2a|d2i2a)
   translations:
     en: |-
@@ -683,20 +622,18 @@ sentences:
       (Hang|Hold) on a minute.
 - id: s.time.33
   node: apc.time.calendar
-  register: colloquial
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
       text: شو بتعملوا بالعطلة؟
-      tokens: [{surface: شو, sense: shu}, {surface: بتعملوا, sense: 3emel, form: 'form:impf-2pl'}, {surface: بالعطلة, sense: 3otle, form: 'form:fem', morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {
-              surface: عطلة, kc: 'sense:3otle'}]}]
+      tokens: [{surface: شو, lexeme: shu}, {surface: بتعملوا, lexeme: 3emel, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}, {surface: بالعطلة, lexemes: [{lexeme: b, surface: ب, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: 3otle, surface: عطلة, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: |-
         شو (بتعملوا|بتعملو) بالعطلة
         إنتو شو بتعملوا بالعطلة
     apc-Latn/arabizi:
       text: shu bta3mlo bel 3otle?
-      tokens: [{surface: shu, sense: shu}, {surface: bta3mlo, sense: 3emel, form: 'form:impf-2pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: 3otle,
-          sense: 3otle, form: 'form:fem'}]
+      tokens: [{surface: shu, lexeme: shu}, {surface: bta3mlo, lexeme: 3emel, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: 3otle, lexeme: 3otle, feats: {Number: Sing}, n: 5}]
       reverse: |-
         (shu|sho) (bta3mlo|bte3mlo|bta3mlu) (bel|bil|b el) (3otle|3otli|3otla|3etle)
         ento shu bta3mlo bel 3otle
@@ -707,135 +644,152 @@ sentences:
 stories:
 - id: apc.story.free-on-saturday
   node: apc.time.story
-  title: {en: 'Are you free on Saturday?'}
-  provenance: {author: 'llm:claude@6914f241714e', status: draft}
+  title:
+    en: Are you free on Saturday?
+  provenance:
+    author: llm:claude@6914f241714e
+    status: draft
   characters:
-  - {id: sami, speaker: m, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
-  - {id: maya, speaker: f, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  - id: sami
+    speaker: m
+    name:
+      apc-Arab/standard: سامي
+      apc-Latn/arabizi: Sami
+  - id: maya
+    speaker: f
+    name:
+      apc-Arab/standard: مايا
+      apc-Latn/arabizi: Maya
   steps:
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: مايا، إِنْتي فاضْيِة نْهار السَّبِت؟
-          tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: إِنْتي, sense: enti, form: 'form:fem'}, {surface: فاضْيِة, sense: fadi, form: 'form:fem'}, {surface: نْهار, sense: nhar}, {surface: السَّبِت, sense: sabt, morphs: [
-                {surface: ال, kc: 'sense:el'}, {surface: سَّبِت, kc: 'sense:sabt'}]}]
+          tokens: [{surface: مايا, lexeme: maya}, {surface: إِنْتي, lexeme: enti, feats: {Gender: Fem, Number: Sing}}, {surface: فاضْيِة, lexeme: fadi, feats: {Gender: Fem, Number: Sing}}, {surface: نْهار, lexeme: nhar, feats: {Number: Sing}}, {surface: السَّبِت, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: sabt, surface: سَّبِت, base: true, feats: {Number: Sing}, n: 6}]}]
         apc-Latn/arabizi:
           text: Maya, enti fadye nhar el sabt?
-          tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: enti, sense: enti, form: 'form:fem'}, {surface: fadye, sense: fadi, form: 'form:fem'}, {surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: sabt, sense: sabt}]
-      translations: {en: 'Maya, are you free on Saturday?'}
+          tokens: [{surface: Maya, lexeme: maya}, {surface: enti, lexeme: enti, feats: {Gender: Fem, Number: Sing}}, {surface: fadye, lexeme: fadi, feats: {Gender: Fem, Number: Sing}}, {surface: nhar, lexeme: nhar, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: sabt, lexeme: sabt, feats: {Number: Sing}, n: 6}]
+      translations:
+        en: Maya, are you free on Saturday?
   - line:
       speaker: maya
       forms:
         apc-Arab/standard:
           text: لأ، نْهار السَّبِت بِشْتِغِل. بَسّ الأَحَد فاضْيِة.
-          tokens: [{surface: لأ, sense: la2}, {surface: نْهار, sense: nhar}, {surface: السَّبِت, sense: sabt, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سَّبِت, kc: 'sense:sabt'}]}, {surface: بِشْتِغِل,
-              sense: eshteghel, form: 'form:impf-1sg'}, {surface: بَسّ, sense: bas}, {surface: الأَحَد, sense: a7ad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَحَد, kc: 'sense:a7ad'}]}, {surface: فاضْيِة,
-              sense: fadi, form: 'form:fem'}]
+          tokens: [{surface: لأ, lexeme: la2}, {surface: نْهار, lexeme: nhar, feats: {Number: Sing}}, {surface: السَّبِت, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: sabt, surface: سَّبِت, base: true, feats: {Number: Sing}, n: 4}]}, {surface: بِشْتِغِل, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: بَسّ, lexeme: bas}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال, n: 7, head: 8, rel: det}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}, n: 8}]}, {surface: فاضْيِة, lexeme: fadi, feats: {Gender: Fem, Number: Sing}}]
         apc-Latn/arabizi:
           text: la2, nhar el sabt bishteghel. bas el a7ad fadye.
-          tokens: [{surface: la2, sense: la2}, {surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: sabt, sense: sabt}, {surface: bishteghel, sense: eshteghel, form: 'form:impf-1sg'}, {surface: bas,
-              sense: bas}, {surface: el, sense: el}, {surface: a7ad, sense: a7ad}, {surface: fadye, sense: fadi, form: 'form:fem'}]
-      translations: {en: 'No, on Saturday I work. But on Sunday I''m free.'}
+          tokens: [{surface: la2, lexeme: la2}, {surface: nhar, lexeme: nhar, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: sabt, lexeme: sabt, feats: {Number: Sing}, n: 4}, {surface: bishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: bas, lexeme: bas}, {surface: el, lexeme: el, n: 7, head: 8, rel: det}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}, n: 8}, {surface: fadye, lexeme: fadi, feats: {Gender: Fem, Number: Sing}}]
+      translations:
+        en: No, on Saturday I work. But on Sunday I'm free.
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: يَلّا، الأَحَد مْنْروح عَالجَبَل سَوا؟
-          tokens: [{surface: يَلّا, sense: yalla}, {surface: الأَحَد, sense: a7ad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَحَد, kc: 'sense:a7ad'}]}, {surface: مْنْروح, sense: ra7, form: 'form:impf-1pl'},
-            {surface: عَالجَبَل, sense: jabal, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: جَبَل, kc: 'sense:jabal'}]}, {surface: سَوا, sense: sawa}]
+          tokens: [{surface: يَلّا, lexeme: yalla}, {surface: الأَحَد, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: a7ad, surface: أَحَد, base: true, feats: {Number: Sing}, n: 3}]}, {surface: مْنْروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: عَالجَبَل, lexemes: [{lexeme: 3a, surface: عَ, n: 5, head: 7, rel: case}, {lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: jabal, surface: جَبَل, base: true, feats: {Number: Sing}, n: 7}]}, {surface: سَوا, lexeme: sawa}]
         apc-Latn/arabizi:
           text: yalla, el a7ad mnru7 3al jabal sawa?
-          tokens: [{surface: yalla, sense: yalla}, {surface: el, sense: el}, {surface: a7ad, sense: a7ad}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a,
-                  kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: jabal, sense: jabal}, {surface: sawa, sense: sawa}]
-      translations: {en: 'OK, on Sunday shall we go to the mountains together?'}
+          tokens: [{surface: yalla, lexeme: yalla}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: a7ad, lexeme: a7ad, feats: {Number: Sing}, n: 3}, {surface: mnru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}, n: 7}, {surface: sawa, lexeme: sawa}]
+      translations:
+        en: OK, on Sunday shall we go to the mountains together?
   - choose:
       prompt:
         en: When is Maya free?
-      options: [{en: On Sunday}, {en: On Saturday}, {en: Every day}]
+      options:
+      - en: On Sunday
+      - en: On Saturday
+      - en: Every day
       answer: 0
   - line:
       speaker: maya
       forms:
         apc-Arab/standard:
           text: إيه! إِمْتى؟
-          tokens: [{surface: إيه, sense: eh}, {surface: إِمْتى, sense: emta}]
+          tokens: [{surface: إيه, lexeme: eh}, {surface: إِمْتى, lexeme: emta}]
         apc-Latn/arabizi:
           text: eh! emta?
-          tokens: [{surface: eh, sense: eh}, {surface: emta, sense: emta}]
-      translations: {en: 'Yes! When?'}
+          tokens: [{surface: eh, lexeme: eh}, {surface: emta, lexeme: emta}]
+      translations:
+        en: Yes! When?
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: الصُّبُح، السّاعَة تِسْعَة.
-          tokens: [{surface: الصُّبُح, sense: sob7, morphs: [{surface: ال, kc: 'sense:el'}, {surface: صُّبُح, kc: 'sense:sob7'}]}, {surface: السّاعَة, sense: sa3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'},
-                {surface: سّاعَة, kc: 'sense:sa3a'}]}, {surface: تِسْعَة, sense: tes3a}]
+          tokens: [{surface: الصُّبُح, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: sob7, surface: صُّبُح, base: true, feats: {Number: Sing}, n: 2}]}, {surface: السّاعَة, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: sa3a, surface: سّاعَة, base: true, feats: {Number: Sing}, n: 4}]}, {surface: تِسْعَة, lexeme: tes3a}]
         apc-Latn/arabizi:
           text: el sob7, el sa3a tes3a.
-          tokens: [{surface: el, sense: el}, {surface: sob7, sense: sob7}, {surface: el, sense: el}, {surface: sa3a, sense: sa3a, form: 'form:fem'}, {surface: tes3a, sense: tes3a}]
-      translations: {en: 'In the morning, at nine o''clock.'}
+          tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: sob7, lexeme: sob7, feats: {Number: Sing}, n: 2}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: sa3a, lexeme: sa3a, feats: {Number: Sing}, n: 4}, {surface: tes3a, lexeme: tes3a}]
+      translations:
+        en: In the morning, at nine o'clock.
   - line:
       speaker: maya
       ask: complete
-      gap: 'sense:tes3a'
-      distractors: ['sense:sab3a', 'sense:khamse']
+      gap: lexeme:tes3a
+      distractors:
+      - lexeme:sab3a
+      - lexeme:khamse
       forms:
         apc-Arab/standard:
           text: تِسْعَة؟! بَكّير كْتير! السّاعَة عَشْرَة ونُصّ.
-          tokens: [{surface: تِسْعَة, sense: tes3a}, {surface: بَكّير, sense: bakkir}, {surface: كْتير, sense: ktir}, {surface: السّاعَة, sense: sa3a, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: سّاعَة,
-                  kc: 'sense:sa3a'}]}, {surface: عَشْرَة, sense: 3ashra}, {surface: ونُصّ, sense: nos, morphs: [{surface: و, kc: 'sense:w'}, {surface: نُصّ, kc: 'sense:nos'}]}]
+          tokens: [{surface: تِسْعَة, lexeme: tes3a}, {surface: بَكّير, lexeme: bakkir}, {surface: كْتير, lexeme: ktir}, {surface: السّاعَة, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: sa3a, surface: سّاعَة, base: true, feats: {Number: Sing}, n: 5}]}, {surface: عَشْرَة, lexeme: 3ashra}, {surface: ونُصّ, lexemes: [{lexeme: w, surface: و}, {lexeme: nos, surface: نُصّ, base: true, feats: {Number: Sing}}]}]
         apc-Latn/arabizi:
           text: tes3a?! bakkir ktir! el sa3a 3ashra w nos.
-          tokens: [{surface: tes3a, sense: tes3a}, {surface: bakkir, sense: bakkir}, {surface: ktir, sense: ktir}, {surface: el, sense: el}, {surface: sa3a, sense: sa3a, form: 'form:fem'}, {surface: 3ashra, sense: 3ashra},
-            {surface: w, sense: w}, {surface: nos, sense: nos}]
-      translations: {en: 'Nine?! That''s very early! Half past ten.'}
+          tokens: [{surface: tes3a, lexeme: tes3a}, {surface: bakkir, lexeme: bakkir}, {surface: ktir, lexeme: ktir}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: sa3a, lexeme: sa3a, feats: {Number: Sing}, n: 5}, {surface: 3ashra, lexeme: 3ashra}, {surface: w, lexeme: w}, {surface: nos, lexeme: nos, feats: {Number: Sing}}]
+      translations:
+        en: Nine?! That's very early! Half past ten.
   - line:
       speaker: sami
       ask: arrange
       forms:
         apc-Arab/standard:
           text: مْنيح، عَشْرَة ونُصّ.
-          tokens: [{surface: مْنيح, sense: mni7}, {surface: عَشْرَة, sense: 3ashra}, {surface: ونُصّ, sense: nos, morphs: [{surface: و, kc: 'sense:w'}, {surface: نُصّ, kc: 'sense:nos'}]}]
+          tokens: [{surface: مْنيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}, {surface: عَشْرَة, lexeme: 3ashra}, {surface: ونُصّ, lexemes: [{lexeme: w, surface: و}, {lexeme: nos, surface: نُصّ, base: true, feats: {Number: Sing}}]}]
         apc-Latn/arabizi:
           text: mni7, 3ashra w nos.
-          tokens: [{surface: mni7, sense: mni7}, {surface: 3ashra, sense: 3ashra}, {surface: w, sense: w}, {surface: nos, sense: nos}]
-      translations: {en: 'Fine, half past ten.'}
+          tokens: [{surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}, {surface: 3ashra, lexeme: 3ashra}, {surface: w, lexeme: w}, {surface: nos, lexeme: nos, feats: {Number: Sing}}]
+      translations:
+        en: Fine, half past ten.
   - choose:
       prompt:
         en: What time will they go?
-      options: [{en: Half past ten}, {en: Nine o'clock}, {en: Half past nine}]
+      options:
+      - en: Half past ten
+      - en: Nine o'clock
+      - en: Half past nine
       answer: 0
   - line:
       speaker: maya
       forms:
         apc-Arab/standard:
           text: وبَعِد الضُّهُر مْنْشوف فيلِم؟
-          tokens: [{surface: وبَعِد, sense: ba3d, morphs: [{surface: و, kc: 'sense:w'}, {surface: بَعِد, kc: 'sense:ba3d'}]}, {surface: الضُّهُر, sense: dohr, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ضُّهُر,
-                  kc: 'sense:dohr'}]}, {surface: مْنْشوف, sense: shef, form: 'form:impf-1pl'}, {surface: فيلِم, sense: film}]
+          tokens: [{surface: وبَعِد, lexemes: [{lexeme: w, surface: و}, {lexeme: ba3d, surface: بَعِد, base: true, n: 2, head: 4, rel: case}]}, {surface: الضُّهُر, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: dohr, surface: ضُّهُر, base: true, feats: {Number: Sing}, n: 4}]}, {surface: مْنْشوف, lexeme: shef, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: فيلِم, lexeme: film, feats: {Number: Sing}}]
         apc-Latn/arabizi:
           text: w ba3d el dohr mnshuf film?
-          tokens: [{surface: w, sense: w}, {surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: dohr, sense: dohr}, {surface: mnshuf, sense: shef, form: 'form:impf-1pl'}, {surface: film, sense: film}]
-      translations: {en: 'And in the afternoon shall we watch a film?'}
+          tokens: [{surface: w, lexeme: w}, {surface: ba3d, lexeme: ba3d, n: 2, head: 4, rel: case}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: dohr, lexeme: dohr, feats: {Number: Sing}, n: 4}, {surface: mnshuf, lexeme: shef, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: film, lexeme: film, feats: {Number: Sing}}]
+      translations:
+        en: And in the afternoon shall we watch a film?
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: لأ، المَسا أَنا مَشْغول، بَسّ الخَميس فاضي.
-          tokens: [{surface: لأ, sense: la2}, {surface: المَسا, sense: masa, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مَسا, kc: 'sense:masa'}]}, {surface: أَنا, sense: ana}, {surface: مَشْغول,
-              sense: mashghoul}, {surface: بَسّ, sense: bas}, {surface: الخَميس, sense: khamis, morphs: [{surface: ال, kc: 'sense:el'}, {surface: خَميس, kc: 'sense:khamis'}]}, {surface: فاضي, sense: fadi}]
+          tokens: [{surface: لأ, lexeme: la2}, {surface: المَسا, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: masa, surface: مَسا, base: true, feats: {Number: Sing}, n: 3}]}, {surface: أَنا, lexeme: ana}, {surface: مَشْغول, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}}, {surface: بَسّ, lexeme: bas}, {surface: الخَميس, lexemes: [{lexeme: el, surface: ال, n: 7, head: 8, rel: det}, {lexeme: khamis, surface: خَميس, base: true, feats: {Number: Sing}, n: 8}]}, {surface: فاضي, lexeme: fadi, feats: {Gender: Masc, Number: Sing}, n: 9, head: 8, rel: amod}]
         apc-Latn/arabizi:
           text: la2, el masa ana mashghoul, bas el khamis fadi.
-          tokens: [{surface: la2, sense: la2}, {surface: el, sense: el}, {surface: masa, sense: masa}, {surface: ana, sense: ana}, {surface: mashghoul, sense: mashghoul}, {surface: bas, sense: bas}, {surface: el,
-              sense: el}, {surface: khamis, sense: khamis}, {surface: fadi, sense: fadi}]
-      translations: {en: 'No, in the evening I''m busy, but on Thursday I''m free.'}
+          tokens: [{surface: la2, lexeme: la2}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: masa, lexeme: masa, feats: {Number: Sing}, n: 3}, {surface: ana, lexeme: ana}, {surface: mashghoul, lexeme: mashghoul, feats: {Gender: Masc, Number: Sing}}, {surface: bas, lexeme: bas}, {surface: el, lexeme: el, n: 7, head: 8, rel: det}, {surface: khamis, lexeme: khamis, feats: {Number: Sing}, n: 8}, {surface: fadi, lexeme: fadi, feats: {Gender: Masc, Number: Sing}, n: 9, head: 8, rel: amod}]
+      translations:
+        en: No, in the evening I'm busy, but on Thursday I'm free.
   - line:
       speaker: maya
       forms:
         apc-Arab/standard:
           text: يَلّا، الخَميس!
-          tokens: [{surface: يَلّا, sense: yalla}, {surface: الخَميس, sense: khamis, morphs: [{surface: ال, kc: 'sense:el'}, {surface: خَميس, kc: 'sense:khamis'}]}]
+          tokens: [{surface: يَلّا, lexeme: yalla}, {surface: الخَميس, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: khamis, surface: خَميس, base: true, feats: {Number: Sing}, n: 3}]}]
         apc-Latn/arabizi:
           text: yalla, el khamis!
-          tokens: [{surface: yalla, sense: yalla}, {surface: el, sense: el}, {surface: khamis, sense: khamis}]
-      translations: {en: 'OK, Thursday then!'}
+          tokens: [{surface: yalla, lexeme: yalla}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: khamis, lexeme: khamis, feats: {Number: Sing}, n: 3}]
+      translations:
+        en: OK, Thursday then!

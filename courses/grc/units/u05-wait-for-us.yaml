@@ -7,186 +7,20 @@ id: u05-wait-for-us
 title:
   en: Wait for us!
 cefr: A1
-kcs:
-- id: sense:katabaino
-  pos: VERB
-  gloss:
-    en: to go down (from Athens to the sea, from the hills to the plain)
-  forms:
-    grc-Grek/polytonic:
-    - καταβαίνω
-  notes:
-    en: 'κατέβην, "I went down", is its aorist: one journey, told as done.'
-- id: form:aor-1s
-  gloss:
-    en: 'the aorist, I: I did (once, in the past)'
-- id: sense:chthes
-  pos: ADV
-  gloss:
-    en: yesterday
-  forms:
-    grc-Grek/polytonic:
-    - χθές
-- id: sense:peiraieus
-  pos: PROPN
-  gloss:
-    en: the Piraeus (the harbour town of Athens)
-  forms:
-    grc-Grek/polytonic:
-    - Πειραιεύς
-  notes:
-    en: 'To the Piraeus: εἰς Πειραιᾶ, usually without the article.'
-- id: sense:meta
-  pos: ADP
-  gloss:
-    en: (with the genitive) with, together with
-  forms:
-    grc-Grek/polytonic:
-    - μετά
-- id: sense:glaukon
-  pos: PROPN
-  gloss:
-    en: Glaucon (Plato's elder brother)
-  forms:
-    grc-Grek/polytonic:
-    - Γλαύκων
-- id: sense:ariston
-  pos: PROPN
-  gloss:
-    en: Ariston (the father of Plato and Glaucon)
-  forms:
-    grc-Grek/polytonic:
-    - Ἀρίστων
-- id: sense:phemi
-  pos: VERB
-  gloss:
-    en: to say
-  forms:
-    grc-Grek/polytonic:
-    - φημί
-  notes:
-    en: 'ἔφη, "he said" or "she said", often stands inside the words it reports: οὗτος, ἔφη, ὄπισθεν προσέρχεται.'
-- id: form:impf-3s
-  gloss:
-    en: 'the imperfect, he, she, it: was doing, did'
-- id: sense:polemarchos
-  pos: PROPN
-  gloss:
-    en: Polemarchus (Cephalus' son, Lysias' brother)
-  forms:
-    grc-Grek/polytonic:
-    - Πολέμαρχος
-- id: sense:keleuo
-  pos: VERB
-  gloss:
-    en: to order, tell (someone to do something)
-  forms:
-    grc-Grek/polytonic:
-    - κελεύω
-- id: form:inf
-  gloss:
-    en: 'the infinitive: to do (κελεύει περιμεῖναι, he tells (you) to wait)'
-- id: sense:perimeno
-  pos: VERB
-  gloss:
-    en: to wait (for)
-  forms:
-    grc-Grek/polytonic:
-    - περιμένω
-- id: sense:alla
-  pos: CCONJ
-  gloss:
-    en: but; (opening a reply or a command) well, then
-  forms:
-    grc-Grek/polytonic:
-    - ἀλλά
-- id: sense:houtos
-  pos: PRON
-  features:
-    PronType: Dem
-  gloss:
-    en: this, this one; he (here)
-  forms:
-    grc-Grek/polytonic:
-    - οὗτος
-  notes:
-    en: 'οὗτος points: "this man here". Called out, it is "there he is!". Its feminine is αὕτη.'
-- id: sense:opisthen
-  pos: ADV
-  gloss:
-    en: behind
-  forms:
-    grc-Grek/polytonic:
-    - ὄπισθεν
-- id: form:fut-1p
-  gloss:
-    en: 'the future, we: we will do'
-- id: sense:emi
-  pos: VERB
-  gloss:
-    en: said (only in ἦ δ’ ὅς, "said he")
-  forms:
-    grc-Grek/polytonic:
-    - ἦ
-- id: sense:hos
-  pos: PRON
-  features:
-    PronType: Prs
-  gloss:
-    en: he (only in ἦ δ’ ὅς, "said he")
-  forms:
-    grc-Grek/polytonic:
-    - ὅς
-  notes:
-    en: 'ἦ δ’ ὅς, "said he", is how Plato''s narrators report a speaker: ἀλλὰ περιμενοῦμεν, ἦ δ’ ὃς ὁ Γλαύκων.'
 nodes:
-- id: grc.u05.yesterday
-  kind: lesson
-  introduces:
-  - sense:chthes
-  - sense:katabaino
-  - form:aor-1s
-  - sense:peiraieus
-  - sense:meta
-  - sense:glaukon
-  - sense:ariston
-- id: grc.u05.he-said
-  kind: lesson
-  introduces:
-  - sense:phemi
-  - form:impf-3s
-  - sense:polemarchos
-  - sense:perimeno
-  - sense:keleuo
-  - form:inf
-- id: grc.u05.wait
-  kind: lesson
-  introduces:
-  - sense:alla
-- id: grc.u05.here-he-is
-  kind: lesson
-  introduces:
-  - sense:houtos
-  - sense:opisthen
-- id: grc.u05.we-will-wait
-  kind: lesson
-  introduces:
-  - form:fut-1p
-  - sense:emi
-  - sense:hos
-- id: grc.u05.story
-  kind: story
+- {id: grc.u05.yesterday, kind: lesson, introduces: ['lexeme:chthes', 'lexeme:katabaino', 'feature:Tense=Past', 'lexeme:peiraieus', 'lexeme:meta', 'lexeme:glaukon', 'lexeme:ariston']}
+- {id: grc.u05.he-said, kind: lesson, introduces: ['lexeme:phemi', 'feature:Aspect=Imp', 'lexeme:polemarchos', 'lexeme:perimeno', 'lexeme:keleuo', 'feature:VerbForm=Inf']}
+- {id: grc.u05.wait, kind: lesson, introduces: ['lexeme:alla']}
+- {id: grc.u05.here-he-is, kind: lesson, introduces: ['lexeme:houtos', 'lexeme:opisthen']}
+- {id: grc.u05.we-will-wait, kind: lesson, introduces: ['feature:Tense=Fut', 'lexeme:emi', 'lexeme:hos']}
+- {id: grc.u05.story, kind: story}
 sentences:
 - id: s.05.1
   node: grc.u05.yesterday
   forms:
     grc-Grek/polytonic:
       text: χθές.
-      tokens:
-      - surface: χθές
-        sense: chthes
-        readings:
-          attic: χθές
+      tokens: [{surface: χθές, lexeme: chthes, readings: {attic: χθές}}]
       reverse: χθές
   translations:
     en: Yesterday.
@@ -195,12 +29,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: κατέβην.
-      tokens:
-      - surface: κατέβην
-        sense: katabaino
-        form: form:aor-1s
-        readings:
-          attic: κᾰτέβην
+      tokens: [{surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}]
       reverse: κατέβην
   translations:
     en: I went down.
@@ -209,16 +38,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: χθὲς κατέβην.
-      tokens:
-      - surface: χθὲς
-        sense: chthes
-        readings:
-          attic: χθὲς
-      - surface: κατέβην
-        sense: katabaino
-        form: form:aor-1s
-        readings:
-          attic: κᾰτέβην
+      tokens: [{surface: χθὲς, lexeme: chthes, readings: {attic: χθὲς}}, {surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}]
       reverse: |-
         χθὲς κατέβην
         κατέβην χθές
@@ -229,21 +49,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: εἰς Πειραιᾶ κατέβην.
-      tokens:
-      - surface: εἰς
-        sense: eis
-        readings:
-          attic: εἰς
-      - surface: Πειραιᾶ
-        sense: peiraieus
-        form: form:acc
-        readings:
-          attic: Πειραιᾶ
-      - surface: κατέβην
-        sense: katabaino
-        form: form:aor-1s
-        readings:
-          attic: κᾰτέβην
+      tokens: [{surface: εἰς, lexeme: eis, n: 1, head: 2, rel: case, readings: {attic: εἰς}}, {surface: Πειραιᾶ, lexeme: peiraieus, feats: {Case: Acc, Number: Sing}, n: 2, readings: {attic: Πειραιᾶ}}, {surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}]
       reverse: |-
         εἰς Πειραιᾶ κατέβην
         κατέβην εἰς Πειραιᾶ
@@ -256,25 +62,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: κατέβην χθὲς εἰς Πειραιᾶ.
-      tokens:
-      - surface: κατέβην
-        sense: katabaino
-        form: form:aor-1s
-        readings:
-          attic: κᾰτέβην
-      - surface: χθὲς
-        sense: chthes
-        readings:
-          attic: χθὲς
-      - surface: εἰς
-        sense: eis
-        readings:
-          attic: εἰς
-      - surface: Πειραιᾶ
-        sense: peiraieus
-        form: form:acc
-        readings:
-          attic: Πειραιᾶ
+      tokens: [{surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}, {surface: χθὲς, lexeme: chthes, readings: {attic: χθὲς}}, {surface: εἰς, lexeme: eis, n: 3, head: 4, rel: case, readings: {attic: εἰς}}, {surface: Πειραιᾶ, lexeme: peiraieus, feats: {Case: Acc, Number: Sing}, n: 4, readings: {attic: Πειραιᾶ}}]
       reverse: |-
         κατέβην χθὲς εἰς Πειραιᾶ
         χθὲς κατέβην εἰς Πειραιᾶ
@@ -291,16 +79,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: μετὰ Γλαύκωνος.
-      tokens:
-      - surface: μετὰ
-        sense: meta
-        readings:
-          attic: μετᾰ̀
-      - surface: Γλαύκωνος
-        sense: glaukon
-        form: form:gen
-        readings:
-          attic: Γλαύκωνος
+      tokens: [{surface: μετὰ, lexeme: meta, n: 1, head: 2, rel: case, readings: {attic: μετᾰ̀}}, {surface: Γλαύκωνος, lexeme: glaukon, feats: {Case: Gen, Number: Sing}, n: 2, readings: {attic: Γλαύκωνος}}]
       reverse: μετὰ Γλαύκωνος
   translations:
     en: With Glaucon.
@@ -309,20 +88,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: Γλαύκων ὁ Ἀρίστωνος.
-      tokens:
-      - surface: Γλαύκων
-        sense: glaukon
-        readings:
-          attic: Γλαύκων
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: Ἀρίστωνος
-        sense: ariston
-        form: form:gen
-        readings:
-          attic: Ᾰ̓ρῐ́στωνος
+      tokens: [{surface: Γλαύκων, lexeme: glaukon, feats: {Case: Nom, Number: Sing}, readings: {attic: Γλαύκων}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὁ}}, {surface: Ἀρίστωνος, lexeme: ariston, feats: {Case: Gen, Number: Sing}, readings: {attic: Ᾰ̓ρῐ́στωνος}}]
       reverse: Γλαύκων ὁ Ἀρίστωνος
   translations:
     en: Glaucon, (son of Ariston|Ariston's son|the son of Ariston).
@@ -331,21 +97,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: μετὰ Γλαύκωνος κατέβην.
-      tokens:
-      - surface: μετὰ
-        sense: meta
-        readings:
-          attic: μετᾰ̀
-      - surface: Γλαύκωνος
-        sense: glaukon
-        form: form:gen
-        readings:
-          attic: Γλαύκωνος
-      - surface: κατέβην
-        sense: katabaino
-        form: form:aor-1s
-        readings:
-          attic: κᾰτέβην
+      tokens: [{surface: μετὰ, lexeme: meta, n: 1, head: 2, rel: case, readings: {attic: μετᾰ̀}}, {surface: Γλαύκωνος, lexeme: glaukon, feats: {Case: Gen, Number: Sing}, n: 2, readings: {attic: Γλαύκωνος}}, {surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}]
       reverse: |-
         μετὰ Γλαύκωνος κατέβην
         κατέβην μετὰ Γλαύκωνος
@@ -356,40 +108,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: μετὰ τοῦ ἀδελφοῦ εἰς τὴν ἀγορὰν κατέβην.
-      tokens:
-      - surface: μετὰ
-        sense: meta
-        readings:
-          attic: μετᾰ̀
-      - surface: τοῦ
-        sense: ho
-        form: form:gen
-        readings:
-          attic: τοῦ
-      - surface: ἀδελφοῦ
-        sense: adelphos
-        form: form:gen
-        readings:
-          attic: ᾰ̓δελφοῦ
-      - surface: εἰς
-        sense: eis
-        readings:
-          attic: εἰς
-      - surface: τὴν
-        sense: ho
-        form: form:f-acc
-        readings:
-          attic: τὴν
-      - surface: ἀγορὰν
-        sense: agora
-        form: form:f-acc
-        readings:
-          attic: ᾰ̓γορᾱ̀ν
-      - surface: κατέβην
-        sense: katabaino
-        form: form:aor-1s
-        readings:
-          attic: κᾰτέβην
+      tokens: [{surface: μετὰ, lexeme: meta, n: 1, head: 3, rel: case, readings: {attic: μετᾰ̀}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τοῦ}}, {surface: ἀδελφοῦ, lexeme: adelphos, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: ᾰ̓δελφοῦ}}, {surface: εἰς, lexeme: eis, n: 4, head: 6, rel: case, readings: {attic: εἰς}}, {surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: τὴν}}, {surface: ἀγορὰν, lexeme: agora, feats: {Case: Acc, Number: Sing}, n: 6, readings: {attic: ᾰ̓γορᾱ̀ν}}, {surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}]
       reverse: |-
         μετὰ τοῦ ἀδελφοῦ εἰς τὴν ἀγορὰν κατέβην
         κατέβην εἰς τὴν ἀγορὰν μετὰ τοῦ ἀδελφοῦ
@@ -404,21 +123,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: μετὰ τῆς μητρός.
-      tokens:
-      - surface: μετὰ
-        sense: meta
-        readings:
-          attic: μετᾰ̀
-      - surface: τῆς
-        sense: ho
-        form: form:f-gen
-        readings:
-          attic: τῆς
-      - surface: μητρός
-        sense: meter
-        form: form:f-gen
-        readings:
-          attic: μητρός
+      tokens: [{surface: μετὰ, lexeme: meta, n: 1, head: 3, rel: case, readings: {attic: μετᾰ̀}}, {surface: τῆς, lexeme: ho, feats: {Case: Gen, Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: τῆς}}, {surface: μητρός, lexeme: meter, feats: {Case: Gen, Number: Sing}, n: 3, readings: {attic: μητρός}}]
       reverse: μετὰ τῆς μητρός
   translations:
     en: With (my|the) mother.
@@ -427,12 +132,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἔφη.
-      tokens:
-      - surface: ἔφη
-        sense: phemi
-        form: form:impf-3s
-        readings:
-          attic: ἔφη
+      tokens: [{surface: ἔφη, lexeme: phemi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔφη}}]
       reverse: ἔφη
   translations:
     en: (He|She) said.
@@ -441,20 +141,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἔφη ὁ παῖς.
-      tokens:
-      - surface: ἔφη
-        sense: phemi
-        form: form:impf-3s
-        readings:
-          attic: ἔφη
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: παῖς
-        sense: pais
-        readings:
-          attic: παῖς
+      tokens: [{surface: ἔφη, lexeme: phemi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔφη}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 3, readings: {attic: παῖς}}]
       reverse: |-
         ἔφη ὁ παῖς
         ὁ παῖς ἔφη
@@ -465,11 +152,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: Πολέμαρχος.
-      tokens:
-      - surface: Πολέμαρχος
-        sense: polemarchos
-        readings:
-          attic: Πολέμᾰρχος
+      tokens: [{surface: Πολέμαρχος, lexeme: polemarchos, feats: {Case: Nom, Number: Sing}, readings: {attic: Πολέμᾰρχος}}]
       reverse: Πολέμαρχος
   translations:
     en: Polemarchus.
@@ -478,12 +161,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: περιμένω.
-      tokens:
-      - surface: περιμένω
-        sense: perimeno
-        form: form:pres-1s
-        readings:
-          attic: περῐμένω
+      tokens: [{surface: περιμένω, lexeme: perimeno, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: περῐμένω}}]
       reverse: περιμένω
   translations:
     en: (I am|I'm) waiting.
@@ -492,45 +170,18 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: περιμένω, ἔφη.
-      tokens:
-      - surface: περιμένω
-        sense: perimeno
-        form: form:pres-1s
-        readings:
-          attic: περῐμένω
-      - surface: ἔφη
-        sense: phemi
-        form: form:impf-3s
-        readings:
-          attic: ἔφη
+      tokens: [{surface: περιμένω, lexeme: perimeno, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: περῐμένω}}, {surface: ἔφη, lexeme: phemi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔφη}}]
       reverse: περιμένω ἔφη
   translations:
     en: “(I am|I'm) waiting,” (he|she) said.
 - id: s.05.16
   node: grc.u05.he-said
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     grc-Grek/polytonic:
       text: Πολέμαρχος κελεύει ὑμᾶς περιμεῖναι.
-      tokens:
-      - surface: Πολέμαρχος
-        sense: polemarchos
-        readings:
-          attic: Πολέμᾰρχος
-      - surface: κελεύει
-        sense: keleuo
-        form: form:pres-3s
-        readings:
-          attic: κελεύει
-      - surface: ὑμᾶς
-        sense: hymeis
-        form: form:acc-pl
-        readings:
-          attic: ῡ̔μᾶς
-      - surface: περιμεῖναι
-        sense: perimeno
-        form: form:inf
-        readings:
-          attic: περῐμεῖναι
+      tokens: [{surface: Πολέμαρχος, lexeme: polemarchos, feats: {Case: Nom, Number: Sing}, readings: {attic: Πολέμᾰρχος}}, {surface: κελεύει, lexeme: keleuo, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: κελεύει}}, {surface: ὑμᾶς, lexeme: hymeis, feats: {Case: Acc, Number: Plur}, readings: {attic: ῡ̔μᾶς}}, {surface: περιμεῖναι, lexeme: perimeno, feats: {VerbForm: Inf}, readings: {attic: περῐμεῖναι}}]
       reverse: |-
         Πολέμαρχος κελεύει ὑμᾶς περιμεῖναι
         κελεύει ὑμᾶς [ὁ] Πολέμαρχος περιμεῖναι
@@ -541,187 +192,98 @@ sentences:
         [ὁ] Πολέμαρχος κελεύει περιμεῖναι ὑμᾶς
   translations:
     en: Polemarchus (tells|is telling|orders) you to wait.
-  persons:
-    addressee: pl
 - id: s.05.17
   node: grc.u05.he-said
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: κελεύει σε περιμεῖναι.
-      tokens:
-      - surface: κελεύει
-        sense: keleuo
-        form: form:pres-3s
-        readings:
-          attic: κελεύει
-      - surface: σε
-        sense: sy
-        form: form:acc
-        readings:
-          attic: σε
-      - surface: περιμεῖναι
-        sense: perimeno
-        form: form:inf
-        readings:
-          attic: περῐμεῖναι
+      tokens: [{surface: κελεύει, lexeme: keleuo, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: κελεύει}}, {surface: σε, lexeme: sy, feats: {Case: Acc, Number: Sing}, readings: {attic: σε}}, {surface: περιμεῖναι, lexeme: perimeno, feats: {VerbForm: Inf}, readings: {attic: περῐμεῖναι}}]
       reverse: |-
         κελεύει σε περιμεῖναι
         σε κελεύει περιμεῖναι
   translations:
     en: (He|She) (tells|is telling|orders) you to wait.
-  persons:
-    addressee: sg
 - id: s.05.18
   node: grc.u05.he-said
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: κελεύω σε περιμεῖναι.
-      tokens:
-      - surface: κελεύω
-        sense: keleuo
-        form: form:pres-1s
-        readings:
-          attic: κελεύω
-      - surface: σε
-        sense: sy
-        form: form:acc
-        readings:
-          attic: σε
-      - surface: περιμεῖναι
-        sense: perimeno
-        form: form:inf
-        readings:
-          attic: περῐμεῖναι
+      tokens: [{surface: κελεύω, lexeme: keleuo, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: κελεύω}}, {surface: σε, lexeme: sy, feats: {Case: Acc, Number: Sing}, readings: {attic: σε}}, {surface: περιμεῖναι, lexeme: perimeno, feats: {VerbForm: Inf}, readings: {attic: περῐμεῖναι}}]
       reverse: |-
         κελεύω σε περιμεῖναι
         σε κελεύω περιμεῖναι
         ἐγώ σε κελεύω περιμεῖναι
   translations:
     en: I (tell|am telling|order) you to wait.
-  persons:
-    addressee: sg
 - id: s.05.19
   node: grc.u05.wait
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     grc-Grek/polytonic:
       text: περιμένετε.
-      tokens:
-      - surface: περιμένετε
-        sense: perimeno
-        form: form:impv-2p
-        readings:
-          attic: περῐμένετε
+      tokens: [{surface: περιμένετε, lexeme: perimeno, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {attic: περῐμένετε}}]
       reverse: περιμένετε
   translations:
     en: (Wait|Hold on|Wait a moment)!
-  persons:
-    addressee: pl
 - id: s.05.20
   node: grc.u05.wait
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: περίμενε.
-      tokens:
-      - surface: περίμενε
-        sense: perimeno
-        form: form:impv-2s
-        readings:
-          attic: περῐ́μενε
+      tokens: [{surface: περίμενε, lexeme: perimeno, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: περῐ́μενε}}]
       reverse: περίμενε
   translations:
     en: (Wait|Hold on|Wait a moment)!
-  persons:
-    addressee: sg
 - id: s.05.21
   node: grc.u05.wait
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     grc-Grek/polytonic:
       text: ἀλλὰ περιμένετε.
-      tokens:
-      - surface: ἀλλὰ
-        sense: alla
-        readings:
-          attic: ᾰ̓λλᾰ̀
-      - surface: περιμένετε
-        sense: perimeno
-        form: form:impv-2p
-        readings:
-          attic: περῐμένετε
+      tokens: [{surface: ἀλλὰ, lexeme: alla, readings: {attic: ᾰ̓λλᾰ̀}}, {surface: περιμένετε, lexeme: perimeno, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {attic: περῐμένετε}}]
       reverse: ἀλλὰ περιμένετε
   translations:
     en: (Well, wait|Just wait|But wait|Wait, then)!
-  persons:
-    addressee: pl
 - id: s.05.22
   node: grc.u05.wait
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     grc-Grek/polytonic:
       text: περιμένετε ἡμᾶς.
-      tokens:
-      - surface: περιμένετε
-        sense: perimeno
-        form: form:impv-2p
-        readings:
-          attic: περῐμένετε
-      - surface: ἡμᾶς
-        sense: hemeis
-        form: form:acc-pl
-        readings:
-          attic: ἡμᾶς
+      tokens: [{surface: περιμένετε, lexeme: perimeno, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {attic: περῐμένετε}}, {surface: ἡμᾶς, lexeme: hemeis, feats: {Case: Acc, Number: Plur}, readings: {attic: ἡμᾶς}}]
       reverse: |-
         περιμένετε ἡμᾶς
         ἡμᾶς περιμένετε
   translations:
     en: Wait for us!
-  persons:
-    addressee: pl
 - id: s.05.23
   node: grc.u05.wait
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: περίμενέ με.
-      tokens:
-      - surface: περίμενέ
-        sense: perimeno
-        form: form:impv-2s
-        readings:
-          attic: περῐ́μενέ
-      - surface: με
-        sense: ego
-        form: form:acc
-        readings:
-          attic: με
+      tokens: [{surface: περίμενέ, lexeme: perimeno, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: περῐ́μενέ}}, {surface: με, lexeme: ego, feats: {Case: Acc, Number: Sing}, readings: {attic: με}}]
       reverse: |-
         περίμενέ με
         ἐμὲ περίμενε
   translations:
     en: Wait for me!
-  persons:
-    addressee: sg
 - id: s.05.24
   node: grc.u05.wait
   forms:
     grc-Grek/polytonic:
       text: οὐ περιμένω, ἀλλὰ βαδίζω.
-      tokens:
-      - surface: οὐ
-        sense: ou
-        readings:
-          attic: οὐ
-      - surface: περιμένω
-        sense: perimeno
-        form: form:pres-1s
-        readings:
-          attic: περῐμένω
-      - surface: ἀλλὰ
-        sense: alla
-        readings:
-          attic: ᾰ̓λλᾰ̀
-      - surface: βαδίζω
-        sense: badizo
-        form: form:pres-1s
-        readings:
-          attic: βᾰδῐ́ζω
+      tokens: [{surface: οὐ, lexeme: ou, readings: {attic: οὐ}}, {surface: περιμένω, lexeme: perimeno, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: περῐμένω}}, {surface: ἀλλὰ, lexeme: alla, readings: {attic: ᾰ̓λλᾰ̀}}, {surface: βαδίζω, lexeme: badizo, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: βᾰδῐ́ζω}}]
       reverse: οὐ περιμένω ἀλλὰ βαδίζω
   translations:
     en: |-
@@ -732,21 +294,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὦ Ξανθίππη, περίμενε.
-      tokens:
-      - surface: ὦ
-        sense: o
-        readings:
-          attic: ὦ
-      - surface: Ξανθίππη
-        sense: xanthippe
-        form: form:f-voc
-        readings:
-          attic: Ξᾰνθῐ́ππη
-      - surface: περίμενε
-        sense: perimeno
-        form: form:impv-2s
-        readings:
-          attic: περῐ́μενε
+      tokens: [{surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: Ξανθίππη, lexeme: xanthippe, feats: {Case: Voc, Number: Sing}, readings: {attic: Ξᾰνθῐ́ππη}}, {surface: περίμενε, lexeme: perimeno, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: περῐ́μενε}}]
       reverse: |-
         ὦ Ξανθίππη περίμενε
         Ξανθίππη περίμενε
@@ -758,11 +306,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οὗτος.
-      tokens:
-      - surface: οὗτος
-        sense: houtos
-        readings:
-          attic: οὗτος
+      tokens: [{surface: οὗτος, lexeme: houtos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: οὗτος}}]
       reverse: οὗτος
   translations:
     en: (Here he is|There he is|This man|This one)!
@@ -771,11 +315,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὄπισθεν.
-      tokens:
-      - surface: ὄπισθεν
-        sense: opisthen
-        readings:
-          attic: ὄπῐσθεν
+      tokens: [{surface: ὄπισθεν, lexeme: opisthen, readings: {attic: ὄπῐσθεν}}]
       reverse: ὄπισθεν
   translations:
     en: (Behind|From behind).
@@ -784,20 +324,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οὗτος ὄπισθεν προσέρχεται.
-      tokens:
-      - surface: οὗτος
-        sense: houtos
-        readings:
-          attic: οὗτος
-      - surface: ὄπισθεν
-        sense: opisthen
-        readings:
-          attic: ὄπῐσθεν
-      - surface: προσέρχεται
-        sense: proserchomai
-        form: form:pres-3s
-        readings:
-          attic: προσέρχεται
+      tokens: [{surface: οὗτος, lexeme: houtos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: οὗτος}}, {surface: ὄπισθεν, lexeme: opisthen, readings: {attic: ὄπῐσθεν}}, {surface: προσέρχεται, lexeme: proserchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: προσέρχεται}}]
       reverse: |-
         οὗτος ὄπισθεν προσέρχεται
         οὗτος προσέρχεται ὄπισθεν
@@ -811,24 +338,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ Πολέμαρχος ὄπισθεν προσέρχεται.
-      tokens:
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: Πολέμαρχος
-        sense: polemarchos
-        readings:
-          attic: Πολέμᾰρχος
-      - surface: ὄπισθεν
-        sense: opisthen
-        readings:
-          attic: ὄπῐσθεν
-      - surface: προσέρχεται
-        sense: proserchomai
-        form: form:pres-3s
-        readings:
-          attic: προσέρχεται
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: Πολέμαρχος, lexeme: polemarchos, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: Πολέμᾰρχος}}, {surface: ὄπισθεν, lexeme: opisthen, readings: {attic: ὄπῐσθεν}}, {surface: προσέρχεται, lexeme: proserchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: προσέρχεται}}]
       reverse: |-
         ὁ Πολέμαρχος ὄπισθεν προσέρχεται
         [ὁ] Πολέμαρχος προσέρχεται ὄπισθεν
@@ -842,21 +352,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: αὕτη ὄπισθεν προσέρχεται.
-      tokens:
-      - surface: αὕτη
-        sense: houtos
-        form: form:f
-        readings:
-          attic: αὕτη
-      - surface: ὄπισθεν
-        sense: opisthen
-        readings:
-          attic: ὄπῐσθεν
-      - surface: προσέρχεται
-        sense: proserchomai
-        form: form:pres-3s
-        readings:
-          attic: προσέρχεται
+      tokens: [{surface: αὕτη, lexeme: houtos, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: αὕτη}}, {surface: ὄπισθεν, lexeme: opisthen, readings: {attic: ὄπῐσθεν}}, {surface: προσέρχεται, lexeme: proserchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: προσέρχεται}}]
       reverse: |-
         αὕτη ὄπισθεν προσέρχεται
         αὕτη προσέρχεται ὄπισθεν
@@ -870,24 +366,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ποῦ ἐστιν ὁ Πολέμαρχος;
-      tokens:
-      - surface: ποῦ
-        sense: pou
-        readings:
-          attic: ποῦ
-      - surface: ἐστιν
-        sense: eimi
-        form: form:pres-3s
-        readings:
-          attic: ἐστῐν
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: Πολέμαρχος
-        sense: polemarchos
-        readings:
-          attic: Πολέμᾰρχος
+      tokens: [{surface: ποῦ, lexeme: pou, readings: {attic: ποῦ}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: ὁ}}, {surface: Πολέμαρχος, lexeme: polemarchos, feats: {Case: Nom, Number: Sing}, n: 4, readings: {attic: Πολέμᾰρχος}}]
       reverse: |-
         ποῦ ἐστιν ὁ Πολέμαρχος
         ποῦ ἐστι[ν] Πολέμαρχος
@@ -899,12 +378,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: περιμενοῦμεν.
-      tokens:
-      - surface: περιμενοῦμεν
-        sense: perimeno
-        form: form:fut-1p
-        readings:
-          attic: περῐμενοῦμεν
+      tokens: [{surface: περιμενοῦμεν, lexeme: perimeno, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}, readings: {attic: περῐμενοῦμεν}}]
       reverse: περιμενοῦμεν
   translations:
     en: (We will|We'll) wait.
@@ -913,16 +387,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἀλλὰ περιμενοῦμεν.
-      tokens:
-      - surface: ἀλλὰ
-        sense: alla
-        readings:
-          attic: ᾰ̓λλᾰ̀
-      - surface: περιμενοῦμεν
-        sense: perimeno
-        form: form:fut-1p
-        readings:
-          attic: περῐμενοῦμεν
+      tokens: [{surface: ἀλλὰ, lexeme: alla, readings: {attic: ᾰ̓λλᾰ̀}}, {surface: περιμενοῦμεν, lexeme: perimeno, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}, readings: {attic: περῐμενοῦμεν}}]
       reverse: ἀλλὰ περιμενοῦμεν
   translations:
     en: (Well|All right|Very well), (we will|we'll) wait.
@@ -931,19 +396,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἦ δ’ ὅς.
-      tokens:
-      - surface: ἦ
-        sense: emi
-        readings:
-          attic: ἦ
-      - surface: δ’
-        sense: de
-        readings:
-          attic: δ’
-      - surface: ὅς
-        sense: hos
-        readings:
-          attic: ὅς
+      tokens: [{surface: ἦ, lexeme: emi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἦ}}, {surface: δ’, lexeme: de, readings: {attic: δ’}}, {surface: ὅς, lexeme: hos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὅς}}]
       reverse: ἦ δ’ ὅς
   translations:
     en: (Said he|He said).
@@ -952,32 +405,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: περιμενοῦμεν, ἦ δ’ ὃς ὁ Γλαύκων.
-      tokens:
-      - surface: περιμενοῦμεν
-        sense: perimeno
-        form: form:fut-1p
-        readings:
-          attic: περῐμενοῦμεν
-      - surface: ἦ
-        sense: emi
-        readings:
-          attic: ἦ
-      - surface: δ’
-        sense: de
-        readings:
-          attic: δ’
-      - surface: ὃς
-        sense: hos
-        readings:
-          attic: ὃς
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: Γλαύκων
-        sense: glaukon
-        readings:
-          attic: Γλαύκων
+      tokens: [{surface: περιμενοῦμεν, lexeme: perimeno, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}, readings: {attic: περῐμενοῦμεν}}, {surface: ἦ, lexeme: emi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἦ}}, {surface: δ’, lexeme: de, readings: {attic: δ’}}, {surface: ὃς, lexeme: hos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὃς}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det, readings: {attic: ὁ}}, {surface: Γλαύκων, lexeme: glaukon, feats: {Case: Nom, Number: Sing}, n: 6, readings: {attic: Γλαύκων}}]
       reverse: περιμενοῦμεν ἦ δ’ ὃς ὁ Γλαύκων
   translations:
     en: “(We will|We'll) wait,” (said Glaucon|Glaucon said).
@@ -1000,51 +428,14 @@ stories:
   - line:
       speaker: socrates
       ask: complete
-      gap: sense:chthes
+      gap: lexeme:chthes
       distractors:
-      - sense:oikoi
-      - sense:pany
+      - lexeme:oikoi
+      - lexeme:pany
       forms:
         grc-Grek/polytonic:
           text: κατέβην χθὲς εἰς Πειραιᾶ μετὰ Γλαύκωνος τοῦ Ἀρίστωνος,
-          tokens:
-          - surface: κατέβην
-            sense: katabaino
-            form: form:aor-1s
-            readings:
-              attic: κᾰτέβην
-          - surface: χθὲς
-            sense: chthes
-            readings:
-              attic: χθὲς
-          - surface: εἰς
-            sense: eis
-            readings:
-              attic: εἰς
-          - surface: Πειραιᾶ
-            sense: peiraieus
-            form: form:acc
-            readings:
-              attic: Πειραιᾶ
-          - surface: μετὰ
-            sense: meta
-            readings:
-              attic: μετᾰ̀
-          - surface: Γλαύκωνος
-            sense: glaukon
-            form: form:gen
-            readings:
-              attic: Γλαύκωνος
-          - surface: τοῦ
-            sense: ho
-            form: form:gen
-            readings:
-              attic: τοῦ
-          - surface: Ἀρίστωνος
-            sense: ariston
-            form: form:gen
-            readings:
-              attic: Ᾰ̓ρῐ́στωνος
+          tokens: [{surface: κατέβην, lexeme: katabaino, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {attic: κᾰτέβην}}, {surface: χθὲς, lexeme: chthes, readings: {attic: χθὲς}}, {surface: εἰς, lexeme: eis, n: 3, head: 4, rel: case, readings: {attic: εἰς}}, {surface: Πειραιᾶ, lexeme: peiraieus, feats: {Case: Acc, Number: Sing}, n: 4, readings: {attic: Πειραιᾶ}}, {surface: μετὰ, lexeme: meta, n: 5, head: 6, rel: case, readings: {attic: μετᾰ̀}}, {surface: Γλαύκωνος, lexeme: glaukon, feats: {Case: Gen, Number: Sing}, n: 6, readings: {attic: Γλαύκωνος}}, {surface: τοῦ, lexeme: ho, feats: {Case: Gen, Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det, readings: {attic: τοῦ}}, {surface: Ἀρίστωνος, lexeme: ariston, feats: {Case: Gen, Number: Sing}, n: 8, readings: {attic: Ᾰ̓ρῐ́στωνος}}]
       translations:
         en: I went down to the Piraeus yesterday with Glaucon, the son of Ariston,
   - choose:
@@ -1060,31 +451,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: κελεύει ὑμᾶς, ἔφη, Πολέμαρχος περιμεῖναι.
-          tokens:
-          - surface: κελεύει
-            sense: keleuo
-            form: form:pres-3s
-            readings:
-              attic: κελεύει
-          - surface: ὑμᾶς
-            sense: hymeis
-            form: form:acc-pl
-            readings:
-              attic: ῡ̔μᾶς
-          - surface: ἔφη
-            sense: phemi
-            form: form:impf-3s
-            readings:
-              attic: ἔφη
-          - surface: Πολέμαρχος
-            sense: polemarchos
-            readings:
-              attic: Πολέμᾰρχος
-          - surface: περιμεῖναι
-            sense: perimeno
-            form: form:inf
-            readings:
-              attic: περῐμεῖναι
+          tokens: [{surface: κελεύει, lexeme: keleuo, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: κελεύει}}, {surface: ὑμᾶς, lexeme: hymeis, feats: {Case: Acc, Number: Plur}, readings: {attic: ῡ̔μᾶς}}, {surface: ἔφη, lexeme: phemi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔφη}}, {surface: Πολέμαρχος, lexeme: polemarchos, feats: {Case: Nom, Number: Sing}, readings: {attic: Πολέμᾰρχος}}, {surface: περιμεῖναι, lexeme: perimeno, feats: {VerbForm: Inf}, readings: {attic: περῐμεῖναι}}]
       translations:
         en: “Polemarchus tells you to wait,” he said.
   - line:
@@ -1093,34 +460,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: οὗτος, ἔφη, ὄπισθεν προσέρχεται· ἀλλὰ περιμένετε.
-          tokens:
-          - surface: οὗτος
-            sense: houtos
-            readings:
-              attic: οὗτος
-          - surface: ἔφη
-            sense: phemi
-            form: form:impf-3s
-            readings:
-              attic: ἔφη
-          - surface: ὄπισθεν
-            sense: opisthen
-            readings:
-              attic: ὄπῐσθεν
-          - surface: προσέρχεται
-            sense: proserchomai
-            form: form:pres-3s
-            readings:
-              attic: προσέρχεται
-          - surface: ἀλλὰ
-            sense: alla
-            readings:
-              attic: ᾰ̓λλᾰ̀
-          - surface: περιμένετε
-            sense: perimeno
-            form: form:impv-2p
-            readings:
-              attic: περῐμένετε
+          tokens: [{surface: οὗτος, lexeme: houtos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: οὗτος}}, {surface: ἔφη, lexeme: phemi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἔφη}}, {surface: ὄπισθεν, lexeme: opisthen, readings: {attic: ὄπῐσθεν}}, {surface: προσέρχεται, lexeme: proserchomai, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: προσέρχεται}}, {surface: ἀλλὰ, lexeme: alla, readings: {attic: ᾰ̓λλᾰ̀}}, {surface: περιμένετε, lexeme: perimeno, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {attic: περῐμένετε}}]
       translations:
         en: “There he is,” he said, “coming up behind. Just wait.”
   - choose:
@@ -1136,36 +476,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: ἀλλὰ περιμενοῦμεν, ἦ δ’ ὃς ὁ Γλαύκων.
-          tokens:
-          - surface: ἀλλὰ
-            sense: alla
-            readings:
-              attic: ᾰ̓λλᾰ̀
-          - surface: περιμενοῦμεν
-            sense: perimeno
-            form: form:fut-1p
-            readings:
-              attic: περῐμενοῦμεν
-          - surface: ἦ
-            sense: emi
-            readings:
-              attic: ἦ
-          - surface: δ’
-            sense: de
-            readings:
-              attic: δ’
-          - surface: ὃς
-            sense: hos
-            readings:
-              attic: ὃς
-          - surface: ὁ
-            sense: ho
-            readings:
-              attic: ὁ
-          - surface: Γλαύκων
-            sense: glaukon
-            readings:
-              attic: Γλαύκων
+          tokens: [{surface: ἀλλὰ, lexeme: alla, readings: {attic: ᾰ̓λλᾰ̀}}, {surface: περιμενοῦμεν, lexeme: perimeno, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}, readings: {attic: περῐμενοῦμεν}}, {surface: ἦ, lexeme: emi, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {attic: ἦ}}, {surface: δ’, lexeme: de, readings: {attic: δ’}}, {surface: ὃς, lexeme: hos, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: ὃς}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det, readings: {attic: ὁ}}, {surface: Γλαύκων, lexeme: glaukon, feats: {Case: Nom, Number: Sing}, n: 7, readings: {attic: Γλαύκων}}]
       translations:
         en: “Well, we'll wait,” said Glaucon.
   - choose:

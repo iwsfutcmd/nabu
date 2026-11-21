@@ -4,39 +4,12 @@ id: u06
 title:
   en: 'mi lon tomo: I''m at home'
 cefr: A1
-kcs:
-- {id: 'sense:lon', pos: ADP, gloss: {en: 'at, in, on; be there, exist; true, yes'}, forms: {tok-Latn/standard: [lon], tok-Qaap/sitelen-pona: [󱤬]}, notes: {en: 'mi lon tomo: I''m at home. lon also means true: ni
-      li lon, that''s true; and lon answers yes to a lon ala lon? question.'}}
-- {id: 'sense:supa', pos: NOUN, gloss: {en: 'table, surface; furniture'}, forms: {tok-Latn/standard: [supa], tok-Qaap/sitelen-pona: [󱥥]}, notes: {en: Anything flat to put things on or sit on. supa lape (a sleeping
-      surface) is a bed.}}
-- {id: 'sense:poki', pos: NOUN, gloss: {en: 'box, cup, bag, bowl; container'}, forms: {tok-Latn/standard: [poki], tok-Qaap/sitelen-pona: [󱥓]}, notes: {en: poki is anything that holds things.}}
-- {id: 'sense:insa', pos: NOUN, gloss: {en: 'inside, middle; belly'}, forms: {tok-Latn/standard: [insa], tok-Qaap/sitelen-pona: [󱤏]}, notes: {en: 'Position words are nouns after lon: lon insa poki, inside the box.'}}
-- {id: 'sense:sewi', pos: NOUN, gloss: {en: 'top, above, up; sky; holy'}, forms: {tok-Latn/standard: [sewi], tok-Qaap/sitelen-pona: [󱥚]}, notes: {en: 'lon sewi supa: on (top of) the table. lon sewi alone is up above,
-      in the sky.'}}
-- {id: 'sense:anpa', pos: NOUN, gloss: {en: 'bottom, under, below, down; floor'}, forms: {tok-Latn/standard: [anpa], tok-Qaap/sitelen-pona: [󱤅]}, notes: {en: 'lon anpa supa: under the table. lon anpa alone is down
-      below, on the floor.'}}
-- {id: 'sense:poka', pos: NOUN, gloss: {en: 'side; next to, beside, with; nearby'}, forms: {tok-Latn/standard: [poka], tok-Qaap/sitelen-pona: [󱥒]}, notes: {en: 'lon poka mi: beside me, with me.'}}
-- {id: 'sense:monsi', pos: NOUN, gloss: {en: 'back, behind, rear'}, forms: {tok-Latn/standard: [monsi], tok-Qaap/sitelen-pona: [󱤸]}, notes: {en: 'lon monsi tomo: behind the house.'}}
-- {id: 'sense:sinpin', pos: NOUN, gloss: {en: 'front, face; wall'}, forms: {tok-Latn/standard: [sinpin], tok-Qaap/sitelen-pona: [󱥟]}, notes: {en: 'lon sinpin tomo: in front of the house. sinpin is also a wall.'}}
-- {id: 'sense:lupa', pos: NOUN, gloss: {en: 'door, window, hole; opening'}, forms: {tok-Latn/standard: [lupa], tok-Qaap/sitelen-pona: [󱤯]}, notes: {en: lupa is any hole or opening. lupa tomo is a door.}}
-- {id: 'sense:tan', pos: ADP, gloss: {en: 'from; because of; cause, origin'}, forms: {tok-Latn/standard: [tan], tok-Qaap/sitelen-pona: [󱥧]}, notes: {en: 'mi kama tan ma Kanata: I come from Canada. tan sina: because
-      of you.'}}
-- {id: 'sense:ma', pos: NOUN, gloss: {en: 'land, country, ground; place; outdoors'}, forms: {tok-Latn/standard: [ma], tok-Qaap/sitelen-pona: [󱤰]}, notes: {en: ma Kanata is Canada. ma tomo (a land of houses) is a town
-      or city.}}
-- {id: 'sense:nasin', pos: NOUN, gloss: {en: 'road, path, way; method, custom'}, forms: {tok-Latn/standard: [nasin], tok-Qaap/sitelen-pona: [󱤿]}, notes: {en: 'nasin is a road and a way of doing things: nasin pona,
-      a good way.'}}
-- {id: 'sense:kepeken', pos: ADP, gloss: {en: 'using, with; use'}, forms: {tok-Latn/standard: [kepeken], tok-Qaap/sitelen-pona: [󱤙]}, notes: {en: 'mi moku kepeken ilo: I eat with a utensil. Like lon and tawa, kepeken
-      comes after the predicate.'}}
-- {id: 'sense:kanata', pos: PROPN, gloss: {en: Kanata (Canada; a place name)}, forms: {tok-Latn/standard: [Kanata], tok-Qaap/sitelen-pona: [󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑]}, notes: {en: 'ma Kanata is Canada. In sitelen pona: kasi, alasa,
-      nasin, awen, telo, a give K, a, n, a, t, a.'}}
-- {id: 'construction:pona-tawa', gloss: {en: 'X li pona tawa Y: Y likes X'}, notes: {en: 'Literally X is good to Y: kili li pona tawa mi, I like fruit. ike tawa says the opposite: ni li ike tawa mi, I don''t
-      like this.'}}
 nodes:
-- {id: tok.u06.at, kind: lesson, introduces: ['sense:lon', 'sense:supa', 'sense:poki']}
-- {id: tok.u06.in-on, kind: lesson, introduces: ['sense:insa', 'sense:sewi', 'sense:anpa']}
-- {id: tok.u06.around, kind: lesson, introduces: ['sense:poka', 'sense:monsi', 'sense:sinpin', 'sense:lupa']}
-- {id: tok.u06.from, kind: lesson, introduces: ['sense:tan', 'sense:ma', 'sense:kanata']}
-- {id: tok.u06.way, kind: lesson, introduces: ['sense:nasin', 'sense:kepeken', 'construction:pona-tawa']}
+- {id: tok.u06.at, kind: lesson, introduces: ['lexeme:lon', 'lexeme:supa', 'lexeme:poki']}
+- {id: tok.u06.in-on, kind: lesson, introduces: ['lexeme:insa', 'lexeme:sewi', 'lexeme:anpa']}
+- {id: tok.u06.around, kind: lesson, introduces: ['lexeme:poka', 'lexeme:monsi', 'lexeme:sinpin', 'lexeme:lupa']}
+- {id: tok.u06.from, kind: lesson, introduces: ['lexeme:tan', 'lexeme:ma', 'lexeme:kanata']}
+- {id: tok.u06.way, kind: lesson, introduces: ['lexeme:nasin', 'lexeme:kepeken', 'rule:pona-tawa']}
 - {id: tok.u06.story, kind: story}
 sentences:
 - id: s.u06.1
@@ -44,13 +17,13 @@ sentences:
   forms:
     tok-Latn/standard:
       text: mi lon tomo.
-      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}]
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: |-
         mi lon tomo
         mi lon tomo mi
     tok-Qaap/sitelen-pona:
       text: 󱤴󱤬󱥭
-      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}]
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: |-
         󱤴󱤬󱥭
         󱤴󱤬󱥭󱤴
@@ -63,13 +36,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: kili li lon supa.
-      tokens: [{surface: kili, sense: kili, readings: {lasina: kili}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: supa, sense: supa,
-          readings: {lasina: supa}}]
+      tokens: [{surface: kili, lexeme: kili, readings: {lasina: kili}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: supa, lexeme: supa, readings: {lasina: supa}}]
       reverse: kili li lon supa
     tok-Qaap/sitelen-pona:
       text: 󱤚󱤧󱤬󱥥
-      tokens: [{surface: 󱤚, sense: kili, readings: {lasina: kili}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥥, sense: supa, readings: {
-            lasina: supa}}]
+      tokens: [{surface: 󱤚, lexeme: kili, readings: {lasina: kili}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥥, lexeme: supa, readings: {lasina: supa}}]
       reverse: 󱤚󱤧󱤬󱥥
   translations:
     en: |-
@@ -81,13 +52,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: pan li lon poki.
-      tokens: [{surface: pan, sense: pan, readings: {lasina: pan}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: poki, sense: poki, readings: {
-            lasina: poki}}]
+      tokens: [{surface: pan, lexeme: pan, readings: {lasina: pan}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poki, lexeme: poki, readings: {lasina: poki}}]
       reverse: pan li lon poki
     tok-Qaap/sitelen-pona:
       text: 󱥋󱤧󱤬󱥓
-      tokens: [{surface: 󱥋, sense: pan, readings: {lasina: pan}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥓, sense: poki, readings: {
-            lasina: poki}}]
+      tokens: [{surface: 󱥋, lexeme: pan, readings: {lasina: pan}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥓, lexeme: poki, readings: {lasina: poki}}]
       reverse: 󱥋󱤧󱤬󱥓
   translations:
     en: |-
@@ -98,13 +67,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: telo li lon poki ni.
-      tokens: [{surface: telo, sense: telo, readings: {lasina: telo}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: poki, sense: poki,
-          readings: {lasina: poki}}, {surface: ni, sense: ni, readings: {lasina: ni}}]
+      tokens: [{surface: telo, lexeme: telo, readings: {lasina: telo}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poki, lexeme: poki, readings: {lasina: poki}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}]
       reverse: telo li lon poki ni
     tok-Qaap/sitelen-pona:
       text: 󱥪󱤧󱤬󱥓󱥁
-      tokens: [{surface: 󱥪, sense: telo, readings: {lasina: telo}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥓, sense: poki, readings: {
-            lasina: poki}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}]
+      tokens: [{surface: 󱥪, lexeme: telo, readings: {lasina: telo}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥓, lexeme: poki, readings: {lasina: poki}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}]
       reverse: 󱥪󱤧󱤬󱥓󱥁
   translations:
     en: |-
@@ -112,24 +79,20 @@ sentences:
       (There's|There is) water in (this|that) (cup|glass|bowl|container)
 - id: s.u06.5
   node: tok.u06.at
+  uses: ['rule:x-ala-x']
   forms:
     tok-Latn/standard:
       text: ilo toki sina li lon ala lon supa?
-      tokens: [{surface: ilo, sense: ilo, readings: {lasina: ilo}}, {surface: toki, sense: toki, readings: {lasina: toki}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: li, sense: li,
-          readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: supa,
-          sense: supa, readings: {lasina: supa}}]
+      tokens: [{surface: ilo, lexeme: ilo, readings: {lasina: ilo}}, {surface: toki, lexeme: toki, readings: {lasina: toki}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: ala, lexeme: ala, readings: {lasina: ala}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: supa, lexeme: supa, readings: {lasina: supa}}]
       reverse: |-
         ilo toki sina li lon ala lon supa
         ilo toki sina li lon supa anu seme
     tok-Qaap/sitelen-pona:
       text: 󱤎󱥬󱥞󱤧󱤬󱤂󱤬󱥥
-      tokens: [{surface: 󱤎, sense: ilo, readings: {lasina: ilo}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤧, sense: li, readings: {
-            lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥥, sense: supa,
-          readings: {lasina: supa}}]
+      tokens: [{surface: 󱤎, lexeme: ilo, readings: {lasina: ilo}}, {surface: 󱥬, lexeme: toki, readings: {lasina: toki}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤂, lexeme: ala, readings: {lasina: ala}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥥, lexeme: supa, readings: {lasina: supa}}]
       reverse: |-
         󱤎󱥬󱥞󱤧󱤬󱤂󱤬󱥥
         󱤎󱥬󱥞󱤧󱤬󱥥󱤇󱥙
-  constructions: ['construction:x-ala-x']
   translations:
     en: Is your phone on the table?
 - id: s.u06.6
@@ -137,13 +100,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: lon. ona li lon supa.
-      tokens: [{surface: lon, sense: lon, readings: {lasina: lon}}, {surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {
-            lasina: lon}}, {surface: supa, sense: supa, readings: {lasina: supa}}]
+      tokens: [{surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: ona, lexeme: ona, readings: {lasina: ona}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: supa, lexeme: supa, readings: {lasina: supa}}]
       reverse: lon ona li lon supa
     tok-Qaap/sitelen-pona:
       text: "\U000F192C\u3000\U000F1946\U000F1927\U000F192C\U000F1965"
-      tokens: [{surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {
-            lasina: lon}}, {surface: 󱥥, sense: supa, readings: {lasina: supa}}]
+      tokens: [{surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥆, lexeme: ona, readings: {lasina: ona}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥥, lexeme: supa, readings: {lasina: supa}}]
       reverse: 󱤬󱥆󱤧󱤬󱥥
   translations:
     en: Yes. (It's|It is) on the table.
@@ -152,13 +113,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: ilo toki mi li lon poki.
-      tokens: [{surface: ilo, sense: ilo, readings: {lasina: ilo}}, {surface: toki, sense: toki, readings: {lasina: toki}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li, readings: {
-            lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: poki, sense: poki, readings: {lasina: poki}}]
+      tokens: [{surface: ilo, lexeme: ilo, readings: {lasina: ilo}}, {surface: toki, lexeme: toki, readings: {lasina: toki}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poki, lexeme: poki, readings: {lasina: poki}}]
       reverse: ilo toki mi li lon poki
     tok-Qaap/sitelen-pona:
       text: 󱤎󱥬󱤴󱤧󱤬󱥓
-      tokens: [{surface: 󱤎, sense: ilo, readings: {lasina: ilo}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {
-            lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥓, sense: poki, readings: {lasina: poki}}]
+      tokens: [{surface: 󱤎, lexeme: ilo, readings: {lasina: ilo}}, {surface: 󱥬, lexeme: toki, readings: {lasina: toki}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥓, lexeme: poki, readings: {lasina: poki}}]
       reverse: 󱤎󱥬󱤴󱤧󱤬󱥓
   translations:
     en: |-
@@ -170,15 +129,13 @@ sentences:
   forms:
     tok-Latn/standard:
       text: kala li lon insa telo.
-      tokens: [{surface: kala, sense: kala, readings: {lasina: kala}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: insa, sense: insa,
-          readings: {lasina: insa}}, {surface: telo, sense: telo, readings: {lasina: telo}}]
+      tokens: [{surface: kala, lexeme: kala, readings: {lasina: kala}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: insa, lexeme: insa, readings: {lasina: insa}}, {surface: telo, lexeme: telo, readings: {lasina: telo}}]
       reverse: |-
         kala li lon insa telo
         kala li lon telo
     tok-Qaap/sitelen-pona:
       text: 󱤔󱤧󱤬󱤏󱥪
-      tokens: [{surface: 󱤔, sense: kala, readings: {lasina: kala}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤏, sense: insa, readings: {
-            lasina: insa}}, {surface: 󱥪, sense: telo, readings: {lasina: telo}}]
+      tokens: [{surface: 󱤔, lexeme: kala, readings: {lasina: kala}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤏, lexeme: insa, readings: {lasina: insa}}, {surface: 󱥪, lexeme: telo, readings: {lasina: telo}}]
       reverse: |-
         󱤔󱤧󱤬󱤏󱥪
         󱤔󱤧󱤬󱥪
@@ -191,15 +148,13 @@ sentences:
   forms:
     tok-Latn/standard:
       text: jan Mila li lon insa tomo.
-      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {
-            lasina: lon}}, {surface: insa, sense: insa, readings: {lasina: insa}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}]
+      tokens: [{surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: Mila, lexeme: mila, readings: {lasina: Mila}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: insa, lexeme: insa, readings: {lasina: insa}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: |-
         jan Mila li lon insa tomo
         jan Mila li lon tomo
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤬󱤏󱥭
-      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤏,
-          sense: insa, readings: {lasina: insa}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}]
+      tokens: [{surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, lexeme: mila}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤏, lexeme: insa, readings: {lasina: insa}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: |-
         󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤬󱤏󱥭
         󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤬󱥭
@@ -213,13 +168,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: waso li lon sewi tomo.
-      tokens: [{surface: waso, sense: waso, readings: {lasina: waso}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: sewi, sense: sewi,
-          readings: {lasina: sewi}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}]
+      tokens: [{surface: waso, lexeme: waso, readings: {lasina: waso}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sewi, lexeme: sewi, readings: {lasina: sewi}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: waso li lon sewi tomo
     tok-Qaap/sitelen-pona:
       text: 󱥴󱤧󱤬󱥚󱥭
-      tokens: [{surface: 󱥴, sense: waso, readings: {lasina: waso}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥚, sense: sewi, readings: {
-            lasina: sewi}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}]
+      tokens: [{surface: 󱥴, lexeme: waso, readings: {lasina: waso}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥚, lexeme: sewi, readings: {lasina: sewi}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: 󱥴󱤧󱤬󱥚󱥭
   translations:
     en: |-
@@ -231,13 +184,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: soweli li lon anpa supa.
-      tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: anpa, sense: anpa,
-          readings: {lasina: anpa}}, {surface: supa, sense: supa, readings: {lasina: supa}}]
+      tokens: [{surface: soweli, lexeme: soweli, readings: {lasina: soweli}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: anpa, lexeme: anpa, readings: {lasina: anpa}}, {surface: supa, lexeme: supa, readings: {lasina: supa}}]
       reverse: soweli li lon anpa supa
     tok-Qaap/sitelen-pona:
       text: 󱥢󱤧󱤬󱤅󱥥
-      tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤅, sense: anpa, readings: {
-            lasina: anpa}}, {surface: 󱥥, sense: supa, readings: {lasina: supa}}]
+      tokens: [{surface: 󱥢, lexeme: soweli, readings: {lasina: soweli}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤅, lexeme: anpa, readings: {lasina: anpa}}, {surface: 󱥥, lexeme: supa, readings: {lasina: supa}}]
       reverse: 󱥢󱤧󱤬󱤅󱥥
   translations:
     en: |-
@@ -249,13 +200,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: pipi li lon anpa kasi.
-      tokens: [{surface: pipi, sense: pipi, readings: {lasina: pipi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: anpa, sense: anpa,
-          readings: {lasina: anpa}}, {surface: kasi, sense: kasi, readings: {lasina: kasi}}]
+      tokens: [{surface: pipi, lexeme: pipi, readings: {lasina: pipi}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: anpa, lexeme: anpa, readings: {lasina: anpa}}, {surface: kasi, lexeme: kasi, readings: {lasina: kasi}}]
       reverse: pipi li lon anpa kasi
     tok-Qaap/sitelen-pona:
       text: 󱥑󱤧󱤬󱤅󱤗
-      tokens: [{surface: 󱥑, sense: pipi, readings: {lasina: pipi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤅, sense: anpa, readings: {
-            lasina: anpa}}, {surface: 󱤗, sense: kasi, readings: {lasina: kasi}}]
+      tokens: [{surface: 󱥑, lexeme: pipi, readings: {lasina: pipi}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤅, lexeme: anpa, readings: {lasina: anpa}}, {surface: 󱤗, lexeme: kasi, readings: {lasina: kasi}}]
       reverse: 󱥑󱤧󱤬󱤅󱤗
   translations:
     en: |-
@@ -267,13 +216,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: ona li lape lon anpa.
-      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lape, sense: lape, readings: {lasina: lape}}, {surface: lon, sense: lon, readings: {
-            lasina: lon}}, {surface: anpa, sense: anpa, readings: {lasina: anpa}}]
+      tokens: [{surface: ona, lexeme: ona, readings: {lasina: ona}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lape, lexeme: lape, readings: {lasina: lape}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: anpa, lexeme: anpa, readings: {lasina: anpa}}]
       reverse: ona li lape lon anpa
     tok-Qaap/sitelen-pona:
       text: 󱥆󱤧󱤢󱤬󱤅
-      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}, {surface: 󱤬, sense: lon, readings: {
-            lasina: lon}}, {surface: 󱤅, sense: anpa, readings: {lasina: anpa}}]
+      tokens: [{surface: 󱥆, lexeme: ona, readings: {lasina: ona}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤢, lexeme: lape, readings: {lasina: lape}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤅, lexeme: anpa, readings: {lasina: anpa}}]
       reverse: 󱥆󱤧󱤢󱤬󱤅
   translations:
     en: |-
@@ -286,13 +233,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: mi lukin e waso lon sewi.
-      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: lukin, sense: lukin, readings: {lasina: lukin}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: waso, sense: waso, readings: {
-            lasina: waso}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: sewi, sense: sewi, readings: {lasina: sewi}}]
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: lukin, lexeme: lukin, readings: {lasina: lukin}}, {surface: e, lexeme: e, readings: {lasina: e}}, {surface: waso, lexeme: waso, readings: {lasina: waso}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sewi, lexeme: sewi, readings: {lasina: sewi}}]
       reverse: mi lukin e waso lon sewi
     tok-Qaap/sitelen-pona:
       text: 󱤴󱤮󱤉󱥴󱤬󱥚
-      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤮, sense: lukin, readings: {lasina: lukin}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥴, sense: waso, readings: {
-            lasina: waso}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥚, sense: sewi, readings: {lasina: sewi}}]
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤮, lexeme: lukin, readings: {lasina: lukin}}, {surface: 󱤉, lexeme: e, readings: {lasina: e}}, {surface: 󱥴, lexeme: waso, readings: {lasina: waso}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥚, lexeme: sewi, readings: {lasina: sewi}}]
       reverse: 󱤴󱤮󱤉󱥴󱤬󱥚
   translations:
     en: |-
@@ -305,9 +250,7 @@ sentences:
   forms:
     tok-Latn/standard:
       text: kili li lon insa poki lon sewi supa.
-      tokens: [{surface: kili, sense: kili, readings: {lasina: kili}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: insa, sense: insa,
-          readings: {lasina: insa}}, {surface: poki, sense: poki, readings: {lasina: poki}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: sewi, sense: sewi, readings: {lasina: sewi}},
-        {surface: supa, sense: supa, readings: {lasina: supa}}]
+      tokens: [{surface: kili, lexeme: kili, readings: {lasina: kili}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: insa, lexeme: insa, readings: {lasina: insa}}, {surface: poki, lexeme: poki, readings: {lasina: poki}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sewi, lexeme: sewi, readings: {lasina: sewi}}, {surface: supa, lexeme: supa, readings: {lasina: supa}}]
       reverse: |-
         kili li lon insa poki lon sewi supa
         kili li lon poki lon sewi supa
@@ -315,9 +258,7 @@ sentences:
         kili li lon poki lon supa
     tok-Qaap/sitelen-pona:
       text: 󱤚󱤧󱤬󱤏󱥓󱤬󱥚󱥥
-      tokens: [{surface: 󱤚, sense: kili, readings: {lasina: kili}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤏, sense: insa, readings: {
-            lasina: insa}}, {surface: 󱥓, sense: poki, readings: {lasina: poki}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥚, sense: sewi, readings: {lasina: sewi}}, {surface: 󱥥, sense: supa,
-          readings: {lasina: supa}}]
+      tokens: [{surface: 󱤚, lexeme: kili, readings: {lasina: kili}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤏, lexeme: insa, readings: {lasina: insa}}, {surface: 󱥓, lexeme: poki, readings: {lasina: poki}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥚, lexeme: sewi, readings: {lasina: sewi}}, {surface: 󱥥, lexeme: supa, readings: {lasina: supa}}]
       reverse: |-
         󱤚󱤧󱤬󱤏󱥓󱤬󱥚󱥥
         󱤚󱤧󱤬󱥓󱤬󱥚󱥥
@@ -332,13 +273,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: jan Pita li lon poka mi.
-      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Pita, sense: pita, readings: {lasina: Pita}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {
-            lasina: lon}}, {surface: poka, sense: poka, readings: {lasina: poka}}, {surface: mi, sense: mi, readings: {lasina: mi}}]
+      tokens: [{surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: Pita, lexeme: pita, readings: {lasina: Pita}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poka, lexeme: poka, readings: {lasina: poka}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}]
       reverse: jan Pita li lon poka mi
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱤬󱥒󱤴
-      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥒,
-          sense: poka, readings: {lasina: poka}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}]
+      tokens: [{surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, lexeme: pita}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥒, lexeme: poka, readings: {lasina: poka}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}]
       reverse: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱤬󱥒󱤴
   translations:
     en: |-
@@ -349,13 +288,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: soweli li lape lon poka sina.
-      tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lape, sense: lape, readings: {lasina: lape}}, {surface: lon, sense: lon,
-          readings: {lasina: lon}}, {surface: poka, sense: poka, readings: {lasina: poka}}, {surface: sina, sense: sina, readings: {lasina: sina}}]
+      tokens: [{surface: soweli, lexeme: soweli, readings: {lasina: soweli}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lape, lexeme: lape, readings: {lasina: lape}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poka, lexeme: poka, readings: {lasina: poka}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}]
       reverse: soweli li lape lon poka sina
     tok-Qaap/sitelen-pona:
       text: 󱥢󱤧󱤢󱤬󱥒󱥞
-      tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}, {surface: 󱤬, sense: lon, readings: {
-            lasina: lon}}, {surface: 󱥒, sense: poka, readings: {lasina: poka}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}]
+      tokens: [{surface: 󱥢, lexeme: soweli, readings: {lasina: soweli}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤢, lexeme: lape, readings: {lasina: lape}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥒, lexeme: poka, readings: {lasina: poka}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}]
       reverse: 󱥢󱤧󱤢󱤬󱥒󱥞
   translations:
     en: The (dog|cat|animal|pet) (is sleeping|sleeps|slept) (next to|beside) you.
@@ -364,13 +301,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: kasi li lon monsi tomo.
-      tokens: [{surface: kasi, sense: kasi, readings: {lasina: kasi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: monsi, sense: monsi,
-          readings: {lasina: monsi}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}]
+      tokens: [{surface: kasi, lexeme: kasi, readings: {lasina: kasi}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: monsi, lexeme: monsi, readings: {lasina: monsi}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: kasi li lon monsi tomo
     tok-Qaap/sitelen-pona:
       text: 󱤗󱤧󱤬󱤸󱥭
-      tokens: [{surface: 󱤗, sense: kasi, readings: {lasina: kasi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤸, sense: monsi, readings: {
-            lasina: monsi}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}]
+      tokens: [{surface: 󱤗, lexeme: kasi, readings: {lasina: kasi}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤸, lexeme: monsi, readings: {lasina: monsi}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: 󱤗󱤧󱤬󱤸󱥭
   translations:
     en: |-
@@ -383,13 +318,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: jan Lina li lon sinpin tomo.
-      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {
-            lasina: lon}}, {surface: sinpin, sense: sinpin, readings: {lasina: sinpin}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}]
+      tokens: [{surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: Lina, lexeme: lina, readings: {lasina: Lina}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sinpin, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: jan Lina li lon sinpin tomo
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤬󱥟󱥭
-      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥟,
-          sense: sinpin, readings: {lasina: sinpin}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}]
+      tokens: [{surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, lexeme: lina}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥟, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤬󱥟󱥭
   translations:
     en: |-
@@ -400,13 +333,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: soweli li lon monsi sina!
-      tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: monsi, sense: monsi,
-          readings: {lasina: monsi}}, {surface: sina, sense: sina, readings: {lasina: sina}}]
+      tokens: [{surface: soweli, lexeme: soweli, readings: {lasina: soweli}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: monsi, lexeme: monsi, readings: {lasina: monsi}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}]
       reverse: soweli li lon monsi sina
     tok-Qaap/sitelen-pona:
       text: 󱥢󱤧󱤬󱤸󱥞
-      tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤸, sense: monsi, readings: {
-            lasina: monsi}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}]
+      tokens: [{surface: 󱥢, lexeme: soweli, readings: {lasina: soweli}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤸, lexeme: monsi, readings: {lasina: monsi}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}]
       reverse: 󱥢󱤧󱤬󱤸󱥞
   translations:
     en: |-
@@ -419,13 +350,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: lupa li lon sinpin tomo.
-      tokens: [{surface: lupa, sense: lupa, readings: {lasina: lupa}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: sinpin, sense: sinpin,
-          readings: {lasina: sinpin}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}]
+      tokens: [{surface: lupa, lexeme: lupa, readings: {lasina: lupa}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sinpin, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: lupa li lon sinpin tomo
     tok-Qaap/sitelen-pona:
       text: 󱤯󱤧󱤬󱥟󱥭
-      tokens: [{surface: 󱤯, sense: lupa, readings: {lasina: lupa}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥟, sense: sinpin, readings: {
-            lasina: sinpin}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}]
+      tokens: [{surface: 󱤯, lexeme: lupa, readings: {lasina: lupa}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥟, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: 󱤯󱤧󱤬󱥟󱥭
   translations:
     en: |-
@@ -437,15 +366,13 @@ sentences:
   forms:
     tok-Latn/standard:
       text: lupa tomo li lon monsi sina.
-      tokens: [{surface: lupa, sense: lupa, readings: {lasina: lupa}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon,
-          readings: {lasina: lon}}, {surface: monsi, sense: monsi, readings: {lasina: monsi}}, {surface: sina, sense: sina, readings: {lasina: sina}}]
+      tokens: [{surface: lupa, lexeme: lupa, readings: {lasina: lupa}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: monsi, lexeme: monsi, readings: {lasina: monsi}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}]
       reverse: |-
         lupa tomo li lon monsi sina
         lupa li lon monsi sina
     tok-Qaap/sitelen-pona:
       text: 󱤯󱥭󱤧󱤬󱤸󱥞
-      tokens: [{surface: 󱤯, sense: lupa, readings: {lasina: lupa}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {
-            lasina: lon}}, {surface: 󱤸, sense: monsi, readings: {lasina: monsi}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}]
+      tokens: [{surface: 󱤯, lexeme: lupa, readings: {lasina: lupa}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤸, lexeme: monsi, readings: {lasina: monsi}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}]
       reverse: |-
         󱤯󱥭󱤧󱤬󱤸󱥞
         󱤯󱤧󱤬󱤸󱥞
@@ -458,13 +385,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: lipu li lon sinpin lon poka lupa.
-      tokens: [{surface: lipu, sense: lipu, readings: {lasina: lipu}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: sinpin, sense: sinpin,
-          readings: {lasina: sinpin}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: poka, sense: poka, readings: {lasina: poka}}, {surface: lupa, sense: lupa, readings: {lasina: lupa}}]
+      tokens: [{surface: lipu, lexeme: lipu, readings: {lasina: lipu}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sinpin, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poka, lexeme: poka, readings: {lasina: poka}}, {surface: lupa, lexeme: lupa, readings: {lasina: lupa}}]
       reverse: lipu li lon sinpin lon poka lupa
     tok-Qaap/sitelen-pona:
       text: 󱤪󱤧󱤬󱥟󱤬󱥒󱤯
-      tokens: [{surface: 󱤪, sense: lipu, readings: {lasina: lipu}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥟, sense: sinpin, readings: {
-            lasina: sinpin}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥒, sense: poka, readings: {lasina: poka}}, {surface: 󱤯, sense: lupa, readings: {lasina: lupa}}]
+      tokens: [{surface: 󱤪, lexeme: lipu, readings: {lasina: lipu}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥟, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥒, lexeme: poka, readings: {lasina: poka}}, {surface: 󱤯, lexeme: lupa, readings: {lasina: lupa}}]
       reverse: 󱤪󱤧󱤬󱥟󱤬󱥒󱤯
   translations:
     en: |-
@@ -475,15 +400,13 @@ sentences:
   forms:
     tok-Latn/standard:
       text: mi kama tan tomo.
-      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: kama, sense: kama, readings: {lasina: kama}}, {surface: tan, sense: tan, readings: {lasina: tan}}, {surface: tomo, sense: tomo,
-          readings: {lasina: tomo}}]
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: kama, lexeme: kama, readings: {lasina: kama}}, {surface: tan, lexeme: tan, readings: {lasina: tan}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: |-
         mi kama tan tomo
         mi kama tan tomo mi
     tok-Qaap/sitelen-pona:
       text: 󱤴󱤖󱥧󱥭
-      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}, {surface: 󱥧, sense: tan, readings: {lasina: tan}}, {surface: 󱥭, sense: tomo, readings: {
-            lasina: tomo}}]
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤖, lexeme: kama, readings: {lasina: kama}}, {surface: 󱥧, lexeme: tan, readings: {lasina: tan}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
       reverse: |-
         󱤴󱤖󱥧󱥭
         󱤴󱤖󱥧󱥭󱤴
@@ -496,15 +419,13 @@ sentences:
   forms:
     tok-Latn/standard:
       text: jan Tomasi li kama tan ma Kanata.
-      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Tomasi, sense: tomasi, readings: {lasina: Tomasi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: kama, sense: kama,
-          readings: {lasina: kama}}, {surface: tan, sense: tan, readings: {lasina: tan}}, {surface: ma, sense: ma, readings: {lasina: ma}}, {surface: Kanata, sense: kanata, readings: {lasina: Kanata}}]
+      tokens: [{surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: Tomasi, lexeme: tomasi, readings: {lasina: Tomasi}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: kama, lexeme: kama, readings: {lasina: kama}}, {surface: tan, lexeme: tan, readings: {lasina: tan}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: Kanata, lexeme: kanata, readings: {lasina: Kanata}}]
       reverse: |-
         jan Tomasi li kama tan ma Kanata
         jan Tomasi li tan ma Kanata
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤧󱤖󱥧󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
-      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑, sense: tomasi}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}},
-        {surface: 󱥧, sense: tan, readings: {lasina: tan}}, {surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, sense: kanata}]
+      tokens: [{surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑, lexeme: tomasi}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤖, lexeme: kama, readings: {lasina: kama}}, {surface: 󱥧, lexeme: tan, readings: {lasina: tan}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, lexeme: kanata}]
       reverse: |-
         󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤧󱤖󱥧󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
         󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤧󱥧󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
@@ -518,12 +439,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: mi tawa ma Kanata.
-      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: ma, sense: ma, readings: {lasina: ma}}, {surface: Kanata, sense: kanata,
-          readings: {lasina: Kanata}}]
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: Kanata, lexeme: kanata, readings: {lasina: Kanata}}]
       reverse: mi tawa ma Kanata
     tok-Qaap/sitelen-pona:
       text: 󱤴󱥩󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
-      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, sense: kanata}]
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, lexeme: kanata}]
       reverse: 󱤴󱥩󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
   translations:
     en: |-
@@ -534,13 +454,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: ona li toki tawa mi.
-      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: toki, sense: toki, readings: {lasina: toki}}, {surface: tawa, sense: tawa,
-          readings: {lasina: tawa}}, {surface: mi, sense: mi, readings: {lasina: mi}}]
+      tokens: [{surface: ona, lexeme: ona, readings: {lasina: ona}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: toki, lexeme: toki, readings: {lasina: toki}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}]
       reverse: ona li toki tawa mi
     tok-Qaap/sitelen-pona:
       text: 󱥆󱤧󱥬󱥩󱤴
-      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱥩, sense: tawa, readings: {
-            lasina: tawa}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}]
+      tokens: [{surface: 󱥆, lexeme: ona, readings: {lasina: ona}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥬, lexeme: toki, readings: {lasina: toki}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}]
       reverse: 󱥆󱤧󱥬󱥩󱤴
   translations:
     en: |-
@@ -552,13 +470,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: mi pilin pona tan sina.
-      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: pilin, sense: pilin, readings: {lasina: pilin}}, {surface: pona, sense: pona, readings: {lasina: pona}}, {surface: tan, sense: tan,
-          readings: {lasina: tan}}, {surface: sina, sense: sina, readings: {lasina: sina}}]
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: pilin, lexeme: pilin, readings: {lasina: pilin}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: tan, lexeme: tan, readings: {lasina: tan}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}]
       reverse: mi pilin pona tan sina
     tok-Qaap/sitelen-pona:
       text: 󱤴󱥎󱥔󱥧󱥞
-      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥎, sense: pilin, readings: {lasina: pilin}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱥧, sense: tan, readings: {
-            lasina: tan}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}]
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱥎, lexeme: pilin, readings: {lasina: pilin}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱥧, lexeme: tan, readings: {lasina: tan}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}]
       reverse: 󱤴󱥎󱥔󱥧󱥞
   translations:
     en: |-
@@ -569,13 +485,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: mi jan pi ma Kanata.
-      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: jan, sense: jan, readings: {lasina: jan}}, {surface: pi, sense: pi, readings: {lasina: pi}}, {surface: ma, sense: ma, readings: {
-            lasina: ma}}, {surface: Kanata, sense: kanata, readings: {lasina: Kanata}}]
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: pi, lexeme: pi, readings: {lasina: pi}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: Kanata, lexeme: kanata, readings: {lasina: Kanata}}]
       reverse: mi jan pi ma Kanata
     tok-Qaap/sitelen-pona:
       text: 󱤴󱤑󱥍󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
-      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱥍, sense: pi, readings: {lasina: pi}}, {surface: 󱤰, sense: ma, readings: {lasina: ma}},
-        {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, sense: kanata}]
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱥍, lexeme: pi, readings: {lasina: pi}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, lexeme: kanata}]
       reverse: 󱤴󱤑󱥍󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
   translations:
     en: |-
@@ -587,16 +501,14 @@ sentences:
   forms:
     tok-Latn/standard:
       text: sina kama tan ma seme?
-      tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: kama, sense: kama, readings: {lasina: kama}}, {surface: tan, sense: tan, readings: {lasina: tan}}, {surface: ma, sense: ma,
-          readings: {lasina: ma}}, {surface: seme, sense: seme, readings: {lasina: seme}}]
+      tokens: [{surface: sina, lexeme: sina, readings: {lasina: sina}}, {surface: kama, lexeme: kama, readings: {lasina: kama}}, {surface: tan, lexeme: tan, readings: {lasina: tan}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: seme, lexeme: seme, readings: {lasina: seme}}]
       reverse: |-
         sina kama tan ma seme
         sina jan pi ma seme
         sina tan ma seme
     tok-Qaap/sitelen-pona:
       text: 󱥞󱤖󱥧󱤰󱥙
-      tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}, {surface: 󱥧, sense: tan, readings: {lasina: tan}}, {surface: 󱤰, sense: ma, readings: {
-            lasina: ma}}, {surface: 󱥙, sense: seme, readings: {lasina: seme}}]
+      tokens: [{surface: 󱥞, lexeme: sina, readings: {lasina: sina}}, {surface: 󱤖, lexeme: kama, readings: {lasina: kama}}, {surface: 󱥧, lexeme: tan, readings: {lasina: tan}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥙, lexeme: seme, readings: {lasina: seme}}]
       reverse: |-
         󱥞󱤖󱥧󱤰󱥙
         󱥞󱤑󱥍󱤰󱥙
@@ -610,13 +522,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: nasin ni li suli.
-      tokens: [{surface: nasin, sense: nasin, readings: {lasina: nasin}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli,
-          readings: {lasina: suli}}]
+      tokens: [{surface: nasin, lexeme: nasin, readings: {lasina: nasin}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: suli, lexeme: suli, readings: {lasina: suli}}]
       reverse: nasin ni li suli
     tok-Qaap/sitelen-pona:
       text: 󱤿󱥁󱤧󱥣
-      tokens: [{surface: 󱤿, sense: nasin, readings: {lasina: nasin}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {
-            lasina: suli}}]
+      tokens: [{surface: 󱤿, lexeme: nasin, readings: {lasina: nasin}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥣, lexeme: suli, readings: {lasina: suli}}]
       reverse: 󱤿󱥁󱤧󱥣
   translations:
     en: (This|That) (road|path|way|street) is (long|big|wide).
@@ -625,15 +535,13 @@ sentences:
   forms:
     tok-Latn/standard:
       text: mi moku kepeken ilo.
-      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: kepeken, sense: kepeken, readings: {lasina: kepeken}}, {surface: ilo, sense: ilo,
-          readings: {lasina: ilo}}]
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: moku, lexeme: moku, readings: {lasina: moku}}, {surface: kepeken, lexeme: kepeken, readings: {lasina: kepeken}}, {surface: ilo, lexeme: ilo, readings: {lasina: ilo}}]
       reverse: |-
         mi moku kepeken ilo
         mi moku kepeken ilo moku
     tok-Qaap/sitelen-pona:
       text: 󱤴󱤶󱤙󱤎
-      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤙, sense: kepeken, readings: {lasina: kepeken}}, {surface: 󱤎, sense: ilo, readings: {
-            lasina: ilo}}]
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤶, lexeme: moku, readings: {lasina: moku}}, {surface: 󱤙, lexeme: kepeken, readings: {lasina: kepeken}}, {surface: 󱤎, lexeme: ilo, readings: {lasina: ilo}}]
       reverse: |-
         󱤴󱤶󱤙󱤎
         󱤴󱤶󱤙󱤎󱤶
@@ -646,72 +554,60 @@ sentences:
   forms:
     tok-Latn/standard:
       text: jan Pita li pali kepeken ilo.
-      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Pita, sense: pita, readings: {lasina: Pita}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pali, sense: pali,
-          readings: {lasina: pali}}, {surface: kepeken, sense: kepeken, readings: {lasina: kepeken}}, {surface: ilo, sense: ilo, readings: {lasina: ilo}}]
+      tokens: [{surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: Pita, lexeme: pita, readings: {lasina: Pita}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: pali, lexeme: pali, readings: {lasina: pali}}, {surface: kepeken, lexeme: kepeken, readings: {lasina: kepeken}}, {surface: ilo, lexeme: ilo, readings: {lasina: ilo}}]
       reverse: jan Pita li pali kepeken ilo
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱥉󱤙󱤎
-      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥉, sense: pali, readings: {lasina: pali}}, {
-          surface: 󱤙, sense: kepeken, readings: {lasina: kepeken}}, {surface: 󱤎, sense: ilo, readings: {lasina: ilo}}]
+      tokens: [{surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, lexeme: pita}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥉, lexeme: pali, readings: {lasina: pali}}, {surface: 󱤙, lexeme: kepeken, readings: {lasina: kepeken}}, {surface: 󱤎, lexeme: ilo, readings: {lasina: ilo}}]
       reverse: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱥉󱤙󱤎
   translations:
     en: Pita (works|is working|worked) (with|using) (a tool|tools).
 - id: s.u06.34
   node: tok.u06.way
+  uses: ['rule:pona-tawa']
   forms:
     tok-Latn/standard:
       text: kili li pona tawa mi.
-      tokens: [{surface: kili, sense: kili, readings: {lasina: kili}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona, readings: {lasina: pona}}, {surface: tawa, sense: tawa,
-          readings: {lasina: tawa}}, {surface: mi, sense: mi, readings: {lasina: mi}}]
+      tokens: [{surface: kili, lexeme: kili, readings: {lasina: kili}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}]
       reverse: kili li pona tawa mi
     tok-Qaap/sitelen-pona:
       text: 󱤚󱤧󱥔󱥩󱤴
-      tokens: [{surface: 󱤚, sense: kili, readings: {lasina: kili}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱥩, sense: tawa, readings: {
-            lasina: tawa}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}]
+      tokens: [{surface: 󱤚, lexeme: kili, readings: {lasina: kili}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}]
       reverse: 󱤚󱤧󱥔󱥩󱤴
-  constructions: ['construction:pona-tawa']
   translations:
     en: |-
       (I|We) like (fruit|the fruit).
       I liked the fruit.
 - id: s.u06.35
   node: tok.u06.way
+  uses: ['rule:pona-tawa']
   forms:
     tok-Latn/standard:
       text: nasin pi toki pona li pona tawa mi.
-      tokens: [{surface: nasin, sense: nasin, readings: {lasina: nasin}}, {surface: pi, sense: pi, readings: {lasina: pi}}, {surface: toki, sense: toki, readings: {lasina: toki}}, {surface: pona, sense: pona,
-          readings: {lasina: pona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona, readings: {lasina: pona}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: mi,
-          sense: mi, readings: {lasina: mi}}]
+      tokens: [{surface: nasin, lexeme: nasin, readings: {lasina: nasin}}, {surface: pi, lexeme: pi, readings: {lasina: pi}}, {surface: toki, lexeme: toki, readings: {lasina: toki}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}]
       reverse: nasin pi toki pona li pona tawa mi
     tok-Qaap/sitelen-pona:
       text: 󱤿󱥍󱥬󱥔󱤧󱥔󱥩󱤴
-      tokens: [{surface: 󱤿, sense: nasin, readings: {lasina: nasin}}, {surface: 󱥍, sense: pi, readings: {lasina: pi}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱥔, sense: pona, readings: {
-            lasina: pona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱤴, sense: mi,
-          readings: {lasina: mi}}]
+      tokens: [{surface: 󱤿, lexeme: nasin, readings: {lasina: nasin}}, {surface: 󱥍, lexeme: pi, readings: {lasina: pi}}, {surface: 󱥬, lexeme: toki, readings: {lasina: toki}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}]
       reverse: 󱤿󱥍󱥬󱥔󱤧󱥔󱥩󱤴
-  constructions: ['construction:pona-tawa']
   translations:
     en: (I|We) like the (Toki Pona way|way of Toki Pona|Toki Pona way of life).
 - id: s.u06.36
   node: tok.u06.way
+  uses: ['rule:pona-tawa']
   forms:
     tok-Latn/standard:
       text: ma Kanata li pona tawa sina, anu seme?
-      tokens: [{surface: ma, sense: ma, readings: {lasina: ma}}, {surface: Kanata, sense: kanata, readings: {lasina: Kanata}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona,
-          readings: {lasina: pona}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: anu, sense: anu, readings: {lasina: anu}},
-        {surface: seme, sense: seme, readings: {lasina: seme}}]
+      tokens: [{surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: Kanata, lexeme: kanata, readings: {lasina: Kanata}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}, {surface: anu, lexeme: anu, readings: {lasina: anu}}, {surface: seme, lexeme: seme, readings: {lasina: seme}}]
       reverse: |-
         ma Kanata li pona tawa sina anu seme
         ma Kanata li pona ala pona tawa sina
     tok-Qaap/sitelen-pona:
       text: 󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑󱤧󱥔󱥩󱥞󱤇󱥙
-      tokens: [{surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, sense: kanata}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}},
-        {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤇, sense: anu, readings: {lasina: anu}}, {surface: 󱥙, sense: seme, readings: {
-            lasina: seme}}]
+      tokens: [{surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, lexeme: kanata}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}, {surface: 󱤇, lexeme: anu, readings: {lasina: anu}}, {surface: 󱥙, lexeme: seme, readings: {lasina: seme}}]
       reverse: |-
         󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑󱤧󱥔󱥩󱥞󱤇󱥙
         󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑󱤧󱥔󱤂󱥔󱥩󱥞
-  constructions: ['construction:pona-tawa']
   translations:
     en: |-
       Do you like Canada?
@@ -721,13 +617,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: mi tawa ma tomo kepeken tomo tawa.
-      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: ma, sense: ma, readings: {lasina: ma}}, {surface: tomo, sense: tomo, readings: {
-            lasina: tomo}}, {surface: kepeken, sense: kepeken, readings: {lasina: kepeken}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}]
+      tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: kepeken, lexeme: kepeken, readings: {lasina: kepeken}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}]
       reverse: mi tawa ma tomo kepeken tomo tawa
     tok-Qaap/sitelen-pona:
       text: 󱤴󱥩󱤰󱥭󱤙󱥭󱥩
-      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱥭, sense: tomo, readings: {
-            lasina: tomo}}, {surface: 󱤙, sense: kepeken, readings: {lasina: kepeken}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}]
+      tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱤙, lexeme: kepeken, readings: {lasina: kepeken}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}]
       reverse: 󱤴󱥩󱤰󱥭󱤙󱥭󱥩
   translations:
     en: |-
@@ -739,13 +633,11 @@ sentences:
   forms:
     tok-Latn/standard:
       text: nasin ni li tawa tomo sina.
-      tokens: [{surface: nasin, sense: nasin, readings: {lasina: nasin}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: tawa, sense: tawa,
-          readings: {lasina: tawa}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}, {surface: sina, sense: sina, readings: {lasina: sina}}]
+      tokens: [{surface: nasin, lexeme: nasin, readings: {lasina: nasin}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}]
       reverse: nasin ni li tawa tomo sina
     tok-Qaap/sitelen-pona:
       text: 󱤿󱥁󱤧󱥩󱥭󱥞
-      tokens: [{surface: 󱤿, sense: nasin, readings: {lasina: nasin}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥩, sense: tawa, readings: {
-            lasina: tawa}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}]
+      tokens: [{surface: 󱤿, lexeme: nasin, readings: {lasina: nasin}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}]
       reverse: 󱤿󱥁󱤧󱥩󱥭󱥞
   translations:
     en: (This|That) (road|path|street|way) (goes|leads) to your (house|home).
@@ -755,24 +647,24 @@ stories:
   title:
     en: 'ma tomo ni: A walk in town'
   characters:
-  - {id: lina, name: {tok-Latn/standard: jan Lina, tok-Qaap/sitelen-pona: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑}}
-  - {id: tomasi, name: {tok-Latn/standard: jan Tomasi, tok-Qaap/sitelen-pona: 󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑}}
+  - id: lina
+    name:
+      tok-Latn/standard: jan Lina
+      tok-Qaap/sitelen-pona: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑
+  - id: tomasi
+    name:
+      tok-Latn/standard: jan Tomasi
+      tok-Qaap/sitelen-pona: 󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑
   steps:
   - line:
       speaker: lina
       forms:
         tok-Latn/standard:
           text: toki, jan Tomasi! ma tomo ni li pona tawa sina, anu seme?
-          tokens: [{surface: toki, sense: toki, readings: {lasina: toki}}, {surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Tomasi, sense: tomasi, readings: {lasina: Tomasi}}, {surface: ma,
-              sense: ma, readings: {lasina: ma}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}},
-            {surface: pona, sense: pona, readings: {lasina: pona}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: anu, sense: anu,
-              readings: {lasina: anu}}, {surface: seme, sense: seme, readings: {lasina: seme}}]
+          tokens: [{surface: toki, lexeme: toki, readings: {lasina: toki}}, {surface: jan, lexeme: jan, readings: {lasina: jan}}, {surface: Tomasi, lexeme: tomasi, readings: {lasina: Tomasi}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}, {surface: anu, lexeme: anu, readings: {lasina: anu}}, {surface: seme, lexeme: seme, readings: {lasina: seme}}]
         tok-Qaap/sitelen-pona:
           text: "\U000F196C\U000F1911\U000F1990\U000F196D\U000F1945\U000F1932\U000F1908\U000F1961\U000F190E\U000F1991\u3000\U000F1930\U000F196D\U000F1941\U000F1927\U000F1954\U000F1969\U000F195E\U000F1907\U000F1959"
-          tokens: [{surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑, sense: tomasi}, {surface: 󱤰, sense: ma, readings: {lasina: ma}},
-            {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}},
-            {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤇, sense: anu, readings: {lasina: anu}}, {surface: 󱥙, sense: seme, readings: {
-                lasina: seme}}]
+          tokens: [{surface: 󱥬, lexeme: toki, readings: {lasina: toki}}, {surface: 󱤑, lexeme: jan, readings: {lasina: jan}}, {surface: 󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑, lexeme: tomasi}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}, {surface: 󱤇, lexeme: anu, readings: {lasina: anu}}, {surface: 󱥙, lexeme: seme, readings: {lasina: seme}}]
       translations:
         en: Hi, Tomasi! Do you like this town?
   - line:
@@ -780,16 +672,10 @@ stories:
       forms:
         tok-Latn/standard:
           text: pona! ma tomo ni li suli. mi kama tan ma tomo lili.
-          tokens: [{surface: pona, sense: pona, readings: {lasina: pona}}, {surface: ma, sense: ma, readings: {lasina: ma}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}, {surface: ni, sense: ni,
-              readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli, readings: {lasina: suli}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: kama,
-              sense: kama, readings: {lasina: kama}}, {surface: tan, sense: tan, readings: {lasina: tan}}, {surface: ma, sense: ma, readings: {lasina: ma}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}},
-            {surface: lili, sense: lili, readings: {lasina: lili}}]
+          tokens: [{surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: suli, lexeme: suli, readings: {lasina: suli}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: kama, lexeme: kama, readings: {lasina: kama}}, {surface: tan, lexeme: tan, readings: {lasina: tan}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: lili, lexeme: lili, readings: {lasina: lili}}]
         tok-Qaap/sitelen-pona:
           text: "\U000F1954\u3000\U000F1930\U000F196D\U000F1941\U000F1927\U000F1963\u3000\U000F1934\U000F1916\U000F1967\U000F1930\U000F196D\U000F1928"
-          tokens: [{surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱥁, sense: ni, readings: {
-                lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤖, sense: kama,
-              readings: {lasina: kama}}, {surface: 󱥧, sense: tan, readings: {lasina: tan}}, {surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱤨,
-              sense: lili, readings: {lasina: lili}}]
+          tokens: [{surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥣, lexeme: suli, readings: {lasina: suli}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤖, lexeme: kama, readings: {lasina: kama}}, {surface: 󱥧, lexeme: tan, readings: {lasina: tan}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱤨, lexeme: lili, readings: {lasina: lili}}]
       translations:
         en: Yes! This town is big. I come from a small town.
   - line:
@@ -797,14 +683,10 @@ stories:
       forms:
         tok-Latn/standard:
           text: ma tomo sina li lon ma Kanata, anu seme?
-          tokens: [{surface: ma, sense: ma, readings: {lasina: ma}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: li, sense: li,
-              readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: ma, sense: ma, readings: {lasina: ma}}, {surface: Kanata, sense: kanata, readings: {lasina: Kanata}},
-            {surface: anu, sense: anu, readings: {lasina: anu}}, {surface: seme, sense: seme, readings: {lasina: seme}}]
+          tokens: [{surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: Kanata, lexeme: kanata, readings: {lasina: Kanata}}, {surface: anu, lexeme: anu, readings: {lasina: anu}}, {surface: seme, lexeme: seme, readings: {lasina: seme}}]
         tok-Qaap/sitelen-pona:
           text: 󱤰󱥭󱥞󱤧󱤬󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑󱤇󱥙
-          tokens: [{surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤧, sense: li, readings: {
-                lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, sense: kanata}, {surface: 󱤇, sense: anu, readings: {
-                lasina: anu}}, {surface: 󱥙, sense: seme, readings: {lasina: seme}}]
+          tokens: [{surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, lexeme: kanata}, {surface: 󱤇, lexeme: anu, readings: {lasina: anu}}, {surface: 󱥙, lexeme: seme, readings: {lasina: seme}}]
       translations:
         en: Your town is in Canada, right?
   - line:
@@ -812,18 +694,19 @@ stories:
       forms:
         tok-Latn/standard:
           text: lon. ma Kanata li suli li lete.
-          tokens: [{surface: lon, sense: lon, readings: {lasina: lon}}, {surface: ma, sense: ma, readings: {lasina: ma}}, {surface: Kanata, sense: kanata, readings: {lasina: Kanata}}, {surface: li, sense: li,
-              readings: {lasina: li}}, {surface: suli, sense: suli, readings: {lasina: suli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lete, sense: lete, readings: {lasina: lete}}]
+          tokens: [{surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: Kanata, lexeme: kanata, readings: {lasina: Kanata}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: suli, lexeme: suli, readings: {lasina: suli}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lete, lexeme: lete, readings: {lasina: lete}}]
         tok-Qaap/sitelen-pona:
           text: "\U000F192C\u3000\U000F1930\U000F1990\U000F1917\U000F1903\U000F193F\U000F1908\U000F196A\U000F1900\U000F1991\U000F1927\U000F1963\U000F1927\U000F1926"
-          tokens: [{surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, sense: kanata}, {surface: 󱤧, sense: li, readings: {lasina: li}},
-            {surface: 󱥣, sense: suli, readings: {lasina: suli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤦, sense: lete, readings: {lasina: lete}}]
+          tokens: [{surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, lexeme: kanata}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥣, lexeme: suli, readings: {lasina: suli}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤦, lexeme: lete, readings: {lasina: lete}}]
       translations:
         en: Yes. Canada is big and cold.
   - choose:
       prompt:
         en: Where is Tomasi's home town?
-      options: [{en: in Canada}, {en: next to Lina's house}, {en: under the sea}]
+      options:
+      - en: in Canada
+      - en: next to Lina's house
+      - en: under the sea
       answer: 0
   - line:
       speaker: lina
@@ -831,12 +714,10 @@ stories:
       forms:
         tok-Latn/standard:
           text: tomo mi li lon poka nasin ni.
-          tokens: [{surface: tomo, sense: tomo, readings: {lasina: tomo}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon,
-              readings: {lasina: lon}}, {surface: poka, sense: poka, readings: {lasina: poka}}, {surface: nasin, sense: nasin, readings: {lasina: nasin}}, {surface: ni, sense: ni, readings: {lasina: ni}}]
+          tokens: [{surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: poka, lexeme: poka, readings: {lasina: poka}}, {surface: nasin, lexeme: nasin, readings: {lasina: nasin}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}]
         tok-Qaap/sitelen-pona:
           text: 󱥭󱤴󱤧󱤬󱥒󱤿󱥁
-          tokens: [{surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {
-                lasina: lon}}, {surface: 󱥒, sense: poka, readings: {lasina: poka}}, {surface: 󱤿, sense: nasin, readings: {lasina: nasin}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}]
+          tokens: [{surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥒, lexeme: poka, readings: {lasina: poka}}, {surface: 󱤿, lexeme: nasin, readings: {lasina: nasin}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}]
       translations:
         en: My house is next to this road.
   - line:
@@ -844,30 +725,26 @@ stories:
       forms:
         tok-Latn/standard:
           text: kasi suli li lon sinpin tomo sina!
-          tokens: [{surface: kasi, sense: kasi, readings: {lasina: kasi}}, {surface: suli, sense: suli, readings: {lasina: suli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon,
-              readings: {lasina: lon}}, {surface: sinpin, sense: sinpin, readings: {lasina: sinpin}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}, {surface: sina, sense: sina, readings: {lasina: sina}}]
+          tokens: [{surface: kasi, lexeme: kasi, readings: {lasina: kasi}}, {surface: suli, lexeme: suli, readings: {lasina: suli}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: sinpin, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: sina, lexeme: sina, readings: {lasina: sina}}]
         tok-Qaap/sitelen-pona:
           text: 󱤗󱥣󱤧󱤬󱥟󱥭󱥞
-          tokens: [{surface: 󱤗, sense: kasi, readings: {lasina: kasi}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {
-                lasina: lon}}, {surface: 󱥟, sense: sinpin, readings: {lasina: sinpin}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}]
+          tokens: [{surface: 󱤗, lexeme: kasi, readings: {lasina: kasi}}, {surface: 󱥣, lexeme: suli, readings: {lasina: suli}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥟, lexeme: sinpin, readings: {lasina: sinpin}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥞, lexeme: sina, readings: {lasina: sina}}]
       translations:
         en: There's a big tree in front of your house!
   - line:
       speaker: lina
       ask: complete
-      gap: sense:soweli
-      distractors: ['sense:kala', 'sense:tomo']
+      gap: lexeme:soweli
+      distractors:
+      - lexeme:kala
+      - lexeme:tomo
       forms:
         tok-Latn/standard:
           text: lon. soweli mi li lape lon anpa kasi.
-          tokens: [{surface: lon, sense: lon, readings: {lasina: lon}}, {surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li,
-              readings: {lasina: li}}, {surface: lape, sense: lape, readings: {lasina: lape}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: anpa, sense: anpa, readings: {lasina: anpa}},
-            {surface: kasi, sense: kasi, readings: {lasina: kasi}}]
+          tokens: [{surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: soweli, lexeme: soweli, readings: {lasina: soweli}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lape, lexeme: lape, readings: {lasina: lape}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: anpa, lexeme: anpa, readings: {lasina: anpa}}, {surface: kasi, lexeme: kasi, readings: {lasina: kasi}}]
         tok-Qaap/sitelen-pona:
           text: "\U000F192C\u3000\U000F1962\U000F1934\U000F1927\U000F1922\U000F192C\U000F1905\U000F1917"
-          tokens: [{surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {
-                lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤅, sense: anpa, readings: {lasina: anpa}}, {surface: 󱤗, sense: kasi,
-              readings: {lasina: kasi}}]
+          tokens: [{surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱥢, lexeme: soweli, readings: {lasina: soweli}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤢, lexeme: lape, readings: {lasina: lape}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤅, lexeme: anpa, readings: {lasina: anpa}}, {surface: 󱤗, lexeme: kasi, readings: {lasina: kasi}}]
       translations:
         en: Yes. My cat sleeps under the tree.
   - line:
@@ -875,12 +752,10 @@ stories:
       forms:
         tok-Latn/standard:
           text: seme li lon monsi tomo?
-          tokens: [{surface: seme, sense: seme, readings: {lasina: seme}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: monsi, sense: monsi,
-              readings: {lasina: monsi}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}]
+          tokens: [{surface: seme, lexeme: seme, readings: {lasina: seme}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: monsi, lexeme: monsi, readings: {lasina: monsi}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
         tok-Qaap/sitelen-pona:
           text: 󱥙󱤧󱤬󱤸󱥭
-          tokens: [{surface: 󱥙, sense: seme, readings: {lasina: seme}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤸, sense: monsi, readings: {
-                lasina: monsi}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}]
+          tokens: [{surface: 󱥙, lexeme: seme, readings: {lasina: seme}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤸, lexeme: monsi, readings: {lasina: monsi}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
       translations:
         en: What's behind the house?
   - line:
@@ -888,34 +763,29 @@ stories:
       forms:
         tok-Latn/standard:
           text: ma kasi lili li lon monsi tomo.
-          tokens: [{surface: ma, sense: ma, readings: {lasina: ma}}, {surface: kasi, sense: kasi, readings: {lasina: kasi}}, {surface: lili, sense: lili, readings: {lasina: lili}}, {surface: li, sense: li,
-              readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: monsi, sense: monsi, readings: {lasina: monsi}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}]
+          tokens: [{surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: kasi, lexeme: kasi, readings: {lasina: kasi}}, {surface: lili, lexeme: lili, readings: {lasina: lili}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: lon, lexeme: lon, readings: {lasina: lon}}, {surface: monsi, lexeme: monsi, readings: {lasina: monsi}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}]
         tok-Qaap/sitelen-pona:
           text: 󱤰󱤗󱤨󱤧󱤬󱤸󱥭
-          tokens: [{surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱤗, sense: kasi, readings: {lasina: kasi}}, {surface: 󱤨, sense: lili, readings: {lasina: lili}}, {surface: 󱤧, sense: li, readings: {
-                lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤸, sense: monsi, readings: {lasina: monsi}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}]
+          tokens: [{surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱤗, lexeme: kasi, readings: {lasina: kasi}}, {surface: 󱤨, lexeme: lili, readings: {lasina: lili}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱤬, lexeme: lon, readings: {lasina: lon}}, {surface: 󱤸, lexeme: monsi, readings: {lasina: monsi}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}]
       translations:
         en: There's a little garden behind the house.
   - choose:
       prompt:
         en: What is behind Lina's house?
-      options: [{en: a little garden}, {en: a big road}, {en: a big tree}]
+      options:
+      - en: a little garden
+      - en: a big road
+      - en: a big tree
       answer: 0
   - line:
       speaker: tomasi
       forms:
         tok-Latn/standard:
           text: mi wile lukin e ma kasi! ma tomo ni li pona tawa mi.
-          tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: lukin, sense: lukin, readings: {lasina: lukin}}, {surface: e, sense: e,
-              readings: {lasina: e}}, {surface: ma, sense: ma, readings: {lasina: ma}}, {surface: kasi, sense: kasi, readings: {lasina: kasi}}, {surface: ma, sense: ma, readings: {lasina: ma}}, {surface: tomo,
-              sense: tomo, readings: {lasina: tomo}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona, readings: {lasina: pona}},
-            {surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: mi, sense: mi, readings: {lasina: mi}}]
+          tokens: [{surface: mi, lexeme: mi, readings: {lasina: mi}}, {surface: wile, lexeme: wile, readings: {lasina: wile}}, {surface: lukin, lexeme: lukin, readings: {lasina: lukin}}, {surface: e, lexeme: e, readings: {lasina: e}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: kasi, lexeme: kasi, readings: {lasina: kasi}}, {surface: ma, lexeme: ma, readings: {lasina: ma}}, {surface: tomo, lexeme: tomo, readings: {lasina: tomo}}, {surface: ni, lexeme: ni, readings: {lasina: ni}}, {surface: li, lexeme: li, readings: {lasina: li}}, {surface: pona, lexeme: pona, readings: {lasina: pona}}, {surface: tawa, lexeme: tawa, readings: {lasina: tawa}}, {surface: mi, lexeme: mi, readings: {lasina: mi}}]
         tok-Qaap/sitelen-pona:
           text: "\U000F1934\U000F1977\U000F192E\U000F1909\U000F1930\U000F1917\u3000\U000F1930\U000F196D\U000F1941\U000F1927\U000F1954\U000F1969\U000F1934"
-          tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤮, sense: lukin, readings: {lasina: lukin}}, {surface: 󱤉, sense: e, readings: {
-                lasina: e}}, {surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱤗, sense: kasi, readings: {lasina: kasi}}, {surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱥭, sense: tomo,
-              readings: {lasina: tomo}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱥩,
-              sense: tawa, readings: {lasina: tawa}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}]
+          tokens: [{surface: 󱤴, lexeme: mi, readings: {lasina: mi}}, {surface: 󱥷, lexeme: wile, readings: {lasina: wile}}, {surface: 󱤮, lexeme: lukin, readings: {lasina: lukin}}, {surface: 󱤉, lexeme: e, readings: {lasina: e}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱤗, lexeme: kasi, readings: {lasina: kasi}}, {surface: 󱤰, lexeme: ma, readings: {lasina: ma}}, {surface: 󱥭, lexeme: tomo, readings: {lasina: tomo}}, {surface: 󱥁, lexeme: ni, readings: {lasina: ni}}, {surface: 󱤧, lexeme: li, readings: {lasina: li}}, {surface: 󱥔, lexeme: pona, readings: {lasina: pona}}, {surface: 󱥩, lexeme: tawa, readings: {lasina: tawa}}, {surface: 󱤴, lexeme: mi, readings: {lasina: mi}}]
       translations:
         en: I want to see the garden! I like this town.
 scenarios:

@@ -7,148 +7,12 @@ id: u03-where-are-you
 title:
   en: Where are you?
 cefr: A1
-kcs:
-- id: sense:gan
-  pos: NOUN
-  gloss:
-    en: garden
-  forms:
-    hbo-Hebr/tiberian: [גַּן]
-  image: {file: ../images/tree.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3868bb19b496', status: draft}, source: Drawn for Nabu (courses/images)}
-- id: sense:adam
-  pos: NOUN
-  gloss:
-    en: 'man, a human being; humankind (הָאָדָם: the man, Adam)'
-  forms:
-    hbo-Hebr/tiberian: [אָדָם]
-- id: sense:ishah
-  pos: NOUN
-  gloss:
-    en: woman; wife
-  forms:
-    hbo-Hebr/tiberian: [אִשָּׁה]
-  notes:
-    en: 'Before a suffix or another noun: אֵשֶׁת ʾēšeṯ, אִשְׁתּוֹ ʾištô ''his wife''.'
-- id: sense:yhwh
-  pos: PROPN
-  gloss:
-    en: the LORD (the name of Israel's God)
-  forms:
-    hbo-Hebr/tiberian: [יְהוָה]
-  notes:
-    en: 'The four letters YHWH are not read as written: the Masoretes read the word אֲדֹנָי ʾăḏōnāy, ''my Lord'', and gave the letters its vowels. The course''s reading and audio say ʾăḏōnāy, as the Tiberian
-      readers did.'
-- id: sense:el
-  pos: ADP
-  gloss:
-    en: to, toward (written אֶל־, joined to the next word)
-  forms:
-    hbo-Hebr/tiberian: [אֵל]
-- id: sense:qol
-  pos: NOUN
-  gloss:
-    en: voice; sound
-  forms:
-    hbo-Hebr/tiberian: [קוֹל]
-- id: sense:shama
-  pos: VERB
-  gloss:
-    en: to hear; to listen, obey
-  forms:
-    hbo-Hebr/tiberian: [שָׁמַע]
-- id: form:wayyiqtol-3mp
-  gloss:
-    en: 'and they did: the narrative past, they'
-- id: form:qatal-1cs
-  gloss:
-    en: 'I did: the perfect (qatal), I (-tî)'
-- id: sense:ets
-  pos: NOUN
-  gloss:
-    en: tree; wood
-  forms:
-    hbo-Hebr/tiberian: [עֵץ]
-- id: sense:tokh
-  pos: NOUN
-  gloss:
-    en: 'middle (בְּתוֹךְ: in the middle of, among)'
-  forms:
-    hbo-Hebr/tiberian: [תָּוֶךְ]
-- id: sense:hithallekh
-  pos: VERB
-  gloss:
-    en: to walk about, go to and fro (hithpael of הָלַךְ)
-  forms:
-    hbo-Hebr/tiberian: [הִתְהַלֵּךְ]
-- id: form:ptc-ms
-  gloss:
-    en: 'participle, masculine singular: he/it is doing; one who does (of a verb of state, its adjective: יָרֵא ''afraid'')'
-- id: sense:hava
-  pos: VERB
-  gloss:
-    en: to hide (oneself) (niphal)
-  forms:
-    hbo-Hebr/tiberian: [נֶחְבָּא]
-- id: sense:hitchabbe
-  pos: VERB
-  gloss:
-    en: to hide oneself (hithpael)
-  forms:
-    hbo-Hebr/tiberian: [הִתְחַבֵּא]
-- id: sense:min
-  pos: ADP
-  gloss:
-    en: from; out of; than (מִן־, or מִ- joined to the word)
-  forms:
-    hbo-Hebr/tiberian: [מִן]
-  notes:
-    en: 'Written apart as מִן־ min-, or joined with the next letter doubled: מִפְּנֵי mippənê ''from before''. Before a guttural it is מֵ mē-.'
-- id: form:sfx-3ms
-  gloss:
-    en: his; him (the suffix -ô, -w, -hû)
-- id: sense:ay
-  pos: ADV
-  features:
-    PronType: Int
-  gloss:
-    en: where? (אֵי; with a suffix אַיֶּכָּה 'where are you?')
-  forms:
-    hbo-Hebr/tiberian: [אֵי]
-- id: form:sfx-2ms
-  gloss:
-    en: 'your; you (said to a man: the suffix -ḵā)'
-- id: sense:anokhi
-  pos: PRON
-  features:
-    PronType: Prs
-  gloss:
-    en: I
-  forms:
-    hbo-Hebr/tiberian: [אָנֹכִי]
-- id: sense:yare
-  pos: VERB
-  gloss:
-    en: to fear, be afraid; (adjective) fearing
-  forms:
-    hbo-Hebr/tiberian: [יָרֵא]
-- id: form:wayyiqtol-1cs
-  gloss:
-    en: 'and I did: the narrative past, I'
-- id: sense:erom
-  pos: ADJ
-  gloss:
-    en: naked
-  forms:
-    hbo-Hebr/tiberian: [עֵירֹם]
-- id: form:cstr
-  gloss:
-    en: 'construct state: ''X of …'', the noun bound to the next (בְּתוֹךְ הַגָּן ''in the middle of the garden''; דְּבַר יְהוָה ''the word of the LORD'')'
 nodes:
-- {id: hbo.u03.the-garden, kind: lesson, introduces: ['sense:gan', 'sense:adam', 'sense:ishah', 'sense:yhwh', 'sense:el']}
-- {id: hbo.u03.the-voice, kind: lesson, introduces: ['sense:qol', 'sense:shama', 'form:wayyiqtol-3mp', 'form:qatal-1cs']}
-- {id: hbo.u03.walking, kind: lesson, introduces: ['sense:ets', 'sense:tokh', 'sense:hithallekh', 'form:ptc-ms', 'form:cstr']}
-- {id: hbo.u03.hiding, kind: lesson, introduces: ['sense:hitchabbe', 'sense:hava', 'sense:min', 'form:sfx-3ms']}
-- {id: hbo.u03.where-are-you, kind: lesson, introduces: ['sense:ay', 'form:sfx-2ms', 'sense:anokhi', 'sense:yare', 'form:wayyiqtol-1cs', 'sense:erom']}
+- {id: hbo.u03.the-garden, kind: lesson, introduces: ['lexeme:gan', 'lexeme:adam', 'lexeme:ishah', 'lexeme:yhwh', 'lexeme:el']}
+- {id: hbo.u03.the-voice, kind: lesson, introduces: ['lexeme:qol', 'lexeme:shama']}
+- {id: hbo.u03.walking, kind: lesson, introduces: ['lexeme:ets', 'lexeme:tokh', 'lexeme:hithallekh', 'feature:Definite=Cons']}
+- {id: hbo.u03.hiding, kind: lesson, introduces: ['lexeme:hitchabbe', 'lexeme:hava', 'lexeme:min', 'lexeme:sfx-3ms']}
+- {id: hbo.u03.where-are-you, kind: lesson, introduces: ['lexeme:ay', 'lexeme:sfx-2ms', 'lexeme:anokhi', 'lexeme:yare', 'lexeme:erom']}
 - {id: hbo.u03.story, kind: story}
 sentences:
 - id: s.03.1
@@ -156,29 +20,27 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַגָּן
-      tokens: [{surface: הַגָּן, sense: gan, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+      tokens: [{surface: הַגָּן, lexemes: [{lexeme: ha, surface: הַ, n: 1, head: 2, rel: det}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: haggān}}]
       reverse: הגן
   translations:
     en: the garden
 - id: s.03.2
   node: hbo.u03.the-garden
-  constructions: ['construction:nominal']
+  uses: ['rule:nominal']
   forms:
     hbo-Hebr/tiberian:
       text: הָאָדָם בַּגָּן׃
-      tokens: [{surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ,
-              kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      tokens: [{surface: הָאָדָם, lexemes: [{lexeme: ha, surface: הָ, n: 1, head: 2, rel: det}, {lexeme: adam, surface: אָדָם, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hāʾāḏām}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ, n: 3, head: 4, rel: case}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: baggān}}]
       reverse: האדם בגן
   translations:
     en: The man is in the garden.
 - id: s.03.3
   node: hbo.u03.the-garden
-  constructions: ['construction:nominal']
+  uses: ['rule:nominal']
   forms:
     hbo-Hebr/tiberian:
       text: הָאִשָּׁה בַּגָּן׃
-      tokens: [{surface: הָאִשָּׁה, sense: ishah, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: בַּגָּן, sense: gan, morphs: [
-            {surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      tokens: [{surface: הָאִשָּׁה, lexemes: [{lexeme: ha, surface: הָ, n: 1, head: 2, rel: det}, {lexeme: ishah, surface: אִשָּׁה, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hāʾiššâ}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ, n: 3, head: 4, rel: case}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: baggān}}]
       reverse: האשה בגן
   translations:
     en: The woman is in the garden.
@@ -187,8 +49,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאָדָם וְהָאִשָּׁה
-      tokens: [{surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}, {surface: וְהָאִשָּׁה, sense: ishah, form: 'form:f', morphs: [
-            {surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: wəhāʾiššâ}}]
+      tokens: [{surface: הָאָדָם, lexemes: [{lexeme: ha, surface: הָ, n: 1, head: 2, rel: det}, {lexeme: adam, surface: אָדָם, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hāʾāḏām}}, {surface: וְהָאִשָּׁה, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ha, surface: הָ, n: 4, head: 5, rel: det}, {lexeme: ishah, surface: אִשָּׁה, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: wəhāʾiššâ}}]
       reverse: האדם והאשה
   translations:
     en: the man and the woman
@@ -197,7 +58,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: יְהוָה אֱלֹהִים
-      tokens: [{surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}]
+      tokens: [{surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}]
       reverse: יהוה (אלהים|אלוהים)
   translations:
     en: the LORD God
@@ -206,8 +67,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיֹּאמֶר יְהוָה אֶל־הָאָדָם׃
-      tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, sense: el, readings: {
-            tiberian: ʾel-}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}]
+      tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הָאָדָם, lexemes: [{lexeme: ha, surface: הָ, n: 4, head: 5, rel: det}, {lexeme: adam, surface: אָדָם, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: hāʾāḏām}}]
       reverse: |-
         (ויאמר|ויואמר) יהוה אל האדם
         יהוה אמר אל האדם
@@ -220,8 +80,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיֹּאמֶר אֱלֹהִים אֶל־הָאִשָּׁה׃
-      tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶל, sense: el,
-          readings: {tiberian: ʾel-}}, {surface: הָאִשָּׁה, sense: ishah, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}]
+      tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הָאִשָּׁה, lexemes: [{lexeme: ha, surface: הָ, n: 4, head: 5, rel: det}, {lexeme: ishah, surface: אִשָּׁה, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: hāʾiššâ}}]
       reverse: |-
         (ויאמר|ויואמר) (אלהים|אלוהים) אל האשה
         (אלהים|אלוהים) אמר אל האשה
@@ -234,9 +93,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיִּקְרָא יְהוָה אֱלֹהִים אֶל־הָאָדָם׃
-      tokens: [{surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim,
-          readings: {tiberian: ʾĕlōhîm}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}],
-          readings: {tiberian: hāʾāḏām}}]
+      tokens: [{surface: וַיִּקְרָא, lexeme: qara, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiqrāʾ}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הָאָדָם, lexemes: [{lexeme: ha, surface: הָ, n: 5, head: 6, rel: det}, {lexeme: adam, surface: אָדָם, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: hāʾāḏām}}]
       reverse: |-
         ויקרא יהוה (אלהים|אלוהים) אל האדם
         יהוה (אלהים|אלוהים) קרא אל האדם
@@ -249,7 +106,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: קוֹל
-      tokens: [{surface: קוֹל, sense: qol, readings: {tiberian: qôl}}]
+      tokens: [{surface: קוֹל, lexeme: qol, feats: {Number: Sing}, readings: {tiberian: qôl}}]
       reverse: קול
   translations:
     en: |-
@@ -260,7 +117,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: קוֹל יְהוָה
-      tokens: [{surface: קוֹל, sense: qol, readings: {tiberian: qôl}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
+      tokens: [{surface: קוֹל, lexeme: qol, feats: {Number: Sing}, readings: {tiberian: qôl}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}]
       reverse: קול יהוה
   translations:
     en: the (voice|sound) of the LORD
@@ -269,8 +126,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיִּשְׁמַע אֶת־הַקּוֹל׃
-      tokens: [{surface: וַיִּשְׁמַע, sense: shama, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyišmaʿ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַקּוֹל, sense: qol, morphs: [
-            {surface: הַ, kc: 'sense:ha'}, {surface: קּוֹל, kc: 'sense:qol'}], readings: {tiberian: haqqôl}}]
+      tokens: [{surface: וַיִּשְׁמַע, lexeme: shama, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyišmaʿ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַקּוֹל, lexemes: [{lexeme: ha, surface: הַ, n: 3, head: 4, rel: det}, {lexeme: qol, surface: קּוֹל, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: haqqôl}}]
       reverse: |-
         וישמע את הקול
         שמע את הקול
@@ -283,8 +139,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיִּשְׁמְעוּ אֶת־קוֹל יְהוָה׃
-      tokens: [{surface: וַיִּשְׁמְעוּ, sense: shama, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyišməʿû}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: קוֹל, sense: qol, readings: {
-            tiberian: qôl}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
+      tokens: [{surface: וַיִּשְׁמְעוּ, lexeme: shama, feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyišməʿû}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: קוֹל, lexeme: qol, feats: {Number: Sing}, readings: {tiberian: qôl}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}]
       reverse: |-
         וישמעו את קול יהוה
         שמעו את קול יהוה
@@ -297,8 +152,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: שָׁמַעְתִּי אֶת־הַקּוֹל׃
-      tokens: [{surface: שָׁמַעְתִּי, sense: shama, form: 'form:qatal-1cs', readings: {tiberian: šāmáʿtî}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַקּוֹל, sense: qol, morphs: [
-            {surface: הַ, kc: 'sense:ha'}, {surface: קּוֹל, kc: 'sense:qol'}], readings: {tiberian: haqqôl}}]
+      tokens: [{surface: שָׁמַעְתִּי, lexeme: shama, feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, readings: {tiberian: šāmáʿtî}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: הַקּוֹל, lexemes: [{lexeme: ha, surface: הַ, n: 3, head: 4, rel: det}, {lexeme: qol, surface: קּוֹל, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: haqqôl}}]
       reverse: |-
         שמעתי את הקול
         (אני|אנכי) שמעתי את הקול
@@ -311,8 +165,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: שָׁמַעְתִּי קוֹל בַּגָּן׃
-      tokens: [{surface: שָׁמַעְתִּי, sense: shama, form: 'form:qatal-1cs', readings: {tiberian: šāmáʿtî}}, {surface: קוֹל, sense: qol, readings: {tiberian: qôl}}, {surface: בַּגָּן, sense: gan, morphs: [
-            {surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      tokens: [{surface: שָׁמַעְתִּי, lexeme: shama, feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, readings: {tiberian: šāmáʿtî}}, {surface: קוֹל, lexeme: qol, feats: {Number: Sing}, readings: {tiberian: qôl}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ, n: 3, head: 4, rel: case}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: baggān}}]
       reverse: |-
         שמעתי קול בגן
         (אני|אנכי) שמעתי קול בגן
@@ -325,7 +178,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עֵץ
-      tokens: [{surface: עֵץ, sense: ets, readings: {tiberian: ʿēṣ}}]
+      tokens: [{surface: עֵץ, lexeme: ets, feats: {Number: Sing}, readings: {tiberian: ʿēṣ}}]
       reverse: עץ
   translations:
     en: |-
@@ -336,7 +189,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עֵץ הַגָּן
-      tokens: [{surface: עֵץ, sense: ets, readings: {tiberian: ʿēṣ}}, {surface: הַגָּן, sense: gan, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+      tokens: [{surface: עֵץ, lexeme: ets, feats: {Number: Sing}, readings: {tiberian: ʿēṣ}}, {surface: הַגָּן, lexemes: [{lexeme: ha, surface: הַ, n: 2, head: 3, rel: det}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: haggān}}]
       reverse: עץ הגן
   translations:
     en: the (trees|tree) of the garden
@@ -345,8 +198,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בְּתוֹךְ הַגָּן
-      tokens: [{surface: בְּתוֹךְ, sense: tokh, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: תוֹךְ, kc: 'sense:tokh'}], readings: {tiberian: bəṯôḵ}}, {surface: הַגָּן, sense: gan,
-          morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+      tokens: [{surface: בְּתוֹךְ, lexemes: [{lexeme: be, surface: בְּ, n: 1, head: 2, rel: case}, {lexeme: tokh, surface: תוֹךְ, base: true, feats: {Definite: Cons, Number: Sing}, n: 2}], readings: {tiberian: bəṯôḵ}}, {surface: הַגָּן, lexemes: [{lexeme: ha, surface: הַ, n: 3, head: 4, rel: det}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: haggān}}]
       reverse: בתוך הגן
   translations:
     en: |-
@@ -358,7 +210,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מִתְהַלֵּךְ
-      tokens: [{surface: מִתְהַלֵּךְ, sense: hithallekh, form: 'form:ptc-ms', readings: {tiberian: miṯhallēḵ}}]
+      tokens: [{surface: מִתְהַלֵּךְ, lexeme: hithallekh, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: miṯhallēḵ}}]
       reverse: מתהלך
   translations:
     en: |-
@@ -369,8 +221,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: יְהוָה אֱלֹהִים מִתְהַלֵּךְ בַּגָּן׃
-      tokens: [{surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: מִתְהַלֵּךְ, sense: hithallekh, form: 'form:ptc-ms',
-          readings: {tiberian: miṯhallēḵ}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      tokens: [{surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: מִתְהַלֵּךְ, lexeme: hithallekh, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: miṯhallēḵ}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ, n: 4, head: 5, rel: case}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: baggān}}]
       reverse: יהוה (אלהים|אלוהים) מתהלך בגן
   translations:
     en: |-
@@ -381,9 +232,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָאָדָם מִתְהַלֵּךְ בְּתוֹךְ הַגָּן׃
-      tokens: [{surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}, {surface: מִתְהַלֵּךְ, sense: hithallekh, form: 'form:ptc-ms',
-          readings: {tiberian: miṯhallēḵ}}, {surface: בְּתוֹךְ, sense: tokh, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: תוֹךְ, kc: 'sense:tokh'}], readings: {tiberian: bəṯôḵ}},
-        {surface: הַגָּן, sense: gan, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+      tokens: [{surface: הָאָדָם, lexemes: [{lexeme: ha, surface: הָ, n: 1, head: 2, rel: det}, {lexeme: adam, surface: אָדָם, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hāʾāḏām}}, {surface: מִתְהַלֵּךְ, lexeme: hithallekh, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: miṯhallēḵ}}, {surface: בְּתוֹךְ, lexemes: [{lexeme: be, surface: בְּ, n: 4, head: 5, rel: case}, {lexeme: tokh, surface: תוֹךְ, base: true, feats: {Definite: Cons, Number: Sing}, n: 5}], readings: {tiberian: bəṯôḵ}}, {surface: הַגָּן, lexemes: [{lexeme: ha, surface: הַ, n: 6, head: 7, rel: det}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 7}], readings: {tiberian: haggān}}]
       reverse: |-
         האדם מתהלך בתוך הגן
         מתהלך האדם בתוך הגן
@@ -396,8 +245,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: לְרוּחַ הַיּוֹם
-      tokens: [{surface: לְרוּחַ, sense: ruach, form: 'form:f', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: רוּחַ, kc: 'sense:ruach'}], readings: {tiberian: lərûaḥ}}, {surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ,
-              kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}}]
+      tokens: [{surface: לְרוּחַ, lexemes: [{lexeme: le, surface: לְ, n: 1, head: 2, rel: case}, {lexeme: ruach, surface: רוּחַ, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: lərûaḥ}}, {surface: הַיּוֹם, lexemes: [{lexeme: ha, surface: הַ, n: 3, head: 4, rel: det}, {lexeme: yom, surface: יּוֹם, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: hayyôm}}]
       reverse: לרוח היום
   translations:
     en: |-
@@ -408,8 +256,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיִּתְחַבֵּא הָאָדָם׃
-      tokens: [{surface: וַיִּתְחַבֵּא, sense: hitchabbe, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם,
-              kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}]
+      tokens: [{surface: וַיִּתְחַבֵּא, lexeme: hitchabbe, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, lexemes: [{lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: adam, surface: אָדָם, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hāʾāḏām}}]
       reverse: ויתחבא האדם
   translations:
     en: '[(And|Then|So)] the man hid [himself].'
@@ -418,8 +265,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מִפְּנֵי יְהוָה
-      tokens: [{surface: מִפְּנֵי, sense: panim, form: 'form:pl-cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: פְּנֵי, kc: 'sense:panim'}], readings: {tiberian: mippənê}}, {surface: יְהוָה, sense: yhwh,
-          readings: {tiberian: ʾăḏōnāy}}]
+      tokens: [{surface: מִפְּנֵי, lexemes: [{lexeme: min, surface: מִ, n: 1, head: 2, rel: case}, {lexeme: panim, surface: פְּנֵי, base: true, feats: {Definite: Cons, Number: Plur}, n: 2}], readings: {tiberian: mippənê}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}]
       reverse: מפני יהוה
   translations:
     en: |-
@@ -430,7 +276,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מִן־הַגָּן
-      tokens: [{surface: מִן, sense: min, readings: {tiberian: min-}}, {surface: הַגָּן, sense: gan, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+      tokens: [{surface: מִן, lexeme: min, readings: {tiberian: min-}}, {surface: הַגָּן, lexemes: [{lexeme: ha, surface: הַ, n: 2, head: 3, rel: det}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: haggān}}]
       reverse: מן הגן
   translations:
     en: |-
@@ -441,7 +287,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אִשְׁתּוֹ
-      tokens: [{surface: אִשְׁתּוֹ, sense: ishah, form: 'form:f', morphs: [{surface: אִשְׁתּ, kc: 'sense:ishah'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾištô}}]
+      tokens: [{surface: אִשְׁתּוֹ, lexemes: [{lexeme: ishah, surface: אִשְׁתּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: ʾištô}}]
       reverse: אשתו
   translations:
     en: |-
@@ -449,12 +295,11 @@ sentences:
       his woman
 - id: s.03.26
   node: hbo.u03.hiding
-  constructions: ['construction:nominal']
+  uses: ['rule:nominal']
   forms:
     hbo-Hebr/tiberian:
       text: אִשְׁתּוֹ בַּגָּן׃
-      tokens: [{surface: אִשְׁתּוֹ, sense: ishah, form: 'form:f', morphs: [{surface: אִשְׁתּ, kc: 'sense:ishah'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾištô}}, {surface: בַּגָּן, sense: gan, morphs: [
-            {surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      tokens: [{surface: אִשְׁתּוֹ, lexemes: [{lexeme: ishah, surface: אִשְׁתּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: ʾištô}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ, n: 3, head: 4, rel: case}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 4}], readings: {tiberian: baggān}}]
       reverse: אשתו בגן
   translations:
     en: His wife is in the garden.
@@ -463,10 +308,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיִּתְחַבֵּא הָאָדָם וְאִשְׁתּוֹ מִפְּנֵי יְהוָה׃
-      tokens: [{surface: וַיִּתְחַבֵּא, sense: hitchabbe, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם,
-              kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}, {surface: וְאִשְׁתּוֹ, sense: ishah, form: 'form:f', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אִשְׁתּ, kc: 'sense:ishah'}, {surface: וֹ, kc: 'form:sfx-3ms'}],
-          readings: {tiberian: wəʾištô}}, {surface: מִפְּנֵי, sense: panim, form: 'form:pl-cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: פְּנֵי, kc: 'sense:panim'}], readings: {tiberian: mippənê}},
-        {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
+      tokens: [{surface: וַיִּתְחַבֵּא, lexeme: hitchabbe, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, lexemes: [{lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: adam, surface: אָדָם, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hāʾāḏām}}, {surface: וְאִשְׁתּוֹ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ishah, surface: אִשְׁתּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: wəʾištô}}, {surface: מִפְּנֵי, lexemes: [{lexeme: min, surface: מִ, n: 7, head: 8, rel: case}, {lexeme: panim, surface: פְּנֵי, base: true, feats: {Definite: Cons, Number: Plur}, n: 8}], readings: {tiberian: mippənê}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}]
       reverse: ויתחבא האדם ואשתו מפני יהוה
   translations:
     en: |-
@@ -477,8 +319,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיִּשְׁמַע אֶת־קוֹלוֹ׃
-      tokens: [{surface: וַיִּשְׁמַע, sense: shama, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyišmaʿ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: קוֹלוֹ, sense: qol, morphs: [
-            {surface: קוֹל, kc: 'sense:qol'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: qôlô}}]
+      tokens: [{surface: וַיִּשְׁמַע, lexeme: shama, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyišmaʿ}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: קוֹלוֹ, lexemes: [{lexeme: qol, surface: קוֹל, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: qôlô}}]
       reverse: |-
         וישמע את קולו
         שמע את קולו
@@ -488,22 +329,23 @@ sentences:
     en: '[(And|Then)] he heard his (voice|sound).'
 - id: s.03.29
   node: hbo.u03.where-are-you
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     hbo-Hebr/tiberian:
       text: אַיֶּכָּה
-      tokens: [{surface: אַיֶּכָּה, sense: ay, morphs: [{surface: אַיֶּ, kc: 'sense:ay'}, {surface: כָּה, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾayyékkâ}}]
+      tokens: [{surface: אַיֶּכָּה, lexemes: [{lexeme: ay, surface: אַיֶּ, base: true}, {lexeme: sfx-2ms, surface: כָּה}], readings: {tiberian: ʾayyékkâ}}]
       reverse: איכה
   translations:
     en: Where are you?
 - id: s.03.30
   node: hbo.u03.where-are-you
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     hbo-Hebr/tiberian:
       text: וַיֹּאמֶר לוֹ אַיֶּכָּה׃
-      tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: לוֹ, sense: le, morphs: [{surface: ל, kc: 'sense:le'}, {surface: וֹ, kc: 'form:sfx-3ms'}],
-          readings: {tiberian: lô}}, {surface: אַיֶּכָּה, sense: ay, morphs: [{surface: אַיֶּ, kc: 'sense:ay'}, {surface: כָּה, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾayyékkâ}}]
+      tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: לוֹ, lexemes: [{lexeme: le, surface: ל, base: true, n: 2, head: 3, rel: case}, {lexeme: sfx-3ms, surface: וֹ, n: 3}], readings: {tiberian: lô}}, {surface: אַיֶּכָּה, lexemes: [{lexeme: ay, surface: אַיֶּ, base: true}, {lexeme: sfx-2ms, surface: כָּה}], readings: {tiberian: ʾayyékkâ}}]
       reverse: (ויאמר|ויואמר) לו איכה
   translations:
     en: '[(And|Then)] he said to him, “Where are you?”'
@@ -512,7 +354,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אָנֹכִי
-      tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}]
+      tokens: [{surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}]
       reverse: (אנכי|אנוכי)
   translations:
     en: |-
@@ -520,11 +362,11 @@ sentences:
       me
 - id: s.03.32
   node: hbo.u03.where-are-you
-  constructions: ['construction:nominal']
+  uses: ['rule:nominal']
   forms:
     hbo-Hebr/tiberian:
       text: אָנֹכִי בַּגָּן׃
-      tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      tokens: [{surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ, n: 2, head: 3, rel: case}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: baggān}}]
       reverse: |-
         (אנכי|אנוכי) בגן
         בגן (אנכי|אנוכי)
@@ -534,12 +376,12 @@ sentences:
       I'm in the garden.
 - id: s.03.33
   node: hbo.u03.where-are-you
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     hbo-Hebr/tiberian:
       text: שָׁמַעְתִּי אֶת־קֹלְךָ׃
-      tokens: [{surface: שָׁמַעְתִּי, sense: shama, form: 'form:qatal-1cs', readings: {tiberian: šāmáʿtî}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: קֹלְךָ, sense: qol, morphs: [
-            {surface: קֹלְ, kc: 'sense:qol'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: qōləḵā}}]
+      tokens: [{surface: שָׁמַעְתִּי, lexeme: shama, feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, readings: {tiberian: šāmáʿtî}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: קֹלְךָ, lexemes: [{lexeme: qol, surface: קֹלְ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: qōləḵā}}]
       reverse: |-
         שמעתי את (קלך|קולך)
         (אני|אנכי) שמעתי את (קלך|קולך)
@@ -552,7 +394,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וָאִירָא׃
-      tokens: [{surface: וָאִירָא, sense: yare, form: 'form:wayyiqtol-1cs', readings: {tiberian: wāʾîrāʾ}}]
+      tokens: [{surface: וָאִירָא, lexeme: yare, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {tiberian: wāʾîrāʾ}}]
       reverse: |-
         ואירא
         יראתי
@@ -564,12 +406,13 @@ sentences:
       [(And|So)] I (became afraid|feared|was frightened|got scared|was scared).
 - id: s.03.35
   node: hbo.u03.where-are-you
-  persons: {speaker: m}
-  constructions: ['construction:nominal']
+  tags:
+  - {persons: {speaker: m}}
+  uses: ['rule:nominal']
   forms:
     hbo-Hebr/tiberian:
       text: עֵירֹם אָנֹכִי׃
-      tokens: [{surface: עֵירֹם, sense: erom, readings: {tiberian: ʿêrōm}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}]
+      tokens: [{surface: עֵירֹם, lexeme: erom, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: ʿêrōm}}, {surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}]
       reverse: |-
         (עירם|עירום) (אנכי|אנוכי)
         (אנכי|אנוכי) (עירם|עירום)
@@ -579,13 +422,12 @@ sentences:
       I'm naked.
 - id: s.03.36
   node: hbo.u03.where-are-you
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     hbo-Hebr/tiberian:
       text: אֶת־קֹלְךָ שָׁמַעְתִּי בַּגָּן וָאִירָא׃
-      tokens: [{surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: קֹלְךָ, sense: qol, morphs: [{surface: קֹלְ, kc: 'sense:qol'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: qōləḵā}},
-        {surface: שָׁמַעְתִּי, sense: shama, form: 'form:qatal-1cs', readings: {tiberian: šāmáʿtî}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}],
-          readings: {tiberian: baggān}}, {surface: וָאִירָא, sense: yare, form: 'form:wayyiqtol-1cs', readings: {tiberian: wāʾîrāʾ}}]
+      tokens: [{surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: קֹלְךָ, lexemes: [{lexeme: qol, surface: קֹלְ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: qōləḵā}}, {surface: שָׁמַעְתִּי, lexeme: shama, feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, readings: {tiberian: šāmáʿtî}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ, n: 5, head: 6, rel: case}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: baggān}}, {surface: וָאִירָא, lexeme: yare, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {tiberian: wāʾîrāʾ}}]
       reverse: את (קלך|קולך) שמעתי בגן ואירא
   translations:
     en: |-
@@ -593,12 +435,12 @@ sentences:
       I heard (the sound of you|your sound) in the garden, and I was afraid.
 - id: s.03.37
   node: hbo.u03.where-are-you
-  persons: {speaker: m}
+  tags:
+  - {persons: {speaker: m}}
   forms:
     hbo-Hebr/tiberian:
       text: וָאִירָא כִּי־עֵירֹם אָנֹכִי׃
-      tokens: [{surface: וָאִירָא, sense: yare, form: 'form:wayyiqtol-1cs', readings: {tiberian: wāʾîrāʾ}}, {surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: עֵירֹם, sense: erom, readings: {
-            tiberian: ʿêrōm}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}]
+      tokens: [{surface: וָאִירָא, lexeme: yare, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {tiberian: wāʾîrāʾ}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî-}}, {surface: עֵירֹם, lexeme: erom, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: ʿêrōm}}, {surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}]
       reverse: ואירא כי (עירם|עירום) (אנכי|אנוכי)
   translations:
     en: |-
@@ -609,7 +451,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וָאֵחָבֵא׃
-      tokens: [{surface: וָאֵחָבֵא, sense: hava, form: 'form:wayyiqtol-1cs', readings: {tiberian: wāʾēḥāḇēʾ}}]
+      tokens: [{surface: וָאֵחָבֵא, lexeme: hava, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {tiberian: wāʾēḥāḇēʾ}}]
       reverse: ואחבא
   translations:
     en: '[(And|So|Then)] I hid [myself].'
@@ -619,49 +461,47 @@ stories:
   title:
     en: Where are you? (Genesis 3:8–10)
   characters:
-  - {id: god, name: {hbo-Hebr/tiberian: יְהוָה}}
-  - {id: adam, speaker: m, name: {hbo-Hebr/tiberian: הָאָדָם}}
+  - id: god
+    name:
+      hbo-Hebr/tiberian: יְהוָה
+  - id: adam
+    speaker: m
+    name:
+      hbo-Hebr/tiberian: הָאָדָם
   steps:
   - line:
       ask: complete
-      gap: sense:qol
+      gap: lexeme:qol
       asks: form
-      distractors: ['sense:ha', 'form:sfx-2ms']
+      distractors:
+      - lexeme:ha
+      - lexeme:sfx-2ms
       forms:
         hbo-Hebr/tiberian:
           text: וַיִּשְׁמְעוּ אֶת־קוֹל יְהוָה אֱלֹהִים מִתְהַלֵּךְ בַּגָּן לְרוּחַ
-          tokens: [{surface: וַיִּשְׁמְעוּ, sense: shama, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyišməʿû}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: קוֹל, sense: qol,
-              form: 'form:cstr', readings: {tiberian: qôl}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: מִתְהַלֵּךְ,
-              sense: hithallekh, form: 'form:ptc-ms', readings: {tiberian: miṯhallēḵ}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {
-                tiberian: baggān}}, {surface: לְרוּחַ, sense: ruach, form: 'form:f-cstr', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: רוּחַ, kc: 'sense:ruach'}], readings: {tiberian: lərûaḥ}}]
+          tokens: [{surface: וַיִּשְׁמְעוּ, lexeme: shama, feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyišməʿû}}, {surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: קוֹל, lexeme: qol, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: qôl}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: מִתְהַלֵּךְ, lexeme: hithallekh, feats: {Gender: Masc, Number: Sing, VerbForm: Part}, readings: {tiberian: miṯhallēḵ}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ, n: 7, head: 8, rel: case}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 8}], readings: {tiberian: baggān}}, {surface: לְרוּחַ, lexemes: [{lexeme: le, surface: לְ, n: 9, head: 10, rel: case}, {lexeme: ruach, surface: רוּחַ, base: true, feats: {Definite: Cons, Number: Sing}, n: 10}], readings: {tiberian: lərûaḥ}}]
       translations:
         en: And they heard the sound of the LORD God walking in the garden in the breeze of the day,
   - line:
       forms:
         hbo-Hebr/tiberian:
           text: הַיּוֹם וַיִּתְחַבֵּא הָאָדָם וְאִשְׁתּוֹ מִפְּנֵי יְהוָה אֱלֹהִים בְּתוֹךְ עֵץ הַגָּן׃
-          tokens: [{surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}}, {surface: וַיִּתְחַבֵּא, sense: hitchabbe, form: 'form:wayyiqtol-3ms',
-              readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}, {surface: וְאִשְׁתּוֹ,
-              sense: ishah, form: 'form:f', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אִשְׁתּ, kc: 'sense:ishah'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: wəʾištô}}, {surface: מִפְּנֵי, sense: panim,
-              form: 'form:pl-cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: פְּנֵי, kc: 'sense:panim'}], readings: {tiberian: mippənê}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}},
-            {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: בְּתוֹךְ, sense: tokh, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: תוֹךְ, kc: 'sense:tokh'}],
-              readings: {tiberian: bəṯôḵ}}, {surface: עֵץ, sense: ets, form: 'form:cstr', readings: {tiberian: ʿēṣ}}, {surface: הַגָּן, sense: gan, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן,
-                  kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+          tokens: [{surface: הַיּוֹם, lexemes: [{lexeme: ha, surface: הַ, n: 1, head: 2, rel: det}, {lexeme: yom, surface: יּוֹם, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hayyôm}}, {surface: וַיִּתְחַבֵּא, lexeme: hitchabbe, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, lexemes: [{lexeme: ha, surface: הָ, n: 4, head: 5, rel: det}, {lexeme: adam, surface: אָדָם, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: hāʾāḏām}}, {surface: וְאִשְׁתּוֹ, lexemes: [{lexeme: we, surface: וְ}, {lexeme: ishah, surface: אִשְׁתּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: wəʾištô}}, {surface: מִפְּנֵי, lexemes: [{lexeme: min, surface: מִ, n: 9, head: 10, rel: case}, {lexeme: panim, surface: פְּנֵי, base: true, feats: {Definite: Cons, Number: Plur}, n: 10}], readings: {tiberian: mippənê}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: בְּתוֹךְ, lexemes: [{lexeme: be, surface: בְּ, n: 13, head: 14, rel: case}, {lexeme: tokh, surface: תוֹךְ, base: true, feats: {Definite: Cons, Number: Sing}, n: 14}], readings: {tiberian: bəṯôḵ}}, {surface: עֵץ, lexeme: ets, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: ʿēṣ}}, {surface: הַגָּן, lexemes: [{lexeme: ha, surface: הַ, n: 16, head: 17, rel: det}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 17}], readings: {tiberian: haggān}}]
       translations:
         en: and the man and his wife hid from the LORD God among the trees of the garden.
   - choose:
       prompt:
         en: Where did the man and his wife hide?
-      options: [{en: among the trees of the garden}, {en: in the water}, {en: in the darkness of the night}]
+      options:
+      - en: among the trees of the garden
+      - en: in the water
+      - en: in the darkness of the night
       answer: 0
   - line:
       forms:
         hbo-Hebr/tiberian:
           text: וַיִּקְרָא יְהוָה אֱלֹהִים אֶל־הָאָדָם וַיֹּאמֶר לוֹ
-          tokens: [{surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim,
-              readings: {tiberian: ʾĕlōhîm}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}],
-              readings: {tiberian: hāʾāḏām}}, {surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: לוֹ, sense: le, morphs: [{surface: ל, kc: 'sense:le'},
-                {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: lô}}]
+          tokens: [{surface: וַיִּקְרָא, lexeme: qara, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyiqrāʾ}}, {surface: יְהוָה, lexeme: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, lexeme: elohim, feats: {Number: Sing}, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הָאָדָם, lexemes: [{lexeme: ha, surface: הָ, n: 5, head: 6, rel: det}, {lexeme: adam, surface: אָדָם, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: hāʾāḏām}}, {surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}, {surface: לוֹ, lexemes: [{lexeme: le, surface: ל, base: true, n: 8, head: 9, rel: case}, {lexeme: sfx-3ms, surface: וֹ, n: 9}], readings: {tiberian: lô}}]
       translations:
         en: And the LORD God called to the man and said to him,
   - line:
@@ -669,14 +509,14 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: אַיֶּכָּה׃
-          tokens: [{surface: אַיֶּכָּה, sense: ay, morphs: [{surface: אַיֶּ, kc: 'sense:ay'}, {surface: כָּה, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾayyékkâ}}]
+          tokens: [{surface: אַיֶּכָּה, lexemes: [{lexeme: ay, surface: אַיֶּ, base: true}, {lexeme: sfx-2ms, surface: כָּה}], readings: {tiberian: ʾayyékkâ}}]
       translations:
         en: “Where are you?”
   - line:
       forms:
         hbo-Hebr/tiberian:
           text: וַיֹּאמֶר
-          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}]
       translations:
         en: And he said,
   - line:
@@ -685,14 +525,14 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: אֶת־קֹלְךָ שָׁמַעְתִּי בַּגָּן וָאִירָא כִּי־עֵירֹם אָנֹכִי וָאֵחָבֵא׃
-          tokens: [{surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: קֹלְךָ, sense: qol, morphs: [{surface: קֹלְ, kc: 'sense:qol'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: qōləḵā}},
-            {surface: שָׁמַעְתִּי, sense: shama, form: 'form:qatal-1cs', readings: {tiberian: šāmáʿtî}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}],
-              readings: {tiberian: baggān}}, {surface: וָאִירָא, sense: yare, form: 'form:wayyiqtol-1cs', readings: {tiberian: wāʾîrāʾ}}, {surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: עֵירֹם,
-              sense: erom, readings: {tiberian: ʿêrōm}}, {surface: אָנֹכִי, sense: anokhi, context: pause, readings: {tiberian: ʾānṓḵî}}, {surface: וָאֵחָבֵא, sense: hava, form: 'form:wayyiqtol-1cs', readings: {tiberian: wāʾēḥāḇēʾ}}]
+          tokens: [{surface: אֶת, lexeme: et, readings: {tiberian: ʾeṯ-}}, {surface: קֹלְךָ, lexemes: [{lexeme: qol, surface: קֹלְ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: qōləḵā}}, {surface: שָׁמַעְתִּי, lexeme: shama, feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, readings: {tiberian: šāmáʿtî}}, {surface: בַּגָּן, lexemes: [{lexeme: be, surface: בַּ, n: 5, head: 6, rel: case}, {lexeme: gan, surface: גָּן, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: baggān}}, {surface: וָאִירָא, lexeme: yare, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {tiberian: wāʾîrāʾ}}, {surface: כִּי, lexeme: ki, readings: {tiberian: kî-}}, {surface: עֵירֹם, lexeme: erom, feats: {Gender: Masc, Number: Sing}, readings: {tiberian: ʿêrōm}}, {surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānṓḵî}, context: pause}, {surface: וָאֵחָבֵא, lexeme: hava, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, readings: {tiberian: wāʾēḥāḇēʾ}}]
       translations:
         en: “I heard your voice in the garden, and I was afraid, because I was naked; and I hid.”
   - choose:
       prompt:
         en: Why was the man afraid?
-      options: [{en: because he was naked}, {en: because it was night}, {en: because the garden was dark}]
+      options:
+      - en: because he was naked
+      - en: because it was night
+      - en: because the garden was dark
       answer: 0

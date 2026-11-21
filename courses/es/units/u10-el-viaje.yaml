@@ -3,38 +3,16 @@
 # Tía Marisol in Havana.
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
 id: u10
-title: {en: 'El viaje: The trip'}
+title:
+  en: 'El viaje: The trip'
 cefr: A2
-kcs:
-- {id: 'sense:viajar', pos: VERB, gloss: {en: 'to travel'}, forms: {es-Latn/standard: [viajar]}, notes: {en: 'Viajar a Cuba, or just ir a Cuba. Spelled with j, like el viaje.'}}
-- {id: 'sense:verano', pos: NOUN, gloss: {en: 'summer'}, forms: {es-Latn/standard: [verano]}, notes: {en: 'With v. Cuba''s hot, rainy season runs from May to October. En el verano: in (the) summer.'}}
-- {id: 'sense:visitar', pos: VERB, gloss: {en: 'to visit'}, forms: {es-Latn/standard: [visitar]}, notes: {en: 'With a before a person (visitar a tía Marisol), but not before a place (visitar Matanzas).'}}
-- {id: 'sense:venir', pos: VERB, gloss: {en: 'to come'}, forms: {es-Latn/standard: [venir]}, notes: {en: 'Vengo, vienes, viene. Que viene means next: la semana que viene, next week.'}}
-- {id: 'sense:cuándo', pos: ADV, features: {PronType: Int}, gloss: {en: 'when'}, forms: {es-Latn/standard: [cuándo]}, notes: {en: 'With the accent when it asks: ¿cuándo? Cubans keep the subject before the verb: ¿Cuándo tú vas?'}}
-- {id: 'sense:viaje', pos: NOUN, gloss: {en: 'trip; journey'}, forms: {es-Latn/standard: [viaje]}, notes: {en: '¡Buen viaje!: have a good trip. To take a trip is hacer un viaje; tomar un viaje is English in Spanish words.'}}
-- {id: 'sense:semana', pos: NOUN, gloss: {en: 'week'}, forms: {es-Latn/standard: [semana]}, notes: {en: 'La semana que viene or la próxima semana: next week.'}}
-- {id: 'sense:que', pos: SCONJ, gloss: {en: 'that; which; who'}, forms: {es-Latn/standard: [que]}, notes: {en: 'No accent when it joins (la semana que viene); qué, with an accent, asks or exclaims.'}}
-- {id: 'sense:avión', pos: NOUN, gloss: {en: 'plane; airplane'}, forms: {es-Latn/standard: [avión]}, notes: {en: 'The accent falls on the last syllable: avión. The plural drops it: aviones.'}}
-- {id: 'sense:aeropuerto', pos: NOUN, gloss: {en: 'airport'}, forms: {es-Latn/standard: [aeropuerto]}, notes: {en: 'Flights from Miami to Havana land at the José Martí airport, in Boyeros.'}}
-- {id: 'sense:pasaporte', pos: NOUN, gloss: {en: 'passport'}, forms: {es-Latn/standard: [pasaporte]}, notes: {en: 'Cubans who left the island after 1970 enter Cuba on a Cuban passport, even when they are US citizens.'}}
-- {id: 'sense:maleta', pos: NOUN, gloss: {en: 'suitcase'}, forms: {es-Latn/standard: [maleta]}, notes: {en: 'Valija in Argentina and Uruguay. A family going to Cuba packs its maletas full of things for the relatives.'}}
-- {id: 'sense:playa', pos: NOUN, gloss: {en: 'beach'}, forms: {es-Latn/standard: [playa]}, notes: {en: 'Habaneros go to the Playas del Este, a short ride east of the city.'}}
-- {id: 'sense:varadero', pos: PROPN, gloss: {en: 'Varadero (a beach town)'}, forms: {es-Latn/standard: [Varadero]}, notes: {en: 'Cuba''s best-known beach, on a long, narrow peninsula in Matanzas province.'}}
-- {id: 'sense:matanzas', pos: PROPN, gloss: {en: 'Matanzas (a city and province)'}, forms: {es-Latn/standard: [Matanzas]}, notes: {en: 'East of Havana, and Abuela Cachita''s home town. The Athens of Cuba (la Atenas de Cuba), where the danzón was born.'}}
-- {id: 'sense:poder', pos: VERB, gloss: {en: 'can; to be able to'}, forms: {es-Latn/standard: [poder]}, notes: {en: 'Puedo, puedes, puede, pueden: the o becomes ue, but not in podemos. With an infinitive: no puedo ir, I can''t go.'}}
-- {id: 'sense:tiempo', pos: NOUN, gloss: {en: 'weather; time'}, forms: {es-Latn/standard: [tiempo]}, notes: {en: '¿Qué tiempo hace?: what''s the weather like? Also time: no tengo tiempo, I have no time.'}}
-- {id: 'sense:llover', pos: VERB, gloss: {en: 'to rain'}, forms: {es-Latn/standard: [llover]}, notes: {en: 'Llueve: it rains, it''s raining. A Cuban summer brings a short, heavy aguacero (downpour) most afternoons.'}}
-- {id: 'sense:llevar', pos: VERB, gloss: {en: 'to take; to carry'}, forms: {es-Latn/standard: [llevar]}, notes: {en: 'Llevar takes things there; traer brings them here. Families going to Cuba llevan coffee, clothes and medicine.'}}
-- {id: 'sense:para', pos: ADP, gloss: {en: 'for; to, in order to'}, forms: {es-Latn/standard: [para]}, notes: {en: 'Often said pa'': pa'' Cuba, pa''l aeropuerto. It is written para.'}}
-- {id: 'sense:ropa', pos: NOUN, gloss: {en: 'clothes; clothing'}, forms: {es-Latn/standard: [ropa]}, notes: {en: 'Singular in Spanish: la ropa es nueva, the clothes are new.'}}
-- {id: 'sense:medicina', pos: NOUN, gloss: {en: 'medicine'}, forms: {es-Latn/standard: [medicina]}, notes: {en: 'Also medicamento. Medicines are scarce in Cuba, so families take them in their suitcases.'}}
 nodes:
-- {id: es.u10.vamos, kind: lesson, introduces: []}
-- {id: es.u10.vamos-a-viajar, kind: lesson, introduces: ['sense:viajar', 'sense:verano', 'sense:visitar', 'sense:venir', 'sense:cuándo', 'sense:viaje', 'sense:semana', 'sense:que']}
-- {id: es.u10.el-aeropuerto, kind: lesson, introduces: ['sense:avión', 'sense:aeropuerto', 'sense:pasaporte', 'sense:maleta']}
-- {id: es.u10.quiero-ir, kind: lesson, introduces: ['sense:playa', 'sense:varadero', 'sense:matanzas', 'sense:poder']}
-- {id: es.u10.el-tiempo, kind: lesson, introduces: ['sense:tiempo', 'sense:llover']}
-- {id: es.u10.para-marisol, kind: lesson, introduces: ['sense:llevar', 'sense:para', 'sense:ropa', 'sense:medicina']}
+- {id: es.u10.vamos, kind: lesson}
+- {id: es.u10.vamos-a-viajar, kind: lesson, introduces: ['lexeme:viajar', 'lexeme:verano', 'lexeme:visitar', 'lexeme:venir', 'lexeme:cuándo', 'lexeme:viaje', 'lexeme:semana', 'lexeme:que']}
+- {id: es.u10.el-aeropuerto, kind: lesson, introduces: ['lexeme:avión', 'lexeme:aeropuerto', 'lexeme:pasaporte', 'lexeme:maleta']}
+- {id: es.u10.quiero-ir, kind: lesson, introduces: ['lexeme:playa', 'lexeme:varadero', 'lexeme:matanzas', 'lexeme:poder']}
+- {id: es.u10.el-tiempo, kind: lesson, introduces: ['lexeme:tiempo', 'lexeme:llover']}
+- {id: es.u10.para-marisol, kind: lesson, introduces: ['lexeme:llevar', 'lexeme:para', 'lexeme:ropa', 'lexeme:medicina']}
 - {id: es.u10.story, kind: story}
 sentences:
 - id: s.u10.1
@@ -42,7 +20,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Voy a Cuba.
-      tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
+      tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 3, rel: case}, {surface: Cuba, lexeme: cuba, n: 3}]
       reverse: |-
         [Yo] voy (a|para|pa') Cuba
         Me voy a Cuba.
@@ -55,8 +33,8 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú vas a Cuba?
-      tokens: [{surface: Tú, sense: tú}, {surface: vas, sense: ir, form: 'form:pres-2s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
-      reverse: "(Tú vas|Vas [tú]|Usted va|Va [usted]|Ustedes van|Van [ustedes]) (a|para|pa') Cuba"
+      tokens: [{surface: Tú, lexeme: tú}, {surface: vas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, n: 4}]
+      reverse: (Tú vas|Vas [tú]|Usted va|Va [usted]|Ustedes van|Van [ustedes]) (a|para|pa') Cuba
   translations:
     en: |-
       Are you going to Cuba?
@@ -66,18 +44,19 @@ sentences:
   forms:
     es-Latn/standard:
       text: Sí, voy a La Habana.
-      tokens: [{surface: Sí, sense: sí}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}]
-      reverse: "Sí [yo] voy (a|para|pa') La Habana"
+      tokens: [{surface: Sí, lexeme: sí}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Habana, lexeme: habana, n: 5}]
+      reverse: Sí [yo] voy (a|para|pa') La Habana
   translations:
     en: Yes, (I'm|I am) going to Havana.
 - id: s.u10.4
   node: es.u10.vamos
-  persons: {speaker: m}
+  tags:
+  - {persons: {speaker: m}}
   forms:
     es-Latn/standard:
       text: Nosotros vamos a Cuba.
-      tokens: [{surface: Nosotros, sense: nosotros, form: 'form:pl'}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
-      reverse: "[Nosotros] vamos (a|para|pa') Cuba"
+      tokens: [{surface: Nosotros, lexeme: nosotros, feats: {Number: Plur}}, {surface: vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, n: 4}]
+      reverse: '[Nosotros] vamos (a|para|pa'') Cuba'
   translations:
     en: |-
       (We're|We are) going to Cuba.
@@ -87,8 +66,8 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami va a La Habana.
-      tokens: [{surface: Mami, sense: mami, form: 'form:fem'}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}]
-      reverse: "(Mami|Mamá) va (a|para|pa') La Habana"
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Habana, lexeme: habana, n: 5}]
+      reverse: (Mami|Mamá) va (a|para|pa') La Habana
   translations:
     en: |-
       (Mom|Mommy|Mum) is going to Havana.
@@ -98,7 +77,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela y mami van a Cuba.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: mami, sense: mami, form: 'form:fem'}, {surface: van, sense: ir, form: 'form:pres-3p'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: mami, lexeme: mami, feats: {Number: Sing}}, {surface: van, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Cuba, lexeme: cuba, n: 6}]
       reverse: |-
         [La] abuela y (mami|mamá) van (a|para|pa') Cuba
         (Mami|Mamá) y [la] abuela van (a|para|pa') Cuba
@@ -113,8 +92,8 @@ sentences:
   forms:
     es-Latn/standard:
       text: Voy a viajar a Cuba.
-      tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: viajar, sense: viajar}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
-      reverse: "[Yo] voy a viajar (a|para|pa') Cuba"
+      tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: viajar, lexeme: viajar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, n: 5}]
+      reverse: '[Yo] voy a viajar (a|para|pa'') Cuba'
   translations:
     en: |-
       (I'm|I am) going to (travel|go) to Cuba.
@@ -124,7 +103,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Este verano vamos a viajar.
-      tokens: [{surface: Este, sense: este}, {surface: verano, sense: verano}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: viajar, sense: viajar}]
+      tokens: [{surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 2}, {surface: vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: viajar, lexeme: viajar, feats: {VerbForm: Inf}}]
       reverse: |-
         Este verano [nosotros|nosotras] vamos a viajar
         [Nosotros|Nosotras] vamos a viajar este verano
@@ -137,7 +116,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Marisol es mi tía.
-      tokens: [{surface: Marisol, sense: marisol, form: 'form:fem'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: tía, sense: tío, form: 'form:fem'}]
+      tokens: [{surface: Marisol, lexeme: marisol}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 4}]
       reverse: Marisol es mi tía
   translations:
     en: |-
@@ -148,19 +127,20 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vamos a visitar a tía Marisol.
-      tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: visitar, sense: visitar}, {surface: a, sense: a}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
-      reverse: "[Nosotros|Nosotras] vamos a visitar a [mi|la] tía Marisol"
+      tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: visitar, lexeme: visitar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: Marisol, lexeme: marisol}]
+      reverse: '[Nosotros|Nosotras] vamos a visitar a [mi|la] tía Marisol'
   translations:
     en: |-
       (We're|We are) going to visit (Aunt|my aunt) Marisol.
       Let's visit (Aunt|my aunt) Marisol.
 - id: s.u10.11
   node: es.u10.vamos-a-viajar
-  persons: {speaker: m}
+  tags:
+  - {persons: {speaker: m}}
   forms:
     es-Latn/standard:
       text: ¿Tú vienes con nosotros?
-      tokens: [{surface: Tú, sense: tú}, {surface: vienes, sense: venir, form: 'form:pres-2s'}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros, form: 'form:pl'}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: vienes, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 3, head: 4, rel: case}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}, n: 4}]
       reverse: (Tú vienes|Vienes [tú]|Usted viene|Viene [usted]|Ustedes vienen|Vienen [ustedes]) con nosotros
   translations:
     en: |-
@@ -173,7 +153,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuándo es el viaje?
-      tokens: [{surface: Cuándo, sense: cuándo}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: viaje, sense: viaje}]
+      tokens: [{surface: Cuándo, lexeme: cuándo}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: viaje, lexeme: viaje, feats: {Number: Sing}, n: 4}]
       reverse: |-
         Cuándo es el viaje
         ¿El viaje cuándo es?
@@ -186,7 +166,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El viaje es la semana que viene.
-      tokens: [{surface: El, sense: el}, {surface: viaje, sense: viaje}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el, form: 'form:fem'}, {surface: semana, sense: semana, form: 'form:fem'}, {surface: que, sense: que}, {surface: viene, sense: venir, form: 'form:pres-3s'}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: viaje, lexeme: viaje, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: semana, lexeme: semana, feats: {Number: Sing}, n: 5}, {surface: que, lexeme: que}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
       reverse: |-
         El viaje es (la semana que viene|la próxima semana)
         El viaje es la semana próxima.
@@ -199,8 +179,8 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vamos a ir en avión.
-      tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: ir, sense: ir}, {surface: en, sense: en}, {surface: avión, sense: avión}]
-      reverse: "[Nosotros|Nosotras] vamos a (ir|viajar) en avión"
+      tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: en, lexeme: en, n: 4, head: 5, rel: case}, {surface: avión, lexeme: avión, feats: {Number: Sing}, n: 5}]
+      reverse: '[Nosotros|Nosotras] vamos a (ir|viajar) en avión'
   translations:
     en: |-
       (We're|We are) going to (go|travel) by (plane|air).
@@ -211,8 +191,8 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vamos al aeropuerto.
-      tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: al, sense: al}, {surface: aeropuerto, sense: aeropuerto}]
-      reverse: "[Nosotros|Nosotras] vamos (al|para el|pa'l) aeropuerto"
+      tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: al, lexeme: al, n: 2, head: 3, rel: case}, {surface: aeropuerto, lexeme: aeropuerto, feats: {Number: Sing}, n: 3}]
+      reverse: '[Nosotros|Nosotras] vamos (al|para el|pa''l) aeropuerto'
   translations:
     en: |-
       (We're|We are) going to the airport.
@@ -220,11 +200,12 @@ sentences:
       We go to the airport.
 - id: s.u10.16
   node: es.u10.el-aeropuerto
-  persons: {speaker: m}
+  tags:
+  - {persons: {speaker: m}}
   forms:
     es-Latn/standard:
       text: Papi va al aeropuerto con nosotros.
-      tokens: [{surface: Papi, sense: papi}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: aeropuerto, sense: aeropuerto}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros, form: 'form:pl'}]
+      tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: al, lexeme: al, n: 3, head: 4, rel: case}, {surface: aeropuerto, lexeme: aeropuerto, feats: {Number: Sing}, n: 4}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}, n: 6}]
       reverse: |-
         (Papi|Papá) va (al|para el|pa'l) aeropuerto con nosotros
         Papi va con nosotros al aeropuerto.
@@ -238,7 +219,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú tienes el pasaporte?
-      tokens: [{surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: el, sense: el}, {surface: pasaporte, sense: pasaporte}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pasaporte, lexeme: pasaporte, feats: {Number: Sing}, n: 4}]
       reverse: (Tú tienes|Tienes [tú]|Usted tiene|Tiene [usted]|Ustedes tienen|Tienen [ustedes]) el pasaporte
   translations:
     en: |-
@@ -250,7 +231,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Dónde está tu pasaporte?
-      tokens: [{surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: tu, sense: tu}, {surface: pasaporte, sense: pasaporte}]
+      tokens: [{surface: Dónde, lexeme: dónde}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: pasaporte, lexeme: pasaporte, feats: {Number: Sing}, n: 4}]
       reverse: |-
         Dónde está (tu|su) pasaporte
         ¿Tu pasaporte dónde está?
@@ -263,7 +244,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi pasaporte está en la maleta.
-      tokens: [{surface: Mi, sense: mi}, {surface: pasaporte, sense: pasaporte}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: maleta, sense: maleta, form: 'form:fem'}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: pasaporte, lexeme: pasaporte, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 6, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: maleta, lexeme: maleta, feats: {Number: Sing}, n: 6}]
       reverse: Mi pasaporte está en la maleta
   translations:
     en: |-
@@ -274,8 +255,8 @@ sentences:
   forms:
     es-Latn/standard:
       text: Quiero ir a la playa.
-      tokens: [{surface: Quiero, sense: querer, form: 'form:pres-1s'}, {surface: ir, sense: ir}, {surface: a, sense: a}, {surface: la, sense: el, form: 'form:fem'}, {surface: playa, sense: playa, form: 'form:fem'}]
-      reverse: "[Yo] quiero ir a la playa"
+      tokens: [{surface: Quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: playa, lexeme: playa, feats: {Number: Sing}, n: 5}]
+      reverse: '[Yo] quiero ir a la playa'
   translations:
     en: |-
       I want to go to the beach.
@@ -285,7 +266,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú quieres ir a Varadero?
-      tokens: [{surface: Tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: ir, sense: ir}, {surface: a, sense: a}, {surface: Varadero, sense: varadero}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Varadero, lexeme: varadero, n: 5}]
       reverse: (Tú quieres|Quieres [tú]|Usted quiere|Quiere [usted]|Ustedes quieren|Quieren [ustedes]) ir a Varadero
   translations:
     en: |-
@@ -297,7 +278,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela quiere visitar Matanzas.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: visitar, sense: visitar}, {surface: Matanzas, sense: matanzas}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: visitar, lexeme: visitar, feats: {VerbForm: Inf}}, {surface: Matanzas, lexeme: matanzas}]
       reverse: |-
         [La] abuela quiere visitar Matanzas
         Mi abuela quiere visitar Matanzas.
@@ -310,8 +291,8 @@ sentences:
   forms:
     es-Latn/standard:
       text: Quiero ir, pero no puedo.
-      tokens: [{surface: Quiero, sense: querer, form: 'form:pres-1s'}, {surface: ir, sense: ir}, {surface: pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: puedo, sense: poder, form: 'form:pres-1s'}]
-      reverse: "[Yo] quiero ir pero [yo] no puedo"
+      tokens: [{surface: Quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: pero, lexeme: pero}, {surface: 'no', lexeme: 'no'}, {surface: puedo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: '[Yo] quiero ir pero [yo] no puedo'
   translations:
     en: |-
       I want to go, but I (can't|cannot).
@@ -321,7 +302,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili no puede viajar este verano.
-      tokens: [{surface: Lili, sense: lili, form: 'form:fem'}, {surface: 'no', sense: 'no'}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: viajar, sense: viajar}, {surface: este, sense: este}, {surface: verano, sense: verano}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: 'no', lexeme: 'no'}, {surface: puede, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: viajar, lexeme: viajar, feats: {VerbForm: Inf}}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 6}]
       reverse: |-
         Lili no puede viajar este verano
         Este verano Lili no puede viajar.
@@ -332,7 +313,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuelo no quiere ir en avión.
-      tokens: [{surface: Abuelo, sense: abuelo}, {surface: 'no', sense: 'no'}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: ir, sense: ir}, {surface: en, sense: en}, {surface: avión, sense: avión}]
+      tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: en, lexeme: en, n: 5, head: 6, rel: case}, {surface: avión, lexeme: avión, feats: {Number: Sing}, n: 6}]
       reverse: |-
         [El] abuelo no quiere (ir|viajar) en avión
         Mi abuelo no quiere ir en avión.
@@ -346,7 +327,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hace calor.
-      tokens: [{surface: Hace, sense: hacer, form: 'form:pres-3s'}, {surface: calor, sense: calor}]
+      tokens: [{surface: Hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
       reverse: Hace calor
   translations:
     en: |-
@@ -357,7 +338,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En Cuba hace mucho calor.
-      tokens: [{surface: En, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: calor, sense: calor}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 2, rel: case}, {surface: Cuba, lexeme: cuba, n: 2}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
       reverse: |-
         En Cuba hace mucho calor
         Hace mucho calor en Cuba
@@ -372,7 +353,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Qué tiempo hace en La Habana?
-      tokens: [{surface: Qué, sense: qué}, {surface: tiempo, sense: tiempo}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: La, sense: el, form: 'form:fem'}, {surface: Habana, sense: habana, form: 'form:fem'}]
+      tokens: [{surface: Qué, lexeme: qué}, {surface: tiempo, lexeme: tiempo, feats: {Number: Sing}}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 6, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Habana, lexeme: habana, n: 6}]
       reverse: |-
         Qué tiempo hace en La Habana
         Cómo está el tiempo en La Habana
@@ -385,7 +366,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En el verano llueve mucho.
-      tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}, {surface: llueve, sense: llover, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 3}, {surface: llueve, lexeme: llover, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}]
       reverse: |-
         En el verano llueve mucho
         Llueve mucho en el verano
@@ -400,7 +381,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hoy va a llover.
-      tokens: [{surface: Hoy, sense: hoy}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: llover, sense: llover}]
+      tokens: [{surface: Hoy, lexeme: hoy}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: llover, lexeme: llover, feats: {VerbForm: Inf}}]
       reverse: |-
         Hoy va a llover
         Va a llover hoy
@@ -414,7 +395,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Aquí en Miami también hace calor.
-      tokens: [{surface: Aquí, sense: aquí}, {surface: en, sense: en}, {surface: Miami, sense: miami}, {surface: también, sense: también}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: calor, sense: calor}]
+      tokens: [{surface: Aquí, lexeme: aquí}, {surface: en, lexeme: en, n: 2, head: 3, rel: case}, {surface: Miami, lexeme: miami, n: 3}, {surface: también, lexeme: también}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
       reverse: |-
         Aquí en Miami también hace calor
         Aquí en Miami hace calor también
@@ -430,8 +411,8 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vamos a llevar café.
-      tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: llevar, sense: llevar}, {surface: café, sense: café}]
-      reverse: "[Nosotros|Nosotras] vamos a llevar café"
+      tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: llevar, lexeme: llevar, feats: {VerbForm: Inf}}, {surface: café, lexeme: café, feats: {Number: Sing}}]
+      reverse: '[Nosotros|Nosotras] vamos a llevar café'
   translations:
     en: |-
       (We're|We are) going to (take|bring) [some] coffee.
@@ -441,8 +422,8 @@ sentences:
   forms:
     es-Latn/standard:
       text: El café es para tía Marisol.
-      tokens: [{surface: El, sense: el}, {surface: café, sense: café}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: para, sense: para}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
-      reverse: "El café es (para|pa') [mi|la] tía Marisol"
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: café, lexeme: café, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para, n: 4, head: 5, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: Marisol, lexeme: marisol}]
+      reverse: El café es (para|pa') [mi|la] tía Marisol
   translations:
     en: |-
       The coffee is for (Aunt|my aunt) Marisol.
@@ -452,7 +433,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior es mi primo.
-      tokens: [{surface: Yunior, sense: yunior}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: primo, sense: primo}]
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}, n: 4}]
       reverse: Yunior es mi primo
   translations:
     en: |-
@@ -463,7 +444,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Qué tú vas a llevar para Yunior?
-      tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: vas, sense: ir, form: 'form:pres-2s'}, {surface: a, sense: a}, {surface: llevar, sense: llevar}, {surface: para, sense: para}, {surface: Yunior, sense: yunior}]
+      tokens: [{surface: Qué, lexeme: qué}, {surface: tú, lexeme: tú}, {surface: vas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: llevar, lexeme: llevar, feats: {VerbForm: Inf}}, {surface: para, lexeme: para, n: 6, head: 7, rel: case}, {surface: Yunior, lexeme: yunior, n: 7}]
       reverse: |-
         (Qué tú vas|Qué vas [tú]|Qué usted va|Qué va [usted]|Qué ustedes van|Qué van [ustedes]) a llevar (para|pa') Yunior
         (Qué tú le vas|Qué le vas [tú]|Qué usted le va|Qué le va [usted]|Qué ustedes le van|Qué le van [ustedes]) a llevar a Yunior
@@ -478,7 +459,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela va a llevar ropa y medicinas.
-      tokens: [{surface: Abuela, sense: abuela, form: 'form:fem'}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: llevar, sense: llevar}, {surface: ropa, sense: ropa, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: medicinas, sense: medicina, form: 'form:fem-pl'}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: llevar, lexeme: llevar, feats: {VerbForm: Inf}}, {surface: ropa, lexeme: ropa, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: medicinas, lexeme: medicina, feats: {Number: Plur}}]
       reverse: |-
         [La] abuela va a llevar ropa y (medicinas|medicamentos)
         Mi abuela va a llevar ropa y medicinas.
@@ -490,143 +471,194 @@ sentences:
 stories:
 - id: es.story.u10
   node: es.u10.story
-  title: {en: 'Who''s going to Cuba?'}
+  title:
+    en: Who's going to Cuba?
   characters:
-  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
-  - {id: mami, speaker: f, name: {es-Latn/standard: Mami}}
-  - {id: papi, speaker: m, name: {es-Latn/standard: Papi}}
-  - {id: lili, speaker: f, name: {es-Latn/standard: Lili}}
-  - {id: cachita, speaker: f, name: {es-Latn/standard: Abuela Cachita}}
-  - {id: pepe, speaker: m, name: {es-Latn/standard: Abuelo Pepe}}
+  - id: daniel
+    speaker: m
+    name:
+      es-Latn/standard: Daniel
+  - id: mami
+    speaker: f
+    name:
+      es-Latn/standard: Mami
+  - id: papi
+    speaker: m
+    name:
+      es-Latn/standard: Papi
+  - id: lili
+    speaker: f
+    name:
+      es-Latn/standard: Lili
+  - id: cachita
+    speaker: f
+    name:
+      es-Latn/standard: Abuela Cachita
+  - id: pepe
+    speaker: m
+    name:
+      es-Latn/standard: Abuelo Pepe
   steps:
   - line:
       speaker: mami
       forms:
         es-Latn/standard:
           text: ¡Vamos a viajar a Cuba!
-          tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: viajar, sense: viajar}, {surface: a, sense: a}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
-      translations: {en: 'We''re going to travel to Cuba!'}
+          tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: viajar, lexeme: viajar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, n: 5}]
+      translations:
+        en: We're going to travel to Cuba!
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: ¿Sí? ¿Cuándo es el viaje?
-          tokens: [{surface: Sí, sense: sí}, {surface: Cuándo, sense: cuándo}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: viaje, sense: viaje}]
-      translations: {en: 'Really? When''s the trip?'}
+          tokens: [{surface: Sí, lexeme: sí}, {surface: Cuándo, lexeme: cuándo}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: viaje, lexeme: viaje, feats: {Number: Sing}, n: 5}]
+      translations:
+        en: Really? When's the trip?
   - line:
       speaker: mami
       forms:
         es-Latn/standard:
           text: En el verano. Vamos a visitar a tía Marisol.
-          tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}, {surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: visitar, sense: visitar}, {surface: a, sense: a}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
-      translations: {en: 'In the summer. We''re going to visit Aunt Marisol.'}
+          tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 3}, {surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: visitar, lexeme: visitar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 7, head: 8, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 8}, {surface: Marisol, lexeme: marisol}]
+      translations:
+        en: In the summer. We're going to visit Aunt Marisol.
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: ¿En el verano? ¡En Cuba hace mucho calor!
-          tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}, {surface: En, sense: en}, {surface: Cuba, sense: cuba, form: 'form:fem'}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: calor, sense: calor}]
-      translations: {en: 'In the summer? It''s really hot in Cuba!'}
+          tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 3}, {surface: En, lexeme: en, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, n: 5}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
+      translations:
+        en: In the summer? It's really hot in Cuba!
   - line:
       speaker: mami
       forms:
         es-Latn/standard:
           text: Sí, mi vida, y llueve mucho. ¡Pero es Cuba!
-          tokens: [{surface: Sí, sense: sí}, {surface: mi, sense: mi, form: 'form:fem'}, {surface: vida, sense: vida, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: llueve, sense: llover, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: Pero, sense: pero}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: Cuba, sense: cuba, form: 'form:fem'}]
-      translations: {en: 'Yes, darling, and it rains a lot. But it''s Cuba!'}
+          tokens: [{surface: Sí, lexeme: sí}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 3}, {surface: y, lexeme: y}, {surface: llueve, lexeme: llover, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: Pero, lexeme: pero}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Cuba, lexeme: cuba}]
+      translations:
+        en: Yes, darling, and it rains a lot. But it's Cuba!
   - line:
       speaker: papi
       forms:
         es-Latn/standard:
           text: Yo no puedo ir, pero tú sí, Daniel.
-          tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: ir, sense: ir}, {surface: pero, sense: pero}, {surface: tú, sense: tú}, {surface: sí, sense: sí}, {surface: Daniel, sense: daniel}]
-      translations: {en: 'I can''t go, but you can, Daniel.'}
+          tokens: [{surface: Yo, lexeme: yo}, {surface: 'no', lexeme: 'no'}, {surface: puedo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: pero, lexeme: pero}, {surface: tú, lexeme: tú}, {surface: sí, lexeme: sí}, {surface: Daniel, lexeme: daniel}]
+      translations:
+        en: I can't go, but you can, Daniel.
   - line:
       speaker: daniel
       ask: arrange
       forms:
         es-Latn/standard:
           text: Yo quiero ir a Varadero.
-          tokens: [{surface: Yo, sense: yo}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: ir, sense: ir}, {surface: a, sense: a}, {surface: Varadero, sense: varadero}]
-      translations: {en: I want to go to Varadero.}
+          tokens: [{surface: Yo, lexeme: yo}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Varadero, lexeme: varadero, n: 5}]
+      translations:
+        en: I want to go to Varadero.
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: Y yo quiero visitar Matanzas.
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: yo, sense: yo}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: visitar, sense: visitar}, {surface: Matanzas, sense: matanzas}]
-      translations: {en: And I want to visit Matanzas.}
+          tokens: [{surface: Y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: visitar, lexeme: visitar, feats: {VerbForm: Inf}}, {surface: Matanzas, lexeme: matanzas}]
+      translations:
+        en: And I want to visit Matanzas.
   - line:
       speaker: lili
       forms:
         es-Latn/standard:
           text: Yo no puedo viajar este verano. ¡Pero quiero ir!
-          tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: viajar, sense: viajar}, {surface: este, sense: este}, {surface: verano, sense: verano}, {surface: Pero, sense: pero}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: ir, sense: ir}]
-      translations: {en: 'I can''t travel this summer. But I want to go!'}
+          tokens: [{surface: Yo, lexeme: yo}, {surface: 'no', lexeme: 'no'}, {surface: puedo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: viajar, lexeme: viajar, feats: {VerbForm: Inf}}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 6}, {surface: Pero, lexeme: pero}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}]
+      translations:
+        en: I can't travel this summer. But I want to go!
   - choose:
-      prompt: {en: 'Who can''t go to Cuba this summer?'}
-      options: [{en: Papi and Lili}, {en: Daniel and Abuela Cachita}, {en: Mami}]
+      prompt:
+        en: Who can't go to Cuba this summer?
+      options:
+      - en: Papi and Lili
+      - en: Daniel and Abuela Cachita
+      - en: Mami
       answer: 0
   - line:
       speaker: pepe
       forms:
         es-Latn/standard:
           text: Yo no voy. No quiero ir en avión.
-          tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: 'No', sense: 'no'}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: ir, sense: ir}, {surface: en, sense: en}, {surface: avión, sense: avión}]
-      translations: {en: 'I''m not going. I don''t want to go by plane.'}
+          tokens: [{surface: Yo, lexeme: yo}, {surface: 'no', lexeme: 'no'}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: 'No', lexeme: 'no'}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: en, lexeme: en, n: 7, head: 8, rel: case}, {surface: avión, lexeme: avión, feats: {Number: Sing}, n: 8}]
+      translations:
+        en: I'm not going. I don't want to go by plane.
   - line:
       speaker: daniel
       forms:
         es-Latn/standard:
           text: Abuelo, ¿tú quieres ir en la maleta?
-          tokens: [{surface: Abuelo, sense: abuelo}, {surface: tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: ir, sense: ir}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: maleta, sense: maleta, form: 'form:fem'}]
-      translations: {en: 'Grandpa, do you want to go in the suitcase?'}
+          tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: en, lexeme: en, n: 5, head: 7, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: maleta, lexeme: maleta, feats: {Number: Sing}, n: 7}]
+      translations:
+        en: Grandpa, do you want to go in the suitcase?
   - line:
       speaker: pepe
       forms:
         es-Latn/standard:
           text: No, yo estoy bien aquí. Aquí también hace calor.
-          tokens: [{surface: 'No', sense: 'no'}, {surface: yo, sense: yo}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: bien, sense: bien}, {surface: aquí, sense: aquí}, {surface: Aquí, sense: aquí}, {surface: también, sense: también}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: calor, sense: calor}]
-      translations: {en: 'No, I''m fine here. It''s hot here too.'}
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: yo, lexeme: yo}, {surface: estoy, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: aquí, lexeme: aquí}, {surface: Aquí, lexeme: aquí}, {surface: también, lexeme: también}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
+      translations:
+        en: No, I'm fine here. It's hot here too.
   - choose:
-      prompt: {en: 'Why doesn''t Abuelo Pepe want to go?'}
-      options: [{en: He doesn't want to fly.}, {en: It's too hot in Cuba.}, {en: He has no passport.}]
+      prompt:
+        en: Why doesn't Abuelo Pepe want to go?
+      options:
+      - en: He doesn't want to fly.
+      - en: It's too hot in Cuba.
+      - en: He has no passport.
       answer: 0
   - line:
       speaker: mami
       ask: complete
-      gap: sense:marisol
-      distractors: ['sense:lili', 'sense:cachita']
+      gap: lexeme:marisol
+      distractors:
+      - lexeme:lili
+      - lexeme:cachita
       forms:
         es-Latn/standard:
           text: ¿Qué vamos a llevar para tía Marisol?
-          tokens: [{surface: Qué, sense: qué}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: llevar, sense: llevar}, {surface: para, sense: para}, {surface: tía, sense: tío, form: 'form:fem'}, {surface: Marisol, sense: marisol, form: 'form:fem'}]
-      translations: {en: 'What are we going to take for Aunt Marisol?'}
+          tokens: [{surface: Qué, lexeme: qué}, {surface: vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: llevar, lexeme: llevar, feats: {VerbForm: Inf}}, {surface: para, lexeme: para, n: 5, head: 6, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol}]
+      translations:
+        en: What are we going to take for Aunt Marisol?
   - line:
       speaker: cachita
       forms:
         es-Latn/standard:
           text: Café, ropa y medicinas.
-          tokens: [{surface: Café, sense: café}, {surface: ropa, sense: ropa, form: 'form:fem'}, {surface: 'y', sense: 'y'}, {surface: medicinas, sense: medicina, form: 'form:fem-pl'}]
-      translations: {en: 'Coffee, clothes and medicine.'}
+          tokens: [{surface: Café, lexeme: café, feats: {Number: Sing}}, {surface: ropa, lexeme: ropa, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: medicinas, lexeme: medicina, feats: {Number: Plur}}]
+      translations:
+        en: Coffee, clothes and medicine.
   - line:
       speaker: lili
       forms:
         es-Latn/standard:
           text: Y Yunior quiere ropa de Miami.
-          tokens: [{surface: 'Y', sense: 'y'}, {surface: Yunior, sense: yunior}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: ropa, sense: ropa, form: 'form:fem'}, {surface: de, sense: de}, {surface: Miami, sense: miami}]
-      translations: {en: And Yunior wants clothes from Miami.}
+          tokens: [{surface: Y, lexeme: y}, {surface: Yunior, lexeme: yunior}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ropa, lexeme: ropa, feats: {Number: Sing}}, {surface: de, lexeme: de, n: 5, head: 6, rel: case}, {surface: Miami, lexeme: miami, n: 6}]
+      translations:
+        en: And Yunior wants clothes from Miami.
   - choose:
-      prompt: {en: 'What are they taking for Tía Marisol?'}
-      options: [{en: 'Coffee, clothes and medicine'}, {en: Clothes from Miami}, {en: Only coffee}]
+      prompt:
+        en: What are they taking for Tía Marisol?
+      options:
+      - en: Coffee, clothes and medicine
+      - en: Clothes from Miami
+      - en: Only coffee
       answer: 0
   - line:
       speaker: pepe
       ask: complete
-      gap: sense:maleta
-      distractors: ['sense:novela', 'sense:hora']
+      gap: lexeme:maleta
+      distractors:
+      - lexeme:novela
+      - lexeme:hora
       forms:
         es-Latn/standard:
           text: Yo voy también. ¡Pero no en la maleta!
-          tokens: [{surface: Yo, sense: yo}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: también, sense: también}, {surface: Pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: en, sense: en}, {surface: la, sense: el, form: 'form:fem'}, {surface: maleta, sense: maleta, form: 'form:fem'}]
-      translations: {en: 'I''m going too. But not in the suitcase!'}
+          tokens: [{surface: Yo, lexeme: yo}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: también, lexeme: también}, {surface: Pero, lexeme: pero}, {surface: 'no', lexeme: 'no'}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: maleta, lexeme: maleta, feats: {Number: Sing}, n: 8}]
+      translations:
+        en: I'm going too. But not in the suitcase!

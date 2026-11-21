@@ -369,6 +369,37 @@ def import_librelingo(
     typer.echo(f"wrote {out} ({len(imported.units)} units)")
 
 
+@app.command("flip")
+def flip_command(
+    ref: Annotated[
+        str, typer.Option("--from", help="The git ref whose courses are in today's shape.")
+    ] = "origin/main",
+) -> None:
+    """Write the courses of a git ref, converted, where the new shape lives
+    (docs/migration-design.md, deliverable 3): lexicons/, each course's course.yaml and units with
+    their comments, its alias table, and its audio index under the new names. The branch that
+    builds the switch runs it after each merge of the main branch; it goes with the converter."""
+    from nabu.migrate import PlanError
+    from nabu.migrate.flip import flip
+    from nabu.paths import REPO
+
+    try:
+        done = flip(REPO, ref)
+    except PlanError as e:
+        typer.echo(f"✗ {e}", err=True)
+        raise typer.Exit(1) from e
+    for error in done.errors[:40]:
+        typer.echo(f"✗ {error}", err=True)
+    for lost in done.lost_comments:
+        typer.echo(f"! a comment with no place in the new file: {lost}", err=True)
+    clips = ", ".join(f"{n} {what}" for what, n in sorted(done.clips.items())) or "none"
+    typer.echo(
+        f"{len(done.written)} files written, {len(done.removed)} removed; word clips: {clips}"
+    )
+    if done.errors:
+        raise typer.Exit(1)
+
+
 @app.command("migrate")
 def migrate_command(
     courses: Annotated[

@@ -3,63 +3,31 @@
 # The first verbs come as imperatives (kol, eshrab): the bare stem, before the b- present of unit 6.
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
 id: u03-food
-title: {en: At the table}
+title:
+  en: At the table
 cefr: A1
-kcs:
-- {id: 'sense:tfaddal', pos: INTJ, gloss: {en: 'here you are; please, go ahead; come in'}, forms: {apc-Arab/standard: [تفضّل, تفضّلي], apc-Latn/arabizi: [tfaddal, tfaddali]}, notes: {en: 'Offering something or inviting someone in. To a woman: تفضّلي, tfaddali; to several people: تفضّلوا, tfaddalo.'}}
-- {id: 'sense:akal', pos: VERB, gloss: {en: eat}, forms: {apc-Arab/standard: [كول, باكل, آكل, مناكل, أكلت, أكل, أكلنا], apc-Latn/arabizi: [kol, bekol, ekol, mnekol, akalt, akal, akalna]}, notes: {en: 'kol! eat! (to a man); kili! (to a woman); kilo! (to several people). I eat: bekol (unit 6).'}}
-- {id: 'sense:shereb', pos: VERB, gloss: {en: drink}, forms: {apc-Arab/standard: [اشرب, بشرب, منشرب, بتشربي, تشرب, شربت], apc-Latn/arabizi: [eshrab, bishrab, mnishrab, btishrabi, tishrab, shrebt]}, notes: {en: eshrab! drink! (to a man); eshrabi! (to a woman); eshrabo! (to several people).}}
-- {id: 'sense:sa77tein', pos: INTJ, gloss: {en: enjoy your meal; to your health}, forms: {apc-Arab/standard: [صحتين], apc-Latn/arabizi: [sa77tein]}, notes: {en: 'Said to someone eating or drinking. The answer: ع
-      قلبك, 3a albak.'}}
-- {id: 'sense:3a-albak', pos: INTJ, gloss: {en: and to you (the answer to sa77tein)}, forms: {apc-Arab/standard: [ع قلبك], apc-Latn/arabizi: [3a albak]}, notes: {en: 'Literally ''on your heart''; also written على قلبك. To a woman:
-      3a albik.'}}
-- {id: 'form:imp-2fs', gloss: {en: '-i: telling a woman to do something'}, notes: {en: 'tfaddal → tfaddali, eshrab → eshrabi, kol → kili.'}}
-- {id: 'sense:khebz', pos: NOUN, gloss: {en: bread}, forms: {apc-Arab/standard: [خبز], apc-Latn/arabizi: [khebz]}}
-- {id: 'sense:may', pos: NOUN, gloss: {en: water}, forms: {apc-Arab/standard: [مي], apc-Latn/arabizi: [may]}}
-- {id: 'sense:sukkar', pos: NOUN, gloss: {en: sugar}, forms: {apc-Arab/standard: [سكّر], apc-Latn/arabizi: [sukkar]}}
-- {id: 'sense:ma3', pos: ADP, gloss: {en: with}, forms: {apc-Arab/standard: [مع], apc-Latn/arabizi: [ma3]}, notes: {en: 'With an ending: ma3i (with me; on me), ma3ak (with you).'}}
-- {id: 'sense:el', pos: DET, gloss: {en: the}, forms: {apc-Latn/arabizi: [el]}, notes: {en: 'Written joined to its noun in Arabic script: الشاي. Before t, d, s, sh, z, n, r… it sounds like the noun''s first letter:
-      esh-shay.'}}
-- {id: 'sense:akl', pos: NOUN, gloss: {en: food}, forms: {apc-Arab/standard: [أكل], apc-Latn/arabizi: [akl]}}
-- {id: 'sense:man2oushe', pos: NOUN, gloss: {en: man'oushe (flatbread with za'atar or cheese)}, forms: {apc-Arab/standard: [منقوشة], apc-Latn/arabizi: [man2oushe]}}
-- {id: 'sense:za3tar', pos: NOUN, gloss: {en: za'atar (thyme and sesame mix)}, forms: {apc-Arab/standard: [زعتر], apc-Latn/arabizi: [za3tar]}}
-- {id: 'sense:jebne', pos: NOUN, gloss: {en: cheese}, forms: {apc-Arab/standard: [جبنة], apc-Latn/arabizi: [jebne]}}
-- {id: 'sense:laban', pos: NOUN, gloss: {en: yogurt}, forms: {apc-Arab/standard: [لبن], apc-Latn/arabizi: [laban]}}
-- {id: 'sense:bala', pos: ADP, gloss: {en: without}, forms: {apc-Arab/standard: [بلا], apc-Latn/arabizi: [bala]}}
-- {id: 'sense:tayyeb', pos: ADJ, gloss: {en: tasty; delicious}, forms: {apc-Arab/standard: [طيّب, طيّبة], apc-Latn/arabizi: [tayyeb, tayybe]}}
-- {id: 'sense:ktir', pos: ADV, gloss: {en: very; a lot; too}, forms: {apc-Arab/standard: [كتير], apc-Latn/arabizi: [ktir]}}
-- {id: 'sense:shway', pos: ADV, gloss: {en: a little; a bit}, forms: {apc-Arab/standard: [شوي], apc-Latn/arabizi: [shway]}}
-- {id: 'sense:bas', pos: CCONJ, gloss: {en: only; just; but}, forms: {apc-Arab/standard: [بسّ], apc-Latn/arabizi: [bas]}}
-- {id: 'sense:jou3an', pos: ADJ, gloss: {en: hungry}, forms: {apc-Arab/standard: [جوعان, جوعانة], apc-Latn/arabizi: [jou3an, jou3ane]}}
-- {id: 'sense:3atshan', pos: ADJ, gloss: {en: thirsty}, forms: {apc-Arab/standard: [عطشان], apc-Latn/arabizi: [3atshan]}}
-- {id: 'sense:kamen', pos: ADV, gloss: {en: more; another; also}, forms: {apc-Arab/standard: [كمان], apc-Latn/arabizi: [kamen]}}
-- {id: 'sense:fenjen', pos: NOUN, gloss: {en: cup (for coffee)}, forms: {apc-Arab/standard: [فنجان], apc-Latn/arabizi: [fenjen]}}
-- {id: 'sense:7ummus', pos: NOUN, gloss: {en: hummus}, forms: {apc-Arab/standard: [حمّص], apc-Latn/arabizi: [7ummus]}}
-- {id: 'sense:tabbouleh', pos: NOUN, gloss: {en: tabbouleh (parsley salad)}, forms: {apc-Arab/standard: [تبّولة], apc-Latn/arabizi: [tabboule]}}
-- {id: 'sense:sa7n', pos: NOUN, gloss: {en: plate; dish}, forms: {apc-Arab/standard: [صحن], apc-Latn/arabizi: [sa7n]}}
-- {id: 'form:imp-2pl', gloss: {en: '-o: telling several people to do something'}, notes: {en: 'tfaddalo! kilo! eshrabo! Arabic script: وا after the verb (تفضّلوا).'}}
 nodes:
-- {id: apc.food.welcome, kind: lesson, introduces: ['sense:tfaddal', 'sense:akal', 'sense:shereb', 'sense:sa77tein', 'sense:3a-albak', 'form:imp-2fs']}
-- {id: apc.food.basics, kind: lesson, introduces: ['sense:khebz', 'sense:may', 'sense:sukkar', 'sense:ma3', 'sense:el', 'sense:akl']}
-- {id: apc.food.breakfast, kind: lesson, introduces: ['sense:man2oushe', 'sense:za3tar', 'sense:jebne', 'sense:laban', 'sense:bala']}
-- {id: apc.food.taste, kind: lesson, introduces: ['sense:tayyeb', 'sense:ktir', 'sense:shway', 'sense:bas']}
-- {id: apc.food.hungry, kind: lesson, introduces: ['sense:jou3an', 'sense:3atshan', 'sense:kamen', 'sense:fenjen']}
-- {id: apc.food.mezze, kind: lesson, introduces: ['sense:7ummus', 'sense:tabbouleh', 'sense:sa7n']}
-- {id: apc.food.you-pl, kind: lesson, introduces: ['form:imp-2pl']}
+- {id: apc.food.welcome, kind: lesson, introduces: ['lexeme:tfaddal', 'lexeme:akal', 'lexeme:shereb', 'lexeme:sa77tein', 'lexeme:3a-albak', 'feature:Mood=Imp']}
+- {id: apc.food.basics, kind: lesson, introduces: ['lexeme:khebz', 'lexeme:may', 'lexeme:sukkar', 'lexeme:ma3', 'lexeme:el', 'lexeme:akl']}
+- {id: apc.food.breakfast, kind: lesson, introduces: ['lexeme:man2oushe', 'lexeme:za3tar', 'lexeme:jebne', 'lexeme:laban', 'lexeme:bala']}
+- {id: apc.food.taste, kind: lesson, introduces: ['lexeme:tayyeb', 'lexeme:ktir', 'lexeme:shway', 'lexeme:bas']}
+- {id: apc.food.hungry, kind: lesson, introduces: ['lexeme:jou3an', 'lexeme:3atshan', 'lexeme:kamen', 'lexeme:fenjen']}
+- {id: apc.food.mezze, kind: lesson, introduces: ['lexeme:7ummus', 'lexeme:tabbouleh', 'lexeme:sa7n']}
+- {id: apc.food.you-pl, kind: lesson}
 - {id: apc.food.story, kind: story}
 sentences:
 - id: s.food.1
   node: apc.food.welcome
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: تفضّل!
-      tokens: [{surface: تفضّل, sense: tfaddal}]
+      tokens: [{surface: تفضّل, lexeme: tfaddal}]
       reverse: تفضّل
     apc-Latn/arabizi:
       text: tfaddal!
-      tokens: [{surface: tfaddal, sense: tfaddal}]
+      tokens: [{surface: tfaddal, lexeme: tfaddal}]
       reverse: (tfaddal|tfadal|tfaddel)
   translations:
     en: |-
@@ -71,16 +39,16 @@ sentences:
       Come in!
 - id: s.food.2
   node: apc.food.welcome
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: كول!
-      tokens: [{surface: كول, sense: akal}]
+      tokens: [{surface: كول, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
       reverse: (كول|كل)
     apc-Latn/arabizi:
       text: kol!
-      tokens: [{surface: kol, sense: akal}]
+      tokens: [{surface: kol, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
       reverse: (kol|kul)
   translations:
     en: |-
@@ -89,16 +57,16 @@ sentences:
       Go on, eat!
 - id: s.food.3
   node: apc.food.welcome
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: اشرب شاي!
-      tokens: [{surface: اشرب, sense: shereb}, {surface: شاي, sense: shay}]
+      tokens: [{surface: اشرب, lexeme: shereb, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}]
       reverse: اشرب شاي
     apc-Latn/arabizi:
       text: eshrab shay!
-      tokens: [{surface: eshrab, sense: shereb}, {surface: shay, sense: shay}]
+      tokens: [{surface: eshrab, lexeme: shereb, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: shay, lexeme: shay, feats: {Number: Sing}}]
       reverse: (eshrab|ishrab|shrab) (shay|shai)
   translations:
     en: |-
@@ -106,15 +74,14 @@ sentences:
       Have (some tea|a tea|a cup of tea)!
 - id: s.food.4
   node: apc.food.welcome
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: صحتين!
-      tokens: [{surface: صحتين, sense: sa77tein}]
+      tokens: [{surface: صحتين, lexeme: sa77tein}]
       reverse: (صحتين|صحّتين)
     apc-Latn/arabizi:
       text: sa77tein!
-      tokens: [{surface: sa77tein, sense: sa77tein}]
+      tokens: [{surface: sa77tein, lexeme: sa77tein}]
       reverse: (sa77tein|sa7tein|sahtein|sa77ten|sa7ten)
   translations:
     en: |-
@@ -124,18 +91,18 @@ sentences:
       To your health!
 - id: s.food.5
   node: apc.food.welcome
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: ع قلبك!
-      tokens: [{surface: ع, sense: 3a-albak}, {surface: قلبك, sense: 3a-albak, vocalized: قَلْبَك}]
+      tokens: [{surface: ع, lexeme: 3a-albak}, {surface: قلبك, lexeme: 3a-albak, vocalized: قَلْبَك}]
       reverse: |-
         (ع|على) قلبك
         عقلبك
     apc-Latn/arabizi:
       text: 3a albak!
-      tokens: [{surface: 3a, sense: 3a-albak}, {surface: albak, sense: 3a-albak}]
+      tokens: [{surface: 3a, lexeme: 3a-albak}, {surface: albak, lexeme: 3a-albak}]
       reverse: (3a|3ala) (albak|2albak)
   translations:
     en: |-
@@ -146,18 +113,18 @@ sentences:
       Thanks, you too!
 - id: s.food.6
   node: apc.food.welcome
-  register: colloquial
-  persons: {addressee: f}
+  tags:
+  - {persons: {addressee: f}}
   forms:
     apc-Arab/standard:
       text: تفضّلي، مايا!
-      tokens: [{surface: تفضّلي, sense: tfaddal, form: 'form:imp-2fs'}, {surface: مايا, sense: maya, form: 'form:fem'}]
+      tokens: [{surface: تفضّلي, lexeme: tfaddal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: مايا, lexeme: maya}]
       reverse: |-
         تفضّلي مايا
         مايا تفضّلي
     apc-Latn/arabizi:
       text: tfaddali, Maya!
-      tokens: [{surface: tfaddali, sense: tfaddal, form: 'form:imp-2fs'}, {surface: Maya, sense: maya, form: 'form:fem'}]
+      tokens: [{surface: tfaddali, lexeme: tfaddal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: Maya, lexeme: maya}]
       reverse: |-
         (tfaddali|tfadali|tfaddale) Maya
         Maya tfaddali
@@ -171,15 +138,14 @@ sentences:
       Maya, here you are!
 - id: s.food.7
   node: apc.food.basics
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: بدّي خبز.
-      tokens: [{surface: بدّي, sense: baddi}, {surface: خبز, sense: khebz}]
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: خبز, lexeme: khebz, feats: {Number: Sing}}]
       reverse: (بدّي|أنا بدّي) خبز
     apc-Latn/arabizi:
       text: baddi khebz.
-      tokens: [{surface: baddi, sense: baddi}, {surface: khebz, sense: khebz}]
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: khebz, lexeme: khebz, feats: {Number: Sing}}]
       reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (khebz|5ebz|khibz|khebez)
   translations:
     en: |-
@@ -187,16 +153,16 @@ sentences:
       I('d| would) like (bread|some bread).
 - id: s.food.8
   node: apc.food.basics
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: بدّك مي؟
-      tokens: [{surface: بدّك, sense: baddak}, {surface: مي, sense: may}]
+      tokens: [{surface: بدّك, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: مي, lexeme: may, feats: {Number: Sing}}]
       reverse: (بدّك|إنت بدّك) (مي|ميّ|مية)
     apc-Latn/arabizi:
       text: baddak may?
-      tokens: [{surface: baddak, sense: baddak}, {surface: may, sense: may}]
+      tokens: [{surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: may, lexeme: may, feats: {Number: Sing}}]
       reverse: ((baddak|badak)|(enta|inta) (baddak|badak)) (may|mayy|mai|mayye)
   translations:
     en: |-
@@ -204,16 +170,16 @@ sentences:
       Would you like (water|some water)?
 - id: s.food.9
   node: apc.food.basics
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: بدّك سكّر؟
-      tokens: [{surface: بدّك, sense: baddak}, {surface: سكّر, sense: sukkar}]
+      tokens: [{surface: بدّك, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: سكّر, lexeme: sukkar, feats: {Number: Sing}}]
       reverse: (بدّك|إنت بدّك) سكّر
     apc-Latn/arabizi:
       text: baddak sukkar?
-      tokens: [{surface: baddak, sense: baddak}, {surface: sukkar, sense: sukkar}]
+      tokens: [{surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}}]
       reverse: ((baddak|badak)|(enta|inta) (baddak|badak)) (sukkar|sekkar|sokkar|sukar)
   translations:
     en: |-
@@ -224,15 +190,14 @@ sentences:
       Would you like some sugar?
 - id: s.food.10
   node: apc.food.basics
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: قهوة مع سكّر؟
-      tokens: [{surface: قهوة, sense: ahwe, form: 'form:fem'}, {surface: مع, sense: ma3}, {surface: سكّر, sense: sukkar}]
+      tokens: [{surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: مع, lexeme: ma3, n: 2, head: 3, rel: case}, {surface: سكّر, lexeme: sukkar, feats: {Number: Sing}, n: 3}]
       reverse: قهوة مع سكّر
     apc-Latn/arabizi:
       text: ahwe ma3 sukkar?
-      tokens: [{surface: ahwe, sense: ahwe, form: 'form:fem'}, {surface: ma3, sense: ma3}, {surface: sukkar, sense: sukkar}]
+      tokens: [{surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: ma3, lexeme: ma3, n: 2, head: 3, rel: case}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}, n: 3}]
       reverse: (ahwe|2ahwe) (ma3|ma3a) (sukkar|sekkar|sokkar|sukar)
   translations:
     en: |-
@@ -240,15 +205,14 @@ sentences:
       A coffee with sugar?
 - id: s.food.11
   node: apc.food.basics
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: الشاي منيح.
-      tokens: [{surface: الشاي, sense: shay, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شاي, kc: 'sense:shay'}]}, {surface: منيح, sense: mni7}]
+      tokens: [{surface: الشاي, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: shay, surface: شاي, base: true, feats: {Number: Sing}, n: 2}]}, {surface: منيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: الشاي منيح
     apc-Latn/arabizi:
       text: el shay mni7.
-      tokens: [{surface: el, sense: el}, {surface: shay, sense: shay}, {surface: mni7, sense: mni7}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: shay, lexeme: shay, feats: {Number: Sing}, n: 2}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) shay (mni7|mnih)
   translations:
     en: |-
@@ -256,15 +220,14 @@ sentences:
       The tea's (good|nice).
 - id: s.food.12
   node: apc.food.basics
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: الأكل منيح.
-      tokens: [{surface: الأكل, sense: akl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أكل, kc: 'sense:akl'}]}, {surface: منيح, sense: mni7}]
+      tokens: [{surface: الأكل, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: akl, surface: أكل, base: true, feats: {Number: Sing}, n: 2}]}, {surface: منيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: الأكل منيح
     apc-Latn/arabizi:
       text: el akl mni7.
-      tokens: [{surface: el, sense: el}, {surface: akl, sense: akl}, {surface: mni7, sense: mni7}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: akl, lexeme: akl, feats: {Number: Sing}, n: 2}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) (akl|akel|2akl|akil) (mni7|mnih)
   translations:
     en: |-
@@ -272,15 +235,14 @@ sentences:
       The food's (good|nice).
 - id: s.food.13
   node: apc.food.breakfast
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: بدّي منقوشة.
-      tokens: [{surface: بدّي, sense: baddi}, {surface: منقوشة, sense: man2oushe, form: 'form:fem'}]
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: منقوشة, lexeme: man2oushe, feats: {Number: Sing}}]
       reverse: (بدّي|أنا بدّي) منقوشة
     apc-Latn/arabizi:
       text: baddi man2oushe.
-      tokens: [{surface: baddi, sense: baddi}, {surface: man2oushe, sense: man2oushe, form: 'form:fem'}]
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: man2oushe, lexeme: man2oushe, feats: {Number: Sing}}]
       reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (man2oushe|manoushe|man2ushi|mankoushe)
   translations:
     en: |-
@@ -288,15 +250,14 @@ sentences:
       I('d| would) like a (man'oushe|manakish).
 - id: s.food.14
   node: apc.food.breakfast
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: منقوشة زعتر؟
-      tokens: [{surface: منقوشة, sense: man2oushe, form: 'form:fem'}, {surface: زعتر, sense: za3tar}]
+      tokens: [{surface: منقوشة, lexeme: man2oushe, feats: {Number: Sing}}, {surface: زعتر, lexeme: za3tar, feats: {Number: Sing}}]
       reverse: منقوشة زعتر
     apc-Latn/arabizi:
       text: man2oushe za3tar?
-      tokens: [{surface: man2oushe, sense: man2oushe, form: 'form:fem'}, {surface: za3tar, sense: za3tar}]
+      tokens: [{surface: man2oushe, lexeme: man2oushe, feats: {Number: Sing}}, {surface: za3tar, lexeme: za3tar, feats: {Number: Sing}}]
       reverse: (man2oushe|manoushe|man2ushi|mankoushe) (za3tar|zaatar|za3ter)
   translations:
     en: |-
@@ -304,15 +265,14 @@ sentences:
       A (man'oushe|manakish) with (za'atar|zatar|thyme)?
 - id: s.food.15
   node: apc.food.breakfast
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: لأ، منقوشة جبنة.
-      tokens: [{surface: لأ, sense: la2}, {surface: منقوشة, sense: man2oushe, form: 'form:fem'}, {surface: جبنة, sense: jebne, form: 'form:fem'}]
+      tokens: [{surface: لأ, lexeme: la2}, {surface: منقوشة, lexeme: man2oushe, feats: {Number: Sing}}, {surface: جبنة, lexeme: jebne, feats: {Number: Sing}}]
       reverse: (لأ|لا) منقوشة جبنة
     apc-Latn/arabizi:
       text: la2, man2oushe jebne.
-      tokens: [{surface: la2, sense: la2}, {surface: man2oushe, sense: man2oushe, form: 'form:fem'}, {surface: jebne, sense: jebne, form: 'form:fem'}]
+      tokens: [{surface: la2, lexeme: la2}, {surface: man2oushe, lexeme: man2oushe, feats: {Number: Sing}}, {surface: jebne, lexeme: jebne, feats: {Number: Sing}}]
       reverse: (la2|la) (man2oushe|manoushe|man2ushi|mankoushe) (jebne|jibne|jebni)
   translations:
     en: |-
@@ -320,16 +280,16 @@ sentences:
       No, a (man'oushe|manakish) with cheese.
 - id: s.food.16
   node: apc.food.breakfast
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: بدّك لبن مع الخبز؟
-      tokens: [{surface: بدّك, sense: baddak}, {surface: لبن, sense: laban}, {surface: مع, sense: ma3}, {surface: الخبز, sense: khebz, morphs: [{surface: ال, kc: 'sense:el'}, {surface: خبز, kc: 'sense:khebz'}]}]
+      tokens: [{surface: بدّك, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: لبن, lexeme: laban, feats: {Number: Sing}}, {surface: مع, lexeme: ma3, n: 4, head: 6, rel: case}, {surface: الخبز, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: khebz, surface: خبز, base: true, feats: {Number: Sing}, n: 6}]}]
       reverse: (بدّك|إنت بدّك) لبن مع الخبز
     apc-Latn/arabizi:
       text: baddak laban ma3 el khebz?
-      tokens: [{surface: baddak, sense: baddak}, {surface: laban, sense: laban}, {surface: ma3, sense: ma3}, {surface: el, sense: el}, {surface: khebz, sense: khebz}]
+      tokens: [{surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: laban, lexeme: laban, feats: {Number: Sing}}, {surface: ma3, lexeme: ma3, n: 4, head: 6, rel: case}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: khebz, lexeme: khebz, feats: {Number: Sing}, n: 6}]
       reverse: ((baddak|badak)|(enta|inta) (baddak|badak)) (laban|leban) (ma3|ma3a) (el|l|il) (khebz|5ebz|khibz)
   translations:
     en: |-
@@ -338,15 +298,14 @@ sentences:
       Do you want some yogurt with the bread?
 - id: s.food.17
   node: apc.food.breakfast
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: قهوة بلا سكّر.
-      tokens: [{surface: قهوة, sense: ahwe, form: 'form:fem'}, {surface: بلا, sense: bala}, {surface: سكّر, sense: sukkar}]
+      tokens: [{surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: بلا, lexeme: bala, n: 2, head: 3, rel: case}, {surface: سكّر, lexeme: sukkar, feats: {Number: Sing}, n: 3}]
       reverse: قهوة بلا سكّر
     apc-Latn/arabizi:
       text: ahwe bala sukkar.
-      tokens: [{surface: ahwe, sense: ahwe, form: 'form:fem'}, {surface: bala, sense: bala}, {surface: sukkar, sense: sukkar}]
+      tokens: [{surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: bala, lexeme: bala, n: 2, head: 3, rel: case}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}, n: 3}]
       reverse: (ahwe|2ahwe) (bala|bela) (sukkar|sekkar|sokkar|sukar)
   translations:
     en: |-
@@ -355,15 +314,14 @@ sentences:
       (A coffee|Coffee) with no sugar.
 - id: s.food.18
   node: apc.food.taste
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: الأكل طيّب!
-      tokens: [{surface: الأكل, sense: akl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أكل, kc: 'sense:akl'}]}, {surface: طيّب, sense: tayyeb}]
+      tokens: [{surface: الأكل, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: akl, surface: أكل, base: true, feats: {Number: Sing}, n: 2}]}, {surface: طيّب, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: الأكل طيّب
     apc-Latn/arabizi:
       text: el akl tayyeb!
-      tokens: [{surface: el, sense: el}, {surface: akl, sense: akl}, {surface: tayyeb, sense: tayyeb}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: akl, lexeme: akl, feats: {Number: Sing}, n: 2}, {surface: tayyeb, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) (akl|akel|2akl|akil) (tayyeb|tayeb|tayyib|tayib)
   translations:
     en: |-
@@ -371,15 +329,14 @@ sentences:
       The food's (delicious|tasty|good)!
 - id: s.food.19
   node: apc.food.taste
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: المنقوشة طيّبة.
-      tokens: [{surface: المنقوشة, sense: man2oushe, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: منقوشة, kc: 'sense:man2oushe'}]}, {surface: طيّبة, sense: tayyeb, form: 'form:fem'}]
+      tokens: [{surface: المنقوشة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: man2oushe, surface: منقوشة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: طيّبة, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: المنقوشة طيّبة
     apc-Latn/arabizi:
       text: el man2oushe tayybe.
-      tokens: [{surface: el, sense: el}, {surface: man2oushe, sense: man2oushe, form: 'form:fem'}, {surface: tayybe, sense: tayyeb, form: 'form:fem'}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: man2oushe, lexeme: man2oushe, feats: {Number: Sing}, n: 2}, {surface: tayybe, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}]
       reverse: (el|l|il) (man2oushe|manoushe|man2ushi|mankoushe) (tayybe|tayebe|taybe|tayyibe)
   translations:
     en: |-
@@ -387,18 +344,17 @@ sentences:
       The (man'oushe|manakish)'s (delicious|tasty|good).
 - id: s.food.20
   node: apc.food.taste
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: طيّب كتير!
-      tokens: [{surface: طيّب, sense: tayyeb}, {surface: كتير, sense: ktir}]
+      tokens: [{surface: طيّب, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}}, {surface: كتير, lexeme: ktir}]
       reverse: |-
         (طيّب|طيّبة) كتير
         كتير طيّب
         كتير طيّبة
     apc-Latn/arabizi:
       text: tayyeb ktir!
-      tokens: [{surface: tayyeb, sense: tayyeb}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: tayyeb, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}}, {surface: ktir, lexeme: ktir}]
       reverse: |-
         (tayyeb|tayeb|tayyib|tayib|tayybe|tayebe|taybe|tayyibe) (ktir|kteer|kter|ktiir)
         ktir tayyeb
@@ -408,15 +364,14 @@ sentences:
       It's (very|really|so) (tasty|delicious|good)!
 - id: s.food.21
   node: apc.food.taste
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: بدّي شوي سكّر.
-      tokens: [{surface: بدّي, sense: baddi}, {surface: شوي, sense: shway}, {surface: سكّر, sense: sukkar}]
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: شوي, lexeme: shway}, {surface: سكّر, lexeme: sukkar, feats: {Number: Sing}}]
       reverse: (بدّي|أنا بدّي) (شوي|شوية) سكّر
     apc-Latn/arabizi:
       text: baddi shway sukkar.
-      tokens: [{surface: baddi, sense: baddi}, {surface: shway, sense: shway}, {surface: sukkar, sense: sukkar}]
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: shway, lexeme: shway}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}}]
       reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (shway|shwayy|shwei|shwai) (sukkar|sekkar|sokkar|sukar)
   translations:
     en: |-
@@ -424,17 +379,16 @@ sentences:
       I('d| would) like a (little|bit of|little bit of) sugar.
 - id: s.food.22
   node: apc.food.taste
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: بسّ شوي!
-      tokens: [{surface: بسّ, sense: bas}, {surface: شوي, sense: shway}]
+      tokens: [{surface: بسّ, lexeme: bas}, {surface: شوي, lexeme: shway}]
       reverse: |-
         بسّ (شوي|شوية)
         (شوي|شوية) بسّ
     apc-Latn/arabizi:
       text: bas shway!
-      tokens: [{surface: bas, sense: bas}, {surface: shway, sense: shway}]
+      tokens: [{surface: bas, lexeme: bas}, {surface: shway, lexeme: shway}]
       reverse: |-
         (bas|bass) (shway|shwayy|shwei|shwai)
         (shway|shwayy|shwei|shwai) (bas|bass)
@@ -444,45 +398,44 @@ sentences:
       Only a (little|bit)!
 - id: s.food.23
   node: apc.food.hungry
-  register: colloquial
-  persons: {speaker: m}
+  tags:
+  - {persons: {speaker: m}}
   forms:
     apc-Arab/standard:
       text: أنا جوعان.
-      tokens: [{surface: أنا, sense: ana}, {surface: جوعان, sense: jou3an}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: جوعان, lexeme: jou3an, feats: {Gender: Masc, Number: Sing}}]
       reverse: '[أنا] جوعان'
     apc-Latn/arabizi:
       text: ana jou3an.
-      tokens: [{surface: ana, sense: ana}, {surface: jou3an, sense: jou3an}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: jou3an, lexeme: jou3an, feats: {Gender: Masc, Number: Sing}}]
       reverse: '[ana] (jou3an|jo3an|jou3en|ju3an)'
   translations:
     en: I('m| am) hungry.
 - id: s.food.24
   node: apc.food.hungry
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: إنت عطشان؟
-      tokens: [{surface: إنت, sense: enta}, {surface: عطشان, sense: 3atshan}]
+      tokens: [{surface: إنت, lexeme: enta}, {surface: عطشان, lexeme: 3atshan, feats: {Gender: Masc, Number: Sing}}]
       reverse: '[إنت] عطشان'
     apc-Latn/arabizi:
       text: enta 3atshan?
-      tokens: [{surface: enta, sense: enta}, {surface: 3atshan, sense: 3atshan}]
+      tokens: [{surface: enta, lexeme: enta}, {surface: 3atshan, lexeme: 3atshan, feats: {Gender: Masc, Number: Sing}}]
       reverse: '[(enta|inta)] (3atshan|3atchan|3atshen|3tshan)'
   translations:
     en: Are you thirsty?
 - id: s.food.25
   node: apc.food.hungry
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: مايا جوعانة.
-      tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}]
+      tokens: [{surface: مايا, lexeme: maya, n: 1}, {surface: جوعانة, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}, n: 2, head: 1, rel: amod}]
       reverse: مايا جوعانة
     apc-Latn/arabizi:
       text: Maya jou3ane.
-      tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}]
+      tokens: [{surface: Maya, lexeme: maya, n: 1}, {surface: jou3ane, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}, n: 2, head: 1, rel: amod}]
       reverse: Maya (jou3ane|jo3ane|jou3ani|ju3ane)
   translations:
     en: |-
@@ -490,16 +443,16 @@ sentences:
       Maya's hungry.
 - id: s.food.26
   node: apc.food.hungry
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: بدّك كمان؟
-      tokens: [{surface: بدّك, sense: baddak}, {surface: كمان, sense: kamen}]
+      tokens: [{surface: بدّك, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: كمان, lexeme: kamen}]
       reverse: (بدّك|إنت بدّك) كمان
     apc-Latn/arabizi:
       text: baddak kamen?
-      tokens: [{surface: baddak, sense: baddak}, {surface: kamen, sense: kamen}]
+      tokens: [{surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: kamen, lexeme: kamen}]
       reverse: ((baddak|badak)|(enta|inta) (baddak|badak)) (kamen|kaman)
   translations:
     en: |-
@@ -507,15 +460,14 @@ sentences:
       Would you like (more|some more)?
 - id: s.food.27
   node: apc.food.hungry
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: كمان فنجان قهوة؟
-      tokens: [{surface: كمان, sense: kamen}, {surface: فنجان, sense: fenjen}, {surface: قهوة, sense: ahwe, form: 'form:fem'}]
+      tokens: [{surface: كمان, lexeme: kamen}, {surface: فنجان, lexeme: fenjen, feats: {Number: Sing}}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}]
       reverse: كمان فنجان قهوة
     apc-Latn/arabizi:
       text: kamen fenjen ahwe?
-      tokens: [{surface: kamen, sense: kamen}, {surface: fenjen, sense: fenjen}, {surface: ahwe, sense: ahwe, form: 'form:fem'}]
+      tokens: [{surface: kamen, lexeme: kamen}, {surface: fenjen, lexeme: fenjen, feats: {Number: Sing}}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
       reverse: (kamen|kaman) (fenjen|finjen|fenjan|finjan) (ahwe|2ahwe)
   translations:
     en: |-
@@ -524,15 +476,14 @@ sentences:
       (Another|One more) coffee?
 - id: s.food.28
   node: apc.food.mezze
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: بدّي حمّص.
-      tokens: [{surface: بدّي, sense: baddi}, {surface: حمّص, sense: 7ummus}]
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: حمّص, lexeme: 7ummus, feats: {Number: Sing}}]
       reverse: (بدّي|أنا بدّي) حمّص
     apc-Latn/arabizi:
       text: baddi 7ummus.
-      tokens: [{surface: baddi, sense: baddi}, {surface: 7ummus, sense: 7ummus}]
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: 7ummus, lexeme: 7ummus, feats: {Number: Sing}}]
       reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (7ummus|7ommos|hummus|7ommus|7ummos)
   translations:
     en: |-
@@ -540,18 +491,16 @@ sentences:
       I('d| would) like (hummus|some hummus).
 - id: s.food.29
   node: apc.food.mezze
-  register: colloquial
   forms:
     apc-Arab/standard:
       text: التبّولة طيّبة كتير!
-      tokens: [{surface: التبّولة, sense: tabbouleh, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: تبّولة, kc: 'sense:tabbouleh'}]}, {surface: طيّبة, sense: tayyeb, form: 'form:fem'}, {surface: كتير,
-          sense: ktir}]
+      tokens: [{surface: التبّولة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: tabbouleh, surface: تبّولة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: طيّبة, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}, {surface: كتير, lexeme: ktir}]
       reverse: |-
         التبّولة طيّبة كتير
         التبّولة كتير طيّبة
     apc-Latn/arabizi:
       text: el tabboule tayybe ktir!
-      tokens: [{surface: el, sense: el}, {surface: tabboule, sense: tabbouleh, form: 'form:fem'}, {surface: tayybe, sense: tayyeb, form: 'form:fem'}, {surface: ktir, sense: ktir}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: tabboule, lexeme: tabbouleh, feats: {Number: Sing}, n: 2}, {surface: tayybe, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}, n: 3, head: 2, rel: amod}, {surface: ktir, lexeme: ktir}]
       reverse: |-
         (el|l|il) (tabboule|tabbouli|tabbouleh|tabouleh|taboule) (tayybe|tayebe|taybe|tayyibe) (ktir|kteer|kter|ktiir)
         el tabboule ktir tayybe
@@ -561,18 +510,18 @@ sentences:
       The tabbouleh's (very|really|so) (tasty|delicious|good)!
 - id: s.food.30
   node: apc.food.mezze
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: صحن حمّص، تفضّل.
-      tokens: [{surface: صحن, sense: sa7n}, {surface: حمّص, sense: 7ummus}, {surface: تفضّل, sense: tfaddal}]
+      tokens: [{surface: صحن, lexeme: sa7n, feats: {Number: Sing}}, {surface: حمّص, lexeme: 7ummus, feats: {Number: Sing}}, {surface: تفضّل, lexeme: tfaddal}]
       reverse: |-
         صحن حمّص تفضّل
         تفضّل صحن حمّص
     apc-Latn/arabizi:
       text: sa7n 7ummus, tfaddal.
-      tokens: [{surface: sa7n, sense: sa7n}, {surface: 7ummus, sense: 7ummus}, {surface: tfaddal, sense: tfaddal}]
+      tokens: [{surface: sa7n, lexeme: sa7n, feats: {Number: Sing}}, {surface: 7ummus, lexeme: 7ummus, feats: {Number: Sing}}, {surface: tfaddal, lexeme: tfaddal}]
       reverse: |-
         (sa7n|sa7en|sahn|sa7in) (7ummus|7ommos|hummus|7ommus|7ummos) (tfaddal|tfadal|tfaddel)
         tfaddal sa7n 7ummus
@@ -583,16 +532,16 @@ sentences:
       Here's a plate of hummus.
 - id: s.food.31
   node: apc.food.mezze
-  register: colloquial
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
       text: كول كمان!
-      tokens: [{surface: كول, sense: akal}, {surface: كمان, sense: kamen}]
+      tokens: [{surface: كول, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: كمان, lexeme: kamen}]
       reverse: (كول|كل) كمان
     apc-Latn/arabizi:
       text: kol kamen!
-      tokens: [{surface: kol, sense: akal}, {surface: kamen, sense: kamen}]
+      tokens: [{surface: kol, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: kamen, lexeme: kamen}]
       reverse: (kol|kul) (kamen|kaman)
   translations:
     en: |-
@@ -600,48 +549,48 @@ sentences:
       Have (more|some more)!
 - id: s.food.32
   node: apc.food.hungry
-  register: colloquial
-  persons: {speaker: f}
+  tags:
+  - {persons: {speaker: f}}
   forms:
     apc-Arab/standard:
       text: أنا جوعانة.
-      tokens: [{surface: أنا, sense: ana}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: جوعانة, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}]
       reverse: '[أنا] جوعانة'
     apc-Latn/arabizi:
       text: ana jou3ane.
-      tokens: [{surface: ana, sense: ana}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: jou3ane, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}]
       reverse: '[ana] (jou3ane|jo3ane|ju3ane|jou3ana)'
   translations:
     en: I('m| am) hungry.
 - id: s.food.33
   node: apc.food.hungry
-  register: colloquial
-  persons: {speaker: f}
+  tags:
+  - {persons: {speaker: f}}
   forms:
     apc-Arab/standard:
       text: أنا عطشانة.
-      tokens: [{surface: أنا, sense: ana}, {surface: عطشانة, sense: 3atshan, form: 'form:fem'}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: عطشانة, lexeme: 3atshan, feats: {Gender: Fem, Number: Sing}}]
       reverse: '[أنا] عطشانة'
     apc-Latn/arabizi:
       text: ana 3atshane.
-      tokens: [{surface: ana, sense: ana}, {surface: 3atshane, sense: 3atshan, form: 'form:fem'}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: 3atshane, lexeme: 3atshan, feats: {Gender: Fem, Number: Sing}}]
       reverse: '[ana] (3atshane|3atchane|3atshana|3atshene)'
   translations:
     en: I('m| am) thirsty.
 - id: s.food.34
   node: apc.food.hungry
-  register: colloquial
-  persons: {addressee: f}
+  tags:
+  - {persons: {addressee: f}}
   forms:
     apc-Arab/standard:
       text: مايا، جوعانة؟
-      tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}]
+      tokens: [{surface: مايا, lexeme: maya}, {surface: جوعانة, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}]
       reverse: |-
         مايا [إنتي] جوعانة
         جوعانة مايا
     apc-Latn/arabizi:
       text: Maya, jou3ane?
-      tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}]
+      tokens: [{surface: Maya, lexeme: maya}, {surface: jou3ane, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}]
       reverse: |-
         Maya [(enti|inti)] (jou3ane|jo3ane|ju3ane|jou3ana)
         jou3ane Maya
@@ -651,16 +600,16 @@ sentences:
       Are you hungry, Maya?
 - id: s.food.35
   node: apc.food.you-pl
-  register: colloquial
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
       text: تفضّلوا!
-      tokens: [{surface: تفضّلوا, sense: tfaddal, form: 'form:imp-2pl'}]
+      tokens: [{surface: تفضّلوا, lexeme: tfaddal, feats: {Mood: Imp, Number: Plur, Person: '2'}}]
       reverse: (تفضّلوا|تفضّلو)
     apc-Latn/arabizi:
       text: tfaddalo!
-      tokens: [{surface: tfaddalo, sense: tfaddal, form: 'form:imp-2pl'}]
+      tokens: [{surface: tfaddalo, lexeme: tfaddal, feats: {Mood: Imp, Number: Plur, Person: '2'}}]
       reverse: (tfaddalo|tfadalo|tfaddalu|tfaddaloo)
   translations:
     en: |-
@@ -671,16 +620,16 @@ sentences:
       Come in!
 - id: s.food.36
   node: apc.food.you-pl
-  register: colloquial
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
       text: كلوا!
-      tokens: [{surface: كلوا, sense: akal, form: 'form:imp-2pl'}]
+      tokens: [{surface: كلوا, lexeme: akal, feats: {Mood: Imp, Number: Plur, Person: '2'}}]
       reverse: (كلوا|كلو|كولوا|كولو)
     apc-Latn/arabizi:
       text: kilo!
-      tokens: [{surface: kilo, sense: akal, form: 'form:imp-2pl'}]
+      tokens: [{surface: kilo, lexeme: akal, feats: {Mood: Imp, Number: Plur, Person: '2'}}]
       reverse: (kilo|kelo|kulu|kolo|kilu)
   translations:
     en: |-
@@ -689,16 +638,16 @@ sentences:
       Go on, eat!
 - id: s.food.37
   node: apc.food.you-pl
-  register: colloquial
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
       text: اشربوا شاي!
-      tokens: [{surface: اشربوا, sense: shereb, form: 'form:imp-2pl'}, {surface: شاي, sense: shay}]
+      tokens: [{surface: اشربوا, lexeme: shereb, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}]
       reverse: (اشربوا|اشربو) شاي
     apc-Latn/arabizi:
       text: eshrabo shay!
-      tokens: [{surface: eshrabo, sense: shereb, form: 'form:imp-2pl'}, {surface: shay, sense: shay}]
+      tokens: [{surface: eshrabo, lexeme: shereb, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: shay, lexeme: shay, feats: {Number: Sing}}]
       reverse: (eshrabo|ishrabo|shrabo|eshrabu) (shay|shai)
   translations:
     en: |-
@@ -706,16 +655,16 @@ sentences:
       Have (some tea|a tea|a cup of tea)!
 - id: s.food.38
   node: apc.food.you-pl
-  register: colloquial
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
       text: جوعانين؟
-      tokens: [{surface: جوعانين, sense: jou3an, form: 'form:pl'}]
+      tokens: [{surface: جوعانين, lexeme: jou3an, feats: {Number: Plur}}]
       reverse: '[إنتو] جوعانين'
     apc-Latn/arabizi:
       text: jou3anin?
-      tokens: [{surface: jou3anin, sense: jou3an, form: 'form:pl'}]
+      tokens: [{surface: jou3anin, lexeme: jou3an, feats: {Number: Plur}}]
       reverse: '[(ento|into)] (jou3anin|jo3anin|ju3anin|jou3enin)'
   translations:
     en: |-
@@ -724,16 +673,16 @@ sentences:
       Are they hungry?
 - id: s.food.39
   node: apc.food.you-pl
-  register: colloquial
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
       text: عطشانين؟
-      tokens: [{surface: عطشانين, sense: 3atshan, form: 'form:pl'}]
+      tokens: [{surface: عطشانين, lexeme: 3atshan, feats: {Number: Plur}}]
       reverse: '[إنتو] عطشانين'
     apc-Latn/arabizi:
       text: 3atshanin?
-      tokens: [{surface: 3atshanin, sense: 3atshan, form: 'form:pl'}]
+      tokens: [{surface: 3atshanin, lexeme: 3atshan, feats: {Number: Plur}}]
       reverse: '[(ento|into)] (3atshanin|3atchanin|3atshenin)'
   translations:
     en: |-
@@ -743,133 +692,171 @@ sentences:
 stories:
 - id: apc.story.teta-lunch
   node: apc.food.story
-  title: {en: Breakfast at Teta's}
-  provenance: {author: 'llm:claude@6914f241714e', status: draft}
+  title:
+    en: Breakfast at Teta's
+  provenance:
+    author: llm:claude@6914f241714e
+    status: draft
   characters:
-  - {id: teta, speaker: f, name: {apc-Arab/standard: تيتا, apc-Latn/arabizi: Teta}}
-  - {id: sami, speaker: m, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
-  - {id: maya, speaker: f, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  - id: teta
+    speaker: f
+    name:
+      apc-Arab/standard: تيتا
+      apc-Latn/arabizi: Teta
+  - id: sami
+    speaker: m
+    name:
+      apc-Arab/standard: سامي
+      apc-Latn/arabizi: Sami
+  - id: maya
+    speaker: f
+    name:
+      apc-Arab/standard: مايا
+      apc-Latn/arabizi: Maya
   steps:
   - line:
       speaker: teta
       forms:
         apc-Arab/standard:
           text: سامي، تْفَضَّل! كول!
-          tokens: [{surface: سامي, sense: sami}, {surface: تْفَضَّل, sense: tfaddal}, {surface: كول, sense: akal}]
+          tokens: [{surface: سامي, lexeme: sami}, {surface: تْفَضَّل, lexeme: tfaddal}, {surface: كول, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
         apc-Latn/arabizi:
           text: Sami, tfaddal! kol!
-          tokens: [{surface: Sami, sense: sami}, {surface: tfaddal, sense: tfaddal}, {surface: kol, sense: akal}]
-      translations: {en: 'Sami, help yourself! Eat!'}
+          tokens: [{surface: Sami, lexeme: sami}, {surface: tfaddal, lexeme: tfaddal}, {surface: kol, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
+      translations:
+        en: Sami, help yourself! Eat!
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: شُكْرا تيتا. الأَكِل طَيِّب كْتير!
-          tokens: [{surface: شُكْرا, sense: shukran}, {surface: تيتا, sense: teta, form: 'form:fem'}, {surface: الأَكِل, sense: akl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَكِل, kc: 'sense:akl'}]}, {surface: طَيِّب,
-              sense: tayyeb}, {surface: كْتير, sense: ktir}]
+          tokens: [{surface: شُكْرا, lexeme: shukran}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: الأَكِل, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: akl, surface: أَكِل, base: true, feats: {Number: Sing}, n: 4}]}, {surface: طَيِّب, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: كْتير, lexeme: ktir}]
         apc-Latn/arabizi:
           text: shukran teta. el akl tayyeb ktir!
-          tokens: [{surface: shukran, sense: shukran}, {surface: teta, sense: teta, form: 'form:fem'}, {surface: el, sense: el}, {surface: akl, sense: akl}, {surface: tayyeb, sense: tayyeb}, {surface: ktir, sense: ktir}]
-      translations: {en: 'Thanks, grandma. The food is really tasty!'}
+          tokens: [{surface: shukran, lexeme: shukran}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: akl, lexeme: akl, feats: {Number: Sing}, n: 4}, {surface: tayyeb, lexeme: tayyeb, feats: {Gender: Masc, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: ktir, lexeme: ktir}]
+      translations:
+        en: Thanks, grandma. The food is really tasty!
   - line:
       speaker: teta
       forms:
         apc-Arab/standard:
           text: صَحْتين!
-          tokens: [{surface: صَحْتين, sense: sa77tein}]
+          tokens: [{surface: صَحْتين, lexeme: sa77tein}]
         apc-Latn/arabizi:
           text: sa77tein!
-          tokens: [{surface: sa77tein, sense: sa77tein}]
-      translations: {en: Enjoy!}
+          tokens: [{surface: sa77tein, lexeme: sa77tein}]
+      translations:
+        en: Enjoy!
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: عَ قَلْبِك!
-          tokens: [{surface: عَ, sense: 3a-albak}, {surface: قَلْبِك, sense: 3a-albak, form: 'form:poss-2fs'}]
+          tokens: [{surface: عَ, lexeme: 3a-albak}, {surface: قَلْبِك, lexeme: 3a-albak, feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}}]
         apc-Latn/arabizi:
           text: 3a albik!
-          tokens: [{surface: 3a, sense: 3a-albak}, {surface: albik, sense: 3a-albak, form: 'form:poss-2fs'}]
-      translations: {en: And to you!}
+          tokens: [{surface: 3a, lexeme: 3a-albak}, {surface: albik, lexeme: 3a-albak, feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}}]
+      translations:
+        en: And to you!
   - line:
       speaker: teta
       forms:
         apc-Arab/standard:
           text: مايا، جوعانة؟ كِلي!
-          tokens: [{surface: مايا, sense: maya, form: 'form:fem'}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}, {surface: كِلي, sense: akal, form: 'form:imp-2fs'}]
+          tokens: [{surface: مايا, lexeme: maya}, {surface: جوعانة, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}, {surface: كِلي, lexeme: akal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}]
         apc-Latn/arabizi:
           text: Maya, jou3ane? kili!
-          tokens: [{surface: Maya, sense: maya, form: 'form:fem'}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}, {surface: kili, sense: akal, form: 'form:imp-2fs'}]
-      translations: {en: 'Maya, are you hungry? Eat!'}
+          tokens: [{surface: Maya, lexeme: maya}, {surface: jou3ane, lexeme: jou3an, feats: {Gender: Fem, Number: Sing}}, {surface: kili, lexeme: akal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}]
+      translations:
+        en: Maya, are you hungry? Eat!
   - line:
       speaker: maya
       ask: complete
-      gap: 'sense:shway'
-      distractors: ['sense:ktir', 'sense:kamen']
+      gap: lexeme:shway
+      distractors:
+      - lexeme:ktir
+      - lexeme:kamen
       forms:
         apc-Arab/standard:
           text: لأ تيتا، بَسّ شْوَي.
-          tokens: [{surface: لأ, sense: la2}, {surface: تيتا, sense: teta, form: 'form:fem'}, {surface: بَسّ, sense: bas}, {surface: شْوَي, sense: shway}]
+          tokens: [{surface: لأ, lexeme: la2}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: بَسّ, lexeme: bas}, {surface: شْوَي, lexeme: shway}]
         apc-Latn/arabizi:
           text: la2 teta, bas shway.
-          tokens: [{surface: la2, sense: la2}, {surface: teta, sense: teta, form: 'form:fem'}, {surface: bas, sense: bas}, {surface: shway, sense: shway}]
-      translations: {en: 'No, grandma, just a little.'}
+          tokens: [{surface: la2, lexeme: la2}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: bas, lexeme: bas}, {surface: shway, lexeme: shway}]
+      translations:
+        en: No, grandma, just a little.
   - choose:
       prompt:
         en: How much does Maya want to eat?
-      options: [{en: Just a little}, {en: A lot}, {en: Nothing at all}]
+      options:
+      - en: Just a little
+      - en: A lot
+      - en: Nothing at all
       answer: 0
   - line:
       speaker: teta
       forms:
         apc-Arab/standard:
           text: بَدِّك مَي؟
-          tokens: [{surface: بَدِّك, sense: baddak, form: 'form:poss-2fs'}, {surface: مَي, sense: may}]
+          tokens: [{surface: بَدِّك, lexemes: [{lexeme: badd, surface: بَدِّ, base: true}, {lexeme: poss-2fs, surface: ك}]}, {surface: مَي, lexeme: may, feats: {Number: Sing}}]
         apc-Latn/arabizi:
           text: baddik may?
-          tokens: [{surface: baddik, sense: baddak, form: 'form:poss-2fs'}, {surface: may, sense: may}]
-      translations: {en: 'Do you want water?'}
+          tokens: [{surface: baddik, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2fs, surface: ik}]}, {surface: may, lexeme: may, feats: {Number: Sing}}]
+      translations:
+        en: Do you want water?
   - line:
       speaker: maya
       ask: arrange
       forms:
         apc-Arab/standard:
           text: إيه، وشاي بَلا سُكَّر.
-          tokens: [{surface: إيه, sense: eh}, {surface: وشاي, sense: shay, morphs: [{surface: و, kc: 'sense:w'}, {surface: شاي, kc: 'sense:shay'}]}, {surface: بَلا, sense: bala}, {surface: سُكَّر, sense: sukkar}]
+          tokens: [{surface: إيه, lexeme: eh}, {surface: وشاي, lexemes: [{lexeme: w, surface: و}, {lexeme: shay, surface: شاي, base: true, feats: {Number: Sing}}]}, {surface: بَلا, lexeme: bala, n: 4, head: 5, rel: case}, {surface: سُكَّر, lexeme: sukkar, feats: {Number: Sing}, n: 5}]
         apc-Latn/arabizi:
           text: eh, w shay bala sukkar.
-          tokens: [{surface: eh, sense: eh}, {surface: w, sense: w}, {surface: shay, sense: shay}, {surface: bala, sense: bala}, {surface: sukkar, sense: sukkar}]
-      translations: {en: 'Yes, and tea without sugar.'}
+          tokens: [{surface: eh, lexeme: eh}, {surface: w, lexeme: w}, {surface: shay, lexeme: shay, feats: {Number: Sing}}, {surface: bala, lexeme: bala, n: 4, head: 5, rel: case}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}, n: 5}]
+      translations:
+        en: Yes, and tea without sugar.
   - line:
       speaker: sami
       forms:
         apc-Arab/standard:
           text: تيتا، بَدّي كَمان مَنْقوشة!
-          tokens: [{surface: تيتا, sense: teta, form: 'form:fem'}, {surface: بَدّي, sense: baddi}, {surface: كَمان, sense: kamen}, {surface: مَنْقوشة, sense: man2oushe, form: 'form:fem'}]
+          tokens: [{surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: بَدّي, lexemes: [{lexeme: badd, surface: بَدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: كَمان, lexeme: kamen}, {surface: مَنْقوشة, lexeme: man2oushe, feats: {Number: Sing}}]
         apc-Latn/arabizi:
           text: teta, baddi kamen man2oushe!
-          tokens: [{surface: teta, sense: teta, form: 'form:fem'}, {surface: baddi, sense: baddi}, {surface: kamen, sense: kamen}, {surface: man2oushe, sense: man2oushe, form: 'form:fem'}]
-      translations: {en: 'Grandma, I want another man''oushe!'}
+          tokens: [{surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: kamen, lexeme: kamen}, {surface: man2oushe, lexeme: man2oushe, feats: {Number: Sing}}]
+      translations:
+        en: Grandma, I want another man'oushe!
   - line:
       speaker: teta
       forms:
         apc-Arab/standard:
           text: يَلّا، تْفَضَّل!
-          tokens: [{surface: يَلّا, sense: yalla}, {surface: تْفَضَّل, sense: tfaddal}]
+          tokens: [{surface: يَلّا, lexeme: yalla}, {surface: تْفَضَّل, lexeme: tfaddal}]
         apc-Latn/arabizi:
           text: yalla, tfaddal!
-          tokens: [{surface: yalla, sense: yalla}, {surface: tfaddal, sense: tfaddal}]
-      translations: {en: 'Sure, here you go!'}
+          tokens: [{surface: yalla, lexeme: yalla}, {surface: tfaddal, lexeme: tfaddal}]
+      translations:
+        en: Sure, here you go!
   - choose:
       prompt:
         en: What does Sami ask for?
-      options: [{en: Another man'oushe}, {en: Tea without sugar}, {en: Some water}]
+      options:
+      - en: Another man'oushe
+      - en: Tea without sugar
+      - en: Some water
       answer: 0
 scenarios:
 - id: apc.teta-lunch
   after: apc.food.story
-  title: {en: Lunch at Teta's}
-  setting: {en: 'Sunday lunch at grandma''s flat in Beirut. The table is covered in mezze: hummus, tabbouleh, fattoush and bread.'}
-  character: {en: 'Teta, a loving grandmother who keeps offering more food and is hard to say no to.'}
-  goal: {en: 'Answer Teta''s offers: say whether you are hungry or thirsty, accept a little or politely say no, ask for tea or coffee without sugar, and praise the food.'}
-  provenance: {author: 'llm:claude@6914f241714e', status: draft}
+  title:
+    en: Lunch at Teta's
+  setting:
+    en: 'Sunday lunch at grandma''s flat in Beirut. The table is covered in mezze: hummus, tabbouleh, fattoush and bread.'
+  character:
+    en: Teta, a loving grandmother who keeps offering more food and is hard to say no to.
+  goal:
+    en: 'Answer Teta''s offers: say whether you are hungry or thirsty, accept a little or politely say no, ask for tea or coffee without sugar, and praise the food.'
+  provenance:
+    author: llm:claude@6914f241714e
+    status: draft

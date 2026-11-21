@@ -8,50 +8,70 @@
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a reviewer.
 id: grc
 target: grc-Grek
-orthographies: [grc-Grek/polytonic]
-support: [en-Latn/standard]
+orthographies:
+- grc-Grek/polytonic
+support:
+- en-Latn/standard
+lexicon: grc
 # What the app calls the course and its orthographies, and what the course list says of them, by
 # language (ADR 0109).
 names:
   en:
     course: Ancient Greek
-    blurb: "The Greek of classical Athens, learned through passages of ancient authors."
+    blurb: The Greek of classical Athens, learned through passages of ancient authors.
     orthographies:
       grc-Grek/polytonic: Polytonic Greek
   # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
   # await review as those do.
   ar:
-    course: "اليونانية القديمة"
+    course: اليونانية القديمة
     orthographies:
-      grc-Grek/polytonic: "اليونانية متعددة النبرات"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      grc-Grek/polytonic: اليونانية متعددة النبرات
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   fa:
-    course: "یونانی باستان"
+    course: یونانی باستان
     orthographies:
       grc-Grek/polytonic: "یونانی با نشانه\u200cهای تکیه"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   uz:
-    course: "Qadimgi yunon tili"
+    course: Qadimgi yunon tili
     orthographies:
-      grc-Grek/polytonic: "Politonik yunon yozuvi"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      grc-Grek/polytonic: Politonik yunon yozuvi
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   uz-Cyrl:
-    course: "Қадимги юнон тили"
+    course: Қадимги юнон тили
     orthographies:
-      grc-Grek/polytonic: "Политоник юнон ёзуви"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      grc-Grek/polytonic: Политоник юнон ёзуви
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
   zh-Hant-HK:
-    course: "古希臘文"
+    course: 古希臘文
     orthographies:
-      grc-Grek/polytonic: "多調號希臘文"
-    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+      grc-Grek/polytonic: 多調號希臘文
+    provenance:
+      author: llm:claude@baa6bf1d5e24
+      status: draft
 license: CC-BY-SA-4.0
-provenance: {author: 'llm:claude@grc-draft-v1', status: draft}
+provenance:
+  author: llm:claude@grc-draft-v1
+  status: draft
 # A Greek word is a stem and an ending: a new verb in a new form, or a new noun in a new case, is two KCs.
 iPlusOne: 2
 # Every facet but listen (as hbo, ADR 0082): Attic is read, not heard, and a reconstructed synthetic voice is no
 # ear-training. The clips still say each card once it is answered, and speaking cards stay (reading aloud).
-facets: [recognize, produce, speak, read-script, write-script]
+facets:
+- recognize
+- produce
+- speak
+- read-script
+- write-script
 # Audio (ADR 0087): the reconstructed pronunciation of classical Attic (CGCG §§1.14–33), never Modern Greek text.
 # Each word's pinned `attic` reading (its spelling with every α, ι, υ marked long or short) is given to the voice as
 # IPA phonemes (nabu.audio.attic.piper), so it never reads Greek letters: aspirated φ θ χ, [y] for υ, long and short
@@ -62,11 +82,28 @@ audio:
   # ADR 0091: too far from Attic to present: no clip ships. The clips stay here for the audio check, until a better voice.
   quality: bad
   voices:
-  - {id: attic-el, provider: piper, voice: el_GR-rapunzelina-low, speaker: f, orthography: grc-Grek/polytonic, reading: attic, license: CC-BY-NC-SA-4.0}
+  - id: attic-el
+    provider: piper
+    voice: el_GR-rapunzelina-low
+    speaker: f
+    orthography: grc-Grek/polytonic
+    reading: attic
+    license: CC-BY-NC-SA-4.0
 # Every reading is fixed by its word's spelling, sense, form and morphs (ADR 0135): one read otherwise is an error.
 consistentReadings: true
 # The course asks words by their parts (ADR 0152): a word built from its own word and the forms it
 # carries (parts-whole), and a word's parts picked out (whole-parts). REVIEW: the forms its tokens
 # carry, and the glossary entries that name them, have not been checked for this by a reader.
 wordParts: true
-units: [units/abc.yaml, units/u01-is-it-early.yaml, units/u02-two-sons.yaml, units/u03-where-to.yaml, units/u04-does-he-speak-greek.yaml, units/u05-wait-for-us.yaml, units/u06-not-one-woman.yaml, units/u07-the-sea.yaml, units/u08-a-rooster.yaml, units/u09-my-little-house.yaml, units/u10-wiser.yaml]
+units:
+- units/abc.yaml
+- units/u01-is-it-early.yaml
+- units/u02-two-sons.yaml
+- units/u03-where-to.yaml
+- units/u04-does-he-speak-greek.yaml
+- units/u05-wait-for-us.yaml
+- units/u06-not-one-woman.yaml
+- units/u07-the-sea.yaml
+- units/u08-a-rooster.yaml
+- units/u09-my-little-house.yaml
+- units/u10-wiser.yaml

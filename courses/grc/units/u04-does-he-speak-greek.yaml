@@ -7,210 +7,20 @@ id: u04-does-he-speak-greek
 title:
   en: Does he speak Greek?
 cefr: A1
-kcs:
-- id: sense:ge
-  pos: ADV
-  gloss:
-    en: at least, indeed (stresses the word before it)
-  forms:
-    grc-Grek/polytonic:
-    - γε
-  notes:
-    en: γε leans on the word before it. πάνυ γε, "yes, certainly", is a common answer.
-- id: sense:deuro
-  pos: ADV
-  features:
-    PronType: Dem
-  gloss:
-    en: here, over here (to this place)
-  forms:
-    grc-Grek/polytonic:
-    - δεῦρο
-- id: sense:proserchomai
-  pos: VERB
-  gloss:
-    en: to come up to, come near
-  forms:
-    grc-Grek/polytonic:
-    - προσέρχομαι
-  notes:
-    en: 'πρόσελθε, "come here!", is its aorist imperative: one act of coming, not a habit.'
-- id: sense:menon
-  pos: PROPN
-  gloss:
-    en: Meno (a young nobleman from Thessaly)
-  forms:
-    grc-Grek/polytonic:
-    - Μένων
-- id: sense:hellen
-  pos: PROPN
-  gloss:
-    en: a Greek
-  forms:
-    grc-Grek/polytonic:
-    - Ἕλλην
-  notes:
-    en: 'Of the Greeks: τῶν Ἑλλήνων. A Greek woman is an Ἑλληνίς.'
-- id: sense:hellenizo
-  pos: VERB
-  gloss:
-    en: to speak Greek
-  forms:
-    grc-Grek/polytonic:
-    - ἑλληνίζω
-- id: sense:athenaios
-  pos: ADJ
-  gloss:
-    en: Athenian; an Athenian
-  forms:
-    grc-Grek/polytonic:
-    - Ἀθηναῖος
-- id: sense:barbaros
-  pos: ADJ
-  gloss:
-    en: foreign, not Greek; a foreigner
-  forms:
-    grc-Grek/polytonic:
-    - βάρβαρος
-  notes:
-    en: To a Greek a βάρβαρος was anyone whose speech was not Greek ("bar-bar"), Persians and Egyptians included; not yet "savage".
-- id: sense:ara
-  pos: PART
-  features:
-    PartType: Int
-  gloss:
-    en: (asks a question that is answered yes or no)
-  forms:
-    grc-Grek/polytonic:
-    - ἆρα
-- id: sense:hemeis
-  pos: PRON
-  features:
-    PronType: Prs
-  gloss:
-    en: we
-  forms:
-    grc-Grek/polytonic:
-    - ἡμεῖς
-- id: form:pres-1p
-  gloss:
-    en: 'the present, we: we do, we are doing'
-- id: sense:hymeis
-  pos: PRON
-  features:
-    PronType: Prs
-  gloss:
-    en: you (several people)
-  forms:
-    grc-Grek/polytonic:
-    - ὑμεῖς
-- id: form:pres-2p
-  gloss:
-    en: 'the present, you (several people): you do, you are doing'
-- id: sense:lego
-  pos: VERB
-  gloss:
-    en: to say, speak, tell; to mean
-  forms:
-    grc-Grek/polytonic:
-    - λέγω
-- id: sense:glotta
-  pos: NOUN
-  gloss:
-    en: tongue; language
-  forms:
-    grc-Grek/polytonic:
-    - γλῶττα
-- id: sense:akouo
-  pos: VERB
-  gloss:
-    en: to hear, listen
-  forms:
-    grc-Grek/polytonic:
-    - ἀκούω
-- id: sense:manthano
-  pos: VERB
-  gloss:
-    en: to learn; to understand
-  forms:
-    grc-Grek/polytonic:
-    - μανθάνω
-- id: sense:grapho
-  pos: VERB
-  gloss:
-    en: to write
-  forms:
-    grc-Grek/polytonic:
-    - γράφω
-- id: sense:sphodra
-  pos: ADV
-  gloss:
-    en: very much, very
-  forms:
-    grc-Grek/polytonic:
-    - σφόδρα
-- id: sense:oikogenes
-  pos: ADJ
-  gloss:
-    en: born in the household (of a slave)
-  forms:
-    grc-Grek/polytonic:
-    - οἰκογενής
-  notes:
-    en: 'Meno''s boy is a slave, born in Meno''s house: he has spoken Greek since he could speak.'
 nodes:
-- id: grc.u04.come-here
-  kind: lesson
-  introduces:
-  - sense:ge
-  - sense:deuro
-  - sense:proserchomai
-  - sense:menon
-- id: grc.u04.a-greek
-  kind: lesson
-  introduces:
-  - sense:hellen
-  - sense:hellenizo
-  - sense:athenaios
-  - sense:barbaros
-  - sense:ara
-- id: grc.u04.we-speak-greek
-  kind: lesson
-  introduces:
-  - sense:hemeis
-  - form:pres-1p
-  - sense:hymeis
-  - form:pres-2p
-  - sense:lego
-  - sense:glotta
-- id: grc.u04.hear-and-learn
-  kind: lesson
-  introduces:
-  - sense:akouo
-  - sense:manthano
-  - sense:grapho
-  - sense:sphodra
-- id: grc.u04.born-in-the-house
-  kind: lesson
-  introduces:
-  - sense:oikogenes
-- id: grc.u04.story
-  kind: story
+- {id: grc.u04.come-here, kind: lesson, introduces: ['lexeme:ge', 'lexeme:deuro', 'lexeme:proserchomai', 'lexeme:menon']}
+- {id: grc.u04.a-greek, kind: lesson, introduces: ['lexeme:hellen', 'lexeme:hellenizo', 'lexeme:athenaios', 'lexeme:barbaros', 'lexeme:ara']}
+- {id: grc.u04.we-speak-greek, kind: lesson, introduces: ['lexeme:hemeis', 'lexeme:hymeis', 'lexeme:lego', 'lexeme:glotta']}
+- {id: grc.u04.hear-and-learn, kind: lesson, introduces: ['lexeme:akouo', 'lexeme:manthano', 'lexeme:grapho', 'lexeme:sphodra']}
+- {id: grc.u04.born-in-the-house, kind: lesson, introduces: ['lexeme:oikogenes']}
+- {id: grc.u04.story, kind: story}
 sentences:
 - id: s.04.1
   node: grc.u04.come-here
   forms:
     grc-Grek/polytonic:
       text: πάνυ γε.
-      tokens:
-      - surface: πάνυ
-        sense: pany
-        readings:
-          attic: πᾰ́νῠ
-      - surface: γε
-        sense: ge
-        readings:
-          attic: γε
+      tokens: [{surface: πάνυ, lexeme: pany, readings: {attic: πᾰ́νῠ}}, {surface: γε, lexeme: ge, readings: {attic: γε}}]
       reverse: πάνυ γε
   translations:
     en: (Certainly|Yes, certainly|Of course|Yes, indeed|Very much so).
@@ -219,56 +29,29 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: δεῦρο.
-      tokens:
-      - surface: δεῦρο
-        sense: deuro
-        readings:
-          attic: δεῦρο
+      tokens: [{surface: δεῦρο, lexeme: deuro, readings: {attic: δεῦρο}}]
       reverse: δεῦρο
   translations:
     en: (Over here|This way|Here|Come here)!
 - id: s.04.3
   node: grc.u04.come-here
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: δεῦρο πρόσελθε.
-      tokens:
-      - surface: δεῦρο
-        sense: deuro
-        readings:
-          attic: δεῦρο
-      - surface: πρόσελθε
-        sense: proserchomai
-        form: form:impv-2s
-        readings:
-          attic: πρόσελθε
+      tokens: [{surface: δεῦρο, lexeme: deuro, readings: {attic: δεῦρο}}, {surface: πρόσελθε, lexeme: proserchomai, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: πρόσελθε}}]
       reverse: |-
         δεῦρο πρόσελθε
         πρόσελθε δεῦρο
   translations:
     en: (come here|come over here|come this way)!
-  persons:
-    addressee: sg
 - id: s.04.4
   node: grc.u04.come-here
   forms:
     grc-Grek/polytonic:
       text: πρόσελθε, ὦ παῖ.
-      tokens:
-      - surface: πρόσελθε
-        sense: proserchomai
-        form: form:impv-2s
-        readings:
-          attic: πρόσελθε
-      - surface: ὦ
-        sense: o
-        readings:
-          attic: ὦ
-      - surface: παῖ
-        sense: pais
-        form: form:voc
-        readings:
-          attic: παῖ
+      tokens: [{surface: πρόσελθε, lexeme: proserchomai, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: πρόσελθε}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: παῖ, lexeme: pais, feats: {Case: Voc, Gender: Masc, Number: Sing}, readings: {attic: παῖ}}]
       reverse: |-
         πρόσελθε ὦ παῖ
         [ὦ] παῖ πρόσελθε
@@ -280,25 +63,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὦ Μένων, δεῦρο πρόσελθε.
-      tokens:
-      - surface: ὦ
-        sense: o
-        readings:
-          attic: ὦ
-      - surface: Μένων
-        sense: menon
-        form: form:voc
-        readings:
-          attic: Μένων
-      - surface: δεῦρο
-        sense: deuro
-        readings:
-          attic: δεῦρο
-      - surface: πρόσελθε
-        sense: proserchomai
-        form: form:impv-2s
-        readings:
-          attic: πρόσελθε
+      tokens: [{surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: Μένων, lexeme: menon, feats: {Case: Voc, Number: Sing}, readings: {attic: Μένων}}, {surface: δεῦρο, lexeme: deuro, readings: {attic: δεῦρο}}, {surface: πρόσελθε, lexeme: proserchomai, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: πρόσελθε}}]
       reverse: |-
         ὦ Μένων δεῦρο πρόσελθε
         δεῦρο πρόσελθε [ὦ] Μένων
@@ -312,25 +77,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: δεῦρο πρόσελθε, ὦ Ξανθίππη.
-      tokens:
-      - surface: δεῦρο
-        sense: deuro
-        readings:
-          attic: δεῦρο
-      - surface: πρόσελθε
-        sense: proserchomai
-        form: form:impv-2s
-        readings:
-          attic: πρόσελθε
-      - surface: ὦ
-        sense: o
-        readings:
-          attic: ὦ
-      - surface: Ξανθίππη
-        sense: xanthippe
-        form: form:f-voc
-        readings:
-          attic: Ξᾰνθῐ́ππη
+      tokens: [{surface: δεῦρο, lexeme: deuro, readings: {attic: δεῦρο}}, {surface: πρόσελθε, lexeme: proserchomai, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: πρόσελθε}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: Ξανθίππη, lexeme: xanthippe, feats: {Case: Voc, Number: Sing}, readings: {attic: Ξᾰνθῐ́ππη}}]
       reverse: |-
         δεῦρο πρόσελθε ὦ Ξανθίππη
         [ὦ] Ξανθίππη δεῦρο πρόσελθε
@@ -343,21 +90,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: χαίρετε, ὦ παῖδες.
-      tokens:
-      - surface: χαίρετε
-        sense: chairo
-        form: form:impv-2p
-        readings:
-          attic: χαίρετε
-      - surface: ὦ
-        sense: o
-        readings:
-          attic: ὦ
-      - surface: παῖδες
-        sense: pais
-        form: form:pl
-        readings:
-          attic: παῖδες
+      tokens: [{surface: χαίρετε, lexeme: chairo, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {attic: χαίρετε}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: παῖδες, lexeme: pais, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: παῖδες}}]
       reverse: |-
         χαίρετε ὦ παῖδες
         χαίρετε παῖδες
@@ -369,16 +102,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: Ἕλλην εἰμί.
-      tokens:
-      - surface: Ἕλλην
-        sense: hellen
-        readings:
-          attic: Ἕλλην
-      - surface: εἰμί
-        sense: eimi
-        form: form:pres-1s
-        readings:
-          attic: εἰμῐ́
+      tokens: [{surface: Ἕλλην, lexeme: hellen, feats: {Case: Nom, Number: Sing}, readings: {attic: Ἕλλην}}, {surface: εἰμί, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ́}}]
       reverse: |-
         Ἕλλην εἰμί
         εἰμὶ Ἕλλην
@@ -388,19 +112,12 @@ sentences:
     en: (I am|I'm) (a Greek|Greek).
 - id: s.04.9
   node: grc.u04.a-greek
+  tags:
+  - {persons: {addressee: m}}
   forms:
     grc-Grek/polytonic:
       text: Ἕλλην εἶ;
-      tokens:
-      - surface: Ἕλλην
-        sense: hellen
-        readings:
-          attic: Ἕλλην
-      - surface: εἶ
-        sense: eimi
-        form: form:pres-2s
-        readings:
-          attic: εἶ
+      tokens: [{surface: Ἕλλην, lexeme: hellen, feats: {Case: Nom, Number: Sing}, readings: {attic: Ἕλλην}}, {surface: εἶ, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: εἶ}}]
       reverse: |-
         Ἕλλην εἶ
         σὺ Ἕλλην εἶ
@@ -408,33 +125,23 @@ sentences:
         ἆρα Ἕλλην εἶ
   translations:
     en: Are you (a Greek|Greek)?
-  persons:
-    addressee: m
 - id: s.04.10
   node: grc.u04.a-greek
   forms:
     grc-Grek/polytonic:
       text: ἑλληνίζω.
-      tokens:
-      - surface: ἑλληνίζω
-        sense: hellenizo
-        form: form:pres-1s
-        readings:
-          attic: ἑλληνῐ́ζω
+      tokens: [{surface: ἑλληνίζω, lexeme: hellenizo, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ἑλληνῐ́ζω}}]
       reverse: ἑλληνίζω
   translations:
     en: I (speak|can speak) Greek.
 - id: s.04.11
   node: grc.u04.a-greek
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: ἑλληνίζεις;
-      tokens:
-      - surface: ἑλληνίζεις
-        sense: hellenizo
-        form: form:pres-2s
-        readings:
-          attic: ἑλληνῐ́ζεις
+      tokens: [{surface: ἑλληνίζεις, lexeme: hellenizo, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: ἑλληνῐ́ζεις}}]
       reverse: |-
         ἑλληνίζεις
         ἆρα ἑλληνίζεις
@@ -442,36 +149,12 @@ sentences:
         ἑλληνίζεις σύ
   translations:
     en: (Do you speak|Can you speak) Greek?
-  persons:
-    addressee: sg
 - id: s.04.12
   node: grc.u04.a-greek
   forms:
     grc-Grek/polytonic:
       text: Ἕλλην μέν ἐστι καὶ ἑλληνίζει;
-      tokens:
-      - surface: Ἕλλην
-        sense: hellen
-        readings:
-          attic: Ἕλλην
-      - surface: μέν
-        sense: men
-        readings:
-          attic: μέν
-      - surface: ἐστι
-        sense: eimi
-        form: form:pres-3s
-        readings:
-          attic: ἐστῐ
-      - surface: καὶ
-        sense: kai
-        readings:
-          attic: καὶ
-      - surface: ἑλληνίζει
-        sense: hellenizo
-        form: form:pres-3s
-        readings:
-          attic: ἑλληνῐ́ζει
+      tokens: [{surface: Ἕλλην, lexeme: hellen, feats: {Case: Nom, Number: Sing}, readings: {attic: Ἕλλην}}, {surface: μέν, lexeme: men, readings: {attic: μέν}}, {surface: ἐστι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: ἑλληνίζει, lexeme: hellenizo, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἑλληνῐ́ζει}}]
       reverse: |-
         Ἕλλην μέν ἐστι καὶ ἑλληνίζει
         Ἕλλην ἐστὶ[ν] καὶ ἑλληνίζει
@@ -480,19 +163,12 @@ sentences:
     en: Is he (a Greek|Greek), and does he speak Greek?
 - id: s.04.13
   node: grc.u04.a-greek
+  tags:
+  - {persons: {speaker: m}}
   forms:
     grc-Grek/polytonic:
       text: Ἀθηναῖος εἰμί.
-      tokens:
-      - surface: Ἀθηναῖος
-        sense: athenaios
-        readings:
-          attic: Ᾰ̓θηναῖος
-      - surface: εἰμί
-        sense: eimi
-        form: form:pres-1s
-        readings:
-          attic: εἰμῐ́
+      tokens: [{surface: Ἀθηναῖος, lexeme: athenaios, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: Ᾰ̓θηναῖος}}, {surface: εἰμί, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ́}}]
       reverse: |-
         Ἀθηναῖος εἰμί
         εἰμὶ Ἀθηναῖος
@@ -500,24 +176,14 @@ sentences:
         Ἀθηναῖος ἐγώ εἰμι
   translations:
     en: (I am|I'm) (an Athenian|Athenian|from Athens).
-  persons:
-    speaker: m
 - id: s.04.14
   node: grc.u04.a-greek
+  tags:
+  - {persons: {speaker: f}}
   forms:
     grc-Grek/polytonic:
       text: Ἀθηναία εἰμί.
-      tokens:
-      - surface: Ἀθηναία
-        sense: athenaios
-        form: form:f
-        readings:
-          attic: Ᾰ̓θηναίᾱ
-      - surface: εἰμί
-        sense: eimi
-        form: form:pres-1s
-        readings:
-          attic: εἰμῐ́
+      tokens: [{surface: Ἀθηναία, lexeme: athenaios, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: Ᾰ̓θηναίᾱ}}, {surface: εἰμί, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ́}}]
       reverse: |-
         Ἀθηναία εἰμί
         εἰμὶ Ἀθηναία
@@ -525,27 +191,14 @@ sentences:
         Ἀθηναία ἐγώ εἰμι
   translations:
     en: (I am|I'm) (an Athenian|Athenian|from Athens).
-  persons:
-    speaker: f
 - id: s.04.15
   node: grc.u04.a-greek
+  tags:
+  - {persons: {addressee: m}}
   forms:
     grc-Grek/polytonic:
       text: ἆρα βάρβαρος εἶ;
-      tokens:
-      - surface: ἆρα
-        sense: ara
-        readings:
-          attic: ἆρᾰ
-      - surface: βάρβαρος
-        sense: barbaros
-        readings:
-          attic: βᾰ́ρβᾰρος
-      - surface: εἶ
-        sense: eimi
-        form: form:pres-2s
-        readings:
-          attic: εἶ
+      tokens: [{surface: ἆρα, lexeme: ara, readings: {attic: ἆρᾰ}}, {surface: βάρβαρος, lexeme: barbaros, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: βᾰ́ρβᾰρος}}, {surface: εἶ, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: εἶ}}]
       reverse: |-
         ἆρα βάρβαρος εἶ
         βάρβαρος εἶ
@@ -554,54 +207,28 @@ sentences:
         ἆρα βάρβαρος εἶ σύ
   translations:
     en: Are you (a foreigner|a barbarian|not Greek|a non-Greek)?
-  persons:
-    addressee: m
 - id: s.04.16
   node: grc.u04.a-greek
+  tags:
+  - {persons: {speaker: m}}
   forms:
     grc-Grek/polytonic:
       text: οὐκ εἰμὶ βάρβαρος.
-      tokens:
-      - surface: οὐκ
-        sense: ou
-        readings:
-          attic: οὐκ
-      - surface: εἰμὶ
-        sense: eimi
-        form: form:pres-1s
-        readings:
-          attic: εἰμῐ̀
-      - surface: βάρβαρος
-        sense: barbaros
-        readings:
-          attic: βᾰ́ρβᾰρος
+      tokens: [{surface: οὐκ, lexeme: ou, readings: {attic: οὐκ}}, {surface: εἰμὶ, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: εἰμῐ̀}}, {surface: βάρβαρος, lexeme: barbaros, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: βᾰ́ρβᾰρος}}]
       reverse: |-
         οὐκ εἰμὶ βάρβαρος
         βάρβαρος οὐκ εἰμί
         ἐγὼ οὐκ εἰμὶ βάρβαρος
   translations:
     en: (I am not|I'm not) (a foreigner|a barbarian|a non-Greek).
-  persons:
-    speaker: m
 - id: s.04.17
   node: grc.u04.a-greek
+  tags:
+  - {persons: {addressee: m}}
   forms:
     grc-Grek/polytonic:
       text: ἆρα Ἀθηναῖος εἶ;
-      tokens:
-      - surface: ἆρα
-        sense: ara
-        readings:
-          attic: ἆρᾰ
-      - surface: Ἀθηναῖος
-        sense: athenaios
-        readings:
-          attic: Ᾰ̓θηναῖος
-      - surface: εἶ
-        sense: eimi
-        form: form:pres-2s
-        readings:
-          attic: εἶ
+      tokens: [{surface: ἆρα, lexeme: ara, readings: {attic: ἆρᾰ}}, {surface: Ἀθηναῖος, lexeme: athenaios, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: Ᾰ̓θηναῖος}}, {surface: εἶ, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: εἶ}}]
       reverse: |-
         ἆρα Ἀθηναῖος εἶ
         Ἀθηναῖος εἶ
@@ -609,28 +236,14 @@ sentences:
         ἆρα σὺ Ἀθηναῖος εἶ
   translations:
     en: Are you (an Athenian|Athenian|from Athens)?
-  persons:
-    addressee: m
 - id: s.04.18
   node: grc.u04.a-greek
+  tags:
+  - {persons: {addressee: f}}
   forms:
     grc-Grek/polytonic:
       text: ἆρα Ἀθηναία εἶ;
-      tokens:
-      - surface: ἆρα
-        sense: ara
-        readings:
-          attic: ἆρᾰ
-      - surface: Ἀθηναία
-        sense: athenaios
-        form: form:f
-        readings:
-          attic: Ᾰ̓θηναίᾱ
-      - surface: εἶ
-        sense: eimi
-        form: form:pres-2s
-        readings:
-          attic: εἶ
+      tokens: [{surface: ἆρα, lexeme: ara, readings: {attic: ἆρᾰ}}, {surface: Ἀθηναία, lexeme: athenaios, feats: {Case: Nom, Gender: Fem, Number: Sing}, readings: {attic: Ᾰ̓θηναίᾱ}}, {surface: εἶ, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: εἶ}}]
       reverse: |-
         ἆρα Ἀθηναία εἶ
         Ἀθηναία εἶ
@@ -638,27 +251,12 @@ sentences:
         ἆρα σὺ Ἀθηναία εἶ
   translations:
     en: Are you (an Athenian|Athenian|from Athens)?
-  persons:
-    addressee: f
 - id: s.04.19
   node: grc.u04.a-greek
   forms:
     grc-Grek/polytonic:
       text: Κρίτων Ἀθηναῖός ἐστιν.
-      tokens:
-      - surface: Κρίτων
-        sense: kriton
-        readings:
-          attic: Κρῐ́των
-      - surface: Ἀθηναῖός
-        sense: athenaios
-        readings:
-          attic: Ᾰ̓θηναῖός
-      - surface: ἐστιν
-        sense: eimi
-        form: form:pres-3s
-        readings:
-          attic: ἐστῐν
+      tokens: [{surface: Κρίτων, lexeme: kriton, feats: {Case: Nom, Number: Sing}, n: 1, readings: {attic: Κρῐ́των}}, {surface: Ἀθηναῖός, lexeme: athenaios, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, head: 1, rel: amod, readings: {attic: Ᾰ̓θηναῖός}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
       reverse: |-
         Κρίτων Ἀθηναῖός ἐστιν
         ὁ Κρίτων Ἀθηναῖός ἐστι[ν]
@@ -671,17 +269,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡμεῖς ἑλληνίζομεν.
-      tokens:
-      - surface: ἡμεῖς
-        sense: hemeis
-        form: form:pl
-        readings:
-          attic: ἡμεῖς
-      - surface: ἑλληνίζομεν
-        sense: hellenizo
-        form: form:pres-1p
-        readings:
-          attic: ἑλληνῐ́ζομεν
+      tokens: [{surface: ἡμεῖς, lexeme: hemeis, feats: {Case: 'Nom,Voc', Number: Plur}, readings: {attic: ἡμεῖς}}, {surface: ἑλληνίζομεν, lexeme: hellenizo, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ἑλληνῐ́ζομεν}}]
       reverse: |-
         ἡμεῖς ἑλληνίζομεν
         ἑλληνίζομεν
@@ -690,20 +278,12 @@ sentences:
     en: We speak Greek.
 - id: s.04.21
   node: grc.u04.we-speak-greek
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     grc-Grek/polytonic:
       text: ὑμεῖς ἑλληνίζετε;
-      tokens:
-      - surface: ὑμεῖς
-        sense: hymeis
-        form: form:pl
-        readings:
-          attic: ῡ̔μεῖς
-      - surface: ἑλληνίζετε
-        sense: hellenizo
-        form: form:pres-2p
-        readings:
-          attic: ἑλληνῐ́ζετε
+      tokens: [{surface: ὑμεῖς, lexeme: hymeis, feats: {Case: 'Nom,Voc', Number: Plur}, readings: {attic: ῡ̔μεῖς}}, {surface: ἑλληνίζετε, lexeme: hellenizo, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: ἑλληνῐ́ζετε}}]
       reverse: |-
         ὑμεῖς ἑλληνίζετε
         ἑλληνίζετε
@@ -712,75 +292,40 @@ sentences:
         ἆρα ὑμεῖς ἑλληνίζετε
   translations:
     en: (Do you speak|Can you speak) Greek?
-  persons:
-    addressee: pl
 - id: s.04.22
   node: grc.u04.we-speak-greek
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: τί λέγεις;
-      tokens:
-      - surface: τί
-        sense: ti
-        readings:
-          attic: τῐ́
-      - surface: λέγεις
-        sense: lego
-        form: form:pres-2s
-        readings:
-          attic: λέγεις
+      tokens: [{surface: τί, lexeme: ti, readings: {attic: τῐ́}}, {surface: λέγεις, lexeme: lego, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: λέγεις}}]
       reverse: |-
         τί λέγεις
         τί σὺ λέγεις
         τί λέγεις σύ
   translations:
     en: (What are you saying|What do you mean|What do you say)?
-  persons:
-    addressee: sg
 - id: s.04.23
   node: grc.u04.we-speak-greek
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     grc-Grek/polytonic:
       text: τί λέγετε;
-      tokens:
-      - surface: τί
-        sense: ti
-        readings:
-          attic: τῐ́
-      - surface: λέγετε
-        sense: lego
-        form: form:pres-2p
-        readings:
-          attic: λέγετε
+      tokens: [{surface: τί, lexeme: ti, readings: {attic: τῐ́}}, {surface: λέγετε, lexeme: lego, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: λέγετε}}]
       reverse: |-
         τί λέγετε
         τί ὑμεῖς λέγετε
         τί λέγετε ὑμεῖς
   translations:
     en: (What are you saying|What do you mean|What do you say)?
-  persons:
-    addressee: pl
 - id: s.04.24
   node: grc.u04.we-speak-greek
   forms:
     grc-Grek/polytonic:
       text: οἱ Ἀθηναῖοι ἑλληνίζουσιν.
-      tokens:
-      - surface: οἱ
-        sense: ho
-        form: form:pl
-        readings:
-          attic: οἱ
-      - surface: Ἀθηναῖοι
-        sense: athenaios
-        form: form:pl
-        readings:
-          attic: Ᾰ̓θηναῖοι
-      - surface: ἑλληνίζουσιν
-        sense: hellenizo
-        form: form:pres-3p
-        readings:
-          attic: ἑλληνῐ́ζουσῐν
+      tokens: [{surface: οἱ, lexeme: ho, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: οἱ}}, {surface: Ἀθηναῖοι, lexeme: athenaios, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: Ᾰ̓θηναῖοι}}, {surface: ἑλληνίζουσιν, lexeme: hellenizo, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἑλληνῐ́ζουσῐν}}]
       reverse: |-
         οἱ Ἀθηναῖοι ἑλληνίζουσιν
         ἑλληνίζουσι[ν] οἱ Ἀθηναῖοι
@@ -792,22 +337,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἡμεῖς Ἀθηναῖοί ἐσμεν.
-      tokens:
-      - surface: ἡμεῖς
-        sense: hemeis
-        form: form:pl
-        readings:
-          attic: ἡμεῖς
-      - surface: Ἀθηναῖοί
-        sense: athenaios
-        form: form:pl
-        readings:
-          attic: Ᾰ̓θηναῖοί
-      - surface: ἐσμεν
-        sense: eimi
-        form: form:pres-1p
-        readings:
-          attic: ἐσμεν
+      tokens: [{surface: ἡμεῖς, lexeme: hemeis, feats: {Case: 'Nom,Voc', Number: Plur}, readings: {attic: ἡμεῖς}}, {surface: Ἀθηναῖοί, lexeme: athenaios, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: Ᾰ̓θηναῖοί}}, {surface: ἐσμεν, lexeme: eimi, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐσμεν}}]
       reverse: |-
         ἡμεῖς Ἀθηναῖοί ἐσμεν
         Ἀθηναῖοί ἐσμεν
@@ -817,25 +347,12 @@ sentences:
     en: We are (Athenians|from Athens).
 - id: s.04.26
   node: grc.u04.we-speak-greek
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     grc-Grek/polytonic:
       text: ὑμεῖς Ἕλληνές ἐστε.
-      tokens:
-      - surface: ὑμεῖς
-        sense: hymeis
-        form: form:pl
-        readings:
-          attic: ῡ̔μεῖς
-      - surface: Ἕλληνές
-        sense: hellen
-        form: form:pl
-        readings:
-          attic: Ἕλληνές
-      - surface: ἐστε
-        sense: eimi
-        form: form:pres-2p
-        readings:
-          attic: ἐστε
+      tokens: [{surface: ὑμεῖς, lexeme: hymeis, feats: {Case: 'Nom,Voc', Number: Plur}, readings: {attic: ῡ̔μεῖς}}, {surface: Ἕλληνές, lexeme: hellen, feats: {Case: 'Nom,Voc', Number: Plur}, readings: {attic: Ἕλληνές}}, {surface: ἐστε, lexeme: eimi, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστε}}]
       reverse: |-
         ὑμεῖς Ἕλληνές ἐστε
         Ἕλληνές ἐστε
@@ -843,24 +360,12 @@ sentences:
         ὑμεῖς ἐστε Ἕλληνες
   translations:
     en: You are (Greeks|Greek).
-  persons:
-    addressee: pl
 - id: s.04.27
   node: grc.u04.we-speak-greek
   forms:
     grc-Grek/polytonic:
       text: ἡ γλῶττα.
-      tokens:
-      - surface: ἡ
-        sense: ho
-        form: form:f
-        readings:
-          attic: ἡ
-      - surface: γλῶττα
-        sense: glotta
-        form: form:f
-        readings:
-          attic: γλῶττᾰ
+      tokens: [{surface: ἡ, lexeme: ho, feats: {Case: Nom, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ἡ}}, {surface: γλῶττα, lexeme: glotta, feats: {Case: Nom, Number: Sing}, n: 2, readings: {attic: γλῶττᾰ}}]
       reverse: ἡ γλῶττα
   translations:
     en: The (tongue|language).
@@ -869,24 +374,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τί λέγει ὁ παῖς;
-      tokens:
-      - surface: τί
-        sense: ti
-        readings:
-          attic: τῐ́
-      - surface: λέγει
-        sense: lego
-        form: form:pres-3s
-        readings:
-          attic: λέγει
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: παῖς
-        sense: pais
-        readings:
-          attic: παῖς
+      tokens: [{surface: τί, lexeme: ti, readings: {attic: τῐ́}}, {surface: λέγει, lexeme: lego, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: λέγει}}, {surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 4, readings: {attic: παῖς}}]
       reverse: |-
         τί λέγει ὁ παῖς
         τί ὁ παῖς λέγει
@@ -897,51 +385,27 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ἀκούω.
-      tokens:
-      - surface: ἀκούω
-        sense: akouo
-        form: form:pres-1s
-        readings:
-          attic: ᾰ̓κούω
+      tokens: [{surface: ἀκούω, lexeme: akouo, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: ᾰ̓κούω}}]
       reverse: ἀκούω
   translations:
     en: I (hear|am listening|'m listening).
 - id: s.04.30
   node: grc.u04.hear-and-learn
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: ἀκούεις;
-      tokens:
-      - surface: ἀκούεις
-        sense: akouo
-        form: form:pres-2s
-        readings:
-          attic: ᾰ̓κούεις
+      tokens: [{surface: ἀκούεις, lexeme: akouo, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: ᾰ̓κούεις}}]
       reverse: ἀκούεις
   translations:
     en: (Do you hear|Can you hear|Are you listening)?
-  persons:
-    addressee: sg
 - id: s.04.31
   node: grc.u04.hear-and-learn
   forms:
     grc-Grek/polytonic:
       text: ἀκούετε, ὦ παῖδες;
-      tokens:
-      - surface: ἀκούετε
-        sense: akouo
-        form: form:pres-2p
-        readings:
-          attic: ᾰ̓κούετε
-      - surface: ὦ
-        sense: o
-        readings:
-          attic: ὦ
-      - surface: παῖδες
-        sense: pais
-        form: form:pl
-        readings:
-          attic: παῖδες
+      tokens: [{surface: ἀκούετε, lexeme: akouo, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: ᾰ̓κούετε}}, {surface: ὦ, lexeme: o, readings: {attic: ὦ}}, {surface: παῖδες, lexeme: pais, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, readings: {attic: παῖδες}}]
       reverse: |-
         ἀκούετε ὦ παῖδες
         ἀκούετε παῖδες
@@ -953,46 +417,27 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: μανθάνω.
-      tokens:
-      - surface: μανθάνω
-        sense: manthano
-        form: form:pres-1s
-        readings:
-          attic: μᾰνθᾰ́νω
+      tokens: [{surface: μανθάνω, lexeme: manthano, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: μᾰνθᾰ́νω}}]
       reverse: μανθάνω
   translations:
     en: I (understand|see|am learning).
 - id: s.04.33
   node: grc.u04.hear-and-learn
+  tags:
+  - {persons: {addressee: sg}}
   forms:
     grc-Grek/polytonic:
       text: μανθάνεις;
-      tokens:
-      - surface: μανθάνεις
-        sense: manthano
-        form: form:pres-2s
-        readings:
-          attic: μᾰνθᾰ́νεις
+      tokens: [{surface: μανθάνεις, lexeme: manthano, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, readings: {attic: μᾰνθᾰ́νεις}}]
       reverse: μανθάνεις
   translations:
     en: (Do you understand|Do you see|Are you learning)?
-  persons:
-    addressee: sg
 - id: s.04.34
   node: grc.u04.hear-and-learn
   forms:
     grc-Grek/polytonic:
       text: οὐ μανθάνω.
-      tokens:
-      - surface: οὐ
-        sense: ou
-        readings:
-          attic: οὐ
-      - surface: μανθάνω
-        sense: manthano
-        form: form:pres-1s
-        readings:
-          attic: μᾰνθᾰ́νω
+      tokens: [{surface: οὐ, lexeme: ou, readings: {attic: οὐ}}, {surface: μανθάνω, lexeme: manthano, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: μᾰνθᾰ́νω}}]
       reverse: οὐ μανθάνω
   translations:
     en: (I do not|I don't) understand.
@@ -1001,22 +446,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: τὴν γλῶτταν μανθάνομεν.
-      tokens:
-      - surface: τὴν
-        sense: ho
-        form: form:f-acc
-        readings:
-          attic: τὴν
-      - surface: γλῶτταν
-        sense: glotta
-        form: form:f-acc
-        readings:
-          attic: γλῶττᾰν
-      - surface: μανθάνομεν
-        sense: manthano
-        form: form:pres-1p
-        readings:
-          attic: μᾰνθᾰ́νομεν
+      tokens: [{surface: τὴν, lexeme: ho, feats: {Case: Acc, Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: τὴν}}, {surface: γλῶτταν, lexeme: glotta, feats: {Case: Acc, Number: Sing}, n: 2, readings: {attic: γλῶττᾰν}}, {surface: μανθάνομεν, lexeme: manthano, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: μᾰνθᾰ́νομεν}}]
       reverse: |-
         τὴν γλῶτταν μανθάνομεν
         μανθάνομεν τὴν γλῶτταν
@@ -1027,12 +457,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: γράφω.
-      tokens:
-      - surface: γράφω
-        sense: grapho
-        form: form:pres-1s
-        readings:
-          attic: γρᾰ́φω
+      tokens: [{surface: γράφω, lexeme: grapho, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, readings: {attic: γρᾰ́φω}}]
       reverse: γράφω
   translations:
     en: I (am writing|'m writing|write).
@@ -1041,20 +466,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ παῖς γράφει.
-      tokens:
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: παῖς
-        sense: pais
-        readings:
-          attic: παῖς
-      - surface: γράφει
-        sense: grapho
-        form: form:pres-3s
-        readings:
-          attic: γρᾰ́φει
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, readings: {attic: παῖς}}, {surface: γράφει, lexeme: grapho, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: γρᾰ́φει}}]
       reverse: |-
         ὁ παῖς γράφει
         γράφει ὁ παῖς
@@ -1065,15 +477,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: σφόδρα γε.
-      tokens:
-      - surface: σφόδρα
-        sense: sphodra
-        readings:
-          attic: σφόδρᾰ
-      - surface: γε
-        sense: ge
-        readings:
-          attic: γε
+      tokens: [{surface: σφόδρα, lexeme: sphodra, readings: {attic: σφόδρᾰ}}, {surface: γε, lexeme: ge, readings: {attic: γε}}]
       reverse: σφόδρα γε
   translations:
     en: (Very much so|Yes, very much|Very much indeed).
@@ -1082,16 +486,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: οἰκογενής ἐστιν.
-      tokens:
-      - surface: οἰκογενής
-        sense: oikogenes
-        readings:
-          attic: οἰκογενής
-      - surface: ἐστιν
-        sense: eimi
-        form: form:pres-3s
-        readings:
-          attic: ἐστῐν
+      tokens: [{surface: οἰκογενής, lexeme: oikogenes, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: οἰκογενής}}, {surface: ἐστιν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐν}}]
       reverse: |-
         οἰκογενής ἐστιν
         οἰκογενής ἐστι
@@ -1103,19 +498,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: πάνυ γε σφόδρα.
-      tokens:
-      - surface: πάνυ
-        sense: pany
-        readings:
-          attic: πᾰ́νῠ
-      - surface: γε
-        sense: ge
-        readings:
-          attic: γε
-      - surface: σφόδρα
-        sense: sphodra
-        readings:
-          attic: σφόδρᾰ
+      tokens: [{surface: πάνυ, lexeme: pany, readings: {attic: πᾰ́νῠ}}, {surface: γε, lexeme: ge, readings: {attic: γε}}, {surface: σφόδρα, lexeme: sphodra, readings: {attic: σφόδρᾰ}}]
       reverse: πάνυ γε σφόδρα
   translations:
     en: (Yes, very much so|Very much so|Very much indeed|Absolutely).
@@ -1124,24 +507,7 @@ sentences:
   forms:
     grc-Grek/polytonic:
       text: ὁ παῖς Ἕλλην ἐστίν.
-      tokens:
-      - surface: ὁ
-        sense: ho
-        readings:
-          attic: ὁ
-      - surface: παῖς
-        sense: pais
-        readings:
-          attic: παῖς
-      - surface: Ἕλλην
-        sense: hellen
-        readings:
-          attic: Ἕλλην
-      - surface: ἐστίν
-        sense: eimi
-        form: form:pres-3s
-        readings:
-          attic: ἐστῐ́ν
+      tokens: [{surface: ὁ, lexeme: ho, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det, readings: {attic: ὁ}}, {surface: παῖς, lexeme: pais, feats: {Case: Nom, Gender: Masc, Number: Sing}, n: 2, readings: {attic: παῖς}}, {surface: Ἕλλην, lexeme: hellen, feats: {Case: Nom, Number: Sing}, readings: {attic: Ἕλλην}}, {surface: ἐστίν, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ́ν}}]
       reverse: |-
         ὁ παῖς Ἕλλην ἐστίν
         Ἕλλην ἐστὶ[ν] ὁ παῖς
@@ -1166,60 +532,21 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: πάνυ γε. δεῦρο πρόσελθε.
-          tokens:
-          - surface: πάνυ
-            sense: pany
-            readings:
-              attic: πᾰ́νῠ
-          - surface: γε
-            sense: ge
-            readings:
-              attic: γε
-          - surface: δεῦρο
-            sense: deuro
-            readings:
-              attic: δεῦρο
-          - surface: πρόσελθε
-            sense: proserchomai
-            form: form:impv-2s
-            readings:
-              attic: πρόσελθε
+          tokens: [{surface: πάνυ, lexeme: pany, readings: {attic: πᾰ́νῠ}}, {surface: γε, lexeme: ge, readings: {attic: γε}}, {surface: δεῦρο, lexeme: deuro, readings: {attic: δεῦρο}}, {surface: πρόσελθε, lexeme: proserchomai, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {attic: πρόσελθε}}]
       translations:
         en: “Certainly. Come here, you.”
   - line:
       speaker: socrates
       ask: complete
-      gap: sense:hellenizo
+      gap: lexeme:hellenizo
       asks: form
       distractors:
-      - form:pres-1s
-      - form:pres-3p
+      - {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}
+      - {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}
       forms:
         grc-Grek/polytonic:
           text: Ἕλλην μέν ἐστι καὶ ἑλληνίζει;
-          tokens:
-          - surface: Ἕλλην
-            sense: hellen
-            readings:
-              attic: Ἕλλην
-          - surface: μέν
-            sense: men
-            readings:
-              attic: μέν
-          - surface: ἐστι
-            sense: eimi
-            form: form:pres-3s
-            readings:
-              attic: ἐστῐ
-          - surface: καὶ
-            sense: kai
-            readings:
-              attic: καὶ
-          - surface: ἑλληνίζει
-            sense: hellenizo
-            form: form:pres-3s
-            readings:
-              attic: ἑλληνῐ́ζει
+          tokens: [{surface: Ἕλλην, lexeme: hellen, feats: {Case: Nom, Number: Sing}, readings: {attic: Ἕλλην}}, {surface: μέν, lexeme: men, readings: {attic: μέν}}, {surface: ἐστι, lexeme: eimi, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἐστῐ}}, {surface: καὶ, lexeme: kai, readings: {attic: καὶ}}, {surface: ἑλληνίζει, lexeme: hellenizo, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, readings: {attic: ἑλληνῐ́ζει}}]
       translations:
         en: “He is Greek, and speaks Greek?”
   - line:
@@ -1228,27 +555,7 @@ stories:
       forms:
         grc-Grek/polytonic:
           text: πάνυ γε σφόδρα, οἰκογενής γε.
-          tokens:
-          - surface: πάνυ
-            sense: pany
-            readings:
-              attic: πᾰ́νῠ
-          - surface: γε
-            sense: ge
-            readings:
-              attic: γε
-          - surface: σφόδρα
-            sense: sphodra
-            readings:
-              attic: σφόδρᾰ
-          - surface: οἰκογενής
-            sense: oikogenes
-            readings:
-              attic: οἰκογενής
-          - surface: γε
-            sense: ge
-            readings:
-              attic: γε
+          tokens: [{surface: πάνυ, lexeme: pany, readings: {attic: πᾰ́νῠ}}, {surface: γε, lexeme: ge, readings: {attic: γε}}, {surface: σφόδρα, lexeme: sphodra, readings: {attic: σφόδρᾰ}}, {surface: οἰκογενής, lexeme: oikogenes, feats: {Case: Nom, Gender: Masc, Number: Sing}, readings: {attic: οἰκογενής}}, {surface: γε, lexeme: ge, readings: {attic: γε}}]
       translations:
         en: '“Very much so: he was born in my house.”'
   - choose:

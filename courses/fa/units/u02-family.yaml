@@ -2,45 +2,18 @@
 # and the ezafe written ـٔ after a silent -e (خانوادهٔ من).
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
 id: family
-title: {en: My family}
+title:
+  en: My family
 cefr: A1
-kcs:
-- {id: 'sense:pedar', pos: NOUN, gloss: {en: father}, forms: {fa-Arab/standard: [پدر]}, notes: {en: 'Everyday speech also says بابا (bābā), dad.'}}
-- {id: 'sense:madar', pos: NOUN, gloss: {en: mother}, forms: {fa-Arab/standard: [مادر]}, notes: {en: 'Everyday speech also says مامان (māmān), mum.'}}
-- {id: 'sense:u', pos: PRON, features: {PronType: Prs}, gloss: {en: he; she}, forms: {fa-Arab/standard: [او]}, notes: {en: 'Persian has no grammatical gender: او is he or she. It is used for people; for things, use آن. Spoken Tehrani often says اون (un).'}}
-- {id: 'form:poss-1sg', gloss: {en: '-am: my (joined to a noun)'}, notes: {en: "پدرم (pedar-am) means the same as پدرِ من. After a silent -e it is written \u200cام: خانه\u200cام."}}
-- {id: 'sense:baradar', pos: NOUN, gloss: {en: brother}, forms: {fa-Arab/standard: [برادر]}}
-- {id: 'sense:khahar', pos: NOUN, gloss: {en: sister}, forms: {fa-Arab/standard: [خواهر]}, notes: {en: 'The و of خواهر is not pronounced: khāhar.'}}
-- {id: 'sense:ma', pos: PRON, features: {PronType: Prs}, gloss: {en: we; our (after a noun)}, forms: {fa-Arab/standard: [ما]}}
-- {id: 'form:1pl-im', gloss: {en: '-im: we (verb ending; هستیم: we are)'}}
-- {id: 'sense:kist', pos: PRON, features: {PronType: Int}, gloss: {en: 'who is …?'}, forms: {fa-Arab/standard: [کیست]}, notes: {en: 'کی + است. Spoken: کیه (kiye)?'}}
-- {id: 'sense:reza', pos: PROPN, gloss: {en: Reza (a name)}, forms: {fa-Arab/standard: [رضا]}}
-- {id: 'sense:sara', pos: PROPN, gloss: {en: Sara (a name)}, forms: {fa-Arab/standard: [سارا]}}
-- {id: 'sense:an', pos: DET, features: {PronType: Dem}, gloss: {en: "that; those (آن\u200cها: they)"}, forms: {fa-Arab/standard: [آن]}, notes: {en: 'Spoken Tehrani: اون (un), اونا (unā).'}}
-- {id: 'sense:doost', pos: NOUN, gloss: {en: 'friend (also in دوست داشتن: to like)'}, forms: {fa-Arab/standard: [دوست, دوستان]}}
-- {id: 'sense:ham', pos: ADV, gloss: {en: also; too}, forms: {fa-Arab/standard: [هم]}, notes: {en: 'It follows the word it adds to: سارا هم, Sara too.'}}
-- {id: 'sense:nist', pos: AUX, features: {Polarity: Neg}, gloss: {en: 'is not; am not, are not'}, forms: {fa-Arab/standard: [نیست]}, notes: {en: 'The negative of است and هستم: نیست, نیستم, نیستی, نیستیم, نیستید, نیستند. It also means ''there is no …''.'}}
-- {id: 'sense:hal', pos: NOUN, gloss: {en: 'state; how someone is (حالِ شما: how you are)'}, forms: {fa-Arab/standard: [حال]}}
-- {id: 'sense:chetor', pos: ADV, features: {PronType: Int}, gloss: {en: how}, forms: {fa-Arab/standard: [چطور]}, notes: {en: 'Spoken, to a friend: چطوری؟ (chetori?) How are you?'}}
-- {id: 'form:plural-an', gloss: {en: '-ān: plural (people and living things)'}, notes: {en: "دوستان (friends) is more formal than دوست\u200cها."}}
-- {id: 'sense:pesar', pos: NOUN, gloss: {en: son; boy}, forms: {fa-Arab/standard: [پسر]}}
-- {id: 'sense:dokhtar', pos: NOUN, gloss: {en: daughter; girl}, forms: {fa-Arab/standard: [دختر]}}
-- {id: 'sense:bachche', pos: NOUN, gloss: {en: child; kid}, forms: {fa-Arab/standard: [بچه]}, notes: {en: "بچه\u200cها: children; also a friendly 'guys'."}}
-- {id: 'sense:khanevade', pos: NOUN, gloss: {en: family}, forms: {fa-Arab/standard: [خانواده, خانوادهٔ]}, notes: {en: 'Usually takes a plural verb when it means the people: خانوادهٔ شما خوب هستند؟'}}
+graphemes:
 - {id: 'grapheme:hamze-ezafe', gloss: {en: 'ـٔ: the small hamza that writes the ezafe after a silent -e (خانوادهٔ من)'}, notes: {en: "Also written \u200cی (خانواده\u200cی من), or left out; answers with any of the three are accepted."}}
-- {id: 'sense:daneshju', pos: NOUN, gloss: {en: (university) student}, forms: {fa-Arab/standard: [دانشجو]}, image: {file: ../images/student.svg, license: CC0-1.0, provenance: {author: 'llm:claude@db6a47561192', status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: "A school pupil is دانش\u200cآموز."}}
-- {id: 'sense:moallem', pos: NOUN, gloss: {en: teacher}, forms: {fa-Arab/standard: [معلم]}, image: {file: ../images/teacher.svg, license: CC0-1.0, provenance: {author: 'llm:claude@ff0d70b80db5', status: draft}, source: Drawn for Nabu (courses/images)}}
-- {id: 'sense:pezeshk', pos: NOUN, gloss: {en: doctor; physician}, forms: {fa-Arab/standard: [پزشک]}, notes: {en: Everyday speech often says دکتر (doktor).}}
-- {id: 'sense:agha', pos: NOUN, gloss: {en: Mr.; sir; gentleman}, forms: {fa-Arab/standard: [آقا]}, notes: {en: 'Before a surname with the ezafe: آقای رضایی. After a first name it is friendly: علی آقا.'}}
-- {id: 'sense:khanom', pos: NOUN, gloss: {en: Mrs.; Ms.; lady}, forms: {fa-Arab/standard: [خانم]}, notes: {en: 'Before a surname: خانمِ احمدی. After a first name it is polite: مریم خانم.'}}
-- {id: 'sense:mehraban', pos: ADJ, gloss: {en: kind}, forms: {fa-Arab/standard: [مهربان]}}
 nodes:
-- {id: fa.family.parents, kind: lesson, introduces: ['sense:pedar', 'sense:madar', 'sense:u', 'form:poss-1sg']}
-- {id: fa.family.siblings, kind: lesson, introduces: ['sense:baradar', 'sense:khahar', 'sense:ma', 'form:1pl-im']}
-- {id: fa.family.who, kind: lesson, introduces: ['sense:kist', 'sense:reza', 'sense:sara', 'sense:an']}
-- {id: fa.family.friends, kind: lesson, introduces: ['sense:doost', 'sense:ham', 'sense:nist', 'sense:hal', 'sense:chetor', 'form:plural-an']}
-- {id: fa.family.children, kind: lesson, introduces: ['sense:pesar', 'sense:dokhtar', 'sense:bachche', 'sense:khanevade', 'grapheme:hamze-ezafe']}
-- {id: fa.family.work, kind: lesson, introduces: ['sense:daneshju', 'sense:moallem', 'sense:pezeshk', 'sense:agha', 'sense:khanom', 'sense:mehraban']}
+- {id: fa.family.parents, kind: lesson, introduces: ['lexeme:pedar', 'lexeme:madar', 'lexeme:u', 'lexeme:poss-1sg']}
+- {id: fa.family.siblings, kind: lesson, introduces: ['lexeme:baradar', 'lexeme:khahar', 'lexeme:ma', 'lexeme:1pl']}
+- {id: fa.family.who, kind: lesson, introduces: ['lexeme:kist', 'lexeme:reza', 'lexeme:sara', 'lexeme:an']}
+- {id: fa.family.friends, kind: lesson, introduces: ['lexeme:doost', 'lexeme:ham', 'lexeme:hal', 'lexeme:chetor', 'lexeme:pl-an']}
+- {id: fa.family.children, kind: lesson, introduces: ['lexeme:pesar', 'lexeme:dokhtar', 'lexeme:bachche', 'lexeme:khanevade', 'grapheme:hamze-ezafe']}
+- {id: fa.family.work, kind: lesson, introduces: ['lexeme:daneshju', 'lexeme:moallem', 'lexeme:pezeshk', 'lexeme:agha', 'lexeme:khanom', 'lexeme:mehraban']}
 - {id: fa.family.story, kind: story}
 sentences:
 - id: s.family.1
@@ -48,7 +21,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این پدرِ من است.
-      tokens: [{surface: این, sense: in}, {surface: پدرِ, sense: pedar, morphs: [{surface: پدرِ, kc: 'sense:pedar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: پدرِ, lexemes: [{lexeme: pedar, surface: پدرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexeme: budan}]
       reverse: این (پدر من است|پدرم است|پدر منه|پدرمه)
   translations:
     en: This is my (father|dad).
@@ -57,7 +30,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این مادرِ من است.
-      tokens: [{surface: این, sense: in}, {surface: مادرِ, sense: madar, morphs: [{surface: مادرِ, kc: 'sense:madar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: مادرِ, lexemes: [{lexeme: madar, surface: مادرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexeme: budan}]
       reverse: این (مادر من است|مادرم است|مادر منه|مادرمه)
   translations:
     en: This is my (mother|mom|mum).
@@ -66,7 +39,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: اسمِ مادرِ من مریم است.
-      tokens: [{surface: اسمِ, sense: esm, morphs: [{surface: اسمِ, kc: 'sense:esm'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: مادرِ, sense: madar, morphs: [{surface: مادرِ, kc: 'sense:madar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: است, sense: budan}]
+      tokens: [{surface: اسمِ, lexemes: [{lexeme: esm, surface: اسمِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: مادرِ, lexemes: [{lexeme: madar, surface: مادرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: مریم, lexeme: maryam}, {surface: است, lexeme: budan}]
       reverse: اسم (مادر من|مادرم) (مریم است|مریمه)
   translations:
     en: |-
@@ -77,7 +50,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: او مادرِ علی است.
-      tokens: [{surface: او, sense: u}, {surface: مادرِ, sense: madar, morphs: [{surface: مادرِ, kc: 'sense:madar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: علی, sense: ali}, {surface: است, sense: budan}]
+      tokens: [{surface: او, lexeme: u}, {surface: مادرِ, lexemes: [{lexeme: madar, surface: مادرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: علی, lexeme: ali}, {surface: است, lexeme: budan}]
       reverse: |-
         [او] مادر علی است
         او مادر علیه
@@ -88,7 +61,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: مادرم خوب است.
-      tokens: [{surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      tokens: [{surface: مادرم, lexemes: [{lexeme: madar, surface: مادر, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: خوب, lexeme: khub}, {surface: است, lexeme: budan}]
       reverse: |-
         (مادرم|مادر من) (خوب است|خوبه)
         حال مادرم خوب است
@@ -99,7 +72,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: پدر و مادرم خوب هستند.
-      tokens: [{surface: پدر, sense: pedar}, {surface: و, sense: va}, {surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
+      tokens: [{surface: پدر, lexeme: pedar}, {surface: و, lexeme: va}, {surface: مادرم, lexemes: [{lexeme: madar, surface: مادر, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: خوب, lexeme: khub}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 3pl, surface: ند}]}]
       reverse: |-
         (پدر و مادرم|پدر و مادر من|(پدرم|پدر من) و (مادرم|مادر من)) (خوب هستند|خوبند)
         حال پدر و مادرم خوب است
@@ -113,7 +86,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این برادرِ من است.
-      tokens: [{surface: این, sense: in}, {surface: برادرِ, sense: baradar, morphs: [{surface: برادرِ, kc: 'sense:baradar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: برادرِ, lexemes: [{lexeme: baradar, surface: برادرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexeme: budan}]
       reverse: این (برادر من است|برادرم است|برادر منه|برادرمه)
   translations:
     en: This is my brother.
@@ -122,7 +95,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این خواهرم است.
-      tokens: [{surface: این, sense: in}, {surface: خواهرم, sense: khahar, morphs: [{surface: خواهر, kc: 'sense:khahar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: است, sense: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: خواهرم, lexemes: [{lexeme: khahar, surface: خواهر, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: است, lexeme: budan}]
       reverse: این (خواهرم است|خواهر من است|خواهرمه|خواهر منه)
   translations:
     en: This is my sister.
@@ -131,7 +104,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: اسمِ برادرم علی است.
-      tokens: [{surface: اسمِ, sense: esm, morphs: [{surface: اسمِ, kc: 'sense:esm'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: برادرم, sense: baradar, morphs: [{surface: برادر, kc: 'sense:baradar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: علی, sense: ali}, {surface: است, sense: budan}]
+      tokens: [{surface: اسمِ, lexemes: [{lexeme: esm, surface: اسمِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: برادرم, lexemes: [{lexeme: baradar, surface: برادر, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: علی, lexeme: ali}, {surface: است, lexeme: budan}]
       reverse: |-
         اسم (برادرم|برادر من) علی است
         اسم برادرم علیه
@@ -144,7 +117,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این کتابِ ما است.
-      tokens: [{surface: این, sense: in}, {surface: کتابِ, sense: ketab, morphs: [{surface: کتابِ, kc: 'sense:ketab'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: ما, sense: ma}, {surface: است, sense: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: کتابِ, lexemes: [{lexeme: ketab, surface: کتابِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: ما, lexeme: ma}, {surface: است, lexeme: budan}]
       reverse: |-
         این کتاب (ما است|ماست)
         این کتابمان است
@@ -155,7 +128,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: ما خوب هستیم.
-      tokens: [{surface: ما, sense: ma}, {surface: خوب, sense: khub}, {surface: هستیم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      tokens: [{surface: ما, lexeme: ma}, {surface: خوب, lexeme: khub}, {surface: هستیم, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 1pl, surface: یم}]}]
       reverse: |-
         [ما] (خوب هستیم|خوبیم)
         حال ما خوب است
@@ -167,7 +140,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: ما خواهر و برادر هستیم.
-      tokens: [{surface: ما, sense: ma}, {surface: خواهر, sense: khahar}, {surface: و, sense: va}, {surface: برادر, sense: baradar}, {surface: هستیم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      tokens: [{surface: ما, lexeme: ma}, {surface: خواهر, lexeme: khahar}, {surface: و, lexeme: va}, {surface: برادر, lexeme: baradar}, {surface: هستیم, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 1pl, surface: یم}]}]
       reverse: '[ما] (خواهر و برادر هستیم|برادر و خواهر هستیم|خواهر و برادریم|برادر و خواهریم)'
   translations:
     en: We('re| are) (sister and brother|brother and sister|siblings).
@@ -176,7 +149,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این کیست؟
-      tokens: [{surface: این, sense: in}, {surface: کیست, sense: kist}]
+      tokens: [{surface: این, lexeme: in}, {surface: کیست, lexeme: kist}]
       reverse: این (کیست|کیه)
   translations:
     en: Who('s| is) this?
@@ -185,7 +158,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این رضا است.
-      tokens: [{surface: این, sense: in}, {surface: رضا, sense: reza}, {surface: است, sense: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: رضا, lexeme: reza}, {surface: است, lexeme: budan}]
       reverse: این (رضا است|رضاست)
   translations:
     en: This is Reza.
@@ -194,7 +167,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: رضا برادرِ مریم است.
-      tokens: [{surface: رضا, sense: reza}, {surface: برادرِ, sense: baradar, morphs: [{surface: برادرِ, kc: 'sense:baradar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: مریم, sense: maryam}, {surface: است, sense: budan}]
+      tokens: [{surface: رضا, lexeme: reza}, {surface: برادرِ, lexemes: [{lexeme: baradar, surface: برادرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: مریم, lexeme: maryam}, {surface: است, lexeme: budan}]
       reverse: |-
         رضا برادر مریم است
         رضا برادر مریمه
@@ -205,7 +178,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این سارا است.
-      tokens: [{surface: این, sense: in}, {surface: سارا, sense: sara}, {surface: است, sense: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: سارا, lexeme: sara}, {surface: است, lexeme: budan}]
       reverse: این (سارا است|ساراست)
   translations:
     en: This is Sara.
@@ -214,7 +187,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: آن کتابِ سارا است.
-      tokens: [{surface: آن, sense: an}, {surface: کتابِ, sense: ketab, morphs: [{surface: کتابِ, kc: 'sense:ketab'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: سارا, sense: sara}, {surface: است, sense: budan}]
+      tokens: [{surface: آن, lexeme: an}, {surface: کتابِ, lexemes: [{lexeme: ketab, surface: کتابِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: سارا, lexeme: sara}, {surface: است, lexeme: budan}]
       reverse: آن کتاب (سارا است|ساراست)
   translations:
     en: That('s| is) Sara's book.
@@ -223,7 +196,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: او کیست؟
-      tokens: [{surface: او, sense: u}, {surface: کیست, sense: kist}]
+      tokens: [{surface: او, lexeme: u}, {surface: کیست, lexeme: kist}]
       reverse: او (کیست|کیه)
   translations:
     en: Who('s| is) (she|he)?
@@ -232,7 +205,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: رضا دوستِ من است.
-      tokens: [{surface: رضا, sense: reza}, {surface: دوستِ, sense: doost, morphs: [{surface: دوستِ, kc: 'sense:doost'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      tokens: [{surface: رضا, lexeme: reza}, {surface: دوستِ, lexemes: [{lexeme: doost, surface: دوستِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexeme: budan}]
       reverse: رضا (دوست من است|دوستم است|دوست منه|دوستمه)
   translations:
     en: |-
@@ -243,7 +216,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: سارا هم دوستِ من است.
-      tokens: [{surface: سارا, sense: sara}, {surface: هم, sense: ham}, {surface: دوستِ, sense: doost, morphs: [{surface: دوستِ, kc: 'sense:doost'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      tokens: [{surface: سارا, lexeme: sara}, {surface: هم, lexeme: ham}, {surface: دوستِ, lexemes: [{lexeme: doost, surface: دوستِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexeme: budan}]
       reverse: سارا هم (دوست من است|دوستم است|دوست منه|دوستمه)
   translations:
     en: Sara( is|'s) (also my friend|my friend too|my friend as well|also a friend of mine|a friend of mine too).
@@ -252,17 +225,18 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این کتابِ من نیست.
-      tokens: [{surface: این, sense: in}, {surface: کتابِ, sense: ketab, morphs: [{surface: کتابِ, kc: 'sense:ketab'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: نیست, sense: nist}]
+      tokens: [{surface: این, lexeme: in}, {surface: کتابِ, lexemes: [{lexeme: ketab, surface: کتابِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: نیست, lexeme: budan, feats: {Polarity: Neg}}]
       reverse: این (کتاب من|کتابم) نیست
   translations:
     en: This (isn't|is not) my book.
 - id: s.family.22
   node: fa.family.friends
-  register: formal
+  tags:
+  - {register: formal}
   forms:
     fa-Arab/standard:
       text: حالِ شما خوب است؟
-      tokens: [{surface: حالِ, sense: hal, morphs: [{surface: حالِ, kc: 'sense:hal'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: شما, sense: shoma}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      tokens: [{surface: حالِ, lexemes: [{lexeme: hal, surface: حالِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: شما, lexeme: shoma}, {surface: خوب, lexeme: khub}, {surface: است, lexeme: budan}]
       reverse: |-
         حال شما (خوب است|خوبه)
         (حالتان|حال تو|حالت) (خوب است|خوبه)
@@ -275,11 +249,12 @@ sentences:
       Are you doing well?
 - id: s.family.23
   node: fa.family.friends
-  register: formal
+  tags:
+  - {register: formal}
   forms:
     fa-Arab/standard:
       text: حالِ شما چطور است؟
-      tokens: [{surface: حالِ, sense: hal, morphs: [{surface: حالِ, kc: 'sense:hal'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: شما, sense: shoma}, {surface: چطور, sense: chetor}, {surface: است, sense: budan}]
+      tokens: [{surface: حالِ, lexemes: [{lexeme: hal, surface: حالِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: شما, lexeme: shoma}, {surface: چطور, lexeme: chetor}, {surface: است, lexeme: budan}]
       reverse: |-
         حال شما (چطور است|چطوره)
         (حالتان|حال تو|حالت) (چطور است|چطوره)
@@ -296,8 +271,8 @@ sentences:
   forms:
     fa-Arab/standard:
       text: رضا و سارا دوستانِ ما هستند.
-      tokens: [{surface: رضا, sense: reza}, {surface: و, sense: va}, {surface: سارا, sense: sara}, {surface: دوستانِ, sense: doost, morphs: [{surface: دوست, kc: 'sense:doost'}, {surface: انِ, kc: 'form:plural-an'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: ما, sense: ma}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      reverse: "رضا و سارا (دوستان|دوست\u200Cهای) ما هستند\nرضا و سارا دوستانمان هستند\nرضا و سارا دوست\u200Cهایمان هستند"
+      tokens: [{surface: رضا, lexeme: reza}, {surface: و, lexeme: va}, {surface: سارا, lexeme: sara}, {surface: دوستانِ, lexemes: [{lexeme: doost, surface: دوست, base: true}, {lexeme: pl-an, surface: انِ}, {lexeme: ezafe, surface: ''}]}, {surface: ما, lexeme: ma}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 3pl, surface: ند}]}]
+      reverse: "رضا و سارا (دوستان|دوست\u200cهای) ما هستند\nرضا و سارا دوستانمان هستند\nرضا و سارا دوست\u200cهایمان هستند"
   translations:
     en: |-
       Reza and Sara are our friends.
@@ -307,7 +282,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این پسرِ من است.
-      tokens: [{surface: این, sense: in}, {surface: پسرِ, sense: pesar, morphs: [{surface: پسرِ, kc: 'sense:pesar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: پسرِ, lexemes: [{lexeme: pesar, surface: پسرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexeme: budan}]
       reverse: این (پسر من است|پسرم است|پسر منه|پسرمه)
   translations:
     en: This is my (son|boy).
@@ -316,7 +291,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: آن دختر کیست؟
-      tokens: [{surface: آن, sense: an}, {surface: دختر, sense: dokhtar}, {surface: کیست, sense: kist}]
+      tokens: [{surface: آن, lexeme: an}, {surface: دختر, lexeme: dokhtar}, {surface: کیست, lexeme: kist}]
       reverse: آن دختر (کیست|کیه)
   translations:
     en: Who('s| is) that girl?
@@ -325,7 +300,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: او دخترِ سارا است.
-      tokens: [{surface: او, sense: u}, {surface: دخترِ, sense: dokhtar, morphs: [{surface: دخترِ, kc: 'sense:dokhtar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: سارا, sense: sara}, {surface: است, sense: budan}]
+      tokens: [{surface: او, lexeme: u}, {surface: دخترِ, lexemes: [{lexeme: dokhtar, surface: دخترِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: سارا, lexeme: sara}, {surface: است, lexeme: budan}]
       reverse: '[او] دختر (سارا است|ساراست)'
   translations:
     en: She('s| is) Sara's daughter.
@@ -334,8 +309,8 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "بچه\u200cها خوب هستند."
-      tokens: [{surface: "بچه\u200cها", sense: bachche, morphs: [{surface: "بچه\u200c", kc: 'sense:bachche'}, {surface: ها, kc: 'form:plural-ha'}]}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      reverse: "بچه\u200Cها (خوب هستند|خوبند)\nحال بچه\u200Cها خوب است"
+      tokens: [{surface: "بچه\u200cها", lexemes: [{lexeme: bachche, surface: "بچه\u200c", base: true}, {lexeme: pl, surface: ها}]}, {surface: خوب, lexeme: khub}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 3pl, surface: ند}]}]
+      reverse: "بچه\u200cها (خوب هستند|خوبند)\nحال بچه\u200cها خوب است"
   translations:
     en: The (children|kids) are (well|fine|good|OK|okay|all right).
 - id: s.family.29
@@ -343,18 +318,19 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این خانوادهٔ من است.
-      tokens: [{surface: این, sense: in}, {surface: خانوادهٔ, sense: khanevade, morphs: [{surface: خانوادهٔ, kc: 'sense:khanevade'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
-      reverse: "این خانواد(هٔ|ه\u200Cی|ه) من است\nاین خانواده\u200Cام است\nاین خانواده\u200Cی منه"
+      tokens: [{surface: این, lexeme: in}, {surface: خانوادهٔ, lexemes: [{lexeme: khanevade, surface: خانوادهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexeme: budan}]
+      reverse: "این خانواد(هٔ|ه\u200cی|ه) من است\nاین خانواده\u200cام است\nاین خانواده\u200cی منه"
   translations:
     en: This is my family.
 - id: s.family.30
   node: fa.family.children
-  register: formal
+  tags:
+  - {register: formal}
   forms:
     fa-Arab/standard:
       text: خانوادهٔ شما خوب هستند؟
-      tokens: [{surface: خانوادهٔ, sense: khanevade, morphs: [{surface: خانوادهٔ, kc: 'sense:khanevade'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: شما, sense: shoma}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      reverse: "خانواد(هٔ|ه\u200Cی|ه) (شما|تو) (خوب هستند|خوبند|خوب است|خوبه)\n(خانواده\u200Cتان|خانواده\u200Cات) (خوب هستند|خوبند|خوب است|خوبه)\nآیا خانواده شما خوب هستند\nحال خانواده\u200Cتان خوب است"
+      tokens: [{surface: خانوادهٔ, lexemes: [{lexeme: khanevade, surface: خانوادهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: شما, lexeme: shoma}, {surface: خوب, lexeme: khub}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 3pl, surface: ند}]}]
+      reverse: "خانواد(هٔ|ه\u200cی|ه) (شما|تو) (خوب هستند|خوبند|خوب است|خوبه)\n(خانواده\u200cتان|خانواده\u200cات) (خوب هستند|خوبند|خوب است|خوبه)\nآیا خانواده شما خوب هستند\nحال خانواده\u200cتان خوب است"
   translations:
     en: |-
       Is your family (well|OK|okay|all right|fine|doing well)?
@@ -364,7 +340,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: من دانشجو هستم.
-      tokens: [{surface: من, sense: man}, {surface: دانشجو, sense: daneshju}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: دانشجو, lexeme: daneshju}, {surface: هستم, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 1sg, surface: م}]}]
       reverse: '[من] (دانشجو هستم|دانشجویم)'
   translations:
     en: |-
@@ -375,7 +351,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: مادرم معلم است.
-      tokens: [{surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: معلم, sense: moallem}, {surface: است, sense: budan}]
+      tokens: [{surface: مادرم, lexemes: [{lexeme: madar, surface: مادر, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: معلم, lexeme: moallem}, {surface: است, lexeme: budan}]
       reverse: (مادرم|مادر من) (معلم است|معلمه)
   translations:
     en: My (mother|mom|mum) is a teacher.
@@ -384,7 +360,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: پدرِ سارا پزشک است.
-      tokens: [{surface: پدرِ, sense: pedar, morphs: [{surface: پدرِ, kc: 'sense:pedar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: سارا, sense: sara}, {surface: پزشک, sense: pezeshk}, {surface: است, sense: budan}]
+      tokens: [{surface: پدرِ, lexemes: [{lexeme: pedar, surface: پدرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: سارا, lexeme: sara}, {surface: پزشک, lexeme: pezeshk}, {surface: است, lexeme: budan}]
       reverse: |-
         پدر سارا (پزشک|دکتر) است
         پدر سارا پزشکه
@@ -392,11 +368,12 @@ sentences:
     en: Sara's (father|dad) is a doctor.
 - id: s.family.34
   node: fa.family.work
-  register: formal
+  tags:
+  - {register: formal}
   forms:
     fa-Arab/standard:
       text: شما هم دانشجو هستید؟
-      tokens: [{surface: شما, sense: shoma}, {surface: هم, sense: ham}, {surface: دانشجو, sense: daneshju}, {surface: هستید, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      tokens: [{surface: شما, lexeme: shoma}, {surface: هم, lexeme: ham}, {surface: دانشجو, lexeme: daneshju}, {surface: هستید, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         [شما] هم (دانشجو هستید|دانشجویید)
         [تو] هم (دانشجو هستی|دانشجویی)
@@ -410,7 +387,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این آقا پزشک است.
-      tokens: [{surface: این, sense: in}, {surface: آقا, sense: agha}, {surface: پزشک, sense: pezeshk}, {surface: است, sense: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: آقا, lexeme: agha}, {surface: پزشک, lexeme: pezeshk}, {surface: است, lexeme: budan}]
       reverse: |-
         این آقا (پزشک|دکتر) است
         این آقا پزشکه
@@ -421,7 +398,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: آن خانم معلم است.
-      tokens: [{surface: آن, sense: an}, {surface: خانم, sense: khanom}, {surface: معلم, sense: moallem}, {surface: است, sense: budan}]
+      tokens: [{surface: آن, lexeme: an}, {surface: خانم, lexeme: khanom}, {surface: معلم, lexeme: moallem}, {surface: است, lexeme: budan}]
       reverse: آن خانم (معلم است|معلمه)
   translations:
     en: That (lady|woman) is a teacher.
@@ -430,7 +407,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: معلمِ ما خیلی مهربان است.
-      tokens: [{surface: معلمِ, sense: moallem, morphs: [{surface: معلمِ, kc: 'sense:moallem'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: ما, sense: ma}, {surface: خیلی, sense: kheyli}, {surface: مهربان, sense: mehraban}, {surface: است, sense: budan}]
+      tokens: [{surface: معلمِ, lexemes: [{lexeme: moallem, surface: معلمِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: ما, lexeme: ma}, {surface: خیلی, lexeme: kheyli}, {surface: مهربان, lexeme: mehraban}, {surface: است, lexeme: budan}]
       reverse: |-
         معلم ما خیلی مهربان است
         معلممان خیلی مهربان است
@@ -440,85 +417,111 @@ sentences:
 stories:
 - id: fa.story.family
   node: fa.family.story
-  title: {en: Maryam's family}
-  provenance: {author: 'llm:claude@83a16c835c32', status: draft}
+  title:
+    en: Maryam's family
+  provenance:
+    author: llm:claude@83a16c835c32
+    status: draft
   characters:
-  - {id: maryam, name: {fa-Arab/standard: مریم}}
-  - {id: sara, name: {fa-Arab/standard: سارا}}
+  - id: maryam
+    name:
+      fa-Arab/standard: مریم
+  - id: sara
+    name:
+      fa-Arab/standard: سارا
   steps:
   - line:
       speaker: maryam
       forms:
         fa-Arab/standard:
           text: سلام سارا! این خانوادهٔ من است.
-          tokens: [{surface: سلام, sense: salam}, {surface: سارا, sense: sara}, {surface: این, sense: in}, {surface: خانوادهٔ, sense: khanevade, morphs: [{surface: خانوادهٔ, kc: 'sense:khanevade'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
-      translations: {en: Hi Sara! This is my family.}
+          tokens: [{surface: سلام, lexeme: salam}, {surface: سارا, lexeme: sara}, {surface: این, lexeme: in}, {surface: خانوادهٔ, lexemes: [{lexeme: khanevade, surface: خانوادهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexeme: budan}]
+      translations:
+        en: Hi Sara! This is my family.
   - line:
       speaker: sara
       forms:
         fa-Arab/standard:
           text: سلام! این کیست؟
-          tokens: [{surface: سلام, sense: salam}, {surface: این, sense: in}, {surface: کیست, sense: kist}]
-      translations: {en: 'Hi! Who''s this?'}
+          tokens: [{surface: سلام, lexeme: salam}, {surface: این, lexeme: in}, {surface: کیست, lexeme: kist}]
+      translations:
+        en: Hi! Who's this?
   - line:
       speaker: maryam
       forms:
         fa-Arab/standard:
           text: این پدرم است. او پزشک است.
-          tokens: [{surface: این, sense: in}, {surface: پدرم, sense: pedar, morphs: [{surface: پدر, kc: 'sense:pedar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: است, sense: budan}, {surface: او, sense: u}, {surface: پزشک, sense: pezeshk}, {surface: است, sense: budan}]
-      translations: {en: This is my father. He's a doctor.}
+          tokens: [{surface: این, lexeme: in}, {surface: پدرم, lexemes: [{lexeme: pedar, surface: پدر, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: است, lexeme: budan}, {surface: او, lexeme: u}, {surface: پزشک, lexeme: pezeshk}, {surface: است, lexeme: budan}]
+      translations:
+        en: This is my father. He's a doctor.
   - line:
       speaker: sara
       forms:
         fa-Arab/standard:
           text: و این مادرِ تو است؟
-          tokens: [{surface: و, sense: va}, {surface: این, sense: in}, {surface: مادرِ, sense: madar, morphs: [{surface: مادرِ, kc: 'sense:madar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: تو, sense: to}, {surface: است, sense: budan}]
-      translations: {en: 'And is this your mother?'}
+          tokens: [{surface: و, lexeme: va}, {surface: این, lexeme: in}, {surface: مادرِ, lexemes: [{lexeme: madar, surface: مادرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: تو, lexeme: to}, {surface: است, lexeme: budan}]
+      translations:
+        en: And is this your mother?
   - line:
       speaker: maryam
       forms:
         fa-Arab/standard:
           text: بله. مادرم معلم است. او خیلی مهربان است.
-          tokens: [{surface: بله, sense: bale}, {surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: معلم, sense: moallem}, {surface: است, sense: budan}, {surface: او, sense: u}, {surface: خیلی, sense: kheyli}, {surface: مهربان, sense: mehraban}, {surface: است, sense: budan}]
-      translations: {en: Yes. My mother is a teacher. She's very kind.}
+          tokens: [{surface: بله, lexeme: bale}, {surface: مادرم, lexemes: [{lexeme: madar, surface: مادر, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: معلم, lexeme: moallem}, {surface: است, lexeme: budan}, {surface: او, lexeme: u}, {surface: خیلی, lexeme: kheyli}, {surface: مهربان, lexeme: mehraban}, {surface: است, lexeme: budan}]
+      translations:
+        en: Yes. My mother is a teacher. She's very kind.
   - choose:
-      prompt: {en: 'What does Maryam''s mother do?'}
-      options: [{en: She's a teacher.}, {en: She's a doctor.}, {en: She's a student.}]
+      prompt:
+        en: What does Maryam's mother do?
+      options:
+      - en: She's a teacher.
+      - en: She's a doctor.
+      - en: She's a student.
       answer: 0
   - line:
       speaker: sara
       forms:
         fa-Arab/standard:
           text: آن پسر کیست؟
-          tokens: [{surface: آن, sense: an}, {surface: پسر, sense: pesar}, {surface: کیست, sense: kist}]
-      translations: {en: 'Who''s that boy?'}
+          tokens: [{surface: آن, lexeme: an}, {surface: پسر, lexeme: pesar}, {surface: کیست, lexeme: kist}]
+      translations:
+        en: Who's that boy?
   - line:
       speaker: maryam
       ask: complete
-      gap: sense:baradar
-      distractors: ['sense:pedar', 'sense:madar']
+      gap: lexeme:baradar
+      distractors:
+      - lexeme:pedar
+      - lexeme:madar
       forms:
         fa-Arab/standard:
           text: او برادرِ من است. اسمِ او رضا است.
-          tokens: [{surface: او, sense: u}, {surface: برادرِ, sense: baradar, morphs: [{surface: برادرِ, kc: 'sense:baradar'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}, {surface: اسمِ, sense: esm, morphs: [{surface: اسمِ, kc: 'sense:esm'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: او, sense: u}, {surface: رضا, sense: reza}, {surface: است, sense: budan}]
-      translations: {en: He's my brother. His name is Reza.}
+          tokens: [{surface: او, lexeme: u}, {surface: برادرِ, lexemes: [{lexeme: baradar, surface: برادرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexeme: budan}, {surface: اسمِ, lexemes: [{lexeme: esm, surface: اسمِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: او, lexeme: u}, {surface: رضا, lexeme: reza}, {surface: است, lexeme: budan}]
+      translations:
+        en: He's my brother. His name is Reza.
   - line:
       speaker: sara
       forms:
         fa-Arab/standard:
           text: رضا هم پزشک است؟
-          tokens: [{surface: رضا, sense: reza}, {surface: هم, sense: ham}, {surface: پزشک, sense: pezeshk}, {surface: است, sense: budan}]
-      translations: {en: 'Is Reza a doctor too?'}
+          tokens: [{surface: رضا, lexeme: reza}, {surface: هم, lexeme: ham}, {surface: پزشک, lexeme: pezeshk}, {surface: است, lexeme: budan}]
+      translations:
+        en: Is Reza a doctor too?
   - line:
       speaker: maryam
       forms:
         fa-Arab/standard:
           text: نه، او پزشک نیست. رضا دانشجو است.
-          tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: او, sense: u}, {surface: پزشک, sense: pezeshk}, {surface: نیست, sense: nist}, {surface: رضا, sense: reza}, {surface: دانشجو, sense: daneshju}, {surface: است, sense: budan}]
-      translations: {en: 'No, he isn''t a doctor. Reza is a student.'}
+          tokens: [{surface: نه, lexeme: na, vocalized: نَه}, {surface: او, lexeme: u}, {surface: پزشک, lexeme: pezeshk}, {surface: نیست, lexeme: budan, feats: {Polarity: Neg}}, {surface: رضا, lexeme: reza}, {surface: دانشجو, lexeme: daneshju}, {surface: است, lexeme: budan}]
+      translations:
+        en: No, he isn't a doctor. Reza is a student.
   - choose:
-      prompt: {en: 'Who is Reza?'}
-      options: [{en: Maryam's brother}, {en: Maryam's father}, {en: Sara's brother}]
+      prompt:
+        en: Who is Reza?
+      options:
+      - en: Maryam's brother
+      - en: Maryam's father
+      - en: Sara's brother
       answer: 0
   - line:
       speaker: sara
@@ -526,12 +529,14 @@ stories:
       forms:
         fa-Arab/standard:
           text: خانوادهٔ تو خیلی مهربان است!
-          tokens: [{surface: خانوادهٔ, sense: khanevade, morphs: [{surface: خانوادهٔ, kc: 'sense:khanevade'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: تو, sense: to}, {surface: خیلی, sense: kheyli}, {surface: مهربان, sense: mehraban}, {surface: است, sense: budan}]
-      translations: {en: Your family is very kind!}
+          tokens: [{surface: خانوادهٔ, lexemes: [{lexeme: khanevade, surface: خانوادهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: تو, lexeme: to}, {surface: خیلی, lexeme: kheyli}, {surface: مهربان, lexeme: mehraban}, {surface: است, lexeme: budan}]
+      translations:
+        en: Your family is very kind!
   - line:
       speaker: maryam
       forms:
         fa-Arab/standard:
           text: ممنون، سارا!
-          tokens: [{surface: ممنون, sense: mamnun}, {surface: سارا, sense: sara}]
-      translations: {en: 'Thanks, Sara!'}
+          tokens: [{surface: ممنون, lexeme: mamnun}, {surface: سارا, lexeme: sara}]
+      translations:
+        en: Thanks, Sara!

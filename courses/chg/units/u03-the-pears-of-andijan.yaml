@@ -8,232 +8,20 @@ id: u03-the-pears-of-andijan
 title:
   en: The pears of Andijan
 cefr: A1
-kcs:
-- id: sense:bol
-  pos: VERB
-  gloss:
-    en: to be, to become; to be found, grow
-  forms:
-    chg-Arab/standard:
-    - بول-
-    chg-Latn/schluessel:
-    - bol-
-  readings:
-    schluessel: bol
-- id: sense:uzum
-  pos: NOUN
-  gloss:
-    en: grape, grapes
-  forms:
-    chg-Arab/standard:
-    - اوزوم
-    chg-Latn/schluessel:
-    - üzüm
-  readings:
-    schluessel: üzüm
-- id: sense:nashpati
-  pos: NOUN
-  gloss:
-    en: pear, pears
-  forms:
-    chg-Arab/standard:
-    - ناشپاتی
-    chg-Latn/schluessel:
-    - našpati
-  readings:
-    schluessel: našpati
-- id: sense:wafir
-  pos: ADJ
-  gloss:
-    en: abundant, ample
-  forms:
-    chg-Arab/standard:
-    - وافر
-    chg-Latn/schluessel:
-    - wāfir
-  readings:
-    schluessel: wāfir
-- id: sense:el
-  pos: NOUN
-  gloss:
-    en: people, nation; the people of a place
-  forms:
-    chg-Arab/standard:
-    - ایل
-    chg-Latn/schluessel:
-    - el
-  readings:
-    schluessel: el
-- id: sense:turk
-  pos: PROPN
-  gloss:
-    en: Turk, Turkic; the Turks
-  forms:
-    chg-Arab/standard:
-    - تورک
-    chg-Latn/schluessel:
-    - Türk
-  readings:
-    schluessel: Türk
-- id: sense:bazar
-  pos: NOUN
-  gloss:
-    en: market, bazaar
-  forms:
-    chg-Arab/standard:
-    - بزار
-    chg-Latn/schluessel:
-    - bazār
-  readings:
-    schluessel: bazār
-- id: sense:bar.go
-  pos: VERB
-  gloss:
-    en: to go
-  forms:
-    chg-Arab/standard:
-    - بار-
-    chg-Latn/schluessel:
-    - bar-
-  readings:
-    schluessel: bar
-- id: sense:kal
-  pos: VERB
-  gloss:
-    en: to come
-  forms:
-    chg-Arab/standard:
-    - کل-
-    chg-Latn/schluessel:
-    - käl-
-  readings:
-    schluessel: käl
-- id: sense:ulugh
-  pos: ADJ
-  gloss:
-    en: great, big
-  forms:
-    chg-Arab/standard:
-    - اولوغ
-    chg-Latn/schluessel:
-    - uluǧ
-  readings:
-    schluessel: uluǧ
-- id: sense:qurghan
-  pos: NOUN
-  gloss:
-    en: fortress, castle
-  forms:
-    chg-Arab/standard:
-    - قورغان
-    chg-Latn/schluessel:
-    - qurǧan
-  readings:
-    schluessel: qurǧan
-- id: sense:paytakht
-  pos: NOUN
-  gloss:
-    en: capital city
-  forms:
-    chg-Arab/standard:
-    - "پای\u200cتخت"
-    chg-Latn/schluessel:
-    - pāytaḫt
-  readings:
-    schluessel: pāytaḫt
-- id: sense:samarqand
-  pos: PROPN
-  gloss:
-    en: Samarkand
-  forms:
-    chg-Arab/standard:
-    - سمرقند
-    chg-Latn/schluessel:
-    - Samarqand
-  readings:
-    schluessel: Samarqand
-- id: form:pl
-  gloss:
-    en: '-lar, -lär: the plural'
-  notes:
-    en: '-lar after a back vowel (a, o, u: atlar "horses"), -lär after a front one (ä, ö, ü, and mostly i, e: öylär "houses"); the script writes both لار. After a number the noun stays singular: üč aṭ "three
-      horses".'
-- id: form:aor
-  gloss:
-    en: '-ur, -ar (-r after a vowel): does, will do; is, as a rule'
-  notes:
-    en: 'The aorist says what is so, or happens, as a rule or in general: üzümi yaḫši bolur "its grapes are (always) good". Babur describes his country in it.'
-- id: form:aor-neg
-  gloss:
-    en: '-mas, -mäs: does not, will not; is not, as a rule'
-  notes:
-    en: 'The aorist''s negative: yaḫširaq našpati bolmas "there are no better pears". emäs "is not" is this form of the old verb e- "to be".'
-- id: form:abl
-  gloss:
-    en: '-din (-dan, -tin): from; than'
-  notes:
-    en: 'Where from: Andijāndin "from Andijan". With -raq it is "than": mundin yaḫširaq "better than this".'
-- id: form:dat
-  gloss:
-    en: '-ǧa, -gä (-qa, -kä): to, for'
-  notes:
-    en: 'Where to: šaharǧa "to the city". Scribes write it غه whatever the vowels (Kašǧarǧa, Ḫotangä), and قه or که after q or k.'
-- id: form:cmp
-  gloss:
-    en: '-raq, -räk: more ..., -er'
-  notes:
-    en: 'yaḫši "good", yaḫširaq "better"; čoŋ "big", čoŋraq "bigger". What it is compared with takes -din: Andijāndin čoŋraq "bigger than Andijan".'
-- id: form:pres
-  gloss:
-    en: '-a, -ä (-y after a vowel): the present-future: does, is doing, will do'
-  notes:
-    en: 'The stem takes -a or -ä, then a person ending: baradur "goes, is going, will go" (-dur for he, she, it). Unit 5 has the other persons.'
 nodes:
-- id: chg.u03.plural
-  kind: lesson
-  introduces:
-  - form:pl
-- id: chg.u03.grapes
-  kind: lesson
-  introduces:
-  - sense:uzum
-  - sense:bol
-  - form:aor
-  - sense:nashpati
-  - sense:wafir
-  - sense:el
-  - sense:turk
-- id: chg.u03.from
-  kind: lesson
-  introduces:
-  - form:abl
-  - sense:samarqand
-  - sense:kal
-  - form:pres
-  - sense:bazar
-- id: chg.u03.to
-  kind: lesson
-  introduces:
-  - form:dat
-  - sense:bar.go
-- id: chg.u03.better
-  kind: lesson
-  introduces:
-  - form:cmp
-  - sense:ulugh
-  - sense:qurghan
-  - form:aor-neg
-  - sense:paytakht
-- id: chg.u03.story
-  kind: story
+- {id: chg.u03.plural, kind: lesson, introduces: ['lexeme:pl']}
+- {id: chg.u03.grapes, kind: lesson, introduces: ['lexeme:uzum', 'lexeme:bol', 'lexeme:aor', 'lexeme:nashpati', 'lexeme:wafir', 'lexeme:el', 'lexeme:turk']}
+- {id: chg.u03.from, kind: lesson, introduces: ['lexeme:abl', 'lexeme:samarqand', 'lexeme:kal', 'lexeme:pres', 'lexeme:bazar']}
+- {id: chg.u03.to, kind: lesson, introduces: ['lexeme:dat', 'lexeme:bar.go']}
+- {id: chg.u03.better, kind: lesson, introduces: ['lexeme:cmp', 'lexeme:ulugh', 'lexeme:qurghan', 'lexeme:aor-neg', 'lexeme:paytakht']}
+- {id: chg.u03.story, kind: story}
 sentences:
 - id: s.03.1
   node: chg.u03.plural
   forms:
     chg-Arab/standard:
       text: آطلار.
-      tokens:
-      - {surface: آطلار, sense: at, readings: {schluessel: aṭlar}, morphs: [{surface: آط, kc: 'sense:at'}, {surface: لار, kc: 'form:pl'}]}
+      tokens: [{surface: آطلار, lexemes: [{lexeme: at, surface: آط, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: aṭlar}}]
       reverse: (آطلار|آتلار|اتلار)
   translations:
     en: (Horses|The horses).
@@ -242,9 +30,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قویلار تاغده.
-      tokens:
-      - {surface: قویلار, sense: qoy, readings: {schluessel: qoylar}, morphs: [{surface: قوی, kc: 'sense:qoy'}, {surface: لار, kc: 'form:pl'}]}
-      - {surface: تاغده, sense: tagh, readings: {schluessel: taǧda}, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: ده, kc: 'form:loc'}]}
+      tokens: [{surface: قویلار, lexemes: [{lexeme: qoy, surface: قوی, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: qoylar}}, {surface: تاغده, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: taǧda}}]
       reverse: "قویلار (تاغده|تاغدا)\nقویلار (تاغده\u200cدور|تاغدا\u200cدور)"
   translations:
     en: '[The] sheep are (on the mountain|in the mountains).'
@@ -253,9 +39,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بلالار باغده.
-      tokens:
-      - {surface: بلالار, sense: bala, readings: {schluessel: balalar}, morphs: [{surface: بلا, kc: 'sense:bala'}, {surface: لار, kc: 'form:pl'}]}
-      - {surface: باغده, sense: bagh, readings: {schluessel: bāǧda}, morphs: [{surface: باغ, kc: 'sense:bagh'}, {surface: ده, kc: 'form:loc'}]}
+      tokens: [{surface: بلالار, lexemes: [{lexeme: bala, surface: بلا, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: balalar}}, {surface: باغده, lexemes: [{lexeme: bagh, surface: باغ, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: bāǧda}}]
       reverse: "(بلالار|بالالار) (باغده|باغدا)\n(بلالار|بالالار) (باغده\u200cدور|باغدا\u200cدور)"
   translations:
     en: '[The] children are in the (garden|orchard).'
@@ -264,10 +48,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو بلالار کچیک.
-      tokens:
-      - {surface: بو, sense: bu, readings: {schluessel: bu}}
-      - {surface: بلالار, sense: bala, readings: {schluessel: balalar}, morphs: [{surface: بلا, kc: 'sense:bala'}, {surface: لار, kc: 'form:pl'}]}
-      - {surface: کچیک, sense: kichik, readings: {schluessel: kičik}}
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: بلالار, lexemes: [{lexeme: bala, surface: بلا, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: balalar}}, {surface: کچیک, lexeme: kichik, readings: {schluessel: kičik}}]
       reverse: "بو (بلالار|بالالار) (کچیک|کیچیک)\nبو (بلالار|بالالار) (کچیک\u200cدور|کیچیک\u200cدور)"
   translations:
     en: These children are (small|little|young).
@@ -276,9 +57,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "دروازه\u200cلار چونک\u200cدور."
-      tokens:
-      - {surface: "دروازه\u200cلار", sense: darwaza, readings: {schluessel: darwāzalär}, morphs: [{surface: "دروازه\u200c", kc: 'sense:darwaza'}, {surface: لار, kc: 'form:pl'}]}
-      - {surface: "چونک\u200cدور", sense: chong, readings: {schluessel: čoŋdur}, morphs: [{surface: "چونک\u200c", kc: 'sense:chong'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: "دروازه\u200cلار", lexemes: [{lexeme: darwaza, surface: "دروازه\u200c", base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: darwāzalär}}, {surface: "چونک\u200cدور", lexemes: [{lexeme: chong, surface: "چونک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: čoŋdur}}]
       reverse: "دروازه\u200cلار چونک\u200cدور"
   translations:
     en: '[The] gates are (big|large).'
@@ -287,9 +66,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اویلار اق.
-      tokens:
-      - {surface: اویلار, sense: oy, readings: {schluessel: öylär}, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: لار, kc: 'form:pl'}]}
-      - {surface: اق, sense: aq, readings: {schluessel: aq}}
+      tokens: [{surface: اویلار, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: öylär}}, {surface: اق, lexeme: aq, readings: {schluessel: aq}}]
       reverse: "اویلار اق\nاویلار اق\u200cدور"
   translations:
     en: '[The] houses are white.'
@@ -298,10 +75,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شهرنینک باغلاری تولا.
-      tokens:
-      - {surface: شهرنینک, sense: shahar, readings: {schluessel: šaharniŋ}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: نینک, kc: 'form:gen'}]}
-      - {surface: باغلاری, sense: bagh, readings: {schluessel: bāǧlari}, morphs: [{surface: باغ, kc: 'sense:bagh'}, {surface: لار, kc: 'form:pl'}, {surface: ی, kc: 'form:poss3'}]}
-      - {surface: تولا, sense: tola, readings: {schluessel: tola}}
+      tokens: [{surface: شهرنینک, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: šaharniŋ}}, {surface: باغلاری, lexemes: [{lexeme: bagh, surface: باغ, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}], readings: {schluessel: bāǧlari}}, {surface: تولا, lexeme: tola, readings: {schluessel: tola}}]
       reverse: |-
         شهرنینک باغلاری تولا
         شهرنینک باغلاری تولادور
@@ -312,9 +86,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تاغلاری چونک.
-      tokens:
-      - {surface: تاغلاری, sense: tagh, readings: {schluessel: taǧlari}, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: لار, kc: 'form:pl'}, {surface: ی, kc: 'form:poss3'}]}
-      - {surface: چونک, sense: chong, readings: {schluessel: čoŋ}}
+      tokens: [{surface: تاغلاری, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}], readings: {schluessel: taǧlari}}, {surface: چونک, lexeme: chong, readings: {schluessel: čoŋ}}]
       reverse: "تاغلاری چونک\nتاغلاری چونک\u200cدور"
   translations:
     en: Its mountains are (big|large|high).
@@ -323,9 +95,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اوزوم شیرین\u200cدور."
-      tokens:
-      - {surface: اوزوم, sense: uzum, readings: {schluessel: üzüm}}
-      - {surface: "شیرین\u200cدور", sense: shirin, readings: {schluessel: širindur}, morphs: [{surface: "شیرین\u200c", kc: 'sense:shirin'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: اوزوم, lexeme: uzum, readings: {schluessel: üzüm}}, {surface: "شیرین\u200cدور", lexemes: [{lexeme: shirin, surface: "شیرین\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: širindur}}]
       reverse: "اوزوم شیرین\u200cدور"
   translations:
     en: (Grapes are|The grapes are) sweet.
@@ -334,10 +104,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اوزوم شیرین بولور.
-      tokens:
-      - {surface: اوزوم, sense: uzum, readings: {schluessel: üzüm}}
-      - {surface: شیرین, sense: shirin, readings: {schluessel: širin}}
-      - {surface: بولور, sense: bol, readings: {schluessel: bolur}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      tokens: [{surface: اوزوم, lexeme: uzum, readings: {schluessel: üzüm}}, {surface: شیرین, lexeme: shirin, readings: {schluessel: širin}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: bolur}}]
       reverse: اوزوم شیرین بولور
   translations:
     en: (Grapes are|The grapes are) (sweet|always sweet|usually sweet).
@@ -346,12 +113,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو یرده اوزوم یخشی بولور.
-      tokens:
-      - {surface: بو, sense: bu, readings: {schluessel: bu}}
-      - {surface: یرده, sense: yar, readings: {schluessel: yärdä}, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: ده, kc: 'form:loc'}]}
-      - {surface: اوزوم, sense: uzum, readings: {schluessel: üzüm}}
-      - {surface: یخشی, sense: yakhshi, readings: {schluessel: yaḫši}}
-      - {surface: بولور, sense: bol, readings: {schluessel: bolur}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یرده, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: yärdä}}, {surface: اوزوم, lexeme: uzum, readings: {schluessel: üzüm}}, {surface: یخشی, lexeme: yakhshi, readings: {schluessel: yaḫši}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: bolur}}]
       reverse: |-
         بو (یرده|یردا|یارده|یاردا) اوزوم یخشی بولور
         اوزوم بو (یرده|یردا|یارده|یاردا) یخشی بولور
@@ -362,10 +124,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ناشپاتی شیرین بولور.
-      tokens:
-      - {surface: ناشپاتی, sense: nashpati, readings: {schluessel: našpati}}
-      - {surface: شیرین, sense: shirin, readings: {schluessel: širin}}
-      - {surface: بولور, sense: bol, readings: {schluessel: bolur}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      tokens: [{surface: ناشپاتی, lexeme: nashpati, readings: {schluessel: našpati}}, {surface: شیرین, lexeme: shirin, readings: {schluessel: širin}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: bolur}}]
       reverse: ناشپاتی شیرین بولور
   translations:
     en: (Pears are|The pears are) sweet.
@@ -374,10 +133,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اوزومی یخشی بولور.
-      tokens:
-      - {surface: اوزومی, sense: uzum, readings: {schluessel: üzümi}, morphs: [{surface: اوزوم, kc: 'sense:uzum'}, {surface: ی, kc: 'form:poss3'}]}
-      - {surface: یخشی, sense: yakhshi, readings: {schluessel: yaḫši}}
-      - {surface: بولور, sense: bol, readings: {schluessel: bolur}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      tokens: [{surface: اوزومی, lexemes: [{lexeme: uzum, surface: اوزوم, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: üzümi}}, {surface: یخشی, lexeme: yakhshi, readings: {schluessel: yaḫši}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: bolur}}]
       reverse: اوزومی یخشی بولور
   translations:
     en: Its grapes are good.
@@ -386,9 +142,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اشلیغی وافر.
-      tokens:
-      - {surface: اشلیغی, sense: ashligh, readings: {schluessel: ašliǧi}, morphs: [{surface: اشلیغ, kc: 'sense:ashligh'}, {surface: ی, kc: 'form:poss3'}]}
-      - {surface: وافر, sense: wafir, readings: {schluessel: wāfir}}
+      tokens: [{surface: اشلیغی, lexemes: [{lexeme: ashligh, surface: اشلیغ, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: ašliǧi}}, {surface: وافر, lexeme: wafir, readings: {schluessel: wāfir}}]
       reverse: |-
         اشلیغی وافر
         اشلیغی وافردور
@@ -399,9 +153,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "ایلی تورک\u200cدور."
-      tokens:
-      - {surface: ایلی, sense: el, readings: {schluessel: eli}, morphs: [{surface: ایل, kc: 'sense:el'}, {surface: ی, kc: 'form:poss3'}]}
-      - {surface: "تورک\u200cدور", sense: turk, readings: {schluessel: Türkdur}, morphs: [{surface: "تورک\u200c", kc: 'sense:turk'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: ایلی, lexemes: [{lexeme: el, surface: ایل, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: eli}}, {surface: "تورک\u200cدور", lexemes: [{lexeme: turk, surface: "تورک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: Türkdur}}]
       reverse: "ایلی (تورک\u200cدور|ترک\u200cدور)"
   translations:
     en: Its people are Turks.
@@ -410,9 +162,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایلی تولا.
-      tokens:
-      - {surface: ایلی, sense: el, readings: {schluessel: eli}, morphs: [{surface: ایل, kc: 'sense:el'}, {surface: ی, kc: 'form:poss3'}]}
-      - {surface: تولا, sense: tola, readings: {schluessel: tola}}
+      tokens: [{surface: ایلی, lexemes: [{lexeme: el, surface: ایل, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: eli}}, {surface: تولا, lexeme: tola, readings: {schluessel: tola}}]
       reverse: |-
         ایلی تولا
         ایلی تولادور
@@ -423,13 +173,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "میوه\u200cسی فراوان، و اوزومی یخشی بولور."
-      tokens:
-      - {surface: "میوه\u200cسی", sense: mewa, readings: {schluessel: mewäsi}, morphs: [{surface: "میوه\u200c", kc: 'sense:mewa'}, {surface: سی, kc: 'form:poss3'}]}
-      - {surface: فراوان, sense: farawan, readings: {schluessel: farāwān}}
-      - {surface: و, sense: wa, readings: {schluessel: wä}}
-      - {surface: اوزومی, sense: uzum, readings: {schluessel: üzümi}, morphs: [{surface: اوزوم, kc: 'sense:uzum'}, {surface: ی, kc: 'form:poss3'}]}
-      - {surface: یخشی, sense: yakhshi, readings: {schluessel: yaḫši}}
-      - {surface: بولور, sense: bol, readings: {schluessel: bolur}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+      tokens: [{surface: "میوه\u200cسی", lexemes: [{lexeme: mewa, surface: "میوه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: mewäsi}}, {surface: فراوان, lexeme: farawan, readings: {schluessel: farāwān}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: اوزومی, lexemes: [{lexeme: uzum, surface: اوزوم, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: üzümi}}, {surface: یخشی, lexeme: yakhshi, readings: {schluessel: yaḫši}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: bolur}}]
       reverse: "میوه\u200cسی فراوان و اوزومی یخشی بولور"
   translations:
     en: Its fruit is (plentiful|abundant), and its grapes are good.
@@ -438,10 +182,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو اوزوم اندجاندین.
-      tokens:
-      - {surface: بو, sense: bu, readings: {schluessel: bu}}
-      - {surface: اوزوم, sense: uzum, readings: {schluessel: üzüm}}
-      - {surface: اندجاندین, sense: andijan, readings: {schluessel: Andijāndin}, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: دین, kc: 'form:abl'}]}
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: اوزوم, lexeme: uzum, readings: {schluessel: üzüm}}, {surface: اندجاندین, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Andijāndin}}]
       reverse: "بو اوزوم (اندجاندین|اندجاندن)\nبو اوزوم (اندجاندین\u200cدور|اندجاندن\u200cدور)"
   translations:
     en: These grapes are from Andijan.
@@ -450,10 +191,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو ناشپاتیلار سمرقنددین.
-      tokens:
-      - {surface: بو, sense: bu, readings: {schluessel: bu}}
-      - {surface: ناشپاتیلار, sense: nashpati, readings: {schluessel: našpatilar}, morphs: [{surface: ناشپاتی, kc: 'sense:nashpati'}, {surface: لار, kc: 'form:pl'}]}
-      - {surface: سمرقنددین, sense: samarqand, readings: {schluessel: Samarqanddin}, morphs: [{surface: سمرقند, kc: 'sense:samarqand'}, {surface: دین, kc: 'form:abl'}]}
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: ناشپاتیلار, lexemes: [{lexeme: nashpati, surface: ناشپاتی, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: našpatilar}}, {surface: سمرقنددین, lexemes: [{lexeme: samarqand, surface: سمرقند, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Samarqanddin}}]
       reverse: "بو ناشپاتیلار (سمرقنددین|سمرقنددن)\nبو ناشپاتیلار (سمرقنددین\u200cدور|سمرقنددن\u200cدور)"
   translations:
     en: These pears are from Samarkand.
@@ -462,9 +200,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اندجاندین کلادور.
-      tokens:
-      - {surface: اندجاندین, sense: andijan, readings: {schluessel: Andijāndin}, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: کلادور, sense: kal, readings: {schluessel: kelädur}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: اندجاندین, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Andijāndin}}, {surface: کلادور, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: kelädur}}]
       reverse: (اندجاندین|اندجاندن) کلادور
   translations:
     en: (He|She) (comes|is coming|will come) from Andijan.
@@ -473,9 +209,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بزاردین کلادور.
-      tokens:
-      - {surface: بزاردین, sense: bazar, readings: {schluessel: bazārdin}, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: کلادور, sense: kal, readings: {schluessel: kelädur}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: بزاردین, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: bazārdin}}, {surface: کلادور, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: kelädur}}]
       reverse: (بزاردین|بزاردن|بازاردین|بازاردن) کلادور
   translations:
     en: (He|She) (comes|is coming|will come) from the (market|bazaar).
@@ -484,10 +218,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تاغدین سو کلادور.
-      tokens:
-      - {surface: تاغدین, sense: tagh, readings: {schluessel: taǧdin}, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: سو, sense: su, readings: {schluessel: su}}
-      - {surface: کلادور, sense: kal, readings: {schluessel: kelädur}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: تاغدین, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: taǧdin}}, {surface: سو, lexeme: su, readings: {schluessel: su}}, {surface: کلادور, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: kelädur}}]
       reverse: |-
         (تاغدین|تاغدن) سو کلادور
         سو (تاغدین|تاغدن) کلادور
@@ -498,10 +229,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: آطلار شهردین کلادور.
-      tokens:
-      - {surface: آطلار, sense: at, readings: {schluessel: aṭlar}, morphs: [{surface: آط, kc: 'sense:at'}, {surface: لار, kc: 'form:pl'}]}
-      - {surface: شهردین, sense: shahar, readings: {schluessel: šahardin}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: کلادور, sense: kal, readings: {schluessel: kelädur}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: آطلار, lexemes: [{lexeme: at, surface: آط, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: aṭlar}}, {surface: شهردین, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: šahardin}}, {surface: کلادور, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: kelädur}}]
       reverse: (آطلار|آتلار|اتلار) (شهردین|شهردن) کلادور
   translations:
     en: The horses (come|are coming|will come) from the (city|town).
@@ -510,9 +238,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بزارغه بارادور.
-      tokens:
-      - {surface: بزارغه, sense: bazar, readings: {schluessel: bazārǧa}, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: بارادور, sense: bar.go, readings: {schluessel: baradur}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: بارادور, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: baradur}}]
       reverse: (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارادور
   translations:
     en: (He|She) (goes|is going|will go) to the (market|bazaar).
@@ -521,9 +247,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: باغغه بارادور.
-      tokens:
-      - {surface: باغغه, sense: bagh, readings: {schluessel: bāǧǧa}, morphs: [{surface: باغ, kc: 'sense:bagh'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: بارادور, sense: bar.go, readings: {schluessel: baradur}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: باغغه, lexemes: [{lexeme: bagh, surface: باغ, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bāǧǧa}}, {surface: بارادور, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: baradur}}]
       reverse: (باغغه|باغکه|باغقه|باغغا) بارادور
   translations:
     en: (He|She) (goes|is going|will go) to the (garden|orchard).
@@ -532,9 +256,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اندجانغه بارادور.
-      tokens:
-      - {surface: اندجانغه, sense: andijan, readings: {schluessel: Andijānǧa}, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: بارادور, sense: bar.go, readings: {schluessel: baradur}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: اندجانغه, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Andijānǧa}}, {surface: بارادور, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: baradur}}]
       reverse: (اندجانغه|اندجانکه|اندجانقه|اندجانغا) بارادور
   translations:
     en: (He|She) (goes|is going|will go) to Andijan.
@@ -543,10 +265,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بلا اویغه بارادور.
-      tokens:
-      - {surface: بلا, sense: bala, readings: {schluessel: bala}}
-      - {surface: اویغه, sense: oy, readings: {schluessel: öygä}, morphs: [{surface: اوی, kc: 'sense:oy'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: بارادور, sense: bar.go, readings: {schluessel: baradur}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: بلا, lexeme: bala, readings: {schluessel: bala}}, {surface: اویغه, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: öygä}}, {surface: بارادور, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: baradur}}]
       reverse: (بلا|بالا) (اویغه|اویکه|اویقه|اویغا) بارادور
   translations:
     en: The child (goes|is going|will go) (home|to the house).
@@ -555,10 +274,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قویلار تاغغه بارادور.
-      tokens:
-      - {surface: قویلار, sense: qoy, readings: {schluessel: qoylar}, morphs: [{surface: قوی, kc: 'sense:qoy'}, {surface: لار, kc: 'form:pl'}]}
-      - {surface: تاغغه, sense: tagh, readings: {schluessel: taǧǧa}, morphs: [{surface: تاغ, kc: 'sense:tagh'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: بارادور, sense: bar.go, readings: {schluessel: baradur}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: قویلار, lexemes: [{lexeme: qoy, surface: قوی, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: qoylar}}, {surface: تاغغه, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: taǧǧa}}, {surface: بارادور, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: baradur}}]
       reverse: قویلار (تاغغه|تاغکه|تاغقه|تاغغا) بارادور
   translations:
     en: The sheep (go|are going|will go) to the mountain.
@@ -567,10 +283,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سمرقنددین اندجانغه کلادور.
-      tokens:
-      - {surface: سمرقنددین, sense: samarqand, readings: {schluessel: Samarqanddin}, morphs: [{surface: سمرقند, kc: 'sense:samarqand'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: اندجانغه, sense: andijan, readings: {schluessel: Andijānǧa}, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: کلادور, sense: kal, readings: {schluessel: kelädur}, morphs: [{surface: کل, kc: 'sense:kal'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: سمرقنددین, lexemes: [{lexeme: samarqand, surface: سمرقند, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Samarqanddin}}, {surface: اندجانغه, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Andijānǧa}}, {surface: کلادور, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: kelädur}}]
       reverse: |-
         (سمرقنددین|سمرقنددن) (اندجانغه|اندجانکه|اندجانقه|اندجانغا) کلادور
         (اندجانغه|اندجانکه|اندجانقه|اندجانغا) (سمرقنددین|سمرقنددن) کلادور
@@ -581,10 +294,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اوزوم بزارغه بارادور.
-      tokens:
-      - {surface: اوزوم, sense: uzum, readings: {schluessel: üzüm}}
-      - {surface: بزارغه, sense: bazar, readings: {schluessel: bazārǧa}, morphs: [{surface: بزار, kc: 'sense:bazar'}, {surface: غه, kc: 'form:dat'}]}
-      - {surface: بارادور, sense: bar.go, readings: {schluessel: baradur}, morphs: [{surface: بار, kc: 'sense:bar.go'}, {surface: ا, kc: 'form:pres'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: اوزوم, lexeme: uzum, readings: {schluessel: üzüm}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: بارادور, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: baradur}}]
       reverse: اوزوم (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارادور
   translations:
     en: The grapes (go|are going) to the (market|bazaar).
@@ -593,10 +303,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو ناشپاتی یخشیراق.
-      tokens:
-      - {surface: بو, sense: bu, readings: {schluessel: bu}}
-      - {surface: ناشپاتی, sense: nashpati, readings: {schluessel: našpati}}
-      - {surface: یخشیراق, sense: yakhshi, readings: {schluessel: yaḫširaq}, morphs: [{surface: یخشی, kc: 'sense:yakhshi'}, {surface: راق, kc: 'form:cmp'}]}
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: ناشپاتی, lexeme: nashpati, readings: {schluessel: našpati}}, {surface: یخشیراق, lexemes: [{lexeme: yakhshi, surface: یخشی, base: true}, {lexeme: cmp, surface: راق}], readings: {schluessel: yaḫširaq}}]
       reverse: "بو ناشپاتی یخشیراق\nبو ناشپاتی یخشیراق\u200cدور"
   translations:
     en: This pear is better.
@@ -605,11 +312,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو شهر اندجاندین چونکراق.
-      tokens:
-      - {surface: بو, sense: bu, readings: {schluessel: bu}}
-      - {surface: شهر, sense: shahar, readings: {schluessel: šahar}}
-      - {surface: اندجاندین, sense: andijan, readings: {schluessel: Andijāndin}, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: چونکراق, sense: chong, readings: {schluessel: čoŋraq}, morphs: [{surface: چونک, kc: 'sense:chong'}, {surface: راق, kc: 'form:cmp'}]}
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهر, lexeme: shahar, readings: {schluessel: šahar}}, {surface: اندجاندین, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Andijāndin}}, {surface: چونکراق, lexemes: [{lexeme: chong, surface: چونک, base: true}, {lexeme: cmp, surface: راق}], readings: {schluessel: čoŋraq}}]
       reverse: "بو شهر (اندجاندین|اندجاندن) چونکراق\nبو شهر (اندجاندین|اندجاندن) چونکراق\u200cدور"
   translations:
     en: This (city|town) is (bigger|larger) than Andijan.
@@ -618,10 +321,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سمرقند اولوغ شهردور.
-      tokens:
-      - {surface: سمرقند, sense: samarqand, readings: {schluessel: Samarqand}}
-      - {surface: اولوغ, sense: ulugh, readings: {schluessel: uluǧ}}
-      - {surface: شهردور, sense: shahar, readings: {schluessel: šahardur}, morphs: [{surface: شهر, kc: 'sense:shahar'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: سمرقند, lexeme: samarqand, readings: {schluessel: Samarqand}}, {surface: اولوغ, lexeme: ulugh, readings: {schluessel: uluǧ}}, {surface: شهردور, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: šahardur}}]
       reverse: سمرقند اولوغ شهردور
   translations:
     en: Samarkand is a great (city|town).
@@ -630,10 +330,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر قورغان بار.
-      tokens:
-      - {surface: بیر, sense: bir, readings: {schluessel: bir}}
-      - {surface: قورغان, sense: qurghan, readings: {schluessel: qurǧan}}
-      - {surface: بار, sense: bar, readings: {schluessel: bar}}
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قورغان, lexeme: qurghan, readings: {schluessel: qurǧan}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: (بیر|بر) قورغان بار
   translations:
     en: There is a (fortress|castle).
@@ -642,10 +339,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو قورغان اولوغراق.
-      tokens:
-      - {surface: بو, sense: bu, readings: {schluessel: bu}}
-      - {surface: قورغان, sense: qurghan, readings: {schluessel: qurǧan}}
-      - {surface: اولوغراق, sense: ulugh, readings: {schluessel: uluǧraq}, morphs: [{surface: اولوغ, kc: 'sense:ulugh'}, {surface: راق, kc: 'form:cmp'}]}
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: قورغان, lexeme: qurghan, readings: {schluessel: qurǧan}}, {surface: اولوغراق, lexemes: [{lexeme: ulugh, surface: اولوغ, base: true}, {lexeme: cmp, surface: راق}], readings: {schluessel: uluǧraq}}]
       reverse: "بو قورغان اولوغراق\nبو قورغان اولوغراق\u200cدور"
   translations:
     en: This (fortress|castle) is (greater|bigger|larger).
@@ -654,11 +348,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو یرده قند بولماس.
-      tokens:
-      - {surface: بو, sense: bu, readings: {schluessel: bu}}
-      - {surface: یرده, sense: yar, readings: {schluessel: yärdä}, morphs: [{surface: یر, kc: 'sense:yar'}, {surface: ده, kc: 'form:loc'}]}
-      - {surface: قند, sense: qand, readings: {schluessel: qand}}
-      - {surface: بولماس, sense: bol, readings: {schluessel: bolmas}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ماس, kc: 'form:aor-neg'}]}
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یرده, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: yärdä}}, {surface: قند, lexeme: qand, readings: {schluessel: qand}}, {surface: بولماس, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor-neg, surface: ماس}], readings: {schluessel: bolmas}}]
       reverse: بو (یرده|یردا|یارده|یاردا) قند بولماس
   translations:
     en: There is no sugar (here|in this place).
@@ -667,11 +357,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: موندین یخشیراق اوزوم بولماس.
-      tokens:
-      - {surface: موندین, sense: bu, readings: {schluessel: mundin}, morphs: [{surface: مون, kc: 'sense:bu'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: یخشیراق, sense: yakhshi, readings: {schluessel: yaḫširaq}, morphs: [{surface: یخشی, kc: 'sense:yakhshi'}, {surface: راق, kc: 'form:cmp'}]}
-      - {surface: اوزوم, sense: uzum, readings: {schluessel: üzüm}}
-      - {surface: بولماس, sense: bol, readings: {schluessel: bolmas}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ماس, kc: 'form:aor-neg'}]}
+      tokens: [{surface: موندین, lexemes: [{lexeme: bu, surface: مون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: mundin}}, {surface: یخشیراق, lexemes: [{lexeme: yakhshi, surface: یخشی, base: true}, {lexeme: cmp, surface: راق}], readings: {schluessel: yaḫširaq}}, {surface: اوزوم, lexeme: uzum, readings: {schluessel: üzüm}}, {surface: بولماس, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor-neg, surface: ماس}], readings: {schluessel: bolmas}}]
       reverse: (موندین|موندن) یخشیراق اوزوم بولماس
   translations:
     en: There are no (better grapes than these|grapes better than these).
@@ -680,11 +366,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اندجان فرغانه ولایتینینک پای\u200cتختی\u200cدور."
-      tokens:
-      - {surface: اندجان, sense: andijan, readings: {schluessel: Andijān}}
-      - {surface: فرغانه, sense: farghana, readings: {schluessel: Farǧāna}}
-      - {surface: ولایتینینک, sense: wilayat, readings: {schluessel: wilāyatiniŋ}, morphs: [{surface: ولایت, kc: 'sense:wilayat'}, {surface: ی, kc: 'form:poss3'}, {surface: نینک, kc: 'form:gen'}]}
-      - {surface: "پای\u200cتختی\u200cدور", sense: paytakht, readings: {schluessel: pāytaḫtidur}, morphs: [{surface: "پای\u200cتخت", kc: 'sense:paytakht'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: دور, kc: 'form:dur'}]}
+      tokens: [{surface: اندجان, lexeme: andijan, readings: {schluessel: Andijān}}, {surface: فرغانه, lexeme: farghana, readings: {schluessel: Farǧāna}}, {surface: ولایتینینک, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: ی}, {lexeme: gen, surface: نینک}], readings: {schluessel: wilāyatiniŋ}}, {surface: "پای\u200cتختی\u200cدور", lexemes: [{lexeme: paytakht, surface: "پای\u200cتخت", base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: pāytaḫtidur}}]
       reverse: "اندجان فرغانه ولایتینینک پای\u200cتختی\u200cدور"
   translations:
     en: Andijan is the capital of (the country of Ferghana|Ferghana).
@@ -693,12 +375,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اندجاننینک ناشپاتیسیدین یخشیراق ناشپاتی یوق.
-      tokens:
-      - {surface: اندجاننینک, sense: andijan, readings: {schluessel: Andijānniŋ}, morphs: [{surface: اندجان, kc: 'sense:andijan'}, {surface: نینک, kc: 'form:gen'}]}
-      - {surface: ناشپاتیسیدین, sense: nashpati, readings: {schluessel: našpatisidin}, morphs: [{surface: ناشپاتی, kc: 'sense:nashpati'}, {surface: سی, kc: 'form:poss3'}, {surface: دین, kc: 'form:abl'}]}
-      - {surface: یخشیراق, sense: yakhshi, readings: {schluessel: yaḫširaq}, morphs: [{surface: یخشی, kc: 'sense:yakhshi'}, {surface: راق, kc: 'form:cmp'}]}
-      - {surface: ناشپاتی, sense: nashpati, readings: {schluessel: našpati}}
-      - {surface: یوق, sense: yoq, readings: {schluessel: yoq}}
+      tokens: [{surface: اندجاننینک, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Andijānniŋ}}, {surface: ناشپاتیسیدین, lexemes: [{lexeme: nashpati, surface: ناشپاتی, base: true}, {lexeme: poss3, surface: سی}, {lexeme: abl, surface: دین}], readings: {schluessel: našpatisidin}}, {surface: یخشیراق, lexemes: [{lexeme: yakhshi, surface: یخشی, base: true}, {lexeme: cmp, surface: راق}], readings: {schluessel: yaḫširaq}}, {surface: ناشپاتی, lexeme: nashpati, readings: {schluessel: našpati}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: اندجاننینک (ناشپاتیسیدین|ناشپاتیسیدن) یخشیراق ناشپاتی یوق
   translations:
     en: There are no (pears better than|better pears than) the pears of Andijan.
@@ -712,37 +389,26 @@ stories:
       forms:
         chg-Arab/standard:
           text: "فرغانه ولایتی\u200cنینک پای\u200cتختی\u200cدور."
-          tokens:
-          - {surface: فرغانه, sense: farghana, readings: {schluessel: Farǧāna}}
-          - {surface: "ولایتی\u200cنینک", sense: wilayat, readings: {schluessel: wilāyatiniŋ}, morphs: [{surface: ولایت, kc: 'sense:wilayat'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: نینک, kc: 'form:gen'}]}
-          - {surface: "پای\u200cتختی\u200cدور", sense: paytakht, readings: {schluessel: pāytaḫtidur}, morphs: [{surface: "پای\u200cتخت", kc: 'sense:paytakht'}, {surface: "ی\u200c", kc: 'form:poss3'}, {surface: دور, kc: 'form:dur'}]}
+          tokens: [{surface: فرغانه, lexeme: farghana, readings: {schluessel: Farǧāna}}, {surface: "ولایتی\u200cنینک", lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: gen, surface: نینک}], readings: {schluessel: wilāyatiniŋ}}, {surface: "پای\u200cتختی\u200cدور", lexemes: [{lexeme: paytakht, surface: "پای\u200cتخت", base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: pāytaḫtidur}}]
       translations:
         en: It is the capital of the country of Ferghana.
   - line:
       forms:
         chg-Arab/standard:
           text: اشلیغی وافر.
-          tokens:
-          - {surface: اشلیغی, sense: ashligh, readings: {schluessel: ašliǧi}, morphs: [{surface: اشلیغ, kc: 'sense:ashligh'}, {surface: ی, kc: 'form:poss3'}]}
-          - {surface: وافر, sense: wafir, readings: {schluessel: wāfir}}
+          tokens: [{surface: اشلیغی, lexemes: [{lexeme: ashligh, surface: اشلیغ, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: ašliǧi}}, {surface: وافر, lexeme: wafir, readings: {schluessel: wāfir}}]
       translations:
         en: Its grain is abundant.
   - line:
       ask: complete
-      gap: sense:farawan
+      gap: lexeme:farawan
       distractors:
-      - sense:issiq
-      - sense:sawuq
+      - lexeme:issiq
+      - lexeme:sawuq
       forms:
         chg-Arab/standard:
           text: "میوه\u200cسی فراوان، و اوزومی یخشی بولور."
-          tokens:
-          - {surface: "میوه\u200cسی", sense: mewa, readings: {schluessel: mewäsi}, morphs: [{surface: "میوه\u200c", kc: 'sense:mewa'}, {surface: سی, kc: 'form:poss3'}]}
-          - {surface: فراوان, sense: farawan, readings: {schluessel: farāwān}}
-          - {surface: و, sense: wa, readings: {schluessel: wä}}
-          - {surface: اوزومی, sense: uzum, readings: {schluessel: üzümi}, morphs: [{surface: اوزوم, kc: 'sense:uzum'}, {surface: ی, kc: 'form:poss3'}]}
-          - {surface: یخشی, sense: yakhshi, readings: {schluessel: yaḫši}}
-          - {surface: بولور, sense: bol, readings: {schluessel: bolur}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ور, kc: 'form:aor'}]}
+          tokens: [{surface: "میوه\u200cسی", lexemes: [{lexeme: mewa, surface: "میوه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: mewäsi}}, {surface: فراوان, lexeme: farawan, readings: {schluessel: farāwān}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: اوزومی, lexemes: [{lexeme: uzum, surface: اوزوم, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: üzümi}}, {surface: یخشی, lexeme: yakhshi, readings: {schluessel: yaḫši}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: bolur}}]
       translations:
         en: Its fruit is plentiful, and its grapes are good.
   - choose:
@@ -757,23 +423,14 @@ stories:
       forms:
         chg-Arab/standard:
           text: "اندجان\u200cنینک ناشپاتی\u200cسیدین یخشیراق ناشپاتی بولماس."
-          tokens:
-          - {surface: "اندجان\u200cنینک", sense: andijan, readings: {schluessel: Andijānniŋ}, morphs: [{surface: "اندجان\u200c", kc: 'sense:andijan'}, {surface: نینک, kc: 'form:gen'}]}
-          - {surface: "ناشپاتی\u200cسیدین", sense: nashpati, readings: {schluessel: našpatisidin}, morphs: [{surface: "ناشپاتی\u200c", kc: 'sense:nashpati'}, {surface: سی, kc: 'form:poss3'}, {surface: دین, kc: 'form:abl'}]}
-          - {surface: یخشیراق, sense: yakhshi, readings: {schluessel: yaḫširaq}, morphs: [{surface: یخشی, kc: 'sense:yakhshi'}, {surface: راق, kc: 'form:cmp'}]}
-          - {surface: ناشپاتی, sense: nashpati, readings: {schluessel: našpati}}
-          - {surface: بولماس, sense: bol, readings: {schluessel: bolmas}, morphs: [{surface: بول, kc: 'sense:bol'}, {surface: ماس, kc: 'form:aor-neg'}]}
+          tokens: [{surface: "اندجان\u200cنینک", lexemes: [{lexeme: andijan, surface: "اندجان\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Andijānniŋ}}, {surface: "ناشپاتی\u200cسیدین", lexemes: [{lexeme: nashpati, surface: "ناشپاتی\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: abl, surface: دین}], readings: {schluessel: našpatisidin}}, {surface: یخشیراق, lexemes: [{lexeme: yakhshi, surface: یخشی, base: true}, {lexeme: cmp, surface: راق}], readings: {schluessel: yaḫširaq}}, {surface: ناشپاتی, lexeme: nashpati, readings: {schluessel: našpati}}, {surface: بولماس, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor-neg, surface: ماس}], readings: {schluessel: bolmas}}]
       translations:
         en: There are no pears better than the pears of Andijan.
   - line:
       forms:
         chg-Arab/standard:
           text: موندین اولوغراق قورغان یوقتور.
-          tokens:
-          - {surface: موندین, sense: bu, readings: {schluessel: mundin}, morphs: [{surface: مون, kc: 'sense:bu'}, {surface: دین, kc: 'form:abl'}]}
-          - {surface: اولوغراق, sense: ulugh, readings: {schluessel: uluǧraq}, morphs: [{surface: اولوغ, kc: 'sense:ulugh'}, {surface: راق, kc: 'form:cmp'}]}
-          - {surface: قورغان, sense: qurghan, readings: {schluessel: qurǧan}}
-          - {surface: یوقتور, sense: yoq, readings: {schluessel: yoqtur}, morphs: [{surface: یوق, kc: 'sense:yoq'}, {surface: تور, kc: 'form:dur'}]}
+          tokens: [{surface: موندین, lexemes: [{lexeme: bu, surface: مون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: mundin}}, {surface: اولوغراق, lexemes: [{lexeme: ulugh, surface: اولوغ, base: true}, {lexeme: cmp, surface: راق}], readings: {schluessel: uluǧraq}}, {surface: قورغان, lexeme: qurghan, readings: {schluessel: qurǧan}}, {surface: یوقتور, lexemes: [{lexeme: yoq, surface: یوق, base: true}, {lexeme: dur, surface: تور}], readings: {schluessel: yoqtur}}]
       translations:
         en: There is no greater fortress than this one.
   - choose:
@@ -789,9 +446,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "ایلی تورک\u200cدور."
-          tokens:
-          - {surface: ایلی, sense: el, readings: {schluessel: eli}, morphs: [{surface: ایل, kc: 'sense:el'}, {surface: ی, kc: 'form:poss3'}]}
-          - {surface: "تورک\u200cدور", sense: turk, readings: {schluessel: Türkdur}, morphs: [{surface: "تورک\u200c", kc: 'sense:turk'}, {surface: دور, kc: 'form:dur'}]}
+          tokens: [{surface: ایلی, lexemes: [{lexeme: el, surface: ایل, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: eli}}, {surface: "تورک\u200cدور", lexemes: [{lexeme: turk, surface: "تورک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: Türkdur}}]
       translations:
         en: Its people are Turks.
 scenarios:

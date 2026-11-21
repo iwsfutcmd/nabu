@@ -4,132 +4,11 @@ id: u08-spear-and-shield
 title:
   en: Spear and shield
 cefr: A2
-kcs:
-- id: sense:矛
-  pos: NOUN
-  gloss:
-    en: spear, lance
-  forms:
-    lzh-Hant/standard: [矛]
-- id: sense:盾
-  pos: NOUN
-  gloss:
-    en: shield
-  forms:
-    lzh-Hant/standard: [盾]
-- id: sense:利
-  pos: ADJ
-  gloss:
-    en: sharp
-  forms:
-    lzh-Hant/standard: [利]
-- id: sense:堅
-  pos: ADJ
-  gloss:
-    en: hard, solid, strong
-  forms:
-    lzh-Hant/standard: [堅]
-- id: sense:鬻
-  pos: VERB
-  gloss:
-    en: to sell
-  forms:
-    lzh-Hant/standard: [鬻]
-- id: sense:譽
-  pos: VERB
-  gloss:
-    en: to praise, to boast of
-  forms:
-    lzh-Hant/standard: [譽]
-- id: sense:物
-  pos: NOUN
-  gloss:
-    en: thing; the things of the world
-  forms:
-    lzh-Hant/standard: [物]
-- id: sense:能
-  pos: VERB
-  gloss:
-    en: can, to be able to
-  forms:
-    lzh-Hant/standard: [能]
-- id: sense:莫
-  pos: PRON
-  features:
-    PronType: Neg
-  gloss:
-    en: 'no one, nothing (莫能: none can)'
-  forms:
-    lzh-Hant/standard: [莫]
-  notes:
-    en: '莫 says that none of the subject does it: 物莫能陷 “of things, none can pierce [it]”. An object pronoun comes before the verb: 莫之能知 “no one can know it”.'
-- id: sense:無
-  pos: VERB
-  gloss:
-    en: there is no; to have no, without
-  forms:
-    lzh-Hant/standard: [無]
-- id: sense:皆
-  pos: ADV
-  gloss:
-    en: all, every one
-  forms:
-    lzh-Hant/standard: [皆]
-- id: sense:又
-  pos: ADV
-  gloss:
-    en: again; also, moreover
-  forms:
-    lzh-Hant/standard: [又]
-- id: sense:或
-  pos: PRON
-  features:
-    PronType: Ind
-  gloss:
-    en: someone, some people
-  forms:
-    lzh-Hant/standard: [或]
-- id: sense:以
-  pos: ADP
-  gloss:
-    en: to use; with, by means of
-  forms:
-    lzh-Hant/standard: [以]
-- id: sense:陷
-  pos: VERB
-  gloss:
-    en: to pierce, to break through
-  forms:
-    lzh-Hant/standard: [陷]
-- id: sense:何如
-  pos: ADV
-  features:
-    PronType: Int
-  gloss:
-    en: how is it? what about …?
-  forms:
-    lzh-Hant/standard: [何如]
-- id: sense:弗
-  pos: ADV
-  features:
-    Polarity: Neg
-  gloss:
-    en: not (stronger than 不; mostly with the object left out)
-  forms:
-    lzh-Hant/standard: [弗]
-  notes:
-    en: '弗 is a stronger 不. In Warring States prose it mostly stands where an object is understood: 弗能應 “could not answer [him]”; but 不 too usually leaves 之 unsaid.'
-- id: sense:應
-  pos: VERB
-  gloss:
-    en: to answer, to respond
-  forms:
-    lzh-Hant/standard: [應]
 nodes:
-- {id: lzh.u08.weapons, kind: lesson, introduces: ['sense:矛', 'sense:盾', 'sense:利', 'sense:堅', 'sense:鬻']}
-- {id: lzh.u08.praise, kind: lesson, introduces: ['sense:譽', 'sense:物', 'sense:能', 'sense:莫']}
-- {id: lzh.u08.none, kind: lesson, introduces: ['sense:無', 'sense:皆', 'sense:又', 'sense:或']}
-- {id: lzh.u08.using, kind: lesson, introduces: ['sense:以', 'sense:陷', 'sense:何如', 'sense:弗', 'sense:應']}
+- {id: lzh.u08.weapons, kind: lesson, introduces: ['lexeme:矛', 'lexeme:盾', 'lexeme:利', 'lexeme:堅', 'lexeme:鬻']}
+- {id: lzh.u08.praise, kind: lesson, introduces: ['lexeme:譽', 'lexeme:物', 'lexeme:能', 'lexeme:莫']}
+- {id: lzh.u08.none, kind: lesson, introduces: ['lexeme:無', 'lexeme:皆', 'lexeme:又', 'lexeme:或']}
+- {id: lzh.u08.using, kind: lesson, introduces: ['lexeme:以', 'lexeme:陷', 'lexeme:何如', 'lexeme:弗', 'lexeme:應']}
 - {id: lzh.u08.story, kind: story}
 sentences:
 - id: s.08.1
@@ -137,7 +16,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 此，矛也。
-      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 此, lexeme: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: |-
         此矛也
         是矛也
@@ -151,7 +30,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 此，盾也。
-      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 此, lexeme: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 盾, lexeme: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: |-
         此盾也
         是盾也
@@ -165,7 +44,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾有矛與盾。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 與, sense: 與, readings: {pinyin: yǔ, jyutping: jyu5, baxter: yoX}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 有, lexeme: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 與, lexeme: 與, readings: {pinyin: yǔ, jyutping: jyu5, baxter: yoX}}, {surface: 盾, lexeme: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}]
       reverse: (吾|我)有矛與盾
   translations:
     en: |-
@@ -178,7 +57,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 此矛利。
-      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 利, sense: 利, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}]
+      tokens: [{surface: 此, lexeme: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 利, lexeme: 利, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}]
       reverse: 此矛利
   translations:
     en: |-
@@ -190,7 +69,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾盾堅。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 堅, sense: 堅, readings: {pinyin: jiān, jyutping: gin1, baxter: ken}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 盾, lexeme: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 堅, lexeme: 堅, readings: {pinyin: jiān, jyutping: gin1, baxter: ken}}]
       reverse: (吾|我)盾堅
   translations:
     en: |-
@@ -203,7 +82,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 楚人鬻矛。
-      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 鬻, sense: 鬻, readings: {pinyin: yù, jyutping: juk6, baxter: yuwk}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}]
+      tokens: [{surface: 楚, lexeme: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 鬻, lexeme: 鬻, readings: {pinyin: yù, jyutping: juk6, baxter: yuwk}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}]
       reverse: 楚人鬻矛
   translations:
     en: |-
@@ -217,7 +96,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 楚人有鬻盾與矛者。
-      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 鬻, sense: 鬻, readings: {pinyin: yù, jyutping: juk6, baxter: yuwk}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 與, sense: 與, readings: {pinyin: yǔ, jyutping: jyu5, baxter: yoX}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}]
+      tokens: [{surface: 楚, lexeme: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, lexeme: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 鬻, lexeme: 鬻, readings: {pinyin: yù, jyutping: juk6, baxter: yuwk}}, {surface: 盾, lexeme: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 與, lexeme: 與, readings: {pinyin: yǔ, jyutping: jyu5, baxter: yoX}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 者, lexeme: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}]
       reverse: 楚人有鬻盾與矛者
   translations:
     en: |-
@@ -232,7 +111,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 其矛利，其盾堅。
-      tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 利, sense: 利, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 堅, sense: 堅, readings: {pinyin: jiān, jyutping: gin1, baxter: ken}}]
+      tokens: [{surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 利, lexeme: 利, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 盾, lexeme: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 堅, lexeme: 堅, readings: {pinyin: jiān, jyutping: gin1, baxter: ken}}]
       reverse: 其矛利其盾堅
   translations:
     en: |-
@@ -244,7 +123,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 楚人譽其盾。
-      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 譽, sense: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}]
+      tokens: [{surface: 楚, lexeme: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 譽, lexeme: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 盾, lexeme: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}]
       reverse: 楚人譽其盾
   translations:
     en: |-
@@ -257,7 +136,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 此何物也？
-      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 何, sense: 何, readings: {pinyin: hé, jyutping: ho4, baxter: ha}}, {surface: 物, sense: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 此, lexeme: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 何, lexeme: 何, readings: {pinyin: hé, jyutping: ho4, baxter: ha}}, {surface: 物, lexeme: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: |-
         此何物[也]
         是何物也
@@ -272,7 +151,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾能學之。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 能, lexeme: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 學, lexeme: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 之, lexeme: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: (吾|我)能學之
   translations:
     en: |-
@@ -284,7 +163,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾不能也。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 不, lexeme: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 能, lexeme: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: (吾|我)不能[也]
   translations:
     en: |-
@@ -297,7 +176,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 人莫之能知也。
-      tokens: [{surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 莫, sense: 莫, readings: {pinyin: mò, jyutping: mok6, baxter: mak}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 莫, lexeme: 莫, readings: {pinyin: mò, jyutping: mok6, baxter: mak}}, {surface: 之, lexeme: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 能, lexeme: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 知, lexeme: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: |-
         [人]莫之能知[也]
         [人]莫能知之[也]
@@ -313,7 +192,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾無矛。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 無, sense: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 無, lexeme: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}]
       reverse: (吾|我)無矛
   translations:
     en: |-
@@ -325,7 +204,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 無人知之。
-      tokens: [{surface: 無, sense: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      tokens: [{surface: 無, lexeme: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 知, lexeme: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, lexeme: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: |-
         無人知之
         [人]莫之知[也]
@@ -341,7 +220,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 人皆知之。
-      tokens: [{surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 皆, sense: 皆, readings: {pinyin: jiē, jyutping: gaai1, baxter: keaj}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      tokens: [{surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 皆, lexeme: 皆, readings: {pinyin: jiē, jyutping: gaai1, baxter: keaj}}, {surface: 知, lexeme: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, lexeme: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: 人皆知之
   translations:
     en: |-
@@ -356,7 +235,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 人皆譽之。
-      tokens: [{surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 皆, sense: 皆, readings: {pinyin: jiē, jyutping: gaai1, baxter: keaj}}, {surface: 譽, sense: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      tokens: [{surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 皆, lexeme: 皆, readings: {pinyin: jiē, jyutping: gaai1, baxter: keaj}}, {surface: 譽, lexeme: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 之, lexeme: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: 人皆譽之
   translations:
     en: |-
@@ -369,7 +248,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 楚人又譽其矛。
-      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 又, sense: 又, readings: {pinyin: yòu, jyutping: jau6, baxter: hjuwH}}, {surface: 譽, sense: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}]
+      tokens: [{surface: 楚, lexeme: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 又, lexeme: 又, readings: {pinyin: yòu, jyutping: jau6, baxter: hjuwH}}, {surface: 譽, lexeme: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}]
       reverse: |-
         楚人又譽其矛
         楚人亦譽其矛
@@ -386,7 +265,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 或曰：「善。」
-      tokens: [{surface: 或, sense: 或, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
+      tokens: [{surface: 或, lexeme: 或, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 曰, lexeme: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, lexeme: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
       reverse: 或曰善[哉]
   translations:
     en: |-
@@ -401,7 +280,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 或問之。
-      tokens: [{surface: 或, sense: 或, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      tokens: [{surface: 或, lexeme: 或, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 問, lexeme: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 之, lexeme: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: 或問之
   translations:
     en: |-
@@ -415,7 +294,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 知者無不知也。
-      tokens: [{surface: 知, sense: 知.zhi, readings: {pinyin: zhì, jyutping: zi3, baxter: trjeH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 無, sense: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 知, lexeme: 知.zhi, readings: {pinyin: zhì, jyutping: zi3, baxter: trjeH}}, {surface: 者, lexeme: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 無, lexeme: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 不, lexeme: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, lexeme: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: |-
         (知|智)者無不知也
         知者無不知
@@ -433,7 +312,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 以劍刻舟。
-      tokens: [{surface: 以, sense: 以, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 刻, sense: 刻, readings: {pinyin: kè, jyutping: hak1, baxter: khok}}, {surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}]
+      tokens: [{surface: 以, lexeme: 以, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 刻, lexeme: 刻, readings: {pinyin: kè, jyutping: hak1, baxter: khok}}, {surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}]
       reverse: 以劍刻舟
   translations:
     en: |-
@@ -450,7 +329,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 矛陷盾。
-      tokens: [{surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}]
+      tokens: [{surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 陷, lexeme: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 盾, lexeme: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}]
       reverse: 矛陷盾
   translations:
     en: |-
@@ -464,7 +343,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾盾之堅，物莫能陷也。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 堅, sense: 堅, readings: {pinyin: jiān, jyutping: gin1, baxter: ken}}, {surface: 物, sense: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 莫, sense: 莫, readings: {pinyin: mò, jyutping: mok6, baxter: mak}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 盾, lexeme: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 之, lexeme: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 堅, lexeme: 堅, readings: {pinyin: jiān, jyutping: gin1, baxter: ken}}, {surface: 物, lexeme: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 莫, lexeme: 莫, readings: {pinyin: mò, jyutping: mok6, baxter: mak}}, {surface: 能, lexeme: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 陷, lexeme: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: |-
         (吾|我)盾之堅物莫能陷也
         吾盾之堅物莫能陷
@@ -480,7 +359,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾矛之利，於物無不陷也。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 利, sense: 利, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 物, sense: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 無, sense: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 之, lexeme: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 利, lexeme: 利, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 於, lexeme: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 物, lexeme: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 無, lexeme: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 不, lexeme: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 陷, lexeme: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: |-
         (吾|我)矛之利[於]物無不陷也
         吾矛之利於物無不陷
@@ -498,7 +377,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 此矛何如？
-      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 何如, sense: 何如, readings: {pinyin: hé rú, jyutping: ho4 jyu4, baxter: ha nyo}}]
+      tokens: [{surface: 此, lexeme: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 何如, lexeme: 何如, readings: {pinyin: hé rú, jyutping: ho4 jyu4, baxter: ha nyo}}]
       reverse: 此矛何如
   translations:
     en: |-
@@ -513,7 +392,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 以子之矛，陷子之盾，何如？
-      tokens: [{surface: 以, sense: 以, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 子, sense: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 子, sense: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 何如, sense: 何如, readings: {pinyin: hé rú, jyutping: ho4 jyu4, baxter: ha nyo}}]
+      tokens: [{surface: 以, lexeme: 以, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 子, lexeme: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 之, lexeme: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 陷, lexeme: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 子, lexeme: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 之, lexeme: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 盾, lexeme: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 何如, lexeme: 何如, readings: {pinyin: hé rú, jyutping: ho4 jyu4, baxter: ha nyo}}]
       reverse: 以(子|汝|爾)之矛陷(子|汝|爾)之盾何如
   translations:
     en: |-
@@ -529,7 +408,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 其人弗知也。
-      tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 弗, sense: 弗, readings: {pinyin: fú, jyutping: fat1, baxter: pjut}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 弗, lexeme: 弗, readings: {pinyin: fú, jyutping: fat1, baxter: pjut}}, {surface: 知, lexeme: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: |-
         其人弗知[也]
         其人不知也
@@ -545,7 +424,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 或問之，不應。
-      tokens: [{surface: 或, sense: 或, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 應, sense: 應, readings: {pinyin: yìng, jyutping: jing3, baxter: '''ingH'}}]
+      tokens: [{surface: 或, lexeme: 或, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 問, lexeme: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 之, lexeme: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 不, lexeme: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 應, lexeme: 應, readings: {pinyin: yìng, jyutping: jing3, baxter: '''ingH'}}]
       reverse: 或問之[而]不應
   translations:
     en: |-
@@ -559,7 +438,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 其人弗能應也。
-      tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 弗, sense: 弗, readings: {pinyin: fú, jyutping: fat1, baxter: pjut}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 應, sense: 應, readings: {pinyin: yìng, jyutping: jing3, baxter: '''ingH'}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 弗, lexeme: 弗, readings: {pinyin: fú, jyutping: fat1, baxter: pjut}}, {surface: 能, lexeme: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 應, lexeme: 應, readings: {pinyin: yìng, jyutping: jing3, baxter: '''ingH'}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: |-
         其人弗能應[也]
         其人不能應也
@@ -576,72 +455,95 @@ stories:
   title:
     en: Spear and shield (Han Feizi)
   characters:
-  - {id: seller, name: {lzh-Hant/standard: 楚人}}
-  - {id: passerby, name: {lzh-Hant/standard: 路人}}
+  - id: seller
+    name:
+      lzh-Hant/standard: 楚人
+  - id: passerby
+    name:
+      lzh-Hant/standard: 路人
   steps:
   - line:
       forms:
         lzh-Hant/standard:
           text: 楚人有鬻盾與矛者，譽之曰：
-          tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 鬻, sense: 鬻, readings: {pinyin: yù, jyutping: juk6, baxter: yuwk}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 與, sense: 與, readings: {pinyin: yǔ, jyutping: jyu5, baxter: yoX}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 譽, sense: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
-      translations: {en: 'A man of Chu sold shields and spears. He praised them, saying:'}
+          tokens: [{surface: 楚, lexeme: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, lexeme: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 鬻, lexeme: 鬻, readings: {pinyin: yù, jyutping: juk6, baxter: yuwk}}, {surface: 盾, lexeme: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 與, lexeme: 與, readings: {pinyin: yǔ, jyutping: jyu5, baxter: yoX}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 者, lexeme: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 譽, lexeme: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 之, lexeme: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 曰, lexeme: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
+      translations:
+        en: 'A man of Chu sold shields and spears. He praised them, saying:'
   - line:
       speaker: seller
       ask: complete
-      gap: sense:堅
-      distractors: ['sense:利', 'sense:智']
+      gap: lexeme:堅
+      distractors:
+      - lexeme:利
+      - lexeme:智
       forms:
         lzh-Hant/standard:
           text: 吾盾之堅，物莫能陷也。
-          tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 堅, sense: 堅, readings: {pinyin: jiān, jyutping: gin1, baxter: ken}}, {surface: 物, sense: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 莫, sense: 莫, readings: {pinyin: mò, jyutping: mok6, baxter: mak}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      translations: {en: My shields are so strong that nothing can pierce them.}
+          tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 盾, lexeme: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 之, lexeme: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 堅, lexeme: 堅, readings: {pinyin: jiān, jyutping: gin1, baxter: ken}}, {surface: 物, lexeme: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 莫, lexeme: 莫, readings: {pinyin: mò, jyutping: mok6, baxter: mak}}, {surface: 能, lexeme: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 陷, lexeme: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      translations:
+        en: My shields are so strong that nothing can pierce them.
   - line:
       forms:
         lzh-Hant/standard:
           text: 又譽其矛曰：
-          tokens: [{surface: 又, sense: 又, readings: {pinyin: yòu, jyutping: jau6, baxter: hjuwH}}, {surface: 譽, sense: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
-      translations: {en: 'Then he praised his spears, saying:'}
+          tokens: [{surface: 又, lexeme: 又, readings: {pinyin: yòu, jyutping: jau6, baxter: hjuwH}}, {surface: 譽, lexeme: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 曰, lexeme: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
+      translations:
+        en: 'Then he praised his spears, saying:'
   - line:
       speaker: seller
       ask: arrange
       forms:
         lzh-Hant/standard:
           text: 吾矛之利，於物無不陷也。
-          tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 利, sense: 利, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 物, sense: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 無, sense: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      translations: {en: My spears are so sharp that there is nothing they cannot pierce.}
+          tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 之, lexeme: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 利, lexeme: 利, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 於, lexeme: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 物, lexeme: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 無, lexeme: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 不, lexeme: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 陷, lexeme: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      translations:
+        en: My spears are so sharp that there is nothing they cannot pierce.
   - choose:
       prompt:
         en: What did the man praise first?
-      options: [{en: his shields}, {en: his spears}, {en: his boat}]
+      options:
+      - en: his shields
+      - en: his spears
+      - en: his boat
       answer: 0
   - line:
       forms:
         lzh-Hant/standard:
           text: 或曰：
-          tokens: [{surface: 或, sense: 或, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
-      translations: {en: 'Someone said:'}
+          tokens: [{surface: 或, lexeme: 或, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 曰, lexeme: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
+      translations:
+        en: 'Someone said:'
   - line:
       speaker: passerby
       forms:
         lzh-Hant/standard:
           text: 以子之矛，陷子之盾，何如？
-          tokens: [{surface: 以, sense: 以, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 子, sense: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 子, sense: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 何如, sense: 何如, readings: {pinyin: hé rú, jyutping: ho4 jyu4, baxter: ha nyo}}]
-      translations: {en: 'What if you pierced your shield with your spear?'}
+          tokens: [{surface: 以, lexeme: 以, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 子, lexeme: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 之, lexeme: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 矛, lexeme: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 陷, lexeme: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 子, lexeme: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 之, lexeme: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 盾, lexeme: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: dwonX}}, {surface: 何如, lexeme: 何如, readings: {pinyin: hé rú, jyutping: ho4 jyu4, baxter: ha nyo}}]
+      translations:
+        en: What if you pierced your shield with your spear?
   - line:
       forms:
         lzh-Hant/standard:
           text: 其人弗能應也。
-          tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 弗, sense: 弗, readings: {pinyin: fú, jyutping: fat1, baxter: pjut}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 應, sense: 應, readings: {pinyin: yìng, jyutping: jing3, baxter: '''ingH'}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      translations: {en: The man could not answer.}
+          tokens: [{surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 弗, lexeme: 弗, readings: {pinyin: fú, jyutping: fat1, baxter: pjut}}, {surface: 能, lexeme: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 應, lexeme: 應, readings: {pinyin: yìng, jyutping: jing3, baxter: '''ingH'}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      translations:
+        en: The man could not answer.
   - choose:
       prompt:
         en: Why could the man not answer?
-      options: [{en: his two boasts cannot both be true}, {en: he did not hear the question}, {en: he had sold everything}]
+      options:
+      - en: his two boasts cannot both be true
+      - en: he did not hear the question
+      - en: he had sold everything
       answer: 0
 scenarios:
 - id: lzh.market
   after: lzh.u08.using
-  title: {en: In the market of Chu}
-  setting: {en: 'A busy market in the state of Chu in the Warring States period: stalls of bronze weapons, boats on the river behind.'}
-  character: {en: 'A boastful weapons seller who praises everything he sells, and speaks only Classical Chinese.'}
-  goal: {en: 'Ask the seller about his spears and shields, praise or doubt them, and catch him contradicting himself.'}
+  title:
+    en: In the market of Chu
+  setting:
+    en: 'A busy market in the state of Chu in the Warring States period: stalls of bronze weapons, boats on the river behind.'
+  character:
+    en: A boastful weapons seller who praises everything he sells, and speaks only Classical Chinese.
+  goal:
+    en: Ask the seller about his spears and shields, praise or doubt them, and catch him contradicting himself.

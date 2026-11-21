@@ -1,7 +1,5 @@
-# What each KC id of courses/fa became (schemas/aliases.schema.json).
-# Written by `nabu migrate` from courses/fa and its conversion plan
-# (docs/migration-design.md, deliverable 2); never by hand. Nothing reads it until the
-# switch.
+# What each KC id of courses/fa became (schemas/aliases.schema.json): what upgrading a log
+# written before the lexical model reads.
 course: fa
 aliases:
   sense:salam: {part: 'lexeme:salam'}

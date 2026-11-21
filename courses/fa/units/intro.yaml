@@ -1,41 +1,18 @@
 # Fixture course (fa): Persian (Iran), Arabic script. Ezafe, the copula, and the plural -hā with a ZWNJ; an RBNF numbers drill.
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
 id: intro
-title: {en: 'Hello, I''m Maryam'}
+title:
+  en: Hello, I'm Maryam
 cefr: A1
-kcs:
-- {id: 'sense:salam', pos: INTJ, gloss: {en: hello}, forms: {fa-Arab/standard: [سلام]}, image: {file: ../images/wave.svg, license: CC0-1.0, provenance: {author: 'llm:claude@17fb3acb2f3b', status: draft}, source: Drawn for Nabu (courses/images)}}
-- {id: 'sense:khodahafez', pos: INTJ, gloss: {en: goodbye}, forms: {fa-Arab/standard: [خداحافظ]}}
-- {id: 'sense:mamnun', pos: INTJ, gloss: {en: thank you; thanks}, forms: {fa-Arab/standard: [ممنون]}}
-- {id: 'sense:bale', pos: INTJ, gloss: {en: 'yes'}, forms: {fa-Arab/standard: [بله]}}
-- {id: 'sense:na', pos: INTJ, gloss: {en: 'no'}, forms: {fa-Arab/standard: [نه]}}
-- {id: 'sense:maryam', pos: PROPN, gloss: {en: Maryam (a name)}, forms: {fa-Arab/standard: [مریم]}}
-- {id: 'sense:ali', pos: PROPN, gloss: {en: Ali (a name)}, forms: {fa-Arab/standard: [علی]}}
-- {id: 'sense:va', pos: CCONJ, gloss: {en: and}, forms: {fa-Arab/standard: [و]}}
-- {id: 'sense:budan', pos: AUX, gloss: {en: 'to be: is, am, are'}, forms: {fa-Arab/standard: [بودن, است]}, notes: {en: است is the usual 'is'; the other persons add an ending to هست-.}}
-- {id: 'sense:in', pos: DET, features: {PronType: Dem}, gloss: {en: this; these}, forms: {fa-Arab/standard: [این]}}
-- {id: 'form:1sg-am', gloss: {en: '-am: I (verb ending)'}}
-- {id: 'sense:man', pos: PRON, features: {PronType: Prs}, gloss: {en: I; me; my (after a noun)}, forms: {fa-Arab/standard: [من]}}
-- {id: 'form:2sg-i', gloss: {en: '-i: you, one person (verb ending)'}}
-- {id: 'sense:to', pos: PRON, features: {PronType: Prs}, gloss: {en: 'you (one person, familiar)'}, forms: {fa-Arab/standard: [تو]}}
-- {id: 'sense:ketab', pos: NOUN, gloss: {en: book}, forms: {fa-Arab/standard: [کتاب]}, image: {file: ../images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3b5a77ff7369', status: draft}, source: Drawn for Nabu (courses/images)}}
-- {id: 'construction:ezafe', gloss: {en: 'ezafe: the -e that links a noun to what describes or owns it'}, notes: {en: "Usually unwritten after a consonant (کتاب من, ketāb-e man); written ی after -hā (کتاب\u200cهای من)."}}
-- {id: 'sense:esm', pos: NOUN, gloss: {en: name}, forms: {fa-Arab/standard: [اسم]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}}
-- {id: 'sense:chist', pos: PRON, features: {PronType: Int}, gloss: {en: 'what is …?'}, forms: {fa-Arab/standard: [چیست]}}
-- {id: 'sense:khub', pos: ADJ, gloss: {en: good; well}, forms: {fa-Arab/standard: [خوب]}, image: {file: ../images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}}
-- {id: 'sense:kheyli', pos: ADV, gloss: {en: very; a lot (of)}, forms: {fa-Arab/standard: [خیلی]}}
-- {id: 'form:2pl-id', gloss: {en: '-id: you, polite or more than one (verb ending)'}}
-- {id: 'sense:shoma', pos: PRON, features: {PronType: Prs}, gloss: {en: 'you (polite, or more than one)'}, forms: {fa-Arab/standard: [شما]}}
-- {id: 'form:3pl-and', gloss: {en: '-and: they (verb ending)'}}
-- {id: 'form:plural-ha', gloss: {en: '-hā: plural'}, notes: {en: "Joined to the noun with a zero-width non-joiner: کتاب\u200cها, not کتابها or کتاب ها."}}
+graphemes:
 - {id: 'grapheme:zwnj', gloss: {en: the zero-width non-joiner (nim-fāsele) that keeps -hā visually apart}}
 nodes:
-- {id: fa.greetings, kind: lesson, introduces: ['sense:salam', 'sense:khodahafez', 'sense:mamnun', 'sense:bale', 'sense:na']}
-- {id: fa.names, kind: lesson, introduces: ['sense:maryam', 'sense:ali', 'sense:va', 'sense:budan', 'sense:in']}
-- {id: fa.i-am, kind: lesson, introduces: ['form:1sg-am', 'sense:man', 'form:2sg-i', 'sense:to']}
-- {id: fa.book, kind: lesson, introduces: ['sense:ketab', 'construction:ezafe', 'sense:esm', 'sense:chist', 'sense:khub', 'sense:kheyli']}
-- {id: fa.polite, kind: lesson, introduces: ['form:2pl-id', 'sense:shoma', 'form:3pl-and']}
-- {id: fa.plural, kind: lesson, introduces: ['form:plural-ha', 'grapheme:zwnj']}
+- {id: fa.greetings, kind: lesson, introduces: ['lexeme:salam', 'lexeme:khodahafez', 'lexeme:mamnun', 'lexeme:bale', 'lexeme:na']}
+- {id: fa.names, kind: lesson, introduces: ['lexeme:maryam', 'lexeme:ali', 'lexeme:va', 'lexeme:budan', 'lexeme:in']}
+- {id: fa.i-am, kind: lesson, introduces: ['lexeme:1sg', 'lexeme:man', 'lexeme:2sg', 'lexeme:to']}
+- {id: fa.book, kind: lesson, introduces: ['lexeme:ketab', 'lexeme:ezafe', 'lexeme:esm', 'lexeme:chist', 'lexeme:khub', 'lexeme:kheyli']}
+- {id: fa.polite, kind: lesson, introduces: ['lexeme:2pl', 'lexeme:shoma', 'lexeme:3pl']}
+- {id: fa.plural, kind: lesson, introduces: ['lexeme:pl', 'grapheme:zwnj']}
 - {id: fa.story, kind: story}
 sentences:
 - id: s.1
@@ -43,7 +20,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: سلام!
-      tokens: [{surface: سلام, sense: salam}]
+      tokens: [{surface: سلام, lexeme: salam}]
       reverse: سلام
   translations:
     en: |-
@@ -54,7 +31,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: خداحافظ!
-      tokens: [{surface: خداحافظ, sense: khodahafez}]
+      tokens: [{surface: خداحافظ, lexeme: khodahafez}]
       reverse: (خداحافظ|خدا حافظ|خدانگهدار)
   translations:
     en: |-
@@ -65,8 +42,8 @@ sentences:
   forms:
     fa-Arab/standard:
       text: ممنون!
-      tokens: [{surface: ممنون, sense: mamnun}]
-      reverse: "(ممنون|ممنونم|مرسی|متشکرم|سپاس\u200Cگزارم)\nتشکر می\u200Cکنم"
+      tokens: [{surface: ممنون, lexeme: mamnun}]
+      reverse: "(ممنون|ممنونم|مرسی|متشکرم|سپاس\u200cگزارم)\nتشکر می\u200cکنم"
   translations:
     en: |-
       Thank you!
@@ -76,7 +53,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: بله.
-      tokens: [{surface: بله, sense: bale}]
+      tokens: [{surface: بله, lexeme: bale}]
       reverse: (بله|آره)
   translations:
     en: Yes.
@@ -85,8 +62,8 @@ sentences:
   forms:
     fa-Arab/standard:
       text: نه، ممنون.
-      tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: ممنون, sense: mamnun}]
-      reverse: "نه (ممنون|ممنونم|مرسی|متشکرم)\nخیر ممنون\nنه سپاس\u200Cگزارم"
+      tokens: [{surface: نه, lexeme: na, vocalized: نَه}, {surface: ممنون, lexeme: mamnun}]
+      reverse: "نه (ممنون|ممنونم|مرسی|متشکرم)\nخیر ممنون\nنه سپاس\u200cگزارم"
   translations:
     en: |-
       No, thank you.
@@ -96,7 +73,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: سلام مریم!
-      tokens: [{surface: سلام, sense: salam}, {surface: مریم, sense: maryam}]
+      tokens: [{surface: سلام, lexeme: salam}, {surface: مریم, lexeme: maryam}]
       reverse: سلام مریم
   translations:
     en: (Hello|Hi), Maryam!
@@ -105,7 +82,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: سلام علی!
-      tokens: [{surface: سلام, sense: salam}, {surface: علی, sense: ali}]
+      tokens: [{surface: سلام, lexeme: salam}, {surface: علی, lexeme: ali}]
       reverse: سلام علی
   translations:
     en: (Hello|Hi), Ali!
@@ -114,7 +91,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: سلام مریم و علی!
-      tokens: [{surface: سلام, sense: salam}, {surface: مریم, sense: maryam}, {surface: و, sense: va}, {surface: علی, sense: ali}]
+      tokens: [{surface: سلام, lexeme: salam}, {surface: مریم, lexeme: maryam}, {surface: و, lexeme: va}, {surface: علی, lexeme: ali}]
       reverse: سلام مریم و علی
   translations:
     en: (Hello|Hi), Maryam and Ali!
@@ -123,7 +100,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: مریم است.
-      tokens: [{surface: مریم, sense: maryam}, {surface: است, sense: budan}]
+      tokens: [{surface: مریم, lexeme: maryam}, {surface: است, lexeme: budan}]
       reverse: (مریم است|مریمه)
   translations:
     en: (It|She)('s| is) Maryam.
@@ -132,7 +109,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این مریم است.
-      tokens: [{surface: این, sense: in}, {surface: مریم, sense: maryam}, {surface: است, sense: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: مریم, lexeme: maryam}, {surface: است, lexeme: budan}]
       reverse: این (مریم است|مریمه)
   translations:
     en: This is Maryam.
@@ -141,7 +118,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این علی است.
-      tokens: [{surface: این, sense: in}, {surface: علی, sense: ali}, {surface: است, sense: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: علی, lexeme: ali}, {surface: است, lexeme: budan}]
       reverse: |-
         این علی است
         این علیه
@@ -152,8 +129,8 @@ sentences:
   forms:
     fa-Arab/standard:
       text: مریم هستم.
-      tokens: [{surface: مریم, sense: maryam}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] (مریم هستم|مریمم)\nمریم\u200Cام"
+      tokens: [{surface: مریم, lexeme: maryam}, {surface: هستم, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] (مریم هستم|مریمم)\nمریم\u200cام"
   translations:
     en: I('m| am) Maryam.
 - id: s.13
@@ -161,8 +138,8 @@ sentences:
   forms:
     fa-Arab/standard:
       text: من مریم هستم.
-      tokens: [{surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] (مریم هستم|مریمم)\nمن مریم\u200Cام"
+      tokens: [{surface: من, lexeme: man}, {surface: مریم, lexeme: maryam}, {surface: هستم, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 1sg, surface: م}]}]
+      reverse: "[من] (مریم هستم|مریمم)\nمن مریم\u200cام"
   translations:
     en: I('m| am) Maryam.
 - id: s.14
@@ -170,7 +147,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: علی هستی؟
-      tokens: [{surface: علی, sense: ali}, {surface: هستی, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      tokens: [{surface: علی, lexeme: ali}, {surface: هستی, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 2sg, surface: ی}]}]
       reverse: |-
         [تو] علی هستی
         [شما] علی هستید
@@ -183,7 +160,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: تو علی هستی؟
-      tokens: [{surface: تو, sense: to}, {surface: علی, sense: ali}, {surface: هستی, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      tokens: [{surface: تو, lexeme: to}, {surface: علی, lexeme: ali}, {surface: هستی, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 2sg, surface: ی}]}]
       reverse: |-
         [تو] علی هستی
         [شما] علی هستید
@@ -196,7 +173,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: بله، من علی هستم.
-      tokens: [{surface: بله, sense: bale}, {surface: من, sense: man}, {surface: علی, sense: ali}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      tokens: [{surface: بله, lexeme: bale}, {surface: من, lexeme: man}, {surface: علی, lexeme: ali}, {surface: هستم, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 1sg, surface: م}]}]
       reverse: "(بله|آره) [من] (علی هستم|علی\u200cام)"
   translations:
     en: Yes, I('m| am) Ali.
@@ -205,7 +182,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: نه، من مریم هستم.
-      tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      tokens: [{surface: نه, lexeme: na, vocalized: نَه}, {surface: من, lexeme: man}, {surface: مریم, lexeme: maryam}, {surface: هستم, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 1sg, surface: م}]}]
       reverse: |-
         نه [من] (مریم هستم|مریمم)
         خیر من مریم هستم
@@ -216,7 +193,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این کتاب است.
-      tokens: [{surface: این, sense: in}, {surface: کتاب, sense: ketab}, {surface: است, sense: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: کتاب, lexeme: ketab}, {surface: است, lexeme: budan}]
       reverse: این [یک] (کتاب است|کتابه)
   translations:
     en: This is a book.
@@ -225,7 +202,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این کتابِ من است.
-      tokens: [{surface: این, sense: in}, {surface: کتابِ, sense: ketab, morphs: [{surface: کتابِ, kc: 'sense:ketab'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: کتابِ, lexemes: [{lexeme: ketab, surface: کتابِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexeme: budan}]
       reverse: این (کتاب من است|کتاب منه|کتابم است|کتابمه)
   translations:
     en: This is my book.
@@ -234,7 +211,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: اسمِ من مریم است.
-      tokens: [{surface: اسمِ, sense: esm, morphs: [{surface: اسمِ, kc: 'sense:esm'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: است, sense: budan}]
+      tokens: [{surface: اسمِ, lexemes: [{lexeme: esm, surface: اسمِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: مریم, lexeme: maryam}, {surface: است, lexeme: budan}]
       reverse: (اسم من|اسمم) (مریم است|مریمه)
   translations:
     en: |-
@@ -245,7 +222,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: اسمِ تو چیست؟
-      tokens: [{surface: اسمِ, sense: esm, morphs: [{surface: اسمِ, kc: 'sense:esm'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: تو, sense: to}, {surface: چیست, sense: chist}]
+      tokens: [{surface: اسمِ, lexemes: [{lexeme: esm, surface: اسمِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: تو, lexeme: to}, {surface: چیست, lexeme: chist}]
       reverse: (اسم تو|اسمت|اسم شما|اسمتان) (چیست|چیه)
   translations:
     en: What('s| is) your name?
@@ -254,7 +231,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: کتاب خوب است.
-      tokens: [{surface: کتاب, sense: ketab}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      tokens: [{surface: کتاب, lexeme: ketab}, {surface: خوب, lexeme: khub}, {surface: است, lexeme: budan}]
       reverse: کتاب (خوب است|خوبه)
   translations:
     en: |-
@@ -265,7 +242,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: کتابِ من خیلی خوب است.
-      tokens: [{surface: کتابِ, sense: ketab, morphs: [{surface: کتابِ, kc: 'sense:ketab'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      tokens: [{surface: کتابِ, lexemes: [{lexeme: ketab, surface: کتابِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: خیلی, lexeme: kheyli}, {surface: خوب, lexeme: khub}, {surface: است, lexeme: budan}]
       reverse: |-
         (کتاب من|کتابم) خیلی (خوب است|خوبه)
         کتاب من بسیار خوب است
@@ -273,11 +250,12 @@ sentences:
     en: My book is (very|really) good.
 - id: s.24
   node: fa.polite
-  register: formal
+  tags:
+  - {register: formal}
   forms:
     fa-Arab/standard:
       text: خوب هستید؟
-      tokens: [{surface: خوب, sense: khub}, {surface: هستید, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      tokens: [{surface: خوب, lexeme: khub}, {surface: هستید, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         [شما] (خوب هستید|خوبید)
         [تو] (خوب هستی|خوبی)
@@ -289,11 +267,12 @@ sentences:
       Are you doing well?
 - id: s.25
   node: fa.polite
-  register: formal
+  tags:
+  - {register: formal}
   forms:
     fa-Arab/standard:
       text: شما خوب هستید؟
-      tokens: [{surface: شما, sense: shoma}, {surface: خوب, sense: khub}, {surface: هستید, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      tokens: [{surface: شما, lexeme: shoma}, {surface: خوب, lexeme: khub}, {surface: هستید, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         [شما] (خوب هستید|خوبید)
         [تو] (خوب هستی|خوبی)
@@ -308,7 +287,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: ممنون، خوب هستم.
-      tokens: [{surface: ممنون, sense: mamnun}, {surface: خوب, sense: khub}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      tokens: [{surface: ممنون, lexeme: mamnun}, {surface: خوب, lexeme: khub}, {surface: هستم, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 1sg, surface: م}]}]
       reverse: |-
         (ممنون|ممنونم|مرسی|متشکرم) [من] (خوب هستم|خوبم)
         [من] (خوب هستم|خوبم) (ممنون|ممنونم|مرسی|متشکرم)
@@ -323,7 +302,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: مریم و علی خوب هستند.
-      tokens: [{surface: مریم, sense: maryam}, {surface: و, sense: va}, {surface: علی, sense: ali}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
+      tokens: [{surface: مریم, lexeme: maryam}, {surface: و, lexeme: va}, {surface: علی, lexeme: ali}, {surface: خوب, lexeme: khub}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 3pl, surface: ند}]}]
       reverse: |-
         مریم و علی (خوب هستند|خوبند)
         حال مریم و علی خوب است
@@ -334,7 +313,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "کتاب\u200cها خوب هستند."
-      tokens: [{surface: "کتاب\u200cها", sense: ketab, morphs: [{surface: "کتاب\u200c", kc: 'sense:ketab'}, {surface: ها, kc: 'form:plural-ha'}]}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
+      tokens: [{surface: "کتاب\u200cها", lexemes: [{lexeme: ketab, surface: "کتاب\u200c", base: true}, {lexeme: pl, surface: ها}]}, {surface: خوب, lexeme: khub}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 3pl, surface: ند}]}]
       reverse: "کتاب\u200cها (خوب هستند|خوبند|خوب است|خوبه)"
   translations:
     en: |-
@@ -345,93 +324,124 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "کتاب\u200cهای من خیلی خوب هستند."
-      tokens: [{surface: "کتاب\u200cهای", sense: ketab, morphs: [{surface: "کتاب\u200c", kc: 'sense:ketab'}, {surface: ها, kc: 'form:plural-ha'}, {surface: ی, kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      reverse: "کتاب\u200Cهای من خیلی (خوب هستند|خوبند|خوب است|خوبه)\nکتاب\u200Cهایم خیلی خوب هستند\nکتاب\u200Cهای من بسیار خوب هستند"
+      tokens: [{surface: "کتاب\u200cهای", lexemes: [{lexeme: ketab, surface: "کتاب\u200c", base: true}, {lexeme: pl, surface: ها}, {lexeme: ezafe, surface: ی}]}, {surface: من, lexeme: man}, {surface: خیلی, lexeme: kheyli}, {surface: خوب, lexeme: khub}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 3pl, surface: ند}]}]
+      reverse: "کتاب\u200cهای من خیلی (خوب هستند|خوبند|خوب است|خوبه)\nکتاب\u200cهایم خیلی خوب هستند\nکتاب\u200cهای من بسیار خوب هستند"
   translations:
     en: My books are (very|really) good.
 stories:
 - id: fa.story.books
   node: fa.story
-  title: {en: "Maryam's books"}
-  provenance: {author: 'llm:claude@b5fb0698d0ba', status: draft}
+  title:
+    en: Maryam's books
+  provenance:
+    author: llm:claude@b5fb0698d0ba
+    status: draft
   characters:
-  - {id: maryam, name: {fa-Arab/standard: مریم}}
-  - {id: ali, name: {fa-Arab/standard: علی}}
+  - id: maryam
+    name:
+      fa-Arab/standard: مریم
+  - id: ali
+    name:
+      fa-Arab/standard: علی
   steps:
   - line:
       speaker: ali
       forms:
         fa-Arab/standard:
           text: سلام!
-          tokens: [{surface: سلام, sense: salam}]
-      translations: {en: "Hello!"}
+          tokens: [{surface: سلام, lexeme: salam}]
+      translations:
+        en: Hello!
   - line:
       speaker: maryam
       forms:
         fa-Arab/standard:
           text: سلام! تو علی هستی؟
-          tokens: [{surface: سلام, sense: salam}, {surface: تو, sense: to}, {surface: علی, sense: ali}, {surface: هستی, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ی, kc: 'form:2sg-i'}]}]
-      translations: {en: "Hello! Are you Ali?"}
+          tokens: [{surface: سلام, lexeme: salam}, {surface: تو, lexeme: to}, {surface: علی, lexeme: ali}, {surface: هستی, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 2sg, surface: ی}]}]
+      translations:
+        en: Hello! Are you Ali?
   - line:
       speaker: ali
       ask: complete
-      gap: 'sense:budan'
+      gap: lexeme:budan
       asks: form
-      distractors: ['form:2sg-i', 'form:3pl-and']
+      distractors:
+      - lexeme:2sg
+      - lexeme:3pl
       forms:
         fa-Arab/standard:
           text: بله، من علی هستم.
-          tokens: [{surface: بله, sense: bale}, {surface: من, sense: man}, {surface: علی, sense: ali}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      translations: {en: "Yes, I'm Ali."}
+          tokens: [{surface: بله, lexeme: bale}, {surface: من, lexeme: man}, {surface: علی, lexeme: ali}, {surface: هستم, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 1sg, surface: م}]}]
+      translations:
+        en: Yes, I'm Ali.
   - line:
       speaker: maryam
       forms:
         fa-Arab/standard:
           text: من مریم هستم.
-          tokens: [{surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      translations: {en: "I'm Maryam."}
+          tokens: [{surface: من, lexeme: man}, {surface: مریم, lexeme: maryam}, {surface: هستم, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 1sg, surface: م}]}]
+      translations:
+        en: I'm Maryam.
   - choose:
-      prompt: {en: "Who is Maryam talking to?"}
-      options: [{en: "Ali"}, {en: "a teacher"}, {en: "nobody"}]
+      prompt:
+        en: Who is Maryam talking to?
+      options:
+      - en: Ali
+      - en: a teacher
+      - en: nobody
       answer: 0
   - line:
       speaker: ali
       forms:
         fa-Arab/standard:
           text: این کتابِ تو است؟
-          tokens: [{surface: این, sense: in}, {surface: کتابِ, sense: ketab, morphs: [{surface: کتابِ, kc: 'sense:ketab'}, {surface: '', kc: 'construction:ezafe'}]}, {surface: تو, sense: to}, {surface: است, sense: budan}]
-      translations: {en: "Is this your book?"}
+          tokens: [{surface: این, lexeme: in}, {surface: کتابِ, lexemes: [{lexeme: ketab, surface: کتابِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: تو, lexeme: to}, {surface: است, lexeme: budan}]
+      translations:
+        en: Is this your book?
   - line:
       speaker: maryam
       ask: arrange
       forms:
         fa-Arab/standard:
           text: "بله. کتاب\u200cهای من خیلی خوب هستند."
-          tokens: [{surface: بله, sense: bale}, {surface: "کتاب\u200cهای", sense: ketab, morphs: [{surface: "کتاب\u200c", kc: 'sense:ketab'}, {surface: ها, kc: 'form:plural-ha'}, {surface: ی, kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      translations: {en: "Yes. My books are very good."}
+          tokens: [{surface: بله, lexeme: bale}, {surface: "کتاب\u200cهای", lexemes: [{lexeme: ketab, surface: "کتاب\u200c", base: true}, {lexeme: pl, surface: ها}, {lexeme: ezafe, surface: ی}]}, {surface: من, lexeme: man}, {surface: خیلی, lexeme: kheyli}, {surface: خوب, lexeme: khub}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 3pl, surface: ند}]}]
+      translations:
+        en: Yes. My books are very good.
   - line:
       speaker: ali
       forms:
         fa-Arab/standard:
           text: ممنون، مریم! خداحافظ!
-          tokens: [{surface: ممنون, sense: mamnun}, {surface: مریم, sense: maryam}, {surface: خداحافظ, sense: khodahafez}]
-      translations: {en: "Thanks, Maryam! Goodbye!"}
+          tokens: [{surface: ممنون, lexeme: mamnun}, {surface: مریم, lexeme: maryam}, {surface: خداحافظ, lexeme: khodahafez}]
+      translations:
+        en: Thanks, Maryam! Goodbye!
   - line:
       speaker: maryam
       forms:
         fa-Arab/standard:
           text: خداحافظ!
-          tokens: [{surface: خداحافظ, sense: khodahafez}]
-      translations: {en: "Goodbye!"}
+          tokens: [{surface: خداحافظ, lexeme: khodahafez}]
+      translations:
+        en: Goodbye!
   - choose:
-      prompt: {en: "What does Maryam say about her books?"}
-      options: [{en: "They are very good."}, {en: "They are not good."}, {en: "She has no books."}]
+      prompt:
+        en: What does Maryam say about her books?
+      options:
+      - en: They are very good.
+      - en: They are not good.
+      - en: She has no books.
       answer: 0
 scenarios:
 - id: fa.classmate
   after: fa.plural
-  title: {en: 'Meeting a classmate'}
-  setting: {en: 'The first day of a Persian class in Tehran. Two students meet in the corridor before the lesson.'}
-  character: {en: 'Maryam, a friendly student who likes books.'}
-  goal: {en: 'Greet Maryam, say your name, ask how she is, and ask about her books.'}
-  provenance: {author: 'llm:claude@349eb068f4ca', status: draft}
+  title:
+    en: Meeting a classmate
+  setting:
+    en: The first day of a Persian class in Tehran. Two students meet in the corridor before the lesson.
+  character:
+    en: Maryam, a friendly student who likes books.
+  goal:
+    en: Greet Maryam, say your name, ask how she is, and ask about her books.
+  provenance:
+    author: llm:claude@349eb068f4ca
+    status: draft

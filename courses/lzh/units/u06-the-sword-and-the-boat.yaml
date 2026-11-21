@@ -4,125 +4,11 @@ id: u06-the-sword-and-the-boat
 title:
   en: The sword and the boat
 cefr: A1
-kcs:
-- id: sense:楚
-  pos: PROPN
-  gloss:
-    en: Chu, a large southern state on the Yangzi
-  forms:
-    lzh-Hant/standard: [楚]
-- id: sense:江
-  pos: NOUN
-  gloss:
-    en: the (Yangzi) River; a great river
-  forms:
-    lzh-Hant/standard: [江]
-- id: sense:舟
-  pos: NOUN
-  gloss:
-    en: boat
-  forms:
-    lzh-Hant/standard: [舟]
-- id: sense:劍
-  pos: NOUN
-  gloss:
-    en: sword
-  forms:
-    lzh-Hant/standard: [劍]
-- id: sense:中
-  pos: ADP
-  gloss:
-    en: middle; in, inside (after a noun)
-  forms:
-    lzh-Hant/standard: [中]
-  notes:
-    en: 'After a noun it says where: 舟中 “in the boat”, 水中 “in the water”.'
-- id: sense:入
-  pos: VERB
-  gloss:
-    en: to enter, to go into
-  forms:
-    lzh-Hant/standard: [入]
-- id: sense:止
-  pos: VERB
-  gloss:
-    en: to stop, to halt
-  forms:
-    lzh-Hant/standard: [止]
-- id: sense:求
-  pos: VERB
-  gloss:
-    en: to seek, to look for; to ask for
-  forms:
-    lzh-Hant/standard: [求]
-- id: sense:失
-  pos: VERB
-  gloss:
-    en: to lose
-  forms:
-    lzh-Hant/standard: [失]
-- id: construction:you-zhe
-  gloss:
-    en: 'X人有…者: “there was a man of X who …”, how a story brings in its hero'
-- id: sense:涉
-  pos: VERB
-  gloss:
-    en: to wade across, to cross (a river)
-  forms:
-    lzh-Hant/standard: [涉]
-- id: sense:墜
-  pos: VERB
-  gloss:
-    en: to fall, to drop
-  forms:
-    lzh-Hant/standard: [墜]
-- id: sense:遽
-  pos: ADV
-  gloss:
-    en: hastily, at once
-  forms:
-    lzh-Hant/standard: [遽]
-- id: sense:契
-  pos: VERB
-  gloss:
-    en: to carve, to cut a notch
-  forms:
-    lzh-Hant/standard: [契]
-  notes:
-    en: 'In 刻舟求劍 the man 契 “notches” his boat: the same as 刻 here.'
-- id: sense:刻
-  pos: VERB
-  gloss:
-    en: to carve, to engrave
-  forms:
-    lzh-Hant/standard: [刻]
-- id: sense:從.from
-  pos: ADP
-  gloss:
-    en: from (a place)
-  forms:
-    lzh-Hant/standard: [從]
-  notes:
-    en: 'The 從 of u03 is “to follow”; as a preposition it is “from”: 從魯來 “come from Lu”, 所從墜 “where it fell from”.'
-- id: sense:已
-  pos: ADV
-  gloss:
-    en: already
-  forms:
-    lzh-Hant/standard: [已]
-- id: sense:若
-  pos: VERB
-  gloss:
-    en: like, as; to be like
-  forms:
-    lzh-Hant/standard: [若]
-  notes:
-    en: '若此 “like this”: 上善若水 “the highest good is like water”.'
 nodes:
-- {id: lzh.u06.chu, kind: lesson, introduces: ['sense:楚', 'sense:江', 'sense:舟', 'sense:劍']}
-- {id: lzh.u06.in-the-boat, kind: lesson, introduces: ['sense:中', 'sense:入', 'sense:止', 'sense:求', 'sense:失']}
-- {id: lzh.u06.there-was, kind: lesson, introduces: ['construction:you-zhe', 'sense:涉', 'sense:墜', 'sense:遽']}
-- {id: lzh.u06.the-mark, kind: lesson, introduces: ['sense:契', 'sense:刻', 'sense:從.from', 'sense:已', 'sense:若']}
+- {id: lzh.u06.chu, kind: lesson, introduces: ['lexeme:楚', 'lexeme:江', 'lexeme:舟', 'lexeme:劍']}
+- {id: lzh.u06.in-the-boat, kind: lesson, introduces: ['lexeme:中', 'lexeme:入', 'lexeme:止', 'lexeme:求', 'lexeme:失']}
+- {id: lzh.u06.there-was, kind: lesson, introduces: ['rule:you-zhe', 'lexeme:涉', 'lexeme:墜', 'lexeme:遽']}
+- {id: lzh.u06.the-mark, kind: lesson, introduces: ['lexeme:契', 'lexeme:刻', 'lexeme:從.from', 'lexeme:已', 'lexeme:若']}
 - {id: lzh.u06.story, kind: story}
 sentences:
 - id: s.06.1
@@ -130,7 +16,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 我，楚人也。
-      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 我, lexeme: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 楚, lexeme: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: (我|吾)楚人也
   translations:
     en: |-
@@ -146,7 +32,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 楚遠乎？
-      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 遠, sense: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      tokens: [{surface: 楚, lexeme: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 遠, lexeme: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 乎, lexeme: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
       reverse: 楚遠乎
   translations:
     en: |-
@@ -157,7 +43,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 楚有江。
-      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 江, sense: 江, readings: {pinyin: jiāng, jyutping: gong1, baxter: kaewng}}]
+      tokens: [{surface: 楚, lexeme: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 有, lexeme: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 江, lexeme: 江, readings: {pinyin: jiāng, jyutping: gong1, baxter: kaewng}}]
       reverse: 楚有江
   translations:
     en: |-
@@ -171,7 +57,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 江上有舟。
-      tokens: [{surface: 江, sense: 江, readings: {pinyin: jiāng, jyutping: gong1, baxter: kaewng}}, {surface: 上, sense: 上, readings: {pinyin: shàng, jyutping: soeng6, baxter: dzyangH}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}]
+      tokens: [{surface: 江, lexeme: 江, readings: {pinyin: jiāng, jyutping: gong1, baxter: kaewng}}, {surface: 上, lexeme: 上, readings: {pinyin: shàng, jyutping: soeng6, baxter: dzyangH}}, {surface: 有, lexeme: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}]
       reverse: 江上有舟
   translations:
     en: |-
@@ -186,7 +72,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾有劍。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 有, lexeme: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}]
       reverse: (吾|我)有劍
   translations:
     en: |-
@@ -198,7 +84,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 此其劍也。
-      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 此, lexeme: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: |-
         此其劍也
         是其劍也
@@ -215,7 +101,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾劍，楚劍也。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 楚, lexeme: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 也, lexeme: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: |-
         吾劍楚劍也
         我劍楚劍也
@@ -229,7 +115,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 舟中有人。
-      tokens: [{surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 中, sense: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}]
+      tokens: [{surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 中, lexeme: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 有, lexeme: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}]
       reverse: 舟中有人
   translations:
     en: |-
@@ -242,7 +128,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 水中有魚。
-      tokens: [{surface: 水, sense: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}, {surface: 中, sense: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}]
+      tokens: [{surface: 水, lexeme: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}, {surface: 中, lexeme: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 有, lexeme: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 魚, lexeme: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}]
       reverse: 水中有魚
   translations:
     en: |-
@@ -256,7 +142,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 魚入水。
-      tokens: [{surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 入, sense: 入, readings: {pinyin: rù, jyutping: jap6, baxter: nyip}}, {surface: 水, sense: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
+      tokens: [{surface: 魚, lexeme: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 入, lexeme: 入, readings: {pinyin: rù, jyutping: jap6, baxter: nyip}}, {surface: 水, lexeme: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
       reverse: 魚入水
   translations:
     en: |-
@@ -273,7 +159,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 舟止。
-      tokens: [{surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 止, sense: 止, readings: {pinyin: zhǐ, jyutping: zi2, baxter: tsyiX}}]
+      tokens: [{surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 止, lexeme: 止, readings: {pinyin: zhǐ, jyutping: zi2, baxter: tsyiX}}]
       reverse: 舟止
   translations:
     en: |-
@@ -285,7 +171,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾求之。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 求, sense: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 求, lexeme: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 之, lexeme: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: (吾|我)求之
   translations:
     en: |-
@@ -304,7 +190,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 入水求之。
-      tokens: [{surface: 入, sense: 入, readings: {pinyin: rù, jyutping: jap6, baxter: nyip}}, {surface: 水, sense: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}, {surface: 求, sense: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      tokens: [{surface: 入, lexeme: 入, readings: {pinyin: rù, jyutping: jap6, baxter: nyip}}, {surface: 水, lexeme: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}, {surface: 求, lexeme: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 之, lexeme: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: 入水求之
   translations:
     en: |-
@@ -322,7 +208,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾失吾劍。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 失, sense: 失, readings: {pinyin: shī, jyutping: sat1, baxter: syit}}, {surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 失, lexeme: 失, readings: {pinyin: shī, jyutping: sat1, baxter: syit}}, {surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}]
       reverse: (吾|我)失(吾|我)劍
   translations:
     en: |-
@@ -334,7 +220,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 子何求？
-      tokens: [{surface: 子, sense: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 何, sense: 何, readings: {pinyin: hé, jyutping: ho4, baxter: ha}}, {surface: 求, sense: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}]
+      tokens: [{surface: 子, lexeme: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 何, lexeme: 何, readings: {pinyin: hé, jyutping: ho4, baxter: ha}}, {surface: 求, lexeme: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}]
       reverse: (子|汝|爾)何求
   translations:
     en: |-
@@ -346,7 +232,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾求劍。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 求, sense: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 求, lexeme: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}]
       reverse: |-
         (吾|我)求劍
         吾求吾劍
@@ -364,7 +250,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾涉江。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 涉, sense: 涉, readings: {pinyin: shè, jyutping: sip3, baxter: dzyep}}, {surface: 江, sense: 江, readings: {pinyin: jiāng, jyutping: gong1, baxter: kaewng}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 涉, lexeme: 涉, readings: {pinyin: shè, jyutping: sip3, baxter: dzyep}}, {surface: 江, lexeme: 江, readings: {pinyin: jiāng, jyutping: gong1, baxter: kaewng}}]
       reverse: (吾|我)涉江
   translations:
     en: |-
@@ -375,11 +261,11 @@ sentences:
       I forded the river.
 - id: s.06.18
   node: lzh.u06.there-was
-  constructions: ['construction:you-zhe']
+  uses: ['rule:you-zhe']
   forms:
     lzh-Hant/standard:
       text: 楚人有涉江者。
-      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 涉, sense: 涉, readings: {pinyin: shè, jyutping: sip3, baxter: dzyep}}, {surface: 江, sense: 江, readings: {pinyin: jiāng, jyutping: gong1, baxter: kaewng}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}]
+      tokens: [{surface: 楚, lexeme: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, lexeme: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 涉, lexeme: 涉, readings: {pinyin: shè, jyutping: sip3, baxter: dzyep}}, {surface: 江, lexeme: 江, readings: {pinyin: jiāng, jyutping: gong1, baxter: kaewng}}, {surface: 者, lexeme: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}]
       reverse: 楚人有涉江者
   translations:
     en: |-
@@ -400,7 +286,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 魯人有知之者。
-      tokens: [{surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}]
+      tokens: [{surface: 魯, lexeme: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, lexeme: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 知, lexeme: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, lexeme: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 者, lexeme: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}]
       reverse: 魯人有知之者
   translations:
     en: |-
@@ -420,9 +306,8 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 其劍墜於水。
-      tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 墜, sense: 墜, readings: {pinyin: zhuì, jyutping: zeoi6, baxter: drwijH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 水, sense: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
-      reverse: |-
-        其劍墜於水
+      tokens: [{surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 墜, lexeme: 墜, readings: {pinyin: zhuì, jyutping: zeoi6, baxter: drwijH}}, {surface: 於, lexeme: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 水, lexeme: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
+      reverse: 其劍墜於水
   translations:
     en: |-
       His sword fell into the water.
@@ -437,7 +322,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 其劍自舟中墜於水。
-      tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 自, sense: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 中, sense: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 墜, sense: 墜, readings: {pinyin: zhuì, jyutping: zeoi6, baxter: drwijH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 水, sense: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
+      tokens: [{surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 自, lexeme: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 中, lexeme: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 墜, lexeme: 墜, readings: {pinyin: zhuì, jyutping: zeoi6, baxter: drwijH}}, {surface: 於, lexeme: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 水, lexeme: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
       reverse: |-
         其劍自舟中墜於水
         其劍從舟中墜於水
@@ -455,7 +340,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 遽入水。
-      tokens: [{surface: 遽, sense: 遽, readings: {pinyin: jù, jyutping: geoi6, baxter: gjoH}}, {surface: 入, sense: 入, readings: {pinyin: rù, jyutping: jap6, baxter: nyip}}, {surface: 水, sense: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
+      tokens: [{surface: 遽, lexeme: 遽, readings: {pinyin: jù, jyutping: geoi6, baxter: gjoH}}, {surface: 入, lexeme: 入, readings: {pinyin: rù, jyutping: jap6, baxter: nyip}}, {surface: 水, lexeme: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
       reverse: 遽入水
   translations:
     en: |-
@@ -469,7 +354,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 王遽出。
-      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 遽, sense: 遽, readings: {pinyin: jù, jyutping: geoi6, baxter: gjoH}}, {surface: 出, sense: 出, readings: {pinyin: chū, jyutping: ceot1, baxter: tsyhwit}}]
+      tokens: [{surface: 王, lexeme: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 遽, lexeme: 遽, readings: {pinyin: jù, jyutping: geoi6, baxter: gjoH}}, {surface: 出, lexeme: 出, readings: {pinyin: chū, jyutping: ceot1, baxter: tsyhwit}}]
       reverse: 王遽出
   translations:
     en: |-
@@ -481,7 +366,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 契其舟。
-      tokens: [{surface: 契, sense: 契, readings: {pinyin: qì, jyutping: kai3, baxter: khejH}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}]
+      tokens: [{surface: 契, lexeme: 契, readings: {pinyin: qì, jyutping: kai3, baxter: khejH}}, {surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}]
       reverse: 契其舟
   translations:
     en: |-
@@ -500,7 +385,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 遽契其舟。
-      tokens: [{surface: 遽, sense: 遽, readings: {pinyin: jù, jyutping: geoi6, baxter: gjoH}}, {surface: 契, sense: 契, readings: {pinyin: qì, jyutping: kai3, baxter: khejH}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}]
+      tokens: [{surface: 遽, lexeme: 遽, readings: {pinyin: jù, jyutping: geoi6, baxter: gjoH}}, {surface: 契, lexeme: 契, readings: {pinyin: qì, jyutping: kai3, baxter: khejH}}, {surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}]
       reverse: 遽契其舟
   translations:
     en: |-
@@ -523,7 +408,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 刻舟求劍。
-      tokens: [{surface: 刻, sense: 刻, readings: {pinyin: kè, jyutping: hak1, baxter: khok}}, {surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 求, sense: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}]
+      tokens: [{surface: 刻, lexeme: 刻, readings: {pinyin: kè, jyutping: hak1, baxter: khok}}, {surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 求, lexeme: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}]
       reverse: 刻舟求劍
   translations:
     en: |-
@@ -540,7 +425,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 從魯來。
-      tokens: [{surface: 從, sense: 從.from, readings: {pinyin: cóng, jyutping: cung4, baxter: dzjowng}}, {surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      tokens: [{surface: 從, lexeme: 從.from, readings: {pinyin: cóng, jyutping: cung4, baxter: dzjowng}}, {surface: 魯, lexeme: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 來, lexeme: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
       reverse: (從|自)魯來
   translations:
     en: |-
@@ -553,7 +438,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 是吾劍之所從墜。
-      tokens: [{surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 從, sense: 從.from, readings: {pinyin: cóng, jyutping: cung4, baxter: dzjowng}}, {surface: 墜, sense: 墜, readings: {pinyin: zhuì, jyutping: zeoi6, baxter: drwijH}}]
+      tokens: [{surface: 是, lexeme: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 之, lexeme: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 所, lexeme: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 從, lexeme: 從.from, readings: {pinyin: cóng, jyutping: cung4, baxter: dzjowng}}, {surface: 墜, lexeme: 墜, readings: {pinyin: zhuì, jyutping: zeoi6, baxter: drwijH}}]
       reverse: |-
         是(吾|我)劍之所從墜[也]
         此吾劍之所從墜也
@@ -572,7 +457,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 從其所契者入水求之。
-      tokens: [{surface: 從, sense: 從.from, readings: {pinyin: cóng, jyutping: cung4, baxter: dzjowng}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 契, sense: 契, readings: {pinyin: qì, jyutping: kai3, baxter: khejH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 入, sense: 入, readings: {pinyin: rù, jyutping: jap6, baxter: nyip}}, {surface: 水, sense: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}, {surface: 求, sense: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      tokens: [{surface: 從, lexeme: 從.from, readings: {pinyin: cóng, jyutping: cung4, baxter: dzjowng}}, {surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 所, lexeme: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 契, lexeme: 契, readings: {pinyin: qì, jyutping: kai3, baxter: khejH}}, {surface: 者, lexeme: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 入, lexeme: 入, readings: {pinyin: rù, jyutping: jap6, baxter: nyip}}, {surface: 水, lexeme: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}, {surface: 求, lexeme: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 之, lexeme: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: 從其所契者入水求之
   translations:
     en: |-
@@ -594,7 +479,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 舟已行矣。
-      tokens: [{surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 已, sense: 已, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}, {surface: 矣, sense: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}]
+      tokens: [{surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 已, lexeme: 已, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 行, lexeme: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}, {surface: 矣, lexeme: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}]
       reverse: 舟已行矣
   translations:
     en: |-
@@ -611,7 +496,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 劍不行。
-      tokens: [{surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}]
+      tokens: [{surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 不, lexeme: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 行, lexeme: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}]
       reverse: 劍不行
   translations:
     en: |-
@@ -624,7 +509,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 舟已行矣，而劍不行。
-      tokens: [{surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 已, sense: 已, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}, {surface: 矣, sense: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}]
+      tokens: [{surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 已, lexeme: 已, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 行, lexeme: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}, {surface: 矣, lexeme: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}, {surface: 而, lexeme: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 不, lexeme: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 行, lexeme: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}]
       reverse: 舟已行矣而劍不行
   translations:
     en: |-
@@ -637,7 +522,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 求劍若此，不亦惑乎？
-      tokens: [{surface: 求, sense: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 若, sense: 若, readings: {pinyin: ruò, jyutping: joek6, baxter: nyak}}, {surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 惑, sense: 惑, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      tokens: [{surface: 求, lexeme: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 若, lexeme: 若, readings: {pinyin: ruò, jyutping: joek6, baxter: nyak}}, {surface: 此, lexeme: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 不, lexeme: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 亦, lexeme: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 惑, lexeme: 惑, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 乎, lexeme: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
       reverse: |-
         求劍若此不亦惑乎
         求劍如此不亦惑乎
@@ -659,7 +544,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 上善若水。
-      tokens: [{surface: 上, sense: 上, readings: {pinyin: shàng, jyutping: soeng6, baxter: dzyangH}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}, {surface: 若, sense: 若, readings: {pinyin: ruò, jyutping: joek6, baxter: nyak}}, {surface: 水, sense: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
+      tokens: [{surface: 上, lexeme: 上, readings: {pinyin: shàng, jyutping: soeng6, baxter: dzyangH}}, {surface: 善, lexeme: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}, {surface: 若, lexeme: 若, readings: {pinyin: ruò, jyutping: joek6, baxter: nyak}}, {surface: 水, lexeme: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
       reverse: 上善若水
   translations:
     en: |-
@@ -674,7 +559,7 @@ sentences:
   forms:
     lzh-Hant/standard:
       text: 吾若魚。
-      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 若, sense: 若, readings: {pinyin: ruò, jyutping: joek6, baxter: nyak}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}]
+      tokens: [{surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 若, lexeme: 若, readings: {pinyin: ruò, jyutping: joek6, baxter: nyak}}, {surface: 魚, lexeme: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}]
       reverse: |-
         (吾|我)若魚
         吾如魚
@@ -691,72 +576,95 @@ stories:
   title:
     en: Marking the boat to find the sword (Lüshi Chunqiu)
   characters:
-  - {id: chu-ren, name: {lzh-Hant/standard: 楚人}}
+  - id: chu-ren
+    name:
+      lzh-Hant/standard: 楚人
   steps:
   - line:
       ask: arrange
       forms:
         lzh-Hant/standard:
           text: 楚人有涉江者，
-          tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 涉, sense: 涉, readings: {pinyin: shè, jyutping: sip3, baxter: dzyep}}, {surface: 江, sense: 江, readings: {pinyin: jiāng, jyutping: gong1, baxter: kaewng}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}]
-      translations: {en: There was a man of Chu who was crossing the river.}
+          tokens: [{surface: 楚, lexeme: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, lexeme: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, lexeme: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 涉, lexeme: 涉, readings: {pinyin: shè, jyutping: sip3, baxter: dzyep}}, {surface: 江, lexeme: 江, readings: {pinyin: jiāng, jyutping: gong1, baxter: kaewng}}, {surface: 者, lexeme: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}]
+      translations:
+        en: There was a man of Chu who was crossing the river.
   - line:
       forms:
         lzh-Hant/standard:
           text: 其劍自舟中墜於水，
-          tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 自, sense: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 中, sense: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 墜, sense: 墜, readings: {pinyin: zhuì, jyutping: zeoi6, baxter: drwijH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 水, sense: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
-      translations: {en: His sword fell from the boat into the water.}
+          tokens: [{surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 自, lexeme: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 中, lexeme: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 墜, lexeme: 墜, readings: {pinyin: zhuì, jyutping: zeoi6, baxter: drwijH}}, {surface: 於, lexeme: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 水, lexeme: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
+      translations:
+        en: His sword fell from the boat into the water.
   - line:
       forms:
         lzh-Hant/standard:
           text: 遽契其舟，曰：
-          tokens: [{surface: 遽, sense: 遽, readings: {pinyin: jù, jyutping: geoi6, baxter: gjoH}}, {surface: 契, sense: 契, readings: {pinyin: qì, jyutping: kai3, baxter: khejH}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
-      translations: {en: 'At once he cut a notch in his boat, and said:'}
+          tokens: [{surface: 遽, lexeme: 遽, readings: {pinyin: jù, jyutping: geoi6, baxter: gjoH}}, {surface: 契, lexeme: 契, readings: {pinyin: qì, jyutping: kai3, baxter: khejH}}, {surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 曰, lexeme: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
+      translations:
+        en: 'At once he cut a notch in his boat, and said:'
   - line:
       speaker: chu-ren
       ask: complete
-      gap: sense:墜
-      distractors: ['sense:言', 'sense:思']
+      gap: lexeme:墜
+      distractors:
+      - lexeme:言
+      - lexeme:思
       forms:
         lzh-Hant/standard:
           text: 「是吾劍之所從墜。」
-          tokens: [{surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 從, sense: 從.from, readings: {pinyin: cóng, jyutping: cung4, baxter: dzjowng}}, {surface: 墜, sense: 墜, readings: {pinyin: zhuì, jyutping: zeoi6, baxter: drwijH}}]
-      translations: {en: “This is where my sword fell from.”}
+          tokens: [{surface: 是, lexeme: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 吾, lexeme: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 之, lexeme: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 所, lexeme: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 從, lexeme: 從.from, readings: {pinyin: cóng, jyutping: cung4, baxter: dzjowng}}, {surface: 墜, lexeme: 墜, readings: {pinyin: zhuì, jyutping: zeoi6, baxter: drwijH}}]
+      translations:
+        en: “This is where my sword fell from.”
   - choose:
       prompt:
         en: Why does the man cut a notch in his boat?
-      options: [{en: To mark where his sword fell.}, {en: To carve his name.}, {en: To count the days of his journey.}]
+      options:
+      - en: To mark where his sword fell.
+      - en: To carve his name.
+      - en: To count the days of his journey.
       answer: 0
   - line:
       forms:
         lzh-Hant/standard:
           text: 舟止，從其所契者入水求之。
-          tokens: [{surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 止, sense: 止, readings: {pinyin: zhǐ, jyutping: zi2, baxter: tsyiX}}, {surface: 從, sense: 從.from, readings: {pinyin: cóng, jyutping: cung4, baxter: dzjowng}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 契, sense: 契, readings: {pinyin: qì, jyutping: kai3, baxter: khejH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 入, sense: 入, readings: {pinyin: rù, jyutping: jap6, baxter: nyip}}, {surface: 水, sense: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}, {surface: 求, sense: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
-      translations: {en: 'The boat stopped, and from where he had marked it, he went into the water to look for it.'}
+          tokens: [{surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 止, lexeme: 止, readings: {pinyin: zhǐ, jyutping: zi2, baxter: tsyiX}}, {surface: 從, lexeme: 從.from, readings: {pinyin: cóng, jyutping: cung4, baxter: dzjowng}}, {surface: 其, lexeme: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 所, lexeme: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 契, lexeme: 契, readings: {pinyin: qì, jyutping: kai3, baxter: khejH}}, {surface: 者, lexeme: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 入, lexeme: 入, readings: {pinyin: rù, jyutping: jap6, baxter: nyip}}, {surface: 水, lexeme: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}, {surface: 求, lexeme: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 之, lexeme: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      translations:
+        en: The boat stopped, and from where he had marked it, he went into the water to look for it.
   - line:
       ask: complete
-      gap: sense:舟
-      distractors: ['sense:劍', 'sense:山']
+      gap: lexeme:舟
+      distractors:
+      - lexeme:劍
+      - lexeme:山
       forms:
         lzh-Hant/standard:
           text: 舟已行矣，而劍不行。
-          tokens: [{surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 已, sense: 已, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}, {surface: 矣, sense: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}]
-      translations: {en: 'The boat had already moved on, but the sword had not.'}
+          tokens: [{surface: 舟, lexeme: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 已, lexeme: 已, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 行, lexeme: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}, {surface: 矣, lexeme: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}, {surface: 而, lexeme: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 不, lexeme: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 行, lexeme: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}]
+      translations:
+        en: The boat had already moved on, but the sword had not.
   - line:
       forms:
         lzh-Hant/standard:
           text: 求劍若此，不亦惑乎？
-          tokens: [{surface: 求, sense: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 若, sense: 若, readings: {pinyin: ruò, jyutping: joek6, baxter: nyak}}, {surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 惑, sense: 惑, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
-      translations: {en: 'Is it not foolish to look for a sword like this?'}
+          tokens: [{surface: 求, lexeme: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 劍, lexeme: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 若, lexeme: 若, readings: {pinyin: ruò, jyutping: joek6, baxter: nyak}}, {surface: 此, lexeme: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 不, lexeme: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 亦, lexeme: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 惑, lexeme: 惑, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 乎, lexeme: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      translations:
+        en: Is it not foolish to look for a sword like this?
   - choose:
       prompt:
         en: What has the man forgotten?
-      options: [{en: 'The boat has moved on, but the sword stayed where it fell.'}, {en: His sword was never in the boat.}, {en: The river is too deep to wade into.}]
+      options:
+      - en: The boat has moved on, but the sword stayed where it fell.
+      - en: His sword was never in the boat.
+      - en: The river is too deep to wade into.
       answer: 0
 scenarios:
 - id: lzh.ferry
   after: lzh.u06.the-mark
-  title: {en: Ferry across the Yangzi}
-  setting: {en: 'A ferry crossing the Great River in the state of Chu, in the 3rd century BCE. A passenger has just dropped something overboard.'}
-  character: {en: 'An old ferryman of Chu, dry and amused, who has seen many travellers lose things in the river and speaks only Classical Chinese.'}
-  goal: {en: 'Say you are from Chu, tell the ferryman you have lost your sword, and ask him to stop the boat.'}
+  title:
+    en: Ferry across the Yangzi
+  setting:
+    en: A ferry crossing the Great River in the state of Chu, in the 3rd century BCE. A passenger has just dropped something overboard.
+  character:
+    en: An old ferryman of Chu, dry and amused, who has seen many travellers lose things in the river and speaks only Classical Chinese.
+  goal:
+    en: Say you are from Chu, tell the ferryman you have lost your sword, and ask him to stop the boat.

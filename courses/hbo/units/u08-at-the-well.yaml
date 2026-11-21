@@ -7,170 +7,12 @@ id: u08-at-the-well
 title:
   en: At the well
 cefr: A2
-kcs:
-- id: sense:eved
-  pos: NOUN
-  gloss:
-    en: servant, slave
-  forms:
-    hbo-Hebr/tiberian: [עֶבֶד]
-- id: sense:ruts
-  pos: VERB
-  gloss:
-    en: to run
-  forms:
-    hbo-Hebr/tiberian: [רוּץ]
-- id: sense:liqrat
-  pos: VERB
-  gloss:
-    en: 'to meet; toward, against (לִקְרַאת: the infinitive of קָרָא ''to meet'')'
-  forms:
-    hbo-Hebr/tiberian: [קִרְאָה]
-- id: form:sfx-3fs
-  gloss:
-    en: her; it (f.) (the suffix -āh, -hā)
-- id: sense:rivqah
-  pos: PROPN
-  gloss:
-    en: Rebekah
-  forms:
-    hbo-Hebr/tiberian: [רִבְקָה]
-- id: sense:kad
-  pos: NOUN
-  gloss:
-    en: jar, pitcher
-  forms:
-    hbo-Hebr/tiberian: [כַּד]
-- id: sense:meat
-  pos: DET
-  features:
-    PronType: Ind
-  gloss:
-    en: a little, a few
-  forms:
-    hbo-Hebr/tiberian: [מְעַט]
-- id: sense:gama
-  pos: VERB
-  gloss:
-    en: to let drink, give a sip (hiphil)
-  forms:
-    hbo-Hebr/tiberian: [הִגְמִיא]
-- id: sense:shatah
-  pos: VERB
-  gloss:
-    en: to drink
-  forms:
-    hbo-Hebr/tiberian: [שָׁתָה]
-  image: {file: ../images/water.svg, license: CC0-1.0, provenance: {author: 'llm:claude@e7d707f749db', status: draft}, source: Drawn for Nabu (courses/images)}
-- id: sense:adon
-  pos: NOUN
-  gloss:
-    en: lord, master; (אֲדֹנִי) sir
-  forms:
-    hbo-Hebr/tiberian: [אָדוֹן]
-- id: sense:mahar
-  pos: VERB
-  gloss:
-    en: to hurry, do quickly (piel)
-  forms:
-    hbo-Hebr/tiberian: [מִהַר]
-- id: sense:horid
-  pos: VERB
-  gloss:
-    en: to lower, bring down (hiphil of יָרַד)
-  forms:
-    hbo-Hebr/tiberian: [הוֹרִיד]
-- id: sense:yad
-  pos: NOUN
-  gloss:
-    en: hand
-  forms:
-    hbo-Hebr/tiberian: [יָד]
-  image: {file: ../images/hand.svg, license: CC0-1.0, provenance: {author: 'llm:claude@b081ec947041', status: draft}, source: Drawn for Nabu (courses/images)}
-- id: sense:hishqah
-  pos: VERB
-  gloss:
-    en: to give to drink, water (hiphil)
-  forms:
-    hbo-Hebr/tiberian: [הִשְׁקָה]
-- id: sense:gamal
-  pos: NOUN
-  gloss:
-    en: camel
-  forms:
-    hbo-Hebr/tiberian: [גָּמָל]
-- id: sense:gam
-  pos: ADV
-  gloss:
-    en: also, too; even
-  forms:
-    hbo-Hebr/tiberian: [גַּם]
-- id: sense:shaav
-  pos: VERB
-  gloss:
-    en: to draw (water)
-  forms:
-    hbo-Hebr/tiberian: [שָׁאַב]
-- id: sense:ad
-  pos: ADP
-  gloss:
-    en: until; as far as
-  forms:
-    hbo-Hebr/tiberian: [עַד]
-  readings: {tiberian: ʿaḏ}
-- id: sense:im
-  pos: SCONJ
-  gloss:
-    en: if; (עַד אִם) until
-  forms:
-    hbo-Hebr/tiberian: [אִם]
-- id: sense:killah
-  pos: VERB
-  gloss:
-    en: to finish, complete (piel)
-  forms:
-    hbo-Hebr/tiberian: [כִּלָּה]
-- id: form:qatal-3cp
-  gloss:
-    en: 'they did: the perfect (qatal), they (-û)'
-- id: sense:beer
-  pos: NOUN
-  gloss:
-    en: well (of water)
-  forms:
-    hbo-Hebr/tiberian: [בְּאֵר]
-- id: sense:od
-  pos: ADV
-  gloss:
-    en: again; still; more
-  forms:
-    hbo-Hebr/tiberian: [עוֹד]
-- id: sense:kol
-  pos: DET
-  features:
-    PronType: Tot
-  gloss:
-    en: all, every; the whole (כָּל־, כֹּל)
-  forms:
-    hbo-Hebr/tiberian: [כֹּל]
-- id: sense:arah
-  pos: VERB
-  gloss:
-    en: to empty, pour out (piel)
-  forms:
-    hbo-Hebr/tiberian: [עֵרָה]
-- id: sense:shoqet
-  pos: NOUN
-  gloss:
-    en: watering trough
-  forms:
-    hbo-Hebr/tiberian: [שֹׁקֶת]
 nodes:
-- {id: hbo.u08.the-servant-ran, kind: lesson, introduces: ['sense:eved', 'sense:ruts', 'sense:liqrat', 'form:sfx-3fs', 'sense:rivqah']}
-- {id: hbo.u08.a-little-water, kind: lesson, introduces: ['sense:kad', 'sense:meat', 'sense:gama', 'sense:shatah']}
-- {id: hbo.u08.drink-my-lord, kind: lesson, introduces: ['sense:adon', 'sense:mahar', 'sense:horid', 'sense:yad', 'sense:hishqah']}
-- {id: hbo.u08.for-your-camels, kind: lesson, introduces: ['sense:gamal', 'sense:gam', 'sense:shaav', 'sense:ad', 'sense:im', 'sense:killah', 'form:qatal-3cp']}
-- {id: hbo.u08.to-the-well, kind: lesson, introduces: ['sense:beer', 'sense:od', 'sense:kol', 'sense:arah', 'sense:shoqet']}
+- {id: hbo.u08.the-servant-ran, kind: lesson, introduces: ['lexeme:eved', 'lexeme:ruts', 'lexeme:liqrat', 'lexeme:sfx-3fs', 'lexeme:rivqah']}
+- {id: hbo.u08.a-little-water, kind: lesson, introduces: ['lexeme:kad', 'lexeme:meat', 'lexeme:gama', 'lexeme:shatah']}
+- {id: hbo.u08.drink-my-lord, kind: lesson, introduces: ['lexeme:adon', 'lexeme:mahar', 'lexeme:horid', 'lexeme:yad', 'lexeme:hishqah']}
+- {id: hbo.u08.for-your-camels, kind: lesson, introduces: ['lexeme:gamal', 'lexeme:gam', 'lexeme:shaav', 'lexeme:ad', 'lexeme:im', 'lexeme:killah']}
+- {id: hbo.u08.to-the-well, kind: lesson, introduces: ['lexeme:beer', 'lexeme:od', 'lexeme:kol', 'lexeme:arah', 'lexeme:shoqet']}
 - {id: hbo.u08.story, kind: story}
 sentences:
 - id: s.08.1
@@ -178,7 +20,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עֶבֶד
-      tokens: [{surface: עֶבֶד, sense: eved, readings: {tiberian: ʿéḇeḏ}}]
+      tokens: [{surface: עֶבֶד, lexeme: eved, feats: {Number: Sing}, readings: {tiberian: ʿéḇeḏ}}]
       reverse: עבד
   translations:
     en: |-
@@ -189,7 +31,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הָעֶבֶד
-      tokens: [{surface: הָעֶבֶד, sense: eved, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עֶבֶד, kc: 'sense:eved'}], readings: {tiberian: hāʿéḇeḏ}}]
+      tokens: [{surface: הָעֶבֶד, lexemes: [{lexeme: ha, surface: הָ, n: 1, head: 2, rel: det}, {lexeme: eved, surface: עֶבֶד, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: hāʿéḇeḏ}}]
       reverse: העבד
   translations:
     en: |-
@@ -200,8 +42,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיָּרָץ הָעֶבֶד׃
-      tokens: [{surface: וַיָּרָץ, sense: ruts, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́roṣ}}, {surface: הָעֶבֶד, sense: eved, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עֶבֶד, kc: 'sense:eved'}],
-          readings: {tiberian: hāʿéḇeḏ}}]
+      tokens: [{surface: וַיָּרָץ, lexeme: ruts, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́roṣ}}, {surface: הָעֶבֶד, lexemes: [{lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: eved, surface: עֶבֶד, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hāʿéḇeḏ}}]
       reverse: |-
         וירץ העבד
         העבד רץ
@@ -214,7 +55,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: לִקְרַאת
-      tokens: [{surface: לִקְרַאת, sense: liqrat, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: קְרַאת, kc: 'sense:liqrat'}], readings: {tiberian: liqraʾṯ}}]
+      tokens: [{surface: לִקְרַאת, lexemes: [{lexeme: le, surface: לִ}, {lexeme: liqrat, surface: קְרַאת, base: true}], readings: {tiberian: liqraʾṯ}}]
       reverse: לקראת
   translations:
     en: |-
@@ -225,8 +66,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיָּרָץ לִקְרָאתָהּ׃
-      tokens: [{surface: וַיָּרָץ, sense: ruts, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́roṣ}}, {surface: לִקְרָאתָהּ, sense: liqrat, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: קְרָאתָ,
-              kc: 'sense:liqrat'}, {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: liqrāʾṯāh}}]
+      tokens: [{surface: וַיָּרָץ, lexeme: ruts, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́roṣ}}, {surface: לִקְרָאתָהּ, lexemes: [{lexeme: le, surface: לִ}, {lexeme: liqrat, surface: קְרָאתָ, base: true}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: liqrāʾṯāh}}]
       reverse: |-
         וירץ לקראתה
         רץ לקראתה
@@ -239,7 +79,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: רִבְקָה
-      tokens: [{surface: רִבְקָה, sense: rivqah, form: 'form:f', readings: {tiberian: riḇqâ}}]
+      tokens: [{surface: רִבְקָה, lexeme: rivqah, readings: {tiberian: riḇqâ}}]
       reverse: רבקה
   translations:
     en: Rebekah
@@ -248,7 +88,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַתָּרָץ רִבְקָה׃
-      tokens: [{surface: וַתָּרָץ, sense: ruts, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattā́roṣ}}, {surface: רִבְקָה, sense: rivqah, form: 'form:f', readings: {tiberian: riḇqâ}}]
+      tokens: [{surface: וַתָּרָץ, lexeme: ruts, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattā́roṣ}}, {surface: רִבְקָה, lexeme: rivqah, readings: {tiberian: riḇqâ}}]
       reverse: ותרץ רבקה
   translations:
     en: '[(And|Then)] Rebekah ran.'
@@ -257,8 +97,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַתָּרָץ רִבְקָה אֶל־הַבַּיִת׃
-      tokens: [{surface: וַתָּרָץ, sense: ruts, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattā́roṣ}}, {surface: רִבְקָה, sense: rivqah, form: 'form:f', readings: {tiberian: riḇqâ}}, {surface: אֶל, sense: el, readings: {
-            tiberian: ʾel-}}, {surface: הַבַּיִת, sense: bayit, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: habbáyiṯ}}]
+      tokens: [{surface: וַתָּרָץ, lexeme: ruts, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattā́roṣ}}, {surface: רִבְקָה, lexeme: rivqah, readings: {tiberian: riḇqâ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הַבַּיִת, lexemes: [{lexeme: ha, surface: הַ, n: 4, head: 5, rel: det}, {lexeme: bayit, surface: בַּיִת, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: habbáyiṯ}}]
       reverse: ותרץ רבקה אל הבית
   translations:
     en: |-
@@ -269,7 +108,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כַּד
-      tokens: [{surface: כַּד, sense: kad, form: 'form:f', readings: {tiberian: kaḏ}}]
+      tokens: [{surface: כַּד, lexeme: kad, feats: {Number: Sing}, readings: {tiberian: kaḏ}}]
       reverse: כד
   translations:
     en: |-
@@ -280,7 +119,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כַּדָּהּ
-      tokens: [{surface: כַּדָּהּ, sense: kad, form: 'form:f', morphs: [{surface: כַּדָּ, kc: 'sense:kad'}, {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: kaddāh}}]
+      tokens: [{surface: כַּדָּהּ, lexemes: [{lexeme: kad, surface: כַּדָּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: kaddāh}}]
       reverse: כדה
   translations:
     en: |-
@@ -291,7 +130,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מְעַט מַיִם
-      tokens: [{surface: מְעַט, sense: meat, readings: {tiberian: məʿaṭ}}, {surface: מַיִם, sense: mayim, form: 'form:pl', readings: {tiberian: máyim}}]
+      tokens: [{surface: מְעַט, lexeme: meat, readings: {tiberian: məʿaṭ}}, {surface: מַיִם, lexeme: mayim, feats: {Number: Plur}, readings: {tiberian: máyim}}]
       reverse: מעט מים
   translations:
     en: |-
@@ -299,11 +138,12 @@ sentences:
       some water
 - id: s.08.12
   node: hbo.u08.a-little-water
-  persons: {addressee: f}
+  tags:
+  - {persons: {addressee: f}}
   forms:
     hbo-Hebr/tiberian:
       text: מִכַּדֵּךְ
-      tokens: [{surface: מִכַּדֵּךְ, sense: kad, form: 'form:f', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: כַּדֵּ, kc: 'sense:kad'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: mikkaddēḵ}}]
+      tokens: [{surface: מִכַּדֵּךְ, lexemes: [{lexeme: min, surface: מִ, n: 1, head: 2, rel: case}, {lexeme: kad, surface: כַּדֵּ, base: true, feats: {Number: Sing}, n: 2}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: mikkaddēḵ}}]
       reverse: מכדך
   translations:
     en: |-
@@ -311,13 +151,12 @@ sentences:
       from your (pitcher|water jar)
 - id: s.08.13
   node: hbo.u08.a-little-water
-  persons: {addressee: f}
+  tags:
+  - {persons: {addressee: f}}
   forms:
     hbo-Hebr/tiberian:
       text: הַגְמִיאִינִי נָא מְעַט מַיִם מִכַּדֵּךְ׃
-      tokens: [{surface: הַגְמִיאִינִי, sense: gama, form: 'form:impv-fs', morphs: [{surface: הַגְמִיאִי, kc: 'sense:gama'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: haḡmîʾî́nî}}, {surface: נָא,
-          sense: na, readings: {tiberian: nāʾ}}, {surface: מְעַט, sense: meat, readings: {tiberian: məʿaṭ}}, {surface: מַיִם, sense: mayim, form: 'form:pl', readings: {tiberian: máyim}}, {surface: מִכַּדֵּךְ, sense: kad, form: 'form:f',
-          morphs: [{surface: מִ, kc: 'sense:min'}, {surface: כַּדֵּ, kc: 'sense:kad'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: mikkaddēḵ}}]
+      tokens: [{surface: הַגְמִיאִינִי, lexemes: [{lexeme: gama, surface: הַגְמִיאִי, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: sfx-1cs, surface: נִי}], readings: {tiberian: haḡmîʾî́nî}}, {surface: נָא, lexeme: na, readings: {tiberian: nāʾ}}, {surface: מְעַט, lexeme: meat, readings: {tiberian: məʿaṭ}}, {surface: מַיִם, lexeme: mayim, feats: {Number: Plur}, readings: {tiberian: máyim}}, {surface: מִכַּדֵּךְ, lexemes: [{lexeme: min, surface: מִ, n: 6, head: 7, rel: case}, {lexeme: kad, surface: כַּדֵּ, base: true, feats: {Number: Sing}, n: 7}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: mikkaddēḵ}}]
       reverse: הגמיאיני נא מעט מים מכדך
   translations:
     en: |-
@@ -325,31 +164,34 @@ sentences:
       Please give me a (sip|little) of water from your (jar|pitcher).
 - id: s.08.14
   node: hbo.u08.a-little-water
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     hbo-Hebr/tiberian:
       text: שְׁתֵה׃
-      tokens: [{surface: שְׁתֵה, sense: shatah, form: 'form:impv-ms', readings: {tiberian: šəṯēh}}]
+      tokens: [{surface: שְׁתֵה, lexeme: shatah, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šəṯēh}}]
       reverse: שתה
   translations:
     en: Drink!
 - id: s.08.15
   node: hbo.u08.a-little-water
-  persons: {addressee: pl}
+  tags:
+  - {persons: {addressee: pl}}
   forms:
     hbo-Hebr/tiberian:
       text: שְׁתוּ׃
-      tokens: [{surface: שְׁתוּ, sense: shatah, form: 'form:impv-mp', readings: {tiberian: šəṯû}}]
+      tokens: [{surface: שְׁתוּ, lexeme: shatah, feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, readings: {tiberian: šəṯû}}]
       reverse: שתו
   translations:
     en: Drink!
 - id: s.08.16
   node: hbo.u08.a-little-water
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     hbo-Hebr/tiberian:
       text: שְׁתֵה מַיִם׃
-      tokens: [{surface: שְׁתֵה, sense: shatah, form: 'form:impv-ms', readings: {tiberian: šəṯēh}}, {surface: מַיִם, sense: mayim, form: 'form:pl', readings: {tiberian: máyim}}]
+      tokens: [{surface: שְׁתֵה, lexeme: shatah, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šəṯēh}}, {surface: מַיִם, lexeme: mayim, feats: {Number: Plur}, readings: {tiberian: máyim}}]
       reverse: שתה מים
   translations:
     en: Drink [some] water!
@@ -358,7 +200,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: לִשְׁתּוֹת
-      tokens: [{surface: לִשְׁתּוֹת, sense: shatah, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: שְׁתּוֹת, kc: 'sense:shatah'}], readings: {tiberian: lištôṯ}}]
+      tokens: [{surface: לִשְׁתּוֹת, lexemes: [{lexeme: le, surface: לִ}, {lexeme: shatah, surface: שְׁתּוֹת, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lištôṯ}}]
       reverse: לשתות
   translations:
     en: |-
@@ -369,7 +211,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֲדֹנִי
-      tokens: [{surface: אֲדֹנִי, sense: adon, morphs: [{surface: אֲדֹנִ, kc: 'sense:adon'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾăḏōnî}}]
+      tokens: [{surface: אֲדֹנִי, lexemes: [{lexeme: adon, surface: אֲדֹנִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾăḏōnî}}]
       reverse: (אדני|אדוני)
   translations:
     en: |-
@@ -378,12 +220,12 @@ sentences:
       my master
 - id: s.08.19
   node: hbo.u08.drink-my-lord
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     hbo-Hebr/tiberian:
       text: שְׁתֵה אֲדֹנִי׃
-      tokens: [{surface: שְׁתֵה, sense: shatah, form: 'form:impv-ms', readings: {tiberian: šəṯēh}}, {surface: אֲדֹנִי, sense: adon, morphs: [{surface: אֲדֹנִ, kc: 'sense:adon'}, {surface: י, kc: 'form:sfx-1cs'}],
-          readings: {tiberian: ʾăḏōnî}}]
+      tokens: [{surface: שְׁתֵה, lexeme: shatah, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šəṯēh}}, {surface: אֲדֹנִי, lexemes: [{lexeme: adon, surface: אֲדֹנִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾăḏōnî}}]
       reverse: שתה (אדני|אדוני)
   translations:
     en: |-
@@ -394,7 +236,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַתְּמַהֵר׃
-      tokens: [{surface: וַתְּמַהֵר, sense: mahar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattəmahēr}}]
+      tokens: [{surface: וַתְּמַהֵר, lexeme: mahar, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattəmahēr}}]
       reverse: |-
         ותמהר
         מהרה
@@ -409,7 +251,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: יָד
-      tokens: [{surface: יָד, sense: yad, form: 'form:f', readings: {tiberian: yāḏ}}]
+      tokens: [{surface: יָד, lexeme: yad, feats: {Number: Sing}, readings: {tiberian: yāḏ}}]
       reverse: יד
   translations:
     en: |-
@@ -420,17 +262,18 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: יָדִי
-      tokens: [{surface: יָדִי, sense: yad, form: 'form:f', morphs: [{surface: יָדִ, kc: 'sense:yad'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: yāḏî}}]
+      tokens: [{surface: יָדִי, lexemes: [{lexeme: yad, surface: יָדִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: yāḏî}}]
       reverse: ידי
   translations:
     en: my hand
 - id: s.08.23
   node: hbo.u08.drink-my-lord
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     hbo-Hebr/tiberian:
       text: יָדְךָ
-      tokens: [{surface: יָדְךָ, sense: yad, form: 'form:f', morphs: [{surface: יָדְ, kc: 'sense:yad'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: yāḏəḵā}}]
+      tokens: [{surface: יָדְךָ, lexemes: [{lexeme: yad, surface: יָדְ, base: true, feats: {Number: Sing}}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: yāḏəḵā}}]
       reverse: ידך
   translations:
     en: your hand
@@ -439,9 +282,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַתֹּרֶד כַּדָּהּ עַל־יָדָהּ׃
-      tokens: [{surface: וַתֹּרֶד, sense: horid, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓreḏ}}, {surface: כַּדָּהּ, sense: kad, form: 'form:f', morphs: [{surface: כַּדָּ, kc: 'sense:kad'}, {surface: הּ, kc: 'form:sfx-3fs'}],
-          readings: {tiberian: kaddāh}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: יָדָהּ, sense: yad, form: 'form:f', morphs: [{surface: יָדָ, kc: 'sense:yad'}, {surface: הּ, kc: 'form:sfx-3fs'}],
-          readings: {tiberian: yāḏāh}}]
+      tokens: [{surface: וַתֹּרֶד, lexeme: horid, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattṓreḏ}}, {surface: כַּדָּהּ, lexemes: [{lexeme: kad, surface: כַּדָּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: kaddāh}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: יָדָהּ, lexemes: [{lexeme: yad, surface: יָדָ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: yāḏāh}}]
       reverse: (ותרד|ותורד) כדה על ידה
   translations:
     en: |-
@@ -452,7 +293,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַתַּשְׁקֵהוּ׃
-      tokens: [{surface: וַתַּשְׁקֵהוּ, sense: hishqah, form: 'form:wayyiqtol-3fs', morphs: [{surface: וַתַּשְׁקֵ, kc: 'sense:hishqah'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: wattašqḗhû}}]
+      tokens: [{surface: וַתַּשְׁקֵהוּ, lexemes: [{lexeme: hishqah, surface: וַתַּשְׁקֵ, base: true, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: wattašqḗhû}}]
       reverse: ותשקהו
   translations:
     en: |-
@@ -463,7 +304,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: גָּמָל
-      tokens: [{surface: גָּמָל, sense: gamal, readings: {tiberian: gāmāl}}]
+      tokens: [{surface: גָּמָל, lexeme: gamal, feats: {Number: Sing}, readings: {tiberian: gāmāl}}]
       reverse: גמל
   translations:
     en: a camel
@@ -472,7 +313,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַגְּמַלִּים
-      tokens: [{surface: הַגְּמַלִּים, sense: gamal, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גְּמַלִּים, kc: 'sense:gamal'}], readings: {tiberian: haggəmallîm}}]
+      tokens: [{surface: הַגְּמַלִּים, lexemes: [{lexeme: ha, surface: הַ, n: 1, head: 2, rel: det}, {lexeme: gamal, surface: גְּמַלִּים, base: true, feats: {Number: Plur}, n: 2}], readings: {tiberian: haggəmallîm}}]
       reverse: הגמלים
   translations:
     en: the camels
@@ -481,7 +322,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: גַּם אָנֹכִי׃
-      tokens: [{surface: גַּם, sense: gam, readings: {tiberian: gam}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}]
+      tokens: [{surface: גַּם, lexeme: gam, readings: {tiberian: gam}}, {surface: אָנֹכִי, lexeme: anokhi, readings: {tiberian: ʾānōḵî}}]
       reverse: גם (אנכי|אנוכי)
   translations:
     en: |-
@@ -493,7 +334,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֶשְׁאָב מַיִם׃
-      tokens: [{surface: אֶשְׁאָב, sense: shaav, form: 'form:yiqtol-1cs', readings: {tiberian: ʾešʾāḇ}}, {surface: מַיִם, sense: mayim, form: 'form:pl', readings: {tiberian: máyim}}]
+      tokens: [{surface: אֶשְׁאָב, lexeme: shaav, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, readings: {tiberian: ʾešʾāḇ}}, {surface: מַיִם, lexeme: mayim, feats: {Number: Plur}, readings: {tiberian: máyim}}]
       reverse: |-
         אשאב מים
         (אני|אנכי) אשאב מים
@@ -503,12 +344,12 @@ sentences:
       I('ll| shall) draw [some] water.
 - id: s.08.30
   node: hbo.u08.for-your-camels
-  persons: {addressee: m}
+  tags:
+  - {persons: {addressee: m}}
   forms:
     hbo-Hebr/tiberian:
       text: גַּם לִגְמַלֶּיךָ אֶשְׁאָב׃
-      tokens: [{surface: גַּם, sense: gam, readings: {tiberian: gam}}, {surface: לִגְמַלֶּיךָ, sense: gamal, form: 'form:pl', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: גְמַלֶּי, kc: 'sense:gamal'},
-            {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: liḡmallếḵā}}, {surface: אֶשְׁאָב, sense: shaav, form: 'form:yiqtol-1cs', readings: {tiberian: ʾešʾāḇ}}]
+      tokens: [{surface: גַּם, lexeme: gam, readings: {tiberian: gam}}, {surface: לִגְמַלֶּיךָ, lexemes: [{lexeme: le, surface: לִ, n: 2, head: 3, rel: case}, {lexeme: gamal, surface: גְמַלֶּי, base: true, feats: {Number: Plur}, n: 3}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: liḡmallếḵā}}, {surface: אֶשְׁאָב, lexeme: shaav, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, readings: {tiberian: ʾešʾāḇ}}]
       reverse: גם לגמליך אשאב
   translations:
     en: |-
@@ -519,7 +360,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עַד־הָעֶרֶב
-      tokens: [{surface: עַד, sense: ad, readings: {tiberian: ʿaḏ-}}, {surface: הָעֶרֶב, sense: erev, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עֶרֶב, kc: 'sense:erev'}], readings: {tiberian: hāʿéreḇ}}]
+      tokens: [{surface: עַד, lexeme: ad, readings: {tiberian: ʿaḏ-}}, {surface: הָעֶרֶב, lexemes: [{lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: erev, surface: עֶרֶב, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hāʿéreḇ}}]
       reverse: עד הערב
   translations:
     en: until [the] evening
@@ -528,7 +369,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כִּלּוּ
-      tokens: [{surface: כִּלּוּ, sense: killah, form: 'form:qatal-3cp', readings: {tiberian: killû}}]
+      tokens: [{surface: כִּלּוּ, lexeme: killah, feats: {Aspect: Perf, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, readings: {tiberian: killû}}]
       reverse: |-
         כלו
         (הם|המה|הן|הנה) כלו
@@ -541,8 +382,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עַד אִם־כִּלּוּ לִשְׁתֹּת
-      tokens: [{surface: עַד, sense: ad, readings: {tiberian: ʿaḏ}}, {surface: אִם, sense: im, readings: {tiberian: ʾim-}}, {surface: כִּלּוּ, sense: killah, form: 'form:qatal-3cp', readings: {tiberian: killû}},
-        {surface: לִשְׁתֹּת, sense: shatah, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: שְׁתֹּת, kc: 'sense:shatah'}], readings: {tiberian: lištōṯ}}]
+      tokens: [{surface: עַד, lexeme: ad, readings: {tiberian: ʿaḏ}}, {surface: אִם, lexeme: im, readings: {tiberian: ʾim-}}, {surface: כִּלּוּ, lexeme: killah, feats: {Aspect: Perf, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, readings: {tiberian: killû}}, {surface: לִשְׁתֹּת, lexemes: [{lexeme: le, surface: לִ}, {lexeme: shatah, surface: שְׁתֹּת, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lištōṯ}}]
       reverse: עד אם כלו (לשתת|לשתות)
   translations:
     en: |-
@@ -553,7 +393,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַבְּאֵר
-      tokens: [{surface: הַבְּאֵר, sense: beer, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: בְּאֵר, kc: 'sense:beer'}], readings: {tiberian: habbəʾēr}}]
+      tokens: [{surface: הַבְּאֵר, lexemes: [{lexeme: ha, surface: הַ, n: 1, head: 2, rel: det}, {lexeme: beer, surface: בְּאֵר, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: habbəʾēr}}]
       reverse: הבאר
   translations:
     en: the well
@@ -562,7 +402,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: בְּאֵר
-      tokens: [{surface: בְּאֵר, sense: beer, form: 'form:f', readings: {tiberian: bəʾēr}}]
+      tokens: [{surface: בְּאֵר, lexeme: beer, feats: {Number: Sing}, readings: {tiberian: bəʾēr}}]
       reverse: באר
   translations:
     en: a well
@@ -571,7 +411,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עוֹד
-      tokens: [{surface: עוֹד, sense: od, readings: {tiberian: ʿôḏ}}]
+      tokens: [{surface: עוֹד, lexeme: od, readings: {tiberian: ʿôḏ}}]
       reverse: עוד
   translations:
     en: |-
@@ -582,8 +422,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַתָּרָץ עוֹד אֶל־הַבְּאֵר׃
-      tokens: [{surface: וַתָּרָץ, sense: ruts, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattā́roṣ}}, {surface: עוֹד, sense: od, readings: {tiberian: ʿôḏ}}, {surface: אֶל, sense: el, readings: {
-            tiberian: ʾel-}}, {surface: הַבְּאֵר, sense: beer, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: בְּאֵר, kc: 'sense:beer'}], readings: {tiberian: habbəʾēr}}]
+      tokens: [{surface: וַתָּרָץ, lexeme: ruts, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattā́roṣ}}, {surface: עוֹד, lexeme: od, readings: {tiberian: ʿôḏ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הַבְּאֵר, lexemes: [{lexeme: ha, surface: הַ, n: 4, head: 5, rel: det}, {lexeme: beer, surface: בְּאֵר, base: true, feats: {Number: Sing}, n: 5}], readings: {tiberian: habbəʾēr}}]
       reverse: ותרץ עוד אל הבאר
   translations:
     en: |-
@@ -594,8 +433,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כָּל־הָאָרֶץ
-      tokens: [{surface: כָּל, sense: kol, form: 'form:cstr', readings: {tiberian: kol-}}, {surface: הָאָרֶץ, sense: erets, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}],
-          readings: {tiberian: hāʾā́reṣ}}]
+      tokens: [{surface: כָּל, lexeme: kol, feats: {Definite: Cons}, readings: {tiberian: kol-}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: כל הארץ
   translations:
     en: |-
@@ -606,8 +444,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: לְכָל־גְּמַלָּיו
-      tokens: [{surface: לְכָל, sense: kol, form: 'form:cstr', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: כָל, kc: 'sense:kol'}], readings: {tiberian: ləḵol-}}, {surface: גְּמַלָּיו, sense: gamal,
-          form: 'form:pl', morphs: [{surface: גְּמַלָּי, kc: 'sense:gamal'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: gəmallāyw}}]
+      tokens: [{surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 1, head: 2, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 2}], readings: {tiberian: ləḵol-}}, {surface: גְּמַלָּיו, lexemes: [{lexeme: gamal, surface: גְּמַלָּי, base: true, feats: {Number: Plur}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: gəmallāyw}}]
       reverse: לכל גמליו
   translations:
     en: for all his camels
@@ -616,9 +453,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַתְּעַר כַּדָּהּ אֶל־הַשֹּׁקֶת׃
-      tokens: [{surface: וַתְּעַר, sense: arah, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattəʿar}}, {surface: כַּדָּהּ, sense: kad, form: 'form:f', morphs: [{surface: כַּדָּ, kc: 'sense:kad'}, {surface: הּ, kc: 'form:sfx-3fs'}],
-          readings: {tiberian: kaddāh}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הַשֹּׁקֶת, sense: shoqet, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שֹּׁקֶת, kc: 'sense:shoqet'}],
-          readings: {tiberian: haššṓqeṯ}}]
+      tokens: [{surface: וַתְּעַר, lexeme: arah, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattəʿar}}, {surface: כַּדָּהּ, lexemes: [{lexeme: kad, surface: כַּדָּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: kaddāh}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הַשֹּׁקֶת, lexemes: [{lexeme: ha, surface: הַ, n: 5, head: 6, rel: det}, {lexeme: shoqet, surface: שֹּׁקֶת, base: true, feats: {Number: Sing}, n: 6}], readings: {tiberian: haššṓqeṯ}}]
       reverse: ותער כדה אל (השקת|השוקת)
   translations:
     en: |-
@@ -629,9 +464,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַתִּשְׁאַב לְכָל־גְּמַלָּיו׃
-      tokens: [{surface: וַתִּשְׁאַב, sense: shaav, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattišʾaḇ}}, {surface: לְכָל, sense: kol, form: 'form:cstr', morphs: [{surface: לְ, kc: 'sense:le'},
-            {surface: כָל, kc: 'sense:kol'}], readings: {tiberian: ləḵol-}}, {surface: גְּמַלָּיו, sense: gamal, form: 'form:pl', morphs: [{surface: גְּמַלָּי, kc: 'sense:gamal'}, {surface: ו, kc: 'form:sfx-3ms'}],
-          readings: {tiberian: gəmallāyw}}]
+      tokens: [{surface: וַתִּשְׁאַב, lexeme: shaav, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattišʾaḇ}}, {surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 2, head: 3, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 3}], readings: {tiberian: ləḵol-}}, {surface: גְּמַלָּיו, lexemes: [{lexeme: gamal, surface: גְּמַלָּי, base: true, feats: {Number: Plur}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: gəmallāyw}}]
       reverse: ותשאב לכל גמליו
   translations:
     en: '[(And|Then)] she drew [water] for all his camels.'
@@ -641,43 +474,45 @@ stories:
   title:
     en: At the well (Genesis 24:17–20)
   characters:
-  - {id: servant, speaker: m, name: {hbo-Hebr/tiberian: הָעֶבֶד}}
-  - {id: rebekah, speaker: f, name: {hbo-Hebr/tiberian: רִבְקָה}}
+  - id: servant
+    speaker: m
+    name:
+      hbo-Hebr/tiberian: הָעֶבֶד
+  - id: rebekah
+    speaker: f
+    name:
+      hbo-Hebr/tiberian: רִבְקָה
   steps:
   - line:
       forms:
         hbo-Hebr/tiberian:
           text: וַיָּרָץ הָעֶבֶד לִקְרָאתָהּ
-          tokens: [{surface: וַיָּרָץ, sense: ruts, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́roṣ}}, {surface: הָעֶבֶד, sense: eved, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עֶבֶד,
-                  kc: 'sense:eved'}], readings: {tiberian: hāʿéḇeḏ}}, {surface: לִקְרָאתָהּ, sense: liqrat, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: קְרָאתָ, kc: 'sense:liqrat'}, {surface: הּ,
-                  kc: 'form:sfx-3fs'}], readings: {tiberian: liqrāʾṯāh}}]
+          tokens: [{surface: וַיָּרָץ, lexeme: ruts, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyā́roṣ}}, {surface: הָעֶבֶד, lexemes: [{lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: eved, surface: עֶבֶד, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hāʿéḇeḏ}}, {surface: לִקְרָאתָהּ, lexemes: [{lexeme: le, surface: לִ}, {lexeme: liqrat, surface: קְרָאתָ, base: true}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: liqrāʾṯāh}}]
       translations:
         en: And the servant ran to meet her
   - line:
       forms:
         hbo-Hebr/tiberian:
           text: וַיֹּאמֶר
-          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+          tokens: [{surface: וַיֹּאמֶר, lexeme: amar, feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wayyṓʾmer}}]
       translations:
         en: and said,
   - line:
       speaker: servant
       ask: complete
-      gap: sense:kad
+      gap: lexeme:kad
       asks: form
       forms:
         hbo-Hebr/tiberian:
           text: הַגְמִיאִינִי נָא מְעַט־מַיִם מִכַּדֵּךְ׃
-          tokens: [{surface: הַגְמִיאִינִי, sense: gama, form: 'form:impv-fs', morphs: [{surface: הַגְמִיאִי, kc: 'sense:gama'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: haḡmîʾî́nî}}, {
-              surface: נָא, sense: na, readings: {tiberian: nāʾ}}, {surface: מְעַט, sense: meat, form: 'form:cstr', readings: {tiberian: məʿaṭ-}}, {surface: מַיִם, sense: mayim, form: 'form:pl', readings: {tiberian: máyim}},
-            {surface: מִכַּדֵּךְ, sense: kad, form: 'form:f', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: כַּדֵּ, kc: 'sense:kad'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: mikkaddēḵ}}]
+          tokens: [{surface: הַגְמִיאִינִי, lexemes: [{lexeme: gama, surface: הַגְמִיאִי, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: sfx-1cs, surface: נִי}], readings: {tiberian: haḡmîʾî́nî}}, {surface: נָא, lexeme: na, readings: {tiberian: nāʾ}}, {surface: מְעַט, lexeme: meat, feats: {Definite: Cons, Gender: Masc, Number: Sing}, readings: {tiberian: məʿaṭ-}}, {surface: מַיִם, lexeme: mayim, feats: {Number: Plur}, readings: {tiberian: máyim}}, {surface: מִכַּדֵּךְ, lexemes: [{lexeme: min, surface: מִ, n: 6, head: 7, rel: case}, {lexeme: kad, surface: כַּדֵּ, base: true, feats: {Number: Sing}, n: 7}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: mikkaddēḵ}}]
       translations:
         en: “Please let me drink a little water from your jar.”
   - line:
       forms:
         hbo-Hebr/tiberian:
           text: וַתֹּאמֶר
-          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}]
+          tokens: [{surface: וַתֹּאמֶר, lexeme: amar, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattṓʾmer}}]
       translations:
         en: And she said,
   - line:
@@ -685,8 +520,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: שְׁתֵה אֲדֹנִי
-          tokens: [{surface: שְׁתֵה, sense: shatah, form: 'form:impv-ms', readings: {tiberian: šəṯēh}}, {surface: אֲדֹנִי, sense: adon, morphs: [{surface: אֲדֹנִ, kc: 'sense:adon'}, {surface: י, kc: 'form:sfx-1cs'}],
-              readings: {tiberian: ʾăḏōnî}}]
+          tokens: [{surface: שְׁתֵה, lexeme: shatah, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, readings: {tiberian: šəṯēh}}, {surface: אֲדֹנִי, lexemes: [{lexeme: adon, surface: אֲדֹנִ, base: true, feats: {Number: Sing}}, {lexeme: sfx-1cs, surface: י}], readings: {tiberian: ʾăḏōnî}}]
       translations:
         en: “Drink, my lord.”
   - line:
@@ -694,64 +528,58 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַתְּמַהֵר וַתֹּרֶד כַּדָּהּ עַל־יָדָהּ וַתַּשְׁקֵהוּ׃
-          tokens: [{surface: וַתְּמַהֵר, sense: mahar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattəmahēr}}, {surface: וַתֹּרֶד, sense: horid, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓreḏ}},
-            {surface: כַּדָּהּ, sense: kad, form: 'form:f', morphs: [{surface: כַּדָּ, kc: 'sense:kad'}, {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: kaddāh}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}},
-            {surface: יָדָהּ, sense: yad, form: 'form:f', morphs: [{surface: יָדָ, kc: 'sense:yad'}, {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: yāḏāh}}, {surface: וַתַּשְׁקֵהוּ, sense: hishqah, form: 'form:wayyiqtol-3fs',
-              morphs: [{surface: וַתַּשְׁקֵ, kc: 'sense:hishqah'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: wattašqḗhû}}]
+          tokens: [{surface: וַתְּמַהֵר, lexeme: mahar, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattəmahēr}}, {surface: וַתֹּרֶד, lexeme: horid, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattṓreḏ}}, {surface: כַּדָּהּ, lexemes: [{lexeme: kad, surface: כַּדָּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: kaddāh}}, {surface: עַל, lexeme: al, readings: {tiberian: ʿal-}}, {surface: יָדָהּ, lexemes: [{lexeme: yad, surface: יָדָ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: yāḏāh}}, {surface: וַתַּשְׁקֵהוּ, lexemes: [{lexeme: hishqah, surface: וַתַּשְׁקֵ, base: true, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {lexeme: sfx-3ms, surface: הוּ}], readings: {tiberian: wattašqḗhû}}]
       translations:
         en: And she quickly lowered her jar onto her hand and gave him a drink.
   - choose:
       prompt:
         en: What does Rebekah say to the servant?
-      options: [{en: '“Drink, my lord.”'}, {en: '“Who are you?”'}, {en: “Go to the well.”}]
+      options:
+      - en: “Drink, my lord.”
+      - en: “Who are you?”
+      - en: “Go to the well.”
       answer: 0
   - line:
       forms:
         hbo-Hebr/tiberian:
           text: וַתְּכַל לְהַשְׁקֹתוֹ
-          tokens: [{surface: וַתְּכַל, sense: killah, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattəḵal}}, {surface: לְהַשְׁקֹתוֹ, sense: hishqah, form: 'form:inf', morphs: [{surface: לְ, kc: 'sense:le'},
-                {surface: הַשְׁקֹת, kc: 'sense:hishqah'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: ləhašqōṯô}}]
+          tokens: [{surface: וַתְּכַל, lexeme: killah, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattəḵal}}, {surface: לְהַשְׁקֹתוֹ, lexemes: [{lexeme: le, surface: לְ}, {lexeme: hishqah, surface: הַשְׁקֹת, base: true, feats: {VerbForm: Inf}}, {lexeme: sfx-3ms, surface: וֹ}], readings: {tiberian: ləhašqōṯô}}]
       translations:
         en: When she had finished giving him a drink,
   - line:
       forms:
         hbo-Hebr/tiberian:
           text: וַתֹּאמֶר
-          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}]
+          tokens: [{surface: וַתֹּאמֶר, lexeme: amar, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattṓʾmer}}]
       translations:
         en: she said,
   - line:
       speaker: rebekah
       ask: complete
-      gap: sense:shaav
-      distractors: ['sense:akhal', 'sense:amar']
+      gap: lexeme:shaav
+      distractors:
+      - lexeme:akhal
+      - lexeme:amar
       forms:
         hbo-Hebr/tiberian:
           text: גַּם לִגְמַלֶּיךָ אֶשְׁאָב עַד אִם־כִּלּוּ לִשְׁתֹּת׃
-          tokens: [{surface: גַּם, sense: gam, readings: {tiberian: gam}}, {surface: לִגְמַלֶּיךָ, sense: gamal, form: 'form:pl', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: גְמַלֶּי, kc: 'sense:gamal'},
-                {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: liḡmallếḵā}}, {surface: אֶשְׁאָב, sense: shaav, form: 'form:yiqtol-1cs', readings: {tiberian: ʾešʾāḇ}}, {surface: עַד, sense: ad,
-              readings: {tiberian: ʿaḏ}}, {surface: אִם, sense: im, readings: {tiberian: ʾim-}}, {surface: כִּלּוּ, sense: killah, form: 'form:qatal-3cp', readings: {tiberian: killû}}, {surface: לִשְׁתֹּת,
-              sense: shatah, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: שְׁתֹּת, kc: 'sense:shatah'}], readings: {tiberian: lištōṯ}}]
+          tokens: [{surface: גַּם, lexeme: gam, readings: {tiberian: gam}}, {surface: לִגְמַלֶּיךָ, lexemes: [{lexeme: le, surface: לִ, n: 2, head: 3, rel: case}, {lexeme: gamal, surface: גְמַלֶּי, base: true, feats: {Number: Plur}, n: 3}, {lexeme: sfx-2ms, surface: ךָ}], readings: {tiberian: liḡmallếḵā}}, {surface: אֶשְׁאָב, lexeme: shaav, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, readings: {tiberian: ʾešʾāḇ}}, {surface: עַד, lexeme: ad, readings: {tiberian: ʿaḏ}}, {surface: אִם, lexeme: im, readings: {tiberian: ʾim-}}, {surface: כִּלּוּ, lexeme: killah, feats: {Aspect: Perf, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, readings: {tiberian: killû}}, {surface: לִשְׁתֹּת, lexemes: [{lexeme: le, surface: לִ}, {lexeme: shatah, surface: שְׁתֹּת, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lištōṯ}}]
       translations:
         en: “I will draw for your camels too, until they have finished drinking.”
   - line:
       forms:
         hbo-Hebr/tiberian:
           text: וַתְּמַהֵר וַתְּעַר כַּדָּהּ אֶל־הַשֹּׁקֶת וַתָּרָץ עוֹד אֶל־הַבְּאֵר לִשְׁאֹב וַתִּשְׁאַב לְכָל־גְּמַלָּיו׃
-          tokens: [{surface: וַתְּמַהֵר, sense: mahar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattəmahēr}}, {surface: וַתְּעַר, sense: arah, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattəʿar}},
-            {surface: כַּדָּהּ, sense: kad, form: 'form:f', morphs: [{surface: כַּדָּ, kc: 'sense:kad'}, {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: kaddāh}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}},
-            {surface: הַשֹּׁקֶת, sense: shoqet, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שֹּׁקֶת, kc: 'sense:shoqet'}], readings: {tiberian: haššṓqeṯ}}, {surface: וַתָּרָץ, sense: ruts, form: 'form:wayyiqtol-3fs',
-              readings: {tiberian: wattā́roṣ}}, {surface: עוֹד, sense: od, readings: {tiberian: ʿôḏ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הַבְּאֵר, sense: beer, form: 'form:f', morphs: [{
-                  surface: הַ, kc: 'sense:ha'}, {surface: בְּאֵר, kc: 'sense:beer'}], readings: {tiberian: habbəʾēr}}, {surface: לִשְׁאֹב, sense: shaav, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'},
-                {surface: שְׁאֹב, kc: 'sense:shaav'}], readings: {tiberian: lišʾōḇ}}, {surface: וַתִּשְׁאַב, sense: shaav, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattišʾaḇ}}, {surface: לְכָל,
-              sense: kol, form: 'form:cstr', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: כָל, kc: 'sense:kol'}], readings: {tiberian: ləḵol-}}, {surface: גְּמַלָּיו, sense: gamal, form: 'form:pl',
-              morphs: [{surface: גְּמַלָּי, kc: 'sense:gamal'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: gəmallāyw}}]
+          tokens: [{surface: וַתְּמַהֵר, lexeme: mahar, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattəmahēr}}, {surface: וַתְּעַר, lexeme: arah, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattəʿar}}, {surface: כַּדָּהּ, lexemes: [{lexeme: kad, surface: כַּדָּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: kaddāh}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הַשֹּׁקֶת, lexemes: [{lexeme: ha, surface: הַ, n: 6, head: 7, rel: det}, {lexeme: shoqet, surface: שֹּׁקֶת, base: true, feats: {Number: Sing}, n: 7}], readings: {tiberian: haššṓqeṯ}}, {surface: וַתָּרָץ, lexeme: ruts, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattā́roṣ}}, {surface: עוֹד, lexeme: od, readings: {tiberian: ʿôḏ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הַבְּאֵר, lexemes: [{lexeme: ha, surface: הַ, n: 11, head: 12, rel: det}, {lexeme: beer, surface: בְּאֵר, base: true, feats: {Number: Sing}, n: 12}], readings: {tiberian: habbəʾēr}}, {surface: לִשְׁאֹב, lexemes: [{lexeme: le, surface: לִ}, {lexeme: shaav, surface: שְׁאֹב, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lišʾōḇ}}, {surface: וַתִּשְׁאַב, lexeme: shaav, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattišʾaḇ}}, {surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 16, head: 17, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 17}], readings: {tiberian: ləḵol-}}, {surface: גְּמַלָּיו, lexemes: [{lexeme: gamal, surface: גְּמַלָּי, base: true, feats: {Number: Plur}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: gəmallāyw}}]
       translations:
         en: And she quickly emptied her jar into the trough, ran again to the well to draw, and drew for all his camels.
   - choose:
       prompt:
         en: For whom else does Rebekah draw water?
-      options: [{en: for all his camels}, {en: for her father}, {en: for the sheep}]
+      options:
+      - en: for all his camels
+      - en: for her father
+      - en: for the sheep
       answer: 0
 scenarios:
 - id: hbo.at-the-well
