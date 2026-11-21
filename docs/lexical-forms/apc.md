@@ -21,14 +21,14 @@
 
 - The course's sentences and stories hold **1,025** distinct words (an Arabic spelling, its vowel marks and its
   Arabizi, taken together). A lexical form was drafted for each from those three.
-- **932** come back exactly when the form is projected: the Arabic letters, the vowel marks, and the Arabizi
-  among the spellings the correspondences give. **84** have a form and differ in one of the three. **9** have
-  no form. Ten of those 93 are the prototype's own doing, not the course's: its reader paired the wrong
+- **950** come back exactly when the form is projected: the Arabic letters, the vowel marks, and the Arabizi
+  among the spellings the correspondences give. **66** have a form and differ in one of the three. **9** have
+  no form. Ten of those 75 are the prototype's own doing, not the course's: its reader paired the wrong
   Arabizi word (the review list's first section).
-- Of the **415** forms the KCs list, 367 come back, 41 do not, 2 have no form and 5 are written in one script.
-- Of the **82** clips a listener marked right, the projection writes the very marks the voice was given for
-  **64**. For 18 it writes other marks for one word: هَيدا or هَيدي in 15 (the course leaves the sukun off
-  their glide), a helping vowel in 2, الحمدلله in 1.
+- Of the **415** forms the KCs list, 373 come back, 35 do not, 2 have no form and 5 are written in one script.
+- Of the **74** clips a listener marked right, the projection writes the very marks the voice was given for
+  **58**. For 16 it writes other marks for one word: هَيدا or هَيدي in 15 (the course leaves the sukun off
+  their glide), الحمدلله in 1.
 - No conjugation rule is written. A verb's entry has its radicals, Form, vowels and citation forms (one verb,
   *stanna*, is a listed stem with no radicals); the 251 forms the sentences write are kept as **pinned**
   forms (ADR 0145: derivable, the rule not yet written).
@@ -403,8 +403,11 @@ what was done.
      with their marks, 43 words that end in a cluster gained the vowel; هَالأَكَل, whose vowel was a
      fatha, is هَالأَكِل; and three stems took it before an ending that begins with a consonant
      (بِنِتْكُن, عِنِدْكُن, بَعِدْني). The Arabizi is unchanged.
-   - 133 clips were made again from the new marks. A listener had checked 7 of them (`s.fam.12`,
-     `s.fam.13`, `s.fam.14`, `s.fam.31`, `s.fam.32`, `s.fam.34`, `s.food.30`): those are drafts again.
+   - 133 clips were made again from the new marks. A listener had checked 8 of them (`s.fam.12`,
+     `s.fam.13`, `s.fam.14`, `s.fam.31`, `s.fam.32`, `s.fam.34`, `s.food.30`, `s.like.21`): those are
+     drafts again, and two of them fail the round-trip check (`s.fam.13`, `s.fam.14`), so they are out
+     of the bundle until a listener passes them. Over all 133 the check fares as before: 40 pass, 61 go to
+     review and 32 fail, against 46, 54 and 33.
 3. **Long a said e:** *"stored on each word"*.
    - As drafted: a word's form writes U+065C and its alef.
    - One rule stays, since a template has no word to store the vowel on: the active participle's long a is

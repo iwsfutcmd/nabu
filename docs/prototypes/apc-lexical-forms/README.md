@@ -34,10 +34,12 @@ fetched. Kline (2022) was read for `authored.yaml` and the note; none of his tex
 ## What it showed
 
 - One form in Arabic script, with three signs Unicode already has, gives back the course's Arabic, its vowel
-  marks and its Arabizi for 932 of its 1,025 distinct words.
-- The other 93 are nearly all places where the course's own three spellings of a word do not agree, or where
-  its marks follow no one convention: helping vowels, a diphthong's sukun, a doubled letter written once,
-  loans in their own spelling. Ten are this reader's own mispairings. They are the review list.
+  marks and its Arabizi for 950 of its 1,025 distinct words. The helping vowel is not in the form: a rule
+  writes it (the owner, 2026-11-21).
+- The other 75 are nearly all places where the course's own three spellings of a word do not agree, or where
+  its marks follow no one convention: a vowel inside a word that one script writes and the other leaves
+  out, a diphthong's sukun, a doubled letter written once, loans in their own spelling. Ten are this
+  reader's own mispairings. They are the review list.
 - The Arabizi the course writes can be read as a small set of free choices (e or i, o or u, u or ou), each
   with a clear majority, and a few spellings fixed word by word (a or e for ا).
 - Drafting from the three pinned spellings works for words, clitic groups and suffixed words alike, so a
@@ -45,4 +47,5 @@ fetched. Kline (2022) was read for `authored.yaml` and the note; none of his tex
 
 ## What it does not do
 
-No conjugation, no affix forms, no stress. The note says what is open.
+No conjugation, no affix forms, no stress, and no helping vowel inside a word (it does not know where an
+ending begins). The note says what is open.

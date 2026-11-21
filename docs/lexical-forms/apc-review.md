@@ -16,7 +16,7 @@ Lebanese, not a verdict: the course may be right and the convention wrong.
 - **9** have no lexical form.
 - **358** sense KCs with **415** listed forms: 373 come back, 35 do not, 2 have no form, 5 are written in one script only.
 - **41** verbs with citation forms, 40 of them with radicals and a Form and 1 a listed stem; 251 of their forms in the sentences are pinned, since no conjugation rule is written yet.
-- **82** clips a listener marked right: for 58 the projection writes the very marks the voice was given; for 16 it writes other marks for a word; 8 were given text the sentences no longer hold.
+- **74** clips a listener marked right: for 58 the projection writes the very marks the voice was given; for 16 it writes other marks for a word; 0 were given text the sentences no longer hold.
 
 ## 1. Not paired by the prototype's reader (10)
 
@@ -175,7 +175,7 @@ says from what. They are listed for a speaker to correct, not for a ruling.
 - `sense:3azam` 3azam / ye3zem: Kline does not list it. The course writes the past (3azamni) and e3zmak, where the present vowel has dropped: a vowel that drops there is i or u, never a (ta3mli, tedrso; yitla3o keeps its a), and it is cited i, as in 3emel and 3eref. The prefix is the course's e-; Kline's ya- before ع (p. 75) is what the course writes in ba3mel and ba3ref.
 - `sense:3ajab` 3ajab / ye3jeb: Kline does not list it. The course writes the past (3ajabni, 3ajabetni) and no present: the present is cited as 3azam's, the one other verb of its shape, and no form of the course depends on it.
 
-## 12. The reviewed clips whose marks the projection does not write (24)
+## 12. The reviewed clips whose marks the projection does not write (16)
 
 A reviewed clip depends on the exact text its voice was given (the handoff's Task C). These would be read
 from other marks if the projection replaced the course's vocalization as it stands.
@@ -184,26 +184,18 @@ from other marks if the projection replaced the course's vocalization as it stan
 - `s.fam.1`: هَيدا سامي.: the projection writes other marks for هَيدا
 - `s.fam.10`: هَيدا خَيّي.: the projection writes other marks for هَيدا
 - `s.fam.11`: هَيدي إِخْتي.: the projection writes other marks for هَيدي
-- `s.fam.12`: عِنْدي خَيّ وإِخْت.: not a word of the sentences as the compiler marks them: وإِخْت
-- `s.fam.13`: عِنْدَك إِخْت؟: not a word of the sentences as the compiler marks them: إِخْت
-- `s.fam.14`: لَأ، ما عِنْدي إِخْت.: not a word of the sentences as the compiler marks them: إِخْت
 - `s.fam.2`: مين هَيدا؟: the projection writes other marks for هَيدا
 - `s.fam.21`: هَيدي تيتا.: the projection writes other marks for هَيدي
 - `s.fam.22`: وهَيدا جِدّو.: the projection writes other marks for وهَيدا
 - `s.fam.23`: هَيدي عَيِلْتي.: the projection writes other marks for هَيدي
 - `s.fam.27`: هَيدا إِبْني.: the projection writes other marks for هَيدا
 - `s.fam.28`: وهَيدي بِنْتي.: the projection writes other marks for وهَيدي
-- `s.fam.31`: إيه، عِنْدي إِبْن وبِنْت.: not a word of the sentences as the compiler marks them: إِبْن, وبِنْت
-- `s.fam.32`: شو اِسْم بِنْتَك؟: not a word of the sentences as the compiler marks them: اِسْم
-- `s.fam.34`: عِنْدي بِنْت.: not a word of the sentences as the compiler marks them: بِنْت
 - `s.fam.4`: هَيدي مايا.: the projection writes other marks for هَيدي
 - `s.fam.5`: هَيدا بَيّ سامي.: the projection writes other marks for هَيدا
 - `s.fam.6`: هَيدا بَيّي.: the projection writes other marks for هَيدا
 - `s.fam.7`: هَيدي إِمّ سامي.: the projection writes other marks for هَيدي
 - `s.fam.8`: هَيدي إِمّي.: the projection writes other marks for هَيدي
 - `s.fam.9`: مين هَيدا؟ بَيَّك؟: the projection writes other marks for هَيدا
-- `s.food.30`: صَحْن حُمُّص، تْفَضَّل.: not a word of the sentences as the compiler marks them: صَحْن
-- `s.like.21`: بَدّي شوف فيلْم.: not a word of the sentences as the compiler marks them: فيلْم
 
 ## 13. How the course's Arabizi spells what is left free
 
