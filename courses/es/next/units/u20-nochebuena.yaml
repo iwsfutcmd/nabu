@@ -20,7 +20,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La Nochebuena es el veinticuatro de diciembre.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: veinticuatro, lexeme: veinticuatro}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: diciembre, lexeme: diciembre, n: 7}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: Nochebuena, lexeme: nochebuena, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: veinticuatro, lexeme: veinticuatro}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: diciembre, lexeme: diciembre, n: 7}]
       reverse: '[La] Nochebuena es el (veinticuatro|24) de diciembre'
   translations:
     en: Christmas Eve is [on] (December (24th|24|twenty-fourth)|the (24th|twenty-fourth) of December).
@@ -29,7 +29,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Este año, la Nochebuena será en casa de abuela.
-      tokens: [{surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: año, lexeme: año, feats: {Number: Sing}, n: 2}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}, n: 4}, {surface: será, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: en, lexeme: en, n: 6, head: 7, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 7}, {surface: de, lexeme: de, n: 8, head: 9, rel: case}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: Este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: año, lexeme: año, feats: {Number: Sing}, n: 2}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: Nochebuena, lexeme: nochebuena, n: 4}, {surface: será, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: en, lexeme: en, n: 6, head: 7, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 7}, {surface: de, lexeme: de, n: 8, head: 9, rel: case}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 9}]
       reverse: |-
         Este año [la] Nochebuena (será|va a ser) en casa de (abuela|la abuela|mi abuela)
         [La] Nochebuena (será|va a ser) en casa de (abuela|la abuela|mi abuela) este año
@@ -43,7 +43,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Para la Nochebuena vendrá toda la familia.
-      tokens: [{surface: Para, lexeme: para, n: 1, head: 3, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}, n: 3}, {surface: vendrá, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}, n: 5, head: 7, rel: det}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 7}]
+      tokens: [{surface: Para, lexeme: para, n: 1, head: 3, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: Nochebuena, lexeme: nochebuena, n: 3}, {surface: vendrá, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}, n: 5, head: 7, rel: det}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 7}]
       reverse: |-
         (Para|En) la Nochebuena (vendrá|va a venir) toda la familia
         Toda la familia (vendrá|va a venir) (para|en) la Nochebuena
@@ -79,7 +79,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Después de la Nochebuena viene la Navidad.
-      tokens: [{surface: Después, lexeme: después}, {surface: de, lexeme: de, n: 2, head: 4, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}, n: 4}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Navidad, lexeme: navidad, feats: {Gender: Fem}, n: 7}]
+      tokens: [{surface: Después, lexeme: después}, {surface: de, lexeme: de, n: 2, head: 4, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: Nochebuena, lexeme: nochebuena, n: 4}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Navidad, lexeme: navidad, n: 7}]
       reverse: |-
         Después de [la] Nochebuena viene [la] Navidad
         [La] Navidad viene después de [la] Nochebuena
@@ -146,7 +146,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo prepararé los tostones con Lili.
-      tokens: [{surface: Yo, lexeme: yo}, {surface: prepararé, lexeme: preparar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}, n: 4}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}, n: 6}]
+      tokens: [{surface: Yo, lexeme: yo}, {surface: prepararé, lexeme: preparar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 3, head: 4, rel: det}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}, n: 4}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: Lili, lexeme: lili, n: 6}]
       reverse: '[Yo] (prepararé|voy a preparar|haré|voy a hacer) los tostones con Lili'
   translations:
     en: |-
@@ -181,7 +181,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela invitará a doña Ofelia y a su hija.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: invitará, lexeme: invitar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}, n: 4}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: a, lexeme: a, n: 7, head: 9, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: hija, lexeme: hijo, feats: {Gender: Fem, Number: Sing}, n: 9}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: invitará, lexeme: invitar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}, n: 4}, {surface: Ofelia, lexeme: ofelia}, {surface: y, lexeme: y}, {surface: a, lexeme: a, n: 7, head: 9, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: hija, lexeme: hijo, feats: {Gender: Fem, Number: Sing}, n: 9}]
       reverse: (Abuela|La abuela|Mi abuela) (invitará|va a invitar) a doña Ofelia y a su hija
   translations:
     en: |-
@@ -241,7 +241,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Invitaremos a Yasiel. Su familia está en Cuba.
-      tokens: [{surface: Invitaremos, lexeme: invitar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 3, rel: case}, {surface: Yasiel, lexeme: yasiel, n: 3}, {surface: Su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 5}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 7, head: 8, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 8}]
+      tokens: [{surface: Invitaremos, lexeme: invitar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 3, rel: case}, {surface: Yasiel, lexeme: yasiel, n: 3}, {surface: Su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 5}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 7, head: 8, rel: case}, {surface: Cuba, lexeme: cuba, n: 8}]
       reverse: '[(Nosotros|Nosotras)] (invitaremos|vamos a invitar) a Yasiel [porque] su familia está en Cuba'
   translations:
     en: |-
@@ -307,7 +307,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili caminará por la calle con una maleta.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: caminará, lexeme: caminar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: por, lexeme: por, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: calle, lexeme: calle, feats: {Number: Sing}, n: 5}, {surface: con, lexeme: con, n: 6, head: 8, rel: case}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: maleta, lexeme: maleta, feats: {Number: Sing}, n: 8}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: caminará, lexeme: caminar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: por, lexeme: por, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: calle, lexeme: calle, feats: {Number: Sing}, n: 5}, {surface: con, lexeme: con, n: 6, head: 8, rel: case}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: maleta, lexeme: maleta, feats: {Number: Sing}, n: 8}]
       reverse: |-
         Lili (caminará|va a caminar) por la calle con una maleta
         Lili (caminará|va a caminar) con una maleta por la calle
@@ -321,7 +321,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El año que viene viajaremos a Cuba.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: año, lexeme: año, feats: {Number: Sing}, n: 2}, {surface: que, lexeme: que}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: viajaremos, lexeme: viajar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: a, lexeme: a, n: 6, head: 7, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 7}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: año, lexeme: año, feats: {Number: Sing}, n: 2}, {surface: que, lexeme: que}, {surface: viene, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: viajaremos, lexeme: viajar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: a, lexeme: a, n: 6, head: 7, rel: case}, {surface: Cuba, lexeme: cuba, n: 7}]
       reverse: |-
         (El año que viene|El próximo año) [(nosotros|nosotras)] (viajaremos|vamos a viajar|iremos|vamos a ir) a Cuba
         [(Nosotros|Nosotras)] (viajaremos|vamos a viajar|iremos|vamos a ir) a Cuba (el año que viene|el próximo año)
@@ -363,7 +363,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Qué regalo le comprarás a Lili?
-      tokens: [{surface: Qué, lexeme: qué}, {surface: regalo, lexeme: regalo, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: comprarás, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}, n: 6}]
+      tokens: [{surface: Qué, lexeme: qué}, {surface: regalo, lexeme: regalo, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: comprarás, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Lili, lexeme: lili, n: 6}]
       reverse: |-
         Qué regalo (le comprarás [tú]|tú le comprarás|le vas a comprar|tú le vas a comprar|le comprará [usted]|usted le comprará) a Lili
         ¿Qué regalo le comprarán a Lili?
@@ -393,7 +393,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Llevaremos regalos para Yunior a La Habana.
-      tokens: [{surface: Llevaremos, lexeme: llevar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: regalos, lexeme: regalo, feats: {Number: Plur}}, {surface: para, lexeme: para, n: 3, head: 4, rel: case}, {surface: Yunior, lexeme: yunior, n: 4}, {surface: a, lexeme: a, n: 5, head: 7, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 7}]
+      tokens: [{surface: Llevaremos, lexeme: llevar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: regalos, lexeme: regalo, feats: {Number: Plur}}, {surface: para, lexeme: para, n: 3, head: 4, rel: case}, {surface: Yunior, lexeme: yunior, n: 4}, {surface: a, lexeme: a, n: 5, head: 7, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Habana, lexeme: habana, n: 7}]
       reverse: |-
         [(Nosotros|Nosotras)] (llevaremos|vamos a llevar) regalos (para|pa') Yunior a La Habana
         [(Nosotros|Nosotras)] (llevaremos|vamos a llevar) regalos a La Habana (para|pa') Yunior
@@ -432,7 +432,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi prima de La Habana tendrá quince años en enero.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: prima, lexeme: primo, feats: {Gender: Fem, Number: Sing}, n: 2}, {surface: de, lexeme: de, n: 3, head: 5, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 5}, {surface: tendrá, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: quince, lexeme: quince}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: en, lexeme: en, n: 9, head: 10, rel: case}, {surface: enero, lexeme: enero, n: 10}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: prima, lexeme: primo, feats: {Gender: Fem, Number: Sing}, n: 2}, {surface: de, lexeme: de, n: 3, head: 5, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Habana, lexeme: habana, n: 5}, {surface: tendrá, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: quince, lexeme: quince}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: en, lexeme: en, n: 9, head: 10, rel: case}, {surface: enero, lexeme: enero, n: 10}]
       reverse: |-
         Mi (prima|primo) de La Habana (tendrá|va a tener|cumplirá|va a cumplir) quince [años] en enero
         En enero mi (prima|primo) de La Habana (tendrá|va a tener|cumplirá|va a cumplir) quince [años]
@@ -458,7 +458,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tía Marisol preparará una fiesta grande en La Habana.
-      tokens: [{surface: Tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: preparará, lexeme: preparar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: fiesta, lexeme: fiesta, feats: {Number: Sing}, n: 5}, {surface: grande, lexeme: grande, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: en, lexeme: en, n: 7, head: 9, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 9}]
+      tokens: [{surface: Tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol}, {surface: preparará, lexeme: preparar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: fiesta, lexeme: fiesta, feats: {Number: Sing}, n: 5}, {surface: grande, lexeme: grande, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: en, lexeme: en, n: 7, head: 9, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: Habana, lexeme: habana, n: 9}]
       reverse: (Tía Marisol|Mi tía Marisol|La tía Marisol) (preparará|va a preparar|hará|va a hacer|dará|va a dar) una (fiesta grande|gran fiesta) en La Habana
   translations:
     en: |-
@@ -524,7 +524,7 @@ stories:
       forms:
         es-Latn/standard:
           text: En Cuba yo asé muchos lechones en el patio.
-          tokens: [{surface: En, lexeme: en, n: 1, head: 2, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 2}, {surface: yo, lexeme: yo}, {surface: asé, lexeme: asar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: lechones, lexeme: lechón, feats: {Number: Plur}}, {surface: en, lexeme: en, n: 7, head: 9, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: patio, lexeme: patio, feats: {Number: Sing}, n: 9}]
+          tokens: [{surface: En, lexeme: en, n: 1, head: 2, rel: case}, {surface: Cuba, lexeme: cuba, n: 2}, {surface: yo, lexeme: yo}, {surface: asé, lexeme: asar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: lechones, lexeme: lechón, feats: {Number: Plur}}, {surface: en, lexeme: en, n: 7, head: 9, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: patio, lexeme: patio, feats: {Number: Sing}, n: 9}]
       translations:
         en: In Cuba I roasted a lot of pigs in the yard.
   - line:
@@ -540,7 +540,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Vendrá toda la familia, y también doña Ofelia y Yasiel.
-          tokens: [{surface: Vendrá, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}, n: 2, head: 4, rel: det}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 4}, {surface: y, lexeme: y}, {surface: también, lexeme: también}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: Yasiel, lexeme: yasiel}]
+          tokens: [{surface: Vendrá, lexeme: venir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}, n: 2, head: 4, rel: det}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 4}, {surface: y, lexeme: y}, {surface: también, lexeme: también}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia}, {surface: y, lexeme: y}, {surface: Yasiel, lexeme: yasiel}]
       translations:
         en: The whole family is coming, and Doña Ofelia and Yasiel too.
   - line:
@@ -548,7 +548,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y tía Marisol? ¿Y Yunior?
-          tokens: [{surface: Y, lexeme: y}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: Y, lexeme: y}, {surface: Yunior, lexeme: yunior}]
+          tokens: [{surface: Y, lexeme: y}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol}, {surface: Y, lexeme: y}, {surface: Yunior, lexeme: yunior}]
       translations:
         en: What about Aunt Marisol? And Yunior?
   - line:
@@ -556,7 +556,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Ellos están en La Habana, pero hablaremos con ellos por teléfono.
-          tokens: [{surface: Ellos, lexeme: ellos, feats: {Number: Plur}}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 3, head: 5, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 5}, {surface: pero, lexeme: pero}, {surface: hablaremos, lexeme: hablar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: con, lexeme: con, n: 8, head: 9, rel: case}, {surface: ellos, lexeme: ellos, feats: {Number: Plur}, n: 9}, {surface: por, lexeme: por, n: 10, head: 11, rel: case}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}, n: 11}]
+          tokens: [{surface: Ellos, lexeme: ellos, feats: {Number: Plur}}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 3, head: 5, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Habana, lexeme: habana, n: 5}, {surface: pero, lexeme: pero}, {surface: hablaremos, lexeme: hablar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: con, lexeme: con, n: 8, head: 9, rel: case}, {surface: ellos, lexeme: ellos, feats: {Number: Plur}, n: 9}, {surface: por, lexeme: por, n: 10, head: 11, rel: case}, {surface: teléfono, lexeme: teléfono, feats: {Number: Sing}, n: 11}]
       translations:
         en: They're in Havana, but we'll talk to them on the phone.
   - choose:
@@ -572,7 +572,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Muchas gracias, señora. Mi familia está en Cuba.
-          tokens: [{surface: Muchas, lexeme: mucho, feats: {Gender: Fem, Number: Plur}}, {surface: gracias, lexeme: gracias}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 5}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 7, head: 8, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 8}]
+          tokens: [{surface: Muchas, lexeme: mucho, feats: {Gender: Fem, Number: Plur}}, {surface: gracias, lexeme: gracias}, {surface: señora, lexeme: señora, feats: {Number: Sing}}, {surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 5}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 7, head: 8, rel: case}, {surface: Cuba, lexeme: cuba, n: 8}]
       translations:
         en: Thank you very much, ma'am. My family is in Cuba.
   - line:
@@ -654,7 +654,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Será una Nochebuena muy cubana!
-          tokens: [{surface: Será, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}, n: 3}, {surface: muy, lexeme: muy}, {surface: cubana, lexeme: cubano, feats: {Gender: Fem, Number: Sing}, n: 5, head: 3, rel: amod}]
+          tokens: [{surface: Será, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: Nochebuena, lexeme: nochebuena, n: 3}, {surface: muy, lexeme: muy}, {surface: cubana, lexeme: cubano, feats: {Gender: Fem, Number: Sing}, n: 5, head: 3, rel: amod}]
       translations:
         en: It'll be a very Cuban Christmas Eve!
   - line:
@@ -662,6 +662,6 @@ stories:
       forms:
         es-Latn/standard:
           text: Con la familia entera, mi'jo. ¡Feliz Nochebuena!
-          tokens: [{surface: Con, lexeme: con, n: 1, head: 3, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 3}, {surface: entera, lexeme: entero, feats: {Gender: Fem, Number: Sing}, n: 4, head: 3, rel: amod}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Feliz, lexeme: feliz, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: amod}, {surface: Nochebuena, lexeme: nochebuena, feats: {Gender: Fem}, n: 7}]
+          tokens: [{surface: Con, lexeme: con, n: 1, head: 3, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 3}, {surface: entera, lexeme: entero, feats: {Gender: Fem, Number: Sing}, n: 4, head: 3, rel: amod}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Feliz, lexeme: feliz, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: amod}, {surface: Nochebuena, lexeme: nochebuena, n: 7}]
       translations:
         en: With the whole family, son. Merry Christmas Eve!

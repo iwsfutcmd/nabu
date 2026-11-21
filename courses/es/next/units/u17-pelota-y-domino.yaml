@@ -111,7 +111,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Todavía no he hablado con tía Marisol.
-      tokens: [{surface: Todavía, lexeme: todavía}, {surface: 'no', lexeme: 'no'}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: hablado, lexeme: hablar, feats: {Tense: Past, VerbForm: Part}}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: Todavía, lexeme: todavía}, {surface: 'no', lexeme: 'no'}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: hablado, lexeme: hablar, feats: {Tense: Past, VerbForm: Part}}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol}]
       reverse: |-
         (Todavía|Todavía yo|Yo todavía|Aún|Yo aún) no he hablado con (tía|mi tía) Marisol
         [Yo] no he hablado con (tía|mi tía) Marisol (todavía|aún)
@@ -150,7 +150,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo nunca he ido a Cuba.
-      tokens: [{surface: Yo, lexeme: yo}, {surface: nunca, lexeme: nunca}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ido, lexeme: ir, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 6}]
+      tokens: [{surface: Yo, lexeme: yo}, {surface: nunca, lexeme: nunca}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ido, lexeme: ir, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Cuba, lexeme: cuba, n: 6}]
       reverse: |-
         [Yo] nunca he (ido a|estado en) Cuba
         [Yo] no he (ido a|estado en) Cuba nunca
@@ -206,7 +206,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ya te he dicho que no, Lili.
-      tokens: [{surface: Ya, lexeme: ya}, {surface: te, lexeme: te}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dicho, lexeme: decir, feats: {Tense: Past, VerbForm: Part}}, {surface: que, lexeme: que}, {surface: 'no', lexeme: 'no'}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
+      tokens: [{surface: Ya, lexeme: ya}, {surface: te, lexeme: te}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dicho, lexeme: decir, feats: {Tense: Past, VerbForm: Part}}, {surface: que, lexeme: que}, {surface: 'no', lexeme: 'no'}, {surface: Lili, lexeme: lili}]
       reverse: (Ya te he dicho|Ya yo te he dicho|Te he dicho ya|Ya te dije|Ya yo te dije|Te dije ya) que no Lili
   translations:
     en: |-
@@ -261,7 +261,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pero Daniel y Lili son de los Marlins.
-      tokens: [{surface: Pero, lexeme: pero}, {surface: Daniel, lexeme: daniel}, {surface: y, lexeme: y}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 6, head: 8, rel: case}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 7, head: 8, rel: det}, {surface: Marlins, lexeme: marlins, n: 8}]
+      tokens: [{surface: Pero, lexeme: pero}, {surface: Daniel, lexeme: daniel}, {surface: y, lexeme: y}, {surface: Lili, lexeme: lili}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 6, head: 8, rel: case}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 7, head: 8, rel: det}, {surface: Marlins, lexeme: marlins, n: 8}]
       reverse: Pero Daniel y Lili son (de los|fanáticos de los|fans de los) Marlins
   translations:
     en: But Daniel and Lili (are Marlins fans|are fans of the Marlins|root for the Marlins|support the Marlins).
@@ -292,7 +292,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili ha ponchado a Daniel dos veces.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ponchado, lexeme: ponchar, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Daniel, lexeme: daniel, n: 5}, {surface: dos, lexeme: dos}, {surface: veces, lexeme: vez, feats: {Number: Plur}}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ponchado, lexeme: ponchar, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Daniel, lexeme: daniel, n: 5}, {surface: dos, lexeme: dos}, {surface: veces, lexeme: vez, feats: {Number: Plur}}]
       reverse: |-
         Lili (ha ponchado|ponchó) a Daniel dos veces
         Lili (ha ponchado|ponchó) dos veces a Daniel

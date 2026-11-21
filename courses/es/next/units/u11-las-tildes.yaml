@@ -52,7 +52,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tía Marisol también tiene WhatsApp.
-      tokens: [{surface: Tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: también, lexeme: también}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: WhatsApp, lexeme: whatsapp}]
+      tokens: [{surface: Tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol}, {surface: también, lexeme: también}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: WhatsApp, lexeme: whatsapp}]
       reverse: |-
         (Tía|La tía|Mi tía) Marisol también tiene WhatsApp
         Tía Marisol tiene WhatsApp también.
@@ -66,7 +66,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tengo un mensaje de tía Marisol.
-      tokens: [{surface: Tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: mensaje, lexeme: mensaje, feats: {Number: Sing}, n: 3}, {surface: de, lexeme: de, n: 4, head: 5, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: Tengo, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: mensaje, lexeme: mensaje, feats: {Number: Sing}, n: 3}, {surface: de, lexeme: de, n: 4, head: 5, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: Marisol, lexeme: marisol}]
       reverse: '[Yo] tengo un mensaje de (tía|la tía|mi tía) Marisol'
   translations:
     en: (I have|I've got) a (message|text) from (Aunt|Auntie|Tía) Marisol.
@@ -101,7 +101,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tía Marisol me llama los domingos por la noche.
-      tokens: [{surface: Tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: me, lexeme: me}, {surface: llama, lexeme: llamar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 5, head: 6, rel: det}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}, n: 6}, {surface: por, lexeme: por, n: 7, head: 9, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: Tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol}, {surface: me, lexeme: me}, {surface: llama, lexeme: llamar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 5, head: 6, rel: det}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}, n: 6}, {surface: por, lexeme: por, n: 7, head: 9, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 9}]
       reverse: |-
         (Tía|La tía|Mi tía) Marisol me llama los domingos por la noche
         Tía Marisol me llama los domingos en la noche.
@@ -154,7 +154,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami me mandó una foto de tía Marisol.
-      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: me, lexeme: me}, {surface: mandó, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: foto, lexeme: foto, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 7}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: me, lexeme: me}, {surface: mandó, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: foto, lexeme: foto, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 7}, {surface: Marisol, lexeme: marisol}]
       reverse: (Mami|Mamá|Mi mamá) me (mandó|envió) una foto de (tía|la tía|mi tía) Marisol
   translations:
     en: |-
@@ -165,7 +165,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tía Marisol no escribe mucho, manda audios.
-      tokens: [{surface: Tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: audios, lexeme: audio, feats: {Number: Plur}}]
+      tokens: [{surface: Tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol}, {surface: 'no', lexeme: 'no'}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: audios, lexeme: audio, feats: {Number: Plur}}]
       reverse: |-
         (Tía|La tía|Mi tía) Marisol no escribe mucho [ella] manda audios
         Tía Marisol no escribe mucho, manda mensajes de voz.
@@ -177,7 +177,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior me escribe más que tía Marisol.
-      tokens: [{surface: Yunior, lexeme: yunior}, {surface: me, lexeme: me}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: que, lexeme: que}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: me, lexeme: me}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: que, lexeme: que}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol}]
       reverse: Yunior me escribe más que (tía|la tía|mi tía) Marisol
   translations:
     en: Yunior (writes to me|writes me|texts me|messages me) more than (Aunt|Auntie|Tía) Marisol [does].
@@ -302,7 +302,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Quién te escribió anoche, tía Marisol o Yunior?
-      tokens: [{surface: Quién, lexeme: quién}, {surface: te, lexeme: te}, {surface: escribió, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: anoche, lexeme: anoche}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: o, lexeme: o}, {surface: Yunior, lexeme: yunior}]
+      tokens: [{surface: Quién, lexeme: quién}, {surface: te, lexeme: te}, {surface: escribió, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: anoche, lexeme: anoche}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol}, {surface: o, lexeme: o}, {surface: Yunior, lexeme: yunior}]
       reverse: Quién (te|le|les) escribió anoche (tía|la tía) Marisol o Yunior
   translations:
     en: Who (wrote to you|wrote you|texted you|messaged you) last night, (Aunt|Auntie|Tía) Marisol or Yunior?
@@ -311,7 +311,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuánto cuesta llamar a Cuba?
-      tokens: [{surface: Cuánto, lexeme: cuánto}, {surface: cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: llamar, lexeme: llamar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 5}]
+      tokens: [{surface: Cuánto, lexeme: cuánto}, {surface: cuesta, lexeme: costar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: llamar, lexeme: llamar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, n: 5}]
       reverse: Cuánto cuesta llamar a Cuba
   translations:
     en: How much (does it cost|is it) to call Cuba?
@@ -340,7 +340,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cuando llego a la casa, le escribo a tía Marisol.
-      tokens: [{surface: Cuando, lexeme: cuando}, {surface: llego, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 5}, {surface: le, lexeme: le}, {surface: escribo, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 8, head: 9, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 9}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: llego, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 5}, {surface: le, lexeme: le}, {surface: escribo, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 8, head: 9, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 9}, {surface: Marisol, lexeme: marisol}]
       reverse: |-
         Cuando [yo] llego a [la] casa [yo] le escribo a (tía|la tía|mi tía) Marisol
         [Yo] le escribo a (tía|la tía|mi tía) Marisol cuando [yo] llego a [la] casa
@@ -353,7 +353,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuándo llega tu avión a La Habana?
-      tokens: [{surface: Cuándo, lexeme: cuándo}, {surface: llega, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: avión, lexeme: avión, feats: {Number: Sing}, n: 4}, {surface: a, lexeme: a, n: 5, head: 7, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 7}]
+      tokens: [{surface: Cuándo, lexeme: cuándo}, {surface: llega, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: avión, lexeme: avión, feats: {Number: Sing}, n: 4}, {surface: a, lexeme: a, n: 5, head: 7, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Habana, lexeme: habana, n: 7}]
       reverse: |-
         Cuándo llega (tu|su) avión a La Habana
         Cuándo (tu|su) avión llega a La Habana
@@ -364,7 +364,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Esta es la casa donde vive tía Marisol.
-      tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 4}, {surface: donde, lexeme: donde}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: Esta, lexeme: este, feats: {Gender: Fem, Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 4}, {surface: donde, lexeme: donde}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol}]
       reverse: |-
         Esta es la casa (donde|en la que|en que) vive (tía|la tía|mi tía) Marisol
         Esta es la casa (donde|en la que|en que) (tía|la tía|mi tía) Marisol vive
@@ -402,7 +402,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Hoy hablo yo con tía Marisol; ayer habló Mami.
-      tokens: [{surface: Hoy, lexeme: hoy}, {surface: hablo, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: yo, lexeme: yo}, {surface: con, lexeme: con, n: 4, head: 5, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: ayer, lexeme: ayer}, {surface: habló, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Mami, lexeme: mami, feats: {Number: Sing}}]
+      tokens: [{surface: Hoy, lexeme: hoy}, {surface: hablo, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: yo, lexeme: yo}, {surface: con, lexeme: con, n: 4, head: 5, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: Marisol, lexeme: marisol}, {surface: ayer, lexeme: ayer}, {surface: habló, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Mami, lexeme: mami, feats: {Number: Sing}}]
       reverse: Hoy (hablo yo|yo hablo|hablo) con (tía|la tía) Marisol [y] ayer (habló Mami|Mami habló|habló mi mamá|mi mamá habló)
   translations:
     en: Today (I'm talking|I am talking|I talk) (to|with) (Aunt|Auntie|Tía) Marisol[, and] yesterday (Mom|Mum) (did|talked to her|spoke to her|talked with her|spoke with her).
@@ -411,7 +411,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami compró café cubano para tía Marisol.
-      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: compró, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: café, lexeme: café, feats: {Number: Sing}, n: 3}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}, {surface: para, lexeme: para, n: 5, head: 6, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: compró, lexeme: comprar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: café, lexeme: café, feats: {Number: Sing}, n: 3}, {surface: cubano, lexeme: cubano, feats: {Gender: Masc, Number: Sing}, n: 4, head: 3, rel: amod}, {surface: para, lexeme: para, n: 5, head: 6, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol}]
       reverse: (Mami|Mamá|Mi mamá) compró café cubano (para|pa') (tía|la tía|mi tía) Marisol
   translations:
     en: (Mom|Mum|Mommy) bought Cuban coffee for (Aunt|Auntie|Tía) Marisol.
@@ -462,7 +462,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Daniel le escribe a tía Marisol por WhatsApp.
-          tokens: [{surface: Daniel, lexeme: daniel}, {surface: le, lexeme: le}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: por, lexeme: por, n: 7, head: 8, rel: case}, {surface: WhatsApp, lexeme: whatsapp, n: 8}]
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: le, lexeme: le}, {surface: escribe, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: Marisol, lexeme: marisol}, {surface: por, lexeme: por, n: 7, head: 8, rel: case}, {surface: WhatsApp, lexeme: whatsapp, n: 8}]
       translations:
         en: Daniel texts Aunt Marisol on WhatsApp.
   - line:
@@ -510,7 +510,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Cuándo tú llegas a La Habana?
-          tokens: [{surface: Cuándo, lexeme: cuándo}, {surface: tú, lexeme: tú}, {surface: llegas, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 6, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 6}]
+          tokens: [{surface: Cuándo, lexeme: cuándo}, {surface: tú, lexeme: tú}, {surface: llegas, lexeme: llegar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 6, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Habana, lexeme: habana, n: 6}]
       translations:
         en: When do you get to Havana?
   - line:

@@ -20,7 +20,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela Cachita siempre habla con refranes cuando está en la cocina.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: siempre, lexeme: siempre}, {surface: habla, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: refranes, lexeme: refrán, feats: {Number: Plur}, n: 6}, {surface: cuando, lexeme: cuando}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 9, head: 11, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 11}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita}, {surface: siempre, lexeme: siempre}, {surface: habla, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: refranes, lexeme: refrán, feats: {Number: Plur}, n: 6}, {surface: cuando, lexeme: cuando}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 9, head: 11, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 11}]
       reverse: |-
         (Abuela Cachita|La abuela Cachita|Mi abuela Cachita) siempre habla (con|en) refranes cuando está en la cocina
         Cuando está en la cocina (abuela Cachita|la abuela Cachita|mi abuela Cachita) siempre habla (con|en) refranes
@@ -46,7 +46,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La corriente del río se llevó la pelota de Lili.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}, n: 2}, {surface: del, lexeme: del, n: 3, head: 4, rel: case}, {surface: río, lexeme: río, feats: {Number: Sing}, n: 4}, {surface: se, lexeme: se}, {surface: llevó, lexeme: llevarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de, n: 9, head: 10, rel: case}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}, n: 10}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: corriente, lexeme: corriente, feats: {Number: Sing}, n: 2}, {surface: del, lexeme: del, n: 3, head: 4, rel: case}, {surface: río, lexeme: río, feats: {Number: Sing}, n: 4}, {surface: se, lexeme: se}, {surface: llevó, lexeme: llevarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: pelota, lexeme: pelota, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de, n: 9, head: 10, rel: case}, {surface: Lili, lexeme: lili, n: 10}]
       reverse: La corriente del río se llevó la pelota de Lili
   translations:
     en: The (current|river current|current of the river|river's current) (carried|took|swept) (away Lili's ball|Lili's ball away).
@@ -84,7 +84,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili estudia por la noche para el examen del lunes.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: estudia, lexeme: estudiar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 5}, {surface: para, lexeme: para, n: 6, head: 8, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: examen, lexeme: examen, feats: {Number: Sing}, n: 8}, {surface: del, lexeme: del, n: 9, head: 10, rel: case}, {surface: lunes, lexeme: lunes, feats: {Number: Sing}, n: 10}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: estudia, lexeme: estudiar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: por, lexeme: por, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 5}, {surface: para, lexeme: para, n: 6, head: 8, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: examen, lexeme: examen, feats: {Number: Sing}, n: 8}, {surface: del, lexeme: del, n: 9, head: 10, rel: case}, {surface: lunes, lexeme: lunes, feats: {Number: Sing}, n: 10}]
       reverse: |-
         Lili estudia (por la noche|en la noche|de noche) para el examen del lunes
         Lili estudia para el examen del lunes (por la noche|en la noche|de noche)
@@ -180,7 +180,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami y Papi trabajan mucho para que Lili pueda estudiar.
-      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: trabajan, lexeme: trabajar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: para, lexeme: para}, {surface: que, lexeme: que}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: pueda, lexeme: poder, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: estudiar, lexeme: estudiar, feats: {VerbForm: Inf}}]
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: trabajan, lexeme: trabajar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: para, lexeme: para}, {surface: que, lexeme: que}, {surface: Lili, lexeme: lili}, {surface: pueda, lexeme: poder, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: estudiar, lexeme: estudiar, feats: {VerbForm: Inf}}]
       reverse: (Mami|Mamá|Mi mamá) y (Papi|Papá|mi papá) trabajan mucho para que Lili pueda estudiar
   translations:
     en: |-
@@ -386,7 +386,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili siempre coge lucha cuando tiene un examen.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: siempre, lexeme: siempre}, {surface: coge, lexeme: coger, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: lucha, lexeme: lucha, feats: {Number: Sing}}, {surface: cuando, lexeme: cuando}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: examen, lexeme: examen, feats: {Number: Sing}, n: 8}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: siempre, lexeme: siempre}, {surface: coge, lexeme: coger, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: lucha, lexeme: lucha, feats: {Number: Sing}}, {surface: cuando, lexeme: cuando}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: examen, lexeme: examen, feats: {Number: Sing}, n: 8}]
       reverse: Lili siempre (coge lucha|se estresa|se preocupa) cuando tiene (un examen|exámenes)
   translations:
     en: Lili always (gets stressed|stresses out|gets worked up|worries) when she has (an exam|a test|exams|tests).
@@ -473,7 +473,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Es sábado por la mañana. Lili estudia en la cocina para un examen.
-          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sábado, lexeme: sábado, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: estudia, lexeme: estudiar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 8, head: 10, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 10}, {surface: para, lexeme: para, n: 11, head: 13, rel: case}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 12, head: 13, rel: det}, {surface: examen, lexeme: examen, feats: {Number: Sing}, n: 13}]
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sábado, lexeme: sábado, feats: {Number: Sing}}, {surface: por, lexeme: por}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}}, {surface: mañana, lexeme: mañana}, {surface: Lili, lexeme: lili}, {surface: estudia, lexeme: estudiar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 8, head: 10, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: cocina, lexeme: cocina, feats: {Number: Sing}, n: 10}, {surface: para, lexeme: para, n: 11, head: 13, rel: case}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 12, head: 13, rel: det}, {surface: examen, lexeme: examen, feats: {Number: Sing}, n: 13}]
       translations:
         en: It's Saturday morning. Lili is studying in the kitchen for an exam.
   - line:
@@ -566,7 +566,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Por y para? Ay, Lili, ahí yo estoy en el aire.
-          tokens: [{surface: Por, lexeme: por}, {surface: y, lexeme: y}, {surface: para, lexeme: para}, {surface: Ay, lexeme: ay}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: ahí, lexeme: ahí}, {surface: yo, lexeme: yo}, {surface: estoy, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 9, head: 11, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: aire, lexeme: aire, feats: {Number: Sing}, n: 11}]
+          tokens: [{surface: Por, lexeme: por}, {surface: y, lexeme: y}, {surface: para, lexeme: para}, {surface: Ay, lexeme: ay}, {surface: Lili, lexeme: lili}, {surface: ahí, lexeme: ahí}, {surface: yo, lexeme: yo}, {surface: estoy, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 9, head: 11, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: aire, lexeme: aire, feats: {Number: Sing}, n: 11}]
       translations:
         en: Por and para? Oh, Lili, I'm lost there.
   - choose:

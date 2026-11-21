@@ -36,7 +36,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili, ¿todavía te duele el estómago?
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: todavía, lexeme: todavía}, {surface: te, lexeme: te}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: estómago, lexeme: estómago, feats: {Number: Sing}, n: 6}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: todavía, lexeme: todavía}, {surface: te, lexeme: te}, {surface: duele, lexeme: doler, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: estómago, lexeme: estómago, feats: {Number: Sing}, n: 6}]
       reverse: Lili (todavía te duele el estómago|te duele el estómago todavía|aún te duele el estómago|te sigue doliendo el estómago)
   translations:
     en: |-
@@ -176,7 +176,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Salud! ¿Tú estás bien, Lili?
-      tokens: [{surface: Salud, lexeme: salud}, {surface: Tú, lexeme: tú}, {surface: estás, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
+      tokens: [{surface: Salud, lexeme: salud}, {surface: Tú, lexeme: tú}, {surface: estás, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: Lili, lexeme: lili}]
       reverse: (Salud|Jesús) (tú estás bien|estás [tú] bien) Lili
   translations:
     en: (Bless you|Gesundheit)! (Are you okay|Are you OK|Are you all right|Are you alright), Lili?
@@ -244,7 +244,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mañana yo tengo que trabajar, pero Lili puede ir con abuelo.
-      tokens: [{surface: Mañana, lexeme: mañana}, {surface: yo, lexeme: yo}, {surface: tengo, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: trabajar, lexeme: trabajar, feats: {VerbForm: Inf}}, {surface: pero, lexeme: pero}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: puede, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: con, lexeme: con, n: 10, head: 11, rel: case}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 11}]
+      tokens: [{surface: Mañana, lexeme: mañana}, {surface: yo, lexeme: yo}, {surface: tengo, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: trabajar, lexeme: trabajar, feats: {VerbForm: Inf}}, {surface: pero, lexeme: pero}, {surface: Lili, lexeme: lili}, {surface: puede, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}, {surface: con, lexeme: con, n: 10, head: 11, rel: case}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}, n: 11}]
       reverse: |-
         (Mañana [yo]|Yo mañana) tengo que trabajar pero Lili puede ir con (abuelo|mi abuelo|el abuelo)
         [Yo] tengo que trabajar mañana pero Lili puede ir con (abuelo|mi abuelo|el abuelo)
@@ -463,7 +463,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Yo me siento bien, Cachita. No tengo que ir.
-          tokens: [{surface: Yo, lexeme: yo}, {surface: me, lexeme: me}, {surface: siento, lexeme: sentirse, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: 'No', lexeme: 'no'}, {surface: tengo, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}]
+          tokens: [{surface: Yo, lexeme: yo}, {surface: me, lexeme: me}, {surface: siento, lexeme: sentirse, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: Cachita, lexeme: cachita}, {surface: 'No', lexeme: 'no'}, {surface: tengo, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: ir, lexeme: ir, feats: {VerbForm: Inf}}]
       translations:
         en: I feel fine, Cachita. I don't have to go.
   - line:
@@ -610,7 +610,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Un cocimiento? Cachita, ¡yo quiero un cafecito!
-          tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: cocimiento, lexeme: cocimiento, feats: {Number: Sing}, n: 2}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: yo, lexeme: yo}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 7}]
+          tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: cocimiento, lexeme: cocimiento, feats: {Number: Sing}, n: 2}, {surface: Cachita, lexeme: cachita}, {surface: yo, lexeme: yo}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 7}]
       translations:
         en: An herbal tea? Cachita, I want a cafecito!
   - line:

@@ -57,7 +57,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A Lili y a Daniel les encanta bailar salsa.
-      tokens: [{surface: A, lexeme: a, n: 1, head: 2, rel: case}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}, n: 2}, {surface: y, lexeme: y}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Daniel, lexeme: daniel, n: 5}, {surface: les, lexeme: le, feats: {Number: Plur}}, {surface: encanta, lexeme: encantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bailar, lexeme: bailar, feats: {VerbForm: Inf}}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}}]
+      tokens: [{surface: A, lexeme: a, n: 1, head: 2, rel: case}, {surface: Lili, lexeme: lili, n: 2}, {surface: y, lexeme: y}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Daniel, lexeme: daniel, n: 5}, {surface: les, lexeme: le, feats: {Number: Plur}}, {surface: encanta, lexeme: encantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: bailar, lexeme: bailar, feats: {VerbForm: Inf}}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}}]
       reverse: |-
         A Lili y a Daniel les encanta bailar [la] salsa
         A Daniel y a Lili les encanta bailar [la] salsa
@@ -178,7 +178,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Te molesta la música de Lili?
-      tokens: [{surface: Te, lexeme: te}, {surface: molesta, lexeme: molestar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: música, lexeme: música, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de, n: 5, head: 6, rel: case}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}, n: 6}]
+      tokens: [{surface: Te, lexeme: te}, {surface: molesta, lexeme: molestar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: música, lexeme: música, feats: {Number: Sing}, n: 4}, {surface: de, lexeme: de, n: 5, head: 6, rel: case}, {surface: Lili, lexeme: lili, n: 6}]
       reverse: |-
         [A ti] te molesta la música de Lili
         [A usted] le molesta la música de Lili
@@ -207,7 +207,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: A Lili le fascina Celia Cruz.
-      tokens: [{surface: A, lexeme: a, n: 1, head: 2, rel: case}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}, n: 2}, {surface: le, lexeme: le}, {surface: fascina, lexeme: fascinar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Celia, lexeme: celia-cruz}, {surface: Cruz, lexeme: celia-cruz}]
+      tokens: [{surface: A, lexeme: a, n: 1, head: 2, rel: case}, {surface: Lili, lexeme: lili, n: 2}, {surface: le, lexeme: le}, {surface: fascina, lexeme: fascinar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Celia, lexeme: celia-cruz}, {surface: Cruz, lexeme: celia-cruz}]
       reverse: A Lili le (fascina|encanta) Celia Cruz
   translations:
     en: |-
@@ -231,7 +231,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En La Habana, Yunior toca el bongó los sábados.
-      tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 3}, {surface: Yunior, lexeme: yunior}, {surface: toca, lexeme: tocar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: bongó, lexeme: bongó, feats: {Number: Sing}, n: 7}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 8, head: 9, rel: det}, {surface: sábados, lexeme: sábado, feats: {Number: Plur}, n: 9}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: Habana, lexeme: habana, n: 3}, {surface: Yunior, lexeme: yunior}, {surface: toca, lexeme: tocar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: bongó, lexeme: bongó, feats: {Number: Sing}, n: 7}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 8, head: 9, rel: det}, {surface: sábados, lexeme: sábado, feats: {Number: Plur}, n: 9}]
       reverse: |-
         En La Habana Yunior toca (el bongó|los bongós|el bongo|los bongos) los sábados
         Yunior toca (el bongó|los bongós|el bongo|los bongos) los sábados en La Habana
@@ -269,7 +269,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili toca la clave y yo toco las maracas.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: toca, lexeme: tocar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: clave, lexeme: clave, feats: {Number: Sing}, n: 4}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: toco, lexeme: tocar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 8, head: 9, rel: det}, {surface: maracas, lexeme: maraca, feats: {Number: Plur}, n: 9}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: toca, lexeme: tocar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: clave, lexeme: clave, feats: {Number: Sing}, n: 4}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: toco, lexeme: tocar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 8, head: 9, rel: det}, {surface: maracas, lexeme: maraca, feats: {Number: Plur}, n: 9}]
       reverse: Lili toca (la clave|las claves) y [yo] toco las maracas
   translations:
     en: |-
@@ -291,7 +291,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili baila mucho más que Daniel.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: baila, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: más, lexeme: más}, {surface: que, lexeme: que.than}, {surface: Daniel, lexeme: daniel}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: baila, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: más, lexeme: más}, {surface: que, lexeme: que.than}, {surface: Daniel, lexeme: daniel}]
       reverse: Lili baila mucho más que Daniel
   translations:
     en: Lili dances (a lot|much) more than Daniel [does].
@@ -318,7 +318,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel no baila tan bien como Lili.
-      tokens: [{surface: Daniel, lexeme: daniel}, {surface: 'no', lexeme: 'no'}, {surface: baila, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tan, lexeme: tan}, {surface: bien, lexeme: bien}, {surface: como, lexeme: como.like}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}]
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: 'no', lexeme: 'no'}, {surface: baila, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tan, lexeme: tan}, {surface: bien, lexeme: bien}, {surface: como, lexeme: como.like}, {surface: Lili, lexeme: lili}]
       reverse: Daniel no baila tan bien como Lili
   translations:
     en: Daniel (doesn't|does not) dance as well as Lili [does].
@@ -362,7 +362,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili baila mejor que yo.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: baila, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: yo, lexeme: yo}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: baila, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}, {surface: que, lexeme: que.than}, {surface: yo, lexeme: yo}]
       reverse: Lili baila mejor que yo
   translations:
     en: |-
@@ -493,7 +493,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Ay, Pepe. A Lili le encanta la salsa, y la salsa también es cubana.
-          tokens: [{surface: Ay, lexeme: ay}, {surface: Pepe, lexeme: pepe}, {surface: A, lexeme: a, n: 3, head: 4, rel: case}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}, n: 4}, {surface: le, lexeme: le}, {surface: encanta, lexeme: encantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}, n: 8}, {surface: y, lexeme: y}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}, n: 11}, {surface: también, lexeme: también}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cubana, lexeme: cubano, feats: {Gender: Fem, Number: Sing}}]
+          tokens: [{surface: Ay, lexeme: ay}, {surface: Pepe, lexeme: pepe}, {surface: A, lexeme: a, n: 3, head: 4, rel: case}, {surface: Lili, lexeme: lili, n: 4}, {surface: le, lexeme: le}, {surface: encanta, lexeme: encantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}, n: 8}, {surface: y, lexeme: y}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}, n: 11}, {surface: también, lexeme: también}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: cubana, lexeme: cubano, feats: {Gender: Fem, Number: Sing}}]
       translations:
         en: Oh, Pepe. Lili loves salsa, and salsa is Cuban too.
   - choose:
@@ -524,7 +524,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela y Lili bailan salsa en la sala.
-          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: bailan, lexeme: bailar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: sala, lexeme: sala, feats: {Number: Sing}, n: 8}]
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: Lili, lexeme: lili}, {surface: bailan, lexeme: bailar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: salsa, lexeme: salsa, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: sala, lexeme: sala, feats: {Number: Sing}, n: 8}]
       translations:
         en: Grandma and Lili dance salsa in the living room.
   - line:
@@ -533,7 +533,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Lili baila tan bien como abuela!
-          tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: baila, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tan, lexeme: tan}, {surface: bien, lexeme: bien}, {surface: como, lexeme: como.like}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+          tokens: [{surface: Lili, lexeme: lili}, {surface: baila, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tan, lexeme: tan}, {surface: bien, lexeme: bien}, {surface: como, lexeme: como.like}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
       translations:
         en: Lili dances as well as Grandma!
   - line:

@@ -103,7 +103,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yasiel fue a Cuba.
-      tokens: [{surface: Yasiel, lexeme: yasiel}, {surface: fue, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 4}]
+      tokens: [{surface: Yasiel, lexeme: yasiel}, {surface: fue, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, n: 4}]
       reverse: Yasiel fue a Cuba
   translations:
     en: Yasiel went to Cuba.
@@ -112,7 +112,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú fuiste a Cuba?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: fuiste, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 4}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: fuiste, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, n: 4}]
       reverse: (Tú fuiste|Fuiste [tú]|Usted fue|Fue [usted]|Ustedes fueron|Fueron [ustedes]) a Cuba
   translations:
     en: Did you go to Cuba?
@@ -152,7 +152,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El domingo Lili no fue.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}, n: 2}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: fue, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}, n: 2}, {surface: Lili, lexeme: lili}, {surface: 'no', lexeme: 'no'}, {surface: fue, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}]
       reverse: |-
         El domingo Lili no fue
         Lili no fue el domingo
@@ -294,7 +294,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Anoche ganó Cuba.
-      tokens: [{surface: Anoche, lexeme: anoche}, {surface: ganó, lexeme: ganar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+      tokens: [{surface: Anoche, lexeme: anoche}, {surface: ganó, lexeme: ganar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Cuba, lexeme: cuba}]
       reverse: |-
         Anoche ganó Cuba
         Anoche Cuba ganó
@@ -494,7 +494,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y ganó Cuba?
-          tokens: [{surface: Y, lexeme: y}, {surface: ganó, lexeme: ganar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: ganó, lexeme: ganar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Cuba, lexeme: cuba}]
       translations:
         en: And did Cuba win?
   - line:
@@ -502,7 +502,7 @@ stories:
       forms:
         es-Latn/standard:
           text: No, Cuba no ganó. ¡Y abuelo habló con la tele!
-          tokens: [{surface: 'No', lexeme: 'no'}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: ganó, lexeme: ganar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Y, lexeme: y}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: habló, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con, n: 8, head: 10, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: tele, lexeme: televisión, feats: {Number: Sing}, n: 10}]
+          tokens: [{surface: 'No', lexeme: 'no'}, {surface: Cuba, lexeme: cuba}, {surface: 'no', lexeme: 'no'}, {surface: ganó, lexeme: ganar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Y, lexeme: y}, {surface: abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: habló, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: con, lexeme: con, n: 8, head: 10, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: tele, lexeme: televisión, feats: {Number: Sing}, n: 10}]
       translations:
         en: No, Cuba didn't win. And Grandpa talked to the TV!
   - choose:

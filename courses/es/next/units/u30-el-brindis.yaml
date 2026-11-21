@@ -20,7 +20,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El sábado abuela Cachita cumple ochenta años.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: sábado, lexeme: sábado, feats: {Number: Sing}, n: 2}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: cumple, lexeme: cumplir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ochenta, lexeme: ochenta}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: sábado, lexeme: sábado, feats: {Number: Sing}, n: 2}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita}, {surface: cumple, lexeme: cumplir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ochenta, lexeme: ochenta}, {surface: años, lexeme: año, feats: {Number: Plur}}]
       reverse: |-
         El sábado (abuela|la abuela|mi abuela) Cachita cumple (ochenta|80) años
         (Abuela|La abuela|Mi abuela) Cachita cumple (ochenta|80) años el sábado
@@ -67,7 +67,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Todos sus nietos están aquí, menos Yunior, que vive en La Habana.
-      tokens: [{surface: Todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}, n: 1, head: 3, rel: det}, {surface: sus, lexeme: su, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: nietos, lexeme: nieto, feats: {Number: Plur}, n: 3}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: aquí, lexeme: aquí}, {surface: menos, lexeme: menos}, {surface: Yunior, lexeme: yunior}, {surface: que, lexeme: que}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 10, head: 12, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 12}]
+      tokens: [{surface: Todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}, n: 1, head: 3, rel: det}, {surface: sus, lexeme: su, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: nietos, lexeme: nieto, feats: {Number: Plur}, n: 3}, {surface: están, lexeme: estar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: aquí, lexeme: aquí}, {surface: menos, lexeme: menos}, {surface: Yunior, lexeme: yunior}, {surface: que, lexeme: que}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 10, head: 12, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: det}, {surface: Habana, lexeme: habana, n: 12}]
       reverse: Todos sus nietos están aquí (menos|excepto|salvo) Yunior que vive en La Habana
   translations:
     en: All (her|of her) grandchildren are here (except|but|except for) Yunior, who lives in Havana.
@@ -167,7 +167,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Fue muy difícil dejar a su hija en Cuba.
-      tokens: [{surface: Fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: difícil, lexeme: difícil, feats: {Gender: Masc, Number: Sing}}, {surface: dejar, lexeme: dejar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 5, head: 7, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: hija, lexeme: hijo, feats: {Gender: Fem, Number: Sing}, n: 7}, {surface: en, lexeme: en, n: 8, head: 9, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 9}]
+      tokens: [{surface: Fue, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: difícil, lexeme: difícil, feats: {Gender: Masc, Number: Sing}}, {surface: dejar, lexeme: dejar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 5, head: 7, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: hija, lexeme: hijo, feats: {Gender: Fem, Number: Sing}, n: 7}, {surface: en, lexeme: en, n: 8, head: 9, rel: case}, {surface: Cuba, lexeme: cuba, n: 9}]
       reverse: |-
         Fue muy difícil dejar a su hija en Cuba
         Dejar a su hija en Cuba fue muy difícil
@@ -180,7 +180,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Aunque vivían lejos, abuela le escribía a Marisol todas las semanas.
-      tokens: [{surface: Aunque, lexeme: aunque}, {surface: vivían, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: lejos, lexeme: lejos}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: escribía, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a, n: 7, head: 8, rel: case}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}, n: 8}, {surface: todas, lexeme: todo, feats: {Gender: Fem, Number: Plur}, n: 9, head: 11, rel: det}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 10, head: 11, rel: det}, {surface: semanas, lexeme: semana, feats: {Number: Plur}, n: 11}]
+      tokens: [{surface: Aunque, lexeme: aunque}, {surface: vivían, lexeme: vivir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: lejos, lexeme: lejos}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: escribía, lexeme: escribir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a, n: 7, head: 8, rel: case}, {surface: Marisol, lexeme: marisol, n: 8}, {surface: todas, lexeme: todo, feats: {Gender: Fem, Number: Plur}, n: 9, head: 11, rel: det}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 10, head: 11, rel: det}, {surface: semanas, lexeme: semana, feats: {Number: Plur}, n: 11}]
       reverse: |-
         Aunque vivían lejos (abuela|la abuela|mi abuela) le escribía a Marisol todas las semanas
         A pesar de que vivían lejos, abuela le escribía a Marisol todas las semanas
@@ -379,7 +379,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¡Levantemos las copas por abuela Cachita!
-      tokens: [{surface: Levantemos, lexeme: levantar, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 2, head: 3, rel: det}, {surface: copas, lexeme: copa, feats: {Number: Plur}, n: 3}, {surface: por, lexeme: por, n: 4, head: 5, rel: case}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 5}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}]
+      tokens: [{surface: Levantemos, lexeme: levantar, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 2, head: 3, rel: det}, {surface: copas, lexeme: copa, feats: {Number: Plur}, n: 3}, {surface: por, lexeme: por, n: 4, head: 5, rel: case}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 5}, {surface: Cachita, lexeme: cachita}]
       reverse: |-
         (Levantemos|Alcemos) las copas por (abuela|la abuela) Cachita
         ¡Vamos a levantar las copas por abuela Cachita!
@@ -510,7 +510,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Tía Marisol, aunque estés lejos, siempre tienes un lugar en esta mesa.
-          tokens: [{surface: Tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: aunque, lexeme: aunque}, {surface: estés, lexeme: estar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: lejos, lexeme: lejos}, {surface: siempre, lexeme: siempre}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: lugar, lexeme: lugar, feats: {Number: Sing}, n: 9}, {surface: en, lexeme: en, n: 10, head: 12, rel: case}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: det}, {surface: mesa, lexeme: mesa, feats: {Number: Sing}, n: 12}]
+          tokens: [{surface: Tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol}, {surface: aunque, lexeme: aunque}, {surface: estés, lexeme: estar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: lejos, lexeme: lejos}, {surface: siempre, lexeme: siempre}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: lugar, lexeme: lugar, feats: {Number: Sing}, n: 9}, {surface: en, lexeme: en, n: 10, head: 12, rel: case}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: det}, {surface: mesa, lexeme: mesa, feats: {Number: Sing}, n: 12}]
       translations:
         en: Aunt Marisol, even though you're far away, you always have a place at this table.
   - line:
@@ -567,7 +567,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Salud! ¡Que viva Cachita!
-          tokens: [{surface: Salud, lexeme: salud}, {surface: Que, lexeme: que}, {surface: viva, lexeme: vivir, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}]
+          tokens: [{surface: Salud, lexeme: salud}, {surface: Que, lexeme: que}, {surface: viva, lexeme: vivir, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: Cachita, lexeme: cachita}]
       translations:
         en: Cheers! Long live Cachita!
   - line:

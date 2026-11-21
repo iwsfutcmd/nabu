@@ -19,7 +19,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Si puedo, voy a Cuba en diciembre.
-      tokens: [{surface: Si, lexeme: si}, {surface: puedo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 5}, {surface: en, lexeme: en, n: 6, head: 7, rel: case}, {surface: diciembre, lexeme: diciembre, n: 7}]
+      tokens: [{surface: Si, lexeme: si}, {surface: puedo, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, n: 5}, {surface: en, lexeme: en, n: 6, head: 7, rel: case}, {surface: diciembre, lexeme: diciembre, n: 7}]
       reverse: |-
         Si [yo] puedo (voy|iré|voy a ir) a Cuba en diciembre
         (Voy|Iré|Voy a ir) a Cuba en diciembre si [yo] puedo
@@ -82,7 +82,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Si pudiera, volvería a Cuba.
-      tokens: [{surface: Si, lexeme: si}, {surface: pudiera, lexeme: poder, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: volvería, lexeme: volver, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 5}]
+      tokens: [{surface: Si, lexeme: si}, {surface: pudiera, lexeme: poder, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: volvería, lexeme: volver, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, n: 5}]
       reverse: |-
         Si [yo] (pudiera|pudiese) (volvería|regresaría) a Cuba
         (Volvería|Regresaría) a Cuba si [yo] (pudiera|pudiese)
@@ -174,7 +174,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Si Yunior tuviera dinero, abriría un paladar en La Habana.
-      tokens: [{surface: Si, lexeme: si}, {surface: Yunior, lexeme: yunior}, {surface: tuviera, lexeme: tener, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}}, {surface: abriría, lexeme: abrir, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: paladar, lexeme: paladar, feats: {Number: Sing}, n: 7}, {surface: en, lexeme: en, n: 8, head: 10, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 10}]
+      tokens: [{surface: Si, lexeme: si}, {surface: Yunior, lexeme: yunior}, {surface: tuviera, lexeme: tener, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}}, {surface: abriría, lexeme: abrir, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: paladar, lexeme: paladar, feats: {Number: Sing}, n: 7}, {surface: en, lexeme: en, n: 8, head: 10, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: Habana, lexeme: habana, n: 10}]
       reverse: |-
         Si Yunior (tuviera|tuviese) [el] dinero (abriría|pondría) un paladar en La Habana
         Yunior (abriría|pondría) un paladar en La Habana si (tuviera|tuviese) [el] dinero
@@ -189,7 +189,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Si yo fuera rica, abriría un paladar con Marisol.
-      tokens: [{surface: Si, lexeme: si}, {surface: yo, lexeme: yo}, {surface: fuera, lexeme: ser, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: rica, lexeme: rico, feats: {Gender: Fem, Number: Sing}}, {surface: abriría, lexeme: abrir, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: paladar, lexeme: paladar, feats: {Number: Sing}, n: 7}, {surface: con, lexeme: con, n: 8, head: 9, rel: case}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}, n: 9}]
+      tokens: [{surface: Si, lexeme: si}, {surface: yo, lexeme: yo}, {surface: fuera, lexeme: ser, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: rica, lexeme: rico, feats: {Gender: Fem, Number: Sing}}, {surface: abriría, lexeme: abrir, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 6, head: 7, rel: det}, {surface: paladar, lexeme: paladar, feats: {Number: Sing}, n: 7}, {surface: con, lexeme: con, n: 8, head: 9, rel: case}, {surface: Marisol, lexeme: marisol, n: 9}]
       reverse: |-
         Si [yo] (fuera|fuese) rica (abriría|pondría) un paladar con (Marisol|mi hija)
         (Abriría|Pondría) un paladar con (Marisol|mi hija) si [yo] (fuera|fuese) rica
@@ -202,7 +202,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En La Habana, muchas familias tienen un paladar en su propia casa.
-      tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 3}, {surface: muchas, lexeme: mucho, feats: {Gender: Fem, Number: Plur}}, {surface: familias, lexeme: familia, feats: {Number: Plur}}, {surface: tienen, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: paladar, lexeme: paladar, feats: {Number: Sing}, n: 8}, {surface: en, lexeme: en, n: 9, head: 12, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 10, head: 12, rel: det}, {surface: propia, lexeme: propio, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: amod}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 12}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: Habana, lexeme: habana, n: 3}, {surface: muchas, lexeme: mucho, feats: {Gender: Fem, Number: Plur}}, {surface: familias, lexeme: familia, feats: {Number: Plur}}, {surface: tienen, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: paladar, lexeme: paladar, feats: {Number: Sing}, n: 8}, {surface: en, lexeme: en, n: 9, head: 12, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 10, head: 12, rel: det}, {surface: propia, lexeme: propio, feats: {Gender: Fem, Number: Sing}, n: 11, head: 12, rel: amod}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 12}]
       reverse: |-
         En La Habana muchas familias tienen un paladar en (su propia casa|sus propias casas)
         Muchas familias tienen un paladar en su propia casa en La Habana
@@ -273,7 +273,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela sueña con traer a Marisol a Miami.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: sueña, lexeme: soñar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: traer, lexeme: traer, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}, n: 6}, {surface: a, lexeme: a, n: 7, head: 8, rel: case}, {surface: Miami, lexeme: miami, n: 8}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: sueña, lexeme: soñar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con}, {surface: traer, lexeme: traer, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Marisol, lexeme: marisol, n: 6}, {surface: a, lexeme: a, n: 7, head: 8, rel: case}, {surface: Miami, lexeme: miami, n: 8}]
       reverse: (Abuela|La abuela|Mi abuela) sueña con traer a (Marisol|tía Marisol) a Miami
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) dreams of bringing (Marisol|Aunt Marisol|Tía Marisol) to Miami.
@@ -282,7 +282,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela reclamó a Marisol hace muchos años.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: reclamó, lexeme: reclamar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}, n: 4}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: reclamó, lexeme: reclamar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Marisol, lexeme: marisol, n: 4}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: muchos, lexeme: mucho, feats: {Gender: Masc, Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}]
       reverse: |-
         (Abuela|La abuela|Mi abuela) reclamó a (Marisol|tía Marisol) hace muchos años
         Hace muchos años (Abuela|la abuela|mi abuela) reclamó a (Marisol|tía Marisol)
@@ -354,7 +354,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yunior quiere tener su propio negocio en La Habana.
-      tokens: [{surface: Yunior, lexeme: yunior}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tener, lexeme: tener, feats: {VerbForm: Inf}}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 4, head: 6, rel: det}, {surface: propio, lexeme: propio, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: amod}, {surface: negocio, lexeme: negocio, feats: {Number: Sing}, n: 6}, {surface: en, lexeme: en, n: 7, head: 9, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 9}]
+      tokens: [{surface: Yunior, lexeme: yunior}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tener, lexeme: tener, feats: {VerbForm: Inf}}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 4, head: 6, rel: det}, {surface: propio, lexeme: propio, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: amod}, {surface: negocio, lexeme: negocio, feats: {Number: Sing}, n: 6}, {surface: en, lexeme: en, n: 7, head: 9, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: Habana, lexeme: habana, n: 9}]
       reverse: Yunior quiere (tener|abrir) su propio negocio en La Habana
   translations:
     en: Yunior wants to (have|open|start) his own business in Havana.
@@ -363,7 +363,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Si las cosas cambiaran, Yunior se quedaría en Cuba.
-      tokens: [{surface: Si, lexeme: si}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 2, head: 3, rel: det}, {surface: cosas, lexeme: cosa, feats: {Number: Plur}, n: 3}, {surface: cambiaran, lexeme: cambiar, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: Yunior, lexeme: yunior}, {surface: se, lexeme: se}, {surface: quedaría, lexeme: quedarse, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: en, lexeme: en, n: 8, head: 9, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 9}]
+      tokens: [{surface: Si, lexeme: si}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 2, head: 3, rel: det}, {surface: cosas, lexeme: cosa, feats: {Number: Plur}, n: 3}, {surface: cambiaran, lexeme: cambiar, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: Yunior, lexeme: yunior}, {surface: se, lexeme: se}, {surface: quedaría, lexeme: quedarse, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: en, lexeme: en, n: 8, head: 9, rel: case}, {surface: Cuba, lexeme: cuba, n: 9}]
       reverse: |-
         Si las cosas (cambiaran|cambiasen) Yunior se quedaría en Cuba
         Yunior se quedaría en Cuba si las cosas (cambiaran|cambiasen)
@@ -460,7 +460,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Es domingo, y toda la familia habla con Marisol y Yunior por videollamada.
-          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}, n: 4, head: 6, rel: det}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 6}, {surface: habla, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 8, head: 9, rel: case}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}, n: 9}, {surface: y, lexeme: y}, {surface: Yunior, lexeme: yunior}, {surface: por, lexeme: por, n: 12, head: 13, rel: case}, {surface: videollamada, lexeme: videollamada, feats: {Number: Sing}, n: 13}]
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: domingo, lexeme: domingo, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: toda, lexeme: todo, feats: {Gender: Fem, Number: Sing}, n: 4, head: 6, rel: det}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 6}, {surface: habla, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: con, lexeme: con, n: 8, head: 9, rel: case}, {surface: Marisol, lexeme: marisol, n: 9}, {surface: y, lexeme: y}, {surface: Yunior, lexeme: yunior}, {surface: por, lexeme: por, n: 12, head: 13, rel: case}, {surface: videollamada, lexeme: videollamada, feats: {Number: Sing}, n: 13}]
       translations:
         en: It's Sunday, and the whole family is on a video call with Marisol and Yunior.
   - line:
@@ -531,7 +531,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Si tuviera dinero, abriría un paladar aquí en Centro Habana.
-          tokens: [{surface: Si, lexeme: si}, {surface: tuviera, lexeme: tener, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}}, {surface: abriría, lexeme: abrir, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: paladar, lexeme: paladar, feats: {Number: Sing}, n: 6}, {surface: aquí, lexeme: aquí}, {surface: en, lexeme: en, n: 8, head: 9, rel: case}, {surface: Centro, lexeme: centro, n: 9}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}}]
+          tokens: [{surface: Si, lexeme: si}, {surface: tuviera, lexeme: tener, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}}, {surface: abriría, lexeme: abrir, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: paladar, lexeme: paladar, feats: {Number: Sing}, n: 6}, {surface: aquí, lexeme: aquí}, {surface: en, lexeme: en, n: 8, head: 9, rel: case}, {surface: Centro, lexeme: centro, n: 9}, {surface: Habana, lexeme: habana}]
       translations:
         en: If I had money, I'd open a paladar here in Centro Habana.
   - line:

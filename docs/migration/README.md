@@ -14,7 +14,7 @@ converter applies it and decides nothing; a report lists what it found, each a q
 |---|---|---|---|---|---|---|---|
 | [apc](apc.md) | 370 | 267 | 868 | 1296 | 348 | 91 | pass |
 | [chg](chg.md) | 455 | 0 | 794 | 0 | 0 | 69 | pass |
-| [es](es.md) | 721 | 844 | 1542 | 2495 | 721 | 119 | pass |
+| [es](es.md) | 721 | 835 | 1542 | 2495 | 721 | 165 | pass |
 | [fa](fa.md) | 253 | 2 | 426 | 0 | 236 | 19 | pass |
 | [grc](grc.md) | 170 | 200 | 414 | 219 | 135 | 49 | pass |
 | [hbo](hbo.md) | 320 | 326 | 879 | 600 | 146 | 92 | pass |
@@ -28,9 +28,9 @@ converter applies it and decides nothing; a report lists what it found, each a q
 | Finding | apc | chg | es | fa | grc | hbo | lzh | tok | uz | yue |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Lexemes that break a default | 10 |  | 10 |  | 3 | 28 |  |  |  |  |
-| Lexemes no default speaks of |  |  | 77 |  | 15 |  |  |  |  |  |
+| Lexemes no default speaks of |  |  | 112 |  | 15 |  |  |  |  |  |
 | Lexical features the tokens choose | 6 |  | 14 |  | 1 | 2 |  |  |  |  |
-| Lexemes whose lexical feature no token says | 11 |  | 7 |  |  | 2 |  |  |  |  |
+| Lexemes whose lexical feature no token says | 11 |  | 18 |  |  | 2 |  |  |  |  |
 | Other spellings of an entry |  | 21 |  |  |  |  |  |  |  |  |
 | Written otherwise than the entry | 17 | 48 | 4 | 15 | 12 | 40 |  |  | 13 | 2 |
 | Entries spelled as a form other than the citation form | 35 |  |  |  | 1 | 3 |  |  |  |  |

@@ -17,10 +17,13 @@ dimensions:
 # What a lexeme has of itself, and a learner learns unless a default gives it (ADR 0146).
 lexical:
   NOUN: [Gender]
+  # A name's gender is the name's (the owner, 2026-11-21: on the lexeme in every course).
+  PROPN: [Gender]
 # The cell an entry is spelled in. What a lexeme has of itself is no part of it: casa is cited
 # in the singular; hermano, whose gender its tokens choose, in the masculine singular.
 citation:
   NOUN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc}
   ADJ: {Gender: Masc, Number: Sing}
   DET: {Gender: Masc, Number: Sing}
   VERB: {VerbForm: Inf}
@@ -29,6 +32,7 @@ citation:
 # is bare; a verb with no form is its infinitive).
 bare:
   NOUN: {Gender: Masc, Number: Sing}
+  PROPN: {Gender: Masc}
   ADJ: {Gender: Masc, Number: Sing}
   DET: {Gender: Masc, Number: Sing}
   VERB: {VerbForm: Inf}

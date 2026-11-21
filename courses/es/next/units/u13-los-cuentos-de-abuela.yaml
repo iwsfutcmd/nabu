@@ -19,7 +19,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela Cachita vivía en Matanzas con su familia.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 5, rel: case}, {surface: Matanzas, lexeme: matanzas, n: 5}, {surface: con, lexeme: con, n: 6, head: 8, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 8}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 5, rel: case}, {surface: Matanzas, lexeme: matanzas, n: 5}, {surface: con, lexeme: con, n: 6, head: 8, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 8}]
       reverse: (Abuela Cachita|La abuela Cachita|Mi abuela Cachita) vivía en Matanzas con su familia
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) Cachita (lived|used to live|was living) in Matanzas with her family.
@@ -134,7 +134,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela Cachita era muy penosa y no bailaba mucho.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: penosa, lexeme: penoso, feats: {Gender: Fem, Number: Sing}}, {surface: y, lexeme: y}, {surface: 'no', lexeme: 'no'}, {surface: bailaba, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: penosa, lexeme: penoso, feats: {Gender: Fem, Number: Sing}}, {surface: y, lexeme: y}, {surface: 'no', lexeme: 'no'}, {surface: bailaba, lexeme: bailar, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}]
       reverse: (Abuela Cachita|La abuela Cachita|Mi abuela Cachita) era muy (penosa|tímida) y no bailaba mucho
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) Cachita was (very|really|so) shy and (didn't|did not|wouldn't|would not) dance (much|a lot).

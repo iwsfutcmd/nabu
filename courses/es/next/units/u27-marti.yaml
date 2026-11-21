@@ -19,7 +19,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Martí es el héroe nacional de Cuba.
-      tokens: [{surface: Martí, lexeme: martí}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: héroe, lexeme: héroe, feats: {Number: Sing}, n: 4}, {surface: nacional, lexeme: nacional, feats: {Gender: Masc, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 7}]
+      tokens: [{surface: Martí, lexeme: martí}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: héroe, lexeme: héroe, feats: {Number: Sing}, n: 4}, {surface: nacional, lexeme: nacional, feats: {Gender: Masc, Number: Sing}, n: 5, head: 4, rel: amod}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: Cuba, lexeme: cuba, n: 7}]
       reverse: (Martí|José Martí) es el héroe nacional (de Cuba|cubano)
   translations:
     en: (Martí|José Martí) is (Cuba's national hero|the national hero of Cuba).
@@ -46,7 +46,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Martí nació en La Habana y murió en Dos Ríos.
-      tokens: [{surface: Martí, lexeme: martí}, {surface: nació, lexeme: nacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en, n: 3, head: 5, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 5}, {surface: y, lexeme: y}, {surface: murió, lexeme: morir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en, n: 8, head: 9, rel: case}, {surface: Dos, lexeme: dos, n: 9}, {surface: Ríos, lexeme: río, feats: {Number: Plur}}]
+      tokens: [{surface: Martí, lexeme: martí}, {surface: nació, lexeme: nacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en, n: 3, head: 5, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Habana, lexeme: habana, n: 5}, {surface: y, lexeme: y}, {surface: murió, lexeme: morir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en, n: 8, head: 9, rel: case}, {surface: Dos, lexeme: dos, n: 9}, {surface: Ríos, lexeme: río, feats: {Number: Plur}}]
       reverse: Martí nació en La Habana y murió en Dos Ríos
   translations:
     en: Martí was born in Havana and died (in|at) Dos Ríos.
@@ -55,7 +55,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Murió en el noventa y cinco, luchando por la libertad de Cuba.
-      tokens: [{surface: Murió, lexeme: morir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en, n: 2, head: 4, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: noventa, lexeme: noventa, n: 4}, {surface: y, lexeme: y}, {surface: cinco, lexeme: cinco}, {surface: luchando, lexeme: luchar, feats: {VerbForm: Ger}}, {surface: por, lexeme: por, n: 8, head: 10, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: libertad, lexeme: libertad, feats: {Number: Sing}, n: 10}, {surface: de, lexeme: de, n: 11, head: 12, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 12}]
+      tokens: [{surface: Murió, lexeme: morir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en, n: 2, head: 4, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: noventa, lexeme: noventa, n: 4}, {surface: y, lexeme: y}, {surface: cinco, lexeme: cinco}, {surface: luchando, lexeme: luchar, feats: {VerbForm: Ger}}, {surface: por, lexeme: por, n: 8, head: 10, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: libertad, lexeme: libertad, feats: {Number: Sing}, n: 10}, {surface: de, lexeme: de, n: 11, head: 12, rel: case}, {surface: Cuba, lexeme: cuba, n: 12}]
       reverse: '[Martí] murió en (el noventa y cinco|el 95|mil ochocientos noventa y cinco|1895) luchando por la (libertad de Cuba|independencia de Cuba)'
   translations:
     en: (He|Martí) died in ('95|1895|ninety-five), fighting for (Cuba's freedom|the freedom of Cuba|Cuban freedom|Cuba's independence).
@@ -64,7 +64,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Martí quería que Cuba fuera libre.
-      tokens: [{surface: Martí, lexeme: martí}, {surface: quería, lexeme: querer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}, {surface: fuera, lexeme: ser, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: libre, lexeme: libre, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Martí, lexeme: martí}, {surface: quería, lexeme: querer, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Cuba, lexeme: cuba}, {surface: fuera, lexeme: ser, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: libre, lexeme: libre, feats: {Gender: Fem, Number: Sing}}]
       reverse: Martí quería que Cuba (fuera|fuese) libre
   translations:
     en: |-
@@ -197,7 +197,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En Cuba, las palmas crecen en todo el campo.
-      tokens: [{surface: En, lexeme: en, n: 1, head: 2, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 2}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 3, head: 4, rel: det}, {surface: palmas, lexeme: palma, feats: {Number: Plur}, n: 4}, {surface: crecen, lexeme: crecer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 6, head: 9, rel: case}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}, n: 7, head: 9, rel: det}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: campo, lexeme: campo, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 2, rel: case}, {surface: Cuba, lexeme: cuba, n: 2}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 3, head: 4, rel: det}, {surface: palmas, lexeme: palma, feats: {Number: Plur}, n: 4}, {surface: crecen, lexeme: crecer, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 6, head: 9, rel: case}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}, n: 7, head: 9, rel: det}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: campo, lexeme: campo, feats: {Number: Sing}, n: 9}]
       reverse: |-
         En Cuba las palmas crecen (en|por) todo el campo
         Las palmas crecen (en|por) todo el campo (en Cuba|cubano)
@@ -211,7 +211,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel creció en Hialeah, lejos de las palmas de Cuba.
-      tokens: [{surface: Daniel, lexeme: daniel}, {surface: creció, lexeme: crecer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en, n: 3, head: 4, rel: case}, {surface: Hialeah, lexeme: hialeah, n: 4}, {surface: lejos, lexeme: lejos}, {surface: de, lexeme: de, n: 6, head: 8, rel: case}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 7, head: 8, rel: det}, {surface: palmas, lexeme: palma, feats: {Number: Plur}, n: 8}, {surface: de, lexeme: de, n: 9, head: 10, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 10}]
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: creció, lexeme: crecer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: en, lexeme: en, n: 3, head: 4, rel: case}, {surface: Hialeah, lexeme: hialeah, n: 4}, {surface: lejos, lexeme: lejos}, {surface: de, lexeme: de, n: 6, head: 8, rel: case}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}, n: 7, head: 8, rel: det}, {surface: palmas, lexeme: palma, feats: {Number: Plur}, n: 8}, {surface: de, lexeme: de, n: 9, head: 10, rel: case}, {surface: Cuba, lexeme: cuba, n: 10}]
       reverse: Daniel creció en Hialeah lejos de las palmas (de Cuba|cubanas)
   translations:
     en: |-
@@ -242,7 +242,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Todo el mundo conoce la Guantanamera.
-      tokens: [{surface: Todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}, n: 1, head: 3, rel: det}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: mundo, lexeme: mundo, feats: {Number: Sing}, n: 3}, {surface: conoce, lexeme: conocer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Guantanamera, lexeme: guantanamera, feats: {Gender: Fem}, n: 6}]
+      tokens: [{surface: Todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}, n: 1, head: 3, rel: det}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: mundo, lexeme: mundo, feats: {Number: Sing}, n: 3}, {surface: conoce, lexeme: conocer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Guantanamera, lexeme: guantanamera, n: 6}]
       reverse: Todo el mundo (conoce|se sabe) la Guantanamera
   translations:
     en: (Everybody|Everyone|The whole world) knows (Guantanamera|the Guantanamera|the song Guantanamera).
@@ -251,7 +251,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los versos de la Guantanamera son de Martí.
-      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: versos, lexeme: verso, feats: {Number: Plur}, n: 2}, {surface: de, lexeme: de, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Guantanamera, lexeme: guantanamera, feats: {Gender: Fem}, n: 5}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 7, head: 8, rel: case}, {surface: Martí, lexeme: martí, n: 8}]
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: versos, lexeme: verso, feats: {Number: Plur}, n: 2}, {surface: de, lexeme: de, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Guantanamera, lexeme: guantanamera, n: 5}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: de, lexeme: de, n: 7, head: 8, rel: case}, {surface: Martí, lexeme: martí, n: 8}]
       reverse: Los versos de la Guantanamera son de Martí
   translations:
     en: |-
@@ -262,7 +262,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Daniel canta la Guantanamera, pero nunca ha leído a Martí.
-      tokens: [{surface: Daniel, lexeme: daniel}, {surface: canta, lexeme: cantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: Guantanamera, lexeme: guantanamera, feats: {Gender: Fem}, n: 4}, {surface: pero, lexeme: pero}, {surface: nunca, lexeme: nunca}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: leído, lexeme: leer, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a, n: 9, head: 10, rel: case}, {surface: Martí, lexeme: martí, n: 10}]
+      tokens: [{surface: Daniel, lexeme: daniel}, {surface: canta, lexeme: cantar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: Guantanamera, lexeme: guantanamera, n: 4}, {surface: pero, lexeme: pero}, {surface: nunca, lexeme: nunca}, {surface: ha, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: leído, lexeme: leer, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a, n: 9, head: 10, rel: case}, {surface: Martí, lexeme: martí, n: 10}]
       reverse: |-
         Daniel canta la Guantanamera pero nunca ha leído a Martí
         Daniel canta la Guantanamera, pero no ha leído nunca a Martí
@@ -306,7 +306,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili, ¿tú te sabías los versos de memoria cuando eras niña?
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: tú, lexeme: tú}, {surface: te, lexeme: te}, {surface: sabías, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 5, head: 6, rel: det}, {surface: versos, lexeme: verso, feats: {Number: Plur}, n: 6}, {surface: de, lexeme: de, n: 7, head: 8, rel: case}, {surface: memoria, lexeme: memoria, feats: {Number: Sing}, n: 8}, {surface: cuando, lexeme: cuando}, {surface: eras, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: tú, lexeme: tú}, {surface: te, lexeme: te}, {surface: sabías, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 5, head: 6, rel: det}, {surface: versos, lexeme: verso, feats: {Number: Plur}, n: 6}, {surface: de, lexeme: de, n: 7, head: 8, rel: case}, {surface: memoria, lexeme: memoria, feats: {Number: Sing}, n: 8}, {surface: cuando, lexeme: cuando}, {surface: eras, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Imp, VerbForm: Fin}}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}}]
       reverse: Lili (tú te sabías|te sabías [tú]|tú sabías|sabías [tú]) los versos de memoria cuando eras (niña|chiquita)
   translations:
     en: Lili, did you know the (verses|poems|lines) by heart when you were (a girl|a little girl|a child|little)?
@@ -427,7 +427,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Yo me sé la Guantanamera, pero nunca he leído a Martí.
-          tokens: [{surface: Yo, lexeme: yo}, {surface: me, lexeme: me}, {surface: sé, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Guantanamera, lexeme: guantanamera, feats: {Gender: Fem}, n: 5}, {surface: pero, lexeme: pero}, {surface: nunca, lexeme: nunca}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: leído, lexeme: leer, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a, n: 10, head: 11, rel: case}, {surface: Martí, lexeme: martí, n: 11}]
+          tokens: [{surface: Yo, lexeme: yo}, {surface: me, lexeme: me}, {surface: sé, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Guantanamera, lexeme: guantanamera, n: 5}, {surface: pero, lexeme: pero}, {surface: nunca, lexeme: nunca}, {surface: he, lexeme: haber, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: leído, lexeme: leer, feats: {Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a, n: 10, head: 11, rel: case}, {surface: Martí, lexeme: martí, n: 11}]
       translations:
         en: I know Guantanamera by heart, but I've never read Martí.
   - line:
@@ -490,7 +490,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Pero esos son los versos de la Guantanamera!
-          tokens: [{surface: Pero, lexeme: pero}, {surface: esos, lexeme: ese, feats: {Gender: Masc, Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 4, head: 5, rel: det}, {surface: versos, lexeme: verso, feats: {Number: Plur}, n: 5}, {surface: de, lexeme: de, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: Guantanamera, lexeme: guantanamera, feats: {Gender: Fem}, n: 8}]
+          tokens: [{surface: Pero, lexeme: pero}, {surface: esos, lexeme: ese, feats: {Gender: Masc, Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 4, head: 5, rel: det}, {surface: versos, lexeme: verso, feats: {Number: Plur}, n: 5}, {surface: de, lexeme: de, n: 6, head: 8, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: Guantanamera, lexeme: guantanamera, n: 8}]
       translations:
         en: But those are the words of Guantanamera!
   - line:
@@ -591,6 +591,6 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Bueno, ahora todos a cantar la Guantanamera!
-          tokens: [{surface: Bueno, lexeme: bueno, feats: {Gender: Masc, Number: Sing}}, {surface: ahora, lexeme: ahora}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: a, lexeme: a}, {surface: cantar, lexeme: cantar, feats: {VerbForm: Inf}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Guantanamera, lexeme: guantanamera, feats: {Gender: Fem}, n: 7}]
+          tokens: [{surface: Bueno, lexeme: bueno, feats: {Gender: Masc, Number: Sing}}, {surface: ahora, lexeme: ahora}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}}, {surface: a, lexeme: a}, {surface: cantar, lexeme: cantar, feats: {VerbForm: Inf}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Guantanamera, lexeme: guantanamera, n: 7}]
       translations:
         en: Well, now everybody sing Guantanamera!

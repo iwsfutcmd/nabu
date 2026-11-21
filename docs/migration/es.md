@@ -16,7 +16,7 @@ decided: the converter applies the course's conversion plan
 | Sentences and story lines | 1542 |
 | Tokens | 11152 |
 | Lexemes in `lexicons/es/lexemes.yaml` | 721 |
-| Pinned forms (rule debt, ADR 0145) | 844 |
+| Pinned forms (rule debt, ADR 0145) | 835 |
 | Listed forms | 0: no statement that a form has no rule is drafted yet |
 
 **Checks** (docs/migration-design.md, "What must not change"):
@@ -67,7 +67,7 @@ Counts of what the converter wrote into the entries, beyond one entry a lexeme.
 
 |  | Count |
 |---|---|
-| pinned forms | 844 |
+| pinned forms | 835 |
 | second forms: a variant spelling | 2 |
 | written otherwise than the entry | 4 |
 
@@ -91,8 +91,8 @@ the plan's, drafted (REVIEW); the counts are this course's lexemes.
 | default gender-or: gives | 5 |
 | default gender-tad: gives | 1 |
 | lexical feature chosen by the token | 14 |
-| lexical feature stored: no default speaks | 77 |
-| lexical feature unknown | 7 |
+| lexical feature stored: no default speaks | 112 |
+| lexical feature unknown | 18 |
 
 **Endings a default could still cover:** among the lexemes that store the feature
 with no default for their ending, these endings always go with one value (three
@@ -100,13 +100,19 @@ lexemes or more). Each is a candidate, not a finding: a course's words are few.
 
 | Ending | Value | Lexemes | Such as |
 |---|---|---|---|
-| -s | Gender=Masc | 11 | cumpleaños, lunes, martes, miércoles, jueves, viernes |
-| -es | Gender=Masc | 6 | lunes, martes, miércoles, jueves, viernes, inglés |
+| -s | Gender=Masc | 17 | cumpleaños, lunes, martes, miércoles, jueves, viernes |
+| -es | Gender=Masc | 8 | lunes, martes, miércoles, jueves, viernes, inglés |
+| -o | Gender=Masc | 7 | Varadero, enero, Guantánamo, centro, Capitolio, Morro |
+| -a | Gender=Fem | 6 | Cuba, Cachita, Habana, Ofelia, Nochebuena, Guantanamera |
 | -ar | Gender=Masc | 5 | dólar, mar, solar, lugar, paladar |
+| -el | Gender=Masc | 4 | Daniel, Yasiel, Mariel, papel |
 | -he | Gender=Fem | 4 | leche, noche, hache, medianoche |
-| -ol | Gender=Masc | 3 | frijol, español, árbol |
+| -les | Gender=Masc | 4 | miércoles, inglés, Industriales, Viñales |
+| -ro | Gender=Masc | 4 | Varadero, enero, centro, Morro |
+| -n | Gender=Masc | 4 | son, refrán, examen, malecón |
+| -iel | Gender=Masc | 3 | Daniel, Yasiel, Mariel |
+| -os | Gender=Masc | 3 | cumpleaños, Dios, Cienfuegos |
 | -ue | Gender=Masc | 3 | guateque, parque, tranque |
-| -n | Gender=Masc | 3 | son, refrán, examen |
 
 ## Dimensions
 
@@ -148,7 +154,6 @@ tagged as another category than it behaves as.
 | NUM | Number | 7 | uno, mil |
 | PRON | Gender | 23 | ella, lo |
 | PRON | Number | 123 | ustedes, nosotros, nos, lo, ella, cuánto |
-| PROPN | Gender | 269 | marisol, cuba, lili, habana, ofelia, cachita |
 | VERB | Gender | 3 | cosechar, hacer, agradecer |
 | VERB | Polarity | 12 | abrir, echar, preocupar, coger, revolver, colgar |
 
@@ -198,16 +203,27 @@ The entry stores the feature, and it is a part to learn (ADR 0146). Check each: 
 | `lexeme:mano` | Gender=Fem: gender-o would give Masc for mano |
 | `lexeme:idioma` | Gender=Masc: gender-a would give Fem for idioma |
 
-## Lexemes no default speaks of (77)
+## Lexemes no default speaks of (112)
 
 No stated default gives the feature for a lexeme so written, so the entry stores it and it is a part to learn. A reliable ending among these is a default to add.
 
 | Where | What |
 |---|---|
 | `lexeme:asere` | Gender=Masc: no default speaks of asere |
+| `lexeme:daniel` | Gender=Masc: no default speaks of Daniel |
+| `lexeme:miami` | Gender=Masc: no default speaks of Miami |
+| `lexeme:cuba` | Gender=Fem: no default speaks of Cuba |
+| `lexeme:yasiel` | Gender=Masc: no default speaks of Yasiel |
+| `lexeme:cachita` | Gender=Fem: no default speaks of Cachita |
 | `lexeme:mami` | Gender=Fem: no default speaks of mami |
 | `lexeme:papi` | Gender=Masc: no default speaks of papi |
+| `lexeme:lili` | Gender=Fem: no default speaks of Lili |
+| `lexeme:pepe` | Gender=Masc: no default speaks of Pepe |
+| `lexeme:marisol` | Gender=Fem: no default speaks of Marisol |
+| `lexeme:habana` | Gender=Fem: no default speaks of Habana |
+| `lexeme:yunior` | Gender=Masc: no default speaks of Yunior |
 | `lexeme:padre` | Gender=Masc: no default speaks of padre |
+| `lexeme:hialeah` | Gender=Masc: no default speaks of Hialeah |
 | `lexeme:café` | Gender=Masc: no default speaks of café |
 | `lexeme:portal` | Gender=Masc: no default speaks of portal |
 | `lexeme:arroz` | Gender=Masc: no default speaks of arroz |
@@ -228,6 +244,9 @@ No stated default gives the feature for a lexeme so written, so the entry stores
 | `lexeme:shopping` | Gender=Fem: no default speaks of shopping |
 | `lexeme:suerte` | Gender=Fem: no default speaks of suerte |
 | `lexeme:pasaporte` | Gender=Masc: no default speaks of pasaporte |
+| `lexeme:varadero` | Gender=Masc: no default speaks of Varadero |
+| `lexeme:matanzas` | Gender=Masc: no default speaks of Matanzas |
+| `lexeme:whatsapp` | Gender=Masc: no default speaks of WhatsApp |
 | `lexeme:té` | Gender=Masc: no default speaks of té |
 | `lexeme:español` | Gender=Masc: no default speaks of español |
 | `lexeme:tilde` | Gender=Fem: no default speaks of tilde |
@@ -241,14 +260,21 @@ No stated default gives the feature for a lexeme so written, so the entry stores
 | `lexeme:ají` | Gender=Masc: no default speaks of ají |
 | `lexeme:aceite` | Gender=Masc: no default speaks of aceite |
 | `lexeme:sal` | Gender=Fem: no default speaks of sal |
+| `lexeme:ofelia` | Gender=Fem: no default speaks of Ofelia |
 | `lexeme:paquete` | Gender=Masc: no default speaks of paquete |
 | `lexeme:hache` | Gender=Fem: no default speaks of hache |
 | `lexeme:son` | Gender=Masc: no default speaks of son |
 | `lexeme:clave` | Gender=Fem: no default speaks of clave |
+| `lexeme:industriales` | Gender=Masc: no default speaks of Industriales |
+| `lexeme:marlins` | Gender=Masc: no default speaks of Marlins |
 | `lexeme:parque` | Gender=Masc: no default speaks of parque |
 | `lexeme:doble` | Gender=Masc: no default speaks of doble |
 | `lexeme:tranque` | Gender=Masc: no default speaks of tranque |
+| `lexeme:nochebuena` | Gender=Fem: no default speaks of Nochebuena |
+| `lexeme:diciembre` | Gender=Masc: no default speaks of diciembre |
+| `lexeme:navidad` | Gender=Fem: no default speaks of Navidad |
 | `lexeme:medianoche` | Gender=Fem: no default speaks of medianoche |
+| `lexeme:enero` | Gender=Masc: no default speaks of enero |
 | `lexeme:rey` | Gender=Masc: no default speaks of rey |
 | `lexeme:vals` | Gender=Masc: no default speaks of vals |
 | `lexeme:wifi` | Gender=Masc: no default speaks of wifi |
@@ -256,14 +282,23 @@ No stated default gives the feature for a lexeme so written, so the entry stores
 | `lexeme:refrán` | Gender=Masc: no default speaks of refrán |
 | `lexeme:examen` | Gender=Masc: no default speaks of examen |
 | `lexeme:mal.harm` | Gender=Masc: no default speaks of mal |
+| `lexeme:dios` | Gender=Masc: no default speaks of Dios |
 | `lexeme:aire` | Gender=Masc: no default speaks of aire |
+| `lexeme:mariel` | Gender=Masc: no default speaks of Mariel |
 | `lexeme:mar` | Gender=Masc: no default speaks of mar |
+| `lexeme:cienfuegos` | Gender=Masc: no default speaks of Cienfuegos |
 | `lexeme:guardacostas` | Gender=Masc: no default speaks of guardacostas |
+| `lexeme:guantánamo` | Gender=Masc: no default speaks of Guantánamo |
 | `lexeme:papel` | Gender=Masc: no default speaks of papel |
+| `lexeme:centro` | Gender=Masc: no default speaks of centro |
 | `lexeme:solar` | Gender=Masc: no default speaks of solar |
 | `lexeme:lugar` | Gender=Masc: no default speaks of lugar |
+| `lexeme:malecón` | Gender=Masc: no default speaks of malecón |
 | `lexeme:catedral` | Gender=Fem: no default speaks of catedral |
+| `lexeme:capitolio` | Gender=Masc: no default speaks of Capitolio |
+| `lexeme:morro` | Gender=Masc: no default speaks of Morro |
 | `lexeme:bicitaxi` | Gender=Masc: no default speaks of bicitaxi |
+| `lexeme:viñales` | Gender=Masc: no default speaks of Viñales |
 | `lexeme:valle` | Gender=Masc: no default speaks of valle |
 | `lexeme:mogote` | Gender=Masc: no default speaks of mogote |
 | `lexeme:central` | Gender=Masc: no default speaks of central |
@@ -271,8 +306,13 @@ No stated default gives the feature for a lexeme so written, so the entry stores
 | `lexeme:árbol` | Gender=Masc: no default speaks of árbol |
 | `lexeme:ave` | Gender=Fem: no default speaks of ave |
 | `lexeme:yarey` | Gender=Masc: no default speaks of yarey |
+| `lexeme:martí` | Gender=Masc: no default speaks of Martí |
 | `lexeme:héroe` | Gender=Masc: no default speaks of héroe |
+| `lexeme:josé` | Gender=Masc: no default speaks of José |
+| `lexeme:apóstol` | Gender=Masc: no default speaks of apóstol |
 | `lexeme:hombre` | Gender=Masc: no default speaks of hombre |
+| `lexeme:guantanamera` | Gender=Fem: no default speaks of Guantanamera |
+| `lexeme:julio` | Gender=Masc: no default speaks of julio |
 | `lexeme:país` | Gender=Masc: no default speaks of país |
 | `lexeme:paladar` | Gender=Masc: no default speaks of paladar |
 | `lexeme:cliente` | Gender=Masc: no default speaks of cliente |
@@ -303,19 +343,30 @@ The feature is declared lexical for the category, and this lexeme's tokens have 
 | `lexeme:muchacho` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
 | `lexeme:yuma` | Gender is Fem and Masc on its tokens: kept on the tokens, not on the entry |
 
-## Lexemes whose lexical feature no token says (7)
+## Lexemes whose lexical feature no token says (18)
 
 Mostly entries written as several tokens, on which the course pins no form.
 
 | Where | What |
 |---|---|
 | `lexeme:fruta-bomba` | no token says its Gender |
+| `lexeme:calle-ocho` | no token says its Gender |
 | `lexeme:fin-de-semana` | no token says its Gender |
 | `lexeme:naranja-agria` | no token says its Gender |
 | `lexeme:ropa-vieja` | no token says its Gender |
 | `lexeme:olla-de-presión` | no token says its Gender |
+| `lexeme:benny-moré` | no token says its Gender |
+| `lexeme:celia-cruz` | no token says its Gender |
+| `lexeme:buena-vista` | no token says its Gender |
+| `lexeme:compay-segundo` | no token says its Gender |
 | `lexeme:caja-china` | no token says its Gender |
+| `lexeme:cayo-hueso` | no token says its Gender |
+| `lexeme:pequeña-habana` | no token says its Gender |
+| `lexeme:bodeguita-del-medio` | no token says its Gender |
+| `lexeme:pinar-del-río` | no token says its Gender |
 | `lexeme:palma-real` | no token says its Gender |
+| `lexeme:nueva-york` | no token says its Gender |
+| `lexeme:edad-de-oro` | no token says its Gender |
 
 ## Written otherwise than the entry (4)
 

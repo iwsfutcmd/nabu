@@ -123,7 +123,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Ojalá que Lili sea doctora, como ella quiere.
-      tokens: [{surface: Ojalá, lexeme: ojalá}, {surface: que, lexeme: que}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: sea, lexeme: ser, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: doctora, lexeme: doctor, feats: {Gender: Fem, Number: Sing}}, {surface: como, lexeme: como.like}, {surface: ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Ojalá, lexeme: ojalá}, {surface: que, lexeme: que}, {surface: Lili, lexeme: lili}, {surface: sea, lexeme: ser, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: doctora, lexeme: doctor, feats: {Gender: Fem, Number: Sing}}, {surface: como, lexeme: como.like}, {surface: ella, lexeme: ella, feats: {Gender: Fem, Number: Sing}}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
       reverse: |-
         Ojalá [que] Lili sea (doctora|médica|médico) como [ella] quiere
         Espero que Lili sea doctora, como ella quiere
@@ -134,7 +134,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Espero que tía Marisol y Yunior vengan pronto a Miami.
-      tokens: [{surface: Espero, lexeme: esperar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: Yunior, lexeme: yunior}, {surface: vengan, lexeme: venir, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pronto, lexeme: pronto}, {surface: a, lexeme: a, n: 9, head: 10, rel: case}, {surface: Miami, lexeme: miami, n: 10}]
+      tokens: [{surface: Espero, lexeme: esperar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}}, {surface: Marisol, lexeme: marisol}, {surface: y, lexeme: y}, {surface: Yunior, lexeme: yunior}, {surface: vengan, lexeme: venir, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pronto, lexeme: pronto}, {surface: a, lexeme: a, n: 9, head: 10, rel: case}, {surface: Miami, lexeme: miami, n: 10}]
       reverse: |-
         [Yo] espero que (tía|mi tía) Marisol y Yunior vengan (pronto a Miami|a Miami pronto)
         Ojalá que tía Marisol y Yunior vengan pronto a Miami
@@ -240,7 +240,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela quiere que Lili termine la universidad.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: termine, lexeme: terminar, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: universidad, lexeme: universidad, feats: {Number: Sing}, n: 7}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: quiere, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: Lili, lexeme: lili}, {surface: termine, lexeme: terminar, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: universidad, lexeme: universidad, feats: {Number: Sing}, n: 7}]
       reverse: (Abuela|La abuela|Mi abuela) quiere que Lili termine (la universidad|la carrera)
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) wants Lili to (finish|graduate from|complete) (college|university).
@@ -355,7 +355,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela le manda dinero a Marisol para que compre medicina.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}, n: 6}, {surface: para, lexeme: para}, {surface: que, lexeme: que}, {surface: compre, lexeme: comprar, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: medicina, lexeme: medicina, feats: {Number: Sing}}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: le, lexeme: le}, {surface: manda, lexeme: mandar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dinero, lexeme: dinero, feats: {Number: Sing}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Marisol, lexeme: marisol, n: 6}, {surface: para, lexeme: para}, {surface: que, lexeme: que}, {surface: compre, lexeme: comprar, feats: {Mood: Sub, Number: Sing, Tense: Pres, VerbForm: Fin}}, {surface: medicina, lexeme: medicina, feats: {Number: Sing}}]
       reverse: (Abuela|La abuela|Mi abuela) le manda dinero a (Marisol|tía Marisol) para que compre (medicina|medicinas)
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) sends (money to (Marisol|Aunt Marisol)|(Marisol|Aunt Marisol) money) (so [that] she can buy|for her to buy|to buy) medicine.
@@ -508,7 +508,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Cachita, el muchacho tiene veinticuatro años.
-          tokens: [{surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: muchacho, lexeme: muchacho, feats: {Gender: Masc, Number: Sing}, n: 3}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veinticuatro, lexeme: veinticuatro}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+          tokens: [{surface: Cachita, lexeme: cachita}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: muchacho, lexeme: muchacho, feats: {Gender: Masc, Number: Sing}, n: 3}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veinticuatro, lexeme: veinticuatro}, {surface: años, lexeme: año, feats: {Number: Plur}}]
       translations:
         en: Cachita, the boy is twenty-four.
   - line:
@@ -561,7 +561,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Cachita! ¡Ahora todo Hialeah lo sabe!
-          tokens: [{surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: Ahora, lexeme: ahora}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: Hialeah, lexeme: hialeah, n: 4}, {surface: lo, lexeme: lo}, {surface: sabe, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+          tokens: [{surface: Cachita, lexeme: cachita}, {surface: Ahora, lexeme: ahora}, {surface: todo, lexeme: todo, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: Hialeah, lexeme: hialeah, n: 4}, {surface: lo, lexeme: lo}, {surface: sabe, lexeme: saber, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
       translations:
         en: Cachita! Now all of Hialeah knows!
   - choose:
@@ -586,7 +586,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Quiero que llames a tu tía Marisol y a Yunior.
-          tokens: [{surface: Quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: llames, lexeme: llamar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 6, rel: case}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: a, lexeme: a, n: 9, head: 10, rel: case}, {surface: Yunior, lexeme: yunior, n: 10}]
+          tokens: [{surface: Quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: llames, lexeme: llamar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 6, rel: case}, {surface: tu, lexeme: tu, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol}, {surface: y, lexeme: y}, {surface: a, lexeme: a, n: 9, head: 10, rel: case}, {surface: Yunior, lexeme: yunior, n: 10}]
       translations:
         en: I want you to call your Aunt Marisol and Yunior.
   - line:

@@ -250,7 +250,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En los campos de Cuba hay palmas reales por todos lados.
-      tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: campos, lexeme: campo, feats: {Number: Plur}, n: 3}, {surface: de, lexeme: de, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 5}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: palmas, lexeme: palma-real, feats: {Number: Plur}}, {surface: reales, lexeme: palma-real, feats: {Number: Plur}}, {surface: por, lexeme: por, n: 9, head: 11, rel: case}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}, n: 10, head: 11, rel: det}, {surface: lados, lexeme: lado, feats: {Number: Plur}, n: 11}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: campos, lexeme: campo, feats: {Number: Plur}, n: 3}, {surface: de, lexeme: de, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, n: 5}, {surface: hay, lexeme: hay, feats: {VerbForm: Inf}}, {surface: palmas, lexeme: palma-real, feats: {Number: Plur}}, {surface: reales, lexeme: palma-real, feats: {Number: Plur}}, {surface: por, lexeme: por, n: 9, head: 11, rel: case}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}, n: 10, head: 11, rel: det}, {surface: lados, lexeme: lado, feats: {Number: Plur}, n: 11}]
       reverse: En (los campos de Cuba|el campo cubano) hay palmas reales por (todos lados|todas partes)
   translations:
     en: |-
@@ -261,7 +261,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: La palma real es el árbol nacional de Cuba.
-      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: palma, lexeme: palma-real, n: 2}, {surface: real, lexeme: palma-real}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: árbol, lexeme: árbol, feats: {Number: Sing}, n: 6}, {surface: nacional, lexeme: nacional, feats: {Gender: Masc, Number: Sing}, n: 7, head: 6, rel: amod}, {surface: de, lexeme: de, n: 8, head: 9, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 9}]
+      tokens: [{surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: palma, lexeme: palma-real, n: 2}, {surface: real, lexeme: palma-real}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: árbol, lexeme: árbol, feats: {Number: Sing}, n: 6}, {surface: nacional, lexeme: nacional, feats: {Gender: Masc, Number: Sing}, n: 7, head: 6, rel: amod}, {surface: de, lexeme: de, n: 8, head: 9, rel: case}, {surface: Cuba, lexeme: cuba, n: 9}]
       reverse: La palma real es el árbol nacional [de Cuba]
   translations:
     en: The royal palm is (the national tree of Cuba|Cuba's national tree|the national tree).
@@ -282,7 +282,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El tocororo es el ave nacional de Cuba.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}, n: 5}, {surface: nacional, lexeme: nacional, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: de, lexeme: de, n: 7, head: 8, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 8}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}, n: 5}, {surface: nacional, lexeme: nacional, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: de, lexeme: de, n: 7, head: 8, rel: case}, {surface: Cuba, lexeme: cuba, n: 8}]
       reverse: El tocororo es el (ave|pájaro) nacional [de Cuba]
   translations:
     en: The tocororo is (the national bird of Cuba|Cuba's national bird|the national bird).
@@ -462,7 +462,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Es un tocororo, el ave nacional de Cuba!
-          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}, n: 3}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}, n: 5}, {surface: nacional, lexeme: nacional, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: de, lexeme: de, n: 7, head: 8, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 8}]
+          tokens: [{surface: Es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: tocororo, lexeme: tocororo, feats: {Number: Sing}, n: 3}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ave, lexeme: ave, feats: {Number: Sing}, n: 5}, {surface: nacional, lexeme: nacional, feats: {Gender: Fem, Number: Sing}, n: 6, head: 5, rel: amod}, {surface: de, lexeme: de, n: 7, head: 8, rel: case}, {surface: Cuba, lexeme: cuba, n: 8}]
       translations:
         en: It's a tocororo, Cuba's national bird!
   - line:

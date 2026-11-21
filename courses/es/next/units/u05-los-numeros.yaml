@@ -251,7 +251,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili tiene diecinueve años.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: diecinueve, lexeme: diecinueve}, {surface: años, lexeme: año, feats: {Number: Plur}}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: diecinueve, lexeme: diecinueve}, {surface: años, lexeme: año, feats: {Number: Plur}}]
       reverse: Lili tiene diecinueve [años]
   translations:
     en: (Lili is|Lili's) nineteen [years old].
@@ -499,7 +499,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Son las ocho y media. ¡Y el cumpleaños de Lili es a las nueve!
-          tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: ocho, lexeme: ocho}, {surface: y, lexeme: y}, {surface: media, lexeme: medio, feats: {Gender: Fem, Number: Sing}}, {surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de, n: 9, head: 10, rel: case}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}, n: 10}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 12, head: 14, rel: case}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: nueve, lexeme: nueve, n: 14}]
+          tokens: [{surface: Son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: ocho, lexeme: ocho}, {surface: y, lexeme: y}, {surface: media, lexeme: medio, feats: {Gender: Fem, Number: Sing}}, {surface: Y, lexeme: y}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: cumpleaños, lexeme: cumpleaños, feats: {Number: Sing}, n: 8}, {surface: de, lexeme: de, n: 9, head: 10, rel: case}, {surface: Lili, lexeme: lili, n: 10}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 12, head: 14, rel: case}, {surface: las, lexeme: el, feats: {Gender: Fem, Number: Plur}}, {surface: nueve, lexeme: nueve, n: 14}]
       translations:
         en: It's half past eight. And Lili's birthday party is at nine!
   - choose:
@@ -578,7 +578,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Lili, ¿cuántos años tú tienes?
-          tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+          tokens: [{surface: Lili, lexeme: lili}, {surface: cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
       translations:
         en: Lili, how old are you?
   - line:

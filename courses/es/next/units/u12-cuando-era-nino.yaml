@@ -79,7 +79,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo iba a la escuela en guagua con Lili.
-      tokens: [{surface: Yo, lexeme: yo}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}, n: 5}, {surface: en, lexeme: en, n: 6, head: 7, rel: case}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 7}, {surface: con, lexeme: con, n: 8, head: 9, rel: case}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}, n: 9}]
+      tokens: [{surface: Yo, lexeme: yo}, {surface: iba, lexeme: ir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: escuela, lexeme: escuela, feats: {Number: Sing}, n: 5}, {surface: en, lexeme: en, n: 6, head: 7, rel: case}, {surface: guagua, lexeme: guagua, feats: {Number: Sing}, n: 7}, {surface: con, lexeme: con, n: 8, head: 9, rel: case}, {surface: Lili, lexeme: lili, n: 9}]
       reverse: '[Yo] iba a la escuela en (guagua|autobús|bus|el autobús|el bus) con Lili'
   translations:
     en: |-
@@ -149,7 +149,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili y yo montábamos bicicleta en el barrio.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: montábamos, lexeme: montar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: bicicleta, lexeme: bicicleta, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: barrio, lexeme: barrio, feats: {Number: Sing}, n: 8}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: y, lexeme: y}, {surface: yo, lexeme: yo}, {surface: montábamos, lexeme: montar, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: bicicleta, lexeme: bicicleta, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: barrio, lexeme: barrio, feats: {Number: Sing}, n: 8}]
       reverse: Lili y yo (montábamos|andábamos) (bicicleta|en bicicleta|bici|en bici) (en el|por el) barrio
   translations:
     en: Lili and I (rode|used to ride|would ride) (our bikes|bikes|our bicycles|bicycles) (in|around) the (neighborhood|neighbourhood).
@@ -158,7 +158,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Los sábados íbamos a casa de Abuela Cachita.
-      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: sábados, lexeme: sábado, feats: {Number: Plur}, n: 2}, {surface: íbamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}, n: 7}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}]
+      tokens: [{surface: Los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 1, head: 2, rel: det}, {surface: sábados, lexeme: sábado, feats: {Number: Plur}, n: 2}, {surface: íbamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Imp, VerbForm: Fin}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}, n: 7}, {surface: Cachita, lexeme: cachita}]
       reverse: |-
         Los sábados [nosotros] íbamos a [la] casa de (Abuela|la abuela|mi abuela) Cachita
         Los sábados nosotras íbamos a casa de Abuela Cachita.
@@ -213,7 +213,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: De niña, Abuela Cachita vivía en el campo, en Matanzas.
-      tokens: [{surface: De, lexeme: de, n: 1, head: 2, rel: case}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}, n: 2}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita, feats: {Gender: Fem}}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: campo, lexeme: campo, feats: {Number: Sing}, n: 8}, {surface: en, lexeme: en, n: 9, head: 10, rel: case}, {surface: Matanzas, lexeme: matanzas, n: 10}]
+      tokens: [{surface: De, lexeme: de, n: 1, head: 2, rel: case}, {surface: niña, lexeme: niño, feats: {Gender: Fem, Number: Sing}, n: 2}, {surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: Cachita, lexeme: cachita}, {surface: vivía, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en, n: 6, head: 8, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 7, head: 8, rel: det}, {surface: campo, lexeme: campo, feats: {Number: Sing}, n: 8}, {surface: en, lexeme: en, n: 9, head: 10, rel: case}, {surface: Matanzas, lexeme: matanzas, n: 10}]
       reverse: |-
         De niña (Abuela|la abuela|mi abuela) Cachita vivía en el campo en Matanzas
         Cuando era niña (Abuela|la abuela|mi abuela) Cachita vivía en el campo en Matanzas

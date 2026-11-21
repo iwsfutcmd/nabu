@@ -264,7 +264,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili y Daniel, vengan a comer.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: y, lexeme: y}, {surface: Daniel, lexeme: daniel}, {surface: vengan, lexeme: venir, feats: {Mood: Imp, Number: Plur, Person: '3', VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: comer, lexeme: comer, feats: {VerbForm: Inf}}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: y, lexeme: y}, {surface: Daniel, lexeme: daniel}, {surface: vengan, lexeme: venir, feats: {Mood: Imp, Number: Plur, Person: '3', VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: comer, lexeme: comer, feats: {VerbForm: Inf}}]
       reverse: |-
         (Lili y Daniel|Daniel y Lili) vengan a comer
         Vengan a comer, Lili y Daniel.
@@ -290,7 +290,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Venga, doña Ofelia, coma con nosotros.
-      tokens: [{surface: Venga, lexeme: venir, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: coma, lexeme: comer, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}, n: 6}]
+      tokens: [{surface: Venga, lexeme: venir, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia}, {surface: coma, lexeme: comer, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: con, lexeme: con, n: 5, head: 6, rel: case}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}, n: 6}]
       reverse: |-
         Venga doña Ofelia [y] coma con nosotros
         Doña Ofelia venga [y] coma con nosotros
@@ -305,7 +305,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia, coma un poco de ropa vieja.
-      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: coma, lexeme: comer, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: ropa, lexeme: ropa-vieja, n: 7}, {surface: vieja, lexeme: ropa-vieja}]
+      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia}, {surface: coma, lexeme: comer, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: ropa, lexeme: ropa-vieja, n: 7}, {surface: vieja, lexeme: ropa-vieja}]
       reverse: |-
         Doña Ofelia (coma|pruebe|sírvase) un (poco|poquito) de ropa vieja
         Coma un poco de ropa vieja, doña Ofelia.
@@ -318,7 +318,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tome un cafecito con nosotros, doña Ofelia.
-      tokens: [{surface: Tome, lexeme: tomar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 3}, {surface: con, lexeme: con, n: 4, head: 5, rel: case}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}, n: 5}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}]
+      tokens: [{surface: Tome, lexeme: tomar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: cafecito, lexeme: cafecito, feats: {Number: Sing}, n: 3}, {surface: con, lexeme: con, n: 4, head: 5, rel: case}, {surface: nosotros, lexeme: nosotros, feats: {Number: Plur}, n: 5}, {surface: doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia}]
       reverse: |-
         Tome un (cafecito|café) con nosotros doña Ofelia
         Doña Ofelia tome un (cafecito|café) con nosotros
@@ -342,7 +342,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia, lleve un poco de picadillo para su casa.
-      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: lleve, lexeme: llevar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: picadillo, lexeme: picadillo, feats: {Number: Sing}, n: 7}, {surface: para, lexeme: para, n: 8, head: 10, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 10}]
+      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia}, {surface: lleve, lexeme: llevar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: picadillo, lexeme: picadillo, feats: {Number: Sing}, n: 7}, {surface: para, lexeme: para, n: 8, head: 10, rel: case}, {surface: su, lexeme: su, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: casa, lexeme: casa, feats: {Number: Sing}, n: 10}]
       reverse: |-
         Doña Ofelia (lleve|llévese) un (poco|poquito) de picadillo (para su casa|para la casa|a su casa)
         Lleve un poco de picadillo para su casa, doña Ofelia.
@@ -395,7 +395,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Doña Ofelia, no abra la olla de presión, por favor.
-      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: abra, lexeme: abrir, feats: {Mood: Imp, Number: Sing, Polarity: Neg, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: olla, lexeme: olla-de-presión, n: 6}, {surface: de, lexeme: olla-de-presión}, {surface: presión, lexeme: olla-de-presión}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
+      tokens: [{surface: Doña, lexeme: don, feats: {Gender: Fem, Number: Sing}}, {surface: Ofelia, lexeme: ofelia}, {surface: 'no', lexeme: 'no'}, {surface: abra, lexeme: abrir, feats: {Mood: Imp, Number: Sing, Polarity: Neg, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: olla, lexeme: olla-de-presión, n: 6}, {surface: de, lexeme: olla-de-presión}, {surface: presión, lexeme: olla-de-presión}, {surface: por, lexeme: por-favor}, {surface: favor, lexeme: por-favor}]
       reverse: |-
         Doña Ofelia no abra la olla de presión por favor
         Doña Ofelia por favor no abra la olla de presión

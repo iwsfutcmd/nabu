@@ -20,7 +20,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Voy a Cuba.
-      tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 3, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 3}]
+      tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 2, head: 3, rel: case}, {surface: Cuba, lexeme: cuba, n: 3}]
       reverse: |-
         [Yo] voy (a|para|pa') Cuba
         Me voy a Cuba.
@@ -33,7 +33,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Tú vas a Cuba?
-      tokens: [{surface: Tú, lexeme: tú}, {surface: vas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 4}]
+      tokens: [{surface: Tú, lexeme: tú}, {surface: vas, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, n: 4}]
       reverse: (Tú vas|Vas [tú]|Usted va|Va [usted]|Ustedes van|Van [ustedes]) (a|para|pa') Cuba
   translations:
     en: |-
@@ -44,7 +44,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Sí, voy a La Habana.
-      tokens: [{surface: Sí, lexeme: sí}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 5}]
+      tokens: [{surface: Sí, lexeme: sí}, {surface: voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Habana, lexeme: habana, n: 5}]
       reverse: Sí [yo] voy (a|para|pa') La Habana
   translations:
     en: Yes, (I'm|I am) going to Havana.
@@ -55,7 +55,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Nosotros vamos a Cuba.
-      tokens: [{surface: Nosotros, lexeme: nosotros, feats: {Number: Plur}}, {surface: vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 4}]
+      tokens: [{surface: Nosotros, lexeme: nosotros, feats: {Number: Plur}}, {surface: vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, n: 4}]
       reverse: '[Nosotros] vamos (a|para|pa'') Cuba'
   translations:
     en: |-
@@ -66,7 +66,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mami va a La Habana.
-      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 5}]
+      tokens: [{surface: Mami, lexeme: mami, feats: {Number: Sing}}, {surface: va, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 5, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: Habana, lexeme: habana, n: 5}]
       reverse: (Mami|Mamá) va (a|para|pa') La Habana
   translations:
     en: |-
@@ -77,7 +77,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela y mami van a Cuba.
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: mami, lexeme: mami, feats: {Number: Sing}}, {surface: van, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 6}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: y, lexeme: y}, {surface: mami, lexeme: mami, feats: {Number: Sing}}, {surface: van, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, n: 5, head: 6, rel: case}, {surface: Cuba, lexeme: cuba, n: 6}]
       reverse: |-
         [La] abuela y (mami|mamá) van (a|para|pa') Cuba
         (Mami|Mamá) y [la] abuela van (a|para|pa') Cuba
@@ -92,7 +92,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Voy a viajar a Cuba.
-      tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: viajar, lexeme: viajar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 5}]
+      tokens: [{surface: Voy, lexeme: ir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: viajar, lexeme: viajar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, n: 5}]
       reverse: '[Yo] voy a viajar (a|para|pa'') Cuba'
   translations:
     en: |-
@@ -116,7 +116,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Marisol es mi tía.
-      tokens: [{surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 4}]
+      tokens: [{surface: Marisol, lexeme: marisol}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 4}]
       reverse: Marisol es mi tía
   translations:
     en: |-
@@ -127,7 +127,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Vamos a visitar a tía Marisol.
-      tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: visitar, lexeme: visitar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: visitar, lexeme: visitar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: Marisol, lexeme: marisol}]
       reverse: '[Nosotros|Nosotras] vamos a visitar a [mi|la] tía Marisol'
   translations:
     en: |-
@@ -302,7 +302,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Lili no puede viajar este verano.
-      tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: 'no', lexeme: 'no'}, {surface: puede, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: viajar, lexeme: viajar, feats: {VerbForm: Inf}}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 6}]
+      tokens: [{surface: Lili, lexeme: lili}, {surface: 'no', lexeme: 'no'}, {surface: puede, lexeme: poder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: viajar, lexeme: viajar, feats: {VerbForm: Inf}}, {surface: este, lexeme: este, feats: {Gender: Masc, Number: Sing}, n: 5, head: 6, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 6}]
       reverse: |-
         Lili no puede viajar este verano
         Este verano Lili no puede viajar.
@@ -338,7 +338,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En Cuba hace mucho calor.
-      tokens: [{surface: En, lexeme: en, n: 1, head: 2, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 2}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 2, rel: case}, {surface: Cuba, lexeme: cuba, n: 2}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
       reverse: |-
         En Cuba hace mucho calor
         Hace mucho calor en Cuba
@@ -353,7 +353,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Qué tiempo hace en La Habana?
-      tokens: [{surface: Qué, lexeme: qué}, {surface: tiempo, lexeme: tiempo, feats: {Number: Sing}}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 6, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 6}]
+      tokens: [{surface: Qué, lexeme: qué}, {surface: tiempo, lexeme: tiempo, feats: {Number: Sing}}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 6, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: Habana, lexeme: habana, n: 6}]
       reverse: |-
         Qué tiempo hace en La Habana
         Cómo está el tiempo en La Habana
@@ -422,7 +422,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El café es para tía Marisol.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: café, lexeme: café, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para, n: 4, head: 5, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: café, lexeme: café, feats: {Number: Sing}, n: 2}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para, n: 4, head: 5, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 5}, {surface: Marisol, lexeme: marisol}]
       reverse: El café es (para|pa') [mi|la] tía Marisol
   translations:
     en: |-
@@ -504,7 +504,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Vamos a viajar a Cuba!
-          tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: viajar, lexeme: viajar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 5}]
+          tokens: [{surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: viajar, lexeme: viajar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, n: 5}]
       translations:
         en: We're going to travel to Cuba!
   - line:
@@ -520,7 +520,7 @@ stories:
       forms:
         es-Latn/standard:
           text: En el verano. Vamos a visitar a tía Marisol.
-          tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 3}, {surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: visitar, lexeme: visitar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 7, head: 8, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 8}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+          tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 3}, {surface: Vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: visitar, lexeme: visitar, feats: {VerbForm: Inf}}, {surface: a, lexeme: a, n: 7, head: 8, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 8}, {surface: Marisol, lexeme: marisol}]
       translations:
         en: In the summer. We're going to visit Aunt Marisol.
   - line:
@@ -528,7 +528,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿En el verano? ¡En Cuba hace mucho calor!
-          tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 3}, {surface: En, lexeme: en, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 5}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
+          tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 3}, {surface: En, lexeme: en, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, n: 5}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
       translations:
         en: In the summer? It's really hot in Cuba!
   - line:
@@ -536,7 +536,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Sí, mi vida, y llueve mucho. ¡Pero es Cuba!
-          tokens: [{surface: Sí, lexeme: sí}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 3}, {surface: y, lexeme: y}, {surface: llueve, lexeme: llover, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: Pero, lexeme: pero}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}}]
+          tokens: [{surface: Sí, lexeme: sí}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 3}, {surface: y, lexeme: y}, {surface: llueve, lexeme: llover, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: Pero, lexeme: pero}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Cuba, lexeme: cuba}]
       translations:
         en: Yes, darling, and it rains a lot. But it's Cuba!
   - line:
@@ -622,7 +622,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Qué vamos a llevar para tía Marisol?
-          tokens: [{surface: Qué, lexeme: qué}, {surface: vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: llevar, lexeme: llevar, feats: {VerbForm: Inf}}, {surface: para, lexeme: para, n: 5, head: 6, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}]
+          tokens: [{surface: Qué, lexeme: qué}, {surface: vamos, lexeme: ir, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: llevar, lexeme: llevar, feats: {VerbForm: Inf}}, {surface: para, lexeme: para, n: 5, head: 6, rel: case}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 6}, {surface: Marisol, lexeme: marisol}]
       translations:
         en: What are we going to take for Aunt Marisol?
   - line:

@@ -71,7 +71,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Mi tía Marisol vive en La Habana.
-      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 2}, {surface: Marisol, lexeme: marisol, feats: {Gender: Fem}}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 5, head: 7, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Habana, lexeme: habana, feats: {Gender: Fem}, n: 7}]
+      tokens: [{surface: Mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 1, head: 2, rel: det}, {surface: tía, lexeme: tío, feats: {Gender: Fem, Number: Sing}, n: 2}, {surface: Marisol, lexeme: marisol}, {surface: vive, lexeme: vivir, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 5, head: 7, rel: case}, {surface: La, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: Habana, lexeme: habana, n: 7}]
       reverse: Mi tía Marisol vive en La Habana
   translations:
     en: My aunt Marisol lives in Havana.
@@ -80,7 +80,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Tenemos familia en Cuba.
-      tokens: [{surface: Tenemos, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, feats: {Gender: Fem}, n: 4}]
+      tokens: [{surface: Tenemos, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: familia, lexeme: familia, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 3, head: 4, rel: case}, {surface: Cuba, lexeme: cuba, n: 4}]
       reverse: '[(Nosotros|Nosotras)] tenemos (familia|parientes|familiares) en Cuba'
   translations:
     en: (We have|We've got) (family|relatives) in Cuba.
@@ -294,7 +294,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: El baño está al lado del cuarto de Lili.
-      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: baño, lexeme: baño, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: al, lexeme: al, n: 4, head: 5, rel: case}, {surface: lado, lexeme: lado, feats: {Number: Sing}, n: 5}, {surface: del, lexeme: del, n: 6, head: 7, rel: case}, {surface: cuarto, lexeme: cuarto, feats: {Number: Sing}, n: 7}, {surface: de, lexeme: de, n: 8, head: 9, rel: case}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}, n: 9}]
+      tokens: [{surface: El, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 1, head: 2, rel: det}, {surface: baño, lexeme: baño, feats: {Number: Sing}, n: 2}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: al, lexeme: al, n: 4, head: 5, rel: case}, {surface: lado, lexeme: lado, feats: {Number: Sing}, n: 5}, {surface: del, lexeme: del, n: 6, head: 7, rel: case}, {surface: cuarto, lexeme: cuarto, feats: {Number: Sing}, n: 7}, {surface: de, lexeme: de, n: 8, head: 9, rel: case}, {surface: Lili, lexeme: lili, n: 9}]
       reverse: El baño está al lado (del (cuarto|dormitorio)|de la habitación) de Lili
   translations:
     en: |-
@@ -498,7 +498,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿Y Lili? ¿Dónde está?
-          tokens: [{surface: Y, lexeme: y}, {surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: Dónde, lexeme: dónde}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+          tokens: [{surface: Y, lexeme: y}, {surface: Lili, lexeme: lili}, {surface: Dónde, lexeme: dónde}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
       translations:
         en: And Lili? Where is she?
   - line:
@@ -507,7 +507,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Lili está en su cuarto.
-          tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 3, head: 5, rel: case}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: cuarto, lexeme: cuarto, feats: {Number: Sing}, n: 5}]
+          tokens: [{surface: Lili, lexeme: lili}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: en, lexeme: en, n: 3, head: 5, rel: case}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: cuarto, lexeme: cuarto, feats: {Number: Sing}, n: 5}]
       translations:
         en: Lili is in her room.
   - line:
@@ -515,7 +515,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Lili! ¿Tú tienes el ventilador de abuela?
-          tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: ventilador, lexeme: ventilador, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 7}]
+          tokens: [{surface: Lili, lexeme: lili}, {surface: Tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: ventilador, lexeme: ventilador, feats: {Number: Sing}, n: 5}, {surface: de, lexeme: de, n: 6, head: 7, rel: case}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}, n: 7}]
       translations:
         en: Lili! Do you have Grandma's fan?
   - line:
@@ -560,7 +560,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Lili, Daniel! ¡Al patio!
-          tokens: [{surface: Lili, lexeme: lili, feats: {Gender: Fem}}, {surface: Daniel, lexeme: daniel}, {surface: Al, lexeme: al, n: 3, head: 4, rel: case}, {surface: patio, lexeme: patio, feats: {Number: Sing}, n: 4}]
+          tokens: [{surface: Lili, lexeme: lili}, {surface: Daniel, lexeme: daniel}, {surface: Al, lexeme: al, n: 3, head: 4, rel: case}, {surface: patio, lexeme: patio, feats: {Number: Sing}, n: 4}]
       translations:
         en: Lili, Daniel! Out to the yard!
   - choose:
