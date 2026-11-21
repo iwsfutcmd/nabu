@@ -6,6 +6,7 @@ orthographies:
 - grc-Grek/polytonic
 support:
 - en-Latn/standard
+lexicon: grc
 names:
   en:
     course: Ancient Greek
@@ -13,9 +14,31 @@ license: CC0-1.0
 provenance:
   author: human:fixture
   status: draft
+own:
+  lexicon:
+    language: grc
+    license: CC0-1.0
+    provenance:
+      author: human:fixture
+      status: draft
+    lexemes:
+    - id: lexeme:ναί
+      pos: INTJ
+      gloss:
+        en: 'yes'
+      spelled:
+        grc-Grek/polytonic:
+        - ναί
+  language:
+    id: grc
+    license: CC0-1.0
+    provenance:
+      author: human:fixture
+      status: draft
+    dimensions: {}
 units:
 - id: abc
-  kcs:
+  graphemes:
   - id: grapheme:α
     gloss:
       en: 'alpha: a'
@@ -37,12 +60,6 @@ units:
       grc-Grek/polytonic:
       - ν
       - Ν
-  - id: sense:ναί
-    gloss:
-      en: 'yes'
-    forms:
-      grc-Grek/polytonic:
-      - ναί
   nodes:
   - id: abc.1
     kind: script
@@ -52,12 +69,12 @@ units:
     - grapheme:ν
     alphabet:
       orthography: grc-Grek/polytonic
-      words:
-      - sense:ναί
+      lexemes:
+      - lexeme:ναί
   - id: abc.2
     kind: lesson
     introduces:
-    - sense:ναί
+    - lexeme:ναί
   sentences:
   - id: s.1
     node: abc.2
@@ -66,7 +83,7 @@ units:
         text: ναί.
         tokens:
         - surface: ναί
-          sense: ναί
+          lexeme: ναί
           readings:
             attic: νεί
         reverse: ναί

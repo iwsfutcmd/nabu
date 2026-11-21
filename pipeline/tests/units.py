@@ -9,6 +9,7 @@ from typing import Any, Literal
 
 from nabu.items import Content
 from nabu.schema.models import (
+    BundleGrapheme,
     BundleLexeme,
     BundleLexicon,
     TaggedText,
@@ -75,6 +76,23 @@ def lexeme(
     )
 
 
+def grapheme(
+    name: str, forms: Mapping[str, Sequence[Sequence[TokenModel]]] | None = None
+) -> BundleGrapheme:
+    """A letter of a script track with its forms by orthography, each a form's tokens. `name` is
+    its name, without `grapheme:`. A unit lists the letters its script nodes teach."""
+    return BundleGrapheme.model_validate(
+        {
+            "id": f"grapheme:{name}",
+            **(
+                {"forms": {o: [tagged(o, f) for f in fs] for o, fs in forms.items()}}
+                if forms
+                else {}
+            ),
+        }
+    )
+
+
 def lexicon(lexemes: Sequence[BundleLexeme] = (), language: str = "und") -> BundleLexicon:
     """A bundle's lexicon: its lexemes, sorted by id as a lexicon is."""
     ordered = sorted(lexemes, key=lambda entry: str(entry.id))
@@ -128,12 +146,14 @@ def unit(
     sentences: Sequence[BundleSentence] = (),
     stories: Sequence[BundleStory] = (),
     id_: str = "u",
+    graphemes: Sequence[BundleGrapheme] = (),
 ) -> BundleUnit:
     return BundleUnit(
         id=id_,
         nodes=[],
         sentences=list(sentences),
         stories=list(stories) if stories else None,
+        graphemes=list(graphemes) if graphemes else None,
     )
 
 

@@ -6,6 +6,7 @@ orthographies:
 - hbo-Hebr/tiberian
 support:
 - en-Latn/standard
+lexicon: hbo
 names:
   en:
     course: Biblical Hebrew
@@ -13,24 +14,40 @@ license: CC0-1.0
 provenance:
   author: human:fixture
   status: draft
+own:
+  lexicon:
+    language: hbo
+    license: CC0-1.0
+    provenance:
+      author: human:fixture
+      status: draft
+    lexemes:
+    - id: lexeme:al
+      pos: ADP
+      gloss:
+        en: 'on'
+    - id: lexeme:erets
+      pos: NOUN
+      gloss:
+        en: earth
+  language:
+    id: hbo
+    license: CC0-1.0
+    provenance:
+      author: human:fixture
+      status: draft
+    dimensions: {}
 units:
 - id: basics
-  kcs:
-  - id: sense:erets
-    gloss:
-      en: earth
-  - id: sense:al
-    gloss:
-      en: 'on'
   nodes:
   - id: basics.1
     kind: lesson
     introduces:
-    - sense:erets
+    - lexeme:erets
   - id: basics.2
     kind: lesson
     introduces:
-    - sense:al
+    - lexeme:al
   sentences:
   - id: s.1
     node: basics.1
@@ -39,7 +56,7 @@ units:
         text: הָאָרֶץ
         tokens:
         - surface: הָאָרֶץ
-          sense: erets
+          lexeme: erets
           readings:
             tiberian: hāʾā́reṣ
         reverse: הארץ
@@ -52,11 +69,11 @@ units:
         text: עַל־הָאָרֶץ
         tokens:
         - surface: עַל
-          sense: al
+          lexeme: al
           readings:
             tiberian: ʿal
         - surface: הָאָרֶץ
-          sense: erets
+          lexeme: erets
           readings:
             tiberian: hāʾā́reṣ
         reverse: על הארץ
