@@ -19,19 +19,34 @@ from nabu.compiler import compile_course, load_profiles
 from nabu.compiler.release import release
 from nabu.corecli import CoreCli
 from nabu.review import shown_of
-from nabu.schema.models import BundleScenario, BundleUnit, Provenance
+from nabu.schema.models import BundleScenario, Provenance
+from nabu.schema.models import NextBundleUnit as BundleUnit
 
 from .test_courses import build
 
 ROOT = Path(__file__).resolve().parents[2]
 
 
+def _copy(tmp_path: Path, name: str) -> Path:
+    """A copy of a course to change, with its language's lexicon beside it (lexicons/, as in the
+    repo) and the pictures it points at."""
+    out = tmp_path / "courses" / name
+    shutil.copytree(ROOT / "courses" / name, out)
+    shutil.copytree(ROOT / "courses" / "images", tmp_path / "courses" / "images")
+    lexicon = yaml.safe_load((out / "course.yaml").read_text(encoding="utf-8"))["lexicon"]
+    shutil.copytree(ROOT / "lexicons" / lexicon, tmp_path / "lexicons" / lexicon)
+    return out
+
+
 @pytest.fixture
 def course(tmp_path: Path) -> Path:
-    out = tmp_path / "courses" / "apc"
-    shutil.copytree(ROOT / "courses" / "apc", out)
-    shutil.copytree(ROOT / "courses" / "images", tmp_path / "courses" / "images")
-    return out
+    return _copy(tmp_path, "apc")
+
+
+def _lexicon(out: Path, course: Path, manifest: dict[str, Any]) -> dict[str, Any]:
+    """The bundle's lexicon file."""
+    [file] = [f for f in manifest["files"] if f["role"] == "lexicon"]
+    return cast(dict[str, Any], json.loads((out / course.name / file["path"]).read_text("utf-8")))
 
 
 def _build(
@@ -54,6 +69,8 @@ def _build(
 def test_a_release_holds_only_what_was_signed_off(course: Path, tmp_path: Path) -> None:
     code, output, _m, _u = _build(course, tmp_path / "none", "--release")
     assert code == 1 and "nothing reviewed yet" in output
+    code, output, committed, _u = _build(course, tmp_path / "before")
+    assert code == 0, output
 
     with CoreCli() as cli:
         _diags, compiled = compile_course(course, cli, load_profiles(), {})
@@ -108,13 +125,28 @@ def test_a_release_holds_only_what_was_signed_off(course: Path, tmp_path: Path) 
     items = json.loads((tmp_path / "release" / "apc" / index["path"]).read_text(encoding="utf-8"))[
         "items"
     ]
-    kcs = {k["id"] for k in unit["kcs"]}
+    lexemes = _lexicon(tmp_path / "release", course, manifest)["lexemes"]
+    # The lexicon keeps only the lexemes what is kept names: its parts, its nodes' and the
+    # options its story's questions offer.
+    named = {
+        p.partition("|")[0] for x in [*unit["sentences"], *unit["stories"]] for p in x["parts"]
+    }
+    named |= {t for n in unit["nodes"] for t in [*n["introduces"], *n["reinforces"]]}
+    named |= {
+        part["lexeme"]
+        for step in unit["stories"][0]["steps"]
+        for option in step.get("line", {}).get("options", [])
+        for text in option.values()
+        for t in text["tokens"]
+        for part in t.get("lexemes", [])
+    }
+    assert {e["id"] for e in lexemes} <= named
     lines = {f"{story.id}#{i}" for i, _ in enumerate(story.steps)}
-    assert set(items) <= {"s.1", "s.2"} | kcs | lines
+    assert set(items) <= {"s.1", "s.2"} | {e["id"] for e in lexemes} | lines
     clips = {f["path"] for f in manifest["files"] if f["role"] == "audio"}
     assert clips == {c["path"] for item in items.values() for c in item.values()}
     images = {f["path"] for f in manifest["files"] if f["role"] == "image"}
-    assert images == {k["image"] for k in unit["kcs"] if k.get("image")}
+    assert images == {e["image"] for e in lexemes if e.get("image")}
     # The summary counts what ships: the two sentences, each clip, each image.
     shipped = 2 + sum(len(item) for item in items.values()) + len(images)
     assert sum(manifest["licenses"].values()) == shipped
@@ -127,11 +159,6 @@ def test_a_release_holds_only_what_was_signed_off(course: Path, tmp_path: Path) 
     assert "release" not in full
     assert len(full_units) == len(compiled.units)
     # Signing off two sentences moved two counts from draft to reviewed, and nothing else.
-    committed = json.loads(
-        (ROOT / "apps" / "web" / "public" / "bundles" / "apc" / "manifest.json").read_text(
-            encoding="utf-8"
-        )
-    )
     before = cast(dict[str, int], committed["provenance"])
     assert full["licenses"] == committed["licenses"]
     assert full["provenance"] == {
@@ -202,7 +229,7 @@ def _review_every_third(course: Path) -> None:
 
 
 def _alphabets(units: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
-    """Each alphabet node's `alphabet` (letters and words), by node id, in course order."""
+    """Each alphabet node's `alphabet` (letters and lexemes), by node id, in course order."""
     return {n["id"]: n["alphabet"] for u in units for n in u["nodes"] if "alphabet" in n}
 
 
@@ -210,26 +237,25 @@ def test_a_release_keeps_the_script_track_and_the_words_reviewed_content_uses(
     tmp_path: Path,
 ) -> None:
     """D51: grc's release keeps every alphabet node with its letters, and of its words those
-    whose KCs the release keeps and reviewed sentences or stories use (every third sentence)."""
-    course = tmp_path / "courses" / "grc"
-    shutil.copytree(ROOT / "courses" / "grc", course)
-    shutil.copytree(ROOT / "courses" / "images", tmp_path / "courses" / "images")
+    whose lexemes the release keeps and reviewed sentences or stories use (every third
+    sentence)."""
+    course = _copy(tmp_path, "grc")
     code, output, _m, full = _build(course, tmp_path / "full")
     assert code == 0, output
     _review_every_third(course)
-    code, output, _m, units = _build(course, tmp_path / "release", "--release")
+    code, output, manifest, units = _build(course, tmp_path / "release", "--release")
     assert code == 0, output
     tracks, kept = _alphabets(full), _alphabets(units)
     assert list(kept) == list(tracks) and len(kept) == 8
-    defined = {k["id"] for u in units for k in u["kcs"]}
-    used = {kc for u in units for x in [*u["sentences"], *u.get("stories", [])] for kc in x["kcs"]}
+    defined = {e["id"] for e in _lexicon(tmp_path / "release", course, manifest)["lexemes"]}
+    used = {p for u in units for x in [*u["sentences"], *u.get("stories", [])] for p in x["parts"]}
     for node, alphabet in tracks.items():
         assert kept[node]["letters"] == alphabet["letters"], node
-        words = [w for w in alphabet["words"] if w["kc"] in defined and w["kc"] in used]
-        assert kept[node]["words"] == words, node
-    left_out = sum(len(a["words"]) for a in tracks.values())
-    left_out -= sum(len(a["words"]) for a in kept.values())
-    assert 0 < left_out < sum(len(a["words"]) for a in tracks.values())
+        words = [w for w in alphabet["lexemes"] if w["id"] in defined and w["id"] in used]
+        assert kept[node]["lexemes"] == words, node
+    left_out = sum(len(a["lexemes"]) for a in tracks.values())
+    left_out -= sum(len(a["lexemes"]) for a in kept.values())
+    assert 0 < left_out < sum(len(a["lexemes"]) for a in tracks.values())
     assert f"left out {left_out} alphabet words" in output
 
 
@@ -251,4 +277,4 @@ def test_a_script_track_alone_makes_no_release_and_may_teach_letters_alone(
     )
     nodes = [n.alphabet for u in out.units for n in u.nodes if n.alphabet is not None]
     assert len(nodes) == 8 and all(a.letters for a in nodes)
-    assert any(a.words == [] for a in nodes)
+    assert any(a.lexemes == [] for a in nodes)

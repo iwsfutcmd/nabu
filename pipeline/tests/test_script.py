@@ -51,7 +51,7 @@ def test_a_profile_s_multigraphs_are_single_letters(core_cli: CoreCli) -> None:
 
 
 def test_a_letter_carrying_marks_of_the_set_is_the_mark(core_cli: CoreCli) -> None:
-    """Hebrew's dagesh is a mark of hbo-Hebr/tiberian's set: a grapheme KC written בּ is the
+    """Hebrew's dagesh is a mark of hbo-Hebr/tiberian's set: a letter (grapheme) written בּ is the
     dagesh, in every word with one; its letter is ב."""
     read = reader(core_cli, "hbo-Hebr/tiberian")
     dagesh = grapheme("grapheme:dagesh", [f"ב{DAGESH}", f"כ{DAGESH}"], read)

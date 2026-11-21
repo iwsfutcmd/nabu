@@ -257,6 +257,137 @@ HBO: dict[str, Any] = {
 }
 """A Biblical Hebrew course: עַל bound to הָאָרֶץ by a maqaf, its reading's final hyphen saying so."""
 
+ES_ORTH = "es-Latn/standard"
+
+
+def es_sentence(
+    ident: str, node: str, text: str, tokens: list[dict[str, Any]], english: str
+) -> dict[str, Any]:
+    """A Spanish sentence of the ES course: its text, its tokens, itself as its reverse set."""
+    return {
+        "id": ident,
+        "node": node,
+        "forms": {ES_ORTH: {"text": text, "tokens": tokens, "reverse": text.rstrip(".")}},
+        "translations": {"en": english},
+    }
+
+
+def es_noun(
+    article: str, gender: str, surface: str, lexeme: str, **feats: str
+) -> list[dict[str, Any]]:
+    """An article and the noun it agrees with: the article is lexeme 1, the noun lexeme 2, its
+    head."""
+    return [
+        {
+            "surface": article,
+            "lexeme": "el",
+            "feats": {"Gender": gender, "Number": "Sing"},
+            "n": 1,
+            "head": 2,
+            "rel": "det",
+        },
+        {"surface": surface, "lexeme": lexeme, "feats": {"Number": "Sing", **feats}, "n": 2},
+    ]
+
+
+ES: dict[str, Any] = {
+    "id": "clean-es",
+    "target": "es-Latn-CU",
+    "orthographies": [ES_ORTH],
+    "support": ["en-Latn/standard"],
+    "lexicon": "es",
+    "iPlusOne": 2,
+    "names": {"en": {"course": "Spanish"}},
+    "license": "CC0-1.0",
+    "provenance": {"author": "human:fixture", "status": "draft"},
+    "own": own(
+        "es",
+        [
+            {"id": "lexeme:el", "pos": "DET", "gloss": {"en": "the"}, "spelled": {ES_ORTH: ["el"]}},
+            {
+                "id": "lexeme:casa",
+                "pos": "NOUN",
+                "gloss": {"en": "house"},
+                "spelled": {ES_ORTH: ["casa"]},
+            },
+            {
+                "id": "lexeme:mano",
+                "pos": "NOUN",
+                "feats": {"Gender": "Fem"},
+                "gloss": {"en": "hand"},
+                "spelled": {ES_ORTH: ["mano"]},
+            },
+            {
+                "id": "lexeme:libro",
+                "pos": "NOUN",
+                "gloss": {"en": "book"},
+                "spelled": {ES_ORTH: ["libro"]},
+            },
+            {
+                "id": "lexeme:hermano",
+                "pos": "NOUN",
+                "chooses": ["Gender"],
+                "gloss": {"en": "brother"},
+                "spelled": {ES_ORTH: ["hermano"]},
+            },
+        ],
+        dimensions={"NOUN": ["Number"], "DET": ["Gender", "Number"]},
+        lexical={"NOUN": ["Gender"]},
+        features={"Gender": ["Fem", "Masc"], "Number": ["Plur", "Sing"]},
+        defaults=[
+            {"id": "gender-a", "when": {"pos": "NOUN", "ends": "a"}, "gives": {"Gender": "Fem"}},
+            {"id": "gender-o", "when": {"pos": "NOUN", "ends": "o"}, "gives": {"Gender": "Masc"}},
+        ],
+    ),
+    "units": [
+        {
+            "id": "basics",
+            "nodes": [
+                {
+                    "id": "basics.1",
+                    "kind": "lesson",
+                    "introduces": ["lexeme:el", "lexeme:casa", "lexeme:mano", "lexeme:libro"],
+                },
+                {
+                    "id": "basics.2",
+                    "kind": "lesson",
+                    "introduces": ["lexeme:hermano", "feature:Gender=Fem"],
+                },
+            ],
+            "sentences": [
+                es_sentence(
+                    "s.1",
+                    "basics.1",
+                    "La casa.",
+                    es_noun("La", "Fem", "casa", "casa"),
+                    "The house.",
+                ),
+                es_sentence(
+                    "s.2", "basics.1", "La mano.", es_noun("La", "Fem", "mano", "mano"), "The hand."
+                ),
+                es_sentence(
+                    "s.3",
+                    "basics.1",
+                    "El libro.",
+                    es_noun("El", "Masc", "libro", "libro"),
+                    "The book.",
+                ),
+                es_sentence(
+                    "s.4",
+                    "basics.2",
+                    "La hermana.",
+                    es_noun("La", "Fem", "hermana", "hermano", Gender="Fem"),
+                    "The sister.",
+                ),
+            ],
+        }
+    ],
+}
+"""A Spanish course with a noun's gender of itself (ADR 0145): casa feminine by the default for
+-a, libro masculine by the one for -o, mano feminine as its entry stores (no default gives it, so
+it is a part to learn), hermano choosing its gender on each token (hermana). The feminine is
+taught from the second lesson, which the sister brings in."""
+
 Course = dict[str, Any]
 
 

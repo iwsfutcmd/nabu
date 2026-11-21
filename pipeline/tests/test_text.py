@@ -2,15 +2,19 @@
 
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any
 
 import pytest
 
+from nabu import lexicon as lx
 from nabu.compiler import text as tx
 from nabu.compiler.build import Ctx, compile_form
 from nabu.compiler.diagnostics import Diagnostics
 from nabu.compiler.source import Doc
-from nabu.schema.models import CourseSource, OrthographyProfile, SentenceForm
+from nabu.schema.models import LanguageDeclaration, Lexicon, OrthographyProfile
+from nabu.schema.models import NextCourseSource as CourseSource
+from nabu.schema.models import NextSentenceForm as SentenceForm
 
 from .conftest import CoreCli
 
@@ -52,16 +56,27 @@ def compile_text(cli: CoreCli, lang: str, text: str) -> tuple[Diagnostics, dict[
             "normalize": ["nfc"],
         }
     )
+    code = lang.split("-")[0]
     course = CourseSource.model_validate(
         {
             "id": "scripts",
             "target": lang,
             "orthographies": [orth],
             "support": ["en-Latn/standard"],
+            "lexicon": code,
             "units": ["units/never-read.yaml"],
         }
     )
-    ctx = Ctx(Diagnostics(), cli, {orth: profile}, {}, {})
+    draft = {"license": "CC0-1.0", "provenance": {"author": "human:test", "status": "draft"}}
+    language = lx.Language(
+        code,
+        Path(),
+        Lexicon.model_validate({"language": code, "lexemes": [], **draft}),
+        LanguageDeclaration.model_validate({"id": code, "dimensions": {}, **draft}),
+        Doc("lexemes.yaml", {}, {(): 1}),
+        Doc("language.yaml", {}, {(): 1}),
+    )
+    ctx = Ctx(Diagnostics(), cli, {orth: profile}, {}, {}, language)
     tagged = compile_form(
         ctx, course, Doc("scripts.yaml", {}, {(): 1}), (), SentenceForm(text=text), orth
     )
