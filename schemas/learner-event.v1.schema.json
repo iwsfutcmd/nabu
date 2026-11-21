@@ -1,30 +1,58 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://nabu.invalid/schemas/v0/learner-event.next.schema.json",
-  "title": "NextLearnerEvent",
-  "description": "A learner event in the shape the lexical model needs (docs/migration-design.md, deliverable 1): schema 2. Credit is per part and skill, a miss carries its labels, and what was shown is logged. The shape of every event since the switch: stored events of the old shape are upgraded to it once, and it takes the name learner-event when the old shape's file takes another.schema.json, and the `Next` names lose their prefix. No event stays in the old shape.",
+  "$id": "https://nabu.invalid/schemas/v0/learner-event.v1.schema.json",
+  "title": "LearnerEventV1",
+  "description": "A learner event as it was logged before the lexical model (schema 1), read only by `upgrade`, which rewrites it as an event of learner-event.schema.json, and by the restore of an old download.",
+  "$comment": "v1 (Phase 4). Events are facts about what was presented and answered; ratings and parameters are derived by projections and can be recomputed. Phase 8 adds outcome_revised and answer_reported; Phase 9 the scored speaking templates and tone-identify; Phase 10 follow-up progress_reset; then sentence_reported (ADR 0051) and answer_reported's claim (ADR 0052); goal_set, the account's weekly practice goal (ADR 0107, D12).",
   "oneOf": [
-    { "$ref": "#/$defs/NextSessionStarted" },
-    { "$ref": "#/$defs/NextExercisePresented" },
-    { "$ref": "#/$defs/NextAnswerSubmitted" },
-    { "$ref": "#/$defs/NextExerciseSkipped" },
-    { "$ref": "#/$defs/NextSessionCompleted" },
-    { "$ref": "#/$defs/NextOutcomeRevised" },
-    { "$ref": "#/$defs/NextAnswerReported" },
-    { "$ref": "#/$defs/NextProgressReset" },
-    { "$ref": "#/$defs/NextSentenceReported" },
-    { "$ref": "#/$defs/NextGoalSet" },
-    { "$ref": "#/$defs/StoryLineRead" }
+    {
+      "$ref": "#/$defs/SessionStartedV1"
+    },
+    {
+      "$ref": "#/$defs/ExercisePresentedV1"
+    },
+    {
+      "$ref": "#/$defs/AnswerSubmittedV1"
+    },
+    {
+      "$ref": "#/$defs/ExerciseSkippedV1"
+    },
+    {
+      "$ref": "#/$defs/SessionCompletedV1"
+    },
+    {
+      "$ref": "#/$defs/OutcomeRevisedV1"
+    },
+    {
+      "$ref": "#/$defs/AnswerReportedV1"
+    },
+    {
+      "$ref": "#/$defs/ProgressResetV1"
+    },
+    {
+      "$ref": "#/$defs/SentenceReportedV1"
+    },
+    {
+      "$ref": "#/$defs/GoalSetV1"
+    }
   ],
   "$defs": {
-    "NextExerciseRef": {
-      "title": "NextExerciseRef",
+    "ExerciseRefV1": {
+      "title": "ExerciseRefV1",
       "description": "What was presented: enough to recompute credit without the bundle.",
       "type": "object",
-      "required": ["id", "template", "item", "parts"],
+      "required": [
+        "id",
+        "template",
+        "item",
+        "kcs"
+      ],
       "additionalProperties": false,
       "properties": {
-        "id": { "type": "string", "minLength": 1 },
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
         "template": {
           "type": "string",
           "enum": [
@@ -63,48 +91,55 @@
           ]
         },
         "item": {
-          "description": "What the exercise was built from: a sentence id, a lexeme id or a grapheme id.",
+          "description": "The sentence or KC the exercise was built from.",
           "type": "string",
           "minLength": 1
         },
-        "asks": { "$ref": "common.schema.json#/$defs/Question" },
+        "kcs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/KcRefLocalV1"
+          }
+        },
+        "asks": {
+          "description": "A fill-in (gap-fill, story-complete): whether it asked which word or which form (ADR 0132). A mistake is asked again as the same question. Absent on events logged before it.",
+          "$ref": "common.schema.json#/$defs/Asks"
+        },
         "reading": {
           "description": "A reading card (char-read, reading-disambiguation, transcribe) of an orthography read in more than one tradition (lzh: Pinyin, Jyutping, Baxter; ADR 0138): the tradition it asked. Its read-script card is that tradition's own. Absent on every other card.",
           "$ref": "common.schema.json#/$defs/SchemeId"
-        },
-        "parts": {
-          "description": "The parts the exercise can give evidence of (ADR 0146).",
-          "type": "array",
-          "uniqueItems": true,
-          "items": { "$ref": "common.schema.json#/$defs/PartId" }
         }
       }
     },
-    "PartCredit": {
-      "title": "PartCredit",
-      "description": "What one answer says of one part (ADR 0146: credit is per part, and only where the card made the learner supply it): right, wrong, or given (handed over, so no evidence).",
+    "KcRefLocalV1": {
+      "title": "KcRefLocalV1",
+      "$ref": "common.schema.json#/$defs/KcId"
+    },
+    "KcCreditV1": {
+      "title": "KcCreditV1",
+      "description": "Per-KC outcome (§8.5): right, wrong, or given (the learner did not have to produce it).",
       "type": "object",
-      "required": ["part", "skill", "status"],
+      "required": [
+        "kc",
+        "status"
+      ],
       "additionalProperties": false,
       "properties": {
-        "part": { "$ref": "common.schema.json#/$defs/PartId" },
-        "skill": { "$ref": "common.schema.json#/$defs/Skill" },
-        "status": { "type": "string", "enum": ["right", "wrong", "given"] }
+        "kc": {
+          "$ref": "#/$defs/KcRefLocalV1"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "right",
+            "wrong",
+            "given"
+          ]
+        }
       }
     },
-    "DisplayedLexeme": {
-      "title": "DisplayedLexeme",
-      "description": "A lexeme a card or a story line showed, in the form it showed (ADR 0146: seen is logged, so a rule's branch can be asked on a pair never seen).",
-      "type": "object",
-      "required": ["lexeme"],
-      "additionalProperties": false,
-      "properties": {
-        "lexeme": { "$ref": "common.schema.json#/$defs/LexemeId" },
-        "feats": { "$ref": "common.schema.json#/$defs/UdFeatures" }
-      }
-    },
-    "NextSessionStarted": {
-      "title": "NextSessionStarted",
+    "SessionStartedV1": {
+      "title": "SessionStartedV1",
       "description": "A session began: a lesson (one path node), review, mistakes or placement.",
       "type": "object",
       "required": [
@@ -127,12 +162,16 @@
       ],
       "additionalProperties": false,
       "properties": {
-        "type": { "const": "session_started" },
+        "type": {
+          "const": "session_started"
+        },
         "id": {
           "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
           "$ref": "learner-event.schema.json#/$defs/Uuid"
         },
-        "schema": { "const": 2 },
+        "schema": {
+          "const": 1
+        },
         "device": {
           "description": "Random id of the device (installation) that recorded the event.",
           "type": "string",
@@ -143,8 +182,13 @@
           "type": "string",
           "minLength": 1
         },
-        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
-        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
         "support": {
           "description": "Support-language key (en).",
           "type": "string",
@@ -155,7 +199,9 @@
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
-        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "session": {
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
         "clientTime": {
           "description": "Device clock at the event, ISO 8601 with offset.",
           "type": "string",
@@ -171,10 +217,28 @@
           "type": "string",
           "minLength": 1
         },
-        "mode": { "type": "string", "enum": ["lesson", "review", "mistakes", "placement", "story"] },
-        "node": { "type": "string", "minLength": 1 },
-        "seed": { "type": "integer", "minimum": 0 },
-        "exercises": { "type": "integer", "minimum": 0 },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "lesson",
+            "review",
+            "mistakes",
+            "placement",
+            "story"
+          ]
+        },
+        "node": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "exercises": {
+          "type": "integer",
+          "minimum": 0
+        },
         "planner": {
           "description": "Planner and model versions that built the session.",
           "type": "string",
@@ -182,19 +246,37 @@
         }
       }
     },
-    "NextExercisePresented": {
-      "title": "NextExercisePresented",
+    "ExercisePresentedV1": {
+      "title": "ExercisePresentedV1",
       "description": "An exercise was shown.",
       "type": "object",
-      "required": ["id", "type", "schema", "device", "course", "orthography", "support", "bundle", "session", "clientTime", "localDate", "tz", "exercise"],
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "session",
+        "clientTime",
+        "localDate",
+        "tz",
+        "exercise"
+      ],
       "additionalProperties": false,
       "properties": {
-        "type": { "const": "exercise_presented" },
+        "type": {
+          "const": "exercise_presented"
+        },
         "id": {
           "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
           "$ref": "learner-event.schema.json#/$defs/Uuid"
         },
-        "schema": { "const": 2 },
+        "schema": {
+          "const": 1
+        },
         "device": {
           "description": "Random id of the device (installation) that recorded the event.",
           "type": "string",
@@ -205,8 +287,13 @@
           "type": "string",
           "minLength": 1
         },
-        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
-        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
         "support": {
           "description": "Support-language key (en).",
           "type": "string",
@@ -217,7 +304,9 @@
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
-        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "session": {
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
         "clientTime": {
           "description": "Device clock at the event, ISO 8601 with offset.",
           "type": "string",
@@ -233,17 +322,16 @@
           "type": "string",
           "minLength": 1
         },
-        "exercise": { "$ref": "#/$defs/NextExerciseRef" },
-        "prediction": { "$ref": "learner-event.schema.json#/$defs/Prediction" },
-        "displayed": {
-          "description": "What was shown, each lexeme once in each form.",
-          "type": "array",
-          "items": { "$ref": "#/$defs/DisplayedLexeme" }
+        "exercise": {
+          "$ref": "#/$defs/ExerciseRefV1"
+        },
+        "prediction": {
+          "$ref": "learner-event.schema.json#/$defs/Prediction"
         }
       }
     },
-    "NextAnswerSubmitted": {
-      "title": "NextAnswerSubmitted",
+    "AnswerSubmittedV1": {
+      "title": "AnswerSubmittedV1",
       "description": "One graded answer (§9.6). Raw answers are personal data (§14.4).",
       "type": "object",
       "required": [
@@ -266,12 +354,16 @@
       ],
       "additionalProperties": false,
       "properties": {
-        "type": { "const": "answer_submitted" },
+        "type": {
+          "const": "answer_submitted"
+        },
         "id": {
           "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
           "$ref": "learner-event.schema.json#/$defs/Uuid"
         },
-        "schema": { "const": 2 },
+        "schema": {
+          "const": 1
+        },
         "device": {
           "description": "Random id of the device (installation) that recorded the event.",
           "type": "string",
@@ -282,8 +374,13 @@
           "type": "string",
           "minLength": 1
         },
-        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
-        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
         "support": {
           "description": "Support-language key (en).",
           "type": "string",
@@ -294,7 +391,9 @@
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
-        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "session": {
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
         "clientTime": {
           "description": "Device clock at the event, ISO 8601 with offset.",
           "type": "string",
@@ -310,7 +409,9 @@
           "type": "string",
           "minLength": 1
         },
-        "exercise": { "$ref": "#/$defs/NextExerciseRef" },
+        "exercise": {
+          "$ref": "#/$defs/ExerciseRefV1"
+        },
         "attempt": {
           "description": "1 for the first try in this session, 2+ for an exercise brought back after a mistake.",
           "type": "integer",
@@ -318,19 +419,38 @@
         },
         "input": {
           "type": "object",
-          "required": ["method", "latencyMs"],
+          "required": [
+            "method",
+            "latencyMs"
+          ],
           "additionalProperties": false,
           "properties": {
-            "method": { "type": "string", "enum": ["choice", "tiles", "text", "pairs", "voice"] },
+            "method": {
+              "type": "string",
+              "enum": [
+                "choice",
+                "tiles",
+                "text",
+                "pairs",
+                "voice"
+              ]
+            },
             "raw": {
               "description": "What the learner typed or chose, as settled text. Personal data.",
               "type": "string"
             },
-            "latencyMs": { "type": "integer", "minimum": 0 },
+            "latencyMs": {
+              "type": "integer",
+              "minimum": 0
+            },
             "selfRating": {
               "description": "Speak tier 0 only: the learner's own rating.",
               "type": "string",
-              "enum": ["good", "hard", "again"]
+              "enum": [
+                "good",
+                "hard",
+                "again"
+              ]
             },
             "hinted": {
               "description": "The learner looked up a word's meaning on this card before its answer was checked (D16): a right answer rates Hard at best and shows no skill. Absent when nothing was looked up.",
@@ -340,7 +460,11 @@
         },
         "outcome": {
           "type": "object",
-          "required": ["kind", "notes", "labels", "parts"],
+          "required": [
+            "kind",
+            "notes",
+            "kcs"
+          ],
           "additionalProperties": false,
           "properties": {
             "kind": {
@@ -360,25 +484,25 @@
             },
             "notes": {
               "type": "array",
-              "items": { "type": "string" }
+              "items": {
+                "type": "string"
+              }
             },
-            "labels": {
-              "description": "What the miss is (ADR 0148). Empty for a right answer; a slip alone is a typo, accepted.",
+            "kcs": {
               "type": "array",
-              "uniqueItems": true,
-              "items": { "$ref": "common.schema.json#/$defs/MissLabel" }
-            },
-            "parts": {
-              "type": "array",
-              "items": { "$ref": "#/$defs/PartCredit" }
+              "items": {
+                "$ref": "#/$defs/KcCreditV1"
+              }
             }
           }
         },
-        "prediction": { "$ref": "learner-event.schema.json#/$defs/Prediction" }
+        "prediction": {
+          "$ref": "learner-event.schema.json#/$defs/Prediction"
+        }
       }
     },
-    "NextExerciseSkipped": {
-      "title": "NextExerciseSkipped",
+    "ExerciseSkippedV1": {
+      "title": "ExerciseSkippedV1",
       "description": "The learner skipped (the answer is revealed) or could not listen or speak.",
       "type": "object",
       "required": [
@@ -400,12 +524,16 @@
       ],
       "additionalProperties": false,
       "properties": {
-        "type": { "const": "exercise_skipped" },
+        "type": {
+          "const": "exercise_skipped"
+        },
         "id": {
           "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
           "$ref": "learner-event.schema.json#/$defs/Uuid"
         },
-        "schema": { "const": 2 },
+        "schema": {
+          "const": 1
+        },
         "device": {
           "description": "Random id of the device (installation) that recorded the event.",
           "type": "string",
@@ -416,8 +544,13 @@
           "type": "string",
           "minLength": 1
         },
-        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
-        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
         "support": {
           "description": "Support-language key (en).",
           "type": "string",
@@ -428,7 +561,9 @@
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
-        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "session": {
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
         "clientTime": {
           "description": "Device clock at the event, ISO 8601 with offset.",
           "type": "string",
@@ -444,24 +579,55 @@
           "type": "string",
           "minLength": 1
         },
-        "exercise": { "$ref": "#/$defs/NextExerciseRef" },
-        "attempt": { "type": "integer", "minimum": 1 },
-        "reason": { "type": "string", "enum": ["skip", "cant-listen", "cant-speak"] }
+        "exercise": {
+          "$ref": "#/$defs/ExerciseRefV1"
+        },
+        "attempt": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "skip",
+            "cant-listen",
+            "cant-speak"
+          ]
+        }
       }
     },
-    "NextSessionCompleted": {
-      "title": "NextSessionCompleted",
+    "SessionCompletedV1": {
+      "title": "SessionCompletedV1",
       "description": "A session ended, finished or quit.",
       "type": "object",
-      "required": ["id", "type", "schema", "device", "course", "orthography", "support", "bundle", "session", "clientTime", "localDate", "tz", "mode", "summary"],
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "session",
+        "clientTime",
+        "localDate",
+        "tz",
+        "mode",
+        "summary"
+      ],
       "additionalProperties": false,
       "properties": {
-        "type": { "const": "session_completed" },
+        "type": {
+          "const": "session_completed"
+        },
         "id": {
           "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
           "$ref": "learner-event.schema.json#/$defs/Uuid"
         },
-        "schema": { "const": 2 },
+        "schema": {
+          "const": 1
+        },
         "device": {
           "description": "Random id of the device (installation) that recorded the event.",
           "type": "string",
@@ -472,8 +638,13 @@
           "type": "string",
           "minLength": 1
         },
-        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
-        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
         "support": {
           "description": "Support-language key (en).",
           "type": "string",
@@ -484,7 +655,9 @@
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
-        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "session": {
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
         "clientTime": {
           "description": "Device clock at the event, ISO 8601 with offset.",
           "type": "string",
@@ -500,25 +673,44 @@
           "type": "string",
           "minLength": 1
         },
-        "mode": { "type": "string", "enum": ["lesson", "review", "mistakes", "placement", "story"] },
-        "node": { "type": "string", "minLength": 1 },
-        "summary": { "$ref": "learner-event.schema.json#/$defs/SessionSummaryData" },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "lesson",
+            "review",
+            "mistakes",
+            "placement",
+            "story"
+          ]
+        },
+        "node": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary": {
+          "$ref": "learner-event.schema.json#/$defs/SessionSummaryData"
+        },
         "placed": {
           "description": "Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done. A test the learner stopped part-way (summary.completed false) places by its answers so far, still without the session's XP (D9 in the 2026-11 review).",
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
           "uniqueItems": true
         },
         "seeded": {
-          "description": "Placement only (ADR 0111): the parts the placed nodes introduce. The projection gives each that has no card yet a recognize card, as if recalled with ease at the end of the session, so the planner counts them as seen, review brings them back at long intervals and the word list shows them.",
+          "description": "Placement only (ADR 0111): the KCs the placed nodes introduce. The projection gives each that has no card yet a recognize card, as if recalled with ease at the end of the session, so the planner counts them as seen, review brings them back at long intervals and the word list shows them.",
           "type": "array",
-          "items": { "$ref": "common.schema.json#/$defs/PartId" },
+          "items": {
+            "$ref": "#/$defs/KcRefLocalV1"
+          },
           "uniqueItems": true
         }
       }
     },
-    "NextOutcomeRevised": {
-      "title": "NextOutcomeRevised",
+    "OutcomeRevisedV1": {
+      "title": "OutcomeRevisedV1",
       "description": "A later verdict on an earlier answer (§8.3): the LLM judge accepted it, or a reviewer did. Replay applies the revised outcome in place of the original, retroactively. Only the server issues these; uploads of ones it did not issue are refused.",
       "type": "object",
       "required": [
@@ -540,12 +732,16 @@
       ],
       "additionalProperties": false,
       "properties": {
-        "type": { "const": "outcome_revised" },
+        "type": {
+          "const": "outcome_revised"
+        },
         "id": {
           "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
           "$ref": "learner-event.schema.json#/$defs/Uuid"
         },
-        "schema": { "const": 2 },
+        "schema": {
+          "const": 1
+        },
         "device": {
           "description": "Random id of the device (installation) that recorded the event.",
           "type": "string",
@@ -556,8 +752,13 @@
           "type": "string",
           "minLength": 1
         },
-        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
-        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
         "support": {
           "description": "Support-language key (en).",
           "type": "string",
@@ -568,7 +769,9 @@
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
-        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "session": {
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
         "clientTime": {
           "description": "Device clock at the event, ISO 8601 with offset.",
           "type": "string",
@@ -590,7 +793,11 @@
         },
         "outcome": {
           "type": "object",
-          "required": ["kind", "notes", "labels", "parts"],
+          "required": [
+            "kind",
+            "notes",
+            "kcs"
+          ],
           "additionalProperties": false,
           "properties": {
             "kind": {
@@ -610,40 +817,55 @@
             },
             "notes": {
               "type": "array",
-              "items": { "type": "string" }
+              "items": {
+                "type": "string"
+              }
             },
-            "labels": {
-              "description": "What the miss is (ADR 0148). Empty for a right answer; a slip alone is a typo, accepted.",
+            "kcs": {
               "type": "array",
-              "uniqueItems": true,
-              "items": { "$ref": "common.schema.json#/$defs/MissLabel" }
-            },
-            "parts": {
-              "type": "array",
-              "items": { "$ref": "#/$defs/PartCredit" }
+              "items": {
+                "$ref": "#/$defs/KcCreditV1"
+              }
             }
           }
         },
         "by": {
           "description": "Who revised it: the judge (the outcome is CORRECT_PROVISIONAL) or a human reviewer.",
           "type": "string",
-          "enum": ["judge", "review"]
+          "enum": [
+            "judge",
+            "review"
+          ]
         },
         "judge": {
           "description": "The judge call behind a judge revision (§13.1 provenance).",
           "type": "object",
-          "required": ["model", "promptHash", "confidence"],
+          "required": [
+            "model",
+            "promptHash",
+            "confidence"
+          ],
           "additionalProperties": false,
           "properties": {
-            "model": { "type": "string", "minLength": 1 },
-            "promptHash": { "type": "string", "pattern": "^[0-9a-f]{12}$" },
-            "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+            "model": {
+              "type": "string",
+              "minLength": 1
+            },
+            "promptHash": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{12}$"
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
           }
         }
       }
     },
-    "NextAnswerReported": {
-      "title": "NextAnswerReported",
+    "AnswerReportedV1": {
+      "title": "AnswerReportedV1",
       "description": "A learner's claim about how an answer was graded (§13.2, ADR 0052): \"my answer should have been accepted\" (claim accept, the default) or \"this should have been wrong\" (claim reject). It counts that way for the learner at once (projections apply it as a revision of the answer) and goes to the review queue for the course.",
       "type": "object",
       "required": [
@@ -665,12 +887,16 @@
       ],
       "additionalProperties": false,
       "properties": {
-        "type": { "const": "answer_reported" },
+        "type": {
+          "const": "answer_reported"
+        },
         "id": {
           "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
           "$ref": "learner-event.schema.json#/$defs/Uuid"
         },
-        "schema": { "const": 2 },
+        "schema": {
+          "const": 1
+        },
         "device": {
           "description": "Random id of the device (installation) that recorded the event.",
           "type": "string",
@@ -681,8 +907,13 @@
           "type": "string",
           "minLength": 1
         },
-        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
-        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
         "support": {
           "description": "Support-language key (en).",
           "type": "string",
@@ -693,7 +924,9 @@
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         },
-        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
+        "session": {
+          "$ref": "learner-event.schema.json#/$defs/Uuid"
+        },
         "clientTime": {
           "description": "Device clock at the event, ISO 8601 with offset.",
           "type": "string",
@@ -713,7 +946,9 @@
           "description": "The id of the answer_submitted event reported.",
           "$ref": "learner-event.schema.json#/$defs/Uuid"
         },
-        "exercise": { "$ref": "#/$defs/NextExerciseRef" },
+        "exercise": {
+          "$ref": "#/$defs/ExerciseRefV1"
+        },
         "text": {
           "description": "The answer as the learner settled it. Personal data.",
           "type": "string",
@@ -727,23 +962,43 @@
         },
         "claim": {
           "description": "What the learner says (ADR 0052): accept, \"my answer should have been accepted\" (the default), or reject, \"this should have been wrong\" (an answer graded right that should not be). Either way it counts that way for the learner at once, and goes to review for the course.",
-          "enum": ["accept", "reject"]
+          "enum": [
+            "accept",
+            "reject"
+          ]
         }
       }
     },
-    "NextProgressReset": {
-      "title": "NextProgressReset",
+    "ProgressResetV1": {
+      "title": "ProgressResetV1",
       "description": "The learner started the course over: in its projection, everything before this event is forgotten (what they know, the lessons done, placement, mistakes). XP and the game state (streak, achievements) stay: they record practice that happened. The log keeps every earlier event.",
       "type": "object",
-      "required": ["id", "type", "schema", "device", "course", "orthography", "support", "bundle", "session", "clientTime", "localDate", "tz"],
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "session",
+        "clientTime",
+        "localDate",
+        "tz"
+      ],
       "additionalProperties": false,
       "properties": {
-        "type": { "const": "progress_reset" },
+        "type": {
+          "const": "progress_reset"
+        },
         "id": {
           "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
           "$ref": "learner-event.schema.json#/$defs/Uuid"
         },
-        "schema": { "const": 2 },
+        "schema": {
+          "const": 1
+        },
         "device": {
           "description": "Random id of the device (installation) that recorded the event.",
           "type": "string",
@@ -754,8 +1009,13 @@
           "type": "string",
           "minLength": 1
         },
-        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
-        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
         "support": {
           "description": "Support-language key (en).",
           "type": "string",
@@ -787,8 +1047,8 @@
         }
       }
     },
-    "NextSentenceReported": {
-      "title": "NextSentenceReported",
+    "SentenceReportedV1": {
+      "title": "SentenceReportedV1",
       "description": "A learner marked a sentence, a story line or a word as incorrect and said what it should be (ADR 0051, 0057). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.",
       "type": "object",
       "required": [
@@ -810,12 +1070,16 @@
       ],
       "additionalProperties": false,
       "properties": {
-        "type": { "const": "sentence_reported" },
+        "type": {
+          "const": "sentence_reported"
+        },
         "id": {
           "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
           "$ref": "learner-event.schema.json#/$defs/Uuid"
         },
-        "schema": { "const": 2 },
+        "schema": {
+          "const": 1
+        },
         "device": {
           "description": "Random id of the device (installation) that recorded the event.",
           "type": "string",
@@ -826,8 +1090,13 @@
           "type": "string",
           "minLength": 1
         },
-        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
-        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
         "support": {
           "description": "Support-language key (en).",
           "type": "string",
@@ -858,7 +1127,7 @@
           "minLength": 1
         },
         "item": {
-          "description": "A sentence id, a story id with `step`, or a lexeme id (ADR 0057).",
+          "description": "A sentence id, a story id with `step`, or a word's KC id (ADR 0057).",
           "type": "string",
           "minLength": 1
         },
@@ -882,19 +1151,32 @@
         }
       }
     },
-    "NextGoalSet": {
-      "title": "NextGoalSet",
+    "GoalSetV1": {
+      "title": "GoalSetV1",
       "description": "The learner set or cleared their weekly practice goal (ADR 0107, D12): a number of practice days a week. It is the account's, not a course's or a device's, so it names no course, bundle or session; every device shares it through the log. The latest by device time, then id, holds.",
       "type": "object",
-      "required": ["id", "type", "schema", "device", "clientTime", "localDate", "tz", "days"],
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "clientTime",
+        "localDate",
+        "tz",
+        "days"
+      ],
       "additionalProperties": false,
       "properties": {
-        "type": { "const": "goal_set" },
+        "type": {
+          "const": "goal_set"
+        },
         "id": {
           "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
           "$ref": "learner-event.schema.json#/$defs/Uuid"
         },
-        "schema": { "const": 2 },
+        "schema": {
+          "const": 1
+        },
         "device": {
           "description": "Random id of the device (installation) that recorded the event.",
           "type": "string",
@@ -922,93 +1204,12 @@
         },
         "days": {
           "description": "Practice days a week the learner aims for (the app offers 3 to 7), or null: no goal.",
-          "type": ["integer", "null"],
+          "type": [
+            "integer",
+            "null"
+          ],
           "minimum": 1,
           "maximum": 7
-        }
-      }
-    },
-    "StoryLineRead": {
-      "title": "StoryLineRead",
-      "description": "A story line the learner read (ADR 0146: a story records the lines read). A line is no exercise, so it has an event of its own.",
-      "type": "object",
-      "required": [
-        "id",
-        "type",
-        "schema",
-        "device",
-        "course",
-        "orthography",
-        "support",
-        "bundle",
-        "session",
-        "clientTime",
-        "localDate",
-        "tz",
-        "story",
-        "line",
-        "displayed"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "type": { "const": "story_line_read" },
-        "id": {
-          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
-          "$ref": "learner-event.schema.json#/$defs/Uuid"
-        },
-        "schema": { "const": 2 },
-        "device": {
-          "description": "Random id of the device (installation) that recorded the event.",
-          "type": "string",
-          "minLength": 1
-        },
-        "user": {
-          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
-          "type": "string",
-          "minLength": 1
-        },
-        "course": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
-        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
-        "support": {
-          "description": "Support-language key (en).",
-          "type": "string",
-          "minLength": 1
-        },
-        "bundle": {
-          "description": "The bundle's manifest id (sha256).",
-          "type": "string",
-          "pattern": "^[0-9a-f]{64}$"
-        },
-        "session": { "$ref": "learner-event.schema.json#/$defs/Uuid" },
-        "clientTime": {
-          "description": "Device clock at the event, ISO 8601 with offset.",
-          "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
-        },
-        "localDate": {
-          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
-          "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
-        },
-        "tz": {
-          "description": "IANA time zone of the device.",
-          "type": "string",
-          "minLength": 1
-        },
-        "story": {
-          "description": "The story's id.",
-          "type": "string",
-          "minLength": 1
-        },
-        "line": {
-          "description": "The line's place among the story's steps, from 0.",
-          "type": "integer",
-          "minimum": 0
-        },
-        "displayed": {
-          "description": "What was shown, each lexeme once in each form.",
-          "type": "array",
-          "items": { "$ref": "#/$defs/DisplayedLexeme" }
         }
       }
     }

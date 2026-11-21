@@ -29,10 +29,13 @@ from nabu.lexicon import Language, kind_of
 
 if TYPE_CHECKING:
     from nabu.compiler.build import Ctx, Taught, Unit
-    from nabu.schema.models import Lexeme, StoryChoiceSource
-    from nabu.schema.models import NextCourseSource as CourseSource
-    from nabu.schema.models import NextStoryLineSource as StoryLineSource
-    from nabu.schema.models import NextStorySource as StorySource
+    from nabu.schema.models import (
+        CourseSource,
+        Lexeme,
+        StoryChoiceSource,
+        StoryLineSource,
+        StorySource,
+    )
 
 Path = tuple[str | int, ...]
 

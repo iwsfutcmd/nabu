@@ -12,7 +12,7 @@
     "locale": { "$ref": "common.schema.json#/$defs/LangTag" },
     "provenance": {
       "description": "Who translated the catalog and whether a native reviewer signed it off (ADR 0070). Required in every catalog but the source (en); only a reviewed catalog ships.",
-      "$ref": "course-source.schema.json#/$defs/Provenance"
+      "$ref": "common.schema.json#/$defs/Provenance"
     },
     "messages": {
       "type": "object",

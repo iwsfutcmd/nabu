@@ -19,8 +19,7 @@ from nabu.compiler import compile_course, load_profiles
 from nabu.compiler.release import release
 from nabu.corecli import CoreCli
 from nabu.review import shown_of
-from nabu.schema.models import BundleScenario, Provenance
-from nabu.schema.models import NextBundleUnit as BundleUnit
+from nabu.schema.models import BundleScenario, BundleUnit, Provenance
 
 from .test_courses import build
 

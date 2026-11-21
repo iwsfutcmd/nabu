@@ -67,7 +67,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Profile policies marked REVIEW await Ben's linguistic sign-off.
 
 ## Phase 2 notes (see docs/adr/0027–0033)
-- Course sources: courses/<id>/course.yaml + units/*.yaml (schemas/course-source.next.schema.json until its rename),
+- Course sources: courses/<id>/course.yaml + units/*.yaml (schemas/course-source.schema.json),
   their lexemes in lexicons/<lang>/ (Lexical model notes). Every orthography's form is pinned; tokens are aligned to
   `text`; translations and `reverse` are accept sets.
 - Fixture courses fa, yue, uz, apc are LLM-drafted (`llm:` provenance, status draft) and await native review.
@@ -141,7 +141,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - e2e sessions depend on the log and clock: fix the clock (page.clock.setFixedTime), seed history through
   window.nabu, and plan with the solver's `planned()`. Seeded history that gets uploaded needs `freshIds()`.
 - The API (apps/api) runs on PGlite unless DATABASE_URL is set; migrations are SQL in src/db/migrations.ts
-  (append, never edit). Events are validated against schemas/learner-event.next.schema.json (until its rename) with Ajv.
+  (append, never edit). Events are validated against schemas/learner-event.schema.json with Ajv.
 - API tests open their database with test/database.ts: PGlite, or with NABU_TEST_DATABASE_URL a fresh Postgres
   database per test file (CI's api-postgres job).
 - Sync is optional: the web app talks to a server only with VITE_NABU_API (dev: .env.development) or ?api=.
@@ -752,12 +752,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - courses/<id>/aliases.yaml (schemas/aliases.schema.json) is the kept record of what each old KC id became. The
   compiler ships it (file role `aliases`); only `upgrade` reads it. Renaming or removing a lexeme, rule or taught
   feature value changes the table's right-hand sides with it (pipeline/tests/test_aliases.py).
-- Still to follow on main, as commits of their own: the live schemas are still schemas/course-source.next.schema.json,
-  bundle.next.schema.json and learner-event.next.schema.json, and their generated types carry `Next`
-  (packages/schema/src/index.ts exports them under the final names; old events are the `…V1` types). The files without
-  `.next` for those three are the old shapes, kept until that rename (the old learner-event shape is what `upgrade`
-  reads). The token kind is still `word` and becomes `lexical`. Stages 5 and 6 of the switch (losses and labels, ADR
-  0148; what a learner sees) are not built: `outcome.labels` is always empty and `story_line_read` is never emitted.
+- Old events are the `…V1` types of schemas/learner-event.v1.schema.json, which only `upgrade` and the restore of an
+  old download read. Still to follow on main, as commits of their own: the token kind is still `word` and becomes
+  `lexical`. Stages 5 and 6 of the switch (losses and labels, ADR 0148; what a learner sees) are not built:
+  `outcome.labels` is always empty and `story_line_read` is never emitted.
 - Tags, features and relations are Universal Dependencies' and a gloss's abbreviations the Leipzig Glossing Rules'
   (the owner, 2026-11-21: "ideally we use UD/Leipzig, unless we run into trouble"); a departure is stated where it is
   made (apc `Aspect=Part`). A lexeme takes one tag, where UD tags a word in its sentence: the one whose dimensions it

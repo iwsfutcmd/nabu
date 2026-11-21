@@ -6,7 +6,6 @@
 from nabu.schema.models import (
     LangTag,
     MessageCatalog,
-    Morph,
     OrthographyId,
     OrthographyProfile,
     RubySegment,
@@ -18,7 +17,6 @@ from nabu.schema.models import (
 __all__ = [
     "LangTag",
     "MessageCatalog",
-    "Morph",
     "OrthographyId",
     "OrthographyProfile",
     "RubySegment",

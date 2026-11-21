@@ -8,10 +8,10 @@
   "additionalProperties": false,
   "properties": {
     "language": { "$ref": "common.schema.json#/$defs/LanguageCode" },
-    "license": { "$ref": "course-source.schema.json#/$defs/Spdx" },
+    "license": { "$ref": "common.schema.json#/$defs/Spdx" },
     "provenance": {
       "description": "For every entry that gives none of its own.",
-      "$ref": "course-source.schema.json#/$defs/Provenance"
+      "$ref": "common.schema.json#/$defs/Provenance"
     },
     "lexemes": {
       "type": "array",
@@ -52,7 +52,7 @@
           "type": "array",
           "minItems": 1,
           "uniqueItems": true,
-          "items": { "$ref": "course-source.schema.json#/$defs/Slug" }
+          "items": { "$ref": "common.schema.json#/$defs/Slug" }
         },
         "gloss": {
           "description": "Its meaning, by support language.",
@@ -68,7 +68,7 @@
         },
         "image": {
           "description": "Its picture. In a lexicon the file is relative to the lexicon's own file.",
-          "$ref": "course-source.schema.json#/$defs/ImageAsset"
+          "$ref": "common.schema.json#/$defs/ImageAsset"
         },
         "form": { "$ref": "#/$defs/LexicalForm" },
         "forms": {
@@ -109,7 +109,7 @@
           "propertyNames": { "$ref": "common.schema.json#/$defs/SchemeId" },
           "additionalProperties": { "type": "string", "minLength": 1 }
         },
-        "provenance": { "$ref": "course-source.schema.json#/$defs/Provenance" }
+        "provenance": { "$ref": "common.schema.json#/$defs/Provenance" }
       }
     },
     "FunctionHead": {
@@ -232,7 +232,7 @@
         },
         "statement": {
           "description": "Who says the language has no rule for it. A draft counts until it is signed off (the owner, round 6).",
-          "$ref": "course-source.schema.json#/$defs/Provenance"
+          "$ref": "common.schema.json#/$defs/Provenance"
         },
         "scope": { "$ref": "#/$defs/Scope" },
         "spelled": {

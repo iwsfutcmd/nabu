@@ -67,10 +67,10 @@
           "minimum": 1
         },
         "license": {
-          "$ref": "course-source.schema.json#/$defs/Spdx"
+          "$ref": "common.schema.json#/$defs/Spdx"
         },
         "provenance": {
-          "$ref": "course-source.schema.json#/$defs/Provenance"
+          "$ref": "common.schema.json#/$defs/Provenance"
         },
         "synthetic": {
           "description": "Made by a model (`design`), not recorded: designed from speaker attributes (OmniVoice) or cloned from a prompt recording (Navoiy).",
@@ -158,7 +158,7 @@
                   "pattern": "^[0-9a-f]{64}$"
                 },
                 "license": {
-                  "$ref": "course-source.schema.json#/$defs/Spdx"
+                  "$ref": "common.schema.json#/$defs/Spdx"
                 }
               }
             }
@@ -207,10 +207,10 @@
           "minimum": 1
         },
         "license": {
-          "$ref": "course-source.schema.json#/$defs/Spdx"
+          "$ref": "common.schema.json#/$defs/Spdx"
         },
         "provenance": {
-          "$ref": "course-source.schema.json#/$defs/Provenance"
+          "$ref": "common.schema.json#/$defs/Provenance"
         },
         "source": {
           "description": "Where a recording came from (URL or description), for attribution.",

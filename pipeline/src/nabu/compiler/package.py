@@ -29,11 +29,13 @@ from nabu.drills.rbnf import icu_version
 from nabu.formkey import form_key
 from nabu.items import Content, iter_items, lexicon_json, unit_json
 from nabu.paths import I18N_GENERATED, PROFILES
-from nabu.schema.models import NextBundleAudio as BundleAudio
-from nabu.schema.models import NextBundleManifest as BundleManifest
-from nabu.schema.models import NextBundleUnit as BundleUnit
-from nabu.schema.models import NextCourseSource as CourseSource
-from nabu.schema.models import OrthographyProfile
+from nabu.schema.models import (
+    BundleAudio,
+    BundleManifest,
+    BundleUnit,
+    CourseSource,
+    OrthographyProfile,
+)
 
 #: 2: lexemes where a bundle had KCs (ADR 0145). 1 defined credits once (ADR 0110).
 FORMAT_VERSION = 2

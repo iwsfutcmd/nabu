@@ -36,8 +36,7 @@ from dataclasses import dataclass, field
 
 from nabu.compiler import text as tx
 from nabu.items import WORD_KINDS, Content, ItemKind, iter_items
-from nabu.schema.models import BundleLexicon, RubySegment, TokenModel
-from nabu.schema.models import NextBundleUnit as BundleUnit
+from nabu.schema.models import BundleLexicon, BundleUnit, RubySegment, TokenModel
 from nabu.schemes import plugins, schemes
 
 Key = tuple[str, str]

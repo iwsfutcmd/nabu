@@ -19,7 +19,7 @@ from nabu.cli import app
 from nabu.compiler import compile_course, load_profiles
 from nabu.corecli import CoreCli
 from nabu.review import fingerprint, provenance_text, sentence_text, shown_of, story_text
-from nabu.schema.models import NextBundleUnit
+from nabu.schema.models import BundleUnit
 
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLES = ROOT / "apps" / "web" / "public" / "bundles"
@@ -33,10 +33,10 @@ APC_S1 = (
 )
 
 
-def _bundle_units(course: str) -> list[NextBundleUnit]:
+def _bundle_units(course: str) -> list[BundleUnit]:
     """The committed bundle's units, as the app reads them."""
     return [
-        NextBundleUnit.model_validate_json(Path(f).read_text(encoding="utf-8"))
+        BundleUnit.model_validate_json(Path(f).read_text(encoding="utf-8"))
         for f in sorted(glob.glob(str(BUNDLES / course / "units" / "*.json")))
     ]
 
@@ -51,7 +51,7 @@ def test_the_fingerprint_text_is_pinned() -> None:
 
 
 @pytest.fixture(scope="module")
-def apc_compiled() -> list[NextBundleUnit]:
+def apc_compiled() -> list[BundleUnit]:
     with CoreCli() as cli:
         diags, compiled = compile_course(ROOT / "courses" / "apc", cli, load_profiles(), {})
     assert compiled is not None, [d.format() for d in diags.items]
@@ -59,7 +59,7 @@ def apc_compiled() -> list[NextBundleUnit]:
 
 
 def test_the_compile_and_the_bundles_fingerprint_alike(
-    apc_compiled: list[NextBundleUnit],
+    apc_compiled: list[BundleUnit],
 ) -> None:
     # The app hashes the bundle; the CLI hashes its own compile: they must agree, item by item.
     assert shown_of(apc_compiled) == shown_of(_bundle_units("apc"))
@@ -86,7 +86,7 @@ def course(tmp_path: Path) -> Path:
 
 
 def test_apply_signs_off_what_was_seen_and_skips_the_rest(
-    course: Path, tmp_path: Path, apc_compiled: list[NextBundleUnit]
+    course: Path, tmp_path: Path, apc_compiled: list[BundleUnit]
 ) -> None:
     shown = shown_of(apc_compiled)
     story = next(s.id for u in apc_compiled for s in u.stories or [])
@@ -188,7 +188,7 @@ def test_the_file_can_say_who_signed_off(course: Path, tmp_path: Path) -> None:
 
 
 def test_the_admin_export_applies_each_reviewers_file(
-    course: Path, tmp_path: Path, apc_compiled: list[NextBundleUnit]
+    course: Path, tmp_path: Path, apc_compiled: list[BundleUnit]
 ) -> None:
     shown = shown_of(apc_compiled)
     one = {"item": "s.1", "kind": "sentence", "shown": shown[("sentence", "s.1")]}

@@ -27,8 +27,7 @@ from nabu.compiler.source import Doc, load_doc
 from nabu.formkey import form_key, is_form
 from nabu.items import WORD_KINDS, iter_items
 from nabu.provenance import signed_off
-from nabu.schema.models import AudioClip, AudioIndex, BundleClip, TokenTiming
-from nabu.schema.models import NextCourseSource as CourseSource
+from nabu.schema.models import AudioClip, AudioIndex, BundleClip, CourseSource, TokenTiming
 
 if TYPE_CHECKING:
     from nabu.compiler.build import Compiled, Ctx

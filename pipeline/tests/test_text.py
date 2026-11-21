@@ -12,9 +12,13 @@ from nabu.compiler import text as tx
 from nabu.compiler.build import Ctx, compile_form
 from nabu.compiler.diagnostics import Diagnostics
 from nabu.compiler.source import Doc
-from nabu.schema.models import LanguageDeclaration, Lexicon, OrthographyProfile
-from nabu.schema.models import NextCourseSource as CourseSource
-from nabu.schema.models import NextSentenceForm as SentenceForm
+from nabu.schema.models import (
+    CourseSource,
+    LanguageDeclaration,
+    Lexicon,
+    OrthographyProfile,
+    SentenceForm,
+)
 
 from .conftest import CoreCli
 

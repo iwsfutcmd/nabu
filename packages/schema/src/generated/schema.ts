@@ -179,29 +179,11 @@ export type Question = "lexeme" | "form" | "use";
 export type CreditId1 = string;
 /**
  * An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.
- */
-export type CreditId2 = string;
-/**
- * An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "CreditId".
  */
-export type CreditId3 = string;
-/**
- * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "KcId".
- */
-export type KcId = string & { readonly __brand: "KcId" };
-/**
- * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Asks".
- */
-export type Asks = "word" | "form";
+export type CreditId2 = string;
 /**
  * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
  *
@@ -216,6 +198,20 @@ export type SchemeId = string & { readonly __brand: "SchemeId" };
  * via the `definition` "SenseId".
  */
 export type SenseId = string & { readonly __brand: "SenseId" };
+/**
+ * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "KcId".
+ */
+export type KcId = string & { readonly __brand: "KcId" };
+/**
+ * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Asks".
+ */
+export type Asks = "word" | "form";
 /**
  * An ISO 15924 script code in titlecase.
  *
@@ -396,67 +392,22 @@ export type KcId2 = string & { readonly __brand: "KcId" };
  */
 export type LangTag2 = string & { readonly __brand: "LangTag" };
 /**
- * An SPDX license expression.
- */
-export type Spdx3 = string;
-/**
- * A word's part of speech: a Universal Dependencies UPOS tag (ADR 0132). A word question offers only words of the answer's part of speech.
- */
-export type PartOfSpeech2 =
-  | "ADJ"
-  | "ADP"
-  | "ADV"
-  | "AUX"
-  | "CCONJ"
-  | "DET"
-  | "INTJ"
-  | "NOUN"
-  | "NUM"
-  | "PART"
-  | "PRON"
-  | "PROPN"
-  | "PUNCT"
-  | "SCONJ"
-  | "SYM"
-  | "VERB"
-  | "X";
-/**
- * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
- */
-export type UdFeatures7 = Readonly<Record<string, string>>;
-/**
- * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
- */
-export type KcId3 = string & { readonly __brand: "KcId" };
-/**
- * The path node (kind story) the story is read at.
- */
-export type Slug4 = string;
-/**
- * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
- */
-export type KcId4 = string & { readonly __brand: "KcId" };
-/**
- * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
- */
-export type Asks1 = "word" | "form";
-/**
- * A learner event in the shape the lexical model needs (docs/migration-design.md, deliverable 1): schema 2. Credit is per part and skill, a miss carries its labels, and what was shown is logged. The shape of every event since the switch: stored events of the old shape are upgraded to it once, and it takes the name learner-event when the old shape's file takes another.schema.json, and the `Next` names lose their prefix. No event stays in the old shape.
+ * A learner event of schema 2 (docs/migration-design.md, deliverable 1): credit is per part and skill, a miss carries its labels, what was shown is logged, and an event of schema 1 (learner-event.v1.schema.json) is upgraded to it once.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextLearnerEvent".
+ * via the `definition` "LearnerEvent".
  */
-export type NextLearnerEvent =
-  | NextSessionStarted
-  | NextExercisePresented
-  | NextAnswerSubmitted
-  | NextExerciseSkipped
-  | NextSessionCompleted
-  | NextOutcomeRevised
-  | NextAnswerReported
-  | NextProgressReset
-  | NextSentenceReported
-  | NextGoalSet
+export type LearnerEvent =
+  | SessionStarted
+  | ExercisePresented
+  | AnswerSubmitted
+  | ExerciseSkipped
+  | SessionCompleted
+  | OutcomeRevised
+  | AnswerReported
+  | ProgressReset
+  | SentenceReported
+  | GoalSet
   | StoryLineRead;
 /**
  * UUIDv7, generated on the device. Uploads are idempotent on it.
@@ -528,22 +479,22 @@ export type Uuid14 = string;
  */
 export type Uuid15 = string;
 /**
- * The learner event log (gameplan §5 flow 2, §9.6): append-only, recorded on the device, synced to the server. Every projection (memory, performance, XP, path progress) is a fold over these events.
+ * A learner event as it was logged before the lexical model (schema 1), read only by `upgrade`, which rewrites it as an event of learner-event.schema.json, and by the restore of an old download.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "LearnerEvent".
+ * via the `definition` "LearnerEventV1".
  */
-export type LearnerEvent =
-  | SessionStarted
-  | ExercisePresented
-  | AnswerSubmitted
-  | ExerciseSkipped
-  | SessionCompleted
-  | OutcomeRevised
-  | AnswerReported
-  | ProgressReset
-  | SentenceReported
-  | GoalSet;
+export type LearnerEventV1 =
+  | SessionStartedV1
+  | ExercisePresentedV1
+  | AnswerSubmittedV1
+  | ExerciseSkippedV1
+  | SessionCompletedV1
+  | OutcomeRevisedV1
+  | AnswerReportedV1
+  | ProgressResetV1
+  | SentenceReportedV1
+  | GoalSetV1;
 /**
  * UUIDv7, generated on the device. Uploads are idempotent on it.
  */
@@ -555,11 +506,11 @@ export type Uuid17 = string;
 /**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
-export type KcRefLocal = string & { readonly __brand: "KcId" };
+export type KcRefLocalV1 = string & { readonly __brand: "KcId" };
 /**
- * What a fill-in asks (ADR 0132): which word fits the gap (every option in the answer's form and part of speech, so only meaning tells them apart), or which form of the answer's own word (only grammar tells them apart).
+ * A fill-in (gap-fill, story-complete): whether it asked which word or which form (ADR 0132). A mistake is asked again as the same question. Absent on events logged before it.
  */
-export type Asks2 = "word" | "form";
+export type Asks1 = "word" | "form";
 /**
  * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
  */
@@ -765,9 +716,9 @@ export type ReportSubmission = CorrectionSubmission | AnswerSubmission;
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "KcRefLocal".
+ * via the `definition` "KcRefLocalV1".
  */
-export type KcId5 = string & { readonly __brand: "KcId" };
+export type KcId3 = string & { readonly __brand: "KcId" };
 
 /**
  * Index of every Nabu schema type, so each is declared. Not a document type.
@@ -799,36 +750,25 @@ export interface NabuSchemaIndex {
   readonly AudioRejection: AudioRejection;
   readonly AudioVerdicts: AudioVerdicts;
   readonly AudioVerdict: AudioVerdict;
-  readonly NextBundleManifest: NextBundleManifest;
-  readonly NextBundleFile: NextBundleFile;
+  readonly BundleManifest: BundleManifest;
+  readonly BundleFile: BundleFile;
   readonly BundleLexicon: BundleLexicon;
   readonly BundleLexeme: BundleLexeme;
   readonly BundleLabel: BundleLabel;
   readonly BundleRule: BundleRule;
   readonly BundleGrapheme: BundleGrapheme;
-  readonly NextBundleUnit: NextBundleUnit;
-  readonly NextScriptItem: NextScriptItem;
-  readonly NextBundleNode: NextBundleNode;
-  readonly BundleTag: BundleTag;
-  readonly NextBundleSentence: NextBundleSentence;
-  readonly NextBundleStory: NextBundleStory;
-  readonly NextBundleStoryStep: NextBundleStoryStep;
-  readonly NextBundleStoryLine: NextBundleStoryLine;
-  readonly NextBundleAudio: NextBundleAudio;
-  readonly BundleManifest: BundleManifest;
-  readonly CreditId: CreditId3;
-  readonly BundleFile: BundleFile;
-  readonly BundleManifestUnit: BundleManifestUnit;
   readonly BundleUnit: BundleUnit;
-  readonly BundleScenario: BundleScenario;
+  readonly ScriptItem: ScriptItem;
+  readonly BundleNode: BundleNode;
+  readonly BundleTag: BundleTag;
+  readonly BundleSentence: BundleSentence;
   readonly BundleStory: BundleStory;
   readonly BundleStoryStep: BundleStoryStep;
   readonly BundleStoryLine: BundleStoryLine;
-  readonly BundleKc: BundleKc;
-  readonly ScriptItem: ScriptItem;
-  readonly BundleNode: BundleNode;
-  readonly BundleSentence: BundleSentence;
   readonly BundleAudio: BundleAudio;
+  readonly CreditId: CreditId2;
+  readonly BundleManifestUnit: BundleManifestUnit;
+  readonly BundleScenario: BundleScenario;
   readonly BundleAudioItem: BundleAudioItem;
   readonly BundleClip: BundleClip;
   readonly LangTag: LangTag1;
@@ -842,9 +782,9 @@ export interface NabuSchemaIndex {
   readonly Asks: Asks;
   readonly Persons: Persons;
   readonly Facet: Facet;
-  readonly PlacementPolicy: PlacementPolicy2;
+  readonly PlacementPolicy: PlacementPolicy1;
   readonly ScriptCode: ScriptCode;
-  readonly CourseNames: CourseNames2;
+  readonly CourseNames: CourseNames1;
   readonly LanguageCode: LanguageCode;
   readonly LexemeName: LexemeName;
   readonly LexemeId: LexemeId;
@@ -859,49 +799,38 @@ export interface NabuSchemaIndex {
   readonly Skill: Skill;
   readonly MissLabel: MissLabel;
   readonly Question: Question;
+  readonly Provenance: Provenance;
+  readonly Slug: Slug;
+  readonly Spdx: Spdx;
+  readonly ImageAsset: ImageAsset;
   readonly Corrections: Corrections;
   readonly TokenReading: TokenReading;
   readonly CorrectedForm: CorrectedForm;
   readonly CorrectionFields: CorrectionFields;
   readonly CorrectionStatus: CorrectionStatus;
   readonly SentenceCorrection: SentenceCorrection;
-  readonly NextCourseSource: NextCourseSource;
-  readonly NextUnitSource: NextUnitSource;
-  readonly GraphemeSource: GraphemeSource;
-  readonly NextPathNodeSource: NextPathNodeSource;
-  readonly NextSentenceSource: NextSentenceSource;
-  readonly PromptTag: PromptTag;
-  readonly NextSentenceForm: NextSentenceForm;
-  readonly NextToken: NextToken;
-  readonly TokenLexeme: TokenLexeme;
-  readonly NextStorySource: NextStorySource;
-  readonly NextStoryStep: NextStoryStep;
-  readonly NextStoryLineSource: NextStoryLineSource;
   readonly CourseSource: CourseSource;
-  readonly Slug: Slug;
-  readonly Spdx: Spdx;
-  readonly Provenance: Provenance;
   readonly UnitSource: UnitSource;
-  readonly Cefr: Cefr;
-  readonly KnowledgeComponentSource: KnowledgeComponentSource;
+  readonly GraphemeSource: GraphemeSource;
   readonly PathNodeSource: PathNodeSource;
   readonly SentenceSource: SentenceSource;
+  readonly PromptTag: PromptTag;
   readonly SentenceForm: SentenceForm;
   readonly SourceToken: SourceToken;
-  readonly DrillSpec: DrillSpec;
-  readonly ImageAsset: ImageAsset1;
-  readonly CourseAudio: CourseAudio;
-  readonly AudioVoice: AudioVoice;
-  readonly AudioPace: AudioPace;
-  readonly AudioCarrier: AudioCarrier;
+  readonly TokenLexeme: TokenLexeme;
   readonly StorySource: StorySource;
-  readonly StoryCharacter: StoryCharacter;
   readonly StoryStep: StoryStep;
   readonly StoryLineSource: StoryLineSource;
-  readonly StoryChoiceSource: StoryChoiceSource;
+  readonly Cefr: Cefr;
+  readonly CourseAudio: CourseAudio;
+  readonly AudioVoice: AudioVoice;
+  readonly AudioCarrier: AudioCarrier;
+  readonly AudioPace: AudioPace;
+  readonly DrillSpec: DrillSpec;
   readonly ScenarioSource: ScenarioSource;
+  readonly StoryCharacter: StoryCharacter;
+  readonly StoryChoiceSource: StoryChoiceSource;
   readonly VocalizationSource: VocalizationSource;
-  readonly Morph: Morph;
   readonly DataTable: DataTable;
   readonly KeyboardLayout: KeyboardLayout;
   readonly LanguageDeclaration: LanguageDeclaration;
@@ -910,28 +839,10 @@ export interface NabuSchemaIndex {
   readonly FeatureLabel: FeatureLabel;
   readonly NamedRule: NamedRule;
   readonly LexicalClass: LexicalClass;
-  readonly NextLearnerEvent: NextLearnerEvent;
-  readonly NextExerciseRef: NextExerciseRef;
+  readonly LearnerEvent: LearnerEvent;
+  readonly ExerciseRef: ExerciseRef;
   readonly PartCredit: PartCredit;
   readonly DisplayedLexeme: DisplayedLexeme;
-  readonly NextSessionStarted: NextSessionStarted;
-  readonly NextExercisePresented: NextExercisePresented;
-  readonly NextAnswerSubmitted: NextAnswerSubmitted;
-  readonly NextExerciseSkipped: NextExerciseSkipped;
-  readonly NextSessionCompleted: NextSessionCompleted;
-  readonly NextOutcomeRevised: NextOutcomeRevised;
-  readonly NextAnswerReported: NextAnswerReported;
-  readonly NextProgressReset: NextProgressReset;
-  readonly NextSentenceReported: NextSentenceReported;
-  readonly NextGoalSet: NextGoalSet;
-  readonly StoryLineRead: StoryLineRead;
-  readonly LearnerEvent: LearnerEvent;
-  readonly Uuid: Uuid1;
-  readonly ExerciseRef: ExerciseRef;
-  readonly KcRefLocal: KcRefLocal;
-  readonly Prediction: Prediction;
-  readonly KcCredit: KcCredit;
-  readonly SessionSummaryData: SessionSummaryData;
   readonly SessionStarted: SessionStarted;
   readonly ExercisePresented: ExercisePresented;
   readonly AnswerSubmitted: AnswerSubmitted;
@@ -942,6 +853,24 @@ export interface NabuSchemaIndex {
   readonly ProgressReset: ProgressReset;
   readonly SentenceReported: SentenceReported;
   readonly GoalSet: GoalSet;
+  readonly StoryLineRead: StoryLineRead;
+  readonly Uuid: Uuid1;
+  readonly Prediction: Prediction;
+  readonly SessionSummaryData: SessionSummaryData;
+  readonly LearnerEventV1: LearnerEventV1;
+  readonly ExerciseRefV1: ExerciseRefV1;
+  readonly KcRefLocalV1: KcRefLocalV1;
+  readonly KcCreditV1: KcCreditV1;
+  readonly SessionStartedV1: SessionStartedV1;
+  readonly ExercisePresentedV1: ExercisePresentedV1;
+  readonly AnswerSubmittedV1: AnswerSubmittedV1;
+  readonly ExerciseSkippedV1: ExerciseSkippedV1;
+  readonly SessionCompletedV1: SessionCompletedV1;
+  readonly OutcomeRevisedV1: OutcomeRevisedV1;
+  readonly AnswerReportedV1: AnswerReportedV1;
+  readonly ProgressResetV1: ProgressResetV1;
+  readonly SentenceReportedV1: SentenceReportedV1;
+  readonly GoalSetV1: GoalSetV1;
   readonly Lexicon: Lexicon;
   readonly Lexeme: Lexeme;
   readonly FunctionHead: FunctionHead;
@@ -1644,12 +1573,12 @@ export interface AudioVerdict {
   readonly at: string;
 }
 /**
- * A compiled course bundle in the shape the lexical model needs (docs/migration-design.md, deliverable 3): format version 2. It has lexemes, feature values and rules where a bundle had KCs, and its tokens list the lexemes they write. Written by the compiler from a language's lexicon and a course in the new shape; at the flip it replaces bundle.schema.json and the `Next` names lose their prefix. What did not change is referenced from that file.
+ * A compiled course bundle (docs/migration-design.md, deliverable 3), format version 2: it has lexemes, feature values and rules where a bundle of format 1 had KCs, its tokens list the lexemes they write, and the compiler writes it from a language's lexicon and a course's sources.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextBundleManifest".
+ * via the `definition` "BundleManifest".
  */
-export interface NextBundleManifest {
+export interface BundleManifest {
   /**
    * 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated.
    */
@@ -1698,7 +1627,7 @@ export interface NextBundleManifest {
   /**
    * Every file in the bundle by role, with its SPDX license.
    */
-  readonly files: readonly NextBundleFile[];
+  readonly files: readonly BundleFile[];
   /**
    * Attribution, once per bundle (ADR 0110): each text a file or clip credits (a recording's speaker, a synthetic voice and what it cloned, a table's or picture's source), by its id, the first 8 hex digits of the text's sha256. Files and clips name it by that id (`credit`).
    */
@@ -1771,9 +1700,9 @@ export interface PlacementPolicy {
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextBundleFile".
+ * via the `definition` "BundleFile".
  */
-export interface NextBundleFile {
+export interface BundleFile {
   readonly path: string;
   /**
    * lexicon: the course's lexemes, labels and named rules (BundleLexicon), one file. aliases: what each KC id of the course became (aliases.schema.json), which upgrading a log written before format version 2 reads.
@@ -1937,25 +1866,25 @@ export interface BundleGrapheme {
  * A unit's file. It defines no lexemes: its nodes point at the bundle's lexicon. The letters its script nodes teach are the one thing it lists.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextBundleUnit".
+ * via the `definition` "BundleUnit".
  */
-export interface NextBundleUnit {
+export interface BundleUnit {
   readonly id: string;
   readonly cefr?: string;
   readonly title?: {
     readonly [k: string]: TaggedText;
   };
   readonly graphemes?: readonly BundleGrapheme[];
-  readonly nodes: readonly NextBundleNode[];
-  readonly sentences: readonly NextBundleSentence[];
-  readonly stories?: readonly NextBundleStory[];
+  readonly nodes: readonly BundleNode[];
+  readonly sentences: readonly BundleSentence[];
+  readonly stories?: readonly BundleStory[];
   readonly scenarios?: readonly BundleScenario[];
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextBundleNode".
+ * via the `definition` "BundleNode".
  */
-export interface NextBundleNode {
+export interface BundleNode {
   readonly id: string;
   readonly kind: string;
   /**
@@ -1964,7 +1893,7 @@ export interface NextBundleNode {
   readonly introduces: readonly TeachableId[];
   readonly reinforces: readonly TeachableId[];
   readonly sentences: readonly string[];
-  readonly alphabet?: NextBundleAlphabet;
+  readonly alphabet?: BundleAlphabet;
   readonly convert?: {
     readonly from: string;
     readonly to: string;
@@ -1973,18 +1902,18 @@ export interface NextBundleNode {
 /**
  * An alphabet node's letters and practice lexemes, each with its reading in Latin letters (ADR 0088, 0133).
  */
-export interface NextBundleAlphabet {
+export interface BundleAlphabet {
   readonly orthography: string;
-  readonly letters: readonly NextScriptItem[];
-  readonly lexemes: readonly NextScriptItem[];
+  readonly letters: readonly ScriptItem[];
+  readonly lexemes: readonly ScriptItem[];
 }
 /**
  * A letter or a lexeme of an alphabet node: what it is, how the orthography writes it, and its reading in Latin letters (ADR 0133): a lexeme's pinned reading in its track's scheme's `latin`, a letter as that scheme writes it.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextScriptItem".
+ * via the `definition` "ScriptItem".
  */
-export interface NextScriptItem {
+export interface ScriptItem {
   /**
    * What a path node may introduce: a lexeme, a feature value, a rule, or a letter of a script track (ADR 0149: a grapheme stays the track's).
    */
@@ -1998,9 +1927,9 @@ export interface NextScriptItem {
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextBundleSentence".
+ * via the `definition` "BundleSentence".
  */
-export interface NextBundleSentence {
+export interface BundleSentence {
   readonly id: string;
   readonly node: string;
   readonly forms: {
@@ -2049,9 +1978,9 @@ export interface Persons {
  * A compiled story (Phase 6): its lines in every orthography of the course, translations and questions in every support language.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextBundleStory".
+ * via the `definition` "BundleStory".
  */
-export interface NextBundleStory {
+export interface BundleStory {
   readonly id: string;
   readonly node: string;
   readonly title: {
@@ -2070,7 +1999,7 @@ export interface NextBundleStory {
       readonly [k: string]: TaggedText;
     };
   }[];
-  readonly steps: readonly NextBundleStoryStep[];
+  readonly steps: readonly BundleStoryStep[];
   /**
    * Every part its lines can give evidence of.
    */
@@ -2080,10 +2009,10 @@ export interface NextBundleStory {
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextBundleStoryStep".
+ * via the `definition` "BundleStoryStep".
  */
-export interface NextBundleStoryStep {
-  readonly line?: NextBundleStoryLine;
+export interface BundleStoryStep {
+  readonly line?: BundleStoryLine;
   readonly choose?: {
     readonly prompt: {
       readonly [k: string]: TaggedText;
@@ -2096,9 +2025,9 @@ export interface NextBundleStoryStep {
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextBundleStoryLine".
+ * via the `definition` "BundleStoryLine".
  */
-export interface NextBundleStoryLine {
+export interface BundleStoryLine {
   readonly speaker?: string;
   /**
    * Per orthography.
@@ -2157,9 +2086,9 @@ export interface BundleScenario {
  * audio.json (role audio-index): playable clips by item. An item is a sentence's id, a story line's (`story#step`), a lexeme's id for its entry's spelling, or a form's key for a clip that says one form of a lexeme or a token built of several (common.schema.json FormKey).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextBundleAudio".
+ * via the `definition` "BundleAudio".
  */
-export interface NextBundleAudio {
+export interface BundleAudio {
   readonly items: {
     readonly [k: string]: BundleAudioItem;
   };
@@ -2193,79 +2122,19 @@ export interface BundleClip {
   readonly orthography?: string;
 }
 /**
- * A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.
+ * How a course's placement test probes (ADR 0077). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleManifest".
+ * via the `definition` "PlacementPolicy".
  */
-export interface BundleManifest {
-  /**
-   * 1: credits are defined once, in `credits` (ADR 0110). 0 repeated each file's `source` and each clip's `credit` text.
-   */
-  readonly formatVersion: 1;
-  /**
-   * sha256 of the manifest without this field.
-   */
-  readonly id: string;
-  readonly course: string;
-  readonly target: ScriptedLangTag;
-  readonly orthographies: readonly OrthographyId[];
-  readonly support: readonly OrthographyId[];
-  readonly names?: CourseNames1;
-  /**
-   * The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.
-   *
-   * @minItems 1
-   */
-  readonly facets?: readonly Facet[];
-  /**
-   * How far learners may rely on the course's clips, where it is not good (course source `audio.quality`, ADR 0091). iffy: no template whose prompt is a clip (listening, listen-and-repeat) is planned; clips still play where the learner has the text. A bad voice ships no clips, so it needs no flag.
-   */
-  readonly audioQuality?: "iffy";
-  readonly placement?: PlacementPolicy1;
-  /**
-   * The course asks words by their parts (course source `wordParts`, ADR 0152): the templates `parts-whole` and `whole-parts` are planned. Absent: they are not.
-   */
-  readonly wordParts?: true;
-  /**
-   * Everything that can change the output: schema, Unicode and CLDR data, analyzers, ICU.
-   */
-  readonly versions: {
-    readonly [k: string]: string;
-  };
-  /**
-   * Every file in the bundle by role, with its SPDX license.
-   */
-  readonly files: readonly BundleFile[];
-  /**
-   * Attribution, once per bundle (ADR 0110): each text a file or clip credits (a recording's speaker, a synthetic voice and what it cloned, a table's or picture's source), by its id, the first 8 hex digits of the text's sha256. Files and clips name it by that id (`credit`).
-   */
-  readonly credits: {
-    readonly [k: string]: string;
-  };
-  /**
-   * The units in path order. Each is a download unit for offline use (gameplan §16 Phase 10): its JSON is part of the course, which every device keeps, and `assets` are the media (audio and images) its items use, downloaded per unit.
-   */
-  readonly units: readonly BundleManifestUnit[];
-  /**
-   * SPDX expression → number of content items.
-   */
-  readonly licenses: {
-    readonly [k: string]: number;
-  };
-  /**
-   * Counts by status and author kind.
-   */
-  readonly provenance: {
-    readonly [k: string]: number;
-  };
-  /**
-   * A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts.
-   */
-  readonly release?: boolean;
+export interface PlacementPolicy1 {
+  readonly production?: "tiles" | "typed";
 }
 /**
- * What the app calls the course and its orthographies, as the course source names them (ADR 0109). Also in the bundles' index.json, for a list of courses.
+ * What the app calls a course and the orthographies it teaches, and the lines the course list says of them, by the language they are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows them in the UI language where the course gives them.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "CourseNames".
  */
 export interface CourseNames1 {
   readonly [k: string]: {
@@ -2293,257 +2162,22 @@ export interface CourseNames1 {
   };
 }
 /**
- * How the placement test probes, where the course says (course source `placement`, ADR 0077).
- */
-export interface PlacementPolicy1 {
-  readonly production?: "tiles" | "typed";
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleFile".
- */
-export interface BundleFile {
-  readonly path: string;
-  readonly role: "unit" | "profile" | "table" | "keyboard" | "image" | "audio" | "audio-index";
-  readonly sha256: string;
-  readonly license: string;
-  readonly credit?: CreditId2;
-  /**
-   * Size in bytes, to say what a download costs before it starts.
-   */
-  readonly bytes: number;
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleUnit".
- */
-export interface BundleUnit {
-  readonly id: string;
-  readonly cefr?: string;
-  readonly title?: {
-    readonly [k: string]: TaggedText;
-  };
-  readonly kcs: readonly BundleKc[];
-  readonly nodes: readonly BundleNode[];
-  readonly sentences: readonly BundleSentence[];
-  readonly stories?: readonly BundleStory[];
-  readonly scenarios?: readonly BundleScenario[];
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleKc".
- */
-export interface BundleKc {
-  readonly id: KcId;
-  readonly kind: "sense" | "form" | "construction" | "grapheme" | "reading" | "phone" | "tone";
-  readonly prerequisites: readonly KcId[];
-  readonly cefr?: string;
-  readonly pos?: PartOfSpeech;
-  readonly features?: UdFeatures1;
-  readonly gloss?: {
-    readonly [k: string]: TaggedText;
-  };
-  readonly forms?: {
-    readonly [k: string]: readonly TaggedText[];
-  };
-  /**
-   * Bundle path of the KC's picture (a file with role image).
-   */
-  readonly image?: string;
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleNode".
- */
-export interface BundleNode {
-  readonly id: string;
-  readonly kind: string;
-  readonly introduces: readonly KcId[];
-  readonly reinforces: readonly KcId[];
-  readonly sentences: readonly string[];
-  /**
-   * An alphabet node's letters (its grapheme KCs) and practice words, each with its reading in Latin letters (ADR 0088, 0133).
-   */
-  readonly alphabet?: {
-    readonly orthography: string;
-    readonly letters: readonly ScriptItem[];
-    readonly words: readonly ScriptItem[];
-  };
-  readonly convert?: {
-    readonly from: string;
-    readonly to: string;
-  };
-}
-/**
- * A letter or a word of an alphabet node: its KC, how the orthography writes it, and its reading in Latin letters (ADR 0133): a word's KC's pinned reading in its track's scheme's `latin`, a letter as that scheme writes it.
+ * A picture of a sense KC for select-image (gameplan §8.2). No text inside the image; licensed and attributed like any other asset.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "ScriptItem".
+ * via the `definition` "ImageAsset".
  */
-export interface ScriptItem {
-  readonly kc: KcId;
+export interface ImageAsset {
   /**
-   * The grapheme KCs it is written with, of those its track teaches (a letter: its own).
+   * SVG, PNG or WebP, relative to course.yaml.
    */
-  readonly letters: readonly KcId[];
-  readonly text: TaggedText;
-  readonly latin: TaggedText;
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleSentence".
- */
-export interface BundleSentence {
-  readonly id: string;
-  readonly node: string;
-  readonly forms: {
-    readonly [k: string]: {
-      readonly text: TaggedText;
-      readonly reverse?: string;
-    };
-  };
-  readonly translations: {
-    readonly [k: string]: {
-      readonly text: TaggedText;
-      readonly accept: string;
-    };
-  };
-  readonly kcs: readonly KcId[];
-  readonly production: boolean;
-  readonly register?: string;
-  readonly persons?: Persons;
+  readonly file: string;
+  readonly license: Spdx;
   readonly provenance: Provenance;
-  readonly license: string;
-}
-/**
- * A compiled story (Phase 6): its lines in every orthography of the course, translations and questions in every support language.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleStory".
- */
-export interface BundleStory {
-  readonly id: string;
-  readonly node: string;
-  readonly title: {
-    readonly [k: string]: TaggedText;
-  };
-  readonly characters: readonly {
-    readonly id: string;
-    /**
-     * The character's gender as a speaker, where the course sets it (ADR 0078).
-     */
-    readonly speaker?: "m" | "f";
-    /**
-     * Per orthography.
-     */
-    readonly name: {
-      readonly [k: string]: TaggedText;
-    };
-  }[];
-  readonly steps: readonly BundleStoryStep[];
   /**
-   * Every KC its lines use.
+   * Where it came from (URL or description), for attribution.
    */
-  readonly kcs: readonly KcId[];
-  readonly provenance?: Provenance;
-  readonly license: string;
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleStoryStep".
- */
-export interface BundleStoryStep {
-  readonly line?: BundleStoryLine;
-  readonly choose?: {
-    readonly prompt: {
-      readonly [k: string]: TaggedText;
-    };
-    readonly options: readonly {
-      readonly [k: string]: TaggedText;
-    }[];
-    readonly answer: number;
-  };
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleStoryLine".
- */
-export interface BundleStoryLine {
-  readonly speaker?: string;
-  /**
-   * Per orthography.
-   */
-  readonly forms: {
-    readonly [k: string]: TaggedText;
-  };
-  /**
-   * Per support language.
-   */
-  readonly translations: {
-    readonly [k: string]: TaggedText;
-  };
-  readonly kcs: readonly KcId[];
-  readonly ask?: "complete" | "arrange";
-  readonly gap?: KcId;
-  readonly asks?: Asks;
-  readonly distractors?: readonly KcId[];
-  /**
-   * complete: the wrong options as the compiler resolved them (ADR 0132), each per orthography: one word token the course writes in the story's unit or earlier (the distractor's sense in the gap's form, or the gap's word in another form), analysis and readings kept.
-   */
-  readonly options?: readonly {
-    readonly [k: string]: TaggedText;
-  }[];
-}
-/**
- * audio.json (role audio-index): playable clips by item (sentence or KC id).
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "BundleAudio".
- */
-export interface BundleAudio {
-  readonly items: {
-    readonly [k: string]: BundleAudioItem;
-  };
-}
-/**
- * How a course's placement test probes (ADR 0077). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "PlacementPolicy".
- */
-export interface PlacementPolicy2 {
-  readonly production?: "tiles" | "typed";
-}
-/**
- * What the app calls a course and the orthographies it teaches, and the lines the course list says of them, by the language they are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows them in the UI language where the course gives them.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "CourseNames".
- */
-export interface CourseNames2 {
-  readonly [k: string]: {
-    /**
-     * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
-     */
-    readonly course: string;
-    /**
-     * One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.
-     */
-    readonly blurb?: string;
-    /**
-     * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
-     */
-    readonly orthographies?: {
-      readonly [k: string]: string;
-    };
-    /**
-     * For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages.
-     */
-    readonly hints?: {
-      readonly [k: string]: string;
-    };
-    readonly provenance?: Provenance1;
-  };
+  readonly source?: string;
 }
 /**
  * Corrections to course content (ADR 0051): a learner marks a sentence or a story line as incorrect and says what it should be. The app records a sentence_reported event; the server queues it for review; `nabu corrections apply` writes reviewed corrections into the course source.
@@ -2640,12 +2274,12 @@ export interface SentenceCorrection {
   readonly createdAt: string;
 }
 /**
- * A course in the shape the lexical model needs (docs/migration-design.md, deliverable 1): the same course.yaml, pointing at its language's lexicon. The shape of every course's sources since the switch (courses/<id>/course.yaml and units/); it takes the name course-source when the old shape's file goes.schema.json and the `Next` names lose their prefix. What did not change is referenced from that file.
+ * A course's sources (courses/<id>/course.yaml and units/; docs/migration-design.md, deliverable 1): its course.yaml and units, pointing at its language's lexicon.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextCourseSource".
+ * via the `definition` "CourseSource".
  */
-export interface NextCourseSource {
+export interface CourseSource {
   readonly id: Slug;
   readonly target: ScriptedLangTag;
   /**
@@ -2660,7 +2294,7 @@ export interface NextCourseSource {
    * @minItems 1
    */
   readonly support: readonly OrthographyId[];
-  readonly names?: CourseNames3;
+  readonly names?: CourseNames2;
   readonly license?: Spdx1;
   readonly provenance?: Provenance2;
   /**
@@ -2669,7 +2303,7 @@ export interface NextCourseSource {
    * @minItems 1
    */
   readonly facets?: readonly Facet[];
-  readonly placement?: PlacementPolicy2;
+  readonly placement?: PlacementPolicy1;
   /**
    * Every reading in the course is fixed by its word's spelling, sense, form and morphs (ADR 0135): words annotated alike that read two ways (a scheme's reading, or the vowel marks a vocalization gives) are an error, `reading.inconsistent`, where a course without it gets the warning `reading.inconsistent-pending`. A token marked `readingVariant` is left out. Switched on once the course is clean.
    */
@@ -2685,7 +2319,7 @@ export interface NextCourseSource {
   /**
    * @minItems 1
    */
-  readonly units: readonly (string | NextUnitSource)[];
+  readonly units: readonly (string | UnitSource)[];
   readonly drills?: readonly DrillSpec[];
   readonly audio?: CourseAudio;
   /**
@@ -2708,7 +2342,7 @@ export interface NextCourseSource {
 /**
  * What the app calls the course and its orthographies, in the support language at least (ADR 0109; lint course.names).
  */
-export interface CourseNames3 {
+export interface CourseNames2 {
   readonly [k: string]: {
     /**
      * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
@@ -2743,12 +2377,12 @@ export interface Provenance2 {
   readonly reviewedAt?: string;
 }
 /**
- * A unit of a course in the new shape (docs/migration-design.md). It defines no lexemes: its nodes point at the language's lexicon, so a unit can be rearranged without touching it. The letters its script nodes teach are the one thing it still lists.
+ * A unit of a course (docs/migration-design.md). It defines no lexemes: its nodes point at the language's lexicon, so a unit can be rearranged without touching it. The letters its script nodes teach are the one thing it still lists.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextUnitSource".
+ * via the `definition` "UnitSource".
  */
-export interface NextUnitSource {
+export interface UnitSource {
   readonly id: Slug;
   /**
    * Per support language (the key is a support orthography's language, e.g. en).
@@ -2760,12 +2394,12 @@ export interface NextUnitSource {
   /**
    * @minItems 1
    */
-  readonly nodes: readonly NextPathNodeSource[];
-  readonly sentences: readonly NextSentenceSource[];
+  readonly nodes: readonly PathNodeSource[];
+  readonly sentences: readonly SentenceSource[];
   /**
    * Stories (gameplan §8.2 `story`, Phase 6): dialogue to read, each on a path node of kind story.
    */
-  readonly stories?: readonly NextStorySource[];
+  readonly stories?: readonly StorySource[];
   /**
    * Roleplay scenario cards (gameplan §13.4, Phase 8).
    */
@@ -2777,9 +2411,9 @@ export interface NextUnitSource {
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextPathNodeSource".
+ * via the `definition` "PathNodeSource".
  */
-export interface NextPathNodeSource {
+export interface PathNodeSource {
   readonly id: Slug;
   readonly kind: "lesson" | "practice" | "story" | "review" | "challenge" | "script";
   readonly introduces?: readonly TeachableId[];
@@ -2808,16 +2442,16 @@ export interface NextPathNodeSource {
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextSentenceSource".
+ * via the `definition` "SentenceSource".
  */
-export interface NextSentenceSource {
+export interface SentenceSource {
   readonly id: string;
   readonly node: Slug;
   /**
    * The sentence in each orthography of the course.
    */
   readonly forms: {
-    readonly [k: string]: NextSentenceForm;
+    readonly [k: string]: SentenceForm;
   };
   /**
    * Accept sets per support language (key: the support orthography's language, e.g. en). The first alternative is the displayed translation.
@@ -2846,11 +2480,11 @@ export interface NextSentenceSource {
  * The exact surface text, plus tokens that annotate it in order. Gaps between tokens become space and punctuation tokens.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextSentenceForm".
+ * via the `definition` "SentenceForm".
  */
-export interface NextSentenceForm {
+export interface SentenceForm {
   readonly text: string;
-  readonly tokens?: readonly NextToken[];
+  readonly tokens?: readonly SourceToken[];
   /**
    * Target-language accept set (§7.4) for L1→L2 production.
    */
@@ -2860,9 +2494,9 @@ export interface NextSentenceForm {
  * A token: a stretch of text, with the lexemes it writes. There is no unit between a token and a lexeme (the owner, 2026-11-20: no `word` inside): a stem, a clitic and an affix are all lexemes the token writes. One that writes a single lexeme names it itself (`lexeme`, `feats`); one that writes several lists them (`lexemes`). Never both.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextToken".
+ * via the `definition` "SourceToken".
  */
-export interface NextToken {
+export interface SourceToken {
   readonly surface: string;
   readonly kind?: TokenKind;
   /**
@@ -2943,9 +2577,9 @@ export interface TokenLexeme {
  * A short story: lines of dialogue or narration, read in the learner's orthography, with questions along the way. A tap glosses a token from the lexemes it writes.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextStorySource".
+ * via the `definition` "StorySource".
  */
-export interface NextStorySource {
+export interface StorySource {
   readonly id: string;
   readonly node: Slug1;
   /**
@@ -2958,7 +2592,7 @@ export interface NextStorySource {
   /**
    * @minItems 2
    */
-  readonly steps: readonly NextStoryStep[];
+  readonly steps: readonly StoryStep[];
   readonly provenance?: Provenance;
   readonly license?: Spdx;
 }
@@ -2983,17 +2617,17 @@ export interface StoryCharacter {
  * One step of a story: a line, or a comprehension question.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextStoryStep".
+ * via the `definition` "StoryStep".
  */
-export interface NextStoryStep {
-  readonly line?: NextStoryLineSource;
+export interface StoryStep {
+  readonly line?: StoryLineSource;
   readonly choose?: StoryChoiceSource;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextStoryLineSource".
+ * via the `definition` "StoryLineSource".
  */
-export interface NextStoryLineSource {
+export interface StoryLineSource {
   /**
    * A character id; none for narration.
    */
@@ -3002,7 +2636,7 @@ export interface NextStoryLineSource {
    * The line in every orthography of the course, tokenized like a sentence's forms.
    */
   readonly forms: {
-    readonly [k: string]: NextSentenceForm;
+    readonly [k: string]: SentenceForm;
   };
   /**
    * The line's meaning per support language: shown on request, never graded.
@@ -3332,7 +2966,7 @@ export interface Lexeme {
   readonly notes?: {
     readonly [k: string]: string;
   };
-  readonly image?: ImageAsset;
+  readonly image?: ImageAsset1;
   readonly form?: LexicalForm;
   /**
    * The forms and stems no rule gives yet (ADR 0145): each listed or pinned.
@@ -3376,7 +3010,7 @@ export interface Lexeme {
 /**
  * Its picture. In a lexicon the file is relative to the lexicon's own file.
  */
-export interface ImageAsset {
+export interface ImageAsset1 {
   /**
    * SVG, PNG or WebP, relative to course.yaml.
    */
@@ -3738,364 +3372,6 @@ export interface NamedRule {
   readonly was?: KcId2;
 }
 /**
- * A course as authored: courses/<id>/course.yaml plus its units (gameplan §7.1–7.3). Content is keyed by target language; each support language is a layer (§7.2).
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "CourseSource".
- */
-export interface CourseSource {
-  readonly id: Slug;
-  readonly target: ScriptedLangTag;
-  /**
-   * Orthographies the course teaches; the first is the default. Learners may switch (§6.3, apc).
-   *
-   * @minItems 1
-   */
-  readonly orthographies: readonly OrthographyId[];
-  /**
-   * Support-language layers, as orthography ids (en-Latn/standard).
-   *
-   * @minItems 1
-   */
-  readonly support: readonly OrthographyId[];
-  readonly names?: CourseNames4;
-  readonly license?: Spdx3;
-  readonly provenance?: Provenance5;
-  /**
-   * The facets the course practises (§8.5, ADR 0071); by default all of them. Exercises of any other facet are never planned: a course for a written language leaves out listen and speak, and one that shows its readings without drilling them leaves out read-script.
-   *
-   * @minItems 1
-   */
-  readonly facets?: readonly Facet[];
-  readonly placement?: PlacementPolicy2;
-  /**
-   * Every reading in the course is fixed by its word's spelling, sense, form and morphs (ADR 0135): words annotated alike that read two ways (a scheme's reading, or the vowel marks a vocalization gives) are an error, `reading.inconsistent`, where a course without it gets the warning `reading.inconsistent-pending`. A token marked `readingVariant` is left out. Switched on once the course is clean.
-   */
-  readonly consistentReadings?: boolean;
-  /**
-   * The course asks words by their parts (ADR 0152): a lesson may ask a word built from its parts (`parts-whole`: its own word and the form or morphs it carries, typed) and a word's parts picked out (`whole-parts`). Off unless set: a course switches it on once the parts its tokens carry (`form`, `morphs`) have been checked.
-   */
-  readonly wordParts?: boolean;
-  /**
-   * Maximum new knowledge components per sentence (§7.5). Default 1.
-   */
-  readonly iPlusOne?: number;
-  /**
-   * @minItems 1
-   */
-  readonly units: readonly (string | UnitSource)[];
-  readonly drills?: readonly DrillSpec[];
-  readonly audio?: CourseAudio;
-  /**
-   * Vowel marks for the course's words, by orthography (ADR 0053): a file next to course.yaml, or given inline. The compiler marks every word of sentences, stories and word forms with them, so the vowel-marks toggle has something to show.
-   */
-  readonly vocalization?: readonly (string | VocalizationSource)[];
-}
-/**
- * What the app calls the course and its orthographies, in the support language at least (ADR 0109; lint course.names).
- */
-export interface CourseNames4 {
-  readonly [k: string]: {
-    /**
-     * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
-     */
-    readonly course: string;
-    /**
-     * One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.
-     */
-    readonly blurb?: string;
-    /**
-     * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
-     */
-    readonly orthographies?: {
-      readonly [k: string]: string;
-    };
-    /**
-     * For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages.
-     */
-    readonly hints?: {
-      readonly [k: string]: string;
-    };
-    readonly provenance?: Provenance1;
-  };
-}
-/**
- * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
- */
-export interface Provenance5 {
-  readonly author: string;
-  readonly status: "draft" | "reviewed" | "published";
-  readonly reviewedBy?: string;
-  readonly reviewedAt?: string;
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "UnitSource".
- */
-export interface UnitSource {
-  readonly id: Slug;
-  /**
-   * Per support language (the key is a support orthography's language, e.g. en).
-   */
-  readonly title?: {
-    readonly [k: string]: string;
-  };
-  readonly cefr?: Cefr;
-  readonly kcs: readonly KnowledgeComponentSource[];
-  /**
-   * @minItems 1
-   */
-  readonly nodes: readonly PathNodeSource[];
-  readonly sentences: readonly SentenceSource[];
-  /**
-   * Stories (gameplan §8.2 `story`, Phase 6): dialogue to read, each on a path node of kind story.
-   */
-  readonly stories?: readonly StorySource[];
-  /**
-   * Roleplay scenario cards (gameplan §13.4, Phase 8).
-   */
-  readonly scenarios?: readonly ScenarioSource[];
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "KnowledgeComponentSource".
- */
-export interface KnowledgeComponentSource {
-  readonly id: KcId;
-  readonly prerequisites?: readonly KcId[];
-  readonly cefr?: Cefr;
-  readonly pos?: PartOfSpeech2;
-  readonly features?: UdFeatures7;
-  /**
-   * Short meaning per support language.
-   */
-  readonly gloss?: {
-    readonly [k: string]: string;
-  };
-  /**
-   * Glossary entries: how the KC is written, per orthography (tap-to-gloss, §7.5 stage 7).
-   */
-  readonly forms?: {
-    /**
-     * @minItems 1
-     */
-    readonly [k: string]: readonly string[];
-  };
-  /**
-   * How a word card reads the KC's first form, per scheme, where the course's tokens give that word more than one reading (ADR 0117's amendment): it comes before every reading the compiler takes from sentences, in each orthography whose words pin the scheme. It must be one of the readings the course's tokens give that word (it chooses, never adds), and the form must be one word. hbo's sense:ad pins tiberian ʿaḏ, free, where its lessons tie with the maqaf-bound ʿaḏ-. In a scheme read over whole words (`ruby: word`, ADR 0129) it may add one: chg's verb stems (bar-) never stand alone in a sentence.
-   */
-  readonly readings?: {
-    readonly [k: string]: string;
-  };
-  readonly image?: ImageAsset1;
-  readonly notes?: {
-    readonly [k: string]: string;
-  };
-}
-/**
- * A picture of a sense KC for select-image (gameplan §8.2). No text inside the image; licensed and attributed like any other asset.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "ImageAsset".
- */
-export interface ImageAsset1 {
-  /**
-   * SVG, PNG or WebP, relative to course.yaml.
-   */
-  readonly file: string;
-  readonly license: Spdx;
-  readonly provenance: Provenance;
-  /**
-   * Where it came from (URL or description), for attribution.
-   */
-  readonly source?: string;
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "PathNodeSource".
- */
-export interface PathNodeSource {
-  readonly id: Slug;
-  readonly kind: "lesson" | "practice" | "story" | "review" | "challenge" | "script";
-  readonly introduces?: readonly KcId[];
-  readonly reinforces?: readonly KcId[];
-  /**
-   * script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell.
-   */
-  readonly alphabet?: {
-    readonly orthography: OrthographyId;
-    /**
-     * @minItems 1
-     */
-    readonly words: readonly KcId[];
-  };
-  /**
-   * script nodes: convert sentences between two orthographies (script-convert, §6.3).
-   */
-  readonly convert?: {
-    readonly from: OrthographyId;
-    readonly to: OrthographyId;
-    /**
-     * @minItems 1
-     */
-    readonly sentences: readonly string[];
-  };
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "SentenceSource".
- */
-export interface SentenceSource {
-  readonly id: string;
-  readonly node: Slug;
-  /**
-   * The sentence in each orthography of the course.
-   */
-  readonly forms: {
-    readonly [k: string]: SentenceForm;
-  };
-  readonly constructions?: readonly KcId[];
-  /**
-   * Accept sets per support language (key: the support orthography's language, e.g. en). The first alternative is the displayed translation.
-   */
-  readonly translations: {
-    readonly [k: string]: string;
-  };
-  /**
-   * Used for L1→L2 production (needs `reverse` in every form). Default true.
-   */
-  readonly production?: boolean;
-  readonly register?: "formal" | "neutral" | "colloquial";
-  readonly persons?: Persons;
-  readonly provenance?: Provenance;
-  readonly license?: Spdx;
-}
-/**
- * The exact surface text, plus tokens that annotate its words in order. Gaps between tokens become space and punctuation tokens.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "SentenceForm".
- */
-export interface SentenceForm {
-  readonly text: string;
-  readonly tokens?: readonly SourceToken[];
-  /**
-   * Target-language accept set (§7.4) for L1→L2 production.
-   */
-  readonly reverse?: string;
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "SourceToken".
- */
-export interface SourceToken {
-  readonly surface: string;
-  readonly kind?: TokenKind;
-  readonly sense?: SenseId;
-  readonly form?: KcId3;
-  readonly readings?: {
-    readonly [k: string]: string;
-  };
-  /**
-   * @minItems 1
-   */
-  readonly morphs?: readonly Morph[];
-  readonly variants?: readonly string[];
-  /**
-   * Tile group. Default: each word token is its own tile.
-   */
-  readonly tile?: number;
-  /**
-   * This token's vowel-marked form (ADR 0053), where its surface is a homograph the course's vocalization file lists as ambiguous. Its marks removed, it must equal the surface.
-   */
-  readonly vocalized?: string;
-  /**
-   * A context that changes how the word is said but not how it is written or what it is (ADR 0135), as the source's accents encode it where the course's text leaves them out: Biblical Hebrew `pause` (a clause's last word, its stress moved: ʾānṓḵî) and `nesiga` (stress drawn back before a stressed syllable: qā́rāʾ láylâ). Words in different contexts may read differently; the reading check compares each context apart.
-   */
-  readonly context?: string;
-  /**
-   * Its reading is a free variant of the form's (ADR 0135): the reading check (`reading.inconsistent`) leaves it out, and it is never filled in from another token. Only where nothing in the sentence decides the reading.
-   */
-  readonly readingVariant?: true;
-}
-/**
- * One piece of a word in the course source this schema describes, the shape before the lexical model (it goes with this file at the switch): its letters and the KC it is.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Morph".
- */
-export interface Morph {
-  readonly surface: string;
-  readonly kc: KcId;
-}
-/**
- * A short story: lines of dialogue or narration, read in the learner's orthography, with questions along the way. Its words are glossed on tap from the course's glossary (KC forms).
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "StorySource".
- */
-export interface StorySource {
-  readonly id: string;
-  readonly node: Slug4;
-  /**
-   * The title per support language (key: e.g. en).
-   */
-  readonly title: {
-    readonly [k: string]: string;
-  };
-  readonly characters?: readonly StoryCharacter[];
-  /**
-   * @minItems 2
-   */
-  readonly steps: readonly StoryStep[];
-  readonly provenance?: Provenance;
-  readonly license?: Spdx;
-}
-/**
- * One step of a story: a line, or a comprehension question.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "StoryStep".
- */
-export interface StoryStep {
-  readonly line?: StoryLineSource;
-  readonly choose?: StoryChoiceSource;
-}
-/**
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "StoryLineSource".
- */
-export interface StoryLineSource {
-  /**
-   * A character id; none for narration.
-   */
-  readonly speaker?: string;
-  /**
-   * The line in every orthography of the course, tokenized like a sentence's forms.
-   */
-  readonly forms: {
-    readonly [k: string]: SentenceForm;
-  };
-  /**
-   * The line's meaning per support language: shown on request, never graded.
-   */
-  readonly translations: {
-    readonly [k: string]: string;
-  };
-  /**
-   * Ask before showing the line. complete: choose the word missing at `gap`; arrange: build the line from its tiles, given its translation.
-   */
-  readonly ask?: "complete" | "arrange";
-  readonly gap?: KcId4;
-  readonly asks?: Asks1;
-  /**
-   * complete. asks word: other sense KCs, each shown as the course writes it in the gap's form (a token of the story's unit or an earlier one with that sense and the gap's form signature; story.distractor-form where there is none). asks form: form KCs, each shown as the gap's word in the attested form that has it; left out, the compiler chooses two attested forms.
-   *
-   * @minItems 1
-   */
-  readonly distractors?: readonly KcId[];
-}
-/**
  * A generated lookup table an orthography profile refers to by id (profiles/tables/<id>.json): orthographic variant groups, character readings for the IME-homophone typo model, or a character set for script-mismatch detection.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -4170,9 +3446,9 @@ export interface KeyboardLayout {
  * A session began: a lesson (one path node), review, mistakes or placement.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextSessionStarted".
+ * via the `definition` "SessionStarted".
  */
-export interface NextSessionStarted {
+export interface SessionStarted {
   readonly type: "session_started";
   readonly id: Uuid;
   readonly schema: 2;
@@ -4220,9 +3496,9 @@ export interface NextSessionStarted {
  * An exercise was shown.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextExercisePresented".
+ * via the `definition` "ExercisePresented".
  */
-export interface NextExercisePresented {
+export interface ExercisePresented {
   readonly type: "exercise_presented";
   readonly id: Uuid2;
   readonly schema: 2;
@@ -4257,7 +3533,7 @@ export interface NextExercisePresented {
    * IANA time zone of the device.
    */
   readonly tz: string;
-  readonly exercise: NextExerciseRef;
+  readonly exercise: ExerciseRef;
   readonly prediction?: Prediction;
   /**
    * What was shown, each lexeme once in each form.
@@ -4268,9 +3544,9 @@ export interface NextExercisePresented {
  * What was presented: enough to recompute credit without the bundle.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextExerciseRef".
+ * via the `definition` "ExerciseRef".
  */
-export interface NextExerciseRef {
+export interface ExerciseRef {
   readonly id: string;
   readonly template:
     | "select-image"
@@ -4340,9 +3616,9 @@ export interface DisplayedLexeme {
  * One graded answer (§9.6). Raw answers are personal data (§14.4).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextAnswerSubmitted".
+ * via the `definition` "AnswerSubmitted".
  */
-export interface NextAnswerSubmitted {
+export interface AnswerSubmitted {
   readonly type: "answer_submitted";
   readonly id: Uuid3;
   readonly schema: 2;
@@ -4377,7 +3653,7 @@ export interface NextAnswerSubmitted {
    * IANA time zone of the device.
    */
   readonly tz: string;
-  readonly exercise: NextExerciseRef;
+  readonly exercise: ExerciseRef;
   /**
    * 1 for the first try in this session, 2+ for an exercise brought back after a mistake.
    */
@@ -4434,9 +3710,9 @@ export interface PartCredit {
  * The learner skipped (the answer is revealed) or could not listen or speak.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextExerciseSkipped".
+ * via the `definition` "ExerciseSkipped".
  */
-export interface NextExerciseSkipped {
+export interface ExerciseSkipped {
   readonly type: "exercise_skipped";
   readonly id: Uuid4;
   readonly schema: 2;
@@ -4471,7 +3747,7 @@ export interface NextExerciseSkipped {
    * IANA time zone of the device.
    */
   readonly tz: string;
-  readonly exercise: NextExerciseRef;
+  readonly exercise: ExerciseRef;
   readonly attempt: number;
   readonly reason: "skip" | "cant-listen" | "cant-speak";
 }
@@ -4479,9 +3755,9 @@ export interface NextExerciseSkipped {
  * A session ended, finished or quit.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextSessionCompleted".
+ * via the `definition` "SessionCompleted".
  */
-export interface NextSessionCompleted {
+export interface SessionCompleted {
   readonly type: "session_completed";
   readonly id: Uuid5;
   readonly schema: 2;
@@ -4543,9 +3819,9 @@ export interface SessionSummaryData {
  * A later verdict on an earlier answer (§8.3): the LLM judge accepted it, or a reviewer did. Replay applies the revised outcome in place of the original, retroactively. Only the server issues these; uploads of ones it did not issue are refused.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextOutcomeRevised".
+ * via the `definition` "OutcomeRevised".
  */
-export interface NextOutcomeRevised {
+export interface OutcomeRevised {
   readonly type: "outcome_revised";
   readonly id: Uuid6;
   readonly schema: 2;
@@ -4617,9 +3893,9 @@ export interface NextOutcomeRevised {
  * A learner's claim about how an answer was graded (§13.2, ADR 0052): "my answer should have been accepted" (claim accept, the default) or "this should have been wrong" (claim reject). It counts that way for the learner at once (projections apply it as a revision of the answer) and goes to the review queue for the course.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextAnswerReported".
+ * via the `definition` "AnswerReported".
  */
-export interface NextAnswerReported {
+export interface AnswerReported {
   readonly type: "answer_reported";
   readonly id: Uuid8;
   readonly schema: 2;
@@ -4655,7 +3931,7 @@ export interface NextAnswerReported {
    */
   readonly tz: string;
   readonly answer: Uuid9;
-  readonly exercise: NextExerciseRef;
+  readonly exercise: ExerciseRef;
   /**
    * The answer as the learner settled it. Personal data.
    */
@@ -4673,9 +3949,9 @@ export interface NextAnswerReported {
  * The learner started the course over: in its projection, everything before this event is forgotten (what they know, the lessons done, placement, mistakes). XP and the game state (streak, achievements) stay: they record practice that happened. The log keeps every earlier event.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextProgressReset".
+ * via the `definition` "ProgressReset".
  */
-export interface NextProgressReset {
+export interface ProgressReset {
   readonly type: "progress_reset";
   readonly id: Uuid10;
   readonly schema: 2;
@@ -4715,9 +3991,9 @@ export interface NextProgressReset {
  * A learner marked a sentence, a story line or a word as incorrect and said what it should be (ADR 0051, 0057). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextSentenceReported".
+ * via the `definition` "SentenceReported".
  */
-export interface NextSentenceReported {
+export interface SentenceReported {
   readonly type: "sentence_reported";
   readonly id: Uuid12;
   readonly schema: 2;
@@ -4795,9 +4071,9 @@ export interface CorrectionFields2 {
  * The learner set or cleared their weekly practice goal (ADR 0107, D12): a number of practice days a week. It is the account's, not a course's or a device's, so it names no course, bundle or session; every device shares it through the log. The latest by device time, then id, holds.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "NextGoalSet".
+ * via the `definition` "GoalSet".
  */
-export interface NextGoalSet {
+export interface GoalSet {
   readonly type: "goal_set";
   readonly id: Uuid14;
   readonly schema: 2;
@@ -4884,9 +4160,9 @@ export interface StoryLineRead {
  * A session began: a lesson (one path node), review, mistakes or placement.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "SessionStarted".
+ * via the `definition` "SessionStartedV1".
  */
-export interface SessionStarted {
+export interface SessionStartedV1 {
   readonly type: "session_started";
   readonly id: Uuid16;
   readonly schema: 1;
@@ -4934,9 +4210,9 @@ export interface SessionStarted {
  * An exercise was shown.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "ExercisePresented".
+ * via the `definition` "ExercisePresentedV1".
  */
-export interface ExercisePresented {
+export interface ExercisePresentedV1 {
   readonly type: "exercise_presented";
   readonly id: Uuid17;
   readonly schema: 1;
@@ -4971,16 +4247,16 @@ export interface ExercisePresented {
    * IANA time zone of the device.
    */
   readonly tz: string;
-  readonly exercise: ExerciseRef;
+  readonly exercise: ExerciseRefV1;
   readonly prediction?: Prediction;
 }
 /**
  * What was presented: enough to recompute credit without the bundle.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "ExerciseRef".
+ * via the `definition` "ExerciseRefV1".
  */
-export interface ExerciseRef {
+export interface ExerciseRefV1 {
   readonly id: string;
   readonly template:
     | "select-image"
@@ -5019,17 +4295,17 @@ export interface ExerciseRef {
    * The sentence or KC the exercise was built from.
    */
   readonly item: string;
-  readonly kcs: readonly KcRefLocal[];
-  readonly asks?: Asks2;
+  readonly kcs: readonly KcRefLocalV1[];
+  readonly asks?: Asks1;
   readonly reading?: SchemeId2;
 }
 /**
  * One graded answer (§9.6). Raw answers are personal data (§14.4).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "AnswerSubmitted".
+ * via the `definition` "AnswerSubmittedV1".
  */
-export interface AnswerSubmitted {
+export interface AnswerSubmittedV1 {
   readonly type: "answer_submitted";
   readonly id: Uuid18;
   readonly schema: 1;
@@ -5064,7 +4340,7 @@ export interface AnswerSubmitted {
    * IANA time zone of the device.
    */
   readonly tz: string;
-  readonly exercise: ExerciseRef;
+  readonly exercise: ExerciseRefV1;
   /**
    * 1 for the first try in this session, 2+ for an exercise brought back after a mistake.
    */
@@ -5098,7 +4374,7 @@ export interface AnswerSubmitted {
       | "WRONG"
       | "SKIPPED";
     readonly notes: readonly string[];
-    readonly kcs: readonly KcCredit[];
+    readonly kcs: readonly KcCreditV1[];
   };
   readonly prediction?: Prediction;
 }
@@ -5106,19 +4382,19 @@ export interface AnswerSubmitted {
  * Per-KC outcome (§8.5): right, wrong, or given (the learner did not have to produce it).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "KcCredit".
+ * via the `definition` "KcCreditV1".
  */
-export interface KcCredit {
-  readonly kc: KcRefLocal;
+export interface KcCreditV1 {
+  readonly kc: KcRefLocalV1;
   readonly status: "right" | "wrong" | "given";
 }
 /**
  * The learner skipped (the answer is revealed) or could not listen or speak.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "ExerciseSkipped".
+ * via the `definition` "ExerciseSkippedV1".
  */
-export interface ExerciseSkipped {
+export interface ExerciseSkippedV1 {
   readonly type: "exercise_skipped";
   readonly id: Uuid19;
   readonly schema: 1;
@@ -5153,7 +4429,7 @@ export interface ExerciseSkipped {
    * IANA time zone of the device.
    */
   readonly tz: string;
-  readonly exercise: ExerciseRef;
+  readonly exercise: ExerciseRefV1;
   readonly attempt: number;
   readonly reason: "skip" | "cant-listen" | "cant-speak";
 }
@@ -5161,9 +4437,9 @@ export interface ExerciseSkipped {
  * A session ended, finished or quit.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "SessionCompleted".
+ * via the `definition` "SessionCompletedV1".
  */
-export interface SessionCompleted {
+export interface SessionCompletedV1 {
   readonly type: "session_completed";
   readonly id: Uuid20;
   readonly schema: 1;
@@ -5208,15 +4484,15 @@ export interface SessionCompleted {
   /**
    * Placement only (ADR 0111): the KCs the placed nodes introduce. The projection gives each that has no card yet a recognize card, as if recalled with ease at the end of the session, so the planner counts them as seen, review brings them back at long intervals and the word list shows them.
    */
-  readonly seeded?: readonly KcRefLocal[];
+  readonly seeded?: readonly KcRefLocalV1[];
 }
 /**
  * A later verdict on an earlier answer (§8.3): the LLM judge accepted it, or a reviewer did. Replay applies the revised outcome in place of the original, retroactively. Only the server issues these; uploads of ones it did not issue are refused.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "OutcomeRevised".
+ * via the `definition` "OutcomeRevisedV1".
  */
-export interface OutcomeRevised {
+export interface OutcomeRevisedV1 {
   readonly type: "outcome_revised";
   readonly id: Uuid21;
   readonly schema: 1;
@@ -5265,7 +4541,7 @@ export interface OutcomeRevised {
       | "WRONG"
       | "SKIPPED";
     readonly notes: readonly string[];
-    readonly kcs: readonly KcCredit[];
+    readonly kcs: readonly KcCreditV1[];
   };
   /**
    * Who revised it: the judge (the outcome is CORRECT_PROVISIONAL) or a human reviewer.
@@ -5284,9 +4560,9 @@ export interface OutcomeRevised {
  * A learner's claim about how an answer was graded (§13.2, ADR 0052): "my answer should have been accepted" (claim accept, the default) or "this should have been wrong" (claim reject). It counts that way for the learner at once (projections apply it as a revision of the answer) and goes to the review queue for the course.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "AnswerReported".
+ * via the `definition` "AnswerReportedV1".
  */
-export interface AnswerReported {
+export interface AnswerReportedV1 {
   readonly type: "answer_reported";
   readonly id: Uuid23;
   readonly schema: 1;
@@ -5322,7 +4598,7 @@ export interface AnswerReported {
    */
   readonly tz: string;
   readonly answer: Uuid24;
-  readonly exercise: ExerciseRef;
+  readonly exercise: ExerciseRefV1;
   /**
    * The answer as the learner settled it. Personal data.
    */
@@ -5340,9 +4616,9 @@ export interface AnswerReported {
  * The learner started the course over: in its projection, everything before this event is forgotten (what they know, the lessons done, placement, mistakes). XP and the game state (streak, achievements) stay: they record practice that happened. The log keeps every earlier event.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "ProgressReset".
+ * via the `definition` "ProgressResetV1".
  */
-export interface ProgressReset {
+export interface ProgressResetV1 {
   readonly type: "progress_reset";
   readonly id: Uuid25;
   readonly schema: 1;
@@ -5382,9 +4658,9 @@ export interface ProgressReset {
  * A learner marked a sentence, a story line or a word as incorrect and said what it should be (ADR 0051, 0057). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "SentenceReported".
+ * via the `definition` "SentenceReportedV1".
  */
-export interface SentenceReported {
+export interface SentenceReportedV1 {
   readonly type: "sentence_reported";
   readonly id: Uuid27;
   readonly schema: 1;
@@ -5462,9 +4738,9 @@ export interface CorrectionFields4 {
  * The learner set or cleared their weekly practice goal (ADR 0107, D12): a number of practice days a week. It is the account's, not a course's or a device's, so it names no course, bundle or session; every device shares it through the log. The latest by device time, then id, holds.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "GoalSet".
+ * via the `definition` "GoalSetV1".
  */
-export interface GoalSet {
+export interface GoalSetV1 {
   readonly type: "goal_set";
   readonly id: Uuid29;
   readonly schema: 1;
@@ -5502,7 +4778,7 @@ export interface GoalSet {
 export interface MessageCatalog {
   readonly $schema?: string;
   readonly locale: LangTag1;
-  readonly provenance?: Provenance6;
+  readonly provenance?: Provenance5;
   readonly messages: {
     readonly [k: string]: CatalogMessage;
   };
@@ -5510,7 +4786,7 @@ export interface MessageCatalog {
 /**
  * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
  */
-export interface Provenance6 {
+export interface Provenance5 {
   readonly author: string;
   readonly status: "draft" | "reviewed" | "published";
   readonly reviewedBy?: string;
@@ -6179,12 +5455,12 @@ export interface SchemeNames {
   readonly tones?: {
     readonly [k: string]: string;
   };
-  readonly provenance?: Provenance7;
+  readonly provenance?: Provenance6;
 }
 /**
  * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
  */
-export interface Provenance7 {
+export interface Provenance6 {
   readonly author: string;
   readonly status: "draft" | "reviewed" | "published";
   readonly reviewedBy?: string;

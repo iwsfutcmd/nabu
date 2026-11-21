@@ -29,9 +29,7 @@ from nabu.compiler.counts import add_count
 from nabu.items import Content, iter_items
 from nabu.lexicon import LEXEME
 from nabu.provenance import signed_off
-from nabu.schema.models import NextBundleNode as BundleNode
-from nabu.schema.models import NextBundleUnit as BundleUnit
-from nabu.schema.models import Provenance
+from nabu.schema.models import BundleNode, BundleUnit, Provenance
 
 
 @dataclass

@@ -12,7 +12,7 @@ import pytest
 import yaml
 
 from nabu.compiler import load_profiles
-from nabu.schema.models import NextCourseSource as CourseSource
+from nabu.schema.models import CourseSource
 from nabu.schemes import (
     Plugins,
     plugins,

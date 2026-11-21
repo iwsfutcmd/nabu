@@ -11,8 +11,7 @@ from nabu.audio.course import audio_dir, kept_voices, plan, read_index
 from nabu.compiler import text as tx
 from nabu.compiler.build import Compiled
 from nabu.compiler.readings import pin_lexeme_readings, pinned_schemes
-from nabu.schema.models import BundleLexeme, BundleLexicon, TokenModel
-from nabu.schema.models import NextBundleUnit as BundleUnit
+from nabu.schema.models import BundleLexeme, BundleLexicon, BundleUnit, TokenModel
 
 from .conftest import ROOT, CoreCli
 from .test_courses import build

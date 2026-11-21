@@ -151,7 +151,7 @@
           },
           "provenance": {
             "description": "Who wrote the names in this language, where not the course's authors: an LLM's translation awaiting review (status draft). Without it, the course's provenance.",
-            "$ref": "course-source.schema.json#/$defs/Provenance"
+            "$ref": "#/$defs/Provenance"
           }
         }
       },
@@ -226,6 +226,43 @@
       "description": "The one thing a choice asks (ADR 0132, 0147): which lexeme, which form of the answer's lexeme, or which use (a contrast only the passage decides). Replaces `Asks`, whose first value called a lexeme a word.",
       "type": "string",
       "enum": ["lexeme", "form", "use"]
+    },
+    "Provenance": {
+      "title": "Provenance",
+      "description": "Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.",
+      "type": "object",
+      "required": ["author", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "author": { "type": "string", "pattern": "^(human:[^\\s@]+|(llm|generated):[^\\s@]+@[^\\s@]+)$" },
+        "status": { "type": "string", "enum": ["draft", "reviewed", "published"] },
+        "reviewedBy": { "type": "string", "minLength": 1 },
+        "reviewedAt": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" }
+      }
+    },
+    "Slug": { "title": "Slug", "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+    "Spdx": {
+      "title": "Spdx",
+      "description": "An SPDX license expression.",
+      "type": "string",
+      "pattern": "^(LicenseRef-[A-Za-z0-9.-]+|[A-Za-z0-9.+-]+)( (AND|OR|WITH) (LicenseRef-[A-Za-z0-9.-]+|[A-Za-z0-9.+-]+))*$"
+    },
+    "ImageAsset": {
+      "title": "ImageAsset",
+      "description": "A picture of a sense KC for select-image (gameplan §8.2). No text inside the image; licensed and attributed like any other asset.",
+      "type": "object",
+      "required": ["file", "license", "provenance"],
+      "additionalProperties": false,
+      "properties": {
+        "file": {
+          "description": "SVG, PNG or WebP, relative to course.yaml.",
+          "type": "string",
+          "pattern": "^[^/][^\\\\]*\\.(svg|png|webp)$"
+        },
+        "license": { "$ref": "#/$defs/Spdx" },
+        "provenance": { "$ref": "#/$defs/Provenance" },
+        "source": { "description": "Where it came from (URL or description), for attribution.", "type": "string", "minLength": 1 }
+      }
     }
   }
 }

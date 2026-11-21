@@ -7,7 +7,7 @@
   "required": ["course", "aliases"],
   "additionalProperties": false,
   "properties": {
-    "course": { "$ref": "course-source.schema.json#/$defs/Slug" },
+    "course": { "$ref": "common.schema.json#/$defs/Slug" },
     "aliases": {
       "type": "object",
       "propertyNames": { "$ref": "common.schema.json#/$defs/KcId" },

@@ -41,7 +41,7 @@ from nabu.audio.providers import (
 )
 from nabu.compiler import compile_course
 from nabu.compiler.build import Compiled
-from nabu.schema.models import AudioVoice, NextBundleUnit, Provenance
+from nabu.schema.models import AudioVoice, BundleUnit, Provenance
 
 from .conftest import ROOT, CoreCli
 from .units import part_of
@@ -286,7 +286,7 @@ def test_live_the_course_voice_speaks_lebanese() -> None:
 def test_story_lines_are_read_too(apc: Compiled) -> None:
     """Each story line is an audio item "<story>#<step>", read like a sentence."""
     items = {i.item: i for i in plan(apc.content, voice(), apc.written)[0]}
-    units: list[NextBundleUnit] = list(apc.units)
+    units: list[BundleUnit] = list(apc.units)
     lines = [
         (story.id, step)
         for unit in units

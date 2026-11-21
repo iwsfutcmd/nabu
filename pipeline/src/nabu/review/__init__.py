@@ -33,18 +33,14 @@ from nabu.schema.models import (
     BundleSentence,
     BundleStory,
     BundleUnit,
-    NextBundleSentence,
-    NextBundleStory,
-    NextBundleUnit,
     SignOffs,
     TaggedText,
 )
 
-#: A compiled unit, sentence or story: the compiler's (the lexical model's) or a bundle the app
-#: was given before it. What a reviewer saw of either is the same text.
-Unit = BundleUnit | NextBundleUnit
-Sentence = BundleSentence | NextBundleSentence
-Story = BundleStory | NextBundleStory
+#: A compiled unit, sentence or story.
+Unit = BundleUnit
+Sentence = BundleSentence
+Story = BundleStory
 
 
 def _text(tagged: TaggedText) -> str:

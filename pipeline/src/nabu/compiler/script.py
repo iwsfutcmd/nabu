@@ -42,13 +42,13 @@ from nabu.compiler.diagnostics import Diagnostics, Loc
 from nabu.items import WORD_KINDS
 from nabu.lexicon import GRAPHEME, Language
 from nabu.schema.models import (
+    BundleAlphabet,
     BundleLexicon,
+    BundleUnit,
+    CourseSource,
     GraphemeSource,
-    NextBundleAlphabet,
     OrthographyProfile,
 )
-from nabu.schema.models import NextBundleUnit as BundleUnit
-from nabu.schema.models import NextCourseSource as CourseSource
 from nabu.schemes import plugins, schemes
 
 if TYPE_CHECKING:
@@ -360,7 +360,7 @@ def with_alphabets(
             out.append(unit)
             continue
         nodes = [
-            n.model_copy(update={"alphabet": NextBundleAlphabet.model_validate(alphabets[n.id])})
+            n.model_copy(update={"alphabet": BundleAlphabet.model_validate(alphabets[n.id])})
             if n.id in alphabets
             else n
             for n in unit.nodes

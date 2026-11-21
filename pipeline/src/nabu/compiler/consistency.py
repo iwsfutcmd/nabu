@@ -31,9 +31,7 @@ from typing import TYPE_CHECKING, Any, cast
 from nabu.compiler import tokens as tk
 from nabu.compiler.diagnostics import Diagnostics, Loc
 from nabu.lexicon import Language
-from nabu.schema.models import NextCourseSource as CourseSource
-from nabu.schema.models import NextSentenceForm as SentenceForm
-from nabu.schema.models import NextToken as SourceToken
+from nabu.schema.models import CourseSource, SentenceForm, SourceToken
 from nabu.schemes import plugins, schemes
 
 if TYPE_CHECKING:

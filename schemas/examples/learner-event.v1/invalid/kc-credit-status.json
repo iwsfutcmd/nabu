@@ -1,0 +1,41 @@
+{
+  "id": "00000000-0000-7000-8000-000000000005",
+  "schema": 1,
+  "device": "test",
+  "course": "es",
+  "orthography": "es-Latn/standard",
+  "support": "en",
+  "bundle": "b64ce0fd821a439d68e6aa4ffe81b06c0e52f8ad305143f10a62de81c761da7e",
+  "session": "00000000-0000-7000-8000-000000000002",
+  "clientTime": "2026-01-01T09:00:40.000Z",
+  "localDate": "2026-01-01",
+  "tz": "UTC",
+  "type": "answer_submitted",
+  "exercise": {
+    "id": "choose-translation:s.u01.2",
+    "template": "choose-translation",
+    "item": "s.u01.2",
+    "kcs": [
+      "sense:buenos-días"
+    ]
+  },
+  "attempt": 1,
+  "input": {
+    "method": "choice",
+    "latencyMs": 2889
+  },
+  "outcome": {
+    "kind": "CORRECT",
+    "notes": [],
+    "kcs": [
+      {
+        "kc": "sense:buenos-días",
+        "status": "half"
+      }
+    ]
+  },
+  "prediction": {
+    "p": 0.8175744761936437,
+    "model": "elo@1"
+  }
+}

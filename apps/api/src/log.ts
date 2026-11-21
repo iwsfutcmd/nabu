@@ -31,17 +31,17 @@ const ajv = new Ajv2020({ strict: true, allErrors: false });
 ajv.addKeyword({ keyword: "tsType", schemaType: "string" });
 ajv.addSchema(schema("common.schema.json"));
 ajv.addSchema(schema("correction.schema.json"));
-// The old shape: the new one shares its definitions (ids, the session summary), and the rows the
-// deploy's job rewrites are checked against it before they are read.
-const oldSchema = schema("learner-event.schema.json") as { readonly $id: string };
-const validateOld = ajv.compile<LearnerEventV1>(oldSchema);
-const eventSchema = schema("learner-event.next.schema.json") as { readonly $id: string };
+const eventSchema = schema("learner-event.schema.json") as { readonly $id: string };
 const validate = ajv.compile<LearnerEvent>(eventSchema);
+// The shape before the lexical model (schema 1): it shares the new one's definitions (ids, the
+// session summary), and the rows the deploy's job rewrites are checked against it before they are read.
+const oldSchema = schema("learner-event.v1.schema.json") as { readonly $id: string };
+const validateOld = ajv.compile<LearnerEventV1>(oldSchema);
 
 /** The schema version the log holds (ADR 0146). */
 export const SCHEMA = 2;
 
-/** Whether a value is a valid learner event (schemas/learner-event.next.schema.json). */
+/** Whether a value is a valid learner event (schemas/learner-event.schema.json). */
 export const validEvent = (value: unknown): value is LearnerEvent => validate(value);
 
 /** Whether a value is a valid event of the shape before the lexical model: what the deploy's job upgrades. */
@@ -97,16 +97,16 @@ const idOf = (value: unknown): { readonly id?: string } => {
 
 /** Each event type's definition in the schema, where the errors that explain a rejection are. */
 const DEFINITIONS: Readonly<Record<string, string>> = {
-  session_started: "NextSessionStarted",
-  exercise_presented: "NextExercisePresented",
-  answer_submitted: "NextAnswerSubmitted",
-  exercise_skipped: "NextExerciseSkipped",
-  session_completed: "NextSessionCompleted",
-  outcome_revised: "NextOutcomeRevised",
-  answer_reported: "NextAnswerReported",
-  progress_reset: "NextProgressReset",
-  sentence_reported: "NextSentenceReported",
-  goal_set: "NextGoalSet",
+  session_started: "SessionStarted",
+  exercise_presented: "ExercisePresented",
+  answer_submitted: "AnswerSubmitted",
+  exercise_skipped: "ExerciseSkipped",
+  session_completed: "SessionCompleted",
+  outcome_revised: "OutcomeRevised",
+  answer_reported: "AnswerReported",
+  progress_reset: "ProgressReset",
+  sentence_reported: "SentenceReported",
+  goal_set: "GoalSet",
   story_line_read: "StoryLineRead",
 };
 

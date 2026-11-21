@@ -13,13 +13,13 @@ from nabu.schema.models import (
     BundleGrapheme,
     BundleLexeme,
     BundleLexicon,
+    BundleSentence,
+    BundleStory,
+    BundleStoryStep,
+    BundleUnit,
     TaggedText,
     TokenModel,
 )
-from nabu.schema.models import NextBundleSentence as BundleSentence
-from nabu.schema.models import NextBundleStory as BundleStory
-from nabu.schema.models import NextBundleStoryStep as BundleStoryStep
-from nabu.schema.models import NextBundleUnit as BundleUnit
 
 Gender = Literal["m", "f"]
 DRAFT = {"author": "human:test", "status": "draft"}

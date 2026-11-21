@@ -12,7 +12,7 @@ from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
     from nabu.compiler.build import Ctx, Unit
-    from nabu.schema.models import NextCourseSource as CourseSource
+    from nabu.schema.models import CourseSource
 
 FIELDS = ("title", "setting", "character", "goal")
 

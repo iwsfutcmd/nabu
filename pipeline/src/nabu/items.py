@@ -14,9 +14,7 @@ from collections.abc import Iterator, Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import Any, Literal, cast
 
-from nabu.schema.models import BundleLexicon, Persons, TokenModel
-from nabu.schema.models import NextBundleSentence as BundleSentence
-from nabu.schema.models import NextBundleUnit as BundleUnit
+from nabu.schema.models import BundleLexicon, BundleSentence, BundleUnit, Persons, TokenModel
 
 #: Tokens that are words: what a voice says, and what a reading belongs to.
 WORD_KINDS = ("word", "number")

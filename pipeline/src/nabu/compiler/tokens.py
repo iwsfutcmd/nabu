@@ -12,12 +12,12 @@ from typing import Any, cast
 
 from nabu.formkey import form_key
 from nabu.lexicon import LEXEME
-from nabu.schema.models import NextToken, TokenLexeme
+from nabu.schema.models import SourceToken, TokenLexeme
 
 Json = dict[str, Any]
 
 
-def _relation(source: NextToken | TokenLexeme, out: Json) -> None:
+def _relation(source: SourceToken | TokenLexeme, out: Json) -> None:
     if source.n is not None:
         out["n"] = source.n
     if source.head is not None:
@@ -26,7 +26,7 @@ def _relation(source: NextToken | TokenLexeme, out: Json) -> None:
         out["rel"] = source.rel
 
 
-def written(token: NextToken) -> list[Json]:
+def written(token: SourceToken) -> list[Json]:
     """The lexemes a source token writes, as a compiled token lists them."""
     if token.lexemes:
         out: list[Json] = []
@@ -85,7 +85,7 @@ def analysis(token: Mapping[str, Any]) -> str | None:
     return form_key([(str(p["lexeme"]), feats_of(p)) for p in parts])
 
 
-def source_analysis(token: NextToken) -> str | None:
+def source_analysis(token: SourceToken) -> str | None:
     """`analysis` of a source token, before it is compiled."""
     return analysis({"lexemes": written(token)})
 

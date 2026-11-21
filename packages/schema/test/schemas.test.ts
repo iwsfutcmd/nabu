@@ -84,8 +84,8 @@ describe("reading schemes in /profiles/schemes (ADR 0109)", () => {
 
 describe("fixture courses in /courses", () => {
   const ajv = makeAjv();
-  const course = ajv.getSchema(ID("course-source.next.schema.json"))!;
-  const unit = ajv.getSchema(`${ID("course-source.next.schema.json")}#/$defs/NextUnitSource`)!;
+  const course = ajv.getSchema(ID("course-source.schema.json"))!;
+  const unit = ajv.getSchema(`${ID("course-source.schema.json")}#/$defs/UnitSource`)!;
   const aliases = ajv.getSchema(ID("aliases.schema.json"))!;
   const courses = readdirSync(COURSES_DIR, { withFileTypes: true })
     .filter((d) => d.isDirectory() && readdirSync(join(COURSES_DIR, d.name)).includes("course.yaml"))
@@ -146,7 +146,8 @@ describe("lexicons in /lexicons", () => {
 
 // Each directory of examples and the schema it is checked against: a file's root, or one of its
 // definitions. Those from `language` on are the lexical model's (docs/migration-design.md): the
-// sources and events of deliverable 1, then the bundle of deliverable 3.
+// sources and events of deliverable 1 (and the events before it, which `upgrade` reads), then the
+// bundle of deliverable 3.
 const EXAMPLES: readonly (readonly [string, string])[] = [
   ["tagged-text", ID("tagged-text.schema.json")],
   ["orthography-profile", ID("orthography-profile.schema.json")],
@@ -154,12 +155,13 @@ const EXAMPLES: readonly (readonly [string, string])[] = [
   ["language", ID("language.schema.json")],
   ["lexicon", ID("lexicon.schema.json")],
   ["aliases", ID("aliases.schema.json")],
-  ["course.next", ID("course-source.next.schema.json")],
-  ["unit.next", `${ID("course-source.next.schema.json")}#/$defs/NextUnitSource`],
-  ["learner-event.next", ID("learner-event.next.schema.json")],
-  ["bundle.next", ID("bundle.next.schema.json")],
-  ["bundle-lexicon.next", `${ID("bundle.next.schema.json")}#/$defs/BundleLexicon`],
-  ["bundle-unit.next", `${ID("bundle.next.schema.json")}#/$defs/NextBundleUnit`],
+  ["course", ID("course-source.schema.json")],
+  ["unit", `${ID("course-source.schema.json")}#/$defs/UnitSource`],
+  ["learner-event", ID("learner-event.schema.json")],
+  ["learner-event.v1", ID("learner-event.v1.schema.json")],
+  ["bundle", ID("bundle.schema.json")],
+  ["bundle-lexicon", `${ID("bundle.schema.json")}#/$defs/BundleLexicon`],
+  ["bundle-unit", `${ID("bundle.schema.json")}#/$defs/BundleUnit`],
 ];
 
 describe("examples", () => {

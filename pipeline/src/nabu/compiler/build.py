@@ -39,16 +39,16 @@ from nabu.items import Content
 from nabu.paths import I18N_GENERATED, PROFILES
 from nabu.schema.models import (
     BundleLexicon,
+    BundleUnit,
+    CourseSource,
     LogographsStep,
     OrthographyProfile,
     Persons,
+    SentenceForm,
+    SentenceSource,
+    UnitSource,
     VocalizationSource,
 )
-from nabu.schema.models import NextBundleUnit as BundleUnit
-from nabu.schema.models import NextCourseSource as CourseSource
-from nabu.schema.models import NextSentenceForm as SentenceForm
-from nabu.schema.models import NextSentenceSource as SentenceSource
-from nabu.schema.models import NextUnitSource as UnitSource
 from nabu.schemes import plugins, schemes
 
 #: What counts towards a sentence's new material (i+1): lexemes, the feature values a node

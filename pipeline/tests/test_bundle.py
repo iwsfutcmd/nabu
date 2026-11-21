@@ -16,9 +16,7 @@ from nabu.compiler import compile_course, load_profiles, write_bundle
 from nabu.compiler.build import lexicons_dir
 from nabu.compiler.package import canonical, credit_id
 from nabu.items import lexicon_json
-from nabu.schema.models import BundleLexicon
-from nabu.schema.models import NextBundleManifest as BundleManifest
-from nabu.schema.models import NextBundleUnit as BundleUnit
+from nabu.schema.models import BundleLexicon, BundleManifest, BundleUnit
 
 from .conftest import FIXTURES, ROOT, CoreCli
 from .fixtures.make_lint_fixtures import CLEAN, ES, add_lexeme, with_copula
