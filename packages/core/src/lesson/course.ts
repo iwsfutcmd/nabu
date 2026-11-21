@@ -384,6 +384,24 @@ export const glossOfPart = (course: CourseView, part: PartId): TaggedText | unde
   }
 };
 
+/**
+ * What a lexeme's own feature is called (ADR 0146: `lexeme:mano|Gender`, a part of the lexeme no
+ * default gives): the language's label (`labelOf`, for the lexeme's part of speech) for its lemma's
+ * form, the part of speech's `bare` cell with the lexeme's own value in it (mano: feminine
+ * singular, "feminine"), in the support language. Undefined for anything else, or where the
+ * language labels no such form (a masculine noun's is the bare cell itself, which no label names).
+ */
+export const ownFeatureLabel = (course: CourseView, part: PartId): TaggedText | undefined => {
+  const bar = part.indexOf("|");
+  if (bar < 0) return undefined;
+  const lexeme = lexemeOf(course, part.slice(0, bar));
+  const name = part.slice(bar + 1);
+  const value = lexeme?.feats?.[name];
+  if (lexeme === undefined || value === undefined) return undefined;
+  const cell = lexeme.pos === undefined ? undefined : course.lexicon.bare?.[lexeme.pos];
+  return labelOf(course, { ...cell, [name]: value }, lexeme.pos)?.gloss[course.supportKey];
+};
+
 /** Grades answers against accept sets with the course's compiled profiles (§8.3). */
 export interface Grader {
   readonly grade: (orthography: string, accept: string, answer: string) => Grade;

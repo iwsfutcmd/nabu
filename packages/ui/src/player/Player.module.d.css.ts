@@ -38,6 +38,7 @@ declare const styles: {
   readonly instruction: string;
   readonly keyName: string;
   readonly label: string;
+  readonly labelPair: string;
   readonly left: string;
   readonly listen: string;
   readonly markKey: string;

@@ -1,8 +1,9 @@
 /**
  * #/<course>/<orthography>/words: the words this learner has learned in the course, to browse
- * (learnedWords from the device's own log; @nabu/ui/words). Nothing here is recorded.
+ * (learnedWords from the device's own log; @nabu/ui/words), each opening to its parts (partsOf), and
+ * the rules and forms they have met (ruleEntries). Nothing here is recorded.
  */
-import { learnedWords, PACE, paceOf, type LearnerState } from "@nabu/core/learner";
+import { learnedWords, PACE, paceOf, partsOf, ruleEntries, type LearnerState } from "@nabu/core/learner";
 import { useTranslator } from "@nabu/ui";
 import type { LoadedCourse } from "@nabu/ui/player";
 import { WordList } from "@nabu/ui/words";
@@ -22,6 +23,9 @@ export const WordsPage = ({ loaded, state, back }: { readonly loaded: LoadedCour
   // Due at the learner's pace (ADR 0105), as the course page counts it (W8): one target on both screens.
   const target = useMemo(() => PACE[paceOf(course, state, now, paceChoiceOf(course.id), facetsOff).band].retention, [course, state, now, facetsOff]);
   const words = useMemo(() => learnedWords(course, state, now, target, facetsOff), [course, state, now, target, facetsOff]);
+  // What is asked of each word and of each rule and form, each shown or not (ADR 0146), as the log says.
+  const parts = useMemo(() => (lexeme: string) => partsOf(course, state, lexeme, facetsOff), [course, state, facetsOff]);
+  const rules = useMemo(() => ruleEntries(course, state, facetsOff), [course, state, facetsOff]);
   return (
     <main className={styles.page} data-words-page={course.id}>
       <p>
@@ -30,7 +34,7 @@ export const WordsPage = ({ loaded, state, back }: { readonly loaded: LoadedCour
         </a>
       </p>
       <h1 className={styles.heading}>{t.format("words.title")}</h1>
-      <WordList course={course} words={words} url={loaded.imageUrl} reading={storedReading(course.orthography)} />
+      <WordList course={course} words={words} url={loaded.imageUrl} reading={storedReading(course.orthography)} parts={parts} rules={rules} />
     </main>
   );
 };

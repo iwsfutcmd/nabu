@@ -2,6 +2,7 @@
 declare const styles: {
   readonly audio: string;
   readonly band: string;
+  readonly code: string;
   readonly controls: string;
   readonly count: string;
   readonly fill: string;
@@ -13,9 +14,19 @@ declare const styles: {
   readonly meter: string;
   readonly muted: string;
   readonly orders: string;
+  readonly part: string;
+  readonly partName: string;
+  readonly partStatus: string;
+  readonly parts: string;
+  readonly partsBox: string;
+  readonly partsCount: string;
+  readonly partsPanel: string;
+  readonly partsToggle: string;
   readonly progress: string;
   readonly radio: string;
   readonly radios: string;
+  readonly rule: string;
+  readonly ruleLabel: string;
   readonly search: string;
   readonly skill: string;
   readonly skills: string;

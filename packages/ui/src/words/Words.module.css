@@ -172,7 +172,8 @@
   display: grid;
   grid-template-areas:
     "texts audio"
-    "progress band";
+    "progress band"
+    "parts parts";
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: var(--nabu-space-2) var(--nabu-space-3);
@@ -240,4 +241,118 @@
 
 .band[data-band="due"] .fill {
   background-color: var(--nabu-color-wrong);
+}
+
+/* A word's parts (ADR 0146): a button under the entry that opens to them, closed until pressed.
+   Each part says in words whether it is shown, never by colour alone. */
+.partsBox {
+  grid-area: parts;
+  min-inline-size: 0;
+}
+
+.partsToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nabu-space-2);
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-2);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--nabu-color-text);
+  background-color: transparent;
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.partsToggle[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.partsCount {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--nabu-color-muted);
+}
+
+.partsPanel {
+  padding-block-start: var(--nabu-space-2);
+}
+
+.parts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.part {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
+  padding-block: var(--nabu-space-1);
+  border-block-start: 1px solid var(--nabu-color-border);
+  font-size: 0.875rem;
+}
+
+.partName {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.partStatus {
+  padding-inline: var(--nabu-space-2);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--nabu-color-muted);
+  border: 1px dashed var(--nabu-color-line);
+  border-radius: 999px;
+}
+
+.part[data-part-status="shown"] .partStatus {
+  color: var(--nabu-color-correct);
+  background-color: var(--nabu-color-correct-bg);
+  border: 1px solid var(--nabu-color-correct);
+}
+
+/* An id where the course names nothing: the interface's own face, left to right. */
+.code {
+  padding-inline: var(--nabu-space-1);
+  font-family: inherit;
+  font-size: 0.8125rem;
+  color: var(--nabu-color-muted);
+  background-color: var(--nabu-color-page);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: 0.25rem;
+  direction: ltr;
+  unicode-bidi: isolate;
+  overflow-wrap: anywhere;
+}
+
+/* A rule's or a form's entry: its label, then how many of its skills are shown. */
+.rule {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-2);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.ruleLabel {
+  flex: 1 1 12rem;
+  min-inline-size: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
 }

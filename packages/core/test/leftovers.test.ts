@@ -7,8 +7,9 @@ import type { LearnerEvent, OrthographyId } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { creditOf } from "../src/learner/credit.ts";
 import { exerciseRefOf, learnerEventOf, practised, progressResetOf } from "../src/learner/events.ts";
-import { cardKey, emptyLearnerState, missedLetters, partsOf, plan, replay, ruleEntries } from "../src/learner/index.ts";
-import { allSentences, glossOfPart } from "../src/lesson/index.ts";
+import { cardKey, emptyLearnerState, missedLetters, partsOf, plan, replay, ruleEntries, ruleMatcher } from "../src/learner/index.ts";
+import { allSentences, glossOfPart, labelOf, ownFeatureLabel } from "../src/lesson/index.ts";
+import { surfaceOf } from "../src/text/index.ts";
 import { createGrader, gradeExercise, lessonNodes, lexemesById, sampleExercise, seededRng, type CourseView, type Exercise, type TranslateType } from "../src/lesson/index.ts";
 import { makeTranslateType } from "../src/lesson/templates.ts";
 import { replayBefore } from "./fold-before-r2.ts";
@@ -164,6 +165,18 @@ describe("a word's parts, each shown or not (partsOf)", () => {
     const own = [...lexemes.values()].find((l) => (l.parts ?? []).some((p) => p === `${l.id}|Gender`));
     if (own === undefined) throw new Error("es has a noun whose gender no default gives");
     expect(partsOf(es, state, own.id)).toContainEqual({ kind: "feature", part: `${own.id}|Gender`, status: "not-asked" });
+    // Named as the language labels its lemma's form (the word list's entry): a feminine noun's
+    // feminine singular; a masculine noun's is the bare cell, which no label names.
+    const fem = [...lexemes.values()].find((l) => l.pos === "NOUN" && l.feats?.["Gender"] === "Fem" && (l.parts ?? []).includes(`${l.id}|Gender`));
+    if (fem === undefined) throw new Error("es has a feminine noun whose gender no default gives");
+    expect(ownFeatureLabel(es, `${fem.id}|Gender`)).toEqual(labelOf(es, { Gender: "Fem", Number: "Sing" }, "NOUN")?.gloss[es.supportKey]);
+    const feminine = ownFeatureLabel(es, `${fem.id}|Gender`);
+    expect(feminine === undefined ? "" : surfaceOf(feminine)).toMatch(/^feminine/u);
+    const masc = [...lexemes.values()].find((l) => l.pos === "NOUN" && l.feats?.["Gender"] === "Masc" && (l.parts ?? []).includes(`${l.id}|Gender`));
+    if (masc === undefined) throw new Error("es has a masculine noun whose gender no default gives");
+    expect(ownFeatureLabel(es, `${masc.id}|Gender`)).toBeUndefined();
+    expect(ownFeatureLabel(es, own.id)).toBeUndefined();
+    expect(ownFeatureLabel(es, "lexeme:no-such-word|Gender")).toBeUndefined();
     // The skills come first, as skillsAsked asks them.
     const parts = partsOf(es, state, shownSpelling[0] as string);
     expect(parts.filter((p) => p.kind === "skill").map((p) => p.skill)[0]).toBe("recognize");
@@ -198,6 +211,19 @@ describe("rules and forms have entries (ruleEntries)", () => {
     for (const e of entries) expect(e.label, e.part).toEqual(glossOfPart(es, e.part));
     expect(features.every((e) => e.skills.every((k) => k.skill === "read-off" || k.skill === "choose"))).toBe(true);
     expect(ruleEntries(es, emptyLearnerState())).toEqual([]);
+  });
+
+  it("an entry is found by the word list's search: by its label, whatever the case, or by its id", () => {
+    const apc = loadCourse("apc");
+    const { state } = twoDays(apc, 20);
+    const entries = ruleEntries(apc, state);
+    const labelled = entries.find((e) => e.label !== undefined);
+    if (labelled?.label === undefined) throw new Error("apc's entries have a label");
+    const word = surfaceOf(labelled.label).split(/\s+/u).find((w) => w.length > 3) ?? surfaceOf(labelled.label);
+    expect(entries.filter(ruleMatcher(apc, word.toLocaleUpperCase("en")))).toContain(labelled);
+    expect(entries.filter(ruleMatcher(apc, labelled.part))).toContain(labelled);
+    expect(entries.filter(ruleMatcher(apc, ""))).toEqual(entries);
+    expect(entries.filter(ruleMatcher(apc, "zzzzqq"))).toEqual([]);
   });
 
   it("apc: a rule the learner met, with its gloss", () => {

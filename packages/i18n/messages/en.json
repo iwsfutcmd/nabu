@@ -1526,6 +1526,54 @@
       "message": ".input {$count :number}\n.match $count\none {{{$count} tile left}}\n* {{{$count} tiles left}}",
       "description": "How many tiles are still in the word bank. $count is a number."
     },
+    "feedback.label.grammatical": {
+      "message": "Right word, another form.",
+      "description": "Feedback, under the headline (ADR 0148): the answer has the right word in another form (another person, number, tense, case or gender ending)."
+    },
+    "feedback.label.grammatical-pair": {
+      "message": "Right word, another form: {$expected}, not {$answer}.",
+      "description": "Feedback, in place of feedback.label.grammatical when the words are known (ADR 0148): the same word in another form. {$expected} is the word the right answer has, {$answer} what the learner typed in its place; both are shown in the language being learned."
+    },
+    "feedback.label.lexical": {
+      "message": "Another word.",
+      "description": "Feedback, under the headline (ADR 0148): the answer has another word than the right one, or a word left out or added."
+    },
+    "feedback.label.lexical-pair": {
+      "message": "Another word: {$expected}, not {$answer}.",
+      "description": "Feedback, in place of feedback.label.lexical when the words are known (ADR 0148): the typed word is another word. {$expected} is the word the right answer has, {$answer} what the learner typed in its place; both are shown in the language being learned."
+    },
+    "feedback.label.order": {
+      "message": "The right words, in another order.",
+      "description": "Feedback, under the headline (ADR 0148): the answer has every right word, but in an order the language does not take here."
+    },
+    "feedback.label.orthographic": {
+      "message": "Right sound, wrong letter.",
+      "description": "Feedback, under the headline (ADR 0148): a word is spelled with the right sounds but a letter the language does not write there (b for v in Spanish, س for ص in Persian)."
+    },
+    "feedback.label.orthographic-pair": {
+      "message": "Right sound, wrong letter: {$expected}, not {$answer}.",
+      "description": "Feedback, in place of feedback.label.orthographic when the words are known (ADR 0148): the word sounds right but is spelled with another letter. {$expected} is the word the right answer has, {$answer} what the learner typed in its place; both are shown in the language being learned."
+    },
+    "feedback.label.phonemic": {
+      "message": "That spells another sound.",
+      "description": "Feedback, under the headline (ADR 0148): a word is spelled so that it says another sound (another vowel, another consonant, the stress elsewhere), not a mere spelling slip."
+    },
+    "feedback.label.phonemic-pair": {
+      "message": "That spells another sound: {$expected}, not {$answer}.",
+      "description": "Feedback, in place of feedback.label.phonemic when the words are known (ADR 0148): the typed word says another sound than the right one. {$expected} is the word the right answer has, {$answer} what the learner typed in its place; both are shown in the language being learned."
+    },
+    "feedback.label.regularised": {
+      "message": "That would be the regular form; this one is its own.",
+      "description": "Feedback, under the headline (ADR 0148): the learner built a form by the regular rule, but this word has an irregular form of its own (like 'goed' for 'went')."
+    },
+    "feedback.label.scope": {
+      "message": "Right meaning, another way of speaking.",
+      "description": "Feedback, under the headline (ADR 0148): the answer means the right thing but in another register or variety than the prompt asks for (a formal word for an informal one)."
+    },
+    "feedback.label.slip": {
+      "message": "A slip of the keys.",
+      "description": "Feedback, under the headline, after a wrong answer (ADR 0148): one word of the answer has a typing slip (a letter swapped, doubled or left out), which on its own would have been accepted; it is listed beside what else was wrong."
+    },
     "feedback.note.accent": {
       "message": "Mind the accent marks: they are part of the spelling.",
       "description": "Feedback note for Spanish: the answer left out an accent mark (cancion for canción), added one or put one in the wrong place. The accent carries sound, so the answer does not count (ADR 0148)."
@@ -3393,6 +3441,42 @@
     "words.unit.known": {
       "message": ".input {$known :number}\n.input {$count :number}\n{{{$known} of {$count} known}}",
       "description": "The word list, beside a unit's title: how many of the unit's words the learner has met ($count) are known ($known)."
+    },
+    "words.part.feature": {
+      "message": "Its own form: {$label}",
+      "description": "The word list, in an opened word's entry: a feature the word has of itself, that its sentences show (a noun's gender: “Its own form: feminine”). $label is what the language calls it, from the course."
+    },
+    "words.part.reading": {
+      "message": "Reading in {$scheme}",
+      "description": "The word list, in an opened word's entry: knowing how the word is read in a reading scheme (a transliteration, Jyutping), where the script leaves it open. $scheme is the scheme's name."
+    },
+    "words.part.spelling": {
+      "message": "Spelling in {$orthography}",
+      "description": "The word list, in an opened word's entry: writing the word with the letters the orthography uses for it, where the sounds could be spelled otherwise. $orthography is the writing system's name."
+    },
+    "words.part.status.not-asked": {
+      "message": "Not asked yet",
+      "description": "The word list, in an opened word's entry, beside a part: no card asks it yet; lessons give it."
+    },
+    "words.part.status.not-shown": {
+      "message": "Not yet",
+      "description": "The word list, in an opened word's entry, beside a part: asked, but not yet shown."
+    },
+    "words.part.status.shown": {
+      "message": "Shown",
+      "description": "The word list, in an opened word's entry, beside a part: the learner has shown it, right on a first try on a later day than they met the word."
+    },
+    "words.parts.count": {
+      "message": ".input {$shown :number}\n.input {$all :number}\n{{{$shown} of {$all}}}",
+      "description": "The word list: how many of the parts asked of a word ($all), or of the skills asked of a rule or a form, the learner has shown ($shown): “3 of 5”."
+    },
+    "words.parts.toggle": {
+      "message": "What it asks",
+      "description": "The word list: the button that opens a word's entry to its parts (ADR 0146): each skill asked of the word, its own form (such as its gender), its spelling and its reading, each shown or not yet. Followed by words.parts.count."
+    },
+    "words.rules.title": {
+      "message": "Rules and forms you've met",
+      "description": "The word list: heading of the section, after the words, that lists the grammar rules and the forms (tenses, persons, genders) the learner has met in the course."
     }
   }
 }

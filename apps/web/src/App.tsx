@@ -50,6 +50,7 @@ import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, typ
 import { StoryReader } from "@nabu/ui/story";
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type JSX, type MouseEvent } from "react";
 import { AnswerHelp, MissedHelp, RoleplayPage, ScenarioEntries, useAccount, useAiStatus, useSessionHelp, type AiStatus } from "./ai.tsx";
+import { judgeMayAccept } from "./judging.ts";
 import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import summaries from "virtual:nabu-courses";
@@ -1280,6 +1281,8 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         // The end of the session keeps the AI help (M10): explanations under the cards missed, the judge's accepts listed.
         missedExtra={(m) => <MissedHelp key={`missed-help:${m.ex.id}`} answer={answers.get(m.ex.id)} ex={m.ex} response={m.response} status={ai} account={account} help={help} />}
         judged={help.judged}
+        // While the judge may still accept an answer, its feedback holds back what would call it wrong (ADR 0148).
+        judging={(ex, outcome) => judgeMayAccept(ai.judge, account !== undefined, help.refused, ex, outcome.verdict, answers.get(ex.id))}
       />
     </main>
   );
