@@ -108,6 +108,11 @@ out as a wrong option, and a word whose only mark is such a fatha has nothing to
 
 **Consequences.** Nine vectors in conformance/pronounce.json, in both harnesses: the fatha written
 and left out, before ى, beside a shadda; the kasra, the hamza's seat, a fatha elsewhere and a
-missing shadda, which still count; ar-Arab as apc. No apc lesson changes: the draft writes the
-fatha before an alif only before the article's (عَالبيت, هَالجِمْعَة), and no option relied on it.
+missing shadda, which still count; ar-Arab as apc.
+- **Choice cards lose wrong options that were right.** In a walk of the apc course, 8 of 118
+  planned vocalize cards offered the word with a fatha before its alif as a wrong option
+  (مَرْحَبَا, وَاحَد, دَايْماً, بُكْرَا, سَافَرِت, لَازِم, رِسَالِة, وَاقِف). Each now offers another.
+  Which cards a lesson plans, and in what order, is unchanged (golden files).
+- **The pronunciation story's feedback baselines change** (apc-Arab, six cells): their wrong pick
+  was مَرْحَبَا.
 
