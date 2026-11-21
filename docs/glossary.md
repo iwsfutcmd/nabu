@@ -18,8 +18,8 @@ is a file in [adr/](adr/).
 - **Phase**: a roadmap step with acceptance criteria. Phases 0–10 are in gameplan §16, 11–16 in
   `docs/next-steps.md`.
 - **The owner**: the project owner, Ben, who decides linguistic policy and accepts ADRs.
-- **REVIEW**: a marker on a linguistic policy (a profile's contrast sets, speech tiers, a KC's
-  features). It means "drafted, awaiting the owner's sign-off".
+- **REVIEW**: a marker on a linguistic policy (a profile's contrast sets, speech tiers, a lexeme's
+  `pos` and `feats`). It means "drafted, awaiting the owner's sign-off".
 - **Review codes** (D6, P2, W3, R3, C14 …): ids from the November 2026 review,
   `docs/review-2026-11-12.html`.
   - D + a number is a decision the owner made there: D6 is "a backlog never blocks anything".
@@ -63,8 +63,9 @@ is a file in [adr/](adr/).
   a new script is a new profile, not new code.
 - **TaggedText**: language data as a language tag plus tokens, never a bare string (§1, decision 3).
 - **Token**: one unit of TaggedText.
-  - Its kind is word, punct, space, number or symbol.
-  - It can carry a sense, a form, readings and morphs.
+  - Its kind is word, punct, space, number or symbol (`word` is to be renamed `lexical`).
+  - It names the lexeme it writes (`lexeme`) and the feature values chosen there (`feats`), or lists
+    the lexemes it writes (`lexemes`: a stem, a clitic and an affix alike); it can carry readings.
 - **`<T>`**: the only component that renders TaggedText. It sets `lang`, `dir`, fonts and ruby,
   and makes words tappable.
 - **Grapheme**: a character as a reader sees it, such as a letter with its marks. Never index,
@@ -108,42 +109,59 @@ is a file in [adr/](adr/).
   unless a profile says otherwise.
 - **Homograph**: one spelling with several readings in a course (ADR 0140).
 - **Sound-alike**: letters that sound the same, such as Persian ت and ط (ADR 0142).
-- **UD / UPOS**: Universal Dependencies' part-of-speech tags (NOUN, VERB …) and features
-  (`PronType: Prs`). They are used for a KC's `pos` and `features` (ADR 0132).
+- **UD / UPOS**: Universal Dependencies' part-of-speech tags (NOUN, VERB …), features
+  (`PronType: Prs`) and relations (`det`, `amod`). They are used for a lexeme's `pos` and `feats`, a
+  token's `feats`, and its `rel` to its `head` (ADR 0132, 0145).
 
 ## Course content
 
 - **Course**: `courses/<id>/`: `course.yaml`, `units/*.yaml`, and its audio and side files.
-- **Unit**: one `units/*.yaml` file, with its KCs, nodes, sentences, stories and scenarios, at one
-  CEFR level.
+- **Unit**: one `units/*.yaml` file, with its nodes, sentences, stories and scenarios, at one CEFR
+  level. It defines nothing but its script track's letters (`graphemes`); its lexemes are in the
+  lexicon.
 - **Node** (path node): one step on the path.
   - Its kind is lesson, practice, story, review, challenge or script.
-  - `introduces` lists the KCs it teaches.
+  - `introduces` lists the lexemes, feature values, rules and letters it teaches.
 - **Path**: the course's nodes in order.
-- **KC** (knowledge component): one thing a learner can know. It is the unit the learner model
-  tracks (§7.1). There are seven kinds:
-  - `sense`: a word in one meaning (`sense:hablar`);
-  - `form`: an inflection (`form:pres-1s`);
-  - `construction`: a pattern bigger than a word (`construction:ezafe`);
-  - `grapheme`: a letter;
-  - `reading`, `phone` and `tone`.
-
-  Senses spelled alike get a suffix (`sense:呀` and `sense:呀.q`).
-- **Sense**: a word in one meaning. Each word token names its sense.
-- **Lemma**: a KC's first form, which is what word cards show (ADR 0061).
+- **Part**: one thing a learner can know, the unit the learner model tracks: a lexeme
+  (`lexeme:hablar`), a feature value (`feature:Tense=Past`), a rule (`rule:used-to`) or a letter
+  (`grapheme:α`) (ADR 0145–0151; [migration-design.md](migration-design.md)).
+- **KC** (knowledge component): what the gameplan (§7.1) and the code before ADRs 0145–0151 called a
+  part: `sense:hablar`, `form:pres-1s`, `construction:ezafe`, `grapheme:α`. It became a lexeme, a
+  feature value or an affix lexeme, a rule and a letter. The ids survive in logs written before the
+  switch and in `courses/<id>/aliases.yaml`, which records what each became; only `upgrade` reads
+  them.
+- **Sense**: the old KC kind for a word in one meaning (`sense:hablar`), now a lexeme.
+- **Lexeme**: an entry of a language's lexicon (`lexicons/<lang>/lexemes.yaml`), id `lexeme:<name>`:
+  a meaning with its part of speech (`pos`), its lexical features (`feats`), its `spelled` forms and
+  its `gloss`. Stems, clitics and affixes are all lexemes; an affix `realises` a feature value (uz
+  `lexeme:dat`). Lexemes spelled alike get a suffix (`lexeme:呀` and `lexeme:呀.q`).
+- **Feature value**: a UD feature and its value, `feature:Tense=Past`, chosen on a token (`feats`)
+  or stored on a lexeme where no default gives it (*mano* `{Gender: Fem}`). The features a language
+  has, its `defaults`, its `labels` and its `rules` are in `lexicons/<lang>/language.yaml`.
+- **Label**: what a form is called for the learner ("present tense: I (yo)"): the most specific of
+  the language's `labels` whose feature values the form has.
+- **Rule**: a pattern bigger than a lexeme (`rule:used-to`), named in a sentence's `uses`.
+- **Lemma**: a lexeme's first spelling, which is what word cards show (ADR 0061).
 - **Form**: a word with several uses here. Read it by context:
   - a sentence's text in one orthography (`forms:` on a sentence);
-  - how a KC is written (`forms:` on a KC: its lemma and variants);
-  - a form KC (`form:pret-3s`);
-  - the form KC a token is pinned to (`form:` on a token).
-- **Morph**: a meaningful part of a word, with its own surface and KC (uz *bor + a + man*).
-- **Unwritten morph**: a morph with an empty surface, such as the ezafe (ADR 0136).
-- **Form signature**: a word's form KCs and other morphs, besides its sense. Gap-fill and story
-  questions use it to find a word's other forms (ADR 0132).
-- **Gloss**: a KC's short meaning in the support language.
-- **Glossary**: every KC's forms, used by tap-to-gloss.
-- **Lexicon**: every word the course writes. The grader uses it to tell a typo from another real
-  word.
+  - a token's feature values (`feats`), named by a label;
+  - a form of a lexeme no rule gives yet (`forms:` on a lexeme: listed or pinned);
+  - how a letter is written (`forms:` on a unit's `graphemes`);
+  - a form key, the lexemes and feature values a clip says
+    (`lexeme:ra7|form:Aspect=Part;Gender=Masc;Number=Sing`).
+- **Morph**: the old name for a lexeme a token writes beside others (uz *bor + a + man*); a token
+  now lists them in `lexemes`.
+- **Unwritten lexeme**: a lexeme a token writes with an empty surface, such as the ezafe
+  (`{lexeme: ezafe, surface: ''}`, ADR 0136).
+- **Form signature**: what a token writes besides which lexeme its base is: the other lexemes it
+  writes and its feature values. Gap-fill and story questions use it to find a word's other forms
+  (ADR 0132).
+- **Gloss**: a lexeme's short meaning in the support language.
+- **Glossary**: every lexeme's spellings, used by tap-to-gloss.
+- **Lexicon**: a language's lexemes, `lexicons/<lang>/lexemes.yaml`: one flat list sorted by id,
+  shared by every course in that language and naming no unit. The grader also uses every word the
+  course writes to tell a typo from another real word.
 - **Sentence**: a course item with a form per orthography, its translations, and `reverse`.
 - **Accept set**: every accepted answer, one per line, in accept-set notation: `(a|b)` for
   alternatives, `[x]` for an optional part (§7.4).
@@ -157,7 +175,8 @@ is a file in [adr/](adr/).
 - **Passage**: an authentic text used as a story (ADR 0144).
 - **Scenario**: a roleplay card for the AI conversation.
 - **Script track**: a row of nodes that teaches an orthography's letters (ADR 0088, 0133).
-- **i+1**: at most *k* new KCs per sentence (`iPlusOne` in `course.yaml`).
+- **i+1**: at most *k* new lexemes, feature values and rules per sentence (`iPlusOne` in
+  `course.yaml`).
 - **CEFR**: the A1–C2 proficiency levels.
 - **Contrast set**: a profile's `typo.contrasts`, the endings and words that carry meaning. A slip
   from one member to another is WRONG_WORD, not a typo (ADR 0066).
@@ -169,7 +188,7 @@ is a file in [adr/](adr/).
 
 - **Compiler**: `nabu build` in `pipeline/`, which turns course YAML into a bundle.
 - **Stage**: one step of the compiler.
-- **Lint**: a check with an id (`kc.inflected-form`) and a severity: error, warning or info.
+- **Lint**: a check with an id (`lexeme.inflected-form`) and a severity: error, warning or info.
   - A **diagnostic** is one firing of a lint, with its file and line.
   - Every lint has a **fixture**, a small course that makes it fire.
   - `clean.yaml` must fire none.
@@ -190,9 +209,10 @@ is a file in [adr/](adr/).
 - **Template**: a kind of exercise (`gap-fill`, `translate-type.l1-l2`, `char-read` …), each
   practising one facet.
 - **Exercise**: one question in a session. Also called a **card**.
-- **Card key**: `kc|facet`, plus the orthography for read-script and write-script
-  (`kc|facet|orthography`). It is what the memory model schedules.
-- **Facet**: one skill on a KC: recognize, produce, listen, speak, read-script or write-script.
+- **Card key**: `part|skill`, plus the orthography for read-script and write-script
+  (`part|skill|orthography`). It is what the memory model schedules.
+- **Facet**: one skill on a lexeme, a rule or a letter: recognize, produce, listen, speak,
+  read-script or write-script. A feature value is known by `read-off` and `choose`.
 - **Distractor**: a wrong option. A choice asks one thing: which word, or which form (ADR 0132).
 - **Word bank / tiles**: answering by tapping words in order.
 - **Grading cascade** (§8.3), in order:
@@ -227,7 +247,7 @@ is a file in [adr/](adr/).
 - **Report**: a claim or a correction, sent for review.
 - **Correction**: a learner's fix to a sentence or story line, a `sentence_reported` event
   (ADR 0051).
-- **Credit**: an answer's result for each KC: right, wrong or given.
+- **Credit**: an answer's result for each part: right, wrong or given.
 
 ## Learner model and planning
 

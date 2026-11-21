@@ -12,7 +12,7 @@ shortcut can.
 - Architecture and roadmap: [docs/gameplan.md](docs/gameplan.md)
 - Decisions: [docs/adr/](docs/adr/) (0001–0012 are gameplan §1; 0013+ came out of Phases 0–3)
 - Working agreement for contributors and agents: [CLAUDE.md](CLAUDE.md)
-- Terms (KC, ADR, facet, accept set, fold …): [docs/glossary.md](docs/glossary.md)
+- Terms (lexeme, ADR, facet, accept set, fold …): [docs/glossary.md](docs/glossary.md)
 
 ## Status: Phase 10 (offline and mobile) on top of Phases 0–9
 

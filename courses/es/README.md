@@ -17,8 +17,8 @@ native speaker's review. This file is the brief the drafts were written from.
   course leans on typed production, and its placement test types its answers.
 - **Their Spanish is Cuban, and the course respects it.** The canonical answers are what a Cuban
   family says (*guagua*, *¿Qué tú quieres?*, *ahorita*, *fruta bomba*). Pan-Hispanic forms are
-  accepted too (*autobús*, *¿Qué quieres tú?*), and KC notes say where other countries differ.
-  Nothing Cuban is "corrected" into another variety.
+  accepted too (*autobús*, *¿Qué quieres tú?*), and lexicon notes say where other countries
+  differ. Nothing Cuban is "corrected" into another variety.
 - **What they lack is mostly what school would have taught:** written accents, b/v, h, c/s/z,
   ll/y; the subjunctive, the conditional and the compound tenses; *usted* and formal writing;
   vocabulary beyond the home. The units after 10 work on these, always through Cuban family
@@ -50,57 +50,107 @@ Further back: Daniel's great-grandfather cut cane at a *central* in Matanzas (u2
 - **Course:** `id: es`, target `es-Latn-CU`, one orthography `es-Latn/standard`, support `en`.
 - **Unit files:** `units/uNN-<slug>.yaml`, unit ids `uNN`, node ids `es.uNN.<slug>`, sentence ids
   `s.uNN.<n>`, story ids `es.story.uNN` on a story node `es.uNN.story`, the last node of the unit.
-- **KCs.**
-  - `sense:<lemma>`: the lemma as written, accents and all (`sense:mamá`, `sense:café`). Verbs by
-    infinitive (`sense:hablar`), reflexive verbs with -se (`sense:levantarse`), nouns in the
+- **Lexicon:** the course's words are lexemes in `lexicons/es/lexemes.yaml` (`lexicon: es` in
+  `course.yaml`), one flat list sorted by id that names no unit; the language's features,
+  defaults, labels and registers are in `lexicons/es/language.yaml`.
+- **Lexemes.**
+  - An entry has an `id`, its UD `pos`, its `gloss` and its spelling (`spelled`, the first shown):
+
+    ```yaml
+    - id: lexeme:guagua
+      pos: NOUN
+      gloss: {en: bus}
+      spelled: {es-Latn/standard: [guagua]}
+    ```
+
+  - `lexeme:<lemma>`: the lemma as written, accents and all (`lexeme:café`, `lexeme:adiós`). Verbs
+    by infinitive (`lexeme:hablar`), reflexive verbs with -se (`lexeme:levantarse`), nouns in the
     singular, adjectives in the masculine singular. Words spelled alike differ by their accent
-    (`sense:si` "if", `sense:sí` "yes"; `sense:el` "the", `sense:él` "he") or by a suffix
-    (`sense:como.like`).
-  - Articles and determiners by their masculine singular: `sense:el` (el, la, los, las),
-    `sense:un`, `sense:este` (este, esta, estos, estas: *esta casa* is `sense:este`; *está* is
-    `sense:estar`), `sense:mi` (mi, mis), `sense:su`.
-  - Contractions are their own words: `sense:al`, `sense:del`.
-  - A multi-word expression is one KC whose tokens all name it: *buenos días* is two tokens,
-    each `sense: buenos-días`, with `forms: [buenos días]`. Keep these few; teach the words.
-  - **Verb forms** go on the token as `form:` (Spanish is fusional; no morphs):
+    (`lexeme:si` "if", `lexeme:sí` "yes"; `lexeme:el` "the", `lexeme:él` "he") or by a suffix
+    (`lexeme:como.like`).
+  - `spelled` holds the lemma and its variant spellings (`lexeme:agromercado`: `[agromercado,
+    agro]`), never an inflected word: the forms the sentences write are its `forms`, each with its
+    feature values (`lexeme:tío`: `{feats: {Gender: Fem, Number: Sing}, spelled: {es-Latn/standard:
+    [tía]}, status: pinned}`).
+  - Articles and determiners by their masculine singular: `lexeme:el` (el, la, los, las),
+    `lexeme:un`, `lexeme:este` (este, esta, estos, estas: *esta casa* is `lexeme:este`; *está* is
+    `lexeme:estar`), `lexeme:mi` (mi, mis), `lexeme:su`. What UD says of the word itself goes in
+    `feats` (`lexeme:este`: `{PronType: Dem}`; `lexeme:mi`: `{Poss: 'Yes', PronType: Prs}`).
+  - Contractions are their own lexemes: `lexeme:al`, `lexeme:del`.
+  - A multi-word expression is one lexeme whose tokens all name it: *buenos días* is
+    `lexeme:buenos-días`, spelled `[buenos días]`, and two tokens, `{surface: Buenos, lexeme:
+    buenos-días}, {surface: días, lexeme: buenos-días}`. Keep these few; teach the words. Where it
+    inflects, the token that inflects chooses its form: *tengo que* is `{surface: Tengo, lexeme:
+    tener-que, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface:
+    que, lexeme: tener-que}`; *buenos días* chooses nothing.
+  - **A noun's gender** is its lexeme's ([ADR 0132](../../docs/adr/0132-a-choice-asks-one-thing.md)'s
+    amendment). `language.yaml`'s `defaults` give it by the ending (-a, -ión, -dad, -tad, -tud,
+    -umbre feminine; -o, -ón, -aje, -or masculine), so *casa* and *agua* store nothing. Write
+    `feats` only where no default gives it or the default is wrong: *mano* `{Gender: Fem}`,
+    *aceite* `{Gender: Masc}`. A noun with both genders says `chooses: [Gender]` and its tokens
+    choose (`lexeme:tío`, `lexeme:mijo`).
+  - Names are lexemes, `pos: PROPN` (`lexeme:daniel`, `lexeme:cachita`). No default gives a name's
+    gender, so each stores it: `lexeme:cuba`, `lexeme:habana`, `lexeme:marisol` `{Gender: Fem}`;
+    `lexeme:daniel`, `lexeme:miami` `{Gender: Masc}`. A name of several words (`lexeme:calle-ocho`)
+    stores none.
+  - Every lexeme has an English gloss. Use `notes` for the Cuban side: what Cubans say and others
+    don't (*guagua*: "the bus in Cuba, Puerto Rico, the Dominican Republic and the Canaries;
+    elsewhere el autobús …"), how it is said (*para* is often *pa'*), and false friends.
+- **Tokens** name the lexeme they write (`lexeme`, without its `lexeme:` prefix) and the feature
+  values chosen there (`feats`), never the lexeme's own (*mano*'s gender stays in its entry).
+  - **Verb forms** are feature values (Spanish is fusional): *Tengo* is `{surface: Tengo, lexeme:
+    tener, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}`. *Me
+    levanto* is two tokens: `{surface: Me, lexeme: me}, {surface: levanto, lexeme: levantarse,
+    feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}`. An infinitive is
+    `{VerbForm: Inf}`; every verb token has its `feats`.
+  - A token that writes several lexemes lists them in `lexemes`, the one the others join marked
+    `base`: *vernos* is `{surface: vernos, lexemes: [{lexeme: ver, surface: ver, base: true,
+    feats: {VerbForm: Inf}}, {lexeme: nos, surface: nos, feats: {Number: Plur}}]}`.
+  - **Gender and number:** a noun's token chooses its number (`{surface: casa, lexeme: casa,
+    feats: {Number: Sing}}`); every adjective, determiner and pronoun that agrees chooses gender
+    and number by its agreement in the line, the masculine singular written too:
 
-    | KC | Gloss |
-    |---|---|
-    | `form:pres-1s` … `form:pres-3p` | present: yo, tú, él/ella/usted, nosotros, ellos/ustedes (`1s 2s 3s 1p 3p`) |
-    | `form:pret-1s` … `form:pret-3p` | preterite, by person |
-    | `form:impf` | imperfect (all persons) |
-    | `form:fut`, `form:cond` | future, conditional |
-    | `form:subj`, `form:subj-past` | present and imperfect subjunctive |
-    | `form:imp-tu`, `form:imp-ud`, `form:imp-neg` | commands: tú, usted/ustedes, negative |
-    | `form:ger`, `form:part` | gerund (-ando, -iendo), past participle |
-
-    An infinitive has no form. *Me levanto* is `me` (`sense:me`) and `levanto`
-    (`sense:levantarse`, `form:pres-1s`). *Tengo* is `sense:tener`, `form:pres-1s`. The form KCs
-    are defined in the unit that first teaches them.
-  - **Gender and number** go on the token as `form:` too ([ADR 0132](../../docs/adr/0132-a-choice-asks-one-thing.md)'s
-    amendment), on every noun, adjective, determiner and pronoun that agrees:
-
-    | KC | Gloss | |
+    | `feats` | | |
     |---|---|---|
-    | (none) | masculine singular | *el carro, un amigo, cubano, mi papi* |
-    | `form:fem` | feminine | *la casa, una amiga, cubana, mi mami* |
-    | `form:pl` | plural (masculine, or men and women together) | *los carros, mis padres, cubanos* |
-    | `form:fem-pl` | feminine plural | *las casas, unas amigas, cubanas* |
+    | `{Gender: Masc, Number: Sing}` | masculine singular | *el carro, un amigo, cubano, mi papi* |
+    | `{Gender: Fem, Number: Sing}` | feminine | *la casa, una amiga, cubana, mi mami* |
+    | `{Gender: Masc, Number: Plur}` | plural (masculine, or men and women together) | *los carros, mis padres, cubanos* |
+    | `{Gender: Fem, Number: Plur}` | feminine plural | *las casas, unas amigas, cubanas* |
 
     The form is the word's agreement in its line, not its ending: a word that looks the same in
-    both genders takes its noun's (*mi casa*: `mi`, `form:fem`; *una casa grande*: `grande`,
-    `form:fem`), a noun its own (*el agua*: `form:fem`; *la tía*: `sense:tío`, `form:fem`), and a
-    first or second person the sentence's `persons` (untagged: the bare form). Words that agree with
-    nothing stay bare (*es posible*, *mejor* as an adverb, *quién*). A phrase KC's tokens take none.
-    A pronoun pins its own (*ella*: `form:fem`; *nosotros*, *ustedes*, *nos*, *les*: `form:pl`), and so
-    does a single-word name (*Cuba*, *la Habana*, *Marisol*: `form:fem`).
+    both genders takes its noun's (*mi casa*: `{surface: mi, lexeme: mi, feats: {Gender: Fem,
+    Number: Sing}, n: 3, head: 4, rel: det}`; *una familia grande*: `grande` `{Gender: Fem, Number:
+    Sing}`, `rel: amod`), and a first or second person the sentence's `persons` (untagged: the
+    masculine singular, *Cuando yo era joven*: `joven` `{Gender: Masc, Number: Sing}`). `n`,
+    `head` and `rel` (UD's relation) are written where a word agrees with another. An adjective
+    with nothing to agree with is masculine singular (*es posible*: `posible` `{Gender: Masc,
+    Number: Sing}`); *quién* and *cuál* choose nothing.
+    A pronoun chooses its own (*ella*: `{Gender: Fem, Number: Sing}`; *nosotros*, *ustedes*,
+    *nos*, *les*: `{Number: Plur}`).
     A word question offers only words of the answer's form, so *una ___* never offers *carro*.
-  - Names are KCs (`sense:daniel`, `sense:cachita`).
-  - Every KC has an English gloss. Use `notes` for the Cuban side: what Cubans say and others
-    don't (*guagua*: "the bus in Cuba, Puerto Rico and the Canaries; *autobús* elsewhere"), how it
-    is said (*para* is often *pa'*), and false friends.
-- **i+1:** a sentence brings in at most one KC no earlier sentence used (default `iPlusOne`).
-  Order the sentences of a node so each adds one.
+- **What a learner is told a form is** comes from `labels` in `language.yaml`: the most specific
+  label whose feature values the form has names it. For example:
+
+  | `feats` | `gloss` |
+  |---|---|
+  | `{Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}` | present tense: I (yo) |
+  | `{Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}` | present tense: they, you all (ellos, ustedes) |
+  | `{Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}` | past tense (preterite): I (yo) |
+  | `{Mood: Ind, Tense: Imp, VerbForm: Fin}` | imperfect: was …ing, used to (hablaba, comía, era, iba) |
+  | `{Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}` | command, tú (¡habla!, ¡come!, ¡ven!) |
+  | `{Mood: Sub, Tense: Pres, VerbForm: Fin}` | present subjunctive (que hable, que coma) |
+  | `{VerbForm: Ger}` | gerund, -ando, -iendo (estoy trabajando: I'm working) |
+  | `{Gender: Fem, Number: Sing}` | feminine: la, una, cubana |
+
+  A label also has `notes`, and `was`, the old id of the form it names.
+- **Nodes:** a node's `introduces` lists the lexemes and feature values it teaches
+  (`introduces: ['lexeme:estar', 'feature:Tense=Pres', 'lexeme:cómo', 'lexeme:usted']`). The
+  node that first teaches a tense, a mood or a verb form introduces its value (`feature:Tense=Past`
+  in `es.u09.ayer`, `feature:VerbForm=Ger` in `es.u07.estoy-trabajando`), and so do the first
+  feminine and the first plural (`feature:Gender=Fem` in `es.u01.soy`, `feature:Number=Plur` in
+  `es.u02.tengo`).
+- **i+1:** a sentence brings in at most `iPlusOne` lexemes and feature values no earlier sentence
+  used (default 1; `iPlusOne: 2` here). Order the sentences of a node so each adds one.
 - **Sentences:** about 30–36 a unit, short in the early units, longer from unit 11. Every
   sentence has `reverse` (the Spanish accept set) and `translations.en` (the English accept set,
   displayed form first).
@@ -115,7 +165,7 @@ Further back: Daniel's great-grandfather cut cane at a *central* in Matanzas (u2
   - `register: colloquial` for slang (*asere*, *¿qué bolá?*), `formal` for *usted* sentences.
 - **Stories:** one per unit, on its last node: 10–16 lines with the family as characters, two or
   three `choose` questions, one or two `ask: arrange`, one or two `ask: complete` (with `gap` and
-  two `distractors`). Lines use only KCs taught up to that unit.
+  two `distractors`). Lines use only lexemes and feature values taught up to that unit.
 - **Scenarios** (roleplay with a model): about one every three units, in Cuban settings.
 - **Provenance and license:** the course default (`llm:claude@…`, draft; CC-BY-SA-4.0). Authentic
   texts keep their own provenance (José Martí's *Versos sencillos*, 1891, public domain).
@@ -125,7 +175,8 @@ Further back: Daniel's great-grandfather cut cane at a *central* in Matanzas (u2
 `units/u01-que-bola.yaml` is the model. Build with `cd pipeline && uv run nabu build ../courses/es
 --check`; a unit is done when it has no errors and no warnings. What the linter catches most:
 
-- **i+1** (`iPlusOne: 2` here): a new verb in a new tense is already two new KCs.
+- **i+1** (`iPlusOne: 2` here): a new verb in a new tense is already two new parts (`lexeme:hablar`
+  and `feature:Tense=Past`, both introduced by `es.u09.ayer`).
 - **Duplicate answers** (`grading.duplicate`): accept sets are compared after normalization, which
   drops punctuation and case. Never vary only punctuation (`(,| )`, `[.]`), and do not list the
   displayed translation on its own line when a later line generates it too. Write one pattern whose
@@ -134,11 +185,17 @@ Further back: Daniel's great-grandfather cut cane at a *central* in Matanzas (u2
   space, `#`, brackets or braces, and any accept set that starts with `[`. Use `|-` blocks for
   multi-line accept sets.
 - **Tokens:** every word of `text`, in order, exactly as written (capitals, accents); punctuation
-  is not a token. Each has a `sense` (and a `form` on inflected verbs, and on a feminine or plural
-  noun, adjective, determiner or pronoun) that a unit up to this one defines and a node up to this
-  one introduces.
-- **Stories:** a `complete` line's `gap` must be the KC of exactly one word token of the line, and
-  its distractors other KCs already taught.
+  is not a token. Each names a `lexeme` that `lexicons/es/lexemes.yaml` has and a node up to this
+  one introduces (`curriculum.unknown`, `curriculum.introduced-late`), with its `feats` on every
+  verb and noun and on each adjective, determiner and pronoun that agrees (on a multi-word
+  lexeme's tokens, only where it inflects).
+- **Stories:** a `complete` line's `gap` must be the lexeme of exactly one token of the line
+  (`gap: lexeme:yasiel`). It asks which lexeme (`asks: lexeme`, the default): its `distractors` are
+  other lexemes of the gap's part of speech (for that gap, `lexeme:daniel` and `lexeme:miami`), each
+  written by the course in the gap's form in this unit or an earlier one (`story.distractor-form`,
+  `story.distractor-pos`). Or it asks which form (`asks: form`): its `distractors` are feature
+  values of the gap's own lexeme in forms the course writes (u12, `gap: lexeme:ser`: `{Mood: Ind,
+  Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}` beside the line's *Éramos*).
 
 ## The units
 

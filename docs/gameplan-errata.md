@@ -277,3 +277,10 @@ ADR is linked. The gameplan text itself is left as written.
 70. **§12.4 "a learner joins a cohort with their first XP of the week":** a learner may now decline leagues
     (PUT /v1/league), and joins no cohort while declined; past results are kept
     ([ADR 0122](adr/0122-gate-leagues-and-ai-help.md)).
+71. **§7.1 knowledge components (KCs: `sense:`, `form:`, `construction:`, with `morphs` on tokens):**
+    since ADRs [0145](adr/0145-lexical-model.md)–[0151](adr/0151-fonts-build-step.md) (2026-11-21)
+    what the gameplan calls KCs are lexemes, in one flat lexicon per language
+    (`lexicons/<lang>/lexemes.yaml`), feature values chosen in a token's `feats`
+    (`feature:Tense=Past`), rules named in a sentence's `uses` (`rule:used-to`) and letters
+    (`grapheme:α`); a token names the `lexeme` it writes or lists its `lexemes`. Old logs and each
+    course's `courses/<id>/aliases.yaml` still use the KC ids ([migration-design.md](migration-design.md)).

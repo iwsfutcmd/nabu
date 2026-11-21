@@ -1,6 +1,8 @@
 # Course images
 
-Pictures for `select-image` (gameplan §8.2), shared by the fixture courses through `kcs[].image`.
+Pictures for `select-image` (gameplan §8.2), shared by the fixture courses through the `image` of a
+lexeme in `lexicons/<lang>/lexemes.yaml` (its `file` relative to the lexicon:
+`../../courses/images/sunrise.svg`).
 Simple SVGs drawn for Nabu by an LLM (`llm:` provenance, status draft), released under CC0-1.0.
 No text inside any image: the word under the picture is language data and comes from the course.
 

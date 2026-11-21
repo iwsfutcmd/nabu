@@ -4,8 +4,14 @@
 - Status: exploration for Ben to read, argue with and cut. Nothing here is decided; any part taken up
   becomes an ADR.
 - Related: ADR 0053 (vowel marks), 0054/0095/0098 (pronunciation cards), 0071 (several ruby layers),
-  0086 (sitelen pona), 0087 (Attic), 0109 (schemes as data), 0117 (KC readings), 0126 (Jyutping as
-  an orthography), 0128/0129 (Chaghatay), 0131 (readings that fade), 0133 (script tracks ask the reading).
+  0086 (sitelen pona), 0087 (Attic), 0109 (schemes as data), 0117 (a lexeme's reading), 0126 (Jyutping
+  as an orthography), 0128/0129 (Chaghatay), 0131 (readings that fade), 0133 (script tracks ask the
+  reading).
+- Since 2026-11-21 the courses have no KCs (ADRs 0145–0151, [migration-design.md](migration-design.md)):
+  a sense KC is a lexeme, a morph a lexeme in a token's `lexemes`, a form KC a feature value chosen
+  on a token or an affix lexeme, a construction KC a rule. The measurements in §2 were made before,
+  on the KCs; the terms below are the new ones, but for §12, which records the decisions in the
+  words they were made in.
 
 ## The question
 
@@ -38,8 +44,9 @@ The answer decides what the app presents, what it tests and how it grades. This 
 - **P′**, a phonetic layer derived from P for voices (`tiberian.ipa`, `attic.piper`). It is never
   shown to learners.
 - **A**, audio: a clip, synthesized or recorded.
-- **M**, meaning: the sense KC, its gloss, the translation.
-- **G**, grammatical annotation: morphs and their form KCs, `persons`, the sentence type.
+- **M**, meaning: the lexeme, its gloss, the translation.
+- **G**, grammatical annotation: the lexemes a token writes and their feature values, `persons`, the
+  sentence type.
 
 **Displays of P.** A learner who can't read the script yet needs P shown in letters they already read:
 its Latin display, or audio where the voice is good enough. That is P written another way, not a
@@ -77,7 +84,7 @@ courses hold, count:
 - spellings with more than one reading;
 - readings with more than one spelling.
 
-Twins across orthographies are paired by sense and morphs.
+Twins across orthographies are paired by the lexemes they write.
 
 The numbers are *within the course's vocabulary*: they measure determinacy at the context level.
 Lexicon-level loss (each word has its own reading the learner must know) shows up as zero here,
@@ -105,12 +112,12 @@ because each word has one entry. The rule level is noted where a converter exist
 
 es has one orthography and no reading layer, so it has no pair to measure.
 
-**The residual test.** Group tokens by (spelling, sense KC, morph KCs) and ask whether a reading
+**The residual test.** Group tokens by (spelling, lexemes, feature values) and ask whether a reading
 still varies. Nearly all the ambiguity above disappears:
 
 | Course | Still read two ways | What's left |
 |---|---|---|
-| lzh | 0 / 227 | nothing: polyphones are already split into senses (知, 知.zhi) |
+| lzh | 0 / 227 | nothing: polyphones are already split into lexemes (知, 知.zhi) |
 | yue | 1 / 298 | 呀 *aa3 / aa4*: the sentence type |
 | apc | 2 / 725 | بدك, سلامتك: the addressee's gender, carried by `persons` but not used |
 | chg | 3 / 783 | *malik / malik-i*, *āwāz / āwāz-i*: the ezafe, an unmodelled morpheme; یر *yer / yär*: variation or a data question |
@@ -121,11 +128,11 @@ still varies. Nearly all the ambiguity above disappears:
 **Rule-level checks.** PyCantonese disagrees with yue's pinned Jyutping 186 times:
 
 - 141 are 呀 (*aa3* pinned, *aa4* PyCantonese): context.
-- 30 are 呢 (*ni1* "this" vs *ne1* the particle): sense.
+- 30 are 呢 (*ni1* "this" vs *ne1* the particle): lexeme.
 - The rest are literary vs colloquial readings (平 *peng4 / ping4*, 名 *meng2 / ming4*) and changed
   tones (女兒 *ji2*, 英文 *man2*): variation within one tradition.
 
-**What this says.** Once sense and morphs are known, the residue has exactly five kinds:
+**What this says.** Once lexemes and feature values are known, the residue has exactly five kinds:
 
 1. unmodelled morphemes (the ezafe, construct state);
 2. juncture and pause;
@@ -184,10 +191,11 @@ Each pair of orthographies is its own edge with its own level in each direction.
   - The two **disagree on word boundaries**: Arabizi writes *w* "and" as a word, Arabic joins و to
     the next word.
 
-  Store both, aligned by morph, not by word.
+  Store both, aligned by lexeme, not by word.
 
 New thing to model: **boundary mismatch.** Two orthographies can tokenize the same sentence
-differently (clitics, compounds, Chinese words vs characters). Alignment must go through morphs.
+differently (clitics, compounds, Chinese words vs characters). Alignment must go through the lexemes
+a token writes.
 The twin pairing used in this measurement already shows the noise: an Arabizi *enta* paired with
 an Arabic سالم.
 
@@ -238,8 +246,8 @@ The residue in §2 shows five context features. Each has a natural home:
 
 | Feature | Example | Home |
 |---|---|---|
-| sense | 知 *zhī / zhì*, 呢 *ni1 / ne1* | sense KCs (already) |
-| morpheme | ezafe (fa, chg), construct state (hbo) | a morph with a form KC (`form:ezafe`, `form:construct`) |
+| sense | 知 *zhī / zhì*, 呢 *ni1 / ne1* | lexemes (already: `lexeme:知`, `lexeme:知.zhi`) |
+| morpheme | ezafe (fa, chg), construct state (hbo) | a lexeme the token writes (fa `{lexeme: ezafe, surface: ''}`, ADR 0136); a feature value (hbo `Definite: Cons`) |
 | persons | apc *baddak / baddik* | `persons` tags, which already decide accept sets |
 | sentence type | yue 呀 *aa3 / aa4* | a sentence attribute (statement, question), derivable from punctuation |
 | juncture and pause | hbo maqaf, pausal forms, dagesh after a vowel-final word | token attributes `bound: true`, `pausal: true` |
@@ -299,7 +307,7 @@ layers:
   orthographies: [chg-Arab/standard]
   readings: [schluessel]
 edges:
-  - { from: chg-Arab/standard, to: schluessel, level: lexicon, context: [sense, morphs, ezafe], pinned: token }
+  - { from: chg-Arab/standard, to: schluessel, level: lexicon, context: [lexemes, feats, ezafe], pinned: token }
   - { from: schluessel, to: chg-Arab/standard, level: lexicon, variation: true }
   # (no edge to Latin: Schluessel is its own Latin display, the scheme's `latin`)
 store: [chg-Arab/standard, schluessel]
@@ -341,25 +349,26 @@ store: [attic]                      # or keep both and check them against each o
 
 ### 4.3 Grain: language, lexeme, token
 
-ADR 0117 already chooses a KC's reading from its tokens. Make the grain explicit:
+ADR 0117 already chooses a lexeme's reading from its tokens. Make the grain explicit:
 
 - **language:** a rule;
-- **lexeme:** per KC, the default for its tokens;
+- **lexeme:** per lexeme, the default for its tokens;
 - **token:** a per-sentence pin, only where context decides.
 
-A token pin that equals its KC's reading is redundant. A KC whose tokens disagree, with no context
-feature to explain it, is a modelling gap.
+A token pin that equals its lexeme's reading is redundant. A lexeme whose tokens disagree, with no
+context feature to explain it, is a modelling gap.
 
 ### 4.4 Lift context into annotation
 
 The residue of §2 has five kinds, and each has a home (§3.6):
 
-1. **Ezafe** (fa, chg) as a morph with `form:ezafe`. fa already has `construction:ezafe` as a KC; it
-   would become the morph that a token's kasra or *-i* spells. The reading then follows from the
-   morphs.
-2. **hbo construct state** as a form KC; **maqaf binding and pausal forms** as token attributes. The
+1. **Ezafe** (fa, chg) as a lexeme the token writes, the one a token's kasra or *-i* spells: fa's is
+   `lexeme:ezafe` (`{lexeme: ezafe, surface: ''}` where the script does not write it, ADR 0136). The
+   reading then follows from the lexemes.
+2. **hbo construct state** as a feature value (`Definite: Cons`); **maqaf binding and pausal forms** as
+   token attributes. The
    Tiberian reading's final "-" already encodes binding by convention; this makes it data.
-3. **Persons** decide apc's *-ak / -ik*: the vocalization of a suffix morph comes from the
+3. **Persons** decide apc's *-ak / -ik*: the vocalization of a suffix lexeme comes from the
    sentence's `persons`, as accept sets already do.
 4. **Sentence type** decides yue's 呀. Punctuation (？) can supply it; a sentence attribute can
    override it.
@@ -415,7 +424,7 @@ By class:
   - a tradition picker (lzh has one) that every view respects;
   - a comparison card as enrichment: 見 *jiàn / gin3 / kenH*, 見 "appear" *xiàn / jin6 / henH*.
 - **Several orthographies:**
-  - a dual-script view (uz Latin over Cyrillic, apc Arabic over Arabizi), aligned by morph;
+  - a dual-script view (uz Latin over Cyrillic, apc Arabic over Arabizi), aligned by lexeme;
   - a "show in the other script" tap on any word.
 - **Scaffolding over time:** all readings → new words only (built) → ambiguous words only → none,
   per learner and per word, with the learner able to step back at any point.
@@ -552,8 +561,9 @@ A learner told where to look can look there.
   every course.
 - **Adding an orthography or tradition** means declaring its edges and running the report. The
   report says what must be pinned and how much.
-- **Reviewers fix structure, not strings:** when a residual appears, the fix is a sense split, a
-  morph or an attribute (§4.4), never a hand-edited reading that hides the cause.
+- **Reviewers fix structure, not strings:** when a residual appears, the fix is a lexeme split, a
+  lexeme in a token's `lexemes`, a feature value or an attribute (§4.4), never a hand-edited reading
+  that hides the cause.
 
 ## 10. Our courses, now and proposed
 
@@ -563,10 +573,10 @@ A learner told where to look can look there.
 | uz | Latin, Cyrillic (checked by CLDR) | transparent | Latin; derive Cyrillic | drop the hand-kept Cyrillic, keep pins only for exceptions |
 | es | O | reading-transparent | O | exception pins for loanwords if a voice misreads them |
 | grc | spelling + Attic reading per token | writing-transparent | Attic; derive spelling | move the pytest's spelling = strip(reading) check into the compiler (1055/1055 today) |
-| fa | O + vocalization (per KC, token overrides) | lexical + contextual (ezafe) | O + vocalization + `form:ezafe` | make the ezafe a morph; residual → 0 |
-| apc | Arabic + vocalization + Arabizi | lexical + contextual (persons) + variable | Arabic + vocalization, Arabizi aligned by morph | vocalize -ak/-ik from `persons`; Arabizi variants as sets |
-| hbo | pointed + Tiberian per token | writing-transparent from the accented text | the accented WLC word (from which `nabu tiberian` already derives the reading) | `bound` and `pausal` token attributes; `form:construct` |
-| chg | Arabic + Schluessel per token; chg-Latn KC forms (now read only for letters, ADR 0133) | lexical + contextual (ezafe) + variable | Arabic + Schluessel | `form:ezafe`; spelling variants as sets; check یر *yer / yär*; drop the word KCs' chg-Latn forms |
+| fa | O + vocalization (per lexeme, token overrides) | lexical + contextual (ezafe) | O + vocalization + `lexeme:ezafe` | make the ezafe a lexeme the token writes (ADR 0136); residual → 0 |
+| apc | Arabic + vocalization + Arabizi | lexical + contextual (persons) + variable | Arabic + vocalization, Arabizi aligned by lexeme | vocalize -ak/-ik from `persons`; Arabizi variants as sets |
+| hbo | pointed + Tiberian per token | writing-transparent from the accented text | the accented WLC word (from which `nabu tiberian` already derives the reading) | `bound` and `pausal` token attributes; construct state as `Definite: Cons` |
+| chg | Arabic + Schluessel per token; chg-Latn lexeme spellings (now read only for letters, ADR 0133) | lexical + contextual (ezafe) + variable | Arabic + Schluessel | an ezafe lexeme; spelling variants as sets; check یر *yer / yär*; drop the lexemes' chg-Latn spellings |
 | yue | characters + Jyutping per token; Jyutping orthography generated | opaque + contextual (呀) | characters + Jyutping | sentence type for 呀; changed tones and literary readings as declared variation |
 | lzh | characters + three readings per token | opaque, several traditions | characters + Baxter + per-tradition pins | check Pinyin and Jyutping against Baxter by regular correspondence, as a lint only |
 
@@ -578,7 +588,7 @@ A learner told where to look can look there.
    transliteration lint and yue's PyCantonese warnings. Raise uz's to an error (it holds at 0). Small, and it
    catches drift before any restructuring.
 3. **The residual check and lifting context into annotation** (§4.4):
-   - `form:ezafe` for fa and chg;
+   - an ezafe lexeme for fa and chg (fa's is `lexeme:ezafe`, ADR 0136);
    - `persons`-driven vocalization for apc;
    - sentence type for yue 呀;
    - `bound` and `pausal` for hbo.

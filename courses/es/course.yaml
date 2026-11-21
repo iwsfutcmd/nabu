@@ -59,8 +59,8 @@ license: CC-BY-SA-4.0
 provenance:
   author: llm:claude@1ebc6e7db77a
   status: draft
-# A Spanish verb is fusional: a new verb in a new tense is two KCs on one word (sense + form), so a
-# sentence may bring in two.
+# A Spanish verb is fusional: a new verb in a new tense is two new parts on one token (a lexeme and a
+# feature value), so a sentence may bring in two.
 iPlusOne: 2
 # Placement (ADR 0077) has production typed, so it also checks spelling and accent marks.
 placement:
@@ -93,7 +93,7 @@ audio:
     reading: text
     finalStop: true
     license: CC-BY-NC-4.0
-# Every reading is fixed by its word's spelling, sense, form and morphs (ADR 0135): one read otherwise is an error.
+# Every reading is fixed by its token's spelling, lexemes and feature values (ADR 0135): one read otherwise is an error.
 consistentReadings: true
 # The course asks words by their parts (ADR 0152): a word built from its own word and the forms it
 # carries (parts-whole), and a word's parts picked out (whole-parts). REVIEW: the forms its tokens

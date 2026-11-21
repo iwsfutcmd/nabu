@@ -84,15 +84,17 @@ Answering a policy question settles many rows at once.
 A fill-in now asks which word (every option in the answer's form and of its part of speech) or which form
 (the answer's own word in other forms the course writes): [ADR 0132](../docs/adr/0132-a-choice-asks-one-thing.md).
 
-- **Parts of speech.** Every sense KC of every course has a model-drafted UD `pos` and lexical `features`
+- **Parts of speech.** Every lexeme of every course has a model-drafted UD `pos` and lexical `feats`
   (`NounType: Clf` for yue's classifiers, `PartType: Mod` for its final particles, `Poss`, `PronType`).
   A wrong one changes which words a question offers against each other.
 - **Story questions.** All 200 `complete` steps were redone: the wrong options of a word question make the
   line false or absurd, those of a form question make it ungrammatical, and nothing else marks the answer.
-- **Agreement.** Every agreeing noun, adjective, determiner and pronoun of es, apc, hbo and grc now says its
-  gender and number as its form (es `form:fem`, `form:pl`, `form:fem-pl`; apc `form:fem`, `form:pl`; hbo
-  `f`, `pl`, `f-pl` with the construct; grc gender, case and number in one: `f-acc`, `n-pl`), so a word
-  question offers only words that agree. Check first the nouns' genders chosen by hand.
+- **Agreement.** Every agreeing adjective, determiner and pronoun of es, apc, hbo and grc now chooses its
+  gender and number in its token's `feats` (es, apc and hbo `{Gender: Fem, Number: Sing}`; grc gender, case
+  and number in one: `{Case: Acc, Gender: Fem, Number: Sing}`), and a noun's token its number (grc's its
+  case too, hbo's its state: `{Definite: Cons, Number: Plur}`). A noun's gender is its lexeme's, stored in
+  the lexicon where the language's defaults do not give it. So a word question offers only words that
+  agree. Check first the nouns' genders chosen by hand.
 - [choice-doubts.md](choice-doubts.md) lists the tags, the steps and the agreement choices the drafts were
   least sure of.
 
@@ -123,7 +125,7 @@ With an account on a server, corrections also reach the review queue at `/admin/
 2. **The copula after a vowel.** The display has رضا است, سارا است and کتابِ ما است, but the
    contracted کجاست, اینجاست, آنجاست and دریاست. Accept sets take both forms. A single policy may
    be better.
-3. **Stiff sentences.** These were built to bring in one new KC each and may sound stiff:
+3. **Stiff sentences.** These were built to bring in one new lexeme each and may sound stiff:
    - کار کردن خوب است
    - مریم با علی است
    - ما هزار کتاب داریم!
@@ -189,7 +191,7 @@ are in the library (nabu/notes/yue). The book settles most of what this list ask
   - 俾一百蚊你, the thing given first;
   - a seller says 多謝 on being paid;
   - 個 is required in 個老師好好 (a bare noun is generic);
-  - KC notes on 對唔住 and 唔好意思, 個, 多謝, 啦, 嗎, 名, 錢, 呢, 尋日, 先生, 想, 俾.
+  - lexicon notes on 對唔住 and 唔好意思, 個, 多謝, 啦, 嗎, 名, 錢, 呢, 尋日, 先生, 想, 俾.
 - **Settled as they were:**
   - 個 + noun as "the" (before the verb);
   - forecasts without 會 (future time needs no 會);
@@ -319,7 +321,7 @@ points below land, and its chapter is cited where it does.
 6. **The past tense.** zert, wselt/weslet, safart, and kent mabsout for "I had a good time".
    "He came back" is now reje3 (Kline ch. 11), and "he was" ken (ch. 10).
 7. **Time words.**
-   - jem3a is one KC meaning both Friday and week (nhar el jem3a, hal jem3a).
+   - jem3a is one lexeme meaning both Friday and week (nhar el jem3a, hal jem3a).
    - 3al dohr and ba3d el dohr.
    - el lele.
    - nhar vs yom.
@@ -416,7 +418,7 @@ Sagart's list (2015), Kroll's dictionary (2017) and Pulleyblank's grammar (1995)
 ([ADR 0127](../docs/adr/0127-lzh-checked-against-references.md)); notes with page references are in
 the reference library (`nabu/notes/lzh/`). A reviewer of Classical Chinese should check:
 
-1. **Readings by sense.** Each sense is read one way in all three layers. Before the check, 230 of
+1. **Readings by lexeme.** Each lexeme is read one way in all three layers. Before the check, 230 of
    246 characters matched a row of Baxter & Sagart's list, and Kroll gave the same Middle Chinese
    for 237. Fixed after it: 盾 dwonX, 鯈 dew, 大 daH, 從容 cōng róng, and 見 "have an audience
    with", now xiàn / jin6 / henH (the word "appear"; 見 "see" is jiàn / gin3 / kenH; many readers
@@ -430,12 +432,12 @@ the reference library (`nabu/notes/lzh/`). A reviewer of Classical Chinese shoul
    the course's readings: 生 is sang1 throughout, and 曰 is irregularly joek6.
    Also 聲 sing1, 頸 ging2, 耕 gang1, 復 "again" fau6, 鯈 tiu4 (kSMSZD2003Readings).
 3. **Grammar as taught**, now checked against Pulleyblank:
-   - after a negative a pronoun object comes before the verb (`construction:neg-pronoun`):
+   - after a negative a pronoun object comes before the verb (`rule:neg-pronoun`):
      王不我知, 吾不汝知, 吾不踰 (之 left out after 不), 人莫之能知也. These four were rewritten
      from the rarer order (王不知我…), which is still accepted;
    - 為…笑 is a passive (Pulleyblank IV.9b), now translated "was laughed at by", not "became the
      laughingstock of";
-   - the fable opener 楚人有涉江者 (`construction:you-zhe`) and 之 in 吾劍之所從墜 (`之.de`, the
+   - the fable opener 楚人有涉江者 (`rule:you-zhe`) and 之 in 吾劍之所從墜 (`之.de`, the
      subject of a 所 phrase) are as Pulleyblank describes them;
    - 上善若水 under 上 "above": Pulleyblank is silent;
    - 此是霜 is Tang usage (是 a copula); the note says classical prose would say 此霜也.
@@ -499,12 +501,13 @@ reference library, nabu/notes/hbo): what they showed wrong is fixed, and what th
 3. **Pointing of constructed sentences.** Every word was checked against the forms the Bible attests; a few
    are unattested but regular (מְבַקֶּשֶׁת). Contextual forms are used, not pausal ones, except in quotations.
    Begadkefat after a vowel-final word joined by maqaf are spirantized as in the text (וַיְהִי־בֹקֶר).
-4. **Analyses.** Token senses, morphs and forms come from the WLC's morphology (openscriptures/morphhb). Two
+4. **Analyses.** Tokens' lexemes and feature values come from the WLC's morphology (openscriptures/morphhb). Two
    slips were corrected by hand: Gen 3:11 מִמֶּנּוּ "from it" (tagged "from us"), Gen 24:17 מִכַּדֵּךְ "from your
-   (f.) jar" (tagged "her"). Verbs are KCs by stem (הָלַךְ and הִתְהַלֵּךְ, רָאָה and הֶרְאָה and נִרְאָה; נֶחְבָּא
-   and הִתְחַבֵּא since ADR 0084); the stems agree with Joüon–Muraoka. Forms are KCs by conjugation and person
-   (`form:wayyiqtol-3ms`); is that the right grain? Joüon–Muraoka corrected: the plural construct of nouns
-   always plural (פְּנֵי) is form:pl-cstr; Jonah 1:9 יָרֵא is the verbal adjective; Gen 12:2 וַאֲגַדְּלָה a
+   (f.) jar" (tagged "her"). Verbs are lexemes by stem (הָלַךְ and הִתְהַלֵּךְ, רָאָה and הֶרְאָה and נִרְאָה; נֶחְבָּא
+   and הִתְחַבֵּא since ADR 0084); the stems agree with Joüon–Muraoka. Forms are feature values by conjugation
+   and person (a wayyiqtol 3ms is `{Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm:
+   Fin}`); is that the right grain? Joüon–Muraoka corrected: the plural construct of nouns always plural
+   (פְּנֵי) is `{Definite: Cons, Number: Plur}`; Jonah 1:9 יָרֵא is the verbal adjective; Gen 12:2 וַאֲגַדְּלָה a
    cohortative. Open: the long imperative לְכָה beside לֵךְ (accepted?), and jussives spelled like yiqtols
    (Num 6:24–26), tagged by the WLC.
 5. **Translations.** "the LORD" for the divine name; "God" for אֱלֹהִים; narrative וַ as "and", "then" or
@@ -551,7 +554,7 @@ Across the course, check first:
 3. **Accent pairs.** Grading treats a missing accent that spells another word of the course as
    wrong (*esta* for *está*). The pairs in u11 (*tú/tu, él/el, sí/si, mí/mi, té/te, sé/se,
    hablo/habló*) are the ones that matter most.
-4. **Facts in KC notes.** Dates of the exile (u24), music history (u16), national symbols (u26),
+4. **Facts in lexicon notes.** Dates of the exile (u24), music history (u16), national symbols (u26),
    and customs (u20) were written from memory and should be checked.
 5. **Family story continuity.** The family table in es/README.md, plus what the stories added:
    Abuela born in Matanzas, came in the Mariel boatlift (1980) and is 79; Marisol stayed in
@@ -583,7 +586,7 @@ By unit, what the drafts were least sure of:
 - Slang and customs: fulas = dollars; "in Miami, pesos often just means dollars"; Cubans sing Felicidades at birthdays; tomar rather than beber for drinks.
 - The cola: ¿El último? ("Who's last?") and a stranger answering "Yo soy la última, mi vida": etiquette and wording?
 - Abuela is 79 (80th birthday in u30). Story realism: a colada and ten tostones for $20 at a ventanita at 8:30 pm; "¿Veinte dólares? ¡Asere!".
-- u05 teaches 1–10, 15, 19, 20, 24, 30, 50, 70, 100 as KCs; notes explain the rest.
+- u05 teaches 1–10, 15, 19, 20, 24, 30, 50, 70, 100 as lexemes; notes explain the rest.
 - Accept sets widened: Qué horas son; un agua / un vaso de agua; papaya, fila; beber beside tomar; cuánto le debo; [en punto].
 - Politeness: "¿Cuántos años tiene usted, señora?" (formal): acceptable to an older woman?
 
@@ -654,7 +657,7 @@ By unit, what the drafts were least sure of:
 - Present perfect vs preterite: Cubans often use the preterite; canonical perfects ("¿Qué tú has hecho hoy?", "Ya te he dicho que no, Lili", "¿Qué te ha dicho abuelo?") also accept the preterite.
 - Pelota: Abuelo (exile since 1980) "es de los Industriales"; Yasiel calls him abuelo with usted; ponchar = a flat tyre (se ponchó la goma); "Lili ha ponchado a Daniel dos veces"; notes: Abreu from Cienfuegos, Industriales "los Azules", the Marlins' ballpark on the Orange Bowl site.
 - Health: tener turno con el médico as Cuban (cita accepted); "el azúcar alta" and tener azúcar for diabetes; "tengo tremendo dolor de cabeza" (no un); cocimiento de manzanilla vs té; tilo for sleep and nerves; ¡Salud! for a sneeze (Jesús accepted); cocimiento de caña santa for a cold.
-- tener que as a multi-word KC (sense:tener-que).
+- tener que as a multi-word lexeme (lexeme:tener-que).
 - abuelo, abuela, tía lowercased mid-sentence ("con abuelo Pepe", "A abuelo le duele…"; al abuelo accepted).
 
 ### u19 Con respeto, u20 Nochebuena
@@ -667,7 +670,7 @@ By unit, what the drafts were least sure of:
 - The future vs ir a: va a + infinitive accepted wherever the future is canonical. Stricter in a future-teaching unit?
 - Wording: "Doña Ofelia estaría feliz con un cafecito"; "Abuela tirará agua a la calle"; "Pase, pase… Está en su casa"; Doña rendered Doña, Miss or Mrs.
 - s.u19.12 with les ("les piden la bendición a sus padres"), le also accepted.
-- quisiera tagged form:subj-past (imperfect subjunctive, not conditional).
+- quisiera tagged `{Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}` (imperfect subjunctive, not conditional).
 
 ### u21 Los consejos de Abuela, u22 La llamada
 - Slang and culture in notes: los baros (money); uaifai; IMO as the app Cubans used first; ETECSA double-credit recargas; fajarse for a fistfight; "muchacha" up to about forty.
@@ -704,7 +707,7 @@ By unit, what the drafts were least sure of:
 - Heritage-error notes: *si tendría* (on `lotería`), *haiga* (on `cliente`), *trajiera/trayera* (on `traer`), *moverse* for *mudarse*, *soñar de*.
 
 ### u29 ¿Quién soy?, u30 El brindis
-- Is it really Miami usage: *el rufo*, *vacunar la carpeta* (maybe more joke than speech), *aplicar para un trabajo*, *hace sentido*, *te llamo para atrás*. Each anglicism KC appears once in a lesson sentence about the word ("En Hialeah decimos carpeta; en Cuba dicen alfombra."); no accept set offers an anglicism for the Spanish word. Check that these sentences read well without quotation marks (the course uses none).
+- Is it really Miami usage: *el rufo*, *vacunar la carpeta* (maybe more joke than speech), *aplicar para un trabajo*, *hace sentido*, *te llamo para atrás*. Each anglicism lexeme appears once in a lesson sentence about the word ("En Hialeah decimos carpeta; en Cuba dicen alfombra."); no accept set offers an anglicism for the Spanish word. Check that these sentences read well without quotation marks (the course uses none).
 - Island words: *el cake* for a birthday cake (*pastel*, *bizcocho* accepted); *la planilla* for a form; *carpeta* as a hotel front desk in Cuba (a note); *yuma* / *la Yuma*, *medio yuma*.
 - Usage: *¡Dale, asere!* and *¡Qué va!* from Yunior; *Por ustedes, mi'jo*; *agradecida con todos ustedes* vs. *a todos ustedes*; *Me gustaría agradecerles a todos que estén aquí*; *Abuela tiene una rosa blanca en el patio, por Martí* (is *por* natural?).
 - Spelling: *espanglish* (RAE) canonical, *spanglish* accepted; *cubanoamericano* as one word.
@@ -787,7 +790,7 @@ references in the reference library (find them with `nabu refs find`; notes in n
   variants only.
 - The transliteration (each word's reading, shown as ruby; ADR 0129): front and back vowels (ä/a) and the e/ä of
   verbs (käldi but kelädur, bärdi), the ǧ/q and g/k of suffixes, where Schluessel himself varies; the readings of
-  the KCs' citation forms (stems without their hyphen: bar).
+  the lexemes' citation forms (stems without their hyphen: bar).
 - Names before what they name take no genitive (Sayḥūn suyi "the Sayhun river", Farǧāna wilāyati, Ramżān ayi, Afsus
   šahari), as Babur writes Sayḥūn daryāsi; answers with -niŋ there (Sayḥūnniŋ suyi, "the Sayhun's water") are not
   accepted. Check that this is right for the course's register.
