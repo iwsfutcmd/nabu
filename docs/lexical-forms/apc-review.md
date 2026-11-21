@@ -11,8 +11,8 @@ Lebanese, not a verdict: the course may be right and the convention wrong.
 ## In numbers
 
 - **1025** distinct words in the sentences and stories (Arabic, its marks and its Arabizi together).
-- **950** come back exactly in all three: the Arabic spelling, the vowel marks, and the Arabizi among the spellings the correspondences give.
-- **66** have a lexical form and do not come back in one of the three.
+- **951** come back exactly in all three: the Arabic spelling, the vowel marks, and the Arabizi among the spellings the correspondences give.
+- **65** have a lexical form and do not come back in one of the three.
 - **9** have no lexical form.
 - **358** sense KCs with **415** listed forms: 373 come back, 35 do not, 2 have no form, 5 are written in one script only.
 - **41** verbs with citation forms, 40 of them with radicals and a Form and 1 a listed stem; 251 of their forms in the sentences are pinned, since no conjugation rule is written yet.
@@ -73,7 +73,7 @@ A loan kept in its French or English spelling (merci, football, taxi), or two di
 - تْلاتَعْشَر / tleta3sh (u16-dates:apc.story.birthday#1): Arabizi not read: تْلاتَعْشَر cannot be read as tleta3sh: arabizi: tleta3sh is not among the projected spellings (tlata3shar first)
 - سرفيس / servees (u18-getting-around:s.road.1): Arabizi not read: سِرْفيس cannot be read as servees: arabizi: servees is not among the projected spellings (serfis first)
 
-## 5. The marks and the Arabizi give different vowels (18)
+## 5. The marks and the Arabizi give different vowels (17)
 
 One of the two is wrong, or the word is said both ways. The drafted form follows the Arabizi where it has a vowel and the marks where it has none.
 
@@ -83,13 +83,12 @@ One of the two is wrong, or the word is said both ways. The drafted form follows
 - بحكي / b7ki (u06-day:s.day.23): vowel: marked i, none in Arabizi: arabizi: b7ki is not among the projected spellings (be7ki first)
 - بتحكي / bt7ki (u06-day:s.day.24): vowel: marked i, none in Arabizi: arabizi: bt7ki is not among the projected spellings (bte7ki first)
 - بِقْرا / b2ra (u06-day:apc.story.my-day#8): vowel: marked i, none in Arabizi: arabizi: b2ra is not among the projected spellings (be2ra first)
-- إبنهن / ebnon (u11-people:s.ppl.33): vowel: marked i, none in Arabizi: arabizi: ebnon is not among the projected spellings (ebenon first)
-- أهلهن / ahlon (u11-people:s.ppl.43): vowel: marked i, none in Arabizi: arabizi: ahlon is not among the projected spellings (ahelon first)
 - بْتِحْكي / bt7ki (u11-people:apc.story.neighbours#3): vowel: marked i, none in Arabizi: arabizi: bt7ki is not among the projected spellings (bte7ki first)
-- إِبِنْهُن / ebnon (u11-people:apc.story.neighbours#8): vowel: marked i, none in Arabizi: arabizi: ebnon is not among the projected spellings (ebenon first)
-- وبِنِتْهُن / w benton (u11-people:apc.story.neighbours#8): vowel: marked i, none in Arabizi: arabizi: w benton is not among the projected spellings (wbeneton first)
 - تحكي / t7ki (u13-health:s.health.16): vowel: marked i, none in Arabizi: arabizi: t7ki is not among the projected spellings (te7ki first)
+- سمعتني / sme3tni (u14-phone:s.phone.11): vowel: marked i, none in Arabizi: arabizi: sme3tni is not among the projected spellings (sme3etni first)
+- فهمتني / fhemtni (u14-phone:s.phone.14): vowel: marked i, none in Arabizi: arabizi: fhemtni is not among the projected spellings (fhemetni first)
 - بعتلي / ba3atli (u14-phone:s.phone.30): vowel: Arabizi a where the marks have a sukun: marks: projected بَعَتْلي, pinned بْعَتْلي
+- سْمِعِتْني / sme3tni (u14-phone:apc.story.teta-calls#1): vowel: marked i, none in Arabizi: arabizi: sme3tni is not among the projected spellings (sme3etni first)
 - خمستعشر / khamsta3shar (u16-dates:s.date.7): vowel: marked i, none in Arabizi: arabizi: khamsta3shar is not among the projected spellings (khamesta3shar first)
 - تسعتعشر / tsa3ta3shar (u16-dates:s.date.11): vowel: marked i, none in Arabizi: arabizi: tsa3ta3shar is not among the projected spellings (tesa3ta3shar first)
 - بعدني / ba3dni (u17-childhood:s.child.20): vowel: marked i, none in Arabizi: arabizi: ba3dni is not among the projected spellings (ba3edni first)

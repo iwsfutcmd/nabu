@@ -7,13 +7,14 @@
 - The ADRs decide what is stored and how it behaves ([0145](adr/0145-lexical-model.md) to
   [0149](adr/0149-script-first.md)); this note gives the file shapes, the ids, the event change and the order
   of work. Deliverables 1 (the schemas) and 2 (the converter) are built ("Deliverable 1, as built" and
-  "Deliverable 2, as built", below); the switch is next, and it waits for the owner's reading of what the
-  converter found.
+  "Deliverable 2, as built", below). The owner read what the converter found and said "go" on the switch
+  on 2026-11-21 ("For the owner", below).
 - Its numbers are counted from the repo by
   [prototypes/migration-inventory](prototypes/migration-inventory/) and, for apc, by
   [Task B's prototype](prototypes/apc-lexical-forms/).
-- Two things follow from the owner's answers that they have not seen spelled out, and are marked "for the
-  owner" where they stand: what "word" still names in the code, and whether sentences leave their unit files.
+- Two things followed from the owner's answers and are marked "for the owner" where they stand: what "word"
+  still names in the code, and whether sentences leave their unit files. Both stand as proposed since the
+  owner's "go" (2026-11-21).
 
 ## What there is to convert
 
@@ -642,6 +643,26 @@ switch, or on a decision above:
    uz entries shown as a built word; hbo words with a suffix not analysed; fa present stems, which ADR
    0145 calls listed and no statement lists.
 
+**The owner's answer (2026-11-21): "go".** The seven were put with a default each, and the two points read
+into the first answers with them; the owner took the defaults and started the switch.
+
+| | Stands as |
+|---|---|
+| 1 | Built: a form KC's gloss is a label, and a node introduces feature values |
+| 2 | Built: a token marks which of its lexemes is its base |
+| 3 | Built: a regular gender pair is one lexeme whose tokens choose the gender; two lexemes only where the feminine is a word of its own |
+| 4 | A proper name's gender sits on its lexeme in every course: es is moved at the switch |
+| 5 | Built: the feature values each plan chose |
+| 6 | A form's clip is keyed by its lexeme and its feature values, at the switch |
+| 7 | The courses' findings go to review, not into the switch |
+| | The token kind `word` is renamed at the switch; sentences and stories stay in their unit files |
+
+**Tags and glosses (the owner, 2026-11-21):** "ideally we use UD/Leipzig, unless we run into trouble". Read
+as: parts of speech, features and relations are Universal Dependencies', and a gloss's abbreviations are the
+Leipzig Glossing Rules'; where either does not fit a language, the format departs from it and says where
+(apc's participle as `Aspect=Part`). A lexeme still takes one tag, which UD gives a word in its sentence:
+the tag whose dimensions it inflects for, else the one its distribution in its own language gives.
+
 ### Not done
 
 - **No form is listed.** A listed form needs a statement that the language has no rule for it (ADR 0145);
@@ -654,6 +675,35 @@ switch, or on a decision above:
   governed case's value and everything else wait for trees (ADR 0145).
 - **One course a language.** Two courses of one language would write one lexicon between them, which the
   converter refuses rather than merge.
+
+## Deliverable 3, the switch: build order
+
+The owner said "go" on 2026-11-21. The stages are build order on one branch, and nothing of them reaches
+main before the switch is whole (ADR 0148: never half-switched). Each stage has a check of its own, so a
+fault is found in the stage that made it.
+
+| | Stage | Done when |
+|---|---|---|
+| 1 | **The new bundle's shape,** beside the old one: lexemes where it had KCs, tokens that list lexemes, a language's labels, the alias table, a format version | `pnpm codegen` is clean, and the schema has examples that fit and that do not |
+| 2 | **The compiler** writes it from `lexicons/<lang>/` and the converted units, beside today's bundles | Every course compiles with no new diagnostic; each sentence's and story line's text and translations equal today's bundle, item by item; no clip is stale and each word clip has its lexeme's name |
+| 3 | **Core reads it:** lessons, the planner, placement, stories, the list and the Data page work on lexemes, forms and feature values | Every fixture course's lessons plan from the new bundle; the golden files are rerun and each difference is explained |
+| 4 | **The log:** schema 2 events, `upgrade(event, aliases)`, the fold over parts, the device's rewrite of its log and the server's job | The oracle that succeeds `fold-before-r2.ts` agrees with `replay`; "What must be true of a real log on the day" holds on exported logs |
+| 5 | **Losses and labels (ADR 0148):** every profile and scheme states its correspondences, core runs them, a grade carries labels, the compiler reports leftovers and the fold counts them | ADR 0148's "Done in one go", points 1 to 6 |
+| 6 | **What a learner sees:** labelled feedback, a lexeme's parts and a rule's entry in the list | The visual matrix (LTR, RTL, vertical) and the e2e suite |
+| 7 | **The flip:** the app reads the new bundles and nothing else; the old sources, bundles, schemas and readers go, the converter and its plans with them; `Next` leaves the schemas' names and the token kind `word` becomes `lexical` | Nothing names a KC or reads a schema 1 event; every check of the handoff passes |
+
+- **The new is built beside the old, and the old goes last,** so every stage can be checked against what
+  runs today.
+- **Stages 1 to 4 and 7 change nothing a learner sees** but ids under the hood. Stage 5 changes grading
+  (ADR 0148: stricter in es, and wherever a profile states a fixed correspondence) and is the largest: 22
+  profiles and 8 schemes each need a reviewed statement.
+- **Proposed to the owner, not decided:** land stages 1 to 4 and 7 as the switch, and stage 5 with stage 6
+  as a deliverable of its own right after. Nothing in 1 to 4 waits on 5: a schema 2 event's `labels` may be
+  empty until grading has labels, so the log is not rewritten twice. One landing of all seven is the note's
+  first plan and stays the plan until the owner says otherwise.
+- **Taken with the "go"** ("For the owner", above): a proper name's gender moves to its lexeme in es (the
+  plan's `lexical`), before the converter's last run; a form's clip is keyed by its lexeme and its feature
+  values in stage 2.
 
 ## The owner's decisions (2026-11-20)
 
@@ -671,7 +721,8 @@ the answers.
 | 7 | Voices pinned by the converter in `audio/assignment.yaml` | "yeah that's fine" | Nothing |
 | 8 | apc's vocalization stays the voices' source until the review list's clips are settled | "that's fine" | Nothing |
 
-**Read into the answers, and not yet seen by the owner** (each is marked "for the owner" where it stands):
+**Read into the answers** (each is marked "for the owner" where it stands; both stand since the owner's
+"go" of 2026-11-21):
 - From 5: the token kind `word` in TaggedText is renamed at the switch, and the fold's names follow; card
   names that say "word" stay.
 - From 2: sentences and stories stay in their unit files. Whether they should be a pool too was not asked.

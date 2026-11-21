@@ -21,9 +21,9 @@
 
 - The course's sentences and stories hold **1,025** distinct words (an Arabic spelling, its vowel marks and its
   Arabizi, taken together). A lexical form was drafted for each from those three.
-- **950** come back exactly when the form is projected: the Arabic letters, the vowel marks, and the Arabizi
-  among the spellings the correspondences give. **66** have a form and differ in one of the three. **9** have
-  no form. Ten of those 75 are the prototype's own doing, not the course's: its reader paired the wrong
+- **951** come back exactly when the form is projected: the Arabic letters, the vowel marks, and the Arabizi
+  among the spellings the correspondences give. **65** have a form and differ in one of the three. **9** have
+  no form. Ten of those 74 are the prototype's own doing, not the course's: its reader paired the wrong
   Arabizi word (the review list's first section).
 - Of the **415** forms the KCs list, 373 come back, 35 do not, 2 have no form and 5 are written in one script.
 - Of the **74** clips a listener marked right, the projection writes the very marks the voice was given for
@@ -233,9 +233,11 @@ is no part of a lexeme). Asked which clusters: "every cluster, that's what Alice
   vowel. Arabizi may write it or leave it out (*khebz*, *khebez*), and the course's mostly leaves it out.
 - **What a learner has:** the rule, as a part of its own: a mark card can ask خِبِز against خِبْز, and a
   miss is the rule's, not the word's. Not built: no rule is written yet.
-- **Inside a word,** a stem that ends in a cluster takes the vowel before an ending that begins with a
-  consonant that is said (بِنِتْكُن, عِنِدْكُن, بَعِدْني). The form does not yet say where an ending begins,
-  so the projection does not write these three, and they are on the review list.
+- **Inside a word,** the rule is the same where a stem that ends in a cluster meets an ending. The vowel is
+  there when the ending begins with a consonant that is said: بِنِتْكُن, عِنِدْكُن, بَعِدْني, سْمِعِتْني. It
+  is not there when a vowel follows, as before *their*, whose ه is not said: *ebnon* (the speaker, through
+  the owner), so إِبْنْهُن, بِنْتْهُن, أَهْلْهُن. The form does not yet say where an ending begins, so the
+  projection writes the vowel in none of these, and those that have it are on the review list.
 - **Sources:** Kline gives no rule and spells such words both ways (the notes, §1.4). The study of it is
   Haddad (1984), "Epenthesis and sonority in Lebanese Arabic", which is not in the library and was not
   read. The rule here is a speaker's usage, as the owner reports it.
@@ -365,18 +367,15 @@ Kline says neither script has a codified spelling (p. 3, 9), and shows one word 
 ## What is not done
 
 - **Conjugation.** No rule gives a verb's forms from its radicals. Kline's affixes and stem changes are in the
-  notes (§3), ready to be written as rules. Until then the forms are pinned. One point where a speaker and
-  Kline differ has to be settled first: "she ate" is *áklit* for the speaker (2026-11-21) and of the shape
-  *katabet* in Kline (p. 96–97), and the course writes both shapes (عَزْمِتْنا *3azmetna*; عَجَبِتْني
-  *3ajabetni*).
+  notes (§3), ready to be written as rules. Until then the forms are pinned. Where a speaker and Kline
+  differ, the course follows the speaker and accepts Kline's form: "she ate" is *áklit* for the speaker
+  (2026-11-21) and of the shape *katabet* in Kline (p. 96–97), so the course writes عَجْبِتْني *3ajbetni*,
+  as it wrote عَزْمِتْنا *3azmetna*, and still takes *3ajabetni* as an answer.
 - **The affixes' lexical forms and their conditions.** [apc.yaml](apc.yaml) lists every shape the sentences
   write for each suffix and clitic, with counts, and no forms.
 - **Patterns other than the form I active participle.**
 - **Stress** as code (a general rule is cited above).
-- **The helping vowel inside a word,** before an ending that begins with a consonant: the form does not say
-  where an ending begins. Before the silent ه of *their* the course writes it in two words (إِبِنْهُن,
-  بِنِتْهُن) and not in two others (عِنْدْهُن, بَعْدْهُن), and it is not written before the past's -t with
-  a pronoun after it (سْمِعْتْني).
+- **The helping vowel inside a word,** in the projection: the form does not say where an ending begins.
 - **A sign for a q that is said q.**
 - **The course's 7 sentences that pair no word across the two scripts** (*inshalla* written as three words in
   Arabic; the month names of two words) are left out of the count.
@@ -432,11 +431,20 @@ what was done.
      the old one (a word of two syllables, heard as *mar7aba*), so it stays out of the bundle until a
      listener checks it in the audio check.
 
+7. **Asked of the speaker, 2026-11-21.** "Their son": *"ebnon"*. For the other two questions: *"for the
+   rest, just guess by pattern. i trust you"*.
+   - *ebnon*: the helping vowel is not said before *their*, whose ه is silent. The three words that wrote
+     it there lost it (إِبْنْهُن, بِنْتْهُن, أَهْلْهُن), as عِنْدْهُن and بَعْدْهُن never had it.
+   - Guessed: "it pleased me" has the shape of the speaker's *áklit*, so *3ajbetni* and *3ajbetkon*, in both
+     scripts; the course's *3azmetna* already had it. *3ajabetni* is still accepted.
+   - Guessed: the past's -t takes the vowel before a pronoun that begins with a consonant, as a stem does:
+     سْمِعِتْني, فْهِمِتْني. The Arabizi stays *sme3tni*.
+   - Guessed: عند before a name stays عِنِد, as every cluster that ends a word.
+   - Eight clips were made again for these.
+
 **What the rulings leave open.** None of it blocks anything:
 
 - the participle template's rule for a and e (ruling 3);
-- the helping vowel inside a word, before the silent ه of *their* and before the past's -t with a pronoun
-  after it ("What is not done");
 - what this note still marks REVIEW: stress, the stop written ذ in آذار, the phonemes' qualities, and the
   letters the feminine ending is -a after;
 - the review list's lines for a speaker, the two under ruling 5 among them;

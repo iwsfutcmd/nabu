@@ -34,9 +34,9 @@ fetched. Kline (2022) was read for `authored.yaml` and the note; none of his tex
 ## What it showed
 
 - One form in Arabic script, with three signs Unicode already has, gives back the course's Arabic, its vowel
-  marks and its Arabizi for 950 of its 1,025 distinct words. The helping vowel is not in the form: a rule
+  marks and its Arabizi for 951 of its 1,025 distinct words. The helping vowel is not in the form: a rule
   writes it (the owner, 2026-11-21).
-- The other 75 are nearly all places where the course's own three spellings of a word do not agree, or where
+- The other 74 are nearly all places where the course's own three spellings of a word do not agree, or where
   its marks follow no one convention: a vowel inside a word that one script writes and the other leaves
   out, a diphthong's sukun, a doubled letter written once, loans in their own spelling. Ten are this
   reader's own mispairings. They are the review list.

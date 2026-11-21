@@ -25,10 +25,9 @@ restored from the notes, and what was accepted as drafted. The older ADRs they a
   (units point at it; it is never arranged by unit), old events may be rewritten and old apps need not keep
   working, and no unit of the new formats is a "word". Deliverables 1 (the schemas) and 2 (the converter) are
   built: the note's "Deliverable 1, as built" and "Deliverable 2, as built". All ten courses are converted
-  beside what they are today, each with a report ([migration/](migration/README.md)). **The switch,
-  deliverable 3, is next and should not start before the owner has read "For the owner" in the note:** it
-  lists what was settled while building the converter and what the reports found. Two things read into the
-  owner's answers also still wait, marked "for the owner" in the note.
+  beside what they are today, each with a report ([migration/](migration/README.md)). **The owner read "For the owner"
+  in the note and said "go" on 2026-11-21, taking the default put with each point** (the note lists them).
+  The switch, deliverable 3, is the work in hand: one branch, landed whole.
 - One ruling of round 6 is built: chg's š, ž, ḫ and ǧ are required ([ADR 0134](adr/0134-required-marks.md)'s
   amendment).
 
@@ -60,8 +59,14 @@ Found while the notes and the explainer were brought up to the accepted ADRs. No
 - Thai and Lao visual order is the projection's job;
 - the verdicts on *tayyora* / *samolyot* and 佢 / 他.
 
-**The owner's "let's just use UD tags" was read as** (the owner asked for the reading on 2026-11-20 and
-has not confirmed it):
+**The owner on tags, 2026-11-21: "ideally we use UD/Leipzig, unless we run into trouble".** Universal
+Dependencies for parts of speech, features and relations, the Leipzig Glossing Rules for a gloss's
+abbreviations, and a stated departure where either does not fit. It answers the reading below, which the
+owner had asked for; the tagging rule proposed with it is the working rule for giving a lexeme its one tag,
+and apc's pseudo-verbs keep their tags under it (*badd* and *fi* are only ever predicates: `VERB`; *3end* is
+also the preposition: `ADP`).
+
+**The owner's "let's just use UD tags" was read as:**
 - **What it settles:** a lexeme's part of speech is one of UD's seventeen universal tags, and no language
   declares categories of its own. It answered the draft's categories with subclasses and a mapping to UD,
   and nothing wider.

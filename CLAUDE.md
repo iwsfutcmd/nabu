@@ -515,7 +515,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   Vowel marks put a damma before ـه (بَيُّه): the voice says -o from it. New vocalizations mark ج as a sun letter.
 - Vowel marks write the helping vowel in every cluster that ends a word (the owner, 2026-11-21): خِبِز, بِنِت, كِنِت,
   فيلِم; a damma after a damma inside the stem (صُبُح), a kasra before the past's -t (رُحِت). A new vocalization follows
-  it; the Arabizi stays as written (khebz). No word stores it: it is a rule (docs/lexical-forms/apc.md).
+  it; the Arabizi stays as written (khebz). No word stores it: it is a rule (docs/lexical-forms/apc.md). Inside a
+  word it stands before an ending that begins with a consonant that is said (بِنِتْكُن, سْمِعِتْني), never before a
+  vowel or the silent ه of their (إِبْنْهُن, ebnon). "She" in the past has the speaker's shape (3ajbetni, 3azmetna).
 - A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
   and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
 - Nouns pin their gender and number as es's do (ADR 0132 amendment): form:fem on a feminine noun (ahwe, teta, Beirut),
@@ -709,6 +711,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   UD tag), lexicon.schema.json (`Lexeme`; `status: listed` needs its `statement`, `pinned` is never a learner's part),
   course-source.next.schema.json and learner-event.next.schema.json (each derived from the shape it replaces: at the
   switch they take its place and lose the `Next`), aliases.schema.json (what each KC id became).
+- Tags, features and relations are Universal Dependencies' and a gloss's abbreviations the Leipzig Glossing Rules'
+  (the owner, 2026-11-21: "ideally we use UD/Leipzig, unless we run into trouble"); a departure is stated where it is
+  made (apc `Aspect=Part`). A lexeme takes one tag, where UD tags a word in its sentence: the one whose dimensions it
+  inflects for, else the one its distribution in its own language gives; never its English gloss's.
 - The lexicon is flat (the owner): lexicons/<lang>/lexemes.yaml, sorted by id. No entry names a unit; a unit's nodes
   point at it and the unit defines nothing but its script track's `graphemes`.
 - Nothing inside is a "word" (the owner): the units are lexeme, form, feature, part and token. A token lists the
@@ -744,7 +750,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   changes: the lexicon is flat (lexicons/<lang>/lexemes.yaml; units point at it, it is never arranged by unit), old
   events may be rewritten (one `upgrade` function; no reader of the old shape is kept), and nothing in the new formats
   is a "word" (a token lists its `lexemes`; "word" is for what a learner is shown). Its deliverables land in its
-  order, each whole. docs/lexical-forms/ (apc's lexical-form schema, entries and review list; rebuilt by
+  order, each whole. The owner said "go" on the switch on 2026-11-21, with the defaults the note lists. docs/lexical-forms/ (apc's lexical-form schema, entries and review list; rebuilt by
   docs/prototypes/apc-lexical-forms/build.py, never by hand) has the owner's rulings on its six questions
   (2026-11-20, the note's last section); its rules and affix forms are not written, and nothing reads it.
   docs/handoff-lexical-model.md says where each task stands.
