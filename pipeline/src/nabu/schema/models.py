@@ -2611,6 +2611,20 @@ class LogographsStep(BaseModel):
     logographs: Logographs
 
 
+class OptionalBeforeItem(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    marks: Annotated[UnicodeSetPattern, Field(description="The marks, of the set.")]
+    letters: Annotated[
+        UnicodeSetPattern,
+        Field(
+            description="The letters before which they may be written or not: whole letters, as NFC writes them (a plain alif, never one carrying a hamza)."
+        ),
+    ]
+
+
 class Case(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -5103,6 +5117,13 @@ class Marks(BaseModel):
         UnicodeSetPattern | None,
         Field(
             description="Marks of the set a learner supplying a word's vowel marks (the vocalize exercise, ADR 0054) may write or leave out: sukun, where the course's conventions differ."
+        ),
+    ] = None
+    optionalBefore: Annotated[
+        list[OptionalBeforeItem] | None,
+        Field(
+            description="Marks a learner supplying a word's vowel marks (ADR 0054 as amended) may write or leave out on a letter, where the letter after it is one of `letters`: the fatha before the alif that writes its long a (مَرْحَبا and مَرْحَبَا are the same word). The same mark elsewhere counts as the others do.",
+            min_length=1,
         ),
     ] = None
     required: Annotated[

@@ -257,6 +257,11 @@ export interface VocalizeBuild extends Common {
   /** Marks of the set a word may have or not (sukun, ADR 0054): never counted either way. */
   readonly optional: readonly string[];
   /**
+   * Marks a letter may have or not before the letter keyed (the fatha before an alif, ADR 0054 as
+   * amended): never counted either way there. Absent where the profile has none.
+   */
+  readonly optionalBefore?: Readonly<Record<string, readonly string[]>> | undefined;
+  /**
    * For each letter, the marks the course's words give that letter where it stands (attested, as
    * the vocalize card's variants are; ADR 0098): while a letter's marks are part of a longer one,
    * it stays the letter being marked (a dagesh, then its vowel).
