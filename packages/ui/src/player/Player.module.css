@@ -750,6 +750,26 @@
   padding-inline-start: var(--nabu-space-5);
 }
 
+/* A wrong answer's feedback in two parts, set apart (P3): what it should be, then what was answered. Each
+   a box on the surface colour with a bar at its start: solid for the right answer, dashed for the
+   learner's (never colour alone; each part's labels name it). */
+.feedbackPart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-inline-start: 4px solid var(--nabu-color-correct);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.feedbackPart[data-feedback-part="yours"] {
+  border-inline-start-style: dashed;
+  border-inline-start-color: var(--nabu-color-wrong);
+}
+
 .solution {
   display: flex;
   flex-direction: column;
