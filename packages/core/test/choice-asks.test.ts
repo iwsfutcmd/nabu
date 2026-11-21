@@ -4,12 +4,12 @@
  * other forms the course writes); it credits what it asked, and a mistake on it is asked again as the
  * same question. A story's `complete` question shows the options the compiler resolved.
  */
-import type { BundleKc, BundleSentence, LearnerEvent, TaggedText, Token } from "@nabu/schema";
+import type { BundleLexeme, BundleSentence, LearnerEvent, TaggedText, Token } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { askedKcs, creditOf } from "../src/learner/credit.ts";
+import { askedParts, creditOf } from "../src/learner/credit.ts";
 import { emptyLearnerState, replay } from "../src/learner/index.ts";
-import { allKcs, allSentences, createGrader, isCorrect, seededRng, type CourseView, type Exercise, type GapFill } from "../src/lesson/index.ts";
-import { formSignature, senseKcOf, signatureKey } from "../src/lesson/signature.ts";
+import { allLexemes, allSentences, lexemesById, createGrader, isCorrect, seededRng, type CourseView, type Exercise, type GapFill } from "../src/lesson/index.ts";
+import { baseIdOf, effectiveFeats, formPartsOf, formSignature, lexemeIdsOf, lexemesOf } from "../src/lesson/lexemes.ts";
 import { makeGapFill } from "../src/lesson/templates.ts";
 import { allStories, formMeanings, storyScript } from "../src/story/index.ts";
 import { surfaceOf } from "../src/text/tagged-text.ts";
@@ -19,12 +19,15 @@ const COURSES = ["es", "chg", "uz", "apc", "fa", "yue", "lzh", "tok", "hbo", "gr
 
 const tokenOf = (t: TaggedText): Token => t.tokens.find((x) => x.kind === "word" || x.kind === "number") as Token;
 
-/** Every `step`-th sentence's gap-fill, each built as a lesson would (its KCs new). */
+/** A token's form signature as one string (ADR 0132): what it writes but which lexeme its base is. */
+const signatureKey = (course: CourseView, token: Token): string => formSignature(token, lexemesById(course).get(baseIdOf(token) ?? "")).join(" ");
+
+/** Every `step`-th sentence's gap-fill, each built as a lesson would (its parts new). */
 const gapFills = (course: CourseView, step: number): readonly { readonly s: BundleSentence; readonly ex: GapFill }[] =>
   allSentences(course)
     .filter((s, i) => !s.id.startsWith("drill.") && i % step === 0)
     .flatMap((s, i) => {
-      const ex = makeGapFill({ course, rng: seededRng(i), introduced: s.kcs }, s);
+      const ex = makeGapFill({ course, rng: seededRng(i), introduced: s.parts }, s);
       return ex === undefined ? [] : [{ s, ex }];
     });
 
@@ -35,22 +38,19 @@ describe("a gap-fill asks one thing (ADR 0132)", () => {
     let words = 0;
     for (const id of COURSES) {
       const course = courses[id];
-      const kcs = new Map<string, BundleKc>(allKcs(course).map((k) => [k.id, k]));
+      const lexemes = lexemesById(course);
       for (const { ex } of gapFills(course, 3)) {
-        if (ex.asks !== "word") continue;
+        if (ex.asks !== "lexeme") continue;
         words++;
         const answer = tokenOf(ex.options[ex.answer] as TaggedText);
-        const own = kcs.get(senseKcOf(answer) ?? "");
+        const own = lexemes.get(baseIdOf(answer) ?? "");
         for (const [i, o] of ex.options.entries()) {
           if (i === ex.answer) continue;
           const t = tokenOf(o);
-          expect(signatureKey(t), `${id} ${ex.id}: ${surfaceOf(o)}`).toBe(signatureKey(answer));
-          expect(t.sense, `${id} ${ex.id}`).not.toBe(answer.sense);
-          if (own?.pos !== undefined) {
-            const theirs = kcs.get(senseKcOf(t) ?? "");
-            expect(theirs?.pos, `${id} ${ex.id}: ${surfaceOf(o)}`).toBe(own.pos);
-            expect(theirs?.features ?? {}, `${id} ${ex.id}: ${surfaceOf(o)}`).toEqual(own.features ?? {});
-          }
+          // The signature holds the values each lexeme has of itself too (a noun's gender, ADR 0146).
+          expect(signatureKey(course, t), `${id} ${ex.id}: ${surfaceOf(o)}`).toBe(signatureKey(course, answer));
+          expect(baseIdOf(t), `${id} ${ex.id}`).not.toBe(baseIdOf(answer));
+          if (own?.pos !== undefined) expect(lexemes.get(baseIdOf(t) ?? "")?.pos, `${id} ${ex.id}: ${surfaceOf(o)}`).toBe(own.pos);
         }
       }
     }
@@ -64,10 +64,11 @@ describe("a gap-fill asks one thing (ADR 0132)", () => {
         if (ex.asks !== "form") continue;
         forms++;
         const answer = tokenOf(ex.options[ex.answer] as TaggedText);
-        expect(formSignature(answer).length, `${id} ${ex.id}`).toBeGreaterThan(0);
-        const signatures = ex.options.map((o) => signatureKey(tokenOf(o)));
+        // Something to credit: a lexeme written with the base, or a value the sentence teaches.
+        expect(formPartsOf(answer, new Set(ex.parts)).length, `${id} ${ex.id}`).toBeGreaterThan(0);
+        const signatures = ex.options.map((o) => signatureKey(courses[id], tokenOf(o)));
         expect(new Set(signatures).size, `${id} ${ex.id}`).toBe(ex.options.length);
-        for (const o of ex.options) expect(tokenOf(o).sense, `${id} ${ex.id}`).toBe(answer.sense);
+        for (const o of ex.options) expect(baseIdOf(tokenOf(o)), `${id} ${ex.id}`).toBe(baseIdOf(answer));
       }
     }
     // The courses that model their forms ask them: endings (chg, uz, apc, fa), pinned forms (es, hbo).
@@ -90,10 +91,10 @@ describe("a gap-fill asks one thing (ADR 0132)", () => {
     }
   }, 300_000);
 
-  it("never blanks or offers a word of a phrase KC (por of por favor), but a word its line repeats apart", () => {
+  it("never blanks or offers a word of a phrase lexeme (por of por favor), but a word its line repeats apart", () => {
     const es = courses.es;
-    const kcs = new Map<string, BundleKc>(allKcs(es).map((k) => [k.id, k]));
-    const phrase = (t: Token): boolean => (kcs.get(senseKcOf(t) ?? "")?.forms?.[es.orthography]?.[0]?.tokens.filter((x) => x.kind === "word").length ?? 1) > 1;
+    const lexemes = lexemesById(es);
+    const phrase = (t: Token): boolean => (lexemes.get(baseIdOf(t) ?? "")?.forms?.[es.orthography]?.[0]?.tokens.filter((x) => x.kind === "word").length ?? 1) > 1;
     let cards = 0;
     for (const { ex } of gapFills(es, 2)) {
       cards++;
@@ -106,44 +107,53 @@ describe("a gap-fill asks one thing (ADR 0132)", () => {
       const text = s.forms[es.orthography]?.text;
       if (text === undefined || s.id.startsWith("drill.")) continue;
       const ws = text.tokens.filter((t) => t.kind === "word");
-      const repeated = ws.find((t, k) => t.sense !== undefined && ws.some((u, j) => j > k + 1 && u.sense === t.sense) && ws[k + 1]?.sense !== t.sense);
-      if (repeated?.sense === undefined) continue;
-      const ex = makeGapFill({ course: es, rng: seededRng(i), introduced: [`sense:${repeated.sense}` as BundleKc["id"]] }, s);
-      if (ex !== undefined && tokenOf(ex.options[ex.answer] as TaggedText).sense === repeated.sense) apart++;
+      const base = (t: Token | undefined): string | undefined => (t === undefined ? undefined : baseIdOf(t));
+      const repeated = ws.find((t, k) => base(t) !== undefined && ws.some((u, j) => j > k + 1 && base(u) === base(t)) && base(ws[k + 1]) !== base(t));
+      const lexeme = base(repeated);
+      if (lexeme === undefined) continue;
+      const ex = makeGapFill({ course: es, rng: seededRng(i), introduced: [lexeme] }, s);
+      if (ex !== undefined && baseIdOf(tokenOf(ex.options[ex.answer] as TaggedText)) === lexeme) apart++;
     }
     expect(apart).toBeGreaterThan(20);
   }, 300_000);
 
-  it("credits what it asked: the sense for a word, the form KCs for a form, both on a card from before", () => {
+  it("credits what it asked: the lexeme for a word, the form's parts for a form, all its lexemes on a card from before", () => {
     const chg = courses.chg;
     const all = gapFills(chg, 1).map((g) => g.ex);
-    const word = all.find((e) => e.asks === "word" && formSignature(tokenOf(e.options[e.answer] as TaggedText)).length > 0);
+    const word = all.find((e) => e.asks === "lexeme" && lexemesOf(tokenOf(e.options[e.answer] as TaggedText)).length > 1);
     const form = all.find((e) => e.asks === "form");
     if (word === undefined || form === undefined) throw new Error("chg asks both questions");
     const wordToken = tokenOf(word.options[word.answer] as TaggedText);
     const formToken = tokenOf(form.options[form.answer] as TaggedText);
-    expect(askedKcs(word)).toEqual([senseKcOf(wordToken)]);
-    expect(askedKcs(form)).toEqual(formSignature(formToken));
+    expect(askedParts(word)).toEqual([baseIdOf(wordToken)]);
+    const formParts = formPartsOf(formToken, new Set(form.parts));
+    expect(formParts.length).toBeGreaterThan(0);
+    expect(askedParts(form)).toEqual(formParts);
+    // A card from before ADR 0132 (no `asks`) credits every lexeme the word writes: its base and its suffixes.
     const { asks: _asks, ...before } = word;
-    expect([...new Set(askedKcs(before as Exercise) ?? [])].sort()).toEqual([senseKcOf(wordToken), ...formSignature(wordToken)].sort());
+    expect([...new Set(askedParts(before as Exercise) ?? [])].sort()).toEqual([...lexemeIdsOf(wordToken)].sort());
+    expect(lexemeIdsOf(wordToken).length).toBeGreaterThan(1);
     // A wrong form question lays the miss on the form, never on the word.
     const credit = creditOf(form, { verdict: "WRONG", notes: [] }, chg.profiles);
-    const sense = senseKcOf(formToken);
-    expect(credit.find((c) => c.kc === sense)?.status ?? "given").toBe("given");
-    for (const kc of formSignature(formToken)) expect(credit.find((c) => c.kc === kc)?.status).toBe("wrong");
+    const lexeme = baseIdOf(formToken);
+    expect(credit.find((c) => c.part === lexeme)?.status ?? "given").toBe("given");
+    for (const part of formParts) expect(credit.find((c) => c.part === part)?.status).toBe("wrong");
   }, 300_000);
 });
 
-describe("agreement is the token's form (ADR 0132 amendments)", () => {
-  /** The gender a pinned form says: f…/fem… feminine, n… neuter (grc), else masculine; apc's plural has none. */
-  const genderOf = (course: string, form: string | undefined): string | undefined => {
-    const f = form?.replace(/^form:/u, "") ?? "";
-    if (course === "apc" && f === "pl") return undefined;
-    if (f.startsWith("f")) return "f";
-    if (course === "grc" && f.startsWith("n")) return "n";
+describe("agreement is the token's form (ADR 0132 amendments, 0146)", () => {
+  /**
+   * The gender a token's form has (its own values over its lexeme's): Fem feminine, Neut neuter
+   * (grc), else masculine; apc's plural has none.
+   */
+  const genderOf = (course: CourseView, token: Token): string | undefined => {
+    const feats = effectiveFeats(token, lexemesById(course).get(baseIdOf(token) ?? ""));
+    if (course.id === "apc" && feats["Number"] === "Plur") return undefined;
+    if (feats["Gender"] === "Fem") return "f";
+    if (course.id === "grc" && feats["Gender"] === "Neut") return "n";
     return "m";
   };
-  // Nouns whose sense names a man or a woman (hermano, hermana; jar, jara; ὁ, ἡ παῖς), and hbo's רָעָה
+  // Nouns whose lexeme names a man or a woman (hermano, hermana; jar, jara; ὁ, ἡ παῖς), and hbo's רָעָה
   // "evil" beside the masculine רָע: the only nouns written in two genders.
   const BOTH: Record<string, readonly string[]> = {
     es: ["azúcar", "don", "hermano", "hijo", "mecánico", "mijo", "muchacho", "niño", "novio", "primo", "yuma"],
@@ -152,22 +162,30 @@ describe("agreement is the token's form (ADR 0132 amendments)", () => {
     grc: ["pais"],
   };
 
-  it("pins a noun's gender wherever the course writes it", () => {
+  it("keeps a noun's gender wherever the course writes it: its lexeme's, or its token's where the lexeme has none", () => {
     for (const [id, both] of Object.entries(BOTH)) {
       const course = loadCourse(id);
-      const nouns = new Set<string>(allKcs(course).filter((k) => k.pos === "NOUN" || k.pos === "PROPN").map((k) => k.id));
+      const nouns = new Map<string, BundleLexeme>(allLexemes(course).filter((k) => k.pos === "NOUN" || k.pos === "PROPN").map((k) => [k.id, k]));
       const texts: TaggedText[] = [
         ...allSentences(course).flatMap((s) => Object.values(s.forms).map((f) => f.text)),
         ...allStories(course).flatMap((st) => st.steps.flatMap((step) => Object.values(step.line?.forms ?? {}))),
       ];
       const genders = new Map<string, Set<string>>();
+      const chosenOverStored = new Set<string>();
       for (const t of texts.flatMap((x) => x.tokens)) {
-        if (t.sense === undefined || !nouns.has(`sense:${t.sense}`)) continue;
-        const g = genderOf(id, t.form);
-        if (g !== undefined) genders.set(t.sense, (genders.get(t.sense) ?? new Set()).add(g));
+        const lexeme = baseIdOf(t);
+        if (lexeme === undefined || !nouns.has(lexeme)) continue;
+        const g = genderOf(course, t);
+        if (g !== undefined) genders.set(lexeme, (genders.get(lexeme) ?? new Set()).add(g));
+        const own = lexemesOf(t).find((l) => l.lexeme === lexeme)?.feats?.["Gender"];
+        if (own !== undefined && nouns.get(lexeme)?.feats?.["Gender"] !== undefined) chosenOverStored.add(lexeme);
       }
-      const mixed = [...genders].filter(([, gs]) => gs.size > 1).map(([sense]) => sense);
-      expect(mixed.sort(), id).toEqual([...both].sort());
+      const mixed = [...genders].filter(([, gs]) => gs.size > 1).map(([lexeme]) => lexeme);
+      const expected = both.map((name) => `lexeme:${name}`).sort();
+      expect(mixed.sort(), id).toEqual(expected);
+      // A noun's gender is its lexeme's (ADR 0146): a token chooses one only for a noun that stores none
+      // (one that names a man or a woman: hermano, hermana; doctora, the only one the course writes).
+      expect([...chosenOverStored], id).toEqual([]);
     }
   });
 
@@ -177,9 +195,9 @@ describe("agreement is the token's form (ADR 0132 amendments)", () => {
       let feminine = 0;
       for (const { ex } of gapFills(course, 1)) {
         const answer = tokenOf(ex.options[ex.answer] as TaggedText);
-        if (ex.asks !== "word" || genderOf(id, answer.form) !== "f") continue;
+        if (ex.asks !== "lexeme" || genderOf(course, answer) !== "f") continue;
         feminine++;
-        for (const o of ex.options) expect(genderOf(id, tokenOf(o).form), `${id} ${ex.id}: ${surfaceOf(o)}`).toBe("f");
+        for (const o of ex.options) expect(genderOf(course, tokenOf(o)), `${id} ${ex.id}: ${surfaceOf(o)}`).toBe("f");
       }
       expect(feminine, id).toBeGreaterThanOrEqual(least);
     }
@@ -201,13 +219,13 @@ describe("a mistake on a fill-in (ADR 0132)", () => {
     const state = replay(events((f) => [f.answer(form, false, 1)]));
     const [mistake] = state.mistakes;
     expect(mistake?.asks).toBe("form");
-    expect(mistake?.ask).toEqual([...(askedKcs(form) ?? [])].map(String).sort());
+    expect(mistake?.ask).toEqual([...(askedParts(form) ?? [])].map(String).sort());
   });
 
   it("is closed by an answer to the same question, and one from before ADR 0132 by either", () => {
     const right = (ex: Exercise) => (f: ReturnType<typeof eventFactory>) => [f.answer(ex, false, 1), f.answer(ex, true, 1)];
     expect(replay(events(right(form))).mistakes).toEqual([]);
-    // The card as it was planned before: no `asks`, credited to all of the word's KCs.
+    // The card as it was planned before: no `asks`, credited to all of the word's lexemes.
     const { asks: _asks, ...before } = form;
     const legacy = replay(events((f) => [f.answer(before, false, 1)]));
     expect(legacy.mistakes[0]?.asks).toBeUndefined();
@@ -231,10 +249,10 @@ describe("a story's complete question (ADR 0132)", () => {
         for (const [i, o] of ex.options.entries()) {
           if (i === ex.answer) continue;
           const t = tokenOf(o);
-          if (ex.asks === "word") expect(signatureKey(t), ex.id).toBe(signatureKey(answer));
-          else expect(t.sense, ex.id).toBe(answer.sense);
+          if (ex.asks === "lexeme") expect(signatureKey(chg, t), ex.id).toBe(signatureKey(chg, answer));
+          else expect(baseIdOf(t), ex.id).toBe(baseIdOf(answer));
         }
-        if (ex.asks === "word") word++;
+        if (ex.asks === "lexeme") word++;
         else form++;
       }
     }
@@ -242,16 +260,16 @@ describe("a story's complete question (ADR 0132)", () => {
     expect(form).toBeGreaterThan(0);
   });
 
-  it("explains a form by what each of its KCs means, in the order the word writes them", () => {
+  it("explains a form by what each of its parts means, in the order the word writes them", () => {
     const chg = loadCourse("chg");
     const tiz = allStories(chg)
       .flatMap((story) => storyScript(chg, story, seededRng(1)).steps)
       .flatMap((step) => (step.tag === "question" && step.ex.template === "story-complete" && step.ex.asks === "form" ? [step.ex] : []))
-      .find((ex) => tokenOf(ex.options[ex.answer] as TaggedText).sense === "tiz");
+      .find((ex) => baseIdOf(tokenOf(ex.options[ex.answer] as TaggedText)) === "lexeme:tiz");
     if (tiz === undefined) throw new Error("chg asks the form of tiz");
     const meanings = formMeanings(chg, tiz.options[tiz.answer] as TaggedText);
-    expect(meanings.sense).toBe("sense:tiz");
-    // tiz-i-ǧa: the possessive, then the dative.
-    expect(meanings.forms.map((f) => f.kc)).toEqual(["form:poss3", "form:dat"]);
+    expect(meanings.lexeme).toBe("lexeme:tiz");
+    // tiz-i-ǧa: the possessive, then the dative (affix lexemes, ADR 0146).
+    expect(meanings.forms.map((f) => f.id)).toEqual(["lexeme:poss3", "lexeme:dat"]);
   });
 });

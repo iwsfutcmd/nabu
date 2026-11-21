@@ -119,6 +119,11 @@ def test_a_word_clip_is_renamed_and_nothing_else_changes() -> None:
         "  speed: normal\n- item: s.1\n  speed: normal\n"
     )
     assert out.clips == {"renamed": 3, "of a form": 1} and out.errors == []
+    # What an index lists after its clips (a cast's references) stays after them, as it was.
+    cast = "version: 1\nclips:\n- item: s.2\n  speed: normal\n- item: s.1\n  speed: normal\nreferences:\n- id: beirut-m\n  file: voices/beirut-m.wav\n"
+    assert flip.renamed_index(cast, {}, "x", flip.Flipped()) == (
+        "version: 1\nclips:\n- item: s.1\n  speed: normal\n- item: s.2\n  speed: normal\nreferences:\n- id: beirut-m\n  file: voices/beirut-m.wav\n"
+    )
     # A clip whose word has no name in the new shape stops the flip.
     flip.renamed_index("- item: sense:gone\n", names, "x", out)
     assert out.errors == ["x: the clip of sense:gone has no name in the new shape"]

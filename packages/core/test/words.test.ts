@@ -1,7 +1,7 @@
-import type { KcCredit, LearnerEvent } from "@nabu/schema";
+import type { LearnerEvent, PartCredit } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { DESIRED_RETENTION, dueFacets, emptyLearnerState, learnedWords, orderWords, parseCardKey, plan, readingsShown, replay, retrievability, skillsAsked, wordCounts, wordMatcher, type LearnerState } from "../src/learner/index.ts";
-import { lessonNodes, type Exercise, type Facet, type TemplateId } from "../src/lesson/index.ts";
+import { kindOf, lessonNodes, lexemesById, lexemesInOrder, skillOf, type Exercise, type Facet, type TemplateId } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const NOW = "2026-03-01T08:00:00.000Z";
@@ -17,7 +17,7 @@ describe("the words a learner has learned", () => {
     events.at(NOW);
     const p = plan(fa, emptyLearnerState(), { mode: "lesson", node: first }, { now: NOW, seed: 3 });
     const log = [events.started("lesson", first, p.exercises.length), ...p.exercises.map((ex) => events.answer(ex, true, 1)), events.completed("lesson", first, { exercises: p.exercises.length, correctFirstTry: p.exercises.length, retries: 0 })];
-    return { state: replay(log), practised: new Set(p.exercises.flatMap((ex) => ex.kcs.map(String))) };
+    return { state: replay(log), practised: new Set(p.exercises.flatMap((ex) => ex.parts.map(String))) };
   };
 
   it("is empty before any practice", () => {
@@ -28,15 +28,16 @@ describe("the words a learner has learned", () => {
     const { state, practised } = afterFirstLesson();
     const words = learnedWords(fa, state, NOW);
     expect(words.length).toBeGreaterThan(2);
-    const kcs = new Map(fa.units.flatMap((u) => u.kcs).map((k) => [String(k.id), k] as const));
-    const order = fa.units.flatMap((u) => u.kcs.map((k) => String(k.id)));
-    expect(words.map((w) => w.kc)).toEqual([...words.map((w) => w.kc)].sort((a, b) => order.indexOf(a) - order.indexOf(b)));
+    const lexemes = lexemesById(fa);
+    const order = lexemesInOrder(fa).map((l) => String(l.id));
+    expect(words.map((w) => w.lexeme)).toEqual([...words.map((w) => w.lexeme)].sort((a, b) => order.indexOf(a) - order.indexOf(b)));
     for (const w of words) {
-      const kc = kcs.get(w.kc);
-      expect(practised.has(w.kc), w.kc).toBe(true);
-      expect(kc?.kind === "sense" || kc?.kind === "form", w.kc).toBe(true);
-      expect(w.form).toEqual(kc?.forms?.[fa.orthography]?.[0]);
-      expect(w.gloss).toEqual(kc?.gloss?.[fa.supportKey]);
+      const lexeme = lexemes.get(w.lexeme);
+      expect(practised.has(w.lexeme), w.lexeme).toBe(true);
+      // A lexeme with a spelling in the orthography: a feature value or an affix is no word.
+      expect(kindOf(w.lexeme), w.lexeme).toBe("lexeme");
+      expect(w.form).toEqual(lexeme?.forms?.[fa.orthography]?.[0]);
+      expect(w.gloss).toEqual(lexeme?.gloss?.[fa.supportKey]);
       expect(w.reviews).toBeGreaterThan(0);
       // Just practised: remembered, and not due yet.
       expect(w.strength).toBeGreaterThan(0.9);
@@ -49,7 +50,7 @@ describe("the words a learner has learned", () => {
     const later = "2026-06-01T08:00:00.000Z";
     const now = learnedWords(fa, state, NOW);
     const then = learnedWords(fa, state, later);
-    expect(then.map((w) => w.kc)).toEqual(now.map((w) => w.kc));
+    expect(then.map((w) => w.lexeme)).toEqual(now.map((w) => w.lexeme));
     then.forEach((w, i) => expect(w.strength).toBeLessThan(now[i]?.strength ?? 0));
     expect(then.every((w) => w.due)).toBe(true);
   });
@@ -57,8 +58,8 @@ describe("the words a learner has learned", () => {
   it("is due when a skill's recall drops below the target, as the planner counts due cards (W8)", () => {
     const { state } = afterFirstLesson();
     for (const at of [NOW, "2026-03-04T08:00:00.000Z", "2026-03-20T08:00:00.000Z"]) {
-      const due = new Set(dueFacets(state, fa.orthography, at).map((f) => parseCardKey(f.key).kc));
-      for (const w of learnedWords(fa, state, at)) expect(w.due, `${w.kc} at ${at}`).toBe(due.has(w.kc));
+      const due = new Set(dueFacets(state, fa.orthography, at).map((f) => parseCardKey(f.key).part));
+      for (const w of learnedWords(fa, state, at)) expect(w.due, `${w.lexeme} at ${at}`).toBe(due.has(w.lexeme));
     }
     // A higher target makes more words due, never fewer.
     const at = "2026-03-04T08:00:00.000Z";
@@ -68,32 +69,42 @@ describe("the words a learner has learned", () => {
   it("counts one orthography's script practice only in that orthography", () => {
     const uz = loadCourse("uz", "uz-Latn/standard");
     const cyrl = loadCourse("uz", "uz-Cyrl/standard");
-    const kc = uz.units.flatMap((u) => u.kcs).find((k) => k.kind === "sense" && k.forms?.["uz-Latn/standard"] !== undefined && k.forms["uz-Cyrl/standard"] !== undefined);
+    const kc = lexemesInOrder(uz).find((l) => l.forms?.["uz-Latn/standard"] !== undefined && l.forms["uz-Cyrl/standard"] !== undefined);
     if (kc === undefined) throw new Error("uz has a word in both scripts");
     const card = { due: "2026-03-05T08:00:00.000Z", stability: 4, difficulty: 5, elapsed_days: 0, scheduled_days: 4, learning_steps: 0, reps: 1, lapses: 0, state: 2, last_review: NOW };
     const state = { ...emptyLearnerState(), cards: { [`${kc.id}|write-script|uz-Latn/standard`]: card } };
-    expect(learnedWords(uz, state, NOW).map((w) => w.kc)).toEqual([kc.id]);
+    expect(learnedWords(uz, state, NOW).map((w) => w.lexeme)).toEqual([kc.id]);
     expect(learnedWords(cyrl, state, NOW)).toEqual([]);
     // The language's own facets are shared by every orthography.
     const shared = { ...emptyLearnerState(), cards: { [`${kc.id}|recognize`]: card } };
     expect(learnedWords(cyrl, shared, NOW).map((w) => w.form)).toEqual([kc.forms?.["uz-Cyrl/standard"]?.[0]]);
+  });
+  it("lists no feature value or affix, though it is practised (ADR 0146)", () => {
+    const es = loadCourse("es");
+    const parts = es.units.flatMap((u) => u.sentences.flatMap((s) => s.parts));
+    const feature = parts.find((p) => kindOf(p) === "feature" && !p.includes("|"));
+    const word = lexemesInOrder(es).find((l) => l.forms?.[es.orthography] !== undefined);
+    if (feature === undefined || word === undefined) throw new Error("es teaches words and feature values");
+    const card = { due: "2026-03-05T08:00:00.000Z", stability: 4, difficulty: 5, elapsed_days: 0, scheduled_days: 4, learning_steps: 0, reps: 1, lapses: 0, state: 2, last_review: NOW };
+    const state = { ...emptyLearnerState(), cards: { [`${feature}|read-off`]: card, [`${feature}|choose`]: card, [`${word.id}|recognize`]: card } };
+    expect(learnedWords(es, state, NOW).map((w) => w.lexeme)).toEqual([word.id]);
   });
 });
 
 describe("browsing the word list", () => {
   const fa = loadCourse("fa");
   const card = { due: "2026-03-05T08:00:00.000Z", stability: 4, difficulty: 5, elapsed_days: 0, scheduled_days: 4, learning_steps: 0, reps: 1, lapses: 0, state: 2, last_review: NOW };
-  const kcs = fa.units.flatMap((u) => u.kcs).filter((k) => (k.kind === "sense" || k.kind === "form") && k.forms?.[fa.orthography] !== undefined && k.gloss?.["en"] !== undefined);
-  const state = { ...emptyLearnerState(), cards: Object.fromEntries(kcs.map((k) => [`${k.id}|recognize`, card])) };
+  const lexemes = lexemesInOrder(fa).filter((l) => l.forms?.[fa.orthography] !== undefined && l.gloss?.["en"] !== undefined);
+  const state = { ...emptyLearnerState(), cards: Object.fromEntries(lexemes.map((k) => [`${k.id}|recognize`, card])) };
   const words = learnedWords(fa, state, NOW);
 
   it("finds a word by its letters, whatever its vowel marks, and by its meaning in any case", () => {
     const marked = words.find((w) => /[\u064B-\u0652]/u.test(w.form.tokens.map((t) => t.surface).join("")));
     if (marked === undefined) throw new Error("fa has a word with vowel marks");
     const bare = marked.form.tokens.map((t) => t.surface).join("").replace(/[\u064B-\u0652]/gu, "");
-    expect(words.filter(wordMatcher(fa, bare)).map((w) => w.kc)).toContain(marked.kc);
+    expect(words.filter(wordMatcher(fa, bare)).map((w) => w.lexeme)).toContain(marked.lexeme);
     const gloss = marked.gloss?.tokens.map((t) => t.surface).join("") ?? "";
-    expect(words.filter(wordMatcher(fa, gloss.toLocaleUpperCase("en"))).map((w) => w.kc)).toContain(marked.kc);
+    expect(words.filter(wordMatcher(fa, gloss.toLocaleUpperCase("en"))).map((w) => w.lexeme)).toContain(marked.lexeme);
     expect(words.filter(wordMatcher(fa, "  "))).toHaveLength(words.length);
     expect(words.filter(wordMatcher(fa, "zzzqqq"))).toEqual([]);
   });
@@ -106,18 +117,18 @@ describe("browsing the word list", () => {
     expect(alphabetical).toEqual([...alphabetical].sort((a, b) => collator.compare(a, b)));
     // Practised three weeks ago with a four-day stability: its recall has fallen below the target.
     const faded = { ...card, last_review: "2026-02-08T08:00:00.000Z", due: "2026-02-12T08:00:00.000Z" };
-    const later = learnedWords(fa, { ...state, cards: { ...state.cards, [`${kcs[1]?.id ?? ""}|recognize`]: faded } }, NOW);
-    expect(orderWords(later, "weakest")[0]?.kc).toBe(kcs[1]?.id);
+    const later = learnedWords(fa, { ...state, cards: { ...state.cards, [`${lexemes[1]?.id ?? ""}|recognize`]: faded } }, NOW);
+    expect(orderWords(later, "weakest")[0]?.lexeme).toBe(lexemes[1]?.id);
   });
 });
 
 describe("known words (ADR 0100)", () => {
   const fa = loadCourse("fa");
-  const words = fa.units.flatMap((u) => u.kcs).filter((k) => k.kind === "sense" && k.forms?.[fa.orthography] !== undefined);
+  const words = lexemesInOrder(fa).filter((l) => l.forms?.[fa.orthography] !== undefined);
   const [a, b, c] = words.map((k) => String(k.id));
   if (a === undefined || b === undefined || c === undefined) throw new Error("fa has words");
-  /** A stand-in exercise: what the fold reads of one (template, item, KCs). */
-  const card = (template: TemplateId, kcs: readonly string[]): Exercise => ({ id: `${template}:${kcs.join("+")}`, template, item: kcs.join("+"), kcs, orthography: fa.orthography }) as unknown as Exercise;
+  /** A stand-in exercise: what the fold reads of one (template, item, parts). */
+  const card = (template: TemplateId, parts: readonly string[]): Exercise => ({ id: `${template}:${parts.join("+")}`, template, item: parts.join("+"), parts, orthography: fa.orthography }) as unknown as Exercise;
   const day = (n: number): string => `2026-03-${String(n).padStart(2, "0")}T08:00:00.000Z`;
   const log = () => {
     const events = eventFactory(fa, manifestOf("fa").id);
@@ -127,13 +138,13 @@ describe("known words (ADR 0100)", () => {
       events.session();
     };
     /**
-     * A first try (or `attempt`), with each KC's credit (true: right; false: wrong; undefined: given);
+     * A first try (or `attempt`), with each part's credit (true: right; false: wrong; undefined: given);
      * `hinted`: a word's meaning was looked up on the card before answering (D16).
      */
     const answer = (ex: Exercise, credits: readonly (boolean | undefined)[], attempt = 1, hinted = false): void => {
-      const e = events.answer(ex, credits.every((x) => x !== false), attempt) as LearnerEvent & { input: object; outcome: { kcs: KcCredit[] } };
-      const kcs = ex.kcs.map((kc, i): KcCredit => ({ kc, status: credits[i] === undefined ? "given" : credits[i] ? "right" : "wrong" }));
-      out.push({ ...e, input: { ...e.input, ...(hinted ? { hinted: true } : {}) }, outcome: { ...e.outcome, kcs } } as LearnerEvent);
+      const e = events.answer(ex, credits.every((x) => x !== false), attempt) as LearnerEvent & { input: object; outcome: { parts: PartCredit[] } };
+      const parts = ex.parts.map((part, i): PartCredit => ({ part, skill: skillOf(ex.template, part), status: credits[i] === undefined ? "given" : credits[i] ? "right" : "wrong" }));
+      out.push({ ...e, input: { ...e.input, ...(hinted ? { hinted: true } : {}) }, outcome: { ...e.outcome, parts } } as LearnerEvent);
     };
     const skip = (ex: Exercise): void => {
       const { input: _i, outcome: _o, prediction: _p, ...e } = events.answer(ex, false, 1) as LearnerEvent & { input: unknown; outcome: unknown; prediction?: unknown };
@@ -141,8 +152,8 @@ describe("known words (ADR 0100)", () => {
     };
     return { on, answer, skip, state: (): LearnerState => replay(out) };
   };
-  const word = (kc: string) => card("choose-translation", [kc]);
-  const sentence = (...kcs: string[]) => card("translate-type.l1-l2", kcs);
+  const word = (part: string) => card("choose-translation", [part]);
+  const sentence = (...parts: string[]) => card("translate-type.l1-l2", parts);
 
   it("shows a skill only on a later day than the word was met", () => {
     const l = log();
@@ -280,17 +291,29 @@ describe("known words (ADR 0100)", () => {
     expect(asked(heard.id)).toEqual(["recognize", "produce", "listen"]);
     // A word no sentence uses cannot be produced, nor heard without a clip of its own.
     const sentences = fa.units.flatMap((u) => u.sentences);
-    const unwritten = words.find((k) => !sentences.some((s) => s.kcs.includes(k.id)));
+    const unwritten = words.find((k) => !sentences.some((s) => s.parts.includes(k.id)));
     if (unwritten !== undefined) expect(asked(unwritten.id)).not.toContain("produce");
-    // Only words are known: a construction, a letter or an id the course lacks asks nothing.
-    expect(asked("sense:no-such-word")).toEqual([]);
+    // Only lexemes and feature values are known: a rule, a letter or an id the course lacks asks nothing.
+    expect(asked("lexeme:no-such-word")).toEqual([]);
+    const es = loadCourse("es");
+    const esAsked = skillsAsked(es);
+    const esParts = es.units.flatMap((u) => u.sentences.flatMap((s) => s.parts));
+    // A feature value a sentence teaches is read off a form and chosen (ADR 0146).
+    const feature = esParts.find((p) => kindOf(p) === "feature" && !p.includes("|"));
+    if (feature === undefined) throw new Error("es teaches feature values");
+    expect(esAsked(feature)).toEqual(["read-off", "choose"]);
+    // Something of a lexeme (la mano's gender) and a rule ask nothing.
+    const ofLexeme = esParts.find((p) => p.includes("|"));
+    if (ofLexeme !== undefined) expect(esAsked(ofLexeme)).toEqual([]);
+    const rule = esParts.find((p) => kindOf(p) === "rule");
+    if (rule !== undefined) expect(esAsked(rule)).toEqual([]);
     // An iffy voice (ADR 0091) plans no listening; Classical Chinese practises recognize and produce.
     for (const id of ["hbo", "tok", "lzh"]) {
       const course = loadCourse(id);
       const ask = skillsAsked(course);
-      const kcs = course.units.flatMap((u) => u.kcs).filter((k) => k.kind === "sense");
-      expect(kcs.some((k) => ask(k.id).includes("produce")), id).toBe(true);
-      expect(kcs.some((k) => ask(k.id).includes("listen")), id).toBe(false);
+      const lexemes = lexemesInOrder(course);
+      expect(lexemes.some((k) => ask(k.id).includes("produce")), id).toBe(true);
+      expect(lexemes.some((k) => ask(k.id).includes("listen")), id).toBe(false);
     }
   });
 
@@ -314,7 +337,7 @@ describe("known words (ADR 0100)", () => {
 describe("listening turned off for good (D41)", () => {
   const fa = loadCourse("fa");
   const LISTEN: ReadonlySet<Facet> = new Set<Facet>(["listen"]);
-  const heard = fa.units.flatMap((u) => u.kcs).find((k) => k.kind === "sense" && k.forms?.[fa.orthography] !== undefined && skillsAsked(fa)(k.id).length === 3);
+  const heard = lexemesInOrder(fa).find((l) => l.forms?.[fa.orthography] !== undefined && skillsAsked(fa)(l.id).length === 3);
   if (heard === undefined) throw new Error("fa has a word asked all three skills");
   const kc = String(heard.id);
   /** A card last reviewed `daysAgo` with this stability: recall falls as the days pass. */
@@ -364,7 +387,7 @@ describe("listening turned off for good (D41)", () => {
     // A word practised by listening alone stays listed, with the strength it has, and is not due.
     const onlyHeard: LearnerState = { ...emptyLearnerState(), cards: { [`${kc}|listen`]: cardAt(30, 2) } };
     const [listed] = learnedWords(fa, onlyHeard, NOW, DESIRED_RETENTION, LISTEN);
-    expect([listed?.kc, listed?.due]).toEqual([kc, false]);
+    expect([listed?.lexeme, listed?.due]).toEqual([kc, false]);
     expect(listed?.strength).toBeCloseTo(retrievability(onlyHeard, kc, "listen", fa.orthography, NOW));
   });
 
@@ -378,14 +401,14 @@ describe("listening turned off for good (D41)", () => {
 
 describe("finding a word by its reading", () => {
   const yue = loadCourse("yue");
-  const kcs = yue.units.flatMap((u) => u.kcs).filter((k) => k.kind === "sense" && k.forms?.[yue.orthography] !== undefined);
+  const lexemes = lexemesInOrder(yue).filter((l) => l.forms?.[yue.orthography] !== undefined);
   const card = { due: "2026-03-05T08:00:00.000Z", stability: 4, difficulty: 5, elapsed_days: 0, scheduled_days: 4, learning_steps: 0, reps: 1, lapses: 0, state: 2, last_review: NOW };
-  const words = learnedWords(yue, { ...emptyLearnerState(), cards: Object.fromEntries(kcs.map((k) => [`${k.id}|recognize`, card])) }, NOW);
-  const found = (q: string): readonly string[] => words.filter(wordMatcher(yue, q)).map((w) => w.kc);
+  const words = learnedWords(yue, { ...emptyLearnerState(), cards: Object.fromEntries(lexemes.map((k) => [`${k.id}|recognize`, card])) }, NOW);
+  const found = (q: string): readonly string[] => words.filter(wordMatcher(yue, q)).map((w) => w.lexeme);
 
   it("finds it with or without tones and spaces, in any case", () => {
-    expect(words.map((w) => w.kc)).toContain("sense:早晨");
-    for (const q of ["zou2 san4", "zou2san4", "zousan", "ZOU SAN", "zou2"]) expect(found(q), q).toContain("sense:早晨");
-    expect(found("zou3 san4")).not.toContain("sense:早晨");
+    expect(words.map((w) => w.lexeme)).toContain("lexeme:早晨");
+    for (const q of ["zou2 san4", "zou2san4", "zousan", "ZOU SAN", "zou2"]) expect(found(q), q).toContain("lexeme:早晨");
+    expect(found("zou3 san4")).not.toContain("lexeme:早晨");
   });
 });

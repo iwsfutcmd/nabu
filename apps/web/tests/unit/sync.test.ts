@@ -20,7 +20,7 @@ const DAY = 86_400_000;
 const event = (n: number, at: string, course = "fa"): LearnerEvent => ({
   id: `00000000-0000-7000-8000-${n.toString(16).padStart(12, "0")}`,
   type: "session_started",
-  schema: 1,
+  schema: 2,
   device: "unit",
   course,
   orthography: "fa-Arab/standard" as OrthographyId,

@@ -1,12 +1,12 @@
 import type { LearnerEvent } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { continueOf, emptyLearnerState, PACE, paceOf, pathOf, plan, practiceFirst, RECENT_WINDOW, replay, type LearnerState } from "../src/learner/index.ts";
-import { allKcs, lessonNodes, type Exercise, type Facet } from "../src/lesson/index.ts";
+import { cardKey, continueOf, emptyLearnerState, PACE, paceOf, pathOf, plan, practiceFirst, readingSkill, RECENT_WINDOW, replay, type LearnerState } from "../src/learner/index.ts";
+import { lessonNodes, lexemesInOrder, type Exercise, type Facet } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const NOW = "2026-06-01T08:00:00.000Z";
 const fa = loadCourse("fa");
-const words = allKcs(fa).filter((k) => k.kind === "sense" && k.forms?.[fa.orthography] !== undefined);
+const words = lexemesInOrder(fa).filter((l) => l.forms?.[fa.orthography] !== undefined);
 
 /** A card reviewed `daysAgo` with this stability: recall falls as the days pass. */
 const cardAt = (daysAgo: number, stability: number): LearnerState["cards"][string] => {
@@ -105,7 +105,7 @@ describe("recent first tries in the fold", () => {
   it("keeps the last graded first tries: no retries, no self-ratings; a revealed answer is a miss", () => {
     const events = eventFactory(fa, manifestOf("fa").id);
     events.at(NOW);
-    const ex = (template: Exercise["template"]): Exercise => ({ id: `${template}:x`, template, item: "x", kcs: [words[0]?.id], orthography: fa.orthography }) as unknown as Exercise;
+    const ex = (template: Exercise["template"]): Exercise => ({ id: `${template}:x`, template, item: "x", parts: [words[0]?.id], orthography: fa.orthography }) as unknown as Exercise;
     const log: LearnerEvent[] = [events.answer(ex("choose-translation"), true, 1), events.answer(ex("choose-translation"), false, 1), events.answer(ex("choose-translation"), true, 2), events.answer(ex("speak.tier-0"), true, 1)];
     const { input: _i, outcome: _o, prediction: _p, ...skip } = events.answer(ex("select-image"), true, 1) as LearnerEvent & { input: unknown; outcome: unknown; prediction?: unknown };
     log.push({ ...skip, type: "exercise_skipped", reason: "skip" } as unknown as LearnerEvent);
@@ -122,7 +122,7 @@ describe("the planner at a pace", () => {
     const node = lessons[at]?.node.id;
     if (node === undefined) throw new Error("fa has a fifth unit");
     const earlier = new Set(lessons.slice(0, at).flatMap((n) => n.node.introduces as readonly string[]));
-    const state: LearnerState = { ...emptyLearnerState(), cards: Object.fromEntries([...earlier].map((kc, i) => [`${kc}|recognize`, cardAt(20 + (i % 10), 4)])) };
+    const state: LearnerState = { ...emptyLearnerState(), cards: Object.fromEntries([...earlier].map((part, i) => [cardKey(part, readingSkill(part), fa.orthography), cardAt(20 + (i % 10), 4)])) };
     const review = (band: "consolidate" | "steady" | "accelerate"): number =>
       plan(fa, state, { mode: "lesson", node }, { now: NOW, seed: 5, pace: band }).exercises.filter((ex) => ex.review === true).length;
     expect(review("accelerate")).toBeLessThanOrEqual(review("steady"));

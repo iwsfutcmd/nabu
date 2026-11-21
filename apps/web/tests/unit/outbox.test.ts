@@ -3,10 +3,11 @@
  * in the log, and never sent again on its own, so it cannot hold back the events after it. Runs on
  * the in-memory store (Node has no IndexedDB), with the server stubbed at fetch.
  */
-import type { LearnerEvent, OrthographyId } from "@nabu/schema";
+import type { LearnerEvent, LearnerEventV1, OrthographyId } from "@nabu/schema";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { retryAfterUpdate, uploadOutbox } from "../../src/outbox.ts";
 import { openStore, type EventStore } from "../../src/store.ts";
+import { upgradeDeviceLog } from "../../src/upgrade-log.ts";
 
 const SERVER = "https://nabu.invalid";
 const to = { server: SERVER, token: "token" };
@@ -14,7 +15,7 @@ const to = { server: SERVER, token: "token" };
 const event = (n: number, course = "fa"): LearnerEvent => ({
   id: `00000000-0000-7000-8000-${n.toString(16).padStart(12, "0")}`,
   type: "session_started",
-  schema: 1,
+  schema: 2,
   device: "unit",
   course,
   orthography: "fa-Arab/standard" as OrthographyId,
@@ -174,5 +175,30 @@ describe("uploading the outbox", () => {
     expect((await store.pending(10)).map((e) => e.id)).toEqual([a.id]);
     await uploadOutbox(store, to);
     expect(await store.pendingCount()).toBe(0);
+  });
+
+  it("sends nothing while the oldest event waiting is of the old shape, and as usual once the log is rewritten", async () => {
+    // As an app of before the lexical model logged it: the same event, schema 1.
+    const old = { ...event(1), schema: 1 } as unknown as LearnerEventV1;
+    const [b, c] = [event(2), event(3)];
+    const store = await deviceWith([old as unknown as LearnerEvent, b, c]);
+    const { uploads } = server((events) => taken(events));
+    expect([...(await uploadOutbox(store, to))]).toEqual([]);
+    // No request made, nothing set aside, everything still waiting.
+    expect(uploads).toHaveLength(0);
+    expect(await store.held()).toEqual({});
+    expect(await store.pendingCount()).toBe(3);
+    // The app's start rewrites the log (no alias table needed for a session's start); then it all goes.
+    expect((await upgradeDeviceLog(store, () => Promise.resolve(undefined))).upgraded).toBe(1);
+    expect([...(await uploadOutbox(store, to))]).toEqual(["fa"]);
+    expect(uploads.map((u) => u.map((e) => [e.id, e.schema]))).toEqual([
+      [
+        [old.id, 2],
+        [b.id, 2],
+        [c.id, 2],
+      ],
+    ]);
+    expect(await store.pendingCount()).toBe(0);
+    expect(await store.held()).toEqual({});
   });
 });

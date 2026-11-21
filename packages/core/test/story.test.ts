@@ -7,7 +7,7 @@ import { describe, expect, it } from "vitest";
 import { learnerEventOf, pathOf, replay, type EventMeta, type SessionMeta } from "../src/learner/index.ts";
 import { allLexemes, answerTextOf, lexemesById, createGrader, gradeExercise, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
 import { allStories, courseGlossary, glossAt, glossLine, startStory, stepStory, storyAt, storyScript, type StoryScript, type StoryState } from "../src/story/index.ts";
-import { baseIdOf, formSignature, lexemesOf } from "../src/lesson/lexemes.ts";
+import { baseIdOf, formSignature, lexemeIdsOf, lexemesOf } from "../src/lesson/lexemes.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
@@ -276,18 +276,29 @@ describe("tap-for-gloss on story lines", () => {
         if (token.kind !== "word") continue;
         const marked = HARAKAT.test(token.surface);
         if (marked) vocalized += 1;
-        const [hit, ...more] = glossAt(course, glossary, glosses, line.text, i);
-        expect(more).toEqual([]);
-        expect(hit?.id).toBe(baseIdOf(token));
-        expect(hit?.form).toBeDefined();
-        expect(hit?.meaning).toBeDefined();
-        const match = glosses.find((g) => g.tokenStart <= i && i < g.tokenEnd);
-        if (marked && match?.pass === "folded") folded += 1;
+        // A word is glossed by its lexeme, or lexeme by lexeme where it writes several (badd + -ak:
+        // baddak is a built word now, no entry of its own).
+        const hits = glossAt(course, glossary, glosses, line.text, i);
+        expect(hits.map((h) => h.id)).toEqual(lexemeIdsOf(token));
+        for (const hit of hits) {
+          expect(hit.form).toBeDefined();
+          expect(hit.meaning).toBeDefined();
+        }
       }
     }
     expect(vocalized).toBeGreaterThanOrEqual(8);
-    // The glossary's forms carry the course vocalization's marks (ADR 0053); a word the story marks
-    // otherwise still finds its entry, by the folded pass.
+    // The glossary's forms carry the course vocalization's marks (ADR 0053); a word a story marks
+    // otherwise still finds its entry, by the folded pass. The first story's one such word was
+    // kifak, a built word now (kif + -ak); other stories have them (سَلامْتِك, قَلْبِك).
+    for (const story of allStories(course)) {
+      for (const line of storyScript(course, story, seededRng(3)).lines) {
+        const glosses = glossLine(course, glossary, line.text);
+        for (const [i, token] of line.text.tokens.entries()) {
+          const match = glosses.find((g) => g.tokenStart <= i && i < g.tokenEnd);
+          if (token.kind === "word" && HARAKAT.test(token.surface) && match?.pass === "folded") folded += 1;
+        }
+      }
+    }
     expect(folded).toBeGreaterThan(0);
   });
 

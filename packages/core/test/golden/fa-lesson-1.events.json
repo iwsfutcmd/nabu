@@ -1,12 +1,12 @@
 [
   {
     "id": "00000000-0000-7000-8000-000000000001",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:00:15.000Z",
     "localDate": "2026-03-01",
@@ -20,53 +20,53 @@
   },
   {
     "id": "00000000-0000-7000-8000-000000000002",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:00:30.000Z",
     "localDate": "2026-03-01",
     "tz": "UTC",
     "type": "exercise_presented",
     "exercise": {
-      "id": "match-pairs:sense:bale+sense:mamnun+sense:salam+sense:na+sense:khodahafez",
+      "id": "match-pairs:lexeme:bale+lexeme:mamnun+lexeme:salam+lexeme:na+lexeme:khodahafez",
       "template": "match-pairs",
-      "item": "sense:bale",
-      "kcs": [
-        "sense:bale",
-        "sense:mamnun",
-        "sense:salam",
-        "sense:na",
-        "sense:khodahafez"
+      "item": "lexeme:bale",
+      "parts": [
+        "lexeme:bale",
+        "lexeme:mamnun",
+        "lexeme:salam",
+        "lexeme:na",
+        "lexeme:khodahafez"
       ]
     }
   },
   {
     "id": "00000000-0000-7000-8000-000000000003",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:00:45.000Z",
     "localDate": "2026-03-01",
     "tz": "UTC",
     "type": "answer_submitted",
     "exercise": {
-      "id": "match-pairs:sense:bale+sense:mamnun+sense:salam+sense:na+sense:khodahafez",
+      "id": "match-pairs:lexeme:bale+lexeme:mamnun+lexeme:salam+lexeme:na+lexeme:khodahafez",
       "template": "match-pairs",
-      "item": "sense:bale",
-      "kcs": [
-        "sense:bale",
-        "sense:mamnun",
-        "sense:salam",
-        "sense:na",
-        "sense:khodahafez"
+      "item": "lexeme:bale",
+      "parts": [
+        "lexeme:bale",
+        "lexeme:mamnun",
+        "lexeme:salam",
+        "lexeme:na",
+        "lexeme:khodahafez"
       ]
     },
     "attempt": 1,
@@ -77,25 +77,31 @@
     "outcome": {
       "kind": "CORRECT",
       "notes": [],
-      "kcs": [
+      "labels": [],
+      "parts": [
         {
-          "kc": "sense:bale",
+          "part": "lexeme:bale",
+          "skill": "recognize",
           "status": "right"
         },
         {
-          "kc": "sense:mamnun",
+          "part": "lexeme:mamnun",
+          "skill": "recognize",
           "status": "right"
         },
         {
-          "kc": "sense:salam",
+          "part": "lexeme:salam",
+          "skill": "recognize",
           "status": "right"
         },
         {
-          "kc": "sense:na",
+          "part": "lexeme:na",
+          "skill": "recognize",
           "status": "right"
         },
         {
-          "kc": "sense:khodahafez",
+          "part": "lexeme:khodahafez",
+          "skill": "recognize",
           "status": "right"
         }
       ]
@@ -103,12 +109,12 @@
   },
   {
     "id": "00000000-0000-7000-8000-000000000004",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:01:00.000Z",
     "localDate": "2026-03-01",
@@ -118,19 +124,19 @@
       "id": "choose-translation:s.1",
       "template": "choose-translation",
       "item": "s.1",
-      "kcs": [
-        "sense:salam"
+      "parts": [
+        "lexeme:salam"
       ]
     }
   },
   {
     "id": "00000000-0000-7000-8000-000000000005",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:01:15.000Z",
     "localDate": "2026-03-01",
@@ -140,8 +146,8 @@
       "id": "choose-translation:s.1",
       "template": "choose-translation",
       "item": "s.1",
-      "kcs": [
-        "sense:salam"
+      "parts": [
+        "lexeme:salam"
       ]
     },
     "attempt": 1,
@@ -152,9 +158,11 @@
     "outcome": {
       "kind": "WRONG",
       "notes": [],
-      "kcs": [
+      "labels": [],
+      "parts": [
         {
-          "kc": "sense:salam",
+          "part": "lexeme:salam",
+          "skill": "recognize",
           "status": "wrong"
         }
       ]
@@ -162,12 +170,12 @@
   },
   {
     "id": "00000000-0000-7000-8000-000000000006",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:01:30.000Z",
     "localDate": "2026-03-01",
@@ -177,19 +185,19 @@
       "id": "speak.tier-0:s.2",
       "template": "speak.tier-0",
       "item": "s.2",
-      "kcs": [
-        "sense:khodahafez"
+      "parts": [
+        "lexeme:khodahafez"
       ]
     }
   },
   {
     "id": "00000000-0000-7000-8000-000000000007",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:01:45.000Z",
     "localDate": "2026-03-01",
@@ -199,8 +207,8 @@
       "id": "speak.tier-0:s.2",
       "template": "speak.tier-0",
       "item": "s.2",
-      "kcs": [
-        "sense:khodahafez"
+      "parts": [
+        "lexeme:khodahafez"
       ]
     },
     "attempt": 1,
@@ -212,9 +220,11 @@
     "outcome": {
       "kind": "CORRECT",
       "notes": [],
-      "kcs": [
+      "labels": [],
+      "parts": [
         {
-          "kc": "sense:khodahafez",
+          "part": "lexeme:khodahafez",
+          "skill": "speak",
           "status": "right"
         }
       ]
@@ -222,45 +232,45 @@
   },
   {
     "id": "00000000-0000-7000-8000-000000000008",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:02:00.000Z",
     "localDate": "2026-03-01",
     "tz": "UTC",
     "type": "exercise_presented",
     "exercise": {
-      "id": "select-image:sense:salam",
+      "id": "select-image:lexeme:salam",
       "template": "select-image",
-      "item": "sense:salam",
-      "kcs": [
-        "sense:salam"
+      "item": "lexeme:salam",
+      "parts": [
+        "lexeme:salam"
       ]
     }
   },
   {
     "id": "00000000-0000-7000-8000-000000000009",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:02:15.000Z",
     "localDate": "2026-03-01",
     "tz": "UTC",
     "type": "answer_submitted",
     "exercise": {
-      "id": "select-image:sense:salam",
+      "id": "select-image:lexeme:salam",
       "template": "select-image",
-      "item": "sense:salam",
-      "kcs": [
-        "sense:salam"
+      "item": "lexeme:salam",
+      "parts": [
+        "lexeme:salam"
       ]
     },
     "attempt": 1,
@@ -271,9 +281,11 @@
     "outcome": {
       "kind": "WRONG",
       "notes": [],
-      "kcs": [
+      "labels": [],
+      "parts": [
         {
-          "kc": "sense:salam",
+          "part": "lexeme:salam",
+          "skill": "recognize",
           "status": "wrong"
         }
       ]
@@ -281,12 +293,12 @@
   },
   {
     "id": "00000000-0000-7000-8000-00000000000a",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:02:30.000Z",
     "localDate": "2026-03-01",
@@ -296,19 +308,19 @@
       "id": "choose-translation:s.3",
       "template": "choose-translation",
       "item": "s.3",
-      "kcs": [
-        "sense:mamnun"
+      "parts": [
+        "lexeme:mamnun"
       ]
     }
   },
   {
     "id": "00000000-0000-7000-8000-00000000000b",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:02:45.000Z",
     "localDate": "2026-03-01",
@@ -318,8 +330,8 @@
       "id": "choose-translation:s.3",
       "template": "choose-translation",
       "item": "s.3",
-      "kcs": [
-        "sense:mamnun"
+      "parts": [
+        "lexeme:mamnun"
       ]
     },
     "attempt": 1,
@@ -330,9 +342,11 @@
     "outcome": {
       "kind": "CORRECT",
       "notes": [],
-      "kcs": [
+      "labels": [],
+      "parts": [
         {
-          "kc": "sense:mamnun",
+          "part": "lexeme:mamnun",
+          "skill": "recognize",
           "status": "right"
         }
       ]
@@ -340,12 +354,12 @@
   },
   {
     "id": "00000000-0000-7000-8000-00000000000c",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:03:00.000Z",
     "localDate": "2026-03-01",
@@ -355,19 +369,19 @@
       "id": "choose-translation:s.4",
       "template": "choose-translation",
       "item": "s.4",
-      "kcs": [
-        "sense:bale"
+      "parts": [
+        "lexeme:bale"
       ]
     }
   },
   {
     "id": "00000000-0000-7000-8000-00000000000d",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:03:15.000Z",
     "localDate": "2026-03-01",
@@ -377,8 +391,8 @@
       "id": "choose-translation:s.4",
       "template": "choose-translation",
       "item": "s.4",
-      "kcs": [
-        "sense:bale"
+      "parts": [
+        "lexeme:bale"
       ]
     },
     "attempt": 1,
@@ -389,9 +403,11 @@
     "outcome": {
       "kind": "CORRECT",
       "notes": [],
-      "kcs": [
+      "labels": [],
+      "parts": [
         {
-          "kc": "sense:bale",
+          "part": "lexeme:bale",
+          "skill": "recognize",
           "status": "right"
         }
       ]
@@ -399,45 +415,45 @@
   },
   {
     "id": "00000000-0000-7000-8000-00000000000e",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:03:30.000Z",
     "localDate": "2026-03-01",
     "tz": "UTC",
     "type": "exercise_presented",
     "exercise": {
-      "id": "listen-select:sense:khodahafez",
+      "id": "listen-select:lexeme:khodahafez",
       "template": "listen-select",
-      "item": "sense:khodahafez",
-      "kcs": [
-        "sense:khodahafez"
+      "item": "lexeme:khodahafez",
+      "parts": [
+        "lexeme:khodahafez"
       ]
     }
   },
   {
     "id": "00000000-0000-7000-8000-00000000000f",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:03:45.000Z",
     "localDate": "2026-03-01",
     "tz": "UTC",
     "type": "answer_submitted",
     "exercise": {
-      "id": "listen-select:sense:khodahafez",
+      "id": "listen-select:lexeme:khodahafez",
       "template": "listen-select",
-      "item": "sense:khodahafez",
-      "kcs": [
-        "sense:khodahafez"
+      "item": "lexeme:khodahafez",
+      "parts": [
+        "lexeme:khodahafez"
       ]
     },
     "attempt": 1,
@@ -448,9 +464,11 @@
     "outcome": {
       "kind": "CORRECT",
       "notes": [],
-      "kcs": [
+      "labels": [],
+      "parts": [
         {
-          "kc": "sense:khodahafez",
+          "part": "lexeme:khodahafez",
+          "skill": "listen",
           "status": "right"
         }
       ]
@@ -458,12 +476,12 @@
   },
   {
     "id": "00000000-0000-7000-8000-000000000010",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:04:00.000Z",
     "localDate": "2026-03-01",
@@ -473,20 +491,20 @@
       "id": "vocalize:s.5",
       "template": "vocalize",
       "item": "s.5",
-      "kcs": [
-        "sense:na",
-        "sense:mamnun"
+      "parts": [
+        "lexeme:na",
+        "lexeme:mamnun"
       ]
     }
   },
   {
     "id": "00000000-0000-7000-8000-000000000011",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:04:15.000Z",
     "localDate": "2026-03-01",
@@ -496,9 +514,9 @@
       "id": "vocalize:s.5",
       "template": "vocalize",
       "item": "s.5",
-      "kcs": [
-        "sense:na",
-        "sense:mamnun"
+      "parts": [
+        "lexeme:na",
+        "lexeme:mamnun"
       ]
     },
     "attempt": 1,
@@ -509,13 +527,16 @@
     "outcome": {
       "kind": "CORRECT",
       "notes": [],
-      "kcs": [
+      "labels": [],
+      "parts": [
         {
-          "kc": "sense:na",
+          "part": "lexeme:na",
+          "skill": "read-script",
           "status": "right"
         },
         {
-          "kc": "sense:mamnun",
+          "part": "lexeme:mamnun",
+          "skill": "read-script",
           "status": "given"
         }
       ]
@@ -523,12 +544,12 @@
   },
   {
     "id": "00000000-0000-7000-8000-000000000012",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:04:30.000Z",
     "localDate": "2026-03-01",
@@ -538,19 +559,19 @@
       "id": "translate-tap.l2-l1:s.1",
       "template": "translate-tap.l2-l1",
       "item": "s.1",
-      "kcs": [
-        "sense:salam"
+      "parts": [
+        "lexeme:salam"
       ]
     }
   },
   {
     "id": "00000000-0000-7000-8000-000000000013",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:04:45.000Z",
     "localDate": "2026-03-01",
@@ -560,8 +581,8 @@
       "id": "translate-tap.l2-l1:s.1",
       "template": "translate-tap.l2-l1",
       "item": "s.1",
-      "kcs": [
-        "sense:salam"
+      "parts": [
+        "lexeme:salam"
       ]
     },
     "attempt": 1,
@@ -572,9 +593,11 @@
     "outcome": {
       "kind": "CORRECT",
       "notes": [],
-      "kcs": [
+      "labels": [],
+      "parts": [
         {
-          "kc": "sense:salam",
+          "part": "lexeme:salam",
+          "skill": "recognize",
           "status": "right"
         }
       ]
@@ -582,45 +605,45 @@
   },
   {
     "id": "00000000-0000-7000-8000-000000000014",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:05:00.000Z",
     "localDate": "2026-03-01",
     "tz": "UTC",
     "type": "exercise_presented",
     "exercise": {
-      "id": "listen-select:sense:mamnun",
+      "id": "listen-select:lexeme:mamnun",
       "template": "listen-select",
-      "item": "sense:mamnun",
-      "kcs": [
-        "sense:mamnun"
+      "item": "lexeme:mamnun",
+      "parts": [
+        "lexeme:mamnun"
       ]
     }
   },
   {
     "id": "00000000-0000-7000-8000-000000000015",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:05:15.000Z",
     "localDate": "2026-03-01",
     "tz": "UTC",
     "type": "answer_submitted",
     "exercise": {
-      "id": "listen-select:sense:mamnun",
+      "id": "listen-select:lexeme:mamnun",
       "template": "listen-select",
-      "item": "sense:mamnun",
-      "kcs": [
-        "sense:mamnun"
+      "item": "lexeme:mamnun",
+      "parts": [
+        "lexeme:mamnun"
       ]
     },
     "attempt": 1,
@@ -631,9 +654,11 @@
     "outcome": {
       "kind": "CORRECT",
       "notes": [],
-      "kcs": [
+      "labels": [],
+      "parts": [
         {
-          "kc": "sense:mamnun",
+          "part": "lexeme:mamnun",
+          "skill": "listen",
           "status": "right"
         }
       ]
@@ -641,12 +666,12 @@
   },
   {
     "id": "00000000-0000-7000-8000-000000000016",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:05:30.000Z",
     "localDate": "2026-03-01",
@@ -656,19 +681,19 @@
       "id": "choose-translation:s.1#2",
       "template": "choose-translation",
       "item": "s.1",
-      "kcs": [
-        "sense:salam"
+      "parts": [
+        "lexeme:salam"
       ]
     }
   },
   {
     "id": "00000000-0000-7000-8000-000000000017",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:05:45.000Z",
     "localDate": "2026-03-01",
@@ -678,8 +703,8 @@
       "id": "choose-translation:s.1#2",
       "template": "choose-translation",
       "item": "s.1",
-      "kcs": [
-        "sense:salam"
+      "parts": [
+        "lexeme:salam"
       ]
     },
     "attempt": 2,
@@ -690,9 +715,11 @@
     "outcome": {
       "kind": "CORRECT",
       "notes": [],
-      "kcs": [
+      "labels": [],
+      "parts": [
         {
-          "kc": "sense:salam",
+          "part": "lexeme:salam",
+          "skill": "recognize",
           "status": "right"
         }
       ]
@@ -700,45 +727,45 @@
   },
   {
     "id": "00000000-0000-7000-8000-000000000018",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:06:00.000Z",
     "localDate": "2026-03-01",
     "tz": "UTC",
     "type": "exercise_presented",
     "exercise": {
-      "id": "select-image:sense:salam#2",
+      "id": "select-image:lexeme:salam#2",
       "template": "select-image",
-      "item": "sense:salam",
-      "kcs": [
-        "sense:salam"
+      "item": "lexeme:salam",
+      "parts": [
+        "lexeme:salam"
       ]
     }
   },
   {
     "id": "00000000-0000-7000-8000-000000000019",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:06:15.000Z",
     "localDate": "2026-03-01",
     "tz": "UTC",
     "type": "answer_submitted",
     "exercise": {
-      "id": "select-image:sense:salam#2",
+      "id": "select-image:lexeme:salam#2",
       "template": "select-image",
-      "item": "sense:salam",
-      "kcs": [
-        "sense:salam"
+      "item": "lexeme:salam",
+      "parts": [
+        "lexeme:salam"
       ]
     },
     "attempt": 2,
@@ -749,9 +776,11 @@
     "outcome": {
       "kind": "CORRECT",
       "notes": [],
-      "kcs": [
+      "labels": [],
+      "parts": [
         {
-          "kc": "sense:salam",
+          "part": "lexeme:salam",
+          "skill": "recognize",
           "status": "right"
         }
       ]
@@ -759,12 +788,12 @@
   },
   {
     "id": "00000000-0000-7000-8000-00000000001a",
-    "schema": 1,
+    "schema": 2,
     "device": "golden",
     "course": "fa",
     "orthography": "fa-Arab/standard",
     "support": "en",
-    "bundle": "38e874547a25cc1be6b1b05ccc8d3b9220997cd8026ab3342ce724f683f33bd6",
+    "bundle": "bc995c7e6965792ee8eda33b606827242367dd34e8c922f7f2b9c20c8f26fee1",
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "clientTime": "2026-03-01T08:06:30.000Z",
     "localDate": "2026-03-01",

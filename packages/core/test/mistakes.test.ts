@@ -6,11 +6,11 @@
  * A card about one word of its sentence (a blank, a word's marks or reading) comes back about that
  * word, and only an answer about that word closes it.
  */
-import type { KcCredit, LearnerEvent } from "@nabu/schema";
+import type { LearnerEvent, PartCredit } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { askedKcs } from "../src/learner/credit.ts";
-import { emptyLearnerState, plan, practicableMistakes, replay, type LearnerState } from "../src/learner/index.ts";
-import { LISTENING, lessonNodes, type Exercise } from "../src/lesson/index.ts";
+import { askedParts } from "../src/learner/credit.ts";
+import { cardKey, emptyLearnerState, parseCardKey, plan, practicableMistakes, readingSkill, replay, type LearnerState } from "../src/learner/index.ts";
+import { LISTENING, lessonNodes, skillOf, type Exercise } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const NOW = "2026-03-01T08:00:00.000Z";
@@ -52,7 +52,10 @@ describe("the mistakes a session can practise", () => {
     const state = lessonMissing((ex) => !LISTENING.has(ex.template));
     const open = practicableMistakes(fa, state).length;
     expect(open).toBeGreaterThan(0);
-    const unseen = fa.units.flatMap((u) => u.sentences).find((s) => s.kcs.some((kc) => !Object.keys(state.cards).some((k) => k.startsWith(`${kc}|`))));
+    // A part of a lexeme (lexeme:mano|Gender) is never a card, so never unseen.
+    const seen = new Set(Object.keys(state.cards).map((k) => parseCardKey(k).part));
+    const carded = (parts: readonly string[]): string[] => parts.filter((part) => !part.includes("|"));
+    const unseen = fa.units.flatMap((u) => u.sentences).find((s) => carded(s.parts).some((part) => !seen.has(part)));
     if (unseen === undefined) throw new Error("fa has sentences beyond its first lesson");
     const stale: LearnerState = {
       ...state,
@@ -63,13 +66,13 @@ describe("the mistakes a session can practise", () => {
     // Once its words are seen, the sentence's mistake is practised too.
     const card = Object.values(state.cards)[0];
     if (card === undefined) throw new Error("the lesson made cards");
-    const seenAll: LearnerState = { ...stale, cards: { ...stale.cards, ...Object.fromEntries(unseen.kcs.map((kc) => [`${kc}|recognize`, card])) } };
+    const seenAll: LearnerState = { ...stale, cards: { ...stale.cards, ...Object.fromEntries(carded(unseen.parts).map((part) => [cardKey(part, readingSkill(part), fa.orthography), card])) } };
     expect(practicableMistakes(fa, seenAll).map((ex) => ex.item)).toContain(unseen.id);
   });
 });
 
 describe("a mistake on one word of a sentence", () => {
-  const word = (ex: Exercise): string => [...new Set((askedKcs(ex) ?? []).map(String))].sort().join("+");
+  const word = (ex: Exercise): string => [...new Set((askedParts(ex) ?? []).map(String))].sort().join("+");
 
   /** One lesson's answers: every card right but `missed`, which is wrong on its first try. */
   const missing = (course: ReturnType<typeof loadCourse>, node: string, missed: Exercise, all: readonly Exercise[]): LearnerEvent[] => {
@@ -84,7 +87,7 @@ describe("a mistake on one word of a sentence", () => {
       const course = loadCourse(id);
       for (const n of lessonNodes(course).slice(0, 4)) {
         const p = plan(course, emptyLearnerState(), { mode: "lesson", node: n.node.id }, { now: NOW, seed: 3 });
-        for (const ex of p.exercises.filter((e) => askedKcs(e) !== undefined)) {
+        for (const ex of p.exercises.filter((e) => askedParts(e) !== undefined)) {
           const back = practicableMistakes(course, replay(missing(course, n.node.id, ex, p.exercises))).find((e) => e.item === ex.item && e.template === ex.template);
           expect(back, `${id} ${ex.id}`).toBeDefined();
           expect(word(back as Exercise), `${id} ${ex.id}`).toBe(word(ex));
@@ -98,7 +101,7 @@ describe("a mistake on one word of a sentence", () => {
     expect(checked).toBeGreaterThan(30);
   });
 
-  // A gap-fill on a sentence of several words, each its own KC: a blank on another word is another card.
+  // A gap-fill on a sentence of several words, each its own lexeme: a blank on another word is another card.
   const es = loadCourse("es");
   const node = lessonNodes(es).find((n) =>
     plan(es, emptyLearnerState(), { mode: "lesson", node: n.node.id }, { now: NOW, seed: 3 }).exercises.some((e) => e.template === "gap-fill"),
@@ -106,14 +109,14 @@ describe("a mistake on one word of a sentence", () => {
   if (node === undefined) throw new Error("es plans a gap-fill");
   const lesson = plan(es, emptyLearnerState(), { mode: "lesson", node }, { now: NOW, seed: 3 }).exercises;
   const gap = lesson.find((e) => e.template === "gap-fill") as Exercise;
-  const other = gap.kcs.find((kc) => !(askedKcs(gap) ?? []).includes(kc));
+  const other = gap.parts.find((part) => !part.includes("|") && !(askedParts(gap) ?? []).includes(part));
   if (other === undefined) throw new Error("the gap-fill's sentence has another word");
   /** The same card answered right, credited as though its blank were another word of the sentence. */
   const aboutAnother = (): LearnerEvent => {
     const events = eventFactory(es, manifestOf("es").id);
     events.at(LATER);
-    const e = events.answer(gap, true, 1) as LearnerEvent & { outcome: { kcs: KcCredit[] } };
-    return { ...e, outcome: { ...e.outcome, kcs: gap.kcs.map((kc): KcCredit => ({ kc, status: kc === other ? "right" : "given" })) } } as LearnerEvent;
+    const e = events.answer(gap, true, 1) as LearnerEvent & { outcome: { parts: PartCredit[] } };
+    return { ...e, outcome: { ...e.outcome, parts: gap.parts.map((part): PartCredit => ({ part, skill: skillOf(gap.template, part), status: part === other ? "right" : "given" })) } } as LearnerEvent;
   };
 
   it("stays open after a right answer about another word of the sentence, and closes on its own word", () => {
@@ -129,7 +132,7 @@ describe("a mistake on one word of a sentence", () => {
   it("is no longer practised once its sentence no longer has the word", () => {
     const state = replay(missing(es, node, gap, lesson));
     expect(practicableMistakes(es, state).some((e) => e.item === gap.item && e.template === "gap-fill")).toBe(true);
-    const moved: LearnerState = { ...state, mistakes: state.mistakes.map((m) => (m.item === gap.item ? { ...m, ask: ["sense:no-such-word"] } : m)) };
+    const moved: LearnerState = { ...state, mistakes: state.mistakes.map((m) => (m.item === gap.item ? { ...m, ask: ["lexeme:no-such-word"] } : m)) };
     expect(practicableMistakes(es, moved).some((e) => e.item === gap.item && e.template === "gap-fill")).toBe(false);
   });
 });

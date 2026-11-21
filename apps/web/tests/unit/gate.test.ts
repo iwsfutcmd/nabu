@@ -19,17 +19,17 @@ const lesson = (at: number, wrong: number): LearnerEvent[] => {
   const session = uuid();
   const base = (offset: number) => {
     const time = new Date(at + offset * 1000).toISOString();
-    return { id: uuid(), schema: 1 as const, device: "unit", course: "fa", orthography: "fa-Arab/standard" as OrthographyId, support: "en", bundle: "0".repeat(64), session, clientTime: time, localDate: time.slice(0, 10), tz: "UTC" };
+    return { id: uuid(), schema: 2 as const, device: "unit", course: "fa", orthography: "fa-Arab/standard" as OrthographyId, support: "en", bundle: "0".repeat(64), session, clientTime: time, localDate: time.slice(0, 10), tz: "UTC" };
   };
   return [
     { ...base(0), type: "session_started", mode: "lesson", node: "fa.greetings", seed: 1, exercises: wrong, planner: "unit" },
     ...Array.from({ length: wrong }, (_, i) => ({
       ...base(1 + i),
       type: "answer_submitted",
-      exercise: { id: `x${i}`, template: "choose-translation", item: "s.1", kcs: ["sense:salam"] },
+      exercise: { id: `x${i}`, template: "choose-translation", item: "s.1", parts: ["lexeme:salam"] },
       attempt: 1,
       input: { method: "choice", latencyMs: 3000 },
-      outcome: { kind: "WRONG", notes: [], kcs: [{ kc: "sense:salam", status: "wrong" }] },
+      outcome: { kind: "WRONG", notes: [], labels: [], parts: [{ part: "lexeme:salam", skill: "recognize", status: "wrong" }] },
     })),
     { ...base(2 + wrong), type: "session_completed", mode: "lesson", node: "fa.greetings", summary: { completed: true, exercises: wrong, correctFirstTry: 0, retries: 0, skipped: 0 } },
   ] as unknown as LearnerEvent[];

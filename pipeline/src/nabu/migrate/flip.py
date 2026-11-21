@@ -202,11 +202,16 @@ def renamed_index(text: str, names: dict[str, str], where: str, out: Flipped) ->
 def _in_order(text: str) -> str:
     """The index's clips in the order its own writer keeps them (by item, then speed), each
     entry's text as it was: a renamed item has another place, and the next `nabu audio` write
-    would otherwise move every such entry."""
+    would otherwise move every such entry. Only the clips are put in order: what the index
+    lists after them (a cast's references) stays where it is."""
     head, found, body = text.partition("\nclips:\n")
     if not found:
         return text
-    entries = re.split(r"(?m)^(?=- item: )", body)
+    # The list ends at the next key of the index: a line that begins neither an entry nor
+    # what belongs to one.
+    end = re.search(r"(?m)^(?![- ])", body)
+    listed, tail = (body, "") if end is None else (body[: end.start()], body[end.start() :])
+    entries = re.split(r"(?m)^(?=- item: )", listed)
     lead, clips = entries[0], entries[1:]
 
     def key(entry: str) -> tuple[str, str]:
@@ -216,7 +221,7 @@ def _in_order(text: str) -> str:
 
     if clips and not clips[-1].endswith("\n"):
         clips[-1] += "\n"
-    return head + found + lead + "".join(sorted(clips, key=key))
+    return head + found + lead + "".join(sorted(clips, key=key)) + tail
 
 
 def _quoted(item: str) -> str:

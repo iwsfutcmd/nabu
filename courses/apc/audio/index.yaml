@@ -15027,41 +15027,6 @@ clips:
     asrText: زغير
     cer: 0.0
     status: pass
-references:
-- id: beirut-m
-  file: voices/beirut-m.wav
-  sha256: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-  text: مَرْحَبا! أَنا سامي. أَنا مِن لِبْنان، وأَنا بْبيروت. كيفَك؟
-  durationMs: 3930
-  license: CC-BY-NC-4.0
-  provenance:
-    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
-    status: draft
-  synthetic: true
-  design:
-    provider: omnivoice
-    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
-    language: lb
-    instruct: male, young adult, moderate pitch
-    seed: 7
-    dtype: bfloat16
-- id: beirut-f
-  file: voices/beirut-f.wav
-  sha256: f380feaa1da1cea36b374fc4aa8099cf34e30e14e95bb03fd2261f97ebe347b6
-  text: مَرْحَبا! أَنا مايا. أَنا مِن لِبْنان، وأَنا بْبيروت. كيفَك؟
-  durationMs: 4310
-  license: CC-BY-NC-4.0
-  provenance:
-    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
-    status: draft
-  synthetic: true
-  design:
-    provider: omnivoice
-    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
-    language: lb
-    instruct: female, young adult, moderate pitch
-    seed: 7
-    dtype: bfloat16
 - item: s.1
   speed: normal
   file: clips/68bbe1bdd216469f.mp3
@@ -34384,3 +34349,38 @@ references:
     asrText: بكرة عندي امتحان
     cer: 0.071
     status: pass
+references:
+- id: beirut-m
+  file: voices/beirut-m.wav
+  sha256: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+  text: مَرْحَبا! أَنا سامي. أَنا مِن لِبْنان، وأَنا بْبيروت. كيفَك؟
+  durationMs: 3930
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  design:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    language: lb
+    instruct: male, young adult, moderate pitch
+    seed: 7
+    dtype: bfloat16
+- id: beirut-f
+  file: voices/beirut-f.wav
+  sha256: f380feaa1da1cea36b374fc4aa8099cf34e30e14e95bb03fd2261f97ebe347b6
+  text: مَرْحَبا! أَنا مايا. أَنا مِن لِبْنان، وأَنا بْبيروت. كيفَك؟
+  durationMs: 4310
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  design:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    language: lb
+    instruct: female, young adult, moderate pitch
+    seed: 7
+    dtype: bfloat16

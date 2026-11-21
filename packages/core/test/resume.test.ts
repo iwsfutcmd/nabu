@@ -300,7 +300,7 @@ describe("resuming a session (S3)", () => {
 
 describe("a session's log, as resuming reads it", () => {
   const base = {
-    schema: 1 as const,
+    schema: 2 as const,
     device: "phone",
     course: "fa",
     orthography: "fa-Arab/standard" as OrthographyId,
@@ -315,10 +315,10 @@ describe("a session's log, as resuming reads it", () => {
     session,
     clientTime: at,
     type: "answer_submitted",
-    exercise: { id: exercise, template: "choose-translation", item: "fa.s1", kcs: [] },
+    exercise: { id: exercise, template: "choose-translation", item: "fa.s1", parts: [] },
     attempt: exercise.includes("#") ? 2 : 1,
     input: { method: "choice", latencyMs: 2000, ...(selfRating === undefined ? {} : { selfRating }) },
-    outcome: { kind, notes: [], kcs: [] },
+    outcome: { kind, notes: [], labels: [], parts: [] },
   });
   const S = "00000000-0000-7000-a000-000000000001";
   const OTHER = "00000000-0000-7000-a000-000000000002";
@@ -334,7 +334,7 @@ describe("a session's log, as resuming reads it", () => {
         session: S,
         clientTime: "2026-11-12T09:00:40.000+00:00",
         type: "exercise_skipped",
-        exercise: { id: "c", template: "listen-select", item: "fa.k1", kcs: [] },
+        exercise: { id: "c", template: "listen-select", item: "fa.k1", parts: [] },
         attempt: 1,
         reason: "cant-listen",
       },
@@ -357,7 +357,7 @@ describe("a session's log, as resuming reads it", () => {
 
   it("gives an answer the verdict its latest revision gives it: a claim, or the judge's (ADR 0052, 0113)", () => {
     const wrong = answer("00000000-0000-7000-8000-000000000001", S, "2026-11-12T09:00:10.000+00:00", "a", "WRONG");
-    const lenient = { ...answer("00000000-0000-7000-8000-000000000002", S, "2026-11-12T09:00:20.000+00:00", "b", "CORRECT"), outcome: { kind: "CORRECT_WITH_TYPO" as const, notes: [], kcs: [] } };
+    const lenient = { ...answer("00000000-0000-7000-8000-000000000002", S, "2026-11-12T09:00:20.000+00:00", "b", "CORRECT"), outcome: { kind: "CORRECT_WITH_TYPO" as const, notes: [], labels: [], parts: [] } };
     const later = answer("00000000-0000-7000-8000-000000000005", S, "2026-11-12T09:00:50.000+00:00", "d", "WRONG");
     const report = (id: string, at: string, of: LearnerEvent, claim?: "reject"): LearnerEvent => ({
       ...base,
@@ -366,7 +366,7 @@ describe("a session's log, as resuming reads it", () => {
       clientTime: at,
       type: "answer_reported",
       answer: of.id,
-      exercise: of.type === "answer_submitted" ? of.exercise : { id: "", template: "choose-translation", item: "", kcs: [] },
+      exercise: of.type === "answer_submitted" ? of.exercise : { id: "", template: "choose-translation", item: "", parts: [] },
       text: "…",
       ...(claim === undefined ? {} : { claim }),
     });
@@ -386,7 +386,7 @@ describe("a session's log, as resuming reads it", () => {
         type: "outcome_revised",
         device: "server",
         answer: later.id,
-        outcome: { kind: "CORRECT_PROVISIONAL", notes: ["judge"], kcs: [] },
+        outcome: { kind: "CORRECT_PROVISIONAL", notes: ["judge"], labels: [], parts: [] },
         by: "judge",
       },
     ];

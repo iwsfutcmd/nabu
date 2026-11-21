@@ -86,16 +86,16 @@ describe("the next step Home offers", () => {
 describe("each course's latest start, from the device's log", () => {
   let n = 0;
   const event = (type: "session_started" | "progress_reset" | "answer_submitted", course: string, orthography: string, clientTime: string): LearnerEvent => {
-    const base = { id: `00000000-0000-7000-8000-${(++n).toString(16).padStart(12, "0")}`, schema: 1, device: "unit", course, orthography: orthography as OrthographyId, support: "en", bundle: "0".repeat(64), session: "00000000-0000-7000-8000-ffffffffffff", clientTime, localDate: clientTime.slice(0, 10), tz: "UTC" };
+    const base = { id: `00000000-0000-7000-8000-${(++n).toString(16).padStart(12, "0")}`, schema: 2, device: "unit", course, orthography: orthography as OrthographyId, support: "en", bundle: "0".repeat(64), session: "00000000-0000-7000-8000-ffffffffffff", clientTime, localDate: clientTime.slice(0, 10), tz: "UTC" };
     if (type === "session_started") return { ...base, type, mode: "lesson", node: `${course}.n1`, seed: 1, exercises: 1, planner: "unit" } as LearnerEvent;
     if (type === "progress_reset") return { ...base, type } as LearnerEvent;
     return {
       ...base,
       type,
-      exercise: { id: "x", template: "choose-translation", item: "s", kcs: [] },
+      exercise: { id: "x", template: "choose-translation", item: "s", parts: [] },
       attempt: 1,
       input: { method: "choice", latencyMs: 1000 },
-      outcome: { kind: "CORRECT", notes: [], kcs: [] },
+      outcome: { kind: "CORRECT", notes: [], labels: [], parts: [] },
     } as LearnerEvent;
   };
 

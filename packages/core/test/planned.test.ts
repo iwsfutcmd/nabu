@@ -143,7 +143,7 @@ describe.each(COURSES)("what plan() plans: %s %s", (id, orthography) => {
     for (const s of lessons(sessions)) {
       const at = s.request.mode === "lesson" ? nodes.get(s.request.node) : undefined;
       if (at === undefined) throw new Error(s.label);
-      const seen = new Set(Object.keys(s.state.cards).map((k) => parseCardKey(k).kc));
+      const seen = new Set(Object.keys(s.state.cards).map((k) => parseCardKey(k).part));
       for (const seed of [1, 11]) {
         for (const ex of lessonCandidates({ course, rng: seededRng(seed), introduced: at.node.introduces }, at, seen, onlyPairs)) pairs.push({ label: `${s.label} (seed ${String(seed)})`, ex });
       }
@@ -308,7 +308,7 @@ describe("a word's pronunciation in its sentence (ADR 0054, 0095, 0098)", () => 
         // Credit goes to the word asked about; the rest of the sentence is given.
         const credit = creditOf(ex, right, course.profiles);
         expect(credit.filter((c) => c.status === "right").length, ex.id).toBeGreaterThan(0);
-        expect(credit.filter((c) => c.status === "given").length, ex.id).toBe(new Set(ex.kcs).size - credit.filter((c) => c.status === "right").length);
+        expect(credit.filter((c) => c.status === "given").length, ex.id).toBe(new Set(ex.parts).size - credit.filter((c) => c.status === "right").length);
       }
       // The player starts with nothing chosen.
       const [presenting] = start("lesson", [cards[0] as Exercise]);

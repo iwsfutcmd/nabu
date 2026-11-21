@@ -12,7 +12,7 @@ import { openStore } from "../../src/store.ts";
 const answer: LearnerEvent = {
   id: "00000000-0000-7000-8000-000000000001",
   type: "answer_submitted",
-  schema: 1,
+  schema: 2,
   device: "phone",
   course: "fa",
   orthography: "fa-Arab/standard" as OrthographyId,
@@ -22,10 +22,10 @@ const answer: LearnerEvent = {
   clientTime: "2026-11-12T09:00:00.000+01:00",
   localDate: "2026-11-12",
   tz: "Europe/Paris",
-  exercise: { id: "choose-translation:s1", template: "choose-translation", item: "s1", kcs: [] },
+  exercise: { id: "choose-translation:s1", template: "choose-translation", item: "s1", parts: [] },
   attempt: 1,
   input: { method: "choice", latencyMs: 2100 },
-  outcome: { kind: "CORRECT", notes: [], kcs: [] },
+  outcome: { kind: "CORRECT", notes: [], labels: [], parts: [] },
 };
 
 /** A localStorage for the device's old goal (node has none). */
@@ -45,7 +45,7 @@ afterEach(() => {
 describe("the weekly goal", () => {
   it("is recorded as an event the server takes, which syncs and belongs to no course", async () => {
     const goal = goalEvent(5, "phone", new Date("2026-11-12T08:30:00Z"));
-    expect(goal).toMatchObject({ type: "goal_set", days: 5, device: "phone", schema: 1 });
+    expect(goal).toMatchObject({ type: "goal_set", days: 5, device: "phone", schema: 2 });
     expect(validEvent(goal)).toBe(true);
     expect(validEvent(goalEvent(null, "phone"))).toBe(true); // cleared
     expect(validEvent({ ...goal, days: 0 })).toBe(false);

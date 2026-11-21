@@ -8,7 +8,7 @@ const BUNDLE = "0".repeat(64);
 
 /** An event of `type` in a course and writing system, recorded at `clientTime` (device time with its offset). */
 const event = (type: "session_started" | "progress_reset" | "session_completed", course: string, orthography: string, clientTime: string, id = nextId()): LearnerEvent => {
-  const base = { id, schema: 1, device: "test", course, orthography, support: "en", bundle: BUNDLE, session: nextId(), clientTime, localDate: clientTime.slice(0, 10), tz: "UTC" };
+  const base = { id, schema: 2, device: "test", course, orthography, support: "en", bundle: BUNDLE, session: nextId(), clientTime, localDate: clientTime.slice(0, 10), tz: "UTC" };
   if (type === "session_started") return { ...base, type, mode: "lesson", node: `${course}.n1`, seed: 1, exercises: 3, planner: "test" } as LearnerEvent;
   if (type === "progress_reset") return { ...base, type } as LearnerEvent;
   return { ...base, type, mode: "lesson", node: `${course}.n1`, summary: { completed: true, exercises: 3, correctFirstTry: 3, retries: 0, skipped: 0 } } as LearnerEvent;
@@ -34,7 +34,7 @@ describe("where the learner left off (S1)", () => {
       // A session's end comes later than its start: the course is where it was.
       event("session_completed", "fa", "fa-Arab/standard", "2026-05-03T09:00:00Z"),
       event("progress_reset", "apc", "apc-Arab/standard", "2026-05-04T09:00:00Z"),
-      { id: nextId(), schema: 1, type: "goal_set", device: "test", days: 5, clientTime: "2026-05-05T09:00:00Z", localDate: "2026-05-05", tz: "UTC" } as LearnerEvent,
+      { id: nextId(), schema: 2, type: "goal_set", device: "test", days: 5, clientTime: "2026-05-05T09:00:00Z", localDate: "2026-05-05", tz: "UTC" } as LearnerEvent,
     ];
     expect(studiedCourses(log).map((s) => s.course)).toEqual(["apc", "es", "fa"]);
   });

@@ -4,7 +4,8 @@
  * word list is.
  */
 import { describe, expect, it } from "vitest";
-import { allKcs, allSentences, courseData, dataMatcher, textMatcher } from "../src/lesson/index.ts";
+import { allLexemes, allSentences, baseIdOf, bound, courseData, dataMatcher, sentencePersons, textMatcher } from "../src/lesson/index.ts";
+import { labelId } from "../src/lesson/templates.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
@@ -26,13 +27,24 @@ describe.each(COURSES)("the data of %s (%s)", (id, orthography) => {
   const course = loadCourse(id, orthography);
   const data = courseData(course);
 
-  it("lists every KC once, as a word, a form or a letter, and every sentence written in the orthography", () => {
-    const listed = [...data.words, ...data.forms, ...data.letters].map((r) => r.kc.id as string);
+  it("lists every lexeme, named form, rule and letter once, as a word, a form or a letter, and every sentence written in the orthography", () => {
+    const listed = [...data.words, ...data.forms, ...data.letters].map((r) => r.id.id);
     expect(new Set(listed).size).toBe(listed.length);
-    expect(new Set(listed)).toEqual(new Set(allKcs(course).map((k) => k.id as string)));
-    for (const w of data.words) expect(w.kc.kind, w.kc.id).toBe("sense");
-    for (const l of data.letters) expect(l.kc.kind, l.kc.id).toBe("grapheme");
-    for (const f of data.forms) expect(["sense", "grapheme"], f.kc.id).not.toContain(f.kc.kind);
+    const entries = [
+      ...allLexemes(course).map((l) => l.id),
+      ...(course.lexicon.labels ?? []).map(labelId),
+      ...(course.lexicon.rules ?? []).map((r) => r.id),
+      ...course.units.flatMap((u) => (u.graphemes ?? []).map((g) => g.id)),
+    ];
+    expect(new Set(listed)).toEqual(new Set(entries));
+    // A word is a lexeme the course cites; a lexeme written only inside words is a form (an affix).
+    for (const w of data.words) {
+      expect(w.id.id, w.id.id).toBe(w.lexeme.id);
+      expect(bound(w.lexeme), w.id.id).toBe(false);
+    }
+    for (const l of data.letters) expect(l.id.id.startsWith("grapheme:"), l.id.id).toBe(true);
+    const kindOf = (id: string): string => (id.startsWith("lexeme:") ? "affix" : id.startsWith("form:") ? "form" : id.startsWith("rule:") ? "rule" : id);
+    for (const f of data.forms) expect(f.tags[0], f.id.id).toBe(kindOf(f.id.id));
     expect(data.sentences.map((s) => s.sentence.id)).toEqual(allSentences(course).filter((s) => s.forms[orthography] !== undefined).map((s) => s.id));
     expect(courseData(course)).toBe(data);
   });
@@ -43,34 +55,35 @@ describe.each(COURSES)("the data of %s (%s)", (id, orthography) => {
     for (const word of data.words) {
       for (const w of word.written) {
         ways += 1;
-        expect(w.text.tokens.length, word.kc.id).toBe(1);
-        expect(w.text.tokens[0]?.sense === undefined ? undefined : `sense:${w.text.tokens[0].sense}`, word.kc.id).toBe(word.kc.id);
-        expect(w.sentences.length, word.kc.id).toBeGreaterThan(0);
-        expect(new Set(w.sentences).size, word.kc.id).toBe(w.sentences.length);
+        expect(w.text.tokens.length, word.id.id).toBe(1);
+        const token = w.text.tokens[0];
+        expect(token === undefined ? undefined : baseIdOf(token), word.id.id).toBe(word.lexeme.id);
+        expect(w.sentences.length, word.id.id).toBeGreaterThan(0);
+        expect(new Set(w.sentences).size, word.id.id).toBe(w.sentences.length);
         for (const s of w.sentences) {
           const row = sentences.get(s);
-          expect(row?.words.some((x) => surfaceOf(x.text) === surfaceOf(w.text)), `${word.kc.id} in ${s}`).toBe(true);
-          expect(row?.sentence.kcs, `${word.kc.id} in ${s}`).toContain(word.kc.id);
+          expect(row?.words.some((x) => surfaceOf(x.text) === surfaceOf(w.text)), `${word.id.id} in ${s}`).toBe(true);
+          expect(row?.sentence.parts, `${word.id.id} in ${s}`).toContain(word.lexeme.id);
         }
         // Its own word is among what it carries, once, where the course has an entry for it.
-        if (w.carries !== undefined) expect(w.carries.parts.filter((p) => p.base === true).map((p) => p.kc), word.kc.id).toEqual([word.kc.id]);
+        if (w.carries !== undefined) expect(w.carries.parts.filter((p) => p.base === true).map((p) => p.id), word.id.id).toEqual([word.lexeme.id]);
       }
     }
     expect(ways).toBeGreaterThan(data.words.length / 2);
   });
 
   it("gives each form the words that carry it, and says where a word has it of itself", () => {
-    const words = new Map(data.words.map((w) => [w.kc.id as string, w]));
+    const words = new Map(data.words.map((w) => [w.lexeme.id, w]));
     for (const form of data.forms) {
       for (const c of form.carriers) {
         const word = words.get(c.word);
         const way = word?.written.find((w) => w.text === c.text);
-        expect(way, `${form.kc.id} on ${c.word}`).toBeDefined();
-        expect(way?.carries?.parts.some((p) => p.kc === form.kc.id && p.text === undefined), `${form.kc.id} on ${c.word}`).toBe(true);
-        expect(c.ofItself, `${form.kc.id} on ${c.word}`).toBe(way?.carries?.ofItself === form.kc.id);
-        expect(c.sentences, `${form.kc.id} on ${c.word}`).toBe(way?.sentences.length);
+        expect(way, `${form.id.id} on ${c.word}`).toBeDefined();
+        expect(way?.carries?.parts.some((p) => p.id === form.id.id && p.text === undefined), `${form.id.id} on ${c.word}`).toBe(true);
+        expect(c.ofItself, `${form.id.id} on ${c.word}`).toBe(way?.carries?.ofItself === form.id.id);
+        expect(c.sentences, `${form.id.id} on ${c.word}`).toBe(way?.sentences.length);
         // A word that has a form of itself is never asked for it; one that is asked has a form added.
-        if (way?.carries?.asked === true) expect(way.carries.parts.some((p) => p.text === undefined && p.kc !== way.carries?.ofItself), c.word).toBe(true);
+        if (way?.carries?.asked === true) expect(way.carries.parts.some((p) => p.text === undefined && p.id !== way.carries?.ofItself), c.word).toBe(true);
       }
     }
     expect(data.forms.every((f) => f.sentences >= 0)).toBe(true);
@@ -86,14 +99,14 @@ describe.each(COURSES)("the data of %s (%s)", (id, orthography) => {
     if (word === undefined) throw new Error(`${id} has a word some sentence writes`);
     expect(data.words.filter(dataMatcher(course, surfaceOf(word.forms[0] as (typeof word.forms)[number])).words)).toContain(word);
     expect(data.words.filter(dataMatcher(course, surfaceOf((word.written[0] as (typeof word.written)[number]).text)).words)).toContain(word);
-    expect(data.words.filter(dataMatcher(course, word.kc.id).words)).toEqual([word]);
-    // A sentence is found by a KC it lists, by its id, and by its own text.
+    expect(data.words.filter(dataMatcher(course, word.id.id).words)).toEqual([word]);
+    // A sentence is found by a part it lists, by its id, and by its own text.
     const sentence = data.sentences[Math.floor(data.sentences.length / 2)];
     if (sentence === undefined) throw new Error(`${id} has sentences`);
-    const kc = sentence.sentence.kcs[0] as string;
-    const byKc = data.sentences.filter(dataMatcher(course, kc).sentences);
-    expect(byKc).toContain(sentence);
-    expect(byKc.every((s) => s.sentence.kcs.some((k) => k.includes(kc)) || s.sentence.id.includes(kc))).toBe(true);
+    const part = sentence.sentence.parts[0] as string;
+    const byPart = data.sentences.filter(dataMatcher(course, part).sentences);
+    expect(byPart).toContain(sentence);
+    expect(byPart.every((s) => s.sentence.parts.some((k) => k.includes(part)) || s.sentence.id.includes(part))).toBe(true);
     expect(data.sentences.filter(dataMatcher(course, sentence.sentence.id).sentences)).toContain(sentence);
     expect(data.sentences.filter(dataMatcher(course, surfaceOf(sentence.text)).sentences)).toContain(sentence);
   });
@@ -105,15 +118,15 @@ describe("ids on the Data page", () => {
     const han = yue.words.filter((w) => w.id.text !== undefined);
     expect(han.length).toBeGreaterThan(200);
     // Under the Jyutping orthography too, a Han id is tagged as the course's Han orthography.
-    for (const w of han) expect(w.id.text?.orthography, w.kc.id).toBe("yue-Hant-HK/standard");
-    for (const w of han) expect(surfaceOf(w.id.text as NonNullable<typeof w.id.text>), w.kc.id).toBe(w.kc.id);
-    expect(yue.sentences.every((s) => s.listed.map((k) => k.id).join(" ") === s.sentence.kcs.join(" "))).toBe(true);
+    for (const w of han) expect(w.id.text?.orthography, w.id.id).toBe("yue-Hant-HK/standard");
+    for (const w of han) expect(surfaceOf(w.id.text as NonNullable<typeof w.id.text>), w.id.id).toBe(w.lexeme.id);
+    expect(yue.sentences.every((s) => s.listed.map((k) => k.id).join(" ") === s.sentence.parts.join(" "))).toBe(true);
 
     const uz = courseData(loadCourse("uz", "uz-Latn/standard"));
-    expect(uz.words.every((w) => w.id.text === undefined && w.id.id === w.kc.id)).toBe(true);
+    expect(uz.words.every((w) => w.id.text === undefined && w.id.id === w.lexeme.id)).toBe(true);
     const cyrillic = uz.letters.filter((l) => l.id.text !== undefined);
     expect(cyrillic.length).toBeGreaterThan(0);
-    for (const l of cyrillic) expect(l.id.text?.orthography, l.kc.id).toBe("uz-Cyrl/standard");
+    for (const l of cyrillic) expect(l.id.text?.orthography, l.id.id).toBe("uz-Cyrl/standard");
 
     const fa = courseData(loadCourse("fa", "fa-Arab/standard"));
     expect([...fa.words, ...fa.forms, ...fa.letters].every((r) => r.id.text === undefined)).toBe(true);
@@ -121,12 +134,13 @@ describe("ids on the Data page", () => {
 
   it("tags a row as the course tags it, and gives each token its readings as text", () => {
     const es = courseData(loadCourse("es", "es-Latn/standard"));
-    const noun = es.words.find((w) => w.kc.pos === "NOUN");
+    const noun = es.words.find((w) => w.lexeme.pos === "NOUN");
     expect(noun?.tags[0]).toBe("NOUN");
-    expect(es.forms.every((f) => f.tags[0] === f.kc.kind)).toBe(true);
+    const kinds = { lexeme: "affix", form: "form", rule: "rule" } as Record<string, string>;
+    expect(es.forms.every((f) => f.tags[0] === kinds[f.id.id.slice(0, f.id.id.indexOf(":"))])).toBe(true);
     expect(es.sentences.every((s) => s.tags[0] === s.sentence.provenance.status)).toBe(true);
-    const tagged = es.sentences.find((s) => s.sentence.persons?.speaker !== undefined);
-    expect(tagged?.tags).toContain(`speaker=${String(tagged?.sentence.persons?.speaker)}`);
+    const tagged = es.sentences.find((s) => sentencePersons(s.sentence)?.speaker !== undefined);
+    expect(tagged?.tags).toContain(`speaker=${String(tagged === undefined ? undefined : sentencePersons(tagged.sentence)?.speaker)}`);
 
     const lzh = courseData(loadCourse("lzh", "lzh-Hant/standard"));
     const word = lzh.sentences[0]?.words[0];

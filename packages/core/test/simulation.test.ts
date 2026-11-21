@@ -6,7 +6,7 @@
 import { describe, expect, it } from "vitest";
 import type { LearnerEvent } from "@nabu/schema";
 import { learnedWords, replay, wordCounts } from "../src/learner/index.ts";
-import { allKcs, allSentences, lessonNodes } from "../src/lesson/index.ts";
+import { allLexemes, allSentences, lessonNodes } from "../src/lesson/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 import { simulate } from "./simulator.ts";
 
@@ -16,7 +16,7 @@ const SIMULATION_TIMEOUT_MS = 300_000;
 /**
  * Learners from weak (θ* = 1.0) to strong (θ* = 2.0), on every course and
  * orthography. With ten units a month is mostly new lessons, two a day: the
- * planner presents every new KC first, then keeps success near the target with
+ * planner presents every new lexeme and feature value first, then keeps success near the target with
  * easier or harder templates and review fillers (CALIBRATION_WEIGHT).
  */
 describe("planner: 30 simulated days", () => {
@@ -52,7 +52,7 @@ describe("planner: 30 simulated days", () => {
   ];
   for (const [course, orthography, seed, ability] of RUNS) {
     it(`${course} ${orthography ?? ""} (seed ${seed}, ability ${ability}) stays within ±5pp of 85%`, () => {
-      // Which KCs each lesson session presented: every new KC an exercise can carry must appear.
+      // Which parts each lesson session presented: every new part an exercise can carry must appear.
       const presented = new Map<string, Set<string>>();
       const log: LearnerEvent[] = [];
       let node = "";
@@ -61,11 +61,11 @@ describe("planner: 30 simulated days", () => {
         if (e.type === "session_started") node = e.mode === "lesson" ? (e.node ?? "") : "";
         // A word is presented by a card credited to it: not as the context of another word's card.
         if (e.type === "answer_submitted" && node !== "")
-          for (const { kc, status } of e.outcome.kcs) if (status !== "given") (presented.get(node) ?? presented.set(node, new Set()).get(node))?.add(kc);
+          for (const { part, status } of e.outcome.parts) if (status !== "given") (presented.get(node) ?? presented.set(node, new Set()).get(node))?.add(part);
       });
       const view = loadCourse(course, orthography);
-      const carried = new Set([...allSentences(view).flatMap((s) => s.kcs), ...allKcs(view).filter((k) => (k.forms?.[view.orthography]?.length ?? 0) > 0).map((k) => k.id)]);
-      const skipped = lessonNodes(view).flatMap(({ node: n }) => (presented.has(n.id) ? n.introduces.filter((kc) => carried.has(kc) && !presented.get(n.id)?.has(kc)).map((kc) => `${n.id} ${kc}`) : []));
+      const carried = new Set<string>([...allSentences(view).flatMap((s) => s.parts), ...allLexemes(view).filter((k) => (k.forms?.[view.orthography]?.length ?? 0) > 0).map((k) => k.id)]);
+      const skipped = lessonNodes(view).flatMap(({ node: n }) => (presented.has(n.id) ? n.introduces.filter((part) => carried.has(part) && !presented.get(n.id)?.has(part)).map((part) => `${n.id} ${part}`) : []));
       expect(skipped.filter((s) => !s.startsWith("drill."))).toEqual([]);
       const rate = r.correct / r.firstTries;
       console.log(

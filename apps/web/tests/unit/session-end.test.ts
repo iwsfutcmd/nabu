@@ -7,7 +7,7 @@
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { continueOf, paceOf, plan, replay, type PathNode } from "@nabu/core/learner";
-import { assembleCourse, lessonNodes, MEDIA_ROLES, type CourseView } from "@nabu/core/lesson";
+import { asksOf, assembleCourse, lessonNodes, MEDIA_ROLES, skillOf, type CourseView } from "@nabu/core/lesson";
 import { createTranslator, sourceCatalog } from "@nabu/i18n";
 import type { BundleManifest, LearnerEvent, OrthographyId } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
@@ -43,7 +43,7 @@ const historyBefore = (node: string, at: Date): LearnerEvent[] => {
     const base = () => {
       clock += 10_000;
       const time = new Date(clock).toISOString();
-      const common = { id: uuid(), schema: 1 as const, device: "unit", course: course.id, orthography: course.orthography as OrthographyId, support: course.supportKey, bundle: manifest.id };
+      const common = { id: uuid(), schema: 2 as const, device: "unit", course: course.id, orthography: course.orthography as OrthographyId, support: course.supportKey, bundle: manifest.id };
       return { ...common, session, clientTime: time, localDate: time.slice(0, 10), tz: "UTC" };
     };
     events.push({ ...base(), type: "session_started", mode: "lesson", node: id, seed: 1, exercises: exercises.length, planner: "unit" });
@@ -51,10 +51,16 @@ const historyBefore = (node: string, at: Date): LearnerEvent[] => {
       events.push({
         ...base(),
         type: "answer_submitted",
-        exercise: { id: ex.id, template: ex.template, item: ex.item, kcs: [...ex.kcs] },
+        exercise: { id: ex.id, template: ex.template, item: ex.item, parts: [...ex.parts] },
         attempt: 1,
         input: { method: "choice", latencyMs: 3000 },
-        outcome: { kind: "CORRECT", notes: [], kcs: ex.kcs.map((kc) => ({ kc, status: "right" as const })) },
+        outcome: {
+          kind: "CORRECT",
+          notes: [],
+          labels: [],
+          // As the player credits a right answer: each part by the skill its card exercises, given where the card cannot show it.
+          parts: ex.parts.map((part) => ({ part, skill: skillOf(ex.template, part), status: asksOf(ex.template, part) ? ("right" as const) : ("given" as const) })),
+        },
       });
     }
     const graded = exercises.filter((e) => e.template !== "speak.tier-0").length;

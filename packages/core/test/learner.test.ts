@@ -11,6 +11,7 @@ import type { LearnerEvent } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import {
   applyEvents,
+  cardKey,
   creditOf,
   emptyLearnerState,
   learnerEventOf,
@@ -28,7 +29,7 @@ import {
   type PlanOptions,
 } from "../src/learner/index.ts";
 import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
-import { allKcs, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise, type Facet, type LessonEvent } from "../src/lesson/index.ts";
+import { cardGallery, createGrader, facetExclusions, gradeExercise, isLexeme, lessonNodes, lexemesInOrder, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise, type Facet, type LessonEvent } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 import { plannedCards, walkPath } from "./planned.ts";
@@ -41,7 +42,7 @@ const faBundle = manifestOf("fa").id;
 
 describe("credit assignment (§8.5)", () => {
   const grader = createGrader(fa);
-  it("a gap-fill credits the blank's KCs and gives the rest", () => {
+  it("a gap-fill credits the blank's parts and gives the rest", () => {
     const ex = sampleExercise(fa, "gap-fill", 7) as Extract<Exercise, { template: "gap-fill" | "spelling-choice" }>;
     const credit = creditOf(ex, gradeExercise(ex, { tag: "choice", index: ex.answer }, grader), fa.profiles);
     expect(credit.filter((c) => c.status === "right").length).toBeGreaterThan(0);
@@ -96,7 +97,7 @@ describe("credit assignment (§8.5)", () => {
   it("judges pace per unit of length: a long sentence may take longer without being slow", () => {
     const events = eventFactory(fa, faBundle);
     const short = sampleExercise(fa, "choose-translation") as Exercise;
-    const long = { ...short, id: "long", item: "long", kcs: [...short.kcs, "sense:a", "sense:b", "sense:c", "sense:d", "sense:e", "sense:f"] as unknown as Exercise["kcs"] };
+    const long = { ...short, id: "long", item: "long", parts: [...short.parts, "lexeme:a", "lexeme:b", "lexeme:c", "lexeme:d", "lexeme:e", "lexeme:f"] as unknown as Exercise["parts"] };
     const log: LearnerEvent[] = [];
     // Five usual answers for the template, then a long item answered in proportion to its length.
     for (let i = 0; i < 5; i++) {
@@ -106,19 +107,19 @@ describe("credit assignment (§8.5)", () => {
     }
     events.at("2026-01-06T09:00:00.000Z");
     events.session();
-    const perUnit = 4000 / (2 + short.kcs.length);
-    log.push(events.answer(long, true, 1, Math.round(perUnit * (2 + long.kcs.length))));
+    const perUnit = 4000 / (2 + short.parts.length);
+    log.push(events.answer(long, true, 1, Math.round(perUnit * (2 + long.parts.length))));
     const state = replay(log);
-    // Its new KCs got Good (a learning card), not Hard: Hard would leave the card's difficulty higher.
-    const card = state.cards[`${long.kcs.at(-1) as string}|recognize`];
-    const hard = replay([...log.slice(0, 5), events.answer(long, true, 1, Math.round(perUnit * (2 + long.kcs.length) * 3))]).cards[`${long.kcs.at(-1) as string}|recognize`];
+    // Its new lexemes got Good (a learning card), not Hard: Hard would leave the card's difficulty higher.
+    const card = state.cards[`${long.parts.at(-1) as string}|recognize`];
+    const hard = replay([...log.slice(0, 5), events.answer(long, true, 1, Math.round(perUnit * (2 + long.parts.length) * 3))]).cards[`${long.parts.at(-1) as string}|recognize`];
     expect(card?.difficulty).toBeLessThan(hard?.difficulty ?? 0);
   });
 
   it("gives Easy only to a card already sure: a new word typed fast earns Good", () => {
     const events = eventFactory(fa, faBundle);
     const ex = sampleExercise(fa, "translate-type.l1-l2") as Exercise;
-    const kc = ex.kcs[0] as string;
+    const kc = ex.parts.find(isLexeme) as string;
     const usual = (n: number): LearnerEvent[] =>
       Array.from({ length: n }, (_, i) => {
         events.at(`2026-01-${String(i + 1).padStart(2, "0")}T09:00:00.000Z`);
@@ -252,7 +253,7 @@ describe("projection", () => {
   const node = lessonNodes(fa)[0]?.node.id as string;
   const events = playLesson(emptyLearnerState(), node, "2026-03-01T08:00:00.000Z", 2);
 
-  it("records a lesson: cards per (KC, facet), XP, path progress, open mistakes", () => {
+  it("records a lesson: cards per (part, skill), XP, path progress, open mistakes", () => {
     const state = replay(events);
     expect(state.completedNodes).toEqual([node]);
     expect(Object.keys(state.cards).length).toBeGreaterThan(3);
@@ -346,22 +347,22 @@ describe("starting a course over (progress_reset)", () => {
 });
 
 describe("planner constraints", () => {
-  it("never asks to produce a new KC before it has been recognized", () => {
+  it("never asks to produce a new lexeme or feature value before it has been recognized", () => {
     for (const { node } of lessonNodes(fa)) {
       const p = plan(fa, emptyLearnerState(), { mode: "lesson", node: node.id }, { now: "2026-03-01T08:00:00.000Z", seed: 2 });
       const recognized = new Set<string>();
       for (const ex of p.exercises) {
         // Gap-fill is recognition (ADR 0100), but choosing among forms of words needs the word met first.
         const gated = ex.template === "translate-type.l1-l2" || ex.template === "complete-translation" || ex.template === "gap-fill";
-        if (gated) for (const kc of ex.kcs) if (node.introduces.includes(kc)) expect(recognized.has(kc), `${node.id}: ${ex.id} before recognizing ${kc}`).toBe(true);
-        if (!gated) ex.kcs.forEach((kc) => recognized.add(kc));
+        if (gated) for (const part of ex.parts) if (node.introduces.includes(part)) expect(recognized.has(part), `${node.id}: ${ex.id} before recognizing ${part}`).toBe(true);
+        if (!gated) ex.parts.forEach((part) => recognized.add(part));
       }
     }
   }, WHOLE_COURSE_TIMEOUT_MS);
 
   it("sizes a review session to the backlog and plans it from the words that need it most (L3, R3)", () => {
     const now = "2026-06-01T08:00:00.000Z";
-    const words = allKcs(fa).filter((k) => k.kind === "sense");
+    const words = lexemesInOrder(fa).filter((k) => k.forms?.[fa.orthography] !== undefined);
     const cardAt = (daysAgo: number, stability: number): LearnerState["cards"][string] => {
       const last = new Date(Date.parse(now) - daysAgo * 86_400_000).toISOString();
       return { due: new Date(Date.parse(last) + stability * 86_400_000).toISOString(), stability, difficulty: 5, elapsed_days: 0, scheduled_days: stability, learning_steps: 0, reps: 3, lapses: 0, state: 2, last_review: last };
@@ -378,13 +379,13 @@ describe("planner constraints", () => {
     // The forgotten words are what it practises.
     const forgotten = new Set(words.slice(0, 9).map((k) => k.id as string));
     const review = plan(fa, stateWith(9), { mode: "review" }, { now, seed: 4 });
-    const practised = review.exercises.filter((ex) => ex.template !== "speak.tier-0" && ex.kcs.some((kc) => forgotten.has(kc)));
+    const practised = review.exercises.filter((ex) => ex.template !== "speak.tier-0" && ex.parts.some((part) => forgotten.has(part)));
     expect(practised.length).toBeGreaterThanOrEqual(Math.ceil(review.exercises.length / 2));
   });
 
   it("sizes and fills a review session without listening turned off for good; a break changes neither (D41)", () => {
     const now = "2026-06-01T08:00:00.000Z";
-    const words = allKcs(fa).filter((k) => k.kind === "sense");
+    const words = lexemesInOrder(fa).filter((k) => k.forms?.[fa.orthography] !== undefined);
     const cardAt = (daysAgo: number, stability: number): LearnerState["cards"][string] => {
       const last = new Date(Date.parse(now) - daysAgo * 86_400_000).toISOString();
       return { due: new Date(Date.parse(last) + stability * 86_400_000).toISOString(), stability, difficulty: 5, elapsed_days: 0, scheduled_days: stability, learning_steps: 0, reps: 3, lapses: 0, state: 2, last_review: last };
@@ -430,7 +431,8 @@ describe("planner constraints", () => {
     // Every earlier word seen; unit 3's fading (due), the rest fresh.
     const fading = new Set(before.filter((n) => n.unit.id === fa.units[2]?.id).flatMap((n) => n.node.introduces as readonly string[]));
     const cards: Record<string, LearnerState["cards"][string]> = {};
-    for (const n of before) for (const kc of n.node.introduces) for (const f of ["recognize", "produce"]) cards[`${kc}|${f}`] = fading.has(kc) ? card(40, 2) : card(1, 100);
+    // A lexeme is recognized and produced; a feature value read off a form and chosen.
+    for (const n of before) for (const part of n.node.introduces) for (const skill of part.startsWith("feature:") ? (["read-off", "choose"] as const) : (["recognize", "produce"] as const)) cards[cardKey(part, skill, fa.orthography)] = fading.has(part) ? card(40, 2) : card(1, 100);
     const node = lessons[at]?.node.id as string;
     const p = plan(fa, { ...emptyLearnerState(), cards }, { mode: "lesson", node }, { now, seed: 4 });
     const review = p.exercises.filter((e) => e.review === true);
@@ -440,7 +442,7 @@ describe("planner constraints", () => {
     const firstUnit = new Set(fa.units[0]?.sentences.map((s) => s.id));
     expect(review.filter((e) => firstUnit.has(e.item))).toEqual([]);
     // And every review card practises a fading word.
-    expect(review.every((e) => e.kcs.some((kc) => fading.has(kc)))).toBe(true);
+    expect(review.every((e) => e.parts.some((part) => fading.has(part)))).toBe(true);
   });
 
   it("says which requests the course can plan: an old link may name a node it no longer has", () => {

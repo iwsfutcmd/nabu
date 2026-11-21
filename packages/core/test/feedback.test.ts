@@ -3,7 +3,7 @@
  * marked, a missing accent and marks that make another word among them; a gap where units were left out;
  * the solution's words marked where the answer lines up with it; and what a wrong word means.
  */
-import type { LexemeId, TaggedText, Token } from "@nabu/schema";
+import type { TaggedText, Token } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import {
   allSentences,
@@ -234,14 +234,14 @@ describe("what a wrong word means (P3)", () => {
   });
 
   it("a chosen word by its own analysis: an inflected form by its sense, never an entry spelled alike", () => {
-    const como = wordMeanings(es, analysed({ surface: "Como", kind: "word", lexemes: [{ lexeme: "lexeme:comer" as LexemeId, feats: { Mood: "Ind", Number: "Sing", Person: "1", Tense: "Pres", VerbForm: "Fin" } }] }));
+    const como = wordMeanings(es, analysed({ surface: "Como", kind: "word", lexemes: [{ lexeme: "lexeme:comer", feats: { Mood: "Ind", Number: "Sing", Person: "1", Tense: "Pres", VerbForm: "Fin" } }] }));
     expect(readings(como)).toEqual([["lexeme:comer", PRES_1S]]);
     expect(como[0]?.glosses[0]?.meaning).toBeDefined();
   });
 
   it("a word of a phrase: its own entry alone, else the phrase it is part of", () => {
-    expect(readings(wordMeanings(es, analysed({ surface: "por", kind: "word", lexemes: [{ lexeme: "lexeme:por-favor" as LexemeId }] })))).toEqual([["lexeme:por"]]);
-    const dias = wordMeanings(es, analysed({ surface: "días", kind: "word", lexemes: [{ lexeme: "lexeme:buenos-días" as LexemeId }] }));
+    expect(readings(wordMeanings(es, analysed({ surface: "por", kind: "word", lexemes: [{ lexeme: "lexeme:por-favor" }] })))).toEqual([["lexeme:por"]]);
+    const dias = wordMeanings(es, analysed({ surface: "días", kind: "word", lexemes: [{ lexeme: "lexeme:buenos-días" }] }));
     expect(readings(dias)).toEqual([["lexeme:buenos-días"]]);
     expect(dias[0]?.glosses[0]?.span).toBe("phrase");
   });
