@@ -84,7 +84,7 @@ const SAMPLE_WORDS = 3;
  */
 const sampleSentence = (course: CourseView): TaggedText | undefined => {
   const forms = lessonNodes(course).flatMap(({ unit, node }) => node.sentences.flatMap((id) => unit.sentences.find((s) => s.id === id)?.forms[course.orthography]?.text ?? []));
-  return forms.find((f) => f.tokens.filter((t) => t.kind === "word").length >= SAMPLE_WORDS) ?? forms[0];
+  return forms.find((f) => f.tokens.filter((t) => t.kind === "lexical").length >= SAMPLE_WORDS) ?? forms[0];
 };
 
 /** Every course of the bundles, assembled in each of its orthographies. */

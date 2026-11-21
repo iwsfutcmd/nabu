@@ -2,7 +2,7 @@
 
 yue's second orthography, yue-Latn/jyutping, is never written by hand. Every sentence, story line,
 character name and lexicon entry's spelling in it comes from the Hong Kong characters' form: each
-word token's pinned Jyutping becomes the word, its characters the word's ruby (`characters`), and
+lexical token's pinned Jyutping becomes the word, its characters the word's ruby (`characters`), and
 the text joins the words with spaces and Latin punctuation. `nabu jyutping <course>` writes it into
 the course's units and its language's lexicon; the compiler checks the two agree
 (`enrich.transliteration-mismatch`).
@@ -75,7 +75,7 @@ def _split(surface: str, parts: list[str], reading: list[str]) -> list[str]:
 
 
 def latin_token(token: dict[str, Any]) -> dict[str, Any]:
-    """A Hant word token in Jyutping: the pinned reading is the word, the characters its ruby."""
+    """A Hant lexical token in Jyutping: the pinned reading is the word, the characters its ruby."""
     reading = token.get("readings", {}).get(SCHEME)
     if reading is None:
         raise ValueError(f"{token['surface']!r} has no pinned {SCHEME}")

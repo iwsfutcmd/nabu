@@ -17,12 +17,12 @@ const PROVENANCE = { provider: "ollama" as const, model: "test", prompt: "explai
 
 describe("model text as TaggedText", () => {
   it("keeps ZWNJ, modifier letters and grapheme clusters inside words", () => {
-    expect(kinds(autoTokens(`کتاب${ZWNJ}های من.`, FA))).toEqual([`word:کتاب${ZWNJ}های`, "space: ", "word:من", "punct:."]);
-    expect(kinds(autoTokens("Oʻqituvchi, 12!", { lang: "uz-Latn", orthography: "uz-Latn/standard" } as Pick<TaggedText, "lang" | "orthography">))).toEqual(["word:Oʻqituvchi", "punct:,", "space: ", "number:12", "punct:!"]);
+    expect(kinds(autoTokens(`کتاب${ZWNJ}های من.`, FA))).toEqual([`lexical:کتاب${ZWNJ}های`, "space: ", "lexical:من", "punct:."]);
+    expect(kinds(autoTokens("Oʻqituvchi, 12!", { lang: "uz-Latn", orthography: "uz-Latn/standard" } as Pick<TaggedText, "lang" | "orthography">))).toEqual(["lexical:Oʻqituvchi", "punct:,", "space: ", "number:12", "punct:!"]);
     expect(YUE.unitKind).toBe("grapheme");
-    expect(kinds(autoTokens("你好！👋🏽 ok", YUE))).toEqual(["word:你", "word:好", "punct:！", "symbol:👋🏽", "space: ", "word:o", "word:k"]);
+    expect(kinds(autoTokens("你好！👋🏽 ok", YUE))).toEqual(["lexical:你", "lexical:好", "punct:！", "symbol:👋🏽", "space: ", "lexical:o", "lexical:k"]);
     // An orthography whose units are words joins letters into words, whatever their script.
-    expect(kinds(autoTokens("你好 ok", EN))).toEqual(["word:你好", "space: ", "word:ok"]);
+    expect(kinds(autoTokens("你好 ok", EN))).toEqual(["lexical:你好", "space: ", "lexical:ok"]);
     expect(surfaceOf(autoTokens("e\u0301te\u0301", EN))).toBe("été"); // NFC
   });
 });

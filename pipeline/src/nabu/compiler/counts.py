@@ -1,5 +1,6 @@
 """The manifest's license and provenance summary (§7.1): what it counts, one entry each (a source
-sentence, a KC image, a clip), so a release build (compiler/release.py) counts only what ships."""
+sentence, a lexeme's image, a clip), so a release build (compiler/release.py) counts only what
+ships."""
 
 from __future__ import annotations
 

@@ -157,8 +157,8 @@ _LINTS = [
         "reading.inconsistent",
         "error",
         3,
-        "Words annotated alike (spelling, sense, form, morphs) read two ways, in a course that "
-        "has switched the check on (`consistentReadings`, ADR 0135).",
+        "Words annotated alike (spelling, lexemes, the values chosen on each) read two ways, in a "
+        "course that has switched the check on (`consistentReadings`, ADR 0135).",
     ),
     Lint(
         "reading.inconsistent-pending",
@@ -210,19 +210,23 @@ _LINTS = [
         "A sentence or script track names a node that does not exist.",
     ),
     Lint(
-        "curriculum.never-introduced", "error", 5, "A sentence uses a KC that no node introduces."
+        "curriculum.never-introduced",
+        "error",
+        5,
+        "A sentence writes a lexeme or names a rule that no node introduces.",
     ),
     Lint(
         "curriculum.introduced-late",
         "error",
         5,
-        "A sentence uses a KC that is introduced only in a later node.",
+        "A sentence writes a lexeme or names a rule that only a later node introduces.",
     ),
     Lint(
         "curriculum.i-plus-one",
         "error",
         5,
-        "A sentence brings in more new KCs than the course allows (default 1).",
+        "A sentence brings in more new lexemes, feature values and rules than the course allows "
+        "(default 1).",
     ),
     Lint(
         "curriculum.unused",
@@ -272,7 +276,8 @@ _LINTS = [
         "story.ahead",
         "warning",
         5,
-        "A story uses a KC that a later node introduces (it is glossed, but not yet taught).",
+        "A story writes a lexeme or names a rule that a later node introduces (it is glossed, but "
+        "not yet taught).",
     ),
     Lint(
         "story.question",
@@ -363,9 +368,9 @@ _LINTS = [
         "script.no-letter",
         "error",
         7,
-        "A grapheme KC whose first form has no letter, nor one letter carrying marks of the "
-        "profile's mark set (a spacing breathing, a mark on nothing): it would be in every word "
-        "(ADR 0124).",
+        "A letter (`grapheme:`) whose first form has no letter, nor one letter carrying marks of "
+        "the profile's mark set (a spacing breathing, a mark on nothing): it would be in every "
+        "word (ADR 0124).",
     ),
     Lint(
         "script.no-reading-scheme",
@@ -379,8 +384,8 @@ _LINTS = [
         "script.missing-reading",
         "error",
         7,
-        "An alphabet node's word whose KC has no reading pinned in the track's scheme: no sentence "
-        "spells it, and its KC entry gives none (`readings`, ADR 0133).",
+        "An alphabet node's word whose lexeme has no reading pinned in the track's scheme: no "
+        "sentence spells it, and its lexicon entry gives none (`readings`, ADR 0133).",
     ),
     Lint(
         "script.missing-form",
@@ -408,14 +413,24 @@ _LINTS = [
         9,
         "Synthesized audio in a course whose audio must be recorded by people.",
     ),
-    Lint("audio.unknown-item", "warning", 9, "A clip for a sentence or KC the course lacks."),
+    Lint(
+        "audio.unknown-item",
+        "warning",
+        9,
+        "A clip for a sentence, a story line or a lexeme the course lacks.",
+    ),
     Lint(
         "audio.stale",
         "warning",
         9,
         "A synthesized clip read something other than the voice reads now (a changed reading).",
     ),
-    Lint("audio.timings", "error", 9, "Clip timings that do not fit the sentence's word tokens."),
+    Lint(
+        "audio.timings",
+        "error",
+        9,
+        "Clip timings that do not fit the sentence's lexical tokens.",
+    ),
     Lint(
         "audio.held-back",
         "info",

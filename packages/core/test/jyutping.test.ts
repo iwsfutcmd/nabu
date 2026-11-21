@@ -37,7 +37,7 @@ describe("yue in Jyutping", () => {
         const from = hant.audio[s.id]?.normal;
         const to = latn.audio[s.id]?.normal;
         if (from?.timings === undefined || to === undefined) continue;
-        const words = (o: string) => (s.forms[o]?.text.tokens ?? []).flatMap((t, i) => (t.kind === "word" || t.kind === "number" ? [i] : []));
+        const words = (o: string) => (s.forms[o]?.text.tokens ?? []).flatMap((t, i) => (t.kind === "lexical" || t.kind === "number" ? [i] : []));
         const hantWords = words("yue-Hant-HK/standard");
         const latnWords = words(LATN);
         expect(to.orthography).toBe(LATN);

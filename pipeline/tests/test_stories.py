@@ -91,7 +91,7 @@ def test_a_clean_story_compiles_without_diagnostics(core_cli: CoreCli, tmp_path:
     assert line["ask"] == "complete" and line["gap"] == "lexeme:talaba"
     assert line["forms"][UZ]["tokens"][0] == {
         "surface": "Men",
-        "kind": "word",
+        "kind": "lexical",
         "tileGroup": 0,
         "lexemes": [{"lexeme": "lexeme:men"}],
     }
@@ -116,7 +116,7 @@ def test_a_lexeme_question_shows_each_distractor_in_the_gaps_form(
     assert "distractors" not in line
     [option] = line["options"]
     assert option[UZ]["tokens"] == [
-        {"surface": "kitob", "kind": "word", "lexemes": [{"lexeme": "lexeme:kitob"}]}
+        {"surface": "kitob", "kind": "lexical", "lexemes": [{"lexeme": "lexeme:kitob"}]}
     ]
 
 
@@ -402,7 +402,7 @@ def test_the_vocalized_apc_story_glosses_against_unvocalized_keys(
         for i, t in enumerate(tokens):
             # A token of several lexemes (كيفك: kif and its ending) is no entry's spelling: a
             # tap reaches it through its lexemes (glossAt), not the matcher.
-            if t["kind"] != "word" or len(t["lexemes"]) != 1:
+            if t["kind"] != "lexical" or len(t["lexemes"]) != 1:
                 continue
             vocalized += bool(set(t["surface"]) & HARAKAT)
             covering = [m for m in matches if m["tokenStart"] <= i < m["tokenEnd"]]

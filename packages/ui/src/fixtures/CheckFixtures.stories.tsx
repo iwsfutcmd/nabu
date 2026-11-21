@@ -15,14 +15,14 @@ type Story = StoryObj<typeof meta>;
 const vocalized = {
   lang: "ar-Arab",
   orthography: "ar-Arab/standard",
-  tokens: [{ surface: "\u0643\u0650\u062A\u064E\u0627\u0628\u064C", kind: "word" }],
+  tokens: [{ surface: "\u0643\u0650\u062A\u064E\u0627\u0628\u064C", kind: "lexical" }],
 } as unknown as TaggedText;
 
 /** Ethiopic: no bundled font covers it, so Chromium must fall back to a system font or tofu. */
 const ethiopic = {
   lang: "am-Ethi",
   orthography: "am-Ethi/standard",
-  tokens: [{ surface: "\u1230\u120B\u121D", kind: "word" }],
+  tokens: [{ surface: "\u1230\u120B\u121D", kind: "lexical" }],
 } as unknown as TaggedText;
 
 export const Clipped: Story = {

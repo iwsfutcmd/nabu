@@ -185,7 +185,7 @@ describe.each(COURSES)("the parts cards of %s (%s)", (id, orthography, forms) =>
     for (const { sentence, apart } of cards) {
       if (apart === undefined) continue;
       const token = apart.prompt.tokens[apart.word];
-      expect(token?.kind, sentence.id).toBe("word");
+      expect(token?.kind, sentence.id).toBe("lexical");
       expect(apart.solution.length, sentence.id).toBeGreaterThanOrEqual(2);
       expect(new Set(apart.solution).size, sentence.id).toBe(apart.solution.length);
       expect(apart.options.length - apart.solution.length, sentence.id).toBeGreaterThanOrEqual(2);

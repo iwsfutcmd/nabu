@@ -536,7 +536,7 @@ describe("a course that names its facets (ADR 0071)", () => {
     // A reading card's prompt goes without them: its word's reading is the answer (ADR 0138).
     const shown = plan(lzh, emptyLearnerState(), { mode: "lesson", node }, { now, seed: 3 }).exercises.filter((ex) => TEMPLATES[ex.template].facet !== "read-script");
     const words = shown.flatMap((ex) => ("prompt" in ex && ex.prompt !== undefined && "tokens" in ex.prompt ? ex.prompt.tokens : []));
-    const han = words.filter((t) => t.kind === "word" && /\p{Script=Han}/u.test(t.surface));
+    const han = words.filter((t) => t.kind === "lexical" && /\p{Script=Han}/u.test(t.surface));
     expect(han.length).toBeGreaterThan(0);
     for (const t of han) expect(Object.keys(t.ruby ?? {}).sort()).toEqual(["baxter", "jyutping", "pinyin"]);
   });

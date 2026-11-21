@@ -78,11 +78,12 @@ export interface CourseFiles {
 }
 
 /**
- * The bundle format this build reads (the manifest's `formatVersion`): 2, lexemes where a bundle
- * had KCs (ADR 0145). A bundle of another format is refused whole: one a device kept from before
- * the lexical model is fetched again, and one from a later build asks for the app to be updated.
+ * The bundle format this build reads (the manifest's `formatVersion`): 3, format 2 (lexemes where a
+ * bundle had KCs, ADR 0145) with the token kind `lexical` where it was `word`. A bundle of another
+ * format is refused whole: one a device kept from before is fetched again, and one from a later
+ * build asks for the app to be updated.
  */
-export const BUNDLE_FORMAT = 2;
+export const BUNDLE_FORMAT = 3;
 
 export type CourseError =
   | { readonly code: "format"; readonly version: unknown }
@@ -95,7 +96,7 @@ const supportKeyOf = (orthography: string): string => orthography.split("-")[0] 
 
 /** The word (and number) tokens of a text, by index: what clip timings point at. */
 const wordTokens = (text: TaggedText): readonly number[] =>
-  text.tokens.flatMap((t, i) => (t.kind === "word" || t.kind === "number" ? [i] : []));
+  text.tokens.flatMap((t, i) => (t.kind === "lexical" || t.kind === "number" ? [i] : []));
 
 /** Each audio item's text in every orthography: sentences, story lines (`story#step`), and lexemes and letters as they are cited. */
 const itemTexts = (units: readonly BundleUnit[], lexicon: BundleLexicon): ReadonlyMap<string, Readonly<Record<string, TaggedText>>> => {
@@ -490,7 +491,7 @@ const buildSpellings = (course: CourseView, orthography: string): Spellings => {
 
   const lexemes = lexemesById(course);
   const entryOfToken = (t: Token): BundleLexeme | undefined => lexemes.get(baseOf(t)?.lexeme ?? "");
-  const tokens = texts.flatMap((text) => text.tokens.filter((t) => t.kind === "word" && baseOf(t) !== undefined));
+  const tokens = texts.flatMap((text) => text.tokens.filter((t) => t.kind === "lexical" && baseOf(t) !== undefined));
   // The lexemes the course inflects: those a token writes outside the cell they are cited in.
   const inflecting = new Set(tokens.filter((t) => marked(course.lexicon, t, entryOfToken(t))).map((t) => baseOf(t)?.lexeme));
   const inflected = new Set<string>();
@@ -520,7 +521,7 @@ const buildSpellings = (course: CourseView, orthography: string): Spellings => {
     const ownByKey = new Map<string, OwnWord>();
     for (const t of form.text.tokens) {
       const base = baseOf(t);
-      if (t.kind !== "word" || base === undefined) continue;
+      if (t.kind !== "lexical" || base === undefined) continue;
       for (const key of keys(t.surface)) {
         if (ownByKey.has(key)) continue;
         const word: OwnWord = { key, letters: lettersOf(key), inflected: inflecting.has(base.lexeme) };

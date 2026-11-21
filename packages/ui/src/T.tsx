@@ -56,7 +56,7 @@ export interface TProps {
   readonly className?: string;
   readonly id?: string;
   /**
-   * Tap-for-gloss (Phase 6): word tokens become buttons that report their index. The token
+   * Tap-for-gloss (Phase 6): lexical tokens become buttons that report their index. The token
    * stays whole (§6.8); `pressed` marks the one whose gloss is open. A pressed word keeps its
    * reading where readings fade (ADR 0131): tapping is how a faded reading is looked up.
    */
@@ -131,7 +131,7 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasize
         ))}
       </ruby>
     );
-  if (onPress !== undefined && (token.kind === "word" || token.kind === "number")) {
+  if (onPress !== undefined && (token.kind === "lexical" || token.kind === "number")) {
     return (
       <button
         type="button"
@@ -255,7 +255,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
           onPress={onTokenPress}
           pressed={pressed === index}
           open={keepOpen && fadedAt(token, index)}
-          homograph={token.kind === "word" && homograph(token.surface, text.orthography)}
+          homograph={token.kind === "lexical" && homograph(token.surface, text.orthography)}
         />
       ))}
     </Tag>

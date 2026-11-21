@@ -25,7 +25,9 @@ Gender = Literal["m", "f"]
 DRAFT = {"author": "human:test", "status": "draft"}
 
 
-def token(surface: str, kind: str = "word", lexeme: str | None = None, **fields: Any) -> TokenModel:
+def token(
+    surface: str, kind: str = "lexical", lexeme: str | None = None, **fields: Any
+) -> TokenModel:
     """A token: `token("呢", lexeme="呢", readings={"jyutping": "ni1"})`. `lexeme` names the one
     lexeme it writes (its name, without `lexeme:`); a token that writes several gives `lexemes`
     as a bundle has them: `lexemes=[{"lexeme": "lexeme:uy", "surface": "uy", "base": True}, …]`."""

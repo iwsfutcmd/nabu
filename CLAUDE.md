@@ -758,9 +758,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   compiler ships it (file role `aliases`); only `upgrade` reads it. Renaming or removing a lexeme, rule or taught
   feature value changes the table's right-hand sides with it (pipeline/tests/test_aliases.py).
 - Old events are the `…V1` types of schemas/learner-event.v1.schema.json, which only `upgrade` and the restore of an
-  old download read. Still to follow on main, as commits of their own: the token kind is still `word` and becomes
-  `lexical`. Stages 5 and 6 of the switch (losses and labels, ADR 0148; what a learner sees) are not built:
-  `outcome.labels` is always empty and `story_line_read` is never emitted.
+  old download read. Still to follow on main: stages 5 and 6 of the switch (losses and labels, ADR 0148; what a
+  learner sees) are not built: `outcome.labels` is always empty and `story_line_read` is never emitted.
 - Tags, features and relations are Universal Dependencies' and a gloss's abbreviations the Leipzig Glossing Rules'
   (the owner, 2026-11-21: "ideally we use UD/Leipzig, unless we run into trouble"); a departure is stated where it is
   made (apc `Aspect=Part`). A lexeme takes one tag, where UD tags a word in its sentence: the one whose dimensions it

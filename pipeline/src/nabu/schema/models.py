@@ -298,7 +298,7 @@ class AudioVerdict(BaseModel):
     item: Annotated[
         str,
         Field(
-            description='Sentence id, KC id for a word, or "<story>#<step>" for a story line.',
+            description='Sentence id, lexeme id for a word, or "<story>#<step>" for a story line.',
             min_length=1,
         ),
     ]
@@ -546,7 +546,7 @@ class Persons(BaseModel):
 type Facet = Annotated[
     Literal["recognize", "produce", "listen", "speak", "read-script", "write-script"],
     Field(
-        description="What an exercise practises about a knowledge component (gameplan §8.5): recognizing it, producing it, hearing it, saying it, reading or writing its script.",
+        description="What an exercise practises about a part (gameplan §8.5): recognizing it, producing it, hearing it, saying it, reading or writing its script.",
         title="Facet",
     ),
 ]
@@ -743,7 +743,7 @@ type Spdx = Annotated[
 
 class ImageAsset(BaseModel):
     """
-    A picture of a sense KC for select-image (gameplan §8.2). No text inside the image; licensed and attributed like any other asset.
+    A picture of a lexeme for select-image (gameplan §8.2). No text inside the image; licensed and attributed like any other asset.
     """
 
     model_config = ConfigDict(
@@ -872,7 +872,7 @@ class SentenceCorrection(BaseModel):
     item: Annotated[
         str,
         Field(
-            description="A sentence id, a story id with `step`, or a word's KC id (ADR 0057).",
+            description="A sentence id, a story id with `step`, or a word's lexeme id (ADR 0057; its KC id in a correction of before the lexical model).",
             min_length=1,
         ),
     ]
@@ -1125,7 +1125,7 @@ class AudioCarrier(BaseModel):
     maxWords: Annotated[
         int,
         Field(
-            description="The longest item the carrier says, in words: its word tokens, so a script written without spaces counts too.",
+            description="The longest item the carrier says, in words: its lexical tokens, so a script written without spaces counts too.",
             ge=1,
         ),
     ] = 2
@@ -2267,7 +2267,7 @@ class Allomorph(BaseModel):
     readings: Annotated[
         dict[SchemeId, ReadingsAdditionalProperty2] | None,
         Field(
-            description="Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it."
+            description="Its reading in a scheme, pinned (ADR 0117) until the projection gives it."
         ),
     ] = None
 
@@ -2792,7 +2792,7 @@ class Transliteration(BaseModel):
 
 class ScriptTrack(BaseModel):
     """
-    What an alphabet track teaching this orthography asks its letters and words as (ADR 0088, 0124, 0133): their reading in `reading`, written in that scheme's `latin` for a learner who cannot read the script yet. A word's is its KC's pinned reading (ADR 0117), the one its word card and clip take, through the scheme's `latin` plug-in where the scheme's own text is not Latin (Attic: χώρᾱ is chōrā); a letter, which has no reading, is the plug-in's rendering of the letter, or where the scheme has none (an abjad's letter stands for several sounds), its grapheme KC's own form in the scheme's `latin` orthography.
+    What an alphabet track teaching this orthography asks its letters and words as (ADR 0088, 0124, 0133): their reading in `reading`, written in that scheme's `latin` for a learner who cannot read the script yet. A word's is its lexeme's pinned reading (ADR 0117), the one its word card and clip take, through the scheme's `latin` plug-in where the scheme's own text is not Latin (Attic: χώρᾱ is chōrā); a letter, which has no reading, is the plug-in's rendering of the letter, or where the scheme has none (an abjad's letter stands for several sounds), its grapheme KC's own form in the scheme's `latin` orthography.
     """
 
     model_config = ConfigDict(
@@ -3024,7 +3024,7 @@ class CorrectionSubmission(BaseModel):
     item: Annotated[
         str,
         Field(
-            description="The sentence id, the story id for a story line, or a word's KC id.",
+            description="The sentence id, the story id for a story line, or a word's lexeme id (its KC id in a report of before the lexical model).",
             max_length=200,
             min_length=1,
         ),
@@ -3065,7 +3065,7 @@ class AnswerSubmission(BaseModel):
     item: Annotated[
         str,
         Field(
-            description="The sentence, story or KC the exercise was built from.",
+            description="The sentence, story or lexeme the exercise was built from.",
             max_length=200,
             min_length=1,
         ),
@@ -3122,7 +3122,7 @@ class SignOff(BaseModel):
 
 
 type TokenKind = Annotated[
-    Literal["word", "punct", "space", "number", "symbol"], Field(title="TokenKind")
+    Literal["lexical", "punct", "space", "number", "symbol"], Field(title="TokenKind")
 ]
 
 
@@ -3436,7 +3436,13 @@ class AudioClip(BaseModel):
         extra="forbid",
         frozen=True,
     )
-    item: Annotated[str, Field(description="Sentence id, or KC id for a word.", min_length=1)]
+    item: Annotated[
+        str,
+        Field(
+            description="Sentence id, or lexeme id for a word (a form's clip by its form key).",
+            min_length=1,
+        ),
+    ]
     speed: Literal["normal", "slow"]
     file: Annotated[
         str,
@@ -4907,7 +4913,7 @@ class LexemeForm(BaseModel):
     readings: Annotated[
         dict[SchemeId, ReadingsAdditionalProperty2] | None,
         Field(
-            description="Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it."
+            description="Its reading in a scheme, pinned (ADR 0117) until the projection gives it."
         ),
     ] = None
 
@@ -5129,7 +5135,7 @@ class Contrast(BaseModel):
     inflected: Annotated[
         bool | None,
         Field(
-            description="Only on words the course inflects: a word the grader is told carries a form (GradeOptions.inflected: tokens whose sense has a form KC somewhere in the course). A noun's first letter is a typo; a verb's prefix is not."
+            description="Only on words the course inflects: a word the grader is told carries a form (GradeOptions.inflected: the spellings of a lexeme some token writes outside its part of speech's bare cell). A noun's first letter is a typo; a verb's prefix is not."
         ),
     ] = None
     forms: Annotated[
@@ -5416,7 +5422,7 @@ class AudioIndex(BaseModel):
 
 class BundleManifest(BaseModel):
     """
-    A compiled course bundle (docs/migration-design.md, deliverable 3), format version 2: it has lexemes, feature values and rules where a bundle of format 1 had KCs, its tokens list the lexemes they write, and the compiler writes it from a language's lexicon and a course's sources.
+    A compiled course bundle (docs/migration-design.md, deliverable 3), format version 3: it has lexemes, feature values and rules where a bundle of format 1 had KCs, its tokens list the lexemes they write, and the compiler writes it from a language's lexicon and a course's sources.
     """
 
     model_config = ConfigDict(
@@ -5424,9 +5430,9 @@ class BundleManifest(BaseModel):
         frozen=True,
     )
     formatVersion: Annotated[
-        Literal[2],
+        Literal[3],
         Field(
-            description="2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated."
+            description="3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated."
         ),
     ]
     id: Annotated[
@@ -5736,7 +5742,7 @@ class Lexeme(BaseModel):
     readings: Annotated[
         dict[SchemeId, ReadingsAdditionalProperty2] | None,
         Field(
-            description="Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it."
+            description="Its reading in a scheme, pinned (ADR 0117) until the projection gives it."
         ),
     ] = None
     provenance: Provenance | None = None
@@ -6508,7 +6514,10 @@ class CourseSource(BaseModel):
     ] = None
     iPlusOne: Annotated[
         int | None,
-        Field(description="Maximum new knowledge components per sentence (§7.5). Default 1.", ge=1),
+        Field(
+            description="Maximum new parts (lexemes, feature values, rules) per sentence (§7.5). Default 1.",
+            ge=1,
+        ),
     ] = None
     units: Annotated[list[str | UnitSource], Field(min_length=1)]
     drills: list[DrillSpec] | None = None

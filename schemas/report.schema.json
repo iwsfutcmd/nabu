@@ -64,7 +64,7 @@
           "pattern": "^[0-9a-f]{64}$"
         },
         "item": {
-          "description": "The sentence id, the story id for a story line, or a word's KC id.",
+          "description": "The sentence id, the story id for a story line, or a word's lexeme id (its KC id in a report of before the lexical model).",
           "type": "string",
           "minLength": 1,
           "maxLength": 200
@@ -142,7 +142,7 @@
           "pattern": "^[0-9a-f]{64}$"
         },
         "item": {
-          "description": "The sentence, story or KC the exercise was built from.",
+          "description": "The sentence, story or lexeme the exercise was built from.",
           "type": "string",
           "minLength": 1,
           "maxLength": 200

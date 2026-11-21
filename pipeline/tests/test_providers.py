@@ -167,7 +167,7 @@ def test_each_item_says_what_it_is_and_how_many_words_it_has(
     yue_units: Content,
 ) -> None:
     """A word card is text with no closing punctuation as written (ADR 0094), whatever a voice
-    is given (here IPA between slashes); its words are its word tokens, so a Cantonese sentence,
+    is given (here IPA between slashes); its words are its lexical tokens, so a Cantonese sentence,
     written without spaces, has several."""
     items, _ = plan(yue_units, voice("elevenlabs", pronounce="jyutping"))
     by_id = {i.item: i for i in items}
@@ -178,7 +178,7 @@ def test_each_item_says_what_it_is_and_how_many_words_it_has(
     sentences = [by_id[k] for k in tokens if k in by_id and not k.startswith("drill.")]
     assert sentences and all(i.kind == "sentence" for i in sentences)
     for i in sentences:
-        assert i.words == sum(t.kind in ("word", "number") for t in tokens[i.item])
+        assert i.words == sum(t.kind in ("lexical", "number") for t in tokens[i.item])
     assert any(" " not in i.input and i.words > 2 for i in sentences)
     # The numbers drill says each number alone, unpunctuated: a word card too.
     assert by_id["drill.numbers.1"].kind == "word"

@@ -16,7 +16,7 @@ const ORTH = "yue-Hant-HK/standard";
 const yue = (tokens: TaggedText["tokens"]): TaggedText => ({ lang: "yue-Hant-HK" as TaggedText["lang"], orthography: ORTH as TaggedText["orthography"], tokens });
 const word = (surface: string, jyutping: string): TaggedText["tokens"][number] => {
   const syllables = jyutping.split(" ");
-  return { surface, kind: "word", readings: { [JYUTPING]: jyutping }, ruby: { [JYUTPING]: [...surface].map((base, i) => ({ base, text: syllables[i] ?? "" })) } };
+  return { surface, kind: "lexical", readings: { [JYUTPING]: jyutping }, ruby: { [JYUTPING]: [...surface].map((base, i) => ({ base, text: syllables[i] ?? "" })) } };
 };
 // "Where's my book?": the solution is 我嘅書呢？, and 我嘅書喺邊度呀 is accepted too.
 const solution = yue([word("我", "ngo5"), word("嘅", "ge3"), word("書", "syu1"), word("呢", "ne1"), { surface: "？", kind: "punct" }]);
@@ -66,7 +66,7 @@ describe("a note about the words an answer's marks made into others (W4)", () =>
   const es = (surfaces: readonly string[]): TaggedText => ({
     lang: "es-Latn-CU" as TaggedText["lang"],
     orthography: ES as TaggedText["orthography"],
-    tokens: surfaces.map((surface) => ({ surface, kind: surface === "¿" || surface === "?" ? "punct" : surface === " " ? "space" : "word" })),
+    tokens: surfaces.map((surface) => ({ surface, kind: surface === "¿" || surface === "?" ? "punct" : surface === " " ? "space" : "lexical" })),
   });
   const esCourse = loadCourse("es");
   const card = { template: "translate-type.l1-l2", orthography: ES } as unknown as Exercise;
@@ -148,7 +148,7 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
       </CourseUiProvider>,
     );
     const solution = block(html, "data-solution");
-    expect(solution.match(/<button type="button"/gu)?.length).toBe(hungry.canonical.tokens.filter((t) => t.kind === "word").length);
+    expect(solution.match(/<button type="button"/gu)?.length).toBe(hungry.canonical.tokens.filter((t) => t.kind === "lexical").length);
     // The marked word is a button too, still marked.
     expect(solution).toMatch(/<button[^>]*data-highlight="true"[^>]*>tienes<\/button>/u);
     // An English solution (a card answered in the learner's language) has nothing to gloss.
@@ -202,7 +202,7 @@ describe("what was wrong, and what a wrong word means (P3)", () => {
   it("a wrong choice: what the right word means too, before what the chosen one means", () => {
     // A gap whose right and chosen options are words of different lexemes.
     const lexemeOf = (text: TaggedText | undefined): string | undefined => {
-      const word = text?.tokens.find((tk) => tk.kind === "word");
+      const word = text?.tokens.find((tk) => tk.kind === "lexical");
       return word === undefined ? undefined : baseIdOf(word);
     };
     const cards = Array.from({ length: 30 }, (_, seed) => sampleExercise(es, "gap-fill", seed + 1));

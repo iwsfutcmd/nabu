@@ -20,7 +20,7 @@ const withHomograph = (course: CourseView, scheme: SchemeId): { readonly text: T
   const spellings = homographsOf(course, scheme);
   for (const s of allSentences(course)) {
     const text = s.forms[course.orthography]?.text;
-    const at = text?.tokens.findIndex((t) => t.kind === "word" && spellings.has(t.surface.normalize("NFC"))) ?? -1;
+    const at = text?.tokens.findIndex((t) => t.kind === "lexical" && spellings.has(t.surface.normalize("NFC"))) ?? -1;
     if (text !== undefined && at >= 0) return { text, at };
   }
   throw new Error("no homograph in the course");

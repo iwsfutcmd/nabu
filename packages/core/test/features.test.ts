@@ -102,7 +102,7 @@ describe("homographs (ADR 0140)", () => {
 
   it("a word's other readings leave out its own", () => {
     const course = loadCourse("chg");
-    const token = { surface: "اوزوم", kind: "word" as const, readings: { schluessel: "özüm" } };
+    const token = { surface: "اوزوم", kind: "lexical" as const, readings: { schluessel: "özüm" } };
     expect(otherReadings(course, "schluessel" as SchemeId, token).map((r) => r.reading)).toEqual(["üzüm"]);
   });
 });

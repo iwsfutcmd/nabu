@@ -36,8 +36,8 @@ describe("<T>", () => {
   it("wraps whole tokens, never single letters of a cursive word", () => {
     const html = render(<T text={demoExercise("fa").answer} />);
     // ک\u200Cتاب\u200Cها is one span whose only content is the whole word, ZWNJ included.
-    expect(html).toContain('data-kind="word" data-index="0">کتاب\u200Cها</span>');
-    expect(html.match(/data-kind="word"/g)).toHaveLength(4);
+    expect(html).toContain('data-kind="lexical" data-index="0">کتاب\u200Cها</span>');
+    expect(html.match(/data-kind="lexical"/g)).toHaveLength(4);
   });
 
   it("renders ruby only when a layer is chosen", () => {
@@ -55,7 +55,7 @@ describe("<T>", () => {
       tokens: [
         {
           surface: "君子",
-          kind: "word",
+          kind: "lexical",
           ruby: {
             pinyin: [
               { base: "君", text: "jūn" },
@@ -83,7 +83,7 @@ describe("<T>", () => {
     const text = {
       lang: "chg-Arab",
       orthography: "chg-Arab/standard",
-      tokens: [{ surface: word, kind: "word", ruby: { schluessel: [{ base: word, text: "mewäsi" }] } }],
+      tokens: [{ surface: word, kind: "lexical", ruby: { schluessel: [{ base: word, text: "mewäsi" }] } }],
     } as unknown as TaggedText;
     const html = render(
       <NabuUiProvider translator={translator()} orthographies={new Map([[chg.id, chg]])}>
@@ -110,7 +110,7 @@ describe("<T>", () => {
   });
 
   it("sets an orthography's text larger where its profile says so (Classical Chinese, ADR 0071)", () => {
-    const lzh = { lang: "lzh-Hant", orthography: "lzh-Hant/standard", tokens: [{ surface: "善", kind: "word" }] } as unknown as TaggedText;
+    const lzh = { lang: "lzh-Hant", orthography: "lzh-Hant/standard", tokens: [{ surface: "善", kind: "lexical" }] } as unknown as TaggedText;
     const html = render(<T text={lzh} />);
     expect(html).toContain("data-scaled");
     expect(html).toContain("--nabu-text-scale:1.25");
@@ -121,8 +121,8 @@ describe("<T>", () => {
   });
 
   it("marks only the language being learned for the learner's text size (ADR 0071)", () => {
-    const lzh = { lang: "lzh-Hant", orthography: "lzh-Hant/standard", tokens: [{ surface: "善", kind: "word" }] } as unknown as TaggedText;
-    const en = { lang: "en-Latn", orthography: "en-Latn/standard", tokens: [{ surface: "good", kind: "word" }] } as unknown as TaggedText;
+    const lzh = { lang: "lzh-Hant", orthography: "lzh-Hant/standard", tokens: [{ surface: "善", kind: "lexical" }] } as unknown as TaggedText;
+    const en = { lang: "en-Latn", orthography: "en-Latn/standard", tokens: [{ surface: "good", kind: "lexical" }] } as unknown as TaggedText;
     const inCourse = (text: TaggedText): string =>
       render(
         <NabuUiProvider translator={translator()} orthographies={DEMO_ORTHOGRAPHIES} targets={new Set(["lzh-Hant/standard"])}>
@@ -140,8 +140,8 @@ describe("<T>", () => {
       lang: "tok-Qaap",
       orthography: "tok-Qaap/sitelen-pona",
       tokens: [
-        { surface: "\u{F1934}", kind: "word", lexemes: [{ lexeme: "lexeme:mi" }], ruby: { lasina: [{ base: "\u{F1934}", text: "mi" }] } },
-        { surface: "\u{F1936}", kind: "word", lexemes: [{ lexeme: "lexeme:moku" }], ruby: { lasina: [{ base: "\u{F1936}", text: "moku" }] } },
+        { surface: "\u{F1934}", kind: "lexical", lexemes: [{ lexeme: "lexeme:mi" }], ruby: { lasina: [{ base: "\u{F1934}", text: "mi" }] } },
+        { surface: "\u{F1936}", kind: "lexical", lexemes: [{ lexeme: "lexeme:moku" }], ruby: { lasina: [{ base: "\u{F1936}", text: "moku" }] } },
       ],
     } as unknown as TaggedText;
     const html = render(
@@ -163,7 +163,7 @@ describe("<T>", () => {
       orthography: "yue-Hant-HK/standard",
       tokens: [
         { surface: "12", kind: "number" },
-        { surface: "點", kind: "word" },
+        { surface: "點", kind: "lexical" },
         { surface: "2026", kind: "number" },
       ],
     } as unknown as TaggedText;

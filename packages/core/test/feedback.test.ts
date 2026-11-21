@@ -234,14 +234,14 @@ describe("what a wrong word means (P3)", () => {
   });
 
   it("a chosen word by its own analysis: an inflected form by its sense, never an entry spelled alike", () => {
-    const como = wordMeanings(es, analysed({ surface: "Como", kind: "word", lexemes: [{ lexeme: "lexeme:comer", feats: { Mood: "Ind", Number: "Sing", Person: "1", Tense: "Pres", VerbForm: "Fin" } }] }));
+    const como = wordMeanings(es, analysed({ surface: "Como", kind: "lexical", lexemes: [{ lexeme: "lexeme:comer", feats: { Mood: "Ind", Number: "Sing", Person: "1", Tense: "Pres", VerbForm: "Fin" } }] }));
     expect(readings(como)).toEqual([["lexeme:comer", PRES_1S]]);
     expect(como[0]?.glosses[0]?.meaning).toBeDefined();
   });
 
   it("a word of a phrase: its own entry alone, else the phrase it is part of", () => {
-    expect(readings(wordMeanings(es, analysed({ surface: "por", kind: "word", lexemes: [{ lexeme: "lexeme:por-favor" }] })))).toEqual([["lexeme:por"]]);
-    const dias = wordMeanings(es, analysed({ surface: "días", kind: "word", lexemes: [{ lexeme: "lexeme:buenos-días" }] }));
+    expect(readings(wordMeanings(es, analysed({ surface: "por", kind: "lexical", lexemes: [{ lexeme: "lexeme:por-favor" }] })))).toEqual([["lexeme:por"]]);
+    const dias = wordMeanings(es, analysed({ surface: "días", kind: "lexical", lexemes: [{ lexeme: "lexeme:buenos-días" }] }));
     expect(readings(dias)).toEqual([["lexeme:buenos-días"]]);
     expect(dias[0]?.glosses[0]?.span).toBe("phrase");
   });

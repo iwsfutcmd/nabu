@@ -34,7 +34,7 @@ export interface WordMeaning {
 /** At most this many readings of a word the learner wrote. */
 const MAX_READINGS = 3;
 
-const isWord = (t: Token): boolean => t.kind === "word" || t.kind === "number";
+const isWord = (t: Token): boolean => t.kind === "lexical" || t.kind === "number";
 
 /** Built once per course (feedback asks after every wrong answer), each by orthography. */
 const perCourse = <T>(cache: WeakMap<CourseView, Map<string, T>>, course: CourseView, orthography: string, build: () => T): T => {

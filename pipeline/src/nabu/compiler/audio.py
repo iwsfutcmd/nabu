@@ -5,7 +5,7 @@ checked in, and this stage only reads them, so builds stay deterministic and nee
 model. It checks that every clip exists with its recorded hash, carries a license and
 provenance, is not synthetic in a human-required course, still matches what the voice would
 read now (a changed reading makes a clip stale) and the reference voice it cloned (ADR 0058),
-and that its timings point at word tokens of its sentence. Clips the round-trip check failed
+and that its timings point at lexical tokens of its sentence. Clips the round-trip check failed
 stay out of the bundle until a human marks them reviewed. A clip a person confirmed (a recording,
 or a synthetic clip a listener marked right) says so in the bundle (`confirmed`, ADR 0125): only
 such a clip may ask which tone a lone syllable has.
@@ -250,7 +250,7 @@ def check_audio(
             if not ok or not ordered:
                 ctx.diags.report(
                     "audio.timings",
-                    f"{clip.item}: timings do not fit the sentence's word tokens or the clip",
+                    f"{clip.item}: timings do not fit the sentence's lexical tokens or the clip",
                     doc.loc("clips", i, "timings"),
                 )
                 continue

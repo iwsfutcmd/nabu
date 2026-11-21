@@ -104,7 +104,7 @@ def test_a_script_no_course_uses_compiles_clean(
     Extensions), not foreign ones: nothing in the compiler lists the scripts it knows."""
     diags, tagged = compile_text(core_cli, lang, text)
     assert [d.format() for d in diags.items] == []
-    assert [t["surface"] for t in tagged["tokens"] if t["kind"] == "word"] == words
+    assert [t["surface"] for t in tagged["tokens"] if t["kind"] == "lexical"] == words
 
 
 @pytest.mark.parametrize(

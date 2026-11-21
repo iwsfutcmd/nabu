@@ -10,7 +10,7 @@ const yue = (tokens: TaggedText["tokens"]): TaggedText => ({ lang: "yue-Hant-HK"
 // As the compiler writes a token: its reading, and the reading per character as ruby.
 const word = (surface: string, jyutping: string): TaggedText["tokens"][number] => {
   const syllables = jyutping.split(" ");
-  return { surface, kind: "word", readings: { [JYUTPING]: jyutping }, ruby: { [JYUTPING]: [...surface].map((base, i) => ({ base, text: syllables[i] ?? "" })) } };
+  return { surface, kind: "lexical", readings: { [JYUTPING]: jyutping }, ruby: { [JYUTPING]: [...surface].map((base, i) => ({ base, text: syllables[i] ?? "" })) } };
 };
 
 // 呢個係我[媽媽]。 "This is my mum.", the screen in the report: the gap is the sentence's own word.
@@ -21,7 +21,7 @@ const ex: CompleteTranslation = {
   item: "s.u02.16",
   parts: ["lexeme:媽媽"],
   orthography: "yue-Hant-HK/standard",
-  prompt: { lang: "en-Latn" as TaggedText["lang"], orthography: "en-Latn/standard" as TaggedText["orthography"], tokens: [{ surface: "This is my mum.", kind: "word" }] },
+  prompt: { lang: "en-Latn" as TaggedText["lang"], orthography: "en-Latn/standard" as TaggedText["orthography"], tokens: [{ surface: "This is my mum.", kind: "lexical" }] },
   before: yue([word("呢個", "ni1 go3"), word("係", "hai6"), word("我", "ngo5")]),
   after: yue([{ surface: "。", kind: "punct" }]),
   blank,
@@ -33,7 +33,7 @@ const outcome = (verdict: Outcome["verdict"]): Outcome => ({ verdict, notes: [],
 
 describe("a typed gap once answered", () => {
   it("shows what is typed, without a reading, while the learner answers", () => {
-    expect(gapFillOf(ex, typed("媽媽"), undefined)?.tokens).toEqual([{ surface: "媽媽", kind: "word" }]);
+    expect(gapFillOf(ex, typed("媽媽"), undefined)?.tokens).toEqual([{ surface: "媽媽", kind: "lexical" }]);
     expect(gapFillOf(ex, typed(""), undefined)).toBeUndefined();
   });
 
@@ -47,7 +47,7 @@ describe("a typed gap once answered", () => {
   });
 
   it("keeps another accepted word, and a wrong one, as typed: the course pins no reading for them", () => {
-    expect(gapFillOf(ex, typed("老媽"), outcome("CORRECT_ALT"))?.tokens).toEqual([{ surface: "老媽", kind: "word" }]);
-    expect(gapFillOf(ex, typed("爸爸"), outcome("WRONG_WORD"))?.tokens).toEqual([{ surface: "爸爸", kind: "word" }]);
+    expect(gapFillOf(ex, typed("老媽"), outcome("CORRECT_ALT"))?.tokens).toEqual([{ surface: "老媽", kind: "lexical" }]);
+    expect(gapFillOf(ex, typed("爸爸"), outcome("WRONG_WORD"))?.tokens).toEqual([{ surface: "爸爸", kind: "lexical" }]);
   });
 });

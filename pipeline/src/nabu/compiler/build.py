@@ -339,7 +339,7 @@ def _hygiene(
                 loc,
             )
     for tok in toks:
-        if tok.get("kind", "word") == "word":
+        if tok.get("kind", "lexical") == "lexical":
             foreign = tx.foreign_letters(tok["surface"], script)
             if foreign:
                 diags.report(
@@ -437,7 +437,7 @@ def compile_form(
     next_group = max(explicit, default=-1) + 1
     for t in toks:
         t.setdefault("kind", tx.token_kind(t["surface"]))
-        if t["kind"] in ("word", "number") and "tileGroup" not in t:
+        if t["kind"] in ("lexical", "number") and "tileGroup" not in t:
             t["tileGroup"] = next_group
             next_group += 1
 
@@ -447,7 +447,7 @@ def compile_form(
     for scheme in _ruby_schemes(profile):
         whole = scheme in schemes() and schemes()[scheme].ruby == "word"
         for t in toks:
-            if t["kind"] != "word" or not tx.ruby_bearing(t["surface"], script, whole=whole):
+            if t["kind"] != "lexical" or not tx.ruby_bearing(t["surface"], script, whole=whole):
                 continue
             pinned = t.get("readings", {}).get(scheme)
             guessed = analyzer.reading(scheme, t["surface"]) if analyzer is not None else None
@@ -590,7 +590,7 @@ def mark_vowels(
     profile = ctx.profiles.get(orth)
     for t in toks:
         own = t.pop("_vocalized", None)
-        if t.get("kind") != "word":
+        if t.get("kind") != "lexical":
             continue
         surface = str(t["surface"])
         if own is not None:
@@ -661,7 +661,7 @@ def marked(ctx: Ctx, orth: str, text: dict[str, Any], lexeme: str | None) -> dic
 def support_text(ctx: Ctx, orth: str, text: str, target: str) -> dict[str, Any]:
     profile = ctx.profiles[orth]
     toks = tx.auto_tokens(text, None, _script(ctx, orth))
-    for i, t in enumerate(x for x in toks if x["kind"] in ("word", "number")):
+    for i, t in enumerate(x for x in toks if x["kind"] in ("lexical", "number")):
         t["tileGroup"] = i
     return {"lang": _lang_for(profile, target), "orthography": orth, "tokens": toks}
 
@@ -1649,7 +1649,7 @@ def _glossary(
             if line.orthography == orth
         ]
         for name, tokens, loc in texts:
-            public = [{"surface": t["surface"], "kind": t.get("kind", "word")} for t in tokens]
+            public = [{"surface": t["surface"], "kind": t.get("kind", "lexical")} for t in tokens]
             matches = cast(
                 list[dict[str, Any]],
                 cli.result("gloss", profile=orth, entries=glossary, tokens=public),

@@ -120,7 +120,7 @@ export const glossTokens = (glossary: CompiledGlossary, profile: CompiledProfile
   const firstUnit: number[] = [];
   for (const [t, token] of tokens.entries()) {
     firstUnit.push(exact.length);
-    if (token.kind !== "word" && token.kind !== "number") continue;
+    if (token.kind !== "lexical" && token.kind !== "number") continue;
     const u = unitsOf(profile, token.surface);
     exact.push(...u.exact);
     folded.push(...u.folded);

@@ -115,9 +115,9 @@ export const makeWordWrite = (ctx: MakeContext, word: ScriptItem, letters: reado
   const surface = surfaceOf(word.text);
   const own = graphemes(surface);
   if (own.length < 2) return undefined;
-  const tile = (g: string, group: number): Token => ({ surface: g, kind: "word", tileGroup: group });
+  const tile = (g: string, group: number): Token => ({ surface: g, kind: "lexical", tileGroup: group });
   const canonical: TaggedText = { lang: word.text.lang, orthography: word.text.orthography, tokens: own.map((g, i) => tile(g, i)) };
-  const tiles = own.map((g): TaggedText => ({ lang: word.text.lang, orthography: word.text.orthography, tokens: [{ surface: g, kind: "word" }] }));
+  const tiles = own.map((g): TaggedText => ({ lang: word.text.lang, orthography: word.text.orthography, tokens: [{ surface: g, kind: "lexical" }] }));
   const inWord = new Set(own.map((g) => g.normalize("NFC")));
   const pool = letters.filter((l) => !inWord.has(textKey(l)));
   const extra = distinct(ctx, pool, [], textKey, Math.min(3, Math.max(2, Math.ceil(own.length / 2)))).map((l) => l.text);

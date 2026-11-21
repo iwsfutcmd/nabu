@@ -47,7 +47,7 @@ export const homographsOf = (course: CourseView, scheme: SchemeId): ReadonlyMap<
   const found = new Map<string, HomographReading[]>();
   for (const s of allSentences(course)) {
     for (const t of s.forms[course.orthography]?.text.tokens ?? []) {
-      const reading = t.kind === "word" ? t.readings?.[scheme] : undefined;
+      const reading = t.kind === "lexical" ? t.readings?.[scheme] : undefined;
       if (reading === undefined) continue;
       const surface = t.surface.normalize("NFC");
       const readings = found.get(surface) ?? [];
@@ -67,7 +67,7 @@ export const homographsOf = (course: CourseView, scheme: SchemeId): ReadonlyMap<
 /** A reading in a scheme as text of its own: tagged as the scheme's answer (zh-Latn-pinyin, chg-Latn). */
 export const readingAsText = (scheme: SchemeId, reading: string, fallback: Pick<TaggedText, "lang" | "orthography">): TaggedText => ({
   ...(readingTag(scheme) ?? fallback),
-  tokens: [{ surface: reading, kind: "word" }],
+  tokens: [{ surface: reading, kind: "lexical" }],
 });
 
 /**
@@ -87,6 +87,6 @@ export const otherReadings = (course: CourseView, scheme: SchemeId, token: Token
  */
 export const otherReadingsAt = (course: CourseView, scheme: SchemeId, text: TaggedText, index: number): readonly { readonly reading: TaggedText; readonly meaning: TaggedText | undefined }[] => {
   const token = text.tokens[index];
-  if (token === undefined || token.kind !== "word" || text.orthography !== course.orthography) return [];
+  if (token === undefined || token.kind !== "lexical" || text.orthography !== course.orthography) return [];
   return otherReadings(course, scheme, token).map((r) => ({ reading: readingAsText(scheme, r.reading, text), meaning: r.meaning }));
 };

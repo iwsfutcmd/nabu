@@ -232,7 +232,7 @@ def test_cantonese_readings_line_up_as_ruby(core_cli: CoreCli) -> None:
     _, compiled = build(core_cli, "yue")
     for s in sentences(compiled):
         for t in s["forms"]["yue-Hant-HK/standard"]["text"]["tokens"]:
-            if t["kind"] == "word":
+            if t["kind"] == "lexical":
                 assert "jyutping" in t.get("readings", {}), (s["id"], t["surface"])
                 assert "".join(seg["base"] for seg in t["ruby"]["jyutping"]) == t["surface"]
 
@@ -247,7 +247,7 @@ def test_cantonese_words_carry_the_readings_their_sentences_pin(core_cli: CoreCl
         for k in lexemes(compiled)
         for f in k.get("forms", {}).get("yue-Hant-HK/standard", [])
         for t in f["tokens"]
-        if t["kind"] == "word"
+        if t["kind"] == "lexical"
     }
     assert forms, "yue has word forms"
     missing = [key for key, t in forms.items() if "jyutping" not in t.get("readings", {})]
@@ -331,7 +331,7 @@ def test_every_word_the_vocalization_knows_is_marked(core_cli: CoreCli, course: 
     for unit in [*bundled(compiled), {"id": "lexicon", **lexicon_json(compiled.lexicon)}]:
         for tokens in _texts(unit, orth):
             for t in tokens:
-                if t["kind"] != "word" or t["surface"] in pinned:
+                if t["kind"] != "lexical" or t["surface"] in pinned:
                     continue
                 want = words.get(marks.sub("", t["surface"]))
                 if want is None:
@@ -369,7 +369,7 @@ def test_classical_chinese_pins_three_reading_layers(core_cli: CoreCli) -> None:
     def check(tokens: list[dict[str, Any]], where: str) -> int:
         n = 0
         for t in tokens:
-            if t["kind"] != "word" or not han.search(t["surface"]):
+            if t["kind"] != "lexical" or not han.search(t["surface"]):
                 continue
             n += 1
             assert sorted(t["readings"]) == LZH_SCHEMES, (where, t["surface"])
@@ -539,7 +539,7 @@ def test_biblical_hebrew_pins_a_tiberian_reading_on_every_word(core_cli: CoreCli
         for form in lines:
             tokens = form["text"]["tokens"] if "text" in form else form["tokens"]
             for t in tokens:
-                if t["kind"] != "word":
+                if t["kind"] != "lexical":
                     continue
                 words += 1
                 reading = t["readings"]["tiberian"]
@@ -585,8 +585,8 @@ def test_toki_pona_pins_every_sentence_in_sitelen_lasina_and_sitelen_pona(
     words = 0
     for s in sentences(compiled):
         assert sorted(s["forms"]) == sorted([TOK_LATN, TOK_SP]), s["id"]
-        latin = [t for t in s["forms"][TOK_LATN]["text"]["tokens"] if t["kind"] == "word"]
-        glyphs = [t for t in s["forms"][TOK_SP]["text"]["tokens"] if t["kind"] == "word"]
+        latin = [t for t in s["forms"][TOK_LATN]["text"]["tokens"] if t["kind"] == "lexical"]
+        glyphs = [t for t in s["forms"][TOK_SP]["text"]["tokens"] if t["kind"] == "lexical"]
         assert [base_of(t) for t in latin] == [base_of(t) for t in glyphs], s["id"]
         for la, g in zip(latin, glyphs, strict=True):
             words += 1
@@ -665,7 +665,7 @@ def test_attic_greek_pins_every_vowel_length(core_cli: CoreCli) -> None:
         for form in lines:
             tokens = form["text"]["tokens"] if "text" in form else form["tokens"]
             for t in tokens:
-                if t["kind"] != "word":
+                if t["kind"] != "lexical":
                     continue
                 words += 1
                 reading = t["readings"]["attic"]
@@ -677,7 +677,7 @@ def test_attic_greek_pins_every_vowel_length(core_cli: CoreCli) -> None:
         for text in k.get("forms", {}).get(GRC, []):
             for t in text["tokens"]:
                 reading = t.get("readings", {}).get("attic")
-                if t["kind"] != "word" or reading is None:
+                if t["kind"] != "lexical" or reading is None:
                     continue
                 assert attic.surface(reading) == attic.cited(t["surface"]), (k["id"], reading)
                 assert attic.unmarked(reading) == [], (k["id"], reading)
@@ -762,7 +762,7 @@ def test_chaghatay_is_arabic_with_schluessels_transliteration_as_ruby(core_cli: 
     lines = 0
 
     def check(text: dict[str, Any], where: str) -> None:
-        words = [t for t in text["tokens"] if t["kind"] == "word"]
+        words = [t for t in text["tokens"] if t["kind"] == "lexical"]
         assert words, where
         for t in words:
             assert arabic.fullmatch(t["surface"]), (where, t["surface"])
@@ -810,7 +810,7 @@ def test_chaghatay_alphabet_track(core_cli: CoreCli) -> None:
         k["id"]: " ".join(
             t["readings"]["schluessel"]
             for t in k["forms"][CHG_AR][0]["tokens"]
-            if t["kind"] == "word"
+            if t["kind"] == "lexical"
         )
         for k in lexemes(compiled)
         if CHG_AR in k.get("forms", {})

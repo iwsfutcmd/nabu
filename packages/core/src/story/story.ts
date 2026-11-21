@@ -44,7 +44,7 @@ export const allStories = (course: CourseView): readonly BundleStory[] => course
 
 export const storyAt = (course: CourseView, node: string): BundleStory | undefined => allStories(course).find((s) => s.node === node);
 
-const isWord = (t: Token): boolean => t.kind === "word" || t.kind === "number";
+const isWord = (t: Token): boolean => t.kind === "lexical" || t.kind === "number";
 
 const joinerOf = (text: TaggedText): string => (text.tokens.some((t) => t.kind === "space") ? " " : "");
 

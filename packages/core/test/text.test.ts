@@ -29,8 +29,8 @@ const yue = {
   lang: "yue-Hant-HK",
   orthography: "yue-Hant-HK/standard",
   tokens: [
-    { surface: "我哋", kind: "word", tileGroup: 0 },
-    { surface: "去", kind: "word", tileGroup: 1 },
+    { surface: "我哋", kind: "lexical", tileGroup: 0 },
+    { surface: "去", kind: "lexical", tileGroup: 1 },
     { surface: "！", kind: "punct" },
   ],
 } as unknown as TaggedText;
@@ -49,7 +49,7 @@ describe("TaggedText helpers", () => {
   });
   it("says whether a text has a reading in a scheme", () => {
     const jyutping = "jyutping" as SchemeId;
-    const read: TaggedText = { ...yue, tokens: [{ surface: "去", kind: "word", ruby: { [jyutping]: [{ base: "去", text: "heoi3" }] } }] };
+    const read: TaggedText = { ...yue, tokens: [{ surface: "去", kind: "lexical", ruby: { [jyutping]: [{ base: "去", text: "heoi3" }] } }] };
     expect(hasReading(read, jyutping)).toBe(true);
     expect(hasReading(read, "pinyin" as SchemeId)).toBe(false);
     expect(hasReading(yue, jyutping)).toBe(false);

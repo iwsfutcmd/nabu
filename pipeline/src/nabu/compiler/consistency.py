@@ -133,7 +133,7 @@ def fill_and_check(
     """Before readings are enriched: fill each word's missing readings from its form's, and check
     bound marks and spellings (the module's docstring)."""
     for i, t in enumerate(toks):
-        if t.get("kind") != "word":
+        if t.get("kind") != "lexical":
             continue
         nxt = toks[i + 1] if i + 1 < len(toks) else None
         if not t.get("_readingVariant"):
@@ -172,7 +172,7 @@ def observe(
     """Once a form is compiled: record what each word reads (`marks`: and its marked form, where
     the orthography has a vocalization). Readings are kept as first seen, compared folded."""
     for i, t in enumerate(toks):
-        if t.get("kind") != "word" or t.get("_readingVariant"):
+        if t.get("kind") != "lexical" or t.get("_readingVariant"):
             continue
         nxt = toks[i + 1] if i + 1 < len(toks) else None
         written = str(t.get("_written", t["surface"]))

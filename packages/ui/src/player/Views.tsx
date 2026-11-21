@@ -1851,7 +1851,7 @@ const SyllableNote = ({
   const reading: TaggedText = {
     lang,
     orthography: ex.orthography as TaggedText["orthography"],
-    tokens: [{ surface: syllable.syllable, kind: "word" }],
+    tokens: [{ surface: syllable.syllable, kind: "lexical" }],
   };
   const expected = system.tones[syllable.tone]?.shape ?? "level";
   return (

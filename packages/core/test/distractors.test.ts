@@ -12,7 +12,7 @@ const end = (t: TaggedText): string => {
   return last?.kind === "punct" ? last.surface : "";
 };
 const capital = (t: TaggedText): boolean => {
-  const word = t.tokens.find((x) => x.kind === "word")?.surface ?? "";
+  const word = t.tokens.find((x) => x.kind === "lexical")?.surface ?? "";
   return word !== word.toLocaleLowerCase(t.lang);
 };
 
@@ -66,7 +66,7 @@ describe("short glosses on match-pairs cards (W7)", () => {
     expect(surfaceOf(cardGloss(gloss("lexeme:呀")))).not.toContain("aa3");
     for (const k of allLexemes(yue)) {
       const g = k.gloss?.["en"];
-      if (g !== undefined) expect(cardGloss(g).tokens.some((t) => t.kind === "word"), k.id).toBe(true);
+      if (g !== undefined) expect(cardGloss(g).tokens.some((t) => t.kind === "lexical"), k.id).toBe(true);
     }
   });
 

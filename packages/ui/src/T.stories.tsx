@@ -31,11 +31,11 @@ const time = {
   orthography: "yue-Hant-HK/standard",
   tokens: [
     { surface: "12", kind: "number" },
-    { surface: "點", kind: "word" },
-    { surface: "半", kind: "word" },
+    { surface: "點", kind: "lexical" },
+    { surface: "半", kind: "lexical" },
     { surface: "，", kind: "punct" },
     { surface: "2026", kind: "number" },
-    { surface: "年", kind: "word" },
+    { surface: "年", kind: "lexical" },
   ],
 } as unknown as TaggedText;
 

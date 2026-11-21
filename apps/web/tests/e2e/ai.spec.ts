@@ -87,11 +87,11 @@ const acceptOf = (judged: AnswerSubmitted): LearnerEvent =>
 
 /** An explanation of the answer 拜拜, as the server gives one: stubbed, no model involved. */
 const EXPLANATION: Explanation = {
-  answer: { lang: "yue-Hant-HK", orthography: "yue-Hant-HK/standard", tokens: [{ surface: "拜", kind: "word" }, { surface: "拜", kind: "word" }] } as unknown as Explanation["answer"],
+  answer: { lang: "yue-Hant-HK", orthography: "yue-Hant-HK/standard", tokens: [{ surface: "拜", kind: "lexical" }, { surface: "拜", kind: "lexical" }] } as unknown as Explanation["answer"],
   segments: [
-    { kind: "support", text: { lang: "en-Latn", orthography: "en-Latn/standard", tokens: [{ surface: "You", kind: "word" }, { surface: " ", kind: "space" }, { surface: "wrote", kind: "word" }] } as unknown as Explanation["answer"] },
+    { kind: "support", text: { lang: "en-Latn", orthography: "en-Latn/standard", tokens: [{ surface: "You", kind: "lexical" }, { surface: " ", kind: "space" }, { surface: "wrote", kind: "lexical" }] } as unknown as Explanation["answer"] },
     { kind: "ref", answerTokens: [0, 1] },
-    { kind: "target", text: { lang: "yue-Hant-HK", orthography: "yue-Hant-HK/standard", tokens: [{ surface: "你", kind: "word" }, { surface: "好", kind: "word" }] } as unknown as Explanation["answer"] },
+    { kind: "target", text: { lang: "yue-Hant-HK", orthography: "yue-Hant-HK/standard", tokens: [{ surface: "你", kind: "lexical" }, { surface: "好", kind: "lexical" }] } as unknown as Explanation["answer"] },
   ],
   provenance: { provider: "fixture", model: "stub", prompt: "explain", promptHash: "000000000000", createdAt: "2026-05-12T09:00:00Z" },
 };
@@ -317,7 +317,7 @@ test.describe("a roleplay turn while a keyboard composes (D39)", () => {
   /** What the learner types with an Arabic keyboard, still composing when Send is pressed. */
   const TYPED = "مرحبا، كيفك؟";
   /** The character's turn, as the stubbed model gives it. */
-  const TURN = { lang: "apc-Arab-LB", orthography: "apc-Arab/standard", tokens: [{ kind: "word", surface: "أهلين" }] };
+  const TURN = { lang: "apc-Arab-LB", orthography: "apc-Arab/standard", tokens: [{ kind: "lexical", surface: "أهلين" }] };
 
   type Sent = (readonly { readonly role: string; readonly text: string }[])[];
 

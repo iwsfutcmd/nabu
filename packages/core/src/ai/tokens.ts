@@ -4,7 +4,7 @@
  * ZWNJ or Uzbek ʻ stay inside their words. Model text arrives as plain strings; nothing renders
  * language data but <T>, so it is tokenized before it leaves the server. An orthography written
  * without spaces (its profile's units are graphemes: Cantonese, Classical Chinese) has no word
- * boundaries to find here: each of its letter clusters is a word token, as its grader counts them.
+ * boundaries to find here: each of its letter clusters is a lexical token, as its grader counts them.
  */
 import type { TaggedText, Token } from "@nabu/schema";
 import type { UnitKind } from "../profile/compile.ts";
@@ -26,7 +26,7 @@ const SPACE = /^\s+$/u;
 const PUNCT = /^\p{P}+$/u;
 
 const kindOf = (cluster: string): Kind =>
-  WORDISH.test(cluster) ? "word" : NUMBER.test(cluster) ? "number" : SPACE.test(cluster) ? "space" : PUNCT.test(cluster) ? "punct" : "symbol";
+  WORDISH.test(cluster) ? "lexical" : NUMBER.test(cluster) ? "number" : SPACE.test(cluster) ? "space" : PUNCT.test(cluster) ? "punct" : "symbol";
 
 /**
  * Splits text into tokens: runs of number or space clusters, and of word clusters where the
@@ -39,7 +39,7 @@ export const autoTokens = (text: string, base: TextBase): TaggedText => {
   for (const cluster of graphemes(text.normalize("NFC"))) {
     const kind = kindOf(cluster);
     const last = tokens.at(-1);
-    const joins = kind === "word" ? !unspaced : kind === "number" || kind === "space";
+    const joins = kind === "lexical" ? !unspaced : kind === "number" || kind === "space";
     if (last !== undefined && last.kind === kind && joins) {
       tokens[tokens.length - 1] = { ...last, surface: last.surface + cluster };
     } else {
@@ -56,5 +56,5 @@ export const textBase = (profiles: ReadonlyMap<string, { readonly unitKind: Unit
   unitKind: profiles.get(text.orthography)?.unitKind,
 });
 
-/** Indexes of the word and number tokens: what `ref` segments and turn checks count. */
-export const wordTokenIndexes = (text: TaggedText): readonly number[] => text.tokens.flatMap((t, i) => (t.kind === "word" || t.kind === "number" ? [i] : []));
+/** Indexes of the lexical and number tokens: what `ref` segments and turn checks count. */
+export const wordTokenIndexes = (text: TaggedText): readonly number[] => text.tokens.flatMap((t, i) => (t.kind === "lexical" || t.kind === "number" ? [i] : []));

@@ -160,7 +160,7 @@ def test_every_yue_sentence_and_word_is_in_both_orthographies(core_cli: CoreCli)
         assert sorted(s["forms"]) == [HANT, LATN], s["id"]
         assert "reverse" in s["forms"][LATN], s["id"]
         for t in s["forms"][LATN]["text"]["tokens"]:
-            if t["kind"] != "word":
+            if t["kind"] != "lexical":
                 continue
             # Each syllable carries its character: the ruby makes up the word above and below.
             segments = t["ruby"]["characters"]

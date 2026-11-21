@@ -29,7 +29,7 @@ const course = loadCourse("yue");
 
 const word = (surface: string, jyutping: string, lexeme: string): TaggedText["tokens"][number] => {
   const syllables = jyutping.split(" ");
-  return { surface, kind: "word", lexemes: [{ lexeme: `lexeme:${lexeme}` }], readings: { [JYUTPING]: jyutping }, ruby: { [JYUTPING]: [...surface].map((base, i) => ({ base, text: syllables[i] ?? "" })) } };
+  return { surface, kind: "lexical", lexemes: [{ lexeme: `lexeme:${lexeme}` }], readings: { [JYUTPING]: jyutping }, ruby: { [JYUTPING]: [...surface].map((base, i) => ({ base, text: syllables[i] ?? "" })) } };
 };
 const sentence = (orthography: string): TaggedText => ({
   lang: "yue-Hant-HK" as TaggedText["lang"],
@@ -181,7 +181,7 @@ describe("a tapped word's gloss always shows its reading (ADR 0131 amendment)", 
   });
 
   it("shows no headword for a word an entry glosses whole: the entry's form has the reading", () => {
-    const whole = { text: sentence, token: sentence.tokens.findIndex((k) => k.kind === "word" && (k.lexemes?.length ?? 0) === 1) };
+    const whole = { text: sentence, token: sentence.tokens.findIndex((k) => k.kind === "lexical" && (k.lexemes?.length ?? 0) === 1) };
     const Whole = (): JSX.Element => <GlossPanel open glosses={useGlosses(chgCourse, whole)} word={wordOf(whole)} ruby={SCHLUESSEL} marks="show" />;
     const html = render(<Whole />);
     expect(html).not.toContain("data-gloss-word");

@@ -81,7 +81,7 @@ const wordCredit = (canonical: TaggedText, alignment: readonly AlignOp[], profil
   }
   const out = new Map<PartId, "right" | "wrong">();
   for (const token of canonical.tokens) {
-    if (token.kind !== "word" && token.kind !== "number") continue;
+    if (token.kind !== "lexical" && token.kind !== "number") continue;
     const units = profile.units(profile.normalize(token.surface)).map(key);
     const right = units.length > 0 && units.every((u) => (matched.get(u) ?? 0) > 0);
     for (const lexeme of lexemeIdsOf(token)) {

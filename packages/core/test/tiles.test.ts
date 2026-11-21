@@ -40,7 +40,7 @@ describe("word-bank tiles in lower case (ADR 0130)", () => {
       const ex = makeTapL1L2(ctx(i), s);
       if (ex === undefined) continue;
       const first = ex.tiles[ex.solution[0] as number] as TaggedText;
-      const word = first.tokens.find((t) => t.kind === "word")?.surface ?? "";
+      const word = first.tokens.find((t) => t.kind === "lexical")?.surface ?? "";
       if (word !== "" && word === word.toLocaleLowerCase("es")) lowered++;
     }
     expect(lowered).toBeGreaterThan(10);
@@ -57,7 +57,7 @@ describe("word-bank tiles in lower case (ADR 0130)", () => {
         let start = true;
         for (const t of text?.tokens ?? []) {
           if (t.kind === "punct" && /[.?!]/u.test(t.surface)) start = true;
-          if (t.kind !== "word") continue;
+          if (t.kind !== "lexical") continue;
           if (t.surface === t.surface.toLocaleLowerCase(text?.lang)) lower.add(t.surface);
           else if (!start) inside.add(t.surface);
           start = false;
@@ -72,7 +72,7 @@ describe("word-bank tiles in lower case (ADR 0130)", () => {
         if (ex === undefined) continue;
         cards++;
         for (const tile of ex.tiles) {
-          const word = tile.tokens.find((t) => t.kind === "word")?.surface ?? "";
+          const word = tile.tokens.find((t) => t.kind === "lexical")?.surface ?? "";
           const lowered = word.toLocaleLowerCase(tile.lang);
           if (word !== lowered && lower.has(lowered) && !inside.has(word)) capitals.push(`${s.id}: ${word}`);
         }
@@ -98,7 +98,7 @@ describe("word-bank tiles in lower case (ADR 0130)", () => {
     const text = (words: readonly string[]): TaggedText => ({
       lang: "tr" as TaggedText["lang"],
       orthography: tr,
-      tokens: words.flatMap((w, i) => [...(i === 0 ? [] : [{ surface: " ", kind: "space" as const }]), { surface: w, kind: "word" as const, tileGroup: i }]),
+      tokens: words.flatMap((w, i) => [...(i === 0 ? [] : [{ surface: " ", kind: "space" as const }]), { surface: w, kind: "lexical" as const, tileGroup: i }]),
     });
     // A course that writes "iyi" in lower case somewhere, and "İstanbul" only with its capital.
     const course = { ...es, units: [{ id: "u", sentences: [{ id: "s", forms: { [tr]: { text: text(["çok", "iyi", "İstanbul"]) } } }] }] } as unknown as CourseView;

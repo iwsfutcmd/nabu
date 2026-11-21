@@ -17,7 +17,7 @@ from typing import Any, Literal, cast
 from nabu.schema.models import BundleLexicon, BundleSentence, BundleUnit, Persons, TokenModel
 
 #: Tokens that are words: what a voice says, and what a reading belongs to.
-WORD_KINDS = ("word", "number")
+WORD_KINDS = ("lexical", "number")
 
 type ItemKind = Literal["sentence", "entry", "line"]
 #: A speaker's gender, where the grammar fixes it (ADR 0075, 0078).

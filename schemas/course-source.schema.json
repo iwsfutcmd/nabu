@@ -52,7 +52,7 @@
       "type": "boolean"
     },
     "iPlusOne": {
-      "description": "Maximum new knowledge components per sentence (§7.5). Default 1.",
+      "description": "Maximum new parts (lexemes, feature values, rules) per sentence (§7.5). Default 1.",
       "type": "integer",
       "minimum": 1
     },
@@ -611,7 +611,7 @@
           "minLength": 1
         },
         "maxWords": {
-          "description": "The longest item the carrier says, in words: its word tokens, so a script written without spaces counts too.",
+          "description": "The longest item the carrier says, in words: its lexical tokens, so a script written without spaces counts too.",
           "type": "integer",
           "minimum": 1,
           "default": 2

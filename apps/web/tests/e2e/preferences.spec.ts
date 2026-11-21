@@ -21,8 +21,8 @@ const rootSize = (page: Page): Promise<number> => page.evaluate(() => Number.par
 /** A lesson card's sizes: a Classical Chinese word, the element around it, an English gloss, the instruction. */
 const sizes = async (page: Page): Promise<{ word: number; around: number; gloss: number; chrome: number }> => {
   const player = page.locator("[data-lesson-player]");
-  const word = player.locator("[data-nabu-text][data-target] [data-kind=word]").first();
-  const gloss = player.locator('[data-nabu-text][data-orthography="en-Latn/standard"] [data-kind=word]').first();
+  const word = player.locator("[data-nabu-text][data-target] [data-kind=lexical]").first();
+  const gloss = player.locator('[data-nabu-text][data-orthography="en-Latn/standard"] [data-kind=lexical]').first();
   await expect(word).toBeVisible();
   await expect(gloss).toBeVisible();
   return {
@@ -140,8 +140,8 @@ test("Preferences opens from a course's page, shows the text size on a sentence 
   const fa = loadCourse("fa", "fa-Arab/standard");
   await page.goto(pathUrl(fa, 7));
   // The path's previews: a word of the course, and its meaning under it.
-  const pathWord = page.locator("[data-course-path] [data-preview-item] [data-nabu-text][data-target] [data-kind=word]").first();
-  const pathGloss = page.locator('[data-course-path] [data-preview-item] [data-nabu-text][lang="en-Latn"] [data-kind=word]').first();
+  const pathWord = page.locator("[data-course-path] [data-preview-item] [data-nabu-text][data-target] [data-kind=lexical]").first();
+  const pathGloss = page.locator('[data-course-path] [data-preview-item] [data-nabu-text][lang="en-Latn"] [data-kind=lexical]').first();
   await expect(pathWord).toBeVisible();
   const before = { word: await fontSize(pathWord), gloss: await fontSize(pathGloss) };
 
@@ -152,8 +152,8 @@ test("Preferences opens from a course's page, shows the text size on a sentence 
   const sample = page.locator("[data-target-size-sample=fa]");
   // The course's name is a placeholder, so MF2 isolates it (FSI … PDI).
   await expect(sample.locator("figcaption")).toHaveText("\u2068Persian\u2069 at this size:");
-  const sampleWord = sample.locator("[data-nabu-text][data-target] [data-kind=word]").first();
-  const sampleGloss = sample.locator('[data-nabu-text][lang="en-Latn"] [data-kind=word]').first();
+  const sampleWord = sample.locator("[data-nabu-text][data-target] [data-kind=lexical]").first();
+  const sampleGloss = sample.locator('[data-nabu-text][lang="en-Latn"] [data-kind=lexical]').first();
   const at = { word: await fontSize(sampleWord), gloss: await fontSize(sampleGloss) };
   await page.locator("[data-target-size=largest]").click();
   // The sample grows as the size is chosen; its translation keeps its size.

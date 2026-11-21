@@ -74,7 +74,7 @@ const casedOf = (course: CourseView): Cased => {
         words = new Set();
         out.set(value.orthography, words);
       }
-      for (const t of value.tokens) if (t.kind === "word" && lower(value.lang, t.surface) === t.surface) words.add(t.surface);
+      for (const t of value.tokens) if (t.kind === "lexical" && lower(value.lang, t.surface) === t.surface) words.add(t.surface);
       return;
     }
     for (const v of Object.values(value)) visit(v);
@@ -92,7 +92,7 @@ const sentenceStarts = (text: TaggedText): ReadonlySet<number> => {
   const starts = new Set<number>();
   let start = true;
   text.tokens.forEach((t, i) => {
-    if (t.kind === "word" || t.kind === "number") {
+    if (t.kind === "lexical" || t.kind === "number") {
       if (start) starts.add(i);
       start = false;
     } else if (t.kind === "punct" && TERMINATOR.test(t.surface)) start = true;
@@ -118,7 +118,7 @@ export const caseForTiles = (course: CourseView, text: TaggedText): TaggedText =
   const starts = sentenceStarts(text);
   let changed = false;
   const tokens = text.tokens.map((t, i) => {
-    if (!starts.has(i) || t.kind !== "word") return t;
+    if (!starts.has(i) || t.kind !== "lexical") return t;
     const surface = lower(text.lang, t.surface);
     if (surface === t.surface || !words.has(surface)) return t;
     changed = true;

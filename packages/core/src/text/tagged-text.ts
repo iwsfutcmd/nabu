@@ -75,22 +75,22 @@ export const checkTaggedText = (text: TaggedText): readonly TextIssue[] => {
 
 /**
  * A one-token TaggedText for a short surface such as a keyboard key or a
- * special character: `word` for letters and marks, `punct` otherwise.
+ * special character: `lexical` for letters and marks, `punct` otherwise.
  */
 export const textOfSurface = (base: Pick<TaggedText, "lang" | "orthography">, surface: string): TaggedText => ({
   lang: base.lang,
   orthography: base.orthography,
-  tokens: [{ surface, kind: /[\p{L}\p{M}\p{N}]/u.test(surface) ? "word" : "punct" }],
+  tokens: [{ surface, kind: /[\p{L}\p{M}\p{N}]/u.test(surface) ? "lexical" : "punct" }],
 });
 
-/** Indexes of the word and number tokens, in order: what tap-for-gloss and shortcuts address. */
+/** Indexes of the lexical and number tokens, in order: what tap-for-gloss and shortcuts address. */
 export const wordIndexes = (text: TaggedText): readonly number[] =>
-  text.tokens.flatMap((t, i) => (t.kind === "word" || t.kind === "number" ? [i] : []));
+  text.tokens.flatMap((t, i) => (t.kind === "lexical" || t.kind === "number" ? [i] : []));
 
 /** The word or number at a token index as a text of its own (a tapped word), with its readings; none for spaces and punctuation. */
 export const wordAt = (text: TaggedText, index: number): TaggedText | undefined => {
   const token = text.tokens[index];
-  return token === undefined || (token.kind !== "word" && token.kind !== "number") ? undefined : { ...text, tokens: [token] };
+  return token === undefined || (token.kind !== "lexical" && token.kind !== "number") ? undefined : { ...text, tokens: [token] };
 };
 
 /** Whether any token of a text carries a reading in a scheme, as ruby (ADR 0071). */

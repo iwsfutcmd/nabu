@@ -222,7 +222,7 @@ def test_an_item_with_a_route_is_said_sentence_by_sentence(monkeypatch: pytest.M
     monkeypatch.setattr(tts, "_route", route)
     monkeypatch.setattr(tts, "_carried", carried)
     monkeypatch.setattr(tts, "_plain", plain)
-    # Four words (the plan's word tokens), more than the carrier's two: a route.
+    # Four words (the plan's lexical tokens), more than the carrier's two: a route.
     [clip] = tts.synthesize([Request("سلام! تو علی هستی؟", v.voice, words=4)])
     assert said == [("carrier", "سلام!"), ("plain", "تو علی هستی؟")]
     # Joined with the sentence gap: 200 ms at 1 kHz.
@@ -231,7 +231,7 @@ def test_an_item_with_a_route_is_said_sentence_by_sentence(monkeypatch: pytest.M
 
 def test_a_short_item_is_counted_in_words_not_spaces(monkeypatch: pytest.MonkeyPatch) -> None:
     """In a script written without spaces a sentence is one run of letters: its words are the
-    plan's word tokens, so only a short one goes through the carrier."""
+    plan's lexical tokens, so only a short one goes through the carrier."""
     v = AudioVoice.model_validate(
         {
             "id": "narrator",

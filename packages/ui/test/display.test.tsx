@@ -42,10 +42,10 @@ describe("vowel marks before the learner chooses (P12)", () => {
 
 describe("vowel marks on new words only (P12)", () => {
   const course = loadCourse("fa", "fa-Arab/standard");
-  const sentence = course.units[0]?.sentences.find((s) => (s.forms["fa-Arab/standard"]?.text.tokens.filter((t) => t.kind === "word").length ?? 0) >= 2);
+  const sentence = course.units[0]?.sentences.find((s) => (s.forms["fa-Arab/standard"]?.text.tokens.filter((t) => t.kind === "lexical").length ?? 0) >= 2);
   const text = sentence?.forms["fa-Arab/standard"]?.text as TaggedText;
   const MARK = /[ً-ْٰ]/u;
-  const words = (html: string): readonly string[] => [...html.matchAll(/data-kind="word" data-index="\d+">([^<]+)</gu)].map((m) => m[1] as string);
+  const words = (html: string): readonly string[] => [...html.matchAll(/data-kind="lexical" data-index="\d+">([^<]+)</gu)].map((m) => m[1] as string);
 
   it("keeps the marks of the words being learned and takes them off the known ones", () => {
     expect(sentence).toBeDefined();

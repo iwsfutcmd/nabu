@@ -304,7 +304,7 @@ def pin_lexeme_readings(
                         pin.readings[scheme] = reading
                         if (
                             scheme not in ruby
-                            or t.kind != "word"
+                            or t.kind != "lexical"
                             or not tx.ruby_bearing(t.surface, script, whole=whole)
                         ):
                             continue

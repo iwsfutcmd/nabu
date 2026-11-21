@@ -24,7 +24,7 @@ export type OrthographyId = string & { readonly __brand: "OrthographyId" };
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "TokenKind".
  */
-export type TokenKind = "word" | "punct" | "space" | "number" | "symbol";
+export type TokenKind = "lexical" | "punct" | "space" | "number" | "symbol";
 /**
  * A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.
  *
@@ -72,7 +72,7 @@ export type LangTag = string & { readonly __brand: "LangTag" };
  */
 export type RegisterId = string;
 /**
- * What an exercise practises about a knowledge component (gameplan §8.5): recognizing it, producing it, hearing it, saying it, reading or writing its script.
+ * What an exercise practises about a part (gameplan §8.5): recognizing it, producing it, hearing it, saying it, reading or writing its script.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "Facet".
@@ -1366,7 +1366,7 @@ export interface AudioIndex {
  */
 export interface AudioClip {
   /**
-   * Sentence id, or KC id for a word.
+   * Sentence id, or lexeme id for a word (a form's clip by its form key).
    */
   readonly item: string;
   readonly speed: "normal" | "slow";
@@ -1561,7 +1561,7 @@ export interface AudioVerdicts {
  */
 export interface AudioVerdict {
   /**
-   * Sentence id, KC id for a word, or "<story>#<step>" for a story line.
+   * Sentence id, lexeme id for a word, or "<story>#<step>" for a story line.
    */
   readonly item: string;
   /**
@@ -1581,16 +1581,16 @@ export interface AudioVerdict {
   readonly at: string;
 }
 /**
- * A compiled course bundle (docs/migration-design.md, deliverable 3), format version 2: it has lexemes, feature values and rules where a bundle of format 1 had KCs, its tokens list the lexemes they write, and the compiler writes it from a language's lexicon and a course's sources.
+ * A compiled course bundle (docs/migration-design.md, deliverable 3), format version 3: it has lexemes, feature values and rules where a bundle of format 1 had KCs, its tokens list the lexemes they write, and the compiler writes it from a language's lexicon and a course's sources.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "BundleManifest".
  */
 export interface BundleManifest {
   /**
-   * 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated.
+   * 3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated.
    */
-  readonly formatVersion: 2;
+  readonly formatVersion: 3;
   /**
    * sha256 of the manifest without this field.
    */
@@ -2170,7 +2170,7 @@ export interface CourseNames1 {
   };
 }
 /**
- * A picture of a sense KC for select-image (gameplan §8.2). No text inside the image; licensed and attributed like any other asset.
+ * A picture of a lexeme for select-image (gameplan §8.2). No text inside the image; licensed and attributed like any other asset.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ImageAsset".
@@ -2259,7 +2259,7 @@ export interface SentenceCorrection {
    */
   readonly bundle?: string;
   /**
-   * A sentence id, a story id with `step`, or a word's KC id (ADR 0057).
+   * A sentence id, a story id with `step`, or a word's lexeme id (ADR 0057; its KC id in a correction of before the lexical model).
    */
   readonly item: string;
   /**
@@ -2321,7 +2321,7 @@ export interface CourseSource {
    */
   readonly wordParts?: boolean;
   /**
-   * Maximum new knowledge components per sentence (§7.5). Default 1.
+   * Maximum new parts (lexemes, feature values, rules) per sentence (§7.5). Default 1.
    */
   readonly iPlusOne?: number;
   /**
@@ -2860,7 +2860,7 @@ export interface AudioCarrier {
    */
   readonly text: string;
   /**
-   * The longest item the carrier says, in words: its word tokens, so a script written without spaces counts too.
+   * The longest item the carrier says, in words: its lexical tokens, so a script written without spaces counts too.
    */
   readonly maxWords?: number;
 }
@@ -3008,7 +3008,7 @@ export interface Lexeme {
     readonly [k: string]: readonly string[];
   };
   /**
-   * Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it.
+   * Its reading in a scheme, pinned (ADR 0117) until the projection gives it.
    */
   readonly readings?: {
     readonly [k: string]: string;
@@ -3118,7 +3118,7 @@ export interface LexemeForm {
     readonly [k: string]: readonly string[];
   };
   /**
-   * Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it.
+   * Its reading in a scheme, pinned (ADR 0117) until the projection gives it.
    */
   readonly readings?: {
     readonly [k: string]: string;
@@ -3169,7 +3169,7 @@ export interface Allomorph {
     readonly [k: string]: readonly string[];
   };
   /**
-   * Its reading in a scheme, pinned as a KC's is today (ADR 0117) until the projection gives it.
+   * Its reading in a scheme, pinned (ADR 0117) until the projection gives it.
    */
   readonly readings?: {
     readonly [k: string]: string;
@@ -5142,7 +5142,7 @@ export interface Contrast {
    */
   readonly after?: readonly string[];
   /**
-   * Only on words the course inflects: a word the grader is told carries a form (GradeOptions.inflected: tokens whose sense has a form KC somewhere in the course). A noun's first letter is a typo; a verb's prefix is not.
+   * Only on words the course inflects: a word the grader is told carries a form (GradeOptions.inflected: the spellings of a lexeme some token writes outside its part of speech's bare cell). A noun's first letter is a typo; a verb's prefix is not.
    */
   readonly inflected?: boolean;
   /**
@@ -5260,7 +5260,7 @@ export interface Fonts {
   readonly scale?: number;
 }
 /**
- * What an alphabet track teaching this orthography asks its letters and words as (ADR 0088, 0124, 0133): their reading in `reading`, written in that scheme's `latin` for a learner who cannot read the script yet. A word's is its KC's pinned reading (ADR 0117), the one its word card and clip take, through the scheme's `latin` plug-in where the scheme's own text is not Latin (Attic: χώρᾱ is chōrā); a letter, which has no reading, is the plug-in's rendering of the letter, or where the scheme has none (an abjad's letter stands for several sounds), its grapheme KC's own form in the scheme's `latin` orthography.
+ * What an alphabet track teaching this orthography asks its letters and words as (ADR 0088, 0124, 0133): their reading in `reading`, written in that scheme's `latin` for a learner who cannot read the script yet. A word's is its lexeme's pinned reading (ADR 0117), the one its word card and clip take, through the scheme's `latin` plug-in where the scheme's own text is not Latin (Attic: χώρᾱ is chōrā); a letter, which has no reading, is the plug-in's rendering of the letter, or where the scheme has none (an abjad's letter stands for several sounds), its grapheme KC's own form in the scheme's `latin` orthography.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ScriptTrack".
@@ -5533,7 +5533,7 @@ export interface CorrectionSubmission {
   readonly support: string;
   readonly bundle: string;
   /**
-   * The sentence id, the story id for a story line, or a word's KC id.
+   * The sentence id, the story id for a story line, or a word's lexeme id (its KC id in a report of before the lexical model).
    */
   readonly item: string;
   /**
@@ -5566,7 +5566,7 @@ export interface AnswerSubmission {
   readonly support: string;
   readonly bundle: string;
   /**
-   * The sentence, story or KC the exercise was built from.
+   * The sentence, story or lexeme the exercise was built from.
    */
   readonly item: string;
   /**

@@ -159,7 +159,7 @@ class _Compiler:
 
     def attest(self, orth: str, unit: int, item: str, tagged: dict[str, Any]) -> None:
         words = self.attested.setdefault(orth, [])
-        tokens = [t for t in tagged["tokens"] if t.get("kind", "word") in ("word", "number")]
+        tokens = [t for t in tagged["tokens"] if t.get("kind", "lexical") in ("lexical", "number")]
         senses = [tk.base_id(t) for t in tokens]
         for i, t in enumerate(tokens):
             # A token of a lexeme written as several (مع of مع السلامة, por of por favor) is only

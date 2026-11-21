@@ -348,7 +348,7 @@ describe("a word's pronunciation in its sentence (ADR 0054, 0095, 0098)", () => 
     for (const ex of cards) {
       if (ex.template !== "transcribe") continue;
       expect(ex.prompt.tokens.every((t) => t.ruby === undefined && t.readings === undefined), ex.id).toBe(true);
-      expect(ex.prompt.tokens[ex.word]?.kind, ex.id).toBe("word");
+      expect(ex.prompt.tokens[ex.word]?.kind, ex.id).toBe("lexical");
       expect([ex.reading.lang, ex.orthography], ex.id).toEqual(["yue-Latn-HK-jyutping", "yue-Latn/jyutping"]);
       const reading = surfaceOf(ex.reading);
       expect(gradeExercise(ex, { tag: "text", text: reading.replace(/ /gu, "") }, grader).verdict, ex.id).toBe("CORRECT");
@@ -404,12 +404,12 @@ describe("Toki Pona in sitelen pona (ADR 0086)", () => {
       if (ex.template !== "char-read") continue;
       expect(ex.options.every((o) => o.orthography === "tok-Latn/standard"), ex.id).toBe(true);
       // In its sentence (ADR 0098): the word asked about is one whole token, a cartouche included.
-      expect(ex.word === undefined ? undefined : ex.prompt.tokens[ex.word]?.kind, ex.id).toBe("word");
+      expect(ex.word === undefined ? undefined : ex.prompt.tokens[ex.word]?.kind, ex.id).toBe("lexical");
       expect(ex.prompt.tokens.every((t) => t.ruby === undefined), ex.id).toBe(true);
     }
     for (const s of course.units.flatMap((u) => u.sentences)) {
       for (const t of s.forms[course.orthography]?.text.tokens ?? []) {
-        if (t.kind === "word" && t.surface.startsWith("\u{F1990}")) expect(t.surface.endsWith("\u{F1991}")).toBe(true);
+        if (t.kind === "lexical" && t.surface.startsWith("\u{F1990}")) expect(t.surface.endsWith("\u{F1991}")).toBe(true);
       }
     }
   });

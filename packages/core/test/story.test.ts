@@ -252,7 +252,7 @@ describe("the story player", () => {
       parts: [],
       orthography: "yue-Hant-HK/standard",
       prompt: line?.line?.translations["en"] as TaggedText,
-      tiles: ["係", "我", "係", "學生"].map((surface) => ({ lang: "yue-Hant-HK", orthography: "yue-Hant-HK/standard", tokens: [{ surface, kind: "word" }] }) as unknown as TaggedText),
+      tiles: ["係", "我", "係", "學生"].map((surface) => ({ lang: "yue-Hant-HK", orthography: "yue-Hant-HK/standard", tokens: [{ surface, kind: "lexical" }] }) as unknown as TaggedText),
       solution: [0, 1, 2, 3],
       joiner: "",
       canonical: line?.line?.forms["yue-Hant-HK/standard"] as TaggedText,
@@ -273,7 +273,7 @@ describe("tap-for-gloss on story lines", () => {
     for (const line of script.lines) {
       const glosses = glossLine(course, glossary, line.text);
       for (const [i, token] of line.text.tokens.entries()) {
-        if (token.kind !== "word") continue;
+        if (token.kind !== "lexical") continue;
         const marked = HARAKAT.test(token.surface);
         if (marked) vocalized += 1;
         // A word is glossed by its lexeme, or lexeme by lexeme where it writes several (badd + -ak:
@@ -295,7 +295,7 @@ describe("tap-for-gloss on story lines", () => {
         const glosses = glossLine(course, glossary, line.text);
         for (const [i, token] of line.text.tokens.entries()) {
           const match = glosses.find((g) => g.tokenStart <= i && i < g.tokenEnd);
-          if (token.kind === "word" && HARAKAT.test(token.surface) && match?.pass === "folded") folded += 1;
+          if (token.kind === "lexical" && HARAKAT.test(token.surface) && match?.pass === "folded") folded += 1;
         }
       }
     }
@@ -384,7 +384,7 @@ describe("tap-for-gloss on story lines", () => {
         const glosses = glossLine(course, glossary, line.text);
         for (const [i, token] of line.text.tokens.entries()) {
           const sense = baseIdOf(token);
-          if (token.kind !== "word" || sense === undefined || lexemesOf(token).length > 1) continue;
+          if (token.kind !== "lexical" || sense === undefined || lexemesOf(token).length > 1) continue;
           const hits = glossAt(course, glossary, glosses, line.text, i);
           const whole = hits.filter((h) => h.span === "whole");
           if (whole.length === 0) continue;

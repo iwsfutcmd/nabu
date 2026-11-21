@@ -80,7 +80,7 @@ class Request:
     #: Which attempt (ADR 0060): a clip a listener rejected is made again with the next take,
     #: which a seeded provider samples with another seed.
     take: int = 0
-    #: What the item is, and how many words it has (its word tokens, so a script written without
+    #: What the item is, and how many words it has (its lexical tokens, so a script written without
     #: spaces counts too), from the plan: what a carrier voice goes by, never its input's spaces
     #: or the script of its letters. They reach a clip's identity only through the route they
     #: choose (`item_settings`), and never its seed.
@@ -218,7 +218,7 @@ class PiperProvider:
     Hugging Face (`model`: owner/name@commit, `voice`: the file stem). Sampling is seeded per clip
     (`seed_of`). Sentences are joined with SENTENCE_GAP_MS of silence.
 
-    With a `carrier` (ADR 0065), an item of at most `maxWords` words (the request's word tokens:
+    With a `carrier` (ADR 0065), an item of at most `maxWords` words (the request's lexical tokens:
     a script written without spaces counts too) is said at the end of the carrier sentence with
     durations set from it, and cut out (nabu.audio.carrier). So is any sentence of a longer item
     that the model would collapse (`carrier.collapses`); the item's other sentences are said as

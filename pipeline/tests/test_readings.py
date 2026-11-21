@@ -31,7 +31,7 @@ def word(
     lexemes: list[dict[str, Any]] | None = None,
     **readings: str,
 ) -> TokenModel:
-    """A word token of one lexeme (`name`) or several (`lexemes`, as a bundle lists them), with
+    """A lexical token of one lexeme (`name`) or several (`lexemes`, as a bundle lists them), with
     its readings, and its Jyutping as ruby."""
     t: dict[str, Any] = {}
     if readings:

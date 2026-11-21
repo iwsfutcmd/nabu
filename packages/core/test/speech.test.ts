@@ -121,8 +121,8 @@ describe("Cantonese tones", () => {
       lang: "yue-Hant-HK",
       orthography: "yue-Hant-HK/standard",
       tokens: [
-        { surface: "我", kind: "word", readings: { jyutping: "ngo5" } },
-        { surface: "學生", kind: "word", readings: { jyutping: "hok6 saang1" } },
+        { surface: "我", kind: "lexical", readings: { jyutping: "ngo5" } },
+        { surface: "學生", kind: "lexical", readings: { jyutping: "hok6 saang1" } },
         { surface: "。", kind: "punct" },
       ],
     } as unknown as TaggedText;
@@ -154,9 +154,9 @@ describe("Cantonese tones", () => {
     lang: "yue-Hant-HK",
     orthography: "yue-Hant-HK/standard",
     tokens: [
-      { surface: "我", kind: "word", readings: { jyutping: "ngo5" } },
-      { surface: "係", kind: "word", readings: { jyutping: "hai6" } },
-      { surface: "學生", kind: "word", readings: { jyutping: "hok6 saang1" } },
+      { surface: "我", kind: "lexical", readings: { jyutping: "ngo5" } },
+      { surface: "係", kind: "lexical", readings: { jyutping: "hai6" } },
+      { surface: "學生", kind: "lexical", readings: { jyutping: "hok6 saang1" } },
     ],
   } as unknown as TaggedText;
   const calibration = sixTones;

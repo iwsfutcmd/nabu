@@ -129,7 +129,7 @@ def words_of(script: Script | None) -> regex.Pattern[str]:
 
 
 def ruby_bearing(surface: str, script: Script | None = None, *, whole: bool = False) -> bool:
-    """Whether a word token carries ruby readings: Han characters (a Han word carries its
+    """Whether a lexical token carries ruby readings: Han characters (a Han word carries its
     Jyutping), the script's logographs (sitelen pona's carry their sitelen Lasina word), or the
     syllables of the scheme the script writes (a Jyutping word carries its characters). A name
     in a cartouche carries none. A scheme read over whole words (`ruby: word`, ADR 0129) stands
@@ -177,7 +177,7 @@ def token_kind(surface: str) -> str:
         return "punct"
     if cats <= {"S"}:
         return "symbol"
-    return "word"
+    return "lexical"
 
 
 def gap_tokens(gap: str) -> list[dict[str, Any]]:
@@ -217,8 +217,9 @@ def auto_tokens(
     """Tokens for text without authored tokens: words (`words_of` the text's script), or an
     analyzer's segmentation of them."""
     if syllable_bases(text, script) is not None:
-        # A text that is one word of the scheme's syllables (a KC form: hok6 saang1) is one word.
-        return [{"surface": text, "kind": "word"}]
+        # A text that is one word of the scheme's syllables (a lexeme's spelling: hok6 saang1) is
+        # one word.
+        return [{"surface": text, "kind": "lexical"}]
     words: list[dict[str, Any]] = []
     for m in words_of(script).finditer(text):
         pieces = segment(m.group(0)) if segment is not None else None

@@ -94,7 +94,7 @@ class Item:
     spans: tuple[Span, ...]
     expected: str  # what a listener should hear, in the orthography (for the round-trip check)
     #: A word card (its text as written has no closing punctuation) or a sentence, and how many
-    #: word tokens it has: what a carrier voice goes by, whatever its script.
+    #: lexical tokens it has: what a carrier voice goes by, whatever its script.
     kind: Kind = "sentence"
     words: int = 1
 
@@ -222,7 +222,7 @@ words vowel marks (ADR 0053): voices read the text as written."""
 def _input_of(
     tokens: Sequence[TokenModel], voice: AudioVoice, written: list[str] | None = None
 ) -> tuple[str, tuple[Span, ...]] | None:
-    """The string the voice reads, and where each word token sits in it (None: a word token
+    """The string the voice reads, and where each lexical token sits in it (None: a lexical token
     lacks the pinned reading the voice needs)."""
     parts: list[str] = []
     spans: list[Span] = []
@@ -261,8 +261,8 @@ def _input_of(
 
 
 def form_readings(tokens: Sequence[TokenModel], scheme: str) -> list[str] | None:
-    """A KC form's words' readings in a scheme, as the compiler pins them on the form (ADR 0117:
-    what its word card shows), or None where a word has none."""
+    """A lexeme's spelling's readings in a scheme, word by word, as the compiler pins them (ADR
+    0117: what its word card shows), or None where a word has none."""
     words = [t for t in tokens if t.kind in WORD_KINDS]
     readings = [(t.readings or {}).get(scheme) for t in words]
     if not words or any(r is None for r in readings):
@@ -416,7 +416,7 @@ def assignment(
 
 def _shape(surfaces: list[str], tokens: Sequence[TokenModel]) -> tuple[Kind, int]:
     """An item's kind, from its text as written (a word card has no closing punctuation, ADR
-    0094: a voice's final stop or IPA does not change it), and its words, its word tokens."""
+    0094: a voice's final stop or IPA does not change it), and its words, its lexical tokens."""
     kind: Kind = "sentence" if closed("".join(surfaces)) else "word"
     return kind, sum(1 for t in tokens if t.kind in WORD_KINDS)
 
@@ -428,7 +428,7 @@ def _word_card(
     scheme: str | None,
     written: Written,
 ) -> Item | None:
-    """What the voice reads for a word KC: its form as its card shows it, from the reading the
+    """What the voice reads for a lexeme: its spelling as its card shows it, from the reading the
     compiler pinned on the form (ADR 0117). None where the voice needs a reading it lacks."""
     kc_written = written.get((item.id, voice.orthography))
     marked = "".join(t.surface for t in tokens)

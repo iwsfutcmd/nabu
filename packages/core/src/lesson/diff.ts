@@ -54,7 +54,7 @@ export const answerDiff = (alignment: readonly AlignOp[], base: Pick<TaggedText,
     if ((tokens.length > 0 || afterGap) && joiner !== "") tokens.push({ surface: joiner, kind: "space" });
     afterGap = false;
     if (differs(op)) marked.push(tokens.length);
-    tokens.push({ surface: op.actual, kind: "word" });
+    tokens.push({ surface: op.actual, kind: "lexical" });
   }
   return { text: { lang: base.lang, orthography: base.orthography, tokens }, marked, missing, gaps };
 };
@@ -104,7 +104,7 @@ export const closestAnswer = (alignment: readonly AlignOp[], solution: TaggedTex
     if (op.op === "insert") continue;
     if (words > 0 && joiner !== "") tokens.push({ surface: joiner, kind: "space" });
     if (differs(op)) marked.push(tokens.length);
-    tokens.push({ surface: op.expected, kind: "word" });
+    tokens.push({ surface: op.expected, kind: "lexical" });
     words += 1;
   }
   tokens.push(...all.slice(end).map(punct));
@@ -131,7 +131,7 @@ export const solutionMarks = (alignment: readonly AlignOp[], solution: TaggedTex
   const marked: number[] = [];
   let at = 0;
   for (const [i, token] of solution.tokens.entries()) {
-    if (token.kind !== "word" && token.kind !== "number") continue;
+    if (token.kind !== "lexical" && token.kind !== "number") continue;
     let wrong = false;
     for (const unit of profile.units(profile.normalize(token.surface))) {
       const op = ops[at];

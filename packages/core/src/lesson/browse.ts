@@ -144,7 +144,7 @@ const entryIds = (course: CourseView): ((id: string) => EntryId) => {
     if (entry === undefined) {
       const letter = /(?=\P{ASCII})\p{L}/u.exec(id)?.[0];
       const home = letter === undefined ? undefined : (scripts.find((s) => s.letters.test(letter)) ?? scripts[0]);
-      entry = home === undefined ? { id } : { id, text: { lang: home.text.lang, orthography: home.text.orthography, tokens: [{ surface: id, kind: "word" }] } };
+      entry = home === undefined ? { id } : { id, text: { lang: home.text.lang, orthography: home.text.orthography, tokens: [{ surface: id, kind: "lexical" }] } };
       made.set(id, entry);
     }
     return entry;
@@ -187,7 +187,7 @@ export const courseData = (course: CourseView): CourseData => {
       if (text === undefined) continue;
       const words: SentenceWord[] = [];
       for (const [at, token] of text.tokens.entries()) {
-        if (token.kind !== "word") continue;
+        if (token.kind !== "lexical") continue;
         const carries = tokenParts(course, token);
         const alone = tokenText(text, token);
         const readings = readingsOf(text, token);

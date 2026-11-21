@@ -231,7 +231,7 @@ const introduces = (ctx: MakeContext, token: Token): boolean => {
 const id = (template: TemplateId, item: string): string => `${template}:${item}`;
 
 const words = (text: TaggedText): readonly number[] =>
-  text.tokens.flatMap((t, i) => (t.kind === "word" || t.kind === "number" ? [i] : []));
+  text.tokens.flatMap((t, i) => (t.kind === "lexical" || t.kind === "number" ? [i] : []));
 
 /**
  * " " where the orthography spaces its words, "" where it does not (Han): by the profile, not by
@@ -392,7 +392,7 @@ const lowerIn = (course: CourseView, lang: string, surface: string): string => {
   return lower;
 };
 
-const wordSurfaces = (course: CourseView, text: TaggedText): readonly string[] => text.tokens.filter((t) => t.kind === "word").map((t) => lowerIn(course, text.lang, t.surface));
+const wordSurfaces = (course: CourseView, text: TaggedText): readonly string[] => text.tokens.filter((t) => t.kind === "lexical").map((t) => lowerIn(course, text.lang, t.surface));
 
 /**
  * How well a distractor sentence matches the answer's shape (P2): the same final punctuation, about
@@ -414,7 +414,7 @@ const shapeScore = (course: CourseView, answer: TaggedText): ((t: TaggedText) =>
  * what a sentence-initial word, a name or a sentence's first tile shows.
  */
 const capitalized = (course: CourseView, text: TaggedText): boolean => {
-  const word = text.tokens.find((t) => t.kind === "word")?.surface ?? "";
+  const word = text.tokens.find((t) => t.kind === "lexical")?.surface ?? "";
   return word !== lowerIn(course, text.lang, word);
 };
 
@@ -524,7 +524,7 @@ export const cardGloss = (text: TaggedText): TaggedText => {
     else if (depth === 0 && !(t.kind === "space" && out.at(-1)?.kind === "space")) out.push(t);
   }
   while (out.length > 0 && (out.at(-1)?.kind === "space" || (out.at(-1)?.kind === "punct" && DANGLING.test(out.at(-1)?.surface ?? "")))) out.pop();
-  return out.some((t) => t.kind === "word") ? { ...text, tokens: out } : text;
+  return out.some((t) => t.kind === "lexical") ? { ...text, tokens: out } : text;
 };
 
 export const makeMatchPairs = (ctx: MakeContext, lexemes: readonly BundleLexeme[]): MatchPairs | undefined => {
@@ -695,7 +695,7 @@ export const makeCompleteTranslation = (ctx: MakeContext, s: BundleSentence): Co
 
 // ------------------------------------------------------------------------------------ gap-fill (ADR 0132)
 
-/** A word a fill-in may offer: a word token of a sentence of the course, as an option, with its base lexeme and form signature. */
+/** A word a fill-in may offer: a lexical token of a sentence of the course, as an option, with its base lexeme and form signature. */
 interface Attested {
   readonly option: TaggedText;
   readonly sentence: string;
@@ -793,7 +793,7 @@ const meaningsOf = (course: CourseView, lexeme: string): ReadonlySet<string> => 
       else if (t.kind === "punct" && CLOSING.test(t.surface)) depth = Math.max(0, depth - 1);
       else if (depth > 0) continue;
       else if ((t.kind === "punct" && MEANING_BREAK.test(t.surface)) || (t.kind === "space" && t.surface.includes("\n"))) close();
-      else if (t.kind === "word" || t.kind === "number") current.push(lowerIn(course, gloss?.lang ?? course.support, t.surface));
+      else if (t.kind === "lexical" || t.kind === "number") current.push(lowerIn(course, gloss?.lang ?? course.support, t.surface));
     }
     close();
     meanings = found;
@@ -1095,7 +1095,7 @@ const ownFormsOf = (course: CourseView, lexeme: string, lemma: string): Readonly
     for (const s of allSentences(course)) {
       for (const token of formOf(course, s)?.text.tokens ?? []) {
         const base = baseOf(token);
-        if (token.kind !== "word" || base === undefined || Object.keys(base.feats ?? {}).length === 0) continue;
+        if (token.kind !== "lexical" || base === undefined || Object.keys(base.feats ?? {}).length === 0) continue;
         const forms = chosen.get(base.lexeme) ?? new Map<string, Set<string>>();
         const key = featsKey(base.feats ?? {});
         const spellings = forms.get(key) ?? new Set<string>();
@@ -1119,7 +1119,7 @@ const ownFormsOf = (course: CourseView, lexeme: string, lemma: string): Readonly
 /** A token's lexemes as parts, in the order it writes them, each once; and its base's form, whether or not the word has it of itself. */
 const laidOut = (course: CourseView, token: Token): { readonly lexemes: readonly (WordPart | undefined)[]; readonly form: WordPart | undefined; readonly ofItself: boolean } | undefined => {
   const base = baseOf(token);
-  if (token.kind !== "word" || base === undefined) return undefined;
+  if (token.kind !== "lexical" || base === undefined) return undefined;
   const lemma = lexemesById(course).get(base.lexeme)?.forms?.[course.orthography]?.[0];
   if (lemma === undefined) return undefined;
   const ids = lexemeIdsOf(token);
@@ -1512,7 +1512,7 @@ export const makeSpellingChoice = (ctx: MakeContext, s: BundleSentence): GapFill
   const form = formOf(ctx.course, s);
   const translation = translationOf(ctx.course, s);
   if (form === undefined || translation === undefined) return undefined;
-  const askable = (t: Token): boolean => t.kind === "word" && soundAlikeSpellings(ctx, t).length >= 2;
+  const askable = (t: Token): boolean => t.kind === "lexical" && soundAlikeSpellings(ctx, t).length >= 2;
   const again = form.text.tokens.findIndex((t) => askable(t) && asked(ctx, s, t));
   const fresh = form.text.tokens.findIndex((t) => askable(t) && introduces(ctx, t));
   const at = again >= 0 ? again : fresh >= 0 ? fresh : form.text.tokens.findIndex(askable);
@@ -1524,7 +1524,7 @@ export const makeSpellingChoice = (ctx: MakeContext, s: BundleSentence): GapFill
   const others = ctx.rng
     .shuffle([...soundAlikeSpellings(ctx, target)])
     .slice(0, 3)
-    .map((spelling): TaggedText => ({ ...form.text, tokens: [{ surface: spelling, kind: "word" }] }));
+    .map((spelling): TaggedText => ({ ...form.text, tokens: [{ surface: spelling, kind: "lexical" }] }));
   const { options, answer } = withAnswer(ctx, correct, others);
   const scheme = readingTradition(ctx.course);
   const reading = scheme === undefined ? undefined : target.readings?.[scheme];
@@ -1557,7 +1557,7 @@ const readingText = (scheme: SchemeId, reading: string): TaggedText => {
   const tag = readingTag(scheme) as Pick<TaggedText, "lang" | "orthography">;
   const tokens: Token[] = reading.split(" ").flatMap((syllable, i) => [
     ...(i === 0 ? [] : [{ surface: " ", kind: "space" as const }]),
-    { surface: syllable, kind: "word" as const },
+    { surface: syllable, kind: "lexical" as const },
   ]);
   return { lang: tag.lang, orthography: tag.orthography, tokens };
 };
@@ -1590,7 +1590,7 @@ const spellingReadings = (course: CourseView, scheme: SchemeId, surface: string)
     const found = new Map<string, string[]>();
     for (const s of allSentences(course)) {
       for (const t of formOf(course, s)?.text.tokens ?? []) {
-        const r = t.kind === "word" ? t.readings?.[scheme] : undefined;
+        const r = t.kind === "lexical" ? t.readings?.[scheme] : undefined;
         if (r === undefined) continue;
         const key = t.surface.normalize("NFC");
         const readings = found.get(key) ?? [];
@@ -1622,7 +1622,7 @@ export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | un
   const scheme = rubySchemeOf(ctx);
   const form = formOf(ctx.course, s);
   if (scheme === undefined || form === undefined) return undefined;
-  const readable = (t: Token): boolean => t.kind === "word" && t.readings?.[scheme] !== undefined;
+  const readable = (t: Token): boolean => t.kind === "lexical" && t.readings?.[scheme] !== undefined;
   const again = form.text.tokens.findIndex((t) => readable(t) && asked(ctx, s, t));
   const fresh = form.text.tokens.findIndex((t) => readable(t) && introduces(ctx, t));
   const word = again >= 0 ? again : fresh >= 0 ? fresh : form.text.tokens.findIndex(readable);
@@ -1677,7 +1677,7 @@ export const makeReadingFeature = (ctx: MakeContext, s: BundleSentence): CharRea
   if (scheme === undefined || form === undefined) return undefined;
   // Each word's places open two or more ways, worked out once.
   const attested = courseSyllables(ctx.course, scheme);
-  const places = form.text.tokens.map((t) => (t.kind === "word" && t.readings?.[scheme] !== undefined ? readingFeatures(scheme, t.readings[scheme], attested).filter((f) => f.length >= 2) : []));
+  const places = form.text.tokens.map((t) => (t.kind === "lexical" && t.readings?.[scheme] !== undefined ? readingFeatures(scheme, t.readings[scheme], attested).filter((f) => f.length >= 2) : []));
   const askable = (t: Token): boolean => (places[form.text.tokens.indexOf(t)]?.length ?? 0) > 0;
   const again = form.text.tokens.findIndex((t) => askable(t) && asked(ctx, s, t));
   const fresh = form.text.tokens.findIndex((t) => askable(t) && introduces(ctx, t));
@@ -1899,7 +1899,7 @@ const distance = <T>(a: readonly T[], b: readonly T[]): number => {
  * has none.
  */
 const pinnedReading = (text: TaggedText, scheme: SchemeId): string | undefined => {
-  const readings = text.tokens.filter((t) => t.kind === "word" || t.kind === "number").map((t) => t.readings?.[scheme]);
+  const readings = text.tokens.filter((t) => t.kind === "lexical" || t.kind === "number").map((t) => t.readings?.[scheme]);
   return readings.length === 0 || readings.includes(undefined) ? undefined : readings.join(" ");
 };
 
@@ -1966,7 +1966,7 @@ export const makeMinimalPair = (ctx: MakeContext, lexeme: BundleLexeme): Minimal
  * lesson introduces, else the sentence's last. Words `preferred` says yes to come first in each.
  */
 const pronouncedWord = (ctx: MakeContext, s: BundleSentence, text: TaggedText, qualifies: (t: Token, index: number) => boolean, preferred: (index: number) => boolean = () => true): number | undefined => {
-  const all = text.tokens.flatMap((t, i) => (t.kind === "word" && lexemeIdsOf(t).length > 0 && qualifies(t, i) ? [i] : []));
+  const all = text.tokens.flatMap((t, i) => (t.kind === "lexical" && lexemeIdsOf(t).length > 0 && qualifies(t, i) ? [i] : []));
   const pick = (pool: readonly number[]): number | undefined => {
     const fresh = pool.find((i) => lexemeIdsOf(text.tokens[i] as Token).some((k) => ctx.introduced.includes(k)));
     return fresh ?? pool.at(-1);
@@ -1984,8 +1984,8 @@ const twinOf = (s: BundleSentence, text: TaggedText, index: number, orthography:
   const target = text.tokens[index];
   if (other === undefined || target === undefined) return undefined;
   const key = (t: Token): string => JSON.stringify(lexemeIdsOf(t));
-  const occurrence = text.tokens.slice(0, index).filter((t) => t.kind === "word" && key(t) === key(target)).length;
-  const twin = other.tokens.filter((t) => t.kind === "word" && key(t) === key(target))[occurrence];
+  const occurrence = text.tokens.slice(0, index).filter((t) => t.kind === "lexical" && key(t) === key(target)).length;
+  const twin = other.tokens.filter((t) => t.kind === "lexical" && key(t) === key(target))[occurrence];
   return twin === undefined ? undefined : single(other, twin);
 };
 
@@ -1996,7 +1996,7 @@ const attestedIn = (course: CourseView, marks: VowelMarks): ReturnType<typeof at
   attestedOf.set(course, byOrthography);
   const known = byOrthography.get(course.orthography);
   if (known !== undefined) return known;
-  const words = allSentences(course).flatMap((s) => (formOf(course, s)?.text.tokens ?? []).flatMap((t) => (t.kind === "word" ? [t.surface] : [])));
+  const words = allSentences(course).flatMap((s) => (formOf(course, s)?.text.tokens ?? []).flatMap((t) => (t.kind === "lexical" ? [t.surface] : [])));
   const found = attestedMarks(marks, words);
   byOrthography.set(course.orthography, found);
   return found;
@@ -2015,7 +2015,7 @@ const homographs = (course: CourseView, marks: VowelMarks, word: string): readon
     const found = new Map<string, Set<string>>();
     for (const s of allSentences(course)) {
       for (const t of formOf(course, s)?.text.tokens ?? []) {
-        if (t.kind !== "word") continue;
+        if (t.kind !== "lexical") continue;
         const letters = withoutMarks(marks, t.surface);
         found.set(letters, (found.get(letters) ?? new Set()).add(t.surface.normalize("NFC")));
       }
@@ -2061,7 +2061,7 @@ export const makeVocalize = (ctx: MakeContext, s: BundleSentence): Vocalize | un
   const made = ctx.rng.shuffle([...vocalizationVariants(marks, token.surface, attestedIn(ctx.course, marks))]).filter((v) => !real.includes(v));
   const others = [...real, ...made].slice(0, 3);
   if (others.length < 2) return undefined;
-  const { options, answer } = withAnswer(ctx, vocalized, others.map((v) => single(form.text, { surface: v, kind: "word" })));
+  const { options, answer } = withAnswer(ctx, vocalized, others.map((v) => single(form.text, { surface: v, kind: "lexical" })));
   const spelled = spelledAt(word);
   return {
     template: "vocalize",

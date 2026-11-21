@@ -43,7 +43,7 @@ test("Jyutping fades from the words whose reading the learner has read right, an
   const player = page.locator("[data-lesson-player]");
   await expect(player).toHaveAttribute("data-state", "answering");
   // The Cantonese is on the card, its readings left off: every word's reading has been shown.
-  await expect(player.locator("[data-orthography='yue-Hant-HK/standard'] [data-kind=word]").first()).toBeVisible();
+  await expect(player.locator("[data-orthography='yue-Hant-HK/standard'] [data-kind=lexical]").first()).toBeVisible();
   await expect(player.locator("rt")).toHaveCount(0);
 
   await player.locator("[data-action=display]").click();

@@ -5,7 +5,7 @@
  * - **What can be corrected.** Every sentence and story line the course source holds, in every
  *   orthography it pins: the text, each word's pinned readings (Jyutping), and the translation
  *   as displayed. Generated sentences (the CLDR number drills) are not in the source. A word
- *   (ADR 0057) is a KC with forms: its first form in each orthography (what word exercises
+ *   (ADR 0057) is a lexeme with spellings: its first form in each orthography (what word exercises
  *   show), and its gloss as the translation. Match-pairs offers each of its pairs' words.
  * - **What a correction holds.** `shown` is everything the device displayed, so the reviewer's
  *   tool can check the source still says it; `correction` holds only what the learner changed,
@@ -29,7 +29,7 @@ import { surfaceOf, wordIndexes } from "../text/tagged-text.ts";
 /** A sentence, a story line or a word, in every orthography the course pins. */
 export interface Correctable {
   readonly kind: "sentence" | "line" | "word";
-  /** A sentence id, a story id (with `step`), or a word's KC id. */
+  /** A sentence id, a story id (with `step`), or a word's lexeme id. */
   readonly item: string;
   /** For a story line: its step in the story (every step counted). */
   readonly step?: number | undefined;

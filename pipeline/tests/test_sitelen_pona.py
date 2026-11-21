@@ -88,7 +88,7 @@ def test_a_word_is_one_logograph_or_one_cartouche() -> None:
         sp.WORDS["li"],
         sp.WORDS["pona"],
     ]
-    assert all(t["kind"] == "word" for t in tokens)
+    assert all(t["kind"] == "lexical" for t in tokens)
     # A logograph carries its word as ruby; a cartouche (a name) does not.
     assert tx.ruby_bearing(sp.WORDS["toki"], script) and not tx.ruby_bearing(sonja, script)
     # Without its script, a logograph is a character like any other.

@@ -91,7 +91,7 @@ for (const cell of cells()) {
     expect(used.filter((u) => !u.custom), "system-font fallback (tofu risk, machine-dependent rendering)").toEqual([]);
     for (const [lang, family] of Object.entries(PRIMARY_FONT)) {
       if (lang !== "en-Latn" && lang !== cell.targetLang) continue;
-      const tokens = await platformFonts(page, `[data-nabu-text][lang="${lang}"] [data-kind="word"]`);
+      const tokens = await platformFonts(page, `[data-nabu-text][lang="${lang}"] [data-kind="lexical"]`);
       expect(tokens.length).toBeGreaterThan(0);
       // CDP reports the font file's own name; Fontsource's Noto Sans HK subsets call themselves "Noto Sans HK Thin".
       for (const t of tokens) expect(t.families.some((f) => f.startsWith(family)), `${t.selector} → ${t.families.join(", ")}`).toBe(true);

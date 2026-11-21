@@ -48,7 +48,7 @@ def prepare(path: Path) -> tuple[bytes, bytes]:
 
 
 def expected_phones(tokens: list[dict[str, Any]], reading: str, voice: str) -> list[list[str]]:
-    """Each word token's expected phones, from its pinned reading in the scheme `reading` where
+    """Each lexical token's expected phones, from its pinned reading in the scheme `reading` where
     the scheme says how (nabu.schemes): its own phones (Jyutping's), or eSpeak NG's phonemes of
     its phoneme input (`voice` is an eSpeak NG voice), never the surface read as a modern
     language would (the Tiberian reading, Attic: ADR 0082, 0087). Without a pinned reading, eSpeak
@@ -56,7 +56,7 @@ def expected_phones(tokens: list[dict[str, Any]], reading: str, voice: str) -> l
     found = plugins(reading) if reading not in ("", "text") else Plugins()
     out: list[list[str]] = []
     for t in tokens:
-        if t.get("kind") not in ("word", "number"):
+        if t.get("kind") not in ("lexical", "number"):
             continue
         pinned = t.get("readings", {}).get(reading)
         if pinned is not None and found.phones is not None:
@@ -84,7 +84,7 @@ def ingest(
         from nabu.audio.phones import align_words
 
         tokens, reading, voice = align
-        indices = [i for i, t in enumerate(tokens) if t.get("kind") in ("word", "number")]
+        indices = [i for i, t in enumerate(tokens) if t.get("kind") in ("lexical", "number")]
         found = align_words(normal, SAMPLE_RATE, expected_phones(tokens, reading, voice))
         word_timings = [
             {"token": i, "startMs": t.start_ms, "endMs": t.end_ms}

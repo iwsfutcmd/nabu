@@ -17,7 +17,7 @@ import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const COURSES = ["es", "chg", "uz", "apc", "fa", "yue", "lzh", "tok", "hbo", "grc"] as const;
 
-const tokenOf = (t: TaggedText): Token => t.tokens.find((x) => x.kind === "word" || x.kind === "number") as Token;
+const tokenOf = (t: TaggedText): Token => t.tokens.find((x) => x.kind === "lexical" || x.kind === "number") as Token;
 
 /** A token's form signature as one string (ADR 0132): what it writes but which lexeme its base is. */
 const signatureKey = (course: CourseView, token: Token): string => formSignature(token, lexemesById(course).get(baseIdOf(token) ?? "")).join(" ");
@@ -94,7 +94,7 @@ describe("a gap-fill asks one thing (ADR 0132)", () => {
   it("never blanks or offers a word of a phrase lexeme (por of por favor), but a word its line repeats apart", () => {
     const es = courses.es;
     const lexemes = lexemesById(es);
-    const phrase = (t: Token): boolean => (lexemes.get(baseIdOf(t) ?? "")?.forms?.[es.orthography]?.[0]?.tokens.filter((x) => x.kind === "word").length ?? 1) > 1;
+    const phrase = (t: Token): boolean => (lexemes.get(baseIdOf(t) ?? "")?.forms?.[es.orthography]?.[0]?.tokens.filter((x) => x.kind === "lexical").length ?? 1) > 1;
     let cards = 0;
     for (const { ex } of gapFills(es, 2)) {
       cards++;
@@ -106,7 +106,7 @@ describe("a gap-fill asks one thing (ADR 0132)", () => {
     for (const [i, s] of allSentences(es).entries()) {
       const text = s.forms[es.orthography]?.text;
       if (text === undefined || s.id.startsWith("drill.")) continue;
-      const ws = text.tokens.filter((t) => t.kind === "word");
+      const ws = text.tokens.filter((t) => t.kind === "lexical");
       const base = (t: Token | undefined): string | undefined => (t === undefined ? undefined : baseIdOf(t));
       const repeated = ws.find((t, k) => base(t) !== undefined && ws.some((u, j) => j > k + 1 && base(u) === base(t)) && base(ws[k + 1]) !== base(t));
       const lexeme = base(repeated);

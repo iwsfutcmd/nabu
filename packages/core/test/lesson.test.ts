@@ -111,7 +111,7 @@ describe("the card gallery (debug mode)", () => {
 describe("who speaks and who is spoken to (persons)", () => {
   it("goes with the exercises that write the sentence in the target language, and only those", () => {
     const course = loadCourse("apc", "apc-Arab/standard");
-    const words = (s: (typeof course.units)[number]["sentences"][number]): number => s.forms["apc-Arab/standard"]?.text.tokens.filter((t) => t.kind === "word").length ?? 0;
+    const words = (s: (typeof course.units)[number]["sentences"][number]): number => s.forms["apc-Arab/standard"]?.text.tokens.filter((t) => t.kind === "lexical").length ?? 0;
     // A sentence each template can make a card of: a gap-fill needs two fair options (ADR 0132).
     const sentence = allSentences(course).find((s) => s.production && words(s) >= 2 && SENTENCE_TEMPLATES["gap-fill"]?.({ course, rng: seededRng(5), introduced: s.parts }, s) !== undefined);
     if (sentence === undefined) throw new Error("no apc sentence");

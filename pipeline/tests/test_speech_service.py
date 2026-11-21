@@ -220,15 +220,15 @@ def test_real_models_hear_a_committed_clip(watched: Path) -> None:
     )  # من مریم هستم
     pcm = decode(REPO / "courses/fa/audio" / clip["file"])
     tokens = [
-        {"surface": "من", "kind": "word"},
+        {"surface": "من", "kind": "lexical"},
         {"surface": " ", "kind": "space"},
-        {"surface": "مریم", "kind": "word"},
+        {"surface": "مریم", "kind": "lexical"},
         {"surface": " ", "kind": "space"},
-        {"surface": "هستم", "kind": "word"},
+        {"surface": "هستم", "kind": "lexical"},
     ]
     right = score(Request(pcm, 16000, "fa", tokens, None, "fa", (1, 2)))
     assert right["transcript"].strip() != ""
-    other = [{"surface": "خداحافظ", "kind": "word"}]
+    other = [{"surface": "خداحافظ", "kind": "lexical"}]
     wrong = score(Request(pcm, 16000, "fa", other, None, "fa", (2,)))
     assert right["phones"]["errorRate"] < wrong["phones"]["errorRate"]
     assert files_under(watched) == []  # the models score in memory: no file is written

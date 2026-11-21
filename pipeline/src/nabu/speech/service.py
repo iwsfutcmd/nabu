@@ -99,7 +99,7 @@ def expected_by_token(
     from nabu.audio.ingest import expected_phones
 
     words = expected_phones(tokens, reading or "", voice)
-    indices = [i for i, t in enumerate(tokens) if t.get("kind") in ("word", "number")]
+    indices = [i for i, t in enumerate(tokens) if t.get("kind") in ("lexical", "number")]
     return [(token, p) for token, phones in zip(indices, words, strict=True) for p in phones]
 
 

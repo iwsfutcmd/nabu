@@ -316,7 +316,7 @@ def recheck(
 @app.command()
 def ingest(
     course: Annotated[Path, typer.Argument(exists=True, help="Course directory.")],
-    item: Annotated[str, typer.Option(help="Sentence or KC id the recording says.")],
+    item: Annotated[str, typer.Option(help="Sentence or lexeme id the recording says.")],
     file: Annotated[
         Path, typer.Option(exists=True, dir_okay=False, help="Any audio ffmpeg reads.")
     ],
