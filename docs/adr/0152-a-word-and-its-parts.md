@@ -1,7 +1,8 @@
 # 0152. A word and its parts: built, and taken apart
 
-- Status: Proposed
+- Status: Accepted (2026-11-22)
 - Date: 2026-11-20
+- Revised: 2026-11-22, its wording brought to the lexical model (the table at the end); no decision changed
 - Builds on: [0061](0061-lemmas-and-morphs.md) (a word is its lemma and its morphs),
   [0132](0132-a-choice-asks-one-thing.md) (a card asks one thing; pinned forms), [0100](0100-known-words.md)
   and [0101](0101-skill-targets.md) (what a word is known by; typing slots),
@@ -25,7 +26,8 @@ is the word and here is the form: write it", and nothing asked what a word in fr
 of.
 
 ADR 0146 describes building, extraction and decoding cards on the lexical model of ADR 0145. That model is
-decided and not yet in the code. These two cards are what today's tokens can carry.
+decided and not yet in the code (it is since 2026-11-21: the revision at the end says what each term below
+became). These two cards are what today's tokens can carry.
 
 ## Decision
 
@@ -228,3 +230,31 @@ Each of these waits for the lexical model (ADR 0145, 0146) or for the owner:
 - **Patterns and radicals** (a root and a pattern to a word, a word to its root): the handoff's task B.
 - **A tile for a part's place in the word** (dragging a boundary, ordering the parts). Parts are picked,
   not ordered.
+
+## Revision (2026-11-22): the lexical model's terms, and accepted
+
+The owner accepted this ADR on 2026-11-22, on the page of open questions written that day. It was written
+the day before the switch to the lexical model (ADRs 0145–0151, on main since 2026-11-21), and the cards
+came through the switch. No decision above changed. Its text uses names the code no longer has; this is
+what stands for each (CLAUDE.md, "Word parts notes"):
+
+| The text says | As built since the switch |
+|---|---|
+| a morph the course marks on a token, "each a KC with a glossary entry" | a lexeme the token writes (its `lexemes`): a clitic, an article, an affix. One no orthography spells (an ending, a suffixed pronoun: `bound`) is named by its gloss |
+| "the form its source pins it as" (`form:pres-1s`, `form:gen`, `form:f-pl`) | the feature values the token chooses (`feats`), named by the language's label for them (`labelOf`: the most specific label whose values the form has; `labels` in lexicons/<lang>/language.yaml): `formPart` |
+| "unless the word has that form of itself: the course pins it on the word where the word is written as its lemma" | `ownFormsOf`: the values a lexeme's tokens choose where it is written as its lemma |
+| "A form is shown by its glossary entry" | by its label; a bound lexeme by its gloss |
+| "Form KCs are words in ADR 0100's sense" | the cards credit the bound lexemes a word carries, and the feature values its named form chooses that the sentence teaches (`formsOf`, `askedParts`). A bound lexeme is known by the facets' skills, a feature value by `read-off` and `choose` (ADR 0146) |
+| "Forms carry no feature values yet, so their names decide" which forms may be true of the word too | decided by the feature values each label adds (`overlapping`: everything one adds the other adds too), no longer by the names. Still REVIEW |
+| a tile "can be found by its letters … It goes when forms have names of their own" | a named form's label writes no shape. An affix lexeme is still shown by its gloss, which may write one |
+
+"Not in this ADR" stands, with what each item waits for now:
+- **a form the course never writes** waits for rules in a lexicon, which the owner chose as the next piece
+  of work (2026-11-22);
+- **credit per part** is still not built: `creditOf` does not see which parts were picked;
+- **how two words join** can be a rule now (`rule:`, ADR 0145); no card asks one yet;
+- **patterns and radicals** are in docs/lexical-forms, and wait for rules too.
+
+What it leaves open stays open, and acceptance freezes none of it: how hard the two cards are taken to be
+(`prior`, the simulator's truth) waits for real logs; each course's labels and glosses on cards want a
+reader's eye (REVIEW).

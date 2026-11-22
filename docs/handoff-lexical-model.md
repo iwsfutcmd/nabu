@@ -589,3 +589,43 @@ built"), with the table of what each profile and scheme states. CLAUDE.md has "L
    does not say "That spells another sound" of a word that is another form or another word (*Aziz* for
    *Azizman*, *esta* for *está*), where ADR 0148 names every label: it goes without saying there.
 6. Still open from before: the eight form clips; the device's log rewrite on a real log; ADR 0144 and 0152.
+
+## The owner's answers (2026-11-22), and what follows from them
+
+A page of open questions went to the owner on 2026-11-22: seven decisions with a breakdown each, seven
+small jobs to be done unless refused, and twenty points that stand as built unless objected to. The owner
+answered all seven with the recommended option, wrote no note, and left the rest alone, so each pick there
+stands. "Stands as built" is not "reviewed": every profile's and scheme's statement is still REVIEW.
+
+### Decided
+
+1. **Due only for what a review can ask, and reviews aim at it.** A facet makes a word due only where the
+   course can make a card that credits it for that word; a review's card for a due word is chosen among
+   the cards that credit its due facet. (Measured before: after sixteen perfect reviews in a day Spanish
+   kept 6 of 48 words due and Persian 7 of 24, and the sessions repeated themselves.)
+2. **A spelling card may have two options,** where a word has one other spelling of its sound (242 Spanish
+   lexemes, 58 Persian). ADR 0142 is amended.
+3. **ADR 0153 is Accepted,** with no change.
+4. **ADR 0152 is Accepted;** its wording was brought to the lexical model under a dated note.
+5. **ADR 0144 is Accepted as proposed,** restated in the lexical model's terms under a dated note. Not
+   built; one point is left for the owner when it is (may grammar come in through a passage).
+6. **The tagging rule is adopted and the drafted tags are gone over with it,** where inflection decides
+   (about a dozen lexemes in es, apc and hbo), and the language files' dimension lists are completed.
+   **Toki Pona is left alone:** its 97 content words are one class, the owner has not said which one tag it
+   takes, and nothing is touched there until they do.
+7. **Next: rules in a lexicon, apc first,** with ADR 0146's "seen is logged" as its opening step.
+
+### The seven jobs (go, by silence)
+
+The three Chaghatay readings checked against Schluessel and fixed on whichever side is off; an ezafe
+lexeme for Chaghatay; Cantonese's homophone characters counted as a spelling leftover; the eight clips of
+words that are forms now dropped; the seven decisions only the model notes record written into an ADR
+(Proposed); *siendo* out of the notes' second diagram; the stale READMEs and the apc prototype's notes and
+participle check repaired.
+
+### Where each stands
+
+Kept current in this section as each lands; the task list of the session that did them is the same order:
+the records (done with this note), two-option spelling cards and Cantonese's leftover, what is due and
+what reviews ask, the retag, Chaghatay, the small jobs, seen-logging, then rules in a lexicon (a design
+note first).

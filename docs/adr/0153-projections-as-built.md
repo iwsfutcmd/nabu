@@ -1,6 +1,6 @@
 # 0153. Projections and misses, as built
 
-- Status: Proposed
+- Status: Accepted (2026-11-22)
 - Date: 2026-11-21
 - Amends: [ADR 0148](0148-projections-and-misses.md) (the shape of the statement, which it left to the build;
   its "Done in one go" point 3; how a verdict is read off the labels; when the sound question is asked),
@@ -116,3 +116,18 @@ here so the owner can accept or overrule it; nothing here was decided by anyone 
   missed mark that carries sound is no longer the judge's.
 - If the owner wants the phonemic form in the bundle after all (a voice or a speech scorer reading it), the
   compiler can write what `sound-read` returns per lexeme: the operation exists.
+
+## Accepted (2026-11-22)
+
+The owner accepted this ADR on 2026-11-22, on the page of open questions written that day, with no change.
+Five of its points were put to them there with the other way each could go, and none was changed: no
+phonemic form in the bundle; a leftover as the lexeme by a script skill; a missed mark never the judge's;
+"another sound" said only of the word asked for; an unmarked Spanish monosyllable read as unstressed. They
+stand as built, which is not the same as reviewed: every profile's and scheme's statement is still marked
+REVIEW until the owner has looked at it.
+
+Two rulings of the same day touch what is recorded here, and are built after it:
+- a spelling card may offer a word against one other spelling only ([ADR 0142](0142-sound-alike-spelling.md),
+  as amended), so a word with one other spelling of its sound has a card that asks its leftover;
+- a facet makes a word due only where the course can make a card that credits it for that word, and a
+  review chooses its cards by what is due.

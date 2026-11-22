@@ -703,7 +703,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   grapheme's chg-Latn/schluessel form (the scheme's `latin`, ADR 0133; that profile is the track's Latin side, not a
   course orthography); no verb stems (their hyphen).
 
-## Word parts notes (see docs/adr/0152, Proposed)
+## Word parts notes (see docs/adr/0152)
 - Two cards ask a word by its parts: `parts-whole` (the sentence with the word left out, its own word and its forms
   given; typed) and `whole-parts` (the word marked in its sentence, its parts picked among others in any order). A
   course switches them on with `wordParts: true` (course.yaml; on in apc, chg, es, fa, grc, hbo, uz; yue has one form,
@@ -793,7 +793,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   every line. Examples live in schemas/examples/<dir>/{valid,invalid} and are listed in `EXAMPLES`
   (packages/schema/test/schemas.test.ts): a new schema gets both kinds.
 
-## Losses and labels notes (see docs/adr/0148; 0153, Proposed)
+## Losses and labels notes (see docs/adr/0148, 0153)
 - A profile states what its orthography writes of the sound (`sound`, `stress`, `correspondences`; profiles/README.md,
   "The sound statement"): a letter no correspondence names says itself, so `[]` means nothing is lost. `kind: fixed`
   (the norm picks one spelling: another is an orthographic miss, and which one is the word's spelling leftover) or
@@ -861,7 +861,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from the demo's bundles and the UI catalog (apps/web/landing.ts, `landing.*` messages): never hand-edit it; a new
   course appears there by itself.
 - ADRs 0013–0143 are Accepted (2026-11-18, the owner), and 0145–0151 (2026-11-20: the lexical model; the older ADRs
-  they amend say so in their headers). 0144, 0152 and 0153 are Proposed. A new ADR is Proposed until the owner accepts it.
+  they amend say so in their headers), and 0144, 0152 and 0153 (2026-11-22: the owner's answers to that day's open
+  questions; 0144 is not built). A new ADR is Proposed until the owner accepts it.
   docs/gameplan-errata.md lists where the gameplan was wrong.
 - The lexical model follows docs/migration-design.md, which the owner approved on 2026-11-20 with three changes: the
   lexicon is flat (lexicons/<lang>/lexemes.yaml; units point at it, it is never arranged by unit), old events may be
@@ -872,7 +873,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   learners' logs were); a device keeps its old events aside in the IndexedDB store `events-before-lexical`, so a fault
   found later can be fixed and the rewrite done again. The names followed the same day (`Next` out of the schemas and
   types, the token kind `lexical`, the bundle format 3). Stages 5 and 6 (losses and labels, ADR 0148; what a learner
-  sees) landed on 2026-11-22, the bundle format 4 with them (Losses and labels notes); ADR 0153 (Proposed) lists where
+  sees) landed on 2026-11-22, the bundle format 4 with them (Losses and labels notes); ADR 0153 lists where
   the build reads ADR 0148 narrowly, and every profile's and scheme's statement awaits the owner's review.
   docs/lexical-forms/ (apc's lexical-form schema, entries and review list; written from the lexicon by
   docs/prototypes/apc-lexical-forms/build.py, never by hand) has the owner's rulings on its six questions (2026-11-20,

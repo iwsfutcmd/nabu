@@ -1,7 +1,9 @@
 # 0144. Words met in passages: read first, then written
 
-- Status: Proposed
+- Status: Accepted (2026-11-22)
 - Date: 2026-11-18
+- Revised: 2026-11-22, restated in the lexical model's terms (ADRs 0145–0151); no decision changed (the
+  note at the end)
 - Amends: [ADR 0043](0043-stories.md) (stories), [ADR 0050](0050-ten-unit-courses.md) (what a lesson
   introduces), [ADR 0071](0071-classical-chinese.md)'s rule that a unit's lessons teach every word of its
   story, [ADR 0100](0100-known-words.md) (where writing is asked)
@@ -16,7 +18,7 @@ Schluessel's glossary gives each word the chapter that teaches it. Against chg's
 
 | | Schluessel | Nabu chg |
 |---|---|---|
-| Ch. 1–6 / units 1–6 | ~170 words | 187 KCs (30 lessons) |
+| Ch. 1–6 / units 1–6 | ~170 words | 187 words and suffixes (30 lessons) |
 | Ch. 7–10 / units 7–10 | ~225 | 85 |
 | Ch. 11–16 / units 11–19 | ~595 (56–150 a chapter) | 183 |
 | Total | ~990, and ~440 more in the glossary | 455 (397 words, 58 suffixes) |
@@ -62,16 +64,16 @@ reading vocabulary is therefore ruled out.
 
 ### Passages
 
-- **A story node introduces the words its passage is the first to use:** every KC it uses that no
-  earlier node introduces. The compiler works this out and puts it in the bundle; the source does not
-  list them. `curriculum.never-introduced` no longer applies to stories. A KC is introduced once: a
+- **A story node introduces the words its passage is the first to use:** every lexeme, feature value and
+  rule its lines use that no earlier node introduces. The compiler works this out and puts it in the bundle;
+  the source does not list them. `curriculum.never-introduced` no longer applies to stories. Each is introduced once: a
   later lesson that also introduces it is an error (`curriculum.introduced-twice`). Its sentences may
   still use it, as an earlier word.
 - **Passages can be long:** a whole passage, or a section of one per story node (part one, part two).
   chg's are Schluessel's typescripts of public-domain sources; translations stay the course's own.
 - **A passage shows its new words before it,** as a textbook's vocabulary does: a list with glosses, and
   readings where the layer shows them over new words (ADR 0131). Taps gloss as now.
-- **Names are glossed, never drilled.** A KC may be `drill: false`: proper names by default (`pos:
+- **Names are glossed, never drilled.** A lexeme may be `drill: false`: proper names by default (`pos:
   PROPN`, ADR 0132), and words the author marks. Such words are never asked and never count toward
   known; they appear in the passage's list and in taps.
 
@@ -92,7 +94,7 @@ reading vocabulary is therefore ruled out.
     It is graded against the word as the line writes it (and its accepted spellings), since a story
     line has no sentence accept set;
   - writing out of context, new: `write-word` (facet `produce`): the gloss is shown and the learner
-    types the word, its first form (the lemma, as word cards show it). It is graded by the profile's
+    types the word: its lexeme's first spelling (the lemma, as word cards show it). It is graded by the profile's
     matcher like any typed answer, so there is no new matching behaviour.
 - **Course sentences that use a read-first word join its drills and reviews** once the word is met.
 - **Drills never block reading** (D6). The next passage opens when this one is read. The pace band
@@ -123,7 +125,7 @@ it: a passage line counts, and so does `write-word`. Words marked `drill: false`
   word, the path's drill progress. Golden files change; the simulation gains a learner who reads ahead
   of their drills (pacing runs, ADR 0105).
 - Compiler: story nodes' introduced words, `curriculum.introduced-twice`, `curriculum.core`, `drill`
-  on KCs.
+  on lexemes.
 - UI: the passage's word list, drill nodes on the path, the `write-word` card, all in the visual matrix
   (LTR, RTL, vertical). New messages.
 - Courses, chg first: lessons for the recurring words Schluessel teaches early (ḫudā, dunyā, yurt, ḫwāja,
@@ -132,14 +134,14 @@ it: a passage line counts, and so does `write-word`. Words marked `drill: false`
 
 ## Order of work
 
-1. Schemas: `drill` on KCs; the bundle's introduced words on story nodes; a drill node kind; codegen.
+1. Schemas: `drill` on lexemes; the bundle's introduced words on story nodes; a drill node kind; codegen.
 2. Compiler: introduced words for story nodes, the two lints, the frequency report; lint fixtures.
 3. Core: drill sessions, `write-word`, typed blanks on story lines, `continueOf`, known words; goldens;
    simulation.
 4. UI: the passage's word list, drill nodes, `write-word`; visual matrix; messages.
 5. chg: the early recurring words, then the passages at full length; then the other courses.
 
-## Open questions
+## Open questions (answered on 2026-11-22: each takes the answer it proposes)
 
 - **Gloss-only words:** only names and words the author marks, or also every word the course uses once
   (a hapax)? Proposed: names and marked words only. Every other word is drilled, as writing fixes it.
@@ -147,3 +149,30 @@ it: a passage line counts, and so does `write-word`. Words marked `drill: false`
   passage already? Proposed: the same at first, then tuned against the simulation.
 - **`write-word`'s form:** the lemma (bar-) or the form met in the line? Proposed: the lemma, as word
   cards show it; the typed blank in a line asks the form.
+
+## Revision (2026-11-22): the lexical model's terms, and accepted
+
+The owner accepted this ADR on 2026-11-22, on the page of open questions written that day, as proposed: its
+three open questions take the answers proposed above. It was written before the lexical model (ADRs
+0145–0151, on main since 2026-11-21) and spoke of KCs. It is restated in that model's terms, with no
+decision changed:
+
+- **A KC is a lexeme, a feature value or a rule** (ADR 0145, 0146): a stem, a clitic and an affix are
+  lexemes alike. What a story node introduces is what a lesson node's `introduces` holds: the lexemes its
+  passage is the first to use, and the feature values and rules its lines are the first to show.
+- **`drill: false` is said of a lexeme.** Where it is written (the lexicon, which a language's courses
+  share, or the course) is settled when this is built.
+- **`write-word` is not ADR 0152's built word.** It asks a lexeme's first spelling from its gloss; a built
+  word asks one form of a word, in its sentence, from its parts. A drilled word may get both.
+- **A passage's lines read are what ADR 0146 logs as seen** (`story_line_read`): drilling a passage's
+  words and "never seen in that form" read one record.
+- **In an orthography ADR 0149 gates,** a passage waits for the script track, as the rest of the path does.
+
+One thing the first text did not have to say, and the build must. It had a passage introduce every KC it
+was the first to use, forms included. A feature value first shown in a passage would then come in without a
+lesson, though "taught first" is "for grammar". Whether grammar may come in through a passage, or the
+compiler should ask for a lesson before a passage shows a new feature value (as `story.ahead` warns of a
+word today), is the owner's to rule on when this is built. Nothing is decided here.
+
+Not built. The owner chose rules in a lexicon as the next piece of work (2026-11-22); this waits to be
+chosen after it.
