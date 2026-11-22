@@ -209,7 +209,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Writing side (ADR 0142, 0148): a typed word that says what the expected one says by a fixed correspondence of its
   profile's statement (fa سد for صد, es bolber for volver) has the right sound and the wrong letter: never a typo, the
   label orthographic (Losses and labels notes); `spelling-choice` (write-script) offers the word among its other
-  spellings of that sound (`projection.spellings`; yue: homophone characters, the Jyutping given). A homophone typing
+  spellings of that sound (core `otherSpellings`: `projection.spellings`; yue: homophone characters the course attests,
+  `courseHomophones`, the Jyutping given). One other spelling is enough: the only choice card with two options (ADR 0142,
+  amended). The compiler asks the same function (core-cli `spelling-others`) for `leftovers.spelling`. A homophone typing
   (唔洗 for 唔使) is wrong, however common: the course teaches the character the word is written with.
 - Reading side (ADR 0139–0141): a feature card (`reading-feature`) asks one place a script leaves open (`readingFeatures`:
   a place the scheme's statement leaves open, by the word's own letters where the scheme names the orthography, or an

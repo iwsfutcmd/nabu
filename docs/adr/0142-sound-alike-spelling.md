@@ -2,6 +2,7 @@
 
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-17
+- Amended: 2026-11-22 (a spelling card may have two options; the note at the end)
 - Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this:
   [0148](0148-projections-and-misses.md) (`soundAlike` becomes the profile's stated correspondences)
 
@@ -57,3 +58,28 @@ Conformance vectors (grade.json) pin the rule in both harnesses.
 - **Feedback** names the slip ("The right sound, the wrong letter"), and the solution shows the
   right spelling.
 - **Plans change** where the cards come: fa and yue lessons may trade a card for a spelling choice.
+
+## Amendment (2026-11-22): a spelling card may have two options
+
+The owner, on the open questions of 2026-11-22. A spelling card was made only of a word with two wrong
+spellings, as every choice card has two wrong options at least. A word with exactly one other spelling of
+its sound had no card (*casa* or *caza*, *vaca* or *baca*, *hola* or *ola*: 242 of the 416 Spanish lexemes
+with a spelling leftover, 58 of Persian's 147), so its spelling was asked only inside a typed sentence, and
+ADR 0148's own example, a spelling card after *caza* for *casa*, could not be made.
+
+- **A spelling card offers a word against one other spelling where it has only one:** two options, the
+  word and that spelling. A word with more keeps up to three others. The choice between two spellings of a
+  sound is the one a writer faces.
+- **It is the only choice card with two options.** Gap-fill, reading and vowel-mark cards keep two wrong
+  options at least.
+- A word whose only other spelling the sentence's accept set takes in the gap still gets no card.
+- **The other spellings come from one function** (core `otherSpellings`), which the compiler asks through
+  core-cli (`spelling-others`) to write a lexeme's spelling leftover. So a Cantonese word with a character
+  the course reads alike has a spelling leftover in its character orthography (never in Jyutping), as its
+  card always implied; the table is the characters the course attests, so a leftover can come or go as
+  sentences are added.
+
+As built: 433 Spanish lexemes can get a spelling card (178 before), 152 Persian (93), 50 Cantonese (10).
+In the simulation every course stays in its band with nothing retuned; Persian's weakest learners fall by two
+to three points (84.4% to 81.5%, 84.7% to 82.9%), a card nearly every session now having one. The simulator
+knows nothing of a two-way guess being easier, so real logs are what will say.

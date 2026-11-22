@@ -130,4 +130,6 @@ Two rulings of the same day touch what is recorded here, and are built after it:
 - a spelling card may offer a word against one other spelling only ([ADR 0142](0142-sound-alike-spelling.md),
   as amended), so a word with one other spelling of its sound has a card that asks its leftover;
 - a facet makes a word due only where the course can make a card that credits it for that word, and a
-  review chooses its cards by what is due.
+  review chooses its cards by what is due;
+- a Cantonese word's homophone characters count as its spelling leftover where a spelling card can ask it
+  ("What the bundle carries" had the leftover read off the profile's statement alone).

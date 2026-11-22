@@ -2,9 +2,10 @@
 
 The statements are read by @nabu/core (packages/core/src/project), and this module only asks it,
 through core-cli, one process for the whole course: never re-implement the reading here. For each
-orthography of the course whose profile reads a word's sound off its spelling (`sound: {from:
-spelling}`), how many of the course's distinct word spellings have another spelling of the same
-sound (`sound-spellings`: a spelling leftover, what a spelling card can ask); for each scheme that
+orthography of the course whose spelling a spelling card can ask (its profile reads a word's sound
+off its spelling, `sound: {from: spelling}`, or knows homophone characters, `match.homophones`),
+how many of the course's distinct word spellings have another spelling the card may offer
+(`spelling-others`, the card's own rule: a spelling leftover); for each scheme that
 relates its readings to an orthography of the course (`of`), the tokens whose pinned reading its
 statement cannot relate to their spelling (`reading-spells`): the review list.
 
@@ -21,7 +22,7 @@ from typing import Any
 from nabu.corecli import CoreCli
 from nabu.items import Content, iter_items
 from nabu.schema import OrthographyProfile
-from nabu.schema.models import BundleLexicon, Leftovers, TokenModel
+from nabu.schema.models import BundleLexicon, BundleUnit, Leftovers, TokenModel
 from nabu.schemes import schemes
 
 #: How many words with other spellings a report shows, per orthography.
@@ -65,14 +66,15 @@ class Report:
     reading: list[ReadingReport]
 
 
-def _words(content: Content, orthography: str) -> list[str]:
-    """The course's distinct word spellings in an orthography, in course order."""
-    seen: dict[str, None] = {}
+def _words(content: Content, orthography: str) -> list[TokenModel]:
+    """The course's distinct word spellings in an orthography, in course order (the first token of
+    each)."""
+    seen: dict[str, TokenModel] = {}
     for item in iter_items(content):
         for token in item.forms.get(orthography, []):
             if token.kind == "lexical":
-                seen.setdefault(token.surface, None)
-    return list(seen)
+                seen.setdefault(token.surface, token)
+    return list(seen.values())
 
 
 def _readings(content: Content, orthography: str, scheme: str) -> Iterable[tuple[str, str, str]]:
@@ -90,16 +92,44 @@ def _readings(content: Content, orthography: str, scheme: str) -> Iterable[tuple
 
 
 def _spells_otherwise(profile: OrthographyProfile | None) -> bool:
-    """Whether the orthography reads a word's sound off its spelling (`sound: {from: spelling}`)."""
-    return profile is not None and profile.sound is not None and profile.sound.from_ == "spelling"
+    """Whether a spelling card can ask the orthography's words: its profile reads a word's sound
+    off its spelling (`sound: {from: spelling}`) or knows homophone characters
+    (`match.homophones`)."""
+    if profile is None:
+        return False
+    if profile.sound is not None and profile.sound.from_ == "spelling":
+        return True
+    return profile.match is not None and profile.match.homophones is not None
 
 
-def _other_spellings(cli: CoreCli, orth: str, words: Sequence[str]) -> list[list[str]]:
-    """For each word, its other spellings of its sound (`sound-spellings`, after the profile's
-    normalization), in two round trips."""
-    normalized = cli.batch([{"op": "normalize", "profile": orth, "text": w} for w in words])
-    found = cli.batch(
-        [{"op": "sound-spellings", "profile": orth, "text": str(n)} for n in normalized]
+def _token(token: TokenModel, *fields: str) -> dict[str, Any]:
+    """A token as core reads it, only the fields asked."""
+    return token.model_dump(mode="json", by_alias=True, exclude_none=True, include=set(fields))
+
+
+def _course_tokens(units: Sequence[BundleUnit], orth: str) -> list[dict[str, Any]]:
+    """The ruby of every token of the bundle's sentences in an orthography, in course order: where
+    core finds the characters the course reads alike (what `allSentences` gives a card)."""
+    return [
+        _token(t, "ruby")
+        for unit in units
+        for sentence in unit.sentences
+        if (form := sentence.forms.get(orth)) is not None
+        for t in form.text.tokens
+        if t.ruby
+    ]
+
+
+def _other_spellings(
+    cli: CoreCli, orth: str, words: Sequence[TokenModel], tokens: list[dict[str, Any]]
+) -> list[list[str]]:
+    """For each word, the other spellings a spelling card may offer for it (`spelling-others`:
+    core's `otherSpellings`, as the card finds them), in one round trip."""
+    found = cli.result(
+        "spelling-others",
+        profile=orth,
+        words=[_token(w, "surface", "variants", "ruby") for w in words],
+        tokens=tokens,
     )
     return [[str(x) for x in f] for f in found]
 
@@ -128,13 +158,16 @@ def _readings_of(token: TokenModel) -> dict[str, str]:
 
 def leftovers(
     lexicon: BundleLexicon,
+    units: Sequence[BundleUnit],
     orthographies: Iterable[str],
     profiles: dict[str, OrthographyProfile],
     cli: CoreCli,
 ) -> BundleLexicon:
     """The lexicon with each lexeme's leftovers (ADR 0148; the bundle's `leftovers`): `spelling`,
     the course orthographies in which its first spelling (the one word cards show) has another
-    spelling of its sound (`sound-spellings`); `reading`, each orthography and stated scheme in
+    spelling a spelling card may offer (`spelling-others`: another spelling of its sound, or a
+    character the course reads alike; one is enough, as for the card); `reading`, each
+    orthography and stated scheme in
     which a word of that spelling pins a reading the script leaves open somewhere
     (`reading-variants`, with the spelling where the scheme is stated `of` the orthography)."""
     orths = list(orthographies)
@@ -150,7 +183,7 @@ def leftovers(
             if t.kind == "lexical"
         ]
         if _spells_otherwise(profiles.get(orth)):
-            others = _other_spellings(cli, orth, [t.surface for _, t in words])
+            others = _other_spellings(cli, orth, [t for _, t in words], _course_tokens(units, orth))
             for (ident, _), traded in zip(words, others, strict=True):
                 if traded and orth not in spelling.setdefault(ident, []):
                     spelling[ident].append(orth)
@@ -212,6 +245,7 @@ def unaccounted(
 
 def report(
     content: Content,
+    units: Sequence[BundleUnit],
     orthographies: Iterable[str],
     profiles: dict[str, OrthographyProfile],
     cli: CoreCli,
@@ -222,8 +256,8 @@ def report(
         if not _spells_otherwise(profiles.get(orth)):
             continue
         words = _words(content, orth)
-        others = _other_spellings(cli, orth, words)
-        traded = [(w, o) for w, o in zip(words, others, strict=True) if o]
+        others = _other_spellings(cli, orth, words, _course_tokens(units, orth))
+        traded = [(w.surface, o) for w, o in zip(words, others, strict=True) if o]
         spelling.append(SpellingReport(orth, len(words), len(traded), traded[:EXAMPLES]))
     return Report(spelling, unaccounted(content, orths, cli))
 

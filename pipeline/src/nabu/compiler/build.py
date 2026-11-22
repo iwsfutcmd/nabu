@@ -854,7 +854,9 @@ def compile_course(
     )
     compiled.units = with_alphabets(compiled.units, alphabets)
     # ---- stage 3 (on the bundle): what the statements leave to learn (ADR 0148)
-    compiled.lexicon = leftovers(compiled.lexicon, course.orthographies, ctx.profiles, ctx.cli)
+    compiled.lexicon = leftovers(
+        compiled.lexicon, compiled.units, course.orthographies, ctx.profiles, ctx.cli
+    )
     _unaccounted(ctx, units, compiled)
     aliases = course_file.parent / "aliases.yaml"
     if aliases.is_file():

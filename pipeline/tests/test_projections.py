@@ -23,7 +23,7 @@ PROFILES = load_profiles()
 def _report(core_cli: CoreCli, course: str) -> Report:
     diags, compiled = compile_course(ROOT / "courses" / course, core_cli, PROFILES, audio=False)
     assert compiled is not None, [d.format() for d in diags.items]
-    return report(compiled.content, compiled.orthographies, PROFILES, core_cli)
+    return report(compiled.content, compiled.units, compiled.orthographies, PROFILES, core_cli)
 
 
 def test_es_words_with_other_spellings(core_cli: CoreCli) -> None:
@@ -109,3 +109,38 @@ def test_chg_lexemes_carry_their_reading_leftovers_and_the_review_list(core_cli:
     assert listed and all(d.severity == "warning" for d in listed)
     assert any("'صندوقدا'" in d.message for d in listed)
     assert not any("'پز'" in d.message for d in listed)
+
+
+def test_yue_lexemes_carry_homophone_spelling_leftovers(core_cli: CoreCli) -> None:
+    """A Cantonese word's character is a spelling leftover where the course has another character
+    read alike (ADR 0142 amendment): the spelling card's own rule, one other spelling enough. The
+    Jyutping orthography has none."""
+    _, compiled = _compiled(core_cli, "yue")
+    by_id = {str(lx.id): lx for lx in compiled.lexicon.lexemes}
+    # 小姐 siu2 ze2: 少 siu2 reads alike.
+    xiaojie = by_id["lexeme:小姐"]
+    assert xiaojie.leftovers is not None and xiaojie.leftovers.spelling is not None
+    assert [str(o) for o in xiaojie.leftovers.spelling] == ["yue-Hant-HK/standard"]
+    assert xiaojie.leftovers.reading is None
+    # 我 ngo5: no other character of the course reads so.
+    assert by_id["lexeme:我"].leftovers is None
+    spelled = [lx for lx in compiled.lexicon.lexemes if lx.leftovers is not None]
+    assert 20 < len(spelled) < len(compiled.lexicon.lexemes)
+    for lx in spelled:
+        assert lx.leftovers is not None and lx.leftovers.spelling is not None
+        assert [str(o) for o in lx.leftovers.spelling] == ["yue-Hant-HK/standard"]
+
+
+def test_yue_report_lists_characters_read_alike(core_cli: CoreCli) -> None:
+    r = _report(core_cli, "yue")
+    by_orth = {s.orthography: s for s in r.spelling}
+    hant = by_orth["yue-Hant-HK/standard"]
+    assert 0 < hant.with_others < hant.words
+    for word, others in hant.examples:
+        letters = core_cli.result("graphemes", text=word)
+        for other in others:
+            # One character traded, the rest kept (by graphemes, as core counts them).
+            traded = core_cli.result("graphemes", text=other)
+            assert len(traded) == len(letters)
+            assert sum(a != b for a, b in zip(letters, traded, strict=True)) == 1
+    assert by_orth["yue-Latn/jyutping"].with_others == 0

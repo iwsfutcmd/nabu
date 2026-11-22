@@ -336,8 +336,9 @@ def projections_command(
 ) -> None:
     """What the profiles' and schemes' statements leave to learn of a course's words (ADR 0148).
 
-    Per orthography whose sound is read off its spelling: how many of the course's words have
-    another spelling of their sound, with examples. Per scheme that relates its readings to an
+    Per orthography whose words a spelling card can ask (a sound read off the spelling, or
+    homophone characters): how many of the course's words have another spelling the card may
+    offer, with examples. Per scheme that relates its readings to an
     orthography of the course: the tokens whose pinned reading it cannot relate to their spelling,
     by item (the review list).
     """
@@ -354,7 +355,7 @@ def projections_command(
                 typer.echo(d.format(), err=True)
             typer.echo(f"✗ {course} does not compile", err=True)
             raise typer.Exit(code=1)
-        result = report(compiled.content, compiled.orthographies, profiles, cli)
+        result = report(compiled.content, compiled.units, compiled.orthographies, profiles, cli)
     for line in format_report(result):
         typer.echo(line)
 

@@ -562,7 +562,7 @@ built"), with the table of what each profile and scheme states. CLAUDE.md has "L
 - **`story_line_read` and `displayed`** are still never emitted.
 - **grc's marks** stay notes until the app can put them on from buttons (ADR 0148).
 - **yue's homophone characters** give its spelling cards as before and are not counted as leftovers in the
-  bundle, so the word list shows no spelling part for a yue word.
+  bundle, so the word list shows no spelling part for a yue word. (Done on 2026-11-22: they are counted.)
 - **The draft catalogs** have the new label messages; the notes they never had (sound-alike and the rest)
   still show in English there.
 

@@ -1129,7 +1129,7 @@ accept or overrule.
 - **Lexemes with a leftover** (in the bundles): a spelling leftover for 416 of es's 721 lexemes and 147 of
   fa's 253; a reading leftover for 397 of chg's 455 (schluessel), every one of lzh's 227 (pinyin; 130 in
   baxter) and 75 of grc's 170 (attic, which no card asks yet). yue's homophone characters still give its
-  spelling cards, as before, and are not counted as leftovers.
+  spelling cards, as before, and are not counted as leftovers. (Since 2026-11-22 they are: 50 of yue's 262 lexemes have a spelling leftover, by the spelling card's own rule.)
 
 ### Not built, and why
 
