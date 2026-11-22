@@ -69,7 +69,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yasiel se durmió y otro se llevó el trabajo.
-      tokens: [{surface: Yasiel, lexeme: yasiel}, {surface: se, lexeme: se}, {surface: durmió, lexeme: dormirse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: otro, lexeme: otro}, {surface: se, lexeme: se}, {surface: llevó, lexeme: llevarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: Yasiel, lexeme: yasiel}, {surface: se, lexeme: se}, {surface: durmió, lexeme: dormirse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: otro, lexeme: otro, feats: {Gender: Masc, Number: Sing}}, {surface: se, lexeme: se}, {surface: llevó, lexeme: llevarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 8, head: 9, rel: det}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}, n: 9}]
       reverse: Yasiel se durmió y otro se llevó el (trabajo|puesto)
   translations:
     en: Yasiel (overslept|fell asleep|dozed off) and (someone else|somebody else|another guy|another person) (got|took) the job.
@@ -194,7 +194,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yasiel perdió su trabajo, pero ahora tiene otro mejor.
-      tokens: [{surface: Yasiel, lexeme: yasiel}, {surface: perdió, lexeme: perder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}, n: 4}, {surface: pero, lexeme: pero}, {surface: ahora, lexeme: ahora}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: otro, lexeme: otro}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: Yasiel, lexeme: yasiel}, {surface: perdió, lexeme: perder, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: su, lexeme: su, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}, n: 4}, {surface: pero, lexeme: pero}, {surface: ahora, lexeme: ahora}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: otro, lexeme: otro, feats: {Gender: Masc, Number: Sing}}, {surface: mejor, lexeme: mejor, feats: {Gender: Masc, Number: Sing}}]
       reverse: Yasiel perdió (su|el) trabajo pero ahora tiene (otro|uno) mejor
   translations:
     en: Yasiel lost his job, but now (he has|he's got) a better one.
@@ -240,7 +240,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: No por mucho madrugar amanece más temprano.
-      tokens: [{surface: 'No', lexeme: 'no'}, {surface: por, lexeme: por}, {surface: mucho, lexeme: mucho}, {surface: madrugar, lexeme: madrugar, feats: {VerbForm: Inf}}, {surface: amanece, lexeme: amanecer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: temprano, lexeme: temprano}]
+      tokens: [{surface: 'No', lexeme: 'no'}, {surface: por, lexeme: por}, {surface: mucho, lexeme: mucho, feats: {Gender: Masc, Number: Sing}}, {surface: madrugar, lexeme: madrugar, feats: {VerbForm: Inf}}, {surface: amanece, lexeme: amanecer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: temprano, lexeme: temprano}]
       reverse: No por mucho madrugar amanece más temprano
   translations:
     en: |-
@@ -615,7 +615,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuelo, no por mucho madrugar amanece más temprano.
-          tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: por, lexeme: por}, {surface: mucho, lexeme: mucho}, {surface: madrugar, lexeme: madrugar, feats: {VerbForm: Inf}}, {surface: amanece, lexeme: amanecer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: temprano, lexeme: temprano}]
+          tokens: [{surface: Abuelo, lexeme: abuelo, feats: {Number: Sing}}, {surface: 'no', lexeme: 'no'}, {surface: por, lexeme: por}, {surface: mucho, lexeme: mucho, feats: {Gender: Masc, Number: Sing}}, {surface: madrugar, lexeme: madrugar, feats: {VerbForm: Inf}}, {surface: amanece, lexeme: amanecer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: temprano, lexeme: temprano}]
       translations:
         en: Grandpa, getting up early doesn't make the sun rise any sooner.
   - line:

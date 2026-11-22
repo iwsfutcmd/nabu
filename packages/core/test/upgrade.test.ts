@@ -272,6 +272,6 @@ describe("a log from before the switch (six sessions of es)", () => {
   it("has nothing due that no session can practise", () => {
     const parts = new Set<string>(course.units.flatMap((u) => u.sentences.flatMap((s) => s.parts)));
     for (const lexeme of course.lexicon.lexemes) parts.add(lexeme.id);
-    for (const due of dueFacets(state, course.orthography, before.now)) expect(parts.has(due.key.slice(0, due.key.lastIndexOf("|"))), due.key).toBe(true);
+    for (const due of dueFacets(course, state, before.now)) expect(parts.has(due.key.slice(0, due.key.lastIndexOf("|"))), due.key).toBe(true);
   });
 });

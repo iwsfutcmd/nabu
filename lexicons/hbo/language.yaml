@@ -6,9 +6,11 @@ provenance: {author: 'llm:claude@f55f5b08fb95', status: draft}
 varieties: [hbo]
 registers: [formal]
 dimensions:
-  VERB: [Aspect, Tense, Mood, VerbForm, Person, Gender, Number]
+  VERB: [Aspect, Tense, Mood, VerbForm, Voice, Person, Gender, Number]
   NOUN: [Number, Definite]
   ADJ: [Gender, Number]
+  PRON: [Gender, Number]
+  DET: [Gender, Number]
 lexical:
   NOUN: [Gender]
   PROPN: [Gender]

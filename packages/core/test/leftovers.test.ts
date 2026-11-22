@@ -7,8 +7,8 @@ import type { LearnerEvent, OrthographyId } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { creditOf } from "../src/learner/credit.ts";
 import { exerciseRefOf, learnerEventOf, practised, progressResetOf } from "../src/learner/events.ts";
-import { cardKey, emptyLearnerState, missedLetters, partsOf, plan, replay, ruleEntries, ruleMatcher } from "../src/learner/index.ts";
-import { allSentences, glossOfPart, labelOf, ownFeatureLabel } from "../src/lesson/index.ts";
+import { cardKey, dueFacets, emptyLearnerState, missedLetters, partsOf, plan, replay, ruleEntries, ruleMatcher } from "../src/learner/index.ts";
+import { allSentences, courseHomophones, glossOfPart, labelOf, otherSpellings, ownFeatureLabel, profileOf } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { createGrader, gradeExercise, lessonNodes, lexemesById, sampleExercise, seededRng, type CourseView, type Exercise, type TranslateType } from "../src/lesson/index.ts";
 import { makeTranslateType } from "../src/lesson/templates.ts";
@@ -45,6 +45,27 @@ describe("the bundle's leftovers (the compiler, through core)", () => {
     const open = chg.lexicon.lexemes.filter((l) => l.leftovers?.reading?.some((r) => r.scheme === "schluessel" && r.orthography === "chg-Arab/standard"));
     expect(open.length).toBeGreaterThan(100);
     expect(chg.lexicon.lexemes.some((l) => l.leftovers?.spelling !== undefined)).toBe(false);
+  });
+
+  it("yue: words with a character the course reads alike, by the spelling card's own rule (one is enough), never in Jyutping", () => {
+    const yue = loadCourse("yue");
+    const HANT = "yue-Hant-HK/standard" as OrthographyId;
+    const profile = profileOf(yue, HANT);
+    const homophones = courseHomophones(yue);
+    let listed = 0;
+    for (const lexeme of yue.lexicon.lexemes) {
+      expect(lexeme.leftovers?.reading, lexeme.id).toBeUndefined();
+      expect(lexeme.leftovers?.spelling?.includes("yue-Latn/jyutping" as OrthographyId) ?? false, lexeme.id).toBe(false);
+      const first = lexeme.forms?.[HANT]?.[0];
+      if (first === undefined) continue;
+      const others = first.tokens.filter((t) => t.kind === "lexical").some((t) => otherSpellings(profile, t, homophones).length > 0);
+      expect(lexeme.leftovers?.spelling?.includes(HANT) ?? false, lexeme.id).toBe(others);
+      if (others) listed += 1;
+    }
+    expect(listed).toBeGreaterThan(20);
+    // 小姐 siu2 ze2: 少 siu2 reads alike; 我 ngo5 has no character the course reads alike.
+    expect(lexemesById(yue).get("lexeme:小姐")?.leftovers?.spelling).toEqual([HANT]);
+    expect(lexemesById(yue).get("lexeme:我")?.leftovers).toBeUndefined();
   });
 
   it("none where the statements lose nothing (uz, tok)", () => {
@@ -167,6 +188,33 @@ describe("a word's spelling is missed only where it has one to miss (ADR 0148)",
     expect(missedSpellings(credits)).toEqual([]);
   });
 
+  it("yue: a word typed right in characters is credited its spelling where the course has a character that reads alike", () => {
+    const yue = loadCourse("yue");
+    const ex = typed(yue, "s.u02.9");
+    const graded = gradeExercise(ex, { tag: "text", text: ex.canonical.tokens.map((t) => t.surface).join("") }, createGrader(yue));
+    const credits = creditOf(ex, graded, yue.profiles, lexemesById(yue));
+    expect(credits).toContainEqual({ part: "lexeme:小姐", skill: "write-script", status: "right" });
+    // Only the words with a leftover.
+    for (const c of credits.filter((x) => x.skill === "write-script")) expect(lexemesById(yue).get(String(c.part))?.leftovers?.spelling, String(c.part)).toBeDefined();
+  });
+
+  it("yue: a character read alike misses the word's spelling only where the course writes another character so (its leftover)", () => {
+    const yue = loadCourse("yue");
+    // 我 ngo5 has no character the course reads alike: 砈, typed for it, is the correspondence's alone.
+    const { graded, credits } = traded(yue, "s.10", "我", "砈");
+    expect(graded.labels).toEqual(["orthographic"]);
+    expect(lexemesById(yue).get("lexeme:我")?.leftovers).toBeUndefined();
+    expect(missedSpellings(credits)).toEqual([]);
+    expect(credits).toContainEqual({ part: "lexeme:我", skill: "produce", status: "right" });
+    // 小姐 siu2 ze2 has one (少 siu2): 少姐 misses its spelling, which a spelling card can ask again.
+    const ex = typed(yue, "s.u02.9");
+    const word = ex.canonical.tokens.find((t) => t.surface === "小姐");
+    expect(word, "s.u02.9 writes 小姐").toBeDefined();
+    const missed = gradeExercise(ex, { tag: "text", text: ex.canonical.tokens.map((t) => (t === word ? "少姐" : t.surface)).join("") }, createGrader(yue));
+    expect(missed.labels).toEqual(["orthographic"]);
+    expect(missedSpellings(creditOf(ex, missed, yue.profiles, lexemesById(yue)))).toEqual(["lexeme:小姐"]);
+  });
+
   it("no card of the fold's is left for a word with no spelling to miss", () => {
     const { graded } = traded(es, "s.u03.9", "aquí", "akí");
     const ex = typed(es, "s.u03.9");
@@ -231,6 +279,23 @@ describe("a word's parts, each shown or not (partsOf)", () => {
     const parts = partsOf(es, state, shownSpelling[0] as string);
     expect(parts.filter((p) => p.kind === "skill").map((p) => p.skill)[0]).toBe("recognize");
     expect(partsOf(es, state, "lexeme:no-such-word")).toEqual([]);
+  });
+
+  it("yue: a typed word's character spelling, where the course has one that reads alike; none for a word without", () => {
+    const yue = loadCourse("yue");
+    const HANT = "yue-Hant-HK/standard" as OrthographyId;
+    const { state, exercises } = twoDays(yue, 8);
+    const lexemes = lexemesById(yue);
+    const typedWords = new Set(exercises.filter((ex) => ex.template === "translate-type.l1-l2").flatMap((ex) => ex.parts.map(String)));
+    const withLeftover = [...typedWords].filter((id) => lexemes.get(id)?.leftovers?.spelling?.includes(HANT) === true);
+    expect(withLeftover.length).toBeGreaterThan(0);
+    for (const id of withLeftover) expect(partsOf(yue, state, id), id).toContainEqual(expect.objectContaining({ kind: "spelling", orthography: HANT }));
+    const shown = withLeftover.filter((id) => partsOf(yue, state, id).some((p) => p.kind === "spelling" && p.status === "shown"));
+    expect(shown.length).toBeGreaterThan(0);
+    for (const id of shown) expect(state.shown[cardKey(id, "write-script", HANT)], id).toBeDefined();
+    // A spelling the fold keeps a card for falls due as any facet does.
+    expect(dueFacets(yue, state, "2027-06-01T00:00:00.000Z").map((f) => f.key)).toContain(cardKey(shown[0] as string, "write-script", HANT));
+    for (const id of [...typedWords].filter((x) => lexemes.get(x)?.leftovers === undefined)) expect(partsOf(yue, state, id).some((p) => p.kind === "spelling"), id).toBe(false);
   });
 
   it("chg: a reading leftover, shown by a reading card read right on a later day", () => {

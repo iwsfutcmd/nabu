@@ -126,7 +126,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: '¿Cuántos idiomas tú hablas? Dos, y a veces tres: el espanglish.'
-      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: idiomas, lexeme: idioma, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: hablas, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: Dos, lexeme: dos}, {surface: y, lexeme: y}, {surface: a, lexeme: a, n: 7, head: 8, rel: case}, {surface: veces, lexeme: vez, feats: {Number: Plur}, n: 8}, {surface: tres, lexeme: tres}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: espanglish, lexeme: espanglish, feats: {Number: Sing}, n: 11}]
+      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Gender: Masc, Number: Plur}}, {surface: idiomas, lexeme: idioma, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: hablas, lexeme: hablar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: Dos, lexeme: dos}, {surface: y, lexeme: y}, {surface: a, lexeme: a, n: 7, head: 8, rel: case}, {surface: veces, lexeme: vez, feats: {Number: Plur}, n: 8}, {surface: tres, lexeme: tres}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: espanglish, lexeme: espanglish, feats: {Number: Sing}, n: 11}]
       reverse: (Cuántos idiomas tú hablas|Cuántos idiomas hablas [tú]|Cuántos idiomas usted habla|Cuántos idiomas habla [usted]|Cuántos idiomas ustedes hablan|Cuántos idiomas hablan [ustedes]) dos y a veces tres [el] (espanglish|spanglish)
   translations:
     en: 'How many languages do you speak? Two, and sometimes three: Spanglish.'
@@ -299,7 +299,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Eso tiene sentido? Sí, tiene mucho sentido.
-      tokens: [{surface: Eso, lexeme: ese, feats: {Gender: Neut, Number: Sing}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sentido, lexeme: sentido, feats: {Number: Sing}}, {surface: Sí, lexeme: sí}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: sentido, lexeme: sentido, feats: {Number: Sing}}]
+      tokens: [{surface: Eso, lexeme: ese, feats: {Gender: Neut, Number: Sing}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sentido, lexeme: sentido, feats: {Number: Sing}}, {surface: Sí, lexeme: sí}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho, feats: {Gender: Masc, Number: Sing}}, {surface: sentido, lexeme: sentido, feats: {Number: Sing}}]
       reverse: Eso tiene sentido sí tiene mucho sentido
   translations:
     en: Does that make sense? Yes, it makes (a lot of|lots of|a great deal of) sense.

@@ -241,7 +241,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Si el negocio fuera bien, abriríamos otro en Miami.
-      tokens: [{surface: Si, lexeme: si}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: negocio, lexeme: negocio, feats: {Number: Sing}, n: 3}, {surface: fuera, lexeme: ir, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: abriríamos, lexeme: abrir, feats: {Mood: Cnd, Number: Plur, Person: '1', VerbForm: Fin}}, {surface: otro, lexeme: otro}, {surface: en, lexeme: en, n: 8, head: 9, rel: case}, {surface: Miami, lexeme: miami, n: 9}]
+      tokens: [{surface: Si, lexeme: si}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: negocio, lexeme: negocio, feats: {Number: Sing}, n: 3}, {surface: fuera, lexeme: ir, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: bien, lexeme: bien}, {surface: abriríamos, lexeme: abrir, feats: {Mood: Cnd, Number: Plur, Person: '1', VerbForm: Fin}}, {surface: otro, lexeme: otro, feats: {Gender: Masc, Number: Sing}}, {surface: en, lexeme: en, n: 8, head: 9, rel: case}, {surface: Miami, lexeme: miami, n: 9}]
       reverse: |-
         Si el negocio (fuera|fuese|saliera|anduviera) bien abriríamos otro [paladar] en Miami
         Abriríamos otro en Miami si el negocio fuera bien
@@ -393,7 +393,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Si yo viviera en otro país, extrañaría mucho a mi familia.
-      tokens: [{surface: Si, lexeme: si}, {surface: yo, lexeme: yo}, {surface: viviera, lexeme: vivir, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 5, rel: case}, {surface: otro, lexeme: otro, n: 5}, {surface: país, lexeme: país, feats: {Number: Sing}}, {surface: extrañaría, lexeme: extrañar, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: a, lexeme: a, n: 9, head: 11, rel: case}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 11}]
+      tokens: [{surface: Si, lexeme: si}, {surface: yo, lexeme: yo}, {surface: viviera, lexeme: vivir, feats: {Mood: Sub, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: en, lexeme: en, n: 4, head: 5, rel: case}, {surface: otro, lexeme: otro, feats: {Gender: Masc, Number: Sing}, n: 5}, {surface: país, lexeme: país, feats: {Number: Sing}}, {surface: extrañaría, lexeme: extrañar, feats: {Mood: Cnd, Number: Sing, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: a, lexeme: a, n: 9, head: 11, rel: case}, {surface: mi, lexeme: mi, feats: {Gender: Fem, Number: Sing}, n: 10, head: 11, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 11}]
       reverse: |-
         Si [yo] (viviera|viviese) en otro país (extrañaría mucho|echaría mucho de menos) a mi familia
         Extrañaría mucho a mi familia si viviera en otro país
@@ -408,7 +408,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: 'Así es la vida, primo: unos se van y otros se quedan.'
-      tokens: [{surface: Así, lexeme: así}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 4}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: unos, lexeme: un, feats: {Gender: Masc, Number: Plur}}, {surface: se, lexeme: se}, {surface: van, lexeme: irse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: otros, lexeme: otro, feats: {Number: Plur}}, {surface: se, lexeme: se}, {surface: quedan, lexeme: quedarse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Así, lexeme: así}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: vida, lexeme: vida, feats: {Number: Sing}, n: 4}, {surface: primo, lexeme: primo, feats: {Gender: Masc, Number: Sing}}, {surface: unos, lexeme: un, feats: {Gender: Masc, Number: Plur}}, {surface: se, lexeme: se}, {surface: van, lexeme: irse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: otros, lexeme: otro, feats: {Gender: Masc, Number: Plur}}, {surface: se, lexeme: se}, {surface: quedan, lexeme: quedarse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}]
       reverse: Así es la vida [primo] unos se van y otros se quedan
   translations:
     en: |-

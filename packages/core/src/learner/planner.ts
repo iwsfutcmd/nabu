@@ -31,9 +31,12 @@ import { askedParts, creditedParts, facetOf, readingOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
 import { runTest } from "../lesson/adaptive.ts";
 import { placementTest, type PlacementTest } from "./placement.ts";
-import { cardKey, DESIRED_RETENTION, languageSkills, meanRetrievability, parseCardKey, readingSkill, retrievability, sameQuestion, type LearnerState } from "./state.ts";
+import { cardKey, meanRetrievability, parseCardKey, readingSkill, retrievability, sameQuestion, type LearnerState } from "./state.ts";
 import { PACE, type PaceBand } from "./pacing.ts";
 import { NONE_OFF, skillsAsked } from "./words.ts";
+import { cardCrediting, creditedKeys, dueFacets, sentencesCarrying } from "./due.ts";
+
+export { dueFacets };
 
 export const PLANNER = `planner@1+${PERFORMANCE_MODEL}`;
 
@@ -210,28 +213,34 @@ const skillNeeds = (course: CourseView, state: LearnerState, today: string, face
 
 /**
  * The earlier sentences a lesson brings back (ADR 0097), from the lessons before it on the path (a
- * later lesson's sentence is new, whatever its words): chosen greedily by the due words they would
- * practise, the most forgotten first (desired retention minus recall, per due card of a skill of the
- * language), and the skills their words have yet to show (NEED_GAIN each, ADR 0101), each card counted
- * once. So review goes where it is needed, across every unit, never to the course's first sentences
- * because their common words are always due somewhere; and a sentence just reviewed is no longer
- * due, so it does not come back lesson after lesson.
+ * later lesson's sentence is new, whatever its words): chosen greedily by the due cards they would
+ * practise, the most forgotten first (desired retention minus recall, per due card of a part the
+ * sentence carries, whatever its skill: a word's spelling, its reading and its speaking are due as
+ * its recognizing is), and the skills their words have yet to show (NEED_GAIN each, ADR 0101), each
+ * card counted once. So review goes where it is needed, across every unit, never to the course's
+ * first sentences because their common words are always due somewhere; and a sentence just reviewed
+ * is no longer due, so it does not come back lesson after lesson.
  */
 const reviewSentences = (
-  course: CourseView,
   past: readonly BundleSentence[],
   seen: ReadonlySet<string>,
   due: ReadonlyMap<string, number>,
   needs: ReadonlySet<string>,
   desired: number,
-  key: (part: string, skill: Skill) => string,
   count = REVIEW_SENTENCES,
 ): readonly BundleSentence[] => {
   const worth = (k: string): number => (due.has(k) ? desired - (due.get(k) ?? desired) : 0) + (needs.has(k) ? NEED_GAIN : 0);
-  // Each sentence's cards that need review, worked out once.
+  // The cards that need review, by their part.
+  const byPart = new Map<string, string[]>();
+  for (const k of new Set([...due.keys(), ...needs])) {
+    const { part } = parseCardKey(k);
+    byPart.set(part, [...(byPart.get(part) ?? []), k]);
+  }
+  // Each sentence's cards that need review, worked out once: those of its parts (every lexeme its
+  // tokens write, bound ones too).
   const pool = past
     .filter((s) => kept(s.parts).length > 0 && allSeen(s.parts, seen))
-    .map((s) => ({ s, cards: kept(s.parts).flatMap((part) => languageSkills(part).map((skill) => key(part, skill))).filter((k) => due.has(k) || needs.has(k)) }))
+    .map((s) => ({ s, cards: [...new Set(kept(s.parts))].flatMap((part) => byPart.get(part) ?? []) }))
     .filter((x) => x.cards.length > 0);
   const covered = new Set<string>();
   const need = (cards: readonly string[]): number => cards.reduce((sum, k) => (covered.has(k) ? sum : sum + worth(k)), 0);
@@ -273,31 +282,6 @@ export const predictExercise = (state: LearnerState, ex: Exercise, orthography: 
 
 /** A part is seen once any of its skills has a card. */
 const seenParts = (state: LearnerState): ReadonlySet<string> => new Set(Object.keys(state.cards).map((k) => parseCardKey(k).part));
-
-/**
- * Due cards (R < desired retention) of seen parts, most forgotten first. Script
- * facets count only in the orthography being learned, readings only in the
- * learner's tradition (`reading`, as `traditionKey` names it: ADR 0138), and
- * facets the learner turned off for good (D41) not at all: no session can
- * practise them.
- */
-export const dueFacets = (
-  state: LearnerState,
-  orthography: string,
-  now: string,
-  desired = DESIRED_RETENTION,
-  facetsOff: ReadonlySet<Facet> = NONE_OFF,
-  reading?: string,
-): readonly { readonly key: string; readonly r: number }[] =>
-  Object.keys(state.cards)
-    .flatMap((key) => {
-      const ref = parseCardKey(key);
-      if ((ref.orthography !== undefined && ref.orthography !== orthography) || (facetsOff as ReadonlySet<string>).has(ref.skill)) return [];
-      if (ref.skill === "read-script" && ref.reading !== reading) return [];
-      return [{ key, r: retrievability(state, ref.part, ref.skill, orthography, now, ref.reading) }];
-    })
-    .filter((f) => f.r < desired)
-    .sort((a, b) => a.r - b.r || (a.key < b.key ? -1 : 1));
 
 /** What plans leave out: the caller's exclusions, the speech support's, and the course's (facets, voice). */
 const exclusionsOf = (course: CourseView, options: { readonly exclude?: ReadonlySet<TemplateId> | undefined; readonly speech?: SpeechSupport | undefined }): ReadonlySet<TemplateId> =>
@@ -376,12 +360,10 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const reading = readingTradition(course, options.reading);
   const traditionCards = traditionKey(course, reading);
   const key = (part: string, skill: Skill): string => cardKey(part, skill, orthography, skill === "read-script" ? traditionCards : undefined);
-  /** The card a part has by the skill a card of this template exercises it by. */
-  const cardOf = (template: TemplateId, part: string): string => key(part, skillOf(template, part));
   const seen = seenParts(state);
   // What is due and what words are asked, without the facets the learner turned off for good (D41).
   const facetsOff = options.facetsOff ?? NONE_OFF;
-  const due = new Map(dueFacets(state, orthography, now, desired, facetsOff, traditionCards).map((f) => [f.key, f.r]));
+  const due = new Map(dueFacets(course, state, now, desired, facetsOff, reading).map((f) => [f.key, f.r]));
   // Skills words have yet to show (ADR 0100, 0101), and the words to type: a mistakes session
   // practises its mistakes only.
   const needs = request.mode === "mistakes" ? new Set<string>() : skillNeeds(course, state, options.today ?? now.slice(0, 10), facetsOff);
@@ -389,6 +371,24 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const focus = new Set([...needs].flatMap((k) => (PRODUCED.has(parseCardKey(k).skill) ? [parseCardKey(k).part] : [])));
   /** How well a part is known on the reading side: a lexeme recognized, a feature value read off. */
   const recall = (part: string): number => retrievability(state, part, readingSkill(part), orthography, now);
+
+  // What a card asks the learner to have met: a pronunciation card's word (ADR 0095), else its parts.
+  const wordOf = (ex: Exercise): readonly string[] =>
+    kept(PRONOUNCE.has(ex.template) || ex.template === "char-read" || ex.template === "reading-feature" || ex.template === "spelling-choice" ? (askedParts(ex) ?? ex.parts) : ex.parts);
+  /** Whether the learner has shown what a card needs shown before it is asked (the fold's `shown`). */
+  const readyFor = (ex: Exercise): boolean => {
+    // A word is built from its parts once each form asked was recognized right: read first, then
+    // written, as a reading is typed after it was chosen (ADR 0131). A mistakes session brings its
+    // mistakes back whatever has slipped since.
+    if (ex.template === "parts-whole" && request.mode !== "mistakes" && !(askedParts(ex) ?? []).every((part) => state.shown[key(part, readingSkill(part))] !== undefined)) return false;
+    // A reading typed as text (Schluessel, ADR 0131), or in one of several traditions (ADR 0138), is
+    // asked only once the word was read right by choice: its reading shown, as the fold witnesses it.
+    const typedAfterChoice = ex.template === "transcribe" && (typedByProfile(ex.scheme) || ex.tradition !== undefined);
+    if (typedAfterChoice && !wordOf(ex).every((part) => state.shown[cardKey(part, "read-script", orthography, readingOf(ex))] !== undefined)) return false;
+    // So are marks put on a word's letters (ADR 0137): once a choice card has shown them.
+    if (ex.template === "vocalize-build" && !wordOf(ex).every((part) => state.shown[key(part, "read-script")] !== undefined)) return false;
+    return true;
+  };
 
   // ---- 1–2. targets and candidates
   let introduced: readonly string[] = [];
@@ -412,7 +412,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     // Interleave: the earlier sentences that need review most (ADR 0097), marked as review.
     const lessons = lessonNodes(course);
     const past = lessons.slice(0, lessons.indexOf(found)).flatMap((n) => sentencesOf(course, n.unit, n.node));
-    const picked = reviewSentences(course, past, seen, due, needs, desired, key);
+    const picked = reviewSentences(past, seen, due, needs, desired);
     const earlier = [...picked, ...wellKnownSentences(past, picked, seen, recall)];
     for (const s of earlier) reviewItems.add(s.id);
     // Earlier words to be heard (ADR 0101): a word's own clip is the gentlest way to show it.
@@ -430,11 +430,30 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     for (const k of needs) worth.set(parseCardKey(k).part, (worth.get(parseCardKey(k).part) ?? 0) + NEED_GAIN);
     size = options.size ?? Math.max(REVIEW_SESSION_MIN, Math.min(REVIEW_SESSION_MAX, worth.size));
     const neediest = new Set([...worth].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1)).slice(0, 3 * size).map(([part]) => part));
-    const picked = reviewSentences(course, studied, seen, due, needs, desired, key, 2 * size);
+    const picked = reviewSentences(studied, seen, due, needs, desired, 2 * size);
     const sentences = [...picked, ...wellKnownSentences(studied, picked, seen, recall)];
     // Due cards have the highest gain; the well-known sentences are what the calibration can pick
     // to keep the session near the target success rate.
-    pool = candidatesFor(ctx, sentences, lexemesInOrder(course).filter((k) => seen.has(k.id) && neediest.has(k.id)), exclude);
+    const made = candidatesFor(ctx, sentences, lexemesInOrder(course).filter((k) => seen.has(k.id) && neediest.has(k.id)), exclude);
+    // A due facet none of these credits (a word's reading, its spelling, its speaking; a letter) gets
+    // a card of its own, from the sentences that carry its part, those picked above first (R3: never
+    // from every studied sentence), else from its word or its letter's script node.
+    const credited = new Set(made.flatMap((ex) => (readyFor(ex) ? creditedKeys(course, ex) : [])));
+    const usable = new Set(studied);
+    const first = new Set(picked);
+    const aimed: Exercise[] = [];
+    for (const k of [...due.keys()].slice(0, 3 * size)) {
+      if (credited.has(k)) continue;
+      const carrying = (sentencesCarrying(course).get(parseCardKey(k).part) ?? []).filter((s) => usable.has(s));
+      const from = [...carrying.filter((s) => first.has(s)), ...carrying.filter((s) => !first.has(s))];
+      // One card an id: a sentence's card asked about another of its words is another card.
+      const ex = cardCrediting(ctx, k, from, exclude, (x) => readyFor(x) && !aimed.some((a) => a.id === x.id));
+      if (ex === undefined) continue;
+      aimed.push(ex);
+      for (const c of creditedKeys(course, ex)) credited.add(c);
+    }
+    const ids = new Set(aimed.map((ex) => ex.id));
+    pool = [...aimed, ...made.filter((ex) => !ids.has(ex.id))];
   } else {
     pool = mistakeExercises({ course, rng, introduced: [], reading }, state, exclude, seen);
     size = Math.min(options.size ?? 10, pool.length);
@@ -449,11 +468,14 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const chosen: Candidate[] = [];
   const covered = new Set<string>(); // cards (a part by a skill) exercised so far in this plan
   const recognized = new Set<string>(); // new parts recognized so far in this plan
+  /** The cards an answer right to a candidate is credited to (`creditedKeys`: what the player logs). */
+  const keysOf = (c: Candidate): readonly string[] => creditedKeys(course, c.ex);
   const gain = (c: Candidate): number => {
     const facet = facetOf(c.ex.template);
-    // What the answer is credited to: a blank's word, a pronunciation card's word, else every part.
-    const parts = creditedParts(c.ex).map((part) => {
-      const k = cardOf(c.ex.template, part);
+    // What the answer is credited to: a blank's word, a pronunciation card's word, else every part,
+    // and a typed sentence's words' spellings where they have a leftover.
+    const parts = keysOf(c).map((k) => {
+      const { part } = parseCardKey(k);
       // A word met in this lesson is first recognized; producing it counts once it is shown in a later
       // session (D2), so here it is worth no more than any other new card.
       const fresh = targets.has(part) ? (facet === "produce" ? 0.5 : 1) : 0.5;
@@ -478,11 +500,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   // the sentences' typing slots, counts toward none, and says nothing of how well this learner types
   // sentences; it has a slot of its own (`builds`, below).
   const lacks = (c: Candidate, facet: Facet): boolean =>
-    facetOf(c.ex.template) === facet &&
-    creditedParts(c.ex).some((part) => {
-      const k = cardOf(c.ex.template, part);
-      return needs.has(k) && !covered.has(k);
-    });
+    facetOf(c.ex.template) === facet && keysOf(c).some((k) => needs.has(k) && !covered.has(k));
   const shows = (c: Candidate, facet: Facet): boolean => c.ex.template !== "parts-whole" && lacks(c, facet);
   const builds = (c: Candidate): boolean => c.ex.template === "parts-whole" && lacks(c, "produce");
   // How many a session: a share for a skill this learner does well, one for a skill they find hard.
@@ -507,22 +525,16 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const same = sameOf(c.ex.template);
     if (same >= capOf(c.ex.template)) return false;
     if (reviewItems.has(c.ex.item) && chosen.filter((x) => reviewItems.has(x.ex.item)).length >= reviewCap()) return false;
+    return gated(c);
+  };
+  // What a card needs besides room in the session: what it asks must have been met as it requires.
+  const gated = (c: Candidate): boolean => {
     if (RECOGNITION.has(c.ex.template)) return true;
     if (c.ex.template === "parts-whole" && builtWordsWait) return false;
-    // A word is built from its parts once each form asked was recognized right (the fold's `shown`):
-    // read first, then written, as a reading is typed after it was chosen (ADR 0131). A mistakes
-    // session brings its mistakes back whatever has slipped since.
-    if (c.ex.template === "parts-whole" && request.mode !== "mistakes" && !(askedParts(c.ex) ?? []).every((part) => state.shown[key(part, readingSkill(part))] !== undefined)) return false;
+    if (!readyFor(c.ex)) return false;
     // A new part is recognized before it is produced or read. A pronunciation card asks about one word
     // of its sentence (ADR 0095): that word must have been recognized; the rest is context.
-    const gated = kept(PRONOUNCE.has(c.ex.template) || c.ex.template === "char-read" || c.ex.template === "reading-feature" || c.ex.template === "spelling-choice" ? (askedParts(c.ex) ?? c.ex.parts) : c.ex.parts);
-    // A reading typed as text (Schluessel, ADR 0131), or in one of several traditions (ADR 0138), is
-    // asked only once the word was read right by choice: its reading shown, as the fold witnesses it.
-    const typedAfterChoice = c.ex.template === "transcribe" && (typedByProfile(c.ex.scheme) || c.ex.tradition !== undefined);
-    if (typedAfterChoice && !gated.every((part) => state.shown[cardKey(part, "read-script", orthography, readingOf(c.ex))] !== undefined)) return false;
-    // So are marks put on a word's letters (ADR 0137): once a choice card has shown them.
-    if (c.ex.template === "vocalize-build" && !gated.every((part) => state.shown[key(part, "read-script")] !== undefined)) return false;
-    return gated.every((part) => !targets.has(part) || recognized.has(part) || state.cards[key(part, readingSkill(part))] !== undefined);
+    return wordOf(c.ex).every((part) => !targets.has(part) || recognized.has(part) || state.cards[key(part, readingSkill(part))] !== undefined);
   };
   // Aim the session's mean p̂ at the target (§9.4): easy and hard items can balance each other.
   // A self-rated speaking card is no verdict (L6): it neither pulls the session's mean p̂ toward the
@@ -565,6 +577,14 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const presented = new Set<string>();
   const remaining = [...candidates];
   const showing = new Set<Candidate>();
+  // A review aims at what is due (the owner's ruling of 2026-11-22): while a due facet is not yet
+  // exercised and the session can take a card for it and still come near its target success, its
+  // next card is one that credits such a facet, the calibration choosing among them (easy ones
+  // first); where it cannot, the calibration balances with easier cards. And the most forgotten due
+  // facet with a card gets one whatever the calibration says (below the loop): every review makes
+  // progress.
+  const aiming = request.mode === "review";
+  const dueKeys = aiming ? [...due.keys()] : [];
   while (chosen.length < size && remaining.length > 0) {
     builtWordsWait = quotas.some((q) => q.facet === "produce" && q.picked < q.quota) && remaining.some((c) => shows(c, "produce") && sameOf(c.ex.template) < capOf(c.ex.template));
     const missing = [...presentable].filter((part) => !presented.has(part));
@@ -578,6 +598,13 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
       : undefined;
     // The built word's own slot: once the sentences' slots are settled (filled, or none left to fill).
     const building = !mustPresent && owed === undefined && built < buildSlots && !builtWordsWait && affordableOf(builds, remaining);
+    // A review's next card is for a due facet not yet exercised, while one has a card the session
+    // can take and still come near its target (as a typing slot is taken, `affordableOf`).
+    const unaimed = aiming && owed === undefined && !building ? new Set(dueKeys.filter((k) => !covered.has(k))) : undefined;
+    const aims = (c: Candidate): boolean => unaimed !== undefined && keysOf(c).some((k) => unaimed.has(k));
+    const aimNow = unaimed !== undefined && unaimed.size > 0 && affordableOf(aims, remaining);
+    // Self-rated speaking moves no verdict (L6): it can always be afforded.
+    const aimSpoken = !aimNow && unaimed !== undefined && unaimed.size > 0 && remaining.some((c) => allowed(c) && selfRated(c) && aims(c));
     let best = -1;
     let bestScore = Number.NEGATIVE_INFINITY;
     for (const [i, c] of remaining.entries()) {
@@ -585,6 +612,8 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
       if (mustPresent && !presents(c).some((part) => missing.includes(part))) continue;
       if (owed !== undefined && !shows(c, owed.facet)) continue;
       if (building && !builds(c)) continue;
+      if (aimNow && !aims(c)) continue;
+      if (aimSpoken && !(selfRated(c) && aims(c))) continue;
       const s = score(c);
       if (s > bestScore + 1e-12) {
         best = i;
@@ -606,7 +635,23 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     chosen.push(pick);
     for (const part of presents(pick)) presented.add(part);
     if (RECOGNITION.has(pick.ex.template)) for (const part of pick.ex.parts) if (targets.has(part)) recognized.add(part);
-    for (const part of creditedParts(pick.ex)) covered.add(cardOf(pick.ex.template, part));
+    for (const k of keysOf(pick)) covered.add(k);
+  }
+
+  // Every review clears something: the most forgotten due facet a card can be planned for gets one,
+  // whatever the calibration chose. It takes the place of a card of its own template where that
+  // template's cap is reached, else of the last card no slot asked for.
+  if (aiming) {
+    const most = dueKeys.find((k) => candidates.some((c) => keysOf(c).includes(k) && (chosen.includes(c) || gated(c))));
+    if (most !== undefined && !chosen.some((c) => keysOf(c).includes(most))) {
+      const pick = remaining.filter((c) => keysOf(c).includes(most) && gated(c)).sort((a, b) => score(b) - score(a) || a.order - b.order)[0];
+      if (pick !== undefined) {
+        const full = sameOf(pick.ex.template) >= capOf(pick.ex.template);
+        const spare = full ? [...chosen].reverse().find((c) => c.ex.template === pick.ex.template) : [...chosen].reverse().find((c) => !showing.has(c));
+        if (!full && chosen.length < size) chosen.push(pick);
+        else if (spare !== undefined) chosen.splice(chosen.indexOf(spare), 1, pick);
+      }
+    }
   }
 
   // A word's pronunciation as its script leaves it out, in its sentence (ADR 0054, 0095): one card a

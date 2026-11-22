@@ -4,6 +4,7 @@
  * time, and each keeps its own progress.
  */
 import type { SchemeId } from "@nabu/schema";
+import type { CompiledProfile } from "../profile/compile.ts";
 import { readingTag } from "../profile/schemes.ts";
 import { profileOf, type CourseView } from "./course.ts";
 
@@ -11,10 +12,11 @@ import { profileOf, type CourseView } from "./course.ts";
  * An orthography's reading traditions: its ruby layers of kind reading whose scheme can be asked
  * (its `answer`, ADR 0098), in the profile's order. Most orthographies have one or none.
  */
-export const readingTraditions = (course: CourseView, orthography: string = course.orthography): readonly SchemeId[] =>
-  (profileOf(course, orthography).source.annotations ?? []).flatMap((a) =>
-    a.kind === "reading" && a.render === "ruby" && a.scheme !== undefined && readingTag(a.scheme) !== undefined ? [a.scheme] : [],
-  );
+export const readingTraditions = (course: CourseView, orthography: string = course.orthography): readonly SchemeId[] => profileTraditions(profileOf(course, orthography));
+
+/** A profile's reading traditions (`readingTraditions`), from the profile alone. */
+export const profileTraditions = (profile: CompiledProfile): readonly SchemeId[] =>
+  (profile.source.annotations ?? []).flatMap((a) => (a.kind === "reading" && a.render === "ruby" && a.scheme !== undefined && readingTag(a.scheme) !== undefined ? [a.scheme] : []));
 
 /** The tradition reading cards ask: the learner's (`chosen`) where it is one, else the first. */
 export const readingTradition = (course: CourseView, chosen?: SchemeId | false): SchemeId | undefined => {

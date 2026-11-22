@@ -624,7 +624,11 @@ const CoursePath = ({
   // means (its retention target) and where Continue goes (D6).
   const [paceChoice, setChoice] = useState<PaceChoice>(() => paceChoiceOf(course.id));
   const pace = useMemo(() => paceOf(course, state, new Date(minute * 60_000).toISOString(), paceChoice, facetsOff), [course, state, minute, paceChoice, facetsOff]);
-  const counts = useMemo(() => wordCounts(learnedWords(course, state, new Date(minute * 60_000).toISOString(), pace.settings.retention, facetsOff)), [course, state, minute, pace, facetsOff]);
+  // Readings are due in the tradition the learner reads in (ADR 0138), as reviews ask them.
+  const counts = useMemo(
+    () => wordCounts(learnedWords(course, state, new Date(minute * 60_000).toISOString(), pace.settings.retention, facetsOff, storedTradition(course.orthography))),
+    [course, state, minute, pace, facetsOff],
+  );
   const { due, known } = counts;
   const next = continueOf(course, state, pace);
   const studied = Object.keys(state.cards).length > 0;

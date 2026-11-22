@@ -453,11 +453,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا خايف.
-      tokens: [{surface: أنا, lexeme: ana}, {surface: خايف, lexeme: khayef, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: خايف, lexeme: khayef, feats: {Aspect: Part, Gender: Masc, Number: Sing}}]
       reverse: '[أنا] خايف'
     apc-Latn/arabizi:
       text: ana khayef.
-      tokens: [{surface: ana, lexeme: ana}, {surface: khayef, lexeme: khayef, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: khayef, lexeme: khayef, feats: {Aspect: Part, Gender: Masc, Number: Sing}}]
       reverse: '[ana] (khayef|khayif|khayf)'
   translations:
     en: I('m| am) (scared|afraid|worried).
@@ -574,13 +574,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ليك!
-      tokens: [{surface: ليك, lexeme: lek}]
+      tokens: [{surface: ليك, lexeme: lek, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
       reverse: |-
         ليك
         شوف
     apc-Latn/arabizi:
       text: lek!
-      tokens: [{surface: lek, lexeme: lek}]
+      tokens: [{surface: lek, lexeme: lek, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
       reverse: |-
         (lek|lak|layk)
         shuf
@@ -596,14 +596,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ليك شو حلو البحر!
-      tokens: [{surface: ليك, lexeme: lek}, {surface: شو, lexeme: shu}, {surface: حلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: البحر, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: ba7r, surface: بحر, base: true, feats: {Number: Sing}, n: 5}]}]
+      tokens: [{surface: ليك, lexeme: lek, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: شو, lexeme: shu}, {surface: حلو, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: البحر, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: ba7r, surface: بحر, base: true, feats: {Number: Sing}, n: 5}]}]
       reverse: |-
         ليك شو حلو البحر
         ليك قدّيش حلو البحر
         شوف شو حلو البحر
     apc-Latn/arabizi:
       text: lek shu 7elo el ba7r!
-      tokens: [{surface: lek, lexeme: lek}, {surface: shu, lexeme: shu}, {surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: lek, lexeme: lek, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: shu, lexeme: shu}, {surface: 7elo, lexeme: 7elo, feats: {Gender: Masc, Number: Sing}}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 5}]
       reverse: |-
         (lek|lak|layk) (shu|sho) (7elo|7elu|7ilo|helo) (el|l|il) (ba7r|ba7er|bahr)
         lek 2addesh 7elo el ba7r
@@ -750,10 +750,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: بَسّ أَنا خايْفِة شْوَي.
-          tokens: [{surface: بَسّ, lexeme: bas}, {surface: أَنا, lexeme: ana}, {surface: خايْفِة, lexeme: khayef, feats: {Gender: Fem, Number: Sing}}, {surface: شْوَي, lexeme: shway}]
+          tokens: [{surface: بَسّ, lexeme: bas}, {surface: أَنا, lexeme: ana}, {surface: خايْفِة, lexeme: khayef, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: شْوَي, lexeme: shway}]
         apc-Latn/arabizi:
           text: bas ana khayfe shway.
-          tokens: [{surface: bas, lexeme: bas}, {surface: ana, lexeme: ana}, {surface: khayfe, lexeme: khayef, feats: {Gender: Fem, Number: Sing}}, {surface: shway, lexeme: shway}]
+          tokens: [{surface: bas, lexeme: bas}, {surface: ana, lexeme: ana}, {surface: khayfe, lexeme: khayef, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: shway, lexeme: shway}]
       translations:
         en: But I'm a bit worried.
   - line:

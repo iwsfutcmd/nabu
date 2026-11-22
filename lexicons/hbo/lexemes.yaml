@@ -271,7 +271,7 @@ lexemes:
   - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אֲבָרֶכְ]}, status: pinned}
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יְבָרֶכְ]}, status: pinned}
 - id: lexeme:barukh
-  pos: ADJ
+  pos: VERB
   gloss: {en: blessed (a qal passive participle; the verb is piel בֵּרַךְ)}
   spelled: {hbo-Hebr/tiberian: [בָּרוּךְ]}
   forms:
@@ -950,12 +950,11 @@ lexemes:
   gloss: {en: 'thus, so; here'}
   spelled: {hbo-Hebr/tiberian: [כֹּה]}
 - id: lexeme:kol
-  pos: DET
-  feats: {PronType: Tot}
+  pos: NOUN
   gloss: {en: 'all, every; the whole (כָּל־, כֹּל)'}
   spelled: {hbo-Hebr/tiberian: [כֹּל]}
   forms:
-  - {feats: {Definite: Cons}, spelled: {hbo-Hebr/tiberian: [כָל, כָּל]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [כָל, כָּל]}, status: pinned}
 - id: lexeme:labbah
   pos: NOUN
   gloss: {en: flame}
@@ -1078,12 +1077,11 @@ lexemes:
   - {feats: {Definite: Cons, Number: Plur}, spelled: {hbo-Hebr/tiberian: [מֵי]}, status: pinned}
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [מַיִם, מַּיִם, מָּיִם]}, status: pinned}
 - id: lexeme:meat
-  pos: DET
-  feats: {PronType: Ind}
+  pos: NOUN
   gloss: {en: 'a little, a few'}
   spelled: {hbo-Hebr/tiberian: [מְעַט]}
   forms:
-  - {feats: {Definite: Cons, Gender: Masc, Number: Sing}, spelled: {hbo-Hebr/tiberian: [מְעַט]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [מְעַט]}, status: pinned}
 - id: lexeme:melakhah
   pos: NOUN
   gloss: {en: 'work, occupation'}
@@ -1879,7 +1877,7 @@ lexemes:
 - id: lexeme:yam
   pos: NOUN
   gloss: {en: sea}
-  image: {file: ../../courses/images/fish.svg, license: CC0-1.0, provenance: {author: 'llm:claude@39173f79ba6d', status: draft}, source: Drawn for Nabu (courses/images)}
+  image: {file: ../../courses/images/waves.svg, license: CC0-1.0, provenance: {author: 'llm:claude@waves-2026-11-22', status: draft}, source: Drawn for Nabu (courses/images)}
   spelled: {hbo-Hebr/tiberian: [יָם]}
 - id: lexeme:yarad
   pos: VERB

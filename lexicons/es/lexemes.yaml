@@ -1262,13 +1262,13 @@ lexemes:
   notes: {en: 'With the accent when it asks: ¿cuándo? Cubans keep the subject before the verb: ¿Cuándo tú vas?'}
   spelled: {es-Latn/standard: [cuándo]}
 - id: lexeme:cuánto
-  pos: PRON
+  pos: DET
   feats: {PronType: Int}
   gloss: {en: how much; how many}
   notes: {en: 'With its accent in questions. It agrees with its noun: ¿cuánta agua?, ¿cuántos tostones? ¿Cuánto es?: how much is it?'}
   spelled: {es-Latn/standard: [cuánto]}
   forms:
-  - {feats: {Number: Plur}, spelled: {es-Latn/standard: [cuántos]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Plur}, spelled: {es-Latn/standard: [cuántos]}, status: pinned}
 - id: lexeme:cómo
   pos: ADV
   feats: {PronType: Int}
@@ -1631,7 +1631,7 @@ lexemes:
   forms:
   - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, spelled: {es-Latn/standard: [enamoré]}, status: pinned}
 - id: lexeme:encantado
-  pos: INTJ
+  pos: ADJ
   gloss: {en: nice to meet you; delighted}
   notes: {en: 'A man says encantado, a woman encantada.'}
   spelled: {es-Latn/standard: [encantado]}
@@ -2941,7 +2941,8 @@ lexemes:
   forms:
   - {feats: {Gender: Fem, Number: Sing}, spelled: {es-Latn/standard: [muchacha]}, status: pinned}
 - id: lexeme:mucho
-  pos: ADV
+  pos: DET
+  feats: {PronType: Ind}
   gloss: {en: a lot; much; many}
   notes: {en: 'It agrees with its noun: mucho café, mucha hambre, muchos frijoles. After a verb it stays mucho: me gusta mucho.'}
   spelled: {es-Latn/standard: [mucho]}
@@ -3227,13 +3228,13 @@ lexemes:
   forms:
   - {feats: {Gender: Fem, Number: Sing}, spelled: {es-Latn/standard: [orgullosa]}, status: pinned}
 - id: lexeme:otro
-  pos: PRON
+  pos: DET
   feats: {PronType: Ind}
   gloss: {en: other; another}
   notes: {en: 'Never un otro: otro día, another day; otra vez, again; otro más, one more. Un otro comes from English another; in Spanish it is just otro.'}
   spelled: {es-Latn/standard: [otro]}
   forms:
-  - {feats: {Number: Plur}, spelled: {es-Latn/standard: [otros]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Plur}, spelled: {es-Latn/standard: [otros]}, status: pinned}
 - id: lexeme:oír
   pos: VERB
   gloss: {en: to hear}

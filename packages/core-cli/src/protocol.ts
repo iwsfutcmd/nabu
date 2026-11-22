@@ -9,7 +9,7 @@
 import { caseFold, checkTaggedText, compileProfile, readingProjection, type ReadingProjection, type SpellingProjection, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, readingSyllables, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry, type LexemeForm, type WordForm } from "@nabu/core";
 import { TONE_SYSTEMS } from "@nabu/core/speech";
 import { directionOf, scriptOf } from "@nabu/i18n";
-import { formKey, parseFormKey } from "@nabu/core/lesson";
+import { formKey, homophoneScheme, homophoneTable, otherSpellings, parseFormKey } from "@nabu/core/lesson";
 import type { OrthographyProfile, TaggedText, Token } from "@nabu/schema";
 import { loadProfileData, loadProfiles } from "./load.ts";
 
@@ -210,6 +210,21 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
   "sound-compare": (a) => spellingProjection(a).compare(text(a, "expected"), text(a, "typed")),
   /** A word's other spellings of its sound, one place traded for another fixed way of writing it. */
   "sound-spellings": (a) => spellingProjection(a).spellings(text(a)),
+  /**
+   * Each word's other spellings a spelling card may offer (ADR 0142, 0148: `otherSpellings`), as the
+   * card finds them: `words` are tokens (surface, variants, ruby); `tokens` the course's tokens in the
+   * orthography, whose ruby gives the homophone characters where the profile knows them.
+   */
+  "spelling-others": (a) => {
+    const p = profile(a);
+    const words = a["words"];
+    if (!Array.isArray(words)) throw new Error('"words" must be an array of tokens');
+    const scheme = homophoneScheme(p);
+    const tokens = a["tokens"];
+    if (scheme !== undefined && !Array.isArray(tokens)) throw new Error(`"tokens" must be the course's tokens: ${p.id} knows homophones`);
+    const homophones = scheme === undefined ? undefined : homophoneTable(tokens as Token[], scheme);
+    return (words as Token[]).map((w) => otherSpellings(p, w, homophones));
+  },
   /** Whether the scheme's statement relates a reading to a spelling: the sites of one path, or null. */
   "reading-spells": (a) => schemeProjection(a).spells(text(a, "reading"), text(a, "spelling")) ?? null,
   /** The places of a reading the script leaves open, each with the reading changed there in every way. */

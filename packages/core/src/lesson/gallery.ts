@@ -26,20 +26,21 @@ const NONE_SEEN: ReadonlySet<string> = new Set();
 /**
  * The first card of `template` the course's lessons make: each lesson, in path order, makes its
  * cards as a plan that may use only that kind does (its own rng, seeded with `seed`), until one
- * makes one. Undefined where the course rules the kind out or cannot make it.
+ * makes one (one that `where` admits, where given: a spelling card of two options). Undefined
+ * where the course rules the kind out or cannot make it.
  */
-export const sampleExercise = (course: CourseView, template: TemplateId, seed = 1): Exercise | undefined => {
+export const sampleExercise = (course: CourseView, template: TemplateId, seed = 1, where: (ex: Exercise) => boolean = () => true): Exercise | undefined => {
   if (courseExclusions(course).has(template)) return undefined;
   const others = new Set(KINDS.filter((t) => t !== template));
   if (SCRIPT_TEMPLATES.has(template)) {
     for (const at of scriptNodes(course)) {
-      const [found] = scriptCandidates({ course, rng: seededRng(seed), introduced: at.node.introduces }, at, others);
+      const found = scriptCandidates({ course, rng: seededRng(seed), introduced: at.node.introduces }, at, others).find(where);
       if (found !== undefined) return found;
     }
     return undefined;
   }
   for (const at of lessonNodes(course)) {
-    const [found] = lessonCandidates({ course, rng: seededRng(seed), introduced: at.node.introduces }, at, NONE_SEEN, others);
+    const found = lessonCandidates({ course, rng: seededRng(seed), introduced: at.node.introduces }, at, NONE_SEEN, others).find(where);
     if (found !== undefined) return found;
   }
   return undefined;

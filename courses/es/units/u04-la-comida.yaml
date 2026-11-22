@@ -261,7 +261,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Yo tomo mucho café.
-      tokens: [{surface: Yo, lexeme: yo}, {surface: tomo, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: café, lexeme: café, feats: {Number: Sing}}]
+      tokens: [{surface: Yo, lexeme: yo}, {surface: tomo, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho, feats: {Gender: Masc, Number: Sing}}, {surface: café, lexeme: café, feats: {Number: Sing}}]
       reverse: '[Yo] (tomo|bebo) mucho café'
   translations:
     en: |-
@@ -524,7 +524,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Daniel toma mucho café, abuela!
-          tokens: [{surface: Daniel, lexeme: daniel}, {surface: toma, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
+          tokens: [{surface: Daniel, lexeme: daniel}, {surface: toma, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho, feats: {Gender: Masc, Number: Sing}}, {surface: café, lexeme: café, feats: {Number: Sing}}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}]
       translations:
         en: Daniel drinks a lot of coffee, Grandma!
   - line:

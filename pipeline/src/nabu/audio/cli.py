@@ -118,16 +118,32 @@ def generate(
 @app.command()
 def prune(
     course: Annotated[Path, typer.Argument(exists=True, help="Course directory.")],
+    forms: Annotated[
+        bool,
+        typer.Option(
+            "--forms",
+            help="Instead: let the synthesized clips of forms go (lexeme:ra7|form:…, "
+            "lexeme:badd+lexeme:poss-1sg), which no card asks for. No voice runs.",
+        ),
+    ] = False,
 ) -> None:
     """Let the stale clips go without making new ones (the cast or an item changed).
 
     `generate` keeps a stale clip until it has made the new one, so a course can carry
     `audio.stale` for a long while (a recast voice on a CPU). After `prune` it builds clean,
-    and those items have no audio until `generate` makes it.
+    and those items have no audio until `generate` makes it. With --forms it drops the clips
+    of forms instead, which `generate` keeps as it keeps a recording.
     """
-    from nabu.audio.course import synthesize_course
+    from nabu.audio.course import prune_forms, synthesize_course
 
     course_dir, source, units, written = _compiled(course)
+    if forms:
+        pruned = prune_forms(course_dir)
+        typer.echo(
+            f"✓ {source.id}: {pruned.dropped} clips of forms dropped, {pruned.removed} files "
+            f"removed, {pruned.kept} clips kept"
+        )
+        return
     audio = source.audio
     if audio is None or not audio.voices:
         typer.echo(f"✗ {source.id}: no audio voices in course.yaml", err=True)

@@ -11,7 +11,7 @@ import { useMemo, type JSX } from "react";
 import styles from "./App.module.css";
 import { facetsOffOf, offNow } from "./breaks.ts";
 import { paceChoiceOf } from "./pace.ts";
-import { storedReading } from "./readings.ts";
+import { storedReading, storedTradition } from "./readings.ts";
 
 export const WordsPage = ({ loaded, state, back }: { readonly loaded: LoadedCourse; readonly state: LearnerState; readonly back: string }): JSX.Element => {
   const t = useTranslator();
@@ -22,7 +22,8 @@ export const WordsPage = ({ loaded, state, back }: { readonly loaded: LoadedCour
   const facetsOff = facetsOffOf(offNow());
   // Due at the learner's pace (ADR 0105), as the course page counts it (W8): one target on both screens.
   const target = useMemo(() => PACE[paceOf(course, state, now, paceChoiceOf(course.id), facetsOff).band].retention, [course, state, now, facetsOff]);
-  const words = useMemo(() => learnedWords(course, state, now, target, facetsOff), [course, state, now, target, facetsOff]);
+  // Readings due in the tradition the learner reads in (ADR 0138), as the course page counts them.
+  const words = useMemo(() => learnedWords(course, state, now, target, facetsOff, storedTradition(course.orthography)), [course, state, now, target, facetsOff]);
   // What is asked of each word and of each rule and form, each shown or not (ADR 0146), as the log says.
   const parts = useMemo(() => (lexeme: string) => partsOf(course, state, lexeme, facetsOff), [course, state, facetsOff]);
   const rules = useMemo(() => ruleEntries(course, state, facetsOff), [course, state, facetsOff]);

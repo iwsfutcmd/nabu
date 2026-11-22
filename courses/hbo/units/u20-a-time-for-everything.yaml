@@ -32,7 +32,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: לַכֹּל זְמָן׃
-      tokens: [{surface: לַכֹּל, lexemes: [{lexeme: le, surface: לַ, n: 1, head: 2, rel: case}, {lexeme: kol, surface: כֹּל, base: true, n: 2}], readings: {tiberian: lakkōl}}, {surface: זְמָן, lexeme: zeman, feats: {Number: Sing}, readings: {tiberian: zəmān}}]
+      tokens: [{surface: לַכֹּל, lexemes: [{lexeme: le, surface: לַ, n: 1, head: 2, rel: case}, {lexeme: kol, surface: כֹּל, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: lakkōl}}, {surface: זְמָן, lexeme: zeman, feats: {Number: Sing}, readings: {tiberian: zəmān}}]
       reverse: (לכל|לכול) זמן
   translations:
     en: |-
@@ -43,7 +43,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עֵת לְכָל־חֵפֶץ
-      tokens: [{surface: עֵת, lexeme: et.time, feats: {Number: Sing}, readings: {tiberian: ʿēṯ}}, {surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 2, head: 3, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 3}], readings: {tiberian: ləḵol-}}, {surface: חֵפֶץ, lexeme: hefets, feats: {Number: Sing}, readings: {tiberian: ḥḗp̄eṣ}}]
+      tokens: [{surface: עֵת, lexeme: et.time, feats: {Number: Sing}, readings: {tiberian: ʿēṯ}}, {surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 2, head: 3, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons, Number: Sing}, n: 3}], readings: {tiberian: ləḵol-}}, {surface: חֵפֶץ, lexeme: hefets, feats: {Number: Sing}, readings: {tiberian: ḥḗp̄eṣ}}]
       reverse: עת לכל חפץ
   translations:
     en: |-
@@ -74,7 +74,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וְעֵת לְכָל־חֵפֶץ תַּחַת הַשָּׁמָיִם׃
-      tokens: [{surface: וְעֵת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et.time, surface: עֵת, base: true, feats: {Number: Sing}}], readings: {tiberian: wəʿēṯ}}, {surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 3, head: 4, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 4}], readings: {tiberian: ləḵol-}}, {surface: חֵפֶץ, lexeme: hefets, feats: {Number: Sing}, readings: {tiberian: ḥḗp̄eṣ}}, {surface: תַּחַת, lexeme: tahat, n: 6, head: 8, rel: case, readings: {tiberian: táḥaṯ}}, {surface: הַשָּׁמָיִם, lexemes: [{lexeme: ha, surface: הַ, n: 7, head: 8, rel: det}, {lexeme: shamayim, surface: שָּׁמָיִם, base: true, feats: {Number: Plur}, n: 8}], readings: {tiberian: haššāmā́yim}}]
+      tokens: [{surface: וְעֵת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et.time, surface: עֵת, base: true, feats: {Number: Sing}}], readings: {tiberian: wəʿēṯ}}, {surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 3, head: 4, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons, Number: Sing}, n: 4}], readings: {tiberian: ləḵol-}}, {surface: חֵפֶץ, lexeme: hefets, feats: {Number: Sing}, readings: {tiberian: ḥḗp̄eṣ}}, {surface: תַּחַת, lexeme: tahat, n: 6, head: 8, rel: case, readings: {tiberian: táḥaṯ}}, {surface: הַשָּׁמָיִם, lexemes: [{lexeme: ha, surface: הַ, n: 7, head: 8, rel: det}, {lexeme: shamayim, surface: שָּׁמָיִם, base: true, feats: {Number: Plur}, n: 8}], readings: {tiberian: haššāmā́yim}}]
       reverse: ועת לכל חפץ תחת השמים
   translations:
     en: |-
@@ -388,7 +388,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: לַכֹּל זְמָן וְעֵת לְכָל־חֵפֶץ תַּחַת הַשָּׁמָיִם׃
-          tokens: [{surface: לַכֹּל, lexemes: [{lexeme: le, surface: לַ, n: 1, head: 2, rel: case}, {lexeme: kol, surface: כֹּל, base: true, n: 2}], readings: {tiberian: lakkōl}}, {surface: זְמָן, lexeme: zeman, feats: {Number: Sing}, readings: {tiberian: zəmān}}, {surface: וְעֵת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et.time, surface: עֵת, base: true, feats: {Number: Sing}}], readings: {tiberian: wəʿēṯ}}, {surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 6, head: 7, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 7}], readings: {tiberian: ləḵol-}}, {surface: חֵפֶץ, lexeme: hefets, feats: {Number: Sing}, readings: {tiberian: ḥḗp̄eṣ}}, {surface: תַּחַת, lexeme: tahat, n: 9, head: 11, rel: case, readings: {tiberian: táḥaṯ}}, {surface: הַשָּׁמָיִם, lexemes: [{lexeme: ha, surface: הַ, n: 10, head: 11, rel: det}, {lexeme: shamayim, surface: שָּׁמָיִם, base: true, feats: {Number: Plur}, n: 11}], readings: {tiberian: haššāmā́yim}}]
+          tokens: [{surface: לַכֹּל, lexemes: [{lexeme: le, surface: לַ, n: 1, head: 2, rel: case}, {lexeme: kol, surface: כֹּל, base: true, feats: {Number: Sing}, n: 2}], readings: {tiberian: lakkōl}}, {surface: זְמָן, lexeme: zeman, feats: {Number: Sing}, readings: {tiberian: zəmān}}, {surface: וְעֵת, lexemes: [{lexeme: we, surface: וְ}, {lexeme: et.time, surface: עֵת, base: true, feats: {Number: Sing}}], readings: {tiberian: wəʿēṯ}}, {surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 6, head: 7, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons, Number: Sing}, n: 7}], readings: {tiberian: ləḵol-}}, {surface: חֵפֶץ, lexeme: hefets, feats: {Number: Sing}, readings: {tiberian: ḥḗp̄eṣ}}, {surface: תַּחַת, lexeme: tahat, n: 9, head: 11, rel: case, readings: {tiberian: táḥaṯ}}, {surface: הַשָּׁמָיִם, lexemes: [{lexeme: ha, surface: הַ, n: 10, head: 11, rel: det}, {lexeme: shamayim, surface: שָּׁמָיִם, base: true, feats: {Number: Plur}, n: 11}], readings: {tiberian: haššāmā́yim}}]
       translations:
         en: 'For everything there is a season, and a time for every matter under heaven:'
   - line:

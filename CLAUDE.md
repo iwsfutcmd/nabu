@@ -101,6 +101,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   composing through `useSettledSubmit` (@nabu/ui); never disable a button while composing (ADR 0118, D39).
 - Distractors must not give the answer away (P2): rank them (`pickRanked`) by the answer's final punctuation, length,
   shared words and capital. Match-pairs show `cardGloss` (first sense, no notes); tap-for-gloss shows the full gloss.
+- A lexeme's picture shows what it means: courses/images/README.md lists every file with the lexemes that use it and
+  their glosses. Never reuse a picture for another meaning (waves.svg is water; wave.svg is a hand saying hello).
 - A gap-fill asks one thing (ADR 0132, `asks`): which lexeme (options share the answer's form signature, `formSignature`
   in lesson/lexemes.ts, its lexeme's own features included, and its lexeme's UD `pos`; none the accept set takes in the
   gap, none whose gloss shares a meaning) or which form (the answer's own lexeme in other attested forms; the answer must
@@ -193,15 +195,21 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Sessions aim at the skills words lack (ADR 0101): `NEED_GAIN`, typing and listening slots that only come in where the
   session can still reach its target, `focus` blanks. Callers pass `today`, the learner's local date (web
   `localDate(now)`; the e2e solver UTC, as its browser). Tune against the simulation, which checks typing too.
-- The simulator logs credits as the player does (asked words right or wrong, the rest given): keep
-  test/learner-fixtures `creditsOf` in step with `creditOf`.
+- The simulator logs credits as the player does: test/learner-fixtures `creditsOf` calls `creditOf` itself
+  (`rightCredits` for a right answer), so the two cannot drift.
 - The learning pace (ADR 0105): `paceOf(course, state, now, choice)` reads a band (consolidate, steady, accelerate)
   from the fold's `recent` first tries and slipping words; `PACE` sets the retention target, a lesson's review share
   and when `continueOf` offers practice first. Pass the band to `plan` (web: SessionBody; e2e: the solver) so plans
   match. Never block a lesson (D6); tune `PACE` only against the simulation's pacing runs.
-- Due means a facet's recall is below the target (`dueFacets`, `LearnedWord.due`): never a card's FSRS due date. The
-  course page counts due words. A review session has a card per word needing one (5–15) and plans only from the
-  neediest sentences and words plus a few well-known ones: never build candidates from every studied sentence (R3).
+- Due means a facet's recall is below the target and the course can make a card that credits it (`dueFacets`,
+  `LearnedWord.due`; `askable` in learner/due.ts: given the course's lasting exclusions, the facets turned off for good
+  and the learner's reading tradition; never a break; never a letter, ADR 0149): never a card's FSRS due date. The
+  course page counts due words. What a card credits is `creditedKeys`: `creditOf` given an answer exactly right (a typed
+  sentence also credits its words' spelling leftovers); the planner's gain and the simulator use only that. A review
+  session has a card per word needing one (5–15), finds a card for each due facet from the sentences carrying its part
+  (`cardCrediting`, the search `askable` uses; never candidates from every studied sentence, R3), takes cards for due
+  facets nothing else covers while it can afford them (`affordableOf`), and always one for its most forgotten due facet.
+  Reviews answered right clear what is due, in every course (test/due.test.ts): keep it so.
 - Readings on new words only (ADR 0131): the fold witnesses the read-script facet too (`WITNESSED_FACETS`, by D2's rule);
   it is never a skill a word is known by. A reading layer with `fade: by-facet` shows over all words or new ones
   (`DisplayChoice.readings`); <T> fades a word's ruby only inside `FadeReadings` (lessons, stories), by core
@@ -212,7 +220,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Writing side (ADR 0142, 0148): a typed word that says what the expected one says by a fixed correspondence of its
   profile's statement (fa سد for صد, es bolber for volver) has the right sound and the wrong letter: never a typo, the
   label orthographic (Losses and labels notes); `spelling-choice` (write-script) offers the word among its other
-  spellings of that sound (`projection.spellings`; yue: homophone characters, the Jyutping given). A homophone typing
+  spellings of that sound (core `otherSpellings`: `projection.spellings`; yue: homophone characters the course attests,
+  `courseHomophones`, the Jyutping given). One other spelling is enough: the only choice card with two options (ADR 0142,
+  amended). The compiler asks the same function (core-cli `spelling-others`) for `leftovers.spelling`. A homophone typing
   (唔洗 for 唔使) is wrong, however common: the course teaches the character the word is written with.
 - Reading side (ADR 0139–0141): a feature card (`reading-feature`) asks one place a script leaves open (`readingFeatures`:
   a place the scheme's statement leaves open, by the word's own letters where the scheme names the orthography, or an
@@ -252,6 +262,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   transformers); the pipeline starts its worker.py. CI never installs it. ~6 GB RAM: run it alone. Clips Apache-2.0.
   `nabu audio align` gives clips without timings (OmniVoice, Navoiy) word timings by forced alignment. Live: NABU_NAVOIY=1.
 - Clips that fail the round-trip check stay out of bundles until reviewed (`nabu audio report`).
+- No card says a form alone: a form's clip ships in no bundle, and `nabu audio prune <course> --forms` drops the
+  synthesized ones (no voice runs). Since 2026-11-22 apc and fa keep none.
 - Audio check (ADR 0060): `#/<course>/<orth>/audio` (debug link) plays every clip, held-back ones too; clips come from
   courses/ via apps/web/audio-check.ts (Vite plugin; Pages writes a copy), never from bundles. Its verdicts file goes
   through `nabu audio verdicts <course> <file> --reviewer human:<id>`: right → reviewed (ships), wrong → rejected (held);
@@ -788,7 +800,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Tags, features and relations are Universal Dependencies' and a gloss's abbreviations the Leipzig Glossing Rules'
   (the owner, 2026-11-21: "ideally we use UD/Leipzig, unless we run into trouble"); a departure is stated where it is
   made (apc `Aspect=Part`). A lexeme takes one tag, where UD tags a word in its sentence: the one whose dimensions it
-  inflects for, else the one its distribution in its own language gives; never its English gloss's.
+  inflects for, else the one its distribution in its own language gives; never its English gloss's. The drafted tags
+  of es, apc and hbo were gone over with it on 2026-11-22 (docs/migration/retag-2026-11-22.md, REVIEW): a participle is
+  its verb's form (apc khayef, hbo barukh: VERB), Spanish quantifiers that agree are DET, an imperative formula that
+  inflects is VERB (apc tfaddal). Toki Pona's content words keep their drafted tags until the owner names their one tag.
+  A language's `dimensions` lists every feature its tokens choose (read only by the Data page).
 - Nothing inside is a "word" (the owner): the units are lexeme, form, feature, part and token. A token lists the
   `lexemes` it writes, stems, clitics and affixes alike; never add a level between a token and a lexeme. "Word" is for
   what a learner is shown (messages, card and page names).

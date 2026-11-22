@@ -1,0 +1,454 @@
+# Rules in a lexicon: the design (apc first, then Spanish's verbs)
+
+- Status: a draft for the owner, 2026-11-22. Nothing here is built. The owner chose rules in a lexicon, apc
+  first, as the next piece of work that day; this is the design it would be built against. What is stated as
+  decided below is the builder's reading of ADRs 0145, 0146, 0148, 0152, 0153 and 0154; what is the owner's is
+  asked at the end, in six questions. Stage 1 needs none of the six.
+- Drafted by a reading pass over the ADRs, the notes, the data and the code. Its counts were made by read-only
+  scripts on main at 92421c35; two were run again (the pinned forms per language; the three short stems).
+- Builds on: [ADR 0145](adr/0145-lexical-model.md) (realisation, blocking, the three statuses of a form),
+  [0146](adr/0146-what-is-learned.md) (a rule's parts; seen is logged), [0148](adr/0148-projections-and-misses.md)
+  and [0153](adr/0153-projections-as-built.md) (projections are the profile's; the label regularised),
+  [0152](adr/0152-a-word-and-its-parts.md) (built words), [0154](adr/0154-seven-decisions-from-the-notes.md) 1
+  (the lemma is a realisation), [lexical-forms/apc.md](lexical-forms/apc.md) and the owner's rulings on it.
+- Each stage gets an "as built" section here when it lands, as migration-design.md has, and at the end an
+  ADR (Proposed) of where the build read the ADRs narrowly, as 0153 does.
+
+## 1. What there is today
+
+Counted on main at 92421c35 with read-only scripts over `lexicons/`, `courses/` and `docs/lexical-forms/`.
+
+**apc's lexicon** (370 lexemes): NOUN 129, VERB 47, ADJ 37, INTJ 31, PRON 31, ADV 26, NUM 24, PROPN 16, ADP
+10, SCONJ 5, DET 4, AUX 3, CCONJ 3, PART 3, one value head (`lexeme:dual`). No entry has a `form`, `classes`,
+a listed form or a `statement`. 101 entries carry **267 forms, all `pinned`**: VERB 188, ADJ 39, INTJ 13,
+NOUN 13, AUX 8, PRON 6. 42 entries carry 48 allomorphs, pinned spellings with no condition.
+
+**What apc's course writes.** Per orthography 485 verb tokens, 473 outside the citation cell (the he-past):
+**191 distinct (lexeme, feature values) pairs** for VERB, 10 AUX, 39 ADJ, 7 NOUN. 114 Arabic-script verb
+tokens also write suffixed pronouns (`badd` + `poss-1sg` 68, `la-1sg` 24, `obj-1sg` 18). Of 1,166 tokens
+outside their citation cell (both orthographies, every category), 1,148 match a pinned form of that cell and
+spelling (marks aside); the other 18 belong to five multi-word lexemes (`shu-bak`, `kell-sene`, `3a-albak`,
+`allah-ybarek`, `3mol-ma3rouf`) pinned as whole phrases.
+
+**Nothing reads the pinned forms.** The compiler checks their shape only (`lexicon.form`), never against the
+tokens, and `_bundle_lexicon` does not ship them. They are a second copy of what the tokens write, held
+against nothing: removing one changes no byte of a bundle.
+
+**Verb lemmas.** 31 of the 41 verbs with radicals show, as their first spelling (what a word card shows), a
+form that is not their citation cell: `3emel` is spelled *ba3mel*, `ra7` *bru7*, `fehem` *fhemt*,
+`eshteghel` *bishteghel*. ADR 0154 (1) has the lemma be the citation cell's realisation.
+
+**docs/lexical-forms** (the owner ruled on its six questions, 2026-11-20 and 21). `apc.yaml`, written by
+`docs/prototypes/apc-lexical-forms/build.py`, holds per spelled lexeme (352) its drafted form, its four
+projections (Arabic, marks, Arabizi with free spellings, phonemes) beside what the course pins, and a review
+note; per verb (41) its radicals, Form, vowels and Kline's two citation forms, `source`, and for eleven a
+`basis`; the 256 verb forms the sentences write, pinned; each affix's shapes with counts, and no form.
+`authored.yaml` (by hand) holds the verbs' data, each participle-shaped word's head, and the Form I
+participle's template with its `back` letters (REVIEW). What `build.py` checks: of 1,025 distinct words, 951
+come back in all three spellings, 65 differ in one, 9 have no form; of 354 listed forms 314 come back; for
+58 of 74 reviewed clips the marks are the voice's (هَيدا/هَيدي's glide in 15); the template gives the 9
+participle forms of `seken`, `2a3ed`, `wa2ef`, `nezel`. It does no conjugation, no affix forms, no stress, no
+helping vowel inside a word, no other pattern; and it is Python (`lexform.py`), so none of it can ship:
+realising and matching belong to core.
+
+**Spanish, second.** 721 lexemes, 835 pinned forms, of which 642 are verbs' (VERB 603, AUX 39) on 163 of
+165 verb lexemes; no `classes` stated, ten gender defaults. The course writes 2,014 verb and auxiliary
+tokens outside the infinitive, 643 distinct pairs; 3,445 of its 3,473 inflected tokens (all categories)
+match a pinned form, the rest being `tener-que` and `palma-real` (pinned as phrases) and nouns whose tokens
+choose their gender (`hermanos`). Some cells leave a value out where forms coincide (*hablaría*:
+`{Mood: Cnd, Number: Sing, VerbForm: Fin}`, no Person).
+
+## 2. What a rule is here
+
+In ADR 0145's terms: a lexeme with a **cell** (the feature values its token chooses) is **realised** into a
+lexical form, which each orthography's projection spells. Realising is one function, run in core, in this
+order:
+
+1. **Blocking, the Elsewhere lookup.** Among the lexeme's `forms` (pinned or listed) whose `feats` are a
+   subset of the cell, the most specific wins. One with `form` is the whole answer (*fue*); one with `stem`
+   is the stem the rules continue (*tuv‑*). Two equally specific are an error (`lexicon.tie`) unless marked
+   free variants. **Blocking off** skips listed forms and stated classes and keeps pinned ones (ADR 0145):
+   its output, where it differs, is the regularised form.
+2. **The stem.** A lexical form that is a string is its own stem. A `RadicalForm` is put through the
+   language's **stem templates**, chosen by its Form, its **root class** (computed from the radicals by the
+   language's conditions, never stored) and the stem the cell selects (apc: the perfect's long and short
+   stems, the imperfect stem). A template is a pattern's allomorph: digits for radicals, the pattern's own
+   letters and vowels around them, `{past}` and `{present}` for the vowels the Form leaves open.
+3. **Affix blocks**, in order. Each block is a list of exponents keyed by feature values; the most specific
+   whose values the cell has applies (Pāṇini; Stump's blocks), and at most one per block. An exponent may
+   also select the stem (apc: the short perfect stem for first and second persons).
+4. **Allomorphs of the token's other lexemes** (a suffixed pronoun, the dual), by what they follow (`after`).
+5. **Ordered rewrite rules** of the language over the lexical form: apc's prefix vowel, prothetic alef,
+   syncope, helping vowel, ة as ت before a suffix.
+6. **Projection** into each orthography and the marked layer the voices read, by the profile (section 3).
+
+A rule matches **letters with their sets of marks**, never code points in a row (NFC puts a fatha before a
+shadda, classes 30 and 33, where apc.md names the shadda first); `+` boundaries are kept until projection.
+
+**Patterns.** The participle's templates are one set with two heads (ADR 0145). They are stored once, on a
+pattern lexeme (`lexeme:fa3il`, `head: {takes: [VERB], makes: NOUN}`, `form: {templates}`: the schema's
+`PatternForm`). The verb's `Aspect=Part` cells take their stem from it (a value head: a form of the verb);
+the agentive noun is a derivative on the same templates, which keeps the short vowel syncope drops
+(*ketbe* against *ketibe*). In the first cut the agentive stays a stored lexeme (`m3allem`, with `base` and
+`pattern` links); computing derivatives waits.
+
+**The first cut covers** (apc, every branch REVIEW until the owner signs it off):
+1. **The suffix conjugation** (`Aspect=Perf`), all eight cells, by root class: sound with a past in a or i,
+   hollow (long stem راح in the third persons, short stem رُح before a consonant ending), doubled, defective;
+   Forms II, III and VIII by their templates; syncope of the stem's last short vowel before a vowel-initial
+   ending (عِمِل + ـوا → عِمْلوا *3emlo*; she-past as the speaker's *áklit*, so عَزْمِت *3azmet*, ruling 7);
+   the helping vowel before the past's -t (رُحِت, شْرِبِت).
+2. **The prefix conjugation** (`Aspect=Imp`, `Mood=Sub` and `Mood=Ind`): person prefixes ت ي ن and none
+   for I; the indicative's ب (and ب + ن as من); the prefix's vowel, i before a cluster and a before ع
+   (*bishrab*, *ba3mel*), none before a consonant with a vowel (*bru7*); the prothetic alef (*eshrab*);
+   the endings -i and -o.
+3. **The command** (`Mood=Imp`): the present stem with the prothetic alef, -i, -o.
+4. **The participle** (`Aspect=Part`), Form I only, from `authored.yaml`'s template, its long a said e
+   unless a back consonant precedes (REVIEW, ruling 3).
+5. **Nouns and adjectives:** the feminine ة, -e or -a by the letter before (REVIEW); the adjective's plural
+   -in; the dual -en, with ة as ت; the suffixed pronouns (possessive, object -ni, dative la-) with their
+   allomorphs by what they follow; ة as ت before a suffix (عيلتي); the helping vowel inside a word, before
+   an ending that begins with a said consonant (بِنِتْكُن) and not before a vowel or the silent ه (بِنْتي,
+   بِنْتْهُن), as ruled on 2026-11-21.
+
+**It leaves pinned** (rule debt, never a learner's part): `kan`'s and `zar`'s short stems (below); the
+hamza-initial verbs' commands (*kol*, *khod*); `stanna` (a listed stem with a defective verb's endings);
+participles of Forms II to X; the five multi-word lexemes; clitic joins (و, ب, ع, ال, هال: ADR 0152's "how
+two words join", the article before a sun letter); stress; a q said q. Broken plurals (`wlad`, `jiren`,
+`shabeb`, `tyeb`) stay lexemes of their own, cited in the plural: making them listed forms of a singular
+changes lexeme ids and learners' state, and waits for the owner (not in it).
+
+## 3. Where it is stored
+
+**A lexeme's lexical form moves into `lexicons/apc/lexemes.yaml`, under the schema's existing `form` key:**
+a string in apc's notation (حِلُو, بِنْت, قَهْو\u065cة), or for a verb a `RadicalForm`
+(`lexeme:shereb`: `form: {radicals: [ش, ر, ب], form: I, vowels: {past: i, present: a}, source: kline 75}`).
+`authored.yaml`'s verb data, participle heads and template move there and into `language.yaml`, its `basis`
+lines into a `basis` field (for reviewers, never shown to learners). `apc.yaml` and `apc-review.md` are
+frozen as a record, as `docs/migration/plans/` are; the review list is the compiler's from then on (`nabu
+forms ../courses/apc`, beside `nabu projections`); `build.py` is kept as the record of the drafting.
+
+**The rules go in `lexicons/apc/language.yaml`** under `notation`, `rootClasses`, `stems`, `realisation` and
+`phonology`, one file and not a file per rule (as `language.schema.json` once planned): blocks and rewrite
+rules interact by their order, which a file per rule would lose. Each realisation rule has a `rule:` id that
+`rules` names with its gloss (what a learner is shown), as `rule:used-to` is named today, and each exponent a
+`branch` (ADR 0146: a rule's parts are its branches; `PartId` already allows `rule:apc-imperfect|ind`).
+
+**Worked example 1: a sound Form I verb in the imperfect** (*shereb*, ش ر ب, present vowel a):
+
+```yaml
+notation:                               # apc.md: what the lexical form's signs are
+  vowels: {a: "َ", i: "ِ", u: "ُ", e: "\u065c", o: "\u065d"}
+  long: {a: "َا", i: "ِي", u: "ُو", e: "\u065cي", o: "\u065dو"}
+  none: "ْ"
+  sets: {C: "[ء-يگپڤ]", V: "[َُِ\u065c\u065d]", ayn: "[ع]"}
+rootClasses:                            # computed from the radicals, first that holds
+  - {id: hollow, radical: 2, in: "[وي]"}
+  - {id: doubled, same: [2, 3]}
+  - {id: defective, radical: 3, in: "[وي]"}
+  - {id: sound}
+stems:
+  - {id: imperfect, form: I, class: sound, template: "1ْ2{present}3"}        # شْرَب, عْمِل
+  - {id: imperfect, form: I, class: hollow, template: "1{long present}3"}    # رُوح
+realisation:
+  - id: rule:apc-imperfect
+    when: {pos: VERB, feats: {Aspect: Imp}}
+    stem: imperfect
+    blocks:
+      - prefix:                         # the most specific whose values the cell has
+          - {branch: 1sg, feats: {Person: '1', Number: Sing}, add: ""}
+          - {branch: 1pl, feats: {Person: '1', Number: Plur}, add: "ن"}
+          - {branch: 3fs, feats: {Person: '3', Gender: Fem, Number: Sing}, add: "ت"}
+          - {branch: 2, feats: {Person: '2'}, add: "ت"}
+          - {branch: 3, feats: {Person: '3'}, add: "ي"}
+      - prefix:
+          - {branch: ind, feats: {Mood: Ind}, add: "ب"}
+      - suffix:
+          - {branch: 2fs, feats: {Person: '2', Gender: Fem, Number: Sing}, add: "ـِي"}
+          - {branch: pl, feats: {Person: '2,3', Number: Plur}, add: "ـُوا\u06df"}
+phonology:                              # in order, over the whole form
+  - {id: rule:apc-bn, find: "ب+ن", to: "م+ن"}                                # منشرب
+  - {id: rule:apc-prefix-vowel, branch: ayn, find: "{C}+", before: "{ayn}ْ", to: "{C}َ+"}
+  - {id: rule:apc-prefix-vowel, branch: cluster, find: "{C}+", before: "{C}ْ", to: "{C}ِ+"}
+  - {id: rule:apc-prefix-vowel, branch: none, find: "{C}+", to: "{C}ْ+"}     # بْروح, بْتِشْرَب
+  - {id: rule:apc-prothesis, at: start, find: "{C}ْ{C}", to: "اِ{C}ْ{C}"}    # اِشْرَب
+  - {id: rule:apc-syncope, branch: imperfect, find: "{C}[ِ ُ]{C}+", before: "{V}", to: "{C}ْ{C}+"}
+```
+
+The cell `{Aspect: Imp, Mood: Ind, Person: '2', Gender: Fem, Number: Sing}` of *shereb* gives
+ب + ت + شْرَب + ـِي → بْتِشْرَبِي: Arabic بتشربي, marks بْتِشْرَبي, Arabizi *btishrabi* (the course's three
+spellings). Of *3emel* (عْمِل) the same cell gives بْتَعْمْلِي: *bta3mli*, marks بْتَعْمْلي, as the course has
+them. 1sg indicative gives بِشْرَب *bishrab* and بَعْمِل *ba3mel*; 1sg subjunctive اِشْرَب *eshrab* and
+اِعْزِم *e3zem* (the prothetic alef is no prefix, so ع does not make it a): the course's *ba3mel* beside
+*e3zmak*, which authored.yaml noted as unsettled, is what these rules give.
+
+**Worked example 2: a hollow verb in the perfect** (*ra7*, ر و ح, present vowel u):
+
+```yaml
+stems:
+  - {id: perfect, form: I, class: hollow, template: "1{long past}3"}         # راح (past a; shef, ken: e)
+  - {id: perfect-short, form: I, class: hollow, template: "1{present}3"}     # رُح
+realisation:
+  - id: rule:apc-perfect
+    when: {pos: VERB, feats: {Aspect: Perf}}
+    stem: perfect
+    blocks:
+      - suffix:
+          - {branch: 1sg, feats: {Person: '1', Number: Sing}, add: "ت", stem: perfect-short}
+          - {branch: 1pl, feats: {Person: '1', Number: Plur}, add: "نَا", stem: perfect-short}
+          - {branch: 2fs, feats: {Person: '2', Gender: Fem, Number: Sing}, add: "تِي", stem: perfect-short}
+          - {branch: 2pl, feats: {Person: '2', Number: Plur}, add: "تُوا\u06df", stem: perfect-short}
+          - {branch: 2ms, feats: {Person: '2'}, add: "ت", stem: perfect-short}
+          - {branch: 3fs, feats: {Person: '3', Gender: Fem, Number: Sing}, add: "ـِت"}
+          - {branch: 3pl, feats: {Person: '3', Number: Plur}, add: "ـُوا\u06df"}
+          - {branch: 3ms, feats: {Person: '3'}, add: ""}
+```
+
+It gives راح, راحِت *ra7et*, راحوا *ra7o*, رُحْنا *ru7na*, رُحْتي, رُحْتوا *ru7to*, and رُحْت, which the
+helping vowel marks رُحِت, as `vocalization.yaml` does; `sar` (present i) gives صِرِت, as the course has it.
+`zar` and `kan` (present u, like `ra7`) give زُرِت and كُنِت where the course writes زِرِت *zert* and كِنِت
+*kent*: a vowel stored per verb (a lexical feature, so a part to learn), or one Beirut vowel spelled two
+ways, is a fact the repo cannot settle (question 2). Until then their short-stem cells stay pinned.
+
+**Worked example 3: a noun with a suffixed pronoun, and the helping vowel** (*bent*, بِنْت):
+
+```yaml
+# lexemes.yaml: the pronouns' allomorphs get their forms
+- id: lexeme:poss-2pl
+  allomorphs: [{form: "ـكُن"}]
+- id: lexeme:poss-1sg
+  allomorphs: [{form: "ـِي"}]
+- id: lexeme:poss-2ms                            # the course: -ak 39 words, -k 1
+  allomorphs: [{form: "ـَك", after: {endsIn: "{C}"}}, {form: "ـك"}]
+- id: lexeme:poss-3pl
+  allomorphs: [{form: "ـُه\u06dfن"}]          # -on: the vowel, then a silent ه
+# language.yaml
+phonology:
+  - {id: rule:apc-helping-vowel, branch: inside, find: "{C}ْ{C}ْ+{C}", to: "{C}ِ{C}ْ+{C}"}
+  - {id: rule:apc-helping-vowel, branch: end, find: "{C}ْ{C}", at: end, to: "{C}ِ{C}"}
+  - {id: rule:apc-feminine-t, find: "ة+", to: "تْ+"}                          # عيلة + ي → عيلتي
+```
+
+بِنْت + ـكُن → بِنِتْكُن (marks), بنتكن (Arabic), *bentkon* (Arabizi: the helping vowel is free there and
+unwritten by default). بِنْت + ـِي → بِنْتي: a vowel follows the cluster, so no helping vowel. بِنْت + ـُه\u06dfن
+→ بِنْتُه\u06dfن, which the marks write بِنْتْهُن (their vowel on the ه, apc.md) and Arabizi with -on, as the
+speaker's *ebnon*. بِنْت alone: بِنِت. The ruled conditions of the helping vowel (a doubled letter, a
+glide closing a diphthong, three consonants in a row) are branches of the same rule.
+
+**Projections are profile data,** under a new `spell` key of each profile, from the language's notation:
+
+```yaml
+# profiles/apc-Arab.standard.yaml
+spell:
+  from: lexical
+  rules:
+    - {find: "[ًَُِّْ\u065c\u065d\u06df]", to: ""}       # marks, length signs and the silent sign go
+    - {find: "[گپڤ]", map: {گ: ك, پ: ب, ڤ: ف}}
+annotations:
+  - {id: vocalized, kind: vocalization, toggle: true, default: "on", spell: {rules: [...]}}   # apc.md's table
+```
+
+Why the profile: ADR 0148 and 0153 put what an orthography writes in its profile (the sound statement, read
+forwards), and spelling from the lexical form is that statement's other direction. A profile is already one
+orthography of one language, a second orthography adds a profile and leaves the language alone, and one file
+holding both directions lets a check tie them: every free alternative `spell` gives must compare as `free`
+under the profile's correspondences. The notation every rule and projection reads (what U+065C is) is the
+language's. The marked text the voices read is a layer of the Arabic orthography: its `vocalized`
+annotation's `spell`. Phonemes would be the language's, and wait: nothing on the device reads them (ADR 0153).
+
+**Schema changes** (by hand in `schemas/`, then `pnpm codegen`). `language.schema.json`: `notation`
+(`vowels`, `long`, `none`, `sets` of UnicodeSets); `rootClasses` (`id`; `radical` + `in`, or `same`); `stems`
+(`id`, `form`, `class`, `template`); `realisation: [Rule]`, a Rule being `id`, `when` (a Condition), `stem`
+(a stem id or `{pattern: LexemeId}`) and `blocks` of `{prefix|suffix: [Exponent]}`, an Exponent `branch`,
+`feats` (a comma meaning one of), `add`, `stem`; `phonology: [Rewrite]`, a Rewrite `id`, `branch`, `find`,
+`to` or `map`, `before`, `after`, `at` (`{name}` a set, `+` a boundary); `Condition.endsIn`. Each item takes
+`notes`. `lexicon.schema.json`: `RadicalForm.source` and `.basis`; `LexemeForm.free` (ADR 0145's tie that
+is no error). `orthography-profile.schema.json`: `spell` (`from: lexical`, `rules`, `alternatives`: the free
+spellings), on the profile and on an annotation. `bundle.schema.json`: section 5.
+
+## 4. The engine in core
+
+A new pure module, `packages/core/src/lexicon/` (no I/O; the declared language, the lexicon and the profiles
+passed in; no list of a language's letters or endings: sets and exponents are data):
+
+```ts
+compileLanguage(declared: LanguageDeclaration, lexicon: Lexicon): Result<CompiledLanguage, readonly string[]>
+realise(lang: CompiledLanguage, lexeme: LexemeId, cell: UdFeatures, options?: { blocking?: boolean }): Result<Realisation, RealiseError>
+realiseToken(lang: CompiledLanguage, written: readonly WrittenLexeme[]): Result<Realisation, RealiseError>
+compileSpeller(profile: OrthographyProfile, lang: CompiledLanguage, layer?: string): Result<Speller, readonly string[]>
+spell(speller: Speller, form: string): { readonly spelling: string; readonly alternatives: readonly string[] }
+paradigm(lang: CompiledLanguage, lexeme: LexemeId, cells: readonly UdFeatures[]): readonly Realised[]
+
+interface Realisation {
+  readonly form: string;                                  // the lexical form, boundaries kept
+  readonly status: "given" | "pinned" | "listed";          // ADR 0145's three statuses
+  readonly steps: readonly { readonly rule: RuleId; readonly branch: string }[];
+  readonly listed?: PartId;                               // the listed part it used: lexeme:tener|stem:tuv
+}
+type RealiseError = { kind: "no-rule"; cell } | { kind: "tie"; forms } | { kind: "template"; stem; root };
+```
+
+- **Blocking:** each lexeme's `forms` are indexed by feature set, most specific first; a lookup is a subset
+  test over a handful. A tie is a compile error unless both are `free`. `blocking: false` skips listed forms
+  and stated classes and keeps pinned ones, so a pinned form never yields a regularised one.
+- **A cell that leaves a value out** (es *hablaría*; apc's first persons, with no Gender) is realised as
+  written: an exponent that reads a feature the cell lacks does not apply. Nothing completes the cell.
+- **The grader's inverse** ("is this typed word the rule's form for a listed form's cell?") is never computed
+  on the device: the bundle carries each cell's spelling and, where blocking off differs, the regularised
+  one (section 5), and the grader looks a typed word up in a map built once, as `spellingsIn` does today.
+- **Cost.** Grading (p95 under 5 ms, 4× throttling, cold caches) does lookups only; the engine runs in the
+  compiler through core-cli. `prepareGrading` adds the paradigm's spellings to its maps (apc about 1,200
+  verb cells in each of two orthographies, es about 8,900); stage 4 times it on the perf harness, and fills
+  the maps lazily per lexeme if it is too slow.
+- **core-cli ops:** `realise`, `realise-token`, `spell`, `paradigm`, each also in `batch`. As `statement`
+  does for projection vectors, a vector may pass a `language` object, so blocking is tested on a fixture.
+- **Vectors**, in both harnesses: `conformance/realise.json` (`realise/blocking/*` on a fixture: a full
+  form wins, a stem continues, a tie errs, a free tie does not, blocking off skips listed and keeps pinned,
+  an unset value; `realise/apc/*`, one per branch of every apc rule, from the course's own forms);
+  `conformance/spell.json` (apc's Arabic, marks and Arabizi with alternatives; es's identity); and
+  `grade/labels/regularised/*` in `grade.json`. Defaults are matched in Python today (`lexicon.py`
+  `default_for`); a default is a rule (ADR 0148), so stage 2 moves it into core (`lexical-features`).
+
+## 5. The compiler
+
+**For every token of the course**, in each orthography: `realise-token` over its lexemes with their chosen
+values, then `spell` for the orthography (and the `vocalized` layer, against `vocalization.yaml`'s entry for
+the token's spelling). The course's spelling must be the projection's spelling or one of its alternatives.
+A token whose base is in its citation cell checks the lexeme's lemma the same way.
+
+- **On a mismatch** the token needs a form of its lexeme for that cell: `pinned` (our rule is wrong or
+  missing: rule debt, reported per language) or `listed` with its `statement` (the language has no rule).
+  New lints, each with a registry entry in `diagnostics.py` and a mutation in `make_lint_fixtures.py`:
+  `form.projection` (warning, stage 1: a form does not spell as its lexeme's first spelling, or its marks
+  are not its vocalization's); `form.unaccounted` (warning in stage 2, error from stage 3: a token neither
+  the rules nor a form of its lexeme give); `form.pinned-differs` (error: a pinned spelling no token of
+  that cell writes); `form.redundant` (warning: a pinned form the rules give); `form.rule-debt` (info: pinned
+  forms per language, ADR 0145). Expected warnings go into `tests/test_courses.py` `EXPECTED_WARNINGS`.
+- **Pinned forms that a rule gives are removed** by a CLI (`nabu forms prune ../lexicons/apc`, writing with
+  `nabu.yamlio`), never by hand: each form whose cell the rules give with every spelling it pins. The check
+  that nothing a learner sees changes: `pnpm bundles` leaves `apps/web/public/bundles` byte for byte (pinned
+  forms are not shipped, so a diff means a rule changed a token's surface, which the compiler never does:
+  tokens stay the text); `nabu audio generate ../courses/apc --check` finds no clip stale (clips' inputs
+  are token surfaces and `vocalization.yaml`, and their form keys come from tokens); `vocalization.yaml` is
+  not touched; `nabu forms` lists every removed form for the record.
+- **What the bundle carries (stage 4), weighed.** Rules and lexical forms realised on the device would follow
+  ADR 0153's "no second place to be wrong", at the price of thousands of realisations at session start on a
+  throttled phone, for answers the compiler has already checked. So the compiler precomputes, as it writes
+  `leftovers`: the lexicon gains `cells` (per part of speech, the cells whose every value the course teaches,
+  as form keys), each lexeme a `paradigm` (per orthography each cell's spelling or null, with the marked
+  layer) and `regularised` (only where blocking off differs). About 60 KB for apc and 100 KB for es beside
+  lexicons of 260 and 480 KB; rules, notation and lexical forms stay out. `formatVersion` 5.
+
+## 6. What a learner gets
+
+**The label regularised** (ADR 0148), produced from stage 6: apc's first cut lists nothing.
+- **When:** the typed word, as the grader keys it, is the regularised spelling the bundle ships for the
+  expected token's lexeme and cell (✗*tenió* for *tuvo*, ✗*penso* for *pienso*), and not the expected word.
+  Never for a pinned form (no regularised spelling ships for one).
+- **In the order of grading:** a new relation beside `lexical` and `grammatical`. In the slip step, a slip
+  that lands on the regularised form is `regularised` + `slip` (*penso*), as *habla* for *hablo* is
+  grammatical + slip; otherwise `regularised` (*tenió*). The sound question is asked as for grammatical, and
+  feedback leaves "another sound" out for the pair, as it does for another form. The outcome: explained, so
+  `WRONG_WORD`, never the judge's (it is never a question of meaning).
+- **Credit:** the lexeme shown by the card's skill, the feature values shown, the listed part missed
+  (`lexeme:tener|stem:tuv`, `lexeme:pensar|class:e-ie`). `feedback.label.regularised` exists. **Done:**
+  `grade/labels/regularised/*` (*tenió*, *penso*, a slip onto it, a pinned form that yields none), the fold
+  mirrored in `test/fold-before-r2.ts`, test:perf green.
+
+**A grader that knows every form the rules give** (stage 4, ADR 0148): a slip onto an unwritten regular form
+of the answer's own lexeme is grammatical + slip, where today it is a typo. Done: a vector per course with
+rules, the fixture courses green, the acceptance runs rerun.
+
+**A built word for a form no sentence writes** (stage 5, ADR 0146; ADR 0152's "not in this ADR"):
+- **The card:** the lexeme's lemma with its gloss and the form's label; the learner types the form. Its
+  answer is the paradigm's spelling (its alternatives accepted as the profile's free correspondences accept
+  them). No sentence: none writes the form (question 4). Typed only, never a choice (ADR 0132 stands).
+- **Offered only where:** the realisation is `given` (never pinned or listed); the lexeme is recognized (the
+  fold's `shown`); every value of the cell is taught by the learner's unit; another lexeme of the course
+  writes the cell (the branch has been shown); and the learner has **never seen** the pair.
+- **What it needs from seen-logging:** the fold's seen pairs (ADR 0146: each card's `displayed`, each story
+  line's `story_line_read`, as `DisplayedLexeme {lexeme, feats}`), keyed as the form key. Nothing logged
+  before counts, so a pair also counts as seen where a sentence the learner has met writes it: an old log
+  never makes a pair look unseen that its sentences showed.
+- **Credit:** what `parts-whole` credits now, the cell's taught values (`choose`), one a session in its
+  slot (ADR 0152). **Done:** tests over every fixture course; the view (`<T>`, MF2, `keyboardHint`,
+  IME-safe) in the visual matrix; e2e by keyboard and touch; the simulation's acceptance runs.
+
+**A rule's branches as parts** (`rule:apc-imperfect|ind`): named in the data from stage 2, and the
+compiler reports a branch no content shows (ADR 0146). Memory for them waits: ADR 0146 leaves open what the
+simulated learner knows of a rule and what the performance model keys (question 5).
+
+## 7. Build order
+
+Each stage lands whole on main with `pnpm lint`, `typecheck`, `test`, `conformance`, `courses` and
+`bundles` green and the fixture courses green. Each is one agent session.
+
+1. **Lexical forms and their projections (can start now).** The notation; `spell` in apc's two profiles and
+   the `vocalized` layer; `spell` in core and core-cli with `conformance/spell.json`; apc's forms into
+   `lexemes.yaml` (a one-off script from `apc.yaml` and `authored.yaml`, then edited directly);
+   `form.projection` over every lemma and allomorph; `nabu forms`; the two files frozen. Bundles unchanged.
+   It needs only rulings already made (the three signs, the helping vowel, long a said e per word); Arabizi's
+   free spellings are `alternatives`, which grading does not read until question 6 is answered.
+2. **The engine and apc's verbs, report only.** `realise`, `realise-token`, `paradigm`; the perfect,
+   imperfect, command and participle; `conformance/realise.json`; defaults into core; `form.unaccounted` as a
+   warning. Nothing removed. **The owner reviews** apc's rules and the mismatch list before stage 3.
+3. **apc's nouns and suffixes; pinned forms go.** The nominal rules and allomorphs; mismatches settled as
+   ruled (rule changed, form pinned, or the course corrected and its clips regenerated); `nabu forms prune`;
+   `form.unaccounted` an error and the other lints; the byte-for-byte bundle and stale-clip checks.
+4. **The bundle's paradigms; the grader's lexicon.** Format 5; `spellingsIn` takes the paradigms; the slip
+   vectors; test:perf with preparation timed; the simulation rerun. Needs question 3.
+5. **A built word for an unseen form.** Needs seen-logging landed (ADR 0146; built beside this) and question 4.
+6. **Spanish's verbs** (two sessions). 6a: es's forms (`spell` the identity under the stress statement), its
+   classes stated (e-ie, o-ue, e-i, the -go verbs, short futures, strong preterites: REVIEW), the -ar, -er,
+   -ir rules, `form.unaccounted` over 2,014 tokens; the owner reviews the classes and what to list. 6b:
+   listed forms with statements (*ser*, *ir*, *tuv‑*), pinned forms pruned, the label regularised.
+
+## 8. Not in it, risks, questions
+
+**Not in it, and why.**
+- Order rules and clitic joins (و, ب, ع + ال, the article before a sun letter): ADR 0145 starts order rules
+  inside words, but joins are where apc's two orthographies tokenize differently (عالشغل is one token, *3al
+  shoghl* two), which needs its own design.
+- Computed derivatives (the agentive noun, Forms II–X participles, verbal nouns) and wug cards: ADR 0146
+  puts wug cards last; the agentive needs `base`/`pattern` links read by a rule, which this cut only stores.
+- Broken plurals as listed forms of a singular (`jiren` of `jar`): a change of lexeme ids, learners' state
+  and the alias table.
+- Stress, phonemes, a q said q (no source in the repo); hbo, grc, uz and fa (each its own design, later).
+- Generating `vocalization.yaml`: its 16 reviewed-clip differences await rulings; it is checked, not written.
+
+**Risks.**
+- **The check surfaces the course's own inconsistencies** (*ru7t* beside *zert*; the 65 words apc-review.md
+  lists): each is a ruling or a speaker's answer. Stage 2 is report-only for this reason.
+- **Over-generation:** a wrong exponent accepts or labels wrongly. Every branch has a vector, a rule changes
+  no token's text, and stage 4's stricter grader is measured before it lands.
+- **Two statements of what is free** (`spell` alternatives, the sound statement's `free`): held together by
+  a check from stage 1.
+- **Changing the verb lemmas** (question 1) changes word cards and stales 31 word clips.
+- **Preparation time on a throttled phone** for es's 8,900 cells (stage 4 measures; lazy maps if needed).
+- **Work landing at the same time** (2026-11-22): the retag, which completes the language files' dimension
+  lists, and seen-logging touch `language.yaml`, `lexemes.yaml` and the event schema; stage 1 starts from
+  the tree that has them.
+
+**Questions for the owner.**
+1. **What a verb's word card shows.** 31 of 41 apc verbs show an inflected form (*ba3mel*, *bru7*). (a) The
+   citation cell realised by rule, Kline's he-past, with the he-present second (*3emel / ya3mel*); (b) keep
+   the course's chosen form as a pinned display spelling. Pick (a), by ADR 0154 (1); 31 word clips are made
+   again.
+2. **Where the course writes one shape two ways, or Beirut's vowel is a speaker's fact** (the short stems
+   رُحِت, زِرِت, كِنِت of three u-verbs). (a) Ask a speaker and keep the cells pinned meanwhile; (b) follow
+   Kline and accept the other spelling; (c) store the vowel per verb. Pick (a), with (b) where Kline is
+   explicit.
+3. **What the bundle carries.** (a) Precomputed paradigms and regularised spellings, the device looking
+   them up; (b) rules and lexical forms, realised on the device as ADR 0153 reads spellings there. Pick (a):
+   the grading budget, and the device never needs a realisation the compiler has not checked.
+4. **A built word with no sentence.** (a) The lemma, its gloss and the form's label, typed; (b) a sentence
+   that writes another lexeme in that cell, with this lexeme put in (often absurd); (c) no card until a
+   sentence writes the form. Pick (a).
+5. **A rule's branches as parts.** (a) The paradigm carries each cell's branches and answers log them from
+   stage 5, no memory until the simulation knows rules; (b) memory per branch now; (c) neither until ADR
+   0146's open points are decided. Pick (a).
+6. **Arabizi's free spellings.** apc-Latn states e/i free and left o/u, u/ou, i/ee, a final e/i, the helping
+   vowel and the article's forms out, with reasons; apc.md lists them all as free. (a) State them free
+   (REVIEW): answers the accept sets did not list are then accepted, and the rule's spelling can be checked
+   by the sound statement alone; (b) keep them as the projection's `alternatives`, read only by the
+   compiler. Pick (a), after the owner reads the profile's reasons for leaving them out.

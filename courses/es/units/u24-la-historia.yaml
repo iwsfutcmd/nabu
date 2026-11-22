@@ -237,7 +237,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Papi era muy joven y tenía mucho miedo.
-      tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: joven, lexeme: joven, feats: {Gender: Masc, Number: Sing}}, {surface: y, lexeme: y}, {surface: tenía, lexeme: tener, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: miedo, lexeme: miedo, feats: {Number: Sing}}]
+      tokens: [{surface: Papi, lexeme: papi, feats: {Number: Sing}}, {surface: era, lexeme: ser, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: muy, lexeme: muy}, {surface: joven, lexeme: joven, feats: {Gender: Masc, Number: Sing}}, {surface: y, lexeme: y}, {surface: tenía, lexeme: tener, feats: {Mood: Ind, Number: Sing, Tense: Imp, VerbForm: Fin}}, {surface: mucho, lexeme: mucho, feats: {Gender: Masc, Number: Sing}}, {surface: miedo, lexeme: miedo, feats: {Number: Sing}}]
       reverse: (Papi|Papá|Mi papá|Mi papi) era muy joven y tenía mucho miedo
   translations:
     en: |-
@@ -266,7 +266,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Cuando llegaron a Miami, habían pasado mucho tiempo en Guantánamo.
-      tokens: [{surface: Cuando, lexeme: cuando}, {surface: llegaron, lexeme: llegar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Miami, lexeme: miami, n: 4}, {surface: habían, lexeme: haber, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: pasado, lexeme: pasar, feats: {Tense: Past, VerbForm: Part}}, {surface: mucho, lexeme: mucho}, {surface: tiempo, lexeme: tiempo, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 9, head: 10, rel: case}, {surface: Guantánamo, lexeme: guantánamo, n: 10}]
+      tokens: [{surface: Cuando, lexeme: cuando}, {surface: llegaron, lexeme: llegar, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: a, lexeme: a, n: 3, head: 4, rel: case}, {surface: Miami, lexeme: miami, n: 4}, {surface: habían, lexeme: haber, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}, {surface: pasado, lexeme: pasar, feats: {Tense: Past, VerbForm: Part}}, {surface: mucho, lexeme: mucho, feats: {Gender: Masc, Number: Sing}}, {surface: tiempo, lexeme: tiempo, feats: {Number: Sing}}, {surface: en, lexeme: en, n: 9, head: 10, rel: case}, {surface: Guantánamo, lexeme: guantánamo, n: 10}]
       reverse: |-
         Cuando llegaron a Miami [ya] habían pasado mucho tiempo en Guantánamo
         [Ya] habían pasado mucho tiempo en Guantánamo cuando llegaron a Miami
@@ -347,7 +347,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: 'En el ochenta, la familia se separó: unos se fueron y otros se quedaron.'
-      tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ochenta, lexeme: ochenta, n: 3}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 5}, {surface: se, lexeme: se}, {surface: separó, lexeme: separarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: unos, lexeme: un, feats: {Gender: Masc, Number: Plur}}, {surface: se, lexeme: se}, {surface: fueron, lexeme: irse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: otros, lexeme: otro, feats: {Number: Plur}}, {surface: se, lexeme: se}, {surface: quedaron, lexeme: quedarse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}}, {surface: ochenta, lexeme: ochenta, n: 3}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 4, head: 5, rel: det}, {surface: familia, lexeme: familia, feats: {Number: Sing}, n: 5}, {surface: se, lexeme: se}, {surface: separó, lexeme: separarse, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: unos, lexeme: un, feats: {Gender: Masc, Number: Plur}}, {surface: se, lexeme: se}, {surface: fueron, lexeme: irse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: otros, lexeme: otro, feats: {Gender: Masc, Number: Plur}}, {surface: se, lexeme: se}, {surface: quedaron, lexeme: quedarse, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}]
       reverse: |-
         En (el ochenta|mil novecientos ochenta|1980) la familia se separó unos se fueron y otros se quedaron
         La familia se separó en (el ochenta|mil novecientos ochenta|1980) unos se fueron y otros se quedaron
@@ -546,7 +546,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Mucho miedo, mi'jo. Pero la libertad vale más que el miedo.
-          tokens: [{surface: Mucho, lexeme: mucho}, {surface: miedo, lexeme: miedo, feats: {Number: Sing}}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Pero, lexeme: pero}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: libertad, lexeme: libertad, feats: {Number: Sing}, n: 6}, {surface: vale, lexeme: valer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: que, lexeme: que.than}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: miedo, lexeme: miedo, feats: {Number: Sing}, n: 11}]
+          tokens: [{surface: Mucho, lexeme: mucho, feats: {Gender: Masc, Number: Sing}}, {surface: miedo, lexeme: miedo, feats: {Number: Sing}}, {surface: mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: Pero, lexeme: pero}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: libertad, lexeme: libertad, feats: {Number: Sing}, n: 6}, {surface: vale, lexeme: valer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: más, lexeme: más}, {surface: que, lexeme: que.than}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 10, head: 11, rel: det}, {surface: miedo, lexeme: miedo, feats: {Number: Sing}, n: 11}]
       translations:
         en: Very afraid, sweetheart. But freedom is worth more than fear.
   - line:

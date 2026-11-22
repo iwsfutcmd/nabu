@@ -6,11 +6,13 @@ provenance: {author: 'llm:claude@220c9909f93c', status: draft}
 varieties: [es-CU]
 registers: [formal, neutral, colloquial]
 dimensions:
-  VERB: [Mood, Tense, Person, Number, VerbForm]
+  VERB: [Mood, Tense, Person, Number, VerbForm, Gender, Polarity]
   AUX: [Mood, Tense, Person, Number, VerbForm]
   NOUN: [Number]
   ADJ: [Gender, Number]
   DET: [Gender, Number]
+  PRON: [Gender, Number]
+  NUM: [Gender, Number]
 lexical:
   NOUN: [Gender]
   PROPN: [Gender]

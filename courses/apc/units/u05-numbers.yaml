@@ -394,7 +394,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: قهوة، عمول معروف.
-      tokens: [{surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: عمول, lexeme: 3mol-ma3rouf}, {surface: معروف, lexeme: 3mol-ma3rouf}]
+      tokens: [{surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: عمول, lexeme: 3mol-ma3rouf, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: معروف, lexeme: 3mol-ma3rouf}]
       reverse: |-
         قهوة (عمول|اعمول|عمل) معروف
         قهوة لو سمحت
@@ -403,7 +403,7 @@ sentences:
         عمول معروف قهوة
     apc-Latn/arabizi:
       text: ahwe, 3mol ma3rouf.
-      tokens: [{surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: 3mol, lexeme: 3mol-ma3rouf}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
+      tokens: [{surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: 3mol, lexeme: 3mol-ma3rouf, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
       reverse: |-
         (ahwe|2ahwe) (3mol|3mul|e3mol) (ma3rouf|ma3ruf|ma3roof)
         (ahwe|2ahwe) (law|lau|low) (sama7t|samaht|sma7t)
@@ -419,7 +419,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الحساب، عمول معروف.
-      tokens: [{surface: الحساب, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: 7sab, surface: حساب, base: true, feats: {Number: Sing}, n: 2}]}, {surface: عمول, lexeme: 3mol-ma3rouf}, {surface: معروف, lexeme: 3mol-ma3rouf}]
+      tokens: [{surface: الحساب, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: 7sab, surface: حساب, base: true, feats: {Number: Sing}, n: 2}]}, {surface: عمول, lexeme: 3mol-ma3rouf, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: معروف, lexeme: 3mol-ma3rouf}]
       reverse: |-
         الحساب (عمول|اعمول|عمل) معروف
         الحساب لو سمحت
@@ -428,7 +428,7 @@ sentences:
         عمول معروف الحساب
     apc-Latn/arabizi:
       text: el 7sab, 3mol ma3rouf.
-      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: 7sab, lexeme: 7sab, feats: {Number: Sing}, n: 2}, {surface: 3mol, lexeme: 3mol-ma3rouf}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: 7sab, lexeme: 7sab, feats: {Number: Sing}, n: 2}, {surface: 3mol, lexeme: 3mol-ma3rouf, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
       reverse: |-
         (el|l|il) (7sab|hsab|7isab) (3mol|3mul|e3mol) (ma3rouf|ma3ruf|ma3roof)
         (el|l|il) (7sab|hsab|7isab) (law|lau|low) (sama7t|samaht|sma7t)
@@ -605,10 +605,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: إيه، تْفَضَّل.
-          tokens: [{surface: إيه, lexeme: eh}, {surface: تْفَضَّل, lexeme: tfaddal}]
+          tokens: [{surface: إيه, lexeme: eh}, {surface: تْفَضَّل, lexeme: tfaddal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
         apc-Latn/arabizi:
           text: eh, tfaddal.
-          tokens: [{surface: eh, lexeme: eh}, {surface: tfaddal, lexeme: tfaddal}]
+          tokens: [{surface: eh, lexeme: eh}, {surface: tfaddal, lexeme: tfaddal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
       translations:
         en: Yes, here you go.
   - line:

@@ -145,7 +145,8 @@ describe("spelling choice (ADR 0142)", () => {
     const projection = profile.projection;
     if (projection?.from !== "spelling") throw new Error("es reads its sound off its spelling");
     const right = text(ex.options[ex.answer] as TaggedText);
-    expect(ex.options.length).toBeGreaterThanOrEqual(3);
+    // One other spelling is enough (ADR 0142 amendment: Hola against Ola).
+    expect(ex.options.length).toBeGreaterThanOrEqual(2);
     const grader = createGrader(course);
     for (const [i, o] of ex.options.entries()) {
       if (i === ex.answer) continue;
