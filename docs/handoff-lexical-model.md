@@ -628,7 +628,39 @@ participle check repaired.
 
 ### Where each stands
 
-Kept current in this section as each lands; the task list of the session that did them is the same order:
-the records (done with this note), two-option spelling cards and Cantonese's leftover, what is due and
-what reviews ask, the retag, Chaghatay, the small jobs, seen-logging, then rules in a lexicon (a design
-note first).
+Kept current as each lands. The briefs each piece was built from are in the session's scratchpad and are
+not kept; what a later session needs is here.
+
+**On main:** the records (ADRs 0153, 0152 and 0144 Accepted, with their dated notes); ADR 0154 (Proposed),
+the seven decisions only the model notes recorded; *siendo* out of the notes' second diagram; the two stale
+READMEs.
+
+**On the branch `ccr-aebe970e-q9o4q4`, waiting for its visual baselines before it goes to main:**
+- two-option spelling cards and Cantonese's spelling leftover (commit f150ba18; ADR 0142 amended);
+- `docs/rules-design.md`, the design for rules in a lexicon, a draft with six questions for the owner
+  (also put to them as a page of questions, each broken down). Its stage 1 needs none of the six.
+
+**Being built, uncommitted, in two checkouts** (a worker restart on 2026-11-22 interrupted both; each was
+resumed):
+- `/home/user/nabu` (the branch): what is due and what reviews ask (decision 1). New `learner/due.ts`,
+  `test/due.test.ts`; the planner, the word list and the credit of a homophone miss change.
+- `/home/user/nabu-data` (branch `data-2026-11-22`, from main at 92421c35): the retag of es, apc and hbo with
+  the language files' dimension lists; a picture of water for the three words that showed a waving hand
+  (chg دریا and کول, grc θάλαττα; `wave.svg` is "hello"); the eight form clips dropped. Its list for the
+  owner is to be `docs/migration/retag-2026-11-22.md`.
+
+**Next, in order:** Chaghatay in the second checkout (the three readings are Schluessel's own at their
+place, so each is stated word by word in the scheme, as Hebrew's qeres are; *Moǧulistān*'s lexeme takes
+his glossary's spelling first; an ezafe lexeme on the 31 tokens that say it in the reading alone, introduced
+at `chg.u06.dates`; شجرهٔ read *šajarah-i*, as he has it); merge the second checkout into the branch;
+bundles, golden plans, every check, e2e, the visual matrix from its container (new baselines for the
+spelling stories and whatever the data moved); main. Then seen-logging (ADR 0146), then stage 1 of
+`docs/rules-design.md`.
+
+**For the owner, found on the way:**
+- Persian's weakest simulated learners fall two to three points inside their band with a spelling card in
+  nearly every session (the simulator knows nothing of a two-way guess being easier).
+- `khayef` (apc) is a verb cited by its participle, and 31 of apc's 41 verbs show an inflected form on
+  their word card: question 1 of the rules design.
+- In Chaghatay, Schluessel reads شهریکه as *šahargä* at one place and *šaharigä* two lines earlier, and
+  صندوقدا as *ṣandūqta* once against *-da* everywhere else. The course keeps his reading at each place.
