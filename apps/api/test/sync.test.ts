@@ -173,6 +173,33 @@ describe("event log", () => {
     expect(rest).toMatchObject({ accepted: log.length - half, duplicates: half - 10 });
   });
 
+  it("takes what was seen (ADR 0146): presentations and answers with `displayed`, story lines; a malformed `displayed` is that event's rejection alone", async () => {
+    const token = await signUp("seen@example.com");
+    const fa = loadCourse("fa");
+    const factory = eventFactory(fa, manifestOf("fa").id);
+    factory.at("2026-03-02T09:00:00.000Z");
+    factory.session();
+    const p = plan(fa, emptyLearnerState(), { mode: "lesson", node: "fa.greetings" }, { now: "2026-03-02T09:00:00.000Z", seed: 3 });
+    const [ex, next] = p.exercises;
+    if (ex === undefined || next === undefined) throw new Error("a short lesson");
+    const presented = factory.presented(ex);
+    const answered = factory.answer(ex, true, 1);
+    const bad = { ...factory.presented(next), displayed: [{ lexeme: "lexeme:salam", surface: "سلام" }] };
+    // A story line read, stamped as the factory stamps any event.
+    const { type: _type, exercise: _exercise, displayed: _displayed, ...stamp } = factory.presented(next) as Extract<LearnerEvent, { type: "exercise_presented" }>;
+    const lineEvent: LearnerEvent = { ...stamp, type: "story_line_read", story: "fa.story.greetings", line: 0, displayed: [{ lexeme: "lexeme:salam" }] };
+    expect(presented.type === "exercise_presented" && presented.displayed !== undefined && presented.displayed.length > 0).toBe(true);
+    expect(answered.type === "answer_submitted" && Array.isArray(answered.displayed)).toBe(true);
+    const res = await app.request("/v1/events", json({ events: [presented, bad, answered, lineEvent] }, token));
+    const body = (await res.json()) as { accepted: number; rejected: { index: number; id?: string; code: string }[] };
+    expect(body).toMatchObject({ accepted: 3, rejected: [{ index: 1, id: bad.id, code: "invalid-event" }] });
+    const server = (await (await app.request("/v1/state?course=fa", auth(token))).json()) as { events: number; state: LearnerState };
+    expect(server.events).toBe(3);
+    const local = replay([presented, answered, lineEvent]);
+    expect(server.state).toEqual(JSON.parse(JSON.stringify(local)));
+    expect(server.state.seen["lexeme:salam"]).toBeDefined();
+  });
+
   it("projects the uploaded log exactly as the device does", async () => {
     const token = await signUp("projection@example.com");
     const log = threeSessions();

@@ -101,6 +101,12 @@ for (const mode of ["keyboard", "touch"] as const) {
       expect(started).toMatchObject({ node: story.node, orthography });
       const completed = log.find((e) => e.type === "session_completed" && e.mode === "story");
       expect(completed).toMatchObject({ node: story.node, summary: { completed: true, correctFirstTry: script.steps.filter((s) => s.tag === "question").length } });
+      // Each line read is logged once, with what it displayed (ADR 0146); reading it again logs none.
+      const session = log.flatMap((e) => (e.type === "session_started" && e.mode === "story" ? [e.session] : []))[0];
+      const lines = log.flatMap((e) => (e.type === "story_line_read" && e.session === session ? [e] : []));
+      expect(lines.map((e) => e.line)).toEqual(script.lines.map((l) => l.step));
+      expect(lines.every((e) => e.story === story.id && Array.isArray(e.displayed))).toBe(true);
+      expect(lines.some((e) => e.displayed.length > 0)).toBe(true);
       expect(errors).toEqual([]);
     });
   }

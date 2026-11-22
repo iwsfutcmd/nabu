@@ -10,8 +10,12 @@ import { creditOf } from "../src/learner/credit.ts";
 import { parseCardKey, plan, type PlanOptions, type SessionPlan } from "../src/learner/index.ts";
 import { lessonCandidates } from "../src/lesson/candidates.ts";
 import {
+  allLexemes,
   allSentences,
   createGrader,
+  displayedBefore,
+  displayedWith,
+  lexemeFormKey,
   gradeExercise,
   isCorrect,
   lessonNodes,
@@ -154,6 +158,39 @@ describe.each(COURSES)("what plan() plans: %s %s", (id, orthography) => {
       expect(distinct(ex.right), `${label} ${ex.id}`).toBe(true);
     }
   });
+
+  it("every card says what it displays (ADR 0146): lexemes of the course, each in a form a token of the course has", () => {
+    const { course, sessions } = walked(id, orthography);
+    // Every form key a token of the course writes, in any text the bundle holds (sentences, story lines and options).
+    const forms = new Set<string>();
+    const visit = (value: unknown): void => {
+      if (Array.isArray(value)) for (const v of value) visit(v);
+      else if (typeof value === "object" && value !== null) {
+        const lexemes = (value as { readonly lexemes?: unknown }).lexemes;
+        if (typeof (value as { readonly surface?: unknown }).surface === "string" && Array.isArray(lexemes))
+          for (const l of lexemes as readonly { readonly lexeme: string; readonly feats?: Readonly<Record<string, string>> }[]) forms.add(lexemeFormKey(l.lexeme, l.feats));
+        for (const v of Object.values(value)) visit(v);
+      }
+    };
+    visit(course.units);
+    const lexemes = new Map(allLexemes(course).map((k) => [k.id, k]));
+    let shown = 0;
+    for (const { session, ex } of plannedCards(sessions)) {
+      const before = displayedBefore(course, ex);
+      const after = displayedWith(course, ex);
+      const keys = [...before, ...after].map((p) => lexemeFormKey(p.lexeme, p.feats));
+      expect(new Set(keys).size, `${session.label} ${ex.id}: each pair once`).toBe(keys.length);
+      for (const p of [...before, ...after]) {
+        const at = `${session.label} ${ex.id}: ${lexemeFormKey(p.lexeme, p.feats)}`;
+        expect(lexemes.has(p.lexeme), at).toBe(true);
+        // A pair without feats is a token that chooses none, or the lexeme as the lexicon spells it.
+        if (p.feats === undefined) expect(forms.has(p.lexeme) || (lexemes.get(p.lexeme)?.forms?.[course.orthography]?.length ?? 0) > 0, at).toBe(true);
+        else expect(forms.has(lexemeFormKey(p.lexeme, p.feats)), at).toBe(true);
+      }
+      shown += before.length + after.length;
+    }
+    expect(shown).toBeGreaterThan(0);
+  }, 300_000);
 });
 
 describe("template coverage", () => {

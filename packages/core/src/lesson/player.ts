@@ -152,6 +152,12 @@ export type LessonEvent =
    * judge's revision that caused it is one already.
    */
   | { readonly type: "answer_revised"; readonly exercise: ExerciseRef; readonly verdict: Verdict }
+  /**
+   * A story line joined the transcript (ADR 0146: a story records the lines read): `line` is its
+   * step in the story's source, `texts` what the reader shows of it in the course's orthography (the
+   * line, its speaker's name). The story reader emits it once a line; the shell logs it.
+   */
+  | { readonly type: "story_line_read"; readonly story: string; readonly line: number; readonly texts: readonly TaggedText[] }
   | { readonly type: "session_completed"; readonly lesson: string; readonly summary: SessionSummary };
 
 export interface ExerciseRef {

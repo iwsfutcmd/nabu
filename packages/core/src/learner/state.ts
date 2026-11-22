@@ -5,10 +5,10 @@
  * order and with any duplicates, give the same state. It reads one shape of
  * event (schema 2): an older log is upgraded before it is folded (upgrade.ts).
  */
-import type { AnswerSubmitted, ExerciseSkipped, LearnerEvent, PartCredit, Question, SessionCompleted, Skill } from "@nabu/schema";
+import type { AnswerSubmitted, DisplayedLexeme, ExerciseSkipped, FormKey, LearnerEvent, LexemeId, PartCredit, Question, SessionCompleted, Skill, UdFeatures } from "@nabu/schema";
 import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type Card, type FSRS, type Grade } from "ts-fsrs";
 import type { SkillRef, TemplateId } from "../lesson/exercise.ts";
-import { kindOf } from "../lesson/lexemes.ts";
+import { kindOf, lexemeFormKey } from "../lesson/lexemes.ts";
 import { asksOf, skillOf, SPEAKING, TEMPLATES } from "../lesson/templates.ts";
 import { ratingOf, type Pace, type Rating } from "./credit.ts";
 import { initialPerformance, learn, type Performance, type PerformanceDraft } from "./performance.ts";
@@ -108,6 +108,13 @@ export interface LearnerState {
    * missed it and when the last did. Counted, never scheduled: no card, no memory.
    */
   readonly letters: Readonly<Record<string, LetterMisses>>;
+  /**
+   * The pairs the learner has seen (ADR 0146: seen is the app's doing): for each lexeme, each form a
+   * card or a story line displayed it in (`lexemeFormKey`), with the local date it was first
+   * displayed. A record of exposure, not a memory: no card, no schedule, nothing due. Only events
+   * that say what they displayed count (`displayed`): nothing logged before seen was logged does.
+   */
+  readonly seen: Readonly<Record<LexemeId, Readonly<Record<FormKey, string>>>>;
 }
 
 /** How often a correspondence was missed, and when last (an answer's device time). */
@@ -155,6 +162,7 @@ export const emptyLearnerState = (): LearnerState => ({
   missed: {},
   recent: [],
   letters: {},
+  seen: {},
 });
 
 /**
@@ -250,6 +258,7 @@ interface Draft {
   missed: Record<string, string>;
   recent: boolean[];
   letters: Record<string, { missed: number; last: string }>;
+  seen: Record<LexemeId, Record<FormKey, string>>;
 }
 
 const draftOf = (s: LearnerState): Draft => structuredClone(s) as Draft;
@@ -430,11 +439,34 @@ const startOver = (d: Draft): void => {
   d.missed = fresh.missed;
   d.recent = fresh.recent;
   d.letters = fresh.letters;
+  d.seen = fresh.seen;
 };
+
+/**
+ * What an event displayed (ADR 0146), into the pairs seen: each form keeps the earliest local date
+ * it was displayed on, whatever order the events come in.
+ */
+const see = (d: Draft, e: { readonly displayed?: readonly DisplayedLexeme[] | undefined; readonly localDate: string }): void => {
+  for (const p of e.displayed ?? []) {
+    const forms = (d.seen[p.lexeme] ??= {});
+    const key = lexemeFormKey(p.lexeme, p.feats);
+    const was = forms[key];
+    if (was === undefined || e.localDate < was) forms[key] = e.localDate;
+  }
+};
+
+/** Whether an event displayed a pair the state has not seen, or seen only later: what folding it would change. */
+const seesNew = (state: LearnerState, e: LearnerEvent): boolean =>
+  (e.type === "exercise_presented" || e.type === "story_line_read") &&
+  (e.displayed ?? []).some((p) => {
+    const was = state.seen[p.lexeme]?.[lexemeFormKey(p.lexeme, p.feats)];
+    return was === undefined || e.localDate < was;
+  });
 
 const applyOne = (d: Draft, e: LearnerEvent): void => {
   switch (e.type) {
     case "answer_submitted":
+      see(d, e);
       answered(d, e);
       return;
     case "exercise_skipped":
@@ -446,19 +478,30 @@ const applyOne = (d: Draft, e: LearnerEvent): void => {
     case "progress_reset":
       startOver(d);
       return;
+    // What a card or a story line displayed (ADR 0146): the pairs seen, and nothing else.
+    case "exercise_presented":
+    case "story_line_read":
+      see(d, e);
+      return;
     // Revisions rewrite earlier answers: replay applies them (withRevisions), not this fold. The
     // weekly goal is the game's (ADR 0107): it changes nothing the learner model holds.
-    // A story line read says which forms were displayed (ADR 0146): nothing this fold holds yet.
     case "session_started":
-    case "exercise_presented":
     case "answer_reported":
     case "sentence_reported":
     case "outcome_revised":
     case "goal_set":
-    case "story_line_read":
       return;
   }
 };
+
+/**
+ * Whether the learner has seen a lexeme in a form (ADR 0146): a card or a story line displayed it so,
+ * since seen was logged. No `feats`: the lexeme as the lexicon spells it, or a token choosing none.
+ */
+export const seenIn = (state: LearnerState, lexeme: LexemeId, feats?: UdFeatures): boolean => state.seen[lexeme]?.[lexemeFormKey(lexeme, feats)] !== undefined;
+
+/** The forms a lexeme has been seen in (`lexemeFormKey`s), in the order the fold met them; none if never. */
+export const formsSeen = (state: LearnerState, lexeme: LexemeId): readonly FormKey[] => Object.keys(state.seen[lexeme] ?? {});
 
 /** Event order: device time, then id (UUIDv7 ids are time-ordered too). */
 export const compareEvents = (a: LearnerEvent, b: LearnerEvent): number => {
@@ -469,6 +512,8 @@ export const compareEvents = (a: LearnerEvent, b: LearnerEvent): number => {
 /**
  * Which events the fold reads (applyOne); the rest change nothing it holds. Revisions reach it
  * through replay's withRevisions. Every event type is listed, so a new one has to be placed here.
+ * A presentation and a story line are read only where they display a pair not seen yet (`seesNew`):
+ * the rest change nothing, and the state is not copied for them.
  */
 const FOLDS: Readonly<Record<LearnerEvent["type"], boolean>> = {
   answer_submitted: true,
@@ -484,6 +529,9 @@ const FOLDS: Readonly<Record<LearnerEvent["type"], boolean>> = {
   story_line_read: false,
 };
 
+/** Whether an event displayed anything at all. */
+const displays = (e: LearnerEvent): boolean => (e.type === "exercise_presented" || e.type === "story_line_read") && (e.displayed ?? []).length > 0;
+
 /**
  * Applies new events, in order, to a state: the events a device has just recorded, which are the
  * newest in its log. An event appears once however often it is given here, but one the state has
@@ -493,7 +541,9 @@ const FOLDS: Readonly<Record<LearnerEvent["type"], boolean>> = {
  * (an exercise shown, a report) give back the same state, uncopied.
  */
 export const applyEvents = (state: LearnerState, events: readonly LearnerEvent[]): LearnerState => {
-  const folded = events.filter((e) => FOLDS[e.type]);
+  // After a reset in the same batch, what the state has seen is forgotten: every pair counts again.
+  const reset = events.some((e) => e.type === "progress_reset");
+  const folded = events.filter((e) => FOLDS[e.type] || (reset ? displays(e) : seesNew(state, e)));
   if (folded.length === 0) return state;
   const d = draftOf(state);
   const applied = new Set<string>();

@@ -48,12 +48,27 @@ const finish = (state: Common, completed: boolean): readonly [StoryState, readon
 /** The nested lesson player's own session boundaries are not the story's. */
 const inner = (effects: readonly Effect[]): readonly Effect[] => effects.filter((e) => e.tag !== "emit" || (e.event.type !== "session_started" && e.event.type !== "session_completed"));
 
-const enter = (state: Common): readonly [StoryState, readonly Effect[]] => {
+/**
+ * A line joining the transcript, as a learner event (ADR 0146): once a line, however the story got
+ * there (read, or revealed by its question's answer).
+ */
+const read = (state: Common, index: number): readonly Effect[] => {
+  if (state.shown.includes(index)) return [];
+  const line = state.script.lines[index];
+  if (line === undefined) return [];
+  const name = line.speaker?.name;
+  return [{ tag: "emit", event: { type: "story_line_read", story: state.script.id, line: line.step, texts: name === undefined ? [line.text] : [name, line.text] } }];
+};
+
+const enter = (state: Common, before: readonly Effect[] = []): readonly [StoryState, readonly Effect[]] => {
   const step = state.script.steps[state.at];
-  if (step === undefined) return finish(state, true);
-  if (step.tag === "line") return [{ ...state, tag: "reading", shown: [...state.shown, step.line] }, []];
+  if (step === undefined) {
+    const [done, effects] = finish(state, true);
+    return [done, [...before, ...effects]];
+  }
+  if (step.tag === "line") return [{ ...state, tag: "reading", shown: state.shown.includes(step.line) ? state.shown : [...state.shown, step.line] }, [...before, ...read(state, step.line)]];
   const [player, effects] = startLesson(state.script.node, [step.ex]);
-  return [{ ...state, tag: "asking", ex: step.ex, player }, inner(effects)];
+  return [{ ...state, tag: "asking", ex: step.ex, player }, [...before, ...inner(effects)]];
 };
 
 /** Opens a story: emits the session start, then the first step. */
@@ -82,12 +97,16 @@ export const stepStory = (state: StoryState, event: StoryEvent): readonly [Story
   // The question is answered right: its line (if any) joins the transcript, and the story moves on.
   const step = state.script.steps[state.at];
   const reveals = step?.tag === "question" ? step.reveals : undefined;
-  const [next, more] = enter({
-    script: state.script,
-    at: state.at + 1,
-    shown: reveals === undefined ? state.shown : [...state.shown, reveals],
-    results: [...state.results, ...player.session.results],
-  });
+  const revealed = reveals === undefined ? [] : read(state, reveals);
+  const [next, more] = enter(
+    {
+      script: state.script,
+      at: state.at + 1,
+      shown: reveals === undefined || state.shown.includes(reveals) ? state.shown : [...state.shown, reveals],
+      results: [...state.results, ...player.session.results],
+    },
+    revealed,
+  );
   return [next, [...inner(effects), ...more]];
 };
 

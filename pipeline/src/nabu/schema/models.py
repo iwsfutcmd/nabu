@@ -4150,7 +4150,9 @@ class ExercisePresented(BaseModel):
     prediction: Prediction | None = None
     displayed: Annotated[
         list[DisplayedLexeme] | None,
-        Field(description="What was shown, each lexeme once in each form."),
+        Field(
+            description="What the card showed before its answer, in the orthography being learned (ADR 0146), each lexeme once in each form: a pair without feats is the lexeme as the lexicon spells it, or a token that chooses none. Absent on an event from before seen was logged."
+        ),
     ] = None
 
 
@@ -4215,6 +4217,12 @@ class AnswerSubmitted(BaseModel):
     input: Input
     outcome: Outcome
     prediction: Prediction | None = None
+    displayed: Annotated[
+        list[DisplayedLexeme] | None,
+        Field(
+            description="What the answer added to what the card showed (ADR 0146): the solution, and the text the answered card reveals (a listening card's sentence), each lexeme once in each form; none the presentation's `displayed` holds. Absent on an event from before seen was logged."
+        ),
+    ] = None
 
 
 class ExerciseSkipped(BaseModel):

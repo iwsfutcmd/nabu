@@ -169,9 +169,10 @@ describe("the story player", () => {
     const questions = script.steps.filter((s) => s.tag === "question").length;
     expect(state.summary).toEqual({ completed: true, exercises: questions, correctFirstTry: questions, retries: 0, skipped: 0 });
     expect(state.shown).toEqual(script.lines.map((l) => l.index));
+    // Each line is logged as it joins the transcript (ADR 0146): read, or revealed by its question's answer.
     expect(events.map((e) => e.type)).toEqual([
       "session_started",
-      ...Array.from({ length: questions }, () => ["exercise_presented", "answer_submitted"]).flat(),
+      ...script.steps.flatMap((s) => (s.tag === "line" ? ["story_line_read"] : ["exercise_presented", "answer_submitted", ...(s.reveals === undefined ? [] : ["story_line_read"])])),
       "session_completed",
     ]);
     expect(events[0]).toMatchObject({ type: "session_started", lesson: script.node, exercises: questions });

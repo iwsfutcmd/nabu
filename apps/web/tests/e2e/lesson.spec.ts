@@ -73,6 +73,16 @@ for (const mode of ["keyboard", "touch"] as const) {
       await expect
         .poll(async () => (await logOf(page, id)).find((e) => e.type === "session_completed" && e.node === node))
         .toMatchObject({ mode: "lesson", orthography, summary: { completed: true, exercises: graded(exercises), correctFirstTry: graded(exercises), retries: 0, skipped: 0 } });
+      // What each card displayed is logged (ADR 0146): every card presented once, it and its answers with `displayed`.
+      const log = await logOf(page, id);
+      const session = log.flatMap((e) => (e.type === "session_completed" && e.node === node ? [e.session] : []))[0];
+      const presented = log.flatMap((e) => (e.type === "exercise_presented" && e.session === session ? [e] : []));
+      expect(presented.map((e) => e.exercise.id)).toEqual(exercises.map((e) => e.id));
+      expect(presented.every((e) => Array.isArray(e.displayed))).toBe(true);
+      expect(presented.some((e) => (e.displayed?.length ?? 0) > 0)).toBe(true);
+      const answers = log.flatMap((e) => (e.type === "answer_submitted" && e.session === session ? [e] : []));
+      expect(answers.length).toBeGreaterThan(0);
+      expect(answers.every((e) => Array.isArray(e.displayed))).toBe(true);
       expect(violations).toEqual([]);
       expect(errors).toEqual([]);
     });

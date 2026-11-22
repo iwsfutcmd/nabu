@@ -7,6 +7,7 @@
 import type { AnswerSubmitted, ExerciseRef, LearnerEvent, OrthographyId, PartId, Prediction, ProgressReset } from "@nabu/schema";
 import { lessonNodes } from "../lesson/nodes.ts";
 import { lexemesById, type CourseView } from "../lesson/course.ts";
+import { displayedBefore, displayedIn, displayedWith } from "../lesson/displayed.ts";
 import type { Exercise } from "../lesson/exercise.ts";
 import type { LessonEvent } from "../lesson/player.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
@@ -115,7 +116,8 @@ export const learnerEventOf = (
     case "session_started":
       return { ...base, type: "session_started", mode: session.mode, ...node, seed: session.seed, exercises: e.exercises, planner: session.planner };
     case "exercise_presented":
-      return { ...base, type: "exercise_presented", exercise: exerciseRefOf(e.ex), ...(extra.prediction === undefined ? {} : { prediction: extra.prediction }) };
+      // What the card shows (ADR 0146: seen is logged), an empty list where it shows nothing yet.
+      return { ...base, type: "exercise_presented", exercise: exerciseRefOf(e.ex), ...(extra.prediction === undefined ? {} : { prediction: extra.prediction }), displayed: displayedBefore(course, e.ex) };
     case "answer_submitted": {
       const response = e.response;
       return {
@@ -140,6 +142,8 @@ export const learnerEventOf = (
           parts: creditOf(e.ex, e.graded, course.profiles, lexemesById(course)).filter((c) => practised(course, c.skill)),
         },
         ...(extra.prediction === undefined ? {} : { prediction: extra.prediction }),
+        // What the answer adds to what the card showed: its solution, what the answered card reveals.
+        displayed: displayedWith(course, e.ex),
       };
     }
     case "exercise_skipped":
@@ -147,6 +151,8 @@ export const learnerEventOf = (
     // The claim or the judge's revision behind it is the learner event (ADR 0052, 0113).
     case "answer_revised":
       return undefined;
+    case "story_line_read":
+      return { ...base, type: "story_line_read", story: e.story, line: e.line, displayed: displayedIn(course, e.texts) };
     case "session_completed":
       return {
         ...base,

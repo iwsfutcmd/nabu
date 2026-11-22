@@ -189,7 +189,10 @@ export const simulate = (
               (byMode[request.mode] as { ok: number }).ok++;
             }
           } else retries++;
-          // First tries carry the planner's p̂, logged in shadow mode (§9.3).
+          // Each attempt is presented (with what it displays) and answered; first tries carry the
+          // planner's p̂, logged in shadow mode (§9.3).
+          const shadow = attempt === 1 ? { p: p.predictions[i] ?? 0.5, model: PERFORMANCE_MODEL } : undefined;
+          apply(events.presented(ex, shadow));
           apply(events.answer(ex, ok, attempt, latencyOf(ex, chance, rng), attempt === 1 ? { p: p.predictions[i] ?? 0.5, model: PERFORMANCE_MODEL } : undefined));
           if (attempt === 1) practise(truth, ex, ok, clock);
           if (ok) break;

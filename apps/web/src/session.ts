@@ -23,13 +23,22 @@ export interface RecorderOptions {
   readonly session?: string | undefined;
   /** A session picked up again: the first tries its log already holds (exercise id → right). */
   readonly firstTries?: ReadonlyMap<string, boolean> | undefined;
+  /**
+   * A session picked up again: the exercises its log has presented already (ids). The card it
+   * reopens on was presented before the reload: it is not logged again (ADR 0146: seen once).
+   */
+  readonly presented?: ReadonlySet<string> | undefined;
 }
 
-export const recorder = ({ course, bundle, device, plan, seed, record, session, firstTries }: RecorderOptions): ((event: LessonEvent) => void) => {
+export const recorder = ({ course, bundle, device, plan, seed, record, session, firstTries, presented }: RecorderOptions): ((event: LessonEvent) => void) => {
   const { request } = plan;
   const meta: SessionMeta = { mode: request.mode, node: request.mode === "lesson" ? request.node : undefined, seed, planner: plan.planner };
-  return eventRecorder({ course, bundle, device, meta, record, plan, session, firstTries });
+  return eventRecorder({ course, bundle, device, meta, record, plan, session, firstTries, presented });
 };
+
+/** The exercises a session's log has presented (ids): what a session picked up again logs no second time. */
+export const presentedIn = (events: readonly LearnerEvent[], session: string): ReadonlySet<string> =>
+  new Set(events.flatMap((e) => (e.type === "exercise_presented" && e.session === session ? [e.exercise.id] : [])));
 
 export interface StoryRecorderOptions {
   readonly course: CourseView;
@@ -56,6 +65,7 @@ const eventRecorder = ({
   plan,
   session = uuidv7(),
   firstTries,
+  presented,
 }: {
   readonly course: CourseView;
   readonly bundle: string;
@@ -65,6 +75,7 @@ const eventRecorder = ({
   readonly plan?: SessionPlan;
   readonly session?: string | undefined;
   readonly firstTries?: ReadonlyMap<string, boolean> | undefined;
+  readonly presented?: ReadonlySet<string> | undefined;
 }): ((event: LessonEvent) => void) => {
   const request = plan?.request;
   // Retries ("…#2") were not planned: they carry no prediction.
@@ -72,9 +83,21 @@ const eventRecorder = ({
   let presentedAt = performance.now();
   // A session picked up again counts the first tries it had before (placement places by them).
   const firstTry = new Map<string, boolean>(firstTries ?? []);
+  // What the session has logged as seen (ADR 0146): each card's presentation and each story line, once.
+  const shown = new Set<string>(presented ?? []);
+  const lines = new Set<string>();
   return (e) => {
     const now = new Date();
     if (e.type === "exercise_presented") presentedAt = performance.now();
+    if (e.type === "exercise_presented") {
+      if (shown.has(e.ex.id)) return;
+      shown.add(e.ex.id);
+    }
+    if (e.type === "story_line_read") {
+      const line = `${e.story}#${e.line}`;
+      if (lines.has(line)) return;
+      lines.add(line);
+    }
     if (e.type === "answer_submitted" && !e.ex.id.includes("#")) firstTry.set(e.ex.id, isCorrect(e.graded.verdict));
     if (e.type === "exercise_skipped" && !e.ex.id.includes("#")) firstTry.set(e.ex.id, false);
     // A claim or the judge revised an answer (ADR 0113): the test places by what it counts as now.

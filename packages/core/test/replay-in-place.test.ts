@@ -119,7 +119,7 @@ describe("the fold in place equals the fold that copied (ADR 0119)", () => {
         }
         for (const [i, reason] of m.skipped) {
           const a = answer(i);
-          const { input: _input, outcome: _outcome, prediction: _prediction, ...rest } = a;
+          const { input: _input, outcome: _outcome, prediction: _prediction, displayed: _displayed, ...rest } = a;
           changed.set(a.id, { ...rest, type: "exercise_skipped", reason });
         }
         const added: LearnerEvent[] = [];

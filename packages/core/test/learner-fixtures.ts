@@ -4,7 +4,7 @@ import { join, resolve } from "node:path";
 import type { AliasTable, BundleManifest, LearnerEvent, PartCredit, Prediction } from "@nabu/schema";
 import { creditOf, practised, rightCredits } from "../src/learner/credit.ts";
 import { exerciseRefOf } from "../src/learner/events.ts";
-import { lexemesById, readCourse, type CourseView, type Exercise } from "../src/lesson/index.ts";
+import { displayedBefore, displayedWith, lexemesById, readCourse, type CourseView, type Exercise } from "../src/lesson/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
 const BUNDLES = join(ROOT, "apps/web/public/bundles");
@@ -40,6 +40,8 @@ export interface EventFactory {
   readonly at: (iso: string) => void;
   readonly session: () => string;
   readonly started: (mode: "lesson" | "review" | "mistakes", node: string | undefined, exercises: number) => LearnerEvent;
+  /** A card presented, with what it displays (ADR 0146), as the player logs it. */
+  readonly presented: (ex: Exercise, prediction?: Prediction) => LearnerEvent;
   readonly answer: (ex: Exercise, correct: boolean, attempt: number, latencyMs?: number, prediction?: Prediction) => LearnerEvent;
   readonly completed: (mode: "lesson" | "review" | "mistakes", node: string | undefined, summary: { exercises: number; correctFirstTry: number; retries: number }) => LearnerEvent;
 }
@@ -54,6 +56,15 @@ const creditsOf = (course: CourseView, ex: Exercise, correct: boolean): PartCred
   correct
     ? [...rightCredits(course, ex, true)]
     : creditOf(ex, { verdict: "WRONG", notes: [] }, course.profiles, lexemesById(course)).filter((c) => practised(course, c.skill));
+
+/** What a card displays, or nothing for a card a test made by hand without its texts. */
+const shownBy = (show: () => ReturnType<typeof displayedBefore>): ReturnType<typeof displayedBefore> => {
+  try {
+    return show();
+  } catch {
+    return [];
+  }
+};
 
 /** Builds valid learner events for one course, with a settable clock. */
 export const eventFactory = (course: CourseView, bundle: string): EventFactory => {
@@ -82,6 +93,13 @@ export const eventFactory = (course: CourseView, bundle: string): EventFactory =
       return session;
     },
     started: (mode, node, exercises) => ({ ...base(), type: "session_started", mode, ...(node === undefined ? {} : { node }), seed: 1, exercises, planner: "test" }),
+    presented: (ex, prediction) => ({
+      ...base(),
+      type: "exercise_presented",
+      exercise: exerciseRefOf(ex),
+      ...(prediction === undefined ? {} : { prediction }),
+      displayed: shownBy(() => displayedBefore(course, ex)),
+    }),
     answer: (ex, correct, attempt, latencyMs = 4000, prediction) => ({
       ...base(),
       type: "answer_submitted",
@@ -91,6 +109,8 @@ export const eventFactory = (course: CourseView, bundle: string): EventFactory =
       input: { method: "choice", latencyMs, ...(ex.template === "speak.tier-0" ? { selfRating: correct ? ("good" as const) : ("again" as const) } : {}) },
       outcome: { kind: correct ? "CORRECT" : "WRONG", notes: [], labels: [], parts: creditsOf(course, ex, correct) },
       ...(prediction === undefined ? {} : { prediction }),
+      // What the answer adds to what the card displayed (ADR 0146), as the player logs it.
+      displayed: shownBy(() => displayedWith(course, ex)),
     }),
     completed: (mode, node, summary) => ({
       ...base(),

@@ -84,7 +84,7 @@ import { closeOpen, keepOpen, reopen, type OpenSession } from "./open-session.ts
 import { mostQuestions, PlacementIntro, PlacementResult } from "./Placement.tsx";
 import { isNative } from "./platform.ts";
 import { LeaguePanel } from "./social.tsx";
-import { recorder, resetEvent, storyRecorder } from "./session.ts";
+import { presentedIn, recorder, resetEvent, storyRecorder } from "./session.ts";
 import { nextStepOf, practises, useSessionEnd } from "./session-end.ts";
 import { focusScreen, Loading, ScreenHeading, sessionName, titleOf, useScreen } from "./screen.tsx";
 import { StartOver } from "./StartOver.tsx";
@@ -1038,7 +1038,7 @@ interface Setup {
   /** The session's id: every event it records carries it. */
   readonly session: string;
   /** Picked up again: where the session stands, what reopens it, and its first tries so far. */
-  readonly resumed?: { readonly from: readonly [PlayerState, readonly Effect[]]; readonly firstTries: ReadonlyMap<string, boolean> } | undefined;
+  readonly resumed?: { readonly from: readonly [PlayerState, readonly Effect[]]; readonly firstTries: ReadonlyMap<string, boolean>; readonly presented: ReadonlySet<string> } | undefined;
   /** A new session's plan, kept on the device once the session starts (S3). */
   readonly open?: OpenSession | undefined;
 }
@@ -1089,7 +1089,7 @@ const Session = (props: SessionProps): JSX.Element => {
       if (found !== undefined && from !== undefined) {
         // What the session did so far is in the log already: its end counts from the log without it (session-end.ts).
         const { open } = found;
-        setOpened({ setup: { seed: open.seed, planned: open.plan, session: open.session, resumed: { from, firstTries: firstTriesOf(done) } } });
+        setOpened({ setup: { seed: open.seed, planned: open.plan, session: open.session, resumed: { from, firstTries: firstTriesOf(done), presented: presentedIn(found.events, open.session) } } });
       } else if (!sessionAllowed(game, request.mode, gameConfig)) {
         // Decided once, when the session opens: answering inside it never closes the gate on it.
         setOpened("gate");
@@ -1212,7 +1212,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         routing.ended(event.summary.completed, placement);
       }
     };
-    return recorder({ course, bundle: manifest.id, device, plan: setup.planned, seed: setup.seed, record: keep, session: setup.session, firstTries: setup.resumed?.firstTries });
+    return recorder({ course, bundle: manifest.id, device, plan: setup.planned, seed: setup.seed, record: keep, session: setup.session, firstTries: setup.resumed?.firstTries, presented: setup.resumed?.presented });
   });
   // Its end (P9): what it changed, from the log with it against without it, and where to go next.
   const end = useSessionEnd({ store, config: gameConfig, course, session: setup.session, ended: routing.over, state, game, placement, facetsOff, t });

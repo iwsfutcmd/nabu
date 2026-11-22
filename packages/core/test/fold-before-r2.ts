@@ -7,7 +7,7 @@
  * what it keeps of its own is the fold itself. A deliberate change to the fold changes this copy
  * too: it folds parts and skills since the lexical model (ADR 0146).
  */
-import type { AnswerSubmitted, ExerciseSkipped, LearnerEvent, Question, SessionCompleted, Skill } from "@nabu/schema";
+import type { AnswerSubmitted, DisplayedLexeme, ExerciseSkipped, LearnerEvent, Question, SessionCompleted, Skill } from "@nabu/schema";
 import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type Card, type FSRS, type Grade } from "ts-fsrs";
 import { ratingOf, type Pace, type Rating } from "../src/learner/credit.ts";
 import { initialPerformance, predict, type Performance, type PredictionInput } from "../src/learner/performance.ts";
@@ -15,6 +15,7 @@ import { withRevisions } from "../src/learner/revisions.ts";
 import { askOf, cardKey, DESIRED_RETENTION, readingSkill, RECENT_WINDOW, sameQuestion, WITNESSED_FACETS, XP, type LearnerState, type Mistake, type StoredCard } from "../src/learner/state.ts";
 import type { SkillRef, TemplateId } from "../src/lesson/exercise.ts";
 import { asksOf, skillOf, SPEAKING, TEMPLATES } from "../src/lesson/templates.ts";
+import { lexemeFormKey } from "../src/lesson/lexemes.ts";
 
 const LEARNING_RATE = 0.15;
 const L2 = 0.01;
@@ -56,6 +57,7 @@ const emptyLearnerState = (): LearnerState => ({
   missed: {},
   recent: [],
   letters: {},
+  seen: {},
 });
 
 const scheduler: FSRS = fsrs(generatorParameters({ request_retention: DESIRED_RETENTION, enable_fuzz: false }));
@@ -110,6 +112,7 @@ interface Draft {
   missed: Record<string, string>;
   recent: boolean[];
   letters: Record<string, { missed: number; last: string }>;
+  seen: Record<string, Record<string, string>>;
 }
 
 const draftOf = (s: LearnerState): Draft => structuredClone(s) as Draft;
@@ -226,11 +229,23 @@ const startOver = (d: Draft): void => {
   d.missed = fresh.missed;
   d.recent = fresh.recent;
   d.letters = fresh.letters;
+  d.seen = fresh.seen;
+};
+
+/** The pairs an event displayed (ADR 0146), each form with the earliest local date it was displayed on. */
+const see = (d: Draft, e: { readonly displayed?: readonly DisplayedLexeme[] | undefined; readonly localDate: string }): void => {
+  for (const p of e.displayed ?? []) {
+    const forms = (d.seen[p.lexeme] ??= {});
+    const key = lexemeFormKey(p.lexeme, p.feats);
+    const was = forms[key];
+    if (was === undefined || e.localDate < was) forms[key] = e.localDate;
+  }
 };
 
 const applyOne = (d: Draft, e: LearnerEvent): void => {
   switch (e.type) {
     case "answer_submitted":
+      see(d, e);
       answered(d, e);
       return;
     case "exercise_skipped":
@@ -242,8 +257,11 @@ const applyOne = (d: Draft, e: LearnerEvent): void => {
     case "progress_reset":
       startOver(d);
       return;
-    case "session_started":
     case "exercise_presented":
+    case "story_line_read":
+      see(d, e);
+      return;
+    case "session_started":
     case "answer_reported":
     case "sentence_reported":
     case "outcome_revised":
@@ -263,12 +281,13 @@ const FOLDS: Readonly<Record<LearnerEvent["type"], boolean>> = {
   session_completed: true,
   progress_reset: true,
   session_started: false,
-  exercise_presented: false,
+  // Read whatever they display: the fold reads only those that display something new.
+  exercise_presented: true,
   answer_reported: false,
   sentence_reported: false,
   outcome_revised: false,
   goal_set: false,
-  story_line_read: false,
+  story_line_read: true,
 };
 
 /** `applyEvents` before ADR 0119. */
