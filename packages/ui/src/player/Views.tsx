@@ -585,10 +585,12 @@ const GapSentence = ({
         marks={props.marks}
         {...tapsOn(props, "before", before, gloss)}
       />
+      {/* Empty, the gap is a picture of a missing word; filled, it is the word: an img's content is
+          presentational, and the filled word is read in its sentence (and, answered, is a tap for its gloss). */}
       <span
         className={styles.gap}
-        role="img"
-        aria-label={t.format("player.blank.label")}
+        role={fill === undefined ? "img" : undefined}
+        aria-label={fill === undefined ? t.format("player.blank.label") : undefined}
         data-gap=""
       >
         {fill === undefined ? null : options === undefined ? (
