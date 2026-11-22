@@ -5,7 +5,7 @@
 - Clips are reproducible, carry a license and provenance, and their timings point at tokens.
 - Human recordings are ingested with their license and never touched by regeneration; nor is
   the clip of a form (a lexeme with feature values, a token built of several), which no voice
-  plans.
+  plans, until `prune --forms` lets the synthesized ones go.
 - With the speech models (NABU_SPEECH=1): forced alignment recovers token onsets, and the
   round-trip check (Whisper) rejects audio a recognizer cannot understand.
 """
@@ -31,6 +31,7 @@ from nabu.audio.course import (
     check_course,
     encode_mp3,
     plan,
+    prune_forms,
     read_index,
     synthesize_course,
     timings,
@@ -317,6 +318,33 @@ def test_prune_lets_the_stale_clips_go_and_keeps_the_rest(
     assert files == {c.file.removeprefix("clips/") for c in after}
     diags, _ = compile_course(yue_copy, core_cli)
     assert not any(d.lint == "audio.stale" for d in diags.items)
+
+
+def test_prune_forms_lets_the_clips_of_forms_go(tmp_path: Path) -> None:
+    """`prune --forms` drops the synthesized clips of forms, which no card asks for, and their
+    files where no other clip shares them; a recorded form, and every other clip, stays. No voice
+    runs."""
+    _twins_course(tmp_path)
+    word = _keep_a_clip(tmp_path, "lexeme:早晨", b"said alike")
+    shared = _keep_a_clip(tmp_path, PARTICIPLE, b"said alike")  # one file with the word's
+    alone = _keep_a_clip(tmp_path, BUILT, b"a built word")
+    recorded = {**_keep_a_clip(tmp_path, "lexeme:kif+lexeme:poss-2ms", b"a recording")}
+    adir = audio_dir(tmp_path)
+    index = yaml.safe_load((adir / "index.yaml").read_text(encoding="utf-8"))
+    for clip in index["clips"]:
+        if clip["item"] == recorded["item"]:
+            clip["synthetic"] = False
+            del clip["synthesis"]
+    (adir / "index.yaml").write_text(yamlio.dump(index), encoding="utf-8")
+    assert shared["file"] == word["file"]
+
+    report = prune_forms(tmp_path)
+    assert (report.dropped, report.removed, report.kept) == (2, 1, 2)
+    assert {c.item for c in read_index(adir).clips} == {"lexeme:早晨", recorded["item"]}
+    assert (adir / word["file"]).exists() and (adir / recorded["file"]).exists()
+    assert not (adir / alone["file"]).exists()
+    again = prune_forms(tmp_path)
+    assert (again.dropped, again.removed, again.kept) == (0, 0, 2)
 
 
 def _voices(course: Path) -> dict[str, str]:
@@ -813,13 +841,16 @@ def test_the_clip_of_a_form_is_kept_as_a_recording_is(tmp_path: Path, voice: _Vo
     assert [entries()[e["item"]] for e in kept] == kept
 
 
-def test_the_clip_of_a_form_ships_in_no_bundle(core_cli: CoreCli) -> None:
+def test_the_clip_of_a_form_ships_in_no_bundle(core_cli: CoreCli, tmp_path: Path) -> None:
     """The compiler knows a form's clip by the forms the course's tokens write: it is neither an
-    unknown item nor in the bundle's audio, since no card says a form alone. fa keeps two (budan
-    in the past and negated)."""
-    fa = ROOT / "courses" / "fa"
+    unknown item nor in the bundle's audio, since no card says a form alone. fa's budan in the
+    past, as an earlier run left it (fa's own were dropped, 2026-11-22)."""
+    fa = tmp_path / "fa"
+    shutil.copytree(ROOT / "courses" / "fa", fa)
+    (tmp_path / "lexicons").symlink_to(ROOT / "lexicons")
+    _keep_a_clip(fa, "lexeme:budan|form:Tense=Past", b"a form budan writes")
     forms = {c.item for c in read_index(audio_dir(fa)).clips if is_form(c.item)}
-    assert forms
+    assert forms == {"lexeme:budan|form:Tense=Past"}
     diags, compiled = compile_course(fa, core_cli)
     assert compiled is not None
     assert not forms & set(compiled.audio_items)
