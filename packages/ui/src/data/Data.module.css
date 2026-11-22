@@ -161,3 +161,133 @@
   outline: 3px solid var(--nabu-color-accent);
   outline-offset: 2px;
 }
+
+/* A lexeme's entry opens to everything stored on it (the Lexicon view): three titled parts, each a
+   record laid out key by key. A record's keys are code; a nested record or list stands under its
+   key, marked by a rule along its start edge, so the layout reads the same in any direction. */
+.lexicon {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-3);
+  padding-block-start: var(--nabu-space-2);
+}
+
+.part {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  min-inline-size: 0;
+}
+
+.partTitle {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.notice {
+  margin: 0;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-page);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.picture {
+  display: block;
+  max-inline-size: 8rem;
+  max-block-size: 8rem;
+  background-color: var(--nabu-color-picture);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.treeRecord {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  min-inline-size: 0;
+  margin: 0;
+}
+
+.treeField {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--nabu-space-1) var(--nabu-space-2);
+  min-inline-size: 0;
+}
+
+.treeKey {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--nabu-space-1);
+  font-weight: 700;
+}
+
+.treeValue {
+  flex: 1 1 12rem;
+  min-inline-size: 0;
+  margin: 0;
+}
+
+/* A record or a list under a key: on a line of its own, indented from the start edge. */
+.treeValue > .treeRecord:not([data-flat]),
+.treeValue > .treeList:not([data-flat]) {
+  padding-inline-start: var(--nabu-space-3);
+  border-inline-start: 2px solid var(--nabu-color-border);
+}
+
+.treeField:has(> .treeValue > :is(.treeRecord, .treeList):not([data-flat])) > .treeValue {
+  flex-basis: 100%;
+}
+
+/* A record or a list of plain values only (a form's feature values, a word's spellings) reads on
+   one line, pair by pair, wrapping where the line ends. */
+.treeRecord[data-flat],
+.treeList[data-flat] {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
+}
+
+.treeRecord[data-flat] > .treeField {
+  flex-wrap: nowrap;
+}
+
+.treeRecord[data-flat] > .treeField > .treeValue {
+  flex: 0 1 auto;
+}
+
+.treeList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.treeItem {
+  min-inline-size: 0;
+}
+
+.treeText {
+  font-size: 1rem;
+  overflow-wrap: anywhere;
+}
+
+.treeNone {
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+}
+
+/* Items of a list of records stand apart: a rule between them. */
+.treeItem + .treeItem:has(> .treeRecord) {
+  padding-block-start: var(--nabu-space-1);
+  border-block-start: 1px dashed var(--nabu-color-border);
+}

@@ -67,6 +67,10 @@ jobs:
       # the demo's bundles carry are not copied again.
       - name: Audio check
         run: node apps/web/audio-check.ts site/demo/audio-check site/demo/bundles
+      # The lexicon's own files (lexicons/<lang>/), for the Data page's Lexicon and Language views:
+      # what the lexicon stores, which bundles carry only in part.
+      - name: Lexicon source
+        run: node apps/web/lexicon-source.ts site/demo/lexicon-source
       # The report intake (ADR 0055, docs/reports.md): only when the repository names one.
       - name: Report intake
         if: ${{ vars.NABU_FIREBASE_PROJECT != '' }}

@@ -8,6 +8,7 @@
 import type { BundleLexeme, BundleSentence, LexemeId, SchemeId, TaggedText, Token, UdFeatures } from "@nabu/schema";
 import { lexemesInOrder, unitIndexOf, type CourseView } from "./course.ts";
 import { readingAsText } from "./homographs.ts";
+import type { LexemeRow } from "./lexicon-data.ts";
 import { baseIdOf, bound, sentencePersons } from "./lexemes.ts";
 import { textMatcher } from "./search.ts";
 import { labelId, tokenParts, tokenText, type TokenParts } from "./templates.ts";
@@ -260,20 +261,26 @@ export const courseData = (course: CourseView): CourseData => {
   return data;
 };
 
-/** The lists of a course's data, each a way to look at it. */
-export type DataView = "words" | "forms" | "letters" | "sentences";
+/**
+ * The lists of a course's data, each a way to look at it; and its lexicon (`lexiconData`): every
+ * lexeme with everything stored on it, and the language file.
+ */
+export type DataView = "words" | "forms" | "letters" | "sentences" | "lexicon" | "language";
 
 export interface DataMatcher {
   readonly words: (row: WordRow) => boolean;
   readonly forms: (row: FormRow) => boolean;
   readonly letters: (row: LetterRow) => boolean;
   readonly sentences: (row: SentenceRow) => boolean;
+  readonly lexicon: (row: LexemeRow) => boolean;
 }
 
 /**
  * Which rows match what was typed (`textMatcher`). A word by its spellings, any way a sentence writes
  * it, its readings, its gloss or its id; a form or a letter by its entry or its id; a sentence by its
  * text, its translation, its id, or the id of a part it lists (feature:Case=Dat finds every dative).
+ * A lexeme by anything stored on it: its id, a spelling in any orthography, a reading, a gloss or a
+ * note in its own language, a key or a code value (NOUN, Gender=Fem, pinned, bound, allomorphs).
  */
 export const dataMatcher = (course: CourseView, query: string): DataMatcher => {
   const matches = textMatcher(course, query);
@@ -283,5 +290,6 @@ export const dataMatcher = (course: CourseView, query: string): DataMatcher => {
     forms: (row) => matches({ support: support(row.gloss), ids: [row.id.id, ...row.tags] }),
     letters: (row) => matches({ target: row.forms, support: support(row.gloss), ids: [row.id.id] }),
     sentences: (row) => matches({ target: [row.text], support: support(row.translation), ids: [row.sentence.id, ...row.sentence.parts] }),
+    lexicon: (row) => matches(row.searched),
   };
 };

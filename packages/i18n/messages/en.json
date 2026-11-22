@@ -1442,6 +1442,70 @@
       "message": "Accepted answers",
       "description": "Debug mode, the course data page: label before the answers a sentence accepts when the learner writes it in the language being learned, and when they translate it, each written in the course's notation for alternatives."
     },
+    "data.view.lexicon": {
+      "message": ".input {$count :number}\n{{Lexicon ({$count})}}",
+      "description": "Debug mode, the course data page: the list of every lexeme of the course's lexicon (stems, clitics and endings alike), each opening to everything stored on it. $count is how many there are; it is a label, so no plural forms are needed."
+    },
+    "data.view.language": {
+      "message": "Language",
+      "description": "Debug mode, the course data page: the view that shows the language's own file as stored (its grammatical categories, the defaults that give a lexeme its features, the names of its forms, its rules)."
+    },
+    "data.lexicon.open": {
+      "message": "Everything stored on it",
+      "description": "Debug mode, the course data page, Lexicon view: button under a lexeme that opens (or closes) everything the course stores on it: its lexicon entry, what the course's compiled bundle carries of it, and what the course does with it."
+    },
+    "data.lexicon.source": {
+      "message": "In the lexicon",
+      "description": "Debug mode, the course data page, Lexicon view: heading over a lexeme's entry as the lexicon's file stores it, every field as written."
+    },
+    "data.lexicon.bundle": {
+      "message": "In the bundle",
+      "description": "Debug mode, the course data page, Lexicon view: heading over what the compiled course (the bundle the app downloads) carries of a lexeme."
+    },
+    "data.lexicon.course": {
+      "message": "In the course",
+      "description": "Debug mode, the course data page, Lexicon view: heading over what the course does with a lexeme: where it is first taught, how many sentences use it, its recording, what is asked of it, how its sentences write it."
+    },
+    "data.lexicon.stored": {
+      "message": "stored",
+      "description": "Debug mode, the course data page, Lexicon view: a note beside a lexeme's grammatical feature (such as its gender) saying that its lexicon entry stores it, as opposed to a default rule of the language giving it."
+    },
+    "data.lexicon.default": {
+      "message": "given by a default",
+      "description": "Debug mode, the course data page, Lexicon view: a note beside a lexeme's grammatical feature (such as a noun's gender) saying that the lexeme's entry does not store it: a default rule of the language gives it (Spanish nouns in -a are feminine)."
+    },
+    "data.lexicon.missing": {
+      "message": "The lexicon's own files are not beside this app, so only what the course's bundle carries is shown.",
+      "description": "Debug mode, the course data page, Lexicon and Language views: said once when the app cannot load the lexicon's source files (a self-hosted build does not publish them). The bundle is the compiled course the app downloads."
+    },
+    "data.lexicon.file": {
+      "message": "The lexicon file",
+      "description": "Debug mode, the course data page, Lexicon view: heading over the lexicon file's own fields (its language, license and who wrote it), shown once above its lexemes."
+    },
+    "data.lexicon.not-in-file": {
+      "message": "The lexicon's file has no entry for it.",
+      "description": "Debug mode, the course data page, Lexicon view: under the heading “In the lexicon”, for a lexeme the compiled course carries but the lexicon's file does not list."
+    },
+    "data.lexicon.not-in-bundle": {
+      "message": "The bundle does not carry it.",
+      "description": "Debug mode, the course data page, Lexicon view: under the heading “In the bundle”, for a lexeme the lexicon's file lists but the compiled course does not carry."
+    },
+    "data.lexicon.unintroduced": {
+      "message": "Taught by no lesson",
+      "description": "Debug mode, the course data page, Lexicon view: heading over the lexemes of the lexicon that no lesson of the course introduces, listed after those the units teach."
+    },
+    "data.language.file": {
+      "message": "The language file",
+      "description": "Debug mode, the course data page, Language view: heading over the language's own file as stored (its grammatical categories, defaults, names of forms and rules)."
+    },
+    "data.language.bundle": {
+      "message": "What the bundle carries of the language",
+      "description": "Debug mode, the course data page, Language view: heading used instead of “The language file” when the app cannot load that file, over what the compiled course carries of the language (the names of its forms, its rules)."
+    },
+    "data.tree.none": {
+      "message": "none",
+      "description": "Debug mode, the course data page, Lexicon and Language views: shown for a stored field that is an empty list (such as no skills asked of a lexeme)."
+    },
     "debug.cards.none": {
       "message": "None in this course",
       "description": "Debug mode: shown for a kind of card the course has no material for."

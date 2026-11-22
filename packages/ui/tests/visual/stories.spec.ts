@@ -24,6 +24,8 @@ test.describe("every story × pseudo-locales", () => {
     test(`all stories render in ${ui}`, async ({ page, request }) => {
       const index = (await (await request.get("/index.json")).json()) as { entries: Record<string, IndexEntry> };
       const stories = Object.values(index.entries).filter((e) => e.type === "story");
+      // One test walks every story: its time grows with their number (about a third of a second each).
+      test.setTimeout(30_000 + stories.length * 500);
       for (const story of stories) {
         const errors: string[] = [];
         page.removeAllListeners("pageerror");

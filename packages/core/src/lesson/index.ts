@@ -1,5 +1,6 @@
 export { cardGallery, sampleExercise, type GalleryCard } from "./gallery.ts";
 export { courseData, dataMatcher, type Carrier, type CourseData, type DataMatcher, type DataView, type EntryId, type FormRow, type LetterRow, type PinnedReading, type SentenceRow, type SentenceWord, type WordRow, type WrittenWord } from "./browse.ts";
+export { isLexiconSource, lexiconData, type DataField, type DataNode, type LexemeRow, type LexiconData, type LexiconSource } from "./lexicon-data.ts";
 export { textMatcher, type Searched } from "./search.ts";
 export { courseExclusions, facetExclusions, PARTS, partsExclusions, speechExclusions, speechSupportOf, voiceExclusions, type SpeechSupport } from "./exclusions.ts";
 export { lessonNodes, type LessonNode } from "./nodes.ts";

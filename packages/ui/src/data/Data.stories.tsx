@@ -1,11 +1,24 @@
 /**
  * The Data page's browser (debug mode): a fixture course's own data, to read. The toolbar's four
  * courses show suffixes and their carriers (uz), vowel marks and the ezafe (fa), two readings of one
- * script (yue) and clitics (apc).
+ * script (yue) and clitics (apc). The Lexicon and Language views show fixed courses whatever the
+ * toolbar's target: uz (an affix with its allomorphs in two scripts), apc (a word with a pinned form
+ * and a feature of its own, spelled in Arabic script and in Arabizi) and fa's language file, each
+ * with the lexicon's own files as the repository has them (lexicons/<lang>/*.yaml, read at build
+ * time: the app gets the same files from lexicon-source/ beside it). Small lexicons on purpose: the
+ * stories' smoke pass walks every story, and a course of seven hundred lexemes is slow to lay out.
  */
-import { courseData, type CourseView, type DataView } from "@nabu/core/lesson";
+import { courseData, isLexiconSource, type CourseView, type DataView, type LexiconSource } from "@nabu/core/lesson";
 import type { Meta, StoryObj } from "@storybook/react-vite";
+import { parse } from "yaml";
+import apcLanguage from "../../../../lexicons/apc/language.yaml?raw";
+import apcLexemes from "../../../../lexicons/apc/lexemes.yaml?raw";
+import faLanguage from "../../../../lexicons/fa/language.yaml?raw";
+import faLexemes from "../../../../lexicons/fa/lexemes.yaml?raw";
+import uzLanguage from "../../../../lexicons/uz/language.yaml?raw";
+import uzLexemes from "../../../../lexicons/uz/lexemes.yaml?raw";
 import type { NabuGlobals } from "../../.storybook/toolbar.ts";
+import { CourseUiProvider } from "../context.tsx";
 import { BUNDLES } from "../demo/bundles.ts";
 import { fetchCourse, type LoadedCourse } from "../player/load.ts";
 import { DataBrowser } from "./DataBrowser.tsx";
@@ -58,3 +71,33 @@ export const Words: Story = story("words");
 export const Forms: Story = story("forms");
 /** A sentence, with what it accepts and its words. */
 export const Sentences: Story = story("sentences");
+
+/** A lexicon's own files, as lexicon-source.ts serves them: the two YAML files, parsed. */
+const sourceOf = (lexemes: string, language: string): LexiconSource => {
+  const source: unknown = { lexemes: parse(lexemes) as unknown, language: parse(language) as unknown };
+  if (!isLexiconSource(source)) throw new Error("not a lexicon");
+  return source;
+};
+
+const SOURCES: Readonly<Record<string, readonly [string, string]>> = { uz: [uzLexemes, uzLanguage], apc: [apcLexemes, apcLanguage], fa: [faLexemes, faLanguage] };
+
+/** A fixed course's Lexicon or Language view, `opened` open and searched for. */
+const lexiconStory = (id: string, orthography: string, view: DataView, opened?: string): Story => ({
+  loaders: [async () => ({ lexiconCourse: await fetchCourse(BUNDLES, id, orthography) })],
+  render: (_args, { loaded }) => {
+    const { course, imageUrl } = loaded["lexiconCourse"] as LoadedCourse;
+    const [lexemes, language] = SOURCES[id] ?? ["", ""];
+    return (
+      <CourseUiProvider course={course}>
+        <DataBrowser key={`${course.id}:${view}`} course={course} view={view} query={opened ?? ""} opened={opened} lexicon={sourceOf(lexemes, language)} url={imageUrl} />
+      </CourseUiProvider>
+    );
+  },
+});
+
+/** An affix (uz's dative), open: its entry with its allomorphs in both scripts, its bundle lexeme, the words that carry it. */
+export const LexiconAffix: Story = lexiconStory("uz", "uz-Latn/standard", "lexicon", "lexeme:dat");
+/** A word with a pinned form and a feature of its own (apc awwal "first"), open: its spellings in both scripts, what the bundle keeps, how its sentences write it. */
+export const LexiconForms: Story = lexiconStory("apc", "apc-Arab/standard", "lexicon", "lexeme:awwal");
+/** The language file (fa): its dimensions, features and rules, as stored. */
+export const Language: Story = lexiconStory("fa", "fa-Arab/standard", "language");

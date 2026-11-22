@@ -736,6 +736,12 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - One search matcher: @nabu/core/lesson `textMatcher` (letters as the profile compares them, readings with or without
   tones, support text in its own language, ids). The word list's `wordMatcher` and the Data page's `dataMatcher` call
   it; never write another. A sentence is also found by a part it lists (feature:Case=Dat, lexeme:dat).
+- Its Lexicon view (`lexiconData`) lists every lexeme of the lexicon, bound ones too, each opening to its entry as
+  lexemes.yaml has it, its bundle lexeme (features marked stored or given by a default) and what the course does with
+  it; its Language view shows language.yaml. The files come from lexicon-source/<course>.json beside the app
+  (apps/web/lexicon-source.ts: a Vite plugin in dev and preview, written for Pages), never from a bundle.
+- Records are `DataNode` trees laid out in core, every key of a record shown, a key no one has named as text of `und`
+  (lexicon-data.test.ts checks every key of every fixture lexeme): name a new field's kind there, never in UI code.
 
 ## Lexical model notes (see docs/migration-design.md, ADRs 0145–0151)
 - There are no KCs. The units are the lexeme (`lexeme:tener`: a stem, a clitic and an affix alike), the feature value

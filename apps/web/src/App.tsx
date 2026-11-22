@@ -93,6 +93,8 @@ import { bundleAliases, upgradeDeviceLog } from "./upgrade-log.ts";
 import { createSync, type Account, type Sync } from "./sync.ts";
 
 const BUNDLES = `${import.meta.env.BASE_URL}bundles/`;
+/** The alias tables of the app's bundles, for the Data page: one function, so the page fetches a table once. */
+const DATA_ALIASES = bundleAliases(BUNDLES);
 
 /**
  * Courses offline in the browser (Phase 10): production builds with a service worker. The dev
@@ -113,7 +115,7 @@ export type Route =
   | { readonly tag: "sentences"; readonly course: string; readonly orthography: string }
   | { readonly tag: "cards"; readonly course: string; readonly orthography: string }
   | { readonly tag: "audio"; readonly course: string; readonly orthography: string }
-  | { readonly tag: "data"; readonly course: string; readonly orthography: string }
+  | { readonly tag: "data"; readonly course: string; readonly orthography: string; readonly view?: string | undefined; readonly entry?: string | undefined }
   | { readonly tag: "words"; readonly course: string; readonly orthography: string }
   | { readonly tag: "reports"; readonly course: string; readonly orthography: string }
   | { readonly tag: "offline"; readonly course: string; readonly orthography: string }
@@ -129,7 +131,7 @@ const requestOf = (segment: string): SessionRequest =>
   segment === "review" || segment === "mistakes" || segment === "placement" ? { mode: segment } : { mode: "lesson", node: segment };
 
 const parse = (hash: string): Route => {
-  const [course, orthography, session, node] = hash.replace(/^#\/?/u, "").split("/").filter((p) => p !== "").map(decodeURIComponent);
+  const [course, orthography, session, node, entry] = hash.replace(/^#\/?/u, "").split("/").filter((p) => p !== "").map(decodeURIComponent);
   if (course === "preferences" && orthography === undefined) return { tag: "preferences" };
   // The review workspace (ADR 0074): #/review, and #/review/<course>/<orthography>.
   if (course === "review") return orthography === undefined || session === undefined ? { tag: "review" } : { tag: "review-course", course: orthography, orthography: unslug(session) };
@@ -138,7 +140,8 @@ const parse = (hash: string): Route => {
   if (session === "sentences") return { tag: "sentences", course, orthography: unslug(orthography) };
   if (session === "cards") return { tag: "cards", course, orthography: unslug(orthography) };
   if (session === "audio") return { tag: "audio", course, orthography: unslug(orthography) };
-  if (session === "data") return { tag: "data", course, orthography: unslug(orthography) };
+  // The Data page's view and the lexeme open in it (#/es/es-Latn.standard/data/lexicon/lexeme%3Acasa).
+  if (session === "data") return { tag: "data", course, orthography: unslug(orthography), view: node, entry };
   if (session === "words") return { tag: "words", course, orthography: unslug(orthography) };
   if (session === "reports") return { tag: "reports", course, orthography: unslug(orthography) };
   if (session === "offline") return { tag: "offline", course, orthography: unslug(orthography) };
@@ -164,7 +167,9 @@ export const href = (route: Route): string =>
         ? `#/${route.course}/${slug(route.orthography)}/story/${encodeURIComponent(route.node)}`
         : route.tag === "roleplay"
           ? `#/${route.course}/${slug(route.orthography)}/roleplay/${encodeURIComponent(route.scenario)}`
-          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "data" || route.tag === "words" || route.tag === "reports" || route.tag === "offline"
+          : route.tag === "data"
+            ? `#/${route.course}/${slug(route.orthography)}/data${route.view === undefined ? "" : `/${encodeURIComponent(route.view)}${route.entry === undefined ? "" : `/${encodeURIComponent(route.entry)}`}`}`
+          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "words" || route.tag === "reports" || route.tag === "offline"
             ? `#/${route.course}/${slug(route.orthography)}/${route.tag}`
             : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
 
@@ -1687,7 +1692,15 @@ export const App = (): JSX.Element => {
     const { course } = loaded.value;
     return (
       <CourseUiProvider course={course}>
-        <DataPage loaded={loaded.value} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
+        <DataPage
+          loaded={loaded.value}
+          back={href({ tag: "course", course: course.id, orthography: course.orthography })}
+          view={route.view}
+          entry={route.entry}
+          base={import.meta.env.BASE_URL}
+          aliases={DATA_ALIASES}
+          at={(view, entry) => href({ tag: "data", course: course.id, orthography: course.orthography, view, entry })}
+        />
       </CourseUiProvider>
     );
   }
