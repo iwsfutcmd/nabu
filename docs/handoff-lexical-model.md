@@ -650,8 +650,11 @@ not kept; what a later session needs is here.
   put to them as a page, each broken down). Its stage 1 needs none of the six;
 - `packages/core-cli` tests have a minute each: on a loaded CI runner a property test passed five seconds.
 
-**Being built** (`/home/user/nabu`, branch `ccr-aebe970e-q9o4q4`): seen-logging (ADR 0146): what each card
-displayed on `exercise_presented` and `answer_submitted`, `story_line_read`, the pairs seen in the fold.
+- seen-logging (ADR 0146): what each card displayed on `exercise_presented` and `answer_submitted`,
+  `story_line_read` once per line, the pairs seen in the fold (`seenIn`, `formsSeen`). Nothing reads it yet.
+  Two things it left for the owner: a lemma shown as the lexicon spells it is logged with no feature values
+  (the bundle does not carry the language's citation cell), and a skipped card, which reveals its answer,
+  logs nothing as seen.
 
 **Not started:** stage 1 of `docs/rules-design.md` (lexical forms into apc's lexicon and how each
 orthography spells them). The apc prototype's participle check still covers nine forms where it covered

@@ -797,7 +797,12 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   feature value changes the table's right-hand sides with it (pipeline/tests/test_aliases.py).
 - Old events are the `…V1` types of schemas/learner-event.v1.schema.json, which only `upgrade` and the restore of an
   old download read. `outcome.labels` and `outcome.correspondences` come from the grade (Losses and labels notes).
-  `story_line_read` and `displayed` are in the schema and never emitted (ADR 0146's "seen is logged" is not built).
+  Seen is logged (ADR 0146): `exercise_presented.displayed` is what a card shows before its answer,
+  `answer_submitted.displayed` what the answer adds, and `story_line_read` is logged once per line as it joins the
+  transcript; core `displayedBefore`/`displayedWith` (lesson/displayed.ts) say what, never the UI. The fold's `seen` keeps
+  each lexeme's forms seen (`lexemeFormKey`, first local date); read it with `seenIn` and `formsSeen`. It is exposure,
+  never a card, and nothing logged before 2026-11-22 counts. A lemma shown as the lexicon spells it is logged with no
+  `feats` (the bundle does not say which cell a lemma is).
 - A token of letters is of kind `lexical` (beside `punct`, `space`, `number`, `symbol`); the UI writes it as
   `data-kind`. A bundle's `formatVersion` is 4 (`BUNDLE_FORMAT` in core, `FORMAT_VERSION` in the compiler): raise both
   when a bundle's shape or a token's changes, so a device refuses a cached bundle it cannot read and fetches the new
