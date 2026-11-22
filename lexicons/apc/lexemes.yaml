@@ -169,7 +169,7 @@ lexemes:
   gloss: {en: wedding}
   spelled: {apc-Arab/standard: [عرس], apc-Latn/arabizi: [3irs]}
 - id: lexeme:3mol-ma3rouf
-  pos: INTJ
+  pos: VERB
   gloss: {en: please (to a man)}
   notes: {en: 'Literally ''do a favour''. To a woman: عملي معروف, 3emli ma3rouf.'}
   spelled: {apc-Arab/standard: [عمول معروف], apc-Latn/arabizi: [3mol ma3rouf]}
@@ -1036,13 +1036,14 @@ lexemes:
   allomorphs:
   - {spelled: {apc-Arab/standard: [خمستعشر], apc-Latn/arabizi: [khamsta3shar]}}
 - id: lexeme:khayef
-  pos: ADJ
+  pos: VERB
   gloss: {en: afraid; scared; worried}
   notes: {en: 'A woman: خايفة, khayfe. ma tkhaf!: don''t be afraid (to a woman: ma tkhafi!).'}
   spelled: {apc-Arab/standard: [خايف], apc-Latn/arabizi: [khayef]}
   forms:
   - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تخافي], apc-Latn/arabizi: [tkhafi]}, status: pinned}
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [خايفة], apc-Latn/arabizi: [khayfe]}, status: pinned}
+  - {feats: {Aspect: Part, Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [خايفة], apc-Latn/arabizi: [khayfe]}, status: pinned}
+  - {feats: {Aspect: Part, Gender: Masc, Number: Sing}, spelled: {apc-Arab/standard: [خايف], apc-Latn/arabizi: [khayef]}, status: pinned}
 - id: lexeme:khayy
   pos: NOUN
   gloss: {en: brother}
@@ -1148,7 +1149,7 @@ lexemes:
   - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [لبنانية], apc-Latn/arabizi: [lebneniyye]}, status: pinned}
   - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [لبنانيين], apc-Latn/arabizi: [lebneniyyin]}, status: pinned}
 - id: lexeme:lek
-  pos: INTJ
+  pos: VERB
   gloss: {en: look!; hey (to a man)}
   notes: {en: 'To draw attention: to a woman leke (ليكي), to several people leko (ليكو).'}
   spelled: {apc-Arab/standard: [ليك], apc-Latn/arabizi: [lek]}
@@ -1963,7 +1964,7 @@ lexemes:
   gloss: {en: grandma}
   spelled: {apc-Arab/standard: [تيتا], apc-Latn/arabizi: [teta]}
 - id: lexeme:tfaddal
-  pos: INTJ
+  pos: VERB
   gloss: {en: 'here you are; please, go ahead; come in'}
   notes: {en: 'Offering something or inviting someone in. To a woman: تفضّلي, tfaddali; to several people: تفضّلوا, tfaddalo.'}
   spelled: {apc-Arab/standard: [تفضّل], apc-Latn/arabizi: [tfaddal]}

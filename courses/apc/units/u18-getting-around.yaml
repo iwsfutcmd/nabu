@@ -442,13 +442,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: وقّف هون، عمول معروف.
-      tokens: [{surface: وقّف, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: هون, lexeme: hon}, {surface: عمول, lexeme: 3mol-ma3rouf}, {surface: معروف, lexeme: 3mol-ma3rouf}]
+      tokens: [{surface: وقّف, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: هون, lexeme: hon}, {surface: عمول, lexeme: 3mol-ma3rouf, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: معروف, lexeme: 3mol-ma3rouf}]
       reverse: |-
         وقّف هون (عمول|اعمول|عمل) معروف
         عمول معروف وقّف هون
     apc-Latn/arabizi:
       text: wa22ef hon, 3mol ma3rouf.
-      tokens: [{surface: wa22ef, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: hon, lexeme: hon}, {surface: 3mol, lexeme: 3mol-ma3rouf}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
+      tokens: [{surface: wa22ef, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: hon, lexeme: hon}, {surface: 3mol, lexeme: 3mol-ma3rouf, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
       reverse: |-
         (wa22ef|wa2af|wa22if|wa22af) (hon|hone|houn) (3mol|3mul|e3mol) (ma3rouf|ma3roof)
         3mol ma3rouf wa22ef hon
@@ -629,10 +629,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: وَقِّف هون، عْمول مَعْروف!
-          tokens: [{surface: وَقِّف, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: هون, lexeme: hon}, {surface: عْمول, lexeme: 3mol-ma3rouf}, {surface: مَعْروف, lexeme: 3mol-ma3rouf}]
+          tokens: [{surface: وَقِّف, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: هون, lexeme: hon}, {surface: عْمول, lexeme: 3mol-ma3rouf, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: مَعْروف, lexeme: 3mol-ma3rouf}]
         apc-Latn/arabizi:
           text: wa22ef hon, 3mol ma3rouf!
-          tokens: [{surface: wa22ef, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: hon, lexeme: hon}, {surface: 3mol, lexeme: 3mol-ma3rouf}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
+          tokens: [{surface: wa22ef, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: hon, lexeme: hon}, {surface: 3mol, lexeme: 3mol-ma3rouf, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
       translations:
         en: Stop here, please! (to the driver)
   - choose:

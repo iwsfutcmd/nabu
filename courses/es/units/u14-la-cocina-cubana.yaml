@@ -171,7 +171,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Échale comino también, pero no mucho.
-      tokens: [{surface: Échale, lexemes: [{lexeme: echar, surface: Écha, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: le, surface: le}]}, {surface: comino, lexeme: comino, feats: {Number: Sing}}, {surface: también, lexeme: también}, {surface: pero, lexeme: pero}, {surface: 'no', lexeme: 'no'}, {surface: mucho, lexeme: mucho}]
+      tokens: [{surface: Échale, lexemes: [{lexeme: echar, surface: Écha, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: le, surface: le}]}, {surface: comino, lexeme: comino, feats: {Number: Sing}}, {surface: también, lexeme: también}, {surface: pero, lexeme: pero}, {surface: 'no', lexeme: 'no'}, {surface: mucho, lexeme: mucho, feats: {Gender: Masc, Number: Sing}}]
       reverse: |-
         (Échale|Echa|Échele|Eche|Ponle|Pon) comino también pero no (mucho|demasiado)
         Agrega comino también, pero no mucho.
@@ -494,7 +494,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Abuela, ¿cuánto comino se echa?
-          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: cuánto, lexeme: cuánto}, {surface: comino, lexeme: comino, feats: {Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: echa, lexeme: echar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+          tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: cuánto, lexeme: cuánto, feats: {Gender: Masc, Number: Sing}}, {surface: comino, lexeme: comino, feats: {Number: Sing}}, {surface: se, lexeme: se.impersonal}, {surface: echa, lexeme: echar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
       translations:
         en: Grandma, how much cumin do you put in?
   - line:
@@ -508,7 +508,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Un poco. ¡No eches mucho!
-          tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: 'No', lexeme: 'no'}, {surface: eches, lexeme: echar, feats: {Mood: Imp, Number: Sing, Person: '2', Polarity: Neg, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}]
+          tokens: [{surface: Un, lexeme: un, feats: {Gender: Masc, Number: Sing}}, {surface: poco, lexeme: poco}, {surface: 'No', lexeme: 'no'}, {surface: eches, lexeme: echar, feats: {Mood: Imp, Number: Sing, Person: '2', Polarity: Neg, VerbForm: Fin}}, {surface: mucho, lexeme: mucho, feats: {Gender: Masc, Number: Sing}}]
       translations:
         en: A little. Don't put in too much!
   - choose:
