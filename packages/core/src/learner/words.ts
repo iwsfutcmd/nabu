@@ -27,6 +27,7 @@ import { TEMPLATES } from "../lesson/templates.ts";
 import { chosenTraditionKey, readingTraditions } from "../lesson/traditions.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 import { cardKey, DESIRED_RETENTION, languageSkills, parseCardKey, retrievability, type LearnerState, type LetterMisses } from "./state.ts";
+import { askable } from "./due.ts";
 
 /**
  * A skill a part is known by (ADR 0100, 0146). A lexeme: recognizing it, producing it, hearing it.
@@ -62,8 +63,9 @@ export interface LearnedWord {
   readonly strength: number;
   /**
    * Whether it is due for review: a practised facet's recall has dropped below the target (the
-   * planner's `dueFacets`, so the word list and the course page agree, W8). A facet turned off
-   * for good is never due (D41): no session can practise it.
+   * planner's `dueFacets`, so the word list and the course page agree, W8), a facet a card the
+   * course can make credits (`askable`): a review can clear it. A facet turned off for good is
+   * never due (D41): no session can practise it.
    */
   readonly due: boolean;
   /** Reviews of all its facets together. */
@@ -131,14 +133,18 @@ export const skillsAsked = (course: CourseView, facetsOff: ReadonlySet<Facet> = 
 };
 
 interface Practised {
+  readonly key: string;
   readonly skill: Skill;
+  readonly reading: string | undefined;
   readonly reps: number;
 }
 
 /**
  * Every practised word of the course, in the order the course teaches them; due where
- * a facet's recall at `now` is below `desired` (the learner's target retention). `facetsOff`: the
- * facets the learner turned off for good (D41), asked of no word and never due.
+ * a facet's recall at `now` is below `desired` (the learner's target retention) and a card the
+ * course can make credits it (`dueFacets`). `facetsOff`: the facets the learner turned off for good
+ * (D41), asked of no word and never due; `reading`: the tradition the learner reads in (ADR 0138),
+ * the only one whose readings are due.
  */
 export const learnedWords = (
   course: CourseView,
@@ -146,15 +152,17 @@ export const learnedWords = (
   now: string,
   desired: number = DESIRED_RETENTION,
   facetsOff: ReadonlySet<Facet> = NONE_OFF,
+  reading?: SchemeId | false,
 ): readonly LearnedWord[] => {
   const orthography = course.orthography;
   const asked = skillsAsked(course, facetsOff);
+  const can = askable(course, facetsOff, reading);
   // One pass over the cards, by part: the language's skills, and the script facets of this orthography.
   const practised = new Map<string, Practised[]>();
   for (const [key, card] of Object.entries(state.cards)) {
     const ref = parseCardKey(key);
     if (card.reps === 0 || (ref.orthography !== undefined && ref.orthography !== orthography)) continue;
-    practised.set(ref.part, [...(practised.get(ref.part) ?? []), { skill: ref.skill, reps: card.reps }]);
+    practised.set(ref.part, [...(practised.get(ref.part) ?? []), { key, skill: ref.skill, reading: ref.reading, reps: card.reps }]);
   }
   const units = unitIndexOf(course);
   const out: LearnedWord[] = [];
@@ -162,10 +170,11 @@ export const learnedWords = (
     const skillsPractised = practised.get(lexeme.id);
     const form = lexeme.forms?.[orthography]?.[0];
     if (skillsPractised === undefined || form === undefined) continue;
-    const recallOf = (of: readonly Practised[]): readonly number[] => of.map((f) => retrievability(state, lexeme.id, f.skill, orthography, now));
+    const recallOf = (of: readonly Practised[]): readonly number[] => of.map((f) => retrievability(state, lexeme.id, f.skill, orthography, now, f.reading));
     // What counts is the facets not turned off (D41). A word practised in nothing else is still
     // listed, with the strength it has, and is never due.
-    const counted = recallOf(skillsPractised.filter((f) => !(facetsOff as ReadonlySet<string>).has(f.skill)));
+    const kept = skillsPractised.filter((f) => !(facetsOff as ReadonlySet<string>).has(f.skill));
+    const counted = recallOf(kept);
     const recall = counted.length > 0 ? counted : recallOf(skillsPractised);
     const strength = recall.reduce((sum, r) => sum + r, 0) / recall.length;
     const skills = asked(lexeme.id).map((skill) => ({ skill, shown: state.shown[cardKey(lexeme.id, skill, orthography)] !== undefined }));
@@ -175,7 +184,7 @@ export const learnedWords = (
       form,
       gloss: lexeme.gloss?.[course.supportKey],
       strength,
-      due: counted.some((r) => r < desired),
+      due: kept.some((f, i) => (counted[i] ?? 1) < desired && can(f.key)),
       reviews: skillsPractised.reduce((sum, f) => sum + f.reps, 0),
       known: skills.length > 0 && skills.every((s) => s.shown),
       skills,

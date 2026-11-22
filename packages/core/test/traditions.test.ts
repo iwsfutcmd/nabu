@@ -96,8 +96,8 @@ describe("reading traditions (ADR 0138)", () => {
     expect(readingsShown(lzh, state).size).toBe(0);
     // Due in Baxter only, and only for a learner reading in Baxter.
     const later = "2027-03-01T08:00:00.000Z";
-    expect(dueFacets(state, "lzh-Hant/standard", later, 0.9, new Set(), "baxter").filter((f) => parseCardKey(f.key).skill === "read-script").length).toBe(keys.length);
-    expect(dueFacets(state, "lzh-Hant/standard", later, 0.9, new Set(), "pinyin").filter((f) => parseCardKey(f.key).skill === "read-script")).toEqual([]);
+    expect(dueFacets(lzh, state, later, 0.9, new Set(), S("baxter")).filter((f) => parseCardKey(f.key).skill === "read-script").length).toBe(keys.length);
+    expect(dueFacets(lzh, state, later, 0.9, new Set(), S("pinyin")).filter((f) => parseCardKey(f.key).skill === "read-script")).toEqual([]);
   });
 
   it("typed readings come after a choice card has shown them, in that tradition", () => {

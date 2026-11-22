@@ -10,13 +10,9 @@ import { lexemesById, type CourseView } from "../lesson/course.ts";
 import type { Exercise } from "../lesson/exercise.ts";
 import type { LessonEvent } from "../lesson/player.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
-import { creditOf, readingOf } from "./credit.ts";
+import { creditOf, practised, readingOf } from "./credit.ts";
 
-/**
- * Whether the course practises a skill (ADR 0071: its `facets`): a word's spelling leftover is
- * credited by write-script (ADR 0148), which a course that does not write (lzh) never asks.
- */
-export const practised = (course: CourseView, skill: string): boolean => skill !== "write-script" || course.facets === undefined || course.facets.includes("write-script");
+export { practised };
 
 export interface EventMeta {
   readonly id: string;

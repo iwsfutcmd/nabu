@@ -58,7 +58,7 @@ describe("the words a learner has learned", () => {
   it("is due when a skill's recall drops below the target, as the planner counts due cards (W8)", () => {
     const { state } = afterFirstLesson();
     for (const at of [NOW, "2026-03-04T08:00:00.000Z", "2026-03-20T08:00:00.000Z"]) {
-      const due = new Set(dueFacets(state, fa.orthography, at).map((f) => parseCardKey(f.key).part));
+      const due = new Set(dueFacets(fa, state, at).map((f) => parseCardKey(f.key).part));
       for (const w of learnedWords(fa, state, at)) expect(w.due, `${w.lexeme} at ${at}`).toBe(due.has(w.lexeme));
     }
     // A higher target makes more words due, never fewer.
@@ -382,8 +382,8 @@ describe("listening turned off for good (D41)", () => {
     // The reviews it had are history: they stay.
     expect(off?.reviews).toBe(on?.reviews);
     // The planner's due cards say the same (W8).
-    expect(dueFacets(state, fa.orthography, NOW).map((f) => f.key)).toEqual([`${kc}|listen`]);
-    expect(dueFacets(state, fa.orthography, NOW, DESIRED_RETENTION, LISTEN)).toEqual([]);
+    expect(dueFacets(fa, state, NOW).map((f) => f.key)).toEqual([`${kc}|listen`]);
+    expect(dueFacets(fa, state, NOW, DESIRED_RETENTION, LISTEN)).toEqual([]);
     // A word practised by listening alone stays listed, with the strength it has, and is not due.
     const onlyHeard: LearnerState = { ...emptyLearnerState(), cards: { [`${kc}|listen`]: cardAt(30, 2) } };
     const [listed] = learnedWords(fa, onlyHeard, NOW, DESIRED_RETENTION, LISTEN);
@@ -394,7 +394,7 @@ describe("listening turned off for good (D41)", () => {
   it("changes nothing when nothing is turned off", () => {
     for (const at of [NOW, "2026-04-01T08:00:00.000Z"]) {
       expect(learnedWords(fa, state, at, DESIRED_RETENTION, new Set())).toEqual(learnedWords(fa, state, at));
-      expect(dueFacets(state, fa.orthography, at, DESIRED_RETENTION, new Set())).toEqual(dueFacets(state, fa.orthography, at));
+      expect(dueFacets(fa, state, at, DESIRED_RETENTION, new Set())).toEqual(dueFacets(fa, state, at));
     }
   });
 });

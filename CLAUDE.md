@@ -190,15 +190,21 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Sessions aim at the skills words lack (ADR 0101): `NEED_GAIN`, typing and listening slots that only come in where the
   session can still reach its target, `focus` blanks. Callers pass `today`, the learner's local date (web
   `localDate(now)`; the e2e solver UTC, as its browser). Tune against the simulation, which checks typing too.
-- The simulator logs credits as the player does (asked words right or wrong, the rest given): keep
-  test/learner-fixtures `creditsOf` in step with `creditOf`.
+- The simulator logs credits as the player does: test/learner-fixtures `creditsOf` calls `creditOf` itself
+  (`rightCredits` for a right answer), so the two cannot drift.
 - The learning pace (ADR 0105): `paceOf(course, state, now, choice)` reads a band (consolidate, steady, accelerate)
   from the fold's `recent` first tries and slipping words; `PACE` sets the retention target, a lesson's review share
   and when `continueOf` offers practice first. Pass the band to `plan` (web: SessionBody; e2e: the solver) so plans
   match. Never block a lesson (D6); tune `PACE` only against the simulation's pacing runs.
-- Due means a facet's recall is below the target (`dueFacets`, `LearnedWord.due`): never a card's FSRS due date. The
-  course page counts due words. A review session has a card per word needing one (5–15) and plans only from the
-  neediest sentences and words plus a few well-known ones: never build candidates from every studied sentence (R3).
+- Due means a facet's recall is below the target and the course can make a card that credits it (`dueFacets`,
+  `LearnedWord.due`; `askable` in learner/due.ts: given the course's lasting exclusions, the facets turned off for good
+  and the learner's reading tradition; never a break; never a letter, ADR 0149): never a card's FSRS due date. The
+  course page counts due words. What a card credits is `creditedKeys`: `creditOf` given an answer exactly right (a typed
+  sentence also credits its words' spelling leftovers); the planner's gain and the simulator use only that. A review
+  session has a card per word needing one (5–15), finds a card for each due facet from the sentences carrying its part
+  (`cardCrediting`, the search `askable` uses; never candidates from every studied sentence, R3), takes cards for due
+  facets nothing else covers while it can afford them (`affordableOf`), and always one for its most forgotten due facet.
+  Reviews answered right clear what is due, in every course (test/due.test.ts): keep it so.
 - Readings on new words only (ADR 0131): the fold witnesses the read-script facet too (`WITNESSED_FACETS`, by D2's rule);
   it is never a skill a word is known by. A reading layer with `fade: by-facet` shows over all words or new ones
   (`DisplayChoice.readings`); <T> fades a word's ruby only inside `FadeReadings` (lessons, stories), by core

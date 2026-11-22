@@ -198,6 +198,23 @@ describe("a word's spelling is missed only where it has one to miss (ADR 0148)",
     for (const c of credits.filter((x) => x.skill === "write-script")) expect(lexemesById(yue).get(String(c.part))?.leftovers?.spelling, String(c.part)).toBeDefined();
   });
 
+  it("yue: a character read alike misses the word's spelling only where the course writes another character so (its leftover)", () => {
+    const yue = loadCourse("yue");
+    // 我 ngo5 has no character the course reads alike: 砈, typed for it, is the correspondence's alone.
+    const { graded, credits } = traded(yue, "s.10", "我", "砈");
+    expect(graded.labels).toEqual(["orthographic"]);
+    expect(lexemesById(yue).get("lexeme:我")?.leftovers).toBeUndefined();
+    expect(missedSpellings(credits)).toEqual([]);
+    expect(credits).toContainEqual({ part: "lexeme:我", skill: "produce", status: "right" });
+    // 小姐 siu2 ze2 has one (少 siu2): 少姐 misses its spelling, which a spelling card can ask again.
+    const ex = typed(yue, "s.u02.9");
+    const word = ex.canonical.tokens.find((t) => t.surface === "小姐");
+    expect(word, "s.u02.9 writes 小姐").toBeDefined();
+    const missed = gradeExercise(ex, { tag: "text", text: ex.canonical.tokens.map((t) => (t === word ? "少姐" : t.surface)).join("") }, createGrader(yue));
+    expect(missed.labels).toEqual(["orthographic"]);
+    expect(missedSpellings(creditOf(ex, missed, yue.profiles, lexemesById(yue)))).toEqual(["lexeme:小姐"]);
+  });
+
   it("no card of the fold's is left for a word with no spelling to miss", () => {
     const { graded } = traded(es, "s.u03.9", "aquí", "akí");
     const ex = typed(es, "s.u03.9");
@@ -277,7 +294,7 @@ describe("a word's parts, each shown or not (partsOf)", () => {
     expect(shown.length).toBeGreaterThan(0);
     for (const id of shown) expect(state.shown[cardKey(id, "write-script", HANT)], id).toBeDefined();
     // A spelling the fold keeps a card for falls due as any facet does.
-    expect(dueFacets(state, HANT, "2027-06-01T00:00:00.000Z").map((f) => f.key)).toContain(cardKey(shown[0] as string, "write-script", HANT));
+    expect(dueFacets(yue, state, "2027-06-01T00:00:00.000Z").map((f) => f.key)).toContain(cardKey(shown[0] as string, "write-script", HANT));
     for (const id of [...typedWords].filter((x) => lexemes.get(x)?.leftovers === undefined)) expect(partsOf(yue, state, id).some((p) => p.kind === "spelling"), id).toBe(false);
   });
 

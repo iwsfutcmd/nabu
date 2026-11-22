@@ -9,6 +9,7 @@
  * matched is right even when the answer as a whole was wrong.
  */
 import type { BundleLexeme, PartCredit, PartId, SchemeId, TaggedText, Token } from "@nabu/schema";
+import { lexemesById, type CourseView } from "../lesson/course.ts";
 import type { AlignOp, MissLabel, Verdict } from "../match/grade.ts";
 import type { CompiledProfile } from "../profile/compile.ts";
 import { isCorrect, type Exercise, type Facet, type Outcome, type SelfRating } from "../lesson/exercise.ts";
@@ -127,8 +128,9 @@ const wordStatuses = (canonical: TaggedText, alignment: readonly AlignOp[], prof
  * which words have a spelling leftover in the answer's orthography (ADR 0148): a typed word right
  * shows it (`write-script`, right), and a word of the right sound with the wrong letter misses it.
  * A word with no leftover has no spelling to miss: the letters typed are a spelling the norm never
- * uses there (ke for que), which counts against its correspondence alone (the grade's
- * `correspondences`), and no card could ask the word's spelling again.
+ * uses there (ke for que), or a character that reads alike where the course writes no other (yue),
+ * which counts against its correspondence alone (the grade's `correspondences`), and no card could
+ * ask the word's spelling again.
  */
 export const creditOf = (ex: Exercise, outcome: Outcome, profiles: ReadonlyMap<string, CompiledProfile>, lexemes?: ReadonlyMap<string, BundleLexeme>): readonly PartCredit[] => {
   const right = isCorrect(outcome.verdict);
@@ -155,9 +157,9 @@ export const creditOf = (ex: Exercise, outcome: Outcome, profiles: ReadonlyMap<s
         if (status === "right" || status === "spelling") {
           for (const id of ids) mark(id, "right");
           if (status === "right") for (const id of ids) if (leftover(id) && script.get(id) !== "wrong") script.set(id, "right");
-          // Missed only where there is a spelling to miss: the word's leftover, or, where the
-          // profile knows homophone characters (yue), a character that reads alike.
-          if (status === "spelling" && base !== undefined && (leftover(base) || profile.homophones !== undefined)) script.set(base, "wrong");
+          // Missed only where there is a spelling to miss: the word's leftover (a homophone
+          // character too: yue's is a leftover where the course has another character read alike).
+          if (status === "spelling" && base !== undefined && leftover(base)) script.set(base, "wrong");
         } else if (status === "form" && base !== undefined) {
           // The right lexeme in another form: the form's values, and what else the token writes, missed.
           mark(base, "right");
@@ -183,6 +185,38 @@ export const creditOf = (ex: Exercise, outcome: Outcome, profiles: ReadonlyMap<s
   }
   return ex.parts.map((part) => credit(part, right ? "right" : "wrong"));
 };
+
+/**
+ * Whether the course practises a skill (ADR 0071: its `facets`): a word's spelling leftover is
+ * credited by write-script (ADR 0148), which a course that does not write (lzh) never asks.
+ */
+export const practised = (course: CourseView, skill: string): boolean => skill !== "write-script" || course.facets === undefined || course.facets.includes("write-script");
+
+/**
+ * The outcome of an answer exactly right: what the card's answer is, and, for a typed answer, every
+ * unit of its canonical text matched (as the grade lines up an answer typed as shown).
+ */
+const rightOutcome = (ex: Exercise, profiles: ReadonlyMap<string, CompiledProfile>): Outcome => {
+  if (ex.template !== "translate-type.l1-l2" && ex.template !== "listen-type") return { verdict: "CORRECT", notes: [] };
+  const profile = profiles.get(ex.orthography);
+  // Tests hand in cards of their own making, some with no canonical answer.
+  const tokens = (ex as { readonly canonical?: TaggedText }).canonical?.tokens;
+  if (profile === undefined || tokens === undefined) return { verdict: "CORRECT", notes: [] };
+  const alignment = tokens
+    .filter((t) => t.kind === "lexical" || t.kind === "number")
+    .flatMap((t) => profile.units(profile.normalize(t.surface)).map((unit): AlignOp => ({ op: "match", expected: unit, actual: unit, kind: "exact" })));
+  return { verdict: "CORRECT", notes: [], alignment, labels: [] };
+};
+
+/**
+ * What an answer exactly right to a card is credited, as the player logs it (`creditOf` with a
+ * right outcome, the skills the course does not practise left out): the parts it shows, each by its
+ * skill; the given ones only with `given`. A typed sentence also shows the spelling of each of its
+ * words that has a leftover (ADR 0148). The one notion of what a card can credit: the planner aims
+ * cards by it (what is due, what a word lacks), and what is due is what some card can credit.
+ */
+export const rightCredits = (course: CourseView, ex: Exercise, given = false): readonly PartCredit[] =>
+  creditOf(ex, rightOutcome(ex, course.profiles), course.profiles, lexemesById(course)).filter((c) => (given || c.status !== "given") && practised(course, c.skill));
 
 /**
  * The rating that goes to FSRS (§9.2, ADR 0096). Learners never rate themselves, except speaking at

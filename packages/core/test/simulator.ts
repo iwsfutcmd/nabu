@@ -159,7 +159,7 @@ export const simulate = (
       const next = nodes.find((n) => !state.completedNodes.includes(n));
       const pace = options.follow === "continue" ? paceOf(course, state, iso()) : undefined;
       const practice = pace !== undefined && pace.due > 0 && (practiceFirst(pace) || next === undefined);
-      if (!practice && next === undefined && dueFacets(state, course.orthography, iso()).length < 3) continue;
+      if (!practice && next === undefined && dueFacets(course, state, iso()).length < 3) continue;
       const request = next !== undefined && !practice ? ({ mode: "lesson", node: next } as const) : ({ mode: "review" } as const);
       const p = plan(course, state, request, { now: iso(), today: iso().slice(0, 10), seed: seed * 1000 + day * hours.length + slot, pace: pace?.band, ...(options.exclude === undefined ? {} : { exclude: options.exclude }) });
       if (p.exercises.length === 0) continue;
