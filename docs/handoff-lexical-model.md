@@ -636,28 +636,34 @@ the seven decisions only the model notes recorded; *siendo* out of the notes' se
 READMEs.
 
 **On the branch `ccr-aebe970e-q9o4q4`, waiting for its visual baselines before it goes to main:**
-- two-option spelling cards and Cantonese's spelling leftover (commit f150ba18; ADR 0142 amended);
+- two-option spelling cards and Cantonese's spelling leftover (f150ba18; ADR 0142 amended);
+- what is due and what reviews ask (ba3ef927): `learner/due.ts`, `test/due.test.ts`. Reviews answered right
+  clear what is due in every course, in 5 to 9 sessions. Letters are never due and no script card comes back
+  in a review (ADR 0149);
+- the retag of es, apc and hbo with the language files' dimension lists
+  (`docs/migration/retag-2026-11-22.md`: every tag there is the owner's to review); `waves.svg` for the
+  three words that showed a waving hand, and for Hebrew's sea; the eight form clips dropped
+  (`nabu audio prune <course> --forms`);
 - `docs/rules-design.md`, the design for rules in a lexicon, a draft with six questions for the owner
   (also put to them as a page of questions, each broken down). Its stage 1 needs none of the six.
 
-**Being built, uncommitted, in two checkouts** (a worker restart on 2026-11-22 interrupted both; each was
-resumed):
-- `/home/user/nabu` (the branch): what is due and what reviews ask (decision 1). New `learner/due.ts`,
-  `test/due.test.ts`; the planner, the word list and the credit of a homophone miss change.
-- `/home/user/nabu-data` (branch `data-2026-11-22`, from main at 92421c35): the retag of es, apc and hbo with
-  the language files' dimension lists; a picture of water for the three words that showed a waving hand
-  (chg دریا and کول, grc θάλαττα; `wave.svg` is "hello"); the eight form clips dropped. Its list for the
-  owner is to be `docs/migration/retag-2026-11-22.md`.
+**Being built in the second checkout** (`/home/user/nabu-data`, branch `data-2026-11-22`): Chaghatay.
 
-**Next, in order:** Chaghatay in the second checkout (the three readings are Schluessel's own at their
-place, so each is stated word by word in the scheme, as Hebrew's qeres are; *Moǧulistān*'s lexeme takes
-his glossary's spelling first; an ezafe lexeme on the 31 tokens that say it in the reading alone, introduced
-at `chg.u06.dates`; شجرهٔ read *šajarah-i*, as he has it); merge the second checkout into the branch;
-bundles, golden plans, every check, e2e, the visual matrix from its container (new baselines for the
-spelling stories and whatever the data moved); main. Then seen-logging (ADR 0146), then stage 1 of
-`docs/rules-design.md`.
+**Next, in order:** Chaghatay (the three readings are Schluessel's own at their place, so each is stated
+word by word in the scheme, as Hebrew's qeres are; *Moǧulistān*'s lexeme takes his glossary's spelling
+first; an ezafe lexeme on the 31 tokens that say it in the reading alone, introduced at `chg.u06.dates`;
+شجرهٔ read *šajarah-i*, as he has it); then seen-logging (ADR 0146); then stage 1 of
+`docs/rules-design.md`. Each lands on main with bundles, golden plans, every check, e2e and the visual
+matrix from its container.
 
 **For the owner, found on the way:**
+- The weakest learner of the pacing runs is at 79.2% in Spanish against a floor of 79, and 79.6% in Hebrew,
+  now that reviews take the typed and reading cards that what is due asks for. Nothing was retuned.
+- The retag left three things open: Spanish *todo*'s neuter uses choose masculine singular while *cuánto*
+  asking an amount chooses nothing (one convention is wanted); `khayef` and `barukh` are verbs cited by a
+  participle (re-citing `khayef` as *khaf* needs a clip made); `kell-sene` is one lexeme of five tokens
+  whose agreement is a word's inside it.
+- Chaghatay's river and lake show the picture of the sea.
 - Persian's weakest simulated learners fall two to three points inside their band with a spelling card in
   nearly every session (the simulator knows nothing of a two-way guess being easier).
 - `khayef` (apc) is a verb cited by its participle, and 31 of apc's 41 verbs show an inflected form on

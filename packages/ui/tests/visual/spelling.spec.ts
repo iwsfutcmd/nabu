@@ -1,9 +1,8 @@
 /**
  * Spelling cards (ADR 0142, 0148) in the visual matrix: UI {en, en-XA, ar-XB} × {fa: other letters
- * of a sound; yue-Hant-HK: characters read alike} × {horizontal, vertical-rl where allowed}. A word
- * with one other spelling has two options (ADR 0142 amendment), a word with more three or four;
- * every option is in the target's language and direction, the gap's sentence in the target's
- * writing mode. uz and apc-Arab have no such card.
+ * of a sound; yue-Hant-HK: characters read alike}, horizontal as every gap-fill is. A word with one
+ * other spelling has two options (ADR 0142 amendment), a word with more three or four; every option
+ * and the gap's sentence are in the target's language and direction. uz and apc-Arab have no such card.
  */
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
@@ -18,6 +17,8 @@ const SCREENS = [
 
 for (const cell of cells()) {
   if (cell.target !== "fa" && cell.target !== "yue-Hant-HK") continue;
+  // A gap-fill is a horizontal card (as in player.spec.ts); the dark pass shows every story vertically too.
+  if (cell.writingMode !== "horizontal-tb") continue;
   for (const { screen, story, options: least } of SCREENS) {
     test(`spelling: ${cell.ui} × ${cell.target} × ${cell.writingMode} × ${screen}`, async ({ page }) => {
       const errors: string[] = [];
@@ -29,9 +30,8 @@ for (const cell of cells()) {
       await settle(page, "[data-lesson-player]");
       const player = page.locator("[data-lesson-player]");
       await expect(page.locator("[data-ui-root]")).toHaveAttribute("dir", cell.uiDir);
-      const region = player.locator("[data-target-region]").first();
-      await expect(region).toHaveAttribute("dir", cell.targetDir);
-      expect(await region.evaluate((el) => getComputedStyle(el).writingMode)).toBe(cell.writingMode);
+      // The gap's sentence is laid out as every gap-fill is: in the target's direction, horizontally.
+      await expect(player.locator("[data-gap-sentence]")).toHaveAttribute("dir", cell.targetDir);
 
       const options = player.locator("[data-options] [data-option]");
       if (least === 2) await expect(options).toHaveCount(2);
