@@ -3,9 +3,9 @@
  * course can make, and a label on every card saying which kind it is. Nothing played in the
  * gallery is recorded. Every screen says it is on, with a way out.
  */
-import { cardGallery } from "@nabu/core/lesson";
+import { cardGallery, lessonNodes } from "@nabu/core/lesson";
 import { expect, test } from "@playwright/test";
-import { loadCourse, logOf } from "./solver.ts";
+import { answer, expectRightAndContinue, loadCourse, logOf, planned, sessionUrl, waitFor } from "./solver.ts";
 
 test.beforeEach(({ page: _ }, info) => {
   test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
@@ -56,6 +56,50 @@ test("every kind of card can be tried from the gallery, and none of it is record
   await page.goto("/?sound=off&debug=0#/yue/yue-Hant-HK.standard");
   await expect(page.locator("[data-course-path]")).toBeVisible();
   await expect(page.locator("[data-cards-link]")).toHaveCount(0);
+  expect(errors).toEqual([]);
+});
+
+test("a card's link opens that very card again, wherever it is opened, and records nothing", async ({ page, context }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(String(e)));
+  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+  const now = new Date("2026-05-12T09:00:00Z");
+  const course = loadCourse("yue", "yue-Hant-HK/standard");
+  const node = lessonNodes(course)[0]?.node.id ?? "";
+  const exercises = planned(course, [], { mode: "lesson", node }, now, 3);
+  const [first, second] = exercises;
+  if (first === undefined || second === undefined) throw new Error("a lesson has two cards");
+
+  // The second card of a lesson, so the link is to the card on screen, not the session's first.
+  await page.clock.setFixedTime(now);
+  await page.goto(sessionUrl(course, { mode: "lesson", node }, 3).replace("#", "&debug=1#"));
+  await waitFor(page, first);
+  await answer(page, first, "keyboard");
+  await expectRightAndContinue(page, "keyboard", first);
+  await waitFor(page, second);
+  await expect(page.locator("[data-debug-card]")).toHaveText(second.id);
+  const copy = page.locator("[data-action=copy-card-link]");
+  await copy.click();
+  await expect(copy).toHaveText("Link copied");
+  const link = await page.evaluate(async () => navigator.clipboard.readText());
+  expect(link).toMatch(/\?debug=1#\/yue\/yue-Hant-HK\.standard\/card\/[A-Za-z0-9_-]+$/u);
+
+  // Opened elsewhere (a fresh page), it is the same card, answered as the planner's card is.
+  const other = await context.newPage();
+  other.on("pageerror", (e) => errors.push(String(e)));
+  await other.goto(link);
+  await expect(other.locator("[data-card-page]")).toHaveAttribute("data-card-page", second.id);
+  await waitFor(other, second);
+  await expect(other.locator("[data-debug-template]")).toHaveAttribute("data-debug-template", second.template);
+  const before = (await logOf(other, "yue")).length;
+  await answer(other, second, "keyboard");
+  await expectRightAndContinue(other, "keyboard", second);
+  expect((await logOf(other, "yue")).length).toBe(before);
+
+  // A link cut short says so.
+  const code = link.split("/card/")[1] ?? "";
+  await other.goto(link.slice(0, link.length - Math.floor(code.length / 2)));
+  await expect(other.locator("[data-card-unreadable]")).toBeVisible();
   expect(errors).toEqual([]);
 });
 

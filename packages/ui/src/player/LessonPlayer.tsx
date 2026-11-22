@@ -44,6 +44,7 @@ import { FadeReadings, HomographsProvider, WordStatusProvider } from "../marks.t
 import type { DisplayChoice } from "./Display.tsx";
 import { Feedback } from "./Feedback.tsx";
 import { GlossPanel, useGlosses, useOtherReadings, wordOf, type WordTap } from "./Gloss.tsx";
+import { DebugCard } from "./DebugCard.tsx";
 import { lookupIsHint, withHint } from "./hints.ts";
 import { NewWordsAnswered, NewWordsTag, newOnCard, taughtIn } from "./NewWords.tsx";
 import { SessionEnd, type NextStep, type SessionProgress } from "./SessionEnd.tsx";
@@ -123,6 +124,8 @@ export interface LessonPlayerProps {
   readonly speech?: SpeechServices | undefined;
   /** Debug mode: label each card with its kind (template id), to test every kind of card. */
   readonly debug?: boolean | undefined;
+  /** Debug mode: a link that opens the card on screen again, exactly (the app's; it carries the card). */
+  readonly cardLink?: ((ex: Exercise) => Promise<string>) | undefined;
   /** What kind of session this is, for what quitting it says (P8): a lesson (default), practice or the placement test. */
   readonly mode?: SessionKind | undefined;
   /**
@@ -401,11 +404,8 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       <h2 className={styles.instruction} id={ids.instruction}>
         {instruction}
       </h2>
-      {props.debug === true && (
-        <p className={styles.muted} data-debug-template={ex.template}>
-          {t.format("debug.template", { template: ex.template })}
-        </p>
-      )}
+      {/* Its own key: a sibling keyed like ExerciseView would be taken for it. A new card starts it afresh. */}
+      {props.debug === true && <DebugCard key={`debug:${ex.id}`} ex={ex} cardLink={props.cardLink} />}
 
       <ExerciseView
         key={ex.id}
