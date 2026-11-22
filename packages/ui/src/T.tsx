@@ -128,7 +128,9 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasize
         {segments.map((segment, i) => (
           <Fragment key={i}>
             {base(segment.base, i)}
-            <rt lang={rubyLang} data-script={rubyLang === undefined ? undefined : scriptOf(rubyLang)}>
+            {/* A reading takes its own language's direction, isolated from the word's: Latin over Arabic reads
+                left to right, its neutral marks (the dot for a written letter, ADR 0141) where they belong. */}
+            <rt lang={rubyLang} dir={rubyLang === undefined ? undefined : directionOf(rubyLang)} data-script={rubyLang === undefined ? undefined : scriptOf(rubyLang)}>
               {segment.text}
             </rt>
           </Fragment>

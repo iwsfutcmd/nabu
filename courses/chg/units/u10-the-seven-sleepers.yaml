@@ -69,7 +69,7 @@ sentences:
     chg-Arab/standard:
       text: اولار مسلمان ایکان.
       tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: مسلمان, lexeme: musulman, readings: {schluessel: musulmān}}, {surface: ایکان, lexeme: ikan, readings: {schluessel: ikän}}]
-      reverse: "(اولار|الار) مسلمان ایکان\n(اولار|الار) مسلمان ایکان\u200cدورلار"
+      reverse: "(اولار|الار) مسلمان ایکان\n(اولار|الار) مسلمان ایکان\u200cدورلار\nمسلمان ایکان\u200cدورلار\nمسلمان ایکان"
   translations:
     en: They (were|are) Muslims, it (turned out|turns out|seems).
 - id: s.10.7
@@ -78,7 +78,7 @@ sentences:
     chg-Arab/standard:
       text: "مسلمان ایکان\u200cدورلار."
       tokens: [{surface: مسلمان, lexeme: musulman, readings: {schluessel: musulmān}}, {surface: "ایکان\u200cدورلار", lexemes: [{lexeme: ikan, surface: "ایکان\u200c", base: true}, {lexeme: dur, surface: دور}, {lexeme: p3pl, surface: لار}], readings: {schluessel: ikändurlar}}]
-      reverse: "مسلمان ایکان\u200cدورلار\nمسلمان ایکان\n(اولار|الار) مسلمان ایکان\u200cدورلار"
+      reverse: "مسلمان ایکان\u200cدورلار\nمسلمان ایکان\n(اولار|الار) مسلمان ایکان\u200cدورلار\n(اولار|الار) مسلمان ایکان"
   translations:
     en: They were Muslims, it turned out.
 - id: s.10.8
@@ -87,7 +87,7 @@ sentences:
     chg-Arab/standard:
       text: توخته آتلیغ بیر کشی.
       tokens: [{surface: توخته, lexeme: tokhta, readings: {schluessel: Toḫta}}, {surface: آتلیغ, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: liq, surface: لیغ}], readings: {schluessel: atliǧ}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
-      reverse: توخته (آتلیغ|اتلیغ) (بیر|بر) (کشی|کیشی)
+      reverse: "توخته (آتلیغ|اتلیغ) (بیر|بر) (کشی|کیشی)\nتوخته (تیکان|دیکان) (کشی|کیشی)"
   translations:
     en: A (man|person) named Tokhta.
 - id: s.10.9
@@ -123,7 +123,7 @@ sentences:
     chg-Arab/standard:
       text: بیر ملک.
       tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ملک, lexeme: malik, readings: {schluessel: malik}}]
-      reverse: (بیر|بر) ملک
+      reverse: "(بیر |بر |)(پادشاه|بادشاه|فادشاه|شاه|ملک)"
   translations:
     en: A king.
 - id: s.10.13
@@ -131,7 +131,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ملک جبار.
-      tokens: [{surface: ملک, lexeme: malik, readings: {schluessel: malik-i}}, {surface: جبار, lexeme: jabbar, readings: {schluessel: jabbār}}]
+      tokens: [{surface: ملک, lexemes: [{lexeme: malik, surface: ملک, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: malik-i}}, {surface: جبار, lexeme: jabbar, readings: {schluessel: jabbār}}]
       reverse: ملک (جبار|جبّار)
   translations:
     en: A (tyrant king|tyrannical king|mighty king).
@@ -274,7 +274,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اصحاب کهف.
-      tokens: [{surface: اصحاب, lexeme: ashab, readings: {schluessel: aṣḥāb-i}}, {surface: کهف, lexeme: kahf, readings: {schluessel: kahf}}]
+      tokens: [{surface: اصحاب, lexemes: [{lexeme: ashab, surface: اصحاب, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: aṣḥāb-i}}, {surface: کهف, lexeme: kahf, readings: {schluessel: kahf}}]
       reverse: اصحاب کهف
   translations:
     en: The Companions of the Cave.
@@ -353,7 +353,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: یونان ملکیدا افسوس شهریدا دقیانوس اتلیغ ملک جبّار بار ایرمیش.
-          tokens: [{surface: یونان, lexeme: yunan, readings: {schluessel: Yūnān}}, {surface: ملکیدا, lexemes: [{lexeme: mulk, surface: ملک, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: mulkida}}, {surface: افسوس, lexeme: afsus, readings: {schluessel: Afsūs}}, {surface: شهریدا, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: šaharida}}, {surface: دقیانوس, lexeme: daqyanus, readings: {schluessel: Daqyānūs}}, {surface: اتلیغ, lexemes: [{lexeme: at.name, surface: ات, base: true}, {lexeme: liq, surface: لیغ}], readings: {schluessel: atliǧ}}, {surface: ملک, lexeme: malik, readings: {schluessel: malik-i}}, {surface: جبّار, lexeme: jabbar, readings: {schluessel: jabbār}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: ermiš}}]
+          tokens: [{surface: یونان, lexeme: yunan, readings: {schluessel: Yūnān}}, {surface: ملکیدا, lexemes: [{lexeme: mulk, surface: ملک, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: mulkida}}, {surface: افسوس, lexeme: afsus, readings: {schluessel: Afsūs}}, {surface: شهریدا, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: šaharida}}, {surface: دقیانوس, lexeme: daqyanus, readings: {schluessel: Daqyānūs}}, {surface: اتلیغ, lexemes: [{lexeme: at.name, surface: ات, base: true}, {lexeme: liq, surface: لیغ}], readings: {schluessel: atliǧ}}, {surface: ملک, lexemes: [{lexeme: malik, surface: ملک, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: malik-i}}, {surface: جبّار, lexeme: jabbar, readings: {schluessel: jabbār}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: ermiš}}]
       translations:
         en: In the kingdom of Greece, in the city of Ephesus, there was a tyrant king named Decius.
   - line:
@@ -403,7 +403,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: اصحاب کهف تنکری تعالی امری بله اویغانمیشلار.
-          tokens: [{surface: اصحاب, lexeme: ashab, readings: {schluessel: aṣḥāb-i}}, {surface: کهف, lexeme: kahf, readings: {schluessel: kahf}}, {surface: تنکری, lexeme: tangri, readings: {schluessel: Täŋri}}, {surface: تعالی, lexeme: taala, readings: {schluessel: taʿālà}}, {surface: امری, lexemes: [{lexeme: amr, surface: امر, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: amri}}, {surface: بله, lexeme: bila, readings: {schluessel: billä}}, {surface: اویغانمیشلار, lexemes: [{lexeme: oyghan, surface: اویغان, base: true}, {lexeme: mis, surface: میش}, {lexeme: pl, surface: لار}], readings: {schluessel: oyǧanmišlar}}]
+          tokens: [{surface: اصحاب, lexemes: [{lexeme: ashab, surface: اصحاب, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: aṣḥāb-i}}, {surface: کهف, lexeme: kahf, readings: {schluessel: kahf}}, {surface: تنکری, lexeme: tangri, readings: {schluessel: Täŋri}}, {surface: تعالی, lexeme: taala, readings: {schluessel: taʿālà}}, {surface: امری, lexemes: [{lexeme: amr, surface: امر, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: amri}}, {surface: بله, lexeme: bila, readings: {schluessel: billä}}, {surface: اویغانمیشلار, lexemes: [{lexeme: oyghan, surface: اویغان, base: true}, {lexeme: mis, surface: میش}, {lexeme: pl, surface: لار}], readings: {schluessel: oyǧanmišlar}}]
       translations:
         en: By the command of God the Exalted, the Companions of the Cave woke up.
   - line:

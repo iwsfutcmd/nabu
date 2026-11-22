@@ -801,6 +801,18 @@ references in the reference library (find them with `nabu refs find`; notes in n
 - The grading policies marked REVIEW in profiles/chg-Arab.standard.yaml and profiles/chg-Latn.schluessel.yaml:
   half-spaces silent, ک/گ as one letter, transliteration marks noted not failed, the contrast sets.
 - "You": siz is drafted as the polite singular and the plural, sän as familiar (Schluessel, 4.3.1); tags follow.
+- Three readings are listed in the scheme against their letters (profiles/schemes/schluessel.yaml), each as
+  Schluessel spells and reads it at its place (checked against his text, 2026-11-22). Decide whether each stays a
+  listed reading or the line is read otherwise:
+  - موغالستان Moǧulistān (u16's story): the Tadhkira's scribe writes an alif. His glossary has موغولستان, which the
+    lexeme and sentence s.16.8 now use.
+  - شهریکه šahargä (u08's story): two lines earlier he reads the same spelling šaharigä, "to their city".
+  - صندوقدا ṣandūqta (u15's story): elsewhere he reads د after a voiceless consonant as d (ṣandūqdin in the same
+    passage).
+- The ezafe is a lexeme of its own (`lexeme:ezafe`, unwritten) on 31 tokens, introduced in unit 6 with tārīḫ-i:
+  check that each links a noun to what describes or owns it. شجرهٔ is read šajarah-i, as Schluessel writes it (the
+  course had šajara-i). Unit 16's question on āwāz-i ḫoš now offers sajdāt-i and tārīḫ-i as its wrong words (the
+  only other words the course writes with an ezafe): check that both make the line absurd and not merely odd.
 - The alphabet track (units/abc.yaml): the order of the letter groups, each letter's values and notes, and the words
   each node drills.
 - Units 11-19 (A2-B1): Navai's kanj is read as Persian ganj "treasure" ("You have found Decius's treasure!"), where

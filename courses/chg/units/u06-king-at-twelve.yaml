@@ -13,7 +13,7 @@ nodes:
 - {id: chg.u06.we-went, kind: lesson, introduces: ['lexeme:pp1p', 'lexeme:pp2', 'lexeme:pp2s', 'lexeme:qayda', 'lexeme:pp2pl']}
 - {id: chg.u06.did-not, kind: lesson, introduces: ['lexeme:neg']}
 - {id: chg.u06.numbers, kind: lesson, introduces: ['lexeme:yash', 'lexeme:yigirma', 'lexeme:ottuz', 'lexeme:qirq', 'lexeme:kun', 'lexeme:allik', 'lexeme:yil', 'lexeme:toqsan', 'lexeme:yuz', 'lexeme:ming']}
-- {id: chg.u06.dates, kind: lesson, introduces: ['lexeme:ramzan', 'lexeme:ay.month', 'lexeme:ord', 'lexeme:tarikh', 'lexeme:iqlim', 'lexeme:aywan', 'lexeme:liq', 'lexeme:hujra']}
+- {id: chg.u06.dates, kind: lesson, introduces: ['lexeme:ramzan', 'lexeme:ay.month', 'lexeme:ord', 'lexeme:tarikh', 'lexeme:ezafe', 'lexeme:iqlim', 'lexeme:aywan', 'lexeme:liq', 'lexeme:hujra']}
 - {id: chg.u06.story, kind: story}
 sentences:
 - id: s.06.1
@@ -369,7 +369,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تاریخ توقوز یوز ایکیده.
-      tokens: [{surface: تاریخ, lexeme: tarikh, readings: {schluessel: tārīḫ-i}}, {surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: ایکیده, lexemes: [{lexeme: ikki, surface: ایکی, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: ikkidä}}]
+      tokens: [{surface: تاریخ, lexemes: [{lexeme: tarikh, surface: تاریخ, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: tārīḫ-i}}, {surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: ایکیده, lexemes: [{lexeme: ikki, surface: ایکی, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: ikkidä}}]
       reverse: تاریخ (توقوز|توقز) یوز (ایکیده|ایکیدا|اکیده|اکیدا)
   translations:
     en: In the year 902.
@@ -428,7 +428,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "رمضان ایی، تاریخ سیکیز یوز توقسان توقوزدا، فرغانه ولایتی\u200cده اون ایکی یاشته بادشاه بولدوم."
-          tokens: [{surface: رمضان, lexeme: ramzan, readings: {schluessel: Ramżān}}, {surface: ایی, lexemes: [{lexeme: ay.month, surface: ای, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: ayi}}, {surface: تاریخ, lexeme: tarikh, readings: {schluessel: tārīḫ-i}}, {surface: سیکیز, lexeme: sakkiz, readings: {schluessel: säkkiz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: توقسان, lexeme: toqsan, readings: {schluessel: toqsan}}, {surface: توقوزدا, lexemes: [{lexeme: toqquz, surface: توقوز, base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: toqquzda}}, {surface: فرغانه, lexeme: farghana, readings: {schluessel: Farǧāna}}, {surface: "ولایتی\u200cده", lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: loc, surface: ده}], readings: {schluessel: wilāyatidä}}, {surface: اون, lexeme: 'on', readings: {schluessel: 'on'}}, {surface: ایکی, lexeme: ikki, readings: {schluessel: ikki}}, {surface: یاشته, lexemes: [{lexeme: yash, surface: یاش, base: true}, {lexeme: loc, surface: ته}], readings: {schluessel: yašta}}, {surface: بادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: بولدوم, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1s, surface: م}], readings: {schluessel: boldum}}]
+          tokens: [{surface: رمضان, lexeme: ramzan, readings: {schluessel: Ramżān}}, {surface: ایی, lexemes: [{lexeme: ay.month, surface: ای, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: ayi}}, {surface: تاریخ, lexemes: [{lexeme: tarikh, surface: تاریخ, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: tārīḫ-i}}, {surface: سیکیز, lexeme: sakkiz, readings: {schluessel: säkkiz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: توقسان, lexeme: toqsan, readings: {schluessel: toqsan}}, {surface: توقوزدا, lexemes: [{lexeme: toqquz, surface: توقوز, base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: toqquzda}}, {surface: فرغانه, lexeme: farghana, readings: {schluessel: Farǧāna}}, {surface: "ولایتی\u200cده", lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: loc, surface: ده}], readings: {schluessel: wilāyatidä}}, {surface: اون, lexeme: 'on', readings: {schluessel: 'on'}}, {surface: ایکی, lexeme: ikki, readings: {schluessel: ikki}}, {surface: یاشته, lexemes: [{lexeme: yash, surface: یاش, base: true}, {lexeme: loc, surface: ته}], readings: {schluessel: yašta}}, {surface: بادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: بولدوم, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1s, surface: م}], readings: {schluessel: boldum}}]
       translations:
         en: In the month of Ramadan, in the year 899, in the country of Ferghana, I became king at twelve years of age.
   - choose:
@@ -455,7 +455,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "تاریخ توقوز یوز ایکی\u200cدا مین بیر ایوانلیق حجره سالدیم."
-          tokens: [{surface: تاریخ, lexeme: tarikh, readings: {schluessel: tārīḫ-i}}, {surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: "ایکی\u200cدا", lexemes: [{lexeme: ikki, surface: "ایکی\u200c", base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: ikkidä}}, {surface: مین, lexeme: man, readings: {schluessel: men}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ایوانلیق, lexemes: [{lexeme: aywan, surface: ایوان, base: true}, {lexeme: liq, surface: لیق}], readings: {schluessel: aywānliq}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: سالدیم, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: saldim}}]
+          tokens: [{surface: تاریخ, lexemes: [{lexeme: tarikh, surface: تاریخ, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: tārīḫ-i}}, {surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: "ایکی\u200cدا", lexemes: [{lexeme: ikki, surface: "ایکی\u200c", base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: ikkidä}}, {surface: مین, lexeme: man, readings: {schluessel: men}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ایوانلیق, lexemes: [{lexeme: aywan, surface: ایوان, base: true}, {lexeme: liq, surface: لیق}], readings: {schluessel: aywānliq}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: سالدیم, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: saldim}}]
       translations:
         en: In the year 902 I built a pavilion with a portico.
   - choose:

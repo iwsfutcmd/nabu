@@ -48,6 +48,23 @@ describe("tap-for-gloss in a lesson (P1)", () => {
     expect(html).toMatch(/data-gloss-panel=""[^>]*data-quiet=""/u);
   });
 
+  it("taps an answered choice's words: its options and the word in its gap, never before (P1)", () => {
+    const ex = card(course, "gap-fill");
+    if (ex.template !== "gap-fill") throw new Error("not a gap-fill");
+    const options = (html: string): string => html.slice(html.indexOf("data-options"), html.indexOf("data-gloss-panel"));
+    // Before: radios, nothing to tap.
+    expect(options(play(course, ex, stateOf(course, ex)))).not.toMatch(/<button[^>]*data-index=/u);
+    // Answered: a list of options whose words are taps, and the word now in the gap is one too.
+    const html = play(course, ex, stateOf(course, ex, { tag: "choice", index: ex.answer }));
+    expect(html).toContain("data-look-up");
+    expect([...options(html).matchAll(/<button[^>]*data-index=/gu)].length).toBeGreaterThanOrEqual(ex.options.length);
+    expect(tappable(html, "data-gap-sentence")).toBeGreaterThan(tappable(play(course, ex, stateOf(course, ex)), "data-gap-sentence"));
+    // Options in the learner's own language have nothing to look up: they stay radios.
+    const meaning = card(course, "choose-translation");
+    if (meaning.template !== "choose-translation") throw new Error("not a choice");
+    expect(play(course, meaning, stateOf(course, meaning, { tag: "choice", index: meaning.answer }))).not.toContain("data-look-up");
+  });
+
   it("taps what a sentence means only once it is answered", () => {
     const ex = card(course, "choose-translation");
     if (ex.template !== "choose-translation") throw new Error("not a choice");

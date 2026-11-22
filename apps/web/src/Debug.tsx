@@ -9,11 +9,13 @@ import { cardGallery, createGrader, type Exercise } from "@nabu/core/lesson";
 import { playsUnasked } from "./breaks.ts";
 import { useTranslator } from "@nabu/ui";
 import { LessonPlayer, type LoadedCourse } from "@nabu/ui/player";
-import { useMemo, useState, type JSX } from "react";
+import { useEffect, useMemo, useState, type JSX } from "react";
 import { Button } from "react-aria-components";
 import styles from "./App.module.css";
 import { storedSound, storeSound } from "./Preferences.tsx";
+import { decodeCard } from "./card-link.ts";
 import { leaveDebug } from "./debug-mode.ts";
+import { leave } from "./navigation.ts";
 import { ScreenHeading } from "./screen.tsx";
 
 export { debugMode, leaveDebug, setDebug } from "./debug-mode.ts";
@@ -35,10 +37,12 @@ interface CardsProps {
   readonly loaded: LoadedCourse;
   readonly language: string;
   readonly back: string;
+  /** A link that opens a card again, exactly (card-link.ts). */
+  readonly cardLink: (ex: Exercise) => Promise<string>;
 }
 
 /** One card of every kind; each can be tried alone, or all in a row. */
-export const CardsPage = ({ loaded, language, back }: CardsProps): JSX.Element => {
+export const CardsPage = ({ loaded, language, back, cardLink }: CardsProps): JSX.Element => {
   const t = useTranslator();
   const { course, imageUrl } = loaded;
   const gallery = useMemo(() => cardGallery(course, 7), [course]);
@@ -63,6 +67,7 @@ export const CardsPage = ({ loaded, language, back }: CardsProps): JSX.Element =
           retries={false}
           xpEarned={0}
           debug
+          cardLink={cardLink}
           onExit={() => setPlaying(null)}
         />
       </main>
@@ -97,6 +102,63 @@ export const CardsPage = ({ loaded, language, back }: CardsProps): JSX.Element =
           </li>
         ))}
       </ul>
+    </main>
+  );
+};
+
+/**
+ * One exact card from a link (debug mode): the card the link carries (card-link.ts), played as the gallery
+ * plays one, nothing recorded. A link cut short, or made by another format, says so.
+ */
+export const CardPage = ({ loaded, language, back, cardLink, code }: CardsProps & { readonly code: string }): JSX.Element => {
+  const t = useTranslator();
+  const { course, imageUrl } = loaded;
+  const grader = useMemo(() => createGrader(course), [course]);
+  // undefined while the link is read; null where it cannot be.
+  const [card, setCard] = useState<Exercise | null | undefined>(undefined);
+  useEffect(() => {
+    let current = true;
+    void decodeCard(code).then((ex) => {
+      if (current) setCard(ex ?? null);
+    });
+    return () => {
+      current = false;
+    };
+  }, [code]);
+  const sound = playsUnasked(new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound());
+  if (card === undefined) return <main className={styles.page} aria-busy="true" />;
+  if (card === null) {
+    return (
+      <main className={styles.page} data-card-unreadable="">
+        <ScreenHeading>{t.format("debug.card.title")}</ScreenHeading>
+        <p>{t.format("debug.card.unreadable")}</p>
+        <p>
+          <a className={styles.back} href={back}>
+            {t.format("debug.cards.back")}
+          </a>
+        </p>
+      </main>
+    );
+  }
+  return (
+    <main className={styles.player} data-card-page={card.id}>
+      <ScreenHeading>{t.format("debug.card.title")}</ScreenHeading>
+      <LessonPlayer
+        key={code}
+        course={course}
+        lessonId="debug"
+        exercises={[card]}
+        grader={grader}
+        imageUrl={imageUrl}
+        language={language}
+        sound={sound}
+        onSoundChange={storeSound}
+        retries={false}
+        xpEarned={0}
+        debug
+        cardLink={cardLink}
+        onExit={() => leave(back)}
+      />
     </main>
   );
 };

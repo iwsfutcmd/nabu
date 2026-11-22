@@ -65,6 +65,19 @@ of: chg-Arab/standard
 # passed over, as the profile's matching passes over it. Not the shadda, which the relation states.
 ignores: "[\u064B-\u0650\u0652\u0670]"
 correspondences:
+  # REVIEW: three spellings of the course's texts that Schluessel (2018) reads otherwise than their letters give,
+  # each his spelling and his reading at its place. Each is stated word by word (a listing, not a rule) and free: a
+  # scribe's spelling of that reading beside the regular one, never the norm's one spelling. A reading's capital is
+  # read lowercased, and a suffix after the word relates as elsewhere (Moǧulistānǧa, after a half-space or not).
+  #  - موغالستان Moǧulistān: the Tadhkira's scribe writes an alif where the reading has u (his typescript, p. 159;
+  #    read Moǧulistānǧa, p. 165); his glossary spells it موغولستان (p. 241), which the letters give.
+  #  - شهریکه šahargä: written with a ye the reading does not give (p. 137; read so p. 146); two lines earlier he
+  #    reads the same spelling šaharigä.
+  #  - صندوقدا ṣandūqta: the locative written with د after q, read t (p. 170; read so p. 174). His one such reading:
+  #    elsewhere a د written after a voiceless consonant is d (ṣandūqdin in the same passage).
+  - { says: moǧulistān, written: [موغالستان], kind: free }
+  - { says: šahargä, written: [شهریکه], kind: free }
+  - { says: ṣandūqta, written: [صندوقدا], kind: free }
   # REVIEW (ADR 0148): a doubled consonant is written once (ikki ایکی, jannat جنت), once with a shadda (جبّار
   # jabbār) or twice (یتتی and یتی, قاتتیق and قاتیق, اللیک and الیک are all the course's): the second is not
   # written, is the shadda, or is the letter again, right after the letter. Free: the course's texts and accept
@@ -190,7 +203,7 @@ correspondences:
   - { says: h, written: [ه], kind: fixed }
   - { says: y, written: [ی], kind: fixed }
   - { says: ʾ, written: [ء, ئ, أ, ؤ, "\u0654"], kind: fixed }
-  # An ezafe after a final he, written as a hamza on it (شجرهٔ šajara-i).
+  # An ezafe after a final he, written as a hamza on it (شجرهٔ šajarah-i).
   - { says: i, written: ["\u0654"], kind: free, when: { after: "[ه]" } }
   # The dative after q: -qa written غا (ḫalāyiqqa).
   - { says: q, written: [غ], kind: fixed, when: { after: "[ق]" } }

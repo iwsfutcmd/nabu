@@ -107,7 +107,7 @@ sentences:
     chg-Arab/standard:
       text: اول خط یازار.
       tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: خط, lexeme: khat, readings: {schluessel: ḫaṭ}}, {surface: یازار, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: aor, surface: ار}], readings: {schluessel: yazar}}]
-      reverse: اول خط یازار
+      reverse: "اول خط یازار\nاول خط یازادور"
   translations:
     en: (He|She) writes (letters|a letter).
 - id: s.07.11
@@ -136,10 +136,7 @@ sentences:
     chg-Arab/standard:
       text: سیز چای ایچارسیزمو؟
       tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچارسیزمو, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: aor, surface: ار}, {lexeme: p2, surface: سیز}, {lexeme: q, surface: مو}], readings: {schluessel: ičärsizmu}}]
-      reverse: |-
-        [سیز] چای ایچارسیزمو
-        [سن] چای ایچارسنمو
-        [سیزلار] چای ایچارسیزلارمو
+      reverse: "[سیز] چای (ایچارسیزمو|ایچاسیزمو)\n[سن] چای (ایچارسنمو|ایچاسنمو)\n[سیزلار] چای (ایچارسیزلارمو|ایچاسیزلارمو)"
   translations:
     en: Do you drink tea?
 - id: s.07.14

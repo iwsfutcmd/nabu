@@ -247,9 +247,7 @@ sentences:
     chg-Arab/standard:
       text: توخته تیکان کشی.
       tokens: [{surface: توخته, lexeme: tokhta, readings: {schluessel: Toḫta}}, {surface: تیکان, lexemes: [{lexeme: de, surface: تی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: tegän}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
-      reverse: |-
-        توخته تیکان (کشی|کیشی)
-        توخته دیکان (کشی|کیشی)
+      reverse: "توخته تیکان (کشی|کیشی)\nتوخته دیکان (کشی|کیشی)\nتوخته (آتلیغ|اتلیغ) (بیر|بر) (کشی|کیشی)"
   translations:
     en: A (man|person) (called|named) Tokhta.
 - id: s.09.26
@@ -365,7 +363,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: کتابنی «شجرهٔ تورک» تیب آت قویدوق.
-      tokens: [{surface: کتابنی, lexemes: [{lexeme: kitab, surface: کتاب, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: kitābni}}, {surface: شجرهٔ, lexeme: shajara, readings: {schluessel: šajara-i}}, {surface: تورک, lexeme: turk, readings: {schluessel: Türk}}, {surface: تیب, lexemes: [{lexeme: de, surface: تی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: tep}}, {surface: آت, lexeme: at.name, readings: {schluessel: at}}, {surface: قویدوق, lexemes: [{lexeme: qoy.put, surface: قوی, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: qoyduq}}]
+      tokens: [{surface: کتابنی, lexemes: [{lexeme: kitab, surface: کتاب, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: kitābni}}, {surface: شجرهٔ, lexemes: [{lexeme: shajara, surface: شجرهٔ, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: šajarah-i}}, {surface: تورک, lexeme: turk, readings: {schluessel: Türk}}, {surface: تیب, lexemes: [{lexeme: de, surface: تی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: tep}}, {surface: آت, lexeme: at.name, readings: {schluessel: at}}, {surface: قویدوق, lexemes: [{lexeme: qoy.put, surface: قوی, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: qoyduq}}]
       reverse: کتابنی شجرهٔ (تورک|ترک) تیب (آت|ات) (قویدوق|قویدوک)
   translations:
     en: (We named|We called) the book “(The Genealogy of the Turks|Shajara-i Turk)”.
@@ -441,7 +439,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: تقی «شجرهٔ ترک» تیب آت قویدوق.
-          tokens: [{surface: تقی, lexeme: taqi, readings: {schluessel: taqi}}, {surface: شجرهٔ, lexeme: shajara, readings: {schluessel: šajara-i}}, {surface: ترک, lexeme: turk, readings: {schluessel: Türk}}, {surface: تیب, lexemes: [{lexeme: de, surface: تی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: tep}}, {surface: آت, lexeme: at.name, readings: {schluessel: at}}, {surface: قویدوق, lexemes: [{lexeme: qoy.put, surface: قوی, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: qoyduq}}]
+          tokens: [{surface: تقی, lexeme: taqi, readings: {schluessel: taqi}}, {surface: شجرهٔ, lexemes: [{lexeme: shajara, surface: شجرهٔ, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: šajarah-i}}, {surface: ترک, lexeme: turk, readings: {schluessel: Türk}}, {surface: تیب, lexemes: [{lexeme: de, surface: تی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: tep}}, {surface: آت, lexeme: at.name, readings: {schluessel: at}}, {surface: قویدوق, lexemes: [{lexeme: qoy.put, surface: قوی, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: qoyduq}}]
       translations:
         en: And we named it “The Genealogy of the Turks”.
 scenarios:

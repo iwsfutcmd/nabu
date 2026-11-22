@@ -1482,11 +1482,189 @@
       "op": "reading-spells",
       "args": {
         "scheme": "schluessel",
+        "reading": "yašta",
+        "spelling": "یاشدا"
+      },
+      "expected": null,
+      "note": "A د for the t of -ta is not stated as a rule (only ṣandūqta is listed, projection/schluessel/spells/listed-ta): not accounted for. (Until the listing, this vector was ṣandūqta صندوقدا; until the statement said پ for b, پز biz: projection/schluessel/spells/pe-for-be.)"
+    },
+    {
+      "id": "projection/schluessel/spells/listed",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "Moǧulistān",
+        "spelling": "موغالستان"
+      },
+      "expected": [
+        {
+          "says": "moǧulistān",
+          "written": "موغالستان",
+          "kind": "free"
+        }
+      ],
+      "note": "A scribe's spelling Schluessel reads otherwise than its letters give is listed word by word, free (the Tadhkira's alif for u); the reading's capital is read lowercased."
+    },
+    {
+      "id": "projection/schluessel/spells/listed-suffixed",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "Moǧulistānǧa",
+        "spelling": "موغالستان\u200cغه"
+      },
+      "expected": [
+        {
+          "says": "moǧulistān",
+          "written": "موغالستان"
+        },
+        {
+          "says": "",
+          "written": "\u200c"
+        },
+        {
+          "says": "ǧ",
+          "written": "غ"
+        },
+        {
+          "says": "a",
+          "written": "ه"
+        }
+      ],
+      "note": "A listed word relates before a half-space and a suffix as any word does (the dative -ǧa)."
+    },
+    {
+      "id": "projection/schluessel/spells/listed-regular",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "Moǧulistān",
+        "spelling": "موغولستان"
+      },
+      "expected": [
+        {
+          "says": "m"
+        },
+        {
+          "says": "o",
+          "written": "و"
+        },
+        {
+          "says": "ǧ"
+        },
+        {
+          "says": "u",
+          "written": "و"
+        },
+        {
+          "says": "l"
+        },
+        {
+          "says": "i",
+          "written": ""
+        },
+        {
+          "says": "s"
+        },
+        {
+          "says": "t"
+        },
+        {
+          "says": "ā",
+          "written": "ا"
+        },
+        {
+          "says": "n"
+        }
+      ],
+      "note": "The glossary's spelling is related by the letters, not the listing."
+    },
+    {
+      "id": "projection/schluessel/spells/listed-ye",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "šahargä",
+        "spelling": "شهریکه"
+      },
+      "expected": [
+        {
+          "says": "šahargä",
+          "written": "شهریکه",
+          "kind": "free"
+        }
+      ],
+      "note": "Listed: written with a ye the reading does not give, as Schluessel reads it at its place."
+    },
+    {
+      "id": "projection/schluessel/spells/listed-ta",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "schluessel",
         "reading": "ṣandūqta",
         "spelling": "صندوقدا"
       },
-      "expected": null,
-      "note": "A د for the t of -ta after q is not stated: not accounted for (the review list). (Until the statement said پ for b, this vector was پز biz: projection/schluessel/spells/pe-for-be.)"
+      "expected": [
+        {
+          "says": "ṣandūqta",
+          "written": "صندوقدا",
+          "kind": "free"
+        }
+      ],
+      "note": "Listed: the locative written with د after q and read -ta, as Schluessel reads it at its place."
+    },
+    {
+      "id": "projection/schluessel/variants/listed-unspelled",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "šahargä"
+      },
+      "expected": [
+        [
+          "šähargä",
+          "šāhargä",
+          "šehargä",
+          "šihargä",
+          "šuhargä",
+          "šühargä"
+        ],
+        [
+          "šahärgä",
+          "šahārgä",
+          "šahergä",
+          "šahirgä",
+          "šahurgä",
+          "šahürgä"
+        ],
+        [
+          "šaharkä",
+          "šaharǧä"
+        ],
+        [
+          "šaharga",
+          "šahargā",
+          "šaharge",
+          "šahargi",
+          "šahargu",
+          "šahargī",
+          "šahargà",
+          "šahargē",
+          "šahargü"
+        ]
+      ],
+      "note": "Without a spelling a listed word is read as its letters, each traded within its sets: the listing (šahargä written شهریکه) holds for its one spelling."
+    },
+    {
+      "id": "projection/schluessel/variants/listed-spelled",
+      "op": "reading-variants",
+      "args": {
+        "scheme": "schluessel",
+        "reading": "šahargä",
+        "spelling": "شهریکه"
+      },
+      "expected": [],
+      "note": "With its listed spelling the word is one piece no set holds: nothing to trade."
     },
     {
       "id": "projection/schluessel/spells/pe-for-be",

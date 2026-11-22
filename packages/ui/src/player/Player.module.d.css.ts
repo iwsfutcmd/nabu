@@ -12,6 +12,7 @@ declare const styles: {
   readonly charBar: string;
   readonly charKey: string;
   readonly correctIcon: string;
+  readonly debugLink: string;
   readonly dialog: string;
   readonly dialogBody: string;
   readonly endFooter: string;

@@ -47,11 +47,10 @@ def test_chg_review_list(core_cli: CoreCli) -> None:
     [g] = r.reading
     assert (g.scheme, g.orthography) == ("schluessel", "chg-Arab/standard")
     assert g.tokens > 3000
-    assert len(g.unaccounted) / g.tokens < 0.01
-    # A dal for the t of -ta after q is not stated: it is on the list.
-    assert any(u.surface == "صندوقدا" and u.reading == "ṣandūqta" for u in g.unaccounted)
-    # The scribes' pe for b is stated (free, REVIEW): پز biz is related.
-    assert not any(u.surface == "پز" for u in g.unaccounted)
+    # Every reading is related: the three Schluessel reads against their letters (صندوقدا
+    # ṣandūqta, شهریکه šahargä, موغالستان Moǧulistān) are listed in the statement, word by word
+    # (free, REVIEW), and the scribes' pe for b is stated (پز biz).
+    assert g.unaccounted == []
 
 
 def test_format_escapes_invisibles() -> None:
@@ -104,11 +103,9 @@ def test_chg_lexemes_carry_their_reading_leftovers_and_the_review_list(core_cli:
     assert all(
         lx.leftovers is None or lx.leftovers.spelling is None for lx in compiled.lexicon.lexemes
     )
-    # The review list is a warning: the course still builds.
-    listed = [d for d in diags.items if d.lint == "projection.unaccounted"]
-    assert listed and all(d.severity == "warning" for d in listed)
-    assert any("'صندوقدا'" in d.message for d in listed)
-    assert not any("'پز'" in d.message for d in listed)
+    # The review list is empty: the statement lists the three readings Schluessel gives against
+    # their letters (صندوقدا ṣandūqta among them) and states the scribes' pe for b (پز biz).
+    assert not [d for d in diags.items if d.lint == "projection.unaccounted"]
 
 
 def test_yue_lexemes_carry_homophone_spelling_leftovers(core_cli: CoreCli) -> None:

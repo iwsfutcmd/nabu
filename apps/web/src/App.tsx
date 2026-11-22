@@ -37,7 +37,7 @@ import {
   type SessionRequest,
   type Studied,
 } from "@nabu/core/learner";
-import { cardGloss, createGrader, doneOf, entryOf, firstTriesOf, glossOfPart, lessonNodes, prepareGrading, resume, seededRng, speechSupportOf, type CourseView, type Effect, type Facet, type PlayerState } from "@nabu/core/lesson";
+import { cardGloss, createGrader, doneOf, entryOf, firstTriesOf, glossOfPart, lessonNodes, prepareGrading, resume, seededRng, speechSupportOf, type CourseView, type Effect, type Exercise, type Facet, type PlayerState } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
@@ -66,7 +66,8 @@ import { reportIntake, reportsThrough } from "./reports.ts";
 import { ReportsLink, ReportsPage } from "./YourReports.tsx";
 import { AudioCheckPage } from "./AudioCheck.tsx";
 import { DataPage } from "./Data.tsx";
-import { CardsPage, debugMode } from "./Debug.tsx";
+import { encodeCard } from "./card-link.ts";
+import { CardPage, CardsPage, debugMode } from "./Debug.tsx";
 import { GamePanel, gateClosed, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { deviceGoal, forgetDeviceGoal, goalEvent, goalToMigrate } from "./goal.ts";
 import { Progress, SignedOutNotice } from "./Progress.tsx";
@@ -114,6 +115,7 @@ export type Route =
   | { readonly tag: "roleplay"; readonly course: string; readonly orthography: string; readonly scenario: string }
   | { readonly tag: "sentences"; readonly course: string; readonly orthography: string }
   | { readonly tag: "cards"; readonly course: string; readonly orthography: string }
+  | { readonly tag: "card"; readonly course: string; readonly orthography: string; readonly code: string }
   | { readonly tag: "audio"; readonly course: string; readonly orthography: string }
   | { readonly tag: "data"; readonly course: string; readonly orthography: string; readonly view?: string | undefined; readonly entry?: string | undefined }
   | { readonly tag: "words"; readonly course: string; readonly orthography: string }
@@ -139,6 +141,8 @@ const parse = (hash: string): Route => {
   if (session === undefined) return { tag: "course", course, orthography: unslug(orthography) };
   if (session === "sentences") return { tag: "sentences", course, orthography: unslug(orthography) };
   if (session === "cards") return { tag: "cards", course, orthography: unslug(orthography) };
+  // One exact card, carried in the link (debug mode, card-link.ts): #/<course>/<orthography>/card/<code>.
+  if (session === "card" && node !== undefined) return { tag: "card", course, orthography: unslug(orthography), code: node };
   if (session === "audio") return { tag: "audio", course, orthography: unslug(orthography) };
   // The Data page's view and the lexeme open in it (#/es/es-Latn.standard/data/lexicon/lexeme%3Acasa).
   if (session === "data") return { tag: "data", course, orthography: unslug(orthography), view: node, entry };
@@ -167,11 +171,22 @@ export const href = (route: Route): string =>
         ? `#/${route.course}/${slug(route.orthography)}/story/${encodeURIComponent(route.node)}`
         : route.tag === "roleplay"
           ? `#/${route.course}/${slug(route.orthography)}/roleplay/${encodeURIComponent(route.scenario)}`
+          : route.tag === "card"
+            ? `#/${route.course}/${slug(route.orthography)}/card/${route.code}`
           : route.tag === "data"
             ? `#/${route.course}/${slug(route.orthography)}/data${route.view === undefined ? "" : `/${encodeURIComponent(route.view)}${route.entry === undefined ? "" : `/${encodeURIComponent(route.entry)}`}`}`
           : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "words" || route.tag === "reports" || route.tag === "offline"
             ? `#/${route.course}/${slug(route.orthography)}/${route.tag}`
             : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
+
+/**
+ * Debug mode: a link that opens a card of `course` again, exactly (card-link.ts carries the card in it),
+ * with debug mode on wherever it is opened.
+ */
+const cardLinkFor =
+  (course: CourseView) =>
+  async (ex: Exercise): Promise<string> =>
+    `${window.location.origin}${window.location.pathname}?debug=1${href({ tag: "card", course: course.id, orthography: course.orthography, code: await encodeCard(ex) })}`;
 
 /** The route in the URL hash; a running session holds it (navigation.ts, S3). */
 const useRoute = (): Route => {
@@ -1266,6 +1281,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         }
         summary={placement ? () => <PlacementResult course={course} state={state} before={before} placed={placed} /> : undefined}
         debug={DEBUG}
+        cardLink={DEBUG ? cardLinkFor(course) : undefined}
         reading={storedReading(course.orthography)}
         onReadingChange={(scheme) => storeReading(course.orthography, scheme)}
         display={storedDisplay(course.id, course.orthography)}
@@ -1680,7 +1696,15 @@ export const App = (): JSX.Element => {
     const { course } = loaded.value;
     return (
       <CourseUiProvider course={course}>
-        <CardsPage loaded={loaded.value} language={courseName(t, course)} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
+        <CardsPage loaded={loaded.value} language={courseName(t, course)} back={href({ tag: "course", course: course.id, orthography: course.orthography })} cardLink={cardLinkFor(course)} />
+      </CourseUiProvider>
+    );
+  }
+  if (route.tag === "card") {
+    const { course } = loaded.value;
+    return (
+      <CourseUiProvider course={course}>
+        <CardPage loaded={loaded.value} language={courseName(t, course)} code={route.code} back={href({ tag: "course", course: course.id, orthography: course.orthography })} cardLink={cardLinkFor(course)} />
       </CourseUiProvider>
     );
   }

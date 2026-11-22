@@ -118,6 +118,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   for words that must be capitalized (a sentence's first word loses its capital where the course writes it in lower
   case; a capital inside a sentence stays). A capital would show the answer's first tile and which tiles are distractors.
 - Quote YAML values like "on"/"off"/"yes": PyYAML (YAML 1.1) reads them as booleans; the JS parser does not.
+- Debug mode labels each card with its kind and id and copies a link to it (`#/<course>/<orth>/card/<code>`,
+  apps/web/src/card-link.ts): the exercise itself, deflated, tied to the link's `FORMAT` and `BUNDLE_FORMAT`; it opens
+  that card alone, nothing recorded. Raise `FORMAT` when an exercise's shape changes. Read a pasted link with `decodeCard`.
 - Keyboard shortcuts live in one capturing window listener, `usePlayerKeys` (packages/ui/src/player/Shell.tsx), shared by
   the lesson player and the story reader with their header, toggles and quit dialog (C14); views register digit/Backspace handlers.
 - Bring an action into view with `focusInReach` (player/shared.ts), never a bare focus(): a phone browser's bottom
@@ -433,8 +436,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   inflected spellings.
 - A morpheme the script does not write, or writes only as a mark on a letter it shares (the ezafe: fa کتابِ), is a
   lexeme with an empty surface, last in its token's `lexemes` (`{lexeme: ezafe, surface: ''}`, ADR 0136); a tap glosses
-  it as unwritten. Never a sentence-level tag for something one word carries. chg's three (ملک malik-i) still say it in
-  the reading alone, until the course has an ezafe lexeme (ADR 0136 left it to whoever edits those units).
+  it as unwritten. Never a sentence-level tag for something one word carries. chg's ezafe is one too (حضرت ḥażrat-i,
+  31 tokens, introduced at chg.u06.dates): a token whose other lexemes are unwritten is spelled as its lemma, and
+  `lexeme.inflected-form` does not count them.
 
 ## Persons and register notes (see docs/adr/0056, 0075)
 - A `persons` tag in a sentence's `tags` (`- {persons: {addressee: m}}`, read with `sentencePersons`: speaker m/f;
@@ -711,6 +715,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   with his reading in the Latin. PDF page = book page + 35; check Arabic on page images. Notes in `nabu/notes/chg/`.
 - "You": sän tagged to one person, sizlär to several, siz (polite or plural) untagged; accept sets take the forms
   that fit. No gender: he/she in English accept sets.
+- Where Schluessel reads a scribe's spelling otherwise than its letters give (موغالستان Moǧulistān, شهریکه šahargä,
+  صندوقدا ṣandūqta), the scheme lists it word by word, free, under REVIEW (as tiberian lists its qeres), and the
+  reading stays his; a lexeme is spelled as his glossary spells it (موغولستان). An ezafe after a final ه is read as he
+  writes it (شجرهٔ šajarah-i).
 - The Arabic alphabet track (units/abc.yaml) asks a word as its lexeme's pinned Schluessel reading, a letter as its
   grapheme's chg-Latn/schluessel form (the scheme's `latin`, ADR 0133; that profile is the track's Latin side, not a
   course orthography); no verb stems (their hyphen).

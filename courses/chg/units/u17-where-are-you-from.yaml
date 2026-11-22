@@ -103,7 +103,7 @@ sentences:
     chg-Arab/standard:
       text: نه یرلیک بولورسیز؟
       tokens: [{surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: یرلیک, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: yärlik}}, {surface: بولورسیز, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2, surface: سیز}], readings: {schluessel: bolursiz}}]
-      reverse: نه (یرلیک|یارلیک) بولورسیز
+      reverse: "نه (یرلیک|یارلیک) (بولورسیز|بولورسن|بولورسیزلار)"
   translations:
     en: Where are you from?
 - id: s.17.11
@@ -145,7 +145,7 @@ sentences:
     chg-Arab/standard:
       text: مونده نچه کون یورورسیز؟
       tokens: [{surface: مونده, lexemes: [{lexeme: bu, surface: مون, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: munda}}, {surface: نچه, lexeme: nachcha, readings: {schluessel: näččä}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: یورورسیز, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2, surface: سیز}], readings: {schluessel: yürürsiz}}]
-      reverse: (مونده|موندا) (نچه|نچچه) کون یورورسیز
+      reverse: "(مونده|موندا) (نچه|نچچه) کون (یورورسیز|یورورسن|یورورسیزلار)"
   translations:
     en: How (many days|long) will you (be|stay) here?
 - id: s.17.15
@@ -210,7 +210,7 @@ sentences:
     chg-Arab/standard:
       text: سیر.
       tokens: [{surface: سیر, lexeme: sayr, readings: {schluessel: sayr}}]
-      reverse: سیر
+      reverse: "(سیر|سفر)"
   translations:
     en: (A|) (journey|trip|travel).
 - id: s.17.22
@@ -236,7 +236,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: روی عالم.
-      tokens: [{surface: روی, lexeme: ruy, readings: {schluessel: rūy-i}}, {surface: عالم, lexeme: alam, readings: {schluessel: ʿālam}}]
+      tokens: [{surface: روی, lexemes: [{lexeme: ruy, surface: روی, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: rūy-i}}, {surface: عالم, lexeme: alam, readings: {schluessel: ʿālam}}]
       reverse: روی عالم
   translations:
     en: The face of the world.
@@ -254,7 +254,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: روی عالمنی سیر قیلیب یورکایمیز.
-      tokens: [{surface: روی, lexeme: ruy, readings: {schluessel: rūy-i}}, {surface: عالمنی, lexemes: [{lexeme: alam, surface: عالم, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ʿālamni}}, {surface: سیر, lexeme: sayr, readings: {schluessel: sayr}}, {surface: قیلیب, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qilip}}, {surface: یورکایمیز, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: gay, surface: کای}, {lexeme: p1p, surface: میز}], readings: {schluessel: yürgäymiz}}]
+      tokens: [{surface: روی, lexemes: [{lexeme: ruy, surface: روی, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: rūy-i}}, {surface: عالمنی, lexemes: [{lexeme: alam, surface: عالم, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ʿālamni}}, {surface: سیر, lexeme: sayr, readings: {schluessel: sayr}}, {surface: قیلیب, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qilip}}, {surface: یورکایمیز, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: gay, surface: کای}, {lexeme: p1p, surface: میز}], readings: {schluessel: yürgäymiz}}]
       reverse: روی عالمنی سیر (قیلیب|قلیب) یورکایمیز
   translations:
     en: We (shall|will) travel (about|around|) the (face of the world|world).
@@ -320,7 +320,7 @@ sentences:
     chg-Arab/standard:
       text: جوابینک نه؟
       tokens: [{surface: جوابینک, lexemes: [{lexeme: jawab, surface: جواب, base: true}, {lexeme: poss2s, surface: ینک}], readings: {schluessel: jawābiŋ}}, {surface: نه, lexeme: ne, readings: {schluessel: ne}}]
-      reverse: جوابینک نه
+      reverse: "جوابینک نه\nجوابینک نه تورور"
   translations:
     en: What is your (answer|reply)?
 - id: s.17.34
@@ -331,7 +331,7 @@ sentences:
     chg-Arab/standard:
       text: جوابینک نه تورور؟
       tokens: [{surface: جوابینک, lexemes: [{lexeme: jawab, surface: جواب, base: true}, {lexeme: poss2s, surface: ینک}], readings: {schluessel: jawābiŋ}}, {surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: تورور, lexeme: turur, readings: {schluessel: turur}}]
-      reverse: جوابینک نه تورور
+      reverse: "جوابینک نه تورور\nجوابینک نه"
   translations:
     en: What is your (answer|reply)?
 - id: s.17.35
@@ -422,7 +422,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "اما مقصود مدعّایمز بو کم، روی عالم\u200cنی سیر قلیب یورکای\u200cمز."
-          tokens: [{surface: اما, lexeme: amma, readings: {schluessel: ammā}}, {surface: مقصود, lexeme: maqsud, readings: {schluessel: maqṣūd}}, {surface: مدعّایمز, lexemes: [{lexeme: mudda, surface: مدعّا, base: true}, {lexeme: poss1p, surface: یمز}], readings: {schluessel: mudaʿʿāymiz}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: کم, lexeme: kim.that, readings: {schluessel: kim}}, {surface: روی, lexeme: ruy, readings: {schluessel: rūy-i}}, {surface: "عالم\u200cنی", lexemes: [{lexeme: alam, surface: "عالم\u200c", base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ʿālamni}}, {surface: سیر, lexeme: sayr, readings: {schluessel: sayr}}, {surface: قلیب, lexemes: [{lexeme: qil, surface: قل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qilip}}, {surface: "یورکای\u200cمز", lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: gay, surface: "کای\u200c"}, {lexeme: p1p, surface: مز}], readings: {schluessel: yürgäymiz}}]
+          tokens: [{surface: اما, lexeme: amma, readings: {schluessel: ammā}}, {surface: مقصود, lexeme: maqsud, readings: {schluessel: maqṣūd}}, {surface: مدعّایمز, lexemes: [{lexeme: mudda, surface: مدعّا, base: true}, {lexeme: poss1p, surface: یمز}], readings: {schluessel: mudaʿʿāymiz}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: کم, lexeme: kim.that, readings: {schluessel: kim}}, {surface: روی, lexemes: [{lexeme: ruy, surface: روی, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: rūy-i}}, {surface: "عالم\u200cنی", lexemes: [{lexeme: alam, surface: "عالم\u200c", base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ʿālamni}}, {surface: سیر, lexeme: sayr, readings: {schluessel: sayr}}, {surface: قلیب, lexemes: [{lexeme: qil, surface: قل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qilip}}, {surface: "یورکای\u200cمز", lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: gay, surface: "کای\u200c"}, {lexeme: p1p, surface: مز}], readings: {schluessel: yürgäymiz}}]
       translations:
         en: 'But our aim and purpose is this: we shall travel the face of the world.'
   - line:

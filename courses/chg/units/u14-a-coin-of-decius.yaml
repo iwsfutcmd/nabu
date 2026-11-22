@@ -186,7 +186,7 @@ sentences:
     chg-Arab/standard:
       text: اوچ کوندین سونکره کلدی.
       tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: کوندین, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: kündin}}, {surface: سونکره, lexeme: songra, readings: {schluessel: soŋra}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: käldi}}]
-      reverse: اوچ (کوندین|کوندن) (سونکره|سونکرا) (کلدی|کیلدی)
+      reverse: "اوچ (کوندین|کوندن) (سونکره|سونکرا|کیین|کین) (کلدی|کیلدی)"
   translations:
     en: (He|She) came (three days later|after three days).
 - id: s.14.20
@@ -223,7 +223,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تنکری تعالیغه سجدات شکر قیلدیلار.
-      tokens: [{surface: تنکری, lexeme: tangri, readings: {schluessel: Täŋri}}, {surface: تعالیغه, lexemes: [{lexeme: taala, surface: تعالی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: taʿālàǧa}}, {surface: سجدات, lexeme: sajdat, readings: {schluessel: sajdāt-i}}, {surface: شکر, lexeme: shukr, readings: {schluessel: šukr}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: qildilar}}]
+      tokens: [{surface: تنکری, lexeme: tangri, readings: {schluessel: Täŋri}}, {surface: تعالیغه, lexemes: [{lexeme: taala, surface: تعالی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: taʿālàǧa}}, {surface: سجدات, lexemes: [{lexeme: sajdat, surface: سجدات, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: sajdāt-i}}, {surface: شکر, lexeme: shukr, readings: {schluessel: šukr}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: qildilar}}]
       reverse: |-
         (تنکری|تانکری) (تعالیغه|تعالیکه|تعالیقه|تعالیغا) سجدات شکر (قیلدیلار|قلدیلار)
         (تنکری|تانکری) (تعالیغه|تعالیکه|تعالیقه|تعالیغا) سجدات شکر (قیلدی|قلدی)
@@ -340,14 +340,14 @@ stories:
       forms:
         chg-Arab/standard:
           text: فقیر متحیر اوزکا پادشاه و اوزکا خلق کوروب، حیران ایرمیش.
-          tokens: [{surface: فقیر, lexeme: faqir, readings: {schluessel: faqīr-i}}, {surface: متحیر, lexeme: mutahayyir, readings: {schluessel: mutaḥayyir}}, {surface: اوزکا, lexeme: ozga, readings: {schluessel: özgä}}, {surface: پادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: اوزکا, lexeme: ozga, readings: {schluessel: özgä}}, {surface: خلق, lexeme: khalq, readings: {schluessel: ḫalq}}, {surface: کوروب, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: körüp}}, {surface: حیران, lexeme: hayran, readings: {schluessel: ḥayrān}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: ermiš}}]
+          tokens: [{surface: فقیر, lexemes: [{lexeme: faqir, surface: فقیر, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: faqīr-i}}, {surface: متحیر, lexeme: mutahayyir, readings: {schluessel: mutaḥayyir}}, {surface: اوزکا, lexeme: ozga, readings: {schluessel: özgä}}, {surface: پادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: اوزکا, lexeme: ozga, readings: {schluessel: özgä}}, {surface: خلق, lexeme: khalq, readings: {schluessel: ḫalq}}, {surface: کوروب, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: körüp}}, {surface: حیران, lexeme: hayran, readings: {schluessel: ḥayrān}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: ermiš}}]
       translations:
         en: The poor bewildered man, seeing another king and another people, was amazed.
   - line:
       forms:
         chg-Arab/standard:
           text: الار طعام ییب، تنکری تعالیغا سجدات شکر قیلیب، ینه اویقوغا بارمیشلار.
-          tokens: [{surface: الار, lexeme: ular, readings: {schluessel: alar}}, {surface: طعام, lexeme: taam, readings: {schluessel: ṭaʿām}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: تنکری, lexeme: tangri, readings: {schluessel: Täŋri}}, {surface: تعالیغا, lexemes: [{lexeme: taala, surface: تعالی, base: true}, {lexeme: dat, surface: غا}], readings: {schluessel: taʿālàǧa}}, {surface: سجدات, lexeme: sajdat, readings: {schluessel: sajdāt-i}}, {surface: شکر, lexeme: shukr, readings: {schluessel: šukr}}, {surface: قیلیب, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qilip}}, {surface: ینه, lexeme: yana, readings: {schluessel: yänä}}, {surface: اویقوغا, lexemes: [{lexeme: oyqu, surface: اویقو, base: true}, {lexeme: dat, surface: غا}], readings: {schluessel: oyquǧa}}, {surface: بارمیشلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: mis, surface: میش}, {lexeme: pl, surface: لار}], readings: {schluessel: barmišlar}}]
+          tokens: [{surface: الار, lexeme: ular, readings: {schluessel: alar}}, {surface: طعام, lexeme: taam, readings: {schluessel: ṭaʿām}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: تنکری, lexeme: tangri, readings: {schluessel: Täŋri}}, {surface: تعالیغا, lexemes: [{lexeme: taala, surface: تعالی, base: true}, {lexeme: dat, surface: غا}], readings: {schluessel: taʿālàǧa}}, {surface: سجدات, lexemes: [{lexeme: sajdat, surface: سجدات, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: sajdāt-i}}, {surface: شکر, lexeme: shukr, readings: {schluessel: šukr}}, {surface: قیلیب, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qilip}}, {surface: ینه, lexeme: yana, readings: {schluessel: yänä}}, {surface: اویقوغا, lexemes: [{lexeme: oyqu, surface: اویقو, base: true}, {lexeme: dat, surface: غا}], readings: {schluessel: oyquǧa}}, {surface: بارمیشلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: mis, surface: میش}, {lexeme: pl, surface: لار}], readings: {schluessel: barmišlar}}]
       translations:
         en: They ate, bowed down in thanks to God the Exalted, and went back to sleep.
   - line:
