@@ -506,3 +506,86 @@ lexical tokens, and the functions that serve the word list and the cards keep "w
   commit `1e1e7d65`, and they are format 1.
 - For the owner to overrule, as before: everything under "Decided while building" above, and the
   three-learner checks in the simulation.
+
+## Stages 5 and 6 (2026-11-22): what is built, and what is the owner's
+
+The owner said "Do stages 5-6" on 2026-11-21. Both are built and on main: docs/migration-design.md has
+the design they were built against ("Stages 5 and 6: the design") and what was built ("Stages 5 and 6, as
+built"), with the table of what each profile and scheme states. CLAUDE.md has "Losses and labels notes".
+
+### Done
+
+- **One statement of what an orthography writes of the sound** (ADR 0148), in every profile and scheme, run
+  by @nabu/core: 22 profiles and 8 schemes, every one marked REVIEW. `soundAlike` and a scheme's `variants`
+  are gone.
+- **A miss is a set of labels**, decided in ADR 0148's order; the outcome is read off the set; the answer
+  event carries the labels and the correspondences an orthographic miss was against.
+- **Spanish is strict:** accents, the diaeresis and letters that sound the same.
+- **Credit follows the labels;** the fold counts misses per correspondence; the compiler writes each
+  lexeme's leftovers and lists the readings a scheme's relation cannot account for.
+- **Spelling cards in every course that states a fixed correspondence** (Spanish gains them); reading cards
+  and minimal ruby by the word's own letters.
+- **What a learner sees:** feedback names every label with its words; the word list opens a word to what is
+  asked of it and lists the rules and forms met.
+- **The bundle format is 4.** Old cached bundles are refused and fetched again.
+
+### The checks, on the tree that landed
+
+- `pnpm codegen` changes nothing; `pnpm lint` 13 of 13; `pnpm typecheck` 11 of 11.
+- `pnpm test` (with `NABU_REQUIRE_TOOLS=1`) 10 of 10: core 777, core-cli 947, ui 172, web 81, api 109, schema
+  335, i18n 1092, references 48, lint 12; the pipeline 1609 passed, 9 skipped.
+- `pnpm conformance`: 873 vectors in TypeScript, 874 in Python.
+- `pnpm courses` and `pnpm bundles`: every course compiles; chg has 13 warnings (its five readings on the
+  review list and the eight it had), yue its 186, the rest none.
+- `pnpm license-check` and `pnpm check:catalogs` pass (the drafts' three warnings each are older).
+- `pnpm test:perf`: the worst p95 is 3.2 ms (fa), the budget 5.
+- `pnpm test:e2e`: 210 passed.
+- The visual matrix in its container: 793 passed, 133 skipped. 24 baselines are new (the five new stories:
+  feedback with one label, several, and held ones; a word's entry opened; the rules and forms) and 98
+  changed (the label line in the player's and the word-part card's wrong answer; the word list's entries,
+  which have more below them now; their dark twins). I looked at each kind in LTR, RTL and dark, side by
+  side with the old picture, not at all 122 files.
+- The simulation stayed in its bands with nothing retuned; one test of how often word-part cards come
+  along the path rests on three learners now (a Spanish lesson has a spelling card too, and one seed's
+  walk moved).
+- `workflow_dispatch` is still closed to this integration, so CI ran on main only.
+
+### Not done
+
+- **regularised** and **scope** are labels no answer gets: the first waits for rules in a lexicon, the
+  second for ADR 0147's prompt tags.
+- **Nothing reopens a script track** when a correspondence keeps being missed (ADR 0149 is not built); the
+  counts are kept, and no page shows them.
+- **`story_line_read` and `displayed`** are still never emitted.
+- **grc's marks** stay notes until the app can put them on from buttons (ADR 0148).
+- **yue's homophone characters** give its spelling cards as before and are not counted as leftovers in the
+  bundle, so the word list shows no spelling part for a yue word.
+- **The draft catalogs** have the new label messages; the notes they never had (sound-alike and the rest)
+  still show in English there.
+
+### For the owner
+
+1. **ADR 0153 (Proposed)** lists where the build reads ADR 0148 narrowly: no phonemic form in the bundle;
+   a leftover is the lexeme by `write-script` or `read-script`, no part id; verdicts as views of the labels;
+   the sound asked only of an attempt at the word; `rare` spellings. Accept it or say what to change.
+2. **Every statement is yours to review.** The ones that change what is accepted, first:
+   - apc-Latn: e or i free. Answers the accept sets did not list are accepted now (*3indi* for *3endi*).
+   - chg-Arab: the scribes' letters, a vowel's letter written or left out, and a doubled consonant are free.
+   - hbo: full and defective spellings are free (קל for קול).
+   - es: what counts as the same sound (seseo, yeísmo, b/v, h, g/j), and an unmarked monosyllable read as
+     unstressed, so ✗*fé* for *fe* is called phonemic.
+   - uz-Cyrl: йа for я and its like, and с for ц at a word's start, are the right sound in the wrong letter.
+   - Left out on purpose, each with its reason in the file: apc o/u and its diphthongs, apc-Arab ث ذ ظ ق,
+     uz x/h, chg ف for p.
+3. **The review lists:** chg has five readings its relation does not account for (*Moǧulistān* written with
+   ا for u, three times; *šahargä*; *ṣandūqta*): a spelling, a reading or the relation is off in each. hbo has
+   none: I stated its two perpetual qeres word by word (the divine name read *ʾăḏōnāy*; the Pentateuch's הוא
+   read *hîʾ*), which is yours to overrule.
+4. **Wording:** the label messages are drafts ("Right sound, wrong letter: {expected}, not {answer}.", "That
+   spells another sound.", "Right word, another form.", "Another word.", "The right words, in another
+   order."), and so are "What it asks" and "3 of 5" in the word list.
+5. **Judgments of mine to overrule:** a missing diaeresis (*pinguino*) is never sent to the AI judge, since
+   the judge would excuse it (the brief I gave the grader said otherwise and I changed it); and feedback
+   does not say "That spells another sound" of a word that is another form or another word (*Aziz* for
+   *Azizman*, *esta* for *está*), where ADR 0148 names every label: it goes without saying there.
+6. Still open from before: the eight form clips; the device's log rewrite on a real log; ADR 0144 and 0152.

@@ -131,6 +131,24 @@ describe("every label, the worst first, each with its words", () => {
     expect(headlineOf(html)).toBe("Not quite.");
   });
 
+  it("another sound is not said of a word that is another form or another word: that goes without saying", () => {
+    const form: AlignOp = { op: "substitute", expected: "hablo", actual: "hablas", labels: ["grammatical", "phonemic"] };
+    const word: AlignOp = { op: "substitute", expected: "está", actual: "esta", labels: ["lexical", "phonemic"] };
+    const sound: AlignOp = { op: "substitute", expected: "también", actual: "tambien", labels: ["phonemic"] };
+    // Its own word misspelled keeps the line; the other two pairs are left out of it.
+    expect(labelLines({ ...outcome, alignment: [form, word, sound], labels: ["lexical", "grammatical", "phonemic"] }, () => false, false)).toEqual([
+      { label: "lexical", pairs: [["está", "esta"]] },
+      { label: "grammatical", pairs: [["hablo", "hablas"]] },
+      { label: "phonemic", pairs: [["también", "tambien"]] },
+    ]);
+    // Where every pair of the label is another form or word, the line goes; held or not.
+    expect(labelLines({ ...outcome, alignment: [form], labels: ["grammatical", "phonemic"] }, () => false, false)).toEqual([{ label: "grammatical", pairs: [["hablo", "hablas"]] }]);
+    expect(labelLines({ ...outcome, alignment: [form], labels: ["grammatical", "phonemic"] }, () => false, true)).toEqual([]);
+    // The right sound in another word's spelling is worth saying (caza for casa).
+    const homophone: AlignOp = { op: "match", expected: "casa", actual: "caza", kind: "typo", labels: ["lexical", "orthographic"] };
+    expect(labelLines({ ...outcome, alignment: [homophone], labels: ["lexical", "orthographic"] }, () => false, false).map((l) => l.label)).toEqual(["lexical", "orthographic"]);
+  });
+
   it("a word left out or added is said without words", () => {
     expect(labelLines({ ...outcome, alignment: [{ op: "delete", expected: "casa", labels: ["lexical"] }], labels: ["lexical"] }, () => false, false)).toEqual([{ label: "lexical", pairs: [] }]);
     const html = render(<Feedback ex={ex} outcome={{ ...outcome, alignment: [{ op: "delete", expected: "casa", labels: ["lexical"] }], labels: ["lexical"] }} course={es} ruby={false} marks="show" />);

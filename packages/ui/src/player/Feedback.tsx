@@ -201,6 +201,10 @@ export interface LabelLine {
  *   is the more specific, so the labels of that pair get no line of their own. A label keeps its
  *   line where some word it is about has no note shown, and then names only those words; a label no
  *   word carries (a word left out, added) is said without words;
+ * - another sound is said only of a word that is the word asked for: a word that is another form
+ *   or another word sounds otherwise as a matter of course (Azizman and Aziz, está and esta), so its
+ *   pair is left out of the phonemic line, held or not, and the line goes where no pair is left.
+ *   The right sound in another word's spelling is worth saying (caza for casa), and so is a slip;
  * - `held`: while the judge may still accept the answer, lexical, grammatical and order wait.
  */
 export const labelLines = (outcome: Outcome, shownNote: (note: string) => boolean, held: boolean): readonly LabelLine[] => {
@@ -210,7 +214,7 @@ export const labelLines = (outcome: Outcome, shownNote: (note: string) => boolea
   return (outcome.labels ?? []).flatMap((label): LabelLine[] => {
     if (held && HELD.has(label)) return [];
     const about = ops.filter((op) => op.labels?.includes(label) === true);
-    const open = about.filter((op) => !noted(op));
+    const open = about.filter((op) => !noted(op) && !(label === "phonemic" && (op.labels?.includes("grammatical") === true || op.labels?.includes("lexical") === true)));
     if (about.length > 0 && open.length === 0) return [];
     const seen = new Set<string>();
     const pairs = open.flatMap((op): (readonly [string, string])[] => {

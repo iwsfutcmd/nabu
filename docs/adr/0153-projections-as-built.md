@@ -79,6 +79,10 @@ here so the owner can accept or overrule it; nothing here was decided by anyone 
   judge may still accept the answer (the server judges the course, the learner is signed in, the card is a
   typed translation, the outcome is `WRONG`, and the judge has not answered no), as ADR 0148 asked. A
   profile's note about a pair of words speaks for that pair: the label's own line is left out for it.
+- **Another sound is said only of the word asked for.** ADR 0148 has feedback name every label. A word
+  that is another form or another word (*hablas* for *hablo*, *esta* for *está*) carries phonemic too, and
+  saying so adds nothing: its pair is left out of that line. The right sound in another word's spelling
+  (*caza* for *casa*) is said, and so is a slip.
 - **Whose form** is decided by the lexemes and forms the course's tokens write under a spelling, never by
   the string: another spelling of the same lexeme in the same form is no other word.
 

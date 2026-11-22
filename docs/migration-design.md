@@ -1096,7 +1096,8 @@ accept or overrule.
   correspondence (Spanish gains it: *Gracias* among *Grasias* and *Grazias*); reading cards and minimal ruby
   take theirs from the scheme's relation, by the word's own letters.
 - **What a learner sees:** feedback lists every label, the worst first, with the words it is about; a
-  profile's note about a pair speaks for it; the headline follows the labels; labels the judge could still
+  profile's note about a pair speaks for it; another sound is not said of a word that is another form or
+  another word; the headline follows the labels; labels the judge could still
   overturn (lexical, grammatical, order) are held until it has answered no. The word list opens each word
   to what is asked of it (skills, its own form, its spelling and reading leftovers), each shown or not, with
   a count, and has entries for the rules and forms the learner has met.
