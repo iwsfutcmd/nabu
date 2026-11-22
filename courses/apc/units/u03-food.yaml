@@ -23,11 +23,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تفضّل!
-      tokens: [{surface: تفضّل, lexeme: tfaddal}]
+      tokens: [{surface: تفضّل, lexeme: tfaddal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
       reverse: تفضّل
     apc-Latn/arabizi:
       text: tfaddal!
-      tokens: [{surface: tfaddal, lexeme: tfaddal}]
+      tokens: [{surface: tfaddal, lexeme: tfaddal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
       reverse: (tfaddal|tfadal|tfaddel)
   translations:
     en: |-
@@ -515,13 +515,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: صحن حمّص، تفضّل.
-      tokens: [{surface: صحن, lexeme: sa7n, feats: {Number: Sing}}, {surface: حمّص, lexeme: 7ummus, feats: {Number: Sing}}, {surface: تفضّل, lexeme: tfaddal}]
+      tokens: [{surface: صحن, lexeme: sa7n, feats: {Number: Sing}}, {surface: حمّص, lexeme: 7ummus, feats: {Number: Sing}}, {surface: تفضّل, lexeme: tfaddal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
       reverse: |-
         صحن حمّص تفضّل
         تفضّل صحن حمّص
     apc-Latn/arabizi:
       text: sa7n 7ummus, tfaddal.
-      tokens: [{surface: sa7n, lexeme: sa7n, feats: {Number: Sing}}, {surface: 7ummus, lexeme: 7ummus, feats: {Number: Sing}}, {surface: tfaddal, lexeme: tfaddal}]
+      tokens: [{surface: sa7n, lexeme: sa7n, feats: {Number: Sing}}, {surface: 7ummus, lexeme: 7ummus, feats: {Number: Sing}}, {surface: tfaddal, lexeme: tfaddal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
       reverse: |-
         (sa7n|sa7en|sahn|sa7in) (7ummus|7ommos|hummus|7ommus|7ummos) (tfaddal|tfadal|tfaddel)
         tfaddal sa7n 7ummus
@@ -719,10 +719,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: سامي، تْفَضَّل! كول!
-          tokens: [{surface: سامي, lexeme: sami}, {surface: تْفَضَّل, lexeme: tfaddal}, {surface: كول, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
+          tokens: [{surface: سامي, lexeme: sami}, {surface: تْفَضَّل, lexeme: tfaddal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: كول, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
         apc-Latn/arabizi:
           text: Sami, tfaddal! kol!
-          tokens: [{surface: Sami, lexeme: sami}, {surface: tfaddal, lexeme: tfaddal}, {surface: kol, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
+          tokens: [{surface: Sami, lexeme: sami}, {surface: tfaddal, lexeme: tfaddal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: kol, lexeme: akal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
       translations:
         en: Sami, help yourself! Eat!
   - line:
@@ -832,10 +832,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: يَلّا، تْفَضَّل!
-          tokens: [{surface: يَلّا, lexeme: yalla}, {surface: تْفَضَّل, lexeme: tfaddal}]
+          tokens: [{surface: يَلّا, lexeme: yalla}, {surface: تْفَضَّل, lexeme: tfaddal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
         apc-Latn/arabizi:
           text: yalla, tfaddal!
-          tokens: [{surface: yalla, lexeme: yalla}, {surface: tfaddal, lexeme: tfaddal}]
+          tokens: [{surface: yalla, lexeme: yalla}, {surface: tfaddal, lexeme: tfaddal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}]
       translations:
         en: Sure, here you go!
   - choose:

@@ -39,7 +39,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuántos tostones tú quieres?
-      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Gender: Masc, Number: Plur}}, {surface: tostones, lexeme: tostón, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: quieres, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
       reverse: Cuántos tostones (tú quieres|quieres [tú]|usted quiere|quiere [usted]|ustedes quieren|quieren [ustedes])
   translations:
     en: |-
@@ -59,7 +59,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuántos son?
-      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Gender: Masc, Number: Plur}}, {surface: son, lexeme: ser, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}]
       reverse: (Cuántos son [ustedes]|Cuántos ustedes son|Cuántas son [ustedes]|Cuántas ustedes son)
   translations:
     en: |-
@@ -138,7 +138,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Abuela, ¿cuántos cafecitos tú tomas?
-      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: cafecitos, lexeme: cafecito, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: tomas, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: cuántos, lexeme: cuánto, feats: {Gender: Masc, Number: Plur}}, {surface: cafecitos, lexeme: cafecito, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: tomas, lexeme: tomar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
       reverse: |-
         Abuela cuántos (cafecitos|cafés) (tú tomas|tomas [tú]|usted toma|toma [usted])
         ¿Cuántos cafecitos tú tomas, abuela?
@@ -230,7 +230,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuántos años tú tienes?
-      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Gender: Masc, Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
       reverse: |-
         Cuántos años (tú tienes|tienes [tú]|usted tiene|tiene [usted]|ustedes tienen|tienen [ustedes])
         ¿Tú cuántos años tienes?
@@ -272,7 +272,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: ¿Cuántos años tiene usted, señora?
-      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: usted, lexeme: usted}, {surface: señora, lexeme: señora, feats: {Number: Sing}}]
+      tokens: [{surface: Cuántos, lexeme: cuánto, feats: {Gender: Masc, Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: tiene, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: usted, lexeme: usted}, {surface: señora, lexeme: señora, feats: {Number: Sing}}]
       reverse: |-
         Cuántos años (tiene [usted]|usted tiene) señora
         Señora, ¿cuántos años tiene usted?
@@ -577,7 +577,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Lili, ¿cuántos años tú tienes?
-          tokens: [{surface: Lili, lexeme: lili}, {surface: cuántos, lexeme: cuánto, feats: {Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+          tokens: [{surface: Lili, lexeme: lili}, {surface: cuántos, lexeme: cuánto, feats: {Gender: Masc, Number: Plur}}, {surface: años, lexeme: año, feats: {Number: Plur}}, {surface: tú, lexeme: tú}, {surface: tienes, lexeme: tener, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
       translations:
         en: Lili, how old are you?
   - line:

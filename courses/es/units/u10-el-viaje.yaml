@@ -338,7 +338,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: En Cuba hace mucho calor.
-      tokens: [{surface: En, lexeme: en, n: 1, head: 2, rel: case}, {surface: Cuba, lexeme: cuba, n: 2}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
+      tokens: [{surface: En, lexeme: en, n: 1, head: 2, rel: case}, {surface: Cuba, lexeme: cuba, n: 2}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho, feats: {Gender: Masc, Number: Sing}}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
       reverse: |-
         En Cuba hace mucho calor
         Hace mucho calor en Cuba
@@ -528,7 +528,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¿En el verano? ¡En Cuba hace mucho calor!
-          tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 3}, {surface: En, lexeme: en, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, n: 5}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
+          tokens: [{surface: En, lexeme: en, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: verano, lexeme: verano, feats: {Number: Sing}, n: 3}, {surface: En, lexeme: en, n: 4, head: 5, rel: case}, {surface: Cuba, lexeme: cuba, n: 5}, {surface: hace, lexeme: hacer, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mucho, lexeme: mucho, feats: {Gender: Masc, Number: Sing}}, {surface: calor, lexeme: calor, feats: {Number: Sing}}]
       translations:
         en: In the summer? It's really hot in Cuba!
   - line:

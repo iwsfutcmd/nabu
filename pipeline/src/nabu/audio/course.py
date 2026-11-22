@@ -807,6 +807,31 @@ def synthesize_course(
     return report
 
 
+def prune_forms(course_dir: Path) -> Report:
+    """Lets the synthesized clips of forms go (formkey.is_form: lexeme:ra7|form:…, a word built of
+    several lexemes). The course asks for none (no card says a form alone, so no voice plans
+    one), and `generate` keeps them as it keeps a recording; this drops them, and each one's file
+    where no other clip shares it. No voice runs. A recorded clip of a form stays."""
+    adir = audio_dir(course_dir)
+    index = read_index(adir)
+    report = Report()
+    gone = [c for c in index.clips if c.synthetic and is_form(c.item)]
+    if not gone:
+        report.kept = len(index.clips)
+        return report
+    kept = [c for c in index.clips if not (c.synthetic and is_form(c.item))]
+    live = {c.file for c in kept}
+    for file in sorted({c.file for c in gone} - live):
+        path = adir / file
+        if path.exists():
+            path.unlink()
+            report.removed += 1
+    report.dropped = len(gone)
+    report.kept = len(kept)
+    write_index(adir, index.model_copy(update={"clips": kept}))
+    return report
+
+
 # ------------------------------------------------------------------------------------ alignment
 
 #: Forced alignment: (16 kHz s16le PCM, its rate, each word's phones) → each word's span.

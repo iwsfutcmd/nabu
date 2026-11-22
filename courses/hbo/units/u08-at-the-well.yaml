@@ -130,7 +130,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מְעַט מַיִם
-      tokens: [{surface: מְעַט, lexeme: meat, readings: {tiberian: məʿaṭ}}, {surface: מַיִם, lexeme: mayim, feats: {Number: Plur}, readings: {tiberian: máyim}}]
+      tokens: [{surface: מְעַט, lexeme: meat, feats: {Number: Sing}, readings: {tiberian: məʿaṭ}}, {surface: מַיִם, lexeme: mayim, feats: {Number: Plur}, readings: {tiberian: máyim}}]
       reverse: מעט מים
   translations:
     en: |-
@@ -156,7 +156,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: הַגְמִיאִינִי נָא מְעַט מַיִם מִכַּדֵּךְ׃
-      tokens: [{surface: הַגְמִיאִינִי, lexemes: [{lexeme: gama, surface: הַגְמִיאִי, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: sfx-1cs, surface: נִי}], readings: {tiberian: haḡmîʾî́nî}}, {surface: נָא, lexeme: na, readings: {tiberian: nāʾ}}, {surface: מְעַט, lexeme: meat, readings: {tiberian: məʿaṭ}}, {surface: מַיִם, lexeme: mayim, feats: {Number: Plur}, readings: {tiberian: máyim}}, {surface: מִכַּדֵּךְ, lexemes: [{lexeme: min, surface: מִ, n: 6, head: 7, rel: case}, {lexeme: kad, surface: כַּדֵּ, base: true, feats: {Number: Sing}, n: 7}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: mikkaddēḵ}}]
+      tokens: [{surface: הַגְמִיאִינִי, lexemes: [{lexeme: gama, surface: הַגְמִיאִי, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: sfx-1cs, surface: נִי}], readings: {tiberian: haḡmîʾî́nî}}, {surface: נָא, lexeme: na, readings: {tiberian: nāʾ}}, {surface: מְעַט, lexeme: meat, feats: {Number: Sing}, readings: {tiberian: məʿaṭ}}, {surface: מַיִם, lexeme: mayim, feats: {Number: Plur}, readings: {tiberian: máyim}}, {surface: מִכַּדֵּךְ, lexemes: [{lexeme: min, surface: מִ, n: 6, head: 7, rel: case}, {lexeme: kad, surface: כַּדֵּ, base: true, feats: {Number: Sing}, n: 7}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: mikkaddēḵ}}]
       reverse: הגמיאיני נא מעט מים מכדך
   translations:
     en: |-
@@ -433,7 +433,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: כָּל־הָאָרֶץ
-      tokens: [{surface: כָּל, lexeme: kol, feats: {Definite: Cons}, readings: {tiberian: kol-}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hāʾā́reṣ}}]
+      tokens: [{surface: כָּל, lexeme: kol, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: kol-}}, {surface: הָאָרֶץ, lexemes: [{lexeme: ha, surface: הָ, n: 2, head: 3, rel: det}, {lexeme: erets, surface: אָרֶץ, base: true, feats: {Number: Sing}, n: 3}], readings: {tiberian: hāʾā́reṣ}}]
       reverse: כל הארץ
   translations:
     en: |-
@@ -444,7 +444,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: לְכָל־גְּמַלָּיו
-      tokens: [{surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 1, head: 2, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 2}], readings: {tiberian: ləḵol-}}, {surface: גְּמַלָּיו, lexemes: [{lexeme: gamal, surface: גְּמַלָּי, base: true, feats: {Number: Plur}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: gəmallāyw}}]
+      tokens: [{surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 1, head: 2, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons, Number: Sing}, n: 2}], readings: {tiberian: ləḵol-}}, {surface: גְּמַלָּיו, lexemes: [{lexeme: gamal, surface: גְּמַלָּי, base: true, feats: {Number: Plur}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: gəmallāyw}}]
       reverse: לכל גמליו
   translations:
     en: for all his camels
@@ -464,7 +464,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַתִּשְׁאַב לְכָל־גְּמַלָּיו׃
-      tokens: [{surface: וַתִּשְׁאַב, lexeme: shaav, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattišʾaḇ}}, {surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 2, head: 3, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 3}], readings: {tiberian: ləḵol-}}, {surface: גְּמַלָּיו, lexemes: [{lexeme: gamal, surface: גְּמַלָּי, base: true, feats: {Number: Plur}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: gəmallāyw}}]
+      tokens: [{surface: וַתִּשְׁאַב, lexeme: shaav, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattišʾaḇ}}, {surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 2, head: 3, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons, Number: Sing}, n: 3}], readings: {tiberian: ləḵol-}}, {surface: גְּמַלָּיו, lexemes: [{lexeme: gamal, surface: גְּמַלָּי, base: true, feats: {Number: Plur}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: gəmallāyw}}]
       reverse: ותשאב לכל גמליו
   translations:
     en: '[(And|Then)] she drew [water] for all his camels.'
@@ -505,7 +505,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: הַגְמִיאִינִי נָא מְעַט־מַיִם מִכַּדֵּךְ׃
-          tokens: [{surface: הַגְמִיאִינִי, lexemes: [{lexeme: gama, surface: הַגְמִיאִי, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: sfx-1cs, surface: נִי}], readings: {tiberian: haḡmîʾî́nî}}, {surface: נָא, lexeme: na, readings: {tiberian: nāʾ}}, {surface: מְעַט, lexeme: meat, feats: {Definite: Cons, Gender: Masc, Number: Sing}, readings: {tiberian: məʿaṭ-}}, {surface: מַיִם, lexeme: mayim, feats: {Number: Plur}, readings: {tiberian: máyim}}, {surface: מִכַּדֵּךְ, lexemes: [{lexeme: min, surface: מִ, n: 6, head: 7, rel: case}, {lexeme: kad, surface: כַּדֵּ, base: true, feats: {Number: Sing}, n: 7}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: mikkaddēḵ}}]
+          tokens: [{surface: הַגְמִיאִינִי, lexemes: [{lexeme: gama, surface: הַגְמִיאִי, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: sfx-1cs, surface: נִי}], readings: {tiberian: haḡmîʾî́nî}}, {surface: נָא, lexeme: na, readings: {tiberian: nāʾ}}, {surface: מְעַט, lexeme: meat, feats: {Definite: Cons, Number: Sing}, readings: {tiberian: məʿaṭ-}}, {surface: מַיִם, lexeme: mayim, feats: {Number: Plur}, readings: {tiberian: máyim}}, {surface: מִכַּדֵּךְ, lexemes: [{lexeme: min, surface: מִ, n: 6, head: 7, rel: case}, {lexeme: kad, surface: כַּדֵּ, base: true, feats: {Number: Sing}, n: 7}, {lexeme: sfx-2fs, surface: ךְ}], readings: {tiberian: mikkaddēḵ}}]
       translations:
         en: “Please let me drink a little water from your jar.”
   - line:
@@ -570,7 +570,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: וַתְּמַהֵר וַתְּעַר כַּדָּהּ אֶל־הַשֹּׁקֶת וַתָּרָץ עוֹד אֶל־הַבְּאֵר לִשְׁאֹב וַתִּשְׁאַב לְכָל־גְּמַלָּיו׃
-          tokens: [{surface: וַתְּמַהֵר, lexeme: mahar, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattəmahēr}}, {surface: וַתְּעַר, lexeme: arah, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattəʿar}}, {surface: כַּדָּהּ, lexemes: [{lexeme: kad, surface: כַּדָּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: kaddāh}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הַשֹּׁקֶת, lexemes: [{lexeme: ha, surface: הַ, n: 6, head: 7, rel: det}, {lexeme: shoqet, surface: שֹּׁקֶת, base: true, feats: {Number: Sing}, n: 7}], readings: {tiberian: haššṓqeṯ}}, {surface: וַתָּרָץ, lexeme: ruts, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattā́roṣ}}, {surface: עוֹד, lexeme: od, readings: {tiberian: ʿôḏ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הַבְּאֵר, lexemes: [{lexeme: ha, surface: הַ, n: 11, head: 12, rel: det}, {lexeme: beer, surface: בְּאֵר, base: true, feats: {Number: Sing}, n: 12}], readings: {tiberian: habbəʾēr}}, {surface: לִשְׁאֹב, lexemes: [{lexeme: le, surface: לִ}, {lexeme: shaav, surface: שְׁאֹב, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lišʾōḇ}}, {surface: וַתִּשְׁאַב, lexeme: shaav, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattišʾaḇ}}, {surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 16, head: 17, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons}, n: 17}], readings: {tiberian: ləḵol-}}, {surface: גְּמַלָּיו, lexemes: [{lexeme: gamal, surface: גְּמַלָּי, base: true, feats: {Number: Plur}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: gəmallāyw}}]
+          tokens: [{surface: וַתְּמַהֵר, lexeme: mahar, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattəmahēr}}, {surface: וַתְּעַר, lexeme: arah, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattəʿar}}, {surface: כַּדָּהּ, lexemes: [{lexeme: kad, surface: כַּדָּ, base: true, feats: {Number: Sing}}, {lexeme: sfx-3fs, surface: הּ}], readings: {tiberian: kaddāh}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הַשֹּׁקֶת, lexemes: [{lexeme: ha, surface: הַ, n: 6, head: 7, rel: det}, {lexeme: shoqet, surface: שֹּׁקֶת, base: true, feats: {Number: Sing}, n: 7}], readings: {tiberian: haššṓqeṯ}}, {surface: וַתָּרָץ, lexeme: ruts, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattā́roṣ}}, {surface: עוֹד, lexeme: od, readings: {tiberian: ʿôḏ}}, {surface: אֶל, lexeme: el, readings: {tiberian: ʾel-}}, {surface: הַבְּאֵר, lexemes: [{lexeme: ha, surface: הַ, n: 11, head: 12, rel: det}, {lexeme: beer, surface: בְּאֵר, base: true, feats: {Number: Sing}, n: 12}], readings: {tiberian: habbəʾēr}}, {surface: לִשְׁאֹב, lexemes: [{lexeme: le, surface: לִ}, {lexeme: shaav, surface: שְׁאֹב, base: true, feats: {VerbForm: Inf}}], readings: {tiberian: lišʾōḇ}}, {surface: וַתִּשְׁאַב, lexeme: shaav, feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, readings: {tiberian: wattišʾaḇ}}, {surface: לְכָל, lexemes: [{lexeme: le, surface: לְ, n: 16, head: 17, rel: case}, {lexeme: kol, surface: כָל, base: true, feats: {Definite: Cons, Number: Sing}, n: 17}], readings: {tiberian: ləḵol-}}, {surface: גְּמַלָּיו, lexemes: [{lexeme: gamal, surface: גְּמַלָּי, base: true, feats: {Number: Plur}}, {lexeme: sfx-3ms, surface: ו}], readings: {tiberian: gəmallāyw}}]
       translations:
         en: And she quickly emptied her jar into the trough, ran again to the well to draw, and drew for all his camels.
   - choose:
