@@ -103,7 +103,7 @@ sentences:
     chg-Arab/standard:
       text: نه یرلیک بولورسیز؟
       tokens: [{surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: یرلیک, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: yärlik}}, {surface: بولورسیز, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2, surface: سیز}], readings: {schluessel: bolursiz}}]
-      reverse: نه (یرلیک|یارلیک) بولورسیز
+      reverse: "نه (یرلیک|یارلیک) (بولورسیز|بولورسن|بولورسیزلار)"
   translations:
     en: Where are you from?
 - id: s.17.11
@@ -145,7 +145,7 @@ sentences:
     chg-Arab/standard:
       text: مونده نچه کون یورورسیز؟
       tokens: [{surface: مونده, lexemes: [{lexeme: bu, surface: مون, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: munda}}, {surface: نچه, lexeme: nachcha, readings: {schluessel: näččä}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: یورورسیز, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2, surface: سیز}], readings: {schluessel: yürürsiz}}]
-      reverse: (مونده|موندا) (نچه|نچچه) کون یورورسیز
+      reverse: "(مونده|موندا) (نچه|نچچه) کون (یورورسیز|یورورسن|یورورسیزلار)"
   translations:
     en: How (many days|long) will you (be|stay) here?
 - id: s.17.15
@@ -210,7 +210,7 @@ sentences:
     chg-Arab/standard:
       text: سیر.
       tokens: [{surface: سیر, lexeme: sayr, readings: {schluessel: sayr}}]
-      reverse: سیر
+      reverse: "(سیر|سفر)"
   translations:
     en: (A|) (journey|trip|travel).
 - id: s.17.22
@@ -320,7 +320,7 @@ sentences:
     chg-Arab/standard:
       text: جوابینک نه؟
       tokens: [{surface: جوابینک, lexemes: [{lexeme: jawab, surface: جواب, base: true}, {lexeme: poss2s, surface: ینک}], readings: {schluessel: jawābiŋ}}, {surface: نه, lexeme: ne, readings: {schluessel: ne}}]
-      reverse: جوابینک نه
+      reverse: "جوابینک نه\nجوابینک نه تورور"
   translations:
     en: What is your (answer|reply)?
 - id: s.17.34
@@ -331,7 +331,7 @@ sentences:
     chg-Arab/standard:
       text: جوابینک نه تورور؟
       tokens: [{surface: جوابینک, lexemes: [{lexeme: jawab, surface: جواب, base: true}, {lexeme: poss2s, surface: ینک}], readings: {schluessel: jawābiŋ}}, {surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: تورور, lexeme: turur, readings: {schluessel: turur}}]
-      reverse: جوابینک نه تورور
+      reverse: "جوابینک نه تورور\nجوابینک نه"
   translations:
     en: What is your (answer|reply)?
 - id: s.17.35

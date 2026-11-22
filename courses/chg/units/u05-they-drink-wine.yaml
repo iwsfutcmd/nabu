@@ -167,7 +167,7 @@ sentences:
     chg-Arab/standard:
       text: من بیلمایمن.
       tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: بیلمایمن, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: p1s, surface: من}], readings: {schluessel: bilmäymän}}]
-      reverse: '[من] بیلمایمن'
+      reverse: "[من] بیلمایمن\n[من] بیلماسمن"
   translations:
     en: I (do not|don't) know.
 - id: s.05.16
@@ -194,7 +194,7 @@ sentences:
     chg-Arab/standard:
       text: اول خط یازادور.
       tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: خط, lexeme: khat, readings: {schluessel: ḫaṭ}}, {surface: یازادور, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: yazadur}}]
-      reverse: اول خط یازادور
+      reverse: "اول خط یازادور\nاول خط یازار"
   translations:
     en: (He|She) (writes|is writing|will write) a letter.
 - id: s.05.19
@@ -262,10 +262,7 @@ sentences:
     chg-Arab/standard:
       text: سیز چای ایچاسیزمو؟
       tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچاسیزمو, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres, surface: ا}, {lexeme: p2, surface: سیز}, {lexeme: q, surface: مو}], readings: {schluessel: ičäsizmu}}]
-      reverse: |-
-        [سیز] چای ایچاسیزمو
-        [سن] چای ایچاسنمو
-        [سیزلار] چای ایچاسیزلارمو
+      reverse: "[سیز] چای (ایچاسیزمو|ایچارسیزمو)\n[سن] چای (ایچاسنمو|ایچارسنمو)\n[سیزلار] چای (ایچاسیزلارمو|ایچارسیزلارمو)"
   translations:
     en: (Do you drink|Will you drink|Are you drinking) tea?
 - id: s.05.26

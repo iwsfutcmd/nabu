@@ -86,7 +86,7 @@ sentences:
     chg-Arab/standard:
       text: سفر.
       tokens: [{surface: سفر, lexeme: safar, readings: {schluessel: safar}}]
-      reverse: سفر
+      reverse: "(سفر|سیر)"
   translations:
     en: (A|The) journey.
 - id: s.08.9
@@ -113,7 +113,7 @@ sentences:
     chg-Arab/standard:
       text: اوچ کوندین کیین کلدی.
       tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: کوندین, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: kündin}}, {surface: کیین, lexeme: keyin, readings: {schluessel: keyin}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: käldi}}]
-      reverse: اوچ (کوندین|کوندن) (کیین|کین) (کلدی|کیلدی)
+      reverse: "اوچ (کوندین|کوندن) (کیین|کین|سونکره|سونکرا) (کلدی|کیلدی)"
   translations:
     en: (He|She) came (three days later|after three days).
 - id: s.08.12
