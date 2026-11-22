@@ -17,7 +17,7 @@ import { formMeanings, wordMeanings, writtenMeanings, type FormMeanings, type Wo
 import { textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
 import type { SchemeId, TaggedText } from "@nabu/schema";
-import { Children, Fragment, useMemo, type JSX, type ReactNode } from "react";
+import { Children, useMemo, type JSX, type ReactNode } from "react";
 import { useIsTarget, useTranslator } from "../context.tsx";
 import { CorrectIcon, WrongIcon } from "../icons.tsx";
 import { T, useShowsRuby, type TProps } from "../T.tsx";

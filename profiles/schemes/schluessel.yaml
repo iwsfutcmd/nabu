@@ -61,6 +61,9 @@ ruby: word
 # so the reading tells them apart and a typed س for ص says another reading; and stating them fixed would fail what
 # the course accepts by hand (آت and آط for at).
 of: chg-Arab/standard
+# REVIEW: a vowel mark a text adds (the damma one story line writes on سوی, süyi) is no letter of the spelling:
+# passed over, as the profile's matching passes over it. Not the shadda, which the relation states.
+ignores: "[\u064B-\u0650\u0652\u0670]"
 correspondences:
   # REVIEW (ADR 0148): a doubled consonant is written once (ikki ایکی, jannat جنت), once with a shadda (جبّار
   # jabbār) or twice (یتتی and یتی, قاتتیق and قاتیق, اللیک and الیک are all the course's): the second is not

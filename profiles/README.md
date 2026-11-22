@@ -137,5 +137,6 @@ correspondences:
 `schemes/schluessel.yaml` relates Schluessel's transliteration to every word of the chg course (see `nabu
 projections ../courses/chg` for the readings it does not account for); the scribes' letters and a vowel's letter
 written or left out are free there. `schemes/tiberian.yaml` relates SBL's transliteration to the Hebrew letters,
-full and defective spellings free; the divine name, read as its qere, is what it does not account for.
+full and defective spellings free, and states the two perpetual qeres of the course's texts word by word (the
+divine name; the Pentateuch's הוא read hîʾ).
 `schemes/attic.yaml` states the length Greek letters do not write, as sets.

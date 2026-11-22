@@ -1109,8 +1109,8 @@ accept or overrule.
 | fa-Arab | Sound from the spelling, its vowel marks left aside; ADR 0142's six sets, fixed |
 | apc-Latn | Sound from the spelling; e or i free (ADR 0148's example). o/u, the diphthongs and the digits left out, with reasons |
 | apc-Arab, ar-Arab | Sound from the spelling, vowel marks left aside; nothing stated: ث ذ ظ ق are each read two ways by word, the rest is matching policy already |
-| chg-Arab | Sound from Schluessel's reading. In the scheme's relation the scribes' letters (پ for b and p, ف for ṗ, ج for č, ک گ غ for g), a vowel's letter written or left out and a consonant doubled or not are free; every other consonant fixed |
-| hbo-Hebr | Sound from the Tiberian reading. The scheme relates SBL's transliteration to the consonantal text (points passed over): full and defective spellings free, each consonant fixed |
+| chg-Arab | Sound from Schluessel's reading. In the scheme's relation the scribes' letters (p as پ or ب, b as ب or پ, ṗ as ف or پ, č as چ or ج, g as ک, گ or غ), a vowel's letter written or left out and a consonant doubled or not are free; every other consonant fixed |
+| hbo-Hebr | Sound from the Tiberian reading. The scheme relates SBL's transliteration to the consonantal text (points passed over): full and defective spellings free, each consonant fixed, the two perpetual qeres stated word by word |
 | uz-Cyrl | Sound from the spelling; я, ю, ё, and е at a word's start and after a vowel, each with its two-letter spelling rare (йа for я); с at a word's start with ц rare (ADR 0148's сирк for цирк). ь, ъ, э and х/ҳ left out, with reasons |
 | uz-Latn, tr-Latn, tg-Cyrl, grc-Grek, tok-Latn, yue-Latn, chg-Latn | Sound from the spelling; nothing stated as lost, each with what was considered and why not |
 | en-Latn, grc-Latn, tok-Qaap, yue-Hant-HK, lzh-Hant, zh-Latn, ltc-Latn | No sound asked, with the reason (not stated as rules; chosen, never typed; a reading listed per sign; graded letter by letter) |
@@ -1120,9 +1120,9 @@ accept or overrule.
 
 ### What the review lists hold
 
-- **Readings a relation does not account for** (`projection.unaccounted`, warnings): chg six (*Moǧulistān*
-  written with ا for u, three times; *šahargä*; *ṣandūqta*; *süyi* with a damma), hbo 79 (the divine name
-  read as its qere, 78; one Pentateuchal ketiv).
+- **Readings a relation does not account for** (`projection.unaccounted`, warnings): chg five (*Moǧulistān*
+  written with ا for u, three times; *šahargä*; *ṣandūqta*); hbo none (its two
+  perpetual qeres, the divine name and the Pentateuch's הוא read *hîʾ*, are stated word by word).
 - **Lexemes with a leftover** (in the bundles): a spelling leftover for 416 of es's 721 lexemes and 147 of
   fa's 253; a reading leftover for 397 of chg's 455 (schluessel), every one of lzh's 227 (pinyin; 130 in
   baxter) and 75 of grc's 170 (attic, which no card asks yet). yue's homophone characters still give its

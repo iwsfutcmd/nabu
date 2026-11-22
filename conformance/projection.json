@@ -2206,8 +2206,54 @@
         "reading": "ʾăḏōnāy",
         "spelling": "י\u05b0הו\u05b8ה"
       },
-      "expected": null,
-      "note": "The divine name's reading is its qere: not accounted for (the review list)."
+      "expected": [
+        {
+          "says": "ʾăḏōnāy",
+          "written": "יהוה",
+          "kind": "fixed"
+        }
+      ],
+      "note": "The divine name is read as its qere: a perpetual qere is stated word by word, the letters as one written form."
+    },
+    {
+      "id": "projection/tiberian/spells/qere-prefixed",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "tiberian",
+        "reading": "laʾḏōnāy",
+        "spelling": "ל\u05b7יהו\u05b8ה"
+      },
+      "expected": [
+        {
+          "says": "l",
+          "written": "ל"
+        },
+        {
+          "says": "a",
+          "written": ""
+        },
+        {
+          "says": "ʾḏōnāy",
+          "written": "יהוה"
+        }
+      ],
+      "note": "After a prefix's vowel the qere loses its first vowel."
+    },
+    {
+      "id": "projection/tiberian/spells/qere-hi",
+      "op": "reading-spells",
+      "args": {
+        "scheme": "tiberian",
+        "reading": "hîʾ",
+        "spelling": "ה\u05b4וא"
+      },
+      "expected": [
+        {
+          "says": "hîʾ",
+          "written": "הוא"
+        }
+      ],
+      "note": "The Pentateuch's \u05d4\u05d5\u05d0 read h\u00ee\u02be: the other perpetual qere of the course's texts."
     },
     {
       "id": "projection/tiberian/variants/none",

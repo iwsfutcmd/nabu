@@ -16,7 +16,7 @@ bound: { mark: "-", before: "\u05BE" }
 # relation of the consonantal text: the points (vowels, shewa, dagesh, the shin and sin dots), and any accents or meteg,
 # are passed over (`ignores`), so a pointed and an unpointed spelling relate alike; what the points write is the
 # profile's marks policy and its vocalize cards, not this. Nothing is implied: a reading this does not relate to its
-# spelling is on the review list (`nabu projections ../courses/hbo`), the divine name's qere first.
+# spelling is on the review list (`nabu projections ../courses/hbo`); the two perpetual qeres are stated below.
 # No `loses`: which vowel an unwritten place has, qamets gadol or qatan, vocal or silent shewa, are left to the
 # pointing; stating them as sets would give reading cards options this course has not reviewed (REVIEW).
 of: hbo-Hebr/tiberian
@@ -24,6 +24,13 @@ of: hbo-Hebr/tiberian
 # its normalization removes or maps).
 ignores: "[\u0591-\u05bd\u05bf\u05c1\u05c2\u05c4\u05c5\u05c7]"
 correspondences:
+  # REVIEW: the two perpetual qeres of the course's texts, each a reading its letters do not give. The divine name is
+  # read ʾăḏōnāy (CLAUDE.md, "Biblical Hebrew notes"), ʾḏōnāy after a prefix's vowel (laʾḏōnāy, waʾḏōnāy); and the
+  # Pentateuch writes הוא where it reads hîʾ "she". Each is stated word by word (a listing, not a rule), so the
+  # review list holds only what no one has looked at.
+  - { says: ʾăḏōnāy, written: [יהוה], kind: fixed }
+  - { says: ʾḏōnāy, written: [יהוה], kind: fixed }
+  - { says: hîʾ, written: [הוא], kind: fixed }
   # REVIEW: a consonant is its letter; a begadkefat letter's stop and spirant alike (b and ḇ: ב, the dagesh a point);
   # ś and š both ש (the dot a point). ś, ṭ, q and ʿ are not s, t, k and ʾ: ס, ת, כ and א do not write them.
   - { says: ʾ, written: [א], kind: fixed }
