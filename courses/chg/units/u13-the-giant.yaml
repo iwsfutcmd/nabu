@@ -66,7 +66,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: حضرت آدم.
-      tokens: [{surface: حضرت, lexeme: hazrat, readings: {schluessel: ḥażrat-i}}, {surface: آدم, lexeme: adam, readings: {schluessel: Ādam}}]
+      tokens: [{surface: حضرت, lexemes: [{lexeme: hazrat, surface: حضرت, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: ḥażrat-i}}, {surface: آدم, lexeme: adam, readings: {schluessel: Ādam}}]
       reverse: حضرت آدم
   translations:
     en: (The great|Holy|) Adam.
@@ -84,7 +84,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: عاج ابن عنوق.
-      tokens: [{surface: عاج, lexeme: aj, readings: {schluessel: ʿĀj}}, {surface: ابن, lexeme: ibn, readings: {schluessel: ibn-i}}, {surface: عنوق, lexeme: anuq, readings: {schluessel: ʿAnūq}}]
+      tokens: [{surface: عاج, lexeme: aj, readings: {schluessel: ʿĀj}}, {surface: ابن, lexemes: [{lexeme: ibn, surface: ابن, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: ibn-i}}, {surface: عنوق, lexeme: anuq, readings: {schluessel: ʿAnūq}}]
       reverse: عاج ابن عنوق
   translations:
     en: ʿĀj, son of ʿAnūq.
@@ -93,7 +93,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: عنوق حضرت آدمنینک قیزلاری ایردی.
-      tokens: [{surface: عنوق, lexeme: anuq, readings: {schluessel: ʿAnūq}}, {surface: حضرت, lexeme: hazrat, readings: {schluessel: ḥażrat-i}}, {surface: آدمنینک, lexemes: [{lexeme: adam, surface: آدم, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Ādamniŋ}}, {surface: قیزلاری, lexemes: [{lexeme: qiz, surface: قیز, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}], readings: {schluessel: qizlari}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: erdi}}]
+      tokens: [{surface: عنوق, lexeme: anuq, readings: {schluessel: ʿAnūq}}, {surface: حضرت, lexemes: [{lexeme: hazrat, surface: حضرت, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: ḥażrat-i}}, {surface: آدمنینک, lexemes: [{lexeme: adam, surface: آدم, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Ādamniŋ}}, {surface: قیزلاری, lexemes: [{lexeme: qiz, surface: قیز, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}], readings: {schluessel: qizlari}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: erdi}}]
       reverse: |-
         عنوق حضرت آدمنینک (قیزلاری|قزلاری) (ایردی|ایدی)
         عنوق آدمنینک (قیزی|قزی) (ایردی|ایدی)
@@ -345,7 +345,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: عنوق دیکان حضرت آدم… قیزلاری ایردی.
-          tokens: [{surface: عنوق, lexeme: anuq, readings: {schluessel: ʿAnūq}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: حضرت, lexeme: hazrat, readings: {schluessel: ḥażrat-i}}, {surface: آدم, lexeme: adam, readings: {schluessel: Ādam}}, {surface: قیزلاری, lexemes: [{lexeme: qiz, surface: قیز, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}], readings: {schluessel: qizlari}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: erdi}}]
+          tokens: [{surface: عنوق, lexeme: anuq, readings: {schluessel: ʿAnūq}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: حضرت, lexemes: [{lexeme: hazrat, surface: حضرت, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: ḥażrat-i}}, {surface: آدم, lexeme: adam, readings: {schluessel: Ādam}}, {surface: قیزلاری, lexemes: [{lexeme: qiz, surface: قیز, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}], readings: {schluessel: qizlari}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: erdi}}]
       translations:
         en: ʿAnūq was a daughter of Adam (peace be upon him).
   - line:

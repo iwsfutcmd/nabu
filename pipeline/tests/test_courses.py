@@ -53,31 +53,12 @@ EXPECTED_WARNINGS = {
         ("enrich.reading-mismatch", "呢隻"),
     },
     "chg": {
-        # The ezafe, unwritten: a morph with no surface to come (malik-i, faqīr-i, āwāz-i).
-        ("reading.inconsistent-pending", "ملک"),
-        ("reading.inconsistent-pending", "فقیر"),
-        ("reading.inconsistent-pending", "آواز"),
         # For the course's author: yer/yär, yol/yul, suyi/süyi, šahargä/šaharǧa, tizigä.
         ("reading.inconsistent-pending", "یر"),
         ("reading.inconsistent-pending", "یول"),
         ("reading.inconsistent-pending", "سویی"),
         ("reading.inconsistent-pending", "شهرغه"),
         ("reading.inconsistent-pending", "تیزیغه"),
-        # The review list (ADR 0148): readings Schluessel's statement does not relate to their
-        # letters (شهریکه šahargä, صندوقدا ṣandūqta, موغالستان Moǧulistān), for a
-        # reviewer to settle in the statement or the reading (`nabu projections ../courses/chg`).
-        # پز biz, پله billä and پلماسمز bilmäsmiz are related since the statement says پ for b.
-        ("projection.unaccounted", "\u0645\u0648\u063a\u0627\u0644\u0633\u062a\u0627\u0646"),
-        (
-            "projection.unaccounted",
-            "\u0645\u0648\u063a\u0627\u0644\u0633\u062a\u0627\u0646\u063a\u0647",
-        ),
-        (
-            "projection.unaccounted",
-            "\u0645\u0648\u063a\u0627\u0644\u0633\u062a\u0627\u0646\u200c\u063a\u0647",
-        ),
-        ("projection.unaccounted", "\u0634\u0647\u0631\u06cc\u06a9\u0647"),
-        ("projection.unaccounted", "\u0635\u0646\u062f\u0648\u0642\u062f\u0627"),
     },
 }
 TOOLS = {

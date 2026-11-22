@@ -1732,11 +1732,16 @@ def _glossary(
                     loc,
                 )
         # An entry is spelled as its lemma or a variant of it, never as a token the sentences
-        # write with several lexemes (ADR 0061): bormoq, not boraman (bor+a+man).
+        # write with several lexemes (ADR 0061): bormoq, not boraman (bor+a+man). A lexeme the
+        # script does not write (an empty surface: chg's ezafe, ADR 0136) adds no letters, so a
+        # token of one written lexeme and unwritten ones is spelled as that lexeme (ḥażrat-i حضرت).
         analysed: dict[str, list[list[dict[str, Any]]]] = {}
         for _name, tokens, _loc in texts:
             for t in tokens:
-                if len(set(tk.ids_of(t))) > 1:
+                written = {
+                    str(part["lexeme"]) for part in tk.lexemes_of(t) if part.get("surface") != ""
+                }
+                if len(written) > 1:
                     key = unicodedata.normalize("NFC", t["surface"])
                     analysed.setdefault(key, []).append(tk.lexemes_of(t))
         for ident, surface, _u, loc in entries:

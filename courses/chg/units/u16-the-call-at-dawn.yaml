@@ -84,9 +84,9 @@ sentences:
   node: chg.u16.the-hunt
   forms:
     chg-Arab/standard:
-      text: توغلوق تمور خان موغالستانغه تورا ایردی.
-      tokens: [{surface: توغلوق, lexeme: tughluq, readings: {schluessel: Tuǧluq}}, {surface: تمور, lexeme: temur, readings: {schluessel: Temür}}, {surface: خان, lexeme: khan, readings: {schluessel: ḫan}}, {surface: موغالستانغه, lexemes: [{lexeme: moghulistan, surface: موغالستان, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Moǧulistānǧa}}, {surface: تورا, lexeme: tora, readings: {schluessel: törä}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: erdi}}]
-      reverse: توغلوق (تمور|تیمور) خان (موغالستانغه|موغالستانکه|موغالستانقه|موغالستانغا|موغولستانغه|موغولستانکه|موغولستانقه|موغولستانغا) (تورا|توره) (ایردی|ایدی)
+      text: توغلوق تمور خان موغولستانغه تورا ایردی.
+      tokens: [{surface: توغلوق, lexeme: tughluq, readings: {schluessel: Tuǧluq}}, {surface: تمور, lexeme: temur, readings: {schluessel: Temür}}, {surface: خان, lexeme: khan, readings: {schluessel: ḫan}}, {surface: موغولستانغه, lexemes: [{lexeme: moghulistan, surface: موغولستان, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Moǧulistānǧa}}, {surface: تورا, lexeme: tora, readings: {schluessel: törä}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: erdi}}]
+      reverse: توغلوق (تمور|تیمور) خان (موغولستانغه|موغولستانکه|موغولستانقه|موغولستانغا|موغالستانغه|موغالستانکه|موغالستانقه|موغالستانغا) (تورا|توره) (ایردی|ایدی)
   translations:
     en: Tughluq Temür Khan was the (ruler|lord) of Moghulistan.
 - id: s.16.9
@@ -220,7 +220,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قولاقیغه آواز خوش ایشیتیلدی.
-      tokens: [{surface: قولاقیغه, lexemes: [{lexeme: qulaq, surface: قولاق, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: qulaqiǧa}}, {surface: آواز, lexeme: awaz, readings: {schluessel: āwāz-i}}, {surface: خوش, lexeme: khosh, readings: {schluessel: ḫoš}}, {surface: ایشیتیلدی, lexemes: [{lexeme: ishit, surface: ایشیت, base: true}, {lexeme: pass, surface: یل}, {lexeme: past, surface: دی}], readings: {schluessel: išitildi}}]
+      tokens: [{surface: قولاقیغه, lexemes: [{lexeme: qulaq, surface: قولاق, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: qulaqiǧa}}, {surface: آواز, lexemes: [{lexeme: awaz, surface: آواز, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: āwāz-i}}, {surface: خوش, lexeme: khosh, readings: {schluessel: ḫoš}}, {surface: ایشیتیلدی, lexemes: [{lexeme: ishit, surface: ایشیت, base: true}, {lexeme: pass, surface: یل}, {lexeme: past, surface: دی}], readings: {schluessel: išitildi}}]
       reverse: (قولاقیغه|قولاقیکه|قولاقیقه|قولاقیغا) آواز خوش (ایشیتیلدی|ایشیتلدی|اشتیلدی|اشتلدی)
   translations:
     en: A (pleasant|sweet) (sound|voice) (reached|came to) (his|her) (ears|ear).
@@ -406,12 +406,12 @@ stories:
       ask: complete
       gap: lexeme:awaz
       distractors:
-      - lexeme:kol
-      - lexeme:tash
+      - lexeme:tarikh
+      - lexeme:sajdat
       forms:
         chg-Arab/standard:
           text: قولاقیغه آواز خوش اشتلدی.
-          tokens: [{surface: قولاقیغه, lexemes: [{lexeme: qulaq, surface: قولاق, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: qulaqiǧa}}, {surface: آواز, lexeme: awaz, readings: {schluessel: āwāz-i}}, {surface: خوش, lexeme: khosh, readings: {schluessel: ḫoš}}, {surface: اشتلدی, lexemes: [{lexeme: ishit, surface: اشت, base: true}, {lexeme: pass, surface: ل}, {lexeme: past, surface: دی}], readings: {schluessel: išitildi}}]
+          tokens: [{surface: قولاقیغه, lexemes: [{lexeme: qulaq, surface: قولاق, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: qulaqiǧa}}, {surface: آواز, lexemes: [{lexeme: awaz, surface: آواز, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: āwāz-i}}, {surface: خوش, lexeme: khosh, readings: {schluessel: ḫoš}}, {surface: اشتلدی, lexemes: [{lexeme: ishit, surface: اشت, base: true}, {lexeme: pass, surface: ل}, {lexeme: past, surface: دی}], readings: {schluessel: išitildi}}]
       translations:
         en: A sweet voice reached his ears.
   - line:

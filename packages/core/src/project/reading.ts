@@ -88,8 +88,10 @@ export const compileReadingProjection = (scheme: ReadingScheme): ReadingProjecti
     }
   }
   const othersOf = (piece: string): readonly string[] => (alternatives.get(piece) ?? []).filter((p) => p !== piece);
-  // Every piece a reading may be segmented into without a spelling: a `says` or a member of some `loses`.
-  const known = [...new Set(rules.flatMap((r) => [r.says, ...r.loses]).filter((p) => p !== ""))].map((p) => graphemes(p, locale)).sort((a, b) => b.length - a.length);
+  // Every piece a reading may be segmented into without a spelling: a `says` or a member of some `loses`
+  // that a card may trade. A piece no set holds is no place to trade, and a word a statement lists for
+  // one spelling (chg's šahargä written شهریکه, hbo's qere) is read as its letters without that spelling.
+  const known = [...alternatives.keys()].map((p) => graphemes(p, locale)).sort((a, b) => b.length - a.length);
 
   const prepare = (reading: string): readonly Piece[] =>
     graphemes(reading.normalize("NFC"), locale).map((text) => {
