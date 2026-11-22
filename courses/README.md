@@ -2,10 +2,8 @@
 
 Ten units each, from A1 to early A2 (es: thirty, to B2; hbo: twenty, to A2; tok: ten, to A2; grc: ten, to A2; chg: nineteen, to B1), built by `pnpm courses` and kept green by CI (CLAUDE.md).
 - **The format** is in [ADR 0027](../docs/adr/0027-course-source-format.md).
-- **The choices behind these four** are in [ADR 0033](../docs/adr/0033-fixture-courses.md) and
-  [ADR 0050](../docs/adr/0050-ten-unit-courses.md).
-
-Real courses can live in separate repositories.
+- **The choices behind the first four** (fa, yue, uz, apc) are in [ADR 0033](../docs/adr/0033-fixture-courses.md) and
+  [ADR 0050](../docs/adr/0050-ten-unit-courses.md); each later course has an ADR of its own (CLAUDE.md names them).
 
 | Course | Orthographies | Size | What it exercises |
 |---|---|---|---|

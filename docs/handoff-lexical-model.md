@@ -39,7 +39,9 @@ Proposed", it is out of date: fetch `main` and merge it into your working branch
 
 Found while the notes and the explainer were brought up to the accepted ADRs. None is decided.
 
-**An ADR is contradicted or silent, and the notes could not say what replaces it:**
+**An ADR is contradicted or silent, and the notes could not say what replaces it** (2026-11-22: 1 is answered
+by the tagging rule, which the owner adopted; 2 stays nowhere for now; 3 is done, *siendo* is by rule and out
+of the diagram; 4 stands):
 1. Which UD tag a word made by Arabic's participle pattern takes (كاتِب: `NOUN` or `ADJ`). It follows from
    round 6's "UD tags". [lexeme-model.md](lexeme-model.md) says only that the pattern "takes a verb and makes
    another category".
@@ -50,7 +52,8 @@ Found while the notes and the explainer were brought up to the accepted ADRs. No
 4. Two statements were left as they stood: that order variants in accept sets are generated (hbo, ADR 0084),
    as a future payoff, and that *‑ra* is the norm in Cuba.
 
-**Decisions the notes record that no ADR states** (beyond the review's section D):
+**Decisions the notes record that no ADR states** (beyond the review's section D; written into
+[ADR 0154](adr/0154-seven-decisions-from-the-notes.md), Proposed, on 2026-11-22):
 - the citation form per language, and naming one stem as "elsewhere" where none is the default;
 - a plural with a sense of its own is a separate morpheme (اخبار);
 - bound stems with a meaning are morphemes (Indonesian *ajar*, Bantu *‑swahili*);

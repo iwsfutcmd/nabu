@@ -862,7 +862,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   course appears there by itself.
 - ADRs 0013–0143 are Accepted (2026-11-18, the owner), and 0145–0151 (2026-11-20: the lexical model; the older ADRs
   they amend say so in their headers), and 0144, 0152 and 0153 (2026-11-22: the owner's answers to that day's open
-  questions; 0144 is not built). A new ADR is Proposed until the owner accepts it.
+  questions; 0144 is not built). 0154 is Proposed. A new ADR is Proposed until the owner accepts it.
   docs/gameplan-errata.md lists where the gameplan was wrong.
 - The lexical model follows docs/migration-design.md, which the owner approved on 2026-11-20 with three changes: the
   lexicon is flat (lexicons/<lang>/lexemes.yaml; units point at it, it is never arranged by unit), old events may be

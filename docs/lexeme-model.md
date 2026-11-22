@@ -129,10 +129,9 @@ flowchart TB
   end
   subgraph SERG["one lexeme, irregular paradigm"]
     direction LR
-    L4["lexeme SER<br/>verb · irregular<br/>lemma ser = SER + infinitive"] --> M4a["morpheme s‑<br/>elsewhere stem: ser‑é, s‑ido"]
+    L4["lexeme SER<br/>verb · irregular<br/>lemma ser = SER + infinitive"] --> M4a["morpheme s‑<br/>elsewhere stem: ser‑é, s‑ido, s‑iendo"]
     L4 --> M4b["morpheme soy<br/>present 1sg"]
     L4 --> M4d["morpheme fue<br/>preterite 3sg"]
-    L4 --> M4e["morpheme siendo<br/>gerund"]
   end
   subgraph AFFG["grammatical lexemes: affixes"]
     direction LR
