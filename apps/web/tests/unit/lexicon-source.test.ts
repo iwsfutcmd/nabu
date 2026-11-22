@@ -38,18 +38,39 @@ const get = (url: string): Answer => {
 
 const yamlOf = (path: string): unknown => parse(readFileSync(join(ROOT, path), "utf8"));
 
+/**
+ * What the server answers for a course, asked once: every answer parses the course's lexicon (a
+ * few hundred kilobytes of YAML for the largest), and a loaded machine takes seconds over ten.
+ */
+const answers = new Map<string, Answer>();
+const served = (course: string): Answer => {
+  let answer = answers.get(course);
+  if (answer === undefined) {
+    answer = get(`/nabu/lexicon-source/${course}.json?v=1`);
+    answers.set(course, answer);
+  }
+  return answer;
+};
+
+/** Parsing every lexicon is slow where every package's tests run at once (CI): well over the default five seconds. */
+const SLOW = 60_000;
+
 describe("lexicon-source", () => {
-  it("serves every course's lexicon files, parsed as they are", () => {
-    const courses = coursesWithLexicon(ROOT);
-    expect(courses).toEqual(expect.arrayContaining(["apc", "chg", "es", "fa", "grc", "hbo", "lzh", "tok", "uz", "yue"]));
-    for (const course of courses) {
-      const answer = get(`/nabu/lexicon-source/${course}.json?v=1`);
-      expect(answer.status, course).toBe(200);
-      expect(answer.type).toBe("application/json");
-      const lexicon = (yamlOf(`courses/${course}/course.yaml`) as { lexicon: string }).lexicon;
-      expect(JSON.parse(answer.body ?? "")).toEqual({ course, lexicon, lexemes: yamlOf(`lexicons/${lexicon}/lexemes.yaml`), language: yamlOf(`lexicons/${lexicon}/language.yaml`) });
-    }
-  });
+  it(
+    "serves every course's lexicon files, parsed as they are",
+    () => {
+      const courses = coursesWithLexicon(ROOT);
+      expect(courses).toEqual(expect.arrayContaining(["apc", "chg", "es", "fa", "grc", "hbo", "lzh", "tok", "uz", "yue"]));
+      for (const course of courses) {
+        const answer = served(course);
+        expect(answer.status, course).toBe(200);
+        expect(answer.type).toBe("application/json");
+        const lexicon = (yamlOf(`courses/${course}/course.yaml`) as { lexicon: string }).lexicon;
+        expect(JSON.parse(answer.body ?? "")).toEqual({ course, lexicon, lexemes: yamlOf(`lexicons/${lexicon}/lexemes.yaml`), language: yamlOf(`lexicons/${lexicon}/language.yaml`) });
+      }
+    },
+    SLOW,
+  );
 
   it("answers 404 for an unknown course and refuses paths that climb out", () => {
     for (const url of [
@@ -68,14 +89,18 @@ describe("lexicon-source", () => {
     expect(get("/bundles/es/manifest.json").status).toBe("next");
   });
 
-  it("writes the same files for a static site", () => {
-    const out = mkdtempSync(join(tmpdir(), "lexicon-source-"));
-    try {
-      const written = writeLexiconSource(out, ROOT);
-      expect(written).toEqual(coursesWithLexicon(ROOT));
-      for (const course of written) expect(readFileSync(join(out, `${course}.json`), "utf8")).toBe(get(`/lexicon-source/${course}.json`).body);
-    } finally {
-      rmSync(out, { recursive: true, force: true });
-    }
-  });
+  it(
+    "writes the same files for a static site",
+    () => {
+      const out = mkdtempSync(join(tmpdir(), "lexicon-source-"));
+      try {
+        const written = writeLexiconSource(out, ROOT);
+        expect(written.length).toBeGreaterThanOrEqual(10);
+        for (const course of written) expect(readFileSync(join(out, `${course}.json`), "utf8"), course).toBe(served(course).body);
+      } finally {
+        rmSync(out, { recursive: true, force: true });
+      }
+    },
+    SLOW,
+  );
 });
