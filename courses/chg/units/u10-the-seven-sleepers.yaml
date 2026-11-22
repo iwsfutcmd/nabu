@@ -69,7 +69,7 @@ sentences:
     chg-Arab/standard:
       text: اولار مسلمان ایکان.
       tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: مسلمان, lexeme: musulman, readings: {schluessel: musulmān}}, {surface: ایکان, lexeme: ikan, readings: {schluessel: ikän}}]
-      reverse: "(اولار|الار) مسلمان ایکان\n(اولار|الار) مسلمان ایکان\u200cدورلار"
+      reverse: "(اولار|الار) مسلمان ایکان\n(اولار|الار) مسلمان ایکان\u200cدورلار\nمسلمان ایکان\u200cدورلار\nمسلمان ایکان"
   translations:
     en: They (were|are) Muslims, it (turned out|turns out|seems).
 - id: s.10.7
@@ -78,7 +78,7 @@ sentences:
     chg-Arab/standard:
       text: "مسلمان ایکان\u200cدورلار."
       tokens: [{surface: مسلمان, lexeme: musulman, readings: {schluessel: musulmān}}, {surface: "ایکان\u200cدورلار", lexemes: [{lexeme: ikan, surface: "ایکان\u200c", base: true}, {lexeme: dur, surface: دور}, {lexeme: p3pl, surface: لار}], readings: {schluessel: ikändurlar}}]
-      reverse: "مسلمان ایکان\u200cدورلار\nمسلمان ایکان\n(اولار|الار) مسلمان ایکان\u200cدورلار"
+      reverse: "مسلمان ایکان\u200cدورلار\nمسلمان ایکان\n(اولار|الار) مسلمان ایکان\u200cدورلار\n(اولار|الار) مسلمان ایکان"
   translations:
     en: They were Muslims, it turned out.
 - id: s.10.8
@@ -87,7 +87,7 @@ sentences:
     chg-Arab/standard:
       text: توخته آتلیغ بیر کشی.
       tokens: [{surface: توخته, lexeme: tokhta, readings: {schluessel: Toḫta}}, {surface: آتلیغ, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: liq, surface: لیغ}], readings: {schluessel: atliǧ}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
-      reverse: توخته (آتلیغ|اتلیغ) (بیر|بر) (کشی|کیشی)
+      reverse: "توخته (آتلیغ|اتلیغ) (بیر|بر) (کشی|کیشی)\nتوخته (تیکان|دیکان) (کشی|کیشی)"
   translations:
     en: A (man|person) named Tokhta.
 - id: s.10.9
@@ -123,7 +123,7 @@ sentences:
     chg-Arab/standard:
       text: بیر ملک.
       tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ملک, lexeme: malik, readings: {schluessel: malik}}]
-      reverse: (بیر|بر) ملک
+      reverse: "(بیر |بر |)(پادشاه|بادشاه|فادشاه|شاه|ملک)"
   translations:
     en: A king.
 - id: s.10.13
