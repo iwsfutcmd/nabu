@@ -63,7 +63,7 @@ import {
   type ReactNode,
 } from "react";
 import { Radio, RadioGroup } from "react-aria-components";
-import { useOrthography, useTranslator } from "../context.tsx";
+import { useIsTarget, useOrthography, useTranslator } from "../context.tsx";
 import { ChoiceWords } from "../marks.tsx";
 import { T, type TProps } from "../T.tsx";
 import { AnswerInput } from "./AnswerInput.tsx";
@@ -116,6 +116,11 @@ interface OptionsProps {
    * stands out by a homograph's underline or by the reading or marks a new word keeps (ADR 0132).
    */
   readonly texts?: readonly TaggedText[] | undefined;
+  /**
+   * The card is answered and its options' words are tappable for their meanings (`useOptionTaps`): the
+   * options are a list, no longer radios (a word's button may not sit inside a radio's label).
+   */
+  readonly lookUp?: boolean;
 }
 
 /** Radio choices (arrow keys follow the chrome direction), with number-key shortcuts. */
@@ -129,9 +134,36 @@ const Options = ({
   onSelect,
   describedBy: description,
   texts,
+  lookUp = false,
 }: OptionsProps): JSX.Element => {
   const t = useTranslator();
   const number = new Intl.NumberFormat(t.formattingLocale);
+  const wrap = (items: readonly JSX.Element[]): ReactNode => (texts === undefined ? items : <ChoiceWords texts={texts}>{items}</ChoiceWords>);
+  if (lookUp) {
+    // Answered: the same options, marked right and wrong, each word a tap for its gloss.
+    return (
+      <div className={grid ? styles.optionGrid : styles.options} role="list" aria-label={t.format("player.options.label")} data-options="" data-look-up="">
+        {wrap(
+          options.map((content, i) => (
+            <div
+              key={i}
+              role="listitem"
+              className={styles.option}
+              data-option={i}
+              data-selected={i === selected || undefined}
+              data-correct={(outcome !== undefined && i === answer) || undefined}
+              data-wrong={(outcome !== undefined && i === selected && i !== answer) || undefined}
+            >
+              <span className={styles.optionNumber} aria-hidden="true">
+                {number.format(i + 1)}
+              </span>
+              {content}
+            </div>
+          )),
+        )}
+      </div>
+    );
+  }
   const items = options.map((content, i) => (
   <Radio
     key={i}
@@ -212,7 +244,8 @@ const selectedOf = (props: ViewProps): number | null =>
  * When a card's target text may be tapped for its words' meanings (P1): `always` where they give
  * nothing away (a gap sentence's other words, a sentence to say, whose translation is shown), or
  * once `answered` where they would be the answer (what a sentence means, how a word is read or
- * vocalized, what was heard). Options, tiles and pairs are never tappable: they are the answer.
+ * vocalized, what was heard). Options and tiles are the answer: tappable only once answered (`useOptionTaps`,
+ * WordBank); pairs never.
  */
 export type GlossWhen = "always" | "answered";
 
@@ -234,6 +267,20 @@ const tapsOn = (
     onTokenPress: (token) => glossing.onTap({ key, text, token }),
     pressed: glossing.tapped?.key === key ? glossing.tapped.token : undefined,
   };
+};
+
+/**
+ * An answered choice's words (P1): once the card is answered, each option's words are tappable for their
+ * meanings, where its options are text in a language the course teaches. Before the answer an option is a
+ * choice, and its meaning would give the answer away; English options and readings have nothing to look up.
+ */
+const useOptionTaps = (
+  props: ViewProps & Partial<ViewExtras>,
+  texts: readonly TaggedText[],
+): { readonly lookUp: boolean; readonly taps: (text: TaggedText, i: number) => Pick<TProps, "onTokenPress" | "pressed"> } => {
+  const target = useIsTarget(texts[0]?.orthography ?? "");
+  const lookUp = target && props.outcome !== undefined && props.glossing !== undefined;
+  return { lookUp, taps: (text, i) => (lookUp ? tapsOn(props, `option:${String(i)}`, text, "answered") : {}) };
 };
 
 /**
@@ -298,6 +345,7 @@ export const SelectImageView = (props: Props<SelectImage>): JSX.Element => {
   const t = useTranslator();
   const optionTexts = useMemo(() => ex.options.map((o) => o.text), [ex.options]);
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
+  const optionTaps = useOptionTaps(props, optionTexts);
   return (
     <div className={styles.body}>
       <div
@@ -311,6 +359,7 @@ export const SelectImageView = (props: Props<SelectImage>): JSX.Element => {
       <AnswerAudio props={props} />
       <Options
         texts={optionTexts}
+        lookUp={optionTaps.lookUp}
         grid
         describedBy={describedBy(props.ids, ["prompt"])}
         options={ex.options.map((o, i) => (
@@ -320,7 +369,7 @@ export const SelectImageView = (props: Props<SelectImage>): JSX.Element => {
               alt=""
               className={styles.pictureImage}
             />
-            <T text={o.text} ruby={props.ruby} marks={props.marks} />
+            <T text={o.text} {...optionTaps.taps(o.text, i)} ruby={props.ruby} marks={props.marks} />
           </span>
         ))}
         selected={selectedOf(props)}
@@ -409,14 +458,16 @@ export const ChooseTranslationView = (
 ): JSX.Element => {
   const { ex } = props;
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
+  const optionTaps = useOptionTaps(props, ex.options);
   return (
     <div className={styles.body}>
       <TargetPrompt text={ex.prompt} props={props} gloss="answered" />
       <Options
         texts={ex.options}
+        lookUp={optionTaps.lookUp}
         describedBy={describedBy(props.ids, ["prompt"])}
         options={ex.options.map((o, i) => (
-          <T key={i} text={o} />
+          <T key={i} text={o} {...optionTaps.taps(o, i)} />
         ))}
         selected={selectedOf(props)}
         answer={ex.answer}
@@ -438,6 +489,7 @@ export const CharReadView = (
   const { ex } = props;
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
   const inSentence = (ex.template === "char-read" || ex.template === "reading-feature") && ex.word !== undefined;
+  const optionTaps = useOptionTaps(props, ex.options);
   return (
     <div className={styles.body}>
       {(ex.template === "char-read" || ex.template === "reading-feature") && ex.word !== undefined ? (
@@ -479,13 +531,14 @@ export const CharReadView = (
       )}
       <Options
         texts={ex.options}
+        lookUp={optionTaps.lookUp}
         grid
         describedBy={describedBy(
           props.ids,
           inSentence ? ["prompt", "hint"] : ["prompt"],
         )}
         options={ex.options.map((o, i) => (
-          <T key={i} text={o} />
+          <T key={i} text={o} {...optionTaps.taps(o, i)} />
         ))}
         selected={selectedOf(props)}
         answer={ex.answer}
@@ -539,10 +592,10 @@ const GapSentence = ({
         data-gap=""
       >
         {fill === undefined ? null : options === undefined ? (
-          <T text={fill} ruby={props.ruby} marks={props.marks} />
+          <T text={fill} ruby={props.ruby} marks={props.marks} {...tapsOn(props, "fill", fill, "answered")} />
         ) : (
           <ChoiceWords texts={options}>
-            <T text={fill} ruby={props.ruby} marks={props.marks} />
+            <T text={fill} ruby={props.ruby} marks={props.marks} {...tapsOn(props, "fill", fill, "answered")} />
           </ChoiceWords>
         )}
       </span>
@@ -561,6 +614,7 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
   const t = useTranslator();
   const selected = selectedOf(props);
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
+  const optionTaps = useOptionTaps(props, ex.options);
   return (
     <div className={styles.body}>
       <div
@@ -589,10 +643,11 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
       />
       <Options
         texts={ex.options}
+        lookUp={optionTaps.lookUp}
         grid
         describedBy={describedBy(props.ids, ["hint", "gap"])}
         options={ex.options.map((o, i) => (
-          <T key={i} text={o} ruby={props.ruby} marks={props.marks} />
+          <T key={i} text={o} {...optionTaps.taps(o, i)} ruby={props.ruby} marks={props.marks} />
         ))}
         selected={selected}
         answer={ex.answer}
@@ -1299,6 +1354,7 @@ export const VocalizeView = (props: Props<Vocalize>): JSX.Element => {
       draft: on ? { tag: "text", text: "" } : { tag: "choice", index: null },
     });
   };
+  const optionTaps = useOptionTaps(props, ex.options);
   return (
     <div className={styles.body}>
       <WordInSentence
@@ -1323,10 +1379,11 @@ export const VocalizeView = (props: Props<Vocalize>): JSX.Element => {
       ) : (
         <Options
           texts={ex.options}
+          lookUp={optionTaps.lookUp}
           grid
           describedBy={describedBy(props.ids, ["prompt", "hint"])}
           options={ex.options.map((o, i) => (
-            <T key={i} text={o} marks="show" />
+            <T key={i} text={o} {...optionTaps.taps(o, i)} marks="show" />
           ))}
           selected={selectedOf(props)}
           answer={ex.answer}
@@ -2244,6 +2301,7 @@ export const ListenChoiceView = (
 ): JSX.Element => {
   const { ex } = props;
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
+  const optionTaps = useOptionTaps(props, ex.options);
   return (
     <div className={styles.body}>
       <ListenPrompt
@@ -2254,9 +2312,10 @@ export const ListenChoiceView = (
       />
       <Options
         texts={ex.options}
+        lookUp={optionTaps.lookUp}
         describedBy={describedBy(props.ids, [])}
         options={ex.options.map((o, i) => (
-          <T key={i} text={o} ruby={props.ruby} marks={props.marks} />
+          <T key={i} text={o} {...optionTaps.taps(o, i)} ruby={props.ruby} marks={props.marks} />
         ))}
         selected={selectedOf(props)}
         answer={ex.answer}
@@ -2298,6 +2357,7 @@ const SupportPrompt = ({
 export const StoryChooseView = (props: Props<StoryChoose>): JSX.Element => {
   const { ex } = props;
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
+  const optionTaps = useOptionTaps(props, ex.options);
   return (
     <div className={styles.body}>
       <SupportPrompt
@@ -2307,9 +2367,10 @@ export const StoryChooseView = (props: Props<StoryChoose>): JSX.Element => {
       />
       <Options
         texts={ex.options}
+        lookUp={optionTaps.lookUp}
         describedBy={describedBy(props.ids, ["prompt"])}
         options={ex.options.map((o, i) => (
-          <T key={i} text={o} />
+          <T key={i} text={o} {...optionTaps.taps(o, i)} />
         ))}
         selected={selectedOf(props)}
         answer={ex.answer}
@@ -2326,6 +2387,7 @@ export const StoryCompleteView = (props: Props<StoryComplete>): JSX.Element => {
   const { ex } = props;
   const selected = selectedOf(props);
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
+  const optionTaps = useOptionTaps(props, ex.options);
   return (
     <div className={styles.body}>
       <GapSentence
@@ -2337,10 +2399,11 @@ export const StoryCompleteView = (props: Props<StoryComplete>): JSX.Element => {
       />
       <Options
         texts={ex.options}
+        lookUp={optionTaps.lookUp}
         grid
         describedBy={describedBy(props.ids, ["gap"])}
         options={ex.options.map((o, i) => (
-          <T key={i} text={o} ruby={props.ruby} marks={props.marks} />
+          <T key={i} text={o} {...optionTaps.taps(o, i)} ruby={props.ruby} marks={props.marks} />
         ))}
         selected={selected}
         answer={ex.answer}
