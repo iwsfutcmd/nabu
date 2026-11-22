@@ -222,7 +222,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من بزارغه باریب، نان الدیم.
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: باریب, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: barip}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: الدیم, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: aldim}}]
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: باریب, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: barip}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: الدیم, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: aldim}}]
       reverse: '[من] (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) باریب نان (الدیم|آلدیم)'
   translations:
     en: I went to the (market|bazaar) and (bought|got) bread.
@@ -231,7 +231,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول کلیب اولتوردی.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: اولتوردی, lexemes: [{lexeme: oltur, surface: اولتور, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: olturdi}}]
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: اولتوردی, lexemes: [{lexeme: oltur, surface: اولتور, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: olturdi}}]
       reverse: اول کلیب اولتوردی
   translations:
     en: (He|She) came and sat (down).
@@ -240,7 +240,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیز نان ییب، چای ایچتوق.
-      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچتوق, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: past-1p, surface: توق}], readings: {schluessel: ičtuq}}]
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچتوق, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: past, surface: تو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: ičtuq}}]
       reverse: '[بیز] نان ییب چای ایچتوق'
   translations:
     en: We ate bread and drank tea.
@@ -249,7 +249,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اولار کتاب الیب، اویغه باردیلار.
-      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: کتاب, lexeme: kitab, readings: {schluessel: kitāb}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: اویغه, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: öygä}}, {surface: باردیلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: bardilar}}]
+      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: کتاب, lexeme: kitab, readings: {schluessel: kitāb}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: اویغه, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: öygä}}, {surface: باردیلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: bardilar}}]
       reverse: |-
         (اولار|الار) کتاب (الیب|آلیب) (اویغه|اویکه|اویقه|اویغا) باردیلار
         (اولار|الار) کتاب (الیب|آلیب) (اویغه|اویکه|اویقه|اویغا) باردی
@@ -269,7 +269,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قیرغاولنی ییب توکاتتی.
-      tokens: [{surface: قیرغاولنی, lexemes: [{lexeme: qirghawul, surface: قیرغاول, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: qirǧawulni}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: توکاتتی, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: tügätti}}]
+      tokens: [{surface: قیرغاولنی, lexemes: [{lexeme: qirghawul, surface: قیرغاول, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: qirǧawulni}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: توکاتتی, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: past, surface: تی}], readings: {schluessel: tügätti}}]
       reverse: قیرغاولنی ییب توکاتتی
   translations:
     en: (He|She) ate (up|) the pheasant.
@@ -296,7 +296,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: انداق روایت قیلدیلار کیم، قیرغاول سیمیز.
-      tokens: [{surface: انداق, lexeme: andaq, readings: {schluessel: andaq}}, {surface: روایت, lexeme: riwayat, readings: {schluessel: riwāyat}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: qildilar}}, {surface: کیم, lexeme: kim.that, readings: {schluessel: kim}}, {surface: قیرغاول, lexeme: qirghawul, readings: {schluessel: qirǧawul}}, {surface: سیمیز, lexeme: semiz, readings: {schluessel: semiz}}]
+      tokens: [{surface: انداق, lexeme: andaq, readings: {schluessel: andaq}}, {surface: روایت, lexeme: riwayat, readings: {schluessel: riwāyat}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: qildilar}}, {surface: کیم, lexeme: kim.that, readings: {schluessel: kim}}, {surface: قیرغاول, lexeme: qirghawul, readings: {schluessel: qirǧawul}}, {surface: سیمیز, lexeme: semiz, readings: {schluessel: semiz}}]
       reverse: |-
         انداق روایت (قیلدیلار|قلدیلار) کیم قیرغاول (سیمیز|سمیز)
         انداق روایت (قیلدی|قلدی) کیم قیرغاول (سیمیز|سمیز)
@@ -317,7 +317,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قلم بیله یازدیم.
-      tokens: [{surface: قلم, lexeme: qalam, readings: {schluessel: qalam}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}, {surface: یازدیم, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: yazdim}}]
+      tokens: [{surface: قلم, lexeme: qalam, readings: {schluessel: qalam}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}, {surface: یازدیم, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: yazdim}}]
       reverse: '[من] قلم (بیله|بیلان|بیرله) یازدیم'
   translations:
     en: I wrote with a pen.
@@ -386,7 +386,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "انداق روایت قیلدیلار کیم، بیر قیرغاولنی اشکنه\u200cسی بیله تورت کیشی ییب توکاتا المایدور."
-          tokens: [{surface: انداق, lexeme: andaq, readings: {schluessel: andaq}}, {surface: روایت, lexeme: riwayat, readings: {schluessel: riwāyat}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: qildilar}}, {surface: کیم, lexeme: kim.that, readings: {schluessel: kim}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قیرغاولنی, lexemes: [{lexeme: qirghawul, surface: قیرغاول, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: qirǧawulni}}, {surface: "اشکنه\u200cسی", lexemes: [{lexeme: ishkina, surface: "اشکنه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: iškinasi}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}, {surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: کیشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: توکاتا, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: tügätä}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
+          tokens: [{surface: انداق, lexeme: andaq, readings: {schluessel: andaq}}, {surface: روایت, lexeme: riwayat, readings: {schluessel: riwāyat}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: qildilar}}, {surface: کیم, lexeme: kim.that, readings: {schluessel: kim}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قیرغاولنی, lexemes: [{lexeme: qirghawul, surface: قیرغاول, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: qirǧawulni}}, {surface: "اشکنه\u200cسی", lexemes: [{lexeme: ishkina, surface: "اشکنه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: iškinasi}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}, {surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: کیشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: توکاتا, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: tügätä}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
       translations:
         en: They tell that four men cannot finish one pheasant with its stew.
   - choose:

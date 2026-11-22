@@ -13,8 +13,8 @@
  * Homographs (ADR 0140): inside `HomographsProvider`, <T> marks the words whose spelling the course
  * reads more than one way.
  */
-import { homographsOf, lexemesInOrder, type CourseView } from "@nabu/core/lesson";
-import type { SchemeId } from "@nabu/schema";
+import { choiceWords, homographsOf, lexemesInOrder, type CourseView } from "@nabu/core/lesson";
+import type { SchemeId, TaggedText } from "@nabu/schema";
 import { surfaceOf } from "@nabu/core/text";
 import { createContext, use, useMemo, type JSX, type ReactNode } from "react";
 
@@ -112,6 +112,43 @@ const HomographsContext = createContext<{ readonly orthography: string; readonly
 export const HomographsProvider = ({ course, scheme, children }: { readonly course: CourseView; readonly scheme: SchemeId | false; readonly children: ReactNode }): JSX.Element => {
   const value = useMemo(() => (scheme === false ? null : { orthography: course.orthography, spellings: new Set(homographsOf(course, scheme).keys()) }), [course, scheme]);
   return <HomographsContext value={value}>{children}</HomographsContext>;
+};
+
+/**
+ * A choice's words, all alike (ADR 0132: nothing but what a card asks may mark its answer). Inside,
+ * no word is marked a homograph (ADR 0140), and the words of every option keep their readings or lose
+ * them together (ADR 0131, 0141), as they keep or lose their vowel marks (P12): all of them where any
+ * would keep its own (core `choiceWords`). Otherwise the one new word among words the learner knows,
+ * often the answer, would stand out by the reading it keeps, and a homograph by its underline. Options,
+ * the gap a chosen option fills, and word-bank tiles are rendered inside it; the sentence around them is not.
+ */
+export const ChoiceWords = ({ texts, children }: { readonly texts: readonly TaggedText[]; readonly children: ReactNode }): JSX.Element => {
+  const status = useWordStatus();
+  const value = useMemo((): WordStatus | null => {
+    if (status === null) return null;
+    const judged = new Map<string, ReturnType<typeof choiceWords>>();
+    const judge = (orthography: string): ReturnType<typeof choiceWords> => {
+      const found =
+        judged.get(orthography) ??
+        choiceWords(
+          texts,
+          orthography,
+          (lexemes, surface) => status.isNew(lexemes, surface, orthography),
+          (lexemes, surface) => status.readingShown(lexemes, surface, orthography),
+        );
+      judged.set(orthography, found);
+      return found;
+    };
+    return {
+      isNew: (_lexemes, _surface, orthography) => judge(orthography).anyNew,
+      readingShown: (_lexemes, _surface, orthography) => judge(orthography).allReadingsShown,
+    };
+  }, [status, texts]);
+  return (
+    <HomographsContext value={null}>
+      <WordStatusContext value={value}>{children}</WordStatusContext>
+    </HomographsContext>
+  );
 };
 
 /** Whether a word's spelling is read more than one way in the course (ADR 0140), where a provider says. */

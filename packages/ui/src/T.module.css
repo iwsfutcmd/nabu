@@ -3,6 +3,14 @@
   line-height: var(--nabu-text-line-height);
 }
 
+/* Only scripts with an italic style in print may be slanted (@nabu/i18n italicAllowed: Latin, Cyrillic,
+   Greek, Armenian). Any other stays upright inside italic surroundings: a note's "dictionary form: ایستا-". */
+.text[data-upright] {
+  --nabu-italic: normal;
+
+  font-style: normal;
+}
+
 /* tate-chū-yoko: has no effect in horizontal text, so it can always be set */
 .token[data-tcy] {
   text-combine-upright: all;

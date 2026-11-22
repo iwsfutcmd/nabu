@@ -17,7 +17,7 @@ import { formMeanings, wordMeanings, writtenMeanings, type FormMeanings, type Wo
 import { textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
 import type { SchemeId, TaggedText } from "@nabu/schema";
-import { useMemo, type JSX } from "react";
+import { Children, Fragment, useMemo, type JSX, type ReactNode } from "react";
 import { useIsTarget, useTranslator } from "../context.tsx";
 import { CorrectIcon, WrongIcon } from "../icons.tsx";
 import { T, useShowsRuby, type TProps } from "../T.tsx";
@@ -149,6 +149,24 @@ const Meanings = ({ meant, label, ruby, marks, data }: { readonly meant: readonl
   );
 };
 
+/**
+ * One side of a wrong answer's feedback (P3), set apart from the other: what the answer should be
+ * (`right`), and what was answered (`yours`), each in a box of its own, its edge solid or dashed (never
+ * colour alone; its labels name it too). A right answer's feedback is one part and needs no box. A part
+ * with nothing in it is left out.
+ */
+const Part = ({ kind, boxed, children }: { readonly kind: "right" | "yours"; readonly boxed: boolean; readonly children: ReactNode }): JSX.Element | null => {
+  const shown = Children.toArray(children).filter(Boolean);
+  if (shown.length === 0) return null;
+  return boxed ? (
+    <section className={styles.feedbackPart} data-feedback-part={kind}>
+      {shown}
+    </section>
+  ) : (
+    <>{shown}</>
+  );
+};
+
 const HEADLINES: Readonly<Record<Verdict, MessageId>> = {
   CORRECT: "feedback.verdict.correct",
   CORRECT_ALT: "feedback.verdict.correct-alt",
@@ -260,7 +278,17 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks, glossing,
     ruby !== false &&
     solution !== undefined &&
     showsRuby(solution, ruby);
-  const showSolution = outcome.solution !== undefined && (outcome.verdict !== "CORRECT" || withReadings);
+  // A right sentence typed whole, in the language being learned (translate-type, listen-type): the field
+  // holds only letters, so the sentence comes again for its words to be looked up (P1), in a lesson that
+  // glosses them. Cards that show their sentence already (a gap, a word in its sentence) need no second.
+  const solutionIsTarget = useIsTarget(solution?.orthography ?? "");
+  const toLookUp =
+    outcome.verdict === "CORRECT" &&
+    response?.tag === "text" &&
+    (ex.template === "translate-type.l1-l2" || ex.template === "listen-type") &&
+    glossing !== undefined &&
+    solutionIsTarget;
+  const showSolution = outcome.solution !== undefined && (outcome.verdict !== "CORRECT" || withReadings || toLookUp);
   const solutionLabel = right ? undefined : t.format("player.feedback.solution");
   const profile = course.profiles.get(ex.orthography);
   const joiner = profile?.unitKind === "grapheme" ? "" : " ";
@@ -346,44 +374,49 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks, glossing,
           })}
         </ul>
       )}
-      {showSolution && outcome.solution !== undefined && (
-        <div className={styles.solution} data-solution="">
-          {solutionLabel !== undefined && <span className={styles.label}>{solutionLabel}</span>}
-          <T as="p" text={outcome.solution} ruby={ruby} marks={marks} highlight={solutionMarked} {...solutionTaps} />
-        </div>
-      )}
-      {/* A word taken apart wrongly (ADR 0152): its parts, in the word's order. The tiles mark them by
-          colour; this says them, to a screen reader too. */}
-      {ex.template === "whole-parts" && !right && (
-        <div className={styles.solution} data-solution="">
-          <span className={styles.label}>{t.format("player.feedback.solution")}</span>
-          <PartsList parts={ex.solution.flatMap((i) => ex.options[i] ?? [])} lang={ex.prompt.lang} label={t.format("player.parts.label")} ruby={ruby} marks={marks} />
-        </div>
-      )}
-      {missed.length > 0 && <Meanings meant={missed} label={t.format("player.feedback.right-meaning")} ruby={ruby} marks={marks} data="right" />}
+      <Part kind="right" boxed={wrong}>
+        {showSolution && outcome.solution !== undefined && (
+          <div className={styles.solution} data-solution="">
+            {solutionLabel !== undefined && <span className={styles.label}>{solutionLabel}</span>}
+            <T as="p" text={outcome.solution} ruby={ruby} marks={marks} highlight={solutionMarked} {...solutionTaps} />
+          </div>
+        )}
+        {/* A word taken apart wrongly (ADR 0152): its parts, in the word's order. The tiles mark them by
+            colour; this says them, to a screen reader too. */}
+        {ex.template === "whole-parts" && !right && (
+          <div className={styles.solution} data-solution="">
+            <span className={styles.label}>{t.format("player.feedback.solution")}</span>
+            <PartsList parts={ex.solution.flatMap((i) => ex.options[i] ?? [])} lang={ex.prompt.lang} label={t.format("player.parts.label")} ruby={ruby} marks={marks} />
+          </div>
+        )}
+        {missed.length > 0 && <Meanings meant={missed} label={t.format("player.feedback.right-meaning")} ruby={ruby} marks={marks} data="right" />}
+        {closest !== undefined && (
+          <div className={styles.solution} data-closest="">
+            <span className={styles.label}>{t.format("player.feedback.closest")}</span>
+            <T as="p" text={closest.text} highlight={closest.marked} marks={marks} {...closestTaps} />
+          </div>
+        )}
+      </Part>
+      <Part kind="yours" boxed={wrong}>
+        {diff !== undefined && (diff.marked.length > 0 || diff.gaps.length > 0) && (
+          <div className={styles.solution} data-answer-diff="">
+            <span className={styles.label}>{t.format("player.feedback.your-answer")}</span>
+            <MarkedAnswer diff={diff} />
+            <span className={styles.muted}>{t.format("player.feedback.marked")}</span>
+          </div>
+        )}
+        {meant.length > 0 && (
+          <Meanings
+            meant={meant}
+            label={chosen !== undefined ? t.format("player.feedback.chosen-meaning") : t.format("player.feedback.marked-meaning", { count: meant.length })}
+            ruby={ruby}
+            marks={marks}
+            data={chosen !== undefined ? "chosen" : "marked"}
+          />
+        )}
+      </Part>
+      {/* The right form beside the chosen one (ADR 0132): a comparison, after both. */}
       {forms.length > 0 && <Forms forms={forms} label={t.format("player.feedback.form-meanings")} ruby={ruby} marks={marks} />}
-      {closest !== undefined && (
-        <div className={styles.solution} data-closest="">
-          <span className={styles.label}>{t.format("player.feedback.closest")}</span>
-          <T as="p" text={closest.text} highlight={closest.marked} marks={marks} {...closestTaps} />
-        </div>
-      )}
-      {diff !== undefined && (diff.marked.length > 0 || diff.gaps.length > 0) && (
-        <div className={styles.solution} data-answer-diff="">
-          <span className={styles.label}>{t.format("player.feedback.your-answer")}</span>
-          <MarkedAnswer diff={diff} />
-          <span className={styles.muted}>{t.format("player.feedback.marked")}</span>
-        </div>
-      )}
-      {meant.length > 0 && (
-        <Meanings
-          meant={meant}
-          label={chosen !== undefined ? t.format("player.feedback.chosen-meaning") : t.format("player.feedback.marked-meaning", { count: meant.length })}
-          ruby={ruby}
-          marks={marks}
-          data={chosen !== undefined ? "chosen" : "marked"}
-        />
-      )}
     </div>
   );
 };

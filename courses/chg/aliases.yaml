@@ -212,13 +212,13 @@ aliases:
   sense:qayda: {part: 'lexeme:qayda'}
   sense:bibi: {part: 'lexeme:bibi'}
   sense:kashghar: {part: 'lexeme:kashghar'}
-  form:past-1s: {part: 'lexeme:past-1s'}
-  form:past-2s: {part: 'lexeme:past-2s'}
-  form:past-2: {part: 'lexeme:past-2'}
-  form:past-3: {part: 'lexeme:past-3'}
-  form:past-1p: {part: 'lexeme:past-1p'}
-  form:past-2pl: {part: 'lexeme:past-2pl'}
-  form:past-3pl: {part: 'lexeme:past-3pl'}
+  form:past-1s: {part: 'lexeme:past', seeds: ['lexeme:past', 'lexeme:pp1s']}
+  form:past-2s: {part: 'lexeme:past', seeds: ['lexeme:past', 'lexeme:pp2s']}
+  form:past-2: {part: 'lexeme:past', seeds: ['lexeme:past', 'lexeme:pp2']}
+  form:past-3: {part: 'lexeme:past'}
+  form:past-1p: {part: 'lexeme:past', seeds: ['lexeme:past', 'lexeme:pp1p']}
+  form:past-2pl: {part: 'lexeme:past', seeds: ['lexeme:past', 'lexeme:pp2pl']}
+  form:past-3pl: {part: 'lexeme:past', seeds: ['lexeme:past', 'lexeme:p3pl']}
   form:neg: {part: 'lexeme:neg'}
   form:liq: {part: 'lexeme:liq'}
   form:ord: {part: 'lexeme:ord'}
@@ -281,7 +281,7 @@ aliases:
   sense:taqi: {part: 'lexeme:taqi'}
   sense:shajara: {part: 'lexeme:shajara'}
   sense:qoy.put: {part: 'lexeme:qoy.put'}
-  form:cond-1s: {part: 'lexeme:cond-1s'}
+  form:cond-1s: {part: 'lexeme:cond', seeds: ['lexeme:cond', 'lexeme:pp1s']}
   sense:ikan: {part: 'lexeme:ikan'}
   sense:yunan: {part: 'lexeme:yunan'}
   sense:mulk: {part: 'lexeme:mulk'}
@@ -408,7 +408,7 @@ aliases:
   sense:itimad: {part: 'lexeme:itimad'}
   sense:shu: {part: 'lexeme:shu'}
   form:imp: {part: 'lexeme:imp'}
-  form:cond-2s: {part: 'lexeme:cond-2s'}
+  form:cond-2s: {part: 'lexeme:cond', seeds: ['lexeme:cond', 'lexeme:pp2s']}
   form:ke: {part: 'lexeme:ke'}
   sense:aw: {part: 'lexeme:aw'}
   sense:tora: {part: 'lexeme:tora'}

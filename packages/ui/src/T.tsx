@@ -17,7 +17,7 @@
 import { openLetters, schemeSpelling } from "@nabu/core";
 import { lexemeIdsOf } from "@nabu/core/lesson";
 import { graphemeCount, parseExemplarSet } from "@nabu/core/text";
-import { directionOf, fontStackFor, scriptOf } from "@nabu/i18n";
+import { directionOf, fontStackFor, italicAllowed, scriptOf } from "@nabu/i18n";
 import type { SchemeId, TaggedText, Token } from "@nabu/schema";
 import { Fragment, useCallback, useMemo, useRef, type CSSProperties, type JSX } from "react";
 import { useIsTarget, useOrthography } from "./context.tsx";
@@ -236,6 +236,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
       className={className === undefined ? styles.text : `${styles.text} ${className}`}
       data-nabu-text=""
       data-script={scriptOf(text.lang)}
+      data-upright={italicAllowed(text.lang) ? undefined : ""}
       data-orthography={text.orthography}
       data-scaled={font.scale === 1 ? undefined : ""}
       data-target={target ? "" : undefined}

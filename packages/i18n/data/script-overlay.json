@@ -1,5 +1,5 @@
 {
-  "$comment": "Hand-maintained script facts that CLDR scriptMetadata does not carry. Sources: CSS Writing Modes Level 4 §1.1; W3C Requirements for Japanese (jlreq), Chinese (clreq) and Mongolian text layout. A course still opts in through its orthography profile's `layout`; this only says what the script permits.",
+  "$comment": "Hand-maintained script facts that CLDR scriptMetadata does not carry. Sources: CSS Writing Modes Level 4 §1.1; W3C Requirements for Japanese (jlreq), Chinese (clreq) and Mongolian text layout. A course still opts in through its orthography profile's `layout`; this only says what the script permits. `italic` lists the scripts with an italic (slanted or cursive) style in print: Latin, Cyrillic, Greek and Armenian. Every other script is set upright: an engine's synthetic slant of Arabic, Hebrew, Han or Devanagari is a distortion, not a style.",
   "vertical": {
     "Hani": { "mode": "vertical-rl", "policy": "toggle" },
     "Hans": { "mode": "vertical-rl", "policy": "toggle" },
@@ -12,5 +12,6 @@
     "Kore": { "mode": "vertical-rl", "policy": "toggle" },
     "Mong": { "mode": "vertical-lr", "policy": "always" },
     "Phag": { "mode": "vertical-lr", "policy": "always" }
-  }
+  },
+  "italic": ["Latn", "Cyrl", "Grek", "Armn"]
 }

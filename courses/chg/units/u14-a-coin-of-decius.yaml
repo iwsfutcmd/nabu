@@ -39,7 +39,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: دیرام چیقاردی.
-      tokens: [{surface: دیرام, lexeme: diram, readings: {schluessel: diram}}, {surface: چیقاردی, lexemes: [{lexeme: chiqar, surface: چیقار, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: čiqardi}}]
+      tokens: [{surface: دیرام, lexeme: diram, readings: {schluessel: diram}}, {surface: چیقاردی, lexemes: [{lexeme: chiqar, surface: چیقار, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: čiqardi}}]
       reverse: (دیرام|درم|درهم) (چیقاردی|جیقاردی|چقاردی)
   translations:
     en: (He|She) took out a (coin|silver coin).
@@ -48,7 +48,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: طعام الورده، دیرام چیقاردی.
-      tokens: [{surface: طعام, lexeme: taam, readings: {schluessel: ṭaʿām}}, {surface: الورده, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: aor, surface: ور}, {lexeme: loc, surface: ده}], readings: {schluessel: alurda}}, {surface: دیرام, lexeme: diram, readings: {schluessel: diram}}, {surface: چیقاردی, lexemes: [{lexeme: chiqar, surface: چیقار, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: čiqardi}}]
+      tokens: [{surface: طعام, lexeme: taam, readings: {schluessel: ṭaʿām}}, {surface: الورده, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: aor, surface: ور}, {lexeme: loc, surface: ده}], readings: {schluessel: alurda}}, {surface: دیرام, lexeme: diram, readings: {schluessel: diram}}, {surface: چیقاردی, lexemes: [{lexeme: chiqar, surface: چیقار, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: čiqardi}}]
       reverse: طعام (الورده|الوردا|آلورده|آلوردا) (دیرام|درم|درهم) (چیقاردی|جیقاردی|چقاردی)
   translations:
     en: When (he|she) (bought|was buying) food, (he|she) took out a (coin|silver coin).
@@ -57,7 +57,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بضروره بزارغه باردیم.
-      tokens: [{surface: بضروره, lexeme: biz-zarura, readings: {schluessel: biżżarūra}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: باردیم, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: bardim}}]
+      tokens: [{surface: بضروره, lexeme: biz-zarura, readings: {schluessel: biżżarūra}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: باردیم, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: bardim}}]
       reverse: بضروره (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) باردیم
   translations:
     en: I (had to go|needed to go|went of necessity) to the (market|bazaar).
@@ -75,7 +75,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اویغه کلکاج، اویودی.
-      tokens: [{surface: اویغه, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: öygä}}, {surface: کلکاج, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: gac, surface: کاج}], readings: {schluessel: kälgäč}}, {surface: اویودی, lexemes: [{lexeme: oyu, surface: اویو, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: oyudi}}]
+      tokens: [{surface: اویغه, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: öygä}}, {surface: کلکاج, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: gac, surface: کاج}], readings: {schluessel: kälgäč}}, {surface: اویودی, lexemes: [{lexeme: oyu, surface: اویو, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: oyudi}}]
       reverse: (اویغه|اویکه|اویقه|اویغا) (کلکاج|کلکاچ|کیلکاج|کیلکاچ) (اویودی|اویقدی)
   translations:
     en: As soon as (he|she) came (home|to the house), (he|she) (slept|fell asleep).
@@ -84,7 +84,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تانک اتقاج، چیقتوق.
-      tokens: [{surface: تانک, lexeme: tang, readings: {schluessel: taŋ}}, {surface: اتقاج, lexemes: [{lexeme: at.shoot, surface: ات, base: true}, {lexeme: gac, surface: قاج}], readings: {schluessel: atqač}}, {surface: چیقتوق, lexemes: [{lexeme: chiq, surface: چیق, base: true}, {lexeme: past-1p, surface: توق}], readings: {schluessel: čiqtuq}}]
+      tokens: [{surface: تانک, lexeme: tang, readings: {schluessel: taŋ}}, {surface: اتقاج, lexemes: [{lexeme: at.shoot, surface: ات, base: true}, {lexeme: gac, surface: قاج}], readings: {schluessel: atqač}}, {surface: چیقتوق, lexemes: [{lexeme: chiq, surface: چیق, base: true}, {lexeme: past, surface: تو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: čiqtuq}}]
       reverse: تانک (اتقاج|اتقاچ) (چیقتوق|چقتوق|جقتوق)
   translations:
     en: As soon as dawn broke, we went out.
@@ -93,7 +93,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: دیرام چیقارغاج، انی توتتیلار.
-      tokens: [{surface: دیرام, lexeme: diram, readings: {schluessel: diram}}, {surface: چیقارغاج, lexemes: [{lexeme: chiqar, surface: چیقار, base: true}, {lexeme: gac, surface: غاج}], readings: {schluessel: čiqarǧač}}, {surface: انی, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ani}}, {surface: توتتیلار, lexemes: [{lexeme: tut, surface: توت, base: true}, {lexeme: past-3pl, surface: تیلار}], readings: {schluessel: tuttilar}}]
+      tokens: [{surface: دیرام, lexeme: diram, readings: {schluessel: diram}}, {surface: چیقارغاج, lexemes: [{lexeme: chiqar, surface: چیقار, base: true}, {lexeme: gac, surface: غاج}], readings: {schluessel: čiqarǧač}}, {surface: انی, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ani}}, {surface: توتتیلار, lexemes: [{lexeme: tut, surface: توت, base: true}, {lexeme: past, surface: تی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: tuttilar}}]
       reverse: (دیرام|درم|درهم) (چیقارغاج|چیقارغاچ|جیقارغاج|جیقارغاچ|چقارغاج|چقارغاچ) انی توتتیلار
   translations:
     en: As soon as (he|she) took out a coin, they seized (him|her).
@@ -102,7 +102,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر کنج تاپتیم.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کنج, lexeme: kanj, readings: {schluessel: kanj}}, {surface: تاپتیم, lexemes: [{lexeme: tap, surface: تاپ, base: true}, {lexeme: past-1s, surface: تیم}], readings: {schluessel: taptim}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کنج, lexeme: kanj, readings: {schluessel: kanj}}, {surface: تاپتیم, lexemes: [{lexeme: tap, surface: تاپ, base: true}, {lexeme: past, surface: تی}, {lexeme: pp1s, surface: م}], readings: {schluessel: taptim}}]
       reverse: '[من] (بیر|بر) کنج (تاپتیم|تابتیم)'
   translations:
     en: I found a treasure.
@@ -140,7 +140,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: خلق حیران بولدی.
-      tokens: [{surface: خلق, lexeme: khalq, readings: {schluessel: ḫalq}}, {surface: حیران, lexeme: hayran, readings: {schluessel: ḥayrān}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: boldi}}]
+      tokens: [{surface: خلق, lexeme: khalq, readings: {schluessel: ḫalq}}, {surface: حیران, lexeme: hayran, readings: {schluessel: ḥayrān}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: boldi}}]
       reverse: خلق حیران بولدی
   translations:
     en: The people were (amazed|astonished).
@@ -149,7 +149,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: فقیر متحیر ایردی.
-      tokens: [{surface: فقیر, lexeme: faqir, readings: {schluessel: faqīr}}, {surface: متحیر, lexeme: mutahayyir, readings: {schluessel: mutaḥayyir}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: erdi}}]
+      tokens: [{surface: فقیر, lexeme: faqir, readings: {schluessel: faqīr}}, {surface: متحیر, lexeme: mutahayyir, readings: {schluessel: mutaḥayyir}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: erdi}}]
       reverse: فقیر متحیر (ایردی|ایدی)
   translations:
     en: The poor man was bewildered.
@@ -158,7 +158,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: پادشاه قاشیغه باردی.
-      tokens: [{surface: پادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: قاشیغه, lexemes: [{lexeme: qash.presence, surface: قاش, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: qašiǧa}}, {surface: باردی, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: bardi}}]
+      tokens: [{surface: پادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: قاشیغه, lexemes: [{lexeme: qash.presence, surface: قاش, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: qašiǧa}}, {surface: باردی, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: bardi}}]
       reverse: (پادشاه|بادشاه|فادشاه) (قاشیغه|قاشیکه|قاشیقه|قاشیغا) باردی
   translations:
     en: (He|She) went (before|to) the king.
@@ -167,7 +167,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: انی پادشاه قاشیغه التتیلار.
-      tokens: [{surface: انی, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ani}}, {surface: پادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: قاشیغه, lexemes: [{lexeme: qash.presence, surface: قاش, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: qašiǧa}}, {surface: التتیلار, lexemes: [{lexeme: elt, surface: الت, base: true}, {lexeme: past-3pl, surface: تیلار}], readings: {schluessel: elttilär}}]
+      tokens: [{surface: انی, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ani}}, {surface: پادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: قاشیغه, lexemes: [{lexeme: qash.presence, surface: قاش, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: qašiǧa}}, {surface: التتیلار, lexemes: [{lexeme: elt, surface: الت, base: true}, {lexeme: past, surface: تی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: elttilär}}]
       reverse: انی (پادشاه|بادشاه|فادشاه) (قاشیغه|قاشیکه|قاشیقه|قاشیغا) التتیلار
   translations:
     en: They (took|led) (him|her) (before|to) the king.
@@ -176,7 +176,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: کوب ماجرادین سونکره کلدی.
-      tokens: [{surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: ماجرادین, lexemes: [{lexeme: majara, surface: ماجرا, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: mājarādin}}, {surface: سونکره, lexeme: songra, readings: {schluessel: soŋra}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}]
+      tokens: [{surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: ماجرادین, lexemes: [{lexeme: majara, surface: ماجرا, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: mājarādin}}, {surface: سونکره, lexeme: songra, readings: {schluessel: soŋra}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: käldi}}]
       reverse: (کوب|کوپ) (ماجرادین|ماجرادن) (سونکره|سونکرا) (کلدی|کیلدی)
   translations:
     en: (He|She) came after much (trouble|ado).
@@ -185,7 +185,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اوچ کوندین سونکره کلدی.
-      tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: کوندین, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: kündin}}, {surface: سونکره, lexeme: songra, readings: {schluessel: soŋra}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}]
+      tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: کوندین, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: kündin}}, {surface: سونکره, lexeme: songra, readings: {schluessel: soŋra}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: käldi}}]
       reverse: اوچ (کوندین|کوندن) (سونکره|سونکرا) (کلدی|کیلدی)
   translations:
     en: (He|She) came (three days later|after three days).
@@ -203,7 +203,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ینه اویقوغه باردیلار.
-      tokens: [{surface: ینه, lexeme: yana, readings: {schluessel: yänä}}, {surface: اویقوغه, lexemes: [{lexeme: oyqu, surface: اویقو, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: oyquǧa}}, {surface: باردیلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: bardilar}}]
+      tokens: [{surface: ینه, lexeme: yana, readings: {schluessel: yänä}}, {surface: اویقوغه, lexemes: [{lexeme: oyqu, surface: اویقو, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: oyquǧa}}, {surface: باردیلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: bardilar}}]
       reverse: |-
         ینه (اویقوغه|اویقوکه|اویقوقه|اویقوغا|اویقیغه|اویقیکه|اویقیقه|اویقیغا) باردیلار
         ینه (اویقوغه|اویقوکه|اویقوقه|اویقوغا|اویقیغه|اویقیکه|اویقیقه|اویقیغا) باردی
@@ -214,7 +214,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شکر قیلدی.
-      tokens: [{surface: شکر, lexeme: shukr, readings: {schluessel: šukr}}, {surface: قیلدی, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: qildi}}]
+      tokens: [{surface: شکر, lexeme: shukr, readings: {schluessel: šukr}}, {surface: قیلدی, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: qildi}}]
       reverse: شکر (قیلدی|قلدی)
   translations:
     en: (He|She) gave thanks.
@@ -223,7 +223,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تنکری تعالیغه سجدات شکر قیلدیلار.
-      tokens: [{surface: تنکری, lexeme: tangri, readings: {schluessel: Täŋri}}, {surface: تعالیغه, lexemes: [{lexeme: taala, surface: تعالی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: taʿālàǧa}}, {surface: سجدات, lexeme: sajdat, readings: {schluessel: sajdāt-i}}, {surface: شکر, lexeme: shukr, readings: {schluessel: šukr}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: qildilar}}]
+      tokens: [{surface: تنکری, lexeme: tangri, readings: {schluessel: Täŋri}}, {surface: تعالیغه, lexemes: [{lexeme: taala, surface: تعالی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: taʿālàǧa}}, {surface: سجدات, lexeme: sajdat, readings: {schluessel: sajdāt-i}}, {surface: شکر, lexeme: shukr, readings: {schluessel: šukr}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: qildilar}}]
       reverse: |-
         (تنکری|تانکری) (تعالیغه|تعالیکه|تعالیقه|تعالیغا) سجدات شکر (قیلدیلار|قلدیلار)
         (تنکری|تانکری) (تعالیغه|تعالیکه|تعالیقه|تعالیغا) سجدات شکر (قیلدی|قلدی)
@@ -234,7 +234,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: طعام ییب، ینه اویقوغه باردوق.
-      tokens: [{surface: طعام, lexeme: taam, readings: {schluessel: ṭaʿām}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: ینه, lexeme: yana, readings: {schluessel: yänä}}, {surface: اویقوغه, lexemes: [{lexeme: oyqu, surface: اویقو, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: oyquǧa}}, {surface: باردوق, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: barduq}}]
+      tokens: [{surface: طعام, lexeme: taam, readings: {schluessel: ṭaʿām}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: ینه, lexeme: yana, readings: {schluessel: yänä}}, {surface: اویقوغه, lexemes: [{lexeme: oyqu, surface: اویقو, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: oyquǧa}}, {surface: باردوق, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: barduq}}]
       reverse: طعام ییب ینه (اویقوغه|اویقوکه|اویقوقه|اویقوغا|اویقیغه|اویقیکه|اویقیقه|اویقیغا) (باردوق|باردوک)
   translations:
     en: We ate (the food|food) and went back to sleep.
@@ -261,7 +261,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اولوغ کنبد یاسادیلار.
-      tokens: [{surface: اولوغ, lexeme: ulugh, readings: {schluessel: uluǧ}}, {surface: کنبد, lexeme: gunbad, readings: {schluessel: gunbad}}, {surface: یاسادیلار, lexemes: [{lexeme: yasa, surface: یاسا, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: yasadilar}}]
+      tokens: [{surface: اولوغ, lexeme: ulugh, readings: {schluessel: uluǧ}}, {surface: کنبد, lexeme: gunbad, readings: {schluessel: gunbad}}, {surface: یاسادیلار, lexemes: [{lexeme: yasa, surface: یاسا, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: yasadilar}}]
       reverse: |-
         اولوغ کنبد یاسادیلار
         اولوغ کنبد یاسادی
@@ -281,7 +281,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: خلایق کلدی.
-      tokens: [{surface: خلایق, lexeme: khalayiq, readings: {schluessel: ḫalāyiq}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: käldi}}]
+      tokens: [{surface: خلایق, lexeme: khalayiq, readings: {schluessel: ḫalāyiq}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: käldi}}]
       reverse: خلایق (کلدی|کیلدی)
   translations:
     en: The people came.
@@ -299,7 +299,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول یر عظیم معبد بولدی.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: یر, lexeme: yar, readings: {schluessel: yär}}, {surface: عظیم, lexeme: azim, readings: {schluessel: ʿaẓīm}}, {surface: معبد, lexeme: mabad, readings: {schluessel: maʿbad}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: boldi}}]
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: یر, lexeme: yar, readings: {schluessel: yär}}, {surface: عظیم, lexeme: azim, readings: {schluessel: ʿaẓīm}}, {surface: معبد, lexeme: mabad, readings: {schluessel: maʿbad}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: boldi}}]
       reverse: اول (یر|یار) عظیم معبد بولدی
   translations:
     en: That place became a great (shrine|place of worship).

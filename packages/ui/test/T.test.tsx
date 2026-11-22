@@ -23,6 +23,11 @@ describe("<T>", () => {
     expect(attr(apc, "dir")).toBe("rtl");
   });
 
+  it("keeps a script without italics upright inside italic surroundings, and lets one with them inherit", () => {
+    for (const target of ["fa", "apc-Arab", "yue-Hant-HK"] as const) expect(render(<T text={demoExercise(target).answer} />)).toContain('data-upright=""');
+    expect(render(<T text={demoExercise("uz-Latn").answer} />)).not.toContain("data-upright");
+  });
+
   it("uses the orthography profile's fonts and line height", () => {
     const fa = render(<T text={demoExercise("fa").answer} />);
     expect(fa).toContain("--nabu-text-font:&quot;Vazirmatn&quot;, &quot;Noto Naskh Arabic&quot;, sans-serif");

@@ -25,6 +25,7 @@ declare const styles: {
   readonly endWordForm: string;
   readonly feedback: string;
   readonly feedbackHeadline: string;
+  readonly feedbackPart: string;
   readonly feedbackSlot: string;
   readonly field: string;
   readonly fill: string;

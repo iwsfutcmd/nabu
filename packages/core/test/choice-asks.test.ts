@@ -8,7 +8,7 @@ import type { BundleLexeme, BundleSentence, LearnerEvent, TaggedText, Token } fr
 import { describe, expect, it } from "vitest";
 import { askedParts, creditOf } from "../src/learner/credit.ts";
 import { emptyLearnerState, replay } from "../src/learner/index.ts";
-import { allLexemes, allSentences, lexemesById, createGrader, isCorrect, seededRng, type CourseView, type Exercise, type GapFill } from "../src/lesson/index.ts";
+import { allLexemes, allSentences, choiceWords, lexemesById, createGrader, isCorrect, seededRng, type CourseView, type Exercise, type GapFill } from "../src/lesson/index.ts";
 import { baseIdOf, effectiveFeats, formPartsOf, formSignature, lexemeIdsOf, lexemesOf } from "../src/lesson/lexemes.ts";
 import { makeGapFill } from "../src/lesson/templates.ts";
 import { allStories, formMeanings, storyScript } from "../src/story/index.ts";
@@ -271,5 +271,30 @@ describe("a story's complete question (ADR 0132)", () => {
     expect(meanings.lexeme).toBe("lexeme:tiz");
     // tiz-i-ǧa: the possessive, then the dative (affix lexemes, ADR 0146).
     expect(meanings.forms.map((f) => f.id)).toEqual(["lexeme:poss3", "lexeme:dat"]);
+  });
+});
+
+describe("a choice's words, judged as one (ADR 0132)", () => {
+  const ORTH = "chg-Arab/standard";
+  const option = (surface: string, lexeme: string, ruby = true): TaggedText =>
+    ({
+      lang: "chg-Arab",
+      orthography: ORTH,
+      tokens: [{ surface, kind: "lexical", lexemes: [{ lexeme: `lexeme:${lexeme}` }], ...(ruby ? { ruby: { schluessel: [{ base: surface, text: lexeme }] } } : {}) }],
+    }) as unknown as TaggedText;
+  const options = [option("اوی", "awi"), option("بار", "bar"), option("اق", "aq")];
+  const knownSet = new Set(["lexeme:bar", "lexeme:aq"]);
+  const isNew = (lexemes: readonly string[]): boolean => lexemes.some((l) => !knownSet.has(l));
+
+  it("is new where any option's word is, and keeps readings unless every one has been shown", () => {
+    expect(choiceWords(options, ORTH, isNew, (l) => !isNew(l))).toEqual({ anyNew: true, allReadingsShown: false });
+    const known = options.slice(1);
+    expect(choiceWords(known, ORTH, isNew, (l) => !isNew(l))).toEqual({ anyNew: false, allReadingsShown: true });
+  });
+
+  it("judges each orthography apart, and a word with no reading never keeps the others' readings", () => {
+    expect(choiceWords(options, "en-Latn/standard", isNew, () => false)).toEqual({ anyNew: false, allReadingsShown: true });
+    const bare = [option("اوی", "awi", false), ...options.slice(1)];
+    expect(choiceWords(bare, ORTH, () => false, (l) => !isNew(l)).allReadingsShown).toBe(true);
   });
 });

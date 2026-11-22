@@ -167,7 +167,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایت قاچتی.
-      tokens: [{surface: ایت, lexeme: it, readings: {schluessel: it}}, {surface: قاچتی, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: past-3, surface: تی}], readings: {schluessel: qačti}}]
+      tokens: [{surface: ایت, lexeme: it, readings: {schluessel: it}}, {surface: قاچتی, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: past, surface: تی}], readings: {schluessel: qačti}}]
       reverse: ایت قاچتی
   translations:
     en: The dog ran away.
@@ -176,7 +176,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شهردین قاچیب، تاغغه باردیلار.
-      tokens: [{surface: شهردین, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: šahardin}}, {surface: قاچیب, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qačip}}, {surface: تاغغه, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: taǧǧa}}, {surface: باردیلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: bardilar}}]
+      tokens: [{surface: شهردین, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: šahardin}}, {surface: قاچیب, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qačip}}, {surface: تاغغه, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: taǧǧa}}, {surface: باردیلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: bardilar}}]
       reverse: |-
         (شهردین|شهردن) قاچیب (تاغغه|تاغکه|تاغقه|تاغغا) باردیلار
         (شهردین|شهردن) قاچیب (تاغغه|تاغکه|تاغقه|تاغغا) باردی
@@ -187,7 +187,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر قویچیغه اوچرادوق.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قویچیغه, lexemes: [{lexeme: qoy, surface: قوی, base: true}, {lexeme: ci, surface: چی}, {lexeme: dat, surface: غه}], readings: {schluessel: qoyčiǧa}}, {surface: اوچرادوق, lexemes: [{lexeme: uchra, surface: اوچرا, base: true}, {lexeme: past-1p, surface: دوق}], readings: {schluessel: učraduq}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قویچیغه, lexemes: [{lexeme: qoy, surface: قوی, base: true}, {lexeme: ci, surface: چی}, {lexeme: dat, surface: غه}], readings: {schluessel: qoyčiǧa}}, {surface: اوچرادوق, lexemes: [{lexeme: uchra, surface: اوچرا, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: učraduq}}]
       reverse: (بیر|بر) (قویچیغه|قویچیکه|قویچیقه|قویچیغا) (اوچرادوق|اوچرادوک)
   translations:
     en: We (met|came upon) a shepherd.
@@ -196,7 +196,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قویچی اولارغه قوشولدی.
-      tokens: [{surface: قویچی, lexemes: [{lexeme: qoy, surface: قوی, base: true}, {lexeme: ci, surface: چی}], readings: {schluessel: qoyči}}, {surface: اولارغه, lexemes: [{lexeme: ular, surface: اولار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ularǧa}}, {surface: قوشولدی, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: qošuldi}}]
+      tokens: [{surface: قویچی, lexemes: [{lexeme: qoy, surface: قوی, base: true}, {lexeme: ci, surface: چی}], readings: {schluessel: qoyči}}, {surface: اولارغه, lexemes: [{lexeme: ular, surface: اولار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ularǧa}}, {surface: قوشولدی, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: qošuldi}}]
       reverse: قویچی (اولارغه|اولارکه|اولارقه|اولارغا|الارغه|الارکه|الارقه|الارغا) قوشولدی
   translations:
     en: The shepherd joined them.
@@ -205,7 +205,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایتی هم قوشولدی.
-      tokens: [{surface: ایتی, lexemes: [{lexeme: it, surface: ایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: iti}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: قوشولدی, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: qošuldi}}]
+      tokens: [{surface: ایتی, lexemes: [{lexeme: it, surface: ایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: iti}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: قوشولدی, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: qošuldi}}]
       reverse: ایتی هم قوشولدی
   translations:
     en: (His|Her) dog joined (them|) too.
@@ -223,7 +223,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: غارغه کیردیلار.
-      tokens: [{surface: غارغه, lexemes: [{lexeme: ghar, surface: غار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ǧārǧa}}, {surface: کیردیلار, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: past-3pl, surface: دیلار}], readings: {schluessel: kirdilär}}]
+      tokens: [{surface: غارغه, lexemes: [{lexeme: ghar, surface: غار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ǧārǧa}}, {surface: کیردیلار, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: kirdilär}}]
       reverse: |-
         (غارغه|غارکه|غارقه|غارغا) (کیردیلار|کردیلار)
         (غارغه|غارکه|غارقه|غارغا) (کیردی|کردی)
@@ -245,7 +245,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بلا اویودی.
-      tokens: [{surface: بلا, lexeme: bala, readings: {schluessel: bala}}, {surface: اویودی, lexemes: [{lexeme: oyu, surface: اویو, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: oyudi}}]
+      tokens: [{surface: بلا, lexeme: bala, readings: {schluessel: bala}}, {surface: اویودی, lexemes: [{lexeme: oyu, surface: اویو, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: oyudi}}]
       reverse: (بلا|بالا) (اویودی|اویقدی)
   translations:
     en: The child (slept|fell asleep).
@@ -265,7 +265,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تانک اتقانده، اویغاندیم.
-      tokens: [{surface: تانک, lexeme: tang, readings: {schluessel: taŋ}}, {surface: اتقانده, lexemes: [{lexeme: at.shoot, surface: ات, base: true}, {lexeme: pcp, surface: قان}, {lexeme: loc, surface: ده}], readings: {schluessel: atqanda}}, {surface: اویغاندیم, lexemes: [{lexeme: oyghan, surface: اویغان, base: true}, {lexeme: past-1s, surface: دیم}], readings: {schluessel: oyǧandim}}]
+      tokens: [{surface: تانک, lexeme: tang, readings: {schluessel: taŋ}}, {surface: اتقانده, lexemes: [{lexeme: at.shoot, surface: ات, base: true}, {lexeme: pcp, surface: قان}, {lexeme: loc, surface: ده}], readings: {schluessel: atqanda}}, {surface: اویغاندیم, lexemes: [{lexeme: oyghan, surface: اویغان, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: oyǧandim}}]
       reverse: تانک (اتقانده|اتقاندا) [من] اویغاندیم
   translations:
     en: When dawn broke, I woke up.
@@ -301,7 +301,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: رفیقیم کلمادی.
-      tokens: [{surface: رفیقیم, lexemes: [{lexeme: rafiq, surface: رفیق, base: true}, {lexeme: poss1s, surface: یم}], readings: {schluessel: rafīqim}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past-3, surface: دی}], readings: {schluessel: kälmädi}}]
+      tokens: [{surface: رفیقیم, lexemes: [{lexeme: rafiq, surface: رفیق, base: true}, {lexeme: poss1s, surface: یم}], readings: {schluessel: rafīqim}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}], readings: {schluessel: kälmädi}}]
       reverse: رفیقیم (کلمادی|کیلمادی)
   translations:
     en: My (friend|companion) (did not|didn't) come.
@@ -310,7 +310,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر رفیقینی بزارغه یباردی.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: رفیقینی, lexemes: [{lexeme: rafiq, surface: رفیق, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: rafīqini}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: یباردی, lexemes: [{lexeme: yebar, surface: یبار, base: true}, {lexeme: past-3, surface: دی}], readings: {schluessel: yebardi}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: رفیقینی, lexemes: [{lexeme: rafiq, surface: رفیق, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: rafīqini}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: یباردی, lexemes: [{lexeme: yebar, surface: یبار, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: yebardi}}]
       reverse: (بیر|بر) رفیقینی (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) (یباردی|ییباردی)
   translations:
     en: (He|She) sent a (friend|companion) (of his|of hers|) to the (market|bazaar).

@@ -54,6 +54,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Visual baselines are only valid from the pinned container; never update them from a bare host run.
 - Lint rules and their fixtures live in packages/lint. A new rule needs a fixture that proves it fires.
 - Write invisible characters (ZWNJ, bidi controls) as \u escapes in source, never literally.
+- Italics only where the script has them (@nabu/i18n `italicAllowed`, data/script-overlay.json `italic`: Latin,
+  Cyrillic, Greek, Armenian): <T> sets any other upright (`data-upright`), whatever its surroundings; chrome italics are
+  `font-style: var(--nabu-italic, normal)`, which useChrome sets by the UI language's script. stylelint rejects a
+  literal italic or oblique.
 - Grading lives in @nabu/core (accept/, match/, normalize/, profile/); profiles get their data passed in.
 - A new grading behaviour needs conformance vectors (conformance/*.json) that pass in both harnesses.
 - Endings that carry meaning (ADR 0066): a profile's `typo.contrasts` (person, possessive, case endings, pronouns;
@@ -102,6 +106,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   gap, none whose gloss shares a meaning) or which form (the answer's own lexeme in other attested forms; the answer must
   have a form to credit, `formPartsOf`). It credits the base lexeme or the form's parts; a mistake keeps `asks` and is
   asked again as the same question. Lexemes' `pos` and `feats` are drafted (REVIEW).
+- A choice's words are shown alike (ADR 0132 amendment): options, the gap a chosen option fills, word-bank tiles and
+  whole-parts tiles render inside `ChoiceWords` (@nabu/ui marks.tsx; core `choiceWords`): no homograph mark, and
+  readings and vowel marks kept on all where any word would keep its own. Pass `texts` to `Options` where options are text.
 - Letters placed to build a word (word-write) show as the word they spell: one token, one run of text (`data-spelled-word`),
   so a script whose letters join shows them joined and marks sit on their letters. Never lay letter tiles side by side as
   the answer; pressing the word or Backspace takes back the last letter.
@@ -197,7 +204,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (`DisplayChoice.readings`); <T> fades a word's ruby only inside `FadeReadings` (lessons, stories), by core
   `readingsShown`: never in a tapped word's gloss or the word list, nor on a word tapped (`pressed`) or marked (`highlight`).
   Pass `readingsShown` wherever `known` goes. A gloss always shows a reading, readings off or not (`glossRuby`); a word
-  glossed by its parts heads its panel with its own reading. The feedback's right answer is tappable too.
+  glossed by its parts heads its panel with its own reading. The feedback's right answer is tappable too (a right sentence
+  typed whole comes again to tap), and so are an answered word bank's tiles.
 - Writing side (ADR 0142, 0148): a typed word that says what the expected one says by a fixed correspondence of its
   profile's statement (fa سد for صد, es bolber for volver) has the right sound and the wrong letter: never a typo, the
   label orthographic (Losses and labels notes); `spelling-choice` (write-script) offers the word among its other
@@ -681,8 +689,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   A line's readings stand level, a gap over its tallest word's ink, inside their box (ruby-lift.ts, ADR 0131 amendments).
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
   joined, a ZWNJ after a final vowel ه; Persian punctuation added. The Latin is his reading, not letter for letter.
-- Suffixes are affix lexemes (`realises` a feature value, `allomorphs` by spelling: dat, past-1s, pres, mis …) in a
-  token's `lexemes`; verbs are cited as stems with a hyphen (bar-). Homographs take a suffix (bar.go, at.name,
+- Suffixes are affix lexemes (`realises` a feature value, `allomorphs` by spelling: dat, past, pres, mis …) in a
+  token's `lexemes`, one per morpheme: bardim is bar- + past -di + pp1s -m (ADR 0128 amendment; the past and the
+  conditional take the possessive-type person endings pp1s pp2s pp2 pp1p pp2pl, the present -män … p1s …; -lar is p3pl); verbs are cited as stems with a hyphen (bar-). Homographs take a suffix (bar.go, at.name,
   kim.that, yuz.face).
 - Schluessel's book is CC BY-NC-ND: take facts from it (letters, suffixes, spellings, glosses), never his example
   sentences or the documents he composed (ch. 7). Stories are public-domain passages (Babur, the Tadhkira, Abu

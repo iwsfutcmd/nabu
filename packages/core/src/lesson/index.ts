@@ -40,4 +40,5 @@ export { seededRng, type Rng } from "./rng.ts";
 export { answerTextOf, asksOf, cardGloss, chosenWordOf, formsOf, gradeExercise, LEXEME_LISTENING, LISTENING, makeListenSpeak, makePartsWhole, makeSpeakScored, makeToneIdentify, makeWholeParts, promptOf, rubySchemeOf, skillOf, skills, SPEAKING, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo, type TokenParts } from "./templates.ts";
 export { chosenTraditionKey, readingTradition, readingTraditions, traditionKey } from "./traditions.ts";
 export { homographsOf, otherReadings, otherReadingsAt, readingAsText, type HomographReading } from "./homographs.ts";
+export { choiceWords, type ChoiceWords, type WordTest } from "./choice.ts";
 export { makeLetterPairs, makeLetterRead, makeWordRead, makeWordWrite, SCRIPT_TEMPLATES, scriptCandidates, scriptNodes, type ScriptNode } from "./script.ts";
