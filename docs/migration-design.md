@@ -1018,7 +1018,8 @@ correspondences:
 
 - **Credit per label** (`creditOf`): slip, right. Orthographic alone: the lexeme right by the card's skill,
   and wrong by `write-script` in that orthography, which is where a lexeme's spelling leftover is
-  remembered. Grammatical without lexical: the base lexeme right; the feature values its form chooses, and
+  remembered (only where the bundle says it has one: a word with none is counted against the
+  correspondence alone). Grammatical without lexical: the base lexeme right; the feature values its form chooses, and
   the other lexemes the token writes, wrong. Anything else, wrong.
 - **A lexeme's leftovers** are in the bundle (`leftovers` on a lexeme: the orthographies in which a fixed
   correspondence could have spelled it otherwise; the schemes in which its letters leave its reading
@@ -1086,7 +1087,8 @@ accept or overrule.
 - **Spanish is strict:** accents and the diaeresis are required marks, and a letter that sounds the same
   is a miss. grc keeps its notes until the app can put Greek's marks on.
 - **Credit and the fold:** the right sound with the wrong letter shows the word and misses its spelling
-  (`write-script`); the right lexeme in another form shows the lexeme and misses the form; a typed word that
+  (`write-script`) where the word has a spelling leftover (*caza* for *casa*; *ke* for *que* counts against
+  its correspondence alone, since no card could ask *que*'s spelling again); the right lexeme in another form shows the lexeme and misses the form; a typed word that
   is right shows its spelling where the bundle says it has a leftover. The fold counts misses per
   correspondence (`state.letters`), scheduling nothing.
 - **The compiler** writes each lexeme's `leftovers` and warns `projection.unaccounted` for a pinned reading

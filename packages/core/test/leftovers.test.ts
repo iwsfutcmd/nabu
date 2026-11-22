@@ -130,6 +130,56 @@ describe("the fold counts misses per correspondence (ADR 0148), and schedules no
   });
 });
 
+describe("a word's spelling is missed only where it has one to miss (ADR 0148)", () => {
+  /** The sentence's own answer typed with one word traded, graded, and what the answer is credited. */
+  const traded = (course: CourseView, id: string, from: string, to: string): { graded: ReturnType<typeof gradeExercise>; credits: ReturnType<typeof creditOf> } => {
+    const ex = typed(course, id);
+    expect(ex.canonical.tokens.some((t) => t.surface === from), `${id} writes ${from}`).toBe(true);
+    const graded = gradeExercise(ex, { tag: "text", text: ex.canonical.tokens.map((t) => (t.surface === from ? to : t.surface)).join("") }, createGrader(course));
+    return { graded, credits: creditOf(ex, graded, course.profiles, lexemesById(course)) };
+  };
+  const missedSpellings = (credits: ReturnType<typeof creditOf>): readonly string[] => credits.filter((c) => c.skill === "write-script" && c.status === "wrong").map((c) => String(c.part));
+
+  it("es: caza for casa misses casa's spelling, and counts against the correspondence", () => {
+    const { graded, credits } = traded(es, "s.u03.1", "casa", "caza");
+    expect(graded.labels).toEqual(["orthographic"]);
+    expect(graded.correspondences).toEqual([`${ES}:s`]);
+    expect(lexemesById(es).get("lexeme:casa")?.leftovers?.spelling).toContain(ES);
+    expect(missedSpellings(credits)).toEqual(["lexeme:casa"]);
+  });
+
+  it("es: akí for aquí is a spelling the norm never uses there: the correspondence alone", () => {
+    const { graded, credits } = traded(es, "s.u03.9", "aquí", "akí");
+    expect(graded.labels).toEqual(["orthographic"]);
+    expect(graded.correspondences).toEqual([`${ES}:k`]);
+    // No card could ask aquí's spelling again: it has no other the norm would write.
+    expect(lexemesById(es).get("lexeme:aquí")?.leftovers?.spelling).toBeUndefined();
+    expect(missedSpellings(credits)).toEqual([]);
+    // The word was the right one, by the card's skill.
+    expect(credits).toContainEqual({ part: "lexeme:aquí", skill: "produce", status: "right" });
+  });
+
+  it("uz in Cyrillic: two letters for one likewise", () => {
+    const uz = loadCourse("uz", "uz-Cyrl/standard");
+    const { graded, credits } = traded(uz, "s.12", "яхши", "йахши");
+    expect(graded.labels).toEqual(["orthographic"]);
+    expect(graded.correspondences).toEqual(["uz-Cyrl/standard:я"]);
+    expect(missedSpellings(credits)).toEqual([]);
+  });
+
+  it("no card of the fold's is left for a word with no spelling to miss", () => {
+    const { graded } = traded(es, "s.u03.9", "aquí", "akí");
+    const ex = typed(es, "s.u03.9");
+    const meta = { id: "00000000-0000-7000-8000-000000000002", clientTime: "2026-11-01T10:00:00.000Z", localDate: "2026-11-01", tz: "UTC", device: "d", session: "00000000-0000-7000-8000-0000000000aa", bundle: manifestOf("es").id };
+    const e = learnerEventOf({ type: "answer_submitted", exercise: exerciseRefOf(ex), response: { tag: "text", text: "x" }, outcome: { kind: graded.verdict, notes: graded.notes }, ex, graded }, es, meta, { mode: "lesson", seed: 1, planner: "test" });
+    if (e?.type !== "answer_submitted") throw new Error("an answer");
+    const state = replay([e]);
+    expect(state.cards[cardKey("lexeme:aquí", "write-script", ES)]).toBeUndefined();
+    // The count is kept all the same.
+    expect(state.letters[`${ES}:k`]?.missed).toBe(1);
+  });
+});
+
 /** A learner who answered every card of the first lessons right, on two days running. */
 const twoDays = (course: CourseView, lessons: number): { state: ReturnType<typeof replay>; exercises: readonly Exercise[] } => {
   const events = eventFactory(course, manifestOf(course.id).id);

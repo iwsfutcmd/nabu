@@ -126,6 +126,9 @@ const wordStatuses = (canonical: TaggedText, alignment: readonly AlignOp[], prof
  * card cannot show (`asksOf`) is given, whatever the answer. `lexemes` (the course's, by id) says
  * which words have a spelling leftover in the answer's orthography (ADR 0148): a typed word right
  * shows it (`write-script`, right), and a word of the right sound with the wrong letter misses it.
+ * A word with no leftover has no spelling to miss: the letters typed are a spelling the norm never
+ * uses there (ke for que), which counts against its correspondence alone (the grade's
+ * `correspondences`), and no card could ask the word's spelling again.
  */
 export const creditOf = (ex: Exercise, outcome: Outcome, profiles: ReadonlyMap<string, CompiledProfile>, lexemes?: ReadonlyMap<string, BundleLexeme>): readonly PartCredit[] => {
   const right = isCorrect(outcome.verdict);
@@ -152,7 +155,9 @@ export const creditOf = (ex: Exercise, outcome: Outcome, profiles: ReadonlyMap<s
         if (status === "right" || status === "spelling") {
           for (const id of ids) mark(id, "right");
           if (status === "right") for (const id of ids) if (leftover(id) && script.get(id) !== "wrong") script.set(id, "right");
-          if (status === "spelling" && base !== undefined) script.set(base, "wrong");
+          // Missed only where there is a spelling to miss: the word's leftover, or, where the
+          // profile knows homophone characters (yue), a character that reads alike.
+          if (status === "spelling" && base !== undefined && (leftover(base) || profile.homophones !== undefined)) script.set(base, "wrong");
         } else if (status === "form" && base !== undefined) {
           // The right lexeme in another form: the form's values, and what else the token writes, missed.
           mark(base, "right");

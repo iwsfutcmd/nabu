@@ -835,10 +835,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Spanish is strict (ADR 0148): accents and the diaeresis are required marks, so tambien is phonemic, bolber and exámen
   orthographic, esta for está lexical and phonemic. grc keeps its notes until the app can put Greek's marks on.
 - Credit follows the labels (learner/credit.ts): the right sound with the wrong letter shows the word and misses its
-  spelling (`write-script`); the right lexeme in another form shows the lexeme and misses the form; a typed word that
-  is right shows `write-script` where its bundle lexeme's `leftovers.spelling` lists the orthography, never where the
-  course's `facets` leave write-script out. The fold counts misses per correspondence (`state.letters`,
-  `missedLetters`): counted, never scheduled.
+  spelling (`write-script`) where the word has a spelling leftover (ke for que, a `rare` spelling of a word with none,
+  counts against its correspondence alone: no card could ask it again); the right lexeme in another form shows the
+  lexeme and misses the form; a typed word that is right shows `write-script` where its bundle lexeme's
+  `leftovers.spelling` lists the orthography, never where the course's `facets` leave write-script out. The fold
+  counts misses per correspondence (`state.letters`, `missedLetters`): counted, never scheduled.
 - A new correspondence needs vectors in conformance/projection.json and grade.json (both harnesses), its courses'
   bundles rebuilt and their lessons looked at: a fixed one adds spelling-choice cards and makes a same-sound letter a
   miss; a free one accepts what the accept sets carried by hand.

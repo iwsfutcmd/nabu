@@ -94,9 +94,12 @@ here so the owner can accept or overrule it; nothing here was decided by anyone 
   word (by the card's skill) and misses its spelling; a typed word that is right shows its spelling where
   the bundle says it has a leftover. Known words are counted as before (ADR 0100).
 - **Every orthographic miss counts against its correspondence** (`<orthography>:<id>`, on the event and in
-  the fold's `letters`) and misses the word's spelling, whether or not a rule decides that spot; ADR 0148
-  counts a spot a stated rule decides against the correspondence alone. The count schedules nothing, and
-  nothing reopens a script track yet (ADR 0149).
+  the fold's `letters`). It misses the word's spelling too where the bundle says the word has a spelling
+  leftover, whichever of its spots was wrong (*caza* for *casa*, and *kasa*); a word with none is counted
+  against the correspondence alone, as ADR 0148 has a spot a stated rule decides (*ke* for *que*, *akí* for
+  *aquí*, йахши for яхши: letters the norm never writes there, a correspondence's `rare` ones). No card
+  could ask such a word's spelling again, so a miss kept on it would leave the word due for good (as first
+  built, until 2026-11-22). The count schedules nothing, and nothing reopens a script track yet (ADR 0149).
 - **The word list** shows a word's parts as what is asked of it: the skills, its own form where the
   language's labels name it, its spelling leftover per orthography and its reading leftover per scheme, each
   shown or not, and a count of those asked. A lexeme's own feature is asked by no card yet and is listed as
