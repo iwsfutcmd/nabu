@@ -74,8 +74,8 @@ describe("<T>", () => {
         },
       ],
     } as unknown as TaggedText;
-    expect(render(<T text={text} ruby={"pinyin" as SchemeId} />)).toContain('君<rt lang="zh-Latn-pinyin" data-script="Latn">jūn</rt>子<rt lang="zh-Latn-pinyin" data-script="Latn">zǐ</rt>');
-    expect(render(<T text={text} ruby={"baxter" as SchemeId} />)).toContain('君<rt lang="ltc-Latn-x-baxter" data-script="Latn">kjun</rt>子<rt lang="ltc-Latn-x-baxter" data-script="Latn">tsiX</rt>');
+    expect(render(<T text={text} ruby={"pinyin" as SchemeId} />)).toContain('君<rt lang="zh-Latn-pinyin" dir="ltr" data-script="Latn">jūn</rt>子<rt lang="zh-Latn-pinyin" dir="ltr" data-script="Latn">zǐ</rt>');
+    expect(render(<T text={text} ruby={"baxter" as SchemeId} />)).toContain('君<rt lang="ltc-Latn-x-baxter" dir="ltr" data-script="Latn">kjun</rt>子<rt lang="ltc-Latn-x-baxter" dir="ltr" data-script="Latn">tsiX</rt>');
     // Latin readings are set in the Latin face, whose tone letters (ū, ǖ) the CJK face lacks.
     expect(render(<T text={text} ruby={"pinyin" as SchemeId} />)).toContain("--nabu-ruby-font:&quot;Noto Sans&quot;, sans-serif");
     expect(render(<T text={text} />)).not.toContain("--nabu-ruby-font");
@@ -97,8 +97,25 @@ describe("<T>", () => {
     );
     // One base, the cursive word with its half-space, under one Latin reading tagged as the profile says.
     expect(html.match(/<ruby/gu)).toHaveLength(1);
-    expect(html).toContain(`${word}<rt lang="chg-Latn" data-script="Latn">mewäsi</rt>`);
+    // The reading reads left to right inside the right-to-left word: its own direction, isolated.
+    expect(html).toContain(`${word}<rt lang="chg-Latn" dir="ltr" data-script="Latn">mewäsi</rt>`);
     expect(attr(html, "dir")).toBe("rtl");
+  });
+
+  it("keeps a reading's neutral marks in place: the dot for a written letter stays first (ADR 0141)", () => {
+    const chg = parse(chgArab) as OrthographyProfile;
+    // تاغ read with only its open letters: t is written, so "·aǧ", never "aǧ ·" (the RTL word's direction).
+    const text = {
+      lang: "chg-Arab",
+      orthography: "chg-Arab/standard",
+      tokens: [{ surface: "تاغ", kind: "lexical", ruby: { schluessel: [{ base: "تاغ", text: "\u00B7aǧ" }] } }],
+    } as unknown as TaggedText;
+    const html = render(
+      <NabuUiProvider translator={translator()} orthographies={new Map([[chg.id, chg]])}>
+        <T text={text} ruby={"schluessel" as SchemeId} />
+      </NabuUiProvider>,
+    );
+    expect(html).toContain('<rt lang="chg-Latn" dir="ltr" data-script="Latn">\u00B7aǧ</rt>');
   });
 
   it("sets a typed answer in the orthography's own face, not the chrome's (ADR 0129)", () => {
