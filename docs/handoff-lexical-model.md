@@ -631,30 +631,36 @@ participle check repaired.
 Kept current as each lands. The briefs each piece was built from are in the session's scratchpad and are
 not kept; what a later session needs is here.
 
-**On main:** the records (ADRs 0153, 0152 and 0144 Accepted, with their dated notes); ADR 0154 (Proposed),
-the seven decisions only the model notes recorded; *siendo* out of the notes' second diagram; the two stale
-READMEs.
-
-**On the branch `ccr-aebe970e-q9o4q4`, waiting for its visual baselines before it goes to main:**
-- two-option spelling cards and Cantonese's spelling leftover (f150ba18; ADR 0142 amended);
-- what is due and what reviews ask (ba3ef927): `learner/due.ts`, `test/due.test.ts`. Reviews answered right
-  clear what is due in every course, in 5 to 9 sessions. Letters are never due and no script card comes back
-  in a review (ADR 0149);
+**On main** (2026-11-22):
+- the records: ADRs 0153, 0152 and 0144 Accepted, with their dated notes; ADR 0154 (Proposed), the seven
+  decisions only the model notes recorded; *siendo* out of the notes' second diagram; the two stale READMEs;
+- two-option spelling cards and Cantonese's spelling leftover (ADR 0142 amended);
+- what is due and what reviews ask: `learner/due.ts`, `test/due.test.ts`. Reviews answered right clear what
+  is due in every course, in 5 to 9 sessions. Letters are never due and no script card comes back in a
+  review (ADR 0149);
 - the retag of es, apc and hbo with the language files' dimension lists
   (`docs/migration/retag-2026-11-22.md`: every tag there is the owner's to review); `waves.svg` for the
   three words that showed a waving hand, and for Hebrew's sea; the eight form clips dropped
   (`nabu audio prune <course> --forms`);
-- `docs/rules-design.md`, the design for rules in a lexicon, a draft with six questions for the owner
-  (also put to them as a page of questions, each broken down). Its stage 1 needs none of the six.
+- Chaghatay: the three readings are Schluessel's own at their place, so each is listed word by word in the
+  scheme, free, as Hebrew's qeres are; `lexeme:moghulistan` takes his glossary's spelling; `lexeme:ezafe`
+  on the 31 tokens that said it in the reading alone, introduced at `chg.u06.dates`; شجرهٔ read *šajarah-i*.
+  The course's warnings fall from 13 to 5. `courses/REVIEW.md` says what a reviewer should look at;
+- `docs/rules-design.md`, the design for rules in a lexicon: a draft with six questions for the owner (also
+  put to them as a page, each broken down). Its stage 1 needs none of the six;
+- `packages/core-cli` tests have a minute each: on a loaded CI runner a property test passed five seconds.
 
-**Being built in the second checkout** (`/home/user/nabu-data`, branch `data-2026-11-22`): Chaghatay.
+**Being built** (`/home/user/nabu`, branch `ccr-aebe970e-q9o4q4`): seen-logging (ADR 0146): what each card
+displayed on `exercise_presented` and `answer_submitted`, `story_line_read`, the pairs seen in the fold.
 
-**Next, in order:** Chaghatay (the three readings are Schluessel's own at their place, so each is stated
-word by word in the scheme, as Hebrew's qeres are; *Moǧulistān*'s lexeme takes his glossary's spelling
-first; an ezafe lexeme on the 31 tokens that say it in the reading alone, introduced at `chg.u06.dates`;
-شجرهٔ read *šajarah-i*, as he has it); then seen-logging (ADR 0146); then stage 1 of
-`docs/rules-design.md`. Each lands on main with bundles, golden plans, every check, e2e and the visual
-matrix from its container.
+**Not started:** stage 1 of `docs/rules-design.md` (lexical forms into apc's lexicon and how each
+orthography spells them). The apc prototype's participle check still covers nine forms where it covered
+thirteen: stage 2 of the design checks every participle token against the template, and the prototype is
+kept as a record from stage 1 on, so it was not repaired.
+
+**Other sessions push to main too** (Chaghatay accept sets, UI fixes): fetch and merge before every push,
+and rebuild the bundles after a merge that touches a course (the only conflicts so far were bundle files).
+Each push to main cancels the CI run before it: leave twenty minutes between pushes when a run matters.
 
 **For the owner, found on the way:**
 - The weakest learner of the pacing runs is at 79.2% in Spanish against a floor of 79, and 79.6% in Hebrew,
