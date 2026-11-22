@@ -304,7 +304,8 @@ export const compileProjection = (profile: OrthographyProfile, fold: (text: stri
     for (const site of r.sites) {
       if (site.says === "") consider(traded(site, ""));
       for (const rule of fixedBySays.get(site.says) ?? []) {
-        for (const w of rule.written) if (w.text !== "" && w.text !== site.written) consider(traded(site, w.text));
+        // A rare way of writing the sound (k for c) is never offered in place of a usual one.
+        for (const w of rule.written) if (w.text !== "" && w.text !== site.written && w.rare !== true) consider(traded(site, w.text));
       }
     }
     return out;

@@ -23,20 +23,29 @@ match:
       - { id: possessive, note: contrast-possessive, members: [[им, м], [инг, нг], [и, си], [имиз, миз], [ингиз, нгиз], лари] }
       - { id: case, note: contrast-case, members: [ни, нинг, [га, ка, қа], [да, та], [дан, тан]] }
       - { id: pronoun, note: contrast-pronoun, members: [мен, сен, у, биз, сиз, улар] }
-# REVIEW (ADR 0148): Uzbek Cyrillic writes a sound with one letter, but for я, ю, ё (й with а, у, о: янги, юз, ёз),
-# е at a word's start and after a vowel (й and е: ер, қаер) and ц (с at a word's start in Uzbek speech: цирк, which the
-# Latin writes sirk; ADR 0148's own example). Nothing is stated, so a wrong letter in a word is another sound.
-# Considered and left out, measured: stating these (я, ю, ё, е written also йа, йу, йо, йе; ц saying с at a word's
-# start) makes a typed йанги for янги or сирк for цирк an orthographic miss, as ADR 0148 wants, but a correspondence
-# says which spellings a word may choose between, and the norm chooses here by rule, never by word: stated, 100 of the
-# course's 558 words gained a spelling no one writes as a leftover to learn (Цалом for Салом, йахши for яхши), and
-# spelling cards would offer it. No word of the course has a ц yet. These wait for a way to state a spelling the
-# norm never writes (or a word with ц); until then йанги stays WRONG, as now.
-# Also left out: ь (only фильм, in an accept set: stated silent, the course's филм slip would become a miss); ъ (the
-# tutuq belgisi, a sound of its own; no word of the course has it); э beside е after a consonant (loans only, none in
-# the course); х and ҳ, which the standard keeps apart.
+# REVIEW (ADR 0148): Uzbek Cyrillic writes a sound with one letter, but for the letters that write й and a vowel together,
+# and ц. Each is stated with the usual letter `written` and the spelling the norm never uses there `rare`: read as the
+# same sound, so a typed йахши for яхши or сирк for цирк is the right sound in the wrong letters (orthographic, never
+# a slip), while no word written the usual way is offered the rare spelling (no Цалом for Салом, no йахши for яхши).
+# - я, ю, ё are й with а, у, о everywhere (яхши, юз, ёз; Англия, пиёз). A loan the norm writes with йо (район, майор)
+#   is read as ё too, so it would be offered раён: none is in the course.
+# - е at a word's start and after a vowel is й and е (ер, емоқ, қаер); after a consonant it is е alone (келди), and
+#   йе there says another sound.
+# - ц at a word's start is с in Uzbek speech (цирк, цемент; the Latin writes sirk; ADR 0148's own example): stated as
+#   с with ц rare, so a с-word is never offered ц, and a ц-word (none in the course yet) would be offered с. Not stated
+#   elsewhere: after a vowel ц is ts (the Latin writes ts), which no other letter spells.
+# Still left out, `rare` changing nothing there: ь (only фильм, in an accept set: stated silent, the course's филм slip
+# would become a miss, and whether it says anything is the speaker's); ъ (the tutuq belgisi, a sound of its own; no word
+# of the course has it); э beside е after a consonant (loans only, none in the course); х and ҳ, which the standard
+# keeps apart.
 sound: { from: spelling }
-correspondences: []
+correspondences:
+  - { says: я, written: [я], rare: [йа], kind: fixed, note: sound-alike }
+  - { says: ю, written: [ю], rare: [йу], kind: fixed, note: sound-alike }
+  - { says: ё, written: [ё], rare: [йо], kind: fixed, note: sound-alike }
+  - { says: е, written: [е], rare: [йе], kind: fixed, when: { at: start }, note: sound-alike }
+  - { says: е, written: [е], rare: [йе], kind: fixed, when: { after: "[аеёиоуўэюя]" }, note: sound-alike }
+  - { says: с, written: [с], rare: [ц], kind: fixed, when: { at: start }, note: sound-alike }
 input:
   extraKeys: ["\u045E", "\u049B", "\u0493", "\u04B3"]
 layout: { vertical: none }

@@ -58,9 +58,10 @@ correspondences:
   # Seseo: c before e or i, s and z are one sound in Cuba (and all of Latin America).
   - { says: s, written: [c], kind: fixed, when: { before: "[eiéí]" }, note: sound-alike }
   - { says: s, written: [s, z], kind: fixed, note: sound-alike }
-  # /k/: qu before e or i, c elsewhere, k in loanwords (kilo); c before e or i is s (above).
+  # /k/: qu before e or i, c elsewhere; c before e or i is s (above). k is its rare spelling (kilo, kiosco): read as
+  # the same sound, so ké for qué is the right sound with the wrong letter, but never offered in place of c or qu.
   - { says: k, written: [qu], kind: fixed, when: { before: "[eiéí]" }, note: sound-alike }
-  - { says: k, written: [c, k], kind: fixed, note: sound-alike }
+  - { says: k, written: [c], rare: [k], kind: fixed, note: sound-alike }
   # The sound of j: g before e or i, and j everywhere (gente, jefe).
   - { says: h, written: [g], kind: fixed, when: { before: "[eiéí]" }, note: sound-alike }
   - { says: h, written: [j], kind: fixed, note: sound-alike }

@@ -1,0 +1,7 @@
+# Marks a relation passes over are the scheme's `ignores`, never the profile's (ADR 0148).
+id: hbo-Hebr/tiberian
+lang: hbo-Hebr
+segmentation: { content: whitespace, runtime: grapheme }
+normalize: [nfc]
+sound: { from: reading, scheme: tiberian, ignores: "[\u05B0-\u05BC]" }
+correspondences: []

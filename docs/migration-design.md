@@ -1046,6 +1046,101 @@ correspondences:
 - **Rules and forms have entries:** each named rule and each taught feature value, by its label, with the
   skills shown of those asked.
 
+## Stages 5 and 6, as built (2026-11-22)
+
+Built on the branch in six pieces, each checked before the next, and landed together. Where the build
+reads ADR 0148 narrowly, or settled what it left open, ADR 0153 (Proposed) says so, for the owner to
+accept or overrule.
+
+### What there is
+
+- **The statement** (schemas/orthography-profile.schema.json, reading-scheme.schema.json; profiles/README.md,
+  "The sound statement"): a profile's `sound` (from its spelling, or from a pinned reading), `stress` and
+  `correspondences`, each `fixed` or `free`, with `rare` ways of writing a sound that are read and never
+  offered; a scheme's `of`, `ignores` and `correspondences`, with `loses` for the sets a card may trade
+  within. `soundAlike` and a scheme's `variants` are removed.
+- **Core runs it** (`packages/core/src/project/`): a spelling read forwards into what it says, two spellings
+  compared by sound, a word's other spellings of its sound; a reading related to a spelling, and the places
+  the script leaves open. core-cli: `sound-read`, `sound-compare`, `sound-spellings`, `reading-spells`,
+  `reading-variants`, `reading-open`, `batch`. Vectors: conformance/projection.json, both harnesses.
+- **A miss is labelled** (`packages/core/src/match/grade.ts`), in the order of the design above. The grade
+  and the answer event carry `labels` and `correspondences`; each pair of the alignment carries its own.
+  ADR 0148's examples as the vectors pin them (conformance/grade.json, `grade/labels/*`):
+
+  | Typed (for) | Labels | Outcome |
+  |---|---|---|
+  | *nesa* (*mesa*) | slip | accepted, with the typo noted |
+  | *cada* (*casa*) | lexical, slip | not accepted |
+  | *habla* (*hablo*) | grammatical, slip | not accepted |
+  | *hablas* (*hablo*) | grammatical, phonemic | not accepted; the judge may be asked |
+  | *caza* (*casa*) | lexical, orthographic | not accepted |
+  | *bolber* (*volver*), *aser* (*hacer*), *ké tal* | orthographic | not accepted |
+  | *ke tal* (*qué tal*) | phonemic, orthographic | not accepted |
+  | *tambien* (*también*), *pinguino* | phonemic | not accepted |
+  | *exámen* (*examen*) | orthographic (the stress statement) | not accepted |
+  | *esta* (*está*), *tu* (*tú*) | lexical, phonemic | not accepted |
+  | *gato* (*perro*) | lexical | not accepted; the judge may be asked |
+  | سد (صد) | orthographic | not accepted |
+  | a word of the answer moved | order | not accepted; the judge may be asked |
+
+- **Spanish is strict:** accents and the diaeresis are required marks, and a letter that sounds the same
+  is a miss. grc keeps its notes until the app can put Greek's marks on.
+- **Credit and the fold:** the right sound with the wrong letter shows the word and misses its spelling
+  (`write-script`); the right lexeme in another form shows the lexeme and misses the form; a typed word that
+  is right shows its spelling where the bundle says it has a leftover. The fold counts misses per
+  correspondence (`state.letters`), scheduling nothing.
+- **The compiler** writes each lexeme's `leftovers` and warns `projection.unaccounted` for a pinned reading
+  a scheme's relation cannot relate to its spelling. `nabu projections <course>` lists both. The bundle
+  format is 4.
+- **Cards:** `spelling-choice` takes its options from the statement in every course that states a fixed
+  correspondence (Spanish gains it: *Gracias* among *Grasias* and *Grazias*); reading cards and minimal ruby
+  take theirs from the scheme's relation, by the word's own letters.
+- **What a learner sees:** feedback lists every label, the worst first, with the words it is about; a
+  profile's note about a pair speaks for it; the headline follows the labels; labels the judge could still
+  overturn (lexical, grammatical, order) are held until it has answered no. The word list opens each word
+  to what is asked of it (skills, its own form, its spelling and reading leftovers), each shown or not, with
+  a count, and has entries for the rules and forms the learner has met.
+
+### What each profile and scheme states (all REVIEW)
+
+| | States |
+|---|---|
+| es-Latn | Sound from the spelling; stress; b/v, seseo, yeísmo, silent h, g/j, gu/gü, qu and c with k rare, the trill, final y, x: all fixed |
+| fa-Arab | Sound from the spelling, its vowel marks left aside; ADR 0142's six sets, fixed |
+| apc-Latn | Sound from the spelling; e or i free (ADR 0148's example). o/u, the diphthongs and the digits left out, with reasons |
+| apc-Arab, ar-Arab | Sound from the spelling, vowel marks left aside; nothing stated: ث ذ ظ ق are each read two ways by word, the rest is matching policy already |
+| chg-Arab | Sound from Schluessel's reading. In the scheme's relation the scribes' letters (پ for b and p, ف for ṗ, ج for č, ک گ غ for g), a vowel's letter written or left out and a consonant doubled or not are free; every other consonant fixed |
+| hbo-Hebr | Sound from the Tiberian reading. The scheme relates SBL's transliteration to the consonantal text (points passed over): full and defective spellings free, each consonant fixed |
+| uz-Cyrl | Sound from the spelling; я, ю, ё, and е at a word's start and after a vowel, each with its two-letter spelling rare (йа for я); с at a word's start with ц rare (ADR 0148's сирк for цирк). ь, ъ, э and х/ҳ left out, with reasons |
+| uz-Latn, tr-Latn, tg-Cyrl, grc-Grek, tok-Latn, yue-Latn, chg-Latn | Sound from the spelling; nothing stated as lost, each with what was considered and why not |
+| en-Latn, grc-Latn, tok-Qaap, yue-Hant-HK, lzh-Hant, zh-Latn, ltc-Latn | No sound asked, with the reason (not stated as rules; chosen, never typed; a reading listed per sign; graded letter by letter) |
+| schluessel, tiberian | A relation (`of`), as above |
+| pinyin, baxter, attic | Sets a card may trade within (`loses`): a vowel's tones; x and h; the length of α, ι, υ |
+| lasina, jyutping, characters | A reading listed per sign: nothing stated; tones stay in `tones` |
+
+### What the review lists hold
+
+- **Readings a relation does not account for** (`projection.unaccounted`, warnings): chg six (*Moǧulistān*
+  written with ا for u, three times; *šahargä*; *ṣandūqta*; *süyi* with a damma), hbo 79 (the divine name
+  read as its qere, 78; one Pentateuchal ketiv).
+- **Lexemes with a leftover** (in the bundles): a spelling leftover for 416 of es's 721 lexemes and 147 of
+  fa's 253; a reading leftover for 397 of chg's 455 (schluessel), every one of lzh's 227 (pinyin; 130 in
+  baxter) and 75 of grc's 170 (attic, which no card asks yet). yue's homophone characters still give its
+  spelling cards, as before, and are not counted as leftovers.
+
+### Not built, and why
+
+- **regularised** and **scope** are labels no answer gets yet: no lexicon ships regularised forms until
+  rules are written, and scope needs ADR 0147's prompt tags.
+- **No phonemic form in the bundle** (ADR 0153): the device reads the expected spelling as it reads the
+  typed one.
+- **A correspondence that keeps being missed reopens nothing** (ADR 0149 is not built); the counts are kept.
+- **The letters a learner misses most** have no page yet (`missedLetters` is there for the script track).
+- **`story_line_read` and `displayed`** are in the event schema and never emitted (ADR 0146's "seen is
+  logged").
+- **A masculine noun's own form** has no name where its language labels no bare cell: its entry shows the
+  dimension's id.
+
 ## The owner's decisions (2026-11-20)
 
 The eight questions this note ended with, and what the owner answered. The sections above are rewritten to

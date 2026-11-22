@@ -2881,6 +2881,9 @@ type Members = Annotated[
 type AfterItem = Annotated[str, Field(min_length=1)]
 
 
+type RareItem = Annotated[str, Field(min_length=1)]
+
+
 type Lose = Annotated[str, Field(min_length=1)]
 
 
@@ -2937,11 +2940,11 @@ class SoundFromReading(BaseModel):
     )
     from_: Annotated[Literal["reading"], Field(alias="from")]
     scheme: Annotated[
-        SchemeId, Field(description="The scheme whose pinned readings are the sound.")
+        SchemeId,
+        Field(
+            description="The scheme whose pinned readings are the sound. Marks of a spelling that the relation passes over are the scheme's `ignores`."
+        ),
     ]
-    ignores: Annotated[
-        UnicodeSetPattern | None, Field(description="Marks the sound reading leaves aside.")
-    ] = None
 
 
 type SoundSource = Annotated[
@@ -5338,6 +5341,13 @@ class CorrespondenceModel(BaseModel):
         ),
     ]
     when: CorrespondenceContext | None = None
+    rare: Annotated[
+        list[RareItem] | None,
+        Field(
+            description="Ways the sound is also written that the norm keeps for a few words or never uses where `written` stands (Spanish k for the sound of c and qu; Uzbek Cyrillic йа for я). They are read as the same sound, so one typed for the usual spelling is an orthographic miss; but none is offered in place of a usual spelling, and a word written the usual way has no leftover from them. A word the norm does write with one (kilo) has its leftover: its usual spellings are what a card offers. A profile's statement only.",
+            min_length=1,
+        ),
+    ] = None
     loses: Annotated[
         list[Lose] | None,
         Field(

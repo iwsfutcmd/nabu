@@ -1,0 +1,8 @@
+# A rare spelling is a way of writing: never nothing (ADR 0148).
+id: es-Latn/standard
+lang: es-Latn
+segmentation: { content: whitespace, runtime: grapheme }
+normalize: [nfc]
+sound: { from: spelling }
+correspondences:
+  - { says: k, written: [c], rare: [""], kind: fixed }

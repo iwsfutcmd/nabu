@@ -771,10 +771,9 @@
         "text": "casa"
       },
       "expected": [
-        "kasa",
         "caza"
       ],
-      "note": "c traded for k (qu before a is read back and refused), s for z (c before a refused)."
+      "note": "s traded for z (c before a is read back and refused). k, the sound's rare spelling, is never offered for c."
     },
     {
       "id": "projection/es/spellings/capital",
@@ -784,7 +783,6 @@
         "text": "Cuba"
       },
       "expected": [
-        "Kuba",
         "Cuva"
       ],
       "note": "A capital stays a capital."
@@ -832,10 +830,9 @@
         "text": "queso"
       },
       "expected": [
-        "keso",
         "quezo"
       ],
-      "note": "qu for k; s for z (c before o refused)."
+      "note": "s for z (c before o refused); k is never offered for qu."
     },
     {
       "id": "projection/es/spellings/tambien",
@@ -862,6 +859,42 @@
       "note": "Final y after a vowel is the vowel: no ll for it."
     },
     {
+      "id": "projection/es/rare/kilo",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "kilo"
+      },
+      "expected": [
+        "quilo"
+      ],
+      "note": "A word the norm writes with the rare spelling has its leftover: the usual spelling is offered (c before i is read back as s and refused)."
+    },
+    {
+      "id": "projection/es/rare/kasa",
+      "op": "sound-compare",
+      "args": {
+        "profile": "es-Latn/standard",
+        "expected": "casa",
+        "typed": "kasa"
+      },
+      "expected": {
+        "same": true,
+        "sounds": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "c",
+            "typed": "k",
+            "rule": "k",
+            "kind": "fixed",
+            "note": "sound-alike"
+          }
+        ]
+      },
+      "note": "The rare spelling is read as the same sound: typed for the usual one it is the right sound with the wrong letter."
+    },
+    {
       "id": "projection/es/spellings/casi",
       "op": "sound-spellings",
       "args": {
@@ -869,7 +902,6 @@
         "text": "casi"
       },
       "expected": [
-        "kasi",
         "caci",
         "cazi"
       ],
@@ -1855,19 +1887,107 @@
       "note": "Nothing lost, so no other spelling."
     },
     {
-      "id": "projection/uz-Cyrl/ya-not-stated",
+      "id": "projection/uz-Cyrl/ya-rare",
       "op": "sound-compare",
       "args": {
         "profile": "uz-Cyrl/standard",
-        "expected": "янги",
-        "typed": "йанги"
+        "expected": "яхши",
+        "typed": "йахши"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "я",
+            "typed": "йа",
+            "rule": "я",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "йа is я's rare spelling (`rare`): read as the same sound, a fixed place."
+    },
+    {
+      "id": "projection/uz-Cyrl/ye-start-rare",
+      "op": "sound-compare",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "expected": "қаер",
+        "typed": "қайер"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "е",
+            "typed": "йе",
+            "rule": "е",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "е after a vowel says й and е; йе typed there is the same sound."
+    },
+    {
+      "id": "projection/uz-Cyrl/ye-after-consonant",
+      "op": "sound-compare",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "expected": "келди",
+        "typed": "кйелди"
       },
       "expected": {
         "same": false,
         "free": false,
         "differs": []
       },
-      "note": "Not stated (the profile's REVIEW comment): stating йа as a spelling of я would give 100 of uz's 558 words a spelling no one writes."
+      "note": "After a consonant е is е alone: йе there says another sound."
+    },
+    {
+      "id": "projection/uz-Cyrl/ts-start-rare",
+      "op": "sound-compare",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "expected": "цирк",
+        "typed": "сирк"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "ц",
+            "typed": "с",
+            "rule": "с",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "ADR 0148's example: ц at a word's start says с (ц is с's rare spelling there)."
+    },
+    {
+      "id": "projection/uz-Cyrl/spellings-ya-usual",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "text": "яхши"
+      },
+      "expected": [],
+      "note": "A word written the usual way is offered no rare spelling: no йахши."
+    },
+    {
+      "id": "projection/uz-Cyrl/spellings-ts-word",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "text": "цирк"
+      },
+      "expected": [
+        "сирк"
+      ],
+      "note": "A word the norm writes with the rare ц is offered its usual spelling (no course word has ц yet)."
     },
     {
       "id": "projection/uz-Cyrl/spellings-none",
@@ -1877,7 +1997,7 @@
         "text": "Салом"
       },
       "expected": [],
-      "note": "No Цалом: ц is not stated as a spelling of с."
+      "note": "No Цалом: ц is с's rare spelling at a word's start, never offered for a usual с."
     },
     {
       "id": "projection/grc/accent-is-sound",

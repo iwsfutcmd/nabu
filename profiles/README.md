@@ -83,15 +83,24 @@ correspondences:                   # the lossy part only
   correspondence saying the same, and a silent site dropped; a candidate is kept where reading it back is the
   same and not free (so *quasa* is no spelling of *casa*: qu says k only before e or i). A traded letter keeps
   its capital and the marks preparing took from it. No stress-mark variants.
+- **`rare`**: ways the sound is also written that the norm keeps for few words or never uses where `written`
+  stands (`{ says: k, written: [c], rare: [k] }`; Uzbek Cyrillic йа for я). They are read like any written form,
+  so one typed for the usual spelling is the right sound with the wrong letter (*kasa* for *casa*); but
+  `spellings` never offers one in place of a usual spelling, so a word written the usual way has no leftover
+  from them, and a word the norm does write with one has (*kilo* offers *quilo*).
 - `sound: { from: reading, scheme }` says a word's sound is its token's pinned reading in that scheme; core
   compiles it as such, and the writing side's operations refuse it. Grading takes the readings the course's
   tokens pin on the expected spelling (`Spellings.readings`), and a typed spelling says the same where the
   scheme's statement relates it to one of them (`compareByReading`, core `project/by-reading.ts`); a word with
-  no pinned reading is not asked the sound question. No profile states it yet.
+  no pinned reading is not asked the sound question. chg-Arab (Schluessel's reading) and hbo-Hebr (the Tiberian
+  reading) state it.
 
 es (`es-Latn.standard.yaml`) states Cuban Spanish as the course teaches it: seseo, yeísmo, b and v, silent h
-(ch apart), g before e or i and j, gu and gü, qu, c and k, the trill, y as the vowel at a word's end after a
-vowel, x. fa (`fa-Arab.standard.yaml`) states ADR 0142's sets, its vowel marks ignored.
+(ch apart), g before e or i and j, gu and gü, qu and c with k as their rare spelling, the trill, y as the vowel
+at a word's end after a vowel, x. fa (`fa-Arab.standard.yaml`) states ADR 0142's sets, its vowel marks ignored.
+apc-Latn states e or i as free (ADR 0148's own example). The other profiles that read the sound off the spelling
+state nothing as lost, each with what was considered and why not; en, characters and logographs state no
+`sound`.
 
 ### The reading side: a scheme
 
@@ -106,7 +115,8 @@ correspondences:
 
 - A reading is NFC, cut into grapheme clusters and lowercased in the scheme's `lang` (or `language`), each
   cluster's capital remembered; a spelling is NFC, cut into code points (an Arabic letter, a shadda and a ZWNJ
-  are each written, and stated, on their own).
+  are each written, and stated, on their own), the marks of the scheme's `ignores` removed first (Biblical
+  Hebrew's points: the tiberian relation is of the consonantal text, pointed or not).
 - **`spells`**: dynamic programming over both. A correspondence consumes its `says` of the reading (`""`:
   written and not said, a ZWNJ) and one of its `written` forms of the spelling (`""`: said and not written,
   most short vowels), its `when` tested on the spelling. Nothing is implied: a piece or a letter no
@@ -125,5 +135,7 @@ correspondences:
   (`{ says: ā, written: [""], loses: [á, ǎ, à] }`).
 
 `schemes/schluessel.yaml` relates Schluessel's transliteration to every word of the chg course (see `nabu
-projections ../courses/chg` for the readings it does not account for); its first ten correspondences carry the
-sets its `variants` had.
+projections ../courses/chg` for the readings it does not account for); the scribes' letters and a vowel's letter
+written or left out are free there. `schemes/tiberian.yaml` relates SBL's transliteration to the Hebrew letters,
+full and defective spellings free; the divine name, read as its qere, is what it does not account for.
+`schemes/attic.yaml` states the length Greek letters do not write, as sets.

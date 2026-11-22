@@ -35,6 +35,11 @@ export const spellingUnits = (text: string): readonly string[] => {
 export interface Written {
   readonly text: string;
   readonly units: readonly string[];
+  /**
+   * A way the norm keeps for few words or never uses (the statement's `rare`: Spanish k): read as
+   * the sound all the same, never offered in place of a usual spelling.
+   */
+  readonly rare?: boolean;
 }
 
 export interface Rule {
@@ -82,7 +87,13 @@ export const compileRules = (list: readonly Correspondence[], options: RuleOptio
         index,
         id: says !== "" ? says : `~${kept[0] as string}`,
         says,
-        written: kept.map((text) => ({ text, units: text === "" ? [] : options.units(text) })),
+        written: [
+          ...kept.map((text): Written => ({ text, units: text === "" ? [] : options.units(text) })),
+          ...(c.rare ?? [])
+            .map((w) => options.written(w.normalize("NFC")))
+            .filter((text) => text !== "" && !kept.includes(text))
+            .map((text): Written => ({ text, units: options.units(text), rare: true })),
+        ],
         kind: c.kind,
         note: c.note,
         loses: (c.loses ?? []).map((l) => options.says(l.normalize("NFC"))).filter((l) => l !== says),

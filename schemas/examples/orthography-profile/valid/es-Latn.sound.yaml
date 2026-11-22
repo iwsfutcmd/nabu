@@ -1,5 +1,5 @@
 # Shape test for the sound statement (ADR 0148): its sound read off the spelling, a stress rule, a
-# silent letter and a context. Not the real es profile.
+# silent letter, a context and a rare spelling. Not the real es profile.
 id: es-Latn/standard
 lang: es-Latn
 segmentation: { content: whitespace, runtime: grapheme }
@@ -14,3 +14,4 @@ correspondences:
   - { says: b, written: [b, v], kind: fixed, note: sound-alike }
   - { says: s, written: [c], kind: fixed, when: { before: "[eiéí]" } }
   - { says: "", written: [h], kind: fixed }
+  - { says: k, written: [c], rare: [k], kind: fixed }

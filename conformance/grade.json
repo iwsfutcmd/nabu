@@ -5725,12 +5725,56 @@
       }
     },
     {
-      "id": "grade/labels/uz-Cyrl-ya-not-stated",
+      "id": "grade/labels/uz-Cyrl-ya-rare",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "accept": "яхши",
+        "answer": "йахши"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "sound-alike"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "uz-Cyrl/standard:я"
+        ]
+      },
+      "note": "йа for я: the right sound in the wrong letters (я's rare spelling), never a slip."
+    },
+    {
+      "id": "grade/labels/uz-Cyrl-ts-rare",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "accept": "цирк",
+        "answer": "сирк"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "sound-alike"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "uz-Cyrl/standard:с"
+        ]
+      },
+      "note": "ADR 0148's example: сирк for цирк is orthographic."
+    },
+    {
+      "id": "grade/labels/uz-Cyrl-ye-not-a-vowel",
       "op": "grade",
       "args": {
         "profile": "uz-Cyrl/standard",
         "accept": "янги",
-        "answer": "йанги"
+        "answer": "йенги"
       },
       "expected": {
         "verdict": "WRONG",
@@ -5739,7 +5783,7 @@
         ],
         "correspondences": []
       },
-      "note": "йа for я is left out of uz-Cyrl's statement (its REVIEW comment): WRONG, as before, now phonemic."
+      "note": "Another vowel after й: another sound, phonemic."
     },
     {
       "id": "grade/labels/uz-Cyrl-slip",

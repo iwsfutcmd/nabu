@@ -1186,6 +1186,13 @@
           "enum": ["fixed", "free"]
         },
         "when": { "$ref": "#/$defs/CorrespondenceContext" },
+        "rare": {
+          "description": "Ways the sound is also written that the norm keeps for a few words or never uses where `written` stands (Spanish k for the sound of c and qu; Uzbek Cyrillic \u0439\u0430 for \u044f). They are read as the same sound, so one typed for the usual spelling is an orthographic miss; but none is offered in place of a usual spelling, and a word written the usual way has no leftover from them. A word the norm does write with one (kilo) has its leftover: its usual spellings are what a card offers. A profile's statement only.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
         "loses": {
           "description": "The other pieces written the same way, which reading back cannot tell from `says`: a set a reading card may trade within (Pinyin's ā among á, ǎ, à). Used by schemes; a profile's reading ignores it.",
           "type": "array",
@@ -1246,12 +1253,8 @@
           "properties": {
             "from": { "const": "reading" },
             "scheme": {
-              "description": "The scheme whose pinned readings are the sound.",
+              "description": "The scheme whose pinned readings are the sound. Marks of a spelling that the relation passes over are the scheme's `ignores`.",
               "$ref": "common.schema.json#/$defs/SchemeId"
-            },
-            "ignores": {
-              "description": "Marks the sound reading leaves aside.",
-              "$ref": "#/$defs/UnicodeSetPattern"
             }
           }
         }

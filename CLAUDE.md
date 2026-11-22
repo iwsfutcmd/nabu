@@ -782,12 +782,16 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A profile states what its orthography writes of the sound (`sound`, `stress`, `correspondences`; profiles/README.md,
   "The sound statement"): a letter no correspondence names says itself, so `[]` means nothing is lost. `kind: fixed`
   (the norm picks one spelling: another is an orthographic miss, and which one is the word's spelling leftover) or
-  `free` (an accepted variant, never where the typed word is another lexeme's form). No `sound`: the sound question is
-  never asked (characters, logographs, the support language). Every statement is REVIEW.
+  `free` (an accepted variant, never where the typed word is another lexeme's form). `rare` names ways the norm keeps
+  for few words or never uses (es k; uz-Cyrl йа for я): read as the same sound, never offered, no leftover for a word
+  written the usual way. No `sound`: the sound question is never asked (characters, logographs, the support language).
+  Every statement is REVIEW; each file says what it left out and why (the table is in docs/migration-design.md).
 - A scheme states the reading's side: `of` an orthography and a relation (each piece of the reading with the ways the
   script writes it, `""` where it does not; nothing implied), or, over a script that lists a reading per sign, only the
-  sets a reading card may trade within (`loses`: Pinyin's tones). `sound: {from: reading, scheme}` makes a word's sound
-  its token's pinned reading, related to what was typed by that scheme.
+  sets a reading card may trade within (`loses`: Pinyin's tones, attic's vowel length). A relation may pass over marks
+  of the spelling (`ignores`: hbo's points). `sound: {from: reading, scheme}` makes a word's sound its token's pinned
+  reading, related to what was typed by that scheme (chg-Arab: schluessel; hbo-Hebr: tiberian; the scribes' letters
+  and full or defective spellings are free there).
 - Core runs them (@nabu/core `project`: `profile.projection` `read`, `compare`, `spellings`; `readingProjection(id)`
   `spells`, `variants`, `open`; core-cli `sound-*` and `reading-*`). `cd pipeline && uv run nabu projections
   ../courses/<id>` lists words with another spelling of their sound and readings the relation cannot account for; the
@@ -804,6 +808,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `WRONG_WORD` is a miss a slip, the same sounds or its marks explain, and is never the judge's (`judgeable` is
   `WRONG` alone); the rest is `WRONG`. `WRONG_WORD` no longer means "another word": what feedback says follows the
   labels.
+- Feedback (@nabu/ui player/Feedback.tsx) lists every label, the worst first, with the words it is about
+  (`feedback.label.<label>` and `-pair`, from the alignment pairs that carry it); a profile's note about a pair speaks
+  for it (the label's line leaves that pair out); "That's a different word." only where the labels include lexical and
+  the verdict is WRONG_WORD; lexical, grammatical and order are held while the judge may still accept the answer
+  (apps/web/src/judging.ts `judgeMayAccept`). Never tell a learner "another word" and then "right".
+- The word list opens a word to what is asked of it (@nabu/core/learner `partsOf`: skills, its own form, spelling and
+  reading leftovers, shown or not; the count is of those asked) and lists the rules and forms the learner has met
+  (`ruleEntries`, found by `ruleMatcher`). It reads the log; it records nothing.
 - Spanish is strict (ADR 0148): accents and the diaeresis are required marks, so tambien is phonemic, bolber and exámen
   orthographic, esta for está lexical and phonemic. grc keeps its notes until the app can put Greek's marks on.
 - Credit follows the labels (learner/credit.ts): the right sound with the wrong letter shows the word and misses its

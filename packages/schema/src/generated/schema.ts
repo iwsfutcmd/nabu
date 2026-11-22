@@ -726,10 +726,6 @@ export type SchemeId4 = string & { readonly __brand: "SchemeId" };
  */
 export type UnicodeSetPattern9 = string;
 /**
- * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
- */
-export type UnicodeSetPattern10 = string;
-/**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
 export type NoteId5 = string;
@@ -5405,6 +5401,12 @@ export interface Correspondence {
   readonly kind: "fixed" | "free";
   readonly when?: CorrespondenceContext;
   /**
+   * Ways the sound is also written that the norm keeps for a few words or never uses where `written` stands (Spanish k for the sound of c and qu; Uzbek Cyrillic йа for я). They are read as the same sound, so one typed for the usual spelling is an orthographic miss; but none is offered in place of a usual spelling, and a word written the usual way has no leftover from them. A word the norm does write with one (kilo) has its leftover: its usual spellings are what a card offers. A profile's statement only.
+   *
+   * @minItems 1
+   */
+  readonly rare?: readonly string[];
+  /**
    * The other pieces written the same way, which reading back cannot tell from `says`: a set a reading card may trade within (Pinyin's ā among á, ǎ, à). Used by schemes; a profile's reading ignores it.
    *
    * @minItems 1
@@ -5433,7 +5435,6 @@ export interface SoundFromSpelling {
 export interface SoundFromReading {
   readonly from: "reading";
   readonly scheme: SchemeId4;
-  readonly ignores?: UnicodeSetPattern9;
 }
 /**
  * Where a mark writes stress and a rule places it otherwise (es): the stress is made explicit before a spelling is compared, so esta and está say different things and háblo says hablo. Only meaningful with `sound: {from: spelling}`.
@@ -5463,7 +5464,7 @@ export interface Stress {
    */
   readonly default: readonly {
     readonly when?: {
-      readonly ends: UnicodeSetPattern10;
+      readonly ends: UnicodeSetPattern9;
     };
     readonly on: "last" | "penult";
   }[];

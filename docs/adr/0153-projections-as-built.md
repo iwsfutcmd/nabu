@@ -32,10 +32,16 @@ here so the owner can accept or overrule it; nothing here was decided by anyone 
   projection, as ADR 0148 asked: *tambien* says another thing than *también*, *exámen* the same as *examen*.
   An unmarked monosyllable has no stress and a marked one has: *tu* and *tú* differ (ADR 0148's own *ke* for
   *qué*), and so ✗*fé* for *fe* is called phonemic, where a speaker hears no difference. REVIEW.
+- **A correspondence may name `rare` spellings:** ways the sound is also written that the norm keeps for
+  few words or never uses (Spanish k; Uzbek Cyrillic йа for я). They are read as the same sound, so one typed
+  for the usual spelling is an orthographic miss; none is offered in place of a usual spelling, and a word
+  written the usual way has no leftover from them. This is as near as the build comes to ADR 0148's "where a
+  stated rule decides that spot": the spot's other spelling is stated as one no word takes.
 - **A scheme's statement is a relation** between its reading and the spelling of the orthography it names
   (`of`): each piece with the ways the script writes it, `""` where it does not. There nothing is implied.
-  A scheme over a script that lists a reading for each sign states no relation, only the sets a reading
-  card may trade within (`loses`: Pinyin's tones of one vowel).
+  It may pass over marks of the spelling (`ignores`: Biblical Hebrew's points, so the relation is of the
+  consonantal text). A scheme over a script that lists a reading for each sign states no relation, only the
+  sets a reading card may trade within (`loses`: Pinyin's tones of one vowel).
 - `soundAlike` and a scheme's `variants` are gone. `match.marks`, `equivalences`, `variants` (the table of
   character variants) and `typo` stay: matching policy.
 
@@ -68,7 +74,11 @@ here so the owner can accept or overrule it; nothing here was decided by anyone 
   states its sounds, marks that alone differ); else `WRONG`. The judge is asked about `WRONG` alone, which
   keeps its reach as ADR 0148 asked with no change to the gate: *bolber*, *tambien* and *pinguino* are never
   the judge's. `WRONG_WORD` therefore no longer means "another word", and the feedback's headline follows
-  the labels instead.
+  the labels instead ("That's a different word." only where a slip or a mark makes another word).
+- **Feedback holds what the judge could overturn.** Lexical, grammatical and order are not shown while the
+  judge may still accept the answer (the server judges the course, the learner is signed in, the card is a
+  typed translation, the outcome is `WRONG`, and the judge has not answered no), as ADR 0148 asked. A
+  profile's note about a pair of words speaks for that pair: the label's own line is left out for it.
 - **Whose form** is decided by the lexemes and forms the course's tokens write under a spelling, never by
   the string: another spelling of the same lexeme in the same form is no other word.
 
@@ -80,13 +90,22 @@ here so the owner can accept or overrule it; nothing here was decided by anyone 
   word (by the card's skill) and misses its spelling; a typed word that is right shows its spelling where
   the bundle says it has a leftover. Known words are counted as before (ADR 0100).
 - **Every orthographic miss counts against its correspondence** (`<orthography>:<id>`, on the event and in
-  the fold's `letters`), whether or not a rule decides that spot; ADR 0148 counts only the spots a stated
-  rule decides and leaves the rest to the word. The count schedules nothing, and nothing reopens a script
-  track yet (ADR 0149).
+  the fold's `letters`) and misses the word's spelling, whether or not a rule decides that spot; ADR 0148
+  counts a spot a stated rule decides against the correspondence alone. The count schedules nothing, and
+  nothing reopens a script track yet (ADR 0149).
+- **The word list** shows a word's parts as what is asked of it: the skills, its own form where the
+  language's labels name it, its spelling leftover per orthography and its reading leftover per scheme, each
+  shown or not, and a count of those asked. A lexeme's own feature is asked by no card yet and is listed as
+  not asked. A rule or a taught feature value has an entry with the skills its cards have practised.
 
 ## Consequences
 
 - Spanish is stricter, as ADR 0148 said it would be; and wherever a profile states a fixed correspondence.
-- Every statement is a draft marked REVIEW until the owner signs it off, as profiles' policies are.
+- Every statement is a draft marked REVIEW until the owner signs it off, as profiles' policies are. What
+  each states, and what each left out and why, is in its file; docs/migration-design.md ("Stages 5 and 6, as
+  built") has the table.
+- Where a profile states e or i free (apc-Latn) or a scribe's letters free (chg-Arab, hbo's full and
+  defective spellings), answers the accept sets did not list are accepted now; where one states its sound, a
+  missed mark that carries sound is no longer the judge's.
 - If the owner wants the phonemic form in the bundle after all (a voice or a speech scorer reading it), the
   compiler can write what `sound-read` returns per lexeme: the operation exists.

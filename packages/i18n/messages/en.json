@@ -1674,6 +1674,10 @@
       "message": "The right sound, the wrong letter: this word is spelled with another of the letters that sound alike.",
       "description": "Feedback note (ADR 0142): the answer spells a word with a letter that sounds like the right one but is not the one the word is written with (Persian سد for صد: س, ص and ث are all s). The solution shows the right spelling."
     },
+    "feedback.note.sound-alike-pair": {
+      "message": "The right sound, the wrong letter: {$expected}, not {$answer}.",
+      "description": "Feedback note (ADR 0142, ADR 0148), in place of feedback.note.sound-alike when the words are known: the learner wrote $answer, which sounds like $expected but is spelled with another of the letters that sound alike (Persian \u0633\u062f for \u0635\u062f, Spanish bolber for volver). $expected and $answer are words of the language being learned and are shown as they are."
+    },
     "feedback.note.spacing": {
       "message": "Watch the half-space (ZWNJ) inside this word.",
       "description": "Feedback note referenced by orthography profiles (match.zwnj.note = spacing) when the learner typed a space or nothing instead of a zero-width non-joiner."
