@@ -62,7 +62,7 @@ describe("the word list and the sentence list show the layer the learner chose",
   const ruby = { pinyin: [{ base: "說", text: "yuè" }], jyutping: [{ base: "說", text: "jyut6" }], baxter: [{ base: "說", text: "ywet" }] };
   const form = { lang: "lzh-Hant", orthography: LZH, tokens: [{ surface: "說", kind: "lexical", lexemes: [{ lexeme: "lexeme:說.yue" }], ruby }] } as unknown as TaggedText;
   const units = [{ id: "u1", nodes: [], sentences: [{ id: "s1", forms: { [LZH]: { text: form } }, translations: {} }] }];
-  const course = { id: "lzh", orthography: LZH, supportKey: "en", audio: {}, units, profiles: new Map([[LZH, { source: lzh }]]) } as unknown as CourseView;
+  const course = { id: "lzh", orthography: LZH, supportKey: "en", audio: {}, units, lexicon: { language: "lzh", lexemes: [] }, profiles: new Map([[LZH, { source: lzh }]]) } as unknown as CourseView;
   const word = { lexeme: "lexeme:說.yue", unit: "u1", form, gloss: undefined, strength: 0.5, due: false, reviews: 1, known: false, skills: [] } as unknown as LearnedWord;
   const shown = (html: string): string[] => [...html.matchAll(/<rt[^>]*>([^<]*)<\/rt>/g)].map((m) => m[1] as string);
   const words = (reading?: SchemeId): string[] => shown(render(<WordList course={course} words={[word]} url={(p) => p} {...(reading === undefined ? {} : { reading })} />));

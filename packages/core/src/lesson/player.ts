@@ -10,6 +10,7 @@
  * `compositionend` has settled the text; a commit alone submits nothing.
  */
 import type { TaggedText } from "@nabu/schema";
+import type { Beside } from "./displayed.ts";
 import type { Verdict } from "../match/grade.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 import { runTest, type AdaptiveTest } from "./adaptive.ts";
@@ -130,7 +131,10 @@ export type PlayerEvent =
 /** Learner events (§9.6), without the ids, clocks and device fields the shell adds. */
 export type LessonEvent =
   | { readonly type: "session_started"; readonly lesson: string; readonly exercises: number }
-  | { readonly type: "exercise_presented"; readonly exercise: ExerciseRef; readonly ex: Exercise }
+  | { readonly type: "exercise_presented"; readonly exercise: ExerciseRef; readonly ex: Exercise;
+      /** What the shell shows beside the card (displayed.ts `Beside`: a new word's principal parts); the state machine never fills it. */
+      readonly beside?: Beside | undefined;
+    }
   | {
       readonly type: "answer_submitted";
       readonly exercise: ExerciseRef;
@@ -144,6 +148,8 @@ export type LessonEvent =
        * hint. The shell that shows the lookups marks it; the state machine never does.
        */
       readonly hinted?: true | undefined;
+      /** What the shell shows beside the card (its `before` was logged as the card was presented). */
+      readonly beside?: Beside | undefined;
     }
   | { readonly type: "exercise_skipped"; readonly exercise: ExerciseRef; readonly reason: SkipReason; readonly ex: Exercise }
   /**

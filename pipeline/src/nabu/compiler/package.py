@@ -37,10 +37,12 @@ from nabu.schema.models import (
     OrthographyProfile,
 )
 
-#: 4: 3 with the profiles' and schemes' statements in place of `soundAlike` and `variants`, and each
-#: lexeme's `leftovers` (ADR 0148). 3: 2 with the token kind `lexical` (it was `word`). 2: lexemes
-#: where a bundle had KCs (ADR 0145). 1 defined credits once (ADR 0110).
-FORMAT_VERSION = 4
+#: 5: 4 with the lexicon's `cells` and `principalParts` and each lexeme's `paradigm` and
+#: `regularised` (docs/rules-design.md, stage 4). 4: 3 with the profiles' and schemes' statements in
+#: place of `soundAlike` and `variants`, and each lexeme's `leftovers` (ADR 0148). 3: 2 with the
+#: token kind `lexical` (it was `word`). 2: lexemes where a bundle had KCs (ADR 0145). 1 defined
+#: credits once (ADR 0110).
+FORMAT_VERSION = 5
 
 
 def canonical(data: Any) -> bytes:

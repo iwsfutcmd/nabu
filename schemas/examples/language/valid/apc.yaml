@@ -12,6 +12,11 @@ features:
   Gender: [Fem, Masc]
   Number: [Sing, Dual, Plur]
   Person: ["1", "2", "3"]
+# A verb is shown with its he-present after its lemma, the he-past (the owner's answer 1).
+citation:
+  VERB: {Aspect: Perf, Person: "3", Gender: Masc, Number: Sing}
+principalParts:
+  VERB: [{Aspect: Imp, Person: "3", Gender: Masc, Number: Sing}]
 # A rule the language names and has not written: its name, and what a learner is shown for it.
 rules:
   - {id: 'rule:used-to', gloss: {en: 'kent + a verb without b-: used to; would'}, was: 'construction:used-to'}

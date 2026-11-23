@@ -17,7 +17,7 @@
  *   by its label, with how many of the skills asked of it are shown; found by the same search.
  */
 import { orderWords, ruleMatcher, wordCounts, wordMatcher, type AskedSkill, type LearnedWord, type PartStatus, type RuleEntry, type WordOrder, type WordPart } from "@nabu/core/learner";
-import { ownFeatureLabel, type CourseView } from "@nabu/core/lesson";
+import { lexemesById, ownFeatureLabel, principalParts, type CourseView } from "@nabu/core/lesson";
 import { orthographyName } from "@nabu/i18n";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { useId, useMemo, useState, type JSX } from "react";
@@ -26,6 +26,7 @@ import { useTranslator } from "../context.tsx";
 import { ExpandIcon } from "../icons.tsx";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
 import { defaultRuby, schemeName } from "../player/Readings.tsx";
+import { Headword } from "../Headword.tsx";
 import { T } from "../T.tsx";
 import { WithSlots } from "../WithWords.tsx";
 import styles from "./Words.module.css";
@@ -173,7 +174,7 @@ const Word = ({ course, word, url, ruby, parts, open }: { course: CourseView; wo
   return (
     <li className={styles.word} data-word={word.lexeme} data-strength={band} data-known={word.known}>
       <div className={styles.texts} data-ink-container={`word:${word.lexeme}`}>
-        <T as="p" className={styles.form} text={word.form} ruby={ruby} />
+        <Headword as="p" className={styles.form} text={word.form} parts={principalParts(course.lexicon, lexemesById(course).get(word.lexeme), course.orthography)} ruby={ruby} />
         {word.gloss !== undefined && <T as="p" className={styles.gloss} text={word.gloss} />}
       </div>
       {audio !== undefined && (

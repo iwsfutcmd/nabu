@@ -20,6 +20,7 @@ import { courseData, type Carrier, type EntryId, type WrittenWord } from "./brow
 import { lexemesInOrder, unitIndexOf, type CourseView } from "./course.ts";
 import { readingAsText } from "./homographs.ts";
 import { bound as isBound } from "./lexemes.ts";
+import { paradigmRows } from "./paradigms.ts";
 import type { Searched } from "./search.ts";
 
 /** A piece of a record, as the page shows it. */
@@ -196,8 +197,12 @@ const isTaggedText = (value: unknown): value is TaggedText => isObject(value) &&
 type Mode =
   | "auto"
   | "code"
-  /** Under `spelled`: keys are orthographies, strings their spellings. */
+  /** Under `spelled` and a bundle lexeme's `paradigm`: keys are orthographies, strings their spellings. */
   | "spelled"
+  /** Under a bundle lexeme's `regularised`: keys are orthographies, each holding cells (code) and their spellings. */
+  | "regularised"
+  /** A record of cells under an orthography (`regularised`): keys are cells, strings spellings in that orthography. */
+  | "cells"
   /** Under `readings` (or a logograph's `reading`): keys are schemes. */
   | "readings"
   /** Under `gloss` or `notes`: keys are support languages. */
@@ -243,6 +248,8 @@ const CODE_KEYS: ReadonlySet<string> = new Set([
   "was",
   "class",
   "inflects",
+  "cells",
+  "principalParts",
 ]);
 
 const childMode = (mode: Mode, key: string, value: unknown): Mode => {
@@ -254,6 +261,9 @@ const childMode = (mode: Mode, key: string, value: unknown): Mode => {
       return mode;
     case "reviewer":
       return mode;
+    case "regularised":
+    case "cells":
+      return "cells";
     case "lexical":
       // A form's object (radicals and Form, a pattern's templates, a listed item's parts, a logograph).
       if (key === "reading" || key === "readings") return "readings";
@@ -267,7 +277,8 @@ const childMode = (mode: Mode, key: string, value: unknown): Mode => {
     case "condition":
       return key === "ends" || key === "starts" ? "lexical" : "code";
     case "auto":
-      if (key === "spelled") return "spelled";
+      if (key === "spelled" || key === "paradigm") return "spelled";
+      if (key === "regularised") return "regularised";
       if (key === "readings") return "readings";
       if (key === "gloss" || key === "notes") return "support";
       if (key === "form" || key === "stem") return typeof value === "string" || isObject(value) ? "lexical" : "auto";
@@ -373,7 +384,8 @@ const toNode = (value: unknown, mode: Mode, key: string, tags: Tags, into: Colle
         into.target.push({ ...t, tokens: [{ surface: value.normalize("NFC"), kind: "lexical", readings: { [key]: value.normalize("NFC") } }] });
         return text(t);
       }
-      case "spelled": {
+      case "spelled":
+      case "cells": {
         const t = tagged(tags.orthography(key), value);
         into.target.push(t);
         return text(t);
@@ -407,13 +419,36 @@ const toNode = (value: unknown, mode: Mode, key: string, tags: Tags, into: Colle
       Object.entries(value).map(([k, v]) => {
         into.ids.push(k);
         const child = childMode(mode, k, v);
-        return { key: k, value: toNode(v, child, k, tags, into) };
+        // A cell's spelling is in the orthography the cells are under, not in its cell.
+        return { key: k, value: toNode(v, child, mode === "cells" ? key : k, tags, into) };
       }),
     );
   }
   // Nothing a parsed file holds (a function, a symbol): named by its type.
   return code(typeof value);
 };
+
+/** A form of a paradigm in an orthography: its spelling, or its spelling and its marked text. */
+const paradigmCell = (form: { readonly spelling: string; readonly marked?: string } | undefined, tag: Tag): DataNode =>
+  form === undefined ? code("-") : form.marked === undefined ? text(tagged(tag, form.spelling)) : list([text(tagged(tag, form.spelling)), text(tagged(tag, form.marked))]);
+
+/**
+ * A lexeme's paradigm as a table (docs/rules-design.md, stage 4): a row per cell of its category, the
+ * cell (code), then its form in each orthography the bundle lists it in (`-` where the rules give
+ * none), and where blocking off gives another form, that form (`regularised`).
+ */
+const paradigmTable = (course: CourseView, lexeme: BundleLexeme, tags: Tags): DataNode =>
+  list(
+    paradigmRows(course.lexicon, lexeme).map((row) =>
+      record([
+        { key: "cell", value: code(row.cell) },
+        ...Object.entries(row.forms).map(([orthography, form]) => ({ key: orthography, value: paradigmCell(form, tags.orthography(orthography)) })),
+        ...(row.regularised === undefined
+          ? []
+          : [{ key: "regularised", value: record(Object.entries(row.regularised).map(([orthography, form]) => ({ key: orthography, value: paradigmCell(form, tags.orthography(orthography)) }))) }]),
+      ]),
+    ),
+  );
 
 const valueTags = (feats: UdFeatures | undefined): readonly string[] =>
   Object.keys(feats ?? {})
@@ -521,6 +556,7 @@ export const lexiconData = (course: CourseView, source?: LexiconSource, aliases?
         value: list((labelsOf.get(id) ?? []).map((l) => record([{ key: "id", value: code(l.id) }, ...(l.gloss === undefined ? [] : [{ key: "gloss", value: text(l.gloss) }])]))),
       },
       ...(clip === undefined ? [] : [{ key: "clip", value: toNode(clip, "code", "clip", tags, { target: [], support: [], ids: [] }) }]),
+      ...(lexeme === undefined || lexeme.paradigm === undefined ? [] : [{ key: "paradigm", value: paradigmTable(course, lexeme, tags) }]),
       ...(aliases === undefined ? [] : [{ key: "aliases", value: list((oldIds.get(id) ?? []).map((kc) => code(kc))) }]),
     ];
     for (const f of fields) {

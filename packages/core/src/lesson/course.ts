@@ -11,6 +11,7 @@ import { err, ok, type Result } from "../result.ts";
 import { graphemes } from "../text/graphemes.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 import { baseOf, effectiveFeats, formKey, kindOf, lexemeFormKey, lexemesOf, nodeOf } from "./lexemes.ts";
+import { paradigmWords } from "./paradigms.ts";
 
 export interface CourseView {
   readonly id: string;
@@ -78,14 +79,16 @@ export interface CourseFiles {
 }
 
 /**
- * The bundle format this build reads (the manifest's `formatVersion`): 4, format 3 with the profiles'
+ * The bundle format this build reads (the manifest's `formatVersion`): 5, format 4 with the lexicon's
+ * `cells` and `principalParts` and each lexeme's `paradigm` and `regularised` (docs/rules-design.md,
+ * stage 4: the compiler lists a lexeme's forms, the device looks them up). 4 was format 3 with the profiles'
  * and schemes' statements in place of `soundAlike` and `variants` and each lexeme's `leftovers` (ADR
  * 0148); 3 was format 2 (lexemes where a bundle had KCs, ADR 0145) with the token kind `lexical` where
  * it was `word`. A bundle of another
  * format is refused whole: one a device kept from before is fetched again, and one from a later
  * build asks for the app to be updated.
  */
-export const BUNDLE_FORMAT = 4;
+export const BUNDLE_FORMAT = 5;
 
 export type CourseError =
   | { readonly code: "format"; readonly version: unknown }
@@ -615,6 +618,14 @@ const buildSpellings = (course: CourseView, orthography: string): Spellings => {
       const ks = keys(surfaceOf(cited));
       if (ks.length === 1) write(ks[0] as string, [{ lexeme: lexeme.id, form: lexemeFormKey(lexeme.id) }]);
     }
+  }
+  // Every form the lexicon's paradigms list (docs/rules-design.md, stage 4), each known as a token
+  // that writes it in its cell would be: a word of the course, standing in that form, its lexeme's.
+  for (const p of paradigmWords(course.lexicon, orthography, keys)) {
+    words.add(p.key);
+    pin(p.key, [p.form]);
+    if (inflecting.has(p.lexeme)) inflected.add(p.key);
+    write(p.key, [p.written]);
   }
   return {
     words,

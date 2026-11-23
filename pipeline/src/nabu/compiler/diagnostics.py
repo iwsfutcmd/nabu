@@ -231,6 +231,14 @@ _LINTS = [
         "section 5).",
     ),
     Lint(
+        "form.spelling-script",
+        "warning",
+        3,
+        "A paradigm's form (docs/rules-design.md, stage 4) whose spelling has characters outside "
+        "its orthography's script, as the script audit has it: not shipped (null in the paradigm, "
+        "left out of `regularised`). A `spell` rule or a realisation rule is missing.",
+    ),
+    Lint(
         "form.rule-debt",
         "info",
         3,

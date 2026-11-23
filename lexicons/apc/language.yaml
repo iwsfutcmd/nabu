@@ -20,6 +20,10 @@ citation:
   ADJ: {Gender: Masc, Number: Sing}
   VERB: {Aspect: Perf, Person: '3', Gender: Masc, Number: Sing}
   AUX: {Aspect: Perf, Person: '3', Gender: Masc, Number: Sing}
+# Shown after a verb's lemma (the owner's answer 1, 2026-11-23: the he-past first, the he-present beside it): the
+# cell rule:apc-imperfect's branches 3 and ind give (Kline p. 100-101: byishrab).
+principalParts:
+  VERB: [{Aspect: Imp, Mood: Ind, Person: '3', Gender: Masc, Number: Sing}]
 bare:
   NOUN: {Gender: Masc, Number: Sing}
   PROPN: {Gender: Masc}
@@ -252,16 +256,19 @@ phonology:  # in order, each once over the whole form
 - {id: 'rule:apc-sukun', find: "{K}ّ+", before: "{K}*", to: "{K}ّْ+"}  # the notation: a doubled letter before a suffix's consonant takes the sign of no vowel
 - {id: 'rule:apc-bn', find: "ب+{NUN}*+", to: "م+{NUN}+"}  # b- + n- is said and written mn- (Kline p. 100-101)
 - {id: 'rule:apc-madda', find: "ا\u065c+ا", to: "آ\u065c+"}  # the 1sg's alef before a stem in long e: آكل (the course)
+- {id: 'rule:apc-wasl', branch: prefix, when: {feats: {Aspect: Imp}}, find: "+ا\u06df", after: "{P}", to: "+"}  # REVIEW: a stem that begins with an alef written and not said (stanna's command, ا\u06dfسْتَنَّى) loses it after a person prefix, whose vowel the cluster then gives (yestanna, estanna: Kline p. 91, the course's stanna)
 - {id: 'rule:apc-silent-alef', find: "ا\u06df+", to: "+"}  # the plural's silent alef is written only last in a word (Kline p. 95, img: شافوها)
-- {id: 'rule:apc-prefix-vowel', branch: none, find: "ا+", at: start, before: "{K}{V}", to: ""}  # no vowel before a consonant that has one: the 1sg's alef goes (ru7, nem)
+- {id: 'rule:apc-prefix-vowel', branch: none, find: "ا+", at: start, before: ["{K}{V}", "{GL}{V}"], to: ""}  # no vowel before a consonant that has one: the 1sg's alef goes (ru7, nem; a glide too, REVIEW: wa22ef, as Form II's 3allem)
 - {id: 'rule:apc-prefix-vowel', branch: ayn, find: "{P}+", after: ["#", "#{P}*+", "#و+", "#و+{P}*+"], before: "{AYN}ْ", to: "{P}َ+"}  # a before 3 (ba3mel, ta3mel; Kline p. 75, and a3ref for the 1sg, p. 157)
 - {id: 'rule:apc-prefix-vowel', branch: cluster, find: "{P}+", after: ["#", "#{P}*+", "#و+", "#و+{P}*+"], before: "{K}ْ", to: "{P}ِ+"}  # i before a cluster (bishrab, btishrab, eshrab)
 - {id: 'rule:apc-prefix-vowel', branch: none, find: "{P}+", after: ["#", "#{P}*+", "#و+", "#و+{P}*+"], to: "{P}ْ+"}  # none before a consonant with a vowel (bru7, btru7, mnru7)
+- {id: 'rule:apc-defective', branch: adjective, when: {pos: ADJ}, find: "{K}*ى{W}+", to: "{K}{W}+"}  # REVIEW: an adjective written whole that ends in its vowel (a7la, aghla) gives it way to an ending's, as a defective verb does: what the regular endings make of it with its class passed over (a7le, a7lin)
 - {id: 'rule:apc-syncope', branch: vowel, find: "{L}{IU}{L}{W}+", after: ".*", to: "{L}ْ{L}{W}+"}  # a stem's last i or u drops before an ending that begins with a vowel: 3emlo, ta3mli, tedrso, jarrbi, sekne (Kline p. 101-104, 130)
 - {id: 'rule:apc-syncope', branch: she, find: "{K}َ{K}ِ+{T}*", to: "{K}ْ{K}ِ+{T}"}  # she-past as the speaker's áklit: 3azmet, 3ajbet (ruling 7, 2026-11-21; Kline writes katabet, p. 96)
 - {id: 'rule:apc-syncope', branch: adjective, when: {pos: ADJ}, find: "{L}{A}{L}{W}+", to: "{L}\u0652{L}{W}+"}  # REVIEW: an adjective's last a drops too (m2akhkhra: the course; Kline p. 130 for participles)
 - {id: 'rule:apc-defective', branch: ending, when: {feats: {Aspect: 'Imp,Perf'}}, find: "{K}*[اىي]{W}+", to: "{K}{W}+"}  # a defective stem's last vowel gives way to an ending's: 7ako, byi7ko, btghanne (Kline p. 98-99)
 - {id: 'rule:apc-defective', branch: ending, when: {feats: {Mood: Imp}}, find: "{K}*[اىي]{W}+", to: "{K}{W}+"}  # the same, in the command
+- {id: 'rule:apc-defective', branch: ay, when: {feats: {Aspect: Perf}}, find: "ى+", before: ["{K}", "{K}{V}"], to: "يْ+"}  # REVIEW: a stem written whole that ends in its vowel (stanna) takes -ay- before an ending that begins with a consonant, as the templates' defective-ay stem does (stannayt, stannayna; the course's eshtarayti)
 - {id: 'rule:apc-geminate', find: "نْ+نَ", to: "+نَّ"}  # no doubled letter written twice: kenna (Kline p. 60; p. 73 n2)
 - {id: 'rule:apc-short-stem', branch: dative, when: {feats: {Mood: Imp}}, find: "{K}[\u064F\u0650]{GL}{K}*+", before: "ل*", to: "{K}\u0650{K}+"}  # REVIEW: a hollow command's long vowel shortens before the dative (2elli: Kline p. 165-166; he gives it in the present too, the course has none)
 - {id: 'rule:apc-geminate', branch: dative, find: "ل\u0652+ل\u0650", to: "+ل\u0650\u0651"}  # a stem's l and the dative's: one doubled l (2elli)

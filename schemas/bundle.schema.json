@@ -7,7 +7,7 @@
   "required": ["formatVersion", "id", "course", "target", "orthographies", "support", "lexicon", "versions", "files", "credits", "units", "licenses", "provenance"],
   "additionalProperties": false,
   "properties": {
-    "formatVersion": { "description": "4: 3 with the profiles' and schemes' statements in place of soundAlike and variants, and each lexeme's leftovers (ADR 0148). 3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated.", "const": 4 },
+    "formatVersion": { "description": "5: 4 with the lexicon's cells and principal parts and each lexeme's paradigm (docs/rules-design.md, stage 4). 4: 3 with the profiles' and schemes' statements in place of soundAlike and variants, and each lexeme's leftovers (ADR 0148). 3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated.", "const": 5 },
     "id": { "description": "sha256 of the manifest without this field.", "type": "string", "pattern": "^[0-9a-f]{64}$" },
     "course": { "type": "string" },
     "target": { "$ref": "common.schema.json#/$defs/ScriptedLangTag" },
@@ -121,8 +121,37 @@
           "description": "The rules the course names (the language's `rules`), each with what a learner is shown for it.",
           "type": "array",
           "items": { "$ref": "#/$defs/BundleRule" }
+        },
+        "cells": {
+          "description": "For each category the language's rules inflect, the cells its lexemes' paradigms list, in order (docs/rules-design.md, stage 4): those the course's tokens choose on the category, each value of them one the course teaches (a node introduces it, the category's citation or bare cell has it, or the course teaches no value of its feature), with the principal parts' cells. A lexeme's `paradigm` follows this order. Absent: the language has no rules, or the course writes no such cell.",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
+          "additionalProperties": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/BundleCell" } }
+        },
+        "principalParts": {
+          "description": "For each category, the cells shown after a lemma wherever a word is presented as itself, in order (the language's `principalParts`): each one of its `cells`.",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
+          "additionalProperties": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/BundleCell" } }
         }
       }
+    },
+    "BundleCell": {
+      "title": "BundleCell",
+      "description": "A cell of a paradigm as a form key's feature part (FormKey, after `|form:`): its feature values as Name=Value, sorted by name and joined by `;` (Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=3).",
+      "type": "string",
+      "pattern": "^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?=[A-Z0-9][A-Za-z0-9,]*(;[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?=[A-Z0-9][A-Za-z0-9,]*)*$"
+    },
+    "BundleParadigmForm": {
+      "title": "BundleParadigmForm",
+      "description": "A cell's form in one orthography, as its profile's `spell` writes the realisation: the spelling, or where the orthography has a marked layer (apc's vocalized) the spelling and the marked text, in that order; null where the rules give the lexeme no form there (no rule for the cell, no template for its root, a phrase).",
+      "anyOf": [
+        { "type": "null" },
+        { "type": "string", "minLength": 1 },
+        { "type": "array", "items": { "type": "string", "minLength": 1 }, "minItems": 2, "maxItems": 2 }
+      ]
     },
     "BundleLexeme": {
       "title": "BundleLexeme",
@@ -161,6 +190,25 @@
           "additionalProperties": { "type": "array", "minItems": 1, "items": { "$ref": "tagged-text.schema.json" } }
         },
         "image": { "description": "Bundle path of its picture (a file with role image).", "type": "string" },
+        "paradigm": {
+          "description": "Its forms in each course orthography, one for each of its category's `cells` in the lexicon's order (docs/rules-design.md, stage 4): what the rules give, or the lexeme's own pinned or listed form where it has one for the cell. The grader knows a typed word among them as this lexeme's form in that cell. Absent: its category has no cells.",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+          "additionalProperties": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/BundleParadigmForm" } }
+        },
+        "regularised": {
+          "description": "Where realising with blocking off (no listed form or stated class: ADR 0145) gives another form than `paradigm`: per orthography, that form by cell. The regularised form a learner may build (tenió for tuvo). Absent: none differs.",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+          "additionalProperties": {
+            "type": "object",
+            "minProperties": 1,
+            "propertyNames": { "$ref": "#/$defs/BundleCell" },
+            "additionalProperties": { "$ref": "#/$defs/BundleParadigmForm" }
+          }
+        },
         "leftovers": {
           "description": "What no stated correspondence gives of this lexeme (ADR 0148): the orthographies in which a fixed correspondence could have spelled it otherwise (`spelling`); the schemes in which its letters leave its reading open (`reading`). Absent: none.",
           "type": "object",

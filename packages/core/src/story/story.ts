@@ -10,6 +10,7 @@ import type { BundleStory, BundleStoryLine, PartId, TaggedText, Token } from "@n
 import type { CourseView } from "../lesson/course.ts";
 import { allLexemes, lexemesById, profileOf } from "../lesson/course.ts";
 import { baseIdOf, lexemeIdsOf, lexemesOf } from "../lesson/lexemes.ts";
+import { principalParts } from "../lesson/paradigms.ts";
 import type { Exercise, StoryArrange, StoryChoose, StoryComplete } from "../lesson/exercise.ts";
 import type { Rng } from "../lesson/rng.ts";
 import { compileGlossary, glossesAt, glossTokens, type CompiledGlossary, type TokenGloss } from "../match/glossary.ts";
@@ -199,6 +200,12 @@ export interface Gloss {
    * (ADR 0061). Its first spelling in the line's orthography.
    */
   readonly lemma?: TaggedText;
+  /**
+   * The forms shown after the lexeme's dictionary form, where the entry shows it (`lemma`, or a
+   * `form` that is its first spelling): its category's principal parts (docs/rules-design.md, stage 4;
+   * an apc verb's he-present), each a text naming the lexeme and the cell (`principalParts`).
+   */
+  readonly principalParts?: readonly TaggedText[];
 }
 
 /**
@@ -211,6 +218,18 @@ export interface Gloss {
  */
 export const glossAt = (course: CourseView, glossary: StoryGlossary, glosses: readonly TokenGloss[], text: TaggedText, token: number): readonly Gloss[] => {
   const lexemes = lexemesById(course);
+  // Where an entry shows its lexeme's dictionary form, the forms shown after it.
+  const withParts = (g: Gloss): Gloss => {
+    const lexeme = lexemes.get(g.id);
+    const first = lexeme?.forms?.[text.orthography]?.[0];
+    const cited = g.lemma !== undefined || (first !== undefined && g.unwritten !== true && surfaceOf(first).normalize("NFC") === surfaceOf(g.form).normalize("NFC"));
+    const parts = cited ? principalParts(course.lexicon, lexeme, text.orthography) : [];
+    return parts.length === 0 ? g : { ...g, principalParts: parts };
+  };
+  return glossesAt_(course, glossary, glosses, text, token, lexemes).map(withParts);
+};
+
+const glossesAt_ = (course: CourseView, glossary: StoryGlossary, glosses: readonly TokenGloss[], text: TaggedText, token: number, lexemes: ReturnType<typeof lexemesById>): readonly Gloss[] => {
   const meaning = (id: string): TaggedText | undefined => lexemes.get(id)?.gloss?.[course.supportKey];
   const own = text.tokens[token];
   const written = own === undefined || !isWord(own) ? [] : lexemesOf(own);

@@ -7387,6 +7387,280 @@
         ]
       },
       "note": "A slip onto another syllable of the course: lexical and slip."
+    },
+    {
+      "id": "grade/paradigm/slip-onto-own-form",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "bteshrabi",
+        "answer": "bteshrab",
+        "lexemes": {
+          "bteshrabi": [
+            "lexeme:shereb|form:Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2"
+          ]
+        },
+        "paradigm": {
+          "cells": {
+            "VERB": [
+              "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2",
+              "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2",
+              "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=3"
+            ]
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:shereb",
+              "pos": "VERB",
+              "paradigm": {
+                "apc-Latn/arabizi": [
+                  "bteshrabi",
+                  "bteshrab",
+                  "byeshrab"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:shara7",
+              "pos": "VERB",
+              "paradigm": {
+                "apc-Latn/arabizi": [
+                  "bteshra7i",
+                  "bteshra7",
+                  "byeshra7"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:homograph",
+              "pos": "VERB",
+              "paradigm": {
+                "apc-Latn/arabizi": [
+                  "x-unused",
+                  "y-unused",
+                  "bteshrab"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "grammatical",
+          "slip"
+        ]
+      },
+      "note": "A slip onto a form no token writes, which the bundle's paradigm lists as the answer's own lexeme in another cell (bteshrab, you to a man, for bteshrabi, you to a woman): another form, never a typo (docs/rules-design.md, stage 4)."
+    },
+    {
+      "id": "grade/paradigm/slip-onto-another-lexeme",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "byeshrab",
+        "answer": "byeshra7",
+        "lexemes": {
+          "byeshrab": [
+            "lexeme:shereb|form:Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=3"
+          ]
+        },
+        "paradigm": {
+          "cells": {
+            "VERB": [
+              "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2",
+              "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2",
+              "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=3"
+            ]
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:shereb",
+              "pos": "VERB",
+              "paradigm": {
+                "apc-Latn/arabizi": [
+                  "bteshrabi",
+                  "bteshrab",
+                  "byeshrab"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:shara7",
+              "pos": "VERB",
+              "paradigm": {
+                "apc-Latn/arabizi": [
+                  "bteshra7i",
+                  "bteshra7",
+                  "byeshra7"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:homograph",
+              "pos": "VERB",
+              "paradigm": {
+                "apc-Latn/arabizi": [
+                  "x-unused",
+                  "y-unused",
+                  "bteshrab"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "lexical",
+          "slip"
+        ]
+      },
+      "note": "A slip onto another lexeme's form no token writes, which its paradigm lists: another word, as a form some token writes would be."
+    },
+    {
+      "id": "grade/paradigm/right-answer-another-form-elsewhere",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "bteshrab",
+        "answer": "bteshrab",
+        "lexemes": {
+          "bteshrab": [
+            "lexeme:shereb|form:Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2"
+          ]
+        },
+        "paradigm": {
+          "cells": {
+            "VERB": [
+              "Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2",
+              "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2",
+              "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=3"
+            ]
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:shereb",
+              "pos": "VERB",
+              "paradigm": {
+                "apc-Latn/arabizi": [
+                  "bteshrabi",
+                  "bteshrab",
+                  "byeshrab"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:shara7",
+              "pos": "VERB",
+              "paradigm": {
+                "apc-Latn/arabizi": [
+                  "bteshra7i",
+                  "bteshra7",
+                  "byeshra7"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:homograph",
+              "pos": "VERB",
+              "paradigm": {
+                "apc-Latn/arabizi": [
+                  "x-unused",
+                  "y-unused",
+                  "bteshrab"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "labels": []
+      },
+      "note": "An answer the accept set lists stays right when a paradigm lists its spelling as another lexeme's form too."
+    },
+    {
+      "id": "grade/paradigm/none",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "bteshrabi",
+        "answer": "bteshrab",
+        "lexemes": {
+          "bteshrabi": [
+            "lexeme:shereb|form:Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
+        ]
+      },
+      "note": "Without paradigms the same slip is a typo, as before stage 4."
+    },
+    {
+      "id": "grade/paradigm/no-cells",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "bteshrabi",
+        "answer": "bteshrab",
+        "lexemes": {
+          "bteshrabi": [
+            "lexeme:shereb|form:Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=2"
+          ]
+        },
+        "paradigm": {
+          "lexemes": [
+            {
+              "id": "lexeme:shereb",
+              "pos": "VERB",
+              "paradigm": {
+                "apc-Latn/arabizi": [
+                  "bteshrabi",
+                  "bteshrab",
+                  "byeshrab"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:shara7",
+              "pos": "VERB",
+              "paradigm": {
+                "apc-Latn/arabizi": [
+                  "bteshra7i",
+                  "bteshra7",
+                  "byeshra7"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:homograph",
+              "pos": "VERB",
+              "paradigm": {
+                "apc-Latn/arabizi": [
+                  "x-unused",
+                  "y-unused",
+                  "bteshrab"
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
+        ]
+      },
+      "note": "A lexicon that lists no cells adds nothing: a course without rules grades as before."
     }
   ]
 }

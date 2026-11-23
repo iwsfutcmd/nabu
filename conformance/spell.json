@@ -2261,6 +2261,43 @@
         "expected": null
       },
       "note": "Without `part`, a word of the phrase is not its spelling."
+    },
+    {
+      "id": "spell/apc-latn/stanna-past-1sg",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "ا۟سْتَنَّيْ+ت",
+        "expected": "stannayt"
+      },
+      "expected": {
+        "spelling": "stannayt",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "stanna's past 1sg as the rules now give it (rule:apc-defective|ay): stannayt."
+    },
+    {
+      "id": "spell/apc-latn/stanna-subjunctive-1sg",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "اِ+سْتَنَّى",
+        "expected": "estanna"
+      },
+      "expected": {
+        "spelling": "estanna",
+        "alternatives": [
+          {
+            "spelling": "istanna",
+            "by": [
+              "e-i"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "stanna's 1sg subjunctive from its command stem (rule:apc-wasl|prefix): estanna, Latin letters only (it was اstanna)."
     }
   ]
 }

@@ -23,7 +23,7 @@
  * reader hears the title and the score with the button (its description), and a stray Enter does
  * what Continue did before.
  */
-import { answerDiff, answerTextOf, gradeExercise, promptOf, solutionMarks, solutionOf, type AnswerDiff, type CourseView, type Exercise, type Grader, lexemesById, type Missed, type Response, type SessionSummary } from "@nabu/core/lesson";
+import { answerDiff, answerTextOf, gradeExercise, promptOf, solutionMarks, solutionOf, type AnswerDiff, type CourseView, type Exercise, type Grader, lexemesById, principalParts, type Missed, type Response, type SessionSummary } from "@nabu/core/lesson";
 import { textOfSurface } from "@nabu/core/text";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, type JSX, type ReactNode } from "react";
@@ -31,6 +31,7 @@ import { Button } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
 import { ArrowForwardIcon } from "../icons.tsx";
 import type { Marks } from "../marks.tsx";
+import { Headword } from "../Headword.tsx";
 import { T } from "../T.tsx";
 import { AudioButtons, useClipPlayer } from "./Audio.tsx";
 import { MarkedAnswer } from "./Feedback.tsx";
@@ -129,6 +130,8 @@ export interface SessionEndProps {
 interface Word {
   readonly lexeme: string;
   readonly form: TaggedText;
+  /** Its principal parts, shown after it (core `principalParts`). */
+  readonly parts: readonly TaggedText[];
   readonly gloss: TaggedText | undefined;
 }
 
@@ -138,7 +141,7 @@ const useWords = (course: CourseView, lexemes: readonly string[]): readonly Word
   return lexemes.flatMap((lexeme) => {
     const entry = byId.get(lexeme);
     const form = entry?.forms?.[course.orthography]?.[0];
-    return form === undefined ? [] : [{ lexeme, form, gloss: entry?.gloss?.[course.supportKey] }];
+    return form === undefined ? [] : [{ lexeme, form, parts: principalParts(course.lexicon, entry, course.orthography), gloss: entry?.gloss?.[course.supportKey] }];
   });
 };
 
@@ -148,7 +151,7 @@ const NewWord = ({ course, word, url, ruby, marks }: { readonly course: CourseVi
   const player = useClipPlayer(audio, url);
   return (
     <li className={styles.endWord} data-end-word={word.lexeme} data-ink-container={`word:${word.lexeme}`}>
-      <T text={word.form} ruby={ruby} marks={marks} className={styles.endWordForm} />
+      <Headword text={word.form} parts={word.parts} ruby={ruby} marks={marks} className={styles.endWordForm} />
       {word.gloss !== undefined && <T text={word.gloss} className={styles.newWordGloss} />}
       {audio !== undefined && <AudioButtons player={player} audio={audio} label={false} />}
     </li>
