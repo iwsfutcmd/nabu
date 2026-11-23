@@ -743,7 +743,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   participle is its verb's, declined (`VerbForm: Part, Voice: Pass` with the agreement); `by` is AUX
   `{Mood: Cnd}`, the -l form beside it keeps `Tense: Past` (UD's way). Accept sets keep the clitics second.
 - The voice is Piper's `sk_SK-lili-medium` (CC-BY-4.0, one woman's voice for every line). After a sentence changes,
-  `cd pipeline && uv run nabu audio generate ../courses/sk`, then `pnpm bundles`. No listener has heard it yet.
+  `cd pipeline && uv run nabu audio generate ../courses/sk`, then `pnpm bundles`. No listener has heard it yet;
+  the round trip failed 353 clips (275 lone words), held back until a listener passes them.
 - Unit 17's story is the start of Dobšinský's *Ako šlo vajce na vandrovku* (1881, public domain): the page's
   words in today's spelling, each change in the unit's header. The tale's *kde* (where to) and *rečie* stay; the
   lessons teach *kam*. Kozliatka and the twelve months were too dialectal; a new passage only from a page image.

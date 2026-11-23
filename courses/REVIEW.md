@@ -882,6 +882,8 @@ Slovak* (2012). No one who speaks Slovak has read it yet. Check first:
     mountains; the Váh the longest river; the south warmer) and unit 20's (the tales collected by Dobšinský,
     published in Martin).
 11. **The voice.** One woman's voice (Piper's `sk_SK-lili-medium`, CC-BY-4.0) reads every line, a man's too
-    (ADR 0078). No listener has heard the clips: start at the audio check (`#/sk/sk-Latn.standard/audio`).
+    (ADR 0078). No listener has heard the clips. The round trip failed 353 of 1,203 (275 of them words said
+    alone, many of which Whisper mishears or hallucinates over), and those stay out of the bundle until a
+    listener passes them: start at the audio check (`#/sk/sk-Latn.standard/audio`), the failed clips first.
 12. **Left out** for a later pass: possessive adjectives (*otcov*, *mamin*), *všetci*, the reflexive passive
     (*predáva sa*), years read in full, vocatives (*Mami!*: the course writes *Mama*).
