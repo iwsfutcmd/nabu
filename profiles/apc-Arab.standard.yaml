@@ -76,6 +76,7 @@ spell:
   rules:
     - {find: "[\u064B-\u0652\u065C\u065D\u06DF]", to: ""}
     - {find: "[گپڤ]", map: {"گ": "ك", "پ": "ب", "ڤ": "ف"}}
+    - {find: " ", after: "^و", to: ""}  # the conjunction w is written onto the word after it (أهلا وسهلا)
 annotations:
   # quoted: YAML 1.1 reads bare on as true. Shadda and harakat where content has them (بدّي)
   - id: vocalized
@@ -89,6 +90,14 @@ annotations:
       sets:
         T: "[ءأ-ئبث-غف-ويپڤگ]"   # a consonant, not ت
       rules:
+        # REVIEW: the name of God at a word's end has no marks (والله، الحمدلله: the course); a final short e after a
+        # doubled letter is not written (هُوّ، هِيّ، هِنّ: the course; the voices say it).
+        - {find: "ل\u0652ل\u064Eه\u06DF", at: end, to: "لله"}
+        - {find: "\u0650", after: "\u0651", at: end, to: ""}
+        - {find: "^ا\u064Eل\u0652ل\u064Eه$", to: "الله"}
+        # REVIEW: ج after the article: the course marks it a sun letter (12 tokens: the owner's convention for new
+        # vocalizations; Kline p. 8) and a moon letter (24, older): both, until the owner chooses (re-marking makes clips again).
+        - {find: "ج\u0651", after: "ل\u06DF", to: "ج\u0651", alternatives: [{id: jim-moon, to: "ج"}]}
         # The helping vowel (docs/lexical-forms/apc.md; the owner, 2026-11-21): a word that ends in two consonants says a
         # vowel between them, a kasra, or a damma after a short u or o (not before the past's -t). Not in a doubled letter,
         # not after a glide, not after a consonant with no vowel. Inside a word it is not written yet (the form does not say
@@ -103,7 +112,7 @@ annotations:
         # The fathatan after its alef seat (شُكْراً).
         - {find: "\u064Bا", to: "ا\u064B"}
         # A consonant before its length letter carries no sign: long e and o are not told from long a, i and u.
-        - {find: "[\u064E\u065C]", before: "({L}\u06DF)*ا", to: ""}
+        - {find: "[\u064E\u065C]", before: "({L}\u06DF)*ا({L}|$)", to: ""}  # not before the article's silent alef: عَالبيت, هَالجِمْعَة (the course)
         - {find: "\u064E", before: "({L}\u06DF)*ى", to: ""}
         - {find: "[\u0650\u065C]", before: "({L}\u06DF)*ي({L}|$)", to: ""}
         - {find: "[\u064F\u065D]", before: "({L}\u06DF)*و({L}|$)", to: ""}
@@ -113,6 +122,7 @@ annotations:
         - {find: "\u065C", to: "\u0650"}
         - {find: "\u06DF", to: ""}
         - {find: "[گپڤ]", map: {"گ": "ك", "پ": "ب", "ڤ": "ف"}}
+        - {find: " ", after: "^و", to: ""}  # the conjunction w, onto the word after it
 input:
   keyboard: cldr-kbd:ar
   # Its vowel marks put on a word's letters from buttons, once a choice card has shown them (ADR 0137).

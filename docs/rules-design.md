@@ -624,3 +624,91 @@ stays REVIEW. Three jobs landed together.
   as a slip (*bteshteghel* for *bteshteghli*): the slip step does not ask the course's forms, some of which the
   nearest-word rule gets wrong. *eshtara*, *eshteghel* keep their said e- where Kline has *shtara*.
 
+## Stage 3 as built (2026-11-23): every apc token is accounted for, and the pinned copies are gone
+
+- **The check covers all 5,470 tokens** (both orthographies): 5,391 given by the rules, 79 by a form of the
+  lexeme (71 pinned with a `form`, 8 listed), none unaccounted, none "no rule yet". `form.unaccounted` is an
+  error; `form.pinned-differs`, `form.redundant`, `form.rule-debt` are added. It costs apc's compile about
+  0.45 s. `form.projection` is at zero.
+- **The 33 forms that did not spell as written:** the teens end in a ر written and not said (Kline's
+  *7da3sh(r)*), said before a noun (an allomorph `before` the next word); *7zeiran*'s marks follow its
+  Arabizi; `akl` has its own marks; *hayda / hayde* keep their bare glide; God's name and a final kasra after
+  a shadda are marked-layer rules; eleven words (loans, *bas*, *nos*, *hala2*) are spelled whole in Arabizi's
+  `spell`. Each is REVIEW.
+- **Rules added:** `rule:apc-adjective` (fs, pl), `-nisba`, `-invariable`, `-noun` (fs), `-article` (sun,
+  wasl), `-feminine-t` (vowel, consonant), `-short-stem` (dative), and branches of syncope, the defective
+  ending, the helping vowel (glide), the feminine (-e after a long i before r and ṣ: the course; Kline has
+  -a) and the prefix vowel. Classes `nisba` and `invariable`. Words in one cell of their own (*enti*,
+  *hayde*, *wlad*, *jiren*) say it with `citation`: they stay lexemes of their own.
+- **Clitics** are lexemes with forms (ا۟ل, بْ and بِ before the article, و, هَا۟ل, the dual, the pronouns),
+  realised from the lexemes each token lists, in its order, per orthography; the course's tokenizing is
+  untouched. A join is a boundary; its sound changes are rewrites naming it (the lam into a sun letter, a
+  wasl alef, the dative's l). Allomorphs are chosen twice (suffixes, the base, prefixes), `after` and
+  `before` reading the token's own text, `before` the next word's base where nothing follows in the token.
+  A phrase is spelled word by word and a token is one word of it.
+- **Engine:** `Condition.startsIn`, an allomorph's `before`, a rewrite's `when`, citation before any rule,
+  `RealiseOptions.next`, `.word`, `pinned: false`; `spell` takes a `part`. Vectors: realise.json 133,
+  spell.json 93; the harnesses pass 1,218 and 1,219.
+- **Course changes (7 tokens):** three teens' marks said alone (`context: alone`), كيفَك in one story line,
+  *3meli* for *3emli* (old accepted), one token's base named. 18 clips made again; 6 failed the round trip
+  (four teens' lemmas, *miyye*, s.date.4); held-back total 251.
+- **Pruned:** `nabu forms prune` took 243 of 268 pinned forms; the bundles are byte for byte the same before
+  and after it and no clip went stale. Kept: 15 with a form (the colours' feminines, *7abibi*'s, the phrases:
+  rule debt) and 10 spelling-only stems before a suffix that no rule needs (for the owner).
+- **Moved:** the simulated apc learner in Arabic script, 83.8 to 82.5% (inside the band, nothing retuned).
+- **For the owner:** ج after the article (the course marks it a moon letter 24 times and a sun letter 12;
+  both are accepted meanwhile); *rkhise* against Kline's -a; the ten stem copies; the teens' clips.
+- **Not done:** glosses for the rule ids (they would ship; stage 4 or 5 writes them with the cards).
+
+## Stage 4 as built (2026-11-23): the bundle carries each lexeme's forms
+
+- **Format 5.** The lexicon carries `cells` (per category a rule covers: the cells its tokens choose, cut to the
+  category's dimensions, each value taught: introduced by a node, or the citation or bare cell's, or of a feature the
+  course teaches no value of; a cell no rule gives any lexeme is dropped, which drops NOUN) and `principalParts`
+  (a new `language.yaml` key; apc VERB: the he-present, answer 1). Each lexeme with one carries `paradigm` (per
+  orthography one entry a cell: a spelling, `[spelling, marked]` where there is a vocalized layer, or null) and
+  `regularised` (only where blocking off differs). apc: VERB 27 cells (43 lexemes), AUX 9 (`kan`), ADJ 3 (36),
+  1,278 spelled cells per orthography; the lexicon file grew 260 to 322 KB (14 to 27 KB gzipped). Every other
+  course's bundle changed only by its format number. A lexeme the course writes but never inflects (`badd`,
+  `lezem`) gets no paradigm, and the participle-cited lexemes none yet (their cells are template errors).
+- **The compiler** (`pipeline/src/nabu/paradigms.py`) runs after the token check, through core-cli `paradigm`
+  (new `strict` option: a cell no exponent names is `no-rule`, not the bare stem) and `spell`. A form spelled
+  outside its orthography's script (the script audit's test) or beginning with a joining carrier is not shipped
+  and is reported (`form.spelling-script`). The guard found four faults, fixed as rules (REVIEW):
+  `rule:apc-wasl|prefix` (a prefix before a stem's unsaid alef: *estanna*), `rule:apc-defective|ay` (*stannayt*,
+  *ghannayt*), the 1sg's alef before a vowelled glide (*wa22ef*), `rule:apc-defective|adjective` and the class
+  `invariable` on *a7la*, *aghla*. It still fires on *wesel*'s command (three cells: the w-initial command stem
+  keeps its carrier first), an expected warning until the rule is settled.
+- **Grading** takes every paradigm spelling (`paradigmWords`, the same in core-cli `grade`): an unwritten regular
+  form of the answer's own lexeme is another form (grammatical, with a slip where it is one), of another lexeme
+  lexical. Over every accept-set alternative of apc (both scripts) and es, about 62,000, no verdict changed.
+  Of the 320 wrong-form slips counted that day, 33 are now refused; 287 are not, most of them verbs typed in a
+  free spelling of a cell whose default spelling alone ships (*tishtighel* for *teshteghel*), and nouns, which
+  have no cells. Grading stays within its budget (p95 under 5 ms; preparation about 15% slower in Arabizi).
+- **What a learner sees:** a verb's he-present after its lemma (`Headword`, core `principalParts`) in a lesson's
+  new words, the session end, the word list and the gloss panel; never in options, tiles or pairs. The parts shown
+  are logged as seen with their cell (`LessonEvent.beside`). The Data page shows each entry's paradigm.
+- **`regularised`** exists for `b3at` (its listed past) and the invariable and nisba adjectives (*akbra* for
+  *akbar*, *lebnenye*): a learner's over-regularisation, kept for stage 6's label. `stanna`'s listed present is
+  now what the rules give (the owner may drop it).
+- **For the owner:** *wesel*'s command; the regularised adjectives *a7le*, *aghle* (well formed, but what a
+  learner would say is a guess); the 287 slips.
+
+## What is left (2026-11-23, end of the session that built stages 1 to 4)
+
+- **Stage 5: a built word for an unseen form, and a memory per branch** (answers 4 and 5). The card (section 6):
+  the lemma with its gloss and the form's label, the form typed, no sentence; offered only where the paradigm
+  gives the cell (`given`, never pinned or listed), the lexeme is recognized, every value is taught, another
+  lexeme of the course writes the cell, and the learner has never seen the pair (the fold's `seen`, or a met
+  sentence that writes it). A memory per branch (the owner chose it against the draft's pick): needs an ADR
+  (Proposed) settling ADR 0146's open point; the bundle must ship each cell's `{rule, branch}` steps (the
+  paradigm has none yet); branch card keys (`rule:apc-perfect|1sg|choose`?), priors as guesses (REVIEW), a
+  branch due only where a built-word card can ask it (learner/due.ts), and simulated learners with an ability
+  per branch, or the calibration cannot see it. The view needs the visual matrix and e2e by keyboard and touch.
+- **Stage 6: Spanish's verbs**, two sessions (section 7). 6a: es's lexical forms (`spell` the identity under the
+  stress statement), its classes (e-ie, o-ue, e-i, -go, short futures, strong preterites: REVIEW), the -ar, -er,
+  -ir rules, the token check over es; 6b: listed forms with statements (*ser*, *ir*, *tuv-*), pruning, the label
+  regularised produced (*tenió* for *tuvo*). Spanish has about 8,900 verb cells: measure preparation.
+- **Smaller:** the 287 wrong-form slips (ship or compute free variants of paradigm spellings, or give nouns
+  cells); prepositions with the article typed apart (*3a l ba7r*); glosses for the rule ids (with stage 5's
+  cards, since they ship); *wesel*'s command.

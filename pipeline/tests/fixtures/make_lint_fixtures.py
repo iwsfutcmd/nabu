@@ -693,27 +693,30 @@ APC_LANGUAGE: dict[str, Any] = yaml.safe_load(
 )
 
 
-def _apc_unaccounted(c: Course) -> None:
-    """apc's verb rules (lexicons/apc/language.yaml) and a verb, shereb (ش ر ب, past i, present a),
-    whose past 1sg the rules give shrebt; the sentence writes shrabt."""
+def _apc_shereb(c: Course, writes: str, form: dict[str, Any] | None = None) -> None:
+    """apc's rules (lexicons/apc/language.yaml) and a verb, shereb (ش ر ب, past i, present a),
+    whose past 1sg the rules give shrebt; a sentence writes it `writes`, and shereb keeps `form`
+    (a pinned form of that cell), if given."""
     language = c["own"]["language"]
     for key in ("rootClasses", "stems", "realisation", "phonology"):
         language[key] = APC_LANGUAGE[key]
     language["dimensions"] = {"VERB": ["Aspect", "Person", "Number"]}
     language["features"] = {"Aspect": ["Perf"], "Number": ["Sing"], "Person": ["1"]}
-    c["own"]["lexicon"]["lexemes"].append(
-        {
-            "id": "lexeme:shereb",
-            "pos": "VERB",
-            "gloss": {"en": "drink"},
-            "form": {
-                "radicals": ["\u0634", "\u0631", "\u0628"],
-                "form": "I",
-                "vowels": {"past": "i", "present": "a"},
-            },
-            "spelled": {APC_ORTH: ["shereb"]},
-        }
-    )
+    shereb: dict[str, Any] = {
+        "id": "lexeme:shereb",
+        "pos": "VERB",
+        "gloss": {"en": "drink"},
+        "form": {
+            "radicals": ["\u0634", "\u0631", "\u0628"],
+            "form": "I",
+            "vowels": {"past": "i", "present": "a"},
+        },
+        "spelled": {APC_ORTH: ["shereb"]},
+    }
+    if form is not None:
+        cell = {"Aspect": "Perf", "Number": "Sing", "Person": "1"}
+        shereb["forms"] = [{"feats": cell, "status": "pinned", **form}]
+    c["own"]["lexicon"]["lexemes"].append(shereb)
     u = unit(c)
     u["nodes"][0]["introduces"].append("lexeme:shereb")
     u["sentences"].append(
@@ -722,20 +725,62 @@ def _apc_unaccounted(c: Course) -> None:
             "node": "basics.1",
             "forms": {
                 APC_ORTH: {
-                    "text": "shrabt",
+                    "text": writes,
                     "tokens": [
                         {
-                            "surface": "shrabt",
+                            "surface": writes,
                             "lexeme": "shereb",
                             "feats": {"Aspect": "Perf", "Number": "Sing", "Person": "1"},
                         }
                     ],
-                    "reverse": "shrabt",
+                    "reverse": writes,
                 }
             },
             "translations": {"en": "I drank"},
         }
     )
+
+
+def _apc_unaccounted(c: Course) -> None:
+    """shereb's past 1sg written shrabt, where the rules give shrebt."""
+    _apc_shereb(c, "shrabt")
+
+
+def _apc_redundant(c: Course) -> None:
+    """shereb's past 1sg pinned as shrebt, which the rules give."""
+    _apc_shereb(c, "shrebt", {"spelled": {APC_ORTH: ["shrebt"]}})
+
+
+def _apc_pinned_differs(c: Course) -> None:
+    """shereb's past 1sg pinned as shrobt, which no token writes (the sentence writes shrebt)."""
+    _apc_shereb(c, "shrebt", {"spelled": {APC_ORTH: ["shrobt"]}})
+
+
+def _apc_rule_debt(c: Course) -> None:
+    """shereb's past 1sg written shrobt and pinned with that form: rule debt."""
+    form = "\u0634\u0652\u0631\u064f\u0628\u0652+\u062a"
+    _apc_shereb(c, "shrobt", {"form": form, "spelled": {APC_ORTH: ["shrobt"]}})
+
+
+def _apc_spelling_script(c: Course) -> None:
+    """A verb whose third radical is a letter Arabizi's `spell` has no rule for (\u066f, a
+    dotless qaf): its past 1sg, a cell of the paradigm shereb's token lists, would ship as
+    shre\u066ft, an Arabic letter in Latin text."""
+    _apc_shereb(c, "shrebt")
+    c["own"]["lexicon"]["lexemes"].append(
+        {
+            "id": "lexeme:shreq",
+            "pos": "VERB",
+            "gloss": {"en": "rise"},
+            "form": {
+                "radicals": ["\u0634", "\u0631", "\u066f"],
+                "form": "I",
+                "vowels": {"past": "i", "present": "a"},
+            },
+            "spelled": {APC_ORTH: ["shereq"]},
+        }
+    )
+    unit(c)["nodes"][0]["introduces"].append("lexeme:shreq")
 
 
 def _script_untaught(c: Course) -> None:
@@ -1278,6 +1323,22 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     "form.unaccounted": (
         "shereb's past 1sg written shrabt, where apc's rules give shrebt.",
         m(_apc_unaccounted, APC),
+    ),
+    "form.pinned-differs": (
+        "shereb's past 1sg pinned as shrobt, which no token writes.",
+        m(_apc_pinned_differs, APC),
+    ),
+    "form.redundant": (
+        "shereb's past 1sg pinned as shrebt, which apc's rules give.",
+        m(_apc_redundant, APC),
+    ),
+    "form.spelling-script": (
+        "A verb's past 1sg spelled in Arabizi with an Arabic letter its `spell` keeps.",
+        m(_apc_spelling_script, APC),
+    ),
+    "form.rule-debt": (
+        "shereb's past 1sg pinned with a form the rules do not give (shrobt).",
+        m(_apc_rule_debt, APC),
     ),
     "script.untaught-letter": (
         "A Greek alphabet node's word uses ν before the track teaches it.",

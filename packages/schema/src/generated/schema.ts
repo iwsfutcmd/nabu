@@ -125,6 +125,13 @@ export type UdFeatures1 = Readonly<Record<string, string>>;
  */
 export type UdFeatures2 = Readonly<Record<string, string>>;
 /**
+ * A cell's form in one orthography, as its profile's `spell` writes the realisation: the spelling, or where the orthography has a marked layer (apc's vocalized) the spelling and the marked text, in that order; null where the rules give the lexeme no form there (no rule for the cell, no template for its root, a phrase).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleParadigmForm".
+ */
+export type BundleParadigmForm = null | string | readonly string[];
+/**
  * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -138,6 +145,13 @@ export type SchemeId = string & { readonly __brand: "SchemeId" };
  * via the `definition` "RuleId".
  */
 export type RuleId = string;
+/**
+ * A cell of a paradigm as a form key's feature part (FormKey, after `|form:`): its feature values as Name=Value, sorted by name and joined by `;` (Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=3).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleCell".
+ */
+export type BundleCell = string;
 /**
  * What a path node may introduce: a lexeme, a feature value, a rule, or a letter of a script track (ADR 0149: a grapheme stays the track's).
  *
@@ -856,6 +870,8 @@ export interface NabuSchemaIndex {
   readonly BundleManifest: BundleManifest;
   readonly BundleFile: BundleFile;
   readonly BundleLexicon: BundleLexicon;
+  readonly BundleCell: BundleCell;
+  readonly BundleParadigmForm: BundleParadigmForm;
   readonly BundleLexeme: BundleLexeme;
   readonly BundleLabel: BundleLabel;
   readonly BundleRule: BundleRule;
@@ -1699,9 +1715,9 @@ export interface AudioVerdict {
  */
 export interface BundleManifest {
   /**
-   * 4: 3 with the profiles' and schemes' statements in place of soundAlike and variants, and each lexeme's leftovers (ADR 0148). 3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated.
+   * 5: 4 with the lexicon's cells and principal parts and each lexeme's paradigm (docs/rules-design.md, stage 4). 4: 3 with the profiles' and schemes' statements in place of soundAlike and variants, and each lexeme's leftovers (ADR 0148). 3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated.
    */
-  readonly formatVersion: 4;
+  readonly formatVersion: 5;
   /**
    * sha256 of the manifest without this field.
    */
@@ -1879,6 +1895,24 @@ export interface BundleLexicon {
    * The rules the course names (the language's `rules`), each with what a learner is shown for it.
    */
   readonly rules?: readonly BundleRule[];
+  /**
+   * For each category the language's rules inflect, the cells its lexemes' paradigms list, in order (docs/rules-design.md, stage 4): those the course's tokens choose on the category, each value of them one the course teaches (a node introduces it, the category's citation or bare cell has it, or the course teaches no value of its feature), with the principal parts' cells. A lexeme's `paradigm` follows this order. Absent: the language has no rules, or the course writes no such cell.
+   */
+  readonly cells?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly BundleCell[];
+  };
+  /**
+   * For each category, the cells shown after a lemma wherever a word is presented as itself, in order (the language's `principalParts`): each one of its `cells`.
+   */
+  readonly principalParts?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly BundleCell[];
+  };
 }
 /**
  * One lexeme as a course ships it. What kind it is shows in what it has, as in the lexicon: a part of speech, `realises` (a value head: uz -ga) or `head` (a function head). A form a rule gives and ours does not yet (pinned) is not here: it is stored and checked in the lexicon, and never a learner's part (ADR 0146).
@@ -1923,6 +1957,23 @@ export interface BundleLexeme {
    * Bundle path of its picture (a file with role image).
    */
   readonly image?: string;
+  /**
+   * Its forms in each course orthography, one for each of its category's `cells` in the lexicon's order (docs/rules-design.md, stage 4): what the rules give, or the lexeme's own pinned or listed form where it has one for the cell. The grader knows a typed word among them as this lexeme's form in that cell. Absent: its category has no cells.
+   */
+  readonly paradigm?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly BundleParadigmForm[];
+  };
+  /**
+   * Where realising with blocking off (no listed form or stated class: ADR 0145) gives another form than `paradigm`: per orthography, that form by cell. The regularised form a learner may build (tenió for tuvo). Absent: none differs.
+   */
+  readonly regularised?: {
+    readonly [k: string]: {
+      readonly [k: string]: BundleParadigmForm;
+    };
+  };
   /**
    * What no stated correspondence gives of this lexeme (ADR 0148): the orthographies in which a fixed correspondence could have spelled it otherwise (`spelling`); the schemes in which its letters leave its reading open (`reading`). Absent: none.
    */
@@ -3343,6 +3394,10 @@ export interface Condition {
    * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
    */
   readonly endsIn?: string;
+  /**
+   * For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).
+   */
+  readonly startsIn?: string;
   readonly feats?: UdFeatures7;
 }
 /**
@@ -3363,6 +3418,10 @@ export interface Condition1 {
    * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
    */
   readonly endsIn?: string;
+  /**
+   * For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).
+   */
+  readonly startsIn?: string;
   readonly feats?: UdFeatures7;
 }
 /**
@@ -3410,6 +3469,15 @@ export interface LanguageDeclaration {
    */
   readonly citation?: {
     readonly [k: string]: UdFeatures1;
+  };
+  /**
+   * For each category, the cells shown after its lemma wherever a word is presented as itself, in order (docs/rules-design.md, stage 4; the owner's answer 1: an apc verb is cited by its he-past, the he-present beside it). The compiler lists each among the category's cells and spells it from the rules; a lexeme the rules give no form for there shows none.
+   */
+  readonly principalParts?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly UdFeatures1[];
   };
   /**
    * For each category, the feature values of its form with nothing added: masculine singular for a noun or an adjective, a verb's bare stem (apc: the command to a man). A lexeme the course writes in another form is one it inflects, which a profile's contrast sets marked `inflected` ask (ADR 0081: a slip that trades one agreement ending for another is no typo, on a word that takes them). Where it is the cell an entry is spelled in, it is said here all the same.
@@ -3498,6 +3566,10 @@ export interface Condition2 {
    * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
    */
   readonly endsIn?: string;
+  /**
+   * For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).
+   */
+  readonly startsIn?: string;
   readonly feats?: UdFeatures7;
 }
 /**
@@ -3685,9 +3757,34 @@ export interface Rewrite {
   readonly before?: Context;
   readonly after?: Context;
   readonly at?: "start" | "end";
+  readonly when?: Condition3;
   readonly notes?: {
     readonly [k: string]: string;
   };
+}
+/**
+ * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
+ */
+export interface Condition3 {
+  readonly pos?: PartOfSpeech;
+  /**
+   * The lexical form ends in this (Spanish -a; uz -k).
+   */
+  readonly ends?: string;
+  /**
+   * The lexical form begins with this.
+   */
+  readonly starts?: string;
+  readonly class?: Slug3;
+  /**
+   * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
+   */
+  readonly endsIn?: string;
+  /**
+   * For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).
+   */
+  readonly startsIn?: string;
+  readonly feats?: UdFeatures7;
 }
 /**
  * A generated lookup table an orthography profile refers to by id (profiles/tables/<id>.json): orthographic variant groups, character readings for the IME-homophone typo model, or a character set for script-mismatch detection.

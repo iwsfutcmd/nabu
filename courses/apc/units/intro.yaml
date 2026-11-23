@@ -200,7 +200,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: وإنت؟
-      tokens: [{surface: وإنت, lexemes: [{lexeme: w, surface: و}, {lexeme: enta, surface: إنت}]}]
+      tokens: [{surface: وإنت, lexemes: [{lexeme: w, surface: و}, {lexeme: enta, surface: إنت, base: true}]}]
       reverse: (وإنت|و إنت)
     apc-Latn/arabizi:
       text: w enta?
@@ -462,8 +462,8 @@ stories:
       speaker: maya
       forms:
         apc-Arab/standard:
-          text: مَرْحَبا سامي! كِيفَك؟
-          tokens: [{surface: مَرْحَبا, lexeme: marhaba}, {surface: سامي, lexeme: sami}, {surface: كِيفَك, lexemes: [{lexeme: kif, surface: كِيفَ, base: true}, {lexeme: poss-2ms, surface: ك}]}]
+          text: مَرْحَبا سامي! كيفَك؟
+          tokens: [{surface: مَرْحَبا, lexeme: marhaba}, {surface: سامي, lexeme: sami}, {surface: كيفَك, lexemes: [{lexeme: kif, surface: كيفَ, base: true}, {lexeme: poss-2ms, surface: ك}]}]
         apc-Latn/arabizi:
           text: mar7aba Sami! kifak?
           tokens: [{surface: mar7aba, lexeme: marhaba}, {surface: Sami, lexeme: sami}, {surface: kifak, lexemes: [{lexeme: kif, surface: kif, base: true}, {lexeme: poss-2ms, surface: ak}]}]

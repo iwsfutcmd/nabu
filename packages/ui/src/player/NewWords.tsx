@@ -12,12 +12,13 @@
  * Which card first presents a word is worked out from the session as it stands (`newOnCard`), so a
  * card put off or dropped hands the first look on to the next card with the word.
  */
-import type { CourseView, Exercise, TemplateId } from "@nabu/core/lesson";
-import { isLexeme, lexemesById } from "@nabu/core/lesson";
+import type { Beside, CourseView, Exercise, LessonEvent, TemplateId } from "@nabu/core/lesson";
+import { isLexeme, lexemesById, principalParts } from "@nabu/core/lesson";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import type { JSX } from "react";
 import { useTranslator } from "../context.tsx";
 import type { Marks } from "../marks.tsx";
+import { Headword } from "../Headword.tsx";
 import { T } from "../T.tsx";
 import styles from "./Player.module.css";
 
@@ -27,6 +28,28 @@ const WORD_SHOWN: ReadonlySet<TemplateId> = new Set(["choose-translation", "tran
 const MEANING_SHOWN: ReadonlySet<TemplateId> = new Set(["speak.tier-0", "speak"]);
 /** Cards that are themselves the words and their meanings: the tag is enough. */
 const TAG_ONLY: ReadonlySet<TemplateId> = new Set(["match-pairs", "letter-pairs"]);
+
+/** Where a card names its new words: above the instruction from the start, under the feedback once answered. */
+export const newWordsShown = (template: TemplateId): { readonly before: boolean; readonly after: boolean } => ({
+  before: WORD_SHOWN.has(template) && !TAG_ONLY.has(template),
+  after: !TAG_ONLY.has(template) && !MEANING_SHOWN.has(template),
+});
+
+/**
+ * What a card shows beside it of its new words that is a form of theirs (ADR 0146: seen is logged):
+ * each one's principal parts (docs/rules-design.md, stage 4), where the card names the word, from the
+ * start or once answered (`newWordsShown`). The lemma itself is not a form the lexicon keys.
+ */
+export const besideOf = (course: CourseView, ex: Exercise, fresh: readonly string[]): Beside => {
+  const byId = lexemesById(course);
+  const parts = fresh.flatMap((lexeme) => principalParts(course.lexicon, byId.get(lexeme), course.orthography));
+  const shown = newWordsShown(ex.template);
+  return { before: shown.before ? parts : [], after: shown.after ? parts : [] };
+};
+
+/** A card's presentation and its answer, with what the shell shows beside it (`besideOf`), where it shows anything. */
+export const withBeside = (event: LessonEvent, beside: Beside | undefined): LessonEvent =>
+  beside === undefined || (beside.before.length === 0 && beside.after.length === 0) || (event.type !== "exercise_presented" && event.type !== "answer_submitted") ? event : { ...event, beside };
 
 /**
  * The words a card presents for the first time in its lesson: the lesson's new words (`introduces`)
@@ -48,6 +71,8 @@ export const taughtIn = (cards: readonly Exercise[], introduces: ReadonlySet<str
 interface Word {
   readonly lexeme: string;
   readonly form: TaggedText;
+  /** Its principal parts, shown after it (core `principalParts`). */
+  readonly parts: readonly TaggedText[];
   readonly gloss: TaggedText | undefined;
 }
 
@@ -56,7 +81,7 @@ const useWords = (course: CourseView, lexemes: readonly string[]): readonly Word
   return lexemes.flatMap((lexeme) => {
     const entry = byId.get(lexeme);
     const form = entry?.forms?.[course.orthography]?.[0];
-    return form === undefined ? [] : [{ lexeme, form, gloss: entry?.gloss?.[course.supportKey] }];
+    return form === undefined ? [] : [{ lexeme, form, parts: principalParts(course.lexicon, entry, course.orthography), gloss: entry?.gloss?.[course.supportKey] }];
   });
 };
 
@@ -73,7 +98,7 @@ const WordList = ({ words, meanings, ruby, marks }: { readonly words: readonly W
   <ul className={styles.newWordList}>
     {words.map((w) => (
       <li key={w.lexeme} className={styles.newWord} data-new-word={w.lexeme}>
-        <T text={w.form} ruby={ruby} marks={marks} />
+        <Headword text={w.form} parts={w.parts} ruby={ruby} marks={marks} />
         {meanings && w.gloss !== undefined && <T text={w.gloss} className={styles.newWordGloss} />}
       </li>
     ))}
@@ -85,7 +110,7 @@ export const NewWordsTag = ({ course, template, lexemes, ruby, marks }: NewWords
   const t = useTranslator();
   const words = useWords(course, lexemes);
   if (words.length === 0) return null;
-  const named = WORD_SHOWN.has(template) && !TAG_ONLY.has(template);
+  const named = newWordsShown(template).before;
   return (
     <div className={styles.newWords} data-new-words={words.map((w) => w.lexeme).join(" ")}>
       <p className={styles.reviewTag} data-new-word-tag="">
@@ -100,7 +125,7 @@ export const NewWordsTag = ({ course, template, lexemes, ruby, marks }: NewWords
 export const NewWordsAnswered = ({ course, template, lexemes, ruby, marks }: NewWordsProps): JSX.Element | null => {
   const t = useTranslator();
   const words = useWords(course, lexemes);
-  if (words.length === 0 || TAG_ONLY.has(template) || MEANING_SHOWN.has(template)) return null;
+  if (words.length === 0 || !newWordsShown(template).after) return null;
   const label = t.format("player.new-word.tag", { count: words.length });
   return (
     <div className={styles.newWordsAnswered} role="group" aria-label={label} data-new-words-answered="">

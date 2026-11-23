@@ -1,0 +1,34 @@
+{
+  "language": "apc",
+  "cells": {
+    "VERB": ["Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=3", "Aspect=Perf;Number=Sing;Person=1", "Gender=Fem;Mood=Imp;Number=Sing;Person=2"]
+  },
+  "principalParts": {
+    "VERB": ["Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=3"]
+  },
+  "lexemes": [
+    {
+      "id": "lexeme:shereb",
+      "pos": "VERB",
+      "forms": {
+        "apc-Latn/arabizi": [
+          { "lang": "apc-Latn-LB", "orthography": "apc-Latn/arabizi", "tokens": [{ "surface": "shereb", "kind": "lexical", "tileGroup": 0 }] }
+        ]
+      },
+      "paradigm": {
+        "apc-Arab/standard": [["بيشرب", "بْيِشْرَب"], ["شربت", "شْرِبِت"], null],
+        "apc-Latn/arabizi": ["byishrab", "shrebt", null]
+      }
+    },
+    {
+      "id": "lexeme:b3at",
+      "pos": "VERB",
+      "paradigm": {
+        "apc-Latn/arabizi": ["byib3at", "b3att", "eb3ati"]
+      },
+      "regularised": {
+        "apc-Latn/arabizi": { "Aspect=Perf;Number=Sing;Person=1": "ba3att" }
+      }
+    }
+  ]
+}

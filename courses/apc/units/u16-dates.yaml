@@ -21,7 +21,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: حدعشر!
-      tokens: [{surface: حدعشر, lexeme: 7da3sh}]
+      tokens: [{surface: حدعشر, lexeme: 7da3sh, vocalized: حْدَعْشْر, context: alone}]
       reverse: حدعشر
     apc-Latn/arabizi:
       text: 7da3sh!
@@ -68,7 +68,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الساعة تنعشر.
-      tokens: [{surface: الساعة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: sa3a, surface: ساعة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: تنعشر, lexeme: tna3sh}]
+      tokens: [{surface: الساعة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: sa3a, surface: ساعة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: تنعشر, lexeme: tna3sh, vocalized: تْنَعْشْر, context: alone}]
       reverse: الساعة تنعشر
     apc-Latn/arabizi:
       text: el sa3a tna3sh.
@@ -676,8 +676,8 @@ stories:
       speaker: maya
       forms:
         apc-Arab/standard:
-          text: بَعِد بُكْرا! تْلاتَعْشَر نيسان.
-          tokens: [{surface: بَعِد, lexeme: ba3d-bukra}, {surface: بُكْرا, lexeme: ba3d-bukra}, {surface: تْلاتَعْشَر, lexeme: tleta3sh}, {surface: نيسان, lexeme: nisan}]
+          text: بَعِد بُكْرا! تْلاتَعْشْر نيسان.
+          tokens: [{surface: بَعِد, lexeme: ba3d-bukra}, {surface: بُكْرا, lexeme: ba3d-bukra}, {surface: تْلاتَعْشْر, lexeme: tleta3sh, context: alone}, {surface: نيسان, lexeme: nisan}]
         apc-Latn/arabizi:
           text: ba3d bukra! tleta3sh nisan.
           tokens: [{surface: ba3d, lexeme: ba3d-bukra}, {surface: bukra, lexeme: ba3d-bukra}, {surface: tleta3sh, lexeme: tleta3sh}, {surface: nisan, lexeme: nisan}]

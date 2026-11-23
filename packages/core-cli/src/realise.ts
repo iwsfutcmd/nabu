@@ -82,10 +82,20 @@ const feats = (given: unknown, what: string): UdFeatures => {
   return Object.fromEntries(Object.entries(given).map(([k, v]) => [k, String(v)]));
 };
 
-const options = (args: Args): { blocking?: boolean; spellings?: boolean } => ({
-  ...(args["blocking"] === false && { blocking: false }),
-  ...(args["spellings"] === false && { spellings: false }),
-});
+const options = (args: Args): { blocking?: boolean; spellings?: boolean; pinned?: boolean; word?: number; next?: string; strict?: boolean } => {
+  const word = args["word"];
+  const next = args["next"];
+  if (next !== undefined && typeof next !== "string") throw new Error('"next" must be a lexeme id');
+  if (word !== undefined && (typeof word !== "number" || !Number.isInteger(word) || word < 0)) throw new Error('"word" must be a whole number, from 0');
+  return {
+    ...(args["blocking"] === false && { blocking: false }),
+    ...(args["spellings"] === false && { spellings: false }),
+    ...(args["pinned"] === false && { pinned: false }),
+    ...(args["strict"] === true && { strict: true }),
+    ...(typeof word === "number" && { word }),
+    ...(typeof next === "string" && { next }),
+  };
+};
 
 const lexemeArg = (args: Args): string => {
   const id = args["lexeme"];
@@ -94,9 +104,9 @@ const lexemeArg = (args: Args): string => {
 };
 
 export const REALISE_OPS: Readonly<Record<string, (args: Args) => unknown>> = {
-  /** A lexeme in a cell: its lexical form, status and the rules (with branches) taken (`blocking: false`: the regularised form; `spellings: false`: forms that pin spellings only passed over). */
+  /** A lexeme in a cell: its lexical form, status and the rules (with branches) taken (`blocking: false`: the regularised form; `spellings: false`: forms that pin spellings only passed over; `pinned: false`: every pinned form passed over). */
   realise: (a) => realise(languageOf(a), lexemeArg(a), feats(a["cell"] ?? {}, "cell"), options(a)),
-  /** A token's lexemes (`lexemes`: [{ lexeme, feats?, base? }]) realised and joined. */
+  /** A token's lexemes (`lexemes`: [{ lexeme, feats?, base? }]) realised and joined (`word`: the word of a phrase lexeme's form the token writes; `next`: the base lexeme of the word after it). */
   "realise-token": (a) => {
     const written = a["lexemes"];
     if (!Array.isArray(written)) throw new Error('"lexemes" must be an array of { lexeme, feats?, base? }');
@@ -107,7 +117,7 @@ export const REALISE_OPS: Readonly<Record<string, (args: Args) => unknown>> = {
     });
     return realiseToken(languageOf(a), list, options(a));
   },
-  /** A lexeme in each of `cells`. */
+  /** A lexeme in each of `cells` (`strict: true`: as the bundle's paradigms list them, a cell no exponent names is no-rule). */
   paradigm: (a) => {
     const cells = a["cells"];
     if (!Array.isArray(cells)) throw new Error('"cells" must be an array of cells');

@@ -206,10 +206,14 @@ scan with no text layer, its first pages two-page spreads, so find a page by its
   the e2e lesson by keyboard and touch). The label that reads a lexical feature (stage 2) was not
   built: the present's and the future's labels say in their notes that a perfective's present says
   the future.
-- **Stage 5: clips made, not yet heard.** Piper `sk_SK-lili-medium` reads every sentence, story line
-  and word (CC-BY-4.0). The round trip and a listener in the audio check are still owed; until a
-  listener has heard them, `audio.quality` stays at its default and the audio check
-  (`#/sk/sk-Latn.standard/audio`) is where to start.
+- **Stage 5: clips made and round-tripped, not yet heard.** Piper `sk_SK-lili-medium` reads every
+  sentence, story line and word (CC-BY-4.0). The round trip (Whisper large-v3-turbo, `nabu audio
+  check`) passed 382 clips, put 468 to review and failed 353, which stay out of the bundle until a
+  listener passes them: 275 of the 353 are words said alone, where the recognizer often hears
+  nothing it can place (about 60 come back as Whisper's stock "Ďakujem (za pozornosť)."). uz and apc
+  fail as many. A listener in the audio check (`#/sk/sk-Latn.standard/audio`, then `nabu audio
+  verdicts`) is owed before `audio.quality` is set; a Slovak Whisper fine-tune as the profile's
+  `speech.recognizer` (ADR 0116) may clear many of the words.
 - **Stage 6: done.** Units 11–20 and ten scenarios, every unit clean under `--check`. One Dobšinský
   passage, not five (ADR 0155's header): unit 17. Left for a later pass: possessive adjectives,
   *všetci*, the reflexive passive, years in full, soft adjectives as a topic (README).

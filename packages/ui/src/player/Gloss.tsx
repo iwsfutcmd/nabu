@@ -11,6 +11,7 @@ import { hasReading, wordAt } from "@nabu/core/text";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { useMemo, type JSX, type ReactNode } from "react";
 import { useTranslator } from "../context.tsx";
+import { Headword } from "../Headword.tsx";
 import { FadeReadings, type Marks } from "../marks.tsx";
 import { T } from "../T.tsx";
 import styles from "./Gloss.module.css";
@@ -51,7 +52,7 @@ export const GlossEntry = ({ gloss: g, ruby, marks, note }: GlossEntryProps): JS
             {t.format("story.gloss.unwritten")}
           </span>
         ) : (
-          <T text={g.form} ruby={ruby} marks={marks} />
+          <Headword text={g.form} parts={g.lemma === undefined ? (g.principalParts ?? []) : []} ruby={ruby} marks={marks} />
         )}
       </dt>
       <dd>
@@ -59,7 +60,7 @@ export const GlossEntry = ({ gloss: g, ruby, marks, note }: GlossEntryProps): JS
         {g.span !== "whole" && <span className={styles.glossNote}>{t.format(g.span === "part" ? "story.gloss.part" : "story.gloss.phrase")}</span>}
         {g.lemma !== undefined && (
           <span className={styles.glossNote} data-gloss-lemma="">
-            {t.format("story.gloss.lemma")} <T text={g.lemma} ruby={ruby} marks={marks} />
+            {t.format("story.gloss.lemma")} <Headword text={g.lemma} parts={g.principalParts ?? []} ruby={ruby} marks={marks} />
           </span>
         )}
         {note}

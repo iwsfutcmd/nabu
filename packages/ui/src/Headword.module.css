@@ -1,0 +1,14 @@
+/* A word shown as itself with its principal parts after it (docs/rules-design.md, stage 4): one run in
+   the word's own direction, the parts set off by a rule before each. */
+.headword {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--nabu-space-2);
+}
+
+.part {
+  padding-inline-start: var(--nabu-space-2);
+  border-inline-start: 1px solid var(--nabu-color-line);
+  color: var(--nabu-color-muted);
+}

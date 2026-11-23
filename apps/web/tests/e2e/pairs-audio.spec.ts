@@ -1,6 +1,8 @@
 /**
  * Clips that play by themselves:
  * - match the pairs: a tapped word says itself when it has a clip; meanings say nothing;
+ * - a card that asks what a target sentence means says it as it opens (choose the translation, the
+ *   word bank from the target), as a listening card says its clip;
  * - every card with a clip says it once answered (complete the translation, translations both
  *   ways, gap-fill, pictures, pronunciation, listening cards again);
  * - with sound off nothing plays: off in Preferences or the lesson's header (the play buttons still
@@ -80,8 +82,12 @@ test("complete the translation: once answered, the whole sentence is said", asyn
   await expect(page.locator("[data-lesson-player] [data-action=play]")).toBeVisible();
 });
 
-/** Cards that say their clip once answered, beyond complete-the-translation (listening cards also play when they open). */
+/** Cards that say their clip once answered, beyond complete-the-translation (some also as they open: SAY_ON_OPEN). */
 const SAY_WHEN_ANSWERED = ["choose-translation", "translate-tap.l2-l1", "translate-tap.l1-l2", "translate-type.l1-l2", "gap-fill", "select-image", "vocalize", "listen-type"] as const;
+
+/** Cards that say their clip as they open too: the sentence whose meaning they ask, and listening cards' clips. */
+const SAY_ON_OPEN: ReadonlySet<string> = new Set(["choose-translation", "translate-tap.l2-l1"]);
+const saysOnOpen = (template: string): boolean => template.startsWith("listen-") || SAY_ON_OPEN.has(template);
 
 for (const template of SAY_WHEN_ANSWERED) {
   test(`${template}: once answered, the card's clip is said`, async ({ page }) => {
@@ -93,11 +99,32 @@ for (const template of SAY_WHEN_ANSWERED) {
 
     await recordPlays(page);
     await tryCard(page, template, "", "#/apc/apc-Arab.standard");
-    const opened = template.startsWith("listen-") ? [clip] : [];
+    const opened = saysOnOpen(template) ? [clip] : [];
     await expect.poll(() => page.evaluate(() => window.nabuPlayed)).toEqual(opened);
     await answer(page, ex, "keyboard");
     await expect(page.locator("[data-feedback]")).toBeVisible();
     await expect.poll(() => page.evaluate(() => window.nabuPlayed)).toEqual([...opened, clip]);
+  });
+}
+
+for (const template of SAY_ON_OPEN) {
+  test(`${template}: its sentence is said as it opens, never with sound off`, async ({ page }) => {
+    const course = loadCourse("apc", "apc-Arab/standard");
+    const ex = cardGallery(course, 7).find((c) => c.template === template)?.exercise;
+    const clip = ex === undefined ? undefined : course.audio[ex.item]?.normal.path;
+    test.skip(ex === undefined || clip === undefined, `apc's gallery has no ${template} card with a clip`);
+    if (ex === undefined || clip === undefined) return;
+
+    await recordPlays(page);
+    await tryCard(page, template, "", "#/apc/apc-Arab.standard");
+    await expect.poll(() => page.evaluate(() => window.nabuPlayed)).toEqual([clip]);
+    // With sound off it waits to be asked: its play button still plays (D18).
+    await page.evaluate(() => (window.nabuPlayed = []));
+    await tryCard(page, template, "&sound=off", "#/apc/apc-Arab.standard");
+    await page.waitForTimeout(600);
+    expect(await page.evaluate(() => window.nabuPlayed)).toEqual([]);
+    await page.locator("[data-prompt-audio] [data-action=play]").click();
+    await expect.poll(() => page.evaluate(() => window.nabuPlayed)).toEqual([clip]);
   });
 }
 

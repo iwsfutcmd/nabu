@@ -660,14 +660,15 @@ not kept; what a later session needs is here.
   (the bundle does not carry the language's citation cell), and a skipped card, which reveals its answer,
   logs nothing as seen.
 
-**Rules in a lexicon (2026-11-23):** stages 1 and 2 are on main, and so is what the owner's "just do the rest"
-allowed (docs/rules-design.md, its last section): apc's verbs follow Kline, verbs are cited by their he-past,
-55 clips made again, Arabizi's free spellings and the article's join stated. **Not built:** stage 3 (apc's
-nouns, suffixes, `badd`/`fi`, clitic joins in realisation, the 33 `form.projection` forms, pruning), stage 4
-(paradigms in the bundle, the he-present beside a lemma), stage 5 (the built word; a memory per branch, with
-its ADR), stage 6 (Spanish). **For the owner:** listen to the 25 held-back clips; the review lists in
-`courses/REVIEW.md` (apc); hbo's six newly refused answers; the 309 wrong-form slips; ADR 0154; Toki Pona's
-tag.
+**Rules in a lexicon (2026-11-23):** stages 1 to 4 are on main for apc (docs/rules-design.md, an "as built"
+section each, and the owner's "just do the rest" section): lexical forms and `spell`; the engine; every token
+given by a rule or a stated form, pinned copies pruned; paradigms in the bundle (format 5), the grader's lexicon
+and a verb's he-present beside its he-past. Also landed: apc's verbs follow Kline, verbs cited by their he-past,
+Arabizi's free spellings and the article's join. **Not built:** stage 5 (the built word; a memory per branch, with
+its ADR) and stage 6 (Spanish's verbs): "What is left", at the end of the design note, says what each needs.
+**For the owner:** listen to the held-back apc clips (251, of which 31 made on 2026-11-23); the review lists in
+`courses/REVIEW.md` (apc: the teens, ج after the article, the feminine -e, the free spellings' costs); hbo's six
+newly refused answers; the 287 wrong-form slips; *wesel*'s command; ADR 0154; Toki Pona's tag.
 
 The apc prototype's participle check still covers nine forms where it covered
 thirteen: stage 2 of the design checks every participle token against the template, and the prototype is

@@ -380,9 +380,14 @@ export const spellingKey = (profile: CompiledProfile, layer?: string): ((text: s
   };
 };
 
-/** Whether `written` is a form's spelling, one of its alternatives, or neither, compared by `key`. */
-export const spelledAs = (spelled: Spelled, written: string, key: (text: string) => string): "spelling" | "alternative" | undefined => {
+/**
+ * Whether `written` is a form's spelling, one of its alternatives, or neither, compared by `key`.
+ * `part`: whether it is one word of it (a token of a phrase written over several tokens), the words
+ * as the key gives them (Arabizi's article detached from its noun is a word of its own).
+ */
+export const spelledAs = (spelled: Spelled, written: string, key: (text: string) => string, part = false): "spelling" | "alternative" | undefined => {
   const want = key(written);
-  if (key(spelled.spelling) === want) return "spelling";
-  return spelled.alternatives.some((a) => key(a.spelling) === want) ? "alternative" : undefined;
+  const is = (text: string): boolean => (part ? key(text).split(" ").includes(want) : key(text) === want);
+  if (is(spelled.spelling)) return "spelling";
+  return spelled.alternatives.some((a) => is(a.spelling)) ? "alternative" : undefined;
 };

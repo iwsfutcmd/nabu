@@ -330,7 +330,58 @@ class AudioVerdict(BaseModel):
 type CreditsAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
+type BundleCell = Annotated[
+    str,
+    Field(
+        description="A cell of a paradigm as a form key's feature part (FormKey, after `|form:`): its feature values as Name=Value, sorted by name and joined by `;` (Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=3).",
+        pattern="^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?=[A-Z0-9][A-Za-z0-9,]*(;[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?=[A-Z0-9][A-Za-z0-9,]*)*$",
+        title="BundleCell",
+    ),
+]
+
+
+type BundleParadigmForm1 = Annotated[
+    str,
+    Field(
+        description="A cell's form in one orthography, as its profile's `spell` writes the realisation: the spelling, or where the orthography has a marked layer (apc's vocalized) the spelling and the marked text, in that order; null where the rules give the lexeme no form there (no rule for the cell, no template for its root, a phrase).",
+        min_length=1,
+        title="BundleParadigmForm",
+    ),
+]
+
+
+type BundleParadigmForm2Item = Annotated[str, Field(min_length=1)]
+
+
+type BundleParadigmForm2 = Annotated[
+    list[BundleParadigmForm2Item],
+    Field(
+        description="A cell's form in one orthography, as its profile's `spell` writes the realisation: the spelling, or where the orthography has a marked layer (apc's vocalized) the spelling and the marked text, in that order; null where the rules give the lexeme no form there (no rule for the cell, no template for its root, a phrase).",
+        max_length=2,
+        min_length=2,
+        title="BundleParadigmForm",
+    ),
+]
+
+
+type BundleParadigmForm = Annotated[
+    BundleParadigmForm1 | BundleParadigmForm2 | None,
+    Field(
+        description="A cell's form in one orthography, as its profile's `spell` writes the realisation: the spelling, or where the orthography has a marked layer (apc's vocalized) the spelling and the marked text, in that order; null where the rules give the lexeme no form there (no rule for the cell, no template for its root, a phrase).",
+        title="BundleParadigmForm",
+    ),
+]
+
+
 type Choose = Annotated[str, Field(pattern="^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$")]
+
+
+type ParadigmAdditionalProperty = Annotated[list[BundleParadigmForm], Field(min_length=1)]
+
+
+type RegularisedAdditionalProperty = Annotated[
+    dict[BundleCell, BundleParadigmForm], Field(min_length=1)
+]
 
 
 type Letter = Annotated[str, Field(pattern="^grapheme:[^\\s|]+$")]
@@ -1418,6 +1469,9 @@ type LexicalAdditionalPropertyItem = Annotated[
 type LexicalAdditionalProperty = Annotated[list[LexicalAdditionalPropertyItem], Field(min_length=1)]
 
 
+type PrincipalPartsAdditionalProperty1 = Annotated[list[UdFeatures], Field(min_length=1)]
+
+
 type FeaturesAdditionalPropertyItem = Annotated[str, Field(pattern="^[A-Z0-9][A-Za-z0-9]*$")]
 
 
@@ -1621,6 +1675,13 @@ class Condition(BaseModel):
         str | None,
         Field(
             description="Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).",
+            min_length=1,
+        ),
+    ] = None
+    startsIn: Annotated[
+        str | None,
+        Field(
+            description="For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).",
             min_length=1,
         ),
     ] = None
@@ -3891,6 +3952,12 @@ class BundleFile(BaseModel):
     ]
 
 
+type CellsAdditionalProperty = Annotated[list[BundleCell], Field(min_length=1)]
+
+
+type PrincipalPartsAdditionalProperty = Annotated[list[BundleCell], Field(min_length=1)]
+
+
 class ReadingItem(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -4248,6 +4315,12 @@ class Rewrite(BaseModel):
     before: Context | None = None
     after: Context | None = None
     at: Literal["start", "end"] | None = None
+    when: Annotated[
+        Condition | None,
+        Field(
+            description="Where it holds only of some words: of a token whose base lexeme and cell this holds of (a realisation rule's `when`: pos, feats, class, ends, starts, endsIn)."
+        ),
+    ] = None
     notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
 
 
@@ -5902,9 +5975,9 @@ class BundleManifest(BaseModel):
         frozen=True,
     )
     formatVersion: Annotated[
-        Literal[4],
+        Literal[5],
         Field(
-            description="4: 3 with the profiles' and schemes' statements in place of soundAlike and variants, and each lexeme's leftovers (ADR 0148). 3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated."
+            description="5: 4 with the lexicon's cells and principal parts and each lexeme's paradigm (docs/rules-design.md, stage 4). 4: 3 with the profiles' and schemes' statements in place of soundAlike and variants, and each lexeme's leftovers (ADR 0148). 3: 2 with the token kind lexical. 2: lexemes where a bundle had KCs (ADR 0145). An app that does not know the version keeps the bundle it has and asks to be updated."
         ),
     ]
     id: Annotated[
@@ -6464,6 +6537,20 @@ class BundleLexeme(BaseModel):
     image: Annotated[
         str | None, Field(description="Bundle path of its picture (a file with role image).")
     ] = None
+    paradigm: Annotated[
+        dict[OrthographyId, ParadigmAdditionalProperty] | None,
+        Field(
+            description="Its forms in each course orthography, one for each of its category's `cells` in the lexicon's order (docs/rules-design.md, stage 4): what the rules give, or the lexeme's own pinned or listed form where it has one for the cell. The grader knows a typed word among them as this lexeme's form in that cell. Absent: its category has no cells.",
+            min_length=1,
+        ),
+    ] = None
+    regularised: Annotated[
+        dict[OrthographyId, RegularisedAdditionalProperty] | None,
+        Field(
+            description="Where realising with blocking off (no listed form or stated class: ADR 0145) gives another form than `paradigm`: per orthography, that form by cell. The regularised form a learner may build (tenió for tuvo). Absent: none differs.",
+            min_length=1,
+        ),
+    ] = None
     leftovers: Annotated[
         Leftovers | None,
         Field(
@@ -6798,6 +6885,12 @@ class LanguageDeclaration(BaseModel):
             description="For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell."
         ),
     ] = None
+    principalParts: Annotated[
+        dict[PartOfSpeech, PrincipalPartsAdditionalProperty1] | None,
+        Field(
+            description="For each category, the cells shown after its lemma wherever a word is presented as itself, in order (docs/rules-design.md, stage 4; the owner's answer 1: an apc verb is cited by its he-past, the he-present beside it). The compiler lists each among the category's cells and spells it from the rules; a lexeme the rules give no form for there shows none."
+        ),
+    ] = None
     bare: Annotated[
         dict[PartOfSpeech, UdFeatures] | None,
         Field(
@@ -6935,6 +7028,20 @@ class BundleLexicon(BaseModel):
         list[BundleRule] | None,
         Field(
             description="The rules the course names (the language's `rules`), each with what a learner is shown for it."
+        ),
+    ] = None
+    cells: Annotated[
+        dict[PartOfSpeech, CellsAdditionalProperty] | None,
+        Field(
+            description="For each category the language's rules inflect, the cells its lexemes' paradigms list, in order (docs/rules-design.md, stage 4): those the course's tokens choose on the category, each value of them one the course teaches (a node introduces it, the category's citation or bare cell has it, or the course teaches no value of its feature), with the principal parts' cells. A lexeme's `paradigm` follows this order. Absent: the language has no rules, or the course writes no such cell.",
+            min_length=1,
+        ),
+    ] = None
+    principalParts: Annotated[
+        dict[PartOfSpeech, PrincipalPartsAdditionalProperty] | None,
+        Field(
+            description="For each category, the cells shown after a lemma wherever a word is presented as itself, in order (the language's `principalParts`): each one of its `cells`.",
+            min_length=1,
         ),
     ] = None
 

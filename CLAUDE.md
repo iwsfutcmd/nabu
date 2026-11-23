@@ -275,7 +275,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   Once answered, a listening card shows what was heard and what it means: a sentence's translation, a word's gloss
   (`translation` on the exercise, shown by ListenPrompt). Never before the answer: it would give it away.
 - Every card says its clip once answered (ADR 0064: `useSayWhenAnswered`, `AnswerAudio` in Views.tsx); each view owns
-  its clip (never the shell), so nothing plays twice. New views with a clip use the same hook.
+  its clip (never the shell), so nothing plays twice. New views with a clip use the same hook. A card asking what a target
+  sentence means (choose-translation, the l2-l1 word bank) also says it as it opens (`sayOnOpen`, ADR 0064 amendment),
+  as listening cards do; never a card whose answer the clip would give (reading cards, gap-fill, into the target).
 - A clip said on answering waits for the feedback sound (`SAY_AFTER_ANSWER_MS`), never over it. Clip elements load with
   the card and are reused (`useClipElements`); never `new Audio()` at play time (choppy starts, Firefox on Android).
 - fa's voice (ADR 0065): Mana-Persian-Piper (Piper, pinned `model`, MIT). Its `carrier` says items of at most
@@ -741,7 +743,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   participle is its verb's, declined (`VerbForm: Part, Voice: Pass` with the agreement); `by` is AUX
   `{Mood: Cnd}`, the -l form beside it keeps `Tense: Past` (UD's way). Accept sets keep the clitics second.
 - The voice is Piper's `sk_SK-lili-medium` (CC-BY-4.0, one woman's voice for every line). After a sentence changes,
-  `cd pipeline && uv run nabu audio generate ../courses/sk`, then `pnpm bundles`. No listener has heard it yet.
+  `cd pipeline && uv run nabu audio generate ../courses/sk`, then `pnpm bundles`. No listener has heard it yet;
+  the round trip failed 353 clips (275 lone words), held back until a listener passes them.
 - Unit 17's story is the start of Dobšinský's *Ako šlo vajce na vandrovku* (1881, public domain): the page's
   words in today's spelling, each change in the unit's header. The tale's *kde* (where to) and *rečie* stay; the
   lessons teach *kam*. Kozliatka and the twelve months were too dialectal; a new passage only from a page image.
@@ -833,7 +836,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   never a card, and nothing logged before 2026-11-22 counts. A lemma shown as the lexicon spells it is logged with no
   `feats` (the bundle does not say which cell a lemma is).
 - A token of letters is of kind `lexical` (beside `punct`, `space`, `number`, `symbol`); the UI writes it as
-  `data-kind`. A bundle's `formatVersion` is 4 (`BUNDLE_FORMAT` in core, `FORMAT_VERSION` in the compiler): raise both
+  `data-kind`. A bundle's `formatVersion` is 5 (`BUNDLE_FORMAT` in core, `FORMAT_VERSION` in the compiler): raise both
   when a bundle's shape or a token's changes, so a device refuses a cached bundle it cannot read and fetches the new
   one. A session kept part-way is tied to its bundle and starts afresh.
 - Tags, features and relations are Universal Dependencies' and a gloss's abbreviations the Leipzig Glossing Rules'
@@ -851,7 +854,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   every line. Examples live in schemas/examples/<dir>/{valid,invalid} and are listed in `EXAMPLES`
   (packages/schema/test/schemas.test.ts): a new schema gets both kinds.
 
-## Rules notes (see docs/rules-design.md; apc first, stages 1 and 2 of 6)
+## Rules notes (see docs/rules-design.md; apc first, stages 1 to 4 of 6)
 - A lexeme's lexical form is its `form` in lexicons/<lang>/lexemes.yaml: a string in the language's notation, or a
   verb's radicals (`RadicalForm`: radicals, Form, vowels, `source`, `basis`). language.yaml's `notation` says what the
   signs are (apc: U+065C e, U+065D o, U+06DF a letter written and not said; always escapes, and yamlio writes them so);
@@ -862,19 +865,36 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   conformance/realise.json) give a lexeme's lexical form with each `{rule, branch}` taken: never realise in Python.
   A pattern matches a letter with its marks exactly and names every boundary (`+`, `+?`, `#`). A branch is lower-case
   ASCII and stable: it will enter card keys (the owner, 2026-11-23: a memory per branch). Every apc rule is REVIEW.
-- Bundles carry none of it (`form`, the notation, `spell`, the rules): `pnpm bundles` leaves them byte for byte.
+- Bundles carry no rule, notation, lexical form or `spell`. They carry what the compiler works out (stage 4, format 5):
+  the lexicon's `cells` (per category a rule covers, the cells its tokens choose whose values the course teaches) and
+  `principalParts` (language.yaml: apc VERB, the he-present), each inflecting lexeme's `paradigm` (per orthography one
+  form a cell: a spelling, `[spelling, marked]`, or null) and `regularised` (only where blocking off differs: a
+  learner's over-regularisation). nabu/paradigms.py writes them through core-cli; a lexeme written but never inflected
+  has none. A form spelled outside its script, or beginning with a joining carrier, is not shipped
+  (`form.spelling-script`). Never realise or spell on the device.
+- Grading knows every paradigm spelling (core `paradigmWords` in `spellingsIn`): an unwritten regular form of the
+  answer's lexeme is another form, of another lexeme lexical. Only the default spelling ships, so a free variant of an
+  unwritten form is still a slip (287 wrong-form slips remain, stage 4's notes).
+- A word shown as itself (a lesson's new words, the session end, the word list, the gloss panel) goes through `Headword`
+  with core `principalParts`: never in options, tiles or pairs. The parts shown are logged as seen with their cell
+  (`LessonEvent.beside`). The Data page shows an entry's paradigm (`paradigmRows`).
 - `form.projection` (a stored form does not spell as the lexicon writes the word) is the review list, with
   `cd pipeline && uv run nabu forms ../courses/apc`. Never change a form, a spelling or a rule to silence one.
 - A `spell` rule's `alternatives` are free spellings named by variation, read only by the compiler; grading reads the
   profile's `correspondences`. spell.test.ts pins every alternative that does not compare free: stating a variation
   free (the owner: one at a time) moves its count.
-- The compiler checks every token whose base a realisation rule covers (its part of speech's `dimensions` hold every
-  feature some rule's `when` names: today VERB and AUX): core-cli `realise-token` with `spellings: false` (a form that
-  pins spellings only is passed over; only a pinned or listed form with `form` or `stem` accounts for a token), then
-  `spell` per orthography, the marked layer against the vocalization. A miss is `form.unaccounted` (a warning; apc's are
-  `APC_UNACCOUNTED` in tests/test_courses.py, each a ruling the owner has not made: never fix one by bending a rule).
-  A token with a lexeme that has no form, or no rule for its part of speech, is counted "no rule yet". `nabu forms`
-  prints the report; `--paradigm <lexeme>` a lexeme's cells as the rules give them.
+- The compiler checks every token of a language with `realisation` (apc: all 5,470): core-cli `realise-token` with
+  `spellings: false` (a form that pins spellings only is passed over; only a pinned or listed form with `form` or
+  `stem` accounts for a token), then `spell` per orthography, the marked layer against the vocalization. An
+  uninflected word stands in its citation cell (its own `citation` or its category's), given by its form with no
+  rule. A miss is `form.unaccounted`, an error: never fix one by bending a rule. `form.pinned-differs` (error),
+  `form.redundant` (warning) and `form.rule-debt` (info: apc 25 pinned forms) exist. `nabu forms` prints the report,
+  `--paradigm <lexeme>` a lexeme's cells, and `nabu forms prune ../lexicons/<lang>` removes pinned copies the rules
+  give: never by hand.
+- Clitics (the article, b-, w-, hal) are lexemes with forms, realised from the lexemes each token lists, per
+  orthography; a join's sound change is a rewrite naming the boundary. An allomorph's `before` reads the rest of the
+  token (`startsIn`) or the next word's base (`pos`, `class`: a teen says its r before a noun); a rewrite may carry
+  a `when`. A phrase lexeme's token is one word of it, and the values any of its tokens chooses are the phrase's.
 - apc's helping vowel at a word's end is the marked layer's `spell` (the form keeps the cluster: رُحْ+ت), never a
   rewrite; inside a word it is the rewrite `rule:apc-helping-vowel|inside`, which Arabizi may leave out.
 - apc-Latn's free spellings are stated in its profile (the owner, 2026-11-23; each REVIEW with its measured cost):

@@ -10,10 +10,6 @@ lexemes:
   form: {radicals: [ق, ع, د], form: I, source: 'kline 75'}
   citation: {Aspect: Part, Gender: Masc, Number: Sing}
   spelled: {apc-Arab/standard: [قاعد], apc-Latn/arabizi: [2a3ed]}
-  forms:
-  - {feats: {Aspect: Part, Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [قاعدة], apc-Latn/arabizi: [2a3de]}, status: pinned}
-  - {feats: {Aspect: Part, Gender: Masc, Number: Sing}, spelled: {apc-Arab/standard: [قاعد], apc-Latn/arabizi: [2a3ed]}, status: pinned}
-  - {feats: {Aspect: Part, Number: Plur}, spelled: {apc-Arab/standard: [قاعدين], apc-Latn/arabizi: [2a3din]}, status: pinned}
 - id: lexeme:2abel
   pos: ADP
   gloss: {en: before}
@@ -32,7 +28,6 @@ lexemes:
   form: {radicals: [ق, و, ل], form: I, vowels: {past: a, present: u}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [قال], apc-Latn/arabizi: [2al]}
   forms:
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [قولي], apc-Latn/arabizi: [2uli]}, status: pinned}
   - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [ق], apc-Latn/arabizi: ['2']}, status: pinned}
 - id: lexeme:2amis
   pos: NOUN
@@ -50,11 +45,6 @@ lexemes:
     basis: 'The third radical is stored as ي, as the verb is conjugated: Kline classes it with the defective verbs, and where a defective verb''s last radical shows it is ي. Standard Arabic''s hamza shows in no form of the verb.'
     note: 'His ''irregular defective'': the last vowel stays a (p. 78).'
   spelled: {apc-Arab/standard: [قرا], apc-Latn/arabizi: [2ara]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتقرا], apc-Latn/arabizi: [bti2ra]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [بيقرا], apc-Latn/arabizi: [byi2ra]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بقرا], apc-Latn/arabizi: [be2ra]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [اقرا], apc-Latn/arabizi: [e2ra]}, status: pinned}
 - id: lexeme:2arib
   pos: ADJ
   gloss: {en: near; close}
@@ -78,7 +68,7 @@ lexemes:
   form: "عَ قَلْبَك"
   spelled: {apc-Arab/standard: [ع قلبك], apc-Latn/arabizi: [3a albak]}
   forms:
-  - {feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, spelled: {apc-Arab/standard: [ع قلبك], apc-Latn/arabizi: [3a albik]}, status: pinned}
+  - {form: "عَ قَلْبِك", feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, spelled: {apc-Arab/standard: [ع قلبك], apc-Latn/arabizi: [3a albik]}, status: pinned}  # REVIEW: rule debt: a phrase whose words agree with the one it is said to; no rule reaches inside a phrase
 - id: lexeme:3aj2a
   pos: NOUN
   gloss: {en: traffic; traffic jam; crowd}
@@ -95,8 +85,6 @@ lexemes:
     source: 'deduced'
     basis: 'Kline does not list it. The course writes the past (3ajabni, 3ajabetni) and no present: the present is cited as 3azam''s, the one other verb of its shape, and no form of the course depends on it.'
   spelled: {apc-Arab/standard: [عجب], apc-Latn/arabizi: [3ajab]}
-  forms:
-  - {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [عجبت], apc-Latn/arabizi: [3ajbet]}, status: pinned}
 - id: lexeme:3am
   pos: AUX
   gloss: {en: '-ing: right now (before a verb)'}
@@ -114,9 +102,6 @@ lexemes:
   notes: {en: 'kenna n3ish bel day3a: we used to live in the village. Where someone lives now: seken.'}
   form: {radicals: [ع, ي, ش], form: I, vowels: {past: a, present: i}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [عاش], apc-Latn/arabizi: [3ash]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تعيشي], apc-Latn/arabizi: [t3ishi]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [نعيش], apc-Latn/arabizi: [n3ish]}, status: pinned}
 - id: lexeme:3asha
   pos: NOUN
   feats: {Gender: Fem}
@@ -134,9 +119,6 @@ lexemes:
   gloss: {en: thirsty}
   form: "عَطْشَان"
   spelled: {apc-Arab/standard: [عطشان], apc-Latn/arabizi: [3atshan]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [عطشانة], apc-Latn/arabizi: [3atshane]}, status: pinned}
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [عطشانين], apc-Latn/arabizi: [3atshanin]}, status: pinned}
 - id: lexeme:3ayle
   pos: NOUN
   gloss: {en: family}
@@ -157,7 +139,6 @@ lexemes:
   spelled: {apc-Arab/standard: [عزم], apc-Latn/arabizi: [3azam]}
   forms:
   - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [اعزم], apc-Latn/arabizi: [a3zm]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [عزمت], apc-Latn/arabizi: [3azmet]}, status: pinned}
 - id: lexeme:3emel
   pos: VERB
   gloss: {en: do; make}
@@ -168,19 +149,6 @@ lexemes:
     source: 'kline 75'
     note: 'The prefix is ya- before ع (Kline, p. 75).'
   spelled: {apc-Arab/standard: [عمل], apc-Latn/arabizi: [3emel]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتعملي], apc-Latn/arabizi: [bta3mli]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تعملي], apc-Latn/arabizi: [ta3mli]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [تعمل], apc-Latn/arabizi: [ta3mel]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتعمل], apc-Latn/arabizi: [bta3mel]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تعمل], apc-Latn/arabizi: [ta3mel]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [منعمل], apc-Latn/arabizi: [mna3mel]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [بتعملوا], apc-Latn/arabizi: [bta3mlo]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بعمل], apc-Latn/arabizi: [ba3mel]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [نعمل], apc-Latn/arabizi: [na3mel]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [تعملوا], apc-Latn/arabizi: [ta3mlo]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [عملت], apc-Latn/arabizi: [3melt]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [عملوا], apc-Latn/arabizi: [3emlo]}, status: pinned}
 - id: lexeme:3end
   pos: ADP
   gloss: {en: 'at; have (with an ending: 3endi, I have)'}
@@ -189,6 +157,7 @@ lexemes:
   spelled: {apc-Arab/standard: [عند], apc-Latn/arabizi: [3end]}
   allomorphs:
   - {spelled: {apc-Arab/standard: [عند], apc-Latn/arabizi: [3en]}}
+  - {form: "عِنْدْ\u06df", before: {startsIn: 'ن*'}}  # the d goes into the n of -na (Kline p. 115: 3enna)
 - id: lexeme:3eref
   pos: VERB
   gloss: {en: know}
@@ -196,8 +165,6 @@ lexemes:
   spelled: {apc-Arab/standard: [عرف], apc-Latn/arabizi: [3eref]}
   forms:
   - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتعرف], apc-Latn/arabizi: [bta3rf]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [بتعرفوا], apc-Latn/arabizi: [bta3rfo]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بعرف], apc-Latn/arabizi: [ba3ref]}, status: pinned}
   - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بعرف], apc-Latn/arabizi: [ba3rf]}, status: pinned}
 - id: lexeme:3eshrin
   pos: NUM
@@ -223,7 +190,7 @@ lexemes:
   form: "عْم\u065dول مَعْرُوف"
   spelled: {apc-Arab/standard: [عمول معروف], apc-Latn/arabizi: [3mol ma3rouf]}
   forms:
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [عملي معروف], apc-Latn/arabizi: [3emli ma3rouf]}, status: pinned}
+  - {form: "عْمِلِي مَعْرُوف", feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [عملي معروف], apc-Latn/arabizi: [3meli ma3rouf]}, status: pinned}  # REVIEW: rule debt: a phrase's verb in the command; 3mele, as Kline's drese (p. 161)
 - id: lexeme:3omr
   pos: NOUN
   gloss: {en: age (literally 'life')}
@@ -246,13 +213,6 @@ lexemes:
   gloss: {en: like; love}
   form: {radicals: [ح, ب, ب], form: I, vowels: {present: i}, source: 'kline 79'}
   spelled: {apc-Arab/standard: [حبّ], apc-Latn/arabizi: [7abb]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتحبّي], apc-Latn/arabizi: [bt7ebbi]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتحبّ], apc-Latn/arabizi: [bt7ebb]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [منحبّ], apc-Latn/arabizi: [mn7ebb]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [بتحبّوا], apc-Latn/arabizi: [bt7ebbo]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [بيحبّوا], apc-Latn/arabizi: [by7ebbo]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بحبّ], apc-Latn/arabizi: [b7ebb]}, status: pinned}
 - id: lexeme:7abibi
   pos: NOUN
   chooses: [Gender]
@@ -261,7 +221,7 @@ lexemes:
   form: "حَبِيبِي"
   spelled: {apc-Arab/standard: [حبيبي], apc-Latn/arabizi: [7abibi]}
   forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [حبيبتي], apc-Latn/arabizi: [7abibti]}, status: pinned}
+  - {form: "حَبِيبْتِي", feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [حبيبتي], apc-Latn/arabizi: [7abibti]}, status: pinned}  # REVIEW: rule debt: the feminine inside a word that ends in my (7abib + t + i)
 - id: lexeme:7ada
   pos: PRON
   feats: {PronType: Ind}
@@ -289,15 +249,6 @@ lexemes:
     source: 'kline 78'
     note: 'Kline writes the past 7eke on p. 78 and 7aka on p. 123.'
   spelled: {apc-Arab/standard: [حكى], apc-Latn/arabizi: [7aka]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [بتحكي], apc-Latn/arabizi: [bte7ki]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [تحكي], apc-Latn/arabizi: [te7ki]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتحكي], apc-Latn/arabizi: [bte7ki]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [بتحكوا], apc-Latn/arabizi: [bti7ko]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [بيحكوا], apc-Latn/arabizi: [byi7ko]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بحكي], apc-Latn/arabizi: [be7ki]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [تحكوا], apc-Latn/arabizi: [ti7ko]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [يحكوا], apc-Latn/arabizi: [yi7ko]}, status: pinned}
 - id: lexeme:7akim
   pos: NOUN
   gloss: {en: doctor}
@@ -314,17 +265,16 @@ lexemes:
   feats: {NumType: Card}
   gloss: {en: eleven}
   notes: {en: 'Before a noun the r is said: 7da3shar sene, eleven years.'}
-  form: "حْدَعْشَر"
+  form: "حْدَعْشْر\u06df"  # REVIEW: alone the r is written and not said (Kline's 7da3sh(r)); the course's Arabizi
   spelled: {apc-Arab/standard: [حدعشر], apc-Latn/arabizi: [7da3sh]}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [حدعشر], apc-Latn/arabizi: [7da3shar]}}
+  - {form: "حْدَعْشَر", before: {pos: NOUN}, spelled: {apc-Arab/standard: [حدعشر], apc-Latn/arabizi: [7da3shar]}}  # REVIEW: before a noun the r is said (7da3shar sene); the next word decides
+  - {form: "حْدَعْشَر", before: {pos: NUM}}  # and before alf, a thousand (tmenta3shar alf: the course)
 - id: lexeme:7elo
   pos: ADJ
   gloss: {en: nice; pretty; sweet}
   form: "حِلُو"
   spelled: {apc-Arab/standard: [حلو], apc-Latn/arabizi: [7elo]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [حلوة], apc-Latn/arabizi: [7elwe]}, status: pinned}
 - id: lexeme:7sab
   pos: NOUN
   gloss: {en: bill; check}
@@ -347,6 +297,7 @@ lexemes:
   spelled: {apc-Arab/standard: [أحد], apc-Latn/arabizi: [a7ad]}
 - id: lexeme:a7la
   pos: ADJ
+  classes: [invariable]  # REVIEW: a comparative does not agree (Kline p. 14), as akbar and azghar
   gloss: {en: nicer; prettier; better}
   notes: {en: 7elo becomes a7la.}
   form: "أَحْلَى"
@@ -357,7 +308,7 @@ lexemes:
   form: "أَحْمَر"
   spelled: {apc-Arab/standard: [أحمر], apc-Latn/arabizi: [a7mar]}
   forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [حمرا], apc-Latn/arabizi: [7amra]}, status: pinned}
+  - {form: "حَمْرَا", feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [حمرا], apc-Latn/arabizi: [7amra]}, status: pinned}  # REVIEW: rule debt: the colours' feminine fa3la (Kline p. 10, 14: 7amra, bayDa); a rule needs their radicals
 - id: lexeme:a7san
   pos: ADJ
   gloss: {en: better; best}
@@ -380,7 +331,7 @@ lexemes:
   form: "أَبْيَض"
   spelled: {apc-Arab/standard: [أبيض], apc-Latn/arabizi: [abyad]}
   forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [بيضا], apc-Latn/arabizi: [bayda]}, status: pinned}
+  - {form: "بَيْضَا", feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [بيضا], apc-Latn/arabizi: [bayda]}, status: pinned}  # REVIEW: rule debt: the colours' feminine fa3la (Kline p. 10, 14: 7amra, bayDa); a rule needs their radicals
 - id: lexeme:adar
   pos: PROPN
   gloss: {en: March}
@@ -388,6 +339,7 @@ lexemes:
   spelled: {apc-Arab/standard: [آذار], apc-Latn/arabizi: [adar]}
 - id: lexeme:aghla
   pos: ADJ
+  classes: [invariable]  # REVIEW: a comparative does not agree (Kline p. 14), as akbar and azghar
   gloss: {en: more expensive; most expensive}
   notes: {en: ghali becomes aghla.}
   form: "أَغْلَى"
@@ -397,14 +349,13 @@ lexemes:
   gloss: {en: parents; family}
   notes: {en: 'ahli: my parents; bet ahli: my parents'' house.'}
   form: "أَهْل"
+  citation: {Number: Plur}  # its tokens' values: a word of its own, cited there
   spelled: {apc-Arab/standard: [أهل], apc-Latn/arabizi: [ahl]}
-  forms:
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [أهل], apc-Latn/arabizi: [ahl]}, status: pinned}
 - id: lexeme:ahla-w-sahla
   pos: INTJ
   gloss: {en: welcome}
   notes: {en: 'The answer: أهلا فيك, ahla fik.'}
-  form: "أَهْلَا وْسَهْلَا"
+  form: "أَهْلَا و سَهْلَا"
   spelled: {apc-Arab/standard: [أهلا وسهلا], apc-Latn/arabizi: [ahla w sahla]}
 - id: lexeme:ahwe
   pos: NOUN
@@ -419,48 +370,26 @@ lexemes:
   notes: {en: 'kol! eat! (to a man); kili! (to a woman); kilo! (to several people). I eat: bekol (unit 6).'}
   form: {radicals: [ء, ك, ل], form: I, vowels: {past: a, present: u}, source: 'kline 75'}
   spelled: {apc-Arab/standard: [أكل], apc-Latn/arabizi: [akal]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتاكل], apc-Latn/arabizi: [btekol]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [مناكل], apc-Latn/arabizi: [mnekol]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [باكل], apc-Latn/arabizi: [bekol]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [ناكل], apc-Latn/arabizi: [nekol]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [تاكلوا], apc-Latn/arabizi: [teklo]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [ياكلوا], apc-Latn/arabizi: [yeklo]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [آكل], apc-Latn/arabizi: [ekol]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [أكلنا], apc-Latn/arabizi: [akalna]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [أكلتوا], apc-Latn/arabizi: [akalto]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [أكلوا], apc-Latn/arabizi: [akalo]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [أكلت], apc-Latn/arabizi: [akalt]}, status: pinned}
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [كلي], apc-Latn/arabizi: [kili]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [كول], apc-Latn/arabizi: [kol]}, status: pinned}
-  - {feats: {Mood: Imp, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [كلوا], apc-Latn/arabizi: [kilo]}, status: pinned}
 - id: lexeme:akbar
   pos: ADJ
+  classes: [invariable]
   gloss: {en: bigger; older}
   notes: {en: kbir becomes akbar.}
   form: "أَكْبَر"
   spelled: {apc-Arab/standard: [أكبر], apc-Latn/arabizi: [akbar]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [أكبر], apc-Latn/arabizi: [akbar]}, status: pinned}
 - id: lexeme:akhad
   pos: VERB
   gloss: {en: take}
   notes: {en: 'ekhod: (that) I take; khod!: take! (to a man), khedi! (to a woman). Also written 5od.'}
   form: {radicals: [ء, خ, د], form: I, vowels: {past: a, present: u}, source: 'kline 75'}
   spelled: {apc-Arab/standard: [أخد], apc-Latn/arabizi: [akhad]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تاخدي], apc-Latn/arabizi: [tekhdi]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [ياخد], apc-Latn/arabizi: [yekhod]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [باخد], apc-Latn/arabizi: [bekhod]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [آخد], apc-Latn/arabizi: [ekhod]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [خود], apc-Latn/arabizi: [khod]}, status: pinned}
 - id: lexeme:akhdar
   pos: ADJ
   gloss: {en: green}
   form: "أَخْضَر"
   spelled: {apc-Arab/standard: [أخضر], apc-Latn/arabizi: [akhdar]}
   forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [خضرا], apc-Latn/arabizi: [khadra]}, status: pinned}
+  - {form: "خَضْرَا", feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [خضرا], apc-Latn/arabizi: [khadra]}, status: pinned}  # REVIEW: rule debt: the colours' feminine fa3la (Kline p. 10, 14: 7amra, bayDa); a rule needs their radicals
 - id: lexeme:akid
   pos: INTJ
   gloss: {en: sure; of course}
@@ -489,7 +418,7 @@ lexemes:
   form: "اَلْلَه يْبَارِك فِيك"
   spelled: {apc-Arab/standard: [الله يبارك فيك], apc-Latn/arabizi: [allah ybarek fik]}
   forms:
-  - {feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, spelled: {apc-Arab/standard: [الله يبارك فيكي], apc-Latn/arabizi: [allah ybarek fiki]}, status: pinned}
+  - {form: "اَلْلَه يْبَارِك فِيكِي", feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, spelled: {apc-Arab/standard: [الله يبارك فيكي], apc-Latn/arabizi: [allah ybarek fiki]}, status: pinned}  # REVIEW: rule debt: a phrase whose words agree with the one it is said to; no rule reaches inside a phrase
 - id: lexeme:alo
   pos: INTJ
   gloss: {en: 'hello? (on the phone)'}
@@ -497,12 +426,11 @@ lexemes:
   spelled: {apc-Arab/standard: [ألو], apc-Latn/arabizi: [alo]}
 - id: lexeme:amerkene
   pos: ADJ
+  classes: [nisba]
   gloss: {en: American}
   notes: {en: 'A woman: أميركانية, amerkeniyye. Also written amarkene, أمركاني.'}
   form: "أَم\u065cيرْك\u065cانِي"
   spelled: {apc-Arab/standard: [أميركاني], apc-Latn/arabizi: [amerkene]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [أميركانية], apc-Latn/arabizi: [amerkeniyye]}, status: pinned}
 - id: lexeme:ana
   pos: PRON
   feats: {PronType: Prs}
@@ -519,10 +447,11 @@ lexemes:
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: fourteen}
-  form: "أَرْبَعْتَعْشَر"
+  form: "أَرْبَعْتَعْشْر\u06df"  # REVIEW: alone the r is written and not said (Kline's 7da3sh(r)); the course's Arabizi
   spelled: {apc-Arab/standard: [أربعتعشر], apc-Latn/arabizi: [arba3ta3sh]}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [أربعتعشر], apc-Latn/arabizi: [arba3ta3shar]}}
+  - {form: "أَرْبَعْتَعْشَر", before: {pos: NOUN}, spelled: {apc-Arab/standard: [أربعتعشر], apc-Latn/arabizi: [arba3ta3shar]}}  # REVIEW: before a noun the r is said (7da3shar sene); the next word decides
+  - {form: "أَرْبَعْتَعْشَر", before: {pos: NUM}}  # and before alf, a thousand (tmenta3shar alf: the course)
 - id: lexeme:arkhas
   pos: ADJ
   gloss: {en: cheaper; cheapest}
@@ -535,7 +464,7 @@ lexemes:
   form: "أَسْوَد"
   spelled: {apc-Arab/standard: [أسود], apc-Latn/arabizi: [aswad]}
   forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [سودا], apc-Latn/arabizi: [sawda]}, status: pinned}
+  - {form: "سَوْدَا", feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [سودا], apc-Latn/arabizi: [sawda]}, status: pinned}  # REVIEW: rule debt: the colours' feminine fa3la (Kline p. 10, 14: 7amra, bayDa); a rule needs their radicals
 - id: lexeme:aw
   pos: CCONJ
   gloss: {en: or}
@@ -543,13 +472,12 @@ lexemes:
   spelled: {apc-Arab/standard: [أو], apc-Latn/arabizi: [aw]}
 - id: lexeme:awwal
   pos: ADJ
+  classes: [invariable]
   feats: {NumType: Ord}
   gloss: {en: first}
   notes: {en: 'Before its noun it does not change: awwal marra, the first time.'}
   form: "أَوَّل"
   spelled: {apc-Arab/standard: [أوّل], apc-Latn/arabizi: [awwal]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [أوّل], apc-Latn/arabizi: [awwal]}, status: pinned}
 - id: lexeme:aylul
   pos: PROPN
   gloss: {en: September}
@@ -562,26 +490,27 @@ lexemes:
   spelled: {apc-Arab/standard: [أيّار], apc-Latn/arabizi: [ayyar]}
 - id: lexeme:azghar
   pos: ADJ
+  classes: [invariable]
   gloss: {en: smaller; younger}
   notes: {en: zghir becomes azghar.}
   form: "أَزْغَر"
   spelled: {apc-Arab/standard: [أزغر], apc-Latn/arabizi: [azghar]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [أزغر], apc-Latn/arabizi: [azghar]}, status: pinned}
 - id: lexeme:azra2
   pos: ADJ
   gloss: {en: blue}
   form: "أَزْرَق"
   spelled: {apc-Arab/standard: [أزرق], apc-Latn/arabizi: [azra2]}
   forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [زرقا], apc-Latn/arabizi: [zar2a]}, status: pinned}
+  - {form: "زَرْقَا", feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [زرقا], apc-Latn/arabizi: [zar2a]}, status: pinned}  # REVIEW: rule debt: the colours' feminine fa3la (Kline p. 10, 14: 7amra, bayDa); a rule needs their radicals
 - id: lexeme:b
   pos: ADP
   gloss: {en: in; at}
   notes: {en: 'Written joined in Arabic script: ببيروت, بالبيت (b + el). In Arabizi often bel: bel bet.'}
   spelled: {apc-Latn/arabizi: [b]}
+  form: "بْ"  # b- before a word (بْبيروت: the course)
   allomorphs:
   - {spelled: {apc-Arab/standard: [ب]}}
+  - {form: "بِ", before: {startsIn: "ا\u06df"}}  # bi- before the article (بِالبيت: the course; Kline p. 58: bl, bil)
 - id: lexeme:b3at
   pos: VERB
   gloss: {en: send}
@@ -594,7 +523,6 @@ lexemes:
     note: 'Kline cites the past with a cluster, b3at (p. 75), where an a-verb has two vowels (daras): a listed stem. The course wrote ba3atli until 2026-11-23; it is accepted.'
   spelled: {apc-Arab/standard: [بعت], apc-Latn/arabizi: [b3at]}
   forms:
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بعت], apc-Latn/arabizi: [b3at]}, status: pinned}
   # REVIEW: Kline p. 75 cites b3at, with no vowel after its first radical (the owner: follow Kline, 2026-11-23).
   - {feats: {Aspect: Perf}, stem: "بْعَت", status: listed, statement: {author: 'llm:claude@rules-verbs', status: draft}}
 - id: lexeme:b3id
@@ -602,8 +530,6 @@ lexemes:
   gloss: {en: far}
   form: "بْعِيد"
   spelled: {apc-Arab/standard: [بعيد], apc-Latn/arabizi: [b3id]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [بعيدة], apc-Latn/arabizi: [b3ide]}, status: pinned}
 - id: lexeme:ba3d
   pos: ADP
   gloss: {en: after}
@@ -637,7 +563,7 @@ lexemes:
   form: "بَدّ"
   spelled: {apc-Arab/standard: [بدّ], apc-Latn/arabizi: [badd]}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [بد], apc-Latn/arabizi: [bad]}}
+  - {form: "بَد", before: {startsIn: '{K}*'}, spelled: {apc-Arab/standard: [بد], apc-Latn/arabizi: [bad]}}  # before an ending that begins with a consonant the dd is said once (Kline p. 110: badna, badkon)
 - id: lexeme:bakkir
   pos: ADV
   gloss: {en: early}
@@ -718,11 +644,6 @@ lexemes:
   notes: {en: 'bedros: I study; btidros: you study; lezem edros: I have to study.'}
   form: {radicals: [د, ر, س], form: I, vowels: {past: a, present: u}, source: 'kline 74'}
   spelled: {apc-Arab/standard: [درس], apc-Latn/arabizi: [daras]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتدرس], apc-Latn/arabizi: [btidros]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بدرس], apc-Latn/arabizi: [bedros]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [تدرسوا], apc-Latn/arabizi: [tedrso]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [ادرس], apc-Latn/arabizi: [edros]}, status: pinned}
 - id: lexeme:dars
   pos: NOUN
   gloss: {en: lesson; class}
@@ -751,11 +672,6 @@ lexemes:
   form: {radicals: [د, ق, ق], form: I, vowels: {present: i}, source: 'kline 79'}
   spelled: {apc-Arab/standard: [دقّ], apc-Latn/arabizi: [da22]}
   forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتدقّ], apc-Latn/arabizi: [btde22]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [دقّ], apc-Latn/arabizi: [de22]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [دقّيت], apc-Latn/arabizi: [da22et]}, status: pinned}
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [دقّي], apc-Latn/arabizi: [de22i]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [دقّ], apc-Latn/arabizi: [de22]}, status: pinned}
   - {feats: {Mood: Imp, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [دقّو], apc-Latn/arabizi: [de22u]}, status: pinned}
 - id: lexeme:dekkene
   pos: NOUN
@@ -776,14 +692,14 @@ lexemes:
 - id: lexeme:dollar
   pos: NOUN
   gloss: {en: dollar}
-  form: "د\u065dولَّار"
+  form: "د\u065dولَار"
   spelled: {apc-Arab/standard: [دولار], apc-Latn/arabizi: [dollar]}
 - id: lexeme:dual
   realises: {Number: Dual}
   gloss: {en: '-en: two (on a noun)'}
   notes: {en: 'yom becomes yomen, two days; sa3a becomes sa3ten, two hours. Arabic script: ين (يومين; ساعتين, with the ة as ت).'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [ين], apc-Latn/arabizi: [en]}}
+  - {form: "ـ\u065cين", spelled: {apc-Arab/standard: [ين], apc-Latn/arabizi: [en]}}  # -en (Kline p. 19-20: dolaren, sinten)
 - id: lexeme:ebn
   pos: NOUN
   gloss: {en: son}
@@ -805,6 +721,7 @@ lexemes:
   gloss: {en: the}
   notes: {en: 'Written joined to its noun in Arabic script: الشاي. Before t, d, s, sh, z, n, r… it sounds like the noun''s first letter: esh-shay.'}
   spelled: {apc-Latn/arabizi: [el]}
+  form: "ا\u06dfل"  # the article: its alef written, not said (Kline p. 8: (e/i)l-); its lam before a sun letter: rule:apc-article
   allomorphs:
   - {spelled: {apc-Arab/standard: [ال]}}
   - {spelled: {apc-Arab/standard: [ال], apc-Latn/arabizi: [l]}}
@@ -853,45 +770,25 @@ lexemes:
   feats: {PronType: Prs}
   gloss: {en: you (to a woman)}
   form: "إِنْتِي"
+  citation: {Gender: Fem, Number: Sing}  # its tokens' values: a word of its own, cited there
   spelled: {apc-Arab/standard: [إنتي], apc-Latn/arabizi: [enti]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [إنتي], apc-Latn/arabizi: [enti]}, status: pinned}
 - id: lexeme:ento
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: you (to several people)}
   form: "إِنْتُو"
+  citation: {Number: Plur}  # its tokens' values: a word of its own, cited there
   spelled: {apc-Arab/standard: [إنتو], apc-Latn/arabizi: [ento]}
-  forms:
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [إنتو], apc-Latn/arabizi: [ento]}, status: pinned}
 - id: lexeme:eshtara
   pos: VERB
   gloss: {en: buy}
   form: {radicals: [ش, ر, ي], form: VIII, source: 'kline 91'}
   spelled: {apc-Arab/standard: [اشترى], apc-Latn/arabizi: [eshtara]}
-  forms:
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [اشتري], apc-Latn/arabizi: [eshtiri]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [اشتريتي], apc-Latn/arabizi: [eshtarayti]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [اشتريت], apc-Latn/arabizi: [eshtarit]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [اشترينا], apc-Latn/arabizi: [eshtarayna]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [اشتريتوا], apc-Latn/arabizi: [eshtarayto]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [اشتريت], apc-Latn/arabizi: [eshtarit]}, status: pinned}
 - id: lexeme:eshteghel
   pos: VERB
   gloss: {en: work}
   form: {radicals: [ش, غ, ل], form: VIII, source: 'kline 91'}
   spelled: {apc-Arab/standard: [اشتغل], apc-Latn/arabizi: [eshtaghal]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتشتغلي], apc-Latn/arabizi: [btishteghli]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [بتشتغل], apc-Latn/arabizi: [btishteghel]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تشتغلي], apc-Latn/arabizi: [tishteghli]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتشتغل], apc-Latn/arabizi: [btishteghel]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [بيشتغل], apc-Latn/arabizi: [byishteghel]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تشتغل], apc-Latn/arabizi: [tishteghel]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [يشتغل], apc-Latn/arabizi: [yishteghel]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [بيشتغلوا], apc-Latn/arabizi: [byishteghlo]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بشتغل], apc-Latn/arabizi: [bishteghel]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [اشتغل], apc-Latn/arabizi: [eshteghel]}, status: pinned}
 - id: lexeme:esm
   pos: NOUN
   gloss: {en: name}
@@ -904,9 +801,6 @@ lexemes:
   gloss: {en: free (not busy)}
   form: "فَاضِي"
   spelled: {apc-Arab/standard: [فاضي], apc-Latn/arabizi: [fadi]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [فاضية], apc-Latn/arabizi: [fadye]}, status: pinned}
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [فاضيين], apc-Latn/arabizi: [fadyin]}, status: pinned}
 - id: lexeme:fakkar
   pos: VERB
   gloss: {en: think}
@@ -917,9 +811,6 @@ lexemes:
     source: 'deduced'
     basis: 'Kline does not list it. A form II verb''s citation forms follow from its radicals, as Kline cites them (p. 80: wa22af / ywa22ef), and the course''s bfakker and btfakkri agree.'
   spelled: {apc-Arab/standard: [فكّر], apc-Latn/arabizi: [fakkar]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتفكّري], apc-Latn/arabizi: [btfakkri]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بفكّر], apc-Latn/arabizi: [bfakker]}, status: pinned}
 - id: lexeme:fehem
   pos: VERB
   gloss: {en: understand}
@@ -927,9 +818,7 @@ lexemes:
   form: {radicals: [ف, ه, م], form: I, vowels: {past: i, present: a}, source: 'kline 75'}
   spelled: {apc-Arab/standard: [فهم], apc-Latn/arabizi: [fehem]}
   forms:
-  - {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [فهمت], apc-Latn/arabizi: [fhemt]}, status: pinned}
   - {feats: {Aspect: Perf, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [فهمتو], apc-Latn/arabizi: [fhemtu]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [فهمت], apc-Latn/arabizi: [fhemt]}, status: pinned}
 - id: lexeme:fenjen
   pos: NOUN
   gloss: {en: cup (for coffee)}
@@ -948,8 +837,8 @@ lexemes:
   form: "فِي"
   spelled: {apc-Arab/standard: [في], apc-Latn/arabizi: [fi]}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [فيّ], apc-Latn/arabizi: [fiyy]}}
-  - {spelled: {apc-Arab/standard: [في], apc-Latn/arabizi: [f]}}
+  - {form: "فِيّ", before: {startsIn: "ـِ"}, spelled: {apc-Arab/standard: [فيّ], apc-Latn/arabizi: [fiyy]}}  # fiyy- before -i (Kline p. 108: fiyye)
+  - {spelled: {apc-Arab/standard: [في], apc-Latn/arabizi: [f]}}  # the course's parts of fiki (f + iki); its form is fi + ki (lexeme:poss-2fs)
 - id: lexeme:fi2
   pos: VERB
   gloss: {en: wake up}
@@ -960,8 +849,6 @@ lexemes:
     source: 'deduced'
     basis: 'Kline does not list it. The course writes only bfi2, which gives the present. The past is a hollow verb''s, and its long a is cited e, as in shef, ken and nem. Where the course''s hollow verbs keep a, a back consonant stands before it (ra7, 2al, sar, 3ash) or ر after it (zar); whether ق after it does the same is for a speaker. The course never writes the form.'
   spelled: {apc-Arab/standard: [فاق], apc-Latn/arabizi: [fe2]}
-  forms:
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بفيق], apc-Latn/arabizi: [bfi2]}, status: pinned}
 - id: lexeme:film
   pos: NOUN
   gloss: {en: film; movie}
@@ -997,10 +884,6 @@ lexemes:
   gloss: {en: sing}
   form: {radicals: [غ, ن, ي], form: II, source: 'kline 81'}
   spelled: {apc-Arab/standard: [غنّى], apc-Latn/arabizi: [ghanna]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتغنّي], apc-Latn/arabizi: [btghanne]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بغنّي], apc-Latn/arabizi: [bghanne]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [غنّي], apc-Latn/arabizi: [ghanne]}, status: pinned}
 - id: lexeme:ghorfe
   pos: NOUN
   gloss: {en: room; bedroom}
@@ -1014,6 +897,7 @@ lexemes:
   gloss: {en: this (joined to a noun)}
   notes: {en: 'Written joined in Arabic script: هالجمعة, this week.'}
   spelled: {apc-Latn/arabizi: [hal]}
+  form: "هَا\u06dfل"  # ha- + the article (Kline p. 58: hal)
   allomorphs:
   - {spelled: {apc-Arab/standard: [هال]}}
 - id: lexeme:hala2
@@ -1026,16 +910,15 @@ lexemes:
   feats: {PronType: Dem}
   gloss: {en: this (masculine)}
   notes: {en: 'Feminine: هيدي, hayde.'}
-  form: "هَيْدَا"
+  form: "هَيدَا"  # REVIEW: the course marks the glide bare (هَيدا, its reviewed clips), where it writes َيْ elsewhere
   spelled: {apc-Arab/standard: [هيدا], apc-Latn/arabizi: [hayda]}
 - id: lexeme:hayde
   pos: PRON
   feats: {PronType: Dem}
   gloss: {en: this (feminine)}
-  form: "هَيْدِي"
+  form: "هَيدِي"  # REVIEW: the course marks the glide bare (هَيدي, its reviewed clips), where it writes َيْ elsewhere
+  citation: {Gender: Fem, Number: Sing}  # its tokens' values: a word of its own, cited there
   spelled: {apc-Arab/standard: [هيدي], apc-Latn/arabizi: [hayde]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [هيدي], apc-Latn/arabizi: [hayde]}, status: pinned}
 - id: lexeme:hdiyye
   pos: NOUN
   gloss: {en: present; gift}
@@ -1046,17 +929,15 @@ lexemes:
   feats: {PronType: Prs}
   gloss: {en: they}
   form: "هِنِّ"
+  citation: {Number: Plur}  # its tokens' values: a word of its own, cited there
   spelled: {apc-Arab/standard: [هنّ], apc-Latn/arabizi: [henne]}
-  forms:
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [هنّ], apc-Latn/arabizi: [henne]}, status: pinned}
 - id: lexeme:hiyye
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: she}
   form: "هِيِّ"
+  citation: {Gender: Fem, Number: Sing}  # its tokens' values: a word of its own, cited there
   spelled: {apc-Arab/standard: [هي], apc-Latn/arabizi: [hiyye]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [هي], apc-Latn/arabizi: [hiyye]}, status: pinned}
 - id: lexeme:hon
   pos: ADV
   feats: {PronType: Dem}
@@ -1078,6 +959,7 @@ lexemes:
 - id: lexeme:inshalla
   pos: INTJ
   gloss: {en: God willing; hopefully}
+  form: "إِن شَاء ا\u06dfلْلَه\u06df"  # three words in Arabic script, one in Arabizi (the profile)
   spelled: {apc-Arab/standard: [إن شاء الله], apc-Latn/arabizi: [inshalla]}
 - id: lexeme:ishara
   pos: NOUN
@@ -1117,7 +999,6 @@ lexemes:
   spelled: {apc-Arab/standard: [جرّب], apc-Latn/arabizi: [jarrab]}
   forms:
   - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [جرّب], apc-Latn/arabizi: [jarrb]}, status: pinned}
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [جرّبي], apc-Latn/arabizi: [jarrbi]}, status: pinned}
 - id: lexeme:jebne
   pos: NOUN
   gloss: {en: cheese}
@@ -1146,24 +1027,18 @@ lexemes:
   notes: {en: 'The active participle of ''come'': ana jey, I''m coming (a woman: jeye, جاية). el shahr el jey: next month; el jem3a el jeye: next week.'}
   form: "ج\u065cاي"
   spelled: {apc-Arab/standard: [جاي], apc-Latn/arabizi: [jey]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [جاية], apc-Latn/arabizi: [jeye]}, status: pinned}
 - id: lexeme:jiren
   pos: NOUN
   gloss: {en: neighbours}
   notes: {en: 'The plural of جار, jar.'}
   form: "جِير\u065cان"
+  citation: {Number: Plur}  # its tokens' values: a word of its own, cited there
   spelled: {apc-Arab/standard: [جيران], apc-Latn/arabizi: [jiren]}
-  forms:
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [جيران], apc-Latn/arabizi: [jiren]}, status: pinned}
 - id: lexeme:jou3an
   pos: ADJ
   gloss: {en: hungry}
   form: "جُوعَان"
   spelled: {apc-Arab/standard: [جوعان], apc-Latn/arabizi: [jou3an]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [جوعانة], apc-Latn/arabizi: [jou3ane]}, status: pinned}
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [جوعانين], apc-Latn/arabizi: [jou3anin]}, status: pinned}
 - id: lexeme:kam
   pos: DET
   feats: {PronType: Int}
@@ -1181,15 +1056,6 @@ lexemes:
   notes: {en: 'ken: he was; kenet: she was; kent: I was, you (a man) were. In Beirut the a of كان is said e, as in kenet: ken, also written kan.'}
   form: {radicals: [ك, و, ن], form: I, vowels: {past: e, present: u}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [كان], apc-Latn/arabizi: [ken]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [يكون], apc-Latn/arabizi: [ykoun]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [كنتي], apc-Latn/arabizi: [kenti]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [كانت], apc-Latn/arabizi: [kenet]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [كنت], apc-Latn/arabizi: [kent]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [كنّا], apc-Latn/arabizi: [kenna]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [كنتوا], apc-Latn/arabizi: [kento]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [كانوا], apc-Latn/arabizi: [keno]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [كنت], apc-Latn/arabizi: [kent]}, status: pinned}
 - id: lexeme:kanoun-awwal
   pos: PROPN
   gloss: {en: December}
@@ -1198,15 +1064,13 @@ lexemes:
 - id: lexeme:kanoun-tene
   pos: PROPN
   gloss: {en: January}
-  form: "كَانُون ا\u06dfلْت\u065cانِي"
+  form: "كَانُون ا\u06dfل\u06dfتّ\u065cانِي"  # the article's lam goes into the t (التّاني: the course)
   spelled: {apc-Arab/standard: [كانون التاني], apc-Latn/arabizi: [kanoun el tene]}
 - id: lexeme:kbir
   pos: ADJ
   gloss: {en: big; old (of people); older}
   form: "كْبِير"
   spelled: {apc-Arab/standard: [كبير], apc-Latn/arabizi: [kbir]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [كبيرة], apc-Latn/arabizi: [kbire]}, status: pinned}
 - id: lexeme:kell
   pos: DET
   feats: {PronType: Tot}
@@ -1218,11 +1082,11 @@ lexemes:
   pos: INTJ
   gloss: {en: happy birthday; many happy returns (to a man)}
   notes: {en: 'Literally ''every year, and you are well''. To a woman: kell sene w enti salme; to several people: kell sene w ento salmin.'}
-  form: "كِلّ سِن\u065cة وِإْنْتَ سَالِم"
+  form: "كِلّ سِن\u065cة و إِنْتَ سَالِم"
   spelled: {apc-Arab/standard: [كلّ سنة وإنت سالم], apc-Latn/arabizi: [kell sene w enta salem]}
   forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [كلّ سنة وإنتي سالمة], apc-Latn/arabizi: [kell sene w enti salme]}, status: pinned}
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [كلّ سنة وإنتو سالمين], apc-Latn/arabizi: [kell sene w ento salmin]}, status: pinned}
+  - {form: "كِلّ سِن\u065cة و إِنْتِي سَالْم\u065cة", feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [كلّ سنة وإنتي سالمة], apc-Latn/arabizi: [kell sene w enti salme]}, status: pinned}  # REVIEW: rule debt: a phrase whose words agree with the one it is said to; no rule reaches inside a phrase
+  - {form: "كِلّ سِن\u065cة و إِنْتُو سَالْمِين", feats: {Number: Plur}, spelled: {apc-Arab/standard: [كلّ سنة وإنتو سالمين], apc-Latn/arabizi: [kell sene w ento salmin]}, status: pinned}  # REVIEW: rule debt: a phrase whose words agree with the one it is said to; no rule reaches inside a phrase
 - id: lexeme:khalas
   pos: INTJ
   gloss: {en: OK then; enough; that's it}
@@ -1249,10 +1113,11 @@ lexemes:
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: fifteen}
-  form: "خَمِسْتَعْشَر"
+  form: "خَمِسْتَعْشْر\u06df"  # REVIEW: alone the r is written and not said (Kline's 7da3sh(r)); the course's Arabizi
   spelled: {apc-Arab/standard: [خمستعشر], apc-Latn/arabizi: [khamsta3sh]}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [خمستعشر], apc-Latn/arabizi: [khamsta3shar]}}
+  - {form: "خَمِسْتَعْشَر", before: {pos: NOUN}, spelled: {apc-Arab/standard: [خمستعشر], apc-Latn/arabizi: [khamsta3shar]}}  # REVIEW: before a noun the r is said (7da3shar sene); the next word decides
+  - {form: "خَمِسْتَعْشَر", before: {pos: NUM}}  # and before alf, a thousand (tmenta3shar alf: the course)
 - id: lexeme:khayef
   pos: VERB
   gloss: {en: afraid; scared; worried}
@@ -1265,10 +1130,6 @@ lexemes:
     note: 'Kline cites the verb 5ef / y5af (p. 77). The course teaches its participle, khayef (afraid), and its present only in ma tkhafi: the entry is cited by the participle.'
   citation: {Aspect: Part, Gender: Masc, Number: Sing}
   spelled: {apc-Arab/standard: [خايف], apc-Latn/arabizi: [khayef]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تخافي], apc-Latn/arabizi: [tkhafi]}, status: pinned}
-  - {feats: {Aspect: Part, Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [خايفة], apc-Latn/arabizi: [khayfe]}, status: pinned}
-  - {feats: {Aspect: Part, Gender: Masc, Number: Sing}, spelled: {apc-Arab/standard: [خايف], apc-Latn/arabizi: [khayef]}, status: pinned}
 - id: lexeme:khayy
   pos: NOUN
   gloss: {en: brother}
@@ -1304,8 +1165,9 @@ lexemes:
   notes: {en: '2elli: tell me; de22elli: call me; b3atli: send me. Arabic script: لي joined to the verb (قلّي، دقّلي، بعتلي).'}
   allomorphs:
   - {form: "لِي", after: {endsIn: ".*+?[اىي]"}, spelled: {apc-Arab/standard: [لي], apc-Latn/arabizi: [li]}}
-  - {spelled: {apc-Arab/standard: [لّي], apc-Latn/arabizi: [elli]}}
+  - {form: "ـِلِّي", after: {endsIn: ".ّ"}, spelled: {apc-Arab/standard: [لّي], apc-Latn/arabizi: [elli]}}  # REVIEW: -elli after a doubled letter (de22elli: the course; Kline p. 43 gives -ell- after the past's -t)
   - {form: "لِي", after: {endsIn: "وا\u06df"}}
+  - {form: "لِي"}  # -li after a consonant (b3atli, sarli: the course; Kline p. 43: -le)
 - id: lexeme:la-2ms
   pos: PRON
   feats: {Case: Dat, Gender: Masc, Number: Sing, Person: '2', PronType: Prs}
@@ -1313,6 +1175,7 @@ lexemes:
   notes: {en: 'sarlak: it''s been … for you; 2ellak: he told you. Arabic script: لك joined to the verb.'}
   allomorphs:
   - {form: "لَك", after: {endsIn: ".*+?[اىي]"}, spelled: {apc-Arab/standard: [لك], apc-Latn/arabizi: [lak]}}
+  - {form: "لَك"}  # -lak after a consonant (sarlak; Kline p. 43)
 - id: lexeme:la2
   pos: INTJ
   gloss: {en: 'no'}
@@ -1341,9 +1204,6 @@ lexemes:
   notes: {en: 'liff 3al yamin: turn right (to a man); liffi (to a woman); liffo (to several people).'}
   form: {radicals: [ل, ف, ف], form: I, vowels: {present: i}, source: 'kline 79'}
   spelled: {apc-Arab/standard: [لفّ], apc-Latn/arabizi: [laff]}
-  forms:
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [لفّي], apc-Latn/arabizi: [liffi]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [لفّ], apc-Latn/arabizi: [liff]}, status: pinned}
 - id: lexeme:lamma
   pos: SCONJ
   gloss: {en: when (not a question)}
@@ -1361,21 +1221,12 @@ lexemes:
   gloss: {en: play}
   form: {radicals: [ل, ع, ب], form: I, vowels: {past: i, present: a}, source: 'kline 75'}
   spelled: {apc-Arab/standard: [لعب], apc-Latn/arabizi: [le3eb]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتلعب], apc-Latn/arabizi: [btil3ab]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [بتلعبوا], apc-Latn/arabizi: [btil3abo]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [نلعب], apc-Latn/arabizi: [nel3ab]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [العب], apc-Latn/arabizi: [el3ab]}, status: pinned}
 - id: lexeme:lebes
   pos: VERB
   gloss: {en: wear; put on (clothes)}
   notes: {en: 'shu ra7 tilbos? What are you going to wear?'}
   form: {radicals: [ل, ب, س], form: I, vowels: {past: i, present: u}, source: 'kline 76'}
   spelled: {apc-Arab/standard: [لبس], apc-Latn/arabizi: [lebes]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تلبس], apc-Latn/arabizi: [tilbos]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [تلبسوا], apc-Latn/arabizi: [tilbso]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [البس], apc-Latn/arabizi: [elbos]}, status: pinned}
 - id: lexeme:lebnen
   pos: PROPN
   gloss: {en: Lebanon}
@@ -1383,23 +1234,18 @@ lexemes:
   spelled: {apc-Arab/standard: [لبنان], apc-Latn/arabizi: [Lebnen]}
 - id: lexeme:lebnene
   pos: ADJ
+  classes: [nisba]
   gloss: {en: Lebanese}
   notes: {en: 'A woman: لبنانية, lebneniyye; several people: لبنانيين, lebneniyyin.'}
   form: "لِبْن\u065cانِي"
   spelled: {apc-Arab/standard: [لبناني], apc-Latn/arabizi: [lebnene]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [لبنانية], apc-Latn/arabizi: [lebneniyye]}, status: pinned}
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [لبنانيين], apc-Latn/arabizi: [lebneniyyin]}, status: pinned}
 - id: lexeme:lek
   pos: VERB
   gloss: {en: look!; hey (to a man)}
   notes: {en: 'To draw attention: to a woman leke (ليكي), to several people leko (ليكوا).'}
   form: "ل\u065cيك"
   spelled: {apc-Arab/standard: [ليك], apc-Latn/arabizi: [lek]}
-  forms:
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [ليكي], apc-Latn/arabizi: [leke]}, status: pinned}
   # REVIEW: ليكوا, the plural's silent alef as every other verb writes it (2026-11-23); ليكو accepted.
-  - {feats: {Mood: Imp, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [ليكوا], apc-Latn/arabizi: [leko]}, status: pinned}
 - id: lexeme:lel
   pos: NOUN
   gloss: {en: night}
@@ -1441,9 +1287,6 @@ lexemes:
   gloss: {en: late}
   form: "مْأَخَّر"
   spelled: {apc-Arab/standard: [مأخّر], apc-Latn/arabizi: [m2akhkhar]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [مأخّرة], apc-Latn/arabizi: [m2akhkhra]}, status: pinned}
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [مأخّرين], apc-Latn/arabizi: [m2akhkhrin]}, status: pinned}
 - id: lexeme:m3allem
   pos: NOUN
   chooses: [Gender]
@@ -1451,17 +1294,12 @@ lexemes:
   notes: {en: 'A woman: معلّمة, m3allme.'}
   form: "مْعَلِّم"
   spelled: {apc-Arab/standard: [معلّم], apc-Latn/arabizi: [m3allem]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [معلّمة], apc-Latn/arabizi: [m3allme]}, status: pinned}
 - id: lexeme:m3asseb
   pos: ADJ
   gloss: {en: angry; annoyed}
   notes: {en: 'A woman: معصّبة, m3assbe.'}
   form: "مْعَصِّب"
   spelled: {apc-Arab/standard: [معصّب], apc-Latn/arabizi: [m3asseb]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [معصّبة], apc-Latn/arabizi: [m3assbe]}, status: pinned}
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [معصّبين], apc-Latn/arabizi: [m3assbin]}, status: pinned}
 - id: lexeme:ma
   pos: PART
   feats: {Polarity: Neg}
@@ -1502,17 +1340,12 @@ lexemes:
   gloss: {en: happy; having a good time}
   form: "مَبْسُوط"
   spelled: {apc-Arab/standard: [مبسوط], apc-Latn/arabizi: [mabsout]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [مبسوطة], apc-Latn/arabizi: [mabsouta]}, status: pinned}
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [مبسوطين], apc-Latn/arabizi: [mabsoutin]}, status: pinned}
 - id: lexeme:madi
   pos: ADJ
   gloss: {en: 'last; past (week, year)'}
   notes: {en: 'el jem3a el madye: last week; el sene el madye: last year.'}
   form: "مَاضِي"
   spelled: {apc-Arab/standard: [ماضي], apc-Latn/arabizi: [madi]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [ماضية], apc-Latn/arabizi: [madye]}, status: pinned}
 - id: lexeme:madrase
   pos: NOUN
   gloss: {en: school}
@@ -1551,16 +1384,13 @@ lexemes:
   pos: NOUN
   gloss: {en: money}
   form: "مَصَارِي"
+  citation: {Number: Plur}  # its tokens' values: a word of its own, cited there
   spelled: {apc-Arab/standard: [مصاري], apc-Latn/arabizi: [masari]}
-  forms:
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [مصاري], apc-Latn/arabizi: [masari]}, status: pinned}
 - id: lexeme:mashghoul
   pos: ADJ
   gloss: {en: busy}
   form: "مَشْغُول"
   spelled: {apc-Arab/standard: [مشغول], apc-Latn/arabizi: [mashghoul]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [مشغولة], apc-Latn/arabizi: [mashghoule]}, status: pinned}
 - id: lexeme:mat3am
   pos: NOUN
   gloss: {en: restaurant}
@@ -1616,6 +1446,7 @@ lexemes:
   spelled: {apc-Arab/standard: [من], apc-Latn/arabizi: [men]}
   allomorphs:
   - {spelled: {apc-Arab/standard: [منّ], apc-Latn/arabizi: [menn]}}
+  - {form: "مِنّ", before: {startsIn: 'ـ*'}}  # the n doubles before a vowel (Kline: menne, mennak)
 - id: lexeme:merci
   pos: INTJ
   gloss: {en: thanks (from French)}
@@ -1628,8 +1459,6 @@ lexemes:
   notes: {en: 'A woman: مهندسة, mhandse.'}
   form: "مْهَنْدِس"
   spelled: {apc-Arab/standard: [مهندس], apc-Latn/arabizi: [mhandes]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [مهندسة], apc-Latn/arabizi: [mhandse]}, status: pinned}
 - id: lexeme:mish
   pos: PART
   feats: {Polarity: Neg}
@@ -1641,6 +1470,7 @@ lexemes:
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: a hundred}
+  form: "مِي\u06dfةْ"  # REVIEW: mit, as the course spells the lemma (before a noun; Kline: miyye alone): its ي written and not said
   notes: {en: 'mit before a noun (mit dollar, mit sene); miyye on its own.'}
   spelled: {apc-Arab/standard: [مية], apc-Latn/arabizi: [mit]}
 - id: lexeme:mni7
@@ -1649,16 +1479,12 @@ lexemes:
   image: {file: ../../courses/images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}
   form: "مْنِيح"
   spelled: {apc-Arab/standard: [منيح], apc-Latn/arabizi: [mni7]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [منيحة], apc-Latn/arabizi: [mni7a]}, status: pinned}
 - id: lexeme:mrid
   pos: ADJ
   gloss: {en: sick; ill}
   notes: {en: 'A woman: مريضة, mrida.'}
   form: "مْرِيض"
   spelled: {apc-Arab/standard: [مريض], apc-Latn/arabizi: [mrid]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [مريضة], apc-Latn/arabizi: [mrida]}, status: pinned}
 - id: lexeme:mudir
   pos: NOUN
   gloss: {en: boss; manager; director}
@@ -1680,9 +1506,8 @@ lexemes:
   feats: {PronType: Prs}
   gloss: {en: we}
   form: "نِحْنَا"
+  citation: {Number: Plur}  # its tokens' values: a word of its own, cited there
   spelled: {apc-Arab/standard: [نحنا], apc-Latn/arabizi: [ne7na]}
-  forms:
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [نحنا], apc-Latn/arabizi: [ne7na]}, status: pinned}
 - id: lexeme:nem
   pos: VERB
   gloss: {en: sleep; go to bed}
@@ -1694,20 +1519,12 @@ lexemes:
     basis: 'The middle radical shows in no form of the verb, and no form depends on which it is. It is stored as و, the letter Arabic dictionaries file the word under; the course has no other word of the root, and shared radicals link nothing (ADR 0145).'
     note: 'One of the hollow verbs whose vowel does not change (Kline, p. 77): nem / ynem, its present e as its past (khaf / ykhaf changes it).'
   spelled: {apc-Arab/standard: [نام], apc-Latn/arabizi: [nem]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [بتنام], apc-Latn/arabizi: [btnem]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تنامي], apc-Latn/arabizi: [tnemi]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بنام], apc-Latn/arabizi: [bnem]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [نام], apc-Latn/arabizi: [nem]}, status: pinned}
 - id: lexeme:nezel
   pos: VERB
   gloss: {en: 'go down (to the city, the beach)'}
   notes: {en: 'Lebanese go down (nezel) to Beirut and the sea, and up (tele3) to the mountains and the village. nenzal: we go down.'}
   form: {radicals: [ن, ز, ل], form: I, vowels: {past: i, present: a}, source: 'kline 75'}
   spelled: {apc-Arab/standard: [نزل], apc-Latn/arabizi: [nezel]}
-  forms:
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [ننزل], apc-Latn/arabizi: [nenzal]}, status: pinned}
-  - {feats: {Aspect: Part, Gender: Masc, Number: Sing}, spelled: {apc-Arab/standard: [نازل], apc-Latn/arabizi: [nezel]}, status: pinned}
 - id: lexeme:nhar
   pos: NOUN
   gloss: {en: day; daytime}
@@ -1795,7 +1612,7 @@ lexemes:
   notes: {en: 'Arabic script: the same ك as -ak, so كيفك reads kifak to a man and kifik to a woman.'}
   allomorphs:
   - {form: "ـِك", spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ik]}}
-  - {form: "كِي", after: {endsIn: ".*+?[اىي]"}, spelled: {apc-Arab/standard: [كي], apc-Latn/arabizi: [iki]}}
+  - {form: "كِي", after: {endsIn: ".*+?[اىي]"}, spelled: {apc-Arab/standard: [كي], apc-Latn/arabizi: [ki]}}  # after a vowel -ki (Kline p. 117: fike); fiki is fi + ki, whatever its tokens' parts say
 - id: lexeme:poss-2ms
   pos: PRON
   feats: {Gender: Masc, Number: Sing, Person: '2', Poss: 'Yes', PronType: Prs}
@@ -1832,7 +1649,7 @@ lexemes:
   gloss: {en: '-on: their (ending on a noun)'}
   notes: {en: 'beton: their house; 3endon: they have. Arabic script: هن joined to the noun (بيتهن), as Kline (2022) writes it; also written ـن (بيتن).'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [هن], apc-Latn/arabizi: ['on']}}
+  - {form: "ـُه\u06dfن", spelled: {apc-Arab/standard: [هن], apc-Latn/arabizi: ['on']}}  # -on: the vowel, then a silent ه (Kline p. 7-8, 41)
 - id: lexeme:ra2as
   pos: VERB
   gloss: {en: dance}
@@ -1843,8 +1660,6 @@ lexemes:
     source: 'deduced'
     basis: 'Kline does not list it. The course writes only or2os (I dance): the present vowel is o, and the past is the one the course names the verb by. The prefix is cited ye-, as the course writes its other verbs of this class (edros, elbos, ekol, ekhod). The course wrote or2os until 2026-11-23 (accepted); it writes er2os, Kline''s (pp. 157-159).'
   spelled: {apc-Arab/standard: [رقص], apc-Latn/arabizi: [ra2as]}
-  forms:
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [ارقص], apc-Latn/arabizi: [er2os]}, status: pinned}
 - id: lexeme:ra2m
   pos: NOUN
   gloss: {en: number (phone number)}
@@ -1855,27 +1670,6 @@ lexemes:
   gloss: {en: go}
   form: {radicals: [ر, و, ح], form: I, vowels: {past: a, present: u}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [راح], apc-Latn/arabizi: [ra7]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتروحي], apc-Latn/arabizi: [btru7i]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تروحي], apc-Latn/arabizi: [tru7i]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتروح], apc-Latn/arabizi: [btru7]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تروح], apc-Latn/arabizi: [tru7]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [يروح], apc-Latn/arabizi: [yru7]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [منروح], apc-Latn/arabizi: [mnru7]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [بتروحوا], apc-Latn/arabizi: [btru7o]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بروح], apc-Latn/arabizi: [bru7]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [نروح], apc-Latn/arabizi: [nru7]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [روح], apc-Latn/arabizi: [ru7]}, status: pinned}
-  - {feats: {Aspect: Part, Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [رايحة], apc-Latn/arabizi: [ray7a]}, status: pinned}
-  - {feats: {Aspect: Part, Gender: Masc, Number: Sing}, spelled: {apc-Arab/standard: [رايح], apc-Latn/arabizi: [raye7]}, status: pinned}
-  - {feats: {Aspect: Part, Number: Plur}, spelled: {apc-Arab/standard: [رايحين], apc-Latn/arabizi: [ray7in]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [رحتي], apc-Latn/arabizi: [re7ti]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [راحت], apc-Latn/arabizi: [ra7et]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [رحت], apc-Latn/arabizi: [re7t]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [رحنا], apc-Latn/arabizi: [re7na]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [رحتوا], apc-Latn/arabizi: [re7to]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [راحوا], apc-Latn/arabizi: [ra7o]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [رحت], apc-Latn/arabizi: [re7t]}, status: pinned}
 - id: lexeme:ra7.fut
   pos: AUX
   gloss: {en: will; going to (before a verb)}
@@ -1914,16 +1708,11 @@ lexemes:
   notes: {en: 'reje3: he came back; rje3t: I came back (the first vowel drops before an ending that starts with a consonant).'}
   form: {radicals: [ر, ج, ع], form: I, vowels: {past: i, present: a}, source: 'kline 75'}
   spelled: {apc-Arab/standard: [رجع], apc-Latn/arabizi: [reje3]}
-  forms:
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [برجع], apc-Latn/arabizi: [berja3]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [رجعوا], apc-Latn/arabizi: [rej3o]}, status: pinned}
 - id: lexeme:rkhis
   pos: ADJ
   gloss: {en: cheap}
   form: "رْخِيص"
   spelled: {apc-Arab/standard: [رخيص], apc-Latn/arabizi: [rkhis]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [رخيصة], apc-Latn/arabizi: [rkhise]}, status: pinned}
 - id: lexeme:rte7
   pos: VERB
   gloss: {en: rest}
@@ -1934,9 +1723,6 @@ lexemes:
     source: 'kline 91'
     basis: 'The middle radical shows in no form of a hollow form VIII verb, and no form depends on which it is. It is stored as و, the letter Arabic dictionaries file the word under; that links it to nothing, ra7 (go) included (ADR 0145: shared radicals only sort together).'
   spelled: {apc-Arab/standard: [ارتاح], apc-Latn/arabizi: [rte7]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [ترتاحي], apc-Latn/arabizi: [tirte7i]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [ترتاح], apc-Latn/arabizi: [tirte7]}, status: pinned}
 - id: lexeme:sa3a
   pos: NOUN
   gloss: {en: hour; o'clock; watch}
@@ -1955,7 +1741,7 @@ lexemes:
   pos: INTJ
   gloss: {en: enjoy your meal; to your health}
   notes: {en: 'Said to someone eating or drinking. The answer: ع قلبك, 3a albak.'}
-  form: "صَحّْت\u065cين"
+  form: "صَحْت\u065cين"
   spelled: {apc-Arab/standard: [صحتين], apc-Latn/arabizi: [sa77tein]}
 - id: lexeme:sa7eb
   pos: NOUN
@@ -1980,10 +1766,11 @@ lexemes:
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: seventeen}
-  form: "سَبَعْتَعْشَر"
+  form: "سَبَعْتَعْشْر\u06df"  # REVIEW: alone the r is written and not said (Kline's 7da3sh(r)); the course's Arabizi
   spelled: {apc-Arab/standard: [سبعتعشر], apc-Latn/arabizi: [saba3ta3sh]}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [سبعتعشر], apc-Latn/arabizi: [saba3ta3shar]}}
+  - {form: "سَبَعْتَعْشَر", before: {pos: NOUN}, spelled: {apc-Arab/standard: [سبعتعشر], apc-Latn/arabizi: [saba3ta3shar]}}  # REVIEW: before a noun the r is said (7da3shar sene); the next word decides
+  - {form: "سَبَعْتَعْشَر", before: {pos: NUM}}  # and before alf, a thousand (tmenta3shar alf: the course)
 - id: lexeme:sabt
   pos: NOUN
   gloss: {en: Saturday}
@@ -1999,10 +1786,6 @@ lexemes:
     source: 'kline 83'
     note: 'Kline cites sefar/ysefir (p. 83). The course wrote safart and safer until 2026-11-23 (accepted); it writes sefart, sefer.'
   spelled: {apc-Arab/standard: [سافر], apc-Latn/arabizi: [sefar]}
-  forms:
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [يسافروا], apc-Latn/arabizi: [ysefro]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [سافر], apc-Latn/arabizi: [sefer]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [سافرت], apc-Latn/arabizi: [sefart]}, status: pinned}
 - id: lexeme:sahra
   pos: NOUN
   gloss: {en: evening out; party; get-together}
@@ -2015,8 +1798,8 @@ lexemes:
   form: "سَل\u065cامْتَك"
   spelled: {apc-Arab/standard: [سلامتك], apc-Latn/arabizi: [salemtak]}
   forms:
-  - {feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, spelled: {apc-Arab/standard: [سلامتك], apc-Latn/arabizi: [salemtik]}, status: pinned}
-  - {feats: {'Number[psor]': Plur, 'Person[psor]': '2'}, spelled: {apc-Arab/standard: [سلامتكن], apc-Latn/arabizi: [salemetkon]}, status: pinned}
+  - {form: "سَل\u065cامْتِك", feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, spelled: {apc-Arab/standard: [سلامتك], apc-Latn/arabizi: [salemtik]}, status: pinned}  # REVIEW: rule debt: a phrase whose words agree with the one it is said to; no rule reaches inside a phrase
+  - {form: "سَل\u065cامِتْكُن", feats: {'Number[psor]': Plur, 'Person[psor]': '2'}, spelled: {apc-Arab/standard: [سلامتكن], apc-Latn/arabizi: [salemetkon]}, status: pinned}  # REVIEW: rule debt: a phrase whose words agree with the one it is said to; no rule reaches inside a phrase
 - id: lexeme:salon
   pos: NOUN
   gloss: {en: living room}
@@ -2032,13 +1815,6 @@ lexemes:
     source: 'kline 75'
     note: 'The lexeme is named sama3; Kline cites seme3, and the course''s sme3t agrees with him.'
   spelled: {apc-Arab/standard: [سمع], apc-Latn/arabizi: [seme3]}
-  forms:
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [منسمع], apc-Latn/arabizi: [mnisma3]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بسمع], apc-Latn/arabizi: [bisma3]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [نسمع], apc-Latn/arabizi: [nisma3]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [اسمع], apc-Latn/arabizi: [esma3]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [سمعتي], apc-Latn/arabizi: [sme3ti]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [سمعت], apc-Latn/arabizi: [sme3t]}, status: pinned}
 - id: lexeme:sami
   pos: PROPN
   gloss: {en: Sami (a name)}
@@ -2050,8 +1826,6 @@ lexemes:
   notes: {en: 'sar 3omri tleten: I''ve turned thirty. sarli sinten 3am eshteghel hon: I''ve been working here for two years (literally ''it has become two years for me'').'}
   form: {radicals: [ص, ي, ر], form: I, vowels: {past: a, present: i}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [صار], apc-Latn/arabizi: [sar]}
-  forms:
-  - {feats: {Aspect: Perf, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [صرت], apc-Latn/arabizi: [sert]}, status: pinned}
 - id: lexeme:sawa
   pos: ADV
   gloss: {en: together}
@@ -2074,10 +1848,6 @@ lexemes:
     basis: 'The verb is cited sakan / yeskon: its radicals are the participle''s own, and its vowels are cited as those of 2a3ad / ye23od (Kline, p. 75), by analogy. No form of the course depends on them.'
   citation: {Aspect: Part, Gender: Masc, Number: Sing}
   spelled: {apc-Arab/standard: [ساكن], apc-Latn/arabizi: [seken]}
-  forms:
-  - {feats: {Aspect: Part, Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [ساكنة], apc-Latn/arabizi: [sekne]}, status: pinned}
-  - {feats: {Aspect: Part, Gender: Masc, Number: Sing}, spelled: {apc-Arab/standard: [ساكن], apc-Latn/arabizi: [seken]}, status: pinned}
-  - {feats: {Aspect: Part, Number: Plur}, spelled: {apc-Arab/standard: [ساكنين], apc-Latn/arabizi: [seknin]}, status: pinned}
 - id: lexeme:sene
   pos: NOUN
   gloss: {en: year}
@@ -2095,10 +1865,11 @@ lexemes:
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: sixteen}
-  form: "سِتَّعْشَر"
+  form: "سِتَّعْشْر\u06df"  # REVIEW: alone the r is written and not said (Kline's 7da3sh(r)); the course's Arabizi
   spelled: {apc-Arab/standard: [ستّعشر], apc-Latn/arabizi: [setta3sh]}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [ستّعشر], apc-Latn/arabizi: [setta3shar]}}
+  - {form: "سِتَّعْشَر", before: {pos: NOUN}, spelled: {apc-Arab/standard: [ستّعشر], apc-Latn/arabizi: [setta3shar]}}  # REVIEW: before a noun the r is said (7da3shar sene); the next word decides
+  - {form: "سِتَّعْشَر", before: {pos: NUM}}  # and before alf, a thousand (tmenta3shar alf: the course)
 - id: lexeme:sette
   pos: NUM
   feats: {NumType: Card}
@@ -2109,9 +1880,8 @@ lexemes:
   pos: NOUN
   gloss: {en: guys; young people; friends}
   form: "شَب\u065cاب"
+  citation: {Number: Plur}  # its tokens' values: a word of its own, cited there
   spelled: {apc-Arab/standard: [شباب], apc-Latn/arabizi: [shabeb]}
-  forms:
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [شباب], apc-Latn/arabizi: [shabeb]}, status: pinned}
 - id: lexeme:shahr
   pos: NOUN
   gloss: {en: month}
@@ -2146,10 +1916,6 @@ lexemes:
   gloss: {en: see; watch}
   form: {radicals: [ش, و, ف], form: I, vowels: {past: e, present: u}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [شاف], apc-Latn/arabizi: [shef]}
-  forms:
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [منشوف], apc-Latn/arabizi: [mnshuf]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [شوف], apc-Latn/arabizi: [shuf]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [شفت], apc-Latn/arabizi: [sheft]}, status: pinned}
 - id: lexeme:shere3
   pos: NOUN
   gloss: {en: street}
@@ -2161,18 +1927,6 @@ lexemes:
   notes: {en: shrab! drink! (to a man); shrabi! (to a woman); shrabo! (to several people).}
   form: {radicals: [ش, ر, ب], form: I, vowels: {past: i, present: a}, source: 'kline 75'}
   spelled: {apc-Arab/standard: [شرب], apc-Latn/arabizi: [shereb]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتشربي], apc-Latn/arabizi: [btishrabi]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [تشرب], apc-Latn/arabizi: [tishrab]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تشرب], apc-Latn/arabizi: [tishrab]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [منشرب], apc-Latn/arabizi: [mnishrab]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [بتشربوا], apc-Latn/arabizi: [btishrabo]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [بيشربوا], apc-Latn/arabizi: [byishrabo]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بشرب], apc-Latn/arabizi: [bishrab]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [شربنا], apc-Latn/arabizi: [shrebna]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [شربت], apc-Latn/arabizi: [shrebt]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [شرب], apc-Latn/arabizi: [shrab]}, status: pinned}
-  - {feats: {Mood: Imp, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [شربوا], apc-Latn/arabizi: [shrabo]}, status: pinned}
 - id: lexeme:sherke
   pos: NOUN
   gloss: {en: company; firm}
@@ -2212,8 +1966,8 @@ lexemes:
   form: "شُو بَك"
   spelled: {apc-Arab/standard: [شو بك], apc-Latn/arabizi: [shu bak]}
   forms:
-  - {feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, spelled: {apc-Arab/standard: [شو بكي], apc-Latn/arabizi: [shu biki]}, status: pinned}
-  - {feats: {'Number[psor]': Plur, 'Person[psor]': '2'}, spelled: {apc-Arab/standard: [شو بكن], apc-Latn/arabizi: [shu bkon]}, status: pinned}
+  - {form: "شُو بِكِي", feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, spelled: {apc-Arab/standard: [شو بكي], apc-Latn/arabizi: [shu biki]}, status: pinned}  # REVIEW: rule debt: a phrase whose words agree with the one it is said to; no rule reaches inside a phrase
+  - {form: "شُو بْكُن", feats: {'Number[psor]': Plur, 'Person[psor]': '2'}, spelled: {apc-Arab/standard: [شو بكن], apc-Latn/arabizi: [shu bkon]}, status: pinned}  # REVIEW: rule debt: a phrase whose words agree with the one it is said to; no rule reaches inside a phrase
 - id: lexeme:shukran
   pos: INTJ
   gloss: {en: thank you}
@@ -2253,9 +2007,6 @@ lexemes:
   form: "ا\u06dfسْتَنَّى"
   spelled: {apc-Arab/standard: [استنّى], apc-Latn/arabizi: [stanna]}
   forms:
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [استنّي], apc-Latn/arabizi: [stanni]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [استنّى], apc-Latn/arabizi: [stanna]}, status: pinned}
-  - {feats: {Mood: Imp, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [استنّوا], apc-Latn/arabizi: [stanno]}, status: pinned}
   - {feats: {Mood: Imp}, stem: "ا\u06dfسْتَنَّى", status: listed, statement: {author: 'llm:claude@rules-stage2', status: draft}}
   # REVIEW: the present's stem (yestanna), drafted as the course's other verbs' present is; the course writes no present of it.
   - {feats: {Aspect: Imp}, stem: "سْتَنَّى", status: listed, statement: {author: 'llm:claude@rules-verbs', status: draft}}
@@ -2280,8 +2031,6 @@ lexemes:
   gloss: {en: tired}
   form: "تَعْبَان"
   spelled: {apc-Arab/standard: [تعبان], apc-Latn/arabizi: [ta3ban]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [تعبانة], apc-Latn/arabizi: [ta3bane]}, status: pinned}
 - id: lexeme:ta7t
   pos: ADV
   gloss: {en: downstairs; down; under}
@@ -2318,19 +2067,11 @@ lexemes:
   gloss: {en: tasty; delicious}
   form: "طَيِّب"
   spelled: {apc-Arab/standard: [طيّب], apc-Latn/arabizi: [tayyeb]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [طيّبة], apc-Latn/arabizi: [tayybe]}, status: pinned}
 - id: lexeme:tele3
   pos: VERB
   gloss: {en: go out; go up}
   form: {radicals: [ط, ل, ع], form: I, vowels: {past: i, present: a}, source: 'kline 75'}
   spelled: {apc-Arab/standard: [طلع], apc-Latn/arabizi: [tele3]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تطلع], apc-Latn/arabizi: [titla3]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [منطلع], apc-Latn/arabizi: [mnitla3]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [نطلع], apc-Latn/arabizi: [netla3]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [يطلعوا], apc-Latn/arabizi: [yitla3o]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [اطلع], apc-Latn/arabizi: [etla3]}, status: pinned}
 - id: lexeme:telefon
   pos: NOUN
   gloss: {en: phone; phone call}
@@ -2338,12 +2079,11 @@ lexemes:
   spelled: {apc-Arab/standard: [تلفون], apc-Latn/arabizi: [telefon]}
 - id: lexeme:tene
   pos: ADJ
+  classes: [invariable]
   feats: {NumType: Ord}
   gloss: {en: second; other}
   form: "ت\u065cانِي"
   spelled: {apc-Arab/standard: [تاني], apc-Latn/arabizi: [tene]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [تاني], apc-Latn/arabizi: [tene]}, status: pinned}
 - id: lexeme:terwi2a
   pos: NOUN
   gloss: {en: breakfast}
@@ -2367,9 +2107,6 @@ lexemes:
   notes: {en: 'Offering something or inviting someone in. To a woman: تفضّلي, tfaddali; to several people: تفضّلوا, tfaddalo.'}
   form: "تْفَضَّل"
   spelled: {apc-Arab/standard: [تفضّل], apc-Latn/arabizi: [tfaddal]}
-  forms:
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تفضّلي], apc-Latn/arabizi: [tfaddali]}, status: pinned}
-  - {feats: {Mood: Imp, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [تفضّلوا], apc-Latn/arabizi: [tfaddalo]}, status: pinned}
 - id: lexeme:tilmiz
   pos: NOUN
   chooses: [Gender]
@@ -2377,8 +2114,6 @@ lexemes:
   notes: {en: 'A woman: تلميذة, tilmize.'}
   form: "تِلْمِيذ"
   spelled: {apc-Arab/standard: [تلميذ], apc-Latn/arabizi: [tilmiz]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [تلميذة], apc-Latn/arabizi: [tilmize]}, status: pinned}
 - id: lexeme:tishrin-awwal
   pos: PROPN
   gloss: {en: October}
@@ -2387,16 +2122,17 @@ lexemes:
 - id: lexeme:tishrin-tene
   pos: PROPN
   gloss: {en: November}
-  form: "تِشْرِين ا\u06dfلْت\u065cانِي"
+  form: "تِشْرِين ا\u06dfل\u06dfتّ\u065cانِي"  # the article's lam goes into the t (التّاني: the course)
   spelled: {apc-Arab/standard: [تشرين التاني], apc-Latn/arabizi: [tishrin el tene]}
 - id: lexeme:tleta3sh
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: thirteen}
-  form: "تْلَاتَعْشَر"
+  form: "تْل\u065cاتَعْشْر\u06df"  # REVIEW: alone the r is written and not said (Kline's 7da3sh(r)); the course's Arabizi
   spelled: {apc-Arab/standard: [تلاتعشر], apc-Latn/arabizi: [tleta3sh]}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [تلاتعشر], apc-Latn/arabizi: [tleta3shar]}}
+  - {form: "تْل\u065cاتَعْشَر", before: {pos: NOUN}, spelled: {apc-Arab/standard: [تلاتعشر], apc-Latn/arabizi: [tleta3shar]}}  # REVIEW: before a noun the r is said (7da3shar sene); the next word decides
+  - {form: "تْل\u065cاتَعْشَر", before: {pos: NUM}}  # and before alf, a thousand (tmenta3shar alf: the course)
 - id: lexeme:tlete
   pos: NUM
   feats: {NumType: Card}
@@ -2419,18 +2155,20 @@ lexemes:
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: eighteen}
-  form: "تْمَانْتَعْشَر"
+  form: "تْم\u065cانْتَعْشْر\u06df"  # REVIEW: alone the r is written and not said (Kline's 7da3sh(r)); the course's Arabizi
   spelled: {apc-Arab/standard: [تمانتعشر], apc-Latn/arabizi: [tmenta3sh]}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [تمانتعشر], apc-Latn/arabizi: [tmenta3shar]}}
+  - {form: "تْم\u065cانْتَعْشَر", before: {pos: NOUN}, spelled: {apc-Arab/standard: [تمانتعشر], apc-Latn/arabizi: [tmenta3shar]}}  # REVIEW: before a noun the r is said (7da3shar sene); the next word decides
+  - {form: "تْم\u065cانْتَعْشَر", before: {pos: NUM}}  # and before alf, a thousand (tmenta3shar alf: the course)
 - id: lexeme:tna3sh
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: twelve}
-  form: "تْنَعْشَر"
+  form: "تْنَعْشْر\u06df"  # REVIEW: alone the r is written and not said (Kline's 7da3sh(r)); the course's Arabizi
   spelled: {apc-Arab/standard: [تنعشر], apc-Latn/arabizi: [tna3sh]}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [تنعشر], apc-Latn/arabizi: [tna3shar]}}
+  - {form: "تْنَعْشَر", before: {pos: NOUN}, spelled: {apc-Arab/standard: [تنعشر], apc-Latn/arabizi: [tna3shar]}}  # REVIEW: before a noun the r is said (7da3shar sene); the next word decides
+  - {form: "تْنَعْشَر", before: {pos: NUM}}  # and before alf, a thousand (tmenta3shar alf: the course)
 - id: lexeme:tnen
   pos: NUM
   feats: {NumType: Card}
@@ -2441,22 +2179,23 @@ lexemes:
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: nineteen}
-  form: "تِسَعْتَعْشَر"
+  form: "تْسَعْتَعْشْر\u06df"  # REVIEW: alone the r is written and not said (Kline's 7da3sh(r)); the course's Arabizi
   spelled: {apc-Arab/standard: [تسعتعشر], apc-Latn/arabizi: [tsa3ta3sh]}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [تسعتعشر], apc-Latn/arabizi: [tsa3ta3shar]}}
+  - {form: "تْسَعْتَعْشَر", before: {pos: NOUN}, spelled: {apc-Arab/standard: [تسعتعشر], apc-Latn/arabizi: [tsa3ta3shar]}}  # REVIEW: before a noun the r is said (7da3shar sene); the next word decides
+  - {form: "تْسَعْتَعْشَر", before: {pos: NUM}}  # and before alf, a thousand (tmenta3shar alf: the course)
 - id: lexeme:tyeb
   pos: NOUN
   gloss: {en: clothes}
   form: "تْي\u065cاب"
+  citation: {Number: Plur}  # its tokens' values: a word of its own, cited there
   spelled: {apc-Arab/standard: [تياب], apc-Latn/arabizi: [tyeb]}
-  forms:
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [تياب], apc-Latn/arabizi: [tyeb]}, status: pinned}
 - id: lexeme:w
   pos: CCONJ
   gloss: {en: and}
   notes: {en: 'Written joined to the next word in Arabic script: وإنت.'}
   spelled: {apc-Latn/arabizi: [w]}
+  form: "و"  # w-, written onto the next word in Arabic script (the profile)
   allomorphs:
   - {spelled: {apc-Arab/standard: [و]}}
 - id: lexeme:wa22ef
@@ -2465,10 +2204,6 @@ lexemes:
   notes: {en: 'wa22ef hon!: stop here! (to a driver). To a woman: wa22fi.'}
   form: {radicals: [و, ق, ف], form: II, source: 'kline 80'}
   spelled: {apc-Arab/standard: [وقّف], apc-Latn/arabizi: [wa22af]}
-  forms:
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [وقّفي], apc-Latn/arabizi: [wa22fi]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [وقّف], apc-Latn/arabizi: [wa22ef]}, status: pinned}
-  - {feats: {Mood: Imp, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [وقّفوا], apc-Latn/arabizi: [wa22fo]}, status: pinned}
 - id: lexeme:wa2ef
   pos: VERB
   gloss: {en: standing; stopped; waiting}
@@ -2476,8 +2211,6 @@ lexemes:
   form: {radicals: [و, ق, ف], form: I, source: 'kline 76'}
   citation: {Aspect: Part, Gender: Masc, Number: Sing}
   spelled: {apc-Arab/standard: [واقف], apc-Latn/arabizi: [wa2ef]}
-  forms:
-  - {feats: {Aspect: Part, Gender: Masc, Number: Sing}, spelled: {apc-Arab/standard: [واقف], apc-Latn/arabizi: [wa2ef]}, status: pinned}
 - id: lexeme:wa2t
   pos: NOUN
   gloss: {en: time}
@@ -2505,9 +2238,6 @@ lexemes:
   gloss: {en: arrive}
   form: {radicals: [و, ص, ل], form: I, vowels: {past: i, present: a}, source: 'kline 76'}
   spelled: {apc-Arab/standard: [وصل], apc-Latn/arabizi: [wesel]}
-  forms:
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [بوصل], apc-Latn/arabizi: [busal]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [وصلت], apc-Latn/arabizi: [weslet]}, status: pinned}
 - id: lexeme:wja3
   pos: NOUN
   gloss: {en: pain; ache}
@@ -2518,9 +2248,8 @@ lexemes:
   pos: NOUN
   gloss: {en: children; kids}
   form: "وْلَاد"
+  citation: {Number: Plur}  # its tokens' values: a word of its own, cited there
   spelled: {apc-Arab/standard: [ولاد], apc-Latn/arabizi: [wlad]}
-  forms:
-  - {feats: {Number: Plur}, spelled: {apc-Arab/standard: [ولاد], apc-Latn/arabizi: [wlad]}, status: pinned}
 - id: lexeme:ya-7aram
   pos: INTJ
   gloss: {en: what a pity!; poor thing!}
@@ -2558,8 +2287,6 @@ lexemes:
   notes: {en: 'A woman: زعلانة, za3lene.'}
   form: "زَعْل\u065cان"
   spelled: {apc-Arab/standard: [زعلان], apc-Latn/arabizi: [za3len]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [زعلانة], apc-Latn/arabizi: [za3lene]}, status: pinned}
 - id: lexeme:za3tar
   pos: NOUN
   gloss: {en: za'atar (thyme and sesame mix)}
@@ -2576,17 +2303,8 @@ lexemes:
   gloss: {en: visit}
   form: {radicals: [ز, و, ر], form: I, vowels: {past: a, present: u}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [زار], apc-Latn/arabizi: [zar]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تزور], apc-Latn/arabizi: [tzur]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [نزور], apc-Latn/arabizi: [nzur]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [زور], apc-Latn/arabizi: [zur]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [زرت], apc-Latn/arabizi: [zert]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Plur, Person: '3'}, spelled: {apc-Arab/standard: [زاروا], apc-Latn/arabizi: [zaro]}, status: pinned}
-  - {feats: {Aspect: Perf, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [زرت], apc-Latn/arabizi: [zert]}, status: pinned}
 - id: lexeme:zghir
   pos: ADJ
   gloss: {en: small; little; young}
   form: "زْغِير"
   spelled: {apc-Arab/standard: [زغير], apc-Latn/arabizi: [zghir]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [زغيرة], apc-Latn/arabizi: [zghire]}, status: pinned}

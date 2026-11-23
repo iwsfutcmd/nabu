@@ -89,6 +89,10 @@ own:
         AYN: '[ع]'
         BACK: '[رقعحخغصضطظو]'
         FEMA: '[رعقصضطظحغء]'
+        SUN: '[تثدذرزسشصضطظلنج]'
+        A: '[َ {َّ}]'
+        GL: '[وي]'
+        FEMI: '[رص]'
     rootClasses:
     - id: hamzated
       radical: 1
@@ -192,7 +196,7 @@ own:
       form: I
       class: hollow
       vowels:
-        present: a
+        present: e
       template: 1{past}ا3
       branch: hollow-unchanged
     - id: imperfect
@@ -275,7 +279,7 @@ own:
     - id: perfect
       form: VIII
       class: hollow
-      template: "اِ1ْت\u065cا3"
+      template: "ا\u06df1ْت\u065cا3"
     - id: perfect
       form: VIII
       class: defective
@@ -467,7 +471,61 @@ own:
           add: ـِين
         - branch: ms
           add: ''
+    - id: rule:apc-invariable
+      when:
+        pos: ADJ
+        class: invariable
+      blocks: []
+    - id: rule:apc-nisba
+      when:
+        pos: ADJ
+        class: nisba
+      blocks:
+      - suffix:
+        - branch: fs
+          feats:
+            Gender: Fem
+            Number: Sing
+          add: "ـّ\u065cة"
+        - branch: pl
+          feats:
+            Number: Plur
+          add: ـِّين
+    - id: rule:apc-adjective
+      when:
+        pos: ADJ
+      blocks:
+      - suffix:
+        - branch: fs
+          feats:
+            Gender: Fem
+            Number: Sing
+          add: "ـ\u065cة"
+        - branch: pl
+          feats:
+            Number: Plur
+          add: ـِين
+    - id: rule:apc-noun
+      when:
+        pos: NOUN
+      blocks:
+      - suffix:
+        - branch: fs
+          feats:
+            Gender: Fem
+            Number: Sing
+          add: "ـ\u065cة"
     phonology:
+    - id: rule:apc-article
+      branch: sun
+      find: ل+{SUN}*
+      after: "ا\u06df"
+      to: "ل\u06df+{SUN}ّ"
+    - id: rule:apc-article
+      branch: wasl
+      find: +اِ
+      after: "ا\u06dfل"
+      to: "+ا\u06df"
     - id: rule:apc-sukun
       find: '{K}ّ+'
       before: '{K}*'
@@ -478,6 +536,14 @@ own:
     - id: rule:apc-madda
       find: "ا\u065c+ا"
       to: "آ\u065c+"
+    - id: rule:apc-wasl
+      branch: prefix
+      when:
+        feats:
+          Aspect: Imp
+      find: "+ا\u06df"
+      after: '{P}'
+      to: +
     - id: rule:apc-silent-alef
       find: "ا\u06df+"
       to: +
@@ -493,6 +559,8 @@ own:
       after:
       - '#'
       - '#{P}*+'
+      - '#و+'
+      - '#و+{P}*+'
       before: '{AYN}ْ'
       to: '{P}َ+'
     - id: rule:apc-prefix-vowel
@@ -501,6 +569,8 @@ own:
       after:
       - '#'
       - '#{P}*+'
+      - '#و+'
+      - '#و+{P}*+'
       before: '{K}ْ'
       to: '{P}ِ+'
     - id: rule:apc-prefix-vowel
@@ -509,6 +579,8 @@ own:
       after:
       - '#'
       - '#{P}*+'
+      - '#و+'
+      - '#و+{P}*+'
       to: '{P}ْ+'
     - id: rule:apc-syncope
       branch: vowel
@@ -519,22 +591,80 @@ own:
       branch: she
       find: '{K}َ{K}ِ+{T}*'
       to: '{K}ْ{K}ِ+{T}'
+    - id: rule:apc-syncope
+      branch: adjective
+      when:
+        pos: ADJ
+      find: '{L}{A}{L}{W}+'
+      to: '{L}ْ{L}{W}+'
     - id: rule:apc-defective
       branch: ending
+      when:
+        feats:
+          Aspect: Imp,Perf
       find: '{K}*[اىي]{W}+'
       to: '{K}{W}+'
+    - id: rule:apc-defective
+      branch: ending
+      when:
+        feats:
+          Mood: Imp
+      find: '{K}*[اىي]{W}+'
+      to: '{K}{W}+'
+    - id: rule:apc-defective
+      branch: ay
+      when:
+        feats:
+          Aspect: Perf
+      find: ى+
+      before:
+      - '{K}'
+      - '{K}{V}'
+      to: يْ+
     - id: rule:apc-geminate
       find: نْ+نَ
       to: +نَّ
+    - id: rule:apc-short-stem
+      branch: dative
+      when:
+        feats:
+          Mood: Imp
+      find: '{K}[ُِ]{GL}{K}*+'
+      before: ل*
+      to: '{K}ِ{K}+'
+    - id: rule:apc-geminate
+      branch: dative
+      find: لْ+لِ
+      to: +لِّ
+    - id: rule:apc-geminate
+      branch: dative
+      find: لْ+لَ
+      to: +لَّ
+    - id: rule:apc-feminine
+      branch: e
+      find: "ي{FEMI}\u065c+ة"
+      to: ي{FEMI}ِ+ة
     - id: rule:apc-feminine
       branch: a
       find: "{FEMA}\u065c+ة"
       to: '{FEMA}َ+ة'
+    - id: rule:apc-feminine-t
+      branch: vowel
+      find: "{L}[َ\u065c]+?ة{V}"
+      to: '{L}ْ+?ت{V}'
+    - id: rule:apc-feminine-t
+      branch: consonant
+      find: ةْ+
+      to: تْ+
+    - id: rule:apc-helping-vowel
+      branch: glide
+      find: '{GL}ْ{K}ْ{K}*'
+      to: '{GL}ِ{K}ْ{K}'
     - id: rule:apc-helping-vowel
       branch: inside
-      find: "{K}ْ+?{K}ْ+{K}[َ ُ ِ \u065c \u065d ْ]"
+      find: '{K}ْ+?{K}ْ+{K}*'
       after: .{V}
-      to: "{K}ِ+?{K}ْ+{K}[َ ُ ِ \u065c \u065d ْ]"
+      to: '{K}ِ+?{K}ْ+{K}'
     features:
       Aspect:
       - Perf

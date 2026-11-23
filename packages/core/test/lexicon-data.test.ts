@@ -52,6 +52,7 @@ const differences = (value: unknown, node: DataNode, at: string): readonly strin
     if (node.kind === "text") return surfaceOf(node.text) === value.normalize("NFC") ? [] : [`${at}: text ${surfaceOf(node.text)} for ${value}`];
     return [`${at}: ${node.kind} for a string`];
   }
+  if (value === null) return node.kind === "code" && node.value === "null" ? [] : [`${at}: not null`];
   if (typeof value === "number" || typeof value === "boolean") return node.kind === "code" && node.value === String(value) ? [] : [`${at}: not ${String(value)}`];
   if (Array.isArray(value)) {
     if (node.kind !== "list" || node.items.length !== value.length) return [`${at}: not a list of ${String(value.length)}`];

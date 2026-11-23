@@ -202,16 +202,49 @@ _LINTS = [
     ),
     Lint(
         "form.unaccounted",
+        "error",
+        3,
+        "A token of the course, in a language with realisation rules, is written otherwise than "
+        "the rules give: its lexemes realised in the values chosen on each (an uninflected word in "
+        "its citation cell; forms that pin spellings only passed over), then spelled by its "
+        "orthography's `spell` statement, is neither what the course writes there nor a free "
+        "alternative of it, nor the course's vowel marks for it; and no pinned or listed form of "
+        "its lexeme gives it (docs/rules-design.md, stage 3). Settle it: the rule, a listed form "
+        "with its statement, the course's minority spelling, or a pinned form (rule debt); never a "
+        "rule bent to fit one token.",
+    ),
+    Lint(
+        "form.pinned-differs",
+        "error",
+        3,
+        "A pinned form of a lexeme pins a spelling that no token of the course writes of that "
+        "lexeme in a cell with the form's values (letters compared without the vowel marks the "
+        "orthography may leave out): a copy of the course that no longer is one "
+        "(docs/rules-design.md, section 5).",
+    ),
+    Lint(
+        "form.redundant",
         "warning",
         3,
-        "A token of the course whose base lexeme a realisation rule covers is written otherwise "
-        "than the rules give: its lexemes realised in the values chosen on each (forms that pin "
-        "spellings only passed over), then spelled by its orthography's `spell` statement, is "
-        "neither what the course writes there nor a free alternative of it, nor the course's "
-        "vowel marks for it; and no pinned or listed form of its lexeme gives it "
-        "(docs/rules-design.md, stage 2). The review list: a rule, a form or a token for the owner "
-        "to rule on, never mended by changing one to fit. A warning in stage 2, an error from "
-        "stage 3.",
+        "A pinned form whose cell the rules give, with every pinned form passed over, in each "
+        "spelling it pins: it can go (`nabu forms prune <lexicon>`; docs/rules-design.md, "
+        "section 5).",
+    ),
+    Lint(
+        "form.spelling-script",
+        "warning",
+        3,
+        "A paradigm's form (docs/rules-design.md, stage 4) whose spelling has characters outside "
+        "its orthography's script, as the script audit has it: not shipped (null in the paradigm, "
+        "left out of `regularised`). A `spell` rule or a realisation rule is missing.",
+    ),
+    Lint(
+        "form.rule-debt",
+        "info",
+        3,
+        "The pinned forms a language with realisation rules keeps: forms its rules do not give yet "
+        "(ADR 0145: stored and checked, never counted, never a learner's part), counted per "
+        "language with the lexemes that keep them.",
     ),
     Lint(
         "enrich.transliteration-mismatch",

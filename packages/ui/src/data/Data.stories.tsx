@@ -2,8 +2,8 @@
  * The Data page's browser (debug mode): a fixture course's own data, to read. The toolbar's four
  * courses show suffixes and their carriers (uz), vowel marks and the ezafe (fa), two readings of one
  * script (yue) and clitics (apc). The Lexicon and Language views show fixed courses whatever the
- * toolbar's target: uz (an affix with its allomorphs in two scripts), apc (a word with a pinned form
- * and a feature of its own, spelled in Arabic script and in Arabizi; and the lexicon filtered down to
+ * toolbar's target: uz (an affix with its allomorphs in two scripts), apc (a word with a pinned form,
+ * spelled in Arabic script and in Arabizi; and the lexicon filtered down to
  * its dative clitics) and fa's language file, each
  * with the lexicon's own files as the repository has them (lexicons/<lang>/*.yaml, read at build
  * time: the app gets the same files from lexicon-source/ beside it). Small lexicons on purpose: the
@@ -98,8 +98,8 @@ const lexiconStory = (id: string, orthography: string, view: DataView, opened?: 
 
 /** An affix (uz's dative), open: its entry with its allomorphs in both scripts, its bundle lexeme, the words that carry it. */
 export const LexiconAffix: Story = lexiconStory("uz", "uz-Latn/standard", "lexicon", "lexeme:dat");
-/** A word with a pinned form and a feature of its own (apc awwal "first"), open: its spellings in both scripts, what the bundle keeps, how its sentences write it. */
-export const LexiconForms: Story = lexiconStory("apc", "apc-Arab/standard", "lexicon", "lexeme:awwal");
+/** A word with a pinned form (apc a7mar "red": its feminine 7amra, which the rules do not give yet), open: its spellings in both scripts, what the bundle keeps, how its sentences write it. */
+export const LexiconForms: Story = lexiconStory("apc", "apc-Arab/standard", "lexicon", "lexeme:a7mar");
 /**
  * The lexicon filtered (apc), its filters open: bound lexemes with Case=Dat whose entries store
  * allomorphs (the dative clitics la-1sg, la-2ms). Facets of both kinds chosen, counts beside each value.

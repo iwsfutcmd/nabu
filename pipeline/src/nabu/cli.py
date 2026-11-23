@@ -362,7 +362,13 @@ def projections_command(
 
 @app.command("forms")
 def forms_command(
-    course: Annotated[Path, typer.Argument(exists=True, help="A course directory.")],
+    course: Annotated[
+        str, typer.Argument(help="A course directory; or `prune`, then a lexicon's folder.")
+    ],
+    lexicon: Annotated[
+        Path | None,
+        typer.Argument(help="With `prune`: the language's folder (../lexicons/apc)."),
+    ] = None,
     paradigm: Annotated[
         str | None,
         typer.Option(help="A lexeme: print its cells as the rules give them, and nothing else."),
@@ -376,10 +382,15 @@ def forms_command(
     is the lexicon's first spelling there, or the course's vocalization of it; mismatches are the
     warnings `form.projection`. Counts: forms stored, spellings checked, verbs skipped, mismatches,
     lexemes with no form. Then, for a language with realisation rules, the token report: tokens
-    checked, given exactly, given by a pinned or listed form, unaccounted (the warnings
-    `form.unaccounted`, grouped by lexeme and cell with their items), and not checked, by reason.
-    `--paradigm <lexeme>`: the lexeme's cells (those the course's tokens choose on its part of
-    speech) as the rules give them, spelled in each orthography, beside what the course writes.
+    checked, given exactly, given by a pinned or listed form, unaccounted (the errors
+    `form.unaccounted`, grouped by lexeme and cell with their items), and the unaccounted the
+    rules give nothing for, by reason. `--paradigm <lexeme>`: the lexeme's cells (those the
+    course's tokens choose on its part of speech) as the rules give them, spelled in each
+    orthography, beside what the course writes.
+
+    `nabu forms prune ../lexicons/<lang>` removes each pinned form that pins spellings only and
+    whose cell the rules give in every spelling it pins (stage 3), with targeted edits, and lists
+    what it removed and the pinned forms it kept (rule debt).
     """
     from nabu.analyzers import analyzers_by_tool
     from nabu.compiler import compile_course, load_profiles
@@ -388,8 +399,30 @@ def forms_command(
     from nabu.forms import paradigm as paradigm_of
 
     profiles = load_profiles()
+    if course == "prune":
+        from nabu.forms import prune
+
+        if lexicon is None or not (lexicon / "lexemes.yaml").is_file():
+            typer.echo("✗ prune needs a lexicon's folder (../lexicons/apc)", err=True)
+            raise typer.Exit(code=1)
+        with CoreCli() as cli:
+            try:
+                removed, kept = prune(lexicon, profiles, cli)
+            except ValueError as e:
+                typer.echo(f"✗ {e}", err=True)
+                raise typer.Exit(code=1) from e
+        for k in removed:
+            typer.echo(f"removed {k}")
+        for k in kept:
+            typer.echo(f"kept {k}")
+        typer.echo(f"✓ {lexicon}: {len(removed)} pinned forms removed, {len(kept)} kept")
+        return
+    path = Path(course)
+    if not path.is_dir():
+        typer.echo(f"✗ {course} is not a course directory", err=True)
+        raise typer.Exit(code=1)
     with CoreCli() as cli:
-        diags, compiled = compile_course(course, cli, profiles, analyzers_by_tool(), audio=False)
+        diags, compiled = compile_course(path, cli, profiles, analyzers_by_tool(), audio=False)
         if compiled is None or compiled.forms is None:
             for d in diags.sorted():
                 typer.echo(d.format(), err=True)

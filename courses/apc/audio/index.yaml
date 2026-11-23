@@ -45,9 +45,9 @@ clips:
     status: review
 - item: apc.story.birthday#1
   speed: normal
-  file: clips/36fb83afb07cefd0.mp3
-  sha256: be35992aa51859e9fdef59aecb3feb32232b7d3b4a1033c8b61a9430fedec9f8
-  durationMs: 2080
+  file: clips/745dd2be455e538b.mp3
+  sha256: 1e269310cb4f4e6bb03bf03e72239f2c3f49a19506f6cb997e8308b10534a121
+  durationMs: 2040
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -57,7 +57,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-f
-    input: بَعِد بُكْرا! تْلاتَعْشَر نيسان.
+    input: بَعِد بُكْرا! تْلاتَعْشْر نيسان.
     rate: 1.0
     settings:
       language: lb
@@ -65,7 +65,7 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: f380feaa1da1cea36b374fc4aa8099cf34e30e14e95bb03fd2261f97ebe347b6
-    inputHash: 36fb83afb07cefd063f65405b951b8488ebfdc9f3bf81e8946b538be99aadfb4
+    inputHash: 745dd2be455e538bb687ff613a0187fb85d110a7c2ffa219b7da073efc061a70
   qa:
     asrModel: whisper-large-v3-turbo
     asrText: بعد بكرة 13 نسان
@@ -291,9 +291,9 @@ clips:
     status: fail
 - item: apc.story.cafe#1
   speed: normal
-  file: clips/3c9102656fd28c00.mp3
-  sha256: 963e6969ab2a4f8b5605dc2f9da6a0c073ed548d9ab652b167f200616c8cba27
-  durationMs: 1960
+  file: clips/4b0c52d6cc60384a.mp3
+  sha256: 542e7bf74822d5da2c971becafe5d10f98f8f58d9c6e51fa37466d387c4b777e
+  durationMs: 1470
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -303,7 +303,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-f
-    input: مَرْحَبا سامي! كِيفَك؟
+    input: مَرْحَبا سامي! كيفَك؟
     rate: 1.0
     settings:
       language: lb
@@ -311,12 +311,12 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: f380feaa1da1cea36b374fc4aa8099cf34e30e14e95bb03fd2261f97ebe347b6
-    inputHash: 3c9102656fd28c0025f7a8dc55b56a9203c48e73a2df0df367c2e5d53655d1ed
+    inputHash: 4b0c52d6cc60384a1a9f9c944f148f884163188b17f19998392113211fbcb5ab
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: مرحبا سامي
-    cer: 0.538
-    status: fail
+    asrText: مرحبا ساميتي فك
+    cer: 0.385
+    status: review
 - item: apc.story.cafe#2
   speed: normal
   file: clips/a8cf9a028fe304ca.mp3
@@ -7519,9 +7519,9 @@ clips:
     status: fail
 - item: lexeme:7da3sh
   speed: normal
-  file: clips/57968d780fae6dc5.mp3
-  sha256: 073a37647e311201e9c2805aed6c73538c924dc6ec344aec7e60a2f237de7cb2
-  durationMs: 900
+  file: clips/9a771036fbe00697.mp3
+  sha256: 5407bf096b5aeae28f2f647d6a15ce8f9ceae17d864ea01cbd51c9c73316df96
+  durationMs: 910
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -7531,7 +7531,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-m
-    input: حْدَعْشَر
+    input: حْدَعْشْر
     rate: 1.0
     settings:
       language: lb
@@ -7539,16 +7539,16 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: 57968d780fae6dc5872c9a0279b244d7a7ef84b14c93757e9ff00f6bd72b3204
+    inputHash: 9a771036fbe006971b66d06e33aa16804163e568eb631154bb5ecf0779c7831e
   timings:
   - token: 0
-    startMs: 164
-    endMs: 634
+    startMs: 101
+    endMs: 586
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: '11'
-    cer: 1.0
+    asrText: حدا أشير
+    cer: 0.6
     status: fail
 - item: lexeme:7elo
   speed: normal
@@ -7641,9 +7641,9 @@ clips:
     status: fail
 - item: lexeme:7zeiran
   speed: normal
-  file: clips/56bba6099949fc57.mp3
-  sha256: d1a40a59678f20cdea5d6945ec7830706ba6be142954382cfe6d713e5842783f
-  durationMs: 990
+  file: clips/2e64977e1c82a8c1.mp3
+  sha256: c98fe4afab4e59e7a27657bffbe6adfca5c15425509adcec29a54326dcdfefbc
+  durationMs: 910
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -7653,7 +7653,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-m
-    input: حْزَيْران
+    input: حْزيران
     rate: 1.0
     settings:
       language: lb
@@ -7661,11 +7661,11 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: 56bba6099949fc57353114fce2ab25d13f3ea8ab4122042c2936b0bd6eea3e50
+    inputHash: 2e64977e1c82a8c12afdd41c5451d86f9f0bd02a60aba119eb52dee0fe112a6d
   timings:
   - token: 0
     startMs: 162
-    endMs: 707
+    endMs: 647
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
@@ -8185,9 +8185,9 @@ clips:
     status: fail
 - item: lexeme:akl
   speed: normal
-  file: clips/20257a5b326268b0.mp3
-  sha256: ccf353412e5fabaaa2a465ef4b0383e6f2718fa21a2e63dd30f9b2c91b6890ae
-  durationMs: 1240
+  file: clips/92e0909f456c97d0.mp3
+  sha256: 76600a5f00f8cb8a9ee6022fe6bd62cb14da4336223f7b8ae78d72002a9ee074
+  durationMs: 1160
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -8197,7 +8197,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-f
-    input: أَكَل
+    input: أَكِل
     rate: 1.0
     settings:
       language: lb
@@ -8205,12 +8205,12 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: f380feaa1da1cea36b374fc4aa8099cf34e30e14e95bb03fd2261f97ebe347b6
-    inputHash: 20257a5b326268b0b95d2c84f358f180ffe41d9837c120c2a93ddf0b952e1d88
+    inputHash: 92e0909f456c97d09e708aa506c2bc9f5ff3b1314e8b23766171fef01164f3bb
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: اشتركوا في القناة
-    cer: 4.333
-    status: fail
+    asrText: أكل
+    cer: 0.0
+    status: pass
 - item: lexeme:aktar
   speed: normal
   file: clips/ae9da512475d752b.mp3
@@ -8429,9 +8429,9 @@ clips:
     status: review
 - item: lexeme:arba3ta3sh
   speed: normal
-  file: clips/fb0882fd95b87c91.mp3
-  sha256: befe01a1766d94bd495ad85e100ecd9d829dbd404744cca9f2f55318b13d027b
-  durationMs: 980
+  file: clips/df3dff6999436922.mp3
+  sha256: ef289fe79f58c54ac3913d7d691a619a1a4d42a446e4f9cb913620ba091db9b2
+  durationMs: 1420
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -8441,7 +8441,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-f
-    input: أَرْبَعْتَعْشَر
+    input: أَرْبَعْتَعْشْر
     rate: 1.0
     settings:
       language: lb
@@ -8449,11 +8449,11 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: f380feaa1da1cea36b374fc4aa8099cf34e30e14e95bb03fd2261f97ebe347b6
-    inputHash: fb0882fd95b87c91f702f8744a695c3f70a3849d92e43b7308a21a6ceb4c2605
+    inputHash: df3dff6999436922a1eeba9d72b5d66d7c5db9666c405988ff511706ae83da0b
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: شكرا
-    cer: 1.0
+    asrText: أربطة شخص
+    cer: 0.625
     status: fail
 - item: lexeme:arkhas
   speed: normal
@@ -11669,9 +11669,9 @@ clips:
     status: pass
 - item: lexeme:khamsta3sh
   speed: normal
-  file: clips/b94324401563962e.mp3
-  sha256: 49aab72597a84b29142fc9d532ba1b9a0dacda6b2240111cea2f8594ad8971b6
-  durationMs: 890
+  file: clips/7d911a21eb0c6894.mp3
+  sha256: d7d372f499945b8291274630311000eadde19b4bf72cae6ecbc3a702ef6e7c72
+  durationMs: 990
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -11681,7 +11681,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-m
-    input: خَمِسْتَعْشَر
+    input: خَمِسْتَعْشْر
     rate: 1.0
     settings:
       language: lb
@@ -11689,16 +11689,16 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: b94324401563962eeec22c0e88ed078fcde2543a3295e76d8dc773c1b9db37e7
+    inputHash: 7d911a21eb0c6894bbc13ea5f72196f9f7e12d5acbe6969c04854e4db3841f71
   timings:
   - token: 0
-    startMs: 222
-    endMs: 829
+    startMs: 121
+    endMs: 808
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: خمستان شهر
-    cer: 0.429
+    asrText: همستاشر
+    cer: 0.286
     status: review
 - item: lexeme:khayef
   speed: normal
@@ -13440,9 +13440,9 @@ clips:
     status: fail
 - item: lexeme:miyye
   speed: normal
-  file: clips/b712ef574ef0f73a.mp3
-  sha256: 64c9e95b2aaa2956d3817734873490e40a485201c05602dd2948a2e537f61f58
-  durationMs: 1240
+  file: clips/fb0c79c1b72db360.mp3
+  sha256: 4a2f8c784c651ac3b9372526f07808a839c437733b75d7088b56841e252e9dc6
+  durationMs: 650
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -13452,7 +13452,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-m
-    input: مِيِّة
+    input: مِية
     rate: 1.0
     settings:
       language: lb
@@ -13460,17 +13460,17 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: b712ef574ef0f73a344efc4ce583411d335ce324aa8308f6304faec7116860d3
+    inputHash: fb0c79c1b72db3603225568e9c743f2a6828307170db5755ac39cbb92588b3f9
   timings:
   - token: 0
-    startMs: 813
-    endMs: 1098
+    startMs: 142
+    endMs: 305
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: ميب
-    cer: 0.333
-    status: review
+    asrText: مِتْ
+    cer: 1.0
+    status: fail
 - item: lexeme:mni7
   speed: normal
   file: clips/0d529aa908df54b5.mp3
@@ -14352,9 +14352,9 @@ clips:
     status: fail
 - item: lexeme:saba3ta3sh
   speed: normal
-  file: clips/977e79664a2d940e.mp3
-  sha256: 75c9b18d0ad8d97c11f173b62752c8faadd4e9a8005062b5048f494ad098e1c2
-  durationMs: 1460
+  file: clips/f943af1dda8fe941.mp3
+  sha256: 10eb88a3968220c0d54d9c2c9ddb98ee88c8714b32544d939b9daac7d3a5abc1
+  durationMs: 1010
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -14364,7 +14364,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-m
-    input: سَبَعْتَعْشَر
+    input: سَبَعْتَعْشْر
     rate: 1.0
     settings:
       language: lb
@@ -14372,17 +14372,17 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: 977e79664a2d940e5804630ecdd84adb8d6608f4501230a4d44fe3553fbf4751
+    inputHash: f943af1dda8fe941c4d9795d1f12b76c988660108a0f82bf6aa8836191732d52
   timings:
   - token: 0
-    startMs: 649
-    endMs: 1318
+    startMs: 121
+    endMs: 727
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: سباطا شربي
-    cer: 0.714
-    status: fail
+    asrText: سبطاشر
+    cer: 0.429
+    status: review
 - item: lexeme:sabt
   speed: normal
   file: clips/411944732571c734.mp3
@@ -14769,9 +14769,9 @@ clips:
     status: fail
 - item: lexeme:setta3sh
   speed: normal
-  file: clips/a6f2c22983d51c15.mp3
-  sha256: 1d04f8fea2382abc4bf0a888910d24952f61da8edfc40ca3cde79dcdd01741fa
-  durationMs: 910
+  file: clips/708226f7a3d88170.mp3
+  sha256: 4b1df4e43518753a938ee683cf6d3b08b4e05c12991771e7700137a9c1a76f07
+  durationMs: 890
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -14781,7 +14781,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-m
-    input: سِتَّعْشَر
+    input: سِتَّعْشْر
     rate: 1.0
     settings:
       language: lb
@@ -14789,17 +14789,17 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: a6f2c22983d51c1531fe2c2ef6266b83195e20eb10cf80a669e871042f2d804e
+    inputHash: 708226f7a3d88170fd55ab40ae616340a2918b81e1ee4c09307b70c35e85abaf
   timings:
   - token: 0
-    startMs: 182
-    endMs: 667
+    startMs: 121
+    endMs: 668
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: ستاشر
-    cer: 0.4
-    status: review
+    asrText: ستاج
+    cer: 0.8
+    status: fail
 - item: lexeme:sette
   speed: normal
   file: clips/18cf9c581b56e4a5.mp3
@@ -16142,9 +16142,9 @@ clips:
     status: review
 - item: lexeme:tleta3sh
   speed: normal
-  file: clips/0d3e49669a868635.mp3
-  sha256: cee77b0dc6327551c970bfce67debafc30379d2869db117089a244bbbab0a36f
-  durationMs: 1060
+  file: clips/fae0acd5f4ce9fc3.mp3
+  sha256: 7c99d54368012b5653c79630ee9d0cd1592d1596cb674df981eb2c6bc1398c3f
+  durationMs: 990
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -16154,7 +16154,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-m
-    input: تْلاتَعْشَر
+    input: تْلاتَعْشْر
     rate: 1.0
     settings:
       language: lb
@@ -16162,17 +16162,17 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: 0d3e49669a868635e781f6f047fa54308579c35cc6b9e1312c72d4dc9deeb501
+    inputHash: fae0acd5f4ce9fc3e57aba85a5f5169cfee0796b0f5257617fd76a7f4b07341d
   timings:
   - token: 0
-    startMs: 204
-    endMs: 815
+    startMs: 404
+    endMs: 788
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: '13'
-    cer: 1.0
-    status: fail
+    asrText: تاشر
+    cer: 0.429
+    status: review
 - item: lexeme:tlete
   speed: normal
   file: clips/133c30fdc599eef3.mp3
@@ -16269,8 +16269,41 @@ clips:
     status: review
 - item: lexeme:tmenta3sh
   speed: normal
-  file: clips/6040c60a69928474.mp3
-  sha256: f9b9c69a08fc16dd8af8175a3a9d9afb8766b8c5b8cf06dafbc31b85c97bee8b
+  file: clips/a7a8c77dc59a0131.mp3
+  sha256: 6132b6beca068a40a4dae309cb39bd3418382c917a52e3970da53caca37e014a
+  durationMs: 1050
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: تْمانْتَعْشْر
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: a7a8c77dc59a0131f4722095b7dbf7d805092f8df28d9b44fbcf5988fe7ddd77
+  timings:
+  - token: 0
+    startMs: 81
+    endMs: 727
+  timingSource: alignment
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: مانتاشر
+    cer: 0.25
+    status: review
+- item: lexeme:tna3sh
+  speed: normal
+  file: clips/217d8f020f5556c1.mp3
+  sha256: 8e7d70c572afbc47de7d7fff7d8d42d7aed2ce68f4a863632f3f5664d4614aed
   durationMs: 870
   license: CC-BY-NC-4.0
   provenance:
@@ -16281,7 +16314,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-m
-    input: تْمانْتَعْشَر
+    input: تْنَعْشْر
     rate: 1.0
     settings:
       language: lb
@@ -16289,50 +16322,17 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: 6040c60a6992847479c719e290374adcd8f39dddee7c96f9a5f91a0b16ca023e
+    inputHash: 217d8f020f5556c16d3370857192c10f425daeedc6b3967df851884dca98ccb7
   timings:
   - token: 0
-    startMs: 202
-    endMs: 728
+    startMs: 81
+    endMs: 567
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: تمنتاشر
-    cer: 0.25
+    asrText: ناشر
+    cer: 0.4
     status: review
-- item: lexeme:tna3sh
-  speed: normal
-  file: clips/02889ae46ac8ebd2.mp3
-  sha256: d50404d2bc41aa69d69d2ab5325f48e03334132c47c5267d17280967c67642bb
-  durationMs: 1440
-  license: CC-BY-NC-4.0
-  provenance:
-    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
-    status: draft
-  synthetic: true
-  synthesis:
-    provider: omnivoice
-    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
-    voice: beirut-m
-    input: تْنَعْشَر
-    rate: 1.0
-    settings:
-      language: lb
-      numStep: 32
-      guidanceScale: 2.0
-      dtype: bfloat16
-      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: 02889ae46ac8ebd21fe2d31b8c6e13d1499a31c2e49d03ec3332d6adfeb89b6f
-  timings:
-  - token: 0
-    startMs: 913
-    endMs: 1318
-  timingSource: alignment
-  qa:
-    asrModel: whisper-large-v3-turbo
-    asrText: ناشا
-    cer: 0.6
-    status: fail
 - item: lexeme:tnen
   speed: normal
   file: clips/c0472b0476e861d9.mp3
@@ -16363,9 +16363,9 @@ clips:
     status: review
 - item: lexeme:tsa3ta3sh
   speed: normal
-  file: clips/4dba484ebb11bce3.mp3
-  sha256: 9de731d66b5157c492f3b52f4c07d6c3ae42eb00c2160add123f2c6e9f0b1d44
-  durationMs: 1600
+  file: clips/bae972b5f21601af.mp3
+  sha256: ef63d1c96ca5c4aa962965c28b578d05037a7b6c74a9b3cb5e66635fd83de47f
+  durationMs: 1170
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -16375,7 +16375,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-f
-    input: تِسَعْتَعْشَر
+    input: تْسَعْتَعْشْر
     rate: 1.0
     settings:
       language: lb
@@ -16383,11 +16383,11 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: f380feaa1da1cea36b374fc4aa8099cf34e30e14e95bb03fd2261f97ebe347b6
-    inputHash: 4dba484ebb11bce3da902e47103726982136c6a01914fdca67e3d2b625780252
+    inputHash: bae972b5f21601afec0191efc9429da07cfe4666a22a29f8171a705b39fa28a7
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: شعطة شعطة
-    cer: 1.0
+    asrText: تساة أشور
+    cer: 0.571
     status: fail
 - item: lexeme:tyeb
   speed: normal
@@ -18925,9 +18925,9 @@ clips:
     status: review
 - item: s.date.1
   speed: normal
-  file: clips/14297766dd657457.mp3
-  sha256: c6019859e8f3b392da10f5083f6bdbd438d00ad11fc8a5d0cb211eb3789003af
-  durationMs: 1000
+  file: clips/0c7f838f61367938.mp3
+  sha256: ec9a5eb4745b40aa983567d111f0e941067fa17ac558aac49a77a147ec3a9053
+  durationMs: 910
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -18937,7 +18937,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-m
-    input: حْدَعْشَر!
+    input: حْدَعْشْر!
     rate: 1.0
     settings:
       language: lb
@@ -18945,17 +18945,17 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: 14297766dd657457cb7b023a72a8aee0dbf8994aebd6448451cc6fc917daebb4
+    inputHash: 0c7f838f61367938b244a33245c0c7b62a1c0351049180f89122773a547daf5a
   timings:
   - token: 0
-    startMs: 163
-    endMs: 612
+    startMs: 182
+    endMs: 667
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: حداشر
-    cer: 0.2
-    status: review
+    asrText: حد عشر
+    cer: 0.0
+    status: pass
 - item: s.date.10
   speed: normal
   file: clips/c747c79017bb4e63.mp3
@@ -18997,9 +18997,9 @@ clips:
     status: fail
 - item: s.date.11
   speed: normal
-  file: clips/b5cc9ff80524ba06.mp3
-  sha256: 7723b0ca00df07876f7797278bb2f4eea1297d8cdecae115ef99e7da0db1ad25
-  durationMs: 2080
+  file: clips/06fc5e1d6c3252aa.mp3
+  sha256: 8b3af36acafc05670d22de565767ae770be02bc6090d476f6b7284d897b637ce
+  durationMs: 1680
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -19009,7 +19009,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-f
-    input: تِسَعْتَعْشَر دولار؟ غالي!
+    input: تْسَعْتَعْشَر دولار؟ غالي!
     rate: 1.0
     settings:
       language: lb
@@ -19017,11 +19017,11 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: f380feaa1da1cea36b374fc4aa8099cf34e30e14e95bb03fd2261f97ebe347b6
-    inputHash: b5cc9ff80524ba064d37fe8ebd2bbebd940c5cb56582d515456b9b9c3687d5a7
+    inputHash: 06fc5e1d6c3252aa8fb6fe9f84d38e785d57b8978753d559bcbccd23799cff43
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: 17 دولار غالص
-    cer: 0.5
+    asrText: ساعتاشر دولار غاله
+    cer: 0.25
     status: review
 - item: s.date.12
   speed: normal
@@ -19226,9 +19226,9 @@ clips:
     status: review
 - item: s.date.18
   speed: normal
-  file: clips/9b31581c0dafb91b.mp3
-  sha256: 1b29af7d80c95beb292fefaaa84dc48d732b626f0eb1278d5ccdf319ca29594c
-  durationMs: 1640
+  file: clips/751036ae94cf675d.mp3
+  sha256: f78978204946e0cb9df20119fefd4604903021f5ab56185ff5e17578c04bbb24
+  durationMs: 1450
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -19238,7 +19238,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-f
-    input: بْحْزَيْران مْنْروح عَالبَحِر.
+    input: بْحْزيران مْنْروح عَالبَحِر.
     rate: 1.0
     settings:
       language: lb
@@ -19246,12 +19246,12 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: f380feaa1da1cea36b374fc4aa8099cf34e30e14e95bb03fd2261f97ebe347b6
-    inputHash: 9b31581c0dafb91bc35ea235b16bf1be9c5392610ddcf3183ac4a0b625229eef
+    inputHash: 751036ae94cf675d8fe5836e2dbf4d65e568c1db6a428c029734e619ac14e4c8
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: بحزيرا مروح على البحر
-    cer: 0.222
-    status: review
+    asrText: بحجيران من روح البحر
+    cer: 0.111
+    status: pass
 - item: s.date.19
   speed: normal
   file: clips/bce30c46dd8bed81.mp3
@@ -19955,9 +19955,9 @@ clips:
     status: fail
 - item: s.date.4
   speed: normal
-  file: clips/ead994d293b159cb.mp3
-  sha256: eed2e3642458ab6e972262c72c4a320b5366ec598c4a1034b1d107fbb6cd4200
-  durationMs: 1360
+  file: clips/b9cc7192a0aa3b36.mp3
+  sha256: 49485d51bb1c5b2111b8f6c86aab748dfdf36e3aa32d9e934a478e13a3e1cdbe
+  durationMs: 1150
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -19967,7 +19967,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-m
-    input: السّاعَة تْنَعْشَر.
+    input: السّاعَة تْنَعْشْر.
     rate: 1.0
     settings:
       language: lb
@@ -19975,20 +19975,20 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: ead994d293b159cb0fce5401f34954543cb044be13128e8e032fb4d9245b2dfc
+    inputHash: b9cc7192a0aa3b36b835402e510fe2a0637ce3e92f493e76023ed897bff611af
   timings:
   - token: 0
-    startMs: 122
-    endMs: 568
+    startMs: 61
+    endMs: 514
   - token: 2
-    startMs: 568
-    endMs: 1035
+    startMs: 514
+    endMs: 948
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: ساتناشر
-    cer: 0.455
-    status: review
+    asrText: ساعة 12
+    cer: 0.636
+    status: fail
 - item: s.date.5
   speed: normal
   file: clips/0d128c5325a0af88.mp3

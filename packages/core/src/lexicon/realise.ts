@@ -21,6 +21,7 @@ import {
   endsIn,
   isCarrier,
   namedSet,
+  startsIn,
   textOf,
   unitsOf,
   withVowel,
@@ -72,6 +73,24 @@ export interface RealiseOptions {
    * copy of what the course writes, not an account of it.
    */
   readonly spellings?: boolean;
+  /** false: pass over pinned forms altogether (with a form or a stem too): what the rules alone give. */
+  readonly pinned?: boolean;
+  /**
+   * Where the base's form is a phrase written over several tokens (ahla w sahla): the word of it,
+   * counted from 0, that this token writes, with the token's other lexemes joined to it.
+   */
+  readonly word?: number;
+  /** The base lexeme of the word after the token, where a lexeme's allomorph is chosen by it (`before: {pos}`). */
+  readonly next?: string;
+  /**
+   * true: as a paradigm's cells are listed (docs/rules-design.md, stage 4), a rule says something of
+   * the cell or nothing is given. A rule with blocks of which no exponent names the cell (a noun's
+   * plural, where the rule has only a feminine) is `no-rule`, not the bare stem; a phrase (a lexical
+   * form with a space: its words are not one word's cells) is `form` in every cell. A rule with no blocks (an adjective that does
+   * not agree) still gives its stem. The course's own tokens are never realised so: what a token
+   * writes is checked as it is.
+   */
+  readonly strict?: boolean;
 }
 
 /** One lexeme a token writes, with the feature values chosen there. */
@@ -101,7 +120,8 @@ export interface CompiledLanguage {
   readonly rootClasses: readonly { readonly id: string; readonly test: (radicals: readonly string[]) => boolean }[];
   readonly stems: readonly { readonly source: Stem; readonly fits: (radicals: readonly string[], vowels: Readonly<Record<string, string>>) => boolean; readonly conditions: number }[];
   readonly rules: readonly CompiledRule[];
-  readonly phonology: readonly CompiledRewrite[];
+  /** The rewrite rules, in order, each with the condition on the token's base it holds of (`when`). */
+  readonly phonology: readonly { readonly rewrite: CompiledRewrite; readonly when: Condition | undefined }[];
   /** Patterns of conditions (`endsIn`), compiled once. */
   readonly patterns: ReadonlyMap<string, Pattern>;
 }
@@ -204,9 +224,11 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
 
   const patterns = new Map<string, Pattern>();
   const conditionPatterns = (where: string, c: Condition | undefined): void => {
-    if (c?.endsIn !== undefined && !patterns.has(c.endsIn)) {
-      const p = pattern(where, c.endsIn);
-      if (p !== undefined) patterns.set(c.endsIn, p);
+    for (const text of [c?.endsIn, c?.startsIn]) {
+      if (text !== undefined && !patterns.has(text)) {
+        const p = pattern(where, text);
+        if (p !== undefined) patterns.set(text, p);
+      }
     }
   };
 
@@ -228,7 +250,7 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
     ruleIds.add(r.source.id);
   }
 
-  const phonology: CompiledRewrite[] = [];
+  const phonology: { rewrite: CompiledRewrite; when: Condition | undefined }[] = [];
   (declared.phonology ?? []).forEach((rw, n) => {
     const where = `phonology[${n}] ${rw.id}${rw.branch === undefined ? "" : `|${rw.branch}`}`;
     const find = pattern(where, rw.find);
@@ -237,10 +259,16 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
     if (find === undefined || (rw.to !== undefined && to === undefined)) return;
     const compiled: CompiledRewrite = { id: rw.id, branch: rw.branch, find, to, map: rw.map, before: contexts(rw.before), after: contexts(rw.after), at: rw.at };
     errors.push(...checkRewrite(compiled).map((e) => `${where}: ${e}`));
-    phonology.push(compiled);
+    conditionPatterns(where, rw.when);
+    phonology.push({ rewrite: compiled, when: rw.when });
   });
 
-  for (const lexeme of lexicon.lexemes) for (const a of lexeme.allomorphs ?? []) conditionPatterns(`${lexeme.id} allomorph`, a.after);
+  for (const lexeme of lexicon.lexemes) {
+    for (const a of lexeme.allomorphs ?? []) {
+      conditionPatterns(`${lexeme.id} allomorph`, a.after);
+      conditionPatterns(`${lexeme.id} allomorph`, a.before);
+    }
+  }
   for (const d of declared.defaults ?? []) conditionPatterns(`default ${d.id}`, d.when);
 
   if (errors.length > 0) return err(errors);
@@ -354,6 +382,8 @@ interface Built {
   readonly listed?: PartId;
   /** A whole form from blocking: no rule runs over it. */
   readonly whole: boolean;
+  /** The lexeme realised. */
+  readonly lexeme: Lexeme;
 }
 
 /** Everything but the rewrite rules: blocking, the stem, the affix blocks. */
@@ -361,41 +391,44 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
   const blocking = options.blocking ?? true;
   const lexeme = lang.lexemes.get(lexemeId(id));
   if (lexeme === undefined) return err({ kind: "unknown-lexeme", lexeme: id });
+  if (options.strict === true && typeof lexeme.form === "string" && lexeme.form.includes(" ")) return err({ kind: "form", lexeme: lexeme.id });
 
   // 1. Blocking: the most specific form of the lexeme whose values the cell has.
   const lexical = (f: LexemeForm): boolean => options.spellings !== false || f.form !== undefined || f.stem !== undefined;
-  const candidates = (lexeme.forms ?? []).filter((f) => (blocking || f.status === "pinned") && lexical(f) && hasValues(cell, f.feats));
+  const kept = (f: LexemeForm): boolean => (blocking || f.status === "pinned") && (options.pinned !== false || f.status !== "pinned");
+  const candidates = (lexeme.forms ?? []).filter((f) => kept(f) && lexical(f) && hasValues(cell, f.feats));
   const most = Math.max(-1, ...candidates.map((f) => sizeOf(f.feats)));
   const winners = candidates.filter((f) => sizeOf(f.feats) === most);
   if (winners.length > 1 && !winners.every((f) => f.free === true)) return err({ kind: "tie", forms: winners.map((f) => featsKey(f.feats)) });
   const winner = winners[0];
   if (winner !== undefined) {
     const listed = winner.status === "listed" ? (winner.form !== undefined ? `${lexeme.id}|form:${featsKey(winner.feats)}` : `${lexeme.id}|stem:${(winner.stem ?? "").normalize("NFC")}`) : undefined;
-    if (winner.form !== undefined) return ok({ units: unitsOf(winner.form), status: winner.status, steps: [], whole: true, ...(listed !== undefined && { listed }) });
+    if (winner.form !== undefined) return ok({ units: unitsOf(winner.form), status: winner.status, steps: [], whole: true, lexeme, ...(listed !== undefined && { listed }) });
     if (winner.stem === undefined) return err({ kind: "spelled-only", feats: winner.feats });
   }
 
-  // 2. The rule, its exponents (which may choose the stem), the stem.
-  const rule = lang.rules.find((r) => conditionHolds(lang, r.source.when, lexeme, cell, blocking));
+  // 2. The rule, its exponents (which may choose the stem), the stem. A lexeme whose form is a
+  // string, in its citation cell (its own, else its category's), is that form: no rule runs.
   const form = lexeme.form;
+  const citation = lexeme.citation ?? (lexeme.pos === undefined ? undefined : lang.declared.citation?.[lexeme.pos]);
+  const isCitation = Object.entries(cell).every(([k, v]) => citation?.[k] === v);
+  if (winner?.stem === undefined && typeof form === "string" && isCitation && lexeme.pos !== undefined) return ok({ units: unitsOf(form), status: "given", steps: [], whole: false, lexeme });
+  const rule = lang.rules.find((r) => conditionHolds(lang, r.source.when, lexeme, cell, blocking));
   if (rule === undefined) {
-    // No rule: the lexeme's own form, where the cell is its citation cell (its own, else its
-    // category's); an affix's, always.
-    const citation = lexeme.citation ?? (lexeme.pos === undefined ? undefined : lang.declared.citation?.[lexeme.pos]);
-    const isCitation = Object.entries(cell).every(([k, v]) => citation?.[k] === v);
-    if (winner?.stem !== undefined) return isCitation ? ok({ units: unitsOf(winner.stem), status: winner.status, steps: [], whole: false }) : err({ kind: "no-rule", cell });
+    // No rule: a stem in its citation cell; an affix's own form, always.
+    if (winner?.stem !== undefined) return isCitation ? ok({ units: unitsOf(winner.stem), status: winner.status, steps: [], whole: false, lexeme }) : err({ kind: "no-rule", cell });
     if (lexeme.pos === undefined) {
       const own = typeof form === "string" ? form : (lexeme.allomorphs ?? []).find((a) => a.after === undefined && a.before === undefined && a.form !== undefined)?.form;
-      return own === undefined ? err({ kind: "form", lexeme: lexeme.id }) : ok({ units: unitsOf(own), status: "given", steps: [], whole: false });
+      return own === undefined ? err({ kind: "form", lexeme: lexeme.id }) : ok({ units: unitsOf(own), status: "given", steps: [], whole: false, lexeme });
     }
-    if (isCitation && typeof form === "string") return ok({ units: unitsOf(form), status: "given", steps: [], whole: false });
-    return err({ kind: "no-rule", cell });
+    return err({ kind: typeof form === "string" || isRadical(form) ? "no-rule" : "form", ...(typeof form === "string" || isRadical(form) ? { cell } : { lexeme: lexeme.id }) } as RealiseError);
   }
   const chosen = rule.blocks.map((block) => {
     const fitting = block.exponents.filter((e) => hasValues(cell, e.feats));
     const top = Math.max(-1, ...fitting.map((e) => sizeOf(e.feats)));
     return { side: block.side, exponent: fitting.find((e) => sizeOf(e.feats) === top) };
   });
+  if (options.strict === true && rule.blocks.length > 0 && chosen.every((b) => b.exponent === undefined)) return err({ kind: "no-rule", cell });
   const stemChoice = chosen.reduce<StemChoice | undefined>((c, b) => b.exponent?.stem ?? c, rule.source.stem);
 
   let stem: string;
@@ -423,14 +456,15 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
     units = side === "prefix" ? join(lang, affix, units, "prefix") : join(lang, units, affix, "suffix");
   }
   const listed = status === "listed" && winner?.stem !== undefined ? `${lexeme.id}|stem:${winner.stem.normalize("NFC")}` : undefined;
-  return ok({ units, status, steps, whole: false, ...(listed !== undefined && { listed }) });
+  return ok({ units, status, steps, whole: false, lexeme, ...(listed !== undefined && { listed }) });
 };
 
-/** The language's rewrite rules, in order, each once over the whole form. */
-const rewrite = (lang: CompiledLanguage, units: readonly Unit[]): { readonly units: readonly Unit[]; readonly steps: readonly Step[] } => {
+/** The language's rewrite rules, in order, each once over the whole form: those whose `when` holds of the base lexeme in its cell. */
+const rewrite = (lang: CompiledLanguage, units: readonly Unit[], base: Lexeme, cell: UdFeatures, blocking: boolean): { readonly units: readonly Unit[]; readonly steps: readonly Step[] } => {
   let current = units;
   const steps: Step[] = [];
-  for (const rw of lang.phonology) {
+  for (const { rewrite: rw, when } of lang.phonology) {
+    if (when !== undefined && !conditionHolds(lang, when, base, cell, blocking)) continue;
     const applied = applyRewrite(rw, current, lang.notation);
     if (applied.matched) steps.push(rw.branch === undefined ? { rule: rw.id } : { rule: rw.id, branch: rw.branch });
     current = applied.units;
@@ -450,31 +484,71 @@ export const realise = (lang: CompiledLanguage, lexeme: string, cell: UdFeatures
   const built = build(lang, lexeme, cell, options);
   if (!built.ok) return built;
   if (built.value.whole) return ok(realisation(built.value, built.value.units, built.value.steps));
-  const rewritten = rewrite(lang, built.value.units);
+  const rewritten = rewrite(lang, built.value.units, built.value.lexeme, cell, options.blocking ?? true);
   return ok(realisation(built.value, rewritten.units, [...built.value.steps, ...rewritten.steps]));
 };
 
-/** The allomorph of a lexeme written beside others: the first whose `after` holds of what it follows; the one with no condition elsewhere. */
-const allomorphOf = (lang: CompiledLanguage, lexeme: Lexeme, before: readonly Unit[]): string | undefined => {
-  const all = lexeme.allomorphs ?? [];
-  const holds = (a: Allomorph): boolean => {
-    if (a.before !== undefined) return false;
-    const c = a.after;
-    if (c === undefined) return false;
-    if (c.endsIn !== undefined) {
-      const p = lang.patterns.get(c.endsIn);
-      if (p === undefined || !endsIn(p, before)) return false;
-    }
-    if (c.ends !== undefined && !textOf(before).endsWith(c.ends.normalize("NFC"))) return false;
-    return c.feats === undefined && c.pos === undefined && c.class === undefined && c.starts === undefined;
-  };
-  const found = all.find((a) => a.form !== undefined && holds(a)) ?? all.find((a) => a.form !== undefined && a.after === undefined && a.before === undefined);
-  return found?.form ?? (typeof lexeme.form === "string" ? lexeme.form : undefined);
+/**
+ * Whether a condition on what stands beside an allomorph holds. Of the text beside it in its token
+ * (`units`: what it follows, for `after`, or stands before, for `before`): `endsIn`, `startsIn`,
+ * `ends`, `starts`. Of the word beside it (`word`: for `before`, the next word's base lexeme, where
+ * nothing follows in the token): `pos`, `class`. `feats` is never a context's.
+ */
+const contextHolds = (lang: CompiledLanguage, c: Condition, units: readonly Unit[], word: Lexeme | undefined): boolean => {
+  const textual = c.endsIn !== undefined || c.startsIn !== undefined || c.ends !== undefined || c.starts !== undefined;
+  if (textual && units.length === 0) return false;
+  if (c.endsIn !== undefined) {
+    const p = lang.patterns.get(c.endsIn);
+    if (p === undefined || !endsIn(p, units)) return false;
+  }
+  if (c.startsIn !== undefined) {
+    const p = lang.patterns.get(c.startsIn);
+    if (p === undefined || !startsIn(p, units)) return false;
+  }
+  const text = textOf(units);
+  if (c.ends !== undefined && !text.endsWith(c.ends.normalize("NFC"))) return false;
+  if (c.starts !== undefined && !text.startsWith(c.starts.normalize("NFC"))) return false;
+  if (c.pos !== undefined && (word === undefined || units.length > 0 || word.pos !== c.pos)) return false;
+  if (c.class !== undefined && (word === undefined || units.length > 0 || !(word.classes ?? []).includes(c.class))) return false;
+  return c.feats === undefined;
 };
 
 /**
- * A token realised: its base lexeme in its cell, the token's other lexemes in their allomorphs
- * (by what they follow), each joined at a boundary, then the rewrite rules over the whole.
+ * The allomorph of a lexeme written beside others: the first with a form whose conditions all hold,
+ * `after` of what it follows (`preceding`), `before` of what it stands before (`following`, or the
+ * next word, `next`, where nothing follows in the token); else the one with no condition; else the
+ * lexeme's own form.
+ */
+const allomorphOf = (lang: CompiledLanguage, lexeme: Lexeme, preceding: readonly Unit[], following: readonly Unit[], next?: Lexeme): string | undefined => {
+  const all = (lexeme.allomorphs ?? []).filter((a) => a.form !== undefined);
+  const holds = (a: Allomorph): boolean =>
+    (a.after !== undefined || a.before !== undefined) &&
+    (a.after === undefined || contextHolds(lang, a.after, preceding, undefined)) &&
+    (a.before === undefined || contextHolds(lang, a.before, following, following.length === 0 ? next : undefined));
+  const found = all.find(holds) ?? all.find((a) => a.after === undefined && a.before === undefined);
+  return found?.form ?? (typeof lexeme.form === "string" ? lexeme.form : undefined);
+};
+
+/** Whether a lexeme has an allomorph with a form chosen by what follows it. */
+const choosesByFollowing = (lexeme: Lexeme): boolean => (lexeme.allomorphs ?? []).some((a) => a.form !== undefined && a.before !== undefined);
+
+/** A form's words: its units split at each space. */
+const wordsOf = (units: readonly Unit[]): readonly (readonly Unit[])[] => {
+  const out: Unit[][] = [[]];
+  for (const u of units) {
+    if (u.kind === "letter" && u.base === " ") out.push([]);
+    else (out.at(-1) as Unit[]).push(u);
+  }
+  return out;
+};
+
+/**
+ * A token realised: its base lexeme in its cell, the token's other lexemes in their allomorphs, each
+ * joined at a boundary, then the rewrite rules over the whole. Allomorphs are chosen twice over, so
+ * each sees the others' choices: the lexemes after the base by what they follow and what stands after
+ * them; the base's own form (where no rule made it) by what follows it in the token, or by the next
+ * word (`options.next`) where nothing does; the lexemes before it, nearest first, by what they stand
+ * before and follow.
  */
 export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLexeme[], options: RealiseOptions = {}): Result<Realisation, RealiseError> => {
   const baseAt = written.length === 1 ? 0 : written.findIndex((w) => w.base === true);
@@ -482,26 +556,61 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   const base = written[baseAt] as WrittenLexeme;
   const built = build(lang, base.lexeme, base.feats ?? {}, options);
   if (!built.ok) return built;
-  let units = built.value.units;
-  // The lexemes before the base, nearest first; then those after it, in order.
-  for (let k = baseAt - 1; k >= 0; k--) {
-    const w = written[k] as WrittenLexeme;
+  let baseUnits = built.value.units;
+  if (options.word !== undefined) {
+    const words = wordsOf(baseUnits);
+    const word = words[options.word];
+    if (word === undefined) return err({ kind: "form", lexeme: base.lexeme });
+    baseUnits = word;
+  } else if (wordsOf(baseUnits).length > 1 && written.length > 1) return err({ kind: "form", lexeme: base.lexeme });
+  const lexemes: Lexeme[] = [];
+  for (const w of written) {
     const lexeme = lang.lexemes.get(lexemeId(w.lexeme));
     if (lexeme === undefined) return err({ kind: "unknown-lexeme", lexeme: w.lexeme });
-    const form = allomorphOf(lang, lexeme, []);
-    if (form === undefined) return err({ kind: "form", lexeme: lexeme.id });
-    units = join(lang, unitsOf(form), units, "prefix");
+    lexemes.push(lexeme);
   }
-  for (let k = baseAt + 1; k < written.length; k++) {
-    const w = written[k] as WrittenLexeme;
-    const lexeme = lang.lexemes.get(lexemeId(w.lexeme));
-    if (lexeme === undefined) return err({ kind: "unknown-lexeme", lexeme: w.lexeme });
-    const form = allomorphOf(lang, lexeme, units);
-    if (form === undefined) return err({ kind: "form", lexeme: lexeme.id });
-    units = join(lang, units, unitsOf(form), "suffix");
+  const next = options.next === undefined ? undefined : lang.lexemes.get(lexemeId(options.next));
+  // Each lexeme's form, first with no context.
+  const forms: (readonly Unit[])[] = [];
+  for (let k = 0; k < written.length; k++) {
+    if (k === baseAt) {
+      forms.push(baseUnits);
+      continue;
+    }
+    const f = allomorphOf(lang, lexemes[k] as Lexeme, [], []);
+    if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
+    forms.push(unitsOf(f));
   }
+  const joined = (from: number, to: number): readonly Unit[] => {
+    let units: readonly Unit[] = [];
+    for (let k = from; k < to; k++) units = units.length === 0 ? (forms[k] as readonly Unit[]) : join(lang, units, forms[k] as readonly Unit[], k <= baseAt ? "prefix" : "suffix");
+    return units;
+  };
+  const baseLexeme = lexemes[baseAt] as Lexeme;
+  const ownBase = !built.value.whole && built.value.steps.length === 0 && options.word === undefined && choosesByFollowing(baseLexeme);
+  for (let pass = 0; pass < 2; pass++) {
+    for (let k = baseAt + 1; k < written.length; k++) {
+      const f = allomorphOf(lang, lexemes[k] as Lexeme, joined(0, k), k + 1 < written.length ? (forms[k + 1] as readonly Unit[]) : [], k + 1 < written.length ? undefined : next);
+      if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
+      forms[k] = unitsOf(f);
+    }
+    // The base's own form chosen by what follows (bad- before -na; 7da3shar before a noun).
+    if (ownBase) {
+      const f = allomorphOf(lang, baseLexeme, [], baseAt + 1 < written.length ? (forms[baseAt + 1] as readonly Unit[]) : [], baseAt + 1 < written.length ? undefined : next);
+      if (f !== undefined) forms[baseAt] = unitsOf(f);
+    }
+    for (let k = baseAt - 1; k >= 0; k--) {
+      const f = allomorphOf(lang, lexemes[k] as Lexeme, joined(0, k), joined(k + 1, written.length));
+      if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
+      forms[k] = unitsOf(f);
+    }
+  }
+  // Joined: the base and what follows it, then each lexeme before it, nearest first.
+  let units = forms[baseAt] as readonly Unit[];
+  for (let k = baseAt + 1; k < written.length; k++) units = join(lang, units, forms[k] as readonly Unit[], "suffix");
+  for (let k = baseAt - 1; k >= 0; k--) units = join(lang, forms[k] as readonly Unit[], units, "prefix");
   if (built.value.whole && written.length === 1) return ok(realisation(built.value, units, built.value.steps));
-  const rewritten = rewrite(lang, units);
+  const rewritten = rewrite(lang, units, built.value.lexeme, base.feats ?? {}, options.blocking ?? true);
   return ok(realisation(built.value, rewritten.units, [...built.value.steps, ...rewritten.steps]));
 };
 

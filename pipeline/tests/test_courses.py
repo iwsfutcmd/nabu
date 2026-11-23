@@ -24,31 +24,20 @@ PROFILES = load_profiles()
 ANALYZERS = analyzers_by_tool()
 ZWNJ = "\u200c"
 
-# Rules in a lexicon (docs/rules-design.md): apc's verb tokens the rules give otherwise
-# (`form.unaccounted`; `nabu forms ../courses/apc` lists their items): each lexeme and cell, with
-# the orthographies or layers it misses in, however many tokens. The course follows Kline where it
-# differed (the owner, 2026-11-23); what remains is a stem's allomorph before an ending (bad- before
-# -na and -kon, fiyy- before -i), which the rules do not choose by what follows yet. Never mended by
-# changing a rule, a form or a token to fit.
-_A, _M, _L = "apc-Arab/standard", "apc-Arab/standard#vocalized", "apc-Latn/arabizi"
-_AM = f"{_A} {_M}"
-APC_UNACCOUNTED: list[tuple[str, str]] = [
-    ("lexeme:badd+lexeme:poss-1pl", _M),
-    ("lexeme:badd+lexeme:poss-1pl", _L),
-    ("lexeme:badd+lexeme:poss-2pl", _M),
-    ("lexeme:badd+lexeme:poss-2pl", _L),
-    ("lexeme:fi.can+lexeme:poss-1sg", _AM),
-    ("lexeme:fi.can+lexeme:poss-1sg", _L),
-    ("lexeme:fi.can+lexeme:poss-3fs", _AM),
-    ("lexeme:fi.can+lexeme:poss-3fs", _L),
-]
-
 # Warnings a course is known to raise, by (lint, surface). Anything else is a regression.
 # PyCantonese reads the sentence-final particles 呀 and 嗎 as aa4 and maa5;
 # the pinned aa3 and maa3 win.
 # Pinned readings PyCantonese disagrees with, where the pinned one is the colloquial reading taught:
 # the particles 呀/嗎, 名 meng2 (你叫咩名呀), 弟弟 dai4 dai2, 平 peng4 ("cheap").
 EXPECTED_WARNINGS = {
+    # wesel's command: the w-initial command stem leaves its joining carrier first (stage 4's
+    # guard keeps the three cells out of the bundle; the rule is for the owner,
+    # docs/rules-design.md "Stage 4 as built").
+    "apc": {
+        ("form.spelling-script", "\u0640وصل"),
+        ("form.spelling-script", "\u0640وصلي"),
+        ("form.spelling-script", "\u0640وصلوا"),
+    },
     "yue": {
         ("enrich.reading-mismatch", "呀"),
         ("enrich.reading-mismatch", "嗎"),
@@ -70,47 +59,6 @@ EXPECTED_WARNINGS = {
         ("enrich.reading-mismatch", "呢條"),
         ("enrich.reading-mismatch", "呢碗"),
         ("enrich.reading-mismatch", "呢隻"),
-    },
-    "apc": {
-        # Stage 1 of rules in a lexicon (docs/rules-design.md): a lexeme's stored form spells, by
-        # the profile's `spell`, otherwise than the lexicon's first spelling, or than the course's
-        # vowel marks for it. Each is a fact for the owner (`nabu forms ../courses/apc`): a form, a
-        # spelling or a rule to settle, never mended by changing one to fit.
-        ("form.projection", "lexeme:7da3sh apc-Latn/arabizi"),
-        ("form.projection", "lexeme:7zeiran apc-Arab/standard#vocalized"),
-        ("form.projection", "lexeme:adar apc-Latn/arabizi"),
-        ("form.projection", "lexeme:ahla-w-sahla apc-Arab/standard#vocalized"),
-        ("form.projection", "lexeme:ahla-w-sahla apc-Latn/arabizi"),
-        ("form.projection", "lexeme:akl apc-Arab/standard#vocalized"),
-        ("form.projection", "lexeme:arba3ta3sh apc-Latn/arabizi"),
-        ("form.projection", "lexeme:bas apc-Latn/arabizi"),
-        ("form.projection", "lexeme:bus apc-Latn/arabizi"),
-        ("form.projection", "lexeme:dollar apc-Arab/standard#vocalized"),
-        ("form.projection", "lexeme:el7amdella apc-Arab/standard#vocalized"),
-        ("form.projection", "lexeme:football apc-Latn/arabizi"),
-        ("form.projection", "lexeme:hala2 apc-Latn/arabizi"),
-        ("form.projection", "lexeme:hayda apc-Arab/standard#vocalized"),
-        ("form.projection", "lexeme:hayde apc-Arab/standard#vocalized"),
-        ("form.projection", "lexeme:henne apc-Arab/standard#vocalized"),
-        ("form.projection", "lexeme:hiyye apc-Arab/standard#vocalized"),
-        ("form.projection", "lexeme:huwwe apc-Arab/standard#vocalized"),
-        ("form.projection", "lexeme:kell-sene apc-Latn/arabizi"),
-        ("form.projection", "lexeme:khamsta3sh apc-Latn/arabizi"),
-        ("form.projection", "lexeme:merci apc-Latn/arabizi"),
-        ("form.projection", "lexeme:nos apc-Latn/arabizi"),
-        ("form.projection", "lexeme:sa77tein apc-Arab/standard#vocalized"),
-        ("form.projection", "lexeme:saba3ta3sh apc-Latn/arabizi"),
-        ("form.projection", "lexeme:servees apc-Latn/arabizi"),
-        ("form.projection", "lexeme:setta3sh apc-Latn/arabizi"),
-        ("form.projection", "lexeme:taxi apc-Latn/arabizi"),
-        ("form.projection", "lexeme:tleta3sh apc-Latn/arabizi"),
-        ("form.projection", "lexeme:tmenta3sh apc-Latn/arabizi"),
-        ("form.projection", "lexeme:tna3sh apc-Latn/arabizi"),
-        ("form.projection", "lexeme:tsa3ta3sh apc-Latn/arabizi"),
-        ("form.projection", "lexeme:walla apc-Arab/standard#vocalized"),
-        # -iki after fi: the course splits fiki f + iki; the form is كِي, ki.
-        ("form.projection", "lexeme:poss-2fs apc-Latn/arabizi"),
-        *(("form.unaccounted", f"{key} {where}") for key, where in APC_UNACCOUNTED),
     },
     "chg": {
         # For the course's author: yer/yär, yol/yul, suyi/süyi, šahargä/šaharǧa, tizigä.

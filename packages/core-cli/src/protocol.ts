@@ -9,8 +9,8 @@
 import { caseFold, checkTaggedText, compileProfile, compileSpeller, spell, spelledAs, spellingKey, type Speller, readingProjection, type ReadingProjection, type SpellingProjection, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, readingSyllables, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry, type LexemeForm, type WordForm } from "@nabu/core";
 import { TONE_SYSTEMS } from "@nabu/core/speech";
 import { directionOf, scriptOf } from "@nabu/i18n";
-import { formKey, homophoneScheme, homophoneTable, otherSpellings, parseFormKey } from "@nabu/core/lesson";
-import type { Notation, OrthographyProfile, TaggedText, Token } from "@nabu/schema";
+import { formKey, homophoneScheme, homophoneTable, otherSpellings, paradigmWords, parseFormKey } from "@nabu/core/lesson";
+import type { BundleLexicon, Notation, OrthographyProfile, TaggedText, Token } from "@nabu/schema";
 import { loadLanguage, loadProfileData, loadProfiles } from "./load.ts";
 import { REALISE_OPS } from "./realise.ts";
 
@@ -186,17 +186,17 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
     const set = acceptSet(a);
     const keyed = (name: string): ReadonlySet<string> | undefined =>
       Array.isArray(a[name]) ? new Set((a[name] as unknown[]).map((w) => lexiconKey(set.profile, String(w)))) : undefined;
-    const lexicon = keyed("lexicon");
+    let lexicon = keyed("lexicon");
     const inflected = keyed("inflected");
     // Each word with the forms the course's tokens write it in: { word: [{ pos?, feats }] } (ADR 0084).
     const given = a["forms"];
-    const forms =
+    let forms: ReadonlyMap<string, readonly WordForm[]> | undefined =
       typeof given === "object" && given !== null && !Array.isArray(given)
         ? new Map(Object.entries(given).map(([w, fs]) => [lexiconKey(set.profile, w), Array.isArray(fs) ? fs.map(wordForm) : []]))
         : undefined;
     // Whose form each word is: { word: [form key, …] }, each form key's lexemes its own (ADR 0148).
     const written = a["lexemes"];
-    const lexemes =
+    let lexemes: ReadonlyMap<string, readonly LexemeForm[]> | undefined =
       typeof written === "object" && written !== null && !Array.isArray(written)
         ? new Map(
             Object.entries(written).map(([w, keys]): [string, LexemeForm[]] => [
@@ -205,6 +205,23 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
             ]),
           )
         : undefined;
+    // A lexicon's paradigms (docs/rules-design.md, stage 4: { cells, lexemes: [{ id, pos, feats?, paradigm }] },
+    // as a bundle ships them): each form known in the profile's orthography as a token in its cell
+    // would be, through the function grading on the device uses (`paradigmWords`).
+    const paradigm = a["paradigm"];
+    if (typeof paradigm === "object" && paradigm !== null && !Array.isArray(paradigm)) {
+      const words = new Set(lexicon ?? []);
+      const stood = new Map([...(forms ?? new Map<string, readonly WordForm[]>())].map(([k, fs]) => [k, [...fs]]));
+      const known = new Map([...(lexemes ?? new Map<string, readonly LexemeForm[]>())].map(([k, fs]) => [k, [...fs]]));
+      for (const p of paradigmWords(paradigm as Pick<BundleLexicon, "cells" | "lexemes">, set.profile.id, (t) => set.profile.units(set.profile.normalize(t)).map((u) => lexiconKey(set.profile, u)))) {
+        words.add(p.key);
+        stood.set(p.key, [...(stood.get(p.key) ?? []), p.form]);
+        known.set(p.key, [...(known.get(p.key) ?? []), p.written]);
+      }
+      lexicon = words;
+      forms = stood;
+      lexemes = known;
+    }
     // The readings tokens pin on each word, for a sound read off a scheme: { word: [reading, …] }.
     const pinned = a["readings"];
     const readings =
@@ -261,7 +278,7 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
     const { speller, key } = spellerFor(a);
     const spelled = spell(speller, text(a, "form"));
     const expected = optionalText(a, "expected");
-    return expected === undefined ? spelled : { ...spelled, expected: spelledAs(spelled, expected, key) ?? null };
+    return expected === undefined ? spelled : { ...spelled, expected: spelledAs(spelled, expected, key, a["part"] === true) ?? null };
   },
   /** Whether the scheme's statement relates a reading to a spelling: the sites of one path, or null. */
   "reading-spells": (a) => schemeProjection(a).spells(text(a, "reading"), text(a, "spelling")) ?? null,

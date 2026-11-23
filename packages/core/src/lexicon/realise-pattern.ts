@@ -313,6 +313,9 @@ const matchesEndingAt = (items: Pattern, units: readonly Unit[], end: number): b
 /** Whether a form ends in what `pattern` matches (a condition's `endsIn`). */
 export const endsIn = (pattern: Pattern, units: readonly Unit[]): boolean => matchesEndingAt(pattern, units, units.length);
 
+/** Whether a form begins with what `pattern` matches (a condition's `startsIn`: what an allomorph stands before). */
+export const startsIn = (pattern: Pattern, units: readonly Unit[]): boolean => matchesFrom(pattern, units, 0).length > 0;
+
 // ------------------------------------------------------------------------------------------------
 // Rewrites
 
