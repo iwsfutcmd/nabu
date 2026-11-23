@@ -120,8 +120,8 @@ test("tap-for-gloss: vocalized apc-Arab words find their entries, whatever their
   if (story === undefined) throw new Error("apc has no story");
   await seedLog(page, historyBefore(course, story.node, NOW));
   await page.goto(`/?seed=${SEED}&sound=off#/apc/apc-Arab.standard/story/${encodeURIComponent(story.node)}`);
-  // Read on until Maya's greeting (مَرْحَبا سامي! كِيفَك؟) is in the transcript.
-  const kifak = page.locator("[data-story-transcript] button[data-index]", { hasText: "كِيفَك" });
+  // Read on until Maya's greeting (مَرْحَبا سامي! كيفَك؟) is in the transcript.
+  const kifak = page.locator("[data-story-transcript] button[data-index]", { hasText: "كيفَك" });
   for (let i = 0; i < 5 && (await kifak.count()) === 0; i += 1) await page.locator("[data-story-reader] [data-action=continue]").tap();
   await kifak.tap();
   await expect(kifak).toHaveAttribute("aria-pressed", "true");
@@ -132,7 +132,7 @@ test("tap-for-gloss: vocalized apc-Arab words find their entries, whatever their
   await expect(panel.locator('[data-gloss-id="lexeme:poss-2ms"]')).toBeVisible();
   // Each part as the story's word writes it, marked, with its meaning; under it the glossary's own
   // form, which stays unmarked (the course vocalizes كيف in kifak and kifik alike).
-  await expect(entry.locator("dt")).toHaveText("كِيفَ");
+  await expect(entry.locator("dt")).toHaveText("كيفَ");
   await expect(entry.locator("dd")).toContainText("how");
   await expect(entry.locator("[data-gloss-lemma]")).toContainText("كيف");
   // Hiding the vowel marks changes the display only: the same word, the same gloss.

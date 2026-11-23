@@ -6,7 +6,7 @@
  * - Lines and names are language data rendered through <T>, in the target's direction; the
  *   chrome follows the UI locale (§11.2).
  * - Tap-for-gloss runs the runtime glossary (longest match, exact and folded passes), so a
- *   vocalized كِيفَك finds its unvocalized entry; the meaning appears in a live panel, not a
+ *   vocalized كيفَك finds its unvocalized entry; the meaning appears in a live panel, not a
  *   floating popover, so it reads the same in RTL, LTR and vertical text.
  * - Vertical reading (§11.4, ADR 0118): where the profile allows it, each line's text turns into
  *   columns (vertical-rl) with the reading layer the learner chose beside them; names, play
