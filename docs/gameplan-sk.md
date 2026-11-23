@@ -7,49 +7,35 @@ What it builds: the course `sk` that [ADR 0155](adr/0155-slovak.md) (Proposed) d
 brief and syllabus in [courses/sk/README.md](../courses/sk/README.md). Each stage below is one
 roadmap deliverable, landed as one or a few small commits, and leaves CI green.
 
-## Questions for you first
+## Decided (the owner, 2026-11-23)
 
-The plan has an answer proposed for each; the stages that depend on one say so.
-
-1. **The learner.** Proposed: an adult English speaker starting from nothing, A1 to B1. The other
-   course this could be is a heritage course, as es is (a Slovak-American family's grandchild, who
-   understands some): it would start later, lean on typed production and the adaptive placement
-   (ADR 0077), and keep a family at its centre. Shapes stages 3–6.
-2. **The cast and the story frame** (the README): Emma and Adam in Banská Bystrica, the Hudecs, the
-   village in Spiš. Keep, change or replace. Stage 3.
-3. **The voice.** Proposed: Piper's `sk_SK-lili-medium` (a Slovak model, one woman, its data CC0;
-   the license of its English base's data still to check), then an OmniVoice clone of a man's CC0
-   recording if you want two voices; or two OmniVoice clones from the start (clips CC-BY-NC). Stage 5.
-4. **d', t', l' typed for ď, ť, ľ.** The caron on those three is printed as a stroke that looks like
-   an apostrophe, and learners copy what they see. Proposed: fold an apostrophe after d, t, l (and
-   D, T, L) into the caron in normalization (REVIEW), since Slovak writes no apostrophe there. The
-   alternative is to grade it as a missing mark. Stage 1.
-5. **Authentic texts.** Proposed: every story written for the course. A choice for units 17–20 is a
-   short public-domain text beside the story: verses of a folk song, proverbs, the opening of one of
-   Dobšinský's tales (1880s). Dobšinský's own spelling is pre-1953 (other than today's in places),
-   and a modernized edition may carry an editor's rights, so it would be quoted in its own spelling
-   with a note, or modernized by the course itself. Stage 6.
-6. **Aspect pairs.** Proposed: two lexemes, each noting the other (as UD lemmatizes them). Later,
-   with rules, a perfective made by a prefix could be a derivative (ADR 0145's function heads); not
-   predictable which prefix (*napísať*, *urobiť*, *prečítať*), so it would stay listed. Stage 2.
-7. **A native reviewer.** Every sentence is a draft until one signs off (ADR 0072–0074).
-8. **A fixture course?** Proposed: add sk to CLAUDE.md's fixture courses once units 1–10 build clean,
-   so CI keeps it green. Stage 4.
+1. **The learner** as proposed: an adult English speaker starting from nothing, A1 to B1.
+2. **The people and stories are the course's own**, as the other courses' are: everyday scenes in
+   Žilina with recurring people (the README), no stand-in for the learner and no plot. The first draft's
+   frame (two foreign learners, a host family, an emigrant's village) is dropped.
+3. **The voice is Claude's pick**: Piper's `sk_SK-lili-medium` (ADR 0155: a Slovak model, CPU, clips
+   CC-BY-4.0), OmniVoice only if it fails the round trip or the listening.
+4. **No apostrophe for the caron**: *d'* typed for *ď* is a missing caron, never folded (a bad
+   precedent).
+5. **Public-domain text is fine**: units 16–20 each read a passage of Dobšinský's tales (1881).
+6. **Aspect pairs are two lexemes**, each noting the other.
+7. **A native reviewer**: not known yet. Everything stays a draft until one is.
+8. **sk becomes a fixture course** once units 1–10 build clean.
 
 ## Stage 0: the plan (this commit)
 
 - ADR 0155 (Proposed), `courses/sk/README.md`, this file.
 - Reading notes in the library, `nabu/notes/sk/references.md`: the three books, where each topic is,
   page offsets, what their text layers get wrong.
-- Done when: you have answered the questions above, or said which to leave open.
+- Done: answered (above), and folded into the ADR, the README and this file.
 
 ## Stage 1: the orthography
 
 - `profiles/sk-Latn.standard.yaml`, every policy REVIEW, written with Python where it holds escapes
   (CLAUDE.md):
   - `letters` (the 46, `ch`, `dz`, `dž` among them), `exemplars: cldr:sk`, `segmentation` as es's;
-  - `normalize`: NFC, curly apostrophes, the d'/t'/l' fold if question 4 says so, punctuation
-    stripped, whitespace collapsed;
+  - `normalize`: NFC, curly apostrophes, punctuation stripped, whitespace collapsed; no fold of an
+    apostrophe into the caron (decision 4);
   - `match`: case folded in `sk`; marks `[́̌̈̂]` all `required`; `typo` on the
     Slovak layout with contrast sets for endings (*a, u, e, i, y, o, á, é, í, ý, ú, om, ou, ov, ám, ách,
     ami, ým, ých, ými, ej, m, š, me, te, ia, l, la, lo, li*) and pronouns (*ja, ty, on, ona, ono, my, vy,
@@ -60,8 +46,8 @@ The plan has an answer proposed for each; the stages that depend on one say so.
 - `profiles/keyboards/sk.yaml`: the Slovak QWERTZ layout (the national standard's), for the typo
   model.
 - Conformance vectors in `conformance/` (normalize, grade, projection; ADR 0153), passing in both
-  harnesses:
-  - normalize: decomposed marks composed (d + U+030C is ď); „…“ stripped; the fold, if decided;
+  harnesses (*d'akujem* for *ďakujem* among the grade vectors: a missing caron, decision 4):
+  - normalize: decomposed marks composed (d + U+030C is ď); „…“ stripped;
   - grade: *pas* for *pás* and *cas* for *čas* phonemic; *zle* for *zlé* lexical once both are words
     of a vector's lexicon; *ďeti* for *deti*, *hrat* for *hrad*, *meso* for *mäso*, *pánou* for
     *pánov*, *fšetko* for *všetko* orthographic; *biť* for *byť* orthographic, and lexical with *biť*
@@ -113,19 +99,31 @@ The plan has an answer proposed for each; the stages that depend on one say so.
 - The persons spread (ADR 0075): count per unit speaker m and f, addressee m, f and pl, and formal
   *vy*, and keep them even before committing.
 - Golden files: `UPDATE_GOLDEN=1` for sk's alone, read before committing.
-- Done when: as stage 3, for every unit; sk is a fixture course if question 8 says so.
+- Done when: as stage 3, for every unit. Then sk joins CLAUDE.md's fixture courses (decision 8), and
+  every UI change passes its lessons too.
 
 ## Stage 5: audio
 
-- The cast question 3 chose: `nabu audio cast` (for a clone, `--recording` with its license, author and
-  source), `nabu audio generate ../courses/sk`, `nabu audio align` where a voice gives no word timings,
-  the round trip (Whisper hears Slovak), then a listener in the audio check (`#/sk/sk-Latn/audio`,
-  `nabu audio verdicts`). `audio.quality: good` only after that; then `pnpm bundles`.
+- The voice (decision 3): Piper `sk_SK-lili-medium`, pinned by revision in `course.yaml` (`provider:
+  piper`, `model` pinned as fa's is), clips CC-BY-4.0 crediting the Slovak dataset (CC0) and Hi-Fi TTS
+  (CC BY 4.0), the voice `speaker: f`. `uv sync --group speech` for the round trip.
+- `nabu audio generate ../courses/sk`, then `nabu audio align ../courses/sk` if Piper's clips lack word
+  timings; the round trip (Whisper hears Slovak); a listener in the audio check (`#/sk/sk-Latn/audio`,
+  then `nabu audio verdicts`). `audio.quality: good` only after both; then `pnpm bundles`.
+- Try it on unit 1 before the course is long: if lili fails the round trip on many clips or sounds
+  wrong to a listener, switch to OmniVoice clones (two CC0 Common Voice speakers, `nabu audio cast
+  --recording`; clips CC-BY-NC-4.0) before units 2–20 are voiced.
 - Done when: `nabu audio report` lists no unchecked clip, and listening cards appear in lessons.
 
 ## Stage 6: units 11–20 (A2 to B1) and the scenarios
 
-- As stage 4, unit by unit; the eight scenarios of the README; authentic texts if question 5 says so.
+- As stage 4, unit by unit; the eight scenarios of the README.
+- The Dobšinský passages (decision 5; the README's "The passages"): for each of units 16–20, pick the
+  tale and the excerpt by the unit's grammar and length; take its text from the archive.org scan's
+  text layer and check every word on the page image; write it in with a script; modernize the spelling
+  and list each change in the story's notes; pin its provenance (public domain, the 1881 edition, the
+  scan's identifier and page). The two scans' text and images are reading material, kept in the
+  library (`nabu/notes/sk/`), not the repository.
 - The aspect sentences (units 11, 17) are where accept sets are most likely wrong: each sentence's
   set is read for "would this translate the prompt?" in both directions.
 
@@ -163,7 +161,10 @@ scenarios.
 - **Pinned forms**: many, and each hand-checked until stage 8.
 - **The sound statement's exceptions** (hard *de, te, ne, le*) are read soft: an orthographic miss
   where a phonemic one is due, for a closed set of words.
-- **The voice's license**, until question 3 and the check of lili's base data are settled.
+- **Dobšinský's language** is of the 1880s and partly dialectal. The excerpts are short, chosen
+  where the language is closest to today's, and their new words are taught before they are read.
+- **One woman's voice reads everyone**: fine by ADR 0078, though a man's line in her voice may read
+  oddly to some learners; a second voice can be cast later without changing the text.
 
 ## Where the references treat each topic
 

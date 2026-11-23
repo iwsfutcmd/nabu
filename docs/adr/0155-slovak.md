@@ -2,6 +2,10 @@
 
 - Status: Proposed
 - Date: 2026-11-23
+- The owner's answers to the build plan's questions (2026-11-23) are folded in: the learner as
+  proposed; a cast of the course's own in everyday scenes, as the other courses have; public-domain
+  passages; no apostrophe for the caron; aspect pairs as two lexemes; the voice Claude's pick; sk a
+  fixture course. A reviewer is not yet known.
 
 ## Context
 
@@ -69,9 +73,15 @@ syllabus are in `courses/sk/README.md`; the build order, stage by stage, in `doc
   the dative, the genitive plural and quantities, the imperative, the pronouns in every case, verbs
   of motion and their prefixes, comparison, the conditional, the passive). Every form is checked
   against Mistrík's paradigms.
-- **Its own cast and stories**: an English woman and an American man learning Slovak in Banská
-  Bystrica, the family Emma lodges with, their teacher, and the village in Spiš that Adam's
-  great-grandfather left in 1907 (the README). Nothing is taken from the books' dialogues.
+- **Its own people and stories**, as the other courses have them: everyday scenes in Žilina with
+  people who come back from unit to unit (two sisters, a boyfriend, the neighbours and their son, a
+  grandmother in a village under the Malá Fatra; the README), no stand-in for the learner and no plot.
+  Nothing is taken from the books.
+- **Real Slovak at the end**: units 16–20 each also read a short passage of Pavol Dobšinský's folk
+  tales (*Prostonárodnie slovenské povesti*, 1880–1883; Google's scans of two volumes dated 1881 on
+  archive.org), public domain. The text is taken from the scan and checked on the page image, then
+  written in by a script; its spelling is modernized and every change listed in the story's notes;
+  a tale in dialect is not used.
 - Every facet (recognize, produce, listen, speak). **No script track**: Slovak is a Latin
   orthography, which never gates (ADR 0149); its letters and marks are taught inside the course, as
   Spanish spelling is.
@@ -86,8 +96,8 @@ is REVIEW.
   d ď dz dž e é f g h ch i í j k l ĺ ľ m n ň o ó ô p q r ŕ s š t ť u ú v w x y ý z ž). Exemplars
   `cldr:sk`.
 - Normalize: NFC; curly apostrophes to straight; punctuation stripped (with „ and “); whitespace
-  collapsed. Whether an apostrophe typed after d, t, l folds into the caron (*d'* for *ď*, as the
-  letter looks) is a question for the owner (docs/gameplan-sk.md); proposed: it does.
+  collapsed. An apostrophe typed for the caron (*d'akujem*, as ď looks) is not folded into it: it is
+  a missing caron (the owner: folding it would be a bad precedent).
 - Case folded in `sk`. **All four marks are required** (acute U+0301, caron U+030C, diaeresis
   U+0308, circumflex U+0302): one left out, added or moved is never a typo and never excused, as in
   es since ADR 0148. The sound statement labels the miss: *pas* for *pás* and *cas* for *čas* say
@@ -159,7 +169,7 @@ the Slovak SNK treebank uses them (checked against its development set):
 **Persons, register and what the prompt leaves open** (ADR 0056, 0075, 0085, 0147):
 
 - Sentences whose Slovak marks the speaker's or the addressee's gender, or the addressee's number,
-  carry `persons` tags (`speaker: f`, `addressee: m`, `addressee: pl`). Emma's and Adam's first-person
+  carry `persons` tags (`speaker: f`, `addressee: m`, `addressee: pl`). Lucka's and Dominik's first-person
   sentences come in pairs (*bola som* / *bol som*), and the course speaks to men, to women and to
   several people.
 - Polite *vy* sentences carry `register: formal` with the addressee's gender. Untagged "you" accepts
@@ -170,37 +180,41 @@ the Slovak SNK treebank uses them (checked against its development set):
   the English does not decide (*I wrote a letter*: *písal som list* and *napísal som list*).
   Writing English: *a* and *the* wherever Slovak says neither, and every tense the aspect allows.
 
-**Voices** (ADR 0040, 0078, 0091). Two candidates, the owner to choose:
+**The voice** (ADR 0040, 0078, 0091; the owner left the choice to Claude): **Piper's
+`sk_SK-lili-medium`**, one voice for the whole course.
 
-- **Piper `sk_SK-lili-medium`**: a Slovak voice (one woman), its dataset CC0, fine-tuned from Piper's
-  US English Hi-Fi TTS voice. Runs on a CPU in seconds. The terms of the English base's data must be
-  checked before the clips' license is set.
-- **OmniVoice** (it lists `sk`) cloning a man's and a woman's CC0 recordings (Mozilla Common Voice's
-  Slovak set, or a recording the owner chooses), as es and apc do. Clips CC-BY-NC-4.0.
-
-The proposal is lili first, rated `good` only after the round trip (Whisper hears Slovak) and the
-owner's listening, then a second, man's voice by OmniVoice if the course wants two (ADR 0078: a
-sentence with `speaker: m` then gets it).
+- It is a model of Slovak: one woman's CC0 Slovak recordings (OHF-Voice's voice datasets),
+  fine-tuned from Piper's `en_US-hifi_tts_92` voice, itself trained on NVIDIA's Hi-Fi TTS (CC BY 4.0,
+  LibriVox readings). The clips are CC-BY-4.0, crediting both datasets: the most a chain of CC0 and
+  CC BY asks, and free of the non-commercial condition apc's and es's OmniVoice clips carry.
+- It runs on a CPU in seconds a clip (the pipeline pins piper-tts 1.8, which it needs at 1.5 or
+  later), so regenerating after a change costs minutes, not a GPU session.
+- One voice reads every line, men's too (ADR 0078 allows a one-voice cast).
+- Rated `good` only after the round trip (Whisper hears Slovak) and a listener's pass in the audio
+  check. If it fails either, the fallback is OmniVoice (it lists `sk`) cloning a man's and a woman's
+  CC0 recordings, its clips CC-BY-NC-4.0.
 
 **References**: the three books, cited by author, title, year and page; notes in the library's
 `nabu/notes/sk/`.
 
 ## Consequences
 
-- The first Slavic language. grc has cases as feature values already; Slovak adds the locative and
-  the instrumental, agreement in animacy, aspect as a lexical feature and a gendered past, and the lexical model's
-  labels, word-parts cards and gap-fill questions are tried on them. Two gaps known now: a label cannot yet read a lexical feature (a
-  perfective's present needs "future" where an imperfective's says "present"), and ADR 0147's
-  register and aspect tags are not built.
+- The first Slavic language. grc has cases as feature values already; Slovak adds the locative and the
+  instrumental, agreement in animacy, aspect as a lexical feature and a gendered past, and the lexical
+  model's labels, word-parts cards and gap-fill questions are tried on them. Two gaps known now: a label
+  cannot yet read a lexical feature (a perfective's present needs "future" where an imperfective's says
+  "present"), and ADR 0147's register and aspect tags are not built.
 - A large lexicon of pinned forms until sk has rules: about 600 sentences, 450 lexemes and some
   1,500 pinned forms over twenty units.
 - New files: `profiles/sk-Latn.standard.yaml`, `profiles/keyboards/sk.yaml`, `lexicons/sk/`,
   `courses/sk/`; conformance vectors for the marks, i and y, the soft consonants, ä and voicing in both
   harnesses; the length and caron notes in every UI catalog (drafts outside English, stamped).
-- The course names a fictional village; the towns, the mountains, the foods and the history of the
-  emigration to Pennsylvania are real and are checked as facts.
+- The towns, mountains, foods and customs the stories mention are real and checked as facts; the
+  people are invented.
+- sk joins CLAUDE.md's fixture courses once units 1–10 build clean (the owner), so CI keeps it green
+  from then on.
 - Every sentence is an LLM draft (`llm:` provenance, status draft, CC-BY-SA-4.0) awaiting a native
   speaker. No Slovak reviewer is named yet.
-- Not in it: the vocative (the course addresses people in the nominative, as Slovak does: *pán Hudec*,
-  *Emma*); dialects but a note (eastern Slovak's stress, unit 17); Czech, which a learner will meet and
+- Not in it: the vocative (the course addresses people in the nominative, as Slovak does: *pán doktor*,
+  *Lucka*); dialects but a note (eastern Slovak's stress, unit 17); Czech, which a learner will meet and
   half understand.

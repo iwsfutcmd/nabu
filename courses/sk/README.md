@@ -1,9 +1,10 @@
 # sk: Slovak (plan)
 
-A course in standard Slovak (`sk-Latn`) for adult English speakers starting from nothing, A1 to B1
-in twenty units ([ADR 0155](../../docs/adr/0155-slovak.md), Proposed). This file is the brief the
-drafts will be written from; [docs/gameplan-sk.md](../../docs/gameplan-sk.md) is the build order.
-Nothing here is built yet: the course has no `course.yaml`, so no tool reads this directory.
+A course in standard Slovak (`sk-Latn`) for adult English speakers starting from nothing, A1 to B1 in
+twenty units ([ADR 0155](../../docs/adr/0155-slovak.md), Proposed; the owner's answers of 2026-11-23 are
+in it). This file is the brief the drafts will be written from;
+[docs/gameplan-sk.md](../../docs/gameplan-sk.md) is the build order. Nothing here is built yet: the
+course has no `course.yaml`, so no tool reads this directory.
 
 The grammar's order and every form come from the library's three Slovak books (facts only, never
 their sentences, dialogues or characters):
@@ -29,30 +30,34 @@ their sentences, dialogues or characters):
   voiced consonants written where they are said voiceless (*hrad*, *všetko*). The profile states these
   as sound-alike spellings, so the right sound with the wrong letter is an orthographic miss, and
   spelling-choice cards ask them (ADR 0142, 0148).
-- **A woman learning Slovak says other words than a man.** Emma and Adam speak in pairs
+- **A woman says other words than a man.** Lucka and Dominik say the same things in pairs
   (*Bola som v Bratislave.* / *Bol som v Bratislave.*), and the course speaks to men, to women and to
   several people (ADR 0075).
+- **Real Slovak to read at the end.** Units 16–20 each read a short passage of Dobšinský's folk tales
+  (1881, public domain) beside their own story: the first Slovak a learner reads that was not written
+  for learners.
 
-## The cast
+## The people
 
-Two learners and the people they meet, so a learner meets the same people from unit 1 to unit 20.
-Every name is the course's own.
+Everyday scenes in Žilina, with people who come back from unit to unit, as the other courses have
+them (fa's Maryam and Ali, apc's Sami, Maya and Teta): no stand-in for the learner and no plot to
+follow. Every name is the course's own, none taken from the books.
 
 | Who | |
 |---|---|
-| **Emma** (Emma Clark; Slovaks write *Emma Clarková*, unit 20) | 26, from Leeds. Teaches English at a language school in Banská Bystrica and rents a room from the Hudecs. Her first-person sentences that mark gender are tagged `speaker: f`. |
-| **Adam** (Adam Novak; *Adam Novák* in Slovak) | 29, from Pittsburgh, a programmer working from anywhere. His great-grandfather Ján Novák left a village in Spiš for the steel mills of Pennsylvania in 1907; Adam is learning Slovak to find it. `speaker: m`. |
-| **Pani Kollárová** (Ľubica) | About 55, their Slovak teacher at the language school. Everyone says *vy* to her, and she to her adult students: the course's formal register. |
-| **Ivana Hudecová** | 44, a paediatrician. Says *vy* to her patients' parents. |
-| **Marek Hudec** | 47, Ivana's husband, a forester in the hills around the town. |
-| **Natália (Naty) Hudecová** | 17, at the gymnázium, plays the violin, wants to study in Bratislava. Emma's first Slovak friend: *ty*. |
-| **Filip Hudec** | 12, plays hockey and talks about nothing else. |
-| **Babka Oľga** and **dedko Štefan** | Marek's parents, in a village near Detva, under Poľana. Babka cooks; dedko plays the fujara. |
-| **Teta Mária** | 70, a distant cousin of Adam's in his great-grandfather's village near Levoča (a fictional village, its name to be chosen). |
-| **Tomáš** | 24, teta Mária's grandson, studies in Košice; speaks to Adam in English until unit 17, then only in Slovak. |
+| **Lucka** (Lucia) | 24, a nurse at the hospital. Shares a flat in the old town with her sister. |
+| **Tereza** | 21, Lucka's sister, studies in Bratislava and comes home at weekends. |
+| **Dominik** | 26, Lucka's boyfriend, an electrician; hockey with friends on Thursdays. |
+| **Simona** and **Rudo** (Rudolf) | 36 and 39, the new neighbours across the landing. She runs a small café; he drives a trolleybus. |
+| **Samko** (Samuel) | 9, their son: hockey, and questions about everything. |
+| **Babka Betka** (Alžbeta) | 78, Lucka and Tereza's grandmother, in a village under the Malá Fatra. Keeps hens, cooks, and knows Dobšinský's tales by heart (units 16–20). |
+| **Pani Tóthová** | About 70, the neighbour downstairs. Everyone says *vy* to her. |
+| **Doktor Baláž** | The paediatrician Simona takes Samko to; *vy*. |
 
-The Hudecs together are the course's *vy* in the plural; Naty, Filip, Tomáš, Emma and Adam say *ty*
-to each other.
+Women and men speak alike often: Lucka and Tereza, Simona, babka and pani Tóthová; Dominik, Rudo,
+Samko and the doctor. *Ty* among friends, family and children; *vy* to one person politely (pani
+Tóthová, the doctor, a shopkeeper, a flat's owner) and to several (the sisters together, Simona and
+Rudo).
 
 ## Conventions
 
@@ -91,8 +96,9 @@ to each other.
     Gender: Masc}`; *dievča* `{Gender: Neut}`; *dlaň*, *jeseň* `{Gender: Fem}`. A man and a woman are
     two nouns (*učiteľ*, *učiteľka*; *kamarát*, *kamarátka*), two lexemes as UD has them: no noun
     chooses its gender.
-  - Names are lexemes (`pos: PROPN`) with their gender and animacy as nouns have them: *Emma*,
-    *Ivana* by the -a default; *Adam*, *Marek*, *Filip* `{Animacy: Anim}`; *Banská Bystrica* is two
+  - Names are lexemes (`pos: PROPN`) with their gender and animacy as nouns have them: *Lucka*,
+    *Simona* by the -a default; *Dominik* `{Animacy: Anim}`; *Rudo* and *Samko* `{Animacy: Anim,
+    Gender: Masc}` (the -o default says neuter); *Banská Bystrica* is two
     tokens of one lexeme, both declining.
   - Prepositions are ADP lexemes, their vocalized forms spelled variants: `lexeme:v` `[v, vo]`,
     `lexeme:s` `[s, so]`, `lexeme:z` `[z, zo]`, `lexeme:k` `[k, ku]`.
@@ -115,14 +121,14 @@ to each other.
     | `{Animacy: Inan, Case: Nom, Gender: Masc, Number: Plur}` | masculine inanimate plural | *pekné domy*, *dva stoly* |
     | `{Case: Nom, Gender: Fem, Number: Plur}` | feminine plural | *pekné izby*, *dve ženy* |
 
-    The form is the word's agreement in its line: *Emma je unavená.* has `unavená` `{Case: Nom,
+    The form is the word's agreement in its line: *Lucka je unavená.* has `unavená` `{Case: Nom,
     Gender: Fem, Number: Sing}`, `n`, `head` and `rel` (UD's relation) written where a word agrees
     with another.
   - **Verbs:**
 
     | Token | `feats` |
     |---|---|
-    | *Volám* (sa Emma) | `{Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}` |
+    | *Volám* (sa Lucka) | `{Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}` |
     | *nerozumiem* | `{Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}` |
     | *urobím* (perfective: "I will do") | `{Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}` |
     | *varila* (som) | `{Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}` |
@@ -157,10 +163,10 @@ to each other.
   sentences so that each adds one or two.
 - **Sentences:** about 30 a unit, short in units 1–10, longer from unit 11. Every sentence has
   `reverse` (the Slovak accept set) and `translations.en` (the English one, displayed form first).
-  - `[Ja] som Emma.`: the subject pronoun optional, as Slovak drops it.
+  - `[Ja] som Lucka.`: the subject pronoun optional, as Slovak drops it.
   - Every word order whose translation would be the prompt (ADR 0085), the clitics (*som, si, sa,
-    mi, ti, mu, ho, ju, by*) always second: *Volám sa Emma.* and *Emma sa volám.*, never
-    *Sa volám Emma.*
+    mi, ti, mu, ho, ju, by*) always second: *Volám sa Lucka.* and *Lucka sa volám.*, never
+    *Sa volám Lucka.*
   - Both aspects where the English does not decide (*I wrote a letter*: *písal som list*, *napísal
     som list*); one where it does (*I was writing a letter*: imperfective only).
   - English: *a* and *the* wherever the Slovak says neither; *this* and *that* both for *ten*,
@@ -173,8 +179,9 @@ to each other.
   line false or absurd, a wrong form makes it ungrammatical, never another line it takes). Lines use
   only what the unit and the units before teach.
 - **Scenarios** (roleplay with a model): about one every two or three units, in Slovak settings.
-- **Provenance and license:** the course default (`llm:claude@…`, draft; CC-BY-SA-4.0). An authentic
-  text, if any (see the gameplan's questions), keeps its own provenance (public domain).
+- **Provenance and license:** the course default (`llm:claude@…`, draft; CC-BY-SA-4.0). A Dobšinský
+  passage keeps its own provenance (public domain; the 1881 edition, its page) and says what the
+  course changed in it.
 
 ## The units
 
@@ -182,39 +189,56 @@ KK lessons, N units and M pages are where the grammar is described; nothing is c
 
 | # | File | Title | CEFR | Grammar | Life | KK · N · M |
 |---|---|---|---|---|---|---|
-| 1 | `u01-ahoj` | Ahoj! | A1 | *byť* in the present (*som, si, je, sme, ste, sú*); personal pronouns; *volať sa*; *ty* and *vy*; yes-no questions; the letters and their marks | Emma and Adam meet in pani Kollárová's class: *Dobrý deň*, *Ahoj*, *Ďakujem*, *Prosím* | 1–2 · 1 · 12–16, 55 |
-| 2 | `u02-odkial-si` | Odkiaľ si? | A1 | the present of the regular classes (*volám*, *hovorím*, *rozumiem*, *študujem*); negation with *ne-*, and *nie som*; numbers 0–10 | countries, nationalities (*Angličanka*, *Američan*, *Slovenka*), languages (*po slovensky*) | 2 · 1–2 · 78–84 |
-| 3 | `u03-u-hudecovcov` | U Hudecovcov | A1 | gender; adjectives in the nominative (*pekný*, *cudzí*); *ten, tá, to*; *môj, tvoj, jeho, jej, náš, váš, ich*; *čí? aký? ktorý?* | Emma's room at the Hudecs': rooms and furniture | 3 · 3 · 46–53, 57–58 |
-| 4 | `u04-mesto` | Banská Bystrica | A1 | the nominative plural (*študenti*, *domy*, *ženy*, *mestá*); *dva, dve, dvaja*, *tri*, *štyri*; *mať* | the square, shops, jobs (*učiteľ* / *učiteľka*, *lekár* / *lekárka*) | 4 · 10 · 27–45 |
-| 5 | `u05-narodeniny` | Narodeniny | A1 | the accusative singular (*vidím brata*, *vidím dom*); *mať rád* / *rada*; *chcieť*, *môcť*, *musieť*; *ísť* and *na* + accusative; colours | Filip's birthday: buying a present | 5 · 3, 5 · 99–105 |
-| 6 | `u06-koliba` | V kolibe | A1 | the instrumental (*s*, *pred*, *za*, *nad*, *pod*, *medzi*; *vlakom*); *žiť*, *niesť*, *pozvať* | *bryndzové halušky*, *kapustnica*, *kofola* at a mountain restaurant | 6 · 6–7 · 27–45 |
-| 7 | `u07-moj-den` | Môj deň | A1 | reflexive verbs (*umývať sa*, *učiť sa*); *spať*, *vidieť*, *stretnúť*; the time (*o ôsmej*); days | Naty's school day; Marek's day in the forest | 7, 9 · 12 · 56, 72 |
-| 8 | `u08-vcera` | Včera | A2 | the past (*bol som*, *bola som*, *boli sme*); *už*, *ešte*; the past negated | Emma's and Adam's weekends | 7 · 6 · 73, 85 |
-| 9 | `u09-kde-byvas` | Kde bývaš? | A2 | the locative (*v*, *na*, *o*, *po*, *pri*); where and where to (*na námestí*, *na námestie*); months, dates, ordinals | Adam looks for a flat | 8 · 5, 15 · 99–105 |
+| 1 | `u01-ahoj` | Ahoj! | A1 | *byť* in the present (*som, si, je, sme, ste, sú*); personal pronouns; *volať sa*; *ty* and *vy*; yes-no questions; the letters and their marks | Lucka meets her new neighbours on the stairs, and pani Tóthová (*vy*): *Dobrý deň*, *Ahoj*, *Ďakujem*, *Prosím* | 1–2 · 1 · 12–16, 55 |
+| 2 | `u02-odkial-si` | Odkiaľ si? | A1 | the present of the regular classes (*volám*, *hovorím*, *rozumiem*, *študujem*); negation with *ne-*, and *nie som*; numbers 0–10 | Tereza's classmates in Bratislava: countries, nationalities (*Poľka*, *Maďar*, *Slovenka*), languages (*po slovensky*) | 2 · 1–2 · 78–84 |
+| 3 | `u03-u-nas-doma` | U nás doma | A1 | gender; adjectives in the nominative (*pekný*, *cudzí*); *ten, tá, to*; *môj, tvoj, jeho, jej, náš, váš, ich*; *čí? aký? ktorý?* | the sisters' flat: rooms and furniture | 3 · 3 · 46–53, 57–58 |
+| 4 | `u04-zilina` | Žilina | A1 | the nominative plural (*študenti*, *domy*, *ženy*, *mestá*); *dva, dve, dvaja*, *tri*, *štyri*; *mať* | the square, shops, jobs (*učiteľ* / *učiteľka*, *lekár* / *lekárka*) | 4 · 10 · 27–45 |
+| 5 | `u05-narodeniny` | Narodeniny | A1 | the accusative singular (*vidím brata*, *vidím dom*); *mať rád* / *rada*; *chcieť*, *môcť*, *musieť*; *ísť* and *na* + accusative; colours | Samko's birthday: buying a present | 5 · 3, 5 · 99–105 |
+| 6 | `u06-koliba` | V kolibe | A1 | the instrumental (*s*, *pred*, *za*, *nad*, *pod*, *medzi*; *vlakom*); *žiť*, *niesť*, *pozvať* | lunch in the Vrátna valley: *bryndzové halušky*, *kapustnica*, *kofola* | 6 · 6–7 · 27–45 |
+| 7 | `u07-moj-den` | Môj deň | A1 | reflexive verbs (*umývať sa*, *učiť sa*); *spať*, *vidieť*, *stretnúť*; the time (*o ôsmej*); days | Lucka's shift at the hospital; Samko's school day | 7, 9 · 12 · 56, 72 |
+| 8 | `u08-vcera` | Včera | A2 | the past (*bol som*, *bola som*, *boli sme*); *už*, *ešte*; the past negated | Lucka's and Dominik's weekend | 7 · 6 · 73, 85 |
+| 9 | `u09-kde-byvas` | Kde bývaš? | A2 | the locative (*v*, *na*, *o*, *po*, *pri*); where and where to (*na námestí*, *na námestie*); months, dates, ordinals | Tereza looks for a flat in Bratislava | 8 · 5, 15 · 99–105 |
 | 10 | `u10-tatry` | Výlet do Tatier | A2 | the genitive singular (*do*, *z*, *od*, *u*, *bez*, *okolo*, *vedľa*); weather and seasons (*je teplo*, *je zima*; *je mi zima* waits for the dative) | a weekend in the High Tatras: Štrbské Pleso, a mountain hut | 10 · 4, 6 · 27–45 |
 | 11 | `u11-zajtra` | Čo urobíš zajtra? | A2 | aspect pairs; the future (*budem robiť*, *urobím*) | the week ahead; phoning | – · 8 · 75–76, 88 |
-| 12 | `u12-darcek` | Darček pre babku | A2 | the dative (*k*, *proti*, *vďaka*); *páčiť sa*, *chutiť*; *mi, ti, mu, jej, nám, vám, im*; *dať*, *pomôcť* | visiting babka and dedko near Detva; the fujara | – · 4–5 · 55 |
-| 13 | `u13-vianoce` | Vianoce | A2 | the genitive plural (*päť bratov*, *veľa ľudí*, *málo času*); numbers 5–100 | Christmas Eve at the Hudecs': *oblátky*, *kapustnica*, *kapor*, *koledy* | – · 10–11 · 31–45 |
+| 12 | `u12-darcek` | Darček pre babku | A2 | the dative (*k*, *proti*, *vďaka*); *páčiť sa*, *chutiť*; *mi, ti, mu, jej, nám, vám, im*; *dať*, *pomôcť* | visiting babka Betka: her hens, her garden | – · 4–5 · 55 |
+| 13 | `u13-vianoce` | Vianoce | A2 | the genitive plural (*päť bratov*, *veľa ľudí*, *málo času*); numbers 5–100 | Christmas Eve at babka's: *oblátky*, *kapustnica*, *kapor*, *koledy* | – · 10–11 · 31–45 |
 | 14 | `u14-trh` | Na trhu | A2 | the dative, locative and instrumental plural; quantities (*kilo*, *desať deka*, *fľaša*); euros and cents | the market | – · 11 · 31–45 |
 | 15 | `u15-chod-rovno` | Choď rovno! | A2 | the imperative (*choď*, *poď*, *daj*, *sadni si*; *poďme*, *robte*); *sedieť* / *sadnúť si*, *ležať* / *ľahnúť si* | directions; Easter Monday | – · 9–10 · 91 |
-| 16 | `u16-hokej` | Hokej | B1 | the pronouns in every case, long and short (*mňa* / *ma*, *jeho* / *ho* / *neho*); the order of clitics | Filip's match; the world title of 2002 | – · 12–13 · 55–56, 132 |
-| 17 | `u17-do-spisa` | Do Spiša | B1 | verbs of motion (*ísť* / *chodiť*, *niesť* / *nosiť*, *viezť* / *voziť*); prefixes (*prísť*, *odísť*, *vyjsť*, *prejsť*, *dôjsť*) | by train to Poprad, then Levoča and Spiš Castle; eastern Slovak's stress, a note | – · 13–14 · 72, 88 |
-| 18 | `u18-najlepsi` | Lepší, najlepší | B1 | comparison of adjectives and adverbs (*lepší*, *väčší*, *najkrajší*; *lepšie*, *radšej*); soft adjectives; the points of the compass | Bratislava, Košice and Banská Bystrica compared | – · 14 · 49–50, 97 |
-| 19 | `u19-keby` | Keby som… | B1 | the conditional (*by*); *keby*, *aby*; possessive adjectives (*otcov*, *mamin*); years | Naty's plans; what Emma would do if she stayed | – · 15 · 51–53, 73–74 |
-| 20 | `u20-list` | List z roku 1907 | B1 | the passive (*bol postavený*, *predáva sa*); verbal adjectives; *všetci*, *každý*, *treba*; letters | Adam finds the village and his great-grandfather's letter; teta Mária; Štúr and standard Slovak | – · 14–16 · 72–73 |
+| 16 | `u16-hokej` | Hokej | B1 | the pronouns in every case, long and short (*mňa* / *ma*, *jeho* / *ho* / *neho*); the order of clitics | Dominik's Thursday game, Samko's first match; the world title of 2002. Passage: *Kozliatka* | – · 12–13 · 55–56, 132 |
+| 17 | `u17-cestujeme` | Cestujeme | B1 | verbs of motion (*ísť* / *chodiť*, *niesť* / *nosiť*, *viezť* / *voziť*); prefixes (*prísť*, *odísť*, *vyjsť*, *prejsť*, *dôjsť*) | by train to Košice; eastern Slovak's stress, a note. Passage: *Ako šlo vajce na vandrovku* | – · 13–14 · 72, 88 |
+| 18 | `u18-najlepsi` | Lepší, najlepší | B1 | comparison of adjectives and adverbs (*lepší*, *väčší*, *najkrajší*; *lepšie*, *radšej*); soft adjectives; the points of the compass | Bratislava, Košice and Žilina compared. Passage: *Múdra žena* | – · 14 · 49–50, 97 |
+| 19 | `u19-keby` | Keby som… | B1 | the conditional (*by*); *keby*, *aby*; possessive adjectives (*otcov*, *mamin*); years | Tereza after her studies; Simona's plans for the café. Passage: *O dvanástich mesiačkoch* | – · 15 · 51–53, 73–74 |
+| 20 | `u20-rozpravky` | Rozprávky | B1 | the passive (*boli zapísané*, *predáva sa*); verbal adjectives; *všetci*, *každý*, *treba*; letters | how the tales were collected and written down; Dobšinský, Štúr and standard Slovak. Passage: *Kubove príhody* | – · 14–16 · 72–73 |
 
 KK's lesson 10 is a review; its grammar is in units 1–9 here. Units 1–10 are about A1, 11–15 A2, 16–20
 the start of B1, as Naughton's course ends.
+
+## The passages (units 16–20)
+
+- **Source:** Pavol Dobšinský, *Prostonárodnie slovenské povesti* (Turčiansky Svätý Martin, 1880–1883),
+  in Google's scans of two of its volumes dated 1881 on archive.org (`prostonrodniesl00dobgoog`,
+  `prostonrodniesl01dobgoog`). Public domain: Dobšinský died in 1885. The tales named above are in
+  those scans (*Kozliatka* in the first's contents, the other four as headings in the second); which
+  tale goes with which unit is settled when the unit is drafted, by its grammar and its length.
+- **Text:** taken from the scan's text and every word checked on the page image, then written into the
+  unit by a script, never typed from memory (as es's Martí verses were).
+- **Spelling:** today's. The 1881 spelling differs in places (*jich* for *ich*; the rest is read off the
+  page, since the scan's OCR loses marks as well), and some lines keep a dialect's forms: the course
+  modernizes the spelling, keeps the words, and lists each change in the story's notes. A tale written in
+  a dialect is not used.
+- **Size:** an excerpt of about 12–25 lines, a story of its own on the unit's last node, after the
+  unit's own story. Its new words are taught by the unit's lessons until ADR 0144's passages are built;
+  then they are read first.
 
 ## Scenarios
 
 | After | Scenario |
 |---|---|
-| u01 | Introducing yourself to pani Kollárová before class (formal) |
+| u01 | Introducing yourself to pani Tóthová, the neighbour downstairs (formal) |
 | u04 | Asking the way to the square |
 | u06 | Ordering at a *koliba* |
 | u09 | Viewing a flat with its owner (formal) |
 | u12 | Buying a present at a Christmas market |
-| u15 | At the doctor's, for Filip (formal: Ivana's colleague) |
-| u17 | Buying a train ticket to Poprad |
-| u20 | Telling teta Mária who you are and why you came |
+| u15 | At the doctor's with Samko (formal) |
+| u17 | Buying a train ticket to Košice |
+| u20 | Asking babka for the tale she liked best as a girl |
