@@ -2772,6 +2772,448 @@
       }
     },
     {
+      "id": "grade/sk/exact",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Ďakujem veľmi pekne",
+        "answer": "Ďakujem veľmi pekne"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Marks and all, as written."
+    },
+    {
+      "id": "grade/sk/punctuation",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Áno, ďakujem.",
+        "answer": "áno ďakujem"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Case and punctuation do not count."
+    },
+    {
+      "id": "grade/sk/quotes",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "„Áno,“ povedala.",
+        "answer": "Áno povedala"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Slovak quotation marks are punctuation and go."
+    },
+    {
+      "id": "grade/sk/length-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Mám čas",
+        "answer": "Mam čas"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "length-mark"
+        ],
+        "labels": [
+          "phonemic"
+        ],
+        "correspondences": []
+      },
+      "note": "ADR 0155: the acute writes a long vowel, never stress: mam says another sound. Only a mark differs, so WRONG_WORD, not the judge's."
+    },
+    {
+      "id": "grade/sk/caron-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Mám čas",
+        "answer": "Mám cas"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "letter-mark"
+        ],
+        "labels": [
+          "phonemic"
+        ],
+        "correspondences": []
+      },
+      "note": "č is a letter of its own: c says ts."
+    },
+    {
+      "id": "grade/sk/apostrophe-for-caron",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Ďakujem",
+        "answer": "D'akujem"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "letter-mark"
+        ],
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "ď looks like d and an apostrophe, but the apostrophe is not folded into the caron (the owner, 2026-11-23): it is punctuation, and the caron is missing."
+    },
+    {
+      "id": "grade/sk/circumflex-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Môj dom",
+        "answer": "Moj dom",
+        "lexicon": [
+          "dom"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "letter-mark"
+        ],
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "ô is a letter of its own, the diphthong uo."
+    },
+    {
+      "id": "grade/sk/mark-word",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "To je zlé",
+        "answer": "To je zle",
+        "lexicon": [
+          "to",
+          "je",
+          "zle"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "mark-word"
+        ],
+        "labels": [
+          "lexical",
+          "phonemic"
+        ],
+        "correspondences": []
+      },
+      "note": "zle (badly) is another word of the course: the long é tells them apart."
+    },
+    {
+      "id": "grade/sk/i-y",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Chcem byť doma",
+        "answer": "Chcem biť doma",
+        "lexicon": [
+          "chcem",
+          "doma"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "sound-alike"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "sk-Latn/standard:i"
+        ]
+      },
+      "note": "After b, i and y say the same: the right sound, the wrong letter."
+    },
+    {
+      "id": "grade/sk/i-y-word",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Chcem byť doma",
+        "answer": "Chcem biť doma",
+        "lexicon": [
+          "chcem",
+          "doma",
+          "biť"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "sound-alike"
+        ],
+        "labels": [
+          "lexical",
+          "orthographic"
+        ],
+        "correspondences": [
+          "sk-Latn/standard:i"
+        ]
+      },
+      "note": "biť (to beat) is a word of the course too: lexical as well."
+    },
+    {
+      "id": "grade/sk/voicing-end",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Je to hrad",
+        "answer": "Je to hrat",
+        "lexicon": [
+          "je",
+          "to"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "sound-alike"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "sk-Latn/standard:t"
+        ]
+      },
+      "note": "d is voiceless at a word's end: hrad says hrat."
+    },
+    {
+      "id": "grade/sk/voicing-cluster",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Kde je všetko",
+        "answer": "Kde je fšetko",
+        "lexicon": [
+          "kde",
+          "je"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "sound-alike"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "sk-Latn/standard:f"
+        ]
+      },
+      "note": "v before a voiceless consonant says f."
+    },
+    {
+      "id": "grade/sk/ae",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Kúpim mäso",
+        "answer": "Kúpim meso",
+        "lexicon": [
+          "kúpim"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "sound-alike"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "sk-Latn/standard:e"
+        ]
+      },
+      "note": "ä says e after a labial."
+    },
+    {
+      "id": "grade/sk/ov-ou",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Päť pánov",
+        "answer": "Päť pánou",
+        "lexicon": [
+          "päť"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending",
+          "sound-alike"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "sk-Latn/standard:u̯"
+        ]
+      },
+      "note": "-ov and -ou say the same; both are endings, so the ending contrast is noted too."
+    },
+    {
+      "id": "grade/sk/soft-d-caron",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Moje deti",
+        "answer": "Moje ďeti",
+        "lexicon": [
+          "moje"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "letter-mark"
+        ],
+        "labels": [
+          "orthographic"
+        ],
+        "correspondences": [
+          "sk-Latn/standard:ď"
+        ]
+      },
+      "note": "d before e is already soft: ď there is the sound's rare spelling, read as the same sound."
+    },
+    {
+      "id": "grade/sk/ty-ti",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Ty si doma",
+        "answer": "Ti si doma",
+        "lexicon": [
+          "si",
+          "doma"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "After t, y keeps it hard and i makes it soft: another sound. Too short for a slip."
+    },
+    {
+      "id": "grade/sk/typo",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Bývam v Bratislave",
+        "answer": "Bývam v Bratilsave",
+        "lexicon": [
+          "bývam",
+          "v"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "labels": [
+          "slip"
+        ]
+      },
+      "note": "Two letters swapped in a long name: a slip."
+    },
+    {
+      "id": "grade/sk/contrast-case",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Vidím Lucku",
+        "answer": "Vidím Lucka",
+        "lexicon": [
+          "vidím"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ],
+        "labels": [
+          "grammatical",
+          "slip"
+        ]
+      },
+      "note": "-a for -u is another case, not a typo (ADR 0066)."
+    },
+    {
+      "id": "grade/sk/contrast-past-gender",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Varila som doma",
+        "answer": "Varil som doma",
+        "lexicon": [
+          "som",
+          "doma"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ],
+        "labels": [
+          "grammatical",
+          "slip"
+        ]
+      },
+      "note": "The past's -l and -la say who speaks: a man or a woman."
+    },
+    {
+      "id": "grade/sk/contrast-person",
+      "op": "grade",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "accept": "Rozumiem po slovensky",
+        "answer": "Rozumieš po slovensky",
+        "lexicon": [
+          "po",
+          "slovensky"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ],
+        "labels": [
+          "grammatical",
+          "slip"
+        ]
+      },
+      "note": "-m and -š: I and you."
+    },
+    {
       "id": "grade/hbo/unpointed",
       "op": "grade",
       "args": {

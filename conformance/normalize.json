@@ -826,6 +826,36 @@
       "expected": "Año"
     },
     {
+      "id": "normalize/sk/quotes",
+      "op": "normalize",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "„Ďakujem,“ povedala."
+      },
+      "expected": "Ďakujem povedala",
+      "note": "Slovak quotation marks and punctuation go."
+    },
+    {
+      "id": "normalize/sk/nfc",
+      "op": "normalize",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "Ďakujem"
+      },
+      "expected": "Ďakujem",
+      "note": "d and a combining caron compose to ď."
+    },
+    {
+      "id": "normalize/sk/apostrophe-not-caron",
+      "op": "normalize",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "D'akujem"
+      },
+      "expected": "Dakujem",
+      "note": "An apostrophe is punctuation: it never becomes the caron (the owner, 2026-11-23)."
+    },
+    {
       "id": "normalize/hbo/sof-pasuq",
       "op": "normalize",
       "args": {
