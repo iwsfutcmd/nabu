@@ -118,7 +118,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   for words that must be capitalized (a sentence's first word loses its capital where the course writes it in lower
   case; a capital inside a sentence stays). A capital would show the answer's first tile and which tiles are distractors.
 - Quote YAML values like "on"/"off"/"yes": PyYAML (YAML 1.1) reads them as booleans; the JS parser does not.
-- Debug mode labels each card with its kind and id and copies a link to it (`#/<course>/<orth>/card/<code>`,
+- Debug mode labels each card with its full id (core `cardId`: tok/tok-Qaap.sitelen-pona/choose-translation:s.u01.1)
+  and copies a link to it (`#/<course>/<orth>/card/<code>`,
   apps/web/src/card-link.ts): the exercise itself, deflated, tied to the link's `FORMAT` and `BUNDLE_FORMAT`; it opens
   that card alone, nothing recorded. Raise `FORMAT` when an exercise's shape changes. Read a pasted link with `decodeCard`.
 - Keyboard shortcuts live in one capturing window listener, `usePlayerKeys` (packages/ui/src/player/Shell.tsx), shared by
@@ -641,7 +642,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   commas, a name as a cartouche whose logographs begin with its letters. Never write it by hand: `cd pipeline &&
   uv run nabu sitelen-pona "mi moku." --name "Sonja=sona olin nasin jan a"`. The compiler checks it against the Latin.
 - Typed Latin is graded as logographs in sitelen pona (the `logographs` step), names against their cartouches. Every
-  logograph token pins `readings: {lasina: word}` (ruby, char-read); Latin tokens pin it too: it is what the voices say,
+  logograph token pins `readings: {lasina: word}` (ruby, char-read; off until chosen, then over every word or new words
+  only: `fade: by-facet`, ADR 0131's amendment of 2026-11-23); Latin tokens pin it too: it is what the voices say,
   as eSpeak NG phonemes (nabu/audio/toki_pona.py). After a sentence changes, `nabu audio generate ../courses/tok`.
   The voice is iffy (ADR 0091): no listening exercises, clips only where the text is shown.
 - The font (sitelen seli kiwen juniko, OFL) is in packages/ui/src/fonts; its README says how it was subset.

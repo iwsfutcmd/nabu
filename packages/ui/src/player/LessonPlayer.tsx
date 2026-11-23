@@ -405,7 +405,7 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         {instruction}
       </h2>
       {/* Its own key: a sibling keyed like ExerciseView would be taken for it. A new card starts it afresh. */}
-      {props.debug === true && <DebugCard key={`debug:${ex.id}`} ex={ex} cardLink={props.cardLink} />}
+      {props.debug === true && <DebugCard key={`debug:${ex.id}`} course={course} ex={ex} cardLink={props.cardLink} />}
 
       <ExerciseView
         key={ex.id}

@@ -3029,6 +3029,404 @@
       "note": "A capital letter that is dropped leaves its capital to the next letter."
     },
     {
+      "id": "projection/sk/read/deti",
+      "op": "sound-read",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "deti"
+      },
+      "expected": {
+        "sites": [
+          {
+            "says": "ď",
+            "written": "d",
+            "rule": "ď",
+            "kind": "fixed"
+          },
+          {
+            "says": "e"
+          },
+          {
+            "says": "ť",
+            "written": "t",
+            "rule": "ť",
+            "kind": "fixed"
+          },
+          {
+            "says": "i"
+          }
+        ]
+      },
+      "note": "d and t before e and i are soft: deti says ďeťi (Mistrík 14)."
+    },
+    {
+      "id": "projection/sk/read/vsetko",
+      "op": "sound-read",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "všetko"
+      },
+      "expected": {
+        "sites": [
+          {
+            "says": "f",
+            "written": "v",
+            "rule": "f"
+          },
+          {
+            "says": "š"
+          },
+          {
+            "says": "e"
+          },
+          {
+            "says": "t"
+          },
+          {
+            "says": "k"
+          },
+          {
+            "says": "o"
+          }
+        ]
+      },
+      "note": "v before a voiceless consonant says f."
+    },
+    {
+      "id": "projection/sk/read/chlieb",
+      "op": "sound-read",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "chlieb"
+      },
+      "expected": {
+        "sites": [
+          {
+            "says": "x",
+            "written": "ch",
+            "rule": "x"
+          },
+          {
+            "says": "ľ",
+            "written": "l"
+          },
+          {
+            "says": "i"
+          },
+          {
+            "says": "e"
+          },
+          {
+            "says": "p",
+            "written": "b",
+            "rule": "p"
+          }
+        ]
+      },
+      "note": "ch is one letter; l before i is soft; b at the end says p."
+    },
+    {
+      "id": "projection/sk/hrad",
+      "op": "sound-compare",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "expected": "hrad",
+        "typed": "hrat"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "d",
+            "typed": "t",
+            "rule": "t",
+            "kind": "fixed",
+            "note": "sound-alike"
+          }
+        ]
+      },
+      "note": "Final devoicing: the word's own letter is d."
+    },
+    {
+      "id": "projection/sk/byt",
+      "op": "sound-compare",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "expected": "byť",
+        "typed": "biť"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "y",
+            "typed": "i",
+            "rule": "i",
+            "kind": "fixed",
+            "note": "sound-alike"
+          }
+        ]
+      },
+      "note": "i and y after b: one sound."
+    },
+    {
+      "id": "projection/sk/kde",
+      "op": "sound-compare",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "expected": "kde",
+        "typed": "gde"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "k",
+            "typed": "g",
+            "rule": "g",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "k before a voiced consonant says g."
+    },
+    {
+      "id": "projection/sk/ov-ou",
+      "op": "sound-compare",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "expected": "pánov",
+        "typed": "pánou"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "v",
+            "typed": "u",
+            "rule": "u̯",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "v after a vowel at the end and u after o at the end both end the diphthong."
+    },
+    {
+      "id": "projection/sk/ae",
+      "op": "sound-compare",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "expected": "mäso",
+        "typed": "meso"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "ä",
+            "typed": "e",
+            "rule": "e",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "ä is e after a labial."
+    },
+    {
+      "id": "projection/sk/soft-d",
+      "op": "sound-compare",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "expected": "deti",
+        "typed": "ďeti"
+      },
+      "expected": {
+        "same": true,
+        "free": false,
+        "differs": [
+          {
+            "expected": "d",
+            "typed": "ď",
+            "rule": "ď",
+            "kind": "fixed"
+          }
+        ]
+      },
+      "note": "ď before e is the soft d's rare spelling: the same sound."
+    },
+    {
+      "id": "projection/sk/ty-ti",
+      "op": "sound-compare",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "expected": "ty",
+        "typed": "ti"
+      },
+      "expected": {
+        "same": false,
+        "sounds": false
+      },
+      "note": "y keeps t hard, i makes it soft."
+    },
+    {
+      "id": "projection/sk/length",
+      "op": "sound-compare",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "expected": "pás",
+        "typed": "pas"
+      },
+      "expected": {
+        "same": false,
+        "sounds": false
+      },
+      "note": "A long vowel is another sound."
+    },
+    {
+      "id": "projection/sk/caron",
+      "op": "sound-compare",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "expected": "čas",
+        "typed": "cas"
+      },
+      "expected": {
+        "same": false,
+        "sounds": false
+      },
+      "note": "č and c are two sounds."
+    },
+    {
+      "id": "projection/sk/spellings/hrad",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "hrad"
+      },
+      "expected": [
+        "hrat"
+      ],
+      "note": "d at the end for t."
+    },
+    {
+      "id": "projection/sk/spellings/byt",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "byť"
+      },
+      "expected": [
+        "biť"
+      ],
+      "note": "y for i. ť at the end has no other spelling here: ď and ť are not stated with voicing, so that every d and t before e and i is not offered with a caron."
+    },
+    {
+      "id": "projection/sk/spellings/deti",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "deti"
+      },
+      "expected": [],
+      "note": "The soft consonants' carons are rare there, never offered."
+    },
+    {
+      "id": "projection/sk/spellings/maso",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "mäso"
+      },
+      "expected": [
+        "meso"
+      ],
+      "note": "A word written with the rare ä offers the usual e."
+    },
+    {
+      "id": "projection/sk/spellings/meno",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "meno"
+      },
+      "expected": [],
+      "note": "e after m is the usual spelling: ä is never offered for it."
+    },
+    {
+      "id": "projection/sk/spellings/kino",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "kino"
+      },
+      "expected": [
+        "kyno"
+      ],
+      "note": "After k, y is the rule and i rare: a word the norm writes with i offers y."
+    },
+    {
+      "id": "projection/sk/spellings/kysly",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "kyslý"
+      },
+      "expected": [
+        "kislý"
+      ],
+      "note": "y after k for i, the rare one: kept, as kasa is for casa; ý after l is not traded (soft l)."
+    },
+    {
+      "id": "projection/sk/spellings/vsetko",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "všetko"
+      },
+      "expected": [
+        "fšetko",
+        "všedko"
+      ],
+      "note": "One place each: v before š, t before k."
+    },
+    {
+      "id": "projection/sk/spellings/panov",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "pánov"
+      },
+      "expected": [
+        "pánou"
+      ],
+      "note": "-ov for -ou."
+    },
+    {
+      "id": "projection/sk/spellings/pravda",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "pravda"
+      },
+      "expected": [],
+      "note": "v after a vowel before a consonant is u̯, but u is its spelling only after o at the end."
+    },
+    {
+      "id": "projection/sk/spellings/ti",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "sk-Latn/standard",
+        "text": "ti"
+      },
+      "expected": [],
+      "note": "No ťi: the caron is rare there."
+    },
+    {
       "id": "projection/error/no-sound",
       "op": "sound-read",
       "args": {

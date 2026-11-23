@@ -27,7 +27,7 @@ CANTONESE = "alvanlii/whisper-small-cantonese@b03a4e5d482f06858ce10ebbabebabec9f
 
 def test_each_orthography_says_what_it_is_scored_on() -> None:
     """The tiers the API offered from its own table before (fa, yue, uz, apc), and Spanish's
-    words, which nothing offered: Whisper writes Spanish."""
+    words, which nothing offered: Whisper writes Spanish, and Slovak (ADR 0155)."""
     tiers = {k: p.speech.tiers for k, p in profiles().items() if p.speech is not None}
     assert tiers == {
         "fa-Arab/standard": [1, 2],
@@ -37,6 +37,7 @@ def test_each_orthography_says_what_it_is_scored_on() -> None:
         "apc-Arab/standard": [1],
         "apc-Latn/arabizi": [],
         "es-Latn/standard": [1],
+        "sk-Latn/standard": [1],
     }
 
 

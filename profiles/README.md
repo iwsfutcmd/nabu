@@ -13,6 +13,8 @@ Phase 1: nine profiles, all executed by the engine in `@nabu/core` and pinned by
 - `chg-Arab.standard` and `chg-Latn.schluessel`: Chaghatay in the Arabic script (the course's one orthography, in
   Nastaliq, with Schluessel's transliteration as ruby: `schemes/schluessel.yaml`, `ruby: word`) and the alphabet
   track's Latin side in Schluessel's transliteration (ADR 0128, 0129).
+- `sk-Latn.standard`: Slovak (ADR 0155): all four marks required (the acute for length; č š ž ď ť ň ľ ä ô as
+  letters of their own), and a sound statement for i and y, the soft d t n l before i and e, ä, voicing and v as u̯.
 - `yue-Latn.jyutping`: Cantonese in Jyutping, the characters as ruby (ADR 0126). Written from yue's characters by
   `nabu jyutping`; its words are the syllables of the scheme whose `answer` it is.
 
@@ -95,6 +97,9 @@ correspondences:                   # the lossy part only
   no pinned reading is not asked the sound question. chg-Arab (Schluessel's reading) and hbo-Hebr (the Tiberian
   reading) state it.
 
+sk (`sk-Latn.standard.yaml`) states standard Slovak (Mistrík 12-16): i and y (í and ý) one sound after b m p r s v z f,
+y the rule after h ch k g with i rare; d t n l soft before i, í, e with the caron rare; ä rare for e after labials;
+final devoicing and voicing in clusters (not for ď and ť); v and the u of -ou as the u̯ of a diphthong.
 es (`es-Latn.standard.yaml`) states Cuban Spanish as the course teaches it: seseo, yeísmo, b and v, silent h
 (ch apart), g before e or i and j, gu and gü, qu and c with k as their rare spelling, the trill, y as the vowel
 at a word's end after a vowel, x. fa (`fa-Arab.standard.yaml`) states ADR 0142's sets, its vowel marks ignored.

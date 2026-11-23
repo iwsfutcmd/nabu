@@ -172,8 +172,9 @@ match:
   # A name typed in Latin letters (Sonja) compares with its cartouche, read as letters (sonja).
   case: { locale: tok }
 annotations:
-  # Each logograph's word in sitelen Lasina, as ruby above it: off until the learner asks.
-  - { id: lasina, kind: reading, scheme: lasina, lang: tok-Latn, toggle: true, default: "off", render: ruby, fade: none }
+  # Each logograph's word in sitelen Lasina, as ruby above it: off until the learner asks, then over every word or
+  # new words only (fades by the reading skill, ADR 0131 amendment of 2026-11-23).
+  - { id: lasina, kind: reading, scheme: lasina, lang: tok-Latn, toggle: true, default: "off", render: ruby, fade: by-facet }
 # REVIEW (ADR 0148): no `sound`. A logograph writes a word, and its sound is its sitelen Lasina reading, listed per
 # logograph (the lasina scheme): no rule of the script writes a sound, and a learner picks or types logographs (Latin
 # typed becomes them), so the sound question is never asked here. Nothing is stated as lost.
