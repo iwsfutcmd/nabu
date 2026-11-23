@@ -836,7 +836,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   never a card, and nothing logged before 2026-11-22 counts. A lemma shown as the lexicon spells it is logged with no
   `feats` (the bundle does not say which cell a lemma is).
 - A token of letters is of kind `lexical` (beside `punct`, `space`, `number`, `symbol`); the UI writes it as
-  `data-kind`. A bundle's `formatVersion` is 4 (`BUNDLE_FORMAT` in core, `FORMAT_VERSION` in the compiler): raise both
+  `data-kind`. A bundle's `formatVersion` is 5 (`BUNDLE_FORMAT` in core, `FORMAT_VERSION` in the compiler): raise both
   when a bundle's shape or a token's changes, so a device refuses a cached bundle it cannot read and fetches the new
   one. A session kept part-way is tied to its bundle and starts afresh.
 - Tags, features and relations are Universal Dependencies' and a gloss's abbreviations the Leipzig Glossing Rules'
@@ -854,7 +854,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   every line. Examples live in schemas/examples/<dir>/{valid,invalid} and are listed in `EXAMPLES`
   (packages/schema/test/schemas.test.ts): a new schema gets both kinds.
 
-## Rules notes (see docs/rules-design.md; apc first, stages 1 to 3 of 6)
+## Rules notes (see docs/rules-design.md; apc first, stages 1 to 4 of 6)
 - A lexeme's lexical form is its `form` in lexicons/<lang>/lexemes.yaml: a string in the language's notation, or a
   verb's radicals (`RadicalForm`: radicals, Form, vowels, `source`, `basis`). language.yaml's `notation` says what the
   signs are (apc: U+065C e, U+065D o, U+06DF a letter written and not said; always escapes, and yamlio writes them so);
@@ -865,7 +865,19 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   conformance/realise.json) give a lexeme's lexical form with each `{rule, branch}` taken: never realise in Python.
   A pattern matches a letter with its marks exactly and names every boundary (`+`, `+?`, `#`). A branch is lower-case
   ASCII and stable: it will enter card keys (the owner, 2026-11-23: a memory per branch). Every apc rule is REVIEW.
-- Bundles carry none of it (`form`, the notation, `spell`, the rules): `pnpm bundles` leaves them byte for byte.
+- Bundles carry no rule, notation, lexical form or `spell`. They carry what the compiler works out (stage 4, format 5):
+  the lexicon's `cells` (per category a rule covers, the cells its tokens choose whose values the course teaches) and
+  `principalParts` (language.yaml: apc VERB, the he-present), each inflecting lexeme's `paradigm` (per orthography one
+  form a cell: a spelling, `[spelling, marked]`, or null) and `regularised` (only where blocking off differs: a
+  learner's over-regularisation). nabu/paradigms.py writes them through core-cli; a lexeme written but never inflected
+  has none. A form spelled outside its script, or beginning with a joining carrier, is not shipped
+  (`form.spelling-script`). Never realise or spell on the device.
+- Grading knows every paradigm spelling (core `paradigmWords` in `spellingsIn`): an unwritten regular form of the
+  answer's lexeme is another form, of another lexeme lexical. Only the default spelling ships, so a free variant of an
+  unwritten form is still a slip (287 wrong-form slips remain, stage 4's notes).
+- A word shown as itself (a lesson's new words, the session end, the word list, the gloss panel) goes through `Headword`
+  with core `principalParts`: never in options, tiles or pairs. The parts shown are logged as seen with their cell
+  (`LessonEvent.beside`). The Data page shows an entry's paradigm (`paradigmRows`).
 - `form.projection` (a stored form does not spell as the lexicon writes the word) is the review list, with
   `cd pipeline && uv run nabu forms ../courses/apc`. Never change a form, a spelling or a rule to silence one.
 - A `spell` rule's `alternatives` are free spellings named by variation, read only by the compiler; grading reads the
