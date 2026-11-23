@@ -852,10 +852,23 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   prints the report; `--paradigm <lexeme>` a lexeme's cells as the rules give them.
 - apc's helping vowel at a word's end is the marked layer's `spell` (the form keeps the cluster: رُحْ+ت), never a
   rewrite; inside a word it is the rewrite `rule:apc-helping-vowel|inside`, which Arabizi may leave out.
-- apc-Latn states e/i and i/ee free (the owner, 2026-11-23): ee before a consonant says e, so a short i written ee
-  is accepted too (the stated cost). The article's forms are not stated: grading compares word by word and the
-  article is detached, so an l joined to its noun and an assimilated article need a join the grader can see. o/u,
-  the helping vowel, e/ei and an initial ق left out wait on the owner's yes, each.
+- apc-Latn's free spellings are stated in its profile (the owner, 2026-11-23; each REVIEW with its measured cost):
+  e/i, i/ee and e/ei before a consonant, o/u (with ou), an initial 2a/2y, and the helping vowel, one line per final
+  cluster (a new word ending in another cluster needs its line; clusters ending in t, and 3d, stay out: they would
+  merge the past's -t with -et, kent with kenet). Arabizi writes no length, so a short vowel takes the long spelling
+  too. Each was proved to merge no two forms the course keeps apart: keep that proof for any new one.
+- A typed word no token writes, which the course's forms stand only in other forms of the expected word's part of
+  speech, is another form (grammatical), never a free variant (grade.ts `pinnedElsewhere`: sme3teene for sme3teni).
+- An article written joined, apart or assimilated is a join (`match.joins` in the profile; match/join.ts): the
+  alignment takes one or two typed words as the article and its word only where the accepted answer has the article;
+  sun letters, `minRest` and `notBefore` are profile data. Never split words in code, and never list article spellings
+  in a new sentence's accept sets (the old `(el|l|il)` groups are kept). Prepositions with the article (3al, bel) are
+  not read yet.
+- apc follows Kline where the course differed (the owner, 2026-11-23): re7t, er2os, a3zmak, shrab, sefart, be7ki,
+  b3at(li), ليكوا; the old spellings are accepted. A verb's lemma is its he-past as the rules give it; a lexeme cited
+  in another cell says so (`citation`: 2a3ed, seken, wa2ef, khayef), and `nabu forms` checks lemmas through that cell.
+  A lemma whose letters the sentences write as another word takes its marks from vocalization.yaml's `lexemes`.
+  apc's clips carry word timings (`nabu audio align`).
 - docs/lexical-forms/apc.yaml and apc-review.md are a frozen record.
 
 ## Losses and labels notes (see docs/adr/0148, 0153)
