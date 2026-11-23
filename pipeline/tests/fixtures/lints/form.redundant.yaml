@@ -545,6 +545,14 @@ own:
     - id: rule:apc-madda
       find: "ا\u065c+ا"
       to: "آ\u065c+"
+    - id: rule:apc-wasl
+      branch: prefix
+      when:
+        feats:
+          Aspect: Imp
+      find: "+ا\u06df"
+      after: '{P}'
+      to: +
     - id: rule:apc-silent-alef
       find: "ا\u06df+"
       to: +
@@ -613,11 +621,15 @@ own:
       find: '{K}*[اىي]{W}+'
       to: '{K}{W}+'
     - id: rule:apc-defective
-      branch: adjective
+      branch: ay
       when:
-        pos: ADJ
-      find: '{K}ِي{W}+'
-      to: '{K}ْي{W}+'
+        feats:
+          Aspect: Perf
+      find: ى+
+      before:
+      - '{K}'
+      - '{K}{V}'
+      to: يْ+
     - id: rule:apc-geminate
       find: نْ+نَ
       to: +نَّ

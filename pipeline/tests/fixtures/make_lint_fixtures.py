@@ -762,6 +762,27 @@ def _apc_rule_debt(c: Course) -> None:
     _apc_shereb(c, "shrobt", {"form": form, "spelled": {APC_ORTH: ["shrobt"]}})
 
 
+def _apc_spelling_script(c: Course) -> None:
+    """A verb whose third radical is a letter Arabizi's `spell` has no rule for (\u066f, a
+    dotless qaf): its past 1sg, a cell of the paradigm shereb's token lists, would ship as
+    shre\u066ft, an Arabic letter in Latin text."""
+    _apc_shereb(c, "shrebt")
+    c["own"]["lexicon"]["lexemes"].append(
+        {
+            "id": "lexeme:shreq",
+            "pos": "VERB",
+            "gloss": {"en": "rise"},
+            "form": {
+                "radicals": ["\u0634", "\u0631", "\u066f"],
+                "form": "I",
+                "vowels": {"past": "i", "present": "a"},
+            },
+            "spelled": {APC_ORTH: ["shereq"]},
+        }
+    )
+    unit(c)["nodes"][0]["introduces"].append("lexeme:shreq")
+
+
 def _script_untaught(c: Course) -> None:
     """The alphabet node teaches α and ι only, and its word ναί needs ν."""
     unit(c)["nodes"][0]["introduces"].remove("grapheme:ν")
@@ -1310,6 +1331,10 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     "form.redundant": (
         "shereb's past 1sg pinned as shrebt, which apc's rules give.",
         m(_apc_redundant, APC),
+    ),
+    "form.spelling-script": (
+        "A verb's past 1sg spelled in Arabizi with an Arabic letter its `spell` keeps.",
+        m(_apc_spelling_script, APC),
     ),
     "form.rule-debt": (
         "shereb's past 1sg pinned with a form the rules do not give (shrobt).",

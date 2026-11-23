@@ -37,6 +37,7 @@ from nabu.compiler.stories import LineForm, compile_stories
 from nabu.corecli import CoreCli
 from nabu.drills.rbnf import icu_version, spellout, transform
 from nabu.items import Content
+from nabu.paradigms import Refused, paradigms
 from nabu.paths import I18N_GENERATED, PROFILES
 from nabu.projections import leftovers, unaccounted
 from nabu.schema.models import (
@@ -306,6 +307,34 @@ def _allowed_invisibles(profile: OrthographyProfile) -> set[str]:
 # ------------------------------------------------------------ stage 2 & 3
 
 
+def _outside_exemplars(letters: set[str], text: str) -> list[str]:
+    """The script audit's test (`text.script-audit`): characters of `text` that are no space,
+    invisible, joiner or punctuation and not among the exemplar letters (`_exemplar_sets`)."""
+    return sorted(
+        {
+            c
+            for c in text
+            if not c.isspace()
+            and c not in tx.ALWAYS_INVISIBLE
+            and c not in (tx.ZWNJ, tx.ZWJ)
+            and unicodedata.category(c)[0] != "P"
+            and c not in letters
+            and c.lower() not in letters
+        }
+    )
+
+
+def _outside_script(ctx: Ctx, orth: str, text: str, marked: bool) -> list[str]:
+    """What of a text is not its orthography's script, as the script audit and the token check
+    have it: letters of another script (`foreign_letters`) and, for a spelling (not the marked
+    text, whose vowel signs CLDR does not list), characters outside the exemplars."""
+    found = set(tx.foreign_letters(text, _script(ctx, orth)))
+    sets = _exemplar_sets(ctx.exemplars, ctx.profiles[orth])
+    if sets is not None and not marked:
+        found.update(_outside_exemplars(sets[0], text))
+    return sorted(found)
+
+
 def _hygiene(
     ctx: Ctx,
     profile: OrthographyProfile,
@@ -318,18 +347,7 @@ def _hygiene(
     sets = _exemplar_sets(ctx.exemplars, profile)
     if sets is not None:
         letters, punct = sets
-        outside = sorted(
-            {
-                c
-                for c in text
-                if not c.isspace()
-                and c not in tx.ALWAYS_INVISIBLE
-                and c not in (tx.ZWNJ, tx.ZWJ)
-                and unicodedata.category(c)[0] != "P"
-                and c not in letters
-                and c.lower() not in letters
-            }
-        )
+        outside = _outside_exemplars(letters, text)
         if outside:
             diags.report(
                 "text.script-audit",
@@ -876,7 +894,28 @@ def compile_course(
     )
     _unaccounted(ctx, units, compiled)
     _forms(ctx, compiled)
-    _token_forms(ctx, units, compiled)
+    sites = _token_forms(ctx, units, compiled)
+    # ---- stage 4 of rules in a lexicon: each lexeme's forms, as the rules give them
+    if sites is not None:
+        unshipped: list[Refused] = []
+        compiled.lexicon = paradigms(
+            compiled.lexicon,
+            ctx.lang,
+            sites,
+            compiled.units,
+            course.orthographies,
+            ctx.profiles,
+            ctx.cli,
+            lambda orth, text, marked: _outside_script(ctx, orth, text, marked),
+            unshipped,
+        )
+        for r in unshipped:
+            ctx.diags.report(
+                "form.spelling-script",
+                f"{r.lexeme} {r.cell} ({r.where}): {r.orth} spells {r.spelling!r}, with "
+                f"{' '.join(r.outside)} outside its script: not shipped",
+                ctx.lang.loc(r.lexeme),
+            )
     aliases = course_file.parent / "aliases.yaml"
     if aliases.is_file():
         compiled.aliases = yaml.safe_load(aliases.read_text(encoding="utf-8"))
@@ -1079,18 +1118,20 @@ def _base_of(written: list[dict[str, Any]]) -> str | None:
     return next((str(w["lexeme"]) for w in written if w.get("base")), None)
 
 
-def _token_forms(ctx: Ctx, units: list[Unit], compiled: Compiled) -> None:
+def _token_forms(
+    ctx: Ctx, units: list[Unit], compiled: Compiled
+) -> list[lexical_forms.Site] | None:
     """Every token of the course against what the language's rules give (`form.unaccounted`,
     docs/rules-design.md stage 2): realised and spelled by @nabu/core. Only for a language with
-    realisation rules; the report is kept for `nabu forms`."""
+    realisation rules; the report is kept for `nabu forms`. The sites checked, for the paradigms."""
     if not ctx.lang.declared.realisation:
-        return
+        return None
     sites = _token_sites(ctx, units)
     report = lexical_forms.check_tokens(ctx.lang, sites, ctx.profiles, ctx.cli)
     _pinned_forms(ctx, sites)
     compiled.tokens = report
     if report is None:
-        return
+        return sites
     for c in report.checks:
         if c.verdict != "unaccounted":
             continue
@@ -1109,6 +1150,7 @@ def _token_forms(ctx: Ctx, units: list[Unit], compiled: Compiled) -> None:
             f"{form or 'nothing'}: {gave}",
             Loc(site.file, site.line),
         )
+    return sites
 
 
 def _images(ctx: Ctx, used: set[str], compiled: Compiled) -> dict[str, str]:

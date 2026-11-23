@@ -117,7 +117,7 @@ export const learnerEventOf = (
       return { ...base, type: "session_started", mode: session.mode, ...node, seed: session.seed, exercises: e.exercises, planner: session.planner };
     case "exercise_presented":
       // What the card shows (ADR 0146: seen is logged), an empty list where it shows nothing yet.
-      return { ...base, type: "exercise_presented", exercise: exerciseRefOf(e.ex), ...(extra.prediction === undefined ? {} : { prediction: extra.prediction }), displayed: displayedBefore(course, e.ex) };
+      return { ...base, type: "exercise_presented", exercise: exerciseRefOf(e.ex), ...(extra.prediction === undefined ? {} : { prediction: extra.prediction }), displayed: displayedBefore(course, e.ex, e.beside) };
     case "answer_submitted": {
       const response = e.response;
       return {
@@ -143,7 +143,7 @@ export const learnerEventOf = (
         },
         ...(extra.prediction === undefined ? {} : { prediction: extra.prediction }),
         // What the answer adds to what the card showed: its solution, what the answered card reveals.
-        displayed: displayedWith(course, e.ex),
+        displayed: displayedWith(course, e.ex, e.beside),
       };
     }
     case "exercise_skipped":

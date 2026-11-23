@@ -3,7 +3,10 @@
  * bundle had KCs (ADR 0145): its units, tokens and files are other shapes than format 1's. Format 3
  * is format 2 with the token kind `lexical` where it was `word`. Format 4 is format 3 whose profiles
  * and schemes state what they write of the sound (ADR 0148, no `soundAlike` or `variants` any more)
- * and whose lexemes carry their `leftovers`, so the reader takes format 4 and nothing else. A device may still hold a course cached in an older
+ * and whose lexemes carry their `leftovers`. Format 5 is format 4 whose lexicon lists its cells and
+ * principal parts and whose lexemes carry their `paradigm` (docs/rules-design.md, stage 4: the
+ * compiler lists the forms, the device looks them up), so the reader takes format 5 and nothing else.
+ * A device may still hold a course cached in an older
  * format (the service worker keeps what it fetched): that bundle is refused whole, by its version,
  * never read as if it were the new one; the app fetches the course again.
  *
@@ -42,8 +45,8 @@ describe("the bundle format a build reads", () => {
 
     it(`${id}: a bundle of another format is refused, by its version, whatever else it holds`, () => {
       const { manifest, files } = load(id);
-      // Formats 0 and 1 (KCs), 2 (tokens of kind `word`): a device may hold one cached; a later one, and none at all.
-      for (const version of [0, 1, 2, 3, BUNDLE_FORMAT + 1, undefined]) {
+      // Formats 0 and 1 (KCs), 2 (tokens of kind `word`), 3 (soundAlike), 4 (no paradigms): a device may hold one cached; a later one, and none at all.
+      for (const version of [0, 1, 2, 3, 4, BUNDLE_FORMAT + 1, undefined]) {
         const other = { ...manifest, formatVersion: version } as unknown as BundleManifest;
         expect(assembleCourse({ manifest: other, files, numberingSystems })).toEqual({ ok: false, error: { code: "format", version } });
       }

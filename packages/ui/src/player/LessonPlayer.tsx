@@ -24,6 +24,7 @@ import {
   type AdaptiveTest,
   type CourseView,
   type Effect,
+  type Beside,
   type Exercise,
   type Grader,
   type LessonEvent,
@@ -46,7 +47,7 @@ import { Feedback } from "./Feedback.tsx";
 import { GlossPanel, useGlosses, useOtherReadings, wordOf, type WordTap } from "./Gloss.tsx";
 import { DebugCard } from "./DebugCard.tsx";
 import { lookupIsHint, withHint } from "./hints.ts";
-import { NewWordsAnswered, NewWordsTag, newOnCard, taughtIn } from "./NewWords.tsx";
+import { besideOf, NewWordsAnswered, NewWordsTag, newOnCard, taughtIn, withBeside } from "./NewWords.tsx";
 import { SessionEnd, type NextStep, type SessionProgress } from "./SessionEnd.tsx";
 import styles from "./Player.module.css";
 import { focusInReach, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
@@ -238,7 +239,23 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const quiet = !toggles.sound || putOff.listening || props.listening === false;
   // The cards whose meanings were looked up before their answer was checked (D16): their answers are hinted.
   const hinted = useRef(new Set<string>());
-  const report = onEvent === undefined ? undefined : (event: LessonEvent): void => onEvent(withHint(event, hinted.current));
+  // The words this lesson introduces (P1): the card that first presents one says so.
+  const introduces = useMemo(() => new Set<string>(course.units.flatMap((u) => u.nodes).find((n) => n.id === lessonId)?.introduces ?? []), [course, lessonId]);
+  // What each card shows beside it of its new words (their principal parts), logged as it is shown
+  // (ADR 0146): worked out as each card is presented, from the cards presented before it.
+  const presented = useRef<Exercise[] | undefined>(undefined);
+  const besides = useRef(new Map<string, Beside>());
+  const beside = (event: LessonEvent): Beside | undefined => {
+    if (event.type === "answer_submitted") return besides.current.get(event.ex.id);
+    if (event.type !== "exercise_presented") return undefined;
+    // A session picked up part-way has presented the cards before its position.
+    presented.current ??= shell.state.session.queue.slice(0, shell.state.session.position);
+    const made = besideOf(course, event.ex, newOnCard(event.ex, presented.current, introduces));
+    presented.current.push(event.ex);
+    besides.current.set(event.ex.id, made);
+    return made;
+  };
+  const report = onEvent === undefined ? undefined : (event: LessonEvent): void => onEvent(withBeside(withHint(event, hinted.current), beside(event)));
   const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent: report, sound: !quiet, retries, adaptive, resumed: props.resumed });
   const [override, setOverride] = useState(props.initialState);
   const state = override ?? shell.state;
@@ -268,9 +285,6 @@ const PlayerView = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const tapped = tap !== undefined && tap.card === shown ? tap.word : undefined;
   const glosses = useGlosses(course, tapped);
   const also = useOtherReadings(course, tapped, toggles.glossRuby);
-  // The words this lesson introduces (P1): the card that first presents one says so.
-  const introduces = useMemo(() => new Set<string>(course.units.flatMap((u) => u.nodes).find((n) => n.id === lessonId)?.introduces ?? []), [course, lessonId]);
-
   useEffect(() => {
     if (state.tag === "presenting") dispatch({ tag: "ready" });
   });

@@ -82,7 +82,7 @@ const feats = (given: unknown, what: string): UdFeatures => {
   return Object.fromEntries(Object.entries(given).map(([k, v]) => [k, String(v)]));
 };
 
-const options = (args: Args): { blocking?: boolean; spellings?: boolean; pinned?: boolean; word?: number; next?: string } => {
+const options = (args: Args): { blocking?: boolean; spellings?: boolean; pinned?: boolean; word?: number; next?: string; strict?: boolean } => {
   const word = args["word"];
   const next = args["next"];
   if (next !== undefined && typeof next !== "string") throw new Error('"next" must be a lexeme id');
@@ -91,6 +91,7 @@ const options = (args: Args): { blocking?: boolean; spellings?: boolean; pinned?
     ...(args["blocking"] === false && { blocking: false }),
     ...(args["spellings"] === false && { spellings: false }),
     ...(args["pinned"] === false && { pinned: false }),
+    ...(args["strict"] === true && { strict: true }),
     ...(typeof word === "number" && { word }),
     ...(typeof next === "string" && { next }),
   };
@@ -116,7 +117,7 @@ export const REALISE_OPS: Readonly<Record<string, (args: Args) => unknown>> = {
     });
     return realiseToken(languageOf(a), list, options(a));
   },
-  /** A lexeme in each of `cells`. */
+  /** A lexeme in each of `cells` (`strict: true`: as the bundle's paradigms list them, a cell no exponent names is no-rule). */
   paradigm: (a) => {
     const cells = a["cells"];
     if (!Array.isArray(cells)) throw new Error('"cells" must be an array of cells');

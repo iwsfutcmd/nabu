@@ -82,6 +82,15 @@ export interface RealiseOptions {
   readonly word?: number;
   /** The base lexeme of the word after the token, where a lexeme's allomorph is chosen by it (`before: {pos}`). */
   readonly next?: string;
+  /**
+   * true: as a paradigm's cells are listed (docs/rules-design.md, stage 4), a rule says something of
+   * the cell or nothing is given. A rule with blocks of which no exponent names the cell (a noun's
+   * plural, where the rule has only a feminine) is `no-rule`, not the bare stem; a phrase (a lexical
+   * form with a space: its words are not one word's cells) is `form` in every cell. A rule with no blocks (an adjective that does
+   * not agree) still gives its stem. The course's own tokens are never realised so: what a token
+   * writes is checked as it is.
+   */
+  readonly strict?: boolean;
 }
 
 /** One lexeme a token writes, with the feature values chosen there. */
@@ -382,6 +391,7 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
   const blocking = options.blocking ?? true;
   const lexeme = lang.lexemes.get(lexemeId(id));
   if (lexeme === undefined) return err({ kind: "unknown-lexeme", lexeme: id });
+  if (options.strict === true && typeof lexeme.form === "string" && lexeme.form.includes(" ")) return err({ kind: "form", lexeme: lexeme.id });
 
   // 1. Blocking: the most specific form of the lexeme whose values the cell has.
   const lexical = (f: LexemeForm): boolean => options.spellings !== false || f.form !== undefined || f.stem !== undefined;
@@ -418,6 +428,7 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
     const top = Math.max(-1, ...fitting.map((e) => sizeOf(e.feats)));
     return { side: block.side, exponent: fitting.find((e) => sizeOf(e.feats) === top) };
   });
+  if (options.strict === true && rule.blocks.length > 0 && chosen.every((b) => b.exponent === undefined)) return err({ kind: "no-rule", cell });
   const stemChoice = chosen.reduce<StemChoice | undefined>((c, b) => b.exponent?.stem ?? c, rule.source.stem);
 
   let stem: string;

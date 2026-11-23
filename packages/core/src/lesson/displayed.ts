@@ -151,12 +151,18 @@ const pairsOf = (course: CourseView, shown: readonly Shown[], seen: Set<string> 
 /** What texts display (a story line, its speaker's name): each lexeme of their tokens in the orthography being learned, in its form, once. */
 export const displayedIn = (course: CourseView, shown: readonly TaggedText[]): DisplayedLexeme[] => pairsOf(course, texts(shown));
 
-/** What a card displays as it is presented, before its answer. */
-export const displayedBefore = (course: CourseView, ex: Exercise): DisplayedLexeme[] => pairsOf(course, moments(ex).before);
+/** Texts the shell shows beside a card (a new word's principal parts, each naming its lexeme and cell), from the start and once answered. */
+export interface Beside {
+  readonly before: readonly TaggedText[];
+  readonly after: readonly TaggedText[];
+}
 
-/** What a card's answer adds to what it displayed before: the solution, and what the answered card reveals. None it showed already. */
-export const displayedWith = (course: CourseView, ex: Exercise): DisplayedLexeme[] => {
+/** What a card displays as it is presented, before its answer, with what the shell shows beside it from the start. */
+export const displayedBefore = (course: CourseView, ex: Exercise, beside?: Beside): DisplayedLexeme[] => pairsOf(course, [...moments(ex).before, ...texts(beside?.before ?? [])]);
+
+/** What a card's answer adds to what it displayed before: the solution, what the answered card reveals and what the shell shows beside it then. None it showed already. */
+export const displayedWith = (course: CourseView, ex: Exercise, beside?: Beside): DisplayedLexeme[] => {
   const { before, after } = moments(ex);
-  const seen = new Set(pairsOf(course, before).map((p) => lexemeFormKey(p.lexeme, p.feats)));
-  return pairsOf(course, after, seen);
+  const seen = new Set(pairsOf(course, [...before, ...texts(beside?.before ?? [])]).map((p) => lexemeFormKey(p.lexeme, p.feats)));
+  return pairsOf(course, [...after, ...texts(beside?.after ?? [])], seen);
 };
