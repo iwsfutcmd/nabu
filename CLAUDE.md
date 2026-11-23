@@ -275,7 +275,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   Once answered, a listening card shows what was heard and what it means: a sentence's translation, a word's gloss
   (`translation` on the exercise, shown by ListenPrompt). Never before the answer: it would give it away.
 - Every card says its clip once answered (ADR 0064: `useSayWhenAnswered`, `AnswerAudio` in Views.tsx); each view owns
-  its clip (never the shell), so nothing plays twice. New views with a clip use the same hook.
+  its clip (never the shell), so nothing plays twice. New views with a clip use the same hook. A card asking what a target
+  sentence means (choose-translation, the l2-l1 word bank) also says it as it opens (`sayOnOpen`, ADR 0064 amendment),
+  as listening cards do; never a card whose answer the clip would give (reading cards, gap-fill, into the target).
 - A clip said on answering waits for the feedback sound (`SAY_AFTER_ANSWER_MS`), never over it. Clip elements load with
   the card and are reused (`useClipElements`); never `new Audio()` at play time (choppy starts, Firefox on Android).
 - fa's voice (ADR 0065): Mana-Persian-Piper (Piper, pinned `model`, MIT). Its `carrier` says items of at most
