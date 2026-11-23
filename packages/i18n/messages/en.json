@@ -1514,6 +1514,70 @@
       "message": "Taught by no lesson",
       "description": "Debug mode, the course data page, Lexicon view: heading over the lexemes of the lexicon that no lesson of the course introduces, listed after those the units teach."
     },
+    "data.lexicon.filter": {
+      "message": "Filter",
+      "description": "Debug mode, the course data page, Lexicon view: button that opens the filters, which narrow the list of lexemes by what each is (part of speech, free or bound, whether a lesson teaches it, features, what its entry stores)."
+    },
+    "data.lexicon.filter.chosen": {
+      "message": ".input {$count :number}\n{{{$count} chosen}}",
+      "description": "Debug mode, the course data page, Lexicon view: beside the Filter button, how many filter values are chosen. It is a label, so no plural forms are needed."
+    },
+    "data.lexicon.filter.clear": {
+      "message": "Clear filters",
+      "description": "Debug mode, the course data page, Lexicon view: button that unchooses every filter value, showing every lexeme the search finds again."
+    },
+    "data.lexicon.facet.pos": {
+      "message": "Part of speech",
+      "description": "Debug mode, the course data page, Lexicon view: filter by a lexeme's part of speech (UD tags such as NOUN, VERB; 'realises' for an affix that realises a feature value)."
+    },
+    "data.lexicon.facet.kind": {
+      "message": "Free or bound",
+      "description": "Debug mode, the course data page, Lexicon view: filter by whether a lexeme is written on its own (free) or only inside words (bound: an ending, a suffixed pronoun)."
+    },
+    "data.lexicon.facet.course": {
+      "message": "In the course",
+      "description": "Debug mode, the course data page, Lexicon view: filter by what the course does with a lexeme: whether a lesson teaches it, or only the lexicon's file has it."
+    },
+    "data.lexicon.facet.feature": {
+      "message": "Features",
+      "description": "Debug mode, the course data page, Lexicon view: filter by the feature values a lexeme has of itself or realises (UD features such as Gender=Fem, Tense=Past)."
+    },
+    "data.lexicon.facet.has": {
+      "message": "Its entry stores",
+      "description": "Debug mode, the course data page, Lexicon view: filter by the keys a lexeme's entry in the lexicon file stores (forms, allomorphs, notes, image)."
+    },
+    "data.lexicon.facet.lacks": {
+      "message": "Its entry lacks",
+      "description": "Debug mode, the course data page, Lexicon view: filter by the keys a lexeme's entry in the lexicon file does not store, though other entries do (no notes, no image)."
+    },
+    "data.lexicon.facet.any": {
+      "message": "shows those with any one chosen",
+      "description": "Debug mode, the course data page, Lexicon view: beside a filter's name, how its chosen values combine: a lexeme has only one value here, so the list shows lexemes with any one of those chosen."
+    },
+    "data.lexicon.facet.all": {
+      "message": "shows those with every one chosen",
+      "description": "Debug mode, the course data page, Lexicon view: beside a filter's name, how its chosen values combine: a lexeme can have several values here, so the list shows only lexemes with every one of those chosen."
+    },
+    "data.lexicon.kind.free": {
+      "message": "Free",
+      "description": "Debug mode, the course data page, Lexicon view: filter value: lexemes written on their own."
+    },
+    "data.lexicon.kind.bound": {
+      "message": "Bound",
+      "description": "Debug mode, the course data page, Lexicon view: filter value: lexemes written only inside words (an ending, a suffixed pronoun, the unwritten ezafe)."
+    },
+    "data.lexicon.course.taught": {
+      "message": "Taught by a lesson",
+      "description": "Debug mode, the course data page, Lexicon view: filter value: lexemes a lesson of the course introduces."
+    },
+    "data.lexicon.course.untaught": {
+      "message": "Taught by no lesson",
+      "description": "Debug mode, the course data page, Lexicon view: filter value: lexemes the course's bundle has but no lesson introduces."
+    },
+    "data.lexicon.course.file": {
+      "message": "Only in the lexicon's file",
+      "description": "Debug mode, the course data page, Lexicon view: filter value: lexemes the lexicon's file has that the course's bundle does not."
+    },
     "data.language.file": {
       "message": "The language file",
       "description": "Debug mode, the course data page, Language view: heading over the language's own file as stored (its grammatical categories, defaults, names of forms and rules)."

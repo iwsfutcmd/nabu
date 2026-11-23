@@ -80,7 +80,93 @@ export interface LexemeRow {
   readonly image?: string | undefined;
   /** What the page's search looks in (`textMatcher`). */
   readonly searched: Searched;
+  /** Its values on each facet the Lexicon view narrows by (`lexiconFilter`, `lexiconFacets`). */
+  readonly facets: LexemeFacets;
 }
+
+/**
+ * The ways the Lexicon view narrows its list, each read off the lexicon, never a list in code:
+ *
+ * - `pos`: its part of speech as UD tags it, or `realises` for an affix that realises a feature value.
+ * - `kind`: `free`, or `bound` (written only inside words).
+ * - `course`: `taught` (a node introduces it), `untaught` (in the bundle, introduced by none), or
+ *   `file` (only the lexicon's file has it).
+ * - `feature`: the feature values it has of itself or realises (Gender=Fem, Tense=Past).
+ * - `has`, `lacks`: the keys its entry stores (forms, allomorphs, notes, image): the lexicon file's
+ *   entry where the file is at hand, the bundle lexeme's otherwise.
+ */
+export type LexiconFacet = "pos" | "kind" | "course" | "feature" | "has" | "lacks";
+
+export const LEXICON_FACETS: readonly LexiconFacet[] = ["pos", "kind", "course", "feature", "has", "lacks"];
+
+export type LexemeFacets = Readonly<Record<LexiconFacet, readonly string[]>>;
+
+/**
+ * How a facet's chosen values combine. A lexeme has one value of an `any` facet, so it passes where
+ * it has one of those chosen; it has several of an `all` facet, so it passes where it has every one.
+ */
+export const FACET_COMBINE: Readonly<Record<LexiconFacet, "any" | "all">> = { pos: "any", kind: "any", course: "any", feature: "all", has: "all", lacks: "all" };
+
+/** The values chosen on each facet; a facet with none chosen lets every lexeme through. */
+export type LexiconFilter = Readonly<Partial<Record<LexiconFacet, readonly string[]>>>;
+
+/** Whether a lexeme passes the filter: every facet's choice, each combined as the facet says. */
+export const lexiconFilter =
+  (filter: LexiconFilter, except?: LexiconFacet) =>
+  (row: LexemeRow): boolean =>
+    LEXICON_FACETS.every((facet) => {
+      const chosen = filter[facet] ?? [];
+      if (facet === except || chosen.length === 0) return true;
+      const values = row.facets[facet];
+      return FACET_COMBINE[facet] === "any" ? chosen.some((v) => values.includes(v)) : chosen.every((v) => values.includes(v));
+    });
+
+export interface FacetValue {
+  readonly value: string;
+  /**
+   * How many lexemes of `rows` have this value and pass the filter: every facet's choice for an `all`
+   * facet's value (what choosing it too would show), the other facets' for an `any` facet's (what
+   * choosing it adds, or keeps, among those its facet shows).
+   */
+  readonly count: number;
+  readonly chosen: boolean;
+}
+
+export interface FacetValues {
+  readonly facet: LexiconFacet;
+  readonly combine: "any" | "all";
+  readonly values: readonly FacetValue[];
+}
+
+/** The order a facet's values are offered in: fixed for the facets whose values are fixed. */
+const FIXED_ORDER: Partial<Readonly<Record<LexiconFacet, readonly string[]>>> = { kind: ["free", "bound"], course: ["taught", "untaught", "file"] };
+
+/**
+ * Every facet's values over the whole lexicon (`all`), each counted over `rows` (the lexemes the
+ * search finds) as `FacetValue.count` says: an `any` facet's counts leave its own choice out, so
+ * choosing another of its values widens the list by that many. A value
+ * every lexeme has (or none) tells no lexeme from another and is left out, unless it is chosen. Parts
+ * of speech come most common first, kinds and course states in their fixed order, the rest by name.
+ */
+export const lexiconFacets = (all: readonly LexemeRow[], rows: readonly LexemeRow[], filter: LexiconFilter): readonly FacetValues[] =>
+  LEXICON_FACETS.map((facet): FacetValues => {
+    const combine = FACET_COMBINE[facet];
+    const chosen = new Set(filter[facet] ?? []);
+    const everywhere = new Map<string, number>();
+    for (const row of all) for (const value of new Set(row.facets[facet])) everywhere.set(value, (everywhere.get(value) ?? 0) + 1);
+    const fixed = FIXED_ORDER[facet];
+    const byName = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
+    const ordered = [...everywhere.keys()]
+      .filter((value) => chosen.has(value) || (everywhere.get(value) ?? 0) < all.length)
+      .sort((a, b) => (fixed !== undefined ? fixed.indexOf(a) - fixed.indexOf(b) : facet === "pos" ? (everywhere.get(b) ?? 0) - (everywhere.get(a) ?? 0) || byName(a, b) : byName(a, b)));
+    for (const value of chosen) if (!everywhere.has(value)) ordered.push(value);
+    const base = rows.filter(lexiconFilter(filter, combine === "any" ? facet : undefined));
+    return {
+      facet,
+      combine,
+      values: ordered.map((value) => ({ value, count: base.filter((row) => row.facets[facet].includes(value)).length, chosen: chosen.has(value) })),
+    };
+  });
 
 export interface LexiconData {
   readonly lexemes: readonly LexemeRow[];
@@ -436,6 +522,18 @@ export const lexiconData = (course: CourseView, source?: LexiconSource, aliases?
       const g = isObject(gloss) ? gloss[course.supportKey] : undefined;
       return typeof g === "string" ? tagged(tags.support(course.supportKey), g) : undefined;
     };
+    const pos = lexeme === undefined ? entry?.["pos"] : lexeme.pos;
+    const realises = lexeme === undefined ? isObject(entry?.["realises"]) : lexeme.realises !== undefined;
+    const stored = Object.keys((source === undefined ? lexeme : entry) ?? {}).filter((key) => key !== "id");
+    const facets: LexemeFacets = {
+      pos: typeof pos === "string" ? [pos] : realises ? ["realises"] : [],
+      kind: [bound ? "bound" : "free"],
+      course: [lexeme === undefined ? "file" : at === undefined ? "untaught" : "taught"],
+      feature: rowTags.filter((tag) => tag.includes("=")),
+      has: stored,
+      // Filled in once every entry's keys are known.
+      lacks: [],
+    };
     return {
       id: idOf(id),
       lexeme,
@@ -451,11 +549,15 @@ export const lexiconData = (course: CourseView, source?: LexiconSource, aliases?
       carriers: bound ? (formsById.get(id)?.carriers ?? []) : [],
       image: lexeme?.image,
       searched: { target: into.target, support: into.support, ids: [...new Set(into.ids)] },
+      facets,
     };
   };
 
   const inBundle = new Set(course.lexicon.lexemes.map((l) => l.id));
-  const rows = [...lexemesInOrder(course).map((l) => rowOf(l.id, l)), ...[...entries.keys()].filter((id) => !inBundle.has(id)).sort().map((id) => rowOf(id, undefined))];
+  const unfilled = [...lexemesInOrder(course).map((l) => rowOf(l.id, l)), ...[...entries.keys()].filter((id) => !inBundle.has(id)).sort().map((id) => rowOf(id, undefined))];
+  // What an entry lacks is what some other entry stores.
+  const storedKeys = [...new Set(unfilled.flatMap((row) => row.facets.has))].sort();
+  const rows = unfilled.map((row): LexemeRow => ({ ...row, facets: { ...row.facets, lacks: storedKeys.filter((key) => !row.facets.has.includes(key)) } }));
 
   const scratch: Collected = { target: [], support: [], ids: [] };
   let file: DataNode | undefined;

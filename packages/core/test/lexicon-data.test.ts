@@ -2,14 +2,16 @@
  * The lexicon laid out for browsing (`lexiconData`): every lexeme of every fixture course's lexicon
  * is listed once, in the order the course introduces them, and each record has every key its
  * lexicon entry and its bundle lexeme store, with every value, none left out. Searched as the rest
- * of the Data page is (`dataMatcher`, `textMatcher`).
+ * of the Data page is (`dataMatcher`, `textMatcher`), and narrowed by facets read off the lexicon
+ * (`lexiconFilter`, `lexiconFacets`): part of speech, free or bound, what the course does with it,
+ * its features, and the keys its entry stores or lacks.
  */
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { parse } from "yaml";
-import { dataMatcher, isLexiconSource, lexemesInOrder, lexiconData, type DataNode, type LexemeRow, type LexiconSource } from "../src/lesson/index.ts";
+import { dataMatcher, FACET_COMBINE, isLexiconSource, LEXICON_FACETS, lexemesInOrder, lexiconData, lexiconFacets, lexiconFilter, type DataNode, type LexemeRow, type LexiconFilter, type LexiconSource } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { aliasesOf, loadCourse } from "./learner-fixtures.ts";
 
@@ -137,6 +139,41 @@ describe.each(COURSES)("the lexicon of %s (%s)", (id, orthography) => {
     expect(found("")).toHaveLength(data.lexemes.length);
     expect(found("zzqqxxzzqq")).toEqual([]);
   });
+
+  it("gives each lexeme its values on every facet, read off its entry", () => {
+    const keys = new Set(source.lexemes.lexemes.flatMap((e) => Object.keys(e).filter((k) => k !== "id")));
+    for (const row of data.lexemes) {
+      const entry = entries.get(row.id.id) ?? {};
+      const pos = row.lexeme?.pos ?? entry["pos"];
+      expect(row.facets.pos, row.id.id).toEqual(typeof pos === "string" ? [pos] : "realises" in entry ? ["realises"] : []);
+      expect(row.facets.kind, row.id.id).toEqual([row.bound ? "bound" : "free"]);
+      expect(row.facets.course, row.id.id).toEqual([row.lexeme === undefined ? "file" : course.units.some((u) => u.nodes.some((n) => n.introduces.includes(row.id.id))) ? "taught" : "untaught"]);
+      expect(row.facets.feature, row.id.id).toEqual(row.tags.filter((t) => t.includes("=")));
+      // What it stores and what it lacks are every key some entry stores, between them.
+      expect(new Set(row.facets.has), row.id.id).toEqual(new Set(Object.keys(entry).filter((k) => k !== "id")));
+      expect(new Set([...row.facets.has, ...row.facets.lacks]), row.id.id).toEqual(keys);
+      expect(row.facets.lacks.filter((k) => row.facets.has.includes(k)), row.id.id).toEqual([]);
+    }
+  });
+
+  it("counts each facet's values as choosing them shows, and offers none every lexeme has", () => {
+    const shown = (filter: LexiconFilter): readonly LexemeRow[] => data.lexemes.filter(lexiconFilter(filter));
+    for (const { facet, combine, values } of lexiconFacets(data.lexemes, data.lexemes, {})) {
+      expect(combine).toBe(FACET_COMBINE[facet]);
+      for (const { value, count, chosen } of values) {
+        expect(chosen).toBe(false);
+        expect(count, `${facet} ${value}`).toBe(shown({ [facet]: [value] }).length);
+        expect(count, `${facet} ${value}`).toBeLessThan(data.lexemes.length);
+      }
+      expect(new Set(values.map((v) => v.value)).size).toBe(values.length);
+    }
+    // Every entry has a gloss: no choice of it tells one lexeme from another.
+    const has = lexiconFacets(data.lexemes, data.lexemes, {}).find((f) => f.facet === "has");
+    expect(has?.values.map((v) => v.value)).not.toContain("gloss");
+    // Nothing chosen lets every lexeme through.
+    expect(shown({})).toHaveLength(data.lexemes.length);
+    expect(lexiconFacets(data.lexemes, data.lexemes, {}).map((f) => f.facet)).toEqual(LEXICON_FACETS);
+  });
 });
 
 describe("lexiconData", () => {
@@ -215,6 +252,40 @@ describe("lexiconData", () => {
     expect(isLexiconSource({ lexemes: { lexemes: [] } })).toBe(true);
     expect(isLexiconSource({ lexemes: [] })).toBe(false);
     expect(isLexiconSource("<!doctype html>")).toBe(false);
+  });
+
+  it("combines a facet's choices as the facet says: one of its parts of speech, all of its features", () => {
+    const course = loadCourse("es", "es-Latn/standard");
+    const data = lexiconData(course, sourceOf("es"));
+    const shown = (filter: LexiconFilter): readonly LexemeRow[] => data.lexemes.filter(lexiconFilter(filter));
+    const nouns = shown({ pos: ["NOUN"] });
+    const verbs = shown({ pos: ["VERB"] });
+    expect(nouns.length).toBeGreaterThan(100);
+    expect(shown({ pos: ["NOUN", "VERB"] })).toHaveLength(nouns.length + verbs.length);
+    // Features narrow: feminine nouns, then feminine nouns stored as such.
+    const feminine = shown({ pos: ["NOUN"], feature: ["Gender=Fem"] });
+    expect(feminine.length).toBeGreaterThan(0);
+    expect(feminine.length).toBeLessThan(nouns.length);
+    for (const row of feminine) expect(row.lexeme?.feats?.["Gender"], row.id.id).toBe("Fem");
+    expect(shown({ feature: ["Gender=Fem", "Gender=Masc"] })).toEqual([]);
+    const storedFeminine = shown({ pos: ["NOUN"], feature: ["Gender=Fem"], has: ["feats"] });
+    expect(storedFeminine.length).toBeLessThan(feminine.length);
+    expect(shown({ pos: ["NOUN"], feature: ["Gender=Fem"], lacks: ["feats"] })).toHaveLength(feminine.length - storedFeminine.length);
+    // Counts follow the choice: an `any` facet's own values are counted without it, the rest with it.
+    const facets = lexiconFacets(data.lexemes, data.lexemes, { pos: ["NOUN"] });
+    const pos = facets.find((f) => f.facet === "pos");
+    expect(pos?.values.find((v) => v.value === "NOUN")).toEqual({ value: "NOUN", count: nouns.length, chosen: true });
+    expect(pos?.values.find((v) => v.value === "VERB")?.count).toBe(verbs.length);
+    expect(facets.find((f) => f.facet === "feature")?.values.find((v) => v.value === "Gender=Fem")?.count).toBe(feminine.length);
+    // Counted over what the search finds.
+    const searched = data.lexemes.filter(dataMatcher(course, "casa").lexicon);
+    const counted = lexiconFacets(data.lexemes, searched, {}).find((f) => f.facet === "pos");
+    expect(counted?.values.reduce((n, v) => n + v.count, 0)).toBe(searched.filter((r) => r.facets.pos.length > 0).length);
+  });
+
+  it("without the lexicon's files, reads the keys a lexeme stores off its bundle lexeme", () => {
+    const course = loadCourse("es", "es-Latn/standard");
+    for (const row of lexiconData(course).lexemes) expect(new Set(row.facets.has), row.id.id).toEqual(new Set(Object.keys(row.lexeme ?? {}).filter((k) => k !== "id")));
   });
 
   it("lays out the largest lexicon quickly", () => {

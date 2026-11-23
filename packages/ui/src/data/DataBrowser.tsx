@@ -12,6 +12,8 @@
  *   it (lexiconData): its entry as the lexicon's file has it, its bundle lexeme, and what the course
  *   does with it. The lexicon's own files come from beside the app (`lexicon`); without them the
  *   view says so once and shows the other two parts. A lexeme's body is laid out only once opened.
+ *   Filters narrow it by what each lexeme is (LexiconFilters: part of speech, free or bound, what the
+ *   course does with it, features, the keys its entry stores or lacks), on top of the search.
  * - Language: the language file as stored (its defaults, labels, rules), by the same renderer.
  *
  * Search (dataMatcher) is by letters whatever the vowel marks, by reading, by meaning, or by id: an
@@ -24,6 +26,8 @@ import {
   dataMatcher,
   lexemesInOrder,
   lexiconData,
+  lexiconFacets,
+  lexiconFilter,
   type CourseView,
   type DataView,
   type EntryId,
@@ -31,6 +35,7 @@ import {
   type LetterRow,
   type LexemeRow,
   type LexiconData,
+  type LexiconFilter,
   type LexiconSource,
   type PinnedReading,
   type SentenceRow,
@@ -49,6 +54,7 @@ import { T } from "../T.tsx";
 import list from "../words/Words.module.css";
 import styles from "./Data.module.css";
 import { DataTree } from "./DataTree.tsx";
+import { LexiconFilters } from "./LexiconFilters.tsx";
 
 export interface DataBrowserProps {
   readonly course: CourseView;
@@ -60,6 +66,8 @@ export interface DataBrowserProps {
   readonly query?: string | undefined;
   /** The lexeme whose entry opens open (the Lexicon view): a link to it. */
   readonly opened?: string | undefined;
+  /** What the Lexicon view opens filtered by: nothing, unless said. */
+  readonly filter?: LexiconFilter | undefined;
   /** Told the view and the lexeme opened last, as they change: the page keeps them in its address. */
   readonly onNavigate?: ((view: DataView, opened: string | undefined) => void) | undefined;
   /**
@@ -373,7 +381,7 @@ const useLexiconSource = (given: DataBrowserProps["lexicon"], wanted: boolean): 
   return typeof given === "function" ? fetched : given;
 };
 
-export const DataBrowser = ({ course, reading, view: opensOn, query: opensWith = "", opened: opensOpen, onNavigate, lexicon: lexiconFiles, aliases, url }: DataBrowserProps): JSX.Element => {
+export const DataBrowser = ({ course, reading, view: opensOn, query: opensWith = "", opened: opensOpen, filter: opensFiltered, onNavigate, lexicon: lexiconFiles, aliases, url }: DataBrowserProps): JSX.Element => {
   const t = useTranslator();
   const listId = useId();
   const data = useMemo(() => courseData(course), [course]);
@@ -402,6 +410,10 @@ export const DataBrowser = ({ course, reading, view: opensOn, query: opensWith =
   });
   const ruby = useMemo(() => defaultRuby(course.profiles.get(course.orthography)?.source, reading), [course, reading]);
   const matcher = useMemo(() => dataMatcher(course, query), [course, query]);
+  const [filter, setFilter] = useState<LexiconFilter>(opensFiltered ?? {});
+  // The lexemes the search finds; the filters narrow them, and count over them.
+  const searchedLexemes = useMemo(() => lexicon?.lexemes.filter(matcher.lexicon), [lexicon, matcher]);
+  const facets = useMemo(() => (lexicon === undefined || searchedLexemes === undefined ? [] : lexiconFacets(lexicon.lexemes, searchedLexemes, filter)), [lexicon, searchedLexemes, filter]);
   const toggle = useCallback(
     (id: string, isOpen: boolean): void => {
       setOpen((was) => {
@@ -419,7 +431,7 @@ export const DataBrowser = ({ course, reading, view: opensOn, query: opensWith =
     if (view === "forms") return data.forms.filter(matcher.forms).map((row) => ({ unit: row.unit, key: row.id.id, node: <Form key={row.id.id} t={t} row={row} ruby={ruby} /> }));
     if (view === "letters") return data.letters.filter(matcher.letters).map((row) => ({ unit: row.unit, key: row.id.id, node: <Letter key={row.id.id} row={row} /> }));
     if (view === "lexicon") {
-      return (lexicon?.lexemes ?? []).filter(matcher.lexicon).map((row) => ({
+      return (searchedLexemes ?? []).filter(lexiconFilter(filter)).map((row) => ({
         unit: row.unit,
         key: row.id.id,
         node: <Lexeme key={row.id.id} t={t} row={row} data={lexicon as LexiconData} ruby={ruby} url={url} open={open.has(row.id.id)} onOpen={toggle} />,
@@ -427,7 +439,7 @@ export const DataBrowser = ({ course, reading, view: opensOn, query: opensWith =
     }
     if (view === "language") return [];
     return data.sentences.filter(matcher.sentences).map((row) => ({ unit: row.unit, key: row.sentence.id, node: <Sentence key={row.sentence.id} t={t} course={course} row={row} ruby={ruby} /> }));
-  }, [view, data, matcher, t, ruby, course, lexicon, open, url, toggle]);
+  }, [view, data, matcher, t, ruby, course, lexicon, searchedLexemes, filter, open, url, toggle]);
   const page = shown.slice(0, pages * PAGE);
   // Rows stay under their units, in course order.
   const groups = useMemo(() => {
@@ -509,9 +521,20 @@ export const DataBrowser = ({ course, reading, view: opensOn, query: opensWith =
           <DataTree node={lexicon.language} />
         </section>
       )}
+      {view === "lexicon" && lexicon !== undefined && (
+        <LexiconFilters
+          facets={facets}
+          filter={filter}
+          onChange={(next) => {
+            setFilter(next);
+            setPages(1);
+          }}
+        />
+      )}
       {view !== "language" && (
         <p className={list.count} role="status" data-data-found={shown.length}>
-          {t.format("data.found", { count: shown.length, total: counts[view] })}
+          {/* The lexicon's rows include lexemes only its file has: the total is theirs. */}
+          {t.format("data.found", { count: shown.length, total: view === "lexicon" && lexicon !== undefined ? lexicon.lexemes.length : counts[view] })}
         </p>
       )}
       <div id={listId}>

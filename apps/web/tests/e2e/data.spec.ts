@@ -3,10 +3,11 @@
  * browse. It is linked from the course page only in debug mode, lists what `courseData` lists, is
  * searched by letters, meanings and ids, and records nothing. Its Lexicon view lists every lexeme
  * of the lexicon (`lexiconData`), each opening to everything stored on it, read from the lexicon's
- * own files beside the app (lexicon-source.ts) where they are there.
+ * own files beside the app (lexicon-source.ts) where they are there, and filtered by facets read off
+ * the lexicon (`lexiconFacets`) on top of the search.
  */
 import { readFileSync } from "node:fs";
-import { courseData, dataMatcher, isLexiconSource, lexiconData, type LexiconSource } from "@nabu/core/lesson";
+import { courseData, dataMatcher, isLexiconSource, lexiconData, lexiconFacets, lexiconFilter, type LexiconFilter, type LexiconSource } from "@nabu/core/lesson";
 import { expect, test } from "@playwright/test";
 import { parse } from "yaml";
 import { loadCourse, logOf, seriousAxeViolations } from "./solver.ts";
@@ -155,6 +156,55 @@ test("every lexeme of the lexicon opens to everything stored on it, and can be l
   // The language file, by the same renderer.
   await page.locator("[data-view=language]").click();
   for (const key of Object.keys(source.language ?? {})) await expect(page.locator(`[data-language-file=source] > dl > [data-key="${key}"]`), key).toBeAttached();
+  expect(errors).toEqual([]);
+});
+
+test("the lexicon is filtered by what each lexeme is, on top of the search, each value counted", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(String(e)));
+  const course = loadCourse("apc", "apc-Arab/standard");
+  const lexicon = lexiconData(course, lexiconSourceOf("apc"));
+  const shown = (filter: LexiconFilter, query = ""): number => lexicon.lexemes.filter(dataMatcher(course, query).lexicon).filter(lexiconFilter(filter)).length;
+  const countOf = (filter: LexiconFilter, facet: string, value: string, query = ""): number | undefined =>
+    lexiconFacets(lexicon.lexemes, lexicon.lexemes.filter(dataMatcher(course, query).lexicon), filter)
+      .find((f) => f.facet === facet)
+      ?.values.find((v) => v.value === value)?.count;
+
+  await page.goto("/?sound=off&debug=1#/apc/apc-Arab.standard/data/lexicon");
+  const browser = page.locator("[data-data-browser=apc]");
+  const found = browser.locator("[data-data-found]");
+  const filters = browser.locator("[data-lexicon-filters]");
+  await expect(found).toHaveAttribute("data-data-found", String(lexicon.lexemes.length));
+  // Closed until opened; then every facet the lexicon has, each value with what choosing it shows.
+  await expect(filters.locator("[data-facet]").first()).toBeHidden();
+  await filters.locator("[data-action=lexicon-filter]").click();
+  await expect(filters.locator("[data-facet]").first()).toBeVisible();
+  const chip = (facet: string, value: string) => filters.locator(`[data-facet=${facet}] [data-facet-value="${value}"]`);
+  await expect(chip("kind", "bound")).toHaveAttribute("data-count", String(countOf({}, "kind", "bound")));
+  await expect(chip("pos", "NOUN")).toHaveAttribute("data-count", String(countOf({}, "pos", "NOUN")));
+
+  // Bound lexemes, then those of them with Case=Dat, then those whose entry stores allomorphs.
+  await chip("kind", "bound").click();
+  await expect(found).toHaveAttribute("data-data-found", String(shown({ kind: ["bound"] })));
+  await expect(chip("feature", "Case=Dat")).toHaveAttribute("data-count", String(countOf({ kind: ["bound"] }, "feature", "Case=Dat")));
+  await chip("feature", "Case=Dat").click();
+  const filter: LexiconFilter = { kind: ["bound"], feature: ["Case=Dat"], has: ["allomorphs"] };
+  await chip("has", "allomorphs").click();
+  await expect(found).toHaveAttribute("data-data-found", String(shown(filter)));
+  for (const row of lexicon.lexemes.filter(lexiconFilter(filter))) await expect(browser.locator(`[data-data-row="${row.id.id}"]`)).toBeVisible();
+  await expect(chip("kind", "bound").locator("input")).toBeChecked();
+  await expect(filters.locator("[data-filter-chosen]")).toHaveAttribute("data-filter-chosen", "3");
+  // A value that would show nothing more is not offered: no free lexeme has Case=Dat and allomorphs.
+  expect(countOf(filter, "kind", "free")).toBe(0);
+  await expect(chip("kind", "free")).toHaveCount(0);
+  expect(await seriousAxeViolations(page, "[data-data-page]")).toEqual([]);
+
+  // The search narrows what the filters count; clearing them leaves the search.
+  await browser.locator("[data-field=data-search]").fill("NOUN");
+  await expect(found).toHaveAttribute("data-data-found", String(shown(filter, "NOUN")));
+  await filters.locator("[data-action=lexicon-filter-clear]").click();
+  await expect(found).toHaveAttribute("data-data-found", String(shown({}, "NOUN")));
+  await expect(filters.locator("[data-filter-chosen]")).toHaveCount(0);
   expect(errors).toEqual([]);
 });
 
