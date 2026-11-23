@@ -1,7 +1,9 @@
 # Slovak: the build plan
 
 - Date: 2026-11-23
-- Status: proposed plan, for Ben to accept, reorder or cut
+- Status: stages 0–6 built 2026-11-23 (the owner: "build the whole thing … push straight to main");
+  stage 7's native-speaker pass and reviewer, and stage 8, wait. Where each stage stands is under
+  "Where it stands" at the end.
 
 What it builds: the course `sk` that [ADR 0155](adr/0155-slovak.md) (Proposed) describes, from the
 brief and syllabus in [courses/sk/README.md](../courses/sk/README.md). Each stage below is one
@@ -17,7 +19,7 @@ roadmap deliverable, landed as one or a few small commits, and leaves CI green.
    CC-BY-4.0), OmniVoice only if it fails the round trip or the listening.
 4. **No apostrophe for the caron**: *d'* typed for *ď* is a missing caron, never folded (a bad
    precedent).
-5. **Public-domain text is fine**: units 16–20 each read a passage of Dobšinský's tales (1881).
+5. **Public-domain text is fine**: a passage of Dobšinský's tales (1881); as built, one, unit 17's story.
 6. **Aspect pairs are two lexemes**, each noting the other.
 7. **A native reviewer**: not known yet. Everything stays a draft until one is.
 8. **sk becomes a fixture course** once units 1–10 build clean.
@@ -108,7 +110,7 @@ roadmap deliverable, landed as one or a few small commits, and leaves CI green.
   piper`, `model` pinned as fa's is), clips CC-BY-4.0 crediting the Slovak dataset (CC0) and Hi-Fi TTS
   (CC BY 4.0), the voice `speaker: f`. `uv sync --group speech` for the round trip.
 - `nabu audio generate ../courses/sk`, then `nabu audio align ../courses/sk` if Piper's clips lack word
-  timings; the round trip (Whisper hears Slovak); a listener in the audio check (`#/sk/sk-Latn/audio`,
+  timings; the round trip (Whisper hears Slovak); a listener in the audio check (`#/sk/sk-Latn.standard/audio`,
   then `nabu audio verdicts`). `audio.quality: good` only after both; then `pnpm bundles`.
 - Try it on unit 1 before the course is long: if lili fails the round trip on many clips or sounds
   wrong to a listener, switch to OmniVoice clones (two CC0 Common Voice speakers, `nabu audio cast
@@ -195,3 +197,26 @@ scan with no text layer, its first pages two-page spreads, so find a page by its
 | Prepositions and their cases | 99–105 | units 4–6 | lessons 5, 6, 8 |
 | Rhythmic law | 35 | – | – |
 | Word order, clitics | 132 | units 3, 8, 12 | – |
+
+## Where it stands (2026-11-23)
+
+- **Stages 0–4: done.** Profile, keyboard, conformance vectors (both harnesses), the two feedback
+  notes, language.yaml, lexicon, course.yaml, units 1–10; sk is a fixture course (CLAUDE.md) and in
+  the tests that list courses (planned walk, simulation, due, parts, browse, lexicon data, choice asks,
+  the e2e lesson by keyboard and touch). The label that reads a lexical feature (stage 2) was not
+  built: the present's and the future's labels say in their notes that a perfective's present says
+  the future.
+- **Stage 5: clips made, not yet heard.** Piper `sk_SK-lili-medium` reads every sentence, story line
+  and word (CC-BY-4.0). The round trip and a listener in the audio check are still owed; until a
+  listener has heard them, `audio.quality` stays at its default and the audio check
+  (`#/sk/sk-Latn.standard/audio`) is where to start.
+- **Stage 6: done.** Units 11–20 and ten scenarios, every unit clean under `--check`. One Dobšinský
+  passage, not five (ADR 0155's header): unit 17. Left for a later pass: possessive adjectives,
+  *všetci*, the reflexive passive, years in full, soft adjectives as a topic (README).
+- **The generator.** Units and lexicon were written by a generator kept in the library
+  (`nabu/notes/sk/generator`: a compact line per sentence, the paradigms of Mistrík's classes, and a
+  resolver that settles each token's lexeme and form, with every ambiguity it could not settle
+  annotated by hand). The files are sources now, edited directly; the generator is a record.
+- **Stage 7: waits** on a native-speaker pass; courses/REVIEW.md has sk's list. **Stage 8: waits** on
+  apc's rules and Spanish verbs.
+

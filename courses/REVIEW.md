@@ -839,3 +839,43 @@ references in the reference library (find them with `nabu refs find`; notes in n
   transliteration of the passage has rawī ʿālam) and leaves out the passage's closing threat of a curse. Unit 18's passage is the blacksmiths'
   manual as Schluessel altered it for clarity; it reads ahangirlik as he does (ahangarlik elsewhere in his book). Unit 19's story leaves out one coarse word (qoŋ) of
   its passage.
+
+## sk (Slovak)
+
+Twenty units, A1 to the start of B1, for adult English speakers ([ADR 0155](../docs/adr/0155-slovak.md); the brief
+and syllabus are in [sk/README.md](sk/README.md)). Every sentence, story and scenario is an LLM draft, its forms
+checked against Mistrík's paradigms (1988) and its order against Krížom-krážom A1 (2009) and Naughton's *Colloquial
+Slovak* (2012). No one who speaks Slovak has read it yet. Check first:
+
+1. **Every token's form.** A generator chose each token's lexeme and form (case, number, gender, animacy, person)
+   from the paradigms and the line, and a person annotated what it could not settle (nominative or accusative,
+   genitive singular or nominative plural). The Data page (debug mode, `#/sk/sk-Latn.standard/data`) lists every
+   token with what it carries: look for a wrong case on forms that look alike (*ženy*, *mesto*, *Košice*).
+2. **Aspect.** Both aspects are accepted where the English does not decide (*písal som list*, *napísal som list*),
+   one where it does. Units 11 and 17 (the future, verbs of motion) are where a set is most likely wrong.
+3. **Clitic order and word order in accept sets.** The clitics stand second (*by som si*, *dal som ti ho*); the
+   other orders listed are the ones the drafts thought natural. A natural order missing is a learner marked wrong.
+4. **Animals in the plural** decline as things (*raky*, *kapre*); a man's plural as a man's (*dvaja*, *traja* for
+   the egg and the crayfish, a man in the group).
+5. **Formal *vy*** to one person (four sentences tagged `register: formal`): *Boli ste unavená?* agrees with the
+   person; check every one.
+6. **The persons spread** (ADR 0075): a man speaking 20 sentences, a woman 18; to a man 8, to a woman 7. Where a
+   sentence is untagged, every form is accepted: check that the English really cannot tell.
+7. **The comparative of *pekný*** is drafted as *krajší* only; *peknejší* (heard too) is not accepted. *Lacnejší*,
+   *dlhší*, *vyšší*, *starší*, *drahší*, *menší*, *väčší*, *lepší*: as Mistrík gives them.
+8. **The passage** (unit 17's story, Dobšinský 1881, page 75): its spelling is today's (*im* for *jim*; *ty že*,
+   *vy že* for *tyže*, *vyže*), its words the tale's: *kde* for where to (*Kde ty ideš?*), *rečie* (says),
+   *horší od teba* (worse than you, with *od*), *i* for too. Check that a learner can read it, and that the
+   lessons (which teach *kam* and *ako*/*než*) do not make the tale's words look wrong. *A ty že kam?* is a lesson
+   sentence built on the tale's *že*: check that it is natural.
+9. **The sound statement** (profiles/sk-Latn.standard.yaml, REVIEW): d t n l before e and i are read soft, so the
+   words that keep them hard (*teraz*, *ten*, *jeden*, loanwords) take a missed letter as an orthographic miss where
+   a phonemic one is due; the voicing of ď and ť was left out (*choť* for *choď* is phonemic), so rare spellings are
+   never offered.
+10. **Facts in sentences:** unit 18's comparisons (Bratislava, Košice and Žilina by size; the Tatras the highest
+    mountains; the Váh the longest river; the south warmer) and unit 20's (the tales collected by Dobšinský,
+    published in Martin).
+11. **The voice.** One woman's voice (Piper's `sk_SK-lili-medium`, CC-BY-4.0) reads every line, a man's too
+    (ADR 0078). No listener has heard the clips: start at the audio check (`#/sk/sk-Latn.standard/audio`).
+12. **Left out** for a later pass: possessive adjectives (*otcov*, *mamin*), *všetci*, the reflexive passive
+    (*predáva sa*), years read in full, vocatives (*Mami!*: the course writes *Mama*).

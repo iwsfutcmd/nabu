@@ -20,7 +20,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - What the prompt does not decide, the learner may choose (ADR 0085): accept sets take every order, word choice,
   optional word and form whose translation would be the prompt, in both directions; never one that would translate
   otherwise. The grader stays literal: the answers are listed in the accept set.
-- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo, tok, grc, chg) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
+- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo, tok, grc, chg, sk) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
 - Never hand-edit packages/schema or the Pydantic models. Edit schemas/ and regenerate.
 
 ## Style
@@ -725,10 +725,33 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   grapheme's chg-Latn/schluessel form (the scheme's `latin`, ADR 0133; that profile is the track's Latin side, not a
   course orthography); no verb stems (their hyphen).
 
+## Slovak notes (see docs/adr/0155)
+- courses/sk is standard Slovak for English speakers, A1 to early B1 in twenty units: forms from Mistrík (1988), the
+  order from Krížom-krážom A1 (2009) and Naughton (2012); notes in `nabu/notes/sk/`; the brief is courses/sk/README.md.
+  Everyday scenes in Žilina with people of its own (Lucka, Tereza, Dominik, Simona, Rudo, Samko, babka, Liam).
+- Marks are spelling: a missing acute is length, a missing caron another consonant, both wrong (as es, ADR 0148).
+  d' for ď is a missing caron, never folded (the owner). The profile states i/y, soft d t n l before e and i, ä,
+  voicing and v said as u as sound-alike spellings (REVIEW); d t n l that stay hard before e or i (teraz, ten) are its cost.
+- Lexemes as es's: aspect partners are two lexemes, each storing `Aspect` (robiť / urobiť); a perfective's present
+  says the future (its label's note); reflexives cited with their clitic (`volať-sa`, spelled `volať sa`); a
+  pronoun is one lexeme with every form (ja: mňa, ma, mi, mne, mnou); vocalized prepositions are spelled variants
+  (v, vo). A masculine noun stores its animacy (no ending gives it); animals decline as things in the plural.
+- Tokens choose as es's do: a noun case and number; an agreeing word gender, case, number and, in the masculine,
+  animacy. Comparatives and superlatives are the adjective's (or adverb's) forms (`Degree`); the passive
+  participle is its verb's, declined (`VerbForm: Part, Voice: Pass` with the agreement); `by` is AUX
+  `{Mood: Cnd}`, the -l form beside it keeps `Tense: Past` (UD's way). Accept sets keep the clitics second.
+- The voice is Piper's `sk_SK-lili-medium` (CC-BY-4.0, one woman's voice for every line). After a sentence changes,
+  `cd pipeline && uv run nabu audio generate ../courses/sk`, then `pnpm bundles`. No listener has heard it yet.
+- Unit 17's story is the start of Dobšinský's *Ako šlo vajce na vandrovku* (1881, public domain): the page's
+  words in today's spelling, each change in the unit's header. The tale's *kde* (where to) and *rečie* stay; the
+  lessons teach *kam*. Kozliatka and the twelve months were too dialectal; a new passage only from a page image.
+- The units and lexicon were first written by a generator (library: `nabu/notes/sk/generator`); they are sources
+  now, edited directly. Draft sentences: every case form a reviewer should check is on the Data page.
+
 ## Word parts notes (see docs/adr/0152)
 - Two cards ask a word by its parts: `parts-whole` (the sentence with the word left out, its own word and its forms
   given; typed) and `whole-parts` (the word marked in its sentence, its parts picked among others in any order). A
-  course switches them on with `wordParts: true` (course.yaml; on in apc, chg, es, fa, grc, hbo, uz; yue has one form,
+  course switches them on with `wordParts: true` (course.yaml; on in apc, chg, es, fa, grc, hbo, sk, uz; yue has one form,
   nothing to tell it from); elsewhere `courseExclusions` leaves them out.
 - A part is the word's own lexeme (its first spelling), another lexeme its token writes (a clitic, an article; an
   ending or suffixed pronoun no orthography spells, `bound`, is named by its gloss) or its form (`formPart`: the
