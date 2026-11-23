@@ -670,6 +670,8 @@ not spell as the lexicon writes the word (`form.projection`); the 89 verb tokens
 khayef, lek, which need modelling decisions); the citation forms (33 word cards, 32 clips); what each Arabizi
 variation would newly accept (i/ee 42 spellings, the article 12, o/u 24, the helping vowel 37, e/ei 18,
 initial q 7; u/ou and a final e/i are accepted already; none collides with another word of the course).
+**i/ee is stated free** (on main); **the article's forms could not be** (word-by-word grading: they need a
+join the grader can see); the others wait on the owner's yes.
 
 The apc prototype's participle check still covers nine forms where it covered
 thirteen: stage 2 of the design checks every participle token against the template, and the prototype is

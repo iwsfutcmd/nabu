@@ -1,8 +1,9 @@
 # Phase 1 profile. Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
 # Lebanese Arabic in Arabizi (gameplan §6.3): digit letters (2 ʔ, 3 ʕ, 7 ḥ, 5 x…) are letters, not numbers.
 # Variation the profile folds silently: an apostrophe for the hamza, the article written onto its
-# noun (elshay, 3alba7r), ch/sh, 5/kh, 8/gh, doubled vowels. Everything else (e/i, h/7…) is a real
-# distinction or a spelling choice and belongs in the accept sets. Content: apc-Latn-LB.
+# noun (elshay, 3alba7r), ch/sh, 5/kh, 8/gh, doubled vowels. Free spellings of one sound (e/i, i/ee) are stated
+# below (`correspondences`); everything else (h/7…) is a real distinction or a spelling choice and belongs in the
+# accept sets. Content: apc-Latn-LB.
 id: apc-Latn/arabizi
 lang: apc-Latn
 segmentation: { content: hand-pinned, runtime: grapheme }
@@ -45,6 +46,26 @@ correspondences:
   # guard has no pair to keep apart today. Lebanese ē and ī do contrast (bēt, dīn; dēn "debt"): a course that
   # teaches such a pair keeps it apart by its lexicon (the guard), not by this rule.
   - { says: e, written: [e, i], kind: free }
+  # REVIEW: a long i written i or ee (kbir, kbeer; akid, akeed), stated free by the owner (2026-11-23,
+  # docs/rules-design.md, question 6). No norm picks one: the course writes ee in two words (meen, servees) and i
+  # elsewhere, apc.md calls both right, and the accept sets carried ee by hand (160 words in 122 sentences; kept).
+  # Arabizi writes no length, so the statement cannot tell a long i from a short one: ee before a consonant says what
+  # e and i say, so a short front vowel written ee is accepted too (beent for bint; beent for bent already was, by
+  # the long-vowels fold above). The context keeps the rest out: ee at a word's end (fee for fi: a final long i is i
+  # or e) or before a vowel stays two e's, another sound. The cost, counted on 2026-11-23 over the course's 683
+  # Arabizi words (tokens and lexicon): 156 places write i before a consonant, about 76 a long i and 80 a short one
+  # (bishrab, 3endik, iza), which now take ee too; the 279 places of e there took it already. Two spellings of
+  # different words in the course now compare alike: sme3teni (you, a man, heard me) and the accept sets' sme3teene
+  # (a woman), a slip before; and min, an accept set's spelling of men (from), with meen (who), whose men the fold
+  # already took. The grader's other-lexeme guard keeps apart a word the course's tokens write.
+  - { says: e, written: [ee], kind: free, when: { before: "[b-df-hj-np-tv-z2-9]" } }
+  # Not stated, though the owner said free (2026-11-23): the article's forms (el, l, il; essalame, el salame). The
+  # course writes the article as a word of its own (el shay: 213 tokens) or joined to a preposition (3al, bel), and
+  # the normalization above detaches el and il, so grading compares it as a word: l joined to its noun (l7amdella,
+  # lawwal) is one word against el 7amdella's two, and an assimilated article (essalame) one against el salame's two.
+  # A statement of sounds compares one word with one word and cannot reach them. Word by word, el or il said l at a
+  # word's start would only take a spaced l (l shay), which the accept sets list by hand ((el|l|il), 169 times), and
+  # would take lf for elf, lli for elli, lbos for ilbos. It waits on a join the grader can see (rules-design, section 8).
   # Considered and left out (REVIEW):
   #  - o or u (shokran/shukran, about 450 alternatives by hand): the same case as e/i, but ADR 0148 names only e/i,
   #    and ō/ū contrast (mōt "death", mūt "I die"); left to the reviewer.
@@ -54,8 +75,8 @@ correspondences:
 # How Arabizi spells a lexical form (docs/lexical-forms/apc.md, the projections' table and "Free and fixed";
 # docs/rules-design.md, section 3). `to` is the spelling the course mostly writes; each rule's `alternatives` are
 # the spellings apc.md calls free, named by variation: read only by the compiler, which takes the course's spelling
-# where it is one of them (`form.projection`). None is stated free in `correspondences` above but e/i: the owner
-# states the others one at a time (docs/rules-design.md, question 6). Not alternatives here: ch, 5, 8 and ou are
+# where it is one of them (`form.projection`). None is stated free in `correspondences` above but e/i and i/ee: the
+# owner states the others one at a time (docs/rules-design.md, question 6; the article waits on a join). Not alternatives here: ch, 5, 8 and ou are
 # matching policies (`equivalences`). REVIEW.
 spell:
   from: lexical

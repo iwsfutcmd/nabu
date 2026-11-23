@@ -3,7 +3,7 @@
  * a lexeme's form (`compileSpeller`, `spell`). conformance/spell.json pins each rule of apc's three
  * statements on a word; these tests hold the statements against apc's whole lexicon, and tie the
  * Arabizi statement's free alternatives to the profile's sound statement: an alternative either
- * compares as the same word under the stated free correspondences (e/i), or is counted below by
+ * compares as the same word under the stated free correspondences (e/i, i/ee), or is counted below by
  * the variation it took, waiting for the owner's answer one variation at a time (question 6). A new
  * kind of alternative, or a count that moves, fails here.
  */
@@ -106,7 +106,7 @@ describe("apc's statements over its lexicon", () => {
         waiting.set(key, (waiting.get(key) ?? 0) + 1);
       }
     }
-    // e/i is the one variation the sound statement states free: its alternatives alone compare free.
+    // e/i and i/ee are the variations the sound statement states free: their alternatives alone compare free.
     expect(free).toBe(FREE);
     expect(Object.fromEntries([...waiting].sort(([a], [b]) => a.localeCompare(b)))).toEqual(WAITING);
   });
@@ -114,13 +114,16 @@ describe("apc's statements over its lexicon", () => {
 
 /**
  * Alternatives that compare free under apc-Latn's correspondences: e/i, which also covers a final
- * long i written e (*fe* for *fi*: the statement's e/i holds wherever the letter stands).
+ * long i written e (*fe* for *fi*: the statement's e/i holds wherever the letter stands), and i/ee
+ * (stated 2026-11-23, the owner's answer to question 6: 58 alternatives moved up, every one that took
+ * i/ee alone or beside e/i and a final e/i).
  */
-const FREE = 131;
+const FREE = 189;
 /**
  * Alternatives that do not, by the variations they took (an alternative that took several is counted
  * under all of them together): each waits on the owner's answer, one variation at a time (question 6).
  * When one is stated free in the profile's `correspondences`, its alternatives move up to FREE.
+ * The article's forms, which the owner also said free, wait on a join the grader can see (the profile says why).
  */
 const WAITING: Readonly<Record<string, number>> = {
   "article": 12,
@@ -137,19 +140,15 @@ const WAITING: Readonly<Record<string, number>> = {
   "e-ei+final-e-i": 2,
   "e-ei+q-initial": 1,
   "e-ei+u-ou": 1,
-  "e-i+final-e-i+i-ee": 4,
   "e-i+final-e-i+u-ou": 1,
   "e-i+helping-vowel": 7,
-  "e-i+i-ee": 12,
   "e-i+o-u": 6,
   "e-i+q-initial": 1,
   "e-i+u-ou": 2,
-  "final-e-i+i-ee": 3,
   "final-e-i+u-ou": 1,
   "helping-vowel": 37,
   "helping-vowel+i-ee": 1,
   "helping-vowel+o-u": 9,
-  "i-ee": 39,
   "i-ee+o-u": 1,
   "i-ee+q-initial": 2,
   "i-ee+u-ou": 1,

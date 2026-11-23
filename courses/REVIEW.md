@@ -293,6 +293,13 @@ points below land, and its chapter is cited where it does.
   (s.home.23 بعيد / بعيدة, s.num.22, s.food.20, s.party.28, s.shop.7, s.shop.18, s.shop.25–27, s.health.20,
   s.work.29). "Shall we…?" (s.like.22) takes the bare imperfect نشوف as well as منشوف. The two untagged "you"
   sentences are tagged: s.day.24 to one person (بتحكي is a man's and a woman's), s.child.14 to a man.
+- **Arabizi's ee for i is free** (the owner, 2026-11-23; profile, REVIEW): *kbeer* for *kbir*, *akeed* for *akid*.
+  Its cost: a short i typed ee (*beeshrab*, *3endeek*) is accepted too, and *sme3teene* (to a woman) now passes
+  silently for *sme3teni* (to a man), where it was a slip. Separately, the older long-vowels fold accepts *meen* (who)
+  for *men* (from): worth a look. The article's l- and assimilated forms are accepted only where an accept set lists them.
+- **The rules' review lists** (docs/rules-design.md): `cd pipeline && uv run nabu forms ../courses/apc` lists the 33
+  stored forms that do not spell as the lexicon writes the word and the 89 verb tokens the rules do not give (*ru7t*
+  where Kline has *re7t*, *or2os*, *e3zmak*, *eshrab*, *safart*; Arabizi *b7ki* beside its own marks' vowel).
 - **Still a judgement call:** whatever the book leaves open or contradicts, below.
 
 1. **"Right now" (3am) plus a verb.** The course uses the form without b- (3am ta3mel, 3am esma3)

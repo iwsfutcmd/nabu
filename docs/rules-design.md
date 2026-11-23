@@ -573,3 +573,21 @@ Report only: no token, spelling, vocalization or clip changed, and the bundles a
   answer 1's citation forms (33 of 41 word cards would change, 32 word clips; 9 of the new lemmas are already
   written by a sentence; `b3at` and `rte7` are the two beyond the design's 31).
 
+## Answer 6 as built so far (2026-11-23): i/ee stated free; the article could not be
+
+- **i/ee** is a free correspondence of `profiles/apc-Latn.arabizi.yaml` (`ee` before a consonant says e). All
+  42 spellings the owner saw now grade as a variant (26 were a slip, 16 wrong); no other verdict of that list
+  moved. Its cost, as the profile says: Arabizi writes no length, so a short i written ee is accepted too
+  (about 80 places in the course's words: *beeshrab*, *3endeek*), as a short e written ee already was. Over
+  the whole course two pairs of different words now compare alike: *sme3teni* (to a man) with an accept set's
+  *sme3teene* (to a woman), a slip before and so accepted before; and *min*, an accept-set spelling of *men*,
+  with *meen* (who), which the older long-vowels fold already took. Golden plans and the simulation did not
+  move; grading's p95 is 1.1 ms for apc-Latn.
+- **The article's forms are not stated.** The course writes the article as a word of its own (213 tokens) or
+  joined to a preposition, the normalization detaches *el* and *il*, and grading compares word by word: *l*
+  joined to its noun (*l7amdella*) and an assimilated article (*essalame*) are one word against two, which a
+  statement of sounds cannot reach; word by word it would only take a spaced *l*, which the accept sets list
+  by hand 169 times, and would swallow *elf*, *elli*, *ilbos*. It waits on the join design this note leaves
+  out (section 8), or a detach that knows the lexicon. 0 of its 12 are newly accepted.
+- **Waiting on the owner's yes, each:** o/u (24), the helping vowel (37), e/ei (18), an initial ق left out (7).
+

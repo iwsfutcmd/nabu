@@ -1774,6 +1774,68 @@
       "note": "inte for enta: the i is e's variant, the final e for a is another sound and past a slip: phonemic."
     },
     {
+      "id": "grade/apc-latn/statement-i-ee-variant",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el bet kbir ktir",
+        "answer": "el bet kbeer kteer"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ],
+        "correspondences": []
+      },
+      "note": "REVIEW (the owner, 2026-11-23): a long i written i or ee, free in the profile's statement: kbeer kteer for kbir ktir is an accepted variant (was WRONG before the statement)."
+    },
+    {
+      "id": "grade/apc-latn/statement-i-ee-beside-a-mistake",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "akid, el bet kbir",
+        "answer": "akeed, el bet zgheer"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "lexical"
+        ],
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "akeed is a variant; zgheer for kbir is another word all the same."
+    },
+    {
+      "id": "grade/apc-latn/statement-i-ee-another-lexeme",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "meen",
+        "answer": "min",
+        "lexemes": {
+          "meen": [
+            "lexeme:meen"
+          ],
+          "min": [
+            "lexeme:men.from"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "lexical"
+        ],
+        "correspondences": []
+      },
+      "note": "Never a variant where the course writes the typed word as another lexeme's: min, written for men (from), is not meen (who)."
+    },
+    {
       "id": "grade/apc-arab/statement-marks",
       "op": "grade",
       "args": {

@@ -852,6 +852,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   prints the report; `--paradigm <lexeme>` a lexeme's cells as the rules give them.
 - apc's helping vowel at a word's end is the marked layer's `spell` (the form keeps the cluster: رُحْ+ت), never a
   rewrite; inside a word it is the rewrite `rule:apc-helping-vowel|inside`, which Arabizi may leave out.
+- apc-Latn states e/i and i/ee free (the owner, 2026-11-23): ee before a consonant says e, so a short i written ee
+  is accepted too (the stated cost). The article's forms are not stated: grading compares word by word and the
+  article is detached, so an l joined to its noun and an assimilated article need a join the grader can see. o/u,
+  the helping vowel, e/ei and an initial ق left out wait on the owner's yes, each.
 - docs/lexical-forms/apc.yaml and apc-review.md are a frozen record.
 
 ## Losses and labels notes (see docs/adr/0148, 0153)

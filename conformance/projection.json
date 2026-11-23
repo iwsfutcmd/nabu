@@ -1206,6 +1206,128 @@
       "note": "A free correspondence leaves no spelling to learn."
     },
     {
+      "id": "projection/apc-latn/read-i-ee",
+      "op": "sound-read",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "kbeer"
+      },
+      "expected": {
+        "sites": [
+          {
+            "says": "k",
+            "written": "k"
+          },
+          {
+            "says": "b",
+            "written": "b"
+          },
+          {
+            "says": "e",
+            "written": "ee",
+            "rule": "e",
+            "kind": "free"
+          },
+          {
+            "says": "r",
+            "written": "r"
+          }
+        ]
+      },
+      "note": "REVIEW (the owner, 2026-11-23): Arabizi's long i written i or ee, free: ee before a consonant is one site and says what e and i say."
+    },
+    {
+      "id": "projection/apc-latn/i-ee-free",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "akid",
+        "typed": "akeed"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "i",
+            "typed": "ee",
+            "rule": "e",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "akeed for akid: the same sound, an accepted variant (was another sound before the statement)."
+    },
+    {
+      "id": "projection/apc-latn/ee-i-free",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "meen",
+        "typed": "min"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "ee",
+            "typed": "i",
+            "rule": "e",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "And the other way round: the course writes meen (who). Sound alone says min is the same; whether min is another lexeme's form is the grader's question (grade/apc-latn/statement-i-ee-another-lexeme)."
+    },
+    {
+      "id": "projection/apc-latn/i-ee-short-vowel",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "bint",
+        "typed": "beent"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "i",
+            "typed": "ee",
+            "rule": "e",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "REVIEW: Arabizi writes no length, so the statement cannot tell a short i from a long one: beent for a short i is a variant too (its known cost)."
+    },
+    {
+      "id": "projection/apc-latn/i-ee-not-final",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "fi",
+        "typed": "fee"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "Only before a consonant: at a word's end ee stays two e's (a final long i is i or e), another sound."
+    },
+    {
+      "id": "projection/apc-latn/i-ee-spellings-none",
+      "op": "sound-spellings",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "kbir"
+      },
+      "expected": [],
+      "note": "A free correspondence leaves no spelling to learn."
+    },
+    {
       "id": "projection/apc-arab/marks-ignored",
       "op": "sound-compare",
       "args": {
