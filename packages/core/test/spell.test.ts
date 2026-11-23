@@ -3,17 +3,21 @@
  * a lexeme's form (`compileSpeller`, `spell`). conformance/spell.json pins each rule of apc's three
  * statements on a word; these tests hold the statements against apc's whole lexicon, and tie the
  * Arabizi statement's free alternatives to the profile's sound statement: an alternative either
- * compares as the same word under the stated free correspondences (e/i, i/ee), or is counted below by
- * the variation it took, waiting for the owner's answer one variation at a time (question 6). A new
- * kind of alternative, or a count that moves, fails here.
+ * compares as the same word under the stated free correspondences (e/i, i/ee, o/u, e/ei, an initial
+ * ق, the helping vowel), or, for the article, grades as the same word by the profile's join (`joins`:
+ * compared word by word, which a statement of sounds cannot), or is counted below by the variation it
+ * took, waiting where the profile cannot take it (question 6). A new kind of alternative, or a count
+ * that moves, fails here.
  */
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { LangTag, LanguageDeclaration, Lexicon, OrthographyId, OrthographyProfile } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { parse } from "yaml";
+import { literalAccept } from "../src/accept/notation.ts";
 import { profileOf } from "../src/lesson/index.ts";
 import { compileSpeller, spell, spelledAs, spellingKey, type Speller } from "../src/lexicon/index.ts";
+import { compileAcceptSet, grade } from "../src/match/grade.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -91,10 +95,12 @@ describe("apc's statements over its lexicon", () => {
   });
 
   it("ties Arabizi's free alternatives to its sound statement: each compares free, or waits on the owner by variation", () => {
-    const projection = profileOf(loadCourse("apc", "apc-Arab/standard"), "apc-Latn/arabizi").projection;
+    const profile = profileOf(loadCourse("apc", "apc-Arab/standard"), "apc-Latn/arabizi");
+    const projection = profile.projection;
     if (projection?.from !== "spelling") throw new Error("apc-Latn reads its sound off its spelling");
     const waiting = new Map<string, number>();
     let free = 0;
+    let joined = 0;
     for (const { form } of forms) {
       const z = spell(arabizi, form);
       for (const alternative of z.alternatives) {
@@ -102,12 +108,20 @@ describe("apc's statements over its lexicon", () => {
           free++;
           continue;
         }
+        // The article's forms are the profile's join, read by the grader word by word against the spelling.
+        const set = compileAcceptSet(literalAccept(z.spelling), profile);
+        if (!set.ok) throw new Error(z.spelling);
+        if (alternative.by.includes("article") && grade(set.value, alternative.spelling).verdict === "CORRECT_VARIANT") {
+          joined++;
+          continue;
+        }
         const key = alternative.by.join("+");
         waiting.set(key, (waiting.get(key) ?? 0) + 1);
       }
     }
-    // e/i and i/ee are the variations the sound statement states free: their alternatives alone compare free.
+    // The variations the sound statement states free: their alternatives alone compare free.
     expect(free).toBe(FREE);
+    expect(joined).toBe(JOINED);
     expect(Object.fromEntries([...waiting].sort(([a], [b]) => a.localeCompare(b)))).toEqual(WAITING);
   });
 });
@@ -116,43 +130,30 @@ describe("apc's statements over its lexicon", () => {
  * Alternatives that compare free under apc-Latn's correspondences: e/i, which also covers a final
  * long i written e (*fe* for *fi*: the statement's e/i holds wherever the letter stands), and i/ee
  * (stated 2026-11-23, the owner's answer to question 6: 58 alternatives moved up, every one that took
- * i/ee alone or beside e/i and a final e/i).
+ * i/ee alone or beside e/i and a final e/i); then, the same day, o/u (with ou, so u/ou's moved up
+ * too), e/ei, an initial ق written 2 or not, and the helping vowel in a final cluster (130 more).
  */
-const FREE = 189;
+const FREE = 318;
+/**
+ * Alternatives that took the article's forms (stated 2026-11-23 as the profile's join, `joins`: the
+ * owner's answer to question 6) and grade as the same word, word by word: a statement of sounds compares
+ * one string with another and never sees the article written apart or onto its noun, so they are
+ * counted here, not in FREE. 29 of the 30 that waited.
+ */
+const JOINED = 29;
 /**
  * Alternatives that do not, by the variations they took (an alternative that took several is counted
- * under all of them together): each waits on the owner's answer, one variation at a time (question 6).
- * When one is stated free in the profile's `correspondences`, its alternatives move up to FREE.
- * The article's forms, which the owner also said free, wait on a join the grader can see (the profile says why).
+ * under all of them together). The article waits once: ma3 salame for ma3 essalame writes neither its
+ * vowel, its l nor the doubled letter, which is the article left out (the profile says why). The helping vowel waits where the profile leaves it out: before
+ * a final t (bent, benet; ekht, ikhet: the past's -t beside its she, -et), in ba3d (ba3ed would compare
+ * with ba3id, far) and inside a word (khamsta3shar, a kasra of the stem the spelling cannot tell from it).
+ * 3a 2albak waits only here: compared as one string, its albak does not begin it (graded word by word,
+ * it is a variant).
  */
 const WAITING: Readonly<Record<string, number>> = {
-  "article": 12,
-  "article+e-i": 6,
-  "article+e-i+final-e-i": 1,
-  "article+e-i+final-e-i+i-ee": 1,
-  "article+e-i+i-ee": 2,
-  "article+final-e-i": 2,
-  "article+final-e-i+i-ee": 1,
-  "article+final-e-i+u-ou": 1,
-  "article+i-ee": 2,
-  "article+u-ou": 2,
-  "e-ei": 19,
-  "e-ei+final-e-i": 2,
-  "e-ei+q-initial": 1,
-  "e-ei+u-ou": 1,
-  "e-i+final-e-i+u-ou": 1,
-  "e-i+helping-vowel": 7,
-  "e-i+o-u": 6,
-  "e-i+q-initial": 1,
-  "e-i+u-ou": 2,
-  "final-e-i+u-ou": 1,
-  "helping-vowel": 37,
-  "helping-vowel+i-ee": 1,
-  "helping-vowel+o-u": 9,
-  "i-ee+o-u": 1,
-  "i-ee+q-initial": 2,
-  "i-ee+u-ou": 1,
-  "o-u": 27,
-  "q-initial": 7,
-  "u-ou": 18,
+  "article": 1,
+  "e-i+helping-vowel": 2,
+  "helping-vowel": 10,
+  "helping-vowel+o-u": 1,
+  "q-initial": 1,
 };

@@ -1267,6 +1267,9 @@ class StoryChoiceSource(BaseModel):
 type WordsAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
+type LexemesAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
 type AmbiguousAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
 
 
@@ -1294,6 +1297,12 @@ class VocalizationSource(BaseModel):
         dict[str, WordsAdditionalProperty],
         Field(description="Surface → vocalized form (its marks removed, it is the surface)."),
     ]
+    lexemes: Annotated[
+        dict[LexemeId, LexemesAdditionalProperty] | None,
+        Field(
+            description="A lexeme's first spelling, vocalized, where `words` marks the same letters for another word (the verb daras دَرَس beside the noun dars دَرِس): what its word card shows and its clip says. Its marks removed, it is that spelling."
+        ),
+    ] = None
     ambiguous: Annotated[
         dict[str, AmbiguousAdditionalProperty] | None,
         Field(
@@ -2847,6 +2856,27 @@ class Case(BaseModel):
         frozen=True,
     )
     locale: LangTag
+
+
+type Form = Annotated[str, Field(min_length=1, pattern="^[^{}\\s]+$")]
+
+
+type Form1 = Annotated[str, Field(min_length=1, pattern="^(?:[^{}\\s]+|[^{}\\s]*\\{next\\})$")]
+
+
+class Assimilates(BaseModel):
+    """
+    Its forms before a word that begins with a letter of `before` (Arabizi's sun letters), beside `forms`: in each, {next} (only at its end) is that letter written again (e{next}: essalame, es salame).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    before: Annotated[
+        UnicodeSetPattern, Field(description="The letters; {sh} for one written with two.")
+    ]
+    forms: Annotated[list[Form1], Field(min_length=1)]
 
 
 type NoteId = Annotated[
@@ -5440,6 +5470,45 @@ class Apostrophe(BaseModel):
     note: NoteId | None = None
 
 
+class Join(BaseModel):
+    """
+    A joining word (`joins`). Where an accepted answer has one of its forms followed by a word W (written apart, or split off by a `detach` step), or a word that begins with one of its assimilated forms whose letter is written twice (essalame), an answer that writes any of its forms followed by a spelling that compares as W (the profile's equivalences, free correspondences or a slip; W's other-lexeme and other-form guards hold), as one word or two, is that answer: CORRECT_VARIANT with `note` where the forms differ, nothing more where only the space does. An answer's word is split only there, and never where it is a word the course writes of another lexeme. No form is empty: the word left out stays left out.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
+    forms: Annotated[list[Form], Field(description="Its forms before any word.", min_length=1)]
+    assimilates: Annotated[
+        Assimilates | None,
+        Field(
+            description="Its forms before a word that begins with a letter of `before` (Arabizi's sun letters), beside `forms`: in each, {next} (only at its end) is that letter written again (e{next}: essalame, es salame)."
+        ),
+    ] = None
+    minRest: Annotated[
+        int | None,
+        Field(
+            description="The word after it has at least this many graphemes (default 3), so el li, which a detach step makes of elli, is no joining word and word.",
+            ge=1,
+        ),
+    ] = None
+    notBefore: Annotated[
+        list[PartOfSpeech] | None,
+        Field(
+            description="Never before a word the course stands only as one of these parts of speech (the grader's `forms`): el bos, which a detach step makes of elbos (I wear), is no article and noun.",
+            min_length=1,
+        ),
+    ] = None
+    note: Annotated[
+        NoteId | None,
+        Field(
+            description="The note for a form other than the accepted answer's (default spelling-variant)."
+        ),
+    ] = None
+
+
 class Recognizer(BaseModel):
     """
     Who hears the orthography: Whisper, in a language, or a Whisper fine-tune for a language Whisper's own does not write (Cantonese, which it writes as Mandarin: ADR 0094).
@@ -6127,6 +6196,12 @@ class Lexeme(BaseModel):
         ),
     ] = None
     form: LexicalForm | None = None
+    citation: Annotated[
+        UdFeatures | None,
+        Field(
+            description="The feature values of the form its entry is spelled in (its lemma: what a word card shows), where they are not its category's `citation` (language.yaml): apc's 2a3ed (sitting), a verb the course teaches as its masculine singular participle, not as its he-past."
+        ),
+    ] = None
     forms: Annotated[
         list[LexemeForm] | None,
         Field(
@@ -6225,6 +6300,13 @@ class MatchPolicy(BaseModel):
         list[Equivalence] | None,
         Field(
             description="Folds applied to both the answer and the accept set only for comparison, each with its own policy, e.g. Arabic hamza seats (accept-with-note) or Arabizi ch/sh (accept). The first equivalence that makes two units equal decides the policy; normalization steps, by contrast, fold silently."
+        ),
+    ] = None
+    joins: Annotated[
+        list[Join] | None,
+        Field(
+            description="Words the orthography writes onto the word after them or apart, in forms no norm picks among (Arabizi's article: el shay, elshay, l shay, lshay, esh shay). Grading compares word by word; these let one or two typed words stand for the joining word and the word after it, only where the accepted answer has the joining word there.",
+            min_length=1,
         ),
     ] = None
 

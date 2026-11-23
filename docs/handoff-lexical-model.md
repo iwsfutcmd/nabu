@@ -660,18 +660,14 @@ not kept; what a later session needs is here.
   (the bundle does not carry the language's citation cell), and a skipped card, which reveals its answer,
   logs nothing as seen.
 
-**Rules in a lexicon (2026-11-23):** the owner said go on stage 1 and asked for stage 2 beside it. Stages 1
-and 2 are built and on main; `docs/rules-design.md` has an "as built" section for each (stage 2 in two
-halves). Nothing a learner sees changed. **Not built:** stage 3 on (apc's nouns and suffixes, pruning pinned
-forms; the bundle's paradigms; the built word and the memory per branch, which needs an ADR; Spanish). Stage 3
-waits for the owner's review of apc's rules and of the lists below. **For the owner:** the 33 forms that do
-not spell as the lexicon writes the word (`form.projection`); the 89 verb tokens the rules do not give
-(`form.unaccounted`: *ru7t*/*re7t*, *or2os*, *e3zmak*, *eshrab*, *safart*, Arabizi *b7ki*, and badd, fi,
-khayef, lek, which need modelling decisions); the citation forms (33 word cards, 32 clips); what each Arabizi
-variation would newly accept (i/ee 42 spellings, the article 12, o/u 24, the helping vowel 37, e/ei 18,
-initial q 7; u/ou and a final e/i are accepted already; none collides with another word of the course).
-**i/ee is stated free** (on main); **the article's forms could not be** (word-by-word grading: they need a
-join the grader can see); the others wait on the owner's yes.
+**Rules in a lexicon (2026-11-23):** stages 1 and 2 are on main, and so is what the owner's "just do the rest"
+allowed (docs/rules-design.md, its last section): apc's verbs follow Kline, verbs are cited by their he-past,
+55 clips made again, Arabizi's free spellings and the article's join stated. **Not built:** stage 3 (apc's
+nouns, suffixes, `badd`/`fi`, clitic joins in realisation, the 33 `form.projection` forms, pruning), stage 4
+(paradigms in the bundle, the he-present beside a lemma), stage 5 (the built word; a memory per branch, with
+its ADR), stage 6 (Spanish). **For the owner:** listen to the 25 held-back clips; the review lists in
+`courses/REVIEW.md` (apc); hbo's six newly refused answers; the 309 wrong-form slips; ADR 0154; Toki Pona's
+tag.
 
 The apc prototype's participle check still covers nine forms where it covered
 thirteen: stage 2 of the design checks every participle token against the template, and the prototype is

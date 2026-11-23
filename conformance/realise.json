@@ -7135,6 +7135,1028 @@
       "note": "The citation cell with no rule: the lexeme's own form."
     },
     {
+      "id": "realise/blocking/own-citation",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules2-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Tense",
+              "Person",
+              "Number"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "notation": {
+            "vowels": {
+              "stress": "\u0331",
+              "low": "\u0332"
+            },
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]",
+              "ACC": "[\u0331\u0332]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-present-ie",
+              "when": {
+                "class": "e-ie",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "prefix": [
+                    {
+                      "branch": "ie",
+                      "add": "ie"
+                    }
+                  ]
+                },
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-present",
+              "when": {
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "3sg",
+                      "feats": {
+                        "Person": "3",
+                        "Number": "Sing"
+                      },
+                      "add": "a"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-past",
+              "when": {
+                "feats": {
+                  "Tense": "Past"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "e"
+                    },
+                    {
+                      "branch": "3sg",
+                      "feats": {
+                        "Person": "3",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "ron"
+                    },
+                    {
+                      "branch": "else",
+                      "add": "a"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-assimilation",
+              "find": "n+p",
+              "to": "m+p"
+            },
+            {
+              "id": "rule:zz-voicing",
+              "find": "{V}f{V}",
+              "to": "{V}v{V}"
+            },
+            {
+              "id": "rule:zz-palatal",
+              "find": "k",
+              "before": [
+                "e",
+                "i"
+              ],
+              "to": "ch"
+            },
+            {
+              "id": "rule:zz-lenition",
+              "find": "d",
+              "after": "{V}",
+              "to": "dh"
+            },
+            {
+              "id": "rule:zz-devoicing",
+              "find": "g",
+              "at": "end",
+              "to": "k"
+            },
+            {
+              "id": "rule:zz-spelling",
+              "find": "[wy]",
+              "map": {
+                "w": "v",
+                "y": "j"
+              }
+            },
+            {
+              "id": "rule:zz-final-h",
+              "find": "{V}{ACC}",
+              "at": "end",
+              "to": "{V}{ACC}h"
+            },
+            {
+              "id": "rule:zz-degemination",
+              "branch": "l",
+              "find": "l+?l",
+              "to": "l+?"
+            },
+            {
+              "id": "rule:zz-initial",
+              "find": "x",
+              "after": "#",
+              "to": "sh"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules2-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:adu",
+              "pos": "NOUN",
+              "form": "adu"
+            },
+            {
+              "id": "lexeme:al",
+              "pos": "NOUN",
+              "form": "al"
+            },
+            {
+              "id": "lexeme:alla",
+              "pos": "NOUN",
+              "form": "alla"
+            },
+            {
+              "id": "lexeme:atar",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "form": "x",
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Person": "1"
+                  },
+                  "form": "y",
+                  "status": "pinned"
+                }
+              ],
+              "form": "at"
+            },
+            {
+              "id": "lexeme:bag",
+              "pos": "NOUN",
+              "form": "bag"
+            },
+            {
+              "id": "lexeme:cafe",
+              "pos": "NOUN",
+              "form": "cafe\u0331"
+            },
+            {
+              "id": "lexeme:darse",
+              "pos": "VERB",
+              "form": {
+                "parts": [
+                  "lexeme:dar",
+                  "lexeme:se"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:du",
+              "pos": "NOUN",
+              "form": "du"
+            },
+            {
+              "id": "lexeme:gab",
+              "pos": "NOUN",
+              "form": "gab"
+            },
+            {
+              "id": "lexeme:hablar",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past",
+                    "Mood": "Sub"
+                  },
+                  "form": "hablara",
+                  "status": "listed",
+                  "free": true,
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                },
+                {
+                  "feats": {
+                    "Tense": "Past",
+                    "Mood": "Sub"
+                  },
+                  "form": "hablase",
+                  "status": "listed",
+                  "free": true,
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                }
+              ],
+              "form": "habl"
+            },
+            {
+              "id": "lexeme:in",
+              "form": "in"
+            },
+            {
+              "id": "lexeme:ir",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "form": "fue",
+                  "status": "listed",
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                }
+              ],
+              "form": "ir"
+            },
+            {
+              "id": "lexeme:kana",
+              "pos": "NOUN",
+              "form": "kana"
+            },
+            {
+              "id": "lexeme:kanta",
+              "pos": "VERB",
+              "form": "kant"
+            },
+            {
+              "id": "lexeme:kantor",
+              "pos": "VERB",
+              "form": "kantor",
+              "citation": {
+                "Aspect": "Part"
+              }
+            },
+            {
+              "id": "lexeme:kasa",
+              "pos": "NOUN",
+              "form": "kasa"
+            },
+            {
+              "id": "lexeme:katab",
+              "pos": "VERB",
+              "form": {
+                "radicals": [
+                  "k",
+                  "t",
+                  "b"
+                ],
+                "form": "I"
+              }
+            },
+            {
+              "id": "lexeme:kena",
+              "pos": "NOUN",
+              "form": "kena"
+            },
+            {
+              "id": "lexeme:la",
+              "pos": "NOUN",
+              "form": "la"
+            },
+            {
+              "id": "lexeme:papel",
+              "pos": "NOUN",
+              "form": "papel"
+            },
+            {
+              "id": "lexeme:pensar",
+              "pos": "VERB",
+              "classes": [
+                "e-ie"
+              ],
+              "form": "pens"
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "allomorphs": [
+                {
+                  "form": "es",
+                  "after": {
+                    "endsIn": "{C}"
+                  }
+                },
+                {
+                  "form": "s"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poner",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "stem": "pus",
+                  "status": "pinned"
+                }
+              ],
+              "form": "pon"
+            },
+            {
+              "id": "lexeme:posible",
+              "pos": "ADJ",
+              "form": "posible"
+            },
+            {
+              "id": "lexeme:rafa",
+              "pos": "NOUN",
+              "form": "rafa"
+            },
+            {
+              "id": "lexeme:spelled",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "status": "pinned",
+                  "spelled": {
+                    "zz-Latn/standard": [
+                      "spt"
+                    ]
+                  }
+                }
+              ],
+              "form": "sp"
+            },
+            {
+              "id": "lexeme:tener",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "stem": "tuv",
+                  "status": "listed",
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                }
+              ],
+              "form": "ten"
+            },
+            {
+              "id": "lexeme:ver",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past",
+                    "Person": "1",
+                    "Number": "Sing"
+                  },
+                  "form": "vi",
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "stem": "vie",
+                  "status": "pinned"
+                }
+              ],
+              "form": "v"
+            },
+            {
+              "id": "lexeme:wyw",
+              "pos": "NOUN",
+              "form": "wyw"
+            },
+            {
+              "id": "lexeme:xax",
+              "pos": "NOUN",
+              "form": "xax"
+            }
+          ]
+        },
+        "lexeme": "lexeme:kantor",
+        "cell": {
+          "Aspect": "Part"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kantor",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "A lexeme cited in a cell of its own (`citation` on the entry: apc's 2a3ed, cited as its participle), no rule: its own form."
+    },
+    {
+      "id": "realise/error/own-citation-no-rule",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules2-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Tense",
+              "Person",
+              "Number"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "notation": {
+            "vowels": {
+              "stress": "\u0331",
+              "low": "\u0332"
+            },
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]",
+              "ACC": "[\u0331\u0332]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-present-ie",
+              "when": {
+                "class": "e-ie",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "prefix": [
+                    {
+                      "branch": "ie",
+                      "add": "ie"
+                    }
+                  ]
+                },
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-present",
+              "when": {
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "3sg",
+                      "feats": {
+                        "Person": "3",
+                        "Number": "Sing"
+                      },
+                      "add": "a"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-past",
+              "when": {
+                "feats": {
+                  "Tense": "Past"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "e"
+                    },
+                    {
+                      "branch": "3sg",
+                      "feats": {
+                        "Person": "3",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "ron"
+                    },
+                    {
+                      "branch": "else",
+                      "add": "a"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-assimilation",
+              "find": "n+p",
+              "to": "m+p"
+            },
+            {
+              "id": "rule:zz-voicing",
+              "find": "{V}f{V}",
+              "to": "{V}v{V}"
+            },
+            {
+              "id": "rule:zz-palatal",
+              "find": "k",
+              "before": [
+                "e",
+                "i"
+              ],
+              "to": "ch"
+            },
+            {
+              "id": "rule:zz-lenition",
+              "find": "d",
+              "after": "{V}",
+              "to": "dh"
+            },
+            {
+              "id": "rule:zz-devoicing",
+              "find": "g",
+              "at": "end",
+              "to": "k"
+            },
+            {
+              "id": "rule:zz-spelling",
+              "find": "[wy]",
+              "map": {
+                "w": "v",
+                "y": "j"
+              }
+            },
+            {
+              "id": "rule:zz-final-h",
+              "find": "{V}{ACC}",
+              "at": "end",
+              "to": "{V}{ACC}h"
+            },
+            {
+              "id": "rule:zz-degemination",
+              "branch": "l",
+              "find": "l+?l",
+              "to": "l+?"
+            },
+            {
+              "id": "rule:zz-initial",
+              "find": "x",
+              "after": "#",
+              "to": "sh"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules2-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:adu",
+              "pos": "NOUN",
+              "form": "adu"
+            },
+            {
+              "id": "lexeme:al",
+              "pos": "NOUN",
+              "form": "al"
+            },
+            {
+              "id": "lexeme:alla",
+              "pos": "NOUN",
+              "form": "alla"
+            },
+            {
+              "id": "lexeme:atar",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "form": "x",
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Person": "1"
+                  },
+                  "form": "y",
+                  "status": "pinned"
+                }
+              ],
+              "form": "at"
+            },
+            {
+              "id": "lexeme:bag",
+              "pos": "NOUN",
+              "form": "bag"
+            },
+            {
+              "id": "lexeme:cafe",
+              "pos": "NOUN",
+              "form": "cafe\u0331"
+            },
+            {
+              "id": "lexeme:darse",
+              "pos": "VERB",
+              "form": {
+                "parts": [
+                  "lexeme:dar",
+                  "lexeme:se"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:du",
+              "pos": "NOUN",
+              "form": "du"
+            },
+            {
+              "id": "lexeme:gab",
+              "pos": "NOUN",
+              "form": "gab"
+            },
+            {
+              "id": "lexeme:hablar",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past",
+                    "Mood": "Sub"
+                  },
+                  "form": "hablara",
+                  "status": "listed",
+                  "free": true,
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                },
+                {
+                  "feats": {
+                    "Tense": "Past",
+                    "Mood": "Sub"
+                  },
+                  "form": "hablase",
+                  "status": "listed",
+                  "free": true,
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                }
+              ],
+              "form": "habl"
+            },
+            {
+              "id": "lexeme:in",
+              "form": "in"
+            },
+            {
+              "id": "lexeme:ir",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "form": "fue",
+                  "status": "listed",
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                }
+              ],
+              "form": "ir"
+            },
+            {
+              "id": "lexeme:kana",
+              "pos": "NOUN",
+              "form": "kana"
+            },
+            {
+              "id": "lexeme:kanta",
+              "pos": "VERB",
+              "form": "kant"
+            },
+            {
+              "id": "lexeme:kantor",
+              "pos": "VERB",
+              "form": "kantor",
+              "citation": {
+                "Aspect": "Part"
+              }
+            },
+            {
+              "id": "lexeme:kasa",
+              "pos": "NOUN",
+              "form": "kasa"
+            },
+            {
+              "id": "lexeme:katab",
+              "pos": "VERB",
+              "form": {
+                "radicals": [
+                  "k",
+                  "t",
+                  "b"
+                ],
+                "form": "I"
+              }
+            },
+            {
+              "id": "lexeme:kena",
+              "pos": "NOUN",
+              "form": "kena"
+            },
+            {
+              "id": "lexeme:la",
+              "pos": "NOUN",
+              "form": "la"
+            },
+            {
+              "id": "lexeme:papel",
+              "pos": "NOUN",
+              "form": "papel"
+            },
+            {
+              "id": "lexeme:pensar",
+              "pos": "VERB",
+              "classes": [
+                "e-ie"
+              ],
+              "form": "pens"
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "allomorphs": [
+                {
+                  "form": "es",
+                  "after": {
+                    "endsIn": "{C}"
+                  }
+                },
+                {
+                  "form": "s"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poner",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "stem": "pus",
+                  "status": "pinned"
+                }
+              ],
+              "form": "pon"
+            },
+            {
+              "id": "lexeme:posible",
+              "pos": "ADJ",
+              "form": "posible"
+            },
+            {
+              "id": "lexeme:rafa",
+              "pos": "NOUN",
+              "form": "rafa"
+            },
+            {
+              "id": "lexeme:spelled",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "status": "pinned",
+                  "spelled": {
+                    "zz-Latn/standard": [
+                      "spt"
+                    ]
+                  }
+                }
+              ],
+              "form": "sp"
+            },
+            {
+              "id": "lexeme:tener",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "stem": "tuv",
+                  "status": "listed",
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                }
+              ],
+              "form": "ten"
+            },
+            {
+              "id": "lexeme:ver",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past",
+                    "Person": "1",
+                    "Number": "Sing"
+                  },
+                  "form": "vi",
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "stem": "vie",
+                  "status": "pinned"
+                }
+              ],
+              "form": "v"
+            },
+            {
+              "id": "lexeme:wyw",
+              "pos": "NOUN",
+              "form": "wyw"
+            },
+            {
+              "id": "lexeme:xax",
+              "pos": "NOUN",
+              "form": "xax"
+            }
+          ]
+        },
+        "lexeme": "lexeme:kantor",
+        "cell": {
+          "VerbForm": "Inf"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "error": {
+          "kind": "no-rule"
+        }
+      },
+      "note": "A lexeme with a citation of its own is not cited in its category's cell: no rule holds there."
+    },
+    {
       "id": "realise/error/no-rule",
       "op": "realise",
       "args": {

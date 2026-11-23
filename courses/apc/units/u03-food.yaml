@@ -1,6 +1,6 @@
 # Fixture course (apc), unit 3: food and the table. Hospitality (tfaddal, sa77tein / 3a albak, kol!),
 # the article el- (joined in Arabic script, a word of its own in Arabizi), breakfast and mezze.
-# The first verbs come as imperatives (kol, eshrab): the bare stem, before the b- present of unit 6.
+# The first verbs come as imperatives (kol, shrab): the bare stem, before the b- present of unit 6.
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
 id: u03-food
 title:
@@ -61,13 +61,13 @@ sentences:
   - {persons: {addressee: m}}
   forms:
     apc-Arab/standard:
-      text: اشرب شاي!
-      tokens: [{surface: اشرب, lexeme: shereb, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}]
-      reverse: اشرب شاي
+      text: شرب شاي!
+      tokens: [{surface: شرب, lexeme: shereb, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}]
+      reverse: (شرب|اشرب) شاي
     apc-Latn/arabizi:
-      text: eshrab shay!
-      tokens: [{surface: eshrab, lexeme: shereb, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: shay, lexeme: shay, feats: {Number: Sing}}]
-      reverse: (eshrab|ishrab|shrab) (shay|shai)
+      text: shrab shay!
+      tokens: [{surface: shrab, lexeme: shereb, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: shay, lexeme: shay, feats: {Number: Sing}}]
+      reverse: (shrab|eshrab|ishrab) (shay|shai)
   translations:
     en: |-
       Drink (some tea|tea)!
@@ -642,13 +642,13 @@ sentences:
   - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
-      text: اشربوا شاي!
-      tokens: [{surface: اشربوا, lexeme: shereb, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}]
-      reverse: (اشربوا|اشربو) شاي
+      text: شربوا شاي!
+      tokens: [{surface: شربوا, lexeme: shereb, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}]
+      reverse: (شربوا|شربو|اشربوا|اشربو) شاي
     apc-Latn/arabizi:
-      text: eshrabo shay!
-      tokens: [{surface: eshrabo, lexeme: shereb, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: shay, lexeme: shay, feats: {Number: Sing}}]
-      reverse: (eshrabo|ishrabo|shrabo|eshrabu) (shay|shai)
+      text: shrabo shay!
+      tokens: [{surface: shrabo, lexeme: shereb, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: shay, lexeme: shay, feats: {Number: Sing}}]
+      reverse: (shrabo|eshrabo|ishrabo|eshrabu) (shay|shai)
   translations:
     en: |-
       Drink (some tea|tea)!

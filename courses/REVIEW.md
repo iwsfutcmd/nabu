@@ -293,6 +293,15 @@ points below land, and its chapter is cited where it does.
   (s.home.23 بعيد / بعيدة, s.num.22, s.food.20, s.party.28, s.shop.7, s.shop.18, s.shop.25–27, s.health.20,
   s.work.29). "Shall we…?" (s.like.22) takes the bare imperfect نشوف as well as منشوف. The two untagged "you"
   sentences are tagged: s.day.24 to one person (بتحكي is a man's and a woman's), s.child.14 to a man.
+- **Follows Kline now, the old spelling accepted** (the owner, 2026-11-23): *re7t* (ru7t), *er2os* (or2os), *a3zmak*
+  (e3zmak), *shrab* (eshrab), *sefart* (safart), *be7ki* (b7ki), *b3atli* (ba3atli), ليكوا (ليكو). Word cards show a
+  verb's he-past (عمل *3emel*, راح *ra7*). Please listen to the 55 clips made again in the audio check, the 25
+  held-back ones first (17 are single words).
+- **Arabizi's other free spellings** (profile, each REVIEW with its cost): o/u, e/ei, a *2* left out before a or y,
+  the helping vowel in a final cluster not ending in t, and the article joined, apart or assimilated (`joins`: check
+  the sun letters, j among them). Arabizi writes no length, so *beint* passes for *bent* and *yum* for *yom*.
+  *sme3teene* for *sme3teni* and *lik* for *lek* are now refused as another form. *3a l ba7r* for *3al ba7r* is
+  still wrong: should it be?
 - **Arabizi's ee for i is free** (the owner, 2026-11-23; profile, REVIEW): *kbeer* for *kbir*, *akeed* for *akid*.
   Its cost: a short i typed ee (*beeshrab*, *3endeek*) is accepted too, and *sme3teene* (to a woman) now passes
   silently for *sme3teni* (to a man), where it was a slip. Separately, the older long-vowels fold accepts *meen* (who)

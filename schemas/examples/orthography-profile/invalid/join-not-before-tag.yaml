@@ -1,0 +1,10 @@
+# notBefore names parts of speech by their Universal Dependencies tags.
+id: apc-Latn/arabizi
+lang: apc-Latn
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize: [nfc]
+match:
+  joins:
+    - id: article
+      forms: [el]
+      notBefore: [verb]

@@ -5,6 +5,7 @@
  * pure; the Node loader (core-cli) and the client both resolve it.
  */
 import type { DataTable, FormCondition, KeyboardLayout, OrthographyProfile, Policy } from "@nabu/schema";
+import { compileJoin, type CompiledJoin } from "../match/join.ts";
 import { compileNormalizer, literalMap, type StepFn } from "../normalize/steps.ts";
 import { err, ok, type Result } from "../result.ts";
 import { compileProjection, type Projection } from "../project/sound.ts";
@@ -91,6 +92,8 @@ export interface CompiledProfile {
    * sound. Absent where the profile states no `sound`: the sound question is never asked.
    */
   readonly projection?: Projection;
+  /** Words written onto the next or apart in free forms (`match.joins`: Arabizi's article). */
+  readonly joins?: readonly CompiledJoin[];
 }
 
 export interface CompiledContrast {
@@ -118,7 +121,8 @@ export type ProfileError =
   | { readonly code: "unknown-scheme"; readonly scheme: string }
   | { readonly code: "bad-step"; readonly message: string }
   | { readonly code: "bad-unicode-set"; readonly message: string }
-  | { readonly code: "bad-correspondence"; readonly message: string };
+  | { readonly code: "bad-correspondence"; readonly message: string }
+  | { readonly code: "bad-join"; readonly message: string };
 
 const DEFAULT_MAX_RATIO = 0.2;
 const CACHE_LIMIT = 4096;
@@ -293,6 +297,13 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
   if (profile.sound?.from === "reading" && readingScheme(profile.sound.scheme) === undefined) errors.push({ code: "unknown-scheme", scheme: profile.sound.scheme });
   const projection = projected.ok ? projected.value : undefined;
 
+  const joins: CompiledJoin[] = [];
+  for (const j of match.joins ?? []) {
+    const made = compileJoin(j, fold);
+    if (made.ok) joins.push(made.value);
+    else errors.push({ code: "bad-join", message: made.error });
+  }
+
   if (errors.length > 0) return err(errors);
   return ok({
     id: profile.id,
@@ -310,6 +321,7 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
     ...(homophones && { homophones }),
     ...(scriptMismatch && { scriptMismatch }),
     ...(projection && { projection }),
+    ...(joins.length > 0 && { joins }),
     ...(typo && { typo }),
     ...(match.apostrophe && { apostrophe: { policy: match.apostrophe.policy, note: match.apostrophe.note } }),
   });

@@ -743,6 +743,12 @@
           "type": "object",
           "additionalProperties": { "type": "string", "minLength": 1 }
         },
+        "lexemes": {
+          "description": "A lexeme's first spelling, vocalized, where `words` marks the same letters for another word (the verb daras دَرَس beside the noun dars دَرِس): what its word card shows and its clip says. Its marks removed, it is that spelling.",
+          "type": "object",
+          "propertyNames": { "$ref": "common.schema.json#/$defs/LexemeId" },
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
         "ambiguous": {
           "description": "Surfaces with more than one vocalization in the course: each token chooses.",
           "type": "object",

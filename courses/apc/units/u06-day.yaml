@@ -273,11 +273,11 @@ sentences:
         (المسا|بالمسا) بقرا
         بقرا (المسا|بالمسا)
     apc-Latn/arabizi:
-      text: el masa b2ra.
-      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: masa, lexeme: masa, feats: {Number: Sing}, n: 2}, {surface: b2ra, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]
+      text: el masa be2ra.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: masa, lexeme: masa, feats: {Number: Sing}, n: 2}, {surface: be2ra, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]
       reverse: |-
-        (el|l|il|bel|bil) (masa|masa2) (b2ra|be2ra|bi2ra|b2ara)
-        (b2ra|be2ra|bi2ra|b2ara) (el|l|il|bel|bil) (masa|masa2)
+        (el|l|il|bel|bil) (masa|masa2) (be2ra|b2ra|bi2ra|b2ara)
+        (be2ra|b2ra|bi2ra|b2ara) (el|l|il|bel|bil) (masa|masa2)
   translations:
     en: |-
       In the evening I read.
@@ -435,9 +435,9 @@ sentences:
       tokens: [{surface: بحكي, lexeme: 7aka, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: مع, lexeme: ma3, n: 2, head: 3, rel: case}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}, n: 3}]
       reverse: (بحكي|أنا بحكي) مع تيتا
     apc-Latn/arabizi:
-      text: b7ki ma3 teta.
-      tokens: [{surface: b7ki, lexeme: 7aka, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ma3, lexeme: ma3, n: 2, head: 3, rel: case}, {surface: teta, lexeme: teta, feats: {Number: Sing}, n: 3}]
-      reverse: ((b7ki|be7ke|b7ke|bhki|bi7ki)|ana (b7ki|be7ke|b7ke|bhki|bi7ki)) (ma3|ma3a) (teta|tayta)
+      text: be7ki ma3 teta.
+      tokens: [{surface: be7ki, lexeme: 7aka, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ma3, lexeme: ma3, n: 2, head: 3, rel: case}, {surface: teta, lexeme: teta, feats: {Number: Sing}, n: 3}]
+      reverse: ((be7ki|b7ki|be7ke|b7ke|bhki|bi7ki)|ana (be7ki|b7ki|be7ke|b7ke|bhki|bi7ki)) (ma3|ma3a) (teta|tayta)
   translations:
     en: |-
       I talk (to|with) (grandma|granny).
@@ -453,9 +453,9 @@ sentences:
       tokens: [{surface: بتحكي, lexeme: 7aka, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: عربي, lexeme: 3arabe, feats: {Number: Sing}}]
       reverse: (بتحكي|إنت بتحكي|إنتي بتحكي) عربي
     apc-Latn/arabizi:
-      text: bt7ki 3arabe?
-      tokens: [{surface: bt7ki, lexeme: 7aka, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: 3arabe, lexeme: 3arabe, feats: {Number: Sing}}]
-      reverse: ((bt7ki|bte7ke|bt7ke|bti7ki)|(enta|inta|enti|inti) (bt7ki|bte7ke|bt7ke|bti7ki)) (3arabe|3arabi|arabi)
+      text: bte7ki 3arabe?
+      tokens: [{surface: bte7ki, lexeme: 7aka, feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}}, {surface: 3arabe, lexeme: 3arabe, feats: {Number: Sing}}]
+      reverse: ((bte7ki|bt7ki|bte7ke|bt7ke|bti7ki)|(enta|inta|enti|inti) (bte7ki|bt7ki|bte7ke|bt7ke|bti7ki)) (3arabe|3arabi|arabi)
   translations:
     en: |-
       Do you speak Arabic?
@@ -486,9 +486,9 @@ sentences:
       tokens: [{surface: بحكي, lexeme: 7aka, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: إنكليزي, lexeme: englize, feats: {Number: Sing}}]
       reverse: (بحكي|أنا بحكي) (إنكليزي|انجليزي)
     apc-Latn/arabizi:
-      text: b7ki englize.
-      tokens: [{surface: b7ki, lexeme: 7aka, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: englize, lexeme: englize, feats: {Number: Sing}}]
-      reverse: ((b7ki|be7ke|b7ke|bhki|bi7ki)|ana (b7ki|be7ke|b7ke|bhki|bi7ki)) (englize|inglizi|englizi|inglize)
+      text: be7ki englize.
+      tokens: [{surface: be7ki, lexeme: 7aka, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: englize, lexeme: englize, feats: {Number: Sing}}]
+      reverse: ((be7ki|b7ki|be7ke|b7ke|bhki|bi7ki)|ana (be7ki|b7ki|be7ke|b7ke|bhki|bi7ki)) (englize|inglizi|englizi|inglize)
   translations:
     en: |-
       I speak English.
@@ -853,8 +853,8 @@ stories:
           text: المَسا بِقْرا، وبْنام بَكّير.
           tokens: [{surface: المَسا, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: masa, surface: مَسا, base: true, feats: {Number: Sing}, n: 2}]}, {surface: بِقْرا, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: وبْنام, lexemes: [{lexeme: w, surface: و}, {lexeme: nem, surface: بْنام, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]}, {surface: بَكّير, lexeme: bakkir}]
         apc-Latn/arabizi:
-          text: el masa b2ra, w bnem bakkir.
-          tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: masa, lexeme: masa, feats: {Number: Sing}, n: 2}, {surface: b2ra, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: w, lexeme: w}, {surface: bnem, lexeme: nem, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: bakkir, lexeme: bakkir}]
+          text: el masa be2ra, w bnem bakkir.
+          tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: masa, lexeme: masa, feats: {Number: Sing}, n: 2}, {surface: be2ra, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: w, lexeme: w}, {surface: bnem, lexeme: nem, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: bakkir, lexeme: bakkir}]
       translations:
         en: In the evening I read, and I go to bed early.
   - line:

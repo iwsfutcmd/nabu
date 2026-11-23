@@ -71,6 +71,10 @@
           "$ref": "common.schema.json#/$defs/ImageAsset"
         },
         "form": { "$ref": "#/$defs/LexicalForm" },
+        "citation": {
+          "description": "The feature values of the form its entry is spelled in (its lemma: what a word card shows), where they are not its category's `citation` (language.yaml): apc's 2a3ed (sitting), a verb the course teaches as its masculine singular participle, not as its he-past.",
+          "$ref": "common.schema.json#/$defs/UdFeatures"
+        },
         "forms": {
           "description": "The forms and stems no rule gives yet (ADR 0145): each listed or pinned.",
           "type": "array",

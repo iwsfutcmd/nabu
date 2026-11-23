@@ -217,11 +217,11 @@ sentences:
       tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: اعزمك, lexemes: [{lexeme: 3azam, surface: اعزم, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ك}]}, {surface: عالعشا, lexemes: [{lexeme: 3a, surface: ع, n: 5, head: 7, rel: case}, {lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: 3asha, surface: عشا, base: true, feats: {Number: Sing}, n: 7}]}]
       reverse: (بدّي|أنا بدّي) اعزمك (عالعشا|ع العشا|على العشا)
     apc-Latn/arabizi:
-      text: baddi e3zmak 3al 3asha.
-      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: e3zmak, lexemes: [{lexeme: 3azam, surface: e3zm, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ak}]}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: 3asha, lexeme: 3asha, feats: {Number: Sing}, n: 7}]
+      text: baddi a3zmak 3al 3asha.
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: a3zmak, lexemes: [{lexeme: 3azam, surface: a3zm, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ak}]}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: 3asha, lexeme: 3asha, feats: {Number: Sing}, n: 7}]
       reverse: |-
-        (baddi|badde|badi) (e3zmak|e3zemak|i3zmak|a3zmak) (3al|3a l|3a el) (3asha|3ashe)
-        ana baddi e3zmak 3al 3asha
+        (baddi|badde|badi) (a3zmak|e3zmak|e3zemak|i3zmak) (3al|3a l|3a el) (3asha|3ashe)
+        ana baddi (a3zmak|e3zmak) 3al 3asha
   translations:
     en: |-
       I want to invite you (to|for) dinner.
@@ -233,14 +233,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بدّي اعزمك عالعشا.
-      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: اعزمك, lexemes: [{lexeme: 3azam, surface: اعزم, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ك}], vocalized: اِعْزْمِك}, {surface: عالعشا, lexemes: [{lexeme: 3a, surface: ع, n: 5, head: 7, rel: case}, {lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: 3asha, surface: عشا, base: true, feats: {Number: Sing}, n: 7}]}]
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: اعزمك, lexemes: [{lexeme: 3azam, surface: اعزم, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ك}], vocalized: اَعْزْمِك}, {surface: عالعشا, lexemes: [{lexeme: 3a, surface: ع, n: 5, head: 7, rel: case}, {lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: 3asha, surface: عشا, base: true, feats: {Number: Sing}, n: 7}]}]
       reverse: (بدّي|أنا بدّي) اعزمك (عالعشا|ع العشا|على العشا)
     apc-Latn/arabizi:
-      text: baddi e3zmik 3al 3asha.
-      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: e3zmik, lexemes: [{lexeme: 3azam, surface: e3zm, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ik}]}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: 3asha, lexeme: 3asha, feats: {Number: Sing}, n: 7}]
+      text: baddi a3zmik 3al 3asha.
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: a3zmik, lexemes: [{lexeme: 3azam, surface: a3zm, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2fs, surface: ik}]}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: 3asha, lexeme: 3asha, feats: {Number: Sing}, n: 7}]
       reverse: |-
-        (baddi|badde|badi) (e3zmik|e3zemik|i3zmik|a3zmik) (3al|3a l|3a el) (3asha|3ashe)
-        ana baddi e3zmik 3al 3asha
+        (baddi|badde|badi) (a3zmik|e3zmik|e3zemik|i3zmik) (3al|3a l|3a el) (3asha|3ashe)
+        ana baddi (a3zmik|e3zmik) 3al 3asha
   translations:
     en: |-
       I want to invite you (to|for) dinner.
@@ -380,11 +380,11 @@ sentences:
         (ليش|ليه) ما رحت (عالعرس|ع العرس|على العرس)
         إنت ليش ما رحت عالعرس
     apc-Latn/arabizi:
-      text: lesh ma ru7t 3al 3irs?
-      tokens: [{surface: lesh, lexeme: lesh}, {surface: ma, lexeme: ma}, {surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 4, head: 6, rel: case}, {lexeme: el, surface: l, n: 5, head: 6, rel: det}]}, {surface: 3irs, lexeme: 3irs, feats: {Number: Sing}, n: 6}]
+      text: lesh ma re7t 3al 3irs?
+      tokens: [{surface: lesh, lexeme: lesh}, {surface: ma, lexeme: ma}, {surface: re7t, lexeme: ra7, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 4, head: 6, rel: case}, {lexeme: el, surface: l, n: 5, head: 6, rel: det}]}, {surface: 3irs, lexeme: 3irs, feats: {Number: Sing}, n: 6}]
       reverse: |-
-        (lesh|leh|laysh|leish) ma (ru7t|re7et|ri7t|ro7t|re7t) (3al|3a l|3a el) (3irs|3eres|3ers)
-        enta lesh ma ru7t 3al 3irs
+        (lesh|leh|laysh|leish) ma (re7t|ru7t|re7et|ri7t|ro7t) (3al|3a l|3a el) (3irs|3eres|3ers)
+        enta lesh ma (re7t|ru7t) 3al 3irs
   translations:
     en: Why (didn't|did not) you go to the wedding?
 - id: s.party.21
@@ -642,10 +642,11 @@ sentences:
   - {persons: {addressee: pl}}
   forms:
     apc-Arab/standard:
-      text: ليكو!
-      tokens: [{surface: ليكو, lexeme: lek, feats: {Mood: Imp, Number: Plur, Person: '2'}}]
+      text: ليكوا!
+      # REVIEW: ليكوا with the plural's silent alef, as every other verb writes it (Kline p. 95); ليكو accepted.
+      tokens: [{surface: ليكوا, lexeme: lek, feats: {Mood: Imp, Number: Plur, Person: '2'}}]
       reverse: |-
-        ليكو
+        (ليكوا|ليكو)
         شوفوا
     apc-Latn/arabizi:
       text: leko!
@@ -714,11 +715,11 @@ stories:
       speaker: maya
       forms:
         apc-Arab/standard:
-          text: بْأَيْلول. وبَدّي اِعْزْمَك!
-          tokens: [{surface: بْأَيْلول, lexemes: [{lexeme: b, surface: بْ, n: 1, head: 2, rel: case}, {lexeme: aylul, surface: أَيْلول, base: true, n: 2}]}, {surface: وبَدّي, lexemes: [{lexeme: w, surface: و}, {lexeme: badd, surface: بَدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: اِعْزْمَك, lexemes: [{lexeme: 3azam, surface: اِعْزْمَ, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ك}]}]
+          text: بْأَيْلول. وبَدّي اَعْزْمَك!
+          tokens: [{surface: بْأَيْلول, lexemes: [{lexeme: b, surface: بْ, n: 1, head: 2, rel: case}, {lexeme: aylul, surface: أَيْلول, base: true, n: 2}]}, {surface: وبَدّي, lexemes: [{lexeme: w, surface: و}, {lexeme: badd, surface: بَدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: اَعْزْمَك, lexemes: [{lexeme: 3azam, surface: اَعْزْمَ, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ك}]}]
         apc-Latn/arabizi:
-          text: b aylul. w baddi e3zmak!
-          tokens: [{surface: b, lexeme: b, n: 1, head: 2, rel: case}, {surface: aylul, lexeme: aylul, n: 2}, {surface: w, lexeme: w}, {surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: e3zmak, lexemes: [{lexeme: 3azam, surface: e3zm, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ak}]}]
+          text: b aylul. w baddi a3zmak!
+          tokens: [{surface: b, lexeme: b, n: 1, head: 2, rel: case}, {surface: aylul, lexeme: aylul, n: 2}, {surface: w, lexeme: w}, {surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: a3zmak, lexemes: [{lexeme: 3azam, surface: a3zm, base: true, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ak}]}]
       translations:
         en: In September. And I want to invite you!
   - line:
@@ -772,11 +773,11 @@ stories:
       ask: arrange
       forms:
         apc-Arab/standard:
-          text: لَأَنُّه ما بَعْرِف اُرْقُص!
-          tokens: [{surface: لَأَنُّه, lexeme: la2anno}, {surface: ما, lexeme: ma}, {surface: بَعْرِف, lexeme: 3eref, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: اُرْقُص, lexeme: ra2as, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}]
+          text: لَأَنُّه ما بَعْرِف اِرْقُص!
+          tokens: [{surface: لَأَنُّه, lexeme: la2anno}, {surface: ما, lexeme: ma}, {surface: بَعْرِف, lexeme: 3eref, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: اِرْقُص, lexeme: ra2as, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}]
         apc-Latn/arabizi:
-          text: la2anno ma ba3ref or2os!
-          tokens: [{surface: la2anno, lexeme: la2anno}, {surface: ma, lexeme: ma}, {surface: ba3ref, lexeme: 3eref, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: or2os, lexeme: ra2as, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}]
+          text: la2anno ma ba3ref er2os!
+          tokens: [{surface: la2anno, lexeme: la2anno}, {surface: ma, lexeme: ma}, {surface: ba3ref, lexeme: 3eref, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: er2os, lexeme: ra2as, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}]
       translations:
         en: Because I don't know how to dance!
   - line:

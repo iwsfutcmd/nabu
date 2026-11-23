@@ -591,3 +591,36 @@ Report only: no token, spelling, vocalization or clip changed, and the bundles a
   out (section 8), or a detach that knows the lexicon. 0 of its 12 are newly accepted.
 - **Waiting on the owner's yes, each:** o/u (24), the helping vowel (37), e/ei (18), an initial ق left out (7).
 
+## The owner's "just do the rest" (2026-11-23), and what was done by it
+
+Read as: go with the builder's recommendation on every open point and carry on through the stages; everything
+stays REVIEW. Three jobs landed together.
+
+- **apc's verbs follow Kline where the course differed**, the old spelling still accepted in every accept set:
+  *re7t* (13 items), *er2os* (4), *a3zmak / a3zmik* (3), *shrab / shrabo* (2), *sefart, sefer* (2), the Arabizi
+  writing the vowel its marks write (*be7ki*, *be2ra*: 10), *b3atli*, ليكوا. Data: `b3at` has a listed perfect
+  stem (Kline p. 75), `rte7`'s Form VIII alef is written and not said, `khayef` has radicals خ و ف (so *nem*
+  and it share the present-e branch), `stanna` a listed imperfect stem. `form.unaccounted` fell from 89 to 28:
+  `badd` and `fi` before a pronoun, which need an allomorph chosen by what follows (stage 3).
+- **Answer 1:** 31 verb lemmas are the he-past the rules give (the inflected form that stood first is gone
+  from `spelled`). A lexeme the course teaches as a participle keeps it and says so (`Lexeme.citation`).
+  `nabu forms` now checks verb lemmas (1,063 spellings checked; the 33 mismatches are the same, none a verb).
+  The he-present beside the lemma waits for the bundle's paradigms (stage 4).
+- **Clips:** 55 made again (17 sentences, 6 story lines, 32 words); 25 failed the round trip and are held
+  back (17 of them word clips, where the check is weak); the course's held-back total went from 250 to 253.
+  The whole course gained word timings (it had none). The simulated learners' success in apc moved from
+  84.9 to 83.8% (Arabic) and 84.5 to 83.9% (Arabizi), inside the band, nothing retuned.
+- **Answer 6, the rest:** o/u (24 of 24), e/ei (18 of 18), an initial ق left out (7 of 7) and the helping
+  vowel (27 of 36: per final cluster, since a statement cannot leave a vowel out; clusters ending in t and 3d
+  are out, by *kent / kenet*, *ba3d / ba3id*, *akl / akol*) are free. Over the whole course no two forms the
+  course keeps apart newly compare alike (*bus / bos* is refused by the grader). The grader gained one rule
+  (`pinnedElsewhere`): a word the course stands only in another form is another form, never a variant, which
+  also refuses six Hebrew answers that passed as free spellings (a singular for a plural).
+- **The article** is a join the grader can see (`match.joins`), not a correspondence: 11 of its 12 spellings
+  are variants (*ma3 salame*, the article left out, stays wrong); the 351 hand-written article alternatives
+  all grade as accepted against the canonical answer alone; *elli*, *elbos*, *el3ab* are kept out by `minRest`
+  and `notBefore`. Prepositions with the article (*3al*, *bel*) typed apart are still wrong.
+- **Found and left:** 309 pairs where an accept-set spelling of another person, gender or number is accepted
+  as a slip (*bteshteghel* for *bteshteghli*): the slip step does not ask the course's forms, some of which the
+  nearest-word rule gets wrong. *eshtara*, *eshteghel* keep their said e- where Kline has *shtara*.
+

@@ -5,8 +5,9 @@ A lexeme's `form` (lexicons/<lang>/lexemes.yaml) is spelled by each orthography'
 notation (language.yaml). The spelling, or one of the statement's free alternatives, must be what
 the lexicon spells the lexeme first in that orthography; the marked text must be the course's
 vocalization of that spelling. An allomorph with a form is checked against its own first spelling.
-A verb's form is its radicals (a `RadicalForm`): it needs a stem template to become a string (stage
-2), so it is counted and skipped.
+A verb's form is its radicals (a `RadicalForm`): it is checked through its citation cell (its own
+`citation`, else its category's in language.yaml: apc's he-past), realised by the rules first
+(core-cli `realise`, forms that pin spellings only passed over), so a lemma is what the rules give.
 
 @nabu/core spells and compares (core-cli `spell`, one batch for the course): never here. The
 compiler reports each mismatch as the warning `form.projection`; `nabu forms` lists every lexeme.
@@ -52,7 +53,7 @@ class Entry:
     """A lexeme: its form as stored (a string, or a verb's radicals), and its checks."""
 
     lexeme: str
-    kind: str  # string, radical, none
+    kind: str  # string, radical, other, none
     form: str | None
     checks: list[Check] = field(default_factory=lambda: [])
 
@@ -77,7 +78,7 @@ class Report:
             "string": kinds.count("string"),
             "allomorphs": len(allomorphs),
             "checked": len(checked),
-            "skipped as verbs": kinds.count("radical"),
+            "radical": kinds.count("radical"),
             "skipped, another kind": kinds.count("other"),
             "mismatched": sum(1 for c in checked if c.found is None),
             "lexemes mismatched": sum(1 for e in self.entries if any(c.mismatch for c in e.checks)),
@@ -101,12 +102,14 @@ def check(
     lang: Language,
     orthographies: Iterable[str],
     profiles: Mapping[str, OrthographyProfile],
-    vocalization: Mapping[str, tuple[Mapping[str, str], Any]],
+    vocalization: Mapping[str, tuple[Mapping[str, str], Any]]
+    | Mapping[str, tuple[Mapping[str, str], Any, Mapping[str, str]]],
     cli: CoreCli,
 ) -> Report:
     """Every lexeme of the lexicon with its form spelled in each of the course's orthographies whose
     profile states `spell` (and in each layer that states one, against `vocalization`: per
-    orthography its words and the marks pattern they are compared without)."""
+    orthography its words, the marks pattern they are compared without and, optionally, its
+    entries by lexeme for a first spelling)."""
     notation = lang.declared.notation
     spelling: list[tuple[str, str | None]] = []  # (orthography, layer)
     for orth in orthographies:
@@ -125,6 +128,10 @@ def check(
     dumped = (
         notation.model_dump(mode="json", by_alias=True, exclude_none=True) if notation else None
     )
+    citations = lang.declared.citation or {}
+    # A radical form's lemma: (entry index, its spellings), realised in its citation cell below.
+    cited: list[tuple[int, Mapping[str, list[str]], dict[str, Any]]] = []
+    targets_of: dict[int, list[tuple[int | None, str, Mapping[str, list[str]]]]] = {}
     for lexeme in lang.lexicon.lexemes:
         ident = str(lexeme.id)
         form = lexeme.form
@@ -133,9 +140,21 @@ def check(
             entries.append(Entry(ident, "none", None))
             continue
         if form is not None and not isinstance(form, str):
-            entries.append(
-                Entry(ident, "radical" if isinstance(form, RadicalForm) else "other", None)
+            kind = "radical" if isinstance(form, RadicalForm) else "other"
+            entries.append(Entry(ident, kind, None))
+            cell = lexeme.citation or (
+                citations.get(lexeme.pos) if lexeme.pos is not None else None
             )
+            if kind == "radical" and cell is not None and dumped is not None:
+                spelled = {str(k): v for k, v in (lexeme.spelled or {}).items()}
+                request = {
+                    "op": "realise",
+                    **language_args(lang),
+                    "lexeme": ident,
+                    "cell": {str(k): str(v) for k, v in dict(cell).items()},
+                    "spellings": False,
+                }
+                cited.append((len(entries) - 1, spelled, request))
             continue
         entries.append(Entry(ident, "string" if form is not None else "none", form))
         if dumped is None:
@@ -146,7 +165,21 @@ def check(
             targets.append((None, form, {str(k): v for k, v in (lexeme.spelled or {}).items()}))
         for i, a in allomorphs:
             targets.append((i, str(a.form), {str(k): v for k, v in (a.spelled or {}).items()}))
-        for allomorph, text, spelled in targets:
+        targets_of[len(entries) - 1] = targets
+    if cited:
+        realised = cli.batch([c[2] for c in cited])
+        for (index, spelled, request), result in zip(cited, realised, strict=True):
+            if not result["ok"]:
+                problems.append(
+                    f"{entries[index].lexeme}: its citation cell {request['cell']} does not "
+                    f"realise: {json.dumps(result['error'], ensure_ascii=False)}"
+                )
+                continue
+            text = str(result["value"]["form"])
+            entries[index] = Entry(entries[index].lexeme, "radical", text)
+            targets_of[index] = [(None, text, spelled)]
+    for index in sorted(targets_of):
+        for allomorph, text, spelled in targets_of[index]:
             for orth, layer in spelling:
                 first = (spelled.get(orth) or [None])[0]
                 expected: str | None = first
@@ -155,6 +188,9 @@ def check(
                     where = f"{orth}{LAYER}{layer}"
                     found = vocalization.get(orth)
                     expected = _vocalized(found[0], found[1], first) if found and first else None
+                    by_lexeme: Mapping[str, str] = found[2] if found and len(found) > 2 else {}
+                    if allomorph is None and entries[index].lexeme in by_lexeme:
+                        expected = by_lexeme[entries[index].lexeme]
                 request: dict[str, Any] = {
                     "op": "spell",
                     "profile": orth,
@@ -165,7 +201,7 @@ def check(
                     request["layer"] = layer
                 if expected is not None:
                     request["expected"] = expected
-                asks.append((len(entries) - 1, where, allomorph, expected, request))
+                asks.append((index, where, allomorph, expected, request))
     if asks:
         results = cli.batch([a[4] for a in asks])
         for (index, where, allomorph, expected, _), result in zip(asks, results, strict=True):
@@ -183,10 +219,11 @@ def format_report(report: Report) -> list[str]:
         if e.kind == "none":
             lines.append(f"{e.lexeme}: no form")
             continue
-        if e.kind in ("radical", "other"):
-            lines.append(f"{e.lexeme}: {e.kind} form (skipped until stage 2)")
+        if e.kind == "other" or (e.kind == "radical" and e.form is None):
+            lines.append(f"{e.lexeme}: {e.kind} form (not checked: no citation cell realised)")
             continue
-        lines.append(f"{e.lexeme}: {escaped(e.form or '')}")
+        cited = " (radicals, in its citation cell)" if e.kind == "radical" else ""
+        lines.append(f"{e.lexeme}: {escaped(e.form or '')}{cited}")
         for c in e.checks:
             of = "" if c.allomorph is None else f" (allomorph {c.allomorph})"
             if c.expected is None:
