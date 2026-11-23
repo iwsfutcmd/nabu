@@ -3,12 +3,13 @@
  * courses show suffixes and their carriers (uz), vowel marks and the ezafe (fa), two readings of one
  * script (yue) and clitics (apc). The Lexicon and Language views show fixed courses whatever the
  * toolbar's target: uz (an affix with its allomorphs in two scripts), apc (a word with a pinned form
- * and a feature of its own, spelled in Arabic script and in Arabizi) and fa's language file, each
+ * and a feature of its own, spelled in Arabic script and in Arabizi; and the lexicon filtered down to
+ * its dative clitics) and fa's language file, each
  * with the lexicon's own files as the repository has them (lexicons/<lang>/*.yaml, read at build
  * time: the app gets the same files from lexicon-source/ beside it). Small lexicons on purpose: the
  * stories' smoke pass walks every story, and a course of seven hundred lexemes is slow to lay out.
  */
-import { courseData, isLexiconSource, type CourseView, type DataView, type LexiconSource } from "@nabu/core/lesson";
+import { courseData, isLexiconSource, type CourseView, type DataView, type LexiconFilter, type LexiconSource } from "@nabu/core/lesson";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { parse } from "yaml";
 import apcLanguage from "../../../../lexicons/apc/language.yaml?raw";
@@ -81,15 +82,15 @@ const sourceOf = (lexemes: string, language: string): LexiconSource => {
 
 const SOURCES: Readonly<Record<string, readonly [string, string]>> = { uz: [uzLexemes, uzLanguage], apc: [apcLexemes, apcLanguage], fa: [faLexemes, faLanguage] };
 
-/** A fixed course's Lexicon or Language view, `opened` open and searched for. */
-const lexiconStory = (id: string, orthography: string, view: DataView, opened?: string): Story => ({
+/** A fixed course's Lexicon or Language view, `opened` open and searched for, or filtered by `filter`. */
+const lexiconStory = (id: string, orthography: string, view: DataView, opened?: string, filter?: LexiconFilter): Story => ({
   loaders: [async () => ({ lexiconCourse: await fetchCourse(BUNDLES, id, orthography) })],
   render: (_args, { loaded }) => {
     const { course, imageUrl } = loaded["lexiconCourse"] as LoadedCourse;
     const [lexemes, language] = SOURCES[id] ?? ["", ""];
     return (
       <CourseUiProvider course={course}>
-        <DataBrowser key={`${course.id}:${view}`} course={course} view={view} query={opened ?? ""} opened={opened} lexicon={sourceOf(lexemes, language)} url={imageUrl} />
+        <DataBrowser key={`${course.id}:${view}`} course={course} view={view} query={opened ?? ""} opened={opened} filter={filter} lexicon={sourceOf(lexemes, language)} url={imageUrl} />
       </CourseUiProvider>
     );
   },
@@ -99,5 +100,10 @@ const lexiconStory = (id: string, orthography: string, view: DataView, opened?: 
 export const LexiconAffix: Story = lexiconStory("uz", "uz-Latn/standard", "lexicon", "lexeme:dat");
 /** A word with a pinned form and a feature of its own (apc awwal "first"), open: its spellings in both scripts, what the bundle keeps, how its sentences write it. */
 export const LexiconForms: Story = lexiconStory("apc", "apc-Arab/standard", "lexicon", "lexeme:awwal");
+/**
+ * The lexicon filtered (apc), its filters open: bound lexemes with Case=Dat whose entries store
+ * allomorphs (the dative clitics la-1sg, la-2ms). Facets of both kinds chosen, counts beside each value.
+ */
+export const LexiconFiltered: Story = lexiconStory("apc", "apc-Arab/standard", "lexicon", undefined, { kind: ["bound"], feature: ["Case=Dat"], has: ["allomorphs"] });
 /** The language file (fa): its dimensions, features and rules, as stored. */
 export const Language: Story = lexiconStory("fa", "fa-Arab/standard", "language");

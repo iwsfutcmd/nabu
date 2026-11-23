@@ -760,6 +760,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   lexemes.yaml has it, its bundle lexeme (features marked stored or given by a default) and what the course does with
   it; its Language view shows language.yaml. The files come from lexicon-source/<course>.json beside the app
   (apps/web/lexicon-source.ts: a Vite plugin in dev and preview, written for Pages), never from a bundle.
+- The Lexicon view is filtered on top of the search by facets core reads off the lexicon (`lexiconFacets`,
+  `lexiconFilter`; LexiconFilters in @nabu/ui/data): part of speech (or `realises`), free or bound, taught, untaught or
+  only in the file, features, the keys an entry stores or lacks. A facet a lexeme has one value of takes any chosen,
+  one it has several of takes all (`FACET_COMBINE`); a value every lexeme has is not offered. Never a list in UI code.
 - Records are `DataNode` trees laid out in core, every key of a record shown, a key no one has named as text of `und`
   (lexicon-data.test.ts checks every key of every fixture lexeme): name a new field's kind there, never in UI code.
 

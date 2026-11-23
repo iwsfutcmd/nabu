@@ -48,6 +48,13 @@ export const CorrectIcon = ({ size = 28 }: IconProps): JSX.Element => (
   </svg>
 );
 
+/** A tick: a box checked. Never mirrors (a tick reads the same in either direction). */
+export const CheckIcon = ({ size = 16 }: IconProps): JSX.Element => (
+  <svg {...base(size, styles.icon)} data-icon="check">
+    <path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
 /** Feedback: not right. Symmetric: never mirrors. */
 export const WrongIcon = ({ size = 28 }: IconProps): JSX.Element => (
   <svg {...base(size, styles.icon)} data-icon="wrong">
