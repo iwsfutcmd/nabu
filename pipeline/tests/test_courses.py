@@ -24,45 +24,15 @@ PROFILES = load_profiles()
 ANALYZERS = analyzers_by_tool()
 ZWNJ = "\u200c"
 
-# Stage 2 of rules in a lexicon (docs/rules-design.md): apc's verb tokens the rules give otherwise
+# Rules in a lexicon (docs/rules-design.md): apc's verb tokens the rules give otherwise
 # (`form.unaccounted`; `nabu forms ../courses/apc` lists their items): each lexeme and cell, with
-# the orthographies or layers it misses in, however many tokens. Each awaits the owner's ruling,
-# never mended by changing a rule, a form or a token to fit.
+# the orthographies or layers it misses in, however many tokens. The course follows Kline where it
+# differed (the owner, 2026-11-23); what remains is a stem's allomorph before an ending (bad- before
+# -na and -kon, fiyy- before -i), which the rules do not choose by what follows yet. Never mended by
+# changing a rule, a form or a token to fit.
 _A, _M, _L = "apc-Arab/standard", "apc-Arab/standard#vocalized", "apc-Latn/arabizi"
 _AM = f"{_A} {_M}"
-_PERF = "lexeme:ra7|form:Aspect=Perf;"
-_SUB1 = "form:Aspect=Imp;Mood=Sub;Number=Sing;Person=1"
 APC_UNACCOUNTED: list[tuple[str, str]] = [
-    # The course against Kline, whose form the rules follow: ra7's short past stem (ru7t; Kline
-    # re7na, kent, Sert), or2os (er2oS), e3zmak (a- before 3: a3ref), eshrab (dros), safart (sefar).
-    *(
-        (_PERF + cell, where)
-        for cell in (
-            "Gender=Fem;Number=Sing;Person=2",
-            "Gender=Masc;Number=Sing;Person=2",
-            "Number=Plur;Person=1",
-            "Number=Plur;Person=2",
-            "Number=Sing;Person=1",
-        )
-        for where in (_M, _L)
-    ),
-    (f"lexeme:ra2as|{_SUB1}", _M),
-    (f"lexeme:ra2as|{_SUB1}", _L),
-    *((f"lexeme:3azam|{_SUB1}+lexeme:{o}", w) for o in ("obj-2fs", "obj-2ms") for w in (_M, _L)),
-    ("lexeme:shereb|form:Gender=Masc;Mood=Imp;Number=Sing;Person=2", _AM),
-    ("lexeme:shereb|form:Gender=Masc;Mood=Imp;Number=Sing;Person=2", _L),
-    ("lexeme:shereb|form:Mood=Imp;Number=Plur;Person=2", _AM),
-    ("lexeme:shereb|form:Mood=Imp;Number=Plur;Person=2", _L),
-    (f"lexeme:safar|{_SUB1}", _L),
-    ("lexeme:safar|form:Aspect=Perf;Number=Sing;Person=1", _L),
-    # The course against itself: its Arabizi leaves out a vowel its marks write (b7ki, bt7ki, b2ra).
-    ("lexeme:7aka|form:Aspect=Imp;Gender=Fem;Mood=Ind;Number=Sing;Person=3", _L),
-    ("lexeme:7aka|form:Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=3", _L),
-    ("lexeme:7aka|form:Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=2", _L),
-    ("lexeme:7aka|form:Aspect=Imp;Mood=Ind;Number=Sing;Person=1", _L),
-    ("lexeme:2ara|form:Aspect=Imp;Mood=Ind;Number=Sing;Person=1", _L),
-    # A stem's allomorph before an ending (bad- before -na and -kon, fiyy- before -i): not chosen
-    # by what follows yet.
     ("lexeme:badd+lexeme:poss-1pl", _M),
     ("lexeme:badd+lexeme:poss-1pl", _L),
     ("lexeme:badd+lexeme:poss-2pl", _M),
@@ -71,11 +41,6 @@ APC_UNACCOUNTED: list[tuple[str, str]] = [
     ("lexeme:fi.can+lexeme:poss-1sg", _L),
     ("lexeme:fi.can+lexeme:poss-3fs", _AM),
     ("lexeme:fi.can+lexeme:poss-3fs", _L),
-    # khayef's form is its participle, which its present takes as its stem (tkhafi); ليكو writes
-    # the plural's ending with no alef.
-    ("lexeme:khayef|form:Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=2", _AM),
-    ("lexeme:khayef|form:Aspect=Imp;Gender=Fem;Mood=Sub;Number=Sing;Person=2", _L),
-    ("lexeme:lek|form:Mood=Imp;Number=Plur;Person=2", _AM),
 ]
 
 # Warnings a course is known to raise, by (lint, surface). Anything else is a regression.

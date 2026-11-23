@@ -457,11 +457,11 @@ sentences:
         (وأنا|و أنا) بحبّ ارقص كمان
         (وكمان|و كمان) بحبّ ارقص
     apc-Latn/arabizi:
-      text: w b7ebb or2os kamen!
-      tokens: [{surface: w, lexeme: w}, {surface: b7ebb, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: or2os, lexeme: ra2as, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: kamen, lexeme: kamen}]
+      text: w b7ebb er2os kamen!
+      tokens: [{surface: w, lexeme: w}, {surface: b7ebb, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: er2os, lexeme: ra2as, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: kamen, lexeme: kamen}]
       reverse: |-
-        (w|wa) ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (or2os|ur2us|er2os|o2ros) (kamen|kaman)
-        (w|wa) (kamen|kaman) (b7ebb|b7eb|bhebb|b7ib) (or2os|ur2us|er2os|o2ros)
+        (w|wa) ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (er2os|or2os|ur2us|o2ros) (kamen|kaman)
+        (w|wa) (kamen|kaman) (b7ebb|b7eb|bhebb|b7ib) (er2os|or2os|ur2us|o2ros)
   translations:
     en: |-
       And I (love|like) (dancing|to dance) too!
@@ -668,11 +668,11 @@ stories:
       ask: arrange
       forms:
         apc-Arab/standard:
-          text: إيه، وبْحِبّ اُرْقُص كَمان!
-          tokens: [{surface: إيه, lexeme: eh}, {surface: وبْحِبّ, lexemes: [{lexeme: w, surface: و}, {lexeme: 7abb, surface: بْحِبّ, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]}, {surface: اُرْقُص, lexeme: ra2as, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: كَمان, lexeme: kamen}]
+          text: إيه، وبْحِبّ اِرْقُص كَمان!
+          tokens: [{surface: إيه, lexeme: eh}, {surface: وبْحِبّ, lexemes: [{lexeme: w, surface: و}, {lexeme: 7abb, surface: بْحِبّ, base: true, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}]}, {surface: اِرْقُص, lexeme: ra2as, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: كَمان, lexeme: kamen}]
         apc-Latn/arabizi:
-          text: eh, w b7ebb or2os kamen!
-          tokens: [{surface: eh, lexeme: eh}, {surface: w, lexeme: w}, {surface: b7ebb, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: or2os, lexeme: ra2as, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: kamen, lexeme: kamen}]
+          text: eh, w b7ebb er2os kamen!
+          tokens: [{surface: eh, lexeme: eh}, {surface: w, lexeme: w}, {surface: b7ebb, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: er2os, lexeme: ra2as, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: kamen, lexeme: kamen}]
       translations:
         en: Yes, and I love to dance too!
   - line:

@@ -1267,6 +1267,9 @@ class StoryChoiceSource(BaseModel):
 type WordsAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
+type LexemesAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
 type AmbiguousAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
 
 
@@ -1294,6 +1297,12 @@ class VocalizationSource(BaseModel):
         dict[str, WordsAdditionalProperty],
         Field(description="Surface → vocalized form (its marks removed, it is the surface)."),
     ]
+    lexemes: Annotated[
+        dict[LexemeId, LexemesAdditionalProperty] | None,
+        Field(
+            description="A lexeme's first spelling, vocalized, where `words` marks the same letters for another word (the verb daras دَرَس beside the noun dars دَرِس): what its word card shows and its clip says. Its marks removed, it is that spelling."
+        ),
+    ] = None
     ambiguous: Annotated[
         dict[str, AmbiguousAdditionalProperty] | None,
         Field(
@@ -6127,6 +6136,12 @@ class Lexeme(BaseModel):
         ),
     ] = None
     form: LexicalForm | None = None
+    citation: Annotated[
+        UdFeatures | None,
+        Field(
+            description="The feature values of the form its entry is spelled in (its lemma: what a word card shows), where they are not its category's `citation` (language.yaml): apc's 2a3ed (sitting), a verb the course teaches as its masculine singular participle, not as its he-past."
+        ),
+    ] = None
     forms: Annotated[
         list[LexemeForm] | None,
         Field(

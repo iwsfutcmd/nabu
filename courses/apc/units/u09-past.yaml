@@ -24,9 +24,9 @@ sentences:
       tokens: [{surface: رحت, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: عالبحر, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: ba7r, surface: بحر, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: (رحت|أنا رحت) (عالبحر|ع البحر|على البحر)
     apc-Latn/arabizi:
-      text: ru7t 3al ba7r.
-      tokens: [{surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 4}]
-      reverse: ((ru7t|re7et|re7t|ri7t|ro7t)|ana (ru7t|re7et|re7t|ri7t|ro7t)) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+      text: re7t 3al ba7r.
+      tokens: [{surface: re7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 4}]
+      reverse: ((re7t|ru7t|re7et|ri7t|ro7t)|ana (re7t|ru7t|re7et|ri7t|ro7t)) (3al|3a l|3a el) (ba7r|ba7er|bahr)
   translations:
     en: |-
       I went to the (beach|sea).
@@ -42,12 +42,12 @@ sentences:
         رحت عالبحر مبارح
         أنا رحت عالبحر مبارح
     apc-Latn/arabizi:
-      text: mbere7 ru7t 3al ba7r.
-      tokens: [{surface: mbere7, lexeme: mbere7}, {surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 5}]
+      text: mbere7 re7t 3al ba7r.
+      tokens: [{surface: mbere7, lexeme: mbere7}, {surface: re7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 5}]
       reverse: |-
-        (mbere7|mbare7|embere7|mberi7) (ru7t|re7et|re7t|ri7t|ro7t) (3al|3a l|3a el) (ba7r|ba7er|bahr)
-        ru7t 3al ba7r mbere7
-        ana ru7t 3al ba7r mbere7
+        (mbere7|mbare7|embere7|mberi7) (re7t|ru7t|re7et|ri7t|ro7t) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+        (re7t|ru7t) 3al ba7r mbere7
+        ana (re7t|ru7t) 3al ba7r mbere7
   translations:
     en: |-
       Yesterday I went to the (beach|sea).
@@ -78,9 +78,9 @@ sentences:
       tokens: [{surface: رحت, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: عالمطعم, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: mat3am, surface: مطعم, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: (رحت|أنا رحت) (عالمطعم|ع المطعم|على المطعم)
     apc-Latn/arabizi:
-      text: ru7t 3al mat3am.
-      tokens: [{surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}, n: 4}]
-      reverse: ((ru7t|re7et|re7t|ri7t|ro7t)|ana (ru7t|re7et|re7t|ri7t|ro7t)) (3al|3a l|3a el) (mat3am|mat3em)
+      text: re7t 3al mat3am.
+      tokens: [{surface: re7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}, n: 4}]
+      reverse: ((re7t|ru7t|re7et|ri7t|ro7t)|ana (re7t|ru7t|re7et|ri7t|ro7t)) (3al|3a l|3a el) (mat3am|mat3em)
   translations:
     en: |-
       I went to the restaurant.
@@ -96,11 +96,11 @@ sentences:
         (رحت|أنا رحت) (عالسوق|ع السوق|على السوق) (الصبح|عالصبح)
         (الصبح|عالصبح) (رحت|أنا رحت) (عالسوق|ع السوق|على السوق)
     apc-Latn/arabizi:
-      text: ru7t 3al sou2 el sob7.
-      tokens: [{surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: sou2, lexeme: sou2, feats: {Number: Sing}, n: 4}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: sob7, lexeme: sob7, feats: {Number: Sing}, n: 6}]
+      text: re7t 3al sou2 el sob7.
+      tokens: [{surface: re7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: sou2, lexeme: sou2, feats: {Number: Sing}, n: 4}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: sob7, lexeme: sob7, feats: {Number: Sing}, n: 6}]
       reverse: |-
-        ((ru7t|re7et|re7t|ri7t|ro7t)|ana (ru7t|re7et|re7t|ri7t|ro7t)) (3al|3a l|3a el) (sou2|souk|souq) (el|l|3al) (sob7|sub7)
-        (el|l|3al) (sob7|sub7) ((ru7t|re7et|re7t|ri7t|ro7t)|ana (ru7t|re7et|re7t|ri7t|ro7t)) (3al|3a l|3a el) (sou2|souk|souq)
+        ((re7t|ru7t|re7et|ri7t|ro7t)|ana (re7t|ru7t|re7et|ri7t|ro7t)) (3al|3a l|3a el) (sou2|souk|souq) (el|l|3al) (sob7|sub7)
+        (el|l|3al) (sob7|sub7) ((re7t|ru7t|re7et|ri7t|ro7t)|ana (re7t|ru7t|re7et|ri7t|ro7t)) (3al|3a l|3a el) (sou2|souk|souq)
   translations:
     en: |-
       I went to the market in the morning.
@@ -307,9 +307,9 @@ sentences:
       tokens: [{surface: رحنا, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: عالجبل, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: jabal, surface: جبل, base: true, feats: {Number: Sing}, n: 4}]}]
       reverse: (رحنا|نحنا رحنا) (عالجبل|ع الجبل|على الجبل)
     apc-Latn/arabizi:
-      text: ru7na 3al jabal.
-      tokens: [{surface: ru7na, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}, n: 4}]
-      reverse: ((ru7na|re7na|ro7na)|(ne7na|na7na) (ru7na|re7na|ro7na)) (3al|3a l|3a el) (jabal|jabel|jbal)
+      text: re7na 3al jabal.
+      tokens: [{surface: re7na, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}, n: 4}]
+      reverse: ((re7na|ru7na|ro7na)|(ne7na|na7na) (re7na|ru7na|ro7na)) (3al|3a l|3a el) (jabal|jabel|jbal)
   translations:
     en: We went to the mountains.
 - id: s.past.18
@@ -358,11 +358,11 @@ sentences:
         بعد (العشا|العشاء) رحنا (عالبيت|ع البيت|على البيت)
         رحنا عالبيت بعد العشا
     apc-Latn/arabizi:
-      text: ba3d el 3asha ru7na 3al bet.
-      tokens: [{surface: ba3d, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: 3asha, lexeme: 3asha, feats: {Number: Sing}, n: 3}, {surface: ru7na, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 7}]
+      text: ba3d el 3asha re7na 3al bet.
+      tokens: [{surface: ba3d, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: 3asha, lexeme: 3asha, feats: {Number: Sing}, n: 3}, {surface: re7na, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 7}]
       reverse: |-
-        (ba3d|ba3ed) (el|l|il) (3asha|3ashe) (ru7na|re7na|ro7na) (3al|3a l|3a el) (bet|beit|bayt)
-        ru7na 3al bet ba3d el 3asha
+        (ba3d|ba3ed) (el|l|il) (3asha|3ashe) (re7na|ru7na|ro7na) (3al|3a l|3a el) (bet|beit|bayt)
+        (re7na|ru7na) 3al bet ba3d el 3asha
   translations:
     en: |-
       After dinner we went home.
@@ -378,11 +378,11 @@ sentences:
         الجمعة اللي فاتت رحنا (عالبحر|ع البحر|على البحر)
         رحنا (عالبحر|ع البحر|على البحر) الجمعة (الماضية|اللي فاتت)
     apc-Latn/arabizi:
-      text: el jem3a el madye ru7na 3al ba7r.
-      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: jem3a, lexeme: jem3a, feats: {Number: Sing}, n: 2}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: madye, lexeme: madi, feats: {Gender: Fem, Number: Sing}, n: 4, head: 2, rel: amod}, {surface: ru7na, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 6, head: 8, rel: case}, {lexeme: el, surface: l, n: 7, head: 8, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 8}]
+      text: el jem3a el madye re7na 3al ba7r.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: jem3a, lexeme: jem3a, feats: {Number: Sing}, n: 2}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: madye, lexeme: madi, feats: {Gender: Fem, Number: Sing}, n: 4, head: 2, rel: amod}, {surface: re7na, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 6, head: 8, rel: case}, {lexeme: el, surface: l, n: 7, head: 8, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 8}]
       reverse: |-
-        (el|l) (jem3a|jum3a) ((el|l) (madye|madiye)|(elli|lli) (fetet|fatet)) (ru7na|ro7na) (3al|3a l) (ba7r|bahr)
-        (ru7na|ro7na) (3al|3a l) (ba7r|bahr) (el|l) (jem3a|jum3a) ((el|l) (madye|madiye)|(elli|lli) (fetet|fatet))
+        (el|l) (jem3a|jum3a) ((el|l) (madye|madiye)|(elli|lli) (fetet|fatet)) (re7na|ru7na|ro7na) (3al|3a l) (ba7r|bahr)
+        (re7na|ru7na|ro7na) (3al|3a l) (ba7r|bahr) (el|l) (jem3a|jum3a) ((el|l) (madye|madiye)|(elli|lli) (fetet|fatet))
   translations:
     en: |-
       Last week we went to the (beach|sea).
@@ -502,12 +502,12 @@ sentences:
         وين رحتي مبارح مايا
         مايا مبارح وين رحتي
     apc-Latn/arabizi:
-      text: Maya, wen ru7ti mbere7?
-      tokens: [{surface: Maya, lexeme: maya}, {surface: wen, lexeme: wen}, {surface: ru7ti, lexeme: ra7, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {surface: mbere7, lexeme: mbere7}]
+      text: Maya, wen re7ti mbere7?
+      tokens: [{surface: Maya, lexeme: maya}, {surface: wen, lexeme: wen}, {surface: re7ti, lexeme: ra7, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {surface: mbere7, lexeme: mbere7}]
       reverse: |-
-        Maya (wen|wein|wayn) (ru7ti|ru7te|ro7ti) (mbere7|mbare7|embere7|mberi7)
-        wen ru7ti mbere7 Maya
-        Maya mbere7 wen ru7ti
+        Maya (wen|wein|wayn) (re7ti|ru7ti|ru7te|ro7ti) (mbere7|mbare7|embere7|mberi7)
+        wen (re7ti|ru7ti) mbere7 Maya
+        Maya mbere7 wen (re7ti|ru7ti)
   translations:
     en: |-
       Maya, where did you go yesterday?
@@ -542,11 +542,11 @@ sentences:
         (سافرت|أنا سافرت) (مبارح|مبارحة)
         (مبارح|مبارحة) (سافرت|أنا سافرت)
     apc-Latn/arabizi:
-      text: safart mbere7.
-      tokens: [{surface: safart, lexeme: safar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: mbere7, lexeme: mbere7}]
+      text: sefart mbere7.
+      tokens: [{surface: sefart, lexeme: safar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: mbere7, lexeme: mbere7}]
       reverse: |-
-        ((safart|sefart|safaret)|ana (safart|sefart)) (mbere7|mbare7|embere7|mberi7)
-        (mbere7|mbare7|embere7|mberi7) ((safart|sefart|safaret)|ana (safart|sefart))
+        ((sefart|safart|safaret)|ana (sefart|safart)) (mbere7|mbare7|embere7|mberi7)
+        (mbere7|mbare7|embere7|mberi7) ((sefart|safart|safaret)|ana (sefart|safart))
   translations:
     en: |-
       I (travelled|traveled) yesterday.
@@ -679,11 +679,11 @@ sentences:
         وين (رحتوا|رحتو) (مبارح|مبارحة)
         مبارح وين رحتوا
     apc-Latn/arabizi:
-      text: wen ru7to mbere7?
-      tokens: [{surface: wen, lexeme: wen}, {surface: ru7to, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '2'}}, {surface: mbere7, lexeme: mbere7}]
+      text: wen re7to mbere7?
+      tokens: [{surface: wen, lexeme: wen}, {surface: re7to, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '2'}}, {surface: mbere7, lexeme: mbere7}]
       reverse: |-
-        (wen|wein|wayn) (ru7to|ru7tu|ro7to|ro7tu) (mbere7|mbare7|embere7|mberi7)
-        mbere7 wen ru7to
+        (wen|wein|wayn) (re7to|ru7to|ru7tu|ro7to|ro7tu) (mbere7|mbare7|embere7|mberi7)
+        mbere7 wen (re7to|ru7to)
   translations:
     en: Where did you go yesterday?
 - id: s.past.37
@@ -785,11 +785,11 @@ stories:
       speaker: sami
       forms:
         apc-Arab/standard:
-          text: رُحِت عَالجَبَل مَع خَيّي.
-          tokens: [{surface: رُحِت, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: عَالجَبَل, lexemes: [{lexeme: 3a, surface: عَ, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: jabal, surface: جَبَل, base: true, feats: {Number: Sing}, n: 4}]}, {surface: مَع, lexeme: ma3, n: 5, head: 6, rel: case}, {surface: خَيّي, lexemes: [{lexeme: khayy, surface: خَيّ, base: true, feats: {Number: Sing}, n: 6}, {lexeme: poss-1sg, surface: ي}]}]
+          text: رِحِت عَالجَبَل مَع خَيّي.
+          tokens: [{surface: رِحِت, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: عَالجَبَل, lexemes: [{lexeme: 3a, surface: عَ, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: jabal, surface: جَبَل, base: true, feats: {Number: Sing}, n: 4}]}, {surface: مَع, lexeme: ma3, n: 5, head: 6, rel: case}, {surface: خَيّي, lexemes: [{lexeme: khayy, surface: خَيّ, base: true, feats: {Number: Sing}, n: 6}, {lexeme: poss-1sg, surface: ي}]}]
         apc-Latn/arabizi:
-          text: ru7t 3al jabal ma3 khayyi.
-          tokens: [{surface: ru7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}, n: 4}, {surface: ma3, lexeme: ma3, n: 5, head: 6, rel: case}, {surface: khayyi, lexemes: [{lexeme: khayy, surface: khayy, base: true, feats: {Number: Sing}, n: 6}, {lexeme: poss-1sg, surface: i}]}]
+          text: re7t 3al jabal ma3 khayyi.
+          tokens: [{surface: re7t, lexeme: ra7, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}, n: 4}, {surface: ma3, lexeme: ma3, n: 5, head: 6, rel: case}, {surface: khayyi, lexemes: [{lexeme: khayy, surface: khayy, base: true, feats: {Number: Sing}, n: 6}, {lexeme: poss-1sg, surface: i}]}]
       translations:
         en: I went to the mountains with my brother.
   - line:
@@ -831,11 +831,11 @@ stories:
       speaker: sami
       forms:
         apc-Arab/standard:
-          text: وإِنْتي؟ وين رُحْتي؟
-          tokens: [{surface: وإِنْتي, lexemes: [{lexeme: w, surface: و}, {lexeme: enti, surface: إِنْتي, base: true, feats: {Gender: Fem, Number: Sing}}]}, {surface: وين, lexeme: wen}, {surface: رُحْتي, lexeme: ra7, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}]
+          text: وإِنْتي؟ وين رِحْتي؟
+          tokens: [{surface: وإِنْتي, lexemes: [{lexeme: w, surface: و}, {lexeme: enti, surface: إِنْتي, base: true, feats: {Gender: Fem, Number: Sing}}]}, {surface: وين, lexeme: wen}, {surface: رِحْتي, lexeme: ra7, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}]
         apc-Latn/arabizi:
-          text: w enti? wen ru7ti?
-          tokens: [{surface: w, lexeme: w}, {surface: enti, lexeme: enti, feats: {Gender: Fem, Number: Sing}}, {surface: wen, lexeme: wen}, {surface: ru7ti, lexeme: ra7, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}]
+          text: w enti? wen re7ti?
+          tokens: [{surface: w, lexeme: w}, {surface: enti, lexeme: enti, feats: {Gender: Fem, Number: Sing}}, {surface: wen, lexeme: wen}, {surface: re7ti, lexeme: ra7, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}]
       translations:
         en: And you? Where did you go?
   - line:

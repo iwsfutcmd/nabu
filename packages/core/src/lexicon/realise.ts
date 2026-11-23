@@ -379,8 +379,9 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
   const rule = lang.rules.find((r) => conditionHolds(lang, r.source.when, lexeme, cell, blocking));
   const form = lexeme.form;
   if (rule === undefined) {
-    // No rule: the lexeme's own form, where the cell is its citation cell; an affix's, always.
-    const citation = lexeme.pos === undefined ? undefined : lang.declared.citation?.[lexeme.pos];
+    // No rule: the lexeme's own form, where the cell is its citation cell (its own, else its
+    // category's); an affix's, always.
+    const citation = lexeme.citation ?? (lexeme.pos === undefined ? undefined : lang.declared.citation?.[lexeme.pos]);
     const isCitation = Object.entries(cell).every(([k, v]) => citation?.[k] === v);
     if (winner?.stem !== undefined) return isCitation ? ok({ units: unitsOf(winner.stem), status: winner.status, steps: [], whole: false }) : err({ kind: "no-rule", cell });
     if (lexeme.pos === undefined) {

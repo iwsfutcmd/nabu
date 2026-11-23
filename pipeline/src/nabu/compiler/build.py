@@ -120,12 +120,14 @@ class Compiled:
 
 @dataclass
 class Vocalized:
-    """One orthography's vowel marks (ADR 0053): each word's marked form; the ambiguous ones."""
+    """One orthography's vowel marks (ADR 0053): each word's marked form; the ambiguous ones;
+    a lexeme's first spelling, where another word's entry marks its letters otherwise."""
 
     words: dict[str, str]
     ambiguous: set[str]
     marks: regex.Pattern[str]
     loc: Loc
+    lexemes: dict[str, str] = field(default_factory=lambda: {})
 
 
 @dataclass
@@ -547,7 +549,10 @@ def _load_vocalization(
                 continue
             words[key] = value
         ambiguous = {unicodedata.normalize("NFC", a) for a in (source.ambiguous or {})}
-        ctx.vocalization[orth] = Vocalized(words, ambiguous, marks, vdoc.loc("ambiguous"))
+        lexemes = {
+            str(k): unicodedata.normalize("NFC", v) for k, v in (source.lexemes or {}).items()
+        }
+        ctx.vocalization[orth] = Vocalized(words, ambiguous, marks, vdoc.loc("ambiguous"), lexemes)
 
 
 def _split_marked(marked: str, parts: list[str], marks: regex.Pattern[str]) -> list[str] | None:
@@ -654,8 +659,15 @@ def mark_vowels(
 def marked(ctx: Ctx, orth: str, text: dict[str, Any], lexeme: str | None) -> dict[str, Any]:
     """An entry's spelling (TaggedText) with its vowel marks. A spelling is a string with no
     token of its own to choose between vocalizations, so an ambiguous one stays as written. The
-    entry's first spelling, which voices read, keeps its written surfaces in `ctx.written`."""
+    entry's first spelling, which voices read, keeps its written surfaces in `ctx.written`; it
+    takes the vocalization's own entry for its lexeme where there is one (a homograph of another
+    word's entry: daras beside dars)."""
     tokens: list[dict[str, Any]] = text["tokens"]
+    voc = ctx.vocalization.get(orth)
+    own = None if voc is None or lexeme is None else voc.lexemes.get(lexeme)
+    lexical = [t for t in tokens if t.get("kind") == "lexical"]
+    if own is not None and len(lexical) == 1:
+        lexical[0]["_vocalized"] = own
     mark_vowels(ctx, orth, tokens, Loc("", 0), warn=False)
     if lexeme is not None and any("_written" in t for t in tokens):
         ctx.written[(lexeme, orth)] = [str(t.get("_written", t["surface"])) for t in tokens]
@@ -901,7 +913,7 @@ def _forms(ctx: Ctx, compiled: Compiled) -> None:
     """Each lexeme's lexical form against what the course writes (`form.projection`,
     docs/rules-design.md stage 1): spelled by @nabu/core in each orthography and layer that states
     `spell`; the report is kept for `nabu forms`."""
-    vocalized = {o: (v.words, v.marks) for o, v in ctx.vocalization.items()}
+    vocalized = {o: (v.words, v.marks, v.lexemes) for o, v in ctx.vocalization.items()}
     report = lexical_forms.check(ctx.lang, compiled.orthographies, ctx.profiles, vocalized, ctx.cli)
 
     def allomorph_form(lexeme: str, index: int) -> str | None:

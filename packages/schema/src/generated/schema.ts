@@ -379,13 +379,17 @@ export type UdFeatures5 = Readonly<Record<string, string>>;
  */
 export type LexicalForm = string | RadicalForm | PatternForm | ListedParts | Logograph;
 /**
+ * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
+ */
+export type UdFeatures6 = Readonly<Record<string, string>>;
+/**
  * It belongs to this class of its language.
  */
 export type Slug3 = string;
 /**
  * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
  */
-export type UdFeatures6 = Readonly<Record<string, string>>;
+export type UdFeatures7 = Readonly<Record<string, string>>;
 /**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
@@ -3011,6 +3015,12 @@ export interface VocalizationSource {
     readonly [k: string]: string;
   };
   /**
+   * A lexeme's first spelling, vocalized, where `words` marks the same letters for another word (the verb daras دَرَس beside the noun dars دَرِس): what its word card shows and its clip says. Its marks removed, it is that spelling.
+   */
+  readonly lexemes?: {
+    readonly [k: string]: string;
+  };
+  /**
    * Surfaces with more than one vocalization in the course: each token chooses.
    */
   readonly ambiguous?: {
@@ -3090,6 +3100,7 @@ export interface Lexeme {
   };
   readonly image?: ImageAsset1;
   readonly form?: LexicalForm;
+  readonly citation?: UdFeatures6;
   /**
    * The forms and stems no rule gives yet (ADR 0145): each listed or pinned.
    *
@@ -3323,7 +3334,7 @@ export interface Condition {
    * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
    */
   readonly endsIn?: string;
-  readonly feats?: UdFeatures6;
+  readonly feats?: UdFeatures7;
 }
 /**
  * What it stands before.
@@ -3343,7 +3354,7 @@ export interface Condition1 {
    * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
    */
   readonly endsIn?: string;
-  readonly feats?: UdFeatures6;
+  readonly feats?: UdFeatures7;
 }
 /**
  * What a language declares beside its lexicon (lexicons/<lang>/language.yaml; ADR 0145, 0148): the varieties and registers a scope ranges over, the dimensions of each category, the features and values its tokens and lexemes carry, its defaults and its classes. A category is a UD tag: no category system is declared (the owner, round 6). Every statement here is content: drafted `llm:` and REVIEW until signed off.
@@ -3478,7 +3489,7 @@ export interface Condition2 {
    * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
    */
   readonly endsIn?: string;
-  readonly feats?: UdFeatures6;
+  readonly feats?: UdFeatures7;
 }
 /**
  * One class: a lexical feature a rule reads and no form gives (Spanish e-ie; the -go verbs).

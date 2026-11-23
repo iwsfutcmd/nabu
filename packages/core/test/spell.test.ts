@@ -116,9 +116,10 @@ describe("apc's statements over its lexicon", () => {
  * Alternatives that compare free under apc-Latn's correspondences: e/i, which also covers a final
  * long i written e (*fe* for *fi*: the statement's e/i holds wherever the letter stands), and i/ee
  * (stated 2026-11-23, the owner's answer to question 6: 58 alternatives moved up, every one that took
- * i/ee alone or beside e/i and a final e/i).
+ * i/ee alone or beside e/i and a final e/i). khayef's form is its verb's radicals since 2026-11-23 (its
+ * participle realised by rule, not stored), so its khayif is no longer counted here.
  */
-const FREE = 189;
+const FREE = 188;
 /**
  * Alternatives that do not, by the variations they took (an alternative that took several is counted
  * under all of them together): each waits on the owner's answer, one variation at a time (question 6).

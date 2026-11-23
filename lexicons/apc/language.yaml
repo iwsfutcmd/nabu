@@ -49,8 +49,8 @@ labels:
 - {feats: {'Gender[psor]': Fem, 'Number[psor]': Sing, 'Person[psor]': '2'}, gloss: {en: '-ik: your (to a woman)'}, notes: {en: 'Arabic script: the same ك as -ak, so كيفك reads kifak to a man and kifik to a woman.'}, was: 'form:poss-2fs'}
 - {feats: {'Number[psor]': Plur, 'Person[psor]': '2'}, gloss: {en: '-kon: your (to several people)'}, notes: {en: 'kifkon? how are you (all)?; 3endkon: you have. Arabic script: كن joined to the word (كيفكن).'}, was: 'form:poss-2pl'}
 - {feats: {Number: Plur}, gloss: {en: 'plural: a plural noun (wlad, jiren), or the -in ending on an adjective with one (jou3an becomes jou3anin)'}, notes: {en: 'jou3anin: hungry (several people); mabsoutin: happy. Arabic script: ين (جوعانين). Lebanese makes no gender in the plural: one form for men and women.'}, was: 'form:pl'}
-- {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, gloss: {en: '-i: telling a woman to do something'}, notes: {en: 'tfaddal becomes tfaddali, eshrab becomes eshrabi, kol becomes kili.'}, was: 'form:imp-2fs'}
-- {feats: {Mood: Imp, Number: Plur, Person: '2'}, gloss: {en: '-o: telling several people to do something'}, notes: {en: 'tfaddalo! kilo! eshrabo! Arabic script: وا after the verb (تفضّلوا).'}, was: 'form:imp-2pl'}
+- {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, gloss: {en: '-i: telling a woman to do something'}, notes: {en: 'tfaddal becomes tfaddali, shrab becomes shrabi, kol becomes kili.'}, was: 'form:imp-2fs'}
+- {feats: {Mood: Imp, Number: Plur, Person: '2'}, gloss: {en: '-o: telling several people to do something'}, notes: {en: 'tfaddalo! kilo! shrabo! Arabic script: وا after the verb (تفضّلوا).'}, was: 'form:imp-2pl'}
 - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}, gloss: {en: 'b-: I (present)'}, notes: {en: 'bekol: I eat; bishrab: I drink. Present, habit, or what I''m about to do.'}, was: 'form:impf-1sg'}
 - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2'}, gloss: {en: 'bt-: you (present, to a man)'}, notes: {en: 'btishrab: you drink. The same form means ''she'': bt- is both.'}, was: 'form:impf-2ms'}
 - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3'}, gloss: {en: 'bi-: he (present)'}, notes: {en: 'byishteghel: he works. Arabic script: بي joined to the verb (بيشتغل).'}, was: 'form:impf-3ms'}
@@ -61,13 +61,13 @@ labels:
 - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, gloss: {en: 'e- / no b-: I (after baddi, b7ebb, 3am…)'}, notes: {en: 'baddi ekol: I want to eat; b7ebb esma3: I like to listen. The b- of the present drops.'}, was: 'form:subj-1sg'}
 - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}, gloss: {en: 't-: you (after baddak, 3am…; to a man)'}, notes: {en: 'baddak tishrab? Do you want to drink? 3am ta3mel: you are doing.'}, was: 'form:subj-2ms'}
 - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}, gloss: {en: 'n-: we (after badna, ta…)'}, notes: {en: 'badna nru7: we want to go.'}, was: 'form:subj-1pl'}
-- {feats: {Aspect: Perf, Number: Sing, Person: '1'}, gloss: {en: '-t: I (past)'}, notes: {en: 'ru7t: I went; akalt: I ate. The same word means ''you (a man)'': context decides.'}, was: 'form:past-1sg'}
-- {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}, gloss: {en: '-t: you (past, to a man)'}, notes: {en: 'shu 3melt? What did you do? Spelled like ''I'': ru7t, 3melt.'}, was: 'form:past-2ms'}
+- {feats: {Aspect: Perf, Number: Sing, Person: '1'}, gloss: {en: '-t: I (past)'}, notes: {en: 're7t: I went; akalt: I ate. The same word means ''you (a man)'': context decides.'}, was: 'form:past-1sg'}
+- {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}, gloss: {en: '-t: you (past, to a man)'}, notes: {en: 'shu 3melt? What did you do? Spelled like ''I'': re7t, 3melt.'}, was: 'form:past-2ms'}
 - {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}, gloss: {en: 'he (past): the bare verb'}, notes: {en: 'ra7: he went; akal: he ate.'}, was: 'form:past-3ms'}
 - {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}, gloss: {en: '-et: she (past)'}, notes: {en: 'ra7et: she went; kenet: she was. Arabic script: ت at the end (راحت).'}, was: 'form:past-3fs'}
-- {feats: {Aspect: Perf, Number: Plur, Person: '1'}, gloss: {en: '-na: we (past)'}, notes: {en: 'ru7na: we went; akalna: we ate.'}, was: 'form:past-1pl'}
-- {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}, gloss: {en: '-ti: you (past, to a woman)'}, notes: {en: 'ru7ti: you went; kenti: you were.'}, was: 'form:past-2fs'}
-- {feats: {Aspect: Perf, Number: Plur, Person: '2'}, gloss: {en: '-to: you (past, to several people)'}, notes: {en: 'ru7to: you went; akalto: you ate. Arabic script: توا (رحتوا).'}, was: 'form:past-2pl'}
+- {feats: {Aspect: Perf, Number: Plur, Person: '1'}, gloss: {en: '-na: we (past)'}, notes: {en: 're7na: we went; akalna: we ate.'}, was: 'form:past-1pl'}
+- {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}, gloss: {en: '-ti: you (past, to a woman)'}, notes: {en: 're7ti: you went; kenti: you were.'}, was: 'form:past-2fs'}
+- {feats: {Aspect: Perf, Number: Plur, Person: '2'}, gloss: {en: '-to: you (past, to several people)'}, notes: {en: 're7to: you went; akalto: you ate. Arabic script: توا (رحتوا).'}, was: 'form:past-2pl'}
 - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '3'}, gloss: {en: 'bi-…-o: they (present)'}, notes: {en: 'byishrabo: they drink; byi7ko: they speak. Arabic script: بي before the verb and وا after it (بيشربوا), also written بيشربو.'}, was: 'form:impf-3pl'}
 - {feats: {Aspect: Perf, Number: Plur, Person: '3'}, gloss: {en: '-o: they (past)'}, notes: {en: 'ra7o: they went; keno: they were; akalo: they ate. Arabic script: وا at the end (راحوا), also written راحو.'}, was: 'form:past-3pl'}
 - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '3'}, gloss: {en: 'y-: he (after ra7, baddo, lezem…)'}, notes: {en: 'ra7 yru7: he''ll go; ra7 yishteghel: he''ll work. The present without its b- (byru7 becomes yru7). Arabic script: ي before the verb (يروح).'}, was: 'form:subj-3ms'}
@@ -141,7 +141,7 @@ stems:
 - {id: imperfect, form: I, class: hamzated, template: "ـ\u065cا2{present}3", branch: hamzated}  # yekol, yekhod: the prefix's vowel is a long e spelled with alef (ياكل; Kline p. 75, img)
 - {id: imperfect, form: I, class: w-initial, template: "ـُو2{present}3", branch: w-initial}  # yusal (Kline p. 76)
 - {id: imperfect, form: I, class: hollow, template: "1{long present}3"}  # yru7, ysir (Kline p. 77)
-- {id: imperfect, form: I, class: hollow, vowels: {present: a}, template: "1{past}ا3", branch: hollow-unchanged}  # nem / ynem: the vowel does not change (Kline p. 77)
+- {id: imperfect, form: I, class: hollow, vowels: {present: e}, template: "1{past}ا3", branch: hollow-unchanged}  # nem / ynem: the vowel does not change (Kline p. 77); khaf / ykhaf, present a, takes the long present as ra7 does
 - {id: imperfect, form: I, class: doubled, template: "1ِ2ّ"}  # y7ebb, yleff, yde22 (Kline p. 79)
 - {id: imperfect, form: I, class: defective, template: "1ْ2{long present}"}  # ye7ki, ye2ra (Kline p. 78)
 - {id: command, form: I, class: hamzated, template: "2\u065dو3", branch: hamzated}  # kol, khod (Kline p. 164): an o the course writes with و (كول, خود; Kline p. 163)
@@ -160,7 +160,7 @@ stems:
 - {id: imperfect, form: III, template: "1\u065cا2ِ3"}  # ysefir (Kline p. 83)
 - {id: imperfect, form: III, radical: 1, in: "{BACK}", template: "1َا2ِ3"}  # y7afiz (Kline p. 84)
 - {id: perfect, form: VIII, template: "اِ1ْتَ2َ3"}  # shta8al
-- {id: perfect, form: VIII, class: hollow, template: "اِ1ْت\u065cا3"}  # rte7
+- {id: perfect, form: VIII, class: hollow, template: "ا\u06df1ْت\u065cا3"}  # rte7 (Kline p. 91): no vowel before the cluster, the alef written and not said, as stanna's (REVIEW: the course's eshtara, eshteghel still say it)
 - {id: perfect, form: VIII, class: defective, template: "اِ1ْتَ2َى"}  # shtara
 - {id: perfect-short, form: VIII, class: defective, template: "اِ1ْتَ2ِي", branch: defective-i}  # REVIEW: the course's eshtarit; Kline writes shtareyt (p. 152)
 - {id: perfect-ay, form: VIII, class: defective, template: "اِ1ْتَ2َيْ", branch: defective-ay}  # the course's eshtarayti, eshtarayna, eshtarayto
@@ -206,7 +206,7 @@ realisation:
     - {branch: pl, feats: {Number: Plur}, add: "ـُوا\u06df", stem: [command-v, command, imperfect]}
     - {branch: 2ms, add: ""}
   # REVIEW: Kline gives the command of a sound verb with no vowel before its cluster (dros, trok: p. 161, 164;
-  # 'initial clusters are allowed in and around Beirut', p. 162-163); the course writes eshrab, eshrabo beside b3atli.
+  # 'initial clusters are allowed in and around Beirut', p. 162-163); the course writes shrab, shrabo (eshrab, eshrabo accepted: the owner, 2026-11-23).
 - id: 'rule:apc-participle'  # the active participle, Form I (Kline p. 122-124, 130): a form of its verb (apc.md)
   when: {feats: {Aspect: Part}}
   stem: participle
@@ -231,7 +231,7 @@ phonology:  # in order, each once over the whole form
 - {id: 'rule:apc-feminine', branch: a, find: "{FEMA}\u065c+ة", to: "{FEMA}َ+ة"}  # -a after the letters FEMA (Kline p. 16; REVIEW)
 # The helping vowel at a word's end (رُحِت, شْرِبِت: the owner, 2026-11-21) is not a rewrite here: the form keeps the
 # cluster (رُحْ+ت), the marks layer's `spell` writes the vowel (profiles/apc-Arab.standard.yaml, `vocalized`) and the
-# Arabizi's leaves it out or writes e (a free alternative: ru7t), as the owner ruled ("the Arabizi stays as written").
+# Arabizi's leaves it out or writes e (a free alternative: re7t), as the owner ruled ("the Arabizi stays as written").
 # Inside a word it needs the boundary (سْمِعِتْني, not بْتَعْمْلي), so it stays a rewrite.
 - {id: 'rule:apc-helping-vowel', branch: inside, find: "{K}ْ+?{K}ْ+{K}*", after: ".{V}", to: "{K}ِ+?{K}ْ+{K}"}  # and before an ending that begins with a said consonant (سْمِعِتْني, ruling 7); not before a vowel (none follows the cluster then)
 # REVIEW, not written yet: the helping vowel's damma after a damma inside a stem (شُغُل: nouns, stage 3); the dative
