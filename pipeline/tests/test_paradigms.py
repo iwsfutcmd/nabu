@@ -13,7 +13,7 @@ import yaml
 from nabu import yamlio
 from nabu.analyzers import analyzers_by_tool
 from nabu.compiler import compile_course, load_profiles
-from nabu.paradigms import Refused, _in_script, cell_key
+from nabu.paradigms import Refused, cell_key, in_script
 
 from .conftest import FIXTURES, CoreCli
 
@@ -126,7 +126,7 @@ def test_a_spelling_that_begins_with_a_carrier_is_not_shipped() -> None:
     spelled with one first is refused even though the letter is in the script (wesel's command)."""
     refused: list[Refused] = []
     tatweel = chr(0x640)
-    ok = _in_script(
+    ok = in_script(
         [tatweel + "وصل", tatweel + "وْصَل"],
         "apc-Arab/standard",
         "lexeme:wesel",
@@ -136,7 +136,7 @@ def test_a_spelling_that_begins_with_a_carrier_is_not_shipped() -> None:
         refused,
     )
     assert not ok and refused[0].outside == [tatweel]
-    assert _in_script(
+    assert in_script(
         ["وصل", "وِصِل"],
         "apc-Arab/standard",
         "lexeme:wesel",

@@ -222,7 +222,7 @@ def _realised(result: Any) -> tuple[str | None, bool]:
     return str(value.get("form")), bool(_items(value.get("steps")))
 
 
-def _in_script(
+def in_script(
     entry: str | list[str] | None,
     orth: str,
     lexeme: str,
@@ -236,8 +236,9 @@ def _in_script(
     if entry is None or outside is None:
         return True
     texts = [entry] if isinstance(entry, str) else entry
-    # A modifier letter that joins (the tatweel) is a carrier of the lexical notation, never a word's first
-    # character: a spelling that begins with one is a realisation that went wrong, though it is in the script.
+    # A modifier letter that joins (the tatweel) is a carrier of the lexical notation, never a
+    # word's first character: a spelling that begins with one is a realisation that went wrong,
+    # though it is in the script.
     leading = {t[0] for t in texts if t and unicodedata.category(t[0]) == "Lm"}
     bad = sorted({c for i, t in enumerate(texts) for c in outside(orth, t, i > 0)} | leading)
     if bad and refused is not None:
@@ -385,7 +386,7 @@ def paradigms(
                 raw = [entry(f, orth) for f in given]
                 row = [
                     e
-                    if _in_script(e, orth, ident, cell_key(listed[k]), "paradigm", outside, refused)
+                    if in_script(e, orth, ident, cell_key(listed[k]), "paradigm", outside, refused)
                     else None
                     for k, e in enumerate(raw)
                 ]
@@ -399,7 +400,7 @@ def paradigms(
                         r is not None
                         and r != g
                         and e != raw[k]
-                        and _in_script(e, orth, ident, cell, "regularised", outside, refused)
+                        and in_script(e, orth, ident, cell, "regularised", outside, refused)
                     ):
                         other[cell] = e
                 if other:
