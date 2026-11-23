@@ -828,7 +828,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   every line. Examples live in schemas/examples/<dir>/{valid,invalid} and are listed in `EXAMPLES`
   (packages/schema/test/schemas.test.ts): a new schema gets both kinds.
 
-## Rules notes (see docs/rules-design.md; apc first, stages 1 and 2 of 6)
+## Rules notes (see docs/rules-design.md; apc first, stages 1 to 3 of 6)
 - A lexeme's lexical form is its `form` in lexicons/<lang>/lexemes.yaml: a string in the language's notation, or a
   verb's radicals (`RadicalForm`: radicals, Form, vowels, `source`, `basis`). language.yaml's `notation` says what the
   signs are (apc: U+065C e, U+065D o, U+06DF a letter written and not said; always escapes, and yamlio writes them so);
@@ -845,13 +845,18 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A `spell` rule's `alternatives` are free spellings named by variation, read only by the compiler; grading reads the
   profile's `correspondences`. spell.test.ts pins every alternative that does not compare free: stating a variation
   free (the owner: one at a time) moves its count.
-- The compiler checks every token whose base a realisation rule covers (its part of speech's `dimensions` hold every
-  feature some rule's `when` names: today VERB and AUX): core-cli `realise-token` with `spellings: false` (a form that
-  pins spellings only is passed over; only a pinned or listed form with `form` or `stem` accounts for a token), then
-  `spell` per orthography, the marked layer against the vocalization. A miss is `form.unaccounted` (a warning; apc's are
-  `APC_UNACCOUNTED` in tests/test_courses.py, each a ruling the owner has not made: never fix one by bending a rule).
-  A token with a lexeme that has no form, or no rule for its part of speech, is counted "no rule yet". `nabu forms`
-  prints the report; `--paradigm <lexeme>` a lexeme's cells as the rules give them.
+- The compiler checks every token of a language with `realisation` (apc: all 5,470): core-cli `realise-token` with
+  `spellings: false` (a form that pins spellings only is passed over; only a pinned or listed form with `form` or
+  `stem` accounts for a token), then `spell` per orthography, the marked layer against the vocalization. An
+  uninflected word stands in its citation cell (its own `citation` or its category's), given by its form with no
+  rule. A miss is `form.unaccounted`, an error: never fix one by bending a rule. `form.pinned-differs` (error),
+  `form.redundant` (warning) and `form.rule-debt` (info: apc 25 pinned forms) exist. `nabu forms` prints the report,
+  `--paradigm <lexeme>` a lexeme's cells, and `nabu forms prune ../lexicons/<lang>` removes pinned copies the rules
+  give: never by hand.
+- Clitics (the article, b-, w-, hal) are lexemes with forms, realised from the lexemes each token lists, per
+  orthography; a join's sound change is a rewrite naming the boundary. An allomorph's `before` reads the rest of the
+  token (`startsIn`) or the next word's base (`pos`, `class`: a teen says its r before a noun); a rewrite may carry
+  a `when`. A phrase lexeme's token is one word of it, and the values any of its tokens chooses are the phrase's.
 - apc's helping vowel at a word's end is the marked layer's `spell` (the form keeps the cluster: رُحْ+ت), never a
   rewrite; inside a word it is the rewrite `rule:apc-helping-vowel|inside`, which Arabizi may leave out.
 - apc-Latn's free spellings are stated in its profile (the owner, 2026-11-23; each REVIEW with its measured cost):

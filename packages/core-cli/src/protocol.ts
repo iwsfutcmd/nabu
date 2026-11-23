@@ -261,7 +261,7 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
     const { speller, key } = spellerFor(a);
     const spelled = spell(speller, text(a, "form"));
     const expected = optionalText(a, "expected");
-    return expected === undefined ? spelled : { ...spelled, expected: spelledAs(spelled, expected, key) ?? null };
+    return expected === undefined ? spelled : { ...spelled, expected: spelledAs(spelled, expected, key, a["part"] === true) ?? null };
   },
   /** Whether the scheme's statement relates a reading to a spelling: the sites of one path, or null. */
   "reading-spells": (a) => schemeProjection(a).spells(text(a, "reading"), text(a, "spelling")) ?? null,

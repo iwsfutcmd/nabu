@@ -132,15 +132,19 @@ describe("apc's statements over its lexicon", () => {
  * (stated 2026-11-23, the owner's answer to question 6: 58 alternatives moved up, every one that took
  * i/ee alone or beside e/i and a final e/i); then, the same day, o/u (with ou, so u/ou's moved up
  * too), e/ei, an initial ق written 2 or not, and the helping vowel in a final cluster (130 more).
+ * Then 11 fewer (stage 3 of rules in a lexicon): the words the statement spells whole (bus, bas, nos,
+ * sa77tein…) have no alternatives, the teens alone end in a silent r, and the clitics (el, b, w, hal)
+ * have their forms.
  */
-const FREE = 318;
+const FREE = 307;
 /**
  * Alternatives that took the article's forms (stated 2026-11-23 as the profile's join, `joins`: the
  * owner's answer to question 6) and grade as the same word, word by word: a statement of sounds compares
  * one string with another and never sees the article written apart or onto its noun, so they are
- * counted here, not in FREE. 29 of the 30 that waited.
+ * counted here, not in FREE. 29 of the 30 that waited; then 96 more (stage 3): kanoun el tene and
+ * tishrin el tene spell their article gone into the t (ettene), and its forms (eltene, el tene) are joins.
  */
-const JOINED = 29;
+const JOINED = 125;
 /**
  * Alternatives that do not, by the variations they took (an alternative that took several is counted
  * under all of them together). The article waits once: ma3 salame for ma3 essalame writes neither its
@@ -148,10 +152,21 @@ const JOINED = 29;
  * a final t (bent, benet; ekht, ikhet: the past's -t beside its she, -et), in ba3d (ba3ed would compare
  * with ba3id, far) and inside a word (khamsta3shar, a kasra of the stem the spelling cannot tell from it).
  * 3a 2albak waits only here: compared as one string, its albak does not begin it (graded word by word,
- * it is a variant).
+ * it is a variant). The two month names with an assimilated article (stage 3) add 13 that leave the
+ * article out or write it neither as the spelling nor as a join takes it (kanoun tteni): compiler-only
+ * alternatives, never graded.
  */
 const WAITING: Readonly<Record<string, number>> = {
-  "article": 1,
+  "article": 4,
+  "article+e-i": 1,
+  "article+e-i+final-e-i": 1,
+  "article+e-i+final-e-i+i-ee": 1,
+  "article+e-i+i-ee": 1,
+  "article+final-e-i": 2,
+  "article+final-e-i+i-ee": 1,
+  "article+final-e-i+u-ou": 1,
+  "article+i-ee": 1,
+  "article+u-ou": 1,
   "e-i+helping-vowel": 2,
   "helping-vowel": 10,
   "helping-vowel+o-u": 1,

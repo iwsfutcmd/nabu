@@ -167,6 +167,20 @@ correspondences:
 spell:
   from: lexical
   rules:
+    # REVIEW: words the norm spells its own way, whole (the course's spellings, 2026-11-23): a loan as its
+    # source language writes it, a geminate written once, a letter said otherwise and kept. No rule gives them.
+    - {find: "^ب\u064Eاص$", to: bus}  # a loan: English bus
+    - {find: "^ف\u064Fوت\u0652ب\u064Fول$", to: football}  # a loan: English football (Kline writes futbol)
+    - {find: "^م\u065Cير\u0652س\u0650ي$", to: merci}  # a loan: French merci
+    - {find: "^س\u0650ر\u0652ف\u0650يس$", to: servees}  # a loan: English service, written as said
+    - {find: "^ت\u064Eاك\u0652س\u0650ي$", to: taxi}  # a loan: English taxi
+    - {find: "^د\u065Dول\u064Eار$", to: dollar}  # a loan: English dollar
+    - {find: "^آذ\u064Eار$", to: adar}  # ذ said d, the letter kept (Kline p. 5: words keep their old letter)
+    - {find: "^ب\u064Eس\u0651$", to: bas}  # the geminate written once
+    - {find: "^ه\u064Eل\u0651\u064Eق$", to: hala2}  # the geminate written once
+    - {find: "^ن\u064Fص\u0651$", to: nos}  # the geminate written once
+    - {find: "^ص\u064Eح\u0652ت\u065Cين$", to: sa77tein}  # sa77's 77 kept where it is said once (Kline p. 20)
+    - {find: "^إ\u0650ن ش\u064Eاء ا\u06DFل\u0652ل\u064Eه\u06DF$", to: inshalla}  # one word in Arabizi, three in Arabic
     # The helping vowel: not written, or written e (o after a u or o). Free (apc.md, "Free and fixed").
     - {find: "\u0652", after: "[\u064F\u065D]و?{N}", before: "{C}({L}\u06DF)*$", to: "", alternatives: [{id: helping-vowel, to: o}, {id: helping-vowel, to: e}]}
     - {find: "\u0652", after: "({V}|[اىيو]){N}", before: "{C}({L}\u06DF)*$", to: "", alternatives: [{id: helping-vowel, to: e}]}
@@ -192,7 +206,7 @@ spell:
     - {find: "آ\u065C", to: "2e"}
     - {find: "آ", at: start, to: a}
     - {find: "آ", to: "2a"}
-    - {find: "\u064E({L}\u06DF)*[اى]", to: a}  # a silent letter between: -a, her (ـَه\u06DFا)
+    - {find: "\u064E({L}\u06DF)*[اى]\u06DF?", to: a}  # a silent letter between: -a, her (ـَه\u06DFا); the article's silent alef after a: 3al, hal
     - {find: "\u065Cا", to: e}
     - {find: "\u0650ي", before: "({L}\u06DF)*$", to: i, alternatives: [{id: final-e-i, to: e}]}
     - {find: "\u0650ي", before: "{L}", to: i, alternatives: [{id: i-ee, to: ee}]}

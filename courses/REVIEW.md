@@ -302,6 +302,12 @@ points below land, and its chapter is cited where it does.
   the sun letters, j among them). Arabizi writes no length, so *beint* passes for *bent* and *yum* for *yom*.
   *sme3teene* for *sme3teni* and *lik* for *lek* are now refused as another form. *3a l ba7r* for *3al ba7r* is
   still wrong: should it be?
+- **Stage 3 of the rules** (docs/rules-design.md, "Stage 3 as built"): every token is now given by a rule or a
+  stated form. To check: the teens with an unsaid ر (*7da3sh*, said before a noun), *7zeiran*'s marks, the bare glide
+  of *hayda / hayde*, the words Arabizi spells whole (loans, *bas*, *nos*), the feminine -e of *kbire, zghire, rkhise*
+  where Kline has -a, and ج after the article: the course marks it a moon letter 24 times and a sun letter 12, and
+  both are accepted until you choose. Seven tokens changed (three teens' marks, كيفَك, *3meli* for *3emli*); six of the
+  18 clips made again failed the round trip (four teens, *miyye*, s.date.4).
 - **Arabizi's ee for i is free** (the owner, 2026-11-23; profile, REVIEW): *kbeer* for *kbir*, *akeed* for *akid*.
   Its cost: a short i typed ee (*beeshrab*, *3endeek*) is accepted too, and *sme3teene* (to a woman) now passes
   silently for *sme3teni* (to a man), where it was a slip. Separately, the older long-vowels fold accepts *meen* (who)

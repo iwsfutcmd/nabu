@@ -75,6 +75,9 @@ labels:
 - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}, gloss: {en: 't-…-i: you (to a woman, after ra7, baddik…)'}, notes: {en: 'ra7 tru7i: you''ll go. Arabic script: ت before the verb and ي after it (تروحي).'}, was: 'form:subj-2fs'}
 - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '2'}, gloss: {en: 't-…-o: you (to several people, after ra7, badkon…)'}, notes: {en: 'ra7 ta3mlo: you''ll do. Arabic script: ت before the verb and وا after it (تعملوا).'}, was: 'form:subj-2pl'}
 - {feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '3'}, gloss: {en: 'y-…-o: they (after ra7, baddon…)'}, notes: {en: 'ra7 ysefro: they''ll travel. Arabic script: ي before the verb and وا after it (يسافروا).'}, was: 'form:subj-3pl'}
+classes:
+- {id: nisba, pos: ADJ, gloss: {en: '-i adjectives: -iyye, -iyyin (lebnene, lebneniyye)'}, notes: {en: 'REVIEW: Kline p. 10-11 (the nisba).'}}
+- {id: invariable, pos: ADJ, gloss: {en: 'an adjective that does not agree (akbar, awwal)'}, notes: {en: 'REVIEW: a comparative does not change for a feminine noun (Kline p. 14); the course writes awwal and tene so too.'}}
 rules:
 - {id: 'rule:shu-excl', gloss: {en: 'shu + adjective: how …!'}, notes: {en: 'shu 7elo!: how nice!; shu 7elwe hal hdiyye!: what a lovely present! The adjective agrees with what it describes.'}, was: 'construction:shu-excl'}
 - {id: 'rule:used-to', gloss: {en: 'kent + a verb without b-: used to; would'}, notes: {en: 'kent ru7: I used to go; kenna nekol: we used to eat; ken yishteghel: he used to work. Both verbs agree with who did it.'}, was: 'construction:used-to'}
@@ -110,6 +113,12 @@ notation:
     # REVIEW: the letters the feminine ending is -a after: Kline p. 16 lists ر ع ق ص ض ط ظ; his own words add
     # ح غ ء (apc.md, 'A pattern's template').
     FEMA: "[رعقصضطظحغء]"
+    # Stage 3: the sun letters an article's lam goes into (Kline p. 8, img; ج is one there; his table puts ن among the
+    # moon letters, a slip: REVIEW), a short a with a shadda or not, a glide.
+    SUN: "[تثدذرزسشصضطظلنج]"
+    A: "[\u064E {\u064E\u0651}]"
+    GL: "[وي]"
+    FEMI: "[رص]"
 # Rules in a lexicon, stage 2 (docs/rules-design.md): apc's root classes, stem
 # templates, its verbs' realisation rules and its rewrite rules. Nothing reads them in the compiler yet: core's
 # `realise` does (core-cli realise, conformance/realise.json). Every branch is REVIEW until the owner signs it off.
@@ -215,25 +224,59 @@ realisation:
     - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u065cة"}  # -e, or -a (rule:apc-feminine)
     - {branch: pl, feats: {Number: Plur}, add: "ـِين"}  # -in
     - {branch: ms, add: ""}
+# Stage 3: nouns and adjectives (Kline p. 10-16). Uninflected words, and a lexeme in its citation cell (its category's
+# or its own `citation`: hayde, wlad), stand in it with no rule.
+- id: 'rule:apc-invariable'  # REVIEW: an adjective that does not agree: no ending (akbar, awwal: the course; Kline p. 14)
+  when: {pos: ADJ, class: invariable}
+  blocks: []
+- id: 'rule:apc-nisba'  # REVIEW: the nisba's feminine -iyye and plural -iyyin (Kline p. 10-11: lebnene, lebneniyye)
+  when: {pos: ADJ, class: nisba}
+  blocks:
+  - suffix:
+    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u0651\u065cة"}  # its ي doubled, then -e
+    - {branch: pl, feats: {Number: Plur}, add: "ـ\u0650\u0651ين"}
+- id: 'rule:apc-adjective'  # an adjective's feminine and plural (Kline p. 10, 16)
+  when: {pos: ADJ}
+  blocks:
+  - suffix:
+    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u065cة"}  # -e, or -a (rule:apc-feminine)
+    - {branch: pl, feats: {Number: Plur}, add: "ـ\u0650ين"}  # -in
+- id: 'rule:apc-noun'  # REVIEW: a noun whose tokens choose its gender, in the feminine (7abib, m3allem: Kline p. 10, 130)
+  when: {pos: NOUN}
+  blocks:
+  - suffix:
+    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u065cة"}
 phonology:  # in order, each once over the whole form
+- {id: 'rule:apc-article', branch: sun, find: "ل+{SUN}*", after: "ا\u06DF", to: "ل\u06DF+{SUN}\u0651"}  # the article's lam goes into a sun letter: said doubled, the lam written and not said (Kline p. 8-9)
+- {id: 'rule:apc-article', branch: wasl, find: "+ا\u0650", after: "ا\u06DFل", to: "+ا\u06DF"}  # a word's first alef with its vowel is not said after the article (الامتحان: the course)
 - {id: 'rule:apc-sukun', find: "{K}ّ+", before: "{K}*", to: "{K}ّْ+"}  # the notation: a doubled letter before a suffix's consonant takes the sign of no vowel
 - {id: 'rule:apc-bn', find: "ب+{NUN}*+", to: "م+{NUN}+"}  # b- + n- is said and written mn- (Kline p. 100-101)
 - {id: 'rule:apc-madda', find: "ا\u065c+ا", to: "آ\u065c+"}  # the 1sg's alef before a stem in long e: آكل (the course)
 - {id: 'rule:apc-silent-alef', find: "ا\u06df+", to: "+"}  # the plural's silent alef is written only last in a word (Kline p. 95, img: شافوها)
 - {id: 'rule:apc-prefix-vowel', branch: none, find: "ا+", at: start, before: "{K}{V}", to: ""}  # no vowel before a consonant that has one: the 1sg's alef goes (ru7, nem)
-- {id: 'rule:apc-prefix-vowel', branch: ayn, find: "{P}+", after: ["#", "#{P}*+"], before: "{AYN}ْ", to: "{P}َ+"}  # a before 3 (ba3mel, ta3mel; Kline p. 75, and a3ref for the 1sg, p. 157)
-- {id: 'rule:apc-prefix-vowel', branch: cluster, find: "{P}+", after: ["#", "#{P}*+"], before: "{K}ْ", to: "{P}ِ+"}  # i before a cluster (bishrab, btishrab, eshrab)
-- {id: 'rule:apc-prefix-vowel', branch: none, find: "{P}+", after: ["#", "#{P}*+"], to: "{P}ْ+"}  # none before a consonant with a vowel (bru7, btru7, mnru7)
+- {id: 'rule:apc-prefix-vowel', branch: ayn, find: "{P}+", after: ["#", "#{P}*+", "#و+", "#و+{P}*+"], before: "{AYN}ْ", to: "{P}َ+"}  # a before 3 (ba3mel, ta3mel; Kline p. 75, and a3ref for the 1sg, p. 157)
+- {id: 'rule:apc-prefix-vowel', branch: cluster, find: "{P}+", after: ["#", "#{P}*+", "#و+", "#و+{P}*+"], before: "{K}ْ", to: "{P}ِ+"}  # i before a cluster (bishrab, btishrab, eshrab)
+- {id: 'rule:apc-prefix-vowel', branch: none, find: "{P}+", after: ["#", "#{P}*+", "#و+", "#و+{P}*+"], to: "{P}ْ+"}  # none before a consonant with a vowel (bru7, btru7, mnru7)
 - {id: 'rule:apc-syncope', branch: vowel, find: "{L}{IU}{L}{W}+", after: ".*", to: "{L}ْ{L}{W}+"}  # a stem's last i or u drops before an ending that begins with a vowel: 3emlo, ta3mli, tedrso, jarrbi, sekne (Kline p. 101-104, 130)
 - {id: 'rule:apc-syncope', branch: she, find: "{K}َ{K}ِ+{T}*", to: "{K}ْ{K}ِ+{T}"}  # she-past as the speaker's áklit: 3azmet, 3ajbet (ruling 7, 2026-11-21; Kline writes katabet, p. 96)
-- {id: 'rule:apc-defective', branch: ending, find: "{K}*[اىي]{W}+", to: "{K}{W}+"}  # a defective stem's last vowel gives way to an ending's: 7ako, byi7ko, btghanne (Kline p. 98-99)
+- {id: 'rule:apc-syncope', branch: adjective, when: {pos: ADJ}, find: "{L}{A}{L}{W}+", to: "{L}\u0652{L}{W}+"}  # REVIEW: an adjective's last a drops too (m2akhkhra: the course; Kline p. 130 for participles)
+- {id: 'rule:apc-defective', branch: ending, when: {feats: {Aspect: 'Imp,Perf'}}, find: "{K}*[اىي]{W}+", to: "{K}{W}+"}  # a defective stem's last vowel gives way to an ending's: 7ako, byi7ko, btghanne (Kline p. 98-99)
+- {id: 'rule:apc-defective', branch: ending, when: {feats: {Mood: Imp}}, find: "{K}*[اىي]{W}+", to: "{K}{W}+"}  # the same, in the command
 - {id: 'rule:apc-geminate', find: "نْ+نَ", to: "+نَّ"}  # no doubled letter written twice: kenna (Kline p. 60; p. 73 n2)
+- {id: 'rule:apc-short-stem', branch: dative, when: {feats: {Mood: Imp}}, find: "{K}[\u064F\u0650]{GL}{K}*+", before: "ل*", to: "{K}\u0650{K}+"}  # REVIEW: a hollow command's long vowel shortens before the dative (2elli: Kline p. 165-166; he gives it in the present too, the course has none)
+- {id: 'rule:apc-geminate', branch: dative, find: "ل\u0652+ل\u0650", to: "+ل\u0650\u0651"}  # a stem's l and the dative's: one doubled l (2elli)
+- {id: 'rule:apc-geminate', branch: dative, find: "ل\u0652+ل\u064E", to: "+ل\u064E\u0651"}
+- {id: 'rule:apc-feminine', branch: e, find: "ي{FEMI}\u065c+ة", to: "ي{FEMI}\u0650+ة"}  # REVIEW: after a long i, r and S take -e (kbire, zghire, rkhise: the course; Kline's rule of thumb, p. 16, has a)
 - {id: 'rule:apc-feminine', branch: a, find: "{FEMA}\u065c+ة", to: "{FEMA}َ+ة"}  # -a after the letters FEMA (Kline p. 16; REVIEW)
+- {id: 'rule:apc-feminine-t', branch: vowel, find: "{L}[\u064E\u065C]+?ة{V}", to: "{L}\u0652+?ت{V}"}  # ة is t before an ending that begins with a vowel, the vowel before it gone (siyyarte, jarti: Kline p. 50, 152)
+- {id: 'rule:apc-feminine-t', branch: consonant, find: "ة\u0652+", to: "ت\u0652+"}  # and -et- before one that begins with a consonant (jaretna, 3ayletkon: Kline p. 44-45)
+- {id: 'rule:apc-helping-vowel', branch: glide, find: "{GL}\u0652{K}\u0652{K}*", to: "{GL}\u0650{K}\u0652{K}"}  # REVIEW: three consonants after a diphthong's glide: 3ayelti (the course)
 # The helping vowel at a word's end (رُحِت, شْرِبِت: the owner, 2026-11-21) is not a rewrite here: the form keeps the
 # cluster (رُحْ+ت), the marks layer's `spell` writes the vowel (profiles/apc-Arab.standard.yaml, `vocalized`) and the
 # Arabizi's leaves it out or writes e (a free alternative: re7t), as the owner ruled ("the Arabizi stays as written").
 # Inside a word it needs the boundary (سْمِعِتْني, not بْتَعْمْلي), so it stays a rewrite.
 - {id: 'rule:apc-helping-vowel', branch: inside, find: "{K}ْ+?{K}ْ+{K}*", after: ".{V}", to: "{K}ِ+?{K}ْ+{K}"}  # and before an ending that begins with a said consonant (سْمِعِتْني, ruling 7); not before a vowel (none follows the cluster then)
-# REVIEW, not written yet: the helping vowel's damma after a damma inside a stem (شُغُل: nouns, stage 3); the dative
-# -l- after a hollow verb's short stem and after the past's -t (2elli, 2iltellak: Kline p. 43, 165); a hollow verb's
-# short stem before -l- in the he-past (shaflak, Kline p. 99).
+# REVIEW, not written yet (no token of the course needs them): the dative's -ell- after the past's -t (2iltellak:
+# Kline p. 43); a hollow verb's short stem before -l- in the present and the he-past (bshef lak, shaflak: Kline p. 99,
+# 103; the course writes صارلي, the long stem). The helping vowel's damma after a damma inside a stem (شُغُل) is the
+# marked layer's, as the stem's lexical form keeps its cluster.

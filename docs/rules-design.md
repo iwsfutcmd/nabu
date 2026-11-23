@@ -624,3 +624,39 @@ stays REVIEW. Three jobs landed together.
   as a slip (*bteshteghel* for *bteshteghli*): the slip step does not ask the course's forms, some of which the
   nearest-word rule gets wrong. *eshtara*, *eshteghel* keep their said e- where Kline has *shtara*.
 
+## Stage 3 as built (2026-11-23): every apc token is accounted for, and the pinned copies are gone
+
+- **The check covers all 5,470 tokens** (both orthographies): 5,391 given by the rules, 79 by a form of the
+  lexeme (71 pinned with a `form`, 8 listed), none unaccounted, none "no rule yet". `form.unaccounted` is an
+  error; `form.pinned-differs`, `form.redundant`, `form.rule-debt` are added. It costs apc's compile about
+  0.45 s. `form.projection` is at zero.
+- **The 33 forms that did not spell as written:** the teens end in a ر written and not said (Kline's
+  *7da3sh(r)*), said before a noun (an allomorph `before` the next word); *7zeiran*'s marks follow its
+  Arabizi; `akl` has its own marks; *hayda / hayde* keep their bare glide; God's name and a final kasra after
+  a shadda are marked-layer rules; eleven words (loans, *bas*, *nos*, *hala2*) are spelled whole in Arabizi's
+  `spell`. Each is REVIEW.
+- **Rules added:** `rule:apc-adjective` (fs, pl), `-nisba`, `-invariable`, `-noun` (fs), `-article` (sun,
+  wasl), `-feminine-t` (vowel, consonant), `-short-stem` (dative), and branches of syncope, the defective
+  ending, the helping vowel (glide), the feminine (-e after a long i before r and ṣ: the course; Kline has
+  -a) and the prefix vowel. Classes `nisba` and `invariable`. Words in one cell of their own (*enti*,
+  *hayde*, *wlad*, *jiren*) say it with `citation`: they stay lexemes of their own.
+- **Clitics** are lexemes with forms (ا۟ل, بْ and بِ before the article, و, هَا۟ل, the dual, the pronouns),
+  realised from the lexemes each token lists, in its order, per orthography; the course's tokenizing is
+  untouched. A join is a boundary; its sound changes are rewrites naming it (the lam into a sun letter, a
+  wasl alef, the dative's l). Allomorphs are chosen twice (suffixes, the base, prefixes), `after` and
+  `before` reading the token's own text, `before` the next word's base where nothing follows in the token.
+  A phrase is spelled word by word and a token is one word of it.
+- **Engine:** `Condition.startsIn`, an allomorph's `before`, a rewrite's `when`, citation before any rule,
+  `RealiseOptions.next`, `.word`, `pinned: false`; `spell` takes a `part`. Vectors: realise.json 133,
+  spell.json 93; the harnesses pass 1,218 and 1,219.
+- **Course changes (7 tokens):** three teens' marks said alone (`context: alone`), كيفَك in one story line,
+  *3meli* for *3emli* (old accepted), one token's base named. 18 clips made again; 6 failed the round trip
+  (four teens' lemmas, *miyye*, s.date.4); held-back total 251.
+- **Pruned:** `nabu forms prune` took 243 of 268 pinned forms; the bundles are byte for byte the same before
+  and after it and no clip went stale. Kept: 15 with a form (the colours' feminines, *7abibi*'s, the phrases:
+  rule debt) and 10 spelling-only stems before a suffix that no rule needs (for the owner).
+- **Moved:** the simulated apc learner in Arabic script, 83.8 to 82.5% (inside the band, nothing retuned).
+- **For the owner:** ج after the article (the course marks it a moon letter 24 times and a sun letter 12;
+  both are accepted meanwhile); *rkhise* against Kline's -a; the ten stem copies; the teens' clips.
+- **Not done:** glosses for the rule ids (they would ship; stage 4 or 5 writes them with the cards).
+

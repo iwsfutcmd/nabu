@@ -255,6 +255,10 @@
         "before": { "$ref": "#/$defs/Context" },
         "after": { "$ref": "#/$defs/Context" },
         "at": { "type": "string", "enum": ["start", "end"] },
+        "when": {
+          "description": "Where it holds only of some words: of a token whose base lexeme and cell this holds of (a realisation rule's `when`: pos, feats, class, ends, starts, endsIn).",
+          "$ref": "#/$defs/Condition"
+        },
         "notes": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } }
       }
     },
@@ -290,6 +294,11 @@
         },
         "endsIn": {
           "description": "Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).",
+          "type": "string",
+          "minLength": 1
+        },
+        "startsIn": {
+          "description": "For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).",
           "type": "string",
           "minLength": 1
         },

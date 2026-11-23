@@ -966,16 +966,52 @@ def _token_sites(ctx: Ctx, units: list[Unit]) -> list[lexical_forms.Site]:
     sites: list[lexical_forms.Site] = []
 
     def add(item: str, orth: str, form: SentenceForm, loc: Loc) -> None:
-        for t in form.tokens or []:
-            written = [
-                {k: v for k, v in part.items() if k in ("lexeme", "feats", "base")}
-                for part in tk.written(t)
-            ]
+        tokens = [
+            (
+                t,
+                [
+                    {k: v for k, v in part.items() if k in ("lexeme", "feats", "base")}
+                    for part in tk.written(t)
+                ],
+            )
+            for t in form.tokens or []
+        ]
+        # A phrase lexeme written over several tokens (kell sene w enti salme) is one word in one
+        # cell: the values any of its tokens chooses are the phrase's.
+        phrase: dict[str, dict[str, Any]] = {}
+        for _, written in tokens:
+            if len(written) == 1 and _is_phrase(ctx, str(written[0]["lexeme"])):
+                phrase.setdefault(str(written[0]["lexeme"]), {}).update(
+                    written[0].get("feats") or {}
+                )
+        for _, written in tokens:
+            if len(written) == 1 and phrase.get(str(written[0]["lexeme"])):
+                written[0] = {**written[0], "feats": phrase[str(written[0]["lexeme"])]}
+        for i, (t, written) in enumerate(tokens):
             if not written:
                 continue
+            # The next token that writes a lexeme: its base, which an allomorph may be chosen by.
+            following = next((_base_of(w) for _, w in tokens[i + 1 :] if w), None)
             marked = _marked_of(ctx, orth, t.surface, t.vocalized)
+            parts = tk.written(t)
+            base = parts[0] if len(parts) == 1 else next((p for p in parts if p.get("base")), None)
+            base_surface = (
+                None
+                if base is None
+                else str(base.get("surface", t.surface) if len(parts) > 1 else t.surface)
+            )
             sites.append(
-                lexical_forms.Site(item, orth, loc.file, loc.line, t.surface, marked, written)
+                lexical_forms.Site(
+                    item,
+                    orth,
+                    loc.file,
+                    loc.line,
+                    t.surface,
+                    marked,
+                    written,
+                    following,
+                    base_surface,
+                )
             )
 
     for unit in units:
@@ -994,13 +1030,64 @@ def _token_sites(ctx: Ctx, units: list[Unit]) -> list[lexical_forms.Site]:
     return sites
 
 
+def _pinned_forms(ctx: Ctx, sites: list[lexical_forms.Site]) -> None:
+    """The language's pinned forms against its rules and the course (docs/rules-design.md, section
+    5): `form.pinned-differs` (a pinned spelling no token of its cell writes), `form.redundant` (a
+    pinned form the rules give: prune it), `form.rule-debt` (the rest, counted)."""
+    pinned = lexical_forms.check_pinned(ctx.lang, sites, ctx.profiles, ctx.cli)
+    debt: set[str] = set()
+    for p in pinned:
+        loc = ctx.lang.loc(p.lexeme, "forms", p.index)
+        key = ";".join(f"{k}={v}" for k, v in sorted(p.feats.items()))
+        for orth, spelling in p.differs:
+            ctx.diags.report(
+                "form.pinned-differs",
+                f"'{p.lexeme}|form:{key} {orth}': it pins {spelling!r}, which no token of the "
+                f"course writes of {p.lexeme} in that cell",
+                loc,
+            )
+        if p.redundant:
+            ctx.diags.report(
+                "form.redundant",
+                f"'{p.lexeme}|form:{key}': the rules give it in every spelling it pins "
+                f"({', '.join(f'{o}: {s}' for o, s in sorted(p.rules.items()))}); "
+                "`nabu forms prune` removes it",
+                loc,
+            )
+        else:
+            debt.add(p.lexeme)
+    count = sum(1 for p in pinned if not p.redundant)
+    if count:
+        ctx.diags.report(
+            "form.rule-debt",
+            f"{ctx.lang.code}: {count} pinned forms on {len(debt)} lexemes the rules do not give "
+            f"yet ({', '.join(sorted(debt))})",
+            ctx.lang.declared_doc.loc(),
+        )
+
+
+def _is_phrase(ctx: Ctx, lexeme: str) -> bool:
+    """Whether a lexeme's form is a phrase (a form with a space: several tokens write it)."""
+    entry = ctx.lang.get(lexeme)
+    return entry is not None and isinstance(entry.form, str) and " " in entry.form
+
+
+def _base_of(written: list[dict[str, Any]]) -> str | None:
+    """A token's base lexeme: its only one, or the one marked `base`."""
+    if len(written) == 1:
+        return str(written[0]["lexeme"])
+    return next((str(w["lexeme"]) for w in written if w.get("base")), None)
+
+
 def _token_forms(ctx: Ctx, units: list[Unit], compiled: Compiled) -> None:
     """Every token of the course against what the language's rules give (`form.unaccounted`,
     docs/rules-design.md stage 2): realised and spelled by @nabu/core. Only for a language with
     realisation rules; the report is kept for `nabu forms`."""
     if not ctx.lang.declared.realisation:
         return
-    report = lexical_forms.check_tokens(ctx.lang, _token_sites(ctx, units), ctx.profiles, ctx.cli)
+    sites = _token_sites(ctx, units)
+    report = lexical_forms.check_tokens(ctx.lang, sites, ctx.profiles, ctx.cli)
+    _pinned_forms(ctx, sites)
     compiled.tokens = report
     if report is None:
         return

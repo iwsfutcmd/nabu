@@ -3343,6 +3343,10 @@ export interface Condition {
    * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
    */
   readonly endsIn?: string;
+  /**
+   * For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).
+   */
+  readonly startsIn?: string;
   readonly feats?: UdFeatures7;
 }
 /**
@@ -3363,6 +3367,10 @@ export interface Condition1 {
    * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
    */
   readonly endsIn?: string;
+  /**
+   * For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).
+   */
+  readonly startsIn?: string;
   readonly feats?: UdFeatures7;
 }
 /**
@@ -3498,6 +3506,10 @@ export interface Condition2 {
    * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
    */
   readonly endsIn?: string;
+  /**
+   * For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).
+   */
+  readonly startsIn?: string;
   readonly feats?: UdFeatures7;
 }
 /**
@@ -3685,9 +3697,34 @@ export interface Rewrite {
   readonly before?: Context;
   readonly after?: Context;
   readonly at?: "start" | "end";
+  readonly when?: Condition3;
   readonly notes?: {
     readonly [k: string]: string;
   };
+}
+/**
+ * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
+ */
+export interface Condition3 {
+  readonly pos?: PartOfSpeech;
+  /**
+   * The lexical form ends in this (Spanish -a; uz -k).
+   */
+  readonly ends?: string;
+  /**
+   * The lexical form begins with this.
+   */
+  readonly starts?: string;
+  readonly class?: Slug3;
+  /**
+   * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
+   */
+  readonly endsIn?: string;
+  /**
+   * For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).
+   */
+  readonly startsIn?: string;
+  readonly feats?: UdFeatures7;
 }
 /**
  * A generated lookup table an orthography profile refers to by id (profiles/tables/<id>.json): orthographic variant groups, character readings for the IME-homophone typo model, or a character set for script-mismatch detection.

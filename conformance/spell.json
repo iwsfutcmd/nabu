@@ -32,7 +32,93 @@
       "note": "Rule 2 ([گپڤ] mapped): lexeme:englize."
     },
     {
-      "id": "spell/apc-marked/rule-01/3omr",
+      "id": "spell/apc-arab/rule-03/ahla-w-sahla",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "أَهْلَا و سَهْلَا",
+        "expected": "أهلا وسهلا"
+      },
+      "expected": {
+        "spelling": "أهلا وسهلا",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 3 (a space after a lone و → nothing: the conjunction is written onto the word after it): lexeme:ahla-w-sahla."
+    },
+    {
+      "id": "spell/apc-marked/rule-01/walla",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "وَالْلَه\u06df",
+        "layer": "vocalized",
+        "expected": "والله"
+      },
+      "expected": {
+        "spelling": "والله",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 1 (لْلَه + U+06DF at a word's end → لله, no marks): lexeme:walla."
+    },
+    {
+      "id": "spell/apc-marked/rule-02/huwwe",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "هُوِّ",
+        "layer": "vocalized",
+        "expected": "هُوّ"
+      },
+      "expected": {
+        "spelling": "هُوّ",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 2 (a final kasra after a shadda → nothing): lexeme:huwwe."
+    },
+    {
+      "id": "spell/apc-marked/rule-03/allah",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "اَلْلَه",
+        "layer": "vocalized",
+        "expected": "الله"
+      },
+      "expected": {
+        "spelling": "الله",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 3 (the name of God, alone, with no marks): the first word of lexeme:allah-ybarek."
+    },
+    {
+      "id": "spell/apc-marked/rule-04/eljabal",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "ا\u06dfل\u06df+جَّبَل",
+        "layer": "vocalized",
+        "expected": "الجَبَل"
+      },
+      "expected": {
+        "spelling": "الجَّبَل",
+        "alternatives": [
+          {
+            "spelling": "الجَبَل",
+            "by": [
+              "jim-moon"
+            ]
+          }
+        ],
+        "expected": "alternative"
+      },
+      "note": "Rule 4 (ج after the article doubled, or not: alternative jim-moon): the course marks it both ways."
+    },
+    {
+      "id": "spell/apc-marked/rule-05/3omr",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -45,10 +131,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 1 (U+0652 → U+064F): lexeme:3omr."
+      "note": "Rule 5 (U+0652 → U+064F): lexeme:3omr."
     },
     {
-      "id": "spell/apc-marked/rule-02/3end",
+      "id": "spell/apc-marked/rule-06/3end",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -61,10 +147,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 2 (U+0652 → U+0650): lexeme:3end."
+      "note": "Rule 6 (U+0652 → U+0650): lexeme:3end."
     },
     {
-      "id": "spell/apc-marked/rule-03/beton",
+      "id": "spell/apc-marked/rule-07/beton",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -77,10 +163,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 3 ([U+064FU+065D]هU+06DF → U+0652هU+064F): word|u11-people:s.ppl.31."
+      "note": "Rule 7 ([U+064FU+065D]هU+06DF → U+0652هU+064F): word|u11-people:s.ppl.31."
     },
     {
-      "id": "spell/apc-marked/rule-04/el7amdella",
+      "id": "spell/apc-marked/rule-08/el7amdella",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -89,14 +175,14 @@
         "expected": "الحَمْدِلله"
       },
       "expected": {
-        "spelling": "الحَمْدِلْلَه",
+        "spelling": "الحَمْدِلله",
         "alternatives": [],
-        "expected": null
+        "expected": "spelling"
       },
-      "note": "Rule 4 (U+0652 → nothing): lexeme:el7amdella."
+      "note": "Rule 8 (U+0652 → nothing): lexeme:el7amdella."
     },
     {
-      "id": "spell/apc-marked/rule-05/akal-form",
+      "id": "spell/apc-marked/rule-09/akal-form",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -109,10 +195,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 5 (آU+065C → آ): lexeme:akal|Aspect=Imp;Mood=Sub;Number=Sing;Person=1."
+      "note": "Rule 9 (آU+065C → آ): lexeme:akal|Aspect=Imp;Mood=Sub;Number=Sing;Person=1."
     },
     {
-      "id": "spell/apc-marked/rule-06/abadan",
+      "id": "spell/apc-marked/rule-10/abadan",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -125,10 +211,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 6 (U+064Bا → اU+064B): lexeme:abadan."
+      "note": "Rule 10 (U+064Bا → اU+064B): lexeme:abadan."
     },
     {
-      "id": "spell/apc-marked/rule-07/ma",
+      "id": "spell/apc-marked/rule-11/ma",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -141,10 +227,26 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 7 ([U+064EU+065C] → nothing): lexeme:ma."
+      "note": "Rule 11 ([U+064EU+065C] → nothing): lexeme:ma."
     },
     {
-      "id": "spell/apc-marked/rule-08/a7la",
+      "id": "spell/apc-marked/rule-11/3al",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "عَ+ا\u06dfل+ب\u065cيت",
+        "layer": "vocalized",
+        "expected": "عَالبيت"
+      },
+      "expected": {
+        "spelling": "عَالبيت",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 11 ([U+064E U+065C] → nothing before a length letter, not before the article's silent alef): 3a + el + bet."
+    },
+    {
+      "id": "spell/apc-marked/rule-12/a7la",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -157,10 +259,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 8 (U+064E → nothing): lexeme:a7la."
+      "note": "Rule 12 (U+064E → nothing): lexeme:a7la."
     },
     {
-      "id": "spell/apc-marked/rule-09/fi",
+      "id": "spell/apc-marked/rule-13/fi",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -173,10 +275,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 9 ([U+0650U+065C] → nothing): lexeme:fi."
+      "note": "Rule 13 ([U+0650U+065C] → nothing): lexeme:fi."
     },
     {
-      "id": "spell/apc-marked/rule-10/shu",
+      "id": "spell/apc-marked/rule-14/shu",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -189,10 +291,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 10 ([U+064FU+065D] → nothing): lexeme:shu."
+      "note": "Rule 14 ([U+064FU+065D] → nothing): lexeme:shu."
     },
     {
-      "id": "spell/apc-marked/rule-11/mit",
+      "id": "spell/apc-marked/rule-15/mit",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -205,10 +307,10 @@
         "alternatives": [],
         "expected": null
       },
-      "note": "Rule 11 (ةU+0652 → ة): word|u05-numbers:s.num.18."
+      "note": "Rule 15 (ةU+0652 → ة): word|u05-numbers:s.num.18."
     },
     {
-      "id": "spell/apc-marked/rule-12/sene",
+      "id": "spell/apc-marked/rule-16/sene",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -221,10 +323,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 12 (U+065C → U+0650): lexeme:sene."
+      "note": "Rule 16 (U+065C → U+0650): lexeme:sene."
     },
     {
-      "id": "spell/apc-marked/rule-13/enno",
+      "id": "spell/apc-marked/rule-17/enno",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -237,10 +339,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 13 (U+06DF → nothing): lexeme:enno."
+      "note": "Rule 17 (U+06DF → nothing): lexeme:enno."
     },
     {
-      "id": "spell/apc-marked/rule-14/englize",
+      "id": "spell/apc-marked/rule-18/englize",
       "op": "spell",
       "args": {
         "profile": "apc-Arab/standard",
@@ -253,10 +355,206 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 14 ([گپڤ] mapped): lexeme:englize."
+      "note": "Rule 18 ([گپڤ] mapped): lexeme:englize."
     },
     {
-      "id": "spell/apc-arabizi/rule-01/3omr",
+      "id": "spell/apc-marked/rule-19/kell-sene",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "كِلّ سِن\u065cة و إِنْتَ سَالِم",
+        "layer": "vocalized",
+        "expected": "كِلّ سِنِة وإِنْتَ سالِم"
+      },
+      "expected": {
+        "spelling": "كِلّ سِنِة وإِنْتَ سالِم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 19 (a space after a lone و → nothing): lexeme:kell-sene, a phrase spelled word by word."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-01/bus",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "بَاص",
+        "expected": "bus"
+      },
+      "expected": {
+        "spelling": "bus",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 1 (the whole word, as the norm spells it): lexeme:bus."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-02/football",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "فُوتْبُول",
+        "expected": "football"
+      },
+      "expected": {
+        "spelling": "football",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 2 (the whole word, as the norm spells it): lexeme:football."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-03/merci",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "م\u065cيرْسِي",
+        "expected": "merci"
+      },
+      "expected": {
+        "spelling": "merci",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 3 (the whole word, as the norm spells it): lexeme:merci."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-04/servees",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "سِرْفِيس",
+        "expected": "servees"
+      },
+      "expected": {
+        "spelling": "servees",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 4 (the whole word, as the norm spells it): lexeme:servees."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-05/taxi",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "تَاكْسِي",
+        "expected": "taxi"
+      },
+      "expected": {
+        "spelling": "taxi",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 5 (the whole word, as the norm spells it): lexeme:taxi."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-06/dollar",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "د\u065dولَار",
+        "expected": "dollar"
+      },
+      "expected": {
+        "spelling": "dollar",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 6 (the whole word, as the norm spells it): lexeme:dollar."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-07/adar",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "آذَار",
+        "expected": "adar"
+      },
+      "expected": {
+        "spelling": "adar",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 7 (the whole word, as the norm spells it): lexeme:adar."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-08/bas",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "بَسّ",
+        "expected": "bas"
+      },
+      "expected": {
+        "spelling": "bas",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 8 (the whole word, as the norm spells it): lexeme:bas."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-09/hala2",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "هَلَّق",
+        "expected": "hala2"
+      },
+      "expected": {
+        "spelling": "hala2",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 9 (the whole word, as the norm spells it): lexeme:hala2."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-10/nos",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "نُصّ",
+        "expected": "nos"
+      },
+      "expected": {
+        "spelling": "nos",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 10 (the whole word, as the norm spells it): lexeme:nos."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-11/sa77tein",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "صَحْت\u065cين",
+        "expected": "sa77tein"
+      },
+      "expected": {
+        "spelling": "sa77tein",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 11 (the whole word, as the norm spells it): lexeme:sa77tein."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-12/inshalla",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "إِن شَاء ا\u06dfلْلَه\u06df",
+        "expected": "inshalla"
+      },
+      "expected": {
+        "spelling": "inshalla",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 12 (the whole phrase, one word in Arabizi): lexeme:inshalla."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-13/3omr",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -301,10 +599,10 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 1 (U+0652 → nothing; alternatives helping-vowel): lexeme:3omr."
+      "note": "Rule 13 (U+0652 → nothing; alternatives helping-vowel): lexeme:3omr."
     },
     {
-      "id": "spell/apc-arabizi/rule-02/ahl",
+      "id": "spell/apc-arabizi/rule-14/ahl",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -323,10 +621,99 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 2 (U+0652 → nothing; alternatives helping-vowel): lexeme:ahl."
+      "note": "Rule 14 (U+0652 → nothing; alternatives helping-vowel): lexeme:ahl."
     },
     {
-      "id": "spell/apc-arabizi/rule-04/aw",
+      "id": "spell/apc-arabizi/rule-15/sme3tni",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "سْمِعِتْنِي",
+        "expected": "sme3tni"
+      },
+      "expected": {
+        "spelling": "sme3etni",
+        "alternatives": [
+          {
+            "spelling": "smi3etni",
+            "by": [
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "sme3etne",
+            "by": [
+              "final-e-i"
+            ]
+          },
+          {
+            "spelling": "smi3etne",
+            "by": [
+              "e-i",
+              "final-e-i"
+            ]
+          },
+          {
+            "spelling": "sme3itni",
+            "by": [
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "smi3itni",
+            "by": [
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "sme3itne",
+            "by": [
+              "e-i",
+              "final-e-i"
+            ]
+          },
+          {
+            "spelling": "smi3itne",
+            "by": [
+              "e-i",
+              "final-e-i"
+            ]
+          },
+          {
+            "spelling": "sme3tni",
+            "by": [
+              "helping-vowel"
+            ]
+          },
+          {
+            "spelling": "smi3tni",
+            "by": [
+              "e-i",
+              "helping-vowel"
+            ]
+          },
+          {
+            "spelling": "sme3tne",
+            "by": [
+              "final-e-i",
+              "helping-vowel"
+            ]
+          },
+          {
+            "spelling": "smi3tne",
+            "by": [
+              "e-i",
+              "final-e-i",
+              "helping-vowel"
+            ]
+          }
+        ],
+        "expected": "alternative"
+      },
+      "note": "Rule 15 (U+0650 → e; alternatives e-i, helping-vowel): the helping vowel the rules write inside a word, before an ending that begins with a said consonant (rule:apc-helping-vowel|inside), written e or left out: lexeme:sama3|Aspect=Perf;Gender=Masc;Number=Sing;Person=2 + lexeme:obj-1sg, s.phone.11 writes sme3tni (an alternative)."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-16/aw",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -338,10 +725,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 4 ({H} → nothing): lexeme:aw."
+      "note": "Rule 16 ({H} → nothing): lexeme:aw."
     },
     {
-      "id": "spell/apc-arabizi/rule-05/kanoun-awwal",
+      "id": "spell/apc-arabizi/rule-17/kanoun-awwal",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -352,10 +739,10 @@
         "spelling": "kanun elawwal",
         "expected": "alternative"
       },
-      "note": "Rule 5 ({H} → nothing): lexeme:kanoun-awwal."
+      "note": "Rule 17 ({H} → nothing): lexeme:kanoun-awwal."
     },
     {
-      "id": "spell/apc-arabizi/rule-06/2yes",
+      "id": "spell/apc-arabizi/rule-18/2yes",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -374,10 +761,10 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 6 (ق → 2; alternatives q-initial): lexeme:2yes."
+      "note": "Rule 18 (ق → 2; alternatives q-initial): lexeme:2yes."
     },
     {
-      "id": "spell/apc-arabizi/rule-07/elahwe",
+      "id": "spell/apc-arabizi/rule-19/elahwe",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -422,10 +809,10 @@
         ],
         "expected": "alternative"
       },
-      "note": "Rule 7 (ق → 2; alternatives q-initial): word|u05-numbers:s.num.14."
+      "note": "Rule 19 (ق → 2; alternatives q-initial): word|u05-numbers:s.num.14."
     },
     {
-      "id": "spell/apc-arabizi/rule-08/el7amdella",
+      "id": "spell/apc-arabizi/rule-20/el7amdella",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -469,10 +856,10 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 8 (اU+06DF → e; alternatives article, e-i): lexeme:el7amdella."
+      "note": "Rule 20 (اU+06DF → e; alternatives article, e-i): lexeme:el7amdella."
     },
     {
-      "id": "spell/apc-arabizi/rule-09/ma3-essalame",
+      "id": "spell/apc-arabizi/rule-21/ma3-essalame",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -554,10 +941,10 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 9 (U+0651 → U+0651; alternatives article): lexeme:ma3-essalame."
+      "note": "Rule 21 (U+0651 → U+0651; alternatives article): lexeme:ma3-essalame."
     },
     {
-      "id": "spell/apc-arabizi/rule-10/ma3-essalame",
+      "id": "spell/apc-arabizi/rule-22/ma3-essalame",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -639,10 +1026,10 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 10 (لU+06DF → nothing; alternatives article): lexeme:ma3-essalame."
+      "note": "Rule 22 (لU+06DF → nothing; alternatives article): lexeme:ma3-essalame."
     },
     {
-      "id": "spell/apc-arabizi/rule-11/esm",
+      "id": "spell/apc-arabizi/rule-23/esm",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -674,10 +1061,10 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 11 (ا → nothing): lexeme:esm."
+      "note": "Rule 23 (ا → nothing): lexeme:esm."
     },
     {
-      "id": "spell/apc-arabizi/rule-12/abadan",
+      "id": "spell/apc-arabizi/rule-24/abadan",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -689,10 +1076,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 12 (U+064Bا → an): lexeme:abadan."
+      "note": "Rule 24 (U+064Bا → an): lexeme:abadan."
     },
     {
-      "id": "spell/apc-arabizi/rule-13/akal-form",
+      "id": "spell/apc-arabizi/rule-25/akal-form",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -711,10 +1098,10 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 13 (آU+065C → e): lexeme:akal|Aspect=Imp;Mood=Sub;Number=Sing;Person=1."
+      "note": "Rule 25 (آU+065C → e): lexeme:akal|Aspect=Imp;Mood=Sub;Number=Sing;Person=1."
     },
     {
-      "id": "spell/apc-arabizi/rule-15/ab",
+      "id": "spell/apc-arabizi/rule-27/ab",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -726,10 +1113,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 15 (آ → a): lexeme:ab."
+      "note": "Rule 27 (آ → a): lexeme:ab."
     },
     {
-      "id": "spell/apc-arabizi/rule-17/ma",
+      "id": "spell/apc-arabizi/rule-29/ma",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -741,10 +1128,47 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 17 (U+064E({L}U+06DF)*[اى] → a): lexeme:ma."
+      "note": "Rule 29 (U+064E({L}U+06DF)*[اى] → a): lexeme:ma."
     },
     {
-      "id": "spell/apc-arabizi/rule-18/jeye",
+      "id": "spell/apc-arabizi/rule-29/shefta",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "شِفْتَه\u06dfا",
+        "expected": "shefta"
+      },
+      "expected": {
+        "spelling": "shefta",
+        "alternatives": [
+          {
+            "spelling": "shifta",
+            "by": [
+              "e-i"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 29 (U+064E({L}U+06DF)*[اى] → a): -a, her, a fatha, a silent ه and its alef: lexeme:shef|Aspect=Perf;Number=Sing;Person=1 + lexeme:obj-3fs, s.phone.20 (shefta)."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-29/3al",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "عَ+ا\u06dfل",
+        "expected": "3al"
+      },
+      "expected": {
+        "spelling": "3al",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 29 (U+064E, then a silent letter or none, then a long a's letter and its silent sign or none → a): 3a + el."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-30/jeye",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -756,10 +1180,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 18 (U+065Cا → e): lexeme:jeye."
+      "note": "Rule 30 (U+065Cا → e): lexeme:jeye."
     },
     {
-      "id": "spell/apc-arabizi/rule-19/fi",
+      "id": "spell/apc-arabizi/rule-31/fi",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -778,10 +1202,10 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 19 (U+0650ي → i; alternatives final-e-i): lexeme:fi."
+      "note": "Rule 31 (U+0650ي → i; alternatives final-e-i): lexeme:fi."
     },
     {
-      "id": "spell/apc-arabizi/rule-20/kif",
+      "id": "spell/apc-arabizi/rule-32/kif",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -800,10 +1224,10 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 20 (U+0650ي → i; alternatives i-ee): lexeme:kif."
+      "note": "Rule 32 (U+0650ي → i; alternatives i-ee): lexeme:kif."
     },
     {
-      "id": "spell/apc-arabizi/rule-22/bet",
+      "id": "spell/apc-arabizi/rule-34/bet",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -822,10 +1246,10 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 22 (U+065Cي → e; alternatives e-ei): lexeme:bet."
+      "note": "Rule 34 (U+065Cي → e; alternatives e-ei): lexeme:bet."
     },
     {
-      "id": "spell/apc-arabizi/rule-23/shu",
+      "id": "spell/apc-arabizi/rule-35/shu",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -844,10 +1268,10 @@
         ],
         "expected": "alternative"
       },
-      "note": "Rule 23 (U+064Fو → o; alternatives o-u): lexeme:shu."
+      "note": "Rule 35 (U+064Fو → o; alternatives o-u): lexeme:shu."
     },
     {
-      "id": "spell/apc-arabizi/rule-24/sou2",
+      "id": "spell/apc-arabizi/rule-36/sou2",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -866,10 +1290,10 @@
         ],
         "expected": "alternative"
       },
-      "note": "Rule 24 (U+064Fو → u; alternatives u-ou): lexeme:sou2."
+      "note": "Rule 36 (U+064Fو → u; alternatives u-ou): lexeme:sou2."
     },
     {
-      "id": "spell/apc-arabizi/rule-25/fo2",
+      "id": "spell/apc-arabizi/rule-37/fo2",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -881,10 +1305,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 25 (U+065Dو → o): lexeme:fo2."
+      "note": "Rule 37 (U+065Dو → o): lexeme:fo2."
     },
     {
-      "id": "spell/apc-arabizi/rule-26/mit",
+      "id": "spell/apc-arabizi/rule-38/mit",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -903,10 +1327,10 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 26 (ةU+0652 → t): word|u05-numbers:s.num.18."
+      "note": "Rule 38 (ةU+0652 → t): word|u05-numbers:s.num.18."
     },
     {
-      "id": "spell/apc-arabizi/rule-27/mara",
+      "id": "spell/apc-arabizi/rule-39/mara",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -918,10 +1342,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 27 (ة → nothing): lexeme:mara."
+      "note": "Rule 39 (ة → nothing): lexeme:mara."
     },
     {
-      "id": "spell/apc-arabizi/rule-28/3a",
+      "id": "spell/apc-arabizi/rule-40/3a",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -933,10 +1357,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 28 (U+064E → a): lexeme:3a."
+      "note": "Rule 40 (U+064E → a): lexeme:3a."
     },
     {
-      "id": "spell/apc-arabizi/rule-29/men",
+      "id": "spell/apc-arabizi/rule-41/men",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -955,32 +1379,58 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 29 (U+0650 → e; alternatives e-i): lexeme:men."
+      "note": "Rule 41 (U+0650 → e; alternatives e-i): lexeme:men."
     },
     {
-      "id": "spell/apc-arabizi/rule-30/nos",
+      "id": "spell/apc-arabizi/rule-42/dohr",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
-        "form": "نُصّ",
-        "expected": "nos"
+        "form": "ضُهْر",
+        "expected": "dohr"
       },
       "expected": {
-        "spelling": "noss",
+        "spelling": "dohr",
         "alternatives": [
           {
-            "spelling": "nuss",
+            "spelling": "duhr",
             "by": [
+              "o-u"
+            ]
+          },
+          {
+            "spelling": "dohor",
+            "by": [
+              "helping-vowel"
+            ]
+          },
+          {
+            "spelling": "duhor",
+            "by": [
+              "helping-vowel",
+              "o-u"
+            ]
+          },
+          {
+            "spelling": "doher",
+            "by": [
+              "helping-vowel"
+            ]
+          },
+          {
+            "spelling": "duher",
+            "by": [
+              "helping-vowel",
               "o-u"
             ]
           }
         ],
-        "expected": null
+        "expected": "spelling"
       },
-      "note": "Rule 30 (U+064F → o; alternatives o-u): lexeme:nos."
+      "note": "Rule 42 (U+064F → o; alternatives o-u): lexeme:dohr."
     },
     {
-      "id": "spell/apc-arabizi/rule-31/3ayle",
+      "id": "spell/apc-arabizi/rule-43/3ayle",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -992,10 +1442,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 31 (U+065C → e): lexeme:3ayle."
+      "note": "Rule 43 (U+065C → e): lexeme:3ayle."
     },
     {
-      "id": "spell/apc-arabizi/rule-32/shway",
+      "id": "spell/apc-arabizi/rule-44/shway",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -1007,10 +1457,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 32 (U+0652 → nothing): lexeme:shway."
+      "note": "Rule 44 (U+0652 → nothing): lexeme:shway."
     },
     {
-      "id": "spell/apc-arabizi/rule-33/walla",
+      "id": "spell/apc-arabizi/rule-45/walla",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -1022,10 +1472,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 33 ({L}U+06DF → nothing): lexeme:walla."
+      "note": "Rule 45 ({L}U+06DF → nothing): lexeme:walla."
     },
     {
-      "id": "spell/apc-arabizi/rule-34/7a22",
+      "id": "spell/apc-arabizi/rule-46/7a22",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -1037,10 +1487,10 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 34 ({C}U+0651 → {C}{C}): lexeme:7a22."
+      "note": "Rule 46 ({C}U+0651 → {C}{C}): lexeme:7a22."
     },
     {
-      "id": "spell/apc-arabizi/rule-35/3a",
+      "id": "spell/apc-arabizi/rule-47/3a",
       "op": "spell",
       "args": {
         "profile": "apc-Latn/arabizi",
@@ -1052,7 +1502,22 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 35 ({C} mapped): lexeme:3a."
+      "note": "Rule 47 ({C} mapped): lexeme:3a."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-48/ak",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "ـَك",
+        "expected": "ak"
+      },
+      "expected": {
+        "spelling": "ak",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 48 (U+0640 → nothing): a carrier, an affix whose vowel goes onto the letter it joins, alone: lexeme:obj-2ms, -ak."
     },
     {
       "id": "spell/apc-arabizi/constructed/madda-inside",
@@ -1692,132 +2157,6 @@
       "note": "A pattern that does not close its group."
     },
     {
-      "id": "spell/apc-arabizi/rule-03/sme3tni",
-      "op": "spell",
-      "args": {
-        "profile": "apc-Latn/arabizi",
-        "form": "سْمِعِتْنِي",
-        "expected": "sme3tni"
-      },
-      "expected": {
-        "spelling": "sme3etni",
-        "alternatives": [
-          {
-            "spelling": "smi3etni",
-            "by": [
-              "e-i"
-            ]
-          },
-          {
-            "spelling": "sme3etne",
-            "by": [
-              "final-e-i"
-            ]
-          },
-          {
-            "spelling": "smi3etne",
-            "by": [
-              "e-i",
-              "final-e-i"
-            ]
-          },
-          {
-            "spelling": "sme3itni",
-            "by": [
-              "e-i"
-            ]
-          },
-          {
-            "spelling": "smi3itni",
-            "by": [
-              "e-i"
-            ]
-          },
-          {
-            "spelling": "sme3itne",
-            "by": [
-              "e-i",
-              "final-e-i"
-            ]
-          },
-          {
-            "spelling": "smi3itne",
-            "by": [
-              "e-i",
-              "final-e-i"
-            ]
-          },
-          {
-            "spelling": "sme3tni",
-            "by": [
-              "helping-vowel"
-            ]
-          },
-          {
-            "spelling": "smi3tni",
-            "by": [
-              "e-i",
-              "helping-vowel"
-            ]
-          },
-          {
-            "spelling": "sme3tne",
-            "by": [
-              "final-e-i",
-              "helping-vowel"
-            ]
-          },
-          {
-            "spelling": "smi3tne",
-            "by": [
-              "e-i",
-              "final-e-i",
-              "helping-vowel"
-            ]
-          }
-        ],
-        "expected": "alternative"
-      },
-      "note": "Rule 3 (U+0650 → e; alternatives e-i, helping-vowel): the helping vowel the rules write inside a word, before an ending that begins with a said consonant (rule:apc-helping-vowel|inside), written e or left out: lexeme:sama3|Aspect=Perf;Gender=Masc;Number=Sing;Person=2 + lexeme:obj-1sg, s.phone.11 writes sme3tni (an alternative)."
-    },
-    {
-      "id": "spell/apc-arabizi/rule-17/shefta",
-      "op": "spell",
-      "args": {
-        "profile": "apc-Latn/arabizi",
-        "form": "شِفْتَه\u06dfا",
-        "expected": "shefta"
-      },
-      "expected": {
-        "spelling": "shefta",
-        "alternatives": [
-          {
-            "spelling": "shifta",
-            "by": [
-              "e-i"
-            ]
-          }
-        ],
-        "expected": "spelling"
-      },
-      "note": "Rule 17 (U+064E({L}U+06DF)*[اى] → a): -a, her, a fatha, a silent ه and its alef: lexeme:shef|Aspect=Perf;Number=Sing;Person=1 + lexeme:obj-3fs, s.phone.20 (shefta)."
-    },
-    {
-      "id": "spell/apc-arabizi/rule-36/ak",
-      "op": "spell",
-      "args": {
-        "profile": "apc-Latn/arabizi",
-        "form": "ـَك",
-        "expected": "ak"
-      },
-      "expected": {
-        "spelling": "ak",
-        "alternatives": [],
-        "expected": "spelling"
-      },
-      "note": "Rule 36 (U+0640 → nothing): a carrier, an affix whose vowel goes onto the letter it joins, alone: lexeme:obj-2ms, -ak."
-    },
-    {
       "id": "spell/apc-arabizi/boundaries",
       "op": "spell",
       "args": {
@@ -1863,6 +2202,65 @@
         "alternatives": []
       },
       "note": "A realised form's boundaries dropped, then the helping vowel at the end (rule 2): رِحِت."
+    },
+    {
+      "id": "spell/apc-arabizi/whole-word-only",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "بَاصَات",
+        "expected": "basat"
+      },
+      "expected": {
+        "spelling": "basat",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Constructed: a whole-word spelling holds of the word alone; with an ending the letters are spelled (bas-at)."
+    },
+    {
+      "id": "spell/apc-arabizi/part",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "كَانُون ا\u06dfل\u06dfتّ\u065cانِي",
+        "expected": "tene",
+        "part": true
+      },
+      "expected": {
+        "spelling": "kanun etteni",
+        "expected": "alternative"
+      },
+      "note": "`part`: a token of a phrase written over several tokens is one word of the spelled phrase, as the profile keys it (the article detached): kanoun el tene's tene."
+    },
+    {
+      "id": "spell/apc-arabizi/part-article",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "كَانُون ا\u06dfل\u06dfتّ\u065cانِي",
+        "expected": "el",
+        "part": true
+      },
+      "expected": {
+        "spelling": "kanun etteni",
+        "expected": "alternative"
+      },
+      "note": "`part`: the phrase's article, a token of its own in Arabizi."
+    },
+    {
+      "id": "spell/apc-arabizi/part-not-whole",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "كَانُون ا\u06dfل\u06dfتّ\u065cانِي",
+        "expected": "tene"
+      },
+      "expected": {
+        "spelling": "kanun etteni",
+        "expected": null
+      },
+      "note": "Without `part`, a word of the phrase is not its spelling."
     }
   ]
 }

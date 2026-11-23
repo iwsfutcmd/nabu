@@ -1624,6 +1624,13 @@ class Condition(BaseModel):
             min_length=1,
         ),
     ] = None
+    startsIn: Annotated[
+        str | None,
+        Field(
+            description="For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).",
+            min_length=1,
+        ),
+    ] = None
     feats: Annotated[UdFeatures | None, Field(description="It has these feature values.")] = None
 
 
@@ -4248,6 +4255,12 @@ class Rewrite(BaseModel):
     before: Context | None = None
     after: Context | None = None
     at: Literal["start", "end"] | None = None
+    when: Annotated[
+        Condition | None,
+        Field(
+            description="Where it holds only of some words: of a token whose base lexeme and cell this holds of (a realisation rule's `when`: pos, feats, class, ends, starts, endsIn)."
+        ),
+    ] = None
     notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
 
 
