@@ -119,7 +119,11 @@ type Mode =
   /** A lexical form (`form`, `stem`, an allomorph's): the language's own script, in its notation (docs/lexical-forms). */
   | "lexical"
   /** A condition (`after`, `before`, a default's `when`): `ends` and `starts` are lexical forms, the rest code. */
-  | "condition";
+  | "condition"
+  /** A language's `notation`: its signs are lexical forms, its `order` and `sets` UnicodeSets (code), its notes support text. */
+  | "notation"
+  /** A note for reviewers, in English, never shown to a learner (a radical form's `basis` and `note`). */
+  | "reviewer";
 
 /** Keys whose whole value is code: ids, tags, feature values, statuses, provenance, paths. */
 const CODE_KEYS: ReadonlySet<string> = new Set([
@@ -162,11 +166,18 @@ const childMode = (mode: Mode, key: string, value: unknown): Mode => {
     case "readings":
     case "support":
       return mode;
+    case "reviewer":
+      return mode;
     case "lexical":
       // A form's object (radicals and Form, a pattern's templates, a listed item's parts, a logograph).
       if (key === "reading" || key === "readings") return "readings";
-      if (key === "form" || key === "parts" || key === "inflects") return "code";
+      // A radical form's Form, the vowels it leaves open (by name: a, i, u) and where they are from.
+      if (key === "form" || key === "parts" || key === "inflects" || key === "vowels" || key === "source") return "code";
+      if (key === "basis" || key === "note") return "reviewer";
       return "lexical";
+    case "notation":
+      if (key === "notes") return "support";
+      return key === "order" || key === "sets" ? "code" : "lexical";
     case "condition":
       return key === "ends" || key === "starts" ? "lexical" : "code";
     case "auto":
@@ -175,6 +186,7 @@ const childMode = (mode: Mode, key: string, value: unknown): Mode => {
       if (key === "gloss" || key === "notes") return "support";
       if (key === "form" || key === "stem") return typeof value === "string" || isObject(value) ? "lexical" : "auto";
       if (key === "after" || key === "before" || key === "when") return "condition";
+      if (key === "notation") return "notation";
       return CODE_KEYS.has(key) ? "code" : "auto";
   }
 };
@@ -280,8 +292,14 @@ const toNode = (value: unknown, mode: Mode, key: string, tags: Tags, into: Colle
         into.target.push(t);
         return text(t);
       }
+      case "reviewer": {
+        const t = tagged(tags.support("en"), value);
+        into.support.push(t);
+        return text(t);
+      }
       case "lexical":
-      case "condition": {
+      case "condition":
+      case "notation": {
         const t = tagged(tags.own(value), value);
         into.target.push(t);
         return text(t);

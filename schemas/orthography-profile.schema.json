@@ -91,7 +91,8 @@
       "items": { "$ref": "orthography-profile.schema.json#/$defs/Correspondence" }
     },
     "sound": { "$ref": "#/$defs/SoundSource" },
-    "stress": { "$ref": "#/$defs/Stress" }
+    "stress": { "$ref": "#/$defs/Stress" },
+    "spell": { "$ref": "#/$defs/Spell" }
   },
   "$defs": {
     "Policy": {
@@ -815,6 +816,10 @@
             "none",
             "by-facet"
           ]
+        },
+        "spell": {
+          "description": "How the layer's text is written from a lexical form (a vocalization layer: the marked text the voices read). Its `rules` run over the form as the profile's own do.",
+          "$ref": "#/$defs/Spell"
         }
       }
     },
@@ -1204,6 +1209,57 @@
           "description": "The feedback note for a spelling that differs only by this.",
           "$ref": "#/$defs/NoteId"
         }
+      }
+    },
+    "Spell": {
+      "title": "Spell",
+      "description": "How this orthography writes a lexical form (docs/rules-design.md, section 3): the other direction of its sound statement. `rules` rewrite the form, in order, into the spelling; a rule's `alternatives` are the free spellings, each named by the variation it is. Read by @nabu/core (`compileSpeller`, `spell`) in the compiler only: a bundle never carries it. Patterns are written in the language's notation (its `order` of marks); {name} is a set of the notation's `sets` or of this statement's.",
+      "type": "object",
+      "required": ["from", "rules"],
+      "additionalProperties": false,
+      "properties": {
+        "from": { "description": "What is spelled: a lexeme's lexical form, in its language's notation.", "const": "lexical" },
+        "sets": {
+          "description": "Named sets of this statement's own, beside the notation's.",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "pattern": "^[A-Za-z][A-Za-z0-9-]*$" },
+          "additionalProperties": { "$ref": "#/$defs/UnicodeSetPattern" }
+        },
+        "rules": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/SpellRule" } }
+      }
+    },
+    "SpellRule": {
+      "title": "SpellRule",
+      "description": "One rewrite, applied at every place `find` matches with its context holding, left to right and not overlapping, before the next rule runs. A pattern is letters and marks as themselves, {name} (a named set: one of its members), [...] (a UnicodeSet), ( | ) to group and choose, ? and * after a piece, ^ and $ for a word's start and end, and a backslash before a sign meant as itself. `to` replaces the match ({name} in it is what the find's {name} of the same rank matched); `map`, given instead of `to`, replaces it by its entry. A word is a run of the form between spaces.",
+      "type": "object",
+      "required": ["find"],
+      "additionalProperties": false,
+      "properties": {
+        "find": { "type": "string", "minLength": 1 },
+        "to": { "type": "string" },
+        "map": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string" } },
+        "after": { "description": "What must stand right before the match.", "type": "string", "minLength": 1 },
+        "before": { "description": "What must stand right after the match.", "type": "string", "minLength": 1 },
+        "at": { "description": "start: `after` (or the match) begins a word; end: `before` (or the match) ends one.", "enum": ["start", "end"] },
+        "alternatives": {
+          "description": "Free spellings: at each place the rule applies, one of these may stand in place of `to`. Each is named by its variation, so what a variation would accept can be counted (the owner's question 6, docs/rules-design.md).",
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/SpellAlternative" }
+        },
+        "note": { "description": "What a reviewer should know.", "type": "string", "minLength": 1 }
+      }
+    },
+    "SpellAlternative": {
+      "title": "SpellAlternative",
+      "description": "A free spelling of what a rule writes: `to` in place of the rule's, the variation named by `id`.",
+      "type": "object",
+      "required": ["id", "to"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+        "to": { "type": "string" }
       }
     },
     "CorrespondenceContext": {

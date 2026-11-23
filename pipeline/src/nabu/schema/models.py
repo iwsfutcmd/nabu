@@ -1417,6 +1417,64 @@ type FeaturesAdditionalProperty = Annotated[
 ]
 
 
+type VowelsAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type LongAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type SetsAdditionalProperty = Annotated[str, Field(pattern="^\\[.*\\]$")]
+
+
+class Notation(BaseModel):
+    """
+    How the language writes a lexical form (ADR 0145; docs/lexical-forms/<lang>.md): the signs for its vowels, its long vowels and no vowel, the marks a letter carries in the order the notation names them, and the named sets a profile's `spell` refers to as {name}. Read by @nabu/core (`compileSpeller`); never shipped in a bundle.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    vowels: Annotated[
+        dict[str, VowelsAdditionalProperty],
+        Field(
+            description="Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C).",
+            min_length=1,
+        ),
+    ]
+    long: Annotated[
+        dict[str, LongAdditionalProperty] | None,
+        Field(
+            description="Each long vowel as written: its sign and its length letter.", min_length=1
+        ),
+    ] = None
+    none: Annotated[
+        str | None,
+        Field(description="The sign for no vowel after a consonant (a sukun).", min_length=1),
+    ] = None
+    order: Annotated[
+        str | None,
+        Field(
+            description="The marks a letter may carry, in the order the notation names them (a shadda before the vowel), as a UnicodeSet. NFC orders marks by their combining class; a form is read in NFC with each run of marks put in this order (a mark NFC composes into its letter stays part of it), so a rule's pattern is written as the notation is, and the result is NFC again.",
+            pattern="^\\[.*\\]$",
+        ),
+    ] = None
+    sets: Annotated[
+        dict[
+            Annotated[str, StringConstraints(pattern=r"^[A-Za-z][A-Za-z0-9-]*$")],
+            SetsAdditionalProperty,
+        ],
+        Field(
+            description="Named sets of letters or marks a `spell` rule refers to as {name} (C: a consonant letter).",
+            min_length=1,
+        ),
+    ]
+    notes: Annotated[
+        dict[str, NotesAdditionalProperty] | None,
+        Field(description="What a reviewer should know, by support language.", min_length=1),
+    ] = None
+
+
 class Condition(BaseModel):
     """
     What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
@@ -2211,9 +2269,6 @@ type LexicalForm1 = Annotated[
 type Radical = Annotated[str, Field(min_length=1)]
 
 
-type VowelsAdditionalProperty = Annotated[str, Field(min_length=1)]
-
-
 class RadicalForm(BaseModel):
     """
     A Semitic base (ADR 0145): its radicals, stored (a hollow verb's middle one shows only in some forms); its Form or stem, as its language names them (apc I to X and Q; hbo qal, nifal); and the vowels its Form leaves open. The root class is never stored: it follows from the radicals.
@@ -2228,6 +2283,27 @@ class RadicalForm(BaseModel):
     vowels: Annotated[
         dict[str, VowelsAdditionalProperty] | None,
         Field(description="By the slot its language names (apc: past, present).", min_length=1),
+    ] = None
+    source: Annotated[
+        str | None,
+        Field(
+            description="Where its radicals, Form and vowels are from, for reviewers: a reference and page (kline 75), course (the course writes the form) or deduced.",
+            min_length=1,
+        ),
+    ] = None
+    basis: Annotated[
+        str | None,
+        Field(
+            description="What a deduced radical or vowel was deduced from, for reviewers (never shown to a learner): every entry with one is on the review list.",
+            min_length=1,
+        ),
+    ] = None
+    note: Annotated[
+        str | None,
+        Field(
+            description="What else a reviewer should know of it (never shown to a learner).",
+            min_length=1,
+        ),
     ] = None
 
 
@@ -2673,26 +2749,6 @@ type KeyboardRef = Annotated[
 ]
 
 
-class AnnotationLayer(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
-    kind: Literal["reading", "vocalization", "gloss"]
-    toggle: bool
-    default: Literal["on", "off", "on-for-new-words"] | None = None
-    scheme: SchemeId | None = None
-    lang: Annotated[
-        ScriptedLangTag | None,
-        Field(
-            description="The language tag of the layer's own text (ADR 0071), so it is announced and shaped as what it is: Jyutping is yue-Latn-jyutping, Pinyin zh-Latn-pinyin, Baxter's Middle Chinese ltc-Latn-x-baxter. Without it the annotation takes the base text's tag."
-        ),
-    ] = None
-    render: Literal["ruby", "inline", "interlinear"] | None = None
-    fade: Literal["none", "by-facet"] | None = None
-
-
 type ExtraKey = Annotated[str, Field(min_length=1)]
 
 
@@ -2885,6 +2941,19 @@ type RareItem = Annotated[str, Field(min_length=1)]
 
 
 type Lose = Annotated[str, Field(min_length=1)]
+
+
+class SpellAlternative(BaseModel):
+    """
+    A free spelling of what a rule writes: `to` in place of the rule's, the variation named by `id`.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z0-9][a-z0-9-]*$")]
+    to: str
 
 
 class CorrespondenceContext(BaseModel):
@@ -4035,6 +4104,7 @@ class LanguageDeclaration(BaseModel):
             description="The rules the language names and has not written yet (docs/migration-design.md: rules come after the switch, one at a time, each a file of its own with its vectors). A rule named here is its name and what a learner is shown for it: what a `construction:` KC was. A sentence names the ones it is an example of (`uses`), and a node the ones it introduces."
         ),
     ] = None
+    notation: Notation | None = None
 
 
 class SessionStarted(BaseModel):
@@ -5369,6 +5439,42 @@ class CorrespondenceModel(BaseModel):
     ] = None
 
 
+class SpellRule(BaseModel):
+    """
+    One rewrite, applied at every place `find` matches with its context holding, left to right and not overlapping, before the next rule runs. A pattern is letters and marks as themselves, {name} (a named set: one of its members), [...] (a UnicodeSet), ( | ) to group and choose, ? and * after a piece, ^ and $ for a word's start and end, and a backslash before a sign meant as itself. `to` replaces the match ({name} in it is what the find's {name} of the same rank matched); `map`, given instead of `to`, replaces it by its entry. A word is a run of the form between spaces.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    find: Annotated[str, Field(min_length=1)]
+    to: str | None = None
+    map: Annotated[dict[str, str] | None, Field(min_length=1)] = None
+    after: Annotated[
+        str | None, Field(description="What must stand right before the match.", min_length=1)
+    ] = None
+    before: Annotated[
+        str | None, Field(description="What must stand right after the match.", min_length=1)
+    ] = None
+    at: Annotated[
+        Literal["start", "end"] | None,
+        Field(
+            description="start: `after` (or the match) begins a word; end: `before` (or the match) ends one."
+        ),
+    ] = None
+    alternatives: Annotated[
+        list[SpellAlternative] | None,
+        Field(
+            description="Free spellings: at each place the rule applies, one of these may stand in place of `to`. Each is named by its variation, so what a variation would accept can be counted (the owner's question 6, docs/rules-design.md).",
+            min_length=1,
+        ),
+    ] = None
+    note: Annotated[str | None, Field(description="What a reviewer should know.", min_length=1)] = (
+        None
+    )
+
+
 class Tones(BaseModel):
     """
     Its syllables carry tones (Jyutping's numbers): what marks one, and each tone's pitch, which the tone exercises, the device's tone scoring and the IPA voices take use.
@@ -6006,6 +6112,34 @@ class SpeechSetup(BaseModel):
     phones: SpeechPhones | None = None
 
 
+class Spell(BaseModel):
+    """
+    How this orthography writes a lexical form (docs/rules-design.md, section 3): the other direction of its sound statement. `rules` rewrite the form, in order, into the spelling; a rule's `alternatives` are the free spellings, each named by the variation it is. Read by @nabu/core (`compileSpeller`, `spell`) in the compiler only: a bundle never carries it. Patterns are written in the language's notation (its `order` of marks); {name} is a set of the notation's `sets` or of this statement's.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    from_: Annotated[
+        Literal["lexical"],
+        Field(
+            alias="from",
+            description="What is spelled: a lexeme's lexical form, in its language's notation.",
+        ),
+    ]
+    sets: Annotated[
+        dict[
+            Annotated[str, StringConstraints(pattern=r"^[A-Za-z][A-Za-z0-9-]*$")], UnicodeSetPattern
+        ]
+        | None,
+        Field(
+            description="Named sets of this statement's own, beside the notation's.", min_length=1
+        ),
+    ] = None
+    rules: Annotated[list[SpellRule], Field(min_length=1)]
+
+
 class TaggedText(BaseModel):
     """
     A run of language data (gameplan §6.1). `tokens` concatenate, in logical order, to the NFC surface text. Language data is never a bare string and never addressed by character offsets.
@@ -6423,63 +6557,30 @@ class Lexicon(BaseModel):
     lexemes: list[Lexeme]
 
 
-class OrthographyProfile(BaseModel):
-    """
-    Declarative description of how a writing system behaves: normalization, matching, segmentation, annotation layers, input aids and layout (gameplan §6.3). Adding a script means adding one of these plus fixtures, not editing the grader.
-    """
-
+class AnnotationLayer(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
     )
-    id: OrthographyId
-    lang: ScriptedLangTag
-    exemplars: Annotated[
-        str | None,
+    id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
+    kind: Literal["reading", "vocalization", "gloss"]
+    toggle: bool
+    default: Literal["on", "off", "on-for-new-words"] | None = None
+    scheme: SchemeId | None = None
+    lang: Annotated[
+        ScriptedLangTag | None,
         Field(
-            description="CLDR locale whose main/auxiliary/punctuation/numbers exemplars drive the script audit (§7.5). Both CLDR (yue_Hant) and BCP 47 (yue-Hant) separators are accepted in v0.",
-            pattern="^cldr:[a-z]{2,3}([_-][A-Z][a-z]{3})?([_-](?:[A-Z]{2}|[0-9]{3}))?$",
+            description="The language tag of the layer's own text (ADR 0071), so it is announced and shaped as what it is: Jyutping is yue-Latn-jyutping, Pinyin zh-Latn-pinyin, Baxter's Middle Chinese ltc-Latn-x-baxter. Without it the annotation takes the base text's tag."
         ),
     ] = None
-    exemplarsExtra: Annotated[
-        list[ExemplarsExtraItem] | None,
+    render: Literal["ruby", "inline", "interlinear"] | None = None
+    fade: Literal["none", "by-facet"] | None = None
+    spell: Annotated[
+        Spell | None,
         Field(
-            description="Characters the orthography uses that its CLDR exemplars lack, such as the Cantonese colloquial characters 佢 哋 嘅 咗 missing from cldr:yue_Hant (CLDR 49). The script audit treats them as main exemplars, and punctuation among them (the Hebrew sof pasuq ׃, missing from cldr:he) as exemplar punctuation. Each entry is a gap to report upstream to CLDR, not a licence to widen the audit.",
-            min_length=1,
+            description="How the layer's text is written from a lexical form (a vocalization layer: the marked text the voices read). Its `rules` run over the form as the profile's own do."
         ),
     ] = None
-    letters: Annotated[
-        list[Letter1] | None,
-        Field(
-            description="The alphabet as the orthography defines it, including multigraph letters (sh, ch, ng, oʻ). Typo distance and letter-level exercises use it, longest match first.",
-            min_length=1,
-        ),
-    ] = None
-    segmentation: Segmentation
-    normalize: Annotated[
-        list[NormalizeStep],
-        Field(
-            description="Applied identically to learner answers and accept sets, in order.",
-            min_length=1,
-        ),
-    ]
-    match: MatchPolicy | None = None
-    annotations: list[AnnotationLayer] | None = None
-    input: InputAids | None = None
-    layout: Layout | None = None
-    strokeOrder: StrokeOrder | None = None
-    fonts: Fonts | None = None
-    scriptTrack: ScriptTrack | None = None
-    transliterate: Transliteration | None = None
-    speech: SpeechSetup | None = None
-    correspondences: Annotated[
-        list[CorrespondenceModel] | None,
-        Field(
-            description="What this orthography writes of the sound, and what it loses (ADR 0148): the lossy correspondences only. A letter no correspondence names is written as itself and says itself, so an orthography that loses nothing states []. Read by @nabu/core (`project`): grading, spelling-choice cards and the compiler's leftovers (docs/migration-design.md, stages 5 and 6). It replaced `soundAlike` (ADR 0142)."
-        ),
-    ] = None
-    sound: SoundSource | None = None
-    stress: Stress | None = None
 
 
 class BundleLexicon(BaseModel):
@@ -6554,6 +6655,66 @@ class StorySource(BaseModel):
     steps: Annotated[list[StoryStep], Field(min_length=2)]
     provenance: Provenance | None = None
     license: Spdx | None = None
+
+
+class OrthographyProfile(BaseModel):
+    """
+    Declarative description of how a writing system behaves: normalization, matching, segmentation, annotation layers, input aids and layout (gameplan §6.3). Adding a script means adding one of these plus fixtures, not editing the grader.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: OrthographyId
+    lang: ScriptedLangTag
+    exemplars: Annotated[
+        str | None,
+        Field(
+            description="CLDR locale whose main/auxiliary/punctuation/numbers exemplars drive the script audit (§7.5). Both CLDR (yue_Hant) and BCP 47 (yue-Hant) separators are accepted in v0.",
+            pattern="^cldr:[a-z]{2,3}([_-][A-Z][a-z]{3})?([_-](?:[A-Z]{2}|[0-9]{3}))?$",
+        ),
+    ] = None
+    exemplarsExtra: Annotated[
+        list[ExemplarsExtraItem] | None,
+        Field(
+            description="Characters the orthography uses that its CLDR exemplars lack, such as the Cantonese colloquial characters 佢 哋 嘅 咗 missing from cldr:yue_Hant (CLDR 49). The script audit treats them as main exemplars, and punctuation among them (the Hebrew sof pasuq ׃, missing from cldr:he) as exemplar punctuation. Each entry is a gap to report upstream to CLDR, not a licence to widen the audit.",
+            min_length=1,
+        ),
+    ] = None
+    letters: Annotated[
+        list[Letter1] | None,
+        Field(
+            description="The alphabet as the orthography defines it, including multigraph letters (sh, ch, ng, oʻ). Typo distance and letter-level exercises use it, longest match first.",
+            min_length=1,
+        ),
+    ] = None
+    segmentation: Segmentation
+    normalize: Annotated[
+        list[NormalizeStep],
+        Field(
+            description="Applied identically to learner answers and accept sets, in order.",
+            min_length=1,
+        ),
+    ]
+    match: MatchPolicy | None = None
+    annotations: list[AnnotationLayer] | None = None
+    input: InputAids | None = None
+    layout: Layout | None = None
+    strokeOrder: StrokeOrder | None = None
+    fonts: Fonts | None = None
+    scriptTrack: ScriptTrack | None = None
+    transliterate: Transliteration | None = None
+    speech: SpeechSetup | None = None
+    correspondences: Annotated[
+        list[CorrespondenceModel] | None,
+        Field(
+            description="What this orthography writes of the sound, and what it loses (ADR 0148): the lossy correspondences only. A letter no correspondence names is written as itself and says itself, so an orthography that loses nothing states []. Read by @nabu/core (`project`): grading, spelling-choice cards and the compiler's leftovers (docs/migration-design.md, stages 5 and 6). It replaced `soundAlike` (ADR 0142)."
+        ),
+    ] = None
+    sound: SoundSource | None = None
+    stress: Stress | None = None
+    spell: Spell | None = None
 
 
 class BundleStory(BaseModel):

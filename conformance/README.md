@@ -22,6 +22,7 @@ it.
 | `gloss.json` | Tap-for-gloss: longest match, exact and folded passes side by side, token spans |
 | `pronounce.json` | A word's pronunciation as the script leaves it out: vowel marks on abjad words, typed Jyutping (ADR 0054); a typed reading's syllables and a syllable's tone as a reading scheme's data shapes them (ADR 0109: the pipeline's `nabu.schemes` passes these too, `tests/test_schemes.py`) |
 | `projection.json` | Projections (ADR 0148): what a spelling says by the profile's stated correspondences (es: seseo, yeísmo, b/v, silent h, contexts, longest match, stress by mark and by rule; fa: ADR 0142's sets, marks left aside), two spellings compared by sound, a word's other spellings of its sound; a scheme's relation to the spelling it annotates (Schluessel and chg-Arab, by dynamic programming), the pieces a script leaves open and minimal ruby (Schluessel, Pinyin, Baxter) |
+| `spell.json` | A lexical form spelled by an orthography's `spell` statement (docs/rules-design.md, stage 1): apc's Arabic, its vocalization layer and Arabizi with its free alternatives, each by the variations it took, one vector or more per rule from the course's words (a few constructed where the course has none); with `expected`, whether the course's spelling is the spelling or an alternative; the pattern language on a statement of the vector's own; errors |
 
 Harnesses:
 - TypeScript: `packages/core-cli/test/conformance.test.ts` (in-process)

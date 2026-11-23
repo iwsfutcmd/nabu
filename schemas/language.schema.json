@@ -88,9 +88,50 @@
       "description": "The rules the language names and has not written yet (docs/migration-design.md: rules come after the switch, one at a time, each a file of its own with its vectors). A rule named here is its name and what a learner is shown for it: what a `construction:` KC was. A sentence names the ones it is an example of (`uses`), and a node the ones it introduces.",
       "type": "array",
       "items": { "$ref": "#/$defs/NamedRule" }
-    }
+    },
+    "notation": { "$ref": "#/$defs/Notation" }
   },
   "$defs": {
+    "Notation": {
+      "title": "Notation",
+      "description": "How the language writes a lexical form (ADR 0145; docs/lexical-forms/<lang>.md): the signs for its vowels, its long vowels and no vowel, the marks a letter carries in the order the notation names them, and the named sets a profile's `spell` refers to as {name}. Read by @nabu/core (`compileSpeller`); never shipped in a bundle.",
+      "type": "object",
+      "required": ["vowels", "sets"],
+      "additionalProperties": false,
+      "properties": {
+        "vowels": {
+          "description": "Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C).",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "long": {
+          "description": "Each long vowel as written: its sign and its length letter.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "none": { "description": "The sign for no vowel after a consonant (a sukun).", "type": "string", "minLength": 1 },
+        "order": {
+          "description": "The marks a letter may carry, in the order the notation names them (a shadda before the vowel), as a UnicodeSet. NFC orders marks by their combining class; a form is read in NFC with each run of marks put in this order (a mark NFC composes into its letter stays part of it), so a rule's pattern is written as the notation is, and the result is NFC again.",
+          "type": "string",
+          "pattern": "^\\[.*\\]$"
+        },
+        "sets": {
+          "description": "Named sets of letters or marks a `spell` rule refers to as {name} (C: a consonant letter).",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": { "pattern": "^[A-Za-z][A-Za-z0-9-]*$" },
+          "additionalProperties": { "type": "string", "pattern": "^\\[.*\\]$" }
+        },
+        "notes": {
+          "description": "What a reviewer should know, by support language.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
     "Condition": {
       "title": "Condition",
       "description": "What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.",

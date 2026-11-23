@@ -1,0 +1,20 @@
+# A verb's radical form with where it is from and, where something was deduced, from what (`basis`):
+# notes for reviewers, never shown to a learner (docs/rules-design.md, section 3).
+language: apc
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@rules-stage-1', status: draft}
+lexemes:
+  - id: lexeme:3azam
+    pos: VERB
+    gloss: {en: invite}
+    form:
+      radicals: [ع, ز, م]
+      form: I
+      vowels: {past: a, present: i}
+      source: deduced
+      basis: 'Kline does not list it: the present vowel is the one that drops before an ending.'
+    spelled: {apc-Arab/standard: [عزم], apc-Latn/arabizi: [3azam]}
+  - id: lexeme:3emel
+    pos: VERB
+    gloss: {en: do}
+    form: {radicals: [ع, م, ل], form: I, vowels: {past: i, present: i}, source: kline 75, note: 'The prefix is ya- before ع.'}

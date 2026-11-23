@@ -360,6 +360,36 @@ def projections_command(
         typer.echo(line)
 
 
+@app.command("forms")
+def forms_command(
+    course: Annotated[Path, typer.Argument(exists=True, help="A course directory.")],
+) -> None:
+    """Each lexeme's lexical form and what each orthography spells from it (docs/rules-design.md,
+    stage 1): the review list.
+
+    Every lexeme of the course's lexicon with its stored form and, per orthography and layer whose
+    profile states `spell`, the spelling @nabu/core writes and whether it (or a free alternative)
+    is the lexicon's first spelling there, or the course's vocalization of it; mismatches are the
+    warnings `form.projection`. Counts last: forms stored, spellings checked, verbs skipped,
+    mismatches, lexemes with no form.
+    """
+    from nabu.analyzers import analyzers_by_tool
+    from nabu.compiler import compile_course, load_profiles
+    from nabu.corecli import CoreCli
+    from nabu.forms import format_report
+
+    profiles = load_profiles()
+    with CoreCli() as cli:
+        diags, compiled = compile_course(course, cli, profiles, analyzers_by_tool(), audio=False)
+    if compiled is None or compiled.forms is None:
+        for d in diags.sorted():
+            typer.echo(d.format(), err=True)
+        typer.echo(f"✗ {course} does not compile", err=True)
+        raise typer.Exit(code=1)
+    for line in format_report(compiled.forms):
+        typer.echo(line)
+
+
 @app.command("calibration")
 def calibration_command(
     events: Annotated[

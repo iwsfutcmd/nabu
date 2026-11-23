@@ -82,6 +82,17 @@ def names_of(course: CourseSource) -> dict[str, Any]:
     return cast(dict[str, Any], json.loads(text))
 
 
+def _shipped(profile: OrthographyProfile) -> dict[str, Any]:
+    """A profile as a bundle carries it: without its `spell` statements (its own and its layers'),
+    which only the compiler reads (docs/rules-design.md: a device looks spellings up, it never
+    spells a lexical form)."""
+    data = profile.model_dump(mode="json", by_alias=True, exclude_none=True)
+    data.pop("spell", None)
+    for layer in data.get("annotations", []):
+        layer.pop("spell", None)
+    return data
+
+
 def _profile_files(profile: OrthographyProfile) -> list[tuple[str, str, str]]:
     """(role, id, path) of the tables and keyboard a profile needs."""
     out: list[tuple[str, str, str]] = []
@@ -235,7 +246,7 @@ def write_bundle(
         put(
             "profile",
             orth.replace("/", "."),
-            canonical(profile.model_dump(mode="json", by_alias=True, exclude_none=True)),
+            canonical(_shipped(profile)),
             "MIT OR Apache-2.0",
         )
         for role, ident, path in _profile_files(profile):

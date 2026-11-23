@@ -1,0 +1,9 @@
+# `spell` writes from a lexical form: its `from` is lexical, never the spelling it writes.
+id: apc-Latn/arabizi
+lang: apc-Latn
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize: [nfc]
+spell:
+  from: spelling
+  rules:
+    - {find: "ب", to: b}

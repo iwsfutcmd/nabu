@@ -876,6 +876,7 @@ export interface NabuSchemaIndex {
   readonly DataTable: DataTable;
   readonly KeyboardLayout: KeyboardLayout;
   readonly LanguageDeclaration: LanguageDeclaration;
+  readonly Notation: Notation;
   readonly Condition: Condition2;
   readonly Default: Default;
   readonly FeatureLabel: FeatureLabel;
@@ -965,6 +966,9 @@ export interface NabuSchemaIndex {
   readonly TableRef: TableRef;
   readonly Contrast: Contrast;
   readonly Correspondence: Correspondence;
+  readonly Spell: Spell1;
+  readonly SpellRule: SpellRule;
+  readonly SpellAlternative: SpellAlternative;
   readonly CorrespondenceContext: CorrespondenceContext;
   readonly SoundSource: SoundSource;
   readonly Stress: Stress;
@@ -3101,6 +3105,18 @@ export interface RadicalForm {
   readonly vowels?: {
     readonly [k: string]: string;
   };
+  /**
+   * Where its radicals, Form and vowels are from, for reviewers: a reference and page (kline 75), course (the course writes the form) or deduced.
+   */
+  readonly source?: string;
+  /**
+   * What a deduced radical or vowel was deduced from, for reviewers (never shown to a learner): every entry with one is on the review list.
+   */
+  readonly basis?: string;
+  /**
+   * What else a reviewer should know of it (never shown to a learner).
+   */
+  readonly note?: string;
 }
 /**
  * A pattern (ADR 0145, 0150): its own letters and vowels around numbered slots for a base's radicals, one template per root class.
@@ -3336,6 +3352,7 @@ export interface LanguageDeclaration {
    * The rules the language names and has not written yet (docs/migration-design.md: rules come after the switch, one at a time, each a file of its own with its vectors). A rule named here is its name and what a learner is shown for it: what a `construction:` KC was. A sentence names the ones it is an example of (`uses`), and a node the ones it introduces.
    */
   readonly rules?: readonly NamedRule[];
+  readonly notation?: Notation;
 }
 /**
  * One default: where `when` holds of a lexeme, it has `gives` unless its entry says otherwise.
@@ -3430,6 +3447,46 @@ export interface NamedRule {
     readonly [k: string]: string;
   };
   readonly was?: KcId2;
+}
+/**
+ * How the language writes a lexical form (ADR 0145; docs/lexical-forms/<lang>.md): the signs for its vowels, its long vowels and no vowel, the marks a letter carries in the order the notation names them, and the named sets a profile's `spell` refers to as {name}. Read by @nabu/core (`compileSpeller`); never shipped in a bundle.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Notation".
+ */
+export interface Notation {
+  /**
+   * Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C).
+   */
+  readonly vowels: {
+    readonly [k: string]: string;
+  };
+  /**
+   * Each long vowel as written: its sign and its length letter.
+   */
+  readonly long?: {
+    readonly [k: string]: string;
+  };
+  /**
+   * The sign for no vowel after a consonant (a sukun).
+   */
+  readonly none?: string;
+  /**
+   * The marks a letter may carry, in the order the notation names them (a shadda before the vowel), as a UnicodeSet. NFC orders marks by their combining class; a form is read in NFC with each run of marks put in this order (a mark NFC composes into its letter stays part of it), so a rule's pattern is written as the notation is, and the result is NFC again.
+   */
+  readonly order?: string;
+  /**
+   * Named sets of letters or marks a `spell` rule refers to as {name} (C: a consonant letter).
+   */
+  readonly sets: {
+    readonly [k: string]: string;
+  };
+  /**
+   * What a reviewer should know, by support language.
+   */
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
 }
 /**
  * A generated lookup table an orthography profile refers to by id (profiles/tables/<id>.json): orthographic variant groups, character readings for the IME-homophone typo model, or a character set for script-mismatch detection.
@@ -4925,6 +4982,7 @@ export interface OrthographyProfile {
   readonly correspondences?: readonly Correspondence[];
   readonly sound?: SoundSource;
   readonly stress?: Stress;
+  readonly spell?: Spell1;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -5247,6 +5305,71 @@ export interface AnnotationLayer {
   readonly lang?: ScriptedLangTag1;
   readonly render?: "ruby" | "inline" | "interlinear";
   readonly fade?: "none" | "by-facet";
+  readonly spell?: Spell;
+}
+/**
+ * How the layer's text is written from a lexical form (a vocalization layer: the marked text the voices read). Its `rules` run over the form as the profile's own do.
+ */
+export interface Spell {
+  /**
+   * What is spelled: a lexeme's lexical form, in its language's notation.
+   */
+  readonly from: "lexical";
+  /**
+   * Named sets of this statement's own, beside the notation's.
+   */
+  readonly sets?: {
+    readonly [k: string]: UnicodeSetPattern;
+  };
+  /**
+   * @minItems 1
+   */
+  readonly rules: readonly SpellRule[];
+}
+/**
+ * One rewrite, applied at every place `find` matches with its context holding, left to right and not overlapping, before the next rule runs. A pattern is letters and marks as themselves, {name} (a named set: one of its members), [...] (a UnicodeSet), ( | ) to group and choose, ? and * after a piece, ^ and $ for a word's start and end, and a backslash before a sign meant as itself. `to` replaces the match ({name} in it is what the find's {name} of the same rank matched); `map`, given instead of `to`, replaces it by its entry. A word is a run of the form between spaces.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SpellRule".
+ */
+export interface SpellRule {
+  readonly find: string;
+  readonly to?: string;
+  readonly map?: {
+    readonly [k: string]: string;
+  };
+  /**
+   * What must stand right before the match.
+   */
+  readonly after?: string;
+  /**
+   * What must stand right after the match.
+   */
+  readonly before?: string;
+  /**
+   * start: `after` (or the match) begins a word; end: `before` (or the match) ends one.
+   */
+  readonly at?: "start" | "end";
+  /**
+   * Free spellings: at each place the rule applies, one of these may stand in place of `to`. Each is named by its variation, so what a variation would accept can be counted (the owner's question 6, docs/rules-design.md).
+   *
+   * @minItems 1
+   */
+  readonly alternatives?: readonly SpellAlternative[];
+  /**
+   * What a reviewer should know.
+   */
+  readonly note?: string;
+}
+/**
+ * A free spelling of what a rule writes: `to` in place of the rule's, the variation named by `id`.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SpellAlternative".
+ */
+export interface SpellAlternative {
+  readonly id: string;
+  readonly to: string;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -5473,6 +5596,28 @@ export interface Stress {
     readonly on: "last" | "penult";
   }[];
   readonly note?: NoteId5;
+}
+/**
+ * How this orthography writes a lexical form (docs/rules-design.md, section 3): the other direction of its sound statement. `rules` rewrite the form, in order, into the spelling; a rule's `alternatives` are the free spellings, each named by the variation it is. Read by @nabu/core (`compileSpeller`, `spell`) in the compiler only: a bundle never carries it. Patterns are written in the language's notation (its `order` of marks); {name} is a set of the notation's `sets` or of this statement's.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Spell".
+ */
+export interface Spell1 {
+  /**
+   * What is spelled: a lexeme's lexical form, in its language's notation.
+   */
+  readonly from: "lexical";
+  /**
+   * Named sets of this statement's own, beside the notation's.
+   */
+  readonly sets?: {
+    readonly [k: string]: UnicodeSetPattern;
+  };
+  /**
+   * @minItems 1
+   */
+  readonly rules: readonly SpellRule[];
 }
 /**
  * A reading scheme (ADR 0109): how a token's pinned reading is written, such as Jyutping, Pinyin, Baxter's Middle Chinese, sitelen Lasina, the Tiberian reading or Attic with its vowel lengths. Data in profiles/schemes/<id>.yaml: the pipeline reads it (nabu.schemes, which adds what voices do with readings) and core gets it through @nabu/schema/schemes. What a scheme can be used for follows from what it gives: shown as options or asked for (`answer`), typed (`typed`), heard as tones (`tones`).

@@ -1,0 +1,1695 @@
+{
+  "$comment": "Spelling a lexical form (docs/rules-design.md, stage 1): a profile's `spell` statement (and its vocalization layer's) run by @nabu/core over a lexeme's form in its language's notation (lexicons/apc/language.yaml). `spelling` is every rule's `to`; `alternatives` the free spellings, each with the variations (`by`) it took. With `expected`, whether that is the spelling, an alternative or neither (null), as the profile keys a word (a layer exactly). One vector or more per rule of apc's three statements, from the course's lexemes or, where no lemma has it, a word of the course as the prototype drafts it (docs/lexical-forms/apc.yaml); a few constructed forms where the course has no word for a rule (said in the note); a statement and notation of a vector's own for the pattern language; and the errors.",
+  "vectors": [
+    {
+      "id": "spell/apc-arab/rule-01/3a",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "عَ",
+        "expected": "ع"
+      },
+      "expected": {
+        "spelling": "ع",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 1 ([U+064B-U+0652U+065CU+065DU+06DF] → nothing): lexeme:3a."
+    },
+    {
+      "id": "spell/apc-arab/rule-02/englize",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "إِنْگْلِيزِي",
+        "expected": "إنكليزي"
+      },
+      "expected": {
+        "spelling": "إنكليزي",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 2 ([گپڤ] mapped): lexeme:englize."
+    },
+    {
+      "id": "spell/apc-marked/rule-01/3omr",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "عُمْر",
+        "layer": "vocalized",
+        "expected": "عُمُر"
+      },
+      "expected": {
+        "spelling": "عُمُر",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 1 (U+0652 → U+064F): lexeme:3omr."
+    },
+    {
+      "id": "spell/apc-marked/rule-02/3end",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "عِنْد",
+        "layer": "vocalized",
+        "expected": "عِنِد"
+      },
+      "expected": {
+        "spelling": "عِنِد",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 2 (U+0652 → U+0650): lexeme:3end."
+    },
+    {
+      "id": "spell/apc-marked/rule-03/beton",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "ب\u065cيتُه\u06dfن",
+        "layer": "vocalized",
+        "expected": "بيتْهُن"
+      },
+      "expected": {
+        "spelling": "بيتْهُن",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 3 ([U+064FU+065D]هU+06DF → U+0652هU+064F): word|u11-people:s.ppl.31."
+    },
+    {
+      "id": "spell/apc-marked/rule-04/el7amdella",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "ا\u06dfلْحَمْدِلْلَه\u06df",
+        "layer": "vocalized",
+        "expected": "الحَمْدِلله"
+      },
+      "expected": {
+        "spelling": "الحَمْدِلْلَه",
+        "alternatives": [],
+        "expected": null
+      },
+      "note": "Rule 4 (U+0652 → nothing): lexeme:el7amdella."
+    },
+    {
+      "id": "spell/apc-marked/rule-05/akal-form",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "آ\u065cكُل",
+        "layer": "vocalized",
+        "expected": "آكُل"
+      },
+      "expected": {
+        "spelling": "آكُل",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 5 (آU+065C → آ): lexeme:akal|Aspect=Imp;Mood=Sub;Number=Sing;Person=1."
+    },
+    {
+      "id": "spell/apc-marked/rule-06/abadan",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "أَبَدًا",
+        "layer": "vocalized",
+        "expected": "أَبَداً"
+      },
+      "expected": {
+        "spelling": "أَبَداً",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 6 (U+064Bا → اU+064B): lexeme:abadan."
+    },
+    {
+      "id": "spell/apc-marked/rule-07/ma",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "مَا",
+        "layer": "vocalized",
+        "expected": "ما"
+      },
+      "expected": {
+        "spelling": "ما",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 7 ([U+064EU+065C] → nothing): lexeme:ma."
+    },
+    {
+      "id": "spell/apc-marked/rule-08/a7la",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "أَحْلَى",
+        "layer": "vocalized",
+        "expected": "أَحْلى"
+      },
+      "expected": {
+        "spelling": "أَحْلى",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 8 (U+064E → nothing): lexeme:a7la."
+    },
+    {
+      "id": "spell/apc-marked/rule-09/fi",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "فِي",
+        "layer": "vocalized",
+        "expected": "في"
+      },
+      "expected": {
+        "spelling": "في",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 9 ([U+0650U+065C] → nothing): lexeme:fi."
+    },
+    {
+      "id": "spell/apc-marked/rule-10/shu",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "شُو",
+        "layer": "vocalized",
+        "expected": "شو"
+      },
+      "expected": {
+        "spelling": "شو",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 10 ([U+064FU+065D] → nothing): lexeme:shu."
+    },
+    {
+      "id": "spell/apc-marked/rule-11/mit",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "مِيةْ",
+        "layer": "vocalized",
+        "expected": "مِية"
+      },
+      "expected": {
+        "spelling": "مية",
+        "alternatives": [],
+        "expected": null
+      },
+      "note": "Rule 11 (ةU+0652 → ة): word|u05-numbers:s.num.18."
+    },
+    {
+      "id": "spell/apc-marked/rule-12/sene",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "سِن\u065cة",
+        "layer": "vocalized",
+        "expected": "سِنِة"
+      },
+      "expected": {
+        "spelling": "سِنِة",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 12 (U+065C → U+0650): lexeme:sene."
+    },
+    {
+      "id": "spell/apc-marked/rule-13/enno",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "إِنُّه\u06df",
+        "layer": "vocalized",
+        "expected": "إِنُّه"
+      },
+      "expected": {
+        "spelling": "إِنُّه",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 13 (U+06DF → nothing): lexeme:enno."
+    },
+    {
+      "id": "spell/apc-marked/rule-14/englize",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "form": "إِنْگْلِيزِي",
+        "layer": "vocalized",
+        "expected": "إِنْكْليزي"
+      },
+      "expected": {
+        "spelling": "إِنْكْليزي",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 14 ([گپڤ] mapped): lexeme:englize."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-01/3omr",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "عُمْر",
+        "expected": "3omr"
+      },
+      "expected": {
+        "spelling": "3omr",
+        "alternatives": [
+          {
+            "spelling": "3umr",
+            "by": [
+              "o-u"
+            ]
+          },
+          {
+            "spelling": "3omor",
+            "by": [
+              "helping-vowel"
+            ]
+          },
+          {
+            "spelling": "3umor",
+            "by": [
+              "helping-vowel",
+              "o-u"
+            ]
+          },
+          {
+            "spelling": "3omer",
+            "by": [
+              "helping-vowel"
+            ]
+          },
+          {
+            "spelling": "3umer",
+            "by": [
+              "helping-vowel",
+              "o-u"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 1 (U+0652 → nothing; alternatives helping-vowel): lexeme:3omr."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-02/ahl",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "أَهْل",
+        "expected": "ahl"
+      },
+      "expected": {
+        "spelling": "ahl",
+        "alternatives": [
+          {
+            "spelling": "ahel",
+            "by": [
+              "helping-vowel"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 2 (U+0652 → nothing; alternatives helping-vowel): lexeme:ahl."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-03/aw",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "أَو",
+        "expected": "aw"
+      },
+      "expected": {
+        "spelling": "aw",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 3 ({H} → nothing): lexeme:aw."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-04/kanoun-awwal",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "كَانُون ا\u06dfلْأَوَّل",
+        "expected": "kanoun el awwal"
+      },
+      "expected": {
+        "spelling": "kanun elawwal",
+        "expected": "alternative"
+      },
+      "note": "Rule 4 ({H} → nothing): lexeme:kanoun-awwal."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-05/2yes",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "قْي\u065cاس",
+        "expected": "2yes"
+      },
+      "expected": {
+        "spelling": "2yes",
+        "alternatives": [
+          {
+            "spelling": "yes",
+            "by": [
+              "q-initial"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 5 (ق → 2; alternatives q-initial): lexeme:2yes."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-06/elahwe",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "ا\u06dfلْقَهْو\u065cة",
+        "expected": "el ahwe"
+      },
+      "expected": {
+        "spelling": "el2ahwe",
+        "alternatives": [
+          {
+            "spelling": "l2ahwe",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "il2ahwe",
+            "by": [
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "elahwe",
+            "by": [
+              "q-initial"
+            ]
+          },
+          {
+            "spelling": "lahwe",
+            "by": [
+              "article",
+              "q-initial"
+            ]
+          },
+          {
+            "spelling": "ilahwe",
+            "by": [
+              "e-i",
+              "q-initial"
+            ]
+          }
+        ],
+        "expected": "alternative"
+      },
+      "note": "Rule 6 (ق → 2; alternatives q-initial): word|u05-numbers:s.num.14."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-07/el7amdella",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "ا\u06dfلْحَمْدِلْلَه\u06df",
+        "expected": "el7amdella"
+      },
+      "expected": {
+        "spelling": "el7amdella",
+        "alternatives": [
+          {
+            "spelling": "el7amdilla",
+            "by": [
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "l7amdella",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "l7amdilla",
+            "by": [
+              "article",
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "il7amdella",
+            "by": [
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "il7amdilla",
+            "by": [
+              "e-i"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 7 (اU+06DF → e; alternatives article, e-i): lexeme:el7amdella."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-08/ma3-essalame",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "مَع ا\u06dfل\u06dfسَّلَام\u065cة",
+        "expected": "ma3 essalame"
+      },
+      "expected": {
+        "spelling": "ma3 essalame",
+        "alternatives": [
+          {
+            "spelling": "ma3 elssalame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 esalame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 elsalame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 ssalame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 lssalame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 salame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 lsalame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 issalame",
+            "by": [
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "ma3 ilssalame",
+            "by": [
+              "article",
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "ma3 isalame",
+            "by": [
+              "article",
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "ma3 ilsalame",
+            "by": [
+              "article",
+              "e-i"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 8 (U+0651 → U+0651; alternatives article): lexeme:ma3-essalame."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-09/ma3-essalame",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "مَع ا\u06dfل\u06dfسَّلَام\u065cة",
+        "expected": "ma3 essalame"
+      },
+      "expected": {
+        "spelling": "ma3 essalame",
+        "alternatives": [
+          {
+            "spelling": "ma3 elssalame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 esalame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 elsalame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 ssalame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 lssalame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 salame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 lsalame",
+            "by": [
+              "article"
+            ]
+          },
+          {
+            "spelling": "ma3 issalame",
+            "by": [
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "ma3 ilssalame",
+            "by": [
+              "article",
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "ma3 isalame",
+            "by": [
+              "article",
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "ma3 ilsalame",
+            "by": [
+              "article",
+              "e-i"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 9 (لU+06DF → nothing; alternatives article): lexeme:ma3-essalame."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-10/esm",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "اِسْم",
+        "expected": "esm"
+      },
+      "expected": {
+        "spelling": "esm",
+        "alternatives": [
+          {
+            "spelling": "ism",
+            "by": [
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "esem",
+            "by": [
+              "helping-vowel"
+            ]
+          },
+          {
+            "spelling": "isem",
+            "by": [
+              "e-i",
+              "helping-vowel"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 10 (ا → nothing): lexeme:esm."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-11/abadan",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "أَبَدًا",
+        "expected": "abadan"
+      },
+      "expected": {
+        "spelling": "abadan",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 11 (U+064Bا → an): lexeme:abadan."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-12/akal-form",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "آ\u065cكُل",
+        "expected": "ekol"
+      },
+      "expected": {
+        "spelling": "ekol",
+        "alternatives": [
+          {
+            "spelling": "ekul",
+            "by": [
+              "o-u"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 12 (آU+065C → e): lexeme:akal|Aspect=Imp;Mood=Sub;Number=Sing;Person=1."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-14/ab",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "آب",
+        "expected": "ab"
+      },
+      "expected": {
+        "spelling": "ab",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 14 (آ → a): lexeme:ab."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-16/ma",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "مَا",
+        "expected": "ma"
+      },
+      "expected": {
+        "spelling": "ma",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 16 (U+064E[اى] → a): lexeme:ma."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-17/jeye",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "ج\u065cاي",
+        "expected": "jey"
+      },
+      "expected": {
+        "spelling": "jey",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 17 (U+065Cا → e): lexeme:jeye."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-18/fi",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "فِي",
+        "expected": "fi"
+      },
+      "expected": {
+        "spelling": "fi",
+        "alternatives": [
+          {
+            "spelling": "fe",
+            "by": [
+              "final-e-i"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 18 (U+0650ي → i; alternatives final-e-i): lexeme:fi."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-19/kif",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "كِيف",
+        "expected": "kif"
+      },
+      "expected": {
+        "spelling": "kif",
+        "alternatives": [
+          {
+            "spelling": "keef",
+            "by": [
+              "i-ee"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 19 (U+0650ي → i; alternatives i-ee): lexeme:kif."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-21/bet",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "ب\u065cيت",
+        "expected": "bet"
+      },
+      "expected": {
+        "spelling": "bet",
+        "alternatives": [
+          {
+            "spelling": "beit",
+            "by": [
+              "e-ei"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 21 (U+065Cي → e; alternatives e-ei): lexeme:bet."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-22/shu",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "شُو",
+        "expected": "shu"
+      },
+      "expected": {
+        "spelling": "sho",
+        "alternatives": [
+          {
+            "spelling": "shu",
+            "by": [
+              "o-u"
+            ]
+          }
+        ],
+        "expected": "alternative"
+      },
+      "note": "Rule 22 (U+064Fو → o; alternatives o-u): lexeme:shu."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-23/sou2",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "سُوق",
+        "expected": "sou2"
+      },
+      "expected": {
+        "spelling": "su2",
+        "alternatives": [
+          {
+            "spelling": "sou2",
+            "by": [
+              "u-ou"
+            ]
+          }
+        ],
+        "expected": "alternative"
+      },
+      "note": "Rule 23 (U+064Fو → u; alternatives u-ou): lexeme:sou2."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-24/fo2",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "ف\u065dوق",
+        "expected": "fo2"
+      },
+      "expected": {
+        "spelling": "fo2",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 24 (U+065Dو → o): lexeme:fo2."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-25/mit",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "مِيةْ",
+        "expected": "mit"
+      },
+      "expected": {
+        "spelling": "mit",
+        "alternatives": [
+          {
+            "spelling": "meet",
+            "by": [
+              "i-ee"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 25 (ةU+0652 → t): word|u05-numbers:s.num.18."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-26/mara",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "مَرَة",
+        "expected": "mara"
+      },
+      "expected": {
+        "spelling": "mara",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 26 (ة → nothing): lexeme:mara."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-27/3a",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "عَ",
+        "expected": "3a"
+      },
+      "expected": {
+        "spelling": "3a",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 27 (U+064E → a): lexeme:3a."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-28/men",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "مِن",
+        "expected": "men"
+      },
+      "expected": {
+        "spelling": "men",
+        "alternatives": [
+          {
+            "spelling": "min",
+            "by": [
+              "e-i"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 28 (U+0650 → e; alternatives e-i): lexeme:men."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-29/nos",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "نُصّ",
+        "expected": "nos"
+      },
+      "expected": {
+        "spelling": "noss",
+        "alternatives": [
+          {
+            "spelling": "nuss",
+            "by": [
+              "o-u"
+            ]
+          }
+        ],
+        "expected": null
+      },
+      "note": "Rule 29 (U+064F → o; alternatives o-u): lexeme:nos."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-30/3ayle",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "عَيْل\u065cة",
+        "expected": "3ayle"
+      },
+      "expected": {
+        "spelling": "3ayle",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 30 (U+065C → e): lexeme:3ayle."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-31/shway",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "شْوَي",
+        "expected": "shway"
+      },
+      "expected": {
+        "spelling": "shway",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 31 (U+0652 → nothing): lexeme:shway."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-32/walla",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "وَالْلَه\u06df",
+        "expected": "walla"
+      },
+      "expected": {
+        "spelling": "walla",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 32 ({L}U+06DF → nothing): lexeme:walla."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-33/7a22",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "حَقّ",
+        "expected": "7a22"
+      },
+      "expected": {
+        "spelling": "7a22",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 33 ({C}U+0651 → {C}{C}): lexeme:7a22."
+    },
+    {
+      "id": "spell/apc-arabizi/rule-34/3a",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "عَ",
+        "expected": "3a"
+      },
+      "expected": {
+        "spelling": "3a",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 34 ({C} mapped): lexeme:3a."
+    },
+    {
+      "id": "spell/apc-arabizi/constructed/madda-inside",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "قُرْآن"
+      },
+      "expected": {
+        "spelling": "2or2an",
+        "alternatives": [
+          {
+            "spelling": "2ur2an",
+            "by": [
+              "o-u"
+            ]
+          },
+          {
+            "spelling": "or2an",
+            "by": [
+              "q-initial"
+            ]
+          },
+          {
+            "spelling": "ur2an",
+            "by": [
+              "o-u",
+              "q-initial"
+            ]
+          }
+        ]
+      },
+      "note": "Constructed (the course has no word with آ inside it): a hamza inside a word is 2, so آ there is 2a; ق that begins the word is 2 or nothing; the back vowel o or u."
+    },
+    {
+      "id": "spell/apc-arabizi/constructed/madda-e-inside",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "تْآ\u065cكُل"
+      },
+      "expected": {
+        "spelling": "t2ekol",
+        "alternatives": [
+          {
+            "spelling": "t2ekul",
+            "by": [
+              "o-u"
+            ]
+          }
+        ]
+      },
+      "note": "Constructed (the course has آ with U+065C only where it begins the word: ekol): inside a word it is 2e."
+    },
+    {
+      "id": "spell/apc-arabizi/constructed/long-e-ya-final",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "form": "كِرْس\u065cي"
+      },
+      "expected": {
+        "spelling": "kerse",
+        "alternatives": [
+          {
+            "spelling": "kirse",
+            "by": [
+              "e-i"
+            ]
+          }
+        ]
+      },
+      "note": "Constructed (no word of the course ends in a long e spelled with ya): it is e, with no ei at the end."
+    },
+    {
+      "id": "spell/fixture/marks-in-notation-order",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "rules": [
+              {
+                "find": "x̣́",
+                "to": "X"
+              }
+            ]
+          }
+        },
+        "notation": {
+          "vowels": {
+            "a": "a",
+            "e": "e",
+            "o": "o"
+          },
+          "order": "[́ ̣]",
+          "sets": {
+            "C": "[bcdfgklmnpqrstw]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "bx̣́"
+      },
+      "expected": {
+        "spelling": "bX",
+        "alternatives": []
+      },
+      "note": "NFC puts the dot below (class 220) before the acute (230); the notation's `order` names the acute first, and a pattern is written in that order. (x: a letter NFC composes with neither mark.)"
+    },
+    {
+      "id": "spell/fixture/capture-reused",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "rules": [
+              {
+                "find": "{C}:",
+                "to": "{C}{C}"
+              }
+            ]
+          }
+        },
+        "notation": {
+          "vowels": {
+            "a": "a",
+            "e": "e",
+            "o": "o"
+          },
+          "order": "[́ ̣]",
+          "sets": {
+            "C": "[bcdfgklmnpqrstw]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "b:a t:o"
+      },
+      "expected": {
+        "spelling": "bba tto",
+        "alternatives": []
+      },
+      "note": "A {name} the replacement names more often than the find is the find's last."
+    },
+    {
+      "id": "spell/fixture/word-edges",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "rules": [
+              {
+                "find": "^q",
+                "to": "k"
+              },
+              {
+                "find": "q$",
+                "to": "g"
+              },
+              {
+                "find": "s",
+                "at": "end",
+                "before": "a",
+                "to": "z"
+              }
+            ]
+          }
+        },
+        "notation": {
+          "vowels": {
+            "a": "a",
+            "e": "e",
+            "o": "o"
+          },
+          "order": "[́ ̣]",
+          "sets": {
+            "C": "[bcdfgklmnpqrstw]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "qaq qsa"
+      },
+      "expected": {
+        "spelling": "kag kza",
+        "alternatives": []
+      },
+      "note": "^ and $ are a word's edges (a word is a run between spaces); `at: end` holds where `before` ends the word."
+    },
+    {
+      "id": "spell/fixture/groups",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "rules": [
+              {
+                "find": "o(u|w)?",
+                "after": "{C}",
+                "before": "{C}*$",
+                "to": "o"
+              }
+            ]
+          }
+        },
+        "notation": {
+          "vowels": {
+            "a": "a",
+            "e": "e",
+            "o": "o"
+          },
+          "order": "[́ ̣]",
+          "sets": {
+            "C": "[bcdfgklmnpqrstw]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "bout tow mo"
+      },
+      "expected": {
+        "spelling": "bot to mo",
+        "alternatives": []
+      },
+      "note": "( | ) to choose, ? and * after a piece, sets in the context."
+    },
+    {
+      "id": "spell/fixture/alternatives",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "rules": [
+              {
+                "find": "e",
+                "to": "e",
+                "alternatives": [
+                  {
+                    "id": "e-i",
+                    "to": "i"
+                  }
+                ]
+              },
+              {
+                "find": "o",
+                "to": "o",
+                "alternatives": [
+                  {
+                    "id": "o-u",
+                    "to": "u"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "notation": {
+          "vowels": {
+            "a": "a",
+            "e": "e",
+            "o": "o"
+          },
+          "order": "[́ ̣]",
+          "sets": {
+            "C": "[bcdfgklmnpqrstw]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "beto"
+      },
+      "expected": {
+        "spelling": "beto",
+        "alternatives": [
+          {
+            "spelling": "betu",
+            "by": [
+              "o-u"
+            ]
+          },
+          {
+            "spelling": "bito",
+            "by": [
+              "e-i"
+            ]
+          },
+          {
+            "spelling": "bitu",
+            "by": [
+              "e-i",
+              "o-u"
+            ]
+          }
+        ]
+      },
+      "note": "Each place a rule applies takes its `to` or an alternative; an alternative lists the variations it took."
+    },
+    {
+      "id": "spell/fixture/map",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "rules": [
+              {
+                "find": "{C}",
+                "map": {
+                  "b": "p",
+                  "t": "th"
+                }
+              }
+            ]
+          }
+        },
+        "notation": {
+          "vowels": {
+            "a": "a",
+            "e": "e",
+            "o": "o"
+          },
+          "order": "[́ ̣]",
+          "sets": {
+            "C": "[bcdfgklmnpqrstw]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "bat d"
+      },
+      "expected": {
+        "spelling": "path d",
+        "alternatives": []
+      },
+      "note": "`map` replaces a match by its entry; a match with none stays."
+    },
+    {
+      "id": "spell/fixture/expected-alternative",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "rules": [
+              {
+                "find": "e",
+                "to": "e",
+                "alternatives": [
+                  {
+                    "id": "e-i",
+                    "to": "i"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "notation": {
+          "vowels": {
+            "a": "a",
+            "e": "e",
+            "o": "o"
+          },
+          "order": "[́ ̣]",
+          "sets": {
+            "C": "[bcdfgklmnpqrstw]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "bet",
+        "expected": "bit"
+      },
+      "expected": {
+        "spelling": "bet",
+        "expected": "alternative"
+      },
+      "note": "With `expected`: an alternative."
+    },
+    {
+      "id": "spell/fixture/expected-neither",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "rules": [
+              {
+                "find": "e",
+                "to": "e",
+                "alternatives": [
+                  {
+                    "id": "e-i",
+                    "to": "i"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "notation": {
+          "vowels": {
+            "a": "a",
+            "e": "e",
+            "o": "o"
+          },
+          "order": "[́ ̣]",
+          "sets": {
+            "C": "[bcdfgklmnpqrstw]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "bet",
+        "expected": "bat"
+      },
+      "expected": {
+        "spelling": "bet",
+        "expected": null
+      },
+      "note": "With `expected`: neither the spelling nor an alternative."
+    },
+    {
+      "id": "spell/error/no-notation",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "form": "casa"
+      },
+      "error": "declares no notation",
+      "note": "es states no notation yet: nothing to spell from."
+    },
+    {
+      "id": "spell/error/no-statement",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "notation": {
+          "vowels": {
+            "a": "a",
+            "e": "e",
+            "o": "o"
+          },
+          "order": "[́ ̣]",
+          "sets": {
+            "C": "[bcdfgklmnpqrstw]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "casa"
+      },
+      "error": "states no spell",
+      "note": "A profile with no `spell`."
+    },
+    {
+      "id": "spell/error/no-layer",
+      "op": "spell",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "layer": "nope",
+        "form": "بَس"
+      },
+      "error": "has no layer nope",
+      "note": "A layer the profile does not have."
+    },
+    {
+      "id": "spell/error/unknown-set",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "rules": [
+              {
+                "find": "{X}",
+                "to": ""
+              }
+            ]
+          }
+        },
+        "notation": {
+          "vowels": {
+            "a": "a",
+            "e": "e",
+            "o": "o"
+          },
+          "order": "[́ ̣]",
+          "sets": {
+            "C": "[bcdfgklmnpqrstw]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "a"
+      },
+      "error": "no set named X",
+      "note": "A pattern names a set neither the notation nor the statement has."
+    },
+    {
+      "id": "spell/error/to-and-map",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "rules": [
+              {
+                "find": "a",
+                "to": "b",
+                "map": {
+                  "a": "b"
+                }
+              }
+            ]
+          }
+        },
+        "notation": {
+          "vowels": {
+            "a": "a",
+            "e": "e",
+            "o": "o"
+          },
+          "order": "[́ ̣]",
+          "sets": {
+            "C": "[bcdfgklmnpqrstw]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "a"
+      },
+      "error": "one of the two",
+      "note": "A rule has `to` or `map`, not both."
+    },
+    {
+      "id": "spell/error/unclosed-group",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "rules": [
+              {
+                "find": "(a",
+                "to": "b"
+              }
+            ]
+          }
+        },
+        "notation": {
+          "vowels": {
+            "a": "a",
+            "e": "e",
+            "o": "o"
+          },
+          "order": "[́ ̣]",
+          "sets": {
+            "C": "[bcdfgklmnpqrstw]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "a"
+      },
+      "error": "an unclosed (",
+      "note": "A pattern that does not close its group."
+    }
+  ]
+}

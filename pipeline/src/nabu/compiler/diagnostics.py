@@ -190,6 +190,17 @@ _LINTS = [
         "correspondence for a reviewer to look at. The review list; it never fails a build.",
     ),
     Lint(
+        "form.projection",
+        "warning",
+        3,
+        "A lexeme's stored lexical form (or an allomorph's) does not spell, by an orthography's "
+        "`spell` statement, as the lexicon's first spelling there nor as one of the statement's "
+        "free alternatives; or its vocalization layer's spelling is not the course's vocalization "
+        "of that spelling (docs/rules-design.md, stage 1). A form, a spelling or a rule for a "
+        "reviewer to look at: never mended by changing one to fit. A verb's radicals are counted "
+        "and skipped until stem templates are written.",
+    ),
+    Lint(
         "enrich.transliteration-mismatch",
         "info",
         3,

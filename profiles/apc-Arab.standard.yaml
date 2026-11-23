@@ -68,8 +68,51 @@ match:
 #  - The article's l before a sun letter (الشاي ish-shay): written and not said, but written in every spelling.
 sound: { from: spelling, ignores: "[ً-ْٰ]" }
 correspondences: []
+# How the course's Arabic spells a lexical form (docs/lexical-forms/apc.md, the projections' table; docs/rules-design.md,
+# section 3): the letters, no marks (a shadda is the writer's choice), a loan's گ پ ڤ as ك ب ف. Checked against each
+# lexeme's first spelling by the compiler (`form.projection`, `nabu forms`). REVIEW.
+spell:
+  from: lexical
+  rules:
+    - {find: "[\u064B-\u0652\u065C\u065D\u06DF]", to: ""}
+    - {find: "[گپڤ]", map: {"گ": "ك", "پ": "ب", "ڤ": "ف"}}
 annotations:
-  - { id: vocalized, kind: vocalization, toggle: true, default: "on" }   # quoted: YAML 1.1 reads bare on as true. Shadda and harakat where content has them (بدّي)
+  # quoted: YAML 1.1 reads bare on as true. Shadda and harakat where content has them (بدّي)
+  - id: vocalized
+    kind: vocalization
+    toggle: true
+    default: "on"
+    # The marked text the voices read, from a lexical form (docs/lexical-forms/apc.md, the projections' table): what
+    # courses/apc/vocalization.yaml has for the word, where the course follows its conventions. REVIEW.
+    spell:
+      from: lexical
+      sets:
+        T: "[ءأ-ئبث-غف-ويپڤگ]"   # a consonant, not ت
+      rules:
+        # The helping vowel (docs/lexical-forms/apc.md; the owner, 2026-11-21): a word that ends in two consonants says a
+        # vowel between them, a kasra, or a damma after a short u or o (not before the past's -t). Not in a doubled letter,
+        # not after a glide, not after a consonant with no vowel. Inside a word it is not written yet (the form does not say
+        # where an ending begins).
+        - {find: "\u0652", after: "[\u064F\u065D]{N}", before: "{T}({L}\u06DF)*$", to: "\u064F"}
+        - {find: "\u0652", after: "({V}|[اىيو]){N}", before: "{C}({L}\u06DF)*$", to: "\u0650"}
+        # The vowel of their (-on, a silent ه): on the ه, with a sukun before it (بيتْهُن).
+        - {find: "[\u064F\u065D]ه\u06DF", before: "{C}", to: "\u0652ه\u064F"}
+        # No sukun on the article's lam.
+        - {find: "\u0652", after: "^ا\u06DFل", to: ""}
+        - {find: "آ\u065C", to: "آ"}
+        # The fathatan after its alef seat (شُكْراً).
+        - {find: "\u064Bا", to: "ا\u064B"}
+        # A consonant before its length letter carries no sign: long e and o are not told from long a, i and u.
+        - {find: "[\u064E\u065C]", before: "({L}\u06DF)*ا", to: ""}
+        - {find: "\u064E", before: "({L}\u06DF)*ى", to: ""}
+        - {find: "[\u0650\u065C]", before: "({L}\u06DF)*ي({L}|$)", to: ""}
+        - {find: "[\u064F\u065D]", before: "({L}\u06DF)*و({L}|$)", to: ""}
+        - {find: "ة\u0652", to: "ة"}
+        # U+065C is written as a kasra (U+065D is long o only: its sign goes before its و); a silent letter bare; a loan's
+        # letters as the course writes them.
+        - {find: "\u065C", to: "\u0650"}
+        - {find: "\u06DF", to: ""}
+        - {find: "[گپڤ]", map: {"گ": "ك", "پ": "ب", "ڤ": "ف"}}
 input:
   keyboard: cldr-kbd:ar
   # Its vowel marks put on a word's letters from buttons, once a choice card has shown them (ADR 0137).

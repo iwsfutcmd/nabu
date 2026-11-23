@@ -7,13 +7,14 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { compileProfile, type CompiledProfile, type ProfileData } from "@nabu/core";
 import numberingSystems from "@nabu/i18n/generated/numbering-systems.json" with { type: "json" };
-import type { DataTable, KeyboardLayout, OrthographyProfile } from "@nabu/schema";
+import type { DataTable, KeyboardLayout, LanguageDeclaration, OrthographyProfile } from "@nabu/schema";
 import { Ajv2020, type ValidateFunction } from "ajv/dist/2020.js";
 import { parse } from "yaml";
 
 export const REPO = resolve(import.meta.dirname, "../../..");
 const SCHEMAS = join(REPO, "schemas");
 const PROFILES = join(REPO, "profiles");
+const LEXICONS = join(REPO, "lexicons");
 
 const ajv = new Ajv2020({ strict: true, allErrors: true });
 ajv.addKeyword({ keyword: "tsType", schemaType: "string" });
@@ -55,4 +56,16 @@ export const loadProfiles = (data: ProfileData = loadProfileData()): ReadonlyMap
     out.set(profile.id, compiled.value);
   }
   return out;
+};
+
+/** A language's declaration (lexicons/<code>/language.yaml), validated; undefined where it has none. */
+export const loadLanguage = (code: string): LanguageDeclaration | undefined => {
+  if (!/^[a-z]{2,3}$/u.test(code)) return undefined;
+  const path = join(LEXICONS, code, "language.yaml");
+  try {
+    readFileSync(path);
+  } catch {
+    return undefined;
+  }
+  return load<LanguageDeclaration>(path, "language");
 };

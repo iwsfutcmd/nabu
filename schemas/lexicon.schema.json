@@ -159,7 +159,10 @@
           "type": "object",
           "minProperties": 1,
           "additionalProperties": { "type": "string", "minLength": 1 }
-        }
+        },
+        "source": { "description": "Where its radicals, Form and vowels are from, for reviewers: a reference and page (kline 75), course (the course writes the form) or deduced.", "type": "string", "minLength": 1 },
+        "basis": { "description": "What a deduced radical or vowel was deduced from, for reviewers (never shown to a learner): every entry with one is on the review list.", "type": "string", "minLength": 1 },
+        "note": { "description": "What else a reviewer should know of it (never shown to a learner).", "type": "string", "minLength": 1 }
       }
     },
     "PatternForm": {

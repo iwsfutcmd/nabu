@@ -9,9 +9,12 @@ from typing import Any
 
 import yaml
 
-# Also the ideographic space (U+3000), between sitelen pona sentences: it reads as two spaces.
+# Also the ideographic space (U+3000), between sitelen pona sentences: it reads as two spaces; and
+# the three signs of apc's lexical-form notation (U+065C, U+065D, U+06DF), which a font may not
+# show and an editor may drop (docs/lexical-forms/apc.md: always written as escapes).
 INVISIBLE = re.compile(
-    "[\u00ad\u061c\u180e\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\u3000\ufeff]"
+    "[\u00ad\u061c\u065c\u065d\u06df\u180e\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069"
+    "\u3000\ufeff]"
 )
 
 

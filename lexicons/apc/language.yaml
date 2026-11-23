@@ -79,3 +79,19 @@ rules:
 - {id: 'rule:shu-excl', gloss: {en: 'shu + adjective: how …!'}, notes: {en: 'shu 7elo!: how nice!; shu 7elwe hal hdiyye!: what a lovely present! The adjective agrees with what it describes.'}, was: 'construction:shu-excl'}
 - {id: 'rule:used-to', gloss: {en: 'kent + a verb without b-: used to; would'}, notes: {en: 'kent ru7: I used to go; kenna nekol: we used to eat; ken yishteghel: he used to work. Both verbs agree with who did it.'}, was: 'construction:used-to'}
 - {id: 'rule:was-doing', gloss: {en: 'kent 3am + verb: was …ing'}, notes: {en: 'kent 3am e2ra: I was reading; keno 3am yeklo: they were eating.'}, was: 'construction:was-doing'}
+# How apc writes a lexical form (docs/lexical-forms/apc.md, "The notation"; docs/rules-design.md, section 3),
+# read by @nabu/core `compileSpeller` for each profile's `spell`; never shipped. U+065C is e, U+065D o, U+06DF a
+# letter written and not said (the owner, 2026-11-20). `order`: a letter's marks as the notation names them,
+# shadda first (spaced, so the set itself stays NFC). Sets: L a letter, C a consonant (not a length letter's alef or alef maqsura, not ta marbuta), N a
+# consonant that is no glide, V a short vowel's sign, H a hamza.
+notation:
+  vowels: {a: "\u064E", i: "\u0650", u: "\u064F", e: "\u065C", o: "\u065D"}
+  long: {a: "\u064Eا", a-maqsura: "\u064Eى", e-alef: "\u065Cا", e: "\u065Cي", i: "\u0650ي", u: "\u064Fو", o: "\u065Dو"}
+  none: "\u0652"
+  order: "[\u0651 \u064B \u064E \u0650 \u064F \u065C \u065D \u0652 \u06DF]"
+  sets:
+    L: "[ء-غف-يپڤگ]"
+    C: "[ءأ-ئبت-غف-ويپڤگ]"
+    N: "[ءأ-ئبت-غف-هپڤگ]"
+    V: "[\u064E\u064F\u0650\u065C\u065D]"
+    H: "[ءأ-ئ]"

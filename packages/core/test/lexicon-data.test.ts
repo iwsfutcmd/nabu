@@ -217,6 +217,25 @@ describe("lexiconData", () => {
     expect(isLexiconSource("<!doctype html>")).toBe(false);
   });
 
+  it("shows apc's lexical forms as the language's own text, a verb's radicals beside the code of its Form and sources", () => {
+    const course = loadCourse("apc", "apc-Arab/standard");
+    const data = lexiconData(course, sourceOf("apc"));
+    const formOf = (lexeme: string): DataNode | undefined => fieldOf(data.lexemes.find((r) => r.id.id === lexeme)?.source, "form");
+    // A string in the notation (docs/lexical-forms/apc.md), tagged as the course's Arabic.
+    const ahwe = formOf("lexeme:ahwe");
+    expect(ahwe?.kind === "text" ? ahwe.text.orthography : undefined).toBe("apc-Arab/standard");
+    // A verb's radical form: its radicals are letters, its Form, vowels and source code, its basis a note in English.
+    const azam = formOf("lexeme:3azam");
+    const kinds = (node: DataNode | undefined): readonly string[] =>
+      node?.kind === "record" ? node.fields.map((f) => `${f.key}:${f.value.kind === "list" ? `list of ${f.value.items[0]?.kind ?? ""}` : f.value.kind === "record" ? `record of ${f.value.fields[0]?.value.kind ?? ""}` : f.value.kind}`) : [];
+    expect(kinds(azam)).toEqual(["radicals:list of text", "form:code", "vowels:record of code", "source:code", "basis:text"]);
+    const basis = fieldOf(azam, "basis");
+    expect(basis?.kind === "text" ? basis.text.lang : undefined).toMatch(/^en/u);
+    // The notation in the Language view: its signs are text, its order and sets code.
+    const notation = fieldOf(data.language, "notation");
+    expect(kinds(notation)).toEqual(["vowels:record of text", "long:record of text", "none:text", "order:code", "sets:record of code"]);
+  });
+
   it("lays out the largest lexicon quickly", () => {
     const course = loadCourse("es", "es-Latn/standard");
     const source = sourceOf("es");

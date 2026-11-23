@@ -298,6 +298,56 @@ CHG: dict[str, Any] = {
 }
 """A Chaghatay course: قزل read qizil, which Schluessel's statement relates to its letters."""
 
+APC_ORTH = "apc-Latn/arabizi"
+BET = "\u0628\u065c\u064a\u062a"  # bet: its long e is U+065C and ya (docs/lexical-forms/apc.md)
+APC: dict[str, Any] = {
+    "id": "clean-apc",
+    "target": "apc-Latn",
+    "orthographies": [APC_ORTH],
+    "support": ["en-Latn/standard"],
+    "lexicon": "apc",
+    "names": {"en": {"course": "Lebanese Arabic"}},
+    "license": "CC0-1.0",
+    "provenance": {"author": "human:fixture", "status": "draft"},
+    "own": own(
+        "apc",
+        [
+            {
+                "id": "lexeme:bet",
+                "pos": "NOUN",
+                "gloss": {"en": "house"},
+                "form": BET,
+                "spelled": {APC_ORTH: ["bet"]},
+            }
+        ],
+        # The notation apc's profiles spell from (lexicons/apc/language.yaml).
+        notation=yaml.safe_load(
+            (HERE.parents[2] / "lexicons" / "apc" / "language.yaml").read_text(encoding="utf-8")
+        )["notation"],
+    ),
+    "units": [
+        {
+            "id": "basics",
+            "nodes": [{"id": "basics.1", "kind": "lesson", "introduces": ["lexeme:bet"]}],
+            "sentences": [
+                {
+                    "id": "s.1",
+                    "node": "basics.1",
+                    "forms": {
+                        APC_ORTH: {
+                            "text": "bet",
+                            "tokens": [{"surface": "bet", "lexeme": "bet"}],
+                            "reverse": "bet",
+                        }
+                    },
+                    "translations": {"en": "a house"},
+                }
+            ],
+        }
+    ],
+}
+"""A Lebanese Arabic course in Arabizi: bet, whose form (BET) Arabizi's statement spells bet."""
+
 ES_ORTH = "es-Latn/standard"
 
 
@@ -630,6 +680,12 @@ def _hbo_unbound(c: Course) -> None:
 def _chg_unaccounted(c: Course) -> None:
     """قزل read kizil, a reading Schluessel's statement does not relate to its letters."""
     unit(c)["sentences"][0]["forms"][CHG_ORTH]["tokens"][0]["readings"] = {"schluessel": "kizil"}
+
+
+def _apc_form_otherwise(c: Course) -> None:
+    """bet's form written with a diphthong (\u0628\u064e\u064a\u0652\u062a), which Arabizi's
+    statement spells bayt, not the lexicon's bet."""
+    c["own"]["lexicon"]["lexemes"][0]["form"] = "\u0628\u064e\u064a\u0652\u062a"
 
 
 def _script_untaught(c: Course) -> None:
@@ -1164,6 +1220,10 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     "projection.unaccounted": (
         "\u0642\u0632\u0644 read kizil: Schluessel's statement writes k with \u06a9, never \u0642.",
         m(_chg_unaccounted, CHG),
+    ),
+    "form.projection": (
+        "bet's form spells bayt in Arabizi, where the lexicon spells it bet.",
+        m(_apc_form_otherwise, APC),
     ),
     "script.untaught-letter": (
         "A Greek alphabet node's word uses ν before the track teaches it.",

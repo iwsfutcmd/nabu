@@ -1,0 +1,15 @@
+# A language's notation (docs/rules-design.md, section 3): the signs a lexical form writes its vowels
+# with, the order a letter's marks are named in (a shadda first), and the sets a profile's `spell` names.
+id: apc
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@rules-stage-1', status: draft}
+dimensions:
+  NOUN: [Number]
+notation:
+  vowels: {a: "\u064E", e: "\u065C"}
+  long: {a: "\u064Eا", e: "\u065Cي"}
+  none: "\u0652"
+  order: "[\u0651 \u064E \u065C \u0652]"
+  sets:
+    C: "[بتثجحخ]"
+    V: "[\u064E\u065C]"

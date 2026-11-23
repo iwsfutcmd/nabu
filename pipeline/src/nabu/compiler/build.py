@@ -19,6 +19,7 @@ import regex
 import yaml
 from pydantic import BaseModel, ValidationError
 
+from nabu import forms as lexical_forms
 from nabu import lexicon as lx
 from nabu import sitelen_pona
 from nabu.analyzers import Analyzer, analyzers_by_tool
@@ -106,6 +107,8 @@ class Compiled:
     audio_items: dict[str, dict[str, ShippedClip]] = field(default_factory=lambda: {})
     # (item, orthography) → token surfaces as written, where vowel marks were added (ADR 0053)
     written: dict[tuple[str, str], list[str]] = field(default_factory=lambda: {})
+    # Each lexeme's lexical form against what the course writes (`nabu forms`; stage 1 of rules)
+    forms: lexical_forms.Report | None = None
 
     @property
     def content(self) -> Content:
@@ -858,6 +861,7 @@ def compile_course(
         compiled.lexicon, compiled.units, course.orthographies, ctx.profiles, ctx.cli
     )
     _unaccounted(ctx, units, compiled)
+    _forms(ctx, compiled)
     aliases = course_file.parent / "aliases.yaml"
     if aliases.is_file():
         compiled.aliases = yaml.safe_load(aliases.read_text(encoding="utf-8"))
@@ -887,6 +891,31 @@ def _unaccounted(ctx: Ctx, units: list[Unit], compiled: Compiled) -> None:
                 f"{u.item}: '{u.surface}' read {u.reading!r}: {found.scheme}'s statement does not "
                 f"relate the reading to the spelling",
                 loc,
+            )
+
+
+def _forms(ctx: Ctx, compiled: Compiled) -> None:
+    """Each lexeme's lexical form against what the course writes (`form.projection`,
+    docs/rules-design.md stage 1): spelled by @nabu/core in each orthography and layer that states
+    `spell`; the report is kept for `nabu forms`."""
+    vocalized = {o: (v.words, v.marks) for o, v in ctx.vocalization.items()}
+    report = lexical_forms.check(ctx.lang, compiled.orthographies, ctx.profiles, vocalized, ctx.cli)
+    compiled.forms = report
+    for problem in report.problems:
+        ctx.diags.report("form.projection", problem, ctx.lang.declared_doc.loc())
+    for entry in report.entries:
+        for c in entry.checks:
+            if not c.mismatch:
+                continue
+            path: tuple[str | int, ...] = (
+                ("form",) if c.allomorph is None else ("allomorphs", c.allomorph, "form")
+            )
+            ctx.diags.report(
+                "form.projection",
+                f"'{entry.lexeme} {c.where}': its form {lexical_forms.escaped(entry.form or '')}"
+                f" spells {lexical_forms.escaped(c.spelling)} there, where the course has "
+                f"{c.expected}",
+                ctx.lang.loc(entry.lexeme, *path),
             )
 
 

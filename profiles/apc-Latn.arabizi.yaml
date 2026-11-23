@@ -51,6 +51,59 @@ correspondences:
   #  - ay/ai/ei/e (hayda/haida, shway/shwei, wayn/wen): a diphthong or its monophthong by speaker; no context safe.
   #  - 7 (ḥ) and h (h), 3 (ʿ) and a, 2 (ʔ) and nothing, q and 2 or k: different sounds, or a sound said otherwise
   #    by word; a slip at most, as the typo model says.
+# How Arabizi spells a lexical form (docs/lexical-forms/apc.md, the projections' table and "Free and fixed";
+# docs/rules-design.md, section 3). `to` is the spelling the course mostly writes; each rule's `alternatives` are
+# the spellings apc.md calls free, named by variation: read only by the compiler, which takes the course's spelling
+# where it is one of them (`form.projection`). None is stated free in `correspondences` above but e/i: the owner
+# states the others one at a time (docs/rules-design.md, question 6). Not alternatives here: ch, 5, 8 and ou are
+# matching policies (`equivalences`). REVIEW.
+spell:
+  from: lexical
+  rules:
+    # The helping vowel: not written, or written e (o after a u or o). Free (apc.md, "Free and fixed").
+    - {find: "\u0652", after: "[\u064F\u065D]و?{N}", before: "{C}({L}\u06DF)*$", to: "", alternatives: [{id: helping-vowel, to: o}, {id: helping-vowel, to: e}]}
+    - {find: "\u0652", after: "({V}|[اىيو]){N}", before: "{C}({L}\u06DF)*$", to: "", alternatives: [{id: helping-vowel, to: e}]}
+    # A hamza that begins a word, or follows the article, is not written; a ق there is 2 or nothing.
+    - {find: "{H}", at: start, to: ""}
+    - {find: "{H}", after: "^ا\u06DFل\u0652", to: ""}
+    - {find: "ق", at: start, to: "2", alternatives: [{id: q-initial, to: ""}]}
+    - {find: "ق", after: "^ا\u06DFل\u0652", to: "2", alternatives: [{id: q-initial, to: ""}]}
+    # The article: el, also l or il; its lam before a sun letter not written or written l, the letter after it doubled
+    # or single (essalame, el salame).
+    - {find: "ا\u06DF", before: "ل", at: start, to: e, alternatives: [{id: article, to: ""}, {id: e-i, to: i}]}
+    - {find: "\u0651", after: "ل\u06DF{C}", to: "\u0651", alternatives: [{id: article, to: ""}]}
+    - {find: "ل\u06DF", to: "", alternatives: [{id: article, to: l}]}
+    # A vowel that begins a word on a bare alef is written alone.
+    - {find: "ا", before: "{V}", at: start, to: ""}
+    # -an, then the long vowels: at a word's end long i is also e, and long u is o or u (said short).
+    - {find: "\u064Bا", to: an}
+    - {find: "آ\u065C", at: start, to: e}
+    - {find: "آ\u065C", to: "2e"}
+    - {find: "آ", at: start, to: a}
+    - {find: "آ", to: "2a"}
+    - {find: "\u064E[اى]", to: a}
+    - {find: "\u065Cا", to: e}
+    - {find: "\u0650ي", before: "({L}\u06DF)*$", to: i, alternatives: [{id: final-e-i, to: e}]}
+    - {find: "\u0650ي", before: "{L}", to: i, alternatives: [{id: i-ee, to: ee}]}
+    - {find: "\u065Cي", before: "({L}\u06DF)*$", to: e}
+    - {find: "\u065Cي", before: "{L}", to: e, alternatives: [{id: e-ei, to: ei}]}
+    - {find: "\u064Fو", before: "({L}\u06DF)*$", to: o, alternatives: [{id: o-u, to: u}]}
+    - {find: "\u064Fو", before: "{L}", to: u, alternatives: [{id: u-ou, to: ou}]}
+    - {find: "\u065Dو", to: o}
+    # ة is the ending's vowel, said t where it carries a sukun.
+    - {find: "ة\u0652", to: t}
+    - {find: "ة", to: ""}
+    # Short vowels: the front one e or i, the back one o or u (Kline, p. 6).
+    - {find: "\u064E", to: a}
+    - {find: "\u0650", to: e, alternatives: [{id: e-i, to: i}]}
+    - {find: "\u064F", to: o, alternatives: [{id: o-u, to: u}]}
+    - {find: "\u065C", to: e}
+    # No sign is written for no vowel, nor a letter that is not said.
+    - {find: "\u0652", to: ""}
+    - {find: "{L}\u06DF", to: ""}
+    # A doubled letter is written twice (mara is not marra); then each consonant.
+    - {find: "{C}\u0651", to: "{C}{C}"}
+    - {find: "{C}", map: {"ء": "2", "أ": "2", "ؤ": "2", "إ": "2", "ئ": "2", "ب": b, "ت": t, "ث": s, "ج": j, "ح": "7", "خ": kh, "د": d, "ذ": z, "ر": r, "ز": z, "س": s, "ش": sh, "ص": s, "ض": d, "ط": t, "ظ": z, "ع": "3", "غ": gh, "ف": f, "ق": "2", "ك": k, "ل": l, "م": m, "ن": n, "ه": h, "و": w, "ي": y, "پ": p, "ڤ": v, "گ": g}}
 layout: { vertical: none }
 transliterate: { to: apc-Arab/standard, via: hand-pinned }
 # What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.

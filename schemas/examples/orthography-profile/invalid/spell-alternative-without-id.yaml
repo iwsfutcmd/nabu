@@ -1,0 +1,9 @@
+# A free alternative names its variation, so what each variation would accept can be counted.
+id: apc-Latn/arabizi
+lang: apc-Latn
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize: [nfc]
+spell:
+  from: lexical
+  rules:
+    - {find: "\u0650", to: e, alternatives: [{to: i}]}

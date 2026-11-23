@@ -1,0 +1,22 @@
+# How an orthography writes a lexical form (docs/rules-design.md, section 3): rewrites in order, a rule's
+# free alternatives each named by its variation; a layer (the marked text) states its own. Not a real profile.
+id: apc-Latn/arabizi
+lang: apc-Latn
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize: [nfc]
+annotations:
+  - id: vocalized
+    kind: vocalization
+    toggle: true
+    spell:
+      from: lexical
+      rules:
+        - {find: "\u065C", to: "\u0650"}
+spell:
+  from: lexical
+  sets:
+    E: "[\u0650]"
+  rules:
+    - {find: "{E}", to: e, alternatives: [{id: e-i, to: i}]}
+    - {find: "\u0652", after: "{C}", before: "{C}$", to: ""}
+    - {find: "{C}", map: {"ب": b, "ت": t}}

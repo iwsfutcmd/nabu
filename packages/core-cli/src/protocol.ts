@@ -6,12 +6,12 @@
  *
  * Request: { id, op, ...args }. Response: { id, ok: true, result } or { id, ok: false, error }.
  */
-import { caseFold, checkTaggedText, compileProfile, readingProjection, type ReadingProjection, type SpellingProjection, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, readingSyllables, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry, type LexemeForm, type WordForm } from "@nabu/core";
+import { caseFold, checkTaggedText, compileProfile, compileSpeller, spell, spelledAs, spellingKey, type Speller, readingProjection, type ReadingProjection, type SpellingProjection, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, readingSyllables, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry, type LexemeForm, type WordForm } from "@nabu/core";
 import { TONE_SYSTEMS } from "@nabu/core/speech";
 import { directionOf, scriptOf } from "@nabu/i18n";
 import { formKey, homophoneScheme, homophoneTable, otherSpellings, parseFormKey } from "@nabu/core/lesson";
-import type { OrthographyProfile, TaggedText, Token } from "@nabu/schema";
-import { loadProfileData, loadProfiles } from "./load.ts";
+import type { Notation, OrthographyProfile, TaggedText, Token } from "@nabu/schema";
+import { loadLanguage, loadProfileData, loadProfiles } from "./load.ts";
 
 type Id = number | string | null;
 export type Response = { readonly id: Id; readonly ok: true; readonly result: unknown } | { readonly id: Id; readonly ok: false; readonly error: string };
@@ -103,6 +103,32 @@ const schemeProjection = (args: Args): ReadingProjection => {
   const projection = readingProjection(id);
   if (projection === undefined) throw new Error(`unknown scheme "${id}"`);
   return projection;
+};
+
+/**
+ * A profile's `spell` statement (docs/rules-design.md, section 4), compiled with its language's
+ * notation (lexicons/<language>/language.yaml): `profile` an id, or a profile object of the vector's
+ * own; `notation` the vector's own in place of the language's; `layer` an annotation's statement.
+ */
+const spellers = new Map<string, { readonly speller: Speller; readonly key: (text: string) => string }>();
+const spellerFor = (args: Args): { readonly speller: Speller; readonly key: (text: string) => string } => {
+  const given = args["profile"];
+  const layer = optionalText(args, "layer");
+  const cacheKey = JSON.stringify([given, args["notation"] ?? null, layer ?? null]);
+  let found = spellers.get(cacheKey);
+  if (found === undefined) {
+    const compiled = typeof given === "object" && given !== null ? undefined : profile(args);
+    const source = compiled?.source ?? (given as OrthographyProfile);
+    const language = source.lang.split("-")[0] as string;
+    const notation = (args["notation"] as Notation | undefined) ?? loadLanguage(language)?.notation;
+    if (notation === undefined) throw new Error(`${language} declares no notation`);
+    const made = compileSpeller(source, notation, layer);
+    if (!made.ok) throw new Error(`spell: ${made.error.join("; ")}`);
+    const keyed = compiled ?? profiles?.get(source.id);
+    found = { speller: made.value, key: keyed === undefined ? (t: string) => t.normalize("NFC") : spellingKey(keyed, layer) };
+    spellers.set(cacheKey, found);
+  }
+  return found;
 };
 
 /** An optional string argument. */
@@ -224,6 +250,17 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
     if (scheme !== undefined && !Array.isArray(tokens)) throw new Error(`"tokens" must be the course's tokens: ${p.id} knows homophones`);
     const homophones = scheme === undefined ? undefined : homophoneTable(tokens as Token[], scheme);
     return (words as Token[]).map((w) => otherSpellings(p, w, homophones));
+  },
+  /**
+   * A lexical form spelled by an orthography's `spell` statement (or its layer's): the spelling and
+   * the free spellings, each with its variations; with `expected`, whether that is the spelling, an
+   * alternative or neither, compared as the profile keys a word (a layer exactly).
+   */
+  spell: (a) => {
+    const { speller, key } = spellerFor(a);
+    const spelled = spell(speller, text(a, "form"));
+    const expected = optionalText(a, "expected");
+    return expected === undefined ? spelled : { ...spelled, expected: spelledAs(spelled, expected, key) ?? null };
   },
   /** Whether the scheme's statement relates a reading to a spelling: the sites of one path, or null. */
   "reading-spells": (a) => schemeProjection(a).spells(text(a, "reading"), text(a, "spelling")) ?? null,
