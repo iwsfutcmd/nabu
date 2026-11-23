@@ -1370,6 +1370,58 @@
       "message": "This link's card could not be read. The link may have been cut short, or made by another version of the app.",
       "description": "Debug mode: shown when a link to a card cannot be opened."
     },
+    "debug.open.link": {
+      "message": "Open a card",
+      "description": "Debug mode, in the notice on every screen: link to the page that opens a card by its id or link, as debug mode shows and copies them."
+    },
+    "debug.open.title": {
+      "message": "Open a card",
+      "description": "Debug mode: title of the page that opens a card by its id or link, and the link back to it."
+    },
+    "debug.open.intro": {
+      "message": "Paste a card's id, or the link copied from it. A link opens that very card. An id opens the card the course makes from it: the same kind of card on the same sentence or word, though which word a gap leaves out, and the wrong options, may differ.",
+      "description": "Debug mode, the Open a card page: what it does with an id and with a link."
+    },
+    "debug.open.field": {
+      "message": "A card's id or link",
+      "description": "Debug mode, the Open a card page: label of the field a card's id or link is pasted into."
+    },
+    "debug.open.example": {
+      "message": "An id begins with its course and orthography, as debug mode shows it:",
+      "description": "Debug mode, the Open a card page: under the field, before an example of an id (shown on its own line, as code, not translated)."
+    },
+    "debug.open.submit": {
+      "message": "Open",
+      "description": "Debug mode, the Open a card page: button that opens the card pasted in."
+    },
+    "debug.open.unreadable": {
+      "message": "That is neither a card's id nor a link to a card.",
+      "description": "Debug mode, the Open a card page: what was pasted is not something it can open."
+    },
+    "debug.cardid.title": {
+      "message": "A card from its id",
+      "description": "Debug mode: title of the page that shows the card an id names, made again as the course makes it."
+    },
+    "debug.cardid.rebuilt": {
+      "message": "Made from its id as the course makes it: which word a gap leaves out, and the wrong options, may differ from the card it was copied from. That card's link opens it exactly.",
+      "description": "Debug mode, a card opened by its id: what may differ from the card the id was copied from."
+    },
+    "debug.cardid.error.unreadable": {
+      "message": "This is not a card's id.",
+      "description": "Debug mode, a card opened by its id: the id has no kind of card in it."
+    },
+    "debug.cardid.error.unknown-kind": {
+      "message": "No kind of card has the name this id begins with.",
+      "description": "Debug mode, a card opened by its id: the kind of card the id names does not exist (an id from another version of the app, or mistyped)."
+    },
+    "debug.cardid.error.excluded": {
+      "message": "This course has no cards of this kind: it does not practise what they ask, or its voice is not good enough for them.",
+      "description": "Debug mode, a card opened by its id: the course rules this kind of card out."
+    },
+    "debug.cardid.error.not-made": {
+      "message": "This course makes no card with this id now: its sentence or word may have been removed or changed.",
+      "description": "Debug mode, a card opened by its id: the course has no such card now."
+    },
     "debug.cards.back": {
       "message": "Back to the course",
       "description": "Debug mode: link from the card gallery back to the course page."

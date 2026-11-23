@@ -1,13 +1,14 @@
 /**
  * A debug link carries its card (card-link.ts): every kind of card of every course comes back from its code
- * exactly as it went in, and a code cut short, garbled or from another format comes back as nothing.
+ * exactly as it went in, and a code cut short, garbled or from another format comes back as nothing. What is
+ * pasted into Open a card is a card's link (its route kept, from any copy of the app) or its id.
  */
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { assembleCourse, BUNDLE_FORMAT, cardGallery, MEDIA_ROLES, type CourseView, type Exercise } from "@nabu/core/lesson";
 import type { BundleManifest } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { decodeCard, encodeCard } from "../../src/card-link.ts";
+import { cardTargetOf, decodeCard, encodeCard } from "../../src/card-link.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../../..");
 const BUNDLES = join(ROOT, "apps/web/public/bundles");
@@ -61,5 +62,27 @@ describe("card links", () => {
     expect(await decodeCard(await deflated(JSON.stringify({ format: 2, bundle: BUNDLE_FORMAT, exercise })))).toBeUndefined();
     expect(await decodeCard(await deflated(JSON.stringify({ format: 1, bundle: BUNDLE_FORMAT - 1, exercise })))).toBeUndefined();
     expect(await decodeCard(await deflated(JSON.stringify({ format: 1, exercise })))).toBeUndefined();
+  });
+});
+
+describe("what Open a card takes", () => {
+  it("keeps a card link's route, from any copy of the app", () => {
+    expect(cardTargetOf("https://example.org/nabu/demo/?debug=1#/tok/tok-Qaap.sitelen-pona/card/xZRBbt_-9")).toEqual({ tag: "address", hash: "#/tok/tok-Qaap.sitelen-pona/card/xZRBbt_-9" });
+    expect(cardTargetOf("  #/yue/yue-Hant-HK.standard/card-id/gap-fill%3As.6\n")).toEqual({ tag: "address", hash: "#/yue/yue-Hant-HK.standard/card-id/gap-fill%3As.6" });
+  });
+
+  it("reads a card id as its course, orthography and exercise", () => {
+    expect(cardTargetOf("tok/tok-Qaap.sitelen-pona/choose-translation:s.u01.1")).toEqual({
+      tag: "id",
+      card: { course: "tok", orthography: "tok-Qaap/sitelen-pona", exercise: "choose-translation:s.u01.1" },
+    });
+  });
+
+  it("takes nothing else: another page's link, an exercise id alone, other text", () => {
+    expect(cardTargetOf("https://example.org/nabu/demo/#/tok/tok-Qaap.sitelen-pona")).toBeUndefined();
+    expect(cardTargetOf("https://example.org/nabu/demo/#/tok/tok-Qaap.sitelen-pona/words")).toBeUndefined();
+    expect(cardTargetOf("choose-translation:s.u01.1")).toBeUndefined();
+    expect(cardTargetOf("hello")).toBeUndefined();
+    expect(cardTargetOf("")).toBeUndefined();
   });
 });
