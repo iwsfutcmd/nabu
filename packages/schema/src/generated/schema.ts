@@ -731,6 +731,14 @@ export type KeyboardRef = string;
  */
 export type TableRef = string;
 /**
+ * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
+ */
+export type UnicodeSetPattern6 = string;
+/**
+ * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
+ */
+export type NoteId4 = string;
+/**
  * A LangTag that carries an explicit script subtag. Every piece of language data uses one (gameplan §1 decision 3, §6.1): direction, fonts, Han glyph selection and input all key off the script.
  */
 export type ScriptedLangTag1 = LangTag;
@@ -746,15 +754,15 @@ export type SchemeId3 = string & { readonly __brand: "SchemeId" };
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern6 = string;
+export type UnicodeSetPattern7 = string;
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern7 = string;
+export type UnicodeSetPattern8 = string;
 /**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
-export type NoteId4 = string;
+export type NoteId5 = string;
 /**
  * Where a word's sound comes from, for the sound question of grading and the spelling cards (ADR 0148). spelling: what the profile's correspondences read off its spelling. reading: its token's pinned reading in `scheme`, related to the spelling by that scheme's statement. Absent: the sound question is never asked for this orthography.
  *
@@ -765,7 +773,7 @@ export type SoundSource = SoundFromSpelling | SoundFromReading;
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern8 = string;
+export type UnicodeSetPattern9 = string;
 /**
  * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
  */
@@ -773,11 +781,11 @@ export type SchemeId4 = string & { readonly __brand: "SchemeId" };
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern9 = string;
+export type UnicodeSetPattern10 = string;
 /**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
-export type NoteId5 = string;
+export type NoteId6 = string;
 /**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  */
@@ -1006,6 +1014,7 @@ export interface NabuSchemaIndex {
   readonly ToneNumbersStep: ToneNumbersStep;
   readonly LogographsStep: LogographsStep;
   readonly MatchPolicy: MatchPolicy;
+  readonly Join: Join;
   readonly NoteId: NoteId;
   readonly KeyboardRef: KeyboardRef;
   readonly AnnotationLayer: AnnotationLayer;
@@ -5407,6 +5416,12 @@ export interface MatchPolicy {
    * Folds applied to both the answer and the accept set only for comparison, each with its own policy, e.g. Arabic hamza seats (accept-with-note) or Arabizi ch/sh (accept). The first equivalence that makes two units equal decides the policy; normalization steps, by contrast, fold silently.
    */
   readonly equivalences?: readonly Equivalence[];
+  /**
+   * Words the orthography writes onto the word after them or apart, in forms no norm picks among (Arabizi's article: el shay, elshay, l shay, lshay, esh shay). Grading compares word by word; these let one or two typed words stand for the joining word and the word after it, only where the accepted answer has the joining word there.
+   *
+   * @minItems 1
+   */
+  readonly joins?: readonly Join[];
 }
 /**
  * A set of endings, prefixes (or whole words) one letter or two apart that mean different things.
@@ -5472,6 +5487,42 @@ export interface Equivalence {
   };
   readonly policy: Policy;
   readonly note?: NoteId;
+}
+/**
+ * A joining word (`joins`). Where an accepted answer has one of its forms followed by a word W (written apart, or split off by a `detach` step), or a word that begins with one of its assimilated forms whose letter is written twice (essalame), an answer that writes any of its forms followed by a spelling that compares as W (the profile's equivalences, free correspondences or a slip; W's other-lexeme and other-form guards hold), as one word or two, is that answer: CORRECT_VARIANT with `note` where the forms differ, nothing more where only the space does. An answer's word is split only there, and never where it is a word the course writes of another lexeme. No form is empty: the word left out stays left out.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Join".
+ */
+export interface Join {
+  readonly id: string;
+  /**
+   * Its forms before any word.
+   *
+   * @minItems 1
+   */
+  readonly forms: readonly string[];
+  /**
+   * Its forms before a word that begins with a letter of `before` (Arabizi's sun letters), beside `forms`: in each, {next} (only at its end) is that letter written again (e{next}: essalame, es salame).
+   */
+  readonly assimilates?: {
+    readonly before: UnicodeSetPattern6;
+    /**
+     * @minItems 1
+     */
+    readonly forms: readonly string[];
+  };
+  /**
+   * The word after it has at least this many graphemes (default 3), so el li, which a detach step makes of elli, is no joining word and word.
+   */
+  readonly minRest?: number;
+  /**
+   * Never before a word the course stands only as one of these parts of speech (the grader's `forms`): el bos, which a detach step makes of elbos (I wear), is no article and noun.
+   *
+   * @minItems 1
+   */
+  readonly notBefore?: readonly PartOfSpeech[];
+  readonly note?: NoteId4;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -5720,7 +5771,7 @@ export interface Correspondence {
    * @minItems 1
    */
   readonly loses?: readonly string[];
-  readonly note?: NoteId4;
+  readonly note?: NoteId5;
 }
 /**
  * Where a correspondence holds, tested on the written side. Every key given must hold.
@@ -5733,12 +5784,12 @@ export interface CorrespondenceContext {
    * At the start or the end of the word.
    */
   readonly at?: "start" | "end";
-  readonly before?: UnicodeSetPattern6;
-  readonly after?: UnicodeSetPattern7;
+  readonly before?: UnicodeSetPattern7;
+  readonly after?: UnicodeSetPattern8;
 }
 export interface SoundFromSpelling {
   readonly from: "spelling";
-  readonly ignores?: UnicodeSetPattern8;
+  readonly ignores?: UnicodeSetPattern9;
 }
 export interface SoundFromReading {
   readonly from: "reading";
@@ -5772,11 +5823,11 @@ export interface Stress {
    */
   readonly default: readonly {
     readonly when?: {
-      readonly ends: UnicodeSetPattern9;
+      readonly ends: UnicodeSetPattern10;
     };
     readonly on: "last" | "penult";
   }[];
-  readonly note?: NoteId5;
+  readonly note?: NoteId6;
 }
 /**
  * How this orthography writes a lexical form (docs/rules-design.md, section 3): the other direction of its sound statement. `rules` rewrite the form, in order, into the spelling; a rule's `alternatives` are the free spellings, each named by the variation it is. Read by @nabu/core (`compileSpeller`, `spell`) in the compiler only: a bundle never carries it. Patterns are written in the language's notation (its `order` of marks); {name} is a set of the notation's `sets` or of this statement's.

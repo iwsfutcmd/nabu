@@ -2,8 +2,9 @@
 # Lebanese Arabic in Arabizi (gameplan §6.3): digit letters (2 ʔ, 3 ʕ, 7 ḥ, 5 x…) are letters, not numbers.
 # Variation the profile folds silently: an apostrophe for the hamza, the article written onto its
 # noun (elshay, 3alba7r), ch/sh, 5/kh, 8/gh, doubled vowels. Free spellings of one sound (e/i, i/ee, o/u, e/ei, an
-# initial ق written 2 or not, the helping vowel) are stated below (`correspondences`); everything else (h/7…) is a
-# real distinction or a spelling choice and belongs in the accept sets. Content: apc-Latn-LB.
+# initial ق written 2 or not, the helping vowel) are stated below (`correspondences`), and the article's forms,
+# joined or apart (`joins`); everything else (h/7…) is a real distinction or a spelling choice and belongs in the
+# accept sets. Content: apc-Latn-LB.
 id: apc-Latn/arabizi
 lang: apc-Latn
 segmentation: { content: hand-pinned, runtime: grapheme }
@@ -23,6 +24,32 @@ match:
     - { id: long-vowels, map: { aa: a, ee: e, ii: i, oo: o, uu: u }, policy: accept }   # REVIEW
     - { id: kh-5, map: { "5": kh }, policy: accept }   # REVIEW: 5 for kh (5obz = khobz), as Lebanese Arabizi writes it
     - { id: gh-8, map: { "8": gh }, policy: accept }   # REVIEW: 8 for gh (8ali = ghali), the digit Kline (2022, ch. 2) gives for غ beside 5 for خ
+  # REVIEW: the article, el, il or l, written onto its noun or apart; before a sun letter (t d r z s sh l n, and j as
+  # the course's vocalizations mark it) assimilated or not, its l written or not, the letter after it doubled or single:
+  # el salame, elsalame, essalame, es salame, ssalame, lssalame, esalame. Stated free by the owner (2026-11-23,
+  # docs/rules-design.md, question 6). A statement of sounds compares a word with a word and cannot say it: the course
+  # writes the article as a word (el shay: 213 tokens) and the detach step above splits a joined el or il off, so
+  # l7amdella is one word against el 7amdella's two, and essalame one against el salame's two. A join is read only where
+  # the accepted answer has the article: el, il or l followed by a word, or a word that begins with e, i or nothing and
+  # a doubled sun letter (essalame, the course's one); never in a typed word alone (elf, lebnen, lazem stay as they
+  # are), never in one the course writes as another lexeme's, and the word after it is graded as any word is (the free
+  # spellings below, a slip, the other-lexeme and other-form guards). The article is never nothing: salame for
+  # essalame (the article left out) stays wrong, the one spelling of the owner's twelve not accepted; an article added
+  # stays wrong too. The word after it has three letters at least (minRest: el li, which the detach step makes of elli,
+  # who, is no article and word) and is never one the course writes only as a verb (notBefore: el bos and el 3ab, which
+  # the detach step makes of elbos, I wear, and el3ab, I play). Counted on 2026-11-23: 11 of the owner's 12 spellings
+  # are variants; the 351 alternatives the accept sets list by hand that differ from their canonical answer only in the
+  # article ((el|l|il), kept) all grade as accepted against the canonical answer alone (196 were wrong before); no two
+  # different expected answers of the course, nor one with its article respelled, newly compare alike. Cost: none
+  # counted in the course; a word the detach step splits that the course has not written yet (a verb with no token, a
+  # noun beginning el) could be read as the article and a word. The prepositions written with the article (3al, bel,
+  # lal, wel) are not read: 3a l ba7r and b el bet stay wrong for 3al ba7r and bel bet, as before (accept sets list
+  # them where they are meant).
+  joins:
+    - id: article
+      forms: [el, il, l]
+      assimilates: { before: "[dlnrstzj{sh}]", forms: ["e{next}", "i{next}", "{next}", "el{next}", "il{next}", "l{next}", e, i] }
+      notBefore: [VERB, AUX]
   typo:
     model: keyboard
     layout: cldr-kbd:en
@@ -124,13 +151,9 @@ correspondences:
   - { says: b7, written: [b7, be7, bi7, bee7, bei7, bo7, bu7], kind: free, when: { after: "[aeiou]", at: end } }
   - { says: "2s", written: [2s, 2es, 2is, 2ees, 2eis], kind: free, when: { after: "[aeiou]", at: end } }
   - { says: lj, written: [lj, lej, lij, leej, leij], kind: free, when: { after: "[aeiou]", at: end } }
-  # Not stated, though the owner said free (2026-11-23): the article's forms (el, l, il; essalame, el salame). The
-  # course writes the article as a word of its own (el shay: 213 tokens) or joined to a preposition (3al, bel), and
-  # the normalization above detaches el and il, so grading compares it as a word: l joined to its noun (l7amdella,
-  # lawwal) is one word against el 7amdella's two, and an assimilated article (essalame) one against el salame's two.
-  # A statement of sounds compares one word with one word and cannot reach them. Word by word, el or il said l at a
-  # word's start would only take a spaced l (l shay), which the accept sets list by hand ((el|l|il), 169 times), and
-  # would take lf for elf, lli for elli, lbos for ilbos. It waits on a join the grader can see (rules-design, section 8).
+  # The article's forms (el, l, il; essalame, el salame), which the owner said free too, are no correspondence: a
+  # statement of sounds compares a word with a word, and the article is written onto its noun or apart. They are a
+  # join (`joins`, above).
   # Considered and left out (REVIEW):
   #  - ay/ai (hayda/haida, shway/shwei, wayn/wen): a diphthong or its monophthong by speaker; no context safe.
   #  - 7 (ḥ) and h (h), 3 (ʿ) and a, 2 (ʔ) and nothing, q and 2 or k: different sounds, or a sound said otherwise
@@ -139,7 +162,7 @@ correspondences:
 # docs/rules-design.md, section 3). `to` is the spelling the course mostly writes; each rule's `alternatives` are
 # the spellings apc.md calls free, named by variation: read only by the compiler, which takes the course's spelling
 # where it is one of them (`form.projection`). The owner stated them free in `correspondences` above (docs/rules-design.md,
-# question 6), all but the article, which waits on a join, and the helping vowel before a final t or in ba3d. Not alternatives here: ch, 5, 8 and ou are
+# question 6), the article as a join (`joins`), all but the helping vowel before a final t or in ba3d. Not alternatives here: ch, 5, 8 and ou are
 # matching policies (`equivalences`). REVIEW.
 spell:
   from: lexical

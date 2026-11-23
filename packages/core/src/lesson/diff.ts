@@ -41,6 +41,8 @@ export const answerDiff = (alignment: readonly AlignOp[], base: Pick<TaggedText,
   let missing = 0;
   // A gap stands between the words around it: one for a run of units left out.
   let afterGap = false;
+  // A joining word typed onto its word (lshay for el shay) is shown as typed: no space after it.
+  let joined = false;
   for (const op of alignment) {
     if (op.op === "delete") {
       missing++;
@@ -51,8 +53,9 @@ export const answerDiff = (alignment: readonly AlignOp[], base: Pick<TaggedText,
       }
       continue;
     }
-    if ((tokens.length > 0 || afterGap) && joiner !== "") tokens.push({ surface: joiner, kind: "space" });
+    if ((tokens.length > 0 || afterGap) && joiner !== "" && !joined) tokens.push({ surface: joiner, kind: "space" });
     afterGap = false;
+    joined = op.op === "match" && op.joined === true;
     if (differs(op)) marked.push(tokens.length);
     tokens.push({ surface: op.actual, kind: "lexical" });
   }

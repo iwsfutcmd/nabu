@@ -1,0 +1,9 @@
+# A joining word is never written as nothing: the word left out stays left out.
+id: apc-Latn/arabizi
+lang: apc-Latn
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize: [nfc]
+match:
+  joins:
+    - id: article
+      forms: [el, ""]

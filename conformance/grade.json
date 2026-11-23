@@ -2229,6 +2229,447 @@
       "note": "Without forms (a caller that gives none) the free correspondences decide alone: a variant."
     },
     {
+      "id": "grade/apc-latn/article-joined-l",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el shay",
+        "answer": "lshay"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ],
+        "alignment": [
+          {
+            "op": "match",
+            "expected": "el",
+            "actual": "l",
+            "kind": "fold",
+            "joined": true
+          },
+          {
+            "op": "match",
+            "expected": "shay",
+            "actual": "shay",
+            "kind": "exact"
+          }
+        ]
+      },
+      "note": "The article written l onto its noun (the profile's `joins`): one word read as the accepted answer's two, a variant; the article's op is joined to its word's (no space where feedback shows the answer)."
+    },
+    {
+      "id": "grade/apc-latn/article-joined-l-vowel",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el7amdella",
+        "answer": "l7amdella"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "The owner's l7amdella: the accepted el7amdella is el and 7amdella once the detach step has split it."
+    },
+    {
+      "id": "grade/apc-latn/article-joined-el-assimilated-expected",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ma3 essalame",
+        "answer": "ma3 elsalame"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ],
+        "alignment": [
+          {
+            "op": "match",
+            "expected": "ma3",
+            "actual": "ma3"
+          },
+          {
+            "op": "match",
+            "expected": "essalame",
+            "actual": "el salame",
+            "kind": "exact"
+          }
+        ]
+      },
+      "note": "An accepted word that begins with the assimilated article (e and a doubled sun letter: essalame) against el joined to its noun (split off by the detach step): the two typed units are that one word, shown as typed."
+    },
+    {
+      "id": "grade/apc-latn/article-il",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ma3 essalame",
+        "answer": "ma3 il salame"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "il, a form of the article, apart."
+    },
+    {
+      "id": "grade/apc-latn/article-assimilated-joined",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el shay",
+        "answer": "eshshay"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ],
+        "alignment": [
+          {
+            "op": "match",
+            "expected": "el",
+            "actual": "esh",
+            "kind": "fold",
+            "joined": true
+          },
+          {
+            "op": "match",
+            "expected": "shay",
+            "actual": "shay"
+          }
+        ]
+      },
+      "note": "Assimilated before a sun letter written with two letters ({sh}): e and the letter again, joined."
+    },
+    {
+      "id": "grade/apc-latn/article-assimilated-apart",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el salame",
+        "answer": "es salame"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "Assimilated, apart."
+    },
+    {
+      "id": "grade/apc-latn/article-assimilated-single",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ma3 essalame",
+        "answer": "ma3 esalame"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "Assimilated, the letter after it single and no l (a slip before)."
+    },
+    {
+      "id": "grade/apc-latn/article-space-only",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ma3 essalame",
+        "answer": "ma3 es salame"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "labels": [],
+        "notes": []
+      },
+      "note": "The same form, only apart: nothing to note."
+    },
+    {
+      "id": "grade/apc-latn/article-joined-with-free-vowel",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el bet",
+        "answer": "lbeit"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "The article joined and a free spelling inside its word at once (e/ei): the word after it is compared as any word is."
+    },
+    {
+      "id": "grade/apc-latn/article-assimilated-with-free-vowel",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ma3 essalame",
+        "answer": "ma3 lssalami"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "Assimilated with its l and a final e written i (e/i), together."
+    },
+    {
+      "id": "grade/apc-latn/article-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el shay",
+        "answer": "shay"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "lexical"
+        ]
+      },
+      "note": "No form of the article is empty: the article left out stays a word left out."
+    },
+    {
+      "id": "grade/apc-latn/article-left-out-sun",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ma3 essalame",
+        "answer": "ma3 salame"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "Nor before a sun letter: salame keeps neither the article's vowel, its l nor the doubled letter."
+    },
+    {
+      "id": "grade/apc-latn/article-added",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "shay",
+        "answer": "lshay"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "A typed word is read as the article and a word only where the accepted answer has the article: an article added is wrong."
+    },
+    {
+      "id": "grade/apc-latn/article-added-apart",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "shay",
+        "answer": "el shay"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "lexical"
+        ]
+      },
+      "note": "Nor apart."
+    },
+    {
+      "id": "grade/apc-latn/article-not-in-elf",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "elf",
+        "answer": "lf"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "elf (a thousand) is one word the detach step leaves whole: it has no article, so lf is not its spelling."
+    },
+    {
+      "id": "grade/apc-latn/article-not-in-elli",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "elli",
+        "answer": "lli"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "The detach step makes el li of elli (who), but a word after the article has three letters at least (minRest): no article and word, as before."
+    },
+    {
+      "id": "grade/apc-latn/article-not-lebnen",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "lebnen",
+        "answer": "el ebnen"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "An accepted word is read as the article and a word only where its letter after the article is written twice (essalame): lebnen is not l and ebnen."
+    },
+    {
+      "id": "grade/apc-latn/article-not-before-a-verb",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "elbos",
+        "answer": "lbos",
+        "forms": {
+          "elbos": [
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Imp",
+                "Mood": "Sub",
+                "Number": "Sing",
+                "Person": "1"
+              }
+            }
+          ],
+          "bos": [
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Imp",
+                "Mood": "Sub",
+                "Number": "Sing",
+                "Person": "1"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "The detach step makes el bos of elbos (I wear), but the course stands bos only as a verb (the grader's forms, as its tokens give them), and the article never goes before one (notBefore): no article and word, as before."
+    },
+    {
+      "id": "grade/apc-latn/article-before-a-verb-unknown",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "elbos",
+        "answer": "lbos"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT"
+      },
+      "note": "Without the course's forms (a caller that gives none) the grader cannot tell elbos from an article and a noun: the join is read."
+    },
+    {
+      "id": "grade/apc-latn/article-other-word",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el bet",
+        "answer": "lbos"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "Another word after the article: the join is not read, and the answer is graded as before."
+    },
+    {
+      "id": "grade/apc-latn/article-other-form-joined",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el bet el kbir",
+        "answer": "el bet lkbire",
+        "lexemes": {
+          "kbir": [
+            "lexeme:kbir|form:Gender=Masc;Number=Sing"
+          ],
+          "kbire": [
+            "lexeme:kbir|form:Gender=Fem;Number=Sing"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "grammatical",
+          "phonemic"
+        ]
+      },
+      "note": "The word after the article keeps the other-form guard: kbire (a woman, feminine) for kbir is another form of its lexeme, joined (lkbire) as apart; the join is read for it, so the miss is named as it is apart (grammatical), not as a word left out."
+    },
+    {
+      "id": "grade/apc-latn/article-other-form-apart",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el bet el kbir",
+        "answer": "el bet el kbire",
+        "lexemes": {
+          "kbir": [
+            "lexeme:kbir|form:Gender=Masc;Number=Sing"
+          ],
+          "kbire": [
+            "lexeme:kbir|form:Gender=Fem;Number=Sing"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "grammatical",
+          "phonemic"
+        ]
+      },
+      "note": "The same answer written apart: the same verdict."
+    },
+    {
+      "id": "grade/apc-latn/article-typed-word-of-another-lexeme",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el azem",
+        "answer": "lazem",
+        "lexemes": {
+          "lazem": [
+            "lexeme:lazem"
+          ],
+          "azem": [
+            "lexeme:azem"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "Constructed (the course has no azem): a typed word the course writes as another lexeme's (lazem, must) is never split into the article and a word."
+    },
+    {
       "id": "grade/apc-arab/statement-marks",
       "op": "grade",
       "args": {

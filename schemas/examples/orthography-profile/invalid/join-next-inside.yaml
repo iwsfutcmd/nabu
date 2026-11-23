@@ -1,0 +1,10 @@
+# {next} stands only at a form's end: the letter after the joining word, written again.
+id: apc-Latn/arabizi
+lang: apc-Latn
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize: [nfc]
+match:
+  joins:
+    - id: article
+      forms: [el]
+      assimilates: { before: "[s]", forms: ["{next}e"] }
