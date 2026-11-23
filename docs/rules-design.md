@@ -536,7 +536,40 @@ kept, the rules' own sets added as K, W, IU, P, NUN, T, AYN, BACK, FEMA).
 - **Data faults it found, for the rest of stage 2:** `2ara`'s third radical is stored ء and conjugates as ي;
   hollow verbs store no past vowel (ra7, zar, 2al, sar, 3ash: a; ken, shef, fe2, nem: e); stanna needs its
   listed stem in `forms`; the suffixed pronouns need their allomorph forms.
-- **The rest of stage 2** (not built): those data fixes; the compiler's `realise-token` then `spell` over
-  every token in each orthography and the marked layer; the lint `form.unaccounted` (warning) with its
-  fixture; `realise/apc/*` reading the lexicon; then the owner's review before stage 3.
+
+## Stage 2 as built, second half (2026-11-23): the lexicon's data and the compiler's check
+
+Report only: no token, spelling, vocalization or clip changed, and the bundles are byte for byte.
+
+- **Data.** `2ara`'s third radical is ي; the nine Form I hollow verbs store `vowels.past` (ra7, zar, 2al, sar,
+  3ash: a; kan, shef, fi2, nem: e; Kline p. 77); `stanna` has a listed stem for its commands (`Mood=Imp` only:
+  the course writes nothing else of it, and its he-present does not come out yet); the object and possessive
+  pronouns and la-1sg, la-2ms have allomorph forms (ـَك, and ك after a vowel). The dative after a consonant or
+  the past's -t and every noun-only affix have none: stage 3.
+- **The check** (`pipeline/src/nabu/forms.py`, `compiler/build.py`): as section 5 has it, for tokens whose base
+  a rule covers (VERB, AUX). `realise-token` runs with the new option `spellings: false`: a form that pins
+  spellings only (today's pinned copies of the course) neither blocks nor accounts, or nearly every verb token
+  would be accounted for by its own copy. The compile-time tie check passes such forms over too. `spell` drops
+  `+` first. The check adds about 0.3 s to apc's compile; a language with no `realisation` pays nothing.
+- **The helping vowel moved.** At a word's end it is the marked layer's `spell` (stage 1 had it there already)
+  and no longer also a rewrite: with both, every Arabizi *ru7t*, *kent*, *akalt* failed, and the owner ruled
+  that the Arabizi stays as written. Inside a word it stays a rewrite (it needs the boundary: سْمِعِتْني, not
+  بْتَعْمْلي), and Arabizi's `spell` writes it e, i or nothing.
+- **The numbers.** 5,470 lexical tokens (both orthographies); 1,180 checked; 1,085 given exactly; 6 by
+  stanna's listed stem; **89 unaccounted** (`form.unaccounted`, 50 items); 4,290 "no rule yet" (no rule for the
+  part of speech 4,235; clitic و 16; the phrase lexeme 3mol-ma3rouf 20; the dative after a consonant 18).
+- **The 89, by cause** (Arabic + Arabizi): `ra7`'s short stem 13 + 13; *or2os* 4 + 4; *e3zmak* 3 + 3;
+  *eshrab* 2 + 2; *safart, safer* 0 + 2; the Arabizi leaving out a vowel its marks write (7aka, 2ara) 0 + 10;
+  `badd` and `fi`, whose base changes before an ending (an allomorph chosen by what follows: not built)
+  14 + 14; `khayef`, a participle string used as a present's stem (it needs radicals: خ و ف) 2 + 2; `lek`
+  (ليكو, no plural alef) 1 + 0. The first half's 40: 34 stay, 6 became "no rule yet" (the dative, *b3atli*);
+  badd, fi, khayef and lek are new (they were not among the prototype's verbs).
+- **`nabu forms ../courses/apc`** ends with this report; `--paradigm <lexeme>` prints a lexeme's cells with
+  the steps taken, each orthography's spelling and what the course writes.
+- **Vectors:** every `realise/apc/*` reads the lexicon; added blocking with spellings off, the listed stem,
+  the allomorphs after a vowel, the boundary cases of `spell`. 1,038 (TS) and 1,039 (Python).
+- **For the owner before stage 3:** each cause above (follow the rule: 39 sentence and story clips made again,
+  with their accept-set lines and vocalization entries; or keep the course: a branch or a pinned form);
+  answer 1's citation forms (33 of 41 word cards would change, 32 word clips; 9 of the new lemmas are already
+  written by a sentence; `b3at` and `rte7` are the two beyond the design's 31).
 

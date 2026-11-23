@@ -363,31 +363,52 @@ def projections_command(
 @app.command("forms")
 def forms_command(
     course: Annotated[Path, typer.Argument(exists=True, help="A course directory.")],
+    paradigm: Annotated[
+        str | None,
+        typer.Option(help="A lexeme: print its cells as the rules give them, and nothing else."),
+    ] = None,
 ) -> None:
-    """Each lexeme's lexical form and what each orthography spells from it (docs/rules-design.md,
-    stage 1): the review list.
+    """Each lexeme's lexical form and what each orthography spells from it, then the course's
+    tokens against the rules (docs/rules-design.md, stages 1 and 2): the review lists.
 
     Every lexeme of the course's lexicon with its stored form and, per orthography and layer whose
     profile states `spell`, the spelling @nabu/core writes and whether it (or a free alternative)
     is the lexicon's first spelling there, or the course's vocalization of it; mismatches are the
-    warnings `form.projection`. Counts last: forms stored, spellings checked, verbs skipped,
-    mismatches, lexemes with no form.
+    warnings `form.projection`. Counts: forms stored, spellings checked, verbs skipped, mismatches,
+    lexemes with no form. Then, for a language with realisation rules, the token report: tokens
+    checked, given exactly, given by a pinned or listed form, unaccounted (the warnings
+    `form.unaccounted`, grouped by lexeme and cell with their items), and not checked, by reason.
+    `--paradigm <lexeme>`: the lexeme's cells (those the course's tokens choose on its part of
+    speech) as the rules give them, spelled in each orthography, beside what the course writes.
     """
     from nabu.analyzers import analyzers_by_tool
     from nabu.compiler import compile_course, load_profiles
     from nabu.corecli import CoreCli
-    from nabu.forms import format_report
+    from nabu.forms import format_report, format_tokens
+    from nabu.forms import paradigm as paradigm_of
 
     profiles = load_profiles()
     with CoreCli() as cli:
         diags, compiled = compile_course(course, cli, profiles, analyzers_by_tool(), audio=False)
-    if compiled is None or compiled.forms is None:
-        for d in diags.sorted():
-            typer.echo(d.format(), err=True)
-        typer.echo(f"✗ {course} does not compile", err=True)
-        raise typer.Exit(code=1)
+        if compiled is None or compiled.forms is None:
+            for d in diags.sorted():
+                typer.echo(d.format(), err=True)
+            typer.echo(f"✗ {course} does not compile", err=True)
+            raise typer.Exit(code=1)
+        if paradigm is not None:
+            if compiled.tokens is None:
+                typer.echo(f"✗ {course}: its language has no realisation rules", err=True)
+                raise typer.Exit(code=1)
+            for line in paradigm_of(
+                compiled.tokens, paradigm, profiles, compiled.orthographies, cli
+            ):
+                typer.echo(line)
+            return
     for line in format_report(compiled.forms):
         typer.echo(line)
+    if compiled.tokens is not None:
+        for line in format_tokens(compiled.tokens):
+            typer.echo(line)
 
 
 @app.command("calibration")

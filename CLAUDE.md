@@ -843,8 +843,16 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A `spell` rule's `alternatives` are free spellings named by variation, read only by the compiler; grading reads the
   profile's `correspondences`. spell.test.ts pins every alternative that does not compare free: stating a variation
   free (the owner: one at a time) moves its count.
-- Nothing checks the course's tokens against the rules yet (the compiler's `realise-token` over every token and
-  `form.unaccounted` are the rest of stage 2). docs/lexical-forms/apc.yaml and apc-review.md are a frozen record.
+- The compiler checks every token whose base a realisation rule covers (its part of speech's `dimensions` hold every
+  feature some rule's `when` names: today VERB and AUX): core-cli `realise-token` with `spellings: false` (a form that
+  pins spellings only is passed over; only a pinned or listed form with `form` or `stem` accounts for a token), then
+  `spell` per orthography, the marked layer against the vocalization. A miss is `form.unaccounted` (a warning; apc's are
+  `APC_UNACCOUNTED` in tests/test_courses.py, each a ruling the owner has not made: never fix one by bending a rule).
+  A token with a lexeme that has no form, or no rule for its part of speech, is counted "no rule yet". `nabu forms`
+  prints the report; `--paradigm <lexeme>` a lexeme's cells as the rules give them.
+- apc's helping vowel at a word's end is the marked layer's `spell` (the form keeps the cluster: رُحْ+ت), never a
+  rewrite; inside a word it is the rewrite `rule:apc-helping-vowel|inside`, which Arabizi may leave out.
+- docs/lexical-forms/apc.yaml and apc-review.md are a frozen record.
 
 ## Losses and labels notes (see docs/adr/0148, 0153)
 - A profile states what its orthography writes of the sound (`sound`, `stress`, `correspondences`; profiles/README.md,

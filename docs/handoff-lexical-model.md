@@ -660,15 +660,16 @@ not kept; what a later session needs is here.
   (the bundle does not carry the language's citation cell), and a skipped card, which reveals its answer,
   logs nothing as seen.
 
-**Rules in a lexicon (2026-11-23):** the owner said go on stage 1 and asked for stage 2 beside it. Stage 1
-(lexical forms, the notation, `spell`, `form.projection`, `nabu forms`) and the first half of stage 2 (the
-engine, apc's verb rules as data, 84 vectors) are built; `docs/rules-design.md` has an "as built" section for
-each. **Not built:** the rest of stage 2 (four data fixes in the lexicon, the compiler's check of every
-token against the rules, `form.unaccounted`), listed at the end of that note. **For the owner:** the 32
-forms that do not spell as the lexicon writes the word; the 40 verb tokens the rules do not give (24 are
-the course against Kline: *ru7t*/*re7t*, *or2os*, *e3zmak*, *eshrab*, *safart*); what each Arabizi variation
-would newly accept (i/ee 42 spellings, the article 12, o/u 24, the helping vowel 36, e/ei 18, initial q 7;
-u/ou and a final e/i are accepted already; none collides with another word of the course).
+**Rules in a lexicon (2026-11-23):** the owner said go on stage 1 and asked for stage 2 beside it. Stages 1
+and 2 are built and on main; `docs/rules-design.md` has an "as built" section for each (stage 2 in two
+halves). Nothing a learner sees changed. **Not built:** stage 3 on (apc's nouns and suffixes, pruning pinned
+forms; the bundle's paradigms; the built word and the memory per branch, which needs an ADR; Spanish). Stage 3
+waits for the owner's review of apc's rules and of the lists below. **For the owner:** the 33 forms that do
+not spell as the lexicon writes the word (`form.projection`); the 89 verb tokens the rules do not give
+(`form.unaccounted`: *ru7t*/*re7t*, *or2os*, *e3zmak*, *eshrab*, *safart*, Arabizi *b7ki*, and badd, fi,
+khayef, lek, which need modelling decisions); the citation forms (33 word cards, 32 clips); what each Arabizi
+variation would newly accept (i/ee 42 spellings, the article 12, o/u 24, the helping vowel 37, e/ei 18,
+initial q 7; u/ou and a final e/i are accepted already; none collides with another word of the course).
 
 The apc prototype's participle check still covers nine forms where it covered
 thirteen: stage 2 of the design checks every participle token against the template, and the prototype is

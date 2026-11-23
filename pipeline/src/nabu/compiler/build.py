@@ -109,6 +109,8 @@ class Compiled:
     written: dict[tuple[str, str], list[str]] = field(default_factory=lambda: {})
     # Each lexeme's lexical form against what the course writes (`nabu forms`; stage 1 of rules)
     forms: lexical_forms.Report | None = None
+    #: The course's tokens against the language's rules (stage 2), where it has rules.
+    tokens: lexical_forms.TokenReport | None = None
 
     @property
     def content(self) -> Content:
@@ -862,6 +864,7 @@ def compile_course(
     )
     _unaccounted(ctx, units, compiled)
     _forms(ctx, compiled)
+    _token_forms(ctx, units, compiled)
     aliases = course_file.parent / "aliases.yaml"
     if aliases.is_file():
         compiled.aliases = yaml.safe_load(aliases.read_text(encoding="utf-8"))
@@ -900,6 +903,11 @@ def _forms(ctx: Ctx, compiled: Compiled) -> None:
     `spell`; the report is kept for `nabu forms`."""
     vocalized = {o: (v.words, v.marks) for o, v in ctx.vocalization.items()}
     report = lexical_forms.check(ctx.lang, compiled.orthographies, ctx.profiles, vocalized, ctx.cli)
+
+    def allomorph_form(lexeme: str, index: int) -> str | None:
+        entry = ctx.lang.get(lexeme)
+        return None if entry is None else (entry.allomorphs or [])[index].form
+
     compiled.forms = report
     for problem in report.problems:
         ctx.diags.report("form.projection", problem, ctx.lang.declared_doc.loc())
@@ -910,13 +918,98 @@ def _forms(ctx: Ctx, compiled: Compiled) -> None:
             path: tuple[str | int, ...] = (
                 ("form",) if c.allomorph is None else ("allomorphs", c.allomorph, "form")
             )
+            form = entry.form if c.allomorph is None else allomorph_form(entry.lexeme, c.allomorph)
             ctx.diags.report(
                 "form.projection",
-                f"'{entry.lexeme} {c.where}': its form {lexical_forms.escaped(entry.form or '')}"
+                f"'{entry.lexeme} {c.where}': its form {lexical_forms.escaped(form or '')}"
                 f" spells {lexical_forms.escaped(c.spelling)} there, where the course has "
                 f"{c.expected}",
                 ctx.lang.loc(entry.lexeme, *path),
             )
+
+
+def _marked_of(ctx: Ctx, orth: str, surface: str, own: str | None) -> str | None:
+    """The marked text the course gives a word (ADR 0053), as `mark_vowels` finds it: the token's
+    own `vocalized`, else the vocalization's entry for its surface or for its letters, else the
+    surface itself where it is written with marks. None where the orthography has no vocalization
+    or the word has no marked text."""
+    lex = ctx.vocalization.get(orth)
+    if lex is None:
+        return None
+    if own is not None:
+        return unicodedata.normalize("NFC", own)
+    letters = lex.marks.sub("", surface)
+    exact = lex.words.get(surface)
+    if exact is not None:
+        return exact
+    base = lex.words.get(letters)
+    if base is not None:
+        return _fill_marks(surface, base, lex.marks) if letters != surface else base
+    return surface if letters != surface else None
+
+
+def _token_sites(ctx: Ctx, units: list[Unit]) -> list[lexical_forms.Site]:
+    """Every authored token of the course's sentences and story lines, in each orthography, with
+    where it is written and the lexemes it writes (drills, generated, are left out)."""
+    sites: list[lexical_forms.Site] = []
+
+    def add(item: str, orth: str, form: SentenceForm, loc: Loc) -> None:
+        for t in form.tokens or []:
+            written = [
+                {k: v for k, v in part.items() if k in ("lexeme", "feats", "base")}
+                for part in tk.written(t)
+            ]
+            if not written:
+                continue
+            marked = _marked_of(ctx, orth, t.surface, t.vocalized)
+            sites.append(
+                lexical_forms.Site(item, orth, loc.file, loc.line, t.surface, marked, written)
+            )
+
+    for unit in units:
+        if unit.generated:
+            continue
+        for si, s in enumerate(unit.source.sentences):
+            for orth, form in s.forms.items():
+                add(s.id, str(orth), form, unit.doc.loc("sentences", si, "forms", orth, "tokens"))
+        for k, story in enumerate(unit.source.stories or []):
+            for step, st in enumerate(story.steps):
+                if st.line is None:
+                    continue
+                for orth, form in st.line.forms.items():
+                    at = ("stories", k, "steps", step, "line", "forms", orth, "tokens")
+                    add(f"{story.id}#{step}", str(orth), form, unit.doc.loc(*at))
+    return sites
+
+
+def _token_forms(ctx: Ctx, units: list[Unit], compiled: Compiled) -> None:
+    """Every token of the course against what the language's rules give (`form.unaccounted`,
+    docs/rules-design.md stage 2): realised and spelled by @nabu/core. Only for a language with
+    realisation rules; the report is kept for `nabu forms`."""
+    if not ctx.lang.declared.realisation:
+        return
+    report = lexical_forms.check_tokens(ctx.lang, _token_sites(ctx, units), ctx.profiles, ctx.cli)
+    compiled.tokens = report
+    if report is None:
+        return
+    for c in report.checks:
+        if c.verdict != "unaccounted":
+            continue
+        site = c.site
+        missed = c.missed
+        wheres = " ".join(s.where for s in missed) or site.orth
+        gave = (
+            "; ".join(f"{s.where} spells {s.spelling}, the course has {s.expected}" for s in missed)
+            if missed
+            else c.reason
+        )
+        form = lexical_forms.escaped(c.form or "")
+        ctx.diags.report(
+            "form.unaccounted",
+            f"'{site.key} {wheres}': {site.item} writes {site.surface!r}; the rules give "
+            f"{form or 'nothing'}: {gave}",
+            Loc(site.file, site.line),
+        )
 
 
 def _images(ctx: Ctx, used: set[str], compiled: Compiled) -> dict[str, str]:

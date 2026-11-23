@@ -146,7 +146,7 @@ const WAITING: Readonly<Record<string, number>> = {
   "e-i+u-ou": 2,
   "final-e-i+i-ee": 3,
   "final-e-i+u-ou": 1,
-  "helping-vowel": 36,
+  "helping-vowel": 37,
   "helping-vowel+i-ee": 1,
   "helping-vowel+o-u": 9,
   "i-ee": 39,

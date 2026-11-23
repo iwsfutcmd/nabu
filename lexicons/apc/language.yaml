@@ -229,7 +229,10 @@ phonology:  # in order, each once over the whole form
 - {id: 'rule:apc-defective', branch: ending, find: "{K}*[اىي]{W}+", to: "{K}{W}+"}  # a defective stem's last vowel gives way to an ending's: 7ako, byi7ko, btghanne (Kline p. 98-99)
 - {id: 'rule:apc-geminate', find: "نْ+نَ", to: "+نَّ"}  # no doubled letter written twice: kenna (Kline p. 60; p. 73 n2)
 - {id: 'rule:apc-feminine', branch: a, find: "{FEMA}\u065c+ة", to: "{FEMA}َ+ة"}  # -a after the letters FEMA (Kline p. 16; REVIEW)
-- {id: 'rule:apc-helping-vowel', branch: end, find: "{K}ْ+?{K}", at: end, after: ".{V}", to: "{K}ِ+?{K}"}  # a word that ends in two consonants says a vowel between them, a kasra before the past's -t whatever the stem's (the owner, 2026-11-21: رُحِت, شْرِبِت)
+# The helping vowel at a word's end (رُحِت, شْرِبِت: the owner, 2026-11-21) is not a rewrite here: the form keeps the
+# cluster (رُحْ+ت), the marks layer's `spell` writes the vowel (profiles/apc-Arab.standard.yaml, `vocalized`) and the
+# Arabizi's leaves it out or writes e (a free alternative: ru7t), as the owner ruled ("the Arabizi stays as written").
+# Inside a word it needs the boundary (سْمِعِتْني, not بْتَعْمْلي), so it stays a rewrite.
 - {id: 'rule:apc-helping-vowel', branch: inside, find: "{K}ْ+?{K}ْ+{K}*", after: ".{V}", to: "{K}ِ+?{K}ْ+{K}"}  # and before an ending that begins with a said consonant (سْمِعِتْني, ruling 7); not before a vowel (none follows the cluster then)
 # REVIEW, not written yet: the helping vowel's damma after a damma inside a stem (شُغُل: nouns, stage 3); the dative
 # -l- after a hollow verb's short stem and after the past's -t (2elli, 2iltellak: Kline p. 43, 165); a hollow verb's

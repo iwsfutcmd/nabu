@@ -65,6 +65,13 @@ export type RealiseError =
 export interface RealiseOptions {
   /** false: ignore listed forms and stated classes, keep pinned ones (ADR 0145: the regularised form). */
   readonly blocking?: boolean;
+  /**
+   * false: pass over forms that pin spellings only (no `form`, no `stem`), as if they were not
+   * stored: what the rules and the lexical forms give. The compiler's check of the course's tokens
+   * asks this (docs/rules-design.md, stage 2): a spelling pinned before the rules were written is a
+   * copy of what the course writes, not an account of it.
+   */
+  readonly spellings?: boolean;
 }
 
 /** One lexeme a token writes, with the feature values chosen there. */
@@ -156,9 +163,11 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
   const lexemes = new Map<string, Lexeme>();
   for (const lexeme of lexicon.lexemes) {
     lexemes.set(lexeme.id, lexeme);
-    // A tie is an authoring error unless both forms are free (ADR 0145).
+    // A tie is an authoring error unless both forms are free (ADR 0145). Forms that pin spellings
+    // only (no form, no stem) are two spellings of a cell, not two lexical forms: no tie.
     const seen = new Map<string, LexemeForm>();
     for (const form of lexeme.forms ?? []) {
+      if (form.form === undefined && form.stem === undefined) continue;
       const key = featsKey(form.feats);
       const other = seen.get(key);
       if (other !== undefined && !(other.free === true && form.free === true)) errors.push(`lexicon.tie: ${lexeme.id} has two forms for ${key}, not both free`);
@@ -348,12 +357,14 @@ interface Built {
 }
 
 /** Everything but the rewrite rules: blocking, the stem, the affix blocks. */
-const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, blocking: boolean): Result<Built, RealiseError> => {
+const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: RealiseOptions): Result<Built, RealiseError> => {
+  const blocking = options.blocking ?? true;
   const lexeme = lang.lexemes.get(lexemeId(id));
   if (lexeme === undefined) return err({ kind: "unknown-lexeme", lexeme: id });
 
   // 1. Blocking: the most specific form of the lexeme whose values the cell has.
-  const candidates = (lexeme.forms ?? []).filter((f) => (blocking || f.status === "pinned") && hasValues(cell, f.feats));
+  const lexical = (f: LexemeForm): boolean => options.spellings !== false || f.form !== undefined || f.stem !== undefined;
+  const candidates = (lexeme.forms ?? []).filter((f) => (blocking || f.status === "pinned") && lexical(f) && hasValues(cell, f.feats));
   const most = Math.max(-1, ...candidates.map((f) => sizeOf(f.feats)));
   const winners = candidates.filter((f) => sizeOf(f.feats) === most);
   if (winners.length > 1 && !winners.every((f) => f.free === true)) return err({ kind: "tie", forms: winners.map((f) => featsKey(f.feats)) });
@@ -435,7 +446,7 @@ const realisation = (built: Built, units: readonly Unit[], steps: readonly Step[
 
 /** A lexeme realised in a cell (its token's chosen values): the lexical form, boundaries kept. */
 export const realise = (lang: CompiledLanguage, lexeme: string, cell: UdFeatures, options: RealiseOptions = {}): Result<Realisation, RealiseError> => {
-  const built = build(lang, lexeme, cell, options.blocking ?? true);
+  const built = build(lang, lexeme, cell, options);
   if (!built.ok) return built;
   if (built.value.whole) return ok(realisation(built.value, built.value.units, built.value.steps));
   const rewritten = rewrite(lang, built.value.units);
@@ -468,7 +479,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   const baseAt = written.length === 1 ? 0 : written.findIndex((w) => w.base === true);
   if (baseAt < 0) return err({ kind: "no-rule", cell: {} });
   const base = written[baseAt] as WrittenLexeme;
-  const built = build(lang, base.lexeme, base.feats ?? {}, options.blocking ?? true);
+  const built = build(lang, base.lexeme, base.feats ?? {}, options);
   if (!built.ok) return built;
   let units = built.value.units;
   // The lexemes before the base, nearest first; then those after it, in order.

@@ -339,9 +339,12 @@ const apply = (rule: CompiledRule, branch: Branch, room: number): Branch[] => {
 const plainer = (a: ReadonlySet<string>, b: ReadonlySet<string>): boolean =>
   a.size !== b.size ? a.size < b.size : [...a].sort().join(" ") < [...b].sort().join(" ");
 
-/** A lexical form spelled by a statement: its spelling, and the free spellings its alternatives give. */
+/**
+ * A lexical form spelled by a statement: its spelling, and the free spellings its alternatives give.
+ * A realised form's boundaries (`+`) are dropped first: no orthography writes them.
+ */
 export const spell = (speller: Speller, form: string): Spelled => {
-  let branches: Branch[] = [{ text: inOrder(form.normalize("NFC"), speller.order), by: new Set() }];
+  let branches: Branch[] = [{ text: inOrder(form.replace(/\+/gu, "").normalize("NFC"), speller.order), by: new Set() }];
   for (const rule of speller.rules) {
     const next = new Map<string, Branch>();
     for (const branch of branches) {

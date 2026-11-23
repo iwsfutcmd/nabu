@@ -28,7 +28,7 @@ lexemes:
   pos: VERB
   gloss: {en: say; tell}
   notes: {en: 'shu 2al? What did he say? 2elli!: tell me! (to a woman: 2ulili!).'}
-  form: {radicals: [ق, و, ل], form: I, vowels: {present: u}, source: 'kline 77'}
+  form: {radicals: [ق, و, ل], form: I, vowels: {past: a, present: u}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [قال], apc-Latn/arabizi: [2al]}
   forms:
   - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [قولي], apc-Latn/arabizi: [2uli]}, status: pinned}
@@ -42,7 +42,7 @@ lexemes:
   pos: VERB
   gloss: {en: read}
   form:
-    radicals: [ق, ر, ء]
+    radicals: [ق, ر, ي]
     form: I
     vowels: {present: a}
     source: 'kline 78'
@@ -111,7 +111,7 @@ lexemes:
   pos: VERB
   gloss: {en: live (one's life); live somewhere}
   notes: {en: 'kenna n3ish bel day3a: we used to live in the village. Where someone lives now: seken.'}
-  form: {radicals: [ع, ي, ش], form: I, vowels: {present: i}, source: 'kline 77'}
+  form: {radicals: [ع, ي, ش], form: I, vowels: {past: a, present: i}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [عاش], apc-Latn/arabizi: [3ash]}
   forms:
   - {feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تعيشي], apc-Latn/arabizi: [t3ishi]}, status: pinned}
@@ -955,7 +955,7 @@ lexemes:
   form:
     radicals: [ف, ي, ق]
     form: I
-    vowels: {present: i}
+    vowels: {past: e, present: i}
     source: 'deduced'
     basis: 'Kline does not list it. The course writes only bfi2, which gives the present. The past is a hollow verb''s, and its long a is cited e, as in shef, ken and nem. Where the course''s hollow verbs keep a, a back consonant stands before it (ra7, 2al, sar, 3ash) or ر after it (zar); whether ق after it does the same is for a speaker. The course never writes the form.'
   spelled: {apc-Arab/standard: [بفيق], apc-Latn/arabizi: [bfi2]}
@@ -1178,7 +1178,7 @@ lexemes:
   pos: AUX
   gloss: {en: was; were (the verb 'be' in the past)}
   notes: {en: 'ken: he was; kenet: she was; kent: I was, you (a man) were. In Beirut the a of كان is said e, as in kenet: ken, also written kan.'}
-  form: {radicals: [ك, و, ن], form: I, vowels: {present: u}, source: 'kline 77'}
+  form: {radicals: [ك, و, ن], form: I, vowels: {past: e, present: u}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [كان], apc-Latn/arabizi: [ken]}
   forms:
   - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '3'}, spelled: {apc-Arab/standard: [يكون], apc-Latn/arabizi: [ykoun]}, status: pinned}
@@ -1296,15 +1296,16 @@ lexemes:
   gloss: {en: '-li: to me; for me (on a verb)'}
   notes: {en: '2elli: tell me; de22elli: call me; b3atli: send me. Arabic script: لي joined to the verb (قلّي، دقّلي، بعتلي).'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [لي], apc-Latn/arabizi: [li]}}
+  - {form: "لِي", after: {endsIn: ".*+?[اىي]"}, spelled: {apc-Arab/standard: [لي], apc-Latn/arabizi: [li]}}
   - {spelled: {apc-Arab/standard: [لّي], apc-Latn/arabizi: [elli]}}
+  - {form: "لِي", after: {endsIn: "وا\u06df"}}
 - id: lexeme:la-2ms
   pos: PRON
   feats: {Case: Dat, Gender: Masc, Number: Sing, Person: '2', PronType: Prs}
   gloss: {en: '-lak: to you; for you (on a verb, to a man)'}
   notes: {en: 'sarlak: it''s been … for you; 2ellak: he told you. Arabic script: لك joined to the verb.'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [لك], apc-Latn/arabizi: [lak]}}
+  - {form: "لَك", after: {endsIn: ".*+?[اىي]"}, spelled: {apc-Arab/standard: [لك], apc-Latn/arabizi: [lak]}}
 - id: lexeme:la2
   pos: INTJ
   gloss: {en: 'no'}
@@ -1680,7 +1681,7 @@ lexemes:
   form:
     radicals: [ن, و, م]
     form: I
-    vowels: {present: a}
+    vowels: {past: e, present: a}
     source: 'kline 77'
     basis: 'The middle radical shows in no form of the verb, and no form depends on which it is. It is stored as و, the letter Arabic dictionaries file the word under; the course has no other word of the root, and shared radicals link nothing (ADR 0145).'
     note: 'One of the hollow verbs whose vowel does not change (Kline, p. 77).'
@@ -1722,93 +1723,93 @@ lexemes:
   gloss: {en: '-na: us (on a verb)'}
   notes: {en: '3azmetna: she invited us. Arabic script: نا (عزمتنا). The same ending as ''our''.'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [نا], apc-Latn/arabizi: [na]}}
+  - {form: "نَا", spelled: {apc-Arab/standard: [نا], apc-Latn/arabizi: [na]}}
 - id: lexeme:obj-1sg
   pos: PRON
   feats: {Case: Acc, Number: Sing, Person: '1', PronType: Prs}
   gloss: {en: '-ni: me (on a verb)'}
   notes: {en: 'sme3tni: you heard me; fhemtni: you understood me. Arabic script: ني (سمعتني).'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [ني], apc-Latn/arabizi: [ni]}}
+  - {form: "نِي", spelled: {apc-Arab/standard: [ني], apc-Latn/arabizi: [ni]}}
 - id: lexeme:obj-2fs
   pos: PRON
   feats: {Case: Acc, Gender: Fem, Number: Sing, Person: '2', PronType: Prs}
   gloss: {en: '-ik: you (on a verb, to a woman)'}
   notes: {en: 'b7ebbik: I love you. Arabic script: the same ك as -ak.'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ik]}}
+  - {form: "ـِك", spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ik]}}
 - id: lexeme:obj-2ms
   pos: PRON
   feats: {Case: Acc, Gender: Masc, Number: Sing, Person: '2', PronType: Prs}
   gloss: {en: '-ak: you (on a verb, to a man)'}
   notes: {en: 'b7ebbak: I love you; fhemtak: I understood you. Arabic script: ك.'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ak]}}
+  - {form: "ـَك", spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ak]}}
 - id: lexeme:obj-2pl
   pos: PRON
   feats: {Case: Acc, Number: Plur, Person: '2', PronType: Prs}
   gloss: {en: '-kon: you (on a verb, to several people)'}
   notes: {en: '3ajbetkon? Did you like it? Arabic script: كن.'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [كن], apc-Latn/arabizi: [kon]}}
+  - {form: "كُن", spelled: {apc-Arab/standard: [كن], apc-Latn/arabizi: [kon]}}
 - id: lexeme:obj-3fs
   pos: PRON
   feats: {Case: Acc, Gender: Fem, Number: Sing, Person: '3', PronType: Prs}
   gloss: {en: '-a: her; it (on a verb)'}
   notes: {en: 'shefta: I saw her. Arabic script: ها (شفتها), also written ا (شفتا).'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [ها], apc-Latn/arabizi: [a]}}
+  - {form: "ـَه\u06dfا", spelled: {apc-Arab/standard: [ها], apc-Latn/arabizi: [a]}}
 - id: lexeme:obj-3ms
   pos: PRON
   feats: {Case: Acc, Gender: Masc, Number: Sing, Person: '3', PronType: Prs}
   gloss: {en: '-o: him; it (on a verb)'}
   notes: {en: 'shefto: I saw him; ba3rfo: I know him. Arabic script: ه (شفته), also written و (شفتو).'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [ه], apc-Latn/arabizi: [o]}}
+  - {form: "ـُه\u06df", spelled: {apc-Arab/standard: [ه], apc-Latn/arabizi: [o]}}
 - id: lexeme:poss-1pl
   pos: PRON
   feats: {Number: Plur, Person: '1', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-na: our'}
   notes: {en: 'betna: our house. Arabic script: نا joined to the noun (بيتنا).'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [نا], apc-Latn/arabizi: [na]}}
+  - {form: "نَا", spelled: {apc-Arab/standard: [نا], apc-Latn/arabizi: [na]}}
 - id: lexeme:poss-1sg
   pos: PRON
   feats: {Number: Sing, Person: '1', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-i: my (ending on a noun)'}
   notes: {en: 'Arabic script: ي joined to the noun (بيّي). Often heard and typed -e: bayye, emme.'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [ي], apc-Latn/arabizi: [i]}}
+  - {form: "ـِي", spelled: {apc-Arab/standard: [ي], apc-Latn/arabizi: [i]}}
 - id: lexeme:poss-2fs
   pos: PRON
   feats: {Gender: Fem, Number: Sing, Person: '2', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-ik: your (to a woman)'}
   notes: {en: 'Arabic script: the same ك as -ak, so كيفك reads kifak to a man and kifik to a woman.'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ik]}}
-  - {spelled: {apc-Arab/standard: [كي], apc-Latn/arabizi: [iki]}}
+  - {form: "ـِك", spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ik]}}
+  - {form: "كِي", after: {endsIn: ".*+?[اىي]"}, spelled: {apc-Arab/standard: [كي], apc-Latn/arabizi: [iki]}}
 - id: lexeme:poss-2ms
   pos: PRON
   feats: {Gender: Masc, Number: Sing, Person: '2', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-ak: your (to a man)'}
   notes: {en: 'Arabic script: ك joined to the noun (بيّك). To a woman: -ik, written with the same ك.'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ak]}}
-  - {spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [k]}}
+  - {form: "ـَك", spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ak]}}
+  - {form: "ك", after: {endsIn: ".*+?[اىي]"}, spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [k]}}
 - id: lexeme:poss-2pl
   pos: PRON
   feats: {Number: Plur, Person: '2', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-kon: your (to several people)'}
   notes: {en: 'kifkon? how are you (all)?; 3endkon: you have. Arabic script: كن joined to the word (كيفكن).'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [كن], apc-Latn/arabizi: [kon]}}
+  - {form: "كُن", spelled: {apc-Arab/standard: [كن], apc-Latn/arabizi: [kon]}}
 - id: lexeme:poss-3fs
   pos: PRON
   feats: {Gender: Fem, Number: Sing, Person: '3', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-a: her'}
   notes: {en: 'Arabic script: ها joined to the noun (إمّها), also written ا (إمّا).'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [ها], apc-Latn/arabizi: [a]}}
+  - {form: "ـَه\u06dfا", spelled: {apc-Arab/standard: [ها], apc-Latn/arabizi: [a]}}
   - {spelled: {apc-Arab/standard: [ها], apc-Latn/arabizi: [ya]}}
 - id: lexeme:poss-3ms
   pos: PRON
@@ -1816,7 +1817,7 @@ lexemes:
   gloss: {en: '-o: his'}
   notes: {en: 'Arabic script: ه joined to the noun (بيّه), also written و (بيّو).'}
   allomorphs:
-  - {spelled: {apc-Arab/standard: [ه], apc-Latn/arabizi: [o]}}
+  - {form: "ـُه\u06df", spelled: {apc-Arab/standard: [ه], apc-Latn/arabizi: [o]}}
 - id: lexeme:poss-3pl
   pos: PRON
   feats: {Number: Plur, Person: '3', Poss: 'Yes', PronType: Prs}
@@ -1844,7 +1845,7 @@ lexemes:
 - id: lexeme:ra7
   pos: VERB
   gloss: {en: go}
-  form: {radicals: [ر, و, ح], form: I, vowels: {present: u}, source: 'kline 77'}
+  form: {radicals: [ر, و, ح], form: I, vowels: {past: a, present: u}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [بروح, راح], apc-Latn/arabizi: [bru7, ra7]}
   forms:
   - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [بتروحي], apc-Latn/arabizi: [btru7i]}, status: pinned}
@@ -2039,7 +2040,7 @@ lexemes:
   pos: VERB
   gloss: {en: become; (with -li) it's been}
   notes: {en: 'sar 3omri tleten: I''ve turned thirty. sarli sinten 3am eshteghel hon: I''ve been working here for two years (literally ''it has become two years for me'').'}
-  form: {radicals: [ص, ي, ر], form: I, vowels: {present: i}, source: 'kline 77'}
+  form: {radicals: [ص, ي, ر], form: I, vowels: {past: a, present: i}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [صار], apc-Latn/arabizi: [sar]}
   forms:
   - {feats: {Aspect: Perf, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [صرت], apc-Latn/arabizi: [sert]}, status: pinned}
@@ -2134,7 +2135,7 @@ lexemes:
 - id: lexeme:shef
   pos: VERB
   gloss: {en: see; watch}
-  form: {radicals: [ش, و, ف], form: I, vowels: {present: u}, source: 'kline 77'}
+  form: {radicals: [ش, و, ف], form: I, vowels: {past: e, present: u}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [شوف], apc-Latn/arabizi: [shuf]}
   forms:
   - {feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}, spelled: {apc-Arab/standard: [منشوف], apc-Latn/arabizi: [mnshuf]}, status: pinned}
@@ -2246,6 +2247,7 @@ lexemes:
   - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [استنّي], apc-Latn/arabizi: [stanni]}, status: pinned}
   - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [استنّى], apc-Latn/arabizi: [stanna]}, status: pinned}
   - {feats: {Mood: Imp, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [استنّوا], apc-Latn/arabizi: [stanno]}, status: pinned}
+  - {feats: {Mood: Imp}, stem: "ا\u06dfسْتَنَّى", status: listed, statement: {author: 'llm:claude@rules-stage2', status: draft}}
 - id: lexeme:sukkar
   pos: NOUN
   gloss: {en: sugar}
@@ -2560,7 +2562,7 @@ lexemes:
 - id: lexeme:zar
   pos: VERB
   gloss: {en: visit}
-  form: {radicals: [ز, و, ر], form: I, vowels: {present: u}, source: 'kline 77'}
+  form: {radicals: [ز, و, ر], form: I, vowels: {past: a, present: u}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [زرت], apc-Latn/arabizi: [zert]}
   forms:
   - {feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}, spelled: {apc-Arab/standard: [تزور], apc-Latn/arabizi: [tzur]}, status: pinned}

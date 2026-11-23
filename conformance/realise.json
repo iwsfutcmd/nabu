@@ -1,5 +1,5 @@
 {
-  "$comment": "Realisation (docs/rules-design.md, sections 2 and 4; ADR 0145, 0146): a lexeme in a cell made into its lexical form by blocking, stem templates, affix blocks, allomorphs and ordered rewrite rules, each step with its rule and branch. realise/blocking, realise/rewrite, realise/token, realise/paradigm and realise/error run on zz, an invented fixture language given whole; realise/apc runs apc's own rules (lexicons/apc/language.yaml) over a verb whose lexical form the vector gives (from docs/prototypes/apc-lexical-forms/authored.yaml), each a form the course writes.",
+  "$comment": "Realisation (docs/rules-design.md, sections 2 and 4; ADR 0145, 0146): a lexeme in a cell made into its lexical form by blocking, stem templates, affix blocks, allomorphs and ordered rewrite rules, each step with its rule and branch. realise/blocking, realise/rewrite, realise/token, realise/paradigm and realise/error run on zz, an invented fixture language given whole; realise/apc runs apc's own rules and lexicon (lexicons/apc/language.yaml, lexemes.yaml), with `spellings: false` (forms that pin spellings only passed over, as the compiler's check of the tokens does), each a form the course writes but where a vector says otherwise.",
   "vectors": [
     {
       "id": "realise/blocking/given",
@@ -9656,6 +9656,1041 @@
       "note": "Blocking finds a pinned form with spellings only: no lexical form to give."
     },
     {
+      "id": "realise/blocking/spellings-off",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules2-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Tense",
+              "Person",
+              "Number"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "notation": {
+            "vowels": {
+              "stress": "\u0331",
+              "low": "\u0332"
+            },
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]",
+              "ACC": "[\u0331\u0332]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-present-ie",
+              "when": {
+                "class": "e-ie",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "prefix": [
+                    {
+                      "branch": "ie",
+                      "add": "ie"
+                    }
+                  ]
+                },
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-present",
+              "when": {
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "3sg",
+                      "feats": {
+                        "Person": "3",
+                        "Number": "Sing"
+                      },
+                      "add": "a"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-past",
+              "when": {
+                "feats": {
+                  "Tense": "Past"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "e"
+                    },
+                    {
+                      "branch": "3sg",
+                      "feats": {
+                        "Person": "3",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "ron"
+                    },
+                    {
+                      "branch": "else",
+                      "add": "a"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-assimilation",
+              "find": "n+p",
+              "to": "m+p"
+            },
+            {
+              "id": "rule:zz-voicing",
+              "find": "{V}f{V}",
+              "to": "{V}v{V}"
+            },
+            {
+              "id": "rule:zz-palatal",
+              "find": "k",
+              "before": [
+                "e",
+                "i"
+              ],
+              "to": "ch"
+            },
+            {
+              "id": "rule:zz-lenition",
+              "find": "d",
+              "after": "{V}",
+              "to": "dh"
+            },
+            {
+              "id": "rule:zz-devoicing",
+              "find": "g",
+              "at": "end",
+              "to": "k"
+            },
+            {
+              "id": "rule:zz-spelling",
+              "find": "[wy]",
+              "map": {
+                "w": "v",
+                "y": "j"
+              }
+            },
+            {
+              "id": "rule:zz-final-h",
+              "find": "{V}{ACC}",
+              "at": "end",
+              "to": "{V}{ACC}h"
+            },
+            {
+              "id": "rule:zz-degemination",
+              "branch": "l",
+              "find": "l+?l",
+              "to": "l+?"
+            },
+            {
+              "id": "rule:zz-initial",
+              "find": "x",
+              "after": "#",
+              "to": "sh"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules2-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:adu",
+              "pos": "NOUN",
+              "form": "adu"
+            },
+            {
+              "id": "lexeme:al",
+              "pos": "NOUN",
+              "form": "al"
+            },
+            {
+              "id": "lexeme:alla",
+              "pos": "NOUN",
+              "form": "alla"
+            },
+            {
+              "id": "lexeme:atar",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "form": "x",
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Person": "1"
+                  },
+                  "form": "y",
+                  "status": "pinned"
+                }
+              ],
+              "form": "at"
+            },
+            {
+              "id": "lexeme:bag",
+              "pos": "NOUN",
+              "form": "bag"
+            },
+            {
+              "id": "lexeme:cafe",
+              "pos": "NOUN",
+              "form": "cafe\u0331"
+            },
+            {
+              "id": "lexeme:darse",
+              "pos": "VERB",
+              "form": {
+                "parts": [
+                  "lexeme:dar",
+                  "lexeme:se"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:du",
+              "pos": "NOUN",
+              "form": "du"
+            },
+            {
+              "id": "lexeme:gab",
+              "pos": "NOUN",
+              "form": "gab"
+            },
+            {
+              "id": "lexeme:hablar",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past",
+                    "Mood": "Sub"
+                  },
+                  "form": "hablara",
+                  "status": "listed",
+                  "free": true,
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                },
+                {
+                  "feats": {
+                    "Tense": "Past",
+                    "Mood": "Sub"
+                  },
+                  "form": "hablase",
+                  "status": "listed",
+                  "free": true,
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                }
+              ],
+              "form": "habl"
+            },
+            {
+              "id": "lexeme:in",
+              "form": "in"
+            },
+            {
+              "id": "lexeme:ir",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "form": "fue",
+                  "status": "listed",
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                }
+              ],
+              "form": "ir"
+            },
+            {
+              "id": "lexeme:kana",
+              "pos": "NOUN",
+              "form": "kana"
+            },
+            {
+              "id": "lexeme:kanta",
+              "pos": "VERB",
+              "form": "kant"
+            },
+            {
+              "id": "lexeme:kasa",
+              "pos": "NOUN",
+              "form": "kasa"
+            },
+            {
+              "id": "lexeme:kena",
+              "pos": "NOUN",
+              "form": "kena"
+            },
+            {
+              "id": "lexeme:katab",
+              "pos": "VERB",
+              "form": {
+                "radicals": [
+                  "k",
+                  "t",
+                  "b"
+                ],
+                "form": "I"
+              }
+            },
+            {
+              "id": "lexeme:la",
+              "pos": "NOUN",
+              "form": "la"
+            },
+            {
+              "id": "lexeme:papel",
+              "pos": "NOUN",
+              "form": "papel"
+            },
+            {
+              "id": "lexeme:pensar",
+              "pos": "VERB",
+              "classes": [
+                "e-ie"
+              ],
+              "form": "pens"
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "allomorphs": [
+                {
+                  "form": "es",
+                  "after": {
+                    "endsIn": "{C}"
+                  }
+                },
+                {
+                  "form": "s"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poner",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "stem": "pus",
+                  "status": "pinned"
+                }
+              ],
+              "form": "pon"
+            },
+            {
+              "id": "lexeme:posible",
+              "pos": "ADJ",
+              "form": "posible"
+            },
+            {
+              "id": "lexeme:rafa",
+              "pos": "NOUN",
+              "form": "rafa"
+            },
+            {
+              "id": "lexeme:spelled",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "status": "pinned",
+                  "spelled": {
+                    "zz-Latn/standard": [
+                      "spt"
+                    ]
+                  }
+                }
+              ],
+              "form": "sp"
+            },
+            {
+              "id": "lexeme:tener",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "stem": "tuv",
+                  "status": "listed",
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                }
+              ],
+              "form": "ten"
+            },
+            {
+              "id": "lexeme:ver",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past",
+                    "Person": "1",
+                    "Number": "Sing"
+                  },
+                  "form": "vi",
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "stem": "vie",
+                  "status": "pinned"
+                }
+              ],
+              "form": "v"
+            },
+            {
+              "id": "lexeme:wyw",
+              "pos": "NOUN",
+              "form": "wyw"
+            },
+            {
+              "id": "lexeme:xax",
+              "pos": "NOUN",
+              "form": "xax"
+            }
+          ]
+        },
+        "lexeme": "lexeme:spelled",
+        "cell": {
+          "Tense": "Past",
+          "Person": "1",
+          "Number": "Sing"
+        },
+        "spellings": false
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "sp+e",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:zz-past",
+              "branch": "1sg"
+            }
+          ]
+        }
+      },
+      "note": "`spellings: false` passes over a form that pins spellings only (no form, no stem), as the compiler's check of the course's tokens does (docs/rules-design.md, stage 2): the rules give sp+e, where blocking alone finds nothing to give (realise/error/spelled-only)."
+    },
+    {
+      "id": "realise/blocking/spellings-no-tie",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules2-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Tense",
+              "Person",
+              "Number"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "notation": {
+            "vowels": {
+              "stress": "\u0331",
+              "low": "\u0332"
+            },
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]",
+              "ACC": "[\u0331\u0332]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-present-ie",
+              "when": {
+                "class": "e-ie",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "prefix": [
+                    {
+                      "branch": "ie",
+                      "add": "ie"
+                    }
+                  ]
+                },
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-present",
+              "when": {
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "3sg",
+                      "feats": {
+                        "Person": "3",
+                        "Number": "Sing"
+                      },
+                      "add": "a"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-past",
+              "when": {
+                "feats": {
+                  "Tense": "Past"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "e"
+                    },
+                    {
+                      "branch": "3sg",
+                      "feats": {
+                        "Person": "3",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "ron"
+                    },
+                    {
+                      "branch": "else",
+                      "add": "a"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-assimilation",
+              "find": "n+p",
+              "to": "m+p"
+            },
+            {
+              "id": "rule:zz-voicing",
+              "find": "{V}f{V}",
+              "to": "{V}v{V}"
+            },
+            {
+              "id": "rule:zz-palatal",
+              "find": "k",
+              "before": [
+                "e",
+                "i"
+              ],
+              "to": "ch"
+            },
+            {
+              "id": "rule:zz-lenition",
+              "find": "d",
+              "after": "{V}",
+              "to": "dh"
+            },
+            {
+              "id": "rule:zz-devoicing",
+              "find": "g",
+              "at": "end",
+              "to": "k"
+            },
+            {
+              "id": "rule:zz-spelling",
+              "find": "[wy]",
+              "map": {
+                "w": "v",
+                "y": "j"
+              }
+            },
+            {
+              "id": "rule:zz-final-h",
+              "find": "{V}{ACC}",
+              "at": "end",
+              "to": "{V}{ACC}h"
+            },
+            {
+              "id": "rule:zz-degemination",
+              "branch": "l",
+              "find": "l+?l",
+              "to": "l+?"
+            },
+            {
+              "id": "rule:zz-initial",
+              "find": "x",
+              "after": "#",
+              "to": "sh"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules2-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:adu",
+              "pos": "NOUN",
+              "form": "adu"
+            },
+            {
+              "id": "lexeme:al",
+              "pos": "NOUN",
+              "form": "al"
+            },
+            {
+              "id": "lexeme:alla",
+              "pos": "NOUN",
+              "form": "alla"
+            },
+            {
+              "id": "lexeme:atar",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "form": "x",
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Person": "1"
+                  },
+                  "form": "y",
+                  "status": "pinned"
+                }
+              ],
+              "form": "at"
+            },
+            {
+              "id": "lexeme:bag",
+              "pos": "NOUN",
+              "form": "bag"
+            },
+            {
+              "id": "lexeme:cafe",
+              "pos": "NOUN",
+              "form": "cafe\u0331"
+            },
+            {
+              "id": "lexeme:darse",
+              "pos": "VERB",
+              "form": {
+                "parts": [
+                  "lexeme:dar",
+                  "lexeme:se"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:du",
+              "pos": "NOUN",
+              "form": "du"
+            },
+            {
+              "id": "lexeme:gab",
+              "pos": "NOUN",
+              "form": "gab"
+            },
+            {
+              "id": "lexeme:hablar",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past",
+                    "Mood": "Sub"
+                  },
+                  "form": "hablara",
+                  "status": "listed",
+                  "free": true,
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                },
+                {
+                  "feats": {
+                    "Tense": "Past",
+                    "Mood": "Sub"
+                  },
+                  "form": "hablase",
+                  "status": "listed",
+                  "free": true,
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                }
+              ],
+              "form": "habl"
+            },
+            {
+              "id": "lexeme:in",
+              "form": "in"
+            },
+            {
+              "id": "lexeme:ir",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "form": "fue",
+                  "status": "listed",
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                }
+              ],
+              "form": "ir"
+            },
+            {
+              "id": "lexeme:kana",
+              "pos": "NOUN",
+              "form": "kana"
+            },
+            {
+              "id": "lexeme:kanta",
+              "pos": "VERB",
+              "form": "kant"
+            },
+            {
+              "id": "lexeme:kasa",
+              "pos": "NOUN",
+              "form": "kasa"
+            },
+            {
+              "id": "lexeme:kena",
+              "pos": "NOUN",
+              "form": "kena"
+            },
+            {
+              "id": "lexeme:katab",
+              "pos": "VERB",
+              "form": {
+                "radicals": [
+                  "k",
+                  "t",
+                  "b"
+                ],
+                "form": "I"
+              }
+            },
+            {
+              "id": "lexeme:la",
+              "pos": "NOUN",
+              "form": "la"
+            },
+            {
+              "id": "lexeme:papel",
+              "pos": "NOUN",
+              "form": "papel"
+            },
+            {
+              "id": "lexeme:pensar",
+              "pos": "VERB",
+              "classes": [
+                "e-ie"
+              ],
+              "form": "pens"
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "allomorphs": [
+                {
+                  "form": "es",
+                  "after": {
+                    "endsIn": "{C}"
+                  }
+                },
+                {
+                  "form": "s"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poner",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "stem": "pus",
+                  "status": "pinned"
+                }
+              ],
+              "form": "pon"
+            },
+            {
+              "id": "lexeme:posible",
+              "pos": "ADJ",
+              "form": "posible"
+            },
+            {
+              "id": "lexeme:rafa",
+              "pos": "NOUN",
+              "form": "rafa"
+            },
+            {
+              "id": "lexeme:spelled",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "status": "pinned",
+                  "spelled": {
+                    "zz-Latn/standard": [
+                      "spt"
+                    ]
+                  }
+                },
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "status": "pinned",
+                  "spelled": {
+                    "zz-Latn/standard": [
+                      "spte"
+                    ]
+                  }
+                }
+              ],
+              "form": "sp"
+            },
+            {
+              "id": "lexeme:tener",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "stem": "tuv",
+                  "status": "listed",
+                  "statement": {
+                    "author": "llm:claude@rules2-fixture",
+                    "status": "draft"
+                  }
+                }
+              ],
+              "form": "ten"
+            },
+            {
+              "id": "lexeme:ver",
+              "pos": "VERB",
+              "forms": [
+                {
+                  "feats": {
+                    "Tense": "Past",
+                    "Person": "1",
+                    "Number": "Sing"
+                  },
+                  "form": "vi",
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Tense": "Past"
+                  },
+                  "stem": "vie",
+                  "status": "pinned"
+                }
+              ],
+              "form": "v"
+            },
+            {
+              "id": "lexeme:wyw",
+              "pos": "NOUN",
+              "form": "wyw"
+            },
+            {
+              "id": "lexeme:xax",
+              "pos": "NOUN",
+              "form": "xax"
+            }
+          ]
+        },
+        "lexeme": "lexeme:spelled",
+        "cell": {
+          "Tense": "Past",
+          "Person": "1",
+          "Number": "Sing"
+        },
+        "spellings": false
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "sp+e",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:zz-past",
+              "branch": "1sg"
+            }
+          ]
+        }
+      },
+      "note": "Two forms that pin spellings only for one cell are two spellings, not two lexical forms: no lexicon.tie (realise/error/lexicon-tie needs forms with `form` or `stem`); the lexicon compiles and the rules give sp+e."
+    },
+    {
       "id": "realise/rewrite/set",
       "op": "realise",
       "args": {
@@ -18483,32 +19518,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:akal",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ء",
-                  "ك",
-                  "ل"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "a",
-                  "present": "u"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
@@ -18524,15 +19534,11 @@
       "expected": {
         "ok": true,
         "value": {
-          "form": "أَكَلِ+ت",
+          "form": "أَكَلْ+ت",
           "steps": [
             {
               "rule": "rule:apc-perfect",
               "branch": "1sg"
-            },
-            {
-              "rule": "rule:apc-helping-vowel",
-              "branch": "end"
             }
           ]
         }
@@ -18544,32 +19550,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:akal",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ء",
-                  "ك",
-                  "ل"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "a",
-                  "present": "u"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
@@ -18601,32 +19582,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:kan",
-              "pos": "AUX",
-              "form": {
-                "radicals": [
-                  "ك",
-                  "و",
-                  "ن"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "u",
-                  "past": "e"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:kan",
@@ -18663,32 +19619,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:akal",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ء",
-                  "ك",
-                  "ل"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "a",
-                  "present": "u"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
@@ -18720,28 +19651,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:eshtara",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ش",
-                  "ر",
-                  "ي"
-                ],
-                "form": "VIII"
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:eshtara",
@@ -18778,32 +19688,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:ra7",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ر",
-                  "و",
-                  "ح"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "u",
-                  "past": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
@@ -18836,32 +19721,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:ra7",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ر",
-                  "و",
-                  "ح"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "u",
-                  "past": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
@@ -18893,32 +19753,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:ra7",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ر",
-                  "و",
-                  "ح"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "u",
-                  "past": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
@@ -18951,32 +19786,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:sama3",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "س",
-                  "م",
-                  "ع"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "i",
-                  "present": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:sama3",
@@ -19013,32 +19823,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:akal",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ء",
-                  "ك",
-                  "ل"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "a",
-                  "present": "u"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
@@ -19079,32 +19864,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:ra7",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ر",
-                  "و",
-                  "ح"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "u",
-                  "past": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
@@ -19141,32 +19901,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:shereb",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ش",
-                  "ر",
-                  "ب"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "i",
-                  "present": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:shereb",
@@ -19204,32 +19939,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:shereb",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ش",
-                  "ر",
-                  "ب"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "i",
-                  "present": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:shereb",
@@ -19267,32 +19977,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:ra7",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ر",
-                  "و",
-                  "ح"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "u",
-                  "past": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
@@ -19330,32 +20015,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:akal",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ء",
-                  "ك",
-                  "ل"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "a",
-                  "present": "u"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
@@ -19396,32 +20056,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:ra7",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ر",
-                  "و",
-                  "ح"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "u",
-                  "past": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
@@ -19463,32 +20098,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:tele3",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ط",
-                  "ل",
-                  "ع"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "i",
-                  "present": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:tele3",
@@ -19529,31 +20139,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:laff",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ل",
-                  "ف",
-                  "ف"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "i"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:laff",
@@ -19586,32 +20172,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:akal",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ء",
-                  "ك",
-                  "ل"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "a",
-                  "present": "u"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
@@ -19647,31 +20208,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:laff",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ل",
-                  "ف",
-                  "ف"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "i"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:laff",
@@ -19704,28 +20241,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:seken",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "س",
-                  "ك",
-                  "ن"
-                ],
-                "form": "I"
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:seken",
@@ -19761,28 +20277,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:seken",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "س",
-                  "ك",
-                  "ن"
-                ],
-                "form": "I"
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:seken",
@@ -19817,28 +20312,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:seken",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "س",
-                  "ك",
-                  "ن"
-                ],
-                "form": "I"
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:seken",
@@ -19870,32 +20344,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:akal",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ء",
-                  "ك",
-                  "ل"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "a",
-                  "present": "u"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
@@ -19932,32 +20381,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:akal",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ء",
-                  "ك",
-                  "ل"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "a",
-                  "present": "u"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
@@ -19994,32 +20418,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:nem",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ن",
-                  "و",
-                  "م"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "a",
-                  "past": "e"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:nem",
@@ -20060,32 +20459,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:kan",
-              "pos": "AUX",
-              "form": {
-                "radicals": [
-                  "ك",
-                  "و",
-                  "ن"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "u",
-                  "past": "e"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:kan",
@@ -20122,32 +20496,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:shereb",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ش",
-                  "ر",
-                  "ب"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "i",
-                  "present": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:shereb",
@@ -20183,28 +20532,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:eshtara",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ش",
-                  "ر",
-                  "ي"
-                ],
-                "form": "VIII"
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:eshtara",
@@ -20241,28 +20569,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:eshtara",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ش",
-                  "ر",
-                  "ي"
-                ],
-                "form": "VIII"
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:eshtara",
@@ -20299,32 +20606,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:ra7",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ر",
-                  "و",
-                  "ح"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "u",
-                  "past": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
@@ -20360,31 +20642,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:de22",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "د",
-                  "ق",
-                  "ق"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "i"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:de22",
@@ -20421,28 +20679,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:2a3ed",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ق",
-                  "ع",
-                  "د"
-                ],
-                "form": "I"
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:2a3ed",
@@ -20478,32 +20715,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:wesel",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "و",
-                  "ص",
-                  "ل"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "i",
-                  "present": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:wesel",
@@ -20544,32 +20756,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:ra7",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ر",
-                  "و",
-                  "ح"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "u",
-                  "past": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
@@ -20613,32 +20800,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:akal",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ء",
-                  "ك",
-                  "ل"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "a",
-                  "present": "u"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
@@ -20678,40 +20840,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:de22",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "د",
-                  "ق",
-                  "ق"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "i"
-                }
-              }
-            },
-            {
-              "id": "lexeme:la-1sg",
-              "pos": "PRON",
-              "allomorphs": [
-                {
-                  "form": "لِي"
-                }
-              ]
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:de22",
@@ -20749,32 +20878,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:ra7",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ر",
-                  "و",
-                  "ح"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "u",
-                  "past": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
@@ -20811,32 +20915,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:3emel",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ع",
-                  "م",
-                  "ل"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "i",
-                  "present": "i"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:3emel",
@@ -20874,32 +20953,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:sama3",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "س",
-                  "م",
-                  "ع"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "i",
-                  "present": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:sama3",
@@ -20936,32 +20990,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:wesel",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "و",
-                  "ص",
-                  "ل"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "i",
-                  "present": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:wesel",
@@ -20998,41 +21027,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:3azam",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ع",
-                  "ز",
-                  "م"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "a",
-                  "present": "i"
-                }
-              }
-            },
-            {
-              "id": "lexeme:obj-1pl",
-              "pos": "PRON",
-              "allomorphs": [
-                {
-                  "form": "نَا"
-                }
-              ]
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:3azam",
@@ -21072,31 +21067,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:7aka",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ح",
-                  "ك",
-                  "ي"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "i"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:7aka",
@@ -21145,32 +21116,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:kan",
-              "pos": "AUX",
-              "form": {
-                "radicals": [
-                  "ك",
-                  "و",
-                  "ن"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "u",
-                  "past": "e"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:kan",
@@ -21209,32 +21155,7 @@
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:ra7",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ر",
-                  "و",
-                  "ح"
-                ],
-                "form": "I",
-                "vowels": {
-                  "present": "u",
-                  "past": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
@@ -21274,106 +21195,11 @@
       "note": "u10-plans:s.plans.3: the course writes رايحة, رايْحَة, ray7a."
     },
     {
-      "id": "realise/apc/helping-vowel/end",
-      "op": "realise-token",
-      "args": {
-        "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:akal",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "ء",
-                  "ك",
-                  "ل"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "a",
-                  "present": "u"
-                }
-              }
-            }
-          ]
-        },
-        "lexemes": [
-          {
-            "lexeme": "lexeme:akal",
-            "feats": {
-              "Aspect": "Perf",
-              "Number": "Sing",
-              "Person": "1"
-            },
-            "base": true
-          }
-        ]
-      },
-      "expected": {
-        "ok": true,
-        "value": {
-          "form": "أَكَلِ+ت",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "1sg"
-            },
-            {
-              "rule": "rule:apc-helping-vowel",
-              "branch": "end"
-            }
-          ]
-        }
-      },
-      "note": "u09-past:s.past.3: the course writes أكلت, أَكَلِت, akalt."
-    },
-    {
       "id": "realise/apc/helping-vowel/inside",
       "op": "realise-token",
       "args": {
         "lang": "apc",
-        "lexicon": {
-          "language": "apc",
-          "license": "CC-BY-SA-4.0",
-          "provenance": {
-            "author": "llm:claude@rules2-report",
-            "status": "draft"
-          },
-          "lexemes": [
-            {
-              "id": "lexeme:obj-1sg",
-              "pos": "PRON",
-              "allomorphs": [
-                {
-                  "form": "نِي"
-                }
-              ]
-            },
-            {
-              "id": "lexeme:sama3",
-              "pos": "VERB",
-              "form": {
-                "radicals": [
-                  "س",
-                  "م",
-                  "ع"
-                ],
-                "form": "I",
-                "vowels": {
-                  "past": "i",
-                  "present": "a"
-                }
-              }
-            }
-          ]
-        },
+        "spellings": false,
         "lexemes": [
           {
             "lexeme": "lexeme:sama3",
@@ -21411,6 +21237,151 @@
         }
       },
       "note": "u14-phone:s.phone.11: the course writes سمعتني, سْمِعِتْني, sme3tni."
+    },
+    {
+      "id": "realise/apc/listed-stem",
+      "op": "realise-token",
+      "args": {
+        "lang": "apc",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:stanna",
+            "feats": {
+              "Gender": "Fem",
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "2"
+            },
+            "base": true
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ا\u06dfسْتَنِّ+ي",
+          "steps": [
+            {
+              "rule": "rule:apc-command",
+              "branch": "2fs"
+            },
+            {
+              "rule": "rule:apc-defective",
+              "branch": "ending"
+            }
+          ],
+          "status": "listed",
+          "listed": "lexeme:stanna|stem:ا\u06dfسْتَنَّى"
+        }
+      },
+      "note": "stanna's commands go on its listed stem (forms: {feats: {Mood: Imp}, stem, status: listed}): s.road.5 writes استنّي, stanni (the stem has no radicals and no Form: Kline does not list the verb)."
+    },
+    {
+      "id": "realise/apc/allomorph/after-a-vowel",
+      "op": "realise-token",
+      "args": {
+        "lang": "apc",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:de22",
+            "feats": {
+              "Gender": "Fem",
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "2"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:la-1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "دِقِّ+ي+لِي",
+          "steps": [
+            {
+              "rule": "rule:apc-command",
+              "branch": "2fs"
+            }
+          ]
+        }
+      },
+      "note": "The dative -li after a vowel (la-1sg's allomorph `after: {endsIn: .*+?[اىي]}`): دقّيلي, de22ili, as the course writes it."
+    },
+    {
+      "id": "realise/apc/allomorph/none-after-a-consonant",
+      "op": "realise-token",
+      "args": {
+        "lang": "apc",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:b3at",
+            "feats": {
+              "Aspect": "Perf",
+              "Gender": "Masc",
+              "Number": "Sing",
+              "Person": "3"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:la-1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "error": {
+          "kind": "form",
+          "lexeme": "lexeme:la-1sg"
+        }
+      },
+      "note": "The dative after a consonant has no form yet (stage 3: -li, -le, -elli by what it follows): la-1sg has none for b3at's -t, so the token is not realised (the compiler counts it 'no rule yet')."
+    },
+    {
+      "id": "realise/apc/helping-vowel/none-before-a-vowel",
+      "op": "realise-token",
+      "args": {
+        "lang": "apc",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:shef",
+            "feats": {
+              "Aspect": "Perf",
+              "Number": "Sing",
+              "Person": "1"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:obj-3fs"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "شِفْ+تَ+ه\u06dfا",
+          "steps": [
+            {
+              "rule": "rule:apc-perfect",
+              "branch": "hollow-short"
+            },
+            {
+              "rule": "rule:apc-perfect",
+              "branch": "1sg"
+            }
+          ]
+        }
+      },
+      "note": "No helping vowel where the ending begins with a vowel: -a, her, puts its fatha on the past's -t (a carrier), so no cluster is left: شفتها, shefta (s.phone.20)."
     }
   ]
 }

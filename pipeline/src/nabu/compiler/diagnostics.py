@@ -201,6 +201,19 @@ _LINTS = [
         "and skipped until stem templates are written.",
     ),
     Lint(
+        "form.unaccounted",
+        "warning",
+        3,
+        "A token of the course whose base lexeme a realisation rule covers is written otherwise "
+        "than the rules give: its lexemes realised in the values chosen on each (forms that pin "
+        "spellings only passed over), then spelled by its orthography's `spell` statement, is "
+        "neither what the course writes there nor a free alternative of it, nor the course's "
+        "vowel marks for it; and no pinned or listed form of its lexeme gives it "
+        "(docs/rules-design.md, stage 2). The review list: a rule, a form or a token for the owner "
+        "to rule on, never mended by changing one to fit. A warning in stage 2, an error from "
+        "stage 3.",
+    ),
+    Lint(
         "enrich.transliteration-mismatch",
         "info",
         3,

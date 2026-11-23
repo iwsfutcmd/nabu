@@ -1,6 +1,7 @@
 /**
  * core-cli's realisation ops (docs/rules-design.md, section 4): `realise`, `realise-token` and
- * `paradigm`. The language is `lang` (lexicons/<lang>/language.yaml and lexemes.yaml) or, as a
+ * `paradigm`. The language is `lang` (lexicons/<lang>/language.yaml and lexemes.yaml, or under the
+ * folder `lexicons` names: a course's own, as the compiler passes it) or, as a
  * projection vector passes a `statement`, a `language` and a `lexicon` given whole, so a vector can
  * test blocking and each rewrite on a fixture; or `lang` with a `lexicon` given whole, so a vector runs
  * the language's own rules over a lexeme form its lexicon does not hold yet. All are checked against
@@ -65,10 +66,14 @@ const languageOf = (args: Args): CompiledLanguage => {
     return compile(key, checked<LanguageDeclaration>(declared, "language", "language"), checked<Lexicon>(lexicon, "lexicon", "lexicon"));
   }
   if (typeof code !== "string" || !/^[a-z]{2,3}$/u.test(code)) throw new Error('"lang" must be a language code, or "language" and "lexicon" given');
-  const key = `lang\u0000${code}`;
+  // `lexicons`: the folder a course keeps its lexicons in, where it is not the repo's (a test's course).
+  const folder = args["lexicons"];
+  if (folder !== undefined && typeof folder !== "string") throw new Error('"lexicons" must be a folder');
+  const dir = folder ?? join(REPO, "lexicons");
+  const key = `lang\u0000${dir}\u0000${code}`;
   const cached = compiled.get(key);
   if (cached !== undefined) return cached;
-  const read = (name: string): unknown => parse(readFileSync(join(REPO, "lexicons", code, name), "utf8"));
+  const read = (name: string): unknown => parse(readFileSync(join(dir, code, name), "utf8"));
   return compile(key, checked<LanguageDeclaration>(read("language.yaml"), "language", `lexicons/${code}/language.yaml`), checked<Lexicon>(read("lexemes.yaml"), "lexicon", `lexicons/${code}/lexemes.yaml`));
 };
 
@@ -77,7 +82,10 @@ const feats = (given: unknown, what: string): UdFeatures => {
   return Object.fromEntries(Object.entries(given).map(([k, v]) => [k, String(v)]));
 };
 
-const options = (args: Args): { blocking?: boolean } => (args["blocking"] === false ? { blocking: false } : {});
+const options = (args: Args): { blocking?: boolean; spellings?: boolean } => ({
+  ...(args["blocking"] === false && { blocking: false }),
+  ...(args["spellings"] === false && { spellings: false }),
+});
 
 const lexemeArg = (args: Args): string => {
   const id = args["lexeme"];
@@ -86,7 +94,7 @@ const lexemeArg = (args: Args): string => {
 };
 
 export const REALISE_OPS: Readonly<Record<string, (args: Args) => unknown>> = {
-  /** A lexeme in a cell: its lexical form, status and the rules (with branches) taken (`blocking: false`: the regularised form). */
+  /** A lexeme in a cell: its lexical form, status and the rules (with branches) taken (`blocking: false`: the regularised form; `spellings: false`: forms that pin spellings only passed over). */
   realise: (a) => realise(languageOf(a), lexemeArg(a), feats(a["cell"] ?? {}, "cell"), options(a)),
   /** A token's lexemes (`lexemes`: [{ lexeme, feats?, base? }]) realised and joined. */
   "realise-token": (a) => {

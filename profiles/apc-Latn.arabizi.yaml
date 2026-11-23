@@ -63,6 +63,10 @@ spell:
     # The helping vowel: not written, or written e (o after a u or o). Free (apc.md, "Free and fixed").
     - {find: "\u0652", after: "[\u064F\u065D]و?{N}", before: "{C}({L}\u06DF)*$", to: "", alternatives: [{id: helping-vowel, to: o}, {id: helping-vowel, to: e}]}
     - {find: "\u0652", after: "({V}|[اىيو]){N}", before: "{C}({L}\u06DF)*$", to: "", alternatives: [{id: helping-vowel, to: e}]}
+    # Inside a word the rules write it (a kasra before a cluster whose last consonant begins an ending: sme3etni, bentekon):
+    # written e (i), or not written (sme3tni). The spelling cannot tell it from a kasra of the stem (khamesta3shar), so it
+    # stays e there and leaving it out is an alternative, one variation of the owner's question 6.
+    - {find: "\u0650", after: "({V}|[اىيو]){N}", before: "{C}\u0652{C}[\u064E\u064F\u0650\u065C\u065D\u0652]", to: e, alternatives: [{id: e-i, to: i}, {id: helping-vowel, to: ""}]}
     # A hamza that begins a word, or follows the article, is not written; a ق there is 2 or nothing.
     - {find: "{H}", at: start, to: ""}
     - {find: "{H}", after: "^ا\u06DFل\u0652", to: ""}
@@ -81,7 +85,7 @@ spell:
     - {find: "آ\u065C", to: "2e"}
     - {find: "آ", at: start, to: a}
     - {find: "آ", to: "2a"}
-    - {find: "\u064E[اى]", to: a}
+    - {find: "\u064E({L}\u06DF)*[اى]", to: a}  # a silent letter between: -a, her (ـَه\u06DFا)
     - {find: "\u065Cا", to: e}
     - {find: "\u0650ي", before: "({L}\u06DF)*$", to: i, alternatives: [{id: final-e-i, to: e}]}
     - {find: "\u0650ي", before: "{L}", to: i, alternatives: [{id: i-ee, to: ee}]}
@@ -104,6 +108,8 @@ spell:
     # A doubled letter is written twice (mara is not marra); then each consonant.
     - {find: "{C}\u0651", to: "{C}{C}"}
     - {find: "{C}", map: {"ء": "2", "أ": "2", "ؤ": "2", "إ": "2", "ئ": "2", "ب": b, "ت": t, "ث": s, "ج": j, "ح": "7", "خ": kh, "د": d, "ذ": z, "ر": r, "ز": z, "س": s, "ش": sh, "ص": s, "ض": d, "ط": t, "ظ": z, "ع": "3", "غ": gh, "ف": f, "ق": "2", "ك": k, "ل": l, "م": m, "ن": n, "ه": h, "و": w, "ي": y, "پ": p, "ڤ": v, "گ": g}}
+    # A carrier (an affix's first sign, whose vowel goes onto the letter it joins: -ak, ـَك) is never written.
+    - {find: "\u0640", to: ""}
 layout: { vertical: none }
 transliterate: { to: apc-Arab/standard, via: hand-pinned }
 # What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.

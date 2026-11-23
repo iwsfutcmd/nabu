@@ -688,6 +688,56 @@ def _apc_form_otherwise(c: Course) -> None:
     c["own"]["lexicon"]["lexemes"][0]["form"] = "\u0628\u064e\u064a\u0652\u062a"
 
 
+APC_LANGUAGE: dict[str, Any] = yaml.safe_load(
+    (HERE.parents[2] / "lexicons" / "apc" / "language.yaml").read_text(encoding="utf-8")
+)
+
+
+def _apc_unaccounted(c: Course) -> None:
+    """apc's verb rules (lexicons/apc/language.yaml) and a verb, shereb (ش ر ب, past i, present a),
+    whose past 1sg the rules give shrebt; the sentence writes shrabt."""
+    language = c["own"]["language"]
+    for key in ("rootClasses", "stems", "realisation", "phonology"):
+        language[key] = APC_LANGUAGE[key]
+    language["dimensions"] = {"VERB": ["Aspect", "Person", "Number"]}
+    language["features"] = {"Aspect": ["Perf"], "Number": ["Sing"], "Person": ["1"]}
+    c["own"]["lexicon"]["lexemes"].append(
+        {
+            "id": "lexeme:shereb",
+            "pos": "VERB",
+            "gloss": {"en": "drink"},
+            "form": {
+                "radicals": ["\u0634", "\u0631", "\u0628"],
+                "form": "I",
+                "vowels": {"past": "i", "present": "a"},
+            },
+            "spelled": {APC_ORTH: ["shereb"]},
+        }
+    )
+    u = unit(c)
+    u["nodes"][0]["introduces"].append("lexeme:shereb")
+    u["sentences"].append(
+        {
+            "id": "s.2",
+            "node": "basics.1",
+            "forms": {
+                APC_ORTH: {
+                    "text": "shrabt",
+                    "tokens": [
+                        {
+                            "surface": "shrabt",
+                            "lexeme": "shereb",
+                            "feats": {"Aspect": "Perf", "Number": "Sing", "Person": "1"},
+                        }
+                    ],
+                    "reverse": "shrabt",
+                }
+            },
+            "translations": {"en": "I drank"},
+        }
+    )
+
+
 def _script_untaught(c: Course) -> None:
     """The alphabet node teaches α and ι only, and its word ναί needs ν."""
     unit(c)["nodes"][0]["introduces"].remove("grapheme:ν")
@@ -1224,6 +1274,10 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     "form.projection": (
         "bet's form spells bayt in Arabizi, where the lexicon spells it bet.",
         m(_apc_form_otherwise, APC),
+    ),
+    "form.unaccounted": (
+        "shereb's past 1sg written shrabt, where apc's rules give shrebt.",
+        m(_apc_unaccounted, APC),
     ),
     "script.untaught-letter": (
         "A Greek alphabet node's word uses ν before the track teaches it.",
