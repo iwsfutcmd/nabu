@@ -647,7 +647,11 @@ not kept; what a later session needs is here.
   on the 31 tokens that said it in the reading alone, introduced at `chg.u06.dates`; شجرهٔ read *šajarah-i*.
   The course's warnings fall from 13 to 5. `courses/REVIEW.md` says what a reviewer should look at;
 - `docs/rules-design.md`, the design for rules in a lexicon: a draft with six questions for the owner (also
-  put to them as a page, each broken down). Its stage 1 needs none of the six;
+  put to them as a page, each broken down). Its stage 1 needs none of the six. **Answered on 2026-11-23**,
+  one at a time (the note's last section): he-past first; follow Kline for the three short stems; the
+  compiler lists forms; a built word's card without a sentence; a memory per branch now (the owner's
+  choice against the draft's pick: it needs an ADR and simulated learners with an ability per branch);
+  Arabizi's spellings free, one variation at a time, each after the owner sees what it newly accepts;
 - `packages/core-cli` tests have a minute each: on a loaded CI runner a property test passed five seconds.
 
 - seen-logging (ADR 0146): what each card displayed on `exercise_presented` and `answer_submitted`,

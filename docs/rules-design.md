@@ -4,6 +4,10 @@
   first, as the next piece of work that day; this is the design it would be built against. What is stated as
   decided below is the builder's reading of ADRs 0145, 0146, 0148, 0152, 0153 and 0154; what is the owner's is
   asked at the end, in six questions. Stage 1 needs none of the six.
+- **The owner answered the six on 2026-11-23** (section 8, "The owner's answers"): 1 the he-past first; 2 follow
+  Kline; 3 the compiler lists forms; 4 a card without a sentence; 5 a memory per branch now (against the
+  draft's pick); 6 Arabizi's spellings free, one at a time. Where the text above section 8 still says
+  otherwise (stage 5's "no memory"), the answers stand.
 - Drafted by a reading pass over the ADRs, the notes, the data and the code. Its counts were made by read-only
   scripts on main at 92421c35; two were run again (the pinned forms per language; the three short stems).
 - Builds on: [ADR 0145](adr/0145-lexical-model.md) (realisation, blocking, the three statuses of a form),
@@ -452,3 +456,23 @@ Each stage lands whole on main with `pnpm lint`, `typecheck`, `test`, `conforman
    (REVIEW): answers the accept sets did not list are then accepted, and the rule's spelling can be checked
    by the sound statement alone; (b) keep them as the projection's `alternatives`, read only by the
    compiler. Pick (a), after the owner reads the profile's reasons for leaving them out.
+
+**The owner's answers (2026-11-23).** Asked one at a time, each with its breakdown.
+1. **(a), the he-past first** (*3emel / ya3mel*). 31 word cards change and 31 word clips are made again; the
+   audio check follows.
+2. **(b), follow Kline**: his form wherever he gives one, by pattern where he is silent, not waiting for a
+   speaker. Up to 213 tokens (and their clips) of `ra7`, `zar` and `kan` may change; the list of changed
+   tokens goes to the owner before any clip is made again.
+3. **(a), the compiler lists forms**; the device looks them up (bundle format 5).
+4. **(a), a card without a sentence**: the lemma, its gloss and the form's label, typed; limited as built
+   words are (one a session, its forms recognized first, never a sentence's typing slot). (b) is ruled out.
+5. **(b), a memory per branch now**, against the draft's pick, after a fuller explanation. What follows:
+   the starting numbers are guesses (REVIEW, as the word-parts priors); the simulated learners get an
+   ability per branch, or the calibration cannot see the memory; a branch is due only where a built-word
+   card can ask it (the rule of `learner/due.ts`); branch names enter card keys, so renaming a root class
+   needs an alias. It comes with stage 5 and its card, and needs an ADR (Proposed): it settles one of ADR
+   0146's open points.
+6. **(a), free, one at a time**: i/ee, u/ou and the article's forms first; o/u, a final e/i and the helping
+   vowel each after the owner has seen what it would newly accept (a list per variation, made from the
+   course). Each is a correspondence with vectors in both harnesses.
+
