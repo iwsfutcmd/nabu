@@ -1,0 +1,324 @@
+# Unit 20 (sk): the passive participle (zapísaný, vydaný, napísaný: bola vydaná, the book was published), treba,
+# nikto with a negative verb; how Pavol Dobšinský collected the tales a learner read in unit 17, published in Martin
+# (then Turčiansky Svätý Martin) in 1880-1883.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u20
+title:
+  en: Rozprávky Tales
+cefr: B1
+nodes:
+- {id: sk.u20.zbierat, kind: lesson, introduces: ['lexeme:zbierať', 'lexeme:rozprávať', 'lexeme:dobšinský', 'lexeme:dávno', 'lexeme:slovenčina']}
+- {id: sk.u20.zapisane, kind: lesson, introduces: ['lexeme:zapísať', 'lexeme:vydať', 'feature:Voice=Pass', 'lexeme:martin']}
+- {id: sk.u20.treba, kind: lesson, introduces: ['lexeme:treba', 'lexeme:nikto', 'lexeme:vedieť']}
+- {id: sk.u20.story, kind: story}
+sentences:
+- id: s.u20.1
+  node: sk.u20.zbierat
+  forms:
+    sk-Latn/standard:
+      text: Dobšinský zbieral rozprávky.
+      tokens: [{surface: Dobšinský, lexeme: dobšinský, feats: {Case: Nom, Number: Sing}}, {surface: zbieral, lexeme: zbierať, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: rozprávky,
+          lexeme: rozprávka, feats: {Case: Acc, Number: Plur}}]
+      reverse: Dobšinský zbieral rozprávky
+  translations:
+    en: Dobšinský collected (fairy tales|tales|folk tales).
+- id: s.u20.2
+  node: sk.u20.zbierat
+  forms:
+    sk-Latn/standard:
+      text: Ľudia mu rozprávali rozprávky.
+      tokens: [{surface: Ľudia, lexeme: človek, feats: {Case: Nom, Number: Plur}}, {surface: mu, lexeme: 'on', feats: {Animacy: Anim, Case: Dat, Gender: Masc, Number: Sing}}, {surface: rozprávali, lexeme: rozprávať,
+          feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: rozprávky, lexeme: rozprávka, feats: {Case: Acc, Number: Plur}}]
+      reverse: Ľudia mu rozprávali rozprávky
+  translations:
+    en: People told him (fairy tales|tales|stories).
+- id: s.u20.3
+  node: sk.u20.zbierat
+  forms:
+    sk-Latn/standard:
+      text: Babka mi rozprávala rozprávky.
+      tokens: [{surface: Babka, lexeme: babka, feats: {Case: Nom, Number: Sing}}, {surface: mi, lexeme: ja, feats: {Case: Dat, Number: Sing}}, {surface: rozprávala, lexeme: rozprávať, feats: {Gender: Fem,
+            Number: Sing, Tense: Past, VerbForm: Part}}, {surface: rozprávky, lexeme: rozprávka, feats: {Case: Acc, Number: Plur}}]
+      reverse: Babka mi rozprávala rozprávky
+  translations:
+    en: |-
+      (Grandma|Granny|My grandma) told me (fairy tales|tales|stories).
+      (Grandma|Granny|My grandma) (used to tell|would tell) me (fairy tales|tales|stories).
+- id: s.u20.4
+  node: sk.u20.zbierat
+  forms:
+    sk-Latn/standard:
+      text: To bolo veľmi dávno.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: bolo, lexeme: byť, feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: veľmi,
+          lexeme: veľmi}, {surface: dávno, lexeme: dávno}]
+      reverse: (To bolo veľmi dávno|Bolo to veľmi dávno)
+  translations:
+    en: |-
+      That was a (very |)long time ago.
+      That was (very |)long ago.
+- id: s.u20.5
+  node: sk.u20.zbierat
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Mám rád slovenčinu.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: rád, lexeme: rád, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}},
+        {surface: slovenčinu, lexeme: slovenčina, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Mám rád slovenčinu|Ja mám rád slovenčinu)
+  translations:
+    en: |-
+      I like Slovak.
+      I love Slovak.
+- id: s.u20.6
+  node: sk.u20.zbierat
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Mám rada slovenčinu.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: rada, lexeme: rád, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: slovenčinu,
+          lexeme: slovenčina, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Mám rada slovenčinu|Ja mám rada slovenčinu)
+  translations:
+    en: |-
+      I like Slovak.
+      I love Slovak.
+- id: s.u20.7
+  node: sk.u20.zapisane
+  forms:
+    sk-Latn/standard:
+      text: Rozprávky boli zapísané.
+      tokens: [{surface: Rozprávky, lexeme: rozprávka, feats: {Case: Nom, Number: Plur}}, {surface: boli, lexeme: byť, feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: zapísané, lexeme: zapísať,
+          feats: {Case: Nom, Gender: Fem, Number: Plur, VerbForm: Part, Voice: Pass}}]
+      reverse: Rozprávky boli zapísané
+  translations:
+    en: |-
+      The (tales|stories) were written down.
+      The (tales|stories) were recorded.
+- id: s.u20.8
+  node: sk.u20.zapisane
+  forms:
+    sk-Latn/standard:
+      text: Dobšinský ich zapísal.
+      tokens: [{surface: Dobšinský, lexeme: dobšinský, feats: {Case: Nom, Number: Sing}}, {surface: ich, lexeme: ona, feats: {Case: Acc, Gender: Fem, Number: Plur}}, {surface: zapísal, lexeme: zapísať,
+          feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: Dobšinský ich zapísal
+  translations:
+    en: |-
+      Dobšinský wrote them down.
+      Dobšinský recorded them.
+- id: s.u20.9
+  node: sk.u20.zapisane
+  forms:
+    sk-Latn/standard:
+      text: Kniha bola vydaná v Martine.
+      tokens: [{surface: Kniha, lexeme: kniha, feats: {Case: Nom, Number: Sing}}, {surface: bola, lexeme: byť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: vydaná, lexeme: vydať,
+          feats: {Case: Nom, Gender: Fem, Number: Sing, VerbForm: Part, Voice: Pass}}, {surface: v, lexeme: v}, {surface: Martine, lexeme: martin, feats: {Case: Loc, Number: Sing}}]
+      reverse: Kniha bola vydaná v Martine
+  translations:
+    en: The book was published in Martin.
+- id: s.u20.10
+  node: sk.u20.zapisane
+  forms:
+    sk-Latn/standard:
+      text: Tá rozprávka je napísaná pre deti.
+      tokens: [{surface: Tá, lexeme: ten, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: rozprávka, lexeme: rozprávka, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: napísaná, lexeme: napísať, feats: {Case: Nom, Gender: Fem, Number: Sing, VerbForm: Part, Voice: Pass}}, {surface: pre, lexeme: pre},
+        {surface: deti, lexeme: dieťa, feats: {Case: Acc, Number: Plur}}]
+      reverse: Tá rozprávka je napísaná pre deti
+  translations:
+    en: That (tale|story) is written for children.
+- id: s.u20.11
+  node: sk.u20.zapisane
+  forms:
+    sk-Latn/standard:
+      text: Liam vydal knihu.
+      tokens: [{surface: Liam, lexeme: liam, feats: {Case: Nom, Number: Sing}}, {surface: vydal, lexeme: vydať, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: knihu, lexeme: kniha,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: Liam vydal knihu
+  translations:
+    en: Liam published a book.
+- id: s.u20.12
+  node: sk.u20.treba
+  forms:
+    sk-Latn/standard:
+      text: Treba ísť.
+      tokens: [{surface: Treba, lexeme: treba}, {surface: ísť, lexeme: ísť, feats: {VerbForm: Inf}}]
+      reverse: (Treba ísť|Už treba ísť)
+  translations:
+    en: |-
+      (We|I|You) (must|have to|need to) go.
+      (It's|It is) time to go.
+- id: s.u20.13
+  node: sk.u20.treba
+  forms:
+    sk-Latn/standard:
+      text: Treba čítať rozprávky.
+      tokens: [{surface: Treba, lexeme: treba}, {surface: čítať, lexeme: čítať, feats: {VerbForm: Inf}}, {surface: rozprávky, lexeme: rozprávka, feats: {Case: Acc, Number: Plur}}]
+      reverse: Treba čítať rozprávky
+  translations:
+    en: (One should|You should|We should) read (fairy tales|tales).
+- id: s.u20.14
+  node: sk.u20.treba
+  forms:
+    sk-Latn/standard:
+      text: Nikto nevie, kto ju napísal.
+      tokens: [{surface: Nikto, lexeme: nikto, feats: {Case: Nom}}, {surface: nevie, lexeme: vedieť, feats: {Mood: Ind, Number: Sing, Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}}, {surface: kto,
+          lexeme: kto, feats: {Case: Nom}}, {surface: ju, lexeme: ona, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: napísal, lexeme: napísať, feats: {Gender: Masc, Number: Sing, Tense: Past,
+            VerbForm: Part}}]
+      reverse: Nikto nevie kto ju napísal
+  translations:
+    en: (Nobody|No one) knows who wrote it.
+- id: s.u20.15
+  node: sk.u20.treba
+  forms:
+    sk-Latn/standard:
+      text: Nikto neprišiel.
+      tokens: [{surface: Nikto, lexeme: nikto, feats: {Case: Nom}}, {surface: neprišiel, lexeme: prísť, feats: {Gender: Masc, Number: Sing, Polarity: Neg, Tense: Past, VerbForm: Part}}]
+      reverse: Nikto neprišiel
+  translations:
+    en: (Nobody|No one) came.
+- id: s.u20.16
+  node: sk.u20.treba
+  forms:
+    sk-Latn/standard:
+      text: Vieš, kto to napísal?
+      tokens: [{surface: Vieš, lexeme: vedieť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: kto, lexeme: kto, feats: {Case: Nom}}, {surface: to, lexeme: ten, feats: {
+            Case: Acc, Gender: Neut, Number: Sing}}, {surface: napísal, lexeme: napísať, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: (Vieš|Viete) kto to napísal
+  translations:
+    en: Do you know who wrote (it|that|this)?
+- id: s.u20.17
+  node: sk.u20.treba
+  forms:
+    sk-Latn/standard:
+      text: Nikoho nepoznám.
+      tokens: [{surface: Nikoho, lexeme: nikto, feats: {Case: Acc}}, {surface: nepoznám, lexeme: poznať, feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}}]
+      reverse: (Nikoho nepoznám|Ja nikoho nepoznám|Nepoznám nikoho)
+  translations:
+    en: |-
+      I (don't|do not) know anybody.
+      I know (nobody|no one).
+stories:
+- id: sk.story.u20
+  node: sk.u20.story
+  title:
+    en: Grandma's tale
+  characters:
+  - id: simona
+    speaker: f
+    name:
+      sk-Latn/standard: Simona
+  - id: babka
+    speaker: f
+    name:
+      sk-Latn/standard: Babka
+  steps:
+  - line:
+      speaker: simona
+      forms:
+        sk-Latn/standard:
+          text: Babka, ktorá rozprávka je najkrajšia?
+          tokens: [{surface: Babka, lexeme: babka, feats: {Case: Nom, Number: Sing}}, {surface: ktorá, lexeme: ktorý, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: rozprávka, lexeme: rozprávka,
+              feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: najkrajšia, lexeme: pekný, feats: {Case: Nom,
+                Degree: Sup, Gender: Fem, Number: Sing}}]
+      translations:
+        en: Grandma, which tale is the most beautiful?
+  - line:
+      speaker: babka
+      forms:
+        sk-Latn/standard:
+          text: Najkrajšia? O vajci, čo išlo na vandrovku.
+          tokens: [{surface: Najkrajšia, lexeme: pekný, feats: {Case: Nom, Degree: Sup, Gender: Fem, Number: Sing}}, {surface: O, lexeme: o}, {surface: vajci, lexeme: vajce, feats: {Case: Loc, Number: Sing}},
+            {surface: čo, lexeme: čo, feats: {Case: Nom}}, {surface: išlo, lexeme: ísť, feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: na, lexeme: na}, {surface: vandrovku,
+              lexeme: vandrovka, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: The most beautiful? The one about the egg that went off wandering.
+  - line:
+      speaker: simona
+      forms:
+        sk-Latn/standard:
+          text: Kto ju napísal?
+          tokens: [{surface: Kto, lexeme: kto, feats: {Case: Nom}}, {surface: ju, lexeme: ona, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: napísal, lexeme: napísať, feats: {Gender: Masc, Number: Sing,
+                Tense: Past, VerbForm: Part}}]
+      translations:
+        en: Who wrote it?
+  - line:
+      speaker: babka
+      forms:
+        sk-Latn/standard:
+          text: Nikto. Ľudia ju rozprávali a Dobšinský ju zapísal.
+          tokens: [{surface: Nikto, lexeme: nikto, feats: {Case: Nom}}, {surface: Ľudia, lexeme: človek, feats: {Case: Nom, Number: Plur}}, {surface: ju, lexeme: ona, feats: {Case: Acc, Gender: Fem, Number: Sing}},
+            {surface: rozprávali, lexeme: rozprávať, feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: a, lexeme: a}, {surface: Dobšinský, lexeme: dobšinský, feats: {Case: Nom, Number: Sing}},
+            {surface: ju, lexeme: ona, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: zapísal, lexeme: zapísať, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}]
+      translations:
+        en: Nobody. People told it, and Dobšinský wrote it down.
+  - choose:
+      prompt:
+        en: Who wrote the tale down?
+      options:
+      - en: Dobšinský
+      - en: Grandma
+      - en: Simona
+      answer: 0
+  - line:
+      speaker: simona
+      forms:
+        sk-Latn/standard:
+          text: Kedy?
+          tokens: [{surface: Kedy, lexeme: kedy}]
+      translations:
+        en: When?
+  - line:
+      speaker: babka
+      ask: complete
+      gap: lexeme:kniha
+      distractors:
+      - lexeme:káva
+      - lexeme:polievka
+      forms:
+        sk-Latn/standard:
+          text: Veľmi dávno. Kniha bola vydaná v Martine.
+          tokens: [{surface: Veľmi, lexeme: veľmi}, {surface: dávno, lexeme: dávno}, {surface: Kniha, lexeme: kniha, feats: {Case: Nom, Number: Sing}}, {surface: bola, lexeme: byť, feats: {Gender: Fem,
+                Number: Sing, Tense: Past, VerbForm: Part}}, {surface: vydaná, lexeme: vydať, feats: {Case: Nom, Gender: Fem, Number: Sing, VerbForm: Part, Voice: Pass}}, {surface: v, lexeme: v}, {surface: Martine,
+              lexeme: martin, feats: {Case: Loc, Number: Sing}}]
+      translations:
+        en: A very long time ago. The book was published in Martin.
+  - line:
+      speaker: simona
+      forms:
+        sk-Latn/standard:
+          text: Babka, prečítaš mi ju?
+          tokens: [{surface: Babka, lexeme: babka, feats: {Case: Nom, Number: Sing}}, {surface: prečítaš, lexeme: prečítať, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {
+              surface: mi, lexeme: ja, feats: {Case: Dat, Number: Sing}}, {surface: ju, lexeme: ona, feats: {Case: Acc, Gender: Fem, Number: Sing}}]
+      translations:
+        en: Grandma, will you read it to me?
+  - line:
+      speaker: babka
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Áno. Treba čítať rozprávky!
+          tokens: [{surface: Áno, lexeme: áno}, {surface: Treba, lexeme: treba}, {surface: čítať, lexeme: čítať, feats: {VerbForm: Inf}}, {surface: rozprávky, lexeme: rozprávka, feats: {Case: Acc, Number: Plur}}]
+      translations:
+        en: Yes. Tales should be read!
+  - choose:
+      prompt:
+        en: What does Simona ask her grandma to do?
+      options:
+      - en: Read her the tale
+      - en: Write a tale
+      - en: Go to Martin
+      answer: 0
+scenarios:
+- id: sk.babka
+  after: sk.u20.treba
+  title:
+    en: Asking for a tale
+  setting:
+    en: Your grandmother's kitchen in a village near Martin on a winter evening.
+  character:
+    en: Babka, seventy-eight, who knows many of the tales Dobšinský collected by heart and loves to be asked.
+  goal:
+    en: Ask her which tale she liked best as a child and who told it to her, ask her to tell it, and say what you would like to hear.

@@ -1,0 +1,391 @@
+# Unit 16 (sk): the personal pronouns in every case, long and short (mňa / ma, teba / ťa, jeho / ho / neho, jej / ju /
+# ňu), after prepositions (pre mňa, bez teba, o ňom, k nej, s nami), and the order of the clitics (dal som ti ho);
+# Dominik's Thursday hockey and a match at the rink.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u16
+title:
+  en: Hokej Hockey
+cefr: B1
+nodes:
+- {id: sk.u16.hokej, kind: lesson, introduces: ['lexeme:hokej', 'lexeme:hrať', 'lexeme:zápas', 'lexeme:tím', 'lexeme:gól']}
+- {id: sk.u16.fandit, kind: lesson, introduces: ['lexeme:fandiť', 'lexeme:vyhrať', 'lexeme:prehrať', 'lexeme:korčule', 'lexeme:štadión', 'lexeme:majster', 'lexeme:svet']}
+- {id: sk.u16.zamena, kind: lesson, introduces: ['lexeme:poznať']}
+- {id: sk.u16.story, kind: story}
+sentences:
+- id: s.u16.1
+  node: sk.u16.hokej
+  forms:
+    sk-Latn/standard:
+      text: Dominik hrá hokej.
+      tokens: [{surface: Dominik, lexeme: dominik, feats: {Case: Nom, Number: Sing}}, {surface: hrá, lexeme: hrať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: hokej,
+          lexeme: hokej, feats: {Case: Acc, Number: Sing}}]
+      reverse: Dominik hrá hokej
+  translations:
+    en: Dominik plays (hockey|ice hockey).
+- id: s.u16.2
+  node: sk.u16.hokej
+  forms:
+    sk-Latn/standard:
+      text: Vo štvrtok hrá s kamarátmi.
+      tokens: [{surface: Vo, lexeme: v}, {surface: štvrtok, lexeme: štvrtok, feats: {Case: Acc, Number: Sing}}, {surface: hrá, lexeme: hrať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: s, lexeme: s}, {surface: kamarátmi, lexeme: kamarát, feats: {Case: Ins, Number: Plur}}]
+      reverse: (Vo štvrtok hrá s kamarátmi|S kamarátmi hrá vo štvrtok)
+  translations:
+    en: On Thursday(s|) he plays with (his |)friends.
+- id: s.u16.3
+  node: sk.u16.hokej
+  forms:
+    sk-Latn/standard:
+      text: Dnes je zápas.
+      tokens: [{surface: Dnes, lexeme: dnes}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: zápas, lexeme: zápas, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Dnes je zápas|Zápas je dnes)
+  translations:
+    en: |-
+      (There's|There is) a (match|game) today.
+      The (match|game) is today.
+- id: s.u16.4
+  node: sk.u16.hokej
+  forms:
+    sk-Latn/standard:
+      text: Náš tím dal gól!
+      tokens: [{surface: Náš, lexeme: náš, feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}}, {surface: tím, lexeme: tím, feats: {Case: Acc, Number: Sing}}, {surface: dal, lexeme: dať, feats: {
+            Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: gól, lexeme: gól, feats: {Case: Acc, Number: Sing}}]
+      reverse: Náš tím dal gól
+  translations:
+    en: Our team scored (a goal|)!
+- id: s.u16.5
+  node: sk.u16.hokej
+  forms:
+    sk-Latn/standard:
+      text: Samko chce hrať hokej.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: chce, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: hrať,
+          lexeme: hrať, feats: {VerbForm: Inf}}, {surface: hokej, lexeme: hokej, feats: {Case: Acc, Number: Sing}}]
+      reverse: Samko chce hrať hokej
+  translations:
+    en: Samko wants to play (hockey|ice hockey).
+- id: s.u16.6
+  node: sk.u16.fandit
+  forms:
+    sk-Latn/standard:
+      text: Fandíme Slovensku.
+      tokens: [{surface: Fandíme, lexeme: fandiť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Slovensku, lexeme: slovensko, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Fandíme|My fandíme) Slovensku
+  translations:
+    en: |-
+      (We're|We are) (cheering for|rooting for|supporting) Slovakia.
+      We (cheer for|root for|support) Slovakia.
+- id: s.u16.7
+  node: sk.u16.fandit
+  forms:
+    sk-Latn/standard:
+      text: Slovensko vyhralo!
+      tokens: [{surface: Slovensko, lexeme: slovensko, feats: {Case: Nom, Number: Sing}}, {surface: vyhralo, lexeme: vyhrať, feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: Slovensko vyhralo
+  translations:
+    en: |-
+      Slovakia won!
+      Slovakia has won!
+- id: s.u16.8
+  node: sk.u16.fandit
+  forms:
+    sk-Latn/standard:
+      text: Náš tím prehral.
+      tokens: [{surface: Náš, lexeme: náš, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: tím, lexeme: tím, feats: {Case: Nom, Number: Sing}}, {surface: prehral, lexeme: prehrať,
+          feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: Náš tím prehral
+  translations:
+    en: Our team lost.
+- id: s.u16.9
+  node: sk.u16.fandit
+  forms:
+    sk-Latn/standard:
+      text: Včera sme prehrali.
+      tokens: [{surface: Včera, lexeme: včera}, {surface: sme, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: prehrali, lexeme: prehrať, feats: {Number: Plur,
+            Tense: Past, VerbForm: Part}}]
+      reverse: (Včera sme prehrali|Prehrali sme včera|My sme včera prehrali)
+  translations:
+    en: |-
+      We lost yesterday.
+      Yesterday we lost.
+- id: s.u16.10
+  node: sk.u16.fandit
+  forms:
+    sk-Latn/standard:
+      text: Samko má nové korčule.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nové, lexeme: nový,
+          feats: {Case: Acc, Gender: Fem, Number: Plur}}, {surface: korčule, lexeme: korčule, feats: {Case: Acc, Number: Plur}}]
+      reverse: Samko má nové korčule
+  translations:
+    en: Samko has new skates.
+- id: s.u16.11
+  node: sk.u16.fandit
+  forms:
+    sk-Latn/standard:
+      text: Na štadióne je veľa ľudí.
+      tokens: [{surface: Na, lexeme: na}, {surface: štadióne, lexeme: štadión, feats: {Case: Loc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: veľa, lexeme: veľa}, {surface: ľudí, lexeme: človek, feats: {Case: Gen, Number: Plur}}]
+      reverse: Na štadióne je veľa ľudí
+  translations:
+    en: (There are|There're) (many|a lot of|lots of) people at the (stadium|rink).
+- id: s.u16.12
+  node: sk.u16.fandit
+  forms:
+    sk-Latn/standard:
+      text: Slovensko bolo majstrom sveta.
+      tokens: [{surface: Slovensko, lexeme: slovensko, feats: {Case: Nom, Number: Sing}}, {surface: bolo, lexeme: byť, feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: majstrom,
+          lexeme: majster, feats: {Case: Ins, Number: Sing}}, {surface: sveta, lexeme: svet, feats: {Case: Gen, Number: Sing}}]
+      reverse: Slovensko bolo majstrom sveta
+  translations:
+    en: |-
+      Slovakia was world champion.
+      Slovakia (were|was) the world champions.
+- id: s.u16.13
+  node: sk.u16.zamena
+  forms:
+    sk-Latn/standard:
+      text: To je pre mňa?
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pre,
+          lexeme: pre}, {surface: mňa, lexeme: ja, feats: {Case: Acc, Number: Sing}}]
+      reverse: (To je pre mňa|Je to pre mňa)
+  translations:
+    en: Is (that|this|it) for me?
+- id: s.u16.14
+  node: sk.u16.zamena
+  forms:
+    sk-Latn/standard:
+      text: Bez teba nejdem.
+      tokens: [{surface: Bez, lexeme: bez}, {surface: teba, lexeme: ty, feats: {Case: Gen, Number: Sing}}, {surface: nejdem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres,
+            VerbForm: Fin}}]
+      reverse: (Bez teba nejdem|Nejdem bez teba)
+  translations:
+    en: (I'm not going|I won't go|I will not go) without you.
+- id: s.u16.15
+  node: sk.u16.zamena
+  forms:
+    sk-Latn/standard:
+      text: Hovoríme o ňom.
+      tokens: [{surface: Hovoríme, lexeme: hovoriť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: o, lexeme: o}, {surface: ňom, lexeme: 'on', feats: {Animacy: Anim,
+            Case: Loc, Gender: Masc, Number: Sing}}]
+      reverse: (Hovoríme|My hovoríme) o ňom
+  translations:
+    en: (We're|We are) talking about him.
+- id: s.u16.16
+  node: sk.u16.zamena
+  forms:
+    sk-Latn/standard:
+      text: Idem k nej.
+      tokens: [{surface: Idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: k, lexeme: k}, {surface: nej, lexeme: ona, feats: {Case: Dat, Gender: Fem,
+            Number: Sing}}]
+      reverse: (Idem|Ja idem) k nej
+  translations:
+    en: (I'm|I am) going to (see her|her place).
+- id: s.u16.17
+  node: sk.u16.zamena
+  forms:
+    sk-Latn/standard:
+      text: Som u neho.
+      tokens: [{surface: Som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: u, lexeme: u}, {surface: neho, lexeme: 'on', feats: {Animacy: Anim, Case: Gen,
+            Gender: Masc, Number: Sing}}]
+      reverse: (Som|Ja som) u neho
+  translations:
+    en: (I'm|I am) at his place.
+- id: s.u16.18
+  node: sk.u16.zamena
+  forms:
+    sk-Latn/standard:
+      text: Ideš s nami?
+      tokens: [{surface: Ideš, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: s, lexeme: s}, {surface: nami, lexeme: my, feats: {Case: Ins, Number: Plur}}]
+      reverse: (Ideš|Idete) s nami
+  translations:
+    en: Are you (coming|going) with us?
+- id: s.u16.19
+  node: sk.u16.zamena
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Dal som ti ho.
+      tokens: [{surface: Dal, lexeme: dať, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: ti, lexeme: ty, feats: {Case: Dat, Number: Sing}}, {surface: ho, lexeme: 'on', feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}}]
+      reverse: (Dal som ti ho|Ja som ti ho dal)
+  translations:
+    en: I gave it to you.
+- id: s.u16.20
+  node: sk.u16.zamena
+  forms:
+    sk-Latn/standard:
+      text: Vidíš ho?
+      tokens: [{surface: Vidíš, lexeme: vidieť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: ho, lexeme: 'on', feats: {Animacy: Anim, Case: Acc, Gender: Masc, Number: Sing}}]
+      reverse: (Vidíš|Vidíte) ho
+  translations:
+    en: (Do you see|Can you see) him?
+- id: s.u16.21
+  node: sk.u16.zamena
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Mám ťa rád.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ťa, lexeme: ty, feats: {Case: Acc, Number: Sing}}, {surface: rád, lexeme: rád,
+          feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}}]
+      reverse: (Mám ťa rád|Ja ťa mám rád)
+  translations:
+    en: |-
+      I love you.
+      I like you.
+- id: s.u16.22
+  node: sk.u16.zamena
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Mám ťa rada.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ťa, lexeme: ty, feats: {Case: Acc, Number: Sing}}, {surface: rada, lexeme: rád,
+          feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: (Mám ťa rada|Ja ťa mám rada)
+  translations:
+    en: |-
+      I love you.
+      I like you.
+- id: s.u16.23
+  node: sk.u16.zamena
+  forms:
+    sk-Latn/standard:
+      text: Poznáš ju?
+      tokens: [{surface: Poznáš, lexeme: poznať, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: ju, lexeme: ona, feats: {Case: Acc, Gender: Fem, Number: Sing}}]
+      reverse: (Poznáš|Poznáte) ju
+  translations:
+    en: Do you know her?
+- id: s.u16.24
+  node: sk.u16.zamena
+  forms:
+    sk-Latn/standard:
+      text: Nepoznám ich.
+      tokens: [{surface: Nepoznám, lexeme: poznať, feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}}, {surface: ich, lexeme: 'on', feats: {Animacy: Anim, Case: Acc,
+            Gender: Masc, Number: Plur}}]
+      reverse: (Nepoznám ich|Ja ich nepoznám)
+  translations:
+    en: I (don't|do not) know them.
+stories:
+- id: sk.story.u16
+  node: sk.u16.story
+  title:
+    en: The match
+  characters:
+  - id: samko
+    speaker: m
+    name:
+      sk-Latn/standard: Samko
+  - id: dominik
+    speaker: m
+    name:
+      sk-Latn/standard: Dominik
+  - id: rudo
+    speaker: m
+    name:
+      sk-Latn/standard: Rudo
+  steps:
+  - line:
+      speaker: samko
+      forms:
+        sk-Latn/standard:
+          text: Dominik, ideš na zápas?
+          tokens: [{surface: Dominik, lexeme: dominik, feats: {Case: Nom, Number: Sing}}, {surface: ideš, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: na,
+              lexeme: na}, {surface: zápas, lexeme: zápas, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Dominik, are you going to the match?
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Áno. Ideš s nami?
+          tokens: [{surface: Áno, lexeme: áno}, {surface: Ideš, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: s, lexeme: s}, {surface: nami, lexeme: my,
+              feats: {Case: Ins, Number: Plur}}]
+      translations:
+        en: Yes. Are you coming with us?
+  - line:
+      speaker: samko
+      forms:
+        sk-Latn/standard:
+          text: Áno! Mám nové korčule.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: nové, lexeme: nový, feats: {Case: Acc, Gender: Fem,
+                Number: Plur}}, {surface: korčule, lexeme: korčule, feats: {Case: Acc, Number: Plur}}]
+      translations:
+        en: Yes! I have new skates.
+  - line:
+      speaker: rudo
+      forms:
+        sk-Latn/standard:
+          text: Samko, dnes nehráš. Dnes fandíš.
+          tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: dnes, lexeme: dnes}, {surface: nehráš, lexeme: hrať, feats: {Mood: Ind, Number: Sing, Person: '2', Polarity: Neg,
+                Tense: Pres, VerbForm: Fin}}, {surface: Dnes, lexeme: dnes}, {surface: fandíš, lexeme: fandiť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Samko, you're not playing today. Today you're cheering.
+  - choose:
+      prompt:
+        en: Who goes to the match with Dominik?
+      options:
+      - en: Samko and Rudo
+      - en: Lucka
+      - en: Nobody
+      answer: 0
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Na štadióne je veľa ľudí.
+          tokens: [{surface: Na, lexeme: na}, {surface: štadióne, lexeme: štadión, feats: {Case: Loc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+                VerbForm: Fin}}, {surface: veľa, lexeme: veľa}, {surface: ľudí, lexeme: človek, feats: {Case: Gen, Number: Plur}}]
+      translations:
+        en: There are lots of people at the rink.
+  - line:
+      speaker: samko
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Náš tím dal gól!
+          tokens: [{surface: Náš, lexeme: náš, feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}}, {surface: tím, lexeme: tím, feats: {Case: Acc, Number: Sing}}, {surface: dal, lexeme: dať,
+              feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: gól, lexeme: gól, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Our team scored!
+  - line:
+      speaker: rudo
+      forms:
+        sk-Latn/standard:
+          text: Vidíš ho? To je Liam, môj kamarát.
+          tokens: [{surface: Vidíš, lexeme: vidieť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: ho, lexeme: 'on', feats: {Animacy: Anim, Case: Acc, Gender: Masc,
+                Number: Sing}}, {surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+            {surface: Liam, lexeme: liam, feats: {Case: Nom, Number: Sing}}, {surface: môj, lexeme: môj, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}}, {surface: kamarát, lexeme: kamarát,
+              feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Do you see him? That's Liam, my friend.
+  - line:
+      speaker: samko
+      ask: complete
+      gap: lexeme:vyhrať
+      distractors:
+      - lexeme:prehrať
+      forms:
+        sk-Latn/standard:
+          text: A vyhrali sme!
+          tokens: [{surface: A, lexeme: a}, {surface: vyhrali, lexeme: vyhrať, feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: sme, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '1',
+                Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: And we won!
+  - choose:
+      prompt:
+        en: Did their team win?
+      options:
+      - en: 'Yes'
+      - en: 'No'
+      - en: The story doesn't say.
+      answer: 0
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Samko, si dobrý kamarát.
+          tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: dobrý,
+              lexeme: dobrý, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}}, {surface: kamarát, lexeme: kamarát, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Samko, you're a good friend.

@@ -1,0 +1,499 @@
+# Unit 4 (sk): the nominative plural (domy, ulice, mestá; men: študenti, lekári), numbers with nouns (dva, dve,
+# dvaja), mať; the town of Žilina and people's jobs.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u04
+title:
+  en: Žilina Žilina
+cefr: A1
+nodes:
+- {id: sk.u04.mesto, kind: lesson, introduces: ['lexeme:mesto', 'lexeme:žilina', 'lexeme:námestie', 'lexeme:ulica', 'lexeme:obchod', 'lexeme:kaviareň']}
+- {id: sk.u04.mnozne, kind: lesson, introduces: ['feature:Number=Plur']}
+- {id: sk.u04.praca, kind: lesson, introduces: ['lexeme:zdravotný', 'lexeme:sestra', 'lexeme:elektrikár', 'lexeme:vodič', 'lexeme:učiteľ', 'lexeme:učiteľka', 'lexeme:lekár', 'lexeme:lekárka']}
+- {id: sk.u04.muzi, kind: lesson, introduces: ['lexeme:študent', 'lexeme:dobrý', 'feature:Animacy=Anim', 'lexeme:študentka', 'lexeme:kamarát', 'lexeme:kamarátka']}
+- {id: sk.u04.pocet, kind: lesson, introduces: ['lexeme:mať', 'lexeme:nemocnica', 'lexeme:park', 'lexeme:kostol', 'lexeme:škola', 'lexeme:univerzita']}
+- {id: sk.u04.story, kind: story}
+sentences:
+- id: s.u04.1
+  node: sk.u04.mesto
+  forms:
+    sk-Latn/standard:
+      text: Žilina je pekné mesto.
+      tokens: [{surface: Žilina, lexeme: žilina, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pekné,
+          lexeme: pekný, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: mesto, lexeme: mesto, feats: {Case: Nom, Number: Sing}}]
+      reverse: Žilina je pekné mesto
+  translations:
+    en: Žilina is a (nice|lovely|pretty) (town|city).
+- id: s.u04.2
+  node: sk.u04.mesto
+  forms:
+    sk-Latn/standard:
+      text: Tu je námestie.
+      tokens: [{surface: Tu, lexeme: tu}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: námestie, lexeme: námestie, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: (Tu je námestie|Námestie je tu)
+  translations:
+    en: |-
+      (Here's|Here is) the square.
+      The square is here.
+- id: s.u04.3
+  node: sk.u04.mesto
+  forms:
+    sk-Latn/standard:
+      text: To je stará ulica.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: stará,
+          lexeme: starý, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: ulica, lexeme: ulica, feats: {Case: Nom, Number: Sing}}]
+      reverse: (To je|Je to) stará ulica
+  translations:
+    en: (That's|That is|This is|It's|It is) an old street.
+- id: s.u04.4
+  node: sk.u04.mesto
+  forms:
+    sk-Latn/standard:
+      text: Kde je obchod?
+      tokens: [{surface: Kde, lexeme: kde}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: obchod, lexeme: obchod, feats: {Case: Nom, Number: Sing}}]
+      reverse: Kde je obchod
+  translations:
+    en: (Where's|Where is) the (shop|store)?
+- id: s.u04.5
+  node: sk.u04.mesto
+  forms:
+    sk-Latn/standard:
+      text: Kaviareň je tam.
+      tokens: [{surface: Kaviareň, lexeme: kaviareň, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tam,
+          lexeme: tam}]
+      reverse: (Kaviareň je tam|Tam je kaviareň)
+  translations:
+    en: |-
+      The café is [over] there.
+      (There's|There is) the café.
+- id: s.u04.6
+  node: sk.u04.mesto
+  forms:
+    sk-Latn/standard:
+      text: Námestie je veľké a krásne.
+      tokens: [{surface: Námestie, lexeme: námestie, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veľké,
+          lexeme: veľký, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: a, lexeme: a}, {surface: krásne, lexeme: krásny, feats: {Case: Nom, Gender: Neut, Number: Sing}}]
+      reverse: Námestie je veľké a krásne
+  translations:
+    en: The square is (big|large) and beautiful.
+- id: s.u04.7
+  node: sk.u04.mnozne
+  forms:
+    sk-Latn/standard:
+      text: Tu sú obchody.
+      tokens: [{surface: Tu, lexeme: tu}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: obchody, lexeme: obchod, feats: {Case: Nom, Number: Plur}}]
+      reverse: (Tu sú obchody|Obchody sú tu)
+  translations:
+    en: |-
+      (Here are|There are) the (shops|stores).
+      The (shops|stores) are here.
+- id: s.u04.8
+  node: sk.u04.mnozne
+  forms:
+    sk-Latn/standard:
+      text: Ulice sú staré.
+      tokens: [{surface: Ulice, lexeme: ulica, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: staré,
+          lexeme: starý, feats: {Case: Nom, Gender: Fem, Number: Plur}}]
+      reverse: Ulice sú staré
+  translations:
+    en: The streets are old.
+- id: s.u04.9
+  node: sk.u04.mnozne
+  forms:
+    sk-Latn/standard:
+      text: To sú nové domy.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nové,
+          lexeme: nový, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Plur}}, {surface: domy, lexeme: dom, feats: {Case: Nom, Number: Plur}}]
+      reverse: (To sú|Sú to) nové domy
+  translations:
+    en: (Those|These|They) are new houses.
+- id: s.u04.10
+  node: sk.u04.mnozne
+  forms:
+    sk-Latn/standard:
+      text: Kaviarne sú tu.
+      tokens: [{surface: Kaviarne, lexeme: kaviareň, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu,
+          lexeme: tu}]
+      reverse: (Kaviarne sú tu|Tu sú kaviarne)
+  translations:
+    en: |-
+      The cafés are here.
+      (Here are|There are) the cafés.
+- id: s.u04.11
+  node: sk.u04.mnozne
+  forms:
+    sk-Latn/standard:
+      text: Mestá sú veľké.
+      tokens: [{surface: Mestá, lexeme: mesto, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veľké,
+          lexeme: veľký, feats: {Case: Nom, Gender: Neut, Number: Plur}}]
+      reverse: Mestá sú veľké
+  translations:
+    en: (The towns|The cities|Towns|Cities) are (big|large).
+- id: s.u04.12
+  node: sk.u04.mnozne
+  forms:
+    sk-Latn/standard:
+      text: Izby sú malé, ale útulné.
+      tokens: [{surface: Izby, lexeme: izba, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: malé, lexeme: malý,
+          feats: {Case: Nom, Gender: Fem, Number: Plur}}, {surface: ale, lexeme: ale}, {surface: útulné, lexeme: útulný, feats: {Case: Nom, Gender: Fem, Number: Plur}}]
+      reverse: Izby sú malé ale útulné
+  translations:
+    en: The rooms are (small|little) but (cosy|cozy).
+- id: s.u04.13
+  node: sk.u04.praca
+  forms:
+    sk-Latn/standard:
+      text: Lucka je zdravotná sestra.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: zdravotná,
+          lexeme: zdravotný, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: sestra, lexeme: sestra, feats: {Case: Nom, Number: Sing}}]
+      reverse: Lucka je zdravotná sestra
+  translations:
+    en: Lucka is a nurse.
+- id: s.u04.14
+  node: sk.u04.praca
+  forms:
+    sk-Latn/standard:
+      text: Dominik je elektrikár.
+      tokens: [{surface: Dominik, lexeme: dominik, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: elektrikár,
+          lexeme: elektrikár, feats: {Case: Nom, Number: Sing}}]
+      reverse: Dominik je elektrikár
+  translations:
+    en: Dominik is an electrician.
+- id: s.u04.15
+  node: sk.u04.praca
+  forms:
+    sk-Latn/standard:
+      text: Rudo je vodič.
+      tokens: [{surface: Rudo, lexeme: rudo, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: vodič, lexeme: vodič,
+          feats: {Case: Nom, Number: Sing}}]
+      reverse: Rudo je vodič
+  translations:
+    en: Rudo is a driver.
+- id: s.u04.16
+  node: sk.u04.praca
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Som učiteľ.
+      tokens: [{surface: Som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: učiteľ, lexeme: učiteľ, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Som|Ja som) učiteľ
+  translations:
+    en: (I'm|I am) a teacher.
+- id: s.u04.17
+  node: sk.u04.praca
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Som učiteľka.
+      tokens: [{surface: Som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: učiteľka, lexeme: učiteľka, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Som|Ja som) učiteľka
+  translations:
+    en: (I'm|I am) a teacher.
+- id: s.u04.18
+  node: sk.u04.praca
+  forms:
+    sk-Latn/standard:
+      text: Pán Baláž je lekár.
+      tokens: [{surface: Pán, lexeme: pán, feats: {Case: Nom, Number: Sing}}, {surface: Baláž, lexeme: baláž, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: lekár, lexeme: lekár, feats: {Case: Nom, Number: Sing}}]
+      reverse: Pán Baláž je lekár
+  translations:
+    en: Mr Baláž is a doctor.
+- id: s.u04.19
+  node: sk.u04.praca
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    sk-Latn/standard:
+      text: Ste lekárka?
+      tokens: [{surface: Ste, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: lekárka, lexeme: lekárka, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Ste|Vy ste|Si|Ty si) lekárka
+  translations:
+    en: Are you a doctor?
+- id: s.u04.20
+  node: sk.u04.muzi
+  forms:
+    sk-Latn/standard:
+      text: Študenti sú tu.
+      tokens: [{surface: Študenti, lexeme: študent, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu,
+          lexeme: tu}]
+      reverse: (Študenti sú tu|Tu sú študenti)
+  translations:
+    en: |-
+      The students are here.
+      (Here are|There are) the students.
+- id: s.u04.21
+  node: sk.u04.muzi
+  forms:
+    sk-Latn/standard:
+      text: To sú dobrí študenti.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dobrí,
+          lexeme: dobrý, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}}, {surface: študenti, lexeme: študent, feats: {Case: Nom, Number: Plur}}]
+      reverse: (To sú|Sú to) dobrí študenti
+  translations:
+    en: (They're|They are|Those are|These are) good students.
+- id: s.u04.22
+  node: sk.u04.muzi
+  forms:
+    sk-Latn/standard:
+      text: Marta a Tereza sú študentky.
+      tokens: [{surface: Marta, lexeme: marta, feats: {Case: Nom, Number: Sing}}, {surface: a, lexeme: a}, {surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: sú, lexeme: byť,
+          feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: študentky, lexeme: študentka, feats: {Case: Nom, Number: Plur}}]
+      reverse: Marta a Tereza sú študentky
+  translations:
+    en: Marta and Tereza are students.
+- id: s.u04.23
+  node: sk.u04.muzi
+  forms:
+    sk-Latn/standard:
+      text: Lekári a učitelia sú tu.
+      tokens: [{surface: Lekári, lexeme: lekár, feats: {Case: Nom, Number: Plur}}, {surface: a, lexeme: a}, {surface: učitelia, lexeme: učiteľ, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť,
+          feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu}]
+      reverse: (Lekári a učitelia sú tu|Tu sú lekári a učitelia)
+  translations:
+    en: The doctors and [the] teachers are here.
+- id: s.u04.24
+  node: sk.u04.muzi
+  forms:
+    sk-Latn/standard:
+      text: Dominik a Rudo sú kamaráti.
+      tokens: [{surface: Dominik, lexeme: dominik, feats: {Case: Nom, Number: Sing}}, {surface: a, lexeme: a}, {surface: Rudo, lexeme: rudo, feats: {Case: Nom, Number: Sing}}, {surface: sú, lexeme: byť,
+          feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kamaráti, lexeme: kamarát, feats: {Case: Nom, Number: Plur}}]
+      reverse: Dominik a Rudo sú kamaráti
+  translations:
+    en: Dominik and Rudo are friends.
+- id: s.u04.25
+  node: sk.u04.muzi
+  forms:
+    sk-Latn/standard:
+      text: Lucka a Tereza sú dobré kamarátky.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: a, lexeme: a}, {surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: sú, lexeme: byť,
+          feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dobré, lexeme: dobrý, feats: {Case: Nom, Gender: Fem, Number: Plur}}, {surface: kamarátky, lexeme: kamarátka,
+          feats: {Case: Nom, Number: Plur}}]
+      reverse: Lucka a Tereza sú dobré kamarátky
+  translations:
+    en: Lucka and Tereza are good friends.
+- id: s.u04.26
+  node: sk.u04.pocet
+  forms:
+    sk-Latn/standard:
+      text: Žilina má dve nemocnice.
+      tokens: [{surface: Žilina, lexeme: žilina, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dve,
+          lexeme: dva, feats: {Case: Acc, Gender: Fem, Number: Plur}}, {surface: nemocnice, lexeme: nemocnica, feats: {Case: Acc, Number: Plur}}]
+      reverse: Žilina má dve nemocnice
+  translations:
+    en: Žilina has two hospitals.
+- id: s.u04.27
+  node: sk.u04.pocet
+  forms:
+    sk-Latn/standard:
+      text: Mám tri izby.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: tri, lexeme: tri, feats: {Case: Acc, Gender: Fem, Number: Plur}}, {surface: izby,
+          lexeme: izba, feats: {Case: Acc, Number: Plur}}]
+      reverse: (Mám|Ja mám) tri izby
+  translations:
+    en: I have three rooms.
+- id: s.u04.28
+  node: sk.u04.pocet
+  forms:
+    sk-Latn/standard:
+      text: Tu sú dva obchody.
+      tokens: [{surface: Tu, lexeme: tu}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dva, lexeme: dva, feats: {Animacy: Inan, Case: Nom,
+            Gender: Masc, Number: Plur}}, {surface: obchody, lexeme: obchod, feats: {Case: Nom, Number: Plur}}]
+      reverse: (Tu sú dva obchody|Dva obchody sú tu)
+  translations:
+    en: (Here are|There are) two (shops|stores).
+- id: s.u04.29
+  node: sk.u04.pocet
+  forms:
+    sk-Latn/standard:
+      text: Dvaja lekári sú tu.
+      tokens: [{surface: Dvaja, lexeme: dva, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}}, {surface: lekári, lexeme: lekár, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť,
+          feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu}]
+      reverse: (Dvaja lekári sú tu|Tu sú dvaja lekári)
+  translations:
+    en: |-
+      Two doctors are here.
+      (Here are|There are) two doctors.
+- id: s.u04.30
+  node: sk.u04.pocet
+  forms:
+    sk-Latn/standard:
+      text: Štyria študenti sú z Poľska.
+      tokens: [{surface: Štyria, lexeme: štyri, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}}, {surface: študenti, lexeme: študent, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť,
+          feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: z, lexeme: z}, {surface: Poľska, lexeme: poľsko, feats: {Case: Gen, Number: Sing}}]
+      reverse: Štyria študenti sú z Poľska
+  translations:
+    en: Four students are from Poland.
+- id: s.u04.31
+  node: sk.u04.pocet
+  forms:
+    sk-Latn/standard:
+      text: Žilina má park a kostol.
+      tokens: [{surface: Žilina, lexeme: žilina, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: park,
+          lexeme: park, feats: {Case: Acc, Number: Sing}}, {surface: a, lexeme: a}, {surface: kostol, lexeme: kostol, feats: {Case: Acc, Number: Sing}}]
+      reverse: Žilina má park a kostol
+  translations:
+    en: Žilina has a park and a church.
+- id: s.u04.32
+  node: sk.u04.pocet
+  forms:
+    sk-Latn/standard:
+      text: Tu sú dve školy.
+      tokens: [{surface: Tu, lexeme: tu}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dve, lexeme: dva, feats: {Case: Nom, Gender: Fem,
+            Number: Plur}}, {surface: školy, lexeme: škola, feats: {Case: Nom, Number: Plur}}]
+      reverse: (Tu sú dve školy|Dve školy sú tu)
+  translations:
+    en: (Here are|There are) two schools.
+- id: s.u04.33
+  node: sk.u04.pocet
+  forms:
+    sk-Latn/standard:
+      text: Univerzita je veľká.
+      tokens: [{surface: Univerzita, lexeme: univerzita, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veľká,
+          lexeme: veľký, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Univerzita je veľká
+  translations:
+    en: The university is (big|large).
+stories:
+- id: sk.story.u04
+  node: sk.u04.story
+  title:
+    en: A walk through Žilina
+  characters:
+  - id: lucka
+    speaker: f
+    name:
+      sk-Latn/standard: Lucka
+  - id: liam
+    speaker: m
+    name:
+      sk-Latn/standard: Liam
+  steps:
+  - line:
+      speaker: liam
+      forms:
+        sk-Latn/standard:
+          text: Žilina je pekné mesto!
+          tokens: [{surface: Žilina, lexeme: žilina, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pekné,
+              lexeme: pekný, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: mesto, lexeme: mesto, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Žilina is a nice town!
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Áno. To je námestie. Je veľké a staré.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+                VerbForm: Fin}}, {surface: námestie, lexeme: námestie, feats: {Case: Nom, Number: Sing}}, {surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+            {surface: veľké, lexeme: veľký, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: a, lexeme: a}, {surface: staré, lexeme: starý, feats: {Case: Nom, Gender: Neut, Number: Sing}}]
+      translations:
+        en: Yes. This is the square. It's big and old.
+  - line:
+      speaker: liam
+      forms:
+        sk-Latn/standard:
+          text: A čo je tam?
+          tokens: [{surface: A, lexeme: a}, {surface: čo, lexeme: čo, feats: {Case: Nom}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tam,
+              lexeme: tam}]
+      translations:
+        en: And what's over there?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Tam je kostol a tu sú kaviarne.
+          tokens: [{surface: Tam, lexeme: tam}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kostol, lexeme: kostol, feats: {Case: Nom,
+                Number: Sing}}, {surface: a, lexeme: a}, {surface: tu, lexeme: tu}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kaviarne,
+              lexeme: kaviareň, feats: {Case: Nom, Number: Plur}}]
+      translations:
+        en: Over there is a church, and here are the cafés.
+  - choose:
+      prompt:
+        en: What is on the square, says Lucka?
+      options:
+      - en: A church and cafés
+      - en: A hospital and a school
+      - en: A university
+      answer: 0
+  - line:
+      speaker: liam
+      forms:
+        sk-Latn/standard:
+          text: Kde je tvoja nemocnica?
+          tokens: [{surface: Kde, lexeme: kde}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tvoja, lexeme: tvoj, feats: {Case: Nom, Gender: Fem,
+                Number: Sing}}, {surface: nemocnica, lexeme: nemocnica, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Where's your hospital?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Nemocnica nie je tu. Je tam.
+          tokens: [{surface: Nemocnica, lexeme: nemocnica, feats: {Case: Nom, Number: Sing}}, {surface: nie, lexeme: nie}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+                VerbForm: Fin}}, {surface: tu, lexeme: tu}, {surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tam, lexeme: tam}]
+      translations:
+        en: The hospital isn't here. It's over there.
+  - line:
+      speaker: liam
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Žilina má dve nemocnice?
+          tokens: [{surface: Žilina, lexeme: žilina, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dve,
+              lexeme: dva, feats: {Case: Acc, Gender: Fem, Number: Plur}}, {surface: nemocnice, lexeme: nemocnica, feats: {Case: Acc, Number: Plur}}]
+      translations:
+        en: Does Žilina have two hospitals?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Áno. A tu je aj univerzita.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: A, lexeme: a}, {surface: tu, lexeme: tu}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+            {surface: aj, lexeme: aj}, {surface: univerzita, lexeme: univerzita, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Yes. And here's the university, too.
+  - line:
+      speaker: lucka
+      ask: complete
+      gap: lexeme:študentka
+      distractors:
+      - lexeme:lekárka
+      - lexeme:učiteľka
+      forms:
+        sk-Latn/standard:
+          text: Aj Tereza je študentka.
+          tokens: [{surface: Aj, lexeme: aj}, {surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+            {surface: študentka, lexeme: študentka, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Tereza is a student, too.
+  - choose:
+      prompt:
+        en: Who is a student, says Lucka?
+      options:
+      - en: Tereza
+      - en: Lucka
+      - en: Mr Baláž
+      answer: 0
+  - line:
+      speaker: liam
+      forms:
+        sk-Latn/standard:
+          text: Žilina je krásna!
+          tokens: [{surface: Žilina, lexeme: žilina, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: krásna,
+              lexeme: krásny, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      translations:
+        en: Žilina is beautiful!
+scenarios:
+- id: sk.cesta
+  after: sk.u04.pocet
+  title:
+    en: Asking the way
+  setting:
+    en: A street in the old town of Žilina, on a sunny afternoon. You are looking for the main square and a café.
+  character:
+    en: A passer-by, a friendly man in his fifties who knows the town well but is in a bit of a hurry.
+  goal:
+    en: Greet him politely, ask where the square is (Kde je námestie?) and where there is a café, and thank him.

@@ -1,0 +1,510 @@
+# Unit 5 (sk): the accusative singular (mám knihu, mám brata), mať rád, chcieť, môcť, musieť, kúpiť, ísť and
+# na with the accusative, colours; a present for Samko's birthday.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u05
+title:
+  en: Narodeniny The birthday
+cefr: A1
+nodes:
+- {id: sk.u05.akuzativ, kind: lesson, introduces: ['feature:Case=Acc', 'lexeme:kniha', 'lexeme:brat']}
+- {id: sk.u05.narodeniny, kind: lesson, introduces: ['lexeme:narodeniny', 'lexeme:samko', 'lexeme:darček', 'lexeme:pre']}
+- {id: sk.u05.rad, kind: lesson, introduces: ['lexeme:rád', 'lexeme:auto', 'lexeme:hra']}
+- {id: sk.u05.chciet, kind: lesson, introduces: ['lexeme:chcieť', 'lexeme:lopta', 'lexeme:kúpiť', 'lexeme:môcť', 'lexeme:musieť']}
+- {id: sk.u05.farby, kind: lesson, introduces: ['lexeme:farba', 'lexeme:červený', 'lexeme:modrý', 'lexeme:zelený', 'lexeme:čierny', 'lexeme:biely', 'lexeme:žltý', 'lexeme:alebo']}
+- {id: sk.u05.ist, kind: lesson, introduces: ['lexeme:ísť', 'lexeme:na', 'lexeme:mama', 'lexeme:otec', 'lexeme:kam']}
+- {id: sk.u05.story, kind: story}
+sentences:
+- id: s.u05.1
+  node: sk.u05.akuzativ
+  forms:
+    sk-Latn/standard:
+      text: Mám malú izbu.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: malú, lexeme: malý, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: izbu,
+          lexeme: izba, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Mám|Ja mám) malú izbu
+  translations:
+    en: I have a (small|little) room.
+- id: s.u05.2
+  node: sk.u05.akuzativ
+  forms:
+    sk-Latn/standard:
+      text: Tereza má novú posteľ.
+      tokens: [{surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: novú,
+          lexeme: nový, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: posteľ, lexeme: posteľ, feats: {Case: Acc, Number: Sing}}]
+      reverse: Tereza má novú posteľ
+  translations:
+    en: Tereza has a new bed.
+- id: s.u05.3
+  node: sk.u05.akuzativ
+  forms:
+    sk-Latn/standard:
+      text: Mám knihu.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: knihu, lexeme: kniha, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Mám|Ja mám) knihu
+  translations:
+    en: I have a book.
+- id: s.u05.4
+  node: sk.u05.akuzativ
+  forms:
+    sk-Latn/standard:
+      text: Máš novú lampu?
+      tokens: [{surface: Máš, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: novú, lexeme: nový, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: lampu,
+          lexeme: lampa, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Máš|Ty máš|Máte|Vy máte) novú lampu
+  translations:
+    en: |-
+      Do you have a new lamp?
+      Have you got a new lamp?
+- id: s.u05.5
+  node: sk.u05.akuzativ
+  forms:
+    sk-Latn/standard:
+      text: Mám brata a sestru.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: brata, lexeme: brat, feats: {Case: Acc, Number: Sing}}, {surface: a, lexeme: a},
+        {surface: sestru, lexeme: sestra, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Mám|Ja mám) brata a sestru
+  translations:
+    en: I have a brother and a sister.
+- id: s.u05.6
+  node: sk.u05.akuzativ
+  forms:
+    sk-Latn/standard:
+      text: Lucka má sestru Terezu.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sestru,
+          lexeme: sestra, feats: {Case: Acc, Number: Sing}}, {surface: Terezu, lexeme: tereza, feats: {Case: Acc, Number: Sing}}]
+      reverse: Lucka má sestru Terezu
+  translations:
+    en: |-
+      Lucka has a sister, Tereza.
+      Lucka has a sister (called|named) Tereza.
+- id: s.u05.7
+  node: sk.u05.narodeniny
+  forms:
+    sk-Latn/standard:
+      text: Samko má narodeniny.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: narodeniny,
+          lexeme: narodeniny, feats: {Case: Acc, Number: Plur}}]
+      reverse: Samko má narodeniny
+  translations:
+    en: (It's|It is) Samko's birthday.
+- id: s.u05.8
+  node: sk.u05.narodeniny
+  forms:
+    sk-Latn/standard:
+      text: Mám darček pre Samka.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: darček, lexeme: darček, feats: {Case: Acc, Number: Sing}}, {surface: pre,
+          lexeme: pre}, {surface: Samka, lexeme: samko, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Mám|Ja mám) darček pre Samka
+  translations:
+    en: I have a (present|gift) for Samko.
+- id: s.u05.9
+  node: sk.u05.narodeniny
+  forms:
+    sk-Latn/standard:
+      text: Darček je pre teba.
+      tokens: [{surface: Darček, lexeme: darček, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pre,
+          lexeme: pre}, {surface: teba, lexeme: ty, feats: {Case: Acc, Number: Sing}}]
+      reverse: Darček je pre (teba|vás)
+  translations:
+    en: The (present|gift) is for you.
+- id: s.u05.10
+  node: sk.u05.narodeniny
+  forms:
+    sk-Latn/standard:
+      text: Čo je to?
+      tokens: [{surface: Čo, lexeme: čo, feats: {Case: Nom}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: to, lexeme: ten, feats: {Case: Nom,
+            Gender: Neut, Number: Sing}}]
+      reverse: Čo (je to|to je)
+  translations:
+    en: (What's|What is) (that|this|it)?
+- id: s.u05.11
+  node: sk.u05.narodeniny
+  forms:
+    sk-Latn/standard:
+      text: To je kniha pre Samka.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kniha,
+          lexeme: kniha, feats: {Case: Nom, Number: Sing}}, {surface: pre, lexeme: pre}, {surface: Samka, lexeme: samko, feats: {Case: Acc, Number: Sing}}]
+      reverse: (To je|Je to) kniha pre Samka
+  translations:
+    en: (That's|That is|This is|It's|It is) a book for Samko.
+- id: s.u05.12
+  node: sk.u05.rad
+  forms:
+    sk-Latn/standard:
+      text: Samko má rád autá.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: rád, lexeme: rád,
+          feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}}, {surface: autá, lexeme: auto, feats: {Case: Acc, Number: Plur}}]
+      reverse: Samko má rád autá
+  translations:
+    en: Samko likes cars.
+- id: s.u05.13
+  node: sk.u05.rad
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Mám rada knihy.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: rada, lexeme: rád, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: knihy,
+          lexeme: kniha, feats: {Case: Acc, Number: Plur}}]
+      reverse: |-
+        (Mám rada|Ja mám rada) knihy
+        Knihy mám rada
+  translations:
+    en: I like books.
+- id: s.u05.14
+  node: sk.u05.rad
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Mám rád knihy.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: rád, lexeme: rád, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}},
+        {surface: knihy, lexeme: kniha, feats: {Case: Acc, Number: Plur}}]
+      reverse: |-
+        (Mám rád|Ja mám rád) knihy
+        Knihy mám rád
+  translations:
+    en: I like books.
+- id: s.u05.15
+  node: sk.u05.rad
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    sk-Latn/standard:
+      text: Máš rád hry?
+      tokens: [{surface: Máš, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: rád, lexeme: rád, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}},
+        {surface: hry, lexeme: hra, feats: {Case: Acc, Number: Plur}}]
+      reverse: (Máš rád|Ty máš rád|Máte rád|Vy máte rád) hry
+  translations:
+    en: Do you like games?
+- id: s.u05.16
+  node: sk.u05.rad
+  forms:
+    sk-Latn/standard:
+      text: Lucka a Tereza majú rady knihy.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: a, lexeme: a}, {surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: majú, lexeme: mať,
+          feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: rady, lexeme: rád, feats: {Case: Nom, Gender: Fem, Number: Plur}}, {surface: knihy, lexeme: kniha, feats: {
+            Case: Acc, Number: Plur}}]
+      reverse: Lucka a Tereza majú rady knihy
+  translations:
+    en: Lucka and Tereza like books.
+- id: s.u05.17
+  node: sk.u05.chciet
+  forms:
+    sk-Latn/standard:
+      text: Samko chce loptu.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: chce, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: loptu,
+          lexeme: lopta, feats: {Case: Acc, Number: Sing}}]
+      reverse: Samko chce loptu
+  translations:
+    en: Samko wants a ball.
+- id: s.u05.18
+  node: sk.u05.chciet
+  forms:
+    sk-Latn/standard:
+      text: Chcem kúpiť darček.
+      tokens: [{surface: Chcem, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: kúpiť, lexeme: kúpiť, feats: {VerbForm: Inf}}, {surface: darček, lexeme: darček,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: (Chcem|Ja chcem) kúpiť darček
+  translations:
+    en: I want to buy a (present|gift).
+- id: s.u05.19
+  node: sk.u05.chciet
+  forms:
+    sk-Latn/standard:
+      text: Môžem?
+      tokens: [{surface: Môžem, lexeme: môcť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: Môžem
+  translations:
+    en: (Can|May) I?
+- id: s.u05.20
+  node: sk.u05.chciet
+  forms:
+    sk-Latn/standard:
+      text: Musím kúpiť knihu.
+      tokens: [{surface: Musím, lexeme: musieť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: kúpiť, lexeme: kúpiť, feats: {VerbForm: Inf}}, {surface: knihu, lexeme: kniha,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: (Musím|Ja musím) kúpiť knihu
+  translations:
+    en: I (must|have to|need to) buy a book.
+- id: s.u05.21
+  node: sk.u05.chciet
+  forms:
+    sk-Latn/standard:
+      text: Môžeš kúpiť loptu?
+      tokens: [{surface: Môžeš, lexeme: môcť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: kúpiť, lexeme: kúpiť, feats: {VerbForm: Inf}}, {surface: loptu, lexeme: lopta,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: (Môžeš|Ty môžeš|Môžete|Vy môžete) kúpiť loptu
+  translations:
+    en: Can you buy a ball?
+- id: s.u05.22
+  node: sk.u05.chciet
+  forms:
+    sk-Latn/standard:
+      text: Nechcem.
+      tokens: [{surface: Nechcem, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}}]
+      reverse: (Nechcem|Ja nechcem)
+  translations:
+    en: |-
+      I (don't|do not) want to.
+      I (don't|do not) want it.
+- id: s.u05.23
+  node: sk.u05.farby
+  forms:
+    sk-Latn/standard:
+      text: Aká je to farba?
+      tokens: [{surface: Aká, lexeme: aký, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: to,
+          lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: farba, lexeme: farba, feats: {Case: Nom, Number: Sing}}]
+      reverse: Aká (je to|to je) farba
+  translations:
+    en: What (colour|color) is (that|this|it)?
+- id: s.u05.24
+  node: sk.u05.farby
+  forms:
+    sk-Latn/standard:
+      text: Lopta je červená.
+      tokens: [{surface: Lopta, lexeme: lopta, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: červená,
+          lexeme: červený, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Lopta je červená
+  translations:
+    en: The ball is red.
+- id: s.u05.25
+  node: sk.u05.farby
+  forms:
+    sk-Latn/standard:
+      text: Chcem modrú loptu.
+      tokens: [{surface: Chcem, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: modrú, lexeme: modrý, feats: {Case: Acc, Gender: Fem, Number: Sing}},
+        {surface: loptu, lexeme: lopta, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Chcem|Ja chcem) modrú loptu
+  translations:
+    en: I want a blue ball.
+- id: s.u05.26
+  node: sk.u05.farby
+  forms:
+    sk-Latn/standard:
+      text: Samko má zelené auto.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: zelené,
+          lexeme: zelený, feats: {Case: Acc, Gender: Neut, Number: Sing}}, {surface: auto, lexeme: auto, feats: {Case: Acc, Number: Sing}}]
+      reverse: Samko má zelené auto
+  translations:
+    en: Samko has a green car.
+- id: s.u05.27
+  node: sk.u05.farby
+  forms:
+    sk-Latn/standard:
+      text: Kniha je čierna a biela.
+      tokens: [{surface: Kniha, lexeme: kniha, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: čierna,
+          lexeme: čierny, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: a, lexeme: a}, {surface: biela, lexeme: biely, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Kniha je čierna a biela
+  translations:
+    en: The book is black and white.
+- id: s.u05.28
+  node: sk.u05.farby
+  forms:
+    sk-Latn/standard:
+      text: Chceš žltú alebo modrú loptu?
+      tokens: [{surface: Chceš, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: žltú, lexeme: žltý, feats: {Case: Acc, Gender: Fem, Number: Sing}},
+        {surface: alebo, lexeme: alebo}, {surface: modrú, lexeme: modrý, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: loptu, lexeme: lopta, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Chceš|Ty chceš|Chcete|Vy chcete) žltú alebo modrú loptu
+  translations:
+    en: |-
+      Do you want a yellow (ball |)or a blue ball?
+      Do you want the yellow (ball |)or the blue ball?
+- id: s.u05.29
+  node: sk.u05.ist
+  forms:
+    sk-Latn/standard:
+      text: Idem na námestie.
+      tokens: [{surface: Idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na}, {surface: námestie, lexeme: námestie, feats: {Case: Acc,
+            Number: Sing}}]
+      reverse: (Idem|Ja idem) na námestie
+  translations:
+    en: (I'm|I am) going to the square.
+- id: s.u05.30
+  node: sk.u05.ist
+  forms:
+    sk-Latn/standard:
+      text: Ideme na narodeniny.
+      tokens: [{surface: Ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na}, {surface: narodeniny, lexeme: narodeniny, feats: {Case: Acc,
+            Number: Plur}}]
+      reverse: (Ideme|My ideme) na narodeniny
+  translations:
+    en: (We're|We are) going to a birthday party.
+- id: s.u05.31
+  node: sk.u05.ist
+  forms:
+    sk-Latn/standard:
+      text: Mama a otec idú na námestie.
+      tokens: [{surface: Mama, lexeme: mama, feats: {Case: Nom, Number: Sing}}, {surface: a, lexeme: a}, {surface: otec, lexeme: otec, feats: {Case: Nom, Number: Sing}}, {surface: idú, lexeme: ísť, feats: {
+            Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na}, {surface: námestie, lexeme: námestie, feats: {Case: Acc, Number: Sing}}]
+      reverse: Mama a otec idú na námestie
+  translations:
+    en: (Mum|Mom) and Dad are going to the square.
+- id: s.u05.32
+  node: sk.u05.ist
+  forms:
+    sk-Latn/standard:
+      text: Samko má rád mamu a otca.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: rád, lexeme: rád,
+          feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}}, {surface: mamu, lexeme: mama, feats: {Case: Acc, Number: Sing}}, {surface: a, lexeme: a}, {surface: otca, lexeme: otec, feats: {
+            Case: Acc, Number: Sing}}]
+      reverse: Samko má rád mamu a otca
+  translations:
+    en: Samko (loves|likes) (his |)(mum|mom) and dad.
+- id: s.u05.33
+  node: sk.u05.ist
+  forms:
+    sk-Latn/standard:
+      text: Kam ideš?
+      tokens: [{surface: Kam, lexeme: kam}, {surface: ideš, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: Kam (ideš|idete|ideš ty|idete vy)
+  translations:
+    en: Where are you going?
+- id: s.u05.34
+  node: sk.u05.ist
+  forms:
+    sk-Latn/standard:
+      text: Idem kúpiť darček pre mamu.
+      tokens: [{surface: Idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: kúpiť, lexeme: kúpiť, feats: {VerbForm: Inf}}, {surface: darček, lexeme: darček,
+          feats: {Case: Acc, Number: Sing}}, {surface: pre, lexeme: pre}, {surface: mamu, lexeme: mama, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Idem|Ja idem) kúpiť darček pre mamu
+  translations:
+    en: (I'm|I am) going to buy a (present|gift) for (Mum|Mom|my mum|my mom).
+stories:
+- id: sk.story.u05
+  node: sk.u05.story
+  title:
+    en: A present for Samko
+  characters:
+  - id: simona
+    speaker: f
+    name:
+      sk-Latn/standard: Simona
+  - id: lucka
+    speaker: f
+    name:
+      sk-Latn/standard: Lucka
+  - id: samko
+    speaker: m
+    name:
+      sk-Latn/standard: Samko
+  steps:
+  - line:
+      speaker: simona
+      forms:
+        sk-Latn/standard:
+          text: Samko má narodeniny.
+          tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: narodeniny,
+              lexeme: narodeniny, feats: {Case: Acc, Number: Plur}}]
+      translations:
+        en: It's Samko's birthday.
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Čo chce Samko?
+          tokens: [{surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: chce, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Samko, lexeme: samko,
+              feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: What does Samko want?
+  - line:
+      speaker: simona
+      forms:
+        sk-Latn/standard:
+          text: Chce loptu alebo auto.
+          tokens: [{surface: Chce, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: loptu, lexeme: lopta, feats: {Case: Acc, Number: Sing}}, {surface: alebo,
+              lexeme: alebo}, {surface: auto, lexeme: auto, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: He wants a ball or a car.
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Má rád autá?
+          tokens: [{surface: Má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: rád, lexeme: rád, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}},
+            {surface: autá, lexeme: auto, feats: {Case: Acc, Number: Plur}}]
+      translations:
+        en: Does he like cars?
+  - line:
+      speaker: simona
+      forms:
+        sk-Latn/standard:
+          text: Áno, veľmi.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: veľmi, lexeme: veľmi}]
+      translations:
+        en: Yes, very much.
+  - choose:
+      prompt:
+        en: What does Samko want?
+      options:
+      - en: A ball or a car
+      - en: A book
+      - en: A bed
+      answer: 0
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Môžem kúpiť auto.
+          tokens: [{surface: Môžem, lexeme: môcť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: kúpiť, lexeme: kúpiť, feats: {VerbForm: Inf}}, {surface: auto, lexeme: auto,
+              feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: I can buy a car.
+  - line:
+      speaker: lucka
+      ask: complete
+      gap: lexeme:samko
+      distractors:
+      - lexeme:dominik
+      - lexeme:rudo
+      forms:
+        sk-Latn/standard:
+          text: Ahoj, Samko! Tu je darček.
+          tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: Tu, lexeme: tu}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing,
+                Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: darček, lexeme: darček, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Hi, Samko! Here's a present.
+  - line:
+      speaker: samko
+      forms:
+        sk-Latn/standard:
+          text: Ďakujem! Je to auto?
+          tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3',
+                Tense: Pres, VerbForm: Fin}}, {surface: to, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: auto, lexeme: auto, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Thank you! Is it a car?
+  - line:
+      speaker: lucka
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Áno, červené auto pre teba.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: červené, lexeme: červený, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: auto, lexeme: auto, feats: {Case: Nom, Number: Sing}}, {surface: pre,
+              lexeme: pre}, {surface: teba, lexeme: ty, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Yes, a red car for you.
+  - choose:
+      prompt:
+        en: What colour is the car?
+      options:
+      - en: Red
+      - en: Blue
+      - en: Green
+      answer: 0
+  - line:
+      speaker: samko
+      forms:
+        sk-Latn/standard:
+          text: Mám rád červené autá!
+          tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: rád, lexeme: rád, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}},
+            {surface: červené, lexeme: červený, feats: {Case: Acc, Gender: Neut, Number: Plur}}, {surface: autá, lexeme: auto, feats: {Case: Acc, Number: Plur}}]
+      translations:
+        en: I like red cars!
+  - choose:
+      prompt:
+        en: Who buys the present?
+      options:
+      - en: Lucka
+      - en: Simona
+      - en: Samko
+      answer: 0

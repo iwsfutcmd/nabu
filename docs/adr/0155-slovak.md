@@ -6,6 +6,10 @@
   proposed; a cast of the course's own in everyday scenes, as the other courses have; public-domain
   passages; no apostrophe for the caron; aspect pairs as two lexemes; the voice Claude's pick; sk a
   fixture course. A reviewer is not yet known.
+- Built 2026-11-23 (the owner: "build the whole thing"): twenty units, drafts awaiting a native
+  reviewer. Where the build departs from this record: one Dobšinský passage, unit 17's story, not five
+  (the passage note below); possessive adjectives, the
+  reflexive passive and *všetci* left for a later pass (courses/sk/README.md lists them).
 
 ## Context
 
@@ -77,11 +81,13 @@ syllabus are in `courses/sk/README.md`; the build order, stage by stage, in `doc
   people who come back from unit to unit (two sisters, a boyfriend, the neighbours and their son, a
   grandmother in a village under the Malá Fatra; the README), no stand-in for the learner and no plot.
   Nothing is taken from the books.
-- **Real Slovak at the end**: units 16–20 each also read a short passage of Pavol Dobšinský's folk
-  tales (*Prostonárodnie slovenské povesti*, 1880–1883; Google's scans of two volumes dated 1881 on
-  archive.org), public domain. The text is taken from the scan and checked on the page image, then
-  written in by a script; its spelling is modernized and every change listed in the story's notes;
-  a tale in dialect is not used.
+- **Real Slovak at the end**: a short passage of Pavol Dobšinský's folk tales (*Prostonárodnie
+  slovenské povesti*, 1880–1883; Google's scans of two volumes dated 1881 on archive.org), public
+  domain. The text is read off the page image; its spelling is modernized and every change listed in
+  the unit's header; a tale in dialect is not used. As built, one passage: the start of *Ako šlo vajce
+  na vandrovku* is unit 17's story, and unit 20 says how the tales were collected. The plan named a
+  tale for each of units 16–20; on the page, *Kozliatka* and *O dvanástich mesiačkoch* keep too many
+  older and regional forms for a B1 reader, and the others were not read closely.
 - Every facet (recognize, produce, listen, speak). **No script track**: Slovak is a Latin
   orthography, which never gates (ADR 0149); its letters and marks are taught inside the course, as
   Spanish spelling is.

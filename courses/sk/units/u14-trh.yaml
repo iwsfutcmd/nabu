@@ -1,0 +1,349 @@
+# Unit 14 (sk): the dative, locative and instrumental plural (k ľuďom, na trhoch, s jablkami), quantities
+# (kilo, fľaša, veľa) and money (eurá, eur); shopping at the market.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u14
+title:
+  en: Na trhu At the market
+cefr: A2
+nodes:
+- {id: sk.u14.trh, kind: lesson, introduces: ['lexeme:trh', 'lexeme:jablko', 'lexeme:hruška', 'lexeme:zemiak', 'lexeme:paradajka', 'lexeme:cibuľa']}
+- {id: sk.u14.kolko, kind: lesson, introduces: ['lexeme:kilo', 'lexeme:euro', 'lexeme:stáť', 'lexeme:prosiť-si', 'lexeme:predavačka']}
+- {id: sk.u14.plural, kind: lesson, introduces: ['lexeme:sladký', 'lexeme:zrelý', 'lexeme:fľaša']}
+- {id: sk.u14.vsetko, kind: lesson, introduces: ['lexeme:niečo', 'lexeme:všetok']}
+- {id: sk.u14.story, kind: story}
+sentences:
+- id: s.u14.1
+  node: sk.u14.trh
+  forms:
+    sk-Latn/standard:
+      text: Idem na trh.
+      tokens: [{surface: Idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na}, {surface: trh, lexeme: trh, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Idem|Ja idem) na trh
+  translations:
+    en: (I'm|I am) going to the market.
+- id: s.u14.2
+  node: sk.u14.trh
+  forms:
+    sk-Latn/standard:
+      text: Na trhu sú jablká a hrušky.
+      tokens: [{surface: Na, lexeme: na}, {surface: trhu, lexeme: trh, feats: {Case: Loc, Number: Sing}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: jablká, lexeme: jablko, feats: {Case: Nom, Number: Plur}}, {surface: a, lexeme: a}, {surface: hrušky, lexeme: hruška, feats: {Case: Nom, Number: Plur}}]
+      reverse: (Na trhu sú jablká a hrušky|Jablká a hrušky sú na trhu)
+  translations:
+    en: |-
+      (There are|There're) apples and pears at the market.
+      The apples and pears are at the market.
+- id: s.u14.3
+  node: sk.u14.trh
+  forms:
+    sk-Latn/standard:
+      text: Kupujem zemiaky.
+      tokens: [{surface: Kupujem, lexeme: kupovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: zemiaky, lexeme: zemiak, feats: {Case: Acc, Number: Plur}}]
+      reverse: (Kupujem|Ja kupujem) zemiaky
+  translations:
+    en: |-
+      (I'm|I am) buying potatoes.
+      I buy potatoes.
+- id: s.u14.4
+  node: sk.u14.trh
+  forms:
+    sk-Latn/standard:
+      text: Paradajky sú červené.
+      tokens: [{surface: Paradajky, lexeme: paradajka, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: červené,
+          lexeme: červený, feats: {Case: Nom, Gender: Fem, Number: Plur}}]
+      reverse: Paradajky sú červené
+  translations:
+    en: The tomatoes are red.
+- id: s.u14.5
+  node: sk.u14.trh
+  forms:
+    sk-Latn/standard:
+      text: Mám jablká, hrušky a cibuľu.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: jablká, lexeme: jablko, feats: {Case: Acc, Number: Plur}}, {surface: hrušky,
+          lexeme: hruška, feats: {Case: Acc, Number: Plur}}, {surface: a, lexeme: a}, {surface: cibuľu, lexeme: cibuľa, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Mám|Ja mám) jablká hrušky a cibuľu
+  translations:
+    en: I have apples, pears and an onion.
+- id: s.u14.6
+  node: sk.u14.kolko
+  forms:
+    sk-Latn/standard:
+      text: Koľko to stojí?
+      tokens: [{surface: Koľko, lexeme: koľko}, {surface: to, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: stojí, lexeme: stáť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+            VerbForm: Fin}}]
+      reverse: |-
+        Koľko to stojí
+        Koľko stojí to
+  translations:
+    en: How much (is it|is that|does it cost|does that cost)?
+- id: s.u14.7
+  node: sk.u14.kolko
+  forms:
+    sk-Latn/standard:
+      text: Stojí to dve eurá.
+      tokens: [{surface: Stojí, lexeme: stáť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: to, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: dve,
+          lexeme: dva, feats: {Case: Acc, Gender: Neut, Number: Plur}}, {surface: eurá, lexeme: euro, feats: {Case: Acc, Number: Plur}}]
+      reverse: (Stojí to dve eurá|To stojí dve eurá)
+  translations:
+    en: |-
+      (It's|It is|That's|That is) two euros.
+      It costs two euros.
+- id: s.u14.8
+  node: sk.u14.kolko
+  forms:
+    sk-Latn/standard:
+      text: Kilo jabĺk stojí jedno euro.
+      tokens: [{surface: Kilo, lexeme: kilo, feats: {Case: Nom, Number: Sing}}, {surface: jabĺk, lexeme: jablko, feats: {Case: Gen, Number: Plur}}, {surface: stojí, lexeme: stáť, feats: {Mood: Ind, Number: Sing,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: jedno, lexeme: jeden, feats: {Case: Acc, Gender: Neut, Number: Sing}}, {surface: euro, lexeme: euro, feats: {Case: Acc, Number: Sing}}]
+      reverse: Kilo jabĺk stojí jedno euro
+  translations:
+    en: A kilo of apples (is|costs) one euro.
+- id: s.u14.9
+  node: sk.u14.kolko
+  forms:
+    sk-Latn/standard:
+      text: Prosím si kilo zemiakov.
+      tokens: [{surface: Prosím, lexeme: prosiť-si, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: si, lexeme: si.refl}, {surface: kilo, lexeme: kilo, feats: {Case: Acc,
+            Number: Sing}}, {surface: zemiakov, lexeme: zemiak, feats: {Case: Gen, Number: Plur}}]
+      reverse: Prosím si kilo zemiakov
+  translations:
+    en: |-
+      A kilo of potatoes, please.
+      I'd like a kilo of potatoes.
+- id: s.u14.10
+  node: sk.u14.kolko
+  forms:
+    sk-Latn/standard:
+      text: Predavačka je milá.
+      tokens: [{surface: Predavačka, lexeme: predavačka, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: milá,
+          lexeme: milý, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Predavačka je milá
+  translations:
+    en: The (shop assistant|stallholder) is (nice|kind|friendly).
+- id: s.u14.11
+  node: sk.u14.kolko
+  forms:
+    sk-Latn/standard:
+      text: Päť eur, prosím.
+      tokens: [{surface: Päť, lexeme: päť}, {surface: eur, lexeme: euro, feats: {Case: Gen, Number: Plur}}, {surface: prosím, lexeme: prosiť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: Päť eur prosím
+  translations:
+    en: Five euros, please.
+- id: s.u14.12
+  node: sk.u14.plural
+  forms:
+    sk-Latn/standard:
+      text: Jablká sú sladké a zrelé.
+      tokens: [{surface: Jablká, lexeme: jablko, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sladké,
+          lexeme: sladký, feats: {Case: Nom, Gender: Neut, Number: Plur}}, {surface: a, lexeme: a}, {surface: zrelé, lexeme: zrelý, feats: {Case: Nom, Gender: Neut, Number: Plur}}]
+      reverse: Jablká sú sladké a zrelé
+  translations:
+    en: The apples are sweet and ripe.
+- id: s.u14.13
+  node: sk.u14.plural
+  forms:
+    sk-Latn/standard:
+      text: Na trhoch je veľa ľudí.
+      tokens: [{surface: Na, lexeme: na}, {surface: trhoch, lexeme: trh, feats: {Case: Loc, Number: Plur}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: veľa, lexeme: veľa}, {surface: ľudí, lexeme: človek, feats: {Case: Gen, Number: Plur}}]
+      reverse: (Na trhoch je veľa ľudí|Na trhoch býva veľa ľudí)
+  translations:
+    en: (There are|There're) (many|a lot of|lots of) people at the markets.
+- id: s.u14.14
+  node: sk.u14.plural
+  forms:
+    sk-Latn/standard:
+      text: Hovorím s predavačkami.
+      tokens: [{surface: Hovorím, lexeme: hovoriť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: s, lexeme: s}, {surface: predavačkami, lexeme: predavačka, feats: {
+            Case: Ins, Number: Plur}}]
+      reverse: (Hovorím|Ja hovorím) s predavačkami
+  translations:
+    en: (I'm|I am) talking to the (stallholders|shop assistants).
+- id: s.u14.15
+  node: sk.u14.plural
+  forms:
+    sk-Latn/standard:
+      text: Dám deťom jablká.
+      tokens: [{surface: Dám, lexeme: dať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: deťom, lexeme: dieťa, feats: {Case: Dat, Number: Plur}}, {surface: jablká,
+          lexeme: jablko, feats: {Case: Acc, Number: Plur}}]
+      reverse: (Dám deťom jablká|Dám jablká deťom|Deťom dám jablká)
+  translations:
+    en: |-
+      (I'll|I will) give the children [some] apples.
+      (I'll|I will) give [some] apples to the children.
+- id: s.u14.16
+  node: sk.u14.plural
+  forms:
+    sk-Latn/standard:
+      text: Kúpim dve fľaše vody.
+      tokens: [{surface: Kúpim, lexeme: kúpiť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dve, lexeme: dva, feats: {Case: Acc, Gender: Fem, Number: Plur}}, {surface: fľaše,
+          lexeme: fľaša, feats: {Case: Acc, Number: Plur}}, {surface: vody, lexeme: voda, feats: {Case: Gen, Number: Sing}}]
+      reverse: (Kúpim|Ja kúpim) dve fľaše vody
+  translations:
+    en: (I'll|I will) buy two bottles of water.
+- id: s.u14.17
+  node: sk.u14.vsetko
+  forms:
+    sk-Latn/standard:
+      text: Ešte niečo?
+      tokens: [{surface: Ešte, lexeme: ešte}, {surface: niečo, lexeme: niečo, feats: {Case: Acc}}]
+      reverse: Ešte niečo
+  translations:
+    en: |-
+      Anything else?
+      Something else?
+- id: s.u14.18
+  node: sk.u14.vsetko
+  forms:
+    sk-Latn/standard:
+      text: Nie, to je všetko.
+      tokens: [{surface: Nie, lexeme: nie}, {surface: to, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+            VerbForm: Fin}}, {surface: všetko, lexeme: všetok, feats: {Case: Nom, Gender: Neut, Number: Sing}}]
+      reverse: Nie to je všetko
+  translations:
+    en: |-
+      No, (that's|that is) all.
+      No, (that's|that is) everything.
+- id: s.u14.19
+  node: sk.u14.vsetko
+  forms:
+    sk-Latn/standard:
+      text: Všetci sú na trhu.
+      tokens: [{surface: Všetci, lexeme: všetok, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: na, lexeme: na}, {surface: trhu, lexeme: trh, feats: {Case: Loc, Number: Sing}}]
+      reverse: (Všetci sú na trhu|Na trhu sú všetci)
+  translations:
+    en: |-
+      Everyone is at the market.
+      Everybody is at the market.
+- id: s.u14.20
+  node: sk.u14.vsetko
+  forms:
+    sk-Latn/standard:
+      text: Chcem niečo sladké.
+      tokens: [{surface: Chcem, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: niečo, lexeme: niečo, feats: {Case: Acc}}, {surface: sladké, lexeme: sladký,
+          feats: {Case: Acc, Gender: Neut, Number: Sing}}]
+      reverse: (Chcem|Ja chcem) niečo sladké
+  translations:
+    en: I want something sweet.
+stories:
+- id: sk.story.u14
+  node: sk.u14.story
+  title:
+    en: At the market
+  characters:
+  - id: simona
+    speaker: f
+    name:
+      sk-Latn/standard: Simona
+  - id: predavacka
+    speaker: f
+    name:
+      sk-Latn/standard: Predavačka
+  - id: samko
+    speaker: m
+    name:
+      sk-Latn/standard: Samko
+  steps:
+  - line:
+      speaker: predavacka
+      forms:
+        sk-Latn/standard:
+          text: Dobrý deň! Čo si prosíte?
+          tokens: [{surface: Dobrý, lexeme: dobrý-deň}, {surface: deň, lexeme: dobrý-deň}, {surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: si, lexeme: si.refl}, {surface: prosíte, lexeme: prosiť-si,
+              feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Hello! What would you like?
+  - line:
+      speaker: simona
+      forms:
+        sk-Latn/standard:
+          text: Dobrý deň. Prosím si kilo jabĺk.
+          tokens: [{surface: Dobrý, lexeme: dobrý-deň}, {surface: deň, lexeme: dobrý-deň}, {surface: Prosím, lexeme: prosiť-si, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: si, lexeme: si.refl}, {surface: kilo, lexeme: kilo, feats: {Case: Acc, Number: Sing}}, {surface: jabĺk, lexeme: jablko, feats: {Case: Gen, Number: Plur}}]
+      translations:
+        en: Hello. A kilo of apples, please.
+  - line:
+      speaker: predavacka
+      forms:
+        sk-Latn/standard:
+          text: Jablká sú dnes veľmi sladké.
+          tokens: [{surface: Jablká, lexeme: jablko, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dnes,
+              lexeme: dnes}, {surface: veľmi, lexeme: veľmi}, {surface: sladké, lexeme: sladký, feats: {Case: Nom, Gender: Neut, Number: Plur}}]
+      translations:
+        en: The apples are very sweet today.
+  - line:
+      speaker: samko
+      forms:
+        sk-Latn/standard:
+          text: Mama, chcem aj hrušky!
+          tokens: [{surface: Mama, lexeme: mama, feats: {Case: Nom, Number: Sing}}, {surface: chcem, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: aj,
+              lexeme: aj}, {surface: hrušky, lexeme: hruška, feats: {Case: Acc, Number: Plur}}]
+      translations:
+        en: Mum, I want pears too!
+  - choose:
+      prompt:
+        en: What does Samko want?
+      options:
+      - en: Pears
+      - en: Apples
+      - en: Potatoes
+      answer: 0
+  - line:
+      speaker: simona
+      forms:
+        sk-Latn/standard:
+          text: Dobre. A kilo hrušiek, prosím.
+          tokens: [{surface: Dobre, lexeme: dobre}, {surface: A, lexeme: a}, {surface: kilo, lexeme: kilo, feats: {Case: Acc, Number: Sing}}, {surface: hrušiek, lexeme: hruška, feats: {Case: Gen, Number: Plur}},
+            {surface: prosím, lexeme: prosiť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: All right. And a kilo of pears, please.
+  - line:
+      speaker: predavacka
+      forms:
+        sk-Latn/standard:
+          text: Ešte niečo?
+          tokens: [{surface: Ešte, lexeme: ešte}, {surface: niečo, lexeme: niečo, feats: {Case: Acc}}]
+      translations:
+        en: Anything else?
+  - line:
+      speaker: simona
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Nie, to je všetko. Koľko to stojí?
+          tokens: [{surface: Nie, lexeme: nie}, {surface: to, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+                VerbForm: Fin}}, {surface: všetko, lexeme: všetok, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Koľko, lexeme: koľko}, {surface: to, lexeme: ten, feats: {Case: Nom, Gender: Neut,
+                Number: Sing}}, {surface: stojí, lexeme: stáť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: No, that's all. How much is it?
+  - line:
+      speaker: predavacka
+      ask: complete
+      gap: lexeme:euro
+      distractors:
+      - lexeme:jablko
+      - lexeme:auto
+      forms:
+        sk-Latn/standard:
+          text: Tri eurá, prosím.
+          tokens: [{surface: Tri, lexeme: tri, feats: {Case: Acc, Gender: Neut, Number: Plur}}, {surface: eurá, lexeme: euro, feats: {Case: Acc, Number: Plur}}, {surface: prosím, lexeme: prosiť, feats: {
+                Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Three euros, please.
+  - choose:
+      prompt:
+        en: How much does Simona pay?
+      options:
+      - en: Three euros
+      - en: Two euros
+      - en: Five euros
+      answer: 0
+  - line:
+      speaker: samko
+      forms:
+        sk-Latn/standard:
+          text: Ďakujem, mama!
+          tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mama, lexeme: mama, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Thank you, Mum!

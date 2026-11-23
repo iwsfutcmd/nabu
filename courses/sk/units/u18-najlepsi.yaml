@@ -1,0 +1,385 @@
+# Unit 18 (sk): comparing: the comparative (-ší, -ejší; lepší, väčší, menší, krajší) and the superlative (naj-), than
+# (než, ako), viac and radšej; the points of the compass, and Slovakia's towns, mountains and rivers compared.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u18
+title:
+  en: Najlepší The best
+cefr: B1
+nodes:
+- {id: sk.u18.lepsi, kind: lesson, introduces: ['feature:Degree=Cmp', 'lexeme:než']}
+- {id: sk.u18.najlepsi, kind: lesson, introduces: ['feature:Degree=Sup', 'lexeme:rieka', 'lexeme:váh']}
+- {id: sk.u18.strany, kind: lesson, introduces: ['lexeme:sever', 'lexeme:juh', 'lexeme:východ', 'lexeme:západ', 'lexeme:radšej']}
+- {id: sk.u18.story, kind: story}
+sentences:
+- id: s.u18.1
+  node: sk.u18.lepsi
+  forms:
+    sk-Latn/standard:
+      text: Bratislava je väčšia než Žilina.
+      tokens: [{surface: Bratislava, lexeme: bratislava, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: väčšia,
+          lexeme: veľký, feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}}, {surface: než, lexeme: než}, {surface: Žilina, lexeme: žilina, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Bratislava je väčšia než Žilina|Bratislava je väčšia ako Žilina)
+  translations:
+    en: Bratislava is bigger than Žilina.
+- id: s.u18.2
+  node: sk.u18.lepsi
+  forms:
+    sk-Latn/standard:
+      text: Žilina je menšia ako Košice.
+      tokens: [{surface: Žilina, lexeme: žilina, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: menšia,
+          lexeme: malý, feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}}, {surface: ako, lexeme: ako}, {surface: Košice, lexeme: košice, feats: {Case: Nom, Number: Plur}}]
+      reverse: (Žilina je menšia ako Košice|Žilina je menšia než Košice)
+  translations:
+    en: Žilina is smaller than Košice.
+- id: s.u18.3
+  node: sk.u18.lepsi
+  forms:
+    sk-Latn/standard:
+      text: Liam je vyšší než Samko.
+      tokens: [{surface: Liam, lexeme: liam, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: vyšší, lexeme: vysoký,
+          feats: {Animacy: Anim, Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}}, {surface: než, lexeme: než}, {surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Liam je vyšší než Samko|Liam je vyšší ako Samko)
+  translations:
+    en: Liam is taller than Samko.
+- id: s.u18.4
+  node: sk.u18.lepsi
+  forms:
+    sk-Latn/standard:
+      text: Babka je staršia ako dedko.
+      tokens: [{surface: Babka, lexeme: babka, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: staršia,
+          lexeme: starý, feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}}, {surface: ako, lexeme: ako}, {surface: dedko, lexeme: dedko, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Babka je staršia ako dedko|Babka je staršia než dedko)
+  translations:
+    en: (Grandma|Granny) is older than (Grandpa|Grandad).
+- id: s.u18.5
+  node: sk.u18.lepsi
+  forms:
+    sk-Latn/standard:
+      text: Vlak je lacnejší než auto.
+      tokens: [{surface: Vlak, lexeme: vlak, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: lacnejší,
+          lexeme: lacný, feats: {Animacy: Inan, Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}}, {surface: než, lexeme: než}, {surface: auto, lexeme: auto, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Vlak je lacnejší než auto|Vlak je lacnejší ako auto)
+  translations:
+    en: |-
+      The train is cheaper than the car.
+      The train is cheaper than (driving|going by car).
+- id: s.u18.6
+  node: sk.u18.lepsi
+  forms:
+    sk-Latn/standard:
+      text: Tu je káva lepšia.
+      tokens: [{surface: Tu, lexeme: tu}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: káva, lexeme: káva, feats: {Case: Nom, Number: Sing}},
+        {surface: lepšia, lexeme: dobrý, feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}}]
+      reverse: (Tu je káva lepšia|Káva je tu lepšia)
+  translations:
+    en: |-
+      The coffee is better here.
+      Here the coffee is better.
+- id: s.u18.7
+  node: sk.u18.lepsi
+  forms:
+    sk-Latn/standard:
+      text: Mám sa lepšie.
+      tokens: [{surface: Mám, lexeme: mať-sa, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: lepšie, lexeme: dobre, feats: {Degree: Cmp}}]
+      reverse: (Mám sa lepšie|Ja sa mám lepšie)
+  translations:
+    en: |-
+      (I'm|I am) (feeling|doing) better.
+      I feel better.
+- id: s.u18.8
+  node: sk.u18.lepsi
+  forms:
+    sk-Latn/standard:
+      text: Dnes je tu viac ľudí.
+      tokens: [{surface: Dnes, lexeme: dnes}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu}, {surface: viac, lexeme: veľa,
+          feats: {Degree: Cmp}}, {surface: ľudí, lexeme: človek, feats: {Case: Gen, Number: Plur}}]
+      reverse: (Dnes je tu viac ľudí|Tu je dnes viac ľudí)
+  translations:
+    en: |-
+      (There are|There're) more people here today.
+      Today there are more people here.
+- id: s.u18.9
+  node: sk.u18.lepsi
+  forms:
+    sk-Latn/standard:
+      text: Toto auto je drahšie.
+      tokens: [{surface: Toto, lexeme: tento, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: auto, lexeme: auto, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: drahšie, lexeme: drahý, feats: {Case: Nom, Degree: Cmp, Gender: Neut, Number: Sing}}]
+      reverse: Toto auto je drahšie
+  translations:
+    en: This car is more expensive.
+- id: s.u18.10
+  node: sk.u18.najlepsi
+  forms:
+    sk-Latn/standard:
+      text: Kofola je najlepšia!
+      tokens: [{surface: Kofola, lexeme: kofola, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: najlepšia,
+          lexeme: dobrý, feats: {Case: Nom, Degree: Sup, Gender: Fem, Number: Sing}}]
+      reverse: Kofola je najlepšia
+  translations:
+    en: Kofola is the best!
+- id: s.u18.11
+  node: sk.u18.najlepsi
+  forms:
+    sk-Latn/standard:
+      text: Tatry sú najvyššie hory na Slovensku.
+      tokens: [{surface: Tatry, lexeme: tatry, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: najvyššie,
+          lexeme: vysoký, feats: {Case: Nom, Degree: Sup, Gender: Fem, Number: Plur}}, {surface: hory, lexeme: hora, feats: {Case: Nom, Number: Plur}}, {surface: na, lexeme: na}, {surface: Slovensku, lexeme: slovensko,
+          feats: {Case: Loc, Number: Sing}}]
+      reverse: Tatry sú najvyššie hory na Slovensku
+  translations:
+    en: The Tatras are the highest mountains in Slovakia.
+- id: s.u18.12
+  node: sk.u18.najlepsi
+  forms:
+    sk-Latn/standard:
+      text: Váh je najdlhšia rieka na Slovensku.
+      tokens: [{surface: Váh, lexeme: váh, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: najdlhšia,
+          lexeme: dlhý, feats: {Case: Nom, Degree: Sup, Gender: Fem, Number: Sing}}, {surface: rieka, lexeme: rieka, feats: {Case: Nom, Number: Sing}}, {surface: na, lexeme: na}, {surface: Slovensku, lexeme: slovensko,
+          feats: {Case: Loc, Number: Sing}}]
+      reverse: Váh je najdlhšia rieka na Slovensku
+  translations:
+    en: The Váh is the longest river in Slovakia.
+- id: s.u18.13
+  node: sk.u18.najlepsi
+  forms:
+    sk-Latn/standard:
+      text: Žilina je na Váhu.
+      tokens: [{surface: Žilina, lexeme: žilina, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na},
+        {surface: Váhu, lexeme: váh, feats: {Case: Loc, Number: Sing}}]
+      reverse: Žilina je na Váhu
+  translations:
+    en: Žilina is on the Váh.
+- id: s.u18.14
+  node: sk.u18.najlepsi
+  forms:
+    sk-Latn/standard:
+      text: Vidíš tú rieku? To je Váh.
+      tokens: [{surface: Vidíš, lexeme: vidieť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: tú, lexeme: ten, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: rieku,
+          lexeme: rieka, feats: {Case: Acc, Number: Sing}}, {surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3',
+            Tense: Pres, VerbForm: Fin}}, {surface: Váh, lexeme: váh, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Vidíš|Vidíte) tú rieku To je Váh
+  translations:
+    en: (Do you see|Can you see) that river? (That's|That is) the Váh.
+- id: s.u18.15
+  node: sk.u18.najlepsi
+  forms:
+    sk-Latn/standard:
+      text: Ktoré mesto je najkrajšie?
+      tokens: [{surface: Ktoré, lexeme: ktorý, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: mesto, lexeme: mesto, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: najkrajšie, lexeme: pekný, feats: {Case: Nom, Degree: Sup, Gender: Neut, Number: Sing}}]
+      reverse: Ktoré mesto je najkrajšie
+  translations:
+    en: Which (town|city) is the (most beautiful|prettiest|nicest)?
+- id: s.u18.16
+  node: sk.u18.najlepsi
+  forms:
+    sk-Latn/standard:
+      text: Pre mňa je najkrajšia Žilina.
+      tokens: [{surface: Pre, lexeme: pre}, {surface: mňa, lexeme: ja, feats: {Case: Acc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: najkrajšia, lexeme: pekný, feats: {Case: Nom, Degree: Sup, Gender: Fem, Number: Sing}}, {surface: Žilina, lexeme: žilina, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Pre mňa je najkrajšia Žilina|Pre mňa je Žilina najkrajšia)
+  translations:
+    en: |-
+      For me, Žilina is the (most beautiful|prettiest|nicest).
+      To me, Žilina is the (most beautiful|prettiest|nicest).
+- id: s.u18.17
+  node: sk.u18.strany
+  forms:
+    sk-Latn/standard:
+      text: Košice sú na východe.
+      tokens: [{surface: Košice, lexeme: košice, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na},
+        {surface: východe, lexeme: východ, feats: {Case: Loc, Number: Sing}}]
+      reverse: Košice sú na východe
+  translations:
+    en: Košice (is|are) in the east.
+- id: s.u18.18
+  node: sk.u18.strany
+  forms:
+    sk-Latn/standard:
+      text: Bratislava je na západe.
+      tokens: [{surface: Bratislava, lexeme: bratislava, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: na,
+          lexeme: na}, {surface: západe, lexeme: západ, feats: {Case: Loc, Number: Sing}}]
+      reverse: Bratislava je na západe
+  translations:
+    en: Bratislava is in the west.
+- id: s.u18.19
+  node: sk.u18.strany
+  forms:
+    sk-Latn/standard:
+      text: Tatry sú na severe.
+      tokens: [{surface: Tatry, lexeme: tatry, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na},
+        {surface: severe, lexeme: sever, feats: {Case: Loc, Number: Sing}}]
+      reverse: Tatry sú na severe
+  translations:
+    en: The Tatras are in the north.
+- id: s.u18.20
+  node: sk.u18.strany
+  forms:
+    sk-Latn/standard:
+      text: Na juhu je teplejšie.
+      tokens: [{surface: Na, lexeme: na}, {surface: juhu, lexeme: juh, feats: {Case: Loc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: teplejšie, lexeme: teplo, feats: {Degree: Cmp}}]
+      reverse: (Na juhu je teplejšie|Teplejšie je na juhu)
+  translations:
+    en: |-
+      (It's|It is) warmer in the south.
+      In the south (it's|it is) warmer.
+- id: s.u18.21
+  node: sk.u18.strany
+  forms:
+    sk-Latn/standard:
+      text: Radšej pijem čaj.
+      tokens: [{surface: Radšej, lexeme: radšej}, {surface: pijem, lexeme: piť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: čaj, lexeme: čaj, feats: {Case: Acc,
+            Number: Sing}}]
+      reverse: (Radšej pijem čaj|Ja radšej pijem čaj)
+  translations:
+    en: |-
+      I'd rather drink tea.
+      I prefer (drinking |)tea.
+- id: s.u18.22
+  node: sk.u18.strany
+  forms:
+    sk-Latn/standard:
+      text: Radšej pôjdem vlakom.
+      tokens: [{surface: Radšej, lexeme: radšej}, {surface: pôjdem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: vlakom, lexeme: vlak, feats: {Case: Ins,
+            Number: Sing}}]
+      reverse: (Radšej pôjdem vlakom|Pôjdem radšej vlakom)
+  translations:
+    en: |-
+      I'd rather go by train.
+      (I'll|I will) go by train instead.
+- id: s.u18.23
+  node: sk.u18.strany
+  forms:
+    sk-Latn/standard:
+      text: Čo piješ radšej, kávu alebo čaj?
+      tokens: [{surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: piješ, lexeme: piť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: radšej, lexeme: radšej},
+        {surface: kávu, lexeme: káva, feats: {Case: Acc, Number: Sing}}, {surface: alebo, lexeme: alebo}, {surface: čaj, lexeme: čaj, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Čo piješ radšej kávu alebo čaj|Čo pijete radšej kávu alebo čaj)
+  translations:
+    en: |-
+      Which do you prefer, coffee or tea?
+      What do you prefer, coffee or tea?
+stories:
+- id: sk.story.u18
+  node: sk.u18.story
+  title:
+    en: Which town is the prettiest?
+  characters:
+  - id: lucka
+    speaker: f
+    name:
+      sk-Latn/standard: Lucka
+  - id: liam
+    speaker: m
+    name:
+      sk-Latn/standard: Liam
+  steps:
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Liam, ktoré mesto je najkrajšie?
+          tokens: [{surface: Liam, lexeme: liam, feats: {Case: Nom, Number: Sing}}, {surface: ktoré, lexeme: ktorý, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: mesto, lexeme: mesto, feats: {
+                Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: najkrajšie, lexeme: pekný, feats: {Case: Nom,
+                Degree: Sup, Gender: Neut, Number: Sing}}]
+      translations:
+        en: Liam, which town is the prettiest?
+  - line:
+      speaker: liam
+      forms:
+        sk-Latn/standard:
+          text: Bratislava je väčšia, ale Žilina je krajšia.
+          tokens: [{surface: Bratislava, lexeme: bratislava, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: väčšia,
+              lexeme: veľký, feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}}, {surface: ale, lexeme: ale}, {surface: Žilina, lexeme: žilina, feats: {Case: Nom, Number: Sing}}, {surface: je,
+              lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: krajšia, lexeme: pekný, feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}}]
+      translations:
+        en: Bratislava is bigger, but Žilina is prettier.
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: A Košice?
+          tokens: [{surface: A, lexeme: a}, {surface: Košice, lexeme: košice, feats: {Case: Nom, Number: Plur}}]
+      translations:
+        en: And Košice?
+  - line:
+      speaker: liam
+      ask: complete
+      gap: lexeme:východ
+      distractors:
+      - lexeme:západ
+      - lexeme:sever
+      forms:
+        sk-Latn/standard:
+          text: Košice sú tiež pekné. Sú na východe.
+          tokens: [{surface: Košice, lexeme: košice, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tiež,
+              lexeme: tiež}, {surface: pekné, lexeme: pekný, feats: {Case: Nom, Gender: Fem, Number: Plur}}, {surface: Sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}},
+            {surface: na, lexeme: na}, {surface: východe, lexeme: východ, feats: {Case: Loc, Number: Sing}}]
+      translations:
+        en: Košice is nice too. It's in the east.
+  - choose:
+      prompt:
+        en: Which town does Liam find prettier than Bratislava?
+      options:
+      - en: Žilina
+      - en: Košice
+      - en: Poprad
+      answer: 0
+  - line:
+      speaker: lucka
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Pre mňa je najkrajšia Žilina.
+          tokens: [{surface: Pre, lexeme: pre}, {surface: mňa, lexeme: ja, feats: {Case: Acc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+            {surface: najkrajšia, lexeme: pekný, feats: {Case: Nom, Degree: Sup, Gender: Fem, Number: Sing}}, {surface: Žilina, lexeme: žilina, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: For me, Žilina is the prettiest.
+  - line:
+      speaker: liam
+      forms:
+        sk-Latn/standard:
+          text: A kde je najlepšia káva?
+          tokens: [{surface: A, lexeme: a}, {surface: kde, lexeme: kde}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: najlepšia, lexeme: dobrý,
+              feats: {Case: Nom, Degree: Sup, Gender: Fem, Number: Sing}}, {surface: káva, lexeme: káva, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: And where's the best coffee?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: U babky! Babka varí najlepšiu kávu.
+          tokens: [{surface: U, lexeme: u}, {surface: babky, lexeme: babka, feats: {Case: Gen, Number: Sing}}, {surface: Babka, lexeme: babka, feats: {Case: Nom, Number: Sing}}, {surface: varí, lexeme: variť,
+              feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: najlepšiu, lexeme: dobrý, feats: {Case: Acc, Degree: Sup, Gender: Fem, Number: Sing}}, {surface: kávu,
+              lexeme: káva, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: At my grandma's! Grandma makes the best coffee.
+  - choose:
+      prompt:
+        en: Where is the best coffee, says Lucka?
+      options:
+      - en: At her grandma's
+      - en: In Košice
+      - en: At the station
+      answer: 0
+  - line:
+      speaker: liam
+      forms:
+        sk-Latn/standard:
+          text: Ideme k babke!
+          tokens: [{surface: Ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: k, lexeme: k}, {surface: babke, lexeme: babka, feats: {Case: Dat, Number: Sing}}]
+      translations:
+        en: Let's go to your grandma's!
+scenarios:
+- id: sk.cestovka
+  after: sk.u18.strany
+  title:
+    en: Choosing a trip
+  setting:
+    en: A travel agency in Žilina on a Saturday morning. You want a weekend away and cannot decide between the High Tatras and Bratislava.
+  character:
+    en: Pani Kováčová, a cheerful travel agent who likes to compare everything.
+  goal:
+    en: Ask which trip is cheaper and which is nicer, where it is warmer, say what you would rather do, and choose one.

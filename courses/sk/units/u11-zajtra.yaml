@@ -1,0 +1,382 @@
+# Unit 11 (sk): the future (budem, budeš …; budem robiť) and aspect: imperfective and perfective pairs
+# (písať / napísať, robiť / urobiť, kupovať / kúpiť, volať / zavolať); a perfective's present says the future.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u11
+title:
+  en: Čo urobíš zajtra? What will you do tomorrow?
+cefr: A2
+nodes:
+- {id: sk.u11.zajtra, kind: lesson, introduces: ['lexeme:zajtra', 'feature:Tense=Fut']}
+- {id: sk.u11.vid, kind: lesson, introduces: ['lexeme:urobiť', 'lexeme:obed', 'lexeme:písať', 'lexeme:list', 'lexeme:napísať', 'lexeme:celý', 'lexeme:prečítať']}
+- {id: sk.u11.kupit, kind: lesson, introduces: ['lexeme:kupovať', 'lexeme:uvariť', 'lexeme:večera']}
+- {id: sk.u11.volat, kind: lesson, introduces: ['lexeme:zavolať', 'lexeme:volať', 'lexeme:mobil', 'lexeme:budúci', 'lexeme:niekedy', 'lexeme:vždy', 'lexeme:výborne']}
+- {id: sk.u11.story, kind: story}
+sentences:
+- id: s.u11.1
+  node: sk.u11.zajtra
+  forms:
+    sk-Latn/standard:
+      text: Zajtra budem doma.
+      tokens: [{surface: Zajtra, lexeme: zajtra}, {surface: budem, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: doma, lexeme: doma}]
+      reverse: (Zajtra budem doma|Budem zajtra doma|Budem doma zajtra)
+  translations:
+    en: |-
+      (I'll|I will) be [at] home tomorrow.
+      Tomorrow (I'll|I will) be [at] home.
+- id: s.u11.2
+  node: sk.u11.zajtra
+  forms:
+    sk-Latn/standard:
+      text: Čo budeš robiť zajtra?
+      tokens: [{surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: budeš, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}}, {surface: robiť, lexeme: robiť, feats: {
+            VerbForm: Inf}}, {surface: zajtra, lexeme: zajtra}]
+      reverse: |-
+        Čo (budeš|budete) (robiť zajtra|zajtra robiť)
+        Čo zajtra (budeš|budete) robiť
+  translations:
+    en: What (will you do|will you be doing|are you doing|are you going to do) tomorrow?
+- id: s.u11.3
+  node: sk.u11.zajtra
+  forms:
+    sk-Latn/standard:
+      text: Budem pracovať.
+      tokens: [{surface: Budem, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: pracovať, lexeme: pracovať, feats: {VerbForm: Inf}}]
+      reverse: (Budem pracovať|Ja budem pracovať)
+  translations:
+    en: |-
+      (I'll|I will) (work|be working).
+      (I'm|I am) going to (work|be working).
+- id: s.u11.4
+  node: sk.u11.zajtra
+  forms:
+    sk-Latn/standard:
+      text: Lucka bude v nemocnici.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: bude, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}}, {surface: v, lexeme: v},
+        {surface: nemocnici, lexeme: nemocnica, feats: {Case: Loc, Number: Sing}}]
+      reverse: Lucka bude v nemocnici
+  translations:
+    en: Lucka will be (in|at) the hospital.
+- id: s.u11.5
+  node: sk.u11.zajtra
+  forms:
+    sk-Latn/standard:
+      text: Budeme pozerať film.
+      tokens: [{surface: Budeme, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: pozerať, lexeme: pozerať, feats: {VerbForm: Inf}}, {surface: film, lexeme: film,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: (Budeme|My budeme) pozerať film
+  translations:
+    en: (We'll|We will) (watch|be watching) a (film|movie).
+- id: s.u11.6
+  node: sk.u11.vid
+  forms:
+    sk-Latn/standard:
+      text: Zajtra urobím obed.
+      tokens: [{surface: Zajtra, lexeme: zajtra}, {surface: urobím, lexeme: urobiť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: obed, lexeme: obed, feats: {Case: Acc,
+            Number: Sing}}]
+      reverse: (Zajtra urobím obed|Urobím obed zajtra|Obed urobím zajtra)
+  translations:
+    en: |-
+      (I'll|I will) make lunch tomorrow.
+      Tomorrow (I'll|I will) make lunch.
+- id: s.u11.7
+  node: sk.u11.vid
+  forms:
+    sk-Latn/standard:
+      text: Píšem list.
+      tokens: [{surface: Píšem, lexeme: písať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: list, lexeme: list, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Píšem|Ja píšem) list
+  translations:
+    en: |-
+      (I'm|I am) writing a letter.
+      I write a letter.
+- id: s.u11.8
+  node: sk.u11.vid
+  forms:
+    sk-Latn/standard:
+      text: Napíšem list.
+      tokens: [{surface: Napíšem, lexeme: napísať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: list, lexeme: list, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Napíšem|Ja napíšem) list
+  translations:
+    en: (I'll|I will) write a letter.
+- id: s.u11.9
+  node: sk.u11.vid
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Celý deň som písala.
+      tokens: [{surface: Celý, lexeme: celý, feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}}, {surface: deň, lexeme: deň, feats: {Case: Acc, Number: Sing}}, {surface: som, lexeme: byť, feats: {
+            Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: písala, lexeme: písať, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: (Celý deň som písala|Písala som celý deň)
+  translations:
+    en: |-
+      I (was writing|wrote) all day.
+      I spent the whole day writing.
+- id: s.u11.10
+  node: sk.u11.vid
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Napísal som list.
+      tokens: [{surface: Napísal, lexeme: napísať, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+            VerbForm: Fin}}, {surface: list, lexeme: list, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Napísal som list|Ja som napísal list|List som napísal)
+  translations:
+    en: |-
+      I (wrote|have written) a letter.
+      I've written a letter.
+- id: s.u11.11
+  node: sk.u11.vid
+  forms:
+    sk-Latn/standard:
+      text: Prečítam tú knihu.
+      tokens: [{surface: Prečítam, lexeme: prečítať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: tú, lexeme: ten, feats: {Case: Acc, Gender: Fem, Number: Sing}},
+        {surface: knihu, lexeme: kniha, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Prečítam|Ja prečítam) tú knihu
+  translations:
+    en: |-
+      (I'll|I will) read that book.
+      (I'll|I will) finish that book.
+- id: s.u11.12
+  node: sk.u11.vid
+  forms:
+    sk-Latn/standard:
+      text: Čítam knihu.
+      tokens: [{surface: Čítam, lexeme: čítať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: knihu, lexeme: kniha, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Čítam|Ja čítam) knihu
+  translations:
+    en: |-
+      (I'm|I am) reading a book.
+      I read a book.
+- id: s.u11.13
+  node: sk.u11.kupit
+  forms:
+    sk-Latn/standard:
+      text: Kupujem chlieb.
+      tokens: [{surface: Kupujem, lexeme: kupovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: chlieb, lexeme: chlieb, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Kupujem|Ja kupujem) chlieb
+  translations:
+    en: |-
+      (I'm|I am) buying bread.
+      I buy bread.
+- id: s.u11.14
+  node: sk.u11.kupit
+  forms:
+    sk-Latn/standard:
+      text: Kúpim chlieb.
+      tokens: [{surface: Kúpim, lexeme: kúpiť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: chlieb, lexeme: chlieb, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Kúpim|Ja kúpim) chlieb
+  translations:
+    en: (I'll|I will) buy [some] bread.
+- id: s.u11.15
+  node: sk.u11.kupit
+  forms:
+    sk-Latn/standard:
+      text: Na večeru uvarím halušky.
+      tokens: [{surface: Na, lexeme: na}, {surface: večeru, lexeme: večera, feats: {Case: Acc, Number: Sing}}, {surface: uvarím, lexeme: uvariť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+            VerbForm: Fin}}, {surface: halušky, lexeme: halušky, feats: {Case: Acc, Number: Plur}}]
+      reverse: (Na večeru uvarím halušky|Uvarím halušky na večeru)
+  translations:
+    en: |-
+      (I'll|I will) (cook|make) halušky for (dinner|supper).
+      For (dinner|supper) (I'll|I will) (cook|make) halušky.
+- id: s.u11.16
+  node: sk.u11.kupit
+  forms:
+    sk-Latn/standard:
+      text: Dominik varí obed.
+      tokens: [{surface: Dominik, lexeme: dominik, feats: {Case: Nom, Number: Sing}}, {surface: varí, lexeme: variť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: obed,
+          lexeme: obed, feats: {Case: Acc, Number: Sing}}]
+      reverse: Dominik varí obed
+  translations:
+    en: Dominik (is cooking|cooks|is making) lunch.
+- id: s.u11.17
+  node: sk.u11.kupit
+  forms:
+    sk-Latn/standard:
+      text: Simona uvarila obed.
+      tokens: [{surface: Simona, lexeme: simona, feats: {Case: Nom, Number: Sing}}, {surface: uvarila, lexeme: uvariť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: obed, lexeme: obed,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: Simona uvarila obed
+  translations:
+    en: Simona (cooked|made|has cooked|has made) lunch.
+- id: s.u11.18
+  node: sk.u11.volat
+  forms:
+    sk-Latn/standard:
+      text: Zavolám ti zajtra.
+      tokens: [{surface: Zavolám, lexeme: zavolať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ti, lexeme: ty, feats: {Case: Dat, Number: Sing}}, {surface: zajtra,
+          lexeme: zajtra}]
+      reverse: (Zavolám ti zajtra|Zajtra ti zavolám|Zavolám vám zajtra|Zajtra vám zavolám)
+  translations:
+    en: (I'll|I will) call you tomorrow.
+- id: s.u11.19
+  node: sk.u11.volat
+  forms:
+    sk-Latn/standard:
+      text: Volám Lucku.
+      tokens: [{surface: Volám, lexeme: volať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Lucku, lexeme: lucka, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Volám|Ja volám) Lucku
+  translations:
+    en: |-
+      (I'm|I am) calling Lucka.
+      I call Lucka.
+- id: s.u11.20
+  node: sk.u11.volat
+  forms:
+    sk-Latn/standard:
+      text: Kde je môj mobil?
+      tokens: [{surface: Kde, lexeme: kde}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: môj, lexeme: môj, feats: {Animacy: Inan, Case: Nom,
+            Gender: Masc, Number: Sing}}, {surface: mobil, lexeme: mobil, feats: {Case: Nom, Number: Sing}}]
+      reverse: Kde je môj mobil
+  translations:
+    en: (Where's|Where is) my (mobile|phone|cell phone)?
+- id: s.u11.21
+  node: sk.u11.volat
+  forms:
+    sk-Latn/standard:
+      text: Budúci týždeň budeme v Tatrách.
+      tokens: [{surface: Budúci, lexeme: budúci, feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}}, {surface: týždeň, lexeme: týždeň, feats: {Case: Acc, Number: Sing}}, {surface: budeme, lexeme: byť,
+          feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: v, lexeme: v}, {surface: Tatrách, lexeme: tatry, feats: {Case: Loc, Number: Plur}}]
+      reverse: (Budúci týždeň budeme v Tatrách|V Tatrách budeme budúci týždeň)
+  translations:
+    en: |-
+      Next week (we'll|we will) be in the Tatras.
+      (We'll|We will) be in the Tatras next week.
+- id: s.u11.22
+  node: sk.u11.volat
+  forms:
+    sk-Latn/standard:
+      text: Niekedy volám babke.
+      tokens: [{surface: Niekedy, lexeme: niekedy}, {surface: volám, lexeme: volať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: babke, lexeme: babka, feats: {Case: Dat,
+            Number: Sing}}]
+      reverse: (Niekedy volám babke|Babke niekedy volám|Niekedy babke volám)
+  translations:
+    en: |-
+      Sometimes I (call|phone) Grandma.
+      I sometimes (call|phone) Grandma.
+- id: s.u11.23
+  node: sk.u11.volat
+  forms:
+    sk-Latn/standard:
+      text: Výborne!
+      tokens: [{surface: Výborne, lexeme: výborne}]
+      reverse: Výborne
+  translations:
+    en: (Great|Excellent|Well done)!
+- id: s.u11.24
+  node: sk.u11.volat
+  forms:
+    sk-Latn/standard:
+      text: Vždy pijem kávu.
+      tokens: [{surface: Vždy, lexeme: vždy}, {surface: pijem, lexeme: piť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: kávu, lexeme: káva, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Vždy pijem kávu|Kávu pijem vždy)
+  translations:
+    en: I always drink coffee.
+stories:
+- id: sk.story.u11
+  node: sk.u11.story
+  title:
+    en: Plans for tomorrow
+  characters:
+  - id: dominik
+    speaker: m
+    name:
+      sk-Latn/standard: Dominik
+  - id: lucka
+    speaker: f
+    name:
+      sk-Latn/standard: Lucka
+  steps:
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Ahoj, Lucka! Čo budeš robiť zajtra?
+          tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: budeš, lexeme: byť, feats: {
+                Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}}, {surface: robiť, lexeme: robiť, feats: {VerbForm: Inf}}, {surface: zajtra, lexeme: zajtra}]
+      translations:
+        en: Hi, Lucka! What will you do tomorrow?
+  - line:
+      speaker: lucka
+      ask: complete
+      gap: lexeme:nemocnica
+      distractors:
+      - lexeme:škola
+      - lexeme:kaviareň
+      forms:
+        sk-Latn/standard:
+          text: Ráno budem v nemocnici.
+          tokens: [{surface: Ráno, lexeme: ráno}, {surface: budem, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: v, lexeme: v}, {surface: nemocnici, lexeme: nemocnica,
+              feats: {Case: Loc, Number: Sing}}]
+      translations:
+        en: In the morning I'll be at the hospital.
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: A večer?
+          tokens: [{surface: A, lexeme: a}, {surface: večer, lexeme: večer}]
+      translations:
+        en: And in the evening?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Večer budem doma. Uvarím večeru.
+          tokens: [{surface: Večer, lexeme: večer}, {surface: budem, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: doma, lexeme: doma}, {surface: Uvarím,
+              lexeme: uvariť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: večeru, lexeme: večera, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: In the evening I'll be at home. I'll cook dinner.
+  - choose:
+      prompt:
+        en: Where will Lucka be in the morning?
+      options:
+      - en: At the hospital
+      - en: At home
+      - en: In the Tatras
+      answer: 0
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Nie, pozvem ťa na večeru!
+          tokens: [{surface: Nie, lexeme: nie}, {surface: pozvem, lexeme: pozvať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ťa, lexeme: ty, feats: {Case: Acc,
+                Number: Sing}}, {surface: na, lexeme: na}, {surface: večeru, lexeme: večera, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: No, I'll take you out to dinner!
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Dobre! A kde?
+          tokens: [{surface: Dobre, lexeme: dobre}, {surface: A, lexeme: a}, {surface: kde, lexeme: kde}]
+      translations:
+        en: All right! Where?
+  - line:
+      speaker: dominik
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: V kolibe. Zavolám ti zajtra.
+          tokens: [{surface: V, lexeme: v}, {surface: kolibe, lexeme: koliba, feats: {Case: Loc, Number: Sing}}, {surface: Zavolám, lexeme: zavolať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+                VerbForm: Fin}}, {surface: ti, lexeme: ty, feats: {Case: Dat, Number: Sing}}, {surface: zajtra, lexeme: zajtra}]
+      translations:
+        en: At the koliba. I'll call you tomorrow.
+  - choose:
+      prompt:
+        en: What will Dominik do?
+      options:
+      - en: Invite Lucka to dinner
+      - en: Cook dinner
+      - en: Go to the Tatras
+      answer: 0
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Výborne. Budem doma.
+          tokens: [{surface: Výborne, lexeme: výborne}, {surface: Budem, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: doma, lexeme: doma}]
+      translations:
+        en: Great. I'll be at home.

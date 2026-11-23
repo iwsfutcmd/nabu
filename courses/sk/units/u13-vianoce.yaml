@@ -1,0 +1,376 @@
+# Unit 13 (sk): the genitive plural (päť darčekov, veľa ľudí, málo času, koľko rokov), numbers to a hundred;
+# Christmas Eve at babka's: oblátky with honey, kapustnica, carp, carols.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u13
+title:
+  en: Vianoce Christmas
+cefr: A2
+nodes:
+- {id: sk.u13.vianoce, kind: lesson, introduces: ['lexeme:vianoce', 'lexeme:veselý', 'lexeme:štedrý-večer', 'lexeme:kapor', 'lexeme:med', 'lexeme:oblátka', 'lexeme:stromček']}
+- {id: sk.u13.genpl, kind: lesson, introduces: ['lexeme:veľa', 'lexeme:človek', 'lexeme:málo', 'lexeme:čas', 'lexeme:rok', 'lexeme:sedemdesiat']}
+- {id: sk.u13.rodina, kind: lesson, introduces: ['lexeme:rodina', 'lexeme:dieťa', 'lexeme:spievať', 'lexeme:koleda']}
+- {id: sk.u13.sto, kind: lesson, introduces: ['lexeme:dvadsať', 'lexeme:tridsať', 'lexeme:päťdesiat', 'lexeme:sto']}
+- {id: sk.u13.story, kind: story}
+sentences:
+- id: s.u13.1
+  node: sk.u13.vianoce
+  forms:
+    sk-Latn/standard:
+      text: Veselé Vianoce!
+      tokens: [{surface: Veselé, lexeme: veselý, feats: {Case: Nom, Gender: Fem, Number: Plur}}, {surface: Vianoce, lexeme: vianoce, feats: {Case: Nom, Number: Plur}}]
+      reverse: Veselé Vianoce
+  translations:
+    en: (Merry|Happy) Christmas!
+- id: s.u13.2
+  node: sk.u13.vianoce
+  forms:
+    sk-Latn/standard:
+      text: Na Štedrý večer jeme kapra.
+      tokens: [{surface: Na, lexeme: na}, {surface: Štedrý, lexeme: štedrý-večer}, {surface: večer, lexeme: štedrý-večer}, {surface: jeme, lexeme: jesť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres,
+            VerbForm: Fin}}, {surface: kapra, lexeme: kapor, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Na Štedrý večer jeme kapra|Kapra jeme na Štedrý večer)
+  translations:
+    en: On Christmas Eve we eat carp.
+- id: s.u13.3
+  node: sk.u13.vianoce
+  forms:
+    sk-Latn/standard:
+      text: Máme aj oblátky s medom.
+      tokens: [{surface: Máme, lexeme: mať, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: aj, lexeme: aj}, {surface: oblátky, lexeme: oblátka, feats: {Case: Acc,
+            Number: Plur}}, {surface: s, lexeme: s}, {surface: medom, lexeme: med, feats: {Case: Ins, Number: Sing}}]
+      reverse: (Máme|My máme) aj oblátky s medom
+  translations:
+    en: We also have (Christmas |)wafers with honey.
+- id: s.u13.4
+  node: sk.u13.vianoce
+  forms:
+    sk-Latn/standard:
+      text: Stromček je krásny.
+      tokens: [{surface: Stromček, lexeme: stromček, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: krásny,
+          lexeme: krásny, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}]
+      reverse: Stromček je krásny
+  translations:
+    en: The (Christmas |)tree is beautiful.
+- id: s.u13.5
+  node: sk.u13.vianoce
+  forms:
+    sk-Latn/standard:
+      text: Na Vianoce sme u babky.
+      tokens: [{surface: Na, lexeme: na}, {surface: Vianoce, lexeme: vianoce, feats: {Case: Acc, Number: Plur}}, {surface: sme, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: u, lexeme: u}, {surface: babky, lexeme: babka, feats: {Case: Gen, Number: Sing}}]
+      reverse: (Na Vianoce sme u babky|Sme u babky na Vianoce)
+  translations:
+    en: |-
+      At Christmas (we're|we are) at Grandma's.
+      (We're|We are) at Grandma's for Christmas.
+- id: s.u13.6
+  node: sk.u13.genpl
+  forms:
+    sk-Latn/standard:
+      text: Na námestí je veľa stromčekov.
+      tokens: [{surface: Na, lexeme: na}, {surface: námestí, lexeme: námestie, feats: {Case: Loc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: veľa, lexeme: veľa}, {surface: stromčekov, lexeme: stromček, feats: {Case: Gen, Number: Plur}}]
+      reverse: (Na námestí je veľa stromčekov|Veľa stromčekov je na námestí)
+  translations:
+    en: (There are|There're) (many|a lot of|lots of) (Christmas |)trees on the square.
+- id: s.u13.7
+  node: sk.u13.genpl
+  forms:
+    sk-Latn/standard:
+      text: Mám päť darčekov.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: päť, lexeme: päť}, {surface: darčekov, lexeme: darček, feats: {Case: Gen,
+            Number: Plur}}]
+      reverse: (Mám|Ja mám) päť darčekov
+  translations:
+    en: I have five (presents|gifts).
+- id: s.u13.8
+  node: sk.u13.genpl
+  forms:
+    sk-Latn/standard:
+      text: Na stole je veľa kníh.
+      tokens: [{surface: Na, lexeme: na}, {surface: stole, lexeme: stôl, feats: {Case: Loc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: veľa, lexeme: veľa}, {surface: kníh, lexeme: kniha, feats: {Case: Gen, Number: Plur}}]
+      reverse: Na stole je veľa kníh
+  translations:
+    en: (There are|There're) (many|a lot of|lots of) books on the table.
+- id: s.u13.9
+  node: sk.u13.genpl
+  forms:
+    sk-Latn/standard:
+      text: U babky je veľa ľudí.
+      tokens: [{surface: U, lexeme: u}, {surface: babky, lexeme: babka, feats: {Case: Gen, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: veľa, lexeme: veľa}, {surface: ľudí, lexeme: človek, feats: {Case: Gen, Number: Plur}}]
+      reverse: U babky je veľa ľudí
+  translations:
+    en: (There are|There're) (many|a lot of|lots of) people at Grandma's.
+- id: s.u13.10
+  node: sk.u13.genpl
+  forms:
+    sk-Latn/standard:
+      text: Mám málo času.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: málo, lexeme: málo}, {surface: času, lexeme: čas, feats: {Case: Gen, Number: Sing}}]
+      reverse: (Mám|Ja mám) málo času
+  translations:
+    en: |-
+      I have (little|not much) time.
+      I (don't|do not) have much time.
+- id: s.u13.11
+  node: sk.u13.genpl
+  forms:
+    sk-Latn/standard:
+      text: Koľko máš rokov?
+      tokens: [{surface: Koľko, lexeme: koľko}, {surface: máš, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: rokov, lexeme: rok, feats: {Case: Gen, Number: Plur}}]
+      reverse: Koľko (máš|máte) rokov
+  translations:
+    en: How old are you?
+- id: s.u13.12
+  node: sk.u13.genpl
+  forms:
+    sk-Latn/standard:
+      text: Samko má deväť rokov.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: deväť,
+          lexeme: deväť}, {surface: rokov, lexeme: rok, feats: {Case: Gen, Number: Plur}}]
+      reverse: Samko má deväť rokov
+  translations:
+    en: Samko is nine [years old].
+- id: s.u13.13
+  node: sk.u13.genpl
+  forms:
+    sk-Latn/standard:
+      text: Pani Tóthová má sedemdesiat rokov.
+      tokens: [{surface: Pani, lexeme: pani, feats: {Case: Nom, Number: Sing}}, {surface: Tóthová, lexeme: tóthová, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sedemdesiat, lexeme: sedemdesiat}, {surface: rokov, lexeme: rok, feats: {Case: Gen, Number: Plur}}]
+      reverse: Pani Tóthová má sedemdesiat rokov
+  translations:
+    en: Mrs Tóthová is seventy [years old].
+- id: s.u13.14
+  node: sk.u13.rodina
+  forms:
+    sk-Latn/standard:
+      text: Celá rodina je doma.
+      tokens: [{surface: Celá, lexeme: celý, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: rodina, lexeme: rodina, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: doma, lexeme: doma}]
+      reverse: Celá rodina je doma
+  translations:
+    en: The whole family is [at] home.
+- id: s.u13.15
+  node: sk.u13.rodina
+  forms:
+    sk-Latn/standard:
+      text: Deti sú doma.
+      tokens: [{surface: Deti, lexeme: dieťa, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: doma, lexeme: doma}]
+      reverse: Deti sú doma
+  translations:
+    en: |-
+      The children are [at] home.
+      The kids are [at] home.
+- id: s.u13.16
+  node: sk.u13.rodina
+  forms:
+    sk-Latn/standard:
+      text: Simona a Rudo majú jedno dieťa.
+      tokens: [{surface: Simona, lexeme: simona, feats: {Case: Nom, Number: Sing}}, {surface: a, lexeme: a}, {surface: Rudo, lexeme: rudo, feats: {Case: Nom, Number: Sing}}, {surface: majú, lexeme: mať,
+          feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: jedno, lexeme: jeden, feats: {Case: Acc, Gender: Neut, Number: Sing}}, {surface: dieťa, lexeme: dieťa, feats: {
+            Case: Acc, Number: Sing}}]
+      reverse: Simona a Rudo majú jedno dieťa
+  translations:
+    en: Simona and Rudo have one child.
+- id: s.u13.17
+  node: sk.u13.rodina
+  forms:
+    sk-Latn/standard:
+      text: Spievame koledy.
+      tokens: [{surface: Spievame, lexeme: spievať, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: koledy, lexeme: koleda, feats: {Case: Acc, Number: Plur}}]
+      reverse: (Spievame|My spievame) koledy
+  translations:
+    en: |-
+      (We're|We are) singing carols.
+      We sing carols.
+- id: s.u13.18
+  node: sk.u13.rodina
+  forms:
+    sk-Latn/standard:
+      text: Na Vianoce je veľa darčekov pre deti.
+      tokens: [{surface: Na, lexeme: na}, {surface: Vianoce, lexeme: vianoce, feats: {Case: Acc, Number: Plur}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: veľa, lexeme: veľa}, {surface: darčekov, lexeme: darček, feats: {Case: Gen, Number: Plur}}, {surface: pre, lexeme: pre}, {surface: deti, lexeme: dieťa, feats: {Case: Acc, Number: Plur}}]
+      reverse: (Na Vianoce je veľa darčekov pre deti|Na Vianoce je pre deti veľa darčekov)
+  translations:
+    en: At Christmas (there are|there're) (many|a lot of|lots of) (presents|gifts) for (the |)children.
+- id: s.u13.19
+  node: sk.u13.rodina
+  forms:
+    sk-Latn/standard:
+      text: Koľko je tu ľudí?
+      tokens: [{surface: Koľko, lexeme: koľko}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu}, {surface: ľudí, lexeme: človek,
+          feats: {Case: Gen, Number: Plur}}]
+      reverse: Koľko (je tu ľudí|ľudí je tu)
+  translations:
+    en: How many people are (here|there)?
+- id: s.u13.20
+  node: sk.u13.sto
+  forms:
+    sk-Latn/standard:
+      text: Desať a desať je dvadsať.
+      tokens: [{surface: Desať, lexeme: desať}, {surface: a, lexeme: a}, {surface: desať, lexeme: desať}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: dvadsať, lexeme: dvadsať}]
+      reverse: Desať a desať je dvadsať
+  translations:
+    en: Ten (and|plus) ten (is|makes) twenty.
+- id: s.u13.21
+  node: sk.u13.sto
+  forms:
+    sk-Latn/standard:
+      text: Dvadsať a tridsať je päťdesiat.
+      tokens: [{surface: Dvadsať, lexeme: dvadsať}, {surface: a, lexeme: a}, {surface: tridsať, lexeme: tridsať}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: päťdesiat, lexeme: päťdesiat}]
+      reverse: Dvadsať a tridsať je päťdesiat
+  translations:
+    en: Twenty (and|plus) thirty (is|makes) fifty.
+- id: s.u13.22
+  node: sk.u13.sto
+  forms:
+    sk-Latn/standard:
+      text: Päťdesiat a päťdesiat je sto.
+      tokens: [{surface: Päťdesiat, lexeme: päťdesiat}, {surface: a, lexeme: a}, {surface: päťdesiat, lexeme: päťdesiat}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+            VerbForm: Fin}}, {surface: sto, lexeme: sto}]
+      reverse: Päťdesiat a päťdesiat je sto
+  translations:
+    en: |-
+      Fifty (and|plus) fifty (is|makes) a hundred.
+      Fifty (and|plus) fifty (is|makes) one hundred.
+stories:
+- id: sk.story.u13
+  node: sk.u13.story
+  title:
+    en: Christmas Eve
+  characters:
+  - id: babka
+    speaker: f
+    name:
+      sk-Latn/standard: Babka Betka
+  - id: lucka
+    speaker: f
+    name:
+      sk-Latn/standard: Lucka
+  - id: dominik
+    speaker: m
+    name:
+      sk-Latn/standard: Dominik
+  - id: tereza
+    speaker: f
+    name:
+      sk-Latn/standard: Tereza
+  steps:
+  - line:
+      speaker: babka
+      forms:
+        sk-Latn/standard:
+          text: Veselé Vianoce!
+          tokens: [{surface: Veselé, lexeme: veselý, feats: {Case: Nom, Gender: Fem, Number: Plur}}, {surface: Vianoce, lexeme: vianoce, feats: {Case: Nom, Number: Plur}}]
+      translations:
+        en: Merry Christmas!
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Veselé Vianoce, babka! Tu je Dominik.
+          tokens: [{surface: Veselé, lexeme: veselý, feats: {Case: Nom, Gender: Fem, Number: Plur}}, {surface: Vianoce, lexeme: vianoce, feats: {Case: Nom, Number: Plur}}, {surface: babka, lexeme: babka,
+              feats: {Case: Nom, Number: Sing}}, {surface: Tu, lexeme: tu}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Dominik, lexeme: dominik,
+              feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Merry Christmas, Grandma! Here's Dominik.
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Dobrý večer. Máte krásny stromček!
+          tokens: [{surface: Dobrý, lexeme: dobrý-večer}, {surface: večer, lexeme: dobrý-večer}, {surface: Máte, lexeme: mať, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}},
+            {surface: krásny, lexeme: krásny, feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}}, {surface: stromček, lexeme: stromček, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Good evening. You have a beautiful tree!
+  - line:
+      speaker: babka
+      forms:
+        sk-Latn/standard:
+          text: Ďakujem. Na stole sú oblátky s medom.
+          tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Na, lexeme: na}, {surface: stole, lexeme: stôl, feats: {Case: Loc,
+                Number: Sing}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: oblátky, lexeme: oblátka, feats: {Case: Nom, Number: Plur}},
+            {surface: s, lexeme: s}, {surface: medom, lexeme: med, feats: {Case: Ins, Number: Sing}}]
+      translations:
+        en: Thank you. There are wafers with honey on the table.
+  - choose:
+      prompt:
+        en: What is on the table?
+      options:
+      - en: Wafers with honey
+      - en: A carp
+      - en: Presents
+      answer: 0
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: A potom kapustnica a kapor!
+          tokens: [{surface: A, lexeme: a}, {surface: potom, lexeme: potom}, {surface: kapustnica, lexeme: kapustnica, feats: {Case: Nom, Number: Sing}}, {surface: a, lexeme: a}, {surface: kapor, lexeme: kapor,
+              feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: And then sauerkraut soup and carp!
+  - line:
+      speaker: dominik
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Na Štedrý večer jeme kapra?
+          tokens: [{surface: Na, lexeme: na}, {surface: Štedrý, lexeme: štedrý-večer}, {surface: večer, lexeme: štedrý-večer}, {surface: jeme, lexeme: jesť, feats: {Mood: Ind, Number: Plur, Person: '1',
+                Tense: Pres, VerbForm: Fin}}, {surface: kapra, lexeme: kapor, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Do we eat carp on Christmas Eve?
+  - line:
+      speaker: babka
+      forms:
+        sk-Latn/standard:
+          text: Áno, u nás áno.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: u, lexeme: u}, {surface: nás, lexeme: my, feats: {Case: Gen, Number: Plur}}, {surface: áno, lexeme: áno}]
+      translations:
+        en: Yes, at our house we do.
+  - line:
+      speaker: lucka
+      ask: complete
+      gap: lexeme:darček
+      distractors:
+      - lexeme:rok
+      - lexeme:stromček
+      forms:
+        sk-Latn/standard:
+          text: Pod stromčekom je veľa darčekov!
+          tokens: [{surface: Pod, lexeme: pod}, {surface: stromčekom, lexeme: stromček, feats: {Case: Ins, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+                VerbForm: Fin}}, {surface: veľa, lexeme: veľa}, {surface: darčekov, lexeme: darček, feats: {Case: Gen, Number: Plur}}]
+      translations:
+        en: There are lots of presents under the tree!
+  - choose:
+      prompt:
+        en: Who brings Dominik to Grandma's?
+      options:
+      - en: Lucka
+      - en: Tereza
+      - en: 'Nobody: he comes alone'
+      answer: 0
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Spievame koledy!
+          tokens: [{surface: Spievame, lexeme: spievať, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: koledy, lexeme: koleda, feats: {Case: Acc, Number: Plur}}]
+      translations:
+        en: We're singing carols!
+scenarios:
+- id: sk.trh
+  after: sk.u13.rodina
+  title:
+    en: A Christmas market
+  setting:
+    en: 'The Christmas market on the main square of Žilina in December: wooden stalls, mulled wine, honey and wooden toys. You want a present for an older relative.'
+  character:
+    en: A stallholder selling honey, candles and wooden toys, a kind man in his sixties who likes to chat.
+  goal:
+    en: Greet him, say who the present is for, ask what something costs (Koľko to stojí?), choose a present and thank him.

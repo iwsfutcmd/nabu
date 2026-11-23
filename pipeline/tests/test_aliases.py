@@ -47,7 +47,7 @@ def _lost(table: dict[str, Any], known: set[str]) -> list[str]:
 
 
 def test_there_is_a_table_for_every_course() -> None:
-    assert len(COURSES) == 10
+    assert len(COURSES) == 11
     assert [c for c in COURSES if not (REPO / "courses" / c / "aliases.yaml").is_file()] == []
 
 

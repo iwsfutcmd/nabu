@@ -1,0 +1,594 @@
+# Unit 1 (sk): greetings, thanks, names (volať sa), how are you (mať sa), byť in the present, ty and vy;
+# Lucka meets her new neighbours, and pani Tóthová downstairs.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u01
+title:
+  en: Ahoj! Hello!
+cefr: A1
+nodes:
+- {id: sk.u01.ahoj, kind: lesson, introduces: ['lexeme:ahoj', 'lexeme:dobrý-deň', 'lexeme:dobré-ráno', 'lexeme:dobrý-večer', 'lexeme:dovidenia', 'lexeme:lucka']}
+- {id: sk.u01.dakujem, kind: lesson, introduces: ['lexeme:ďakovať', 'lexeme:prosiť', 'lexeme:áno', 'lexeme:nie']}
+- {id: sk.u01.volam-sa, kind: lesson, introduces: ['lexeme:volať-sa', 'lexeme:sa', 'lexeme:ako', 'lexeme:ja', 'lexeme:ty', 'lexeme:dominik', 'lexeme:a']}
+- {id: sk.u01.ako-sa-mas, kind: lesson, introduces: ['lexeme:mať-sa', 'lexeme:dobre', 'lexeme:veľmi', 'lexeme:aj']}
+- {id: sk.u01.som, kind: lesson, introduces: ['lexeme:byť', 'lexeme:kto', 'lexeme:ten', 'lexeme:tereza', 'lexeme:on', 'lexeme:ona']}
+- {id: sk.u01.vy, kind: lesson, introduces: ['lexeme:vy', 'lexeme:pani', 'lexeme:tóthová', 'lexeme:pán', 'lexeme:baláž', 'lexeme:simona', 'lexeme:rudo']}
+- {id: sk.u01.story, kind: story}
+sentences:
+- id: s.u01.1
+  node: sk.u01.ahoj
+  forms:
+    sk-Latn/standard:
+      text: Ahoj!
+      tokens: [{surface: Ahoj, lexeme: ahoj}]
+      reverse: (Ahoj|Čau)
+  translations:
+    en: |-
+      Hi!
+      Hello!
+      Hey!
+- id: s.u01.2
+  node: sk.u01.ahoj
+  forms:
+    sk-Latn/standard:
+      text: Dobrý deň!
+      tokens: [{surface: Dobrý, lexeme: dobrý-deň}, {surface: deň, lexeme: dobrý-deň}]
+      reverse: Dobrý deň
+  translations:
+    en: |-
+      Hello!
+      Good day!
+      Good afternoon!
+      Good morning!
+- id: s.u01.3
+  node: sk.u01.ahoj
+  forms:
+    sk-Latn/standard:
+      text: Dobré ráno!
+      tokens: [{surface: Dobré, lexeme: dobré-ráno}, {surface: ráno, lexeme: dobré-ráno}]
+      reverse: Dobré ráno
+  translations:
+    en: |-
+      Good morning!
+      Morning!
+- id: s.u01.4
+  node: sk.u01.ahoj
+  forms:
+    sk-Latn/standard:
+      text: Dobrý večer!
+      tokens: [{surface: Dobrý, lexeme: dobrý-večer}, {surface: večer, lexeme: dobrý-večer}]
+      reverse: Dobrý večer
+  translations:
+    en: |-
+      Good evening!
+      Evening!
+- id: s.u01.5
+  node: sk.u01.ahoj
+  forms:
+    sk-Latn/standard:
+      text: Dovidenia!
+      tokens: [{surface: Dovidenia, lexeme: dovidenia}]
+      reverse: (Dovidenia|Ahoj|Čau)
+  translations:
+    en: |-
+      Goodbye!
+      Bye!
+      See you!
+- id: s.u01.6
+  node: sk.u01.ahoj
+  forms:
+    sk-Latn/standard:
+      text: Ahoj, Lucka!
+      tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Ahoj|Čau) Lucka
+  translations:
+    en: (Hi|Hello|Hey), Lucka!
+- id: s.u01.7
+  node: sk.u01.dakujem
+  forms:
+    sk-Latn/standard:
+      text: Ďakujem.
+      tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Ďakujem|Vďaka)
+  translations:
+    en: |-
+      Thank you.
+      Thanks.
+- id: s.u01.8
+  node: sk.u01.dakujem
+  forms:
+    sk-Latn/standard:
+      text: Prosím.
+      tokens: [{surface: Prosím, lexeme: prosiť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: Prosím
+  translations:
+    en: |-
+      Please.
+      You're welcome.
+      Here you are.
+- id: s.u01.9
+  node: sk.u01.dakujem
+  forms:
+    sk-Latn/standard:
+      text: Áno, ďakujem.
+      tokens: [{surface: Áno, lexeme: áno}, {surface: ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Áno|Hej) (ďakujem|vďaka)
+  translations:
+    en: Yes, (thank you|thanks).
+- id: s.u01.10
+  node: sk.u01.dakujem
+  forms:
+    sk-Latn/standard:
+      text: Nie, ďakujem.
+      tokens: [{surface: Nie, lexeme: nie}, {surface: ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: Nie (ďakujem|vďaka)
+  translations:
+    en: No, (thank you|thanks).
+- id: s.u01.11
+  node: sk.u01.dakujem
+  forms:
+    sk-Latn/standard:
+      text: Ďakujem, Lucka!
+      tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Ďakujem|Vďaka) Lucka
+  translations:
+    en: (Thank you|Thanks), Lucka!
+- id: s.u01.12
+  node: sk.u01.dakujem
+  forms:
+    sk-Latn/standard:
+      text: Áno, prosím.
+      tokens: [{surface: Áno, lexeme: áno}, {surface: prosím, lexeme: prosiť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Áno|Hej) prosím
+  translations:
+    en: Yes, please.
+- id: s.u01.13
+  node: sk.u01.volam-sa
+  forms:
+    sk-Latn/standard:
+      text: Volám sa Lucka.
+      tokens: [{surface: Volám, lexeme: volať-sa, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: Lucka, lexeme: lucka, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: |-
+        (Volám sa|Ja sa volám) Lucka
+        Lucka sa volám
+  translations:
+    en: |-
+      My name is Lucka.
+      (I'm|I am) Lucka.
+      (I'm|I am) called Lucka.
+- id: s.u01.14
+  node: sk.u01.volam-sa
+  forms:
+    sk-Latn/standard:
+      text: Ako sa voláš?
+      tokens: [{surface: Ako, lexeme: ako}, {surface: sa, lexeme: sa}, {surface: voláš, lexeme: volať-sa, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: Ako sa (voláš|voláte|ty voláš|vy voláte)
+  translations:
+    en: |-
+      What's your name?
+      What is your name?
+- id: s.u01.15
+  node: sk.u01.volam-sa
+  forms:
+    sk-Latn/standard:
+      text: Ja sa volám Dominik.
+      tokens: [{surface: Ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: sa, lexeme: sa}, {surface: volám, lexeme: volať-sa, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: Dominik, lexeme: dominik, feats: {Case: Nom, Number: Sing}}]
+      reverse: |-
+        (Ja sa volám|Volám sa) Dominik
+        Dominik sa volám
+  translations:
+    en: |-
+      My name is Dominik.
+      (I'm|I am) Dominik.
+      (I'm|I am) called Dominik.
+- id: s.u01.16
+  node: sk.u01.volam-sa
+  forms:
+    sk-Latn/standard:
+      text: A ty?
+      tokens: [{surface: A, lexeme: a}, {surface: ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}]
+      reverse: A (ty|vy)
+  translations:
+    en: |-
+      And you?
+      What about you?
+      How about you?
+- id: s.u01.17
+  node: sk.u01.volam-sa
+  forms:
+    sk-Latn/standard:
+      text: Ty sa voláš Lucka?
+      tokens: [{surface: Ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}, {surface: sa, lexeme: sa}, {surface: voláš, lexeme: volať-sa, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}},
+        {surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Ty sa voláš|Voláš sa|Vy sa voláte|Voláte sa) Lucka
+  translations:
+    en: |-
+      Is your name Lucka?
+      Your name is Lucka?
+      Are you called Lucka?
+- id: s.u01.18
+  node: sk.u01.ako-sa-mas
+  forms:
+    sk-Latn/standard:
+      text: Ako sa máš?
+      tokens: [{surface: Ako, lexeme: ako}, {surface: sa, lexeme: sa}, {surface: máš, lexeme: mať-sa, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: Ako sa (máš|máte)
+  translations:
+    en: |-
+      How are you?
+      How are you doing?
+      How's it going?
+- id: s.u01.19
+  node: sk.u01.ako-sa-mas
+  forms:
+    sk-Latn/standard:
+      text: Dobre, ďakujem.
+      tokens: [{surface: Dobre, lexeme: dobre}, {surface: ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: |-
+        Dobre (ďakujem|vďaka)
+        (Mám sa|Ja sa mám) dobre (ďakujem|vďaka)
+  translations:
+    en: (Fine|Good|Well|I'm fine|I'm good|I'm well|I'm doing well), (thank you|thanks).
+- id: s.u01.20
+  node: sk.u01.ako-sa-mas
+  forms:
+    sk-Latn/standard:
+      text: Veľmi dobre.
+      tokens: [{surface: Veľmi, lexeme: veľmi}, {surface: dobre, lexeme: dobre}]
+      reverse: |-
+        Veľmi dobre
+        (Mám sa|Ja sa mám) veľmi dobre
+  translations:
+    en: |-
+      Very (well|good).
+      (I'm|I am) very well.
+- id: s.u01.21
+  node: sk.u01.ako-sa-mas
+  forms:
+    sk-Latn/standard:
+      text: Mám sa dobre.
+      tokens: [{surface: Mám, lexeme: mať-sa, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: dobre, lexeme: dobre}]
+      reverse: (Mám sa|Ja sa mám) dobre
+  translations:
+    en: (I'm|I am) (fine|good|well|doing well).
+- id: s.u01.22
+  node: sk.u01.ako-sa-mas
+  forms:
+    sk-Latn/standard:
+      text: Aj ja.
+      tokens: [{surface: Aj, lexeme: aj}, {surface: ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}]
+      reverse: Aj ja
+  translations:
+    en: |-
+      Me too.
+      So am I.
+      Same here.
+- id: s.u01.23
+  node: sk.u01.ako-sa-mas
+  forms:
+    sk-Latn/standard:
+      text: Ďakujem, mám sa dobre. A ty?
+      tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mám, lexeme: mať-sa, feats: {Mood: Ind, Number: Sing, Person: '1',
+            Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: dobre, lexeme: dobre}, {surface: A, lexeme: a}, {surface: ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Ďakujem|Vďaka) (mám sa|ja sa mám) dobre a (ty|vy)
+  translations:
+    en: (Thank you|Thanks), (I'm|I am) (fine|good|well). And you?
+- id: s.u01.24
+  node: sk.u01.som
+  forms:
+    sk-Latn/standard:
+      text: Ja som Lucka.
+      tokens: [{surface: Ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Lucka, lexeme: lucka,
+          feats: {Case: Nom, Number: Sing}}]
+      reverse: (Ja som|Som) Lucka
+  translations:
+    en: (I'm|I am) Lucka.
+- id: s.u01.25
+  node: sk.u01.som
+  forms:
+    sk-Latn/standard:
+      text: Kto je to?
+      tokens: [{surface: Kto, lexeme: kto, feats: {Case: Nom}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: to, lexeme: ten, feats: {
+            Case: Nom, Gender: Neut, Number: Sing}}]
+      reverse: Kto (je to|to je)
+  translations:
+    en: |-
+      Who's that?
+      Who is that?
+      Who is it?
+      Who's this?
+      Who is this?
+- id: s.u01.26
+  node: sk.u01.som
+  forms:
+    sk-Latn/standard:
+      text: To je Tereza.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Tereza,
+          lexeme: tereza, feats: {Case: Nom, Number: Sing}}]
+      reverse: (To je|Je to) Tereza
+  translations:
+    en: (That's|That is|This is|It's|It is) Tereza.
+- id: s.u01.27
+  node: sk.u01.som
+  forms:
+    sk-Latn/standard:
+      text: Ona je Tereza.
+      tokens: [{surface: Ona, lexeme: ona, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Tereza,
+          lexeme: tereza, feats: {Case: Nom, Number: Sing}}]
+      reverse: Ona je Tereza
+  translations:
+    en: (She's|She is) Tereza.
+- id: s.u01.28
+  node: sk.u01.som
+  forms:
+    sk-Latn/standard:
+      text: On je Dominik.
+      tokens: [{surface: 'On', lexeme: 'on', feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: Dominik, lexeme: dominik, feats: {Case: Nom, Number: Sing}}]
+      reverse: On je Dominik
+  translations:
+    en: (He's|He is) Dominik.
+- id: s.u01.29
+  node: sk.u01.som
+  forms:
+    sk-Latn/standard:
+      text: Si Lucka?
+      tokens: [{surface: Si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Si|Ty si|Ste|Vy ste) Lucka
+  translations:
+    en: Are you Lucka?
+- id: s.u01.30
+  node: sk.u01.som
+  forms:
+    sk-Latn/standard:
+      text: Áno, som.
+      tokens: [{surface: Áno, lexeme: áno}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Áno|Hej) som
+  translations:
+    en: Yes, I am.
+- id: s.u01.31
+  node: sk.u01.som
+  forms:
+    sk-Latn/standard:
+      text: Kto si?
+      tokens: [{surface: Kto, lexeme: kto, feats: {Case: Nom}}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: Kto (si|ste|si ty|ste vy)
+  translations:
+    en: Who are you?
+- id: s.u01.32
+  node: sk.u01.vy
+  tags:
+  - {persons: {addressee: f}}
+  - {register: formal}
+  forms:
+    sk-Latn/standard:
+      text: Dobrý deň, pani Tóthová!
+      tokens: [{surface: Dobrý, lexeme: dobrý-deň}, {surface: deň, lexeme: dobrý-deň}, {surface: pani, lexeme: pani, feats: {Case: Nom, Number: Sing}}, {surface: Tóthová, lexeme: tóthová, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: Dobrý deň pani Tóthová
+  translations:
+    en: (Hello|Good day|Good afternoon|Good morning), Mrs Tóthová!
+- id: s.u01.33
+  node: sk.u01.vy
+  tags:
+  - {persons: {addressee: f}}
+  - {register: formal}
+  forms:
+    sk-Latn/standard:
+      text: Ako sa máte, pani Tóthová?
+      tokens: [{surface: Ako, lexeme: ako}, {surface: sa, lexeme: sa}, {surface: máte, lexeme: mať-sa, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: pani, lexeme: pani,
+          feats: {Case: Nom, Number: Sing}}, {surface: Tóthová, lexeme: tóthová, feats: {Case: Nom, Number: Sing}}]
+      reverse: Ako sa máte pani Tóthová
+  translations:
+    en: How are you, Mrs Tóthová?
+- id: s.u01.34
+  node: sk.u01.vy
+  forms:
+    sk-Latn/standard:
+      text: Ďakujem, dobre. A vy?
+      tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dobre, lexeme: dobre}, {surface: A, lexeme: a}, {surface: vy, lexeme: vy,
+          feats: {Case: Nom, Number: Plur}}]
+      reverse: (Ďakujem|Vďaka) dobre a (vy|ty)
+  translations:
+    en: |-
+      (Thank you|Thanks), (fine|good|well). And you?
+      (Fine|Good|Well), (thank you|thanks). And you?
+- id: s.u01.35
+  node: sk.u01.vy
+  tags:
+  - {persons: {addressee: m}}
+  - {register: formal}
+  forms:
+    sk-Latn/standard:
+      text: Dobrý večer, pán Baláž.
+      tokens: [{surface: Dobrý, lexeme: dobrý-večer}, {surface: večer, lexeme: dobrý-večer}, {surface: pán, lexeme: pán, feats: {Case: Nom, Number: Sing}}, {surface: Baláž, lexeme: baláž, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: Dobrý večer pán Baláž
+  translations:
+    en: Good evening, Mr Baláž.
+- id: s.u01.36
+  node: sk.u01.vy
+  tags:
+  - {persons: {addressee: m}}
+  - {register: formal}
+  forms:
+    sk-Latn/standard:
+      text: Vy ste pán Baláž?
+      tokens: [{surface: Vy, lexeme: vy, feats: {Case: Nom, Number: Plur}}, {surface: ste, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: pán, lexeme: pán,
+          feats: {Case: Nom, Number: Sing}}, {surface: Baláž, lexeme: baláž, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Vy ste|Ste) pán Baláž
+  translations:
+    en: Are you Mr Baláž?
+- id: s.u01.37
+  node: sk.u01.vy
+  forms:
+    sk-Latn/standard:
+      text: To je Simona a to je Rudo.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Simona,
+          lexeme: simona, feats: {Case: Nom, Number: Sing}}, {surface: a, lexeme: a}, {surface: to, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Rudo, lexeme: rudo, feats: {Case: Nom, Number: Sing}}]
+      reverse: To je Simona a to je Rudo
+  translations:
+    en: (That's|That is|This is) Simona and (that's|that is|this is) Rudo.
+stories:
+- id: sk.story.u01
+  node: sk.u01.story
+  title:
+    en: The new neighbours
+  characters:
+  - id: lucka
+    speaker: f
+    name:
+      sk-Latn/standard: Lucka
+  - id: simona
+    speaker: f
+    name:
+      sk-Latn/standard: Simona
+  - id: rudo
+    speaker: m
+    name:
+      sk-Latn/standard: Rudo
+  - id: tothova
+    speaker: f
+    name:
+      sk-Latn/standard: Pani Tóthová
+  steps:
+  - line:
+      speaker: simona
+      forms:
+        sk-Latn/standard:
+          text: Dobrý deň!
+          tokens: [{surface: Dobrý, lexeme: dobrý-deň}, {surface: deň, lexeme: dobrý-deň}]
+      translations:
+        en: Hello!
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Dobrý deň. Ja som Lucka. A vy?
+          tokens: [{surface: Dobrý, lexeme: dobrý-deň}, {surface: deň, lexeme: dobrý-deň}, {surface: Ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing,
+                Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: A, lexeme: a}, {surface: vy, lexeme: vy, feats: {Case: Nom, Number: Plur}}]
+      translations:
+        en: Hello. I'm Lucka. And you?
+  - line:
+      speaker: simona
+      forms:
+        sk-Latn/standard:
+          text: Ja som Simona. A to je Rudo.
+          tokens: [{surface: Ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Simona,
+              lexeme: simona, feats: {Case: Nom, Number: Sing}}, {surface: A, lexeme: a}, {surface: to, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {
+                Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Rudo, lexeme: rudo, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: I'm Simona. And this is Rudo.
+  - line:
+      speaker: rudo
+      forms:
+        sk-Latn/standard:
+          text: Ahoj, Lucka!
+          tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Hi, Lucka!
+  - line:
+      speaker: lucka
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Ahoj, Rudo! Ako sa máš?
+          tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: Rudo, lexeme: rudo, feats: {Case: Nom, Number: Sing}}, {surface: Ako, lexeme: ako}, {surface: sa, lexeme: sa}, {surface: máš, lexeme: mať-sa,
+              feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Hi, Rudo! How are you?
+  - line:
+      speaker: rudo
+      forms:
+        sk-Latn/standard:
+          text: Dobre, ďakujem.
+          tokens: [{surface: Dobre, lexeme: dobre}, {surface: ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Fine, thanks.
+  - choose:
+      prompt:
+        en: Who is with Simona?
+      options:
+      - en: Rudo
+      - en: Lucka
+      - en: Mrs Tóthová
+      answer: 0
+  - line:
+      speaker: tothova
+      forms:
+        sk-Latn/standard:
+          text: Dobrý večer! Kto ste vy?
+          tokens: [{surface: Dobrý, lexeme: dobrý-večer}, {surface: večer, lexeme: dobrý-večer}, {surface: Kto, lexeme: kto, feats: {Case: Nom}}, {surface: ste, lexeme: byť, feats: {Mood: Ind, Number: Plur,
+                Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: vy, lexeme: vy, feats: {Case: Nom, Number: Plur}}]
+      translations:
+        en: Good evening! Who are you?
+  - line:
+      speaker: lucka
+      ask: complete
+      gap: lexeme:lucka
+      distractors:
+      - lexeme:tereza
+      - lexeme:simona
+      forms:
+        sk-Latn/standard:
+          text: Dobrý večer, pani Tóthová. Ja som Lucka.
+          tokens: [{surface: Dobrý, lexeme: dobrý-večer}, {surface: večer, lexeme: dobrý-večer}, {surface: pani, lexeme: pani, feats: {Case: Nom, Number: Sing}}, {surface: Tóthová, lexeme: tóthová, feats: {
+                Case: Nom, Number: Sing}}, {surface: Ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Good evening, Mrs Tóthová. I'm Lucka.
+  - line:
+      speaker: tothova
+      forms:
+        sk-Latn/standard:
+          text: Ako sa máte, Lucka?
+          tokens: [{surface: Ako, lexeme: ako}, {surface: sa, lexeme: sa}, {surface: máte, lexeme: mať-sa, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: Lucka, lexeme: lucka,
+              feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: How are you, Lucka?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Veľmi dobre, ďakujem. A vy?
+          tokens: [{surface: Veľmi, lexeme: veľmi}, {surface: dobre, lexeme: dobre}, {surface: ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: A,
+              lexeme: a}, {surface: vy, lexeme: vy, feats: {Case: Nom, Number: Plur}}]
+      translations:
+        en: Very well, thank you. And you?
+  - line:
+      speaker: tothova
+      forms:
+        sk-Latn/standard:
+          text: Ďakujem, dobre. Dovidenia!
+          tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dobre, lexeme: dobre}, {surface: Dovidenia, lexeme: dovidenia}]
+      translations:
+        en: Fine, thank you. Goodbye!
+  - choose:
+      prompt:
+        en: How is Lucka?
+      options:
+      - en: Very well
+      - en: Not well
+      - en: The story doesn't say.
+      answer: 0
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Dovidenia, pani Tóthová!
+          tokens: [{surface: Dovidenia, lexeme: dovidenia}, {surface: pani, lexeme: pani, feats: {Case: Nom, Number: Sing}}, {surface: Tóthová, lexeme: tóthová, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Goodbye, Mrs Tóthová!
+scenarios:
+- id: sk.tothova
+  after: sk.u01.vy
+  title:
+    en: Meeting pani Tóthová
+  setting:
+    en: The stairwell of an apartment building in the old town of Žilina, on a weekday evening. Pani Tóthová, who lives downstairs, is coming home with her shopping.
+  character:
+    en: Pani Tóthová, a friendly, talkative retired teacher in her seventies, who has lived in the building for forty years and likes to know who her neighbours are.
+  goal:
+    en: Greet pani Tóthová politely (with vy), say your name, ask how she is, and say goodbye.

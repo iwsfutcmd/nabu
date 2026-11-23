@@ -1,0 +1,105 @@
+# Slovak (sk), standard Slovak for English speakers from nothing, A1 to B1 in twenty units (ADR 0155;
+# the brief is README.md). The grammar's order follows Krížom-krážom A1 (2009), then Naughton's Colloquial
+# Slovak (2012); every form is checked against Mistrík's paradigms (1988). Everyday scenes in Žilina with
+# people of the course's own; units 16-20 also read a passage of Dobšinský's tales (1881, public domain).
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: sk
+target: sk-Latn
+orthographies:
+- sk-Latn/standard
+support:
+- en-Latn/standard
+lexicon: sk
+# What the app calls the course and its orthographies, and what the course list says of them, by
+# language (ADR 0109).
+names:
+  en:
+    course: Slovak
+    blurb: Slovak as it is written and spoken in Slovakia, from the start.
+    orthographies:
+      sk-Latn/standard: Slovak spelling
+  # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
+  # await review as those do.
+  ar:
+    course: السلوفاكية
+    orthographies:
+      sk-Latn/standard: الإملاء السلوفاكي
+    provenance:
+      author: llm:claude@sk-course-v1
+      status: draft
+  fa:
+    course: اسلواکی
+    orthographies:
+      sk-Latn/standard: املای اسلواکی
+    provenance:
+      author: llm:claude@sk-course-v1
+      status: draft
+  uz:
+    course: Slovak tili
+    orthographies:
+      sk-Latn/standard: Slovak imlosi
+    provenance:
+      author: llm:claude@sk-course-v1
+      status: draft
+  uz-Cyrl:
+    course: Словак тили
+    orthographies:
+      sk-Latn/standard: Словак имлоси
+    provenance:
+      author: llm:claude@sk-course-v1
+      status: draft
+  zh-Hant-HK:
+    course: 斯洛伐克語
+    orthographies:
+      sk-Latn/standard: 斯洛伐克文拼寫
+    provenance:
+      author: llm:claude@sk-course-v1
+      status: draft
+license: CC-BY-SA-4.0
+provenance:
+  author: llm:claude@sk-course-v1
+  status: draft
+# A new noun in a new case, or a new verb in a new tense, is two new parts on one token (a lexeme and
+# a feature value), so a sentence may bring in two.
+iPlusOne: 2
+# The course asks words by their parts (ADR 0152): a word built from its own word and the forms it
+# carries (parts-whole), and a word's parts picked out (whole-parts). REVIEW: the forms its tokens
+# carry have not been checked for this by a reader.
+wordParts: true
+# Audio (ADR 0155): Piper's Slovak voice, sk_SK-lili-medium, pinned at a commit of rhasspy/piper-voices. One
+# woman's CC0 Slovak recordings (OHF-Voice's voice datasets), fine-tuned from Piper's en_US hifi_tts_92 voice,
+# itself trained on NVIDIA's Hi-Fi TTS (CC BY 4.0, from LibriVox): the clips are CC-BY-4.0, crediting both.
+# It reads the text; a word card ends with a full stop (finalStop). One voice reads everything, men's lines
+# too (ADR 0078). REVIEW: a Slovak listener should go through the audio check (#/sk/sk-Latn.standard/audio).
+audio:
+  voices:
+  - id: lili
+    provider: piper
+    voice: sk/sk_SK/lili/medium/sk_SK-lili-medium
+    model: rhasspy/piper-voices@e9c8a39444359388adaa94255becb37a5a2b8e51
+    speaker: f
+    orthography: sk-Latn/standard
+    reading: text
+    finalStop: true
+    license: CC-BY-4.0
+units:
+- units/u01-ahoj.yaml
+- units/u02-odkial-si.yaml
+- units/u03-u-nas-doma.yaml
+- units/u04-zilina.yaml
+- units/u05-narodeniny.yaml
+- units/u06-koliba.yaml
+- units/u07-moj-den.yaml
+- units/u08-vcera.yaml
+- units/u09-kde-byvas.yaml
+- units/u10-tatry.yaml
+- units/u11-zajtra.yaml
+- units/u12-darcek.yaml
+- units/u13-vianoce.yaml
+- units/u14-trh.yaml
+- units/u15-chod-rovno.yaml
+- units/u16-hokej.yaml
+- units/u17-cestujeme.yaml
+- units/u18-najlepsi.yaml
+- units/u19-keby.yaml
+- units/u20-rozpravky.yaml

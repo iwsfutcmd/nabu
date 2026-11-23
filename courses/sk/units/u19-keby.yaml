@@ -1,0 +1,384 @@
+# Unit 19 (sk): the conditional: by with the -l form (chcel by som, mohli by ste), keby (if) and aby (so that, to);
+# wishes, polite requests and plans; Tereza and Simona on what they would do with a lottery win.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u19
+title:
+  en: Keby If
+cefr: B1
+nodes:
+- {id: sk.u19.by, kind: lesson, introduces: ['lexeme:by', 'feature:Mood=Cnd']}
+- {id: sk.u19.keby, kind: lesson, introduces: ['lexeme:keby', 'lexeme:lotéria', 'lexeme:peniaze', 'lexeme:more', 'lexeme:určite', 'lexeme:ďaleko']}
+- {id: sk.u19.aby, kind: lesson, introduces: ['lexeme:aby']}
+- {id: sk.u19.story, kind: story}
+sentences:
+- id: s.u19.1
+  node: sk.u19.by
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Chcel by som kávu.
+      tokens: [{surface: Chcel, lexeme: chcieť, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: som, lexeme: byť, feats: {Mood: Ind,
+            Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: kávu, lexeme: káva, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Chcel by som kávu|Ja by som chcel kávu)
+  translations:
+    en: (I'd|I would) like (a|some) coffee.
+- id: s.u19.2
+  node: sk.u19.by
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Chcela by som čaj.
+      tokens: [{surface: Chcela, lexeme: chcieť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: som, lexeme: byť, feats: {Mood: Ind,
+            Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: čaj, lexeme: čaj, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Chcela by som čaj|Ja by som chcela čaj)
+  translations:
+    en: (I'd|I would) like (a|some) tea.
+- id: s.u19.3
+  node: sk.u19.by
+  forms:
+    sk-Latn/standard:
+      text: Mohli by ste mi pomôcť?
+      tokens: [{surface: Mohli, lexeme: môcť, feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: ste, lexeme: byť, feats: {Mood: Ind, Number: Plur,
+            Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: ja, feats: {Case: Dat, Number: Sing}}, {surface: pomôcť, lexeme: pomôcť, feats: {VerbForm: Inf}}]
+      reverse: (Mohli by ste mi pomôcť|Mohol by si mi pomôcť|Mohla by si mi pomôcť)
+  translations:
+    en: |-
+      Could you help me?
+      Would you be able to help me?
+- id: s.u19.4
+  node: sk.u19.by
+  forms:
+    sk-Latn/standard:
+      text: Bolo by to pekné.
+      tokens: [{surface: Bolo, lexeme: byť, feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: to, lexeme: ten, feats: {Case: Nom,
+            Gender: Neut, Number: Sing}}, {surface: pekné, lexeme: pekný, feats: {Case: Nom, Gender: Neut, Number: Sing}}]
+      reverse: (Bolo by to pekné|To by bolo pekné)
+  translations:
+    en: |-
+      (That|It) would be nice.
+      (That'd|It'd) be nice.
+- id: s.u19.5
+  node: sk.u19.by
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Rád by som cestoval.
+      tokens: [{surface: Rád, lexeme: rád, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing,
+            Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: cestoval, lexeme: cestovať, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: (Rád by som cestoval|Ja by som rád cestoval)
+  translations:
+    en: |-
+      (I'd|I would) like to travel.
+      (I'd|I would) love to travel.
+- id: s.u19.6
+  node: sk.u19.by
+  forms:
+    sk-Latn/standard:
+      text: Tereza by chcela ísť do Írska.
+      tokens: [{surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: chcela, lexeme: chcieť, feats: {Gender: Fem, Number: Sing, Tense: Past,
+            VerbForm: Part}}, {surface: ísť, lexeme: ísť, feats: {VerbForm: Inf}}, {surface: do, lexeme: do}, {surface: Írska, lexeme: írsko, feats: {Case: Gen, Number: Sing}}]
+      reverse: Tereza by chcela ísť do Írska
+  translations:
+    en: Tereza would like to go to Ireland.
+- id: s.u19.7
+  node: sk.u19.by
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    sk-Latn/standard:
+      text: Čo by si robil?
+      tokens: [{surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}},
+        {surface: robil, lexeme: robiť, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: Čo by si robil
+  translations:
+    en: What would you do?
+- id: s.u19.8
+  node: sk.u19.by
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    sk-Latn/standard:
+      text: Čo by si robila?
+      tokens: [{surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}},
+        {surface: robila, lexeme: robiť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: Čo by si robila
+  translations:
+    en: What would you do?
+- id: s.u19.9
+  node: sk.u19.keby
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Keby som mal čas, išiel by som do Tatier.
+      tokens: [{surface: Keby, lexeme: keby}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mal, lexeme: mať, feats: {Gender: Masc, Number: Sing,
+            Tense: Past, VerbForm: Part}}, {surface: čas, lexeme: čas, feats: {Case: Acc, Number: Sing}}, {surface: išiel, lexeme: ísť, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}},
+        {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: Tatier,
+          lexeme: tatry, feats: {Case: Gen, Number: Plur}}]
+      reverse: (Keby som mal čas išiel by som do Tatier|Išiel by som do Tatier keby som mal čas)
+  translations:
+    en: If I had (the |)time, (I'd|I would) go to the Tatras.
+- id: s.u19.10
+  node: sk.u19.keby
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Keby som vyhrala v lotérii, cestovala by som.
+      tokens: [{surface: Keby, lexeme: keby}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: vyhrala, lexeme: vyhrať, feats: {Gender: Fem,
+            Number: Sing, Tense: Past, VerbForm: Part}}, {surface: v, lexeme: v}, {surface: lotérii, lexeme: lotéria, feats: {Case: Loc, Number: Sing}}, {surface: cestovala, lexeme: cestovať, feats: {Gender: Fem,
+            Number: Sing, Tense: Past, VerbForm: Part}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Keby som vyhrala v lotérii cestovala by som|Cestovala by som keby som vyhrala v lotérii)
+  translations:
+    en: If I won the lottery, (I'd|I would) travel.
+- id: s.u19.11
+  node: sk.u19.keby
+  forms:
+    sk-Latn/standard:
+      text: Keby bolo teplo, išli by sme k moru.
+      tokens: [{surface: Keby, lexeme: keby}, {surface: bolo, lexeme: byť, feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: teplo, lexeme: teplo}, {surface: išli, lexeme: ísť,
+          feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: sme, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: k, lexeme: k}, {surface: moru, lexeme: more, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Keby bolo teplo išli by sme k moru|Išli by sme k moru keby bolo teplo)
+  translations:
+    en: |-
+      If it were warm, (we'd|we would) go to the (sea|seaside).
+      If it was warm, (we'd|we would) go to the (sea|seaside).
+- id: s.u19.12
+  node: sk.u19.keby
+  forms:
+    sk-Latn/standard:
+      text: Nemám veľa peňazí.
+      tokens: [{surface: Nemám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}}, {surface: veľa, lexeme: veľa}, {surface: peňazí, lexeme: peniaze,
+          feats: {Case: Gen, Number: Plur}}]
+      reverse: (Nemám veľa peňazí|Ja nemám veľa peňazí)
+  translations:
+    en: |-
+      I (don't|do not) have much money.
+      I haven't got much money.
+- id: s.u19.13
+  node: sk.u19.keby
+  forms:
+    sk-Latn/standard:
+      text: Slovensko nemá more.
+      tokens: [{surface: Slovensko, lexeme: slovensko, feats: {Case: Nom, Number: Sing}}, {surface: nemá, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}},
+        {surface: more, lexeme: more, feats: {Case: Acc, Number: Sing}}]
+      reverse: Slovensko nemá more
+  translations:
+    en: |-
+      Slovakia has no sea.
+      Slovakia (doesn't|does not) have a sea.
+- id: s.u19.14
+  node: sk.u19.keby
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: To by som určite chcel.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Acc, Gender: Neut, Number: Sing}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1',
+            Tense: Pres, VerbForm: Fin}}, {surface: určite, lexeme: určite}, {surface: chcel, lexeme: chcieť, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: (To by som určite chcel|Určite by som to chcel)
+  translations:
+    en: (I'd|I would) (certainly|definitely) like that.
+- id: s.u19.15
+  node: sk.u19.keby
+  forms:
+    sk-Latn/standard:
+      text: Írsko je ďaleko.
+      tokens: [{surface: Írsko, lexeme: írsko, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ďaleko,
+          lexeme: ďaleko}]
+      reverse: (Írsko je ďaleko|Írsko je veľmi ďaleko)
+  translations:
+    en: Ireland is far (away).
+- id: s.u19.16
+  node: sk.u19.keby
+  forms:
+    sk-Latn/standard:
+      text: Určite prídem.
+      tokens: [{surface: Určite, lexeme: určite}, {surface: prídem, lexeme: prísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Určite prídem|Prídem určite)
+  translations:
+    en: (I'll|I will) (certainly|definitely) come.
+- id: s.u19.17
+  node: sk.u19.aby
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    sk-Latn/standard:
+      text: Chcem, aby si prišiel.
+      tokens: [{surface: Chcem, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: aby, lexeme: aby}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing,
+            Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: prišiel, lexeme: prísť, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: Chcem aby si prišiel
+  translations:
+    en: I want you to come.
+- id: s.u19.18
+  node: sk.u19.aby
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    sk-Latn/standard:
+      text: Chcem, aby si prišla.
+      tokens: [{surface: Chcem, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: aby, lexeme: aby}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing,
+            Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: prišla, lexeme: prísť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: Chcem aby si prišla
+  translations:
+    en: I want you to come.
+- id: s.u19.19
+  node: sk.u19.aby
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Prišiel som, aby som ti pomohol.
+      tokens: [{surface: Prišiel, lexeme: prísť, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+            VerbForm: Fin}}, {surface: aby, lexeme: aby}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ti, lexeme: ty, feats: {Case: Dat,
+            Number: Sing}}, {surface: pomohol, lexeme: pomôcť, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: Prišiel som aby som ti pomohol
+  translations:
+    en: |-
+      I came to help you.
+      I came (so that I could|in order to) help you.
+- id: s.u19.20
+  node: sk.u19.aby
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Prišla som, aby som ti pomohla.
+      tokens: [{surface: Prišla, lexeme: prísť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: aby, lexeme: aby}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ti, lexeme: ty, feats: {Case: Dat, Number: Sing}},
+        {surface: pomohla, lexeme: pomôcť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: Prišla som aby som ti pomohla
+  translations:
+    en: |-
+      I came to help you.
+      I came (so that I could|in order to) help you.
+stories:
+- id: sk.story.u19
+  node: sk.u19.story
+  title:
+    en: If I won
+  characters:
+  - id: simona
+    speaker: f
+    name:
+      sk-Latn/standard: Simona
+  - id: tereza
+    speaker: f
+    name:
+      sk-Latn/standard: Tereza
+  steps:
+  - line:
+      speaker: simona
+      forms:
+        sk-Latn/standard:
+          text: Tereza, čo by si robila, keby si vyhrala v lotérii?
+          tokens: [{surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: čo, lexeme: čo, feats: {Case: Acc}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: si, lexeme: byť,
+              feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: robila, lexeme: robiť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: keby,
+              lexeme: keby}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: vyhrala, lexeme: vyhrať, feats: {Gender: Fem, Number: Sing,
+                Tense: Past, VerbForm: Part}}, {surface: v, lexeme: v}, {surface: lotérii, lexeme: lotéria, feats: {Case: Loc, Number: Sing}}]
+      translations:
+        en: Tereza, what would you do if you won the lottery?
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Cestovala by som. Išla by som do Írska.
+          tokens: [{surface: Cestovala, lexeme: cestovať, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: som, lexeme: byť, feats: {
+                Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Išla, lexeme: ísť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: by, lexeme: by,
+              feats: {Mood: Cnd}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: Írska, lexeme: írsko, feats: {
+                Case: Gen, Number: Sing}}]
+      translations:
+        en: I'd travel. I'd go to Ireland.
+  - line:
+      speaker: simona
+      forms:
+        sk-Latn/standard:
+          text: A potom?
+          tokens: [{surface: A, lexeme: a}, {surface: potom, lexeme: potom}]
+      translations:
+        en: And then?
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Potom by som išla k moru.
+          tokens: [{surface: Potom, lexeme: potom}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: išla, lexeme: ísť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: k, lexeme: k}, {surface: moru, lexeme: more, feats: {Case: Dat, Number: Sing}}]
+      translations:
+        en: Then I'd go to the sea.
+  - line:
+      speaker: simona
+      ask: complete
+      gap: lexeme:more
+      distractors:
+      - lexeme:víno
+      - lexeme:auto
+      forms:
+        sk-Latn/standard:
+          text: Ale Slovensko nemá more!
+          tokens: [{surface: Ale, lexeme: ale}, {surface: Slovensko, lexeme: slovensko, feats: {Case: Nom, Number: Sing}}, {surface: nemá, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Polarity: Neg,
+                Tense: Pres, VerbForm: Fin}}, {surface: more, lexeme: more, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: But Slovakia has no sea!
+  - choose:
+      prompt:
+        en: Where would Tereza go first?
+      options:
+      - en: To Ireland
+      - en: To the sea
+      - en: To the Tatras
+      answer: 0
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Dobre. Keby som mala peniaze, cestovala by som ďaleko.
+          tokens: [{surface: Dobre, lexeme: dobre}, {surface: Keby, lexeme: keby}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mala,
+              lexeme: mať, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: peniaze, lexeme: peniaze, feats: {Case: Acc, Number: Plur}}, {surface: cestovala, lexeme: cestovať,
+              feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+                VerbForm: Fin}}, {surface: ďaleko, lexeme: ďaleko}]
+      translations:
+        en: All right. If I had the money, I'd travel far.
+  - line:
+      speaker: simona
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Keby som mala čas, išla by som s tebou.
+          tokens: [{surface: Keby, lexeme: keby}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mala, lexeme: mať, feats: {Gender: Fem,
+                Number: Sing, Tense: Past, VerbForm: Part}}, {surface: čas, lexeme: čas, feats: {Case: Acc, Number: Sing}}, {surface: išla, lexeme: ísť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}},
+            {surface: by, lexeme: by, feats: {Mood: Cnd}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: s, lexeme: s}, {surface: tebou,
+              lexeme: ty, feats: {Case: Ins, Number: Sing}}]
+      translations:
+        en: If I had time, I'd go with you.
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Určite!
+          tokens: [{surface: Určite, lexeme: určite}]
+      translations:
+        en: Definitely!
+  - choose:
+      prompt:
+        en: Who would go with Tereza?
+      options:
+      - en: Simona
+      - en: Nobody
+      - en: Her grandma
+      answer: 0
+scenarios:
+- id: sk.plany
+  after: sk.u19.keby
+  title:
+    en: Making weekend plans
+  setting:
+    en: A café in Žilina on a Thursday evening. You and a friend are deciding what to do on Saturday if the weather is good, and what to do if it rains.
+  character:
+    en: Your friend Tereza, chatty and full of ideas.
+  goal:
+    en: Say what you would like to do, ask what she would do, and agree on a plan (keby bolo pekne, išli by sme …).

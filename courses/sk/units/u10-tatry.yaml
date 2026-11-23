@@ -1,0 +1,417 @@
+# Unit 10 (sk): the genitive singular (do Tatier, zo Žiliny, u babky, od Simony, bez cukru, okolo jazera,
+# vedľa hotela), the weather and the seasons; a trip to the High Tatras.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u10
+title:
+  en: Výlet do Tatier A trip to the Tatras
+cefr: A2
+nodes:
+- {id: sk.u10.vylet, kind: lesson, introduces: ['lexeme:výlet', 'feature:Case=Gen', 'lexeme:tatry', 'lexeme:vysoký', 'lexeme:hora', 'lexeme:chata', 'lexeme:vedľa', 'lexeme:jazero']}
+- {id: sk.u10.gen, kind: lesson, introduces: ['lexeme:u', 'lexeme:babka', 'lexeme:dedina', 'lexeme:od', 'lexeme:bez', 'lexeme:okolo', 'lexeme:hotel']}
+- {id: sk.u10.pocasie, kind: lesson, introduces: ['lexeme:počasie', 'lexeme:teplo', 'lexeme:zima', 'lexeme:svietiť', 'lexeme:slnko', 'lexeme:pršať', 'lexeme:snežiť']}
+- {id: sk.u10.rok, kind: lesson, introduces: ['lexeme:leto', 'lexeme:jar', 'lexeme:pekne', 'lexeme:jeseň', 'lexeme:šálka']}
+- {id: sk.u10.story, kind: story}
+sentences:
+- id: s.u10.1
+  node: sk.u10.vylet
+  forms:
+    sk-Latn/standard:
+      text: Ideme na výlet.
+      tokens: [{surface: Ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na}, {surface: výlet, lexeme: výlet, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Ideme|My ideme) na výlet
+  translations:
+    en: |-
+      (We're|We are) going on a trip.
+      (We're|We are) going on an outing.
+- id: s.u10.2
+  node: sk.u10.vylet
+  forms:
+    sk-Latn/standard:
+      text: Ideme do Tatier.
+      tokens: [{surface: Ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: Tatier, lexeme: tatry, feats: {Case: Gen, Number: Plur}}]
+      reverse: (Ideme|My ideme) do Tatier
+  translations:
+    en: (We're|We are) going to the Tatras.
+- id: s.u10.3
+  node: sk.u10.vylet
+  forms:
+    sk-Latn/standard:
+      text: Tatry sú vysoké hory.
+      tokens: [{surface: Tatry, lexeme: tatry, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: vysoké,
+          lexeme: vysoký, feats: {Case: Nom, Gender: Fem, Number: Plur}}, {surface: hory, lexeme: hora, feats: {Case: Nom, Number: Plur}}]
+      reverse: Tatry sú vysoké hory
+  translations:
+    en: The Tatras are high mountains.
+- id: s.u10.4
+  node: sk.u10.vylet
+  forms:
+    sk-Latn/standard:
+      text: Spíme na chate.
+      tokens: [{surface: Spíme, lexeme: spať, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na}, {surface: chate, lexeme: chata, feats: {Case: Loc, Number: Sing}}]
+      reverse: (Spíme|My spíme) na chate
+  translations:
+    en: We (sleep|are sleeping) (in|at) a (mountain hut|hut|cottage).
+- id: s.u10.5
+  node: sk.u10.vylet
+  forms:
+    sk-Latn/standard:
+      text: Chata je vedľa jazera.
+      tokens: [{surface: Chata, lexeme: chata, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: vedľa,
+          lexeme: vedľa}, {surface: jazera, lexeme: jazero, feats: {Case: Gen, Number: Sing}}]
+      reverse: Chata je vedľa jazera
+  translations:
+    en: The (hut|cottage) is next to the lake.
+- id: s.u10.6
+  node: sk.u10.vylet
+  forms:
+    sk-Latn/standard:
+      text: Som zo Žiliny.
+      tokens: [{surface: Som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: zo, lexeme: z}, {surface: Žiliny, lexeme: žilina, feats: {Case: Gen, Number: Sing}}]
+      reverse: (Som|Ja som) zo Žiliny
+  translations:
+    en: (I'm|I am) from Žilina.
+- id: s.u10.7
+  node: sk.u10.vylet
+  forms:
+    sk-Latn/standard:
+      text: Idem do mesta.
+      tokens: [{surface: Idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: mesta, lexeme: mesto, feats: {Case: Gen, Number: Sing}}]
+      reverse: (Idem|Ja idem) do mesta
+  translations:
+    en: |-
+      (I'm|I am) going (into|to) town.
+      (I'm|I am) going to the (town|city).
+- id: s.u10.8
+  node: sk.u10.vylet
+  forms:
+    sk-Latn/standard:
+      text: Ideme do centra.
+      tokens: [{surface: Ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: centra, lexeme: centrum, feats: {Case: Gen,
+            Number: Sing}}]
+      reverse: (Ideme|My ideme) do centra
+  translations:
+    en: |-
+      (We're|We are) going to the (centre|center).
+      (We're|We are) going (downtown|into town).
+- id: s.u10.9
+  node: sk.u10.gen
+  forms:
+    sk-Latn/standard:
+      text: Sme u babky.
+      tokens: [{surface: Sme, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: u, lexeme: u}, {surface: babky, lexeme: babka, feats: {Case: Gen, Number: Sing}}]
+      reverse: (Sme|My sme) u babky
+  translations:
+    en: |-
+      (We're|We are) at Grandma's.
+      (We're|We are) at (our|my) grandmother's.
+- id: s.u10.10
+  node: sk.u10.gen
+  forms:
+    sk-Latn/standard:
+      text: Babka býva v dedine.
+      tokens: [{surface: Babka, lexeme: babka, feats: {Case: Nom, Number: Sing}}, {surface: býva, lexeme: bývať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: v,
+          lexeme: v}, {surface: dedine, lexeme: dedina, feats: {Case: Loc, Number: Sing}}]
+      reverse: Babka býva v dedine
+  translations:
+    en: Grandma lives in a village.
+- id: s.u10.11
+  node: sk.u10.gen
+  forms:
+    sk-Latn/standard:
+      text: Mám darček od Simony.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: darček, lexeme: darček, feats: {Case: Acc, Number: Sing}}, {surface: od,
+          lexeme: od}, {surface: Simony, lexeme: simona, feats: {Case: Gen, Number: Sing}}]
+      reverse: (Mám|Ja mám) darček od Simony
+  translations:
+    en: I have a (present|gift) from Simona.
+- id: s.u10.12
+  node: sk.u10.gen
+  forms:
+    sk-Latn/standard:
+      text: Pijem kávu bez cukru.
+      tokens: [{surface: Pijem, lexeme: piť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: kávu, lexeme: káva, feats: {Case: Acc, Number: Sing}}, {surface: bez, lexeme: bez},
+        {surface: cukru, lexeme: cukor, feats: {Case: Gen, Number: Sing}}]
+      reverse: (Pijem|Ja pijem) kávu bez cukru
+  translations:
+    en: I (drink|take) [my] coffee without sugar.
+- id: s.u10.13
+  node: sk.u10.gen
+  forms:
+    sk-Latn/standard:
+      text: Ideme okolo jazera.
+      tokens: [{surface: Ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: okolo, lexeme: okolo}, {surface: jazera, lexeme: jazero, feats: {Case: Gen,
+            Number: Sing}}]
+      reverse: (Ideme|My ideme) okolo jazera
+  translations:
+    en: |-
+      (We're|We are) going around the lake.
+      We (go|walk) around the lake.
+- id: s.u10.14
+  node: sk.u10.gen
+  forms:
+    sk-Latn/standard:
+      text: Dom je vedľa hotela.
+      tokens: [{surface: Dom, lexeme: dom, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: vedľa, lexeme: vedľa},
+        {surface: hotela, lexeme: hotel, feats: {Case: Gen, Number: Sing}}]
+      reverse: Dom je vedľa hotela
+  translations:
+    en: The house is next to the hotel.
+- id: s.u10.15
+  node: sk.u10.pocasie
+  forms:
+    sk-Latn/standard:
+      text: Aké je počasie?
+      tokens: [{surface: Aké, lexeme: aký, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: počasie,
+          lexeme: počasie, feats: {Case: Nom, Number: Sing}}]
+      reverse: Aké je počasie
+  translations:
+    en: |-
+      (What's|What is) the weather like?
+      How's the weather?
+- id: s.u10.16
+  node: sk.u10.pocasie
+  forms:
+    sk-Latn/standard:
+      text: Je teplo.
+      tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: teplo, lexeme: teplo}]
+      reverse: Je teplo
+  translations:
+    en: (It's|It is) warm.
+- id: s.u10.17
+  node: sk.u10.pocasie
+  forms:
+    sk-Latn/standard:
+      text: V horách je zima.
+      tokens: [{surface: V, lexeme: v}, {surface: horách, lexeme: hora, feats: {Case: Loc, Number: Plur}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: zima, lexeme: zima, feats: {Case: Nom, Number: Sing}}]
+      reverse: (V horách je zima|Je zima v horách)
+  translations:
+    en: (It's|It is) cold in the mountains.
+- id: s.u10.18
+  node: sk.u10.pocasie
+  forms:
+    sk-Latn/standard:
+      text: Svieti slnko.
+      tokens: [{surface: Svieti, lexeme: svietiť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: slnko, lexeme: slnko, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Svieti slnko|Slnko svieti)
+  translations:
+    en: |-
+      The sun is shining.
+      (It's|It is) sunny.
+- id: s.u10.19
+  node: sk.u10.pocasie
+  forms:
+    sk-Latn/standard:
+      text: Prší.
+      tokens: [{surface: Prší, lexeme: pršať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: Prší
+  translations:
+    en: (It's|It is) raining.
+- id: s.u10.20
+  node: sk.u10.pocasie
+  forms:
+    sk-Latn/standard:
+      text: V Tatrách sneží.
+      tokens: [{surface: V, lexeme: v}, {surface: Tatrách, lexeme: tatry, feats: {Case: Loc, Number: Plur}}, {surface: sneží, lexeme: snežiť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: (V Tatrách sneží|Sneží v Tatrách)
+  translations:
+    en: (It's|It is) snowing in the Tatras.
+- id: s.u10.21
+  node: sk.u10.pocasie
+  forms:
+    sk-Latn/standard:
+      text: Včera pršalo.
+      tokens: [{surface: Včera, lexeme: včera}, {surface: pršalo, lexeme: pršať, feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: (Včera pršalo|Pršalo včera)
+  translations:
+    en: |-
+      It rained yesterday.
+      Yesterday it rained.
+      It was raining yesterday.
+- id: s.u10.22
+  node: sk.u10.rok
+  forms:
+    sk-Latn/standard:
+      text: V lete je teplo.
+      tokens: [{surface: V, lexeme: v}, {surface: lete, lexeme: leto, feats: {Case: Loc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: teplo, lexeme: teplo}]
+      reverse: (V lete je teplo|Je teplo v lete)
+  translations:
+    en: |-
+      In [the] summer (it's|it is) warm.
+      (It's|It is) warm in [the] summer.
+- id: s.u10.23
+  node: sk.u10.rok
+  forms:
+    sk-Latn/standard:
+      text: V zime sneží.
+      tokens: [{surface: V, lexeme: v}, {surface: zime, lexeme: zima, feats: {Case: Loc, Number: Sing}}, {surface: sneží, lexeme: snežiť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: (V zime sneží|Sneží v zime)
+  translations:
+    en: |-
+      In [the] winter it snows.
+      It snows in [the] winter.
+- id: s.u10.24
+  node: sk.u10.rok
+  forms:
+    sk-Latn/standard:
+      text: Na jar je pekne.
+      tokens: [{surface: Na, lexeme: na}, {surface: jar, lexeme: jar, feats: {Case: Acc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: pekne, lexeme: pekne}]
+      reverse: (Na jar je pekne|Je pekne na jar)
+  translations:
+    en: In [the] spring (it's|it is) (nice|lovely).
+- id: s.u10.25
+  node: sk.u10.rok
+  forms:
+    sk-Latn/standard:
+      text: Na jeseň prší.
+      tokens: [{surface: Na, lexeme: na}, {surface: jeseň, lexeme: jeseň, feats: {Case: Acc, Number: Sing}}, {surface: prší, lexeme: pršať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Na jeseň prší|Prší na jeseň)
+  translations:
+    en: |-
+      In [the] (autumn|fall) it rains.
+      It rains in [the] (autumn|fall).
+- id: s.u10.26
+  node: sk.u10.rok
+  forms:
+    sk-Latn/standard:
+      text: Šálku čaju, prosím.
+      tokens: [{surface: Šálku, lexeme: šálka, feats: {Case: Acc, Number: Sing}}, {surface: čaju, lexeme: čaj, feats: {Case: Gen, Number: Sing}}, {surface: prosím, lexeme: prosiť, feats: {Mood: Ind, Number: Sing,
+            Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: Šálku čaju prosím
+  translations:
+    en: A cup of tea, please.
+- id: s.u10.27
+  node: sk.u10.rok
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Mám rada leto.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: rada, lexeme: rád, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: leto,
+          lexeme: leto, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Mám rada leto|Leto mám rada|Ja mám rada leto)
+  translations:
+    en: I like summer.
+stories:
+- id: sk.story.u10
+  node: sk.u10.story
+  title:
+    en: In the Tatras
+  characters:
+  - id: dominik
+    speaker: m
+    name:
+      sk-Latn/standard: Dominik
+  - id: lucka
+    speaker: f
+    name:
+      sk-Latn/standard: Lucka
+  - id: tereza
+    speaker: f
+    name:
+      sk-Latn/standard: Tereza
+  steps:
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Ideme do Tatier!
+          tokens: [{surface: Ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: Tatier, lexeme: tatry, feats: {Case: Gen,
+                Number: Plur}}]
+      translations:
+        en: We're going to the Tatras!
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Aké je počasie?
+          tokens: [{surface: Aké, lexeme: aký, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: počasie,
+              lexeme: počasie, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: What's the weather like?
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Svieti slnko a je teplo.
+          tokens: [{surface: Svieti, lexeme: svietiť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: slnko, lexeme: slnko, feats: {Case: Nom, Number: Sing}}, {surface: a,
+              lexeme: a}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: teplo, lexeme: teplo}]
+      translations:
+        en: The sun is shining and it's warm.
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Ale v horách je zima.
+          tokens: [{surface: Ale, lexeme: ale}, {surface: v, lexeme: v}, {surface: horách, lexeme: hora, feats: {Case: Loc, Number: Plur}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3',
+                Tense: Pres, VerbForm: Fin}}, {surface: zima, lexeme: zima, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: But it's cold in the mountains.
+  - choose:
+      prompt:
+        en: What is the weather like, says Dominik?
+      options:
+      - en: Sunny and warm
+      - en: Rainy
+      - en: Snowy
+      answer: 0
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Spíme na chate vedľa jazera.
+          tokens: [{surface: Spíme, lexeme: spať, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na}, {surface: chate, lexeme: chata, feats: {Case: Loc,
+                Number: Sing}}, {surface: vedľa, lexeme: vedľa}, {surface: jazera, lexeme: jazero, feats: {Case: Gen, Number: Sing}}]
+      translations:
+        en: We're sleeping at a hut next to the lake.
+  - line:
+      speaker: lucka
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Je chata blízko?
+          tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: chata, lexeme: chata, feats: {Case: Nom, Number: Sing}}, {surface: blízko,
+              lexeme: blízko}]
+      translations:
+        en: Is the hut close?
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Áno, je blízko.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: blízko, lexeme: blízko}]
+      translations:
+        en: Yes, it's close.
+  - line:
+      speaker: lucka
+      ask: complete
+      gap: lexeme:jazero
+      distractors:
+      - lexeme:mesto
+      - lexeme:centrum
+      forms:
+        sk-Latn/standard:
+          text: Chata je vedľa jazera, nie vedľa hotela.
+          tokens: [{surface: Chata, lexeme: chata, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: vedľa,
+              lexeme: vedľa}, {surface: jazera, lexeme: jazero, feats: {Case: Gen, Number: Sing}}, {surface: nie, lexeme: nie}, {surface: vedľa, lexeme: vedľa}, {surface: hotela, lexeme: hotel, feats: {
+                Case: Gen, Number: Sing}}]
+      translations:
+        en: The hut is next to the lake, not next to the hotel.
+  - choose:
+      prompt:
+        en: Where do they sleep?
+      options:
+      - en: In a hut by the lake
+      - en: In a hotel
+      - en: At Grandma's
+      answer: 0
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Dobre, ideme!
+          tokens: [{surface: Dobre, lexeme: dobre}, {surface: ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Good, let's go!

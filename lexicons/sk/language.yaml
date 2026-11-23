@@ -1,0 +1,148 @@
+# What sk declares beside its lexicon (schemas/language.schema.json): its dimensions, features,
+# defaults and labels. Standard Slovak (ADR 0155), in Universal Dependencies' terms as the Slovak SNK
+# treebank uses them. Departures, stated: Polarity is written only where it is negative; the past
+# participle carries no Animacy (UD marks it on the masculine singular; the form shows none) and no
+# Gender in the plural (one form, -li, for all). The -l participle is Tense=Past in the conditional too (išiel
+# by som), as UD's Slavic treebanks tag it; the conditional is by's (Mood=Cnd).
+# A masculine noun stores its animacy: no ending gives it (a person or an animal is animate), and a
+# default that gave it would reach the feminine nouns that end in a consonant too (noc, jar, tvár).
+id: sk
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@sk-course-v1', status: draft}
+varieties: [sk-SK]
+registers: [formal, neutral, colloquial]
+dimensions:
+  NOUN: [Case, Number]
+  PROPN: [Case, Number]
+  ADJ: [Animacy, Case, Degree, Gender, Number]
+  DET: [Animacy, Case, Gender, Number]
+  PRON: [Animacy, Case, Gender, Number]
+  NUM: [Animacy, Case, Gender, Number]
+  ADV: [Degree]
+  VERB: [Animacy, Case, Gender, Mood, Number, Person, Polarity, Tense, VerbForm, Voice]
+  AUX: [Gender, Mood, Number, Person, Polarity, Tense, VerbForm]
+lexical:
+  NOUN: [Animacy, Gender]
+  PROPN: [Animacy, Gender]
+  VERB: [Aspect]
+citation:
+  NOUN: {Case: Nom, Number: Sing}
+  PROPN: {Case: Nom, Number: Sing}
+  ADJ: {Case: Nom, Gender: Masc, Number: Sing}
+  DET: {Case: Nom, Gender: Masc, Number: Sing}
+  VERB: {VerbForm: Inf}
+  AUX: {VerbForm: Inf}
+bare:
+  NOUN: {Case: Nom, Number: Sing}
+  PROPN: {Case: Nom, Number: Sing}
+  ADJ: {Case: Nom, Gender: Masc, Number: Sing}
+  DET: {Case: Nom, Gender: Masc, Number: Sing}
+  VERB: {VerbForm: Inf}
+  AUX: {VerbForm: Inf}
+features:
+  Animacy: [Anim, Inan]
+  Aspect: [Imp, Perf]
+  Case: [Acc, Dat, Gen, Ins, Loc, Nom]
+  Degree: [Cmp, Pos, Sup]
+  Gender: [Fem, Masc, Neut]
+  Mood: [Cnd, Imp, Ind]
+  NumType: [Card, Ord]
+  Number: [Plur, Sing]
+  Person: ['1', '2', '3']
+  Polarity: [Neg]
+  Poss: ['Yes']
+  PronType: [Dem, Ind, Int, Neg, Prs, Rel, Tot]
+  Reflex: ['Yes']
+  Tense: [Fut, Past, Pres]
+  VerbForm: [Fin, Inf, Part]
+  Voice: [Pass]
+# A noun's gender by its ending (Mistrík 20-45): a consonant masculine, -ť feminine (kosť, chuť, pamäť),
+# -a feminine, -o, -e (and -ie) neuter; a woman's surname in -ová feminine. The exceptions store theirs:
+# feminines in other consonants (noc, jar, posteľ), masculines in -a (hrdina) and -o (Rudo), neuters in -a
+# (dievča). REVIEW.
+defaults:
+- {id: noun-b, when: {pos: NOUN, ends: b}, gives: {Gender: Masc}}
+- {id: propn-b, when: {pos: PROPN, ends: b}, gives: {Gender: Masc}}
+- {id: noun-c, when: {pos: NOUN, ends: c}, gives: {Gender: Masc}}
+- {id: propn-c, when: {pos: PROPN, ends: c}, gives: {Gender: Masc}}
+- {id: noun-c2, when: {pos: NOUN, ends: č}, gives: {Gender: Masc}}
+- {id: propn-c2, when: {pos: PROPN, ends: č}, gives: {Gender: Masc}}
+- {id: noun-d, when: {pos: NOUN, ends: d}, gives: {Gender: Masc}}
+- {id: propn-d, when: {pos: PROPN, ends: d}, gives: {Gender: Masc}}
+- {id: noun-d2, when: {pos: NOUN, ends: ď}, gives: {Gender: Masc}}
+- {id: propn-d2, when: {pos: PROPN, ends: ď}, gives: {Gender: Masc}}
+- {id: noun-f, when: {pos: NOUN, ends: f}, gives: {Gender: Masc}}
+- {id: propn-f, when: {pos: PROPN, ends: f}, gives: {Gender: Masc}}
+- {id: noun-g, when: {pos: NOUN, ends: g}, gives: {Gender: Masc}}
+- {id: propn-g, when: {pos: PROPN, ends: g}, gives: {Gender: Masc}}
+- {id: noun-h, when: {pos: NOUN, ends: h}, gives: {Gender: Masc}}
+- {id: propn-h, when: {pos: PROPN, ends: h}, gives: {Gender: Masc}}
+- {id: noun-j, when: {pos: NOUN, ends: j}, gives: {Gender: Masc}}
+- {id: propn-j, when: {pos: PROPN, ends: j}, gives: {Gender: Masc}}
+- {id: noun-k, when: {pos: NOUN, ends: k}, gives: {Gender: Masc}}
+- {id: propn-k, when: {pos: PROPN, ends: k}, gives: {Gender: Masc}}
+- {id: noun-l, when: {pos: NOUN, ends: l}, gives: {Gender: Masc}}
+- {id: propn-l, when: {pos: PROPN, ends: l}, gives: {Gender: Masc}}
+- {id: noun-l2, when: {pos: NOUN, ends: ľ}, gives: {Gender: Masc}}
+- {id: propn-l2, when: {pos: PROPN, ends: ľ}, gives: {Gender: Masc}}
+- {id: noun-m, when: {pos: NOUN, ends: m}, gives: {Gender: Masc}}
+- {id: propn-m, when: {pos: PROPN, ends: m}, gives: {Gender: Masc}}
+- {id: noun-n, when: {pos: NOUN, ends: n}, gives: {Gender: Masc}}
+- {id: propn-n, when: {pos: PROPN, ends: n}, gives: {Gender: Masc}}
+- {id: noun-n2, when: {pos: NOUN, ends: ň}, gives: {Gender: Masc}}
+- {id: propn-n2, when: {pos: PROPN, ends: ň}, gives: {Gender: Masc}}
+- {id: noun-p, when: {pos: NOUN, ends: p}, gives: {Gender: Masc}}
+- {id: propn-p, when: {pos: PROPN, ends: p}, gives: {Gender: Masc}}
+- {id: noun-r, when: {pos: NOUN, ends: r}, gives: {Gender: Masc}}
+- {id: propn-r, when: {pos: PROPN, ends: r}, gives: {Gender: Masc}}
+- {id: noun-s, when: {pos: NOUN, ends: s}, gives: {Gender: Masc}}
+- {id: propn-s, when: {pos: PROPN, ends: s}, gives: {Gender: Masc}}
+- {id: noun-s2, when: {pos: NOUN, ends: š}, gives: {Gender: Masc}}
+- {id: propn-s2, when: {pos: PROPN, ends: š}, gives: {Gender: Masc}}
+- {id: noun-v, when: {pos: NOUN, ends: v}, gives: {Gender: Masc}}
+- {id: propn-v, when: {pos: PROPN, ends: v}, gives: {Gender: Masc}}
+- {id: noun-z, when: {pos: NOUN, ends: z}, gives: {Gender: Masc}}
+- {id: propn-z, when: {pos: PROPN, ends: z}, gives: {Gender: Masc}}
+- {id: noun-z2, when: {pos: NOUN, ends: ž}, gives: {Gender: Masc}}
+- {id: propn-z2, when: {pos: PROPN, ends: ž}, gives: {Gender: Masc}}
+- {id: noun-t, when: {pos: NOUN, ends: ť}, gives: {Gender: Fem}}
+- {id: noun-a, when: {pos: NOUN, ends: a}, gives: {Gender: Fem}}
+- {id: noun-o, when: {pos: NOUN, ends: o}, gives: {Gender: Neut}}
+- {id: noun-e, when: {pos: NOUN, ends: e}, gives: {Gender: Neut}}
+- {id: propn-t, when: {pos: PROPN, ends: ť}, gives: {Gender: Fem}}
+- {id: propn-a, when: {pos: PROPN, ends: a}, gives: {Gender: Fem}}
+- {id: propn-o, when: {pos: PROPN, ends: o}, gives: {Gender: Neut}}
+- {id: propn-e, when: {pos: PROPN, ends: e}, gives: {Gender: Neut}}
+- {id: propn-ova, when: {pos: PROPN, ends: ová}, gives: {Gender: Fem}}
+labels:
+- {feats: {Case: Gen}, gloss: {en: 'genitive: of; after do, z, od, u, bez'}, notes: {en: 'Whose? Of what? Do Bratislavy (to Bratislava), z Košíc (from Košice), u babky (at Grandma''s), bez cukru (without sugar), šálka kávy (a cup of coffee).'}}
+- {feats: {Case: Dat}, gloss: {en: 'dative: to, for; after k, proti, vďaka'}, notes: {en: 'Komu? To whom? Dám to Lucke: I''ll give it to Lucka. Páči sa mi to: I like it (it pleases me). Idem k babke: I''m going to Grandma''s.'}}
+- {feats: {Case: Acc}, gloss: {en: 'accusative: the object; where to, after na, za, cez, o'}, notes: {en: 'Koho? Čo? Whom? What? Mám brata, vidím Lucku. After na it says where to: idem na námestie (to the square); after v or na with the locative it says where.'}}
+- {feats: {Case: Loc}, gloss: {en: 'locative: after v, na, o, po, pri'}, notes: {en: 'Where? About what? V Žiline (in Žilina), na námestí (on the square), o hokeji (about hockey), po obede (after lunch), pri okne (by the window). Only ever after a preposition.'}}
+- {feats: {Case: Ins}, gloss: {en: 'instrumental: with; by; after s, pred, za, nad, pod, medzi'}, notes: {en: 'S kým? S čím? With whom? With what? S Luckou (with Lucka), vlakom (by train), pred domom (in front of the house), za domom (behind the house).'}}
+- {feats: {Number: Plur}, gloss: {en: 'plural'}, notes: {en: 'Ženy, domy, mestá, študenti: more than one.'}}
+- {feats: {Case: Gen, Number: Plur}, gloss: {en: 'genitive plural: of; after päť, veľa, málo'}, notes: {en: 'Päť bratov (five brothers), veľa ľudí (many people), málo žien (few women). Feminine and neuter nouns often lose their ending and lengthen a vowel: žena, žien; mesto, miest; kniha, kníh.'}}
+- {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, gloss: {en: 'plural of men (or men and women): dobrí, dvaja, tí'}, notes: {en: 'Men and male animals have plurals of their own: dobrí študenti, dvaja bratia, tí chlapci; other masculine nouns take the other plural: dobré stoly, dva stoly.'}}
+- {feats: {Animacy: Anim, Case: Acc, Gender: Masc, Number: Sing}, gloss: {en: 'accusative of a man or a male animal: brata, dobrého'}, notes: {en: 'A masculine noun for a person or an animal takes -a in the accusative (vidím brata, mám psa), and the words with it take -ého (dobrého, môjho). A thing does not change: vidím dom.'}}
+- {feats: {Gender: Fem}, gloss: {en: 'feminine'}, notes: {en: 'A noun is masculine, feminine or neuter (ten dom, tá žena, to mesto), and the words with it take its gender: pekný dom, pekná žena, pekné mesto.'}}
+- {feats: {Gender: Neut}, gloss: {en: 'neuter'}, notes: {en: 'Neuter nouns end mostly in -o, -e or -ie (mesto, srdce, námestie), and the words with them in -é or -e: pekné mesto, to námestie.'}}
+- {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present tense: I (ja)'}, notes: {en: 'Always ends in -m: som, mám, robím, rozumiem, píšem. With a perfective verb (urobiť, kúpiť) the same form says the future: urobím, I will do.'}}
+- {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present tense: you (ty)'}, notes: {en: 'Always ends in -š: máš, robíš, rozumieš (but si: you are).'}}
+- {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present tense: he, she, it (on, ona, ono)'}, notes: {en: 'Má, robí, rozumie, píše; je: he, she or it is.'}}
+- {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present tense: we (my)'}, notes: {en: 'Always ends in -me: sme, máme, robíme.'}}
+- {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present tense: you all, or you politely (vy)'}, notes: {en: 'Always ends in -te: ste, máte, robíte. Also to one person politely: Ako sa máte, pani Tóthová?'}}
+- {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present tense: they (oni, ony)'}, notes: {en: 'Ends in -ú, -ia or -ajú: sú, majú, robia, píšu.'}}
+- {feats: {Mood: Ind, Tense: Fut, VerbForm: Fin}, gloss: {en: 'future: will (budem, budeš …)'}, notes: {en: 'Budem doma: I will be at home. With an imperfective infinitive it makes the future: budem robiť, I will be doing. A perfective verb needs no budem: urobím, I will do.'}}
+- {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, gloss: {en: 'past tense: he, or I or you, a man (bol, robil)'}, notes: {en: 'The past ends in -l and says who did it: a man says bol som (I was), a woman bola som. In the first and second person som or si goes with it; in the third nothing: on bol.'}}
+- {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, gloss: {en: 'past tense: she, or I or you, a woman (bola, robila)'}, notes: {en: '-la: bola som (I was, a woman speaking), ona robila (she did).'}}
+- {feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}, gloss: {en: 'past tense: it (bolo)'}, notes: {en: '-lo: bolo to pekné, it was nice; bolo teplo, it was warm.'}}
+- {feats: {Number: Plur, Tense: Past, VerbForm: Part}, gloss: {en: 'past tense: we, you, they (boli, robili)'}, notes: {en: '-li, whoever they are: boli sme, boli ste, oni robili. Also to one person politely: Boli ste doma, pani Tóthová?'}}
+- {feats: {Polarity: Neg}, gloss: {en: 'negative: ne- (nerobím)'}, notes: {en: 'Ne- is written together with the verb: nemám, nerozumiem, nerobil som. Byť takes nie apart in the present: nie som, nie je; but nebol som, nebudem.'}}
+- {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, gloss: {en: 'command, to one person (ty): rob!'}, notes: {en: 'Choď! Poď! Daj! Sadni si! Pozri!'}}
+- {feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, gloss: {en: 'command, to several or politely (vy): robte!'}, notes: {en: 'The ty command plus -te: choďte, poďte, dajte, sadnite si.'}}
+- {feats: {Mood: Imp, Number: Plur, Person: '1', VerbForm: Fin}, gloss: {en: 'let''s: robme!'}, notes: {en: 'The ty command plus -me: poďme, choďme, dajme si kávu.'}}
+- {feats: {VerbForm: Inf}, gloss: {en: 'infinitive: to … (robiť)'}, notes: {en: 'Ends in -ť: byť, mať, robiť, ísť. Chcem ísť domov: I want to go home.'}}
+- {feats: {Mood: Cnd}, gloss: {en: 'conditional: would (by)'}, notes: {en: 'By with the -l form, as in the past: išiel by som, I would go; chcela by som, I would like (a woman speaking). Keby (if) and aby (so that) take the same -l form: keby som mal čas, if I had time.'}}
+- {feats: {Degree: Cmp}, gloss: {en: 'comparative: -ší, -ejší (lepší, krajší)'}, notes: {en: 'Väčší (bigger), krajší (more beautiful), lepší (better): dobrý, lepší.'}}
+- {feats: {Degree: Sup}, gloss: {en: 'superlative: naj- (najlepší)'}, notes: {en: 'Naj- before the comparative: najväčší, najkrajší, najlepší.'}}
+- {feats: {Voice: Pass}, gloss: {en: 'passive participle: -ný, -tý (postavený)'}, notes: {en: 'Dom bol postavený v roku 1907: the house was built in 1907.'}}

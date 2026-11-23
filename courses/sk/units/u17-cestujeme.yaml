@@ -1,0 +1,455 @@
+# Unit 17 (sk): verbs of motion (ísť / chodiť, niesť / nosiť, viezť / voziť; pôjdem), prefixes (prísť, odísť),
+# travelling by train; and the first Slovak a learner reads that was not written for learners.
+# The story is the start of "Ako šlo vajce na vandrovku" from Pavol Dobšinský's Prostonárodnie slovenské povesti
+# (Turčiansky Svätý Martin, 1880-1883; public domain), sent in by J. R. (Kežmarský zábavník) and Miss J. Sz. of
+# Banská Bystrica: page 75 of Google's 1881 scan on archive.org (prostonrodniesl01dobgoog), read on the page image,
+# from its second paragraph ("Za starých časov išlo teda vajce…", after the tale's opening words to the reader) to
+# "Všetko dobré do tretice!". Today's spelling: jim is im; tyže and vyže are written ty že, vy že; „ “ for the
+# nested quotation marks; a question mark after "A ty že kde" (the page has none). The words are the tale's: kde
+# for kam (where to) and rečie (says) as it has them.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u17
+title:
+  en: Cestujeme Travelling
+cefr: B1
+nodes:
+- {id: sk.u17.pohyb, kind: lesson, introduces: ['lexeme:chodiť', 'lexeme:každý', 'lexeme:voziť', 'lexeme:viezť', 'lexeme:nosiť', 'lexeme:cestovať']}
+- {id: sk.u17.prist, kind: lesson, introduces: ['lexeme:kedy', 'lexeme:prísť', 'lexeme:odísť', 'lexeme:cesta', 'lexeme:dlhý', 'lexeme:poprad']}
+- {id: sk.u17.rozpravka, kind: lesson, introduces: ['lexeme:rozprávka', 'lexeme:vandrovka', 'lexeme:rak', 'lexeme:ono', 'lexeme:kačica', 'lexeme:riecť', 'lexeme:teda']}
+- {id: sk.u17.slova, kind: lesson, introduces: ['lexeme:veď', 'lexeme:ani', 'lexeme:zlý', 'lexeme:i', 'lexeme:hneď', 'lexeme:smelo', 'lexeme:opytovať-sa', 'lexeme:pristať', 'lexeme:tretica', 'lexeme:že.part']}
+- {id: sk.u17.story, kind: story}
+sentences:
+- id: s.u17.1
+  node: sk.u17.pohyb
+  forms:
+    sk-Latn/standard:
+      text: Každý deň chodím do práce.
+      tokens: [{surface: Každý, lexeme: každý, feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}}, {surface: deň, lexeme: deň, feats: {Case: Acc, Number: Sing}}, {surface: chodím, lexeme: chodiť,
+          feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: práce, lexeme: práca, feats: {Case: Gen, Number: Sing}}]
+      reverse: (Každý deň chodím do práce|Do práce chodím každý deň|Chodím do práce každý deň)
+  translations:
+    en: |-
+      I go to work every day.
+      Every day I go to work.
+- id: s.u17.2
+  node: sk.u17.pohyb
+  forms:
+    sk-Latn/standard:
+      text: Rudo vozí ľudí trolejbusom.
+      tokens: [{surface: Rudo, lexeme: rudo, feats: {Case: Nom, Number: Sing}}, {surface: vozí, lexeme: voziť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ľudí,
+          lexeme: človek, feats: {Case: Acc, Number: Plur}}, {surface: trolejbusom, lexeme: trolejbus, feats: {Case: Ins, Number: Sing}}]
+      reverse: Rudo vozí ľudí trolejbusom
+  translations:
+    en: Rudo (drives|takes|carries) people (in|on|by) (a|his|the) trolleybus.
+- id: s.u17.3
+  node: sk.u17.pohyb
+  forms:
+    sk-Latn/standard:
+      text: Dominik vezie Lucku autom.
+      tokens: [{surface: Dominik, lexeme: dominik, feats: {Case: Nom, Number: Sing}}, {surface: vezie, lexeme: viezť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Lucku,
+          lexeme: lucka, feats: {Case: Acc, Number: Sing}}, {surface: autom, lexeme: auto, feats: {Case: Ins, Number: Sing}}]
+      reverse: (Dominik vezie Lucku autom|Dominik vezie Lucku v aute)
+  translations:
+    en: |-
+      Dominik is (driving|taking) Lucka by car.
+      Dominik is driving Lucka.
+- id: s.u17.4
+  node: sk.u17.pohyb
+  forms:
+    sk-Latn/standard:
+      text: Samko nosí knihy do školy.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: nosí, lexeme: nosiť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: knihy,
+          lexeme: kniha, feats: {Case: Acc, Number: Plur}}, {surface: do, lexeme: do}, {surface: školy, lexeme: škola, feats: {Case: Gen, Number: Sing}}]
+      reverse: Samko nosí knihy do školy
+  translations:
+    en: Samko (takes|carries) books to school.
+- id: s.u17.5
+  node: sk.u17.pohyb
+  forms:
+    sk-Latn/standard:
+      text: Čašník nesie kávu.
+      tokens: [{surface: Čašník, lexeme: čašník, feats: {Case: Nom, Number: Sing}}, {surface: nesie, lexeme: niesť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kávu,
+          lexeme: káva, feats: {Case: Acc, Number: Sing}}]
+      reverse: Čašník nesie kávu
+  translations:
+    en: The waiter (is bringing|is carrying|brings) (a|the) coffee.
+- id: s.u17.6
+  node: sk.u17.pohyb
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Rád cestujem vlakom.
+      tokens: [{surface: Rád, lexeme: rád, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}}, {surface: cestujem, lexeme: cestovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+            VerbForm: Fin}}, {surface: vlakom, lexeme: vlak, feats: {Case: Ins, Number: Sing}}]
+      reverse: (Rád cestujem vlakom|Cestujem rád vlakom|Vlakom cestujem rád)
+  translations:
+    en: I like (travelling|traveling|to travel) by train.
+- id: s.u17.7
+  node: sk.u17.prist
+  forms:
+    sk-Latn/standard:
+      text: Kedy prídeš?
+      tokens: [{surface: Kedy, lexeme: kedy}, {surface: prídeš, lexeme: prísť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: Kedy (prídeš|prídete)
+  translations:
+    en: When (will you come|are you coming)?
+- id: s.u17.8
+  node: sk.u17.prist
+  forms:
+    sk-Latn/standard:
+      text: Prídem zajtra.
+      tokens: [{surface: Prídem, lexeme: prísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: zajtra, lexeme: zajtra}]
+      reverse: (Prídem zajtra|Zajtra prídem)
+  translations:
+    en: |-
+      (I'll|I will) come tomorrow.
+      (I'm|I am) coming tomorrow.
+- id: s.u17.9
+  node: sk.u17.prist
+  forms:
+    sk-Latn/standard:
+      text: Vlak odíde o ôsmej.
+      tokens: [{surface: Vlak, lexeme: vlak, feats: {Case: Nom, Number: Sing}}, {surface: odíde, lexeme: odísť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: o, lexeme: o},
+        {surface: ôsmej, lexeme: ôsmy, feats: {Case: Loc, Gender: Fem, Number: Sing}}]
+      reverse: (Vlak odíde o ôsmej|O ôsmej odíde vlak)
+  translations:
+    en: The train (leaves|will leave|departs) at eight.
+- id: s.u17.10
+  node: sk.u17.prist
+  forms:
+    sk-Latn/standard:
+      text: Cesta je dlhá.
+      tokens: [{surface: Cesta, lexeme: cesta, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dlhá, lexeme: dlhý,
+          feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Cesta je dlhá
+  translations:
+    en: The (journey|way|trip) is long.
+- id: s.u17.11
+  node: sk.u17.prist
+  forms:
+    sk-Latn/standard:
+      text: Idem do Popradu.
+      tokens: [{surface: Idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: Popradu, lexeme: poprad, feats: {Case: Gen, Number: Sing}}]
+      reverse: (Idem|Ja idem) do Popradu
+  translations:
+    en: (I'm|I am) going to Poprad.
+- id: s.u17.12
+  node: sk.u17.prist
+  forms:
+    sk-Latn/standard:
+      text: Pôjdem do Košíc.
+      tokens: [{surface: Pôjdem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: Košíc, lexeme: košice, feats: {Case: Gen, Number: Plur}}]
+      reverse: (Pôjdem|Ja pôjdem) do Košíc
+  translations:
+    en: (I'll|I will) go to Košice.
+- id: s.u17.13
+  node: sk.u17.prist
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Včera som prišla domov.
+      tokens: [{surface: Včera, lexeme: včera}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: prišla, lexeme: prísť, feats: {Gender: Fem,
+            Number: Sing, Tense: Past, VerbForm: Part}}, {surface: domov, lexeme: domov}]
+      reverse: (Včera som prišla domov|Prišla som domov včera|Domov som prišla včera)
+  translations:
+    en: |-
+      I came home yesterday.
+      Yesterday I came home.
+- id: s.u17.14
+  node: sk.u17.rozpravka
+  forms:
+    sk-Latn/standard:
+      text: Vajce ide v rozprávke na vandrovku.
+      tokens: [{surface: Vajce, lexeme: vajce, feats: {Case: Nom, Number: Sing}}, {surface: ide, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: v, lexeme: v},
+        {surface: rozprávke, lexeme: rozprávka, feats: {Case: Loc, Number: Sing}}, {surface: na, lexeme: na}, {surface: vandrovku, lexeme: vandrovka, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Vajce ide v rozprávke na vandrovku|V rozprávke ide vajce na vandrovku)
+  translations:
+    en: In the tale, an egg goes off wandering.
+- id: s.u17.15
+  node: sk.u17.rozpravka
+  forms:
+    sk-Latn/standard:
+      text: Vajce stretne raka.
+      tokens: [{surface: Vajce, lexeme: vajce, feats: {Case: Nom, Number: Sing}}, {surface: stretne, lexeme: stretnúť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: raka,
+          lexeme: rak, feats: {Case: Acc, Number: Sing}}]
+      reverse: Vajce stretne raka
+  translations:
+    en: The egg meets a crayfish.
+- id: s.u17.16
+  node: sk.u17.rozpravka
+  forms:
+    sk-Latn/standard:
+      text: Rak a kačica idú s ním.
+      tokens: [{surface: Rak, lexeme: rak, feats: {Case: Nom, Number: Sing}}, {surface: a, lexeme: a}, {surface: kačica, lexeme: kačica, feats: {Case: Nom, Number: Sing}}, {surface: idú, lexeme: ísť, feats: {
+            Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: s, lexeme: s}, {surface: ním, lexeme: ono, feats: {Case: Ins, Gender: Neut, Number: Sing}}]
+      reverse: Rak a kačica idú s ním
+  translations:
+    en: The crayfish and the duck go with it.
+- id: s.u17.17
+  node: sk.u17.rozpravka
+  forms:
+    sk-Latn/standard:
+      text: „Kam ideš?“ rečie vajce.
+      tokens: [{surface: Kam, lexeme: kam}, {surface: ideš, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: rečie, lexeme: riecť, feats: {Mood: Ind, Number: Sing,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: vajce, lexeme: vajce, feats: {Case: Nom, Number: Sing}}]
+      reverse: Kam ideš rečie vajce
+  translations:
+    en: '"Where are you going?" says the egg.'
+- id: s.u17.18
+  node: sk.u17.rozpravka
+  forms:
+    sk-Latn/standard:
+      text: Ideme teda spolu.
+      tokens: [{surface: Ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: teda, lexeme: teda}, {surface: spolu, lexeme: spolu}]
+      reverse: (Ideme teda spolu|Teda ideme spolu)
+  translations:
+    en: So (we go|we're going|we are going) together.
+- id: s.u17.19
+  node: sk.u17.slova
+  forms:
+    sk-Latn/standard:
+      text: Veď je to len rozprávka.
+      tokens: [{surface: Veď, lexeme: veď}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: to, lexeme: ten, feats: {Case: Nom, Gender: Neut,
+            Number: Sing}}, {surface: len, lexeme: len}, {surface: rozprávka, lexeme: rozprávka, feats: {Case: Nom, Number: Sing}}]
+      reverse: Veď je to len rozprávka
+  translations:
+    en: (But|After all) (it's|it is) only a (story|tale|fairy tale).
+- id: s.u17.20
+  node: sk.u17.slova
+  forms:
+    sk-Latn/standard:
+      text: Ani ja nechcem ísť.
+      tokens: [{surface: Ani, lexeme: ani}, {surface: ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: nechcem, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres,
+            VerbForm: Fin}}, {surface: ísť, lexeme: ísť, feats: {VerbForm: Inf}}]
+      reverse: (Ani ja nechcem ísť|Ja tiež nechcem ísť)
+  translations:
+    en: |-
+      I (don't|do not) want to go either.
+      Neither do I want to go.
+- id: s.u17.21
+  node: sk.u17.slova
+  forms:
+    sk-Latn/standard:
+      text: Počasie je zlé.
+      tokens: [{surface: Počasie, lexeme: počasie, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: zlé,
+          lexeme: zlý, feats: {Case: Nom, Gender: Neut, Number: Sing}}]
+      reverse: Počasie je zlé
+  translations:
+    en: The weather is bad.
+- id: s.u17.22
+  node: sk.u17.slova
+  forms:
+    sk-Latn/standard:
+      text: Pôjdem i ja.
+      tokens: [{surface: Pôjdem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: i, lexeme: i}, {surface: ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}]
+      reverse: Pôjdem (i|aj) ja
+  translations:
+    en: (I'll|I will) (go|come) too.
+- id: s.u17.23
+  node: sk.u17.slova
+  forms:
+    sk-Latn/standard:
+      text: Prídem hneď.
+      tokens: [{surface: Prídem, lexeme: prísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: hneď, lexeme: hneď}]
+      reverse: (Prídem hneď|Hneď prídem)
+  translations:
+    en: |-
+      (I'll|I will) come (right away|at once|immediately).
+      (I'm|I am) coming right away.
+- id: s.u17.24
+  node: sk.u17.slova
+  forms:
+    sk-Latn/standard:
+      text: Hovor smelo!
+      tokens: [{surface: Hovor, lexeme: hovoriť, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: smelo, lexeme: smelo}]
+      reverse: (Hovor|Hovorte) smelo
+  translations:
+    en: Speak (up|boldly|freely)!
+- id: s.u17.25
+  node: sk.u17.slova
+  forms:
+    sk-Latn/standard:
+      text: Vajce sa opytuje kačice.
+      tokens: [{surface: Vajce, lexeme: vajce, feats: {Case: Nom, Number: Sing}}, {surface: sa, lexeme: sa}, {surface: opytuje, lexeme: opytovať-sa, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+            VerbForm: Fin}}, {surface: kačice, lexeme: kačica, feats: {Case: Gen, Number: Sing}}]
+      reverse: Vajce sa opytuje kačice
+  translations:
+    en: The egg asks the duck.
+- id: s.u17.26
+  node: sk.u17.slova
+  forms:
+    sk-Latn/standard:
+      text: Kačica pristala.
+      tokens: [{surface: Kačica, lexeme: kačica, feats: {Case: Nom, Number: Sing}}, {surface: pristala, lexeme: pristať, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: Kačica pristala
+  translations:
+    en: |-
+      The duck agreed.
+      The duck joined in.
+- id: s.u17.27
+  node: sk.u17.slova
+  forms:
+    sk-Latn/standard:
+      text: Všetko dobré do tretice!
+      tokens: [{surface: Všetko, lexeme: všetok, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: dobré, lexeme: dobrý, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: do, lexeme: do},
+        {surface: tretice, lexeme: tretica, feats: {Case: Gen, Number: Sing}}]
+      reverse: Všetko dobré do tretice
+  translations:
+    en: |-
+      All good things come in threes!
+      Third time lucky!
+- id: s.u17.28
+  node: sk.u17.slova
+  forms:
+    sk-Latn/standard:
+      text: A ty že kam?
+      tokens: [{surface: A, lexeme: a}, {surface: ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}, {surface: že, lexeme: že.part}, {surface: kam, lexeme: kam}]
+      reverse: A ty že kam
+  translations:
+    en: And where are you (going|off to)?
+stories:
+- id: sk.story.u17
+  node: sk.u17.story
+  title:
+    en: Ako šlo vajce na vandrovku (Pavol Dobšinský, 1881)
+  steps:
+  - line:
+      forms:
+        sk-Latn/standard:
+          text: Za starých časov išlo teda vajce na vandrovku a stretlo tam raka.
+          tokens: [{surface: Za, lexeme: za}, {surface: starých, lexeme: starý, feats: {Animacy: Inan, Case: Gen, Gender: Masc, Number: Plur}}, {surface: časov, lexeme: čas, feats: {Case: Gen, Number: Plur}},
+            {surface: išlo, lexeme: ísť, feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: teda, lexeme: teda}, {surface: vajce, lexeme: vajce, feats: {Case: Nom, Number: Sing}},
+            {surface: na, lexeme: na}, {surface: vandrovku, lexeme: vandrovka, feats: {Case: Acc, Number: Sing}}, {surface: a, lexeme: a}, {surface: stretlo, lexeme: stretnúť, feats: {Gender: Neut, Number: Sing,
+                Tense: Past, VerbForm: Part}}, {surface: tam, lexeme: tam}, {surface: raka, lexeme: rak, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: In the old days an egg went off wandering, and there it met a crayfish.
+  - line:
+      forms:
+        sk-Latn/standard:
+          text: „Kde ty ideš?“ rečie mu ono.
+          tokens: [{surface: Kde, lexeme: kde}, {surface: ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}, {surface: ideš, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}},
+            {surface: rečie, lexeme: riecť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mu, lexeme: 'on', feats: {Animacy: Anim, Case: Dat, Gender: Masc, Number: Sing}},
+            {surface: ono, lexeme: ono, feats: {Case: Nom, Gender: Neut, Number: Sing}}]
+      translations:
+        en: '"Where are you going?" it says to him.'
+  - line:
+      forms:
+        sk-Latn/standard:
+          text: „A ty že kde?“ rečie mu on.
+          tokens: [{surface: A, lexeme: a}, {surface: ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}, {surface: že, lexeme: že.part}, {surface: kde, lexeme: kde}, {surface: rečie, lexeme: riecť, feats: {
+                Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mu, lexeme: ono, feats: {Case: Dat, Gender: Neut, Number: Sing}}, {surface: 'on', lexeme: 'on', feats: {Animacy: Anim,
+                Case: Nom, Gender: Masc, Number: Sing}}]
+      translations:
+        en: '"And where are you going?" he says to it.'
+  - line:
+      forms:
+        sk-Latn/standard:
+          text: „Ja idem na vandrovku!“
+          tokens: [{surface: Ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na},
+            {surface: vandrovku, lexeme: vandrovka, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: '"I''m going off wandering!"'
+  - line:
+      forms:
+        sk-Latn/standard:
+          text: „A veď ani ja nechcem byť horší od teba; pôjdem i ja!“
+          tokens: [{surface: A, lexeme: a}, {surface: veď, lexeme: veď}, {surface: ani, lexeme: ani}, {surface: ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: nechcem, lexeme: chcieť, feats: {
+                Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}}, {surface: byť, lexeme: byť, feats: {VerbForm: Inf}}, {surface: horší, lexeme: zlý, feats: {Animacy: Anim,
+                Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}}, {surface: od, lexeme: od}, {surface: teba, lexeme: ty, feats: {Case: Gen, Number: Sing}}, {surface: pôjdem, lexeme: ísť, feats: {Mood: Ind,
+                Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: i, lexeme: i}, {surface: ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: '"Well, I don''t want to be worse than you either; I''ll come too!"'
+  - choose:
+      prompt:
+        en: Who does the egg meet first?
+      options:
+      - en: A crayfish
+      - en: A duck
+      - en: A horse
+      answer: 0
+  - line:
+      forms:
+        sk-Latn/standard:
+          text: Už teda boli dvaja a bolo im hneď smelšie.
+          tokens: [{surface: Už, lexeme: už}, {surface: teda, lexeme: teda}, {surface: boli, lexeme: byť, feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: dvaja, lexeme: dva, feats: {Animacy: Anim,
+                Case: Nom, Gender: Masc, Number: Plur}}, {surface: a, lexeme: a}, {surface: bolo, lexeme: byť, feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: im, lexeme: 'on',
+              feats: {Animacy: Anim, Case: Dat, Gender: Masc, Number: Plur}}, {surface: hneď, lexeme: hneď}, {surface: smelšie, lexeme: smelo, feats: {Degree: Cmp}}]
+      translations:
+        en: So now there were two of them, and at once they felt braver.
+  - line:
+      ask: complete
+      gap: lexeme:kačica
+      distractors:
+      - lexeme:káva
+      - lexeme:kniha
+      forms:
+        sk-Latn/standard:
+          text: Idú, idú; stretnú kačicu.
+          tokens: [{surface: Idú, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: idú, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres,
+                VerbForm: Fin}}, {surface: stretnú, lexeme: stretnúť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kačicu, lexeme: kačica, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: On they go, on they go; they meet a duck.
+  - line:
+      forms:
+        sk-Latn/standard:
+          text: „Kde ty ideš?“ opytuje sa vajce.
+          tokens: [{surface: Kde, lexeme: kde}, {surface: ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}, {surface: ideš, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}},
+            {surface: opytuje, lexeme: opytovať-sa, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: vajce, lexeme: vajce, feats: {Case: Nom,
+                Number: Sing}}]
+      translations:
+        en: '"Where are you going?" asks the egg.'
+  - line:
+      forms:
+        sk-Latn/standard:
+          text: „A vy že kde?“ rečie táto.
+          tokens: [{surface: A, lexeme: a}, {surface: vy, lexeme: vy, feats: {Case: Nom, Number: Plur}}, {surface: že, lexeme: že.part}, {surface: kde, lexeme: kde}, {surface: rečie, lexeme: riecť, feats: {
+                Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: táto, lexeme: tento, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      translations:
+        en: '"And where are you going?" says she.'
+  - line:
+      forms:
+        sk-Latn/standard:
+          text: „My ideme na vandrovku; poď, budeme traja.“
+          tokens: [{surface: My, lexeme: my, feats: {Case: Nom, Number: Plur}}, {surface: ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na},
+            {surface: vandrovku, lexeme: vandrovka, feats: {Case: Acc, Number: Sing}}, {surface: poď, lexeme: poď, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: budeme, lexeme: byť,
+              feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: traja, lexeme: tri, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}}]
+      translations:
+        en: '"We''re going off wandering; come, there''ll be three of us."'
+  - line:
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Kačica pristala; už boli traja.
+          tokens: [{surface: Kačica, lexeme: kačica, feats: {Case: Nom, Number: Sing}}, {surface: pristala, lexeme: pristať, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: už,
+              lexeme: už}, {surface: boli, lexeme: byť, feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: traja, lexeme: tri, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}}]
+      translations:
+        en: The duck agreed; now there were three of them.
+  - choose:
+      prompt:
+        en: How many are they when the duck joins them?
+      options:
+      - en: Three
+      - en: Two
+      - en: Four
+      answer: 0
+  - line:
+      forms:
+        sk-Latn/standard:
+          text: Všetko dobré do tretice!
+          tokens: [{surface: Všetko, lexeme: všetok, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: dobré, lexeme: dobrý, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: do, lexeme: do},
+            {surface: tretice, lexeme: tretica, feats: {Case: Gen, Number: Sing}}]
+      translations:
+        en: All good things come in threes!
+scenarios:
+- id: sk.vlak
+  after: sk.u17.prist
+  title:
+    en: Buying a train ticket
+  setting:
+    en: The ticket office at Žilina station on a Friday afternoon. You want to go to Košice for the weekend and back.
+  character:
+    en: The ticket clerk, a brisk but helpful woman in her forties behind a glass window.
+  goal:
+    en: Greet her, ask for a ticket to Košice and back (tam a späť), ask when the train leaves and from which platform, pay, and thank her.

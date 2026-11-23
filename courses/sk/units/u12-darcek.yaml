@@ -1,0 +1,356 @@
+# Unit 12 (sk): the dative (mi, ti, mu, jej, nám, vám, im; babke, Samkovi; k babke), páčiť sa and chutiť
+# (páči sa mi: I like it), je mi zima, dať, pomôcť; Lucka and Tereza visit babka Betka in her village.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u12
+title:
+  en: Darček pre babku A present for Grandma
+cefr: A2
+nodes:
+- {id: sk.u12.pacit, kind: lesson, introduces: ['lexeme:páčiť-sa', 'feature:Case=Dat', 'lexeme:my']}
+- {id: sk.u12.chutit, kind: lesson, introduces: ['lexeme:chutiť']}
+- {id: sk.u12.dat, kind: lesson, introduces: ['lexeme:dať', 'lexeme:kvet', 'lexeme:k', 'lexeme:dedko']}
+- {id: sk.u12.pomoct, kind: lesson, introduces: ['lexeme:pomôcť', 'lexeme:pomáhať', 'lexeme:záhrada', 'lexeme:vnučka', 'lexeme:sliepka', 'lexeme:vajce', 'lexeme:čerstvý']}
+- {id: sk.u12.story, kind: story}
+sentences:
+- id: s.u12.1
+  node: sk.u12.pacit
+  forms:
+    sk-Latn/standard:
+      text: Páči sa mi Žilina.
+      tokens: [{surface: Páči, lexeme: páčiť-sa, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: mi, lexeme: ja, feats: {Case: Dat, Number: Sing}},
+        {surface: Žilina, lexeme: žilina, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Páči sa mi Žilina|Žilina sa mi páči)
+  translations:
+    en: I like Žilina.
+- id: s.u12.2
+  node: sk.u12.pacit
+  forms:
+    sk-Latn/standard:
+      text: Ako sa ti páči Bratislava?
+      tokens: [{surface: Ako, lexeme: ako}, {surface: sa, lexeme: sa}, {surface: ti, lexeme: ty, feats: {Case: Dat, Number: Sing}}, {surface: páči, lexeme: páčiť-sa, feats: {Mood: Ind, Number: Sing, Person: '3',
+            Tense: Pres, VerbForm: Fin}}, {surface: Bratislava, lexeme: bratislava, feats: {Case: Nom, Number: Sing}}]
+      reverse: Ako sa (ti|vám) páči Bratislava
+  translations:
+    en: |-
+      How do you like Bratislava?
+      Do you like Bratislava?
+- id: s.u12.3
+  node: sk.u12.pacit
+  forms:
+    sk-Latn/standard:
+      text: Lucke sa páči Dominik.
+      tokens: [{surface: Lucke, lexeme: lucka, feats: {Case: Dat, Number: Sing}}, {surface: sa, lexeme: sa}, {surface: páči, lexeme: páčiť-sa, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+            VerbForm: Fin}}, {surface: Dominik, lexeme: dominik, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Lucke sa páči Dominik|Dominik sa páči Lucke)
+  translations:
+    en: Lucka likes Dominik.
+- id: s.u12.4
+  node: sk.u12.pacit
+  forms:
+    sk-Latn/standard:
+      text: Páči sa nám tu.
+      tokens: [{surface: Páči, lexeme: páčiť-sa, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: nám, lexeme: my, feats: {Case: Dat, Number: Plur}},
+        {surface: tu, lexeme: tu}]
+      reverse: (Páči sa nám tu|Tu sa nám páči)
+  translations:
+    en: We like it here.
+- id: s.u12.5
+  node: sk.u12.pacit
+  forms:
+    sk-Latn/standard:
+      text: Nepáči sa mi to.
+      tokens: [{surface: Nepáči, lexeme: páčiť-sa, feats: {Mood: Ind, Number: Sing, Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: mi, lexeme: ja, feats: {
+            Case: Dat, Number: Sing}}, {surface: to, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}]
+      reverse: (Nepáči sa mi to|To sa mi nepáči)
+  translations:
+    en: I (don't|do not) like (it|that).
+- id: s.u12.6
+  node: sk.u12.pacit
+  forms:
+    sk-Latn/standard:
+      text: Samkovi sa páči auto.
+      tokens: [{surface: Samkovi, lexeme: samko, feats: {Case: Dat, Number: Sing}}, {surface: sa, lexeme: sa}, {surface: páči, lexeme: páčiť-sa, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+            VerbForm: Fin}}, {surface: auto, lexeme: auto, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Samkovi sa páči auto|Auto sa páči Samkovi)
+  translations:
+    en: Samko likes the car.
+- id: s.u12.7
+  node: sk.u12.chutit
+  forms:
+    sk-Latn/standard:
+      text: Chutí mi polievka.
+      tokens: [{surface: Chutí, lexeme: chutiť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: ja, feats: {Case: Dat, Number: Sing}}, {surface: polievka,
+          lexeme: polievka, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Chutí mi polievka|Polievka mi chutí)
+  translations:
+    en: |-
+      I like the soup.
+      The soup (is good|tastes good).
+- id: s.u12.8
+  node: sk.u12.chutit
+  forms:
+    sk-Latn/standard:
+      text: Chutia ti halušky?
+      tokens: [{surface: Chutia, lexeme: chutiť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ti, lexeme: ty, feats: {Case: Dat, Number: Sing}}, {surface: halušky,
+          lexeme: halušky, feats: {Case: Nom, Number: Plur}}]
+      reverse: (Chutia ti halušky|Chutia vám halušky)
+  translations:
+    en: |-
+      Do you like the halušky?
+      Are the halušky good?
+- id: s.u12.9
+  node: sk.u12.chutit
+  forms:
+    sk-Latn/standard:
+      text: Je mi zima.
+      tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mi, lexeme: ja, feats: {Case: Dat, Number: Sing}}, {surface: zima, lexeme: zima,
+          feats: {Case: Nom, Number: Sing}}]
+      reverse: (Je mi zima|Mne je zima)
+  translations:
+    en: (I'm|I am) cold.
+- id: s.u12.10
+  node: sk.u12.chutit
+  forms:
+    sk-Latn/standard:
+      text: Je ti teplo?
+      tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ti, lexeme: ty, feats: {Case: Dat, Number: Sing}}, {surface: teplo, lexeme: teplo}]
+      reverse: (Je ti teplo|Je vám teplo)
+  translations:
+    en: Are you warm?
+- id: s.u12.11
+  node: sk.u12.chutit
+  forms:
+    sk-Latn/standard:
+      text: Samkovi chutí kofola.
+      tokens: [{surface: Samkovi, lexeme: samko, feats: {Case: Dat, Number: Sing}}, {surface: chutí, lexeme: chutiť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kofola,
+          lexeme: kofola, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Samkovi chutí kofola|Kofola chutí Samkovi)
+  translations:
+    en: Samko likes Kofola.
+- id: s.u12.12
+  node: sk.u12.dat
+  forms:
+    sk-Latn/standard:
+      text: Dám babke kvety.
+      tokens: [{surface: Dám, lexeme: dať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: babke, lexeme: babka, feats: {Case: Dat, Number: Sing}}, {surface: kvety,
+          lexeme: kvet, feats: {Case: Acc, Number: Plur}}]
+      reverse: (Dám babke kvety|Dám kvety babke|Babke dám kvety)
+  translations:
+    en: |-
+      (I'll|I will) give Grandma [some] flowers.
+      (I'll|I will) give [some] flowers to Grandma.
+- id: s.u12.13
+  node: sk.u12.dat
+  forms:
+    sk-Latn/standard:
+      text: Idem k babke.
+      tokens: [{surface: Idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: k, lexeme: k}, {surface: babke, lexeme: babka, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Idem|Ja idem) k babke
+  translations:
+    en: (I'm|I am) going to Grandma's.
+- id: s.u12.14
+  node: sk.u12.dat
+  forms:
+    sk-Latn/standard:
+      text: Dedko býva s babkou.
+      tokens: [{surface: Dedko, lexeme: dedko, feats: {Case: Nom, Number: Sing}}, {surface: býva, lexeme: bývať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: s,
+          lexeme: s}, {surface: babkou, lexeme: babka, feats: {Case: Ins, Number: Sing}}]
+      reverse: Dedko býva s babkou
+  translations:
+    en: Grandpa lives with Grandma.
+- id: s.u12.15
+  node: sk.u12.dat
+  forms:
+    sk-Latn/standard:
+      text: Ideme k babke a dedkovi.
+      tokens: [{surface: Ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: k, lexeme: k}, {surface: babke, lexeme: babka, feats: {Case: Dat, Number: Sing}},
+        {surface: a, lexeme: a}, {surface: dedkovi, lexeme: dedko, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Ideme|My ideme) k babke a dedkovi
+  translations:
+    en: (We're|We are) going to (Grandma and Grandpa's|Grandma's and Grandpa's).
+- id: s.u12.16
+  node: sk.u12.dat
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Dal som mu darček.
+      tokens: [{surface: Dal, lexeme: dať, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: mu, lexeme: 'on', feats: {Animacy: Anim, Case: Dat, Gender: Masc, Number: Sing}}, {surface: darček, lexeme: darček, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Dal som mu darček|Ja som mu dal darček|Darček som mu dal)
+  translations:
+    en: I gave him a (present|gift).
+- id: s.u12.17
+  node: sk.u12.pomoct
+  forms:
+    sk-Latn/standard:
+      text: Pomôžem ti.
+      tokens: [{surface: Pomôžem, lexeme: pomôcť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ti, lexeme: ty, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Pomôžem ti|Ja ti pomôžem|Pomôžem vám|Ja vám pomôžem)
+  translations:
+    en: (I'll|I will) help you.
+- id: s.u12.18
+  node: sk.u12.pomoct
+  forms:
+    sk-Latn/standard:
+      text: Lucka pomáha babke v záhrade.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: pomáha, lexeme: pomáhať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: babke,
+          lexeme: babka, feats: {Case: Dat, Number: Sing}}, {surface: v, lexeme: v}, {surface: záhrade, lexeme: záhrada, feats: {Case: Loc, Number: Sing}}]
+      reverse: Lucka pomáha babke v záhrade
+  translations:
+    en: Lucka (helps|is helping) Grandma in the garden.
+- id: s.u12.19
+  node: sk.u12.pomoct
+  forms:
+    sk-Latn/standard:
+      text: Babka má dve vnučky.
+      tokens: [{surface: Babka, lexeme: babka, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dve, lexeme: dva,
+          feats: {Case: Acc, Gender: Fem, Number: Plur}}, {surface: vnučky, lexeme: vnučka, feats: {Case: Acc, Number: Plur}}]
+      reverse: Babka má dve vnučky
+  translations:
+    en: Grandma has two granddaughters.
+- id: s.u12.20
+  node: sk.u12.pomoct
+  forms:
+    sk-Latn/standard:
+      text: Babka má sliepky.
+      tokens: [{surface: Babka, lexeme: babka, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sliepky,
+          lexeme: sliepka, feats: {Case: Acc, Number: Plur}}]
+      reverse: Babka má sliepky
+  translations:
+    en: Grandma (has|keeps) hens.
+- id: s.u12.21
+  node: sk.u12.pomoct
+  forms:
+    sk-Latn/standard:
+      text: Vajcia sú čerstvé.
+      tokens: [{surface: Vajcia, lexeme: vajce, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: čerstvé,
+          lexeme: čerstvý, feats: {Case: Nom, Gender: Neut, Number: Plur}}]
+      reverse: Vajcia sú čerstvé
+  translations:
+    en: The eggs are fresh.
+- id: s.u12.22
+  node: sk.u12.pomoct
+  forms:
+    sk-Latn/standard:
+      text: Ďakujem ti, babka!
+      tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ti, lexeme: ty, feats: {Case: Dat, Number: Sing}}, {surface: babka,
+          lexeme: babka, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Ďakujem ti babka|Ďakujem vám babka)
+  translations:
+    en: Thank you, Grandma!
+stories:
+- id: sk.story.u12
+  node: sk.u12.story
+  title:
+    en: At Grandma's
+  characters:
+  - id: lucka
+    speaker: f
+    name:
+      sk-Latn/standard: Lucka
+  - id: tereza
+    speaker: f
+    name:
+      sk-Latn/standard: Tereza
+  - id: babka
+    speaker: f
+    name:
+      sk-Latn/standard: Babka Betka
+  steps:
+  - line:
+      speaker: babka
+      forms:
+        sk-Latn/standard:
+          text: Ahoj, Lucka! Ahoj, Tereza!
+          tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: Ahoj, lexeme: ahoj}, {surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Hi, Lucka! Hi, Tereza!
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Ahoj, babka! Toto sú kvety pre teba.
+          tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: babka, lexeme: babka, feats: {Case: Nom, Number: Sing}}, {surface: Toto, lexeme: tento, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: sú,
+              lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kvety, lexeme: kvet, feats: {Case: Nom, Number: Plur}}, {surface: pre, lexeme: pre}, {surface: teba,
+              lexeme: ty, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Hi, Grandma! These flowers are for you.
+  - line:
+      speaker: babka
+      ask: complete
+      gap: lexeme:kvet
+      distractors:
+      - lexeme:dom
+      - lexeme:obchod
+      forms:
+        sk-Latn/standard:
+          text: Ďakujem! Kvety sa mi veľmi páčia.
+          tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Kvety, lexeme: kvet, feats: {Case: Nom, Number: Plur}}, {surface: sa,
+              lexeme: sa}, {surface: mi, lexeme: ja, feats: {Case: Dat, Number: Sing}}, {surface: veľmi, lexeme: veľmi}, {surface: páčia, lexeme: páčiť-sa, feats: {Mood: Ind, Number: Plur, Person: '3',
+                Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Thank you! I like the flowers very much.
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Babka, môžeme ti pomôcť v záhrade?
+          tokens: [{surface: Babka, lexeme: babka, feats: {Case: Nom, Number: Sing}}, {surface: môžeme, lexeme: môcť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ti,
+              lexeme: ty, feats: {Case: Dat, Number: Sing}}, {surface: pomôcť, lexeme: pomôcť, feats: {VerbForm: Inf}}, {surface: v, lexeme: v}, {surface: záhrade, lexeme: záhrada, feats: {Case: Loc, Number: Sing}}]
+      translations:
+        en: Grandma, can we help you in the garden?
+  - line:
+      speaker: babka
+      forms:
+        sk-Latn/standard:
+          text: Áno. A potom uvarím polievku.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: A, lexeme: a}, {surface: potom, lexeme: potom}, {surface: uvarím, lexeme: uvariť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: polievku, lexeme: polievka, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Yes. And then I'll cook some soup.
+  - choose:
+      prompt:
+        en: What does Lucka bring?
+      options:
+      - en: Flowers
+      - en: Eggs
+      - en: A book
+      answer: 0
+  - line:
+      speaker: babka
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Je vám zima?
+          tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: vám, lexeme: vy, feats: {Case: Dat, Number: Plur}}, {surface: zima, lexeme: zima,
+              feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Are you cold?
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Nie, je nám teplo.
+          tokens: [{surface: Nie, lexeme: nie}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nám, lexeme: my, feats: {Case: Dat, Number: Plur}},
+            {surface: teplo, lexeme: teplo}]
+      translations:
+        en: No, we're warm.
+  - choose:
+      prompt:
+        en: Is Tereza cold?
+      options:
+      - en: 'No'
+      - en: 'Yes'
+      - en: The story doesn't say.
+      answer: 0
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Babka, tvoja polievka mi vždy chutí!
+          tokens: [{surface: Babka, lexeme: babka, feats: {Case: Nom, Number: Sing}}, {surface: tvoja, lexeme: tvoj, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: polievka, lexeme: polievka,
+              feats: {Case: Nom, Number: Sing}}, {surface: mi, lexeme: ja, feats: {Case: Dat, Number: Sing}}, {surface: vždy, lexeme: vždy}, {surface: chutí, lexeme: chutiť, feats: {Mood: Ind, Number: Sing,
+                Person: '3', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Grandma, I always love your soup!

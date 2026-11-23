@@ -406,7 +406,12 @@ const TargetPrompt = ({
   labelId?: MessageId;
   /** When its words may be tapped for their meanings (P1); never without. */
   gloss?: GlossWhen;
-  /** Say the clip as the card opens: the model a speaking card asks the learner to imitate (P5). */
+  /**
+   * Say the clip as the card opens, if sound is on: the sentence whose meaning the card asks (choose-translation,
+   * the l2-l1 word bank), as a listening card says its own, or the model a speaking card asks the learner to imitate
+   * (P5). Never where hearing it is the answer: a reading card keeps its clip until answered (`clipWhenAnswered`), a
+   * gap-fill or an l1-l2 card has none before, and a scored speaking card would become listen-and-repeat.
+   */
   sayOnOpen?: boolean;
 }): JSX.Element => {
   const t = useTranslator();
@@ -461,7 +466,8 @@ export const ChooseTranslationView = (
   const optionTaps = useOptionTaps(props, ex.options);
   return (
     <div className={styles.body}>
-      <TargetPrompt text={ex.prompt} props={props} gloss="answered" />
+      {/* Its sentence is said as the card opens, if sound is on: the question is what it means. */}
+      <TargetPrompt text={ex.prompt} props={props} gloss="answered" sayOnOpen />
       <Options
         texts={ex.options}
         lookUp={optionTaps.lookUp}
@@ -972,7 +978,7 @@ export const TilesView = (props: Props<TranslateTap>): JSX.Element => {
   return (
     <div className={styles.body}>
       {ex.template === "translate-tap.l2-l1" ? (
-        <TargetPrompt text={ex.prompt} props={props} gloss="answered" />
+        <TargetPrompt text={ex.prompt} props={props} gloss="answered" sayOnOpen />
       ) : (
         <div
           className={styles.prompt}

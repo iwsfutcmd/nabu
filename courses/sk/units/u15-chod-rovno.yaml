@@ -1,0 +1,362 @@
+# Unit 15 (sk): the imperative (choď, poď, daj, počkaj, sadni si; choďte, poďme; nechoď), sit and lie, sit down
+# and lie down (sedieť, sadnúť si; ležať, ľahnúť si); directions in Žilina; Easter eggs.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u15
+title:
+  en: Choď rovno! Go straight on!
+cefr: A2
+nodes:
+- {id: sk.u15.smer, kind: lesson, introduces: ['feature:Mood=Imp', 'lexeme:rovno', 'lexeme:doľava', 'lexeme:doprava', 'lexeme:odbočiť', 'lexeme:križovatka']}
+- {id: sk.u15.cesta, kind: lesson, introduces: ['lexeme:prejsť', 'lexeme:most', 'lexeme:stanica', 'lexeme:prepáčiť', 'lexeme:poď', 'lexeme:sem']}
+- {id: sk.u15.prosba, kind: lesson, introduces: ['lexeme:počkať', 'lexeme:pozrieť', 'lexeme:sadnúť-si', 'lexeme:sedieť', 'lexeme:ľahnúť-si', 'lexeme:ležať']}
+- {id: sk.u15.velka-noc, kind: lesson, introduces: ['lexeme:veľká-noc', 'lexeme:kraslica', 'lexeme:maľovať']}
+- {id: sk.u15.story, kind: story}
+sentences:
+- id: s.u15.1
+  node: sk.u15.smer
+  forms:
+    sk-Latn/standard:
+      text: Choď rovno!
+      tokens: [{surface: Choď, lexeme: ísť, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: rovno, lexeme: rovno}]
+      reverse: (Choď rovno|Choďte rovno|Rovno choď|Rovno choďte)
+  translations:
+    en: |-
+      Go straight on!
+      Go straight ahead!
+- id: s.u15.2
+  node: sk.u15.smer
+  forms:
+    sk-Latn/standard:
+      text: Odboč doľava.
+      tokens: [{surface: Odboč, lexeme: odbočiť, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: doľava, lexeme: doľava}]
+      reverse: (Odboč doľava|Odbočte doľava)
+  translations:
+    en: Turn left.
+- id: s.u15.3
+  node: sk.u15.smer
+  forms:
+    sk-Latn/standard:
+      text: Na križovatke odboč doprava.
+      tokens: [{surface: Na, lexeme: na}, {surface: križovatke, lexeme: križovatka, feats: {Case: Loc, Number: Sing}}, {surface: odboč, lexeme: odbočiť, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}},
+        {surface: doprava, lexeme: doprava}]
+      reverse: (Na križovatke odboč doprava|Na križovatke odbočte doprava|Odboč doprava na križovatke)
+  translations:
+    en: Turn right at the (crossroads|junction|intersection).
+- id: s.u15.4
+  node: sk.u15.smer
+  forms:
+    sk-Latn/standard:
+      text: Choďte rovno a potom doľava.
+      tokens: [{surface: Choďte, lexeme: ísť, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}}, {surface: rovno, lexeme: rovno}, {surface: a, lexeme: a}, {surface: potom, lexeme: potom}, {
+          surface: doľava, lexeme: doľava}]
+      reverse: (Choďte|Choď) rovno a potom doľava
+  translations:
+    en: Go straight on and then (left|turn left).
+- id: s.u15.5
+  node: sk.u15.smer
+  forms:
+    sk-Latn/standard:
+      text: Nechoď tam!
+      tokens: [{surface: Nechoď, lexeme: ísť, feats: {Mood: Imp, Number: Sing, Person: '2', Polarity: Neg, VerbForm: Fin}}, {surface: tam, lexeme: tam}]
+      reverse: (Nechoď tam|Nechoďte tam)
+  translations:
+    en: (Don't|Do not) go there!
+- id: s.u15.6
+  node: sk.u15.cesta
+  forms:
+    sk-Latn/standard:
+      text: Prepáčte, kde je stanica?
+      tokens: [{surface: Prepáčte, lexeme: prepáčiť, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}}, {surface: kde, lexeme: kde}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: stanica, lexeme: stanica, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Prepáčte|Prepáč) kde je stanica
+  translations:
+    en: Excuse me, (where's|where is) the station?
+- id: s.u15.7
+  node: sk.u15.cesta
+  forms:
+    sk-Latn/standard:
+      text: Prejdi cez most.
+      tokens: [{surface: Prejdi, lexeme: prejsť, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: cez, lexeme: cez}, {surface: most, lexeme: most, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Prejdi|Prejdite) cez most
+  translations:
+    en: (Cross|Go across|Go over) the bridge.
+- id: s.u15.8
+  node: sk.u15.cesta
+  forms:
+    sk-Latn/standard:
+      text: Stanica je za mostom.
+      tokens: [{surface: Stanica, lexeme: stanica, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: za,
+          lexeme: za}, {surface: mostom, lexeme: most, feats: {Case: Ins, Number: Sing}}]
+      reverse: (Stanica je za mostom|Za mostom je stanica)
+  translations:
+    en: The station is (behind|beyond|past|on the other side of) the bridge.
+- id: s.u15.9
+  node: sk.u15.cesta
+  forms:
+    sk-Latn/standard:
+      text: Poď sem!
+      tokens: [{surface: Poď, lexeme: poď, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: sem, lexeme: sem}]
+      reverse: (Poď sem|Poďte sem)
+  translations:
+    en: Come here!
+- id: s.u15.10
+  node: sk.u15.cesta
+  forms:
+    sk-Latn/standard:
+      text: Poďme na stanicu!
+      tokens: [{surface: Poďme, lexeme: poď, feats: {Mood: Imp, Number: Plur, Person: '1', VerbForm: Fin}}, {surface: na, lexeme: na}, {surface: stanicu, lexeme: stanica, feats: {Case: Acc, Number: Sing}}]
+      reverse: Poďme na stanicu
+  translations:
+    en: (Let's|Let us) go to the station!
+- id: s.u15.11
+  node: sk.u15.cesta
+  forms:
+    sk-Latn/standard:
+      text: Poďte s nami.
+      tokens: [{surface: Poďte, lexeme: poď, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}}, {surface: s, lexeme: s}, {surface: nami, lexeme: my, feats: {Case: Ins, Number: Plur}}]
+      reverse: (Poďte|Poď) s nami
+  translations:
+    en: Come with us.
+- id: s.u15.12
+  node: sk.u15.prosba
+  forms:
+    sk-Latn/standard:
+      text: Počkaj!
+      tokens: [{surface: Počkaj, lexeme: počkať, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}]
+      reverse: (Počkaj|Počkajte)
+  translations:
+    en: Wait!
+- id: s.u15.13
+  node: sk.u15.prosba
+  forms:
+    sk-Latn/standard:
+      text: Pozri, tam je Samko!
+      tokens: [{surface: Pozri, lexeme: pozrieť, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: tam, lexeme: tam}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3',
+            Tense: Pres, VerbForm: Fin}}, {surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Pozri|Pozrite) tam je Samko
+  translations:
+    en: Look, (there's|there is) Samko!
+- id: s.u15.14
+  node: sk.u15.prosba
+  forms:
+    sk-Latn/standard:
+      text: Sadnite si, prosím.
+      tokens: [{surface: Sadnite, lexeme: sadnúť-si, feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}}, {surface: si, lexeme: si.refl}, {surface: prosím, lexeme: prosiť, feats: {Mood: Ind, Number: Sing,
+            Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Sadnite si|Sadni si) prosím
+  translations:
+    en: |-
+      (Sit down|Have a seat|Take a seat), please.
+      Please (sit down|have a seat|take a seat).
+- id: s.u15.15
+  node: sk.u15.prosba
+  forms:
+    sk-Latn/standard:
+      text: Babka sedí v kresle.
+      tokens: [{surface: Babka, lexeme: babka, feats: {Case: Nom, Number: Sing}}, {surface: sedí, lexeme: sedieť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: v,
+          lexeme: v}, {surface: kresle, lexeme: kreslo, feats: {Case: Loc, Number: Sing}}]
+      reverse: Babka sedí v kresle
+  translations:
+    en: Grandma is sitting in the armchair.
+- id: s.u15.16
+  node: sk.u15.prosba
+  forms:
+    sk-Latn/standard:
+      text: Ľahni si!
+      tokens: [{surface: Ľahni, lexeme: ľahnúť-si, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: si, lexeme: si.refl}]
+      reverse: (Ľahni si|Ľahnite si)
+  translations:
+    en: Lie down!
+- id: s.u15.17
+  node: sk.u15.prosba
+  forms:
+    sk-Latn/standard:
+      text: Samko leží v posteli.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: leží, lexeme: ležať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: v,
+          lexeme: v}, {surface: posteli, lexeme: posteľ, feats: {Case: Loc, Number: Sing}}]
+      reverse: Samko leží v posteli
+  translations:
+    en: |-
+      Samko is lying in bed.
+      Samko is in bed.
+- id: s.u15.18
+  node: sk.u15.prosba
+  forms:
+    sk-Latn/standard:
+      text: Daj mi to, prosím.
+      tokens: [{surface: Daj, lexeme: dať, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: mi, lexeme: ja, feats: {Case: Dat, Number: Sing}}, {surface: to, lexeme: ten, feats: {
+            Case: Acc, Gender: Neut, Number: Sing}}, {surface: prosím, lexeme: prosiť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Daj mi to|Dajte mi to) prosím
+  translations:
+    en: |-
+      Give (it|that) to me, please.
+      Give me (it|that), please.
+      Please give me (it|that).
+- id: s.u15.19
+  node: sk.u15.prosba
+  forms:
+    sk-Latn/standard:
+      text: Pomôž mi!
+      tokens: [{surface: Pomôž, lexeme: pomôcť, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: mi, lexeme: ja, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Pomôž mi|Pomôžte mi)
+  translations:
+    en: Help me!
+- id: s.u15.20
+  node: sk.u15.velka-noc
+  forms:
+    sk-Latn/standard:
+      text: Veľká noc je na jar.
+      tokens: [{surface: Veľká, lexeme: veľká-noc}, {surface: noc, lexeme: veľká-noc}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: na,
+          lexeme: na}, {surface: jar, lexeme: jar, feats: {Case: Acc, Number: Sing}}]
+      reverse: Veľká noc je na jar
+  translations:
+    en: Easter is in [the] spring.
+- id: s.u15.21
+  node: sk.u15.velka-noc
+  forms:
+    sk-Latn/standard:
+      text: Kraslice sú krásne.
+      tokens: [{surface: Kraslice, lexeme: kraslica, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: krásne,
+          lexeme: krásny, feats: {Case: Nom, Gender: Fem, Number: Plur}}]
+      reverse: Kraslice sú krásne
+  translations:
+    en: The (Easter eggs|painted eggs) are beautiful.
+- id: s.u15.22
+  node: sk.u15.velka-noc
+  forms:
+    sk-Latn/standard:
+      text: Maľujeme kraslice.
+      tokens: [{surface: Maľujeme, lexeme: maľovať, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: kraslice, lexeme: kraslica, feats: {Case: Acc, Number: Plur}}]
+      reverse: (Maľujeme|My maľujeme) kraslice
+  translations:
+    en: |-
+      (We're|We are) painting Easter eggs.
+      We paint Easter eggs.
+- id: s.u15.23
+  node: sk.u15.velka-noc
+  forms:
+    sk-Latn/standard:
+      text: Samko, maľuj vajcia!
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: maľuj, lexeme: maľovať, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: vajcia, lexeme: vajce,
+          feats: {Case: Acc, Number: Plur}}]
+      reverse: Samko maľuj vajcia
+  translations:
+    en: Samko, paint the eggs!
+stories:
+- id: sk.story.u15
+  node: sk.u15.story
+  title:
+    en: Where is the station?
+  characters:
+  - id: liam
+    speaker: m
+    name:
+      sk-Latn/standard: Liam
+  - id: lucka
+    speaker: f
+    name:
+      sk-Latn/standard: Lucka
+  steps:
+  - line:
+      speaker: liam
+      forms:
+        sk-Latn/standard:
+          text: Prepáč, kde je stanica?
+          tokens: [{surface: Prepáč, lexeme: prepáčiť, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: kde, lexeme: kde}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing,
+                Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: stanica, lexeme: stanica, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Excuse me, where's the station?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Choď rovno a na križovatke odboč doprava.
+          tokens: [{surface: Choď, lexeme: ísť, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: rovno, lexeme: rovno}, {surface: a, lexeme: a}, {surface: na, lexeme: na}, {surface: križovatke,
+              lexeme: križovatka, feats: {Case: Loc, Number: Sing}}, {surface: odboč, lexeme: odbočiť, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: doprava, lexeme: doprava}]
+      translations:
+        en: Go straight on and turn right at the crossroads.
+  - line:
+      speaker: liam
+      forms:
+        sk-Latn/standard:
+          text: Doprava?
+          tokens: [{surface: Doprava, lexeme: doprava}]
+      translations:
+        en: Right?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Áno. Potom prejdi cez most.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: Potom, lexeme: potom}, {surface: prejdi, lexeme: prejsť, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: cez, lexeme: cez},
+            {surface: most, lexeme: most, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Yes. Then cross the bridge.
+  - choose:
+      prompt:
+        en: Where should Liam turn at the crossroads?
+      options:
+      - en: Right
+      - en: Left
+      - en: He goes straight on
+      answer: 0
+  - line:
+      speaker: lucka
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Stanica je za mostom.
+          tokens: [{surface: Stanica, lexeme: stanica, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: za,
+              lexeme: za}, {surface: mostom, lexeme: most, feats: {Case: Ins, Number: Sing}}]
+      translations:
+        en: The station is past the bridge.
+  - line:
+      speaker: liam
+      forms:
+        sk-Latn/standard:
+          text: Ďakujem! Ideš tam tiež?
+          tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Ideš, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '2',
+                Tense: Pres, VerbForm: Fin}}, {surface: tam, lexeme: tam}, {surface: tiež, lexeme: tiež}]
+      translations:
+        en: Thank you! Are you going there too?
+  - line:
+      speaker: lucka
+      ask: complete
+      gap: lexeme:poď
+      distractors:
+      - lexeme:ísť
+      - lexeme:maľovať
+      forms:
+        sk-Latn/standard:
+          text: Áno. Poď, ideme spolu!
+          tokens: [{surface: Áno, lexeme: áno}, {surface: Poď, lexeme: poď, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur,
+                Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: spolu, lexeme: spolu}]
+      translations:
+        en: Yes. Come on, let's go together!
+  - choose:
+      prompt:
+        en: Who goes to the station with Liam?
+      options:
+      - en: Lucka
+      - en: Nobody
+      - en: Samko
+      answer: 0
+  - line:
+      speaker: liam
+      forms:
+        sk-Latn/standard:
+          text: Výborne!
+          tokens: [{surface: Výborne, lexeme: výborne}]
+      translations:
+        en: Great!
+scenarios:
+- id: sk.stanica
+  after: sk.u15.velka-noc
+  title:
+    en: At the doctor's
+  setting:
+    en: A paediatrician's surgery in Žilina on a weekday morning. You have brought a child who has a temperature and a sore throat.
+  character:
+    en: Doktor Baláž, a calm, kind paediatrician in his fifties who speaks formally to parents and gently to children.
+  goal:
+    en: Greet the doctor politely (with vy), say who you are and who the child is, describe how the child is (Je mu zle, má horúčku), and follow the doctor's instructions (Sadnite si, ľahni si).

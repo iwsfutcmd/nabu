@@ -1,0 +1,475 @@
+# Unit 8 (sk): the past (bol som, bola som; robil, robila, robili), negated (nebol, nerobil; nič ... ne-),
+# už and ešte; Lucka's and Dominik's weekend, a woman's and a man's sentences side by side.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u08
+title:
+  en: Včera Yesterday
+cefr: A2
+nodes:
+- {id: sk.u08.vcera, kind: lesson, introduces: ['feature:Tense=Past', 'lexeme:včera']}
+- {id: sk.u08.robit, kind: lesson, introduces: ['lexeme:robiť', 'lexeme:variť', 'lexeme:čítať', 'lexeme:pozerať', 'lexeme:film', 'lexeme:televízia']}
+- {id: sk.u08.nie, kind: lesson, introduces: ['lexeme:nič']}
+- {id: sk.u08.uz, kind: lesson, introduces: ['lexeme:už', 'lexeme:ešte', 'lexeme:cez', 'lexeme:víkend', 'lexeme:minulý', 'lexeme:týždeň']}
+- {id: sk.u08.minule, kind: lesson, introduces: ['lexeme:dostať', 'lexeme:povedať', 'lexeme:že', 'lexeme:unavený']}
+- {id: sk.u08.story, kind: story}
+sentences:
+- id: s.u08.1
+  node: sk.u08.vcera
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Včera som bola doma.
+      tokens: [{surface: Včera, lexeme: včera}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: bola, lexeme: byť, feats: {Gender: Fem,
+            Number: Sing, Tense: Past, VerbForm: Part}}, {surface: doma, lexeme: doma}]
+      reverse: (Včera som bola doma|Bola som včera doma|Bola som doma včera)
+  translations:
+    en: |-
+      Yesterday I was [at] home.
+      I was [at] home yesterday.
+- id: s.u08.2
+  node: sk.u08.vcera
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Včera som bol doma.
+      tokens: [{surface: Včera, lexeme: včera}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: bol, lexeme: byť, feats: {Gender: Masc,
+            Number: Sing, Tense: Past, VerbForm: Part}}, {surface: doma, lexeme: doma}]
+      reverse: (Včera som bol doma|Bol som včera doma|Bol som doma včera)
+  translations:
+    en: |-
+      Yesterday I was [at] home.
+      I was [at] home yesterday.
+- id: s.u08.3
+  node: sk.u08.vcera
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    sk-Latn/standard:
+      text: Kde si bola včera?
+      tokens: [{surface: Kde, lexeme: kde}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: bola, lexeme: byť, feats: {Gender: Fem, Number: Sing,
+            Tense: Past, VerbForm: Part}}, {surface: včera, lexeme: včera}]
+      reverse: (Kde si bola včera|Kde si včera bola|Kde ste boli včera|Kde ste včera boli)
+  translations:
+    en: Where were you yesterday?
+- id: s.u08.4
+  node: sk.u08.vcera
+  forms:
+    sk-Latn/standard:
+      text: Lucka bola v práci.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: bola, lexeme: byť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: v, lexeme: v},
+        {surface: práci, lexeme: práca, feats: {Case: Loc, Number: Sing}}]
+      reverse: Lucka bola v práci
+  translations:
+    en: Lucka was at work.
+- id: s.u08.5
+  node: sk.u08.vcera
+  forms:
+    sk-Latn/standard:
+      text: Dominik bol doma.
+      tokens: [{surface: Dominik, lexeme: dominik, feats: {Case: Nom, Number: Sing}}, {surface: bol, lexeme: byť, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: doma, lexeme: doma}]
+      reverse: Dominik bol doma
+  translations:
+    en: Dominik was [at] home.
+- id: s.u08.6
+  node: sk.u08.vcera
+  forms:
+    sk-Latn/standard:
+      text: Boli sme v kolibe.
+      tokens: [{surface: Boli, lexeme: byť, feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: sme, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {
+          surface: v, lexeme: v}, {surface: kolibe, lexeme: koliba, feats: {Case: Loc, Number: Sing}}]
+      reverse: (Boli sme v kolibe|My sme boli v kolibe|V kolibe sme boli)
+  translations:
+    en: We were at the koliba.
+- id: s.u08.7
+  node: sk.u08.robit
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    sk-Latn/standard:
+      text: Čo si robil?
+      tokens: [{surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: robil, lexeme: robiť, feats: {
+            Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: Čo (si robil|ste robili)
+  translations:
+    en: |-
+      What did you do?
+      What were you doing?
+- id: s.u08.8
+  node: sk.u08.robit
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Varila som.
+      tokens: [{surface: Varila, lexeme: variť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Varila som|Ja som varila)
+  translations:
+    en: I (cooked|was cooking).
+- id: s.u08.9
+  node: sk.u08.robit
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Čítal som knihu.
+      tokens: [{surface: Čítal, lexeme: čítať, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: knihu, lexeme: kniha, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Čítal som knihu|Ja som čítal knihu|Knihu som čítal)
+  translations:
+    en: I (read|was reading) a book.
+- id: s.u08.10
+  node: sk.u08.robit
+  forms:
+    sk-Latn/standard:
+      text: Tereza pozerala film.
+      tokens: [{surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: pozerala, lexeme: pozerať, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: film,
+          lexeme: film, feats: {Case: Acc, Number: Sing}}]
+      reverse: Tereza pozerala film
+  translations:
+    en: Tereza (watched|was watching) a (film|movie).
+- id: s.u08.11
+  node: sk.u08.robit
+  forms:
+    sk-Latn/standard:
+      text: Samko pozeral televíziu.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: pozeral, lexeme: pozerať, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: televíziu,
+          lexeme: televízia, feats: {Case: Acc, Number: Sing}}]
+      reverse: Samko pozeral televíziu
+  translations:
+    en: Samko (watched|was watching) (TV|television).
+- id: s.u08.12
+  node: sk.u08.robit
+  forms:
+    sk-Latn/standard:
+      text: Lucka čítala knihu.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: čítala, lexeme: čítať, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: knihu, lexeme: kniha,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: (Lucka čítala knihu|Knihu čítala Lucka)
+  translations:
+    en: Lucka (read|was reading) a book.
+- id: s.u08.13
+  node: sk.u08.robit
+  forms:
+    sk-Latn/standard:
+      text: Rudo a Simona varili halušky.
+      tokens: [{surface: Rudo, lexeme: rudo, feats: {Case: Nom, Number: Sing}}, {surface: a, lexeme: a}, {surface: Simona, lexeme: simona, feats: {Case: Nom, Number: Sing}}, {surface: varili, lexeme: variť,
+          feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: halušky, lexeme: halušky, feats: {Case: Acc, Number: Plur}}]
+      reverse: Rudo a Simona varili halušky
+  translations:
+    en: Rudo and Simona (cooked|made|were cooking|were making) halušky.
+- id: s.u08.14
+  node: sk.u08.nie
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Nebola som v škole.
+      tokens: [{surface: Nebola, lexeme: byť, feats: {Gender: Fem, Number: Sing, Polarity: Neg, Tense: Past, VerbForm: Part}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+            VerbForm: Fin}}, {surface: v, lexeme: v}, {surface: škole, lexeme: škola, feats: {Case: Loc, Number: Sing}}]
+      reverse: (Nebola som v škole|Ja som nebola v škole|V škole som nebola)
+  translations:
+    en: I (wasn't|was not) at school.
+- id: s.u08.15
+  node: sk.u08.nie
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Nič som nerobil.
+      tokens: [{surface: Nič, lexeme: nič, feats: {Case: Acc}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: nerobil, lexeme: robiť,
+          feats: {Gender: Masc, Number: Sing, Polarity: Neg, Tense: Past, VerbForm: Part}}]
+      reverse: (Nič som nerobil|Nerobil som nič|Ja som nič nerobil)
+  translations:
+    en: |-
+      I (didn't|did not) do anything.
+      I did nothing.
+- id: s.u08.16
+  node: sk.u08.nie
+  forms:
+    sk-Latn/standard:
+      text: Samko nejedol polievku.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: nejedol, lexeme: jesť, feats: {Gender: Masc, Number: Sing, Polarity: Neg, Tense: Past, VerbForm: Part}}, {surface: polievku,
+          lexeme: polievka, feats: {Case: Acc, Number: Sing}}]
+      reverse: Samko nejedol polievku
+  translations:
+    en: Samko (didn't|did not) eat (the|his) soup.
+- id: s.u08.17
+  node: sk.u08.nie
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    sk-Latn/standard:
+      text: Nebola si doma?
+      tokens: [{surface: Nebola, lexeme: byť, feats: {Gender: Fem, Number: Sing, Polarity: Neg, Tense: Past, VerbForm: Part}}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres,
+            VerbForm: Fin}}, {surface: doma, lexeme: doma}]
+      reverse: (Nebola si doma|Ty si nebola doma|Neboli ste doma|Vy ste neboli doma)
+  translations:
+    en: |-
+      (Weren't you|Were you not) [at] home?
+      You (weren't|were not) [at] home?
+- id: s.u08.18
+  node: sk.u08.nie
+  forms:
+    sk-Latn/standard:
+      text: Lucka včera nepracovala.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: včera, lexeme: včera}, {surface: nepracovala, lexeme: pracovať, feats: {Gender: Fem, Number: Sing, Polarity: Neg,
+            Tense: Past, VerbForm: Part}}]
+      reverse: (Lucka včera nepracovala|Včera Lucka nepracovala|Lucka nepracovala včera)
+  translations:
+    en: Lucka (didn't|did not) work yesterday.
+- id: s.u08.19
+  node: sk.u08.uz
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    sk-Latn/standard:
+      text: Už si jedol?
+      tokens: [{surface: Už, lexeme: už}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: jedol, lexeme: jesť, feats: {Gender: Masc, Number: Sing,
+            Tense: Past, VerbForm: Part}}]
+      reverse: (Už si jedol|Jedol si už|Už ste jedli|Jedli ste už)
+  translations:
+    en: |-
+      Have you eaten (yet|already)?
+      Did you eat (yet|already)?
+- id: s.u08.20
+  node: sk.u08.uz
+  forms:
+    sk-Latn/standard:
+      text: Ešte nie.
+      tokens: [{surface: Ešte, lexeme: ešte}, {surface: nie, lexeme: nie}]
+      reverse: Ešte nie
+  translations:
+    en: Not yet.
+- id: s.u08.21
+  node: sk.u08.uz
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Už som raňajkovala.
+      tokens: [{surface: Už, lexeme: už}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: raňajkovala, lexeme: raňajkovať, feats: {Gender: Fem,
+            Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: (Už som raňajkovala|Raňajkovala som už|Ja som už raňajkovala)
+  translations:
+    en: |-
+      (I've|I have) already had breakfast.
+      I already had breakfast.
+- id: s.u08.22
+  node: sk.u08.uz
+  forms:
+    sk-Latn/standard:
+      text: Cez víkend sme boli v Bratislave.
+      tokens: [{surface: Cez, lexeme: cez}, {surface: víkend, lexeme: víkend, feats: {Case: Acc, Number: Sing}}, {surface: sme, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: boli, lexeme: byť, feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: v, lexeme: v}, {surface: Bratislave, lexeme: bratislava, feats: {Case: Loc, Number: Sing}}]
+      reverse: (Cez víkend sme boli v Bratislave|V Bratislave sme boli cez víkend)
+  translations:
+    en: |-
+      (Over|At|On) the weekend we were in Bratislava.
+      We were in Bratislava (over|at|on) the weekend.
+- id: s.u08.23
+  node: sk.u08.uz
+  forms:
+    sk-Latn/standard:
+      text: Minulý týždeň bol pekný.
+      tokens: [{surface: Minulý, lexeme: minulý, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: týždeň, lexeme: týždeň, feats: {Case: Nom, Number: Sing}}, {surface: bol, lexeme: byť,
+          feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: pekný, lexeme: pekný, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}]
+      reverse: Minulý týždeň bol pekný
+  translations:
+    en: Last week was (nice|lovely|good).
+- id: s.u08.24
+  node: sk.u08.uz
+  forms:
+    sk-Latn/standard:
+      text: Samko ešte spí.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: ešte, lexeme: ešte}, {surface: spí, lexeme: spať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: Samko ešte spí
+  translations:
+    en: Samko is still (sleeping|asleep).
+- id: s.u08.25
+  node: sk.u08.minule
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Stretla som Martu.
+      tokens: [{surface: Stretla, lexeme: stretnúť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+            VerbForm: Fin}}, {surface: Martu, lexeme: marta, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Stretla som Martu|Martu som stretla|Ja som stretla Martu)
+  translations:
+    en: I met Marta.
+- id: s.u08.26
+  node: sk.u08.minule
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Kúpil som darček pre mamu.
+      tokens: [{surface: Kúpil, lexeme: kúpiť, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: darček, lexeme: darček, feats: {Case: Acc, Number: Sing}}, {surface: pre, lexeme: pre}, {surface: mamu, lexeme: mama, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Kúpil som darček pre mamu|Ja som kúpil darček pre mamu)
+  translations:
+    en: I bought a (present|gift) for (Mum|Mom|my mum|my mom).
+- id: s.u08.27
+  node: sk.u08.minule
+  forms:
+    sk-Latn/standard:
+      text: Samko dostal auto.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: dostal, lexeme: dostať, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: auto, lexeme: auto,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: Samko dostal auto
+  translations:
+    en: Samko (got|was given|received) a car.
+- id: s.u08.28
+  node: sk.u08.minule
+  forms:
+    sk-Latn/standard:
+      text: Čo povedal?
+      tokens: [{surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: povedal, lexeme: povedať, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}]
+      reverse: Čo povedal
+  translations:
+    en: What did he say?
+- id: s.u08.29
+  node: sk.u08.minule
+  forms:
+    sk-Latn/standard:
+      text: Povedala, že je unavená.
+      tokens: [{surface: Povedala, lexeme: povedať, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: že, lexeme: že}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: unavená, lexeme: unavený, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Povedala že je unavená
+  translations:
+    en: |-
+      She said (that |)she (was|is) tired.
+      She told me (that |)she (was|is) tired.
+stories:
+- id: sk.story.u08
+  node: sk.u08.story
+  title:
+    en: The weekend
+  characters:
+  - id: lucka
+    speaker: f
+    name:
+      sk-Latn/standard: Lucka
+  - id: dominik
+    speaker: m
+    name:
+      sk-Latn/standard: Dominik
+  steps:
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Ahoj, Lucka! Kde si bola cez víkend?
+          tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: Kde, lexeme: kde}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing,
+                Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: bola, lexeme: byť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: cez, lexeme: cez}, {surface: víkend, lexeme: víkend,
+              feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Hi, Lucka! Where were you at the weekend?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Bola som v Bratislave. Tereza tam študuje.
+          tokens: [{surface: Bola, lexeme: byť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: v, lexeme: v}, {surface: Bratislave, lexeme: bratislava, feats: {Case: Loc, Number: Sing}}, {surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: tam, lexeme: tam},
+            {surface: študuje, lexeme: študovať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: I was in Bratislava. Tereza studies there.
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: A čo ste robili?
+          tokens: [{surface: A, lexeme: a}, {surface: čo, lexeme: čo, feats: {Case: Acc}}, {surface: ste, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: robili,
+              lexeme: robiť, feats: {Number: Plur, Tense: Past, VerbForm: Part}}]
+      translations:
+        en: And what did you do?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Pozerali sme film a varili sme.
+          tokens: [{surface: Pozerali, lexeme: pozerať, feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: sme, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: film, lexeme: film, feats: {Case: Acc, Number: Sing}}, {surface: a, lexeme: a}, {surface: varili, lexeme: variť, feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: sme,
+              lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: We watched a film and cooked.
+  - choose:
+      prompt:
+        en: Where was Lucka at the weekend?
+      options:
+      - en: In Bratislava
+      - en: At home
+      - en: At work
+      answer: 0
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: A ty? Čo si robil?
+          tokens: [{surface: A, lexeme: a}, {surface: ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}, {surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing,
+                Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: robil, lexeme: robiť, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}]
+      translations:
+        en: And you? What did you do?
+  - line:
+      speaker: dominik
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Bol som doma a čítal som knihu.
+          tokens: [{surface: Bol, lexeme: byť, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: doma, lexeme: doma}, {surface: a, lexeme: a}, {surface: čítal, lexeme: čítať, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: som, lexeme: byť, feats: {
+                Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: knihu, lexeme: kniha, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: I was at home and read a book.
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Akú knihu?
+          tokens: [{surface: Akú, lexeme: aký, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: knihu, lexeme: kniha, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: What book?
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Starú knihu o Žiline.
+          tokens: [{surface: Starú, lexeme: starý, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: knihu, lexeme: kniha, feats: {Case: Acc, Number: Sing}}, {surface: o, lexeme: o}, {surface: Žiline,
+              lexeme: žilina, feats: {Case: Loc, Number: Sing}}]
+      translations:
+        en: An old book about Žilina.
+  - line:
+      speaker: lucka
+      ask: complete
+      gap: lexeme:variť
+      distractors:
+      - lexeme:pozerať
+      - lexeme:čítať
+      forms:
+        sk-Latn/standard:
+          text: Tereza varila halušky. Boli výborné!
+          tokens: [{surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: varila, lexeme: variť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: halušky,
+              lexeme: halušky, feats: {Case: Acc, Number: Plur}}, {surface: Boli, lexeme: byť, feats: {Number: Plur, Tense: Past, VerbForm: Part}}, {surface: výborné, lexeme: výborný, feats: {Case: Nom,
+                Gender: Fem, Number: Plur}}]
+      translations:
+        en: Tereza cooked halušky. They were delicious!
+  - choose:
+      prompt:
+        en: Who cooked halušky?
+      options:
+      - en: Tereza
+      - en: Lucka
+      - en: Dominik
+      answer: 0
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Mám rád halušky!
+          tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: rád, lexeme: rád, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}},
+            {surface: halušky, lexeme: halušky, feats: {Case: Acc, Number: Plur}}]
+      translations:
+        en: I like halušky!
