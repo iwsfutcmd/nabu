@@ -747,7 +747,37 @@
           "items": {
             "$ref": "#/$defs/Equivalence"
           }
+        },
+        "joins": {
+          "description": "Words the orthography writes onto the word after them or apart, in forms no norm picks among (Arabizi's article: el shay, elshay, l shay, lshay, esh shay). Grading compares word by word; these let one or two typed words stand for the joining word and the word after it, only where the accepted answer has the joining word there.",
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/Join" }
         }
+      }
+    },
+    "Join": {
+      "title": "Join",
+      "description": "A joining word (`joins`). Where an accepted answer has one of its forms followed by a word W (written apart, or split off by a `detach` step), or a word that begins with one of its assimilated forms whose letter is written twice (essalame), an answer that writes any of its forms followed by a spelling that compares as W (the profile's equivalences, free correspondences or a slip; W's other-lexeme and other-form guards hold), as one word or two, is that answer: CORRECT_VARIANT with `note` where the forms differ, nothing more where only the space does. An answer's word is split only there, and never where it is a word the course writes of another lexeme. No form is empty: the word left out stays left out.",
+      "type": "object",
+      "required": ["id", "forms"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "forms": { "description": "Its forms before any word.", "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "pattern": "^[^{}\\s]+$" } },
+        "assimilates": {
+          "description": "Its forms before a word that begins with a letter of `before` (Arabizi's sun letters), beside `forms`: in each, {next} (only at its end) is that letter written again (e{next}: essalame, es salame).",
+          "type": "object",
+          "required": ["before", "forms"],
+          "additionalProperties": false,
+          "properties": {
+            "before": { "$ref": "#/$defs/UnicodeSetPattern", "description": "The letters; {sh} for one written with two." },
+            "forms": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1, "pattern": "^(?:[^{}\\s]+|[^{}\\s]*\\{next\\})$" } }
+          }
+        },
+        "minRest": { "description": "The word after it has at least this many graphemes (default 3), so el li, which a detach step makes of elli, is no joining word and word.", "type": "integer", "minimum": 1 },
+        "notBefore": { "description": "Never before a word the course stands only as one of these parts of speech (the grader's `forms`): el bos, which a detach step makes of elbos (I wear), is no article and noun.", "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/PartOfSpeech" } },
+        "note": { "$ref": "#/$defs/NoteId", "description": "The note for a form other than the accepted answer's (default spelling-variant)." }
       }
     },
     "NoteId": {

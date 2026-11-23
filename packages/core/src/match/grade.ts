@@ -16,6 +16,7 @@ import type { SoundComparison } from "../project/sound.ts";
 import { err, ok, type Result } from "../result.ts";
 import { graphemes } from "../text/graphemes.ts";
 import { compareUnits, contrastOf, COST, type Comparison, type MatchKind, type WordForm } from "./compare.ts";
+import { joinSplits, type CompiledJoin, type JoinSplit } from "./join.ts";
 
 export type Verdict =
   | "CORRECT"
@@ -49,7 +50,17 @@ const byWorst = (labels: Iterable<MissLabel>): readonly MissLabel[] => {
  * carries its labels (ADR 0148), worst first; a slip alone is a typo, accepted.
  */
 export type AlignOp =
-  | { readonly op: "match"; readonly expected: string; readonly actual: string; readonly kind: MatchKind; readonly folds?: readonly string[]; readonly note?: string; readonly labels?: readonly MissLabel[] }
+  | {
+      readonly op: "match";
+      readonly expected: string;
+      readonly actual: string;
+      readonly kind: MatchKind;
+      readonly folds?: readonly string[];
+      readonly note?: string;
+      readonly labels?: readonly MissLabel[];
+      /** Written onto the next unit's `actual`, with no space: a joining word typed onto its word (lshay for el shay). */
+      readonly joined?: boolean;
+    }
   | { readonly op: "substitute"; readonly expected: string; readonly actual: string; readonly note?: string; readonly labels?: readonly MissLabel[] }
   | { readonly op: "insert"; readonly actual: string; readonly labels?: readonly MissLabel[] }
   | { readonly op: "delete"; readonly expected: string; readonly labels?: readonly MissLabel[] };
@@ -79,6 +90,8 @@ export interface CompiledAcceptSet {
   readonly comparisons: Map<string, Comparison>;
   /** Unit comparisons by sound (a spelling projection's), shared the same way. */
   readonly sounds: Map<string, SoundComparison>;
+  /** By lattice node, the ways the accepted answers go on from it with a joining word and its word (the profile's `joins`). */
+  readonly joined: Map<number, readonly ExpectedJoin[]>;
   readonly paths: number;
   readonly warnings: readonly (NotationWarning | LatticeWarning)[];
 }
@@ -87,7 +100,7 @@ export const compileAcceptSet = (source: string, profile: CompiledProfile): Resu
   const parsed = parseAcceptSet(source);
   if (!parsed.ok) return err(parsed.error);
   const lattice = compileLattice(parsed.value, profile);
-  return ok({ profile, lattice, comparisons: new Map(), sounds: new Map(), paths: parsed.value.paths, warnings: [...parsed.value.warnings, ...lattice.warnings] });
+  return ok({ profile, lattice, comparisons: new Map(), sounds: new Map(), joined: new Map(), paths: parsed.value.paths, warnings: [...parsed.value.warnings, ...lattice.warnings] });
 };
 
 export interface GradeOptions {
@@ -154,25 +167,117 @@ const OP_NONE = 0;
 const OP_INSERT = 1;
 const OP_DELETE = 2;
 const OP_SUB = 3;
+const OP_JOIN = 4;
 
-/** Closest path: minimal-cost alignment of the answer's units against any lattice path. */
-const align = (set: CompiledAcceptSet, units: readonly string[]) => {
+/** Where an accepted answer goes on from a lattice node with a joining word and its word: one edge (essalame) or two (el shay). */
+export interface ExpectedJoin {
+  readonly join: CompiledJoin;
+  /** The node the word's edge leads to. */
+  readonly end: number;
+  readonly edges: 1 | 2;
+  readonly split: JoinSplit;
+}
+
+/**
+ * A step of the closest path: a unit as the alignment shows it, or a joining word and its word,
+ * read off one or two edges of the accepted answer and one or two units of the answer.
+ */
+type Step =
+  | AlignOp
+  | { readonly op: "join"; readonly join: CompiledJoin; readonly expected: readonly string[]; readonly actual: readonly string[]; readonly e: JoinSplit; readonly t: JoinSplit };
+
+/** The comparison memo of an accept set: each pair of units compared once. */
+const comparer = (set: CompiledAcceptSet) => (expected: string, actual: string): Comparison => {
+  const memo = set.comparisons;
+  const key = `${expected}\u0000${actual}`;
+  let c = memo.get(key);
+  if (c === undefined) {
+    if (memo.size >= 8192) memo.clear();
+    c = compareUnits(set.profile, expected, actual);
+    memo.set(key, c);
+  }
+  return c;
+};
+
+/** Spelling-projection sound comparisons of an accept set, memoized. */
+const sounder = (set: CompiledAcceptSet) => (expected: string, actual: string): SoundComparison | undefined => {
+  const projection = set.profile.projection;
+  if (projection === undefined || projection.from === "reading") return undefined;
+  const k = `${expected}\u0000${actual}`;
+  let c = set.sounds.get(k);
+  if (c === undefined) {
+    if (set.sounds.size >= 8192) set.sounds.clear();
+    c = projection.compare(expected, actual);
+    set.sounds.set(k, c);
+  }
+  return c;
+};
+
+/**
+ * Closest path: minimal-cost alignment of the answer's units against any lattice path. Where the
+ * profile has joining words (`joins`), a joining word and its word on the accepted side may also
+ * take one or two units of the answer that read as one of its forms and a spelling of that word, or
+ * a form of its lexeme the course writes (`related`), graded as that word apart would be (`blocked`:
+ * a unit the course writes as another lexeme's word is never split; `opens`: the accepted word is
+ * one the joining word may stand before).
+ */
+const align = (
+  set: CompiledAcceptSet,
+  units: readonly string[],
+  blocked: (unit: string, expected: readonly string[]) => boolean,
+  related: (expected: string, actual: string) => boolean,
+  opens: (join: CompiledJoin, word: string) => boolean,
+) => {
   const { nodes } = set.lattice;
   const n = units.length;
   const width = n + 1;
   const cost = new Float64Array(nodes.length * width).fill(Number.POSITIVE_INFINITY);
   const back = new Uint8Array(nodes.length * width);
-  const memo = set.comparisons;
-  const compare = (expected: string, actual: string): Comparison => {
-    const key = `${expected}\u0000${actual}`;
-    let c = memo.get(key);
-    if (c === undefined) {
-      if (memo.size >= 8192) memo.clear();
-      c = compareUnits(set.profile, expected, actual);
-      memo.set(key, c);
+  const compare = comparer(set);
+
+  // Joining words: each unit's readings as one, and each node's on the accepted side, found once.
+  const joins = set.profile.joins ?? [];
+  const sound = sounder(set);
+  const typedJoins =
+    joins.length === 0
+      ? []
+      : units.map((u, i) =>
+          joins.flatMap((join) => [
+            ...joinSplits(join, [u]).map((split) => ({ join, units: 1 as const, split })),
+            ...(i + 1 < n ? joinSplits(join, [u, units[i + 1] as string]).map((split) => ({ join, units: 2 as const, split })) : []),
+          ]),
+        );
+  const expectedJoins = (v: number): readonly ExpectedJoin[] => {
+    let found = set.joined.get(v);
+    if (found === undefined) {
+      const out: ExpectedJoin[] = [];
+      for (const join of joins) {
+        for (const [a, c] of (nodes[v] as (typeof nodes)[number]).children) {
+          for (const split of joinSplits(join, [a], true)) out.push({ join, end: c, edges: 1, split });
+          for (const [w, g] of (nodes[c] as (typeof nodes)[number]).children) for (const split of joinSplits(join, [a, w])) out.push({ join, end: g, edges: 2, split });
+        }
+      }
+      found = out;
+      set.joined.set(v, found);
     }
-    return c;
+    return found;
   };
+  /**
+   * What the word after a joining word costs, typed so: only a spelling the grader could take for it
+   * (a fold, a slip, the same sound by free correspondences) or another form of its lexeme, which is
+   * then graded as it is apart (kbire for kbir: grammatical).
+   */
+  const wordCost = (expected: string, actual: string): number | undefined => {
+    const c = compare(expected, actual);
+    if (c.kind !== "mismatch") return c.cost;
+    if (c.rejected === true) return undefined;
+    return (c.required !== true && sound(expected, actual)?.free === true) || related(expected, actual) ? c.cost : undefined;
+  };
+  const edgesOf = (end: number, edges: 1 | 2): readonly string[] => {
+    const node = nodes[end] as (typeof nodes)[number];
+    return edges === 1 ? [node.unit] : [(nodes[node.parent] as (typeof nodes)[number]).unit, node.unit];
+  };
+  const joinedAt = new Map<number, { readonly from: number; readonly i: number; readonly expected: ExpectedJoin; readonly units: 1 | 2; readonly split: JoinSplit }>();
 
   cost[0] = 0;
   for (let v = 0; v < nodes.length; v++) {
@@ -203,6 +308,28 @@ const align = (set: CompiledAcceptSet, units: readonly string[]) => {
         }
       }
     }
+    if (joins.length === 0) continue;
+    for (const ej of expectedJoins(v)) {
+      // Asked of this answer's grade (the course's forms), never kept with the accept set.
+      if (!opens(ej.join, ej.split.rest)) continue;
+      for (let i = 0; i < n; i++) {
+        const here = cost[base + i] as number;
+        if (here === Number.POSITIVE_INFINITY) continue;
+        for (const tj of typedJoins[i] as (typeof typedJoins)[number]) {
+          if (tj.join !== ej.join || (tj.units === 1 && blocked(units[i] as string, edgesOf(ej.end, ej.edges)))) continue;
+          const w = wordCost(ej.split.rest, tj.split.rest);
+          if (w === undefined) continue;
+          // A fold's cost more than the units compared one by one, so that path wins a tie.
+          const c = here + w + COST.fold;
+          const at = ej.end * width + i + tj.units;
+          if (c < (cost[at] as number)) {
+            cost[at] = c;
+            back[at] = OP_JOIN;
+            joinedAt.set(at, { from: v, i, expected: ej, units: tj.units, split: tj.split });
+          }
+        }
+      }
+    }
   }
 
   // Best final node; ties prefer the canonical answer, then the heavier, then the earlier.
@@ -222,13 +349,18 @@ const align = (set: CompiledAcceptSet, units: readonly string[]) => {
     }
   });
 
-  const ops: AlignOp[] = [];
+  const ops: Step[] = [];
   let v = best;
   let i = n;
   while (v > 0 || i > 0) {
     const op = back[v * width + i];
     const node = nodes[v] as (typeof nodes)[number];
-    if (op === OP_INSERT || (v === 0 && op === OP_NONE)) {
+    if (op === OP_JOIN) {
+      const j = joinedAt.get(v * width + i)!;
+      ops.push({ op: "join", join: j.expected.join, expected: edgesOf(j.expected.end, j.expected.edges), actual: units.slice(j.i, j.i + j.units), e: j.expected.split, t: j.split });
+      v = j.from;
+      i = j.i;
+    } else if (op === OP_INSERT || (v === 0 && op === OP_NONE)) {
       ops.push({ op: "insert", actual: units[i - 1] as string });
       i--;
     } else if (op === OP_DELETE) {
@@ -299,7 +431,8 @@ const letterDistance = (a: readonly string[], b: readonly string[]): number => {
  * 1. The profile's policies (equivalences, character variants, the marks, a ZWNJ, an apostrophe):
  *    right with their notes, no label. A typed word that says what the expected one says by free
  *    correspondences alone is that word (CORRECT_VARIANT), unless the course writes it as another
- *    lexeme's.
+ *    lexeme's, or as another form of its lexeme, or, where no token writes it, stands it only in forms
+ *    of the expected word's part of speech that the expected word never stands in (grammatical).
  * 2. A difference inside the typo budget is a slip, accepted, unless the two say the same by a fixed
  *    correspondence (orthographic, no slip), or the typed word is another lexeme's form (lexical and
  *    slip) or another form of the expected word's lexeme (grammatical and slip; a contrast set
@@ -309,6 +442,9 @@ const letterDistance = (a: readonly string[], b: readonly string[]): number => {
  *    lexical, and an unexplained word that is no attempt and no form of the course is lexical too.
  * 4. A homophone character (yue): orthographic, PARTIAL as before.
  * 5. An answer whose words are an accepted answer's in another order: order, and nothing else.
+ * A joining word (the profile's `joins`: Arabizi's article) and the word after it are aligned with one
+ * or two typed units where the accepted answer has them (`align`): another of its forms is a variant
+ * (CORRECT_VARIANT, its note), and the word after it is graded by 1 to 3 as any other.
  * The verdict is a view of the labels: none, the policies' verdict; a slip alone, CORRECT_WITH_TYPO;
  * else not accepted: PARTIAL where every miss is a homophone character, WRONG_WORD where a slip, the
  * same sounds or marks that make another word explain every miss, else WRONG (what the judge is
@@ -320,10 +456,9 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
   const { profile } = set;
   const normalized = profile.normalize(answer);
   const units = profile.units(normalized);
-  const { ops, cost, final, compare } = align(set, units);
-  const alt = set.lattice.alternatives[final.alternative] as LatticeAlternative;
 
-  let verdict: Verdict = final.canonical ? "CORRECT" : "CORRECT_ALT";
+  // Set from the closest path, once it is found (below).
+  let verdict: Verdict = "CORRECT";
   const notes: string[] = [];
   // The first note the unit being classified raised: its alignment op carries it.
   let raised: string | undefined;
@@ -365,6 +500,14 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
     // A word the course writes whose lexemes the caller did not give: a lexeme of its own.
     return options.lexicon?.has(k) === true ? [{ lexeme: `?${k}`, form: `?${k}` }] : [];
   };
+  // A typed word the course writes is read as a joining word and its word only where it writes a
+  // lexeme of the accepted side's (l7amdella as el7amdella's): never another lexeme's word.
+  const blocked = (unit: string, expected: readonly string[]): boolean => {
+    const typed = formsOf(unit);
+    if (typed.length === 0) return false;
+    const own = [...expected, expected.join("")].flatMap(formsOf);
+    return !typed.some((t) => own.some((e) => e.lexeme === t.lexeme));
+  };
   const relation = (expected: string, actual: string): Relation => {
     const typed = formsOf(actual);
     if (typed.length === 0) return "none";
@@ -379,24 +522,47 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
     return covers(own, typed) && covers(typed, own) ? "same" : "grammatical";
   };
   const formLabel = (r: Relation): readonly MissLabel[] => (r === "grammatical" ? ["grammatical"] : r === "lexical" ? ["lexical"] : []);
+  /**
+   * Whether a typed word no token writes is, by the forms the course stands its words in (`forms`: an
+   * accept set's words take their sentence's nearest word's), another form of the expected word's part
+   * of speech: none of its forms one the expected word stands in. Asked only where free
+   * correspondences alone would make it the expected word: Arabizi's sme3teene (you, a woman, heard
+   * me) says what sme3teni (a man) says, but the course stands it in the woman's form.
+   */
+  const pinnedElsewhere = (expected: string, actual: string): boolean => {
+    const typed = options.forms?.get(keyOf(actual));
+    const own = options.forms?.get(keyOf(expected));
+    if (typed === undefined || own === undefined || typed.length === 0 || own.length === 0) return false;
+    const same = (a: WordForm, b: WordForm): boolean => {
+      const fa = Object.entries(a.feats);
+      return a.pos === b.pos && fa.length === Object.keys(b.feats).length && fa.every(([k, v]) => b.feats[k] === v);
+    };
+    if (typed.some((t) => own.some((e) => same(e, t)))) return false;
+    return typed.some((t) => own.some((e) => e.pos !== undefined && e.pos === t.pos));
+  };
+
+  // A word the course stands only as a part of speech the joining word never goes before (elbos, I
+  // wear, which the detach step makes el bos) is no joining word and word.
+  const opens = (join: CompiledJoin, word: string): boolean => {
+    if (join.notBefore.size === 0) return true;
+    const stood = options.forms?.get(keyOf(word));
+    return stood === undefined || stood.length === 0 || stood.some((f) => f.pos === undefined || !join.notBefore.has(f.pos));
+  };
+  const { ops, cost, final, compare } = align(set, units, blocked, (expected, actual) => relation(expected, actual) === "grammatical", opens);
+  const alt = set.lattice.alternatives[final.alternative] as LatticeAlternative;
+  verdict = final.canonical ? "CORRECT" : "CORRECT_ALT";
 
   // The sound question (ADR 0148): each pair asked once per accept set, as the units are compared.
   const projection = profile.projection;
   const scheme = projection?.from === "reading" ? (options.scheme ?? readingProjection(projection.scheme)) : undefined;
+  const spelled = sounder(set);
   const soundOf = (expected: string, actual: string): SoundComparison | undefined => {
     if (projection === undefined) return undefined;
     if (projection.from === "reading") {
       const readings = options.readings?.get(keyOf(expected));
       return scheme === undefined || readings === undefined || readings.length === 0 ? undefined : compareByReading(scheme, readings, expected, actual);
     }
-    const k = `${expected}\u0000${actual}`;
-    let c = set.sounds.get(k);
-    if (c === undefined) {
-      if (set.sounds.size >= 8192) set.sounds.clear();
-      c = projection.compare(expected, actual);
-      set.sounds.set(k, c);
-    }
-    return c;
+    return spelled(expected, actual);
   };
 
   const correspondences: string[] = [];
@@ -430,23 +596,18 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
   // Each unit's op carries the note it raised, so feedback can say which words it is about
   // (cómo and como, W4), and its labels.
   const alignment: AlignOp[] = [];
-  for (const op of ops) {
-    raised = undefined;
+  const done = (shown: AlignOp, miss?: Miss): void => {
     const at = alignment.length;
-    const done = (shown: AlignOp, miss?: Miss): void => {
-      const labelled = miss === undefined ? shown : { ...shown, labels: byWorst(miss.labels) };
-      alignment.push(raised === undefined || labelled.op === "insert" || labelled.op === "delete" ? labelled : { ...labelled, note: raised });
-      if (miss === undefined) return;
-      if (miss.labels.length === 1 && miss.labels[0] === "slip") slips.push("slip");
-      else misses.set(at, miss);
-    };
-    // A word left out or added (a sentence's words in another order are told apart below).
-    if (op.op === "insert" || op.op === "delete") {
-      done(op, { labels: ["lexical"], explained: false });
-      continue;
-    }
-    const { expected, actual } = op;
+    const labelled = miss === undefined ? shown : { ...shown, labels: byWorst(miss.labels) };
+    alignment.push(raised === undefined || labelled.op === "insert" || labelled.op === "delete" ? labelled : { ...labelled, note: raised });
+    if (miss === undefined) return;
+    if (miss.labels.length === 1 && miss.labels[0] === "slip") slips.push("slip");
+    else misses.set(at, miss);
+  };
+  /** Grades one unit of the answer against one of the accepted answer's; `show` says how its op shows them (a joining word's word). */
+  const classify = (expected: string, actual: string, show: (op: AlignOp) => AlignOp = (o) => o): void => {
     const c = compare(expected, actual);
+    const op: AlignOp = c.kind === "mismatch" ? { op: "substitute", expected, actual } : { op: "match", expected, actual, kind: c.kind, ...(c.folds.length > 0 && { folds: c.folds.map((f) => f.id) }) };
 
     // 1. The policies.
     if (c.kind === "exact" || c.kind === "case" || c.kind === "fold") {
@@ -463,31 +624,33 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
         }
         applyPolicy(f.policy, f.kind === "marks" ? "CORRECT_MARKS" : f.kind === "variant" ? "CORRECT_VARIANT" : verdict, f.note ?? f.id);
       }
-      done(op, another === undefined ? undefined : { labels: formLabel(another), explained: true });
-      continue;
+      done(show(op), another === undefined ? undefined : { labels: formLabel(another), explained: true });
+      return;
     }
     if (c.kind === "homophone") {
       for (const f of c.folds) applyPolicy(f.policy, f.kind === "marks" ? "CORRECT_MARKS" : f.kind === "variant" ? "CORRECT_VARIANT" : verdict, f.note ?? f.id);
       // 4. A homophone character (ADR 0148: a possible spelling of its syllable): orthographic, where the profile does not accept it.
       if (profile.homophones?.policy === "partial-credit") {
         note("ime-homophone");
-        done(op, { labels: ["orthographic"], explained: true, homophone: true });
+        done(show(op), { labels: ["orthographic"], explained: true, homophone: true });
       } else {
         applyPolicy(profile.homophones?.policy, "PARTIAL", "ime-homophone");
-        done(op);
+        done(show(op));
       }
-      continue;
+      return;
     }
 
-    const r = relation(expected, actual);
     const sound = c.kind === "mismatch" && c.rejected === true ? undefined : soundOf(expected, actual);
+    const known = relation(expected, actual);
+    // Where the course says nothing of the typed word's lexemes, its forms may: another form is never a variant.
+    const r: Relation = known === "none" && sound?.free === true && pinnedElsewhere(expected, actual) ? "grammatical" : known;
     // 1. A free correspondence: the same word, spelled as no norm forbids.
     if (sound?.free === true && r !== "lexical" && r !== "grammatical" && !(c.kind === "mismatch" && c.required === true)) {
       for (const f of c.folds) applyPolicy(f.policy, f.kind === "marks" ? "CORRECT_MARKS" : f.kind === "variant" ? "CORRECT_VARIANT" : verdict, f.note ?? f.id);
       raise("CORRECT_VARIANT");
       note(sound.differs.find((d) => d.note !== undefined)?.note ?? "spelling-variant");
-      done({ op: "match", expected, actual, kind: "fold" });
-      continue;
+      done(show({ op: "match", expected, actual, kind: "fold" }));
+      return;
     }
 
     // 2. The slip.
@@ -499,27 +662,27 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
       if (contrast !== undefined) note(contrast.note);
       // The right sound by a fixed correspondence (havlar, سد for صد): which letter was the question, never a typo.
       if (sound?.sounds === true) {
-        done(op, { labels: [...bySound(sound), ...formLabel(r)], explained: true });
-        continue;
+        done(show(op), { labels: [...bySound(sound), ...formLabel(r)], explained: true });
+        return;
       }
       const form: readonly MissLabel[] = r === "lexical" || r === "grammatical" ? formLabel(r) : contrast !== undefined ? ["grammatical"] : [];
       if (form.length === 0) raise("CORRECT_WITH_TYPO");
-      done(op, { labels: ["slip", ...form], explained: true });
-      continue;
+      done(show(op), { labels: ["slip", ...form], explained: true });
+      return;
     }
 
     // 3. What a slip does not explain.
     if (c.kind !== "mismatch") {
-      done(op);
-      continue;
+      done(show(op));
+      return;
     }
     const markWord = c.required === true && profile.marks?.distinguishes === true && (r === "lexical" || r === "grammatical");
     note(markWord ? (profile.marks?.wordNote ?? c.note) : c.note);
     // A fold the profile refuses (Russian letters for Uzbek ones): the right word, written as the
     // orthography never writes it. Wrong, as the policy says.
     if (c.rejected === true) {
-      done(op, { labels: ["orthographic"], explained: false });
-      continue;
+      done(show(op), { labels: ["orthographic"], explained: false });
+      return;
     }
     const labels: MissLabel[] = [];
     // Where the marks make another word, its note says it all (accent-word): the places' notes are not repeated.
@@ -539,7 +702,39 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
     // (pinguino says another sound): a mark that carries sound is never a question of meaning, so
     // never the judge's, who would excuse it.
     const explained = sound?.sounds === true || r === "same" || markWord || (c.marksOnly === true && sound !== undefined);
-    done(op, { labels, explained });
+    done(show(op), { labels, explained });
+  };
+  for (const op of ops) {
+    raised = undefined;
+    // A word left out or added (a sentence's words in another order are told apart below).
+    if (op.op === "insert" || op.op === "delete") {
+      done(op, { labels: ["lexical"], explained: false });
+      continue;
+    }
+    if (op.op === "join") {
+      // A joining word and its word (the profile's `joins`): its form is free, and the word is
+      // graded as any other. Another form than the accepted answer's is a variant; another space
+      // alone is nothing.
+      const { join, e, t } = op;
+      const form = (): void => {
+        if (e.form === t.form) return;
+        raise("CORRECT_VARIANT");
+        note(join.note ?? "spelling-variant");
+      };
+      const typed = op.actual.join(" ");
+      if (op.expected.length === 1) {
+        form();
+        classify(e.rest, t.rest, (o) => ({ ...o, expected: op.expected[0] as string, actual: typed }));
+        continue;
+      }
+      form();
+      const [word, onto] = op.actual.length === 1 ? [t.head, t.rest] : [op.actual[0] as string, op.actual[1] as string];
+      done({ op: "match", expected: op.expected[0] as string, actual: word, kind: e.form === t.form ? (op.expected[0] === word ? "exact" : "case") : "fold", ...(op.actual.length === 1 && { joined: true }) });
+      raised = undefined;
+      classify(e.rest, t.rest, (o) => ({ ...o, expected: op.expected[1] as string, actual: onto }));
+      continue;
+    }
+    classify(op.expected, op.actual);
   }
 
   // 5. The accepted answer's words in another order: order, and nothing else.
