@@ -67,7 +67,7 @@ import { ReportsLink, ReportsPage } from "./YourReports.tsx";
 import { AudioCheckPage } from "./AudioCheck.tsx";
 import { DataPage } from "./Data.tsx";
 import { encodeCard } from "./card-link.ts";
-import { CardIdPage, CardPage, CardsPage, debugMode, OPEN_CARD, OpenCardPage } from "./Debug.tsx";
+import { CardPage, CardsPage, debugMode } from "./Debug.tsx";
 import { GamePanel, gateClosed, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { deviceGoal, forgetDeviceGoal, goalEvent, goalToMigrate } from "./goal.ts";
 import { Progress, SignedOutNotice } from "./Progress.tsx";
@@ -116,8 +116,6 @@ export type Route =
   | { readonly tag: "sentences"; readonly course: string; readonly orthography: string }
   | { readonly tag: "cards"; readonly course: string; readonly orthography: string }
   | { readonly tag: "card"; readonly course: string; readonly orthography: string; readonly code: string }
-  | { readonly tag: "card-id"; readonly course: string; readonly orthography: string; readonly exercise: string }
-  | { readonly tag: "open-card" }
   | { readonly tag: "audio"; readonly course: string; readonly orthography: string }
   | { readonly tag: "data"; readonly course: string; readonly orthography: string; readonly view?: string | undefined; readonly entry?: string | undefined }
   | { readonly tag: "words"; readonly course: string; readonly orthography: string }
@@ -137,8 +135,6 @@ const requestOf = (segment: string): SessionRequest =>
 const parse = (hash: string): Route => {
   const [course, orthography, session, node, entry] = hash.replace(/^#\/?/u, "").split("/").filter((p) => p !== "").map(decodeURIComponent);
   if (course === "preferences" && orthography === undefined) return { tag: "preferences" };
-  // Debug mode: open a card by its id or link (#/open-card).
-  if (course === OPEN_CARD && orthography === undefined) return { tag: "open-card" };
   // The review workspace (ADR 0074): #/review, and #/review/<course>/<orthography>.
   if (course === "review") return orthography === undefined || session === undefined ? { tag: "review" } : { tag: "review-course", course: orthography, orthography: unslug(session) };
   if (course === undefined || orthography === undefined) return { tag: "home" };
@@ -147,8 +143,6 @@ const parse = (hash: string): Route => {
   if (session === "cards") return { tag: "cards", course, orthography: unslug(orthography) };
   // One exact card, carried in the link (debug mode, card-link.ts): #/<course>/<orthography>/card/<code>.
   if (session === "card" && node !== undefined) return { tag: "card", course, orthography: unslug(orthography), code: node };
-  // The card an id names, made again (core cardFromId): #/<course>/<orthography>/card-id/<exercise id>.
-  if (session === "card-id" && node !== undefined) return { tag: "card-id", course, orthography: unslug(orthography), exercise: node };
   if (session === "audio") return { tag: "audio", course, orthography: unslug(orthography) };
   // The Data page's view and the lexeme open in it (#/es/es-Latn.standard/data/lexicon/lexeme%3Acasa).
   if (session === "data") return { tag: "data", course, orthography: unslug(orthography), view: node, entry };
@@ -179,10 +173,6 @@ export const href = (route: Route): string =>
           ? `#/${route.course}/${slug(route.orthography)}/roleplay/${encodeURIComponent(route.scenario)}`
           : route.tag === "card"
             ? `#/${route.course}/${slug(route.orthography)}/card/${route.code}`
-          : route.tag === "card-id"
-            ? `#/${route.course}/${slug(route.orthography)}/card-id/${encodeURIComponent(route.exercise)}`
-          : route.tag === "open-card"
-            ? `#/${OPEN_CARD}`
           : route.tag === "data"
             ? `#/${route.course}/${slug(route.orthography)}/data${route.view === undefined ? "" : `/${encodeURIComponent(route.view)}${route.entry === undefined ? "" : `/${encodeURIComponent(route.entry)}`}`}`
           : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "words" || route.tag === "reports" || route.tag === "offline"
@@ -1491,8 +1481,8 @@ export const App = (): JSX.Element => {
   const game = useGame(store, gameConfig, version);
   // A failed load remembers the retry it was, so it is tried again only on the next one (never in a loop).
   const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string; attempt: number } | null>(null);
-  // The route's course, if it has one (home, preferences, the review workspace and debug mode's Open a card have none).
-  const inCourse = route.tag === "home" || route.tag === "preferences" || route.tag === "review" || route.tag === "open-card" ? null : route;
+  // The route's course, if it has one (home and preferences have none).
+  const inCourse = route.tag === "home" || route.tag === "preferences" || route.tag === "review" ? null : route;
   const courseId = inCourse === null ? null : inCourse.course;
   // Where the learner left off (S1): each course's latest start, read on Home, and the course Home continues.
   const onHome = route.tag === "home";
@@ -1654,10 +1644,6 @@ export const App = (): JSX.Element => {
     const sample = current === undefined ? undefined : sampleOf(current.course, courseName(t, current.course));
     return <PreferencesPage back={back.to} backLabel={back.label} onBack={leaving(back.to)} account={account} sample={sample} />;
   }
-  if (route.tag === "open-card") {
-    // A card's id opens the card its course makes from it; a link, its own route.
-    return <OpenCardPage idHref={(card) => href({ tag: "card-id", course: card.course, orthography: card.orthography, exercise: card.exercise })} />;
-  }
   if (route.tag === "review") {
     return index === null || sync === null ? (
       <Loading />
@@ -1711,14 +1697,6 @@ export const App = (): JSX.Element => {
     return (
       <CourseUiProvider course={course}>
         <CardsPage loaded={loaded.value} language={courseName(t, course)} back={href({ tag: "course", course: course.id, orthography: course.orthography })} cardLink={cardLinkFor(course)} />
-      </CourseUiProvider>
-    );
-  }
-  if (route.tag === "card-id") {
-    const { course } = loaded.value;
-    return (
-      <CourseUiProvider course={course}>
-        <CardIdPage loaded={loaded.value} language={courseName(t, course)} exercise={route.exercise} back={href({ tag: "course", course: course.id, orthography: course.orthography })} cardLink={cardLinkFor(course)} />
       </CourseUiProvider>
     );
   }

@@ -9,21 +9,6 @@ import { Fragment, useState, type JSX } from "react";
 import { useTranslator } from "../context.tsx";
 import styles from "./Player.module.css";
 
-/**
- * A card id as text that breaks only after a slash (between course, orthography and exercise), never at an
- * id's own hyphen; a part longer than the line breaks anywhere. Inside code set left to right.
- */
-export const CardIdText = ({ id }: { readonly id: string }): JSX.Element => (
-  <>
-    {id.split("/").map((part, i, parts) => (
-      <Fragment key={i}>
-        <span className={styles.debugIdPart}>{i < parts.length - 1 ? `${part}/` : part}</span>
-        {i < parts.length - 1 && <wbr />}
-      </Fragment>
-    ))}
-  </>
-);
-
 type Copy = { readonly tag: "idle" } | { readonly tag: "copied" } | { readonly tag: "shown"; readonly url: string };
 
 export const DebugCard = ({
@@ -52,7 +37,13 @@ export const DebugCard = ({
     <p className={`${styles.muted} ${styles.debugCard}`} data-debug-template={ex.template}>
       {/* An id is code: left to right, whatever the chrome's direction. */}
       <code className={styles.debugId} dir="ltr" data-debug-card={id}>
-        <CardIdText id={id} />
+        {/* Broken after a slash, between course, orthography and exercise; never at an id's own hyphen. */}
+        {id.split("/").map((part, i, parts) => (
+          <Fragment key={i}>
+            <span className={styles.debugIdPart}>{i < parts.length - 1 ? `${part}/` : part}</span>
+            {i < parts.length - 1 && <wbr />}
+          </Fragment>
+        ))}
       </code>
       {cardLink !== undefined && (
         <button type="button" className={styles.textButton} onClick={() => void copyLink()} data-action="copy-card-link">

@@ -5,7 +5,7 @@
  * A link names the bundle format it was made with (BUNDLE_FORMAT) as well as its own: one from another build
  * is refused rather than misread.
  */
-import { BUNDLE_FORMAT, parseCardId, TEMPLATES, type CardIdParts, type Exercise } from "@nabu/core/lesson";
+import { BUNDLE_FORMAT, TEMPLATES, type Exercise } from "@nabu/core/lesson";
 
 /** Raise when an exercise's shape changes so that an older link cannot be read as one. */
 const FORMAT = 1;
@@ -46,22 +46,4 @@ export const decodeCard = async (code: string): Promise<Exercise | undefined> =>
   } catch {
     return undefined;
   }
-};
-
-/** What a card's id or link pasted in debug mode opens: a link's own route, or the card an id names. */
-export type CardTarget = { readonly tag: "address"; readonly hash: string } | { readonly tag: "id"; readonly card: CardIdParts };
-
-/**
- * A pasted card id (core `cardId`) or link to a card, from any copy of the app: only a link's route is
- * kept (`#/<course>/<orthography>/card/…` or `/card-id/…`), so it opens here. Nothing else is either.
- */
-export const cardTargetOf = (text: string): CardTarget | undefined => {
-  const trimmed = text.trim();
-  const at = trimmed.indexOf("#/");
-  if (at >= 0) {
-    const hash = trimmed.slice(at);
-    return /^#\/[^/]+\/[^/]+\/card(?:-id)?\/[^/]/u.test(hash) ? { tag: "address", hash } : undefined;
-  }
-  const card = parseCardId(trimmed);
-  return card === undefined ? undefined : { tag: "id", card };
 };

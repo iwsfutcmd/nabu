@@ -3,7 +3,7 @@
  * course can make, and a label on every card saying which kind it is. Nothing played in the
  * gallery is recorded. Every screen says it is on, with a way out.
  */
-import { cardFromId, cardGallery, cardId, lessonNodes } from "@nabu/core/lesson";
+import { cardGallery, cardId, lessonNodes } from "@nabu/core/lesson";
 import { expect, test } from "@playwright/test";
 import { answer, expectRightAndContinue, loadCourse, logOf, planned, sessionUrl, waitFor } from "./solver.ts";
 
@@ -102,72 +102,6 @@ test("a card's link opens that very card again, wherever it is opened, and recor
   const code = link.split("/card/")[1] ?? "";
   await other.goto(link.slice(0, link.length - Math.floor(code.length / 2)));
   await expect(other.locator("[data-card-unreadable]")).toBeVisible();
-  expect(errors).toEqual([]);
-});
-
-test("a card's id pasted into Open a card opens the card the course makes from it; its link, the card itself", async ({ page, context }) => {
-  const errors: string[] = [];
-  page.on("pageerror", (e) => errors.push(String(e)));
-  await context.grantPermissions(["clipboard-read", "clipboard-write"]);
-  const now = new Date("2026-05-12T09:00:00Z");
-  const course = loadCourse("yue", "yue-Hant-HK/standard");
-  const node = lessonNodes(course)[0]?.node.id ?? "";
-  const [first, second] = planned(course, [], { mode: "lesson", node }, now, 3);
-  if (first === undefined || second === undefined) throw new Error("a lesson has two cards");
-  // The card an id names, as the course makes it here too (the same bundle and seed): what is answered.
-  const made = cardFromId(course, second.id);
-  if (!made.ok) throw new Error(`${second.id}: ${made.error}`);
-
-  await page.clock.setFixedTime(now);
-  await page.goto(sessionUrl(course, { mode: "lesson", node }, 3).replace("#", "&debug=1#"));
-  await waitFor(page, first);
-  await answer(page, first, "keyboard");
-  await expectRightAndContinue(page, "keyboard", first);
-  await waitFor(page, second);
-  const id = (await page.locator("[data-debug-card]").textContent()) ?? "";
-  expect(id).toBe(cardId(course, second));
-  await page.locator("[data-action=copy-card-link]").click();
-  const link = await page.evaluate(async () => navigator.clipboard.readText());
-
-  // From the notice on every screen: Open a card. A running lesson asks before it is left.
-  await page.locator("[data-debug-notice] [data-action=open-card]").click();
-  const quit = page.locator("[data-action=quit-confirm]");
-  if (await quit.isVisible()) await quit.click();
-  const open = page.locator("[data-open-card]");
-  await expect(open).toBeVisible();
-  const field = open.locator("[data-field=card-id]");
-
-  // Not an id or a link: it says so.
-  await field.fill("hello");
-  await field.press("Enter");
-  await expect(open.locator("[data-card-target-unreadable]")).toBeVisible();
-
-  // The id: the card the course makes from it, said to be made again, answered as that card is.
-  await field.fill(id);
-  await open.locator("[data-action=open-card-submit]").click();
-  await expect(page).toHaveURL(/#\/yue\/yue-Hant-HK\.standard\/card-id\/[^/]+$/u);
-  await expect(page.locator("[data-card-page]")).toHaveAttribute("data-card-page", second.id);
-  await expect(page.locator("[data-card-note]")).toBeVisible();
-  await expect(page.locator("[data-debug-card]")).toHaveText(id);
-  await waitFor(page, made.value);
-  const before = (await logOf(page, "yue")).length;
-  await answer(page, made.value, "keyboard");
-  await expectRightAndContinue(page, "keyboard", made.value);
-  expect((await logOf(page, "yue")).length).toBe(before);
-
-  // The link: the card itself, by its own route.
-  await page.goto("/?sound=off&debug=1#/open-card");
-  await page.locator("[data-field=card-id]").fill(link);
-  await page.locator("[data-field=card-id]").press("Enter");
-  await expect(page.locator("[data-card-page]")).toHaveAttribute("data-card-page", second.id);
-  await expect(page.locator("[data-card-note]")).toHaveCount(0);
-  await waitFor(page, second);
-
-  // An id the course makes no card for says why.
-  await page.goto("/?sound=off&debug=1#/open-card");
-  await page.locator("[data-field=card-id]").fill("yue/yue-Hant-HK.standard/choose-translation:s.no-such-sentence");
-  await page.locator("[data-field=card-id]").press("Enter");
-  await expect(page.locator("[data-card-id-error]")).toHaveAttribute("data-card-id-error", "not-made");
   expect(errors).toEqual([]);
 });
 

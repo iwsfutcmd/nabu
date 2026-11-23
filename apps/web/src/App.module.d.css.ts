@@ -29,7 +29,6 @@ declare const styles: {
   readonly dialogActions: string;
   readonly dialogBody: string;
   readonly disabled: string;
-  readonly exampleId: string;
   readonly field: string;
   readonly fill: string;
   readonly form: string;

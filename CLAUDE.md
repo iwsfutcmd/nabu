@@ -122,9 +122,6 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   and copies a link to it (`#/<course>/<orth>/card/<code>`,
   apps/web/src/card-link.ts): the exercise itself, deflated, tied to the link's `FORMAT` and `BUNDLE_FORMAT`; it opens
   that card alone, nothing recorded. Raise `FORMAT` when an exercise's shape changes. Read a pasted link with `decodeCard`.
-  The notice's Open a card (`#/open-card`) takes a link (its route) or an id (`#/<course>/<orth>/card-id/<exercise id>`):
-  core `cardFromId` makes the card again with the planner's own builders (its kind, item and asked word; a pairs card's
-  words in their order; the rest from a fixed seed: one id, one card). Only a link is the very card it was copied from.
 - Keyboard shortcuts live in one capturing window listener, `usePlayerKeys` (packages/ui/src/player/Shell.tsx), shared by
   the lesson player and the story reader with their header, toggles and quit dialog (C14); views register digit/Backspace handlers.
 - Bring an action into view with `focusInReach` (player/shared.ts), never a bare focus(): a phone browser's bottom

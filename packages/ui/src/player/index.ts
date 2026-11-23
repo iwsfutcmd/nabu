@@ -1,6 +1,5 @@
 export { AnswerInput, type AnswerInputProps } from "./AnswerInput.tsx";
 export { AudioButtons, useClipPlayer, type ClipPlayer, type Speed } from "./Audio.tsx";
-export { CardIdText } from "./DebugCard.tsx";
 export { DisplayMenu, useDisplay, type Display, type DisplayChoice } from "./Display.tsx";
 export { Feedback, type FeedbackProps } from "./Feedback.tsx";
 export { lookupIsHint, withHint } from "./hints.ts";
