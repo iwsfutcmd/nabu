@@ -25,6 +25,7 @@ Python never realises or spells: every form comes from @nabu/core through core-c
 from __future__ import annotations
 
 import json
+import unicodedata
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from typing import Any, cast
@@ -170,8 +171,8 @@ def cells_of(
 
 @dataclass(frozen=True)
 class Refused:
-    """A form not shipped: its spelling has characters outside its orthography's script
-    (`form.spelling-script`)."""
+    """A form not shipped: its spelling has characters outside its orthography's script, or begins
+    with a joining carrier (`form.spelling-script`)."""
 
     lexeme: str
     cell: str
@@ -235,7 +236,10 @@ def _in_script(
     if entry is None or outside is None:
         return True
     texts = [entry] if isinstance(entry, str) else entry
-    bad = sorted({c for i, t in enumerate(texts) for c in outside(orth, t, i > 0)})
+    # A modifier letter that joins (the tatweel) is a carrier of the lexical notation, never a word's first
+    # character: a spelling that begins with one is a realisation that went wrong, though it is in the script.
+    leading = {t[0] for t in texts if t and unicodedata.category(t[0]) == "Lm"}
+    bad = sorted({c for i, t in enumerate(texts) for c in outside(orth, t, i > 0)} | leading)
     if bad and refused is not None:
         refused.append(Refused(lexeme, cell, orth, where, texts[0], bad))
     return not bad

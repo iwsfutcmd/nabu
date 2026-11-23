@@ -30,6 +30,13 @@ ZWNJ = "\u200c"
 # Pinned readings PyCantonese disagrees with, where the pinned one is the colloquial reading taught:
 # the particles 呀/嗎, 名 meng2 (你叫咩名呀), 弟弟 dai4 dai2, 平 peng4 ("cheap").
 EXPECTED_WARNINGS = {
+    # wesel's command: the w-initial command stem leaves its joining carrier first (stage 4's guard keeps
+    # the three cells out of the bundle; the rule is for the owner, docs/rules-design.md "Stage 4 as built").
+    "apc": {
+        ("form.spelling-script", "\u0640وصل"),
+        ("form.spelling-script", "\u0640وصلي"),
+        ("form.spelling-script", "\u0640وصلوا"),
+    },
     "yue": {
         ("enrich.reading-mismatch", "呀"),
         ("enrich.reading-mismatch", "嗎"),

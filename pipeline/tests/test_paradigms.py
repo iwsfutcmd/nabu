@@ -13,7 +13,7 @@ import yaml
 from nabu import yamlio
 from nabu.analyzers import analyzers_by_tool
 from nabu.compiler import compile_course, load_profiles
-from nabu.paradigms import cell_key
+from nabu.paradigms import Refused, _in_script, cell_key
 
 from .conftest import FIXTURES, CoreCli
 
@@ -119,3 +119,29 @@ def test_a_spelling_outside_the_script_is_not_shipped(core_cli: CoreCli, tmp_pat
     assert _lexeme(compiled, "lexeme:shereb").model_dump(mode="json")["paradigm"] == {
         ORTH: ["shrebt"]
     }
+
+
+def test_a_spelling_that_begins_with_a_carrier_is_not_shipped() -> None:
+    """A joining carrier (the tatweel) is the notation's, never a word's first letter: a form
+    spelled with one first is refused even though the letter is in the script (wesel's command)."""
+    refused: list[Refused] = []
+    tatweel = chr(0x640)
+    ok = _in_script(
+        [tatweel + "وصل", tatweel + "وْصَل"],
+        "apc-Arab/standard",
+        "lexeme:wesel",
+        "Mood=Imp",
+        "paradigm",
+        lambda _o, _t, _m: [],
+        refused,
+    )
+    assert not ok and refused[0].outside == [tatweel]
+    assert _in_script(
+        ["وصل", "وِصِل"],
+        "apc-Arab/standard",
+        "lexeme:wesel",
+        "",
+        "paradigm",
+        lambda _o, _t, _m: [],
+        refused,
+    )
