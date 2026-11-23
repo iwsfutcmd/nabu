@@ -1,0 +1,120 @@
+# profiles/sk-Latn.standard.yaml
+# Slovak in Latin script, as the Pravidlá slovenského pravopisu spell it, for the sk course (ADR 0155).
+# Facts from Mistrík, A Grammar of Contemporary Slovak (1988), 12-16. Policies marked REVIEW are Claude's proposals
+# awaiting Ben's linguistic sign-off.
+#  - All four marks carry sound (ADR 0155, as es's do since ADR 0148): the acute (dĺžeň) writes a long vowel or a
+#    long syllabic l or r; the caron (mäkčeň) makes another consonant (č š ž ď ť ň ľ, the stroke on ď ť ľ is how the
+#    caron is printed there); ä (dve bodky) and ô (vokáň) are letters of their own. One left out, added or moved is
+#    never folded away nor a typo: the sound statement below labels the miss (pas for pás, cas for čas: phonemic),
+#    and where the marks make another word of the course it is that word (lexical).
+#  - An apostrophe typed for the caron (d'akujem) is not folded into it: it is a missing caron (the owner, 2026-11-23).
+#  - ch, dz and dž are letters of the alphabet, two characters each.
+id: sk-Latn/standard
+lang: sk-Latn
+exemplars: cldr:sk
+letters: [a, "\u00E1", "\u00E4", b, c, "\u010D", d, "\u010F", dz, "d\u017E", e, "\u00E9", f, g, h, ch, i, "\u00ED", j, k, l,
+          "\u013A", "\u013E", m, n, "\u0148", o, "\u00F3", "\u00F4", p, q, r, "\u0155", s, "\u0161", t, "\u0165", u, "\u00FA",
+          v, w, x, y, "\u00FD", z, "\u017E"]
+segmentation: { content: whitespace, runtime: grapheme }
+normalize:
+  - nfc
+  - map: { "\u2019": "'", "\u2018": "'" }    # curly apostrophes (rare in Slovak: names like O'Brien)
+  - punctuation: strip                    # also the quotation marks „ and “
+  - whitespace: collapse
+match:
+  case: { locale: sk }
+  # REVIEW: every mark is required (ADR 0155). The acute is length wherever it stands (`required`, note length-mark);
+  # the caron, the diaeresis of ä and the circumflex of ô make letters of their own (`requiredLetters`, note
+  # letter-mark). The set's other uses (a caron on r or e, an umlaut on o or u, as Czech or German keyboards type them)
+  # are rejected with the letter note: Slovak has no such letters.
+  marks: { set: "[\u0301\u030C\u0308\u0302]", policy: reject-with-note, note: letter-mark, distinguishes: true, wordNote: mark-word,
+           required: "[\u0301]", requiredNote: length-mark,
+           requiredLetters: "[\u010D\u0161\u017E\u010F\u0165\u0148\u013E\u00E4\u00F4]", requiredLettersNote: letter-mark }
+  typo:
+    model: keyboard
+    layout: cldr-kbd:sk
+    maxRatio: 0.2
+    # REVIEW (ADR 0066): endings one or two letters apart that change the meaning. Case and number on nouns,
+    # adjectives and pronouns (žena, ženy, ženu, ženou; dom, domu, domy, domov), person and number on verbs (robím,
+    # robíš, robíme, robíte), the past's gender (robil, robila, robilo, robili). The empty member is the bare word (dom, domy).
+    contrasts:
+      - { id: ending, note: contrast-ending, members: ["", "a", "u", "e", "i", "y", "o", "\u00E1", "\u00E9", "\u00ED", "\u00FD", "\u00FA", "om", "ou", "ov", "\u00E1m", "\u00E1ch", "ami", "\u00FDm", "\u00FDch", "\u00FDmi", "\u00EDm", "\u00EDch", "\u00EDmi", "ej", "ia", "iu", "ie", "ho", "mu", "m", "\u0161", "me", "te", "l", "la", "lo", "li"] }
+      - { id: pronoun, note: contrast-pronoun, members: ["ja", "ty", "on", "ona", "ono", "my", "vy", "oni", "ony", "ma", "\u0165a", "ho", "ju", "mi", "ti", "mu", "jej", "n\u00E1s", "v\u00E1s", "ich", "im", "n\u00E1m", "v\u00E1m"] }
+# REVIEW: what the spelling writes of the sound, and what it loses (ADR 0148, 0155; profiles/README.md, "The sound
+# statement"). Standard Slovak as Mistrík describes it (12-16). Stress is always on a word's first syllable and never
+# written, so there is no `stress`; length needs no statement either, a long vowel being a letter of its own (á is not
+# a). The `says` values are only compared with one another: "x" is the sound of ch, "u\u032F" the short u that ends a
+# diphthong. Every correspondence is fixed: the norm spells each word one way. Longest written form first wins, the
+# earlier correspondence on a tie, so a narrower context is stated before a wider one.
+# Left out, and why:
+#  - ie, ia, iu beside je, ja, ju: said alike by many speakers, distinct in the norm.
+#  - l beside ľ: merged in the west, distinct in the norm.
+#  - the hard de, te, ne, le of a closed set of words (ten, teraz, jeden, vtedy) and of loanwords (telefón, diplom):
+#    read soft here, so a learner who types ťen gets an orthographic miss where a phonemic one is due.
+#  - voicing across a word boundary (v škole, s bratom): a word's statement cannot see the next word.
+#  - d and z at a prefix's edge (odzadu) read as the letter dz.
+sound: { from: spelling }
+correspondences:
+  # ch is one letter, one sound; h at a word's end or before a voiceless consonant says it too (Boh, ľahký).
+  - { says: x, written: [ch, h], kind: fixed, when: { at: end }, note: sound-alike }
+  - { says: x, written: [ch, h], kind: fixed, when: { before: "[ptťkcčsšfx]" }, note: sound-alike }
+  - { says: x, written: [ch], kind: fixed }
+  # dz and dž are letters of their own; voiceless at the end and before a voiceless consonant (c, č), and c, č
+  # voiced before a voiced one.
+  - { says: c, written: [c, dz], kind: fixed, when: { at: end }, note: sound-alike }
+  - { says: c, written: [c, dz], kind: fixed, when: { before: "[ptťkcčsšfx]" }, note: sound-alike }
+  - { says: "\u010D", written: ["\u010D", "d\u017E"], kind: fixed, when: { at: end }, note: sound-alike }
+  - { says: "\u010D", written: ["\u010D", "d\u017E"], kind: fixed, when: { before: "[ptťkcčsšfx]" }, note: sound-alike }
+  - { says: dz, written: [dz, c], kind: fixed, when: { before: "[bdďghzž]" }, note: sound-alike }
+  - { says: "d\u017E", written: ["d\u017E", "\u010D"], kind: fixed, when: { before: "[bdďghzž]" }, note: sound-alike }
+  - { says: dz, written: [dz], kind: fixed }
+  - { says: "d\u017E", written: ["d\u017E"], kind: fixed }
+  # d, t, n, l before i, í, e (and so before the diphthongs ia, ie, iu) are soft: deti says ďeťi, nikto ňikto (Mistrík 14). The
+  # caron is not written there: ď ť ň ľ are its rare spellings, read as the same sound and never offered. y after them
+  # keeps them hard (ty, dym), as é does (dobré).
+  - { says: "\u010F", written: [d], rare: ["\u010F"], kind: fixed, when: { before: "[ie\u00ED]" } }
+  - { says: "\u0165", written: [t], rare: ["\u0165"], kind: fixed, when: { before: "[ie\u00ED]" } }
+  - { says: "\u0148", written: [n], rare: ["\u0148"], kind: fixed, when: { before: "[ie\u00ED]" } }
+  - { says: "\u013E", written: [l], rare: ["\u013E"], kind: fixed, when: { before: "[ie\u00ED]" } }
+  # v after a vowel, before a consonant or at the end, is the short u of a diphthong (pravda, domov, dieťa is not
+  # one), and so is u after o at the end: the instrumental's -ou and the genitive plural's -ov say the same (ženou,
+  # pánov). Stated before voicing, so they win there (dávka).
+  - { says: "u\u032F", written: [v], kind: fixed, when: { after: "[aáäeéiíoóôuúyý]", before: "[bcčdďfghjklĺľmnňpqrŕsštťvwxzž]" }, note: sound-alike }
+  - { says: "u\u032F", written: [v], kind: fixed, when: { after: "[aáäeéiíoóôuúyý]", at: end }, note: sound-alike }
+  - { says: "u\u032F", written: [u], kind: fixed, when: { after: "[o]", at: end }, note: sound-alike }
+  # Voicing (Mistrík 15): a voiced consonant is voiceless at a word's end and before a voiceless one (hrad says hrat,
+  # všetko fšetko, otázka otáska); a voiceless one is voiced before a voiced one other than v (kde says gde, prosba
+  # prozba). Never before v or a sonorant (svet, tma). Not stated for ď and ť (choď says choť): with ď and ť as usual
+  # spellings of the same sound here, every d and t before i or e would be offered with its caron (ďeti), which the
+  # soft consonants above keep rare. The cost: choť for choď reads as another sound.
+  - { says: p, written: [p, b], kind: fixed, when: { at: end }, note: sound-alike }
+  - { says: p, written: [p, b], kind: fixed, when: { before: "[ptťkcčsšfx]" }, note: sound-alike }
+  - { says: t, written: [t, d], kind: fixed, when: { at: end }, note: sound-alike }
+  - { says: t, written: [t, d], kind: fixed, when: { before: "[ptťkcčsšfx]" }, note: sound-alike }
+  - { says: k, written: [k, g], kind: fixed, when: { at: end }, note: sound-alike }
+  - { says: k, written: [k, g], kind: fixed, when: { before: "[ptťkcčsšfx]" }, note: sound-alike }
+  - { says: s, written: [s, z], kind: fixed, when: { at: end }, note: sound-alike }
+  - { says: s, written: [s, z], kind: fixed, when: { before: "[ptťkcčsšfx]" }, note: sound-alike }
+  - { says: "\u0161", written: ["\u0161", "\u017E"], kind: fixed, when: { at: end }, note: sound-alike }
+  - { says: "\u0161", written: ["\u0161", "\u017E"], kind: fixed, when: { before: "[ptťkcčsšfx]" }, note: sound-alike }
+  - { says: f, written: [f, v], kind: fixed, when: { before: "[ptťkcčsšfx]" }, note: sound-alike }
+  - { says: b, written: [b, p], kind: fixed, when: { before: "[bdďghzž]" }, note: sound-alike }
+  - { says: d, written: [d, t], kind: fixed, when: { before: "[bdďghzž]" }, note: sound-alike }
+  - { says: g, written: [g, k], kind: fixed, when: { before: "[bdďghzž]" }, note: sound-alike }
+  - { says: z, written: [z, s], kind: fixed, when: { before: "[bdďghzž]" }, note: sound-alike }
+  - { says: "\u017E", written: ["\u017E", "\u0161"], kind: fixed, when: { before: "[bdďghzž]" }, note: sound-alike }
+  # i and y say the same, and í and ý (Mistrík 12): after b, m, p, r, s, v, z, f both are common, and which one a word takes
+  # is learned word by word (the vybrané slová: byť, biť; my, mi). After h, ch, k, g, y is the rule and i is rare (kino,
+  # chémia). After d, t, n, l the soft consonants above tell them apart; after the soft consonants y is never written.
+  - { says: i, written: [i, y], kind: fixed, when: { after: "[bmprsvzf]" }, note: sound-alike }
+  - { says: "\u00ED", written: ["\u00ED", "\u00FD"], kind: fixed, when: { after: "[bmprsvzf]" }, note: sound-alike }
+  - { says: i, written: [y], rare: [i], kind: fixed, when: { after: "[hkg]" }, note: sound-alike }
+  - { says: "\u00ED", written: ["\u00FD"], rare: ["\u00ED"], kind: fixed, when: { after: "[hkg]" }, note: sound-alike }
+  # ä is e for most speakers (Mistrík 12), written only after p, b, m, v: its rare spelling there (mäso offers meso; meno
+  # offers nothing).
+  - { says: e, written: [e], rare: ["\u00E4"], kind: fixed, when: { after: "[bmpv]" }, note: sound-alike }
+layout: { vertical: none }
+# What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.
+# Whisper writes Slovak (tier 1). Not the phones until a learner's recordings can check eSpeak NG's sk.
+speech:
+  tiers: [1]

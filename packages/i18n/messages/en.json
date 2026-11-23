@@ -1790,9 +1790,25 @@
       "message": "Accepted after a second check by a language model.",
       "description": "Note on an answer the judge accepted (provisionally right)."
     },
+    "feedback.note.length-mark": {
+      "message": "Mind the long marks: á, í, ú are long vowels, other sounds than a, i, u.",
+      "description": "Feedback note for Slovak (ADR 0155): the answer left out, added or moved a long mark (the acute: pas for pás, zle for zlé). In Slovak the acute writes a long vowel, never stress, so the answer does not count. The examples are Slovak letters and stay as they are."
+    },
+    "feedback.note.letter-mark": {
+      "message": "Mind č, š, ž, ď, ť, ň, ľ, ä and ô: the mark makes another letter, with a sound of its own.",
+      "description": "Feedback note for Slovak (ADR 0155): the answer left out, added or changed the mark of a letter that is a letter of its own (cas for čas, d'akujem or dakujem for ďakujem, maso for mäso), or put a mark Slovak does not have on a letter (ř, ö). The answer does not count. The letters are Slovak and stay as they are."
+    },
     "feedback.note.marks": {
       "message": "Check the accents and vowel marks.",
       "description": "Feedback note: the answer differs from the expected one only in marks."
+    },
+    "feedback.note.mark-word": {
+      "message": "With that mark it is another word (pas “passport”, pás “belt”).",
+      "description": "Feedback note for Slovak (ADR 0155): with a mark left out, added or changed, the answer spells a different word of the course (pas for pás, zle for zlé, ty for tý), so it does not count. The examples are Slovak words and stay as they are."
+    },
+    "feedback.note.mark-word-pair": {
+      "message": "{$expected} and {$answer} are different words: the marks on their letters tell them apart.",
+      "description": "Feedback note for Slovak (ADR 0155), in place of feedback.note.mark-word when the words are known: with a mark left out, added or changed, the learner wrote $answer (another word of the course, such as zle) where $expected was asked for (such as zlé), so the answer does not count. $expected and $answer are Slovak words, shown in their own language; put them where your grammar wants them."
     },
     "feedback.note.pairs-mistakes": {
       "message": "Some pairs took more than one try.",
