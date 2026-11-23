@@ -299,7 +299,8 @@ const letterDistance = (a: readonly string[], b: readonly string[]): number => {
  * 1. The profile's policies (equivalences, character variants, the marks, a ZWNJ, an apostrophe):
  *    right with their notes, no label. A typed word that says what the expected one says by free
  *    correspondences alone is that word (CORRECT_VARIANT), unless the course writes it as another
- *    lexeme's.
+ *    lexeme's, or as another form of its lexeme, or, where no token writes it, stands it only in forms
+ *    of the expected word's part of speech that the expected word never stands in (grammatical).
  * 2. A difference inside the typo budget is a slip, accepted, unless the two say the same by a fixed
  *    correspondence (orthographic, no slip), or the typed word is another lexeme's form (lexical and
  *    slip) or another form of the expected word's lexeme (grammatical and slip; a contrast set
@@ -379,6 +380,24 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
     return covers(own, typed) && covers(typed, own) ? "same" : "grammatical";
   };
   const formLabel = (r: Relation): readonly MissLabel[] => (r === "grammatical" ? ["grammatical"] : r === "lexical" ? ["lexical"] : []);
+  /**
+   * Whether a typed word no token writes is, by the forms the course stands its words in (`forms`: an
+   * accept set's words take their sentence's nearest word's), another form of the expected word's part
+   * of speech: none of its forms one the expected word stands in. Asked only where free
+   * correspondences alone would make it the expected word: Arabizi's sme3teene (you, a woman, heard
+   * me) says what sme3teni (a man) says, but the course stands it in the woman's form.
+   */
+  const pinnedElsewhere = (expected: string, actual: string): boolean => {
+    const typed = options.forms?.get(keyOf(actual));
+    const own = options.forms?.get(keyOf(expected));
+    if (typed === undefined || own === undefined || typed.length === 0 || own.length === 0) return false;
+    const same = (a: WordForm, b: WordForm): boolean => {
+      const fa = Object.entries(a.feats);
+      return a.pos === b.pos && fa.length === Object.keys(b.feats).length && fa.every(([k, v]) => b.feats[k] === v);
+    };
+    if (typed.some((t) => own.some((e) => same(e, t)))) return false;
+    return typed.some((t) => own.some((e) => e.pos !== undefined && e.pos === t.pos));
+  };
 
   // The sound question (ADR 0148): each pair asked once per accept set, as the units are compared.
   const projection = profile.projection;
@@ -479,8 +498,10 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
       continue;
     }
 
-    const r = relation(expected, actual);
     const sound = c.kind === "mismatch" && c.rejected === true ? undefined : soundOf(expected, actual);
+    const known = relation(expected, actual);
+    // Where the course says nothing of the typed word's lexemes, its forms may: another form is never a variant.
+    const r: Relation = known === "none" && sound?.free === true && pinnedElsewhere(expected, actual) ? "grammatical" : known;
     // 1. A free correspondence: the same word, spelled as no norm forbids.
     if (sound?.free === true && r !== "lexical" && r !== "grammatical" && !(c.kind === "mismatch" && c.required === true)) {
       for (const f of c.folds) applyPolicy(f.policy, f.kind === "marks" ? "CORRECT_MARKS" : f.kind === "variant" ? "CORRECT_VARIANT" : verdict, f.note ?? f.id);

@@ -1836,6 +1836,399 @@
       "note": "Never a variant where the course writes the typed word as another lexeme's: min, written for men (from), is not meen (who)."
     },
     {
+      "id": "grade/apc-latn/statement-o-u-variant",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "shukran ktir",
+        "answer": "shokran kteer"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ],
+        "correspondences": []
+      },
+      "note": "REVIEW (the owner, 2026-11-23): o or u, free in the profile's statement: shokran for shukran is an accepted variant (was a slip before)."
+    },
+    {
+      "id": "grade/apc-latn/statement-o-u-beside-a-mistake",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el 3omr",
+        "answer": "el 3umr, ktir"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "lexical"
+        ],
+        "notes": [
+          "spelling-variant"
+        ],
+        "correspondences": []
+      },
+      "note": "3umr is a variant; ktir added is a word too many all the same."
+    },
+    {
+      "id": "grade/apc-latn/statement-o-u-another-lexeme",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "bus",
+        "answer": "bos",
+        "lexemes": {
+          "bus": [
+            "lexeme:bus"
+          ],
+          "bos": [
+            "lexeme:lebes"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "lexical"
+        ],
+        "notes": [],
+        "correspondences": []
+      },
+      "note": "Never a variant where the course writes the typed word as another lexeme's: bos (I wear) is not bus (the bus)."
+    },
+    {
+      "id": "grade/apc-latn/statement-e-ei-variant",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el bet kbir",
+        "answer": "el beit kbir"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ],
+        "correspondences": []
+      },
+      "note": "REVIEW (the owner, 2026-11-23): a long e written e or ei, free: el beit for el bet is an accepted variant (was WRONG)."
+    },
+    {
+      "id": "grade/apc-latn/statement-e-ei-beside-a-mistake",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "lel w nhar",
+        "answer": "leil w bet"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "lexical"
+        ],
+        "notes": [
+          "spelling-variant"
+        ],
+        "correspondences": []
+      },
+      "note": "leil is a variant; bet for nhar is another word all the same."
+    },
+    {
+      "id": "grade/apc-latn/statement-q-initial-variant",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "2abel",
+        "answer": "abel"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ],
+        "correspondences": []
+      },
+      "note": "REVIEW (the owner, 2026-11-23): a ق that begins a word written 2 or not: abel for 2abel is an accepted variant (was a slip)."
+    },
+    {
+      "id": "grade/apc-latn/statement-q-initial-beside-a-mistake",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ahwe w shay",
+        "answer": "2ahwe w 7alib"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "lexical"
+        ],
+        "notes": [
+          "spelling-variant"
+        ],
+        "correspondences": []
+      },
+      "note": "2ahwe is a variant; 7alib (milk) for shay another word all the same."
+    },
+    {
+      "id": "grade/apc-latn/statement-helping-vowel-variant",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "3omr, ahl",
+        "answer": "3omor, ahel"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ],
+        "correspondences": []
+      },
+      "note": "REVIEW (the owner, 2026-11-23): the helping vowel in a final cluster, written or not: 3omor and ahel are accepted variants (were WRONG)."
+    },
+    {
+      "id": "grade/apc-latn/statement-helping-vowel-beside-a-mistake",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "khebz w jebne",
+        "answer": "khebez w zeit"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "lexical"
+        ],
+        "notes": [
+          "spelling-variant"
+        ],
+        "correspondences": []
+      },
+      "note": "khebez is a variant; zeit for jebne another word all the same."
+    },
+    {
+      "id": "grade/apc-latn/statement-helping-vowel-another-form",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "kent",
+        "answer": "kenet",
+        "lexemes": {
+          "kent": [
+            "lexeme:kan|form:Aspect=Perf;Number=Sing;Person=1"
+          ],
+          "kenet": [
+            "lexeme:kan|form:Aspect=Perf;Gender=Fem;Number=Sing;Person=3"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "grammatical",
+          "phonemic"
+        ],
+        "notes": [],
+        "correspondences": []
+      },
+      "note": "Not stated before a final t: kenet (she was) for kent (I was) is another form, never a variant."
+    },
+    {
+      "id": "grade/apc-latn/statement-free-pinned-elsewhere",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "sme3teni",
+        "answer": "sme3teene",
+        "forms": {
+          "sme3teni": [
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Perf",
+                "Gender": "Masc",
+                "Number": "Sing",
+                "Person": "2"
+              }
+            }
+          ],
+          "sme3teene": [
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Perf",
+                "Gender": "Fem",
+                "Number": "Sing",
+                "Person": "2"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "grammatical"
+        ],
+        "notes": [],
+        "correspondences": []
+      },
+      "note": "A word no token writes that the course's accept sets stand only in other forms of the expected word's part of speech is another form, never a variant: sme3teene (you, a woman, heard me) says what sme3teni (a man) says by e/i and i/ee, but stands in the woman's form."
+    },
+    {
+      "id": "grade/apc-latn/statement-free-pinned-elsewhere-reverse",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "sme3teene",
+        "answer": "sme3teni",
+        "forms": {
+          "sme3teni": [
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Perf",
+                "Gender": "Masc",
+                "Number": "Sing",
+                "Person": "2"
+              }
+            }
+          ],
+          "sme3teene": [
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Perf",
+                "Gender": "Fem",
+                "Number": "Sing",
+                "Person": "2"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "labels": [
+          "grammatical"
+        ],
+        "notes": [],
+        "correspondences": []
+      },
+      "note": "And the other way round: sme3teni, the man's, for the woman's sme3teene."
+    },
+    {
+      "id": "grade/apc-latn/statement-free-pinned-alike",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "sme3teni",
+        "answer": "smi3teni",
+        "forms": {
+          "sme3teni": [
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Perf",
+                "Gender": "Masc",
+                "Number": "Sing",
+                "Person": "2"
+              }
+            }
+          ],
+          "smi3teni": [
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Perf",
+                "Gender": "Masc",
+                "Number": "Sing",
+                "Person": "2"
+              }
+            },
+            {
+              "pos": "VERB",
+              "feats": {
+                "Aspect": "Perf",
+                "Gender": "Fem",
+                "Number": "Sing",
+                "Person": "2"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ],
+        "correspondences": []
+      },
+      "note": "Where it also stands in a form of the expected word's, it is that word spelled another way: a variant."
+    },
+    {
+      "id": "grade/apc-latn/statement-free-pinned-other-part-of-speech",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "bel",
+        "answer": "bil",
+        "forms": {
+          "bel": [
+            {
+              "pos": "ADP",
+              "feats": {}
+            }
+          ],
+          "bil": [
+            {
+              "pos": "ADJ",
+              "feats": {
+                "Gender": "Masc",
+                "Number": "Sing"
+              }
+            }
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ],
+        "correspondences": []
+      },
+      "note": "Forms of another part of speech say nothing of it (an accept set's word takes its sentence's nearest word's forms, which can be another word's): bil for bel stays a variant."
+    },
+    {
+      "id": "grade/apc-latn/statement-free-not-pinned",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "sme3teni",
+        "answer": "sme3teene"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "labels": [],
+        "notes": [
+          "spelling-variant"
+        ],
+        "correspondences": []
+      },
+      "note": "Without forms (a caller that gives none) the free correspondences decide alone: a variant."
+    },
+    {
       "id": "grade/apc-arab/statement-marks",
       "op": "grade",
       "args": {

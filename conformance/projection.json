@@ -1328,6 +1328,400 @@
       "note": "A free correspondence leaves no spelling to learn."
     },
     {
+      "id": "projection/apc-latn/o-u-free",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "shukran",
+        "typed": "shokran"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "u",
+            "typed": "o",
+            "rule": "o",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "REVIEW (the owner, 2026-11-23): Arabizi's o or u, free: shokran for shukran is the same sound, an accepted variant."
+    },
+    {
+      "id": "projection/apc-latn/o-u-ou-free",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "mabsout",
+        "typed": "mabsot"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "ou",
+            "typed": "o",
+            "rule": "o",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "With ou, which the profile's french-ou fold reads as u: mabsot for mabsout is a variant too."
+    },
+    {
+      "id": "projection/apc-latn/o-u-long-vowel",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "ru7",
+        "typed": "ro7"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "u",
+            "typed": "o",
+            "rule": "o",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "REVIEW: Arabizi writes no length, so a long u written o is taken too (ro7 for ru7, go!), as a short u is (3umr for 3omr): the statement's known cost."
+    },
+    {
+      "id": "projection/apc-latn/o-u-not-e",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "ru7t",
+        "typed": "re7t"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "Only o and u: e for u is another sound (re7t is not ru7t by this statement)."
+    },
+    {
+      "id": "projection/apc-latn/e-ei-free",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "bet",
+        "typed": "beit"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "e",
+            "typed": "ei",
+            "rule": "e",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "REVIEW (the owner, 2026-11-23): a long e written e or ei, free before a consonant: beit for bet."
+    },
+    {
+      "id": "projection/apc-latn/e-ei-short-vowel",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "bent",
+        "typed": "beint"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "e",
+            "typed": "ei",
+            "rule": "e",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "REVIEW: the statement cannot tell a long e from a short one: beint for bent (a short e) is a variant too, its known cost."
+    },
+    {
+      "id": "projection/apc-latn/e-ei-not-final",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "fi",
+        "typed": "fei"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "Only before a consonant: at a word's end ei stays e and i, two sounds."
+    },
+    {
+      "id": "projection/apc-latn/read-q-initial",
+      "op": "sound-read",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "abel"
+      },
+      "expected": {
+        "sites": [
+          {
+            "says": "2a",
+            "written": "a",
+            "rule": "2a",
+            "kind": "free"
+          },
+          {
+            "says": "b",
+            "written": "b"
+          },
+          {
+            "says": "e",
+            "written": "e",
+            "rule": "e",
+            "kind": "free"
+          },
+          {
+            "says": "l",
+            "written": "l"
+          }
+        ]
+      },
+      "note": "REVIEW (the owner, 2026-11-23): a ق that begins a word written 2 or not: a statement reads no sound out of nothing, so the 2 and the letter after it are one site, 2a or a at a word's start."
+    },
+    {
+      "id": "projection/apc-latn/q-initial-free",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "2abel",
+        "typed": "abel"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "2a",
+            "typed": "a",
+            "rule": "2a",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "abel for 2abel: the same sound, an accepted variant."
+    },
+    {
+      "id": "projection/apc-latn/q-initial-2y",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "2yes",
+        "typed": "yes"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "2y",
+            "typed": "y",
+            "rule": "2y",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "2y or y at a word's start (2yes, measure!): the other pair the owner's words need."
+    },
+    {
+      "id": "projection/apc-latn/q-initial-hamza",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "ana",
+        "typed": "2ana"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "a",
+            "typed": "2a",
+            "rule": "2a",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "REVIEW: the statement cannot tell ق from a word-initial hamza, which the course does not write: 2ana for ana is a variant too, its known cost."
+    },
+    {
+      "id": "projection/apc-latn/q-initial-not-e",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "iza",
+        "typed": "2iza"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "Not before e, i, o or u (free spellings of their own already): 2iza for iza stays another sound."
+    },
+    {
+      "id": "projection/apc-latn/q-initial-only-at-start",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "su2al",
+        "typed": "sual"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "Only at a word's start: a 2 inside a word is a sound of its own."
+    },
+    {
+      "id": "projection/apc-latn/read-helping-vowel",
+      "op": "sound-read",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "3omer"
+      },
+      "expected": {
+        "sites": [
+          {
+            "says": "3",
+            "written": "3"
+          },
+          {
+            "says": "o",
+            "written": "o",
+            "rule": "o",
+            "kind": "free"
+          },
+          {
+            "says": "mr",
+            "written": "mer",
+            "rule": "mr",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "REVIEW (the owner, 2026-11-23): the helping vowel in a final cluster, written or not: after a vowel and at a word's end the cluster and the vowel inside it are one site (mr), said once with or without it."
+    },
+    {
+      "id": "projection/apc-latn/helping-vowel-free",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "3omr",
+        "typed": "3omor"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "mr",
+            "typed": "mor",
+            "rule": "mr",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "3omor and 3omer for 3omr, ahel for ahl: the same sound, an accepted variant."
+    },
+    {
+      "id": "projection/apc-latn/helping-vowel-e-i",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "ahl",
+        "typed": "ahil"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "hl",
+            "typed": "hil",
+            "rule": "hl",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "Its vowel written as e/i allows: ahil for ahl."
+    },
+    {
+      "id": "projection/apc-latn/helping-vowel-long-vowel",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "khamis",
+        "typed": "khams"
+      },
+      "expected": {
+        "same": true,
+        "free": true,
+        "differs": [
+          {
+            "expected": "mis",
+            "typed": "ms",
+            "rule": "ms",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "REVIEW: Arabizi writes no length, so a long vowel in that place may be left out too (khams for khamis, Thursday): the statement's known cost."
+    },
+    {
+      "id": "projection/apc-latn/helping-vowel-not-before-t",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "kent",
+        "typed": "kenet"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "Not before a final t, which in a verb is the past's -t (I, you) beside its she, -et: kenet (she was) is not kent (I was)."
+    },
+    {
+      "id": "projection/apc-latn/helping-vowel-not-o-after-a",
+      "op": "sound-compare",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "expected": "akl",
+        "typed": "akol"
+      },
+      "expected": {
+        "same": false,
+        "free": false,
+        "differs": []
+      },
+      "note": "o only where the owner's word has o (3omor, dohor): akol (I eat) is not akl (food)."
+    },
+    {
       "id": "projection/apc-arab/marks-ignored",
       "op": "sound-compare",
       "args": {

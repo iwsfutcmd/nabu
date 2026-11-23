@@ -1,9 +1,9 @@
 # Phase 1 profile. Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
 # Lebanese Arabic in Arabizi (gameplan §6.3): digit letters (2 ʔ, 3 ʕ, 7 ḥ, 5 x…) are letters, not numbers.
 # Variation the profile folds silently: an apostrophe for the hamza, the article written onto its
-# noun (elshay, 3alba7r), ch/sh, 5/kh, 8/gh, doubled vowels. Free spellings of one sound (e/i, i/ee) are stated
-# below (`correspondences`); everything else (h/7…) is a real distinction or a spelling choice and belongs in the
-# accept sets. Content: apc-Latn-LB.
+# noun (elshay, 3alba7r), ch/sh, 5/kh, 8/gh, doubled vowels. Free spellings of one sound (e/i, i/ee, o/u, e/ei, an
+# initial ق written 2 or not, the helping vowel) are stated below (`correspondences`); everything else (h/7…) is a
+# real distinction or a spelling choice and belongs in the accept sets. Content: apc-Latn-LB.
 id: apc-Latn/arabizi
 lang: apc-Latn
 segmentation: { content: hand-pinned, runtime: grapheme }
@@ -56,9 +56,74 @@ correspondences:
   # Arabizi words (tokens and lexicon): 156 places write i before a consonant, about 76 a long i and 80 a short one
   # (bishrab, 3endik, iza), which now take ee too; the 279 places of e there took it already. Two spellings of
   # different words in the course now compare alike: sme3teni (you, a man, heard me) and the accept sets' sme3teene
-  # (a woman), a slip before; and min, an accept set's spelling of men (from), with meen (who), whose men the fold
-  # already took. The grader's other-lexeme guard keeps apart a word the course's tokens write.
+  # (a woman), a slip before, which the grader now refuses as another form (the accept sets stand each in its own
+  # form: no free correspondence takes a word so pinned); and min, an accept set's spelling of men (from), with meen
+  # (who), whose men the fold already took. The grader's other-lexeme guard keeps apart a word the course's tokens write.
   - { says: e, written: [ee], kind: free, when: { before: "[b-df-hj-np-tv-z2-9]" } }
+  # REVIEW: o or u (shokran, shukran; 3omr, 3umr; enno, ennu), and ou, which the french-ou fold above reads as u
+  # (mabsout, mabsot), stated free by the owner (2026-11-23, question 6). No norm picks one: the course writes both,
+  # and the accept sets carried the other by hand (about 450 alternatives; kept). Arabizi writes no length, so it
+  # holds for every o and u, short or long. Of the course's 703 Arabizi words (tokens and lexicon), 68 places write o
+  # before a consonant (a short u: 3omr, ghorfe, -kon; or ō, about a dozen: yom, hon, telefon), 53 a final o (-o,
+  # his and they: kifo, 3emlo), 56 u or ou before a consonant (mostly ū: ru7, shuf, mabsout; a short u in bukra,
+  # 7ummus, shukran, mumken) and 3 a final u (shu): each now takes the other. Lebanese ō and ū do contrast (mōt
+  # "death", mūt "I die"): the course has no such pair, and the grader's other-lexeme guard keeps apart
+  # the words its tokens write (bus, the bus, and bos, I wear). Counted on 2026-11-23: all 24 spellings the owner saw
+  # are now variants, and no two different words or forms of the course newly compare alike.
+  - { says: o, written: [o, u, ou], kind: free }
+  # REVIEW: a long e written e or ei (bet, beit; lel, leil; tnen, tnein; wen, wein), stated free by the owner
+  # (2026-11-23, question 6). No norm picks one: the course writes ei in five words (Beirut, 7zeiran, ba3dein,
+  # sa77tein, ya reit) and e elsewhere. As for i/ee: the statement cannot tell a long e from a short one, so ei before a
+  # consonant says what e and i say, and every e or i before a consonant now takes ei (447 places in 382 of the
+  # course's 703 words, most of them short: bent, beint; 3end, 3eind). Before a vowel or at a word's end ei stays two
+  # letters. All 18 spellings the owner saw are now variants; no two different words or forms of the course newly
+  # compare alike. ay and ai (hayda, haida; shway) are not stated: a diphthong or its monophthong by speaker.
+  - { says: e, written: [ei], kind: free, when: { before: "[b-df-hj-np-tv-z2-9]" } }
+  # REVIEW: a ق that begins a word, written 2 or not at all (2abel, abel; ahwe, 2ahwe), stated free by the owner
+  # (2026-11-23, question 6). A statement compares sound for sound and cannot say a letter may be left out, so the 2
+  # and the letter after it say one thing at a word's start: 2a or a, and 2y or y (2yes, yes), the two the owner's
+  # words need. The statement cannot tell ق from a hamza, which the course leaves unwritten at a word's start, so a 2
+  # may now also be written there (2ana for ana): the course's 44 words that begin with a (and 17 with y: 2yalla)
+  # take one, and its 8 that begin with 2a and 2 with 2y may leave it out. Before e, i, o and u it is not stated: those
+  # are free spellings already (e/i, o/u), which a word-initial pair would have to repeat. All 7 spellings the owner
+  # saw are now variants; no two different words or forms of the course newly compare alike.
+  - { says: 2a, written: [2a, a], kind: free, when: { at: start } }
+  - { says: 2y, written: [2y, y], kind: free, when: { at: start } }
+  # REVIEW: the helping vowel in a cluster that ends a word, not written or written e (3omr, 3omer; ahl, ahel; khebz,
+  # khebez), o after a u or o (3omor, dohor), stated free by the owner (2026-11-23, question 6). A statement compares
+  # sound for sound, its context is one letter, and a vowel it reads is never one left out, so it cannot say "a vowel
+  # that may stand between the last two consonants": each cluster is its own correspondence, its two consonants said
+  # once with or without a vowel between, after a vowel and at a word's end. One for each cluster the owner's words
+  # end in (a new word that ends in another needs its line); the vowel written as e/i, i/ee and e/ei allow (e, i, ee,
+  # ei), and o or u where the owner's word has o. Left out: a cluster that ends in t, which in a verb is the past's -t
+  # (I, you) beside its she, -et: stated for nt, kint (I was, a token) and kenit (she was, an accept-set spelling of
+  # kenet) compare alike, and ra7et (she went) would take ra7t; and 3d, whose ba3ed (after) would compare with ba3id,
+  # the accept sets' far. So 27 of the 36 spellings the owner saw are variants (not bent>benet, ekht>ekhet, sabt>sabet,
+  # ta7t>ta7et, wa2t>wa2et, law sama7t>law sama7et, ba3d>ba3ed). The cost: Arabizi writes no length, so a long vowel in
+  # that place may be left out too, in 4 of the course's 703 words (2amis, khamis, tleten, mabsoutin) and about a dozen
+  # accept-set spellings (mareed, tlatin, emte7en, raye7in); a short one in 6 (bishteghel, -ghl). No two different
+  # words or forms of the course newly compare alike (2026-11-23).
+  - { says: nd, written: [nd, ned, nid, need, neid], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: rs, written: [rs, res, ris, rees, reis], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: mr, written: [mr, mer, mir, meer, meir, mor, mur], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: hl, written: [hl, hel, hil, heel, heil], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: kl, written: [kl, kel, kil, keel, keil], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: lf, written: [lf, lef, lif, leef, leif], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: "7r", written: [7r, 7er, 7ir, 7eer, 7eir], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: rd, written: [rd, red, rid, reed, reid], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: tn, written: [tn, ten, tin, teen, tein], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: hr, written: [hr, her, hir, heer, heir, hor, hur], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: bn, written: [bn, ben, bin, been, bein], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: sm, written: [sm, sem, sim, seem, seim], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: lm, written: [lm, lem, lim, leem, leim], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: bz, written: [bz, bez, biz, beez, beiz], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: "2m", written: [2m, 2em, 2im, 2eem, 2eim], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: "7n", written: [7n, 7en, 7in, 7een, 7ein], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: ms, written: [ms, mes, mis, mees, meis], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: ghl, written: [ghl, ghel, ghil, gheel, gheil, ghol, ghul], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: b7, written: [b7, be7, bi7, bee7, bei7, bo7, bu7], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: "2s", written: [2s, 2es, 2is, 2ees, 2eis], kind: free, when: { after: "[aeiou]", at: end } }
+  - { says: lj, written: [lj, lej, lij, leej, leij], kind: free, when: { after: "[aeiou]", at: end } }
   # Not stated, though the owner said free (2026-11-23): the article's forms (el, l, il; essalame, el salame). The
   # course writes the article as a word of its own (el shay: 213 tokens) or joined to a preposition (3al, bel), and
   # the normalization above detaches el and il, so grading compares it as a word: l joined to its noun (l7amdella,
@@ -67,16 +132,14 @@ correspondences:
   # word's start would only take a spaced l (l shay), which the accept sets list by hand ((el|l|il), 169 times), and
   # would take lf for elf, lli for elli, lbos for ilbos. It waits on a join the grader can see (rules-design, section 8).
   # Considered and left out (REVIEW):
-  #  - o or u (shokran/shukran, about 450 alternatives by hand): the same case as e/i, but ADR 0148 names only e/i,
-  #    and ō/ū contrast (mōt "death", mūt "I die"); left to the reviewer.
-  #  - ay/ai/ei/e (hayda/haida, shway/shwei, wayn/wen): a diphthong or its monophthong by speaker; no context safe.
+  #  - ay/ai (hayda/haida, shway/shwei, wayn/wen): a diphthong or its monophthong by speaker; no context safe.
   #  - 7 (ḥ) and h (h), 3 (ʿ) and a, 2 (ʔ) and nothing, q and 2 or k: different sounds, or a sound said otherwise
   #    by word; a slip at most, as the typo model says.
 # How Arabizi spells a lexical form (docs/lexical-forms/apc.md, the projections' table and "Free and fixed";
 # docs/rules-design.md, section 3). `to` is the spelling the course mostly writes; each rule's `alternatives` are
 # the spellings apc.md calls free, named by variation: read only by the compiler, which takes the course's spelling
-# where it is one of them (`form.projection`). None is stated free in `correspondences` above but e/i and i/ee: the
-# owner states the others one at a time (docs/rules-design.md, question 6; the article waits on a join). Not alternatives here: ch, 5, 8 and ou are
+# where it is one of them (`form.projection`). The owner stated them free in `correspondences` above (docs/rules-design.md,
+# question 6), all but the article, which waits on a join, and the helping vowel before a final t or in ba3d. Not alternatives here: ch, 5, 8 and ou are
 # matching policies (`equivalences`). REVIEW.
 spell:
   from: lexical
