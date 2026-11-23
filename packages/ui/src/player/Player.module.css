@@ -171,6 +171,28 @@
 }
 
 /* Debug mode: a card's link, where the clipboard is shut: a field to select it from, the whole width. */
+/* Debug mode's line: the card's full id, then the button that copies a link to it, wrapping as needed. */
+.debugCard {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
+}
+
+/* An id breaks after its slashes (course / orthography / exercise), each part whole where it fits; a part
+   longer than the line (a pairs card names every lexeme) breaks anywhere rather than overflow. */
+.debugId {
+  min-inline-size: 0;
+  /* Code in the interface's own face, as the Data page's ids: the app ships no monospace one. */
+  font-family: inherit;
+}
+
+.debugIdPart {
+  display: inline-block;
+  max-inline-size: 100%;
+  overflow-wrap: anywhere;
+}
+
 .debugLink {
   box-sizing: border-box;
   display: block;

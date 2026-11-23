@@ -3,7 +3,7 @@
  * course can make, and a label on every card saying which kind it is. Nothing played in the
  * gallery is recorded. Every screen says it is on, with a way out.
  */
-import { cardGallery, lessonNodes } from "@nabu/core/lesson";
+import { cardGallery, cardId, lessonNodes } from "@nabu/core/lesson";
 import { expect, test } from "@playwright/test";
 import { answer, expectRightAndContinue, loadCourse, logOf, planned, sessionUrl, waitFor } from "./solver.ts";
 
@@ -77,7 +77,9 @@ test("a card's link opens that very card again, wherever it is opened, and recor
   await answer(page, first, "keyboard");
   await expectRightAndContinue(page, "keyboard", first);
   await waitFor(page, second);
-  await expect(page.locator("[data-debug-card]")).toHaveText(second.id);
+  // The card's full id: its course and orthography, then the exercise's own id.
+  await expect(page.locator("[data-debug-card]")).toHaveText(`yue/yue-Hant-HK.standard/${second.id}`);
+  await expect(page.locator("[data-debug-card]")).toHaveText(cardId(course, second));
   const copy = page.locator("[data-action=copy-card-link]");
   await copy.click();
   await expect(copy).toHaveText("Link copied");

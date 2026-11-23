@@ -55,3 +55,10 @@ export const cardGallery = (course: CourseView, seed = 1): readonly GalleryCard[
   const excluded = courseExclusions(course);
   return KINDS.filter((t) => !t.startsWith("story-") && !excluded.has(t)).map((template): GalleryCard => ({ template, exercise: sampleExercise(course, template, seed) }));
 };
+
+/**
+ * A card's id across the app (debug mode): its course, its orthography as the app's address writes it, and
+ * the exercise's own id, so one id names one card whatever course it comes from:
+ * tok/tok-Qaap.sitelen-pona/choose-translation:s.u03.17.
+ */
+export const cardId = (course: Pick<CourseView, "id" | "orthography">, ex: Pick<Exercise, "id">): string => `${course.id}/${course.orthography.replace("/", ".")}/${ex.id}`;
