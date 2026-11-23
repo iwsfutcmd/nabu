@@ -1,0 +1,3047 @@
+# The lexicon of sk (schemas/lexicon.schema.json): every lexeme, sorted by id.
+# Written by the course's generator (library: nabu/notes/sk/generator) from its compact source; edit here now.
+language: sk
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@sk-course-v1', status: draft}
+lexemes:
+- id: lexeme:a
+  pos: CCONJ
+  gloss: {en: and}
+  spelled: {sk-Latn/standard: [a]}
+- id: lexeme:aby
+  pos: SCONJ
+  gloss: {en: 'so that, (in order) to; (want someone) to'}
+  notes: {en: 'Chcem, aby si prišiel: I want you to come.'}
+  spelled: {sk-Latn/standard: [aby]}
+- id: lexeme:ahoj
+  pos: INTJ
+  gloss: {en: hi; bye (to friends and family)}
+  notes: {en: 'To someone you say ty to; to anyone else, dobrý deň. Čau is as informal.'}
+  spelled: {sk-Latn/standard: [ahoj]}
+  image: {file: ../../courses/images/wave.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: lexeme:aj
+  pos: PART
+  gloss: {en: 'also, too; even'}
+  notes: {en: 'Aj ja: me too. Aj stands before the word it is about.'}
+  spelled: {sk-Latn/standard: [aj]}
+- id: lexeme:ako
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: 'how; like, as'}
+  spelled: {sk-Latn/standard: [ako]}
+- id: lexeme:aký
+  pos: DET
+  feats: {PronType: Int}
+  gloss: {en: 'what (kind of), what … like; what a'}
+  spelled: {sk-Latn/standard: [aký]}
+  forms:
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [akú]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [aká]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [aké]}, status: pinned}
+- id: lexeme:ale
+  pos: CCONJ
+  gloss: {en: but}
+  spelled: {sk-Latn/standard: [ale]}
+- id: lexeme:alebo
+  pos: CCONJ
+  gloss: {en: or}
+  spelled: {sk-Latn/standard: [alebo]}
+- id: lexeme:anglicko
+  pos: PROPN
+  gloss: {en: England}
+  spelled: {sk-Latn/standard: [Anglicko]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [Anglicka]}, status: pinned}
+- id: lexeme:angličan
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: 'Englishman, English (a man)'}
+  spelled: {sk-Latn/standard: [Angličan]}
+- id: lexeme:ani
+  pos: PART
+  gloss: {en: 'not even; neither, nor'}
+  notes: {en: 'Ani ja: me neither. Ani … ani: neither … nor.'}
+  spelled: {sk-Latn/standard: [ani]}
+- id: lexeme:august
+  pos: NOUN
+  feats: {Animacy: Inan, Gender: Masc}
+  gloss: {en: August}
+  spelled: {sk-Latn/standard: [august]}
+- id: lexeme:auto
+  pos: NOUN
+  gloss: {en: car}
+  spelled: {sk-Latn/standard: [auto]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [autá]}, status: pinned}
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [autom]}, status: pinned}
+- id: lexeme:autobus
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: bus}
+  spelled: {sk-Latn/standard: [autobus]}
+  forms:
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [autobusom]}, status: pinned}
+- id: lexeme:babka
+  pos: NOUN
+  gloss: {en: 'grandma, grandmother; old woman'}
+  spelled: {sk-Latn/standard: [babka]}
+  forms:
+  - {feats: {Case: Dat, Number: Sing}, spelled: {sk-Latn/standard: [babke]}, status: pinned}
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [babky]}, status: pinned}
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [babkou]}, status: pinned}
+- id: lexeme:balkón
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: balcony}
+  spelled: {sk-Latn/standard: [balkón]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [balkóne]}, status: pinned}
+- id: lexeme:baláž
+  pos: PROPN
+  feats: {Animacy: Anim}
+  gloss: {en: Baláž (a surname)}
+  spelled: {sk-Latn/standard: [Baláž]}
+- id: lexeme:bez
+  pos: ADP
+  gloss: {en: without}
+  notes: {en: 'With the genitive: bez cukru, without sugar.'}
+  spelled: {sk-Latn/standard: [bez]}
+- id: lexeme:biely
+  pos: ADJ
+  gloss: {en: white}
+  spelled: {sk-Latn/standard: [biely]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [biela]}, status: pinned}
+- id: lexeme:blízko
+  pos: ADV
+  gloss: {en: 'near, nearby, close'}
+  spelled: {sk-Latn/standard: [blízko]}
+- id: lexeme:brat
+  pos: NOUN
+  feats: {Animacy: Anim, Gender: Masc}
+  gloss: {en: brother}
+  spelled: {sk-Latn/standard: [brat]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [brata]}, status: pinned}
+- id: lexeme:bratislava
+  pos: PROPN
+  gloss: {en: Bratislava}
+  spelled: {sk-Latn/standard: [Bratislava]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [Bratislave]}, status: pinned}
+- id: lexeme:bryndzový
+  pos: ADJ
+  gloss: {en: with bryndza (soft sheep's cheese); bryndzové halušky}
+  spelled: {sk-Latn/standard: [bryndzový]}
+  forms:
+  - {feats: {Case: Acc, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [bryndzové]}, status: pinned}
+- id: lexeme:budúci
+  pos: ADJ
+  gloss: {en: next; future}
+  spelled: {sk-Latn/standard: [budúci]}
+- id: lexeme:by
+  pos: AUX
+  gloss: {en: 'would (with the -l form: the conditional)'}
+  notes: {en: 'Išiel by som: I would go. Chcela by som kávu: I''d like a coffee. By comes before som, si, sme, ste.'}
+  spelled: {sk-Latn/standard: [by]}
+- id: lexeme:byt
+  pos: NOUN
+  feats: {Animacy: Inan, Gender: Masc}
+  gloss: {en: 'flat, apartment'}
+  spelled: {sk-Latn/standard: [byt]}
+- id: lexeme:byť
+  pos: AUX
+  feats: {Aspect: Imp}
+  gloss: {en: to be}
+  notes: {en: 'Som, si, je, sme, ste, sú. Not: nie som, nie si, nie je … The past: bol som (a man), bola som (a woman).'}
+  spelled: {sk-Latn/standard: [byť]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Polarity: Neg, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [nebola]}, status: pinned}
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [bola]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [bol]}, status: pinned}
+  - {feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [bolo]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}, spelled: {sk-Latn/standard: [budeme]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [sme]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [ste]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [sú]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}, spelled: {sk-Latn/standard: [budem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [som]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, spelled: {sk-Latn/standard: [budeš]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [si]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, spelled: {sk-Latn/standard: [bude]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [je]}, status: pinned}
+  - {feats: {Number: Plur, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [boli]}, status: pinned}
+- id: lexeme:bývať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to live (somewhere)}
+  notes: {en: 'Bývam v Žiline: I live in Žilina. Žiť is to live (to be alive, to live a life).'}
+  spelled: {sk-Latn/standard: [bývať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [bývame]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [bývam]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [bývaš]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [býva]}, status: pinned}
+- id: lexeme:celý
+  pos: ADJ
+  gloss: {en: 'whole, all (the)'}
+  spelled: {sk-Latn/standard: [celý]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [celá]}, status: pinned}
+- id: lexeme:centrum
+  pos: NOUN
+  feats: {Gender: Neut}
+  gloss: {en: 'centre, center'}
+  spelled: {sk-Latn/standard: [centrum]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [centra]}, status: pinned}
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [centre]}, status: pinned}
+- id: lexeme:cesta
+  pos: NOUN
+  gloss: {en: 'way, road; journey'}
+  spelled: {sk-Latn/standard: [cesta]}
+- id: lexeme:cestovať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to travel}
+  spelled: {sk-Latn/standard: [cestovať]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [cestovala]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [cestoval]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [cestujem]}, status: pinned}
+- id: lexeme:cez
+  pos: ADP
+  gloss: {en: through; across; during}
+  notes: {en: 'With the accusative: cez víkend, over the weekend; cez park, across the park.'}
+  spelled: {sk-Latn/standard: [cez]}
+- id: lexeme:chata
+  pos: NOUN
+  gloss: {en: (mountain) hut; cottage}
+  spelled: {sk-Latn/standard: [chata]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [chate]}, status: pinned}
+- id: lexeme:chcieť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to want}
+  spelled: {sk-Latn/standard: [chcieť]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [chcela]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [chcel]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nechcem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [chcem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [chceš]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [chce]}, status: pinned}
+- id: lexeme:chlieb
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: bread}
+  spelled: {sk-Latn/standard: [chlieb]}
+  image: {file: ../../courses/images/bread.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: lexeme:chodiť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to go (regularly, there and back); to walk'}
+  notes: {en: 'Chodím do práce: I go to work (every day). Idem do práce: I''m going to work (now).'}
+  spelled: {sk-Latn/standard: [chodiť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [chodím]}, status: pinned}
+- id: lexeme:chutiť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to taste (good); chutí mi: I like it (food)'}
+  spelled: {sk-Latn/standard: [chutiť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [chutia]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [chutí]}, status: pinned}
+- id: lexeme:cibuľa
+  pos: NOUN
+  gloss: {en: onion}
+  spelled: {sk-Latn/standard: [cibuľa]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [cibuľu]}, status: pinned}
+- id: lexeme:cukor
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: sugar}
+  spelled: {sk-Latn/standard: [cukor]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [cukru]}, status: pinned}
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [cukrom]}, status: pinned}
+- id: lexeme:darček
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: 'present, gift'}
+  spelled: {sk-Latn/standard: [darček]}
+  forms:
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [darčekov]}, status: pinned}
+- id: lexeme:dať
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to give; to put}
+  notes: {en: 'Perfective. Dám ti to: I''ll give it to you.'}
+  spelled: {sk-Latn/standard: [dať]}
+  forms:
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [dal]}, status: pinned}
+  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [daj]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [dám]}, status: pinned}
+- id: lexeme:dať-si
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: 'to have (food, a drink); to treat oneself to'}
+  notes: {en: 'Dám si kávu: I''ll have a coffee. Čo si dáte? What will you have? Si stands second.'}
+  spelled: {sk-Latn/standard: [dať si]}
+  forms:
+  - {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [dáte]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [dám]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [dáš]}, status: pinned}
+- id: lexeme:december
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: December}
+  spelled: {sk-Latn/standard: [december]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [decembri]}, status: pinned}
+- id: lexeme:dedina
+  pos: NOUN
+  gloss: {en: village}
+  spelled: {sk-Latn/standard: [dedina]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [dedine]}, status: pinned}
+- id: lexeme:dedko
+  pos: NOUN
+  feats: {Animacy: Anim, Gender: Masc}
+  gloss: {en: 'grandpa, grandfather'}
+  spelled: {sk-Latn/standard: [dedko]}
+  forms:
+  - {feats: {Case: Dat, Number: Sing}, spelled: {sk-Latn/standard: [dedkovi]}, status: pinned}
+- id: lexeme:desať
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: ten}
+  notes: {en: 'From five on, a noun after the number is in the genitive plural: päť domov.'}
+  spelled: {sk-Latn/standard: [desať]}
+- id: lexeme:deväť
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: nine}
+  notes: {en: 'From five on, a noun after the number is in the genitive plural: päť domov.'}
+  spelled: {sk-Latn/standard: [deväť]}
+- id: lexeme:deň
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: day}
+  spelled: {sk-Latn/standard: [deň]}
+- id: lexeme:dieťa
+  pos: NOUN
+  feats: {Gender: Neut}
+  gloss: {en: child}
+  notes: {en: 'Plural deti, children.'}
+  spelled: {sk-Latn/standard: [dieťa]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [deti]}, status: pinned}
+  - {feats: {Case: Dat, Number: Plur}, spelled: {sk-Latn/standard: [deťom]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [deti]}, status: pinned}
+- id: lexeme:dlhý
+  pos: ADJ
+  gloss: {en: long}
+  spelled: {sk-Latn/standard: [dlhý]}
+  forms:
+  - {feats: {Case: Nom, Degree: Sup, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [najdlhšia]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [dlhá]}, status: pinned}
+- id: lexeme:dnes
+  pos: ADV
+  gloss: {en: today}
+  spelled: {sk-Latn/standard: [dnes]}
+- id: lexeme:do
+  pos: ADP
+  gloss: {en: 'to, into; until'}
+  notes: {en: 'With the genitive: do školy, to school; do Bratislavy, to Bratislava.'}
+  spelled: {sk-Latn/standard: [do]}
+- id: lexeme:dobre
+  pos: ADV
+  gloss: {en: well; fine; OK}
+  notes: {en: 'Comparative lepšie: better (mám sa lepšie, I feel better).'}
+  spelled: {sk-Latn/standard: [dobre]}
+  image: {file: ../../courses/images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+  forms:
+  - {feats: {Degree: Cmp}, spelled: {sk-Latn/standard: [lepšie]}, status: pinned}
+- id: lexeme:dobré-ráno
+  pos: INTJ
+  gloss: {en: good morning}
+  spelled: {sk-Latn/standard: [dobré ráno]}
+  image: {file: ../../courses/images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: lexeme:dobrý
+  pos: ADJ
+  gloss: {en: good}
+  notes: {en: 'Dobrý, but well is dobre: Mám sa dobre. Comparative lepší: better.'}
+  spelled: {sk-Latn/standard: [dobrý]}
+  forms:
+  - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, spelled: {sk-Latn/standard: [dobrí]}, status: pinned}
+  - {feats: {Case: Acc, Degree: Sup, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [najlepšiu]}, status: pinned}
+  - {feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [lepšia]}, status: pinned}
+  - {feats: {Case: Nom, Degree: Sup, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [najlepšia]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [dobré]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [dobré]}, status: pinned}
+- id: lexeme:dobrý-deň
+  pos: INTJ
+  gloss: {en: hello; good day}
+  notes: {en: 'The polite greeting from mid-morning to the evening, to anyone you say vy to.'}
+  spelled: {sk-Latn/standard: [dobrý deň]}
+- id: lexeme:dobrý-večer
+  pos: INTJ
+  gloss: {en: good evening}
+  spelled: {sk-Latn/standard: [dobrý večer]}
+- id: lexeme:dobšinský
+  pos: PROPN
+  feats: {Animacy: Anim, Gender: Masc}
+  gloss: {en: 'Dobšinský (Pavol Dobšinský, 1828-1885, who collected Slovak tales)'}
+  notes: {en: 'A surname of the adjective''s kind: it declines as pekný does.'}
+  spelled: {sk-Latn/standard: [Dobšinský]}
+- id: lexeme:dom
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: house; home}
+  notes: {en: 'Doma: at home. Domov: (to) home.'}
+  spelled: {sk-Latn/standard: [dom]}
+  image: {file: ../../courses/images/house.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+  forms:
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [domom]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [domy]}, status: pinned}
+- id: lexeme:doma
+  pos: ADV
+  gloss: {en: at home}
+  spelled: {sk-Latn/standard: [doma]}
+- id: lexeme:dominik
+  pos: PROPN
+  feats: {Animacy: Anim}
+  gloss: {en: Dominik (a man's name)}
+  spelled: {sk-Latn/standard: [Dominik]}
+  forms:
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [Dominikom]}, status: pinned}
+- id: lexeme:domov
+  pos: ADV
+  gloss: {en: home (where to)}
+  notes: {en: 'Idem domov: I''m going home. At home is doma.'}
+  spelled: {sk-Latn/standard: [domov]}
+- id: lexeme:doprava
+  pos: ADV
+  gloss: {en: (to the) right}
+  spelled: {sk-Latn/standard: [doprava]}
+- id: lexeme:dostať
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: 'to get, to receive'}
+  spelled: {sk-Latn/standard: [dostať]}
+  forms:
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [dostal]}, status: pinned}
+- id: lexeme:dovidenia
+  pos: INTJ
+  gloss: {en: goodbye}
+  spelled: {sk-Latn/standard: [dovidenia]}
+- id: lexeme:doľava
+  pos: ADV
+  gloss: {en: (to the) left}
+  spelled: {sk-Latn/standard: [doľava]}
+- id: lexeme:drahý
+  pos: ADJ
+  gloss: {en: expensive; dear}
+  spelled: {sk-Latn/standard: [drahý]}
+  forms:
+  - {feats: {Case: Nom, Degree: Cmp, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [drahšie]}, status: pinned}
+- id: lexeme:druhý
+  pos: ADJ
+  gloss: {en: second}
+  spelled: {sk-Latn/standard: [druhý]}
+  forms:
+  - {feats: {Case: Loc, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [druhom]}, status: pinned}
+- id: lexeme:dva
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: two}
+  notes: {en: 'Dva domy (masculine), dve ženy, dve mestá (feminine and neuter), dvaja bratia (men).'}
+  spelled: {sk-Latn/standard: [dva]}
+  forms:
+  - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, spelled: {sk-Latn/standard: [dvaja]}, status: pinned}
+  - {feats: {Case: Acc, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [dve]}, status: pinned}
+  - {feats: {Case: Acc, Gender: Neut, Number: Plur}, spelled: {sk-Latn/standard: [dve]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [dve]}, status: pinned}
+- id: lexeme:dvadsať
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: twenty}
+  spelled: {sk-Latn/standard: [dvadsať]}
+- id: lexeme:dávno
+  pos: ADV
+  gloss: {en: 'long ago, a long time ago'}
+  spelled: {sk-Latn/standard: [dávno]}
+- id: lexeme:elektrikár
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: electrician}
+  spelled: {sk-Latn/standard: [elektrikár]}
+- id: lexeme:euro
+  pos: NOUN
+  gloss: {en: euro}
+  notes: {en: 'Jedno euro, dve eurá, päť eur.'}
+  spelled: {sk-Latn/standard: [euro]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [eurá]}, status: pinned}
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [eur]}, status: pinned}
+- id: lexeme:ešte
+  pos: ADV
+  gloss: {en: still; yet; more}
+  notes: {en: 'Ešte nie: not yet.'}
+  spelled: {sk-Latn/standard: [ešte]}
+- id: lexeme:fandiť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to cheer for, to support (a team)'}
+  notes: {en: 'With the dative: fandím Slovensku.'}
+  spelled: {sk-Latn/standard: [fandiť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [fandíme]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [fandíš]}, status: pinned}
+- id: lexeme:farba
+  pos: NOUN
+  gloss: {en: colour}
+  spelled: {sk-Latn/standard: [farba]}
+- id: lexeme:film
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: 'film, movie'}
+  spelled: {sk-Latn/standard: [film]}
+- id: lexeme:fľaša
+  pos: NOUN
+  gloss: {en: bottle}
+  spelled: {sk-Latn/standard: [fľaša]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [fľaše]}, status: pinned}
+- id: lexeme:gauč
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: 'sofa, couch'}
+  spelled: {sk-Latn/standard: [gauč]}
+- id: lexeme:gábor
+  pos: PROPN
+  feats: {Animacy: Anim}
+  gloss: {en: Gábor (a Hungarian man's name)}
+  spelled: {sk-Latn/standard: [Gábor]}
+- id: lexeme:gól
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: goal}
+  notes: {en: 'Dať gól: to score a goal.'}
+  spelled: {sk-Latn/standard: [gól]}
+- id: lexeme:halušky
+  pos: NOUN
+  feats: {Gender: Fem}
+  gloss: {en: halušky (small potato dumplings)}
+  notes: {en: 'Bryndzové halušky, with bryndza (soft sheep''s cheese) and bacon: the national dish.'}
+  spelled: {sk-Latn/standard: [halušky]}
+- id: lexeme:hneď
+  pos: ADV
+  gloss: {en: 'at once, immediately, right away'}
+  spelled: {sk-Latn/standard: [hneď]}
+- id: lexeme:hodina
+  pos: NOUN
+  gloss: {en: hour; o'clock; lesson}
+  notes: {en: 'Koľko je hodín? What time is it? Je jedna hodina, sú dve hodiny, je päť hodín.'}
+  spelled: {sk-Latn/standard: [hodina]}
+  forms:
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [hodín]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [hodiny]}, status: pinned}
+- id: lexeme:hokej
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: (ice) hockey}
+  spelled: {sk-Latn/standard: [hokej]}
+- id: lexeme:hora
+  pos: NOUN
+  gloss: {en: mountain; (in the plural) the mountains}
+  notes: {en: 'Ísť do hôr: to go to the mountains; v horách: in the mountains.'}
+  spelled: {sk-Latn/standard: [hora]}
+  image: {file: ../../courses/images/mountain.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+  forms:
+  - {feats: {Case: Loc, Number: Plur}, spelled: {sk-Latn/standard: [horách]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [hory]}, status: pinned}
+- id: lexeme:hotel
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: hotel}
+  spelled: {sk-Latn/standard: [hotel]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [hotela]}, status: pinned}
+- id: lexeme:hovoriť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to speak; to talk; to say}
+  spelled: {sk-Latn/standard: [hovoriť]}
+  forms:
+  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [hovor]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [hovoríme]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [hovoríte]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nehovorím]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [hovorím]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Polarity: Neg, Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nehovoríš]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [hovoríš]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [hovorí]}, status: pinned}
+- id: lexeme:hra
+  pos: NOUN
+  gloss: {en: game; play}
+  spelled: {sk-Latn/standard: [hra]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [hry]}, status: pinned}
+- id: lexeme:hrať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to play}
+  notes: {en: 'Hrať hokej: to play hockey. Hrať sa: to play (as children do).'}
+  spelled: {sk-Latn/standard: [hrať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Polarity: Neg, Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nehráš]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [hrá]}, status: pinned}
+- id: lexeme:hruška
+  pos: NOUN
+  gloss: {en: pear}
+  spelled: {sk-Latn/standard: [hruška]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [hrušky]}, status: pinned}
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [hrušiek]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [hrušky]}, status: pinned}
+- id: lexeme:hľadať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to look for, to search'}
+  spelled: {sk-Latn/standard: [hľadať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [hľadám]}, status: pinned}
+- id: lexeme:i
+  pos: PART
+  gloss: {en: 'too, also; and (in tales: pôjdem i ja, I''ll go too)'}
+  spelled: {sk-Latn/standard: [i]}
+- id: lexeme:ich.poss
+  pos: DET
+  feats: {Poss: 'Yes', PronType: Prs}
+  gloss: {en: their; theirs}
+  notes: {en: 'It never changes: ich byt, ich izba.'}
+  spelled: {sk-Latn/standard: [ich]}
+- id: lexeme:izba
+  pos: NOUN
+  gloss: {en: room}
+  spelled: {sk-Latn/standard: [izba]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [izby]}, status: pinned}
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [izbu]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [izby]}, status: pinned}
+- id: lexeme:ja
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: I; me}
+  notes: {en: 'Usually left out: the verb says who (som, I am). Said for emphasis or contrast.'}
+  spelled: {sk-Latn/standard: [ja]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [mňa, ma]}, status: pinned}
+  - {feats: {Case: Dat, Number: Sing}, spelled: {sk-Latn/standard: [mne, mi]}, status: pinned}
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [mnou]}, status: pinned}
+- id: lexeme:jablko
+  pos: NOUN
+  gloss: {en: apple}
+  spelled: {sk-Latn/standard: [jablko]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [jablká]}, status: pinned}
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [jabĺk]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [jablká]}, status: pinned}
+- id: lexeme:január
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: January}
+  spelled: {sk-Latn/standard: [január]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [januári]}, status: pinned}
+- id: lexeme:jar
+  pos: NOUN
+  feats: {Gender: Fem}
+  gloss: {en: spring (the season)}
+  notes: {en: 'Na jar: in (the) spring.'}
+  spelled: {sk-Latn/standard: [jar]}
+- id: lexeme:jazero
+  pos: NOUN
+  gloss: {en: lake}
+  spelled: {sk-Latn/standard: [jazero]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [jazera]}, status: pinned}
+- id: lexeme:jeden
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: 'one; a, a certain'}
+  spelled: {sk-Latn/standard: [jeden]}
+  forms:
+  - {feats: {Case: Acc, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [jedno]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [jedna]}, status: pinned}
+- id: lexeme:jedálny
+  pos: ADJ
+  gloss: {en: 'eating, for meals; jedálny lístok: menu'}
+  spelled: {sk-Latn/standard: [jedálny]}
+- id: lexeme:jeho.poss
+  pos: DET
+  feats: {Poss: 'Yes', PronType: Prs}
+  gloss: {en: his; its}
+  notes: {en: 'It never changes: jeho byt, jeho izba, jeho okno.'}
+  spelled: {sk-Latn/standard: [jeho]}
+- id: lexeme:jej.poss
+  pos: DET
+  feats: {Poss: 'Yes', PronType: Prs}
+  gloss: {en: her; hers}
+  notes: {en: 'It never changes: jej byt, jej izba.'}
+  spelled: {sk-Latn/standard: [jej]}
+- id: lexeme:jeseň
+  pos: NOUN
+  feats: {Gender: Fem}
+  gloss: {en: 'autumn, fall'}
+  notes: {en: 'Na jeseň: in (the) autumn.'}
+  spelled: {sk-Latn/standard: [jeseň]}
+- id: lexeme:jesť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to eat}
+  notes: {en: 'Jem, ješ, je, jeme, jete, jedia.'}
+  spelled: {sk-Latn/standard: [jesť]}
+  forms:
+  - {feats: {Gender: Masc, Number: Sing, Polarity: Neg, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [nejedol]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [jedol]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [jeme]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [jem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [ješ]}, status: pinned}
+- id: lexeme:juh
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: south}
+  spelled: {sk-Latn/standard: [juh]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [juhu]}, status: pinned}
+- id: lexeme:júl
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: July}
+  spelled: {sk-Latn/standard: [júl]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [júli]}, status: pinned}
+- id: lexeme:k
+  pos: ADP
+  gloss: {en: 'to, towards (a person)'}
+  notes: {en: 'With the dative: k babke, to Grandma''s. Ku before k and g: ku Kováčovi.'}
+  spelled: {sk-Latn/standard: [k]}
+- id: lexeme:kam
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: where (to)}
+  spelled: {sk-Latn/standard: [kam]}
+- id: lexeme:kamarát
+  pos: NOUN
+  feats: {Animacy: Anim, Gender: Masc}
+  gloss: {en: friend (a man)}
+  spelled: {sk-Latn/standard: [kamarát]}
+  forms:
+  - {feats: {Case: Ins, Number: Plur}, spelled: {sk-Latn/standard: [kamarátmi]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [kamaráti]}, status: pinned}
+- id: lexeme:kamarátka
+  pos: NOUN
+  gloss: {en: friend (a woman)}
+  spelled: {sk-Latn/standard: [kamarátka]}
+  forms:
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [kamarátky]}, status: pinned}
+- id: lexeme:kapor
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: carp}
+  notes: {en: 'Christmas Eve''s fish, with potato salad. An animal: jeme kapra (the accusative like a person''s); plural kapre.'}
+  spelled: {sk-Latn/standard: [kapor]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [kapra]}, status: pinned}
+- id: lexeme:kapustnica
+  pos: NOUN
+  gloss: {en: sauerkraut soup}
+  notes: {en: 'Sour cabbage soup with sausage and mushrooms: Christmas Eve''s soup.'}
+  spelled: {sk-Latn/standard: [kapustnica]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [kapustnicu]}, status: pinned}
+- id: lexeme:kaviareň
+  pos: NOUN
+  feats: {Gender: Fem}
+  gloss: {en: café}
+  spelled: {sk-Latn/standard: [kaviareň]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [kaviarne]}, status: pinned}
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [kaviarni]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [kaviarne]}, status: pinned}
+- id: lexeme:kačica
+  pos: NOUN
+  gloss: {en: duck}
+  spelled: {sk-Latn/standard: [kačica]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [kačicu]}, status: pinned}
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [kačice]}, status: pinned}
+- id: lexeme:každý
+  pos: DET
+  feats: {PronType: Tot}
+  gloss: {en: 'every, each; everyone'}
+  spelled: {sk-Latn/standard: [každý]}
+- id: lexeme:kde
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: where}
+  spelled: {sk-Latn/standard: [kde]}
+- id: lexeme:keby
+  pos: SCONJ
+  gloss: {en: 'if (would; what is not so, or may not be)'}
+  notes: {en: 'Keby som mal čas, išiel by som: if I had time, I would go.'}
+  spelled: {sk-Latn/standard: [keby]}
+- id: lexeme:kedy
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: when}
+  spelled: {sk-Latn/standard: [kedy]}
+- id: lexeme:kilo
+  pos: NOUN
+  gloss: {en: kilo}
+  spelled: {sk-Latn/standard: [kilo]}
+- id: lexeme:kniha
+  pos: NOUN
+  gloss: {en: book}
+  spelled: {sk-Latn/standard: [kniha]}
+  image: {file: ../../courses/images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [knihy]}, status: pinned}
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [knihu]}, status: pinned}
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [kníh]}, status: pinned}
+- id: lexeme:kofola
+  pos: NOUN
+  gloss: {en: Kofola (a cola first made in Czechoslovakia)}
+  spelled: {sk-Latn/standard: [kofola]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [kofolu]}, status: pinned}
+- id: lexeme:koleda
+  pos: NOUN
+  gloss: {en: (Christmas) carol}
+  spelled: {sk-Latn/standard: [koleda]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [koledy]}, status: pinned}
+- id: lexeme:koliba
+  pos: NOUN
+  gloss: {en: koliba (a log-cabin inn in the mountains)}
+  spelled: {sk-Latn/standard: [koliba]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [kolibe]}, status: pinned}
+- id: lexeme:korčule
+  pos: NOUN
+  feats: {Gender: Fem}
+  gloss: {en: (ice) skates}
+  spelled: {sk-Latn/standard: [korčule]}
+- id: lexeme:kostol
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: church}
+  spelled: {sk-Latn/standard: [kostol]}
+- id: lexeme:koľko
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: 'how much, how many'}
+  spelled: {sk-Latn/standard: [koľko]}
+- id: lexeme:košice
+  pos: PROPN
+  feats: {Gender: Fem}
+  gloss: {en: Košice (a city in the east of Slovakia)}
+  spelled: {sk-Latn/standard: [Košice]}
+  forms:
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [Košíc]}, status: pinned}
+  - {feats: {Case: Loc, Number: Plur}, spelled: {sk-Latn/standard: [Košiciach]}, status: pinned}
+- id: lexeme:kraslica
+  pos: NOUN
+  gloss: {en: decorated Easter egg}
+  spelled: {sk-Latn/standard: [kraslica]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [kraslice]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [kraslice]}, status: pinned}
+- id: lexeme:kreslo
+  pos: NOUN
+  gloss: {en: armchair}
+  spelled: {sk-Latn/standard: [kreslo]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [kresle]}, status: pinned}
+- id: lexeme:križovatka
+  pos: NOUN
+  gloss: {en: 'crossroads, junction'}
+  spelled: {sk-Latn/standard: [križovatka]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [križovatke]}, status: pinned}
+- id: lexeme:krásny
+  pos: ADJ
+  gloss: {en: beautiful}
+  notes: {en: 'Krásny, not krásný: two long syllables never follow each other (the rhythmic law).'}
+  spelled: {sk-Latn/standard: [krásny]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [krásne]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [krásna]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [krásne]}, status: pinned}
+- id: lexeme:kto
+  pos: PRON
+  feats: {PronType: Int}
+  gloss: {en: who}
+  spelled: {sk-Latn/standard: [kto]}
+- id: lexeme:ktorý
+  pos: DET
+  feats: {PronType: Int}
+  gloss: {en: 'which; who, that (in a relative clause)'}
+  spelled: {sk-Latn/standard: [ktorý]}
+  forms:
+  - {feats: {Case: Loc, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [ktorom]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [ktorá]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [ktoré]}, status: pinned}
+- id: lexeme:kuchyňa
+  pos: NOUN
+  gloss: {en: kitchen}
+  spelled: {sk-Latn/standard: [kuchyňa]}
+- id: lexeme:kupovať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to buy (again and again, or be buying)'}
+  notes: {en: Imperfective of kúpiť.}
+  spelled: {sk-Latn/standard: [kupovať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [kupujem]}, status: pinned}
+- id: lexeme:kvet
+  pos: NOUN
+  feats: {Animacy: Inan, Gender: Masc}
+  gloss: {en: flower}
+  spelled: {sk-Latn/standard: [kvet]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [kvety]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [kvety]}, status: pinned}
+- id: lexeme:káva
+  pos: NOUN
+  gloss: {en: coffee}
+  spelled: {sk-Latn/standard: [káva]}
+  image: {file: ../../courses/images/coffee.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [kávu]}, status: pinned}
+- id: lexeme:kúpeľňa
+  pos: NOUN
+  gloss: {en: bathroom}
+  spelled: {sk-Latn/standard: [kúpeľňa]}
+- id: lexeme:kúpiť
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to buy}
+  notes: {en: 'Perfective: one purchase, done. Kúpim: I will buy. The imperfective is kupovať.'}
+  spelled: {sk-Latn/standard: [kúpiť]}
+  forms:
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [kúpil]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [kúpim]}, status: pinned}
+- id: lexeme:lacný
+  pos: ADJ
+  gloss: {en: cheap}
+  spelled: {sk-Latn/standard: [lacný]}
+  forms:
+  - {feats: {Animacy: Inan, Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, spelled: {sk-Latn/standard: [lacnejší]}, status: pinned}
+- id: lexeme:lampa
+  pos: NOUN
+  gloss: {en: lamp}
+  spelled: {sk-Latn/standard: [lampa]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [lampu]}, status: pinned}
+- id: lexeme:lekár
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: doctor (a man)}
+  spelled: {sk-Latn/standard: [lekár]}
+  forms:
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [lekári]}, status: pinned}
+- id: lexeme:lekárka
+  pos: NOUN
+  gloss: {en: doctor (a woman)}
+  spelled: {sk-Latn/standard: [lekárka]}
+- id: lexeme:len
+  pos: PART
+  gloss: {en: 'only, just'}
+  spelled: {sk-Latn/standard: [len]}
+- id: lexeme:leto
+  pos: NOUN
+  gloss: {en: summer}
+  spelled: {sk-Latn/standard: [leto]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [lete]}, status: pinned}
+- id: lexeme:ležať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to lie, to be lying'}
+  spelled: {sk-Latn/standard: [ležať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [leží]}, status: pinned}
+- id: lexeme:liam
+  pos: PROPN
+  feats: {Animacy: Anim}
+  gloss: {en: Liam (an Irish man's name)}
+  spelled: {sk-Latn/standard: [Liam]}
+- id: lexeme:list
+  pos: NOUN
+  feats: {Animacy: Inan, Gender: Masc}
+  gloss: {en: letter; leaf}
+  spelled: {sk-Latn/standard: [list]}
+- id: lexeme:lopta
+  pos: NOUN
+  gloss: {en: ball}
+  spelled: {sk-Latn/standard: [lopta]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [loptu]}, status: pinned}
+- id: lexeme:lotéria
+  pos: NOUN
+  gloss: {en: lottery}
+  spelled: {sk-Latn/standard: [lotéria]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [lotérii]}, status: pinned}
+- id: lexeme:lucka
+  pos: PROPN
+  gloss: {en: Lucka (a woman's name; Lucia)}
+  spelled: {sk-Latn/standard: [Lucka]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [Lucku]}, status: pinned}
+  - {feats: {Case: Dat, Number: Sing}, spelled: {sk-Latn/standard: [Lucke]}, status: pinned}
+- id: lexeme:lístok
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: 'ticket; jedálny lístok: menu'}
+  spelled: {sk-Latn/standard: [lístok]}
+- id: lexeme:majster
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: champion; master}
+  notes: {en: 'Majster sveta: world champion.'}
+  spelled: {sk-Latn/standard: [majster]}
+  forms:
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [majstrom]}, status: pinned}
+- id: lexeme:malý
+  pos: ADJ
+  gloss: {en: 'small, little'}
+  notes: {en: 'Comparative menší: smaller.'}
+  spelled: {sk-Latn/standard: [malý]}
+  forms:
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [malú]}, status: pinned}
+  - {feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [menšia]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [malé]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [malá]}, status: pinned}
+- id: lexeme:mama
+  pos: NOUN
+  gloss: {en: 'mum, mom, mother'}
+  spelled: {sk-Latn/standard: [mama]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [mamu]}, status: pinned}
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [mamou]}, status: pinned}
+- id: lexeme:marta
+  pos: PROPN
+  gloss: {en: Marta (a woman's name)}
+  spelled: {sk-Latn/standard: [Marta]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [Martu]}, status: pinned}
+- id: lexeme:martin
+  pos: PROPN
+  feats: {Animacy: Inan}
+  gloss: {en: 'Martin (a town on the Váh, once Turčiansky Svätý Martin)'}
+  spelled: {sk-Latn/standard: [Martin]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [Martine]}, status: pinned}
+- id: lexeme:mačka
+  pos: NOUN
+  gloss: {en: cat}
+  spelled: {sk-Latn/standard: [mačka]}
+- id: lexeme:maďar
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: Hungarian (a man)}
+  spelled: {sk-Latn/standard: [Maďar]}
+- id: lexeme:maľovať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to paint}
+  spelled: {sk-Latn/standard: [maľovať]}
+  forms:
+  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [maľuj]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [maľujeme]}, status: pinned}
+- id: lexeme:mať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to have}
+  notes: {en: 'Mám, máš, má, máme, máte, majú. Not: nemám.'}
+  spelled: {sk-Latn/standard: [mať]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [mala]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [mal]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [máme]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [máte]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [majú]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nemám]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [mám]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [máš]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nemá]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [má]}, status: pinned}
+- id: lexeme:mať-sa
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to be (doing): ako sa máš? how are you?'}
+  notes: {en: 'Ako sa máš? How are you? Mám sa dobre: I''m fine. Sa stands second: Ako sa máte?'}
+  spelled: {sk-Latn/standard: [mať sa]}
+  forms:
+  - {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [máte]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [mám]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [máš]}, status: pinned}
+- id: lexeme:med
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: honey}
+  spelled: {sk-Latn/standard: [med]}
+  forms:
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [medom]}, status: pinned}
+- id: lexeme:mesiac
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: month; moon}
+  spelled: {sk-Latn/standard: [mesiac]}
+  image: {file: ../../courses/images/moon.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: lexeme:mesto
+  pos: NOUN
+  gloss: {en: 'town, city'}
+  spelled: {sk-Latn/standard: [mesto]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [mesta]}, status: pinned}
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [meste]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [mestá]}, status: pinned}
+- id: lexeme:milý
+  pos: ADJ
+  gloss: {en: 'kind, nice; dear'}
+  spelled: {sk-Latn/standard: [milý]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [milá]}, status: pinned}
+- id: lexeme:minulý
+  pos: ADJ
+  gloss: {en: 'last, past'}
+  spelled: {sk-Latn/standard: [minulý]}
+- id: lexeme:mlieko
+  pos: NOUN
+  gloss: {en: milk}
+  spelled: {sk-Latn/standard: [mlieko]}
+  forms:
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [mliekom]}, status: pinned}
+- id: lexeme:mobil
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: 'mobile (phone), cell phone'}
+  spelled: {sk-Latn/standard: [mobil]}
+- id: lexeme:modrý
+  pos: ADJ
+  gloss: {en: blue}
+  spelled: {sk-Latn/standard: [modrý]}
+  forms:
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [modrú]}, status: pinned}
+- id: lexeme:more
+  pos: NOUN
+  gloss: {en: sea}
+  spelled: {sk-Latn/standard: [more]}
+  forms:
+  - {feats: {Case: Dat, Number: Sing}, spelled: {sk-Latn/standard: [moru]}, status: pinned}
+- id: lexeme:most
+  pos: NOUN
+  feats: {Animacy: Inan, Gender: Masc}
+  gloss: {en: bridge}
+  spelled: {sk-Latn/standard: [most]}
+  forms:
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [mostom]}, status: pinned}
+- id: lexeme:musieť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'must, to have to'}
+  spelled: {sk-Latn/standard: [musieť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [musím]}, status: pinned}
+- id: lexeme:my
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: we; us}
+  spelled: {sk-Latn/standard: [my]}
+  forms:
+  - {feats: {Case: Dat, Number: Plur}, spelled: {sk-Latn/standard: [nám]}, status: pinned}
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [nás]}, status: pinned}
+  - {feats: {Case: Ins, Number: Plur}, spelled: {sk-Latn/standard: [nami]}, status: pinned}
+- id: lexeme:máj
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: May}
+  spelled: {sk-Latn/standard: [máj]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [máji]}, status: pinned}
+- id: lexeme:málo
+  pos: ADV
+  gloss: {en: 'few, little, not much'}
+  notes: {en: 'With the genitive: málo času, little time.'}
+  spelled: {sk-Latn/standard: [málo]}
+- id: lexeme:mäso
+  pos: NOUN
+  gloss: {en: meat}
+  spelled: {sk-Latn/standard: [mäso]}
+- id: lexeme:môcť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'can, to be able to; may'}
+  spelled: {sk-Latn/standard: [môcť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [môžeme]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [môžem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [môžeš]}, status: pinned}
+  - {feats: {Number: Plur, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [mohli]}, status: pinned}
+- id: lexeme:môj
+  pos: DET
+  feats: {Poss: 'Yes', PronType: Prs}
+  gloss: {en: my; mine}
+  notes: {en: 'Môj byt, moja izba, moje okno.'}
+  spelled: {sk-Latn/standard: [môj]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [moja]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [moje]}, status: pinned}
+- id: lexeme:na
+  pos: ADP
+  gloss: {en: on; to; at; for}
+  notes: {en: 'Where to, with the accusative: idem na námestie. Where, with the locative: som na námestí.'}
+  spelled: {sk-Latn/standard: [na]}
+- id: lexeme:nad
+  pos: ADP
+  gloss: {en: 'above, over'}
+  spelled: {sk-Latn/standard: [nad]}
+- id: lexeme:napísať
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to write (and finish)}
+  notes: {en: 'Perfective of písať. Passive participle napísaný: written.'}
+  spelled: {sk-Latn/standard: [napísať]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing, VerbForm: Part, Voice: Pass}, spelled: {sk-Latn/standard: [napísaná]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [napísal]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [napíšem]}, status: pinned}
+- id: lexeme:narodeniny
+  pos: NOUN
+  feats: {Gender: Fem}
+  gloss: {en: birthday}
+  notes: {en: 'Always plural: Samko má narodeniny, it''s Samko''s birthday; ísť na narodeniny, to go to a birthday party.'}
+  spelled: {sk-Latn/standard: [narodeniny]}
+- id: lexeme:nedeľa
+  pos: NOUN
+  gloss: {en: Sunday}
+  spelled: {sk-Latn/standard: [nedeľa]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [nedeľu]}, status: pinned}
+- id: lexeme:nemocnica
+  pos: NOUN
+  gloss: {en: hospital}
+  spelled: {sk-Latn/standard: [nemocnica]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [nemocnice]}, status: pinned}
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [nemocnici]}, status: pinned}
+- id: lexeme:než
+  pos: SCONJ
+  gloss: {en: than}
+  notes: {en: 'Väčší než Žilina: bigger than Žilina. Ako says the same: väčší ako Žilina.'}
+  spelled: {sk-Latn/standard: [než]}
+- id: lexeme:nie
+  pos: PART
+  gloss: {en: no; not}
+  notes: {en: 'No (an answer), and not before som, si, je, sme, ste, sú: nie som, I am not.'}
+  spelled: {sk-Latn/standard: [nie]}
+- id: lexeme:niekedy
+  pos: ADV
+  gloss: {en: sometimes}
+  spelled: {sk-Latn/standard: [niekedy]}
+- id: lexeme:niesť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to carry; to bring (on foot, now)'}
+  spelled: {sk-Latn/standard: [niesť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nesie]}, status: pinned}
+- id: lexeme:niečo
+  pos: PRON
+  feats: {PronType: Ind}
+  gloss: {en: 'something, anything'}
+  spelled: {sk-Latn/standard: [niečo]}
+- id: lexeme:nikto
+  pos: PRON
+  feats: {PronType: Neg}
+  gloss: {en: 'nobody, no one'}
+  notes: {en: 'The verb is negative too: nikto neprišiel, nobody came.'}
+  spelled: {sk-Latn/standard: [nikto]}
+  forms:
+  - {feats: {Case: Acc}, spelled: {sk-Latn/standard: [nikoho]}, status: pinned}
+- id: lexeme:nič
+  pos: PRON
+  feats: {PronType: Neg}
+  gloss: {en: 'nothing, not anything'}
+  notes: {en: 'With a negated verb: nič nerobím, I''m not doing anything (two negatives, one meaning).'}
+  spelled: {sk-Latn/standard: [nič]}
+- id: lexeme:nosiť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to carry (regularly); to wear}
+  spelled: {sk-Latn/standard: [nosiť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nosí]}, status: pinned}
+- id: lexeme:nový
+  pos: ADJ
+  gloss: {en: new}
+  spelled: {sk-Latn/standard: [nový]}
+  forms:
+  - {feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Plur}, spelled: {sk-Latn/standard: [nové]}, status: pinned}
+  - {feats: {Case: Acc, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [nové]}, status: pinned}
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [novú]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [nová]}, status: pinned}
+- id: lexeme:námestie
+  pos: NOUN
+  gloss: {en: square (in a town)}
+  spelled: {sk-Latn/standard: [námestie]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [námestí]}, status: pinned}
+- id: lexeme:náš
+  pos: DET
+  feats: {Poss: 'Yes', PronType: Prs}
+  gloss: {en: our; ours}
+  spelled: {sk-Latn/standard: [náš]}
+- id: lexeme:o
+  pos: ADP
+  gloss: {en: at (a time); about}
+  notes: {en: 'With the locative: o šiestej, at six; o Samkovi, about Samko.'}
+  spelled: {sk-Latn/standard: [o]}
+- id: lexeme:obchod
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: 'shop, store'}
+  spelled: {sk-Latn/standard: [obchod]}
+  forms:
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [obchody]}, status: pinned}
+- id: lexeme:obed
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: lunch}
+  spelled: {sk-Latn/standard: [obed]}
+- id: lexeme:obliekať-sa
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to get dressed}
+  spelled: {sk-Latn/standard: [obliekať sa]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [obliekam]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [oblieka]}, status: pinned}
+- id: lexeme:oblátka
+  pos: NOUN
+  gloss: {en: (Christmas) wafer}
+  notes: {en: Thin wafers eaten with honey at the start of Christmas Eve dinner.}
+  spelled: {sk-Latn/standard: [oblátka]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [oblátky]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [oblátky]}, status: pinned}
+- id: lexeme:od
+  pos: ADP
+  gloss: {en: from (someone); since}
+  notes: {en: 'With the genitive: darček od Simony, a present from Simona.'}
+  spelled: {sk-Latn/standard: [od]}
+- id: lexeme:odbočiť
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to turn (off)}
+  spelled: {sk-Latn/standard: [odbočiť]}
+  forms:
+  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [odboč]}, status: pinned}
+- id: lexeme:odkiaľ
+  pos: ADV
+  feats: {PronType: Int}
+  gloss: {en: where from}
+  spelled: {sk-Latn/standard: [odkiaľ]}
+- id: lexeme:odísť
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: 'to leave, to go away'}
+  spelled: {sk-Latn/standard: [odísť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [odíde]}, status: pinned}
+- id: lexeme:okno
+  pos: NOUN
+  gloss: {en: window}
+  spelled: {sk-Latn/standard: [okno]}
+- id: lexeme:okolo
+  pos: ADP
+  gloss: {en: around; past}
+  notes: {en: 'With the genitive: okolo jazera, around the lake.'}
+  spelled: {sk-Latn/standard: [okolo]}
+- id: lexeme:on
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: he; it (masculine)}
+  spelled: {sk-Latn/standard: ['on']}
+  forms:
+  - {feats: {Animacy: Anim, Case: Acc, Gender: Masc, Number: Plur}, spelled: {sk-Latn/standard: [ich, nich]}, status: pinned}
+  - {feats: {Animacy: Anim, Case: Acc, Gender: Masc, Number: Sing}, spelled: {sk-Latn/standard: [jeho, ho, neho]}, status: pinned}
+  - {feats: {Animacy: Anim, Case: Dat, Gender: Masc, Number: Plur}, spelled: {sk-Latn/standard: [im, nim]}, status: pinned}
+  - {feats: {Animacy: Anim, Case: Dat, Gender: Masc, Number: Sing}, spelled: {sk-Latn/standard: [jemu, mu, nemu]}, status: pinned}
+  - {feats: {Animacy: Anim, Case: Gen, Gender: Masc, Number: Sing}, spelled: {sk-Latn/standard: [jeho, ho, neho]}, status: pinned}
+  - {feats: {Animacy: Anim, Case: Loc, Gender: Masc, Number: Sing}, spelled: {sk-Latn/standard: [ňom]}, status: pinned}
+  - {feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}, spelled: {sk-Latn/standard: [ho]}, status: pinned}
+- id: lexeme:ona
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: she; it (feminine)}
+  spelled: {sk-Latn/standard: [ona]}
+  forms:
+  - {feats: {Case: Acc, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [ich, ne]}, status: pinned}
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [ju, ňu]}, status: pinned}
+  - {feats: {Case: Dat, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [jej, nej]}, status: pinned}
+- id: lexeme:ono
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: it (neuter)}
+  spelled: {sk-Latn/standard: [ono]}
+  forms:
+  - {feats: {Case: Dat, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [jemu, mu, nemu]}, status: pinned}
+  - {feats: {Case: Ins, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [ním]}, status: pinned}
+- id: lexeme:opytovať-sa
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to ask}
+  notes: {en: 'With the genitive: opytujem sa Lucky, I ask Lucka. In speech, more often pýtať sa.'}
+  spelled: {sk-Latn/standard: [opytovať sa]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [opytuje]}, status: pinned}
+- id: lexeme:osem
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: eight}
+  notes: {en: 'From five on, a noun after the number is in the genitive plural: päť domov.'}
+  spelled: {sk-Latn/standard: [osem]}
+- id: lexeme:otec
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: 'father, dad'}
+  spelled: {sk-Latn/standard: [otec]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [otca]}, status: pinned}
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [otcom]}, status: pinned}
+- id: lexeme:pani
+  pos: NOUN
+  feats: {Gender: Fem}
+  gloss: {en: 'Mrs, Ms; madam; lady'}
+  notes: {en: 'Pani Tóthová: Mrs Tóthová. Before a name or a title; and a lady.'}
+  spelled: {sk-Latn/standard: [pani]}
+- id: lexeme:paradajka
+  pos: NOUN
+  gloss: {en: tomato}
+  spelled: {sk-Latn/standard: [paradajka]}
+  forms:
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [paradajky]}, status: pinned}
+- id: lexeme:park
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: park}
+  spelled: {sk-Latn/standard: [park]}
+- id: lexeme:pekne
+  pos: ADV
+  gloss: {en: 'nicely; nice (je pekne: it''s nice weather)'}
+  spelled: {sk-Latn/standard: [pekne]}
+- id: lexeme:pekný
+  pos: ADJ
+  gloss: {en: nice; pretty; lovely}
+  notes: {en: 'Comparative krajší: nicer, prettier.'}
+  spelled: {sk-Latn/standard: [pekný]}
+  forms:
+  - {feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [krajšia]}, status: pinned}
+  - {feats: {Case: Nom, Degree: Sup, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [najkrajšia]}, status: pinned}
+  - {feats: {Case: Nom, Degree: Sup, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [najkrajšie]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [pekné]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [pekná]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [pekné]}, status: pinned}
+- id: lexeme:peniaze
+  pos: NOUN
+  feats: {Animacy: Inan, Gender: Masc}
+  gloss: {en: money}
+  notes: {en: 'Always plural: veľa peňazí, a lot of money.'}
+  spelled: {sk-Latn/standard: [peniaze]}
+  forms:
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [peňazí]}, status: pinned}
+- id: lexeme:piatok
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: Friday}
+  spelled: {sk-Latn/standard: [piatok]}
+- id: lexeme:pivo
+  pos: NOUN
+  gloss: {en: beer}
+  spelled: {sk-Latn/standard: [pivo]}
+- id: lexeme:piť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to drink}
+  spelled: {sk-Latn/standard: [piť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nepijem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [pijem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [piješ]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nepije]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [pije]}, status: pinned}
+- id: lexeme:po
+  pos: ADP
+  gloss: {en: after; around; in (a language)}
+  notes: {en: 'With the locative: po práci, after work; po meste, around town. Po slovensky: in Slovak.'}
+  spelled: {sk-Latn/standard: [po]}
+- id: lexeme:po-anglicky
+  pos: ADV
+  gloss: {en: (in) English}
+  spelled: {sk-Latn/standard: [po anglicky]}
+- id: lexeme:po-maďarsky
+  pos: ADV
+  gloss: {en: (in) Hungarian}
+  spelled: {sk-Latn/standard: [po maďarsky]}
+- id: lexeme:po-nemecky
+  pos: ADV
+  gloss: {en: (in) German}
+  spelled: {sk-Latn/standard: [po nemecky]}
+- id: lexeme:po-poľsky
+  pos: ADV
+  gloss: {en: (in) Polish}
+  spelled: {sk-Latn/standard: [po poľsky]}
+- id: lexeme:po-slovensky
+  pos: ADV
+  gloss: {en: (in) Slovak}
+  notes: {en: 'Hovorím po slovensky: I speak Slovak. The language itself is slovenčina.'}
+  spelled: {sk-Latn/standard: [po slovensky]}
+- id: lexeme:pod
+  pos: ADP
+  gloss: {en: 'under, below'}
+  spelled: {sk-Latn/standard: [pod]}
+- id: lexeme:polievka
+  pos: NOUN
+  gloss: {en: soup}
+  spelled: {sk-Latn/standard: [polievka]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [polievku]}, status: pinned}
+- id: lexeme:pomáhať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to help (often, be helping)'}
+  spelled: {sk-Latn/standard: [pomáhať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [pomáha]}, status: pinned}
+- id: lexeme:pomôcť
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to help}
+  notes: {en: 'With the dative: pomôžem ti, I''ll help you. Imperfective pomáhať.'}
+  spelled: {sk-Latn/standard: [pomôcť]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [pomohla]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [pomohol]}, status: pinned}
+  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [pomôž]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [pomôžem]}, status: pinned}
+- id: lexeme:pondelok
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: Monday}
+  spelled: {sk-Latn/standard: [pondelok]}
+- id: lexeme:ponáhľať-sa
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to hurry, to be in a hurry'}
+  spelled: {sk-Latn/standard: [ponáhľať sa]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [ponáhľam]}, status: pinned}
+- id: lexeme:poprad
+  pos: PROPN
+  feats: {Animacy: Inan}
+  gloss: {en: Poprad (a town under the High Tatras)}
+  spelled: {sk-Latn/standard: [Poprad]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [Popradu]}, status: pinned}
+- id: lexeme:poschodie
+  pos: NOUN
+  gloss: {en: 'floor, storey'}
+  spelled: {sk-Latn/standard: [poschodie]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [poschodí]}, status: pinned}
+- id: lexeme:posteľ
+  pos: NOUN
+  feats: {Gender: Fem}
+  gloss: {en: bed}
+  spelled: {sk-Latn/standard: [posteľ]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [posteli]}, status: pinned}
+- id: lexeme:potom
+  pos: ADV
+  gloss: {en: 'then, afterwards'}
+  spelled: {sk-Latn/standard: [potom]}
+- id: lexeme:povedať
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: 'to say, to tell'}
+  notes: {en: 'Perfective of hovoriť (to speak, to say): povedal som, I said.'}
+  spelled: {sk-Latn/standard: [povedať]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [povedala]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [povedal]}, status: pinned}
+- id: lexeme:pozerať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to watch; to look}
+  spelled: {sk-Latn/standard: [pozerať]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [pozerala]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [pozeral]}, status: pinned}
+  - {feats: {Number: Plur, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [pozerali]}, status: pinned}
+- id: lexeme:poznať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to know (a person, a place)'}
+  notes: {en: 'Poznáš Lucku? Do you know Lucka? To know a fact is vedieť.'}
+  spelled: {sk-Latn/standard: [poznať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nepoznám]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [poznáš]}, status: pinned}
+- id: lexeme:pozrieť
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: 'to look, to have a look'}
+  spelled: {sk-Latn/standard: [pozrieť]}
+  forms:
+  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [pozri]}, status: pinned}
+- id: lexeme:pozvať
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to invite}
+  notes: {en: 'Pozvem ťa na kávu: I''ll invite you for a coffee (and pay). Imperfective pozývať.'}
+  spelled: {sk-Latn/standard: [pozvať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [pozvem]}, status: pinned}
+- id: lexeme:počasie
+  pos: NOUN
+  gloss: {en: weather}
+  spelled: {sk-Latn/standard: [počasie]}
+- id: lexeme:počkať
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to wait}
+  spelled: {sk-Latn/standard: [počkať]}
+  forms:
+  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [počkaj]}, status: pinned}
+- id: lexeme:poď
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'come! (and poďme: let''s go)'}
+  notes: {en: 'The command come!, from the verb ísť: poď sem, come here; poďme, let''s go.'}
+  spelled: {sk-Latn/standard: [poď]}
+  forms:
+  - {feats: {Mood: Imp, Number: Plur, Person: '1', VerbForm: Fin}, spelled: {sk-Latn/standard: [poďme]}, status: pinned}
+  - {feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [poďte]}, status: pinned}
+- id: lexeme:poľka
+  pos: NOUN
+  gloss: {en: 'Pole, Polish (a woman)'}
+  spelled: {sk-Latn/standard: [Poľka]}
+- id: lexeme:poľsko
+  pos: PROPN
+  gloss: {en: Poland}
+  spelled: {sk-Latn/standard: [Poľsko]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [Poľska]}, status: pinned}
+- id: lexeme:pracovať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to work}
+  spelled: {sk-Latn/standard: [pracovať]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Polarity: Neg, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [nepracovala]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [pracujem]}, status: pinned}
+- id: lexeme:pre
+  pos: ADP
+  gloss: {en: for}
+  notes: {en: 'With the accusative: pre Samka, for Samko; pre teba, for you.'}
+  spelled: {sk-Latn/standard: [pre]}
+- id: lexeme:pred
+  pos: ADP
+  gloss: {en: in front of; before; ago}
+  notes: {en: 'Where, with the instrumental: pred domom. Pred rokom: a year ago.'}
+  spelled: {sk-Latn/standard: [pred]}
+- id: lexeme:predavačka
+  pos: NOUN
+  gloss: {en: 'shop assistant, stallholder (a woman)'}
+  spelled: {sk-Latn/standard: [predavačka]}
+  forms:
+  - {feats: {Case: Ins, Number: Plur}, spelled: {sk-Latn/standard: [predavačkami]}, status: pinned}
+- id: lexeme:prehrať
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to lose (a game)}
+  spelled: {sk-Latn/standard: [prehrať]}
+  forms:
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [prehral]}, status: pinned}
+  - {feats: {Number: Plur, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [prehrali]}, status: pinned}
+- id: lexeme:prejsť
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: 'to cross, to go across, through'}
+  spelled: {sk-Latn/standard: [prejsť]}
+  forms:
+  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [prejdi]}, status: pinned}
+- id: lexeme:prepáčiť
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: 'to forgive; prepáč, prepáčte: sorry, excuse me'}
+  spelled: {sk-Latn/standard: [prepáčiť]}
+  forms:
+  - {feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [prepáčte]}, status: pinned}
+  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [prepáč]}, status: pinned}
+- id: lexeme:prečítať
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to read (to the end)}
+  notes: {en: Perfective of čítať.}
+  spelled: {sk-Latn/standard: [prečítať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [prečítam]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [prečítaš]}, status: pinned}
+- id: lexeme:pri
+  pos: ADP
+  gloss: {en: 'by, near, at'}
+  notes: {en: 'With the locative: pri univerzite, by the university.'}
+  spelled: {sk-Latn/standard: [pri]}
+- id: lexeme:pristať
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to agree; to join in}
+  spelled: {sk-Latn/standard: [pristať]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [pristala]}, status: pinned}
+- id: lexeme:prosiť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to ask (for); prosím: please; you''re welcome'}
+  notes: {en: 'Prosím: please; you''re welcome (after ďakujem); here you are; pardon? (asking someone to say it again).'}
+  spelled: {sk-Latn/standard: [prosiť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [prosím]}, status: pinned}
+- id: lexeme:prosiť-si
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to ask for (for oneself); prosím si …: I''d like …'}
+  notes: {en: 'In a shop: Prosím si kilo jabĺk: a kilo of apples, please.'}
+  spelled: {sk-Latn/standard: [prosiť si]}
+  forms:
+  - {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [prosíte]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [prosím]}, status: pinned}
+- id: lexeme:prvý
+  pos: ADJ
+  gloss: {en: first}
+  spelled: {sk-Latn/standard: [prvý]}
+  forms:
+  - {feats: {Case: Loc, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [prvom]}, status: pinned}
+- id: lexeme:práca
+  pos: NOUN
+  gloss: {en: work; job}
+  spelled: {sk-Latn/standard: [práca]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [práce]}, status: pinned}
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [práci]}, status: pinned}
+- id: lexeme:prísť
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: 'to come, to arrive'}
+  spelled: {sk-Latn/standard: [prísť]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [prišla]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Polarity: Neg, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [neprišiel]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [prišiel]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [prídem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [prídeš]}, status: pinned}
+- id: lexeme:pršať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to rain (prší: it''s raining)'}
+  spelled: {sk-Latn/standard: [pršať]}
+  forms:
+  - {feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [pršalo]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [prší]}, status: pinned}
+- id: lexeme:pán
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: Mr; sir; gentleman}
+  notes: {en: 'Pán Baláž: Mr Baláž. Before a name or a title, as a polite address.'}
+  spelled: {sk-Latn/standard: [pán]}
+- id: lexeme:páčiť-sa
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to please; páči sa mi: I like it'}
+  notes: {en: 'Páči sa mi Žilina: I like Žilina (Žilina pleases me): what is liked is the subject, who likes it the dative.'}
+  spelled: {sk-Latn/standard: [páčiť sa]}
+  forms:
+  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [páčia]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nepáči]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [páči]}, status: pinned}
+- id: lexeme:päť
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: five}
+  notes: {en: 'From five on, a noun after the number is in the genitive plural: päť domov.'}
+  spelled: {sk-Latn/standard: [päť]}
+- id: lexeme:päťdesiat
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: fifty}
+  spelled: {sk-Latn/standard: [päťdesiat]}
+- id: lexeme:písať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to write}
+  notes: {en: 'Píšem, píšeš, píše … píšu (not píšú: the rhythmic law).'}
+  spelled: {sk-Latn/standard: [písať]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [písala]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [píšem]}, status: pinned}
+- id: lexeme:radšej
+  pos: ADV
+  gloss: {en: rather; (I'd) prefer to}
+  notes: {en: 'The comparative of rád: radšej pijem čaj, I''d rather drink tea; I prefer tea.'}
+  spelled: {sk-Latn/standard: [radšej]}
+- id: lexeme:rak
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: crayfish}
+  spelled: {sk-Latn/standard: [rak]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [raka]}, status: pinned}
+- id: lexeme:raňajkovať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to have breakfast}
+  spelled: {sk-Latn/standard: [raňajkovať]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [raňajkovala]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [raňajkujem]}, status: pinned}
+- id: lexeme:riadiť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to drive (a vehicle); to steer; to run}
+  spelled: {sk-Latn/standard: [riadiť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [riadi]}, status: pinned}
+- id: lexeme:riecť
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: 'to say (old; in tales: rečie, he says)'}
+  notes: {en: 'Rečie: says, in the tales Dobšinský collected. Today povie, hovorí.'}
+  spelled: {sk-Latn/standard: [riecť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [rečie]}, status: pinned}
+- id: lexeme:rieka
+  pos: NOUN
+  gloss: {en: river}
+  spelled: {sk-Latn/standard: [rieka]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [rieku]}, status: pinned}
+- id: lexeme:robiť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to do; to make}
+  notes: {en: 'Perfective urobiť: one thing, done.'}
+  spelled: {sk-Latn/standard: [robiť]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [robila]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Polarity: Neg, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [nerobil]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [robil]}, status: pinned}
+  - {feats: {Number: Plur, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [robili]}, status: pinned}
+- id: lexeme:rodina
+  pos: NOUN
+  gloss: {en: family}
+  spelled: {sk-Latn/standard: [rodina]}
+- id: lexeme:rok
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: year}
+  notes: {en: 'Mám deväť rokov: I''m nine (years old).'}
+  spelled: {sk-Latn/standard: [rok]}
+  forms:
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [rokov]}, status: pinned}
+- id: lexeme:rovno
+  pos: ADV
+  gloss: {en: 'straight on, straight ahead'}
+  spelled: {sk-Latn/standard: [rovno]}
+- id: lexeme:rozprávať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to tell (a story); to talk}
+  notes: {en: 'Rozprávať rozprávku: to tell a tale. Rozprávať sa: to talk (with someone).'}
+  spelled: {sk-Latn/standard: [rozprávať]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [rozprávala]}, status: pinned}
+  - {feats: {Number: Plur, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [rozprávali]}, status: pinned}
+- id: lexeme:rozprávka
+  pos: NOUN
+  gloss: {en: '(fairy) tale, story'}
+  spelled: {sk-Latn/standard: [rozprávka]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [rozprávky]}, status: pinned}
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [rozprávke]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [rozprávky]}, status: pinned}
+- id: lexeme:rozumieť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to understand}
+  spelled: {sk-Latn/standard: [rozumieť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nerozumiem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [rozumiem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [rozumieš]}, status: pinned}
+- id: lexeme:rudo
+  pos: PROPN
+  feats: {Animacy: Anim, Gender: Masc}
+  gloss: {en: Rudo (a man's name; Rudolf)}
+  spelled: {sk-Latn/standard: [Rudo]}
+- id: lexeme:rád
+  pos: ADJ
+  gloss: {en: 'glad; mať rád: to like, to love'}
+  notes: {en: 'Mám rád kávu (a man), mám rada kávu (a woman): I like coffee. With an infinitive: rád čítam, I like reading.'}
+  spelled: {sk-Latn/standard: [rád]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [rady]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [rada]}, status: pinned}
+- id: lexeme:ráno
+  pos: ADV
+  gloss: {en: in the morning}
+  notes: {en: 'Also a noun, morning: dobré ráno.'}
+  spelled: {sk-Latn/standard: [ráno]}
+- id: lexeme:s
+  pos: ADP
+  gloss: {en: with}
+  notes: {en: 'With the instrumental: s Luckou, with Lucka; so mnou, with me (so before s, z, š, ž and mnou).'}
+  spelled: {sk-Latn/standard: [s, so]}
+- id: lexeme:sa
+  pos: PRON
+  feats: {PronType: Prs, Reflex: 'Yes'}
+  gloss: {en: oneself (the reflexive clitic of a verb)}
+  notes: {en: 'Part of verbs such as volať sa and mať sa. It stands second in its clause, never first.'}
+  spelled: {sk-Latn/standard: [sa]}
+- id: lexeme:sadnúť-si
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to sit down}
+  spelled: {sk-Latn/standard: [sadnúť si]}
+  forms:
+  - {feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [sadnite]}, status: pinned}
+- id: lexeme:samko
+  pos: PROPN
+  feats: {Animacy: Anim, Gender: Masc}
+  gloss: {en: Samko (a boy's name; Samuel)}
+  spelled: {sk-Latn/standard: [Samko]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [Samka]}, status: pinned}
+  - {feats: {Case: Dat, Number: Sing}, spelled: {sk-Latn/standard: [Samkovi]}, status: pinned}
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [Samkovi]}, status: pinned}
+- id: lexeme:sedem
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: seven}
+  notes: {en: 'From five on, a noun after the number is in the genitive plural: päť domov.'}
+  spelled: {sk-Latn/standard: [sedem]}
+- id: lexeme:sedemdesiat
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: seventy}
+  spelled: {sk-Latn/standard: [sedemdesiat]}
+- id: lexeme:sedieť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to sit, to be sitting'}
+  spelled: {sk-Latn/standard: [sedieť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [sedí]}, status: pinned}
+- id: lexeme:sem
+  pos: ADV
+  gloss: {en: here (where to)}
+  notes: {en: 'Poď sem: come here. Here (where) is tu.'}
+  spelled: {sk-Latn/standard: [sem]}
+- id: lexeme:september
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: September}
+  spelled: {sk-Latn/standard: [september]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [septembri]}, status: pinned}
+- id: lexeme:sestra
+  pos: NOUN
+  gloss: {en: sister; nurse}
+  notes: {en: 'Zdravotná sestra: a nurse; moja sestra: my sister.'}
+  spelled: {sk-Latn/standard: [sestra]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [sestru]}, status: pinned}
+- id: lexeme:sever
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: north}
+  spelled: {sk-Latn/standard: [sever]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [severe]}, status: pinned}
+- id: lexeme:si.refl
+  pos: PRON
+  feats: {PronType: Prs, Reflex: 'Yes'}
+  gloss: {en: '(for) oneself (the reflexive clitic, dative)'}
+  notes: {en: 'Part of verbs such as dať si, sadnúť si. Like sa, it stands second in its clause.'}
+  spelled: {sk-Latn/standard: [si]}
+- id: lexeme:siedmy
+  pos: ADJ
+  gloss: {en: 'seventh; o siedmej: at seven'}
+  spelled: {sk-Latn/standard: [siedmy]}
+  forms:
+  - {feats: {Case: Loc, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [siedmej]}, status: pinned}
+- id: lexeme:simona
+  pos: PROPN
+  gloss: {en: Simona (a woman's name)}
+  spelled: {sk-Latn/standard: [Simona]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [Simonu]}, status: pinned}
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [Simony]}, status: pinned}
+- id: lexeme:sladký
+  pos: ADJ
+  gloss: {en: sweet}
+  spelled: {sk-Latn/standard: [sladký]}
+  forms:
+  - {feats: {Case: Acc, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [sladké]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Plur}, spelled: {sk-Latn/standard: [sladké]}, status: pinned}
+- id: lexeme:sliepka
+  pos: NOUN
+  gloss: {en: hen}
+  spelled: {sk-Latn/standard: [sliepka]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [sliepky]}, status: pinned}
+- id: lexeme:slnko
+  pos: NOUN
+  gloss: {en: sun}
+  spelled: {sk-Latn/standard: [slnko]}
+  image: {file: ../../courses/images/sun.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: lexeme:slovenka
+  pos: NOUN
+  gloss: {en: Slovak (a woman)}
+  notes: {en: 'Som Slovenka: I''m Slovak (a woman). Nationalities are capitalized; the adjective, slovenský, is not.'}
+  spelled: {sk-Latn/standard: [Slovenka]}
+- id: lexeme:slovensko
+  pos: PROPN
+  gloss: {en: Slovakia}
+  spelled: {sk-Latn/standard: [Slovensko]}
+  forms:
+  - {feats: {Case: Dat, Number: Sing}, spelled: {sk-Latn/standard: [Slovensku]}, status: pinned}
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [Slovenska]}, status: pinned}
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [Slovensku]}, status: pinned}
+- id: lexeme:slovenčina
+  pos: NOUN
+  gloss: {en: Slovak (the language)}
+  spelled: {sk-Latn/standard: [slovenčina]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [slovenčinu]}, status: pinned}
+- id: lexeme:slovák
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: Slovak (a man)}
+  notes: {en: 'Som Slovák: I''m Slovak (a man). Plural Slováci; a Slovak woman is a Slovenka.'}
+  spelled: {sk-Latn/standard: [Slovák]}
+- id: lexeme:smelo
+  pos: ADV
+  gloss: {en: 'boldly, bravely'}
+  notes: {en: 'Comparative smelšie: more boldly; bolo im smelšie: they felt braver.'}
+  spelled: {sk-Latn/standard: [smelo]}
+  forms:
+  - {feats: {Degree: Cmp}, spelled: {sk-Latn/standard: [smelšie]}, status: pinned}
+- id: lexeme:smena
+  pos: NOUN
+  gloss: {en: shift (at work)}
+  spelled: {sk-Latn/standard: [smena]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [smenu]}, status: pinned}
+- id: lexeme:snežiť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to snow (sneží: it''s snowing)'}
+  spelled: {sk-Latn/standard: [snežiť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [sneží]}, status: pinned}
+- id: lexeme:sobota
+  pos: NOUN
+  gloss: {en: Saturday}
+  spelled: {sk-Latn/standard: [sobota]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [sobotu]}, status: pinned}
+- id: lexeme:spať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to sleep}
+  spelled: {sk-Latn/standard: [spať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [spíme]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [spím]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [spí]}, status: pinned}
+- id: lexeme:spievať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to sing}
+  spelled: {sk-Latn/standard: [spievať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [spievame]}, status: pinned}
+- id: lexeme:spolu
+  pos: ADV
+  gloss: {en: together}
+  spelled: {sk-Latn/standard: [spolu]}
+- id: lexeme:stanica
+  pos: NOUN
+  gloss: {en: station}
+  spelled: {sk-Latn/standard: [stanica]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [stanicu]}, status: pinned}
+- id: lexeme:starý
+  pos: ADJ
+  gloss: {en: old}
+  spelled: {sk-Latn/standard: [starý]}
+  forms:
+  - {feats: {Animacy: Inan, Case: Gen, Gender: Masc, Number: Plur}, spelled: {sk-Latn/standard: [starých]}, status: pinned}
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [starú]}, status: pinned}
+  - {feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [staršia]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [staré]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [stará]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [staré]}, status: pinned}
+- id: lexeme:sto
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: 'a hundred, one hundred'}
+  spelled: {sk-Latn/standard: [sto]}
+- id: lexeme:stolička
+  pos: NOUN
+  gloss: {en: chair}
+  spelled: {sk-Latn/standard: [stolička]}
+- id: lexeme:streda
+  pos: NOUN
+  gloss: {en: Wednesday}
+  spelled: {sk-Latn/standard: [streda]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [stredu]}, status: pinned}
+- id: lexeme:stretnúť
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to meet}
+  notes: {en: 'Perfective: stretnem, I''ll meet. Imperfective stretávať.'}
+  spelled: {sk-Latn/standard: [stretnúť]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [stretla]}, status: pinned}
+  - {feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [stretlo]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [stretnú]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [stretnem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [stretne]}, status: pinned}
+- id: lexeme:stromček
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: (Christmas) tree; little tree}
+  spelled: {sk-Latn/standard: [stromček]}
+  forms:
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [stromčekov]}, status: pinned}
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [stromčekom]}, status: pinned}
+- id: lexeme:stáť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to cost; to stand}
+  notes: {en: 'Koľko to stojí? How much is it? Stojí to dve eurá: it''s two euros.'}
+  spelled: {sk-Latn/standard: [stáť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [stojí]}, status: pinned}
+- id: lexeme:stôl
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: table}
+  spelled: {sk-Latn/standard: [stôl]}
+  forms:
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [stolom]}, status: pinned}
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [stole]}, status: pinned}
+- id: lexeme:svet
+  pos: NOUN
+  feats: {Animacy: Inan, Gender: Masc}
+  gloss: {en: world}
+  spelled: {sk-Latn/standard: [svet]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [sveta]}, status: pinned}
+- id: lexeme:svetlý
+  pos: ADJ
+  gloss: {en: 'light, bright'}
+  spelled: {sk-Latn/standard: [svetlý]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [svetlá]}, status: pinned}
+- id: lexeme:svietiť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to shine}
+  spelled: {sk-Latn/standard: [svietiť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [svieti]}, status: pinned}
+- id: lexeme:syr
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: cheese}
+  spelled: {sk-Latn/standard: [syr]}
+- id: lexeme:tam
+  pos: ADV
+  gloss: {en: there}
+  spelled: {sk-Latn/standard: [tam]}
+- id: lexeme:tatry
+  pos: PROPN
+  feats: {Gender: Fem}
+  gloss: {en: the Tatras (the highest mountains of Slovakia)}
+  spelled: {sk-Latn/standard: [Tatry]}
+  forms:
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [Tatier]}, status: pinned}
+  - {feats: {Case: Loc, Number: Plur}, spelled: {sk-Latn/standard: [Tatrách]}, status: pinned}
+- id: lexeme:teda
+  pos: ADV
+  gloss: {en: 'so, then; that is'}
+  spelled: {sk-Latn/standard: [teda]}
+- id: lexeme:televízia
+  pos: NOUN
+  gloss: {en: 'television, TV'}
+  spelled: {sk-Latn/standard: [televízia]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [televíziu]}, status: pinned}
+- id: lexeme:ten
+  pos: DET
+  feats: {PronType: Dem}
+  gloss: {en: 'that, this; the one (to: that, it)'}
+  notes: {en: 'Ten (masculine), tá (feminine), to (neuter). To je …: that is …, this is …, it is …'}
+  spelled: {sk-Latn/standard: [ten]}
+  forms:
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [tú]}, status: pinned}
+  - {feats: {Case: Acc, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [to]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [tá]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [to]}, status: pinned}
+- id: lexeme:tento
+  pos: DET
+  feats: {PronType: Dem}
+  gloss: {en: this}
+  notes: {en: 'Tento byt, táto izba, toto mesto: this flat, this room, this town. Ten … is that, or this.'}
+  spelled: {sk-Latn/standard: [tento]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [táto]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [toto]}, status: pinned}
+- id: lexeme:teplo
+  pos: ADV
+  gloss: {en: 'warm (je teplo: it''s warm)'}
+  notes: {en: 'Comparative teplejšie: warmer.'}
+  spelled: {sk-Latn/standard: [teplo]}
+  forms:
+  - {feats: {Degree: Cmp}, spelled: {sk-Latn/standard: [teplejšie]}, status: pinned}
+- id: lexeme:teraz
+  pos: ADV
+  gloss: {en: now}
+  spelled: {sk-Latn/standard: [teraz]}
+- id: lexeme:tereza
+  pos: PROPN
+  gloss: {en: Tereza (a woman's name)}
+  spelled: {sk-Latn/standard: [Tereza]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [Terezu]}, status: pinned}
+- id: lexeme:tiež
+  pos: ADV
+  gloss: {en: 'also, too'}
+  spelled: {sk-Latn/standard: [tiež]}
+- id: lexeme:treba
+  pos: ADV
+  gloss: {en: 'it is necessary; one must, one should'}
+  notes: {en: 'Treba ísť: we must go. With the dative: treba mi …, I need …'}
+  spelled: {sk-Latn/standard: [treba]}
+- id: lexeme:tretica
+  pos: NOUN
+  gloss: {en: 'the third time (všetko dobré do tretice: third time lucky)'}
+  spelled: {sk-Latn/standard: [tretica]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [tretice]}, status: pinned}
+- id: lexeme:tretí
+  pos: ADJ
+  gloss: {en: third}
+  spelled: {sk-Latn/standard: [tretí]}
+  forms:
+  - {feats: {Case: Loc, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [treťom]}, status: pinned}
+- id: lexeme:trh
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: market}
+  spelled: {sk-Latn/standard: [trh]}
+  forms:
+  - {feats: {Case: Loc, Number: Plur}, spelled: {sk-Latn/standard: [trhoch]}, status: pinned}
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [trhu]}, status: pinned}
+- id: lexeme:tri
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: three}
+  notes: {en: 'Tri domy, tri ženy; traja bratia (men).'}
+  spelled: {sk-Latn/standard: [tri]}
+  forms:
+  - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, spelled: {sk-Latn/standard: [traja]}, status: pinned}
+- id: lexeme:tridsať
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: thirty}
+  spelled: {sk-Latn/standard: [tridsať]}
+- id: lexeme:trochu
+  pos: ADV
+  gloss: {en: 'a little, a bit'}
+  spelled: {sk-Latn/standard: [trochu]}
+- id: lexeme:trolejbus
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: trolleybus}
+  spelled: {sk-Latn/standard: [trolejbus]}
+  forms:
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [trolejbusom]}, status: pinned}
+- id: lexeme:tu
+  pos: ADV
+  gloss: {en: here}
+  spelled: {sk-Latn/standard: [tu]}
+- id: lexeme:tvoj
+  pos: DET
+  feats: {Poss: 'Yes', PronType: Prs}
+  gloss: {en: your (ty); yours}
+  spelled: {sk-Latn/standard: [tvoj]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [tvoja]}, status: pinned}
+- id: lexeme:ty
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: you (one person you know well)}
+  notes: {en: 'To family, friends, children and young people of your age. To anyone else, vy.'}
+  spelled: {sk-Latn/standard: [ty]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [teba, ťa]}, status: pinned}
+  - {feats: {Case: Dat, Number: Sing}, spelled: {sk-Latn/standard: [tebe, ti]}, status: pinned}
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [teba]}, status: pinned}
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [tebou]}, status: pinned}
+- id: lexeme:tím
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: team}
+  spelled: {sk-Latn/standard: [tím]}
+- id: lexeme:tóthová
+  pos: PROPN
+  gloss: {en: 'Tóthová (a woman''s surname; Tóth, a man''s)'}
+  notes: {en: 'A woman''s surname in -ová declines like an adjective: s pani Tóthovou, with Mrs Tóthová.'}
+  spelled: {sk-Latn/standard: [Tóthová]}
+- id: lexeme:týždeň
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: week}
+  spelled: {sk-Latn/standard: [týždeň]}
+- id: lexeme:u
+  pos: ADP
+  gloss: {en: at (someone's place); by}
+  notes: {en: 'With the genitive: u babky, at Grandma''s; u nás, at our place.'}
+  spelled: {sk-Latn/standard: [u]}
+- id: lexeme:ulica
+  pos: NOUN
+  gloss: {en: street}
+  spelled: {sk-Latn/standard: [ulica]}
+  forms:
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [ulice]}, status: pinned}
+- id: lexeme:umývať-sa
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to wash (oneself)}
+  spelled: {sk-Latn/standard: [umývať sa]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [umývam]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [umýva]}, status: pinned}
+- id: lexeme:unavený
+  pos: ADJ
+  gloss: {en: tired}
+  spelled: {sk-Latn/standard: [unavený]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [unavená]}, status: pinned}
+- id: lexeme:univerzita
+  pos: NOUN
+  gloss: {en: university}
+  spelled: {sk-Latn/standard: [univerzita]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [univerzite]}, status: pinned}
+- id: lexeme:urobiť
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: 'to do, to make (and finish)'}
+  notes: {en: Perfective of robiť.}
+  spelled: {sk-Latn/standard: [urobiť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [urobím]}, status: pinned}
+- id: lexeme:určite
+  pos: ADV
+  gloss: {en: 'certainly, definitely'}
+  spelled: {sk-Latn/standard: [určite]}
+- id: lexeme:utorok
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: Tuesday}
+  spelled: {sk-Latn/standard: [utorok]}
+- id: lexeme:uvariť
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to cook (and finish)}
+  notes: {en: Perfective of variť.}
+  spelled: {sk-Latn/standard: [uvariť]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [uvarila]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [uvarím]}, status: pinned}
+- id: lexeme:učiteľ
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: teacher (a man)}
+  spelled: {sk-Latn/standard: [učiteľ]}
+  image: {file: ../../courses/images/teacher.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+  forms:
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [učitelia]}, status: pinned}
+- id: lexeme:učiteľka
+  pos: NOUN
+  gloss: {en: teacher (a woman)}
+  spelled: {sk-Latn/standard: [učiteľka]}
+- id: lexeme:učiť-sa
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to learn; to study}
+  notes: {en: 'Učím sa po slovensky: I''m learning Slovak. Učiť without sa is to teach.'}
+  spelled: {sk-Latn/standard: [učiť sa]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [učím]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [učí]}, status: pinned}
+- id: lexeme:už
+  pos: ADV
+  gloss: {en: already; (not) any more}
+  notes: {en: 'Už nie: not any more. Ešte nie: not yet.'}
+  spelled: {sk-Latn/standard: [už]}
+- id: lexeme:v
+  pos: ADP
+  gloss: {en: in; at; on (a day)}
+  notes: {en: 'Where, with the locative: v Žiline, in Žilina. When, with the accusative: v pondelok, on Monday. Vo before v and f: vo vlaku.'}
+  spelled: {sk-Latn/standard: [v, vo]}
+- id: lexeme:vajce
+  pos: NOUN
+  gloss: {en: egg}
+  spelled: {sk-Latn/standard: [vajce]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [vajcia]}, status: pinned}
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [vajci]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [vajcia]}, status: pinned}
+- id: lexeme:vandrovka
+  pos: NOUN
+  gloss: {en: 'wandering, a journeyman''s travels (old)'}
+  notes: {en: 'Ísť na vandrovku: to go off wandering, as journeymen once did from town to town.'}
+  spelled: {sk-Latn/standard: [vandrovka]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [vandrovku]}, status: pinned}
+- id: lexeme:variť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to cook}
+  spelled: {sk-Latn/standard: [variť]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [varila]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [varí]}, status: pinned}
+  - {feats: {Number: Plur, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [varili]}, status: pinned}
+- id: lexeme:vedieť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to know (a fact); to know how to}
+  notes: {en: 'Viem, vieš, vie, vieme, viete, vedia. Viem, kde býva: I know where he lives. To know a person is poznať.'}
+  spelled: {sk-Latn/standard: [vedieť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [vieš]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nevie]}, status: pinned}
+- id: lexeme:vedľa
+  pos: ADP
+  gloss: {en: 'next to, beside'}
+  notes: {en: 'With the genitive: vedľa jazera, next to the lake.'}
+  spelled: {sk-Latn/standard: [vedľa]}
+- id: lexeme:veselý
+  pos: ADJ
+  gloss: {en: 'merry, cheerful'}
+  spelled: {sk-Latn/standard: [veselý]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [veselé]}, status: pinned}
+- id: lexeme:večer
+  pos: ADV
+  gloss: {en: in the evening}
+  notes: {en: 'Also a noun, evening: dobrý večer.'}
+  spelled: {sk-Latn/standard: [večer]}
+- id: lexeme:večera
+  pos: NOUN
+  gloss: {en: 'dinner, supper'}
+  spelled: {sk-Latn/standard: [večera]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [večeru]}, status: pinned}
+- id: lexeme:veď
+  pos: PART
+  gloss: {en: 'after all, but surely, why'}
+  spelled: {sk-Latn/standard: [veď]}
+- id: lexeme:veľa
+  pos: ADV
+  gloss: {en: 'many, much, a lot (of)'}
+  notes: {en: 'With the genitive: veľa ľudí, a lot of people; veľa času, a lot of time. Comparative viac: more.'}
+  spelled: {sk-Latn/standard: [veľa]}
+  forms:
+  - {feats: {Degree: Cmp}, spelled: {sk-Latn/standard: [viac]}, status: pinned}
+- id: lexeme:veľká-noc
+  pos: NOUN
+  gloss: {en: Easter}
+  notes: {en: 'Veľkonočný pondelok, Easter Monday: boys splash girls with water.'}
+  spelled: {sk-Latn/standard: [Veľká noc]}
+- id: lexeme:veľký
+  pos: ADJ
+  gloss: {en: 'big, large'}
+  notes: {en: 'Comparative väčší: bigger.'}
+  spelled: {sk-Latn/standard: [veľký]}
+  forms:
+  - {feats: {Case: Nom, Degree: Cmp, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [väčšia]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [veľká]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Plur}, spelled: {sk-Latn/standard: [veľké]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [veľké]}, status: pinned}
+- id: lexeme:veľmi
+  pos: ADV
+  gloss: {en: very; very much}
+  spelled: {sk-Latn/standard: [veľmi]}
+- id: lexeme:vianoce
+  pos: PROPN
+  feats: {Gender: Fem}
+  gloss: {en: Christmas}
+  notes: {en: 'Always plural: Veselé Vianoce! Merry Christmas! Na Vianoce: at Christmas.'}
+  spelled: {sk-Latn/standard: [Vianoce]}
+- id: lexeme:vidieť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to see}
+  spelled: {sk-Latn/standard: [vidieť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [vidím]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [vidíš]}, status: pinned}
+- id: lexeme:viezť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to drive, to take (someone, by vehicle, now)'}
+  spelled: {sk-Latn/standard: [viezť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [vezie]}, status: pinned}
+- id: lexeme:vlak
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: train}
+  spelled: {sk-Latn/standard: [vlak]}
+  forms:
+  - {feats: {Case: Ins, Number: Sing}, spelled: {sk-Latn/standard: [vlakom]}, status: pinned}
+- id: lexeme:vnučka
+  pos: NOUN
+  gloss: {en: granddaughter}
+  spelled: {sk-Latn/standard: [vnučka]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [vnučky]}, status: pinned}
+- id: lexeme:voda
+  pos: NOUN
+  gloss: {en: water}
+  spelled: {sk-Latn/standard: [voda]}
+  image: {file: ../../courses/images/water.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [vodu]}, status: pinned}
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [vody]}, status: pinned}
+- id: lexeme:vodič
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: driver}
+  spelled: {sk-Latn/standard: [vodič]}
+- id: lexeme:volať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to call, to phone'}
+  notes: {en: 'Without sa: to call. Volať sa: to be called.'}
+  spelled: {sk-Latn/standard: [volať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [volám]}, status: pinned}
+- id: lexeme:volať-sa
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to be called; volám sa …: my name is …'}
+  notes: {en: 'Volám sa Lucka: my name is Lucka (I am called Lucka). Sa goes second in the sentence: Ako sa voláš?'}
+  spelled: {sk-Latn/standard: [volať sa]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [volám]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [voláš]}, status: pinned}
+- id: lexeme:voziť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to drive, to carry (someone, by vehicle, regularly)'}
+  spelled: {sk-Latn/standard: [voziť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [vozí]}, status: pinned}
+- id: lexeme:vracať-sa
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to come back, to return'}
+  spelled: {sk-Latn/standard: [vracať sa]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [vraciam]}, status: pinned}
+- id: lexeme:vstávať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to get up}
+  spelled: {sk-Latn/standard: [vstávať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [vstávam]}, status: pinned}
+- id: lexeme:vy
+  pos: PRON
+  feats: {PronType: Prs}
+  gloss: {en: 'you (several people, or one person politely)'}
+  notes: {en: 'To several people, and to one person you do not know well, or older than you: Ako sa máte?'}
+  spelled: {sk-Latn/standard: [vy]}
+  forms:
+  - {feats: {Case: Dat, Number: Plur}, spelled: {sk-Latn/standard: [vám]}, status: pinned}
+- id: lexeme:vydať
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to publish; to give out}
+  notes: {en: 'Passive participle vydaný: published. Kniha bola vydaná: the book was published.'}
+  spelled: {sk-Latn/standard: [vydať]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing, VerbForm: Part, Voice: Pass}, spelled: {sk-Latn/standard: [vydaná]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [vydal]}, status: pinned}
+- id: lexeme:vyhrať
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to win}
+  spelled: {sk-Latn/standard: [vyhrať]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [vyhrala]}, status: pinned}
+  - {feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [vyhralo]}, status: pinned}
+  - {feats: {Number: Plur, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [vyhrali]}, status: pinned}
+- id: lexeme:vysoký
+  pos: ADJ
+  gloss: {en: 'high, tall'}
+  notes: {en: 'Comparative vyšší: higher, taller.'}
+  spelled: {sk-Latn/standard: [vysoký]}
+  forms:
+  - {feats: {Animacy: Anim, Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, spelled: {sk-Latn/standard: [vyšší]}, status: pinned}
+  - {feats: {Case: Nom, Degree: Sup, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [najvyššie]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [vysoké]}, status: pinned}
+- id: lexeme:váh
+  pos: PROPN
+  feats: {Animacy: Inan}
+  gloss: {en: the Váh (Slovakia's longest river)}
+  spelled: {sk-Latn/standard: [Váh]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [Váhu]}, status: pinned}
+- id: lexeme:váš
+  pos: DET
+  feats: {Poss: 'Yes', PronType: Prs}
+  gloss: {en: your (vy); yours}
+  spelled: {sk-Latn/standard: [váš]}
+- id: lexeme:víkend
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: weekend}
+  spelled: {sk-Latn/standard: [víkend]}
+- id: lexeme:víno
+  pos: NOUN
+  gloss: {en: wine}
+  spelled: {sk-Latn/standard: [víno]}
+- id: lexeme:výborne
+  pos: ADV
+  gloss: {en: 'excellently; great!, well done'}
+  spelled: {sk-Latn/standard: [výborne]}
+- id: lexeme:výborný
+  pos: ADJ
+  gloss: {en: excellent; delicious}
+  spelled: {sk-Latn/standard: [výborný]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [výborné]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [výborná]}, status: pinned}
+- id: lexeme:východ
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: east}
+  spelled: {sk-Latn/standard: [východ]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [východe]}, status: pinned}
+- id: lexeme:výlet
+  pos: NOUN
+  feats: {Animacy: Inan, Gender: Masc}
+  gloss: {en: 'trip, outing'}
+  spelled: {sk-Latn/standard: [výlet]}
+- id: lexeme:výťah
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: 'lift, elevator'}
+  spelled: {sk-Latn/standard: [výťah]}
+- id: lexeme:včera
+  pos: ADV
+  gloss: {en: yesterday}
+  spelled: {sk-Latn/standard: [včera]}
+- id: lexeme:všetok
+  pos: DET
+  feats: {PronType: Tot}
+  gloss: {en: 'all; všetko: everything; všetci: everyone'}
+  notes: {en: 'To je všetko: that''s all. Všetci sú doma: everyone is at home.'}
+  spelled: {sk-Latn/standard: [všetok]}
+  forms:
+  - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, spelled: {sk-Latn/standard: [všetci]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [všetko]}, status: pinned}
+- id: lexeme:vždy
+  pos: ADV
+  gloss: {en: always}
+  spelled: {sk-Latn/standard: [vždy]}
+- id: lexeme:z
+  pos: ADP
+  gloss: {en: from; out of}
+  notes: {en: 'With the genitive: z Poľska, from Poland. Zo before s, z, š, ž and some clusters: zo Slovenska.'}
+  spelled: {sk-Latn/standard: [z, zo]}
+- id: lexeme:za
+  pos: ADP
+  gloss: {en: behind; for; in (a time)}
+  notes: {en: 'Where, with the instrumental: za domom, behind the house. Ďakujem za darček (accusative): thanks for the present.'}
+  spelled: {sk-Latn/standard: [za]}
+- id: lexeme:zajtra
+  pos: ADV
+  gloss: {en: tomorrow}
+  spelled: {sk-Latn/standard: [zajtra]}
+- id: lexeme:zapísať
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: 'to write down, to record'}
+  notes: {en: 'Passive participle zapísaný: written down. Rozprávky boli zapísané: the tales were written down.'}
+  spelled: {sk-Latn/standard: [zapísať]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Plur, VerbForm: Part, Voice: Pass}, spelled: {sk-Latn/standard: [zapísané]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [zapísal]}, status: pinned}
+- id: lexeme:zavolať
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: 'to call, to phone (once)'}
+  notes: {en: 'Perfective of volať: zavolám ti, I''ll call you.'}
+  spelled: {sk-Latn/standard: [zavolať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [zavolám]}, status: pinned}
+- id: lexeme:zbierať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to collect, to gather'}
+  spelled: {sk-Latn/standard: [zbierať]}
+  forms:
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [zbieral]}, status: pinned}
+- id: lexeme:zdravotný
+  pos: ADJ
+  gloss: {en: 'health (care); zdravotná sestra: nurse'}
+  spelled: {sk-Latn/standard: [zdravotný]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [zdravotná]}, status: pinned}
+- id: lexeme:zelený
+  pos: ADJ
+  gloss: {en: green}
+  spelled: {sk-Latn/standard: [zelený]}
+  forms:
+  - {feats: {Case: Acc, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [zelené]}, status: pinned}
+- id: lexeme:zemiak
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: potato}
+  spelled: {sk-Latn/standard: [zemiak]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [zemiaky]}, status: pinned}
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [zemiakov]}, status: pinned}
+- id: lexeme:zima
+  pos: NOUN
+  gloss: {en: 'winter; cold (je zima: it''s cold)'}
+  spelled: {sk-Latn/standard: [zima]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [zime]}, status: pinned}
+- id: lexeme:zlý
+  pos: ADJ
+  gloss: {en: bad; evil}
+  notes: {en: 'Comparative horší: worse.'}
+  spelled: {sk-Latn/standard: [zlý]}
+  forms:
+  - {feats: {Animacy: Anim, Case: Nom, Degree: Cmp, Gender: Masc, Number: Sing}, spelled: {sk-Latn/standard: [horší]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [zlé]}, status: pinned}
+- id: lexeme:zrelý
+  pos: ADJ
+  gloss: {en: ripe}
+  spelled: {sk-Latn/standard: [zrelý]}
+  forms:
+  - {feats: {Case: Nom, Gender: Neut, Number: Plur}, spelled: {sk-Latn/standard: [zrelé]}, status: pinned}
+- id: lexeme:záhrada
+  pos: NOUN
+  gloss: {en: garden}
+  spelled: {sk-Latn/standard: [záhrada]}
+  image: {file: ../../courses/images/tree.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [záhrade]}, status: pinned}
+- id: lexeme:západ
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: west}
+  spelled: {sk-Latn/standard: [západ]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [západe]}, status: pinned}
+- id: lexeme:zápas
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: 'match, game'}
+  spelled: {sk-Latn/standard: [zápas]}
+- id: lexeme:áno
+  pos: PART
+  gloss: {en: 'yes'}
+  notes: {en: Hej is the everyday colloquial yes.}
+  spelled: {sk-Latn/standard: [áno]}
+- id: lexeme:ír
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: 'Irishman, Irish (a man)'}
+  spelled: {sk-Latn/standard: [Ír]}
+- id: lexeme:írsko
+  pos: PROPN
+  gloss: {en: Ireland}
+  spelled: {sk-Latn/standard: [Írsko]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [Írska]}, status: pinned}
+- id: lexeme:ísť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to go (on foot, or one way, now)'}
+  notes: {en: 'Idem, ideš, ide, ideme, idete, idú. Kam ideš? Where are you going?'}
+  spelled: {sk-Latn/standard: [ísť]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [išla]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [išiel]}, status: pinned}
+  - {feats: {Gender: Neut, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [išlo]}, status: pinned}
+  - {feats: {Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [choďte]}, status: pinned}
+  - {feats: {Mood: Imp, Number: Sing, Person: '2', Polarity: Neg, VerbForm: Fin}, spelled: {sk-Latn/standard: [nechoď]}, status: pinned}
+  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [choď]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [ideme]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [idú]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [nejdem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}, spelled: {sk-Latn/standard: [pôjdem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [idem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [ideš]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [ide]}, status: pinned}
+  - {feats: {Number: Plur, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [išli]}, status: pinned}
+- id: lexeme:ôsmy
+  pos: ADJ
+  gloss: {en: 'eighth; o ôsmej: at eight'}
+  spelled: {sk-Latn/standard: [ôsmy]}
+  forms:
+  - {feats: {Case: Loc, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [ôsmej]}, status: pinned}
+- id: lexeme:útulný
+  pos: ADJ
+  gloss: {en: 'cosy, homely'}
+  spelled: {sk-Latn/standard: [útulný]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [útulné]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [útulná]}, status: pinned}
+- id: lexeme:čaj
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: tea}
+  spelled: {sk-Latn/standard: [čaj]}
+  image: {file: ../../courses/images/tea.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [čaju]}, status: pinned}
+- id: lexeme:čas
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: time}
+  spelled: {sk-Latn/standard: [čas]}
+  forms:
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [časov]}, status: pinned}
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [času]}, status: pinned}
+- id: lexeme:čašník
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: waiter}
+  spelled: {sk-Latn/standard: [čašník]}
+- id: lexeme:čašníčka
+  pos: NOUN
+  gloss: {en: waitress}
+  spelled: {sk-Latn/standard: [čašníčka]}
+- id: lexeme:čerstvý
+  pos: ADJ
+  gloss: {en: fresh}
+  spelled: {sk-Latn/standard: [čerstvý]}
+  forms:
+  - {feats: {Case: Nom, Gender: Neut, Number: Plur}, spelled: {sk-Latn/standard: [čerstvé]}, status: pinned}
+- id: lexeme:červený
+  pos: ADJ
+  gloss: {en: red}
+  spelled: {sk-Latn/standard: [červený]}
+  forms:
+  - {feats: {Case: Acc, Gender: Neut, Number: Plur}, spelled: {sk-Latn/standard: [červené]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Plur}, spelled: {sk-Latn/standard: [červené]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [červená]}, status: pinned}
+  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {sk-Latn/standard: [červené]}, status: pinned}
+- id: lexeme:čierny
+  pos: ADJ
+  gloss: {en: black}
+  spelled: {sk-Latn/standard: [čierny]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [čierna]}, status: pinned}
+- id: lexeme:človek
+  pos: NOUN
+  feats: {Animacy: Anim}
+  gloss: {en: 'person, man; (plural) people'}
+  notes: {en: 'The plural is another word: jeden človek, dvaja ľudia, veľa ľudí.'}
+  spelled: {sk-Latn/standard: [človek]}
+  forms:
+  - {feats: {Case: Acc, Number: Plur}, spelled: {sk-Latn/standard: [ľudí]}, status: pinned}
+  - {feats: {Case: Gen, Number: Plur}, spelled: {sk-Latn/standard: [ľudí]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [ľudia]}, status: pinned}
+- id: lexeme:čo
+  pos: PRON
+  feats: {PronType: Int}
+  gloss: {en: what}
+  spelled: {sk-Latn/standard: [čo]}
+- id: lexeme:čí
+  pos: DET
+  feats: {PronType: Int}
+  gloss: {en: whose}
+  spelled: {sk-Latn/standard: [čí]}
+  forms:
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [čia]}, status: pinned}
+- id: lexeme:čítať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to read}
+  spelled: {sk-Latn/standard: [čítať]}
+  forms:
+  - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [čítala]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}, spelled: {sk-Latn/standard: [čítal]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [čítam]}, status: pinned}
+- id: lexeme:ďakovať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: 'to thank; ďakujem: thank you'}
+  notes: {en: 'Ďakujem: thank you, thanks. Vďaka is shorter and as friendly.'}
+  spelled: {sk-Latn/standard: [ďakovať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [ďakujem]}, status: pinned}
+- id: lexeme:ďaleko
+  pos: ADV
+  gloss: {en: 'far, far away'}
+  spelled: {sk-Latn/standard: [ďaleko]}
+- id: lexeme:ľahnúť-si
+  pos: VERB
+  feats: {Aspect: Perf}
+  gloss: {en: to lie down}
+  spelled: {sk-Latn/standard: [ľahnúť si]}
+  forms:
+  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {sk-Latn/standard: [ľahni]}, status: pinned}
+- id: lexeme:šesť
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: six}
+  notes: {en: 'From five on, a noun after the number is in the genitive plural: päť domov.'}
+  spelled: {sk-Latn/standard: [šesť]}
+- id: lexeme:šiesty
+  pos: ADJ
+  gloss: {en: 'sixth; o šiestej: at six'}
+  spelled: {sk-Latn/standard: [šiesty]}
+  forms:
+  - {feats: {Case: Loc, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [šiestej]}, status: pinned}
+- id: lexeme:škola
+  pos: NOUN
+  gloss: {en: school}
+  spelled: {sk-Latn/standard: [škola]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [školy]}, status: pinned}
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [škole]}, status: pinned}
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [školy]}, status: pinned}
+- id: lexeme:štadión
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: 'stadium, (ice) rink'}
+  spelled: {sk-Latn/standard: [štadión]}
+  forms:
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [štadióne]}, status: pinned}
+- id: lexeme:štedrý-večer
+  pos: NOUN
+  gloss: {en: Christmas Eve}
+  notes: {en: 'The evening of 24 December, when Slovak families eat their Christmas dinner and open presents.'}
+  spelled: {sk-Latn/standard: [Štedrý večer]}
+- id: lexeme:študent
+  pos: NOUN
+  feats: {Animacy: Anim, Gender: Masc}
+  gloss: {en: student (a man)}
+  spelled: {sk-Latn/standard: [študent]}
+  image: {file: ../../courses/images/student.svg, license: CC0-1.0, provenance: {author: 'llm:claude@sk-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
+  forms:
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [študenti]}, status: pinned}
+- id: lexeme:študentka
+  pos: NOUN
+  gloss: {en: student (a woman)}
+  spelled: {sk-Latn/standard: [študentka]}
+  forms:
+  - {feats: {Case: Nom, Number: Plur}, spelled: {sk-Latn/standard: [študentky]}, status: pinned}
+- id: lexeme:študovať
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to study (at a university)}
+  spelled: {sk-Latn/standard: [študovať]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [študujem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [študuješ]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [študuje]}, status: pinned}
+- id: lexeme:štvrtok
+  pos: NOUN
+  feats: {Animacy: Inan}
+  gloss: {en: Thursday}
+  spelled: {sk-Latn/standard: [štvrtok]}
+- id: lexeme:štyri
+  pos: NUM
+  feats: {NumType: Card}
+  gloss: {en: four}
+  notes: {en: 'Štyri domy, štyri ženy; štyria bratia (men).'}
+  spelled: {sk-Latn/standard: [štyri]}
+  forms:
+  - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, spelled: {sk-Latn/standard: [štyria]}, status: pinned}
+- id: lexeme:šálka
+  pos: NOUN
+  gloss: {en: cup}
+  notes: {en: 'Šálka kávy: a cup of coffee (the genitive).'}
+  spelled: {sk-Latn/standard: [šálka]}
+  forms:
+  - {feats: {Case: Acc, Number: Sing}, spelled: {sk-Latn/standard: [šálku]}, status: pinned}
+- id: lexeme:že
+  pos: SCONJ
+  gloss: {en: that}
+  notes: {en: 'Povedala, že je unavená: she said (that) she was tired. A comma always comes before že.'}
+  spelled: {sk-Latn/standard: [že]}
+- id: lexeme:že.part
+  pos: PART
+  gloss: {en: '(emphasis, in questions: a ty že kde? and you, where are you going?)'}
+  spelled: {sk-Latn/standard: [že]}
+- id: lexeme:žilina
+  pos: PROPN
+  gloss: {en: Žilina (a town in the north-west of Slovakia)}
+  spelled: {sk-Latn/standard: [Žilina]}
+  forms:
+  - {feats: {Case: Gen, Number: Sing}, spelled: {sk-Latn/standard: [Žiliny]}, status: pinned}
+  - {feats: {Case: Loc, Number: Sing}, spelled: {sk-Latn/standard: [Žiline]}, status: pinned}
+- id: lexeme:žiť
+  pos: VERB
+  feats: {Aspect: Imp}
+  gloss: {en: to live}
+  spelled: {sk-Latn/standard: [žiť]}
+  forms:
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [žijem]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {sk-Latn/standard: [žiješ]}, status: pinned}
+- id: lexeme:žltý
+  pos: ADJ
+  gloss: {en: yellow}
+  spelled: {sk-Latn/standard: [žltý]}
+  forms:
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {sk-Latn/standard: [žltú]}, status: pinned}

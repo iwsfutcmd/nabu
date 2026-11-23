@@ -1,0 +1,492 @@
+# Unit 9 (sk): the locative (v Žiline, na námestí, o Samkovi, po práci, pri univerzite); where and where to
+# (na námestí, na námestie); ordinals and floors; months; Tereza looks for a flat in Bratislava.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u09
+title:
+  en: Kde bývaš? Where do you live?
+cefr: A2
+nodes:
+- {id: sk.u09.byvat, kind: lesson, introduces: ['lexeme:bývať', 'feature:Case=Loc', 'lexeme:centrum', 'lexeme:košice']}
+- {id: sk.u09.hladat, kind: lesson, introduces: ['lexeme:hľadať', 'lexeme:poschodie', 'lexeme:prvý', 'lexeme:druhý', 'lexeme:tretí', 'lexeme:balkón', 'lexeme:výťah']}
+- {id: sk.u09.kde-kam, kind: lesson, introduces: ['lexeme:drahý', 'lexeme:lacný', 'lexeme:tento', 'lexeme:teraz']}
+- {id: sk.u09.o-po-pri, kind: lesson, introduces: ['lexeme:o', 'lexeme:po', 'lexeme:pri', 'lexeme:blízko']}
+- {id: sk.u09.mesiace, kind: lesson, introduces: ['lexeme:mesiac', 'lexeme:január', 'lexeme:máj', 'lexeme:júl', 'lexeme:august', 'lexeme:september', 'lexeme:december']}
+- {id: sk.u09.story, kind: story}
+sentences:
+- id: s.u09.1
+  node: sk.u09.byvat
+  forms:
+    sk-Latn/standard:
+      text: Kde bývaš?
+      tokens: [{surface: Kde, lexeme: kde}, {surface: bývaš, lexeme: bývať, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: Kde (bývaš|bývate|ty bývaš|vy bývate)
+  translations:
+    en: Where do you live?
+- id: s.u09.2
+  node: sk.u09.byvat
+  forms:
+    sk-Latn/standard:
+      text: Bývam v Žiline.
+      tokens: [{surface: Bývam, lexeme: bývať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: v, lexeme: v}, {surface: Žiline, lexeme: žilina, feats: {Case: Loc, Number: Sing}}]
+      reverse: (Bývam v Žiline|Ja bývam v Žiline|V Žiline bývam)
+  translations:
+    en: I live in Žilina.
+- id: s.u09.3
+  node: sk.u09.byvat
+  forms:
+    sk-Latn/standard:
+      text: Tereza býva v Bratislave.
+      tokens: [{surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: býva, lexeme: bývať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: v,
+          lexeme: v}, {surface: Bratislave, lexeme: bratislava, feats: {Case: Loc, Number: Sing}}]
+      reverse: (Tereza býva v Bratislave|V Bratislave býva Tereza)
+  translations:
+    en: Tereza lives in Bratislava.
+- id: s.u09.4
+  node: sk.u09.byvat
+  forms:
+    sk-Latn/standard:
+      text: Bývame v centre.
+      tokens: [{surface: Bývame, lexeme: bývať, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: v, lexeme: v}, {surface: centre, lexeme: centrum, feats: {Case: Loc,
+            Number: Sing}}]
+      reverse: (Bývame|My bývame) v centre
+  translations:
+    en: |-
+      We live in the (centre|center).
+      We live (downtown|in town).
+- id: s.u09.5
+  node: sk.u09.byvat
+  forms:
+    sk-Latn/standard:
+      text: Liam býva v Košiciach.
+      tokens: [{surface: Liam, lexeme: liam, feats: {Case: Nom, Number: Sing}}, {surface: býva, lexeme: bývať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: v, lexeme: v},
+        {surface: Košiciach, lexeme: košice, feats: {Case: Loc, Number: Plur}}]
+      reverse: (Liam býva v Košiciach|V Košiciach býva Liam)
+  translations:
+    en: Liam lives in Košice.
+- id: s.u09.6
+  node: sk.u09.byvat
+  forms:
+    sk-Latn/standard:
+      text: Lucka je v nemocnici.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: v, lexeme: v},
+        {surface: nemocnici, lexeme: nemocnica, feats: {Case: Loc, Number: Sing}}]
+      reverse: Lucka je v nemocnici
+  translations:
+    en: Lucka is (in|at) the hospital.
+- id: s.u09.7
+  node: sk.u09.byvat
+  forms:
+    sk-Latn/standard:
+      text: Samko je v škole.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: v, lexeme: v},
+        {surface: škole, lexeme: škola, feats: {Case: Loc, Number: Sing}}]
+      reverse: Samko je v škole
+  translations:
+    en: Samko is at school.
+- id: s.u09.8
+  node: sk.u09.hladat
+  forms:
+    sk-Latn/standard:
+      text: Hľadám byt v Bratislave.
+      tokens: [{surface: Hľadám, lexeme: hľadať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: byt, lexeme: byt, feats: {Case: Acc, Number: Sing}}, {surface: v, lexeme: v},
+        {surface: Bratislave, lexeme: bratislava, feats: {Case: Loc, Number: Sing}}]
+      reverse: (Hľadám|Ja hľadám) byt v Bratislave
+  translations:
+    en: (I'm|I am) looking for a (flat|apartment) in Bratislava.
+- id: s.u09.9
+  node: sk.u09.hladat
+  forms:
+    sk-Latn/standard:
+      text: Byt je na treťom poschodí.
+      tokens: [{surface: Byt, lexeme: byt, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na},
+        {surface: treťom, lexeme: tretí, feats: {Case: Loc, Gender: Neut, Number: Sing}}, {surface: poschodí, lexeme: poschodie, feats: {Case: Loc, Number: Sing}}]
+      reverse: Byt je na treťom poschodí
+  translations:
+    en: The (flat|apartment) is on the third floor.
+- id: s.u09.10
+  node: sk.u09.hladat
+  forms:
+    sk-Latn/standard:
+      text: Je tam výťah?
+      tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tam, lexeme: tam}, {surface: výťah, lexeme: výťah, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Je tam výťah|Je výťah tam)
+  translations:
+    en: Is there a (lift|elevator)?
+- id: s.u09.11
+  node: sk.u09.hladat
+  forms:
+    sk-Latn/standard:
+      text: Na balkóne je stôl.
+      tokens: [{surface: Na, lexeme: na}, {surface: balkóne, lexeme: balkón, feats: {Case: Loc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: stôl, lexeme: stôl, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Na balkóne je stôl|Stôl je na balkóne)
+  translations:
+    en: |-
+      (There's|There is) a table on the balcony.
+      The table is on the balcony.
+- id: s.u09.12
+  node: sk.u09.hladat
+  forms:
+    sk-Latn/standard:
+      text: Bývam na prvom poschodí.
+      tokens: [{surface: Bývam, lexeme: bývať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na}, {surface: prvom, lexeme: prvý, feats: {Case: Loc, Gender: Neut,
+            Number: Sing}}, {surface: poschodí, lexeme: poschodie, feats: {Case: Loc, Number: Sing}}]
+      reverse: (Bývam|Ja bývam) na prvom poschodí
+  translations:
+    en: I live on the first floor.
+- id: s.u09.13
+  node: sk.u09.hladat
+  forms:
+    sk-Latn/standard:
+      text: Pani Tóthová býva na druhom poschodí.
+      tokens: [{surface: Pani, lexeme: pani, feats: {Case: Nom, Number: Sing}}, {surface: Tóthová, lexeme: tóthová, feats: {Case: Nom, Number: Sing}}, {surface: býva, lexeme: bývať, feats: {Mood: Ind, Number: Sing,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na}, {surface: druhom, lexeme: druhý, feats: {Case: Loc, Gender: Neut, Number: Sing}}, {surface: poschodí, lexeme: poschodie,
+          feats: {Case: Loc, Number: Sing}}]
+      reverse: Pani Tóthová býva na druhom poschodí
+  translations:
+    en: Mrs Tóthová lives on the second floor.
+- id: s.u09.14
+  node: sk.u09.kde-kam
+  forms:
+    sk-Latn/standard:
+      text: Idem na námestie.
+      tokens: [{surface: Idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na}, {surface: námestie, lexeme: námestie, feats: {Case: Acc,
+            Number: Sing}}]
+      reverse: (Idem|Ja idem) na námestie
+  translations:
+    en: (I'm|I am) going to the square.
+- id: s.u09.15
+  node: sk.u09.kde-kam
+  forms:
+    sk-Latn/standard:
+      text: Som na námestí.
+      tokens: [{surface: Som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: na, lexeme: na}, {surface: námestí, lexeme: námestie, feats: {Case: Loc,
+            Number: Sing}}]
+      reverse: (Som|Ja som) na námestí
+  translations:
+    en: (I'm|I am) (on|in|at) the square.
+- id: s.u09.16
+  node: sk.u09.kde-kam
+  forms:
+    sk-Latn/standard:
+      text: Byt v centre je drahý.
+      tokens: [{surface: Byt, lexeme: byt, feats: {Case: Nom, Number: Sing}}, {surface: v, lexeme: v}, {surface: centre, lexeme: centrum, feats: {Case: Loc, Number: Sing}}, {surface: je, lexeme: byť, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: drahý, lexeme: drahý, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}]
+      reverse: Byt v centre je drahý
+  translations:
+    en: |-
+      A (flat|apartment) in the (centre|center) is expensive.
+      The (flat|apartment) in the (centre|center) is expensive.
+- id: s.u09.17
+  node: sk.u09.kde-kam
+  forms:
+    sk-Latn/standard:
+      text: Ten byt je lacný.
+      tokens: [{surface: Ten, lexeme: ten, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: byt, lexeme: byt, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: lacný, lexeme: lacný, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}]
+      reverse: Ten byt je lacný
+  translations:
+    en: That (flat|apartment) is cheap.
+- id: s.u09.18
+  node: sk.u09.kde-kam
+  forms:
+    sk-Latn/standard:
+      text: Tento byt je lacný.
+      tokens: [{surface: Tento, lexeme: tento, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: byt, lexeme: byt, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: lacný, lexeme: lacný, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}]
+      reverse: Tento byt je lacný
+  translations:
+    en: This (flat|apartment) is cheap.
+- id: s.u09.19
+  node: sk.u09.kde-kam
+  forms:
+    sk-Latn/standard:
+      text: Teraz bývam v Bratislave.
+      tokens: [{surface: Teraz, lexeme: teraz}, {surface: bývam, lexeme: bývať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: v, lexeme: v}, {surface: Bratislave,
+          lexeme: bratislava, feats: {Case: Loc, Number: Sing}}]
+      reverse: (Teraz bývam v Bratislave|Teraz ja bývam v Bratislave|V Bratislave teraz bývam)
+  translations:
+    en: |-
+      (Now I live|I now live|I live now|I'm living now) in Bratislava.
+      I live in Bratislava now.
+- id: s.u09.20
+  node: sk.u09.kde-kam
+  forms:
+    sk-Latn/standard:
+      text: Ideš do kaviarne? Som v kaviarni.
+      tokens: [{surface: Ideš, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: kaviarne, lexeme: kaviareň, feats: {Case: Gen,
+            Number: Sing}}, {surface: Som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: v, lexeme: v}, {surface: kaviarni, lexeme: kaviareň, feats: {
+            Case: Loc, Number: Sing}}]
+      reverse: (Ideš do kaviarne som v kaviarni|Idete do kaviarne som v kaviarni)
+  translations:
+    en: Are you going to the café? (I'm|I am) in the café.
+- id: s.u09.21
+  node: sk.u09.o-po-pri
+  forms:
+    sk-Latn/standard:
+      text: Hovoríme o Samkovi.
+      tokens: [{surface: Hovoríme, lexeme: hovoriť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: o, lexeme: o}, {surface: Samkovi, lexeme: samko, feats: {Case: Loc,
+            Number: Sing}}]
+      reverse: (Hovoríme|My hovoríme) o Samkovi
+  translations:
+    en: (We're|We are) talking about Samko.
+- id: s.u09.22
+  node: sk.u09.o-po-pri
+  forms:
+    sk-Latn/standard:
+      text: Po práci idem domov.
+      tokens: [{surface: Po, lexeme: po}, {surface: práci, lexeme: práca, feats: {Case: Loc, Number: Sing}}, {surface: idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: domov, lexeme: domov}]
+      reverse: (Po práci idem domov|Idem domov po práci)
+  translations:
+    en: |-
+      After work (I'm|I am) going home.
+      (I'm|I am) going home after work.
+      After work I go home.
+- id: s.u09.23
+  node: sk.u09.o-po-pri
+  forms:
+    sk-Latn/standard:
+      text: Kaviareň je pri univerzite.
+      tokens: [{surface: Kaviareň, lexeme: kaviareň, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pri,
+          lexeme: pri}, {surface: univerzite, lexeme: univerzita, feats: {Case: Loc, Number: Sing}}]
+      reverse: Kaviareň je pri univerzite
+  translations:
+    en: The café is (near|by|next to) the university.
+- id: s.u09.24
+  node: sk.u09.o-po-pri
+  forms:
+    sk-Latn/standard:
+      text: Univerzita je blízko.
+      tokens: [{surface: Univerzita, lexeme: univerzita, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: blízko,
+          lexeme: blízko}]
+      reverse: Univerzita je blízko
+  translations:
+    en: The university is (near|close|nearby|close by).
+- id: s.u09.25
+  node: sk.u09.o-po-pri
+  forms:
+    sk-Latn/standard:
+      text: Po meste ideme autobusom.
+      tokens: [{surface: Po, lexeme: po}, {surface: meste, lexeme: mesto, feats: {Case: Loc, Number: Sing}}, {surface: ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: autobusom, lexeme: autobus, feats: {Case: Ins, Number: Sing}}]
+      reverse: (Po meste ideme autobusom|Ideme po meste autobusom)
+  translations:
+    en: |-
+      We go around (town|the town|the city) by bus.
+      (We're|We are) going around (town|the town|the city) by bus.
+- id: s.u09.26
+  node: sk.u09.mesiace
+  forms:
+    sk-Latn/standard:
+      text: Narodeniny mám v máji.
+      tokens: [{surface: Narodeniny, lexeme: narodeniny, feats: {Case: Acc, Number: Plur}}, {surface: mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: v,
+          lexeme: v}, {surface: máji, lexeme: máj, feats: {Case: Loc, Number: Sing}}]
+      reverse: (Narodeniny mám v máji|Mám narodeniny v máji|V máji mám narodeniny)
+  translations:
+    en: |-
+      My birthday is in May.
+      I have my birthday in May.
+- id: s.u09.27
+  node: sk.u09.mesiace
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: V januári som bol v Košiciach.
+      tokens: [{surface: V, lexeme: v}, {surface: januári, lexeme: január, feats: {Case: Loc, Number: Sing}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: bol, lexeme: byť, feats: {Gender: Masc, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: v, lexeme: v}, {surface: Košiciach, lexeme: košice, feats: {Case: Loc, Number: Plur}}]
+      reverse: (V januári som bol v Košiciach|Bol som v Košiciach v januári)
+  translations:
+    en: |-
+      In January I was in Košice.
+      I was in Košice in January.
+- id: s.u09.28
+  node: sk.u09.mesiace
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: V júli som bola v Bratislave.
+      tokens: [{surface: V, lexeme: v}, {surface: júli, lexeme: júl, feats: {Case: Loc, Number: Sing}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: bola, lexeme: byť, feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}}, {surface: v, lexeme: v}, {surface: Bratislave, lexeme: bratislava, feats: {Case: Loc, Number: Sing}}]
+      reverse: (V júli som bola v Bratislave|Bola som v Bratislave v júli)
+  translations:
+    en: |-
+      In July I was in Bratislava.
+      I was in Bratislava in July.
+- id: s.u09.29
+  node: sk.u09.mesiace
+  forms:
+    sk-Latn/standard:
+      text: August je pekný mesiac.
+      tokens: [{surface: August, lexeme: august, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pekný,
+          lexeme: pekný, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: mesiac, lexeme: mesiac, feats: {Case: Nom, Number: Sing}}]
+      reverse: August je pekný mesiac
+  translations:
+    en: August is a (nice|lovely|good) month.
+- id: s.u09.30
+  node: sk.u09.mesiace
+  forms:
+    sk-Latn/standard:
+      text: V septembri ide Samko do školy.
+      tokens: [{surface: V, lexeme: v}, {surface: septembri, lexeme: september, feats: {Case: Loc, Number: Sing}}, {surface: ide, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+            VerbForm: Fin}}, {surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: do, lexeme: do}, {surface: školy, lexeme: škola, feats: {Case: Gen, Number: Sing}}]
+      reverse: (V septembri ide Samko do školy|Samko ide do školy v septembri)
+  translations:
+    en: |-
+      In September Samko (goes|is going) to school.
+      Samko (goes|is going) to school in September.
+- id: s.u09.31
+  node: sk.u09.mesiace
+  forms:
+    sk-Latn/standard:
+      text: V decembri som doma.
+      tokens: [{surface: V, lexeme: v}, {surface: decembri, lexeme: december, feats: {Case: Loc, Number: Sing}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: doma, lexeme: doma}]
+      reverse: (V decembri som doma|Som doma v decembri)
+  translations:
+    en: |-
+      In December (I'm|I am) [at] home.
+      (I'm|I am) [at] home in December.
+stories:
+- id: sk.story.u09
+  node: sk.u09.story
+  title:
+    en: A flat in Bratislava
+  characters:
+  - id: tereza
+    speaker: f
+    name:
+      sk-Latn/standard: Tereza
+  - id: pan
+    speaker: m
+    name:
+      sk-Latn/standard: Pán Kováč
+  steps:
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Dobrý deň! Hľadám byt v Bratislave.
+          tokens: [{surface: Dobrý, lexeme: dobrý-deň}, {surface: deň, lexeme: dobrý-deň}, {surface: Hľadám, lexeme: hľadať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {
+              surface: byt, lexeme: byt, feats: {Case: Acc, Number: Sing}}, {surface: v, lexeme: v}, {surface: Bratislave, lexeme: bratislava, feats: {Case: Loc, Number: Sing}}]
+      translations:
+        en: Hello! I'm looking for a flat in Bratislava.
+  - line:
+      speaker: pan
+      forms:
+        sk-Latn/standard:
+          text: Dobrý deň. Tento byt je v centre.
+          tokens: [{surface: Dobrý, lexeme: dobrý-deň}, {surface: deň, lexeme: dobrý-deň}, {surface: Tento, lexeme: tento, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: byt,
+              lexeme: byt, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: v, lexeme: v}, {surface: centre,
+              lexeme: centrum, feats: {Case: Loc, Number: Sing}}]
+      translations:
+        en: Hello. This flat is in the centre.
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Na ktorom poschodí?
+          tokens: [{surface: Na, lexeme: na}, {surface: ktorom, lexeme: ktorý, feats: {Case: Loc, Gender: Neut, Number: Sing}}, {surface: poschodí, lexeme: poschodie, feats: {Case: Loc, Number: Sing}}]
+      translations:
+        en: On which floor?
+  - line:
+      speaker: pan
+      forms:
+        sk-Latn/standard:
+          text: Na treťom poschodí. Je tam aj výťah.
+          tokens: [{surface: Na, lexeme: na}, {surface: treťom, lexeme: tretí, feats: {Case: Loc, Gender: Neut, Number: Sing}}, {surface: poschodí, lexeme: poschodie, feats: {Case: Loc, Number: Sing}},
+            {surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tam, lexeme: tam}, {surface: aj, lexeme: aj}, {surface: výťah, lexeme: výťah,
+              feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: On the third floor. There's a lift too.
+  - choose:
+      prompt:
+        en: Which floor is the flat on?
+      options:
+      - en: The third
+      - en: The first
+      - en: The second
+      answer: 0
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Je tam balkón?
+          tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tam, lexeme: tam}, {surface: balkón, lexeme: balkón, feats: {Case: Nom,
+                Number: Sing}}]
+      translations:
+        en: Is there a balcony?
+  - line:
+      speaker: pan
+      forms:
+        sk-Latn/standard:
+          text: Áno, je. Na balkóne je stôl.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Na, lexeme: na}, {surface: balkóne, lexeme: balkón,
+              feats: {Case: Loc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: stôl, lexeme: stôl, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Yes, there is. There's a table on the balcony.
+  - line:
+      speaker: tereza
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Je byt drahý?
+          tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: byt, lexeme: byt, feats: {Case: Nom, Number: Sing}}, {surface: drahý,
+              lexeme: drahý, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}]
+      translations:
+        en: Is the flat expensive?
+  - line:
+      speaker: pan
+      forms:
+        sk-Latn/standard:
+          text: Nie je lacný, ale je v centre.
+          tokens: [{surface: Nie, lexeme: nie}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: lacný, lexeme: lacný, feats: {Animacy: Inan,
+                Case: Nom, Gender: Masc, Number: Sing}}, {surface: ale, lexeme: ale}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: v,
+              lexeme: v}, {surface: centre, lexeme: centrum, feats: {Case: Loc, Number: Sing}}]
+      translations:
+        en: It isn't cheap, but it's in the centre.
+  - line:
+      speaker: tereza
+      ask: complete
+      gap: lexeme:centrum
+      distractors:
+      - lexeme:námestie
+      - lexeme:poschodie
+      forms:
+        sk-Latn/standard:
+          text: Byt v centre je dobrý. Univerzita je blízko.
+          tokens: [{surface: Byt, lexeme: byt, feats: {Case: Nom, Number: Sing}}, {surface: v, lexeme: v}, {surface: centre, lexeme: centrum, feats: {Case: Loc, Number: Sing}}, {surface: je, lexeme: byť,
+              feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dobrý, lexeme: dobrý, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: Univerzita,
+              lexeme: univerzita, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: blízko, lexeme: blízko}]
+      translations:
+        en: A flat in the centre is good. The university is near.
+  - choose:
+      prompt:
+        en: Is the flat cheap?
+      options:
+      - en: 'No'
+      - en: 'Yes'
+      - en: The story doesn't say.
+      answer: 0
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Ďakujem. Môžem ho vidieť?
+          tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Môžem, lexeme: môcť, feats: {Mood: Ind, Number: Sing, Person: '1',
+                Tense: Pres, VerbForm: Fin}}, {surface: ho, lexeme: 'on', feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}}, {surface: vidieť, lexeme: vidieť, feats: {VerbForm: Inf}}]
+      translations:
+        en: Thank you. Can I see it?
+scenarios:
+- id: sk.byt
+  after: sk.u09.mesiace
+  title:
+    en: Viewing a flat
+  setting:
+    en: A flat on the third floor of an old building in the centre of Bratislava, on a weekday afternoon. You are a student looking for somewhere to live.
+  character:
+    en: The owner, a polite but businesslike man in his sixties, who wants a quiet tenant.
+  goal:
+    en: Greet him politely (with vy), ask which floor the flat is on, whether there is a lift and a balcony, whether it is expensive, and say whether you want it.

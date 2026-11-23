@@ -1,0 +1,519 @@
+# Unit 3 (sk): gender, adjectives in the nominative (pekný, krásny), ten, tá, to; my, your, his, her, our,
+# their (môj, tvoj, jeho, jej, náš, váš, ich); whose, what kind of, which; rooms and furniture.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u03
+title:
+  en: U nás doma At home
+cefr: A1
+nodes:
+- {id: sk.u03.byt, kind: lesson, introduces: ['lexeme:byt', 'lexeme:tu', 'lexeme:izba', 'lexeme:tam', 'lexeme:kuchyňa', 'lexeme:kde', 'lexeme:kúpeľňa', 'lexeme:doma']}
+- {id: sk.u03.pekny, kind: lesson, introduces: ['lexeme:pekný', 'feature:Gender=Fem', 'lexeme:malý', 'lexeme:veľký', 'lexeme:nový', 'lexeme:dom', 'lexeme:starý', 'lexeme:okno', 'feature:Gender=Neut']}
+- {id: sk.u03.nabytok, kind: lesson, introduces: ['lexeme:stôl', 'lexeme:stolička', 'lexeme:posteľ', 'lexeme:lampa', 'lexeme:kreslo', 'lexeme:gauč']}
+- {id: sk.u03.moj, kind: lesson, introduces: ['lexeme:môj', 'lexeme:tvoj', 'lexeme:náš', 'lexeme:váš']}
+- {id: sk.u03.jeho, kind: lesson, introduces: ['lexeme:jeho.poss', 'lexeme:jej.poss', 'lexeme:ich.poss', 'lexeme:čí']}
+- {id: sk.u03.aky, kind: lesson, introduces: ['lexeme:aký', 'lexeme:krásny', 'lexeme:útulný', 'lexeme:ktorý', 'lexeme:svetlý', 'lexeme:ale']}
+- {id: sk.u03.story, kind: story}
+sentences:
+- id: s.u03.1
+  node: sk.u03.byt
+  forms:
+    sk-Latn/standard:
+      text: To je byt.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: byt,
+          lexeme: byt, feats: {Case: Nom, Number: Sing}}]
+      reverse: (To je|Je to) byt
+  translations:
+    en: (That's|That is|This is|It's|It is) (a|the) (flat|apartment).
+- id: s.u03.2
+  node: sk.u03.byt
+  forms:
+    sk-Latn/standard:
+      text: Tu je izba.
+      tokens: [{surface: Tu, lexeme: tu}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: izba, lexeme: izba, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Tu je izba|Izba je tu)
+  translations:
+    en: |-
+      (Here's|Here is) (a|the) room.
+      The room is here.
+- id: s.u03.3
+  node: sk.u03.byt
+  forms:
+    sk-Latn/standard:
+      text: Tam je kuchyňa.
+      tokens: [{surface: Tam, lexeme: tam}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kuchyňa, lexeme: kuchyňa, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: (Tam je kuchyňa|Kuchyňa je tam)
+  translations:
+    en: |-
+      (There's|There is) the kitchen.
+      The kitchen is [over] there.
+- id: s.u03.4
+  node: sk.u03.byt
+  forms:
+    sk-Latn/standard:
+      text: Kde je kúpeľňa?
+      tokens: [{surface: Kde, lexeme: kde}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kúpeľňa, lexeme: kúpeľňa, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: Kde je kúpeľňa
+  translations:
+    en: (Where's|Where is) the bathroom?
+- id: s.u03.5
+  node: sk.u03.byt
+  forms:
+    sk-Latn/standard:
+      text: Kúpeľňa je tu.
+      tokens: [{surface: Kúpeľňa, lexeme: kúpeľňa, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu,
+          lexeme: tu}]
+      reverse: (Kúpeľňa je tu|Tu je kúpeľňa)
+  translations:
+    en: |-
+      The bathroom is here.
+      (Here's|Here is) the bathroom.
+- id: s.u03.6
+  node: sk.u03.byt
+  forms:
+    sk-Latn/standard:
+      text: Lucka je doma.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: doma, lexeme: doma}]
+      reverse: Lucka je doma
+  translations:
+    en: Lucka is [at] home.
+- id: s.u03.7
+  node: sk.u03.pekny
+  forms:
+    sk-Latn/standard:
+      text: Byt je pekný.
+      tokens: [{surface: Byt, lexeme: byt, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pekný, lexeme: pekný,
+          feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}]
+      reverse: Byt je pekný
+  translations:
+    en: The (flat|apartment) is (nice|lovely|pretty).
+- id: s.u03.8
+  node: sk.u03.pekny
+  forms:
+    sk-Latn/standard:
+      text: Izba je pekná.
+      tokens: [{surface: Izba, lexeme: izba, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pekná, lexeme: pekný,
+          feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Izba je pekná
+  translations:
+    en: The room is (nice|lovely|pretty).
+- id: s.u03.9
+  node: sk.u03.pekny
+  forms:
+    sk-Latn/standard:
+      text: Kúpeľňa je malá.
+      tokens: [{surface: Kúpeľňa, lexeme: kúpeľňa, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: malá,
+          lexeme: malý, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Kúpeľňa je malá
+  translations:
+    en: The bathroom is (small|little).
+- id: s.u03.10
+  node: sk.u03.pekny
+  forms:
+    sk-Latn/standard:
+      text: To je veľký byt.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veľký,
+          lexeme: veľký, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: byt, lexeme: byt, feats: {Case: Nom, Number: Sing}}]
+      reverse: (To je|Je to) veľký byt
+  translations:
+    en: (That's|That is|This is|It's|It is) a (big|large) (flat|apartment).
+- id: s.u03.11
+  node: sk.u03.pekny
+  forms:
+    sk-Latn/standard:
+      text: Kuchyňa je nová.
+      tokens: [{surface: Kuchyňa, lexeme: kuchyňa, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nová,
+          lexeme: nový, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Kuchyňa je nová
+  translations:
+    en: The kitchen is new.
+- id: s.u03.12
+  node: sk.u03.pekny
+  forms:
+    sk-Latn/standard:
+      text: Dom je starý.
+      tokens: [{surface: Dom, lexeme: dom, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: starý, lexeme: starý,
+          feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}]
+      reverse: Dom je starý
+  translations:
+    en: The house is old.
+- id: s.u03.13
+  node: sk.u03.pekny
+  forms:
+    sk-Latn/standard:
+      text: Okno je veľké.
+      tokens: [{surface: Okno, lexeme: okno, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veľké, lexeme: veľký,
+          feats: {Case: Nom, Gender: Neut, Number: Sing}}]
+      reverse: Okno je veľké
+  translations:
+    en: The window is (big|large).
+- id: s.u03.14
+  node: sk.u03.nabytok
+  forms:
+    sk-Latn/standard:
+      text: Tu je stôl a stolička.
+      tokens: [{surface: Tu, lexeme: tu}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: stôl, lexeme: stôl, feats: {Case: Nom, Number: Sing}},
+        {surface: a, lexeme: a}, {surface: stolička, lexeme: stolička, feats: {Case: Nom, Number: Sing}}]
+      reverse: Tu je stôl a stolička
+  translations:
+    en: |-
+      (Here's|Here is) a table and a chair.
+      (There's|There is) a table and a chair here.
+- id: s.u03.15
+  node: sk.u03.nabytok
+  forms:
+    sk-Latn/standard:
+      text: Posteľ je nová.
+      tokens: [{surface: Posteľ, lexeme: posteľ, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nová,
+          lexeme: nový, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Posteľ je nová
+  translations:
+    en: The bed is new.
+- id: s.u03.16
+  node: sk.u03.nabytok
+  forms:
+    sk-Latn/standard:
+      text: Lampa je malá.
+      tokens: [{surface: Lampa, lexeme: lampa, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: malá, lexeme: malý,
+          feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Lampa je malá
+  translations:
+    en: The lamp is (small|little).
+- id: s.u03.17
+  node: sk.u03.nabytok
+  forms:
+    sk-Latn/standard:
+      text: To je pekné kreslo.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pekné,
+          lexeme: pekný, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: kreslo, lexeme: kreslo, feats: {Case: Nom, Number: Sing}}]
+      reverse: (To je|Je to) pekné kreslo
+  translations:
+    en: (That's|That is|This is|It's|It is) a (nice|lovely|pretty) armchair.
+- id: s.u03.18
+  node: sk.u03.nabytok
+  forms:
+    sk-Latn/standard:
+      text: Gauč je veľký a pekný.
+      tokens: [{surface: Gauč, lexeme: gauč, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veľký, lexeme: veľký,
+          feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: a, lexeme: a}, {surface: pekný, lexeme: pekný, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}]
+      reverse: Gauč je veľký a pekný
+  translations:
+    en: The (sofa|couch) is (big|large) and (nice|lovely|pretty).
+- id: s.u03.19
+  node: sk.u03.moj
+  forms:
+    sk-Latn/standard:
+      text: To je môj byt.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: môj,
+          lexeme: môj, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: byt, lexeme: byt, feats: {Case: Nom, Number: Sing}}]
+      reverse: (To je|Je to) môj byt
+  translations:
+    en: (That's|That is|This is|It's|It is) my (flat|apartment).
+- id: s.u03.20
+  node: sk.u03.moj
+  forms:
+    sk-Latn/standard:
+      text: Moja izba je malá.
+      tokens: [{surface: Moja, lexeme: môj, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: izba, lexeme: izba, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: malá, lexeme: malý, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Moja izba je malá
+  translations:
+    en: My room is (small|little).
+- id: s.u03.21
+  node: sk.u03.moj
+  forms:
+    sk-Latn/standard:
+      text: Je to tvoja kuchyňa?
+      tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: to, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: tvoja,
+          lexeme: tvoj, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: kuchyňa, lexeme: kuchyňa, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Je to|To je) (tvoja|vaša) kuchyňa
+  translations:
+    en: Is (that|this|it) your kitchen?
+- id: s.u03.22
+  node: sk.u03.moj
+  forms:
+    sk-Latn/standard:
+      text: To je náš dom.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: náš,
+          lexeme: náš, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: dom, lexeme: dom, feats: {Case: Nom, Number: Sing}}]
+      reverse: (To je|Je to) náš dom
+  translations:
+    en: (That's|That is|This is|It's|It is) our house.
+- id: s.u03.23
+  node: sk.u03.moj
+  forms:
+    sk-Latn/standard:
+      text: Váš byt je veľmi pekný.
+      tokens: [{surface: Váš, lexeme: váš, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: byt, lexeme: byt, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veľmi, lexeme: veľmi}, {surface: pekný, lexeme: pekný, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}]
+      reverse: (Váš|Tvoj) byt je veľmi pekný
+  translations:
+    en: Your (flat|apartment) is very (nice|lovely|pretty).
+- id: s.u03.24
+  node: sk.u03.moj
+  forms:
+    sk-Latn/standard:
+      text: Moje kreslo je staré.
+      tokens: [{surface: Moje, lexeme: môj, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: kreslo, lexeme: kreslo, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: staré, lexeme: starý, feats: {Case: Nom, Gender: Neut, Number: Sing}}]
+      reverse: Moje kreslo je staré
+  translations:
+    en: My armchair is old.
+- id: s.u03.25
+  node: sk.u03.jeho
+  forms:
+    sk-Latn/standard:
+      text: To je jeho izba.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: jeho,
+          lexeme: jeho.poss}, {surface: izba, lexeme: izba, feats: {Case: Nom, Number: Sing}}]
+      reverse: (To je|Je to) jeho izba
+  translations:
+    en: (That's|That is|This is|It's|It is) his room.
+- id: s.u03.26
+  node: sk.u03.jeho
+  forms:
+    sk-Latn/standard:
+      text: Jej posteľ je nová.
+      tokens: [{surface: Jej, lexeme: jej.poss}, {surface: posteľ, lexeme: posteľ, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+            VerbForm: Fin}}, {surface: nová, lexeme: nový, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Jej posteľ je nová
+  translations:
+    en: Her bed is new.
+- id: s.u03.27
+  node: sk.u03.jeho
+  forms:
+    sk-Latn/standard:
+      text: To je ich dom.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ich,
+          lexeme: ich.poss}, {surface: dom, lexeme: dom, feats: {Case: Nom, Number: Sing}}]
+      reverse: (To je|Je to) ich dom
+  translations:
+    en: (That's|That is|This is|It's|It is) their house.
+- id: s.u03.28
+  node: sk.u03.jeho
+  forms:
+    sk-Latn/standard:
+      text: Čí je to stôl?
+      tokens: [{surface: Čí, lexeme: čí, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: to, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: stôl, lexeme: stôl, feats: {Case: Nom, Number: Sing}}]
+      reverse: Čí (je to stôl|stôl je to)
+  translations:
+    en: Whose table is (that|this|it)?
+- id: s.u03.29
+  node: sk.u03.jeho
+  forms:
+    sk-Latn/standard:
+      text: Čia je to lampa?
+      tokens: [{surface: Čia, lexeme: čí, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: to,
+          lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: lampa, lexeme: lampa, feats: {Case: Nom, Number: Sing}}]
+      reverse: Čia (je to lampa|lampa je to)
+  translations:
+    en: Whose lamp is (that|this|it)?
+- id: s.u03.30
+  node: sk.u03.jeho
+  forms:
+    sk-Latn/standard:
+      text: To je jej lampa.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: jej,
+          lexeme: jej.poss}, {surface: lampa, lexeme: lampa, feats: {Case: Nom, Number: Sing}}]
+      reverse: (To je|Je to) jej lampa
+  translations:
+    en: (That's|That is|This is|It's|It is) her lamp.
+- id: s.u03.31
+  node: sk.u03.aky
+  forms:
+    sk-Latn/standard:
+      text: Aký je tvoj byt?
+      tokens: [{surface: Aký, lexeme: aký, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: tvoj, lexeme: tvoj, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: byt, lexeme: byt, feats: {Case: Nom, Number: Sing}}]
+      reverse: Aký je (tvoj|váš) byt
+  translations:
+    en: (What's|What is) your (flat|apartment) like?
+- id: s.u03.32
+  node: sk.u03.aky
+  forms:
+    sk-Latn/standard:
+      text: Je krásny a útulný.
+      tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: krásny, lexeme: krásny, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}},
+        {surface: a, lexeme: a}, {surface: útulný, lexeme: útulný, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}]
+      reverse: Je krásny a útulný
+  translations:
+    en: (It's|It is) beautiful and (cosy|cozy).
+- id: s.u03.33
+  node: sk.u03.aky
+  forms:
+    sk-Latn/standard:
+      text: Ktorá izba je tvoja?
+      tokens: [{surface: Ktorá, lexeme: ktorý, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: izba, lexeme: izba, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tvoja, lexeme: tvoj, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Ktorá izba je (tvoja|vaša)
+  translations:
+    en: Which room is yours?
+- id: s.u03.34
+  node: sk.u03.aky
+  forms:
+    sk-Latn/standard:
+      text: Tá malá.
+      tokens: [{surface: Tá, lexeme: ten, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: malá, lexeme: malý, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Tá malá
+  translations:
+    en: |-
+      The (small|little) one.
+      That (small|little) one.
+- id: s.u03.35
+  node: sk.u03.aky
+  forms:
+    sk-Latn/standard:
+      text: Kuchyňa je veľká a svetlá.
+      tokens: [{surface: Kuchyňa, lexeme: kuchyňa, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veľká,
+          lexeme: veľký, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: a, lexeme: a}, {surface: svetlá, lexeme: svetlý, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Kuchyňa je veľká a svetlá
+  translations:
+    en: The kitchen is (big|large) and (bright|light).
+- id: s.u03.36
+  node: sk.u03.aky
+  forms:
+    sk-Latn/standard:
+      text: Izba je malá, ale útulná.
+      tokens: [{surface: Izba, lexeme: izba, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: malá, lexeme: malý,
+          feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: ale, lexeme: ale}, {surface: útulná, lexeme: útulný, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Izba je malá ale útulná
+  translations:
+    en: The room is (small|little) but (cosy|cozy).
+stories:
+- id: sk.story.u03
+  node: sk.u03.story
+  title:
+    en: Dominik comes to visit
+  characters:
+  - id: lucka
+    speaker: f
+    name:
+      sk-Latn/standard: Lucka
+  - id: dominik
+    speaker: m
+    name:
+      sk-Latn/standard: Dominik
+  - id: tereza
+    speaker: f
+    name:
+      sk-Latn/standard: Tereza
+  steps:
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Ahoj, Lucka! To je tvoj byt?
+          tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je,
+              lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tvoj, lexeme: tvoj, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: byt,
+              lexeme: byt, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Hi, Lucka! Is this your flat?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Áno, to je náš byt.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: to, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+                VerbForm: Fin}}, {surface: náš, lexeme: náš, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: byt, lexeme: byt, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Yes, this is our flat.
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Je veľmi pekný.
+          tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veľmi, lexeme: veľmi}, {surface: pekný, lexeme: pekný, feats: {Animacy: Inan,
+                Case: Nom, Gender: Masc, Number: Sing}}]
+      translations:
+        en: It's very nice.
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Ďakujem. Tu je kuchyňa a tam je kúpeľňa.
+          tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Tu, lexeme: tu}, {surface: je, lexeme: byť, feats: {Mood: Ind,
+                Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kuchyňa, lexeme: kuchyňa, feats: {Case: Nom, Number: Sing}}, {surface: a, lexeme: a}, {surface: tam, lexeme: tam}, {surface: je,
+              lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kúpeľňa, lexeme: kúpeľňa, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Thank you. Here's the kitchen, and there's the bathroom.
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Kuchyňa je veľká a svetlá.
+          tokens: [{surface: Kuchyňa, lexeme: kuchyňa, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veľká,
+              lexeme: veľký, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: a, lexeme: a}, {surface: svetlá, lexeme: svetlý, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      translations:
+        en: The kitchen is big and bright.
+  - choose:
+      prompt:
+        en: What is the kitchen like?
+      options:
+      - en: Big and bright
+      - en: Small and old
+      - en: The story doesn't say.
+      answer: 0
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: A ktorá izba je tvoja?
+          tokens: [{surface: A, lexeme: a}, {surface: ktorá, lexeme: ktorý, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: izba, lexeme: izba, feats: {Case: Nom, Number: Sing}}, {surface: je,
+              lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tvoja, lexeme: tvoj, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      translations:
+        en: And which room is yours?
+  - line:
+      speaker: lucka
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Moja izba je malá, ale útulná.
+          tokens: [{surface: Moja, lexeme: môj, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: izba, lexeme: izba, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind,
+                Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: malá, lexeme: malý, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: ale, lexeme: ale}, {surface: útulná, lexeme: útulný,
+              feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      translations:
+        en: My room is small but cosy.
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Ahoj, Dominik! Moja izba je veľká.
+          tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: Dominik, lexeme: dominik, feats: {Case: Nom, Number: Sing}}, {surface: Moja, lexeme: môj, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: izba,
+              lexeme: izba, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veľká, lexeme: veľký, feats: {
+                Case: Nom, Gender: Fem, Number: Sing}}]
+      translations:
+        en: Hi, Dominik! My room is big.
+  - line:
+      speaker: tereza
+      ask: complete
+      gap: lexeme:posteľ
+      distractors:
+      - lexeme:kuchyňa
+      - lexeme:kúpeľňa
+      forms:
+        sk-Latn/standard:
+          text: To je moja posteľ. Je nová.
+          tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: moja,
+              lexeme: môj, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: posteľ, lexeme: posteľ, feats: {Case: Nom, Number: Sing}}, {surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing,
+                Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nová, lexeme: nový, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      translations:
+        en: This is my bed. It's new.
+  - choose:
+      prompt:
+        en: Whose room is big?
+      options:
+      - en: Tereza's
+      - en: Lucka's
+      - en: Dominik's
+      answer: 0
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Váš byt je krásny!
+          tokens: [{surface: Váš, lexeme: váš, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: byt, lexeme: byt, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {
+                Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: krásny, lexeme: krásny, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}]
+      translations:
+        en: Your flat is beautiful!

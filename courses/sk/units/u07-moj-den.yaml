@@ -1,0 +1,420 @@
+# Unit 7 (sk): reflexive verbs (umývať sa, obliekať sa, ponáhľať sa), the time (o šiestej; koľko je hodín?),
+# the days of the week (v pondelok), spať, vidieť, stretnúť, pracovať; Lucka's day and Samko's.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u07
+title:
+  en: Môj deň My day
+cefr: A1
+nodes:
+- {id: sk.u07.rano, kind: lesson, introduces: ['lexeme:vstávať', 'lexeme:ráno', 'lexeme:umývať-sa', 'lexeme:potom', 'lexeme:obliekať-sa', 'lexeme:raňajkovať']}
+- {id: sk.u07.cas, kind: lesson, introduces: ['lexeme:hodina', 'lexeme:o', 'lexeme:šiesty', 'lexeme:práca', 'lexeme:siedmy', 'lexeme:ôsmy']}
+- {id: sk.u07.dni, kind: lesson, introduces: ['lexeme:dnes', 'lexeme:pondelok', 'lexeme:pracovať', 'lexeme:utorok', 'lexeme:streda', 'lexeme:štvrtok', 'lexeme:piatok', 'lexeme:sobota', 'lexeme:spať', 'lexeme:nedeľa',
+    'lexeme:deň']}
+- {id: sk.u07.videt, kind: lesson, introduces: ['lexeme:vidieť', 'lexeme:stretnúť', 'lexeme:smena', 'lexeme:večer', 'lexeme:vracať-sa', 'lexeme:domov', 'lexeme:ponáhľať-sa']}
+- {id: sk.u07.story, kind: story}
+sentences:
+- id: s.u07.1
+  node: sk.u07.rano
+  forms:
+    sk-Latn/standard:
+      text: Ráno vstávam.
+      tokens: [{surface: Ráno, lexeme: ráno}, {surface: vstávam, lexeme: vstávať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Ráno vstávam|Vstávam ráno|Ja vstávam ráno|Ráno ja vstávam)
+  translations:
+    en: |-
+      I get up in the morning.
+      In the morning I get up.
+- id: s.u07.2
+  node: sk.u07.rano
+  forms:
+    sk-Latn/standard:
+      text: Umývam sa.
+      tokens: [{surface: Umývam, lexeme: umývať-sa, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}]
+      reverse: (Umývam sa|Ja sa umývam)
+  translations:
+    en: |-
+      (I'm|I am) washing.
+      I wash.
+      (I'm|I am) having a wash.
+- id: s.u07.3
+  node: sk.u07.rano
+  forms:
+    sk-Latn/standard:
+      text: Potom sa obliekam.
+      tokens: [{surface: Potom, lexeme: potom}, {surface: sa, lexeme: sa}, {surface: obliekam, lexeme: obliekať-sa, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: Potom sa obliekam
+  translations:
+    en: |-
+      Then I get dressed.
+      Then (I'm|I am) getting dressed.
+- id: s.u07.4
+  node: sk.u07.rano
+  forms:
+    sk-Latn/standard:
+      text: Raňajkujem doma.
+      tokens: [{surface: Raňajkujem, lexeme: raňajkovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: doma, lexeme: doma}]
+      reverse: (Raňajkujem doma|Ja raňajkujem doma|Doma raňajkujem)
+  translations:
+    en: |-
+      I have breakfast at home.
+      (I'm|I am) having breakfast at home.
+- id: s.u07.5
+  node: sk.u07.rano
+  forms:
+    sk-Latn/standard:
+      text: Samko sa umýva a oblieka.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: sa, lexeme: sa}, {surface: umýva, lexeme: umývať-sa, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+            VerbForm: Fin}}, {surface: a, lexeme: a}, {surface: oblieka, lexeme: obliekať-sa, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: Samko sa umýva a oblieka
+  translations:
+    en: Samko (washes|is washing) and (gets|is getting) dressed.
+- id: s.u07.6
+  node: sk.u07.cas
+  forms:
+    sk-Latn/standard:
+      text: Koľko je hodín?
+      tokens: [{surface: Koľko, lexeme: koľko}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: hodín, lexeme: hodina, feats: {Case: Gen,
+            Number: Plur}}]
+      reverse: Koľko je hodín
+  translations:
+    en: |-
+      What time is it?
+      (What's|What is) the time?
+- id: s.u07.7
+  node: sk.u07.cas
+  forms:
+    sk-Latn/standard:
+      text: Je sedem hodín.
+      tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sedem, lexeme: sedem}, {surface: hodín, lexeme: hodina, feats: {Case: Gen,
+            Number: Plur}}]
+      reverse: Je sedem hodín
+  translations:
+    en: (It's|It is) seven [o'clock].
+- id: s.u07.8
+  node: sk.u07.cas
+  forms:
+    sk-Latn/standard:
+      text: Je jedna hodina.
+      tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: jedna, lexeme: jeden, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: hodina,
+          lexeme: hodina, feats: {Case: Nom, Number: Sing}}]
+      reverse: Je jedna hodina
+  translations:
+    en: (It's|It is) one [o'clock].
+- id: s.u07.9
+  node: sk.u07.cas
+  forms:
+    sk-Latn/standard:
+      text: Sú dve hodiny.
+      tokens: [{surface: Sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dve, lexeme: dva, feats: {Case: Nom, Gender: Fem, Number: Plur}}, {surface: hodiny,
+          lexeme: hodina, feats: {Case: Nom, Number: Plur}}]
+      reverse: Sú dve hodiny
+  translations:
+    en: (It's|It is) two [o'clock].
+- id: s.u07.10
+  node: sk.u07.cas
+  forms:
+    sk-Latn/standard:
+      text: Vstávam o šiestej.
+      tokens: [{surface: Vstávam, lexeme: vstávať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: o, lexeme: o}, {surface: šiestej, lexeme: šiesty, feats: {Case: Loc,
+            Gender: Fem, Number: Sing}}]
+      reverse: (Vstávam|Ja vstávam) o šiestej
+  translations:
+    en: I get up at six.
+- id: s.u07.11
+  node: sk.u07.cas
+  forms:
+    sk-Latn/standard:
+      text: Lucka ide do práce o siedmej.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: ide, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do},
+        {surface: práce, lexeme: práca, feats: {Case: Gen, Number: Sing}}, {surface: o, lexeme: o}, {surface: siedmej, lexeme: siedmy, feats: {Case: Loc, Gender: Fem, Number: Sing}}]
+      reverse: (Lucka ide do práce o siedmej|Lucka ide o siedmej do práce)
+  translations:
+    en: Lucka (goes|is going) to work at seven.
+- id: s.u07.12
+  node: sk.u07.cas
+  forms:
+    sk-Latn/standard:
+      text: Samko ide do školy o ôsmej.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: ide, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do},
+        {surface: školy, lexeme: škola, feats: {Case: Gen, Number: Sing}}, {surface: o, lexeme: o}, {surface: ôsmej, lexeme: ôsmy, feats: {Case: Loc, Gender: Fem, Number: Sing}}]
+      reverse: (Samko ide do školy o ôsmej|Samko ide o ôsmej do školy)
+  translations:
+    en: Samko (goes|is going) to school at eight.
+- id: s.u07.13
+  node: sk.u07.dni
+  forms:
+    sk-Latn/standard:
+      text: Dnes je pondelok.
+      tokens: [{surface: Dnes, lexeme: dnes}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pondelok, lexeme: pondelok, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: (Dnes je pondelok|Je dnes pondelok)
+  translations:
+    en: |-
+      Today is Monday.
+      (It's|It is) Monday today.
+- id: s.u07.14
+  node: sk.u07.dni
+  forms:
+    sk-Latn/standard:
+      text: V utorok pracujem.
+      tokens: [{surface: V, lexeme: v}, {surface: utorok, lexeme: utorok, feats: {Case: Acc, Number: Sing}}, {surface: pracujem, lexeme: pracovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+            VerbForm: Fin}}]
+      reverse: (V utorok pracujem|Pracujem v utorok|V utorok ja pracujem)
+  translations:
+    en: |-
+      I work on Tuesday.
+      (I'm|I am) working on Tuesday.
+      On Tuesday I (work|am working).
+- id: s.u07.15
+  node: sk.u07.dni
+  forms:
+    sk-Latn/standard:
+      text: V stredu a vo štvrtok som doma.
+      tokens: [{surface: V, lexeme: v}, {surface: stredu, lexeme: streda, feats: {Case: Acc, Number: Sing}}, {surface: a, lexeme: a}, {surface: vo, lexeme: v}, {surface: štvrtok, lexeme: štvrtok, feats: {
+            Case: Acc, Number: Sing}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: doma, lexeme: doma}]
+      reverse: (V stredu a vo štvrtok som doma|Som doma v stredu a vo štvrtok)
+  translations:
+    en: |-
+      (I'm|I am) [at] home on Wednesday and Thursday.
+      On Wednesday and Thursday (I'm|I am) [at] home.
+- id: s.u07.16
+  node: sk.u07.dni
+  forms:
+    sk-Latn/standard:
+      text: V piatok idem do kaviarne.
+      tokens: [{surface: V, lexeme: v}, {surface: piatok, lexeme: piatok, feats: {Case: Acc, Number: Sing}}, {surface: idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: do, lexeme: do}, {surface: kaviarne, lexeme: kaviareň, feats: {Case: Gen, Number: Sing}}]
+      reverse: (V piatok idem do kaviarne|Idem do kaviarne v piatok)
+  translations:
+    en: |-
+      (I'm|I am) going to the café on Friday.
+      On Friday (I'm|I am) going to the café.
+      On Friday I go to the café.
+- id: s.u07.17
+  node: sk.u07.dni
+  forms:
+    sk-Latn/standard:
+      text: V sobotu spím.
+      tokens: [{surface: V, lexeme: v}, {surface: sobotu, lexeme: sobota, feats: {Case: Acc, Number: Sing}}, {surface: spím, lexeme: spať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (V sobotu spím|Spím v sobotu)
+  translations:
+    en: |-
+      On Saturday I sleep.
+      I sleep on Saturday.
+- id: s.u07.18
+  node: sk.u07.dni
+  forms:
+    sk-Latn/standard:
+      text: V nedeľu som doma.
+      tokens: [{surface: V, lexeme: v}, {surface: nedeľu, lexeme: nedeľa, feats: {Case: Acc, Number: Sing}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: doma, lexeme: doma}]
+      reverse: (V nedeľu som doma|Som doma v nedeľu)
+  translations:
+    en: |-
+      On Sunday (I'm|I am) [at] home.
+      (I'm|I am) [at] home on Sunday.
+- id: s.u07.19
+  node: sk.u07.dni
+  forms:
+    sk-Latn/standard:
+      text: Aký je dnes deň?
+      tokens: [{surface: Aký, lexeme: aký, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: dnes, lexeme: dnes}, {surface: deň, lexeme: deň, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Aký je dnes deň|Aký deň je dnes)
+  translations:
+    en: |-
+      What day is it today?
+      What day is today?
+- id: s.u07.20
+  node: sk.u07.videt
+  forms:
+    sk-Latn/standard:
+      text: Vidím Samka.
+      tokens: [{surface: Vidím, lexeme: vidieť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Samka, lexeme: samko, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Vidím|Ja vidím) Samka
+  translations:
+    en: I (see|can see) Samko.
+- id: s.u07.21
+  node: sk.u07.videt
+  forms:
+    sk-Latn/standard:
+      text: Vidíš ten dom?
+      tokens: [{surface: Vidíš, lexeme: vidieť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: ten, lexeme: ten, feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}},
+        {surface: dom, lexeme: dom, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Vidíš|Ty vidíš|Vidíte|Vy vidíte) ten dom
+  translations:
+    en: (Do you see|Can you see) that house?
+- id: s.u07.22
+  node: sk.u07.videt
+  forms:
+    sk-Latn/standard:
+      text: Ráno stretnem Simonu.
+      tokens: [{surface: Ráno, lexeme: ráno}, {surface: stretnem, lexeme: stretnúť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Simonu, lexeme: simona, feats: {
+            Case: Acc, Number: Sing}}]
+      reverse: (Ráno stretnem Simonu|Stretnem Simonu ráno)
+  translations:
+    en: |-
+      I'll meet Simona in the morning.
+      (I'm|I am) meeting Simona in the morning.
+- id: s.u07.23
+  node: sk.u07.videt
+  forms:
+    sk-Latn/standard:
+      text: Lucka má dnes smenu.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: má, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dnes, lexeme: dnes},
+        {surface: smenu, lexeme: smena, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Lucka má dnes smenu|Dnes má Lucka smenu)
+  translations:
+    en: Lucka (has a shift|is on shift|is working a shift) today.
+- id: s.u07.24
+  node: sk.u07.videt
+  forms:
+    sk-Latn/standard:
+      text: Večer som doma.
+      tokens: [{surface: Večer, lexeme: večer}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: doma, lexeme: doma}]
+      reverse: (Večer som doma|Som doma večer)
+  translations:
+    en: |-
+      In the evening (I'm|I am) [at] home.
+      (I'm|I am) [at] home in the evening.
+- id: s.u07.25
+  node: sk.u07.videt
+  forms:
+    sk-Latn/standard:
+      text: Vraciam sa domov.
+      tokens: [{surface: Vraciam, lexeme: vracať-sa, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: domov, lexeme: domov}]
+      reverse: |-
+        (Vraciam sa|Ja sa vraciam) domov
+        Domov sa vraciam
+  translations:
+    en: |-
+      (I'm|I am) (going|coming) [back] home.
+      I go back home.
+- id: s.u07.26
+  node: sk.u07.videt
+  forms:
+    sk-Latn/standard:
+      text: Ponáhľam sa!
+      tokens: [{surface: Ponáhľam, lexeme: ponáhľať-sa, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}]
+      reverse: (Ponáhľam sa|Ja sa ponáhľam)
+  translations:
+    en: (I'm|I am) in a hurry!
+stories:
+- id: sk.story.u07
+  node: sk.u07.story
+  title:
+    en: Lucka's day
+  characters:
+  - id: lucka
+    speaker: f
+    name:
+      sk-Latn/standard: Lucka
+  - id: samko
+    speaker: m
+    name:
+      sk-Latn/standard: Samko
+  steps:
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Ráno vstávam o šiestej.
+          tokens: [{surface: Ráno, lexeme: ráno}, {surface: vstávam, lexeme: vstávať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: o, lexeme: o}, {surface: šiestej,
+              lexeme: šiesty, feats: {Case: Loc, Gender: Fem, Number: Sing}}]
+      translations:
+        en: In the morning I get up at six.
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Umývam sa, obliekam sa a raňajkujem.
+          tokens: [{surface: Umývam, lexeme: umývať-sa, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: obliekam, lexeme: obliekať-sa, feats: {
+                Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: a, lexeme: a}, {surface: raňajkujem, lexeme: raňajkovať, feats: {Mood: Ind, Number: Sing,
+                Person: '1', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: I wash, get dressed and have breakfast.
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: O siedmej idem do práce.
+          tokens: [{surface: O, lexeme: o}, {surface: siedmej, lexeme: siedmy, feats: {Case: Loc, Gender: Fem, Number: Sing}}, {surface: idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1',
+                Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: práce, lexeme: práca, feats: {Case: Gen, Number: Sing}}]
+      translations:
+        en: At seven I go to work.
+  - choose:
+      prompt:
+        en: When does Lucka get up?
+      options:
+      - en: At six
+      - en: At seven
+      - en: At eight
+      answer: 0
+  - line:
+      speaker: lucka
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Dnes mám smenu.
+          tokens: [{surface: Dnes, lexeme: dnes}, {surface: mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: smenu, lexeme: smena, feats: {Case: Acc,
+                Number: Sing}}]
+      translations:
+        en: Today I have a shift.
+  - line:
+      speaker: samko
+      forms:
+        sk-Latn/standard:
+          text: Ahoj, Lucka! Ideš do práce?
+          tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: Ideš, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres,
+                VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: práce, lexeme: práca, feats: {Case: Gen, Number: Sing}}]
+      translations:
+        en: Hi, Lucka! Are you going to work?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Áno, ponáhľam sa! A ty ideš do školy?
+          tokens: [{surface: Áno, lexeme: áno}, {surface: ponáhľam, lexeme: ponáhľať-sa, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: A,
+              lexeme: a}, {surface: ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}, {surface: ideš, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: do,
+              lexeme: do}, {surface: školy, lexeme: škola, feats: {Case: Gen, Number: Sing}}]
+      translations:
+        en: Yes, I'm in a hurry! And you're going to school?
+  - line:
+      speaker: samko
+      ask: complete
+      gap: lexeme:škola
+      distractors:
+      - lexeme:práca
+      - lexeme:kaviareň
+      forms:
+        sk-Latn/standard:
+          text: Áno, idem do školy o ôsmej.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: školy, lexeme: škola,
+              feats: {Case: Gen, Number: Sing}}, {surface: o, lexeme: o}, {surface: ôsmej, lexeme: ôsmy, feats: {Case: Loc, Gender: Fem, Number: Sing}}]
+      translations:
+        en: Yes, I'm going to school at eight.
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Večer som doma. A ty?
+          tokens: [{surface: Večer, lexeme: večer}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: doma, lexeme: doma}, {surface: A, lexeme: a},
+            {surface: ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: In the evening I'm at home. And you?
+  - line:
+      speaker: samko
+      forms:
+        sk-Latn/standard:
+          text: Ja tiež. Ahoj!
+          tokens: [{surface: Ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: tiež, lexeme: tiež}, {surface: Ahoj, lexeme: ahoj}]
+      translations:
+        en: Me too. Bye!
+  - choose:
+      prompt:
+        en: Where is Lucka in the evening?
+      options:
+      - en: At home
+      - en: At work
+      - en: At school
+      answer: 0

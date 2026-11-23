@@ -12,7 +12,7 @@ import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 /** Every fixture course in each of its orthographies, and Classical Chinese read in Baxter as well. */
 const RUNS: readonly { readonly id: string; readonly orthography: string; readonly reading?: SchemeId }[] = [
-  ...["fa", "yue", "uz", "apc", "lzh", "es", "hbo", "tok", "grc", "chg"].flatMap((id) => manifestOf(id).orthographies.map((orthography) => ({ id, orthography }))),
+  ...["fa", "yue", "uz", "apc", "lzh", "es", "hbo", "tok", "grc", "chg", "sk"].flatMap((id) => manifestOf(id).orthographies.map((orthography) => ({ id, orthography }))),
   { id: "lzh", orthography: "lzh-Hant/standard", reading: "baxter" as SchemeId },
 ];
 

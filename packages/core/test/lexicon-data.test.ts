@@ -29,6 +29,7 @@ const sourceOf = (course: string): LexiconSource => {
 const COURSES: readonly (readonly [string, string])[] = [
   ["apc", "apc-Arab/standard"],
   ["chg", "chg-Arab/standard"],
+  ["sk", "sk-Latn/standard"],
   ["es", "es-Latn/standard"],
   ["fa", "fa-Arab/standard"],
   ["grc", "grc-Grek/polytonic"],

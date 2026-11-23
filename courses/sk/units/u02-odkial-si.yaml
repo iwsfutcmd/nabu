@@ -1,0 +1,567 @@
+# Unit 2 (sk): where are you from (z + genitive, as phrases), nationalities, languages (po slovensky), the
+# present of the regular verbs (hovoriť, rozumieť, študovať, učiť sa), negation with ne- and nie, numbers to ten;
+# Tereza meets her classmates in Bratislava.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u02
+title:
+  en: Odkiaľ si? Where are you from?
+cefr: A1
+nodes:
+- {id: sk.u02.odkial, kind: lesson, introduces: ['lexeme:odkiaľ', 'lexeme:z', 'lexeme:slovensko', 'lexeme:marta', 'lexeme:poľsko', 'lexeme:anglicko', 'lexeme:írsko']}
+- {id: sk.u02.narodnost, kind: lesson, introduces: ['lexeme:slovenka', 'lexeme:slovák', 'lexeme:poľka', 'lexeme:gábor', 'lexeme:maďar', 'lexeme:liam', 'lexeme:ír', 'lexeme:tiež']}
+- {id: sk.u02.jazyky, kind: lesson, introduces: ['lexeme:hovoriť', 'lexeme:po-slovensky', 'lexeme:po-anglicky', 'lexeme:trochu', 'lexeme:rozumieť', 'lexeme:po-poľsky', 'lexeme:po-maďarsky']}
+- {id: sk.u02.negacia, kind: lesson, introduces: ['feature:Polarity=Neg', 'lexeme:angličan', 'lexeme:po-nemecky', 'lexeme:len']}
+- {id: sk.u02.studovat, kind: lesson, introduces: ['lexeme:študovať', 'lexeme:v', 'lexeme:bratislava', 'lexeme:učiť-sa', 'lexeme:čo']}
+- {id: sk.u02.cisla, kind: lesson, introduces: ['lexeme:jeden', 'lexeme:dva', 'lexeme:tri', 'lexeme:štyri', 'lexeme:päť', 'lexeme:šesť', 'lexeme:sedem', 'lexeme:osem', 'lexeme:deväť', 'lexeme:desať', 'lexeme:koľko']}
+- {id: sk.u02.story, kind: story}
+sentences:
+- id: s.u02.1
+  node: sk.u02.odkial
+  forms:
+    sk-Latn/standard:
+      text: Odkiaľ si?
+      tokens: [{surface: Odkiaľ, lexeme: odkiaľ}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: Odkiaľ (si|ste|si ty|ste vy)
+  translations:
+    en: Where are you from?
+- id: s.u02.2
+  node: sk.u02.odkial
+  forms:
+    sk-Latn/standard:
+      text: Som zo Slovenska.
+      tokens: [{surface: Som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: zo, lexeme: z}, {surface: Slovenska, lexeme: slovensko, feats: {Case: Gen,
+            Number: Sing}}]
+      reverse: (Som|Ja som) zo Slovenska
+  translations:
+    en: (I'm|I am) from Slovakia.
+- id: s.u02.3
+  node: sk.u02.odkial
+  forms:
+    sk-Latn/standard:
+      text: Lucka je zo Slovenska.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: zo, lexeme: z},
+        {surface: Slovenska, lexeme: slovensko, feats: {Case: Gen, Number: Sing}}]
+      reverse: Lucka je zo Slovenska
+  translations:
+    en: Lucka is from Slovakia.
+- id: s.u02.4
+  node: sk.u02.odkial
+  forms:
+    sk-Latn/standard:
+      text: Marta je z Poľska.
+      tokens: [{surface: Marta, lexeme: marta, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: z, lexeme: z},
+        {surface: Poľska, lexeme: poľsko, feats: {Case: Gen, Number: Sing}}]
+      reverse: Marta je z Poľska
+  translations:
+    en: Marta is from Poland.
+- id: s.u02.5
+  node: sk.u02.odkial
+  forms:
+    sk-Latn/standard:
+      text: Si z Anglicka?
+      tokens: [{surface: Si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: z, lexeme: z}, {surface: Anglicka, lexeme: anglicko, feats: {Case: Gen, Number: Sing}}]
+      reverse: (Si|Ty si|Ste|Vy ste) z Anglicka
+  translations:
+    en: Are you from England?
+- id: s.u02.6
+  node: sk.u02.odkial
+  forms:
+    sk-Latn/standard:
+      text: Nie, som z Írska.
+      tokens: [{surface: Nie, lexeme: nie}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: z, lexeme: z}, {surface: Írska, lexeme: írsko,
+          feats: {Case: Gen, Number: Sing}}]
+      reverse: Nie (som|ja som) z Írska
+  translations:
+    en: No, (I'm|I am) from Ireland.
+- id: s.u02.7
+  node: sk.u02.narodnost
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Som Slovenka.
+      tokens: [{surface: Som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Slovenka, lexeme: slovenka, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Som|Ja som) Slovenka
+  translations:
+    en: (I'm|I am) Slovak.
+- id: s.u02.8
+  node: sk.u02.narodnost
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Som Slovák.
+      tokens: [{surface: Som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Slovák, lexeme: slovák, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Som|Ja som) Slovák
+  translations:
+    en: (I'm|I am) Slovak.
+- id: s.u02.9
+  node: sk.u02.narodnost
+  forms:
+    sk-Latn/standard:
+      text: Marta je Poľka.
+      tokens: [{surface: Marta, lexeme: marta, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Poľka,
+          lexeme: poľka, feats: {Case: Nom, Number: Sing}}]
+      reverse: Marta je Poľka
+  translations:
+    en: Marta is (Polish|a Pole).
+- id: s.u02.10
+  node: sk.u02.narodnost
+  forms:
+    sk-Latn/standard:
+      text: Gábor je Maďar.
+      tokens: [{surface: Gábor, lexeme: gábor, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Maďar,
+          lexeme: maďar, feats: {Case: Nom, Number: Sing}}]
+      reverse: Gábor je Maďar
+  translations:
+    en: Gábor is Hungarian.
+- id: s.u02.11
+  node: sk.u02.narodnost
+  forms:
+    sk-Latn/standard:
+      text: Liam je Ír.
+      tokens: [{surface: Liam, lexeme: liam, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Ír, lexeme: ír,
+          feats: {Case: Nom, Number: Sing}}]
+      reverse: Liam je Ír
+  translations:
+    en: Liam is (Irish|an Irishman).
+- id: s.u02.12
+  node: sk.u02.narodnost
+  forms:
+    sk-Latn/standard:
+      text: Tereza je tiež Slovenka.
+      tokens: [{surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tiež,
+          lexeme: tiež}, {surface: Slovenka, lexeme: slovenka, feats: {Case: Nom, Number: Sing}}]
+      reverse: |-
+        Tereza je tiež Slovenka
+        Aj Tereza je Slovenka
+  translations:
+    en: Tereza is (also Slovak|Slovak too).
+- id: s.u02.13
+  node: sk.u02.jazyky
+  forms:
+    sk-Latn/standard:
+      text: Hovorím po slovensky.
+      tokens: [{surface: Hovorím, lexeme: hovoriť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: po, lexeme: po-slovensky}, {surface: slovensky, lexeme: po-slovensky}]
+      reverse: (Hovorím|Ja hovorím) po slovensky
+  translations:
+    en: I speak Slovak.
+- id: s.u02.14
+  node: sk.u02.jazyky
+  forms:
+    sk-Latn/standard:
+      text: Hovoríš po anglicky?
+      tokens: [{surface: Hovoríš, lexeme: hovoriť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: po, lexeme: po-anglicky}, {surface: anglicky, lexeme: po-anglicky}]
+      reverse: (Hovoríš|Ty hovoríš|Hovoríte|Vy hovoríte) po anglicky
+  translations:
+    en: Do you speak English?
+- id: s.u02.15
+  node: sk.u02.jazyky
+  forms:
+    sk-Latn/standard:
+      text: Hovorím trochu po slovensky.
+      tokens: [{surface: Hovorím, lexeme: hovoriť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: trochu, lexeme: trochu}, {surface: po, lexeme: po-slovensky}, {surface: slovensky,
+          lexeme: po-slovensky}]
+      reverse: (Hovorím|Ja hovorím) (trochu po slovensky|po slovensky trochu)
+  translations:
+    en: |-
+      I speak a little Slovak.
+      I speak Slovak a little.
+- id: s.u02.16
+  node: sk.u02.jazyky
+  forms:
+    sk-Latn/standard:
+      text: Rozumieš?
+      tokens: [{surface: Rozumieš, lexeme: rozumieť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Rozumieš|Rozumiete)
+  translations:
+    en: Do you understand?
+- id: s.u02.17
+  node: sk.u02.jazyky
+  forms:
+    sk-Latn/standard:
+      text: Áno, rozumiem.
+      tokens: [{surface: Áno, lexeme: áno}, {surface: rozumiem, lexeme: rozumieť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Áno|Hej) (rozumiem|ja rozumiem)
+  translations:
+    en: |-
+      Yes, I understand.
+      Yes, I see.
+- id: s.u02.18
+  node: sk.u02.jazyky
+  forms:
+    sk-Latn/standard:
+      text: Marta hovorí po poľsky.
+      tokens: [{surface: Marta, lexeme: marta, feats: {Case: Nom, Number: Sing}}, {surface: hovorí, lexeme: hovoriť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: po,
+          lexeme: po-poľsky}, {surface: poľsky, lexeme: po-poľsky}]
+      reverse: Marta hovorí po poľsky
+  translations:
+    en: Marta speaks Polish.
+- id: s.u02.19
+  node: sk.u02.jazyky
+  forms:
+    sk-Latn/standard:
+      text: Gábor hovorí po maďarsky.
+      tokens: [{surface: Gábor, lexeme: gábor, feats: {Case: Nom, Number: Sing}}, {surface: hovorí, lexeme: hovoriť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: po,
+          lexeme: po-maďarsky}, {surface: maďarsky, lexeme: po-maďarsky}]
+      reverse: Gábor hovorí po maďarsky
+  translations:
+    en: Gábor speaks Hungarian.
+- id: s.u02.20
+  node: sk.u02.negacia
+  forms:
+    sk-Latn/standard:
+      text: Nerozumiem.
+      tokens: [{surface: Nerozumiem, lexeme: rozumieť, feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}}]
+      reverse: (Nerozumiem|Ja nerozumiem)
+  translations:
+    en: I (don't|do not) understand.
+- id: s.u02.21
+  node: sk.u02.negacia
+  forms:
+    sk-Latn/standard:
+      text: Nehovorím po maďarsky.
+      tokens: [{surface: Nehovorím, lexeme: hovoriť, feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}}, {surface: po, lexeme: po-maďarsky}, {surface: maďarsky, lexeme: po-maďarsky}]
+      reverse: (Nehovorím|Ja nehovorím) po maďarsky
+  translations:
+    en: I (don't|do not) speak Hungarian.
+- id: s.u02.22
+  node: sk.u02.negacia
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    sk-Latn/standard:
+      text: Nie som Poľka.
+      tokens: [{surface: Nie, lexeme: nie}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Poľka, lexeme: poľka, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Nie som|Ja nie som) Poľka
+  translations:
+    en: (I'm not|I am not) (Polish|a Pole).
+- id: s.u02.23
+  node: sk.u02.negacia
+  forms:
+    sk-Latn/standard:
+      text: Liam nie je Angličan.
+      tokens: [{surface: Liam, lexeme: liam, feats: {Case: Nom, Number: Sing}}, {surface: nie, lexeme: nie}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: Angličan, lexeme: angličan, feats: {Case: Nom, Number: Sing}}]
+      reverse: Liam nie je Angličan
+  translations:
+    en: Liam (isn't|is not) English.
+- id: s.u02.24
+  node: sk.u02.negacia
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    sk-Latn/standard:
+      text: Ty nie si Slovák?
+      tokens: [{surface: Ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}, {surface: nie, lexeme: nie}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}},
+        {surface: Slovák, lexeme: slovák, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Ty nie si|Nie si|Vy nie ste|Nie ste) Slovák
+  translations:
+    en: |-
+      (Aren't you|Are you not) Slovak?
+      (You're not|You aren't|You are not) Slovak?
+- id: s.u02.25
+  node: sk.u02.negacia
+  forms:
+    sk-Latn/standard:
+      text: Nehovoríš po nemecky?
+      tokens: [{surface: Nehovoríš, lexeme: hovoriť, feats: {Mood: Ind, Number: Sing, Person: '2', Polarity: Neg, Tense: Pres, VerbForm: Fin}}, {surface: po, lexeme: po-nemecky}, {surface: nemecky, lexeme: po-nemecky}]
+      reverse: (Nehovoríš|Ty nehovoríš|Nehovoríte|Vy nehovoríte) po nemecky
+  translations:
+    en: |-
+      (Don't you|Do you not) speak German?
+      You (don't|do not) speak German?
+- id: s.u02.26
+  node: sk.u02.negacia
+  forms:
+    sk-Latn/standard:
+      text: Hovorím len po slovensky.
+      tokens: [{surface: Hovorím, lexeme: hovoriť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: len, lexeme: len}, {surface: po, lexeme: po-slovensky}, {surface: slovensky,
+          lexeme: po-slovensky}]
+      reverse: (Hovorím|Ja hovorím) len po slovensky
+  translations:
+    en: I (only speak|speak only) Slovak.
+- id: s.u02.27
+  node: sk.u02.studovat
+  forms:
+    sk-Latn/standard:
+      text: Študuješ?
+      tokens: [{surface: Študuješ, lexeme: študovať, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Študuješ|Študujete)
+  translations:
+    en: (Do you study|Are you studying|Are you a student)?
+- id: s.u02.28
+  node: sk.u02.studovat
+  forms:
+    sk-Latn/standard:
+      text: Áno, študujem.
+      tokens: [{surface: Áno, lexeme: áno}, {surface: študujem, lexeme: študovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Áno|Hej) (študujem|ja študujem)
+  translations:
+    en: |-
+      Yes, I (study|do|am).
+      Yes, I'm (a student|studying).
+- id: s.u02.29
+  node: sk.u02.studovat
+  forms:
+    sk-Latn/standard:
+      text: Tereza študuje v Bratislave.
+      tokens: [{surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: študuje, lexeme: študovať, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: v,
+          lexeme: v}, {surface: Bratislave, lexeme: bratislava, feats: {Case: Loc, Number: Sing}}]
+      reverse: Tereza študuje v Bratislave
+  translations:
+    en: Tereza (studies|is studying) in Bratislava.
+- id: s.u02.30
+  node: sk.u02.studovat
+  forms:
+    sk-Latn/standard:
+      text: Učím sa po slovensky.
+      tokens: [{surface: Učím, lexeme: učiť-sa, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: po, lexeme: po-slovensky}, {surface: slovensky,
+          lexeme: po-slovensky}]
+      reverse: (Učím sa|Ja sa učím) po slovensky
+  translations:
+    en: |-
+      (I'm|I am) (learning|studying) Slovak.
+      I (learn|study) Slovak.
+- id: s.u02.31
+  node: sk.u02.studovat
+  forms:
+    sk-Latn/standard:
+      text: Čo študuješ?
+      tokens: [{surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: študuješ, lexeme: študovať, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: Čo (študuješ|študujete)
+  translations:
+    en: |-
+      What do you study?
+      What are you studying?
+- id: s.u02.32
+  node: sk.u02.studovat
+  forms:
+    sk-Latn/standard:
+      text: Marta sa učí po slovensky.
+      tokens: [{surface: Marta, lexeme: marta, feats: {Case: Nom, Number: Sing}}, {surface: sa, lexeme: sa}, {surface: učí, lexeme: učiť-sa, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: po, lexeme: po-slovensky}, {surface: slovensky, lexeme: po-slovensky}]
+      reverse: Marta sa učí po slovensky
+  translations:
+    en: Marta (is learning|is studying|learns|studies) Slovak.
+- id: s.u02.33
+  node: sk.u02.cisla
+  forms:
+    sk-Latn/standard:
+      text: Jeden, dva.
+      tokens: [{surface: Jeden, lexeme: jeden, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: dva, lexeme: dva, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Plur}}]
+      reverse: Jeden dva
+  translations:
+    en: One, two.
+- id: s.u02.34
+  node: sk.u02.cisla
+  forms:
+    sk-Latn/standard:
+      text: Tri, štyri.
+      tokens: [{surface: Tri, lexeme: tri, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Plur}}, {surface: štyri, lexeme: štyri, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Plur}}]
+      reverse: Tri štyri
+  translations:
+    en: Three, four.
+- id: s.u02.35
+  node: sk.u02.cisla
+  forms:
+    sk-Latn/standard:
+      text: Päť, šesť.
+      tokens: [{surface: Päť, lexeme: päť}, {surface: šesť, lexeme: šesť}]
+      reverse: Päť šesť
+  translations:
+    en: Five, six.
+- id: s.u02.36
+  node: sk.u02.cisla
+  forms:
+    sk-Latn/standard:
+      text: Sedem, osem.
+      tokens: [{surface: Sedem, lexeme: sedem}, {surface: osem, lexeme: osem}]
+      reverse: Sedem osem
+  translations:
+    en: Seven, eight.
+- id: s.u02.37
+  node: sk.u02.cisla
+  forms:
+    sk-Latn/standard:
+      text: Deväť, desať.
+      tokens: [{surface: Deväť, lexeme: deväť}, {surface: desať, lexeme: desať}]
+      reverse: Deväť desať
+  translations:
+    en: Nine, ten.
+- id: s.u02.38
+  node: sk.u02.cisla
+  forms:
+    sk-Latn/standard:
+      text: Koľko je dva a tri? Päť.
+      tokens: [{surface: Koľko, lexeme: koľko}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dva, lexeme: dva, feats: {Animacy: Inan,
+            Case: Nom, Gender: Masc, Number: Plur}}, {surface: a, lexeme: a}, {surface: tri, lexeme: tri, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Plur}}, {surface: Päť, lexeme: päť}]
+      reverse: Koľko je dva a tri päť
+  translations:
+    en: (How much is|What's|What is) two (and|plus) three? Five.
+- id: s.u02.39
+  node: sk.u02.cisla
+  forms:
+    sk-Latn/standard:
+      text: Koľko je šesť a štyri? Desať.
+      tokens: [{surface: Koľko, lexeme: koľko}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: šesť, lexeme: šesť}, {surface: a, lexeme: a},
+        {surface: štyri, lexeme: štyri, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Plur}}, {surface: Desať, lexeme: desať}]
+      reverse: Koľko je šesť a štyri desať
+  translations:
+    en: (How much is|What's|What is) six (and|plus) four? Ten.
+stories:
+- id: sk.story.u02
+  node: sk.u02.story
+  title:
+    en: At the university
+  characters:
+  - id: tereza
+    speaker: f
+    name:
+      sk-Latn/standard: Tereza
+  - id: marta
+    speaker: f
+    name:
+      sk-Latn/standard: Marta
+  - id: liam
+    speaker: m
+    name:
+      sk-Latn/standard: Liam
+  steps:
+  - line:
+      speaker: marta
+      forms:
+        sk-Latn/standard:
+          text: Ahoj! Ja som Marta. A ty?
+          tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: Ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: Marta, lexeme: marta, feats: {Case: Nom, Number: Sing}}, {surface: A, lexeme: a}, {surface: ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Hi! I'm Marta. And you?
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Ahoj, Marta. Volám sa Tereza. Odkiaľ si?
+          tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: Marta, lexeme: marta, feats: {Case: Nom, Number: Sing}}, {surface: Volám, lexeme: volať-sa, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+                VerbForm: Fin}}, {surface: sa, lexeme: sa}, {surface: Tereza, lexeme: tereza, feats: {Case: Nom, Number: Sing}}, {surface: Odkiaľ, lexeme: odkiaľ}, {surface: si, lexeme: byť, feats: {Mood: Ind,
+                Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Hi, Marta. My name is Tereza. Where are you from?
+  - line:
+      speaker: marta
+      forms:
+        sk-Latn/standard:
+          text: Som z Poľska. A ty si zo Slovenska?
+          tokens: [{surface: Som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: z, lexeme: z}, {surface: Poľska, lexeme: poľsko, feats: {Case: Gen, Number: Sing}},
+            {surface: A, lexeme: a}, {surface: ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}, {surface: si, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {
+              surface: zo, lexeme: z}, {surface: Slovenska, lexeme: slovensko, feats: {Case: Gen, Number: Sing}}]
+      translations:
+        en: I'm from Poland. And you're from Slovakia?
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Áno, som Slovenka.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Slovenka, lexeme: slovenka, feats: {Case: Nom,
+                Number: Sing}}]
+      translations:
+        en: Yes, I'm Slovak.
+  - choose:
+      prompt:
+        en: Where is Marta from?
+      options:
+      - en: Poland
+      - en: Slovakia
+      - en: Ireland
+      answer: 0
+  - line:
+      speaker: liam
+      forms:
+        sk-Latn/standard:
+          text: Ahoj! Ja som Liam. Hovoríte po anglicky?
+          tokens: [{surface: Ahoj, lexeme: ahoj}, {surface: Ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: Liam, lexeme: liam, feats: {Case: Nom, Number: Sing}}, {surface: Hovoríte, lexeme: hovoriť, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: po,
+              lexeme: po-anglicky}, {surface: anglicky, lexeme: po-anglicky}]
+      translations:
+        en: Hi! I'm Liam. Do you speak English?
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Áno, trochu. Ty nie si Angličan?
+          tokens: [{surface: Áno, lexeme: áno}, {surface: trochu, lexeme: trochu}, {surface: Ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}, {surface: nie, lexeme: nie}, {surface: si, lexeme: byť, feats: {
+                Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: Angličan, lexeme: angličan, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Yes, a little. Aren't you English?
+  - line:
+      speaker: liam
+      ask: complete
+      gap: lexeme:ír
+      distractors:
+      - lexeme:angličan
+      - lexeme:maďar
+      forms:
+        sk-Latn/standard:
+          text: Nie, som Ír. Som z Írska.
+          tokens: [{surface: Nie, lexeme: nie}, {surface: som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Ír, lexeme: ír, feats: {Case: Nom, Number: Sing}},
+            {surface: Som, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: z, lexeme: z}, {surface: Írska, lexeme: írsko, feats: {Case: Gen, Number: Sing}}]
+      translations:
+        en: No, I'm Irish. I'm from Ireland.
+  - line:
+      speaker: marta
+      forms:
+        sk-Latn/standard:
+          text: Liam hovorí po slovensky veľmi dobre.
+          tokens: [{surface: Liam, lexeme: liam, feats: {Case: Nom, Number: Sing}}, {surface: hovorí, lexeme: hovoriť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: po,
+              lexeme: po-slovensky}, {surface: slovensky, lexeme: po-slovensky}, {surface: veľmi, lexeme: veľmi}, {surface: dobre, lexeme: dobre}]
+      translations:
+        en: Liam speaks Slovak very well.
+  - line:
+      speaker: liam
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Nie, hovorím len trochu.
+          tokens: [{surface: Nie, lexeme: nie}, {surface: hovorím, lexeme: hovoriť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: len, lexeme: len}, {surface: trochu,
+              lexeme: trochu}]
+      translations:
+        en: No, I only speak a little.
+  - choose:
+      prompt:
+        en: Who speaks Slovak very well, says Marta?
+      options:
+      - en: Liam
+      - en: Tereza
+      - en: Marta
+      answer: 0
+  - line:
+      speaker: tereza
+      forms:
+        sk-Latn/standard:
+          text: Rozumiem. Ja nehovorím po poľsky.
+          tokens: [{surface: Rozumiem, lexeme: rozumieť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: nehovorím,
+              lexeme: hovoriť, feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}}, {surface: po, lexeme: po-poľsky}, {surface: poľsky, lexeme: po-poľsky}]
+      translations:
+        en: I see. I don't speak Polish.
+  - line:
+      speaker: marta
+      ask: complete
+      gap: lexeme:učiť-sa
+      distractors:
+      - lexeme:hovoriť
+      - lexeme:študovať
+      forms:
+        sk-Latn/standard:
+          text: Ja sa učím po slovensky.
+          tokens: [{surface: Ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: sa, lexeme: sa}, {surface: učím, lexeme: učiť-sa, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: po, lexeme: po-slovensky}, {surface: slovensky, lexeme: po-slovensky}]
+      translations:
+        en: I'm learning Slovak.
+  - choose:
+      prompt:
+        en: What is Marta learning?
+      options:
+      - en: Slovak
+      - en: English
+      - en: Hungarian
+      answer: 0

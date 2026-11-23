@@ -53,6 +53,7 @@ const COURSES: readonly (readonly [string, string | undefined])[] = [
   ["tok", "tok-Qaap/sitelen-pona"],
   ["grc", undefined],
   ["chg", "chg-Arab/standard"],
+  ["sk", "sk-Latn/standard"],
 ];
 
 interface Walked {
@@ -63,9 +64,10 @@ interface Walked {
 /**
  * How many lessons of a course's path its walk takes, where not all. Cuban Spanish has 169, about
  * three times the others, and a plan costs more the more the learner has met: its first half (A1 to
- * A2, every kind of card it makes) costs a fifth of the whole.
+ * A2, every kind of card it makes) costs a fifth of the whole. Slovak has 89; its walk takes units 1-10
+ * (53 lessons: A1 to early A2, every case but the dative).
  */
-const WALKED_LESSONS: Readonly<Record<string, number>> = { es: 85 };
+const WALKED_LESSONS: Readonly<Record<string, number>> = { es: 85, sk: 53 };
 
 const walks = new Map<string, Walked>();
 

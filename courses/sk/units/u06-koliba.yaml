@@ -1,0 +1,588 @@
+# Unit 6 (sk): the instrumental (s, pred, za, nad, pod; vlakom, autom), food and drink, dať si, jesť, piť,
+# pozvať, žiť, niesť; lunch at a koliba in the mountains.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u06
+title:
+  en: V kolibe At the koliba
+cefr: A1
+nodes:
+- {id: sk.u06.jedlo, kind: lesson, introduces: ['lexeme:koliba', 'lexeme:halušky', 'lexeme:bryndzový', 'lexeme:kapustnica', 'lexeme:výborný', 'lexeme:polievka', 'lexeme:chlieb', 'lexeme:mäso', 'lexeme:syr']}
+- {id: sk.u06.pitie, kind: lesson, introduces: ['lexeme:piť', 'lexeme:káva', 'lexeme:čaj', 'lexeme:voda', 'lexeme:pivo', 'lexeme:víno', 'lexeme:kofola']}
+- {id: sk.u06.instr, kind: lesson, introduces: ['lexeme:s', 'feature:Case=Ins', 'lexeme:mlieko', 'lexeme:cukor']}
+- {id: sk.u06.dat-si, kind: lesson, introduces: ['lexeme:dať-si', 'lexeme:si.refl', 'lexeme:jesť', 'lexeme:jedálny', 'lexeme:lístok', 'lexeme:milý', 'lexeme:čašníčka', 'lexeme:čašník']}
+- {id: sk.u06.doprava, kind: lesson, introduces: ['lexeme:vlak', 'lexeme:autobus', 'lexeme:riadiť', 'lexeme:trolejbus', 'lexeme:do', 'lexeme:spolu']}
+- {id: sk.u06.pozvat, kind: lesson, introduces: ['lexeme:pozvať', 'lexeme:žiť', 'lexeme:niesť', 'lexeme:pred', 'lexeme:mačka', 'lexeme:pod', 'lexeme:nad', 'lexeme:za']}
+- {id: sk.u06.story, kind: story}
+sentences:
+- id: s.u06.1
+  node: sk.u06.jedlo
+  forms:
+    sk-Latn/standard:
+      text: To je koliba.
+      tokens: [{surface: To, lexeme: ten, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: koliba,
+          lexeme: koliba, feats: {Case: Nom, Number: Sing}}]
+      reverse: (To je|Je to) koliba
+  translations:
+    en: (That's|That is|This is|It's|It is) a (koliba|mountain restaurant|mountain inn).
+- id: s.u06.2
+  node: sk.u06.jedlo
+  forms:
+    sk-Latn/standard:
+      text: Halušky sú dobré.
+      tokens: [{surface: Halušky, lexeme: halušky, feats: {Case: Nom, Number: Plur}}, {surface: sú, lexeme: byť, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dobré,
+          lexeme: dobrý, feats: {Case: Nom, Gender: Fem, Number: Plur}}]
+      reverse: Halušky sú dobré
+  translations:
+    en: |-
+      [The] halušky are good.
+      [The] dumplings are good.
+- id: s.u06.3
+  node: sk.u06.jedlo
+  forms:
+    sk-Latn/standard:
+      text: Chcem bryndzové halušky.
+      tokens: [{surface: Chcem, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: bryndzové, lexeme: bryndzový, feats: {Case: Acc, Gender: Fem, Number: Plur}},
+        {surface: halušky, lexeme: halušky, feats: {Case: Acc, Number: Plur}}]
+      reverse: (Chcem|Ja chcem) bryndzové halušky
+  translations:
+    en: |-
+      I want [the] bryndzové halušky.
+      I want [the] halušky with (sheep's cheese|bryndza).
+- id: s.u06.4
+  node: sk.u06.jedlo
+  forms:
+    sk-Latn/standard:
+      text: Kapustnica je výborná.
+      tokens: [{surface: Kapustnica, lexeme: kapustnica, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: výborná,
+          lexeme: výborný, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Kapustnica je výborná
+  translations:
+    en: The (sauerkraut|cabbage) soup is (excellent|delicious|great).
+- id: s.u06.5
+  node: sk.u06.jedlo
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    sk-Latn/standard:
+      text: Mám rád polievku.
+      tokens: [{surface: Mám, lexeme: mať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: rád, lexeme: rád, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Sing}},
+        {surface: polievku, lexeme: polievka, feats: {Case: Acc, Number: Sing}}]
+      reverse: |-
+        (Mám rád|Ja mám rád) polievku
+        Polievku mám rád
+  translations:
+    en: I like soup.
+- id: s.u06.6
+  node: sk.u06.jedlo
+  forms:
+    sk-Latn/standard:
+      text: Je tu chlieb?
+      tokens: [{surface: Je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tu, lexeme: tu}, {surface: chlieb, lexeme: chlieb, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Je tu chlieb|Je chlieb tu|Je tu aj chlieb)
+  translations:
+    en: Is there [any] bread [here]?
+- id: s.u06.7
+  node: sk.u06.jedlo
+  forms:
+    sk-Latn/standard:
+      text: Mäso alebo syr?
+      tokens: [{surface: Mäso, lexeme: mäso, feats: {Case: Acc, Number: Sing}}, {surface: alebo, lexeme: alebo}, {surface: syr, lexeme: syr, feats: {Case: Acc, Number: Sing}}]
+      reverse: Mäso alebo syr
+  translations:
+    en: Meat or cheese?
+- id: s.u06.8
+  node: sk.u06.pitie
+  forms:
+    sk-Latn/standard:
+      text: Pijem kávu.
+      tokens: [{surface: Pijem, lexeme: piť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: kávu, lexeme: káva, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Pijem|Ja pijem) kávu
+  translations:
+    en: |-
+      I (drink|am drinking) coffee.
+      I'm drinking coffee.
+- id: s.u06.9
+  node: sk.u06.pitie
+  forms:
+    sk-Latn/standard:
+      text: Piješ čaj?
+      tokens: [{surface: Piješ, lexeme: piť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: čaj, lexeme: čaj, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Piješ|Ty piješ|Pijete|Vy pijete) čaj
+  translations:
+    en: |-
+      Do you drink tea?
+      Are you drinking tea?
+- id: s.u06.10
+  node: sk.u06.pitie
+  forms:
+    sk-Latn/standard:
+      text: Vodu, prosím.
+      tokens: [{surface: Vodu, lexeme: voda, feats: {Case: Acc, Number: Sing}}, {surface: prosím, lexeme: prosiť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: Vodu prosím
+  translations:
+    en: (Water|Some water), please.
+- id: s.u06.11
+  node: sk.u06.pitie
+  forms:
+    sk-Latn/standard:
+      text: Dominik pije pivo.
+      tokens: [{surface: Dominik, lexeme: dominik, feats: {Case: Nom, Number: Sing}}, {surface: pije, lexeme: piť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pivo,
+          lexeme: pivo, feats: {Case: Acc, Number: Sing}}]
+      reverse: Dominik pije pivo
+  translations:
+    en: Dominik (drinks|is drinking) beer.
+- id: s.u06.12
+  node: sk.u06.pitie
+  forms:
+    sk-Latn/standard:
+      text: Lucka nepije víno.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: nepije, lexeme: piť, feats: {Mood: Ind, Number: Sing, Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}},
+        {surface: víno, lexeme: víno, feats: {Case: Acc, Number: Sing}}]
+      reverse: Lucka nepije víno
+  translations:
+    en: Lucka (doesn't|does not) drink wine.
+- id: s.u06.13
+  node: sk.u06.pitie
+  forms:
+    sk-Latn/standard:
+      text: Samko chce kofolu.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: chce, lexeme: chcieť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kofolu,
+          lexeme: kofola, feats: {Case: Acc, Number: Sing}}]
+      reverse: Samko chce kofolu
+  translations:
+    en: Samko wants [a] Kofola.
+- id: s.u06.14
+  node: sk.u06.instr
+  forms:
+    sk-Latn/standard:
+      text: Lucka je s Dominikom.
+      tokens: [{surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: s, lexeme: s},
+        {surface: Dominikom, lexeme: dominik, feats: {Case: Ins, Number: Sing}}]
+      reverse: Lucka je s Dominikom
+  translations:
+    en: Lucka is with Dominik.
+- id: s.u06.15
+  node: sk.u06.instr
+  forms:
+    sk-Latn/standard:
+      text: Pijem kávu s mliekom.
+      tokens: [{surface: Pijem, lexeme: piť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: kávu, lexeme: káva, feats: {Case: Acc, Number: Sing}}, {surface: s, lexeme: s},
+        {surface: mliekom, lexeme: mlieko, feats: {Case: Ins, Number: Sing}}]
+      reverse: (Pijem|Ja pijem) kávu s mliekom
+  translations:
+    en: I (drink|have|take) [my] coffee with milk.
+- id: s.u06.16
+  node: sk.u06.instr
+  forms:
+    sk-Latn/standard:
+      text: Čaj s cukrom, prosím.
+      tokens: [{surface: Čaj, lexeme: čaj, feats: {Case: Acc, Number: Sing}}, {surface: s, lexeme: s}, {surface: cukrom, lexeme: cukor, feats: {Case: Ins, Number: Sing}}, {surface: prosím, lexeme: prosiť,
+          feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: Čaj s cukrom prosím
+  translations:
+    en: Tea with sugar, please.
+- id: s.u06.17
+  node: sk.u06.instr
+  forms:
+    sk-Latn/standard:
+      text: Idem s tebou.
+      tokens: [{surface: Idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: s, lexeme: s}, {surface: tebou, lexeme: ty, feats: {Case: Ins, Number: Sing}}]
+      reverse: (Idem|Ja idem) s (tebou|vami)
+  translations:
+    en: |-
+      (I'm|I am) (going|coming) with you.
+      I'll (go|come) with you.
+- id: s.u06.18
+  node: sk.u06.instr
+  forms:
+    sk-Latn/standard:
+      text: Samko je s mamou a otcom.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: s, lexeme: s},
+        {surface: mamou, lexeme: mama, feats: {Case: Ins, Number: Sing}}, {surface: a, lexeme: a}, {surface: otcom, lexeme: otec, feats: {Case: Ins, Number: Sing}}]
+      reverse: Samko je s mamou a otcom
+  translations:
+    en: Samko is with (his|) (mum|mom) and dad.
+- id: s.u06.19
+  node: sk.u06.instr
+  forms:
+    sk-Latn/standard:
+      text: Ideš so mnou?
+      tokens: [{surface: Ideš, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: so, lexeme: s}, {surface: mnou, lexeme: ja, feats: {Case: Ins, Number: Sing}}]
+      reverse: (Ideš|Ty ideš|Idete|Vy idete) so mnou
+  translations:
+    en: |-
+      Are you (going|coming) with me?
+      Will you (go|come) with me?
+- id: s.u06.20
+  node: sk.u06.dat-si
+  forms:
+    sk-Latn/standard:
+      text: Dám si kávu.
+      tokens: [{surface: Dám, lexeme: dať-si, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: si, lexeme: si.refl}, {surface: kávu, lexeme: káva, feats: {Case: Acc,
+            Number: Sing}}]
+      reverse: (Dám si|Ja si dám) kávu
+  translations:
+    en: I'll have (a|some) coffee.
+- id: s.u06.21
+  node: sk.u06.dat-si
+  forms:
+    sk-Latn/standard:
+      text: Čo si dáš?
+      tokens: [{surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: si, lexeme: si.refl}, {surface: dáš, lexeme: dať-si, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: Čo si (dáš|dáte)
+  translations:
+    en: |-
+      What will you have?
+      What are you having?
+      What would you like?
+- id: s.u06.22
+  node: sk.u06.dat-si
+  forms:
+    sk-Latn/standard:
+      text: Dám si halušky a pivo.
+      tokens: [{surface: Dám, lexeme: dať-si, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: si, lexeme: si.refl}, {surface: halušky, lexeme: halušky, feats: {Case: Acc,
+            Number: Plur}}, {surface: a, lexeme: a}, {surface: pivo, lexeme: pivo, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Dám si|Ja si dám) halušky a pivo
+  translations:
+    en: I'll have [the] halušky and a beer.
+- id: s.u06.23
+  node: sk.u06.dat-si
+  forms:
+    sk-Latn/standard:
+      text: Jem polievku.
+      tokens: [{surface: Jem, lexeme: jesť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: polievku, lexeme: polievka, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Jem|Ja jem) polievku
+  translations:
+    en: |-
+      I (eat|am eating) soup.
+      I'm eating soup.
+- id: s.u06.24
+  node: sk.u06.dat-si
+  forms:
+    sk-Latn/standard:
+      text: Čo ješ?
+      tokens: [{surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: ješ, lexeme: jesť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: Čo (ješ|jete)
+  translations:
+    en: |-
+      What are you eating?
+      What do you eat?
+- id: s.u06.25
+  node: sk.u06.dat-si
+  forms:
+    sk-Latn/standard:
+      text: Tu je jedálny lístok.
+      tokens: [{surface: Tu, lexeme: tu}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: jedálny, lexeme: jedálny, feats: {Animacy: Inan,
+            Case: Nom, Gender: Masc, Number: Sing}}, {surface: lístok, lexeme: lístok, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Tu je jedálny lístok|Jedálny lístok je tu)
+  translations:
+    en: (Here's|Here is) the menu.
+- id: s.u06.26
+  node: sk.u06.dat-si
+  forms:
+    sk-Latn/standard:
+      text: Čašníčka je veľmi milá.
+      tokens: [{surface: Čašníčka, lexeme: čašníčka, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: veľmi,
+          lexeme: veľmi}, {surface: milá, lexeme: milý, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      reverse: Čašníčka je veľmi milá
+  translations:
+    en: The waitress is very (nice|kind|friendly).
+- id: s.u06.27
+  node: sk.u06.dat-si
+  forms:
+    sk-Latn/standard:
+      text: Pán čašník, prosím!
+      tokens: [{surface: Pán, lexeme: pán, feats: {Case: Nom, Number: Sing}}, {surface: čašník, lexeme: čašník, feats: {Case: Nom, Number: Sing}}, {surface: prosím, lexeme: prosiť, feats: {Mood: Ind, Number: Sing,
+            Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: Pán čašník prosím
+  translations:
+    en: |-
+      Waiter, please!
+      Excuse me, waiter!
+- id: s.u06.28
+  node: sk.u06.doprava
+  forms:
+    sk-Latn/standard:
+      text: Idem vlakom.
+      tokens: [{surface: Idem, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: vlakom, lexeme: vlak, feats: {Case: Ins, Number: Sing}}]
+      reverse: (Idem|Ja idem) vlakom
+  translations:
+    en: |-
+      (I'm|I am) going by train.
+      I (go|travel) by train.
+- id: s.u06.29
+  node: sk.u06.doprava
+  forms:
+    sk-Latn/standard:
+      text: Ideš autom alebo autobusom?
+      tokens: [{surface: Ideš, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: autom, lexeme: auto, feats: {Case: Ins, Number: Sing}}, {surface: alebo,
+          lexeme: alebo}, {surface: autobusom, lexeme: autobus, feats: {Case: Ins, Number: Sing}}]
+      reverse: (Ideš|Ty ideš|Idete|Vy idete) autom alebo autobusom
+  translations:
+    en: |-
+      Are you going by car or by bus?
+      Do you go by car or by bus?
+- id: s.u06.30
+  node: sk.u06.doprava
+  forms:
+    sk-Latn/standard:
+      text: Rudo riadi trolejbus.
+      tokens: [{surface: Rudo, lexeme: rudo, feats: {Case: Nom, Number: Sing}}, {surface: riadi, lexeme: riadiť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: trolejbus,
+          lexeme: trolejbus, feats: {Case: Acc, Number: Sing}}]
+      reverse: Rudo riadi trolejbus
+  translations:
+    en: Rudo drives a trolleybus.
+- id: s.u06.31
+  node: sk.u06.doprava
+  forms:
+    sk-Latn/standard:
+      text: Samko ide do školy autobusom.
+      tokens: [{surface: Samko, lexeme: samko, feats: {Case: Nom, Number: Sing}}, {surface: ide, lexeme: ísť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do},
+        {surface: školy, lexeme: škola, feats: {Case: Gen, Number: Sing}}, {surface: autobusom, lexeme: autobus, feats: {Case: Ins, Number: Sing}}]
+      reverse: |-
+        Samko ide do školy autobusom
+        Samko ide autobusom do školy
+  translations:
+    en: Samko (goes|is going) to school by bus.
+- id: s.u06.32
+  node: sk.u06.doprava
+  forms:
+    sk-Latn/standard:
+      text: Ideme spolu trolejbusom.
+      tokens: [{surface: Ideme, lexeme: ísť, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: spolu, lexeme: spolu}, {surface: trolejbusom, lexeme: trolejbus, feats: {
+            Case: Ins, Number: Sing}}]
+      reverse: (Ideme|My ideme) spolu trolejbusom
+  translations:
+    en: |-
+      (We're|We are) going together by trolleybus.
+      We (go|travel) together by trolleybus.
+- id: s.u06.33
+  node: sk.u06.pozvat
+  forms:
+    sk-Latn/standard:
+      text: Pozvem ťa na kávu.
+      tokens: [{surface: Pozvem, lexeme: pozvať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: ťa, lexeme: ty, feats: {Case: Acc, Number: Sing}}, {surface: na, lexeme: na},
+        {surface: kávu, lexeme: káva, feats: {Case: Acc, Number: Sing}}]
+      reverse: Pozvem (ťa|vás) na kávu
+  translations:
+    en: |-
+      I'll invite you for [a] coffee.
+      Let me buy you a coffee.
+- id: s.u06.34
+  node: sk.u06.pozvat
+  forms:
+    sk-Latn/standard:
+      text: Kde žiješ?
+      tokens: [{surface: Kde, lexeme: kde}, {surface: žiješ, lexeme: žiť, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      reverse: Kde (žiješ|žijete)
+  translations:
+    en: Where do you live?
+- id: s.u06.35
+  node: sk.u06.pozvat
+  forms:
+    sk-Latn/standard:
+      text: Žijem v Žiline.
+      tokens: [{surface: Žijem, lexeme: žiť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: v, lexeme: v}, {surface: Žiline, lexeme: žilina, feats: {Case: Loc, Number: Sing}}]
+      reverse: (Žijem|Ja žijem) v Žiline
+  translations:
+    en: I live in Žilina.
+- id: s.u06.36
+  node: sk.u06.pozvat
+  forms:
+    sk-Latn/standard:
+      text: Čašník nesie polievku.
+      tokens: [{surface: Čašník, lexeme: čašník, feats: {Case: Nom, Number: Sing}}, {surface: nesie, lexeme: niesť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: polievku,
+          lexeme: polievka, feats: {Case: Acc, Number: Sing}}]
+      reverse: Čašník nesie polievku
+  translations:
+    en: The waiter (is bringing|brings|is carrying) the soup.
+- id: s.u06.37
+  node: sk.u06.pozvat
+  forms:
+    sk-Latn/standard:
+      text: Auto je pred domom.
+      tokens: [{surface: Auto, lexeme: auto, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pred, lexeme: pred},
+        {surface: domom, lexeme: dom, feats: {Case: Ins, Number: Sing}}]
+      reverse: Auto je pred domom
+  translations:
+    en: The car is in front of the house.
+- id: s.u06.38
+  node: sk.u06.pozvat
+  forms:
+    sk-Latn/standard:
+      text: Mačka je pod stolom.
+      tokens: [{surface: Mačka, lexeme: mačka, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: pod, lexeme: pod},
+        {surface: stolom, lexeme: stôl, feats: {Case: Ins, Number: Sing}}]
+      reverse: Mačka je pod stolom
+  translations:
+    en: The cat is under the table.
+- id: s.u06.39
+  node: sk.u06.pozvat
+  forms:
+    sk-Latn/standard:
+      text: Lampa je nad stolom.
+      tokens: [{surface: Lampa, lexeme: lampa, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nad, lexeme: nad},
+        {surface: stolom, lexeme: stôl, feats: {Case: Ins, Number: Sing}}]
+      reverse: Lampa je nad stolom
+  translations:
+    en: The lamp is (above|over) the table.
+- id: s.u06.40
+  node: sk.u06.pozvat
+  forms:
+    sk-Latn/standard:
+      text: Za domom je park.
+      tokens: [{surface: Za, lexeme: za}, {surface: domom, lexeme: dom, feats: {Case: Ins, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: park, lexeme: park, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Za domom je park|Park je za domom)
+  translations:
+    en: |-
+      Behind the house (is|there's|there is) a park.
+      (There's|There is) a park behind the house.
+stories:
+- id: sk.story.u06
+  node: sk.u06.story
+  title:
+    en: At the koliba
+  characters:
+  - id: casnicka
+    speaker: f
+    name:
+      sk-Latn/standard: Čašníčka
+  - id: lucka
+    speaker: f
+    name:
+      sk-Latn/standard: Lucka
+  - id: dominik
+    speaker: m
+    name:
+      sk-Latn/standard: Dominik
+  steps:
+  - line:
+      speaker: casnicka
+      forms:
+        sk-Latn/standard:
+          text: Dobrý deň! Tu je jedálny lístok.
+          tokens: [{surface: Dobrý, lexeme: dobrý-deň}, {surface: deň, lexeme: dobrý-deň}, {surface: Tu, lexeme: tu}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+                VerbForm: Fin}}, {surface: jedálny, lexeme: jedálny, feats: {Animacy: Inan, Case: Nom, Gender: Masc, Number: Sing}}, {surface: lístok, lexeme: lístok, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Hello! Here's the menu.
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Ďakujem. Čo si dáš, Lucka?
+          tokens: [{surface: Ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Čo, lexeme: čo, feats: {Case: Acc}}, {surface: si, lexeme: si.refl},
+            {surface: dáš, lexeme: dať-si, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: Lucka, lexeme: lucka, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Thank you. What will you have, Lucka?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Dám si kapustnicu. A ty?
+          tokens: [{surface: Dám, lexeme: dať-si, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: si, lexeme: si.refl}, {surface: kapustnicu, lexeme: kapustnica, feats: {
+                Case: Acc, Number: Sing}}, {surface: A, lexeme: a}, {surface: ty, lexeme: ty, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: I'll have the sauerkraut soup. And you?
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Ja si dám bryndzové halušky.
+          tokens: [{surface: Ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: si, lexeme: si.refl}, {surface: dám, lexeme: dať-si, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+                VerbForm: Fin}}, {surface: bryndzové, lexeme: bryndzový, feats: {Case: Acc, Gender: Fem, Number: Plur}}, {surface: halušky, lexeme: halušky, feats: {Case: Acc, Number: Plur}}]
+      translations:
+        en: I'll have bryndzové halušky.
+  - choose:
+      prompt:
+        en: What does Dominik order?
+      options:
+      - en: Halušky
+      - en: Soup
+      - en: Meat
+      answer: 0
+  - line:
+      speaker: casnicka
+      forms:
+        sk-Latn/standard:
+          text: A čo si dáte piť?
+          tokens: [{surface: A, lexeme: a}, {surface: čo, lexeme: čo, feats: {Case: Acc}}, {surface: si, lexeme: si.refl}, {surface: dáte, lexeme: dať-si, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres,
+                VerbForm: Fin}}, {surface: piť, lexeme: piť, feats: {VerbForm: Inf}}]
+      translations:
+        en: And what will you have to drink?
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Vodu, prosím.
+          tokens: [{surface: Vodu, lexeme: voda, feats: {Case: Acc, Number: Sing}}, {surface: prosím, lexeme: prosiť, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Water, please.
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: A ja pivo.
+          tokens: [{surface: A, lexeme: a}, {surface: ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: pivo, lexeme: pivo, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: And a beer for me.
+  - line:
+      speaker: lucka
+      ask: complete
+      gap: lexeme:piť
+      distractors:
+      - lexeme:hovoriť
+      - lexeme:rozumieť
+      forms:
+        sk-Latn/standard:
+          text: Ja nepijem pivo.
+          tokens: [{surface: Ja, lexeme: ja, feats: {Case: Nom, Number: Sing}}, {surface: nepijem, lexeme: piť, feats: {Mood: Ind, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}},
+            {surface: pivo, lexeme: pivo, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: I don't drink beer.
+  - line:
+      speaker: casnicka
+      ask: arrange
+      forms:
+        sk-Latn/standard:
+          text: Kapustnica, halušky, voda a pivo.
+          tokens: [{surface: Kapustnica, lexeme: kapustnica, feats: {Case: Nom, Number: Sing}}, {surface: halušky, lexeme: halušky, feats: {Case: Nom, Number: Plur}}, {surface: voda, lexeme: voda, feats: {
+                Case: Nom, Number: Sing}}, {surface: a, lexeme: a}, {surface: pivo, lexeme: pivo, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Sauerkraut soup, halušky, a water and a beer.
+  - line:
+      speaker: dominik
+      forms:
+        sk-Latn/standard:
+          text: Áno, ďakujem.
+          tokens: [{surface: Áno, lexeme: áno}, {surface: ďakujem, lexeme: ďakovať, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Yes, thank you.
+  - choose:
+      prompt:
+        en: What does Lucka drink?
+      options:
+      - en: Water
+      - en: Beer
+      - en: Coffee
+      answer: 0
+  - line:
+      speaker: lucka
+      forms:
+        sk-Latn/standard:
+          text: Kapustnica je výborná!
+          tokens: [{surface: Kapustnica, lexeme: kapustnica, feats: {Case: Nom, Number: Sing}}, {surface: je, lexeme: byť, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: výborná,
+              lexeme: výborný, feats: {Case: Nom, Gender: Fem, Number: Sing}}]
+      translations:
+        en: The sauerkraut soup is delicious!
+scenarios:
+- id: sk.koliba
+  after: sk.u06.pozvat
+  title:
+    en: Ordering at a koliba
+  setting:
+    en: A koliba, a log-cabin inn in the hills above Žilina, on a Sunday at lunchtime. It is warm inside and smells of smoke and bacon.
+  character:
+    en: The waitress, a cheerful young woman in a folk-style apron, busy but happy to recommend the halušky.
+  goal:
+    en: Greet the waitress, order something to eat and something to drink (Dám si …), ask what she recommends, and thank her.
