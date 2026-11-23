@@ -1,0 +1,10 @@
+# Free is yes or no.
+language: es
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@rules2', status: draft}
+lexemes:
+  - id: lexeme:hablar
+    pos: VERB
+    form: hablar
+    forms:
+      - {feats: {Tense: Imp}, stem: hablara, status: pinned, free: 'yes'}

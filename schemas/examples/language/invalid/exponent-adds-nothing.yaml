@@ -1,0 +1,12 @@
+# An exponent says what it adds, "" where it adds nothing.
+id: apc
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@rules2', status: draft}
+dimensions:
+  VERB: [Aspect, Person, Number]
+realisation:
+  - id: 'rule:apc-perfect'
+    when: {feats: {Aspect: Perf}}
+    blocks:
+      - suffix:
+          - {branch: 3ms, feats: {Person: '3'}}

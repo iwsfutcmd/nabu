@@ -79,3 +79,148 @@ rules:
 - {id: 'rule:shu-excl', gloss: {en: 'shu + adjective: how …!'}, notes: {en: 'shu 7elo!: how nice!; shu 7elwe hal hdiyye!: what a lovely present! The adjective agrees with what it describes.'}, was: 'construction:shu-excl'}
 - {id: 'rule:used-to', gloss: {en: 'kent + a verb without b-: used to; would'}, notes: {en: 'kent ru7: I used to go; kenna nekol: we used to eat; ken yishteghel: he used to work. Both verbs agree with who did it.'}, was: 'construction:used-to'}
 - {id: 'rule:was-doing', gloss: {en: 'kent 3am + verb: was …ing'}, notes: {en: 'kent 3am e2ra: I was reading; keno 3am yeklo: they were eating.'}, was: 'construction:was-doing'}
+# Rules in a lexicon, stage 2 (docs/rules-design.md): the notation the rules read, apc's root classes, stem
+# templates, its verbs' realisation rules and its rewrite rules. Nothing reads them in the compiler yet: core's
+# `realise` does (core-cli realise, conformance/realise.json). Every branch is REVIEW until the owner signs it off.
+# Sources: Kline (2022), by page; the course where Kline is silent (said so); the owner's rulings in
+# docs/lexical-forms/apc.md. A verb's radicals, Form and vowels are its lexeme's (stage 1 stores them).
+notation:
+  # docs/lexical-forms/apc.md, 'The notation'. C: every letter; K: a consonant (no length letter, no glide)
+  vowels: {a: "َ", i: "ِ", u: "ُ", e: "\u065c", o: "\u065d"}
+  long: {a: "َا", i: "ِي", u: "ُو", e: "\u065cي", o: "\u065dو"}
+  none: "ْ"
+  sets:
+    C: "[ء-يگپڤ]"
+    K: "[ء-ئب-غف-هگپڤ]"
+    V: "[َُِ\u065c\u065d]"  # a short vowel
+    W: "[َُِ\u065c\u065d]"  # the same, where a pattern names a second one
+    IU: "[ِ ُ {ِّ} {ُّ}]"  # i or u, doubled or not: what syncope drops
+    P: "[بتينما]"  # the letters of the present's prefixes (b-, t-, y-, n-, mn-, the 1sg's alef)
+    N: "[ن]"
+    T: "[ت]"
+    AYN: "[ع]"
+    # REVIEW: the radicals before which a pattern's long a stays a (said back), read off Kline's words and the
+    # course's (authored.yaml's `back`; ruling 3 keeps the rule for templates, which have no word to store it on).
+    BACK: "[رقعحخغصضطظو]"
+    # REVIEW: the letters the feminine ending is -a after: Kline p. 16 lists ر ع ق ص ض ط ظ; his own words add
+    # ح غ ء (apc.md, 'A pattern's template').
+    FEMA: "[رعقصضطظحغء]"
+rootClasses:  # the first that holds; never stored (apc.md, 'A verb's form')
+- {id: hamzated, radical: 1, in: "[ء]"}
+- {id: w-initial, radical: 1, in: "[و]"}
+- {id: hollow, radical: 2, in: "[وي]"}
+- {id: doubled, same: [2, 3]}
+- {id: defective, radical: 3, in: "[وي]"}
+- {id: sound}
+stems:
+- {id: perfect, form: I, template: "1{past}2{past}3"}  # daras, shereb (Kline p. 75)
+- {id: perfect, form: I, class: hamzated, template: "أ{past}2{past}3"}  # akal, akhad: the course writes أ (Kline p. 75, img)
+- {id: perfect, form: I, class: hollow, template: "1{past}ا3"}  # ra7, ken: the long vowel a or e is the verb's own (ruling 3: stored on each word; its `past` vowel)
+- {id: perfect, form: I, class: doubled, template: "1َ2ّ"}  # 7abb, laff, da22 (Kline p. 79)
+- {id: perfect, form: I, class: defective, template: "1َ2َى"}  # 7aka (Kline p. 78, 123)
+- {id: perfect, form: I, class: defective, vowels: {present: a}, template: "1َ2َا"}  # 2ara, the 'irregular defective', spelled with alef (Kline p. 78)
+- {id: perfect-short, form: I, template: "1{past}2{past}3"}  # akalt, akalna: an a-verb keeps both vowels (Kline p. 96)
+- {id: perfect-short, form: I, vowels: {past: i}, template: "1ْ2ِ3", branch: i-short}  # REVIEW: the course's shrebt, 3melt, fhemt, sme3t, shrebna (Kline gives no i-verb paradigm)
+- {id: perfect-short, form: I, class: hamzated, template: "أ{past}2{past}3"}  # akalt
+- {id: perfect-short, form: I, class: hollow, template: "1ِ3", branch: hollow-short}  # Kline: kent, kente, kenna, kento (p. 60); Sert, Serte, Serna, Serto (p. 69); shifet (p. 99); re7na (p. 25, 64, 144); 3eshet (p. 159): one short vowel e/i, whatever the present's; ro7t is the Bekaa's (p. 198). The owner: follow Kline (2026-11-23)
+- {id: perfect-short, form: I, class: doubled, template: "1َ2ّ\u065cي", branch: doubled-e}  # 7abbet, I and you (m.) (Kline p. 97)
+- {id: perfect-short, form: I, class: defective, template: "1ْ2ِي", branch: defective-i}  # 7keet (Kline p. 98, the first of his two sets)
+- {id: perfect-ay, form: I, class: doubled, template: "1َ2َّيْ", branch: doubled-ay}  # 7abbayte, 7abbayna, 7abbayto (Kline p. 97)
+- {id: perfect-ay, form: I, class: defective, template: "1َ2َيْ", branch: defective-ay}  # 7akayte, 7akayna, 7akayto (Kline p. 98, the second set)
+- {id: imperfect, form: I, template: "1ْ2{present}3"}  # yeshrab, ya3mel, yedros (Kline p. 75-76)
+- {id: imperfect, form: I, class: hamzated, template: "ـ\u065cا2{present}3", branch: hamzated}  # yekol, yekhod: the prefix's vowel is a long e spelled with alef (ياكل; Kline p. 75, img)
+- {id: imperfect, form: I, class: w-initial, template: "ـُو2{present}3", branch: w-initial}  # yusal (Kline p. 76)
+- {id: imperfect, form: I, class: hollow, template: "1{long present}3"}  # yru7, ysir (Kline p. 77)
+- {id: imperfect, form: I, class: hollow, vowels: {present: a}, template: "1{past}ا3", branch: hollow-unchanged}  # nem / ynem: the vowel does not change (Kline p. 77)
+- {id: imperfect, form: I, class: doubled, template: "1ِ2ّ"}  # y7ebb, yleff, yde22 (Kline p. 79)
+- {id: imperfect, form: I, class: defective, template: "1ْ2{long present}"}  # ye7ki, ye2ra (Kline p. 78)
+- {id: command, form: I, class: hamzated, template: "2\u065dو3", branch: hamzated}  # kol, khod (Kline p. 164): an o the course writes with و (كول, خود; Kline p. 163)
+- {id: command-v, form: I, class: hamzated, template: "2ِ3", branch: hamzated}  # kili, kilo (Kline p. 164: kele, kelo)
+- {id: participle, form: I, template: "1\u065cا2ِ3"}  # keteb, seken, nezel
+- {id: participle, form: I, radical: 1, in: "{BACK}", template: "1َا2ِ3", branch: back-a}  # 2a3ed, wa2ef: a after a back radical (REVIEW)
+- {id: participle, form: I, class: hollow, template: "1\u065cايِ3", branch: hollow}  # keyin, neyem (Kline p. 123)
+- {id: participle, form: I, class: hollow, radical: 1, in: "{BACK}", template: "1َايِ3", branch: hollow-back-a}  # raye7, Sayer (Kline p. 123, img)
+- {id: participle, form: I, class: defective, template: "1\u065cا2ِي", branch: defective}  # meshe, 7eke, 2are (Kline p. 123, img)
+- {id: perfect, form: II, template: "1َ2َّ3"}  # jarrab, fakkar, wa22af
+- {id: perfect, form: II, class: defective, template: "1َ2َّى"}  # ghanna
+- {id: imperfect, form: II, template: "1َ2ِّ3"}  # yjarreb, yfakker, ywa22ef
+- {id: imperfect, form: II, class: defective, template: "1َ2ِّي"}  # yghanne
+- {id: perfect, form: III, template: "1\u065cا2َ3"}  # sefar, se3ad (Kline p. 83); REVIEW: e or a as the participle's (BACK)
+- {id: perfect, form: III, radical: 1, in: "{BACK}", template: "1َا2َ3"}  # 7afaZ (Kline p. 84)
+- {id: imperfect, form: III, template: "1\u065cا2ِ3"}  # ysefir (Kline p. 83)
+- {id: imperfect, form: III, radical: 1, in: "{BACK}", template: "1َا2ِ3"}  # y7afiz (Kline p. 84)
+- {id: perfect, form: VIII, template: "اِ1ْتَ2َ3"}  # shta8al
+- {id: perfect, form: VIII, class: hollow, template: "اِ1ْت\u065cا3"}  # rte7
+- {id: perfect, form: VIII, class: defective, template: "اِ1ْتَ2َى"}  # shtara
+- {id: perfect-short, form: VIII, class: defective, template: "اِ1ْتَ2ِي", branch: defective-i}  # REVIEW: the course's eshtarit; Kline writes shtareyt (p. 152)
+- {id: perfect-ay, form: VIII, class: defective, template: "اِ1ْتَ2َيْ", branch: defective-ay}  # the course's eshtarayti, eshtarayna, eshtarayto
+- {id: imperfect, form: VIII, template: "1ْتِ2ِ3"}  # yeshte8el
+- {id: imperfect, form: VIII, class: hollow, template: "1ْت\u065cا3"}  # yrte7
+- {id: imperfect, form: VIII, class: defective, template: "1ْتِ2ِي"}  # yshtere (Kline p. 91); the course's eshtiri
+realisation:
+- id: 'rule:apc-perfect'  # the suffix conjugation (Kline p. 95-99)
+  when: {feats: {Aspect: Perf}}
+  stem: perfect
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Person: '1', Number: Sing}, add: "ت", stem: [perfect-short, perfect]}
+    - {branch: 1pl, feats: {Person: '1', Number: Plur}, add: "نَا", stem: [perfect-ay, perfect-short, perfect]}
+    - {branch: 2fs, feats: {Person: '2', Gender: Fem, Number: Sing}, add: "تِي", stem: [perfect-ay, perfect-short, perfect]}
+    - {branch: 2pl, feats: {Person: '2', Number: Plur}, add: "تُوا\u06df", stem: [perfect-ay, perfect-short, perfect]}  # -to; the alef is written and not said
+    - {branch: 2ms, feats: {Person: '2'}, add: "ت", stem: [perfect-short, perfect]}
+    - {branch: 3fs, feats: {Person: '3', Gender: Fem, Number: Sing}, add: "ـِت"}  # -et, on the long stem (Kline p. 60, 69: kenet, Saret)
+    - {branch: 3pl, feats: {Person: '3', Number: Plur}, add: "ـُوا\u06df"}  # -o (keno, Saro)
+    - {branch: 3ms, feats: {Person: '3'}, add: ""}  # he: the stem alone
+- id: 'rule:apc-imperfect'  # the prefix conjugation (Kline p. 100-104, 157-159)
+  when: {feats: {Aspect: Imp}}
+  stem: imperfect
+  blocks:
+  - prefix:  # who: the person prefix
+    - {branch: 1sg-sub, feats: {Person: '1', Number: Sing, Mood: Sub}, add: "ا"}  # Kline p. 157: (a)-, a vowel written with alef before a cluster; the alef goes before a vowel (rule:apc-prefix-vowel)
+    - {branch: 1sg, feats: {Person: '1', Number: Sing}, add: ""}  # b- alone (Kline p. 100)
+    - {branch: 1pl, feats: {Person: '1', Number: Plur}, add: "ن"}
+    - {branch: 3fs, feats: {Person: '3', Gender: Fem, Number: Sing}, add: "ت"}
+    - {branch: '2', feats: {Person: '2'}, add: "ت"}
+    - {branch: '3', feats: {Person: '3'}, add: "ي"}
+  - prefix:  # the indicative's b- (the future's ra7 and the negative's ma are lexemes of their own)
+    - {branch: ind, feats: {Mood: Ind}, add: "ب"}
+  - suffix:
+    - {branch: 2fs, feats: {Person: '2', Gender: Fem, Number: Sing}, add: "ـِي"}
+    - {branch: pl, feats: {Person: '2,3', Number: Plur}, add: "ـُوا\u06df"}
+- id: 'rule:apc-command'  # the command (Kline p. 161-166): the present's stem, no prefix
+  when: {feats: {Mood: Imp}}
+  stem: [command, imperfect]
+  blocks:
+  - suffix:
+    - {branch: 2fs, feats: {Gender: Fem, Number: Sing}, add: "ـِي", stem: [command-v, command, imperfect]}
+    - {branch: pl, feats: {Number: Plur}, add: "ـُوا\u06df", stem: [command-v, command, imperfect]}
+    - {branch: 2ms, add: ""}
+  # REVIEW: Kline gives the command of a sound verb with no vowel before its cluster (dros, trok: p. 161, 164;
+  # 'initial clusters are allowed in and around Beirut', p. 162-163); the course writes eshrab, eshrabo beside b3atli.
+- id: 'rule:apc-participle'  # the active participle, Form I (Kline p. 122-124, 130): a form of its verb (apc.md)
+  when: {feats: {Aspect: Part}}
+  stem: participle
+  blocks:
+  - suffix:
+    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u065cة"}  # -e, or -a (rule:apc-feminine)
+    - {branch: pl, feats: {Number: Plur}, add: "ـِين"}  # -in
+    - {branch: ms, add: ""}
+phonology:  # in order, each once over the whole form
+- {id: 'rule:apc-sukun', find: "{K}ّ+", before: "{K}*", to: "{K}ّْ+"}  # the notation: a doubled letter before a suffix's consonant takes the sign of no vowel
+- {id: 'rule:apc-bn', find: "ب+{N}*+", to: "م+{N}+"}  # b- + n- is said and written mn- (Kline p. 100-101)
+- {id: 'rule:apc-madda', find: "ا\u065c+ا", to: "آ\u065c+"}  # the 1sg's alef before a stem in long e: آكل (the course)
+- {id: 'rule:apc-silent-alef', find: "ا\u06df+", to: "+"}  # the plural's silent alef is written only last in a word (Kline p. 95, img: شافوها)
+- {id: 'rule:apc-prefix-vowel', branch: none, find: "ا+", at: start, before: "{K}{V}", to: ""}  # no vowel before a consonant that has one: the 1sg's alef goes (ru7, nem)
+- {id: 'rule:apc-prefix-vowel', branch: ayn, find: "{P}+", after: ["#", "#{P}*+"], before: "{AYN}ْ", to: "{P}َ+"}  # a before 3 (ba3mel, ta3mel; Kline p. 75, and a3ref for the 1sg, p. 157)
+- {id: 'rule:apc-prefix-vowel', branch: cluster, find: "{P}+", after: ["#", "#{P}*+"], before: "{K}ْ", to: "{P}ِ+"}  # i before a cluster (bishrab, btishrab, eshrab)
+- {id: 'rule:apc-prefix-vowel', branch: none, find: "{P}+", after: ["#", "#{P}*+"], to: "{P}ْ+"}  # none before a consonant with a vowel (bru7, btru7, mnru7)
+- {id: 'rule:apc-syncope', branch: vowel, find: "{C}{IU}{C}{W}+", after: ".*", to: "{C}ْ{C}{W}+"}  # a stem's last i or u drops before an ending that begins with a vowel: 3emlo, ta3mli, tedrso, jarrbi, sekne (Kline p. 101-104, 130)
+- {id: 'rule:apc-syncope', branch: she, find: "{K}َ{K}ِ+{T}*", to: "{K}ْ{K}ِ+{T}"}  # she-past as the speaker's áklit: 3azmet, 3ajbet (ruling 7, 2026-11-21; Kline writes katabet, p. 96)
+- {id: 'rule:apc-defective', branch: ending, find: "{K}*[اىي]{W}+", to: "{K}{W}+"}  # a defective stem's last vowel gives way to an ending's: 7ako, byi7ko, btghanne (Kline p. 98-99)
+- {id: 'rule:apc-geminate', find: "نْ+نَ", to: "+نَّ"}  # no doubled letter written twice: kenna (Kline p. 60; p. 73 n2)
+- {id: 'rule:apc-feminine', branch: a, find: "{FEMA}\u065c+ة", to: "{FEMA}َ+ة"}  # -a after the letters FEMA (Kline p. 16; REVIEW)
+- {id: 'rule:apc-helping-vowel', branch: end, find: "{K}ْ+?{K}", at: end, after: ".{V}", to: "{K}ِ+?{K}"}  # a word that ends in two consonants says a vowel between them, a kasra before the past's -t whatever the stem's (the owner, 2026-11-21: رُحِت, شْرِبِت)
+- {id: 'rule:apc-helping-vowel', branch: inside, find: "{K}ْ+?{K}ْ+{K}*", after: ".{V}", to: "{K}ِ+?{K}ْ+{K}"}  # and before an ending that begins with a said consonant (سْمِعِتْني, ruling 7); not before a vowel (none follows the cluster then)
+# REVIEW, not written yet: the helping vowel's damma after a damma inside a stem (شُغُل: nouns, stage 3); the dative
+# -l- after a hollow verb's short stem and after the past's -t (2elli, 2iltellak: Kline p. 43, 165); a hollow verb's
+# short stem before -l- in the he-past (shaflak, Kline p. 99).

@@ -88,9 +88,157 @@
       "description": "The rules the language names and has not written yet (docs/migration-design.md: rules come after the switch, one at a time, each a file of its own with its vectors). A rule named here is its name and what a learner is shown for it: what a `construction:` KC was. A sentence names the ones it is an example of (`uses`), and a node the ones it introduces.",
       "type": "array",
       "items": { "$ref": "#/$defs/NamedRule" }
+    },
+    "notation": { "$ref": "#/$defs/Notation" },
+    "rootClasses": {
+      "description": "The root classes of its bases (docs/rules-design.md, section 3): computed from a base's radicals, never stored. The first whose condition holds is the base's class; one with no condition is the elsewhere class.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/RootClass" }
+    },
+    "stems": {
+      "description": "Its stem templates (docs/rules-design.md, section 2): a base's stem for a stem id, by its Form and root class. Where several fit, the one with the most conditions wins; a stem with no class fits every class its Form has no stem of its own for.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/Stem" }
+    },
+    "realisation": {
+      "description": "Its realisation rules (ADR 0145; docs/rules-design.md, section 2), in order: the first whose `when` holds of a lexeme and a cell realises it. Each has a rule id, a stem and affix blocks whose exponents are the rule's branches (ADR 0146: a rule's parts).",
+      "type": "array",
+      "items": { "$ref": "#/$defs/RealisationRule" }
+    },
+    "phonology": {
+      "description": "Its ordered rewrite rules over the whole lexical form, boundaries kept (docs/rules-design.md, section 2): each applied once, in order, at every place it matches.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/Rewrite" }
     }
   },
   "$defs": {
+    "Notation": {
+      "title": "Notation",
+      "description": "What the signs of the language's lexical form are (docs/lexical-forms/<lang>.md), as the rules read them: the vowel signs by name, each long vowel by name, the sign of no vowel, and named sets (UnicodeSets) a rule's pattern names as {name}. A set of marks only is a set of mark sequences; any other set is one of letters.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "vowels": { "type": "object", "minProperties": 1, "propertyNames": { "pattern": "^[a-z]+$" }, "additionalProperties": { "type": "string", "minLength": 1 } },
+        "long": { "type": "object", "minProperties": 1, "propertyNames": { "pattern": "^[a-z]+$" }, "additionalProperties": { "type": "string", "minLength": 1 } },
+        "none": { "type": "string", "minLength": 1 },
+        "sets": { "type": "object", "minProperties": 1, "propertyNames": { "pattern": "^[A-Za-z][A-Za-z0-9]*$" }, "additionalProperties": { "type": "string", "pattern": "^\\[.*\\]$" } },
+        "notes": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "RootClass": {
+      "title": "RootClass",
+      "description": "One root class: radical `radical` (counted from 1) is in the set `in`, or radicals `same` are one letter; with neither, every base is of it.",
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/Slug" },
+        "radical": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "in": { "type": "string", "pattern": "^(\\[.*\\]|\\{[A-Za-z][A-Za-z0-9]*\\})$" },
+        "same": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "integer", "minimum": 1, "maximum": 5 } },
+        "notes": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } }
+      },
+      "dependentRequired": { "radical": ["in"], "in": ["radical"] }
+    },
+    "Stem": {
+      "title": "Stem",
+      "description": "One stem template: a pattern's allomorph (ADR 0145). Digits are the base's radicals; {past} and {present} the short vowel signs of the vowels its Form leaves open, {long past} and {long present} their long vowels (the notation's); everything else is the pattern's own. It fits a base of its Form and class whose radical `radical` is in `in` and whose `vowels` are these, where it says so.",
+      "type": "object",
+      "required": ["id", "form", "template"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/Slug" },
+        "form": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9-]*$" },
+        "class": { "$ref": "common.schema.json#/$defs/Slug" },
+        "radical": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "in": { "type": "string", "pattern": "^(\\[.*\\]|\\{[A-Za-z][A-Za-z0-9]*\\})$" },
+        "vowels": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } },
+        "template": { "type": "string", "minLength": 1 },
+        "branch": {
+          "description": "Where the template is a thing a learner gets right or wrong of its own (a hollow verb's short past stem), the branch it is of the realisation rule that takes it: rule:apc-perfect|hollow-short.",
+          "$ref": "#/$defs/Branch"
+        },
+        "notes": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } }
+      },
+      "dependentRequired": { "radical": ["in"], "in": ["radical"] }
+    },
+    "StemChoice": {
+      "title": "StemChoice",
+      "description": "Which stem: a stem id; several, the first the base has a template for; or a pattern lexeme's templates (ADR 0145: a value head's pattern).",
+      "oneOf": [
+        { "$ref": "common.schema.json#/$defs/Slug" },
+        { "type": "array", "minItems": 1, "items": { "$ref": "common.schema.json#/$defs/Slug" } },
+        { "type": "object", "required": ["pattern"], "additionalProperties": false, "properties": { "pattern": { "$ref": "common.schema.json#/$defs/LexemeId" } } }
+      ]
+    },
+    "Branch": {
+      "title": "Branch",
+      "description": "A rule's branch: what a learner gets right or wrong of it on its own (ADR 0146). Lower-case ASCII and stable: it enters part ids and card keys (rule:apc-perfect|3fs).",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "RealisationRule": {
+      "title": "RealisationRule",
+      "description": "One realisation rule: where `when` holds of a lexeme and a cell, its stem and then its blocks in order, each adding the most specific exponent whose values the cell has (Pāṇini; Stump's blocks), at most one a block. A prefix goes before what the blocks before it made, a suffix after it.",
+      "type": "object",
+      "required": ["id", "when", "blocks"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/RuleId" },
+        "when": { "$ref": "#/$defs/Condition" },
+        "stem": { "$ref": "#/$defs/StemChoice" },
+        "blocks": { "type": "array", "items": { "$ref": "#/$defs/AffixBlock" } },
+        "notes": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "AffixBlock": {
+      "title": "AffixBlock",
+      "description": "One block of exponents: prefixes or suffixes.",
+      "oneOf": [
+        { "type": "object", "required": ["prefix"], "additionalProperties": false, "properties": { "prefix": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/Exponent" } } } },
+        { "type": "object", "required": ["suffix"], "additionalProperties": false, "properties": { "suffix": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/Exponent" } } } }
+      ]
+    },
+    "Exponent": {
+      "title": "Exponent",
+      "description": "One exponent: the branch it is, the feature values it is for (a comma: one of them; none: elsewhere in its block) and what it adds, in the notation (an affix that begins with a vowel writes it on a carrier, a modifier letter such as the tatweel, and the vowel goes on the letter it joins). It may select the stem.",
+      "type": "object",
+      "required": ["branch", "add"],
+      "additionalProperties": false,
+      "properties": {
+        "branch": { "$ref": "#/$defs/Branch" },
+        "feats": { "$ref": "common.schema.json#/$defs/UdFeatures" },
+        "add": { "type": "string" },
+        "stem": { "$ref": "#/$defs/StemChoice" },
+        "notes": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "Rewrite": {
+      "title": "Rewrite",
+      "description": "One rewrite rule over the whole lexical form (docs/rules-design.md, section 2). Patterns match letters with their sets of marks, never code points in a row: a letter, {set} or [set] of letters, or . (any letter), then its marks exactly (none written: no marks; {set} or [set] of marks: one of them; *: any); + a boundary, +? one or none, # the form's edge (only in `after` and `before`). `to` writes the matched span again: the n-th {set}, [set], ., +? or set of marks of `to` copies the n-th of `find`, and marks written on a copied letter replace its vowel sign. `map` (in place of `to`) maps the letter `find` matches. `after` and `before` are what must stand before and after the span (several: any of them); `at` ties it to the form's start or end.",
+      "type": "object",
+      "required": ["id", "find"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/RuleId" },
+        "branch": { "$ref": "#/$defs/Branch" },
+        "find": { "type": "string", "minLength": 1 },
+        "to": { "type": "string" },
+        "map": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } },
+        "before": { "$ref": "#/$defs/Context" },
+        "after": { "$ref": "#/$defs/Context" },
+        "at": { "type": "string", "enum": ["start", "end"] },
+        "notes": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "Context": {
+      "title": "Context",
+      "description": "What a rewrite's span must stand beside: a pattern, or several of which any will do.",
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      ]
+    },
     "Condition": {
       "title": "Condition",
       "description": "What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.",
@@ -112,6 +260,11 @@
         "class": {
           "description": "It belongs to this class of its language.",
           "$ref": "common.schema.json#/$defs/Slug"
+        },
+        "endsIn": {
+          "description": "Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).",
+          "type": "string",
+          "minLength": 1
         },
         "feats": {
           "description": "It has these feature values.",

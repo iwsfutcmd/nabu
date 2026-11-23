@@ -230,6 +230,10 @@
           "type": "string",
           "enum": ["listed", "pinned"]
         },
+        "free": {
+          "description": "A free variant (ADR 0145): where another form of the lexeme is as specific for a cell, the two are no tie; both are accepted and the first is shown.",
+          "type": "boolean"
+        },
         "statement": {
           "description": "Who says the language has no rule for it. A draft counts until it is signed off (the owner, round 6).",
           "$ref": "common.schema.json#/$defs/Provenance"
