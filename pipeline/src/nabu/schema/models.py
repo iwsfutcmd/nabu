@@ -1475,6 +1475,119 @@ class Notation(BaseModel):
     ] = None
 
 
+type SameItem = Annotated[int, Field(ge=1, le=5)]
+
+
+class RootClass(BaseModel):
+    """
+    One root class: radical `radical` (counted from 1) is in the set `in`, or radicals `same` are one letter; with neither, every base is of it.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Slug
+    radical: Annotated[int | None, Field(ge=1, le=5)] = None
+    in_: Annotated[
+        str | None, Field(alias="in", pattern="^(\\[.*\\]|\\{[A-Za-z][A-Za-z0-9]*\\})$")
+    ] = None
+    same: Annotated[list[SameItem] | None, Field(max_length=2, min_length=2)] = None
+    notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
+
+
+type StemChoice1 = Annotated[
+    list[Slug],
+    Field(
+        description="Which stem: a stem id; several, the first the base has a template for; or a pattern lexeme's templates (ADR 0145: a value head's pattern).",
+        min_length=1,
+        title="StemChoice",
+    ),
+]
+
+
+class StemChoice2(BaseModel):
+    """
+    Which stem: a stem id; several, the first the base has a template for; or a pattern lexeme's templates (ADR 0145: a value head's pattern).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    pattern: LexemeId
+
+
+type StemChoice = Annotated[
+    Slug | StemChoice1 | StemChoice2,
+    Field(
+        description="Which stem: a stem id; several, the first the base has a template for; or a pattern lexeme's templates (ADR 0145: a value head's pattern).",
+        title="StemChoice",
+    ),
+]
+
+
+type Branch = Annotated[
+    str,
+    Field(
+        description="A rule's branch: what a learner gets right or wrong of it on its own (ADR 0146). Lower-case ASCII and stable: it enters part ids and card keys (rule:apc-perfect|3fs).",
+        pattern="^[a-z0-9]+(-[a-z0-9]+)*$",
+        title="Branch",
+    ),
+]
+
+
+class Exponent(BaseModel):
+    """
+    One exponent: the branch it is, the feature values it is for (a comma: one of them; none: elsewhere in its block) and what it adds, in the notation (an affix that begins with a vowel writes it on a carrier, a modifier letter such as the tatweel, and the vowel goes on the letter it joins). It may select the stem.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    branch: Branch
+    feats: UdFeatures | None = None
+    add: str
+    stem: StemChoice | None = None
+    notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
+
+
+type MapAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type Context1 = Annotated[
+    str,
+    Field(
+        description="What a rewrite's span must stand beside: a pattern, or several of which any will do.",
+        min_length=1,
+        title="Context",
+    ),
+]
+
+
+type Context2Item = Annotated[str, Field(min_length=1)]
+
+
+type Context2 = Annotated[
+    list[Context2Item],
+    Field(
+        description="What a rewrite's span must stand beside: a pattern, or several of which any will do.",
+        min_length=1,
+        title="Context",
+    ),
+]
+
+
+type Context = Annotated[
+    Context1 | Context2,
+    Field(
+        description="What a rewrite's span must stand beside: a pattern, or several of which any will do.",
+        title="Context",
+    ),
+]
+
+
 class Condition(BaseModel):
     """
     What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
@@ -1494,6 +1607,13 @@ class Condition(BaseModel):
     ] = None
     class_: Annotated[
         Slug | None, Field(alias="class", description="It belongs to this class of its language.")
+    ] = None
+    endsIn: Annotated[
+        str | None,
+        Field(
+            description="Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).",
+            min_length=1,
+        ),
     ] = None
     feats: Annotated[UdFeatures | None, Field(description="It has these feature values.")] = None
 
@@ -4024,87 +4144,81 @@ class AudioVoice(BaseModel):
     ]
 
 
-class LanguageDeclaration(BaseModel):
+class Stem(BaseModel):
     """
-    What a language declares beside its lexicon (lexicons/<lang>/language.yaml; ADR 0145, 0148): the varieties and registers a scope ranges over, the dimensions of each category, the features and values its tokens and lexemes carry, its defaults and its classes. A category is a UD tag: no category system is declared (the owner, round 6). Every statement here is content: drafted `llm:` and REVIEW until signed off.
+    One stem template: a pattern's allomorph (ADR 0145). Digits are the base's radicals; {past} and {present} the short vowel signs of the vowels its Form leaves open, {long past} and {long present} their long vowels (the notation's); everything else is the pattern's own. It fits a base of its Form and class whose radical `radical` is in `in` and whose `vowels` are these, where it says so.
     """
 
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
     )
-    id: LanguageCode
-    license: Spdx
-    provenance: Provenance
-    varieties: Annotated[
-        list[LangTag] | None,
+    id: Slug
+    form: Annotated[str, Field(pattern="^[A-Za-z][A-Za-z0-9-]*$")]
+    class_: Annotated[Slug | None, Field(alias="class")] = None
+    radical: Annotated[int | None, Field(ge=1, le=5)] = None
+    in_: Annotated[
+        str | None, Field(alias="in", pattern="^(\\[.*\\]|\\{[A-Za-z][A-Za-z0-9]*\\})$")
+    ] = None
+    vowels: Annotated[dict[str, VowelsAdditionalProperty] | None, Field(min_length=1)] = None
+    template: Annotated[str, Field(min_length=1)]
+    branch: Annotated[
+        Branch | None,
         Field(
-            description="The varieties a scope may name (ADR 0145), as BCP 47 tags: es-CU, es-ES, apc-LB.",
-            min_length=1,
+            description="Where the template is a thing a learner gets right or wrong of its own (a hollow verb's short past stem), the branch it is of the realisation rule that takes it: rule:apc-perfect|hollow-short."
         ),
     ] = None
-    registers: Annotated[
-        list[RegisterId] | None, Field(description="The registers a scope may name.", min_length=1)
-    ] = None
-    dimensions: Annotated[
-        dict[PartOfSpeech, DimensionsAdditionalProperty],
-        Field(
-            description="For each category, the inflectional features every member must choose a value of (ADR 0145: what makes a head a value head). Spanish NOUN: [Number]; apc VERB: [Aspect, Person, Gender, Number]."
-        ),
-    ]
-    lexical: Annotated[
-        dict[PartOfSpeech, LexicalAdditionalProperty] | None,
-        Field(
-            description="For each category, the features a member has of itself, the same in all its forms (ADR 0145: a lexical feature; a Spanish noun's gender). A lexeme stores one only where no default gives it, and it is then a part to learn (ADR 0146). A lexeme whose forms name the feature chooses it on its tokens instead (hermano, hermana), which the converter's reports list (docs/migration)."
-        ),
-    ] = None
-    citation: Annotated[
-        dict[PartOfSpeech, UdFeatures] | None,
-        Field(
-            description="For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell."
-        ),
-    ] = None
-    bare: Annotated[
-        dict[PartOfSpeech, UdFeatures] | None,
-        Field(
-            description="For each category, the feature values of its form with nothing added: masculine singular for a noun or an adjective, a verb's bare stem (apc: the command to a man). A lexeme the course writes in another form is one it inflects, which a profile's contrast sets marked `inflected` ask (ADR 0081: a slip that trades one agreement ending for another is no typo, on a word that takes them). Where it is the cell an entry is spelled in, it is said here all the same."
-        ),
-    ] = None
-    features: Annotated[
-        dict[
-            Annotated[str, StringConstraints(pattern=r"^[A-Z][A-Za-z0-9]*(\[[a-z0-9]+\])?$")],
-            FeaturesAdditionalProperty,
-        ]
-        | None,
-        Field(
-            description="Every feature the language's tokens and lexemes may carry, with its values: UD's names where UD has the feature (Tense: [Past, Pres]), the language's own where it has none."
-        ),
-    ] = None
-    defaults: Annotated[
-        list[Default] | None,
-        Field(
-            description="The language's stated defaults (ADR 0148: a default is a rule; ADR 0146: what one gives is no part of a lexeme). Spanish: a noun in -a is feminine."
-        ),
-    ] = None
-    classes: Annotated[
-        list[LexicalClass] | None,
-        Field(
-            description="The language's stated classes (ADR 0148: stated, never counted). A lexeme that belongs to one stores it, and it is a part to learn (ADR 0146)."
-        ),
-    ] = None
-    labels: Annotated[
-        list[FeatureLabel] | None,
-        Field(
-            description="What a learner is shown for a feature value, or for several together where the language has one name for them (ADR 0146: a built gloss is a message over the names of feature values, which are language data). The most specific label whose values a form has names it."
-        ),
-    ] = None
-    rules: Annotated[
-        list[NamedRule] | None,
-        Field(
-            description="The rules the language names and has not written yet (docs/migration-design.md: rules come after the switch, one at a time, each a file of its own with its vectors). A rule named here is its name and what a learner is shown for it: what a `construction:` KC was. A sentence names the ones it is an example of (`uses`), and a node the ones it introduces."
-        ),
-    ] = None
-    notation: Notation | None = None
+    notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
+
+
+class AffixBlock1(BaseModel):
+    """
+    One block of exponents: prefixes or suffixes.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    prefix: Annotated[list[Exponent], Field(min_length=1)]
+
+
+class AffixBlock2(BaseModel):
+    """
+    One block of exponents: prefixes or suffixes.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    suffix: Annotated[list[Exponent], Field(min_length=1)]
+
+
+type AffixBlock = Annotated[
+    AffixBlock1 | AffixBlock2,
+    Field(description="One block of exponents: prefixes or suffixes.", title="AffixBlock"),
+]
+
+
+class Rewrite(BaseModel):
+    """
+    One rewrite rule over the whole lexical form (docs/rules-design.md, section 2). Patterns match letters with their sets of marks, never code points in a row: a letter, {set} or [set] of letters, or . (any letter), then its marks exactly (none written: no marks; {set} or [set] of marks: one of them; *: any); + a boundary, +? one or none, # the form's edge (only in `after` and `before`). `to` writes the matched span again: the n-th {set}, [set], ., +? or set of marks of `to` copies the n-th of `find`, and marks written on a copied letter replace its vowel sign. `map` (in place of `to`) maps the letter `find` matches. `after` and `before` are what must stand before and after the span (several: any of them); `at` ties it to the form's start or end.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: RuleId
+    branch: Branch | None = None
+    find: Annotated[str, Field(min_length=1)]
+    to: str | None = None
+    map: Annotated[dict[str, MapAdditionalProperty] | None, Field(min_length=1)] = None
+    before: Context | None = None
+    after: Context | None = None
+    at: Literal["start", "end"] | None = None
+    notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
 
 
 class SessionStarted(BaseModel):
@@ -5146,6 +5260,12 @@ class LexemeForm(BaseModel):
             description="listed: the language has no rule for it, so it is a part to learn; it needs its `statement`. pinned: a rule gives it and ours is not written yet; stored and checked, never counted, never a learner's part."
         ),
     ]
+    free: Annotated[
+        bool | None,
+        Field(
+            description="A free variant (ADR 0145): where another form of the lexeme is as specific for a cell, the two are no tie; both are accepted and the first is shown."
+        ),
+    ] = None
     statement: Annotated[
         Provenance | None,
         Field(
@@ -5902,6 +6022,22 @@ class CourseAudio(BaseModel):
     voices: Annotated[list[AudioVoice] | None, Field(min_length=1)] = None
 
 
+class RealisationRule(BaseModel):
+    """
+    One realisation rule: where `when` holds of a lexeme and a cell, its stem and then its blocks in order, each adding the most specific exponent whose values the cell has (Pāṇini; Stump's blocks), at most one a block. A prefix goes before what the blocks before it made, a suffix after it.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: RuleId
+    when: Condition
+    stem: StemChoice | None = None
+    blocks: list[AffixBlock]
+    notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
+
+
 type LearnerEvent = Annotated[
     SessionStarted
     | ExercisePresented
@@ -6538,6 +6674,113 @@ class StoryStep(BaseModel):
     )
     line: StoryLineSource | None = None
     choose: StoryChoiceSource | None = None
+
+
+class LanguageDeclaration(BaseModel):
+    """
+    What a language declares beside its lexicon (lexicons/<lang>/language.yaml; ADR 0145, 0148): the varieties and registers a scope ranges over, the dimensions of each category, the features and values its tokens and lexemes carry, its defaults and its classes. A category is a UD tag: no category system is declared (the owner, round 6). Every statement here is content: drafted `llm:` and REVIEW until signed off.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: LanguageCode
+    license: Spdx
+    provenance: Provenance
+    varieties: Annotated[
+        list[LangTag] | None,
+        Field(
+            description="The varieties a scope may name (ADR 0145), as BCP 47 tags: es-CU, es-ES, apc-LB.",
+            min_length=1,
+        ),
+    ] = None
+    registers: Annotated[
+        list[RegisterId] | None, Field(description="The registers a scope may name.", min_length=1)
+    ] = None
+    dimensions: Annotated[
+        dict[PartOfSpeech, DimensionsAdditionalProperty],
+        Field(
+            description="For each category, the inflectional features every member must choose a value of (ADR 0145: what makes a head a value head). Spanish NOUN: [Number]; apc VERB: [Aspect, Person, Gender, Number]."
+        ),
+    ]
+    lexical: Annotated[
+        dict[PartOfSpeech, LexicalAdditionalProperty] | None,
+        Field(
+            description="For each category, the features a member has of itself, the same in all its forms (ADR 0145: a lexical feature; a Spanish noun's gender). A lexeme stores one only where no default gives it, and it is then a part to learn (ADR 0146). A lexeme whose forms name the feature chooses it on its tokens instead (hermano, hermana), which the converter's reports list (docs/migration)."
+        ),
+    ] = None
+    citation: Annotated[
+        dict[PartOfSpeech, UdFeatures] | None,
+        Field(
+            description="For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell."
+        ),
+    ] = None
+    bare: Annotated[
+        dict[PartOfSpeech, UdFeatures] | None,
+        Field(
+            description="For each category, the feature values of its form with nothing added: masculine singular for a noun or an adjective, a verb's bare stem (apc: the command to a man). A lexeme the course writes in another form is one it inflects, which a profile's contrast sets marked `inflected` ask (ADR 0081: a slip that trades one agreement ending for another is no typo, on a word that takes them). Where it is the cell an entry is spelled in, it is said here all the same."
+        ),
+    ] = None
+    features: Annotated[
+        dict[
+            Annotated[str, StringConstraints(pattern=r"^[A-Z][A-Za-z0-9]*(\[[a-z0-9]+\])?$")],
+            FeaturesAdditionalProperty,
+        ]
+        | None,
+        Field(
+            description="Every feature the language's tokens and lexemes may carry, with its values: UD's names where UD has the feature (Tense: [Past, Pres]), the language's own where it has none."
+        ),
+    ] = None
+    defaults: Annotated[
+        list[Default] | None,
+        Field(
+            description="The language's stated defaults (ADR 0148: a default is a rule; ADR 0146: what one gives is no part of a lexeme). Spanish: a noun in -a is feminine."
+        ),
+    ] = None
+    classes: Annotated[
+        list[LexicalClass] | None,
+        Field(
+            description="The language's stated classes (ADR 0148: stated, never counted). A lexeme that belongs to one stores it, and it is a part to learn (ADR 0146)."
+        ),
+    ] = None
+    labels: Annotated[
+        list[FeatureLabel] | None,
+        Field(
+            description="What a learner is shown for a feature value, or for several together where the language has one name for them (ADR 0146: a built gloss is a message over the names of feature values, which are language data). The most specific label whose values a form has names it."
+        ),
+    ] = None
+    rules: Annotated[
+        list[NamedRule] | None,
+        Field(
+            description="The rules the language names and has not written yet (docs/migration-design.md: rules come after the switch, one at a time, each a file of its own with its vectors). A rule named here is its name and what a learner is shown for it: what a `construction:` KC was. A sentence names the ones it is an example of (`uses`), and a node the ones it introduces."
+        ),
+    ] = None
+    notation: Notation | None = None
+    rootClasses: Annotated[
+        list[RootClass] | None,
+        Field(
+            description="The root classes of its bases (docs/rules-design.md, section 3): computed from a base's radicals, never stored. The first whose condition holds is the base's class; one with no condition is the elsewhere class."
+        ),
+    ] = None
+    stems: Annotated[
+        list[Stem] | None,
+        Field(
+            description="Its stem templates (docs/rules-design.md, section 2): a base's stem for a stem id, by its Form and root class. Where several fit, the one with the most conditions wins; a stem with no class fits every class its Form has no stem of its own for."
+        ),
+    ] = None
+    realisation: Annotated[
+        list[RealisationRule] | None,
+        Field(
+            description="Its realisation rules (ADR 0145; docs/rules-design.md, section 2), in order: the first whose `when` holds of a lexeme and a cell realises it. Each has a rule id, a stem and affix blocks whose exponents are the rule's branches (ADR 0146: a rule's parts)."
+        ),
+    ] = None
+    phonology: Annotated[
+        list[Rewrite] | None,
+        Field(
+            description="Its ordered rewrite rules over the whole lexical form, boundaries kept (docs/rules-design.md, section 2): each applied once, in order, at every place it matches."
+        ),
+    ] = None
 
 
 class Lexicon(BaseModel):

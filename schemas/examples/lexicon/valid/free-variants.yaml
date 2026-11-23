@@ -1,0 +1,11 @@
+# Two free variants for one cell (ADR 0145): no tie; both accepted, the first shown.
+language: es
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@rules2', status: draft}
+lexemes:
+  - id: lexeme:hablar
+    pos: VERB
+    form: hablar
+    forms:
+      - {feats: {Mood: Sub, Tense: Imp, VerbForm: Fin}, stem: hablara, status: pinned, free: true}
+      - {feats: {Mood: Sub, Tense: Imp, VerbForm: Fin}, stem: hablase, status: pinned, free: true}

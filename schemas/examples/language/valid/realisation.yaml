@@ -1,0 +1,37 @@
+# Rules in a lexicon (docs/rules-design.md): a notation, root classes, stem templates, a realisation
+# rule with its branches, and rewrite rules (worked example 1 and 2 of the design, cut down).
+id: apc
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@rules2', status: draft}
+dimensions:
+  VERB: [Aspect, Mood, Person, Gender, Number]
+notation:
+  vowels: {a: "َ", i: "ِ", u: "ُ", e: "\u065c"}
+  long: {a: "َا", i: "ِي", u: "ُو"}
+  none: "ْ"
+  sets: {C: "[ء-ي]", V: "[َُِ\u065c]", ayn: "[ع]"}
+rootClasses:
+  - {id: hollow, radical: 2, in: "[وي]"}
+  - {id: doubled, same: [2, 3]}
+  - {id: sound}
+stems:
+  - {id: imperfect, form: I, template: "1ْ2{present}3"}
+  - {id: imperfect, form: I, class: hollow, template: "1{long present}3"}
+  - {id: participle, form: I, radical: 1, in: "[رق]", template: "1َا2ِ3"}
+realisation:
+  - id: 'rule:apc-imperfect'
+    when: {feats: {Aspect: Imp}}
+    stem: [imperfect]
+    blocks:
+      - prefix:
+          - {branch: 1sg, feats: {Person: '1', Number: Sing}, add: ""}
+          - {branch: '2', feats: {Person: '2'}, add: "ت"}
+      - prefix:
+          - {branch: ind, feats: {Mood: Ind}, add: "ب"}
+      - suffix:
+          - {branch: pl, feats: {Person: '2,3', Number: Plur}, add: "ـُوا\u06df", stem: imperfect}
+phonology:
+  - {id: 'rule:apc-bn', find: "ب+ن+", to: "م+ن+"}
+  - {id: 'rule:apc-prefix-vowel', branch: cluster, find: "{C}+", after: ["#", "#{C}*+"], before: "{C}ْ", to: "{C}ِ+"}
+  - {id: 'rule:apc-helping-vowel', branch: end, find: "{C}ْ+?{C}", at: end, to: "{C}ِ+?{C}"}
+  - {id: 'rule:apc-spelling', find: "[گپ]", map: {گ: ك, پ: ب}}

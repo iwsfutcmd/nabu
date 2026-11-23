@@ -822,6 +822,26 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   every line. Examples live in schemas/examples/<dir>/{valid,invalid} and are listed in `EXAMPLES`
   (packages/schema/test/schemas.test.ts): a new schema gets both kinds.
 
+## Rules notes (see docs/rules-design.md; apc first, stages 1 and 2 of 6)
+- A lexeme's lexical form is its `form` in lexicons/<lang>/lexemes.yaml: a string in the language's notation, or a
+  verb's radicals (`RadicalForm`: radicals, Form, vowels, `source`, `basis`). language.yaml's `notation` says what the
+  signs are (apc: U+065C e, U+065D o, U+06DF a letter written and not said; always escapes, and yamlio writes them so);
+  each profile's `spell`, and its vocalized layer's, says how the orthography writes a form. Core runs them
+  (@nabu/core/lexicon `compileSpeller`, `spell`; core-cli `spell`; conformance/spell.json): never spell in Python.
+- Rules are data in language.yaml: `rootClasses`, `stems`, `realisation` (blocks of exponents), `phonology` (ordered
+  rewrites). @nabu/core/lexicon `realise`, `realiseToken`, `paradigm` (core-cli ops of those names;
+  conformance/realise.json) give a lexeme's lexical form with each `{rule, branch}` taken: never realise in Python.
+  A pattern matches a letter with its marks exactly and names every boundary (`+`, `+?`, `#`). A branch is lower-case
+  ASCII and stable: it will enter card keys (the owner, 2026-11-23: a memory per branch). Every apc rule is REVIEW.
+- Bundles carry none of it (`form`, the notation, `spell`, the rules): `pnpm bundles` leaves them byte for byte.
+- `form.projection` (a stored form does not spell as the lexicon writes the word) is the review list, with
+  `cd pipeline && uv run nabu forms ../courses/apc`. Never change a form, a spelling or a rule to silence one.
+- A `spell` rule's `alternatives` are free spellings named by variation, read only by the compiler; grading reads the
+  profile's `correspondences`. spell.test.ts pins every alternative that does not compare free: stating a variation
+  free (the owner: one at a time) moves its count.
+- Nothing checks the course's tokens against the rules yet (the compiler's `realise-token` over every token and
+  `form.unaccounted` are the rest of stage 2). docs/lexical-forms/apc.yaml and apc-review.md are a frozen record.
+
 ## Losses and labels notes (see docs/adr/0148, 0153)
 - A profile states what its orthography writes of the sound (`sound`, `stress`, `correspondences`; profiles/README.md,
   "The sound statement"): a letter no correspondence names says itself, so `[]` means nothing is lost. `kind: fixed`

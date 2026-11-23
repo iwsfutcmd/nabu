@@ -12,6 +12,7 @@ import { directionOf, scriptOf } from "@nabu/i18n";
 import { formKey, homophoneScheme, homophoneTable, otherSpellings, parseFormKey } from "@nabu/core/lesson";
 import type { Notation, OrthographyProfile, TaggedText, Token } from "@nabu/schema";
 import { loadLanguage, loadProfileData, loadProfiles } from "./load.ts";
+import { REALISE_OPS } from "./realise.ts";
 
 type Id = number | string | null;
 export type Response = { readonly id: Id; readonly ok: true; readonly result: unknown } | { readonly id: Id; readonly ok: false; readonly error: string };
@@ -268,6 +269,8 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
   "reading-variants": (a) => schemeProjection(a).variants(text(a, "reading"), optionalText(a, "spelling")),
   /** A reading as minimal ruby: only its open pieces (ADR 0141). */
   "reading-open": (a) => schemeProjection(a).open(text(a, "reading"), optionalText(a, "spelling")),
+  /** Realisation (docs/rules-design.md): realise, realise-token, paradigm. */
+  ...REALISE_OPS,
 };
 
 /**

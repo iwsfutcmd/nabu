@@ -1,5 +1,10 @@
 # apc's lexical form: drafting, projecting, checking
 
+**Frozen on 2026-11-23:** the forms moved into `lexicons/apc/lexemes.yaml` and the projections into the apc
+profiles' `spell` (docs/rules-design.md, stage 1). `build.py` still reproduces both committed files from the
+tree of that day; do not run it to rewrite them. `authored.yaml` still holds what stage 2's rules will take
+(citation pairs, participle heads, templates).
+
 The code behind [docs/lexical-forms/apc.md](../../lexical-forms/apc.md) (Task B of the lexical-model
 handoff, ADRs 0145 and 0148). It is a prototype, as everything in this folder: not a workspace package, not
 linted, not shipped. Unlike the others its two outputs are committed, since they are the deliverable:

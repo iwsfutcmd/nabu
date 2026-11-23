@@ -476,3 +476,67 @@ Each stage lands whole on main with `pnpm lint`, `typecheck`, `test`, `conforman
    vowel each after the owner has seen what it would newly accept (a list per variation, made from the
    course). Each is a correspondence with vectors in both harnesses.
 
+## Stage 1 as built (2026-11-23)
+
+Every apc lexeme's lexical form is in `lexicons/apc/lexemes.yaml`; the notation in `language.yaml`; `spell` in
+`profiles/apc-Arab.standard.yaml` (2 rules), its `vocalized` layer (14) and `profiles/apc-Latn.arabizi.yaml`
+(34); `@nabu/core/lexicon` `compileSpeller`, `spell`, `spelledAs`, `spellingKey`; core-cli `spell`;
+`conformance/spell.json` (64 vectors); the lint `form.projection` and `nabu forms`. Bundles are byte for byte
+what they were (the compiler strips `spell` from a shipped profile).
+
+- **Counts.** 346 forms: 303 strings, 43 radical forms (40 verbs and the participle-shaped 2a3ed, seken,
+  wa2ef). No allomorph has a form yet. 24 lexemes have none: the 18 affixes, b, el, hal, w (one script only),
+  miyye, inshalla. Over all 305 non-verb forms of the frozen `apc.yaml` the statements give exactly what the
+  prototype's `lexform.py` gave.
+- **The review list:** 898 spellings checked, 43 skipped as verbs, 32 that do not spell as the lexicon writes
+  the word (20 in Arabizi: the teens, bas/bass, adar; 12 in the marked layer: hayda, henne, hiyye, huwwe, akl;
+  none in Arabic). All were on the prototype's list but two, which a stricter comparison of spaces adds. They
+  are `EXPECTED_WARNINGS`, each a fact for the owner.
+- **Where it differs from the sketch above.** `compileSpeller(profile, notation, layer?)` takes the declared
+  notation (stage 1 had no compiled language). `spell` returns alternatives as `{spelling, by}`, `by` the
+  variations taken; alternatives sit on each rule with a variation id (`e-i`, `i-ee`, `u-ou`, `o-u`, `e-ei`,
+  `final-e-i`, `helping-vowel`, `article`, `q-initial`). The notation has `order`: the marks a letter carries
+  in the order the notation names them (shadda first), since NFC sorts them by combining class. A `spell`
+  statement may define sets of its own. `yamlio` writes the three signs as escapes.
+- **The tie check** (`spell.test.ts`): 131 alternatives compare free under the profile's e/i; the rest are
+  pinned by variation (i-ee 39, helping-vowel 36, o-u 27, e-ei 19, u-ou 18, article 12, q-initial 7, and
+  combinations) until the owner states each free.
+- **Still only in the prototype's `authored.yaml`:** each verb's citation pair, stanna's listed stem, the
+  participle heads and listed participles, the templates and their `back` letters.
+
+## Stage 2 as built, first half (2026-11-23): the engine, and apc's verbs as data
+
+Built beside stage 1 in a second checkout and merged by hand (one `notation`: stage 1's sets L, C, N, V, H
+kept, the rules' own sets added as K, W, IU, P, NUN, T, AYN, BACK, FEMA).
+
+- **The engine** (`packages/core/src/lexicon/realise.ts`, `realise-pattern.ts`): `compileLanguage`, `realise`,
+  `realiseToken`, `paradigm`; core-cli `realise`, `realise-token`, `paradigm`; `conformance/realise.json` (84
+  vectors: 37 on an invented language, 47 `realise/apc/*`, one per branch the course writes). Order: blocking
+  (a whole form ends realisation, a stem continues, a tie errs unless both are free), the first rule whose
+  `when` holds, the stem template (the one with the most conditions that fits), the blocks, allomorphs, the
+  rewrites (each once, in order, at every place it matches). A pattern matches a letter with its marks
+  exactly, names every boundary (`+`, `+?`), and `#` is the form's edge.
+- **Beyond the sketch:** `Stem.branch` (a template learned on its own: the hollow past's short stem), a list
+  of stems to try, lists of contexts, the errors `unknown-lexeme`, `form`, `spelled-only`. The 1sg
+  subjunctive's alef is a prefix (Kline p. 157) that a rewrite drops before a vowelled consonant, not a
+  prothesis. Not done: `LexemeForm.scope`, an allomorph's `before`, defaults into core (`default_for` is on
+  the compiler's hot path: not a small move), glosses for the new rule ids (they would ship in bundles).
+- **apc's rules** (`lexicons/apc/language.yaml`, every one REVIEW): root classes hamzated, w-initial, hollow,
+  doubled, defective, sound; stems for Forms I, II, III, VIII; `rule:apc-perfect`, `-imperfect`, `-command`,
+  `-participle`; rewrites `-sukun`, `-bn`, `-madda`, `-silent-alef`, `-prefix-vowel`, `-syncope`,
+  `-defective`, `-geminate`, `-feminine`, `-helping-vowel`.
+- **The first report** (a throwaway script; the verbs' radicals from `authored.yaml`, the prototype's
+  projections standing in for `spell`): of 433 verb tokens the rules give all three spellings of 393. The 40:
+  the course against Kline, 24 (`ra7`'s short stem 13; *or2os* 4; *e3zmak* 3; *eshrab* 2; *safart* 2); the
+  course's Arabizi against its own marks, 10 (*b7ki*, *b2ra*); no rule yet, 5 (the dative -l-); `b3at`'s
+  past, 1. The owner rules on each before any token changes.
+- **Answer 2, as Kline has it:** one short vowel, a kasra, for every hollow verb's short past stem (kent p. 60,
+  Sert p. 69, shifet p. 99, re7na pp. 25, 64, 144; ro7t the Bekaa's, p. 198). So *kent* and *zert* stand and
+  only `ra7`'s 13 tokens differ, not the 213 the question feared.
+- **Data faults it found, for the rest of stage 2:** `2ara`'s third radical is stored ء and conjugates as ي;
+  hollow verbs store no past vowel (ra7, zar, 2al, sar, 3ash: a; ken, shef, fe2, nem: e); stanna needs its
+  listed stem in `forms`; the suffixed pronouns need their allomorph forms.
+- **The rest of stage 2** (not built): those data fixes; the compiler's `realise-token` then `spell` over
+  every token in each orthography and the marked layer; the lint `form.unaccounted` (warning) with its
+  fixture; `realise/apc/*` reading the lexicon; then the owner's review before stage 3.
+

@@ -1,5 +1,10 @@
 # apc: the lexical form
 
+- **A frozen record since 2026-11-23** ([rules-design.md](../rules-design.md), stage 1): the forms are in
+  `lexicons/apc/lexemes.yaml`, the notation in `lexicons/apc/language.yaml`, the projections in the two apc
+  profiles' `spell`, and the review list is `cd pipeline && uv run nabu forms ../courses/apc`. `apc.yaml` and
+  `apc-review.md` are kept as they were drafted and are not regenerated. This note is still the statement of
+  the notation and the owner's rulings.
 - Status: a draft (Task B of [the handoff](../handoff-lexical-model.md)), 2026-11-20. The owner ruled on its
   six questions the same day: [the last section](#the-owners-rulings-2026-11-20) says what each ruling was
   read as and what was done. What a ruling settles is no longer marked REVIEW; the rest is a proposal until

@@ -1,0 +1,12 @@
+# A branch enters part ids and card keys: lower-case ASCII only.
+id: apc
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@rules2', status: draft}
+dimensions:
+  VERB: [Aspect, Person, Number]
+realisation:
+  - id: 'rule:apc-perfect'
+    when: {feats: {Aspect: Perf}}
+    blocks:
+      - suffix:
+          - {branch: FirstSingular, feats: {Person: '1'}, add: "ت"}

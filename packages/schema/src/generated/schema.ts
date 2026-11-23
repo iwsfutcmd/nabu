@@ -395,6 +395,55 @@ export type KcId1 = string & { readonly __brand: "KcId" };
  */
 export type KcId2 = string & { readonly __brand: "KcId" };
 /**
+ * Where the template is a thing a learner gets right or wrong of its own (a hollow verb's short past stem), the branch it is of the realisation rule that takes it: rule:apc-perfect|hollow-short.
+ */
+export type Branch = string;
+/**
+ * Which stem: a stem id; several, the first the base has a template for; or a pattern lexeme's templates (ADR 0145: a value head's pattern).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "StemChoice".
+ */
+export type StemChoice =
+  | Slug
+  | readonly Slug[]
+  | {
+      readonly pattern: LexemeId;
+    };
+/**
+ * One block of exponents: prefixes or suffixes.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "AffixBlock".
+ */
+export type AffixBlock =
+  | {
+      /**
+       * @minItems 1
+       */
+      readonly prefix: readonly Exponent[];
+    }
+  | {
+      /**
+       * @minItems 1
+       */
+      readonly suffix: readonly Exponent[];
+    };
+/**
+ * A rule's branch: what a learner gets right or wrong of it on its own (ADR 0146). Lower-case ASCII and stable: it enters part ids and card keys (rule:apc-perfect|3fs).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Branch".
+ */
+export type Branch1 = string;
+/**
+ * What a rewrite's span must stand beside: a pattern, or several of which any will do.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Context".
+ */
+export type Context = string | readonly string[];
+/**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  */
 export type LangTag2 = string & { readonly __brand: "LangTag" };
@@ -877,6 +926,15 @@ export interface NabuSchemaIndex {
   readonly KeyboardLayout: KeyboardLayout;
   readonly LanguageDeclaration: LanguageDeclaration;
   readonly Notation: Notation;
+  readonly RootClass: RootClass;
+  readonly Stem: Stem;
+  readonly StemChoice: StemChoice;
+  readonly Branch: Branch1;
+  readonly RealisationRule: RealisationRule;
+  readonly AffixBlock: AffixBlock;
+  readonly Exponent: Exponent;
+  readonly Rewrite: Rewrite;
+  readonly Context: Context;
   readonly Condition: Condition2;
   readonly Default: Default;
   readonly FeatureLabel: FeatureLabel;
@@ -3174,6 +3232,10 @@ export interface LexemeForm {
    * listed: the language has no rule for it, so it is a part to learn; it needs its `statement`. pinned: a rule gives it and ours is not written yet; stored and checked, never counted, never a learner's part.
    */
   readonly status: "listed" | "pinned";
+  /**
+   * A free variant (ADR 0145): where another form of the lexeme is as specific for a cell, the two are no tie; both are accepted and the first is shown.
+   */
+  readonly free?: boolean;
   readonly statement?: Provenance4;
   readonly scope?: Scope;
   /**
@@ -3257,6 +3319,10 @@ export interface Condition {
    */
   readonly starts?: string;
   readonly class?: Slug3;
+  /**
+   * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
+   */
+  readonly endsIn?: string;
   readonly feats?: UdFeatures6;
 }
 /**
@@ -3273,6 +3339,10 @@ export interface Condition1 {
    */
   readonly starts?: string;
   readonly class?: Slug3;
+  /**
+   * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
+   */
+  readonly endsIn?: string;
   readonly feats?: UdFeatures6;
 }
 /**
@@ -3353,6 +3423,22 @@ export interface LanguageDeclaration {
    */
   readonly rules?: readonly NamedRule[];
   readonly notation?: Notation;
+  /**
+   * The root classes of its bases (docs/rules-design.md, section 3): computed from a base's radicals, never stored. The first whose condition holds is the base's class; one with no condition is the elsewhere class.
+   */
+  readonly rootClasses?: readonly RootClass[];
+  /**
+   * Its stem templates (docs/rules-design.md, section 2): a base's stem for a stem id, by its Form and root class. Where several fit, the one with the most conditions wins; a stem with no class fits every class its Form has no stem of its own for.
+   */
+  readonly stems?: readonly Stem[];
+  /**
+   * Its realisation rules (ADR 0145; docs/rules-design.md, section 2), in order: the first whose `when` holds of a lexeme and a cell realises it. Each has a rule id, a stem and affix blocks whose exponents are the rule's branches (ADR 0146: a rule's parts).
+   */
+  readonly realisation?: readonly RealisationRule[];
+  /**
+   * Its ordered rewrite rules over the whole lexical form, boundaries kept (docs/rules-design.md, section 2): each applied once, in order, at every place it matches.
+   */
+  readonly phonology?: readonly Rewrite[];
 }
 /**
  * One default: where `when` holds of a lexeme, it has `gives` unless its entry says otherwise.
@@ -3388,6 +3474,10 @@ export interface Condition2 {
    */
   readonly starts?: string;
   readonly class?: Slug3;
+  /**
+   * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
+   */
+  readonly endsIn?: string;
   readonly feats?: UdFeatures6;
 }
 /**
@@ -3484,6 +3574,97 @@ export interface Notation {
   /**
    * What a reviewer should know, by support language.
    */
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * One root class: radical `radical` (counted from 1) is in the set `in`, or radicals `same` are one letter; with neither, every base is of it.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "RootClass".
+ */
+export interface RootClass {
+  readonly id: Slug;
+  readonly radical?: number;
+  readonly in?: string;
+  /**
+   * @minItems 2
+   * @maxItems 2
+   */
+  readonly same?: readonly number[];
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * One stem template: a pattern's allomorph (ADR 0145). Digits are the base's radicals; {past} and {present} the short vowel signs of the vowels its Form leaves open, {long past} and {long present} their long vowels (the notation's); everything else is the pattern's own. It fits a base of its Form and class whose radical `radical` is in `in` and whose `vowels` are these, where it says so.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Stem".
+ */
+export interface Stem {
+  readonly id: Slug;
+  readonly form: string;
+  readonly class?: Slug;
+  readonly radical?: number;
+  readonly in?: string;
+  readonly vowels?: {
+    readonly [k: string]: string;
+  };
+  readonly template: string;
+  readonly branch?: Branch;
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * One realisation rule: where `when` holds of a lexeme and a cell, its stem and then its blocks in order, each adding the most specific exponent whose values the cell has (Pāṇini; Stump's blocks), at most one a block. A prefix goes before what the blocks before it made, a suffix after it.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "RealisationRule".
+ */
+export interface RealisationRule {
+  readonly id: RuleId;
+  readonly when: Condition2;
+  readonly stem?: StemChoice;
+  readonly blocks: readonly AffixBlock[];
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * One exponent: the branch it is, the feature values it is for (a comma: one of them; none: elsewhere in its block) and what it adds, in the notation (an affix that begins with a vowel writes it on a carrier, a modifier letter such as the tatweel, and the vowel goes on the letter it joins). It may select the stem.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Exponent".
+ */
+export interface Exponent {
+  readonly branch: Branch1;
+  readonly feats?: UdFeatures1;
+  readonly add: string;
+  readonly stem?: StemChoice;
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * One rewrite rule over the whole lexical form (docs/rules-design.md, section 2). Patterns match letters with their sets of marks, never code points in a row: a letter, {set} or [set] of letters, or . (any letter), then its marks exactly (none written: no marks; {set} or [set] of marks: one of them; *: any); + a boundary, +? one or none, # the form's edge (only in `after` and `before`). `to` writes the matched span again: the n-th {set}, [set], ., +? or set of marks of `to` copies the n-th of `find`, and marks written on a copied letter replace its vowel sign. `map` (in place of `to`) maps the letter `find` matches. `after` and `before` are what must stand before and after the span (several: any of them); `at` ties it to the form's start or end.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Rewrite".
+ */
+export interface Rewrite {
+  readonly id: RuleId;
+  readonly branch?: Branch1;
+  readonly find: string;
+  readonly to?: string;
+  readonly map?: {
+    readonly [k: string]: string;
+  };
+  readonly before?: Context;
+  readonly after?: Context;
+  readonly at?: "start" | "end";
   readonly notes?: {
     readonly [k: string]: string;
   };
