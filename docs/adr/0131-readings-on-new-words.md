@@ -180,3 +180,16 @@ tile, ikkinči stood over the tile's top edge in Firefox.
   word's gloss, as an answered card's prompt is, where they are in a language the course teaches. A right
   sentence typed whole (translate-type, listen-type) comes again under its verdict for that, readings or not:
   the field holds only letters. An answered word bank's tiles of that language open their gloss too.
+
+## Amendment: sitelen Lasina fades too (2026-11-23)
+
+The owner asked for Toki Pona's sitelen Lasina over sitelen pona to show over new words only, as Jyutping and
+Schluessel's transliteration do. A logograph's reading is a skill like theirs: char-read cards ask it, and the
+fold witnesses it.
+
+- tok-Qaap/sitelen-pona's `lasina` layer is `fade: by-facet`. Its control is the choice of three (All words,
+  New words, Off) under its name.
+- It still starts off (`default: "off"`). Turned on, it shows over every word until the learner chooses New words.
+- The Decision's last bullet now reads: lzh's layers (since ADR 0138) and tok's lasina fade; yue-Latn's
+  characters do not.
+

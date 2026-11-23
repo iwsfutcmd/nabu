@@ -1,7 +1,8 @@
 /**
  * Readings on new words only (ADR 0131): Cantonese shows Jyutping over the words whose reading the
  * learner has yet to read right on a reading card, and leaves it off the others; "All words" in the
- * display menu brings every reading back, and the choice holds for the course's next session.
+ * display menu brings every reading back, and the choice holds for the course's next session. Toki Pona's
+ * sitelen Lasina over its logographs starts off, and may show over new words only too.
  */
 import { allLexemes, asksOf, lessonNodes, skillOf } from "@nabu/core/lesson";
 import type { AnswerSubmitted, LearnerEvent } from "@nabu/schema";
@@ -56,4 +57,35 @@ test("Jyutping fades from the words whose reading the learner has read right, an
   await page.goto(sessionUrl(course, { mode: "lesson", node: second }, SEED));
   await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-state", "answering");
   await expect(page.locator("[data-lesson-player] rt")).not.toHaveCount(0);
+});
+
+test("sitelen Lasina starts off over sitelen pona, and may show over new words only", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  const course = loadCourse("tok", "tok-Qaap/sitelen-pona");
+  const [first, second] = lessonNodes(course).map((n) => n.node.id);
+  if (first === undefined || second === undefined) throw new Error("tok has two lessons");
+  const model = historyBefore(course, second, new Date(NOW.getTime() - 3 * DAY)).find((e): e is AnswerSubmitted => e.type === "answer_submitted");
+  if (model === undefined) throw new Error("tok's first lesson has answers");
+  // Every word met two days ago, and its reading read right on a reading card the day after.
+  const words = allLexemes(course).map((lexeme) => String(lexeme.id));
+  const history = freshIds([answered(model, "choose-translation", words, new Date(NOW.getTime() - 2 * DAY)), answered(model, "char-read", words, new Date(NOW.getTime() - DAY))]);
+
+  await page.clock.setFixedTime(NOW);
+  await seedLog(page, history);
+  await page.goto(sessionUrl(course, { mode: "lesson", node: first }, SEED));
+  const player = page.locator("[data-lesson-player]");
+  await expect(player).toHaveAttribute("data-state", "answering");
+  await expect(player.locator("[data-orthography='tok-Qaap/sitelen-pona'] [data-kind=lexical]").first()).toBeVisible();
+  // Off until the learner asks.
+  await expect(player.locator("rt")).toHaveCount(0);
+
+  // A choice of which words, as Cantonese's: new words only leaves off every reading read before.
+  await player.locator("[data-action=display]").click();
+  const readings = page.locator("[data-display-menu] [data-toggle=readings]");
+  await readings.locator("[data-reading=new]").click();
+  await expect(readings).toHaveAttribute("data-readings-shown", "new");
+  await expect(player.locator("rt")).toHaveCount(0);
+  await readings.locator("[data-reading=all]").click();
+  await expect(player.locator("rt")).not.toHaveCount(0);
+  await expect(player.locator("rt").first()).toHaveAttribute("lang", /^tok-Latn/u);
 });

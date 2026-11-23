@@ -641,7 +641,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   commas, a name as a cartouche whose logographs begin with its letters. Never write it by hand: `cd pipeline &&
   uv run nabu sitelen-pona "mi moku." --name "Sonja=sona olin nasin jan a"`. The compiler checks it against the Latin.
 - Typed Latin is graded as logographs in sitelen pona (the `logographs` step), names against their cartouches. Every
-  logograph token pins `readings: {lasina: word}` (ruby, char-read); Latin tokens pin it too: it is what the voices say,
+  logograph token pins `readings: {lasina: word}` (ruby, char-read; off until chosen, then over every word or new words
+  only: `fade: by-facet`, ADR 0131's amendment of 2026-11-23); Latin tokens pin it too: it is what the voices say,
   as eSpeak NG phonemes (nabu/audio/toki_pona.py). After a sentence changes, `nabu audio generate ../courses/tok`.
   The voice is iffy (ADR 0091): no listening exercises, clips only where the text is shown.
 - The font (sitelen seli kiwen juniko, OFL) is in packages/ui/src/fonts; its README says how it was subset.
