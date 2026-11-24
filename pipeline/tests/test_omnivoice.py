@@ -36,6 +36,7 @@ from nabu.audio.providers import (
     Reference,
     Request,
     checkpoint,
+    inner_pauses,
     seed_of,
     trim_edges,
 )
@@ -80,6 +81,11 @@ class FakeEngine:
     def clone_prompt(self, audio: Path, text: str) -> Any:
         self.prompts.append((audio, text))
         return ("prompt", text)
+
+    def estimate(self, text: str, prompt: Any) -> float:
+        """A tenth of a second a character (a stand-in for the model's rule)."""
+        assert prompt == ("prompt", REF.text)
+        return len(text) / 10
 
     def speak(
         self,
@@ -134,6 +140,38 @@ def test_every_clip_clones_the_reference_with_a_seed_of_its_own() -> None:
     # Normal speed is the model's own; slow asks for it.
     assert "speed" not in engine.calls[0] and engine.calls[1]["speed"] == 0.67
     assert [(c.sample_rate, len(c.pcm), c.words) for c in clips] == [(24000, 4800, None)] * 2
+
+
+def test_pauses_inside_a_text_are_its_runs_of_punctuation_before_a_space() -> None:
+    assert inner_pauses("مَرْحَبا!") == 0
+    assert inner_pauses("لَأ، ميرْسي.") == 1
+    assert inner_pauses("إيه! إِمْتى؟") == 1
+    assert inner_pauses("ما بَعْرِف، يَعْني… فاضْيِة.") == 2
+    # Nor is an apostrophe inside a word, or punctuation at the end.
+    assert inner_pauses("geat's guat?! ") == 0
+
+
+def test_pause_time_lengthens_only_the_clips_of_texts_with_pauses() -> None:
+    """ADR 0058 amendment: the model's estimate leaves no time for a pause, so a voice that
+    pauses at a comma is cut off at the end. `pauseTime` adds time for each pause, in the
+    identity of those items' clips alone."""
+    engine = FakeEngine()
+    tts = fake(engine, voice(pauseTime=0.3), REF)
+    lines = [Request("لَأ، ميرْسي.", "beirut-m", 1.0), Request("أَنا مْنيح.", "beirut-m", 1.0)]
+    tts.synthesize([*lines, Request("أَرْبْعَة؟ لَأ، تْلاتِة.", "beirut-m", 1.0)])
+    paused, plain, two = engine.calls
+    assert paused["duration"] == round(len(lines[0].input) / 10 + 0.3, 3)
+    assert "duration" not in plain and "speed" not in plain
+    assert two["duration"] == round(len("أَرْبْعَة؟ لَأ، تْلاتِة.") / 10 + 0.6, 3)
+    assert tts.item_settings(lines[0]) == {
+        "pauseTime": {"perPause": 0.3, "method": OmniVoiceProvider.PAUSE_METHOD}
+    }
+    assert tts.item_settings(lines[1]) == {}
+    # Without it, nothing changes: the model's own length, and no item settings.
+    bare = FakeEngine()
+    without = fake(bare, voice(), REF)
+    without.synthesize(lines[:1])
+    assert "duration" not in bare.calls[0] and without.item_settings(lines[0]) == {}
 
 
 def test_version_and_settings_name_the_checkpoint_and_the_reference() -> None:

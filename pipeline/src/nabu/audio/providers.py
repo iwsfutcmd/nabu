@@ -759,6 +759,10 @@ class OmniVoiceEngine(Protocol):
 
     def clone_prompt(self, audio: Path, text: str) -> Any: ...
 
+    def estimate(self, text: str, prompt: Any) -> float:
+        """Seconds the model would give `text` in the voice of `prompt` (its own estimate)."""
+        ...
+
     def speak(
         self,
         text: str,
@@ -768,7 +772,7 @@ class OmniVoiceEngine(Protocol):
         guidance_scale: float,
         **extra: Any,
     ) -> Any:
-        """Float samples in [-1, 1]; `extra`: voice_clone_prompt, instruct, speed."""
+        """Float samples in [-1, 1]; `extra`: voice_clone_prompt, instruct, speed, duration."""
         ...
 
 
@@ -779,6 +783,13 @@ class _OmniVoice:
 
     def clone_prompt(self, audio: Path, text: str) -> Any:
         return self.model.create_voice_clone_prompt(ref_audio=str(audio), ref_text=text)
+
+    def estimate(self, text: str, prompt: Any) -> float:
+        # The tokens generate() would give the text, from the reference's text and length.
+        tokens = self.model.duration_estimator.estimate_duration(
+            text, prompt.ref_text, prompt.ref_audio_tokens.size(-1)
+        )
+        return max(1, int(tokens)) / float(self.model.audio_tokenizer.config.frame_rate)
 
     def speak(
         self,
@@ -875,6 +886,13 @@ def trim_edges(samples: Any, sampling_rate: int) -> Any:
     return y[start:end]
 
 
+def inner_pauses(text: str) -> int:
+    """Runs of punctuation before a space inside a text, each asking the voice for a pause:
+    "لَأ، ميرْسي." has one, "إيه! إِمْتى؟" one, "مَرْحَبا!" none (its end is no pause). An apostrophe
+    or a hyphen inside a word (geat's) is none."""
+    return len(regex.findall(r"\p{P}+(?=\s)", regex.sub(r"[\p{P}\s]+$", "", text.strip())))
+
+
 class OmniVoiceProvider:
     """An OmniVoice checkpoint (`model`: owner/name@commit) speaking `language` in the voice of a
     reference recording. Diffusion sampling is seeded per clip (`seed_of`), so the same input,
@@ -907,6 +925,7 @@ class OmniVoiceProvider:
         self.reference = reference
         self.load = load
         self.package = package
+        self.pause_time = voice.pauseTime
 
     def version(self) -> str:
         # No spaces or "@": it also names the clips' author (generated:omnivoice@<version>).
@@ -923,6 +942,17 @@ class OmniVoiceProvider:
 
     def speed(self, rate: float) -> float:
         return rate
+
+    #: How a clip's length is set with `pauseTime`: the model's own estimate, then that time for
+    #: each run of punctuation inside the text (`inner_pauses`).
+    PAUSE_METHOD = "estimate+per-inner-punctuation"
+
+    def item_settings(self, request: Request) -> dict[str, Any]:
+        """The time added for the pauses inside this item's text, in its clip's identity alone,
+        so the clips of items without such punctuation keep theirs (ADR 0058 amendment)."""
+        if self.pause_time is None or inner_pauses(request.input) == 0:
+            return {}
+        return {"pauseTime": {"perPause": self.pause_time, "method": self.PAUSE_METHOD}}
 
     #: Tries per clip: the model can return (almost) nothing for a very short word, once its
     #: silence is trimmed; the next seeds, in order, try again.
@@ -944,7 +974,12 @@ class OmniVoiceProvider:
         prompt = engine.clone_prompt(self.reference.path, self.reference.text)
         out: list[Clip] = []
         for r in requests:
-            speed = {} if r.rate == 1.0 else {"speed": r.rate}
+            speed: dict[str, Any] = {} if r.rate == 1.0 else {"speed": r.rate}
+            pauses = inner_pauses(r.input)
+            if self.pause_time is not None and pauses:
+                # A length the model is given overrides its speed, so the rate goes into it.
+                seconds = engine.estimate(r.input, prompt) + self.pause_time * pauses
+                speed = {"duration": round(seconds / r.rate, 3)}
             out.append(self._speak(engine, r.input, seed_of(r), voice_clone_prompt=prompt, **speed))
         return out
 

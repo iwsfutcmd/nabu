@@ -3014,6 +3014,10 @@ export interface AudioVoice {
   readonly carrier?: AudioCarrier;
   readonly pace?: AudioPace;
   /**
+   * OmniVoice: seconds added to the model's own estimate of a clip's length for each run of punctuation inside the text (a comma, a full stop between sentences, a question mark before more words). Its estimate leaves almost no time for the pauses they ask for, so a voice that pauses there runs out of time and its last word is cut off (ADR 0058 amendment). An item's clip changes only if its text has such punctuation.
+   */
+  readonly pauseTime?: number;
+  /**
    * What the voice reads instead of an item's text (item id: text in the orthography), for a reading the text does not settle: a homograph (نه is noh "nine" in the numbers drill, na "no" elsewhere: drill.numbers.9: نُه). Vowel marks where they settle it. It must have as many words as the item, so word timings still map. The full stop of `finalStop` is added after it.
    */
   readonly spoken?: {

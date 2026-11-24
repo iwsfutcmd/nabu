@@ -134,4 +134,9 @@ audio:
     reading: text
     vowelMarks: true
     finalStop: true
+    # OmniVoice's estimate of a line's length leaves almost no time for a pause at a comma or between sentences,
+    # and this voice pauses there longer than the man's: 24% of her lines with one such pause and 54% with two
+    # were cut off at the end (the man's: 5% and 14%). Each pause gets 0.3 s more (ADR 0058 amendment): 23 of 24
+    # of her cut lines then ended whole. Not on the man's voice, whose approved lines it would remake for few fixes.
+    pauseTime: 0.3
     license: CC-BY-NC-4.0
