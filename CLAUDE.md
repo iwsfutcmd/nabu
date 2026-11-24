@@ -20,7 +20,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - What the prompt does not decide, the learner may choose (ADR 0085): accept sets take every order, word choice,
   optional word and form whose translation would be the prompt, in both directions; never one that would translate
   otherwise. The grader stays literal: the answers are listed in the accept set.
-- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo, tok, grc, chg, sk) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
+- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo, tok, grc, chg, sk, bar) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
 - Never hand-edit packages/schema or the Pydantic models. Edit schemas/ and regenerate.
 
 ## Style
@@ -750,6 +750,23 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   lessons teach *kam*. Kozliatka and the twelve months were too dialectal; a new passage only from a page image.
 - The units and lexicon were first written by a generator (library: `nabu/notes/sk/generator`); they are sources
   now, edited directly. Draft sentences: every case form a reviewer should check is on the Data page.
+
+## South Tyrolean notes (see docs/adr/0156)
+- courses/bar is the South Tyrolean dialect (bar-Latn-IT), never Standard German, for English speakers, A1 to early A2
+  in ten units; the brief is courses/bar/README.md. Spelling and the words Standard German lacks from Moser's
+  *Wörterbuch der Südtiroler Mundarten* (2015; notes in `nabu/notes/bar/`); Weiß (1998) is Central Bavarian: only
+  rules he states for Bavarian as a whole. Every form Moser does not attest is Claude's (REVIEW).
+- No norm: one spelling per word, Moser's without his stress marks; long a and the dark short a both o (Tog, Wosser:
+  the voice reads å as o, ADR 0156); å typed is read as o (normalize). The everyday variants are free correspondences
+  in bar-Latn.moser.yaml (-n/-en, ia/ie, ß/ss, -sch/-scht), never accept-set alternatives; oa/ua is left out (it would
+  take Boa for Bua). A new free variant needs vectors and a check that no two course words newly compare alike.
+- Central forms canonical (koan, isch, kemmen, gian, nit); other valleys' are notes. Standard German answers are wrong.
+- Nouns store gender (no defaults); tokens choose case and number, a noun's case its phrase's. Predicative adjectives
+  carry no features. Fused forms are one token writing two lexemes: geat's, gip's (verb + 's), afn, mitn (preposition +
+  the article written as n). The past is the perfect; wor is sein's past; tat + infinitive is `rule:tian-would`.
+- Voices: OmniVoice cloning two VinKo Corpus speakers (CC BY-NC-SA 4.0: U0430 Bozen, U1810 Meran), `language: de`;
+  clips CC-BY-NC-SA-4.0, iffy. Generate with `--no-check` (Whisper writes Standard German and fails every dialect clip).
+- The units and lexicon were first written by a generator (library: `nabu/notes/bar/generator`); edit the YAML now.
 
 ## Word parts notes (see docs/adr/0152)
 - Two cards ask a word by its parts: `parts-whole` (the sentence with the word left out, its own word and its forms

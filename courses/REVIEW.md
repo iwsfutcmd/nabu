@@ -887,3 +887,37 @@ Slovak* (2012). No one who speaks Slovak has read it yet. Check first:
     listener passes them: start at the audio check (`#/sk/sk-Latn.standard/audio`), the failed clips first.
 12. **Left out** for a later pass: possessive adjectives (*otcov*, *mamin*), *všetci*, the reflexive passive
     (*predáva sa*), years read in full, vocatives (*Mami!*: the course writes *Mama*).
+
+## bar (South Tyrolean)
+
+Ten units, A1 to early A2, for adult English speakers ([ADR 0156](../docs/adr/0156-south-tyrolean.md); the brief and
+syllabus are in [bar/README.md](bar/README.md)). Every sentence, story and scenario is an LLM draft. Its spelling and
+the words Standard German lacks come from Moser's *Wörterbuch der Südtiroler Mundarten* (2015); everything else is
+Claude's, and Claude's written dialect is less sure than its Slovak: there is little written South Tyrolean to learn
+from and no norm. No one who speaks the dialect has read it yet. Check first:
+
+1. **The forms Moser does not attest.** Neither library book gives a paradigm. Drafted: the present of kinnen (i konn,
+   mir kinnen), wissn (i woaß), orbatn (er orbatet), essn (i iss, er isst), the pronouns' oblique forms (ihn, iam,
+   ihr, ins, eana), the possessives' endings (mein, meiner, meine), the adjectives' (a guater, a guate, a guats, an
+   guatn), the numbers (oans, zwoa, drei, fimf, siebm, ocht, nein, zwelf), wor for war, gongen for gangen. The Data
+   page (debug mode, `#/bar/bar-Latn.moser/data`) lists every form with its features.
+2. **Is it Bozen's speech?** The canonical forms are Moser's headwords (the most widespread), meant as Bozen's and
+   the Eisacktal's: koan, hoam, Stoan; isch; kemmen, gian; nit; o for the long a. A form that only the west or the
+   Pustertal says, or none, is a draft gone wrong.
+3. **The spelling's free variants** (profiles/bar-Latn.moser.yaml): -n/-en, ia/ie, ß/ss, -sch/-scht are accepted. Are
+   there others people write every day that the course would mark wrong? oa/ua and on-/un- are left out on purpose
+   (ADR 0156); the dark a is written o, and å accepted (the voice reads o best).
+4. **Every token's case.** A generator chose each article's and noun's case from its preposition and its place in
+   the clause, and 43 lines were annotated by hand. Fused forms (afn, mitn) are drafted as af/mit with the article's
+   n: is *afn Tisch* how people write it, and *af der Olm*, *in der Kuchl*, *za der Oma*?
+5. **Word order in accept sets.** The reverse sets list the order written and, where the drafts thought it natural, the
+   order with the adverb first (Heint isch …, Morgn bin i …). A natural order missing is a learner marked wrong.
+6. **Persons** (ADR 0075): the dialect, like German, marks gender only on er, sie and the articles, so few sentences
+   are tagged: a woman or a man naming themselves (1 each), Sie to a woman (4) or a man (2), es to several (9), Sie
+   (10 formal). Untagged *you* accepts du, es and Sie wherever the sets list them; check that they do.
+7. **Voices.** OmniVoice cloning two VinKo Corpus speakers (a woman from Bozen, U0430; a man from Meran, U1810), the
+   text read as German. Listen in the audio check (`#/bar/bar-Latn.moser/audio`): does it sound South Tyrolean? The
+   references' transcripts were written from Whisper's output and the VinKo stimulus, not by ear: check them
+   (courses/bar/audio/index.yaml, `references`).
+8. **Names and places:** Lena, Giulia, Hannes, Luis, Flori, Frau Pichler, Herr Gruber; Bozn, Meran, Brixn, the Ritten,
+   Sidtirol. Is Sidtirol how people write it, and Bozn?

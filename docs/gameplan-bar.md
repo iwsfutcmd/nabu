@@ -1,8 +1,9 @@
 # South Tyrolean: the build plan
 
 - Date: 2026-11-23
-- Status: stage 0 (this plan, ADR 0156 Proposed, the voice test). Waiting on the owner's answers to
-  ADR 0156's questions before stage 1.
+- Status: stages 0 to 6 built 2026-11-23 (the owner: "whatever, just go wild"), but for the units' review
+  stop in stage 3, which waits for a reader; stage 5's clips are being made; stage 7 later. Where each stage
+  stands is under "Where it stands" at the end.
 
 What it builds: the course `bar` that [ADR 0156](adr/0156-south-tyrolean.md) describes. Each stage is one
 roadmap deliverable, a few small commits, CI green after each, as in [gameplan-sk.md](gameplan-sk.md).
@@ -17,8 +18,8 @@ roadmap deliverable, a few small commits, CI green after each, as in [gameplan-s
 ## Stage 1: the orthography
 
 - `profiles/bar-Latn.moser.yaml`, every policy REVIEW:
-  - letters: German's, with å; ß; `sch`, `ch` as letters of their own if the sound statement needs
-    them; exemplars `cldr:de-IT` and `exemplarsExtra: [å]` (CLDR has no bar locale);
+  - letters: German's (ä ö ü ß among them, for what learners type); exemplars `cldr:de-IT` (CLDR has no bar
+    locale; å is in de-IT's auxiliary set, and normalization reads it as o);
   - normalize: NFC, curly apostrophes to straight (the apostrophe is a letter in *’s*, *’n*), punctuation
     stripped, whitespace collapsed;
   - case folded in `de`; no mark is required: å's ring is a free spelling (å, a, o);
@@ -33,7 +34,7 @@ roadmap deliverable, a few small commits, CI green after each, as in [gameplan-s
 - `lexicons/bar/language.yaml`: dimensions, Case (Nom, Acc, Dat), Gender, Number, Person, Mood, Tense,
   VerbForm; `defaults` only where an ending settles a gender (the dialect drops German's final -e, so
   fewer do than in German: most nouns store theirs);
-  `labels` by pronoun; `registers: [formal]`; `rules: rule:tian-periphrasis`.
+  `labels` by pronoun and by use; `registers: [formal, neutral]`; `rules: rule:tian-would`.
 - `lexicons/bar/lexemes.yaml`, flat, sorted by id; the A1 core from Moser's examples and the survey's
   table, every form not attested in Moser marked REVIEW in a comment (the gaps: *woaß*, *kinnen*, numbers).
 
@@ -72,3 +73,15 @@ roadmap deliverable, a few small commits, CI green after each, as in [gameplan-s
 - Voices from volunteers: the licence and consent allow it; the owner decides (ADR 0156, question 5).
 - A spelling with no norm: the free correspondences must merge no two forms the course keeps apart
   (prove each, as apc-Latn's were).
+
+## Where it stands (2026-11-23)
+
+- Stage 0: done (ADR 0156, this file, the voice test, library notes `nabu/notes/bar/`: survey.md, tts.md).
+- Stage 1: done. `profiles/bar-Latn.moser.yaml`, `profiles/keyboards/de.yaml`, `cldr:de-IT` exemplars; vectors in
+  conformance/normalize.json (3), projection.json (4), grade.json (9), both harnesses.
+- Stage 2: done. `lexicons/bar/language.yaml` and `lexemes.yaml` (269 lexemes, 263 pinned forms), first written by
+  the generator (library: `nabu/notes/bar/generator`).
+- Stages 3, 4, 6: ten units (374 sentences, ten stories, nine scenarios), compile clean; the review stop after unit
+  1 was not made (no reader yet): courses/REVIEW.md lists what to check first. Units 11–20 are not drafted.
+- Stage 5: both voices cast; clips generated on a CPU (about 30 s a clip), committed as they are made.
+- Stage 7 (`scope`): not started.

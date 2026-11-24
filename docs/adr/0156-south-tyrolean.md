@@ -2,9 +2,13 @@
 
 - Status: Proposed
 - Date: 2026-11-23
-- The owner asked for a course on South Tyrol German and put two books in the library. This record is
-  the plan's first draft: what Claude proposes and what only the owner can decide ("Questions for the
-  owner", at the end). Nothing is built yet but a voice test.
+- The owner asked for a course on South Tyrol German and put two books in the library. On the questions
+  this record first asked, the owner answered: "for å, do whatever the TTS handles better; otherwise,
+  whatever, just go wild" (2026-11-23). Claude's answers are folded in ("Decided", at the end).
+- Built 2026-11-23: ten units, A1 to early A2 (374 sentences, 269 lexemes, nine scenarios), drafts awaiting a
+  native reviewer. Where the build departs from the first draft: the dark a is written o, not å (the voice
+  test below); the `scope` label is not built (Standard German answers are plain wrong for now); ten units,
+  not twenty.
 
 ## Context
 
@@ -65,8 +69,12 @@ pronoun system and other valleys' grammar are a note, not a second canon.
 
 **The spelling** (Moser's appendix, without the dictionary's aids):
 
-- **å** for the dark a between a and o (*Fåsching*, *Wåsser*), as dialect poems and song books write
-  it; the long a that became o is written o (*rotn*, *schlogn*).
+- **o** for the dark a between a and o (*Wosser*, *olt*, *hot*), which Moser writes å (*Fåsching*,
+  *Wåsser*), as dialect poems and song books do; the long a that became o is written o too (*rotn*,
+  *schlogn*). The owner left å to the voice: OmniVoice cloning reads å as o (2026-11-23: the first formant
+  and the second of the stressed vowel in seven words, each written å, o and a, in both voices: å lies at
+  0.89 and 0.92 of the way from a to o, at times past o towards u; Whisper heard *Kult* for *kålt*), never
+  between, and o gives a steady [ɔ]. Most people write o in messages. An å a learner types is read as o.
 - A falling diphthong that starts in i is written **ia** (*schiach*, *Diarn*), whatever its second
   half sounds like in a given valley; so are *ua*, *oa*, *ea* (*Bua*, *Stoan*, *geasch*).
 - Umlauts are unrounded, as the dialects say them: *Hittn*, *Heisl*, *efta*.
@@ -76,16 +84,18 @@ pronoun system and other valleys' grammar are a note, not a second canon.
 - Nouns capitalized, as in German. Every e sound written e (*Besn*, not *Beisn*).
 - Not kept: the acute on a diphthong's first vowel, the dot and the bar under stressed vowels (a
   dictionary's pronunciation aids), and the stroke between a compound's parts.
-- **Free spellings, stated in the profile** (ADR 0148, `kind: free`, each REVIEW): å typed as a or o;
-  -n and -en (*gessn*, *gessen*); ia and ie; the participle's g- and ge-; ss and ß; and the valley
-  variants Moser lists. South Tyroleans write the dialect every day with no norm, so a course that
+- **Free spellings, stated in the profile** (ADR 0148, `kind: free`, each REVIEW): -n and -en after a
+  consonant at a word's end (*gessn*, *gessen*); ia and ie (*wia*, *wie*); ß and ss; -sch and -scht at a
+  word's end (*bisch*, *bischt*); and å, which normalization reads as o. Not stated: oa beside ua (ua is
+  *Bua*'s own diphthong, where oa is never said: a free oa/ua would take *Boa* for *Bua*), the participle's g-
+  beside ge- (a statement cannot add a syllable), the valleys' other variants. South Tyroleans write the dialect every day with no norm, so a course that
   marked *gessen* wrong for *gessn* would teach nothing true. This is the first course where free
   variation is the rule, and the profile, not the accept sets, carries it.
 
-**Standard German answers.** A Standard German word for a dialect one (*ich habe* for *i hon*) is not
-accepted. ADR 0148's `scope` label (the right concept, a variety the prompt ruled out) fits it exactly
-and has never been produced; this course is where to build it, so the feedback can say "that is
-Standard German" instead of "wrong".
+**Standard German answers.** A Standard German word for a dialect one (*ich habe* for *i hon*, *Tag* for
+*Tog*) is not accepted: today it is wrong (phonemic or lexical). ADR 0148's `scope` label (the right
+concept, a variety the prompt ruled out) fits it exactly and has never been produced; building it is the
+plan's stage 7, so the feedback can one day say "that is Standard German" instead of "wrong".
 
 **The learner**: an adult English speaker, A1 to early B1, as sk's; support `en`. (A German-speaking
 learner would want a contrastive course, an Italian-speaking South Tyrolean an Italian one; see the
@@ -93,13 +103,17 @@ questions.)
 
 **The lexicon** (`lexicons/bar`, the lexical model, UD tags and features):
 
-- Nouns store Gender where `defaults` do not give it; tokens choose Case (Nom, Acc, Dat; no genitive)
-  and Number. Articles, adjectives and pronouns choose what they agree in, every value written.
+- Nouns store Gender, every noun (no `defaults`: the dialect drops the endings that tell German's
+  genders, Kuchl, Schual); tokens choose Case (Nom, Acc, Dat; no genitive) and Number, a noun's case its
+  phrase's. Articles, adjectives and pronouns choose what they agree in, every value written.
 - Verbs: finite forms choose Person, Number, Mood (Ind, Sub), Tense; the past is the perfect (AUX
   *hobm*/*sein* + the participle, `VerbForm: Part`), with *war* `Tense: Past` its one preterite. The 2sg
   -sch and the 2pl -ts are endings of the verb, not clitics (Moser derives -ts from *es*; the course
   teaches it as an ending). Pronoun clitics (*-ma*, *-s*, *’n*) are lexemes their token writes.
-- *tian* + infinitive is a rule (`rule:tian-periphrasis`), as apc's patterns are.
+- *tat* + infinitive (would) is a rule (`rule:tian-would`), as apc's patterns are; *hatt gearn* (I'd like)
+  is hobm's subjunctive.
+- Fused forms are a token writing two lexemes: a verb and its 's (*geat's*, *gip's*, *isch's*, *regnet's*),
+  a preposition and the article written as its n (*afn*, *mitn*).
 - Labels name the forms by their pronoun ("present: you (du) … -sch").
 
 **Persons and register** (ADR 0056, 0075): *du* to one person, *es* (with -ts) to several, *Sie* to one
@@ -145,17 +159,15 @@ read from a page image.
   weaker than its Slovak: there is little written dialect to learn from and no norm. A reviewer should
   read units 1–2 before the rest is drafted.
 
-## Questions for the owner
+## Decided (Claude, on the owner's "whatever, just go wild", 2026-11-23)
 
-1. **The dialect, not Standard German**, with the central forms canonical and other valleys' accepted?
-2. **The spelling**: Moser's convention as above, with å written and a/o accepted for it? Or o for the
-   dark a, as many people write it in messages?
-3. **The learner**: English speakers from nothing (the proposal), German speakers (a shorter,
-   contrastive course), or Italian-speaking South Tyroleans (an Italian UI catalog and support profile)?
-4. **Standard German answers**: not accepted, with the `scope` label built for them?
-5. **The voices**: may the course clone VinKo's volunteers (the licence and consent allow it; they did
-   not consent to cloning as such)? If so, which of the test voices, and should Claude look for a Bozen
-   man to match the canonical variety?
-6. **A native reviewer**: is there one?
-7. **Size and status**: twenty units, A1 to early B1, a fixture course once units 1–10 build, as sk?
-8. **Polite address**: *Sie* (with *eana*) as the polite form taught, *es/enk* as a note?
+1. **The dialect, not Standard German**, the central forms canonical (Moser's headwords), other valleys' as notes.
+2. **The spelling**: Moser's without his stress marks, the dark a written o (the voice, above), å accepted as o.
+3. **The learner**: English speakers from nothing; support `en`.
+4. **Standard German answers**: wrong; the `scope` label is a later stage.
+5. **The voices**: cloned from two VinKo volunteers (U0430 Bozen, U1810 Meran), credited by speaker id and corpus;
+   their consent covers distribution for educational purposes under CC BY-NC-SA 4.0. A volunteer who asks the
+   project to withdraw a recording is a reason to recast.
+6. **A native reviewer**: none yet; every item is a draft (courses/REVIEW.md lists what to check first).
+7. **Size and status**: ten units, A1 to early A2, a fixture course from the start (CLAUDE.md).
+8. **Polite address**: *Sie* with *Eana*; *es/enk* to several people, their old polite use a note.
