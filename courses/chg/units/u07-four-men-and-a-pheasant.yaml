@@ -171,7 +171,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول یازا المایدور.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: یازا, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: yaza}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: یازا, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: yaza}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
       reverse: اول یازا (المایدور|آلمایدور)
   translations:
     en: (He|She) (cannot|can't) write.
@@ -180,7 +180,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیز بارا المایمیز.
-      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: بارا, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: bara}}, {surface: المایمیز, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: p1p, surface: میز}], readings: {schluessel: almaymiz}}]
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: بارا, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: bara}}, {surface: المایمیز, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: p1p, surface: میز}], readings: {schluessel: almaymiz}}]
       reverse: '[بیز] بارا (المایمیز|آلمایمیز)'
   translations:
     en: We (cannot|can't) go.
@@ -201,7 +201,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بلا قندنی توکاتا المایدور.
-      tokens: [{surface: بلا, lexeme: bala, readings: {schluessel: bala}}, {surface: قندنی, lexemes: [{lexeme: qand, surface: قند, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: qandni}}, {surface: توکاتا, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: tügätä}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
+      tokens: [{surface: بلا, lexeme: bala, readings: {schluessel: bala}}, {surface: قندنی, lexemes: [{lexeme: qand, surface: قند, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: qandni}}, {surface: توکاتا, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: tügätä}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
       reverse: (بلا|بالا) قندنی توکاتا (المایدور|آلمایدور)
   translations:
     en: The child (cannot|can't) finish the sugar.
@@ -257,7 +257,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تورت کشی ییب توکاتا المایدور.
-      tokens: [{surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: توکاتا, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: tügätä}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
+      tokens: [{surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: توکاتا, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: tügätä}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
       reverse: تورت (کشی|کیشی) ییب توکاتا (المایدور|آلمایدور)
   translations:
     en: Four (people|men) (cannot|can't) finish (eating it|it).
@@ -383,7 +383,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "انداق روایت قیلدیلار کیم، بیر قیرغاولنی اشکنه\u200cسی بیله تورت کیشی ییب توکاتا المایدور."
-          tokens: [{surface: انداق, lexeme: andaq, readings: {schluessel: andaq}}, {surface: روایت, lexeme: riwayat, readings: {schluessel: riwāyat}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: qildilar}}, {surface: کیم, lexeme: kim.that, readings: {schluessel: kim}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قیرغاولنی, lexemes: [{lexeme: qirghawul, surface: قیرغاول, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: qirǧawulni}}, {surface: "اشکنه\u200cسی", lexemes: [{lexeme: ishkina, surface: "اشکنه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: iškinasi}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}, {surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: کیشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: توکاتا, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: tügätä}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
+          tokens: [{surface: انداق, lexeme: andaq, readings: {schluessel: andaq}}, {surface: روایت, lexeme: riwayat, readings: {schluessel: riwāyat}}, {surface: قیلدیلار, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: qildilar}}, {surface: کیم, lexeme: kim.that, readings: {schluessel: kim}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قیرغاولنی, lexemes: [{lexeme: qirghawul, surface: قیرغاول, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: qirǧawulni}}, {surface: "اشکنه\u200cسی", lexemes: [{lexeme: ishkina, surface: "اشکنه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: iškinasi}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}, {surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: کیشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: ییب, lexemes: [{lexeme: ye, surface: یی, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: yep}}, {surface: توکاتا, lexemes: [{lexeme: tugat, surface: توکات, base: true}, {lexeme: cv-a, surface: ا}], readings: {schluessel: tügätä}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
       translations:
         en: They tell that four men cannot finish one pheasant with its stew.
   - choose:

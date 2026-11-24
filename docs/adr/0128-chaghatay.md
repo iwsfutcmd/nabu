@@ -136,3 +136,8 @@ person of the past (`past-1s` -dim, `past-1p` -duq, …), and two for the condit
   262 tokens split; the alias table sends the old KC ids to `past` or `cond`, seeding the person ending
   with it. A log already upgraded to the lexical model's events keeps cards for the old lexemes, which no
   card asks again.
+- **The present-future's negative is two morphemes too** (2026-11-24): -may/-mäy was one lexeme,
+  `pres-neg`. It is the negative -ma- (`neg`, as in *barmadi*) and the present-future's -y after a vowel
+  (`pres`, -a/-ä after a consonant): *qil-ma-y-dur* "he does not do". Schluessel teaches it as one formula
+  (5.2.2); the parts are his own -ma- and -y. Unit 5 now introduces `neg`; unit 6's past negative lesson
+  reinforces it. The aorist's negative -mas stays one lexeme, `aor-neg`: no aorist -r is in it.

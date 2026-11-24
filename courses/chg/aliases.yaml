@@ -188,7 +188,7 @@ aliases:
   sense:farsi: {part: 'lexeme:farsi'}
   sense:iman: {part: 'lexeme:iman'}
   sense:kafir: {part: 'lexeme:kafir'}
-  form:pres-neg: {part: 'lexeme:pres-neg'}
+  form:pres-neg: {part: 'lexeme:neg', seeds: ['lexeme:neg', 'lexeme:pres']}
   form:cv-may: {part: 'lexeme:cv-may'}
   form:ca: {part: 'lexeme:ca'}
   form:cond: {part: 'lexeme:cond'}

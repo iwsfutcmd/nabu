@@ -10,7 +10,7 @@ title:
 cefr: A1
 nodes:
 - {id: chg.u05.i-drink, kind: lesson, introduces: ['lexeme:ich', 'lexeme:al', 'lexeme:kor']}
-- {id: chg.u05.not, kind: lesson, introduces: ['lexeme:pres-neg', 'lexeme:qil']}
+- {id: chg.u05.not, kind: lesson, introduces: ['lexeme:neg', 'lexeme:qil']}
 - {id: chg.u05.books, kind: lesson, introduces: ['lexeme:kitab', 'lexeme:oqu', 'lexeme:khat', 'lexeme:yaz', 'lexeme:turki', 'lexeme:sozla', 'lexeme:til', 'lexeme:farsi']}
 - {id: chg.u05.what-do-you-want, kind: lesson, introduces: ['lexeme:ista']}
 - {id: chg.u05.like-muslims, kind: lesson, introduces: ['lexeme:sharab', 'lexeme:namaz', 'lexeme:roza', 'lexeme:tut', 'lexeme:ota', 'lexeme:cv-may', 'lexeme:ca', 'lexeme:iman', 'lexeme:eyt', 'lexeme:kafir', 'lexeme:cond']}
@@ -115,7 +115,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من سوت ایچمایمن.
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: سوت, lexeme: sut, readings: {schluessel: süt}}, {surface: ایچمایمن, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: p1s, surface: من}], readings: {schluessel: ičmäymän}}]
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: سوت, lexeme: sut, readings: {schluessel: süt}}, {surface: ایچمایمن, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: p1s, surface: من}], readings: {schluessel: ičmäymän}}]
       reverse: '[من] سوت ایچمایمن'
   translations:
     en: I (do not|don't) drink milk.
@@ -124,7 +124,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول کوشت المایدور.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کوشت, lexeme: gosht, readings: {schluessel: göšt}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کوشت, lexeme: gosht, readings: {schluessel: göšt}}, {surface: المایدور, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}], readings: {schluessel: almaydur}}]
       reverse: اول کوشت (المایدور|آلمایدور)
   translations:
     en: (He|She) (does not|doesn't|will not|won't) buy meat.
@@ -133,7 +133,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیز تاغنی کورمایمیز.
-      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: تاغنی, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: taǧni}}, {surface: کورمایمیز, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: p1p, surface: میز}], readings: {schluessel: körmäymiz}}]
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: تاغنی, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: taǧni}}, {surface: کورمایمیز, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: p1p, surface: میز}], readings: {schluessel: körmäymiz}}]
       reverse: '[بیز] تاغنی کورمایمیز'
   translations:
     en: We (do not|don't|cannot|can't) see the mountain.
@@ -144,7 +144,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سن چای ایچمایسن.
-      tokens: [{surface: سن, lexeme: san, readings: {schluessel: sän}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچمایسن, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: p2s, surface: سن}], readings: {schluessel: ičmäysän}}]
+      tokens: [{surface: سن, lexeme: san, readings: {schluessel: sän}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچمایسن, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: p2s, surface: سن}], readings: {schluessel: ičmäysän}}]
       reverse: |-
         [سن] چای ایچمایسن
         [سیز] چای ایچمایسیز
@@ -155,7 +155,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اولار بزارغه بارمایدورلار.
-      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: بارمایدورلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}, {lexeme: p3pl, surface: لار}], readings: {schluessel: barmaydurlar}}]
+      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: بارمایدورلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}, {lexeme: p3pl, surface: لار}], readings: {schluessel: barmaydurlar}}]
       reverse: |-
         (اولار|الار) (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارمایدورلار
         (اولار|الار) (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارمایدور
@@ -166,7 +166,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من بیلمایمن.
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: بیلمایمن, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: p1s, surface: من}], readings: {schluessel: bilmäymän}}]
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: بیلمایمن, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: p1s, surface: من}], readings: {schluessel: bilmäymän}}]
       reverse: "[من] بیلمایمن\n[من] بیلماسمن"
   translations:
     en: I (do not|don't) know.
@@ -175,7 +175,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول قیلمایدور.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: قیلمایدور, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: qilmaydur}}]
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: قیلمایدور, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}], readings: {schluessel: qilmaydur}}]
       reverse: اول (قیلمایدور|قلمایدور)
   translations:
     en: (He|She) (does not|doesn't|will not|won't) do (it|that).
@@ -229,7 +229,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول فارسی بیلمایدور.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: فارسی, lexeme: farsi, readings: {schluessel: Fārsī}}, {surface: بیلمایدور, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: bilmäydur}}]
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: فارسی, lexeme: farsi, readings: {schluessel: Fārsī}}, {surface: بیلمایدور, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}], readings: {schluessel: bilmäydur}}]
       reverse: اول فارسی بیلمایدور
   translations:
     en: (He|She) (does not|doesn't) know Persian.
@@ -345,7 +345,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول شراب ایچمایدور.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: شراب, lexeme: sharab, readings: {schluessel: šarāb}}, {surface: ایچمایدور, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: ičmäydur}}]
+      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: شراب, lexeme: sharab, readings: {schluessel: šarāb}}, {surface: ایچمایدور, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}], readings: {schluessel: ičmäydur}}]
       reverse: اول شراب ایچمایدور
   translations:
     en: (He|She) (does not|doesn't) drink wine.
@@ -435,7 +435,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: نماز اوتامای، روزه توتمایدور.
-          tokens: [{surface: نماز, lexeme: namaz, readings: {schluessel: namāz}}, {surface: اوتامای, lexemes: [{lexeme: ota, surface: اوتا, base: true}, {lexeme: cv-may, surface: مای}], readings: {schluessel: ötämäy}}, {surface: روزه, lexeme: roza, readings: {schluessel: roza}}, {surface: توتمایدور, lexemes: [{lexeme: tut, surface: توت, base: true}, {lexeme: pres-neg, surface: مای}, {lexeme: dur, surface: دور}], readings: {schluessel: tutmaydur}}]
+          tokens: [{surface: نماز, lexeme: namaz, readings: {schluessel: namāz}}, {surface: اوتامای, lexemes: [{lexeme: ota, surface: اوتا, base: true}, {lexeme: cv-may, surface: مای}], readings: {schluessel: ötämäy}}, {surface: روزه, lexeme: roza, readings: {schluessel: roza}}, {surface: توتمایدور, lexemes: [{lexeme: tut, surface: توت, base: true}, {lexeme: neg, surface: ما}, {lexeme: pres, surface: ی}, {lexeme: dur, surface: دور}], readings: {schluessel: tutmaydur}}]
       translations:
         en: They do not perform the prayer, they do not keep the fast.
   - line:
