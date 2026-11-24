@@ -1485,7 +1485,7 @@ lexemes:
 - id: lexeme:neg
   realises: {Polarity: Neg}
   gloss: {en: '-ma-, -mä-: not (inside the verb)'}
-  notes: {en: 'körmädim "I did not see", kälmädi "he did not come". After it the past ending always has i: barmaduq.'}
+  notes: {en: 'körmädim "I did not see", kälmädi "he did not come". The present-future after it is -y: qilmaydur "he does not do", bilmäymän "I do not know".'}
   allomorphs:
   - {spelled: {chg-Arab/standard: [ما]}}
 - id: lexeme:nema
@@ -1790,16 +1790,10 @@ lexemes:
 - id: lexeme:pres
   realises: {Tense: Pres}
   gloss: {en: '-a, -ä (-y after a vowel): the present-future: does, is doing, will do'}
-  notes: {en: 'The stem takes -a or -ä, then a person ending: baradur "goes, is going, will go" (-dur for he, she, it). Unit 5 has the other persons.'}
+  notes: {en: 'The stem takes -a or -ä, then a person ending: baradur "goes, is going, will go" (-dur for he, she, it). Unit 5 has the other persons. After a vowel it is -y, as after the negative -ma-: qilmaydur "he does not do".'}
   allomorphs:
   - {spelled: {chg-Arab/standard: [ا]}}
   - {spelled: {chg-Arab/standard: [ی]}}
-- id: lexeme:pres-neg
-  realises: {Polarity: Neg, Tense: Pres}
-  gloss: {en: '-may, -mäy: does not, is not doing, will not (the present-future''s negative)'}
-  notes: {en: 'In place of -a: ičmäymän "I do not drink", tutmaydur "he does not keep".'}
-  allomorphs:
-  - {spelled: {chg-Arab/standard: [مای]}}
 - id: lexeme:q
   pos: PART
   feats: {PartType: Int}
