@@ -1,0 +1,15 @@
+# Interim, hand-encoded: replace with the CLDR Keyboard 3.0 layout once compiled (gameplan §6.7, ADR 0025).
+# German QWERTZ (DIN 2137 T1, as South Tyrol types it): ß and the dead acute right of the digits, ü right of p,
+# ö and ä right of l, y bottom left. The dialect's å is not on it: phones give it on a long press of a.
+id: de
+source: "German (QWERTZ)"
+reviewed: false
+rows:
+  - offset: 0
+    keys: ["^", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "ß", "´"]
+  - offset: 1.5
+    keys: [q, w, e, r, t, z, u, i, o, p, "ü", "+"]
+  - offset: 1.75
+    keys: [a, s, d, f, g, h, j, k, l, "ö", "ä", "#"]
+  - offset: 1.25
+    keys: ["<", y, x, c, v, b, n, m, ",", ".", "-"]

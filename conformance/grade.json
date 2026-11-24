@@ -7661,6 +7661,148 @@
         ]
       },
       "note": "A lexicon that lists no cells adds nothing: a course without rules grades as before."
+    },
+    {
+      "id": "grade/bar/n-en",
+      "op": "grade",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "accept": "I hon gessn",
+        "answer": "i hon gessen"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "-n and -en after a consonant at the end: free (ADR 0156)."
+    },
+    {
+      "id": "grade/bar/kemmen-kemmn",
+      "op": "grade",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "accept": "Kemmen",
+        "answer": "kemmn"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "The same correspondence the other way: the course writes kemmen, as Moser does."
+    },
+    {
+      "id": "grade/bar/sharp-s",
+      "op": "grade",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "accept": "Griaß di",
+        "answer": "griass di"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "ß and ss: free."
+    },
+    {
+      "id": "grade/bar/ia-ie",
+      "op": "grade",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "accept": "Wia geat's?",
+        "answer": "wie geats"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "ie for the diphthong ia, and the clitic's apostrophe left out."
+    },
+    {
+      "id": "grade/bar/sch-scht",
+      "op": "grade",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "accept": "Du bisch miad",
+        "answer": "du bischt miad"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "notes": [
+          "spelling-variant"
+        ]
+      },
+      "note": "-scht for the 2nd person's -sch."
+    },
+    {
+      "id": "grade/bar/a-ring-typed",
+      "op": "grade",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "accept": "Wosser",
+        "answer": "Wåsser"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Moser's å typed for the course's o is read as o."
+    },
+    {
+      "id": "grade/bar/standard-a",
+      "op": "grade",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "accept": "Tog",
+        "answer": "Tag"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "Standard German's a for the dialect's o is another sound: another variety, not a spelling of the dialect."
+    },
+    {
+      "id": "grade/bar/rounded-umlaut",
+      "op": "grade",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "accept": "Hittn",
+        "answer": "Hütten"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "The dialect's umlauts are unrounded: ü for i is Standard German."
+    },
+    {
+      "id": "grade/bar/oa-ua-not-free",
+      "op": "grade",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "accept": "Bua",
+        "answer": "Boa"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "labels": [
+          "phonemic"
+        ]
+      },
+      "note": "oa and ua are not stated free: ua is Bua's own diphthong, where oa is never said (ADR 0156)."
     }
   ]
 }

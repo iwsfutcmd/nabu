@@ -3462,6 +3462,122 @@
         "profile": "es-Latn/standard"
       },
       "error": "\"text\" must be a string"
+    },
+    {
+      "id": "projection/bar/read/gessen",
+      "op": "sound-read",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "text": "gessen"
+      },
+      "expected": {
+        "sites": [
+          {
+            "says": "g",
+            "written": "g"
+          },
+          {
+            "says": "e",
+            "written": "e"
+          },
+          {
+            "says": "ss",
+            "written": "ss",
+            "rule": "ss",
+            "kind": "free"
+          },
+          {
+            "says": "n",
+            "written": "en",
+            "rule": "n",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "-en after a consonant at a word's end says the syllabic n that gessn writes; ss is free with ß."
+    },
+    {
+      "id": "projection/bar/read/griass",
+      "op": "sound-read",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "text": "Griaß"
+      },
+      "expected": {
+        "sites": [
+          {
+            "says": "g",
+            "written": "g"
+          },
+          {
+            "says": "r",
+            "written": "r"
+          },
+          {
+            "says": "ia",
+            "written": "ia",
+            "rule": "ia",
+            "kind": "free"
+          },
+          {
+            "says": "ss",
+            "written": "ß",
+            "rule": "ss",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "The falling diphthong ia, and ß: both free spellings."
+    },
+    {
+      "id": "projection/bar/read/bischt",
+      "op": "sound-read",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "text": "bischt"
+      },
+      "expected": {
+        "sites": [
+          {
+            "says": "b",
+            "written": "b"
+          },
+          {
+            "says": "i",
+            "written": "i"
+          },
+          {
+            "says": "sch",
+            "written": "scht",
+            "rule": "sch",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "The 2nd person's -scht at a word's end says what -sch does (Moser has both)."
+    },
+    {
+      "id": "projection/bar/read/wie",
+      "op": "sound-read",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "text": "wie"
+      },
+      "expected": {
+        "sites": [
+          {
+            "says": "w",
+            "written": "w"
+          },
+          {
+            "says": "ia",
+            "written": "ie",
+            "rule": "ia",
+            "kind": "free"
+          }
+        ]
+      },
+      "note": "ie is a free spelling of the diphthong ia: wie for wia."
     }
   ]
 }

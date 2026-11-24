@@ -1,0 +1,67 @@
+# profiles/bar-Latn.moser.yaml
+# South Tyrolean dialect in Latin script, for the bar course (ADR 0156), spelled as Moser's Wörterbuch der Südtiroler
+# Mundarten (2015) spells it, without the dictionary's stress marks. Policies marked REVIEW are Claude's proposals
+# awaiting Ben's linguistic sign-off.
+#  - There is no norm. South Tyroleans write the dialect every day (messages, songs, dialect poems), each as they hear
+#    it. The course writes one spelling per word and states the everyday variation below as free correspondences
+#    (ADR 0148), so that a learner who writes gessen for gessn, Griass for Griaß or wie for wia is right.
+#  - The standard's long a is o (Tog, Johr, schlofn: Moser's rule); the dark short a, between a and o, which Moser
+#    writes å, is written o as well (Wosser, olt, hot), as most people write it and as the voice reads it best
+#    (2026-11-23: OmniVoice cloning reads å as o, at times nearer u, never between a and o). An å a learner types is
+#    read as o.
+#  - Umlauts are unrounded, as the dialects say them (Hittn, Heiser, Briader): ü and ö typed for i and e are another
+#    sound, as in Standard German, which is not the course's answer.
+#  - The apostrophe of a clitic ('s, geat's) is punctuation: geats and geat's compare alike.
+id: bar-Latn/moser
+lang: bar-Latn
+exemplars: cldr:de-IT
+letters: [a, "ä", b, c, d, e, f, g, h, i, j, k, l, m, n, o, "ö", p, q, r, s, "ß", t, u, "ü", v, w, x,
+          y, z]
+segmentation: { content: whitespace, runtime: grapheme }
+normalize:
+  - nfc
+  - map: { "’": "'", "‘": "'", "å": o, "Å": O }   # curly apostrophes; Moser's å is the course's o
+  - punctuation: strip
+  - whitespace: collapse
+match:
+  case: { locale: de }
+  typo:
+    model: keyboard
+    layout: cldr-kbd:de
+    maxRatio: 0.2
+    # REVIEW (ADR 0066): endings that carry meaning. The verb's person (i hon, du hosch, er hot; mir kemmen, es
+    # kemmts), the plural (Kinder, Buabm), and the agreeing words' case and gender (a guater, a guate, a guats, an
+    # guatn). The empty member is the bare word.
+    contrasts:
+      - { id: ending, note: contrast-ending, members: ["", "sch", "t", "ts", "n", "en", "e", "er", "s", "m"] }
+      - { id: pronoun, note: contrast-pronoun, members: ["i", "mi", "mir", "du", "di", "dir", "er", "ihn", "iam", "sie", "ihr", "es", "ins", "enk", "eana"] }
+      - { id: article, note: contrast-ending, members: ["der", "di", "in", "s", "a", "an", "ar"] }
+# REVIEW: what the spelling writes of the sound, and what it loses (ADR 0148, 0156; profiles/README.md, "The sound
+# statement"). No norm picks one spelling, so every correspondence is free: an accepted variant, never where the typed
+# word is another lexeme's form. Each was checked against the course's words (no two of them newly compare alike).
+# Left out, and why:
+#  - oa beside ua (Stoan, Stuan; koan, kuan): Moser's west and side valleys say ua, but ua is also the course's own
+#    diphthong in Bua, muaß, Schual, where oa is never said; a free oa/ua would accept Boa for Bua.
+#  - the participle's g- beside ge- (gessn, gegessn): a sound statement compares sound for sound and cannot add a
+#    syllable; accept sets carry it where a sentence needs it.
+#  - Standard German spellings (Tag for Tog, Hütte for Hittn): another variety, not a spelling of the dialect.
+sound: { from: spelling }
+correspondences:
+  # -n and -en after a consonant at a word's end (gessn, gessen; kemmen, kemmn; Kirchn, Kirchen): the dialect says a
+  # syllabic n, which writers spell either way. Moser writes -n; the course follows him but for kemmen and the verbs in
+  # -nen (lernen, wohnen), as he does.
+  - { says: n, written: [n, en], kind: free, when: { after: "[bcdfghjklmnpqrstvwxzß]", at: end } }
+  # The falling diphthong that starts in i (wia, Griaß, liab, schian): Moser writes ia, though its second half is nearer
+  # e in most valleys; writers spell ia or ie.
+  - { says: ia, written: [ia, ie], kind: free }
+  # ß and ss (Griaß, Griass; groaß, groass; dass, daß): one sound; the old and Swiss spellings are as common in messages.
+  - { says: ss, written: [ss, "ß"], kind: free }
+  # The 2nd person's -sch at a word's end, and -scht (bisch, bischt; hosch, hoscht): Moser has both.
+  - { says: sch, written: [sch, scht], kind: free, when: { at: end } }
+layout: { vertical: none }
+input:
+  keyboard: cldr-kbd:de
+# What the speech service scores (ADR 0116): nothing. Whisper writes Standard German, never the dialect; speaking is
+# self-rated (tier 0).
+speech:
+  tiers: []

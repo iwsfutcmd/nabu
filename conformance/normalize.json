@@ -1322,6 +1322,36 @@
       },
       "expected": "'jang",
       "note": "A typographic apostrophe is Baxter's glottal stop."
+    },
+    {
+      "id": "normalize/bar/apostrophe",
+      "op": "normalize",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "text": "geat's"
+      },
+      "expected": "geats",
+      "note": "The apostrophe of a clitic ('s) is punctuation: geat's and geats compare alike (ADR 0156)."
+    },
+    {
+      "id": "normalize/bar/a-ring",
+      "op": "normalize",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "text": "Wåsser"
+      },
+      "expected": "Wosser",
+      "note": "Moser's å for the dark a is the course's o (ADR 0156: the voice reads o best)."
+    },
+    {
+      "id": "normalize/bar/curly-apostrophe",
+      "op": "normalize",
+      "args": {
+        "profile": "bar-Latn/moser",
+        "text": "’s Haus"
+      },
+      "expected": "s Haus",
+      "note": "A curly apostrophe is straightened, then goes with the punctuation."
     }
   ]
 }
