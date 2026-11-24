@@ -53,7 +53,7 @@ roadmap deliverable, a few small commits, CI green after each, as in [gameplan-s
 
 - `nabu audio cast --recording` for the chosen VinKo speakers (references cut on whole words, no breath
   at either end), transcripts checked by a listener; `nabu audio generate ../courses/bar` on Kaggle or
-  CPU; `nabu audio align`; the audio check; `audio.quality` iffy until a listener says otherwise.
+  CPU; `nabu audio align`; the audio check; `audio.quality` good (the owner, 2026-11-24).
 - The round trip off for bar (Whisper writes Standard German): a profile `speech` entry saying so.
 
 ## Stage 6: units 11–20, the scenarios
@@ -83,5 +83,6 @@ roadmap deliverable, a few small commits, CI green after each, as in [gameplan-s
   the generator (library: `nabu/notes/bar/generator`).
 - Stages 3, 4, 6: ten units (374 sentences, ten stories, nine scenarios), compile clean; the review stop after unit
   1 was not made (no reader yet): courses/REVIEW.md lists what to check first. Units 11–20 are not drafted.
-- Stage 5: both voices cast; clips generated on a CPU (about 30 s a clip), committed as they are made.
+- Stage 5: both voices cast; clips generated on a CPU (about 30 s a clip), committed as they are made; rated good
+  by the owner (2026-11-24), so listening cards are on.
 - Stage 7 (`scope`): not started.

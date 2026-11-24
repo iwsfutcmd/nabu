@@ -37,8 +37,9 @@ attributive adjective endings, word order beyond Standard German's. A reviewer s
   forms Moser files his entries under, the most widespread, which come to Bozen's and the Eisacktal's; the other
   valleys' forms are notes, and a learner who meets them will understand them.
 - **The voices are real South Tyroleans' voices**, cloned (ADR 0156): a woman from Bozen and a man from Meran, from
-  the VinKo Corpus. No model speaks the dialect, so the clips are a stopgap (`audio.quality: iffy`): heard once a card
-  is answered, never asked to be understood alone.
+  the VinKo Corpus. No model speaks the dialect; OmniVoice reads the text as German in their voices. The owner listened
+  and rated the clips good (`audio.quality: good`, 2026-11-24), so listening cards ask them to be understood alone. A
+  South Tyrolean listener should still go through the audio check.
 
 ## The people
 

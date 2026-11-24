@@ -18,6 +18,8 @@ const COURSES = [
   ["yue", "yue-Hant-HK/standard"],
   ["uz", "uz-Latn/standard"],
   ["apc", "apc-Arab/standard"],
+  // A borrowed model (German's OmniVoice) the owner rated good (2026-11-24, ADR 0156).
+  ["bar", "bar-Latn/moser"],
   // hbo and tok have no listening exercises (their voices are iffy, ADR 0091; hbo's facets leave out listen too),
   // and grc ships no clips (its voice is bad).
 ] as const;

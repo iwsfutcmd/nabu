@@ -53,10 +53,11 @@ wordParts: true
 # U0430) and a man from Meran (U1810). No model knows South Tyrolean: OmniVoice reads the text as German
 # (`language: de`) in the cloned voice, which carries the speaker's accent. The weights are non-commercial and the
 # reference share-alike: the clips are CC-BY-NC-SA-4.0, crediting the corpus and the speaker. A sentence or story
-# character that says who speaks gets that voice; the rest are shared at random (ADR 0078). Iffy (ADR 0091) until a
-# South Tyrolean listener goes through the audio check (#/bar/bar-Latn.moser/audio): no listening exercises.
+# character that says who speaks gets that voice; the rest are shared at random (ADR 0078). Good: the owner listened
+# and rated it so (2026-11-24, "It sounds good"), though ADR 0091 would have a borrowed model iffy; listening cards on.
+# A South Tyrolean listener should still go through the audio check (#/bar/bar-Latn.moser/audio).
 audio:
-  quality: iffy
+  quality: good
   voices:
   - id: bozen-f
     provider: omnivoice

@@ -728,7 +728,14 @@ def test_greek_alphabet_track(core_cli: CoreCli) -> None:
 
 @pytest.mark.parametrize(
     ("course", "quality", "ships_clips"),
-    [("apc", None, True), ("hbo", "iffy", True), ("tok", "iffy", True), ("grc", None, False)],
+    [
+        ("apc", None, True),
+        # Rated good by the owner (2026-11-24), though its model is German's.
+        ("bar", None, True),
+        ("hbo", "iffy", True),
+        ("tok", "iffy", True),
+        ("grc", None, False),
+    ],
 )
 def test_a_voice_s_quality_decides_what_ships(
     core_cli: CoreCli, tmp_path: Path, course: str, quality: str | None, ships_clips: bool

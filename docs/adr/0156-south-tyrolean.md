@@ -133,8 +133,10 @@ accent, as it did for es; no designed voice could sound South Tyrolean.
   South Tyrolean is a listener's call; the owner has the files.
 - Clips are CC-BY-NC-SA-4.0: OmniVoice's weights are non-commercial, and the reference adds share-alike
   (grc's clips carry the same licence). Each voice credits its VinKo speaker id and the corpus.
-- `audio.quality: iffy` (ADR 0091: a model not of the language, even reading through a native speaker's
-  voice) until a native listener rates it in the audio check; then the owner may rate it good.
+- `audio.quality: good`. ADR 0091 would have a model not of the language iffy, even reading through a
+  native speaker's voice; the owner listened and rated it good (2026-11-24: "It sounds good"; "yeah,
+  switch it to good"), so bar has listening cards. A native listener should still go through the audio
+  check, and a clip they reject is made again.
 - The round trip cannot read dialect spelling: Whisper writes Standard German. Clips are passed by a
   listener in the audio check (`nabu audio verdicts`), not by the round trip. Speaking is self-rated
   (tier 0) only.

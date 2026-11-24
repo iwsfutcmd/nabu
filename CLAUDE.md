@@ -765,7 +765,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   carry no features. Fused forms are one token writing two lexemes: geat's, gip's (verb + 's), afn, mitn (preposition +
   the article written as n). The past is the perfect; wor is sein's past; tat + infinitive is `rule:tian-would`.
 - Voices: OmniVoice cloning two VinKo Corpus speakers (CC BY-NC-SA 4.0: U0430 Bozen, U1810 Meran), `language: de`;
-  clips CC-BY-NC-SA-4.0, iffy. Generate with `--no-check` (Whisper writes Standard German and fails every dialect clip).
+  clips CC-BY-NC-SA-4.0, good (the owner's rating, 2026-11-24, over ADR 0091's iffy for a borrowed model). Generate
+  with `--no-check` (Whisper writes Standard German and fails every dialect clip).
 - The units and lexicon were first written by a generator (library: `nabu/notes/bar/generator`); edit the YAML now.
 
 ## Word parts notes (see docs/adr/0152)

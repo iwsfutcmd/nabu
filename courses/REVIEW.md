@@ -916,7 +916,8 @@ from and no norm. No one who speaks the dialect has read it yet. Check first:
    are tagged: a woman or a man naming themselves (1 each), Sie to a woman (4) or a man (2), es to several (9), Sie
    (10 formal). Untagged *you* accepts du, es and Sie wherever the sets list them; check that they do.
 7. **Voices.** OmniVoice cloning two VinKo Corpus speakers (a woman from Bozen, U0430; a man from Meran, U1810), the
-   text read as German. Listen in the audio check (`#/bar/bar-Latn.moser/audio`): does it sound South Tyrolean? The
+   text read as German. The owner rated them good (listening cards are on); listen in the audio check
+   (`#/bar/bar-Latn.moser/audio`): does it sound South Tyrolean? Reject a clip that does not. The
    references' transcripts were written from Whisper's output and the VinKo stimulus, not by ear: check them
    (courses/bar/audio/index.yaml, `references`).
 8. **Names and places:** Lena, Giulia, Hannes, Luis, Flori, Frau Pichler, Herr Gruber; Bozn, Meran, Brixn, the Ritten,
