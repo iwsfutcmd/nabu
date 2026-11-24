@@ -106,6 +106,9 @@ vocalization:
 # and cloning a reference (`nabu audio cast`). Two voices, a man's and a woman's: each item gets one at random
 # (seeded by its id), and a sentence or story character whose grammar says who speaks gets that one (ADR 0078).
 # The model's weights are CC-BY-NC (OmniVoice's training data), so its clips are too.
+# A word card ends with a full stop, as a sentence does (finalStop, ADR 0063). Given a bare word, both voices often
+# put a quiet lead-in before it and stopped mid-word, and read a final ة as -t (سِتِّة as sitt); with the stop, 44 of
+# 44 takes of the 22 word cards a listener rejected (2026-11-24) started and ended cleanly, and Whisper heard no -t.
 audio:
   # ADR 0091: a voice made for the language (Lahgtna): clips play everywhere, listening exercises included.
   quality: good
@@ -119,6 +122,7 @@ audio:
     orthography: apc-Arab/standard
     reading: text
     vowelMarks: true
+    finalStop: true
     license: CC-BY-NC-4.0
   - id: beirut-f
     provider: omnivoice
@@ -129,4 +133,5 @@ audio:
     orthography: apc-Arab/standard
     reading: text
     vowelMarks: true
+    finalStop: true
     license: CC-BY-NC-4.0
