@@ -2,7 +2,7 @@
 
 - Date: 2026-11-23
 - Status: stages 0 to 6 built 2026-11-23 (the owner: "whatever, just go wild"), but for the units' review
-  stop in stage 3, which waits for a reader; stage 5's clips are being made; stage 7 later. Where each stage
+  stop in stage 3, which waits for a reader; stage 5's clips made 2026-11-24; stage 7 later. Where each stage
   stands is under "Where it stands" at the end.
 
 What it builds: the course `bar` that [ADR 0156](adr/0156-south-tyrolean.md) describes. Each stage is one
@@ -83,6 +83,7 @@ roadmap deliverable, a few small commits, CI green after each, as in [gameplan-s
   the generator (library: `nabu/notes/bar/generator`).
 - Stages 3, 4, 6: ten units (374 sentences, ten stories, nine scenarios), compile clean; the review stop after unit
   1 was not made (no reader yet): courses/REVIEW.md lists what to check first. Units 11–20 are not drafted.
-- Stage 5: both voices cast; clips generated on a CPU (about 30 s a clip), committed as they are made; rated good
-  by the owner (2026-11-24), so listening cards are on.
+- Stage 5: both voices cast; every item's clip made (743 clips, 736 files: 482 on a CPU at about 30 s a clip, the
+  rest on a Kaggle T4 in 44 minutes, pipeline/kaggle/audio_gpu.py); rated good by the owner (2026-11-24), so
+  listening cards are on. No word timings yet (`nabu audio align`), and no listener has been through the audio check.
 - Stage 7 (`scope`): not started.

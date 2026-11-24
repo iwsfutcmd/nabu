@@ -140,8 +140,8 @@ accent, as it did for es; no designed voice could sound South Tyrolean.
 - The round trip cannot read dialect spelling: Whisper writes Standard German. Clips are passed by a
   listener in the audio check (`nabu audio verdicts`), not by the round trip. Speaking is self-rated
   (tier 0) only.
-- A whole course is about a thousand clips: about eight hours on this CPU, or a few on a Kaggle GPU (as
-  yue's were made).
+- The course is 743 clips: about six hours on a cloud container's CPU, under an hour on a Kaggle T4
+  (about 10 s a clip). The first 482 were made on a CPU, the rest on Kaggle (2026-11-24).
 
 **Stories** are the course's own, everyday scenes with recurring people, as the other courses have.
 Public-domain text in South Tyrolean dialect is rare; a passage is added only if one is found and
