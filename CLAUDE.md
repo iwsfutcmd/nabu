@@ -995,6 +995,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
+- Heavy compute (a course's clips, a voice bench, anything on a GPU or hours long) runs on Kaggle, never for hours
+  on a session's CPU (the owner, 2026-11-24). Cloud sessions have the Kaggle API: the proxy adds the credentials and
+  the CLI (`uvx --with six kaggle`) takes placeholders (`KAGGLE_USERNAME=iwsfutcmd`, a 32-hex `KAGGLE_KEY`).
+  pipeline/kaggle/audio_gpu.py makes a course's clips on a T4; its docstring says how to push it and bring them back.
 - Self-hosting: deploy/compose.yaml (deploy/README.md). The images keep the workspace layout (Node runs TS source, never
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
