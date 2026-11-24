@@ -1,0 +1,607 @@
+# Unit 3 (bar): the family (Mamme, Tatte, Oma, Opa, Bua, Madl), hobm in the present (i hon, du hosch, er hot),
+# the articles der, di, 's and a, an, koan, the possessives mei, dei, sei, ihr, and how old people are; Lena shows
+# Giulia a photo of her family.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u03
+title:
+  en: Mei Familie My family
+cefr: A1
+nodes:
+- {id: bar.u03.familie, kind: lesson, introduces: ['lexeme:familie', 'lexeme:mamme', 'lexeme:tatte', 'lexeme:bruader', 'lexeme:schwester', 'lexeme:mei', 'lexeme:dei']}
+- {id: bar.u03.hobm, kind: lesson, introduces: ['lexeme:hobm', 'lexeme:kind', 'lexeme:koan', 'lexeme:zwoa', 'lexeme:drei', 'feature:Gender=Neut']}
+- {id: bar.u03.oma, kind: lesson, introduces: ['lexeme:oma', 'lexeme:opa', 'lexeme:olt', 'lexeme:jung', 'lexeme:johr', 'lexeme:nein', 'lexeme:zehn', 'lexeme:nou']}
+- {id: bar.u03.bua, kind: lesson, introduces: ['lexeme:bua', 'lexeme:madl', 'lexeme:flori', 'lexeme:sei', 'lexeme:ihr.poss', 'lexeme:groaß', 'lexeme:liab']}
+- {id: bar.u03.leit, kind: lesson, introduces: ['lexeme:leit', 'lexeme:verheiratet', 'lexeme:kloan']}
+- {id: bar.u03.story, kind: story}
+sentences:
+- id: s.u03.1
+  node: bar.u03.familie
+  forms:
+    bar-Latn/moser:
+      text: Des isch mei Familie.
+      tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mei, lexeme: mei, feats: {Case: Nom, Gender: Fem,
+            Number: Sing}}, {surface: Familie, lexeme: familie, feats: {Case: Nom, Number: Sing}}]
+      reverse: Des isch mei Familie
+  translations:
+    en: (This is|That's|That is) my family.
+- id: s.u03.2
+  node: bar.u03.familie
+  forms:
+    bar-Latn/moser:
+      text: Des isch mei Mamme.
+      tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mei, lexeme: mei, feats: {Case: Nom, Gender: Fem,
+            Number: Sing}}, {surface: Mamme, lexeme: mamme, feats: {Case: Nom, Number: Sing}}]
+      reverse: Des isch mei Mamme
+  translations:
+    en: (This is|That's|That is) my (mum|mom|mother).
+- id: s.u03.3
+  node: bar.u03.familie
+  forms:
+    bar-Latn/moser:
+      text: Und des isch mei Tatte.
+      tokens: [{surface: Und, lexeme: und}, {surface: des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mei, lexeme: mei,
+          feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Tatte, lexeme: tatte, feats: {Case: Nom, Number: Sing}}]
+      reverse: Und des isch mei Tatte
+  translations:
+    en: And (this is|that's|that is) my (dad|father).
+- id: s.u03.4
+  node: bar.u03.familie
+  forms:
+    bar-Latn/moser:
+      text: Hannes isch mei Bruader.
+      tokens: [{surface: Hannes, lexeme: hannes, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mei,
+          lexeme: mei, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Bruader, lexeme: bruader, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Hannes|Der Hannes) isch mei Bruader
+  translations:
+    en: Hannes is my brother.
+- id: s.u03.5
+  node: bar.u03.familie
+  forms:
+    bar-Latn/moser:
+      text: Wo isch dei Schwester?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dei, lexeme: dei, feats: {Case: Nom, Gender: Fem,
+            Number: Sing}}, {surface: Schwester, lexeme: schwester, feats: {Case: Nom, Number: Sing}}]
+      reverse: Wo isch dei Schwester
+  translations:
+    en: |-
+      Where is your sister?
+      Where's your sister?
+- id: s.u03.6
+  node: bar.u03.familie
+  forms:
+    bar-Latn/moser:
+      text: Mei Schwester wohnt in Innsbruck.
+      tokens: [{surface: Mei, lexeme: mei, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Schwester, lexeme: schwester, feats: {Case: Nom, Number: Sing}}, {surface: wohnt, lexeme: wohnen, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: in, lexeme: in}, {surface: Innsbruck, lexeme: innsbruck, feats: {Case: Dat, Number: Sing}}]
+      reverse: Mei Schwester wohnt in Innsbruck
+  translations:
+    en: My sister lives in Innsbruck.
+- id: s.u03.7
+  node: bar.u03.familie
+  forms:
+    bar-Latn/moser:
+      text: Dei Bruader isch va Meran?
+      tokens: [{surface: Dei, lexeme: dei, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Bruader, lexeme: bruader, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: va, lexeme: va}, {surface: Meran, lexeme: meran, feats: {Case: Dat, Number: Sing}}]
+      reverse: Dei Bruader isch (va|vo|von) Meran
+  translations:
+    en: |-
+      Your brother is from Meran?
+      Is your brother from Meran?
+- id: s.u03.8
+  node: bar.u03.familie
+  forms:
+    bar-Latn/moser:
+      text: Wo wohnt dei Familie?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: wohnt, lexeme: wohnen, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dei, lexeme: dei, feats: {Case: Acc, Gender: Fem,
+            Number: Sing}}, {surface: Familie, lexeme: familie, feats: {Case: Acc, Number: Sing}}]
+      reverse: Wo wohnt dei Familie
+  translations:
+    en: Where does your family live?
+- id: s.u03.9
+  node: bar.u03.hobm
+  forms:
+    bar-Latn/moser:
+      text: I hon an Bruader.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: hon, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: an, lexeme: a, feats: {Case: Acc,
+            Gender: Masc, Number: Sing}}, {surface: Bruader, lexeme: bruader, feats: {Case: Acc, Number: Sing}}]
+      reverse: I hon an Bruader
+  translations:
+    en: |-
+      I have a brother.
+      I've got a brother.
+- id: s.u03.10
+  node: bar.u03.hobm
+  forms:
+    bar-Latn/moser:
+      text: Hosch du Kinder?
+      tokens: [{surface: Hosch, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: Kinder, lexeme: kind, feats: {
+            Case: Acc, Number: Plur}}]
+      reverse: (Hosch du|Du hosch) Kinder
+  translations:
+    en: |-
+      Do you have (any) children?
+      Have you got (any) children?
+- id: s.u03.11
+  node: bar.u03.hobm
+  forms:
+    bar-Latn/moser:
+      text: Jo, i hon zwoa Kinder.
+      tokens: [{surface: Jo, lexeme: jo}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: hon, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: zwoa,
+          lexeme: zwoa}, {surface: Kinder, lexeme: kind, feats: {Case: Acc, Number: Plur}}]
+      reverse: Jo i hon zwoa Kinder
+  translations:
+    en: |-
+      Yes, I have two children.
+      Yes, I've got two children.
+- id: s.u03.12
+  node: bar.u03.hobm
+  forms:
+    bar-Latn/moser:
+      text: Na, i hon koane Kinder.
+      tokens: [{surface: Na, lexeme: na}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: hon, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: koane,
+          lexeme: koan, feats: {Case: Acc, Number: Plur}}, {surface: Kinder, lexeme: kind, feats: {Case: Acc, Number: Plur}}]
+      reverse: Na i hon koane Kinder
+  translations:
+    en: |-
+      No, I (don't have|have no) children.
+      No, I haven't got any children.
+- id: s.u03.13
+  node: bar.u03.hobm
+  forms:
+    bar-Latn/moser:
+      text: Lena hot an Bruader und a Schwester.
+      tokens: [{surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}, {surface: hot, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: an, lexeme: a,
+          feats: {Case: Acc, Gender: Masc, Number: Sing}}, {surface: Bruader, lexeme: bruader, feats: {Case: Acc, Number: Sing}}, {surface: und, lexeme: und}, {surface: a, lexeme: a, feats: {Case: Acc,
+            Gender: Fem, Number: Sing}}, {surface: Schwester, lexeme: schwester, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Lena|Di Lena) hot an Bruader und a Schwester
+  translations:
+    en: Lena has a brother and a sister.
+- id: s.u03.14
+  node: bar.u03.hobm
+  forms:
+    bar-Latn/moser:
+      text: Mir hobm drei Kinder.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hobm, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: drei, lexeme: drei}, {
+          surface: Kinder, lexeme: kind, feats: {Case: Acc, Number: Plur}}]
+      reverse: Mir hobm drei Kinder
+  translations:
+    en: |-
+      We have three children.
+      We've got three children.
+- id: s.u03.15
+  node: bar.u03.hobm
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    bar-Latn/moser:
+      text: Hobts es Kinder?
+      tokens: [{surface: Hobts, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: es, lexeme: es, feats: {Case: Nom}}, {surface: Kinder, lexeme: kind, feats: {
+            Case: Acc, Number: Plur}}]
+      reverse: (Hobts es|Es hobts) Kinder
+  translations:
+    en: |-
+      Do you (all) have children?
+      Do you have children?
+- id: s.u03.16
+  node: bar.u03.hobm
+  forms:
+    bar-Latn/moser:
+      text: Sie hobm a Kind.
+      tokens: [{surface: Sie, lexeme: sie.pl, feats: {Case: Nom}}, {surface: hobm, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {
+            Case: Acc, Gender: Neut, Number: Sing}}, {surface: Kind, lexeme: kind, feats: {Case: Acc, Number: Sing}}]
+      reverse: Sie hobm a Kind
+  translations:
+    en: |-
+      They have a child.
+      They have one child.
+- id: s.u03.17
+  node: bar.u03.hobm
+  forms:
+    bar-Latn/moser:
+      text: Giulia hot koan Bruader.
+      tokens: [{surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}, {surface: hot, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: koan,
+          lexeme: koan, feats: {Case: Acc, Gender: Masc, Number: Sing}}, {surface: Bruader, lexeme: bruader, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Giulia|Di Giulia) hot koan Bruader
+  translations:
+    en: |-
+      Giulia (doesn't have|has no) brother.
+      Giulia doesn't have a brother.
+      Giulia hasn't got a brother.
+- id: s.u03.18
+  node: bar.u03.oma
+  forms:
+    bar-Latn/moser:
+      text: Mei Oma isch olt.
+      tokens: [{surface: Mei, lexeme: mei, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Oma, lexeme: oma, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: olt, lexeme: olt}]
+      reverse: Mei Oma isch olt
+  translations:
+    en: My (grandma|grandmother|granny) is old.
+- id: s.u03.19
+  node: bar.u03.oma
+  forms:
+    bar-Latn/moser:
+      text: Wia olt bisch du?
+      tokens: [{surface: Wia, lexeme: wia}, {surface: olt, lexeme: olt}, {surface: bisch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du,
+          feats: {Case: Nom}}]
+      reverse: Wia olt bisch du
+  translations:
+    en: How old are you?
+- id: s.u03.20
+  node: bar.u03.oma
+  forms:
+    bar-Latn/moser:
+      text: I bin nein Johr olt.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: nein, lexeme: nein}, {surface: Johr,
+          lexeme: johr, feats: {Case: Acc, Number: Plur}}, {surface: olt, lexeme: olt}]
+      reverse: I bin nein (Johr olt|Johr)
+  translations:
+    en: |-
+      (I'm|I am) nine (years old).
+      (I'm|I am) nine.
+- id: s.u03.21
+  node: bar.u03.oma
+  forms:
+    bar-Latn/moser:
+      text: Der Opa isch sehr olt.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Opa, lexeme: opa, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sehr, lexeme: sehr}, {surface: olt, lexeme: olt}]
+      reverse: (Der Opa|Mei Opa|Opa) isch sehr olt
+  translations:
+    en: |-
+      Grandpa is very old.
+      (My|The) grandfather is very old.
+- id: s.u03.22
+  node: bar.u03.oma
+  forms:
+    bar-Latn/moser:
+      text: Giulia isch nou jung.
+      tokens: [{surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nou,
+          lexeme: nou}, {surface: jung, lexeme: jung}]
+      reverse: (Giulia|Di Giulia) isch nou jung
+  translations:
+    en: Giulia is still young.
+- id: s.u03.23
+  node: bar.u03.oma
+  forms:
+    bar-Latn/moser:
+      text: Wia olt isch dei Oma?
+      tokens: [{surface: Wia, lexeme: wia}, {surface: olt, lexeme: olt}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dei, lexeme: dei,
+          feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Oma, lexeme: oma, feats: {Case: Nom, Number: Sing}}]
+      reverse: Wia olt isch dei Oma
+  translations:
+    en: How old is your (grandma|grandmother)?
+- id: s.u03.24
+  node: bar.u03.oma
+  forms:
+    bar-Latn/moser:
+      text: Mei Opa isch nou nit olt.
+      tokens: [{surface: Mei, lexeme: mei, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Opa, lexeme: opa, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nou, lexeme: nou}, {surface: nit, lexeme: nit}, {surface: olt, lexeme: olt}]
+      reverse: Mei Opa isch nou (nit|net) olt
+  translations:
+    en: |-
+      My (grandpa|grandfather) is not old yet.
+      My (grandpa|grandfather) isn't old yet.
+- id: s.u03.25
+  node: bar.u03.oma
+  forms:
+    bar-Latn/moser:
+      text: '''s Kind isch zehn Johr olt.'
+      tokens: [{surface: '''s', lexeme: der, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Kind, lexeme: kind, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: zehn, lexeme: zehn}, {surface: Johr, lexeme: johr, feats: {Case: Acc, Number: Plur}}, {surface: olt, lexeme: olt}]
+      reverse: '''s Kind isch zehn (Johr olt|Johr)'
+  translations:
+    en: The child is ten (years old).
+- id: s.u03.26
+  node: bar.u03.bua
+  forms:
+    bar-Latn/moser:
+      text: Der Bua hoaßt Flori.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Bua, lexeme: bua, feats: {Case: Nom, Number: Sing}}, {surface: hoaßt, lexeme: hoaßn, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Flori, lexeme: flori, feats: {Case: Nom, Number: Sing}}]
+      reverse: Der Bua hoaßt Flori
+  translations:
+    en: |-
+      The boy is called Flori.
+      The boy's name is Flori.
+- id: s.u03.27
+  node: bar.u03.bua
+  forms:
+    bar-Latn/moser:
+      text: Flori isch a Bua.
+      tokens: [{surface: Flori, lexeme: flori, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a,
+          feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Bua, lexeme: bua, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Flori|Der Flori) isch a Bua
+  translations:
+    en: Flori is a boy.
+- id: s.u03.28
+  node: bar.u03.bua
+  forms:
+    bar-Latn/moser:
+      text: '''s Madl hoaßt Lena.'
+      tokens: [{surface: '''s', lexeme: der, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Madl, lexeme: madl, feats: {Case: Nom, Number: Sing}}, {surface: hoaßt, lexeme: hoaßn, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}]
+      reverse: '''s Madl hoaßt Lena'
+  translations:
+    en: |-
+      The girl is called Lena.
+      The girl's name is Lena.
+- id: s.u03.29
+  node: bar.u03.bua
+  forms:
+    bar-Latn/moser:
+      text: Sei Schwester isch a liabs Madl.
+      tokens: [{surface: Sei, lexeme: sei, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Schwester, lexeme: schwester, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: liabs, lexeme: liab, feats: {Case: Nom,
+            Gender: Neut, Number: Sing}}, {surface: Madl, lexeme: madl, feats: {Case: Nom, Number: Sing}}]
+      reverse: Sei Schwester isch a liabs Madl
+  translations:
+    en: |-
+      His sister is a sweet girl.
+      His sister is a lovely girl.
+- id: s.u03.30
+  node: bar.u03.bua
+  forms:
+    bar-Latn/moser:
+      text: Ihr Bruader isch a groaßer Bua.
+      tokens: [{surface: Ihr, lexeme: ihr.poss, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Bruader, lexeme: bruader, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: groaßer, lexeme: groaß, feats: {Case: Nom,
+            Gender: Masc, Number: Sing}}, {surface: Bua, lexeme: bua, feats: {Case: Nom, Number: Sing}}]
+      reverse: Ihr Bruader isch a groaßer Bua
+  translations:
+    en: Her brother is a big boy.
+- id: s.u03.31
+  node: bar.u03.bua
+  forms:
+    bar-Latn/moser:
+      text: Mir hobm zwoa Buabm und a Madl.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hobm, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: zwoa, lexeme: zwoa}, {
+          surface: Buabm, lexeme: bua, feats: {Case: Acc, Number: Plur}}, {surface: und, lexeme: und}, {surface: a, lexeme: a, feats: {Case: Acc, Gender: Neut, Number: Sing}}, {surface: Madl, lexeme: madl,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir hobm zwoa Buabm und a Madl
+  translations:
+    en: |-
+      We have two boys and a girl.
+      We have two sons and a daughter.
+- id: s.u03.32
+  node: bar.u03.bua
+  forms:
+    bar-Latn/moser:
+      text: Wia hoaßt dei Bua?
+      tokens: [{surface: Wia, lexeme: wia}, {surface: hoaßt, lexeme: hoaßn, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dei, lexeme: dei, feats: {Case: Nom, Gender: Masc,
+            Number: Sing}}, {surface: Bua, lexeme: bua, feats: {Case: Nom, Number: Sing}}]
+      reverse: Wia hoaßt dei Bua
+  translations:
+    en: |-
+      What is your son called?
+      What's your (son's|boy's) name?
+- id: s.u03.33
+  node: bar.u03.bua
+  forms:
+    bar-Latn/moser:
+      text: Wo isch sei Mamme?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sei, lexeme: sei, feats: {Case: Nom, Gender: Fem,
+            Number: Sing}}, {surface: Mamme, lexeme: mamme, feats: {Case: Nom, Number: Sing}}]
+      reverse: Wo isch sei Mamme
+  translations:
+    en: Where is his (mum|mom|mother)?
+- id: s.u03.34
+  node: bar.u03.leit
+  forms:
+    bar-Latn/moser:
+      text: Di Leit do sein liab.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Number: Plur}}, {surface: Leit, lexeme: leit, feats: {Case: Nom, Number: Plur}}, {surface: do, lexeme: do}, {surface: sein, lexeme: sein, feats: {
+            Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: liab, lexeme: liab}]
+      reverse: Di Leit do sein liab
+  translations:
+    en: The people here are (nice|kind|friendly).
+- id: s.u03.35
+  node: bar.u03.leit
+  forms:
+    bar-Latn/moser:
+      text: Mei Familie isch groaß.
+      tokens: [{surface: Mei, lexeme: mei, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Familie, lexeme: familie, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: groaß, lexeme: groaß}]
+      reverse: Mei Familie isch groaß
+  translations:
+    en: My family is (big|large).
+- id: s.u03.36
+  node: bar.u03.leit
+  forms:
+    bar-Latn/moser:
+      text: Mei Schwester isch verheiratet.
+      tokens: [{surface: Mei, lexeme: mei, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Schwester, lexeme: schwester, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: verheiratet, lexeme: verheiratet}]
+      reverse: Mei Schwester isch verheiratet
+  translations:
+    en: My sister is married.
+- id: s.u03.37
+  node: bar.u03.leit
+  forms:
+    bar-Latn/moser:
+      text: Bisch du verheiratet?
+      tokens: [{surface: Bisch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: verheiratet, lexeme: verheiratet}]
+      reverse: (Bisch du|Du bisch) verheiratet
+  translations:
+    en: Are you married?
+- id: s.u03.38
+  node: bar.u03.leit
+  forms:
+    bar-Latn/moser:
+      text: Flori isch nou kloan.
+      tokens: [{surface: Flori, lexeme: flori, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nou,
+          lexeme: nou}, {surface: kloan, lexeme: kloan}]
+      reverse: (Flori|Der Flori) isch nou kloan
+  translations:
+    en: Flori is still (small|little).
+- id: s.u03.39
+  node: bar.u03.leit
+  forms:
+    bar-Latn/moser:
+      text: Mei Oma isch a liabe Frau.
+      tokens: [{surface: Mei, lexeme: mei, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Oma, lexeme: oma, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: liabe, lexeme: liab, feats: {Case: Nom, Gender: Fem,
+            Number: Sing}}, {surface: Frau, lexeme: frau, feats: {Case: Nom, Number: Sing}}]
+      reverse: Mei Oma isch a liabe Frau
+  translations:
+    en: My (grandma|grandmother) is a (kind|lovely|sweet) woman.
+- id: s.u03.40
+  node: bar.u03.leit
+  forms:
+    bar-Latn/moser:
+      text: Di Kinder sein groaß.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Number: Plur}}, {surface: Kinder, lexeme: kind, feats: {Case: Nom, Number: Plur}}, {surface: sein, lexeme: sein, feats: {Mood: Ind, Number: Plur,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: groaß, lexeme: groaß}]
+      reverse: Di Kinder sein groaß
+  translations:
+    en: The children are (big|tall|grown up).
+stories:
+- id: bar.story.u03
+  node: bar.u03.story
+  title:
+    en: A photo of Lena's family
+  characters:
+  - id: lena
+    speaker: f
+    name:
+      bar-Latn/moser: Lena
+  - id: giulia
+    speaker: f
+    name:
+      bar-Latn/moser: Giulia
+  steps:
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Wer isch des?
+          tokens: [{surface: Wer, lexeme: wer}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: des, lexeme: des}]
+      translations:
+        en: Who's that?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Des isch mei Familie.
+          tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mei, lexeme: mei, feats: {Case: Nom, Gender: Fem,
+                Number: Sing}}, {surface: Familie, lexeme: familie, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: That's my family.
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Des isch mei Mamme, und des isch mei Tatte.
+          tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mei, lexeme: mei, feats: {Case: Nom, Gender: Fem,
+                Number: Sing}}, {surface: Mamme, lexeme: mamme, feats: {Case: Nom, Number: Sing}}, {surface: und, lexeme: und}, {surface: des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+                Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mei, lexeme: mei, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Tatte, lexeme: tatte, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: That's my mum, and that's my dad.
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Und der Bua?
+          tokens: [{surface: Und, lexeme: und}, {surface: der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Bua, lexeme: bua, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: And the boy?
+  - line:
+      speaker: lena
+      ask: complete
+      gap: lexeme:bruader
+      distractors:
+      - lexeme:tatte
+      - lexeme:opa
+      forms:
+        bar-Latn/moser:
+          text: Des isch mei Bruader, der Hannes.
+          tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mei, lexeme: mei, feats: {Case: Nom, Gender: Masc,
+                Number: Sing}}, {surface: Bruader, lexeme: bruader, feats: {Case: Nom, Number: Sing}}, {surface: der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Hannes, lexeme: hannes,
+              feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: That's my brother, Hannes.
+  - choose:
+      prompt:
+        en: Who is Hannes?
+      options:
+      - en: Lena's brother
+      - en: Lena's father
+      - en: Giulia's brother
+      answer: 0
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Wia olt isch er?
+          tokens: [{surface: Wia, lexeme: wia}, {surface: olt, lexeme: olt}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: er, lexeme: er,
+              feats: {Case: Nom}}]
+      translations:
+        en: How old is he?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Er isch nou jung.
+          tokens: [{surface: Er, lexeme: er, feats: {Case: Nom}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nou, lexeme: nou}, {
+              surface: jung, lexeme: jung}]
+      translations:
+        en: He's still young.
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Und wer isch di olte Frau?
+          tokens: [{surface: Und, lexeme: und}, {surface: wer, lexeme: wer}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: di, lexeme: der,
+              feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: olte, lexeme: olt, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Frau, lexeme: frau, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: And who is the old woman?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Des isch mei Oma. Sie isch sehr liab.
+          tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mei, lexeme: mei, feats: {Case: Nom, Gender: Fem,
+                Number: Sing}}, {surface: Oma, lexeme: oma, feats: {Case: Nom, Number: Sing}}, {surface: Sie, lexeme: sie, feats: {Case: Acc}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing,
+                Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sehr, lexeme: sehr}, {surface: liab, lexeme: liab}]
+      translations:
+        en: That's my grandma. She's very sweet.
+  - line:
+      speaker: giulia
+      ask: arrange
+      forms:
+        bar-Latn/moser:
+          text: Hosch du a Schwester?
+          tokens: [{surface: Hosch, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: a, lexeme: a, feats: {
+                Case: Acc, Gender: Fem, Number: Sing}}, {surface: Schwester, lexeme: schwester, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Do you have a sister?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Na, i hon koane Schwester.
+          tokens: [{surface: Na, lexeme: na}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: hon, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: koane,
+              lexeme: koan, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Schwester, lexeme: schwester, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: No, I don't have a sister.
+  - choose:
+      prompt:
+        en: Does Lena have a sister?
+      options:
+      - en: 'No'
+      - en: Yes, one
+      - en: Yes, two
+      answer: 0
+scenarios:
+- id: bar.familie
+  after: bar.u03.leit
+  title:
+    en: Family photos
+  setting:
+    en: A kitchen table in a flat in Bozen on a Sunday afternoon, with a box of old family photos.
+  character:
+    en: 'Lena, a nurse in her mid-twenties, who loves telling stories about her family: her parents in Bozen, her brother Hannes, and her grandmother on a farm on the Ritten.'
+  goal:
+    en: Ask who the people in the photos are, how old they are and where they live, and say who is in your own family.

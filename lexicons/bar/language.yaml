@@ -1,0 +1,75 @@
+# What bar declares beside its lexicon (schemas/language.schema.json): its dimensions, features and labels.
+# South Tyrolean (ADR 0156), in Universal Dependencies' terms as the German treebanks use them (Mood=Sub for the
+# subjunctive II, Tense=Past with it; an adverbial adjective is ADJ; Polite=Form for Sie). Departures, stated: the
+# participle is VerbForm=Part alone (the dialect has no other); a predicative adjective carries no features (it is
+# its lemma); a noun's case is its phrase's (the article shows it, the noun mostly does not).
+# Three cases: the dialect has no genitive (Weiß 46: none anywhere in Bavarian but one village). No defaults: a
+# noun's gender is stored on every noun, since the dialect drops the endings that tell it in German (Kuchl, Schual).
+id: bar
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@bar-course-v1', status: draft}
+varieties: [bar-IT]
+registers: [formal, neutral]
+dimensions:
+  NOUN: [Case, Number]
+  PROPN: [Case, Number]
+  ADJ: [Case, Gender, Number]
+  DET: [Case, Gender, Number]
+  PRON: [Case]
+  VERB: [Mood, Number, Person, Tense, VerbForm]
+  AUX: [Mood, Number, Person, Tense, VerbForm]
+lexical:
+  NOUN: [Gender]
+  PROPN: [Gender]
+citation:
+  NOUN: {Case: Nom, Number: Sing}
+  PROPN: {Case: Nom, Number: Sing}
+  DET: {Case: Nom, Gender: Masc, Number: Sing}
+  PRON: {Case: Nom}
+  VERB: {VerbForm: Inf}
+  AUX: {VerbForm: Inf}
+bare:
+  NOUN: {Case: Nom, Number: Sing}
+  PROPN: {Case: Nom, Number: Sing}
+  DET: {Case: Nom, Gender: Masc, Number: Sing}
+  PRON: {Case: Nom}
+  VERB: {VerbForm: Inf}
+  AUX: {VerbForm: Inf}
+features:
+  Case: [Acc, Dat, Nom]
+  Definite: [Def, Ind]
+  Gender: [Fem, Masc, Neut]
+  Gender[psor]: [Masc]
+  Mood: [Imp, Ind, Sub]
+  NumType: [Card]
+  Number: [Plur, Sing]
+  Number[psor]: [Plur, Sing]
+  Person: ['1', '2', '3']
+  Person[psor]: ['1', '2', '3']
+  Polarity: [Neg]
+  Polite: [Form]
+  Poss: ['Yes']
+  PronType: [Art, Dem, Ind, Int, Neg, Prs, Tot]
+  Tense: [Past, Pres]
+  VerbForm: [Fin, Inf, Part]
+labels:
+- {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present: I (i)'}, notes: {en: 'The bare stem: i bin, i hon, i kimm, i red.'}}
+- {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present: you (du), -sch'}, notes: {en: 'Always -sch, where German has -st: du bisch, du hosch, du kimmsch, du redsch. Some write -scht.'}}
+- {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present: he, she, it (er, sie, es)'}, notes: {en: 'Mostly -t: er hot, sie redt, es geat; er isch, he is; er kimp, he comes.'}}
+- {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present: we (mir)'}, notes: {en: 'The same as the infinitive: mir sein, mir hobm, mir redn.'}}
+- {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present: you, several people (es), -ts'}, notes: {en: 'Es seids, es hobts, es kemmts: the dialect''s ihr seid. The -ts is the pronoun es grown onto the verb (Moser).'}}
+- {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present: they, and you politely (sie, Sie)'}, notes: {en: 'The same as the infinitive: sie sein, Sie hobm.'}}
+- {feats: {Mood: Ind, Tense: Past, VerbForm: Fin}, gloss: {en: 'past: wor (was)'}, notes: {en: 'Sein is the one verb with a past of its own: i wor, du worsch, mir worn. Every other verb says the past with hobm or sein and its participle.'}}
+- {feats: {Mood: Sub}, gloss: {en: 'would: tat, hatt (the subjunctive)'}, notes: {en: 'I tat gearn kemmen: I would like to come. I hatt gearn a Wosser: I would like some water.'}}
+- {feats: {Mood: Imp}, gloss: {en: 'command (du): kimm! gea! huck di her!'}, notes: {en: 'The bare stem, to one person you say du to.'}}
+- {feats: {VerbForm: Part}, gloss: {en: 'participle: gessn, gongen, gmocht'}, notes: {en: 'With hobm or sein it makes the past: i hon gessn (I ate), i bin gongen (I went). Most begin with g-.'}}
+- {feats: {VerbForm: Inf}, gloss: {en: 'infinitive'}, notes: {en: 'What a dictionary lists: sein, hobm, kemmen, redn. After a verb like miassn or welln: i muaß orbatn.'}}
+- {feats: {Case: Nom}, gloss: {en: 'subject (nominative)'}, notes: {en: 'Who or what does it: der Tatte, di Mamme, ''s Kind.'}}
+- {feats: {Case: Acc}, gloss: {en: 'object (accusative): in, an'}, notes: {en: 'Who or what it is done to. Only the masculine shows it: der Hund, but i siach in Hund, i hon an Hund. After fir and um, and after in and af for where to.'}}
+- {feats: {Case: Dat}, gloss: {en: 'to, for; after va, mit, bei, za (dative)'}, notes: {en: 'Masculine and neuter in, an; feminine der, ar; plural di: mit der Mamme, va in Tatte, bei di Kinder. After in and af for where something is: in der Kuchl.'}}
+- {feats: {Gender: Masc}, gloss: {en: 'masculine: der, a … -er'}, notes: {en: 'Der Tatte, a guater Wein. Every noun is masculine, feminine or neuter, and the words with it take its gender.'}}
+- {feats: {Gender: Fem}, gloss: {en: 'feminine: di, a … -e'}, notes: {en: 'Di Mamme, a guate Suppe.'}}
+- {feats: {Gender: Neut}, gloss: {en: 'neuter: ''s, a … -s'}, notes: {en: '''s Haus, a schians Madl. Girls (Madl) and children (Kind) are neuter, as in German.'}}
+- {feats: {Number: Plur}, gloss: {en: 'plural'}, notes: {en: 'Kinder, Buabm, Heiser, Epfl: more than one. The article is di for every gender.'}}
+rules:
+- {id: 'rule:tian-would', gloss: {en: 'tat + infinitive: would …'}, notes: {en: 'I tat gearn kemmen: I would like to come. Tat is the old past of tian (to do); with another verb it is the dialect''s würde.'}}

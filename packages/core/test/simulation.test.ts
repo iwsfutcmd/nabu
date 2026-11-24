@@ -61,6 +61,9 @@ describe("planner: 30 simulated days", () => {
     // Slovak (ADR 0155): six cases, aspect and a past that agrees with who speaks.
     ["sk", undefined, 22, 1.0],
     ["sk", undefined, 23, 2.0],
+    // South Tyrolean (ADR 0156): a dialect with no norm, its everyday spellings free.
+    ["bar", undefined, 24, 1.0],
+    ["bar", undefined, 25, 2.0],
   ];
   for (const [course, orthography, seed, ability] of RUNS) {
     it(`${course} ${orthography ?? ""} (seed ${seed}, ability ${ability}) stays within ±5pp of 85%`, () => {

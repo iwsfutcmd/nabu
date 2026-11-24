@@ -1,0 +1,585 @@
+# Unit 6 (bar): the day (in der Friah, af Mittog, af der Nocht), work and school, the time (um ocht, wiaviel Uhr
+# isch's?), the days of the week (Pfinztig), mochn, kemmen and gian; a morning at the hospital.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u06
+title:
+  en: Der Tog The day
+cefr: A1
+nodes:
+- {id: bar.u06.tog, kind: lesson, introduces: ['lexeme:tog', 'lexeme:heint', 'lexeme:morgn', 'lexeme:friah', 'lexeme:iatz']}
+- {id: bar.u06.orbatn, kind: lesson, introduces: ['lexeme:orbatn', 'lexeme:orbet', 'lexeme:spitol', 'lexeme:schual']}
+- {id: bar.u06.uhr, kind: lesson, introduces: ['lexeme:uhr', 'lexeme:um', 'lexeme:oans', 'lexeme:vier', 'lexeme:fimf', 'lexeme:sechs', 'lexeme:siebm', 'lexeme:ocht', 'lexeme:zwelf']}
+- {id: bar.u06.woche, kind: lesson, introduces: ['lexeme:wochn', 'lexeme:montog', 'lexeme:dienstog', 'lexeme:mittwoch', 'lexeme:pfinztig', 'lexeme:freitog', 'lexeme:samstog', 'lexeme:sunntig']}
+- {id: bar.u06.mochn, kind: lesson, introduces: ['lexeme:mochn', 'lexeme:nix', 'lexeme:nor', 'lexeme:schun', 'lexeme:oft', 'lexeme:nocht', 'lexeme:mittog']}
+- {id: bar.u06.story, kind: story}
+sentences:
+- id: s.u06.1
+  node: bar.u06.tog
+  forms:
+    bar-Latn/moser:
+      text: Heint isch a schianer Tog.
+      tokens: [{surface: Heint, lexeme: heint}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Nom, Gender: Masc,
+            Number: Sing}}, {surface: schianer, lexeme: schian, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Tog, lexeme: tog, feats: {Case: Nom, Number: Sing}}]
+      reverse: Heint isch a schianer Tog
+  translations:
+    en: |-
+      Today is a (beautiful|nice|lovely) day.
+      It's a (beautiful|nice|lovely) day today.
+- id: s.u06.2
+  node: bar.u06.tog
+  forms:
+    bar-Latn/moser:
+      text: Wo bisch du heint?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: bisch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: heint,
+          lexeme: heint}]
+      reverse: Wo bisch du heint
+  translations:
+    en: Where are you today?
+- id: s.u06.3
+  node: bar.u06.tog
+  forms:
+    bar-Latn/moser:
+      text: Morgn bin i dahoam.
+      tokens: [{surface: Morgn, lexeme: morgn}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: dahoam,
+          lexeme: dahoam}]
+      reverse: (Morgn bin i|I bin morgn) dahoam
+  translations:
+    en: |-
+      Tomorrow (I'm|I'll be) at home.
+      (I'm|I'll be) at home tomorrow.
+- id: s.u06.4
+  node: bar.u06.tog
+  forms:
+    bar-Latn/moser:
+      text: In der Friah trink i an Kaffee.
+      tokens: [{surface: In, lexeme: in}, {surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Friah, lexeme: friah, feats: {Case: Dat, Number: Sing}}, {surface: trink,
+          lexeme: trinkn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: an, lexeme: a, feats: {Case: Acc, Gender: Masc,
+            Number: Sing}}, {surface: Kaffee, lexeme: kaffee, feats: {Case: Acc, Number: Sing}}]
+      reverse: (In der Friah trink i|I trink in der Friah) an Kaffee
+  translations:
+    en: |-
+      In the morning I (drink|have) a coffee.
+      I (drink|have) a coffee in the morning.
+- id: s.u06.5
+  node: bar.u06.tog
+  forms:
+    bar-Latn/moser:
+      text: Iatz hon i Hunger.
+      tokens: [{surface: Iatz, lexeme: iatz}, {surface: hon, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: Hunger,
+          lexeme: hunger, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Iatz hon i|I hon iatz) Hunger
+  translations:
+    en: |-
+      (Now|Right now) I'm hungry.
+      I'm hungry now.
+- id: s.u06.6
+  node: bar.u06.tog
+  forms:
+    bar-Latn/moser:
+      text: Heint isch Lena dahoam.
+      tokens: [{surface: Heint, lexeme: heint}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Lena, lexeme: lena, feats: {Case: Nom,
+            Number: Sing}}, {surface: dahoam, lexeme: dahoam}]
+      reverse: (Heint isch Lena|Heint isch di Lena|Lena isch heint|Di Lena isch heint) dahoam
+  translations:
+    en: |-
+      Today Lena is (at home|home).
+      Lena is (at home|home) today.
+- id: s.u06.7
+  node: bar.u06.orbatn
+  forms:
+    bar-Latn/moser:
+      text: I orbat in an Spitol.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: orbat, lexeme: orbatn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: in, lexeme: in}, {surface: an,
+          lexeme: a, feats: {Case: Dat, Gender: Neut, Number: Sing}}, {surface: Spitol, lexeme: spitol, feats: {Case: Dat, Number: Sing}}]
+      reverse: I orbat in an Spitol
+  translations:
+    en: I work in a hospital.
+- id: s.u06.8
+  node: bar.u06.orbatn
+  forms:
+    bar-Latn/moser:
+      text: Lena orbatet in Bozn.
+      tokens: [{surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}, {surface: orbatet, lexeme: orbatn, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: in,
+          lexeme: in}, {surface: Bozn, lexeme: bozn, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Lena|Di Lena) orbatet in Bozn
+  translations:
+    en: Lena works in Bozen.
+- id: s.u06.9
+  node: bar.u06.orbatn
+  forms:
+    bar-Latn/moser:
+      text: Wo orbatsch du?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: orbatsch, lexeme: orbatn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}]
+      reverse: Wo orbatsch du
+  translations:
+    en: Where do you work?
+- id: s.u06.10
+  node: bar.u06.orbatn
+  forms:
+    bar-Latn/moser:
+      text: Flori geat in di Schual.
+      tokens: [{surface: Flori, lexeme: flori, feats: {Case: Nom, Number: Sing}}, {surface: geat, lexeme: gian, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: in,
+          lexeme: in}, {surface: di, lexeme: der, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Schual, lexeme: schual, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Flori|Der Flori) geat in di Schual
+  translations:
+    en: |-
+      Flori goes to school.
+      Flori is going to school.
+- id: s.u06.11
+  node: bar.u06.orbatn
+  forms:
+    bar-Latn/moser:
+      text: I gea iatz in di Orbet.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: gea, lexeme: gian, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: iatz, lexeme: iatz}, {surface: in,
+          lexeme: in}, {surface: di, lexeme: der, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Orbet, lexeme: orbet, feats: {Case: Acc, Number: Sing}}]
+      reverse: (I gea iatz|Iatz gea i) in di Orbet
+  translations:
+    en: (I'm going|I go) to work now.
+- id: s.u06.12
+  node: bar.u06.orbatn
+  forms:
+    bar-Latn/moser:
+      text: Hannes orbatet heint nit.
+      tokens: [{surface: Hannes, lexeme: hannes, feats: {Case: Nom, Number: Sing}}, {surface: orbatet, lexeme: orbatn, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: heint,
+          lexeme: heint}, {surface: nit, lexeme: nit}]
+      reverse: (Hannes|Der Hannes) orbatet heint (nit|net)
+  translations:
+    en: |-
+      Hannes isn't working today.
+      Hannes doesn't work today.
+- id: s.u06.13
+  node: bar.u06.orbatn
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    bar-Latn/moser:
+      text: Geats es in di Schual?
+      tokens: [{surface: Geats, lexeme: gian, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: es, lexeme: es, feats: {Case: Nom}}, {surface: in, lexeme: in}, {surface: di,
+          lexeme: der, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Schual, lexeme: schual, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Geats es|Es geats) in di Schual
+  translations:
+    en: |-
+      Do you (all) go to school?
+      Are you going to school?
+- id: s.u06.14
+  node: bar.u06.orbatn
+  forms:
+    bar-Latn/moser:
+      text: Di Kinder gian in di Schual.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Number: Plur}}, {surface: Kinder, lexeme: kind, feats: {Case: Nom, Number: Plur}}, {surface: gian, lexeme: gian, feats: {Mood: Ind, Number: Plur,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: in, lexeme: in}, {surface: di, lexeme: der, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Schual, lexeme: schual, feats: {Case: Acc,
+            Number: Sing}}]
+      reverse: Di Kinder gian in di Schual
+  translations:
+    en: |-
+      The children go to school.
+      The children are going to school.
+- id: s.u06.15
+  node: bar.u06.uhr
+  forms:
+    bar-Latn/moser:
+      text: Wiaviel Uhr isch's?
+      tokens: [{surface: Wiaviel, lexeme: wiaviel}, {surface: Uhr, lexeme: uhr, feats: {Case: Nom, Number: Sing}}, {surface: isch's, lexemes: [{lexeme: sein, surface: isch, base: true, feats: {Mood: Ind,
+                Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it, surface: '''s', feats: {Case: Nom}}]}]
+      reverse: (Wiaviel Uhr isch's|Wiaviel Uhr isch es)
+  translations:
+    en: |-
+      What time is it?
+      What's the time?
+- id: s.u06.16
+  node: bar.u06.uhr
+  forms:
+    bar-Latn/moser:
+      text: Es isch zwelf.
+      tokens: [{surface: Es, lexeme: es.it, feats: {Case: Nom}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: zwelf, lexeme: zwelf}]
+      reverse: (Es isch|'s isch) zwelf
+  translations:
+    en: |-
+      It's twelve.
+      It's twelve o'clock.
+- id: s.u06.17
+  node: bar.u06.uhr
+  forms:
+    bar-Latn/moser:
+      text: Es isch fimf Uhr.
+      tokens: [{surface: Es, lexeme: es.it, feats: {Case: Nom}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: fimf, lexeme: fimf},
+        {surface: Uhr, lexeme: uhr, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Es isch|'s isch) fimf Uhr
+  translations:
+    en: It's five o'clock.
+- id: s.u06.18
+  node: bar.u06.uhr
+  forms:
+    bar-Latn/moser:
+      text: Um ocht gea i in di Orbet.
+      tokens: [{surface: Um, lexeme: um}, {surface: ocht, lexeme: ocht}, {surface: gea, lexeme: gian, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: i, lexeme: i,
+          feats: {Case: Nom}}, {surface: in, lexeme: in}, {surface: di, lexeme: der, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Orbet, lexeme: orbet, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Um ocht gea i|I gea um ocht) in di Orbet
+  translations:
+    en: |-
+      At eight I go to work.
+      I go to work at eight.
+- id: s.u06.19
+  node: bar.u06.uhr
+  forms:
+    bar-Latn/moser:
+      text: Um sechs kimp der Tatte.
+      tokens: [{surface: Um, lexeme: um}, {surface: sechs, lexeme: sechs}, {surface: kimp, lexeme: kemmen, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: der, lexeme: der,
+          feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Tatte, lexeme: tatte, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Um sechs kimp der Tatte|Der Tatte kimp um sechs)
+  translations:
+    en: |-
+      At six Dad comes.
+      Dad comes at six.
+      Dad is coming at six.
+- id: s.u06.20
+  node: bar.u06.uhr
+  forms:
+    bar-Latn/moser:
+      text: I kimm um siebm.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: kimm, lexeme: kemmen, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: um, lexeme: um}, {surface: siebm,
+          lexeme: siebm}]
+      reverse: I kimm um siebm
+  translations:
+    en: (I'm coming|I'll come|I come) at seven.
+- id: s.u06.21
+  node: bar.u06.uhr
+  forms:
+    bar-Latn/moser:
+      text: Kimmsch du um vier?
+      tokens: [{surface: Kimmsch, lexeme: kemmen, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: um, lexeme: um}, {
+          surface: vier, lexeme: vier}]
+      reverse: (Kimmsch du|Du kimmsch) um vier
+  translations:
+    en: |-
+      Are you coming at four?
+      Will you come at four?
+- id: s.u06.22
+  node: bar.u06.uhr
+  forms:
+    bar-Latn/moser:
+      text: Um oans essn mir.
+      tokens: [{surface: Um, lexeme: um}, {surface: oans, lexeme: oans}, {surface: essn, lexeme: essn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mir, lexeme: mir,
+          feats: {Case: Nom}}]
+      reverse: (Um oans essn mir|Mir essn um oans)
+  translations:
+    en: |-
+      We eat at one.
+      At one we eat.
+- id: s.u06.23
+  node: bar.u06.woche
+  forms:
+    bar-Latn/moser:
+      text: Heint isch Montog.
+      tokens: [{surface: Heint, lexeme: heint}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Montog, lexeme: montog, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: Heint isch Montog
+  translations:
+    en: |-
+      Today is Monday.
+      It's Monday today.
+- id: s.u06.24
+  node: bar.u06.woche
+  forms:
+    bar-Latn/moser:
+      text: Morgn isch Dienstog.
+      tokens: [{surface: Morgn, lexeme: morgn}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Dienstog, lexeme: dienstog, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: Morgn isch Dienstog
+  translations:
+    en: |-
+      Tomorrow is Tuesday.
+      It's Tuesday tomorrow.
+- id: s.u06.25
+  node: bar.u06.woche
+  forms:
+    bar-Latn/moser:
+      text: Heint isch Mittwoch, morgn isch Pfinztig.
+      tokens: [{surface: Heint, lexeme: heint}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Mittwoch, lexeme: mittwoch, feats: {Case: Nom,
+            Number: Sing}}, {surface: morgn, lexeme: morgn}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Pfinztig, lexeme: pfinztig,
+          feats: {Case: Nom, Number: Sing}}]
+      reverse: Heint isch Mittwoch morgn isch Pfinztig
+  translations:
+    en: Today is Wednesday, tomorrow is Thursday.
+- id: s.u06.26
+  node: bar.u06.woche
+  forms:
+    bar-Latn/moser:
+      text: Isch heint Freitog?
+      tokens: [{surface: Isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: heint, lexeme: heint}, {surface: Freitog, lexeme: freitog, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: Isch heint Freitog
+  translations:
+    en: |-
+      Is it Friday today?
+      Is today Friday?
+- id: s.u06.27
+  node: bar.u06.woche
+  forms:
+    bar-Latn/moser:
+      text: Na, heint isch Samstog.
+      tokens: [{surface: Na, lexeme: na}, {surface: heint, lexeme: heint}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Samstog, lexeme: samstog,
+          feats: {Case: Nom, Number: Sing}}]
+      reverse: Na heint isch Samstog
+  translations:
+    en: |-
+      No, today is Saturday.
+      No, it's Saturday today.
+- id: s.u06.28
+  node: bar.u06.woche
+  forms:
+    bar-Latn/moser:
+      text: Di Wochn hot siebm Teg.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Wochn, lexeme: wochn, feats: {Case: Nom, Number: Sing}}, {surface: hot, lexeme: hobm, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: siebm, lexeme: siebm}, {surface: Teg, lexeme: tog, feats: {Case: Acc, Number: Plur}}]
+      reverse: Di Wochn hot siebm Teg
+  translations:
+    en: |-
+      The week has seven days.
+      A week has seven days.
+- id: s.u06.29
+  node: bar.u06.woche
+  forms:
+    bar-Latn/moser:
+      text: Sunntig isch a schianer Tog.
+      tokens: [{surface: Sunntig, lexeme: sunntig, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a,
+          lexeme: a, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: schianer, lexeme: schian, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Tog, lexeme: tog, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: Sunntig isch a schianer Tog
+  translations:
+    en: Sunday is a (beautiful|nice|lovely) day.
+- id: s.u06.30
+  node: bar.u06.mochn
+  forms:
+    bar-Latn/moser:
+      text: Wos mochsch du?
+      tokens: [{surface: Wos, lexeme: wos}, {surface: mochsch, lexeme: mochn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}]
+      reverse: Wos mochsch du
+  translations:
+    en: |-
+      What are you doing?
+      What do you do?
+- id: s.u06.31
+  node: bar.u06.mochn
+  forms:
+    bar-Latn/moser:
+      text: I moch Marende.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: moch, lexeme: mochn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Marende, lexeme: marende,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: I moch Marende
+  translations:
+    en: (I'm making|I make) (Marende|a snack|the afternoon snack).
+- id: s.u06.32
+  node: bar.u06.mochn
+  forms:
+    bar-Latn/moser:
+      text: Af Mittog essn mir Knedl.
+      tokens: [{surface: Af, lexeme: af}, {surface: Mittog, lexeme: mittog, feats: {Case: Dat, Number: Sing}}, {surface: essn, lexeme: essn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: mir, lexeme: mir, feats: {Case: Nom}}, {surface: Knedl, lexeme: knedl, feats: {Case: Acc, Number: Plur}}]
+      reverse: (Af Mittog essn mir|Mir essn af Mittog) Knedl
+  translations:
+    en: |-
+      At (midday|lunchtime) we eat dumplings.
+      We have dumplings for lunch.
+- id: s.u06.33
+  node: bar.u06.mochn
+  forms:
+    bar-Latn/moser:
+      text: Af der Nocht bin i dahoam.
+      tokens: [{surface: Af, lexeme: af}, {surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Nocht, lexeme: nocht, feats: {Case: Dat, Number: Sing}}, {surface: bin, lexeme: sein,
+          feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: dahoam, lexeme: dahoam}]
+      reverse: (Af der Nocht bin i|I bin af der Nocht) dahoam
+  translations:
+    en: |-
+      In the evening (I'm|I am) at home.
+      (I'm|I am) at home in the evening.
+- id: s.u06.34
+  node: bar.u06.mochn
+  forms:
+    bar-Latn/moser:
+      text: Wos mochn mir heint?
+      tokens: [{surface: Wos, lexeme: wos}, {surface: mochn, lexeme: mochn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mir, lexeme: mir, feats: {Case: Nom}}, {
+          surface: heint, lexeme: heint}]
+      reverse: Wos mochn mir heint
+  translations:
+    en: |-
+      What are we doing today?
+      What shall we do today?
+- id: s.u06.35
+  node: bar.u06.mochn
+  forms:
+    bar-Latn/moser:
+      text: Mir mochn nix.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: mochn, lexeme: mochn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: nix, lexeme: nix}]
+      reverse: Mir mochn nix
+  translations:
+    en: |-
+      We're doing nothing.
+      We aren't doing anything.
+- id: s.u06.36
+  node: bar.u06.mochn
+  forms:
+    bar-Latn/moser:
+      text: Bisch du schun dahoam?
+      tokens: [{surface: Bisch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: schun, lexeme: schun},
+        {surface: dahoam, lexeme: dahoam}]
+      reverse: (Bisch du|Du bisch) schun dahoam
+  translations:
+    en: |-
+      Are you home already?
+      Are you already at home?
+- id: s.u06.37
+  node: bar.u06.mochn
+  forms:
+    bar-Latn/moser:
+      text: Nor gian mir hoam.
+      tokens: [{surface: Nor, lexeme: nor}, {surface: gian, lexeme: gian, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mir, lexeme: mir, feats: {Case: Nom}}, {surface: hoam,
+          lexeme: hoam}]
+      reverse: (Nor gian mir|Mir gian nor) hoam
+  translations:
+    en: |-
+      Then we go home.
+      Then we're going home.
+- id: s.u06.38
+  node: bar.u06.mochn
+  forms:
+    bar-Latn/moser:
+      text: I bin oft in Meran.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: oft, lexeme: oft}, {surface: in,
+          lexeme: in}, {surface: Meran, lexeme: meran, feats: {Case: Dat, Number: Sing}}]
+      reverse: I bin oft in Meran
+  translations:
+    en: (I'm|I am) often in Meran.
+stories:
+- id: bar.story.u06
+  node: bar.u06.story
+  title:
+    en: A morning at the hospital
+  characters:
+  - id: giulia
+    speaker: f
+    name:
+      bar-Latn/moser: Giulia
+  - id: lena
+    speaker: f
+    name:
+      bar-Latn/moser: Lena
+  steps:
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Guatn Morgn, Lena! Wia geat's?
+          tokens: [{surface: Guatn, lexeme: guatn-morgn}, {surface: Morgn, lexeme: guatn-morgn}, {surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}, {surface: Wia, lexeme: wia}, {surface: geat's,
+              lexemes: [{lexeme: gian, surface: geat, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it, surface: '''s', feats: {Case: Nom}}]}]
+      translations:
+        en: Good morning, Lena! How are you?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Guat! Ober i hon schun Hunger.
+          tokens: [{surface: Guat, lexeme: guat}, {surface: Ober, lexeme: ober}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: hon, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+                VerbForm: Fin}}, {surface: schun, lexeme: schun}, {surface: Hunger, lexeme: hunger, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Good! But I'm already hungry.
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Um zwelf isch Mittog.
+          tokens: [{surface: Um, lexeme: um}, {surface: zwelf, lexeme: zwelf}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Mittog,
+              lexeme: mittog, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Lunch is at twelve.
+  - line:
+      speaker: lena
+      ask: arrange
+      forms:
+        bar-Latn/moser:
+          text: Wiaviel Uhr isch's iatz?
+          tokens: [{surface: Wiaviel, lexeme: wiaviel}, {surface: Uhr, lexeme: uhr, feats: {Case: Nom, Number: Sing}}, {surface: isch's, lexemes: [{lexeme: sein, surface: isch, base: true, feats: {Mood: Ind,
+                    Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it, surface: '''s', feats: {Case: Nom}}]}, {surface: iatz, lexeme: iatz}]
+      translations:
+        en: What time is it now?
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Es isch ocht.
+          tokens: [{surface: Es, lexeme: es.it, feats: {Case: Nom}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: ocht, lexeme: ocht}]
+      translations:
+        en: It's eight.
+  - choose:
+      prompt:
+        en: What time is lunch?
+      options:
+      - en: at twelve
+      - en: at eight
+      - en: at four
+      answer: 0
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Iatz orbatn mir.
+          tokens: [{surface: Iatz, lexeme: iatz}, {surface: orbatn, lexeme: orbatn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mir, lexeme: mir, feats: {Case: Nom}}]
+      translations:
+        en: Now we work.
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Wos mochsch du heint af der Nocht?
+          tokens: [{surface: Wos, lexeme: wos}, {surface: mochsch, lexeme: mochn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}},
+            {surface: heint, lexeme: heint}, {surface: af, lexeme: af}, {surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Nocht, lexeme: nocht, feats: {Case: Dat, Number: Sing}}]
+      translations:
+        en: What are you doing this evening?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Nix. I bin dahoam.
+          tokens: [{surface: Nix, lexeme: nix}, {surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dahoam,
+              lexeme: dahoam}]
+      translations:
+        en: Nothing. I'm at home.
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Kimmsch du za ins? Mir mochn Marende.
+          tokens: [{surface: Kimmsch, lexeme: kemmen, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: za, lexeme: za},
+            {surface: ins, lexeme: mir, feats: {Case: Dat}}, {surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: mochn, lexeme: mochn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: Marende, lexeme: marende, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Will you come over to ours? We're having Marende.
+  - line:
+      speaker: lena
+      ask: complete
+      gap: lexeme:sechs
+      distractors:
+      - lexeme:zwelf
+      - lexeme:ocht
+      forms:
+        bar-Latn/moser:
+          text: Jo, gearn! Um sechs?
+          tokens: [{surface: Jo, lexeme: jo}, {surface: gearn, lexeme: gearn}, {surface: Um, lexeme: um}, {surface: sechs, lexeme: sechs}]
+      translations:
+        en: Yes, I'd love to! At six?
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Jo, um sechs.
+          tokens: [{surface: Jo, lexeme: jo}, {surface: um, lexeme: um}, {surface: sechs, lexeme: sechs}]
+      translations:
+        en: Yes, at six.
+  - choose:
+      prompt:
+        en: When will Lena come to Giulia's?
+      options:
+      - en: at six
+      - en: at twelve
+      - en: at eight
+      answer: 0

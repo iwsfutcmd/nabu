@@ -1,0 +1,592 @@
+# Unit 2 (bar): where you are from (wo bisch her?, va Bozn), sein in the plural (mir sein, es seids, sie sein),
+# the languages people speak (deitsch, walsch), nit, and where people live; at Luis's bar on the corner.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u02
+title:
+  en: Wo bisch her? Where are you from?
+cefr: A1
+nodes:
+- {id: bar.u02.her, kind: lesson, introduces: ['lexeme:wo', 'lexeme:her', 'lexeme:va', 'lexeme:bozn', 'lexeme:meran', 'lexeme:brixn', 'lexeme:sidtirol']}
+- {id: bar.u02.mir, kind: lesson, introduces: ['lexeme:mir', 'lexeme:es', 'lexeme:sie.pl', 'lexeme:olle', 'lexeme:innsbruck', 'lexeme:wien']}
+- {id: bar.u02.redn, kind: lesson, introduces: ['lexeme:redn', 'lexeme:deitsch', 'lexeme:walsch', 'lexeme:italienisch', 'lexeme:englisch', 'lexeme:a-bissl', 'lexeme:lei', 'lexeme:dialekt', 'feature:Case=Acc']}
+- {id: bar.u02.nit, kind: lesson, introduces: ['lexeme:nit', 'lexeme:versteahn', 'lexeme:lernen', 'lexeme:sproch', 'lexeme:viel', 'lexeme:a', 'lexeme:ober']}
+- {id: bar.u02.wohnen, kind: lesson, introduces: ['lexeme:wohnen', 'lexeme:in', 'lexeme:do', 'lexeme:dert', 'lexeme:italien']}
+- {id: bar.u02.story, kind: story}
+sentences:
+- id: s.u02.1
+  node: bar.u02.her
+  forms:
+    bar-Latn/moser:
+      text: Wo bisch du her?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: bisch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: her,
+          lexeme: her}]
+      reverse: (Wo bisch du her|Wo bisch her)
+  translations:
+    en: |-
+      Where are you from?
+      Where do you come from?
+- id: s.u02.2
+  node: bar.u02.her
+  forms:
+    bar-Latn/moser:
+      text: I bin va Bozn.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: va, lexeme: va}, {surface: Bozn,
+          lexeme: bozn, feats: {Case: Dat, Number: Sing}}]
+      reverse: I bin (va|vo|von) Bozn
+  translations:
+    en: |-
+      (I'm|I am) from Bozen.
+      (I'm|I am) from Bolzano.
+- id: s.u02.3
+  node: bar.u02.her
+  forms:
+    bar-Latn/moser:
+      text: Hannes isch va Meran.
+      tokens: [{surface: Hannes, lexeme: hannes, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: va,
+          lexeme: va}, {surface: Meran, lexeme: meran, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Hannes|Der Hannes) isch (va|vo|von) Meran
+  translations:
+    en: |-
+      Hannes is from Meran.
+      Hannes is from Merano.
+- id: s.u02.4
+  node: bar.u02.her
+  forms:
+    bar-Latn/moser:
+      text: Bisch du va Brixn?
+      tokens: [{surface: Bisch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: va, lexeme: va}, {surface: Brixn,
+          lexeme: brixn, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Bisch du|Du bisch) (va|vo|von) Brixn
+  translations:
+    en: |-
+      Are you from Brixen?
+      Are you from Bressanone?
+- id: s.u02.5
+  node: bar.u02.her
+  forms:
+    bar-Latn/moser:
+      text: Na, i bin va Bozn.
+      tokens: [{surface: Na, lexeme: na}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: va,
+          lexeme: va}, {surface: Bozn, lexeme: bozn, feats: {Case: Dat, Number: Sing}}]
+      reverse: Na i bin (va|vo|von) Bozn
+  translations:
+    en: No, (I'm|I am) from Bozen.
+- id: s.u02.6
+  node: bar.u02.her
+  forms:
+    bar-Latn/moser:
+      text: Wo isch Giulia her?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}},
+        {surface: her, lexeme: her}]
+      reverse: Wo isch (Giulia|di Giulia) her
+  translations:
+    en: |-
+      Where is Giulia from?
+      Where's Giulia from?
+- id: s.u02.7
+  node: bar.u02.her
+  forms:
+    bar-Latn/moser:
+      text: Sie isch a va Bozn.
+      tokens: [{surface: Sie, lexeme: sie, feats: {Case: Nom}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a.auch}, {
+          surface: va, lexeme: va}, {surface: Bozn, lexeme: bozn, feats: {Case: Dat, Number: Sing}}]
+      reverse: Sie isch a (va|vo|von) Bozn
+  translations:
+    en: |-
+      She's from Bozen too.
+      She is also from Bozen.
+      She is from Bozen too.
+- id: s.u02.8
+  node: bar.u02.her
+  forms:
+    bar-Latn/moser:
+      text: I bin va Sidtirol.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: va, lexeme: va}, {surface: Sidtirol,
+          lexeme: sidtirol, feats: {Case: Dat, Number: Sing}}]
+      reverse: I bin (va|vo|von) Sidtirol
+  translations:
+    en: (I'm|I am) from South Tyrol.
+- id: s.u02.9
+  node: bar.u02.mir
+  forms:
+    bar-Latn/moser:
+      text: Mir sein va Bozn.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: sein, lexeme: sein, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: va, lexeme: va}, {surface: Bozn,
+          lexeme: bozn, feats: {Case: Dat, Number: Sing}}]
+      reverse: Mir sein (va|vo|von) Bozn
+  translations:
+    en: (We're|We are) from Bozen.
+- id: s.u02.10
+  node: bar.u02.mir
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    bar-Latn/moser:
+      text: Wo seids es her?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: seids, lexeme: sein, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: es, lexeme: es, feats: {Case: Nom}}, {surface: her,
+          lexeme: her}]
+      reverse: (Wo seids es her|Wo seids her)
+  translations:
+    en: |-
+      Where are you (all) from?
+      Where are you from?
+- id: s.u02.11
+  node: bar.u02.mir
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    bar-Latn/moser:
+      text: Seids es va Meran?
+      tokens: [{surface: Seids, lexeme: sein, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: es, lexeme: es, feats: {Case: Nom}}, {surface: va, lexeme: va}, {surface: Meran,
+          lexeme: meran, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Seids es|Es seids) (va|vo|von) Meran
+  translations:
+    en: |-
+      Are you (all) from Meran?
+      Are you from Meran?
+- id: s.u02.12
+  node: bar.u02.mir
+  forms:
+    bar-Latn/moser:
+      text: Jo, mir sein va Meran.
+      tokens: [{surface: Jo, lexeme: jo}, {surface: mir, lexeme: mir, feats: {Case: Nom}}, {surface: sein, lexeme: sein, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: va,
+          lexeme: va}, {surface: Meran, lexeme: meran, feats: {Case: Dat, Number: Sing}}]
+      reverse: Jo mir sein (va|vo|von) Meran
+  translations:
+    en: Yes, (we're|we are) from Meran.
+- id: s.u02.13
+  node: bar.u02.mir
+  forms:
+    bar-Latn/moser:
+      text: Sie sein va Innsbruck.
+      tokens: [{surface: Sie, lexeme: sie.pl, feats: {Case: Nom}}, {surface: sein, lexeme: sein, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: va, lexeme: va}, {
+          surface: Innsbruck, lexeme: innsbruck, feats: {Case: Dat, Number: Sing}}]
+      reverse: Sie sein (va|vo|von) Innsbruck
+  translations:
+    en: (They're|They are) from Innsbruck.
+- id: s.u02.14
+  node: bar.u02.mir
+  forms:
+    bar-Latn/moser:
+      text: Mir sein olle va Sidtirol.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: sein, lexeme: sein, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: olle, lexeme: olle, feats: {
+            Case: Nom, Number: Plur}}, {surface: va, lexeme: va}, {surface: Sidtirol, lexeme: sidtirol, feats: {Case: Dat, Number: Sing}}]
+      reverse: Mir sein olle (va|vo|von) Sidtirol
+  translations:
+    en: (We're|We are) all from South Tyrol.
+- id: s.u02.15
+  node: bar.u02.mir
+  forms:
+    bar-Latn/moser:
+      text: Er isch va Wien.
+      tokens: [{surface: Er, lexeme: er, feats: {Case: Nom}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: va, lexeme: va}, {surface: Wien,
+          lexeme: wien, feats: {Case: Dat, Number: Sing}}]
+      reverse: Er isch (va|vo|von) Wien
+  translations:
+    en: (He's|He is) from Vienna.
+- id: s.u02.16
+  node: bar.u02.redn
+  forms:
+    bar-Latn/moser:
+      text: I red deitsch.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: red, lexeme: redn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: deitsch, lexeme: deitsch}]
+      reverse: I red deitsch
+  translations:
+    en: I speak German.
+- id: s.u02.17
+  node: bar.u02.redn
+  forms:
+    bar-Latn/moser:
+      text: Redsch du walsch?
+      tokens: [{surface: Redsch, lexeme: redn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: walsch, lexeme: walsch}]
+      reverse: (Redsch du|Du redsch) (walsch|italienisch)
+  translations:
+    en: Do you speak Italian?
+- id: s.u02.18
+  node: bar.u02.redn
+  forms:
+    bar-Latn/moser:
+      text: Jo, a bissl.
+      tokens: [{surface: Jo, lexeme: jo}, {surface: a, lexeme: a-bissl}, {surface: bissl, lexeme: a-bissl}]
+      reverse: Jo a bissl
+  translations:
+    en: |-
+      Yes, a little.
+      Yes, a bit.
+- id: s.u02.19
+  node: bar.u02.redn
+  forms:
+    bar-Latn/moser:
+      text: Giulia redt walsch und deitsch.
+      tokens: [{surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}, {surface: redt, lexeme: redn, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: walsch,
+          lexeme: walsch}, {surface: und, lexeme: und}, {surface: deitsch, lexeme: deitsch}]
+      reverse: (Giulia|Di Giulia) redt (walsch|italienisch) und deitsch
+  translations:
+    en: Giulia speaks Italian and German.
+- id: s.u02.20
+  node: bar.u02.redn
+  forms:
+    bar-Latn/moser:
+      text: I red lei a bissl englisch.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: red, lexeme: redn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: lei, lexeme: lei}, {surface: a,
+          lexeme: a-bissl}, {surface: bissl, lexeme: a-bissl}, {surface: englisch, lexeme: englisch}]
+      reverse: I red lei a bissl englisch
+  translations:
+    en: |-
+      I only speak a little English.
+      I speak only a little English.
+- id: s.u02.21
+  node: bar.u02.redn
+  forms:
+    bar-Latn/moser:
+      text: Redsch du italienisch?
+      tokens: [{surface: Redsch, lexeme: redn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: italienisch, lexeme: italienisch}]
+      reverse: (Redsch du|Du redsch) (italienisch|walsch)
+  translations:
+    en: Do you speak Italian?
+- id: s.u02.22
+  node: bar.u02.nit
+  forms:
+    bar-Latn/moser:
+      text: I red deitsch, ober nit englisch.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: red, lexeme: redn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: deitsch, lexeme: deitsch},
+        {surface: ober, lexeme: ober}, {surface: nit, lexeme: nit}, {surface: englisch, lexeme: englisch}]
+      reverse: I red deitsch ober (nit|net) englisch
+  translations:
+    en: I speak German, but not English.
+- id: s.u02.23
+  node: bar.u02.redn
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    bar-Latn/moser:
+      text: Redts es englisch?
+      tokens: [{surface: Redts, lexeme: redn, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: es, lexeme: es, feats: {Case: Nom}}, {surface: englisch, lexeme: englisch}]
+      reverse: (Redts es|Es redts) englisch
+  translations:
+    en: |-
+      Do you (all) speak English?
+      Do you speak English?
+- id: s.u02.24
+  node: bar.u02.redn
+  forms:
+    bar-Latn/moser:
+      text: Mir redn Dialekt.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: redn, lexeme: redn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Dialekt, lexeme: dialekt,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir redn Dialekt
+  translations:
+    en: |-
+      We speak dialect.
+      We speak (the|our) dialect.
+- id: s.u02.25
+  node: bar.u02.nit
+  forms:
+    bar-Latn/moser:
+      text: I versteah nit.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: versteah, lexeme: versteahn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: nit, lexeme: nit}]
+      reverse: I versteah (nit|net)
+  translations:
+    en: |-
+      I don't understand.
+      I do not understand.
+- id: s.u02.26
+  node: bar.u02.nit
+  forms:
+    bar-Latn/moser:
+      text: Versteahsch du mi?
+      tokens: [{surface: Versteahsch, lexeme: versteahn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: mi, lexeme: i,
+          feats: {Case: Acc}}]
+      reverse: (Versteahsch du|Du versteahsch) mi
+  translations:
+    en: Do you understand me?
+- id: s.u02.27
+  node: bar.u02.nit
+  forms:
+    bar-Latn/moser:
+      text: Na, i versteah di nit.
+      tokens: [{surface: Na, lexeme: na}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: versteah, lexeme: versteahn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+        {surface: di, lexeme: du, feats: {Case: Acc}}, {surface: nit, lexeme: nit}]
+      reverse: Na i versteah di (nit|net)
+  translations:
+    en: No, I don't understand you.
+- id: s.u02.28
+  node: bar.u02.nit
+  forms:
+    bar-Latn/moser:
+      text: Des isch nit deitsch, des isch Dialekt.
+      tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nit, lexeme: nit}, {surface: deitsch, lexeme: deitsch},
+        {surface: des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Dialekt, lexeme: dialekt, feats: {Case: Nom, Number: Sing}}]
+      reverse: Des isch (nit|net) deitsch des isch Dialekt
+  translations:
+    en: |-
+      That's not German, that's dialect.
+      That isn't German, it's dialect.
+- id: s.u02.29
+  node: bar.u02.nit
+  forms:
+    bar-Latn/moser:
+      text: Giulia lernt Dialekt.
+      tokens: [{surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}, {surface: lernt, lexeme: lernen, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Dialekt,
+          lexeme: dialekt, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Giulia|Di Giulia) lernt Dialekt
+  translations:
+    en: |-
+      Giulia is learning (the|our) dialect.
+      Giulia learns (the|our) dialect.
+- id: s.u02.30
+  node: bar.u02.nit
+  forms:
+    bar-Latn/moser:
+      text: I versteah nit viel.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: versteah, lexeme: versteahn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: nit, lexeme: nit},
+        {surface: viel, lexeme: viel}]
+      reverse: I versteah (nit|net) viel
+  translations:
+    en: |-
+      I don't understand much.
+      I do not understand much.
+- id: s.u02.31
+  node: bar.u02.nit
+  forms:
+    bar-Latn/moser:
+      text: Dialekt isch a a Sproch.
+      tokens: [{surface: Dialekt, lexeme: dialekt, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a,
+          lexeme: a.auch}, {surface: a, lexeme: a, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Sproch, lexeme: sproch, feats: {Case: Nom, Number: Sing}}]
+      reverse: Dialekt isch a a Sproch
+  translations:
+    en: |-
+      (A|The) dialect is a language too.
+      Dialect is a language too.
+      Dialect is also a language.
+- id: s.u02.32
+  node: bar.u02.wohnen
+  forms:
+    bar-Latn/moser:
+      text: I wohn in Bozn.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: wohn, lexeme: wohnen, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: in, lexeme: in}, {surface: Bozn,
+          lexeme: bozn, feats: {Case: Dat, Number: Sing}}]
+      reverse: I wohn in Bozn
+  translations:
+    en: I live in Bozen.
+- id: s.u02.33
+  node: bar.u02.wohnen
+  forms:
+    bar-Latn/moser:
+      text: Wo wohnsch du?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: wohnsch, lexeme: wohnen, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}]
+      reverse: (Wo wohnsch du|Wo wohnsch)
+  translations:
+    en: Where do you live?
+- id: s.u02.34
+  node: bar.u02.wohnen
+  forms:
+    bar-Latn/moser:
+      text: Hannes wohnt in Innsbruck.
+      tokens: [{surface: Hannes, lexeme: hannes, feats: {Case: Nom, Number: Sing}}, {surface: wohnt, lexeme: wohnen, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: in,
+          lexeme: in}, {surface: Innsbruck, lexeme: innsbruck, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Hannes|Der Hannes) wohnt in Innsbruck
+  translations:
+    en: Hannes lives in Innsbruck.
+- id: s.u02.35
+  node: bar.u02.wohnen
+  forms:
+    bar-Latn/moser:
+      text: Mir wohnen do.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: wohnen, lexeme: wohnen, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: do, lexeme: do}]
+      reverse: Mir wohnen do
+  translations:
+    en: We live here.
+- id: s.u02.36
+  node: bar.u02.wohnen
+  forms:
+    bar-Latn/moser:
+      text: Wohnsch du a do?
+      tokens: [{surface: Wohnsch, lexeme: wohnen, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: a, lexeme: a.auch},
+        {surface: do, lexeme: do}]
+      reverse: (Wohnsch du|Du wohnsch) a do
+  translations:
+    en: |-
+      Do you live here too?
+      Do you live here as well?
+- id: s.u02.37
+  node: bar.u02.wohnen
+  forms:
+    bar-Latn/moser:
+      text: Na, i wohn dert.
+      tokens: [{surface: Na, lexeme: na}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: wohn, lexeme: wohnen, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dert,
+          lexeme: dert}]
+      reverse: Na i wohn dert
+  translations:
+    en: No, I live (there|over there).
+- id: s.u02.38
+  node: bar.u02.wohnen
+  forms:
+    bar-Latn/moser:
+      text: Sidtirol isch in Italien.
+      tokens: [{surface: Sidtirol, lexeme: sidtirol, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: in,
+          lexeme: in}, {surface: Italien, lexeme: italien, feats: {Case: Dat, Number: Sing}}]
+      reverse: Sidtirol isch in Italien
+  translations:
+    en: South Tyrol is in Italy.
+- id: s.u02.39
+  node: bar.u02.wohnen
+  forms:
+    bar-Latn/moser:
+      text: Giulia wohnt a in Bozn.
+      tokens: [{surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}, {surface: wohnt, lexeme: wohnen, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a,
+          lexeme: a.auch}, {surface: in, lexeme: in}, {surface: Bozn, lexeme: bozn, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Giulia|Di Giulia) wohnt a in Bozn
+  translations:
+    en: |-
+      Giulia lives in Bozen too.
+      Giulia also lives in Bozen.
+stories:
+- id: bar.story.u02
+  node: bar.u02.story
+  title:
+    en: At Luis's bar
+  characters:
+  - id: lena
+    speaker: f
+    name:
+      bar-Latn/moser: Lena
+  - id: giulia
+    speaker: f
+    name:
+      bar-Latn/moser: Giulia
+  - id: luis
+    speaker: m
+    name:
+      bar-Latn/moser: Luis
+  steps:
+  - line:
+      speaker: luis
+      forms:
+        bar-Latn/moser:
+          text: Servus, Lena! Wer isch des?
+          tokens: [{surface: Servus, lexeme: servus}, {surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}, {surface: Wer, lexeme: wer}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing,
+                Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: des, lexeme: des}]
+      translations:
+        en: Hi, Lena! Who's that?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Des isch Giulia.
+          tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Giulia, lexeme: giulia, feats: {Case: Nom,
+                Number: Sing}}]
+      translations:
+        en: This is Giulia.
+  - line:
+      speaker: luis
+      forms:
+        bar-Latn/moser:
+          text: Griaß di, Giulia! I bin Luis.
+          tokens: [{surface: Griaß, lexeme: griaß-di}, {surface: di, lexeme: griaß-di}, {surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}, {surface: I, lexeme: i, feats: {Case: Nom}},
+            {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Luis, lexeme: luis, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Hello, Giulia! I'm Luis.
+  - line:
+      speaker: luis
+      forms:
+        bar-Latn/moser:
+          text: Wo bisch du her?
+          tokens: [{surface: Wo, lexeme: wo}, {surface: bisch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {
+              surface: her, lexeme: her}]
+      translations:
+        en: Where are you from?
+  - line:
+      speaker: giulia
+      ask: complete
+      gap: lexeme:bozn
+      distractors:
+      - lexeme:meran
+      - lexeme:innsbruck
+      forms:
+        bar-Latn/moser:
+          text: I bin va Bozn.
+          tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: va, lexeme: va}, {surface: Bozn,
+              lexeme: bozn, feats: {Case: Dat, Number: Sing}}]
+      translations:
+        en: I'm from Bozen.
+  - choose:
+      prompt:
+        en: Where is Giulia from?
+      options:
+      - en: Bozen
+      - en: Meran
+      - en: Innsbruck
+      answer: 0
+  - line:
+      speaker: luis
+      forms:
+        bar-Latn/moser:
+          text: Redsch du deitsch?
+          tokens: [{surface: Redsch, lexeme: redn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: deitsch, lexeme: deitsch}]
+      translations:
+        en: Do you speak German?
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Jo, ober i red lei a bissl Dialekt.
+          tokens: [{surface: Jo, lexeme: jo}, {surface: ober, lexeme: ober}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: red, lexeme: redn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres,
+                VerbForm: Fin}}, {surface: lei, lexeme: lei}, {surface: a, lexeme: a-bissl}, {surface: bissl, lexeme: a-bissl}, {surface: Dialekt, lexeme: dialekt, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Yes, but I only speak a little dialect.
+  - line:
+      speaker: luis
+      forms:
+        bar-Latn/moser:
+          text: Mir redn olle Dialekt do.
+          tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: redn, lexeme: redn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: olle, lexeme: olle,
+              feats: {Case: Nom, Number: Plur}}, {surface: Dialekt, lexeme: dialekt, feats: {Case: Nom, Number: Sing}}, {surface: do, lexeme: do}]
+      translations:
+        en: We all speak dialect here.
+  - line:
+      speaker: giulia
+      ask: arrange
+      forms:
+        bar-Latn/moser:
+          text: I versteah nit viel.
+          tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: versteah, lexeme: versteahn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: nit, lexeme: nit},
+            {surface: viel, lexeme: viel}]
+      translations:
+        en: I don't understand much.
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Sie lernt Dialekt.
+          tokens: [{surface: Sie, lexeme: sie, feats: {Case: Nom}}, {surface: lernt, lexeme: lernen, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Dialekt, lexeme: dialekt,
+              feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: She's learning dialect.
+  - line:
+      speaker: luis
+      forms:
+        bar-Latn/moser:
+          text: Guat! Pfiat enk!
+          tokens: [{surface: Guat, lexeme: guat}, {surface: Pfiat, lexeme: pfiat-enk}, {surface: enk, lexeme: pfiat-enk}]
+      translations:
+        en: Good! Bye, you two!
+  - choose:
+      prompt:
+        en: What is Giulia learning?
+      options:
+      - en: the dialect
+      - en: English
+      - en: Italian
+      answer: 0
+scenarios:
+- id: bar.bar
+  after: bar.u02.wohnen
+  title:
+    en: At Luis's bar
+  setting:
+    en: 'A small coffee bar on a corner of the old town in Bozen, on a weekday morning: people stand at the counter for an espresso before work.'
+  character:
+    en: Luis, the bar's owner, about fifty, from Bozen, who knows all his regulars by name and is curious about new faces.
+  goal:
+    en: 'Order nothing yet: greet Luis, say where you are from and where you live, and say which languages you speak.'

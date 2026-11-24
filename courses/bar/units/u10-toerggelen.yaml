@@ -1,0 +1,461 @@
+# Unit 10 (bar): the autumn and Törggelen (chestnuts, new wine, Krapfen), would: i tat gearn (tian's tat with an
+# infinitive), i hatt gearn (I'd like), des gfollt mir (I like it); Törggelen at an inn with everyone.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u10
+title:
+  en: Törggelen Törggelen
+cefr: A2
+nodes:
+- {id: bar.u10.herbscht, kind: lesson, introduces: ['lexeme:herbscht', 'lexeme:törggelen', 'lexeme:keschtn', 'lexeme:goschthaus']}
+- {id: bar.u10.hatt, kind: lesson, introduces: ['lexeme:wirt', 'lexeme:krapfn', 'feature:Mood=Sub']}
+- {id: bar.u10.tat, kind: lesson, introduces: ['lexeme:tian', 'rule:tian-would', 'lexeme:gfolln']}
+- {id: bar.u10.feiern, kind: lesson, introduces: ['lexeme:feiern', 'lexeme:singen', 'lexeme:musig', 'lexeme:vergelts-gott']}
+- {id: bar.u10.story, kind: story}
+sentences:
+- id: s.u10.1
+  node: bar.u10.herbscht
+  forms:
+    bar-Latn/moser:
+      text: Iatz isch Herbscht.
+      tokens: [{surface: Iatz, lexeme: iatz}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Herbscht, lexeme: herbscht, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: (Iatz isch Herbscht|Iatz isch der Herbscht do)
+  translations:
+    en: |-
+      (It's|It is) autumn now.
+      Now it's autumn.
+- id: s.u10.2
+  node: bar.u10.herbscht
+  forms:
+    bar-Latn/moser:
+      text: Mir gian törggelen.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: gian, lexeme: gian, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: törggelen, lexeme: törggelen,
+          feats: {VerbForm: Inf}}]
+      reverse: Mir gian törggelen
+  translations:
+    en: |-
+      We're going törggelen.
+      We're going for Törggelen.
+      Let's go törggelen.
+- id: s.u10.3
+  node: bar.u10.herbscht
+  forms:
+    bar-Latn/moser:
+      text: Di Keschtn sein fein.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Number: Plur}}, {surface: Keschtn, lexeme: keschtn, feats: {Case: Nom, Number: Plur}}, {surface: sein, lexeme: sein, feats: {Mood: Ind, Number: Plur,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: fein, lexeme: fein}]
+      reverse: Di Keschtn sein fein
+  translations:
+    en: The chestnuts are (tasty|delicious).
+- id: s.u10.4
+  node: bar.u10.herbscht
+  forms:
+    bar-Latn/moser:
+      text: Mir essn Keschtn und trinkn Wein.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: essn, lexeme: essn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Keschtn, lexeme: keschtn,
+          feats: {Case: Acc, Number: Plur}}, {surface: und, lexeme: und}, {surface: trinkn, lexeme: trinkn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Wein, lexeme: wein,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir essn Keschtn und trinkn Wein
+  translations:
+    en: |-
+      We eat chestnuts and drink wine.
+      We're eating chestnuts and drinking wine.
+- id: s.u10.5
+  node: bar.u10.herbscht
+  forms:
+    bar-Latn/moser:
+      text: '''s Goschthaus isch olt.'
+      tokens: [{surface: '''s', lexeme: der, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Goschthaus, lexeme: goschthaus, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: olt, lexeme: olt}]
+      reverse: '''s Goschthaus isch olt'
+  translations:
+    en: The inn is old.
+- id: s.u10.6
+  node: bar.u10.herbscht
+  forms:
+    bar-Latn/moser:
+      text: Der Herbscht isch schian in Sidtirol.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Herbscht, lexeme: herbscht, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: schian, lexeme: schian}, {surface: in, lexeme: in}, {surface: Sidtirol, lexeme: sidtirol, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Der Herbscht isch schian in Sidtirol|In Sidtirol isch der Herbscht schian)
+  translations:
+    en: |-
+      Autumn is (beautiful|lovely) in South Tyrol.
+      The autumn is (beautiful|lovely) in South Tyrol.
+- id: s.u10.7
+  node: bar.u10.hatt
+  forms:
+    bar-Latn/moser:
+      text: I hatt gearn a Wosser.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: hatt, lexeme: hobm, feats: {Mood: Sub, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: gearn, lexeme: gearn}, {surface: a,
+          lexeme: a, feats: {Case: Acc, Gender: Neut, Number: Sing}}, {surface: Wosser, lexeme: wosser, feats: {Case: Acc, Number: Sing}}]
+      reverse: I hatt gearn a Wosser
+  translations:
+    en: |-
+      I'd like (a|some) water.
+      I would like (a|some) water.
+- id: s.u10.8
+  node: bar.u10.hatt
+  forms:
+    bar-Latn/moser:
+      text: Hattsch du gearn an Krapfn?
+      tokens: [{surface: Hattsch, lexeme: hobm, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: gearn, lexeme: gearn},
+        {surface: an, lexeme: a, feats: {Case: Acc, Gender: Masc, Number: Sing}}, {surface: Krapfn, lexeme: krapfn, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Hattsch du|Du hattsch) gearn an Krapfn
+  translations:
+    en: Would you like a (Krapfen|doughnut)?
+- id: s.u10.9
+  node: bar.u10.hatt
+  forms:
+    bar-Latn/moser:
+      text: Mir hattn gearn nou Wein.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hattn, lexeme: hobm, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: gearn, lexeme: gearn},
+        {surface: nou, lexeme: nou}, {surface: Wein, lexeme: wein, feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir hattn gearn nou Wein
+  translations:
+    en: |-
+      We'd like some more wine.
+      We would like some more wine.
+- id: s.u10.10
+  node: bar.u10.hatt
+  forms:
+    bar-Latn/moser:
+      text: Der Wirt bringt Krapfn.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Wirt, lexeme: wirt, feats: {Case: Nom, Number: Sing}}, {surface: bringt, lexeme: bringen, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Krapfn, lexeme: krapfn, feats: {Case: Acc, Number: Plur}}]
+      reverse: Der Wirt bringt Krapfn
+  translations:
+    en: |-
+      The innkeeper brings (Krapfen|doughnuts).
+      The innkeeper is bringing (Krapfen|doughnuts).
+- id: s.u10.11
+  node: bar.u10.hatt
+  tags:
+  - {register: formal}
+  forms:
+    bar-Latn/moser:
+      text: Wos hattn Sie gearn?
+      tokens: [{surface: Wos, lexeme: wos}, {surface: hattn, lexeme: hobm, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: Sie, lexeme: sie.formal, feats: {Case: Nom}},
+        {surface: gearn, lexeme: gearn}]
+      reverse: Wos hattn Sie gearn
+  translations:
+    en: What would you like?
+- id: s.u10.12
+  node: bar.u10.hatt
+  forms:
+    bar-Latn/moser:
+      text: I hatt gearn Keschtn, bitte.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: hatt, lexeme: hobm, feats: {Mood: Sub, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: gearn, lexeme: gearn}, {surface: Keschtn,
+          lexeme: keschtn, feats: {Case: Acc, Number: Plur}}, {surface: bitte, lexeme: bitte}]
+      reverse: I hatt gearn Keschtn bitte
+  translations:
+    en: |-
+      I'd like chestnuts, please.
+      I'd like some chestnuts, please.
+      I would like chestnuts, please.
+- id: s.u10.13
+  node: bar.u10.tat
+  uses: ['rule:tian-would']
+  forms:
+    bar-Latn/moser:
+      text: I tat gearn kemmen.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: tat, lexeme: tian, feats: {Mood: Sub, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: gearn, lexeme: gearn}, {surface: kemmen,
+          lexeme: kemmen, feats: {VerbForm: Inf}}]
+      reverse: I tat gearn kemmen
+  translations:
+    en: |-
+      I'd like to come.
+      I would like to come.
+      I'd love to come.
+- id: s.u10.14
+  node: bar.u10.tat
+  uses: ['rule:tian-would']
+  forms:
+    bar-Latn/moser:
+      text: Tatsch du a kemmen?
+      tokens: [{surface: Tatsch, lexeme: tian, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: a, lexeme: a.auch}, {
+          surface: kemmen, lexeme: kemmen, feats: {VerbForm: Inf}}]
+      reverse: (Tatsch du|Du tatsch) a kemmen
+  translations:
+    en: |-
+      Would you come too?
+      Would you like to come too?
+- id: s.u10.15
+  node: bar.u10.tat
+  uses: ['rule:tian-would']
+  forms:
+    bar-Latn/moser:
+      text: Mir tatn gearn törggelen gian.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: tatn, lexeme: tian, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: gearn, lexeme: gearn},
+        {surface: törggelen, lexeme: törggelen, feats: {VerbForm: Inf}}, {surface: gian, lexeme: gian, feats: {VerbForm: Inf}}]
+      reverse: Mir tatn gearn törggelen gian
+  translations:
+    en: |-
+      We'd like to go törggelen.
+      We would like to go for Törggelen.
+- id: s.u10.16
+  node: bar.u10.tat
+  uses: ['rule:tian-would']
+  forms:
+    bar-Latn/moser:
+      text: Wos tatsch du gearn essn?
+      tokens: [{surface: Wos, lexeme: wos}, {surface: tatsch, lexeme: tian, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: gearn,
+          lexeme: gearn}, {surface: essn, lexeme: essn, feats: {VerbForm: Inf}}]
+      reverse: Wos tatsch du gearn essn
+  translations:
+    en: What would you like to eat?
+- id: s.u10.17
+  node: bar.u10.tat
+  uses: ['rule:tian-would']
+  forms:
+    bar-Latn/moser:
+      text: I tat Knedl essn.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: tat, lexeme: tian, feats: {Mood: Sub, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: Knedl, lexeme: knedl, feats: {
+            Case: Acc, Number: Plur}}, {surface: essn, lexeme: essn, feats: {VerbForm: Inf}}]
+      reverse: I tat Knedl essn
+  translations:
+    en: |-
+      I'd (have|eat) dumplings.
+      I would (have|eat) dumplings.
+- id: s.u10.18
+  node: bar.u10.tat
+  uses: ['rule:tian-would']
+  forms:
+    bar-Latn/moser:
+      text: Des tat mir gfolln.
+      tokens: [{surface: Des, lexeme: des}, {surface: tat, lexeme: tian, feats: {Mood: Sub, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: mir, lexeme: i, feats: {Case: Dat}}, {surface: gfolln,
+          lexeme: gfolln, feats: {VerbForm: Inf}}]
+      reverse: Des tat mir gfolln
+  translations:
+    en: |-
+      I would like that.
+      That would please me.
+- id: s.u10.19
+  node: bar.u10.feiern
+  forms:
+    bar-Latn/moser:
+      text: Mir feiern heint.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: feiern, lexeme: feiern, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: heint, lexeme: heint}]
+      reverse: Mir feiern heint
+  translations:
+    en: (We're celebrating|We celebrate) today.
+- id: s.u10.20
+  node: bar.u10.feiern
+  forms:
+    bar-Latn/moser:
+      text: Di Leit singen.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Number: Plur}}, {surface: Leit, lexeme: leit, feats: {Case: Nom, Number: Plur}}, {surface: singen, lexeme: singen, feats: {Mood: Ind, Number: Plur,
+            Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: Di Leit singen
+  translations:
+    en: |-
+      The people are singing.
+      People are singing.
+- id: s.u10.21
+  node: bar.u10.feiern
+  forms:
+    bar-Latn/moser:
+      text: Di Musig gfollt mir.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Musig, lexeme: musig, feats: {Case: Nom, Number: Sing}}, {surface: gfollt, lexeme: gfolln, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mir, lexeme: i, feats: {Case: Dat}}]
+      reverse: Di Musig gfollt mir
+  translations:
+    en: |-
+      I like the music.
+      The music pleases me.
+- id: s.u10.22
+  node: bar.u10.feiern
+  forms:
+    bar-Latn/moser:
+      text: Gfollt dir 's Goschthaus?
+      tokens: [{surface: Gfollt, lexeme: gfolln, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dir, lexeme: du, feats: {Case: Dat}}, {surface: '''s', lexeme: der,
+          feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Goschthaus, lexeme: goschthaus, feats: {Case: Nom, Number: Sing}}]
+      reverse: Gfollt dir 's Goschthaus
+  translations:
+    en: Do you like the inn?
+- id: s.u10.23
+  node: bar.u10.feiern
+  forms:
+    bar-Latn/moser:
+      text: Jo, es gfollt mir sehr.
+      tokens: [{surface: Jo, lexeme: jo}, {surface: es, lexeme: es.it, feats: {Case: Nom}}, {surface: gfollt, lexeme: gfolln, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: mir, lexeme: i, feats: {Case: Dat}}, {surface: sehr, lexeme: sehr}]
+      reverse: Jo (es|'s) gfollt mir sehr
+  translations:
+    en: Yes, I like it (very much|a lot).
+- id: s.u10.24
+  node: bar.u10.feiern
+  forms:
+    bar-Latn/moser:
+      text: Mir singen und feiern zomm.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: singen, lexeme: singen, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: und, lexeme: und},
+        {surface: feiern, lexeme: feiern, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: zomm, lexeme: zomm}]
+      reverse: Mir singen und feiern zomm
+  translations:
+    en: |-
+      We sing and celebrate together.
+      We're singing and celebrating together.
+- id: s.u10.25
+  node: bar.u10.feiern
+  forms:
+    bar-Latn/moser:
+      text: Vergelts Gott!
+      tokens: [{surface: Vergelts, lexeme: vergelts-gott}, {surface: Gott, lexeme: vergelts-gott}]
+      reverse: (Vergelts Gott|Danke)
+  translations:
+    en: |-
+      Thank you!
+      God bless you (for it)!
+      Thanks!
+stories:
+- id: bar.story.u10
+  node: bar.u10.story
+  title:
+    en: Törggelen
+  characters:
+  - id: hannes
+    speaker: m
+    name:
+      bar-Latn/moser: Hannes
+  - id: giulia
+    speaker: f
+    name:
+      bar-Latn/moser: Giulia
+  - id: lena
+    speaker: f
+    name:
+      bar-Latn/moser: Lena
+  - id: wirt
+    speaker: m
+    name:
+      bar-Latn/moser: Der Wirt
+  steps:
+  - line:
+      speaker: hannes
+      forms:
+        bar-Latn/moser:
+          text: Heint gian mir törggelen!
+          tokens: [{surface: Heint, lexeme: heint}, {surface: gian, lexeme: gian, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mir, lexeme: mir, feats: {Case: Nom}},
+            {surface: törggelen, lexeme: törggelen, feats: {VerbForm: Inf}}]
+      translations:
+        en: Today we're going törggelen!
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Wos mochn mir do?
+          tokens: [{surface: Wos, lexeme: wos}, {surface: mochn, lexeme: mochn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mir, lexeme: mir, feats: {Case: Nom}},
+            {surface: do, lexeme: do}]
+      translations:
+        en: What do we do there?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Mir essn Keschtn und trinkn Wein.
+          tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: essn, lexeme: essn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Keschtn, lexeme: keschtn,
+              feats: {Case: Acc, Number: Plur}}, {surface: und, lexeme: und}, {surface: trinkn, lexeme: trinkn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Wein,
+              lexeme: wein, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: We eat chestnuts and drink wine.
+  - line:
+      speaker: wirt
+      forms:
+        bar-Latn/moser:
+          text: Griaß enk! Wos wellts es?
+          tokens: [{surface: Griaß, lexeme: griaß-enk}, {surface: enk, lexeme: griaß-enk}, {surface: Wos, lexeme: wos}, {surface: wellts, lexeme: welln, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres,
+                VerbForm: Fin}}, {surface: es, lexeme: es, feats: {Case: Nom}}]
+      translations:
+        en: Hello, everyone! What would you like?
+  - line:
+      speaker: hannes
+      forms:
+        bar-Latn/moser:
+          text: Mir hattn gearn Keschtn und Krapfn.
+          tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hattn, lexeme: hobm, feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: gearn, lexeme: gearn},
+            {surface: Keschtn, lexeme: keschtn, feats: {Case: Acc, Number: Plur}}, {surface: und, lexeme: und}, {surface: Krapfn, lexeme: krapfn, feats: {Case: Acc, Number: Plur}}]
+      translations:
+        en: We'd like chestnuts and Krapfen.
+  - line:
+      speaker: giulia
+      ask: arrange
+      forms:
+        bar-Latn/moser:
+          text: I hatt gearn a Wosser, bitte.
+          tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: hatt, lexeme: hobm, feats: {Mood: Sub, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: gearn, lexeme: gearn},
+            {surface: a, lexeme: a, feats: {Case: Acc, Gender: Neut, Number: Sing}}, {surface: Wosser, lexeme: wosser, feats: {Case: Acc, Number: Sing}}, {surface: bitte, lexeme: bitte}]
+      translations:
+        en: I'd like a water, please.
+  - choose:
+      prompt:
+        en: What does Giulia order?
+      options:
+      - en: water
+      - en: wine
+      - en: coffee
+      answer: 0
+  - line:
+      speaker: wirt
+      forms:
+        bar-Latn/moser:
+          text: Gearn!
+          tokens: [{surface: Gearn, lexeme: gearn}]
+      translations:
+        en: With pleasure!
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Di Musig gfollt mir.
+          tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Musig, lexeme: musig, feats: {Case: Nom, Number: Sing}}, {surface: gfollt, lexeme: gfolln, feats: {
+                Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mir, lexeme: i, feats: {Case: Dat}}]
+      translations:
+        en: I like the music.
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Mir a! Des isch a schians Fescht.
+          tokens: [{surface: Mir, lexeme: i, feats: {Case: Dat}}, {surface: a, lexeme: a.auch}, {surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+                VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: schians, lexeme: schian, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Fescht,
+              lexeme: fescht, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Me too! This is a lovely party.
+  - line:
+      speaker: hannes
+      forms:
+        bar-Latn/moser:
+          text: Gfollt dir Sidtirol, Giulia?
+          tokens: [{surface: Gfollt, lexeme: gfolln, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dir, lexeme: du, feats: {Case: Dat}}, {surface: Sidtirol, lexeme: sidtirol,
+              feats: {Case: Nom, Number: Sing}}, {surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Do you like South Tyrol, Giulia?
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Jo, sehr! Und iatz versteah i a a bissl Dialekt!
+          tokens: [{surface: Jo, lexeme: jo}, {surface: sehr, lexeme: sehr}, {surface: Und, lexeme: und}, {surface: iatz, lexeme: iatz}, {surface: versteah, lexeme: versteahn, feats: {Mood: Ind, Number: Sing,
+                Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: a, lexeme: a.auch}, {surface: a, lexeme: a-bissl}, {surface: bissl, lexeme: a-bissl}, {
+              surface: Dialekt, lexeme: dialekt, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Yes, very much! And now I understand a little dialect too!
+  - choose:
+      prompt:
+        en: What can Giulia understand now?
+      options:
+      - en: a little dialect
+      - en: nothing
+      - en: everything
+      answer: 0
+scenarios:
+- id: bar.toerggelen
+  after: bar.u10.feiern
+  title:
+    en: Törggelen at a farm inn
+  setting:
+    en: A farm inn (Buschenschank) above Brixen in late October, low wooden ceiling, roast chestnuts in a pan with holes, this year's wine in jugs.
+  character:
+    en: The innkeeper, a farmer in his sixties who serves his own wine and speck, proud of both and always ready to pour more.
+  goal:
+    en: Greet him, order chestnuts, Krapfen and something to drink with i hatt gearn, say what you like, and thank him.

@@ -15,7 +15,7 @@ import { allStories, formMeanings, storyScript } from "../src/story/index.ts";
 import { surfaceOf } from "../src/text/tagged-text.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
-const COURSES = ["es", "chg", "uz", "apc", "fa", "yue", "lzh", "tok", "hbo", "grc", "sk"] as const;
+const COURSES = ["es", "chg", "uz", "apc", "fa", "yue", "lzh", "tok", "hbo", "grc", "sk", "bar"] as const;
 
 const tokenOf = (t: TaggedText): Token => t.tokens.find((x) => x.kind === "lexical" || x.kind === "number") as Token;
 

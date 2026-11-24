@@ -54,6 +54,7 @@ const COURSES: readonly (readonly [string, string | undefined])[] = [
   ["grc", undefined],
   ["chg", "chg-Arab/standard"],
   ["sk", "sk-Latn/standard"],
+  ["bar", "bar-Latn/moser"],
 ];
 
 interface Walked {

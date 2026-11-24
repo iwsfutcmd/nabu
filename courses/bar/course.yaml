@@ -1,0 +1,91 @@
+# South Tyrolean (bar), the dialect German-speaking South Tyroleans speak every day, for English speakers from
+# nothing, A1 to early A2 in ten units (ADR 0156; the brief is README.md). Spelled as Moser's Wörterbuch der Südtiroler
+# Mundarten (2015) spells it, without its stress marks; the central forms (Bozen, the Eisacktal) canonical. Everyday
+# scenes in Bozen and on a farm on the Ritten with people of the course's own.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: bar
+target: bar-Latn-IT
+orthographies:
+- bar-Latn/moser
+support:
+- en-Latn/standard
+lexicon: bar
+variety: bar-IT
+names:
+  en:
+    course: South Tyrolean
+    blurb: The German dialect of South Tyrol, as people speak it every day.
+    orthographies:
+      bar-Latn/moser: South Tyrolean spelling
+  ar:
+    course: لهجة جنوب تيرول
+    orthographies:
+      bar-Latn/moser: إملاء جنوب تيرول
+    provenance: &id001
+      author: llm:claude@bar-course-v1
+      status: draft
+  fa:
+    course: گویش تیرول جنوبی
+    orthographies:
+      bar-Latn/moser: املای تیرول جنوبی
+    provenance: *id001
+  uz:
+    course: Janubiy Tirol shevasi
+    orthographies:
+      bar-Latn/moser: Janubiy Tirol imlosi
+    provenance: *id001
+  uz-Cyrl:
+    course: Жанубий Тирол шеваси
+    orthographies:
+      bar-Latn/moser: Жанубий Тирол имлоси
+    provenance: *id001
+  zh-Hant-HK:
+    course: 南蒂羅爾方言
+    orthographies:
+      bar-Latn/moser: 南蒂羅爾方言拼寫
+    provenance: *id001
+license: CC-BY-SA-4.0
+provenance: *id001
+iPlusOne: 2
+wordParts: true
+# Audio (ADR 0156): OmniVoice cloning two speakers of the VinKo Corpus (Rabanus et al. 2023; Universities of Verona,
+# Trento and Bozen; CC BY-NC-SA 4.0), each from about 13 s of their own dialect: a woman from Bozen (VinKo speaker
+# U0430) and a man from Meran (U1810). No model knows South Tyrolean: OmniVoice reads the text as German
+# (`language: de`) in the cloned voice, which carries the speaker's accent. The weights are non-commercial and the
+# reference share-alike: the clips are CC-BY-NC-SA-4.0, crediting the corpus and the speaker. A sentence or story
+# character that says who speaks gets that voice; the rest are shared at random (ADR 0078). Iffy (ADR 0091) until a
+# South Tyrolean listener goes through the audio check (#/bar/bar-Latn.moser/audio): no listening exercises.
+audio:
+  quality: iffy
+  voices:
+  - id: bozen-f
+    provider: omnivoice
+    voice: bozen-f
+    speaker: f
+    model: k2-fsa/OmniVoice@c5fdb5ccb189668d56333f77ba2629f4cd7535f4
+    language: de
+    orthography: bar-Latn/moser
+    reading: text
+    finalStop: true
+    license: CC-BY-NC-SA-4.0
+  - id: meran-m
+    provider: omnivoice
+    voice: meran-m
+    speaker: m
+    model: k2-fsa/OmniVoice@c5fdb5ccb189668d56333f77ba2629f4cd7535f4
+    language: de
+    orthography: bar-Latn/moser
+    reading: text
+    finalStop: true
+    license: CC-BY-NC-SA-4.0
+units:
+- units/u01-griass-di.yaml
+- units/u02-wo-bisch-her.yaml
+- units/u03-mei-familie.yaml
+- units/u04-marende.yaml
+- units/u05-dahoam.yaml
+- units/u06-der-tog.yaml
+- units/u07-in-der-stodt.yaml
+- units/u08-geschter.yaml
+- units/u09-af-der-olm.yaml
+- units/u10-toerggelen.yaml

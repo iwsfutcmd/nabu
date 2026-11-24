@@ -1,0 +1,409 @@
+# Unit 9 (bar): the weather (es regnet, es schneibt, 's Wetter isch schian), the mountains (Olm, Berg, Wold, See,
+# Hittn), wondern, af di Olm (where to, accusative) beside af der Olm (where, dative); a hike to an Alm.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u09
+title:
+  en: Af der Olm Up on the Alm
+cefr: A2
+nodes:
+- {id: bar.u09.wetter, kind: lesson, introduces: ['lexeme:wetter', 'lexeme:sunn', 'lexeme:regn', 'lexeme:schnee', 'lexeme:regnen', 'lexeme:schneibm', 'lexeme:olm']}
+- {id: bar.u09.olm, kind: lesson, introduces: ['lexeme:berg', 'lexeme:wold', 'lexeme:see', 'lexeme:hittn', 'lexeme:weg', 'lexeme:hoach']}
+- {id: bar.u09.wondern, kind: lesson, introduces: ['lexeme:wondern', 'lexeme:steil', 'lexeme:gach']}
+- {id: bar.u09.story, kind: story}
+sentences:
+- id: s.u09.1
+  node: bar.u09.wetter
+  forms:
+    bar-Latn/moser:
+      text: Wia isch 's Wetter?
+      tokens: [{surface: Wia, lexeme: wia}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: '''s', lexeme: der, feats: {Case: Nom, Gender: Neut,
+            Number: Sing}}, {surface: Wetter, lexeme: wetter, feats: {Case: Nom, Number: Sing}}]
+      reverse: Wia isch 's Wetter
+  translations:
+    en: |-
+      How's the weather?
+      What's the weather like?
+- id: s.u09.2
+  node: bar.u09.wetter
+  forms:
+    bar-Latn/moser:
+      text: '''s Wetter isch schian.'
+      tokens: [{surface: '''s', lexeme: der, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Wetter, lexeme: wetter, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: schian, lexeme: schian}]
+      reverse: '''s Wetter isch schian'
+  translations:
+    en: The weather is (nice|good|lovely).
+- id: s.u09.3
+  node: bar.u09.wetter
+  forms:
+    bar-Latn/moser:
+      text: Heint regnet's.
+      tokens: [{surface: Heint, lexeme: heint}, {surface: regnet's, lexemes: [{lexeme: regnen, surface: regnet, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {
+              lexeme: es.it, surface: '''s', feats: {Case: Nom}}]}]
+      reverse: (Heint regnet's|Heint regnet es|Es regnet heint)
+  translations:
+    en: |-
+      (It's raining|It rains) today.
+      Today it's raining.
+- id: s.u09.4
+  node: bar.u09.wetter
+  forms:
+    bar-Latn/moser:
+      text: Af der Olm schneibt's.
+      tokens: [{surface: Af, lexeme: af}, {surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Olm, lexeme: olm, feats: {Case: Dat, Number: Sing}}, {surface: schneibt's,
+          lexemes: [{lexeme: schneibm, surface: schneibt, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it, surface: '''s', feats: {Case: Nom}}]}]
+      reverse: (Af der Olm schneibt's|Af der Olm schneibt es|Es schneibt af der Olm)
+  translations:
+    en: (It's snowing|It snows) on the (Alm|mountain pasture).
+- id: s.u09.5
+  node: bar.u09.wetter
+  forms:
+    bar-Latn/moser:
+      text: Di Sunn isch hoaß.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Sunn, lexeme: sunn, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: hoaß, lexeme: hoaß}]
+      reverse: Di Sunn isch hoaß
+  translations:
+    en: The sun is hot.
+- id: s.u09.6
+  node: bar.u09.wetter
+  forms:
+    bar-Latn/moser:
+      text: Mir megn koan Regn.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: megn, lexeme: megn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: koan, lexeme: koan, feats: {
+            Case: Acc, Gender: Masc, Number: Sing}}, {surface: Regn, lexeme: regn, feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir megn koan Regn
+  translations:
+    en: We don't like (rain|the rain).
+- id: s.u09.7
+  node: bar.u09.wetter
+  forms:
+    bar-Latn/moser:
+      text: Gip's morgn Schnee?
+      tokens: [{surface: Gip's, lexemes: [{lexeme: gebm, surface: Gip, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it, surface: '''s', feats: {Case: Nom}}]},
+        {surface: morgn, lexeme: morgn}, {surface: Schnee, lexeme: schnee, feats: {Case: Acc, Number: Sing}}]
+      reverse: Gip's morgn Schnee
+  translations:
+    en: |-
+      Will there be snow tomorrow?
+      Is it going to snow tomorrow?
+- id: s.u09.8
+  node: bar.u09.wetter
+  forms:
+    bar-Latn/moser:
+      text: '''s Wetter isch schiach.'
+      tokens: [{surface: '''s', lexeme: der, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Wetter, lexeme: wetter, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: schiach, lexeme: schiach}]
+      reverse: '''s Wetter isch schiach'
+  translations:
+    en: The weather is (bad|horrible|nasty).
+- id: s.u09.9
+  node: bar.u09.olm
+  forms:
+    bar-Latn/moser:
+      text: Mir gian af di Olm.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: gian, lexeme: gian, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: af, lexeme: af}, {surface: di,
+          lexeme: der, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Olm, lexeme: olm, feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir gian af di Olm
+  translations:
+    en: |-
+      We're going up to the (Alm|mountain pasture).
+      We go up to the (Alm|mountain pasture).
+      Let's go up to the (Alm|mountain pasture).
+- id: s.u09.10
+  node: bar.u09.olm
+  forms:
+    bar-Latn/moser:
+      text: Af der Olm isch a Hittn.
+      tokens: [{surface: Af, lexeme: af}, {surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Olm, lexeme: olm, feats: {Case: Dat, Number: Sing}}, {surface: isch, lexeme: sein,
+          feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Hittn, lexeme: hittn, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: Af der Olm isch a Hittn
+  translations:
+    en: (There's|There is) a hut on the (Alm|mountain pasture).
+- id: s.u09.11
+  node: bar.u09.olm
+  forms:
+    bar-Latn/moser:
+      text: Der Berg isch hoach.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Berg, lexeme: berg, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: hoach, lexeme: hoach}]
+      reverse: Der Berg isch hoach
+  translations:
+    en: The mountain is high.
+- id: s.u09.12
+  node: bar.u09.olm
+  forms:
+    bar-Latn/moser:
+      text: Do isch a schianer See.
+      tokens: [{surface: Do, lexeme: do}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Nom, Gender: Masc,
+            Number: Sing}}, {surface: schianer, lexeme: schian, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: See, lexeme: see, feats: {Case: Nom, Number: Sing}}]
+      reverse: Do isch a schianer See
+  translations:
+    en: (There's|Here's) a (beautiful|lovely) lake.
+- id: s.u09.13
+  node: bar.u09.olm
+  forms:
+    bar-Latn/moser:
+      text: Der Wold isch groaß.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Wold, lexeme: wold, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: groaß, lexeme: groaß}]
+      reverse: Der Wold isch groaß
+  translations:
+    en: The (forest|wood) is big.
+- id: s.u09.14
+  node: bar.u09.olm
+  forms:
+    bar-Latn/moser:
+      text: Di Berg sein schian.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Number: Plur}}, {surface: Berg, lexeme: berg, feats: {Case: Nom, Number: Plur}}, {surface: sein, lexeme: sein, feats: {Mood: Ind, Number: Plur,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: schian, lexeme: schian}]
+      reverse: Di Berg sein schian
+  translations:
+    en: The mountains are (beautiful|lovely).
+- id: s.u09.15
+  node: bar.u09.olm
+  forms:
+    bar-Latn/moser:
+      text: Wo isch der Weg?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: der, lexeme: der, feats: {Case: Nom, Gender: Masc,
+            Number: Sing}}, {surface: Weg, lexeme: weg, feats: {Case: Nom, Number: Sing}}]
+      reverse: Wo isch der Weg
+  translations:
+    en: |-
+      Where is the (path|way)?
+      Where's the (path|way)?
+- id: s.u09.16
+  node: bar.u09.olm
+  forms:
+    bar-Latn/moser:
+      text: In der Hittn gip's Knedl.
+      tokens: [{surface: In, lexeme: in}, {surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Hittn, lexeme: hittn, feats: {Case: Dat, Number: Sing}}, {surface: gip's,
+          lexemes: [{lexeme: gebm, surface: gip, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it, surface: '''s', feats: {Case: Nom}}]}, {surface: Knedl,
+          lexeme: knedl, feats: {Case: Acc, Number: Plur}}]
+      reverse: In der Hittn gip's Knedl
+  translations:
+    en: |-
+      There are dumplings in the hut.
+      They have dumplings in the hut.
+- id: s.u09.17
+  node: bar.u09.wondern
+  forms:
+    bar-Latn/moser:
+      text: Mir wondern af di Olm.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: wondern, lexeme: wondern, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: af, lexeme: af},
+        {surface: di, lexeme: der, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Olm, lexeme: olm, feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir wondern af di Olm
+  translations:
+    en: (We're hiking|We hike|We walk) up to the (Alm|mountain pasture).
+- id: s.u09.18
+  node: bar.u09.wondern
+  forms:
+    bar-Latn/moser:
+      text: Wondersch du gearn?
+      tokens: [{surface: Wondersch, lexeme: wondern, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: gearn, lexeme: gearn}]
+      reverse: (Wondersch du|Du wondersch) gearn
+  translations:
+    en: |-
+      Do you like hiking?
+      Do you like walking?
+- id: s.u09.19
+  node: bar.u09.wondern
+  forms:
+    bar-Latn/moser:
+      text: Der Weg isch steil.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Weg, lexeme: weg, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: steil, lexeme: steil}]
+      reverse: Der Weg isch steil
+  translations:
+    en: The path is steep.
+- id: s.u09.20
+  node: bar.u09.wondern
+  forms:
+    bar-Latn/moser:
+      text: Des isch a gacher Weg.
+      tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Nom, Gender: Masc,
+            Number: Sing}}, {surface: gacher, lexeme: gach, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Weg, lexeme: weg, feats: {Case: Nom, Number: Sing}}]
+      reverse: Des isch a gacher Weg
+  translations:
+    en: (That's|This is) a steep path.
+- id: s.u09.21
+  node: bar.u09.wondern
+  forms:
+    bar-Latn/moser:
+      text: Mir sein viel gwondert.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: sein, lexeme: sein, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: viel, lexeme: viel}, {
+          surface: gwondert, lexeme: wondern, feats: {VerbForm: Part}}]
+      reverse: Mir sein viel gwondert
+  translations:
+    en: |-
+      We (hiked|walked) a lot.
+      We did a lot of hiking.
+- id: s.u09.22
+  node: bar.u09.wondern
+  forms:
+    bar-Latn/moser:
+      text: Der Berg isch sehr hoach.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Berg, lexeme: berg, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sehr, lexeme: sehr}, {surface: hoach, lexeme: hoach}]
+      reverse: Der Berg isch sehr hoach
+  translations:
+    en: The mountain is very high.
+- id: s.u09.23
+  node: bar.u09.wondern
+  forms:
+    bar-Latn/moser:
+      text: I bin miad, ober zfriedn.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: miad, lexeme: miad}, {surface: ober,
+          lexeme: ober}, {surface: zfriedn, lexeme: zfriedn}]
+      reverse: I bin miad ober zfriedn
+  translations:
+    en: (I'm|I am) tired, but happy.
+- id: s.u09.24
+  node: bar.u09.wondern
+  forms:
+    bar-Latn/moser:
+      text: Af der Olm isch es kolt.
+      tokens: [{surface: Af, lexeme: af}, {surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Olm, lexeme: olm, feats: {Case: Dat, Number: Sing}}, {surface: isch, lexeme: sein,
+          feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: es, lexeme: es.it, feats: {Case: Nom}}, {surface: kolt, lexeme: kolt}]
+      reverse: (Af der Olm isch es kolt|Af der Olm isch's kolt|Es isch kolt af der Olm)
+  translations:
+    en: It's cold on the (Alm|mountain pasture).
+- id: s.u09.25
+  node: bar.u09.wondern
+  forms:
+    bar-Latn/moser:
+      text: In Bozn isch es hoaß.
+      tokens: [{surface: In, lexeme: in}, {surface: Bozn, lexeme: bozn, feats: {Case: Dat, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+        {surface: es, lexeme: es.it, feats: {Case: Nom}}, {surface: hoaß, lexeme: hoaß}]
+      reverse: (In Bozn isch es hoaß|In Bozn isch's hoaß|Es isch hoaß in Bozn)
+  translations:
+    en: It's hot in Bozen.
+stories:
+- id: bar.story.u09
+  node: bar.u09.story
+  title:
+    en: A hike to the Alm
+  characters:
+  - id: hannes
+    speaker: m
+    name:
+      bar-Latn/moser: Hannes
+  - id: giulia
+    speaker: f
+    name:
+      bar-Latn/moser: Giulia
+  - id: lena
+    speaker: f
+    name:
+      bar-Latn/moser: Lena
+  steps:
+  - line:
+      speaker: hannes
+      forms:
+        bar-Latn/moser:
+          text: Heint isch 's Wetter schian. Mir gian af di Olm!
+          tokens: [{surface: Heint, lexeme: heint}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: '''s', lexeme: der, feats: {Case: Nom,
+                Gender: Neut, Number: Sing}}, {surface: Wetter, lexeme: wetter, feats: {Case: Nom, Number: Sing}}, {surface: schian, lexeme: schian}, {surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: gian,
+              lexeme: gian, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: af, lexeme: af}, {surface: di, lexeme: der, feats: {Case: Acc, Gender: Fem, Number: Sing}},
+            {surface: Olm, lexeme: olm, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: The weather is nice today. Let's go up to the Alm!
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Isch des weit?
+          tokens: [{surface: Isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: des, lexeme: des}, {surface: weit, lexeme: weit}]
+      translations:
+        en: Is it far?
+  - line:
+      speaker: hannes
+      forms:
+        bar-Latn/moser:
+          text: Na, ober der Weg isch steil.
+          tokens: [{surface: Na, lexeme: na}, {surface: ober, lexeme: ober}, {surface: der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Weg, lexeme: weg, feats: {Case: Nom, Number: Sing}},
+            {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: steil, lexeme: steil}]
+      translations:
+        en: No, but the path is steep.
+  - line:
+      speaker: lena
+      ask: arrange
+      forms:
+        bar-Latn/moser:
+          text: Do isch a schianer See!
+          tokens: [{surface: Do, lexeme: do}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Nom, Gender: Masc,
+                Number: Sing}}, {surface: schianer, lexeme: schian, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: See, lexeme: see, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: There's a beautiful lake!
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: I bin miad. Gip's af der Olm a Hittn?
+          tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: miad, lexeme: miad}, {
+              surface: Gip's, lexemes: [{lexeme: gebm, surface: Gip, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it, surface: '''s', feats: {Case: Nom}}]},
+            {surface: af, lexeme: af}, {surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Olm, lexeme: olm, feats: {Case: Dat, Number: Sing}}, {surface: a, lexeme: a,
+              feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Hittn, lexeme: hittn, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: I'm tired. Is there a hut on the Alm?
+  - line:
+      speaker: hannes
+      forms:
+        bar-Latn/moser:
+          text: Jo, in der Hittn gip's Knedl und Kaffee.
+          tokens: [{surface: Jo, lexeme: jo}, {surface: in, lexeme: in}, {surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Hittn, lexeme: hittn, feats: {Case: Dat, Number: Sing}},
+            {surface: gip's, lexemes: [{lexeme: gebm, surface: gip, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it, surface: '''s', feats: {Case: Nom}}]},
+            {surface: Knedl, lexeme: knedl, feats: {Case: Acc, Number: Plur}}, {surface: und, lexeme: und}, {surface: Kaffee, lexeme: kaffee, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Yes, in the hut they have dumplings and coffee.
+  - choose:
+      prompt:
+        en: What do they have in the hut?
+      options:
+      - en: dumplings and coffee
+      - en: pizza and beer
+      - en: speck and wine
+      answer: 0
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Schaug, es schneibt!
+          tokens: [{surface: Schaug, lexeme: schaugn, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: es, lexeme: es.it, feats: {Case: Nom}}, {surface: schneibt, lexeme: schneibm,
+              feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      translations:
+        en: Look, it's snowing!
+  - line:
+      speaker: giulia
+      ask: complete
+      gap: lexeme:kolt
+      distractors:
+      - lexeme:hoaß
+      - lexeme:worm
+      forms:
+        bar-Latn/moser:
+          text: Af der Olm isch es kolt!
+          tokens: [{surface: Af, lexeme: af}, {surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Olm, lexeme: olm, feats: {Case: Dat, Number: Sing}}, {surface: isch, lexeme: sein,
+              feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: es, lexeme: es.it, feats: {Case: Nom}}, {surface: kolt, lexeme: kolt}]
+      translations:
+        en: It's cold up on the Alm!
+  - choose:
+      prompt:
+        en: What is the weather like on the Alm?
+      options:
+      - en: cold, with snow
+      - en: hot and sunny
+      - en: rainy and warm
+      answer: 0
+scenarios:
+- id: bar.hittn
+  after: bar.u09.wondern
+  title:
+    en: At the mountain hut
+  setting:
+    en: A wooden hut on an Alm above the tree line, after a two-hour climb, with benches outside in the sun and a view of the Dolomites.
+  character:
+    en: The Hüttenwirtin, a strong, cheerful woman in her fifties who runs the hut every summer and cooks everything herself.
+  goal:
+    en: Say where you have come from, ask what there is to eat and drink, order, and ask about the weather and the way down.

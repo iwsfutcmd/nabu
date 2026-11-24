@@ -1,0 +1,547 @@
+# Unit 8 (bar): the past. The perfect with hobm (i hon gessn, gmocht, gredt) and with sein (i bin gongen, kemmen,
+# gfohrn, gwesn), and wor, the one verb with a past of its own; the weekend, friends; Monday at work.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u08
+title:
+  en: Geschter Yesterday
+cefr: A2
+nodes:
+- {id: bar.u08.geschter, kind: lesson, introduces: ['lexeme:geschter', 'feature:VerbForm=Part']}
+- {id: bar.u08.gongen, kind: lesson, introduces: ['lexeme:freind', 'lexeme:freindin', 'lexeme:kronk', 'lexeme:wien']}
+- {id: bar.u08.wor, kind: lesson, introduces: ['lexeme:wochnend', 'lexeme:fescht', 'lexeme:zfriedn', 'lexeme:miad', 'feature:Tense=Past']}
+- {id: bar.u08.sechn, kind: lesson, introduces: ['lexeme:sechn', 'lexeme:schaugn', 'lexeme:film', 'lexeme:buach', 'lexeme:sogn', 'lexeme:frogn']}
+- {id: bar.u08.helfn, kind: lesson, introduces: ['lexeme:helfn', 'lexeme:spieln', 'lexeme:ratschn', 'lexeme:bringen']}
+- {id: bar.u08.story, kind: story}
+sentences:
+- id: s.u08.1
+  node: bar.u08.geschter
+  forms:
+    bar-Latn/moser:
+      text: Geschter hon i gorbatet.
+      tokens: [{surface: Geschter, lexeme: geschter}, {surface: hon, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: i, lexeme: i, feats: {Case: Nom}},
+        {surface: gorbatet, lexeme: orbatn, feats: {VerbForm: Part}}]
+      reverse: (Geschter hon i|I hon geschter) gorbatet
+  translations:
+    en: |-
+      Yesterday I worked.
+      I worked yesterday.
+- id: s.u08.2
+  node: bar.u08.geschter
+  forms:
+    bar-Latn/moser:
+      text: Wos hosch du geschter gmocht?
+      tokens: [{surface: Wos, lexeme: wos}, {surface: hosch, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: geschter,
+          lexeme: geschter}, {surface: gmocht, lexeme: mochn, feats: {VerbForm: Part}}]
+      reverse: Wos hosch du geschter gmocht
+  translations:
+    en: What did you do yesterday?
+- id: s.u08.3
+  node: bar.u08.geschter
+  forms:
+    bar-Latn/moser:
+      text: I hon Marende gmocht.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: hon, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Marende, lexeme: marende, feats: {
+            Case: Acc, Number: Sing}}, {surface: gmocht, lexeme: mochn, feats: {VerbForm: Part}}]
+      reverse: I hon Marende gmocht
+  translations:
+    en: I made (Marende|a snack|the afternoon snack).
+- id: s.u08.4
+  node: bar.u08.geschter
+  forms:
+    bar-Latn/moser:
+      text: Mir hobm Knedl gessn.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hobm, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Knedl, lexeme: knedl,
+          feats: {Case: Acc, Number: Plur}}, {surface: gessn, lexeme: essn, feats: {VerbForm: Part}}]
+      reverse: Mir hobm Knedl gessn
+  translations:
+    en: |-
+      We (ate|had) dumplings.
+      We've eaten dumplings.
+- id: s.u08.5
+  node: bar.u08.geschter
+  forms:
+    bar-Latn/moser:
+      text: Er hot an Wein trunkn.
+      tokens: [{surface: Er, lexeme: er, feats: {Case: Nom}}, {surface: hot, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: an, lexeme: a, feats: {Case: Acc,
+            Gender: Masc, Number: Sing}}, {surface: Wein, lexeme: wein, feats: {Case: Acc, Number: Sing}}, {surface: trunkn, lexeme: trinkn, feats: {VerbForm: Part}}]
+      reverse: Er hot an Wein trunkn
+  translations:
+    en: |-
+      He drank a wine.
+      He had a glass of wine.
+      He's had a wine.
+- id: s.u08.6
+  node: bar.u08.geschter
+  forms:
+    bar-Latn/moser:
+      text: Hosch du schun gessn?
+      tokens: [{surface: Hosch, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: schun, lexeme: schun},
+        {surface: gessn, lexeme: essn, feats: {VerbForm: Part}}]
+      reverse: (Hosch du|Du hosch) schun gessn
+  translations:
+    en: |-
+      Have you eaten (yet|already)?
+      Did you eat already?
+- id: s.u08.7
+  node: bar.u08.geschter
+  forms:
+    bar-Latn/moser:
+      text: Na, i hon nou nix gessn.
+      tokens: [{surface: Na, lexeme: na}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: hon, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: nou,
+          lexeme: nou}, {surface: nix, lexeme: nix}, {surface: gessn, lexeme: essn, feats: {VerbForm: Part}}]
+      reverse: Na i hon nou nix gessn
+  translations:
+    en: No, I haven't eaten anything yet.
+- id: s.u08.8
+  node: bar.u08.geschter
+  forms:
+    bar-Latn/moser:
+      text: Mir hobm viel gredt.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hobm, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: viel, lexeme: viel}, {
+          surface: gredt, lexeme: redn, feats: {VerbForm: Part}}]
+      reverse: Mir hobm viel gredt
+  translations:
+    en: We talked a lot.
+- id: s.u08.9
+  node: bar.u08.gongen
+  forms:
+    bar-Latn/moser:
+      text: I bin in di Stodt gongen.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: in, lexeme: in}, {surface: di,
+          lexeme: der, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Stodt, lexeme: stodt, feats: {Case: Acc, Number: Sing}}, {surface: gongen, lexeme: gian, feats: {VerbForm: Part}}]
+      reverse: I bin in di Stodt gongen
+  translations:
+    en: I went (into|to) town.
+- id: s.u08.10
+  node: bar.u08.gongen
+  forms:
+    bar-Latn/moser:
+      text: Bisch du geschter in Meran gwesn?
+      tokens: [{surface: Bisch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: geschter, lexeme: geschter},
+        {surface: in, lexeme: in}, {surface: Meran, lexeme: meran, feats: {Case: Dat, Number: Sing}}, {surface: gwesn, lexeme: sein, feats: {VerbForm: Part}}]
+      reverse: (Bisch du|Du bisch) geschter in Meran gwesn
+  translations:
+    en: Were you in Meran yesterday?
+- id: s.u08.11
+  node: bar.u08.gongen
+  forms:
+    bar-Latn/moser:
+      text: Jo, i bin mitn Zug gfohrn.
+      tokens: [{surface: Jo, lexeme: jo}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mitn,
+          lexemes: [{lexeme: mit, surface: mit, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc, Number: Sing}}]}, {surface: Zug, lexeme: zug, feats: {Case: Dat, Number: Sing}}, {
+          surface: gfohrn, lexeme: fohrn, feats: {VerbForm: Part}}]
+      reverse: Jo i bin mitn Zug gfohrn
+  translations:
+    en: |-
+      Yes, I went by train.
+      Yes, I took the train.
+- id: s.u08.12
+  node: bar.u08.gongen
+  forms:
+    bar-Latn/moser:
+      text: Hannes isch geschter kemmen.
+      tokens: [{surface: Hannes, lexeme: hannes, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: geschter,
+          lexeme: geschter}, {surface: kemmen, lexeme: kemmen, feats: {VerbForm: Part}}]
+      reverse: (Hannes|Der Hannes) isch geschter kemmen
+  translations:
+    en: Hannes came yesterday.
+- id: s.u08.13
+  node: bar.u08.gongen
+  forms:
+    bar-Latn/moser:
+      text: Mir sein dahoam gwesn.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: sein, lexeme: sein, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dahoam, lexeme: dahoam},
+        {surface: gwesn, lexeme: sein, feats: {VerbForm: Part}}]
+      reverse: Mir sein dahoam gwesn
+  translations:
+    en: |-
+      We were (at home|home).
+      We've been at home.
+- id: s.u08.14
+  node: bar.u08.gongen
+  forms:
+    bar-Latn/moser:
+      text: Wo bisch du gwesn?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: bisch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: gwesn,
+          lexeme: sein, feats: {VerbForm: Part}}]
+      reverse: Wo bisch du gwesn
+  translations:
+    en: Where (were you|have you been)?
+- id: s.u08.15
+  node: bar.u08.gongen
+  forms:
+    bar-Latn/moser:
+      text: Mei Freindin isch kronk gwesn.
+      tokens: [{surface: Mei, lexeme: mei, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Freindin, lexeme: freindin, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kronk, lexeme: kronk}, {surface: gwesn, lexeme: sein, feats: {VerbForm: Part}}]
+      reverse: Mei Freindin isch kronk gwesn
+  translations:
+    en: |-
+      My friend was (ill|sick).
+      My friend has been (ill|sick).
+- id: s.u08.16
+  node: bar.u08.gongen
+  forms:
+    bar-Latn/moser:
+      text: Ihr Freind isch noch Wien gfohrn.
+      tokens: [{surface: Ihr, lexeme: ihr.poss, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Freind, lexeme: freind, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: noch, lexeme: noch}, {surface: Wien, lexeme: wien, feats: {Case: Dat, Number: Sing}}, {surface: gfohrn, lexeme: fohrn,
+          feats: {VerbForm: Part}}]
+      reverse: Ihr Freind isch noch Wien gfohrn
+  translations:
+    en: |-
+      Her (boyfriend|friend) went to Vienna.
+      Her (boyfriend|friend) has gone to Vienna.
+- id: s.u08.17
+  node: bar.u08.wor
+  forms:
+    bar-Latn/moser:
+      text: I wor miad.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: wor, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: miad, lexeme: miad}]
+      reverse: (I wor miad|I bin miad gwesn)
+  translations:
+    en: I was tired.
+- id: s.u08.18
+  node: bar.u08.wor
+  forms:
+    bar-Latn/moser:
+      text: Wo worsch du?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: worsch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}]
+      reverse: (Wo worsch du|Wo bisch du gwesn)
+  translations:
+    en: Where were you?
+- id: s.u08.19
+  node: bar.u08.wor
+  forms:
+    bar-Latn/moser:
+      text: '''s Fescht wor schian.'
+      tokens: [{surface: '''s', lexeme: der, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Fescht, lexeme: fescht, feats: {Case: Nom, Number: Sing}}, {surface: wor, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: schian, lexeme: schian}]
+      reverse: ('s Fescht wor schian|'s Fescht isch schian gwesn)
+  translations:
+    en: The party was (nice|great|lovely).
+- id: s.u08.20
+  node: bar.u08.wor
+  forms:
+    bar-Latn/moser:
+      text: Mir worn zfriedn.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: worn, lexeme: sein, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: zfriedn, lexeme: zfriedn}]
+      reverse: (Mir worn zfriedn|Mir sein zfriedn gwesn)
+  translations:
+    en: We were (happy|pleased|content).
+- id: s.u08.21
+  node: bar.u08.wor
+  forms:
+    bar-Latn/moser:
+      text: Wia wor dei Wochnend?
+      tokens: [{surface: Wia, lexeme: wia}, {surface: wor, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: dei, lexeme: dei, feats: {Case: Nom, Gender: Neut,
+            Number: Sing}}, {surface: Wochnend, lexeme: wochnend, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Wia wor dei Wochnend|Wia isch dei Wochnend gwesn)
+  translations:
+    en: How was your weekend?
+- id: s.u08.22
+  node: bar.u08.wor
+  forms:
+    bar-Latn/moser:
+      text: Es wor sehr schian.
+      tokens: [{surface: Es, lexeme: es.it, feats: {Case: Nom}}, {surface: wor, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}}, {surface: sehr, lexeme: sehr}, {
+          surface: schian, lexeme: schian}]
+      reverse: (Es wor|'s wor) sehr schian
+  translations:
+    en: It was very (nice|beautiful|lovely).
+- id: s.u08.23
+  node: bar.u08.wor
+  forms:
+    bar-Latn/moser:
+      text: Di Kinder worn miad.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Number: Plur}}, {surface: Kinder, lexeme: kind, feats: {Case: Nom, Number: Plur}}, {surface: worn, lexeme: sein, feats: {Mood: Ind, Number: Plur,
+            Person: '3', Tense: Past, VerbForm: Fin}}, {surface: miad, lexeme: miad}]
+      reverse: (Di Kinder worn miad|Di Kinder sein miad gwesn)
+  translations:
+    en: The children were tired.
+- id: s.u08.24
+  node: bar.u08.sechn
+  forms:
+    bar-Latn/moser:
+      text: I hon an Film gsechn.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: hon, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: an, lexeme: a, feats: {Case: Acc,
+            Gender: Masc, Number: Sing}}, {surface: Film, lexeme: film, feats: {Case: Acc, Number: Sing}}, {surface: gsechn, lexeme: sechn, feats: {VerbForm: Part}}]
+      reverse: I hon an Film gsechn
+  translations:
+    en: |-
+      I saw a film.
+      I watched a (film|movie).
+- id: s.u08.25
+  node: bar.u08.sechn
+  forms:
+    bar-Latn/moser:
+      text: Hosch du di Oma gsechn?
+      tokens: [{surface: Hosch, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: di, lexeme: der, feats: {
+            Case: Acc, Gender: Fem, Number: Sing}}, {surface: Oma, lexeme: oma, feats: {Case: Acc, Number: Sing}}, {surface: gsechn, lexeme: sechn, feats: {VerbForm: Part}}]
+      reverse: (Hosch du|Du hosch) di Oma gsechn
+  translations:
+    en: |-
+      Did you see (Grandma|your grandma)?
+      Have you seen (Grandma|your grandma)?
+- id: s.u08.26
+  node: bar.u08.sechn
+  forms:
+    bar-Latn/moser:
+      text: Schaug, do isch Flori!
+      tokens: [{surface: Schaug, lexeme: schaugn, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: do, lexeme: do}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Flori, lexeme: flori, feats: {Case: Nom, Number: Sing}}]
+      reverse: Schaug do isch (Flori|der Flori)
+  translations:
+    en: Look, (there's|here's) Flori!
+- id: s.u08.27
+  node: bar.u08.sechn
+  forms:
+    bar-Latn/moser:
+      text: I siach di nit.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: siach, lexeme: sechn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: di, lexeme: du, feats: {
+            Case: Acc}}, {surface: nit, lexeme: nit}]
+      reverse: I siach di (nit|net)
+  translations:
+    en: |-
+      I can't see you.
+      I don't see you.
+- id: s.u08.28
+  node: bar.u08.sechn
+  forms:
+    bar-Latn/moser:
+      text: Wos hot er gsogt?
+      tokens: [{surface: Wos, lexeme: wos}, {surface: hot, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: er, lexeme: er, feats: {Case: Nom}}, {surface: gsogt,
+          lexeme: sogn, feats: {VerbForm: Part}}]
+      reverse: Wos hot er gsogt
+  translations:
+    en: |-
+      What did he say?
+      What has he said?
+- id: s.u08.29
+  node: bar.u08.sechn
+  forms:
+    bar-Latn/moser:
+      text: Sie hot nix gsogt.
+      tokens: [{surface: Sie, lexeme: sie, feats: {Case: Nom}}, {surface: hot, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nix, lexeme: nix}, {surface: gsogt,
+          lexeme: sogn, feats: {VerbForm: Part}}]
+      reverse: Sie hot nix gsogt
+  translations:
+    en: |-
+      She didn't say anything.
+      She said nothing.
+- id: s.u08.30
+  node: bar.u08.sechn
+  forms:
+    bar-Latn/moser:
+      text: I hon di Mamme gfrogt.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: hon, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: di, lexeme: der, feats: {Case: Acc,
+            Gender: Fem, Number: Sing}}, {surface: Mamme, lexeme: mamme, feats: {Case: Acc, Number: Sing}}, {surface: gfrogt, lexeme: frogn, feats: {VerbForm: Part}}]
+      reverse: I hon di Mamme gfrogt
+  translations:
+    en: I asked (Mum|Mom|my mother).
+- id: s.u08.31
+  node: bar.u08.sechn
+  forms:
+    bar-Latn/moser:
+      text: Mir hobm a Buach kaft.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hobm, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {
+            Case: Acc, Gender: Neut, Number: Sing}}, {surface: Buach, lexeme: buach, feats: {Case: Acc, Number: Sing}}, {surface: kaft, lexeme: kafn, feats: {VerbForm: Part}}]
+      reverse: Mir hobm a Buach kaft
+  translations:
+    en: We bought a book.
+- id: s.u08.32
+  node: bar.u08.helfn
+  forms:
+    bar-Latn/moser:
+      text: I hon der Oma gholfn.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: hon, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: der, lexeme: der, feats: {
+            Case: Dat, Gender: Fem, Number: Sing}}, {surface: Oma, lexeme: oma, feats: {Case: Dat, Number: Sing}}, {surface: gholfn, lexeme: helfn, feats: {VerbForm: Part}}]
+      reverse: I hon der Oma gholfn
+  translations:
+    en: I helped (Grandma|my grandma|my grandmother).
+- id: s.u08.33
+  node: bar.u08.helfn
+  forms:
+    bar-Latn/moser:
+      text: Flori hot mit di Kinder gspielt.
+      tokens: [{surface: Flori, lexeme: flori, feats: {Case: Nom, Number: Sing}}, {surface: hot, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mit,
+          lexeme: mit}, {surface: di, lexeme: der, feats: {Case: Dat, Number: Plur}}, {surface: Kinder, lexeme: kind, feats: {Case: Dat, Number: Plur}}, {surface: gspielt, lexeme: spieln, feats: {VerbForm: Part}}]
+      reverse: (Flori|Der Flori) hot mit di Kinder gspielt
+  translations:
+    en: Flori played with the children.
+- id: s.u08.34
+  node: bar.u08.helfn
+  forms:
+    bar-Latn/moser:
+      text: Mir hobm viel gratscht.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hobm, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: viel, lexeme: viel}, {
+          surface: gratscht, lexeme: ratschn, feats: {VerbForm: Part}}]
+      reverse: Mir hobm viel gratscht
+  translations:
+    en: |-
+      We chatted a lot.
+      We had a long chat.
+- id: s.u08.35
+  node: bar.u08.helfn
+  forms:
+    bar-Latn/moser:
+      text: Er hot mir an Kaffee brocht.
+      tokens: [{surface: Er, lexeme: er, feats: {Case: Nom}}, {surface: hot, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mir, lexeme: i, feats: {
+            Case: Dat}}, {surface: an, lexeme: a, feats: {Case: Acc, Gender: Masc, Number: Sing}}, {surface: Kaffee, lexeme: kaffee, feats: {Case: Acc, Number: Sing}}, {surface: brocht, lexeme: bringen,
+          feats: {VerbForm: Part}}]
+      reverse: Er hot mir an Kaffee brocht
+  translations:
+    en: He brought me a coffee.
+- id: s.u08.36
+  node: bar.u08.helfn
+  forms:
+    bar-Latn/moser:
+      text: Mei Freind hot mir gholfn.
+      tokens: [{surface: Mei, lexeme: mei, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Freind, lexeme: freind, feats: {Case: Nom, Number: Sing}}, {surface: hot, lexeme: hobm, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mir, lexeme: i, feats: {Case: Dat}}, {surface: gholfn, lexeme: helfn, feats: {VerbForm: Part}}]
+      reverse: Mei Freind hot mir gholfn
+  translations:
+    en: My friend helped me.
+- id: s.u08.37
+  node: bar.u08.helfn
+  forms:
+    bar-Latn/moser:
+      text: Hosch du dei Freindin gsechn?
+      tokens: [{surface: Hosch, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: dei, lexeme: dei, feats: {
+            Case: Acc, Gender: Fem, Number: Sing}}, {surface: Freindin, lexeme: freindin, feats: {Case: Acc, Number: Sing}}, {surface: gsechn, lexeme: sechn, feats: {VerbForm: Part}}]
+      reverse: (Hosch du|Du hosch) dei Freindin gsechn
+  translations:
+    en: |-
+      Have you seen your (friend|girlfriend)?
+      Did you see your (friend|girlfriend)?
+stories:
+- id: bar.story.u08
+  node: bar.u08.story
+  title:
+    en: Monday morning
+  characters:
+  - id: giulia
+    speaker: f
+    name:
+      bar-Latn/moser: Giulia
+  - id: lena
+    speaker: f
+    name:
+      bar-Latn/moser: Lena
+  steps:
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Servus, Lena! Wia wor dei Wochnend?
+          tokens: [{surface: Servus, lexeme: servus}, {surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}, {surface: Wia, lexeme: wia}, {surface: wor, lexeme: sein, feats: {Mood: Ind, Number: Sing,
+                Person: '3', Tense: Past, VerbForm: Fin}}, {surface: dei, lexeme: dei, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Wochnend, lexeme: wochnend, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Hi, Lena! How was your weekend?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Schian! I bin afn Ritten gfohrn.
+          tokens: [{surface: Schian, lexeme: schian}, {surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: afn, lexemes: [{lexeme: af, surface: af, base: true}, {lexeme: der, surface: n, feats: {Case: Acc, Gender: Masc, Number: Sing}}]}, {surface: Ritten, lexeme: ritten, feats: {Case: Acc,
+                Number: Sing}}, {surface: gfohrn, lexeme: fohrn, feats: {VerbForm: Part}}]
+      translations:
+        en: Lovely! I went up to the Ritten.
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Za der Oma?
+          tokens: [{surface: Za, lexeme: za}, {surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Oma, lexeme: oma, feats: {Case: Dat, Number: Sing}}]
+      translations:
+        en: To your grandma's?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Jo. Mir hobm Marende gmocht und viel gratscht.
+          tokens: [{surface: Jo, lexeme: jo}, {surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hobm, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {
+              surface: Marende, lexeme: marende, feats: {Case: Acc, Number: Sing}}, {surface: gmocht, lexeme: mochn, feats: {VerbForm: Part}}, {surface: und, lexeme: und}, {surface: viel, lexeme: viel},
+            {surface: gratscht, lexeme: ratschn, feats: {VerbForm: Part}}]
+      translations:
+        en: Yes. We made Marende and chatted a lot.
+  - line:
+      speaker: lena
+      ask: arrange
+      forms:
+        bar-Latn/moser:
+          text: Und wos hosch du gmocht?
+          tokens: [{surface: Und, lexeme: und}, {surface: wos, lexeme: wos}, {surface: hosch, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du,
+              feats: {Case: Nom}}, {surface: gmocht, lexeme: mochn, feats: {VerbForm: Part}}]
+      translations:
+        en: And what did you do?
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: I wor kronk. I bin dahoam gwesn.
+          tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: wor, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}}, {surface: kronk, lexeme: kronk},
+            {surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dahoam, lexeme: dahoam}, {surface: gwesn,
+              lexeme: sein, feats: {VerbForm: Part}}]
+      translations:
+        en: I was ill. I stayed at home.
+  - choose:
+      prompt:
+        en: Why did Giulia stay at home?
+      options:
+      - en: she was ill
+      - en: she was working
+      - en: it was raining
+      answer: 0
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Und iatz? Geat's dir guat?
+          tokens: [{surface: Und, lexeme: und}, {surface: iatz, lexeme: iatz}, {surface: Geat's, lexemes: [{lexeme: gian, surface: Geat, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+                    VerbForm: Fin}}, {lexeme: es.it, surface: '''s', feats: {Case: Nom}}]}, {surface: dir, lexeme: du, feats: {Case: Dat}}, {surface: guat, lexeme: guat}]
+      translations:
+        en: And now? Are you all right?
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Jo, iatz geat's mir guat.
+          tokens: [{surface: Jo, lexeme: jo}, {surface: iatz, lexeme: iatz}, {surface: geat's, lexemes: [{lexeme: gian, surface: geat, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+                    VerbForm: Fin}}, {lexeme: es.it, surface: '''s', feats: {Case: Nom}}]}, {surface: mir, lexeme: i, feats: {Case: Dat}}, {surface: guat, lexeme: guat}]
+      translations:
+        en: Yes, I'm fine now.
+  - line:
+      speaker: giulia
+      ask: complete
+      gap: lexeme:hannes
+      distractors:
+      - lexeme:flori
+      - lexeme:luis
+      forms:
+        bar-Latn/moser:
+          text: Hannes hot mir Suppe brocht.
+          tokens: [{surface: Hannes, lexeme: hannes, feats: {Case: Nom, Number: Sing}}, {surface: hot, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mir,
+              lexeme: i, feats: {Case: Dat}}, {surface: Suppe, lexeme: suppe, feats: {Case: Acc, Number: Sing}}, {surface: brocht, lexeme: bringen, feats: {VerbForm: Part}}]
+      translations:
+        en: Hannes brought me soup.
+  - choose:
+      prompt:
+        en: Who brought Giulia soup?
+      options:
+      - en: Hannes
+      - en: Lena
+      - en: Oma
+      answer: 0
+scenarios:
+- id: bar.wochnend
+  after: bar.u08.helfn
+  title:
+    en: After the weekend
+  setting:
+    en: The staff room of the hospital in Bozen, on a Monday morning, coffee in hand before the shift.
+  character:
+    en: Giulia, a nurse in her mid-twenties from an Italian-speaking family in Bozen, who is learning the dialect and loves hearing about other people's weekends.
+  goal:
+    en: Tell her what you did at the weekend (where you went, what you ate, who you saw), and ask about hers.

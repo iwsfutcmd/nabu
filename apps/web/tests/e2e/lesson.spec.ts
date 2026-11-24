@@ -31,6 +31,7 @@ const RUNS: Readonly<Record<Mode, readonly (readonly [string, string, string])[]
     ["tok", "tok-Latn/standard", "tok.u01.hello"],
     ["chg", "chg-Arab/standard", "chg.u01.bread-and-tea"],
     ["sk", "sk-Latn/standard", "sk.u01.volam-sa"],
+    ["bar", "bar-Latn/moser", "bar.u01.hoassn"],
   ],
   touch: [
     ["fa", "fa-Arab/standard", "fa.i-am"],
@@ -44,6 +45,7 @@ const RUNS: Readonly<Record<Mode, readonly (readonly [string, string, string])[]
     ["tok", "tok-Qaap/sitelen-pona", "tok.u01.person"],
     ["chg", "chg-Arab/standard", "chg.u01.sweet"],
     ["sk", "sk-Latn/standard", "sk.u02.jazyky"],
+    ["bar", "bar-Latn/moser", "bar.u02.redn"],
   ],
 };
 

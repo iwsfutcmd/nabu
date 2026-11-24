@@ -1,0 +1,719 @@
+# Unit 1 (bar): greetings and goodbyes (griaß di, griaß enk, pfiat di, servus, ciao), thanks, names (hoaßn),
+# how are you (wia geat's?), sein in the singular, and Sie to Frau Pichler downstairs.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u01
+title:
+  en: Griaß di! Hello!
+cefr: A1
+nodes:
+- {id: bar.u01.griass, kind: lesson, introduces: ['lexeme:griaß-di', 'lexeme:griaß-enk', 'lexeme:pfiat-di', 'lexeme:pfiat-enk', 'lexeme:servus', 'lexeme:ciao', 'lexeme:lena']}
+- {id: bar.u01.danke, kind: lesson, introduces: ['lexeme:danke', 'lexeme:bitte', 'lexeme:jo', 'lexeme:na', 'lexeme:guatn-morgn', 'lexeme:guate-nocht']}
+- {id: bar.u01.hoassn, kind: lesson, introduces: ['lexeme:hoaßn', 'lexeme:i', 'lexeme:du', 'lexeme:wia', 'lexeme:und', 'lexeme:hannes', 'lexeme:giulia', 'feature:Person=2']}
+- {id: bar.u01.geats, kind: lesson, introduces: ['lexeme:gian', 'lexeme:es.it', 'lexeme:guat', 'lexeme:a.auch', 'lexeme:sehr', 'feature:Case=Dat']}
+- {id: bar.u01.sein, kind: lesson, introduces: ['lexeme:sein', 'lexeme:er', 'lexeme:sie', 'lexeme:wer', 'lexeme:des', 'lexeme:luis']}
+- {id: bar.u01.formal, kind: lesson, introduces: ['lexeme:sie.formal', 'lexeme:griaß-gott', 'lexeme:frau', 'lexeme:pichler', 'lexeme:der', 'lexeme:herr', 'lexeme:gruber', 'feature:Number=Plur', 'feature:Gender=Fem']}
+- {id: bar.u01.story, kind: story}
+sentences:
+- id: s.u01.1
+  node: bar.u01.griass
+  forms:
+    bar-Latn/moser:
+      text: Griaß di!
+      tokens: [{surface: Griaß, lexeme: griaß-di}, {surface: di, lexeme: griaß-di}]
+      reverse: (Griaß di|Servus|Ciao)
+  translations:
+    en: |-
+      Hi!
+      Hello!
+- id: s.u01.2
+  node: bar.u01.griass
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    bar-Latn/moser:
+      text: Griaß enk!
+      tokens: [{surface: Griaß, lexeme: griaß-enk}, {surface: enk, lexeme: griaß-enk}]
+      reverse: (Griaß enk|Servus|Ciao)
+  translations:
+    en: |-
+      Hi, everyone!
+      Hello, everyone!
+      Hello (to you all)!
+- id: s.u01.3
+  node: bar.u01.griass
+  forms:
+    bar-Latn/moser:
+      text: Servus!
+      tokens: [{surface: Servus, lexeme: servus}]
+      reverse: (Servus|Griaß di|Ciao)
+  translations:
+    en: |-
+      Hi!
+      Hey!
+      Hello!
+- id: s.u01.4
+  node: bar.u01.griass
+  forms:
+    bar-Latn/moser:
+      text: Pfiat di!
+      tokens: [{surface: Pfiat, lexeme: pfiat-di}, {surface: di, lexeme: pfiat-di}]
+      reverse: (Pfiat di|Servus|Ciao)
+  translations:
+    en: |-
+      Bye!
+      Goodbye!
+      See you!
+- id: s.u01.5
+  node: bar.u01.griass
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    bar-Latn/moser:
+      text: Pfiat enk!
+      tokens: [{surface: Pfiat, lexeme: pfiat-enk}, {surface: enk, lexeme: pfiat-enk}]
+      reverse: (Pfiat enk|Servus|Ciao)
+  translations:
+    en: |-
+      Bye, everyone!
+      Goodbye (to you all)!
+- id: s.u01.6
+  node: bar.u01.griass
+  forms:
+    bar-Latn/moser:
+      text: Ciao, Lena!
+      tokens: [{surface: Ciao, lexeme: ciao}, {surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Ciao|Servus|Griaß di) Lena
+  translations:
+    en: |-
+      (Hi|Hello), Lena!
+      Bye, Lena!
+- id: s.u01.7
+  node: bar.u01.griass
+  forms:
+    bar-Latn/moser:
+      text: Servus, Lena! Griaß di!
+      tokens: [{surface: Servus, lexeme: servus}, {surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}, {surface: Griaß, lexeme: griaß-di}, {surface: di, lexeme: griaß-di}]
+      reverse: (Servus|Ciao) Lena (Griaß di|Servus)
+  translations:
+    en: Hi, Lena! Hello!
+- id: s.u01.8
+  node: bar.u01.danke
+  forms:
+    bar-Latn/moser:
+      text: Danke!
+      tokens: [{surface: Danke, lexeme: danke}]
+      reverse: Danke
+  translations:
+    en: |-
+      Thank you!
+      Thanks!
+- id: s.u01.9
+  node: bar.u01.danke
+  forms:
+    bar-Latn/moser:
+      text: Bitte!
+      tokens: [{surface: Bitte, lexeme: bitte}]
+      reverse: Bitte
+  translations:
+    en: |-
+      Please!
+      You're welcome!
+- id: s.u01.10
+  node: bar.u01.danke
+  forms:
+    bar-Latn/moser:
+      text: Jo, bitte.
+      tokens: [{surface: Jo, lexeme: jo}, {surface: bitte, lexeme: bitte}]
+      reverse: Jo bitte
+  translations:
+    en: Yes, please.
+- id: s.u01.11
+  node: bar.u01.danke
+  forms:
+    bar-Latn/moser:
+      text: Na, danke.
+      tokens: [{surface: Na, lexeme: na}, {surface: danke, lexeme: danke}]
+      reverse: Na danke
+  translations:
+    en: No, (thank you|thanks).
+- id: s.u01.12
+  node: bar.u01.danke
+  forms:
+    bar-Latn/moser:
+      text: Jo, danke!
+      tokens: [{surface: Jo, lexeme: jo}, {surface: danke, lexeme: danke}]
+      reverse: Jo danke
+  translations:
+    en: Yes, (thank you|thanks)!
+- id: s.u01.13
+  node: bar.u01.danke
+  forms:
+    bar-Latn/moser:
+      text: Guatn Morgn!
+      tokens: [{surface: Guatn, lexeme: guatn-morgn}, {surface: Morgn, lexeme: guatn-morgn}]
+      reverse: Guatn Morgn
+  translations:
+    en: |-
+      Good morning!
+      Morning!
+- id: s.u01.14
+  node: bar.u01.danke
+  forms:
+    bar-Latn/moser:
+      text: Guate Nocht!
+      tokens: [{surface: Guate, lexeme: guate-nocht}, {surface: Nocht, lexeme: guate-nocht}]
+      reverse: Guate Nocht
+  translations:
+    en: |-
+      Good night!
+      Night!
+- id: s.u01.15
+  node: bar.u01.danke
+  forms:
+    bar-Latn/moser:
+      text: Danke, Lena!
+      tokens: [{surface: Danke, lexeme: danke}, {surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}]
+      reverse: Danke Lena
+  translations:
+    en: (Thank you|Thanks), Lena!
+- id: s.u01.16
+  node: bar.u01.hoassn
+  forms:
+    bar-Latn/moser:
+      text: I hoaß Lena.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: hoaß, lexeme: hoaßn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Lena, lexeme: lena, feats: {
+            Case: Nom, Number: Sing}}]
+      reverse: I hoaß Lena
+  translations:
+    en: |-
+      My name is Lena.
+      (I'm|I am) Lena.
+      (I'm|I am) called Lena.
+- id: s.u01.17
+  node: bar.u01.hoassn
+  forms:
+    bar-Latn/moser:
+      text: Und du?
+      tokens: [{surface: Und, lexeme: und}, {surface: du, lexeme: du, feats: {Case: Nom}}]
+      reverse: Und du
+  translations:
+    en: |-
+      And you?
+      What about you?
+- id: s.u01.18
+  node: bar.u01.hoassn
+  forms:
+    bar-Latn/moser:
+      text: Wia hoaßt du?
+      tokens: [{surface: Wia, lexeme: wia}, {surface: hoaßt, lexeme: hoaßn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}]
+      reverse: Wia hoaßt du
+  translations:
+    en: |-
+      What's your name?
+      What is your name?
+- id: s.u01.19
+  node: bar.u01.hoassn
+  forms:
+    bar-Latn/moser:
+      text: I hoaß Giulia.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: hoaß, lexeme: hoaßn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Giulia, lexeme: giulia, feats: {
+            Case: Nom, Number: Sing}}]
+      reverse: I hoaß Giulia
+  translations:
+    en: |-
+      My name is Giulia.
+      (I'm|I am) Giulia.
+      (I'm|I am) called Giulia.
+- id: s.u01.20
+  node: bar.u01.hoassn
+  forms:
+    bar-Latn/moser:
+      text: Du hoaßt Hannes?
+      tokens: [{surface: Du, lexeme: du, feats: {Case: Nom}}, {surface: hoaßt, lexeme: hoaßn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: Hannes, lexeme: hannes,
+          feats: {Case: Nom, Number: Sing}}]
+      reverse: (Du hoaßt|Hoaßt du) Hannes
+  translations:
+    en: |-
+      Your name is Hannes?
+      Is your name Hannes?
+      Are you called Hannes?
+- id: s.u01.21
+  node: bar.u01.hoassn
+  forms:
+    bar-Latn/moser:
+      text: Jo, i hoaß Hannes.
+      tokens: [{surface: Jo, lexeme: jo}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: hoaß, lexeme: hoaßn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Hannes,
+          lexeme: hannes, feats: {Case: Nom, Number: Sing}}]
+      reverse: Jo i hoaß Hannes
+  translations:
+    en: |-
+      Yes, my name is Hannes.
+      Yes, (I'm|I am) Hannes.
+- id: s.u01.22
+  node: bar.u01.hoassn
+  forms:
+    bar-Latn/moser:
+      text: Griaß di, i hoaß Lena.
+      tokens: [{surface: Griaß, lexeme: griaß-di}, {surface: di, lexeme: griaß-di}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: hoaß, lexeme: hoaßn, feats: {Mood: Ind, Number: Sing, Person: '1',
+            Tense: Pres, VerbForm: Fin}}, {surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}]
+      reverse: (Griaß di|Servus|Ciao) i hoaß Lena
+  translations:
+    en: |-
+      (Hi|Hello), my name is Lena.
+      (Hi|Hello), (I'm|I am) Lena.
+- id: s.u01.23
+  node: bar.u01.geats
+  forms:
+    bar-Latn/moser:
+      text: Wia geat's?
+      tokens: [{surface: Wia, lexeme: wia}, {surface: geat's, lexemes: [{lexeme: gian, surface: geat, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it,
+              surface: '''s', feats: {Case: Nom}}]}]
+      reverse: Wia geat's
+  translations:
+    en: |-
+      How are you?
+      How's it going?
+      How are things?
+- id: s.u01.24
+  node: bar.u01.geats
+  forms:
+    bar-Latn/moser:
+      text: Guat, danke.
+      tokens: [{surface: Guat, lexeme: guat}, {surface: danke, lexeme: danke}]
+      reverse: Guat danke
+  translations:
+    en: |-
+      (Fine|Good|Well), (thanks|thank you).
+      (I'm|I am) (fine|good|well), (thanks|thank you).
+- id: s.u01.25
+  node: bar.u01.geats
+  forms:
+    bar-Latn/moser:
+      text: Sehr guat!
+      tokens: [{surface: Sehr, lexeme: sehr}, {surface: guat, lexeme: guat}]
+      reverse: Sehr guat
+  translations:
+    en: |-
+      Very good!
+      Very well!
+- id: s.u01.26
+  node: bar.u01.geats
+  forms:
+    bar-Latn/moser:
+      text: Und dir?
+      tokens: [{surface: Und, lexeme: und}, {surface: dir, lexeme: du, feats: {Case: Dat}}]
+      reverse: Und dir
+  translations:
+    en: |-
+      And you?
+      And how are you?
+      How about you?
+- id: s.u01.27
+  node: bar.u01.geats
+  forms:
+    bar-Latn/moser:
+      text: Mir a.
+      tokens: [{surface: Mir, lexeme: i, feats: {Case: Dat}}, {surface: a, lexeme: a.auch}]
+      reverse: Mir a
+  translations:
+    en: |-
+      Me too.
+      Same here.
+      So am I.
+- id: s.u01.28
+  node: bar.u01.geats
+  forms:
+    bar-Latn/moser:
+      text: Wia geat's dir?
+      tokens: [{surface: Wia, lexeme: wia}, {surface: geat's, lexemes: [{lexeme: gian, surface: geat, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it,
+              surface: '''s', feats: {Case: Nom}}]}, {surface: dir, lexeme: du, feats: {Case: Dat}}]
+      reverse: Wia geat's dir
+  translations:
+    en: |-
+      How are you?
+      How are you doing?
+- id: s.u01.29
+  node: bar.u01.geats
+  forms:
+    bar-Latn/moser:
+      text: Mir geat's guat.
+      tokens: [{surface: Mir, lexeme: i, feats: {Case: Dat}}, {surface: geat's, lexemes: [{lexeme: gian, surface: geat, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+            {lexeme: es.it, surface: '''s', feats: {Case: Nom}}]}, {surface: guat, lexeme: guat}]
+      reverse: Mir geat's guat
+  translations:
+    en: |-
+      (I'm|I am) (fine|good|well).
+      (I'm|I am) doing well.
+- id: s.u01.30
+  node: bar.u01.sein
+  forms:
+    bar-Latn/moser:
+      text: I bin Lena.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Lena, lexeme: lena, feats: {
+            Case: Nom, Number: Sing}}]
+      reverse: I bin Lena
+  translations:
+    en: (I'm|I am) Lena.
+- id: s.u01.31
+  node: bar.u01.sein
+  forms:
+    bar-Latn/moser:
+      text: Wer bisch du?
+      tokens: [{surface: Wer, lexeme: wer}, {surface: bisch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}]
+      reverse: Wer bisch du
+  translations:
+    en: Who are you?
+- id: s.u01.32
+  node: bar.u01.sein
+  forms:
+    bar-Latn/moser:
+      text: Wer isch des?
+      tokens: [{surface: Wer, lexeme: wer}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: des, lexeme: des}]
+      reverse: Wer isch des
+  translations:
+    en: |-
+      Who's that?
+      Who is that?
+      Who is it?
+- id: s.u01.33
+  node: bar.u01.sein
+  forms:
+    bar-Latn/moser:
+      text: Des isch Giulia.
+      tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Giulia, lexeme: giulia, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: Des isch Giulia
+  translations:
+    en: (That's|That is|This is|It's) Giulia.
+- id: s.u01.34
+  node: bar.u01.sein
+  forms:
+    bar-Latn/moser:
+      text: Sie isch Giulia.
+      tokens: [{surface: Sie, lexeme: sie, feats: {Case: Nom}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Giulia, lexeme: giulia,
+          feats: {Case: Nom, Number: Sing}}]
+      reverse: Sie isch Giulia
+  translations:
+    en: (She's|She is) Giulia.
+- id: s.u01.35
+  node: bar.u01.sein
+  forms:
+    bar-Latn/moser:
+      text: Er isch Luis.
+      tokens: [{surface: Er, lexeme: er, feats: {Case: Nom}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Luis, lexeme: luis, feats: {
+            Case: Nom, Number: Sing}}]
+      reverse: Er isch Luis
+  translations:
+    en: (He's|He is) Luis.
+- id: s.u01.36
+  node: bar.u01.sein
+  forms:
+    bar-Latn/moser:
+      text: Bisch du Hannes?
+      tokens: [{surface: Bisch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: Hannes, lexeme: hannes,
+          feats: {Case: Nom, Number: Sing}}]
+      reverse: (Bisch du|Du bisch) Hannes
+  translations:
+    en: Are you Hannes?
+- id: s.u01.37
+  node: bar.u01.sein
+  forms:
+    bar-Latn/moser:
+      text: Jo, des bin i.
+      tokens: [{surface: Jo, lexeme: jo}, {surface: des, lexeme: des}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: i, lexeme: i, feats: {
+            Case: Nom}}]
+      reverse: Jo des bin i
+  translations:
+    en: |-
+      Yes, that's me.
+      Yes, it's me.
+- id: s.u01.38
+  node: bar.u01.formal
+  tags:
+  - {register: formal}
+  forms:
+    bar-Latn/moser:
+      text: Griaß Gott!
+      tokens: [{surface: Griaß, lexeme: griaß-gott}, {surface: Gott, lexeme: griaß-gott}]
+      reverse: Griaß Gott
+  translations:
+    en: |-
+      Hello!
+      Good day!
+      Good morning!
+      Good afternoon!
+- id: s.u01.39
+  node: bar.u01.formal
+  tags:
+  - {persons: {addressee: f}}
+  - {register: formal}
+  forms:
+    bar-Latn/moser:
+      text: Griaß Gott, Frau Pichler!
+      tokens: [{surface: Griaß, lexeme: griaß-gott}, {surface: Gott, lexeme: griaß-gott}, {surface: Frau, lexeme: frau, feats: {Case: Nom, Number: Sing}}, {surface: Pichler, lexeme: pichler, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: Griaß Gott Frau Pichler
+  translations:
+    en: |-
+      Hello, Mrs Pichler!
+      Good day, Mrs Pichler!
+- id: s.u01.40
+  node: bar.u01.formal
+  tags:
+  - {register: formal}
+  forms:
+    bar-Latn/moser:
+      text: Wia hoaßn Sie?
+      tokens: [{surface: Wia, lexeme: wia}, {surface: hoaßn, lexeme: hoaßn, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Sie, lexeme: sie.formal, feats: {Case: Nom}}]
+      reverse: Wia hoaßn Sie
+  translations:
+    en: |-
+      What's your name?
+      What is your name?
+- id: s.u01.41
+  node: bar.u01.formal
+  tags:
+  - {persons: {addressee: f}}
+  - {register: formal}
+  forms:
+    bar-Latn/moser:
+      text: Wia geat's Eana, Frau Pichler?
+      tokens: [{surface: Wia, lexeme: wia}, {surface: geat's, lexemes: [{lexeme: gian, surface: geat, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it,
+              surface: '''s', feats: {Case: Nom}}]}, {surface: Eana, lexeme: sie.formal, feats: {Case: Dat}}, {surface: Frau, lexeme: frau, feats: {Case: Nom, Number: Sing}}, {surface: Pichler, lexeme: pichler,
+          feats: {Case: Nom, Number: Sing}}]
+      reverse: Wia geat's Eana Frau Pichler
+  translations:
+    en: How are you, Mrs Pichler?
+- id: s.u01.42
+  node: bar.u01.formal
+  tags:
+  - {register: formal}
+  forms:
+    bar-Latn/moser:
+      text: Danke, guat. Und Eana?
+      tokens: [{surface: Danke, lexeme: danke}, {surface: guat, lexeme: guat}, {surface: Und, lexeme: und}, {surface: Eana, lexeme: sie.formal, feats: {Case: Dat}}]
+      reverse: Danke guat und Eana
+  translations:
+    en: |-
+      (Fine|Good|Well), thank you. And you?
+      Thank you, (fine|good|well). And you?
+- id: s.u01.43
+  node: bar.u01.formal
+  tags:
+  - {persons: {addressee: f}}
+  - {register: formal}
+  forms:
+    bar-Latn/moser:
+      text: Sein Sie di Frau Pichler?
+      tokens: [{surface: Sein, lexeme: sein, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Sie, lexeme: sie.formal, feats: {Case: Nom}}, {surface: di, lexeme: der,
+          feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Frau, lexeme: frau, feats: {Case: Nom, Number: Sing}}, {surface: Pichler, lexeme: pichler, feats: {Case: Nom, Number: Sing}}]
+      reverse: Sein Sie di Frau Pichler
+  translations:
+    en: Are you Mrs Pichler?
+- id: s.u01.44
+  node: bar.u01.formal
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    bar-Latn/moser:
+      text: Jo, i bin di Frau Pichler.
+      tokens: [{surface: Jo, lexeme: jo}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: di,
+          lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Frau, lexeme: frau, feats: {Case: Nom, Number: Sing}}, {surface: Pichler, lexeme: pichler, feats: {Case: Nom, Number: Sing}}]
+      reverse: Jo i bin di Frau Pichler
+  translations:
+    en: Yes, (I'm|I am) Mrs Pichler.
+- id: s.u01.45
+  node: bar.u01.formal
+  tags:
+  - {persons: {addressee: f}}
+  - {register: formal}
+  forms:
+    bar-Latn/moser:
+      text: Pfiat enk, Frau Pichler!
+      tokens: [{surface: Pfiat, lexeme: pfiat-enk}, {surface: enk, lexeme: pfiat-enk}, {surface: Frau, lexeme: frau, feats: {Case: Nom, Number: Sing}}, {surface: Pichler, lexeme: pichler, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: Pfiat enk Frau Pichler
+  translations:
+    en: Goodbye, Mrs Pichler!
+- id: s.u01.46
+  node: bar.u01.formal
+  tags:
+  - {persons: {addressee: m}}
+  - {register: formal}
+  forms:
+    bar-Latn/moser:
+      text: Griaß Gott, Herr Gruber!
+      tokens: [{surface: Griaß, lexeme: griaß-gott}, {surface: Gott, lexeme: griaß-gott}, {surface: Herr, lexeme: herr, feats: {Case: Nom, Number: Sing}}, {surface: Gruber, lexeme: gruber, feats: {Case: Nom,
+            Number: Sing}}]
+      reverse: Griaß Gott Herr Gruber
+  translations:
+    en: |-
+      Hello, Mr Gruber!
+      Good day, Mr Gruber!
+- id: s.u01.47
+  node: bar.u01.formal
+  tags:
+  - {persons: {addressee: m}}
+  - {register: formal}
+  forms:
+    bar-Latn/moser:
+      text: Wia geat's Eana, Herr Gruber?
+      tokens: [{surface: Wia, lexeme: wia}, {surface: geat's, lexemes: [{lexeme: gian, surface: geat, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it,
+              surface: '''s', feats: {Case: Nom}}]}, {surface: Eana, lexeme: sie.formal, feats: {Case: Dat}}, {surface: Herr, lexeme: herr, feats: {Case: Nom, Number: Sing}}, {surface: Gruber, lexeme: gruber,
+          feats: {Case: Nom, Number: Sing}}]
+      reverse: Wia geat's Eana Herr Gruber
+  translations:
+    en: How are you, Mr Gruber?
+- id: s.u01.48
+  node: bar.u01.formal
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    bar-Latn/moser:
+      text: Jo, i bin der Herr Gruber.
+      tokens: [{surface: Jo, lexeme: jo}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: der,
+          lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Herr, lexeme: herr, feats: {Case: Nom, Number: Sing}}, {surface: Gruber, lexeme: gruber, feats: {Case: Nom, Number: Sing}}]
+      reverse: Jo i bin der Herr Gruber
+  translations:
+    en: Yes, (I'm|I am) Mr Gruber.
+stories:
+- id: bar.story.u01
+  node: bar.u01.story
+  title:
+    en: Lena meets Giulia
+  characters:
+  - id: lena
+    speaker: f
+    name:
+      bar-Latn/moser: Lena
+  - id: giulia
+    speaker: f
+    name:
+      bar-Latn/moser: Giulia
+  - id: pichler
+    speaker: f
+    name:
+      bar-Latn/moser: Frau Pichler
+  steps:
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Griaß di! I hoaß Lena.
+          tokens: [{surface: Griaß, lexeme: griaß-di}, {surface: di, lexeme: griaß-di}, {surface: I, lexeme: i, feats: {Case: Nom}}, {surface: hoaß, lexeme: hoaßn, feats: {Mood: Ind, Number: Sing, Person: '1',
+                Tense: Pres, VerbForm: Fin}}, {surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Hi! My name is Lena.
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Ciao, Lena! I bin Giulia.
+          tokens: [{surface: Ciao, lexeme: ciao}, {surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}, {surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind,
+                Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Hi, Lena! I'm Giulia.
+  - line:
+      speaker: lena
+      ask: arrange
+      forms:
+        bar-Latn/moser:
+          text: Wia geat's dir, Giulia?
+          tokens: [{surface: Wia, lexeme: wia}, {surface: geat's, lexemes: [{lexeme: gian, surface: geat, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it,
+                  surface: '''s', feats: {Case: Nom}}]}, {surface: dir, lexeme: du, feats: {Case: Dat}}, {surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: How are you, Giulia?
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Guat, danke. Und dir?
+          tokens: [{surface: Guat, lexeme: guat}, {surface: danke, lexeme: danke}, {surface: Und, lexeme: und}, {surface: dir, lexeme: du, feats: {Case: Dat}}]
+      translations:
+        en: Fine, thanks. And you?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Mir a.
+          tokens: [{surface: Mir, lexeme: i, feats: {Case: Dat}}, {surface: a, lexeme: a.auch}]
+      translations:
+        en: Me too.
+  - choose:
+      prompt:
+        en: Who is Giulia talking to?
+      options:
+      - en: Lena
+      - en: Frau Pichler
+      - en: Hannes
+      answer: 0
+  - line:
+      speaker: pichler
+      forms:
+        bar-Latn/moser:
+          text: Griaß Gott! Wer sein Sie?
+          tokens: [{surface: Griaß, lexeme: griaß-gott}, {surface: Gott, lexeme: griaß-gott}, {surface: Wer, lexeme: wer}, {surface: sein, lexeme: sein, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres,
+                VerbForm: Fin}}, {surface: Sie, lexeme: sie.formal, feats: {Case: Nom}}]
+      translations:
+        en: Hello! Who are you?
+  - line:
+      speaker: giulia
+      ask: complete
+      gap: lexeme:giulia
+      distractors:
+      - lexeme:lena
+      - lexeme:pichler
+      forms:
+        bar-Latn/moser:
+          text: Griaß Gott! I bin Giulia.
+          tokens: [{surface: Griaß, lexeme: griaß-gott}, {surface: Gott, lexeme: griaß-gott}, {surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1',
+                Tense: Pres, VerbForm: Fin}}, {surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Hello! I'm Giulia.
+  - line:
+      speaker: pichler
+      forms:
+        bar-Latn/moser:
+          text: Griaß di, Giulia! I bin di Frau Pichler.
+          tokens: [{surface: Griaß, lexeme: griaß-di}, {surface: di, lexeme: griaß-di}, {surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}, {surface: I, lexeme: i, feats: {Case: Nom}},
+            {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Frau,
+              lexeme: frau, feats: {Case: Nom, Number: Sing}}, {surface: Pichler, lexeme: pichler, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Hello, Giulia! I'm Mrs Pichler.
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Pfiat enk, Frau Pichler!
+          tokens: [{surface: Pfiat, lexeme: pfiat-enk}, {surface: enk, lexeme: pfiat-enk}, {surface: Frau, lexeme: frau, feats: {Case: Nom, Number: Sing}}, {surface: Pichler, lexeme: pichler, feats: {Case: Nom,
+                Number: Sing}}]
+      translations:
+        en: Goodbye, Mrs Pichler!
+  - line:
+      speaker: pichler
+      forms:
+        bar-Latn/moser:
+          text: Pfiat di, Lena! Pfiat di, Giulia!
+          tokens: [{surface: Pfiat, lexeme: pfiat-di}, {surface: di, lexeme: pfiat-di}, {surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}, {surface: Pfiat, lexeme: pfiat-di}, {surface: di,
+              lexeme: pfiat-di}, {surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Bye, Lena! Bye, Giulia!
+  - choose:
+      prompt:
+        en: What is the neighbour's name?
+      options:
+      - en: Frau Pichler
+      - en: Giulia
+      - en: Lena
+      answer: 0
+scenarios:
+- id: bar.pichler
+  after: bar.u01.formal
+  title:
+    en: Meeting Frau Pichler
+  setting:
+    en: The stairwell of an apartment building in Bozen, on a weekday evening. Frau Pichler, who lives downstairs, is coming home with her shopping.
+  character:
+    en: Frau Pichler, a friendly, talkative retired schoolteacher in her seventies, who has lived in the building for forty years and likes to know who her neighbours are.
+  goal:
+    en: Greet Frau Pichler politely (with Sie), say your name, ask how she is, and say goodbye.

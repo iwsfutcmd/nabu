@@ -1,0 +1,643 @@
+# Unit 4 (bar): food and drink, essn and trinkn, megn (to like), welln (to want), gearn and liaber, Hunger and
+# Durscht, hot and cold; a Marende (bread, speck, cheese) at Oma's farm on the Ritten.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u04
+title:
+  en: Marende Snack time
+cefr: A1
+nodes:
+- {id: bar.u04.essn, kind: lesson, introduces: ['lexeme:essn', 'lexeme:trinkn', 'lexeme:brot', 'lexeme:wosser', 'lexeme:kaffee', 'lexeme:milch', 'lexeme:wos', 'lexeme:mit']}
+- {id: bar.u04.marende, kind: lesson, introduces: ['lexeme:marende', 'lexeme:speck', 'lexeme:kas', 'lexeme:schittlbrot', 'lexeme:wein', 'lexeme:bier', 'lexeme:oder']}
+- {id: bar.u04.megn, kind: lesson, introduces: ['lexeme:megn', 'lexeme:gearn', 'lexeme:liaber', 'lexeme:knedl', 'lexeme:apfl', 'lexeme:suppe']}
+- {id: bar.u04.welln, kind: lesson, introduces: ['lexeme:welln', 'lexeme:hunger', 'lexeme:durscht', 'lexeme:eppes']}
+- {id: bar.u04.fein, kind: lesson, introduces: ['lexeme:fein', 'lexeme:hoaß', 'lexeme:kolt', 'lexeme:worm', 'lexeme:frisch', 'lexeme:essn.noun']}
+- {id: bar.u04.story, kind: story}
+sentences:
+- id: s.u04.1
+  node: bar.u04.essn
+  forms:
+    bar-Latn/moser:
+      text: I iss Brot.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: iss, lexeme: essn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Brot, lexeme: brot, feats: {
+            Case: Acc, Number: Sing}}]
+      reverse: I iss Brot
+  translations:
+    en: |-
+      I eat bread.
+      I'm eating bread.
+- id: s.u04.2
+  node: bar.u04.essn
+  forms:
+    bar-Latn/moser:
+      text: Du trinksch Wosser.
+      tokens: [{surface: Du, lexeme: du, feats: {Case: Nom}}, {surface: trinksch, lexeme: trinkn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: Wosser, lexeme: wosser,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: Du trinksch Wosser
+  translations:
+    en: |-
+      You drink water.
+      You're drinking water.
+- id: s.u04.3
+  node: bar.u04.essn
+  forms:
+    bar-Latn/moser:
+      text: Er trinkt an Kaffee.
+      tokens: [{surface: Er, lexeme: er, feats: {Case: Nom}}, {surface: trinkt, lexeme: trinkn, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: an, lexeme: a, feats: {
+            Case: Acc, Gender: Masc, Number: Sing}}, {surface: Kaffee, lexeme: kaffee, feats: {Case: Acc, Number: Sing}}]
+      reverse: Er trinkt an Kaffee
+  translations:
+    en: |-
+      He drinks a coffee.
+      He's drinking a coffee.
+      He's having a coffee.
+- id: s.u04.4
+  node: bar.u04.essn
+  forms:
+    bar-Latn/moser:
+      text: Mir essn Brot und trinkn Milch.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: essn, lexeme: essn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Brot, lexeme: brot, feats: {
+            Case: Acc, Number: Sing}}, {surface: und, lexeme: und}, {surface: trinkn, lexeme: trinkn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Milch, lexeme: milch,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir essn Brot und trinkn Milch
+  translations:
+    en: |-
+      We eat bread and drink milk.
+      We're eating bread and drinking milk.
+- id: s.u04.5
+  node: bar.u04.essn
+  forms:
+    bar-Latn/moser:
+      text: Wos trinksch du?
+      tokens: [{surface: Wos, lexeme: wos}, {surface: trinksch, lexeme: trinkn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}]
+      reverse: Wos trinksch du
+  translations:
+    en: |-
+      What are you drinking?
+      What do you drink?
+      What will you have (to drink)?
+- id: s.u04.6
+  node: bar.u04.essn
+  forms:
+    bar-Latn/moser:
+      text: I trink a Wosser.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: trink, lexeme: trinkn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {
+            Case: Acc, Gender: Neut, Number: Sing}}, {surface: Wosser, lexeme: wosser, feats: {Case: Acc, Number: Sing}}]
+      reverse: I trink a Wosser
+  translations:
+    en: |-
+      I'll have (a|some) water.
+      I'm drinking water.
+      I drink water.
+- id: s.u04.7
+  node: bar.u04.essn
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    bar-Latn/moser:
+      text: Wos essts es?
+      tokens: [{surface: Wos, lexeme: wos}, {surface: essts, lexeme: essn, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: es, lexeme: es, feats: {Case: Nom}}]
+      reverse: (Wos essts es|Wos essts)
+  translations:
+    en: |-
+      What are you (all) eating?
+      What are you eating?
+- id: s.u04.8
+  node: bar.u04.essn
+  forms:
+    bar-Latn/moser:
+      text: Giulia trinkt Kaffee mit Milch.
+      tokens: [{surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}, {surface: trinkt, lexeme: trinkn, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Kaffee,
+          lexeme: kaffee, feats: {Case: Acc, Number: Sing}}, {surface: mit, lexeme: mit}, {surface: Milch, lexeme: milch, feats: {Case: Dat, Number: Sing}}]
+      reverse: (Giulia|Di Giulia) trinkt (Kaffee|an Kaffee) mit Milch
+  translations:
+    en: |-
+      Giulia drinks coffee with milk.
+      Giulia is drinking coffee with milk.
+- id: s.u04.9
+  node: bar.u04.marende
+  forms:
+    bar-Latn/moser:
+      text: Mir essn Marende.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: essn, lexeme: essn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Marende, lexeme: marende,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir essn Marende
+  translations:
+    en: |-
+      We're having (Marende|a snack|our afternoon snack).
+      We eat Marende.
+- id: s.u04.10
+  node: bar.u04.marende
+  forms:
+    bar-Latn/moser:
+      text: Do isch Speck, Kas und Brot.
+      tokens: [{surface: Do, lexeme: do}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Speck, lexeme: speck, feats: {Case: Nom, Number: Sing}},
+        {surface: Kas, lexeme: kas, feats: {Case: Nom, Number: Sing}}, {surface: und, lexeme: und}, {surface: Brot, lexeme: brot, feats: {Case: Nom, Number: Sing}}]
+      reverse: Do isch Speck Kas und Brot
+  translations:
+    en: (Here is|Here's|There's) speck, cheese and bread.
+- id: s.u04.11
+  node: bar.u04.marende
+  forms:
+    bar-Latn/moser:
+      text: Der Speck isch va Sidtirol.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Speck, lexeme: speck, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: va, lexeme: va}, {surface: Sidtirol, lexeme: sidtirol, feats: {Case: Dat, Number: Sing}}]
+      reverse: Der Speck isch (va|vo|von) Sidtirol
+  translations:
+    en: The speck is from South Tyrol.
+- id: s.u04.12
+  node: bar.u04.marende
+  forms:
+    bar-Latn/moser:
+      text: Der Kas isch guat.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Kas, lexeme: kas, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: guat, lexeme: guat}]
+      reverse: Der Kas isch guat
+  translations:
+    en: The cheese is good.
+- id: s.u04.13
+  node: bar.u04.marende
+  forms:
+    bar-Latn/moser:
+      text: Mei Tatte trinkt a Bier.
+      tokens: [{surface: Mei, lexeme: mei, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Tatte, lexeme: tatte, feats: {Case: Nom, Number: Sing}}, {surface: trinkt, lexeme: trinkn, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Acc, Gender: Neut, Number: Sing}}, {surface: Bier, lexeme: bier, feats: {Case: Acc,
+            Number: Sing}}]
+      reverse: Mei Tatte trinkt a Bier
+  translations:
+    en: |-
+      My (dad|father) is having a beer.
+      My (dad|father) drinks a beer.
+- id: s.u04.14
+  node: bar.u04.marende
+  forms:
+    bar-Latn/moser:
+      text: Der Wein isch a va Sidtirol.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Wein, lexeme: wein, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a.auch}, {surface: va, lexeme: va}, {surface: Sidtirol, lexeme: sidtirol, feats: {Case: Dat, Number: Sing}}]
+      reverse: Der Wein isch a (va|vo|von) Sidtirol
+  translations:
+    en: |-
+      The wine is from South Tyrol too.
+      The wine is also from South Tyrol.
+- id: s.u04.15
+  node: bar.u04.marende
+  forms:
+    bar-Latn/moser:
+      text: Trinksch du Wein oder Bier?
+      tokens: [{surface: Trinksch, lexeme: trinkn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: Wein, lexeme: wein,
+          feats: {Case: Acc, Number: Sing}}, {surface: oder, lexeme: oder}, {surface: Bier, lexeme: bier, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Trinksch du|Du trinksch) Wein oder Bier
+  translations:
+    en: |-
+      Do you drink wine or beer?
+      Will you have wine or beer?
+- id: s.u04.16
+  node: bar.u04.marende
+  forms:
+    bar-Latn/moser:
+      text: Des isch Schittlbrot.
+      tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Schittlbrot, lexeme: schittlbrot, feats: {
+            Case: Nom, Number: Sing}}]
+      reverse: Des isch Schittlbrot
+  translations:
+    en: (That's|This is) (Schüttelbrot|crispbread).
+- id: s.u04.17
+  node: bar.u04.marende
+  forms:
+    bar-Latn/moser:
+      text: Mir essn Speck, Kas und Schittlbrot.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: essn, lexeme: essn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Speck, lexeme: speck,
+          feats: {Case: Acc, Number: Sing}}, {surface: Kas, lexeme: kas, feats: {Case: Nom, Number: Sing}}, {surface: und, lexeme: und}, {surface: Schittlbrot, lexeme: schittlbrot, feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir essn Speck Kas und Schittlbrot
+  translations:
+    en: |-
+      We eat speck, cheese and crispbread.
+      We're having speck, cheese and crispbread.
+- id: s.u04.18
+  node: bar.u04.megn
+  forms:
+    bar-Latn/moser:
+      text: I mog Knedl.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: mog, lexeme: megn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Knedl, lexeme: knedl, feats: {
+            Case: Acc, Number: Plur}}]
+      reverse: I mog Knedl
+  translations:
+    en: |-
+      I like dumplings.
+      I like Knödel.
+- id: s.u04.19
+  node: bar.u04.megn
+  forms:
+    bar-Latn/moser:
+      text: Mogsch du Kas?
+      tokens: [{surface: Mogsch, lexeme: megn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: Kas, lexeme: kas, feats: {
+            Case: Acc, Number: Sing}}]
+      reverse: (Mogsch du|Du mogsch) Kas
+  translations:
+    en: Do you like cheese?
+- id: s.u04.20
+  node: bar.u04.megn
+  forms:
+    bar-Latn/moser:
+      text: Jo, i mog Kas.
+      tokens: [{surface: Jo, lexeme: jo}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: mog, lexeme: megn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Kas,
+          lexeme: kas, feats: {Case: Acc, Number: Sing}}]
+      reverse: Jo i mog Kas
+  translations:
+    en: Yes, I like cheese.
+- id: s.u04.21
+  node: bar.u04.megn
+  forms:
+    bar-Latn/moser:
+      text: I iss gearn Epfl.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: iss, lexeme: essn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: gearn, lexeme: gearn}, {surface: Epfl,
+          lexeme: apfl, feats: {Case: Acc, Number: Plur}}]
+      reverse: I iss gearn Epfl
+  translations:
+    en: |-
+      I like (eating) apples.
+      I like apples.
+- id: s.u04.22
+  node: bar.u04.megn
+  forms:
+    bar-Latn/moser:
+      text: Di Kinder megn koane Suppe.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Number: Plur}}, {surface: Kinder, lexeme: kind, feats: {Case: Nom, Number: Plur}}, {surface: megn, lexeme: megn, feats: {Mood: Ind, Number: Plur,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: koane, lexeme: koan, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Suppe, lexeme: suppe, feats: {Case: Acc, Number: Sing}}]
+      reverse: Di Kinder megn koane Suppe
+  translations:
+    en: The children don't like soup.
+- id: s.u04.23
+  node: bar.u04.megn
+  forms:
+    bar-Latn/moser:
+      text: Trinksch du liaber Wein oder Wosser?
+      tokens: [{surface: Trinksch, lexeme: trinkn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: liaber, lexeme: liaber},
+        {surface: Wein, lexeme: wein, feats: {Case: Acc, Number: Sing}}, {surface: oder, lexeme: oder}, {surface: Wosser, lexeme: wosser, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Trinksch du|Du trinksch) liaber Wein oder Wosser
+  translations:
+    en: |-
+      Would you rather drink wine or water?
+      Do you prefer wine or water?
+- id: s.u04.24
+  node: bar.u04.megn
+  forms:
+    bar-Latn/moser:
+      text: I trink liaber Wosser.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: trink, lexeme: trinkn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: liaber, lexeme: liaber},
+        {surface: Wosser, lexeme: wosser, feats: {Case: Acc, Number: Sing}}]
+      reverse: I trink liaber Wosser
+  translations:
+    en: |-
+      I'd rather (drink|have) water.
+      I prefer water.
+- id: s.u04.25
+  node: bar.u04.megn
+  forms:
+    bar-Latn/moser:
+      text: Er isst gearn Knedl.
+      tokens: [{surface: Er, lexeme: er, feats: {Case: Nom}}, {surface: isst, lexeme: essn, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: gearn, lexeme: gearn}, {
+          surface: Knedl, lexeme: knedl, feats: {Case: Acc, Number: Plur}}]
+      reverse: Er isst gearn Knedl
+  translations:
+    en: |-
+      He likes (eating) dumplings.
+      He likes Knödel.
+- id: s.u04.26
+  node: bar.u04.megn
+  forms:
+    bar-Latn/moser:
+      text: Mogsch du Suppe?
+      tokens: [{surface: Mogsch, lexeme: megn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: Suppe, lexeme: suppe,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: (Mogsch du|Du mogsch) Suppe
+  translations:
+    en: Do you like soup?
+- id: s.u04.27
+  node: bar.u04.welln
+  forms:
+    bar-Latn/moser:
+      text: I will an Kaffee.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: will, lexeme: welln, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: an, lexeme: a, feats: {Case: Acc,
+            Gender: Masc, Number: Sing}}, {surface: Kaffee, lexeme: kaffee, feats: {Case: Acc, Number: Sing}}]
+      reverse: I will an Kaffee
+  translations:
+    en: |-
+      I want a coffee.
+      I'd like a coffee.
+- id: s.u04.28
+  node: bar.u04.welln
+  forms:
+    bar-Latn/moser:
+      text: Willsch du nou a Wosser?
+      tokens: [{surface: Willsch, lexeme: welln, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: nou, lexeme: nou}, {
+          surface: a, lexeme: a, feats: {Case: Acc, Gender: Neut, Number: Sing}}, {surface: Wosser, lexeme: wosser, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Willsch du|Du willsch) nou a Wosser
+  translations:
+    en: |-
+      Do you want another water?
+      Do you want another glass of water?
+      Would you like some more water?
+- id: s.u04.29
+  node: bar.u04.welln
+  forms:
+    bar-Latn/moser:
+      text: I hon Hunger.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: hon, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Hunger, lexeme: hunger, feats: {
+            Case: Acc, Number: Sing}}]
+      reverse: I hon Hunger
+  translations:
+    en: (I'm|I am) hungry.
+- id: s.u04.30
+  node: bar.u04.welln
+  forms:
+    bar-Latn/moser:
+      text: Hosch du Durscht?
+      tokens: [{surface: Hosch, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: Durscht, lexeme: durscht,
+          feats: {Case: Acc, Number: Sing}}]
+      reverse: (Hosch du|Du hosch) Durscht
+  translations:
+    en: Are you thirsty?
+- id: s.u04.31
+  node: bar.u04.welln
+  forms:
+    bar-Latn/moser:
+      text: Mir hobm Hunger und Durscht.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hobm, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Hunger, lexeme: hunger,
+          feats: {Case: Acc, Number: Sing}}, {surface: und, lexeme: und}, {surface: Durscht, lexeme: durscht, feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir hobm Hunger und Durscht
+  translations:
+    en: (We're|We are) hungry and thirsty.
+- id: s.u04.32
+  node: bar.u04.welln
+  forms:
+    bar-Latn/moser:
+      text: Wos willsch du?
+      tokens: [{surface: Wos, lexeme: wos}, {surface: willsch, lexeme: welln, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}]
+      reverse: Wos willsch du
+  translations:
+    en: |-
+      What do you want?
+      What would you like?
+- id: s.u04.33
+  node: bar.u04.welln
+  forms:
+    bar-Latn/moser:
+      text: Di Kinder welln Epfl.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Number: Plur}}, {surface: Kinder, lexeme: kind, feats: {Case: Nom, Number: Plur}}, {surface: welln, lexeme: welln, feats: {Mood: Ind, Number: Plur,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Epfl, lexeme: apfl, feats: {Case: Acc, Number: Plur}}]
+      reverse: Di Kinder welln Epfl
+  translations:
+    en: The children want apples.
+- id: s.u04.34
+  node: bar.u04.welln
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    bar-Latn/moser:
+      text: Wellts es nou a Brot?
+      tokens: [{surface: Wellts, lexeme: welln, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: es, lexeme: es, feats: {Case: Nom}}, {surface: nou, lexeme: nou}, {
+          surface: a, lexeme: a, feats: {Case: Acc, Gender: Neut, Number: Sing}}, {surface: Brot, lexeme: brot, feats: {Case: Acc, Number: Sing}}]
+      reverse: (Wellts es|Es wellts) nou a Brot
+  translations:
+    en: |-
+      Do you (all) want some more bread?
+      Would you like some more bread?
+- id: s.u04.35
+  node: bar.u04.welln
+  forms:
+    bar-Latn/moser:
+      text: Isch nou eppes do?
+      tokens: [{surface: Isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nou, lexeme: nou}, {surface: eppes, lexeme: eppes}, {surface: do, lexeme: do}]
+      reverse: Isch nou eppes do
+  translations:
+    en: |-
+      Is there anything left?
+      Is there still something (here|there)?
+- id: s.u04.36
+  node: bar.u04.fein
+  forms:
+    bar-Latn/moser:
+      text: Des isch fein!
+      tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: fein, lexeme: fein}]
+      reverse: Des isch fein
+  translations:
+    en: (That's|This is) (tasty|delicious)!
+- id: s.u04.37
+  node: bar.u04.fein
+  forms:
+    bar-Latn/moser:
+      text: Di Suppe isch hoaß.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Suppe, lexeme: suppe, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: hoaß, lexeme: hoaß}]
+      reverse: Di Suppe isch hoaß
+  translations:
+    en: The soup is hot.
+- id: s.u04.38
+  node: bar.u04.fein
+  forms:
+    bar-Latn/moser:
+      text: Der Kaffee isch nou worm.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Kaffee, lexeme: kaffee, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nou, lexeme: nou}, {surface: worm, lexeme: worm}]
+      reverse: Der Kaffee isch nou worm
+  translations:
+    en: The coffee is still warm.
+- id: s.u04.39
+  node: bar.u04.fein
+  forms:
+    bar-Latn/moser:
+      text: '''s Wosser isch kolt.'
+      tokens: [{surface: '''s', lexeme: der, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Wosser, lexeme: wosser, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kolt, lexeme: kolt}]
+      reverse: '''s Wosser isch kolt'
+  translations:
+    en: The water is cold.
+- id: s.u04.40
+  node: bar.u04.fein
+  forms:
+    bar-Latn/moser:
+      text: A frisches Brot isch fein.
+      tokens: [{surface: A, lexeme: a, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: frisches, lexeme: frisch, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Brot, lexeme: brot,
+          feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: fein, lexeme: fein}]
+      reverse: A frisches Brot isch fein
+  translations:
+    en: |-
+      Fresh bread is (tasty|delicious).
+      A fresh loaf is (tasty|delicious).
+- id: s.u04.41
+  node: bar.u04.fein
+  forms:
+    bar-Latn/moser:
+      text: '''s Essn isch guat.'
+      tokens: [{surface: '''s', lexeme: der, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Essn, lexeme: essn.noun, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: guat, lexeme: guat}]
+      reverse: '''s Essn isch guat'
+  translations:
+    en: The food is good.
+- id: s.u04.42
+  node: bar.u04.fein
+  forms:
+    bar-Latn/moser:
+      text: Mir trinkn a kolts Bier.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: trinkn, lexeme: trinkn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {
+            Case: Acc, Gender: Neut, Number: Sing}}, {surface: kolts, lexeme: kolt, feats: {Case: Acc, Gender: Neut, Number: Sing}}, {surface: Bier, lexeme: bier, feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir trinkn a kolts Bier
+  translations:
+    en: (We're having|We drink) a cold beer.
+- id: s.u04.43
+  node: bar.u04.fein
+  forms:
+    bar-Latn/moser:
+      text: I will a worme Suppe.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: will, lexeme: welln, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Acc,
+            Gender: Fem, Number: Sing}}, {surface: worme, lexeme: worm, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Suppe, lexeme: suppe, feats: {Case: Acc, Number: Sing}}]
+      reverse: I will a worme Suppe
+  translations:
+    en: |-
+      I want a (warm|hot) soup.
+      I'd like a (warm|hot) soup.
+stories:
+- id: bar.story.u04
+  node: bar.u04.story
+  title:
+    en: Marende at Oma's
+  characters:
+  - id: oma
+    speaker: f
+    name:
+      bar-Latn/moser: Oma
+  - id: lena
+    speaker: f
+    name:
+      bar-Latn/moser: Lena
+  - id: giulia
+    speaker: f
+    name:
+      bar-Latn/moser: Giulia
+  - id: hannes
+    speaker: m
+    name:
+      bar-Latn/moser: Hannes
+  steps:
+  - line:
+      speaker: oma
+      forms:
+        bar-Latn/moser:
+          text: Griaß enk! Hobts es Hunger?
+          tokens: [{surface: Griaß, lexeme: griaß-enk}, {surface: enk, lexeme: griaß-enk}, {surface: Hobts, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: es,
+              lexeme: es, feats: {Case: Nom}}, {surface: Hunger, lexeme: hunger, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Hello, you two! Are you hungry?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Jo, Oma! Mir hobm Hunger und Durscht.
+          tokens: [{surface: Jo, lexeme: jo}, {surface: Oma, lexeme: oma, feats: {Case: Nom, Number: Sing}}, {surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hobm, lexeme: hobm, feats: {Mood: Ind,
+                Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Hunger, lexeme: hunger, feats: {Case: Acc, Number: Sing}}, {surface: und, lexeme: und}, {surface: Durscht, lexeme: durscht,
+              feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: Yes, Grandma! We're hungry and thirsty.
+  - line:
+      speaker: oma
+      forms:
+        bar-Latn/moser:
+          text: Do isch Speck, Kas und Schittlbrot.
+          tokens: [{surface: Do, lexeme: do}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: Speck, lexeme: speck, feats: {Case: Nom,
+                Number: Sing}}, {surface: Kas, lexeme: kas, feats: {Case: Nom, Number: Sing}}, {surface: und, lexeme: und}, {surface: Schittlbrot, lexeme: schittlbrot, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Here's speck, cheese and crispbread.
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Danke! Des isch fein!
+          tokens: [{surface: Danke, lexeme: danke}, {surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: fein,
+              lexeme: fein}]
+      translations:
+        en: Thank you! This is delicious!
+  - line:
+      speaker: oma
+      ask: arrange
+      forms:
+        bar-Latn/moser:
+          text: Wos trinksch du, Giulia?
+          tokens: [{surface: Wos, lexeme: wos}, {surface: trinksch, lexeme: trinkn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}},
+            {surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: What will you drink, Giulia?
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: I trink a Wosser, bitte.
+          tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: trink, lexeme: trinkn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {
+                Case: Acc, Gender: Neut, Number: Sing}}, {surface: Wosser, lexeme: wosser, feats: {Case: Acc, Number: Sing}}, {surface: bitte, lexeme: bitte}]
+      translations:
+        en: I'll have a water, please.
+  - choose:
+      prompt:
+        en: What does Giulia drink?
+      options:
+      - en: water
+      - en: wine
+      - en: coffee
+      answer: 0
+  - line:
+      speaker: oma
+      forms:
+        bar-Latn/moser:
+          text: Und du, Lena? A Wein?
+          tokens: [{surface: Und, lexeme: und}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: Lena, lexeme: lena, feats: {Case: Nom, Number: Sing}}, {surface: A, lexeme: a, feats: {Case: Nom,
+                Gender: Masc, Number: Sing}}, {surface: Wein, lexeme: wein, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: And you, Lena? A wine?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Na, i trink liaber an Kaffee.
+          tokens: [{surface: Na, lexeme: na}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: trink, lexeme: trinkn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {
+              surface: liaber, lexeme: liaber}, {surface: an, lexeme: a, feats: {Case: Acc, Gender: Masc, Number: Sing}}, {surface: Kaffee, lexeme: kaffee, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: No, I'd rather have a coffee.
+  - line:
+      speaker: hannes
+      forms:
+        bar-Latn/moser:
+          text: Servus! Isch nou eppes do?
+          tokens: [{surface: Servus, lexeme: servus}, {surface: Isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nou, lexeme: nou}, {surface: eppes,
+              lexeme: eppes}, {surface: do, lexeme: do}]
+      translations:
+        en: Hi! Is there anything left?
+  - line:
+      speaker: oma
+      forms:
+        bar-Latn/moser:
+          text: Jo, Hannes! Do isch nou Speck und Kas.
+          tokens: [{surface: Jo, lexeme: jo}, {surface: Hannes, lexeme: hannes, feats: {Case: Nom, Number: Sing}}, {surface: Do, lexeme: do}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing,
+                Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nou, lexeme: nou}, {surface: Speck, lexeme: speck, feats: {Case: Nom, Number: Sing}}, {surface: und, lexeme: und}, {surface: Kas, lexeme: kas,
+              feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Yes, Hannes! There's still speck and cheese.
+  - choose:
+      prompt:
+        en: Who comes late to the Marende?
+      options:
+      - en: Hannes
+      - en: Giulia
+      - en: Lena
+      answer: 0
+scenarios:
+- id: bar.marende
+  after: bar.u04.fein
+  title:
+    en: Marende at the farm
+  setting:
+    en: The big wooden table in the Stube of a farmhouse on the Ritten, above Bozen, at about five in the afternoon.
+  character:
+    en: Oma, a farmer's widow in her late seventies, warm and insistent, who will not let a guest leave her table hungry.
+  goal:
+    en: Say whether you are hungry or thirsty, say what you like and what you would rather have, and thank her.

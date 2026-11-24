@@ -1,0 +1,538 @@
+# Unit 7 (bar): the town (Stodt, Plotz, Bar, Morkt, Bohnhof), the way (gradaus, links, rechts), the modals miassn,
+# kinnen and derfn with an infinitive at the end, fohrn mitn Bus, kafn and zohln, wiaviel koschtet des?; Giulia and
+# Lena go shopping in Bozen.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u07
+title:
+  en: In der Stodt In town
+cefr: A1
+nodes:
+- {id: bar.u07.stodt, kind: lesson, introduces: ['lexeme:stodt', 'lexeme:plotz', 'lexeme:bar', 'lexeme:kirch', 'lexeme:morkt']}
+- {id: bar.u07.weg, kind: lesson, introduces: ['lexeme:links', 'lexeme:rechts', 'lexeme:gradaus', 'lexeme:weit', 'lexeme:nohent', 'lexeme:bohnhof']}
+- {id: bar.u07.miassn, kind: lesson, introduces: ['lexeme:miassn', 'lexeme:kinnen', 'lexeme:derfn', 'lexeme:fohrn', 'lexeme:bus', 'lexeme:zug', 'lexeme:zomm', 'lexeme:noch', 'feature:VerbForm=Inf']}
+- {id: bar.u07.kafn, kind: lesson, introduces: ['lexeme:kafn', 'lexeme:zohln', 'lexeme:kostn', 'lexeme:euro', 'lexeme:gscheft']}
+- {id: bar.u07.suachn, kind: lesson, introduces: ['lexeme:suachn', 'lexeme:findn', 'lexeme:teier', 'lexeme:billig', 'lexeme:glei', 'lexeme:fir']}
+- {id: bar.u07.story, kind: story}
+sentences:
+- id: s.u07.1
+  node: bar.u07.stodt
+  forms:
+    bar-Latn/moser:
+      text: Bozn isch a schiane Stodt.
+      tokens: [{surface: Bozn, lexeme: bozn, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a,
+          feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: schiane, lexeme: schian, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Stodt, lexeme: stodt, feats: {Case: Nom, Number: Sing}}]
+      reverse: Bozn isch a schiane Stodt
+  translations:
+    en: Bozen is a (beautiful|nice|lovely) (town|city).
+- id: s.u07.2
+  node: bar.u07.stodt
+  forms:
+    bar-Latn/moser:
+      text: Der Plotz isch groaß.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Plotz, lexeme: plotz, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: groaß, lexeme: groaß}]
+      reverse: Der Plotz isch groaß
+  translations:
+    en: The square is big.
+- id: s.u07.3
+  node: bar.u07.stodt
+  forms:
+    bar-Latn/moser:
+      text: Mir sein in der Bar.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: sein, lexeme: sein, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: in, lexeme: in}, {surface: der,
+          lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Bar, lexeme: bar, feats: {Case: Dat, Number: Sing}}]
+      reverse: Mir sein in der Bar
+  translations:
+    en: (We're|We are) (in|at) the (bar|café).
+- id: s.u07.4
+  node: bar.u07.stodt
+  forms:
+    bar-Latn/moser:
+      text: Wo isch di Kirch?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: di, lexeme: der, feats: {Case: Nom, Gender: Fem,
+            Number: Sing}}, {surface: Kirch, lexeme: kirch, feats: {Case: Nom, Number: Sing}}]
+      reverse: Wo isch di Kirch
+  translations:
+    en: |-
+      Where is the church?
+      Where's the church?
+- id: s.u07.5
+  node: bar.u07.stodt
+  forms:
+    bar-Latn/moser:
+      text: Der Morkt isch afn Plotz.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Morkt, lexeme: morkt, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: afn, lexemes: [{lexeme: af, surface: af, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc, Number: Sing}}]},
+        {surface: Plotz, lexeme: plotz, feats: {Case: Dat, Number: Sing}}]
+      reverse: Der Morkt isch afn Plotz
+  translations:
+    en: The market is on the square.
+- id: s.u07.6
+  node: bar.u07.stodt
+  forms:
+    bar-Latn/moser:
+      text: In Bozn gip's an groaßn Morkt.
+      tokens: [{surface: In, lexeme: in}, {surface: Bozn, lexeme: bozn, feats: {Case: Dat, Number: Sing}}, {surface: gip's, lexemes: [{lexeme: gebm, surface: gip, base: true, feats: {Mood: Ind, Number: Sing,
+                Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it, surface: '''s', feats: {Case: Nom}}]}, {surface: an, lexeme: a, feats: {Case: Acc, Gender: Masc, Number: Sing}}, {surface: groaßn,
+          lexeme: groaß, feats: {Case: Acc, Gender: Masc, Number: Sing}}, {surface: Morkt, lexeme: morkt, feats: {Case: Acc, Number: Sing}}]
+      reverse: In Bozn gip's an groaßn Morkt
+  translations:
+    en: |-
+      There's a big market in Bozen.
+      In Bozen there's a big market.
+- id: s.u07.7
+  node: bar.u07.stodt
+  forms:
+    bar-Latn/moser:
+      text: Di Stodt isch schian.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Stodt, lexeme: stodt, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: schian, lexeme: schian}]
+      reverse: Di Stodt isch schian
+  translations:
+    en: The (town|city) is (beautiful|nice|lovely).
+- id: s.u07.8
+  node: bar.u07.weg
+  forms:
+    bar-Latn/moser:
+      text: Wo isch der Bohnhof?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: der, lexeme: der, feats: {Case: Nom, Gender: Masc,
+            Number: Sing}}, {surface: Bohnhof, lexeme: bohnhof, feats: {Case: Nom, Number: Sing}}]
+      reverse: Wo isch der Bohnhof
+  translations:
+    en: |-
+      Where is the station?
+      Where's the station?
+- id: s.u07.9
+  node: bar.u07.weg
+  forms:
+    bar-Latn/moser:
+      text: Gradaus und nor links.
+      tokens: [{surface: Gradaus, lexeme: gradaus}, {surface: und, lexeme: und}, {surface: nor, lexeme: nor}, {surface: links, lexeme: links}]
+      reverse: Gradaus und nor links
+  translations:
+    en: Straight on and then (left|to the left).
+- id: s.u07.10
+  node: bar.u07.weg
+  forms:
+    bar-Latn/moser:
+      text: Di Bar isch rechts.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Bar, lexeme: bar, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: rechts, lexeme: rechts}]
+      reverse: Di Bar isch rechts
+  translations:
+    en: The (bar|café) is on the right.
+- id: s.u07.11
+  node: bar.u07.weg
+  forms:
+    bar-Latn/moser:
+      text: Isch des weit?
+      tokens: [{surface: Isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: des, lexeme: des}, {surface: weit, lexeme: weit}]
+      reverse: (Isch des weit|Isch es weit|Isch's weit)
+  translations:
+    en: Is (it|that) far?
+- id: s.u07.12
+  node: bar.u07.weg
+  forms:
+    bar-Latn/moser:
+      text: Na, des isch nohent.
+      tokens: [{surface: Na, lexeme: na}, {surface: des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nohent, lexeme: nohent}]
+      reverse: Na des isch nohent
+  translations:
+    en: No, it's (near|close|nearby|close by).
+- id: s.u07.13
+  node: bar.u07.weg
+  forms:
+    bar-Latn/moser:
+      text: Der Bohnhof isch nit weit.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Bohnhof, lexeme: bohnhof, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nit, lexeme: nit}, {surface: weit, lexeme: weit}]
+      reverse: Der Bohnhof isch (nit|net) weit
+  translations:
+    en: The station (isn't|is not) far.
+- id: s.u07.14
+  node: bar.u07.miassn
+  forms:
+    bar-Latn/moser:
+      text: I muaß in di Stodt.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: muaß, lexeme: miassn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: in, lexeme: in}, {surface: di,
+          lexeme: der, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Stodt, lexeme: stodt, feats: {Case: Acc, Number: Sing}}]
+      reverse: I muaß in di Stodt
+  translations:
+    en: |-
+      I have to go into town.
+      I need to go into town.
+      I must go into town.
+- id: s.u07.15
+  node: bar.u07.miassn
+  forms:
+    bar-Latn/moser:
+      text: Mir fohrn noch Meran.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: fohrn, lexeme: fohrn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: noch, lexeme: noch},
+        {surface: Meran, lexeme: meran, feats: {Case: Dat, Number: Sing}}]
+      reverse: Mir fohrn noch Meran
+  translations:
+    en: (We're going|We go|We're driving) to Meran.
+- id: s.u07.16
+  node: bar.u07.miassn
+  forms:
+    bar-Latn/moser:
+      text: Der Bus fohrt noch Meran.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Bus, lexeme: bus, feats: {Case: Nom, Number: Sing}}, {surface: fohrt, lexeme: fohrn, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: noch, lexeme: noch}, {surface: Meran, lexeme: meran, feats: {Case: Dat, Number: Sing}}]
+      reverse: Der Bus fohrt noch Meran
+  translations:
+    en: The bus goes to Meran.
+- id: s.u07.17
+  node: bar.u07.miassn
+  forms:
+    bar-Latn/moser:
+      text: Mir miassn mitn Bus fohrn.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: miassn, lexeme: miassn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mitn, lexemes: [{
+              lexeme: mit, surface: mit, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc, Number: Sing}}]}, {surface: Bus, lexeme: bus, feats: {Case: Dat, Number: Sing}}, {surface: fohrn,
+          lexeme: fohrn, feats: {VerbForm: Inf}}]
+      reverse: Mir miassn mitn Bus fohrn
+  translations:
+    en: |-
+      We have to take the bus.
+      We have to go by bus.
+- id: s.u07.18
+  node: bar.u07.miassn
+  forms:
+    bar-Latn/moser:
+      text: Konnsch du mitn Zug fohrn?
+      tokens: [{surface: Konnsch, lexeme: kinnen, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: mitn, lexemes: [{lexeme: mit,
+              surface: mit, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc, Number: Sing}}]}, {surface: Zug, lexeme: zug, feats: {Case: Dat, Number: Sing}}, {surface: fohrn, lexeme: fohrn,
+          feats: {VerbForm: Inf}}]
+      reverse: (Konnsch du|Du konnsch) mitn Zug fohrn
+  translations:
+    en: |-
+      Can you go by train?
+      Can you take the train?
+- id: s.u07.19
+  node: bar.u07.miassn
+  forms:
+    bar-Latn/moser:
+      text: Jo, i konn mitn Zug kemmen.
+      tokens: [{surface: Jo, lexeme: jo}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: konn, lexeme: kinnen, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: mitn,
+          lexemes: [{lexeme: mit, surface: mit, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc, Number: Sing}}]}, {surface: Zug, lexeme: zug, feats: {Case: Dat, Number: Sing}}, {
+          surface: kemmen, lexeme: kemmen, feats: {VerbForm: Inf}}]
+      reverse: Jo i konn mitn Zug kemmen
+  translations:
+    en: Yes, I can come by train.
+- id: s.u07.20
+  node: bar.u07.miassn
+  forms:
+    bar-Latn/moser:
+      text: Do derfsch du nit huckn.
+      tokens: [{surface: Do, lexeme: do}, {surface: derfsch, lexeme: derfn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: nit,
+          lexeme: nit}, {surface: huckn, lexeme: huckn, feats: {VerbForm: Inf}}]
+      reverse: Do derfsch du (nit|net) huckn
+  translations:
+    en: You (can't|mustn't|may not) sit here.
+- id: s.u07.21
+  node: bar.u07.miassn
+  forms:
+    bar-Latn/moser:
+      text: Derf i do huckn?
+      tokens: [{surface: Derf, lexeme: derfn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: do, lexeme: do}, {surface: huckn,
+          lexeme: huckn, feats: {VerbForm: Inf}}]
+      reverse: Derf i do huckn
+  translations:
+    en: |-
+      May I sit here?
+      Can I sit here?
+- id: s.u07.22
+  node: bar.u07.miassn
+  forms:
+    bar-Latn/moser:
+      text: Mir kinnen zomm fohrn.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: kinnen, lexeme: kinnen, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: zomm, lexeme: zomm},
+        {surface: fohrn, lexeme: fohrn, feats: {VerbForm: Inf}}]
+      reverse: Mir kinnen zomm fohrn
+  translations:
+    en: We can (go|drive|travel) together.
+- id: s.u07.23
+  node: bar.u07.kafn
+  forms:
+    bar-Latn/moser:
+      text: I kaf a Brot.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: kaf, lexeme: kafn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Acc,
+            Gender: Neut, Number: Sing}}, {surface: Brot, lexeme: brot, feats: {Case: Acc, Number: Sing}}]
+      reverse: I kaf a Brot
+  translations:
+    en: (I'm buying|I buy) a (loaf|loaf of bread|bread).
+- id: s.u07.24
+  node: bar.u07.kafn
+  forms:
+    bar-Latn/moser:
+      text: Wiaviel koschtet des?
+      tokens: [{surface: Wiaviel, lexeme: wiaviel}, {surface: koschtet, lexeme: kostn, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: des, lexeme: des}]
+      reverse: Wiaviel koschtet des
+  translations:
+    en: How much (does that cost|is that|is it)?
+- id: s.u07.25
+  node: bar.u07.kafn
+  forms:
+    bar-Latn/moser:
+      text: Des koschtet drei Euro.
+      tokens: [{surface: Des, lexeme: des}, {surface: koschtet, lexeme: kostn, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: drei, lexeme: drei}, {surface: Euro,
+          lexeme: euro, feats: {Case: Acc, Number: Plur}}]
+      reverse: Des koschtet drei Euro
+  translations:
+    en: (That's|That costs|It costs|It's) three euros.
+- id: s.u07.26
+  node: bar.u07.kafn
+  forms:
+    bar-Latn/moser:
+      text: Wo kaf i Speck?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: kaf, lexeme: kafn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: Speck,
+          lexeme: speck, feats: {Case: Acc, Number: Sing}}]
+      reverse: Wo kaf i Speck
+  translations:
+    en: Where (do|can) I buy speck?
+- id: s.u07.27
+  node: bar.u07.kafn
+  forms:
+    bar-Latn/moser:
+      text: '''s Gscheft isch nohent.'
+      tokens: [{surface: '''s', lexeme: der, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Gscheft, lexeme: gscheft, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nohent, lexeme: nohent}]
+      reverse: '''s Gscheft isch nohent'
+  translations:
+    en: The shop is (near|close by|nearby).
+- id: s.u07.28
+  node: bar.u07.kafn
+  forms:
+    bar-Latn/moser:
+      text: I zohl.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: zohl, lexeme: zohln, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}]
+      reverse: I zohl
+  translations:
+    en: |-
+      (I'll pay|I'm paying).
+      It's on me.
+- id: s.u07.29
+  node: bar.u07.kafn
+  forms:
+    bar-Latn/moser:
+      text: Wo muaß i zohln?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: muaß, lexeme: miassn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: i, lexeme: i, feats: {Case: Nom}}, {surface: zohln,
+          lexeme: zohln, feats: {VerbForm: Inf}}]
+      reverse: Wo muaß i zohln
+  translations:
+    en: Where do I (have to|need to) pay?
+- id: s.u07.30
+  node: bar.u07.kafn
+  forms:
+    bar-Latn/moser:
+      text: Mir kafn Epfl afn Morkt.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: kafn, lexeme: kafn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Epfl, lexeme: apfl, feats: {
+            Case: Acc, Number: Plur}}, {surface: afn, lexemes: [{lexeme: af, surface: af, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc, Number: Sing}}]}, {surface: Morkt, lexeme: morkt,
+          feats: {Case: Dat, Number: Sing}}]
+      reverse: Mir kafn Epfl afn Morkt
+  translations:
+    en: (We buy|We're buying) apples at the market.
+- id: s.u07.31
+  node: bar.u07.suachn
+  forms:
+    bar-Latn/moser:
+      text: I suach in Bohnhof.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: suach, lexeme: suachn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: in, lexeme: der, feats: {
+            Case: Acc, Gender: Masc, Number: Sing}}, {surface: Bohnhof, lexeme: bohnhof, feats: {Case: Acc, Number: Sing}}]
+      reverse: I suach in Bohnhof
+  translations:
+    en: (I'm looking|I look) for the station.
+- id: s.u07.32
+  node: bar.u07.suachn
+  forms:
+    bar-Latn/moser:
+      text: Wos suachsch du?
+      tokens: [{surface: Wos, lexeme: wos}, {surface: suachsch, lexeme: suachn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}]
+      reverse: Wos suachsch du
+  translations:
+    en: What are you looking for?
+- id: s.u07.33
+  node: bar.u07.suachn
+  forms:
+    bar-Latn/moser:
+      text: I find di Bar nit.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: find, lexeme: findn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: di, lexeme: der, feats: {
+            Case: Acc, Gender: Fem, Number: Sing}}, {surface: Bar, lexeme: bar, feats: {Case: Acc, Number: Sing}}, {surface: nit, lexeme: nit}]
+      reverse: I find di Bar (nit|net)
+  translations:
+    en: I can't find the (bar|café).
+- id: s.u07.34
+  node: bar.u07.suachn
+  forms:
+    bar-Latn/moser:
+      text: Do isch sie!
+      tokens: [{surface: Do, lexeme: do}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: sie, lexeme: sie, feats: {Case: Nom}}]
+      reverse: Do isch sie
+  translations:
+    en: |-
+      (There|Here) it is!
+      There she is!
+- id: s.u07.35
+  node: bar.u07.suachn
+  forms:
+    bar-Latn/moser:
+      text: Der Wein isch teier.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Wein, lexeme: wein, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: teier, lexeme: teier}]
+      reverse: Der Wein isch teier
+  translations:
+    en: The wine is expensive.
+- id: s.u07.36
+  node: bar.u07.suachn
+  forms:
+    bar-Latn/moser:
+      text: Di Epfl sein billig.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Number: Plur}}, {surface: Epfl, lexeme: apfl, feats: {Case: Nom, Number: Plur}}, {surface: sein, lexeme: sein, feats: {Mood: Ind, Number: Plur,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: billig, lexeme: billig}]
+      reverse: Di Epfl sein billig
+  translations:
+    en: The apples are cheap.
+- id: s.u07.37
+  node: bar.u07.suachn
+  forms:
+    bar-Latn/moser:
+      text: I kimm glei.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: kimm, lexeme: kemmen, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: glei, lexeme: glei}]
+      reverse: I kimm glei
+  translations:
+    en: (I'm coming|I'll be right there|I'll be there in a moment).
+- id: s.u07.38
+  node: bar.u07.suachn
+  forms:
+    bar-Latn/moser:
+      text: Des isch fir di Mamme.
+      tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: fir, lexeme: fir}, {surface: di, lexeme: der,
+          feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Mamme, lexeme: mamme, feats: {Case: Acc, Number: Sing}}]
+      reverse: Des isch fir di Mamme
+  translations:
+    en: (That's|This is) for (Mum|Mom|my mother).
+stories:
+- id: bar.story.u07
+  node: bar.u07.story
+  title:
+    en: Shopping in Bozen
+  characters:
+  - id: giulia
+    speaker: f
+    name:
+      bar-Latn/moser: Giulia
+  - id: lena
+    speaker: f
+    name:
+      bar-Latn/moser: Lena
+  steps:
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: I muaß in di Stodt. Kimmsch du mit?
+          tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: muaß, lexeme: miassn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: in, lexeme: in}, {surface: di,
+              lexeme: der, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Stodt, lexeme: stodt, feats: {Case: Acc, Number: Sing}}, {surface: Kimmsch, lexeme: kemmen, feats: {Mood: Ind, Number: Sing,
+                Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: mit, lexeme: mit}]
+      translations:
+        en: I have to go into town. Are you coming along?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Jo! Mir kinnen mitn Bus fohrn.
+          tokens: [{surface: Jo, lexeme: jo}, {surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: kinnen, lexeme: kinnen, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: mitn, lexemes: [{lexeme: mit, surface: mit, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc, Number: Sing}}]}, {surface: Bus, lexeme: bus, feats: {Case: Dat,
+                Number: Sing}}, {surface: fohrn, lexeme: fohrn, feats: {VerbForm: Inf}}]
+      translations:
+        en: Yes! We can take the bus.
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Wos suachsch du?
+          tokens: [{surface: Wos, lexeme: wos}, {surface: suachsch, lexeme: suachn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}]
+      translations:
+        en: What are you looking for?
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: I will Speck fir mei Mamme kafn.
+          tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: will, lexeme: welln, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: Speck, lexeme: speck,
+              feats: {Case: Acc, Number: Sing}}, {surface: fir, lexeme: fir}, {surface: mei, lexeme: mei, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Mamme, lexeme: mamme, feats: {Case: Acc,
+                Number: Sing}}, {surface: kafn, lexeme: kafn, feats: {VerbForm: Inf}}]
+      translations:
+        en: I want to buy speck for my mum.
+  - line:
+      speaker: lena
+      ask: arrange
+      forms:
+        bar-Latn/moser:
+          text: Der Morkt isch afn Plotz.
+          tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Morkt, lexeme: morkt, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+                Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: afn, lexemes: [{lexeme: af, surface: af, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc,
+                    Number: Sing}}]}, {surface: Plotz, lexeme: plotz, feats: {Case: Dat, Number: Sing}}]
+      translations:
+        en: The market is on the square.
+  - choose:
+      prompt:
+        en: What does Giulia want to buy?
+      options:
+      - en: speck
+      - en: apples
+      - en: wine
+      answer: 0
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Isch des weit?
+          tokens: [{surface: Isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: des, lexeme: des}, {surface: weit, lexeme: weit}]
+      translations:
+        en: Is it far?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Na, gradaus und nor rechts.
+          tokens: [{surface: Na, lexeme: na}, {surface: gradaus, lexeme: gradaus}, {surface: und, lexeme: und}, {surface: nor, lexeme: nor}, {surface: rechts, lexeme: rechts}]
+      translations:
+        en: No, straight on and then right.
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Wiaviel koschtet der Speck?
+          tokens: [{surface: Wiaviel, lexeme: wiaviel}, {surface: koschtet, lexeme: kostn, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: der, lexeme: der, feats: {
+                Case: Nom, Gender: Masc, Number: Sing}}, {surface: Speck, lexeme: speck, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: How much is the speck?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Er isch nit billig, ober guat.
+          tokens: [{surface: Er, lexeme: er, feats: {Case: Nom}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nit, lexeme: nit}, {
+              surface: billig, lexeme: billig}, {surface: ober, lexeme: ober}, {surface: guat, lexeme: guat}]
+      translations:
+        en: It isn't cheap, but it's good.
+  - choose:
+      prompt:
+        en: Where is the market?
+      options:
+      - en: on the square
+      - en: at the station
+      - en: next to the church
+      answer: 0
+scenarios:
+- id: bar.weg
+  after: bar.u07.suachn
+  title:
+    en: Asking the way
+  setting:
+    en: A busy street corner near the Waltherplatz in Bozen, on a Saturday morning with the market on.
+  character:
+    en: A friendly woman in her forties from Bozen, in a hurry but happy to help, who gives directions with her hands and a lot of gradaus and links.
+  goal:
+    en: Ask where the station, the market and a bar are, check whether it is far, and thank her.

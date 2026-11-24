@@ -50,6 +50,7 @@ const COURSES: readonly (readonly [string, string, "asked" | "few" | "none"])[] 
   ["apc", "apc-Latn/arabizi", "asked"],
   ["chg", "chg-Arab/standard", "asked"],
   ["sk", "sk-Latn/standard", "asked"],
+  ["bar", "bar-Latn/moser", "asked"],
   ["es", "es-Latn/standard", "asked"],
   ["fa", "fa-Arab/standard", "asked"],
   ["grc", "grc-Grek/polytonic", "asked"],

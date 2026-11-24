@@ -14,6 +14,7 @@ const COURSES: readonly (readonly [string, string])[] = [
   ["apc", "apc-Latn/arabizi"],
   ["chg", "chg-Arab/standard"],
   ["sk", "sk-Latn/standard"],
+  ["bar", "bar-Latn/moser"],
   ["es", "es-Latn/standard"],
   ["fa", "fa-Arab/standard"],
   ["grc", "grc-Grek/polytonic"],

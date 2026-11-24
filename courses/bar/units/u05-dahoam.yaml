@@ -1,0 +1,615 @@
+# Unit 5 (bar): home (Haus, Kuchl, Stube, Gortn), where things are (in der Kuchl, afn Tisch, obm, untn) with the
+# dative after in, af and bei, do gip's (there is), schian and nui; Giulia visits Lena's flat.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u05
+title:
+  en: Dahoam At home
+cefr: A1
+nodes:
+- {id: bar.u05.haus, kind: lesson, introduces: ['lexeme:haus', 'lexeme:kuchl', 'lexeme:stube', 'lexeme:zimmer', 'lexeme:gortn', 'lexeme:dahoam', 'lexeme:wiaviel']}
+- {id: bar.u05.wo, kind: lesson, introduces: ['lexeme:obm', 'lexeme:untn', 'lexeme:tisch', 'lexeme:bett', 'lexeme:fenschter', 'lexeme:af']}
+- {id: bar.u05.gips, kind: lesson, introduces: ['lexeme:gebm', 'lexeme:hof', 'lexeme:kotz', 'lexeme:hund', 'lexeme:kondominium', 'lexeme:ritten', 'feature:Mood=Imp']}
+- {id: bar.u05.schian, kind: lesson, introduces: ['lexeme:schian', 'lexeme:schiach', 'lexeme:nui']}
+- {id: bar.u05.huckn, kind: lesson, introduces: ['lexeme:huckn', 'lexeme:schlofn', 'lexeme:bei', 'lexeme:za', 'lexeme:hoam', 'lexeme:her', 'lexeme:kemmen']}
+- {id: bar.u05.story, kind: story}
+sentences:
+- id: s.u05.1
+  node: bar.u05.haus
+  forms:
+    bar-Latn/moser:
+      text: Des isch mei Haus.
+      tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: mei, lexeme: mei, feats: {Case: Nom, Gender: Neut,
+            Number: Sing}}, {surface: Haus, lexeme: haus, feats: {Case: Nom, Number: Sing}}]
+      reverse: Des isch mei Haus
+  translations:
+    en: |-
+      (This is|That's|That is) my house.
+      (This is|That's) my home.
+- id: s.u05.2
+  node: bar.u05.haus
+  forms:
+    bar-Latn/moser:
+      text: I bin dahoam.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: bin, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: dahoam, lexeme: dahoam}]
+      reverse: I bin dahoam
+  translations:
+    en: (I'm|I am) (at home|home).
+- id: s.u05.3
+  node: bar.u05.haus
+  forms:
+    bar-Latn/moser:
+      text: Bisch du dahoam?
+      tokens: [{surface: Bisch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}, {surface: dahoam, lexeme: dahoam}]
+      reverse: (Bisch du|Du bisch) dahoam
+  translations:
+    en: Are you (at home|home)?
+- id: s.u05.4
+  node: bar.u05.haus
+  forms:
+    bar-Latn/moser:
+      text: Di Mamme isch in der Kuchl.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Mamme, lexeme: mamme, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: in, lexeme: in}, {surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Kuchl, lexeme: kuchl,
+          feats: {Case: Dat, Number: Sing}}]
+      reverse: Di Mamme isch in der Kuchl
+  translations:
+    en: (Mum|Mom|Mother) is in the kitchen.
+- id: s.u05.5
+  node: bar.u05.haus
+  forms:
+    bar-Latn/moser:
+      text: Der Tatte isch in der Stube.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Tatte, lexeme: tatte, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: in, lexeme: in}, {surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Stube, lexeme: stube,
+          feats: {Case: Dat, Number: Sing}}]
+      reverse: Der Tatte isch in der Stube
+  translations:
+    en: |-
+      Dad is in the living room.
+      Dad is in the Stube.
+- id: s.u05.6
+  node: bar.u05.haus
+  forms:
+    bar-Latn/moser:
+      text: Wo isch der Gortn?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: der, lexeme: der, feats: {Case: Nom, Gender: Masc,
+            Number: Sing}}, {surface: Gortn, lexeme: gortn, feats: {Case: Nom, Number: Sing}}]
+      reverse: Wo isch der Gortn
+  translations:
+    en: |-
+      Where is the garden?
+      Where's the garden?
+- id: s.u05.7
+  node: bar.u05.haus
+  forms:
+    bar-Latn/moser:
+      text: Mir hobm a groaßes Haus.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hobm, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {
+            Case: Acc, Gender: Neut, Number: Sing}}, {surface: groaßes, lexeme: groaß, feats: {Case: Acc, Gender: Neut, Number: Sing}}, {surface: Haus, lexeme: haus, feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir hobm a groaßes Haus
+  translations:
+    en: |-
+      We have a big house.
+      We've got a big house.
+- id: s.u05.8
+  node: bar.u05.haus
+  forms:
+    bar-Latn/moser:
+      text: Wiaviel Zimmer hot dei Haus?
+      tokens: [{surface: Wiaviel, lexeme: wiaviel}, {surface: Zimmer, lexeme: zimmer, feats: {Case: Acc, Number: Plur}}, {surface: hot, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres,
+            VerbForm: Fin}}, {surface: dei, lexeme: dei, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Haus, lexeme: haus, feats: {Case: Nom, Number: Sing}}]
+      reverse: Wiaviel Zimmer hot dei Haus
+  translations:
+    en: |-
+      How many rooms does your house have?
+      How many rooms has your house got?
+- id: s.u05.9
+  node: bar.u05.haus
+  forms:
+    bar-Latn/moser:
+      text: Es hot drei Zimmer.
+      tokens: [{surface: Es, lexeme: es.it, feats: {Case: Nom}}, {surface: hot, lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: drei, lexeme: drei}, {
+          surface: Zimmer, lexeme: zimmer, feats: {Case: Acc, Number: Plur}}]
+      reverse: (Es hot|'s hot) drei Zimmer
+  translations:
+    en: |-
+      It has three rooms.
+      It's got three rooms.
+- id: s.u05.10
+  node: bar.u05.wo
+  forms:
+    bar-Latn/moser:
+      text: Hannes isch obm.
+      tokens: [{surface: Hannes, lexeme: hannes, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: obm,
+          lexeme: obm}]
+      reverse: (Hannes|Der Hannes) isch obm
+  translations:
+    en: |-
+      Hannes is upstairs.
+      Hannes is up there.
+- id: s.u05.11
+  node: bar.u05.wo
+  forms:
+    bar-Latn/moser:
+      text: Di Kinder sein untn.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Number: Plur}}, {surface: Kinder, lexeme: kind, feats: {Case: Nom, Number: Plur}}, {surface: sein, lexeme: sein, feats: {Mood: Ind, Number: Plur,
+            Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: untn, lexeme: untn}]
+      reverse: Di Kinder sein untn
+  translations:
+    en: |-
+      The children are downstairs.
+      The children are down there.
+- id: s.u05.12
+  node: bar.u05.wo
+  forms:
+    bar-Latn/moser:
+      text: '''s Brot isch afn Tisch.'
+      tokens: [{surface: '''s', lexeme: der, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Brot, lexeme: brot, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: afn, lexemes: [{lexeme: af, surface: af, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc, Number: Sing}}]},
+        {surface: Tisch, lexeme: tisch, feats: {Case: Dat, Number: Sing}}]
+      reverse: '''s Brot isch afn Tisch'
+  translations:
+    en: The bread is on the table.
+- id: s.u05.13
+  node: bar.u05.wo
+  forms:
+    bar-Latn/moser:
+      text: Di Milch isch a afn Tisch.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Milch, lexeme: milch, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a.auch}, {surface: afn, lexemes: [{lexeme: af, surface: af, base: true}, {lexeme: der, surface: n, feats: {Case: Dat,
+                Gender: Masc, Number: Sing}}]}, {surface: Tisch, lexeme: tisch, feats: {Case: Dat, Number: Sing}}]
+      reverse: Di Milch isch a afn Tisch
+  translations:
+    en: |-
+      The milk is on the table too.
+      The milk is also on the table.
+- id: s.u05.14
+  node: bar.u05.wo
+  forms:
+    bar-Latn/moser:
+      text: Mei Bett isch kloan.
+      tokens: [{surface: Mei, lexeme: mei, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Bett, lexeme: bett, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kloan, lexeme: kloan}]
+      reverse: Mei Bett isch kloan
+  translations:
+    en: My bed is small.
+- id: s.u05.15
+  node: bar.u05.wo
+  forms:
+    bar-Latn/moser:
+      text: '''s Fenschter isch groaß.'
+      tokens: [{surface: '''s', lexeme: der, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Fenschter, lexeme: fenschter, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {
+            Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: groaß, lexeme: groaß}]
+      reverse: '''s Fenschter isch groaß'
+  translations:
+    en: The window is big.
+- id: s.u05.16
+  node: bar.u05.wo
+  forms:
+    bar-Latn/moser:
+      text: Wo isch dei Zimmer?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dei, lexeme: dei, feats: {Case: Nom, Gender: Neut,
+            Number: Sing}}, {surface: Zimmer, lexeme: zimmer, feats: {Case: Nom, Number: Sing}}]
+      reverse: Wo isch dei Zimmer
+  translations:
+    en: |-
+      Where is your room?
+      Where's your room?
+- id: s.u05.17
+  node: bar.u05.wo
+  forms:
+    bar-Latn/moser:
+      text: Mei Zimmer isch obm.
+      tokens: [{surface: Mei, lexeme: mei, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Zimmer, lexeme: zimmer, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: obm, lexeme: obm}]
+      reverse: Mei Zimmer isch obm
+  translations:
+    en: My room is upstairs.
+- id: s.u05.18
+  node: bar.u05.gips
+  forms:
+    bar-Latn/moser:
+      text: Do gip's an Gortn.
+      tokens: [{surface: Do, lexeme: do}, {surface: gip's, lexemes: [{lexeme: gebm, surface: gip, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it,
+              surface: '''s', feats: {Case: Nom}}]}, {surface: an, lexeme: a, feats: {Case: Acc, Gender: Masc, Number: Sing}}, {surface: Gortn, lexeme: gortn, feats: {Case: Acc, Number: Sing}}]
+      reverse: Do gip's an Gortn
+  translations:
+    en: There's a garden (here|there).
+- id: s.u05.19
+  node: bar.u05.gips
+  forms:
+    bar-Latn/moser:
+      text: Gip's do a Kuchl?
+      tokens: [{surface: Gip's, lexemes: [{lexeme: gebm, surface: Gip, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it, surface: '''s', feats: {Case: Nom}}]},
+        {surface: do, lexeme: do}, {surface: a, lexeme: a, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Kuchl, lexeme: kuchl, feats: {Case: Acc, Number: Sing}}]
+      reverse: Gip's do a Kuchl
+  translations:
+    en: Is there a kitchen (here|there)?
+- id: s.u05.20
+  node: bar.u05.gips
+  forms:
+    bar-Latn/moser:
+      text: Mei Oma hot an Hof.
+      tokens: [{surface: Mei, lexeme: mei, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Oma, lexeme: oma, feats: {Case: Nom, Number: Sing}}, {surface: hot, lexeme: hobm, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: an, lexeme: a, feats: {Case: Acc, Gender: Masc, Number: Sing}}, {surface: Hof, lexeme: hof, feats: {Case: Acc, Number: Sing}}]
+      reverse: Mei Oma hot an Hof
+  translations:
+    en: |-
+      My (grandma|grandmother) has a farm.
+      My (grandma|grandmother) has got a farm.
+- id: s.u05.21
+  node: bar.u05.gips
+  forms:
+    bar-Latn/moser:
+      text: Der Hof isch afn Ritten.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Hof, lexeme: hof, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: afn, lexemes: [{lexeme: af, surface: af, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc, Number: Sing}}]},
+        {surface: Ritten, lexeme: ritten, feats: {Case: Dat, Number: Sing}}]
+      reverse: Der Hof isch afn Ritten
+  translations:
+    en: The farm is (on|up on) the Ritten.
+- id: s.u05.22
+  node: bar.u05.gips
+  forms:
+    bar-Latn/moser:
+      text: Afn Hof gip's an Hund und a Kotz.
+      tokens: [{surface: Afn, lexemes: [{lexeme: af, surface: Af, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc, Number: Sing}}]}, {surface: Hof, lexeme: hof, feats: {Case: Dat,
+            Number: Sing}}, {surface: gip's, lexemes: [{lexeme: gebm, surface: gip, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it, surface: '''s',
+              feats: {Case: Nom}}]}, {surface: an, lexeme: a, feats: {Case: Acc, Gender: Masc, Number: Sing}}, {surface: Hund, lexeme: hund, feats: {Case: Acc, Number: Sing}}, {surface: und, lexeme: und},
+        {surface: a, lexeme: a, feats: {Case: Acc, Gender: Fem, Number: Sing}}, {surface: Kotz, lexeme: kotz, feats: {Case: Acc, Number: Sing}}]
+      reverse: Afn Hof gip's an Hund und a Kotz
+  translations:
+    en: |-
+      There's a dog and a cat on the farm.
+      On the farm there's a dog and a cat.
+- id: s.u05.23
+  node: bar.u05.gips
+  forms:
+    bar-Latn/moser:
+      text: Mir hobm koan Hund.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hobm, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: koan, lexeme: koan, feats: {
+            Case: Acc, Gender: Masc, Number: Sing}}, {surface: Hund, lexeme: hund, feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir hobm koan Hund
+  translations:
+    en: |-
+      We (don't have|have no) dog.
+      We haven't got a dog.
+- id: s.u05.24
+  node: bar.u05.gips
+  forms:
+    bar-Latn/moser:
+      text: Di Kotz isch kloan.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Kotz, lexeme: kotz, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kloan, lexeme: kloan}]
+      reverse: Di Kotz isch kloan
+  translations:
+    en: The cat is small.
+- id: s.u05.25
+  node: bar.u05.gips
+  forms:
+    bar-Latn/moser:
+      text: Mir wohnen in an Kondominium.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: wohnen, lexeme: wohnen, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: in, lexeme: in}, {
+          surface: an, lexeme: a, feats: {Case: Dat, Gender: Neut, Number: Sing}}, {surface: Kondominium, lexeme: kondominium, feats: {Case: Dat, Number: Sing}}]
+      reverse: Mir wohnen in an Kondominium
+  translations:
+    en: |-
+      We live in an apartment building.
+      We live in a block of flats.
+- id: s.u05.26
+  node: bar.u05.gips
+  forms:
+    bar-Latn/moser:
+      text: Gib mir 's Brot, bitte.
+      tokens: [{surface: Gib, lexeme: gebm, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: mir, lexeme: i, feats: {Case: Dat}}, {surface: '''s', lexeme: der, feats: {Case: Acc,
+            Gender: Neut, Number: Sing}}, {surface: Brot, lexeme: brot, feats: {Case: Acc, Number: Sing}}, {surface: bitte, lexeme: bitte}]
+      reverse: Gib mir 's Brot bitte
+  translations:
+    en: |-
+      Give me the bread, please.
+      Please give me the bread.
+      Pass me the bread, please.
+- id: s.u05.27
+  node: bar.u05.schian
+  forms:
+    bar-Latn/moser:
+      text: '''s Haus isch schian.'
+      tokens: [{surface: '''s', lexeme: der, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Haus, lexeme: haus, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: schian, lexeme: schian}]
+      reverse: '''s Haus isch schian'
+  translations:
+    en: The house is (beautiful|nice|lovely).
+- id: s.u05.28
+  node: bar.u05.schian
+  forms:
+    bar-Latn/moser:
+      text: Mir hobm a nuis Haus.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: hobm, lexeme: hobm, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {
+            Case: Acc, Gender: Neut, Number: Sing}}, {surface: nuis, lexeme: nui, feats: {Case: Acc, Gender: Neut, Number: Sing}}, {surface: Haus, lexeme: haus, feats: {Case: Acc, Number: Sing}}]
+      reverse: Mir hobm a nuis Haus
+  translations:
+    en: |-
+      We have a new house.
+      We've got a new house.
+- id: s.u05.29
+  node: bar.u05.schian
+  forms:
+    bar-Latn/moser:
+      text: Des isch a schiane Kuchl.
+      tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Nom, Gender: Fem,
+            Number: Sing}}, {surface: schiane, lexeme: schian, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Kuchl, lexeme: kuchl, feats: {Case: Nom, Number: Sing}}]
+      reverse: Des isch a schiane Kuchl
+  translations:
+    en: (That's|This is) a (beautiful|nice|lovely) kitchen.
+- id: s.u05.30
+  node: bar.u05.schian
+  forms:
+    bar-Latn/moser:
+      text: Di Stube isch olt, ober schian.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Stube, lexeme: stube, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: olt, lexeme: olt}, {surface: ober, lexeme: ober}, {surface: schian, lexeme: schian}]
+      reverse: Di Stube isch olt ober schian
+  translations:
+    en: The (living room|Stube) is old, but (beautiful|nice|lovely).
+- id: s.u05.31
+  node: bar.u05.schian
+  forms:
+    bar-Latn/moser:
+      text: Der Gortn isch schiach.
+      tokens: [{surface: Der, lexeme: der, feats: {Case: Nom, Gender: Masc, Number: Sing}}, {surface: Gortn, lexeme: gortn, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: schiach, lexeme: schiach}]
+      reverse: Der Gortn isch schiach
+  translations:
+    en: The garden is ugly.
+- id: s.u05.32
+  node: bar.u05.schian
+  forms:
+    bar-Latn/moser:
+      text: Mei Zimmer isch nui.
+      tokens: [{surface: Mei, lexeme: mei, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Zimmer, lexeme: zimmer, feats: {Case: Nom, Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: nui, lexeme: nui}]
+      reverse: Mei Zimmer isch nui
+  translations:
+    en: My room is new.
+- id: s.u05.33
+  node: bar.u05.schian
+  forms:
+    bar-Latn/moser:
+      text: Des isch a schians Fenschter.
+      tokens: [{surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a, feats: {Case: Nom, Gender: Neut,
+            Number: Sing}}, {surface: schians, lexeme: schian, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Fenschter, lexeme: fenschter, feats: {Case: Nom, Number: Sing}}]
+      reverse: Des isch a schians Fenschter
+  translations:
+    en: (That's|This is) a (beautiful|nice|lovely) window.
+- id: s.u05.34
+  node: bar.u05.huckn
+  forms:
+    bar-Latn/moser:
+      text: Huck di her!
+      tokens: [{surface: Huck, lexeme: huckn, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: di, lexeme: du, feats: {Case: Acc}}, {surface: her, lexeme: her}]
+      reverse: Huck di her
+  translations:
+    en: |-
+      Sit down!
+      Have a seat!
+      Sit down here!
+- id: s.u05.35
+  node: bar.u05.huckn
+  forms:
+    bar-Latn/moser:
+      text: Mir huckn in der Stube.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: huckn, lexeme: huckn, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: in, lexeme: in}, {surface: der,
+          lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Stube, lexeme: stube, feats: {Case: Dat, Number: Sing}}]
+      reverse: Mir huckn in der Stube
+  translations:
+    en: (We're sitting|We sit) in the (living room|Stube).
+- id: s.u05.36
+  node: bar.u05.huckn
+  forms:
+    bar-Latn/moser:
+      text: Flori schloft.
+      tokens: [{surface: Flori, lexeme: flori, feats: {Case: Nom, Number: Sing}}, {surface: schloft, lexeme: schlofn, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+      reverse: (Flori|Der Flori) schloft
+  translations:
+    en: |-
+      Flori is (sleeping|asleep).
+      Flori sleeps.
+- id: s.u05.37
+  node: bar.u05.huckn
+  forms:
+    bar-Latn/moser:
+      text: Wo schlofsch du?
+      tokens: [{surface: Wo, lexeme: wo}, {surface: schlofsch, lexeme: schlofn, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: du, lexeme: du, feats: {Case: Nom}}]
+      reverse: Wo schlofsch du
+  translations:
+    en: |-
+      Where do you sleep?
+      Where are you sleeping?
+- id: s.u05.38
+  node: bar.u05.huckn
+  forms:
+    bar-Latn/moser:
+      text: I schlof bei der Oma.
+      tokens: [{surface: I, lexeme: i, feats: {Case: Nom}}, {surface: schlof, lexeme: schlofn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: bei, lexeme: bei}, {
+          surface: der, lexeme: der, feats: {Case: Dat, Gender: Fem, Number: Sing}}, {surface: Oma, lexeme: oma, feats: {Case: Dat, Number: Sing}}]
+      reverse: I schlof bei der Oma
+  translations:
+    en: (I'm sleeping|I sleep|I'm staying) at (grandma's|my grandma's|my grandmother's).
+- id: s.u05.39
+  node: bar.u05.huckn
+  forms:
+    bar-Latn/moser:
+      text: Mir gian hoam.
+      tokens: [{surface: Mir, lexeme: mir, feats: {Case: Nom}}, {surface: gian, lexeme: gian, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: hoam, lexeme: hoam}]
+      reverse: Mir gian hoam
+  translations:
+    en: |-
+      (We're going|We go) home.
+      Let's go home.
+- id: s.u05.40
+  node: bar.u05.huckn
+  forms:
+    bar-Latn/moser:
+      text: Kimm za ins!
+      tokens: [{surface: Kimm, lexeme: kemmen, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: za, lexeme: za}, {surface: ins, lexeme: mir, feats: {Case: Dat}}]
+      reverse: Kimm za ins
+  translations:
+    en: |-
+      Come to our place!
+      Come over to ours!
+      Come to us!
+- id: s.u05.41
+  node: bar.u05.huckn
+  forms:
+    bar-Latn/moser:
+      text: Di Kotz huckt afn Tisch.
+      tokens: [{surface: Di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Kotz, lexeme: kotz, feats: {Case: Nom, Number: Sing}}, {surface: huckt, lexeme: huckn, feats: {Mood: Ind,
+            Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: afn, lexemes: [{lexeme: af, surface: af, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc, Number: Sing}}]},
+        {surface: Tisch, lexeme: tisch, feats: {Case: Dat, Number: Sing}}]
+      reverse: Di Kotz huckt afn Tisch
+  translations:
+    en: |-
+      The cat is sitting on the table.
+      The cat sits on the table.
+stories:
+- id: bar.story.u05
+  node: bar.u05.story
+  title:
+    en: Lena's flat
+  characters:
+  - id: lena
+    speaker: f
+    name:
+      bar-Latn/moser: Lena
+  - id: giulia
+    speaker: f
+    name:
+      bar-Latn/moser: Giulia
+  steps:
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Griaß di, Giulia! Huck di her!
+          tokens: [{surface: Griaß, lexeme: griaß-di}, {surface: di, lexeme: griaß-di}, {surface: Giulia, lexeme: giulia, feats: {Case: Nom, Number: Sing}}, {surface: Huck, lexeme: huckn, feats: {Mood: Imp,
+                Number: Sing, Person: '2', VerbForm: Fin}}, {surface: di, lexeme: du, feats: {Case: Acc}}, {surface: her, lexeme: her}]
+      translations:
+        en: Hi, Giulia! Have a seat!
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Danke! Des isch a schiane Stube.
+          tokens: [{surface: Danke, lexeme: danke}, {surface: Des, lexeme: des}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: a, lexeme: a,
+              feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: schiane, lexeme: schian, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Stube, lexeme: stube, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Thanks! What a lovely living room.
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Jo, ober mei Zimmer isch kloan.
+          tokens: [{surface: Jo, lexeme: jo}, {surface: ober, lexeme: ober}, {surface: mei, lexeme: mei, feats: {Case: Nom, Gender: Neut, Number: Sing}}, {surface: Zimmer, lexeme: zimmer, feats: {Case: Nom,
+                Number: Sing}}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: kloan, lexeme: kloan}]
+      translations:
+        en: Yes, but my room is small.
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Wo isch dei Zimmer?
+          tokens: [{surface: Wo, lexeme: wo}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: dei, lexeme: dei, feats: {Case: Nom, Gender: Neut,
+                Number: Sing}}, {surface: Zimmer, lexeme: zimmer, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Where's your room?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Obm. Und untn isch di Kuchl.
+          tokens: [{surface: Obm, lexeme: obm}, {surface: Und, lexeme: und}, {surface: untn, lexeme: untn}, {surface: isch, lexeme: sein, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}},
+            {surface: di, lexeme: der, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Kuchl, lexeme: kuchl, feats: {Case: Nom, Number: Sing}}]
+      translations:
+        en: Upstairs. And the kitchen is downstairs.
+  - line:
+      speaker: giulia
+      ask: arrange
+      forms:
+        bar-Latn/moser:
+          text: Gip's do a an Gortn?
+          tokens: [{surface: Gip's, lexemes: [{lexeme: gebm, surface: Gip, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it, surface: '''s', feats: {
+                    Case: Nom}}]}, {surface: do, lexeme: do}, {surface: a, lexeme: a.auch}, {surface: an, lexeme: a, feats: {Case: Acc, Gender: Masc, Number: Sing}}, {surface: Gortn, lexeme: gortn, feats: {
+                Case: Acc, Number: Sing}}]
+      translations:
+        en: Is there a garden here too?
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Na, mir wohnen in an Kondominium.
+          tokens: [{surface: Na, lexeme: na}, {surface: mir, lexeme: mir, feats: {Case: Nom}}, {surface: wohnen, lexeme: wohnen, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: in, lexeme: in}, {surface: an, lexeme: a, feats: {Case: Dat, Gender: Neut, Number: Sing}}, {surface: Kondominium, lexeme: kondominium, feats: {Case: Dat, Number: Sing}}]
+      translations:
+        en: No, we live in an apartment building.
+  - choose:
+      prompt:
+        en: Where does Lena live?
+      options:
+      - en: in an apartment building
+      - en: on a farm
+      - en: at her grandma's
+      answer: 0
+  - line:
+      speaker: lena
+      forms:
+        bar-Latn/moser:
+          text: Ober mei Oma hot an Hof afn Ritten.
+          tokens: [{surface: Ober, lexeme: ober}, {surface: mei, lexeme: mei, feats: {Case: Nom, Gender: Fem, Number: Sing}}, {surface: Oma, lexeme: oma, feats: {Case: Nom, Number: Sing}}, {surface: hot,
+              lexeme: hobm, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: an, lexeme: a, feats: {Case: Acc, Gender: Masc, Number: Sing}}, {surface: Hof, lexeme: hof,
+              feats: {Case: Acc, Number: Sing}}, {surface: afn, lexemes: [{lexeme: af, surface: af, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc, Number: Sing}}]}, {surface: Ritten,
+              lexeme: ritten, feats: {Case: Dat, Number: Sing}}]
+      translations:
+        en: But my grandma has a farm up on the Ritten.
+  - line:
+      speaker: lena
+      ask: complete
+      gap: lexeme:hund
+      distractors:
+      - lexeme:hof
+      - lexeme:bruader
+      forms:
+        bar-Latn/moser:
+          text: Afn Hof gip's an Hund.
+          tokens: [{surface: Afn, lexemes: [{lexeme: af, surface: Af, base: true}, {lexeme: der, surface: n, feats: {Case: Dat, Gender: Masc, Number: Sing}}]}, {surface: Hof, lexeme: hof, feats: {Case: Dat,
+                Number: Sing}}, {surface: gip's, lexemes: [{lexeme: gebm, surface: gip, base: true, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {lexeme: es.it, surface: '''s',
+                  feats: {Case: Nom}}]}, {surface: an, lexeme: a, feats: {Case: Acc, Gender: Masc, Number: Sing}}, {surface: Hund, lexeme: hund, feats: {Case: Acc, Number: Sing}}]
+      translations:
+        en: There's a dog on the farm.
+  - line:
+      speaker: giulia
+      forms:
+        bar-Latn/moser:
+          text: Schian! I mog Hund.
+          tokens: [{surface: Schian, lexeme: schian}, {surface: I, lexeme: i, feats: {Case: Nom}}, {surface: mog, lexeme: megn, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}},
+            {surface: Hund, lexeme: hund, feats: {Case: Acc, Number: Plur}}]
+      translations:
+        en: Lovely! I like dogs.
+  - choose:
+      prompt:
+        en: What does Lena's grandma have?
+      options:
+      - en: a farm
+      - en: an apartment
+      - en: a bar
+      answer: 0
+scenarios:
+- id: bar.zimmer
+  after: bar.u05.huckn
+  title:
+    en: A room to rent
+  setting:
+    en: A sunny flat on the second floor of an old building in Bozen, where a room is to let.
+  character:
+    en: Herr Gruber, a retired railwayman in his sixties, polite and a little formal (you say Sie to him), who rents out his late son's room and wants a quiet tenant.
+  goal:
+    en: Ask what the room and the flat have (a kitchen, a garden), say what you like about it, and say whether you will take it.

@@ -81,6 +81,7 @@ TOOLS = {
     "grc": [],
     "chg": [],
     "sk": [],
+    "bar": [],
 }
 
 _cache: dict[str, tuple[Diagnostics, Compiled | None]] = {}
@@ -410,7 +411,7 @@ def test_classical_chinese_reads_a_character_by_its_lexeme(core_cli: CoreCli) ->
 
 
 # Courses whose words are asked by their parts (ADR 0152): their tokens carry forms to tell apart.
-WORD_PARTS = {"apc", "chg", "es", "fa", "grc", "hbo", "sk", "uz"}
+WORD_PARTS = {"apc", "bar", "chg", "es", "fa", "grc", "hbo", "sk", "uz"}
 
 
 def _token_forms(compiled: Compiled) -> set[str]:
