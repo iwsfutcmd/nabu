@@ -59,9 +59,19 @@ interface Hold {
 
 let hold: Hold | undefined;
 const listeners = new Set<() => void>();
+/** The visits so far: one more each time the route changes or a screen is left, even for its own route. */
+let visits = 0;
 const changed = (): void => {
+  visits += 1;
   for (const listener of listeners) listener();
 };
+
+/**
+ * The current visit to the route: a screen keyed by it starts afresh each time it is left for a route,
+ * its own included (Keep practising after a review opens another review at the same address). Back or
+ * Forward held by a running session is no visit: the session goes on.
+ */
+export const routeVisit = (): number => visits;
 
 const onHashChange = (e: HashChangeEvent): void => {
   const here = routeOf(location.hash);

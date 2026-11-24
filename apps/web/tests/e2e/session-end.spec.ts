@@ -5,7 +5,8 @@
  *   shows the lesson's new words with their meanings, says the streak started today, and offers
  *   the next lesson, which it opens.
  * - Right after a review (D34): the next step is the next lesson or story on the path, with more
- *   practice beside it, though Continue offered practice first.
+ *   practice beside it, though Continue offered practice first. Keep practising opens another review
+ *   (the same route): a fresh session, whose own end screen's buttons work in turn.
  * - A wrong typed answer claimed right in its feedback: Continue no longer says wrong, the card does
  *   not come back (a reload in between changes nothing), and the session counts it right.
  */
@@ -113,6 +114,40 @@ test("right after a review, the next step is the path's next lesson or story, wi
     if (opening === undefined) throw new Error("the next lesson has cards");
     await waitFor(page, opening);
   }
+  expect(errors).toEqual([]);
+});
+
+test("Keep practising after a review opens a fresh review at the same address, and its end screen still leads on", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(String(e)));
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("fa", "fa-Arab/standard");
+  const lessons = lessonNodes(course);
+  const node = lessons[Math.min(20, lessons.length - 1)]?.node.id;
+  if (node === undefined) throw new Error("fa has lessons");
+  const history = historyBefore(course, node, new Date(NOW.getTime() - 30 * DAY));
+  await seedLog(page, history);
+  const request = { mode: "review" } as const;
+  await page.goto(sessionUrl(course, request, SEED));
+  await playSession(page, planned(course, history, request, NOW, SEED), "keyboard");
+  const player = page.locator("[data-lesson-player]");
+  await expect(player).toHaveAttribute("data-state", "finished");
+  const address = page.url();
+
+  // Another review, planned from the log with the first in it: the same address, a new session.
+  await activate(page, "keyboard", "[data-action=more-practice]");
+  const again = planned(course, await logOf(page, "fa"), request, NOW, SEED);
+  const first = again[0];
+  if (first === undefined) throw new Error("a second review has cards");
+  await waitFor(page, first);
+  expect(page.url()).toBe(address);
+  await playSession(page, again, "keyboard");
+  await expect(player).toHaveAttribute("data-state", "finished");
+
+  // Its end screen leads on as the first one's would: back to the course page.
+  await activate(page, "keyboard", "[data-action=exit]");
+  await expect(page.locator("[data-course-path]")).toBeVisible();
   expect(errors).toEqual([]);
 });
 
