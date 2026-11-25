@@ -360,9 +360,11 @@ def check_tokens(
     (and its layers', against the marked text). A phrase lexeme (a form with a space, written over
     several tokens) is realised once for each of its words, the token's other lexemes joined to
     it, and the token is the word that spells as it is written. Where blocking took one of several
-    free forms of the cell (ADR 0145), each of them may be the one the token writes. It is `given`
-    where each spelling is the course's or a free alternative of it (compared as core's `spelledAs` does; the marked
-    layer exactly), `form` where blocking took a pinned or listed form of its lexeme to give it,
+    free forms of the cell (ADR 0145), each of them may be the one the token writes; a token in its
+    lexeme's own form, no rule taken, may be written as any of the lexicon's spellings of it. It is
+    `given` where each spelling is the course's or a free alternative of it (compared as core's
+    `spelledAs` does; the marked layer exactly), `form` where blocking took a pinned or listed form
+    of its lexeme to give it,
     `unaccounted` otherwise, with the reason where the rules give nothing. None for a language
     with no realisation rules: nothing is checked, nothing asked."""
     declared = lang.declared
@@ -448,9 +450,17 @@ def check_tokens(
             part = len(results[n]) > 1 and j == 0
             # Free forms of the cell (ADR 0145: both accepted, the first shown): any may be the
             # token's.
-            free = [str(f) for f in value.get("free") or []]
+            free = [str(f) for f in cast(list[Any], value.get("free") or [])]
+            # A token in its lexeme's own form, no rule taken (an uninflected word, a lemma): any
+            # of the lexicon's spellings of it is the token's (Slovak's vo beside v, its variant).
+            variants: list[str] = []
+            if len(site.written) == 1 and status == "given" and not value["steps"]:
+                entry = lang.get(str(site.written[0]["lexeme"]))
+                if entry is not None:
+                    variants = lang.spelled(entry, site.orth)[1:]
             for where, layer, expected in wheres:
-                for k, text in enumerate([form, *free]):
+                others = [*free, *(variants if layer is None else [])]
+                for k, text in enumerate([form, *others]):
                     ask: dict[str, Any] = {
                         "op": "spell",
                         "profile": site.orth,
@@ -584,56 +594,79 @@ def check_pinned(
                 continue
             feats = {str(k): str(v) for k, v in (form.feats or {}).items()}
             found.append((str(lexeme.id), i, feats, form))
-    realised = _batched(
-        cli,
-        [
-            {"op": "realise", **source, "lexeme": ident, "cell": feats, "pinned": False}
-            for ident, _, feats, _ in found
-        ],
-    )
+
+    def candidates(ident: str, feats: dict[str, str]) -> list[dict[str, Any]]:
+        request: dict[str, Any] = {
+            "op": "realise",
+            **source,
+            "lexeme": ident,
+            "cell": feats,
+            "pinned": False,
+        }
+        entry = lang.get(ident)
+        words = len(entry.form.split(" ")) if entry and isinstance(entry.form, str) else 1
+        # A phrase's word stands in a token of its own (volať sa: volám), as the token check has it.
+        return [request, *({**request, "word": k} for k in range(words) if words > 1)]
+
+    requests = [candidates(ident, feats) for ident, _, feats, _ in found]
+    flat = iter(_batched(cli, [r for rs in requests for r in rs]))
+    realised = [[next(flat) for _ in rs] for rs in requests]
     asks: list[tuple[int, str, str, dict[str, Any]]] = []
     out: list[Pinned] = []
     rules: list[dict[str, str]] = []
-    for n, ((_ident, _i, _feats, form), result) in enumerate(zip(found, realised, strict=True)):
+    for n, ((_ident, _i, _feats, form), results) in enumerate(zip(found, realised, strict=True)):
         rules.append({})
         pinned = {str(o): [str(x) for x in v] for o, v in (form.spelled or {}).items()}
         for orth, spellings in pinned.items():
             if orth not in profiles or profiles[orth].spell is None:
                 continue
             for spelling in spellings:
-                if result["ok"]:
-                    asks.append(
-                        (
-                            n,
-                            orth,
-                            spelling,
-                            {
-                                "op": "spell",
-                                "profile": orth,
-                                "notation": notation,
-                                "form": result["value"]["form"],
-                                "expected": spelling,
-                            },
+                for result in results:
+                    if not result["ok"]:
+                        continue
+                    # A cell's free forms (ADR 0145) give it too.
+                    value = cast(dict[str, Any], result["value"])
+                    free = [str(f) for f in cast(list[Any], value.get("free") or [])]
+                    for text in [str(value["form"]), *free]:
+                        asks.append(
+                            (
+                                n,
+                                orth,
+                                spelling,
+                                {
+                                    "op": "spell",
+                                    "profile": orth,
+                                    "notation": notation,
+                                    "form": text,
+                                    "expected": spelling,
+                                },
+                            )
                         )
-                    )
     answers = _batched(cli, [a[3] for a in asks], results=True)
+    gave: dict[tuple[int, str, str], bool] = {}
+    for (n, orth, spelling, _), answer in zip(asks, answers, strict=True):
+        key = (n, orth, spelling)
+        gave[key] = gave.get(key, False) or answer.get("expected") is not None
+        rules[n].setdefault(orth, str(answer["spelling"]))
     given: dict[int, list[bool]] = {}
-    for (n, orth, _, _), answer in zip(asks, answers, strict=True):
-        given.setdefault(n, []).append(answer.get("expected") is not None)
-        rules[n][orth] = str(answer["spelling"])
+    for (n, _, _), ok in gave.items():
+        given.setdefault(n, []).append(ok)
     for n, (ident, i, feats, form) in enumerate(found):
         pinned = {str(o): [str(x) for x in v] for o, v in (form.spelled or {}).items()}
         differs: list[tuple[str, str]] = []
         for orth, spellings in pinned.items():
             strip = unmarker(orth)
+            # Case aside: a sentence's first word is capitalized (Izby, izby).
             course = {
-                strip(surface)
+                strip(surface).casefold()
                 for cell, surface in written.get((ident, orth), [])
                 if _has_values(cell, feats)
             }
             # A phrase's spelling is written word by word, a token each.
             differs.extend(
-                (orth, sp) for sp in spellings if not all(strip(w) in course for w in sp.split(" "))
+                (orth, sp)
+                for sp in spellings
+                if not all(strip(w).casefold() in course for w in sp.split(" "))
             )
         checks = given.get(n, [])
         out.append(
@@ -642,7 +675,7 @@ def check_pinned(
                 i,
                 feats,
                 form.form is None and form.stem is None,
-                bool(checks) and all(checks) and realised[n]["ok"],
+                bool(checks) and all(checks) and any(r["ok"] for r in realised[n]),
                 differs,
                 rules[n],
             )
