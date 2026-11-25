@@ -1,0 +1,451 @@
+# Fixture course (apc), unit 29: the circumstance of an action, calling someone, and words that keep talk going (Kline,
+# chapters 26 and 30). A pronoun and w before a participle, an adjective, a place or 3am and a verb for what was going
+# on (shefta hiyye w raj3a men el shoghl; weslet hiyye w ta3bane); lamma with ken for when it was (lamma kent zghir,
+# kent 7ebb el ba7r); ya before a name (ya Sami!); dakhlak, dakhlkon (excuse me); ya3ni, lek and w hek. Drafted by
+# an LLM (provenance llm:…, status draft) and checked against Kline (2022), chapters 26 and 30: every sentence awaits
+# a native speaker's review.
+id: u29-while
+title:
+  en: When I was little
+cefr: B1
+nodes:
+- {id: apc.while.w, kind: lesson, introduces: ['lexeme:de7ek']}
+- {id: apc.while.lamma, kind: lesson}
+- {id: apc.while.ya, kind: lesson, introduces: ['lexeme:ya', 'lexeme:dakhl']}
+- {id: apc.while.markers, kind: lesson}
+- {id: apc.while.story, kind: story}
+sentences:
+- id: s.while.1
+  node: apc.while.w
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: شفتها هي و راجعة من الشغل.
+      tokens: [{surface: شفتها, lexemes: [{lexeme: shef, surface: شفت, base: true, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {lexeme: obj-3fs, surface: ها}]}, {surface: هي, lexeme: hiyye}, {surface: و,
+          lexeme: w}, {surface: راجعة, lexeme: rje3, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: من, lexeme: men}, {surface: الشغل, lexemes: [{lexeme: el, surface: ال, n: 7, head: 8, rel: det},
+            {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}, n: 8}]}]
+      reverse: شفتها هي و راجعة من الشغل
+    apc-Latn/arabizi:
+      text: shefta hiyye w raj3a men el shoghl.
+      tokens: [{surface: shefta, lexemes: [{lexeme: shef, surface: sheft, base: true, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {lexeme: obj-3fs, surface: a}]}, {surface: hiyye, lexeme: hiyye},
+        {surface: w, lexeme: w}, {surface: raj3a, lexeme: rje3, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: men, lexeme: men}, {surface: el, lexeme: el, n: 7, head: 8, rel: det}, {surface: shoghl,
+          lexeme: shoghl, feats: {Number: Sing}, n: 8}]
+      reverse: shefta hiyye w raj3a men el shoghl
+  translations:
+    en: I saw her (as|while) she was coming back from work.
+- id: s.while.2
+  node: apc.while.w
+  forms:
+    apc-Arab/standard:
+      text: دقتلي هي و عم تستنى الباص.
+      tokens: [{surface: دقتلي, lexemes: [{lexeme: de22, surface: دقت, base: true, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: لي}]}, {surface: هي, lexeme: hiyye},
+        {surface: و, lexeme: w}, {surface: عم, lexeme: 3am}, {surface: تستنى, lexeme: stanna, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '3'}}, {surface: الباص, lexemes: [{lexeme: el,
+              surface: ال, n: 7, head: 8, rel: det}, {lexeme: bus, surface: باص, base: true, feats: {Number: Sing}, n: 8}]}]
+      reverse: دقتلي هي و عم تستنى الباص
+    apc-Latn/arabizi:
+      text: da22etli hiyye w 3am testanna el bus.
+      tokens: [{surface: da22etli, lexemes: [{lexeme: de22, surface: da22et, base: true, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: li}]}, {surface: hiyye,
+          lexeme: hiyye}, {surface: w, lexeme: w}, {surface: 3am, lexeme: 3am}, {surface: testanna, lexeme: stanna, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '3'}}, {surface: el,
+          lexeme: el, n: 7, head: 8, rel: det}, {surface: bus, lexeme: bus, feats: {Number: Sing}, n: 8}]
+      reverse: da22etli hiyye w 3am testanna el bus
+  translations:
+    en: She called me while she was waiting for the bus.
+- id: s.while.3
+  node: apc.while.w
+  forms:
+    apc-Arab/standard:
+      text: أكلنا نحنا و عم نحكي.
+      tokens: [{surface: أكلنا, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: نحنا, lexeme: nehna}, {surface: و, lexeme: w}, {surface: عم, lexeme: 3am}, {surface: نحكي, lexeme: 7aka,
+          feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}]
+      reverse: أكلنا نحنا و عم نحكي
+    apc-Latn/arabizi:
+      text: akalna ne7na w 3am ne7ki.
+      tokens: [{surface: akalna, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: ne7na, lexeme: nehna}, {surface: w, lexeme: w}, {surface: 3am, lexeme: 3am}, {surface: ne7ki,
+          lexeme: 7aka, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}]
+      reverse: akalna ne7na w 3am ne7ki
+  translations:
+    en: We ate while (we were|) talking.
+- id: s.while.4
+  node: apc.while.w
+  forms:
+    apc-Arab/standard:
+      text: وصلت هي و تعبانة.
+      tokens: [{surface: وصلت, lexeme: wesel, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: هي, lexeme: hiyye}, {surface: و, lexeme: w}, {surface: تعبانة, lexeme: ta3ban, feats: {
+            Gender: Fem, Number: Sing}}]
+      reverse: وصلت هي و تعبانة
+    apc-Latn/arabizi:
+      text: weslet hiyye w ta3bane.
+      tokens: [{surface: weslet, lexeme: wesel, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: hiyye, lexeme: hiyye}, {surface: w, lexeme: w}, {surface: ta3bane, lexeme: ta3ban,
+          feats: {Gender: Fem, Number: Sing}}]
+      reverse: weslet hiyye w ta3bane
+  translations:
+    en: |-
+      She arrived tired.
+      She was tired when she arrived.
+- id: s.while.5
+  node: apc.while.w
+  forms:
+    apc-Arab/standard:
+      text: ضحك هو و عم يقرا الكتاب.
+      tokens: [{surface: ضحك, lexeme: de7ek, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: هو, lexeme: huwwe}, {surface: و, lexeme: w}, {surface: عم, lexeme: 3am}, {surface: يقرا,
+          lexeme: 2ara, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '3'}}, {surface: الكتاب, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: ktab, surface: كتاب,
+              base: true, feats: {Number: Sing}, n: 7}]}]
+      reverse: ضحك هو و عم يقرا الكتاب
+    apc-Latn/arabizi:
+      text: de7ek huwwe w 3am ye2ra el ktab.
+      tokens: [{surface: de7ek, lexeme: de7ek, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: huwwe, lexeme: huwwe}, {surface: w, lexeme: w}, {surface: 3am, lexeme: 3am}, {surface: ye2ra,
+          lexeme: 2ara, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '3'}}, {surface: el, lexeme: el, n: 6, head: 7, rel: det}, {surface: ktab, lexeme: ktab, feats: {Number: Sing},
+          n: 7}]
+      reverse: de7ek huwwe w 3am ye2ra el ktab
+  translations:
+    en: He laughed while (he was|) reading the book.
+- id: s.while.6
+  node: apc.while.w
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: عرفت هيك أنا و ببيروت.
+      tokens: [{surface: عرفت, lexeme: 3eref, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: هيك, lexeme: hek}, {surface: أنا, lexeme: ana}, {surface: و, lexeme: w}, {surface: ببيروت, lexemes: [
+            {lexeme: b, surface: ب, n: 5, head: 6, rel: case}, {lexeme: beirut, surface: بيروت, base: true, n: 6}]}]
+      reverse: عرفت هيك أنا و ببيروت
+    apc-Latn/arabizi:
+      text: 3reft hek ana w b Beirut.
+      tokens: [{surface: 3reft, lexeme: 3eref, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: hek, lexeme: hek}, {surface: ana, lexeme: ana}, {surface: w, lexeme: w}, {surface: b, lexeme: b,
+          n: 5, head: 6, rel: case}, {surface: Beirut, lexeme: beirut, n: 6}]
+      reverse: 3reft hek ana w b Beirut
+  translations:
+    en: I (found out|learned) that (while|when) I was in Beirut.
+- id: s.while.7
+  node: apc.while.lamma
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: لمّا كنت زغير، كنت حب البحر.
+      tokens: [{surface: لمّا, lexeme: lamma}, {surface: كنت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: زغير, lexeme: zghir}, {surface: كنت, lexeme: kan, feats: {Aspect: Perf,
+            Number: Sing, Person: '1'}}, {surface: حب, lexeme: 7abb, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: البحر, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7, rel: det},
+            {lexeme: ba7r, surface: بحر, base: true, feats: {Number: Sing}, n: 7}]}]
+      reverse: لمّا كنت زغير كنت حب البحر
+    apc-Latn/arabizi:
+      text: lamma kent zghir, kent 7ebb el ba7r.
+      tokens: [{surface: lamma, lexeme: lamma}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: zghir, lexeme: zghir}, {surface: kent, lexeme: kan, feats: {Aspect: Perf,
+            Number: Sing, Person: '1'}}, {surface: 7ebb, lexeme: 7abb, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: el, lexeme: el, n: 6, head: 7, rel: det}, {surface: ba7r, lexeme: ba7r,
+          feats: {Number: Sing}, n: 7}]
+      reverse: lamma kent zghir kent 7ebb el ba7r
+  translations:
+    en: When I was (little|young|a child), I (loved|used to love) the sea.
+- id: s.while.8
+  node: apc.while.lamma
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: لمّا كنت زغيرة، كنت روح عالضيعة كلّ سبت.
+      tokens: [{surface: لمّا, lexeme: lamma}, {surface: كنت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: زغيرة, lexeme: zghir, feats: {Gender: Fem, Number: Sing}}, {surface: كنت,
+          lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: روح, lexeme: ra7, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: عالضيعة, lexemes: [{lexeme: 3a,
+              surface: ع, n: 6, head: 8, rel: case}, {lexeme: el, surface: ال, n: 7, head: 8, rel: det}, {lexeme: day3a, surface: ضيعة, base: true, feats: {Number: Sing}, n: 8}]}, {surface: كلّ, lexeme: kell},
+        {surface: سبت, lexeme: sabt, feats: {Number: Sing}}]
+      reverse: لمّا كنت زغيرة كنت روح عالضيعة كلّ سبت
+    apc-Latn/arabizi:
+      text: lamma kent zghire, kent ru7 3al day3a kell sabt.
+      tokens: [{surface: lamma, lexeme: lamma}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: zghire, lexeme: zghir, feats: {Gender: Fem, Number: Sing}}, {surface: kent,
+          lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: ru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a,
+              n: 6, head: 8, rel: case, base: true}, {lexeme: el, surface: l, n: 7, head: 8, rel: det}]}, {surface: day3a, lexeme: day3a, feats: {Number: Sing}, n: 8}, {surface: kell, lexeme: kell}, {surface: sabt,
+          lexeme: sabt, feats: {Number: Sing}}]
+      reverse: lamma kent zghire kent ru7 3al day3a kell sabt
+  translations:
+    en: When I was (little|young|a child), I used to go to the village every Saturday.
+- id: s.while.9
+  node: apc.while.lamma
+  forms:
+    apc-Arab/standard:
+      text: لمّا كنّا ببيروت، شفنا مايا.
+      tokens: [{surface: لمّا, lexeme: lamma}, {surface: كنّا, lexeme: kan, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: ببيروت, lexemes: [{lexeme: b, surface: ب, n: 3, head: 4, rel: case},
+            {lexeme: beirut, surface: بيروت, base: true, n: 4}]}, {surface: شفنا, lexeme: shef, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: مايا, lexeme: maya}]
+      reverse: لمّا كنّا ببيروت شفنا مايا
+    apc-Latn/arabizi:
+      text: lamma kenna b Beirut, shefna Maya.
+      tokens: [{surface: lamma, lexeme: lamma}, {surface: kenna, lexeme: kan, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: b, lexeme: b, n: 3, head: 4, rel: case}, {surface: Beirut, lexeme: beirut,
+          n: 4}, {surface: shefna, lexeme: shef, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: Maya, lexeme: maya}]
+      reverse: lamma kenna b Beirut shefna Maya
+  translations:
+    en: When we were in Beirut, we saw Maya.
+- id: s.while.10
+  node: apc.while.lamma
+  forms:
+    apc-Arab/standard:
+      text: لمّا وصلنا، كانت الكهربا مقطوعة.
+      tokens: [{surface: لمّا, lexeme: lamma}, {surface: وصلنا, lexeme: wesel, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: كانت, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing,
+            Person: '3'}}, {surface: الكهربا, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: kahraba, surface: كهربا, base: true, feats: {Number: Sing}, n: 5}]}, {surface: مقطوعة,
+          lexeme: 2ata3, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}]
+      reverse: لمّا وصلنا كانت الكهربا مقطوعة
+    apc-Latn/arabizi:
+      text: lamma wselna, kenet el kahraba ma2tu3a.
+      tokens: [{surface: lamma, lexeme: lamma}, {surface: wselna, lexeme: wesel, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: kenet, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing,
+            Person: '3'}}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: kahraba, lexeme: kahraba, feats: {Number: Sing}, n: 5}, {surface: ma2tu3a, lexeme: 2ata3, feats: {Aspect: Part, Gender: Fem,
+            Number: Sing, Voice: Pass}}]
+      reverse: lamma wselna kenet el kahraba ma2tu3a
+  translations:
+    en: When we arrived, the (power|electricity) was (out|off|cut off).
+- id: s.while.11
+  node: apc.while.lamma
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: شو كنت عم تعمل لمّا دقيتلك؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: كنت, lexeme: kan, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: عم, lexeme: 3am}, {surface: تعمل, lexeme: 3emel, feats: {
+            Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: لمّا, lexeme: lamma}, {surface: دقيتلك, lexemes: [{lexeme: de22, surface: دقيت, base: true, feats: {Aspect: Perf,
+                Number: Sing, Person: '1'}}, {lexeme: la-2ms, surface: لك}]}]
+      reverse: شو كنت عم تعمل لمّا دقيتلك
+    apc-Latn/arabizi:
+      text: shu kent 3am ta3mel lamma da22etlak?
+      tokens: [{surface: shu, lexeme: shu}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: 3am, lexeme: 3am}, {surface: ta3mel, lexeme: 3emel, feats: {
+            Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: lamma, lexeme: lamma}, {surface: da22etlak, lexemes: [{lexeme: de22, surface: da22et, base: true, feats: {Aspect: Perf,
+                Number: Sing, Person: '1'}}, {lexeme: la-2ms, surface: lak}]}]
+      reverse: shu kent 3am ta3mel lamma da22etlak
+  translations:
+    en: What were you doing when I called you?
+- id: s.while.12
+  node: apc.while.ya
+  tags:
+  - {persons: {speaker: f, addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: يا سامي، ضل معي!
+      tokens: [{surface: يا, lexeme: ya}, {surface: سامي, lexeme: sami}, {surface: ضل, lexeme: dall, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: معي, lexemes: [{lexeme: ma3,
+              surface: مع, base: true}, {lexeme: poss-1sg, surface: ي}]}]
+      reverse: يا سامي ضل معي
+    apc-Latn/arabizi:
+      text: ya Sami, dall ma3i!
+      tokens: [{surface: ya, lexeme: ya}, {surface: Sami, lexeme: sami}, {surface: dall, lexeme: dall, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: ma3i, lexemes: [{lexeme: ma3,
+              surface: ma3, base: true}, {lexeme: poss-1sg, surface: i}]}]
+      reverse: ya Sami dall ma3i
+  translations:
+    en: Sami, stay with me!
+- id: s.while.13
+  node: apc.while.ya
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: يا مايا، شو بدك؟
+      tokens: [{surface: يا, lexeme: ya}, {surface: مايا, lexeme: maya}, {surface: شو, lexeme: shu}, {surface: بدك, lexemes: [{lexeme: badd, surface: بد, base: true}, {lexeme: poss-2fs, surface: ك}], vocalized: بَدِّك}]
+      reverse: يا مايا شو بدك
+    apc-Latn/arabizi:
+      text: ya Maya, shu baddik?
+      tokens: [{surface: ya, lexeme: ya}, {surface: Maya, lexeme: maya}, {surface: shu, lexeme: shu}, {surface: baddik, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2fs, surface: ik}]}]
+      reverse: ya Maya shu baddik
+  translations:
+    en: Maya, what do you want?
+- id: s.while.14
+  node: apc.while.ya
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: دخلك، وين المطعم؟
+      tokens: [{surface: دخلك, lexemes: [{lexeme: dakhl, surface: دخل, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: وين, lexeme: wen}, {surface: المطعم, lexemes: [{lexeme: el, surface: ال, n: 4,
+              head: 5, rel: det}, {lexeme: mat3am, surface: مطعم, base: true, feats: {Number: Sing}, n: 5}]}]
+      reverse: دخلك وين المطعم
+    apc-Latn/arabizi:
+      text: dakhlak, wen el mat3am?
+      tokens: [{surface: dakhlak, lexemes: [{lexeme: dakhl, surface: dakhl, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: wen, lexeme: wen}, {surface: el, lexeme: el, n: 4, head: 5, rel: det},
+        {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}, n: 5}]
+      reverse: dakhlak wen el mat3am
+  translations:
+    en: Excuse me, where('s| is) the restaurant?
+- id: s.while.15
+  node: apc.while.ya
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: دخلكن، في دكّانة هون؟
+      tokens: [{surface: دخلكن, lexemes: [{lexeme: dakhl, surface: دخل, base: true}, {lexeme: poss-2pl, surface: كن}]}, {surface: في, lexeme: fi}, {surface: دكّانة, lexeme: dekkene, feats: {Number: Sing}},
+        {surface: هون, lexeme: hon}]
+      reverse: دخلكن في دكّانة هون
+    apc-Latn/arabizi:
+      text: dakhelkon, fi dekkene hon?
+      tokens: [{surface: dakhelkon, lexemes: [{lexeme: dakhl, surface: dakhel, base: true}, {lexeme: poss-2pl, surface: kon}]}, {surface: fi, lexeme: fi}, {surface: dekkene, lexeme: dekkene, feats: {Number: Sing}},
+        {surface: hon, lexeme: hon}]
+      reverse: dakhelkon fi dekkene hon
+  translations:
+    en: Excuse me, is there a (shop|store) (around here|here|nearby)?
+- id: s.while.16
+  node: apc.while.markers
+  forms:
+    apc-Arab/standard:
+      text: يعني، مش كتير منيح.
+      tokens: [{surface: يعني, lexeme: ya3ni}, {surface: مش, lexeme: mish}, {surface: كتير, lexeme: ktir}, {surface: منيح, lexeme: mni7}]
+      reverse: يعني مش كتير منيح
+    apc-Latn/arabizi:
+      text: ya3ni, mish ktir mni7.
+      tokens: [{surface: ya3ni, lexeme: ya3ni}, {surface: mish, lexeme: mish}, {surface: ktir, lexeme: ktir}, {surface: mni7, lexeme: mni7}]
+      reverse: ya3ni mish ktir mni7
+  translations:
+    en: |-
+      Well, not very good.
+      I mean, not very good.
+      Well, not so good.
+- id: s.while.17
+  node: apc.while.markers
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: ليك، بلش الفيلم!
+      tokens: [{surface: ليك, lexeme: lek}, {surface: بلش, lexeme: ballash, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: الفيلم, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4,
+              rel: det}, {lexeme: film, surface: فيلم, base: true, feats: {Number: Sing}, n: 4}]}]
+      reverse: ليك بلش الفيلم
+    apc-Latn/arabizi:
+      text: lek, ballash el film!
+      tokens: [{surface: lek, lexeme: lek}, {surface: ballash, lexeme: ballash, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: film,
+          lexeme: film, feats: {Number: Sing}, n: 4}]
+      reverse: lek ballash el film
+  translations:
+    en: Look, the (film|movie)('s| has) started!
+- id: s.while.18
+  node: apc.while.markers
+  forms:
+    apc-Arab/standard:
+      text: أكلنا، حكينا، و هيك.
+      tokens: [{surface: أكلنا, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: حكينا, lexeme: 7aka, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: و, lexeme: w},
+        {surface: هيك, lexeme: hek}]
+      reverse: أكلنا حكينا و هيك
+    apc-Latn/arabizi:
+      text: akalna, 7akayna, w hek.
+      tokens: [{surface: akalna, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 7akayna, lexeme: 7aka, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: w, lexeme: w},
+        {surface: hek, lexeme: hek}]
+      reverse: akalna 7akayna w hek
+  translations:
+    en: We ate, (we|) talked, and (so on|that was it|that's it).
+stories:
+- id: apc.story.little
+  node: apc.while.story
+  title:
+    en: When I was little
+  provenance:
+    author: llm:claude@apc-b1
+    status: draft
+  characters:
+  - id: sami
+    speaker: m
+    name:
+      apc-Arab/standard: سامي
+      apc-Latn/arabizi: Sami
+  - id: maya
+    speaker: f
+    name:
+      apc-Arab/standard: مايا
+      apc-Latn/arabizi: Maya
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: يا مايا، كيف كانِت الضَّيْعَة لَمّا كِنْتي زْغيرِة؟
+          tokens: [{surface: يا, lexeme: ya}, {surface: مايا, lexeme: maya}, {surface: كيف, lexeme: kif}, {surface: كانِت, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {
+              surface: الضَّيْعَة, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: day3a, surface: ضَّيْعَة, base: true, feats: {Number: Sing}, n: 6}]}, {surface: لَمّا, lexeme: lamma},
+            {surface: كِنْتي, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {surface: زْغيرِة, lexeme: zghir, feats: {Gender: Fem, Number: Sing}}]
+        apc-Latn/arabizi:
+          text: ya Maya, kif kenet el day3a lamma kenti zghire?
+          tokens: [{surface: ya, lexeme: ya}, {surface: Maya, lexeme: maya}, {surface: kif, lexeme: kif}, {surface: kenet, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {
+              surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: day3a, lexeme: day3a, feats: {Number: Sing}, n: 6}, {surface: lamma, lexeme: lamma}, {surface: kenti, lexeme: kan, feats: {Aspect: Perf,
+                Gender: Fem, Number: Sing, Person: '2'}}, {surface: zghire, lexeme: zghir, feats: {Gender: Fem, Number: Sing}}]
+      translations:
+        en: Maya, what was the village like when you were little?
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: كْتير حِلْوِة! كِنِت روح عَالبَحِر كِلّ يوم.
+          tokens: [{surface: كْتير, lexeme: ktir}, {surface: حِلْوِة, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}, {surface: كِنِت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}},
+            {surface: روح, lexeme: ra7, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: عَالبَحِر, lexemes: [{lexeme: 3a, surface: عَ, n: 5, head: 7, rel: case}, {lexeme: el, surface: ال,
+                  n: 6, head: 7, rel: det}, {lexeme: ba7r, surface: بَحِر, base: true, feats: {Number: Sing}, n: 7}]}, {surface: كِلّ, lexeme: kell}, {surface: يوم, lexeme: yom, feats: {Number: Sing}}]
+        apc-Latn/arabizi:
+          text: ktir 7elwe! kent ru7 3al ba7r kell yom.
+          tokens: [{surface: ktir, lexeme: ktir}, {surface: 7elwe, lexeme: 7elo, feats: {Gender: Fem, Number: Sing}}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: ru7,
+              lexeme: ra7, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, n: 5, head: 7, rel: case, base: true}, {lexeme: el, surface: l,
+                  n: 6, head: 7, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 7}, {surface: kell, lexeme: kell}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+      translations:
+        en: Really lovely! I used to go to the sea every day.
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: وتيتا؟
+          tokens: [{surface: وتيتا, lexemes: [{lexeme: w, surface: و}, {lexeme: teta, surface: تيتا, base: true, feats: {Number: Sing}}]}]
+        apc-Latn/arabizi:
+          text: w teta?
+          tokens: [{surface: w, lexeme: w}, {surface: teta, lexeme: teta, feats: {Number: Sing}}]
+      translations:
+        en: And Grandma?
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: تيتا كانِت تِطْبُخ كِلّ يوم، ونِحْنا نْزِلْنا عَالبَحِر وضْحِكْنا.
+          tokens: [{surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: كانِت, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: تِطْبُخ, lexeme: tabakh,
+              feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '3'}}, {surface: كِلّ, lexeme: kell}, {surface: يوم, lexeme: yom, feats: {Number: Sing}}, {surface: ونِحْنا, lexemes: [{
+                  lexeme: w, surface: و}, {lexeme: nehna, surface: نِحْنا, base: true}]}, {surface: نْزِلْنا, lexeme: nezel, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: عَالبَحِر, lexemes: [
+                {lexeme: 3a, surface: عَ, n: 9, head: 11, rel: case}, {lexeme: el, surface: ال, n: 10, head: 11, rel: det}, {lexeme: ba7r, surface: بَحِر, base: true, feats: {Number: Sing}, n: 11}]}, {
+              surface: وضْحِكْنا, lexemes: [{lexeme: w, surface: و}, {lexeme: de7ek, surface: ضْحِكْنا, base: true, feats: {Aspect: Perf, Number: Plur, Person: '1'}}]}]
+        apc-Latn/arabizi:
+          text: teta kenet tetbokh kell yom, w ne7na nzelna 3al ba7r w d7ekna.
+          tokens: [{surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: kenet, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: tetbokh, lexeme: tabakh,
+              feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '3'}}, {surface: kell, lexeme: kell}, {surface: yom, lexeme: yom, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: ne7na,
+              lexeme: nehna}, {surface: nzelna, lexeme: nezel, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, n: 9, head: 11, rel: case, base: true},
+                {lexeme: el, surface: l, n: 10, head: 11, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 11}, {surface: w, lexeme: w}, {surface: d7ekna, lexeme: de7ek, feats: {Aspect: Perf,
+                Number: Plur, Person: '1'}}]
+      translations:
+        en: Grandma used to cook every day, and we went down to the sea and laughed.
+  - choose:
+      prompt:
+        en: What did Maya do every day as a child?
+      options:
+      - en: She went to the sea
+      - en: She cooked
+      - en: She studied
+      answer: 0
+  - line:
+      speaker: sami
+      ask: complete
+      gap: lexeme:yom
+      distractors:
+      - lexeme:shahr
+      - lexeme:sabt
+      forms:
+        apc-Arab/standard:
+          text: يَعْني، كِنْتي تْروحي عَالبَحِر كِلّ يوم؟
+          tokens: [{surface: يَعْني, lexeme: ya3ni}, {surface: كِنْتي, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {surface: تْروحي, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem,
+                Mood: Sub, Number: Sing, Person: '2'}}, {surface: عَالبَحِر, lexemes: [{lexeme: 3a, surface: عَ, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: ba7r,
+                  surface: بَحِر, base: true, feats: {Number: Sing}, n: 6}]}, {surface: كِلّ, lexeme: kell}, {surface: يوم, lexeme: yom, feats: {Number: Sing}}]
+        apc-Latn/arabizi:
+          text: ya3ni, kenti tru7i 3al ba7r kell yom?
+          tokens: [{surface: ya3ni, lexeme: ya3ni}, {surface: kenti, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {surface: tru7i, lexeme: ra7, feats: {Aspect: Imp, Gender: Fem,
+                Mood: Sub, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, n: 4, head: 6, rel: case, base: true}, {lexeme: el, surface: l, n: 5, head: 6, rel: det}]}, {surface: ba7r,
+              lexeme: ba7r, feats: {Number: Sing}, n: 6}, {surface: kell, lexeme: kell}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+      translations:
+        en: So you used to go to the sea every day?
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: إيه، كِلّ يوم، و هيك.
+          tokens: [{surface: إيه, lexeme: eh}, {surface: كِلّ, lexeme: kell}, {surface: يوم, lexeme: yom, feats: {Number: Sing}}, {surface: و, lexeme: w}, {surface: هيك, lexeme: hek}]
+        apc-Latn/arabizi:
+          text: eh, kell yom, w hek.
+          tokens: [{surface: eh, lexeme: eh}, {surface: kell, lexeme: kell}, {surface: yom, lexeme: yom, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: hek, lexeme: hek}]
+      translations:
+        en: Yes, every day, and that was that.
+  - choose:
+      prompt:
+        en: Who cooked every day?
+      options:
+      - en: Grandma
+      - en: Maya
+      - en: Sami
+      answer: 0

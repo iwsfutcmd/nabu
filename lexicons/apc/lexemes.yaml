@@ -726,6 +726,12 @@ lexemes:
   notes: {en: 'A woman, or a feminine noun: دافية, dafye.'}
   form: دَافِي
   spelled: {apc-Arab/standard: [دافي], apc-Latn/arabizi: [dafi]}
+- id: lexeme:dakhl
+  pos: INTJ
+  gloss: {en: 'excuse me; please (with an ending: dakhlak to a man, dakhlkon to several people)'}
+  notes: {en: 'dakhlak, wen el mat3am?: excuse me, where is the restaurant? To a woman: dakhlik, written دخلك as to a man.'}
+  form: دَخْل
+  spelled: {apc-Arab/standard: [دخل], apc-Latn/arabizi: [dakhl]}
 - id: lexeme:dall
   pos: VERB
   gloss: {en: stay; keep on (doing)}
@@ -767,6 +773,11 @@ lexemes:
   spelled: {apc-Arab/standard: [دقّ], apc-Latn/arabizi: [da22]}
   forms:
   - {feats: {Mood: Imp, Number: Plur, Person: '2'}, spelled: {apc-Arab/standard: [دقّو], apc-Latn/arabizi: [de22u]}, status: pinned}
+- id: lexeme:de7ek
+  pos: VERB
+  gloss: {en: laugh}
+  form: {radicals: [ض, ح, ك], form: I, vowels: {past: i, present: a}, source: kline 177}
+  spelled: {apc-Arab/standard: [ضحك], apc-Latn/arabizi: [de7ek]}
 - id: lexeme:dekkene
   pos: NOUN
   gloss: {en: corner shop; small grocery}
@@ -2625,6 +2636,12 @@ lexemes:
   form: "وْلَاد"
   citation: {Number: Plur}  # its tokens' values: a word of its own, cited there
   spelled: {apc-Arab/standard: [ولاد], apc-Latn/arabizi: [wlad]}
+- id: lexeme:ya
+  pos: PART
+  gloss: {en: '(before a name or title: calling someone)'}
+  notes: {en: 'ya Sami!: Sami! ya Maya, ta3i: Maya, come here. Written apart from the name (يا سامي).'}
+  form: يَا
+  spelled: {apc-Arab/standard: [يا], apc-Latn/arabizi: [ya]}
 - id: lexeme:ya-7aram
   pos: INTJ
   gloss: {en: what a pity!; poor thing!}
