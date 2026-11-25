@@ -110,8 +110,12 @@ const lowered = (lower: Lower, token: Token, lang: string, surface: string): Tok
     : { ruby: Object.fromEntries(Object.entries(token.ruby).map(([scheme, segments]) => [scheme, segments.map((s) => ({ ...s, base: lower(lang, s.base) }))])) }),
 });
 
-/** The text with each sentence's first word in lower case where the course writes that word so. */
-export const caseForTiles = (course: CourseView, text: TaggedText): TaggedText => {
+/**
+ * The text with each sentence's first word in lower case where the course writes that word so, or
+ * where `lowerCased` says the word is written so elsewhere (a lexeme's forms: its lemma is, so the
+ * ¡Haz! that starts a sentence is listed as haz, ADR 0157).
+ */
+export const caseForTiles = (course: CourseView, text: TaggedText, lowerCased?: (token: Token) => boolean): TaggedText => {
   const { words: all, lower } = casedOf(course);
   const words = all.get(text.orthography);
   if (words === undefined) return text;
@@ -120,7 +124,7 @@ export const caseForTiles = (course: CourseView, text: TaggedText): TaggedText =
   const tokens = text.tokens.map((t, i) => {
     if (!starts.has(i) || t.kind !== "lexical") return t;
     const surface = lower(text.lang, t.surface);
-    if (surface === t.surface || !words.has(surface)) return t;
+    if (surface === t.surface || !(words.has(surface) || lowerCased?.(t) === true)) return t;
     changed = true;
     return lowered(lower, t, text.lang, surface);
   });

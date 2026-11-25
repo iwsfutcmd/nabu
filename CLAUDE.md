@@ -308,6 +308,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - The story reader nests the lesson player per question (@nabu/core/story); story sessions are mode "story".
 - `pathNodes` (lessons and stories) drives the path; placement and the planner use lessons only.
 - Tappable words: `<T onTokenPress>`; never wrap tokens by hand.
+- A tapped word opens in a dialog (ADR 0157, `GlossDialog` in player/Gloss.tsx; its body `GlossContent` is what
+  server-rendered tests read, since the modal portals): the word with its reading, its entries, and each entry's
+  forms from core `lexemeForms` (its paradigm's cells, else the forms the course writes, named by `labelOf`) with the
+  tapped word's own cell (`formCellAt`) marked. Never work out forms in UI code.
 
 ## Phase 7 notes (see docs/adr/0044)
 - Game state is a projection: @nabu/core/game `replayGame(events, config, clock)`. Never store it; change the rules.
@@ -413,7 +417,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   those, ADR 0131) are
   sentence templates asking about one word (`word`, marked with `<T emphasis>`); only that word is credited; a lesson
   plans one where it can. Optional marks: the profile's `match.marks.optional`, and `optionalBefore` for marks optional
-  before a letter (apc, ar: the fatha before ا or ى, never before a hamza's seat; ADR 0054 amendment); orthographies
+  before a letter (apc, ar: the fatha before ا or ى, never before a hamza's seat; the kasra before a `bare` ي and the
+  damma before a bare و, `unless` the letter has a sukun; ADR 0054 amendments); orthographies
   that spell the vowels (apc: Arabizi), `match.marks.spelledIn`.
 - Where a profile sets `input.markBuilder` (hbo, apc), `vocalize-build` asks the same word's marks put on its letters
   from buttons (ADR 0137), only once a vocalize card has shown them (`shown`); graded by `gradeVowels`. Never a text
@@ -909,7 +914,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Grading knows every paradigm spelling (core `paradigmWords` in `spellingsIn`): an unwritten regular form of the
   answer's lexeme is another form, of another lexeme lexical. Only the default spelling ships, so a free variant of an
   unwritten form is still a slip (287 wrong-form slips remain, stage 4's notes).
-- A word shown as itself (a lesson's new words, the session end, the word list, the gloss panel) goes through `Headword`
+- A word shown as itself (a lesson's new words, the session end, the word list, the gloss dialog) goes through `Headword`
   with core `principalParts`: never in options, tiles or pairs. The parts shown are logged as seen with their cell
   (`LessonEvent.beside`). The Data page shows an entry's paradigm (`paradigmRows`).
 - `form.projection` (a stored form does not spell as the lexicon writes the word) is the review list, with

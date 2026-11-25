@@ -5,6 +5,7 @@
 - Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this:
   [0148](0148-projections-and-misses.md) (options come from leftovers)
 - Amended 2026-11-21 (Proposed): a fatha before an alif may be written or not (below)
+- Amended 2026-11-25 (Proposed): so may a kasra before a bare ya and a damma before a bare waw (below)
 
 ## Context
 
@@ -115,4 +116,36 @@ missing shadda, which still count; ar-Arab as apc.
   Which cards a lesson plans, and in what order, is unchanged (golden files).
 - **The pronunciation story's feedback baselines change** (apc-Arab, six cells): their wrong pick
   was مَرْحَبَا.
+
+## Amendment (2026-11-25, Proposed): a kasra before a bare ya, a damma before a bare waw
+
+**Context.** A vocalize card for فيلم offered فيلِم (right) and فِيلِم (wrong). The owner: both should
+be accepted. The kasra on ف spells the long i the ya writes anyway, as the fatha before an alif
+spells its a. The 2026-11-21 amendment kept that kasra counting, because a bare ya also writes ē
+(بيت bēt, وين wēn, ليش lēš) and a bare waw ō (هون hōn, يوم yōm, لون lōn), and a kasra or damma would
+say which. But apc's vocalization writes ē and ō with a bare ya or waw too, exactly as it writes ī
+and ū, so the marks the course shows never tell them apart: a learner could not see why فِيلِم is
+right and بِيت wrong.
+
+**Decision.** An `optionalBefore` rule may ask for two more things, both read off the expected word:
+- `bare`: the letter after carries no mark of the set. A ya or waw with a mark of its own is a
+  consonant (مِيِّة miyye, هُوّ huwwe), and the vowel before it counts.
+- `unless`: marks on the letter itself that keep the rule's marks counting. A sukun says the letter
+  after begins a syllable: فاضْيين is fāḍyīn, and فاضِيين (fāḍiyīn) stays wrong.
+
+apc-Arab and ar-Arab (REVIEW) add a kasra before a bare ي and a damma before a bare و, each `bare`,
+`unless` a sukun. Only that mark: a fatha before a bare ya (فَيلِم, *fay-*) still counts.
+
+**Where.** `optionalHere` (@nabu/core match/pronounce.ts) gives the marks optional on a letter from
+the letter and the next one, for `gradeVowels`, `hasVowelMarks`, `attestedMarks` and
+`vocalizationVariants` alike, so a choice card never offers فِيلِم as wrong. A `vocalize-build` card
+carries the rules (`OptionalBeforeRule`), so the card link's format is 2.
+
+**Consequences.**
+- **Seven vectors** in conformance/pronounce.json, in both harnesses: the kasra written and left
+  out, the damma, and four that still count (a fatha before the ya, the kasra before a marked ya,
+  the damma before a marked waw, the kasra after a sukun).
+- **ē and ō take the kasra or damma too.** بِيت is accepted for بيت (bēt) and يُوم for يوم (yōm):
+  the script, as the course marks it, does not say the vowel's quality. To ask it, the vocalization
+  would need a mark for ē and ō (a fatha, بَيت), which would change what the voices read.
 

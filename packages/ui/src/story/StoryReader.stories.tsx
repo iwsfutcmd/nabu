@@ -1,5 +1,5 @@
-import { createGrader, gradeExercise, seededRng, type CourseView, type Effect, type Grader } from "@nabu/core/lesson";
-import { allStories, startStory, stepStory, storyScript, type StoryEvent, type StoryScript, type StoryState } from "@nabu/core/story";
+import { createGrader, gradeExercise, lexemeForms, seededRng, type CourseView, type Effect, type Grader } from "@nabu/core/lesson";
+import { allStories, courseGlossary, glossAt, glossLine, startStory, stepStory, storyScript, type StoryEvent, type StoryScript, type StoryState } from "@nabu/core/story";
 import { wordIndexes } from "@nabu/core/text";
 import { courseName } from "@nabu/i18n";
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -19,7 +19,7 @@ const COURSES: Readonly<Record<NabuGlobals["target"], readonly [string, string]>
   "apc-Arab": ["apc", "apc-Arab/standard"],
 };
 
-export type StoryScreen = "reading" | "question" | "reread";
+export type StoryScreen = "reading" | "glossed" | "question" | "reread";
 
 const SEED = 7;
 
@@ -50,7 +50,7 @@ const advance = (script: StoryScript, grader: Grader, stop: (s: StoryState) => b
 };
 
 const stateFor = (screen: StoryScreen, script: StoryScript, grader: Grader): StoryState => {
-  if (screen === "reading") return advance(script, grader, (s) => s.tag === "reading" && s.shown.length >= 4);
+  if (screen === "reading" || screen === "glossed") return advance(script, grader, (s) => s.tag === "reading" && s.shown.length >= 4);
   // The end, every question right: then the whole story read again (S15).
   if (screen === "reread") return advance(script, grader, () => false);
   // The arrange question, one tile placed.
@@ -65,10 +65,8 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
   const grader = useMemo(() => createGrader(course), [course]);
   const script = useMemo(() => scriptOf(course), [course]);
   const initialState = useMemo(() => stateFor(screen, script, grader), [screen, script, grader]);
-  // Reading: the second line's translation open, and the gloss of the newest line's first word.
-  const newest = initialState.shown.at(-1) ?? 0;
-  const line = script.lines[newest];
-  const firstWord = line === undefined ? 0 : (wordIndexes(line.text)[0] ?? 0);
+  // Reading: the second line's translation open. Glossed: the same, and a word tapped (ADR 0157).
+  const gloss = useMemo(() => glossedWord(course, script, initialState.shown), [course, script, initialState]);
   return (
     <StoryReader
       key={`${course.id}:${screen}:${writingMode}`}
@@ -80,10 +78,30 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
       sound={false}
       writingMode={writingMode}
       initialState={initialState}
-      initial={screen === "reading" ? { translations: [1], gloss: { line: newest, token: firstWord } } : {}}
+      initial={screen === "reading" ? { translations: [1] } : screen === "glossed" ? { translations: [1], gloss } : {}}
       rereading={screen === "reread"}
     />
   );
+};
+
+/**
+ * The word the glossed screen taps: the first word of the lines read whose lexeme has forms to list
+ * (its dialog then shows a table), else the newest line's first word.
+ */
+const glossedWord = (course: CourseView, script: StoryScript, shown: readonly number[]): { readonly line: number; readonly token: number } => {
+  const glossary = courseGlossary(course);
+  for (const index of shown) {
+    const line = script.lines[index];
+    if (line === undefined) continue;
+    const glosses = glossLine(course, glossary, line.text);
+    for (const token of wordIndexes(line.text)) {
+      const entries = glossAt(course, glossary, glosses, line.text, token);
+      if (entries.some((g) => g.span !== "phrase" && (lexemeForms(course, g.id, line.text.orthography)?.rows.length ?? 0) > 1)) return { line: index, token };
+    }
+  }
+  const newest = shown.at(-1) ?? 0;
+  const line = script.lines[newest];
+  return { line: newest, token: line === undefined ? 0 : (wordIndexes(line.text)[0] ?? 0) };
 };
 
 const scriptOf = (course: CourseView): StoryScript => {
@@ -110,8 +128,10 @@ const story = (screen: StoryScreen): Story => ({
   render: (_args, { globals, loaded }) => <Screen loaded={loaded["course"] as LoadedCourse} screen={screen} writingMode={(globals as NabuGlobals).writingMode} />,
 });
 
-/** Four lines in, one translation open and the newest line's first word glossed; vertical where allowed. */
+/** Four lines in, one translation open; vertical where allowed. */
 export const Reading: Story = story("reading");
+/** The same, a word tapped: what it means and its forms, in a dialog (ADR 0157); vertical where allowed. */
+export const Glossed: Story = story("glossed");
 /** Building a line from its tiles, one placed. */
 export const Question: Story = story("question");
 /** After the end: the whole story again, with its translations and glosses, no questions, nothing recorded (S15). */

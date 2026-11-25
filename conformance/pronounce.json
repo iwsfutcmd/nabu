@@ -374,6 +374,127 @@
       "note": "A fatha before any other letter counts as before: مَ is before ر."
     },
     {
+      "id": "vowels/apc/kasra-before-bare-ya",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "فيلِم",
+        "answer": "فِيلِم"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [],
+        "off": []
+      },
+      "note": "A kasra before a bare ya may be written (REVIEW): it spells the long i the ya writes anyway. The vocalization leaves it out."
+    },
+    {
+      "id": "vowels/apc/kasra-before-bare-ya-left-out",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "فِيلِم",
+        "answer": "فيلِم"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [],
+        "off": []
+      },
+      "note": "Or left out, where a vocalization writes it."
+    },
+    {
+      "id": "vowels/apc/damma-before-bare-waw",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "حِلو",
+        "answer": "حِلُو"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [],
+        "off": []
+      },
+      "note": "Likewise a damma before a bare waw, which writes a long u."
+    },
+    {
+      "id": "vowels/apc/fatha-before-bare-ya",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "فيلِم",
+        "answer": "فَيلِم"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          0
+        ]
+      },
+      "note": "Only the kasra: a fatha before the ya says ay, another word."
+    },
+    {
+      "id": "vowels/apc/kasra-before-marked-ya",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "مِيِّة",
+        "answer": "ميِّة"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          0
+        ]
+      },
+      "note": "A ya with a mark of its own is a consonant: the kasra before it counts (miyye)."
+    },
+    {
+      "id": "vowels/apc/damma-before-marked-waw",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "هُوّ",
+        "answer": "هوّ"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          0
+        ]
+      },
+      "note": "So does the damma before a waw with a shadda (huwwe)."
+    },
+    {
+      "id": "vowels/apc/kasra-after-sukun",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "فاضْيين",
+        "answer": "فاضِيين"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          2
+        ]
+      },
+      "note": "A sukun on the letter says the bare ya after it begins a syllable, a consonant: a kasra there says fāḍiyīn, not fāḍyīn."
+    },
+    {
       "id": "vowels/ar/right",
       "op": "grade-vowels",
       "args": {
