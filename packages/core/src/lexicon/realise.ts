@@ -241,7 +241,14 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
     conditionPatterns(rule.id, rule.when);
     checkStemChoice(rule.id, rule.stem);
     const blocks = rule.blocks.map((block) => ("prefix" in block ? { side: "prefix" as const, exponents: block.prefix } : { side: "suffix" as const, exponents: block.suffix }));
-    for (const block of blocks) for (const e of block.exponents) checkStemChoice(`${rule.id}|${e.branch}`, e.stem);
+    for (const block of blocks) {
+      for (const e of block.exponents) {
+        checkStemChoice(`${rule.id}|${e.branch}`, e.stem);
+        // An exponent adds text or writes an affix lexeme of the lexicon, one of the two.
+        if ((e.add === undefined) === (e.lexeme === undefined)) errors.push(`${rule.id}|${e.branch}: an exponent has \`add\` or \`lexeme\`, one of the two`);
+        else if (e.lexeme !== undefined && !lexemes.has(lexemeId(e.lexeme))) errors.push(`${rule.id}|${e.branch}: no lexeme ${e.lexeme}`);
+      }
+    }
     return { source: rule, blocks };
   });
   const ruleIds = new Set<string>();
@@ -451,11 +458,19 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
   } else return err({ kind: "form", lexeme: lexeme.id });
 
   // 3. The affix blocks, in order: each prefix before what is made so far, each suffix after it.
+  // An exponent that writes an affix lexeme takes the allomorph a token would: by what it follows
+  // (a suffix) or stands before (a prefix), of what is made so far.
   let units = unitsOf(stem);
   for (const { side, exponent } of chosen) {
     if (exponent === undefined) continue;
     steps.push({ rule: rule.source.id, branch: exponent.branch });
-    const affix = unitsOf(exponent.add);
+    let text = exponent.add;
+    if (exponent.lexeme !== undefined) {
+      const affixLexeme = lang.lexemes.get(lexemeId(exponent.lexeme));
+      text = affixLexeme === undefined ? undefined : side === "prefix" ? allomorphOf(lang, affixLexeme, [], units) : allomorphOf(lang, affixLexeme, units, []);
+      if (text === undefined) return err({ kind: "form", lexeme: lexemeId(exponent.lexeme) });
+    }
+    const affix = unitsOf(text ?? "");
     units = side === "prefix" ? join(lang, affix, units, "prefix") : join(lang, units, affix, "suffix");
   }
   const listed = status === "listed" && winner?.stem !== undefined ? `${lexeme.id}|stem:${winner.stem.normalize("NFC")}` : undefined;

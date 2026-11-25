@@ -1611,7 +1611,13 @@ class Exponent(BaseModel):
     )
     branch: Branch
     feats: UdFeatures | None = None
-    add: str
+    add: str | None = None
+    lexeme: Annotated[
+        LexemeId | None,
+        Field(
+            description="In place of `add`: an affix lexeme the exponent writes, in the allomorph its conditions choose by what it follows, as a token that lists it is realised (uz: the past -di, lexeme:past). One of `add` and `lexeme`."
+        ),
+    ] = None
     stem: StemChoice | None = None
     notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
 
