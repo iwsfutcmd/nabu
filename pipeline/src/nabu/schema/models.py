@@ -1499,12 +1499,12 @@ class Notation(BaseModel):
         frozen=True,
     )
     vowels: Annotated[
-        dict[str, VowelsAdditionalProperty],
+        dict[str, VowelsAdditionalProperty] | None,
         Field(
-            description="Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C).",
+            description="Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C). A notation whose vowels are letters (an alphabet's: es, sk, tok) names none.",
             min_length=1,
         ),
-    ]
+    ] = None
     long: Annotated[
         dict[str, LongAdditionalProperty] | None,
         Field(
@@ -6436,7 +6436,12 @@ class Spell(BaseModel):
             description="Named sets of this statement's own, beside the notation's.", min_length=1
         ),
     ] = None
-    rules: Annotated[list[SpellRule], Field(min_length=1)]
+    rules: Annotated[
+        list[SpellRule],
+        Field(
+            description="None where the orthography writes the form as it is (its boundaries dropped)."
+        ),
+    ]
 
 
 class TaggedText(BaseModel):
