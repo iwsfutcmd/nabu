@@ -542,17 +542,46 @@ const wordsOf = (units: readonly Unit[]): readonly (readonly Unit[])[] => {
   return out;
 };
 
+/** Of the parts of a token of equals, the status of the whole: pinned where one is (rule debt), else listed where one is. */
+const STATUS_RANK: Readonly<Record<Realisation["status"], number>> = { given: 0, listed: 1, pinned: 2 };
+
+/**
+ * A token of equals: several lexemes, none of them its base (the schema's "a token of two equals
+ * has none": yue 十 + 八, eighteen). Each is realised as a word of its own, in its own cell
+ * (`realise`: blocking, its rule, the rewrite rules), and they are joined in order at a boundary.
+ * No allomorph is chosen and no rule runs over the join: none of them is what the others are merged
+ * onto. A part that is a phrase (a form with a space) gives nothing (`form`).
+ */
+const equals = (lang: CompiledLanguage, written: readonly WrittenLexeme[], options: RealiseOptions): Result<Realisation, RealiseError> => {
+  let units: readonly Unit[] = [];
+  let status: Realisation["status"] = "given";
+  let listed: PartId | undefined;
+  const steps: Step[] = [];
+  for (const w of written) {
+    const part = realise(lang, w.lexeme, w.feats ?? {}, options);
+    if (!part.ok) return part;
+    const own = unitsOf(part.value.form);
+    if (wordsOf(own).length > 1) return err({ kind: "form", lexeme: lexemeId(w.lexeme) });
+    units = units.length === 0 ? own : [...units, BOUNDARY, ...own];
+    steps.push(...part.value.steps);
+    if (STATUS_RANK[part.value.status] > STATUS_RANK[status]) status = part.value.status;
+    listed ??= part.value.listed;
+  }
+  return ok({ form: textOf(units), status, steps, ...(listed !== undefined && { listed }) });
+};
+
 /**
  * A token realised: its base lexeme in its cell, the token's other lexemes in their allomorphs, each
  * joined at a boundary, then the rewrite rules over the whole. Allomorphs are chosen twice over, so
  * each sees the others' choices: the lexemes after the base by what they follow and what stands after
  * them; the base's own form (where no rule made it) by what follows it in the token, or by the next
  * word (`options.next`) where nothing does; the lexemes before it, nearest first, by what they stand
- * before and follow.
+ * before and follow. A token of several lexemes, none of them marked its base, is a token of equals
+ * (`equals`).
  */
-export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLexeme[], options: RealiseOptions = {}): Result<Realisation, RealiseError> => {
+export const realiseToken =(lang: CompiledLanguage, written: readonly WrittenLexeme[], options: RealiseOptions = {}): Result<Realisation, RealiseError> => {
   const baseAt = written.length === 1 ? 0 : written.findIndex((w) => w.base === true);
-  if (baseAt < 0) return err({ kind: "no-rule", cell: {} });
+  if (baseAt < 0) return written.length > 1 && options.word === undefined ? equals(lang, written, options) : err({ kind: "no-rule", cell: {} });
   const base = written[baseAt] as WrittenLexeme;
   const built = build(lang, base.lexeme, base.feats ?? {}, options);
   if (!built.ok) return built;
