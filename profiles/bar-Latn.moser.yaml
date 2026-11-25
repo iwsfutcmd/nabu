@@ -58,6 +58,11 @@ correspondences:
   - { says: ss, written: [ss, "ß"], kind: free }
   # The 2nd person's -sch at a word's end, and -scht (bisch, bischt; hosch, hoscht): Moser has both.
   - { says: sch, written: [sch, scht], kind: free, when: { at: end } }
+# How the orthography writes a lexical form (docs/rules-design.md, stage 1; lexicons/bar/language.yaml `notation`):
+# as it is. bar's lexical forms are its spelling, letter for letter, a stem's boundaries (+) dropped; the free
+# spellings are the correspondences above, which grading reads, never `spell` alternatives (the tie check in
+# packages/core/test/spell.test.ts has none to compare).
+spell: { from: lexical, rules: [] }
 layout: { vertical: none }
 input:
   keyboard: cldr-kbd:de

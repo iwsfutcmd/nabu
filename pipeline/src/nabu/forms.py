@@ -8,6 +8,8 @@ vocalization of that spelling. An allomorph with a form is checked against its o
 A verb's form is its radicals (a `RadicalForm`): it is checked through its citation cell (its own
 `citation`, else its category's in language.yaml: apc's he-past), realised by the rules first
 (core-cli `realise`, forms that pin spellings only passed over), so a lemma is what the rules give.
+So is a string form of a category the language declares `stemmed` (bar's verbs: the stem red, whose
+lemma is the infinitive redn).
 
 @nabu/core spells and compares (core-cli `spell`, one batch for the course): never here. The
 compiler reports each mismatch as the warning `form.projection`; `nabu forms` lists every lexeme.
@@ -56,7 +58,7 @@ class Entry:
     """A lexeme: its form as stored (a string, or a verb's radicals), and its checks."""
 
     lexeme: str
-    kind: str  # string, radical, other, none
+    kind: str  # string, stem (a string of a `stemmed` category), radical, other, none
     form: str | None
     checks: list[Check] = field(default_factory=lambda: [])
 
@@ -78,7 +80,7 @@ class Report:
         }
         return {
             "stored": len(kinds) - kinds.count("none"),
-            "string": kinds.count("string"),
+            "string": kinds.count("string") + kinds.count("stem"),
             "allomorphs": len(allomorphs),
             "checked": len(checked),
             "radical": kinds.count("radical"),
@@ -132,7 +134,9 @@ def check(
         notation.model_dump(mode="json", by_alias=True, exclude_none=True) if notation else None
     )
     citations = lang.declared.citation or {}
-    # A radical form's lemma: (entry index, its spellings), realised in its citation cell below.
+    stemmed = {str(c) for c in lang.declared.stemmed or []}
+    # A radical form's lemma, or a stem's: (entry index, its spellings), realised in its citation
+    # cell below.
     cited: list[tuple[int, Mapping[str, list[str]], dict[str, Any]]] = []
     targets_of: dict[int, list[tuple[int | None, str, Mapping[str, list[str]]]]] = {}
     for lexeme in lang.lexicon.lexemes:
@@ -159,13 +163,27 @@ def check(
                 }
                 cited.append((len(entries) - 1, spelled, request))
             continue
-        entries.append(Entry(ident, "string" if form is not None else "none", form))
+        cell = lexeme.citation or (citations.get(lexeme.pos) if lexeme.pos is not None else None)
+        stem = form is not None and str(lexeme.pos) in stemmed and cell is not None
+        kind = "stem" if stem else "string" if form is not None else "none"
+        entries.append(Entry(ident, kind, form))
         if dumped is None:
             problems.append(f"{ident}: a form, and {lang.code} declares no notation")
             continue
         targets: list[tuple[int | None, str, Mapping[str, list[str]]]] = []
-        if form is not None:
-            targets.append((None, form, {str(k): v for k, v in (lexeme.spelled or {}).items()}))
+        spelled = {str(k): v for k, v in (lexeme.spelled or {}).items()}
+        if stem and cell is not None:
+            # A stem: its lemma is its citation cell as the rules give it (a target below).
+            request = {
+                "op": "realise",
+                **language_args(lang),
+                "lexeme": ident,
+                "cell": {str(k): str(v) for k, v in dict(cell).items()},
+                "spellings": False,
+            }
+            cited.append((len(entries) - 1, spelled, request))
+        elif form is not None:
+            targets.append((None, form, spelled))
         for i, a in allomorphs:
             targets.append((i, str(a.form), {str(k): v for k, v in (a.spelled or {}).items()}))
         targets_of[len(entries) - 1] = targets
@@ -179,8 +197,12 @@ def check(
                 )
                 continue
             text = str(result["value"]["form"])
-            entries[index] = Entry(entries[index].lexeme, "radical", text)
-            targets_of[index] = [(None, text, spelled)]
+            if entries[index].kind == "radical":
+                entries[index] = Entry(entries[index].lexeme, "radical", text)
+                targets_of[index] = [(None, text, spelled)]
+            else:
+                # A stem: its lemma first, then its allomorphs' forms as they are.
+                targets_of[index] = [(None, text, spelled), *targets_of.get(index, [])]
     for index in sorted(targets_of):
         for allomorph, text, spelled in targets_of[index]:
             for orth, layer in spelling:
@@ -231,7 +253,13 @@ def format_report(report: Report) -> list[str]:
         if e.kind == "other" or (e.kind == "radical" and e.form is None):
             lines.append(f"{e.lexeme}: {e.kind} form (not checked: no citation cell realised)")
             continue
-        cited = " (radicals, in its citation cell)" if e.kind == "radical" else ""
+        cited = (
+            " (radicals, in its citation cell)"
+            if e.kind == "radical"
+            else " (a stem: its lemma, then its allomorphs)"
+            if e.kind == "stem"
+            else ""
+        )
         lines.append(f"{e.lexeme}: {escaped(e.form or '')}{cited}")
         for c in e.checks:
             of = "" if c.allomorph is None else f" (allomorph {c.allomorph})"
