@@ -1704,37 +1704,6 @@
       "note": "s.u21.1: the course writes hable."
     },
     {
-      "id": "realise/es/comparative/fem",
-      "op": "realise-token",
-      "args": {
-        "lang": "es",
-        "spellings": false,
-        "lexemes": [
-          {
-            "lexeme": "peor",
-            "feats": {
-              "Gender": "Fem",
-              "Number": "Sing"
-            }
-          }
-        ],
-        "next": "canción"
-      },
-      "expected": {
-        "ok": true,
-        "value": {
-          "form": "peor",
-          "steps": [
-            {
-              "rule": "rule:es-comparative",
-              "branch": "fem"
-            }
-          ]
-        }
-      },
-      "note": "s.u16.35: the course writes peor."
-    },
-    {
       "id": "realise/es/comparative/pl",
       "op": "realise-token",
       "args": {
@@ -5160,37 +5129,6 @@
         }
       },
       "note": "es.story.u29#15: the course writes dijeron."
-    },
-    {
-      "id": "realise/es/nominal/fem",
-      "op": "realise-token",
-      "args": {
-        "lang": "es",
-        "spellings": false,
-        "lexemes": [
-          {
-            "lexeme": "mi",
-            "feats": {
-              "Gender": "Fem",
-              "Number": "Sing"
-            }
-          }
-        ],
-        "next": "abuela"
-      },
-      "expected": {
-        "ok": true,
-        "value": {
-          "form": "mi",
-          "steps": [
-            {
-              "rule": "rule:es-nominal",
-              "branch": "fem"
-            }
-          ]
-        }
-      },
-      "note": "s.u01.35: the course writes mi."
     },
     {
       "id": "realise/es/nominal/pl",

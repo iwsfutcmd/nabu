@@ -30,6 +30,9 @@ bare:
   DET: {Gender: Masc, Number: Sing}
   VERB: {VerbForm: Inf}
   AUX: {VerbForm: Inf}
+# The values the course uses from its first sentence and never introduces as a part (the indicative, a finite verb, the
+# singular): taught, where the compiler lists a paradigm's cells (docs/rules/es.md, stage 4).
+unmarked: {Mood: [Ind], VerbForm: [Fin], Number: [Sing]}
 features:
   Gender: [Fem, Masc, Neut]
   Mood: [Cnd, Imp, Ind, Sub]
