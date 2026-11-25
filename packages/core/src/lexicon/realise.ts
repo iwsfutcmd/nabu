@@ -429,7 +429,9 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
   // specific than one of the same values without it.
   const follows = (f: LexemeForm): boolean => f.before === undefined || (following !== undefined && contextHolds(lang, f.before, following, undefined));
   const weight = (f: LexemeForm): number => 2 * sizeOf(f.feats) + (f.before === undefined ? 0 : 1);
-  const candidates = (lexeme.forms ?? []).filter((f) => kept(f) && lexical(f) && hasValues(cell, f.feats) && follows(f));
+  // A form that names no values is for a token that chooses none (an uninflected word's), never a cell.
+  const fits = (f: LexemeForm): boolean => (f.feats === undefined ? Object.keys(cell).length === 0 : hasValues(cell, f.feats));
+  const candidates = (lexeme.forms ?? []).filter((f) => kept(f) && lexical(f) && fits(f) && follows(f));
   const most = Math.max(-1, ...candidates.map(weight));
   const winners = candidates.filter((f) => weight(f) === most);
   if (winners.length > 1 && !winners.every((f) => f.free === true)) return err({ kind: "tie", forms: winners.map((f) => featsKey(f.feats)) });

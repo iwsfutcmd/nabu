@@ -222,6 +222,17 @@
               "form": "osk"
             },
             {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
               "id": "lexeme:mah",
               "pos": "PRON",
               "form": "mah",
@@ -487,6 +498,17 @@
               "id": "lexeme:osk",
               "pos": "NOUN",
               "form": "osk"
+            },
+            {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
             },
             {
               "id": "lexeme:mah",
@@ -757,6 +779,17 @@
               "form": "osk"
             },
             {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
               "id": "lexeme:mah",
               "pos": "PRON",
               "form": "mah",
@@ -1014,6 +1047,17 @@
               "id": "lexeme:osk",
               "pos": "NOUN",
               "form": "osk"
+            },
+            {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
             },
             {
               "id": "lexeme:mah",
@@ -1284,6 +1328,17 @@
               "form": "osk"
             },
             {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
               "id": "lexeme:mah",
               "pos": "PRON",
               "form": "mah",
@@ -1547,6 +1602,17 @@
               "id": "lexeme:osk",
               "pos": "NOUN",
               "form": "osk"
+            },
+            {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
             },
             {
               "id": "lexeme:mah",
@@ -1815,6 +1881,17 @@
               "form": "osk"
             },
             {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
               "id": "lexeme:mah",
               "pos": "PRON",
               "form": "mah",
@@ -2081,6 +2158,17 @@
               "form": "osk"
             },
             {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
               "id": "lexeme:mah",
               "pos": "PRON",
               "form": "mah",
@@ -2344,6 +2432,17 @@
               "form": "osk"
             },
             {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
               "id": "lexeme:mah",
               "pos": "PRON",
               "form": "mah",
@@ -2605,6 +2704,17 @@
               "id": "lexeme:osk",
               "pos": "NOUN",
               "form": "osk"
+            },
+            {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
             },
             {
               "id": "lexeme:mah",
@@ -2876,6 +2986,17 @@
               "form": "osk"
             },
             {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
               "id": "lexeme:mah",
               "pos": "PRON",
               "form": "mah",
@@ -2924,6 +3045,547 @@
         }
       },
       "note": "One with conditions, where they hold."
+    },
+    {
+      "id": "realise/hbo-engine/no-feats/empty-cell",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:sus",
+              "pos": "NOUN",
+              "form": "sus"
+            },
+            {
+              "id": "lexeme:ram",
+              "pos": "VERB",
+              "form": "ram"
+            },
+            {
+              "id": "lexeme:al",
+              "pos": "ADP",
+              "form": "al",
+              "classes": [
+                "series-ay"
+              ]
+            },
+            {
+              "id": "lexeme:sfx-my",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "ay",
+                  "after": {
+                    "feats": {
+                      "Number": "Plur"
+                    }
+                  }
+                },
+                {
+                  "form": "ni",
+                  "after": {
+                    "pos": "VERB"
+                  }
+                },
+                {
+                  "form": "ay",
+                  "after": {
+                    "class": "series-ay"
+                  }
+                },
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pre",
+              "pos": "ADP",
+              "form": "le",
+              "allomorphs": [
+                {
+                  "form": "la",
+                  "free": true
+                },
+                {
+                  "form": "lo",
+                  "free": true,
+                  "before": {
+                    "startsIn": "o"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:dom",
+              "pos": "NOUN",
+              "form": "dom"
+            },
+            {
+              "id": "lexeme:osk",
+              "pos": "NOUN",
+              "form": "osk"
+            },
+            {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:tov"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tuv",
+          "status": "pinned"
+        }
+      },
+      "note": "A form that names no feature values is a token's that chooses none."
+    },
+    {
+      "id": "realise/hbo-engine/no-feats/cell",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:sus",
+              "pos": "NOUN",
+              "form": "sus"
+            },
+            {
+              "id": "lexeme:ram",
+              "pos": "VERB",
+              "form": "ram"
+            },
+            {
+              "id": "lexeme:al",
+              "pos": "ADP",
+              "form": "al",
+              "classes": [
+                "series-ay"
+              ]
+            },
+            {
+              "id": "lexeme:sfx-my",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "ay",
+                  "after": {
+                    "feats": {
+                      "Number": "Plur"
+                    }
+                  }
+                },
+                {
+                  "form": "ni",
+                  "after": {
+                    "pos": "VERB"
+                  }
+                },
+                {
+                  "form": "ay",
+                  "after": {
+                    "class": "series-ay"
+                  }
+                },
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pre",
+              "pos": "ADP",
+              "form": "le",
+              "allomorphs": [
+                {
+                  "form": "la",
+                  "free": true
+                },
+                {
+                  "form": "lo",
+                  "free": true,
+                  "before": {
+                    "startsIn": "o"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:dom",
+              "pos": "NOUN",
+              "form": "dom"
+            },
+            {
+              "id": "lexeme:osk",
+              "pos": "NOUN",
+              "form": "osk"
+            },
+            {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:tov",
+        "cell": {
+          "Number": "Sing"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tov",
+          "status": "given"
+        }
+      },
+      "note": "It is no cell's: a token that chooses values has the rules' (here the citation form)."
     },
     {
       "id": "realise/hbo-engine/context/bound",
@@ -3144,6 +3806,17 @@
               "id": "lexeme:osk",
               "pos": "NOUN",
               "form": "osk"
+            },
+            {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
             },
             {
               "id": "lexeme:mah",
@@ -3414,6 +4087,17 @@
               "form": "osk"
             },
             {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
               "id": "lexeme:mah",
               "pos": "PRON",
               "form": "mah",
@@ -3672,6 +4356,17 @@
               "id": "lexeme:osk",
               "pos": "NOUN",
               "form": "osk"
+            },
+            {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
             },
             {
               "id": "lexeme:mah",
@@ -3935,6 +4630,17 @@
               "id": "lexeme:osk",
               "pos": "NOUN",
               "form": "osk"
+            },
+            {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
             },
             {
               "id": "lexeme:mah",
@@ -4208,6 +4914,17 @@
               "form": "osk"
             },
             {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
               "id": "lexeme:mah",
               "pos": "PRON",
               "form": "mah",
@@ -4466,6 +5183,17 @@
               "id": "lexeme:osk",
               "pos": "NOUN",
               "form": "osk"
+            },
+            {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
             },
             {
               "id": "lexeme:mah",
@@ -4727,6 +5455,17 @@
               "id": "lexeme:osk",
               "pos": "NOUN",
               "form": "osk"
+            },
+            {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
             },
             {
               "id": "lexeme:mah",
@@ -4993,6 +5732,17 @@
               "form": "osk"
             },
             {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
               "id": "lexeme:mah",
               "pos": "PRON",
               "form": "mah",
@@ -5251,6 +6001,17 @@
               "id": "lexeme:osk",
               "pos": "NOUN",
               "form": "osk"
+            },
+            {
+              "id": "lexeme:tov",
+              "pos": "NOUN",
+              "form": "tov",
+              "forms": [
+                {
+                  "form": "tuv",
+                  "status": "pinned"
+                }
+              ]
             },
             {
               "id": "lexeme:mah",
