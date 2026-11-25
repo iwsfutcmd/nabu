@@ -465,6 +465,7 @@ lexemes:
   forms:
   - {feats: {Case: 'Nom,Acc', Number: Plur}, form: dva, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
   - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, form: dvaja, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Anim, Case: Acc, Gender: Masc, Number: Plur}, form: dvoch, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
   - {feats: {Case: 'Nom,Acc', Gender: 'Fem,Neut', Number: Plur}, form: dve, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
 - id: lexeme:dvadsať
   pos: NUM
@@ -1183,6 +1184,10 @@ lexemes:
   - {feats: {Case: Nom, Gender: Masc, Number: Sing}, form: môj, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
   - {feats: {Case: Nom, Gender: Fem, Number: Sing}, form: moja, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
   - {feats: {Case: 'Nom,Acc', Gender: Neut, Number: Sing}, form: moje, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, form: moju, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Loc, Gender: 'Masc,Neut', Number: Sing}, form: mojom, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, form: moji, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}, form: môj, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
 - id: lexeme:na
   pos: ADP
   gloss: {en: on; to; at; for}
@@ -1299,6 +1304,11 @@ lexemes:
   forms:
   - {feats: {Case: Nom, Gender: Masc, Number: Sing}, form: náš, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
   - {feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}, form: náš, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, form: naša, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, form: našu, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: 'Nom,Acc', Gender: Neut, Number: Sing}, form: naše, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Loc, Gender: 'Masc,Neut', Number: Sing}, form: našom, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, form: naši, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
 - id: lexeme:o
   pos: ADP
   gloss: {en: at (a time); about}
@@ -2241,6 +2251,8 @@ lexemes:
   - {feats: {Case: 'Nom,Acc', Gender: Neut, Number: Sing}, form: to, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
   - {feats: {Case: Nom, Gender: Fem, Number: Sing}, form: tá, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
   - {feats: {Case: Acc, Gender: Fem, Number: Sing}, form: tú, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Loc, Gender: 'Masc,Neut', Number: Sing}, form: tom, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, form: tí, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
 - id: lexeme:tento
   pos: DET
   feats: {PronType: Dem}
@@ -2252,6 +2264,10 @@ lexemes:
   - {feats: {Case: Nom, Gender: Masc, Number: Sing}, form: tento, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
   - {feats: {Case: 'Nom,Acc', Gender: Neut, Number: Sing}, form: toto, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
   - {feats: {Case: Nom, Gender: Fem, Number: Sing}, form: táto, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, form: túto, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Loc, Gender: 'Masc,Neut', Number: Sing}, form: tomto, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, form: títo, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}, form: tento, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
 - id: lexeme:teplo
   pos: ADV
   gloss: {en: 'warm (je teplo: it''s warm)'}
@@ -2307,6 +2323,7 @@ lexemes:
   forms:
   - {feats: {Case: 'Nom,Acc', Number: Plur}, form: tri, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
   - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, form: traja, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Anim, Case: Acc, Gender: Masc, Number: Plur}, form: troch, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
 - id: lexeme:tridsať
   pos: NUM
   feats: {NumType: Card}
@@ -2339,6 +2356,11 @@ lexemes:
   forms:
   - {feats: {Case: Nom, Gender: Masc, Number: Sing}, form: tvoj, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
   - {feats: {Case: Nom, Gender: Fem, Number: Sing}, form: tvoja, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, form: tvoju, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: 'Nom,Acc', Gender: Neut, Number: Sing}, form: tvoje, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Loc, Gender: 'Masc,Neut', Number: Sing}, form: tvojom, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, form: tvoji, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}, form: tvoj, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
 - id: lexeme:ty
   pos: PRON
   feats: {PronType: Prs}
@@ -2681,6 +2703,12 @@ lexemes:
   spelled: {sk-Latn/standard: [váš]}
   forms:
   - {feats: {Case: Nom, Gender: Masc, Number: Sing}, form: váš, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, form: vaša, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, form: vašu, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: 'Nom,Acc', Gender: Neut, Number: Sing}, form: vaše, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Loc, Gender: 'Masc,Neut', Number: Sing}, form: vašom, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, form: vaši, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}, form: váš, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
 - id: lexeme:víkend
   pos: NOUN
   feats: {Animacy: Inan}
@@ -2739,6 +2767,11 @@ lexemes:
   forms:
   - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, form: všetci, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
   - {feats: {Case: 'Nom,Acc', Gender: Neut, Number: Sing}, form: všetko, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Nom, Gender: Masc, Number: Sing}, form: všetok, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Inan, Case: Acc, Gender: Masc, Number: Sing}, form: všetok, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, form: všetka, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, form: všetku, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Case: Loc, Gender: 'Masc,Neut', Number: Sing}, form: všetkom, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
 - id: lexeme:vždy
   pos: ADV
   gloss: {en: always}
@@ -3042,6 +3075,7 @@ lexemes:
   forms:
   - {feats: {Case: 'Nom,Acc', Number: Plur}, form: štyri, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
   - {feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, form: štyria, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
+  - {feats: {Animacy: Anim, Case: Acc, Gender: Masc, Number: Plur}, form: štyroch, status: listed, statement: {author: 'llm:claude@sk-rules-v1', status: draft}}
 - id: lexeme:šálka
   pos: NOUN
   gloss: {en: cup}
