@@ -43,6 +43,15 @@ match:
 # reading, so writing what a merged speaker says is no other spelling of the standard's sound.
 sound: { from: spelling }
 correspondences: []
+# How Jyutping spells a lexical form (lexicons/yue/language.yaml, `notation`: each character followed by its Jyutping;
+# docs/rules/yue.md): the syllables, a space between two (hok6 saang1, ngo5 dei6, as above), each character left out.
+# Checked against each lexeme's first spelling and every token (`form.projection`, `form.unaccounted`, `nabu forms`);
+# never shipped. REVIEW.
+spell:
+  from: lexical
+  rules:
+    - {find: "{T}", before: "{H}", to: "{T} "}
+    - {find: "{H}", to: ""}
 annotations:
   - { id: characters, kind: reading, scheme: characters, lang: yue-Hant-HK, toggle: true, render: ruby, fade: none }
 input:

@@ -17,3 +17,18 @@ features:
 rules:
 - {id: 'rule:a-not-a', gloss: {en: 'X唔X: a yes-or-no question (係唔係, ''is it or not'')'}, was: 'construction:a-not-a'}
 - {id: 'rule:cl-possessive', gloss: {en: 'pronoun + classifier + noun: possessive (我本書 my book, 你個仔 your son)'}, notes: {en: 'Instead of 嘅, Cantonese often puts the classifier between owner and thing: 我隻貓 ''my cat''.'}, was: 'construction:cl-possessive'}
+# How yue writes a lexical form (docs/rules/yue.md), read by @nabu/core `compileSpeller` for each profile's `spell`; never
+# shipped. A syllable is its character followed by its Jyutping, a word its syllables in a row (學hok6生saang1), a token's
+# lexemes joined at a boundary (我ngo5+哋dei6): the characters say which morpheme it is (homophones 係 and 系 are two),
+# the Jyutping how it is said, changed tone and all (中zung1文man2), and neither gives the other. So one form is both
+# orthographies: yue-Hant-HK/standard's `spell` drops the readings, yue-Latn/jyutping's the characters. Each form is
+# written by `nabu jyutping` from its lexeme's first spelling and the reading the course's tokens give it (the reading
+# the compiler pins on that spelling, ADR 0117), never by hand. Sets: H a Han character (the CJK unified ideographs:
+# the main block, extension A, the twelve among the compatibility ideographs, planes 2 and 3 but for the
+# compatibility supplement, which NFC replaces; and the ideographic zero), R a letter of a Jyutping syllable, T its
+# tone number.
+notation:
+  sets:
+    H: "[\u3007\u3400-\u4DBF\u4E00-\u9FFF\uFA0E\uFA0F\uFA11\uFA13\uFA14\uFA1F\uFA21\uFA23\uFA24\uFA27-\uFA29\U00020000-\U0002F7FF\U0002FA20-\U0003FFFD]"
+    R: "[a-z]"
+    T: "[1-6]"
