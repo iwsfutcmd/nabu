@@ -50,6 +50,11 @@ lexemes:
   gloss: {en: near; close}
   form: "قَرِيب"
   spelled: {apc-Arab/standard: [قريب], apc-Latn/arabizi: [2arib]}
+- id: lexeme:2ata3
+  pos: VERB
+  gloss: {en: cut; cross (the street)}
+  form: {radicals: [ق, ط, ع], form: I, vowels: {past: a, present: a}, source: deduced}
+  spelled: {apc-Arab/standard: [قطع], apc-Latn/arabizi: [2ata3]}
 - id: lexeme:2awi
   pos: ADJ
   gloss: {en: strong}
@@ -265,6 +270,16 @@ lexemes:
   gloss: {en: bathroom; toilet}
   form: "حَمّ\u065cام"
   spelled: {apc-Arab/standard: [حمّام], apc-Latn/arabizi: [7ammem]}
+- id: lexeme:7arrak
+  pos: VERB
+  gloss: {en: stir; move}
+  form: {radicals: [ح, ر, ك], form: II, source: deduced}
+  spelled: {apc-Arab/standard: [حرّك], apc-Latn/arabizi: [7arrak]}
+- id: lexeme:7att
+  pos: VERB
+  gloss: {en: put}
+  form: {radicals: [ح, ط, ط], form: I, vowels: {past: a, present: u}, source: deduced}
+  spelled: {apc-Arab/standard: [حطّ], apc-Latn/arabizi: [7att]}
 - id: lexeme:7da3sh
   pos: NUM
   feats: {NumType: Card}
@@ -535,6 +550,11 @@ lexemes:
   gloss: {en: far}
   form: "بْعِيد"
   spelled: {apc-Arab/standard: [بعيد], apc-Latn/arabizi: [b3id]}
+- id: lexeme:ba2dounes
+  pos: NOUN
+  gloss: {en: parsley}
+  form: بَقْدُونِس
+  spelled: {apc-Arab/standard: [بقدونس], apc-Latn/arabizi: [ba2dunes]}
 - id: lexeme:ba3d
   pos: ADP
   gloss: {en: after}
@@ -585,6 +605,11 @@ lexemes:
   gloss: {en: without}
   form: "بَلَا"
   spelled: {apc-Arab/standard: [بلا], apc-Latn/arabizi: [bala]}
+- id: lexeme:bandoura
+  pos: NOUN
+  gloss: {en: tomato; tomatoes}
+  form: بَنَدُورَة
+  spelled: {apc-Arab/standard: [بندورة], apc-Latn/arabizi: [banadura]}
 - id: lexeme:bantalon
   pos: NOUN
   gloss: {en: trousers; pants}
@@ -612,6 +637,11 @@ lexemes:
   gloss: {en: only; just; but}
   form: "بَسّ"
   spelled: {apc-Arab/standard: [بسّ], apc-Latn/arabizi: [bas]}
+- id: lexeme:basal
+  pos: NOUN
+  gloss: {en: onion; onions}
+  form: بَصَل
+  spelled: {apc-Arab/standard: [بصل], apc-Latn/arabizi: [basal]}
 - id: lexeme:batn
   pos: NOUN
   gloss: {en: stomach; belly}
@@ -840,6 +870,11 @@ lexemes:
     source: 'deduced'
     basis: 'Kline does not list it. A form II verb''s citation forms follow from its radicals, as Kline cites them (p. 80: wa22af / ywa22ef), and the course''s bfakker and btfakkri agree.'
   spelled: {apc-Arab/standard: [فكّر], apc-Latn/arabizi: [fakkar]}
+- id: lexeme:fata7
+  pos: VERB
+  gloss: {en: open; turn on}
+  form: {radicals: [ف, ت, ح], form: I, vowels: {past: a, present: a}, source: deduced}
+  spelled: {apc-Arab/standard: [فتح], apc-Latn/arabizi: [fata7]}
 - id: lexeme:fehem
   pos: VERB
   gloss: {en: understand}
@@ -898,6 +933,11 @@ lexemes:
   gloss: {en: dress}
   form: "فُسْتَان"
   spelled: {apc-Arab/standard: [فستان], apc-Latn/arabizi: [fostan]}
+- id: lexeme:furn
+  pos: NOUN
+  gloss: {en: oven; bakery}
+  form: فُرْن
+  spelled: {apc-Arab/standard: [فرن], apc-Latn/arabizi: [forn]}
 - id: lexeme:ghada
   pos: NOUN
   gloss: {en: lunch}
@@ -913,6 +953,11 @@ lexemes:
   gloss: {en: sing}
   form: {radicals: [غ, ن, ي], form: II, source: 'kline 81'}
   spelled: {apc-Arab/standard: [غنّى], apc-Latn/arabizi: [ghanna]}
+- id: lexeme:ghassal
+  pos: VERB
+  gloss: {en: wash}
+  form: {radicals: [غ, س, ل], form: II, source: deduced}
+  spelled: {apc-Arab/standard: [غسّل], apc-Latn/arabizi: [ghassal]}
 - id: lexeme:ghaym
   pos: NOUN
   gloss: {en: clouds; cloud}
@@ -1016,6 +1061,12 @@ lexemes:
   notes: {en: 'iza fi matar, ma ra7 nru7: if it rains, we won''t go. The verb after iza: present (with b-) or past.'}
   form: "إِذَا"
   spelled: {apc-Arab/standard: [إذا], apc-Latn/arabizi: [iza]}
+- id: lexeme:jab
+  pos: VERB
+  gloss: {en: bring; get}
+  notes: {en: 'jibli: bring me (to a woman: jibili).'}
+  form: {radicals: [ج, ي, ب], form: I, vowels: {past: a, present: i}, source: deduced}
+  spelled: {apc-Arab/standard: [جاب], apc-Latn/arabizi: [jab]}
 - id: lexeme:jabal
   pos: NOUN
   gloss: {en: mountain; the mountains}
@@ -1265,6 +1316,11 @@ lexemes:
   notes: {en: 'To a woman: لو سمحتي, law sama7te.'}
   form: "لَو سَمَحْت"
   spelled: {apc-Arab/standard: [لو سمحت], apc-Latn/arabizi: [law sama7t]}
+- id: lexeme:laymoun
+  pos: NOUN
+  gloss: {en: lemon; lemons}
+  form: لَيْمُون
+  spelled: {apc-Arab/standard: [ليمون], apc-Latn/arabizi: [laymun]}
 - id: lexeme:le3eb
   pos: VERB
   gloss: {en: play}
@@ -1373,6 +1429,11 @@ lexemes:
   gloss: {en: goodbye (literally 'with safety')}
   form: "مَع ا\u06dfل\u06dfسَّلَام\u065cة"
   spelled: {apc-Arab/standard: [مع السلامة], apc-Latn/arabizi: [ma3 essalame]}
+- id: lexeme:ma3la2a
+  pos: NOUN
+  gloss: {en: spoon}
+  form: مَعْلَقَة
+  spelled: {apc-Arab/standard: [معلقة], apc-Latn/arabizi: [ma3la2a]}
 - id: lexeme:ma3lesh
   pos: INTJ
   gloss: {en: never mind; it's OK; sorry}
@@ -1482,6 +1543,11 @@ lexemes:
   gloss: {en: who}
   form: "مِين"
   spelled: {apc-Arab/standard: [مين], apc-Latn/arabizi: [meen]}
+- id: lexeme:mele7
+  pos: NOUN
+  gloss: {en: salt}
+  form: مِلْح
+  spelled: {apc-Arab/standard: [ملح], apc-Latn/arabizi: [mel7]}
 - id: lexeme:men
   pos: ADP
   gloss: {en: from; of}
@@ -1550,6 +1616,11 @@ lexemes:
   gloss: {en: music}
   form: "مُوسِيقَى"
   spelled: {apc-Arab/standard: [موسيقى], apc-Latn/arabizi: [musi2a]}
+- id: lexeme:nar
+  pos: NOUN
+  gloss: {en: fire; the stove (cooking heat)}
+  form: نَار
+  spelled: {apc-Arab/standard: [نار], apc-Latn/arabizi: [nar]}
 - id: lexeme:nehna
   pos: PRON
   feats: {PronType: Prs}
@@ -1591,6 +1662,20 @@ lexemes:
   gloss: {en: April}
   form: "نِيسَان"
   spelled: {apc-Arab/standard: [نيسان], apc-Latn/arabizi: [nisan]}
+- id: lexeme:nisi
+  pos: VERB
+  gloss: {en: forget}
+  notes: {en: 'ma tensa!: don''t forget! (to a woman: ma tensi!).'}
+  form: {radicals: [ن, س, ي], form: I, vowels: {past: i, present: a}, source: kline 163, note: 'Kline gives nise / yensa (p. 163). The rules do not give a defective verb''s he-past with i yet: it is pinned.'}
+  spelled: {apc-Arab/standard: [نسي], apc-Latn/arabizi: [nise]}
+  forms:
+  - feats:
+      Aspect: Perf
+      Gender: Masc
+      Number: Sing
+      Person: '3'
+    form: نِسِي
+    status: pinned
 - id: lexeme:nos
   pos: NOUN
   gloss: {en: half}
@@ -1783,6 +1868,11 @@ lexemes:
     source: 'kline 91'
     basis: 'The middle radical shows in no form of a hollow form VIII verb, and no form depends on which it is. It is stored as و, the letter Arabic dictionaries file the word under; that links it to nothing, ra7 (go) included (ADR 0145: shared radicals only sort together).'
   spelled: {apc-Arab/standard: [ارتاح], apc-Latn/arabizi: [rte7]}
+- id: lexeme:ruz
+  pos: NOUN
+  gloss: {en: rice}
+  form: رُزّ
+  spelled: {apc-Arab/standard: [رز], apc-Latn/arabizi: [rozz]}
 - id: lexeme:sa3a
   pos: NOUN
   gloss: {en: hour; o'clock; watch}
@@ -1908,6 +1998,11 @@ lexemes:
     basis: 'The verb is cited sakan / yeskon: its radicals are the participle''s own, and its vowels are cited as those of 2a3ad / ye23od (Kline, p. 75), by analogy. No form of the course depends on them.'
   citation: {Aspect: Part, Gender: Masc, Number: Sing}
   spelled: {apc-Arab/standard: [ساكن], apc-Latn/arabizi: [seken]}
+- id: lexeme:sekkine
+  pos: NOUN
+  gloss: {en: knife}
+  form: "سِكِّين\u065cة"
+  spelled: {apc-Arab/standard: [سكينة], apc-Latn/arabizi: [sekkine]}
 - id: lexeme:sene
   pos: NOUN
   gloss: {en: year}
@@ -2119,6 +2214,11 @@ lexemes:
   gloss: {en: downstairs; down; under}
   form: "تَحْت"
   spelled: {apc-Arab/standard: [تحت], apc-Latn/arabizi: [ta7t]}
+- id: lexeme:tabakh
+  pos: VERB
+  gloss: {en: cook}
+  form: {radicals: [ط, ب, خ], form: I, vowels: {past: a, present: u}, source: deduced}
+  spelled: {apc-Arab/standard: [طبخ], apc-Latn/arabizi: [tabakh]}
 - id: lexeme:tabbouleh
   pos: NOUN
   gloss: {en: tabbouleh (parsley salad)}
@@ -2134,6 +2234,11 @@ lexemes:
   gloss: {en: July}
   form: "تَمُّوز"
   spelled: {apc-Arab/standard: [تمّوز], apc-Latn/arabizi: [tammouz]}
+- id: lexeme:tanjara
+  pos: NOUN
+  gloss: {en: pot; saucepan}
+  form: طَنْجَرَة
+  spelled: {apc-Arab/standard: [طنجرة], apc-Latn/arabizi: [tanjara]}
 - id: lexeme:tari2
   pos: NOUN
   gloss: {en: road; way}
@@ -2258,6 +2363,11 @@ lexemes:
   gloss: {en: two}
   form: "تْن\u065cين"
   spelled: {apc-Arab/standard: [تنين], apc-Latn/arabizi: [tnen]}
+- id: lexeme:toum
+  pos: NOUN
+  gloss: {en: garlic}
+  form: تُوم
+  spelled: {apc-Arab/standard: [توم], apc-Latn/arabizi: [tum]}
 - id: lexeme:tsa3ta3sh
   pos: NUM
   feats: {NumType: Card}
@@ -2381,6 +2491,11 @@ lexemes:
   gloss: {en: za'atar (thyme and sesame mix)}
   form: "زَعْتَر"
   spelled: {apc-Arab/standard: [زعتر], apc-Latn/arabizi: [za3tar]}
+- id: lexeme:zad
+  pos: VERB
+  gloss: {en: add}
+  form: {radicals: [ز, ي, د], form: I, vowels: {past: a, present: i}, source: deduced}
+  spelled: {apc-Arab/standard: [زاد], apc-Latn/arabizi: [zad]}
 - id: lexeme:zalame
   pos: NOUN
   feats: {Gender: Masc}
@@ -2392,6 +2507,11 @@ lexemes:
   gloss: {en: visit}
   form: {radicals: [ز, و, ر], form: I, vowels: {past: a, present: u}, source: 'kline 77'}
   spelled: {apc-Arab/standard: [زار], apc-Latn/arabizi: [zar]}
+- id: lexeme:zet
+  pos: NOUN
+  gloss: {en: oil; olive oil}
+  form: "ز\u065cيت"
+  spelled: {apc-Arab/standard: [زيت], apc-Latn/arabizi: [zet]}
 - id: lexeme:zghir
   pos: ADJ
   gloss: {en: small; little; young}
