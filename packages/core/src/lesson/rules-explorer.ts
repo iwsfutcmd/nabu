@@ -108,6 +108,8 @@ export type Explored =
       readonly listed?: string | undefined;
       readonly steps: readonly ExploredStep[];
       readonly spellings: readonly ExploredSpelling[];
+      /** The token's free variants (a scribe's other spelling of a suffix: a free allomorph), each form with its spellings. */
+      readonly variants: readonly { readonly form: TaggedText; readonly spellings: readonly ExploredSpelling[] }[];
     }
   | { readonly ok: false; readonly error: ExploredError };
 
@@ -119,10 +121,11 @@ export interface ExplorerWay {
   /** The sentences and story lines that write it so. */
   readonly items: readonly string[];
   /**
-   * As the compiler's token check has it: the orthography's spelling, a free alternative, another
-   * spelling (`differs`: `form.unaccounted`), no statement to compare with, or nothing realised.
+   * As the compiler's token check has it: the orthography's spelling, a free alternative, a free
+   * variant of the token (one of its lexemes' free allomorphs), another spelling (`differs`:
+   * `form.unaccounted`), no statement to compare with, or nothing realised.
    */
-  readonly verdict: "spelling" | "alternative" | "differs" | "unspelled" | "error";
+  readonly verdict: "spelling" | "alternative" | "variant" | "differs" | "unspelled" | "error";
   readonly spelled?: TaggedText | undefined;
 }
 
@@ -250,16 +253,18 @@ export const explore = (explorer: RulesExplorer, request: ExploreRequest, strict
     ...(strict ? { strict: true } : {}),
   });
   if (!result.ok) return { ok: false, error: { kind: result.error.kind, details: detailsOf(result.error) } };
-  const { form, status, steps, listed } = result.value;
+  const { form, status, steps, listed, alternatives } = result.value;
   const support = explorer.course.supportKey;
   const glossOf = (rule: string): TaggedText | undefined => (explorer.course.lexicon.rules ?? []).find((r) => r.id === rule)?.gloss?.[support];
-  const spellings = explorer.orthographies.map((o): ExploredSpelling => {
-    const speller = explorer.spellers.get(keyOf(o.orthography, o.layer));
-    if (speller === undefined) return { ...o, alternatives: [] };
-    const tag = explorer.tags.orthography(o.orthography);
-    const spelled = spell(speller, form);
-    return { ...o, spelling: tagged(tag, spelled.spelling), alternatives: spelled.alternatives.map((a) => ({ spelling: tagged(tag, a.spelling), by: a.by })) };
-  });
+  const spellingsOf = (text: string): readonly ExploredSpelling[] =>
+    explorer.orthographies.map((o): ExploredSpelling => {
+      const speller = explorer.spellers.get(keyOf(o.orthography, o.layer));
+      if (speller === undefined) return { ...o, alternatives: [] };
+      const tag = explorer.tags.orthography(o.orthography);
+      const spelled = spell(speller, text);
+      return { ...o, spelling: tagged(tag, spelled.spelling), alternatives: spelled.alternatives.map((a) => ({ spelling: tagged(tag, a.spelling), by: a.by })) };
+    });
+  const spellings = spellingsOf(form);
   return {
     ok: true,
     form: tagged(explorer.tags.own(form), form),
@@ -270,6 +275,7 @@ export const explore = (explorer: RulesExplorer, request: ExploreRequest, strict
       return { rule: s.rule, ...(s.branch === undefined ? {} : { branch: s.branch }), ...(gloss === undefined ? {} : { gloss }) };
     }),
     spellings,
+    variants: (alternatives ?? []).map((a) => ({ form: tagged(explorer.tags.own(a.form), a.form), spellings: spellingsOf(a.form) })),
   };
 };
 
@@ -348,8 +354,12 @@ export const waysOf = (explorer: RulesExplorer, base: string): readonly Explorer
       const speller = explorer.spellers.get(w.orthography);
       if (spelled?.spelling === undefined || profile === undefined || speller === undefined) return { ...w, verdict: "unspelled" };
       const surface = w.text.tokens[0]?.surface ?? "";
-      const as = spelledAs(spell(speller, result.form.tokens[0]?.surface ?? ""), surface, spellingKey(profile));
-      return { ...w, verdict: as ?? "differs", spelled: spelled.spelling };
+      const key = spellingKey(profile);
+      const as = spelledAs(spell(speller, result.form.tokens[0]?.surface ?? ""), surface, key);
+      if (as !== undefined) return { ...w, verdict: as, spelled: spelled.spelling };
+      // A free variant's spelling, as the compiler's check accepts it.
+      const variant = result.variants.some((v) => spelledAs(spell(speller, v.form.tokens[0]?.surface ?? ""), surface, key) !== undefined);
+      return { ...w, verdict: variant ? "variant" : "differs", spelled: spelled.spelling };
     });
   byBase.set(base, out);
   return out;

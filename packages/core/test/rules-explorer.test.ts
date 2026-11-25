@@ -99,6 +99,18 @@ describe("rulesExplorer", () => {
     expect(waysOf(x, "lexeme:moku").every((w) => w.verdict === (w.orthography === "tok-Latn/standard" ? "spelling" : "unspelled"))).toBe(true);
   });
 
+  it("gives a token's free variants, and counts a course token written as one", () => {
+    const x = rulesExplorer(loadCourse("chg", "chg-Arab/standard"), sourceOf("chg", ["chg-Arab/standard"]));
+    expect(x.problems).toEqual([]);
+    const ways = x.lexemes.flatMap((l) => waysOf(x, l.row.id.id));
+    // Every way the course writes a word is given, an alternative or a free variant: never another spelling.
+    expect(ways.filter((w) => w.verdict === "differs" || w.verdict === "error")).toEqual([]);
+    const variant = ways.find((w) => w.verdict === "variant");
+    if (variant === undefined) throw new Error("chg writes a free variant");
+    const got = explore(x, variant.request);
+    expect(got.ok && got.variants.length).toBeGreaterThan(0);
+  });
+
   it("says a language without a notation cannot be explored", () => {
     const x = rulesExplorer(loadCourse("yue", "yue-Hant-HK/standard"), { lexemes: { lexemes: [] }, language: {} });
     expect(x.problems).toEqual([{ kind: "no-notation" }]);

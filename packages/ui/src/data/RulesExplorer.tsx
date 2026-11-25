@@ -70,6 +70,7 @@ const ERROR_MESSAGES = {
 const VERDICT_MESSAGES = {
   spelling: "rules.verdict.spelling",
   alternative: "rules.verdict.alternative",
+  variant: "rules.verdict.variant",
   differs: "rules.verdict.differs",
   unspelled: "rules.verdict.unspelled",
   error: "rules.verdict.error",
@@ -248,6 +249,19 @@ const Result = ({ t, result }: { t: Translator; result: Explored }): JSX.Element
           </li>
         ))}
       </ul>
+      {result.variants.length > 0 && (
+        <div className={styles.pair} data-variants={result.variants.length}>
+          <span className={list.muted}>{t.format("rules.variants")}</span>
+          <ul className={styles.steps}>
+            {result.variants.map((v, i) => (
+              <li key={i} className={styles.step} data-variant="">
+                <T className={styles.spelled} text={v.form} />
+                {v.spellings.map((s, k) => (s.spelling === undefined ? null : <T key={k} className={list.muted} text={s.spelling} />))}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
