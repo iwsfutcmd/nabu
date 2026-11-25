@@ -72,6 +72,8 @@ export const titleOf = (t: Translator, route: Route, names: Names, course: Cours
       return inCourse(t.format("words.title"), route.course);
     case "data":
       return inCourse(t.format("data.title"), route.course);
+    case "rules":
+      return inCourse(t.format("rules.title"), route.course);
     case "reports":
       return inCourse(t.format("reports.title"), route.course);
     case "offline":

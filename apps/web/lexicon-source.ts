@@ -1,8 +1,10 @@
 /**
- * The lexicon's own files for the Data page's Lexicon and Language views (debug mode): each course's
- * lexicon, lexicons/<lang>/lexemes.yaml and language.yaml (the course.yaml's `lexicon:` names the
- * language), parsed to JSON with nothing dropped or reshaped, at lexicon-source/<course>.json. The
- * app's bundles carry only what lessons need; this is what the lexicon stores. Never part of a bundle.
+ * The lexicon's own files for the Data page's Lexicon and Language views and the rules explorer (debug
+ * mode): each course's lexicon, lexicons/<lang>/lexemes.yaml and language.yaml (the course.yaml's
+ * `lexicon:` names the language), and the profiles of the course's orthographies (profiles/<id>.yaml,
+ * their `spell` statements with them: a bundle's profiles have none), parsed to JSON with nothing
+ * dropped or reshaped, at lexicon-source/<course>.json. The app's bundles carry only what lessons need;
+ * this is what the lexicon stores. Never part of a bundle.
  *
  * - The dev and preview servers serve it straight from courses/ and lexicons/ (`lexiconSource()`, a
  *   Vite plugin), as the audio check's data is served (audio-check.ts).
@@ -27,17 +29,37 @@ export interface LexiconSourceFile {
   readonly lexemes: unknown;
   /** language.yaml. */
   readonly language: unknown;
+  /** The profile of each of the course's orthographies, by id. */
+  readonly profiles: Readonly<Record<string, unknown>>;
 }
 
 const ID = /^[a-z][a-z0-9-]*$/u;
 
-/** The course's lexicon, where it names one whose files exist. */
-const lexiconOf = (course: string, root: string): string | undefined => {
+/** An orthography's id (apc-Arab/standard), as its profile's file is named (apc-Arab.standard.yaml). */
+const ORTHOGRAPHY = /^[a-z]{2,3}(-[A-Za-z0-9]+)*\/[a-z0-9-]+$/u;
+
+const courseFile = (course: string, root: string): { readonly lexicon?: unknown; readonly orthographies?: unknown } | undefined => {
   if (!ID.test(course)) return undefined;
   const file = join(root, "courses", course, "course.yaml");
-  if (!existsSync(file)) return undefined;
-  const lexicon = (parse(readFileSync(file, "utf8")) as { lexicon?: unknown } | null)?.lexicon;
+  return existsSync(file) ? ((parse(readFileSync(file, "utf8")) as { lexicon?: unknown; orthographies?: unknown } | null) ?? undefined) : undefined;
+};
+
+/** The course's lexicon, where it names one whose files exist. */
+const lexiconOf = (course: string, root: string): string | undefined => {
+  const lexicon = courseFile(course, root)?.lexicon;
   return typeof lexicon === "string" && ID.test(lexicon) && existsSync(join(root, "lexicons", lexicon, "lexemes.yaml")) ? lexicon : undefined;
+};
+
+/** The profiles of the course's orthographies, parsed, by id: those whose files exist. */
+const profilesOf = (course: string, root: string): Readonly<Record<string, unknown>> => {
+  const listed = courseFile(course, root)?.orthographies;
+  const ids = Array.isArray(listed) ? listed.filter((o): o is string => typeof o === "string" && ORTHOGRAPHY.test(o)) : [];
+  return Object.fromEntries(
+    ids.flatMap((id) => {
+      const file = join(root, "profiles", `${id.replace("/", ".")}.yaml`);
+      return existsSync(file) ? [[id, parse(readFileSync(file, "utf8")) as unknown]] : [];
+    }),
+  );
 };
 
 export const coursesWithLexicon = (root: string = ROOT): readonly string[] =>
@@ -53,7 +75,7 @@ export const lexiconSourceOf = (course: string, root: string = ROOT): LexiconSou
     const file = join(root, "lexicons", lexicon, name);
     return existsSync(file) ? (parse(readFileSync(file, "utf8")) as unknown) : undefined;
   };
-  return { course, lexicon, lexemes: read("lexemes.yaml"), language: read("language.yaml") };
+  return { course, lexicon, lexemes: read("lexemes.yaml"), language: read("language.yaml"), profiles: profilesOf(course, root) };
 };
 
 const PREFIX = "/lexicon-source/";

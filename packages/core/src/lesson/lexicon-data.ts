@@ -46,6 +46,8 @@ export interface DataField {
 export interface LexiconSource {
   readonly lexemes: { readonly lexemes: readonly Readonly<Record<string, unknown>>[]; readonly [key: string]: unknown };
   readonly language?: Readonly<Record<string, unknown>> | undefined;
+  /** The course's orthographies' profiles (profiles/<id>.yaml), parsed, `spell` statements and all: the rules explorer spells with them. */
+  readonly profiles?: Readonly<Record<string, unknown>> | undefined;
 }
 
 const isObject = (value: unknown): value is Readonly<Record<string, unknown>> => typeof value === "object" && value !== null && !Array.isArray(value);
@@ -295,7 +297,8 @@ interface Collected {
   readonly ids: string[];
 }
 
-interface Tags {
+/** The tags a course's texts take on the Data page (and the rules explorer): `courseTags`. */
+export interface Tags {
   /** Text in an orthography of the course. */
   readonly orthography: (orthography: string) => Tag;
   /** Text in a support language. */
@@ -355,6 +358,9 @@ const tagsOf = (course: CourseView): Tags => {
   };
   return { orthography, support, own, learned };
 };
+
+/** The tags of a course's texts, as the Data page gives them: an orthography's, a support language's, a lexical form's (the course's orthography whose script has its first letter). */
+export const courseTags = (course: CourseView): Tags => tagsOf(course);
 
 /**
  * A stored value as a tree: every key, in the order it is written. `key` is the key the value is

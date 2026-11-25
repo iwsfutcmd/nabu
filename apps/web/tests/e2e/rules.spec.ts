@@ -1,0 +1,95 @@
+/**
+ * The rules explorer (debug mode): a lexeme realised in a cell, with other lexemes written onto it,
+ * and spelled by each orthography of the course, as it is changed (`explore`, @nabu/core/lesson). It is
+ * linked from the course page only in debug mode, reads the lexicon's own files and the course's
+ * profiles beside the app (lexicon-source.ts), keeps what is explored in the address, lists how the
+ * course's tokens write the lexeme with the rules' verdict on each, and records nothing.
+ */
+import { readFileSync } from "node:fs";
+import { explore, isLexiconSource, rulesExplorer, waysOf, EXPLORE_DEFAULTS, type ExploreRequest, type LexiconSource } from "@nabu/core/lesson";
+import { expect, test } from "@playwright/test";
+import { parse } from "yaml";
+import { loadCourse, logOf, seriousAxeViolations } from "./solver.ts";
+
+test.beforeEach(({ page: _ }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+});
+
+/** A course's lexicon files and profiles as lexicon-source.ts serves them, read from the repository. */
+const sourceOf = (course: string): LexiconSource => {
+  const root = new URL("../../../../", import.meta.url);
+  const yaml = (path: string): unknown => parse(readFileSync(new URL(path, root), "utf8"));
+  const { lexicon, orthographies } = yaml(`courses/${course}/course.yaml`) as { lexicon: string; orthographies: readonly string[] };
+  const source = {
+    course,
+    lexicon,
+    lexemes: yaml(`lexicons/${lexicon}/lexemes.yaml`),
+    language: yaml(`lexicons/${lexicon}/language.yaml`),
+    profiles: Object.fromEntries(orthographies.map((o) => [o, yaml(`profiles/${o.replace("/", ".")}.yaml`)])),
+  };
+  if (!isLexiconSource(source)) throw new Error(`${course}: no lexicon`);
+  return source;
+};
+
+test("a lexeme is put through the rules as it is changed, kept in the address, and nothing is recorded", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(String(e)));
+  const course = loadCourse("apc", "apc-Arab/standard");
+  const explorer = rulesExplorer(course, sourceOf("apc"));
+  const cell = { Aspect: "Imp", Mood: "Ind", Person: "2", Gender: "Fem", Number: "Sing" };
+  const asked: ExploreRequest = { base: "lexeme:shereb", feats: cell, before: [], after: ["lexeme:obj-1sg"], ...EXPLORE_DEFAULTS };
+  const expected = explore(explorer, asked);
+  if (!expected.ok) throw new Error("apc's rules give shereb's 2fs present");
+
+  // No way in without debug mode.
+  await page.goto("/?sound=off#/apc/apc-Arab.standard");
+  await expect(page.locator("[data-course-path]")).toBeVisible();
+  await expect(page.locator("[data-rules-link]")).toHaveCount(0);
+
+  await page.goto("/?sound=off&debug=1#/apc/apc-Arab.standard");
+  const before = (await logOf(page, "apc")).length;
+  await page.locator("[data-rules-link]").click();
+  await expect(page.locator("[data-rules-page=apc]")).toBeVisible();
+  const root = page.locator("[data-rules-explorer=apc]");
+
+  // The base is found by its id and picked.
+  await root.locator("[data-field=rules-base]").fill("shereb");
+  await root.locator('[data-pick="lexeme:shereb"]').click();
+  await expect(root.locator('[data-base="lexeme:shereb"]')).toBeVisible();
+
+  // Each value of its cell, then a suffix written after it: the result follows each change.
+  for (const [feature, value] of Object.entries(cell)) await root.locator(`[data-feature="${feature}"] [data-value="${value}"]`).click();
+  await root.locator("[data-field=rules-add]").fill("obj-1sg");
+  await root.locator('[data-pick="lexeme:obj-1sg"]').click();
+  await expect(root.locator('[data-attached="lexeme:obj-1sg"]')).toBeVisible();
+  const live = root.locator("[data-rules-live]");
+  await expect(live.locator("[data-rules-result]")).toHaveAttribute("data-status", "given");
+  await expect(live.locator("[data-rule-step]")).toHaveText(expected.steps.map((s) => (s.branch === undefined ? s.rule : `${s.rule}|${s.branch}`)));
+  for (const s of expected.spellings) {
+    const where = s.layer === undefined ? `[data-spelled="${s.orthography}"]:not([data-layer])` : `[data-spelled="${s.orthography}"][data-layer="${s.layer}"]`;
+    await expect(live.locator(`${where} [data-spelling]`)).toHaveText(s.spelling?.tokens[0]?.surface ?? "");
+  }
+  expect(await seriousAxeViolations(page, "[data-rules-page]")).toEqual([]);
+
+  // The address keeps it: a reload explores the same.
+  await page.reload();
+  await expect(page.locator('[data-rules-explorer=apc] [data-attached="lexeme:obj-1sg"]')).toBeVisible();
+  await expect(page.locator("[data-rules-live] [data-rule-step]")).toHaveCount(expected.steps.length);
+
+  // How the course writes shereb: each way with the rules' verdict, as the compiler's check gives it.
+  const ways = waysOf(explorer, "lexeme:shereb");
+  await expect(page.locator("[data-way]")).toHaveCount(ways.length);
+  await expect(page.locator("[data-way][data-verdict=differs], [data-way][data-verdict=error]")).toHaveCount(0);
+  // A way loads into the explorer.
+  await page.locator("[data-action=rules-explore-way]").first().click();
+  const first = ways[0];
+  if (first === undefined) throw new Error("the course writes shereb");
+  await expect(page.locator("[data-attached]")).toHaveCount(first.request.before.length + first.request.after.length);
+
+  // Blocking off, and back: the options are the request's too.
+  await page.locator("[data-option=blocking]").click();
+  await expect(page).toHaveURL(/o%3Dblocking/u);
+
+  expect((await logOf(page, "apc")).length).toBe(before);
+  expect(errors).toEqual([]);
+});

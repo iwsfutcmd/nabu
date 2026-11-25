@@ -817,6 +817,18 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Records are `DataNode` trees laid out in core, every key of a record shown, a key no one has named as text of `und`
   (lexicon-data.test.ts checks every key of every fixture lexeme): name a new field's kind there, never in UI code.
 
+## Rules explorer notes
+- Debug mode links each course's rules explorer (`#/<course>/<orth>/rules[/<request>]`, apps/web/src/Rules.tsx, its own
+  lazy chunk): pick a base lexeme, set its cell's values, write other lexemes before or after it (as a token lists them),
+  set the next word and how blocking runs, and see live the lexical form, status, every `{rule, branch}` taken and each
+  orthography's spelling (and marked layer) with its free alternatives; then how the course's tokens write the lexeme,
+  each with the token check's verdict (a way loads into the explorer), and its paradigm over the bundle's cells.
+- It reads lexicon-source/<course>.json (the lexicon's files and, since the explorer, the course's profiles with their
+  `spell`), and runs core's own functions (@nabu/core/lesson `rulesExplorer`, `explore`, `waysOf`, `explorerParadigm`
+  over `realiseToken` and `spell`): the one place a device realises or spells, debug only. Lessons and grading never
+  do (Rules notes). "Read the files again" picks up an edit to the rules in the dev server. The request is in the
+  address (`encodeExplore`); nothing is recorded.
+
 ## Lexical model notes (see docs/migration-design.md, ADRs 0145–0151)
 - There are no KCs. The units are the lexeme (`lexeme:tener`: a stem, a clitic and an affix alike), the feature value
   (`feature:Tense=Past`, what a `form:` KC was), the rule (`rule:used-to`, what a `construction:` KC was), the letter
