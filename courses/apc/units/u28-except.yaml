@@ -1,0 +1,494 @@
+# Fixture course (apc), unit 28: exception, without, and exclamations (Kline, chapters 27 and 28). illa after a
+# negative for "only, nothing but" (ma akalt shi illa khebz); ghayr for "other than", with an ending too (ghayrak);
+# bala and bidoun for "without" (ahwe bala sukkar; bidouni, without me); w bas and bas hek (that's all); and how
+# something is, with shu (shu 7elo hal bet!) and 2addesh with an ending (2addesha tayybe!). Drafted by an LLM
+# (provenance llm:…, status draft) and checked against Kline (2022), chapters 27 and 28: every sentence awaits a
+# native speaker's review.
+id: u28-except
+title:
+  en: Without sugar
+cefr: B1
+nodes:
+- {id: apc.except.illa, kind: lesson, introduces: ['lexeme:illa']}
+- {id: apc.except.ghayr, kind: lesson, introduces: ['lexeme:ghayr']}
+- {id: apc.except.without, kind: lesson, introduces: ['lexeme:bidoun']}
+- {id: apc.except.all, kind: lesson}
+- {id: apc.except.how, kind: lesson}
+- {id: apc.except.story, kind: story}
+sentences:
+- id: s.except.1
+  node: apc.except.illa
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: ما أكلت شي إلّا خبز.
+      tokens: [{surface: ما, lexeme: ma}, {surface: أكلت, lexeme: akal, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: شي, lexeme: shi}, {surface: إلّا, lexeme: illa}, {surface: خبز, lexeme: khebz,
+          feats: {Number: Sing}}]
+      reverse: ما أكلت شي إلّا خبز
+    apc-Latn/arabizi:
+      text: ma akalt shi illa khebz.
+      tokens: [{surface: ma, lexeme: ma}, {surface: akalt, lexeme: akal, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: shi, lexeme: shi}, {surface: illa, lexeme: illa}, {surface: khebz, lexeme: khebz,
+          feats: {Number: Sing}}]
+      reverse: ma akalt shi illa khebz
+  translations:
+    en: |-
+      I (didn't|did not) eat anything (except|but) bread.
+      I only ate bread.
+- id: s.except.2
+  node: apc.except.illa
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: ما بشرب شي إلّا مي.
+      tokens: [{surface: ما, lexeme: ma}, {surface: بشرب, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: شي, lexeme: shi}, {surface: إلّا, lexeme: illa}, {surface: مي,
+          lexeme: may, feats: {Number: Sing}}]
+      reverse: ما بشرب شي إلّا مي
+    apc-Latn/arabizi:
+      text: ma bishrab shi illa may.
+      tokens: [{surface: ma, lexeme: ma}, {surface: bishrab, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: shi, lexeme: shi}, {surface: illa, lexeme: illa}, {surface: may,
+          lexeme: may, feats: {Number: Sing}}]
+      reverse: ma bishrab shi illa may
+  translations:
+    en: |-
+      I (don't|do not) drink anything (except|but) water.
+      I only drink water.
+- id: s.except.3
+  node: apc.except.illa
+  forms:
+    apc-Arab/standard:
+      text: ما في حدا هون إلّا أنا.
+      tokens: [{surface: ما, lexeme: ma}, {surface: في, lexeme: fi}, {surface: حدا, lexeme: 7ada}, {surface: هون, lexeme: hon}, {surface: إلّا, lexeme: illa}, {surface: أنا, lexeme: ana}]
+      reverse: ما في حدا هون إلّا أنا
+    apc-Latn/arabizi:
+      text: ma fi 7ada hon illa ana.
+      tokens: [{surface: ma, lexeme: ma}, {surface: fi, lexeme: fi}, {surface: 7ada, lexeme: 7ada}, {surface: hon, lexeme: hon}, {surface: illa, lexeme: illa}, {surface: ana, lexeme: ana}]
+      reverse: ma fi 7ada hon illa ana
+  translations:
+    en: There('s| is) (no one|nobody) here (but|except) me.
+- id: s.except.4
+  node: apc.except.illa
+  forms:
+    apc-Arab/standard:
+      text: كلّ الناس راحوا إلّا سامي.
+      tokens: [{surface: كلّ, lexeme: kell}, {surface: الناس, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: nes, surface: ناس, base: true, feats: {Number: Plur}, n: 3}]}, {surface: راحوا,
+          lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '3'}}, {surface: إلّا, lexeme: illa}, {surface: سامي, lexeme: sami}]
+      reverse: كلّ الناس راحوا إلّا سامي
+    apc-Latn/arabizi:
+      text: kell el nes ra7o illa Sami.
+      tokens: [{surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: nes, lexeme: nes, feats: {Number: Plur}, n: 3}, {surface: ra7o, lexeme: ra7, feats: {Aspect: Perf,
+            Number: Plur, Person: '3'}}, {surface: illa, lexeme: illa}, {surface: Sami, lexeme: sami}]
+      reverse: kell el nes ra7o illa Sami
+  translations:
+    en: Everyone (went|left) except Sami.
+- id: s.except.5
+  node: apc.except.ghayr
+  forms:
+    apc-Arab/standard:
+      text: في شي تاني غير هيدا؟
+      tokens: [{surface: في, lexeme: fi}, {surface: شي, lexeme: shi}, {surface: تاني, lexeme: tene}, {surface: غير, lexeme: ghayr}, {surface: هيدا, lexeme: hayda}]
+      reverse: في شي تاني غير هيدا
+    apc-Latn/arabizi:
+      text: fi shi tene ghayr hayda?
+      tokens: [{surface: fi, lexeme: fi}, {surface: shi, lexeme: shi}, {surface: tene, lexeme: tene}, {surface: ghayr, lexeme: ghayr}, {surface: hayda, lexeme: hayda}]
+      reverse: fi shi tene ghayr hayda
+  translations:
+    en: |-
+      Is there anything other than this?
+      Is there anything (else|) besides this?
+- id: s.except.6
+  node: apc.except.ghayr
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: عندكن شي غير القهوة؟
+      tokens: [{surface: عندكن, lexemes: [{lexeme: 3end, surface: عند, base: true}, {lexeme: poss-2pl, surface: كن}]}, {surface: شي, lexeme: shi}, {surface: غير, lexeme: ghayr}, {surface: القهوة, lexemes: [
+            {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: ahwe, surface: قهوة, base: true, feats: {Number: Sing}, n: 6}]}]
+      reverse: عندكن شي غير القهوة
+    apc-Latn/arabizi:
+      text: 3endkon shi ghayr el ahwe?
+      tokens: [{surface: 3endkon, lexemes: [{lexeme: 3end, surface: 3end, base: true}, {lexeme: poss-2pl, surface: kon}]}, {surface: shi, lexeme: shi}, {surface: ghayr, lexeme: ghayr}, {surface: el, lexeme: el,
+          n: 5, head: 6, rel: det}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}, n: 6}]
+      reverse: 3endkon shi ghayr el ahwe
+  translations:
+    en: |-
+      Do you have anything other than (the|) coffee?
+      Do you have anything besides coffee?
+- id: s.except.7
+  node: apc.except.ghayr
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: ما عزمنا حدا غيركن.
+      tokens: [{surface: ما, lexeme: ma}, {surface: عزمنا, lexeme: 3azam, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: حدا, lexeme: 7ada}, {surface: غيركن, lexemes: [{lexeme: ghayr, surface: غير,
+              base: true}, {lexeme: poss-2pl, surface: كن}]}]
+      reverse: ما عزمنا حدا غيركن
+    apc-Latn/arabizi:
+      text: ma 3azamna 7ada ghayrkon.
+      tokens: [{surface: ma, lexeme: ma}, {surface: 3azamna, lexeme: 3azam, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 7ada, lexeme: 7ada}, {surface: ghayrkon, lexemes: [{lexeme: ghayr,
+              surface: ghayr, base: true}, {lexeme: poss-2pl, surface: kon}]}]
+      reverse: ma 3azamna 7ada ghayrkon
+  translations:
+    en: We (didn't|did not) invite anyone (but|except|other than) you.
+- id: s.except.8
+  node: apc.except.ghayr
+  tags:
+  - {persons: {speaker: f, addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: ما بحبّ حدا غيرك.
+      tokens: [{surface: ما, lexeme: ma}, {surface: بحبّ, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: حدا, lexeme: 7ada}, {surface: غيرك, lexemes: [{lexeme: ghayr,
+              surface: غير, base: true}, {lexeme: poss-2ms, surface: ك}]}]
+      reverse: ما بحبّ حدا غيرك
+    apc-Latn/arabizi:
+      text: ma b7ebb 7ada ghayrak.
+      tokens: [{surface: ma, lexeme: ma}, {surface: b7ebb, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: 7ada, lexeme: 7ada}, {surface: ghayrak, lexemes: [{lexeme: ghayr,
+              surface: ghayr, base: true}, {lexeme: poss-2ms, surface: ak}]}]
+      reverse: ma b7ebb 7ada ghayrak
+  translations:
+    en: I (don't|do not) love anyone (but|except|other than) you.
+- id: s.except.9
+  node: apc.except.without
+  forms:
+    apc-Arab/standard:
+      text: قهوة بلا سكّر، لو سمحت.
+      tokens: [{surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: بلا, lexeme: bala}, {surface: سكّر, lexeme: sukkar, feats: {Number: Sing}}, {surface: لو, lexeme: law-sama7t}, {surface: سمحت,
+          lexeme: law-sama7t}]
+      reverse: قهوة بلا سكّر لو سمحت
+    apc-Latn/arabizi:
+      text: ahwe bala sukkar, law sama7t.
+      tokens: [{surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: bala, lexeme: bala}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}}, {surface: law, lexeme: law-sama7t}, {surface: sama7t,
+          lexeme: law-sama7t}]
+      reverse: ahwe bala sukkar law sama7t
+  translations:
+    en: (A|) coffee without sugar, please.
+- id: s.except.10
+  node: apc.except.without
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: بدّي تبّولة بدون بصل.
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: تبّولة, lexeme: tabbouleh, feats: {Number: Sing}}, {surface: بدون, lexeme: bidoun},
+        {surface: بصل, lexeme: basal, feats: {Number: Sing}}]
+      reverse: بدّي تبّولة بدون بصل
+    apc-Latn/arabizi:
+      text: baddi tabboule bedun basal.
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: tabboule, lexeme: tabbouleh, feats: {Number: Sing}}, {surface: bedun, lexeme: bidoun},
+        {surface: basal, lexeme: basal, feats: {Number: Sing}}]
+      reverse: baddi tabboule bedun basal
+  translations:
+    en: |-
+      I want tabbouleh without onion(s|).
+      I('d| would) like tabbouleh without onion(s|).
+- id: s.except.11
+  node: apc.except.without
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: أكلتوا بدوني؟
+      tokens: [{surface: أكلتوا, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '2'}}, {surface: بدوني, lexemes: [{lexeme: bidoun, surface: بدون, base: true}, {lexeme: poss-1sg, surface: ي}]}]
+      reverse: أكلتوا بدوني
+    apc-Latn/arabizi:
+      text: akalto beduni?
+      tokens: [{surface: akalto, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '2'}}, {surface: beduni, lexemes: [{lexeme: bidoun, surface: bedun, base: true}, {lexeme: poss-1sg, surface: i}]}]
+      reverse: akalto beduni
+  translations:
+    en: Did you eat without me?
+- id: s.except.12
+  node: apc.except.without
+  tags:
+  - {persons: {speaker: m, addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: ما فيّي روح بدونك.
+      tokens: [{surface: ما, lexeme: ma}, {surface: فيّي, lexemes: [{lexeme: fi.can, surface: فيّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: روح, lexeme: ra7, feats: {Aspect: Imp, Mood: Sub,
+            Number: Sing, Person: '1'}}, {surface: بدونك, lexemes: [{lexeme: bidoun, surface: بدون, base: true}, {lexeme: poss-2fs, surface: ك}]}]
+      reverse: ما فيّي روح بدونك
+    apc-Latn/arabizi:
+      text: ma fiyyi ru7 bedunek.
+      tokens: [{surface: ma, lexeme: ma}, {surface: fiyyi, lexemes: [{lexeme: fi.can, surface: fiyy, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: ru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Sub,
+            Number: Sing, Person: '1'}}, {surface: bedunek, lexemes: [{lexeme: bidoun, surface: bedun, base: true}, {lexeme: poss-2fs, surface: ek}]}]
+      reverse: ma fiyyi ru7 bedunek
+  translations:
+    en: I can('t|not) go without you.
+- id: s.except.13
+  node: apc.except.without
+  forms:
+    apc-Arab/standard:
+      text: طلعت بلا تلفونها.
+      tokens: [{surface: طلعت, lexeme: tele3, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: بلا, lexeme: bala}, {surface: تلفونها, lexemes: [{lexeme: telefon, surface: تلفون,
+              base: true, feats: {Number: Sing}}, {lexeme: poss-3fs, surface: ها}]}]
+      reverse: طلعت بلا تلفونها
+    apc-Latn/arabizi:
+      text: tel3et bala telefona.
+      tokens: [{surface: tel3et, lexeme: tele3, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: bala, lexeme: bala}, {surface: telefona, lexemes: [{lexeme: telefon, surface: telefon,
+              base: true, feats: {Number: Sing}}, {lexeme: poss-3fs, surface: a}]}]
+      reverse: tel3et bala telefona
+  translations:
+    en: She went out without her phone.
+- id: s.except.14
+  node: apc.except.all
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: بدّي قهوة و بسّ.
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}, {surface: و, lexeme: w}, {surface: بسّ,
+          lexeme: bas}]
+      reverse: بدّي قهوة و بسّ
+    apc-Latn/arabizi:
+      text: baddi ahwe w bas.
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: bas,
+          lexeme: bas}]
+      reverse: baddi ahwe w bas
+  translations:
+    en: |-
+      I (just|only) want (a|) coffee, that's (all|it).
+      I want (a|) coffee and that's (all|it).
+- id: s.except.15
+  node: apc.except.all
+  forms:
+    apc-Arab/standard:
+      text: بسّ هيك؟
+      tokens: [{surface: بسّ, lexeme: bas}, {surface: هيك, lexeme: hek}]
+      reverse: بسّ هيك
+    apc-Latn/arabizi:
+      text: bas hek?
+      tokens: [{surface: bas, lexeme: bas}, {surface: hek, lexeme: hek}]
+      reverse: bas hek
+  translations:
+    en: |-
+      Is that all?
+      That's all?
+      That's it?
+- id: s.except.16
+  node: apc.except.all
+  forms:
+    apc-Arab/standard:
+      text: إيه، بسّ هيك، شكرا.
+      tokens: [{surface: إيه, lexeme: eh}, {surface: بسّ, lexeme: bas}, {surface: هيك, lexeme: hek}, {surface: شكرا, lexeme: shukran}]
+      reverse: إيه بسّ هيك شكرا
+    apc-Latn/arabizi:
+      text: eh, bas hek, shukran.
+      tokens: [{surface: eh, lexeme: eh}, {surface: bas, lexeme: bas}, {surface: hek, lexeme: hek}, {surface: shukran, lexeme: shukran}]
+      reverse: eh bas hek shukran
+  translations:
+    en: |-
+      Yes, that's all, thank you.
+      Yes, that's it, thanks.
+- id: s.except.17
+  node: apc.except.how
+  forms:
+    apc-Arab/standard:
+      text: شو حلو هالبيت!
+      tokens: [{surface: شو, lexeme: shu}, {surface: حلو, lexeme: 7elo}, {surface: هالبيت, lexemes: [{lexeme: hal, surface: هال, n: 3, head: 4, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {
+                Number: Sing}, n: 4}]}]
+      reverse: شو حلو هالبيت
+    apc-Latn/arabizi:
+      text: shu 7elo hal bet!
+      tokens: [{surface: shu, lexeme: shu}, {surface: 7elo, lexeme: 7elo}, {surface: hal, lexeme: hal, n: 3, head: 4, rel: det}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 4}]
+      reverse: shu 7elo hal bet
+  translations:
+    en: |-
+      How (nice|pretty|lovely) this house is!
+      What a (nice|pretty|lovely) house!
+- id: s.except.18
+  node: apc.except.how
+  forms:
+    apc-Arab/standard:
+      text: شو غالية هالسيارة!
+      tokens: [{surface: شو, lexeme: shu}, {surface: غالية, lexeme: ghali, feats: {Gender: Fem, Number: Sing}}, {surface: هالسيارة, lexemes: [{lexeme: hal, surface: هال, n: 3, head: 4, rel: det}, {lexeme: siyyara,
+              surface: سيارة, base: true, feats: {Number: Sing}, n: 4}]}]
+      reverse: شو غالية هالسيارة
+    apc-Latn/arabizi:
+      text: shu ghalye hal siyyara!
+      tokens: [{surface: shu, lexeme: shu}, {surface: ghalye, lexeme: ghali, feats: {Gender: Fem, Number: Sing}}, {surface: hal, lexeme: hal, n: 3, head: 4, rel: det}, {surface: siyyara, lexeme: siyyara,
+          feats: {Number: Sing}, n: 4}]
+      reverse: shu ghalye hal siyyara
+  translations:
+    en: |-
+      How expensive this car is!
+      What an expensive car!
+- id: s.except.19
+  node: apc.except.how
+  forms:
+    apc-Arab/standard:
+      text: البيت قديشه كبير!
+      tokens: [{surface: البيت, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 2}]}, {surface: قديشه, lexemes: [{lexeme: 2addesh,
+              surface: قديش, base: true}, {lexeme: poss-3ms, surface: ه}]}, {surface: كبير, lexeme: kbir}]
+      reverse: البيت قديشه كبير
+    apc-Latn/arabizi:
+      text: el bet 2addesho kbir!
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 2}, {surface: 2addesho, lexemes: [{lexeme: 2addesh, surface: 2addesh, base: true},
+            {lexeme: poss-3ms, surface: o}]}, {surface: kbir, lexeme: kbir}]
+      reverse: el bet 2addesho kbir
+  translations:
+    en: |-
+      How big the house is!
+      The house is so big!
+- id: s.except.20
+  node: apc.except.how
+  forms:
+    apc-Arab/standard:
+      text: هالتبولة قديشها طيّبة!
+      tokens: [{surface: هالتبولة, lexemes: [{lexeme: hal, surface: هال, n: 1, head: 2, rel: det}, {lexeme: tabbouleh, surface: تبولة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: قديشها, lexemes: [
+            {lexeme: 2addesh, surface: قديش, base: true}, {lexeme: poss-3fs, surface: ها}]}, {surface: طيّبة, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}}]
+      reverse: هالتبولة قديشها طيّبة
+    apc-Latn/arabizi:
+      text: hal tabboule 2addesha tayybe!
+      tokens: [{surface: hal, lexeme: hal, n: 1, head: 2, rel: det}, {surface: tabboule, lexeme: tabbouleh, feats: {Number: Sing}, n: 2}, {surface: 2addesha, lexemes: [{lexeme: 2addesh, surface: 2addesh,
+              base: true}, {lexeme: poss-3fs, surface: a}]}, {surface: tayybe, lexeme: tayyeb, feats: {Gender: Fem, Number: Sing}}]
+      reverse: hal tabboule 2addesha tayybe
+  translations:
+    en: |-
+      How (delicious|tasty|good) this tabbouleh is!
+      This tabbouleh is so (delicious|tasty|good)!
+- id: s.except.21
+  node: apc.except.how
+  forms:
+    apc-Arab/standard:
+      text: شو سخنة القهوة!
+      tokens: [{surface: شو, lexeme: shu}, {surface: سخنة, lexeme: sokhn, feats: {Gender: Fem, Number: Sing}}, {surface: القهوة, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: ahwe,
+              surface: قهوة, base: true, feats: {Number: Sing}, n: 4}]}]
+      reverse: شو سخنة القهوة
+    apc-Latn/arabizi:
+      text: shu sokhne el ahwe!
+      tokens: [{surface: shu, lexeme: shu}, {surface: sokhne, lexeme: sokhn, feats: {Gender: Fem, Number: Sing}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: ahwe, lexeme: ahwe, feats: {
+            Number: Sing}, n: 4}]
+      reverse: shu sokhne el ahwe
+  translations:
+    en: |-
+      How hot the coffee is!
+      The coffee is so hot!
+stories:
+- id: apc.story.order
+  node: apc.except.story
+  title:
+    en: Without sugar
+  provenance:
+    author: llm:claude@apc-b1
+    status: draft
+  characters:
+  - id: maya
+    speaker: f
+    name:
+      apc-Arab/standard: مايا
+      apc-Latn/arabizi: Maya
+  - id: sami
+    speaker: m
+    name:
+      apc-Arab/standard: سامي
+      apc-Latn/arabizi: Sami
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: قَهْوِة بَلا سُكَّر، لَو سَمَحِت.
+          tokens: [{surface: قَهْوِة, lexeme: ahwe, feats: {Number: Sing}}, {surface: بَلا, lexeme: bala}, {surface: سُكَّر, lexeme: sukkar, feats: {Number: Sing}}, {surface: لَو, lexeme: law-sama7t}, {
+              surface: سَمَحِت, lexeme: law-sama7t}]
+        apc-Latn/arabizi:
+          text: ahwe bala sukkar, law sama7t.
+          tokens: [{surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}, {surface: bala, lexeme: bala}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}}, {surface: law, lexeme: law-sama7t}, {surface: sama7t,
+              lexeme: law-sama7t}]
+      translations:
+        en: A coffee without sugar, please.
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: بَدَّك شي غَيْر القَهْوِة؟
+          tokens: [{surface: بَدَّك, lexemes: [{lexeme: badd, surface: بَدَّ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: شي, lexeme: shi}, {surface: غَيْر, lexeme: ghayr}, {surface: القَهْوِة,
+              lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: ahwe, surface: قَهْوِة, base: true, feats: {Number: Sing}, n: 6}]}]
+        apc-Latn/arabizi:
+          text: baddak shi ghayr el ahwe?
+          tokens: [{surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: shi, lexeme: shi}, {surface: ghayr, lexeme: ghayr}, {surface: el, lexeme: el,
+              n: 5, head: 6, rel: det}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}, n: 6}]
+      translations:
+        en: Do you want anything other than the coffee?
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: في كِبِّة؟
+          tokens: [{surface: في, lexeme: fi}, {surface: كِبِّة, lexeme: kebbe, feats: {Number: Sing}}]
+        apc-Latn/arabizi:
+          text: fi kebbe?
+          tokens: [{surface: fi, lexeme: fi}, {surface: kebbe, lexeme: kebbe, feats: {Number: Sing}}]
+      translations:
+        en: Is there kibbeh?
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: لأ، ما في إِلّا تَبّولِة.
+          tokens: [{surface: لأ, lexeme: la2}, {surface: ما, lexeme: ma}, {surface: في, lexeme: fi}, {surface: إِلّا, lexeme: illa}, {surface: تَبّولِة, lexeme: tabbouleh, feats: {Number: Sing}}]
+        apc-Latn/arabizi:
+          text: la2, ma fi illa tabboule.
+          tokens: [{surface: la2, lexeme: la2}, {surface: ma, lexeme: ma}, {surface: fi, lexeme: fi}, {surface: illa, lexeme: illa}, {surface: tabboule, lexeme: tabbouleh, feats: {Number: Sing}}]
+      translations:
+        en: No, there's only tabbouleh.
+  - choose:
+      prompt:
+        en: What does Sami want to drink?
+      options:
+      - en: Coffee without sugar
+      - en: Coffee with sugar
+      - en: Water
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: تَبّولِة بِدون بَصَل، لَو سَمَحِت.
+          tokens: [{surface: تَبّولِة, lexeme: tabbouleh, feats: {Number: Sing}}, {surface: بِدون, lexeme: bidoun}, {surface: بَصَل, lexeme: basal, feats: {Number: Sing}}, {surface: لَو, lexeme: law-sama7t},
+            {surface: سَمَحِت, lexeme: law-sama7t}]
+        apc-Latn/arabizi:
+          text: tabboule bedun basal, law sama7t.
+          tokens: [{surface: tabboule, lexeme: tabbouleh, feats: {Number: Sing}}, {surface: bedun, lexeme: bidoun}, {surface: basal, lexeme: basal, feats: {Number: Sing}}, {surface: law, lexeme: law-sama7t},
+            {surface: sama7t, lexeme: law-sama7t}]
+      translations:
+        en: Tabbouleh without onions, please.
+  - line:
+      speaker: maya
+      ask: complete
+      gap: lexeme:basal
+      distractors:
+      - lexeme:sukkar
+      - lexeme:khebz
+      forms:
+        apc-Arab/standard:
+          text: تَبّولِة بِدون بَصَل وقَهْوِة بَلا سُكَّر. بَسّ هيك؟
+          tokens: [{surface: تَبّولِة, lexeme: tabbouleh, feats: {Number: Sing}}, {surface: بِدون, lexeme: bidoun}, {surface: بَصَل, lexeme: basal, feats: {Number: Sing}}, {surface: وقَهْوِة, lexemes: [
+                {lexeme: w, surface: و}, {lexeme: ahwe, surface: قَهْوِة, base: true, feats: {Number: Sing}}]}, {surface: بَلا, lexeme: bala}, {surface: سُكَّر, lexeme: sukkar, feats: {Number: Sing}}, {
+              surface: بَسّ, lexeme: bas}, {surface: هيك, lexeme: hek}]
+        apc-Latn/arabizi:
+          text: tabboule bedun basal w ahwe bala sukkar. bas hek?
+          tokens: [{surface: tabboule, lexeme: tabbouleh, feats: {Number: Sing}}, {surface: bedun, lexeme: bidoun}, {surface: basal, lexeme: basal, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: ahwe,
+              lexeme: ahwe, feats: {Number: Sing}}, {surface: bala, lexeme: bala}, {surface: sukkar, lexeme: sukkar, feats: {Number: Sing}}, {surface: bas, lexeme: bas}, {surface: hek, lexeme: hek}]
+      translations:
+        en: Tabbouleh without onions and a coffee without sugar. Is that all?
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: إيه، بَسّ هيك، شُكْرا.
+          tokens: [{surface: إيه, lexeme: eh}, {surface: بَسّ, lexeme: bas}, {surface: هيك, lexeme: hek}, {surface: شُكْرا, lexeme: shukran}]
+        apc-Latn/arabizi:
+          text: eh, bas hek, shukran.
+          tokens: [{surface: eh, lexeme: eh}, {surface: bas, lexeme: bas}, {surface: hek, lexeme: hek}, {surface: shukran, lexeme: shukran}]
+      translations:
+        en: Yes, that's all, thank you.
+  - choose:
+      prompt:
+        en: Why doesn't Sami get kibbeh?
+      options:
+      - en: There is none, only tabbouleh
+      - en: It's too expensive
+      - en: He doesn't like it
+      answer: 0
