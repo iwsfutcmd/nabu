@@ -824,7 +824,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 
 ## Rules explorer notes
 - Debug mode links each course's rules explorer (`#/<course>/<orth>/rules[/<request>]`, apps/web/src/Rules.tsx, its own
-  lazy chunk): pick a base lexeme, set its cell's values, write other lexemes before or after it (as a token lists them),
+  lazy chunk): pick a base lexeme (the lexicon browsed, searched and filtered by the Lexicon view's facets: part of
+  speech, inflection class, free or bound, …), set its cell's values, write other lexemes before or after it (as a token lists them),
   set the next word and how blocking runs, and see live the lexical form, status, every `{rule, branch}` taken and each
   orthography's spelling (and marked layer) with its free alternatives; then how the course's tokens write the lexeme,
   each with the token check's verdict (a way loads into the explorer), and its paradigm over the bundle's cells.
@@ -893,7 +894,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   every line. Examples live in schemas/examples/<dir>/{valid,invalid} and are listed in `EXAMPLES`
   (packages/schema/test/schemas.test.ts): a new schema gets both kinds.
 
-## Rules notes (see docs/rules-design.md; apc first, stages 1 to 4 of 6)
+## Rules notes (see docs/rules-design.md and docs/rules/<lang>.md; every language, stages 1 to 4 of 6)
 - A lexeme's lexical form is its `form` in lexicons/<lang>/lexemes.yaml: a string in the language's notation, or a
   verb's radicals (`RadicalForm`: radicals, Form, vowels, `source`, `basis`). language.yaml's `notation` says what the
   signs are (apc: U+065C e, U+065D o, U+06DF a letter written and not said; always escapes, and yamlio writes them so);
@@ -922,7 +923,15 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A `spell` rule's `alternatives` are free spellings named by variation, read only by the compiler; grading reads the
   profile's `correspondences`. spell.test.ts pins every alternative that does not compare free: stating a variation
   free (the owner: one at a time) moves its count.
-- The compiler checks every token of a language with `realisation` (apc: all 5,470): core-cli `realise-token` with
+- Every language's lexemes have lexical forms (2026-11-25; docs/rules/<lang>.md says how each was built, what is pinned
+  or listed and what waits for the owner). An alphabet's form is its spelling: its notation names no vowel signs and its
+  `spell` may have no rules; tok and lzh have no rules (each token stands in its citation cell); yue's form pairs each
+  character with its Jyutping; sitelen pona states no `spell` (a logograph is lexical). The engine's keys beyond apc's:
+  `stemmed` and a rule's `strip` (a citation form realised by rule), `Exponent.lexeme`, `Condition.own` and `.context`,
+  `LexemeForm.free`/`before` and `Allomorph.free` (free forms and free allomorphs: one mechanism each), `accent` rewrites
+  over the notation's `prosody`, `spell.decompose` and `spell.boundaries`, `unmarked` (values taught without a node).
+  A new language feature extends these; never a second mechanism for the same thing.
+- The compiler checks every token of a language with `realisation` or a notation (apc: all 5,470): core-cli `realise-token` with
   `spellings: false` (a form that pins spellings only is passed over; only a pinned or listed form with `form` or
   `stem` accounts for a token), then `spell` per orthography, the marked layer against the vocalization. An
   uninflected word stands in its citation cell (its own `citation` or its category's), given by its form with no
