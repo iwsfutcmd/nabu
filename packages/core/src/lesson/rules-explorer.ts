@@ -428,6 +428,36 @@ const tokenCells = (explorer: RulesExplorer, lexeme: ExplorerLexeme, pos: string
   return [...out.values()].sort((a, b) => cellKey(a).localeCompare(cellKey(b), "en"));
 };
 
+const attaching = new WeakMap<RulesExplorer, Readonly<Record<"before" | "after", readonly ExplorerLexeme[]>>>();
+
+/**
+ * The lexemes that may be written with a base on one side: bound ones (an affix, a suffixed pronoun:
+ * written only inside words), and any the course's tokens write beside a base on that side (a clitic:
+ * the article, b-, w-). A free word no token writes inside another (apc إنت) is never offered.
+ */
+export const attachable = (explorer: RulesExplorer, side: "before" | "after"): readonly ExplorerLexeme[] => {
+  let found = attaching.get(explorer);
+  if (found === undefined) {
+    const seen = { before: new Set<string>(), after: new Set<string>() };
+    const visit = (text: TaggedText): void => {
+      for (const token of text.tokens) {
+        const request = requestOfToken(token, undefined);
+        if (request === undefined) continue;
+        for (const a of request.before) seen.before.add(a.lexeme);
+        for (const a of request.after) seen.after.add(a.lexeme);
+      }
+    };
+    for (const unit of explorer.course.units) {
+      for (const s of unit.sentences) for (const form of Object.values(s.forms)) visit(form.text);
+      for (const story of unit.stories ?? []) for (const step of story.steps) if ("line" in step && step.line !== undefined) for (const text of Object.values(step.line.forms)) visit(text);
+    }
+    const of = (on: Set<string>): readonly ExplorerLexeme[] => explorer.lexemes.filter((l) => l.row.facets.kind.includes("bound") || on.has(l.row.id.id));
+    found = { before: of(seen.before), after: of(seen.after) };
+    attaching.set(explorer, found);
+  }
+  return found[side];
+};
+
 const combos = new WeakMap<RulesExplorer, Map<string, readonly UdFeatures[]>>();
 
 /** The cells a lexeme's values may combine into: the bundle's, its category's tokens', and its citation cell. */

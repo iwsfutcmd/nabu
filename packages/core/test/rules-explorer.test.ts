@@ -8,7 +8,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { parse } from "yaml";
-import { decodeExplore, encodeExplore, explore, EXPLORE_DEFAULTS, explorerParadigm, fitCell, rulesExplorer, waysOf, type ExploreRequest, type LexiconSource, type RulesExplorer } from "../src/lesson/index.ts";
+import { decodeExplore, encodeExplore, explore, EXPLORE_DEFAULTS, attachable, explorerParadigm, fitCell, rulesExplorer, waysOf, type ExploreRequest, type LexiconSource, type RulesExplorer } from "../src/lesson/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -183,5 +183,17 @@ describe("a cell's defaults", () => {
     const y = apc();
     const shereb = lexeme(y, "lexeme:shereb");
     expect(fitCell(y, shereb, { Aspect: "Part", Person: "3", Gender: "Masc", Number: "Sing" }, "Aspect")).toEqual({ Aspect: "Part", Gender: "Masc", Number: "Sing" });
+  });
+});
+
+describe("what may be written with a base", () => {
+  it("offers bound lexemes and the clitics the course writes on that side, never a free word (apc إنت)", () => {
+    const x = apc();
+    const ids = (side: "before" | "after"): readonly string[] => attachable(x, side).map((l) => l.row.id.id);
+    expect(ids("after")).toContain("lexeme:obj-1sg");
+    expect(ids("before")).toEqual(expect.arrayContaining(["lexeme:el", "lexeme:b", "lexeme:w"]));
+    expect(ids("before")).not.toContain("lexeme:enta");
+    expect(ids("after")).not.toContain("lexeme:enta");
+    expect(ids("after").length).toBeLessThan(x.lexemes.length / 4);
   });
 });

@@ -23,6 +23,7 @@ import {
   EXPLORE_DEFAULTS,
   explorerParadigm,
   fitCell,
+  attachable,
   lexiconFacets,
   lexiconFilter,
   rulesExplorer,
@@ -115,19 +116,36 @@ const LexemeLine = ({ lexeme }: { lexeme: ExplorerLexeme }): JSX.Element => (
  * lexeme a button that picks it. `browse`: the list shows before anything is typed or chosen (the
  * base); else only once something is (a lexeme to add, the next word).
  */
-const LexemePicker = ({ t, explorer, label, field, browse, onPick }: { t: Translator; explorer: Explorer; label: string; field: string; browse: boolean; onPick: (lexeme: ExplorerLexeme) => void }): JSX.Element => {
+const LexemePicker = ({
+  t,
+  explorer,
+  label,
+  field,
+  browse,
+  among = explorer.lexemes,
+  onPick,
+}: {
+  t: Translator;
+  explorer: Explorer;
+  label: string;
+  field: string;
+  browse: boolean;
+  /** The lexemes it picks among: the whole lexicon unless given (what may be written with a base: `attachable`). */
+  among?: readonly ExplorerLexeme[];
+  onPick: (lexeme: ExplorerLexeme) => void;
+}): JSX.Element => {
   const [typed, setTyped] = useState("");
   const [query, setQuery] = useState("");
   const [composing, setComposing] = useState(false);
   const [filter, setFilter] = useState<LexiconFilter>({});
   const [pages, setPages] = useState(1);
   const listId = useId();
-  const rows = useMemo(() => explorer.lexemes.map((l) => l.row), [explorer]);
+  const rows = useMemo(() => among.map((l) => l.row), [among]);
   const searched = useMemo(() => {
-    if (query.trim() === "") return explorer.lexemes;
+    if (query.trim() === "") return among;
     const matches = dataMatcher(explorer.course, query).lexicon;
-    return explorer.lexemes.filter((l) => matches(l.row));
-  }, [explorer, query]);
+    return among.filter((l) => matches(l.row));
+  }, [explorer, among, query]);
   const facets = useMemo(() => lexiconFacets(rows, searched.map((l) => l.row), filter), [rows, searched, filter]);
   const found = useMemo(() => {
     const passes = lexiconFilter(filter);
@@ -510,6 +528,7 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
                   label={t.format("rules.add")}
                   field="rules-add"
                   browse={false}
+                  among={attachable(explorer, side)}
                   onPick={(l) => change(side === "before" ? { before: [...request.before, { lexeme: l.row.id.id }] } : { after: [...request.after, { lexeme: l.row.id.id }] })}
                 />
                 <div className={styles.pair} data-next={request.next ?? ""}>

@@ -10,6 +10,7 @@ export {
   EXPLORE_DEFAULTS,
   explorerParadigm,
   fitCell,
+  attachable,
   requestOfToken,
   rulesExplorer,
   waysOf,
