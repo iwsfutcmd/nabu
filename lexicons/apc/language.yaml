@@ -276,6 +276,7 @@ phonology:  # in order, each once over the whole form
 - {id: 'rule:apc-feminine', branch: e, find: "ي{FEMI}\u065c+ة", to: "ي{FEMI}\u0650+ة"}  # REVIEW: after a long i, r and S take -e (kbire, zghire, rkhise: the course; Kline's rule of thumb, p. 16, has a)
 - {id: 'rule:apc-feminine', branch: a, find: "{FEMA}\u065c+ة", to: "{FEMA}َ+ة"}  # -a after the letters FEMA (Kline p. 16; REVIEW)
 - {id: 'rule:apc-feminine-t', branch: vowel, find: "{L}[\u064E\u065C]+?ة{V}", to: "{L}\u0652+?ت{V}"}  # ة is t before an ending that begins with a vowel, the vowel before it gone (siyyarte, jarti: Kline p. 50, 152)
+- {id: 'rule:apc-feminine-t', branch: doubled, find: "{L}\u064E\u0651+?ة{V}", to: "{L}\u0651\u0652+?ت{V}"}  # and after a doubled letter, the doubling kept (marra, marrten; 3amme, 3ammte: Kline p. 19-20, 152; REVIEW)
 - {id: 'rule:apc-feminine-t', branch: consonant, find: "ة\u0652+", to: "ت\u0652+"}  # and -et- before one that begins with a consonant (jaretna, 3ayletkon: Kline p. 44-45)
 - {id: 'rule:apc-helping-vowel', branch: glide, find: "{GL}\u0652{K}\u0652{K}*", to: "{GL}\u0650{K}\u0652{K}"}  # REVIEW: three consonants after a diphthong's glide: 3ayelti (the course)
 # The helping vowel at a word's end (رُحِت, شْرِبِت: the owner, 2026-11-21) is not a rewrite here: the form keeps the

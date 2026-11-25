@@ -15,6 +15,12 @@ lexemes:
   gloss: {en: before}
   form: "قَبِل"
   spelled: {apc-Arab/standard: [قبل], apc-Latn/arabizi: [2abel]}
+- id: lexeme:2abelma
+  pos: SCONJ
+  gloss: {en: before (… does something)}
+  notes: {en: '2abelma trou7: before you go. The verb after it has no b-. Also written apart: 2abel ma, قبل ما (Kline p. 34-35).'}
+  form: قَبِلْمَا
+  spelled: {apc-Arab/standard: [قبلما], apc-Latn/arabizi: [2abelma]}
 - id: lexeme:2addesh
   pos: ADV
   feats: {PronType: Int}
@@ -582,6 +588,12 @@ lexemes:
   gloss: {en: then; later; afterwards}
   form: "بَعْد\u065cين"
   spelled: {apc-Arab/standard: [بعدين], apc-Latn/arabizi: [ba3dein]}
+- id: lexeme:ba3dma
+  pos: SCONJ
+  gloss: {en: after (… did something)}
+  notes: {en: 'ba3dma akalna: after we ate. Also written apart: ba3d ma, بعد ما (Kline p. 34-35).'}
+  form: بَعْدْمَا
+  spelled: {apc-Arab/standard: [بعدما], apc-Latn/arabizi: [ba3dma]}
 - id: lexeme:ba7r
   pos: NOUN
   gloss: {en: sea; the beach}
@@ -875,6 +887,12 @@ lexemes:
   gloss: {en: open; turn on}
   form: {radicals: [ف, ت, ح], form: I, vowels: {past: a, present: a}, source: deduced}
   spelled: {apc-Arab/standard: [فتح], apc-Latn/arabizi: [fata7]}
+- id: lexeme:fatra
+  pos: NOUN
+  gloss: {en: a while; a period of time}
+  notes: {en: 'sarlon fatra: it''s been a while for them.'}
+  form: فَتْرَة
+  spelled: {apc-Arab/standard: [فترة], apc-Latn/arabizi: [fatra]}
 - id: lexeme:fehem
   pos: VERB
   gloss: {en: understand}
@@ -1172,6 +1190,11 @@ lexemes:
   gloss: {en: big; old (of people); older}
   form: "كْبِير"
   spelled: {apc-Arab/standard: [كبير], apc-Latn/arabizi: [kbir]}
+- id: lexeme:kebbe
+  pos: NOUN
+  gloss: {en: kibbeh (bulgur and meat)}
+  form: "كِبّ\u065cة"
+  spelled: {apc-Arab/standard: [كبة], apc-Latn/arabizi: [kebbe]}
 - id: lexeme:kell
   pos: DET
   feats: {PronType: Tot}
@@ -1270,6 +1293,13 @@ lexemes:
   notes: {en: 'Joined to its word in Arabic script (لكلّ, la kell).'}
   form: لَ
   spelled: {apc-Arab/standard: [ل], apc-Latn/arabizi: [la]}
+- id: lexeme:la-1pl
+  pos: PRON
+  feats: {Case: Dat, Number: Plur, Person: '1', PronType: Prs}
+  gloss: {en: '-lna: to us; for us (on a verb)'}
+  notes: {en: 'sarlna: it''s been … for us. Arabic script: لنا joined to the verb (صارلنا).'}
+  allomorphs:
+  - {form: لْنَا, spelled: {apc-Arab/standard: [لنا], apc-Latn/arabizi: [lna]}}
 - id: lexeme:la-1sg
   pos: PRON
   feats: {Case: Dat, Number: Sing, Person: '1', PronType: Prs}
@@ -1280,6 +1310,13 @@ lexemes:
   - {form: "ـِلِّي", after: {endsIn: ".ّ"}, spelled: {apc-Arab/standard: [لّي], apc-Latn/arabizi: [elli]}}  # REVIEW: -elli after a doubled letter (de22elli: the course; Kline p. 43 gives -ell- after the past's -t)
   - {form: "لِي", after: {endsIn: "وا\u06df"}}
   - {form: "لِي"}  # -li after a consonant (b3atli, sarli: the course; Kline p. 43: -le)
+- id: lexeme:la-2fs
+  pos: PRON
+  feats: {Case: Dat, Gender: Fem, Number: Sing, Person: '2', PronType: Prs}
+  gloss: {en: '-lik: to you; for you (on a verb, to a woman)'}
+  notes: {en: 'sarlik: it''s been … for you (a woman). Arabic script: لك joined to the verb, as -lak.'}
+  allomorphs:
+  - {form: لِك, spelled: {apc-Arab/standard: [لك], apc-Latn/arabizi: [lik]}}
 - id: lexeme:la-2ms
   pos: PRON
   feats: {Case: Dat, Gender: Masc, Number: Sing, Person: '2', PronType: Prs}
@@ -1288,6 +1325,34 @@ lexemes:
   allomorphs:
   - {form: "لَك", after: {endsIn: ".*+?[اىي]"}, spelled: {apc-Arab/standard: [لك], apc-Latn/arabizi: [lak]}}
   - {form: "لَك"}  # -lak after a consonant (sarlak; Kline p. 43)
+- id: lexeme:la-2pl
+  pos: PRON
+  feats: {Case: Dat, Number: Plur, Person: '2', PronType: Prs}
+  gloss: {en: '-lkon: to you; for you (on a verb, to several people)'}
+  notes: {en: 'sarlkon: it''s been … for you (several). Arabic script: لكن joined to the verb (صارلكن).'}
+  allomorphs:
+  - {form: لْكُن, spelled: {apc-Arab/standard: [لكن], apc-Latn/arabizi: [lkon]}}
+- id: lexeme:la-3fs
+  pos: PRON
+  feats: {Case: Dat, Gender: Fem, Number: Sing, Person: '3', PronType: Prs}
+  gloss: {en: '-la: to her; for her (on a verb)'}
+  notes: {en: 'sarla: it''s been … for her (Kline: Sarla sene, a year). Arabic script: لها joined to the verb (صارلها).'}
+  allomorphs:
+  - {form: "لَه\u06dfا", spelled: {apc-Arab/standard: [لها], apc-Latn/arabizi: [la]}}
+- id: lexeme:la-3ms
+  pos: PRON
+  feats: {Case: Dat, Gender: Masc, Number: Sing, Person: '3', PronType: Prs}
+  gloss: {en: '-lo: to him; for him (on a verb)'}
+  notes: {en: 'sarlo: it''s been … for him; 2ello: tell him. Arabic script: له joined to the verb (صارله).'}
+  allomorphs:
+  - {form: "لُه\u06df", spelled: {apc-Arab/standard: [له], apc-Latn/arabizi: [lo]}}
+- id: lexeme:la-3pl
+  pos: PRON
+  feats: {Case: Dat, Number: Plur, Person: '3', PronType: Prs}
+  gloss: {en: '-lon: to them; for them (on a verb)'}
+  notes: {en: 'sarlon: it''s been … for them. Arabic script: لهن joined to the verb (صارلهن); the ه is silent, as in -on (their).'}
+  allomorphs:
+  - {form: "لُه\u06dfن", spelled: {apc-Arab/standard: [لهن], apc-Latn/arabizi: [lon]}}
 - id: lexeme:la2
   pos: INTJ
   gloss: {en: 'no'}
@@ -2548,6 +2613,12 @@ lexemes:
   gloss: {en: man; guy}
   form: "زَلَم\u065cة"
   spelled: {apc-Arab/standard: [زلمة], apc-Latn/arabizi: [zalame]}
+- id: lexeme:zamen
+  pos: ADV
+  gloss: {en: a long time; long ago}
+  notes: {en: 'sarli zamen ma shefto: it''s been a long time since I saw him.'}
+  form: "زَم\u065cان"
+  spelled: {apc-Arab/standard: [زمان], apc-Latn/arabizi: [zamen]}
 - id: lexeme:zar
   pos: VERB
   gloss: {en: visit}

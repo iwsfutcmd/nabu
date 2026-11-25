@@ -1,0 +1,627 @@
+# Fixture course (apc), unit 25: how long, just, yet, ever (Kline, chapter 18). sar with -la- and a person's
+# ending for how long something has gone on (sarlo sa3a 3am yestanna; sarla zamen ma zaret teta), with the rest of the
+# endings (-lo, -la, -lna, -lik, -lkon, -lon); ba3d with an ending and a participle for what has just happened
+# (ba3dni wasel), and with ma and the past for what has not happened yet (ba3dni ma akalt); shi marra (ever), wala
+# marra (never) and sar with a participle (saro ray7in marrten); 2abelma and ba3dma (before, after). Drafted by an LLM
+# (provenance llm:…, status draft) and checked against Kline (2022), chapters 4 and 18: every sentence awaits a native
+# speaker's review.
+id: u25-how-long
+title:
+  en: How long?
+cefr: B1
+nodes:
+- {id: apc.long.since, kind: lesson, introduces: ['lexeme:la-3ms', 'lexeme:la-3fs', 'lexeme:zamen']}
+- {id: apc.long.persons, kind: lesson, introduces: ['lexeme:la-1pl', 'lexeme:la-2fs', 'lexeme:la-2pl', 'lexeme:la-3pl', 'lexeme:fatra']}
+- {id: apc.long.just, kind: lesson}
+- {id: apc.long.ever, kind: lesson, introduces: ['lexeme:kebbe']}
+- {id: apc.long.before-after, kind: lesson, introduces: ['lexeme:2abelma', 'lexeme:ba3dma']}
+- {id: apc.long.story, kind: story}
+sentences:
+- id: s.long.1
+  node: apc.long.since
+  forms:
+    apc-Arab/standard:
+      text: صارله ساعة عم يستنى.
+      tokens: [{surface: صارله, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-3ms, surface: له}]}, {surface: ساعة, lexeme: sa3a,
+          feats: {Number: Sing}}, {surface: عم, lexeme: 3am}, {surface: يستنى, lexeme: stanna, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '3'}}]
+      reverse: صارله ساعة عم يستنى
+    apc-Latn/arabizi:
+      text: sarlo sa3a 3am yestanna.
+      tokens: [{surface: sarlo, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-3ms, surface: lo}]}, {surface: sa3a, lexeme: sa3a,
+          feats: {Number: Sing}}, {surface: 3am, lexeme: 3am}, {surface: yestanna, lexeme: stanna, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '3'}}]
+      reverse: sarlo sa3a 3am yestanna
+  translations:
+    en: He('s| has) been waiting (for|) an hour.
+- id: s.long.2
+  node: apc.long.since
+  forms:
+    apc-Arab/standard:
+      text: صارلها سنتين عم تدرس عربي.
+      tokens: [{surface: صارلها, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-3fs, surface: لها}]}, {surface: سنتين, lexemes: [
+            {lexeme: sene, surface: سنت, base: true, feats: {Number: Sing}}, {lexeme: dual, surface: ين}]}, {surface: عم, lexeme: 3am}, {surface: تدرس, lexeme: daras, feats: {Aspect: Imp, Gender: Fem, Mood: Sub,
+            Number: Sing, Person: '3'}}, {surface: عربي, lexeme: 3arabe}]
+      reverse: صارلها سنتين عم تدرس عربي
+    apc-Latn/arabizi:
+      text: sarla sinten 3am tedros 3arabe.
+      tokens: [{surface: sarla, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-3fs, surface: la}]}, {surface: sinten, lexemes: [
+            {lexeme: sene, surface: sint, base: true, feats: {Number: Sing}}, {lexeme: dual, surface: en}]}, {surface: 3am, lexeme: 3am}, {surface: tedros, lexeme: daras, feats: {Aspect: Imp, Gender: Fem,
+            Mood: Sub, Number: Sing, Person: '3'}}, {surface: 3arabe, lexeme: 3arabe}]
+      reverse: sarla sinten 3am tedros 3arabe
+  translations:
+    en: She('s| has) been studying Arabic (for|) two years.
+- id: s.long.3
+  node: apc.long.since
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: صارلي زمان ما شفته.
+      tokens: [{surface: صارلي, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: لي}]}, {surface: زمان, lexeme: zamen},
+        {surface: ما, lexeme: ma}, {surface: شفته, lexemes: [{lexeme: shef, surface: شفت, base: true, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {lexeme: obj-3ms, surface: ه}]}]
+      reverse: صارلي زمان ما شفته
+    apc-Latn/arabizi:
+      text: sarli zamen ma shefto.
+      tokens: [{surface: sarli, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: li}]}, {surface: zamen, lexeme: zamen},
+        {surface: ma, lexeme: ma}, {surface: shefto, lexemes: [{lexeme: shef, surface: sheft, base: true, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {lexeme: obj-3ms, surface: o}]}]
+      reverse: sarli zamen ma shefto
+  translations:
+    en: |-
+      It('s| has) been a long time since I saw him.
+      I (haven't|have not) seen him (for|in) a long time.
+- id: s.long.4
+  node: apc.long.since
+  forms:
+    apc-Arab/standard:
+      text: صارله شهر ما زار تيتا.
+      tokens: [{surface: صارله, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-3ms, surface: له}]}, {surface: شهر, lexeme: shahr,
+          feats: {Number: Sing}}, {surface: ما, lexeme: ma}, {surface: زار, lexeme: zar, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}]
+      reverse: صارله شهر ما زار تيتا
+    apc-Latn/arabizi:
+      text: sarlo shahr ma zar teta.
+      tokens: [{surface: sarlo, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-3ms, surface: lo}]}, {surface: shahr, lexeme: shahr,
+          feats: {Number: Sing}}, {surface: ma, lexeme: ma}, {surface: zar, lexeme: zar, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: teta, lexeme: teta, feats: {Number: Sing}}]
+      reverse: sarlo shahr ma zar teta
+  translations:
+    en: |-
+      It('s| has) been a month since he visited (Grandma|his grandma|his grandmother).
+      He (hasn't|has not) visited (Grandma|his grandma|his grandmother) (for|in) a month.
+- id: s.long.5
+  node: apc.long.since
+  forms:
+    apc-Arab/standard:
+      text: صارلها زمان ساكنة ببيروت.
+      tokens: [{surface: صارلها, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-3fs, surface: لها}]}, {surface: زمان, lexeme: zamen},
+        {surface: ساكنة, lexeme: seken, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: ببيروت, lexemes: [{lexeme: b, surface: ب, n: 5, head: 6, rel: case}, {lexeme: beirut, surface: بيروت,
+              base: true, n: 6}]}]
+      reverse: |-
+        صارلها زمان ساكنة ببيروت
+        ببيروت صارلها زمان ساكنة
+        زمان صارلها ساكنة ببيروت
+    apc-Latn/arabizi:
+      text: sarla zamen sekne b Beirut.
+      tokens: [{surface: sarla, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-3fs, surface: la}]}, {surface: zamen, lexeme: zamen},
+        {surface: sekne, lexeme: seken, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: b, lexeme: b, n: 5, head: 6, rel: case}, {surface: Beirut, lexeme: beirut, n: 6}]
+      reverse: |-
+        sarla zamen sekne b Beirut
+        b Beirut sarla zamen sekne
+        zamen sarla sekne b Beirut
+  translations:
+    en: |-
+      She('s| has) been living in Beirut (for|) a long time.
+      She('s| has) lived in Beirut (for|) a long time.
+- id: s.long.6
+  node: apc.long.persons
+  forms:
+    apc-Arab/standard:
+      text: صارلنا شهر بلبنان.
+      tokens: [{surface: صارلنا, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1pl, surface: لنا}]}, {surface: شهر, lexeme: shahr,
+          feats: {Number: Sing}}, {surface: بلبنان, lexemes: [{lexeme: b, surface: ب, n: 4, head: 5, rel: case}, {lexeme: lebnen, surface: لبنان, base: true, n: 5}]}]
+      reverse: صارلنا شهر بلبنان
+    apc-Latn/arabizi:
+      text: sarlna shahr b Lebnen.
+      tokens: [{surface: sarlna, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1pl, surface: lna}]}, {surface: shahr, lexeme: shahr,
+          feats: {Number: Sing}}, {surface: b, lexeme: b, n: 4, head: 5, rel: case}, {surface: Lebnen, lexeme: lebnen, n: 5}]
+      reverse: sarlna shahr b Lebnen
+  translations:
+    en: We('ve| have) been in Lebanon (for|) a month.
+- id: s.long.7
+  node: apc.long.persons
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: صارلك كتير هون؟
+      tokens: [{surface: صارلك, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-2fs, surface: لك}], vocalized: صارْلِك}, {
+          surface: كتير, lexeme: ktir}, {surface: هون, lexeme: hon}]
+      reverse: |-
+        صارلك كتير هون
+        صارلك زمان هون
+    apc-Latn/arabizi:
+      text: sarlik ktir hon?
+      tokens: [{surface: sarlik, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-2fs, surface: lik}]}, {surface: ktir, lexeme: ktir},
+        {surface: hon, lexeme: hon}]
+      reverse: |-
+        sarlik ktir hon
+        sarlik zamen hon
+  translations:
+    en: Have you been here (long|a long time|for a long time)?
+- id: s.long.8
+  node: apc.long.persons
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: قدّيش صارلكن بلبنان؟
+      tokens: [{surface: قدّيش, lexeme: 2addesh}, {surface: صارلكن, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-2pl, surface: لكن}]},
+        {surface: بلبنان, lexemes: [{lexeme: b, surface: ب, n: 4, head: 5, rel: case}, {lexeme: lebnen, surface: لبنان, base: true, n: 5}]}]
+      reverse: قدّيش صارلكن بلبنان
+    apc-Latn/arabizi:
+      text: 2addesh sarlkon b Lebnen?
+      tokens: [{surface: 2addesh, lexeme: 2addesh}, {surface: sarlkon, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-2pl,
+              surface: lkon}]}, {surface: b, lexeme: b, n: 4, head: 5, rel: case}, {surface: Lebnen, lexeme: lebnen, n: 5}]
+      reverse: 2addesh sarlkon b Lebnen
+  translations:
+    en: How long have you been in Lebanon?
+- id: s.long.9
+  node: apc.long.persons
+  forms:
+    apc-Arab/standard:
+      text: صارلهن فترة ما حكوا معي.
+      tokens: [{surface: صارلهن, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-3pl, surface: لهن}]}, {surface: فترة, lexeme: fatra,
+          feats: {Number: Sing}}, {surface: ما, lexeme: ma}, {surface: حكوا, lexeme: 7aka, feats: {Aspect: Perf, Number: Plur, Person: '3'}}, {surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true},
+            {lexeme: poss-1sg, surface: ي}]}]
+      reverse: صارلهن فترة ما حكوا معي
+    apc-Latn/arabizi:
+      text: sarlon fatra ma 7ako ma3i.
+      tokens: [{surface: sarlon, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-3pl, surface: lon}]}, {surface: fatra, lexeme: fatra,
+          feats: {Number: Sing}}, {surface: ma, lexeme: ma}, {surface: 7ako, lexeme: 7aka, feats: {Aspect: Perf, Number: Plur, Person: '3'}}, {surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true},
+            {lexeme: poss-1sg, surface: i}]}]
+      reverse: sarlon fatra ma 7ako ma3i
+  translations:
+    en: |-
+      They (haven't|have not) (talked|spoken) (to|with) me (for|in) a while.
+      It('s| has) been a while since they (talked|spoke) (to|with) me.
+- id: s.long.10
+  node: apc.long.persons
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: قدّيش صارلك عم تستنى؟
+      tokens: [{surface: قدّيش, lexeme: 2addesh}, {surface: صارلك, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-2ms, surface: لك}],
+          vocalized: صارْلَك}, {surface: عم, lexeme: 3am}, {surface: تستنى, lexeme: stanna, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}]
+      reverse: قدّيش صارلك عم تستنى
+    apc-Latn/arabizi:
+      text: 2addesh sarlak 3am testanna?
+      tokens: [{surface: 2addesh, lexeme: 2addesh}, {surface: sarlak, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-2ms,
+              surface: lak}]}, {surface: 3am, lexeme: 3am}, {surface: testanna, lexeme: stanna, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}]
+      reverse: 2addesh sarlak 3am testanna
+  translations:
+    en: How long have you been waiting?
+- id: s.long.11
+  node: apc.long.persons
+  forms:
+    apc-Arab/standard:
+      text: صارلنا فترة عم نشتغل سوا.
+      tokens: [{surface: صارلنا, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1pl, surface: لنا}]}, {surface: فترة, lexeme: fatra,
+          feats: {Number: Sing}}, {surface: عم, lexeme: 3am}, {surface: نشتغل, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: سوا, lexeme: sawa}]
+      reverse: صارلنا فترة عم نشتغل سوا
+    apc-Latn/arabizi:
+      text: sarlna fatra 3am neshteghel sawa.
+      tokens: [{surface: sarlna, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1pl, surface: lna}]}, {surface: fatra, lexeme: fatra,
+          feats: {Number: Sing}}, {surface: 3am, lexeme: 3am}, {surface: neshteghel, lexeme: eshteghel, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: sawa, lexeme: sawa}]
+      reverse: sarlna fatra 3am neshteghel sawa
+  translations:
+    en: We('ve| have) been working together (for|) a while.
+- id: s.long.12
+  node: apc.long.just
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: بعدني واصل.
+      tokens: [{surface: بعدني, lexemes: [{lexeme: ba3d.still, surface: بعد, base: true}, {lexeme: obj-1sg, surface: ني}]}, {surface: واصل, lexeme: wesel, feats: {Aspect: Part, Gender: Masc, Number: Sing}}]
+      reverse: بعدني واصل
+    apc-Latn/arabizi:
+      text: ba3dni wasel.
+      tokens: [{surface: ba3dni, lexemes: [{lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: obj-1sg, surface: ni}]}, {surface: wasel, lexeme: wesel, feats: {Aspect: Part, Gender: Masc, Number: Sing}}]
+      reverse: ba3dni wasel
+  translations:
+    en: |-
+      I('ve| have) just (arrived|got here|gotten here).
+      I just (arrived|got here).
+- id: s.long.13
+  node: apc.long.just
+  forms:
+    apc-Arab/standard:
+      text: بعدها راجعة من الشغل.
+      tokens: [{surface: بعدها, lexemes: [{lexeme: ba3d.still, surface: بعد, base: true}, {lexeme: poss-3fs, surface: ها}]}, {surface: راجعة, lexeme: rje3, feats: {Aspect: Part, Gender: Fem, Number: Sing}},
+        {surface: من, lexeme: men}, {surface: الشغل, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}, n: 6}]}]
+      reverse: بعدها راجعة من الشغل
+    apc-Latn/arabizi:
+      text: ba3da raj3a men el shoghl.
+      tokens: [{surface: ba3da, lexemes: [{lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: poss-3fs, surface: a}]}, {surface: raj3a, lexeme: rje3, feats: {Aspect: Part, Gender: Fem, Number: Sing}},
+        {surface: men, lexeme: men}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}, n: 6}]
+      reverse: ba3da raj3a men el shoghl
+  translations:
+    en: |-
+      She('s| has) just (got|gotten|come) back from work.
+      She just (got|came) back from work.
+- id: s.long.14
+  node: apc.long.just
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: بعدني ما أكلت.
+      tokens: [{surface: بعدني, lexemes: [{lexeme: ba3d.still, surface: بعد, base: true}, {lexeme: obj-1sg, surface: ني}]}, {surface: ما, lexeme: ma}, {surface: أكلت, lexeme: akal, feats: {Aspect: Perf,
+            Number: Sing, Person: '1'}}]
+      reverse: بعدني ما أكلت
+    apc-Latn/arabizi:
+      text: ba3dni ma akalt.
+      tokens: [{surface: ba3dni, lexemes: [{lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: obj-1sg, surface: ni}]}, {surface: ma, lexeme: ma}, {surface: akalt, lexeme: akal, feats: {Aspect: Perf,
+            Number: Sing, Person: '1'}}]
+      reverse: ba3dni ma akalt
+  translations:
+    en: |-
+      I (haven't|have not) eaten yet.
+      I still (haven't|have not) eaten.
+- id: s.long.15
+  node: apc.long.just
+  forms:
+    apc-Arab/standard:
+      text: بعده ما وصل.
+      tokens: [{surface: بعده, lexemes: [{lexeme: ba3d.still, surface: بعد, base: true}, {lexeme: poss-3ms, surface: ه}]}, {surface: ما, lexeme: ma}, {surface: وصل, lexeme: wesel, feats: {Aspect: Perf,
+            Gender: Masc, Number: Sing, Person: '3'}}]
+      reverse: بعده ما وصل
+    apc-Latn/arabizi:
+      text: ba3do ma wesel.
+      tokens: [{surface: ba3do, lexemes: [{lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: poss-3ms, surface: o}]}, {surface: ma, lexeme: ma}, {surface: wesel, lexeme: wesel, feats: {Aspect: Perf,
+            Gender: Masc, Number: Sing, Person: '3'}}]
+      reverse: ba3do ma wesel
+  translations:
+    en: |-
+      He (hasn't|has not) (arrived|got here|gotten here) yet.
+      He still (hasn't|has not) (arrived|got here|gotten here).
+- id: s.long.16
+  node: apc.long.just
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: بعدك ما أكلت؟
+      tokens: [{surface: بعدك, lexemes: [{lexeme: ba3d.still, surface: بعد, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: ما, lexeme: ma}, {surface: أكلت, lexeme: akal, feats: {Aspect: Perf,
+            Gender: Masc, Number: Sing, Person: '2'}}]
+      reverse: بعدك ما أكلت
+    apc-Latn/arabizi:
+      text: ba3dak ma akalt?
+      tokens: [{surface: ba3dak, lexemes: [{lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: ma, lexeme: ma}, {surface: akalt, lexeme: akal, feats: {Aspect: Perf,
+            Gender: Masc, Number: Sing, Person: '2'}}]
+      reverse: ba3dak ma akalt
+  translations:
+    en: |-
+      (Haven't you|Have you not) eaten yet?
+      You (haven't|have not) eaten yet?
+- id: s.long.17
+  node: apc.long.just
+  forms:
+    apc-Arab/standard:
+      text: بعدهن راجعين من بيروت.
+      tokens: [{surface: بعدهن, lexemes: [{lexeme: ba3d.still, surface: بعد, base: true}, {lexeme: poss-3pl, surface: هن}]}, {surface: راجعين, lexeme: rje3, feats: {Aspect: Part, Number: Plur}}, {surface: من,
+          lexeme: men}, {surface: بيروت, lexeme: beirut}]
+      reverse: بعدهن راجعين من بيروت
+    apc-Latn/arabizi:
+      text: ba3don raj3in men Beirut.
+      tokens: [{surface: ba3don, lexemes: [{lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: poss-3pl, surface: 'on'}]}, {surface: raj3in, lexeme: rje3, feats: {Aspect: Part, Number: Plur}}, {surface: men,
+          lexeme: men}, {surface: Beirut, lexeme: beirut}]
+      reverse: ba3don raj3in men Beirut
+  translations:
+    en: |-
+      They('ve| have) just (got|gotten|come) back from Beirut.
+      They just (got|came) back from Beirut.
+- id: s.long.18
+  node: apc.long.ever
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: شي مرّة زرت بيروت؟
+      tokens: [{surface: شي, lexeme: shi}, {surface: مرّة, lexeme: marra}, {surface: زرت, lexeme: zar, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: بيروت, lexeme: beirut}]
+      reverse: شي مرّة زرت بيروت
+    apc-Latn/arabizi:
+      text: shi marra zert Beirut?
+      tokens: [{surface: shi, lexeme: shi}, {surface: marra, lexeme: marra}, {surface: zert, lexeme: zar, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}, {surface: Beirut, lexeme: beirut}]
+      reverse: shi marra zert Beirut
+  translations:
+    en: Have you ever (been to|visited) Beirut?
+- id: s.long.19
+  node: apc.long.ever
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: ولا مرّة زرت بيروت.
+      tokens: [{surface: ولا, lexeme: wala}, {surface: مرّة, lexeme: marra}, {surface: زرت, lexeme: zar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: بيروت, lexeme: beirut}]
+      reverse: ولا مرّة زرت بيروت
+    apc-Latn/arabizi:
+      text: wala marra zert Beirut.
+      tokens: [{surface: wala, lexeme: wala}, {surface: marra, lexeme: marra}, {surface: zert, lexeme: zar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: Beirut, lexeme: beirut}]
+      reverse: wala marra zert Beirut
+  translations:
+    en: I('ve| have) never (been to|visited) Beirut.
+- id: s.long.20
+  node: apc.long.ever
+  forms:
+    apc-Arab/standard:
+      text: صاروا رايحين عبيروت مرتين.
+      tokens: [{surface: صاروا, lexeme: sar, feats: {Aspect: Perf, Number: Plur, Person: '3'}}, {surface: رايحين, lexeme: ra7, feats: {Aspect: Part, Number: Plur}}, {surface: عبيروت, lexemes: [{lexeme: 3a,
+              surface: ع, n: 3, head: 4, rel: case}, {lexeme: beirut, surface: بيروت, base: true, n: 4}]}, {surface: مرتين, lexemes: [{lexeme: marra, surface: مرت, base: true, feats: {Number: Sing}}, {
+              lexeme: dual, surface: ين}]}]
+      reverse: صاروا رايحين عبيروت مرتين
+    apc-Latn/arabizi:
+      text: saro ray7in 3a Beirut marrten.
+      tokens: [{surface: saro, lexeme: sar, feats: {Aspect: Perf, Number: Plur, Person: '3'}}, {surface: ray7in, lexeme: ra7, feats: {Aspect: Part, Number: Plur}}, {surface: 3a, lexeme: 3a, n: 3, head: 4,
+          rel: case}, {surface: Beirut, lexeme: beirut, n: 4}, {surface: marrten, lexemes: [{lexeme: marra, surface: marrt, base: true, feats: {Number: Sing}}, {lexeme: dual, surface: en}]}]
+      reverse: saro ray7in 3a Beirut marrten
+  translations:
+    en: They('ve| have) been to Beirut twice.
+- id: s.long.21
+  node: apc.long.ever
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: شي مرّة أكلتي كبة؟
+      tokens: [{surface: شي, lexeme: shi}, {surface: مرّة, lexeme: marra}, {surface: أكلتي, lexeme: akal, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {surface: كبة, lexeme: kebbe, feats: {
+            Number: Sing}}]
+      reverse: شي مرّة أكلتي كبة
+    apc-Latn/arabizi:
+      text: shi marra akalti kebbe?
+      tokens: [{surface: shi, lexeme: shi}, {surface: marra, lexeme: marra}, {surface: akalti, lexeme: akal, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}}, {surface: kebbe, lexeme: kebbe,
+          feats: {Number: Sing}}]
+      reverse: shi marra akalti kebbe
+  translations:
+    en: Have you ever (eaten|had) kibbeh?
+- id: s.long.22
+  node: apc.long.ever
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: ولا مرّة أكلت كبة.
+      tokens: [{surface: ولا, lexeme: wala}, {surface: مرّة, lexeme: marra}, {surface: أكلت, lexeme: akal, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: كبة, lexeme: kebbe, feats: {Number: Sing}}]
+      reverse: ولا مرّة أكلت كبة
+    apc-Latn/arabizi:
+      text: wala marra akalt kebbe.
+      tokens: [{surface: wala, lexeme: wala}, {surface: marra, lexeme: marra}, {surface: akalt, lexeme: akal, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: kebbe, lexeme: kebbe, feats: {
+            Number: Sing}}]
+      reverse: wala marra akalt kebbe
+  translations:
+    en: I('ve| have) never (eaten|had) kibbeh.
+- id: s.long.23
+  node: apc.long.ever
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: صرت رايحة عبيروت مرتين.
+      tokens: [{surface: صرت, lexeme: sar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: رايحة, lexeme: ra7, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: عبيروت, lexemes: [
+            {lexeme: 3a, surface: ع, n: 3, head: 4, rel: case}, {lexeme: beirut, surface: بيروت, base: true, n: 4}]}, {surface: مرتين, lexemes: [{lexeme: marra, surface: مرت, base: true, feats: {Number: Sing}},
+            {lexeme: dual, surface: ين}]}]
+      reverse: صرت رايحة عبيروت مرتين
+    apc-Latn/arabizi:
+      text: sert ray7a 3a Beirut marrten.
+      tokens: [{surface: sert, lexeme: sar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: ray7a, lexeme: ra7, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: 3a, lexeme: 3a,
+          n: 3, head: 4, rel: case}, {surface: Beirut, lexeme: beirut, n: 4}, {surface: marrten, lexemes: [{lexeme: marra, surface: marrt, base: true, feats: {Number: Sing}}, {lexeme: dual, surface: en}]}]
+      reverse: sert ray7a 3a Beirut marrten
+  translations:
+    en: I('ve| have) been to Beirut twice.
+- id: s.long.24
+  node: apc.long.before-after
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: قبلما تروح، دقّلي.
+      tokens: [{surface: قبلما, lexeme: 2abelma}, {surface: تروح, lexeme: ra7, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: دقّلي, lexemes: [{lexeme: de22, surface: دقّ,
+              base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لي}]}]
+      reverse: قبلما تروح دقّلي
+    apc-Latn/arabizi:
+      text: 2abelma tru7, de22elli.
+      tokens: [{surface: 2abelma, lexeme: 2abelma}, {surface: tru7, lexeme: ra7, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: de22elli, lexemes: [{lexeme: de22, surface: de22,
+              base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: elli}]}]
+      reverse: 2abelma tru7 de22elli
+  translations:
+    en: |-
+      Before you (go|leave), call me.
+      Call me before you (go|leave).
+- id: s.long.25
+  node: apc.long.before-after
+  forms:
+    apc-Arab/standard:
+      text: بعدما أكلنا، رحنا عالبحر.
+      tokens: [{surface: بعدما, lexeme: ba3dma}, {surface: أكلنا, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: رحنا, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}},
+        {surface: عالبحر, lexemes: [{lexeme: 3a, surface: ع, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: ba7r, surface: بحر, base: true, feats: {Number: Sing},
+              n: 6}]}]
+      reverse: بعدما أكلنا رحنا عالبحر
+    apc-Latn/arabizi:
+      text: ba3dma akalna, re7na 3al ba7r.
+      tokens: [{surface: ba3dma, lexeme: ba3dma}, {surface: akalna, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: re7na, lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '1'}},
+        {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, n: 4, head: 6, rel: case, base: true}, {lexeme: el, surface: l, n: 5, head: 6, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing},
+          n: 6}]
+      reverse: ba3dma akalna re7na 3al ba7r
+  translations:
+    en: |-
+      After we (ate|had eaten), we went to the (beach|sea).
+      We went to the (beach|sea) after we (ate|had eaten).
+- id: s.long.26
+  node: apc.long.before-after
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: قبلما نام، بقرا شوي.
+      tokens: [{surface: قبلما, lexeme: 2abelma}, {surface: نام, lexeme: nem, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: بقرا, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind, Number: Sing,
+            Person: '1'}}, {surface: شوي, lexeme: shway}]
+      reverse: قبلما نام بقرا شوي
+    apc-Latn/arabizi:
+      text: 2abelma nem, be2ra shway.
+      tokens: [{surface: 2abelma, lexeme: 2abelma}, {surface: nem, lexeme: nem, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: be2ra, lexeme: 2ara, feats: {Aspect: Imp, Mood: Ind,
+            Number: Sing, Person: '1'}}, {surface: shway, lexeme: shway}]
+      reverse: 2abelma nem be2ra shway
+  translations:
+    en: |-
+      Before I (sleep|go to sleep|go to bed), I read a little.
+      I read a little before I (sleep|go to sleep|go to bed).
+- id: s.long.27
+  node: apc.long.before-after
+  forms:
+    apc-Arab/standard:
+      text: بعدما وصلت، حكت مع إمّها.
+      tokens: [{surface: بعدما, lexeme: ba3dma}, {surface: وصلت, lexeme: wesel, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: حكت, lexeme: 7aka, feats: {Aspect: Perf, Gender: Fem,
+            Number: Sing, Person: '3'}}, {surface: مع, lexeme: ma3}, {surface: إمّها, lexemes: [{lexeme: emm, surface: إمّ, base: true, feats: {Number: Sing}}, {lexeme: poss-3fs, surface: ها}]}]
+      reverse: بعدما وصلت حكت مع إمّها
+    apc-Latn/arabizi:
+      text: ba3dma weslet, 7aket ma3 emma.
+      tokens: [{surface: ba3dma, lexeme: ba3dma}, {surface: weslet, lexeme: wesel, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: 7aket, lexeme: 7aka, feats: {Aspect: Perf, Gender: Fem,
+            Number: Sing, Person: '3'}}, {surface: ma3, lexeme: ma3}, {surface: emma, lexemes: [{lexeme: emm, surface: emm, base: true, feats: {Number: Sing}}, {lexeme: poss-3fs, surface: a}]}]
+      reverse: ba3dma weslet 7aket ma3 emma
+  translations:
+    en: |-
+      After she arrived, she (talked|spoke) (to|with) her (mother|mom|mum).
+      She (talked|spoke) (to|with) her (mother|mom|mum) after she arrived.
+stories:
+- id: apc.story.waiting
+  node: apc.long.story
+  title:
+    en: An hour late
+  provenance:
+    author: llm:claude@apc-b1
+    status: draft
+  characters:
+  - id: maya
+    speaker: f
+    name:
+      apc-Arab/standard: مايا
+      apc-Latn/arabizi: Maya
+  - id: sami
+    speaker: m
+    name:
+      apc-Arab/standard: سامي
+      apc-Latn/arabizi: Sami
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مايا! صارْلي ساعَة عَم اِسْتَنّى!
+          tokens: [{surface: مايا, lexeme: maya}, {surface: صارْلي, lexemes: [{lexeme: sar, surface: صارْ, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: لي}]},
+            {surface: ساعَة, lexeme: sa3a, feats: {Number: Sing}}, {surface: عَم, lexeme: 3am}, {surface: اِسْتَنّى, lexeme: stanna, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}]
+        apc-Latn/arabizi:
+          text: Maya! sarli sa3a 3am estanna!
+          tokens: [{surface: Maya, lexeme: maya}, {surface: sarli, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: li}]},
+            {surface: sa3a, lexeme: sa3a, feats: {Number: Sing}}, {surface: 3am, lexeme: 3am}, {surface: estanna, lexeme: stanna, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}]
+      translations:
+        en: Maya! I've been waiting for an hour!
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: مَعْليش! كِنِت بِالشُّغُل، وبَعِدْني واصْلِة.
+          tokens: [{surface: مَعْليش, lexeme: ma3lesh}, {surface: كِنِت, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: بِالشُّغُل, lexemes: [{lexeme: b, surface: بِ, n: 3, head: 5,
+                  rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: shoghl, surface: شُّغُل, base: true, feats: {Number: Sing}, n: 5}]}, {surface: وبَعِدْني, lexemes: [{lexeme: w,
+                  surface: و}, {lexeme: ba3d.still, surface: بَعِدْ, base: true}, {lexeme: obj-1sg, surface: ني}]}, {surface: واصْلِة, lexeme: wesel, feats: {Aspect: Part, Gender: Fem, Number: Sing}}]
+        apc-Latn/arabizi:
+          text: ma3lesh! kent bel shoghl, w ba3dni wasle.
+          tokens: [{surface: ma3lesh, lexeme: ma3lesh}, {surface: kent, lexeme: kan, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: bel, lexemes: [{lexeme: b, surface: b, n: 3, head: 5, rel: case,
+                  base: true}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}, n: 5}, {surface: w, lexeme: w}, {surface: ba3dni, lexemes: [
+                {lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: obj-1sg, surface: ni}]}, {surface: wasle, lexeme: wesel, feats: {Aspect: Part, Gender: Fem, Number: Sing}}]
+      translations:
+        en: Sorry! I was at work, and I've only just got here.
+  - choose:
+      prompt:
+        en: Where was Maya?
+      options:
+      - en: At work
+      - en: At the beach
+      - en: At home
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مَعْليش. شي مَرَّة أَكَلْتي بْهَالمَطْعَم؟
+          tokens: [{surface: مَعْليش, lexeme: ma3lesh}, {surface: شي, lexeme: shi}, {surface: مَرَّة, lexeme: marra}, {surface: أَكَلْتي, lexeme: akal, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}},
+            {surface: بْهَالمَطْعَم, lexemes: [{lexeme: b, surface: بْ, n: 5, head: 7, rel: case}, {lexeme: hal, surface: هَال, n: 6, head: 7, rel: det}, {lexeme: mat3am, surface: مَطْعَم, base: true, feats: {
+                    Number: Sing}, n: 7}]}]
+        apc-Latn/arabizi:
+          text: ma3lesh. shi marra akalti b hal mat3am?
+          tokens: [{surface: ma3lesh, lexeme: ma3lesh}, {surface: shi, lexeme: shi}, {surface: marra, lexeme: marra}, {surface: akalti, lexeme: akal, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}},
+            {surface: b, lexeme: b, n: 5, head: 7, rel: case}, {surface: hal, lexeme: hal, n: 6, head: 7, rel: det}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}, n: 7}]
+      translations:
+        en: Never mind. Have you ever eaten at this restaurant?
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: لأ، وَلا مَرَّة. وإِنْتَ؟
+          tokens: [{surface: لأ, lexeme: la2}, {surface: وَلا, lexeme: wala}, {surface: مَرَّة, lexeme: marra}, {surface: وإِنْتَ, lexemes: [{lexeme: w, surface: و}, {lexeme: enta, surface: إِنْتَ, base: true}]}]
+        apc-Latn/arabizi:
+          text: la2, wala marra. w enta?
+          tokens: [{surface: la2, lexeme: la2}, {surface: wala, lexeme: wala}, {surface: marra, lexeme: marra}, {surface: w, lexeme: w}, {surface: enta, lexeme: enta}]
+      translations:
+        en: No, never. And you?
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: أَكَلِت هون مَرّْتين. الأَكِل كْتير طَيِّب.
+          tokens: [{surface: أَكَلِت, lexeme: akal, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: هون, lexeme: hon}, {surface: مَرّْتين, lexemes: [{lexeme: marra, surface: مَرّْت, base: true,
+                  feats: {Number: Sing}}, {lexeme: dual, surface: ين}]}, {surface: الأَكِل, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: akl, surface: أَكِل, base: true, feats: {
+                    Number: Sing}, n: 6}]}, {surface: كْتير, lexeme: ktir}, {surface: طَيِّب, lexeme: tayyeb}]
+        apc-Latn/arabizi:
+          text: akalt hon marrten. el akl ktir tayyeb.
+          tokens: [{surface: akalt, lexeme: akal, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: hon, lexeme: hon}, {surface: marrten, lexemes: [{lexeme: marra, surface: marrt, base: true,
+                  feats: {Number: Sing}}, {lexeme: dual, surface: en}]}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: akl, lexeme: akl, feats: {Number: Sing}, n: 6}, {surface: ktir, lexeme: ktir},
+            {surface: tayyeb, lexeme: tayyeb}]
+      translations:
+        en: I've eaten here twice. The food is very good.
+  - choose:
+      prompt:
+        en: How many times has Sami eaten here?
+      options:
+      - en: Twice
+      - en: Never
+      - en: Every week
+      answer: 0
+  - line:
+      speaker: maya
+      ask: complete
+      gap: lexeme:sa3a
+      distractors:
+      - lexeme:sene
+      - lexeme:da2i2a
+      forms:
+        apc-Arab/standard:
+          text: صارْلَك ساعَة عَم تِسْتَنّى؟ يا حَرام!
+          tokens: [{surface: صارْلَك, lexemes: [{lexeme: sar, surface: صارْ, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-2ms, surface: لَك}]}, {surface: ساعَة,
+              lexeme: sa3a, feats: {Number: Sing}}, {surface: عَم, lexeme: 3am}, {surface: تِسْتَنّى, lexeme: stanna, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: يا,
+              lexeme: ya-7aram}, {surface: حَرام, lexeme: ya-7aram}]
+        apc-Latn/arabizi:
+          text: sarlak sa3a 3am testanna? ya 7aram!
+          tokens: [{surface: sarlak, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-2ms, surface: lak}]}, {surface: sa3a,
+              lexeme: sa3a, feats: {Number: Sing}}, {surface: 3am, lexeme: 3am}, {surface: testanna, lexeme: stanna, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: ya,
+              lexeme: ya-7aram}, {surface: 7aram, lexeme: ya-7aram}]
+      translations:
+        en: You've been waiting for an hour? You poor thing!
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مَعْليش، هَلَّق إِنْتي هون.
+          tokens: [{surface: مَعْليش, lexeme: ma3lesh}, {surface: هَلَّق, lexeme: hala2}, {surface: إِنْتي, lexeme: enti}, {surface: هون, lexeme: hon}]
+        apc-Latn/arabizi:
+          text: ma3lesh, hala2 enti hon.
+          tokens: [{surface: ma3lesh, lexeme: ma3lesh}, {surface: hala2, lexeme: hala2}, {surface: enti, lexeme: enti}, {surface: hon, lexeme: hon}]
+      translations:
+        en: Never mind, you're here now.
