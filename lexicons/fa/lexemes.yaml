@@ -95,6 +95,9 @@ lexemes:
   notes: {en: 'Spoken Tehrani: میام (miyām), میاد (miyād).'}
   form: آمَدَن
   spelled: {fa-Arab/standard: [آمدن, آمد]}
+  forms:
+  # REVIEW: Yousef 2018 p. 200: ā; the glide y before an ending is rule:fa-glide.
+  - {feats: {Tense: Pres}, form: آ, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   allomorphs:
   - {spelled: {fa-Arab/standard: [آی]}}
 - id: lexeme:amma
@@ -239,8 +242,10 @@ lexemes:
   form: بودَن
   spelled: {fa-Arab/standard: [بودن, است]}
   forms:
-  - {feats: {Polarity: Neg}, spelled: {fa-Arab/standard: [نیست]}, status: pinned}
-  - {feats: {Tense: Past}, spelled: {fa-Arab/standard: [بود]}, status: pinned}
+  # REVIEW: the copula's negative, of both versions (Yousef 2018 p. 183: nist, nistam), and its
+  # independent version's third person singular present (hast, p. 183-185: existence, emphasis), which its tokens choose.
+  - {feats: {Polarity: Neg}, form: نیست, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
+  - {feats: {Variant: Long}, form: هَست, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   allomorphs:
   - {form: هَست, before: {startsIn: '.*'}, spelled: {fa-Arab/standard: [هست]}}
   - {form: ست, after: {endsIn: '[او]'}, spelled: {fa-Arab/standard: [ست]}}
@@ -321,6 +326,9 @@ lexemes:
   notes: {en: "Spoken: می\u200cدم (midam), I give."}
   form: دادَن
   spelled: {fa-Arab/standard: [دادن]}
+  forms:
+  # REVIEW: Yousef 2018 p. 210: deh, dah in conjugation (mi-daham); bedeh in the singular imperative.
+  - {feats: {Tense: Pres}, form: دَه, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   allomorphs:
   - {spelled: {fa-Arab/standard: [ده]}}
 - id: lexeme:daftar
@@ -378,6 +386,9 @@ lexemes:
   notes: {en: "No می\u200c in the present: دارم, داری, دارد, داریم, دارید, دارند. Age also uses داشتن: بیست سال دارم, I am twenty (literally 'I have twenty years')."}
   form: داشتَن
   spelled: {fa-Arab/standard: [داشتن]}
+  forms:
+  # REVIEW: Yousef 2018 p. 210: dār (and no mi- in the present, p. 188).
+  - {feats: {Tense: Pres}, form: دار, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   allomorphs:
   - {spelled: {fa-Arab/standard: [دار]}}
 - id: lexeme:dastshui
@@ -392,6 +403,9 @@ lexemes:
   notes: {en: ببین! Look! See!}
   form: دیدَن
   spelled: {fa-Arab/standard: [دیدن]}
+  forms:
+  # REVIEW: Yousef 2018 p. 212, and p. 159: an -idan verb whose rule would leave one letter.
+  - {feats: {Tense: Pres}, form: بین, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   allomorphs:
   - {spelled: {fa-Arab/standard: [بین]}}
   - {spelled: {fa-Arab/standard: [دید]}}
@@ -513,6 +527,9 @@ lexemes:
   notes: {en: 'عکس گرفتن: to take a photo.'}
   form: گِرِفتَن
   spelled: {fa-Arab/standard: [گرفتن]}
+  forms:
+  # REVIEW: Yousef 2018 p. 218: gir; the course writes no present of it.
+  - {feats: {Tense: Pres}, form: گیر, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   allomorphs:
   - {spelled: {fa-Arab/standard: [گرفت]}}
 - id: lexeme:ghadimi
@@ -561,6 +578,9 @@ lexemes:
   notes: {en: 'به شما خوش گذشت؟ Did you have a good time? Literally ''did it pass pleasantly for you?'''}
   form: گُذَشت
   spelled: {fa-Arab/standard: [گذشت]}
+  forms:
+  # REVIEW: Yousef 2018 p. 218: gozar; the course writes no present of it.
+  - {feats: {Tense: Pres}, form: گُذَر, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
 - id: lexeme:gozashte
   pos: ADJ
   gloss: {en: 'last; past (هفتهٔ گذشته: last week)'}
@@ -685,6 +705,9 @@ lexemes:
   notes: {en: 'With a noun it forms many verbs: کار کردن (to work), صحبت کردن (to talk), زندگی کردن (to live).'}
   form: کَردَن
   spelled: {fa-Arab/standard: [کردن]}
+  forms:
+  # REVIEW: Yousef 2018 p. 217: kon.
+  - {feats: {Tense: Pres}, form: کُن, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   allomorphs:
   - {spelled: {fa-Arab/standard: [کن]}}
   - {spelled: {fa-Arab/standard: [کرد]}}
@@ -760,6 +783,9 @@ lexemes:
   notes: {en: "The و is silent: mikhāham. Spoken Tehrani: می\u200cخوام (mikhām)."}
   form: "خو\u06dfاستَن"
   spelled: {fa-Arab/standard: [خواستن]}
+  forms:
+  # REVIEW: Yousef 2018 p. 210: khāh.
+  - {feats: {Tense: Pres}, form: "خو\u06dfاه", status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   allomorphs:
   - {spelled: {fa-Arab/standard: [خواه]}}
 - id: lexeme:kheyli
@@ -788,6 +814,9 @@ lexemes:
   notes: {en: "Everyday Persian 'eats' tea and water too: چای می\u200cخورم. نوشیدن (to drink) is more formal."}
   form: خُوردَن
   spelled: {fa-Arab/standard: [خوردن]}
+  forms:
+  # REVIEW: Yousef 2018 p. 210: khor (p. 159 calls it regular; no rule he states gives it: kardan kon).
+  - {feats: {Tense: Pres}, form: خُور, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   allomorphs:
   - {spelled: {fa-Arab/standard: [خور]}}
   - {spelled: {fa-Arab/standard: [خورد]}}
@@ -1126,6 +1155,9 @@ lexemes:
   notes: {en: "Spoken Tehrani: می\u200cرم (miram), می\u200cره (mire)."}
   form: رَفتَن
   spelled: {fa-Arab/standard: [رفتن]}
+  forms:
+  # REVIEW: Yousef 2018 p. 212: row, rav in conjugation (mi-ravam); borow in the singular imperative.
+  - {feats: {Tense: Pres}, form: رَو, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   allomorphs:
   - {spelled: {fa-Arab/standard: [رو]}}
   - {spelled: {fa-Arab/standard: [رفت]}}
@@ -1373,6 +1405,9 @@ lexemes:
   notes: {en: "Followed by the subjunctive: می\u200cتوانم ببینم؟ Can I see?"}
   form: تَوانِستَن
   spelled: {fa-Arab/standard: [توانستن]}
+  forms:
+  # REVIEW: Yousef 2018 p. 207: tavān.
+  - {feats: {Tense: Pres}, form: تَوان, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   allomorphs:
   - {spelled: {fa-Arab/standard: [توان]}}
 - id: lexeme:tehran
