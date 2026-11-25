@@ -1,0 +1,641 @@
+# Fixture course (apc), unit 22: cooking at home, and the imperative (Kline, chapter 23): commands to a man, a
+# woman and several people (ghassel, ghassle, ghasslo; 2ta3, 2ta3e; zid, zide), formed from the bare present
+# without its t-; "don't" as ma with the bare present (ma tensa!, ma t7otte); commands with -li, "for me" (jibli).
+# Drafted by an LLM (provenance llm:…, status draft) and checked against Kline (2022), chapters 22 and 23: every
+# sentence awaits a native speaker's review.
+id: u22-kitchen
+title:
+  en: In the kitchen
+cefr: B1
+nodes:
+- {id: apc.cook.wash-cut, kind: lesson, introduces: ['lexeme:ghassal', 'lexeme:2ata3', 'lexeme:bandoura', 'lexeme:basal', 'lexeme:toum', 'lexeme:sekkine']}
+- {id: apc.cook.put-add, kind: lesson, introduces: ['lexeme:7att', 'lexeme:zad', 'lexeme:zet', 'lexeme:mele7', 'lexeme:laymoun', 'lexeme:tanjara', 'lexeme:nar']}
+- {id: apc.cook.dont, kind: lesson, introduces: ['lexeme:nisi', 'lexeme:fata7', 'lexeme:furn']}
+- {id: apc.cook.bring, kind: lesson, introduces: ['lexeme:jab', 'lexeme:7arrak', 'lexeme:ma3la2a', 'lexeme:ruz', 'lexeme:tabakh']}
+- {id: apc.cook.tabbouleh, kind: lesson, introduces: ['lexeme:ba2dounes', 'lexeme:tabbouleh']}
+- {id: apc.cook.story, kind: story}
+sentences:
+- id: s.cook.1
+  node: apc.cook.wash-cut
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: غسل البندورة.
+      tokens: [{surface: غسل, lexeme: ghassal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: البندورة, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: bandoura,
+              surface: بندورة, base: true, feats: {Number: Sing}, n: 3}]}]
+      reverse: غسل البندورة
+    apc-Latn/arabizi:
+      text: ghassel el banadura.
+      tokens: [{surface: ghassel, lexeme: ghassal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: banadura, lexeme: bandoura,
+          feats: {Number: Sing}, n: 3}]
+      reverse: ghassel el banadura
+  translations:
+    en: Wash the tomato[es].
+- id: s.cook.2
+  node: apc.cook.wash-cut
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: غسلي البندورة.
+      tokens: [{surface: غسلي, lexeme: ghassal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: البندورة, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: bandoura,
+              surface: بندورة, base: true, feats: {Number: Sing}, n: 3}]}]
+      reverse: غسلي البندورة
+    apc-Latn/arabizi:
+      text: ghassli el banadura.
+      tokens: [{surface: ghassli, lexeme: ghassal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: banadura, lexeme: bandoura,
+          feats: {Number: Sing}, n: 3}]
+      reverse: ghassli el banadura
+  translations:
+    en: Wash the tomato[es].
+- id: s.cook.3
+  node: apc.cook.wash-cut
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: قطع البصل.
+      tokens: [{surface: قطع, lexeme: 2ata3, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: البصل, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: basal,
+              surface: بصل, base: true, feats: {Number: Sing}, n: 3}]}]
+      reverse: قطع البصل
+    apc-Latn/arabizi:
+      text: 2ta3 el basal.
+      tokens: [{surface: 2ta3, lexeme: 2ata3, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: basal, lexeme: basal, feats: {Number: Sing},
+          n: 3}]
+      reverse: 2ta3 el basal
+  translations:
+    en: (Cut|Chop) the onion[s].
+- id: s.cook.4
+  node: apc.cook.wash-cut
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: قطعي البصل.
+      tokens: [{surface: قطعي, lexeme: 2ata3, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: البصل, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: basal,
+              surface: بصل, base: true, feats: {Number: Sing}, n: 3}]}]
+      reverse: قطعي البصل
+    apc-Latn/arabizi:
+      text: 2ta3i el basal.
+      tokens: [{surface: 2ta3i, lexeme: 2ata3, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: basal, lexeme: basal, feats: {Number: Sing},
+          n: 3}]
+      reverse: 2ta3i el basal
+  translations:
+    en: (Cut|Chop) the onion[s].
+- id: s.cook.5
+  node: apc.cook.wash-cut
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: قطعوا التوم.
+      tokens: [{surface: قطعوا, lexeme: 2ata3, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: التوم, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: toum, surface: توم,
+              base: true, feats: {Number: Sing}, n: 3}]}]
+      reverse: قطعوا التوم
+    apc-Latn/arabizi:
+      text: 2ta3o el tum.
+      tokens: [{surface: 2ta3o, lexeme: 2ata3, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: tum, lexeme: toum, feats: {Number: Sing}, n: 3}]
+      reverse: 2ta3o el tum
+  translations:
+    en: (Cut|Chop) the garlic.
+- id: s.cook.6
+  node: apc.cook.wash-cut
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: غسلوا السكينة.
+      tokens: [{surface: غسلوا, lexeme: ghassal, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: السكينة, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: sekkine, surface: سكينة,
+              base: true, feats: {Number: Sing}, n: 3}]}]
+      reverse: غسلوا السكينة
+    apc-Latn/arabizi:
+      text: ghasslo el sekkine.
+      tokens: [{surface: ghasslo, lexeme: ghassal, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: sekkine, lexeme: sekkine, feats: {Number: Sing},
+          n: 3}]
+      reverse: ghasslo el sekkine
+  translations:
+    en: Wash the knife.
+- id: s.cook.7
+  node: apc.cook.wash-cut
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: أنا عم اقطع البصل.
+      tokens: [{surface: أنا, lexeme: ana}, {surface: عم, lexeme: 3am}, {surface: اقطع, lexeme: 2ata3, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: البصل, lexemes: [{lexeme: el,
+              surface: ال, n: 4, head: 5, rel: det}, {lexeme: basal, surface: بصل, base: true, feats: {Number: Sing}, n: 5}]}]
+      reverse: '[أنا] عم اقطع البصل'
+    apc-Latn/arabizi:
+      text: ana 3am e2ta3 el basal.
+      tokens: [{surface: ana, lexeme: ana}, {surface: 3am, lexeme: 3am}, {surface: e2ta3, lexeme: 2ata3, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: el, lexeme: el, n: 4, head: 5,
+          rel: det}, {surface: basal, lexeme: basal, feats: {Number: Sing}, n: 5}]
+      reverse: '[ana] 3am e2ta3 el basal'
+  translations:
+    en: (I'm|I am) (cutting|chopping) the onion[s].
+- id: s.cook.14
+  node: apc.cook.put-add
+  forms:
+    apc-Arab/standard:
+      text: الطنجرة عالنار.
+      tokens: [{surface: الطنجرة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: tanjara, surface: طنجرة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: عالنار, lexemes: [
+            {lexeme: 3a, surface: ع, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: nar, surface: نار, base: true, feats: {Number: Sing}, n: 5}]}]
+      reverse: الطنجرة عالنار
+    apc-Latn/arabizi:
+      text: el tanjara 3al nar.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: tanjara, lexeme: tanjara, feats: {Number: Sing}, n: 2}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, n: 3, head: 5, rel: case,
+              base: true}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: nar, lexeme: nar, feats: {Number: Sing}, n: 5}]
+      reverse: el tanjara 3al nar
+  translations:
+    en: The (pot|saucepan)('s| is) on the (fire|stove|heat).
+- id: s.cook.8
+  node: apc.cook.put-add
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: حط الزيت بالطنجرة.
+      tokens: [{surface: حط, lexeme: 7att, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: الزيت, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: zet, surface: زيت,
+              base: true, feats: {Number: Sing}, n: 3}]}, {surface: بالطنجرة, lexemes: [{lexeme: b, surface: ب, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: tanjara,
+              surface: طنجرة, base: true, feats: {Number: Sing}, n: 6}]}]
+      reverse: حط الزيت بالطنجرة
+    apc-Latn/arabizi:
+      text: 7ett el zet bel tanjara.
+      tokens: [{surface: 7ett, lexeme: 7att, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: zet, lexeme: zet, feats: {Number: Sing},
+          n: 3}, {surface: bel, lexemes: [{lexeme: b, surface: b, n: 4, head: 6, rel: case, base: true}, {lexeme: el, surface: el, n: 5, head: 6, rel: det}]}, {surface: tanjara, lexeme: tanjara, feats: {
+            Number: Sing}, n: 6}]
+      reverse: 7ett el zet bel tanjara
+  translations:
+    en: Put the oil in the (pot|saucepan).
+- id: s.cook.9
+  node: apc.cook.put-add
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: حطي الزيت بالطنجرة.
+      tokens: [{surface: حطي, lexeme: 7att, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: الزيت, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: zet, surface: زيت,
+              base: true, feats: {Number: Sing}, n: 3}]}, {surface: بالطنجرة, lexemes: [{lexeme: b, surface: ب, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: tanjara,
+              surface: طنجرة, base: true, feats: {Number: Sing}, n: 6}]}]
+      reverse: حطي الزيت بالطنجرة
+    apc-Latn/arabizi:
+      text: 7etti el zet bel tanjara.
+      tokens: [{surface: 7etti, lexeme: 7att, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: zet, lexeme: zet, feats: {Number: Sing},
+          n: 3}, {surface: bel, lexemes: [{lexeme: b, surface: b, n: 4, head: 6, rel: case, base: true}, {lexeme: el, surface: el, n: 5, head: 6, rel: det}]}, {surface: tanjara, lexeme: tanjara, feats: {
+            Number: Sing}, n: 6}]
+      reverse: 7etti el zet bel tanjara
+  translations:
+    en: Put the oil in the (pot|saucepan).
+- id: s.cook.10
+  node: apc.cook.put-add
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: زيد شوي ملح.
+      tokens: [{surface: زيد, lexeme: zad, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: شوي, lexeme: shway}, {surface: ملح, lexeme: mele7, feats: {Number: Sing}}]
+      reverse: زيد شوي ملح
+    apc-Latn/arabizi:
+      text: zid shway mel7.
+      tokens: [{surface: zid, lexeme: zad, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: shway, lexeme: shway}, {surface: mel7, lexeme: mele7, feats: {Number: Sing}}]
+      reverse: zid shway mel7
+  translations:
+    en: |-
+      Add a little salt.
+      Add (some|a bit of) salt.
+- id: s.cook.11
+  node: apc.cook.put-add
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: زيدي ليمون.
+      tokens: [{surface: زيدي, lexeme: zad, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: ليمون, lexeme: laymoun, feats: {Number: Sing}}]
+      reverse: زيدي ليمون
+    apc-Latn/arabizi:
+      text: zidi laymun.
+      tokens: [{surface: zidi, lexeme: zad, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: laymun, lexeme: laymoun, feats: {Number: Sing}}]
+      reverse: zidi laymun
+  translations:
+    en: Add (some|) lemon.
+- id: s.cook.12
+  node: apc.cook.put-add
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: زيدوا مي.
+      tokens: [{surface: زيدوا, lexeme: zad, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: مي, lexeme: may, feats: {Number: Sing}}]
+      reverse: زيدوا مي
+    apc-Latn/arabizi:
+      text: zido may.
+      tokens: [{surface: zido, lexeme: zad, feats: {Mood: Imp, Number: Plur, Person: '2'}}, {surface: may, lexeme: may, feats: {Number: Sing}}]
+      reverse: zido may
+  translations:
+    en: Add (some|) water.
+- id: s.cook.13
+  node: apc.cook.put-add
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: حطيت الزيت والملح.
+      tokens: [{surface: حطيت, lexeme: 7att, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: الزيت, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: zet, surface: زيت,
+              base: true, feats: {Number: Sing}, n: 3}]}, {surface: والملح, lexemes: [{lexeme: w, surface: و, n: 4}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: mele7, surface: ملح, base: true,
+              feats: {Number: Sing}, n: 6}]}]
+      reverse: حطيت الزيت والملح
+    apc-Latn/arabizi:
+      text: 7attet el zet w el mel7.
+      tokens: [{surface: 7attet, lexeme: 7att, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: zet, lexeme: zet, feats: {Number: Sing}, n: 3},
+        {surface: w, lexeme: w, n: 4}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: mel7, lexeme: mele7, feats: {Number: Sing}, n: 6}]
+      reverse: 7attet el zet w el mel7
+  translations:
+    en: I put [in] the oil and the salt.
+- id: s.cook.15
+  node: apc.cook.dont
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: ما تنسا الملح!
+      tokens: [{surface: ما, lexeme: ma}, {surface: تنسا, lexeme: nisi, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: الملح, lexemes: [{lexeme: el, surface: ال, n: 3,
+              head: 4, rel: det}, {lexeme: mele7, surface: ملح, base: true, feats: {Number: Sing}, n: 4}]}]
+      reverse: ما تنسا الملح
+    apc-Latn/arabizi:
+      text: ma tensa el mel7!
+      tokens: [{surface: ma, lexeme: ma}, {surface: tensa, lexeme: nisi, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {
+          surface: mel7, lexeme: mele7, feats: {Number: Sing}, n: 4}]
+      reverse: ma tensa el mel7
+  translations:
+    en: (Don't|Do not) forget the salt!
+- id: s.cook.16
+  node: apc.cook.dont
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: ما تنسي الليمون!
+      tokens: [{surface: ما, lexeme: ma}, {surface: تنسي, lexeme: nisi, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: الليمون, lexemes: [{lexeme: el, surface: ال, n: 3,
+              head: 4, rel: det}, {lexeme: laymoun, surface: ليمون, base: true, feats: {Number: Sing}, n: 4}]}]
+      reverse: ما تنسي الليمون
+    apc-Latn/arabizi:
+      text: ma tensi el laymun!
+      tokens: [{surface: ma, lexeme: ma}, {surface: tensi, lexeme: nisi, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: laymun,
+          lexeme: laymoun, feats: {Number: Sing}, n: 4}]
+      reverse: ma tensi el laymun
+  translations:
+    en: (Don't|Do not) forget the lemon[s]!
+- id: s.cook.17
+  node: apc.cook.dont
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: ما تحط زيت كتير.
+      tokens: [{surface: ما, lexeme: ma}, {surface: تحط, lexeme: 7att, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: زيت, lexeme: zet, feats: {Number: Sing}}, {surface: كتير,
+          lexeme: ktir}]
+      reverse: ما تحط زيت كتير
+    apc-Latn/arabizi:
+      text: ma t7ett zet ktir.
+      tokens: [{surface: ma, lexeme: ma}, {surface: t7ett, lexeme: 7att, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: zet, lexeme: zet, feats: {Number: Sing}}, {
+          surface: ktir, lexeme: ktir}]
+      reverse: ma t7ett zet ktir
+  translations:
+    en: (Don't|Do not) put [in] too much oil.
+- id: s.cook.18
+  node: apc.cook.dont
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: ما تفتحي الفرن هلّق!
+      tokens: [{surface: ما, lexeme: ma}, {surface: تفتحي, lexeme: fata7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: الفرن, lexemes: [{lexeme: el, surface: ال, n: 3,
+              head: 4, rel: det}, {lexeme: furn, surface: فرن, base: true, feats: {Number: Sing}, n: 4}]}, {surface: هلّق, lexeme: hala2}]
+      reverse: ما تفتحي الفرن هلّق
+    apc-Latn/arabizi:
+      text: ma tefta7i el forn hala2!
+      tokens: [{surface: ma, lexeme: ma}, {surface: tefta7i, lexeme: fata7, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det},
+        {surface: forn, lexeme: furn, feats: {Number: Sing}, n: 4}, {surface: hala2, lexeme: hala2}]
+      reverse: ma tefta7i el forn hala2
+  translations:
+    en: (Don't|Do not) open the oven (now|right now)!
+- id: s.cook.19
+  node: apc.cook.dont
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: ما تنسوا!
+      tokens: [{surface: ما, lexeme: ma}, {surface: تنسوا, lexeme: nisi, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '2'}}]
+      reverse: ما تنسوا
+    apc-Latn/arabizi:
+      text: ma tenso!
+      tokens: [{surface: ma, lexeme: ma}, {surface: tenso, lexeme: nisi, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '2'}}]
+      reverse: ma tenso
+  translations:
+    en: (Don't|Do not) forget!
+- id: s.cook.20
+  node: apc.cook.dont
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: فتح الفرن.
+      tokens: [{surface: فتح, lexeme: fata7, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: الفرن, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: furn, surface: فرن,
+              base: true, feats: {Number: Sing}, n: 3}]}]
+      reverse: فتح الفرن
+    apc-Latn/arabizi:
+      text: fta7 el forn.
+      tokens: [{surface: fta7, lexeme: fata7, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: forn, lexeme: furn, feats: {Number: Sing},
+          n: 3}]
+      reverse: fta7 el forn
+  translations:
+    en: (Turn on|Open) the oven.
+- id: s.cook.21
+  node: apc.cook.dont
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: نسيت التوم!
+      tokens: [{surface: نسيت, lexeme: nisi, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: التوم, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: toum, surface: توم,
+              base: true, feats: {Number: Sing}, n: 3}]}]
+      reverse: نسيت التوم
+    apc-Latn/arabizi:
+      text: nsit el tum!
+      tokens: [{surface: nsit, lexeme: nisi, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: tum, lexeme: toum, feats: {Number: Sing}, n: 3}]
+      reverse: nsit el tum
+  translations:
+    en: I forgot the garlic!
+- id: s.cook.22
+  node: apc.cook.bring
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: جبلي المعلقة.
+      tokens: [{surface: جبلي, lexemes: [{lexeme: jab, surface: جب, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لي}]}, {surface: المعلقة, lexemes: [
+            {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: ma3la2a, surface: معلقة, base: true, feats: {Number: Sing}, n: 4}]}]
+      reverse: جبلي المعلقة
+    apc-Latn/arabizi:
+      text: jebli el ma3la2a.
+      tokens: [{surface: jebli, lexemes: [{lexeme: jab, surface: jeb, base: true, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: li}]}, {surface: el, lexeme: el,
+          n: 3, head: 4, rel: det}, {surface: ma3la2a, lexeme: ma3la2a, feats: {Number: Sing}, n: 4}]
+      reverse: jebli el ma3la2a
+  translations:
+    en: |-
+      (Bring|Get) me the spoon.
+      (Bring|Get) the spoon for me.
+- id: s.cook.23
+  node: apc.cook.bring
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: جيبيلي السكينة.
+      tokens: [{surface: جيبيلي, lexemes: [{lexeme: jab, surface: جيبي, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: لي}]}, {surface: السكينة, lexemes: [
+            {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: sekkine, surface: سكينة, base: true, feats: {Number: Sing}, n: 4}]}]
+      reverse: جيبيلي السكينة
+    apc-Latn/arabizi:
+      text: jibili el sekkine.
+      tokens: [{surface: jibili, lexemes: [{lexeme: jab, surface: jibi, base: true, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {lexeme: la-1sg, surface: li}]}, {surface: el, lexeme: el,
+          n: 3, head: 4, rel: det}, {surface: sekkine, lexeme: sekkine, feats: {Number: Sing}, n: 4}]
+      reverse: jibili el sekkine
+  translations:
+    en: |-
+      (Bring|Get) me the knife.
+      (Bring|Get) the knife for me.
+- id: s.cook.24
+  node: apc.cook.bring
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: حرك الرز.
+      tokens: [{surface: حرك, lexeme: 7arrak, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: الرز, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: ruz, surface: رز,
+              base: true, feats: {Number: Sing}, n: 3}]}]
+      reverse: حرك الرز
+    apc-Latn/arabizi:
+      text: 7arrek el rozz.
+      tokens: [{surface: 7arrek, lexeme: 7arrak, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: rozz, lexeme: ruz, feats: {Number: Sing},
+          n: 3}]
+      reverse: 7arrek el rozz
+  translations:
+    en: Stir the rice.
+- id: s.cook.25
+  node: apc.cook.bring
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: حركي شوي.
+      tokens: [{surface: حركي, lexeme: 7arrak, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: شوي, lexeme: shway}]
+      reverse: حركي شوي
+    apc-Latn/arabizi:
+      text: 7arrki shway.
+      tokens: [{surface: 7arrki, lexeme: 7arrak, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: shway, lexeme: shway}]
+      reverse: 7arrki shway
+  translations:
+    en: Stir (a little|a bit).
+- id: s.cook.26
+  node: apc.cook.bring
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: شو عم تطبخ؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: عم, lexeme: 3am}, {surface: تطبخ, lexeme: tabakh, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}]
+      reverse: شو عم تطبخ
+    apc-Latn/arabizi:
+      text: shu 3am tetbokh?
+      tokens: [{surface: shu, lexeme: shu}, {surface: 3am, lexeme: 3am}, {surface: tetbokh, lexeme: tabakh, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}]
+      reverse: shu 3am tetbokh
+  translations:
+    en: What are you cooking?
+- id: s.cook.27
+  node: apc.cook.bring
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: أنا عم اطبخ رز.
+      tokens: [{surface: أنا, lexeme: ana}, {surface: عم, lexeme: 3am}, {surface: اطبخ, lexeme: tabakh, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: رز, lexeme: ruz, feats: {Number: Sing}}]
+      reverse: '[أنا] عم اطبخ رز'
+    apc-Latn/arabizi:
+      text: ana 3am etbokh rozz.
+      tokens: [{surface: ana, lexeme: ana}, {surface: 3am, lexeme: 3am}, {surface: etbokh, lexeme: tabakh, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: rozz, lexeme: ruz, feats: {
+            Number: Sing}}]
+      reverse: '[ana] 3am etbokh rozz'
+  translations:
+    en: (I'm|I am) cooking rice.
+- id: s.cook.29
+  node: apc.cook.tabbouleh
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: أنا بحب التبولة كتير.
+      tokens: [{surface: أنا, lexeme: ana}, {surface: بحب, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: التبولة, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4,
+              rel: det}, {lexeme: tabbouleh, surface: تبولة, base: true, feats: {Number: Sing}, n: 4}]}, {surface: كتير, lexeme: ktir}]
+      reverse: '[أنا] بحب التبولة كتير'
+    apc-Latn/arabizi:
+      text: ana b7ebb el tabboule ktir.
+      tokens: [{surface: ana, lexeme: ana}, {surface: b7ebb, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: tabboule,
+          lexeme: tabbouleh, feats: {Number: Sing}, n: 4}, {surface: ktir, lexeme: ktir}]
+      reverse: '[ana] b7ebb el tabboule ktir'
+  translations:
+    en: I (really|) (love|like) tabbouleh (a lot|very much|).
+- id: s.cook.30
+  node: apc.cook.tabbouleh
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: غسل البقدونس منيح.
+      tokens: [{surface: غسل, lexeme: ghassal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: البقدونس, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: ba2dounes,
+              surface: بقدونس, base: true, feats: {Number: Sing}, n: 3}]}, {surface: منيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      reverse: غسل البقدونس منيح
+    apc-Latn/arabizi:
+      text: ghassel el ba2dunes mni7.
+      tokens: [{surface: ghassel, lexeme: ghassal, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: ba2dunes, lexeme: ba2dounes,
+          feats: {Number: Sing}, n: 3}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      reverse: ghassel el ba2dunes mni7
+  translations:
+    en: Wash the parsley (well|properly|thoroughly).
+- id: s.cook.28
+  node: apc.cook.bring
+  forms:
+    apc-Arab/standard:
+      text: إمي بتطبخ كتير منيح.
+      tokens: [{surface: إمي, lexemes: [{lexeme: emm, surface: إم, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: بتطبخ, lexeme: tabakh, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing,
+            Person: '3'}}, {surface: كتير, lexeme: ktir}, {surface: منيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      reverse: إمي بتطبخ كتير منيح
+    apc-Latn/arabizi:
+      text: emmi btetbokh ktir mni7.
+      tokens: [{surface: emmi, lexemes: [{lexeme: emm, surface: emm, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: btetbokh, lexeme: tabakh, feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing,
+            Person: '3'}}, {surface: ktir, lexeme: ktir}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      reverse: emmi btetbokh ktir mni7
+  translations:
+    en: My (mother|mom|mum) cooks (very well|really well).
+stories:
+- id: apc.story.tabbouleh
+  node: apc.cook.story
+  title:
+    en: Teta's tabbouleh
+  provenance:
+    author: llm:claude@apc-b1
+    status: draft
+  characters:
+  - id: teta
+    speaker: f
+    name:
+      apc-Arab/standard: تيتا
+      apc-Latn/arabizi: teta
+  - id: maya
+    speaker: f
+    name:
+      apc-Arab/standard: مايا
+      apc-Latn/arabizi: Maya
+  steps:
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: مايا، يَلّا نَعْمِل تَبّولِة!
+          tokens: [{surface: مايا, lexeme: maya}, {surface: يَلّا, lexeme: yalla}, {surface: نَعْمِل, lexeme: 3emel, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: تَبّولِة, lexeme: tabbouleh,
+              feats: {Number: Sing}}]
+        apc-Latn/arabizi:
+          text: Maya, yalla na3mel tabboule!
+          tokens: [{surface: Maya, lexeme: maya}, {surface: yalla, lexeme: yalla}, {surface: na3mel, lexeme: 3emel, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: tabboule, lexeme: tabbouleh,
+              feats: {Number: Sing}}]
+      translations:
+        en: Maya, come on, let's make tabbouleh!
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: يَلّا! شو لازِم اَعْمِل؟
+          tokens: [{surface: يَلّا, lexeme: yalla}, {surface: شو, lexeme: shu}, {surface: لازِم, lexeme: lezem}, {surface: اَعْمِل, lexeme: 3emel, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}]
+        apc-Latn/arabizi:
+          text: yalla! shu lezem a3mel?
+          tokens: [{surface: yalla, lexeme: yalla}, {surface: shu, lexeme: shu}, {surface: lezem, lexeme: lezem}, {surface: a3mel, lexeme: 3emel, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}]
+      translations:
+        en: OK! What do I have to do?
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: غَسّْلي البَقْدونِس والبَنَدورَة.
+          tokens: [{surface: غَسّْلي, lexeme: ghassal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: البَقْدونِس, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {
+                  lexeme: ba2dounes, surface: بَقْدونِس, base: true, feats: {Number: Sing}, n: 3}]}, {surface: والبَنَدورَة, lexemes: [{lexeme: w, surface: و, n: 4}, {lexeme: el, surface: ال, n: 5, head: 6,
+                  rel: det}, {lexeme: bandoura, surface: بَنَدورَة, base: true, feats: {Number: Sing}, n: 6}]}]
+        apc-Latn/arabizi:
+          text: ghassli el ba2dunes w el banadura.
+          tokens: [{surface: ghassli, lexeme: ghassal, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: ba2dunes, lexeme: ba2dounes,
+              feats: {Number: Sing}, n: 3}, {surface: w, lexeme: w, n: 4}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: banadura, lexeme: bandoura, feats: {Number: Sing}, n: 6}]
+      translations:
+        en: Wash the parsley and the tomatoes.
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: بَعْدين قْطَعي البَصَل.
+          tokens: [{surface: بَعْدين, lexeme: ba3dein}, {surface: قْطَعي, lexeme: 2ata3, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: البَصَل, lexemes: [{lexeme: el, surface: ال,
+                  n: 3, head: 4, rel: det}, {lexeme: basal, surface: بَصَل, base: true, feats: {Number: Sing}, n: 4}]}]
+        apc-Latn/arabizi:
+          text: ba3dein 2ta3i el basal.
+          tokens: [{surface: ba3dein, lexeme: ba3dein}, {surface: 2ta3i, lexeme: 2ata3, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {
+              surface: basal, lexeme: basal, feats: {Number: Sing}, n: 4}]
+      translations:
+        en: Then cut the onion.
+  - choose:
+      prompt:
+        en: What does Maya wash?
+      options:
+      - en: The parsley and the tomatoes
+      - en: The rice
+      - en: The pot
+      answer: 0
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: غَسَّلِت كِلّ شي. زيد الزّيت هَلَّق؟
+          tokens: [{surface: غَسَّلِت, lexeme: ghassal, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: كِلّ, lexeme: kell}, {surface: شي, lexeme: shi}, {surface: زيد, lexeme: zad, feats: {
+                Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: الزّيت, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: zet, surface: زّيت, base: true, feats: {Number: Sing},
+                  n: 6}]}, {surface: هَلَّق, lexeme: hala2}]
+        apc-Latn/arabizi:
+          text: ghassalt kell shi. zid el zet hala2?
+          tokens: [{surface: ghassalt, lexeme: ghassal, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: kell, lexeme: kell}, {surface: shi, lexeme: shi}, {surface: zid, lexeme: zad, feats: {
+                Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: zet, lexeme: zet, feats: {Number: Sing}, n: 6}, {surface: hala2, lexeme: hala2}]
+      translations:
+        en: I washed everything. Shall I add the oil now?
+  - line:
+      speaker: teta
+      ask: complete
+      gap: lexeme:laymoun
+      distractors:
+      - lexeme:ruz
+      - lexeme:toum
+      forms:
+        apc-Arab/standard:
+          text: إيه، زيدي اللَّيْمون. ما تِنْسي المِلِح!
+          tokens: [{surface: إيه, lexeme: eh}, {surface: زيدي, lexeme: zad, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: اللَّيْمون, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4,
+                  rel: det}, {lexeme: laymoun, surface: لَّيْمون, base: true, feats: {Number: Sing}, n: 4}]}, {surface: ما, lexeme: ma}, {surface: تِنْسي, lexeme: nisi, feats: {Aspect: Imp, Gender: Fem,
+                Mood: Sub, Number: Sing, Person: '2'}}, {surface: المِلِح, lexemes: [{lexeme: el, surface: ال, n: 7, head: 8, rel: det}, {lexeme: mele7, surface: مِلِح, base: true, feats: {Number: Sing},
+                  n: 8}]}]
+        apc-Latn/arabizi:
+          text: eh, zidi el laymun. ma tensi el mel7!
+          tokens: [{surface: eh, lexeme: eh}, {surface: zidi, lexeme: zad, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: laymun,
+              lexeme: laymoun, feats: {Number: Sing}, n: 4}, {surface: ma, lexeme: ma}, {surface: tensi, lexeme: nisi, feats: {Aspect: Imp, Gender: Fem, Mood: Sub, Number: Sing, Person: '2'}}, {surface: el,
+              lexeme: el, n: 7, head: 8, rel: det}, {surface: mel7, lexeme: mele7, feats: {Number: Sing}, n: 8}]
+      translations:
+        en: Yes, add the lemon. Don't forget the salt!
+  - choose:
+      prompt:
+        en: What must Maya not forget?
+      options:
+      - en: The salt
+      - en: The garlic
+      - en: The oven
+      answer: 0

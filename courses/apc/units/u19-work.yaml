@@ -377,7 +377,7 @@ sentences:
   forms:
     apc-Arab/standard:
       text: صارلك كتير هون؟
-      tokens: [{surface: صارلك, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-2ms, surface: لك}]}, {surface: كتير, lexeme: ktir}, {surface: هون, lexeme: hon}]
+      tokens: [{surface: صارلك, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-2ms, surface: لك}], vocalized: صارْلَك}, {surface: كتير, lexeme: ktir}, {surface: هون, lexeme: hon}]
       reverse: |-
         صارلك كتير هون
         صارلك زمان هون
@@ -385,7 +385,7 @@ sentences:
       text: sarlak ktir hon?
       tokens: [{surface: sarlak, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-2ms, surface: lak}]}, {surface: ktir, lexeme: ktir}, {surface: hon, lexeme: hon}]
       reverse: |-
-        (sarlak|sarlek) (ktir|kteer) (hon|hone|houn)
+        sarlak (ktir|kteer) (hon|hone|houn)
         sarlak zamen hon
   translations:
     en: Have you been here (long|a long time|for long)?

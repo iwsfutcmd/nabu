@@ -29172,6 +29172,40 @@
       "note": "s.fam.23: the course writes عيلتي, عَيِلْتي. "
     },
     {
+      "id": "realise/apc/feminine-t/doubled",
+      "op": "realise-token",
+      "args": {
+        "lang": "apc",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:marra",
+            "base": true,
+            "feats": {
+              "Number": "Sing"
+            }
+          },
+          {
+            "lexeme": "lexeme:dual"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "مَرّْت\u065c+ين",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:apc-feminine-t",
+              "branch": "doubled"
+            }
+          ]
+        }
+      },
+      "note": "s.long.20: the course writes مرتين, marrten (Kline p. 134: marten); the doubling stays."
+    },
+    {
       "id": "realise/apc/helping-vowel/glide",
       "op": "realise-token",
       "args": {
