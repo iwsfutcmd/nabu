@@ -8,7 +8,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { parse } from "yaml";
-import { decodeExplore, encodeExplore, explore, EXPLORE_DEFAULTS, explorerParadigm, rulesExplorer, waysOf, type ExploreRequest, type LexiconSource, type RulesExplorer } from "../src/lesson/index.ts";
+import { decodeExplore, encodeExplore, explore, EXPLORE_DEFAULTS, explorerParadigm, fitCell, rulesExplorer, waysOf, type ExploreRequest, type LexiconSource, type RulesExplorer } from "../src/lesson/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -141,5 +141,37 @@ describe("encodeExplore and decodeExplore", () => {
     expect(decodeExplore(encodeExplore(los))).toEqual(los);
     expect(decodeExplore("")).toBeUndefined();
     expect(decodeExplore("b=lexeme%3Abet")).toEqual(ask("lexeme:bet", {}));
+  });
+});
+
+describe("a cell's defaults", () => {
+  const es = (): RulesExplorer => rulesExplorer(loadCourse("es"), sourceOf("es", ["es-Latn/standard"]));
+  const hbo = (): RulesExplorer => rulesExplorer(loadCourse("hbo"), sourceOf("hbo", ["hbo-Hebr/tiberian"]));
+  const lexeme = (x: RulesExplorer, id: string) => {
+    const found = x.lexemes.find((l) => l.row.id.id === id);
+    if (found === undefined) throw new Error(id);
+    return found;
+  };
+
+  it("opens a lexeme in its citation cell: es the infinitive, apc and hbo the 3ms perfect, a lexeme's own citation", () => {
+    expect(lexeme(es(), "lexeme:tener").citation).toEqual({ VerbForm: "Inf" });
+    expect(lexeme(apc(), "lexeme:shereb").citation).toEqual({ Aspect: "Perf", Person: "3", Gender: "Masc", Number: "Sing" });
+    expect(lexeme(hbo(), "lexeme:halakh").citation).toMatchObject({ Aspect: "Perf", Person: "3", Gender: "Masc", Number: "Sing" });
+    expect(lexeme(apc(), "lexeme:khayef").citation).toEqual({ Aspect: "Part", Gender: "Masc", Number: "Sing" });
+    // A noun's gender is its own, not its cell's.
+    expect(lexeme(es(), "lexeme:casa").citation).toEqual({ Number: "Sing" });
+  });
+
+  it("drops the values no known cell combines with the one chosen (es: a finite verb has no gender)", () => {
+    const x = es();
+    const tener = lexeme(x, "lexeme:tener");
+    const participle = { Gender: "Fem", Number: "Sing", Tense: "Past", VerbForm: "Part" };
+    expect(fitCell(x, tener, { ...participle, VerbForm: "Fin" }, "VerbForm")).toEqual({ Number: "Sing", Tense: "Past", VerbForm: "Fin" });
+    // A cell that fits is left as it is.
+    expect(fitCell(x, tener, participle, "Gender")).toEqual(participle);
+    // apc: the participle has no person.
+    const y = apc();
+    const shereb = lexeme(y, "lexeme:shereb");
+    expect(fitCell(y, shereb, { Aspect: "Part", Person: "3", Gender: "Masc", Number: "Sing" }, "Aspect")).toEqual({ Aspect: "Part", Gender: "Masc", Number: "Sing" });
   });
 });

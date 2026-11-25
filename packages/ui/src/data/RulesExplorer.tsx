@@ -22,6 +22,7 @@ import {
   explore,
   EXPLORE_DEFAULTS,
   explorerParadigm,
+  fitCell,
   lexiconFacets,
   lexiconFilter,
   rulesExplorer,
@@ -315,10 +316,10 @@ const Result = ({ t, result }: { t: Translator; result: Explored }): JSX.Element
   );
 };
 
-/** A cell's values: each feature a row of radios, "none" leaving it out. */
-const Cell = ({ t, features, feats, onChange }: { t: Translator; features: ExplorerLexeme["features"]; feats: UdFeatures; onChange: (feats: UdFeatures) => void }): JSX.Element => (
+/** A cell's values: each feature a row of radios, "none" leaving it out; a value set drops those no known cell combines it with (`fitCell`). */
+const Cell = ({ t, explorer, lexeme, feats, onChange }: { t: Translator; explorer: Explorer; lexeme: ExplorerLexeme; feats: UdFeatures; onChange: (feats: UdFeatures) => void }): JSX.Element => (
   <>
-    {features.map(({ feature, values }) => (
+    {lexeme.features.map(({ feature, values }) => (
       <RadioGroup
         key={feature}
         className={styles.feature}
@@ -327,7 +328,7 @@ const Cell = ({ t, features, feats, onChange }: { t: Translator; features: Explo
           const next = { ...feats };
           if (v === "") delete next[feature];
           else next[feature] = v;
-          onChange(next);
+          onChange(v === "" ? next : fitCell(explorer, lexeme, next, feature));
         }}
         orientation="horizontal"
         data-feature={feature}
@@ -387,7 +388,8 @@ const Around = ({ t, explorer, items, side, onChange }: { t: Translator; explore
                 {lexeme !== undefined && lexeme.features.length > 0 && (
                   <Cell
                     t={t}
-                    features={lexeme.features}
+                    explorer={explorer}
+                    lexeme={lexeme}
                     feats={item.feats ?? {}}
                     onChange={(feats) => onChange(items.map((x, k) => (k === i ? (Object.keys(feats).length === 0 ? { lexeme: x.lexeme } : { lexeme: x.lexeme, feats }) : x)))}
                   />
@@ -459,7 +461,7 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
               {t.format("rules.base")}
             </h2>
             {base === undefined ? (
-              <LexemePicker t={t} explorer={explorer} label={t.format("rules.search")} field="rules-base" browse onPick={(l) => onRequest({ base: l.row.id.id, feats: {}, before: [], after: [], ...EXPLORE_DEFAULTS })} />
+              <LexemePicker t={t} explorer={explorer} label={t.format("rules.search")} field="rules-base" browse onPick={(l) => onRequest({ base: l.row.id.id, feats: l.citation, before: [], after: [], ...EXPLORE_DEFAULTS })} />
             ) : (
               <div className={styles.chosen} data-base={base.row.id.id} data-ink-container="rules-base">
                 <LexemeLine lexeme={base} />
@@ -483,7 +485,7 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
                   {t.format("rules.features")}
                 </h2>
                 {base.features.length === 0 && <p className={list.muted}>{t.format("rules.features.none")}</p>}
-                <Cell t={t} features={base.features} feats={request.feats} onChange={(feats) => change({ feats })} />
+                <Cell t={t} explorer={explorer} lexeme={base} feats={request.feats} onChange={(feats) => change({ feats })} />
               </section>
               <section className={styles.part} aria-labelledby="rules-around">
                 <h2 className={data.partTitle} id="rules-around">

@@ -30,6 +30,11 @@ export interface ExplorerLexeme {
   readonly pos?: string | undefined;
   /** Each feature a cell of it may set (its category's dimensions, its lexical features, what it chooses), with the language's values of it. */
   readonly features: readonly { readonly feature: string; readonly values: readonly string[] }[];
+  /**
+   * The cell it is cited in, where it is first picked: its own `citation`, else its category's
+   * (language.yaml: es's infinitive, apc's and hbo's 3ms perfect), its stored lexical values left out.
+   */
+  readonly citation: UdFeatures;
 }
 
 /** An orthography (or one of its marked layers) the explorer spells in. */
@@ -177,6 +182,7 @@ export const rulesExplorer = (course: CourseView, source: LexiconSource): RulesE
   const dimensions = isObject(declared.dimensions) ? (declared.dimensions as Readonly<Record<string, readonly string[]>>) : {};
   const lexicalFeatures = isObject(declared.lexical) ? (declared.lexical as Readonly<Record<string, readonly string[]>>) : {};
   const values = isObject(declared.features) ? (declared.features as Readonly<Record<string, readonly string[]>>) : {};
+  const citations = isObject(declared.citation) ? (declared.citation as Readonly<Record<string, unknown>>) : {};
 
   const rows = lexiconData(course, source).lexemes;
   const lexemes = rows.map((row): ExplorerLexeme => {
@@ -184,7 +190,13 @@ export const rulesExplorer = (course: CourseView, source: LexiconSource): RulesE
     const pos = typeof entry?.["pos"] === "string" ? entry["pos"] : row.lexeme?.pos;
     const names = [...(pos === undefined ? [] : [...(dimensions[pos] ?? []), ...(lexicalFeatures[pos] ?? [])]), ...stringsOf(entry?.["chooses"])];
     const features = [...new Set(names)].map((feature) => ({ feature, values: stringsOf(values[feature]) }));
-    return { row, pos, features };
+    // A lexical feature (a noun's gender) is the lexeme's own, never its cell's, unless it chooses it.
+    const own = new Set(pos === undefined ? [] : (lexicalFeatures[pos] ?? []).filter((f) => !stringsOf(entry?.["chooses"]).includes(f)));
+    const stated = isObject(entry?.["citation"]) ? entry["citation"] : pos === undefined ? undefined : citations[pos];
+    const citation = Object.fromEntries(
+      Object.entries(isObject(stated) ? stated : {}).filter(([k, v]) => typeof v === "string" && !own.has(k) && features.some((f) => f.feature === k)),
+    ) as UdFeatures;
+    return { row, pos, features, citation };
   });
 
   const problems: ExplorerProblem[] = [];
@@ -391,6 +403,11 @@ export const cellsOf = (explorer: RulesExplorer, lexeme: ExplorerLexeme): readon
   if (pos === undefined) return [];
   const listed = explorer.course.lexicon.cells?.[pos];
   if (listed !== undefined) return listed.map(cellFeats);
+  return tokenCells(explorer, lexeme, pos);
+};
+
+/** Every cell the course's tokens give a category, cut to the features a cell of the lexeme may set. */
+const tokenCells = (explorer: RulesExplorer, lexeme: ExplorerLexeme, pos: string): readonly UdFeatures[] => {
   const names = new Set(lexeme.features.map((f) => f.feature));
   const posOf = new Map(explorer.lexemes.map((l) => [l.row.id.id, l.pos]));
   const out = new Map<string, UdFeatures>();
@@ -407,6 +424,51 @@ export const cellsOf = (explorer: RulesExplorer, lexeme: ExplorerLexeme): readon
     for (const story of unit.stories ?? []) for (const step of story.steps) if ("line" in step && step.line !== undefined) for (const text of Object.values(step.line.forms)) visit(text);
   }
   return [...out.values()].sort((a, b) => cellKey(a).localeCompare(cellKey(b), "en"));
+};
+
+const combos = new WeakMap<RulesExplorer, Map<string, readonly UdFeatures[]>>();
+
+/** The cells a lexeme's values may combine into: the bundle's, its category's tokens', and its citation cell. */
+const combosOf = (explorer: RulesExplorer, lexeme: ExplorerLexeme): readonly UdFeatures[] => {
+  const pos = lexeme.pos;
+  if (pos === undefined) return [];
+  let byPos = combos.get(explorer);
+  if (byPos === undefined) {
+    byPos = new Map();
+    combos.set(explorer, byPos);
+  }
+  const key = `${pos}\u0000${lexeme.features.map((f) => f.feature).join(",")}`;
+  const known = byPos.get(key);
+  if (known !== undefined) return known;
+  const all = [...(explorer.course.lexicon.cells?.[pos] ?? []).map(cellFeats), ...tokenCells(explorer, lexeme, pos), lexeme.citation].filter((c) => Object.keys(c).length > 0);
+  byPos.set(key, all);
+  return all;
+};
+
+/**
+ * A cell after one of its features was set: the value chosen kept, and each other value kept, in the
+ * order of the lexeme's features, only while some cell the explorer knows of its category (the
+ * bundle's, the tokens', the citation) has all the values kept so far; the rest left unset. es
+ * VerbForm=Fin drops Gender=Masc (only a participle has a gender). A feature no known cell sets (a
+ * value of the lexeme's own) is never dropped, and a lexeme with no known cells keeps every value.
+ */
+export const fitCell = (explorer: RulesExplorer, lexeme: ExplorerLexeme, feats: UdFeatures, changed: string): UdFeatures => {
+  const known = combosOf(explorer, lexeme);
+  const value = feats[changed];
+  if (known.length === 0 || value === undefined) return feats;
+  const constrained = new Set(known.flatMap((c) => Object.keys(c)));
+  if (!constrained.has(changed)) return feats;
+  const fits = (kept: UdFeatures): boolean => known.some((c) => Object.entries(kept).every(([k, v]) => c[k] === v));
+  // A value no known cell has (a cell the course never writes) is the explorer's to try: nothing is dropped.
+  if (!fits({ [changed]: value })) return feats;
+  let kept: UdFeatures = { [changed]: value };
+  const order = [...lexeme.features.map((f) => f.feature), ...Object.keys(feats)];
+  for (const feature of new Set(order)) {
+    const v = feats[feature];
+    if (feature === changed || v === undefined) continue;
+    if (!constrained.has(feature) || fits({ ...kept, [feature]: v })) kept = { ...kept, [feature]: v };
+  }
+  return Object.fromEntries(Object.keys(feats).filter((k) => kept[k] !== undefined).map((k) => [k, kept[k] as string]));
 };
 
 /** A lexeme's paradigm: each cell realised alone (`strict`, as the bundle's are), with the request's blocking. */

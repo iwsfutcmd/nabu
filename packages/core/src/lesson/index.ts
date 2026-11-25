@@ -9,6 +9,7 @@ export {
   explore,
   EXPLORE_DEFAULTS,
   explorerParadigm,
+  fitCell,
   requestOfToken,
   rulesExplorer,
   waysOf,

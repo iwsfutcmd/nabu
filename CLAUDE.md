@@ -829,7 +829,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Rules explorer notes
 - Debug mode links each course's rules explorer (`#/<course>/<orth>/rules[/<request>]`, apps/web/src/Rules.tsx, its own
   lazy chunk): pick a base lexeme (the lexicon browsed, searched and filtered by the Lexicon view's facets: part of
-  speech, inflection class, free or bound, …), set its cell's values, write other lexemes before or after it (as a token lists them),
+  speech, inflection class, free or bound, …; it opens in its citation cell, `ExplorerLexeme.citation`), set its cell's
+  values (a value set drops the others no known cell combines it with: core `fitCell`, es VerbForm=Fin drops Gender), write other lexemes before or after it (as a token lists them),
   set the next word and how blocking runs, and see live the lexical form, status, every `{rule, branch}` taken and each
   orthography's spelling (and marked layer) with its free alternatives; then how the course's tokens write the lexeme,
   each with the token check's verdict (a way loads into the explorer), and its paradigm over the bundle's cells.
