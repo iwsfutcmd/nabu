@@ -12,6 +12,11 @@
  *   (else it moves to the third, or the second, from the end); every other accent goes; on the
  *   second-to-last syllable it is a circumflex where that syllable is long and the last short, an
  *   acute where not; on the last it stays as it was. A form with no accent is left so.
+ * - oxytone: a form with no accent takes an acute on its last syllable (an oxytone whose cited ending,
+ *   the accent with it, gave way to another); a form with one is left so.
+ * - ultima: every accent goes, and the last syllable takes one: a circumflex where it is long, an acute
+ *   where it is short (the genitive and dative of a first- or second-declension oxytone; of a
+ *   monosyllabic third-declension stem).
  *
  * Pure. No letter or mark of a language is named here: they are the notation's.
  */
@@ -22,7 +27,7 @@ import { unitsOf, type Unit } from "./realise-pattern.ts";
 
 type Prosody = NonNullable<Notation["prosody"]>;
 
-export type AccentMode = "recessive" | "persistent";
+export type AccentMode = "recessive" | "persistent" | "oxytone" | "ultima";
 
 /** The notation's prosody as the accent rules read it. */
 export interface CompiledProsody {
@@ -158,6 +163,13 @@ export const accentuate = (units: readonly Unit[], mode: AccentMode, p: Compiled
     const back = n === 1 ? 0 : ultimaLong ? n - 2 : Math.max(0, n - 3);
     k = Math.min(Math.max(back, earliest), n - 1);
     type = (k === n - 2 && long[k] === true && !ultimaLong) || (k === n - 1 && long[k] === true) ? "circumflex" : "acute";
+  } else if (mode === "oxytone") {
+    if (nuclei.some((x) => accentOf(units, x, p) !== undefined)) return { units, changed: false };
+    k = n - 1;
+    type = "acute";
+  } else if (mode === "ultima") {
+    k = n - 1;
+    type = ultimaLong ? "circumflex" : "acute";
   } else {
     const accented = nuclei.map((x) => accentOf(units, x, p));
     k = accented.findLastIndex((a) => a !== undefined);

@@ -154,6 +154,25 @@
       },
       {
        "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
        "branch": "persistent",
        "accent": "persistent",
        "when": {
@@ -423,6 +442,25 @@
        "accent": "recessive",
        "when": {
         "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
        }
       },
       {
@@ -700,6 +738,25 @@
       },
       {
        "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
        "branch": "persistent",
        "accent": "persistent",
        "when": {
@@ -808,17 +865,609 @@
    "expected": {
     "ok": true,
     "value": {
-     "form": "the+ou",
+     "form": "the+oû",
      "status": "given",
      "steps": [
       {
        "rule": "rule:zz-noun",
        "branch": "gen-sg"
+      },
+      {
+       "rule": "rule:zz-accent",
+       "branch": "ultima"
       }
      ]
     }
    },
-   "note": "The first ending of `strip` the form ends in goes, its accent with it: an oxytone's stem has none (the persistent rule leaves a form with no accent so)."
+   "note": "The first ending of `strip` the form ends in goes, its accent with it: an oxytone's stem has none. ultima: the last syllable takes the accent, a circumflex where it is long (θεοῦ)."
+  },
+  {
+   "id": "realise/engine/oxytone",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:theos",
+    "cell": {
+     "Case": "Nom",
+     "Number": "Plur"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "the+á",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-noun",
+       "branch": "nom-pl"
+      },
+      {
+       "rule": "rule:zz-accent",
+       "branch": "oxytone"
+      }
+     ]
+    }
+   },
+   "note": "oxytone: a form with no accent takes an acute on its last syllable (θεοί)."
+  },
+  {
+   "id": "realise/engine/oxytone/accented",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:logos",
+    "cell": {
+     "Case": "Nom",
+     "Number": "Plur"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "lóg+a",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-noun",
+       "branch": "nom-pl"
+      }
+     ]
+    }
+   },
+   "note": "A form with an accent is left as it is by the oxytone rule."
   },
   {
    "id": "realise/engine/strip/no-ending",
@@ -969,6 +1618,25 @@
        "accent": "recessive",
        "when": {
         "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
        }
       },
       {
@@ -1236,6 +1904,25 @@
        "accent": "recessive",
        "when": {
         "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
        }
       },
       {
@@ -1517,6 +2204,25 @@
       },
       {
        "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
        "branch": "persistent",
        "accent": "persistent",
        "when": {
@@ -1794,6 +2500,25 @@
       },
       {
        "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
        "branch": "persistent",
        "accent": "persistent",
        "when": {
@@ -2063,6 +2788,25 @@
        "accent": "recessive",
        "when": {
         "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
        }
       },
       {
@@ -2344,6 +3088,25 @@
       },
       {
        "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
        "branch": "persistent",
        "accent": "persistent",
        "when": {
@@ -2613,6 +3376,25 @@
        "accent": "recessive",
        "when": {
         "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
        }
       },
       {
@@ -2891,6 +3673,25 @@
       },
       {
        "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
        "branch": "persistent",
        "accent": "persistent",
        "when": {
@@ -3161,6 +3962,25 @@
        "accent": "recessive",
        "when": {
         "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
        }
       },
       {
@@ -3443,6 +4263,25 @@
       },
       {
        "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
        "branch": "persistent",
        "accent": "persistent",
        "when": {
@@ -3721,6 +4560,25 @@
       },
       {
        "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
        "branch": "persistent",
        "accent": "persistent",
        "when": {
@@ -3995,6 +4853,25 @@
        "accent": "recessive",
        "when": {
         "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "ultima",
+       "accent": "ultima",
+       "when": {
+        "ends": "theós",
+        "feats": {
+         "Case": "Gen"
+        }
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "oxytone",
+       "accent": "oxytone",
+       "when": {
+        "pos": "NOUN"
        }
       },
       {

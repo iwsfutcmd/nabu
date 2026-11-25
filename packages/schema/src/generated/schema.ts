@@ -3822,9 +3822,9 @@ export interface Rewrite {
    */
   readonly find?: string;
   /**
-   * In place of `find`: a rule that places the word's pitch accent by the notation's `prosody`, counting syllables from the word's end (Greek, CGCG 24). recessive: every accent goes, and an acute stands as far from the end as the last syllable allows (the third syllable, or the second where the last is long), no further back than the last syllable before the notation's `limit`; a long second-to-last syllable before a short last takes the circumflex. persistent: the form's last accent stays on its syllable as far as the last syllable allows (else on the third, or the second, from the end), every other accent goes; on the second-to-last syllable it is a circumflex where that is long and the last short, an acute where not; a form with no accent is left so. Taken where it changes the form.
+   * In place of `find`: a rule that places the word's pitch accent by the notation's `prosody`, counting syllables from the word's end (Greek, CGCG 24). recessive: every accent goes, and an acute stands as far from the end as the last syllable allows (the third syllable, or the second where the last is long), no further back than the last syllable before the notation's `limit`; a long second-to-last syllable before a short last takes the circumflex. persistent: the form's last accent stays on its syllable as far as the last syllable allows (else on the third, or the second, from the end), every other accent goes; on the second-to-last syllable it is a circumflex where that is long and the last short, an acute where not; a form with no accent is left so. oxytone: a form with no accent takes an acute on its last syllable. ultima: every accent goes, and the last syllable takes a circumflex where it is long, an acute where it is short. Taken where it changes the form.
    */
-  readonly accent?: "recessive" | "persistent";
+  readonly accent?: "recessive" | "persistent" | "oxytone" | "ultima";
   readonly to?: string;
   readonly map?: {
     readonly [k: string]: string;
