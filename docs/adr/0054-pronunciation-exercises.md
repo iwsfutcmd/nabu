@@ -6,6 +6,7 @@
   [0148](0148-projections-and-misses.md) (options come from leftovers)
 - Amended 2026-11-21 (Proposed): a fatha before an alif may be written or not (below)
 - Amended 2026-11-25 (Proposed): so may a kasra before a bare ya and a damma before a bare waw (below)
+- Amended 2026-11-25 (Proposed): wrong options that are readings too, and the kasra under إ (below)
 
 ## Context
 
@@ -148,4 +149,32 @@ carries the rules (`OptionalBeforeRule`), so the card link's format is 2.
 - **ē and ō take the kasra or damma too.** بِيت is accepted for بيت (bēt) and يُوم for يوم (yōm):
   the script, as the course marks it, does not say the vowel's quality. To ask it, the vocalization
   would need a mark for ē and ō (a fatha, بَيت), which would change what the voices read.
+
+## Amendment (2026-11-25, Proposed): wrong options that are readings too
+
+**Context.** The owner, on the vocalize card for كيفك؟ ("How are you?"): "a lot of answers that strike
+me as possible". Its wrong options were كِيفَك (the kasra before a bare ya, amended above), كيفِك and
+كيّفَك. كيفِك is the word said to a woman: the sentence is tagged as said to a man, but this card did not
+show the tags, so nothing on it ruled kīfik out. كيّفَك gives the long i's ya a shadda: another word's
+shape (kayyaf-, "to please"), not a vocalization of this one; so would a fatha before it (كَيفَك, kayfak,
+which some speakers say). And the survey of apc's planned cards found إِمّ and إِنْتَ offered as wrong
+beside إمّ and إنْتَ, whose hamza below says the i already.
+
+**Decision.**
+- **Reading cards show who speaks and who is spoken to.** vocalize, vocalize-build, transcribe,
+  char-read and reading-feature carry the sentence's `persons` tags (ADR 0056) and show them under
+  its meaning, as the cards into the target do. A homograph that is the word in another person
+  (كيفِك) stays a wrong option: the tag decides it, and it is what the marks are there to say.
+- **A wrong vocalization never touches a long vowel** (`vocalizationVariants`): neither the letter
+  that writes it (an alif; a bare ya or waw, by the profile's `optionalBefore`) nor an unmarked letter
+  before a ya or waw gets other marks. Variants change the short vowels and the shadda of the
+  word's consonants.
+- **`optionalOn`**: marks a letter already says, optional on it. apc-Arab and ar-Arab (REVIEW): the
+  kasra under إ. A plain alif's kasra (اِسْمي) and any vowel on أ still count.
+
+**Consequences.** Three more vectors in conformance/pronounce.json (the kasra under إ left out; a
+plain alif's kasra and another vowel on إ, which count). A planned test walks apc's vocalize cards:
+no wrong option touches a long vowel or leaves out only the kasra under إ, and the cards of tagged
+sentences carry their tags. Fewer generated variants means some short words have fewer than three
+wrong options; a card needs two.
 

@@ -1620,6 +1620,7 @@ export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | un
     id: id("char-read", `${s.id}:${target.surface}`),
     item: s.id,
     parts: s.parts,
+    ...personsOf(s),
     orthography: options[0]?.orthography ?? ctx.course.orthography,
     prompt: { ...form.text, tokens: form.text.tokens.map(stripRuby) },
     word,
@@ -1663,6 +1664,7 @@ export const makeReadingFeature = (ctx: MakeContext, s: BundleSentence): CharRea
     id: id("reading-feature", `${s.id}:${target.surface}`),
     item: s.id,
     parts: s.parts,
+    ...personsOf(s),
     orthography: options[0]?.orthography ?? ctx.course.orthography,
     prompt: { ...form.text, tokens: form.text.tokens.map(stripRuby) },
     word,
@@ -2037,6 +2039,7 @@ export const makeVocalize = (ctx: MakeContext, s: BundleSentence): Vocalize | un
     id: id("vocalize", s.id),
     item: s.id,
     parts: s.parts,
+    ...personsOf(s),
     orthography: ctx.course.orthography,
     prompt: { ...form.text, tokens: form.text.tokens.map(bare) },
     word,
@@ -2086,6 +2089,7 @@ export const makeVocalizeBuild = (ctx: MakeContext, s: BundleSentence): Vocalize
     id: id("vocalize-build", s.id),
     item: s.id,
     parts: s.parts,
+    ...personsOf(s),
     orthography: ctx.course.orthography,
     prompt: { ...form.text, tokens: form.text.tokens.map(bare) },
     word,
@@ -2095,6 +2099,7 @@ export const makeVocalizeBuild = (ctx: MakeContext, s: BundleSentence): Vocalize
     marks: [...marks.set],
     optional: [...marks.optional],
     ...(marks.optionalBefore.length === 0 ? {} : { optionalBefore: marks.optionalBefore.map(ruleOf) }),
+    ...(marks.optionalOn.size === 0 ? {} : { optionalOn: Object.fromEntries([...marks.optionalOn].map(([letter, ms]) => [letter, [...ms]])) }),
     combos: letters.map((l, i) => attested(l, i === 0 ? "initial" : i === letters.length - 1 ? "final" : "medial")),
   };
 };
@@ -2116,6 +2121,7 @@ export const makeTranscribe = (ctx: MakeContext, s: BundleSentence): Transcribe 
     id: id("transcribe", s.id),
     item: s.id,
     parts: s.parts,
+    ...personsOf(s),
     orthography: reading.orthography,
     prompt: { ...form.text, tokens: form.text.tokens.map(stripRuby) },
     word,
@@ -2263,7 +2269,8 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
       if (response.tag !== "text") return mismatch(ex, response);
       // Letter by letter (ADR 0137): the marks each letter has, optional ones (sukun, a fatha before an alif) not counted.
       const optionalBefore = (ex.optionalBefore ?? []).map((r) => ({ marks: new Set(r.marks), letters: new Set(r.letters), bare: r.bare === true, unless: new Set(r.unless ?? []) }));
-      const g = gradeVowels({ set: new Set(ex.marks), optional: new Set(ex.optional), optionalBefore }, surfaceOf(ex.vocalized), response.text);
+      const optionalOn = new Map(Object.entries(ex.optionalOn ?? {}).map(([letter, ms]) => [letter, new Set(ms)]));
+      const g = gradeVowels({ set: new Set(ex.marks), optional: new Set(ex.optional), optionalBefore, optionalOn }, surfaceOf(ex.vocalized), response.text);
       return { verdict: g.verdict, notes: g.notes, solution: ex.vocalized };
     }
     case "transcribe": {

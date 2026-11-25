@@ -731,13 +731,21 @@ export type UnicodeSetPattern4 = string;
  */
 export type UnicodeSetPattern5 = string;
 /**
+ * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
+ */
+export type UnicodeSetPattern6 = string;
+/**
+ * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
+ */
+export type UnicodeSetPattern7 = string;
+/**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
 export type NoteId1 = string;
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern6 = string;
+export type UnicodeSetPattern8 = string;
 /**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
@@ -763,7 +771,7 @@ export type TableRef = string;
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern7 = string;
+export type UnicodeSetPattern9 = string;
 /**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
@@ -784,11 +792,11 @@ export type SchemeId3 = string & { readonly __brand: "SchemeId" };
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern8 = string;
+export type UnicodeSetPattern10 = string;
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern9 = string;
+export type UnicodeSetPattern11 = string;
 /**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
@@ -803,7 +811,7 @@ export type SoundSource = SoundFromSpelling | SoundFromReading;
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern10 = string;
+export type UnicodeSetPattern12 = string;
 /**
  * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
  */
@@ -811,7 +819,7 @@ export type SchemeId4 = string & { readonly __brand: "SchemeId" };
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern11 = string;
+export type UnicodeSetPattern13 = string;
 /**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
@@ -5577,9 +5585,18 @@ export interface MatchPolicy {
       readonly bare?: boolean;
       readonly unless?: UnicodeSetPattern4;
     }[];
-    readonly required?: UnicodeSetPattern5;
+    /**
+     * Marks a learner supplying a word's vowel marks (ADR 0054 as amended) may write or leave out on one of `letters` itself, whose letter already says them: the kasra under an alif with a hamza below (إِمّ and إمّ: the hamza below says i). The same mark on any other letter counts.
+     *
+     * @minItems 1
+     */
+    readonly optionalOn?: readonly {
+      readonly marks: UnicodeSetPattern5;
+      readonly letters: UnicodeSetPattern6;
+    }[];
+    readonly required?: UnicodeSetPattern7;
     readonly requiredNote?: NoteId1;
-    readonly requiredLetters?: UnicodeSetPattern6;
+    readonly requiredLetters?: UnicodeSetPattern8;
     readonly requiredLettersNote?: NoteId2;
     /**
      * Marks that tell words apart (ADR 0076): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies.
@@ -5732,7 +5749,7 @@ export interface Join {
    * Its forms before a word that begins with a letter of `before` (Arabizi's sun letters), beside `forms`: in each, {next} (only at its end) is that letter written again (e{next}: essalame, es salame).
    */
   readonly assimilates?: {
-    readonly before: UnicodeSetPattern7;
+    readonly before: UnicodeSetPattern9;
     /**
      * @minItems 1
      */
@@ -6018,12 +6035,12 @@ export interface CorrespondenceContext {
    * At the start or the end of the word.
    */
   readonly at?: "start" | "end";
-  readonly before?: UnicodeSetPattern8;
-  readonly after?: UnicodeSetPattern9;
+  readonly before?: UnicodeSetPattern10;
+  readonly after?: UnicodeSetPattern11;
 }
 export interface SoundFromSpelling {
   readonly from: "spelling";
-  readonly ignores?: UnicodeSetPattern10;
+  readonly ignores?: UnicodeSetPattern12;
 }
 export interface SoundFromReading {
   readonly from: "reading";
@@ -6057,7 +6074,7 @@ export interface Stress {
    */
   readonly default: readonly {
     readonly when?: {
-      readonly ends: UnicodeSetPattern11;
+      readonly ends: UnicodeSetPattern13;
     };
     readonly on: "last" | "penult";
   }[];

@@ -406,6 +406,36 @@ describe("a word's pronunciation in its sentence (ADR 0054, 0095, 0098)", () => 
     }
   });
 
+  it("a wrong vocalization never touches a long vowel's letter, nor the unmarked letter before a ya or waw; nor drops the kasra under إ", () => {
+    const { course } = walked("apc", "apc-Arab/standard");
+    const marks = course.profiles.get(course.orthography)?.marks;
+    if (marks === undefined) throw new Error("apc: no marks");
+    const cards = planned("apc", "apc-Arab/standard", "vocalize");
+    expect(cards.length).toBeGreaterThan(0);
+    const bare = (g: string): boolean => g === withoutMarks(marks, g);
+    for (const ex of cards) {
+      if (ex.template !== "vocalize") continue;
+      const word = graphemes(surfaceOf(ex.vocalized));
+      for (const [i, o] of ex.options.entries()) {
+        if (i === ex.answer) continue;
+        const option = graphemes(surfaceOf(o));
+        for (const [k, g] of word.entries()) {
+          const next = word[k + 1];
+          // كيف: neither the ya nor the kaf before it changes (كيّفَك, كَيفَك are other words' shapes).
+          if (next !== undefined && ["\u064A", "\u0648"].includes(next) && bare(next) && bare(g)) {
+            expect(option[k], `${ex.id}: ${surfaceOf(o)}`).toBe(g);
+            expect(option[k + 1], `${ex.id}: ${surfaceOf(o)}`).toBe(next);
+          }
+        }
+        // إِمّ and إمّ are the same word: never one offered as wrong beside the other.
+        expect(gradeVowels(marks, surfaceOf(ex.vocalized), surfaceOf(o)).verdict, `${ex.id}: ${surfaceOf(o)}`).toBe("WRONG");
+      }
+    }
+    // The person a word's marks say is shown with the sentence's meaning (كيفَك to a man, كيفِك to a woman).
+    const personal = cards.filter((ex) => ex.template === "vocalize" && ex.persons !== undefined);
+    expect(personal.length).toBeGreaterThan(0);
+  });
+
   it("and Cantonese a word's Jyutping to type: the sentence without ruby, every tone counting", () => {
     const { course } = walked("yue");
     const grader = createGrader(course);

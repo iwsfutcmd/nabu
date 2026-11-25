@@ -2972,6 +2972,18 @@ class OptionalBeforeItem(BaseModel):
     ] = None
 
 
+class OptionalOnItem(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    marks: Annotated[UnicodeSetPattern, Field(description="The marks, of the set.")]
+    letters: Annotated[
+        UnicodeSetPattern,
+        Field(description="The letters that already say them: whole letters, as NFC writes them."),
+    ]
+
+
 class Case(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -5574,6 +5586,13 @@ class Marks(BaseModel):
         list[OptionalBeforeItem] | None,
         Field(
             description="Marks a learner supplying a word's vowel marks (ADR 0054 as amended) may write or leave out on a letter, where the letter after it is one of `letters`: the fatha before the alif that writes its long a (مَرْحَبا and مَرْحَبَا are the same word), the kasra before a bare ya that writes its long i (فيلِم and فِيلِم). The same mark elsewhere counts as the others do.",
+            min_length=1,
+        ),
+    ] = None
+    optionalOn: Annotated[
+        list[OptionalOnItem] | None,
+        Field(
+            description="Marks a learner supplying a word's vowel marks (ADR 0054 as amended) may write or leave out on one of `letters` itself, whose letter already says them: the kasra under an alif with a hamza below (إِمّ and إمّ: the hamza below says i). The same mark on any other letter counts.",
             min_length=1,
         ),
     ] = None
