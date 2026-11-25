@@ -74,6 +74,7 @@ const ERROR_MESSAGES = {
   template: "rules.error.template",
   form: "rules.error.form",
   "spelled-only": "rules.error.spelled-only",
+  variant: "rules.error.variant",
   "not-ready": "rules.error.not-ready",
 } as const;
 

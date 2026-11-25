@@ -238,6 +238,8 @@ const detailsOf = (error: RealiseError): ExploredError["details"] => {
         { key: "stem", value: error.stem || "-" },
         { key: "root", value: error.root || "-" },
       ];
+    case "variant":
+      return [{ key: "variants", value: String(error.variants) }];
   }
 };
 

@@ -1723,6 +1723,12 @@ class Condition(BaseModel):
             description="Of a realisation rule or a rewrite: the lexeme has these values of itself (a comma: one of them), as its entry stores them or else its language's defaults give them for a feature its category has of itself (`lexical`): a Slovak noun's gender and animacy, which choose its declension."
         ),
     ] = None
+    context: Annotated[
+        Slug | None,
+        Field(
+            description="Of a token: it stands in this context, which changes how it is said or written and is no feature value (hbo: `pause` and `nesiga`, as its `context` says; `bound`, joined to the next word by a maqaf). Read by a rewrite's `when`."
+        ),
+    ] = None
 
 
 class Default(BaseModel):
@@ -2609,7 +2615,7 @@ class Allomorph(BaseModel):
     free: Annotated[
         bool | None,
         Field(
-            description="true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (a scribe's other spelling of a suffix: chg's locative دا beside ده). Never the one chosen: a token's realisation gives it as an alternative."
+            description="true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (anywhere, with none): a scribe's other spelling of a suffix (chg's locative دا beside ده), or a form the course writes where no condition tells it from the other (hbo בַּ, the preposition with an article its tokens do not list). Never the one chosen: a token's realisation gives it as an alternative."
         ),
     ] = None
     spelled: Annotated[
@@ -5460,14 +5466,14 @@ type LexicalForm = Annotated[
 
 class LexemeForm(BaseModel):
     """
-    A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`.
+    A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`. With `before`, it holds only where the rest of its token holds that condition, as an allomorph's `before` (a stem before a suffixed pronoun: hbo אַחֶי- in אַחֶיךָ), and is then more specific than a form of the same values without it; it never holds of a lexeme realised alone (a paradigm's cell). With no `feats`, it is for a token that chooses no value, never for a cell: an uninflected word's form (a preposition's stem before a suffix, hbo לָ- in לָנוּ; free variants, הִנֵּנִי beside הִנְנִי).
     """
 
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
     )
-    feats: UdFeatures
+    feats: UdFeatures | None = None
     form: Annotated[
         str | None,
         Field(
@@ -5497,6 +5503,7 @@ class LexemeForm(BaseModel):
         ),
     ] = None
     scope: Scope | None = None
+    before: Condition | None = None
     spelled: Annotated[
         dict[OrthographyId, SpelledAdditionalProperty1] | None,
         Field(
