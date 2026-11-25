@@ -59,7 +59,8 @@ describe("the end of a story (S15)", () => {
     expect(html).toContain('data-state="rereading"');
     expect([...html.matchAll(/ data-line="(\d+)"/gu)].map((m) => Number(m[1]))).toEqual(script.lines.map((l) => l.index));
     expect(html).not.toContain("data-story-question");
-    expect(html).toContain("data-gloss-panel");
+    // Its words can be tapped, as while it was read: what they mean opens in a dialog (ADR 0157).
+    expect(html).toContain("data-gloss-hint");
   });
 
   it("asks to leave the story, not the lesson", () => {

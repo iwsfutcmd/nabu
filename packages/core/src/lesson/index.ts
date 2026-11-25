@@ -39,6 +39,7 @@ export {
 } from "./player.ts";
 export { doneOf, firstTriesOf, resume, type Done } from "./resume.ts";
 export { seededRng, type Rng } from "./rng.ts";
+export { formCellAt, lexemeForms, type LexemeFormRow, type LexemeForms } from "./forms.ts";
 export { cellFeats, formsOfLexeme, paradigmForms, paradigmRows, paradigmWords, principalParts, type ParadigmForm, type ParadigmRow, type ParadigmWord } from "./paradigms.ts";
 export { answerTextOf, asksOf, cardGloss, chosenWordOf, formsOf, gradeExercise, LEXEME_LISTENING, LISTENING, makeListenSpeak, makePartsWhole, makeSpeakScored, makeToneIdentify, makeWholeParts, promptOf, rubySchemeOf, skillOf, skills, SPEAKING, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo, type TokenParts } from "./templates.ts";
 export { chosenTraditionKey, profileTraditions, readingTradition, readingTraditions, traditionKey } from "./traditions.ts";

@@ -13,7 +13,7 @@ import { DEMO_ORTHOGRAPHIES } from "../src/demo/profiles.ts";
 import { ChoiceWords, FadeReadings, WordStatusProvider } from "../src/marks.tsx";
 import { useDisplay } from "../src/player/Display.tsx";
 import { Feedback } from "../src/player/Feedback.tsx";
-import { GlossPanel, useGlosses, wordOf } from "../src/player/Gloss.tsx";
+import { GlossContent, useGlosses } from "../src/player/Gloss.tsx";
 import { defaultReadingWords, defaultRuby, ReadingsControl, useReadings } from "../src/player/Readings.tsx";
 import { useToggles } from "../src/player/Shell.tsx";
 import { T } from "../src/T.tsx";
@@ -120,7 +120,7 @@ describe("readings on new words only (ADR 0131)", () => {
     expect(rts(render(<T text={text} ruby={JYUTPING} />))).toEqual(["ngo5", "ge3", "syu1"]);
     // The words shown are the course orthography's: the same word in another one keeps its reading.
     expect(rts(render(inSession(true, <T text={sentence("yue-Latn/jyutping")} ruby={JYUTPING} />)))).toEqual(["ngo5", "ge3", "syu1"]);
-    // The gloss panel turns fading off again inside a session (where a faded reading is looked up).
+    // The gloss dialog turns fading off again inside a session (where a faded reading is looked up).
     expect(rts(render(inSession(true, <FadeReadings on={false}>{<T text={text} ruby={JYUTPING} />}</FadeReadings>)))).toEqual(["ngo5", "ge3", "syu1"]);
   });
 
@@ -189,7 +189,7 @@ describe("a tapped word's gloss always shows its reading (ADR 0131 amendment)", 
   const tap = { text: sentence, token: sentence.tokens.findIndex((k) => k.surface === "اشلیغی") };
   const Panel = ({ ruby }: { readonly ruby: SchemeId | false }): JSX.Element => {
     const glosses = useGlosses(chgCourse, tap);
-    return <GlossPanel open glosses={glosses} word={wordOf(tap)} ruby={ruby} marks="show" />;
+    return <GlossContent course={chgCourse} tap={tap} glosses={glosses} ruby={ruby} marks="show" onClose={() => undefined} />;
   };
   const panel = (ruby: SchemeId | false): string =>
     render(
@@ -204,16 +204,23 @@ describe("a tapped word's gloss always shows its reading (ADR 0131 amendment)", 
     const html = panel(SCHLUESSEL);
     expect(html).toContain("data-gloss-word");
     // ašliǧi over the word, ašliǧ over its stem (spelled as its dictionary form); the suffix has none.
-    expect(rts(html)).toEqual(["ašliǧi", "ašliǧ"]);
+    expect(rts(html.slice(0, html.indexOf("data-gloss-forms")))).toEqual(["ašliǧi", "ašliǧ"]);
     expect(html.indexOf("data-gloss-word")).toBeLessThan(html.indexOf("data-gloss-id"));
+    // Then the stem's forms, each written as the course writes it, readings and all (ADR 0157).
+    const forms = html.slice(html.indexOf("data-gloss-forms"));
+    expect(rts(forms)).toContain("ašliǧi");
+    expect(forms).toContain('data-current=""');
   });
 
-  it("shows no headword for a word an entry glosses whole: the entry's form has the reading", () => {
+  it("heads a word an entry glosses whole with the word too (the dialog's title, ADR 0157), and the entry has the reading", () => {
     const whole = { text: sentence, token: sentence.tokens.findIndex((k) => k.kind === "lexical" && (k.lexemes?.length ?? 0) === 1) };
-    const Whole = (): JSX.Element => <GlossPanel open glosses={useGlosses(chgCourse, whole)} word={wordOf(whole)} ruby={SCHLUESSEL} marks="show" />;
+    const Whole = (): JSX.Element => <GlossContent course={chgCourse} tap={whole} glosses={useGlosses(chgCourse, whole)} ruby={SCHLUESSEL} marks="show" onClose={() => undefined} />;
     const html = render(<Whole />);
-    expect(html).not.toContain("data-gloss-word");
-    expect(rts(html).length).toBeGreaterThan(0);
+    expect(html).toContain("data-gloss-word");
+    const reading = sentence.tokens[whole.token]?.readings?.[SCHLUESSEL];
+    expect(reading).toBeDefined();
+    expect(rts(html)[0]).toBe(reading);
+    expect(rts(html).length).toBeGreaterThan(1);
   });
 
   it("shows the only layer, or the first of several, with readings off", () => {

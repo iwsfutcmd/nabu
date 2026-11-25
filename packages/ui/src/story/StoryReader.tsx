@@ -25,7 +25,7 @@ import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
 import type { DisplayChoice } from "../player/Display.tsx";
 import { ExerciseView, formatInstruction } from "../player/ExerciseView.tsx";
 import { Feedback } from "../player/Feedback.tsx";
-import { GlossPanel, useGlosses, useOtherReadings, wordOf } from "../player/Gloss.tsx";
+import { GlossDialog, GlossHint, useGlosses, useOtherReadings } from "../player/Gloss.tsx";
 import playerStyles from "../player/Player.module.css";
 import { SessionEnd, type NextStep, type SessionProgress } from "../player/SessionEnd.tsx";
 import { effectiveWritingMode, focusInReach, type Shortcuts, type WritingMode } from "../player/shared.ts";
@@ -287,7 +287,13 @@ const ReaderView = (props: StoryReaderProps & { readonly profile: OrthographyPro
   };
 
   const also = useOtherReadings(course, tapped, toggles.glossRuby);
-  const glossPanel = <GlossPanel open={selected !== undefined} glosses={glosses} word={wordOf(tapped)} ruby={toggles.glossRuby} marks={marks} also={also} />;
+  // What a tapped word means and its forms, in a dialog (ADR 0157); under the transcript, a line saying words can be tapped.
+  const glossPanel = (
+    <>
+      <GlossHint />
+      <GlossDialog course={course} tap={tapped} glosses={glosses} ruby={toggles.glossRuby} marks={marks} also={also} onClose={() => setSelected(undefined)} />
+    </>
+  );
 
   // Readings, vowel marks, vertical reading and sound: in the header, taking no room above the story (P12).
   const headerTools = <HeaderToggles profile={profile} toggles={toggles} />;

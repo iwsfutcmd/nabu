@@ -1,20 +1,26 @@
 /**
  * Tap-for-gloss (Phase 6), in stories and lessons (P1). A tapped word runs the course glossary
  * (`glossTokens` through @nabu/core/story's `glossAt`: longest match, exact and folded passes), so a
- * vocalized word finds its unvocalized entry; the meaning appears in a live panel under the text.
- * Matching is core's, never redone here. A meaning's row (GlossEntry) also says, in the feedback on
- * a wrong answer, what a wrong word means (P3).
+ * vocalized word finds its unvocalized entry. What it means opens in a dialog (ADR 0157, amending
+ * ADR 0043's panel under the text): the word with its reading, each entry, and each entry's forms
+ * (core `lexemeForms`: its paradigm's cells, or the forms the course writes), the tapped word's own
+ * marked. Matching and forms are core's, never redone here. A meaning's row (GlossEntry) also says,
+ * in the feedback on a wrong answer, what a wrong word means (P3).
  */
-import { otherReadingsAt, type CourseView } from "@nabu/core/lesson";
+import { formCellAt, lexemeForms, otherReadingsAt, type CourseView, type LexemeForms } from "@nabu/core/lesson";
 import { courseGlossary, glossAt, glossLine, type Gloss } from "@nabu/core/story";
-import { hasReading, wordAt } from "@nabu/core/text";
+import { wordAt } from "@nabu/core/text";
 import type { SchemeId, TaggedText } from "@nabu/schema";
-import { useMemo, type JSX, type ReactNode } from "react";
+import { useId, useMemo, type JSX, type ReactNode } from "react";
+import { Button, Dialog, Heading, Modal } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
 import { Headword } from "../Headword.tsx";
+import { CloseIcon } from "../icons.tsx";
 import { FadeReadings, type Marks } from "../marks.tsx";
 import { T } from "../T.tsx";
+import { chromeClass, useChrome } from "../UiRoot.tsx";
 import styles from "./Gloss.module.css";
+import playerStyles from "./Player.module.css";
 
 /** A tapped word: which text of the card (`key`), the text, and the token. */
 export interface WordTap {
@@ -79,24 +85,6 @@ export const FormNote = ({ id, meaning }: { readonly id: string; readonly meanin
   </span>
 );
 
-export interface GlossPanelProps {
-  /** Whether a word is tapped. */
-  readonly open: boolean;
-  readonly glosses: readonly Gloss[];
-  /** The reading layer the entries' forms show. */
-  readonly ruby: SchemeId | false;
-  readonly marks: Marks;
-  /** The tapped word as written (`wordOf`): its headword where no entry is the word whole. */
-  readonly word?: TaggedText | undefined;
-  /**
-   * A story's panel always shows, with a hint before any word is tapped; a lesson's is quiet (empty,
-   * out of sight) until a word is tapped.
-   */
-  readonly quiet?: boolean;
-  /** The other readings of the tapped word's spelling (ADR 0140, `useOtherReadings`), each with what it means. */
-  readonly also?: readonly OtherReading[] | undefined;
-}
-
 /** Another reading of a tapped word's spelling (ADR 0140): the reading as text, and what that word means. */
 export interface OtherReading {
   readonly reading: TaggedText;
@@ -110,45 +98,136 @@ export interface OtherReading {
 export const useOtherReadings = (course: CourseView, tap: Pick<WordTap, "text" | "token"> | undefined, scheme: SchemeId | false): readonly OtherReading[] =>
   useMemo(() => (tap === undefined || scheme === false ? [] : otherReadingsAt(course, scheme, tap.text, tap.token)), [course, tap, scheme]);
 
-export const GlossPanel = ({ open, glosses, ruby, marks, word, quiet = false, also = [] }: GlossPanelProps): JSX.Element => {
+/**
+ * Each entry's forms (ADR 0157): an entry for a lexeme the word writes (not a phrase, not a part the
+ * script leaves unwritten), with the form the tapped token writes it in; only where it has more than
+ * one form, so a word with one form is its entry alone.
+ */
+export interface EntryForms {
+  readonly gloss: Gloss;
+  readonly forms: LexemeForms;
+  /** The cell the tapped word stands in, among the rows (`formCellAt`). */
+  readonly current: string | undefined;
+}
+
+/** The forms of what a tapped word writes, by entry (`lexemeForms`), each lexeme once. */
+export const useEntryForms = (course: CourseView, tap: Pick<WordTap, "text" | "token"> | undefined, glosses: readonly Gloss[]): readonly EntryForms[] =>
+  useMemo(() => {
+    if (tap === undefined) return [];
+    const seen = new Set<string>();
+    return glosses.flatMap((gloss): EntryForms[] => {
+      if (gloss.span === "phrase" || gloss.unwritten === true || seen.has(gloss.id)) return [];
+      seen.add(gloss.id);
+      const forms = lexemeForms(course, gloss.id, tap.text.orthography);
+      if (forms === undefined || forms.rows.length < 2) return [];
+      return [{ gloss, forms, current: formCellAt(course, tap.text, tap.token, gloss.id) }];
+    });
+  }, [course, tap, glosses]);
+
+/** One entry's forms, as a table: each form (the ways it is written), and what the language calls it. */
+const FormsTable = ({ entry, named, ruby, marks }: { readonly entry: EntryForms; readonly named: boolean; readonly ruby: SchemeId | false; readonly marks: Marks }): JSX.Element => {
   const t = useTranslator();
-  // A glossary entry always shows the word's reading (ADR 0131): where the entries are its parts (اشلیغ, ی
-  // of اشلیغی) or a phrase, or none reaches it, the word itself comes first with its reading.
-  const headword = open && word !== undefined && ruby !== false && hasReading(word, ruby) && !glosses.some((g) => g.span === "whole") ? word : undefined;
+  const heading = useId();
+  const lemma = entry.gloss.lemma ?? entry.gloss.form;
   return (
-    <div
-      className={styles.gloss}
-      role="status"
-      aria-live="polite"
-      aria-label={t.format("story.gloss.label")}
-      data-gloss-panel=""
-      data-gloss-open={open ? "" : undefined}
-      data-quiet={quiet ? "" : undefined}
-    >
-      {headword !== undefined && (
-        <FadeReadings on={false}>
-          <p className={styles.glossWord} data-gloss-word="">
-            <T text={headword} ruby={ruby} marks={marks} />
-          </p>
-        </FadeReadings>
-      )}
-      {!open ? (
-        quiet ? null : (
-          <p className={styles.glossHint}>{t.format("story.gloss.hint")}</p>
-        )
-      ) : glosses.length === 0 ? (
+    <section className={styles.forms} aria-labelledby={heading} data-gloss-forms={entry.gloss.id} data-forms-source={entry.forms.source}>
+      <h3 className={styles.formsHeading} id={heading}>
+        {t.format("story.gloss.forms")}
+        {/* Where the word writes several lexemes with forms, which one's these are. */}
+        {named && <T className={styles.formsOf} text={lemma} ruby={ruby} marks={marks} />}
+      </h3>
+      <table className={styles.formsTable}>
+        <tbody>
+          {entry.forms.rows.map((row) => {
+            const current = row.cell === entry.current;
+            return (
+              <tr
+                key={row.cell}
+                className={current ? styles.currentForm : undefined}
+                aria-current={current ? "true" : undefined}
+                data-form-cell={row.cell}
+                data-current={current ? "" : undefined}
+                data-attested={row.attested ? "" : undefined}
+              >
+                <th scope="row" className={styles.form}>
+                  {row.texts.map((text, i) => (
+                    <T key={i} {...(i > 0 && { className: styles.formVariant })} text={text} ruby={ruby} marks={marks} />
+                  ))}
+                </th>
+                <td className={styles.formLabel}>
+                  {row.label !== undefined && <T text={row.label} />}
+                  {current && (
+                    <span className={styles.glossNote} data-form-current="">
+                      {t.format("story.gloss.current")}
+                    </span>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </section>
+  );
+};
+
+export interface GlossContentProps {
+  readonly course: CourseView;
+  /** The word tapped (its text and token), or none: the dialog is closed. */
+  readonly tap: Pick<WordTap, "text" | "token"> | undefined;
+  readonly glosses: readonly Gloss[];
+  /** The reading layer the word and the entries' forms show. */
+  readonly ruby: SchemeId | false;
+  readonly marks: Marks;
+  /** The other readings of the tapped word's spelling (ADR 0140, `useOtherReadings`), each with what it means. */
+  readonly also?: readonly OtherReading[] | undefined;
+  /** Closing it (its button, Escape, a press outside): the word is no longer tapped. */
+  readonly onClose: () => void;
+}
+
+/**
+ * What the dialog says of a tapped word, in the chrome's lang and dir (the dialog is portalled out
+ * of the app's root); each text in it takes its own from its tag (<T>). Its title is the word as
+ * tapped, with its reading even where readings fade (ADR 0131: this is where a word is looked up);
+ * then each entry, the entries' forms, and the spelling's other readings.
+ */
+export const GlossContent = ({ course, tap, glosses, ruby, marks, also = [], onClose }: GlossContentProps): JSX.Element => {
+  const t = useTranslator();
+  const chrome = useChrome();
+  const word = wordOf(tap);
+  const forms = useEntryForms(course, tap, glosses);
+  return (
+    <div className={styles.dialogBody} lang={chrome.lang} dir={chrome.dir}>
+      <div className={styles.dialogHeader}>
+        <Heading slot="title" className={styles.glossWord} data-gloss-word="">
+          {word === undefined ? (
+            t.format("story.gloss.label")
+          ) : (
+            <FadeReadings on={false}>
+              <T text={word} ruby={ruby} marks={marks} />
+            </FadeReadings>
+          )}
+        </Heading>
+        <Button className={playerStyles.iconButton} onPress={onClose} aria-label={t.format("story.gloss.close")} data-action="close-gloss">
+          <CloseIcon />
+        </Button>
+      </div>
+      {glosses.length === 0 ? (
         <p className={styles.glossHint}>{t.format("story.gloss.none")}</p>
       ) : (
-        // A tapped word's reading shows here even where readings fade (ADR 0131): this is where it is looked up.
+        // A tapped word's readings show here even where readings fade (ADR 0131): this is where it is looked up.
         <FadeReadings on={false}>
           <GlossList>
             {glosses.map((g, i) => (
               <GlossEntry key={i} gloss={g} ruby={ruby} marks={marks} />
             ))}
           </GlossList>
+          {forms.map((entry) => (
+            <FormsTable key={entry.gloss.id} entry={entry} named={forms.length > 1} ruby={ruby} marks={marks} />
+          ))}
         </FadeReadings>
       )}
-      {open && also.length > 0 && (
+      {also.length > 0 && (
         // The same spelling read otherwise elsewhere in the course (ADR 0140).
         <div className={styles.glossAlso} data-gloss-also="">
           <p className={styles.glossNote}>{t.format("story.gloss.also")}</p>
@@ -165,5 +244,38 @@ export const GlossPanel = ({ open, glosses, ruby, marks, word, quiet = false, al
         </div>
       )}
     </div>
+  );
+};
+
+/**
+ * What a tapped word means, in a modal dialog (ADR 0157, amending ADR 0043's panel under the text):
+ * open while a word is tapped; closing it (its button, Escape, a press outside) gives the focus back
+ * to the word. It is chrome, horizontal whatever the text's writing mode.
+ */
+export const GlossDialog = (props: GlossContentProps): JSX.Element => {
+  const chrome = useChrome();
+  return (
+    <Modal
+      className={playerStyles.modal}
+      isOpen={props.tap !== undefined}
+      isDismissable
+      onOpenChange={(isOpen) => {
+        if (!isOpen) props.onClose();
+      }}
+    >
+      <Dialog className={`${styles.dialog} ${chromeClass}`} style={chrome.style} data-gloss-panel="" data-gloss-open="">
+        <GlossContent {...props} />
+      </Dialog>
+    </Modal>
+  );
+};
+
+/** A story says its words can be tapped (ADR 0043), where its panel used to wait for one. */
+export const GlossHint = (): JSX.Element => {
+  const t = useTranslator();
+  return (
+    <p className={styles.glossHint} data-gloss-hint="">
+      {t.format("story.gloss.hint")}
+    </p>
   );
 };

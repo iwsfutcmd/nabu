@@ -1,0 +1,140 @@
+/**
+ * A lexeme's forms, as a tapped word's glossary entry lists them (ADR 0157): its paradigm's cells
+ * where the lexicon's rules give it one (apc), else the forms the course writes; each named as the
+ * language names it, and the tapped word's own cell found the same way.
+ */
+import type { TaggedText } from "@nabu/schema";
+import { describe, expect, it } from "vitest";
+import { lexiconKey } from "../src/index.ts";
+import { allSentences, cellFeats, formCellAt, labelOf, lexemeForms, lexemesOf, profileOf, type CourseView } from "../src/lesson/index.ts";
+import { allStories } from "../src/story/index.ts";
+import { surfaceOf } from "../src/text/index.ts";
+import { loadCourse } from "./learner-fixtures.ts";
+
+/** The he-present (the owner's answer 1: shown after a verb's he-past). */
+const HE_PRESENT = "Aspect=Imp;Gender=Masc;Mood=Ind;Number=Sing;Person=3";
+
+/** Every token of the course's sentences and story lines, in the learner's orthography, with its text. */
+const tokens = function* (course: CourseView): Generator<{ readonly text: TaggedText; readonly at: number }> {
+  const lines = allStories(course).flatMap((story) => story.steps.flatMap((step) => step.line?.forms[course.orthography] ?? []));
+  for (const text of [...allSentences(course).flatMap((s) => s.forms[course.orthography]?.text ?? []), ...lines]) {
+    for (const at of text.tokens.keys()) yield { text, at };
+  }
+};
+
+const writing = (course: CourseView, lexeme: string): { readonly text: TaggedText; readonly at: number }[] =>
+  [...tokens(course)].filter(({ text, at }) => lexemesOf(text.tokens[at] ?? { kind: "space", surface: "" }).some((l) => l.lexeme === lexeme));
+
+const surfaces = (texts: readonly TaggedText[]): readonly string[] => texts.map(surfaceOf);
+
+describe("a lexeme with a paradigm (apc)", () => {
+  const arab = loadCourse("apc", "apc-Arab/standard");
+  const latn = loadCourse("apc", "apc-Latn/arabizi");
+
+  it("lists every cell of its category, in the lexicon's order, each a text naming the lexeme and the cell", () => {
+    const forms = lexemeForms(arab, "lexeme:shereb");
+    expect(forms?.source).toBe("paradigm");
+    expect(forms?.rows.map((r) => r.cell)).toEqual(arab.lexicon.cells?.["VERB"]);
+    for (const row of forms?.rows ?? []) {
+      expect(row.texts).toHaveLength(1);
+      expect(row.texts[0]?.tokens).toEqual([{ kind: "lexical", surface: expect.any(String) as string, tileGroup: 0, lexemes: [{ lexeme: "lexeme:shereb", feats: cellFeats(row.cell) }] }]);
+    }
+    // The marked text in Arabic script, as the lemma's own carries its marks; the spelling in Arabizi.
+    expect(surfaces(forms?.rows.find((r) => r.cell === HE_PRESENT)?.texts ?? [])).toEqual(["بْيِشْرَب"]);
+    expect(surfaces(lexemeForms(latn, "lexeme:shereb")?.rows.find((r) => r.cell === HE_PRESENT)?.texts ?? [])).toEqual(["byeshrab"]);
+  });
+
+  it("names each form as the language does, and says which ones the course writes", () => {
+    const forms = lexemeForms(latn, "lexeme:shereb");
+    const he = forms?.rows.find((r) => r.cell === HE_PRESENT);
+    expect(he?.label).toEqual(labelOf(latn, cellFeats(HE_PRESENT), "VERB")?.gloss["en"]);
+    expect(surfaceOf(he?.label as TaggedText)).toBe("bi-: he (present)");
+    const written = new Set(writing(latn, "lexeme:shereb").map(({ text, at }) => formCellAt(latn, text, at, "lexeme:shereb")));
+    expect(written.size).toBeGreaterThan(1);
+    for (const row of forms?.rows ?? []) expect(row.attested, row.cell).toBe(written.has(row.cell));
+    // The rules give cells no sentence writes.
+    expect(forms?.rows.some((r) => !r.attested)).toBe(true);
+  });
+
+  it("adds the forms the course writes outside the paradigm's cells after them (ra7's participle)", () => {
+    const forms = lexemeForms(latn, "lexeme:ra7");
+    const cells = latn.lexicon.cells?.["VERB"] ?? [];
+    expect(forms?.rows.slice(0, cells.length).map((r) => r.cell)).toEqual(cells);
+    const outside = forms?.rows.slice(cells.length) ?? [];
+    expect(outside.length).toBeGreaterThan(0);
+    for (const row of outside) {
+      expect(row.attested).toBe(true);
+      expect(row.feats["Aspect"]).toBe("Part");
+    }
+  });
+
+  it("finds the cell each token of a verb stands in among its rows", () => {
+    const rows = new Set(lexemeForms(arab, "lexeme:shereb")?.rows.map((r) => r.cell));
+    const written = writing(arab, "lexeme:shereb");
+    expect(written.length).toBeGreaterThan(0);
+    for (const { text, at } of written) expect(rows.has(formCellAt(arab, text, at, "lexeme:shereb") ?? "")).toBe(true);
+  });
+
+  it("leaves a suffixed pronoun out of the form: بَدّي is badd's بَدّ with 'my'", () => {
+    const profile = profileOf(arab, arab.orthography);
+    const [badi] = writing(arab, "lexeme:badd").filter(({ text, at }) => lexemesOf(text.tokens[at] as never).some((l) => l.lexeme === "lexeme:poss-1sg"));
+    if (badi === undefined) throw new Error("no بدي");
+    const token = badi.text.tokens[badi.at];
+    const own = lexemesOf(token as never).find((l) => l.lexeme === "lexeme:badd")?.surface ?? "";
+    const cell = formCellAt(arab, badi.text, badi.at, "lexeme:badd");
+    const row = lexemeForms(arab, "lexeme:badd")?.rows.find((r) => r.cell === cell);
+    const keys = surfaces(row?.texts ?? []).map((s) => lexiconKey(profile, s));
+    expect(keys).toContain(lexiconKey(profile, own));
+    expect(keys).not.toContain(lexiconKey(profile, token?.surface ?? ""));
+  });
+
+  it("has no forms for a lexeme written only inside words", () => {
+    expect(lexemeForms(arab, "lexeme:poss-1sg")).toBeUndefined();
+    expect(lexemeForms(arab, "lexeme:nothing-such")).toBeUndefined();
+  });
+});
+
+describe("a lexeme in a language without rules: the forms the course writes", () => {
+  it("names them as the language does, in the order of its labels (es tener)", () => {
+    const es = loadCourse("es");
+    const forms = lexemeForms(es, "lexeme:tener");
+    expect(forms?.source).toBe("written");
+    const tengo = forms?.rows.find((r) => r.texts.some((t) => surfaceOf(t) === "tengo"));
+    expect(tengo?.feats).toMatchObject({ Mood: "Ind", Number: "Sing", Person: "1", Tense: "Pres" });
+    expect(surfaceOf(tengo?.label as TaggedText)).toBe("present tense: I (yo)");
+    const labels = es.lexicon.labels ?? [];
+    const order = (forms?.rows ?? []).map((r) => {
+      const label = labelOf(es, { ...r.feats }, "VERB");
+      return label === undefined ? -1 : labels.indexOf(label);
+    });
+    expect(order).toEqual([...order].sort((a, b) => a - b));
+  });
+
+  it("lists a form only a sentence's start writes in lower case, as its lemma is (¡Haz!)", () => {
+    const es = loadCourse("es");
+    const written = writing(es, "lexeme:hacer").map(({ text, at }) => text.tokens[at]?.surface);
+    expect(written).toContain("Haz");
+    expect(written).not.toContain("haz");
+    const all = (lexemeForms(es, "lexeme:hacer")?.rows ?? []).flatMap((r) => surfaces(r.texts));
+    expect(all).toContain("haz");
+    expect(all).not.toContain("Haz");
+  });
+
+  it("takes the values a stem's endings realise as the form's, the whole word its text (uz ichaman, yue 佢哋)", () => {
+    const uz = loadCourse("uz", "uz-Latn/standard");
+    const ichaman = lexemeForms(uz, "lexeme:ichmoq")?.rows.find((r) => r.texts.some((t) => surfaceOf(t) === "ichaman"));
+    expect(ichaman?.feats).toEqual({ Number: "Sing", Person: "1", Tense: "Pres" });
+    const yue = loadCourse("yue");
+    const forms = lexemeForms(yue, "lexeme:佢");
+    expect(forms?.rows.map((r) => r.cell)).toEqual(["", "Number=Plur"]);
+    // The whole token, its pinned reading with it.
+    const plural = forms?.rows[1]?.texts[0]?.tokens[0];
+    expect(plural?.surface).toBe("佢哋");
+    expect(plural?.readings?.["jyutping" as never]).toBeDefined();
+  });
+
+  it("lists a lexeme the course writes in one form with one row", () => {
+    const hbo = loadCourse("hbo");
+    expect(lexemeForms(hbo, "lexeme:gan")?.rows).toHaveLength(1);
+  });
+});
