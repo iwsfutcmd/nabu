@@ -1,0 +1,213 @@
+{
+ "$comment": "Spelling a Slovak lexical form (docs/rules/sk.md; lexicons/sk/language.yaml `notation`): sk-Latn/standard's `spell` writes a form as it is, its boundaries dropped, but for the caron of ď ť ň ľ, which the spelling leaves out before e, i, í (Mistrík p. 14). From the course's own lexical forms.",
+ "vectors": [
+  {
+   "id": "spell/sk/caron-d",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "choď+i+ť",
+    "expected": "chodiť"
+   },
+   "expected": {
+    "spelling": "chodiť",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "ď before i is written d: chodiť (lexeme:chodiť's form)."
+  },
+  {
+   "id": "spell/sk/caron-t",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "treť+í",
+    "expected": "tretí"
+   },
+   "expected": {
+    "spelling": "tretí",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "ť before í: tretí (lexeme:tretí)."
+  },
+  {
+   "id": "spell/sk/caron-l-ia",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "učiteľ+ia",
+    "expected": "učitelia"
+   },
+   "expected": {
+    "spelling": "učitelia",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "ľ before ia (its i): učitelia, a cell of lexeme:učiteľ the course writes (s.u04)."
+  },
+  {
+   "id": "spell/sk/caron-n-e",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "kaviarň+e",
+    "expected": "kaviarne"
+   },
+   "expected": {
+    "spelling": "kaviarne",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "ň before e: kaviarne, lexeme:kaviareň's genitive the course writes."
+  },
+  {
+   "id": "spell/sk/caron-d-ie",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "viď+ie+ť",
+    "expected": "vidieť"
+   },
+   "expected": {
+    "spelling": "vidieť",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "ď before ie: vidieť (lexeme:vidieť)."
+  },
+  {
+   "id": "spell/sk/caron-kept-end",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "choď",
+    "expected": "choď"
+   },
+   "expected": {
+    "spelling": "choď",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "ď at a word's end keeps its caron: choď, ísť's command the course writes."
+  },
+  {
+   "id": "spell/sk/caron-kept-a",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "ďakov+a+ť",
+    "expected": "ďakovať"
+   },
+   "expected": {
+    "spelling": "ďakovať",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "ď before a keeps it: ďakovať."
+  },
+  {
+   "id": "spell/sk/caron-kept-o",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "treť+om",
+    "expected": "treťom"
+   },
+   "expected": {
+    "spelling": "treťom",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "ť before o keeps it: treťom, the course's locative of tretí."
+  },
+  {
+   "id": "spell/sk/caron-kept-u",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "kuchyň+u",
+    "expected": "kuchyňu"
+   },
+   "expected": {
+    "spelling": "kuchyňu",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "ň before u keeps it: kuchyňu."
+  },
+  {
+   "id": "spell/sk/identity",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "žen+y",
+    "expected": "ženy"
+   },
+   "expected": {
+    "spelling": "ženy",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "Every other letter is written as it is, boundaries dropped."
+  },
+  {
+   "id": "spell/sk/identity-capital",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "Bratislav+e",
+    "expected": "Bratislave"
+   },
+   "expected": {
+    "spelling": "Bratislave",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "A name keeps its capital: Bratislave, the course's locative."
+  },
+  {
+   "id": "spell/sk/identity-phrase",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "vol+a+ť sa",
+    "expected": "volať sa"
+   },
+   "expected": {
+    "spelling": "volať sa",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "A phrase, its space kept: volať sa (lexeme:volať-sa)."
+  },
+  {
+   "id": "spell/sk/expected-case",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "vol+á+m",
+    "expected": "Volám"
+   },
+   "expected": {
+    "spelling": "volám",
+    "expected": "spelling"
+   },
+   "note": "Compared as the profile keys a word, case folded: a sentence's first word, Volám."
+  },
+  {
+   "id": "spell/sk/expected-caron",
+   "op": "spell",
+   "args": {
+    "profile": "sk-Latn/standard",
+    "form": "choď+i+ť",
+    "expected": "choďiť"
+   },
+   "expected": {
+    "spelling": "chodiť",
+    "expected": null
+   },
+   "note": "The caron the spelling leaves out is no alternative: choďiť is not chodiť's spelling."
+  }
+ ]
+}

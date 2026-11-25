@@ -31,29 +31,6 @@
           },
           "realisation": [
             {
-              "id": "rule:zz-se",
-              "when": {
-                "ends": "se",
-                "feats": {
-                  "Tense": "Pres"
-                }
-              },
-              "blocks": [
-                {
-                  "suffix": [
-                    {
-                      "branch": "1sg",
-                      "feats": {
-                        "Person": "1",
-                        "Number": "Sing"
-                      },
-                      "add": "u"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "id": "rule:zz-ir",
               "when": {
                 "endsIn": "{C}ir",
@@ -129,6 +106,29 @@
                         "Number": "Plur"
                       },
                       "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
                     }
                   ]
                 }
@@ -224,7 +224,7 @@
           ]
         }
       },
-      "note": "A form that stores a boundary (lavar+se) is read by `ends` up to it: it ends in ar, not se, so rule:zz-ar is taken though rule:zz-se comes first."
+      "note": "A form that stores a boundary (lavar+se) is read whole or up to its first boundary, either: up to it, it ends in ar, so rule:zz-ar is taken, before rule:zz-se (which its whole form would also fit)."
     },
     {
       "id": "realise/stored-boundary/whole-form-elsewhere",
@@ -255,29 +255,6 @@
             }
           },
           "realisation": [
-            {
-              "id": "rule:zz-se",
-              "when": {
-                "ends": "se",
-                "feats": {
-                  "Tense": "Pres"
-                }
-              },
-              "blocks": [
-                {
-                  "suffix": [
-                    {
-                      "branch": "1sg",
-                      "feats": {
-                        "Person": "1",
-                        "Number": "Sing"
-                      },
-                      "add": "u"
-                    }
-                  ]
-                }
-              ]
-            },
             {
               "id": "rule:zz-ir",
               "when": {
@@ -354,6 +331,29 @@
                         "Number": "Plur"
                       },
                       "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
                     }
                   ]
                 }
@@ -474,29 +474,6 @@
           },
           "realisation": [
             {
-              "id": "rule:zz-se",
-              "when": {
-                "ends": "se",
-                "feats": {
-                  "Tense": "Pres"
-                }
-              },
-              "blocks": [
-                {
-                  "suffix": [
-                    {
-                      "branch": "1sg",
-                      "feats": {
-                        "Person": "1",
-                        "Number": "Sing"
-                      },
-                      "add": "u"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "id": "rule:zz-ir",
               "when": {
                 "endsIn": "{C}ir",
@@ -572,6 +549,29 @@
                         "Number": "Plur"
                       },
                       "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
                     }
                   ]
                 }
@@ -695,29 +695,6 @@
           },
           "realisation": [
             {
-              "id": "rule:zz-se",
-              "when": {
-                "ends": "se",
-                "feats": {
-                  "Tense": "Pres"
-                }
-              },
-              "blocks": [
-                {
-                  "suffix": [
-                    {
-                      "branch": "1sg",
-                      "feats": {
-                        "Person": "1",
-                        "Number": "Sing"
-                      },
-                      "add": "u"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "id": "rule:zz-ir",
               "when": {
                 "endsIn": "{C}ir",
@@ -793,6 +770,29 @@
                         "Number": "Plur"
                       },
                       "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
                     }
                   ]
                 }
@@ -887,7 +887,7 @@
           ]
         }
       },
-      "note": "`endsIn` reads up to the boundary too: vestir+se ends in a consonant and ir."
+      "note": "`endsIn` reads up to the boundary too: vestir+se ends in a consonant and ir, and rule:zz-ir comes before rule:zz-se."
     },
     {
       "id": "realise/stored-boundary/citation",
@@ -918,29 +918,6 @@
             }
           },
           "realisation": [
-            {
-              "id": "rule:zz-se",
-              "when": {
-                "ends": "se",
-                "feats": {
-                  "Tense": "Pres"
-                }
-              },
-              "blocks": [
-                {
-                  "suffix": [
-                    {
-                      "branch": "1sg",
-                      "feats": {
-                        "Person": "1",
-                        "Number": "Sing"
-                      },
-                      "add": "u"
-                    }
-                  ]
-                }
-              ]
-            },
             {
               "id": "rule:zz-ir",
               "when": {
@@ -1017,6 +994,29 @@
                         "Number": "Plur"
                       },
                       "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
                     }
                   ]
                 }
@@ -1131,29 +1131,6 @@
           },
           "realisation": [
             {
-              "id": "rule:zz-se",
-              "when": {
-                "ends": "se",
-                "feats": {
-                  "Tense": "Pres"
-                }
-              },
-              "blocks": [
-                {
-                  "suffix": [
-                    {
-                      "branch": "1sg",
-                      "feats": {
-                        "Person": "1",
-                        "Number": "Sing"
-                      },
-                      "add": "u"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "id": "rule:zz-ir",
               "when": {
                 "endsIn": "{C}ir",
@@ -1229,6 +1206,29 @@
                         "Number": "Plur"
                       },
                       "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
                     }
                   ]
                 }
@@ -1358,29 +1358,6 @@
           },
           "realisation": [
             {
-              "id": "rule:zz-se",
-              "when": {
-                "ends": "se",
-                "feats": {
-                  "Tense": "Pres"
-                }
-              },
-              "blocks": [
-                {
-                  "suffix": [
-                    {
-                      "branch": "1sg",
-                      "feats": {
-                        "Person": "1",
-                        "Number": "Sing"
-                      },
-                      "add": "u"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "id": "rule:zz-ir",
               "when": {
                 "endsIn": "{C}ir",
@@ -1456,6 +1433,29 @@
                         "Number": "Plur"
                       },
                       "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
                     }
                   ]
                 }
@@ -1577,29 +1577,6 @@
           },
           "realisation": [
             {
-              "id": "rule:zz-se",
-              "when": {
-                "ends": "se",
-                "feats": {
-                  "Tense": "Pres"
-                }
-              },
-              "blocks": [
-                {
-                  "suffix": [
-                    {
-                      "branch": "1sg",
-                      "feats": {
-                        "Person": "1",
-                        "Number": "Sing"
-                      },
-                      "add": "u"
-                    }
-                  ]
-                }
-              ]
-            },
-            {
               "id": "rule:zz-ir",
               "when": {
                 "endsIn": "{C}ir",
@@ -1675,6 +1652,29 @@
                         "Number": "Plur"
                       },
                       "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
                     }
                   ]
                 }

@@ -323,6 +323,8 @@ class Spelling:
     alternatives: list[str]
     expected: str
     found: str | None
+    #: A free form's spelling (another form of the cell, ADR 0145), not the first form's.
+    free: bool = False
 
 
 @dataclass(frozen=True)
@@ -394,9 +396,12 @@ def check_tokens(
     several tokens) is realised once for each of its words, the token's other lexemes joined to
     it, and the token is the word that spells as it is written. A token of several lexemes, none of
     them its base, is a token of equals (yue 十 + 八): each in its own cell, joined (core's
-    `realiseToken`). It is `given` where each spelling is the course's or a free alternative of
-    it (compared as core's `spelledAs` does; the marked layer exactly), `form` where blocking took
-    a pinned or listed form of its lexeme to give it,
+    `realiseToken`). Where blocking took one of several free forms of the cell (ADR 0145), each of
+    them may be the one the token writes; a token in its lexeme's own form, no rule taken, may be
+    written as any of the lexicon's spellings of it; a token's free variants (its lexemes' free
+    allomorphs) are tried after the form the rules choose. It is `given` where each spelling is the
+    course's or a free alternative of it (compared as core's `spelledAs` does; the marked layer
+    exactly), `form` where blocking took a pinned or listed form of its lexeme to give it,
     `unaccounted` otherwise, with the reason where the rules give nothing. None for a language
     with neither realisation rules nor a notation: nothing is checked, nothing asked. A language
     that declares a notation and no rules (one that does not inflect: yue, lzh, tok) is checked
@@ -489,32 +494,50 @@ def check_tokens(
             # A phrase realised whole: the token is one word of its spelling.
             part = len(results[n]) > 1 and j == 0
             forms = [form, *(f for f, _ in variants[(n, j)])]
-            for v, text in enumerate(forms):
+            # Free forms of the cell (ADR 0145: both accepted, the first shown): any may be the
+            # token's.
+            free = [str(f) for f in cast(list[Any], value.get("free") or [])]
+            # A token in its lexeme's own form, no rule taken (an uninflected word, a lemma): any
+            # of the lexicon's spellings of it is the token's (Slovak's vo beside v, its variant).
+            others_spelled: list[str] = []
+            if len(site.written) == 1 and status == "given" and not value["steps"]:
+                entry = lang.get(str(site.written[0]["lexeme"]))
+                if entry is not None:
+                    others_spelled = lang.spelled(entry, site.orth)[1:]
+            for v, chosen in enumerate(forms):
                 for where, layer, expected in wheres:
-                    ask: dict[str, Any] = {
-                        "op": "spell",
-                        "profile": site.orth,
-                        "notation": notation,
-                        "form": text,
-                        "expected": expected,
-                    }
-                    if layer is not None:
-                        ask["layer"] = layer
-                    if part:
-                        ask["part"] = True
-                    spell.append((n, j, v, Spelling(where, "", [], expected, None), ask))
+                    # Around the form the rules choose only: a free variant stands as it is.
+                    others = [*free, *(others_spelled if layer is None else [])] if v == 0 else []
+                    for k, text in enumerate([chosen, *others]):
+                        ask: dict[str, Any] = {
+                            "op": "spell",
+                            "profile": site.orth,
+                            "notation": notation,
+                            "form": text,
+                            "expected": expected,
+                        }
+                        if layer is not None:
+                            ask["layer"] = layer
+                        if part:
+                            ask["part"] = True
+                        spell.append((n, j, v, Spelling(where, "", [], expected, None, k > 0), ask))
     spelled = _batched(cli, [a for _, _, _, _, a in spell], results=True)
     found: dict[tuple[int, int, int], list[Spelling]] = {}
     for (n, j, v, s, _), result in zip(spell, spelled, strict=True):
-        found.setdefault((n, j, v), []).append(
-            Spelling(
-                s.where,
-                str(result["spelling"]),
-                [str(a["spelling"]) for a in result["alternatives"]],
-                s.expected,
-                result.get("expected"),
-            )
+        got = Spelling(
+            s.where,
+            str(result["spelling"]),
+            [str(a["spelling"]) for a in result["alternatives"]],
+            s.expected,
+            result.get("expected"),
         )
+        listed = found.setdefault((n, j, v), [])
+        if s.free and listed and listed[-1].where == s.where:
+            # A free form's spelling stands for its place where the first form's does not.
+            if listed[-1].found is None and got.found is not None:
+                listed[-1] = got
+            continue
+        listed.append(got)
     out: list[TokenCheck] = []
     for n in range(len(sites)):
         if n in early:
@@ -635,56 +658,79 @@ def check_pinned(
                 continue
             feats = {str(k): str(v) for k, v in (form.feats or {}).items()}
             found.append((str(lexeme.id), i, feats, form))
-    realised = _batched(
-        cli,
-        [
-            {"op": "realise", **source, "lexeme": ident, "cell": feats, "pinned": False}
-            for ident, _, feats, _ in found
-        ],
-    )
+
+    def candidates(ident: str, feats: dict[str, str]) -> list[dict[str, Any]]:
+        request: dict[str, Any] = {
+            "op": "realise",
+            **source,
+            "lexeme": ident,
+            "cell": feats,
+            "pinned": False,
+        }
+        entry = lang.get(ident)
+        words = len(entry.form.split(" ")) if entry and isinstance(entry.form, str) else 1
+        # A phrase's word stands in a token of its own (volať sa: volám), as the token check has it.
+        return [request, *({**request, "word": k} for k in range(words) if words > 1)]
+
+    requests = [candidates(ident, feats) for ident, _, feats, _ in found]
+    flat = iter(_batched(cli, [r for rs in requests for r in rs]))
+    realised = [[next(flat) for _ in rs] for rs in requests]
     asks: list[tuple[int, str, str, dict[str, Any]]] = []
     out: list[Pinned] = []
     rules: list[dict[str, str]] = []
-    for n, ((_ident, _i, _feats, form), result) in enumerate(zip(found, realised, strict=True)):
+    for n, ((_ident, _i, _feats, form), results) in enumerate(zip(found, realised, strict=True)):
         rules.append({})
         pinned = {str(o): [str(x) for x in v] for o, v in (form.spelled or {}).items()}
         for orth, spellings in pinned.items():
             if orth not in profiles or profiles[orth].spell is None:
                 continue
             for spelling in spellings:
-                if result["ok"]:
-                    asks.append(
-                        (
-                            n,
-                            orth,
-                            spelling,
-                            {
-                                "op": "spell",
-                                "profile": orth,
-                                "notation": notation,
-                                "form": result["value"]["form"],
-                                "expected": spelling,
-                            },
+                for result in results:
+                    if not result["ok"]:
+                        continue
+                    # A cell's free forms (ADR 0145) give it too.
+                    value = cast(dict[str, Any], result["value"])
+                    free = [str(f) for f in cast(list[Any], value.get("free") or [])]
+                    for text in [str(value["form"]), *free]:
+                        asks.append(
+                            (
+                                n,
+                                orth,
+                                spelling,
+                                {
+                                    "op": "spell",
+                                    "profile": orth,
+                                    "notation": notation,
+                                    "form": text,
+                                    "expected": spelling,
+                                },
+                            )
                         )
-                    )
     answers = _batched(cli, [a[3] for a in asks], results=True)
+    gave: dict[tuple[int, str, str], bool] = {}
+    for (n, orth, spelling, _), answer in zip(asks, answers, strict=True):
+        key = (n, orth, spelling)
+        gave[key] = gave.get(key, False) or answer.get("expected") is not None
+        rules[n].setdefault(orth, str(answer["spelling"]))
     given: dict[int, list[bool]] = {}
-    for (n, orth, _, _), answer in zip(asks, answers, strict=True):
-        given.setdefault(n, []).append(answer.get("expected") is not None)
-        rules[n][orth] = str(answer["spelling"])
+    for (n, _, _), ok in gave.items():
+        given.setdefault(n, []).append(ok)
     for n, (ident, i, feats, form) in enumerate(found):
         pinned = {str(o): [str(x) for x in v] for o, v in (form.spelled or {}).items()}
         differs: list[tuple[str, str]] = []
         for orth, spellings in pinned.items():
             strip = unmarker(orth)
+            # Case aside: a sentence's first word is capitalized (Izby, izby).
             course = {
-                strip(surface)
+                strip(surface).casefold()
                 for cell, surface in written.get((ident, orth), [])
                 if _has_values(cell, feats)
             }
             # A phrase's spelling is written word by word, a token each.
             differs.extend(
-                (orth, sp) for sp in spellings if not all(strip(w) in course for w in sp.split(" "))
+                (orth, sp)
+                for sp in spellings
+                if not all(strip(w).casefold() in course for w in sp.split(" "))
             )
         checks = given.get(n, [])
         out.append(
@@ -693,7 +739,7 @@ def check_pinned(
                 i,
                 feats,
                 form.form is None and form.stem is None,
-                bool(checks) and all(checks) and realised[n]["ok"],
+                bool(checks) and all(checks) and any(r["ok"] for r in realised[n]),
                 differs,
                 rules[n],
             )
