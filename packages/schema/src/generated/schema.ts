@@ -3475,6 +3475,12 @@ export interface LanguageDeclaration {
     readonly [k: string]: UdFeatures1;
   };
   /**
+   * The categories whose lexical form, where it is a string, is a stem and not a word (bar's verbs: red, kemm), so that their citation cell is realised by the rules as every other cell is (redn, kemmen) and the lemma is checked as the rules give it. Elsewhere a string form is its citation form, which no rule runs over.
+   *
+   * @minItems 1
+   */
+  readonly stemmed?: readonly PartOfSpeech[];
+  /**
    * For each category, the cells shown after its lemma wherever a word is presented as itself, in order (docs/rules-design.md, stage 4; the owner's answer 1: an apc verb is cited by its he-past, the he-present beside it). The compiler lists each among the category's cells and spells it from the rules; a lexeme the rules give no form for there shows none.
    */
   readonly principalParts?: {
