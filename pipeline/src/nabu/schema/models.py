@@ -1686,6 +1686,12 @@ class Condition(BaseModel):
         ),
     ] = None
     feats: Annotated[UdFeatures | None, Field(description="It has these feature values.")] = None
+    context: Annotated[
+        Slug | None,
+        Field(
+            description="Of a token: it stands in this context, which changes how it is said or written and is no feature value (hbo: `pause` and `nesiga`, as its `context` says; `bound`, joined to the next word by a maqaf). Read by a rewrite's `when`."
+        ),
+    ] = None
 
 
 class Default(BaseModel):
@@ -5347,7 +5353,7 @@ type LexicalForm = Annotated[
 
 class LexemeForm(BaseModel):
     """
-    A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`.
+    A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`. With `before`, it holds only where the rest of its token holds that condition, as an allomorph's `before` (a stem before a suffixed pronoun: hbo אַחֶי- in אַחֶיךָ), and is then more specific than a form of the same values without it; it never holds of a lexeme realised alone (a paradigm's cell).
     """
 
     model_config = ConfigDict(
@@ -5384,6 +5390,7 @@ class LexemeForm(BaseModel):
         ),
     ] = None
     scope: Scope | None = None
+    before: Condition | None = None
     spelled: Annotated[
         dict[OrthographyId, SpelledAdditionalProperty1] | None,
         Field(

@@ -48,6 +48,11 @@ export interface Realisation {
   readonly steps: readonly Step[];
   /** The listed part it used (lexeme:tener|stem:tuv), where blocking took a listed form or stem. */
   readonly listed?: PartId;
+  /**
+   * Where blocking took one of several free variants of the cell (ADR 0145: both are accepted, the
+   * first is shown): how many there are. `RealiseOptions.variant` realises another.
+   */
+  readonly variants?: number;
 }
 
 export type RealiseError =
@@ -61,7 +66,9 @@ export type RealiseError =
   /** The lexeme has no lexical form the engine can realise (none, or a kind it does not build yet). */
   | { readonly kind: "form"; readonly lexeme: string }
   /** Blocking found a form of the lexeme that pins spellings only, with no lexical form. */
-  | { readonly kind: "spelled-only"; readonly feats: UdFeatures };
+  | { readonly kind: "spelled-only"; readonly feats: UdFeatures }
+  /** `RealiseOptions.variant` asked for a free variant the cell does not have. */
+  | { readonly kind: "variant"; readonly variants: number };
 
 export interface RealiseOptions {
   /** false: ignore listed forms and stated classes, keep pinned ones (ADR 0145: the regularised form). */
@@ -82,6 +89,16 @@ export interface RealiseOptions {
   readonly word?: number;
   /** The base lexeme of the word after the token, where a lexeme's allomorph is chosen by it (`before: {pos}`). */
   readonly next?: string;
+  /**
+   * The contexts the token stands in, which are no feature values (hbo: pause, nesiga, bound by a
+   * maqaf): a rewrite whose `when` names a `context` holds only of a token in it.
+   */
+  readonly context?: readonly string[];
+  /**
+   * Where several free variants of a lexeme's forms fit the cell, which of them (counted from 0, in
+   * the lexicon's order; the first by default): the others are accepted too (ADR 0145).
+   */
+  readonly variant?: number;
   /**
    * true: as a paradigm's cells are listed (docs/rules-design.md, stage 4), a rule says something of
    * the cell or nothing is given. A rule with blocks of which no exponent names the cell (a noun's
@@ -188,7 +205,7 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
     const seen = new Map<string, LexemeForm>();
     for (const form of lexeme.forms ?? []) {
       if (form.form === undefined && form.stem === undefined) continue;
-      const key = featsKey(form.feats);
+      const key = featsKey(form.feats) + (form.before === undefined ? "" : ` before ${JSON.stringify(form.before)}`);
       const other = seen.get(key);
       if (other !== undefined && !(other.free === true && form.free === true)) errors.push(`lexicon.tie: ${lexeme.id} has two forms for ${key}, not both free`);
       seen.set(key, form);
@@ -268,6 +285,7 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
       conditionPatterns(`${lexeme.id} allomorph`, a.after);
       conditionPatterns(`${lexeme.id} allomorph`, a.before);
     }
+    for (const f of lexeme.forms ?? []) conditionPatterns(`${lexeme.id} form`, f.before);
   }
   for (const d of declared.defaults ?? []) conditionPatterns(`default ${d.id}`, d.when);
 
@@ -277,9 +295,10 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
 
 // ------------------------------------------------------------------------------------------------
 
-/** Where `when` holds of a lexeme and a cell. A lexeme's classes are ignored with blocking off. */
-const conditionHolds = (lang: CompiledLanguage, when: Condition | undefined, lexeme: Lexeme, cell: UdFeatures, blocking: boolean): boolean => {
+/** Where `when` holds of a lexeme and a cell (and the token's contexts). A lexeme's classes are ignored with blocking off. */
+const conditionHolds = (lang: CompiledLanguage, when: Condition | undefined, lexeme: Lexeme, cell: UdFeatures, blocking: boolean, context: readonly string[] = []): boolean => {
   if (when === undefined) return true;
+  if (when.context !== undefined && !context.includes(when.context)) return false;
   if (when.pos !== undefined && lexeme.pos !== when.pos) return false;
   if (when.feats !== undefined && !hasValues(cell, when.feats)) return false;
   if (when.class !== undefined && !(blocking && (lexeme.classes ?? []).includes(when.class))) return false;
@@ -380,14 +399,19 @@ interface Built {
   readonly status: Realisation["status"];
   readonly steps: readonly Step[];
   readonly listed?: PartId;
+  readonly variants?: number;
   /** A whole form from blocking: no rule runs over it. */
   readonly whole: boolean;
   /** The lexeme realised. */
   readonly lexeme: Lexeme;
 }
 
-/** Everything but the rewrite rules: blocking, the stem, the affix blocks. */
-const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: RealiseOptions): Result<Built, RealiseError> => {
+/**
+ * Everything but the rewrite rules: blocking, the stem, the affix blocks. `following`: what follows
+ * the lexeme in its token, as its lexemes' own forms give it (a form's `before`); none for a lexeme
+ * realised alone.
+ */
+const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: RealiseOptions, following?: readonly Unit[]): Result<Built, RealiseError> => {
   const blocking = options.blocking ?? true;
   const lexeme = lang.lexemes.get(lexemeId(id));
   if (lexeme === undefined) return err({ kind: "unknown-lexeme", lexeme: id });
@@ -396,14 +420,21 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
   // 1. Blocking: the most specific form of the lexeme whose values the cell has.
   const lexical = (f: LexemeForm): boolean => options.spellings !== false || f.form !== undefined || f.stem !== undefined;
   const kept = (f: LexemeForm): boolean => (blocking || f.status === "pinned") && (options.pinned !== false || f.status !== "pinned");
-  const candidates = (lexeme.forms ?? []).filter((f) => kept(f) && lexical(f) && hasValues(cell, f.feats));
-  const most = Math.max(-1, ...candidates.map((f) => sizeOf(f.feats)));
-  const winners = candidates.filter((f) => sizeOf(f.feats) === most);
+  // A form with `before` fits only where what follows in the token holds it, and is then more
+  // specific than one of the same values without it.
+  const follows = (f: LexemeForm): boolean => f.before === undefined || (following !== undefined && contextHolds(lang, f.before, following, undefined));
+  const weight = (f: LexemeForm): number => 2 * sizeOf(f.feats) + (f.before === undefined ? 0 : 1);
+  const candidates = (lexeme.forms ?? []).filter((f) => kept(f) && lexical(f) && hasValues(cell, f.feats) && follows(f));
+  const most = Math.max(-1, ...candidates.map(weight));
+  const winners = candidates.filter((f) => weight(f) === most);
   if (winners.length > 1 && !winners.every((f) => f.free === true)) return err({ kind: "tie", forms: winners.map((f) => featsKey(f.feats)) });
-  const winner = winners[0];
+  const variant = options.variant ?? 0;
+  if (variant > 0 && variant >= winners.length) return err({ kind: "variant", variants: winners.length });
+  const winner = winners[variant];
+  const variants = winners.length > 1 ? winners.length : undefined;
   if (winner !== undefined) {
     const listed = winner.status === "listed" ? (winner.form !== undefined ? `${lexeme.id}|form:${featsKey(winner.feats)}` : `${lexeme.id}|stem:${(winner.stem ?? "").normalize("NFC")}`) : undefined;
-    if (winner.form !== undefined) return ok({ units: unitsOf(winner.form), status: winner.status, steps: [], whole: true, lexeme, ...(listed !== undefined && { listed }) });
+    if (winner.form !== undefined) return ok({ units: unitsOf(winner.form), status: winner.status, steps: [], whole: true, lexeme, ...(listed !== undefined && { listed }), ...(variants !== undefined && { variants }) });
     if (winner.stem === undefined) return err({ kind: "spelled-only", feats: winner.feats });
   }
 
@@ -456,15 +487,15 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
     units = side === "prefix" ? join(lang, affix, units, "prefix") : join(lang, units, affix, "suffix");
   }
   const listed = status === "listed" && winner?.stem !== undefined ? `${lexeme.id}|stem:${winner.stem.normalize("NFC")}` : undefined;
-  return ok({ units, status, steps, whole: false, lexeme, ...(listed !== undefined && { listed }) });
+  return ok({ units, status, steps, whole: false, lexeme, ...(listed !== undefined && { listed }), ...(variants !== undefined && { variants }) });
 };
 
 /** The language's rewrite rules, in order, each once over the whole form: those whose `when` holds of the base lexeme in its cell. */
-const rewrite = (lang: CompiledLanguage, units: readonly Unit[], base: Lexeme, cell: UdFeatures, blocking: boolean): { readonly units: readonly Unit[]; readonly steps: readonly Step[] } => {
+const rewrite = (lang: CompiledLanguage, units: readonly Unit[], base: Lexeme, cell: UdFeatures, blocking: boolean, context: readonly string[] = []): { readonly units: readonly Unit[]; readonly steps: readonly Step[] } => {
   let current = units;
   const steps: Step[] = [];
   for (const { rewrite: rw, when } of lang.phonology) {
-    if (when !== undefined && !conditionHolds(lang, when, base, cell, blocking)) continue;
+    if (when !== undefined && !conditionHolds(lang, when, base, cell, blocking, context)) continue;
     const applied = applyRewrite(rw, current, lang.notation);
     if (applied.matched) steps.push(rw.branch === undefined ? { rule: rw.id } : { rule: rw.id, branch: rw.branch });
     current = applied.units;
@@ -477,6 +508,7 @@ const realisation = (built: Built, units: readonly Unit[], steps: readonly Step[
   status: built.status,
   steps,
   ...(built.listed !== undefined && { listed: built.listed }),
+  ...(built.variants !== undefined && { variants: built.variants }),
 });
 
 /** A lexeme realised in a cell (its token's chosen values): the lexical form, boundaries kept. */
@@ -484,7 +516,7 @@ export const realise = (lang: CompiledLanguage, lexeme: string, cell: UdFeatures
   const built = build(lang, lexeme, cell, options);
   if (!built.ok) return built;
   if (built.value.whole) return ok(realisation(built.value, built.value.units, built.value.steps));
-  const rewritten = rewrite(lang, built.value.units, built.value.lexeme, cell, options.blocking ?? true);
+  const rewritten = rewrite(lang, built.value.units, built.value.lexeme, cell, options.blocking ?? true, options.context);
   return ok(realisation(built.value, rewritten.units, [...built.value.steps, ...rewritten.steps]));
 };
 
@@ -510,7 +542,7 @@ const contextHolds = (lang: CompiledLanguage, c: Condition, units: readonly Unit
   if (c.starts !== undefined && !text.startsWith(c.starts.normalize("NFC"))) return false;
   if (c.pos !== undefined && (word === undefined || units.length > 0 || word.pos !== c.pos)) return false;
   if (c.class !== undefined && (word === undefined || units.length > 0 || !(word.classes ?? []).includes(c.class))) return false;
-  return c.feats === undefined;
+  return c.feats === undefined && c.context === undefined;
 };
 
 /**
@@ -554,7 +586,19 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   const baseAt = written.length === 1 ? 0 : written.findIndex((w) => w.base === true);
   if (baseAt < 0) return err({ kind: "no-rule", cell: {} });
   const base = written[baseAt] as WrittenLexeme;
-  const built = build(lang, base.lexeme, base.feats ?? {}, options);
+  // What follows the base in the token, each lexeme in its own form, for a form of the base with
+  // `before` (a stem before a suffixed pronoun): asked only of a base that has one.
+  let following: readonly Unit[] | undefined;
+  if ((lang.lexemes.get(lexemeId(base.lexeme))?.forms ?? []).some((f) => f.before !== undefined)) {
+    following = [];
+    for (let k = baseAt + 1; k < written.length; k++) {
+      const lx = lang.lexemes.get(lexemeId((written[k] as WrittenLexeme).lexeme));
+      const f = lx === undefined ? undefined : allomorphOf(lang, lx, [], []);
+      if (f === undefined) break;
+      following = following.length === 0 ? unitsOf(f) : join(lang, following, unitsOf(f), "suffix");
+    }
+  }
+  const built = build(lang, base.lexeme, base.feats ?? {}, options, following);
   if (!built.ok) return built;
   let baseUnits = built.value.units;
   if (options.word !== undefined) {
@@ -610,7 +654,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   for (let k = baseAt + 1; k < written.length; k++) units = join(lang, units, forms[k] as readonly Unit[], "suffix");
   for (let k = baseAt - 1; k >= 0; k--) units = join(lang, forms[k] as readonly Unit[], units, "prefix");
   if (built.value.whole && written.length === 1) return ok(realisation(built.value, units, built.value.steps));
-  const rewritten = rewrite(lang, units, built.value.lexeme, base.feats ?? {}, options.blocking ?? true);
+  const rewritten = rewrite(lang, units, built.value.lexeme, base.feats ?? {}, options.blocking ?? true, options.context);
   return ok(realisation(built.value, rewritten.units, [...built.value.steps, ...rewritten.steps]));
 };
 

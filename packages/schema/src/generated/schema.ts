@@ -405,6 +405,10 @@ export type Slug3 = string;
  */
 export type UdFeatures7 = Readonly<Record<string, string>>;
 /**
+ * Of a token: it stands in this context, which changes how it is said or written and is no feature value (hbo: `pause` and `nesiga`, as its `context` says; `bound`, joined to the next word by a maqaf). Read by a rewrite's `when`.
+ */
+export type Slug4 = string;
+/**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcId1 = string & { readonly __brand: "KcId" };
@@ -963,7 +967,7 @@ export interface NabuSchemaIndex {
   readonly Exponent: Exponent;
   readonly Rewrite: Rewrite;
   readonly Context: Context;
-  readonly Condition: Condition2;
+  readonly Condition: Condition;
   readonly Default: Default;
   readonly FeatureLabel: FeatureLabel;
   readonly NamedRule: NamedRule;
@@ -3288,7 +3292,7 @@ export interface Logograph {
   };
 }
 /**
- * A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`.
+ * A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`. With `before`, it holds only where the rest of its token holds that condition, as an allomorph's `before` (a stem before a suffixed pronoun: hbo אַחֶי- in אַחֶיךָ), and is then more specific than a form of the same values without it; it never holds of a lexeme realised alone (a paradigm's cell).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "LexemeForm".
@@ -3313,6 +3317,7 @@ export interface LexemeForm {
   readonly free?: boolean;
   readonly statement?: Provenance4;
   readonly scope?: Scope;
+  readonly before?: Condition;
   /**
    * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
    */
@@ -3355,33 +3360,10 @@ export interface Scope {
   readonly registers?: readonly RegisterId[];
 }
 /**
- * One form of a lexeme by context. With no condition it is the one used elsewhere, or one whose condition no one has stated yet. It has `form`, or the spellings pinned until its language has a lexical-form notation.
+ * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Allomorph".
- */
-export interface Allomorph {
-  readonly form?: string;
-  readonly after?: Condition;
-  readonly before?: Condition1;
-  /**
-   * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
-   */
-  readonly spelled?: {
-    /**
-     * @minItems 1
-     */
-    readonly [k: string]: readonly string[];
-  };
-  /**
-   * Its reading in a scheme, pinned (ADR 0117) until the projection gives it.
-   */
-  readonly readings?: {
-    readonly [k: string]: string;
-  };
-}
-/**
- * What it stands after.
+ * via the `definition` "Condition".
  */
 export interface Condition {
   readonly pos?: PartOfSpeech;
@@ -3403,9 +3385,36 @@ export interface Condition {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly context?: Slug4;
 }
 /**
- * What it stands before.
+ * One form of a lexeme by context. With no condition it is the one used elsewhere, or one whose condition no one has stated yet. It has `form`, or the spellings pinned until its language has a lexical-form notation.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Allomorph".
+ */
+export interface Allomorph {
+  readonly form?: string;
+  readonly after?: Condition1;
+  readonly before?: Condition2;
+  /**
+   * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
+   */
+  readonly spelled?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
+  };
+  /**
+   * Its reading in a scheme, pinned (ADR 0117) until the projection gives it.
+   */
+  readonly readings?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
  */
 export interface Condition1 {
   readonly pos?: PartOfSpeech;
@@ -3427,6 +3436,32 @@ export interface Condition1 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly context?: Slug4;
+}
+/**
+ * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
+ */
+export interface Condition2 {
+  readonly pos?: PartOfSpeech;
+  /**
+   * The lexical form ends in this (Spanish -a; uz -k).
+   */
+  readonly ends?: string;
+  /**
+   * The lexical form begins with this.
+   */
+  readonly starts?: string;
+  readonly class?: Slug3;
+  /**
+   * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
+   */
+  readonly endsIn?: string;
+  /**
+   * For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).
+   */
+  readonly startsIn?: string;
+  readonly feats?: UdFeatures7;
+  readonly context?: Slug4;
 }
 /**
  * What a language declares beside its lexicon (lexicons/<lang>/language.yaml; ADR 0145, 0148): the varieties and registers a scope ranges over, the dimensions of each category, the features and values its tokens and lexemes carry, its defaults and its classes. A category is a UD tag: no category system is declared (the owner, round 6). Every statement here is content: drafted `llm:` and REVIEW until signed off.
@@ -3540,7 +3575,7 @@ export interface LanguageDeclaration {
  */
 export interface Default {
   readonly id: Slug;
-  readonly when: Condition2;
+  readonly when: Condition;
   readonly gives: UdFeatures1;
   /**
    * What a reviewer should know, by support language.
@@ -3548,33 +3583,6 @@ export interface Default {
   readonly notes?: {
     readonly [k: string]: string;
   };
-}
-/**
- * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Condition".
- */
-export interface Condition2 {
-  readonly pos?: PartOfSpeech;
-  /**
-   * The lexical form ends in this (Spanish -a; uz -k).
-   */
-  readonly ends?: string;
-  /**
-   * The lexical form begins with this.
-   */
-  readonly starts?: string;
-  readonly class?: Slug3;
-  /**
-   * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
-   */
-  readonly endsIn?: string;
-  /**
-   * For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).
-   */
-  readonly startsIn?: string;
-  readonly feats?: UdFeatures7;
 }
 /**
  * One class: a lexical feature a rule reads and no form gives (Spanish e-ie; the -go verbs).
@@ -3722,7 +3730,7 @@ export interface Stem {
  */
 export interface RealisationRule {
   readonly id: RuleId;
-  readonly when: Condition2;
+  readonly when: Condition;
   readonly stem?: StemChoice;
   readonly blocks: readonly AffixBlock[];
   readonly notes?: {
@@ -3789,6 +3797,7 @@ export interface Condition3 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly context?: Slug4;
 }
 /**
  * A generated lookup table an orthography profile refers to by id (profiles/tables/<id>.json): orthographic variant groups, character readings for the IME-homophone typo model, or a character set for script-mismatch detection.

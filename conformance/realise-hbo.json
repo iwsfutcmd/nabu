@@ -1,0 +1,2618 @@
+{
+  "$comment": "Realisation for Biblical Hebrew (docs/rules/hbo.md; docs/rules-design.md). realise/hbo-engine runs on zz, an invented fixture language given whole, for what the engine gained with hbo's rules: a lexeme's form that holds only before something in its token (`before`: a stem before a suffixed pronoun), a rewrite that holds only of a token in a context (`when: {context}`: bound by a maqaf, pause), and the free variants of a cell (`variant`, `variants`: ADR 0145, both accepted, the first shown). realise/hbo runs hbo's own rules and lexicon (lexicons/hbo/language.yaml, lexemes.yaml) with `spellings: false`, as the compiler's check of the tokens does: one vector or more per branch of every rule, each a form the course writes (its item in the note).",
+  "vectors": [
+    {
+      "id": "realise/hbo-engine/before/holds",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:kad",
+            "feats": {
+              "Number": "Sing"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:sfx-i"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kat+i",
+          "status": "pinned"
+        }
+      },
+      "note": "A form with `before` holds where the rest of the token begins as it says: the stem before the suffix."
+    },
+    {
+      "id": "realise/hbo-engine/before/fails",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:kad",
+            "feats": {
+              "Number": "Sing"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:sfx-u"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kad+u",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "Where the rest of the token does not hold it, the lexeme's own form."
+    },
+    {
+      "id": "realise/hbo-engine/before/alone",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:kad",
+        "cell": {
+          "Number": "Sing"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kad",
+          "status": "given"
+        }
+      },
+      "note": "A lexeme realised alone (a paradigm's cell) has nothing after it: a form with `before` never holds."
+    },
+    {
+      "id": "realise/hbo-engine/before/rule-cell",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:kad",
+            "feats": {
+              "Number": "Plur"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:sfx-i"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kadd+i",
+          "status": "pinned",
+          "steps": []
+        }
+      },
+      "note": "In a cell a rule gives (the plural), the form with `before` takes the rule's place before the suffix."
+    },
+    {
+      "id": "realise/hbo-engine/before/rule-cell-alone",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:kad",
+        "cell": {
+          "Number": "Plur"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kad+im",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:zz-plural",
+              "branch": "pl"
+            }
+          ]
+        }
+      },
+      "note": "And alone, the rule's."
+    },
+    {
+      "id": "realise/hbo-engine/context/bound",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:eet"
+          }
+        ],
+        "context": [
+          "bound"
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "et",
+          "steps": [
+            {
+              "rule": "rule:zz-bound",
+              "branch": "e"
+            }
+          ]
+        }
+      },
+      "note": "A rewrite whose `when` names a context holds of a token in it."
+    },
+    {
+      "id": "realise/hbo-engine/context/none",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:eet"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "eet",
+          "steps": []
+        }
+      },
+      "note": "And of no other."
+    },
+    {
+      "id": "realise/hbo-engine/context/other",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:eet"
+          }
+        ],
+        "context": [
+          "pause"
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "eet",
+          "steps": []
+        }
+      },
+      "note": "A token in another context."
+    },
+    {
+      "id": "realise/hbo-engine/context/with-pos",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:sela",
+            "feats": {
+              "Number": "Sing"
+            }
+          }
+        ],
+        "context": [
+          "bound",
+          "pause"
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "selaa",
+          "steps": [
+            {
+              "rule": "rule:zz-pause"
+            }
+          ]
+        }
+      },
+      "note": "A token in two contexts; the rest of `when` must hold too."
+    },
+    {
+      "id": "realise/hbo-engine/variant/first",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:mah",
+        "cell": {
+          "Number": "Sing"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "mah",
+          "status": "pinned",
+          "variants": 2
+        }
+      },
+      "note": "Two free variants of a cell: the first, and how many there are."
+    },
+    {
+      "id": "realise/hbo-engine/variant/second",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:mah",
+        "cell": {
+          "Number": "Sing"
+        },
+        "variant": 1
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "meh",
+          "status": "pinned",
+          "variants": 2
+        }
+      },
+      "note": "`variant` realises another."
+    },
+    {
+      "id": "realise/hbo-engine/variant/token",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:mah",
+            "feats": {
+              "Number": "Sing"
+            }
+          }
+        ],
+        "variant": 1
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "meh",
+          "variants": 2
+        }
+      },
+      "note": "As a token."
+    },
+    {
+      "id": "realise/hbo-engine/variant/none",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:mah",
+        "cell": {
+          "Number": "Sing"
+        },
+        "variant": 2
+      },
+      "expected": {
+        "ok": false,
+        "error": {
+          "kind": "variant",
+          "variants": 2
+        }
+      },
+      "note": "A variant the cell does not have."
+    },
+    {
+      "id": "realise/hbo-engine/variant/one",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number"
+            ],
+            "PRON": [
+              "Number"
+            ]
+          },
+          "citation": {
+            "NOUN": {
+              "Number": "Sing"
+            }
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-plural",
+              "when": {
+                "pos": "NOUN",
+                "feats": {
+                  "Number": "Plur"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "im"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-bound",
+              "branch": "e",
+              "when": {
+                "context": "bound"
+              },
+              "find": "ee",
+              "to": "e"
+            },
+            {
+              "id": "rule:zz-pause",
+              "when": {
+                "context": "pause",
+                "pos": "NOUN"
+              },
+              "find": "a",
+              "at": "end",
+              "to": "aa"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@hbo-rules-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kad",
+              "pos": "NOUN",
+              "form": "kad",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "kat",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                },
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "kadd",
+                  "before": {
+                    "startsIn": "i"
+                  },
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-i",
+              "realises": {
+                "Person": "1"
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sfx-u",
+              "realises": {
+                "Person": "3"
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:eet",
+              "pos": "ADP",
+              "form": "eet"
+            },
+            {
+              "id": "lexeme:sela",
+              "pos": "NOUN",
+              "form": "sela"
+            },
+            {
+              "id": "lexeme:mah",
+              "pos": "PRON",
+              "form": "mah",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "mah",
+                  "status": "pinned",
+                  "free": true
+                },
+                {
+                  "feats": {
+                    "Number": "Sing"
+                  },
+                  "form": "meh",
+                  "status": "pinned",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:eet",
+        "cell": {},
+        "variant": 1
+      },
+      "expected": {
+        "ok": false,
+        "error": {
+          "kind": "variant"
+        }
+      },
+      "note": "Nor where there is one form."
+    }
+  ]
+}

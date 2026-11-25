@@ -311,6 +311,10 @@
         "feats": {
           "description": "It has these feature values.",
           "$ref": "common.schema.json#/$defs/UdFeatures"
+        },
+        "context": {
+          "description": "Of a token: it stands in this context, which changes how it is said or written and is no feature value (hbo: `pause` and `nesiga`, as its `context` says; `bound`, joined to the next word by a maqaf). Read by a rewrite's `when`.",
+          "$ref": "common.schema.json#/$defs/Slug"
         }
       }
     },
