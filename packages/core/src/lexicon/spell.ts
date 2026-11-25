@@ -58,12 +58,30 @@ const LIMIT = 4096;
 
 const escape = (c: string): string => `\\u{${(c.codePointAt(0) as number).toString(16)}}`;
 
+/**
+ * Single code points as a regex class's body, each run of consecutive ones as a range: a set of a
+ * whole script's letters (yue's Han characters, about 100,000) is matched a thousand times faster
+ * so than one escape a member, and means the same.
+ */
+const classBody = (single: readonly string[]): string => {
+  const cps = [...new Set(single.map((c) => c.codePointAt(0) as number))].sort((a, b) => a - b);
+  let body = "";
+  for (let i = 0; i < cps.length; i++) {
+    let j = i;
+    while (j + 1 < cps.length && cps[j + 1] === (cps[j] as number) + 1) j++;
+    const from = escape(String.fromCodePoint(cps[i] as number));
+    body += j === i ? from : `${from}${j === i + 1 ? "" : "-"}${escape(String.fromCodePoint(cps[j] as number))}`;
+    i = j;
+  }
+  return body;
+};
+
 /** A set's members as one regex piece: one of its letters, or one of its strings (the longest first). */
 const alternation = (members: readonly string[]): string => {
   const single = members.filter((m) => Array.from(m).length === 1);
   const multi = members.filter((m) => Array.from(m).length > 1).sort((a, b) => Array.from(b).length - Array.from(a).length);
   const parts = multi.map((m) => Array.from(m).map(escape).join(""));
-  if (single.length > 0) parts.push(`[${single.map(escape).join("")}]`);
+  if (single.length > 0) parts.push(`[${classBody(single)}]`);
   return parts.length === 0 ? "[]" : parts.join("|");
 };
 

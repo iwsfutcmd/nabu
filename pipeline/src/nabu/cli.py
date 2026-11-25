@@ -303,8 +303,9 @@ def jyutping_command(
 
     Every Hant form gets a yue-Latn/jyutping form from its tokens' pinned readings, every
     spelling in the lexicon and every character name its Jyutping, every accept set its Jyutping
-    alternatives. Readings taken from PyCantonese or chosen among the course's are listed for a
-    person to check.
+    alternatives, and (where the language declares a notation) every lexeme its lexical form, each
+    character followed by its syllable. Readings taken from PyCantonese or chosen among the
+    course's are listed for a person to check.
     """
     from nabu import jyutping
 

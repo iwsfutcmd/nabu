@@ -357,9 +357,11 @@ def check_tokens(
     course, not an account of it), and the form spelled by its orthography's `spell` statement
     (and its layers', against the marked text). A phrase lexeme (a form with a space, written over
     several tokens) is realised once for each of its words, the token's other lexemes joined to
-    it, and the token is the word that spells as it is written. It is `given` where each spelling
-    is the course's or a free alternative of it (compared as core's `spelledAs` does; the marked
-    layer exactly), `form` where blocking took a pinned or listed form of its lexeme to give it,
+    it, and the token is the word that spells as it is written. A token of several lexemes, none of
+    them its base, is a token of equals (yue 十 + 八): each in its own cell, joined (core's
+    `realiseToken`). It is `given` where each spelling is the course's or a free alternative of
+    it (compared as core's `spelledAs` does; the marked layer exactly), `form` where blocking took
+    a pinned or listed form of its lexeme to give it,
     `unaccounted` otherwise, with the reason where the rules give nothing. None for a language
     with neither realisation rules nor a notation: nothing is checked, nothing asked. A language
     that declares a notation and no rules (one that does not inflect: yue, lzh, tok) is checked
@@ -380,11 +382,13 @@ def check_tokens(
     for n, site in enumerate(sites):
         parts = site.written
         base = parts[0] if len(parts) == 1 else next((p for p in parts if p.get("base")), None)
-        if base is None:
+        if base is None and len(parts) < 2:
             early[n] = TokenCheck(site, "unaccounted", "no base lexeme")
             candidates.append([])
             continue
-        entry = lang.get(str(base["lexeme"]))
+        # A token of several lexemes, none its base, is a token of equals (yue 十 + 八): core
+        # realises each in its own cell and joins them; none of them is a phrase's word.
+        entry = None if base is None else lang.get(str(base["lexeme"]))
         request: dict[str, Any] = {
             "op": "realise-token",
             **source,
