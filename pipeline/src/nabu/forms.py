@@ -432,7 +432,10 @@ def check_tokens(
     # The token's forms with a lexeme's free allomorph in place of the one chosen: each another try.
     for n in range(len(results)):
         for result in list(results[n]):
-            for alt in result["value"].get("alternatives", []) if result["ok"] else []:
+            alternatives = (
+                cast(list[str], result["value"].get("alternatives", [])) if result["ok"] else []
+            )
+            for alt in alternatives:
                 candidates[n].append(candidates[n][0])
                 results[n].append({"ok": True, "value": {**result["value"], "form": alt}})
     spell: list[tuple[int, int, Spelling, dict[str, Any]]] = []
