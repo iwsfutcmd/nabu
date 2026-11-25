@@ -1,0 +1,466 @@
+# Fixture course (apc), unit 30: diminutives of affection and a review of units 21 to 29 (Kline, chapter 31). 3assoul
+# (from 3asal, honey) and tayyoub (from tayyeb), said to a child or a loved one; then a weekend in a mountain house
+# that brings back sarlna, ba3dni wasle, yalli, the passive participle, law with ken, dall, illa, shi marra,
+# 2abelma and ba3dma. Drafted by an LLM (provenance llm:…, status draft) and checked against Kline (2022): every
+# sentence awaits a native speaker's review.
+id: u30-mountains
+title:
+  en: A weekend in the mountains
+cefr: B1
+nodes:
+- {id: apc.mountains.dim, kind: lesson, introduces: ['lexeme:3asal', 'lexeme:3assoul', 'lexeme:tayyoub']}
+- {id: apc.mountains.house, kind: lesson}
+- {id: apc.mountains.night, kind: lesson}
+- {id: apc.mountains.story, kind: story}
+sentences:
+- id: s.mountains.1
+  node: apc.mountains.dim
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: بدّي خبز وعسل.
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: خبز, lexeme: khebz, feats: {Number: Sing}}, {surface: وعسل, lexemes: [{lexeme: w,
+              surface: و}, {lexeme: 3asal, surface: عسل, base: true, feats: {Number: Sing}}]}]
+      reverse: بدّي خبز وعسل
+    apc-Latn/arabizi:
+      text: baddi khebz w 3asal.
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: khebz, lexeme: khebz, feats: {Number: Sing}}, {surface: w, lexeme: w}, {
+          surface: 3asal, lexeme: 3asal, feats: {Number: Sing}}]
+      reverse: baddi khebz w 3asal
+  translations:
+    en: |-
+      I want bread and honey.
+      I('d| would) like bread and honey.
+- id: s.mountains.2
+  node: apc.mountains.dim
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: يا عسول، إنت تعبان؟
+      tokens: [{surface: يا, lexeme: ya}, {surface: عسول, lexeme: 3assoul, feats: {Number: Sing}}, {surface: إنت, lexeme: enta}, {surface: تعبان, lexeme: ta3ban, feats: {Gender: Masc, Number: Sing}}]
+      reverse: يا عسول إنت تعبان
+    apc-Latn/arabizi:
+      text: ya 3assul, enta ta3ban?
+      tokens: [{surface: ya, lexeme: ya}, {surface: 3assul, lexeme: 3assoul, feats: {Number: Sing}}, {surface: enta, lexeme: enta}, {surface: ta3ban, lexeme: ta3ban, feats: {Gender: Masc, Number: Sing}}]
+      reverse: ya 3assul enta ta3ban
+  translations:
+    en: (Sweetheart|Honey|Sweetie), are you tired?
+- id: s.mountains.3
+  node: apc.mountains.dim
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: يا عسول، ضل مع تيتا.
+      tokens: [{surface: يا, lexeme: ya}, {surface: عسول, lexeme: 3assoul, feats: {Number: Sing}}, {surface: ضل, lexeme: dall, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: مع,
+          lexeme: ma3}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}]
+      reverse: يا عسول ضل مع تيتا
+    apc-Latn/arabizi:
+      text: ya 3assul, dall ma3 teta.
+      tokens: [{surface: ya, lexeme: ya}, {surface: 3assul, lexeme: 3assoul, feats: {Number: Sing}}, {surface: dall, lexeme: dall, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: ma3,
+          lexeme: ma3}, {surface: teta, lexeme: teta, feats: {Number: Sing}}]
+      reverse: ya 3assul dall ma3 teta
+  translations:
+    en: (Sweetheart|Honey|Sweetie), stay with (Grandma|Granny).
+- id: s.mountains.4
+  node: apc.mountains.dim
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: إبني كتير طيوب.
+      tokens: [{surface: إبني, lexemes: [{lexeme: ebn, surface: إبن, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: كتير, lexeme: ktir}, {surface: طيوب, lexeme: tayyoub,
+          feats: {Gender: Masc, Number: Sing}}]
+      reverse: إبني كتير طيوب
+    apc-Latn/arabizi:
+      text: ebni ktir tayyub.
+      tokens: [{surface: ebni, lexemes: [{lexeme: ebn, surface: ebn, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: ktir, lexeme: ktir}, {surface: tayyub, lexeme: tayyoub,
+          feats: {Gender: Masc, Number: Sing}}]
+      reverse: ebni ktir tayyub
+  translations:
+    en: |-
+      My son is (so|very|really) sweet.
+      My son's (so|very|really) sweet.
+- id: s.mountains.5
+  node: apc.mountains.dim
+  forms:
+    apc-Arab/standard:
+      text: العسل كتير طيّب.
+      tokens: [{surface: العسل, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: 3asal, surface: عسل, base: true, feats: {Number: Sing}, n: 2}]}, {surface: كتير, lexeme: ktir}, {surface: طيّب,
+          lexeme: tayyeb}]
+      reverse: العسل كتير طيّب
+    apc-Latn/arabizi:
+      text: el 3asal ktir tayyeb.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: 3asal, lexeme: 3asal, feats: {Number: Sing}, n: 2}, {surface: ktir, lexeme: ktir}, {surface: tayyeb, lexeme: tayyeb}]
+      reverse: el 3asal ktir tayyeb
+  translations:
+    en: |-
+      The honey is (very|really|so) (good|tasty|delicious).
+      The honey's (very|really|so) (good|tasty|delicious).
+- id: s.mountains.6
+  node: apc.mountains.house
+  forms:
+    apc-Arab/standard:
+      text: صارلنا سنة ما طلعنا عالجبل.
+      tokens: [{surface: صارلنا, lexemes: [{lexeme: sar, surface: صار, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1pl, surface: لنا}]}, {surface: سنة, lexeme: sene,
+          feats: {Number: Sing}}, {surface: ما, lexeme: ma}, {surface: طلعنا, lexeme: tele3, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: عالجبل, lexemes: [{lexeme: 3a, surface: ع, n: 6,
+              head: 8, rel: case}, {lexeme: el, surface: ال, n: 7, head: 8, rel: det}, {lexeme: jabal, surface: جبل, base: true, feats: {Number: Sing}, n: 8}]}]
+      reverse: صارلنا سنة ما طلعنا عالجبل
+    apc-Latn/arabizi:
+      text: sarlna sene ma tle3na 3al jabal.
+      tokens: [{surface: sarlna, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1pl, surface: lna}]}, {surface: sene, lexeme: sene,
+          feats: {Number: Sing}}, {surface: ma, lexeme: ma}, {surface: tle3na, lexeme: tele3, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, n: 6,
+              head: 8, rel: case, base: true}, {lexeme: el, surface: l, n: 7, head: 8, rel: det}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}, n: 8}]
+      reverse: sarlna sene ma tle3na 3al jabal
+  translations:
+    en: |-
+      It('s| has) been a year since we went (up|) to the mountains.
+      We (haven't|have not) been (up|) to the mountains (for|in) a year.
+- id: s.mountains.7
+  node: apc.mountains.house
+  forms:
+    apc-Arab/standard:
+      text: البيت يلي عالجبل كتير كبير.
+      tokens: [{surface: البيت, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 2}]}, {surface: يلي, lexeme: yalli}, {surface: عالجبل,
+          lexemes: [{lexeme: 3a, surface: ع, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: jabal, surface: جبل, base: true, feats: {Number: Sing}, n: 6}]}, {surface: كتير,
+          lexeme: ktir}, {surface: كبير, lexeme: kbir}]
+      reverse: البيت يلي عالجبل كتير كبير
+    apc-Latn/arabizi:
+      text: el bet yalli 3al jabal ktir kbir.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 2}, {surface: yalli, lexeme: yalli}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a,
+              n: 4, head: 6, rel: case, base: true}, {lexeme: el, surface: l, n: 5, head: 6, rel: det}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}, n: 6}, {surface: ktir, lexeme: ktir}, {surface: kbir,
+          lexeme: kbir}]
+      reverse: el bet yalli 3al jabal ktir kbir
+  translations:
+    en: |-
+      The house in the mountains is very big.
+      The house in the mountains is really big.
+- id: s.mountains.8
+  node: apc.mountains.house
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: بعدني واصلة، والباب مسكر.
+      tokens: [{surface: بعدني, lexemes: [{lexeme: ba3d.still, surface: بعد, base: true}, {lexeme: obj-1sg, surface: ني}]}, {surface: واصلة, lexeme: wesel, feats: {Aspect: Part, Gender: Fem, Number: Sing}},
+        {surface: والباب, lexemes: [{lexeme: w, surface: و, n: 4}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: beb, surface: باب, base: true, feats: {Number: Sing}, n: 6}]}, {surface: مسكر,
+          lexeme: sakkar, feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}]
+      reverse: بعدني واصلة والباب مسكر
+    apc-Latn/arabizi:
+      text: ba3dni wasle, w el beb msakkar.
+      tokens: [{surface: ba3dni, lexemes: [{lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: obj-1sg, surface: ni}]}, {surface: wasle, lexeme: wesel, feats: {Aspect: Part, Gender: Fem, Number: Sing}},
+        {surface: w, lexeme: w, n: 4}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: beb, lexeme: beb, feats: {Number: Sing}, n: 6}, {surface: msakkar, lexeme: sakkar, feats: {Aspect: Part,
+            Gender: Masc, Number: Sing, Voice: Pass}}]
+      reverse: ba3dni wasle w el beb msakkar
+  translations:
+    en: |-
+      I('ve| have) just (arrived|got here), and the door is (closed|shut).
+      I just (arrived|got here), and the door is (closed|shut).
+- id: s.mountains.9
+  node: apc.mountains.house
+  forms:
+    apc-Arab/standard:
+      text: الكهربا مقطوعة من مبارح.
+      tokens: [{surface: الكهربا, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: kahraba, surface: كهربا, base: true, feats: {Number: Sing}, n: 2}]}, {surface: مقطوعة, lexeme: 2ata3,
+          feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}, {surface: من, lexeme: men}, {surface: مبارح, lexeme: mbere7}]
+      reverse: الكهربا مقطوعة من مبارح
+    apc-Latn/arabizi:
+      text: el kahraba ma2tu3a men mbere7.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: kahraba, lexeme: kahraba, feats: {Number: Sing}, n: 2}, {surface: ma2tu3a, lexeme: 2ata3, feats: {Aspect: Part, Gender: Fem,
+            Number: Sing, Voice: Pass}}, {surface: men, lexeme: men}, {surface: mbere7, lexeme: mbere7}]
+      reverse: el kahraba ma2tu3a men mbere7
+  translations:
+    en: The (power|electricity) has been (out|off|cut off) since yesterday.
+- id: s.mountains.10
+  node: apc.mountains.house
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: شي مرّة طلعتوا عالجبل بالشتي؟
+      tokens: [{surface: شي, lexeme: shi}, {surface: مرّة, lexeme: marra}, {surface: طلعتوا, lexeme: tele3, feats: {Aspect: Perf, Number: Plur, Person: '2'}}, {surface: عالجبل, lexemes: [{lexeme: 3a, surface: ع,
+              n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: jabal, surface: جبل, base: true, feats: {Number: Sing}, n: 6}]}, {surface: بالشتي, lexemes: [{lexeme: b,
+              surface: ب, n: 7, head: 9, rel: case}, {lexeme: el, surface: ال, n: 8, head: 9, rel: det}, {lexeme: shiti, surface: شتي, base: true, feats: {Number: Sing}, n: 9}]}]
+      reverse: شي مرّة طلعتوا عالجبل بالشتي
+    apc-Latn/arabizi:
+      text: shi marra tle3to 3al jabal bel sheti?
+      tokens: [{surface: shi, lexeme: shi}, {surface: marra, lexeme: marra}, {surface: tle3to, lexeme: tele3, feats: {Aspect: Perf, Number: Plur, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a,
+              n: 4, head: 6, rel: case, base: true}, {lexeme: el, surface: l, n: 5, head: 6, rel: det}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}, n: 6}, {surface: bel, lexemes: [{lexeme: b,
+              surface: b, n: 7, head: 9, rel: case, base: true}, {lexeme: el, surface: el, n: 8, head: 9, rel: det}]}, {surface: sheti, lexeme: shiti, feats: {Number: Sing}, n: 9}]
+      reverse: shi marra tle3to 3al jabal bel sheti
+  translations:
+    en: Have you ever (been|gone) (up|) to the mountains in (the|) winter?
+- id: s.mountains.11
+  node: apc.mountains.house
+  forms:
+    apc-Arab/standard:
+      text: صاروا طالعين عالجبل مرتين.
+      tokens: [{surface: صاروا, lexeme: sar, feats: {Aspect: Perf, Number: Plur, Person: '3'}}, {surface: طالعين, lexeme: tele3, feats: {Aspect: Part, Number: Plur}}, {surface: عالجبل, lexemes: [{lexeme: 3a,
+              surface: ع, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: jabal, surface: جبل, base: true, feats: {Number: Sing}, n: 5}]}, {surface: مرتين, lexemes: [
+            {lexeme: marra, surface: مرت, base: true, feats: {Number: Sing}}, {lexeme: dual, surface: ين}]}]
+      reverse: صاروا طالعين عالجبل مرتين
+    apc-Latn/arabizi:
+      text: saro tal3in 3al jabal marrten.
+      tokens: [{surface: saro, lexeme: sar, feats: {Aspect: Perf, Number: Plur, Person: '3'}}, {surface: tal3in, lexeme: tele3, feats: {Aspect: Part, Number: Plur}}, {surface: 3al, lexemes: [{lexeme: 3a,
+              surface: 3a, n: 3, head: 5, rel: case, base: true}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}, n: 5}, {surface: marrten, lexemes: [
+            {lexeme: marra, surface: marrt, base: true, feats: {Number: Sing}}, {lexeme: dual, surface: en}]}]
+      reverse: saro tal3in 3al jabal marrten
+  translations:
+    en: They('ve| have) been (up|) to the mountains twice.
+- id: s.mountains.12
+  node: apc.mountains.house
+  forms:
+    apc-Arab/standard:
+      text: قبلما نروح، لازم نسكر الباب.
+      tokens: [{surface: قبلما, lexeme: 2abelma}, {surface: نروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: لازم, lexeme: lezem}, {surface: نسكر, lexeme: sakkar,
+          feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: الباب, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: beb, surface: باب, base: true, feats: {Number: Sing},
+              n: 6}]}]
+      reverse: قبلما نروح لازم نسكر الباب
+    apc-Latn/arabizi:
+      text: 2abelma nru7, lezem nsakker el beb.
+      tokens: [{surface: 2abelma, lexeme: 2abelma}, {surface: nru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: lezem, lexeme: lezem}, {surface: nsakker, lexeme: sakkar,
+          feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: beb, lexeme: beb, feats: {Number: Sing}, n: 6}]
+      reverse: 2abelma nru7 lezem nsakker el beb
+  translations:
+    en: |-
+      Before we (go|leave), we (have to|must) (close|shut) the door.
+      We (have to|must) (close|shut) the door before we (go|leave).
+- id: s.mountains.13
+  node: apc.mountains.night
+  forms:
+    apc-Arab/standard:
+      text: لو ما كانت الكهربا مقطوعة، كنّا شفنا فيلم.
+      tokens: [{surface: لو, lexeme: law}, {surface: ما, lexeme: ma}, {surface: كانت, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: الكهربا, lexemes: [{lexeme: el,
+              surface: ال, n: 4, head: 5, rel: det}, {lexeme: kahraba, surface: كهربا, base: true, feats: {Number: Sing}, n: 5}]}, {surface: مقطوعة, lexeme: 2ata3, feats: {Aspect: Part, Gender: Fem, Number: Sing,
+            Voice: Pass}}, {surface: كنّا, lexeme: kan, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: شفنا, lexeme: shef, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: فيلم,
+          lexeme: film, feats: {Number: Sing}}]
+      reverse: لو ما كانت الكهربا مقطوعة كنّا شفنا فيلم
+    apc-Latn/arabizi:
+      text: law ma kenet el kahraba ma2tu3a, kenna shefna film.
+      tokens: [{surface: law, lexeme: law}, {surface: ma, lexeme: ma}, {surface: kenet, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: el, lexeme: el, n: 4, head: 5,
+          rel: det}, {surface: kahraba, lexeme: kahraba, feats: {Number: Sing}, n: 5}, {surface: ma2tu3a, lexeme: 2ata3, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}, {surface: kenna,
+          lexeme: kan, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: shefna, lexeme: shef, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: film, lexeme: film, feats: {Number: Sing}}]
+      reverse: law ma kenet el kahraba ma2tu3a kenna shefna film
+  translations:
+    en: If the (power|electricity) (hadn't|had not) been (out|off|cut off), we('d| would)('ve| have) watched a (film|movie).
+- id: s.mountains.14
+  node: apc.mountains.night
+  forms:
+    apc-Arab/standard:
+      text: ضلوا عم يحكوا كلّ الليل.
+      tokens: [{surface: ضلوا, lexeme: dall, feats: {Aspect: Perf, Number: Plur, Person: '3'}}, {surface: عم, lexeme: 3am}, {surface: يحكوا, lexeme: 7aka, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '3'}},
+        {surface: كلّ, lexeme: kell}, {surface: الليل, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: lel, surface: ليل, base: true, feats: {Number: Sing}, n: 6}]}]
+      reverse: ضلوا عم يحكوا كلّ الليل
+    apc-Latn/arabizi:
+      text: dallo 3am yi7ko kell el lel.
+      tokens: [{surface: dallo, lexeme: dall, feats: {Aspect: Perf, Number: Plur, Person: '3'}}, {surface: 3am, lexeme: 3am}, {surface: yi7ko, lexeme: 7aka, feats: {Aspect: Imp, Mood: Sub, Number: Plur,
+            Person: '3'}}, {surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: lel, lexeme: lel, feats: {Number: Sing}, n: 6}]
+      reverse: dallo 3am yi7ko kell el lel
+  translations:
+    en: They kept (on|) talking all night.
+- id: s.mountains.15
+  node: apc.mountains.night
+  forms:
+    apc-Arab/standard:
+      text: ما أكلنا شي إلّا خبز وجبنة.
+      tokens: [{surface: ما, lexeme: ma}, {surface: أكلنا, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: شي, lexeme: shi}, {surface: إلّا, lexeme: illa}, {surface: خبز, lexeme: khebz,
+          feats: {Number: Sing}}, {surface: وجبنة, lexemes: [{lexeme: w, surface: و}, {lexeme: jebne, surface: جبنة, base: true, feats: {Number: Sing}}]}]
+      reverse: ما أكلنا شي إلّا خبز وجبنة
+    apc-Latn/arabizi:
+      text: ma akalna shi illa khebz w jebne.
+      tokens: [{surface: ma, lexeme: ma}, {surface: akalna, lexeme: akal, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: shi, lexeme: shi}, {surface: illa, lexeme: illa}, {surface: khebz,
+          lexeme: khebz, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: jebne, lexeme: jebne, feats: {Number: Sing}}]
+      reverse: ma akalna shi illa khebz w jebne
+  translations:
+    en: |-
+      We (didn't|did not) eat anything (but|except) bread and cheese.
+      We only ate bread and cheese.
+- id: s.mountains.16
+  node: apc.mountains.night
+  forms:
+    apc-Arab/standard:
+      text: تيتا قديشها مبسوطة!
+      tokens: [{surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: قديشها, lexemes: [{lexeme: 2addesh, surface: قديش, base: true}, {lexeme: poss-3fs, surface: ها}]}, {surface: مبسوطة, lexeme: mabsout,
+          feats: {Gender: Fem, Number: Sing}}]
+      reverse: تيتا قديشها مبسوطة
+    apc-Latn/arabizi:
+      text: teta 2addesha mabsouta!
+      tokens: [{surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: 2addesha, lexemes: [{lexeme: 2addesh, surface: 2addesh, base: true}, {lexeme: poss-3fs, surface: a}]}, {surface: mabsouta,
+          lexeme: mabsout, feats: {Gender: Fem, Number: Sing}}]
+      reverse: teta 2addesha mabsouta
+  translations:
+    en: |-
+      How happy (Grandma|Granny) is!
+      (Grandma|Granny) is so happy!
+- id: s.mountains.17
+  node: apc.mountains.night
+  forms:
+    apc-Arab/standard:
+      text: بعدما خلصنا العشا، نمنا.
+      tokens: [{surface: بعدما, lexeme: ba3dma}, {surface: خلصنا, lexeme: khallas, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: العشا, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4,
+              rel: det}, {lexeme: 3asha, surface: عشا, base: true, feats: {Number: Sing}, n: 4}]}, {surface: نمنا, lexeme: nem, feats: {Aspect: Perf, Number: Plur, Person: '1'}}]
+      reverse: بعدما خلصنا العشا نمنا
+    apc-Latn/arabizi:
+      text: ba3dma khallasna el 3asha, nemna.
+      tokens: [{surface: ba3dma, lexeme: ba3dma}, {surface: khallasna, lexeme: khallas, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: 3asha,
+          lexeme: 3asha, feats: {Number: Sing}, n: 4}, {surface: nemna, lexeme: nem, feats: {Aspect: Perf, Number: Plur, Person: '1'}}]
+      reverse: ba3dma khallasna el 3asha nemna
+  translations:
+    en: After we finished (the|) dinner, we (went to sleep|went to bed|slept).
+- id: s.mountains.18
+  node: apc.mountains.night
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: يا ريت فينا نضل هون كلّ السنة.
+      tokens: [{surface: يا, lexeme: ya-reit}, {surface: ريت, lexeme: ya-reit}, {surface: فينا, lexemes: [{lexeme: fi.can, surface: في, base: true}, {lexeme: poss-1pl, surface: نا}]}, {surface: نضل, lexeme: dall,
+          feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: هون, lexeme: hon}, {surface: كلّ, lexeme: kell}, {surface: السنة, lexemes: [{lexeme: el, surface: ال, n: 8, head: 9, rel: det},
+            {lexeme: sene, surface: سنة, base: true, feats: {Number: Sing}, n: 9}]}]
+      reverse: يا ريت فينا نضل هون كلّ السنة
+    apc-Latn/arabizi:
+      text: ya reit fina ndall hon kell el sene.
+      tokens: [{surface: ya, lexeme: ya-reit}, {surface: reit, lexeme: ya-reit}, {surface: fina, lexemes: [{lexeme: fi.can, surface: fi, base: true}, {lexeme: poss-1pl, surface: na}]}, {surface: ndall,
+          lexeme: dall, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: hon, lexeme: hon}, {surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 8, head: 9, rel: det}, {surface: sene,
+          lexeme: sene, feats: {Number: Sing}, n: 9}]
+      reverse: ya reit fina ndall hon kell el sene
+  translations:
+    en: |-
+      I wish we could stay here all year.
+      If only we could stay here all year.
+stories:
+- id: apc.story.mountains
+  node: apc.mountains.story
+  title:
+    en: A weekend in the mountains
+  provenance:
+    author: llm:claude@apc-b1
+    status: draft
+  characters:
+  - id: teta
+    speaker: f
+    name:
+      apc-Arab/standard: تيتا
+      apc-Latn/arabizi: teta
+  - id: sami
+    speaker: m
+    name:
+      apc-Arab/standard: سامي
+      apc-Latn/arabizi: Sami
+  - id: maya
+    speaker: f
+    name:
+      apc-Arab/standard: مايا
+      apc-Latn/arabizi: Maya
+  steps:
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: يا عَسّول! صارْلي زَمان ما شِفْتَك!
+          tokens: [{surface: يا, lexeme: ya}, {surface: عَسّول, lexeme: 3assoul, feats: {Number: Sing}}, {surface: صارْلي, lexemes: [{lexeme: sar, surface: صارْ, base: true, feats: {Aspect: Perf, Gender: Masc,
+                    Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: لي}]}, {surface: زَمان, lexeme: zamen}, {surface: ما, lexeme: ma}, {surface: شِفْتَك, lexemes: [{lexeme: shef, surface: شِفْتَ,
+                  base: true, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ك}]}]
+        apc-Latn/arabizi:
+          text: ya 3assul! sarli zamen ma sheftak!
+          tokens: [{surface: ya, lexeme: ya}, {surface: 3assul, lexeme: 3assoul, feats: {Number: Sing}}, {surface: sarli, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {Aspect: Perf, Gender: Masc,
+                    Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: li}]}, {surface: zamen, lexeme: zamen}, {surface: ma, lexeme: ma}, {surface: sheftak, lexemes: [{lexeme: shef, surface: sheft,
+                  base: true, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {lexeme: obj-2ms, surface: ak}]}]
+      translations:
+        en: Sweetheart! It's been ages since I saw you!
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: إيه يا تيتا، صارْلْنا سِنِة ما طْلِعْنا عَالجَبَل.
+          tokens: [{surface: إيه, lexeme: eh}, {surface: يا, lexeme: ya}, {surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: صارْلْنا, lexemes: [{lexeme: sar, surface: صارْ, base: true, feats: {
+                    Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1pl, surface: لْنا}]}, {surface: سِنِة, lexeme: sene, feats: {Number: Sing}}, {surface: ما, lexeme: ma}, {surface: طْلِعْنا,
+              lexeme: tele3, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: عَالجَبَل, lexemes: [{lexeme: 3a, surface: عَ, n: 9, head: 11, rel: case}, {lexeme: el, surface: ال, n: 10, head: 11,
+                  rel: det}, {lexeme: jabal, surface: جَبَل, base: true, feats: {Number: Sing}, n: 11}]}]
+        apc-Latn/arabizi:
+          text: eh ya teta, sarlna sene ma tle3na 3al jabal.
+          tokens: [{surface: eh, lexeme: eh}, {surface: ya, lexeme: ya}, {surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: sarlna, lexemes: [{lexeme: sar, surface: sar, base: true, feats: {
+                    Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {lexeme: la-1pl, surface: lna}]}, {surface: sene, lexeme: sene, feats: {Number: Sing}}, {surface: ma, lexeme: ma}, {surface: tle3na,
+              lexeme: tele3, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, n: 9, head: 11, rel: case, base: true}, {lexeme: el, surface: l, n: 10,
+                  head: 11, rel: det}]}, {surface: jabal, lexeme: jabal, feats: {Number: Sing}, n: 11}]
+      translations:
+        en: Yes, Grandma, it's been a year since we came up to the mountains.
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: تيتا، الكَهْرَبا مَقْطوعَة؟
+          tokens: [{surface: تيتا, lexeme: teta, feats: {Number: Sing}}, {surface: الكَهْرَبا, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: kahraba, surface: كَهْرَبا, base: true,
+                  feats: {Number: Sing}, n: 3}]}, {surface: مَقْطوعَة, lexeme: 2ata3, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}]
+        apc-Latn/arabizi:
+          text: teta, el kahraba ma2tu3a?
+          tokens: [{surface: teta, lexeme: teta, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: kahraba, lexeme: kahraba, feats: {Number: Sing}, n: 3}, {surface: ma2tu3a,
+              lexeme: 2ata3, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}]
+      translations:
+        en: Grandma, is the power out?
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: إيه، مِن مْبارِح. بَسّ مَعْليش، في خِبِز وجِبْنِة وعَسَل.
+          tokens: [{surface: إيه, lexeme: eh}, {surface: مِن, lexeme: men}, {surface: مْبارِح, lexeme: mbere7}, {surface: بَسّ, lexeme: bas}, {surface: مَعْليش, lexeme: ma3lesh}, {surface: في, lexeme: fi},
+            {surface: خِبِز, lexeme: khebz, feats: {Number: Sing}}, {surface: وجِبْنِة, lexemes: [{lexeme: w, surface: و}, {lexeme: jebne, surface: جِبْنِة, base: true, feats: {Number: Sing}}]}, {surface: وعَسَل,
+              lexemes: [{lexeme: w, surface: و}, {lexeme: 3asal, surface: عَسَل, base: true, feats: {Number: Sing}}]}]
+        apc-Latn/arabizi:
+          text: eh, men mbere7. bas ma3lesh, fi khebz w jebne w 3asal.
+          tokens: [{surface: eh, lexeme: eh}, {surface: men, lexeme: men}, {surface: mbere7, lexeme: mbere7}, {surface: bas, lexeme: bas}, {surface: ma3lesh, lexeme: ma3lesh}, {surface: fi, lexeme: fi},
+            {surface: khebz, lexeme: khebz, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: jebne, lexeme: jebne, feats: {Number: Sing}}, {surface: w, lexeme: w}, {surface: 3asal, lexeme: 3asal,
+              feats: {Number: Sing}}]
+      translations:
+        en: Yes, since yesterday. But never mind, there's bread and cheese and honey.
+  - choose:
+      prompt:
+        en: How long is it since Sami and Maya came to the mountains?
+      options:
+      - en: A year
+      - en: A month
+      - en: A week
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: يا ريت فينا نْضَلّ هون كِلّ السِّنِة!
+          tokens: [{surface: يا, lexeme: ya-reit}, {surface: ريت, lexeme: ya-reit}, {surface: فينا, lexemes: [{lexeme: fi.can, surface: في, base: true}, {lexeme: poss-1pl, surface: نا}]}, {surface: نْضَلّ,
+              lexeme: dall, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: هون, lexeme: hon}, {surface: كِلّ, lexeme: kell}, {surface: السِّنِة, lexemes: [{lexeme: el, surface: ال,
+                  n: 8, head: 9, rel: det}, {lexeme: sene, surface: سِّنِة, base: true, feats: {Number: Sing}, n: 9}]}]
+        apc-Latn/arabizi:
+          text: ya reit fina ndall hon kell el sene!
+          tokens: [{surface: ya, lexeme: ya-reit}, {surface: reit, lexeme: ya-reit}, {surface: fina, lexemes: [{lexeme: fi.can, surface: fi, base: true}, {lexeme: poss-1pl, surface: na}]}, {surface: ndall,
+              lexeme: dall, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: hon, lexeme: hon}, {surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 8, head: 9, rel: det}, {
+              surface: sene, lexeme: sene, feats: {Number: Sing}, n: 9}]
+      translations:
+        en: If only we could stay here all year!
+  - line:
+      speaker: teta
+      ask: complete
+      gap: lexeme:tayyoub
+      distractors:
+      - lexeme:ghali
+      - lexeme:bared
+      forms:
+        apc-Arab/standard:
+          text: يا عَسّول، إِنْتَ كْتير طَيّوب.
+          tokens: [{surface: يا, lexeme: ya}, {surface: عَسّول, lexeme: 3assoul, feats: {Number: Sing}}, {surface: إِنْتَ, lexeme: enta}, {surface: كْتير, lexeme: ktir}, {surface: طَيّوب, lexeme: tayyoub,
+              feats: {Gender: Masc, Number: Sing}}]
+        apc-Latn/arabizi:
+          text: ya 3assul, enta ktir tayyub.
+          tokens: [{surface: ya, lexeme: ya}, {surface: 3assul, lexeme: 3assoul, feats: {Number: Sing}}, {surface: enta, lexeme: enta}, {surface: ktir, lexeme: ktir}, {surface: tayyub, lexeme: tayyoub,
+              feats: {Gender: Masc, Number: Sing}}]
+      translations:
+        en: Sweetheart, you're so sweet.
+  - choose:
+      prompt:
+        en: What is there to eat?
+      options:
+      - en: Bread, cheese and honey
+      - en: Kibbeh
+      - en: Tabbouleh
+      answer: 0
