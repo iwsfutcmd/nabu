@@ -1,0 +1,165 @@
+{
+ "$comment": "South Tyrolean's `spell` statement (profiles/bar-Latn.moser.yaml): the lexical form is the spelling, its boundaries (+) dropped, with no rules and no alternatives (the free spellings are the profile's correspondences, read by grading). With `expected`, whether that is the spelling, compared as the profile keys a word.",
+ "vectors": [
+  {
+   "id": "spell/bar/identity",
+   "op": "spell",
+   "args": {
+    "profile": "bar-Latn/moser",
+    "notation": {
+     "sets": {
+      "L": "[a-zA-ZäöüÄÖÜß]"
+     }
+    },
+    "form": "kemm+en",
+    "expected": "kemmen"
+   },
+   "expected": {
+    "spelling": "kemmen",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "A stem and its ending: the boundary dropped, the letters as they are (lexeme:kemmen, the infinitive)."
+  },
+  {
+   "id": "spell/bar/capital",
+   "op": "spell",
+   "args": {
+    "profile": "bar-Latn/moser",
+    "notation": {
+     "sets": {
+      "L": "[a-zA-ZäöüÄÖÜß]"
+     }
+    },
+    "form": "kimm+sch",
+    "expected": "Kimmsch"
+   },
+   "expected": {
+    "spelling": "kimmsch",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "Compared as the profile keys a word: case folded (the course: Kimmsch du …?)."
+  },
+  {
+   "id": "spell/bar/noun",
+   "op": "spell",
+   "args": {
+    "profile": "bar-Latn/moser",
+    "notation": {
+     "sets": {
+      "L": "[a-zA-ZäöüÄÖÜß]"
+     }
+    },
+    "form": "Kind+er",
+    "expected": "Kinder"
+   },
+   "expected": {
+    "spelling": "Kinder",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "A noun keeps its capital: the lexical form is the spelling (the course: Kinder)."
+  },
+  {
+   "id": "spell/bar/apostrophe",
+   "op": "spell",
+   "args": {
+    "profile": "bar-Latn/moser",
+    "notation": {
+     "sets": {
+      "L": "[a-zA-ZäöüÄÖÜß]"
+     }
+    },
+    "form": "gea+t+'s",
+    "expected": "geat's"
+   },
+   "expected": {
+    "spelling": "geat's",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "A clitic's apostrophe is written (the course: geat's)."
+  },
+  {
+   "id": "spell/bar/apostrophe-keyed",
+   "op": "spell",
+   "args": {
+    "profile": "bar-Latn/moser",
+    "notation": {
+     "sets": {
+      "L": "[a-zA-ZäöüÄÖÜß]"
+     }
+    },
+    "form": "gea+t+'s",
+    "expected": "geats"
+   },
+   "expected": {
+    "spelling": "geat's",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "The profile strips punctuation, so geats and geat's compare alike (profiles/bar-Latn.moser.yaml)."
+  },
+  {
+   "id": "spell/bar/phrase",
+   "op": "spell",
+   "args": {
+    "profile": "bar-Latn/moser",
+    "notation": {
+     "sets": {
+      "L": "[a-zA-ZäöüÄÖÜß]"
+     }
+    },
+    "form": "griaß di",
+    "expected": "griaß di"
+   },
+   "expected": {
+    "spelling": "griaß di",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "A phrase lexeme's form, its space kept (lexeme:griaß-di)."
+  },
+  {
+   "id": "spell/bar/no-alternatives",
+   "op": "spell",
+   "args": {
+    "profile": "bar-Latn/moser",
+    "notation": {
+     "sets": {
+      "L": "[a-zA-ZäöüÄÖÜß]"
+     }
+    },
+    "form": "gess+n",
+    "expected": "gessen"
+   },
+   "expected": {
+    "spelling": "gessn",
+    "alternatives": [],
+    "expected": null
+   },
+   "note": "No free spellings: -n beside -en is the profile's correspondence, which grading reads; `spell` names none (gessen is not the spelling)."
+  },
+  {
+   "id": "spell/bar/o-for-a",
+   "op": "spell",
+   "args": {
+    "profile": "bar-Latn/moser",
+    "notation": {
+     "sets": {
+      "L": "[a-zA-ZäöüÄÖÜß]"
+     }
+    },
+    "form": "Wosser",
+    "expected": "Wåsser"
+   },
+   "expected": {
+    "spelling": "Wosser",
+    "alternatives": [],
+    "expected": "spelling"
+   },
+   "note": "Moser's å is read as o by the profile's normalization, and so in the key (the course: Wosser)."
+  }
+ ]
+}

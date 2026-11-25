@@ -7,533 +7,545 @@ lexemes:
 - id: lexeme:a
   pos: DET
   feats: {Definite: Ind, PronType: Art}
+  classes: [ein]
   gloss: {en: 'a, an'}
   notes: {en: A for every gender; an for him (an Hund) and to or for him or it; ar for to or for her.}
   spelled: {bar-Latn/moser: [a]}
+  form: a
   forms:
-  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [a]}, status: pinned}
-  - {feats: {Case: Acc, Gender: Masc, Number: Sing}, spelled: {bar-Latn/moser: [an]}, status: pinned}
-  - {feats: {Case: Acc, Gender: Neut, Number: Sing}, spelled: {bar-Latn/moser: [a]}, status: pinned}
-  - {feats: {Case: Dat, Gender: Neut, Number: Sing}, spelled: {bar-Latn/moser: [an]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [a]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Masc, Number: Sing}, spelled: {bar-Latn/moser: [a]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {bar-Latn/moser: [a]}, status: pinned}
+  - {feats: {Case: Dat, Gender: Fem, Number: Sing}, form: ar, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: ar [ar]
 - id: lexeme:a-bissl
   pos: ADV
   gloss: {en: 'a little, a bit'}
   spelled: {bar-Latn/moser: [a bissl]}
+  form: a bissl
 - id: lexeme:a.auch
   pos: ADV
   gloss: {en: 'also, too; even'}
   notes: {en: 'A is auch (also): mir a, me too. Not the article a (a, an), which it sounds like.'}
   spelled: {bar-Latn/moser: [a]}
+  form: a
 - id: lexeme:af
   pos: ADP
   gloss: {en: on; onto; to (a place up high)}
   notes: {en: 'Af is auf. Af der Olm: on the mountain pasture.'}
   spelled: {bar-Latn/moser: [af]}
+  form: af
 - id: lexeme:apfl
   pos: NOUN
   feats: {Gender: Masc}
+  classes: [pl-zero, umlaut]
   gloss: {en: apple}
   notes: {en: Plural Epfl. South Tyrol grows a great many of them.}
   spelled: {bar-Latn/moser: [Apfl]}
-  forms:
-  - {feats: {Case: Acc, Number: Plur}, spelled: {bar-Latn/moser: [Epfl]}, status: pinned}
-  - {feats: {Case: Nom, Number: Plur}, spelled: {bar-Latn/moser: [Epfl]}, status: pinned}
+  form: Apfl
 - id: lexeme:bar
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: 'café, coffee bar'}
   notes: {en: 'An Italian-style bar, where people stand at the counter for a coffee. Moser: it competes with Kaffee (café), each with its own sense.'}
   spelled: {bar-Latn/moser: [Bar]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Bar]}, status: pinned}
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Bar]}, status: pinned}
+  form: Bar
 - id: lexeme:bei
   pos: ADP
   gloss: {en: at (someone's place); near}
   notes: {en: 'Bei der Oma: at grandma''s.'}
   spelled: {bar-Latn/moser: [bei]}
+  form: bei
 - id: lexeme:berg
   pos: NOUN
   feats: {Gender: Masc}
+  classes: [pl-zero]
   gloss: {en: mountain}
   spelled: {bar-Latn/moser: [Berg]}
+  form: Berg
   image: {file: ../../courses/images/mountain.svg, license: CC0-1.0, provenance: {author: 'llm:claude@bar-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  forms:
-  - {feats: {Case: Nom, Number: Plur}, spelled: {bar-Latn/moser: [Berg]}, status: pinned}
 - id: lexeme:bett
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: bed}
   spelled: {bar-Latn/moser: [Bett]}
+  form: Bett
 - id: lexeme:bier
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: beer}
   spelled: {bar-Latn/moser: [Bier]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Bier]}, status: pinned}
+  form: Bier
 - id: lexeme:billig
   pos: ADJ
   gloss: {en: cheap}
   spelled: {bar-Latn/moser: [billig]}
+  form: billig
 - id: lexeme:bitte
   pos: INTJ
   gloss: {en: please; you're welcome}
   spelled: {bar-Latn/moser: [bitte]}
+  form: bitte
 - id: lexeme:bohnhof
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: station}
   spelled: {bar-Latn/moser: [Bohnhof]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Bohnhof]}, status: pinned}
+  form: Bohnhof
 - id: lexeme:bozn
   pos: PROPN
   feats: {Gender: Neut}
   gloss: {en: 'Bozen, Bolzano'}
   notes: {en: 'Bozen (Bolzano), South Tyrol''s capital, said Bozn.'}
   spelled: {bar-Latn/moser: [Bozn]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Bozn]}, status: pinned}
+  form: Bozn
 - id: lexeme:bringen
   pos: VERB
   gloss: {en: to bring}
   spelled: {bar-Latn/moser: [bringen]}
+  form: bring
   forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [bringt]}, status: pinned}
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [brocht]}, status: pinned}
+  - {feats: {VerbForm: Part}, stem: broch, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course: brocht
 - id: lexeme:brixn
   pos: PROPN
   feats: {Gender: Neut}
   gloss: {en: 'Brixen, Bressanone'}
   spelled: {bar-Latn/moser: [Brixn]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Brixn]}, status: pinned}
+  form: Brixn
 - id: lexeme:brot
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: bread}
   spelled: {bar-Latn/moser: [Brot]}
+  form: Brot
   image: {file: ../../courses/images/bread.svg, license: CC0-1.0, provenance: {author: 'llm:claude@bar-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Brot]}, status: pinned}
 - id: lexeme:bruader
   pos: NOUN
   feats: {Gender: Masc}
+  classes: [pl-zero, umlaut]
   gloss: {en: brother}
   notes: {en: 'The plural has the dialect''s i for ü: Briader.'}
   spelled: {bar-Latn/moser: [Bruader]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Bruader]}, status: pinned}
+  form: Bruader
 - id: lexeme:bua
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: boy; son}
   notes: {en: 'Bua is the everyday word for a boy (and a son); Buabm, boys.'}
   spelled: {bar-Latn/moser: [Bua]}
+  form: Bua
   forms:
-  - {feats: {Case: Acc, Number: Plur}, spelled: {bar-Latn/moser: [Buabm]}, status: pinned}
+  - {feats: {Number: Plur}, form: Buabm, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course; Moser: Buabmfescht [Bua]
 - id: lexeme:buach
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: book}
   spelled: {bar-Latn/moser: [Buach]}
+  form: Buach
   image: {file: ../../courses/images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@bar-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Buach]}, status: pinned}
 - id: lexeme:bus
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: bus}
   spelled: {bar-Latn/moser: [Bus]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Bus]}, status: pinned}
+  form: Bus
 - id: lexeme:ciao
   pos: INTJ
   gloss: {en: hi; bye}
   notes: {en: 'Italian, and as everyday in South Tyrol as servus. Also written tschau.'}
   spelled: {bar-Latn/moser: [ciao]}
+  form: ciao
 - id: lexeme:dahoam
   pos: ADV
   gloss: {en: at home}
   notes: {en: 'Dahoam is daheim: at home. Hoam is (to) home: i gea hoam.'}
   spelled: {bar-Latn/moser: [dahoam]}
+  form: dahoam
 - id: lexeme:danke
   pos: INTJ
   gloss: {en: thank you; thanks}
   notes: {en: 'Vergelts Gott is the old, country way to thank someone.'}
   spelled: {bar-Latn/moser: [danke]}
+  form: danke
 - id: lexeme:dei
   pos: DET
   feats: {'Number[psor]': Sing, 'Person[psor]': '2', Poss: 'Yes', PronType: Prs}
+  classes: [ein]
   gloss: {en: your (one person you say du to)}
   spelled: {bar-Latn/moser: [dei]}
-  forms:
-  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [dei]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [dei]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Masc, Number: Sing}, spelled: {bar-Latn/moser: [dei]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {bar-Latn/moser: [dei]}, status: pinned}
+  form: dei
 - id: lexeme:deitsch
   pos: ADJ
   gloss: {en: German (the language)}
   notes: {en: 'Deitsch redn: to speak German. Moser also notes deitsch redn, to speak plainly.'}
   spelled: {bar-Latn/moser: [deitsch]}
+  form: deitsch
 - id: lexeme:der
   pos: DET
   feats: {Definite: Def, PronType: Art}
   gloss: {en: the}
   notes: {en: 'Der, di, ''s: the. To or for him, and him as an object, the masculine is in (in Tatte); to or for her, der (der Mamme); in the plural di throughout.'}
   spelled: {bar-Latn/moser: [der]}
+  form: der
+  allomorphs:
+  - {form: n, after: {endsIn: '{L}'}}  # afn, mitn: written onto the preposition (Moser: aufn, mitn [auf, hobm, Arsch])
   forms:
-  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [di]}, status: pinned}
-  - {feats: {Case: Acc, Gender: Masc, Number: Sing}, spelled: {bar-Latn/moser: [in, n]}, status: pinned}
-  - {feats: {Case: Acc, Gender: Neut, Number: Sing}, spelled: {bar-Latn/moser: ['''s']}, status: pinned}
-  - {feats: {Case: Dat, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [der]}, status: pinned}
-  - {feats: {Case: Dat, Gender: Masc, Number: Sing}, spelled: {bar-Latn/moser: [in, n]}, status: pinned}
-  - {feats: {Case: Dat, Number: Plur}, spelled: {bar-Latn/moser: [di]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [di]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Masc, Number: Sing}, spelled: {bar-Latn/moser: [der]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {bar-Latn/moser: ['''s']}, status: pinned}
-  - {feats: {Case: Nom, Number: Plur}, spelled: {bar-Latn/moser: [di]}, status: pinned}
+  - {feats: {Case: 'Acc,Nom', Gender: Fem, Number: Sing}, form: di, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: di/de (fem.), the definite article (the notes, §1.2)
+  - {feats: {Case: Dat, Gender: Fem, Number: Sing}, form: der, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: bi der Arwet [ba]
+  - {feats: {Case: 'Acc,Nom', Gender: Neut, Number: Sing}, form: '''s', status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: ’s¹, es² (das) [’s¹, es²]
+  - {feats: {Case: 'Acc,Dat', Gender: Masc, Number: Sing}, form: in, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: in (mask.) [in]
+  - {feats: {Case: Dat, Gender: Neut, Number: Sing}, form: in, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Weiß 46–48: the dative's (a)n in the neuter too; the course's labels
+  - {feats: {Number: Plur}, form: di, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: in di Leit, mit di Muggn [in, Mugge]
 - id: lexeme:derfn
   pos: AUX
+  classes: [modal]
   gloss: {en: 'may, to be allowed to'}
   spelled: {bar-Latn/moser: [derfn]}
-  forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [derf]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [derfsch]}, status: pinned}
+  form: derf
 - id: lexeme:dert
   pos: ADV
   gloss: {en: there (over there)}
   spelled: {bar-Latn/moser: [dert]}
+  form: dert
 - id: lexeme:des
   pos: PRON
   feats: {PronType: Dem}
   gloss: {en: this; that; it}
   notes: {en: 'Des isch …: this is …, that is … Stressed das is des.'}
   spelled: {bar-Latn/moser: [des]}
+  form: des
 - id: lexeme:dialekt
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: dialect}
   spelled: {bar-Latn/moser: [Dialekt]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Dialekt]}, status: pinned}
+  form: Dialekt
 - id: lexeme:dienstog
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: Tuesday}
   notes: {en: 'The old word, Ertig, is going out (Moser).'}
   spelled: {bar-Latn/moser: [Dienstog]}
+  form: Dienstog
 - id: lexeme:do
   pos: ADV
   gloss: {en: here; there}
   notes: {en: 'Do is da: here or there, where the speaker points.'}
   spelled: {bar-Latn/moser: [do]}
+  form: do
 - id: lexeme:drei
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: three}
   spelled: {bar-Latn/moser: [drei]}
+  form: drei
 - id: lexeme:du
   pos: PRON
   feats: {Number: Sing, Person: '2', PronType: Prs}
   gloss: {en: you (one person you know)}
   notes: {en: 'To family, friends, children and anyone your age. To others, Sie.'}
   spelled: {bar-Latn/moser: [du]}
+  form: du
   forms:
-  - {feats: {Case: Acc}, spelled: {bar-Latn/moser: [di]}, status: pinned}
-  - {feats: {Case: Dat}, spelled: {bar-Latn/moser: [dir]}, status: pinned}
+  - {feats: {Case: Acc}, form: di, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: für di [Arsch]
+  - {feats: {Case: Dat}, form: dir, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: ba dir [ba]
 - id: lexeme:durscht
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: thirst}
   notes: {en: 'Durscht is Durst: i hon Durscht, I''m thirsty.'}
   spelled: {bar-Latn/moser: [Durscht]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Durscht]}, status: pinned}
+  form: Durscht
 - id: lexeme:englisch
   pos: ADJ
   gloss: {en: English (the language)}
   spelled: {bar-Latn/moser: [englisch]}
+  form: englisch
 - id: lexeme:eppes
   pos: PRON
   feats: {PronType: Ind}
   gloss: {en: something}
   notes: {en: 'Eppes is etwas: eppes zan Essn, something to eat.'}
   spelled: {bar-Latn/moser: [eppes]}
+  form: eppes
 - id: lexeme:er
   pos: PRON
   feats: {Gender: Masc, Number: Sing, Person: '3', PronType: Prs}
   gloss: {en: he; it (masculine)}
   spelled: {bar-Latn/moser: [er]}
+  form: er
 - id: lexeme:es
   pos: PRON
   feats: {Number: Plur, Person: '2', PronType: Prs}
   gloss: {en: you (several people)}
   notes: {en: 'Es and enk are the dialect''s ihr and euch, an old dual. The verb ends in -ts: es seids, es hobts.'}
   spelled: {bar-Latn/moser: [es]}
+  form: es
 - id: lexeme:es.it
   pos: PRON
   feats: {Gender: Neut, Number: Sing, Person: '3', PronType: Prs}
   gloss: {en: it}
   notes: {en: 'Unstressed it is ''s: wia geat''s? how''s it going?'}
   spelled: {bar-Latn/moser: [es]}
+  form: es
+  allomorphs:
+  - {form: '''s', after: {endsIn: '{L}'}}  # geat's, gip's: written onto the verb (Moser: ’s² [Personalpron.]; Weiß 101)
 - id: lexeme:essn
   pos: VERB
+  classes: [strong, e-i]
   gloss: {en: to eat}
   notes: {en: 'I iss, er isst, mir essn. The past: i hon gessn.'}
   spelled: {bar-Latn/moser: [essn]}
-  forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [essn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [essts]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [iss]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [isst]}, status: pinned}
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gessn]}, status: pinned}
+  form: ess
 - id: lexeme:essn.noun
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: food; meal}
   spelled: {bar-Latn/moser: [Essn]}
+  form: Essn
 - id: lexeme:euro
   pos: NOUN
   feats: {Gender: Masc}
+  classes: [pl-zero]
   gloss: {en: euro}
   spelled: {bar-Latn/moser: [Euro]}
-  forms:
-  - {feats: {Case: Acc, Number: Plur}, spelled: {bar-Latn/moser: [Euro]}, status: pinned}
+  form: Euro
 - id: lexeme:familie
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: family}
   spelled: {bar-Latn/moser: [Familie]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Familie]}, status: pinned}
+  form: Familie
 - id: lexeme:feiern
   pos: VERB
   gloss: {en: to celebrate}
   spelled: {bar-Latn/moser: [feiern]}
-  forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [feiern]}, status: pinned}
+  form: feier
 - id: lexeme:fein
   pos: ADJ
   gloss: {en: tasty; fine}
   notes: {en: 'Of food, fein is tasty: des isch fein!'}
   spelled: {bar-Latn/moser: [fein]}
+  form: fein
 - id: lexeme:fenschter
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: window}
   notes: {en: 'Fenschter is Fenster: -scht- inside a word, as it is said.'}
   spelled: {bar-Latn/moser: [Fenschter]}
+  form: Fenschter
 - id: lexeme:fescht
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: party; feast}
   notes: {en: Fescht is Fest.}
   spelled: {bar-Latn/moser: [Fescht]}
+  form: Fescht
 - id: lexeme:film
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: film}
   spelled: {bar-Latn/moser: [Film]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Film]}, status: pinned}
+  form: Film
 - id: lexeme:fimf
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: five}
   spelled: {bar-Latn/moser: [fimf]}
+  form: fimf
 - id: lexeme:findn
   pos: VERB
+  classes: [strong]
   gloss: {en: to find}
   spelled: {bar-Latn/moser: [findn]}
+  form: find
   forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [find]}, status: pinned}
+  - {feats: {VerbForm: Part}, stem: fund, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Claude's: gfundn, as German gefunden
 - id: lexeme:fir
   pos: ADP
   gloss: {en: for}
   spelled: {bar-Latn/moser: [fir]}
+  form: fir
 - id: lexeme:flori
   pos: PROPN
   feats: {Gender: Masc}
   gloss: {en: Flori}
   notes: {en: Short for Florian.}
   spelled: {bar-Latn/moser: [Flori]}
+  form: Flori
 - id: lexeme:fohrn
   pos: VERB
+  classes: [strong]
   gloss: {en: 'to go (by car, bus or train), drive'}
   spelled: {bar-Latn/moser: [fohrn]}
-  forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [fohrn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [fohrt]}, status: pinned}
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gfohrn]}, status: pinned}
+  form: fohr
 - id: lexeme:frau
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: woman; Mrs}
   notes: {en: 'Di Frau Pichler: Mrs Pichler (with the article, as people say it).'}
   spelled: {bar-Latn/moser: [Frau]}
+  form: Frau
 - id: lexeme:freind
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: friend (a man)}
   notes: {en: 'Freind is Freund, with the dialect''s ei for eu.'}
   spelled: {bar-Latn/moser: [Freind]}
+  form: Freind
 - id: lexeme:freindin
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: friend (a woman)}
   spelled: {bar-Latn/moser: [Freindin]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Freindin]}, status: pinned}
+  form: Freindin
 - id: lexeme:freitog
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: Friday}
   spelled: {bar-Latn/moser: [Freitog]}
+  form: Freitog
 - id: lexeme:friah
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: morning}
   notes: {en: 'In der Friah: in the morning.'}
   spelled: {bar-Latn/moser: [Friah]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Friah]}, status: pinned}
+  form: Friah
 - id: lexeme:frisch
   pos: ADJ
   gloss: {en: fresh}
   spelled: {bar-Latn/moser: [frisch]}
-  forms:
-  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {bar-Latn/moser: [frisches]}, status: pinned}
+  form: frisch
 - id: lexeme:frogn
   pos: VERB
   gloss: {en: to ask}
   spelled: {bar-Latn/moser: [frogn]}
-  forms:
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gfrogt]}, status: pinned}
+  form: frog
 - id: lexeme:gach
   pos: ADJ
   gloss: {en: sudden; steep}
   notes: {en: 'Moser: gach is sudden or quick, and steep in the Unterland.'}
   spelled: {bar-Latn/moser: [gach]}
-  forms:
-  - {feats: {Case: Nom, Gender: Masc, Number: Sing}, spelled: {bar-Latn/moser: [gacher]}, status: pinned}
+  form: gach
 - id: lexeme:gearn
   pos: ADV
   gloss: {en: gladly; (to like) doing}
   notes: {en: 'I iss gearn Knedl: I like (eating) dumplings.'}
   spelled: {bar-Latn/moser: [gearn]}
+  form: gearn
 - id: lexeme:gebm
   pos: VERB
+  classes: [strong, e-i]
   gloss: {en: to give}
   notes: {en: 'Do gip''s …: there is … (it gives). Gib mir …: give me …'}
   spelled: {bar-Latn/moser: [gebm]}
+  form: geb
   forms:
-  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {bar-Latn/moser: [gib]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [gip]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, form: gip, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: gip (the notes, §1.3)
 - id: lexeme:geschter
   pos: ADV
   gloss: {en: yesterday}
   spelled: {bar-Latn/moser: [geschter]}
+  form: geschter
 - id: lexeme:gfolln
   pos: VERB
+  classes: [strong]
   gloss: {en: 'to please (I like it: des gfållt mir)'}
   notes: {en: 'Des gfollt mir: I like that (it pleases me).'}
   spelled: {bar-Latn/moser: [gfolln]}
-  forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [gfollt]}, status: pinned}
+  form: gfoll
 - id: lexeme:gian
   pos: VERB
+  classes: [strong]
   gloss: {en: 'to go; (it) goes (how are you?)'}
   notes: {en: 'Wia geat''s? How''s it going? Gea! Go on! (also: come on, please). Moser''s spelling gian; others write gean.'}
   spelled: {bar-Latn/moser: [gian]}
+  form: gea
   forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [gian]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [geats]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [gian]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [gea]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [geat]}, status: pinned}
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gongen]}, status: pinned}
+  - {feats: {VerbForm: Inf}, form: gian, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: gian [gian¹]
+  - {feats: {Mood: Ind, Number: Plur, Person: '1,3', Tense: Pres, VerbForm: Fin}, form: gian, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: gian mer [gian¹]
+  - {feats: {VerbForm: Part}, stem: gong, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course: gongen; Moser: gangen [gleim]
 - id: lexeme:giulia
   pos: PROPN
   feats: {Gender: Fem}
   gloss: {en: Giulia}
   notes: {en: 'An Italian name: Giulia''s family speaks Italian at home.'}
   spelled: {bar-Latn/moser: [Giulia]}
+  form: Giulia
 - id: lexeme:glei
   pos: ADV
   gloss: {en: right away; in a moment}
   spelled: {bar-Latn/moser: [glei]}
+  form: glei
 - id: lexeme:gortn
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: garden}
   notes: {en: Gortn is Garten.}
   spelled: {bar-Latn/moser: [Gortn]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Gortn]}, status: pinned}
+  form: Gortn
 - id: lexeme:goschthaus
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: inn}
   spelled: {bar-Latn/moser: [Goschthaus]}
+  form: Goschthaus
 - id: lexeme:gradaus
   pos: ADV
   gloss: {en: straight on}
   spelled: {bar-Latn/moser: [gradaus]}
+  form: gradaus
 - id: lexeme:griaß-di
   pos: INTJ
   gloss: {en: hello (to one person you say du to)}
   notes: {en: 'The everyday greeting, at any time of day: griaß di to one person, griaß enk to several, griaß Gott to someone you say Sie to. In town servus and ciao are as common.'}
   spelled: {bar-Latn/moser: [griaß di]}
+  form: griaß di
   image: {file: ../../courses/images/wave.svg, license: CC0-1.0, provenance: {author: 'llm:claude@bar-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: lexeme:griaß-enk
   pos: INTJ
   gloss: {en: hello (to several people)}
   notes: {en: 'Enk is the dialect''s ''you'' (several people), as in Bavarian and Austrian dialects.'}
   spelled: {bar-Latn/moser: [griaß enk]}
+  form: griaß enk
 - id: lexeme:griaß-gott
   pos: INTJ
   gloss: {en: hello (polite)}
   notes: {en: 'To someone you say Sie to, and to anyone in the country.'}
   spelled: {bar-Latn/moser: [griaß Gott]}
+  form: griaß Gott
 - id: lexeme:groaß
   pos: ADJ
   gloss: {en: 'big, tall'}
   spelled: {bar-Latn/moser: [groaß]}
-  forms:
-  - {feats: {Case: Acc, Gender: Masc, Number: Sing}, spelled: {bar-Latn/moser: [groaßn]}, status: pinned}
-  - {feats: {Case: Acc, Gender: Neut, Number: Sing}, spelled: {bar-Latn/moser: [groaßes]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Masc, Number: Sing}, spelled: {bar-Latn/moser: [groaßer]}, status: pinned}
+  form: groaß
 - id: lexeme:gruber
   pos: PROPN
   feats: {Gender: Masc}
   gloss: {en: Gruber (a surname)}
   notes: {en: 'The Herr Gruber of the course, the neighbour across the landing.'}
   spelled: {bar-Latn/moser: [Gruber]}
+  form: Gruber
 - id: lexeme:gscheft
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: shop}
   notes: {en: Gscheft is Geschäft.}
   spelled: {bar-Latn/moser: [Gscheft]}
+  form: Gscheft
 - id: lexeme:guat
   pos: ADJ
   gloss: {en: 'good; well, fine'}
   notes: {en: 'Guat is gut: good, and well (mir geat''s guat, I''m fine).'}
   spelled: {bar-Latn/moser: [guat]}
+  form: guat
 - id: lexeme:guate-nocht
   pos: INTJ
   gloss: {en: good night}
   spelled: {bar-Latn/moser: [guate Nocht]}
+  form: guate Nocht
 - id: lexeme:guatn-morgn
   pos: INTJ
   gloss: {en: good morning}
   spelled: {bar-Latn/moser: [guatn Morgn]}
+  form: guatn Morgn
   image: {file: ../../courses/images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@bar-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: lexeme:hannes
   pos: PROPN
@@ -541,1205 +553,1191 @@ lexemes:
   gloss: {en: Hannes}
   notes: {en: Short for Johannes.}
   spelled: {bar-Latn/moser: [Hannes]}
+  form: Hannes
 - id: lexeme:haus
   pos: NOUN
   feats: {Gender: Neut}
+  classes: [pl-er, umlaut]
   gloss: {en: house}
   notes: {en: 'Plural Heiser, with the dialect''s ei for äu.'}
   spelled: {bar-Latn/moser: [Haus]}
+  form: Haus
   image: {file: ../../courses/images/house.svg, license: CC0-1.0, provenance: {author: 'llm:claude@bar-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Haus]}, status: pinned}
 - id: lexeme:heint
   pos: ADV
   gloss: {en: today}
   spelled: {bar-Latn/moser: [heint]}
+  form: heint
 - id: lexeme:helfn
   pos: VERB
+  classes: [strong, e-i]
   gloss: {en: to help}
   spelled: {bar-Latn/moser: [helfn]}
+  form: helf
   forms:
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gholfn]}, status: pinned}
+  - {feats: {VerbForm: Part}, stem: holf, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course: gholfn
 - id: lexeme:her
   pos: ADV
   gloss: {en: 'from (in wo bisch her?, where are you from?)'}
   spelled: {bar-Latn/moser: [her]}
+  form: her
 - id: lexeme:herbscht
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: autumn}
   notes: {en: Herbscht is Herbst.}
   spelled: {bar-Latn/moser: [Herbscht]}
+  form: Herbscht
 - id: lexeme:herr
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: Mr; gentleman}
   spelled: {bar-Latn/moser: [Herr]}
+  form: Herr
 - id: lexeme:hittn
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: hut (on a mountain)}
   notes: {en: Hittn is Hütte.}
   spelled: {bar-Latn/moser: [Hittn]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Hittn]}, status: pinned}
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Hittn]}, status: pinned}
+  form: Hittn
 - id: lexeme:hoach
   pos: ADJ
   gloss: {en: high}
   spelled: {bar-Latn/moser: [hoach]}
+  form: hoach
 - id: lexeme:hoam
   pos: ADV
   gloss: {en: home (to one's home)}
   spelled: {bar-Latn/moser: [hoam]}
+  form: hoam
 - id: lexeme:hoaß
   pos: ADJ
   gloss: {en: hot}
   spelled: {bar-Latn/moser: [hoaß]}
+  form: hoaß
 - id: lexeme:hoaßn
   pos: VERB
+  classes: [strong]
   gloss: {en: to be called}
   notes: {en: 'I hoaß Lena: my name is Lena. Wia hoaßt du? What''s your name? Politely: wia hoaßn Sie?'}
   spelled: {bar-Latn/moser: [hoaßn]}
+  form: hoaß
   forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [hoaßn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [hoaß]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [hoaßt]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [hoaßt]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, form: hoaß+t, spelled: {bar-Latn/moser: [hoaßt]}, status: pinned}  # the course; the rule gives hoasch, as Moser's muasch [-sche]: for the owner
 - id: lexeme:hobm
   pos: AUX
+  classes: [subjunctive]
   gloss: {en: to have}
   notes: {en: 'I hon, du hosch, er hot, mir hobm, es hobts, sie hobm. It makes the past of most verbs: i hon gessn, I (have) ate. I hatt gearn …: I would like …'}
   spelled: {bar-Latn/moser: [hobm]}
+  form: hob
   forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [hobm]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [hobts]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [hobm]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [hon]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [hosch]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [hot]}, status: pinned}
-  - {feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}, spelled: {bar-Latn/moser: [hattn]}, status: pinned}
-  - {feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {bar-Latn/moser: [hattn]}, status: pinned}
-  - {feats: {Mood: Sub, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, spelled: {bar-Latn/moser: [hatt]}, status: pinned}
-  - {feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}, spelled: {bar-Latn/moser: [hattsch]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, form: hon, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course; Moser: han, hann [hobm]
+  - {feats: {Mood: Ind, Number: Sing, Tense: Pres}, stem: ho, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: hasch, hat [hobm]; the course: hosch, hot
+  - {feats: {Mood: Sub}, stem: hatt, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: hatt [hobm, guatnkei]
 - id: lexeme:hof
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: farm}
   notes: {en: 'A Hof is a farm, house and land together, often in one family for centuries.'}
   spelled: {bar-Latn/moser: [Hof]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Hof]}, status: pinned}
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Hof]}, status: pinned}
+  form: Hof
 - id: lexeme:huckn
   pos: VERB
   gloss: {en: to sit}
   notes: {en: Huckn is to sit. Huck di her! Sit down (here)!}
   spelled: {bar-Latn/moser: [huckn]}
-  forms:
-  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {bar-Latn/moser: [huck]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [huckn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [huckt]}, status: pinned}
+  form: huck
 - id: lexeme:hund
   pos: NOUN
   feats: {Gender: Masc}
+  classes: [pl-zero]
   gloss: {en: dog}
   spelled: {bar-Latn/moser: [Hund]}
-  forms:
-  - {feats: {Case: Acc, Number: Plur}, spelled: {bar-Latn/moser: [Hund]}, status: pinned}
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Hund]}, status: pinned}
+  form: Hund
 - id: lexeme:hunger
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: hunger}
   notes: {en: 'I hon Hunger: I''m hungry.'}
   spelled: {bar-Latn/moser: [Hunger]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Hunger]}, status: pinned}
+  form: Hunger
 - id: lexeme:i
   pos: PRON
   feats: {Number: Sing, Person: '1', PronType: Prs}
   gloss: {en: I; me}
   notes: {en: 'Mir is to me, and also we (the pronoun mir): mir a, me too; mir sein, we are.'}
   spelled: {bar-Latn/moser: [i]}
+  form: i
   forms:
-  - {feats: {Case: Acc}, spelled: {bar-Latn/moser: [mi]}, status: pinned}
-  - {feats: {Case: Dat}, spelled: {bar-Latn/moser: [mir]}, status: pinned}
+  - {feats: {Case: Acc}, form: mi, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: meld i mi [båld]
+  - {feats: {Case: Dat}, form: mir, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: mir [glangen]
 - id: lexeme:iatz
   pos: ADV
   gloss: {en: now}
   spelled: {bar-Latn/moser: [iatz]}
+  form: iatz
 - id: lexeme:ihr.poss
   pos: DET
   feats: {'Person[psor]': '3', Poss: 'Yes', PronType: Prs}
+  classes: [ein]
   gloss: {en: her; their}
   spelled: {bar-Latn/moser: [ihr]}
-  forms:
-  - {feats: {Case: Nom, Gender: Masc, Number: Sing}, spelled: {bar-Latn/moser: [ihr]}, status: pinned}
+  form: ihr
 - id: lexeme:in
   pos: ADP
   gloss: {en: in; into}
   spelled: {bar-Latn/moser: [in]}
+  form: in
 - id: lexeme:innsbruck
   pos: PROPN
   feats: {Gender: Neut}
   gloss: {en: Innsbruck}
   spelled: {bar-Latn/moser: [Innsbruck]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Innsbruck]}, status: pinned}
+  form: Innsbruck
 - id: lexeme:italien
   pos: PROPN
   feats: {Gender: Neut}
   gloss: {en: Italy}
   spelled: {bar-Latn/moser: [Italien]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Italien]}, status: pinned}
+  form: Italien
 - id: lexeme:italienisch
   pos: ADJ
   gloss: {en: Italian (the language)}
   spelled: {bar-Latn/moser: [italienisch]}
+  form: italienisch
 - id: lexeme:jo
   pos: INTJ
   gloss: {en: 'yes'}
   notes: {en: 'Joa is a drawn-out, thoughtful yes.'}
   spelled: {bar-Latn/moser: [jo]}
+  form: jo
 - id: lexeme:johr
   pos: NOUN
   feats: {Gender: Neut}
+  classes: [pl-zero]
   gloss: {en: year}
   notes: {en: 'Johr is Jahr, with the dialect''s o for a long a. Plural Johr too.'}
   spelled: {bar-Latn/moser: [Johr]}
-  forms:
-  - {feats: {Case: Acc, Number: Plur}, spelled: {bar-Latn/moser: [Johr]}, status: pinned}
+  form: Johr
 - id: lexeme:jung
   pos: ADJ
   gloss: {en: young}
   spelled: {bar-Latn/moser: [jung]}
+  form: jung
 - id: lexeme:kaffee
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: coffee}
   notes: {en: 'Said with the stress at the end, as Moser notes.'}
   spelled: {bar-Latn/moser: [Kaffee]}
+  form: Kaffee
   image: {file: ../../courses/images/coffee.svg, license: CC0-1.0, provenance: {author: 'llm:claude@bar-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Kaffee]}, status: pinned}
 - id: lexeme:kafn
   pos: VERB
   gloss: {en: to buy}
   spelled: {bar-Latn/moser: [kafn]}
-  forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [kafn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [kaf]}, status: pinned}
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [kaft]}, status: pinned}
+  form: kaf
 - id: lexeme:kas
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: cheese}
   notes: {en: Kas is Käse.}
   spelled: {bar-Latn/moser: [Kas]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Kas]}, status: pinned}
+  form: Kas
 - id: lexeme:kemmen
   pos: VERB
+  classes: [strong, e-i]
   gloss: {en: to come}
   notes: {en: 'I kimm, du kimmsch, er kimp. The past: i bin kemmen.'}
   spelled: {bar-Latn/moser: [kemmen]}
+  form: kemm
   forms:
-  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {bar-Latn/moser: [kimm]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [kimm]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [kimmsch]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [kimp]}, status: pinned}
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [kemmen]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, form: kimp, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: kimp (the notes, §1.3)
 - id: lexeme:keschtn
   pos: NOUN
   feats: {Gender: Fem}
+  classes: [pl-n]
   gloss: {en: chestnut}
   notes: {en: 'Keschtn is Kastanie; roast, they are the heart of Törggelen.'}
   spelled: {bar-Latn/moser: [Keschtn]}
-  forms:
-  - {feats: {Case: Acc, Number: Plur}, spelled: {bar-Latn/moser: [Keschtn]}, status: pinned}
-  - {feats: {Case: Nom, Number: Plur}, spelled: {bar-Latn/moser: [Keschtn]}, status: pinned}
+  form: Keschtn
 - id: lexeme:kind
   pos: NOUN
   feats: {Gender: Neut}
+  classes: [pl-er]
   gloss: {en: child}
   spelled: {bar-Latn/moser: [Kind]}
-  forms:
-  - {feats: {Case: Acc, Number: Plur}, spelled: {bar-Latn/moser: [Kinder]}, status: pinned}
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Kind]}, status: pinned}
-  - {feats: {Case: Dat, Number: Plur}, spelled: {bar-Latn/moser: [Kinder]}, status: pinned}
-  - {feats: {Case: Nom, Number: Plur}, spelled: {bar-Latn/moser: [Kinder]}, status: pinned}
+  form: Kind
 - id: lexeme:kinnen
   pos: AUX
+  classes: [modal]
   gloss: {en: 'can, to be able to'}
   spelled: {bar-Latn/moser: [kinnen]}
+  form: kinn
   forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [kinnen]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [konn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [konnsch]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Tense: Pres}, stem: konn, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course; Moser: kunn, kannsch [gach, dasig]: for the owner
 - id: lexeme:kirch
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: church}
   spelled: {bar-Latn/moser: [Kirch]}
+  form: Kirch
 - id: lexeme:kloan
   pos: ADJ
   gloss: {en: 'small, little'}
   spelled: {bar-Latn/moser: [kloan]}
+  form: kloan
 - id: lexeme:knedl
   pos: NOUN
   feats: {Gender: Masc}
+  classes: [pl-zero]
   gloss: {en: dumpling}
   notes: {en: 'Knedl is Knödel: speckknedl, kasknedl, spinatknedl.'}
   spelled: {bar-Latn/moser: [Knedl]}
-  forms:
-  - {feats: {Case: Acc, Number: Plur}, spelled: {bar-Latn/moser: [Knedl]}, status: pinned}
+  form: Knedl
 - id: lexeme:koan
   pos: DET
   feats: {PronType: Neg}
+  classes: [ein]
   gloss: {en: 'no, not a (kein)'}
   spelled: {bar-Latn/moser: [koan]}
+  form: koan
   forms:
-  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [koane]}, status: pinned}
-  - {feats: {Case: Acc, Gender: Masc, Number: Sing}, spelled: {bar-Latn/moser: [koan]}, status: pinned}
-  - {feats: {Case: Acc, Number: Plur}, spelled: {bar-Latn/moser: [koane]}, status: pinned}
+  - {feats: {Case: 'Acc,Nom', Gender: Fem, Number: Sing}, form: koane, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course; Moser: koa Folge [Folge]: for the owner
+  - {feats: {Number: Plur}, form: koane, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: koane Taschn [Pfoat]
 - id: lexeme:kolt
   pos: ADJ
   gloss: {en: cold}
   spelled: {bar-Latn/moser: [kolt]}
-  forms:
-  - {feats: {Case: Acc, Gender: Neut, Number: Sing}, spelled: {bar-Latn/moser: [kolts]}, status: pinned}
+  form: kolt
 - id: lexeme:kondominium
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: apartment building}
   notes: {en: 'From Italian condominio. Moser: a young loanword.'}
   spelled: {bar-Latn/moser: [Kondominium]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Kondominium]}, status: pinned}
+  form: Kondominium
 - id: lexeme:kostn
   pos: VERB
   gloss: {en: to cost}
   notes: {en: 'Koschtet: costs, with -scht- as it is said.'}
   spelled: {bar-Latn/moser: [kostn]}
-  forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [koschtet]}, status: pinned}
+  form: kost
 - id: lexeme:kotz
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: cat}
   spelled: {bar-Latn/moser: [Kotz]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Kotz]}, status: pinned}
+  form: Kotz
 - id: lexeme:krapfn
   pos: NOUN
   feats: {Gender: Masc}
+  classes: [pl-zero]
   gloss: {en: 'doughnut, fried pastry (Krapfen)'}
   spelled: {bar-Latn/moser: [Krapfn]}
-  forms:
-  - {feats: {Case: Acc, Number: Plur}, spelled: {bar-Latn/moser: [Krapfn]}, status: pinned}
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Krapfn]}, status: pinned}
+  form: Krapfn
 - id: lexeme:kronk
   pos: ADJ
   gloss: {en: 'ill, sick'}
   spelled: {bar-Latn/moser: [kronk]}
+  form: kronk
 - id: lexeme:kuchl
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: kitchen}
   notes: {en: Kuchl is Küche.}
   spelled: {bar-Latn/moser: [Kuchl]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Kuchl]}, status: pinned}
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Kuchl]}, status: pinned}
+  form: Kuchl
 - id: lexeme:lei
   pos: ADV
   gloss: {en: 'only, just'}
   notes: {en: 'Lei is the dialect''s nur. Moser: used as much in South Tyrol as in Carinthia.'}
   spelled: {bar-Latn/moser: [lei]}
+  form: lei
 - id: lexeme:leit
   pos: NOUN
+  classes: [plural-only]
+  citation: {Case: Nom, Number: Plur}
   gloss: {en: people}
   notes: {en: 'Leit is Leute, plural; di Leit, the people.'}
   spelled: {bar-Latn/moser: [Leit]}
-  forms:
-  - {feats: {Case: Nom, Number: Plur}, spelled: {bar-Latn/moser: [Leit]}, status: pinned}
+  form: Leit
 - id: lexeme:lena
   pos: PROPN
   feats: {Gender: Fem}
   gloss: {en: Lena}
   spelled: {bar-Latn/moser: [Lena]}
+  form: Lena
 - id: lexeme:lernen
   pos: VERB
   gloss: {en: to learn}
   spelled: {bar-Latn/moser: [lernen]}
-  forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [lernt]}, status: pinned}
+  form: lern
 - id: lexeme:liab
   pos: ADJ
   gloss: {en: 'kind, sweet, nice'}
   notes: {en: 'Liab is lieb: of a person, kind; of a child, good or sweet.'}
   spelled: {bar-Latn/moser: [liab]}
-  forms:
-  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [liabe]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {bar-Latn/moser: [liabs]}, status: pinned}
+  form: liab
 - id: lexeme:liaber
   pos: ADV
   gloss: {en: rather; (to like) better}
   notes: {en: 'I trink liaber Wein: I''d rather drink wine; I prefer wine.'}
   spelled: {bar-Latn/moser: [liaber]}
+  form: liaber
 - id: lexeme:links
   pos: ADV
   gloss: {en: (on the) left}
   spelled: {bar-Latn/moser: [links]}
+  form: links
 - id: lexeme:luis
   pos: PROPN
   feats: {Gender: Masc}
   gloss: {en: Luis}
   notes: {en: 'Luis is Alois, an old Tyrolean name.'}
   spelled: {bar-Latn/moser: [Luis]}
+  form: Luis
 - id: lexeme:madl
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: girl; daughter}
   notes: {en: 'Madl is girl in most of South Tyrol. Gitsche is the word in the Pustertal, the Sarntal and the Eisacktal.'}
   spelled: {bar-Latn/moser: [Madl]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Madl]}, status: pinned}
+  form: Madl
 - id: lexeme:mamme
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: 'mum, mother'}
   notes: {en: 'Moser: Mamme or Mamma, from Italian mamma.'}
   spelled: {bar-Latn/moser: [Mamme]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Mamme]}, status: pinned}
+  form: Mamme
 - id: lexeme:marende
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: 'afternoon snack (bread, speck, cheese)'}
   notes: {en: 'Marende (from Italian merenda) is the snack of the afternoon, around five: bread, speck, cheese, wine. It also names that time of day.'}
   spelled: {bar-Latn/moser: [Marende]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Marende]}, status: pinned}
+  form: Marende
 - id: lexeme:megn
   pos: VERB
+  classes: [modal]
   gloss: {en: to like}
   notes: {en: 'I mog Knedl: I like dumplings. With a verb, gearn: i iss gearn Knedl.'}
   spelled: {bar-Latn/moser: [megn]}
+  form: meg
   forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [megn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [megn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [mog]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [mogsch]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Tense: Pres}, stem: mog, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course; Moser: maggsch [megn]: for the owner
 - id: lexeme:mei
   pos: DET
   feats: {'Number[psor]': Sing, 'Person[psor]': '1', Poss: 'Yes', PronType: Prs}
+  classes: [ein]
   gloss: {en: my}
   spelled: {bar-Latn/moser: [mei]}
-  forms:
-  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [mei]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [mei]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Masc, Number: Sing}, spelled: {bar-Latn/moser: [mei]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {bar-Latn/moser: [mei]}, status: pinned}
+  form: mei
 - id: lexeme:meran
   pos: PROPN
   feats: {Gender: Neut}
   gloss: {en: 'Meran, Merano'}
   spelled: {bar-Latn/moser: [Meran]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Meran]}, status: pinned}
+  form: Meran
 - id: lexeme:miad
   pos: ADJ
   gloss: {en: tired}
   notes: {en: Miad is müde.}
   spelled: {bar-Latn/moser: [miad]}
+  form: miad
 - id: lexeme:miassn
   pos: AUX
+  classes: [modal]
   gloss: {en: 'must, to have to'}
   spelled: {bar-Latn/moser: [miassn]}
+  form: miass
   forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [miassn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [muaß]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Tense: Pres}, stem: muaß, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: muaß [akrat]
 - id: lexeme:milch
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: milk}
   spelled: {bar-Latn/moser: [Milch]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Milch]}, status: pinned}
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Milch]}, status: pinned}
+  form: Milch
 - id: lexeme:mir
   pos: PRON
   feats: {Number: Plur, Person: '1', PronType: Prs}
   gloss: {en: we; us}
   notes: {en: Mir is wir (we); ins is uns (us).}
   spelled: {bar-Latn/moser: [mir]}
+  form: mir
   forms:
-  - {feats: {Case: Dat}, spelled: {bar-Latn/moser: [ins]}, status: pinned}
+  - {feats: {Case: Dat}, form: ins, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course; Moser: uns [zwiflen]: for the owner
 - id: lexeme:mit
   pos: ADP
   gloss: {en: with}
   spelled: {bar-Latn/moser: [mit]}
+  form: mit
 - id: lexeme:mittog
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: midday; lunch}
   notes: {en: 'Af Mittog: at midday.'}
   spelled: {bar-Latn/moser: [Mittog]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Mittog]}, status: pinned}
+  form: Mittog
 - id: lexeme:mittwoch
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: Wednesday}
   spelled: {bar-Latn/moser: [Mittwoch]}
+  form: Mittwoch
 - id: lexeme:mochn
   pos: VERB
   gloss: {en: to make; to do}
   notes: {en: 'Mochn is machen: wos mochsch? what are you doing?'}
   spelled: {bar-Latn/moser: [mochn]}
-  forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [mochn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [moch]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [mochsch]}, status: pinned}
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gmocht]}, status: pinned}
+  form: moch
 - id: lexeme:montog
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: Monday}
   spelled: {bar-Latn/moser: [Montog]}
+  form: Montog
 - id: lexeme:morgn
   pos: ADV
   gloss: {en: tomorrow}
   spelled: {bar-Latn/moser: [morgn]}
+  form: morgn
 - id: lexeme:morkt
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: market}
   spelled: {bar-Latn/moser: [Morkt]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Morkt]}, status: pinned}
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Morkt]}, status: pinned}
+  form: Morkt
 - id: lexeme:musig
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: music}
   spelled: {bar-Latn/moser: [Musig]}
+  form: Musig
 - id: lexeme:na
   pos: INTJ
   gloss: {en: 'no'}
   notes: {en: Na is no; nit is not.}
   spelled: {bar-Latn/moser: [na]}
+  form: na
 - id: lexeme:nein
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: nine}
   spelled: {bar-Latn/moser: [nein]}
+  form: nein
 - id: lexeme:nit
   pos: PART
   feats: {Polarity: Neg}
   gloss: {en: not}
   notes: {en: 'Nit is not; na is no. Not nix, which is nothing.'}
   spelled: {bar-Latn/moser: [nit]}
+  form: nit
 - id: lexeme:nix
   pos: PRON
   feats: {PronType: Neg}
   gloss: {en: nothing}
   spelled: {bar-Latn/moser: [nix]}
+  form: nix
 - id: lexeme:noch
   pos: ADP
   gloss: {en: to (a town); after}
   notes: {en: 'Noch is nach: noch Meran, to Meran.'}
   spelled: {bar-Latn/moser: [noch]}
+  form: noch
 - id: lexeme:nocht
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: night}
   notes: {en: 'Af der Nocht: in the evening, at night.'}
   spelled: {bar-Latn/moser: [Nocht]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Nocht]}, status: pinned}
+  form: Nocht
 - id: lexeme:nohent
   pos: ADJ
   gloss: {en: 'near, close by'}
   notes: {en: Nohent is nahe.}
   spelled: {bar-Latn/moser: [nohent]}
+  form: nohent
 - id: lexeme:nor
   pos: ADV
   gloss: {en: 'then, afterwards'}
   spelled: {bar-Latn/moser: [nor]}
+  form: nor
 - id: lexeme:nou
   pos: ADV
   gloss: {en: still; yet; another}
   notes: {en: 'Nou a Kaffee: another coffee. Nou nit: not yet.'}
   spelled: {bar-Latn/moser: [nou]}
+  form: nou
 - id: lexeme:nui
   pos: ADJ
   gloss: {en: new}
   spelled: {bar-Latn/moser: [nui]}
-  forms:
-  - {feats: {Case: Acc, Gender: Neut, Number: Sing}, spelled: {bar-Latn/moser: [nuis]}, status: pinned}
+  form: nui
 - id: lexeme:oans
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: one}
   notes: {en: 'Oans is one when you count (and one o''clock). Before a noun, a: a Kind.'}
   spelled: {bar-Latn/moser: [oans]}
+  form: oans
 - id: lexeme:ober
   pos: CCONJ
   gloss: {en: but}
   spelled: {bar-Latn/moser: [ober]}
+  form: ober
 - id: lexeme:obm
   pos: ADV
   gloss: {en: up there; upstairs}
   spelled: {bar-Latn/moser: [obm]}
+  form: obm
 - id: lexeme:ocht
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: eight}
   spelled: {bar-Latn/moser: [ocht]}
+  form: ocht
 - id: lexeme:oder
   pos: CCONJ
   gloss: {en: or}
   spelled: {bar-Latn/moser: [oder]}
+  form: oder
 - id: lexeme:oft
   pos: ADV
   gloss: {en: often}
   spelled: {bar-Latn/moser: [oft]}
+  form: oft
 - id: lexeme:olle
   pos: DET
   feats: {PronType: Tot}
+  citation: {Case: Nom, Number: Plur}
   gloss: {en: 'all, every'}
   spelled: {bar-Latn/moser: [olle]}
-  forms:
-  - {feats: {Case: Nom, Number: Plur}, spelled: {bar-Latn/moser: [olle]}, status: pinned}
+  form: olle
 - id: lexeme:olm
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: mountain pasture (with its hut)}
   notes: {en: 'Olm is Alm: high summer pastures, and the huts on them where you can eat and drink.'}
   spelled: {bar-Latn/moser: [Olm]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Olm]}, status: pinned}
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Olm]}, status: pinned}
+  form: Olm
 - id: lexeme:olt
   pos: ADJ
   gloss: {en: old}
   spelled: {bar-Latn/moser: [olt]}
-  forms:
-  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [olte]}, status: pinned}
+  form: olt
 - id: lexeme:oma
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: grandma}
   notes: {en: The old words are Nandl (grandma) and Nene (grandpa).}
   spelled: {bar-Latn/moser: [Oma]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Oma]}, status: pinned}
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Oma]}, status: pinned}
+  form: Oma
 - id: lexeme:opa
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: grandpa}
   spelled: {bar-Latn/moser: [Opa]}
+  form: Opa
 - id: lexeme:orbatn
   pos: VERB
   gloss: {en: to work}
   spelled: {bar-Latn/moser: [orbatn]}
-  forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [orbatn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [orbat]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [orbatsch]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [orbatet]}, status: pinned}
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gorbatet]}, status: pinned}
+  form: orbat
 - id: lexeme:orbet
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: work; job}
   spelled: {bar-Latn/moser: [Orbet]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Orbet]}, status: pinned}
+  form: Orbet
 - id: lexeme:pfiat-di
   pos: INTJ
   gloss: {en: goodbye (to one person)}
   notes: {en: 'From behüte dich (God keep you). To several people, or politely: pfiat enk.'}
   spelled: {bar-Latn/moser: [pfiat di]}
+  form: pfiat di
 - id: lexeme:pfiat-enk
   pos: INTJ
   gloss: {en: goodbye (to several people; politely)}
   spelled: {bar-Latn/moser: [pfiat enk]}
+  form: pfiat enk
 - id: lexeme:pfinztig
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: Thursday}
   notes: {en: Pfinztig is Thursday all over the Bavarian dialects (Donnerstag in the standard).}
   spelled: {bar-Latn/moser: [Pfinztig]}
+  form: Pfinztig
 - id: lexeme:pichler
   pos: PROPN
   feats: {Gender: Fem}
   gloss: {en: Pichler (a surname)}
   notes: {en: 'The Frau Pichler of the course, the neighbour downstairs.'}
   spelled: {bar-Latn/moser: [Pichler]}
+  form: Pichler
 - id: lexeme:plotz
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: square}
   spelled: {bar-Latn/moser: [Plotz]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Plotz]}, status: pinned}
+  form: Plotz
 - id: lexeme:ratschn
   pos: VERB
   gloss: {en: to chat}
   notes: {en: 'Ratschn is a long, friendly chat.'}
   spelled: {bar-Latn/moser: [ratschn]}
-  forms:
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gratscht]}, status: pinned}
+  form: ratsch
 - id: lexeme:rechts
   pos: ADV
   gloss: {en: (on the) right}
   spelled: {bar-Latn/moser: [rechts]}
+  form: rechts
 - id: lexeme:redn
   pos: VERB
   gloss: {en: 'to speak, talk'}
   notes: {en: 'I red deitsch: I speak German. Redsch du walsch? Do you speak Italian?'}
   spelled: {bar-Latn/moser: [redn]}
-  forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [redn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [redts]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [red]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [redsch]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [redt]}, status: pinned}
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gredt]}, status: pinned}
+  form: red
 - id: lexeme:regn
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: rain}
   spelled: {bar-Latn/moser: [Regn]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Regn]}, status: pinned}
+  form: Regn
 - id: lexeme:regnen
   pos: VERB
   gloss: {en: to rain}
   spelled: {bar-Latn/moser: [regnen]}
-  forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [regnet]}, status: pinned}
+  form: regn
 - id: lexeme:ritten
   pos: PROPN
   feats: {Gender: Masc}
   gloss: {en: 'the Ritten (Renon), the high plateau above Bozen'}
   notes: {en: 'Afn Ritten: up on the Ritten.'}
   spelled: {bar-Latn/moser: [Ritten]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Ritten]}, status: pinned}
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Ritten]}, status: pinned}
+  form: Ritten
 - id: lexeme:samstog
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: Saturday}
   spelled: {bar-Latn/moser: [Samstog]}
+  form: Samstog
 - id: lexeme:schaugn
   pos: VERB
   gloss: {en: to look}
   notes: {en: Schaug! Look!}
   spelled: {bar-Latn/moser: [schaugn]}
-  forms:
-  - {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {bar-Latn/moser: [schaug]}, status: pinned}
+  form: schaug
 - id: lexeme:schiach
   pos: ADJ
   gloss: {en: ugly; nasty (of weather)}
   spelled: {bar-Latn/moser: [schiach]}
+  form: schiach
 - id: lexeme:schian
   pos: ADJ
   gloss: {en: 'beautiful, nice'}
   notes: {en: 'Schian is schön. Schiach is its opposite: ugly, nasty.'}
   spelled: {bar-Latn/moser: [schian]}
-  forms:
-  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [schiane]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Masc, Number: Sing}, spelled: {bar-Latn/moser: [schianer]}, status: pinned}
-  - {feats: {Case: Nom, Gender: Neut, Number: Sing}, spelled: {bar-Latn/moser: [schians]}, status: pinned}
+  form: schian
 - id: lexeme:schittlbrot
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: 'crispbread (rye, with caraway)'}
   notes: {en: 'Schüttelbrot: thin, hard rye bread with caraway, made to keep.'}
   spelled: {bar-Latn/moser: [Schittlbrot]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Schittlbrot]}, status: pinned}
+  form: Schittlbrot
 - id: lexeme:schlofn
   pos: VERB
+  classes: [strong]
   gloss: {en: to sleep}
   spelled: {bar-Latn/moser: [schlofn]}
-  forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [schlof]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [schlofsch]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [schloft]}, status: pinned}
+  form: schlof
 - id: lexeme:schnee
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: snow}
   spelled: {bar-Latn/moser: [Schnee]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Schnee]}, status: pinned}
+  form: Schnee
 - id: lexeme:schneibm
   pos: VERB
   gloss: {en: to snow}
   notes: {en: 'Es schneibt: it''s snowing.'}
   spelled: {bar-Latn/moser: [schneibm]}
-  forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [schneibt]}, status: pinned}
+  form: schneib
 - id: lexeme:schual
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: school}
   notes: {en: Schual is Schule.}
   spelled: {bar-Latn/moser: [Schual]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Schual]}, status: pinned}
+  form: Schual
 - id: lexeme:schun
   pos: ADV
   gloss: {en: already}
   spelled: {bar-Latn/moser: [schun]}
+  form: schun
 - id: lexeme:schwester
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: sister}
   spelled: {bar-Latn/moser: [Schwester]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Schwester]}, status: pinned}
+  form: Schwester
 - id: lexeme:sechn
   pos: VERB
+  classes: [strong]
   gloss: {en: to see}
   notes: {en: 'I siach, du siachsch: I see, you see. The past: i hon gsechn.'}
   spelled: {bar-Latn/moser: [sechn]}
+  form: sech
   forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [siach]}, status: pinned}
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gsechn]}, status: pinned}
+  - {feats: {Mood: 'Imp,Ind', Number: Sing}, stem: siach, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course: siach
 - id: lexeme:sechs
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: six}
   spelled: {bar-Latn/moser: [sechs]}
+  form: sechs
 - id: lexeme:see
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: lake}
   spelled: {bar-Latn/moser: [See]}
+  form: See
 - id: lexeme:sehr
   pos: ADV
   gloss: {en: very}
   spelled: {bar-Latn/moser: [sehr]}
+  form: sehr
 - id: lexeme:sei
   pos: DET
   feats: {'Gender[psor]': Masc, 'Number[psor]': Sing, 'Person[psor]': '3', Poss: 'Yes', PronType: Prs}
+  classes: [ein]
   gloss: {en: his; its}
   spelled: {bar-Latn/moser: [sei]}
-  forms:
-  - {feats: {Case: Nom, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [sei]}, status: pinned}
+  form: sei
 - id: lexeme:sein
   pos: AUX
+  classes: [strong, past]
   gloss: {en: to be}
   notes: {en: 'I bin, du bisch, er isch, mir sein, es seids, sie sein. The past: i bin gwesn, or i wor (the one verb with a past of its own).'}
   spelled: {bar-Latn/moser: [sein]}
+  form: sei
   forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}, spelled: {bar-Latn/moser: [worn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [sein]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [seids]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {bar-Latn/moser: [worn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [sein]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, spelled: {bar-Latn/moser: [wor]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [bin]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}, spelled: {bar-Latn/moser: [worsch]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [bisch]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {bar-Latn/moser: [wor]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [isch]}, status: pinned}
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gwesn]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, form: bin, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: bin (the notes, §1.3)
+  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, form: bisch, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: bisch [bisch]
+  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, form: isch, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: isch (the notes, §1.3)
+  - {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, form: seids, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course
+  - {feats: {Mood: Ind, Tense: Past}, stem: wor, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: war [Tschach], which the course writes wor
+  - {feats: {VerbForm: Part}, stem: wes, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: gwesn (the notes, §1.3)
 - id: lexeme:servus
   pos: INTJ
   gloss: {en: hi; bye (among friends)}
   spelled: {bar-Latn/moser: [servus]}
+  form: servus
 - id: lexeme:sidtirol
   pos: PROPN
   feats: {Gender: Neut}
   gloss: {en: South Tyrol}
   notes: {en: 'Südtirol, with the dialect''s i for ü.'}
   spelled: {bar-Latn/moser: [Sidtirol]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Sidtirol]}, status: pinned}
+  form: Sidtirol
 - id: lexeme:sie
   pos: PRON
   feats: {Gender: Fem, Number: Sing, Person: '3', PronType: Prs}
   gloss: {en: she; it (feminine)}
   spelled: {bar-Latn/moser: [sie]}
+  form: sie
   forms:
-  - {feats: {Case: Acc}, spelled: {bar-Latn/moser: [sie]}, status: pinned}
+  - {feats: {Case: Acc}, form: sie, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course
 - id: lexeme:sie.formal
   pos: PRON
   feats: {Number: Plur, Person: '3', Polite: Form, PronType: Prs}
   gloss: {en: you (polite)}
   notes: {en: 'To someone you do not know well, and to older people you are not related to. The verb is the plural''s: Sie sein, Sie hobm.'}
   spelled: {bar-Latn/moser: [Sie]}
+  form: Sie
   forms:
-  - {feats: {Case: Dat}, spelled: {bar-Latn/moser: [Eana]}, status: pinned}
+  - {feats: {Case: Dat}, form: Eana, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: éana [éana]
 - id: lexeme:sie.pl
   pos: PRON
   feats: {Number: Plur, Person: '3', PronType: Prs}
   gloss: {en: they; them}
   spelled: {bar-Latn/moser: [sie]}
+  form: sie
 - id: lexeme:siebm
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: seven}
   spelled: {bar-Latn/moser: [siebm]}
+  form: siebm
 - id: lexeme:singen
   pos: VERB
+  classes: [strong]
   gloss: {en: to sing}
   spelled: {bar-Latn/moser: [singen]}
+  form: sing
   forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [singen]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [singen]}, status: pinned}
+  - {feats: {VerbForm: Part}, stem: sung, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Claude's: gsungen, as German gesungen
 - id: lexeme:sogn
   pos: VERB
   gloss: {en: to say}
   notes: {en: 'Sogn is sagen, with o for the long a.'}
   spelled: {bar-Latn/moser: [sogn]}
-  forms:
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gsogt]}, status: pinned}
+  form: sog
 - id: lexeme:speck
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: 'speck (cured, smoked ham)'}
   spelled: {bar-Latn/moser: [Speck]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Speck]}, status: pinned}
+  form: Speck
 - id: lexeme:spieln
   pos: VERB
   gloss: {en: to play}
   spelled: {bar-Latn/moser: [spieln]}
-  forms:
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gspielt]}, status: pinned}
+  form: spiel
 - id: lexeme:spitol
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: hospital}
   spelled: {bar-Latn/moser: [Spitol]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Spitol]}, status: pinned}
+  form: Spitol
 - id: lexeme:sproch
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: language}
   spelled: {bar-Latn/moser: [Sproch]}
+  form: Sproch
 - id: lexeme:steil
   pos: ADJ
   gloss: {en: steep}
   spelled: {bar-Latn/moser: [steil]}
+  form: steil
 - id: lexeme:stodt
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: 'town, city'}
   notes: {en: Stodt is Stadt.}
   spelled: {bar-Latn/moser: [Stodt]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Stodt]}, status: pinned}
+  form: Stodt
 - id: lexeme:stube
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: living room (the panelled main room)}
   notes: {en: 'The Stube is a farmhouse''s warm, wood-panelled room with its stove.'}
   spelled: {bar-Latn/moser: [Stube]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Stube]}, status: pinned}
+  form: Stube
 - id: lexeme:suachn
   pos: VERB
   gloss: {en: to look for}
   spelled: {bar-Latn/moser: [suachn]}
-  forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [suach]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [suachsch]}, status: pinned}
+  form: suach
 - id: lexeme:sunn
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: sun}
   notes: {en: Sunn is Sonne.}
   spelled: {bar-Latn/moser: [Sunn]}
+  form: Sunn
   image: {file: ../../courses/images/sun.svg, license: CC0-1.0, provenance: {author: 'llm:claude@bar-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: lexeme:sunntig
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: Sunday}
   spelled: {bar-Latn/moser: [Sunntig]}
+  form: Sunntig
 - id: lexeme:suppe
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: soup}
   spelled: {bar-Latn/moser: [Suppe]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Suppe]}, status: pinned}
+  form: Suppe
 - id: lexeme:tatte
   pos: NOUN
   feats: {Gender: Masc}
+  classes: [pl-n]
   gloss: {en: 'dad, father'}
   notes: {en: 'Moser: Tatte or Tatta.'}
   spelled: {bar-Latn/moser: [Tatte]}
+  form: Tatte
 - id: lexeme:teier
   pos: ADJ
   gloss: {en: expensive}
   notes: {en: Teier is teuer.}
   spelled: {bar-Latn/moser: [teier]}
+  form: teier
 - id: lexeme:tian
   pos: VERB
+  classes: [subjunctive]
   gloss: {en: to do; would (tat)}
   notes: {en: 'Tian is tun. Its old past tat, with another verb, is the dialect''s würde: i tat gearn kemmen, I''d like to come.'}
   spelled: {bar-Latn/moser: [tian]}
+  form: tua
   forms:
-  - {feats: {Mood: Sub, Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}, spelled: {bar-Latn/moser: [tatn]}, status: pinned}
-  - {feats: {Mood: Sub, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, spelled: {bar-Latn/moser: [tat]}, status: pinned}
-  - {feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}, spelled: {bar-Latn/moser: [tatsch]}, status: pinned}
-  - {feats: {Mood: Sub, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {bar-Latn/moser: [tat]}, status: pinned}
+  - {feats: {VerbForm: Inf}, form: tian, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: tian (its compounds; the notes, §1.3)
+  - {feats: {Mood: Ind, Number: Plur, Person: '1,3', Tense: Pres, VerbForm: Fin}, form: tian, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Claude's, as gian
+  - {feats: {Mood: Sub}, stem: tat, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course; Moser: tetn, Deutschn. [Fetz]
+  - {feats: {VerbForm: Part}, form: geton, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: geton (the notes, §1.3)
 - id: lexeme:tisch
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: table}
   spelled: {bar-Latn/moser: [Tisch]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Tisch]}, status: pinned}
+  form: Tisch
 - id: lexeme:tog
   pos: NOUN
   feats: {Gender: Masc}
+  classes: [pl-zero, umlaut]
   gloss: {en: day}
   notes: {en: 'Tog is Tag: the dialect''s o for a long a.'}
   spelled: {bar-Latn/moser: [Tog]}
-  forms:
-  - {feats: {Case: Acc, Number: Plur}, spelled: {bar-Latn/moser: [Teg]}, status: pinned}
+  form: Tog
 - id: lexeme:trinkn
   pos: VERB
+  classes: [strong]
   gloss: {en: to drink}
   spelled: {bar-Latn/moser: [trinkn]}
+  form: trink
   forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [trinkn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [trink]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [trinksch]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [trinkt]}, status: pinned}
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [trunkn]}, status: pinned}
+  - {feats: {VerbForm: Part}, stem: trunk, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # the course: trunkn
 - id: lexeme:törggelen
   pos: VERB
   gloss: {en: 'to go törggelen (for chestnuts and new wine, in the autumn)'}
   notes: {en: 'In the autumn people go törggelen: to a farm or an inn for roast chestnuts, new wine and a hearty meal, after the grape harvest.'}
   spelled: {bar-Latn/moser: [törggelen]}
+  form: törggel
+  forms:
+  - {feats: {VerbForm: Inf}, form: törggel+en, status: pinned}  # the course writes the word as Standard German does: rule debt
 - id: lexeme:uhr
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: o'clock; clock}
   spelled: {bar-Latn/moser: [Uhr]}
+  form: Uhr
 - id: lexeme:um
   pos: ADP
   gloss: {en: at (a time); around}
   notes: {en: 'Um drei: at three.'}
   spelled: {bar-Latn/moser: [um]}
+  form: um
 - id: lexeme:und
   pos: CCONJ
   gloss: {en: and}
   spelled: {bar-Latn/moser: [und]}
+  form: und
 - id: lexeme:untn
   pos: ADV
   gloss: {en: down there; downstairs}
   spelled: {bar-Latn/moser: [untn]}
+  form: untn
 - id: lexeme:va
   pos: ADP
   gloss: {en: from; of}
   notes: {en: 'Va is von. Va Bozn: from Bozen.'}
   spelled: {bar-Latn/moser: [va]}
+  form: va
 - id: lexeme:vergelts-gott
   pos: INTJ
   gloss: {en: thank you (old-fashioned; in the country)}
   spelled: {bar-Latn/moser: [vergelts Gott]}
+  form: vergelts Gott
 - id: lexeme:verheiratet
   pos: ADJ
   gloss: {en: married}
   spelled: {bar-Latn/moser: [verheiratet]}
+  form: verheiratet
 - id: lexeme:versteahn
   pos: VERB
+  classes: [strong]
   gloss: {en: to understand}
   spelled: {bar-Latn/moser: [versteahn]}
+  form: versteah
   forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [versteah]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [versteahsch]}, status: pinned}
+  - {feats: {VerbForm: Part}, stem: verstond, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Claude's: verstondn, as German verstanden
 - id: lexeme:viel
   pos: ADV
   gloss: {en: 'much, a lot'}
   spelled: {bar-Latn/moser: [viel]}
+  form: viel
 - id: lexeme:vier
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: four}
   spelled: {bar-Latn/moser: [vier]}
+  form: vier
 - id: lexeme:walsch
   pos: ADJ
   gloss: {en: Italian (the language)}
   notes: {en: 'The dialect''s word for Italian. Older and plain; some hear it as dismissive, so italienisch is said too.'}
   spelled: {bar-Latn/moser: [walsch]}
+  form: walsch
 - id: lexeme:weg
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: path; way}
   spelled: {bar-Latn/moser: [Weg]}
+  form: Weg
 - id: lexeme:wein
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: wine}
   spelled: {bar-Latn/moser: [Wein]}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Wein]}, status: pinned}
+  form: Wein
 - id: lexeme:weit
   pos: ADV
   gloss: {en: far}
   spelled: {bar-Latn/moser: [weit]}
+  form: weit
 - id: lexeme:welln
   pos: VERB
+  classes: [modal]
   gloss: {en: to want}
   spelled: {bar-Latn/moser: [welln]}
+  form: well
   forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [wellts]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [welln]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [will]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [willsch]}, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Tense: Pres}, stem: will, status: listed, statement: {author: 'llm:claude@rules-bar', status: draft}}  # Moser: will [ochn, joa²]
 - id: lexeme:wer
   pos: PRON
   feats: {PronType: Int}
   gloss: {en: who}
   spelled: {bar-Latn/moser: [wer]}
+  form: wer
 - id: lexeme:wetter
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: weather}
   spelled: {bar-Latn/moser: [Wetter]}
+  form: Wetter
 - id: lexeme:wia
   pos: ADV
   feats: {PronType: Int}
   gloss: {en: 'how; like, as'}
   spelled: {bar-Latn/moser: [wia]}
+  form: wia
 - id: lexeme:wiaviel
   pos: ADV
   feats: {PronType: Int}
   gloss: {en: how much; how many}
   spelled: {bar-Latn/moser: [wiaviel]}
+  form: wiaviel
 - id: lexeme:wien
   pos: PROPN
   feats: {Gender: Neut}
   gloss: {en: Vienna}
   spelled: {bar-Latn/moser: [Wien]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Wien]}, status: pinned}
+  form: Wien
 - id: lexeme:wirt
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: innkeeper}
   spelled: {bar-Latn/moser: [Wirt]}
+  form: Wirt
 - id: lexeme:wo
   pos: ADV
   feats: {PronType: Int}
   gloss: {en: where}
   spelled: {bar-Latn/moser: [wo]}
+  form: wo
 - id: lexeme:wochn
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: week}
   spelled: {bar-Latn/moser: [Wochn]}
+  form: Wochn
 - id: lexeme:wochnend
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: weekend}
   spelled: {bar-Latn/moser: [Wochnend]}
+  form: Wochnend
 - id: lexeme:wohnen
   pos: VERB
   gloss: {en: to live (somewhere)}
   spelled: {bar-Latn/moser: [wohnen]}
-  forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [wohnen]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [wohn]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [wohnsch]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [wohnt]}, status: pinned}
+  form: wohn
 - id: lexeme:wold
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: 'forest, wood'}
   spelled: {bar-Latn/moser: [Wold]}
+  form: Wold
 - id: lexeme:wondern
   pos: VERB
   gloss: {en: 'to hike, walk'}
   spelled: {bar-Latn/moser: [wondern]}
-  forms:
-  - {feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [wondern]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [wondersch]}, status: pinned}
-  - {feats: {VerbForm: Part}, spelled: {bar-Latn/moser: [gwondert]}, status: pinned}
+  form: wonder
 - id: lexeme:worm
   pos: ADJ
   gloss: {en: warm}
   spelled: {bar-Latn/moser: [worm]}
-  forms:
-  - {feats: {Case: Acc, Gender: Fem, Number: Sing}, spelled: {bar-Latn/moser: [worme]}, status: pinned}
+  form: worm
 - id: lexeme:wos
   pos: PRON
   feats: {PronType: Int}
   gloss: {en: what}
   notes: {en: 'Wos is was (what), with the dialect''s o.'}
   spelled: {bar-Latn/moser: [wos]}
+  form: wos
 - id: lexeme:wosser
   pos: NOUN
   feats: {Gender: Neut}
   gloss: {en: water}
   spelled: {bar-Latn/moser: [Wosser]}
+  form: Wosser
   image: {file: ../../courses/images/water.svg, license: CC0-1.0, provenance: {author: 'llm:claude@bar-course-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  forms:
-  - {feats: {Case: Acc, Number: Sing}, spelled: {bar-Latn/moser: [Wosser]}, status: pinned}
 - id: lexeme:za
   pos: ADP
   gloss: {en: to (a person or a place)}
   notes: {en: 'Za is zu. Za ins: to our place.'}
   spelled: {bar-Latn/moser: [za]}
+  form: za
 - id: lexeme:zehn
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: ten}
   spelled: {bar-Latn/moser: [zehn]}
+  form: zehn
 - id: lexeme:zfriedn
   pos: ADJ
   gloss: {en: 'happy, content'}
   spelled: {bar-Latn/moser: [zfriedn]}
+  form: zfriedn
 - id: lexeme:zimmer
   pos: NOUN
   feats: {Gender: Neut}
+  classes: [pl-zero]
   gloss: {en: room}
   spelled: {bar-Latn/moser: [Zimmer]}
-  forms:
-  - {feats: {Case: Acc, Number: Plur}, spelled: {bar-Latn/moser: [Zimmer]}, status: pinned}
+  form: Zimmer
 - id: lexeme:zohln
   pos: VERB
   gloss: {en: to pay}
   spelled: {bar-Latn/moser: [zohln]}
-  forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, spelled: {bar-Latn/moser: [zohl]}, status: pinned}
+  form: zohl
 - id: lexeme:zomm
   pos: ADV
   gloss: {en: together}
   spelled: {bar-Latn/moser: [zomm]}
+  form: zomm
 - id: lexeme:zug
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: train}
   spelled: {bar-Latn/moser: [Zug]}
-  forms:
-  - {feats: {Case: Dat, Number: Sing}, spelled: {bar-Latn/moser: [Zug]}, status: pinned}
+  form: Zug
 - id: lexeme:zwelf
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: twelve}
   spelled: {bar-Latn/moser: [zwelf]}
+  form: zwelf
 - id: lexeme:zwoa
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: two}
   notes: {en: Zwoa (two) for every gender.}
   spelled: {bar-Latn/moser: [zwoa]}
+  form: zwoa
