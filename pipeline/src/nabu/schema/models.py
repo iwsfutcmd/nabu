@@ -2569,6 +2569,12 @@ class Allomorph(BaseModel):
     form: str | None = None
     after: Annotated[Condition | None, Field(description="What it stands after.")] = None
     before: Annotated[Condition | None, Field(description="What it stands before.")] = None
+    free: Annotated[
+        bool | None,
+        Field(
+            description="true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (a scribe's other spelling of a suffix: chg's locative دا beside ده). Never the one chosen: a token's realisation gives it as an alternative."
+        ),
+    ] = None
     spelled: Annotated[
         dict[OrthographyId, SpelledAdditionalProperty2] | None,
         Field(

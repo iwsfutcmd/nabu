@@ -3365,6 +3365,10 @@ export interface Allomorph {
   readonly after?: Condition;
   readonly before?: Condition1;
   /**
+   * true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (a scribe's other spelling of a suffix: chg's locative دا beside ده). Never the one chosen: a token's realisation gives it as an alternative.
+   */
+  readonly free?: boolean;
+  /**
    * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
    */
   readonly spelled?: {

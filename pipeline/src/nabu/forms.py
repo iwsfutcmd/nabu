@@ -300,7 +300,9 @@ class Spelling:
 class TokenCheck:
     """A token's verdict. `given`: the rules give what it writes; `form`: a pinned or listed form of
     its lexeme does; `unaccounted`: neither (the lint `form.unaccounted`), with `reason` where the
-    rules give nothing (no rule for the cell, a lexeme it writes with no form)."""
+    rules give nothing (no rule for the cell, a lexeme it writes with no form). `variant`: the free
+    variant (a form the token's free allomorphs give, core's `alternatives`) that accounts for it,
+    where the form the rules choose does not."""
 
     site: Site
     verdict: str
@@ -309,6 +311,7 @@ class TokenCheck:
     status: str | None = None
     steps: list[dict[str, str]] = field(default_factory=lambda: [])
     spellings: list[Spelling] = field(default_factory=lambda: [])
+    variant: str | None = None
 
     @property
     def missed(self) -> list[Spelling]:
@@ -328,6 +331,9 @@ class TokenReport:
             "tokens": len(verdicts),
             "given exactly": verdicts.count("given"),
             "by a pinned or listed form": verdicts.count("form"),
+            "of them by a free variant": sum(
+                1 for c in self.checks if c.variant is not None and c.verdict != "unaccounted"
+            ),
             "unaccounted": verdicts.count("unaccounted"),
         }
 
@@ -405,8 +411,10 @@ def check_tokens(
     flat = [r for c in candidates for r in c]
     realised = iter(_batched(cli, flat))
     results: list[list[Any]] = [[next(realised) for _ in c] for c in candidates]
-    spell: list[tuple[int, int, Spelling, dict[str, Any]]] = []
+    # (site, try, variant: 0 the form the rules choose, then each free variant's), what to spell.
+    spell: list[tuple[int, int, int, Spelling, dict[str, Any]]] = []
     tried: dict[tuple[int, int], TokenCheck] = {}
+    variants: dict[tuple[int, int], list[tuple[str, list[dict[str, str]]]]] = {}
     for n, site in enumerate(sites):
         for j, result in enumerate(results[n]):
             if not result["ok"]:
@@ -434,6 +442,8 @@ def check_tokens(
                 status,
                 list(value["steps"]),
             )
+            alternatives = cast(list[dict[str, Any]], value.get("alternatives") or [])
+            variants[(n, j)] = [(str(a["form"]), list(a["steps"])) for a in alternatives]
             profile = profiles.get(site.orth)
             if profile is None or notation is None:
                 continue
@@ -445,23 +455,25 @@ def check_tokens(
                     wheres.append((f"{site.orth}{LAYER}{layer.id}", layer.id, site.marked))
             # A phrase realised whole: the token is one word of its spelling.
             part = len(results[n]) > 1 and j == 0
-            for where, layer, expected in wheres:
-                ask: dict[str, Any] = {
-                    "op": "spell",
-                    "profile": site.orth,
-                    "notation": notation,
-                    "form": form,
-                    "expected": expected,
-                }
-                if layer is not None:
-                    ask["layer"] = layer
-                if part:
-                    ask["part"] = True
-                spell.append((n, j, Spelling(where, "", [], expected, None), ask))
-    spelled = _batched(cli, [a for _, _, _, a in spell], results=True)
-    found: dict[tuple[int, int], list[Spelling]] = {}
-    for (n, j, s, _), result in zip(spell, spelled, strict=True):
-        found.setdefault((n, j), []).append(
+            forms = [form, *(f for f, _ in variants[(n, j)])]
+            for v, text in enumerate(forms):
+                for where, layer, expected in wheres:
+                    ask: dict[str, Any] = {
+                        "op": "spell",
+                        "profile": site.orth,
+                        "notation": notation,
+                        "form": text,
+                        "expected": expected,
+                    }
+                    if layer is not None:
+                        ask["layer"] = layer
+                    if part:
+                        ask["part"] = True
+                    spell.append((n, j, v, Spelling(where, "", [], expected, None), ask))
+    spelled = _batched(cli, [a for _, _, _, _, a in spell], results=True)
+    found: dict[tuple[int, int, int], list[Spelling]] = {}
+    for (n, j, v, s, _), result in zip(spell, spelled, strict=True):
+        found.setdefault((n, j, v), []).append(
             Spelling(
                 s.where,
                 str(result["spelling"]),
@@ -478,12 +490,28 @@ def check_tokens(
         verdicts: list[TokenCheck] = []
         for j in range(len(results[n])):
             c = tried[(n, j)]
-            spellings = found.get((n, j), [])
+            spellings = found.get((n, j, 0), [])
             if c.verdict in ("given", "form"):
-                verdict = (
-                    c.verdict if all(s.found is not None for s in spellings) else "unaccounted"
+                # The form the rules choose, else the first free variant that spells as written.
+                matched = next(
+                    (
+                        (f, steps, found.get((n, j, v), []))
+                        for v, (f, steps) in enumerate(variants.get((n, j), []), start=1)
+                        if all(s.found is not None for s in found.get((n, j, v), []))
+                    ),
+                    None,
                 )
-                c = TokenCheck(c.site, verdict, c.reason, c.form, c.status, c.steps, spellings)
+                if all(s.found is not None for s in spellings):
+                    c = TokenCheck(
+                        c.site, c.verdict, c.reason, c.form, c.status, c.steps, spellings
+                    )
+                elif matched is not None:
+                    f, steps, theirs = matched
+                    c = TokenCheck(c.site, c.verdict, c.reason, c.form, c.status, steps, theirs, f)
+                else:
+                    c = TokenCheck(
+                        c.site, "unaccounted", c.reason, c.form, c.status, c.steps, spellings
+                    )
             verdicts.append(c)
         # A phrase's token is the word that spells as it is written; else the first try.
         out.append(next((c for c in verdicts if c.verdict != "unaccounted"), verdicts[0]))
@@ -741,6 +769,16 @@ def format_tokens(report: TokenReport) -> list[str]:
     lines.append("By a pinned or listed form:")
     for (key, status), n in sorted(by_form.items()):
         lines.append(f"  {key}: {status}, {n}")
+    by_variant: dict[tuple[str, str, str], int] = {}
+    for c in report.checks:
+        if c.variant is not None and c.verdict != "unaccounted":
+            k = (c.site.key, escaped(c.form or ""), escaped(c.variant))
+            by_variant[k] = by_variant.get(k, 0) + 1
+    lines.append(
+        "By a free variant (the rules choose the first form; the course writes the other):"
+    )
+    for (key, form, variant), n in sorted(by_variant.items()):
+        lines.append(f"  {key}: {form} / {variant}, {n}")
     reasons: dict[str, int] = {}
     for c in report.checks:
         if c.verdict == "unaccounted" and c.reason:

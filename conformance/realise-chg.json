@@ -1,0 +1,840 @@
+{
+  "$comment": "Realising chg's tokens (docs/rules/chg.md): a token's lexemes, the base in its citation cell (chg's tokens choose no feature values: its suffixes are lexemes of their own), the others in their allomorphs, joined and rewritten by chg's rules (lexicons/chg/language.yaml, lexemes.yaml). An allomorph marked `free` (a scribe's other spelling) is never chosen: each that holds gives the token an alternative. realise/free/* run zz, an invented language given whole; realise/chg/* chg's own lexicon, one vector or more per allomorph condition and rewrite, each a token of the course (its surface in the note).",
+  "vectors": [
+    {
+      "id": "realise/free/never-chosen",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number",
+              "Case"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfgklmnprstz]",
+              "VL": "[ptks]"
+            }
+          },
+          "phonology": [
+            {
+              "id": "rule:zz-voicing",
+              "find": "t+l",
+              "to": "d+l"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kat",
+              "pos": "NOUN",
+              "form": "kat"
+            },
+            {
+              "id": "lexeme:kala",
+              "pos": "NOUN",
+              "form": "kala"
+            },
+            {
+              "id": "lexeme:pir",
+              "pos": "NOUN",
+              "form": "pir",
+              "allomorphs": [
+                {
+                  "form": "per",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "allomorphs": [
+                {
+                  "form": "lar"
+                },
+                {
+                  "form": "ler",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:loc",
+              "realises": {
+                "Case": "Loc"
+              },
+              "allomorphs": [
+                {
+                  "form": "da"
+                },
+                {
+                  "form": "ta",
+                  "after": {
+                    "endsIn": "{VL}"
+                  },
+                  "free": true
+                },
+                {
+                  "form": "de",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:only-free",
+              "realises": {
+                "Case": "Abl"
+              },
+              "allomorphs": [
+                {
+                  "form": "dan",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:kala",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pl"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kala+lar",
+          "status": "given",
+          "steps": [],
+          "alternatives": [
+            {
+              "form": "kala+ler",
+              "steps": []
+            }
+          ]
+        }
+      },
+      "note": "A free allomorph is never the one chosen: the token's form takes the first allomorph that is not free; the free one is an alternative."
+    },
+    {
+      "id": "realise/free/rewritten",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number",
+              "Case"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfgklmnprstz]",
+              "VL": "[ptks]"
+            }
+          },
+          "phonology": [
+            {
+              "id": "rule:zz-voicing",
+              "find": "t+l",
+              "to": "d+l"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kat",
+              "pos": "NOUN",
+              "form": "kat"
+            },
+            {
+              "id": "lexeme:kala",
+              "pos": "NOUN",
+              "form": "kala"
+            },
+            {
+              "id": "lexeme:pir",
+              "pos": "NOUN",
+              "form": "pir",
+              "allomorphs": [
+                {
+                  "form": "per",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "allomorphs": [
+                {
+                  "form": "lar"
+                },
+                {
+                  "form": "ler",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:loc",
+              "realises": {
+                "Case": "Loc"
+              },
+              "allomorphs": [
+                {
+                  "form": "da"
+                },
+                {
+                  "form": "ta",
+                  "after": {
+                    "endsIn": "{VL}"
+                  },
+                  "free": true
+                },
+                {
+                  "form": "de",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:only-free",
+              "realises": {
+                "Case": "Abl"
+              },
+              "allomorphs": [
+                {
+                  "form": "dan",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:kat",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pl"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kad+lar",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:zz-voicing"
+            }
+          ],
+          "alternatives": [
+            {
+              "form": "kad+ler",
+              "steps": [
+                {
+                  "rule": "rule:zz-voicing"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "note": "An alternative goes through the rewrite rules as the chosen form does, with the steps it took."
+    },
+    {
+      "id": "realise/free/conditioned",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number",
+              "Case"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfgklmnprstz]",
+              "VL": "[ptks]"
+            }
+          },
+          "phonology": [
+            {
+              "id": "rule:zz-voicing",
+              "find": "t+l",
+              "to": "d+l"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kat",
+              "pos": "NOUN",
+              "form": "kat"
+            },
+            {
+              "id": "lexeme:kala",
+              "pos": "NOUN",
+              "form": "kala"
+            },
+            {
+              "id": "lexeme:pir",
+              "pos": "NOUN",
+              "form": "pir",
+              "allomorphs": [
+                {
+                  "form": "per",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "allomorphs": [
+                {
+                  "form": "lar"
+                },
+                {
+                  "form": "ler",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:loc",
+              "realises": {
+                "Case": "Loc"
+              },
+              "allomorphs": [
+                {
+                  "form": "da"
+                },
+                {
+                  "form": "ta",
+                  "after": {
+                    "endsIn": "{VL}"
+                  },
+                  "free": true
+                },
+                {
+                  "form": "de",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:only-free",
+              "realises": {
+                "Case": "Abl"
+              },
+              "allomorphs": [
+                {
+                  "form": "dan",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:kat",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:loc"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kat+da",
+          "alternatives": [
+            {
+              "form": "kat+ta",
+              "steps": []
+            },
+            {
+              "form": "kat+de",
+              "steps": []
+            }
+          ]
+        }
+      },
+      "note": "A free allomorph's own conditions hold where it would stand (after a voiceless consonant)..."
+    },
+    {
+      "id": "realise/free/condition-fails",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number",
+              "Case"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfgklmnprstz]",
+              "VL": "[ptks]"
+            }
+          },
+          "phonology": [
+            {
+              "id": "rule:zz-voicing",
+              "find": "t+l",
+              "to": "d+l"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kat",
+              "pos": "NOUN",
+              "form": "kat"
+            },
+            {
+              "id": "lexeme:kala",
+              "pos": "NOUN",
+              "form": "kala"
+            },
+            {
+              "id": "lexeme:pir",
+              "pos": "NOUN",
+              "form": "pir",
+              "allomorphs": [
+                {
+                  "form": "per",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "allomorphs": [
+                {
+                  "form": "lar"
+                },
+                {
+                  "form": "ler",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:loc",
+              "realises": {
+                "Case": "Loc"
+              },
+              "allomorphs": [
+                {
+                  "form": "da"
+                },
+                {
+                  "form": "ta",
+                  "after": {
+                    "endsIn": "{VL}"
+                  },
+                  "free": true
+                },
+                {
+                  "form": "de",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:only-free",
+              "realises": {
+                "Case": "Abl"
+              },
+              "allomorphs": [
+                {
+                  "form": "dan",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:kala",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:loc"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kala+da",
+          "alternatives": [
+            {
+              "form": "kala+de",
+              "steps": []
+            }
+          ]
+        }
+      },
+      "note": "... and where they do not, it gives no alternative: after a vowel only the free allomorph with no condition does."
+    },
+    {
+      "id": "realise/free/base-and-suffix",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number",
+              "Case"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfgklmnprstz]",
+              "VL": "[ptks]"
+            }
+          },
+          "phonology": [
+            {
+              "id": "rule:zz-voicing",
+              "find": "t+l",
+              "to": "d+l"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kat",
+              "pos": "NOUN",
+              "form": "kat"
+            },
+            {
+              "id": "lexeme:kala",
+              "pos": "NOUN",
+              "form": "kala"
+            },
+            {
+              "id": "lexeme:pir",
+              "pos": "NOUN",
+              "form": "pir",
+              "allomorphs": [
+                {
+                  "form": "per",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "allomorphs": [
+                {
+                  "form": "lar"
+                },
+                {
+                  "form": "ler",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:loc",
+              "realises": {
+                "Case": "Loc"
+              },
+              "allomorphs": [
+                {
+                  "form": "da"
+                },
+                {
+                  "form": "ta",
+                  "after": {
+                    "endsIn": "{VL}"
+                  },
+                  "free": true
+                },
+                {
+                  "form": "de",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:only-free",
+              "realises": {
+                "Case": "Abl"
+              },
+              "allomorphs": [
+                {
+                  "form": "dan",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:pir",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pl"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "pir+lar",
+          "alternatives": [
+            {
+              "form": "pir+ler",
+              "steps": []
+            },
+            {
+              "form": "per+lar",
+              "steps": []
+            },
+            {
+              "form": "per+ler",
+              "steps": []
+            }
+          ]
+        }
+      },
+      "note": "The base's own free allomorph too (where its form is its own), and every combination of the places' choices, the chosen forms first."
+    },
+    {
+      "id": "realise/free/none-to-choose",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number",
+              "Case"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfgklmnprstz]",
+              "VL": "[ptks]"
+            }
+          },
+          "phonology": [
+            {
+              "id": "rule:zz-voicing",
+              "find": "t+l",
+              "to": "d+l"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kat",
+              "pos": "NOUN",
+              "form": "kat"
+            },
+            {
+              "id": "lexeme:kala",
+              "pos": "NOUN",
+              "form": "kala"
+            },
+            {
+              "id": "lexeme:pir",
+              "pos": "NOUN",
+              "form": "pir",
+              "allomorphs": [
+                {
+                  "form": "per",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "allomorphs": [
+                {
+                  "form": "lar"
+                },
+                {
+                  "form": "ler",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:loc",
+              "realises": {
+                "Case": "Loc"
+              },
+              "allomorphs": [
+                {
+                  "form": "da"
+                },
+                {
+                  "form": "ta",
+                  "after": {
+                    "endsIn": "{VL}"
+                  },
+                  "free": true
+                },
+                {
+                  "form": "de",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:only-free",
+              "realises": {
+                "Case": "Abl"
+              },
+              "allomorphs": [
+                {
+                  "form": "dan",
+                  "free": true
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:kala",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:only-free"
+          }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "error": {
+          "kind": "form",
+          "lexeme": "lexeme:only-free"
+        }
+      },
+      "note": "A lexeme whose only allomorph is free has no form to choose."
+    }
+  ]
+}
