@@ -405,6 +405,10 @@ export type Slug3 = string;
  */
 export type UdFeatures7 = Readonly<Record<string, string>>;
 /**
+ * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
+ */
+export type UdFeatures8 = Readonly<Record<string, string>>;
+/**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcId1 = string & { readonly __brand: "KcId" };
@@ -3403,6 +3407,7 @@ export interface Condition {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly own?: UdFeatures8;
 }
 /**
  * What it stands before.
@@ -3427,6 +3432,7 @@ export interface Condition1 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly own?: UdFeatures8;
 }
 /**
  * What a language declares beside its lexicon (lexicons/<lang>/language.yaml; ADR 0145, 0148): the varieties and registers a scope ranges over, the dimensions of each category, the features and values its tokens and lexemes carry, its defaults and its classes. A category is a UD tag: no category system is declared (the owner, round 6). Every statement here is content: drafted `llm:` and REVIEW until signed off.
@@ -3575,6 +3581,7 @@ export interface Condition2 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly own?: UdFeatures8;
 }
 /**
  * One class: a lexical feature a rule reads and no form gives (Spanish e-ie; the -go verbs).
@@ -3789,6 +3796,7 @@ export interface Condition3 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly own?: UdFeatures8;
 }
 /**
  * A generated lookup table an orthography profile refers to by id (profiles/tables/<id>.json): orthographic variant groups, character readings for the IME-homophone typo model, or a character set for script-mismatch detection.

@@ -9,7 +9,9 @@ Python never realises or spells: every form comes from @nabu/core through core-c
 
 - a category is listed where the language's rules can say something of it: a realisation rule names
   it (`when.pos`), or names no category and every feature its `when` reads is one of the category's
-  dimensions (apc: VERB and AUX by aspect and mood, ADJ and NOUN by name; not PRON or INTJ);
+  dimensions (apc: VERB and AUX by aspect and mood, ADJ and NOUN by name; not PRON or INTJ), or
+  every feature its `when.own` reads is one the category has of itself (sk: NOUN and PROPN by
+  gender and animacy);
 - its cells are those the course's tokens choose on lexemes of that category, cut to its dimensions,
   each value of them taught: a node introduces it, or it is the value of the category's citation or
   bare cell (a singular, a masculine), or the course introduces no value of its feature at all (apc
@@ -72,6 +74,7 @@ def _names(value: Any) -> dict[str, list[str]]:
 def _categories(declared: Mapping[str, Any]) -> list[str]:
     """The categories some realisation rule can say something of."""
     dims = _names(declared.get("dimensions"))
+    lexical = _names(declared.get("lexical"))
     out: list[str] = []
     for rule in _items(declared.get("realisation")):
         when = _table(_table(rule).get("when"))
@@ -79,6 +82,14 @@ def _categories(declared: Mapping[str, Any]) -> list[str]:
         if pos is not None:
             if str(pos) not in out:
                 out.append(str(pos))
+            continue
+        # A rule that reads the lexeme's own values (`own`: a Slovak noun's gender) speaks of each
+        # category that has those features of itself.
+        own = set(_table(when.get("own")))
+        if own:
+            for category, named in lexical.items():
+                if own <= set(named) and category not in out:
+                    out.append(category)
             continue
         names = set(_table(when.get("feats")))
         if not names:

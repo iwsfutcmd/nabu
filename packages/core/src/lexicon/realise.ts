@@ -12,6 +12,8 @@
  */
 import type { Allomorph, Exponent, LanguageDeclaration, Lexeme, LexemeForm, Lexicon, PartId, RadicalForm, RealisationRule, RuleId, Stem, StemChoice, UdFeatures } from "@nabu/schema";
 import { err, ok, type Result } from "../result.ts";
+import { caseFold } from "../text/case.ts";
+import { graphemes } from "../text/graphemes.ts";
 import {
   applyRewrite,
   BOUNDARY,
@@ -48,6 +50,11 @@ export interface Realisation {
   readonly steps: readonly Step[];
   /** The listed part it used (lexeme:tener|stem:tuv), where blocking took a listed form or stem. */
   readonly listed?: PartId;
+  /**
+   * Where blocking took one of several forms of the cell marked free (ADR 0145: both accepted, the
+   * first shown): the lexical forms of the others, in their order.
+   */
+  readonly free?: readonly string[];
 }
 
 export type RealiseError =
@@ -77,7 +84,10 @@ export interface RealiseOptions {
   readonly pinned?: boolean;
   /**
    * Where the base's form is a phrase written over several tokens (ahla w sahla): the word of it,
-   * counted from 0, that this token writes, with the token's other lexemes joined to it.
+   * counted from 0, that this token writes, with the token's other lexemes joined to it. Where no
+   * whole form of the lexeme blocks, the rules realise that word alone, as if it were the
+   * lexeme's form (a Slovak reflexive verb, volať sa: its token writes the verb, and sa is a
+   * token of its own).
    */
   readonly word?: number;
   /** The base lexeme of the word after the token, where a lexeme's allomorph is chosen by it (`before: {pos}`). */
@@ -120,6 +130,8 @@ export interface CompiledLanguage {
   readonly rootClasses: readonly { readonly id: string; readonly test: (radicals: readonly string[]) => boolean }[];
   readonly stems: readonly { readonly source: Stem; readonly fits: (radicals: readonly string[], vowels: Readonly<Record<string, string>>) => boolean; readonly conditions: number }[];
   readonly rules: readonly CompiledRule[];
+  /** Each lexeme's own values (`Condition.own`): what its entry stores, else what a default gives. */
+  readonly own: ReadonlyMap<string, UdFeatures>;
   /** The rewrite rules, in order, each with the condition on the token's base it holds of (`when`). */
   readonly phonology: readonly { readonly rewrite: CompiledRewrite; readonly when: Condition | undefined }[];
   /** Patterns of conditions (`endsIn`), compiled once. */
@@ -146,6 +158,75 @@ const hasValues = (cell: UdFeatures, feats: UdFeatures | undefined): boolean =>
 const sizeOf = (feats: UdFeatures | undefined): number => Object.keys(feats ?? {}).length;
 
 const isRadical = (form: Lexeme["form"]): form is RadicalForm => typeof form === "object" && "radicals" in form;
+
+const MARK_CP = /^\p{M}$/u;
+
+/** A spelling's letters, each with the marks on it, decomposed and case folded; and the marks it begins with. */
+const lettersOf = (text: string, locale: string): { readonly leading: ReadonlySet<string>; readonly letters: readonly { readonly letter: string; readonly marks: ReadonlySet<string> }[] } => {
+  const leading = new Set<string>();
+  const letters: { letter: string; marks: Set<string> }[] = [];
+  for (const cluster of graphemes(caseFold(text, locale).normalize("NFD"))) {
+    // Within one cluster, by code point: only to tell its letter from its marks.
+    for (const c of cluster) {
+      if (MARK_CP.test(c)) (letters.at(-1)?.marks ?? leading).add(c);
+      else letters.push({ letter: c, marks: new Set() });
+    }
+  }
+  return { leading, letters };
+};
+
+/**
+ * Whether a spelling ends so, as a default reads it (the pipeline's nabu.lexicon `ends`): an ending
+ * written with marks needs them where it has them, whatever other marks the letters carry; one
+ * written without is compared on the letters alone.
+ */
+const endsAs = (spelling: string, ending: string, locale: string): boolean => {
+  const word = lettersOf(spelling, locale).letters;
+  const { leading, letters: tail } = lettersOf(ending, locale);
+  if (tail.length > word.length || (leading.size > 0 && tail.length >= word.length)) return false;
+  const start = word.length - tail.length;
+  const fits = tail.every((t, k) => {
+    const w = word[start + k];
+    return w !== undefined && w.letter === t.letter && [...t.marks].every((m) => w.marks.has(m));
+  });
+  const before = word[start - 1];
+  return fits && (leading.size === 0 || (before !== undefined && [...leading].every((m) => before.marks.has(m))));
+};
+
+/** Letters with no marks, case folded: what a default's `starts` compares. */
+const bare = (text: string, locale: string): string =>
+  lettersOf(text, locale)
+    .letters.map((l) => l.letter)
+    .join("");
+
+/**
+ * A lexeme's own values (`Condition.own`; ADR 0148: a default is a rule), as the pipeline reads
+ * them (nabu.lexicon `lexical`): what its entry stores, and for each feature its category has of
+ * itself (`lexical`) that it neither stores nor chooses, what the most specific default gives (the
+ * one whose `ends` is longest, the first on a tie), read off its first spelling.
+ */
+const ownOf = (declared: LanguageDeclaration, lexeme: Lexeme): UdFeatures => {
+  const out: Record<string, string> = { ...(lexeme.feats ?? {}) };
+  const pos = lexeme.pos;
+  if (pos === undefined) return out;
+  const shown = Object.values(lexeme.spelled ?? {}).find((s) => s.length > 0)?.[0] ?? "";
+  const locale = declared.id;
+  for (const feature of declared.lexical?.[pos] ?? []) {
+    if (out[feature] !== undefined || (lexeme.chooses ?? []).includes(feature)) continue;
+    let best: { readonly value: string; readonly length: number } | undefined;
+    for (const d of declared.defaults ?? []) {
+      const value = d.gives[feature];
+      if (value === undefined) continue;
+      if (d.when.pos !== undefined && d.when.pos !== pos) continue;
+      if (d.when.ends !== undefined && !endsAs(shown, d.when.ends, locale)) continue;
+      if (d.when.starts !== undefined && !bare(shown, locale).startsWith(bare(d.when.starts, locale))) continue;
+      const length = Array.from(d.when.ends ?? "").length;
+      if (best === undefined || length > best.length) best = { value, length };
+    }
+    if (best !== undefined) out[feature] = best.value;
+  }
+  return out;
+};
 
 /** Compiles a language for realising; the errors where its rules or its lexicon cannot be read. */
 export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon): Result<CompiledLanguage, readonly string[]> => {
@@ -272,7 +353,9 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
   for (const d of declared.defaults ?? []) conditionPatterns(`default ${d.id}`, d.when);
 
   if (errors.length > 0) return err(errors);
-  return ok({ declared, notation, lexemes, rootClasses, stems, rules, phonology, patterns });
+  const own = new Map<string, UdFeatures>();
+  for (const lexeme of lexicon.lexemes) own.set(lexeme.id, ownOf(declared, lexeme));
+  return ok({ declared, notation, lexemes, rootClasses, stems, rules, own, phonology, patterns });
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -282,6 +365,7 @@ const conditionHolds = (lang: CompiledLanguage, when: Condition | undefined, lex
   if (when === undefined) return true;
   if (when.pos !== undefined && lexeme.pos !== when.pos) return false;
   if (when.feats !== undefined && !hasValues(cell, when.feats)) return false;
+  if (when.own !== undefined && !hasValues(lang.own.get(lexeme.id) ?? lexeme.feats ?? {}, when.own)) return false;
   if (when.class !== undefined && !(blocking && (lexeme.classes ?? []).includes(when.class))) return false;
   const form = typeof lexeme.form === "string" ? lexeme.form.normalize("NFC") : undefined;
   if (when.ends !== undefined && !(form !== undefined && form.endsWith(when.ends.normalize("NFC")))) return false;
@@ -382,14 +466,18 @@ interface Built {
   readonly listed?: PartId;
   /** A whole form from blocking: no rule runs over it. */
   readonly whole: boolean;
-  /** The lexeme realised. */
+  /** The lexeme realised (a phrase's word, `options.word`: the lexeme with that word as its form). */
   readonly lexeme: Lexeme;
+  /** The other free forms as specific as the one blocking took, where it took one of several. */
+  readonly free?: readonly string[];
+  /** The rules realised one word of a phrase (`options.word`), not the whole. */
+  readonly ofWord?: boolean;
 }
 
-/** Everything but the rewrite rules: blocking, the stem, the affix blocks. */
-const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: RealiseOptions): Result<Built, RealiseError> => {
+/** Everything but the rewrite rules: blocking, the stem, the affix blocks (`asWord`: a phrase's word, as its lexeme). */
+const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: RealiseOptions, asWord?: Lexeme): Result<Built, RealiseError> => {
   const blocking = options.blocking ?? true;
-  const lexeme = lang.lexemes.get(lexemeId(id));
+  const lexeme = asWord ?? lang.lexemes.get(lexemeId(id));
   if (lexeme === undefined) return err({ kind: "unknown-lexeme", lexeme: id });
   if (options.strict === true && typeof lexeme.form === "string" && lexeme.form.includes(" ")) return err({ kind: "form", lexeme: lexeme.id });
 
@@ -403,8 +491,18 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
   const winner = winners[0];
   if (winner !== undefined) {
     const listed = winner.status === "listed" ? (winner.form !== undefined ? `${lexeme.id}|form:${featsKey(winner.feats)}` : `${lexeme.id}|stem:${(winner.stem ?? "").normalize("NFC")}`) : undefined;
-    if (winner.form !== undefined) return ok({ units: unitsOf(winner.form), status: winner.status, steps: [], whole: true, lexeme, ...(listed !== undefined && { listed }) });
+    const free = winners.length > 1 ? winners.slice(1).flatMap((f) => (f.form === undefined ? [] : [f.form.normalize("NFC")])) : [];
+    if (winner.form !== undefined) return ok({ units: unitsOf(winner.form), status: winner.status, steps: [], whole: true, lexeme, ...(listed !== undefined && { listed }), ...(free.length > 0 && { free }) });
     if (winner.stem === undefined) return err({ kind: "spelled-only", feats: winner.feats });
+  }
+
+  // A phrase's word (options.word), where no whole form blocked: the rules realise that word as
+  // if it were the lexeme's form.
+  if (asWord === undefined && options.word !== undefined && typeof lexeme.form === "string" && lexeme.form.includes(" ")) {
+    const word = lexeme.form.split(" ")[options.word];
+    if (word === undefined || word === "") return err({ kind: "form", lexeme: lexeme.id });
+    const built = build(lang, id, cell, options, { ...lexeme, form: word });
+    return built.ok ? ok({ ...built.value, ofWord: true }) : built;
   }
 
   // 2. The rule, its exponents (which may choose the stem), the stem. A lexeme whose form is a
@@ -477,6 +575,7 @@ const realisation = (built: Built, units: readonly Unit[], steps: readonly Step[
   status: built.status,
   steps,
   ...(built.listed !== undefined && { listed: built.listed }),
+  ...(built.free !== undefined && { free: built.free }),
 });
 
 /** A lexeme realised in a cell (its token's chosen values): the lexical form, boundaries kept. */
@@ -557,7 +656,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   const built = build(lang, base.lexeme, base.feats ?? {}, options);
   if (!built.ok) return built;
   let baseUnits = built.value.units;
-  if (options.word !== undefined) {
+  if (options.word !== undefined && built.value.ofWord !== true) {
     const words = wordsOf(baseUnits);
     const word = words[options.word];
     if (word === undefined) return err({ kind: "form", lexeme: base.lexeme });

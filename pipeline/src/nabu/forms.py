@@ -294,6 +294,8 @@ class Spelling:
     alternatives: list[str]
     expected: str
     found: str | None
+    #: A free form's spelling (another form of the cell, ADR 0145), not the first form's.
+    free: bool = False
 
 
 @dataclass(frozen=True)
@@ -357,8 +359,9 @@ def check_tokens(
     course, not an account of it), and the form spelled by its orthography's `spell` statement
     (and its layers', against the marked text). A phrase lexeme (a form with a space, written over
     several tokens) is realised once for each of its words, the token's other lexemes joined to
-    it, and the token is the word that spells as it is written. It is `given` where each spelling
-    is the course's or a free alternative of it (compared as core's `spelledAs` does; the marked
+    it, and the token is the word that spells as it is written. Where blocking took one of several
+    free forms of the cell (ADR 0145), each of them may be the one the token writes. It is `given`
+    where each spelling is the course's or a free alternative of it (compared as core's `spelledAs` does; the marked
     layer exactly), `form` where blocking took a pinned or listed form of its lexeme to give it,
     `unaccounted` otherwise, with the reason where the rules give nothing. None for a language
     with no realisation rules: nothing is checked, nothing asked."""
@@ -443,31 +446,40 @@ def check_tokens(
                     wheres.append((f"{site.orth}{LAYER}{layer.id}", layer.id, site.marked))
             # A phrase realised whole: the token is one word of its spelling.
             part = len(results[n]) > 1 and j == 0
+            # Free forms of the cell (ADR 0145: both accepted, the first shown): any may be the
+            # token's.
+            free = [str(f) for f in value.get("free") or []]
             for where, layer, expected in wheres:
-                ask: dict[str, Any] = {
-                    "op": "spell",
-                    "profile": site.orth,
-                    "notation": notation,
-                    "form": form,
-                    "expected": expected,
-                }
-                if layer is not None:
-                    ask["layer"] = layer
-                if part:
-                    ask["part"] = True
-                spell.append((n, j, Spelling(where, "", [], expected, None), ask))
+                for k, text in enumerate([form, *free]):
+                    ask: dict[str, Any] = {
+                        "op": "spell",
+                        "profile": site.orth,
+                        "notation": notation,
+                        "form": text,
+                        "expected": expected,
+                    }
+                    if layer is not None:
+                        ask["layer"] = layer
+                    if part:
+                        ask["part"] = True
+                    spell.append((n, j, Spelling(where, "", [], expected, None, k > 0), ask))
     spelled = _batched(cli, [a for _, _, _, a in spell], results=True)
     found: dict[tuple[int, int], list[Spelling]] = {}
     for (n, j, s, _), result in zip(spell, spelled, strict=True):
-        found.setdefault((n, j), []).append(
-            Spelling(
-                s.where,
-                str(result["spelling"]),
-                [str(a["spelling"]) for a in result["alternatives"]],
-                s.expected,
-                result.get("expected"),
-            )
+        got = Spelling(
+            s.where,
+            str(result["spelling"]),
+            [str(a["spelling"]) for a in result["alternatives"]],
+            s.expected,
+            result.get("expected"),
         )
+        listed = found.setdefault((n, j), [])
+        if s.free and listed and listed[-1].where == s.where:
+            # A free form's spelling stands for its place where the first form's does not.
+            if listed[-1].found is None and got.found is not None:
+                listed[-1] = got
+            continue
+        listed.append(got)
     out: list[TokenCheck] = []
     for n in range(len(sites)):
         if n in early:

@@ -1686,6 +1686,12 @@ class Condition(BaseModel):
         ),
     ] = None
     feats: Annotated[UdFeatures | None, Field(description="It has these feature values.")] = None
+    own: Annotated[
+        UdFeatures | None,
+        Field(
+            description="Of a realisation rule or a rewrite: the lexeme has these values of itself (a comma: one of them), as its entry stores them or else its language's defaults give them for a feature its category has of itself (`lexical`): a Slovak noun's gender and animacy, which choose its declension."
+        ),
+    ] = None
 
 
 class Default(BaseModel):
