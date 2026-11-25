@@ -412,11 +412,14 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
   }
 
   // 2. The rule, its exponents (which may choose the stem), the stem. A lexeme whose form is a
-  // string, in its citation cell (its own, else its category's), is that form: no rule runs.
+  // string, in its citation cell (its own, else its category's), is that form: no rule runs;
+  // unless its language declares the category's forms stems (`stemmed`: bar's red, kemm), whose
+  // citation cell the rules realise as any other.
   const form = lexeme.form;
   const citation = lexeme.citation ?? (lexeme.pos === undefined ? undefined : lang.declared.citation?.[lexeme.pos]);
   const isCitation = Object.entries(cell).every(([k, v]) => citation?.[k] === v);
-  if (winner?.stem === undefined && typeof form === "string" && isCitation && lexeme.pos !== undefined) return ok({ units: unitsOf(form), status: "given", steps: [], whole: false, lexeme });
+  const stemmed = lexeme.pos !== undefined && (lang.declared.stemmed ?? []).includes(lexeme.pos);
+  if (winner?.stem === undefined && typeof form === "string" && isCitation && lexeme.pos !== undefined && !stemmed) return ok({ units: unitsOf(form), status: "given", steps: [], whole: false, lexeme });
   const rule = lang.rules.find((r) => conditionHolds(lang, r.source.when, lexeme, cell, blocking));
   if (rule === undefined) {
     // No rule: a stem in its citation cell; an affix's own form, always.
