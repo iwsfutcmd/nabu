@@ -108,11 +108,14 @@ def check(
     vocalization: Mapping[str, tuple[Mapping[str, str], Any]]
     | Mapping[str, tuple[Mapping[str, str], Any, Mapping[str, str]]],
     cli: CoreCli,
+    pointed: Iterable[str] = (),
 ) -> Report:
     """Every lexeme of the lexicon with its form spelled in each of the course's orthographies whose
     profile states `spell` (and in each layer that states one, against `vocalization`: per
     orthography its words, the marks pattern they are compared without and, optionally, its
-    entries by lexeme for a first spelling)."""
+    entries by lexeme for a first spelling). An orthography in `pointed` writes its marks in its
+    own text (hbo's points): a layer's spelling of a lemma is checked against its first spelling."""
+    marked_in_text = set(pointed)
     notation = lang.declared.notation
     spelling: list[tuple[str, str | None]] = []  # (orthography, layer)
     for orth in orthographies:
@@ -187,7 +190,12 @@ def check(
                 first = (spelled.get(orth) or [None])[0]
                 expected: str | None = first
                 where = orth
-                if layer is not None:
+                if layer is not None and orth in marked_in_text:
+                    where = f"{orth}{LAYER}{layer}"
+                    # The lemma as written is its marked text; an allomorph is a piece of a word,
+                    # checked where tokens write it.
+                    expected = first if allomorph is None else None
+                elif layer is not None:
                     where = f"{orth}{LAYER}{layer}"
                     found = vocalization.get(orth)
                     # An allomorph is a piece of a word: the vocalization marks words, never it (its
@@ -277,6 +285,9 @@ class Site:
     following: str | None = None
     #: What the token writes of its base lexeme (its part's surface, or the whole token's).
     base_surface: str | None = None
+    #: The contexts it stands in, which are no feature values: its `context` (hbo pause, nesiga),
+    #: and `bound` where a scheme's reading binds it to the next word (a maqaf).
+    context: tuple[str, ...] = ()
 
     @property
     def key(self) -> str:
@@ -360,8 +371,10 @@ def check_tokens(
     it, and the token is the word that spells as it is written. It is `given` where each spelling
     is the course's or a free alternative of it (compared as core's `spelledAs` does; the marked
     layer exactly), `form` where blocking took a pinned or listed form of its lexeme to give it,
-    `unaccounted` otherwise, with the reason where the rules give nothing. None for a language
-    with no realisation rules: nothing is checked, nothing asked."""
+    `unaccounted` otherwise, with the reason where the rules give nothing. Its contexts go to the
+    realiser (a rewrite may hold only of a token in one). Where blocking took one of several free
+    variants of the base's cell (ADR 0145: both accepted), each is tried. None for a language with
+    no realisation rules: nothing is checked, nothing asked."""
     declared = lang.declared
     if not declared.realisation:
         return None
@@ -391,6 +404,8 @@ def check_tokens(
         }
         if site.following is not None:
             request["next"] = site.following
+        if site.context:
+            request["context"] = list(site.context)
         words = (
             len(entry.form.split(" ")) if entry is not None and isinstance(entry.form, str) else 1
         )
@@ -400,9 +415,19 @@ def check_tokens(
             candidates.append([request, *({**request, "word": k} for k in range(words))])
         else:
             candidates.append([request])
+    phrase = [len(c) > 1 for c in candidates]
     flat = [r for c in candidates for r in c]
     realised = iter(_batched(cli, flat))
     results: list[list[Any]] = [[next(realised) for _ in c] for c in candidates]
+    # The other free variants of a base's cell, where blocking took the first of several.
+    more: list[tuple[int, dict[str, Any]]] = []
+    for n, c in enumerate(candidates):
+        for request, result in zip(c, results[n], strict=True):
+            variants = int(result["value"].get("variants", 1)) if result["ok"] else 1
+            more.extend((n, {**request, "variant": k}) for k in range(1, variants))
+    for (n, request), result in zip(more, _batched(cli, [r for _, r in more]), strict=True):
+        candidates[n].append(request)
+        results[n].append(result)
     spell: list[tuple[int, int, Spelling, dict[str, Any]]] = []
     tried: dict[tuple[int, int], TokenCheck] = {}
     for n, site in enumerate(sites):
@@ -442,7 +467,7 @@ def check_tokens(
                 if layer.spell is not None and site.marked is not None:
                     wheres.append((f"{site.orth}{LAYER}{layer.id}", layer.id, site.marked))
             # A phrase realised whole: the token is one word of its spelling.
-            part = len(results[n]) > 1 and j == 0
+            part = phrase[n] and j == 0
             for where, layer, expected in wheres:
                 ask: dict[str, Any] = {
                     "op": "spell",

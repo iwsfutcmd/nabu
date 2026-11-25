@@ -953,7 +953,10 @@ def _forms(ctx: Ctx, compiled: Compiled) -> None:
     docs/rules-design.md stage 1): spelled by @nabu/core in each orthography and layer that states
     `spell`; the report is kept for `nabu forms`."""
     vocalized = {o: (v.words, v.marks, v.lexemes) for o, v in ctx.vocalization.items()}
-    report = lexical_forms.check(ctx.lang, compiled.orthographies, ctx.profiles, vocalized, ctx.cli)
+    pointed = [o for o in compiled.orthographies if _pointed(ctx, o)]
+    report = lexical_forms.check(
+        ctx.lang, compiled.orthographies, ctx.profiles, vocalized, ctx.cli, pointed
+    )
 
     def allomorph_form(lexeme: str, index: int) -> str | None:
         entry = ctx.lang.get(lexeme)
@@ -979,14 +982,27 @@ def _forms(ctx: Ctx, compiled: Compiled) -> None:
             )
 
 
+def _pointed(ctx: Ctx, orth: str) -> bool:
+    """Whether the course writes an orthography's marks in its own text (hbo's points): it has no
+    vocalization file, and its profile has a vocalization layer that states `spell`. Its text is
+    then its own marked text, which that layer's spelling is checked against."""
+    profile = ctx.profiles.get(orth)
+    return (
+        orth not in ctx.vocalization
+        and profile is not None
+        and any(a.kind == "vocalization" and a.spell is not None for a in profile.annotations or [])
+    )
+
+
 def _marked_of(ctx: Ctx, orth: str, surface: str, own: str | None) -> str | None:
     """The marked text the course gives a word (ADR 0053), as `mark_vowels` finds it: the token's
     own `vocalized`, else the vocalization's entry for its surface or for its letters, else the
-    surface itself where it is written with marks. None where the orthography has no vocalization
-    or the word has no marked text."""
+    surface itself where it is written with marks. Where the course writes the marks in its text
+    (`_pointed`), the surface itself. None where the orthography has no vocalization or the word
+    has no marked text."""
     lex = ctx.vocalization.get(orth)
     if lex is None:
-        return None
+        return unicodedata.normalize("NFC", surface) if _pointed(ctx, orth) else None
     if own is not None:
         return unicodedata.normalize("NFC", own)
     letters = lex.marks.sub("", surface)
@@ -1032,6 +1048,12 @@ def _token_sites(ctx: Ctx, units: list[Unit]) -> list[lexical_forms.Site]:
             # The next token that writes a lexeme: its base, which an allomorph may be chosen by.
             following = next((_base_of(w) for _, w in tokens[i + 1 :] if w), None)
             marked = _marked_of(ctx, orth, t.surface, t.vocalized)
+            # Its contexts: its own (pause, nesiga), and bound where a pinned reading binds it to
+            # the next word (the scheme's `bound` mark: a maqaf).
+            context = tuple(
+                ([t.context] if t.context else [])
+                + (["bound"] if _bound_by_reading(t.readings) else [])
+            )
             parts = tk.written(t)
             base = parts[0] if len(parts) == 1 else next((p for p in parts if p.get("base")), None)
             base_surface = (
@@ -1050,6 +1072,7 @@ def _token_sites(ctx: Ctx, units: list[Unit]) -> list[lexical_forms.Site]:
                     written,
                     following,
                     base_surface,
+                    context,
                 )
             )
 
@@ -1103,6 +1126,18 @@ def _pinned_forms(ctx: Ctx, sites: list[lexical_forms.Site]) -> None:
             f"yet ({', '.join(sorted(debt))})",
             ctx.lang.declared_doc.loc(),
         )
+
+
+def _bound_by_reading(readings: Mapping[str, str] | None) -> bool:
+    """Whether a token's pinned reading binds it to the next word: it ends with its scheme's
+    `bound` mark (tiberian's hyphen, where a maqaf follows: ADR 0135; reading.bound checks the
+    two agree)."""
+    found = schemes()
+    for scheme, reading in (readings or {}).items():
+        s = found.get(str(scheme))
+        if s is not None and s.bound is not None and str(reading).endswith(s.bound.mark):
+            return True
+    return False
 
 
 def _is_phrase(ctx: Ctx, lexeme: str) -> bool:
