@@ -74,8 +74,64 @@ sound: { from: reading, scheme: tiberian }
 # its vocalize and vocalize-build cards, not correspondences. No stress: the reading carries it (its acute), and no
 # written mark does that a rule places otherwise.
 correspondences: []
+# REVIEW (docs/rules/hbo.md): how the orthography writes a lexical form (lexicons/hbo/language.yaml, `notation`), read by
+# @nabu/core `spell` in the compiler only (never shipped): its letters, the points left out, as grading keys a typed
+# answer; the pointed text is its vocalized layer's (below).
+spell:
+  from: lexical
+  rules:
+    # A long vowel written with or without its vowel letter, free, and the 2ms -tā as -tâ (as the vocalized layer, below).
+    - {find: "ו\u05B9", after: "[א-ת][\u05BC\u05C1\u05C2]*", to: "ו\u05B9", alternatives: [{id: defective, to: "\u05B9"}]}
+    - {find: "\u05B9", after: "[א-הז-ת][\u05BC\u05C1\u05C2]*", to: "\u05B9", alternatives: [{id: plene, to: "ו\u05B9"}]}
+    - {find: "ו\u05BC", after: "[א-ת][\u05BC\u05C1\u05C2]*", to: "ו\u05BC", alternatives: [{id: defective, to: "\u05BB"}]}
+    - {find: "\u05BB", after: "[א-ת][\u05BC\u05C1\u05C2]*", to: "\u05BB", alternatives: [{id: plene, to: "ו\u05BC"}]}
+    - {find: "\u05B4י", before: "[א-ת]|$", to: "\u05B4י", alternatives: [{id: defective, to: "\u05B4"}]}
+    - {find: "\u05B4", after: "[א-ת][\u05BC\u05C1\u05C2]*", before: "[א-טך-ת]", to: "\u05B4", alternatives: [{id: plene, to: "\u05B4י"}]}
+    - {find: "ת\u05BC\u05B8", before: "$", to: "ת\u05BC\u05B8", alternatives: [{id: plene-ta, to: "ת\u05BC\u05B8ה"}]}
+    - {find: "[\u05B0-\u05BC\u05C1\u05C2\u0640]", to: ""}
+    # A final letter where a letter follows (a suffix joined), a medial one at a word's end.
+    - {find: "[ךםןףץ]", before: "[\u05B0-\u05C2]*[א-ת]", map: {ך: כ, ם: מ, ן: נ, ף: פ, ץ: צ}}
+    - {find: "[כמנפצ]", after: "[א-ת][\u05B0-\u05C2]*", before: "[\u05B0-\u05C2]*$", map: {כ: ך, מ: ם, נ: ן, פ: ף, צ: ץ}}
 annotations:
-  - { id: vocalized, kind: vocalization, toggle: true, default: "on" }   # quoted: YAML 1.1 reads bare on as true
+  # REVIEW (docs/rules/hbo.md): the pointed text, as the course writes it (the Westminster Leningrad Codex: no
+  # accents, no meteg). The notation leaves to it a word's final letter forms, the shewa under a final kaf and under the
+  # last letter of a final cluster, the furtive patah (JM § 21c), and the dagesh lene of a begadkefat that begins a
+  # word (JM § 19): left out after a word that ends in a vowel and is joined to it, which the text says and the word
+  # does not (`spirant`, free). Two more variations of the text, not of the word: a first letter doubled after such a
+  # word (dagesh forte conjunctive, JM § 18i: מַה־זֶּה, `dagesh-conjunctive`), and וָ before a stressed syllable, in
+  # pairs and at pause (JM § 104c-d: יוֹם וָלַיְלָה, `waw-before-stress`).
+  - id: vocalized
+    kind: vocalization
+    toggle: true
+    default: "on"   # quoted: YAML 1.1 reads bare on as true
+    spell:
+      from: lexical
+      sets: {NB: "[זטילמנסצקש]", GF: "[חע]", CL: "[ב-ת]"}
+      rules:
+        # A final letter where a letter follows (a suffix joined), a medial one at a word's end.
+        - {find: "[ךםןףץ]", before: "[\u05B0-\u05C2]*[א-ת]", map: {ך: כ, ם: מ, ן: נ, ף: פ, ץ: צ}}
+        - {find: "[כמנפצ]", after: "[א-ת][\u05B0-\u05C2]*", before: "[\u05B0-\u05C2]*$", map: {כ: ך, מ: ם, נ: ן, פ: ף, צ: ץ}}
+        # The carrier is never written.
+        - {find: "\u0640", to: ""}
+        # A long vowel written with or without its vowel letter, free (JM § 7; the tiberian scheme's full and defective
+        # spellings): holem with or without vav, shureq or qibbuts, hiriq with or without yod; and the 2ms -tā as -tâ (JM § 42f).
+        - {find: "ו\u05B9", after: "[א-ת][\u05BC\u05C1\u05C2]*", to: "ו\u05B9", alternatives: [{id: defective, to: "\u05B9"}]}
+        - {find: "\u05B9", after: "[א-הז-ת][\u05BC\u05C1\u05C2]*", to: "\u05B9", alternatives: [{id: plene, to: "ו\u05B9"}]}
+        - {find: "ו\u05BC", after: "[א-ת][\u05BC\u05C1\u05C2]*", to: "ו\u05BC", alternatives: [{id: defective, to: "\u05BB"}]}
+        - {find: "\u05BB", after: "[א-ת][\u05BC\u05C1\u05C2]*", to: "\u05BB", alternatives: [{id: plene, to: "ו\u05BC"}]}
+        - {find: "\u05B4י", before: "[א-ת]|$", to: "\u05B4י", alternatives: [{id: defective, to: "\u05B4"}]}
+        - {find: "\u05B4", after: "[א-ת][\u05BC\u05C1\u05C2]*", before: "[א-טך-ת]", to: "\u05B4", alternatives: [{id: plene, to: "\u05B4י"}]}
+        - {find: "ת\u05BC\u05B8", before: "$", to: "ת\u05BC\u05B8", alternatives: [{id: plene-ta, to: "ת\u05BC\u05B8ה"}]}
+        # A final kaf with no vowel takes the shewa (חֹשֶׁךְ); so does the last letter of a final cluster (אַתְּ, שָׁמַרְתְּ).
+        - {find: "ך", before: "\u05BC?$", to: "ך\u05B0"}
+        - {find: "{CL}", after: "\u05B0", before: "\u05BC?$", to: "{CL}\u05B0"}
+        # The furtive patah: a final ח or ע after a long vowel (רוּחַ, שֹׁמֵעַ, הוֹשִׁיעַ).
+        - {find: "{GF}", after: "[\u05B4\u05B5\u05B9\u05BB]|ו\u05BC|[\u05B4\u05B5]י", before: "$", to: "{GF}\u05B7"}
+        # A word's first begadkefat: its dagesh lene, or none after a word ending in a vowel.
+        - {find: "{BGD}", at: start, before: "[\u05B0-\u05BB]|ו", to: "{BGD}\u05BC", alternatives: [{id: spirant, to: "{BGD}"}]}
+        - {find: "{NB}", at: start, before: "[\u05B0-\u05BB\u05C1\u05C2]|ו", to: "{NB}", alternatives: [{id: dagesh-conjunctive, to: "{NB}\u05BC"}]}
+        - {find: "ו\u05B0", at: start, to: "ו\u05B0", alternatives: [{id: waw-before-stress, to: "ו\u05B8"}]}
+        - {find: "ו\u05BC", at: start, before: "[א-ת]", to: "ו\u05BC", alternatives: [{id: waw-before-stress, to: "ו\u05B8"}]}
 input:
   keyboard: cldr-kbd:he
   # Its vowel marks put on a word's letters from buttons, once a choice card has shown them (ADR 0137).

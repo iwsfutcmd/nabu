@@ -6,448 +6,549 @@ lexemes:
 - id: lexeme:ad
   pos: ADP
   gloss: {en: until; as far as}
+  form: עַד
   spelled: {hbo-Hebr/tiberian: [עַד]}
   readings: {tiberian: ʿaḏ}
 - id: lexeme:adam
   pos: NOUN
   gloss: {en: 'man, a human being; humankind (הָאָדָם: the man, Adam)'}
+  form: אָדָם
   spelled: {hbo-Hebr/tiberian: [אָדָם]}
 - id: lexeme:adamah
   pos: NOUN
   gloss: {en: 'ground, soil; land'}
+  form: אֲדָמָה
   spelled: {hbo-Hebr/tiberian: [אֲדָמָה]}
   forms:
   - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [אַדְמַת]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Sing}, form: אַדְמַת, status: pinned}
 - id: lexeme:adon
   pos: NOUN
   gloss: {en: 'lord, master; (אֲדֹנִי) sir'}
+  form: אָדוֹן
   spelled: {hbo-Hebr/tiberian: [אָדוֹן]}
+  forms:
+  - {feats: {Number: Sing}, form: אֲדֹנִ, before: {startsIn: "י"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [אֲדֹנִ]}}
 - id: lexeme:ah
   pos: NOUN
   gloss: {en: brother}
   notes: {en: 'With suffixes it is אָחִי- ʾāḥî-: אָחִי ''my brother'', אָחִיךָ ''your brother'', אָחִיו ''his brother''. Plural אַחִים ʾaḥîm.'}
+  form: אָח
   spelled: {hbo-Hebr/tiberian: [אָח]}
   forms:
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [אַחֶי]}, status: pinned}
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [אַחַ]}, status: pinned}
-  - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [אַחִים]}, status: pinned}
+  - {feats: {Number: Plur}, form: אַחִים, status: pinned}
+  - {feats: {Number: Plur}, form: אַחַ, before: {startsIn: "י"}, status: pinned}
+  - {feats: {Number: Plur}, form: אַחֶי, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Number: Sing}, form: אָחִי, before: {startsIn: "ך"}, status: pinned}
+  - {feats: {Number: Sing}, form: אָחִי, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Number: Sing}, form: אָחִי, before: {startsIn: "ـ"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [אָחִי]}}
 - id: lexeme:ahar
   pos: ADP
   gloss: {en: after; behind}
+  form: אַחַר
   spelled: {hbo-Hebr/tiberian: [אַחַר]}
+  forms:
+  - {form: אַחַר, status: pinned, free: true}
+  - {form: אַחֲרֵי, status: pinned, free: true}
+  - {form: אַחֲרָיִ, before: {startsIn: "ך"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [אַחֲרָיִ, אַחֲרֵי]}}
 - id: lexeme:ahav
   pos: VERB
   gloss: {en: to love}
+  form: {radicals: [א, ה, ב], form: qal, vowels: {perf: a, impf: a}, source: deduced, basis: 'the imperfect יֶאֱהַב (JM § 44c, 68)'}
   spelled: {hbo-Hebr/tiberian: [אָהַב]}
-  forms:
-  - {feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אָהַבְתָּ]}, status: pinned}
-  - {feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אָהַבְתִּי]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וְאָהַבְתָּ]}, status: pinned}
 - id: lexeme:aher
   pos: ADJ
   gloss: {en: 'other, another'}
+  form: אַחֵר
   spelled: {hbo-Hebr/tiberian: [אַחֵר]}
   forms:
   - {feats: {Gender: Fem, Number: Sing}, spelled: {hbo-Hebr/tiberian: [אַחֶרֶת]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Plur}, spelled: {hbo-Hebr/tiberian: [אֲחֵרִים]}, status: pinned}
+  - {feats: {Gender: Fem, Number: Sing}, form: אַחֶרֶת, status: pinned}
+  - {feats: {Gender: Masc, Number: Plur}, form: אֲחֵרִים, status: pinned}
 - id: lexeme:ahot
   pos: NOUN
   gloss: {en: sister}
+  form: אָחוֹת
   spelled: {hbo-Hebr/tiberian: [אָחוֹת]}
+  forms:
+  - {feats: {Number: Sing}, form: אֲחֹתִ, before: {startsIn: "י"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [אֲחֹתִ]}}
 - id: lexeme:akhal
   pos: VERB
   gloss: {en: to eat}
   image: {file: ../../courses/images/bread.svg, license: CC0-1.0, provenance: {author: 'llm:claude@5e86bf893364', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: {radicals: [א, כ, ל], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [אָכַל]}
   forms:
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אֹכַל]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אָכַלְתָּ, אָכָלְתָּ]}, status: pinned}
-  - {feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אָכַלְתִּי]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part, Voice: Pass}, spelled: {hbo-Hebr/tiberian: [אֻכָּל]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וָאֹכֵל]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [אֲכָל, אֱכֹל]}, status: pinned}
+  - {feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, form: אָכַלְתָּ, status: pinned, free: true}
+  - {feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, form: אָכָלְתָּ, status: pinned, free: true}
+  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part, Voice: Pass}, form: אֻכָּל, status: pinned}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, form: וָאֹכֵל, status: pinned}
+  - {feats: {VerbForm: Inf}, form: אֱכֹל, status: pinned, free: true}
+  - {feats: {VerbForm: Inf}, form: אֲכָל, status: pinned, free: true}
 - id: lexeme:al
   pos: ADP
   gloss: {en: 'on, upon; over; about, concerning'}
+  form: עַל
   spelled: {hbo-Hebr/tiberian: [עַל]}
+  forms:
+  - {form: עָלֶי, before: {startsIn: "ה\u05BC"}, status: pinned}
+  - {form: עָלָי, before: {startsIn: "ـ"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [עָלָי, עָלֶי]}}
 - id: lexeme:al.neg
   pos: PART
   feats: {Polarity: Neg}
   gloss: {en: 'do not (with the jussive: אַל־תִּירָא ''do not fear'')'}
+  form: אַל
   spelled: {hbo-Hebr/tiberian: [אַל]}
 - id: lexeme:alah
   pos: VERB
   gloss: {en: 'to go up, come up'}
+  form: {radicals: [ע, ל, ה], form: qal, source: course}
   spelled: {hbo-Hebr/tiberian: [עָלָה]}
-  forms:
-  - {feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [עָלְתָה]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיַּעַל]}, status: pinned}
 - id: lexeme:am
   pos: NOUN
   gloss: {en: 'people, nation'}
+  form: עַם
+  classes: [qamets-after-article]
   spelled: {hbo-Hebr/tiberian: [עַם]}
+  forms:
+  - {feats: {Number: Sing}, form: עַם, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: עַמִּי, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: עַמִּ, before: {startsIn: "י"}, status: pinned}
+  - {feats: {Number: Sing}, form: עַמֵּ, before: {startsIn: "ך"}, status: pinned}
+  - {feats: {Number: Sing}, form: עַמְּ, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Number: Sing}, form: עַמָּ, before: {startsIn: "ה\u05BC"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [עַמֵּ, עַמָּ, עַמְּ, עַמִּ]}}
   - {spelled: {hbo-Hebr/tiberian: [עַמִּי]}}
 - id: lexeme:amad
   pos: VERB
   gloss: {en: to stand}
+  form: {radicals: [ע, מ, ד], form: qal, vowels: {perf: a, impf: o}, source: deduced, basis: 'the imperfect יַעֲמֹד (JM § 44c)'}
   spelled: {hbo-Hebr/tiberian: [עָמַד]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [עֹמֶדֶת]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [עוֹמֵד]}, status: pinned}
 - id: lexeme:amar
   pos: VERB
   gloss: {en: to say}
+  form: {radicals: [א, מ, ר], form: qal, vowels: {perf: a, impf: a}, source: course}
+  classes: [alef-quiescent-verb]
   spelled: {hbo-Hebr/tiberian: [אָמַר]}
-  forms:
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אֹמַר]}, status: pinned}
-  - {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַתֹּאמֶר]}, status: pinned}
-  - {feats: {Gender: Fem, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [אֹמֶרֶת]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיֹּאמְרוּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וְאָמַרְתָּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיֹּאמֶר]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [אמֹר]}, status: pinned}
 - id: lexeme:amittai
   pos: PROPN
   gloss: {en: Amittai}
+  form: אֲמִתַּי
   spelled: {hbo-Hebr/tiberian: [אֲמִתַּי]}
 - id: lexeme:anah
   pos: VERB
   gloss: {en: to answer; to testify}
+  form: {radicals: [ע, נ, ה], form: qal, source: course}
   spelled: {hbo-Hebr/tiberian: [עָנָה]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תַעֲנֶה]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיַּעַן]}, status: pinned}
 - id: lexeme:ani
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: I}
+  form: אֲנִי
   spelled: {hbo-Hebr/tiberian: [אֲנִי]}
 - id: lexeme:anokhi
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: I}
+  form: אָנֹכִי
   spelled: {hbo-Hebr/tiberian: [אָנֹכִי]}
 - id: lexeme:aqar
   pos: VERB
   gloss: {en: 'to uproot, pluck up'}
+  form: {radicals: [ע, ק, ר], form: qal, vowels: {perf: a, impf: o}, source: course}
   spelled: {hbo-Hebr/tiberian: [עָקַר]}
-  forms:
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [עֲקוֹר]}, status: pinned}
 - id: lexeme:arah
   pos: VERB
   gloss: {en: 'to empty, pour out (piel)'}
+  form: {radicals: [ע, ר, ה], form: piel, source: course}
   spelled: {hbo-Hebr/tiberian: [עֵרָה]}
-  forms:
-  - {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַתְּעַר]}, status: pinned}
 - id: lexeme:asah
   pos: VERB
   gloss: {en: to do; to make}
+  form: {radicals: [ע, שׂ, ה], form: qal, source: course}
   spelled: {hbo-Hebr/tiberian: [עָשָׂה]}
   forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יַעֲשֶׂה]}, status: pinned}
   - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אֶעֶשְׂ]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [עָשִׂית]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [עָשִׂיתָ]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, form: אֶעֶשְׂ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:asher
   pos: SCONJ
   gloss: {en: 'who, which, that (relative)'}
+  form: אֲשֶׁר
   spelled: {hbo-Hebr/tiberian: [אֲשֶׁר]}
 - id: lexeme:at
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: you (to a woman)}
   notes: {en: 'אַתְּ ʾatt, at a pause אָתְּ ʾātt: ''you'' said to a woman. To a man: אַתָּה ʾattâ.'}
+  form: אַתְּ
+  citation: {Gender: Fem, Number: Sing}
   spelled: {hbo-Hebr/tiberian: [אַתְּ]}
   forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {hbo-Hebr/tiberian: [אַתְּ, אָתְּ]}, status: pinned}
+  - {feats: {Gender: Fem, Number: Sing}, form: אַתְּ, status: pinned, free: true}
+  - {feats: {Gender: Fem, Number: Sing}, form: אָתְּ, status: pinned, free: true}
 - id: lexeme:atta
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: you (to a man)}
+  form: אַתָּה
   spelled: {hbo-Hebr/tiberian: [אַתָּה]}
+  forms:
+  - {form: אַתָּה, status: pinned, free: true}
+  - {form: אָתָּה, status: pinned, free: true}
 - id: lexeme:av
   pos: NOUN
   gloss: {en: father}
   notes: {en: 'With suffixes אָבִי- ʾāḇî-: אָבִי ''my father'', אָבִיךָ ''your father''.'}
+  form: אָב
   spelled: {hbo-Hebr/tiberian: [אָב]}
+  forms:
+  - {feats: {Number: Sing}, form: אָב, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: אָבִי, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: אָבִי, before: {startsIn: "נ"}, status: pinned}
+  - {feats: {Number: Sing}, form: אָבִי, before: {startsIn: "ך"}, status: pinned}
+  - {feats: {Number: Sing}, form: אָבִי, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Number: Sing}, form: אָבִי, before: {startsIn: "ـ"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [אָבִי]}}
 - id: lexeme:avraham
   pos: PROPN
   gloss: {en: Abraham}
+  form: אַבְרָהָם
   spelled: {hbo-Hebr/tiberian: [אַבְרָהָם]}
 - id: lexeme:avram
   pos: PROPN
   gloss: {en: Abram (later Abraham)}
+  form: אַבְרָם
   spelled: {hbo-Hebr/tiberian: [אַבְרָם]}
 - id: lexeme:ay
   pos: ADV
   feats: {PronType: Int}
   gloss: {en: 'where? (אֵי; with a suffix אַיֶּכָּה ''where are you?'')'}
+  form: אֵי
+  classes: [suffix-plene]
   spelled: {hbo-Hebr/tiberian: [אֵי]}
+  forms:
+  - {form: אַיֶּ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:ayin.eye
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: eye; spring (of water)}
   image: {file: ../../courses/images/eye.svg, license: CC0-1.0, provenance: {author: 'llm:claude@778ae7bbd2f2', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: עַיִן
   spelled: {hbo-Hebr/tiberian: [עַיִן]}
   forms:
   - {feats: {Number: Dual}, spelled: {hbo-Hebr/tiberian: [עֵינַ]}, status: pinned}
   - {feats: {Number: Dual}, spelled: {hbo-Hebr/tiberian: [עֵינָי]}, status: pinned}
+  - {feats: {Number: Dual}, form: עֵינַ, before: {startsIn: "י"}, status: pinned}
+  - {feats: {Number: Dual}, form: עֵינָי, before: {startsIn: "ـ"}, status: pinned}
 - id: lexeme:ayin.whence
   pos: ADV
   feats: {PronType: Int}
   gloss: {en: 'where? (מֵאַיִן: from where?)'}
+  form: אַיִן
   spelled: {hbo-Hebr/tiberian: [אַיִן]}
 - id: lexeme:ayyeh
   pos: ADV
   feats: {PronType: Int}
   gloss: {en: 'where?'}
+  form: אַיֵּה
   spelled: {hbo-Hebr/tiberian: [אַיֵּה]}
 - id: lexeme:azav
   pos: VERB
   gloss: {en: 'to leave, abandon, forsake'}
+  form: {radicals: [ע, ז, ב], form: qal, vowels: {perf: a, impf: o}, source: course}
   spelled: {hbo-Hebr/tiberian: [עָזַב]}
   forms:
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תַּעַזְבֵ]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [עָזְבֵ, עֲזֹב]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: תַעַזְבֵ, before: {startsIn: "י"}, status: pinned}
+  - {feats: {VerbForm: Inf}, form: עָזְבֵ, before: {startsIn: "ך"}, status: pinned}
 - id: lexeme:baar
   pos: VERB
   gloss: {en: to burn}
+  form: {radicals: [ב, ע, ר], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [בָּעַר]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יִבְעַר]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [בֹּעֵר]}, status: pinned}
 - id: lexeme:badal
   pos: VERB
   gloss: {en: 'to separate, divide (hiphil)'}
+  form: {radicals: [ב, ד, ל], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הִבְדִּיל]}
-  forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיַּבְדֵּל]}, status: pinned}
 - id: lexeme:bakhah
   pos: VERB
   gloss: {en: 'to weep, cry'}
+  form: {radicals: [ב, כ, ה], form: qal, source: course}
   spelled: {hbo-Hebr/tiberian: [בָּכָה]}
   forms:
-  - {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַתֵּבְךְּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיֵּבְךְּ]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [בְכּוֹת]}, status: pinned}
+  - {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, form: וַתֵּבְךּ, status: pinned}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, form: וַיֵּבְךּ, status: pinned}
 - id: lexeme:banah
   pos: VERB
   gloss: {en: to build}
+  form: {radicals: [ב, נ, ה], form: qal, source: course}
   spelled: {hbo-Hebr/tiberian: [בָּנָה]}
-  forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּבֶן]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [בְנוֹת]}, status: pinned}
 - id: lexeme:bara
   pos: VERB
   gloss: {en: to create (only God creates)}
+  form: {radicals: [ב, ר, א], form: qal, vowels: {perf: aa, impf: a}, source: deduced, basis: 'the imperfect יִבְרָא (JM § 78)'}
   spelled: {hbo-Hebr/tiberian: [בָּרָא]}
 - id: lexeme:barach
   pos: VERB
   gloss: {en: 'to flee, run away'}
+  form: {radicals: [ב, ר, ח], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [בָּרַח]}
-  forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּבְרַח]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [בְרֹחַ]}, status: pinned}
 - id: lexeme:barakh
   pos: VERB
   gloss: {en: to bless (piel)}
+  form: {radicals: [ב, ר, כ], form: piel, vowels: {perf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [בֵּרַךְ]}
   forms:
   - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יְבָרֶכְ]}, status: pinned}
   - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אֲבָרֶכְ]}, status: pinned}
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יְבָרֶכְ]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, form: יְבָרֶכְ, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, form: אֲבָרֶכְ, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: יְבָרֶכְ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:barukh
   pos: VERB
   gloss: {en: blessed (a qal passive participle; the verb is piel בֵּרַךְ)}
+  form: {radicals: [ב, ר, כ], form: qal, source: course}
+  citation: {Gender: Masc, Number: Sing, VerbForm: Part, Voice: Pass}
   spelled: {hbo-Hebr/tiberian: [בָּרוּךְ]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing, VerbForm: Part, Voice: Pass}, spelled: {hbo-Hebr/tiberian: [בְּרוּכָה]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part, Voice: Pass}, spelled: {hbo-Hebr/tiberian: [בָּרוּךְ]}, status: pinned}
 - id: lexeme:bat
   pos: NOUN
   gloss: {en: daughter}
+  form: בַת
   spelled: {hbo-Hebr/tiberian: [בַּת]}
+  forms:
+  - {feats: {Number: Sing}, form: בִתִּ, before: {startsIn: "י"}, status: pinned}
 - id: lexeme:bayit
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: 'house; household, family'}
   notes: {en: 'Before another noun: בֵּית bêṯ, ''the house of''. בֵּית אָבִיךָ ''your father''s house'' is your family.'}
   image: {file: ../../courses/images/house.svg, license: CC0-1.0, provenance: {author: 'llm:claude@0d95656f8477', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: בַיִת
   spelled: {hbo-Hebr/tiberian: [בַּיִת]}
   forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [בֵּית]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Sing}, form: בֵית, status: pinned}
+  - {feats: {Number: Sing}, form: בַיִת, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: בֵית, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: בַיְתָ, before: {startsIn: "ה"}, status: pinned}
+  - {feats: {Number: Sing}, form: בֵיתֶ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:be
   pos: ADP
   gloss: {en: 'in; at; with, by (written joined to the next word)'}
   notes: {en: 'בְּ bə- is written on its noun; with the article it takes the article''s vowel: בַּיּוֹם bayyôm ''in the day''.'}
+  form: בְ
   spelled: {hbo-Hebr/tiberian: [בְּ]}
+  forms:
+  - {form: בִ, before: {startsIn: "י"}, status: pinned}
+  - {form: בָ, before: {startsIn: "ה\u05BC"}, status: pinned}
+  - {form: בָ, before: {startsIn: "ם"}, status: pinned}
+  allomorphs:
+  - {form: "ב\u05B0+ה\u05B7", free: true}  # REVIEW: with the article, which the token does not list (JM § 35e; docs/rules/hbo.md)
 - id: lexeme:beer
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: well (of water)}
+  form: בְאֵר
   spelled: {hbo-Hebr/tiberian: [בְּאֵר]}
 - id: lexeme:ben
   pos: NOUN
   gloss: {en: son; (בֶּן־ + years) aged}
   notes: {en: 'With suffixes בְּנִי bənî ''my son'', בִּנְךָ binḵā ''your son''; plural בָּנִים bānîm ''sons, children''.'}
+  form: בֵן
+  classes: [construct-same]
   spelled: {hbo-Hebr/tiberian: [בֵּן]}
   forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [בֶן]}, status: pinned}
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [בָנֶי, בָּנֶי]}, status: pinned}
+  - {feats: {Number: Plur}, form: בָנֶי, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Number: Sing}, form: בְנִ, before: {startsIn: "י"}, status: pinned}
+  - {feats: {Number: Sing}, form: בְנֵ, before: {startsIn: "ך"}, status: pinned}
+  - {feats: {Number: Sing}, form: בִנְ, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Number: Sing}, form: בְנָ, before: {startsIn: "ה\u05BC"}, status: pinned}
+  - {feats: {Number: Sing}, form: בְנ, before: {startsIn: "ـ"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [בְּנִ, בִּנְ, בְּנֵ, בְּנָ, בְנִ, בְנֵ, בְּנ]}}
 - id: lexeme:berakhah
   pos: NOUN
   gloss: {en: blessing}
+  form: בְרָכָה
   spelled: {hbo-Hebr/tiberian: [בְּרָכָה]}
 - id: lexeme:beyn
   pos: ADP
   gloss: {en: 'between (בֵּין X וּבֵין Y: between X and Y)'}
+  form: בֵין
   spelled: {hbo-Hebr/tiberian: [בֵּין]}
+  forms:
+  - {form: בֵינֶ, before: {startsIn: "ך\u05B8"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [בֵּינִ, בֵינֵ, בֵינֶ]}}
 - id: lexeme:bi
   pos: INTJ
   gloss: {en: 'please, pardon (בִּי אֲדֹנִי: please, my lord)'}
+  form: בִי
   spelled: {hbo-Hebr/tiberian: [בִּי]}
 - id: lexeme:bilti
   pos: PART
   feats: {Polarity: Neg}
   gloss: {en: 'not (לְבִלְתִּי + infinitive: not to)'}
+  form: בִלְתִּי
   spelled: {hbo-Hebr/tiberian: [בִּלְתִּי]}
 - id: lexeme:biqqesh
   pos: VERB
   gloss: {en: 'to seek, look for (piel)'}
+  form: {radicals: [ב, ק, שׁ], form: piel, vowels: {perf: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [בִּקֵּשׁ]}
   forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תְּבַקְשִׁי]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תְּבַקֵּשׁ]}, status: pinned}
-  - {feats: {Gender: Fem, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [מְבַקֶּשֶׁת]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [מְבַקֵּשׁ]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, form: תְבַקְשִׁי, status: pinned}
 - id: lexeme:bo
   pos: VERB
   gloss: {en: 'to come; to go in, enter'}
+  form: {radicals: [ב, ו, א], form: qal, vowels: {perf: aa, impf: o, inf: o}, source: course}
+  citation: {VerbForm: Inf}
   spelled: {hbo-Hebr/tiberian: [בּוֹא]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תָּבוֹא]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [בָאת]}, status: pinned}
-  - {feats: {Gender: Fem, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [בָּאָה]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיָּבֹא]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Plur, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [בָּאִים]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [בָּא, בָא]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [בוֹא]}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [בָא]}}
 - id: lexeme:bohu
   pos: NOUN
   gloss: {en: 'emptiness, void (only in תֹהוּ וָבֹהוּ)'}
+  form: בֹהוּ
   spelled: {hbo-Hebr/tiberian: [בֹּהוּ]}
 - id: lexeme:boqer
   pos: NOUN
   gloss: {en: morning}
   image: {file: ../../courses/images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: בֹקֶר
   spelled: {hbo-Hebr/tiberian: [בֹּקֶר]}
 - id: lexeme:chai
   pos: ADJ
   gloss: {en: 'living, alive; (חַי יְהוָה) as the LORD lives'}
+  form: חַי
   spelled: {hbo-Hebr/tiberian: [חַי]}
+  forms:
+  - {feats: {Gender: Masc, Number: Sing}, form: חַי, status: pinned, free: true}
+  - {feats: {Gender: Masc, Number: Sing}, form: חָי, status: pinned, free: true}
 - id: lexeme:dam
   pos: NOUN
   gloss: {en: 'blood (plural: bloodshed)'}
+  form: דָם
   spelled: {hbo-Hebr/tiberian: [דָּם]}
   forms:
   - {feats: {Definite: Cons, Number: Plur}, spelled: {hbo-Hebr/tiberian: [דְּמֵי]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Plur}, form: דְמֵי, status: pinned}
 - id: lexeme:davar
   pos: NOUN
   gloss: {en: 'word; thing, matter'}
+  form: דָבָר
   spelled: {hbo-Hebr/tiberian: [דָּבָר]}
   forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [דְּבַר]}, status: pinned}
-  - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [דְּבָרִים]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Sing}, form: דְבַר, status: pinned}
+  - {feats: {Number: Plur}, form: דְבָרִים, status: pinned}
 - id: lexeme:david
   pos: PROPN
   gloss: {en: David}
+  form: דָוִד
   spelled: {hbo-Hebr/tiberian: [דָּוִד]}
 - id: lexeme:derekh
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: 'way, road; journey'}
+  form: דֶרֶך
   spelled: {hbo-Hebr/tiberian: [דֶּרֶךְ]}
 - id: lexeme:deshe
   pos: NOUN
   gloss: {en: 'fresh grass, green growth'}
+  form: דֶשֶׁא
   spelled: {hbo-Hebr/tiberian: [דֶּשֶׁא]}
 - id: lexeme:dibber
   pos: VERB
   gloss: {en: to speak (piel)}
+  form: {radicals: [ד, ב, ר], form: piel, vowels: {perf: e}, source: course}
   spelled: {hbo-Hebr/tiberian: [דִּבֶּר]}
-  forms:
-  - {feats: {Gender: Fem, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַתְּדַבֵּרְנָה]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [דַּבְּרוּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [דַּבֵּר]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וְדִבַּרְתָּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיְדַבֵּר]}, status: pinned}
 - id: lexeme:dir
   realises: {Case: Lat}
   gloss: {en: 'toward: the directional -â (שְׁכֶמָה ''to Shechem'', הַבַּיְתָה ''home'')'}
   allomorphs:
-  - {spelled: {hbo-Hebr/tiberian: [ה]}}
+  - {form: "ה", spelled: {hbo-Hebr/tiberian: [ה]}}
 - id: lexeme:ed
   pos: NOUN
   gloss: {en: witness}
+  form: עֵד
+  classes: [construct-same]
   spelled: {hbo-Hebr/tiberian: [עֵד]}
-  forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [עֵד]}, status: pinned}
 - id: lexeme:ehad
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: one}
+  form: אֶחָד
   spelled: {hbo-Hebr/tiberian: [אֶחָד]}
+  forms:
+  - {form: אֶחָד, status: pinned, free: true}
+  - {form: אַחַד, status: pinned, free: true}
+  - {form: אַחַת, status: pinned, free: true}
+  - {form: אֶחָת, status: pinned, free: true}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [אַחַת, אֶחָת]}}
 - id: lexeme:eifoh
   pos: ADV
   feats: {PronType: Int}
   gloss: {en: 'where?'}
+  form: אֵיפֹה
   spelled: {hbo-Hebr/tiberian: [אֵיפֹה]}
 - id: lexeme:el
   pos: ADP
   gloss: {en: 'to, toward (written אֶל־, joined to the next word)'}
+  form: אֵל
   spelled: {hbo-Hebr/tiberian: [אֵל]}
+  forms:
+  - {form: אֵלַ, before: {startsIn: "י"}, status: pinned}
+  - {form: אֵלֶי, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {form: אֲלֵי, before: {startsIn: "ם"}, status: pinned}
+  - {form: אֵלָי, before: {startsIn: "ـ"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [אֵלֶי, אֵלָי, אֲלֵי]}}
 - id: lexeme:eli
   pos: PROPN
   gloss: {en: Eli (the priest at Shiloh)}
+  form: עֵלִי
   spelled: {hbo-Hebr/tiberian: [עֵלִי]}
 - id: lexeme:elleh
   pos: DET
   feats: {PronType: Dem}
   gloss: {en: these}
+  form: אֵלֶּה
+  citation: {Number: Plur}
   spelled: {hbo-Hebr/tiberian: [אֵלֶּה]}
-  forms:
-  - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [אֵלֶּה]}, status: pinned}
 - id: lexeme:elohim
   pos: NOUN
   gloss: {en: God; gods}
   notes: {en: 'Plural in form (-îm), but as the name of Israel''s God it takes singular verbs: וַיֹּאמֶר אֱלֹהִים ''and God said''.'}
+  form: אֱלֹהִים
+  classes: [alef-quiescent]
   spelled: {hbo-Hebr/tiberian: [אֱלֹהִים]}
   forms:
   - {feats: {Definite: Cons, Number: Plur}, spelled: {hbo-Hebr/tiberian: [אֱלֹהֵי, אלֹהֵי]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Plur}, form: אֱלֹהֵי, status: pinned, free: true}
+  - {feats: {Definite: Cons, Number: Plur}, form: אלֹהֵי, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: אֱלֹהֵי, before: {startsIn: "נ"}, status: pinned}
+  - {feats: {Number: Sing}, form: אֱלֹהָ, before: {startsIn: "י"}, status: pinned}
+  - {feats: {Number: Sing}, form: אלֹהַיִ, before: {startsIn: "ך"}, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: אֱלֹהַיִ, before: {startsIn: "ך"}, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: אֱלֹהֶי, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Number: Sing}, form: אֱלֹהֶי, before: {startsIn: "ה\u05BC"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [אֱלֹהֶי, אֱלֹהֵי, אלֹהַיִ, אֱלֹהַיִ]}}
   - {spelled: {hbo-Hebr/tiberian: [אֱלֹהָ]}}
@@ -456,1517 +557,1822 @@ lexemes:
   feats: {Gender: Fem}
   gloss: {en: mother}
   notes: {en: 'With suffixes אִמִּי ʾimmî ''my mother'', אִמְּךָ / אִמֶּךָ ''your mother''.'}
+  form: אֵם
   spelled: {hbo-Hebr/tiberian: [אֵם]}
+  forms:
+  - {feats: {Number: Sing}, form: אִמִּ, before: {startsIn: "י"}, status: pinned}
+  - {feats: {Number: Sing}, form: אִמֵּ, before: {startsIn: "ך"}, status: pinned}
+  - {feats: {Number: Sing}, form: אִמֶּ, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Number: Sing}, form: אִמּ, before: {startsIn: "ـ"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [אִמֶּ, אִמּ, אִמִּ, אִמֵּ]}}
 - id: lexeme:emeq
   pos: NOUN
   gloss: {en: valley}
+  form: עֵמֶק
+  classes: [construct-same]
   spelled: {hbo-Hebr/tiberian: [עֵמֶק]}
-  forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [עֵמֶק]}, status: pinned}
 - id: lexeme:erets
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: 'earth; land, country'}
   notes: {en: Feminine. With the article הָאָרֶץ hāʾā́reṣ.}
+  form: אֶרֶץ
+  classes: [qamets-after-article, construct-same]
   spelled: {hbo-Hebr/tiberian: [אֶרֶץ]}
   forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [אֶרֶץ]}, status: pinned}
+  - {feats: {Number: Sing}, form: אַרְצְ, before: {startsIn: "ך\u05B8"}, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: אַרְצֶ, before: {startsIn: "ך\u05B8"}, status: pinned, free: true}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [אַרְצְ, אַרְצֶ]}}
 - id: lexeme:erev
   pos: NOUN
   gloss: {en: evening}
+  form: עֶרֶב
   spelled: {hbo-Hebr/tiberian: [עֶרֶב]}
 - id: lexeme:erom
   pos: ADJ
   gloss: {en: naked}
+  form: עֵירֹם
   spelled: {hbo-Hebr/tiberian: [עֵירֹם]}
 - id: lexeme:esh
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: fire}
   image: {file: ../../courses/images/fire.svg, license: CC0-1.0, provenance: {author: 'llm:claude@4aeb9b9d9ea0', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: אֵשׁ
   spelled: {hbo-Hebr/tiberian: [אֵשׁ]}
 - id: lexeme:et
   pos: ADP
   gloss: {en: the mark of a definite direct object (not translated)}
   notes: {en: 'אֵת ʾēṯ, joined by maqaf אֶת־ ʾeṯ-, stands before a definite object: וַיַּרְא אֶת־הָאוֹר ''he saw the light''.'}
+  form: אֵת
   spelled: {hbo-Hebr/tiberian: [אֵת]}
+  forms:
+  - {form: אֶתְ, before: {startsIn: "כ\u05B6"}, status: pinned}
 - id: lexeme:et.time
   pos: NOUN
   gloss: {en: 'time; season, moment'}
+  form: עֵת
+  classes: [construct-same]
   spelled: {hbo-Hebr/tiberian: [עֵת]}
-  forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [עֵת]}, status: pinned}
 - id: lexeme:ets
   pos: NOUN
   gloss: {en: tree; wood}
+  form: עֵץ
+  classes: [construct-same]
   spelled: {hbo-Hebr/tiberian: [עֵץ]}
   forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [עֵץ]}, status: pinned}
-  - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [עֵצִים]}, status: pinned}
+  - {feats: {Number: Plur}, form: עֵצִים, status: pinned}
 - id: lexeme:eved
   pos: NOUN
   gloss: {en: 'servant, slave'}
+  form: עֶבֶד
   spelled: {hbo-Hebr/tiberian: [עֶבֶד]}
   forms:
-  - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [עֲבָדִים]}, status: pinned}
+  - {feats: {Number: Plur}, form: עֲבָדִים, status: pinned}
+  - {feats: {Number: Sing}, form: עַבְדֶּ, before: {startsIn: "ך\u05B8"}, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: עַבְדְּ, before: {startsIn: "ך\u05B8"}, status: pinned, free: true}
 - id: lexeme:eyn
   pos: VERB
   gloss: {en: 'there is not; is not (אֵין, with suffixes אֵינֶנּוּ ''he is not'')'}
+  form: אַיִן
   spelled: {hbo-Hebr/tiberian: [אַיִן]}
+  forms:
+  - {form: אַיִן, status: pinned, free: true}
+  - {form: אֵין, status: pinned, free: true}
+  - {form: אֵינֶ, before: {startsIn: "ـ"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [אֵינֶ]}}
 - id: lexeme:gadal
   pos: VERB
   gloss: {en: 'to make great, magnify; to bring up (a child) (piel)'}
+  form: {radicals: [ג, ד, ל], form: piel, vowels: {perf: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [גִּדֵּל]}
   forms:
   - {feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אֲגַדְּלָה]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}, form: אֲגַדְּלָה, status: pinned}
 - id: lexeme:gadol
   pos: ADJ
   gloss: {en: 'great, big'}
+  form: גָדוֹל
   spelled: {hbo-Hebr/tiberian: [גָּדוֹל]}
   forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {hbo-Hebr/tiberian: [גְּדוֹלָה]}, status: pinned}
+  - {feats: {Gender: Fem, Number: Sing}, form: גְדוֹלָה, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [גָּדֹל]}}
 - id: lexeme:gam
   pos: ADV
   gloss: {en: 'also, too; even'}
+  form: גַם
   spelled: {hbo-Hebr/tiberian: [גַּם]}
 - id: lexeme:gama
   pos: VERB
   gloss: {en: 'to let drink, give a sip (hiphil)'}
+  form: {radicals: [ג, מ, א], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הִגְמִיא]}
   forms:
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [הַגְמִיאִי]}, status: pinned}
+  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, form: הַגְמִיאִי, before: {startsIn: "י"}, status: pinned}
 - id: lexeme:gamal
   pos: NOUN
   gloss: {en: camel}
+  form: גָמָל
   spelled: {hbo-Hebr/tiberian: [גָּמָל]}
   forms:
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [גְּמַלָּי, גְמַלֶּי]}, status: pinned}
-  - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [גְּמַלִּים]}, status: pinned}
+  - {feats: {Number: Plur}, form: גְמַלִּים, status: pinned}
+  - {feats: {Number: Plur}, form: גְמַלֶּי, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Number: Plur}, form: גְמַלָּי, before: {startsIn: "ـ"}, status: pinned}
 - id: lexeme:gan
   pos: NOUN
   gloss: {en: garden}
   image: {file: ../../courses/images/tree.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3868bb19b496', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: גַן
+  classes: [qamets-after-article]
   spelled: {hbo-Hebr/tiberian: [גַּן]}
 - id: lexeme:ganav
   pos: VERB
   gloss: {en: to steal}
+  form: {radicals: [ג, נ, ב], form: qal, vowels: {perf: a, impf: o}, source: course}
   spelled: {hbo-Hebr/tiberian: [גָּנַב]}
   forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תִּגְנֹבוּ]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תִּגְנֹב]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '2', VerbForm: Fin}, form: תִגְנֹבוּ, status: pinned}
 - id: lexeme:gay
   pos: NOUN
   gloss: {en: valley}
+  form: גַיְא
   spelled: {hbo-Hebr/tiberian: [גַּיְא]}
   forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [גֵיא]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Sing}, form: גֵיא, status: pinned}
+  - {feats: {Number: Sing}, form: גַיְא, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: גֵיא, status: pinned, free: true}
 - id: lexeme:gazar
   pos: VERB
   gloss: {en: 'to cut, divide'}
+  form: {radicals: [ג, ז, ר], form: qal, vowels: {perf: a, impf: o}, source: course}
   spelled: {hbo-Hebr/tiberian: [גָּזַר]}
   forms:
-  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [גִּזְרוּ, גְּזֹרוּ]}, status: pinned}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, form: גִזְרוּ, status: pinned, free: true}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, form: גְזֹרוּ, status: pinned, free: true}
 - id: lexeme:goral
   pos: NOUN
   gloss: {en: lot (for casting)}
+  form: גוֹרָל
   spelled: {hbo-Hebr/tiberian: [גּוֹרָל]}
   forms:
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [גּוֹרָלוֹת, גוֹרָלוֹת]}, status: pinned}
+  - {feats: {Number: Plur}, form: גוֹרָלוֹת, status: pinned}
 - id: lexeme:goy
   pos: NOUN
   gloss: {en: 'nation, people'}
+  form: גוֹי
   spelled: {hbo-Hebr/tiberian: [גּוֹי]}
 - id: lexeme:ha
   pos: DET
   gloss: {en: the (written joined to the next word)}
   notes: {en: 'The article הַ ha- doubles the next letter (a dagesh): הַיּוֹם hayyôm ''the day''. Before א ע ר, which do not double, it is הָ hā-: הָאוֹר.'}
+  form: הַ
   spelled: {hbo-Hebr/tiberian: [הַ]}
 - id: lexeme:ha.q
   pos: PART
   feats: {PartType: Int}
   gloss: {en: '(marks a yes-no question: הֲ, written joined to the next word)'}
   notes: {en: 'הֲ hă- turns a sentence into a question: הֲמִן־הָעֵץ אָכַלְתָּ ''did you eat from the tree?''.'}
+  form: הֲ
   spelled: {hbo-Hebr/tiberian: [הֲ]}
 - id: lexeme:halakh
   pos: VERB
   gloss: {en: 'to go, walk'}
+  form: {radicals: [ה, ל, כ], form: qal, vowels: {perf: a, impf: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [הָלַךְ]}
   forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תֵּלְכִי]}, status: pinned}
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תֵּלֵךְ]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אֵלֵךְ]}, status: pinned}
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [לְכִי]}, status: pinned}
-  - {feats: {Gender: Fem, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַתֵּלַכְנָה]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [לְכוּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [לֶךְ, לֵךְ]}, status: pinned}
   - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [לְכָה]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיֵּלְכוּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיֵּלֶךְ]}, status: pinned}
   - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [לֶכְתְּ]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, form: תֵלְכִי, status: listed, statement: {author: 'llm:claude@hbo-rules-1', status: draft}}
+  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, form: תֵלֵך, status: listed, statement: {author: 'llm:claude@hbo-rules-1', status: draft}}
+  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, form: אֵלֵך, status: listed, statement: {author: 'llm:claude@hbo-rules-1', status: draft}}
+  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, form: לְכִי, status: listed, statement: {author: 'llm:claude@hbo-rules-1', status: draft}}
+  - {feats: {Gender: Fem, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, form: וַתֵּלַכְנָה, status: listed, statement: {author: 'llm:claude@hbo-rules-1', status: draft}}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, form: לְכוּ, status: listed, statement: {author: 'llm:claude@hbo-rules-1', status: draft}}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, form: לֶך, status: listed, statement: {author: 'llm:claude@hbo-rules-1', status: draft}, free: true}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, form: לֵך, status: listed, statement: {author: 'llm:claude@hbo-rules-1', status: draft}, free: true}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, form: לְכָה, status: listed, statement: {author: 'llm:claude@hbo-rules-1', status: draft}, free: true}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, form: וַיֵּלְכוּ, status: listed, statement: {author: 'llm:claude@hbo-rules-1', status: draft}}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, form: וַיֵּלֶך, status: listed, statement: {author: 'llm:claude@hbo-rules-1', status: draft}}
+  - {feats: {VerbForm: Inf}, form: לֶכְתְּ, before: {startsIn: "ך\u05B8"}, status: listed, statement: {author: 'llm:claude@hbo-rules-1', status: draft}}
 - id: lexeme:halom
   pos: ADV
   feats: {PronType: Dem}
   gloss: {en: 'here, to this place'}
+  form: הֲלֹם
   spelled: {hbo-Hebr/tiberian: [הֲלֹם]}
 - id: lexeme:hanan
   pos: VERB
   gloss: {en: 'to be gracious, show favour'}
+  form: {radicals: [ח, נ, נ], form: qal, vowels: {perf: a, impf: o}, source: course}
   spelled: {hbo-Hebr/tiberian: [חָנַן]}
   forms:
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יחֻנֶּ]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: יְחֻנֶּנ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:hanit
   pos: NOUN
   gloss: {en: spear}
+  form: חֲנִית
   spelled: {hbo-Hebr/tiberian: [חֲנִית]}
 - id: lexeme:har
   pos: NOUN
   gloss: {en: mountain; hill country}
   image: {file: ../../courses/images/mountain.svg, license: CC0-1.0, provenance: {author: 'llm:claude@a8e4d984f938', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: הַר
+  classes: [qamets-after-article]
   spelled: {hbo-Hebr/tiberian: [הַר]}
   forms:
-  - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [הָרִים]}, status: pinned}
+  - {feats: {Number: Plur}, form: הָרִים, status: pinned}
+  - {feats: {Number: Sing}, form: הָרָ, before: {startsIn: "ה"}, status: pinned}
 - id: lexeme:harag
   pos: VERB
   gloss: {en: to kill}
+  form: {radicals: [ה, ר, ג], form: qal, vowels: {perf: a, impf: o}, source: course}
   spelled: {hbo-Hebr/tiberian: [הָרַג]}
   forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיַּהַרְגֵ]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [הֲרוֹג]}, status: pinned}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, form: וַיַּהַרְגֵ, before: {startsIn: "ـ"}, status: pinned}
 - id: lexeme:hasar
   pos: VERB
   gloss: {en: 'to lack, be in want'}
+  form: {radicals: [ח, ס, ר], form: qal, vowels: {perf: ee, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [חָסֵר]}
   forms:
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אֶחְסָר]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, form: אֶחְסָר, status: pinned}
 - id: lexeme:hatsi
   pos: NOUN
   gloss: {en: half}
+  form: חֵצִי
   spelled: {hbo-Hebr/tiberian: [חֵצִי]}
+  forms:
+  - {feats: {Number: Sing}, form: חֵצִי, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: חֲצִי, status: pinned, free: true}
 - id: lexeme:hava
   pos: VERB
   gloss: {en: to hide (oneself) (niphal)}
+  form: {radicals: [ח, ב, א], form: niphal, source: course}
   spelled: {hbo-Hebr/tiberian: [נֶחְבָּא]}
-  forms:
-  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וָאֵחָבֵא]}, status: pinned}
 - id: lexeme:hayah
   pos: VERB
   gloss: {en: 'to be; to become, happen'}
+  form: {radicals: [ה, י, ה], form: qal, source: course}
   spelled: {hbo-Hebr/tiberian: [הָיָה]}
   forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יִהְיֶה]}, status: pinned}
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יְהִי]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [הָיְתָה]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [הְיֵה]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וְהָיָה]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיְהִי]}, status: pinned}
-  - {feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Fut, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וְהָיוּ]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [הְיוֹתָ]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: יְהִי, status: pinned}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, form: וַיְהִי, status: pinned}
 - id: lexeme:heelah
   pos: VERB
   gloss: {en: to offer up; to bring up (hiphil of עָלָה)}
+  form: {radicals: [ע, ל, ה], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הֶעֱלָה]}
   forms:
   - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [הַעֲלֵ]}, status: pinned}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, form: הַעֲלֵ, before: {startsIn: "ـ"}, status: pinned}
 - id: lexeme:heerikh
   pos: VERB
   gloss: {en: 'to make long, prolong (hiphil)'}
+  form: {radicals: [א, ר, כ], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הֶאֱרִיךְ]}
   forms:
   - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יַאֲרִכוּן]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, form: יַאֲרִכוּן, status: pinned}
 - id: lexeme:hefets
   pos: NOUN
   gloss: {en: 'matter; delight, desire'}
+  form: חֵפֶץ
   spelled: {hbo-Hebr/tiberian: [חֵפֶץ]}
 - id: lexeme:heir
   pos: VERB
   gloss: {en: 'to make shine, give light (hiphil of אוֹר)'}
+  form: {radicals: [א, ו, ר], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הֵאִיר]}
   forms:
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יָאֵר]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: יָאֵר, status: pinned}
 - id: lexeme:hem
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: they (m.)}
+  form: הֵם
+  citation: {Gender: Masc, Number: Plur}
   spelled: {hbo-Hebr/tiberian: [הֵם]}
   forms:
-  - {feats: {Gender: Masc, Number: Plur}, spelled: {hbo-Hebr/tiberian: [הֵם]}, status: pinned}
   - {feats: {Gender: Masc, Number: Plur}, spelled: {hbo-Hebr/tiberian: [הֵמָּה]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Plur}, form: הֵם, status: pinned, free: true}
+  - {feats: {Gender: Masc, Number: Plur}, form: הֵמָּה, status: pinned, free: true}
 - id: lexeme:hemit
   pos: VERB
   gloss: {en: 'to kill, put to death (hiphil of מוּת)'}
+  form: {radicals: [מ, ו, ת], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הֵמִית]}
   forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תְמִיתֻ]}, status: pinned}
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תְּמִיתֻ]}, status: pinned}
-  - {feats: {VerbForm: InfAbs}, spelled: {hbo-Hebr/tiberian: [הָמֵת]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '2', VerbForm: Fin}, form: תְמִיתֻ, before: {startsIn: "ـ"}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: תְמִיתֻ, before: {startsIn: "ـ"}, status: pinned}
 - id: lexeme:heref
   pos: VERB
   gloss: {en: 'to taunt, defy (piel)'}
+  form: {radicals: [ח, ר, פ], form: piel, vowels: {perf: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [חֵרֵף]}
-  forms:
-  - {feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [חֵרַפְתָּ]}, status: pinned}
 - id: lexeme:herev
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: sword}
   image: {file: ../../courses/images/sword.svg, license: CC0-1.0, provenance: {author: 'llm:claude@974a394d608f', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: חֶרֶב
   spelled: {hbo-Hebr/tiberian: [חֶרֶב]}
+  forms:
+  - {feats: {Number: Sing}, form: חֶרֶב, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: חָרֶב, status: pinned, free: true}
 - id: lexeme:heshiv
   pos: VERB
   gloss: {en: 'to bring back, return (hiphil of שׁוּב)'}
+  form: {radicals: [שׁ, ו, ב], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הֵשִׁיב]}
   forms:
   - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [הֲשִׁבֵ]}, status: pinned}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, form: הֲשִׁבֵ, before: {startsIn: "י"}, status: pinned}
 - id: lexeme:hetil
   pos: VERB
   gloss: {en: 'to hurl, throw (hiphil)'}
+  form: {radicals: [ט, ו, ל], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הֵטִיל]}
 - id: lexeme:hevel
   pos: PROPN
   gloss: {en: Abel}
+  form: הֶבֶל
   spelled: {hbo-Hebr/tiberian: [הֶבֶל]}
 - id: lexeme:hevi
   pos: VERB
   gloss: {en: to bring (hiphil of בּוֹא)}
+  form: {radicals: [ב, ו, א], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הֵבִיא]}
-  forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיָּבִאוּ]}, status: pinned}
 - id: lexeme:hevron
   pos: PROPN
   feats: {Gender: Fem}
   gloss: {en: Hebron}
+  form: חֶבְרוֹן
   spelled: {hbo-Hebr/tiberian: [חֶבְרוֹן]}
 - id: lexeme:hi
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: she; it}
   notes: {en: In the five books of Moses it is usually written הִוא and read hîʾ.}
+  form: הִיא
+  citation: {Gender: Fem, Number: Sing}
   spelled: {hbo-Hebr/tiberian: [הִיא]}
   forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {hbo-Hebr/tiberian: [הִיא]}, status: pinned}
   - {feats: {Gender: Fem, Number: Sing}, spelled: {hbo-Hebr/tiberian: [הִוא]}, status: pinned}
+  - {feats: {Gender: Fem, Number: Sing}, form: הִיא, status: pinned, free: true}
+  - {feats: {Gender: Fem, Number: Sing}, form: הִוא, status: pinned, free: true}
 - id: lexeme:hibbit
   pos: VERB
   gloss: {en: to look (hiphil)}
+  form: {radicals: [נ, ב, ט], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הִבִּיט]}
-  forms:
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [הַבִּיט]}, status: pinned}
 - id: lexeme:hifrid
   pos: VERB
   gloss: {en: 'to separate, part (hiphil)'}
+  form: {radicals: [פ, ר, ד], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הִפְרִיד]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יַפְרִיד]}, status: pinned}
 - id: lexeme:hinchah
   pos: VERB
   gloss: {en: 'to lead, guide (hiphil of נָחָה)'}
+  form: {radicals: [נ, ח, ה], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הִנְחָה]}
   forms:
   - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יַנְחֵ]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, form: יַנְחֵ, before: {startsIn: "י"}, status: pinned}
 - id: lexeme:hinneh
   pos: INTJ
   gloss: {en: 'look!, here is …; (with a suffix) here I am'}
   notes: {en: 'הִנֵּה hinnēh points to something: ''here is'', ''look''. With ''me'': הִנֵּנִי hinnḗnî ''here I am'', the answer to a call.'}
+  form: הִנֵּה
   spelled: {hbo-Hebr/tiberian: [הִנֵּה]}
+  forms:
+  - {form: הִנֵּ, before: {startsIn: "י"}, status: pinned, free: true}
+  - {form: הִנְ, before: {startsIn: "י"}, status: pinned, free: true}
+  - {form: הִנֵּנִ, before: {startsIn: "י"}, status: pinned, free: true}
+  - {form: הִנֶּנִּ, before: {startsIn: "י"}, status: pinned, free: true}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [הִנֵּ, הִנְ]}}
   - {spelled: {hbo-Hebr/tiberian: [הִנֵּנִ, הִנֶּנִּ]}}
 - id: lexeme:hippil
   pos: VERB
   gloss: {en: 'to cast, make fall (hiphil of נָפַל)'}
+  form: {radicals: [נ, פ, ל], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הִפִּיל]}
   forms:
   - {feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [נַפִּילָה]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיַּפִּלוּ]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}, form: נַפִּילָה, status: pinned}
 - id: lexeme:hirah
   pos: VERB
   gloss: {en: to show (hiphil of רָאָה)}
+  form: {radicals: [ר, א, ה], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הֶרְאָה]}
   forms:
   - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אַרְאֶ]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, form: אַרְאֶנ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:hirbits
   pos: VERB
   gloss: {en: to make lie down (hiphil of רָבַץ)}
+  form: {radicals: [ר, ב, צ], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הִרְבִּיץ]}
   forms:
   - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יַרְבִּיצֵ]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, form: יַרְבִּיצֵ, before: {startsIn: "י"}, status: pinned}
 - id: lexeme:hishev
   pos: VERB
   gloss: {en: 'to think, intend; be about to (piel)'}
+  form: {radicals: [ח, שׁ, ב], form: piel, vowels: {perf: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [חִשֵּׁב]}
-  forms:
-  - {feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [חִשְּׁבָה]}, status: pinned}
 - id: lexeme:hishqah
   pos: VERB
   gloss: {en: 'to give to drink, water (hiphil)'}
+  form: {radicals: [שׁ, ק, ה], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הִשְׁקָה]}
   forms:
   - {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַתַּשְׁקֵ]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [הַשְׁקֹת]}, status: pinned}
+  - {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, form: וַתַּשְׁקֵ, before: {startsIn: "ـ"}, status: pinned}
 - id: lexeme:histir
   pos: VERB
   gloss: {en: to hide (hiphil)}
+  form: {radicals: [ס, ת, ר], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הִסְתִּיר]}
-  forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיַּסְתֵּר]}, status: pinned}
 - id: lexeme:hitchabbe
   pos: VERB
   gloss: {en: to hide oneself (hithpael)}
+  form: {radicals: [ח, ב, א], form: hithpael, source: course}
   spelled: {hbo-Hebr/tiberian: [הִתְחַבֵּא]}
-  forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּתְחַבֵּא]}, status: pinned}
 - id: lexeme:hithallekh
   pos: VERB
   gloss: {en: 'to walk about, go to and fro (hithpael of הָלַךְ)'}
+  form: {radicals: [ה, ל, כ], form: hithpael, source: course}
   spelled: {hbo-Hebr/tiberian: [הִתְהַלֵּךְ]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [מִתְהַלֶּכֶת]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [מִתְהַלֵּךְ]}, status: pinned}
 - id: lexeme:hityatsev
   pos: VERB
   gloss: {en: 'to take one''s stand, stand firm (hithpael)'}
+  form: {radicals: [י, צ, ב], form: hithpael, source: course}
   spelled: {hbo-Hebr/tiberian: [הִתְיַצֵּב]}
   forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּתְיַצַּב]}, status: pinned}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, form: וַיִּתְיַצַּב, status: pinned}
 - id: lexeme:horid
   pos: VERB
   gloss: {en: 'to lower, bring down (hiphil of יָרַד)'}
+  form: {radicals: [י, ר, ד], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הוֹרִיד]}
-  forms:
-  - {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַתֹּרֶד]}, status: pinned}
 - id: lexeme:hoshekh
   pos: NOUN
   gloss: {en: darkness}
+  form: חֹשֶׁך
   spelled: {hbo-Hebr/tiberian: [חֹשֶׁךְ]}
 - id: lexeme:hoshia
   pos: VERB
   gloss: {en: 'to save, deliver (hiphil)'}
+  form: {radicals: [י, שׁ, ע], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הוֹשִׁיעַ]}
   forms:
   - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יְהוֹשִׁיעַ]}, status: pinned}
   - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [הוֹשִׁיעֵ]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, form: יְהוֹשִׁיעַ, status: pinned}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, form: הוֹשִׁיעֵ, before: {startsIn: "י"}, status: pinned}
 - id: lexeme:hosif
   pos: VERB
   gloss: {en: 'to add; to do again, do more (hiphil of יָסַף)'}
+  form: {radicals: [י, ס, פ], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הוֹסִיף]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יֹסִיף]}, status: pinned}
 - id: lexeme:hotsi
   pos: VERB
   gloss: {en: 'to bring out, lead out (hiphil of יָצָא)'}
+  form: {radicals: [י, צ, א], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הוֹצִיא]}
-  forms:
-  - {feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [הוֹצֵאתִי]}, status: pinned}
 - id: lexeme:hu
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: he; it}
+  form: הוּא
   spelled: {hbo-Hebr/tiberian: [הוּא]}
 - id: lexeme:im
   pos: SCONJ
   gloss: {en: if; (עַד אִם) until}
+  form: אִם
   spelled: {hbo-Hebr/tiberian: [אִם]}
 - id: lexeme:im.with
   pos: ADP
   gloss: {en: 'with (with suffixes עִמִּי ''with me'', עִמְּךָ ''with you'')'}
+  form: עִם
+  classes: [suffix-hem]
   spelled: {hbo-Hebr/tiberian: [עִם]}
+  forms:
+  - {form: עִמִּ, before: {startsIn: "י"}, status: pinned}
+  - {form: עִמָּ, before: {startsIn: "ך"}, status: pinned}
+  - {form: עִמָּ, before: {startsIn: "כ\u05B6"}, status: pinned}
+  - {form: עִמְּ, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {form: עִמָּ, before: {startsIn: "ם"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [עִמָּ, עִמְּ, עִמִּ]}}
 - id: lexeme:immad
   pos: ADP
   gloss: {en: 'with (only with suffixes: עִמָּדִי ''with me'')'}
+  form: עִמָּד
   spelled: {hbo-Hebr/tiberian: [עִמָּד]}
 - id: lexeme:ir
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: 'city, town'}
+  form: עִיר
   spelled: {hbo-Hebr/tiberian: [עִיר]}
 - id: lexeme:ish
   pos: NOUN
   gloss: {en: man; husband; each one}
+  form: אִישׁ
   spelled: {hbo-Hebr/tiberian: [אִישׁ]}
 - id: lexeme:ishah
   pos: NOUN
   gloss: {en: woman; wife}
   notes: {en: 'Before a suffix or another noun: אֵשֶׁת ʾēšeṯ, אִשְׁתּוֹ ʾištô ''his wife''.'}
+  form: אִשָּׁה
   spelled: {hbo-Hebr/tiberian: [אִשָּׁה]}
   forms:
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [נָשִׁים]}, status: pinned}
+  - {feats: {Number: Plur}, form: נָשִׁים, status: pinned}
+  - {feats: {Number: Sing}, form: אִשְׁתּ, before: {startsIn: "ـ"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [אִשְׁתּ]}}
 - id: lexeme:ivri
   pos: NOUN
   chooses: [Gender]
   gloss: {en: Hebrew; a Hebrew}
+  form: עִבְרִי
   spelled: {hbo-Hebr/tiberian: [עִבְרִי]}
   forms:
   - {feats: {Gender: Fem, Number: Sing}, spelled: {hbo-Hebr/tiberian: [עִבְרִיָּה]}, status: pinned}
+  - {feats: {Gender: Fem, Number: Sing}, form: עִבְרִיָּה, status: pinned}
 - id: lexeme:kad
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: 'jar, pitcher'}
+  form: כַד
   spelled: {hbo-Hebr/tiberian: [כַּד]}
+  forms:
+  - {feats: {Number: Sing}, form: כַדֵּ, before: {startsIn: "ך"}, status: pinned}
+  - {feats: {Number: Sing}, form: כַדָּ, before: {startsIn: "ה\u05BC"}, status: pinned}
 - id: lexeme:ke
   pos: ADP
   gloss: {en: 'like, as (written joined to the next word)'}
   notes: {en: 'כְּ kə- is written on its noun: כַּיּוֹם ''like the day''. כַּאֲשֶׁר kaʾăšer: ''as, just as''.'}
+  form: כְ
   spelled: {hbo-Hebr/tiberian: [כְּ]}
+  allomorphs:
+  - {form: "כ\u05B0+ה\u05B7", free: true}  # REVIEW: with the article, which the token does not list (JM § 35e; docs/rules/hbo.md)
 - id: lexeme:kemo
   pos: ADP
   gloss: {en: 'like, as (with suffixes: כָּמוֹךָ ''like you, as yourself'')'}
+  form: כְמוֹ
   spelled: {hbo-Hebr/tiberian: [כְּמוֹ]}
+  forms:
+  - {form: כָמוֹ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:ki
   pos: SCONJ
   gloss: {en: 'that; because, for'}
+  form: כִי
   spelled: {hbo-Hebr/tiberian: [כִּי]}
 - id: lexeme:kibbed
   pos: VERB
   gloss: {en: to honour (piel of כָּבֵד)}
+  form: {radicals: [כ, ב, ד], form: piel, vowels: {perf: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [כִּבֵּד]}
-  forms:
-  - {feats: {VerbForm: InfAbs}, spelled: {hbo-Hebr/tiberian: [כַּבֵּד]}, status: pinned}
 - id: lexeme:kidon
   pos: NOUN
   gloss: {en: javelin; or a curved sword}
+  form: כִידוֹן
   spelled: {hbo-Hebr/tiberian: [כִּידוֹן]}
 - id: lexeme:killah
   pos: VERB
   gloss: {en: 'to finish, complete (piel)'}
+  form: {radicals: [כ, ל, ה], form: piel, source: course}
   spelled: {hbo-Hebr/tiberian: [כִּלָּה]}
-  forms:
-  - {feats: {Aspect: Perf, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [כִּלּוּ]}, status: pinned}
-  - {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַתְּכַל]}, status: pinned}
 - id: lexeme:koh
   pos: ADV
   feats: {PronType: Dem}
   gloss: {en: 'thus, so; here'}
+  form: כֹה
   spelled: {hbo-Hebr/tiberian: [כֹּה]}
 - id: lexeme:kol
   pos: NOUN
   gloss: {en: 'all, every; the whole (כָּל־, כֹּל)'}
+  form: כֹל
+  classes: [construct-same]
   spelled: {hbo-Hebr/tiberian: [כֹּל]}
-  forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [כָל, כָּל]}, status: pinned}
 - id: lexeme:labbah
   pos: NOUN
   gloss: {en: flame}
+  form: לַבָּה
   spelled: {hbo-Hebr/tiberian: [לַבָּה]}
   forms:
   - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [לַבַּת]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Sing}, form: לַבַּת, status: pinned}
 - id: lexeme:laqach
   pos: VERB
   gloss: {en: to take}
+  form: {radicals: [ל, ק, ח], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [לָקַח]}
   forms:
   - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [קְחִי]}, status: pinned}
   - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [קְחוּ]}, status: pinned}
   - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [קַח]}, status: pinned}
+  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, form: קְחִי, status: pinned}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, form: קְחוּ, status: pinned}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, form: קַח, status: pinned}
 - id: lexeme:layla
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: night}
   notes: {en: 'At a pause in the verse it is לָיְלָה lā́ylâ. The stress is on the first syllable: láylâ.'}
   image: {file: ../../courses/images/moon.svg, license: CC0-1.0, provenance: {author: 'llm:claude@2c94300bb951', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: לַיְלָה
   spelled: {hbo-Hebr/tiberian: [לַיְלָה]}
+  forms:
+  - {feats: {Number: Sing}, form: לַיְלָה, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: לָיְלָה, status: pinned, free: true}
 - id: lexeme:le
   pos: ADP
   gloss: {en: 'to, for (written joined to the next word)'}
   notes: {en: 'לְ lə- is written on its noun; with the article it takes the article''s vowel: לָאוֹר lāʾôr ''to the light''.'}
+  form: לְ
   spelled: {hbo-Hebr/tiberian: [לְ]}
+  forms:
+  - {form: לָ, before: {startsIn: "נ"}, status: pinned}
+  - {form: לִ, before: {startsIn: "י"}, status: pinned}
+  - {form: לָ, before: {startsIn: "ך"}, status: pinned}
+  - {form: לָ, before: {startsIn: "כ\u05B6"}, status: pinned}
+  - {form: לְ, before: {startsIn: "ך\u05B8"}, status: pinned, free: true}
+  - {form: לָ, before: {startsIn: "ך\u05B8"}, status: pinned, free: true}
+  - {form: לָ, before: {startsIn: "ה\u05BC"}, status: pinned}
+  - {form: ל, before: {startsIn: "ـ"}, status: pinned}
+  allomorphs:
+  - {form: "ל\u05B8", free: true}  # REVIEW: qamets before a stressed syllable (לָשׁוּב, לָלֶדֶת: JM § 103b), which the text does not mark
+  - {form: "ל\u05B0+ה\u05B7", free: true}  # REVIEW: with the article, which the token does not list (JM § 35e; docs/rules/hbo.md)
 - id: lexeme:lemaan
   pos: SCONJ
   gloss: {en: 'so that, in order that; for the sake of'}
+  form: מַעַן
   spelled: {hbo-Hebr/tiberian: [מַעַן]}
+  forms:
+  - {form: מַעַן, status: pinned, free: true}
+  - {form: לְמַעַן, status: pinned, free: true}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [לְמַעַן]}}
 - id: lexeme:levav
   pos: NOUN
   gloss: {en: 'heart, mind (= לֵב)'}
+  form: לֵבָב
   spelled: {hbo-Hebr/tiberian: [לֵבָב]}
+  forms:
+  - {feats: {Number: Sing}, form: לְבָבִ, before: {startsIn: "י"}, status: pinned}
+  - {feats: {Number: Sing}, form: לְבָבְ, before: {startsIn: "ך\u05B8"}, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: לְבָבֶ, before: {startsIn: "ך\u05B8"}, status: pinned, free: true}
 - id: lexeme:liqrat
   pos: VERB
   gloss: {en: 'to meet; toward, against (לִקְרַאת: the infinitive of קָרָא ''to meet'')'}
+  form: קִרְאָה
   spelled: {hbo-Hebr/tiberian: [קִרְאָה]}
+  forms:
+  - {form: קִרְאָה, status: pinned, free: true}
+  - {form: קְרַאת, status: pinned, free: true}
+  - {form: קְרָאתָ, before: {startsIn: "ה\u05BC"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [קְרָאתָ, קְרַאת]}}
 - id: lexeme:lo
   pos: PART
   feats: {Polarity: Neg}
   gloss: {en: not; no}
+  form: לֹא
   spelled: {hbo-Hebr/tiberian: [לֹא]}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [לוֹא]}}
 - id: lexeme:lun
   pos: VERB
   gloss: {en: 'to lodge, spend the night'}
+  form: {radicals: [ל, ו, נ], form: qal, vowels: {perf: aa, impf: i, inf: u}, source: course}
+  citation: {VerbForm: Inf}
   spelled: {hbo-Hebr/tiberian: [לוּן]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תָּלִינִי]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אָלִין]}, status: pinned}
 - id: lexeme:maarakhah
   pos: NOUN
   gloss: {en: 'battle line, rank of an army'}
+  form: מַעֲרָכָה
   spelled: {hbo-Hebr/tiberian: [מַעֲרָכָה]}
   forms:
   - {feats: {Definite: Cons, Number: Plur}, spelled: {hbo-Hebr/tiberian: [מַעַרְכוֹת]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Plur}, form: מַעַרְכוֹת, status: pinned}
 - id: lexeme:maddua
   pos: ADV
   feats: {PronType: Int}
   gloss: {en: 'why?'}
+  form: מַדּוּע
   spelled: {hbo-Hebr/tiberian: [מַדּוּעַ]}
 - id: lexeme:magal
   pos: NOUN
   gloss: {en: 'track, path'}
+  form: מַעְגָּל
   spelled: {hbo-Hebr/tiberian: [מַעְגָּל]}
   forms:
   - {feats: {Definite: Cons, Number: Plur}, spelled: {hbo-Hebr/tiberian: [מַעְגְּלֵי]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Plur}, form: מַעְגְּלֵי, status: pinned}
 - id: lexeme:mah
   pos: PRON
   feats: {PronType: Int}
   gloss: {en: 'what? (מַה־, also מֶה)'}
+  form: מָה
   spelled: {hbo-Hebr/tiberian: [מָה]}
+  forms:
+  - {form: מָה, status: pinned, free: true}
+  - {form: מַה, status: pinned, free: true}
+  - {form: מֶה, status: pinned, free: true}
 - id: lexeme:mahar
   pos: VERB
   gloss: {en: 'to hurry, do quickly (piel)'}
+  form: {radicals: [מ, ה, ר], form: piel, vowels: {perf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [מִהַר]}
-  forms:
-  - {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַתְּמַהֵר]}, status: pinned}
 - id: lexeme:malakh
   pos: NOUN
   gloss: {en: messenger; angel}
+  form: מַלְאָך
   spelled: {hbo-Hebr/tiberian: [מַלְאָךְ]}
   forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [מַלְאַךְ]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Sing}, form: מַלְאַך, status: pinned}
 - id: lexeme:maqom
   pos: NOUN
   gloss: {en: place}
+  form: מָקוֹם
   spelled: {hbo-Hebr/tiberian: [מָקוֹם]}
+  forms:
+  - {feats: {Number: Sing}, form: מְקוֹמ, before: {startsIn: "ـ"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [מְקוֹמ]}}
 - id: lexeme:marah
   pos: NOUN
   gloss: {en: 'sight, appearance; vision'}
+  form: מַרְאֶה
   spelled: {hbo-Hebr/tiberian: [מַרְאֶה]}
 - id: lexeme:matsa
   pos: VERB
   gloss: {en: to find}
+  form: {radicals: [מ, צ, א], form: qal, vowels: {perf: aa, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [מָצָא]}
   forms:
-  - {feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [מָצָאתִי]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּמְצָא, וַיִּמְצָאֵ]}, status: pinned}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, form: וַיִּמְצָאֵ, before: {startsIn: "ـ"}, status: pinned}
 - id: lexeme:mawet
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: death}
+  form: מָוֶת
   spelled: {hbo-Hebr/tiberian: [מָוֶת]}
 - id: lexeme:mayim
   pos: NOUN
   gloss: {en: 'water, waters'}
   notes: {en: 'Always plural in form: מַיִם máyim, ''water''.'}
   image: {file: ../../courses/images/water.svg, license: CC0-1.0, provenance: {author: 'llm:claude@e7d707f749db', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: מַיִם
   spelled: {hbo-Hebr/tiberian: [מַיִם]}
   forms:
   - {feats: {Definite: Cons, Number: Plur}, spelled: {hbo-Hebr/tiberian: [מֵי]}, status: pinned}
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [מַיִם, מַּיִם, מָּיִם]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Plur}, form: מֵי, status: pinned}
+  - {feats: {Number: Plur}, form: מַיִם, status: pinned, free: true}
+  - {feats: {Number: Plur}, form: מָיִם, status: pinned, free: true}
 - id: lexeme:meat
   pos: NOUN
   gloss: {en: 'a little, a few'}
+  form: מְעַט
+  classes: [construct-same]
   spelled: {hbo-Hebr/tiberian: [מְעַט]}
-  forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [מְעַט]}, status: pinned}
 - id: lexeme:melakhah
   pos: NOUN
   gloss: {en: 'work, occupation'}
+  form: מְלָאכָה
   spelled: {hbo-Hebr/tiberian: [מְלָאכָה]}
+  forms:
+  - {feats: {Number: Sing}, form: מְלַאכְתְּ, before: {startsIn: "ך\u05B8"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [מְּלַאכְתְּ]}}
 - id: lexeme:melekh
   pos: NOUN
   gloss: {en: king}
+  form: מֶלֶך
   spelled: {hbo-Hebr/tiberian: [מֶלֶךְ]}
 - id: lexeme:menuchah
   pos: NOUN
   gloss: {en: 'rest, resting place (מֵי מְנֻחוֹת: still waters)'}
+  form: מְנוּחָה
   spelled: {hbo-Hebr/tiberian: [מְנוּחָה]}
   forms:
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [מְנֻחוֹת]}, status: pinned}
+  - {feats: {Number: Plur}, form: מְנֻחוֹת, status: pinned}
 - id: lexeme:meod
   pos: ADV
   gloss: {en: 'very; (as a noun) strength, might'}
+  form: מְאֹד
   spelled: {hbo-Hebr/tiberian: [מְאֹד]}
+  forms:
+  - {form: מְאֹדֶ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:mi
   pos: PRON
   feats: {PronType: Int}
   gloss: {en: 'who?'}
+  form: מִי
   spelled: {hbo-Hebr/tiberian: [מִי]}
 - id: lexeme:milhamah
   pos: NOUN
   gloss: {en: 'battle, war'}
+  form: מִלְחָמָה
   spelled: {hbo-Hebr/tiberian: [מִלְחָמָה]}
 - id: lexeme:min
   pos: ADP
   gloss: {en: 'from; out of; than (מִן־, or מִ- joined to the word)'}
   notes: {en: 'Written apart as מִן־ min-, or joined with the next letter doubled: מִפְּנֵי mippənê ''from before''. Before a guttural it is מֵ mē-.'}
+  form: מִן
   spelled: {hbo-Hebr/tiberian: [מִן]}
+  forms:
+  - {form: מִמֶּ, before: {startsIn: "ـ"}, status: pinned}
   allomorphs:
-  - {spelled: {hbo-Hebr/tiberian: [מִ, מֵ]}}
+  - {form: "מ\u05B5", before: {startsIn: "{GR}*"}, spelled: {hbo-Hebr/tiberian: [מֵ]}}  # JM § 103c-d: before a guttural or ר
+  - {form: "מ\u05B4", before: {startsIn: "{NG}*"}, spelled: {hbo-Hebr/tiberian: [מִ]}}  # joined, the next letter doubled (rule:hbo-min)
   - {spelled: {hbo-Hebr/tiberian: [מִמֶּ]}}
 - id: lexeme:mishenet
   pos: NOUN
   gloss: {en: staff (to lean on)}
+  form: מִשְׁעֶנֶת
   spelled: {hbo-Hebr/tiberian: [מִשְׁעֶנֶת]}
+  forms:
+  - {feats: {Number: Sing}, form: מִשְׁעַנְתֶּ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:mitsrayim
   pos: PROPN
   feats: {Gender: Fem}
   gloss: {en: Egypt}
+  form: מִצְרַיִם
   spelled: {hbo-Hebr/tiberian: [מִצְרַיִם]}
 - id: lexeme:mizmor
   pos: NOUN
   gloss: {en: 'psalm, song'}
+  form: מִזְמוֹר
   spelled: {hbo-Hebr/tiberian: [מִזְמוֹר]}
 - id: lexeme:moledet
   pos: NOUN
   gloss: {en: 'kindred, relatives; birthplace'}
+  form: מוֹלֶדֶת
   spelled: {hbo-Hebr/tiberian: [מוֹלֶדֶת]}
+  forms:
+  - {feats: {Number: Sing}, form: מוֹלַדְתְּ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:moriyyah
   pos: PROPN
   gloss: {en: Moriah}
+  form: מוֹרִיָּה
   spelled: {hbo-Hebr/tiberian: [מוֹרִיָּה]}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [מֹּרִיָּה]}}
 - id: lexeme:moshe
   pos: PROPN
   gloss: {en: Moses}
+  form: מֹשֶׁה
   spelled: {hbo-Hebr/tiberian: [מֹשֶׁה]}
 - id: lexeme:mut
   pos: VERB
   gloss: {en: to die}
+  form: {radicals: [מ, ו, ת], form: qal, vowels: {perf: ee, impf: u, inf: u}, source: course}
+  citation: {VerbForm: Inf}
   spelled: {hbo-Hebr/tiberian: [מוּת]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תָּמוּתִי]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אָמוּת]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיָּמָת]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [מֵּת]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [מוּת]}, status: pinned}
 - id: lexeme:na
   pos: PART
   feats: {PartType: Mod}
   gloss: {en: 'please, now (softens a command or request)'}
+  form: נָא
   spelled: {hbo-Hebr/tiberian: [נָא]}
 - id: lexeme:naaf
   pos: VERB
   gloss: {en: to commit adultery}
+  form: {radicals: [נ, א, פ], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [נָאַף]}
   forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תִּנְאָף]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, form: תִנְאָף, status: pinned}
 - id: lexeme:naah
   pos: NOUN
   gloss: {en: 'pasture, meadow (only plural: נְאוֹת)'}
+  form: נָאָה
   spelled: {hbo-Hebr/tiberian: [נָאָה]}
   forms:
   - {feats: {Definite: Cons, Number: Plur}, spelled: {hbo-Hebr/tiberian: [נְאוֹת]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Plur}, form: נְאוֹת, status: pinned}
 - id: lexeme:naal
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: sandal}
+  form: נַעַל
   spelled: {hbo-Hebr/tiberian: [נַעַל]}
   forms:
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [נְעָלֶי]}, status: pinned}
+  - {feats: {Number: Plur}, form: נְעָלֶי, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:naar
   pos: NOUN
   gloss: {en: 'boy, young man; servant'}
+  form: נַעַר
   spelled: {hbo-Hebr/tiberian: [נַעַר]}
 - id: lexeme:nafal
   pos: VERB
   gloss: {en: to fall}
+  form: {radicals: [נ, פ, ל], form: qal, vowels: {perf: a, impf: o}, source: course}
   spelled: {hbo-Hebr/tiberian: [נָפַל]}
-  forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּפֹּל]}, status: pinned}
 - id: lexeme:nagad
   pos: VERB
   gloss: {en: 'to tell, declare (hiphil)'}
+  form: {radicals: [נ, ג, ד], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הִגִּיד]}
   forms:
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [הַגִּידִי]}, status: pinned}
   - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [הַגִּידָה]}, status: pinned}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, form: הַגִּידָה, status: pinned}
 - id: lexeme:nahash
   pos: NOUN
   gloss: {en: 'serpent, snake'}
+  form: נָחָשׁ
   spelled: {hbo-Hebr/tiberian: [נָחָשׁ]}
 - id: lexeme:naomi
   pos: PROPN
   feats: {Gender: Fem}
   gloss: {en: Naomi}
+  form: נׇעֳמִי
   spelled: {hbo-Hebr/tiberian: [נׇעֳמִי]}
+  forms:
+  - {form: נׇעֳמִי, status: pinned, free: true}
+  - {form: נָעֳמִי, status: pinned, free: true}
 - id: lexeme:nasa
   pos: VERB
   gloss: {en: 'to lift, raise; to carry'}
+  form: {radicals: [נ, שׂ, א], form: qal, vowels: {perf: aa, impf: aa}, source: deduced, basis: 'the imperfect יִשָּׂא (JM § 72, 78)'}
   spelled: {hbo-Hebr/tiberian: [נָשָׂא]}
   forms:
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יִשָּׂא]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּשָּׂא]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: יִשָּׂא, status: pinned}
 - id: lexeme:nasha
   pos: VERB
   gloss: {en: to deceive (hiphil הִשִּׁיא)}
+  form: {radicals: [נ, שׁ, א], form: hiphil, source: course}
   spelled: {hbo-Hebr/tiberian: [הִשִּׁיא]}
+  forms:
+  - {feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, form: הִשִּׁיאַ, before: {startsIn: "י"}, status: pinned}
 - id: lexeme:nashal
   pos: VERB
   gloss: {en: 'to take off, slip off (sandals)'}
+  form: {radicals: [נ, שׁ, ל], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [נָשַׁל]}
-  forms:
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [שַׁל]}, status: pinned}
 - id: lexeme:nata
   pos: VERB
   gloss: {en: to plant}
+  form: {radicals: [נ, ט, ע], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [נָטַע]}
-  forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּטַּע]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part, Voice: Pass}, spelled: {hbo-Hebr/tiberian: [נָטוּעַ]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [טַעַת]}, status: pinned}
 - id: lexeme:natan
   pos: VERB
   gloss: {en: to give; to put}
+  form: {radicals: [נ, ת, נ], form: qal, vowels: {perf: a, impf: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [נָתַן]}
   forms:
-  - {feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [נָתְנָה]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [נָתַתָּה]}, status: pinned}
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תְּנִי]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תְּנוּ, תְנוּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תֵּן]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וְנָתַן]}, status: pinned}
   - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [נָתַן]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּתֵּן]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [נֹתֵן]}, status: pinned}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, form: וְנָתַנ, status: pinned, free: true}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Fut, VerbForm: Fin}, form: נָתַן, status: pinned, free: true}
 - id: lexeme:nefesh
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: 'soul, life; self; a living being'}
+  form: נֶפֶשׁ
   spelled: {hbo-Hebr/tiberian: [נֶפֶשׁ]}
+  forms:
+  - {feats: {Number: Sing}, form: נַפְשִׁ, before: {startsIn: "י"}, status: pinned}
+  - {feats: {Number: Sing}, form: נַפְשְׁ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:nicham
   pos: VERB
   gloss: {en: to comfort (piel)}
+  form: {radicals: [נ, ח, מ], form: piel, vowels: {perf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [נִחַם]}
   forms:
   - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יְנַחֲמֻ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [נַחֲמוּ]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, form: יְנַחֲמֻ, before: {startsIn: "י"}, status: pinned}
 - id: lexeme:nihel
   pos: VERB
   gloss: {en: 'to lead, guide (to water) (piel)'}
+  form: {radicals: [נ, ה, ל], form: piel, vowels: {perf: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [נִהֵל]}
   forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יְנַהֲלֵ]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, form: יְנַהֲלֵ, before: {startsIn: "י"}, status: pinned}
 - id: lexeme:nikbar
   pos: VERB
   gloss: {en: to be buried (niphal of קָבַר)}
+  form: {radicals: [ק, ב, ר], form: niphal, source: course}
   spelled: {hbo-Hebr/tiberian: [נִקְבַּר]}
-  forms:
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אֶקָּבֵר]}, status: pinned}
 - id: lexeme:nikhmar
   pos: VERB
   gloss: {en: 'to grow warm, be stirred (niphal)'}
+  form: {radicals: [כ, מ, ר], form: niphal, source: course}
   spelled: {hbo-Hebr/tiberian: [נִכְמַר]}
-  forms:
-  - {feats: {Aspect: Perf, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [נִכְמְרוּ]}, status: pinned}
 - id: lexeme:ninveh
   pos: PROPN
   feats: {Gender: Fem}
   gloss: {en: Nineveh}
+  form: נִינְוֵה
   spelled: {hbo-Hebr/tiberian: [נִינְוֵה]}
 - id: lexeme:nirah
   pos: VERB
   gloss: {en: 'to appear, be seen (niphal of רָאָה)'}
+  form: {radicals: [ר, א, ה], form: niphal, source: course}
   spelled: {hbo-Hebr/tiberian: [נִרְאָה]}
-  forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיֵּרָא]}, status: pinned}
 - id: lexeme:nishbar
   pos: VERB
   gloss: {en: 'to be broken, break up (niphal of שָׁבַר)'}
+  form: {radicals: [שׁ, ב, ר], form: niphal, source: course}
   spelled: {hbo-Hebr/tiberian: [נִשְׁבַּר]}
   forms:
   - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [הִשָּׁבֵר]}, status: pinned}
+  - {feats: {VerbForm: Inf}, form: הִשָּׁבֵר, status: pinned}
 - id: lexeme:nissah
   pos: VERB
   gloss: {en: 'to test, try (piel)'}
+  form: {radicals: [נ, ס, ה], form: piel, source: course}
   spelled: {hbo-Hebr/tiberian: [נִסָּה]}
 - id: lexeme:od
   pos: ADV
   gloss: {en: again; still; more}
+  form: עוֹד
   spelled: {hbo-Hebr/tiberian: [עוֹד]}
 - id: lexeme:olah
   pos: NOUN
   gloss: {en: burnt offering}
+  form: עֹלָה
   spelled: {hbo-Hebr/tiberian: [עֹלָה]}
 - id: lexeme:oniyyah
   pos: NOUN
   gloss: {en: ship}
   image: {file: ../../courses/images/ship.svg, license: CC0-1.0, provenance: {author: 'llm:claude@f57499d70e8f', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: אֳנִיָּה
   spelled: {hbo-Hebr/tiberian: [אֳנִיָּה]}
+  forms:
+  - {feats: {Number: Sing}, form: אֳנִיָּה, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: אָנִיָּה, status: pinned, free: true}
 - id: lexeme:or
   pos: NOUN
   gloss: {en: light}
   image: {file: ../../courses/images/sun.svg, license: CC0-1.0, provenance: {author: 'llm:claude@bc6746e0390b', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: אוֹר
   spelled: {hbo-Hebr/tiberian: [אוֹר]}
 - id: lexeme:paam
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: 'time, occurrence (כְפַעַם בְּפַעַם: as at other times)'}
+  form: פַעַם
   spelled: {hbo-Hebr/tiberian: [פַּעַם]}
 - id: lexeme:paga
   pos: VERB
   gloss: {en: 'to meet; to press, urge (בְּ: someone)'}
+  form: {radicals: [פ, ג, ע], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [פָּגַע]}
   forms:
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תִּפְגְּעִי]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: תִפְגְּעִי, status: pinned}
 - id: lexeme:panim
   pos: NOUN
   gloss: {en: 'face; front, surface'}
   notes: {en: 'Always plural in form. Before another noun it is פְּנֵי pənê, ''the face of'': עַל־פְּנֵי הַמָּיִם.'}
+  form: פָנִים
   spelled: {hbo-Hebr/tiberian: [פָּנִים]}
   forms:
   - {feats: {Definite: Cons, Number: Plur}, spelled: {hbo-Hebr/tiberian: [פְּנֵי, פְנֵי]}, status: pinned}
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [פָּנָי]}, status: pinned}
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [פָנָ, פָּנָ]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Plur}, form: פְנֵי, status: pinned}
+  - {feats: {Number: Plur}, form: פָנָ, before: {startsIn: "י"}, status: pinned}
+  - {feats: {Number: Plur}, form: פָנָי, before: {startsIn: "ـ"}, status: pinned}
 - id: lexeme:parats
   pos: VERB
   gloss: {en: 'to break down, break through'}
+  form: {radicals: [פ, ר, צ], form: qal, vowels: {perf: a, impf: o}, source: course}
   spelled: {hbo-Hebr/tiberian: [פָּרַץ]}
-  forms:
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [פְרוֹץ]}, status: pinned}
 - id: lexeme:pelishti
   pos: NOUN
   gloss: {en: Philistine}
+  form: פְלִשְׁתִּי
   spelled: {hbo-Hebr/tiberian: [פְּלִשְׁתִּי]}
   forms:
-  - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [פְּלִשְׁתִּים]}, status: pinned}
+  - {feats: {Number: Plur}, form: פְלִשְׁתִּים, status: pinned}
 - id: lexeme:qahal
   pos: NOUN
   gloss: {en: 'assembly, gathering'}
+  form: קָהָל
   spelled: {hbo-Hebr/tiberian: [קָהָל]}
 - id: lexeme:qara
   pos: VERB
   gloss: {en: 'to call; to name (call X Y: קָרָא לְX Y)'}
+  form: {radicals: [ק, ר, א], form: qal, vowels: {perf: aa, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [קָרָא]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יִקְרָא]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [קָרָאת]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [קָרָאתָ]}, status: pinned}
-  - {feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [קָרָאתִי]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [קְרָא]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּקְרָא]}, status: pinned}
 - id: lexeme:qarav
   pos: VERB
   gloss: {en: 'to come near, approach'}
+  form: {radicals: [ק, ר, ב], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [קָרַב]}
   forms:
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תִּקְרַב]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: תִקְרַב, status: pinned}
 - id: lexeme:qayin
   pos: PROPN
   gloss: {en: Cain}
+  form: קַיִן
   spelled: {hbo-Hebr/tiberian: [קַיִן]}
 - id: lexeme:qodesh
   pos: NOUN
   gloss: {en: holiness; holy thing (אַדְמַת־קֹדֶשׁ 'holy ground')}
+  form: קֹדֶשׁ
   spelled: {hbo-Hebr/tiberian: [קֹדֶשׁ]}
 - id: lexeme:qol
   pos: NOUN
   gloss: {en: voice; sound}
+  form: קוֹל
+  classes: [construct-same]
   spelled: {hbo-Hebr/tiberian: [קוֹל]}
-  forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [קוֹל]}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [קֹלְ]}}
 - id: lexeme:qum
   pos: VERB
   gloss: {en: 'to rise, get up; to stand'}
+  form: {radicals: [ק, ו, מ], form: qal, vowels: {perf: aa, impf: u, inf: u}, source: course}
+  citation: {VerbForm: Inf}
   spelled: {hbo-Hebr/tiberian: [קוּם]}
   forms:
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [קוּמִי]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [קוּמוּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [קוּם]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיָּקָם]}, status: pinned}
   - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [קוּמֶ]}, status: pinned}
+  - {feats: {VerbForm: Inf}, form: קוּמֶ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:raah
   pos: VERB
   gloss: {en: to see}
+  form: {radicals: [ר, א, ה], form: qal, source: course}
   spelled: {hbo-Hebr/tiberian: [רָאָה]}
   forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יִרְאֶה]}, status: pinned}
   - {feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אֶרְאֶה]}, status: pinned}
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [רְאִי]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [רְאוּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [רְאֵה]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיַּרְא]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [רְאוֹת]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}, form: אֶרְאֶה, status: pinned}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, form: וַיַּרְא, status: pinned}
 - id: lexeme:raah.evil
   pos: NOUN
   chooses: [Gender]
   gloss: {en: 'evil, wickedness; harm, disaster'}
+  form: רָעָה
   spelled: {hbo-Hebr/tiberian: [רָעָה]}
   forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {hbo-Hebr/tiberian: [רָעָה]}, status: pinned}
   - {feats: {Gender: Fem, Number: Sing}, spelled: {hbo-Hebr/tiberian: [רָעָתָ]}, status: pinned}
+  - {feats: {Gender: Fem, Number: Sing}, form: רָעָה, status: pinned}
+  - {feats: {Gender: Fem, Number: Sing}, form: רָעָתָ, before: {startsIn: "ם"}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing}, form: רָעָה, status: pinned, free: true}
+  - {feats: {Gender: Masc, Number: Sing}, form: רָע, status: pinned, free: true}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [רָע]}}
 - id: lexeme:raah.graze
   pos: VERB
   gloss: {en: 'to pasture, tend (a flock); (participle) shepherd'}
+  form: {radicals: [ר, ע, ה], form: qal, source: course}
   spelled: {hbo-Hebr/tiberian: [רָעָה]}
   forms:
-  - {feats: {Gender: Masc, Number: Plur, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [רֹעִים]}, status: pinned}
   - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [רֹעִ]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [רֹעֵה, רֹעֶה]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, form: רֹעֶה, status: pinned, free: true}
+  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, form: רֹעֵה, status: pinned, free: true}
+  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, form: רֹעִ, before: {startsIn: "י"}, status: pinned}
 - id: lexeme:rachaf
   pos: VERB
   gloss: {en: 'to hover, flutter (piel)'}
+  form: {radicals: [ר, ח, פ], form: piel, vowels: {perf: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [רִחֵף]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [מְרַחֶפֶת]}, status: pinned}
 - id: lexeme:rafa
   pos: VERB
   gloss: {en: to heal}
+  form: {radicals: [ר, פ, א], form: qal, vowels: {perf: aa, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [רָפָא]}
   forms:
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [רְפָאֵ]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [רְפּוֹא]}, status: pinned}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, form: רְפָאֵ, before: {startsIn: "י"}, status: pinned}
 - id: lexeme:rahamim
   pos: NOUN
   gloss: {en: 'compassion, mercy'}
+  form: רַחֲמִים
   spelled: {hbo-Hebr/tiberian: [רַחֲמִים]}
   forms:
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [רַחֲמֶי]}, status: pinned}
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [רַחֲמִים]}, status: pinned}
+  - {feats: {Number: Plur}, form: רַחֲמִים, status: pinned}
+  - {feats: {Number: Plur}, form: רַחֲמֶי, before: {startsIn: "ה\u05BC"}, status: pinned}
 - id: lexeme:raqad
   pos: VERB
   gloss: {en: 'to dance, skip'}
+  form: {radicals: [ר, ק, ד], form: qal, vowels: {perf: a, impf: o}, source: deduced, basis: 'the imperfect יִרְקֹד (JM § 44c)'}
   spelled: {hbo-Hebr/tiberian: [רָקַד]}
-  forms:
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [רְקוֹד]}, status: pinned}
 - id: lexeme:ratsach
   pos: VERB
   gloss: {en: 'to kill, murder'}
+  form: {radicals: [ר, צ, ח], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [רָצַח]}
   forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תִּרְצָח]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, form: תִרְצָח, status: pinned}
 - id: lexeme:rea
   pos: NOUN
   gloss: {en: 'neighbour, fellow, friend'}
+  form: רֵע
   spelled: {hbo-Hebr/tiberian: [רֵעַ]}
+  forms:
+  - {feats: {Number: Sing}, form: רֵעֲ, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Number: Sing}, form: רֵעֵ, before: {startsIn: "ـ"}, status: pinned}
 - id: lexeme:regel
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: foot}
+  form: רֶגֶל
   spelled: {hbo-Hebr/tiberian: [רֶגֶל]}
   forms:
   - {feats: {Number: Dual}, spelled: {hbo-Hebr/tiberian: [רַגְלֶי]}, status: pinned}
-  - {feats: {Number: Dual}, spelled: {hbo-Hebr/tiberian: [רַגְלַיִם]}, status: pinned}
+  - {feats: {Number: Dual}, form: רַגְלַיִם, status: pinned}
+  - {feats: {Number: Dual}, form: רַגְלֶי, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:reshit
   pos: NOUN
   gloss: {en: 'beginning; first, best part'}
+  form: רֵאשִׁית
   spelled: {hbo-Hebr/tiberian: [רֵאשִׁית]}
 - id: lexeme:rivqah
   pos: PROPN
   gloss: {en: Rebekah}
+  form: רִבְקָה
   spelled: {hbo-Hebr/tiberian: [רִבְקָה]}
 - id: lexeme:ruach
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: wind; spirit; breath}
+  form: רוּח
+  classes: [construct-same]
   spelled: {hbo-Hebr/tiberian: [רוּחַ]}
-  forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [רוּחַ]}, status: pinned}
 - id: lexeme:rut
   pos: PROPN
   gloss: {en: Ruth}
+  form: רוּת
   spelled: {hbo-Hebr/tiberian: [רוּת]}
 - id: lexeme:ruts
   pos: VERB
   gloss: {en: to run}
+  form: {radicals: [ר, ו, צ], form: qal, vowels: {perf: aa, impf: u, inf: u}, source: course}
+  citation: {VerbForm: Inf}
   spelled: {hbo-Hebr/tiberian: [רוּץ]}
-  forms:
-  - {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַתָּרָץ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיָּרָץ]}, status: pinned}
 - id: lexeme:saar
   pos: NOUN
   gloss: {en: 'storm, tempest'}
+  form: סַעַר
   spelled: {hbo-Hebr/tiberian: [סַעַר]}
 - id: lexeme:sachaq
   pos: VERB
   gloss: {en: to laugh; to play}
+  form: {radicals: [שׂ, ח, ק], form: qal, vowels: {perf: a, impf: a}, source: deduced, basis: 'the imperfect יִשְׂחַק (JM § 44c)'}
   spelled: {hbo-Hebr/tiberian: [שָׂחַק]}
   forms:
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [שְׂחוֹק]}, status: pinned}
+  - {form: שְׂחוֹק, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [שְׂחוֹק]}}
 - id: lexeme:sadeh
   pos: NOUN
   gloss: {en: field; open country}
+  form: שָׂדֶה
   spelled: {hbo-Hebr/tiberian: [שָׂדֶה]}
 - id: lexeme:safad
   pos: VERB
   gloss: {en: 'to mourn, lament'}
+  form: {radicals: [ס, פ, ד], form: qal, vowels: {perf: a, impf: o}, source: deduced, basis: 'the imperfect יִסְפֹּד (JM § 44c)'}
   spelled: {hbo-Hebr/tiberian: [סָפַד]}
-  forms:
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [סְפוֹד]}, status: pinned}
 - id: lexeme:sakhar
   pos: NOUN
   gloss: {en: wages; fare}
+  form: שָׂכָר
   spelled: {hbo-Hebr/tiberian: [שָׂכָר]}
+  forms:
+  - {feats: {Number: Sing}, form: שְׂכָרָ, before: {startsIn: "ה\u05BC"}, status: pinned}
 - id: lexeme:seh
   pos: NOUN
   gloss: {en: 'lamb, kid; one of the flock'}
   image: {file: ../../courses/images/sheep.svg, license: CC0-1.0, provenance: {author: 'llm:claude@4c000b664265', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: שֶׂה
   spelled: {hbo-Hebr/tiberian: [שֶׂה]}
 - id: lexeme:seneh
   pos: NOUN
   gloss: {en: 'bush, thornbush'}
+  form: סְנֶה
   spelled: {hbo-Hebr/tiberian: [סְנֶה]}
 - id: lexeme:sfx-1cp
   pos: PRON
   feats: {Number: Plur, Person: '1', PronType: Prs}
   gloss: {en: 'our; us (the suffix -ēnû, -nû)'}
   allomorphs:
-  - {spelled: {hbo-Hebr/tiberian: [נו]}}
+  - {form: "ـ\u05B5נו\u05BC", after: {endsIn: "{CLOSE}"}}  # after a bare final consonant: the singular noun's series, its vowel on the carrier (JM P1, pp. 618-619)
+  - {form: "נו\u05BC", spelled: {hbo-Hebr/tiberian: [נו]}}
 - id: lexeme:sfx-1cs
   pos: PRON
   feats: {Number: Sing, Person: '1', PronType: Prs}
   gloss: {en: 'my; me (the suffix -î, -nî)'}
   allomorphs:
-  - {spelled: {hbo-Hebr/tiberian: [י]}}
-  - {spelled: {hbo-Hebr/tiberian: [ני]}}
+  - {form: "ـ\u05B4י", after: {endsIn: "{CLOSE}"}}  # after a bare final consonant: the singular noun's series, its vowel on the carrier (JM P1, pp. 618-619)
+  - {form: "נ\u05B4י", after: {pos: VERB, endsIn: ".{PAT}"}, spelled: {hbo-Hebr/tiberian: [ני]}}  # a verb's -anî (JM § 61)
+  - {form: "נ\u05B4י", after: {endsIn: ".{TSE}"}, spelled: {hbo-Hebr/tiberian: [ני]}}
+  - {form: "נ\u05B4י", after: {endsIn: ".{SHV}"}, spelled: {hbo-Hebr/tiberian: [ני]}}
+  - {form: "נ\u05B4י", after: {endsIn: ".{QIB}"}, spelled: {hbo-Hebr/tiberian: [ני]}}
+  - {form: "נ\u05B4י", after: {endsIn: ".{HIR}י"}, spelled: {hbo-Hebr/tiberian: [ני]}}
+  - {form: "י", spelled: {hbo-Hebr/tiberian: [י]}}
+  - {form: "י\u05B7", free: true}  # REVIEW: the pausal -āya (פָּנָיַ, Ex 20:3; Dt 5:7), where no condition says pause
 - id: lexeme:sfx-2fs
   pos: PRON
   feats: {Gender: Fem, Number: Sing, Person: '2', PronType: Prs}
   gloss: {en: 'your; you (said to a woman: the suffix -ēḵ, -ḵ)'}
   allomorphs:
-  - {spelled: {hbo-Hebr/tiberian: [ך]}}
+  - {form: "ـ\u05B5ך", after: {endsIn: "{CLOSE}"}}  # after a bare final consonant: the singular noun's series, its vowel on the carrier (JM P1, pp. 618-619)
+  - {form: "ך", spelled: {hbo-Hebr/tiberian: [ך]}}
 - id: lexeme:sfx-2mp
   pos: PRON
   feats: {Gender: Masc, Number: Plur, Person: '2', PronType: Prs}
   gloss: {en: 'your; you (said to several people: the suffix -ḵem)'}
   allomorphs:
-  - {spelled: {hbo-Hebr/tiberian: [כם]}}
+  - {form: "ـ\u05B0כ\u05B6ם", after: {endsIn: "{CLOSE}"}}  # after a bare final consonant: the singular noun's series, its vowel on the carrier (JM P1, pp. 618-619)
+  - {form: "כ\u05B6ם", spelled: {hbo-Hebr/tiberian: [כם]}}
 - id: lexeme:sfx-2ms
   pos: PRON
   feats: {Gender: Masc, Number: Sing, Person: '2', PronType: Prs}
   gloss: {en: 'your; you (said to a man: the suffix -ḵā)'}
   allomorphs:
-  - {spelled: {hbo-Hebr/tiberian: [ך]}}
-  - {spelled: {hbo-Hebr/tiberian: [כה]}}
+  - {form: "ـ\u05B0ך\u05B8", after: {endsIn: "{CLOSE}"}}  # after a bare final consonant: the singular noun's series, its vowel on the carrier (JM P1, pp. 618-619)
+  - {form: "כ\u05B8\u05BCה", after: {class: suffix-plene}, spelled: {hbo-Hebr/tiberian: [כה]}}
+  - {form: "ך", after: {endsIn: ".{QAM}"}, spelled: {hbo-Hebr/tiberian: [ך]}}
+  - {form: "ך\u05B8", spelled: {hbo-Hebr/tiberian: [ך]}}
 - id: lexeme:sfx-3fs
   pos: PRON
   feats: {Gender: Fem, Number: Sing, Person: '3', PronType: Prs}
   gloss: {en: 'her; it (f.) (the suffix -āh, -hā)'}
   allomorphs:
-  - {spelled: {hbo-Hebr/tiberian: [ה]}}
+  - {form: "ـ\u05B8ה\u05BC", after: {endsIn: "{CLOSE}"}}  # after a bare final consonant: the singular noun's series, its vowel on the carrier (JM P1, pp. 618-619)
+  - {form: "ה\u05B8", after: {endsIn: "{L}{SEG}י"}, spelled: {hbo-Hebr/tiberian: [ה]}}
+  - {form: "ה\u05BC", spelled: {hbo-Hebr/tiberian: [ה]}}
 - id: lexeme:sfx-3mp
   pos: PRON
   feats: {Gender: Masc, Number: Plur, Person: '3', PronType: Prs}
   gloss: {en: 'their; them (the suffix -ām, -hem)'}
   allomorphs:
-  - {spelled: {hbo-Hebr/tiberian: [הם]}}
-  - {spelled: {hbo-Hebr/tiberian: [ם]}}
+  - {form: "ـ\u05B8ם", after: {endsIn: "{CLOSE}"}}  # after a bare final consonant: the singular noun's series, its vowel on the carrier (JM P1, pp. 618-619)
+  - {form: "ה\u05B6ם", after: {endsIn: "{L}{TSE}י"}, spelled: {hbo-Hebr/tiberian: [הם]}}
+  - {form: "ה\u05B6ם", after: {class: suffix-hem}, spelled: {hbo-Hebr/tiberian: [הם]}}
+  - {form: "ם", spelled: {hbo-Hebr/tiberian: [ם]}}
 - id: lexeme:sfx-3ms
   pos: PRON
   feats: {Gender: Masc, Number: Sing, Person: '3', PronType: Prs}
   gloss: {en: 'his; him (the suffix -ô, -w, -hû)'}
   allomorphs:
-  - {spelled: {hbo-Hebr/tiberian: [ו]}}
-  - {spelled: {hbo-Hebr/tiberian: [הו]}}
-  - {spelled: {hbo-Hebr/tiberian: [נו]}}
+  - {form: "ו", after: {endsIn: "{L}{FULL}י"}, spelled: {hbo-Hebr/tiberian: [ו]}}
+  - {form: "הו\u05BC", after: {endsIn: ".{TSE}"}, spelled: {hbo-Hebr/tiberian: [הו]}}
+  - {form: "הו\u05BC", after: {endsIn: ".{QIB}"}, spelled: {hbo-Hebr/tiberian: [הו]}}
+  - {form: "נ\u05BCו\u05BC", after: {endsIn: ".{SEG}"}, spelled: {hbo-Hebr/tiberian: [נו]}}
+  - {form: "ـו\u05B9", spelled: {hbo-Hebr/tiberian: [ו]}}
 - id: lexeme:shaal
   pos: VERB
   gloss: {en: to ask}
+  form: {radicals: [שׁ, א, ל], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [שָׁאַל]}
   forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּשְׁאַל, וַיִּשְׁאָלֵ]}, status: pinned}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, form: וַיִּשְׁאָלֵ, before: {startsIn: "ـ"}, status: pinned}
 - id: lexeme:shaav
   pos: VERB
   gloss: {en: to draw (water)}
+  form: {radicals: [שׁ, א, ב], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [שָׁאַב]}
   forms:
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אֶשְׁאָב]}, status: pinned}
-  - {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַתִּשְׁאַב]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [שְׁאֹב]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, form: אֶשְׁאָב, status: pinned}
 - id: lexeme:shakhav
   pos: VERB
   gloss: {en: to lie down}
+  form: {radicals: [שׁ, כ, ב], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [שָׁכַב]}
   forms:
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [שִׁכְבִי]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [שְׁכָב]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּשְׁכַּב, וַיִּשְׁכָּב]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [שָׁכְבְּ]}, status: pinned}
+  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, form: שְׁכָב, status: pinned}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, form: וַיִּשְׁכַּב, status: pinned, free: true}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, form: וַיִּשְׁכָּב, status: pinned, free: true}
+  - {feats: {VerbForm: Inf}, form: שָׁכְבְּ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:shalach
   pos: VERB
   gloss: {en: to send}
+  form: {radicals: [שׁ, ל, ח], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [שָׁלַח]}
   forms:
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אֶשְׁלָחֲ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּשְׁלָחֵ]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, form: אֶשְׁלָחֲ, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, form: וַיִּשְׁלָחֵ, before: {startsIn: "ـ"}, status: pinned}
 - id: lexeme:shalom
   pos: NOUN
   gloss: {en: 'peace; welfare, well-being'}
   notes: {en: 'רְאֵה אֶת־שְׁלוֹם אַחֶיךָ ''see the welfare of your brothers'': see how they are. שָׁלוֹם לְךָ ''peace to you'' is a greeting.'}
+  form: שָׁלוֹם
   spelled: {hbo-Hebr/tiberian: [שָׁלוֹם]}
   forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [שְׁלוֹם]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Sing}, form: שְׁלוֹם, status: pinned}
 - id: lexeme:sham
   pos: ADV
   feats: {PronType: Dem}
   gloss: {en: there}
+  form: שָׁם
   spelled: {hbo-Hebr/tiberian: [שָׁם]}
 - id: lexeme:shama
   pos: VERB
   gloss: {en: 'to hear; to listen, obey'}
+  form: {radicals: [שׁ, מ, ע], form: qal, vowels: {perf: a, impf: a}, source: course}
   spelled: {hbo-Hebr/tiberian: [שָׁמַע]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יִשְׁמְעוּ]}, status: pinned}
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אֶשְׁמַע]}, status: pinned}
-  - {feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [שָׁמַעְתִּי]}, status: pinned}
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [שִׁמְעִי]}, status: pinned}
-  - {feats: {Gender: Fem, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [שֹׁמַעַת]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [שִׁמְעוּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [שְׁמַע]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּשְׁמְעוּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיִּשְׁמַע]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [שֹׁמֵעַ]}, status: pinned}
 - id: lexeme:shamar
   pos: VERB
   gloss: {en: 'to keep, guard, watch'}
+  form: {radicals: [שׁ, מ, ר], form: qal, vowels: {perf: a, impf: o}, source: deduced, basis: 'the imperfect יִשְׁמֹר (JM § 44c, P2 p. 620)'}
   spelled: {hbo-Hebr/tiberian: [שָׁמַר]}
   forms:
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יִשְׁמְרֶ]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [שֹׁמֵר]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: יִשְׁמְרֶ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:shamayim
   pos: NOUN
   gloss: {en: 'heaven, heavens; sky'}
   notes: {en: 'Always plural in form: הַשָּׁמַיִם haššāmáyim, ''the heavens'', also ''the sky''.'}
   image: {file: ../../courses/images/star.svg, license: CC0-1.0, provenance: {author: 'llm:claude@216a08b1b4a4', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: שָׁמַיִם
   spelled: {hbo-Hebr/tiberian: [שָׁמַיִם]}
   forms:
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [שָּׁמַיִם, שָּׁמָיִם]}, status: pinned}
+  - {feats: {Number: Plur}, form: שָׁמַיִם, status: pinned, free: true}
+  - {feats: {Number: Plur}, form: שָׁמָיִם, status: pinned, free: true}
 - id: lexeme:shatah
   pos: VERB
   gloss: {en: to drink}
   image: {file: ../../courses/images/water.svg, license: CC0-1.0, provenance: {author: 'llm:claude@e7d707f749db', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: {radicals: [שׁ, ת, ה], form: qal, source: course}
   spelled: {hbo-Hebr/tiberian: [שָׁתָה]}
-  forms:
-  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [שְׁתוּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [שְׁתֵה]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [שְׁתֹּת]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [שְׁתּוֹת]}, status: pinned}
 - id: lexeme:she
   pos: SCONJ
   gloss: {en: 'who, which, that (the short relative, written joined: שֶׁ־)'}
+  form: שֶׁ
   spelled: {hbo-Hebr/tiberian: [שֶׁ]}
 - id: lexeme:shekhem
   pos: PROPN
   feats: {Gender: Fem}
   gloss: {en: Shechem}
+  form: שְׁכֶם
   spelled: {hbo-Hebr/tiberian: [שְׁכֶם]}
+  forms:
+  - {form: שְׁכֶמָ, before: {startsIn: "ה"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [שְׁכֶמָ]}}
 - id: lexeme:shem
   pos: NOUN
   gloss: {en: name}
   image: {file: ../../courses/images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: שֵׁם
+  classes: [construct-same]
   spelled: {hbo-Hebr/tiberian: [שֵׁם]}
   forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [שֵׁם]}, status: pinned}
+  - {feats: {Number: Sing}, form: שְׁמִ, before: {startsIn: "י"}, status: pinned}
+  - {feats: {Number: Sing}, form: שְׁמֶ, before: {startsIn: "ך\u05B8"}, status: pinned}
+  - {feats: {Number: Sing}, form: שְׁמ, before: {startsIn: "ـ"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [שְׁמ, שְׁמֶ, שְּׁמֶ, שְׁמִ]}}
 - id: lexeme:sheqer
   pos: NOUN
   gloss: {en: 'lie, falsehood (עֵד שָׁקֶר: a false witness)'}
+  form: שֶׁקֶר
   spelled: {hbo-Hebr/tiberian: [שֶׁקֶר]}
+  forms:
+  - {feats: {Number: Sing}, form: שֶׁקֶר, status: pinned, free: true}
+  - {feats: {Number: Sing}, form: שָׁקֶר, status: pinned, free: true}
 - id: lexeme:shevet
   pos: NOUN
   gloss: {en: rod; staff; tribe}
+  form: שֵׁבֶט
   spelled: {hbo-Hebr/tiberian: [שֵׁבֶט]}
+  forms:
+  - {feats: {Number: Sing}, form: שִׁבְטְ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:shinnen
   pos: VERB
   gloss: {en: 'to repeat, say again and again (piel)'}
+  form: {radicals: [שׁ, נ, נ], form: piel, vowels: {perf: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [שִׁנֵּן]}
   forms:
   - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וְשִׁנַּנְתָּ]}, status: pinned}
+  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '2', Tense: Fut, VerbForm: Fin}, form: וְשִׁנַּנְתָּ, before: {startsIn: "ם"}, status: pinned}
 - id: lexeme:shmuel
   pos: PROPN
   gloss: {en: Samuel}
+  form: שְׁמוּאֵל
   spelled: {hbo-Hebr/tiberian: [שְׁמוּאֵל]}
 - id: lexeme:shnayim
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: 'two (שְׁנֵיהֶם: the two of them)'}
+  form: שְׁנַיִם
   spelled: {hbo-Hebr/tiberian: [שְׁנַיִם]}
+  forms:
+  - {form: שְׁנַיִם, status: pinned, free: true}
+  - {form: שְׁנָיִם, status: pinned, free: true}
+  - {form: שְׁתַּיִם, status: pinned, free: true}
+  - {form: שְׁנֵי, before: {startsIn: "ם"}, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [שְׁנֵי]}}
   - {spelled: {hbo-Hebr/tiberian: [שְׁתַּיִם]}}
 - id: lexeme:shoqet
   pos: NOUN
   gloss: {en: watering trough}
+  form: שֹׁקֶת
   spelled: {hbo-Hebr/tiberian: [שֹׁקֶת]}
 - id: lexeme:shovev
   pos: VERB
   gloss: {en: 'to restore, bring back (polel of שׁוּב)'}
+  form: {radicals: [שׁ, ו, ב], form: polel, source: course}
   spelled: {hbo-Hebr/tiberian: [שׁוֹבֵב]}
-  forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יְשׁוֹבֵב]}, status: pinned}
 - id: lexeme:shuv
   pos: VERB
   gloss: {en: 'to return, go back, turn back'}
+  form: {radicals: [שׁ, ו, ב], form: qal, vowels: {perf: aa, impf: u, inf: u}, source: course}
+  citation: {VerbForm: Inf}
   spelled: {hbo-Hebr/tiberian: [שׁוּב]}
-  forms:
-  - {feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [שָׁבָה]}, status: pinned}
-  - {feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [שׁוּבִי]}, status: pinned}
-  - {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַתָּשָׁב]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Plur, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [שׁוּבוּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [שׁוּב]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [שׁוּב]}, status: pinned}
 - id: lexeme:siggar
   pos: VERB
   gloss: {en: 'to deliver up, hand over (piel)'}
+  form: {radicals: [ס, ג, ר], form: piel, vowels: {perf: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [סִגֵּר]}
   forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יְסַגֶּרְ]}, status: pinned}
+  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Sing, Person: '3', VerbForm: Fin}, form: יְסַגֶּרְ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:sim
   pos: VERB
   gloss: {en: 'to put, set, place'}
+  form: {radicals: [שׂ, י, מ], form: qal, vowels: {perf: aa, impf: i, inf: u}, source: deduced, basis: 'the infinitive שׂוּם beside the imperfect יָשִׂים (JM § 80)'}
+  citation: {VerbForm: Inf}
   spelled: {hbo-Hebr/tiberian: [שׂוּם]}
   forms:
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יָשֵׂם]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: יָשֵׂם, status: pinned}
 - id: lexeme:sur
   pos: VERB
   gloss: {en: to turn aside}
+  form: {radicals: [ס, ו, ר], form: qal, vowels: {perf: aa, impf: u, inf: u}, source: course}
+  citation: {VerbForm: Inf}
   spelled: {hbo-Hebr/tiberian: [סוּר]}
   forms:
   - {feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אָסֻרָה]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}, form: אָסֻרָה, status: pinned}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [סָר]}}
 - id: lexeme:taah
   pos: VERB
   gloss: {en: 'to wander, go astray'}
+  form: {radicals: [ת, ע, ה], form: qal, source: course}
   spelled: {hbo-Hebr/tiberian: [תָּעָה]}
-  forms:
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [תֹעֶה]}, status: pinned}
 - id: lexeme:tahat
   pos: ADP
   gloss: {en: 'under, beneath; instead of'}
+  form: תַחַת
   spelled: {hbo-Hebr/tiberian: [תַּחַת]}
 - id: lexeme:tarshish
   pos: PROPN
   feats: {Gender: Fem}
   gloss: {en: Tarshish (a far port to the west)}
+  form: תַרְשִׁישׁ
   spelled: {hbo-Hebr/tiberian: [תַּרְשִׁישׁ]}
+  forms:
+  - {form: תַרְשִׁישָׁ, before: {startsIn: "ה"}, status: pinned}
 - id: lexeme:tehom
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: 'the deep, the primeval ocean'}
+  form: תְהוֹם
   spelled: {hbo-Hebr/tiberian: [תְּהוֹם]}
 - id: lexeme:tohu
   pos: NOUN
   gloss: {en: 'formlessness, emptiness; a waste'}
+  form: תֹהוּ
   spelled: {hbo-Hebr/tiberian: [תֹּהוּ]}
 - id: lexeme:tokh
   pos: NOUN
   gloss: {en: 'middle (בְּתוֹךְ: in the middle of, among)'}
+  form: תָוֶך
   spelled: {hbo-Hebr/tiberian: [תָּוֶךְ]}
   forms:
-  - {feats: {Definite: Cons, Number: Sing}, spelled: {hbo-Hebr/tiberian: [תוֹךְ, תּוֹךְ]}, status: pinned}
+  - {feats: {Definite: Cons, Number: Sing}, form: תוֹך, status: pinned}
 - id: lexeme:tov
   pos: ADJ
   gloss: {en: good; well}
   image: {file: ../../courses/images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: טוֹב
   spelled: {hbo-Hebr/tiberian: [טוֹב]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {hbo-Hebr/tiberian: [טוֹבָה]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Plur}, spelled: {hbo-Hebr/tiberian: [טוֹבִים]}, status: pinned}
 - id: lexeme:tsaaq
   pos: VERB
   gloss: {en: to cry out}
+  form: {radicals: [צ, ע, ק], form: qal, vowels: {perf: a, impf: a}, source: deduced, basis: 'the imperfect יִצְעַק (JM § 44c)'}
   spelled: {hbo-Hebr/tiberian: [צָעַק]}
-  forms:
-  - {feats: {Gender: Masc, Number: Plur, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [צֹעֲקִים]}, status: pinned}
 - id: lexeme:tsalmawet
   pos: NOUN
   feats: {Gender: Masc}
   gloss: {en: deep darkness (traditionally 'the shadow of death')}
+  form: צַלְמָוֶת
   spelled: {hbo-Hebr/tiberian: [צַלְמָוֶת]}
 - id: lexeme:tsava
   pos: NOUN
   gloss: {en: 'army, host (יְהוָה צְבָאוֹת: the LORD of hosts)'}
+  form: צָבָא
   spelled: {hbo-Hebr/tiberian: [צָבָא]}
   forms:
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [צְבָאוֹת]}, status: pinned}
+  - {feats: {Number: Plur}, form: צְבָאוֹת, status: pinned}
 - id: lexeme:tsedeq
   pos: NOUN
   gloss: {en: 'righteousness; what is right, justice'}
+  form: צֶדֶק
   spelled: {hbo-Hebr/tiberian: [צֶדֶק]}
 - id: lexeme:tsivvah
   pos: VERB
   gloss: {en: to command (piel)}
+  form: {radicals: [צ, ו, ה], form: piel, source: course}
   spelled: {hbo-Hebr/tiberian: [צִוָּה]}
   forms:
-  - {feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [צִוִּיתִי]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיְצַו]}, status: pinned}
   - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [מְצַוְּ]}, status: pinned}
+  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, form: מְצַוְּ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:tson
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: flock; sheep and goats}
+  form: צֹאן
   spelled: {hbo-Hebr/tiberian: [צֹאן]}
 - id: lexeme:we
   pos: CCONJ
   gloss: {en: and (written joined to the next word)}
   notes: {en: 'וְ wə- is written on the word it joins: וְחֹשֶׁךְ ''and darkness''. Before a stressed first syllable it is often וָ wā- (יוֹם וָלַיְלָה), before b, m, p and a shewa וּ û-.'}
+  form: וְ
   spelled: {hbo-Hebr/tiberian: [וְ]}
 - id: lexeme:yaaqov
   pos: PROPN
   gloss: {en: Jacob}
+  form: יַעֲקֹב
   spelled: {hbo-Hebr/tiberian: [יַעֲקֹב]}
 - id: lexeme:yabbashah
   pos: NOUN
   gloss: {en: dry land}
+  form: יַבָּשָׁה
   spelled: {hbo-Hebr/tiberian: [יַבָּשָׁה]}
 - id: lexeme:yad
   pos: NOUN
   feats: {Gender: Fem}
   gloss: {en: hand}
   image: {file: ../../courses/images/hand.svg, license: CC0-1.0, provenance: {author: 'llm:claude@b081ec947041', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: יָד
   spelled: {hbo-Hebr/tiberian: [יָד]}
 - id: lexeme:yada
   pos: VERB
   gloss: {en: to know}
+  form: {radicals: [י, ד, ע], form: qal, vowels: {perf: a, impf: a, pfx: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [יָדַע]}
   forms:
-  - {feats: {Aspect: Imp, Gender: Masc, Mood: Ind, Number: Plur, Person: '3', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יֵדְעוּ]}, status: pinned}
   - {feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [נֵדְעָה]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Fem, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יָדַעַתְּ]}, status: pinned}
-  - {feats: {Aspect: Perf, Gender: Masc, Mood: Ind, Number: Sing, Person: '2', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יָדַעְתָּ]}, status: pinned}
-  - {feats: {Aspect: Perf, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [יָדַעְתִּי]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Opt, VerbForm: Fin}, form: נֵדְעָה, status: pinned}
 - id: lexeme:yafo
   pos: PROPN
   feats: {Gender: Fem}
   gloss: {en: Joppa (Jaffa)}
+  form: יָפוֹ
   spelled: {hbo-Hebr/tiberian: [יָפוֹ]}
 - id: lexeme:yahdav
   pos: ADV
   gloss: {en: together}
+  form: יַחַד
   spelled: {hbo-Hebr/tiberian: [יַחַד]}
+  forms:
+  - {form: יַחַד, status: pinned, free: true}
+  - {form: יַחְדָּו, status: pinned, free: true}
   allomorphs:
   - {spelled: {hbo-Hebr/tiberian: [יַחְדָּו]}}
 - id: lexeme:yahid
   pos: ADJ
   gloss: {en: 'only, only one'}
+  form: יָחִיד
   spelled: {hbo-Hebr/tiberian: [יָחִיד]}
+  forms:
+  - {feats: {Gender: Masc, Number: Sing}, form: יְחִידְ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:yalad
   pos: VERB
   gloss: {en: 'to bear, give birth; (passive participle) born, a child'}
+  form: {radicals: [י, ל, ד], form: qal, vowels: {perf: a, impf: ee, pfx: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [יָלַד]}
-  forms:
-  - {feats: {Gender: Fem, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַתֵּלֶד]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part, Voice: Pass}, spelled: {hbo-Hebr/tiberian: [יָּלוּד]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [לֶדֶת]}, status: pinned}
 - id: lexeme:yam
   pos: NOUN
   gloss: {en: sea}
   image: {file: ../../courses/images/waves.svg, license: CC0-1.0, provenance: {author: 'llm:claude@waves-2026-11-22', status: draft}, source: Drawn for Nabu (courses/images)}
+  form: יָם
   spelled: {hbo-Hebr/tiberian: [יָם]}
 - id: lexeme:yarad
   pos: VERB
   gloss: {en: 'to go down, come down'}
+  form: {radicals: [י, ר, ד], form: qal, vowels: {perf: a, impf: ee, pfx: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [יָרַד]}
-  forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיֵּרֶד]}, status: pinned}
 - id: lexeme:yare
   pos: VERB
   gloss: {en: 'to fear, be afraid; (adjective) fearing'}
+  form: {radicals: [י, ר, א], form: qal, vowels: {perf: ee, impf: aa, pfx: i}, source: course}
   spelled: {hbo-Hebr/tiberian: [יָרֵא]}
   forms:
-  - {feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1', VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [אִירָא]}, status: pinned}
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תִּירָא]}, status: pinned}
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תִּירָאוּ]}, status: pinned}
   - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [תִּירְאִי]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [יָרֵא]}, status: pinned}
   - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וָאִירָא]}, status: pinned}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: תִירָא, status: pinned, free: true}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: תִירְאִי, status: pinned, free: true}
+  - {feats: {Aspect: Imp, Mood: Jus, VerbForm: Fin}, form: תִירָאוּ, status: pinned, free: true}
+  - {feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, form: וָאִירָא, status: pinned}
 - id: lexeme:yashav
   pos: VERB
   gloss: {en: 'to sit; to dwell, live'}
+  form: {radicals: [י, שׁ, ב], form: qal, vowels: {perf: a, impf: ee, pfx: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [יָשַׁב]}
   forms:
-  - {feats: {Gender: Fem, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [יֹשֶׁבֶת]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיֵּשֶׁב]}, status: pinned}
-  - {feats: {Gender: Masc, Number: Sing, VerbForm: Part}, spelled: {hbo-Hebr/tiberian: [יֹשֵׁב]}, status: pinned}
-  - {feats: {VerbForm: Inf}, spelled: {hbo-Hebr/tiberian: [שִׁבְתְּ]}, status: pinned}
+  - {feats: {VerbForm: Inf}, form: שִׁבְתְּ, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:yatsa
   pos: VERB
   gloss: {en: 'to go out, come out'}
+  form: {radicals: [י, צ, א], form: qal, vowels: {perf: aa, impf: ee, pfx: ee}, source: course}
   spelled: {hbo-Hebr/tiberian: [יָצָא]}
-  forms:
-  - {feats: {Gender: Masc, Mood: Ind, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיֵּצְאוּ]}, status: pinned}
-  - {feats: {Gender: Masc, Mood: Ind, Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, spelled: {hbo-Hebr/tiberian: [וַיֵּצֵא]}, status: pinned}
 - id: lexeme:yeled
   pos: NOUN
   gloss: {en: 'child, boy'}
+  form: יֶלֶד
   spelled: {hbo-Hebr/tiberian: [יֶלֶד]}
 - id: lexeme:yesh
   pos: VERB
   gloss: {en: 'there is, there are'}
+  form: יֵשׁ
   spelled: {hbo-Hebr/tiberian: [יֵשׁ]}
 - id: lexeme:yevemet
   pos: NOUN
   gloss: {en: sister-in-law (a brother's widow; a husband's brother's wife)}
+  form: יְבֵמֶת
   spelled: {hbo-Hebr/tiberian: [יְבֵמֶת]}
+  forms:
+  - {feats: {Number: Sing}, form: יְבִמְתֵּ, before: {startsIn: "ך"}, status: pinned}
 - id: lexeme:yhwh
   pos: PROPN
   feats: {Gender: Masc}
   gloss: {en: the LORD (the name of Israel's God)}
   notes: {en: 'The four letters YHWH are not read as written: the Masoretes read the word אֲדֹנָי ʾăḏōnāy, ''my Lord'', and gave the letters its vowels. The course''s reading and audio say ʾăḏōnāy, as the Tiberian readers did.'}
+  form: יְהוָה
+  classes: [qere-adonay]
   spelled: {hbo-Hebr/tiberian: [יְהוָה]}
+  forms:
+  - {form: יְהוָה, status: pinned, free: true}
+  - {form: יְהֹוָה, status: pinned, free: true}
 - id: lexeme:yisrael
   pos: PROPN
   gloss: {en: Israel (Jacob's other name; the people)}
+  form: יִשְׂרָאֵל
   spelled: {hbo-Hebr/tiberian: [יִשְׂרָאֵל]}
 - id: lexeme:yitshaq
   pos: PROPN
   gloss: {en: Isaac}
+  form: יִצְחָק
   spelled: {hbo-Hebr/tiberian: [יִצְחָק]}
 - id: lexeme:yom
   pos: NOUN
   gloss: {en: day; daytime}
+  form: יוֹם
   spelled: {hbo-Hebr/tiberian: [יוֹם]}
   forms:
   - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [יָמֶי]}, status: pinned}
-  - {feats: {Number: Plur}, spelled: {hbo-Hebr/tiberian: [יָמִים]}, status: pinned}
+  - {feats: {Number: Plur}, form: יָמִים, status: pinned}
+  - {feats: {Number: Plur}, form: יָמֶי, before: {startsIn: "ך\u05B8"}, status: pinned}
 - id: lexeme:yonah
   pos: PROPN
   feats: {Gender: Masc}
   gloss: {en: Jonah}
+  form: יוֹנָה
   spelled: {hbo-Hebr/tiberian: [יוֹנָה]}
 - id: lexeme:yosef
   pos: PROPN
   gloss: {en: Joseph}
+  form: יוֹסֵף
   spelled: {hbo-Hebr/tiberian: [יוֹסֵף]}
 - id: lexeme:zeh
   pos: DET
   feats: {PronType: Dem}
   gloss: {en: this (m.)}
+  form: זֶה
   spelled: {hbo-Hebr/tiberian: [זֶה]}
 - id: lexeme:zeman
   pos: NOUN
   gloss: {en: 'appointed time, season'}
+  form: זְמָן
   spelled: {hbo-Hebr/tiberian: [זְמָן]}
 - id: lexeme:zot
   pos: DET
   feats: {PronType: Dem}
   gloss: {en: this (f.); this thing}
+  form: זֹאת
+  citation: {Gender: Fem, Number: Sing}
   spelled: {hbo-Hebr/tiberian: [זֹאת]}
-  forms:
-  - {feats: {Gender: Fem, Number: Sing}, spelled: {hbo-Hebr/tiberian: [זֹּאת, זֹאת]}, status: pinned}
