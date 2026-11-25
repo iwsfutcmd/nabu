@@ -962,6 +962,7 @@ export interface NabuSchemaIndex {
   readonly KeyboardLayout: KeyboardLayout;
   readonly LanguageDeclaration: LanguageDeclaration;
   readonly Notation: Notation;
+  readonly Prosody: Prosody;
   readonly RootClass: RootClass;
   readonly Stem: Stem;
   readonly StemChoice: StemChoice;
@@ -3691,12 +3692,63 @@ export interface Notation {
    * The marks a letter may carry, in the order the notation names them (a shadda before the vowel), as a UnicodeSet. NFC orders marks by their combining class; a form is read in NFC with each run of marks put in this order (a mark NFC composes into its letter stays part of it), so a rule's pattern is written as the notation is, and the result is NFC again.
    */
   readonly order?: string;
+  readonly prosody?: Prosody;
   /**
    * Named sets of letters or marks a `spell` rule refers to as {name} (C: a consonant letter).
    */
   readonly sets: {
     readonly [k: string]: string;
   };
+  /**
+   * What a reviewer should know, by support language.
+   */
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * What an accent rule (a rewrite's `accent`) reads of a lexical form: its syllables' nuclei, their length and the accent marks. Each letter is read as its canonical decomposition: a base letter and marks (Greek ά is α and an acute).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Prosody".
+ */
+export interface Prosody {
+  /**
+   * The base letters a syllable's nucleus is, as a UnicodeSet.
+   */
+  readonly vowels: string;
+  /**
+   * Vowels long whatever their marks (Greek η, ω).
+   */
+  readonly long?: string;
+  /**
+   * Marks that make a vowel long (a macron, the iota subscript, a circumflex).
+   */
+  readonly lengthen?: string;
+  /**
+   * Pairs of base letters, as a UnicodeSet of strings ({αι}), that make one long nucleus where the second follows the first in one morpheme with no mark of `apart`.
+   */
+  readonly diphthongs?: string;
+  /**
+   * Marks on a second vowel that keep it out of a diphthong (a diaeresis, a length mark).
+   */
+  readonly apart?: string;
+  /**
+   * Diphthongs counted short where nothing follows them in the word (Greek final -αι, -οι: CGCG 24.10).
+   */
+  readonly shortAtEnd?: string;
+  /**
+   * The acute's mark.
+   */
+  readonly acute: string;
+  /**
+   * The circumflex's mark.
+   */
+  readonly circumflex: string;
+  /**
+   * A letter of the notation (never spelled) before which a recessive accent recedes no further than one syllable: a compound verb's preverb, and the augment.
+   */
+  readonly limit?: string;
   /**
    * What a reviewer should know, by support language.
    */
@@ -3754,6 +3806,12 @@ export interface RealisationRule {
   readonly id: RuleId;
   readonly when: Condition2;
   readonly stem?: StemChoice;
+  /**
+   * The endings a lexical form that is a string is cited with, of which the rule's blocks put another in place (Greek λόγος, -ος: λογ-): the first the form ends in is taken off before the blocks, and the rule realises the citation cell too (it is a realisation, ADR 0154). A form that ends in none is not realised by the rule.
+   *
+   * @minItems 1
+   */
+  readonly strip?: readonly string[];
   readonly blocks: readonly AffixBlock[];
   readonly notes?: {
     readonly [k: string]: string;
@@ -3787,7 +3845,14 @@ export interface Exponent {
 export interface Rewrite {
   readonly id: RuleId;
   readonly branch?: Branch1;
-  readonly find: string;
+  /**
+   * Required, but for an accent rule (`accent`).
+   */
+  readonly find?: string;
+  /**
+   * In place of `find`: a rule that places the word's pitch accent by the notation's `prosody`, counting syllables from the word's end (Greek, CGCG 24). recessive: every accent goes, and an acute stands as far from the end as the last syllable allows (the third syllable, or the second where the last is long), no further back than the last syllable before the notation's `limit`; a long second-to-last syllable before a short last takes the circumflex. persistent: the form's last accent stays on its syllable as far as the last syllable allows (else on the third, or the second, from the end), every other accent goes; on the second-to-last syllable it is a circumflex where that is long and the last short, an acute where not; a form with no accent is left so. oxytone: a form with no accent takes an acute on its last syllable. ultima: every accent goes, and the last syllable takes a circumflex where it is long, an acute where it is short. Taken where it changes the form.
+   */
+  readonly accent?: "recessive" | "persistent" | "oxytone" | "ultima";
   readonly to?: string;
   readonly map?: {
     readonly [k: string]: string;
@@ -5704,6 +5769,10 @@ export interface Spell {
    */
   readonly boundaries?: boolean;
   /**
+   * true: the rules read the form decomposed (NFD), each letter's marks apart from it and in the notation's `order`, so a rule can find a mark that NFC composes into its letter (Greek ά: α and an acute); the spelling is NFC again.
+   */
+  readonly decompose?: boolean;
+  /**
    * Named sets of this statement's own, beside the notation's.
    */
   readonly sets?: {
@@ -6000,6 +6069,10 @@ export interface Spell1 {
    * true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first.
    */
   readonly boundaries?: boolean;
+  /**
+   * true: the rules read the form decomposed (NFD), each letter's marks apart from it and in the notation's `order`, so a rule can find a mark that NFC composes into its letter (Greek ά: α and an acute); the spelling is NFC again.
+   */
+  readonly decompose?: boolean;
   /**
    * Named sets of this statement's own, beside the notation's.
    */

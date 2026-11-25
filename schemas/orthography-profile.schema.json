@@ -1252,6 +1252,10 @@
       "properties": {
         "from": { "description": "What is spelled: a lexeme's lexical form, in its language's notation.", "const": "lexical" },
         "boundaries": { "description": "true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first.", "type": "boolean" },
+        "decompose": {
+          "description": "true: the rules read the form decomposed (NFD), each letter's marks apart from it and in the notation's `order`, so a rule can find a mark that NFC composes into its letter (Greek ά: α and an acute); the spelling is NFC again.",
+          "type": "boolean"
+        },
         "sets": {
           "description": "Named sets of this statement's own, beside the notation's.",
           "type": "object",

@@ -11,8 +11,9 @@ id: grc-Grek/polytonic
 lang: grc-Grek
 exemplars: cldr:el
 # REVIEW: what CLDR 49's Modern Greek exemplars (polytonic letters are its auxiliary set) lack for Attic prose:
-# the ano teleia (U+0387, NFC U+00B7) and the elision apostrophe, and the letters filled in by the course build.
-exemplarsExtra: ["\u00b7", "\u2019", "ὀ", "ὁ", "ὅ", "ᾳ", "ᾷ", "ῃ", "ῇ", "ῲ", "ῴ", "ῷ"]
+# the ano teleia (U+0387, NFC U+00B7) and the elision apostrophe, and the letters filled in by the course build; ῳ, ὠ,
+# ᾠ, ᾤ and ῄ, which the rules' forms write (ἀνθρώπῳ, ὠφείλησα, ᾠήθην: docs/rules/grc.md).
+exemplarsExtra: ["\u00b7", "\u2019", "ὀ", "ὁ", "ὅ", "ᾳ", "ᾷ", "ῃ", "ῇ", "ῲ", "ῴ", "ῷ", "ῳ", "ὠ", "ᾠ", "ᾤ", "ῄ"]
 segmentation: { content: hand-pinned, runtime: grapheme }
 normalize:
   - nfc
@@ -60,6 +61,53 @@ match:
 # second spelling of one sound).
 sound: { from: spelling }
 correspondences: []
+# How this orthography writes a lexical form (docs/rules-design.md, section 3; docs/rules/grc.md), read by the compiler
+# only. The form is read decomposed: each letter and its marks apart (ά is α and an acute), in the notation's order. The
+# spelling drops the notation's own signs (the augment's "-", a vowel's length) and writes the movable ν; the free
+# spellings (`alternatives`) are what a word becomes beside the next one in a sentence, which a token writes and a
+# lexical form never says: a final acute written grave (CGCG 24.2), an enclitic's or a proclitic's accent written
+# (24.33-24.39), a word before an enclitic taking a second accent (24.38), a final short vowel elided (24.40, 1.34-1.38),
+# the movable ν left out (1.39), and words of the course written otherwise before a vowel or in a clause of their own
+# (οὐκ, οὐχ; ἐξ; ἔστι: 24.34 n.1; ἐνταυθοῖ). Every rule and alternative is REVIEW. Grading never reads them: the profile's
+# `equivalences` (the grave) and `marks` policy are what it reads.
+spell:
+  from: lexical
+  decompose: true
+  sets:
+    # V a vowel letter, C a consonant, M a mark; NV what is no vowel (a consonant or a mark); EO, AI the short vowels a
+    # word may elide (α and ι marked short); ACU the acute.
+    V: "[αεηιουωΑΕΗΙΟΥΩ]"
+    C: "[βγδζθκλμνξπρσςτφχψΒΓΔΖΘΚΛΜΝΞΠΡΣΤΦΧΨ]"
+    M: "[\u0300-\u036f]"
+    NV: "[βγδζθκλμνξπρσςτφχψΒΓΔΖΘΚΛΜΝΞΠΡΣΤΦΧΨ\u0300-\u036f]"
+    EO: "[εο]"
+    AI: "[αι]"
+    ACU: "[\u0301]"
+  rules:
+    # The augment's place (the notation's "-") is not written.
+    - {find: "-", to: ""}
+    # Words of the course written otherwise before what follows them (CGCG 24.34-24.36): οὐ as οὐκ before a smooth
+    # breathing, οὐχ before a rough one; ἐκ as ἐξ before a vowel; ἐστι(ν) as ἔστι(ν) where it begins its clause or
+    # means "there is" (24.34 n.1); ἐνταῦθα and ἐνταυθοῖ (thither) are one lexeme of the course (REVIEW: two words).
+    - {find: "^οὒ$", to: "οὒ", alternatives: [{id: ouk, to: "οὐκ"}, {id: ouk, to: "οὐχ"}]}
+    - {find: "^ἐκ$", to: "ἐκ", alternatives: [{id: ek, to: "ἐξ"}]}
+    - {find: "^ἐστῐ̀\\(ν\\)$", to: "ἐστῐ̀(ν)", alternatives: [{id: esti, to: "ἔστῐ(ν)"}]}
+    - {find: "^ἐνταῦθᾰ$", to: "ἐνταῦθᾰ", alternatives: [{id: entauthoi, to: "ἐνταυθοῖ"}]}
+    # The accent an enclitic or a proclitic has only where the sentence calls for it (the notation's grave) is not
+    # written, or written as an acute.
+    - {find: "\u0300", to: "", alternatives: [{id: accented, to: "\u0301"}]}
+    # A final short vowel (ε, ο, ᾰ, ῐ) may be elided before a vowel, with its accent (CGCG 24.40): ’.
+    - {find: "{EO}{ACU}?$", to: "{EO}{ACU}", alternatives: [{id: elision, to: "’"}]}
+    - {find: "{AI}\u0306{ACU}?$", to: "{AI}\u0306{ACU}", alternatives: [{id: elision, to: "’"}]}
+    # The movable ν is written, or not.
+    - {find: "\\(ν\\)", to: "ν", alternatives: [{id: nu, to: ""}]}
+    # A vowel's length is not written.
+    - {find: "[\u0304\u0306]", to: ""}
+    # Before an enclitic, a word with an acute on its third syllable from the end, or a circumflex on its second, takes
+    # an acute on its last too (CGCG 24.38).
+    - {find: "{V}", after: "(\u0301{M}*{C}*{V}{M}*({V}{M}*)?{C}{C}*({V}{M}*)?|\u0342{M}*{C}*({V}{M}*)?)", before: "{NV}*$", to: "{V}", alternatives: [{id: enclitic, to: "{V}\u0301"}]}
+    # A final acute is written grave before another word (CGCG 24.2).
+    - {find: "\u0301", before: "{NV}*$", to: "\u0301", alternatives: [{id: grave, to: "\u0300"}]}
 input:
   keyboard: cldr-kbd:el
 layout: { vertical: none }

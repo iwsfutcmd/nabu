@@ -32,6 +32,7 @@ import {
   type Pattern,
   type Unit,
 } from "./realise-pattern.ts";
+import { accentuate, compileProsody, type AccentMode, type CompiledProsody } from "./accent.ts";
 
 type Condition = RealisationRule["when"];
 
@@ -137,8 +138,10 @@ export interface CompiledLanguage {
   readonly rules: readonly CompiledRule[];
   /** Each lexeme's own values (`Condition.own`): what its entry stores, else what a default gives. */
   readonly own: ReadonlyMap<string, UdFeatures>;
-  /** The rewrite rules, in order, each with the condition on the token's base it holds of (`when`). */
-  readonly phonology: readonly { readonly rewrite: CompiledRewrite; readonly when: Condition | undefined }[];
+  /** The rewrite rules, in order, each with the condition on the token's base it holds of (`when`); an accent rule has `accent` in place of `rewrite`. */
+  readonly phonology: readonly { readonly rewrite?: CompiledRewrite; readonly accent?: { readonly id: RuleId; readonly branch: string | undefined; readonly mode: AccentMode }; readonly when: Condition | undefined }[];
+  /** The notation's prosody, where it declares one (accent rules read it). */
+  readonly prosody?: CompiledProsody;
   /** Patterns of conditions (`endsIn`), compiled once. */
   readonly patterns: ReadonlyMap<string, Pattern>;
 }
@@ -239,6 +242,12 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
   const notationResult = compileNotation(declared.notation);
   if (!notationResult.ok) return err(notationResult.error);
   const notation = notationResult.value;
+  let prosody: CompiledProsody | undefined;
+  if (declared.notation?.prosody !== undefined) {
+    const made = compileProsody(declared.notation.prosody);
+    if (made.ok) prosody = made.value;
+    else errors.push(...made.error);
+  }
   const pattern = (where: string, text: string): Pattern | undefined => {
     const compiled = compilePattern(text, notation);
     if (!compiled.ok) {
@@ -343,9 +352,21 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
     ruleIds.add(r.source.id);
   }
 
-  const phonology: { rewrite: CompiledRewrite; when: Condition | undefined }[] = [];
+  const phonology: { rewrite?: CompiledRewrite; accent?: { id: RuleId; branch: string | undefined; mode: AccentMode }; when: Condition | undefined }[] = [];
   (declared.phonology ?? []).forEach((rw, n) => {
     const where = `phonology[${n}] ${rw.id}${rw.branch === undefined ? "" : `|${rw.branch}`}`;
+    if (rw.accent !== undefined) {
+      // An accent rule: it reads the notation's prosody, and has no pattern of its own.
+      if (rw.find !== undefined || rw.to !== undefined || rw.map !== undefined || rw.before !== undefined || rw.after !== undefined || rw.at !== undefined) errors.push(`${where}: an accent rule has no find, to, map, before, after or at`);
+      if (declared.notation?.prosody === undefined) errors.push(`${where}: an accent rule needs the notation's prosody`);
+      conditionPatterns(where, rw.when);
+      phonology.push({ accent: { id: rw.id, branch: rw.branch, mode: rw.accent }, when: rw.when });
+      return;
+    }
+    if (rw.find === undefined) {
+      errors.push(`${where}: a rewrite has \`find\`, or is an accent rule`);
+      return;
+    }
     const find = pattern(where, rw.find);
     const to = rw.to === undefined ? undefined : pattern(where, rw.to);
     const contexts = (c: string | readonly string[] | undefined): Pattern[] => (c === undefined ? [] : typeof c === "string" ? [c] : c).map((p) => pattern(where, p)).filter((p): p is Pattern => p !== undefined);
@@ -367,7 +388,7 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
   if (errors.length > 0) return err(errors);
   const own = new Map<string, UdFeatures>();
   for (const lexeme of lexicon.lexemes) own.set(lexeme.id, ownOf(declared, lexeme));
-  return ok({ declared, notation, lexemes, rootClasses, stems, rules, own, phonology, patterns });
+  return ok({ declared, notation, lexemes, rootClasses, stems, rules, own, phonology, patterns, ...(prosody !== undefined && { prosody }) });
 };
 
 // ------------------------------------------------------------------------------------------------
@@ -529,10 +550,13 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
   // citation cell the rules realise as any other.
   const form = lexeme.form;
   const citation = lexeme.citation ?? (lexeme.pos === undefined ? undefined : lang.declared.citation?.[lexeme.pos]);
-  const isCitation = Object.entries(cell).every(([k, v]) => citation?.[k] === v);
+  const rule = lang.rules.find((r) => conditionHolds(lang, r.source.when, lexeme, cell, blocking));
+  // A rule that takes off the ending the form is cited with (`strip`: grc's λόγος, -ος) realises the
+  // citation cell too, as `stemmed` has a category's realised.
+  const strips = winner?.stem === undefined && typeof form === "string" && rule?.source.strip !== undefined;
+  const isCitation = !strips && Object.entries(cell).every(([k, v]) => citation?.[k] === v);
   const stemmed = lexeme.pos !== undefined && (lang.declared.stemmed ?? []).includes(lexeme.pos);
   if (winner?.stem === undefined && typeof form === "string" && isCitation && lexeme.pos !== undefined && !stemmed) return ok({ units: unitsOf(form), status: "given", steps: [], whole: false, lexeme });
-  const rule = lang.rules.find((r) => conditionHolds(lang, r.source.when, lexeme, cell, blocking));
   if (rule === undefined) {
     // No rule: a stem in its citation cell; an affix's own form, always.
     if (winner?.stem !== undefined) return isCitation ? ok({ units: unitsOf(winner.stem), status: winner.status, steps: [], whole: false, lexeme }) : err({ kind: "no-rule", cell });
@@ -556,8 +580,15 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
   if (winner?.stem !== undefined) {
     stem = winner.stem;
     status = winner.status;
-  } else if (typeof form === "string") stem = form;
-  else if (isRadical(form)) {
+  } else if (typeof form === "string") {
+    stem = form;
+    if (rule.source.strip !== undefined) {
+      const cited = form.normalize("NFC");
+      const ending = rule.source.strip.map((e) => e.normalize("NFC")).find((e) => cited.endsWith(e));
+      if (ending === undefined) return err({ kind: "form", lexeme: lexeme.id });
+      stem = cited.slice(0, cited.length - ending.length);
+    }
+  } else if (isRadical(form)) {
     if (stemChoice === undefined) return err({ kind: "template", stem: "", root: rootClassOf(lang, form.radicals) ?? "" });
     const made = stemOf(lang, stemChoice, form);
     if (!made.ok) return made;
@@ -590,8 +621,16 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
 const rewrite = (lang: CompiledLanguage, units: readonly Unit[], base: Lexeme, cell: UdFeatures, blocking: boolean): { readonly units: readonly Unit[]; readonly steps: readonly Step[] } => {
   let current = units;
   const steps: Step[] = [];
-  for (const { rewrite: rw, when } of lang.phonology) {
+  for (const { rewrite: rw, accent, when } of lang.phonology) {
     if (when !== undefined && !conditionHolds(lang, when, base, cell, blocking)) continue;
+    if (accent !== undefined) {
+      if (lang.prosody === undefined) continue;
+      const placed = accentuate(current, accent.mode, lang.prosody);
+      if (placed.changed) steps.push(accent.branch === undefined ? { rule: accent.id } : { rule: accent.id, branch: accent.branch });
+      current = placed.units;
+      continue;
+    }
+    if (rw === undefined) continue;
     const applied = applyRewrite(rw, current, lang.notation);
     if (applied.matched) steps.push(rw.branch === undefined ? { rule: rw.id } : { rule: rw.id, branch: rw.branch });
     current = applied.units;
