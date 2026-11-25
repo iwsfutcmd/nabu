@@ -234,7 +234,7 @@ const Problem = ({ t, problem }: { t: Translator; problem: ExplorerProblem }): J
 const Result = ({ t, result }: { t: Translator; result: Explored }): JSX.Element => {
   if (!result.ok)
     return (
-      <div className={styles.result} data-rules-result="error" data-error={result.error.kind}>
+      <div className={styles.result} data-rules-result="error" data-error={result.error.kind} data-ink-container="rules-result">
         <p className={styles.flat}>{t.format(ERROR_MESSAGES[result.error.kind])}</p>
         {result.error.details.length > 0 && (
           <p className={data.meta}>
@@ -246,7 +246,7 @@ const Result = ({ t, result }: { t: Translator; result: Explored }): JSX.Element
       </div>
     );
   return (
-    <div className={styles.result} data-rules-result="ok" data-status={result.status}>
+    <div className={styles.result} data-rules-result="ok" data-status={result.status} data-ink-container="rules-result">
       <p className={data.meta}>
         <span className={data.badge}>{t.format(STATUS_MESSAGES[result.status])}</span>
         {result.listed !== undefined && <Code value={result.listed} />}
@@ -461,7 +461,7 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
             {base === undefined ? (
               <LexemePicker t={t} explorer={explorer} label={t.format("rules.search")} field="rules-base" browse onPick={(l) => onRequest({ base: l.row.id.id, feats: {}, before: [], after: [], ...EXPLORE_DEFAULTS })} />
             ) : (
-              <div className={styles.chosen} data-base={base.row.id.id}>
+              <div className={styles.chosen} data-base={base.row.id.id} data-ink-container="rules-base">
                 <LexemeLine lexeme={base} />
                 <Button className={list.partsToggle} onPress={() => onRequest(undefined)} data-action="rules-change-base">
                   {t.format("rules.change")}
