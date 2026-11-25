@@ -28,7 +28,7 @@
   The 77 it kept are cells the rules alone do not give (a pinned form with a lexical form gives them): copies, for
   the owner to drop or keep.
 - **Paradigms** (bundle format 5): VERB 30 cells, ADJ 3, NOUN 2 (the citation and the construct singular); 229
-  lexemes, 3,219 spelled cells, each `[letters, pointed]`. The lexicon file grew from 268 to 390 KB (16 to 41 KB
+  lexemes, 3,219 spelled cells, each `[letters, pointed]`. The lexicon file grew from 268 to 390 KB (18 to 42 KB
   gzipped). `regularised` is shipped for one lexeme, הָלַךְ (its I-yod-like forms realised regularly: תַּהֲלֵךְ for
   תֵּלֵךְ, a learner's over-regularisation). No `form.spelling-script` warning.
 - **No `principalParts`.** JM (§ 40a n. 3) and Holladay cite a verb by its qatal 3ms, a hollow verb by its
@@ -118,7 +118,8 @@
 ## Engine and compiler changes
 
 Each was a commit of its own, then merged with chg's, sk's, es's, yue's, uz's and bar's (2026-11-25): one key and one
-mechanism per concept, as below. apc's, chg's, sk's and es's bundles come out byte for byte the same.
+mechanism per concept, as below. Every other course's bundle comes out byte for byte the same; hbo's gains its
+cells and paradigms.
 
 
 - **E1, a cell's free forms realised in a token** (realise.ts, core-cli, forms.py): `RealiseOptions.variant`
