@@ -6427,6 +6427,12 @@ class Spell(BaseModel):
             description="What is spelled: a lexeme's lexical form, in its language's notation.",
         ),
     ]
+    boundaries: Annotated[
+        bool | None,
+        Field(
+            description="true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first."
+        ),
+    ] = None
     sets: Annotated[
         dict[
             Annotated[str, StringConstraints(pattern=r"^[A-Za-z][A-Za-z0-9-]*$")], UnicodeSetPattern

@@ -1,0 +1,206 @@
+{
+  "$comment": "Spelling chg's lexical forms (docs/rules/chg.md): chg-Arab/standard's `spell` statement (profiles/chg-Arab.standard.yaml), run by @nabu/core over forms in chg's notation (lexicons/chg/language.yaml), realised ones with their boundaries (+), which the statement keeps for its rules (`boundaries: true`: where a suffix joins, after a half-space or not). spell/fixture/boundaries/* run a statement and notation of their own; spell/chg/* one vector or more per rule of chg-Arab/standard's statement, each a word of the course.",
+  "vectors": [
+    {
+      "id": "spell/fixture/boundaries/kept",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "boundaries": true,
+            "rules": [
+              {
+                "find": "\\+",
+                "after": "{C}",
+                "to": "",
+                "alternatives": [
+                  {
+                    "id": "hyphen",
+                    "to": "-"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "notation": {
+          "sets": {
+            "C": "[bcdfgklmnpqrstwz]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "kat+lar"
+      },
+      "expected": {
+        "spelling": "katlar",
+        "alternatives": [
+          {
+            "spelling": "kat-lar",
+            "by": [
+              "hyphen"
+            ]
+          }
+        ]
+      },
+      "note": "`boundaries: true`: a rule names the boundary (+) of a realised form (here: after a consonant, written joined or with a hyphen, freely); what is left of the boundaries is dropped after the rules."
+    },
+    {
+      "id": "spell/fixture/boundaries/not-there",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "boundaries": true,
+            "rules": [
+              {
+                "find": "\\+",
+                "after": "{C}",
+                "to": "",
+                "alternatives": [
+                  {
+                    "id": "hyphen",
+                    "to": "-"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "notation": {
+          "sets": {
+            "C": "[bcdfgklmnpqrstwz]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "kala+lar"
+      },
+      "expected": {
+        "spelling": "kalalar",
+        "alternatives": []
+      },
+      "note": "A boundary no rule names (after a vowel) is dropped after the rules, as it would have been before them."
+    },
+    {
+      "id": "spell/fixture/boundaries/each-place",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "boundaries": true,
+            "rules": [
+              {
+                "find": "\\+",
+                "after": "{C}",
+                "to": "",
+                "alternatives": [
+                  {
+                    "id": "hyphen",
+                    "to": "-"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "notation": {
+          "sets": {
+            "C": "[bcdfgklmnpqrstwz]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "kat+lar+dan"
+      },
+      "expected": {
+        "spelling": "katlardan",
+        "alternatives": [
+          {
+            "spelling": "katlar-dan",
+            "by": [
+              "hyphen"
+            ]
+          },
+          {
+            "spelling": "kat-lardan",
+            "by": [
+              "hyphen"
+            ]
+          },
+          {
+            "spelling": "kat-lar-dan",
+            "by": [
+              "hyphen"
+            ]
+          }
+        ]
+      },
+      "note": "An alternative at a boundary is a choice at each place it holds."
+    },
+    {
+      "id": "spell/fixture/boundaries/dropped-first",
+      "op": "spell",
+      "args": {
+        "profile": {
+          "id": "und-Latn/fixture",
+          "lang": "und-Latn",
+          "segmentation": {
+            "content": "hand-pinned",
+            "runtime": "grapheme"
+          },
+          "normalize": [],
+          "spell": {
+            "from": "lexical",
+            "rules": [
+              {
+                "find": "\\+",
+                "after": "{C}",
+                "to": "",
+                "alternatives": [
+                  {
+                    "id": "hyphen",
+                    "to": "-"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "notation": {
+          "sets": {
+            "C": "[bcdfgklmnpqrstwz]",
+            "V": "[aeiou]"
+          }
+        },
+        "form": "kat+lar"
+      },
+      "expected": {
+        "spelling": "katlar",
+        "alternatives": []
+      },
+      "note": "Without `boundaries` they are dropped first, as before: the rule never sees one."
+    }
+  ]
+}

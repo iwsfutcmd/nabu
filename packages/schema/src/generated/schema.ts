@@ -5660,6 +5660,10 @@ export interface Spell {
    */
   readonly from: "lexical";
   /**
+   * true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first.
+   */
+  readonly boundaries?: boolean;
+  /**
    * Named sets of this statement's own, beside the notation's.
    */
   readonly sets?: {
@@ -5952,6 +5956,10 @@ export interface Spell1 {
    * What is spelled: a lexeme's lexical form, in its language's notation.
    */
   readonly from: "lexical";
+  /**
+   * true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first.
+   */
+  readonly boundaries?: boolean;
   /**
    * Named sets of this statement's own, beside the notation's.
    */
