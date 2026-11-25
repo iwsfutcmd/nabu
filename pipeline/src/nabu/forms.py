@@ -361,9 +361,11 @@ def check_tokens(
     is the course's or a free alternative of it (compared as core's `spelledAs` does; the marked
     layer exactly), `form` where blocking took a pinned or listed form of its lexeme to give it,
     `unaccounted` otherwise, with the reason where the rules give nothing. None for a language
-    with no realisation rules: nothing is checked, nothing asked."""
+    with neither realisation rules nor a notation: nothing is checked, nothing asked. A language
+    that declares a notation and no rules (one that does not inflect: yue, lzh, tok) is checked
+    all the same: each token stands in its citation cell, given by its lexeme's form."""
     declared = lang.declared
-    if not declared.realisation:
+    if not declared.realisation and declared.notation is None:
         return None
     source = language_args(lang)
     notation = (
