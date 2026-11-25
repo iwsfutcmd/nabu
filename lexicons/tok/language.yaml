@@ -18,3 +18,14 @@ rules:
 - {id: 'rule:pona-tawa', gloss: {en: 'X li pona tawa Y: Y likes X'}, notes: {en: 'Literally X is good to Y: kili li pona tawa mi, I like fruit. ike tawa says the opposite: ni li ike tawa mi, I don''t like this.'}, was: 'construction:pona-tawa'}
 - {id: 'rule:preverb', gloss: {en: 'a preverb before a verb: mi wile moku (I want to eat)'}, notes: {en: 'wile, ken, kama, awen, sona, lukin, alasa, open and pini can stand right before another verb, with no e: mi ken toki. ala after the preverb negates it: mi ken ala toki.'}, was: 'construction:preverb'}
 - {id: 'rule:x-ala-x', gloss: {en: 'X ala X?: a yes/no question'}, notes: {en: 'Say the first word of the predicate, ala, then the word again: sina moku ala moku? Are you eating? Answer with the word (moku: yes) or with ala (moku ala, or just ala: no).'}, was: 'construction:x-ala-x'}
+# How tok writes a lexical form (docs/rules-design.md, section 3; docs/rules/tok.md): a word as sitelen Lasina
+# spells it, its fourteen letters one sound each, a name with its capital (jan Sonja). Toki Pona does not inflect,
+# so there are no realisation rules: every token stands in its citation cell, its lexeme's form (the compiler's
+# token check runs for a language with a notation and no rules). Sets: L a letter, V a vowel, C a consonant, and
+# K a name's capitals. Read by @nabu/core `compileSpeller` for each profile's `spell`; never shipped.
+notation:
+  sets:
+    L: "[aeijklmnopstuw]"
+    V: "[aeiou]"
+    C: "[jklmnpstw]"
+    K: "[AEIJKLMNOPSTUW]"

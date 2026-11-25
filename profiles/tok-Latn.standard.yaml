@@ -31,3 +31,7 @@ input:
 layout: { vertical: none }
 # The pinned sitelen pona of every sentence must be this text's words as logographs (nabu.sitelen_pona).
 transliterate: { to: tok-Qaap/sitelen-pona, via: sitelen-pona }
+# How sitelen Lasina writes a lexical form (docs/rules/tok.md): as it is. A form is the word as this orthography
+# spells it, so the statement has no rules; the compiler checks every lexeme's form and every token against it
+# (`form.projection`, `form.unaccounted`).
+spell: { from: lexical, rules: [] }
