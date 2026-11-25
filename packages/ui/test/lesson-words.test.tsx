@@ -42,16 +42,16 @@ describe("tap-for-gloss in a lesson (P1)", () => {
     const ex = card(course, "gap-fill");
     const html = play(course, ex, stateOf(course, ex));
     expect(tappable(html, "data-gap-sentence")).toBeGreaterThan(0);
-    const options = html.slice(html.indexOf("data-options"), html.indexOf("data-gloss-panel"));
+    const options = html.slice(html.indexOf("data-options"), html.indexOf("data-live-region"));
     expect(options).not.toMatch(/<button[^>]*data-index=/u);
-    // The panel waits, quiet, for a tap.
-    expect(html).toMatch(/data-gloss-panel=""[^>]*data-quiet=""/u);
+    // No dialog until a word is tapped (ADR 0157).
+    expect(html).not.toContain("data-gloss-panel");
   });
 
   it("taps an answered choice's words: its options and the word in its gap, never before (P1)", () => {
     const ex = card(course, "gap-fill");
     if (ex.template !== "gap-fill") throw new Error("not a gap-fill");
-    const options = (html: string): string => html.slice(html.indexOf("data-options"), html.indexOf("data-gloss-panel"));
+    const options = (html: string): string => html.slice(html.indexOf("data-options"), html.indexOf("data-live-region"));
     // Before: radios, nothing to tap.
     expect(options(play(course, ex, stateOf(course, ex)))).not.toMatch(/<button[^>]*data-index=/u);
     // Answered: a list of options whose words are taps, and the word now in the gap is one too.

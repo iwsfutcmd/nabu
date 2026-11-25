@@ -2,6 +2,7 @@
 
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-03
+- Amended by: [0157](0157-tapped-words-in-a-dialog-with-their-forms.md) (a tapped word opens in a dialog, with its forms; Proposed)
 
 ## Context
 

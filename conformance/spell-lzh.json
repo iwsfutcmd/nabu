@@ -1,0 +1,50 @@
+{
+  "$comment": "Spelling a Classical Chinese lexical form (docs/rules/lzh.md): the characters write a form as it is (a `spell` with no rules); with `expected`, the course's spelling compared as the profile keys a word.",
+  "vectors": [
+    {
+      "id": "spell/lzh-hant/word",
+      "op": "spell",
+      "args": {
+        "profile": "lzh-Hant/standard",
+        "form": "學",
+        "expected": "學"
+      },
+      "expected": {
+        "spelling": "學",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "lexeme:學."
+    },
+    {
+      "id": "spell/lzh-hant/two-characters",
+      "op": "spell",
+      "args": {
+        "profile": "lzh-Hant/standard",
+        "form": "君子",
+        "expected": "君子"
+      },
+      "expected": {
+        "spelling": "君子",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "A word of two characters."
+    },
+    {
+      "id": "spell/lzh-hant/another-character",
+      "op": "spell",
+      "args": {
+        "profile": "lzh-Hant/standard",
+        "form": "說",
+        "expected": "悅"
+      },
+      "expected": {
+        "spelling": "說",
+        "alternatives": [],
+        "expected": null
+      },
+      "note": "Another character is another spelling (說 for 悅, read alike in the Analects, is a lexical choice)."
+    }
+  ]
+}

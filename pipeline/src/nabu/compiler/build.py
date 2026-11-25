@@ -1042,11 +1042,24 @@ def _token_sites(ctx: Ctx, units: list[Unit]) -> list[lexical_forms.Site]:
         for _, written in tokens:
             if len(written) == 1 and phrase.get(str(written[0]["lexeme"])):
                 written[0] = {**written[0], "feats": phrase[str(written[0]["lexeme"])]}
+        # Whether only space stands between each token and the next: punctuation ends the phrase
+        # an allomorph chosen by the next word reads (es "Bueno, primo": no buen before the comma).
+        aligned, problem = tx.align(form.text, [{"surface": t.surface} for t, _ in tokens])
+        spaced: list[bool] = []
+        if problem is None:
+            authored = [k for k, a in enumerate(aligned) if "kind" not in a]
+            for n, k in enumerate(authored):
+                end = authored[n + 1] if n + 1 < len(authored) else len(aligned)
+                spaced.append(all(a.get("kind") == "space" for a in aligned[k + 1 : end]))
         for i, (t, written) in enumerate(tokens):
             if not written:
                 continue
             # The next token that writes a lexeme: its base, which an allomorph may be chosen by.
-            following = next((_base_of(w) for _, w in tokens[i + 1 :] if w), None)
+            following = (
+                next((_base_of(w) for _, w in tokens[i + 1 :] if w), None)
+                if not spaced or spaced[i]
+                else None
+            )
             marked = _marked_of(ctx, orth, t.surface, t.vocalized)
             # Its contexts: its own (pause, nesiga), and bound where a pinned reading binds it to
             # the next word (the scheme's `bound` mark: a maqaf).
@@ -1158,8 +1171,9 @@ def _token_forms(
 ) -> list[lexical_forms.Site] | None:
     """Every token of the course against what the language's rules give (`form.unaccounted`,
     docs/rules-design.md stage 2): realised and spelled by @nabu/core. Only for a language with
-    realisation rules; the report is kept for `nabu forms`. The sites checked, for the paradigms."""
-    if not ctx.lang.declared.realisation:
+    realisation rules or a notation (a language that does not inflect: its tokens stand in their
+    citation cells); the report is kept for `nabu forms`. The sites checked, for the paradigms."""
+    if not ctx.lang.declared.realisation and ctx.lang.declared.notation is None:
         return None
     sites = _token_sites(ctx, units)
     report = lexical_forms.check_tokens(ctx.lang, sites, ctx.profiles, ctx.cli)

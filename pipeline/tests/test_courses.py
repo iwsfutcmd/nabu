@@ -183,6 +183,23 @@ def test_a_sentence_lists_a_feature_value_only_once_a_node_introduces_it(
                 assert part.partition("|")[0] in named, (s["id"], part)
 
 
+def test_a_language_with_a_notation_and_no_rules_has_every_token_checked(core_cli: CoreCli) -> None:
+    """tok does not inflect: it declares a notation and no realisation rules, and the compiler still
+    checks every token, in both orthographies, against its lexeme's form (each in its citation
+    cell). sitelen pona states no `spell` (a logograph is lexical), so only sitelen Lasina's tokens
+    are compared letter for letter; the paradigms stay empty (no rule says anything of a cell)."""
+    _, compiled = build(core_cli, "tok")
+    report = compiled.tokens
+    assert report is not None
+    counts = report.counts()
+    assert counts["tokens"] > 1000 and counts["given exactly"] == counts["tokens"], counts
+    assert {c.site.orth for c in report.checks} == {"tok-Latn/standard", "tok-Qaap/sitelen-pona"}
+    latin = [c for c in report.checks if c.site.orth == "tok-Latn/standard"]
+    assert latin and all(s.found is not None for c in latin for s in c.spellings)
+    assert all(c.spellings for c in latin)
+    assert not compiled.lexicon.cells
+
+
 def test_a_stored_gender_is_a_part_where_a_token_agrees_with_it(core_cli: CoreCli) -> None:
     """es mano is feminine though it ends in -o: its entry stores it, the bundle lists it among
     the lexeme's parts, and a sentence whose article agrees with it lists it too (la mano)."""

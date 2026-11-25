@@ -14,16 +14,19 @@
   hithpael 3, polel 1). The other 9 (the suffixed pronouns and the directional ה) are their 31 allomorphs alone.
   `form.projection` is at zero: 647 spellings checked (each stored form and the 37 allomorphs with a form, in the
   orthography and in its pointed layer).
-- **Tokens** (2,452, one orthography): 0 unaccounted. The rules alone give **1,729** (71%). With the free variants
-  below pinned, 1,543 are given exactly and 909 by a form of their lexeme, of which 186 are the rules' own form,
-  first among its cell's free variants.
+- **Tokens** (2,452, one orthography): 0 unaccounted. The rules alone give **1,729** (71%, measured before the
+  merge). With the free variants below pinned, 1,543 are given exactly and 909 by a form of their lexeme, of which
+  186 are the rules' own form, first among its cell's free variants; 70 tokens are accounted for by a free
+  allomorph's alternative (`nabu forms`: "by a free variant").
 - **Forms** in lexemes.yaml: 297 with a lexical form on 148 lexemes: 285 pinned (rule debt), 12 listed (הָלַךְ).
   Of these 144 hold only before a suffix (`before`), 65 are an uninflected word's (no `feats`), 92 are free variants
   in 42 cells. By part of speech: NOUN 126, VERB 101, ADP 29, PRON 11, NUM 8, ADJ 6, PROPN 6, ADV 4, INTJ 4, SCONJ 2.
   The verb forms pinned whole: wayyiqtol 12, imperative 12, yiqtol 11, jussive 9, cohortative 5, infinitive 3,
   participle 3, qatal 2, weqatal 2, 5 on tokens with no values.
-- **Prune**: `nabu forms prune ../lexicons/hbo` removed 248 of the 326 spelling-only copies. The 78 it kept are cells
-  the rules alone do not give (a pinned form with a lexical form gives them): copies, for the owner to drop or keep.
+- **Prune**: `nabu forms prune ../lexicons/hbo` removed 249 of the 326 spelling-only copies: 248, then after the
+  merge one more (הָלַךְ's imperative לְכָה, which sk's check of a cell's free forms finds its listed free form gives).
+  The 77 it kept are cells the rules alone do not give (a pinned form with a lexical form gives them): copies, for
+  the owner to drop or keep.
 - **Paradigms** (bundle format 5): VERB 30 cells, ADJ 3, NOUN 2 (the citation and the construct singular); 229
   lexemes, 3,219 spelled cells, each `[letters, pointed]`. The lexicon file grew from 268 to 390 KB (16 to 41 KB
   gzipped). `regularised` is shipped for one lexeme, הָלַךְ (its I-yod-like forms realised regularly: תַּהֲלֵךְ for
@@ -112,11 +115,18 @@
   חָי, וַיִּשְׁכָּב, אָכָלְתָּ, and the stems before -ekā: אַרְצֶךָ, לְבָבֶךָ, עַבְדֶּךָ), alone where it writes only the
   pausal one (תִּרְצָח, תִּנְאָף, אֶשְׁאָב, אֶחְסָר, שְׁכָב).
 
-## Engine and compiler changes (each in a commit of its own; apc's bundle is byte for byte the same)
+## Engine and compiler changes
 
-- **E1, free variants reach the check** (realise.ts, core-cli): `RealiseOptions.variant`, `Realisation.variants`:
-  where a cell has several forms of equal weight (a pausal and a contextual form, both the course's), realise gave
-  only the first; forms.py now tries each.
+Each was a commit of its own, then merged with chg's, sk's, es's, yue's, uz's and bar's (2026-11-25): one key and one
+mechanism per concept, as below. apc's, chg's, sk's and es's bundles come out byte for byte the same.
+
+
+- **E1, a cell's free forms realised in a token** (realise.ts, core-cli, forms.py): `RealiseOptions.variant`
+  takes the k-th of `Realisation.free` (sk's field, the one field for a cell's other free forms) in the first's
+  place, and the token is realised around it: its other lexemes joined, the rewrites run. forms.py asks for each.
+  sk's own use, spelling a free form as it is, stands: it is right for a token that writes its base alone, not
+  for hbo's וַיהֹוָה or a pausal stem before a suffix. An out-of-range `variant` is the error `variant` (the rules
+  explorer has a message for it).
 - **E2, a pointed text is its own marked layer** (build.py `_pointed`, forms.py `check(pointed=…)`): where an
   orthography has no vocalization file and a vocalization layer that states `spell`, its surface is the marked text,
   so the points are checked exactly; the orthography itself is still compared as grading keys it.
@@ -126,11 +136,14 @@
   `_bound_by_reading`, forms.py `Site.context`): a rewrite whose `when` names a context holds only of a token in it.
 - **E5, a form with no `feats`** (lexicon.schema.json `required`, realise.ts): for a token that chooses no value, never
   a cell (an uninflected word's form; free variants of a word with no cell).
-- **E6, an allomorph's condition reads its token's base** (realise.ts): `feats` the base's cell, and in `after`
-  `pos` and `class` the base lexeme (a suffix's series: -nî after a verb, -ḵâ, -hem by class).
-- **E7, `Allomorph.free`** (lexicon.schema.json, realise.ts `alternatives`, forms.py): accepted in place of the
-  allomorph chosen, never chosen of itself (the preposition with the unlisted article; לָ before a stressed
-  syllable; the pausal -āya).
+- **E6, an allomorph's condition reads its token's base** (realise.ts `allomorphHolds`): `feats` the base's cell,
+  and in `after` `pos` and `class` the base lexeme (a suffix's series: -nî after a verb, -ḵâ, -hem by class). No
+  other language's allomorphs name these keys, so nothing else changes.
+- **E7, `Allomorph.free`**: chg's, one implementation (chg built the same key alongside): never chosen; each one whose
+  conditions hold gives the token an alternative, its other allomorphs chosen again around it (`freeOf`, `choose`).
+  hbo's uses: the preposition with the unlisted article; לָ before a stressed syllable; the pausal -āya. The merge
+  dropped hbo's own pass (one place swapped, nothing chosen again) and its string alternatives for chg's
+  `{form, steps}`; the hbo vectors were rewritten to that shape, their forms unchanged.
 - Vectors on zz for each (22). `pnpm codegen` regenerated packages/schema and the Pydantic models.
 
 ## Where the course and the rules part (the course stands; each is pinned or a free variant)
@@ -155,7 +168,7 @@
   about 20 pinned forms), and whether the unlisted article should be listed (80 tokens).
 - The jussive and cohortative cells: name the person, or accept them as pinned.
 - The free spellings: `spirant`, `dagesh-conjunctive` and `waw-before-stress` accept a pointing the context decides.
-- The 78 spelling-only copies prune kept; the regularised הָלַךְ forms; paradigm cells no token writes are the rules'
+- The 77 spelling-only copies prune kept; the regularised הָלַךְ forms; paradigm cells no token writes are the rules'
   word (a weak verb's rare cell may be wrongly pointed; its letters, which grading keys, are mostly right).
 - Not done: noun plural and construct rules (all pinned), the weak verbs' rarer stems (pinned), stress, the
   energic beyond the four tokens (a stem with its energic nun), Khan's phonetics (the readings, untouched).

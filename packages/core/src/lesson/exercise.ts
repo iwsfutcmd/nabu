@@ -235,6 +235,14 @@ export interface Vocalize extends Common {
   readonly spelled?: TaggedText | undefined;
 }
 
+/** A profile's `optionalBefore` rule as an exercise carries it (JSON): marks and letters NFC, `unless` marks. */
+export interface OptionalBeforeRule {
+  readonly marks: readonly string[];
+  readonly letters: readonly string[];
+  readonly bare?: true | undefined;
+  readonly unless?: readonly string[] | undefined;
+}
+
 /**
  * Vowel marks put on a word's letters (ADR 0137): the sentence without marks, one word marked; its
  * letters are given and the learner puts the profile's marks on them from buttons, once a vocalize
@@ -257,10 +265,11 @@ export interface VocalizeBuild extends Common {
   /** Marks of the set a word may have or not (sukun, ADR 0054): never counted either way. */
   readonly optional: readonly string[];
   /**
-   * Marks a letter may have or not before the letter keyed (the fatha before an alif, ADR 0054 as
-   * amended): never counted either way there. Absent where the profile has none.
+   * Marks a letter may have or not before certain letters (the fatha before an alif, the kasra
+   * before a bare ya; ADR 0054 as amended): the profile's rules, never counted either way there.
+   * Absent where the profile has none.
    */
-  readonly optionalBefore?: Readonly<Record<string, readonly string[]>> | undefined;
+  readonly optionalBefore?: readonly OptionalBeforeRule[] | undefined;
   /**
    * For each letter, the marks the course's words give that letter where it stands (attested, as
    * the vocalize card's variants are; ADR 0098): while a letter's marks are part of a longer one,

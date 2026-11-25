@@ -21,8 +21,14 @@ match:
     optional: "[\u0652]"
     # REVIEW: so is a fatha before a plain alif or alif maqsura (ADR 0054 as amended): it spells the a the
     # alif writes anyway, and vocalized texts write it or not (مَرْحَبا, مَرْحَبَا). Any other mark there counts
-    # (بِالبيت: bi- before the article's alif), and so does the fatha before a hamza's alif (أ).
-    optionalBefore: [{ marks: "[\u064E]", letters: "[\u0627\u0649]" }]
+    # (بِالبيت: bi- before the article's alif), and so does the fatha before a hamza's alif (أ). Likewise a kasra
+    # before a bare ya and a damma before a bare waw, which write a long i and u (فيلِم, فِيلِم; حِلو, حِلُو): not
+    # before one with a mark of its own, a consonant (مِيِّة, هُوّ), nor on a letter with a sukun, whose next
+    # letter begins a syllable (فاضْيين is fāḍyīn: فاضِيين would say fāḍiyīn).
+    optionalBefore:
+      - { marks: "[\u064E]", letters: "[\u0627\u0649]" }
+      - { marks: "[\u0650]", letters: "[\u064A]", bare: true, unless: "[\u0652]" }
+      - { marks: "[\u064F]", letters: "[\u0648]", bare: true, unless: "[\u0652]" }
     spelledIn: [apc-Latn/arabizi]
   # Arabizi writes the vowels these marks leave out: a vocalize card takes the word in Arabizi too (ADR 0095).
   equivalences:

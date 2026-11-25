@@ -84,6 +84,14 @@ correspondences:
   - { says: rr, written: [r], kind: fixed, when: { after: "[lns]" }, note: sound-alike }
   # x is k and s (taxi, examen). México's x (the sound of j) is that word's own, not a rule.
   - { says: ks, written: [x], kind: fixed }
+# How the orthography writes a lexical form (docs/rules-design.md, section 3; lexicons/es/language.yaml `notation`):
+# as it is, its boundaries dropped (Spanish's lexical form is its spelling). REVIEW: the two clipped words the course
+# writes beside their lemma (agro, tele) are free spellings of it, read only by the compiler.
+spell:
+  from: lexical
+  rules:
+    - { find: "^agromercado$", to: agromercado, alternatives: [{ id: clipped, to: agro }] }
+    - { find: "^televisión$", to: televisión, alternatives: [{ id: clipped, to: tele }] }
 layout: { vertical: none }
 # What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.
 # Whisper writes Spanish (tier 1). Not the phones: eSpeak NG's es says Castilian (θ for c and z, every s), and Cuban

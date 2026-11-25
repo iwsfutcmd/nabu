@@ -39,6 +39,10 @@ bare:
   DET: {Case: Nom, Gender: Masc, Number: Sing}
   VERB: {VerbForm: Inf}
   AUX: {VerbForm: Inf}
+# The values the course uses from its first unit and never introduces as parts: the marked ones (the plural, the
+# feminine, the cases, the past …) are taught against them. Read as taught where the compiler lists a paradigm's
+# cells (docs/rules-design.md, stage 4), so the present, the masculine and the inanimate are listed too. REVIEW.
+unmarked: {Animacy: [Inan], Case: [Nom], Gender: [Masc], Mood: [Ind], Number: [Sing], Tense: [Pres]}
 features:
   Animacy: [Anim, Inan]
   Aspect: [Imp, Perf]
@@ -146,3 +150,572 @@ labels:
 - {feats: {Degree: Cmp}, gloss: {en: 'comparative: -ší, -ejší (lepší, krajší)'}, notes: {en: 'Väčší (bigger), krajší (more beautiful), lepší (better): dobrý, lepší.'}}
 - {feats: {Degree: Sup}, gloss: {en: 'superlative: naj- (najlepší)'}, notes: {en: 'Naj- before the comparative: najväčší, najkrajší, najlepší.'}}
 - {feats: {Voice: Pass}, gloss: {en: 'passive participle: -ný, -tý (postavený)'}, notes: {en: 'Dom bol postavený v roku 1907: the house was built in 1907.'}}
+# Classes a rule reads and no form gives (ADR 0148: stated, never counted; each a part to learn, ADR 0146). A
+# lexeme's gender and animacy, and the ending of its lemma, choose its declension; a class only where they do not.
+# Every class is REVIEW: Mistrík (1988), by page.
+classes:
+- {id: animal, pos: NOUN, gloss: {en: 'an animal: a masculine noun whose plural declines as a thing''s (raky, kapry)'}, notes: {en: 'REVIEW: Mistrík p. 29, 30 (sokol, sokoly).'}}
+- {id: fleeting, pos: NOUN, gloss: {en: 'a fleeting e or o: it drops before an ending (otec, otca; lístok, lístka)'}, notes: {en: 'REVIEW: Mistrík p. 29, 31, 33, 39 (žnec, ženca; dnešok, dneška; marec, marca; úroveň, úrovne). Lexical: darček, darčeka keeps its e.'}}
+- {id: shortening, pos: NOUN, gloss: {en: 'a long vowel that shortens before an ending (stôl, stola; chlieb, chleba)'}, notes: {en: 'REVIEW: Mistrík p. 31, 33.'}}
+- {id: gen-u, pos: NOUN, gloss: {en: 'the genitive in -u (domu, času), not -a'}, notes: {en: 'REVIEW: Mistrík p. 31 (no precise rule: -u for material, abstract and most -m nouns), p. 33 (čaju).'}}
+- {id: loc-i, pos: NOUN, gloss: {en: 'the locative in -i (v hoteli)'}, notes: {en: 'REVIEW: Mistrík p. 31, 33 (hotel, v hoteli; dva hotely).'}}
+- {id: stroj, pos: NOUN, gloss: {en: 'a masculine thing in -r or -l that declines as stroj (v januári, v júli)'}, notes: {en: 'REVIEW: Mistrík p. 32 (január, pulóver, motocykel); peniaze, p. 33.'}}
+- {id: pl-ia, pos: NOUN, gloss: {en: 'the plural of men in -ia (bratia)'}, notes: {en: 'REVIEW: Mistrík p. 29 (bratia, ľudia, hostia, susedia); -an and -teľ take it by their ending.'}}
+- {id: pl-ovia, pos: NOUN, gloss: {en: 'the plural of men in -ovia (otcovia)'}, notes: {en: 'REVIEW: Mistrík p. 29 (synovia, Petrovia); names and nouns in -o take it by their ending.'}}
+- {id: kost, pos: NOUN, gloss: {en: 'a feminine in a consonant that declines as kosť (jar, jari)'}, notes: {en: 'REVIEW: Mistrík p. 39 (jar, zver, chuť, pamäť). The -sť, -c, -s, -p, -v nouns would take it by their ending; the course has none yet, so no rule says so.'}}
+- {id: plural-only, pos: NOUN, gloss: {en: 'a noun with no singular (narodeniny, Vianoce)'}, notes: {en: 'REVIEW: Mistrík p. 27 (pluralia tantum: Košice, Tatry, Vianoce, …). Halušky and korčule have singulars (haluška, korčuľa) and are not in it.'}}
+- {id: short, pos: ADJ, gloss: {en: 'an adjective with short forms only: rád, rada, rado, radi'}, notes: {en: 'REVIEW: rád is said only as a predicate, in the nominative; its long vowel shortens before an ending.'}}
+- {id: no-degree, pos: ADJ, gloss: {en: 'an adjective with no comparative (prvý, zdravotný)'}, notes: {en: 'REVIEW: Mistrík p. 49: relational adjectives and ordinals have no degrees; rád has none either.'}}
+- {id: ejsi, pos: ADJ, gloss: {en: 'the comparative in -ejší where its stem does not call for it (unavenejší)'}, notes: {en: 'REVIEW: Mistrík p. 49: -ejší after a cluster or a long syllable is a rule (lacnejší, sýtejší); his other groups (adjectives from participles, -atý, -itý, -ivý …) are this class.'}}
+- {id: athematic, pos: VERB, gloss: {en: 'jesť, vedieť: -m, -š, -, -me, -te, 3rd plural -ia'}, notes: {en: 'REVIEW: Mistrík p. 85-86 (jesť, vedieť); povedať as vedieť.'}}
+- {id: e-present, pos: VERB, gloss: {en: 'an irregular verb with the present in -em, -eš … -ú (idem, môžem, chcem)'}, notes: {en: 'REVIEW: Mistrík p. 85-86, 88 (chcieť, ísť, budem); its stems are listed.'}}
+- {id: cesat, pos: VERB, gloss: {en: 'písať: píšem, píšu (s becomes š)'}, notes: {en: 'REVIEW: Mistrík p. 78, 81 (česať, češem).'}}
+- {id: zut, pos: VERB, gloss: {en: 'piť, žiť: pijem, žijem'}, notes: {en: 'REVIEW: Mistrík p. 78, 82 (žuť, žujem; biť, piť, šiť, žiť).'}}
+- {id: niest, pos: VERB, gloss: {en: 'niesť: nesiem, nesú (ie becomes e)'}, notes: {en: 'REVIEW: Mistrík p. 78, 80.'}}
+- {id: triet, pos: VERB, gloss: {en: 'pozrieť: pozriem, pozrú'}, notes: {en: 'REVIEW: Mistrík p. 78, 81.'}}
+- {id: vidiet, pos: VERB, gloss: {en: 'vidieť: vidím, vidia (not rozumiem)'}, notes: {en: 'REVIEW: Mistrík p. 78, 83-84 (bolieť, musieť, sedieť, vidieť).'}}
+- {id: kricat, pos: VERB, gloss: {en: 'ležať: leží, ležia (not chytám)'}, notes: {en: 'REVIEW: Mistrík p. 78, 84 (kričať, ležať, pršať, spať).'}}
+- {id: ist, pos: VERB, gloss: {en: 'ísť and its compounds: išiel, prišiel'}, notes: {en: 'REVIEW: the -l form after š takes -iel (Mistrík p. 87 gives the -l form; the vowel is the course''s, the standard''s išiel).'}}
+- {id: no-imperative, pos: VERB, gloss: {en: 'a verb with no imperative: musieť, môcť; pršať, snežiť'}, notes: {en: 'REVIEW: modal verbs and verbs of the weather give no command (Mistrík p. 77, 91 lists none for them).'}}
+- {id: future, pos: VERB, gloss: {en: 'a future of its own: budem, pôjdem'}, notes: {en: 'REVIEW: Mistrík p. 88 (byť: budem; ísť: pôjdem). Every other imperfective verb makes its future with budem, and a perfective''s present says it.'}}
+- {id: passive-ny, pos: VERB, gloss: {en: 'the passive participle in -ný (napísaný)'}, notes: {en: 'REVIEW: Mistrík p. 94 (-ný for the chytať, česať … paradigms). Only verbs whose passive the course writes carry it: no transitivity is stored.'}}
+# Shown after a verb's lemma (docs/rules-design.md, stage 4): the first person singular and the third plural of the
+# present, as Slovak dictionaries cite a verb (KSSJ: robiť, -í, -ia). REVIEW.
+principalParts:
+  VERB: [{Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}]
+# How sk writes a lexical form (docs/rules-design.md, section 3): its spelling, with a boundary (+) before the ending
+# its lemma is cited in (žen+a, pekn+ý, mest+o, vysvedčen+ie) and, in a verb, before the infinitive's theme and its -ť
+# (vol+a+ť, rob+i+ť, vid+ie+ť, nies+ť); a soft ď ť ň ľ written so where the spelling leaves its caron out before e, i
+# (choď+i+ť, viď+ie+ť, treť+í; the profile's `spell` writes them d t n l there). Sets: V a vowel, SV a short one, LV a
+# long one the rhythmic rule shortens, LS a long syllable's nucleus (a long vowel, ô, a long ĺ or ŕ; the diphthongs
+# ia ie iu are i and a vowel), C a consonant, SOFT a soft one (Mistrík p. 16), SOFTI the same or i (the -ia nouns),
+# VEL k, g, h (and ch), TH a verb's infinitive theme, SON a sonorant, CL2 a consonant that ends a cluster an
+# imperative takes -i after.
+notation:
+  sets:
+    V: "[aáäeéiíoóôuúyýAÁÄEÉIÍOÓÔUÚYÝ]"
+    SV: "[aäeiouyAEIOUY]"
+    LV: "[áéíóúý]"
+    LS: "[áéíóúýôĺŕÁÉÍÓÚÝÔ]"
+    C: "[bcčdďfghjklľmnňpqrsštťvwxzžBCČDĎFGHJKLĽMNŇPQRSŠTŤVWXZŽ]"
+    CNV: "[bcčdďfghjklľmnňpqrsštťwxzž]"
+    SOFT: "[cčďjľňšťž]"
+    SOFTI: "[cčďjľňšťži]"
+    VEL: "[kgh]"
+    TH: "[aiú]"
+    SON: "[rlnm]"
+    CL2: "[nrlmvdp]"
+    CS: "[szkhc]"
+    NLR: "[bcčdďfghjkľmnňpqsštťvwxzž]"
+# Rules in a lexicon (docs/rules-design.md; docs/rules/sk.md): sk's realisation rules, one a paradigm of Mistrík's,
+# and its rewrite rules. A rule's exponent is the ending of its cell; the ending the lemma is cited in gives way to it
+# (rule:sk-ending). Every branch is REVIEW until the owner signs it off. Sources: Mistrík (1988), by page; the course
+# where he is silent (said so). The same table of endings in two rules is written once (&name, *name).
+realisation:
+# Verbs (Mistrík p. 77-94): the -l form, the passive participle, then the present and the imperative by paradigm,
+# classes first, the paradigms an infinitive's ending settles last.
+- id: 'rule:sk-past'  # the -l form (Mistrík p. 86-87): the infinitive stem and -l, -la, -lo, -li
+  when: {ends: ť, feats: {Tense: Past, VerbForm: Part}}
+  blocks:
+  - suffix:
+    - {branch: m, feats: {Gender: Masc, Number: Sing}, add: l}
+    - {branch: f, feats: {Gender: Fem, Number: Sing}, add: la}
+    - {branch: n, feats: {Gender: Neut, Number: Sing}, add: lo}
+    - {branch: pl, feats: {Number: Plur}, add: li}
+- id: 'rule:sk-passive'  # the passive participle in -ný (Mistrík p. 94), declined as pekný (p. 52)
+  when: {class: passive-ny, feats: {Voice: Pass}}
+  blocks:
+  - suffix:
+    - {branch: ny, add: n}
+  - suffix: &hard
+    - {branch: nom-m, feats: {Case: Nom, Gender: Masc, Number: Sing}, add: ý}
+    - {branch: gen-mn, feats: {Case: Gen, Gender: 'Masc,Neut', Number: Sing}, add: ého}
+    - {branch: dat-mn, feats: {Case: Dat, Gender: 'Masc,Neut', Number: Sing}, add: ému}
+    - {branch: acc-m-anim, feats: {Animacy: Anim, Case: Acc, Gender: Masc, Number: Sing}, add: ého}
+    - {branch: acc-m, feats: {Case: Acc, Gender: Masc, Number: Sing}, add: ý}
+    - {branch: loc-mn, feats: {Case: Loc, Gender: 'Masc,Neut', Number: Sing}, add: om}
+    - {branch: ins-mn, feats: {Case: Ins, Gender: 'Masc,Neut', Number: Sing}, add: ým}
+    - {branch: nom-n, feats: {Case: 'Nom,Acc', Gender: Neut, Number: Sing}, add: é}
+    - {branch: nom-f, feats: {Case: Nom, Gender: Fem, Number: Sing}, add: á}
+    - {branch: gen-f, feats: {Case: 'Gen,Dat,Loc', Gender: Fem, Number: Sing}, add: ej}
+    - {branch: acc-f, feats: {Case: Acc, Gender: Fem, Number: Sing}, add: ú}
+    - {branch: ins-f, feats: {Case: Ins, Gender: Fem, Number: Sing}, add: ou}
+    - {branch: nom-pl-anim, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, add: í}
+    - {branch: nom-pl, feats: {Case: 'Nom,Acc', Number: Plur}, add: é}
+    - {branch: acc-pl-anim, feats: {Animacy: Anim, Case: Acc, Gender: Masc, Number: Plur}, add: ých}
+    - {branch: gen-pl, feats: {Case: 'Gen,Loc', Number: Plur}, add: ých}
+    - {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: ým}
+    - {branch: ins-pl, feats: {Case: Ins, Number: Plur}, add: ými}
+- id: 'rule:sk-no-imperative'  # REVIEW: a verb with no command (the class): its only exponent is the indicative's, which no command's cell has, so it gives none
+  when: {class: no-imperative, feats: {Mood: Imp}}
+  blocks:
+  - suffix:
+    - {branch: none, feats: {Mood: Ind}, add: ''}
+- id: 'rule:sk-future'  # the future of byť and of ísť (Mistrík p. 88): bud-em, pôjd-em; their stems listed
+  when: {class: future, feats: {Tense: Fut}}
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut}, add: em}
+    - {branch: 2sg, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Fut}, add: eš}
+    - {branch: 3sg, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Fut}, add: e}
+    - {branch: 1pl, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Fut}, add: eme}
+    - {branch: 2pl, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Fut}, add: ete}
+    - {branch: 3pl, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Fut}, add: ú}
+- id: 'rule:sk-present-athematic'  # jesť, vedieť (Mistrík p. 85-86): their stems listed
+  when: {class: athematic, feats: {Mood: 'Ind,Imp'}}
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres}, add: m}
+    - {branch: 2sg, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres}, add: š}
+    - {branch: 3sg, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres}, add: ''}
+    - {branch: 1pl, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres}, add: me}
+    - {branch: 2pl, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres}, add: te}
+    - {branch: 3pl, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres}, add: ia}
+    - &imp-2sg {branch: imp-2sg, feats: {Mood: Imp, Number: Sing, Person: '2'}, add: ''}
+    - &imp-2pl {branch: imp-2pl, feats: {Mood: Imp, Number: Plur, Person: '2'}, add: te}
+    - &imp-1pl {branch: imp-1pl, feats: {Mood: Imp, Number: Plur, Person: '1'}, add: me}
+- id: 'rule:sk-present-e'  # irregular verbs with the present in -em … -ú (Mistrík p. 85-86, 88): their stems listed
+  when: {class: e-present, feats: {Mood: 'Ind,Imp'}}
+  blocks:
+  - suffix: &present-e
+    - {branch: 1sg, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres}, add: em}
+    - {branch: 2sg, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres}, add: eš}
+    - {branch: 3sg, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres}, add: e}
+    - {branch: 1pl, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres}, add: eme}
+    - {branch: 2pl, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres}, add: ete}
+    - {branch: 3pl, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres}, add: ú}
+    - *imp-2sg
+    - *imp-2pl
+    - *imp-1pl
+- id: 'rule:sk-present-cesat'  # česať, češem (Mistrík p. 78, 81): s becomes š (rule:sk-present-cesat|alternation)
+  when: {class: cesat, feats: {Mood: 'Ind,Imp'}}
+  blocks:
+  - suffix: *present-e
+- id: 'rule:sk-present-zut'  # žuť, žujem; piť, pijem (Mistrík p. 78, 82)
+  when: {class: zut, feats: {Mood: 'Ind,Imp'}}
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres}, add: jem}
+    - {branch: 2sg, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres}, add: ješ}
+    - {branch: 3sg, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres}, add: je}
+    - {branch: 1pl, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres}, add: jeme}
+    - {branch: 2pl, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres}, add: jete}
+    - {branch: 3pl, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres}, add: jú}
+    - *imp-2sg
+    - *imp-2pl
+    - *imp-1pl
+- id: 'rule:sk-present-niest'  # niesť, nesiem (Mistrík p. 78, 80): the root's ie becomes e (|root)
+  when: {class: niest, feats: {Mood: 'Ind,Imp'}}
+  blocks:
+  - suffix: &present-ie
+    - {branch: 1sg, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres}, add: iem}
+    - {branch: 2sg, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres}, add: ieš}
+    - {branch: 3sg, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres}, add: ie}
+    - {branch: 1pl, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres}, add: ieme}
+    - {branch: 2pl, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres}, add: iete}
+    - {branch: 3pl, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres}, add: ú}
+    - *imp-2sg
+    - *imp-2pl
+    - *imp-1pl
+- id: 'rule:sk-present-triet'  # trieť, triem (Mistrík p. 78, 81): the infinitive's ie gives way as a theme
+  when: {class: triet, feats: {Mood: 'Ind,Imp'}}
+  blocks:
+  - suffix: *present-ie
+- id: 'rule:sk-present-vidiet'  # vidieť, vidím (Mistrík p. 78, 83-84)
+  when: {class: vidiet, feats: {Mood: 'Ind,Imp'}}
+  blocks:
+  - suffix: &present-i
+    - {branch: 1sg, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres}, add: ím}
+    - {branch: 2sg, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres}, add: íš}
+    - {branch: 3sg, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres}, add: í}
+    - {branch: 1pl, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres}, add: íme}
+    - {branch: 2pl, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres}, add: íte}
+    - {branch: 3pl, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres}, add: ia}
+    - *imp-2sg
+    - *imp-2pl
+    - *imp-1pl
+- id: 'rule:sk-present-kricat'  # kričať, kričím (Mistrík p. 78, 84)
+  when: {class: kricat, feats: {Mood: 'Ind,Imp'}}
+  blocks:
+  - suffix: *present-i
+- id: 'rule:sk-present-pracovat'  # pracovať, pracujem (Mistrík p. 78, 83): -ov- becomes -uj- (|uj)
+  when: {ends: ov+a+ť, feats: {Mood: 'Ind,Imp'}}
+  blocks:
+  - suffix: *present-e
+- id: 'rule:sk-present-chudnut'  # chudnúť, chudnem (Mistrík p. 78, 82): -núť after a consonant
+  when: {endsIn: '{C}n+ú+ť', feats: {Mood: 'Ind,Imp'}}
+  blocks:
+  - suffix: *present-e
+- id: 'rule:sk-present-rozumiet'  # rozumieť, rozumiem, rozumejú (Mistrík p. 78-80)
+  when: {ends: +ie+ť, feats: {Mood: 'Ind,Imp'}}
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres}, add: iem}
+    - {branch: 2sg, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres}, add: ieš}
+    - {branch: 3sg, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres}, add: ie}
+    - {branch: 1pl, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres}, add: ieme}
+    - {branch: 2pl, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres}, add: iete}
+    - {branch: 3pl, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres}, add: ejú}
+    - {branch: imp-2sg, feats: {Mood: Imp, Number: Sing, Person: '2'}, add: ej}
+    - {branch: imp-2pl, feats: {Mood: Imp, Number: Plur, Person: '2'}, add: ejte}
+    - {branch: imp-1pl, feats: {Mood: Imp, Number: Plur, Person: '1'}, add: ejme}
+- id: 'rule:sk-present-robit'  # robiť, robím, robia (Mistrík p. 78, 83)
+  when: {ends: +i+ť, feats: {Mood: 'Ind,Imp'}}
+  blocks:
+  - suffix: *present-i
+- id: 'rule:sk-present-chytat'  # chytať, chytám, chytajú; chytaj (Mistrík p. 78-79)
+  when: {ends: +a+ť, feats: {Mood: 'Ind,Imp'}}
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres}, add: ám}
+    - {branch: 2sg, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres}, add: áš}
+    - {branch: 3sg, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres}, add: á}
+    - {branch: 1pl, feats: {Mood: Ind, Number: Plur, Person: '1', Tense: Pres}, add: áme}
+    - {branch: 2pl, feats: {Mood: Ind, Number: Plur, Person: '2', Tense: Pres}, add: áte}
+    - {branch: 3pl, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres}, add: ajú}
+    - {branch: imp-2sg, feats: {Mood: Imp, Number: Sing, Person: '2'}, add: aj}
+    - {branch: imp-2pl, feats: {Mood: Imp, Number: Plur, Person: '2'}, add: ajte}
+    - {branch: imp-1pl, feats: {Mood: Imp, Number: Plur, Person: '1'}, add: ajme}
+# Adjectives' degrees (Mistrík p. 49-50): naj- and -ší (-ejší: rule:sk-comparative|ejsi), declined as cudzí (p. 52-53).
+- id: 'rule:sk-no-degree'  # REVIEW: an adjective with no degrees (Mistrík p. 49): its only exponent is the positive's, which no comparative or superlative cell has, so it gives none
+  when: {class: no-degree, feats: {Degree: 'Cmp,Sup'}}
+  blocks:
+  - suffix:
+    - {branch: positive, feats: {Degree: Pos}, add: ''}
+- id: 'rule:sk-adjective-short'  # rád, rada, rado, radi, rady: the nominative only (the class short)
+  when: {class: short, feats: {Case: Nom}}
+  blocks:
+  - suffix:
+    - {branch: nom-m, feats: {Gender: Masc, Number: Sing}, add: ''}
+    - {branch: nom-f, feats: {Gender: Fem, Number: Sing}, add: a}
+    - {branch: nom-n, feats: {Gender: Neut, Number: Sing}, add: o}
+    - {branch: nom-pl-anim, feats: {Animacy: Anim, Gender: Masc, Number: Plur}, add: i}
+    - {branch: nom-pl, feats: {Number: Plur}, add: y}
+- id: 'rule:sk-comparative'
+  when: {pos: ADJ, feats: {Degree: 'Cmp,Sup'}}
+  blocks:
+  - prefix:
+    - &sup {branch: sup, feats: {Degree: Sup}, add: naj}
+  - suffix:
+    - &cmp {branch: cmp, add: š}
+  - suffix: &soft
+    - {branch: nom-m, feats: {Case: Nom, Gender: Masc, Number: Sing}, add: í}
+    - {branch: gen-mn, feats: {Case: Gen, Gender: 'Masc,Neut', Number: Sing}, add: ieho}
+    - {branch: dat-mn, feats: {Case: Dat, Gender: 'Masc,Neut', Number: Sing}, add: iemu}
+    - {branch: acc-m-anim, feats: {Animacy: Anim, Case: Acc, Gender: Masc, Number: Sing}, add: ieho}
+    - {branch: acc-m, feats: {Case: Acc, Gender: Masc, Number: Sing}, add: í}
+    - {branch: loc-mn, feats: {Case: Loc, Gender: 'Masc,Neut', Number: Sing}, add: om}
+    - {branch: ins-mn, feats: {Case: Ins, Gender: 'Masc,Neut', Number: Sing}, add: ím}
+    - {branch: nom-n, feats: {Case: 'Nom,Acc', Gender: Neut, Number: Sing}, add: ie}
+    - {branch: nom-f, feats: {Case: Nom, Gender: Fem, Number: Sing}, add: ia}
+    - {branch: gen-f, feats: {Case: 'Gen,Dat,Loc', Gender: Fem, Number: Sing}, add: ej}
+    - {branch: acc-f, feats: {Case: Acc, Gender: Fem, Number: Sing}, add: iu}
+    - {branch: ins-f, feats: {Case: Ins, Gender: Fem, Number: Sing}, add: ou}
+    - {branch: nom-pl-anim, feats: {Animacy: Anim, Case: Nom, Gender: Masc, Number: Plur}, add: í}
+    - {branch: nom-pl, feats: {Case: 'Nom,Acc', Number: Plur}, add: ie}
+    - {branch: acc-pl-anim, feats: {Animacy: Anim, Case: Acc, Gender: Masc, Number: Plur}, add: ích}
+    - {branch: gen-pl, feats: {Case: 'Gen,Loc', Number: Plur}, add: ích}
+    - {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: ím}
+    - {branch: ins-pl, feats: {Case: Ins, Number: Plur}, add: ími}
+- id: 'rule:sk-adverb-comparative'  # an adverb in -o, -e from an adjective (Mistrík p. 96-97): naj- and -šie
+  when: {pos: ADV, endsIn: '+{V}', feats: {Degree: 'Cmp,Sup'}}
+  blocks:
+  - prefix:
+    - *sup
+  - suffix:
+    - *cmp
+  - suffix:
+    - {branch: adverb, add: ie}
+# Nouns (Mistrík p. 27-45), by gender, animacy and the ending of the lemma; then adjectives (p. 51-53).
+- id: 'rule:sk-plural-only'  # REVIEW: a noun with no singular (the class): its only exponent is a plural's, which no singular cell has, so it gives none
+  when: {class: plural-only, feats: {Number: Sing}}
+  blocks:
+  - suffix:
+    - {branch: none, feats: {Number: Plur}, add: ''}
+- id: 'rule:sk-name-adjectival'  # a surname with an adjective's ending, declined as one (Mistrík p. 45, 52: Tajovský)
+  when: {pos: PROPN, ends: +ý}
+  blocks:
+  - suffix:
+    - {branch: gen-sg, feats: {Case: 'Gen,Acc', Number: Sing}, add: ého}
+    - {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: ému}
+    - {branch: loc-sg, feats: {Case: Loc, Number: Sing}, add: om}
+    - {branch: ins-sg, feats: {Case: Ins, Number: Sing}, add: ým}
+    - {branch: nom-pl, feats: {Case: Nom, Number: Plur}, add: í}
+    - {branch: gen-pl, feats: {Case: 'Gen,Acc,Loc', Number: Plur}, add: ých}
+    - {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: ým}
+    - {branch: ins-pl, feats: {Case: Ins, Number: Plur}, add: ými}
+- id: 'rule:sk-name-adjectival-f'  # a woman's surname in -ová, declined as pekná (Mistrík p. 45, 52)
+  when: {pos: PROPN, ends: +á}
+  blocks:
+  - suffix:
+    - {branch: gen-sg, feats: {Case: 'Gen,Dat,Loc', Number: Sing}, add: ej}
+    - {branch: acc-sg, feats: {Case: Acc, Number: Sing}, add: ú}
+    - {branch: ins-sg, feats: {Case: Ins, Number: Sing}, add: ou}
+- id: 'rule:sk-noun-animal'  # an animal: chlap's singular, dub's plural (Mistrík p. 29, 30)
+  when: {own: {Animacy: Anim, Gender: Masc}, class: animal}
+  blocks:
+  - suffix:
+    - &chlap-gen {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: a}
+    - &chlap-dat {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: ovi}
+    - &chlap-acc {branch: acc-sg, feats: {Case: Acc, Number: Sing}, add: a}
+    - &chlap-loc {branch: loc-sg, feats: {Case: Loc, Number: Sing}, add: ovi}
+    - &ins-om {branch: ins-sg, feats: {Case: Ins, Number: Sing}, add: om}
+    - &dub-nom-pl {branch: nom-pl, feats: {Case: 'Nom,Acc', Number: Plur}, add: y}
+    - &gen-pl-ov {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: ov}
+    - &dat-pl-om {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: om}
+    - &loc-pl-och {branch: loc-pl, feats: {Case: Loc, Number: Plur}, add: och}
+    - &ins-pl-mi {branch: ins-pl, feats: {Case: Ins, Number: Plur}, add: mi}
+- id: 'rule:sk-noun-chlap'  # a masculine person (Mistrík p. 27-29); -ia, -ovia and k → c (|nom-pl-ia, |nom-pl-ovia, |nom-pl-c)
+  when: {own: {Animacy: Anim, Gender: Masc}}
+  blocks:
+  - suffix:
+    - *chlap-gen
+    - *chlap-dat
+    - *chlap-acc
+    - *chlap-loc
+    - *ins-om
+    - {branch: nom-pl, feats: {Case: Nom, Number: Plur}, add: i}
+    - *gen-pl-ov
+    - *dat-pl-om
+    - {branch: acc-pl, feats: {Case: Acc, Number: Plur}, add: ov}
+    - *loc-pl-och
+    - *ins-pl-mi
+- id: 'rule:sk-noun-stroj'  # a masculine thing in a soft consonant (Mistrík p. 32-33)
+  when: {own: {Animacy: Inan, Gender: Masc}, endsIn: '{SOFT}'}
+  blocks:
+  - suffix:
+    - &dub-gen {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: a}
+    - &dub-dat {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: u}
+    - &acc-zero {branch: acc-sg, feats: {Case: Acc, Number: Sing}, add: ''}
+    - {branch: loc-sg, feats: {Case: Loc, Number: Sing}, add: i}
+    - *ins-om
+    - {branch: nom-pl, feats: {Case: 'Nom,Acc', Number: Plur}, add: e}
+    - *gen-pl-ov
+    - *dat-pl-om
+    - *loc-pl-och
+    - *ins-pl-mi
+- id: 'rule:sk-noun-dub'  # a masculine thing (Mistrík p. 30-32); -u, -i and stroj's endings by class (|gen-u, |loc-i, |stroj)
+  when: {own: {Animacy: Inan, Gender: Masc}}
+  blocks:
+  - suffix:
+    - *dub-gen
+    - *dub-dat
+    - *acc-zero
+    - {branch: loc-sg, feats: {Case: Loc, Number: Sing}, add: e}
+    - *ins-om
+    - *dub-nom-pl
+    - *gen-pl-ov
+    - *dat-pl-om
+    - *loc-pl-och
+    - *ins-pl-mi
+- id: 'rule:sk-noun-dievca'  # dievča, dieťa (Mistrík p. 41, 44-45): -aťa, -atá
+  when: {own: {Gender: Neut}, endsIn: '+[aä]'}
+  blocks:
+  - suffix:
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: aťa}
+    - {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: aťu}
+    - *acc-zero
+    - {branch: loc-sg, feats: {Case: Loc, Number: Sing}, add: ati}
+    - {branch: ins-sg, feats: {Case: Ins, Number: Sing}, add: aťom}
+    - {branch: nom-pl, feats: {Case: 'Nom,Acc', Number: Plur}, add: atá}
+    - {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: at}
+    - {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: atám}
+    - {branch: loc-pl, feats: {Case: Loc, Number: Plur}, add: atách}
+    - {branch: ins-pl, feats: {Case: Ins, Number: Plur}, add: atami}
+- id: 'rule:sk-noun-vysvedcenie'  # a neuter in -ie (Mistrík p. 41, 44)
+  when: {own: {Gender: Neut}, ends: +ie}
+  blocks:
+  - suffix:
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: ia}
+    - {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: iu}
+    - *acc-zero
+    - {branch: loc-sg, feats: {Case: Loc, Number: Sing}, add: í}
+    - {branch: ins-sg, feats: {Case: Ins, Number: Sing}, add: ím}
+    - {branch: nom-pl, feats: {Case: 'Nom,Acc', Number: Plur}, add: ia}
+    - &gen-pl-i {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: í}
+    - &dat-pl-iam {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: iam}
+    - &loc-pl-iach {branch: loc-pl, feats: {Case: Loc, Number: Plur}, add: iach}
+    - {branch: ins-pl, feats: {Case: Ins, Number: Plur}, add: iami}
+- id: 'rule:sk-noun-srdce'  # a neuter in -e (Mistrík p. 41, 43-44); -ce takes no ending in the genitive plural (rule:sk-genitive-plural|ce)
+  when: {own: {Gender: Neut}, ends: +e}
+  blocks:
+  - suffix:
+    - *dub-gen
+    - *dub-dat
+    - *acc-zero
+    - {branch: loc-sg, feats: {Case: Loc, Number: Sing}, add: i}
+    - *ins-om
+    - {branch: nom-pl, feats: {Case: 'Nom,Acc', Number: Plur}, add: ia}
+    - *gen-pl-i
+    - *dat-pl-iam
+    - *loc-pl-iach
+    - &ins-pl-ami {branch: ins-pl, feats: {Case: Ins, Number: Plur}, add: ami}
+- id: 'rule:sk-noun-mesto'  # a neuter in -o, or a loan in -um (Mistrík p. 41-43)
+  when: {own: {Gender: Neut}}
+  blocks:
+  - suffix:
+    - *dub-gen
+    - *dub-dat
+    - *acc-zero
+    - {branch: loc-sg, feats: {Case: Loc, Number: Sing}, add: e}
+    - *ins-om
+    - {branch: nom-pl, feats: {Case: 'Nom,Acc', Number: Plur}, add: á}
+    - &gen-pl-zero {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: ''}
+    - &dat-pl-am {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: ám}
+    - &loc-pl-ach {branch: loc-pl, feats: {Case: Loc, Number: Plur}, add: ách}
+    - *ins-pl-ami
+- id: 'rule:sk-noun-kost'  # kosť (Mistrík p. 34, 39)
+  when: {own: {Gender: Fem}, class: kost}
+  blocks:
+  - suffix:
+    - {branch: gen-sg, feats: {Case: 'Gen,Dat,Loc', Number: Sing}, add: i}
+    - *acc-zero
+    - &ins-ou {branch: ins-sg, feats: {Case: Ins, Number: Sing}, add: ou}
+    - {branch: nom-pl, feats: {Case: 'Nom,Acc', Number: Plur}, add: i}
+    - *gen-pl-i
+    - *dat-pl-iam
+    - *loc-pl-iach
+    - *ins-pl-ami
+- id: 'rule:sk-noun-ulica'  # a feminine in -a after a soft consonant, or plural only in -e (Mistrík p. 34, 37-38)
+  when: {own: {Gender: Fem}, endsIn: '{SOFTI}+[ae]'}
+  blocks:
+  - suffix:
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: e}
+    - {branch: dat-sg, feats: {Case: 'Dat,Loc', Number: Sing}, add: i}
+    - &acc-u {branch: acc-sg, feats: {Case: Acc, Number: Sing}, add: u}
+    - *ins-ou
+    - {branch: nom-pl, feats: {Case: 'Nom,Acc', Number: Plur}, add: e}
+    - *gen-pl-zero
+    - *dat-pl-iam
+    - *loc-pl-iach
+    - *ins-pl-ami
+- id: 'rule:sk-noun-zena'  # a feminine in -a, or plural only in -y (Mistrík p. 34-36)
+  when: {own: {Gender: Fem}, endsIn: '+[ay]'}
+  blocks:
+  - suffix:
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: y}
+    - {branch: dat-sg, feats: {Case: 'Dat,Loc', Number: Sing}, add: e}
+    - *acc-u
+    - *ins-ou
+    - {branch: nom-pl, feats: {Case: 'Nom,Acc', Number: Plur}, add: y}
+    - *gen-pl-zero
+    - *dat-pl-am
+    - *loc-pl-ach
+    - *ins-pl-ami
+- id: 'rule:sk-noun-dlan'  # a feminine in a consonant (Mistrík p. 34, 38-39)
+  when: {own: {Gender: Fem}, endsIn: '{C}'}
+  blocks:
+  - suffix:
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: e}
+    - {branch: dat-sg, feats: {Case: 'Dat,Loc', Number: Sing}, add: i}
+    - *acc-zero
+    - *ins-ou
+    - {branch: nom-pl, feats: {Case: 'Nom,Acc', Number: Plur}, add: e}
+    - *gen-pl-i
+    - *dat-pl-iam
+    - *loc-pl-iach
+    - *ins-pl-ami
+- id: 'rule:sk-adjective-soft'  # cudzí (Mistrík p. 52-53); budúci after a long syllable
+  when: {endsIn: '+[íi]'}
+  blocks:
+  - suffix: *soft
+- id: 'rule:sk-adjective'  # pekný (Mistrík p. 52); krásny after a long syllable
+  when: {endsIn: '+[ýy]'}
+  blocks:
+  - suffix: *hard
+# The rewrite rules, in order, each once over the whole form.
+phonology:
+# A verb's infinitive: its theme and -ť give way to the present's and the imperative's endings (Mistrík p. 78: rob-i-ť,
+# rob-í-m), and -ť to any ending (vol+a+l).
+- {id: 'rule:sk-infinitive', branch: theme, when: {feats: {Mood: 'Ind,Imp'}}, find: +ie+ť+, to: +}
+- {id: 'rule:sk-infinitive', branch: theme, when: {feats: {Mood: 'Ind,Imp'}}, find: '+{TH}+ť+', to: +}
+- {id: 'rule:sk-infinitive', branch: theme, when: {feats: {Mood: 'Ind,Imp'}}, find: +ie+ť, at: end, to: ''}
+- {id: 'rule:sk-infinitive', branch: theme, when: {feats: {Mood: 'Ind,Imp'}}, find: '+{TH}+ť', at: end, to: ''}
+- {id: 'rule:sk-infinitive', branch: ending, find: +ť+, to: +}
+- {id: 'rule:sk-infinitive', branch: ending, when: {feats: {Mood: 'Ind,Imp'}}, find: +ť, at: end, to: ''}
+# A present stem's own changes.
+- {id: 'rule:sk-present-pracovat', branch: uj, when: {ends: ov+a+ť, feats: {Mood: 'Ind,Imp'}}, find: ov, before: [+, '#'], to: uj}  # pracuj-e-m (Mistrík p. 83)
+- {id: 'rule:sk-present-cesat', branch: alternation, when: {class: cesat, feats: {Mood: 'Ind,Imp'}}, find: '{CS}', before: [+, '#'], map: {s: š, z: ž, k: č, h: ž, c: č}}  # češ-e-m (Mistrík p. 81)
+- {id: 'rule:sk-present-niest', branch: root, when: {class: niest, feats: {Mood: 'Ind,Imp'}}, find: ie, after: '{C}', before: ['{C}+', '{C}#'], to: e}  # nes-ie, viez-ť: vez-ie (Mistrík p. 80)
+# A noun's or an adjective's lemma ending gives way to its cell's (žen+a+y: žen+y).
+- {id: 'rule:sk-ending', when: {endsIn: +ie}, find: +ie+, to: +}
+- {id: 'rule:sk-ending', when: {endsIn: +um}, find: +um+, to: +}
+- {id: 'rule:sk-ending', when: {endsIn: '+{V}'}, find: '+{V}+', to: +}
+# The genitive plural with no ending (Mistrík p. 35-38, 42-44): the lemma's ending goes; a vowel is put into a cluster
+# that cannot end a word, or else the last syllable is lengthened.
+- {id: 'rule:sk-genitive-plural', branch: zero, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: Fem}, endsIn: '+[aey]'}, find: '+[aey]', at: end, to: ''}
+- {id: 'rule:sk-genitive-plural', branch: zero, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: Neut}, endsIn: '+o'}, find: +o, at: end, to: ''}
+- {id: 'rule:sk-genitive-plural', branch: zero, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: Neut}, endsIn: '+um'}, find: +um, at: end, to: ''}
+- {id: 'rule:sk-genitive-plural', branch: ce, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: Neut}, endsIn: 'c+e'}, find: +í, at: end, to: ''}  # vajce, vajec; more, morí (p. 43-44)
+- {id: 'rule:sk-genitive-plural', branch: i, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: Fem}, endsIn: 'i+a'}, find: i, at: end, to: ií}  # televízií: -ia takes -í (p. 38)
+- {id: 'rule:sk-genitive-plural', branch: i, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: Fem}, endsIn: '{C}ň+a'}, find: ň, at: end, to: ňí}  # kúpeľní: -ňa after a consonant (p. 38)
+# First the lengthening, where the stem ends in one consonant or a cluster a word may end in (síl, rúk, žien, kníh,
+# ciest, lámp, fakúlt; Mistrík p. 36-37, 42): not after a long syllable (záhrad), not of a vowel after a vowel (eur),
+# not of o before v (budov).
+- {id: 'rule:sk-genitive-plural', branch: lengthen, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: 'Fem,Neut'}}, find: a, after: '#', before: 'u{C}#', to: á}  # áut (an au as a's)
+- {id: 'rule:sk-genitive-plural', branch: lengthen, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: 'Fem,Neut'}}, find: a, after: ['#{SOFT}', '#{C}{SOFT}', '{C}{SV}{SOFT}', '{C}{SV}{C}{SOFT}', '#{SV}{SOFT}'], before: ['{C}#', 'st#', 'sk#', 'šť#', 'mp#', 'pt#', 'nd#', 'zd#', 'lt#', 'ft#'], to: ia}  # fliaš: a after a soft consonant is ia (p. 36-37)
+- {id: 'rule:sk-genitive-plural', branch: lengthen, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: 'Fem,Neut'}}, find: '[aäeiuy]', after: ['#', '#{C}', '#{C}{C}', '#{C}{C}{C}', '{C}{SV}{C}', '{C}{SV}{C}{C}', '{C}{SV}{C}{C}{C}', '#{SV}{C}', '#{SV}{C}{C}'], before: ['{C}#', 'st#', 'sk#', 'šť#', 'mp#', 'pt#', 'nd#', 'zd#', 'lt#', 'ft#'], map: {a: á, ä: ia, e: ie, i: í, u: ú, y: ý}}
+- {id: 'rule:sk-genitive-plural', branch: lengthen, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: 'Fem,Neut'}}, find: o, after: ['#', '#{C}', '#{C}{C}', '#{C}{C}{C}', '{C}{SV}{C}', '{C}{SV}{C}{C}', '{C}{SV}{C}{C}{C}', '#{SV}{C}', '#{SV}{C}{C}'], before: ['{CNV}#', 'st#', 'sk#', 'šť#', 'mp#', 'pt#', 'nd#', 'zd#', 'lt#', 'ft#'], to: ô}  # škôl, lôpt
+- {id: 'rule:sk-genitive-plural', branch: lengthen, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: 'Fem,Neut'}}, find: '[lr]', after: '{C}', before: ['{C}#', '{C}{C}#'], map: {l: ĺ, r: ŕ}}  # jabĺk, sĺnk, zŕn: a syllabic l or r
+# Then a vowel put into a cluster that cannot end a word, or that the suffix -k- divides (Mistrík p. 36, 43-44): o after
+# a long syllable or j (látok, spojok), e after j in -ce (vajec), else ie (matiek, sestier, okien, kresiel, izieb).
+- {id: 'rule:sk-genitive-plural', branch: insert-e, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: Neut}}, find: jc, at: end, to: jec}
+- {id: 'rule:sk-genitive-plural', branch: insert-o, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: 'Fem,Neut'}}, find: '{C}k', after: ['{LV}', 'ô', 'i[aeu]', 'j'], at: end, to: '{C}ok'}
+- {id: 'rule:sk-genitive-plural', branch: insert-o, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: 'Fem,Neut'}}, find: jk, at: end, to: jok}
+- {id: 'rule:sk-genitive-plural', branch: insert-ie, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: Fem}}, find: '{NLR}k', at: end, to: '{NLR}iek'}  # študentiek
+- {id: 'rule:sk-genitive-plural', branch: insert-ie, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: 'Fem,Neut'}}, find: '[lr]k', after: '{V}', at: end, to: '[lr]iek'}  # učiteliek; not a syllabic l (jabĺk)
+- {id: 'rule:sk-genitive-plural', branch: insert-ie, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: Neut}}, find: '{C}k', after: '{V}', at: end, to: '{C}iek'}  # okienok; not -sko (Slovensk, ihrísk)
+- {id: 'rule:sk-genitive-plural', branch: insert-ie, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: 'Fem,Neut'}}, find: '{C}{SON}', at: end, to: '{C}ie{SON}'}
+- {id: 'rule:sk-genitive-plural', branch: insert-ie, when: {feats: {Case: Gen, Number: Plur}, own: {Gender: 'Fem,Neut'}}, find: '[zr]b', at: end, to: '[zr]ieb'}
+# A masculine noun's plural and instrumental (Mistrík p. 29, 32).
+- {id: 'rule:sk-noun-chlap', branch: nom-pl-ovia, when: {pos: PROPN, own: {Animacy: Anim, Gender: Masc}, feats: {Case: Nom, Number: Plur}}, find: +i, at: end, to: +ovia}  # given names: Petrovia (p. 29)
+- {id: 'rule:sk-noun-chlap', branch: nom-pl-ovia, when: {ends: +o, own: {Animacy: Anim, Gender: Masc}, feats: {Case: Nom, Number: Plur}}, find: +i, at: end, to: +ovia}  # dedovia
+- {id: 'rule:sk-noun-chlap', branch: nom-pl-ovia, when: {class: pl-ovia, feats: {Case: Nom, Number: Plur}}, find: +i, at: end, to: +ovia}
+- {id: 'rule:sk-noun-chlap', branch: nom-pl-ia, when: {endsIn: an, own: {Animacy: Anim, Gender: Masc}, feats: {Case: Nom, Number: Plur}}, find: +i, at: end, to: +ia}  # Slovania (p. 29)
+- {id: 'rule:sk-noun-chlap', branch: nom-pl-ia, when: {endsIn: teľ, own: {Animacy: Anim, Gender: Masc}, feats: {Case: Nom, Number: Plur}}, find: +i, at: end, to: +ia}  # učitelia
+- {id: 'rule:sk-noun-chlap', branch: nom-pl-ia, when: {class: pl-ia, feats: {Case: Nom, Number: Plur}}, find: +i, at: end, to: +ia}  # bratia
+- {id: 'rule:sk-noun-chlap', branch: nom-pl-c, when: {own: {Animacy: Anim, Gender: Masc}, feats: {Case: Nom, Number: Plur}}, find: k+i, at: end, to: c+i}  # žiaci (p. 29)
+- {id: 'rule:sk-noun-chlap', branch: nom-pl-c, when: {own: {Animacy: Anim, Gender: Masc}, feats: {Case: Nom, Number: Plur}}, find: ch+i, at: end, to: s+i}  # valasi
+- {id: 'rule:sk-noun-chlap', branch: ins-pl-ami, when: {ends: +o, own: {Gender: Masc}, feats: {Case: Ins, Number: Plur}}, find: +mi, to: +ami}  # dedami (p. 29)
+- {id: 'rule:sk-noun-dub', branch: ins-pl-ami, when: {endsIn: m, own: {Gender: Masc}, feats: {Case: Ins, Number: Plur}}, find: +mi, to: +ami}  # domami, agronómami (p. 29, 32)
+- {id: 'rule:sk-noun-dub', branch: ins-pl-ami, when: {class: fleeting, feats: {Case: Ins, Number: Plur}}, find: +mi, to: +ami}  # otcami, následkami (p. 30, 32)
+- {id: 'rule:sk-noun-dub', branch: gen-u, when: {class: gen-u, feats: {Case: Gen, Number: Sing}}, find: +a, at: end, to: +u}  # domu, čaju (p. 31, 33)
+- {id: 'rule:sk-noun-dub', branch: loc-u, when: {own: {Gender: 'Masc,Neut'}, feats: {Case: Loc, Number: Sing}}, find: '{VEL}+e', at: end, to: '{VEL}+u'}  # vo vlaku, v mlieku (p. 31, 42)
+- {id: 'rule:sk-noun-dub', branch: loc-i, when: {class: loc-i, feats: {Case: Loc, Number: Sing}}, find: +e, at: end, to: +i}  # v hoteli (p. 31)
+- {id: 'rule:sk-noun-dub', branch: stroj, when: {class: stroj, feats: {Case: Loc, Number: Sing}}, find: +e, at: end, to: +i}  # v januári (p. 32)
+- {id: 'rule:sk-noun-dub', branch: stroj, when: {class: stroj, feats: {Case: 'Nom,Acc', Number: Plur}}, find: +y, at: end, to: +e}
+# A noun's fleeting vowel and shortened stem (Mistrík p. 29, 31, 33, 39).
+- {id: 'rule:sk-fleeting', when: {class: fleeting}, find: '[eo]', after: '{C}', before: '{C}+{V}', to: ''}  # otca, lístka, dňa, kaviarne
+- {id: 'rule:sk-shortening', when: {class: shortening}, find: ô, before: '{C}+', to: o}  # stola
+- {id: 'rule:sk-shortening', when: {class: shortening}, find: á, before: '{C}+', to: a}  # rada (rád)
+- {id: 'rule:sk-shortening', when: {class: shortening}, find: i, before: 'e{C}+', to: ''}  # chleba
+# Soft endings after i and j (Mistrík p. 37-38, 86): televíziám, koľajam, stoja.
+- {id: 'rule:sk-soft', branch: ia, find: i+ia, to: i+á}
+- {id: 'rule:sk-soft', branch: j, find: i, after: j+, before: a, to: ''}
+# The comparative (Mistrík p. 49): -ký, -oký, -eký, -iký lose their k (sladší, hlbší); -ejší after a cluster or a long
+# syllable (bystrejší, sýtejší; not after a syllabic l or r: dlhší, žltší), and where the class says so.
+- {id: 'rule:sk-comparative', branch: k, when: {feats: {Degree: 'Cmp,Sup'}}, find: '[oei]k+š+', to: +š+}
+- {id: 'rule:sk-comparative', branch: k, when: {feats: {Degree: 'Cmp,Sup'}}, find: k+š+, to: +š+}
+- {id: 'rule:sk-comparative', branch: ejsi, when: {feats: {Degree: 'Cmp,Sup'}}, find: +š+, after: ['{V}{C}{C}', '{V}{C}{C}{C}', '{V}{C}{C}{C}{C}', '{LS}{C}', 'i[aeu]{C}'], to: +ejš+}
+- {id: 'rule:sk-comparative', branch: ejsi, when: {class: ejsi}, find: +š+, to: +ejš+}
+# The -l form (Mistrík p. 86-87): -nu- drops after a consonant (stretol, stretla), -o- before -l in the masculine of
+# a consonant stem (niesol, mohol), -iel after ísť's š (išiel); the -ieť verbs' ie is e (videl, videný).
+- {id: 'rule:sk-past', branch: nu, when: {endsIn: '{C}n+ú+ť', feats: {Tense: Past}}, find: n+ú+l, to: +l}
+- {id: 'rule:sk-past', branch: iel, when: {class: ist, feats: {Gender: Masc, Number: Sing, Tense: Past}}, find: š+l, at: end, to: šie+l}
+- {id: 'rule:sk-past', branch: ol, when: {feats: {Gender: Masc, Number: Sing, Tense: Past}}, find: '{C}+l', at: end, to: '{C}o+l'}
+- {id: 'rule:sk-past', branch: ie-e, when: {feats: {VerbForm: Part}}, find: +ie+, to: +e+}
+# The imperative takes -i after a cluster (Mistrík p. 91: zapni, pošli, vezmi).
+- {id: 'rule:sk-imperative', branch: i, when: {feats: {Mood: Imp}}, find: '{C}{CL2}', at: end, to: '{C}{CL2}i'}
+- {id: 'rule:sk-imperative', branch: i, when: {feats: {Mood: Imp}}, find: '{C}{CL2}+', before: '[tm]', to: '{C}{CL2}i+'}
+# The rhythmic rule (Mistrík p. 35, 37, 38, 83, 92): an ending's long vowel, or its diphthong, is short after a long
+# syllable (krásna, čítam, kúpim, píšu, prácam); not the genitive plural's -í (piesní), nor a verb's -ia (kúpia).
+- {id: 'rule:sk-rhythmic', branch: long, when: {feats: {Case: 'Nom,Dat,Acc,Loc,Ins'}}, find: '{LV}', after: &long ['{LS}+', '{LS}{C}+', '{LS}{C}{C}+', '{LS}{C}{C}{C}+', 'i[aeu]+', 'i[aeu]{C}+', 'i[aeu]{C}{C}+', 'i[aeu]{C}{C}{C}+'], map: &shorter {á: a, é: e, í: i, ó: o, ú: u, ý: y}}
+- {id: 'rule:sk-rhythmic', branch: long, when: {feats: {Case: Gen, Number: Sing}}, find: '{LV}', after: *long, map: *shorter}
+- {id: 'rule:sk-rhythmic', branch: long, when: {feats: {Case: Gen, Number: Plur}, endsIn: '+[ýyíi]'}, find: '{LV}', after: *long, map: *shorter}
+- {id: 'rule:sk-rhythmic', branch: long, when: {feats: {Mood: 'Ind,Imp'}}, find: '{LV}', after: *long, map: *shorter}
+- {id: 'rule:sk-rhythmic', branch: diphthong, when: {feats: {Case: 'Nom,Dat,Acc,Loc,Ins'}}, find: i, after: *long, before: '[aeu]', to: ''}
+- {id: 'rule:sk-rhythmic', branch: diphthong, when: {feats: {Case: Gen, Number: Sing}}, find: i, after: *long, before: '[aeu]', to: ''}
+# The chytať paradigm's á is ia after a soft consonant (Mistrík p. 79: vraciam), where the rhythmic rule left it long.
+- {id: 'rule:sk-present-chytat', branch: soft, when: {feats: {Mood: Ind}}, find: á, after: '{SOFT}+', to: ia}
+# The negative (Mistrík p. 106, the label's note): ne- written with the verb.
+- {id: 'rule:sk-negative', when: {feats: {Polarity: Neg}}, find: ., at: start, to: ne+.}

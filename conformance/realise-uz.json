@@ -1,0 +1,3349 @@
+{
+  "$comment": "Realisation in uz (docs/rules/uz.md; docs/rules-design.md, sections 2 and 4): uz's own rules and lexicon (lexicons/uz/language.yaml, lexemes.yaml) with `spellings: false`, one vector or more per branch of every rule, each a form the course writes but where a note says otherwise (a lexeme of the lexicon, or one given with uz's affixes, where no word of the course has the branch); then tokens as the course lists their lexemes.",
+  "vectors": [
+    {
+      "id": "realise/uz/verb/neg",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:bilmoq",
+        "cell": {
+          "Polarity": "Neg",
+          "Tense": "Pres",
+          "Person": "1",
+          "Number": "Sing"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "bil+ma+y+man",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "neg"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "pres"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "1sg"
+            }
+          ]
+        }
+      },
+      "note": "Bilmayman (bil + neg + pres + cop-1sg): the course writes it, and gives it bilmoq as its lemma."
+    },
+    {
+      "id": "realise/uz/verb/inf",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:ichmoq",
+        "cell": {
+          "VerbForm": "Inf"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ich+moq",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "inf"
+            }
+          ]
+        }
+      },
+      "note": "The lemma: ichmoq (the course's)."
+    },
+    {
+      "id": "realise/uz/verb/past",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:kelmoq",
+        "cell": {
+          "Tense": "Past"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kel+di",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "past"
+            }
+          ]
+        }
+      },
+      "note": "The course's keldi (kel + past)."
+    },
+    {
+      "id": "realise/uz/verb/pres",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:ichmoq",
+        "cell": {
+          "Tense": "Pres",
+          "Person": "3"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ich+a+di",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "pres"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "3"
+            }
+          ]
+        }
+      },
+      "note": "The course's ichadi: -a after a consonant, then -di."
+    },
+    {
+      "id": "realise/uz/verb/pres-vowel",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:ishlamoq",
+        "cell": {
+          "Tense": "Pres",
+          "Person": "1",
+          "Number": "Sing"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ishla+y+man",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "pres"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "1sg"
+            }
+          ]
+        }
+      },
+      "note": "The course's ishlayman: -y after a vowel."
+    },
+    {
+      "id": "realise/uz/verb/prog",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:oqimoq",
+        "cell": {
+          "Aspect": "Prog",
+          "Person": "1",
+          "Number": "Sing"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "oʻqi+yap+man",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "prog"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "1sg"
+            }
+          ]
+        }
+      },
+      "note": "The course's oʻqiyapman."
+    },
+    {
+      "id": "realise/uz/verb/des",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:bormoq",
+        "cell": {
+          "Mood": "Des",
+          "Person": "1",
+          "Number": "Sing"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "bor+moqchi+man",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "des"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "1sg"
+            }
+          ]
+        }
+      },
+      "note": "The course's bormoqchiman."
+    },
+    {
+      "id": "realise/uz/verb/past-1sg",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:kelmoq",
+        "cell": {
+          "Tense": "Past",
+          "Person": "1",
+          "Number": "Sing"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kel+di+m",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "past"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "past-1sg"
+            }
+          ]
+        }
+      },
+      "note": "The course's keldim."
+    },
+    {
+      "id": "realise/uz/verb/past-1pl",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:bormoq",
+        "cell": {
+          "Tense": "Past",
+          "Person": "1",
+          "Number": "Plur"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "bor+di+k",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "past"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "past-1pl"
+            }
+          ]
+        }
+      },
+      "note": "The course's bordik."
+    },
+    {
+      "id": "realise/uz/verb/past-2",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:qaytmoq",
+        "cell": {
+          "Tense": "Past",
+          "Person": "2",
+          "Polite": "Form"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "qayt+di+ngiz",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "past"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "past-2"
+            }
+          ]
+        }
+      },
+      "note": "The course's qaytdingiz."
+    },
+    {
+      "id": "realise/uz/verb/imp-2",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:ichmoq",
+        "cell": {
+          "Mood": "Imp",
+          "Person": "2",
+          "Polite": "Form"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ich+ing",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "imp-2"
+            }
+          ]
+        }
+      },
+      "note": "The course's iching: -ing after a consonant."
+    },
+    {
+      "id": "realise/uz/verb/imp-2-vowel",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:yemoq",
+        "cell": {
+          "Mood": "Imp",
+          "Person": "2",
+          "Polite": "Form"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ye+ng",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "imp-2"
+            }
+          ]
+        }
+      },
+      "note": "The course's yeng: -ng after a vowel."
+    },
+    {
+      "id": "realise/uz/verb/1pl",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:bormoq",
+        "cell": {
+          "Tense": "Pres",
+          "Person": "1",
+          "Number": "Plur"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "bor+a+miz",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "pres"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "1pl"
+            }
+          ]
+        }
+      },
+      "note": "The course's boramiz."
+    },
+    {
+      "id": "realise/uz/verb/2",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:kechirmoq",
+        "cell": {
+          "Tense": "Pres",
+          "Person": "2",
+          "Polite": "Form"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kechir+a+siz",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "pres"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "2"
+            }
+          ]
+        }
+      },
+      "note": "Kechirasiz, the lemma the course gives kechirmoq."
+    },
+    {
+      "id": "realise/uz/verb/prog-3",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:uxlamoq",
+        "cell": {
+          "Aspect": "Prog",
+          "Person": "3"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "uxla+yap+ti",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "prog"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "prog-3"
+            }
+          ]
+        }
+      },
+      "note": "The course's uxlayapti: -ti after -yap."
+    },
+    {
+      "id": "realise/uz/verb/2pl",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:bormoq",
+        "cell": {
+          "Tense": "Past",
+          "Person": "2",
+          "Polite": "Form",
+          "Number": "Plur"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "bor+di+ngiz+lar",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "past"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "past-2"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "2pl"
+            }
+          ]
+        }
+      },
+      "note": "The course's bordingizlar."
+    },
+    {
+      "id": "realise/uz/verb/neg-past",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:tushunmoq",
+        "cell": {
+          "Polarity": "Neg",
+          "Tense": "Past",
+          "Person": "1",
+          "Number": "Sing"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tushun+ma+di+m",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "neg"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "past"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "past-1sg"
+            }
+          ]
+        }
+      },
+      "note": "The course's tushunmadim."
+    },
+    {
+      "id": "realise/uz/verb/lemma-past",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:toymoq",
+        "cell": {
+          "Tense": "Past",
+          "Person": "1",
+          "Number": "Sing"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "toʻy+di+m",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-verb",
+              "branch": "past"
+            },
+            {
+              "rule": "rule:uz-verb",
+              "branch": "past-1sg"
+            }
+          ]
+        }
+      },
+      "note": "Toʻydim, the lemma the course gives toymoq."
+    },
+    {
+      "id": "realise/uz/noun/pl",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:aka",
+        "cell": {
+          "Number": "Plur",
+          "Number[psor]": "Sing",
+          "Person[psor]": "1"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "aka+lar+im",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "pl"
+            },
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-1sg"
+            }
+          ]
+        }
+      },
+      "note": "The course's Akalarim: -lar, then -im after its consonant."
+    },
+    {
+      "id": "realise/uz/noun/poss-1sg-vowel",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:ona",
+        "cell": {
+          "Number[psor]": "Sing",
+          "Person[psor]": "1"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ona+m",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-1sg"
+            }
+          ]
+        }
+      },
+      "note": "The course's onam: -m after a vowel."
+    },
+    {
+      "id": "realise/uz/noun/poss-1sg",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:kitob",
+        "cell": {
+          "Number[psor]": "Sing",
+          "Person[psor]": "1"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kitob+im",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-1sg"
+            }
+          ]
+        }
+      },
+      "note": "The course's kitobim."
+    },
+    {
+      "id": "realise/uz/noun/poss-1pl-vowel",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:oila",
+        "cell": {
+          "Number[psor]": "Plur",
+          "Person[psor]": "1"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "oila+miz",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-1pl"
+            }
+          ]
+        }
+      },
+      "note": "The course's oilamiz."
+    },
+    {
+      "id": "realise/uz/noun/poss-1pl",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:uy",
+        "cell": {
+          "Number[psor]": "Plur",
+          "Person[psor]": "1"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "uy+imiz",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-1pl"
+            }
+          ]
+        }
+      },
+      "note": "The course's uyimiz."
+    },
+    {
+      "id": "realise/uz/noun/poss-2-vowel",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:ota",
+        "cell": {
+          "Person[psor]": "2",
+          "Polite": "Form"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ota+ngiz",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-2"
+            }
+          ]
+        }
+      },
+      "note": "The course's otangiz."
+    },
+    {
+      "id": "realise/uz/noun/poss-2",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:bilet",
+        "cell": {
+          "Person[psor]": "2",
+          "Polite": "Form"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "bilet+ingiz",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-2"
+            }
+          ]
+        }
+      },
+      "note": "The course's biletingiz."
+    },
+    {
+      "id": "realise/uz/noun/poss-3",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:kun",
+        "cell": {
+          "Person[psor]": "3"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kun+i",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-3"
+            }
+          ]
+        }
+      },
+      "note": "The course's kuni."
+    },
+    {
+      "id": "realise/uz/noun/poss-3-vowel",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:kilo",
+        "cell": {
+          "Person[psor]": "3"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kilo+si",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-3"
+            }
+          ]
+        }
+      },
+      "note": "The course's kilosi."
+    },
+    {
+      "id": "realise/uz/noun/gen",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:olma",
+        "cell": {
+          "Case": "Gen"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "olma+ning",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "gen"
+            }
+          ]
+        }
+      },
+      "note": "The course's olmaning."
+    },
+    {
+      "id": "realise/uz/noun/dat",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:bozor",
+        "cell": {
+          "Case": "Dat"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "bozor+ga",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "dat"
+            }
+          ]
+        }
+      },
+      "note": "The course's bozorga."
+    },
+    {
+      "id": "realise/uz/noun/dat-k",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:park",
+        "cell": {
+          "Case": "Dat"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "park+ka",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "dat"
+            }
+          ]
+        }
+      },
+      "note": "The course's parkka: -ka after k."
+    },
+    {
+      "id": "realise/uz/noun/acc",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:olma",
+        "cell": {
+          "Case": "Acc"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "olma+ni",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "acc"
+            }
+          ]
+        }
+      },
+      "note": "The course's olmani."
+    },
+    {
+      "id": "realise/uz/noun/loc",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:uy",
+        "cell": {
+          "Case": "Loc"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "uy+da",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "loc"
+            }
+          ]
+        }
+      },
+      "note": "The course's uyda."
+    },
+    {
+      "id": "realise/uz/noun/abl",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:ish",
+        "cell": {
+          "Case": "Abl"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ish+dan",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "abl"
+            }
+          ]
+        }
+      },
+      "note": "The course's ishdan."
+    },
+    {
+      "id": "realise/uz/noun/ter",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:uy",
+        "cell": {
+          "Case": "Ter"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "uy+gacha",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "ter"
+            }
+          ]
+        }
+      },
+      "note": "uygacha: no noun of the course is written with -gacha (beshgacha is a number's)."
+    },
+    {
+      "id": "realise/uz/noun/poss-3-loc",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:ust",
+        "cell": {
+          "Person[psor]": "3",
+          "Case": "Loc"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ust+i+da",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-3"
+            },
+            {
+              "rule": "rule:uz-noun",
+              "branch": "loc"
+            }
+          ]
+        }
+      },
+      "note": "The course's ustida."
+    },
+    {
+      "id": "realise/uz/noun/poss-2-acc",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:choy",
+        "cell": {
+          "Person[psor]": "2",
+          "Polite": "Form",
+          "Case": "Acc"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "choy+ingiz+ni",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-2"
+            },
+            {
+              "rule": "rule:uz-noun",
+              "branch": "acc"
+            }
+          ]
+        }
+      },
+      "note": "The course's Choyingizni."
+    },
+    {
+      "id": "realise/uz/noun/lemma-loc",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:kuz",
+        "cell": {
+          "Case": "Loc"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kuz+da",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "loc"
+            }
+          ]
+        }
+      },
+      "note": "Kuzda, the lemma the course gives kuz."
+    },
+    {
+      "id": "realise/uz/noun/lemma-dat",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:ong",
+        "cell": {
+          "Case": "Dat"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "oʻng+ga",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "dat"
+            }
+          ]
+        }
+      },
+      "note": "Oʻngga, the lemma the course gives ong."
+    },
+    {
+      "id": "realise/uz/noun/lemma-poss",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:dost",
+        "cell": {
+          "Number[psor]": "Sing",
+          "Person[psor]": "1"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "doʻst+im",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-1sg"
+            }
+          ]
+        }
+      },
+      "note": "Doʻstim, the lemma the course gives dost."
+    },
+    {
+      "id": "realise/uz/adjective/cmp",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:arzon",
+        "cell": {
+          "Degree": "Cmp"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "arzon+roq",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-adjective",
+              "branch": "cmp"
+            }
+          ]
+        }
+      },
+      "note": "The course's arzonroq."
+    },
+    {
+      "id": "realise/uz/adjective/poss-3",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:boshqa",
+        "cell": {
+          "Person[psor]": "3"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "boshqa+si",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-adjective",
+              "branch": "poss-3"
+            }
+          ]
+        }
+      },
+      "note": "Boshqasi, the lemma the course gives boshqa."
+    },
+    {
+      "id": "realise/uz/vowel-drop/singil",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:singil",
+        "cell": {
+          "Number[psor]": "Sing",
+          "Person[psor]": "1"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "singl+im",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-1sg"
+            },
+            {
+              "rule": "rule:uz-vowel-drop"
+            }
+          ]
+        }
+      },
+      "note": "Singlim, the course's lemma."
+    },
+    {
+      "id": "realise/uz/vowel-drop/ogil",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:ogil",
+        "cell": {
+          "Person[psor]": "3"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "oʻgʻl+i",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-3"
+            },
+            {
+              "rule": "rule:uz-vowel-drop"
+            }
+          ]
+        }
+      },
+      "note": "The course's oʻgʻli."
+    },
+    {
+      "id": "realise/uz/vowel-drop/not-an-ending",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:singil",
+        "cell": {
+          "Number": "Plur",
+          "Number[psor]": "Sing",
+          "Person[psor]": "1"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "singil+lar+im",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "pl"
+            },
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-1sg"
+            }
+          ]
+        }
+      },
+      "note": "singillarim: the vowel of -lar does not drop."
+    },
+    {
+      "id": "realise/uz/vowel-drop/consonant",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:singil",
+        "cell": {
+          "Case": "Loc"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "singil+da",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "loc"
+            }
+          ]
+        }
+      },
+      "note": "singilda: none before a consonant."
+    },
+    {
+      "id": "realise/uz/vowel-drop/regularised",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:singil",
+        "cell": {
+          "Number[psor]": "Sing",
+          "Person[psor]": "1"
+        },
+        "blocking": false
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "singil+im",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-1sg"
+            }
+          ]
+        }
+      },
+      "note": "Blocking off passes the class over: singilim, the form a learner may build."
+    },
+    {
+      "id": "realise/uz/listed/singlisi",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:singil",
+        "cell": {
+          "Person[psor]": "3"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "singli+si",
+          "status": "listed",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-3"
+            }
+          ],
+          "listed": "lexeme:singil|stem:singli"
+        }
+      },
+      "note": "Singil's third person, a listed stem (Hancock-Parmer p. 63: singlisi)."
+    },
+    {
+      "id": "realise/uz/voicing/k",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:mushuk",
+        "cell": {
+          "Person[psor]": "3"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "mushug+i",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-3"
+            },
+            {
+              "rule": "rule:uz-voicing",
+              "branch": "k"
+            }
+          ]
+        }
+      },
+      "note": "mushugi: a noun of the lexicon (the course writes mushuk alone)."
+    },
+    {
+      "id": "realise/uz/voicing/q",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexicon": {
+          "language": "uz",
+          "license": "CC-BY-SA-4.0",
+          "provenance": {
+            "author": "llm:claude@887599f213ef",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:abl",
+              "realises": {
+                "Case": "Abl"
+              },
+              "gloss": {
+                "en": "-dan: from; out of"
+              },
+              "notes": {
+                "en": "Qayerdansiz? Where are you from? Ishdan: from work."
+              },
+              "allomorphs": [
+                {
+                  "form": "dan",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "dan"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "дан"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:acc",
+              "realises": {
+                "Case": "Acc"
+              },
+              "gloss": {
+                "en": "-ni: the (definite object)"
+              },
+              "notes": {
+                "en": "Choyingizni iching: drink your tea. An object that is not definite takes nothing: choy iching."
+              },
+              "allomorphs": [
+                {
+                  "form": "ni",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ni"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ни"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:comp",
+              "realises": {
+                "Degree": "Cmp"
+              },
+              "gloss": {
+                "en": "-roq: -er, more (comparative)"
+              },
+              "notes": {
+                "en": "Arzonroq: cheaper. Arzonroq qiling! Make it cheaper!"
+              },
+              "allomorphs": [
+                {
+                  "form": "roq",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "roq"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "роқ"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:cop-1pl",
+              "realises": {
+                "Number": "Plur",
+                "Person": "1"
+              },
+              "gloss": {
+                "en": "-miz: we are (suffix on the predicate)"
+              },
+              "allomorphs": [
+                {
+                  "form": "miz",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "miz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "миз"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:cop-1sg",
+              "realises": {
+                "Number": "Sing",
+                "Person": "1"
+              },
+              "gloss": {
+                "en": "-man: I am (suffix on the predicate)"
+              },
+              "allomorphs": [
+                {
+                  "form": "man",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "man"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ман"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:cop-2",
+              "realises": {
+                "Person": "2",
+                "Polite": "Form"
+              },
+              "gloss": {
+                "en": "-siz: you are (polite; suffix on the predicate)"
+              },
+              "allomorphs": [
+                {
+                  "form": "siz",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "siz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "сиз"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:dat",
+              "realises": {
+                "Case": "Dat"
+              },
+              "gloss": {
+                "en": "-ga: to, toward; for"
+              },
+              "notes": {
+                "en": "-ka after k (parkka), -qa after q (qishloqqa). Men + -ga = menga: to me."
+              },
+              "allomorphs": [
+                {
+                  "form": "ga",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ga"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "га"
+                    ]
+                  }
+                },
+                {
+                  "form": "ka",
+                  "after": {
+                    "endsIn": "k"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ka"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ка"
+                    ]
+                  }
+                },
+                {
+                  "form": "qa",
+                  "after": {
+                    "endsIn": "q"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:gen",
+              "realises": {
+                "Case": "Gen"
+              },
+              "gloss": {
+                "en": "-(n)ing: of, 's"
+              },
+              "notes": {
+                "en": "men + -ning is written mening."
+              },
+              "allomorphs": [
+                {
+                  "form": "ing",
+                  "after": {
+                    "endsIn": "#[ms]en"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ing"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "инг"
+                    ]
+                  }
+                },
+                {
+                  "form": "ning",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ning"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "нинг"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:imp",
+              "realises": {
+                "Mood": "Imp",
+                "Person": "2",
+                "Polite": "Form"
+              },
+              "gloss": {
+                "en": "-(i)ng: please do (polite imperative)"
+              },
+              "notes": {
+                "en": "-ing after a consonant (iching, oling), -ng after a vowel (yeng)."
+              },
+              "allomorphs": [
+                {
+                  "form": "ing",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ing"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "инг"
+                    ]
+                  }
+                },
+                {
+                  "form": "ng",
+                  "after": {
+                    "endsIn": "{V}"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ng"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "нг"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:loc",
+              "realises": {
+                "Case": "Loc"
+              },
+              "gloss": {
+                "en": "-da: in, at, on"
+              },
+              "notes": {
+                "en": "Uyda: at home. Toshkentda: in Tashkent. Men uydaman: I am at home."
+              },
+              "allomorphs": [
+                {
+                  "form": "da",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "da"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "да"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:neg",
+              "realises": {
+                "Polarity": "Neg"
+              },
+              "gloss": {
+                "en": "-ma: not (on verbs)"
+              },
+              "notes": {
+                "en": "Ye + -ma + -y + -man = yemayman: I don't eat."
+              },
+              "allomorphs": [
+                {
+                  "form": "ma",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ma"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ма"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past",
+              "realises": {
+                "Tense": "Past"
+              },
+              "gloss": {
+                "en": "-di: past tense (he, she, it did)"
+              },
+              "notes": {
+                "en": "Keldi: he/she came. With a person ending: keldim, keldingiz, keldik."
+              },
+              "allomorphs": [
+                {
+                  "form": "di",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "di"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ди"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past-1pl",
+              "realises": {
+                "Number": "Plur",
+                "Person": "1"
+              },
+              "gloss": {
+                "en": "-k: we (past tense)"
+              },
+              "notes": {
+                "en": "Keldik: we came."
+              },
+              "allomorphs": [
+                {
+                  "form": "k",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "k"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "к"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past-1sg",
+              "realises": {
+                "Number": "Sing",
+                "Person": "1"
+              },
+              "gloss": {
+                "en": "-m: I (past tense)"
+              },
+              "notes": {
+                "en": "Keldim: I came."
+              },
+              "allomorphs": [
+                {
+                  "form": "m",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "m"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "м"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past-2",
+              "realises": {
+                "Person": "2",
+                "Polite": "Form"
+              },
+              "gloss": {
+                "en": "-ngiz: you (past tense, polite)"
+              },
+              "notes": {
+                "en": "Keldingiz: you came."
+              },
+              "allomorphs": [
+                {
+                  "form": "ngiz",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ngiz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "нгиз"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "gloss": {
+                "en": "-lar: plural (-s)"
+              },
+              "notes": {
+                "en": "Not used after numbers: ikki kitob, two books."
+              },
+              "allomorphs": [
+                {
+                  "form": "lar",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "lar"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "лар"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poss-1pl",
+              "realises": {
+                "Number[psor]": "Plur",
+                "Person[psor]": "1"
+              },
+              "gloss": {
+                "en": "-(i)miz: our"
+              },
+              "notes": {
+                "en": "-imiz after a consonant (uyimiz), -miz after a vowel (oilamiz)."
+              },
+              "allomorphs": [
+                {
+                  "form": "imiz",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "imiz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "имиз"
+                    ]
+                  }
+                },
+                {
+                  "form": "miz",
+                  "after": {
+                    "endsIn": "{V}"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "miz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "миз"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poss-1sg",
+              "realises": {
+                "Number[psor]": "Sing",
+                "Person[psor]": "1"
+              },
+              "gloss": {
+                "en": "-(i)m: my"
+              },
+              "allomorphs": [
+                {
+                  "form": "m",
+                  "after": {
+                    "endsIn": "{V}"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "m"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "м"
+                    ]
+                  }
+                },
+                {
+                  "form": "im",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "im"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "им"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poss-2",
+              "realises": {
+                "Person[psor]": "2",
+                "Polite": "Form"
+              },
+              "gloss": {
+                "en": "-(i)ngiz: your (polite)"
+              },
+              "allomorphs": [
+                {
+                  "form": "ingiz",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ingiz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ингиз"
+                    ]
+                  }
+                },
+                {
+                  "form": "ngiz",
+                  "after": {
+                    "endsIn": "{V}"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ngiz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "нгиз"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poss-3",
+              "realises": {
+                "Person[psor]": "3"
+              },
+              "gloss": {
+                "en": "-(s)i: his, her, its"
+              },
+              "notes": {
+                "en": "-i after a consonant (ismi), -si after a vowel (onasi)."
+              },
+              "allomorphs": [
+                {
+                  "form": "i",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "i"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "и"
+                    ]
+                  }
+                },
+                {
+                  "form": "si",
+                  "after": {
+                    "endsIn": "{V}"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "si"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "си"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pres",
+              "realises": {
+                "Tense": "Pres"
+              },
+              "gloss": {
+                "en": "-a / -y: present-future tense"
+              },
+              "notes": {
+                "en": "-a after a consonant (ichaman), -y after a vowel (yeyman, ishlayman), then a person ending: -man I, -siz you, -di he/she, -miz we."
+              },
+              "allomorphs": [
+                {
+                  "form": "a",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "a"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "а"
+                    ]
+                  }
+                },
+                {
+                  "form": "y",
+                  "after": {
+                    "endsIn": "{V}"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "y"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "й"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pres-3sg",
+              "realises": {
+                "Person": "3"
+              },
+              "gloss": {
+                "en": "-di: he, she, it (present tense)"
+              },
+              "notes": {
+                "en": "Ichadi: he/she drinks. After -yap it is -ti: uxlayapti."
+              },
+              "allomorphs": [
+                {
+                  "form": "di",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "di"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ди"
+                    ]
+                  }
+                },
+                {
+                  "form": "ti",
+                  "after": {
+                    "endsIn": "yap"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ti"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ти"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:prog",
+              "realises": {
+                "Aspect": "Prog"
+              },
+              "gloss": {
+                "en": "-yap: right now (present continuous)"
+              },
+              "notes": {
+                "en": "Nima qilyapsiz? What are you doing? Kitob oʻqiyapman: I am reading. He/she: -yapti."
+              },
+              "allomorphs": [
+                {
+                  "form": "yap",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "yap"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "яп"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:qishloq",
+              "pos": "NOUN",
+              "gloss": {
+                "en": "village"
+              },
+              "form": "qishloq",
+              "spelled": {
+                "uz-Latn/standard": [
+                  "qishloq"
+                ],
+                "uz-Cyrl/standard": [
+                  "қишлоқ"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:term",
+              "realises": {
+                "Case": "Ter"
+              },
+              "gloss": {
+                "en": "-gacha: until, up to, as far as"
+              },
+              "notes": {
+                "en": "Toʻqqizdan beshgacha: from nine to five."
+              },
+              "allomorphs": [
+                {
+                  "form": "gacha",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "gacha"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "гача"
+                    ]
+                  }
+                },
+                {
+                  "form": "kacha",
+                  "after": {
+                    "endsIn": "k"
+                  }
+                },
+                {
+                  "form": "qacha",
+                  "after": {
+                    "endsIn": "q"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:want",
+              "realises": {
+                "Mood": "Des"
+              },
+              "gloss": {
+                "en": "-moqchi: want to; be going to"
+              },
+              "notes": {
+                "en": "Olmoqchiman: I want to buy. Bormoqchimiz: we want to go, we plan to go."
+              },
+              "allomorphs": [
+                {
+                  "form": "moqchi",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "moqchi"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "моқчи"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:qishloq",
+        "cell": {
+          "Person[psor]": "1",
+          "Number[psor]": "Sing"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "qishlogʻ+im",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-1sg"
+            },
+            {
+              "rule": "rule:uz-voicing",
+              "branch": "q"
+            }
+          ]
+        }
+      },
+      "note": "qishlogʻim (Hancock-Parmer p. 10-11), a noun the lexicon does not hold."
+    },
+    {
+      "id": "realise/uz/voicing/one-syllable",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:park",
+        "cell": {
+          "Person[psor]": "3"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "park+i",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "poss-3"
+            }
+          ]
+        }
+      },
+      "note": "parki: a noun of one syllable keeps its k."
+    },
+    {
+      "id": "realise/uz/voicing/not-dative",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:mushuk",
+        "cell": {
+          "Case": "Dat"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "mushuk+ka",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "dat"
+            }
+          ]
+        }
+      },
+      "note": "mushukka: only before the possessive's i."
+    },
+    {
+      "id": "realise/uz/dat-q",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexicon": {
+          "language": "uz",
+          "license": "CC-BY-SA-4.0",
+          "provenance": {
+            "author": "llm:claude@887599f213ef",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:abl",
+              "realises": {
+                "Case": "Abl"
+              },
+              "gloss": {
+                "en": "-dan: from; out of"
+              },
+              "notes": {
+                "en": "Qayerdansiz? Where are you from? Ishdan: from work."
+              },
+              "allomorphs": [
+                {
+                  "form": "dan",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "dan"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "дан"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:acc",
+              "realises": {
+                "Case": "Acc"
+              },
+              "gloss": {
+                "en": "-ni: the (definite object)"
+              },
+              "notes": {
+                "en": "Choyingizni iching: drink your tea. An object that is not definite takes nothing: choy iching."
+              },
+              "allomorphs": [
+                {
+                  "form": "ni",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ni"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ни"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:comp",
+              "realises": {
+                "Degree": "Cmp"
+              },
+              "gloss": {
+                "en": "-roq: -er, more (comparative)"
+              },
+              "notes": {
+                "en": "Arzonroq: cheaper. Arzonroq qiling! Make it cheaper!"
+              },
+              "allomorphs": [
+                {
+                  "form": "roq",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "roq"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "роқ"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:cop-1pl",
+              "realises": {
+                "Number": "Plur",
+                "Person": "1"
+              },
+              "gloss": {
+                "en": "-miz: we are (suffix on the predicate)"
+              },
+              "allomorphs": [
+                {
+                  "form": "miz",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "miz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "миз"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:cop-1sg",
+              "realises": {
+                "Number": "Sing",
+                "Person": "1"
+              },
+              "gloss": {
+                "en": "-man: I am (suffix on the predicate)"
+              },
+              "allomorphs": [
+                {
+                  "form": "man",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "man"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ман"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:cop-2",
+              "realises": {
+                "Person": "2",
+                "Polite": "Form"
+              },
+              "gloss": {
+                "en": "-siz: you are (polite; suffix on the predicate)"
+              },
+              "allomorphs": [
+                {
+                  "form": "siz",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "siz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "сиз"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:dat",
+              "realises": {
+                "Case": "Dat"
+              },
+              "gloss": {
+                "en": "-ga: to, toward; for"
+              },
+              "notes": {
+                "en": "-ka after k (parkka), -qa after q (qishloqqa). Men + -ga = menga: to me."
+              },
+              "allomorphs": [
+                {
+                  "form": "ga",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ga"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "га"
+                    ]
+                  }
+                },
+                {
+                  "form": "ka",
+                  "after": {
+                    "endsIn": "k"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ka"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ка"
+                    ]
+                  }
+                },
+                {
+                  "form": "qa",
+                  "after": {
+                    "endsIn": "q"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:gen",
+              "realises": {
+                "Case": "Gen"
+              },
+              "gloss": {
+                "en": "-(n)ing: of, 's"
+              },
+              "notes": {
+                "en": "men + -ning is written mening."
+              },
+              "allomorphs": [
+                {
+                  "form": "ing",
+                  "after": {
+                    "endsIn": "#[ms]en"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ing"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "инг"
+                    ]
+                  }
+                },
+                {
+                  "form": "ning",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ning"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "нинг"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:imp",
+              "realises": {
+                "Mood": "Imp",
+                "Person": "2",
+                "Polite": "Form"
+              },
+              "gloss": {
+                "en": "-(i)ng: please do (polite imperative)"
+              },
+              "notes": {
+                "en": "-ing after a consonant (iching, oling), -ng after a vowel (yeng)."
+              },
+              "allomorphs": [
+                {
+                  "form": "ing",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ing"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "инг"
+                    ]
+                  }
+                },
+                {
+                  "form": "ng",
+                  "after": {
+                    "endsIn": "{V}"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ng"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "нг"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:loc",
+              "realises": {
+                "Case": "Loc"
+              },
+              "gloss": {
+                "en": "-da: in, at, on"
+              },
+              "notes": {
+                "en": "Uyda: at home. Toshkentda: in Tashkent. Men uydaman: I am at home."
+              },
+              "allomorphs": [
+                {
+                  "form": "da",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "da"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "да"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:neg",
+              "realises": {
+                "Polarity": "Neg"
+              },
+              "gloss": {
+                "en": "-ma: not (on verbs)"
+              },
+              "notes": {
+                "en": "Ye + -ma + -y + -man = yemayman: I don't eat."
+              },
+              "allomorphs": [
+                {
+                  "form": "ma",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ma"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ма"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past",
+              "realises": {
+                "Tense": "Past"
+              },
+              "gloss": {
+                "en": "-di: past tense (he, she, it did)"
+              },
+              "notes": {
+                "en": "Keldi: he/she came. With a person ending: keldim, keldingiz, keldik."
+              },
+              "allomorphs": [
+                {
+                  "form": "di",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "di"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ди"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past-1pl",
+              "realises": {
+                "Number": "Plur",
+                "Person": "1"
+              },
+              "gloss": {
+                "en": "-k: we (past tense)"
+              },
+              "notes": {
+                "en": "Keldik: we came."
+              },
+              "allomorphs": [
+                {
+                  "form": "k",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "k"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "к"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past-1sg",
+              "realises": {
+                "Number": "Sing",
+                "Person": "1"
+              },
+              "gloss": {
+                "en": "-m: I (past tense)"
+              },
+              "notes": {
+                "en": "Keldim: I came."
+              },
+              "allomorphs": [
+                {
+                  "form": "m",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "m"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "м"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past-2",
+              "realises": {
+                "Person": "2",
+                "Polite": "Form"
+              },
+              "gloss": {
+                "en": "-ngiz: you (past tense, polite)"
+              },
+              "notes": {
+                "en": "Keldingiz: you came."
+              },
+              "allomorphs": [
+                {
+                  "form": "ngiz",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ngiz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "нгиз"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "gloss": {
+                "en": "-lar: plural (-s)"
+              },
+              "notes": {
+                "en": "Not used after numbers: ikki kitob, two books."
+              },
+              "allomorphs": [
+                {
+                  "form": "lar",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "lar"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "лар"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poss-1pl",
+              "realises": {
+                "Number[psor]": "Plur",
+                "Person[psor]": "1"
+              },
+              "gloss": {
+                "en": "-(i)miz: our"
+              },
+              "notes": {
+                "en": "-imiz after a consonant (uyimiz), -miz after a vowel (oilamiz)."
+              },
+              "allomorphs": [
+                {
+                  "form": "imiz",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "imiz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "имиз"
+                    ]
+                  }
+                },
+                {
+                  "form": "miz",
+                  "after": {
+                    "endsIn": "{V}"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "miz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "миз"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poss-1sg",
+              "realises": {
+                "Number[psor]": "Sing",
+                "Person[psor]": "1"
+              },
+              "gloss": {
+                "en": "-(i)m: my"
+              },
+              "allomorphs": [
+                {
+                  "form": "m",
+                  "after": {
+                    "endsIn": "{V}"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "m"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "м"
+                    ]
+                  }
+                },
+                {
+                  "form": "im",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "im"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "им"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poss-2",
+              "realises": {
+                "Person[psor]": "2",
+                "Polite": "Form"
+              },
+              "gloss": {
+                "en": "-(i)ngiz: your (polite)"
+              },
+              "allomorphs": [
+                {
+                  "form": "ingiz",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ingiz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ингиз"
+                    ]
+                  }
+                },
+                {
+                  "form": "ngiz",
+                  "after": {
+                    "endsIn": "{V}"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ngiz"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "нгиз"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poss-3",
+              "realises": {
+                "Person[psor]": "3"
+              },
+              "gloss": {
+                "en": "-(s)i: his, her, its"
+              },
+              "notes": {
+                "en": "-i after a consonant (ismi), -si after a vowel (onasi)."
+              },
+              "allomorphs": [
+                {
+                  "form": "i",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "i"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "и"
+                    ]
+                  }
+                },
+                {
+                  "form": "si",
+                  "after": {
+                    "endsIn": "{V}"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "si"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "си"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pres",
+              "realises": {
+                "Tense": "Pres"
+              },
+              "gloss": {
+                "en": "-a / -y: present-future tense"
+              },
+              "notes": {
+                "en": "-a after a consonant (ichaman), -y after a vowel (yeyman, ishlayman), then a person ending: -man I, -siz you, -di he/she, -miz we."
+              },
+              "allomorphs": [
+                {
+                  "form": "a",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "a"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "а"
+                    ]
+                  }
+                },
+                {
+                  "form": "y",
+                  "after": {
+                    "endsIn": "{V}"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "y"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "й"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pres-3sg",
+              "realises": {
+                "Person": "3"
+              },
+              "gloss": {
+                "en": "-di: he, she, it (present tense)"
+              },
+              "notes": {
+                "en": "Ichadi: he/she drinks. After -yap it is -ti: uxlayapti."
+              },
+              "allomorphs": [
+                {
+                  "form": "di",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "di"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ди"
+                    ]
+                  }
+                },
+                {
+                  "form": "ti",
+                  "after": {
+                    "endsIn": "yap"
+                  },
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "ti"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "ти"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:prog",
+              "realises": {
+                "Aspect": "Prog"
+              },
+              "gloss": {
+                "en": "-yap: right now (present continuous)"
+              },
+              "notes": {
+                "en": "Nima qilyapsiz? What are you doing? Kitob oʻqiyapman: I am reading. He/she: -yapti."
+              },
+              "allomorphs": [
+                {
+                  "form": "yap",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "yap"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "яп"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:qishloq",
+              "pos": "NOUN",
+              "gloss": {
+                "en": "village"
+              },
+              "form": "qishloq",
+              "spelled": {
+                "uz-Latn/standard": [
+                  "qishloq"
+                ],
+                "uz-Cyrl/standard": [
+                  "қишлоқ"
+                ]
+              }
+            },
+            {
+              "id": "lexeme:term",
+              "realises": {
+                "Case": "Ter"
+              },
+              "gloss": {
+                "en": "-gacha: until, up to, as far as"
+              },
+              "notes": {
+                "en": "Toʻqqizdan beshgacha: from nine to five."
+              },
+              "allomorphs": [
+                {
+                  "form": "gacha",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "gacha"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "гача"
+                    ]
+                  }
+                },
+                {
+                  "form": "kacha",
+                  "after": {
+                    "endsIn": "k"
+                  }
+                },
+                {
+                  "form": "qacha",
+                  "after": {
+                    "endsIn": "q"
+                  }
+                }
+              ]
+            },
+            {
+              "id": "lexeme:want",
+              "realises": {
+                "Mood": "Des"
+              },
+              "gloss": {
+                "en": "-moqchi: want to; be going to"
+              },
+              "notes": {
+                "en": "Olmoqchiman: I want to buy. Bormoqchimiz: we want to go, we plan to go."
+              },
+              "allomorphs": [
+                {
+                  "form": "moqchi",
+                  "spelled": {
+                    "uz-Latn/standard": [
+                      "moqchi"
+                    ],
+                    "uz-Cyrl/standard": [
+                      "моқчи"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:qishloq",
+        "cell": {
+          "Case": "Dat"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "qishloq+qa",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "dat"
+            }
+          ]
+        }
+      },
+      "note": "qishloqqa: -qa after q (Hancock-Parmer p. 59), a noun the lexicon does not hold."
+    },
+    {
+      "id": "realise/uz/ter-k",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:park",
+        "cell": {
+          "Case": "Ter"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "park+kacha",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:uz-noun",
+              "branch": "ter"
+            }
+          ]
+        }
+      },
+      "note": "parkkacha: -kacha after k, as the dative."
+    },
+    {
+      "id": "realise/uz/token/gen-men",
+      "op": "realise-token",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:men",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:gen"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "men+ing",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "The course's Mening: -ing after men."
+    },
+    {
+      "id": "realise/uz/token/gen",
+      "op": "realise-token",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:u",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:gen"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "u+ning",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "The course's Uning: -ning elsewhere."
+    },
+    {
+      "id": "realise/uz/token/necha-ta",
+      "op": "realise-token",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:necha",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:count"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "nech+ta",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "The course's nechta: necha's nech before -ta."
+    },
+    {
+      "id": "realise/uz/token/necha-da",
+      "op": "realise-token",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:necha",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:loc"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "necha+da",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "The course's nechada."
+    },
+    {
+      "id": "realise/uz/token/edi",
+      "op": "realise-token",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:edi",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:past-1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "e+di+m",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "The course's edim: the stem e- before its ending."
+    },
+    {
+      "id": "realise/uz/token/bare-imperative",
+      "op": "realise-token",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:ichmoq"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ich",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "The course's ich: the stem alone."
+    },
+    {
+      "id": "realise/uz/token/prog-3",
+      "op": "realise-token",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:pishirmoq",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:prog"
+          },
+          {
+            "lexeme": "lexeme:pres-3sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "pishir+yap+ti",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "The course's pishiryapti."
+    },
+    {
+      "id": "realise/uz/token/predicate",
+      "op": "realise-token",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:uy",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:loc"
+          },
+          {
+            "lexeme": "lexeme:cop-1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "uy+da+man",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "The course's uydaman: an ending no rule of the noun writes, as the token lists it."
+    },
+    {
+      "id": "realise/uz/pinned/hammasi",
+      "op": "realise",
+      "args": {
+        "lang": "uz",
+        "spellings": false,
+        "lexeme": "lexeme:hamma",
+        "cell": {
+          "Person[psor]": "3"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "hamma+si",
+          "status": "pinned",
+          "steps": []
+        }
+      },
+      "note": "Hammasi, the lemma the course gives hamma: pinned (no rule for pronouns)."
+    }
+  ]
+}

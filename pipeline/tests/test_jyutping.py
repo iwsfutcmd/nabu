@@ -153,6 +153,28 @@ def test_a_lexicon_spelling_is_written_as_the_tokens_of_its_lexeme_read_it() -> 
     assert jyutping.rewrite_lexicon(new, lex)[0] == new
 
 
+def test_a_lexical_form_is_written_beside_the_spelling_where_the_language_has_a_notation() -> None:
+    """With `forms` (lexicons/yue/language.yaml declares a notation): each entry's and allomorph's
+    form, each character followed by its syllable, from the reading of its Jyutping spelling;
+    added before `spelled`, mended where it says otherwise, left where it is right. Without:
+    none."""
+    lex = jyutping.Lexicon()
+    written = [{"lexeme": "我", "surface": "我", "base": True}, {"lexeme": "pl", "surface": "哋"}]
+    lex.add(token("我哋", "ngo5 dei6", lexemes=written))
+    lex.add(token("學生", "hok6 saang1", "學生"))
+    hant = "  spelled:\n    yue-Hant-HK/standard: [學生]"
+    source = LEXICON.replace(hant, f"  form: 學hok6生saang6\n{hant}")
+    new, _ = jyutping.rewrite_lexicon(source, lex, forms=True)
+    spelled = "spelled: {yue-Hant-HK/standard: [我], yue-Latn/jyutping: [ngo5]}"
+    assert f"  gloss: {{en: I}}\n  form: 我ngo5\n  {spelled}" in new
+    assert "  - {form: 哋dei6, spelled: {yue-Hant-HK/standard: [哋]" in new
+    assert f"  form: 學hok6生saang1\n{hant}" in new
+    assert jyutping.rewrite_lexicon(new, lex, forms=True)[0] == new
+    assert jyutping.lexical_form("學生", "hok6 saang1") == "學hok6生saang1"
+    assert jyutping.lexical_form("學生", "hok6") is None
+    assert "form:" not in jyutping.rewrite_lexicon(LEXICON, lex)[0]
+
+
 def test_every_yue_sentence_and_word_is_in_both_orthographies(core_cli: CoreCli) -> None:
     _, compiled = build(core_cli, "yue")
     assert compiled.orthographies == [HANT, LATN]

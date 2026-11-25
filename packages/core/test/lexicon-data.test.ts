@@ -201,7 +201,9 @@ describe("lexiconData", () => {
     const course = loadCourse("es", "es-Latn/standard");
     const source = sourceOf("es");
     const data = lexiconData(course, source);
-    const pinned = source.lexemes.lexemes.filter((e) => Array.isArray(e["forms"])).map((e) => e["id"]);
+    const pinned = source.lexemes.lexemes
+      .filter((e) => Array.isArray(e["forms"]) && (e["forms"] as readonly Record<string, unknown>[]).some((f) => f["status"] === "pinned"))
+      .map((e) => e["id"]);
     // An id or a gloss may say "pinned" too: every lexeme with a pinned form is found, and few others.
     const byStatus = data.lexemes.filter(dataMatcher(course, "pinned").lexicon).map((r) => r.id.id);
     expect(new Set(byStatus)).toEqual(new Set([...pinned, ...byStatus.filter((id) => !pinned.includes(id))]));

@@ -1,0 +1,1049 @@
+{
+  "$comment": "Realisation (docs/rules-design.md, sections 2 and 4; docs/rules/uz.md, where it was built): on zz, an invented language given whole, an exponent that writes an affix lexeme (`lexeme`, in place of `add`) in the allomorph its conditions choose by what it follows or stands before, as a token that lists it is realised; a language that does not compile with one.",
+  "vectors": [
+    {
+      "id": "realise/exponent-lexeme/elsewhere",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Polarity",
+              "Tense",
+              "VerbForm"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "stemmed": [
+            "VERB"
+          ],
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "T": "[ptk]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-verb",
+              "when": {
+                "pos": "VERB"
+              },
+              "blocks": [
+                {
+                  "prefix": [
+                    {
+                      "branch": "neg",
+                      "feats": {
+                        "Polarity": "Neg"
+                      },
+                      "lexeme": "lexeme:neg"
+                    }
+                  ]
+                },
+                {
+                  "suffix": [
+                    {
+                      "branch": "inf",
+                      "feats": {
+                        "VerbForm": "Inf"
+                      },
+                      "add": "mak"
+                    },
+                    {
+                      "branch": "past",
+                      "feats": {
+                        "Tense": "Past"
+                      },
+                      "lexeme": "lexeme:past"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:al",
+              "pos": "VERB",
+              "form": "al"
+            },
+            {
+              "id": "lexeme:kel",
+              "pos": "VERB",
+              "form": "kel"
+            },
+            {
+              "id": "lexeme:ket",
+              "pos": "VERB",
+              "form": "ket"
+            },
+            {
+              "id": "lexeme:neg",
+              "realises": {
+                "Polarity": "Neg"
+              },
+              "allomorphs": [
+                {
+                  "form": "m",
+                  "before": {
+                    "startsIn": "{V}"
+                  }
+                },
+                {
+                  "form": "ma"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past",
+              "realises": {
+                "Tense": "Past"
+              },
+              "allomorphs": [
+                {
+                  "form": "ti",
+                  "after": {
+                    "endsIn": "{T}"
+                  }
+                },
+                {
+                  "form": "di"
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:kel",
+        "cell": {
+          "Tense": "Past"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "kel+di",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:zz-verb",
+              "branch": "past"
+            }
+          ]
+        }
+      },
+      "note": "An exponent that writes an affix lexeme takes its allomorph by what it follows: di elsewhere."
+    },
+    {
+      "id": "realise/exponent-lexeme/after",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Polarity",
+              "Tense",
+              "VerbForm"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "stemmed": [
+            "VERB"
+          ],
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "T": "[ptk]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-verb",
+              "when": {
+                "pos": "VERB"
+              },
+              "blocks": [
+                {
+                  "prefix": [
+                    {
+                      "branch": "neg",
+                      "feats": {
+                        "Polarity": "Neg"
+                      },
+                      "lexeme": "lexeme:neg"
+                    }
+                  ]
+                },
+                {
+                  "suffix": [
+                    {
+                      "branch": "inf",
+                      "feats": {
+                        "VerbForm": "Inf"
+                      },
+                      "add": "mak"
+                    },
+                    {
+                      "branch": "past",
+                      "feats": {
+                        "Tense": "Past"
+                      },
+                      "lexeme": "lexeme:past"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:al",
+              "pos": "VERB",
+              "form": "al"
+            },
+            {
+              "id": "lexeme:kel",
+              "pos": "VERB",
+              "form": "kel"
+            },
+            {
+              "id": "lexeme:ket",
+              "pos": "VERB",
+              "form": "ket"
+            },
+            {
+              "id": "lexeme:neg",
+              "realises": {
+                "Polarity": "Neg"
+              },
+              "allomorphs": [
+                {
+                  "form": "m",
+                  "before": {
+                    "startsIn": "{V}"
+                  }
+                },
+                {
+                  "form": "ma"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past",
+              "realises": {
+                "Tense": "Past"
+              },
+              "allomorphs": [
+                {
+                  "form": "ti",
+                  "after": {
+                    "endsIn": "{T}"
+                  }
+                },
+                {
+                  "form": "di"
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:ket",
+        "cell": {
+          "Tense": "Past"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ket+ti",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:zz-verb",
+              "branch": "past"
+            }
+          ]
+        }
+      },
+      "note": "ti after t: the allomorph a token would take."
+    },
+    {
+      "id": "realise/exponent-lexeme/before",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Polarity",
+              "Tense",
+              "VerbForm"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "stemmed": [
+            "VERB"
+          ],
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "T": "[ptk]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-verb",
+              "when": {
+                "pos": "VERB"
+              },
+              "blocks": [
+                {
+                  "prefix": [
+                    {
+                      "branch": "neg",
+                      "feats": {
+                        "Polarity": "Neg"
+                      },
+                      "lexeme": "lexeme:neg"
+                    }
+                  ]
+                },
+                {
+                  "suffix": [
+                    {
+                      "branch": "inf",
+                      "feats": {
+                        "VerbForm": "Inf"
+                      },
+                      "add": "mak"
+                    },
+                    {
+                      "branch": "past",
+                      "feats": {
+                        "Tense": "Past"
+                      },
+                      "lexeme": "lexeme:past"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:al",
+              "pos": "VERB",
+              "form": "al"
+            },
+            {
+              "id": "lexeme:kel",
+              "pos": "VERB",
+              "form": "kel"
+            },
+            {
+              "id": "lexeme:ket",
+              "pos": "VERB",
+              "form": "ket"
+            },
+            {
+              "id": "lexeme:neg",
+              "realises": {
+                "Polarity": "Neg"
+              },
+              "allomorphs": [
+                {
+                  "form": "m",
+                  "before": {
+                    "startsIn": "{V}"
+                  }
+                },
+                {
+                  "form": "ma"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past",
+              "realises": {
+                "Tense": "Past"
+              },
+              "allomorphs": [
+                {
+                  "form": "ti",
+                  "after": {
+                    "endsIn": "{T}"
+                  }
+                },
+                {
+                  "form": "di"
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:al",
+        "cell": {
+          "Polarity": "Neg",
+          "Tense": "Past"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "m+al+di",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:zz-verb",
+              "branch": "neg"
+            },
+            {
+              "rule": "rule:zz-verb",
+              "branch": "past"
+            }
+          ]
+        }
+      },
+      "note": "A prefix exponent's lexeme, by what it stands before: m before a vowel."
+    },
+    {
+      "id": "realise/exponent-lexeme/before-elsewhere",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Polarity",
+              "Tense",
+              "VerbForm"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "stemmed": [
+            "VERB"
+          ],
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "T": "[ptk]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-verb",
+              "when": {
+                "pos": "VERB"
+              },
+              "blocks": [
+                {
+                  "prefix": [
+                    {
+                      "branch": "neg",
+                      "feats": {
+                        "Polarity": "Neg"
+                      },
+                      "lexeme": "lexeme:neg"
+                    }
+                  ]
+                },
+                {
+                  "suffix": [
+                    {
+                      "branch": "inf",
+                      "feats": {
+                        "VerbForm": "Inf"
+                      },
+                      "add": "mak"
+                    },
+                    {
+                      "branch": "past",
+                      "feats": {
+                        "Tense": "Past"
+                      },
+                      "lexeme": "lexeme:past"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:al",
+              "pos": "VERB",
+              "form": "al"
+            },
+            {
+              "id": "lexeme:kel",
+              "pos": "VERB",
+              "form": "kel"
+            },
+            {
+              "id": "lexeme:ket",
+              "pos": "VERB",
+              "form": "ket"
+            },
+            {
+              "id": "lexeme:neg",
+              "realises": {
+                "Polarity": "Neg"
+              },
+              "allomorphs": [
+                {
+                  "form": "m",
+                  "before": {
+                    "startsIn": "{V}"
+                  }
+                },
+                {
+                  "form": "ma"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past",
+              "realises": {
+                "Tense": "Past"
+              },
+              "allomorphs": [
+                {
+                  "form": "ti",
+                  "after": {
+                    "endsIn": "{T}"
+                  }
+                },
+                {
+                  "form": "di"
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:kel",
+        "cell": {
+          "Polarity": "Neg",
+          "Tense": "Past"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ma+kel+di",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:zz-verb",
+              "branch": "neg"
+            },
+            {
+              "rule": "rule:zz-verb",
+              "branch": "past"
+            }
+          ]
+        }
+      },
+      "note": "ma elsewhere."
+    },
+    {
+      "id": "realise/exponent-lexeme/as-token",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Polarity",
+              "Tense",
+              "VerbForm"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "stemmed": [
+            "VERB"
+          ],
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "T": "[ptk]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-verb",
+              "when": {
+                "pos": "VERB"
+              },
+              "blocks": [
+                {
+                  "prefix": [
+                    {
+                      "branch": "neg",
+                      "feats": {
+                        "Polarity": "Neg"
+                      },
+                      "lexeme": "lexeme:neg"
+                    }
+                  ]
+                },
+                {
+                  "suffix": [
+                    {
+                      "branch": "inf",
+                      "feats": {
+                        "VerbForm": "Inf"
+                      },
+                      "add": "mak"
+                    },
+                    {
+                      "branch": "past",
+                      "feats": {
+                        "Tense": "Past"
+                      },
+                      "lexeme": "lexeme:past"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:al",
+              "pos": "VERB",
+              "form": "al"
+            },
+            {
+              "id": "lexeme:kel",
+              "pos": "VERB",
+              "form": "kel"
+            },
+            {
+              "id": "lexeme:ket",
+              "pos": "VERB",
+              "form": "ket"
+            },
+            {
+              "id": "lexeme:neg",
+              "realises": {
+                "Polarity": "Neg"
+              },
+              "allomorphs": [
+                {
+                  "form": "m",
+                  "before": {
+                    "startsIn": "{V}"
+                  }
+                },
+                {
+                  "form": "ma"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past",
+              "realises": {
+                "Tense": "Past"
+              },
+              "allomorphs": [
+                {
+                  "form": "ti",
+                  "after": {
+                    "endsIn": "{T}"
+                  }
+                },
+                {
+                  "form": "di"
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:ket",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:past"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ket+ti",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "The token that lists the same lexemes gives the same form."
+    },
+    {
+      "id": "realise/exponent-lexeme/error-both",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Polarity",
+              "Tense",
+              "VerbForm"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "stemmed": [
+            "VERB"
+          ],
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "T": "[ptk]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-verb",
+              "when": {
+                "pos": "VERB"
+              },
+              "blocks": [
+                {
+                  "prefix": [
+                    {
+                      "branch": "neg",
+                      "feats": {
+                        "Polarity": "Neg"
+                      },
+                      "lexeme": "lexeme:neg"
+                    }
+                  ]
+                },
+                {
+                  "suffix": [
+                    {
+                      "branch": "inf",
+                      "feats": {
+                        "VerbForm": "Inf"
+                      },
+                      "add": "mak"
+                    },
+                    {
+                      "branch": "past",
+                      "feats": {
+                        "Tense": "Past"
+                      },
+                      "lexeme": "lexeme:past",
+                      "add": "di"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:al",
+              "pos": "VERB",
+              "form": "al"
+            },
+            {
+              "id": "lexeme:kel",
+              "pos": "VERB",
+              "form": "kel"
+            },
+            {
+              "id": "lexeme:ket",
+              "pos": "VERB",
+              "form": "ket"
+            },
+            {
+              "id": "lexeme:neg",
+              "realises": {
+                "Polarity": "Neg"
+              },
+              "allomorphs": [
+                {
+                  "form": "m",
+                  "before": {
+                    "startsIn": "{V}"
+                  }
+                },
+                {
+                  "form": "ma"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past",
+              "realises": {
+                "Tense": "Past"
+              },
+              "allomorphs": [
+                {
+                  "form": "ti",
+                  "after": {
+                    "endsIn": "{T}"
+                  }
+                },
+                {
+                  "form": "di"
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:kel",
+        "cell": {
+          "Tense": "Past"
+        }
+      },
+      "error": "an exponent has `add` or `lexeme`",
+      "note": "An exponent with both `add` and `lexeme`: the language does not compile."
+    },
+    {
+      "id": "realise/exponent-lexeme/error-unknown",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Polarity",
+              "Tense",
+              "VerbForm"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "stemmed": [
+            "VERB"
+          ],
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "T": "[ptk]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-verb",
+              "when": {
+                "pos": "VERB"
+              },
+              "blocks": [
+                {
+                  "prefix": [
+                    {
+                      "branch": "neg",
+                      "feats": {
+                        "Polarity": "Neg"
+                      },
+                      "lexeme": "lexeme:neg"
+                    }
+                  ]
+                },
+                {
+                  "suffix": [
+                    {
+                      "branch": "inf",
+                      "feats": {
+                        "VerbForm": "Inf"
+                      },
+                      "add": "mak"
+                    },
+                    {
+                      "branch": "past",
+                      "feats": {
+                        "Tense": "Past"
+                      },
+                      "lexeme": "lexeme:nothing"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-uz-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:al",
+              "pos": "VERB",
+              "form": "al"
+            },
+            {
+              "id": "lexeme:kel",
+              "pos": "VERB",
+              "form": "kel"
+            },
+            {
+              "id": "lexeme:ket",
+              "pos": "VERB",
+              "form": "ket"
+            },
+            {
+              "id": "lexeme:neg",
+              "realises": {
+                "Polarity": "Neg"
+              },
+              "allomorphs": [
+                {
+                  "form": "m",
+                  "before": {
+                    "startsIn": "{V}"
+                  }
+                },
+                {
+                  "form": "ma"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:past",
+              "realises": {
+                "Tense": "Past"
+              },
+              "allomorphs": [
+                {
+                  "form": "ti",
+                  "after": {
+                    "endsIn": "{T}"
+                  }
+                },
+                {
+                  "form": "di"
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:kel",
+        "cell": {
+          "Tense": "Past"
+        }
+      },
+      "error": "no lexeme lexeme:nothing",
+      "note": "An exponent naming a lexeme the lexicon lacks: the language does not compile."
+    }
+  ]
+}

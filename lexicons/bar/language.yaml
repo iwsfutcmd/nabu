@@ -28,6 +28,16 @@ citation:
   PRON: {Case: Nom}
   VERB: {VerbForm: Inf}
   AUX: {VerbForm: Inf}
+# A verb's lexical form is its stem (red, kemm, hob: docs/rules/bar.md), not its infinitive: the infinitive is a cell
+# the rules give (rule:bar-infinitive), as every other is, and the lemma is checked as they give it.
+stemmed: [VERB, AUX]
+# REVIEW: shown after a verb's lemma (docs/rules-design.md, stage 4), as German dictionaries cite a verb with its
+# participle and Moser cites the perfect's (megn <hat megn>): redn / gredt, kemmen / kemmen, gian / gongen. Every verb
+# of the course has one, by the rules or a listed stem or form. A modal's is its infinitive (Weiß 50–54: the
+# substitute infinitive; Moser: hat megn), so megn and welln show theirs twice. AUX is left out: hobm / ghobt and
+# sein / gwesn would help, the modals' doubled forms less (for the owner).
+principalParts:
+  VERB: [{VerbForm: Part}]
 bare:
   NOUN: {Case: Nom, Number: Sing}
   PROPN: {Case: Nom, Number: Sing}
@@ -73,3 +83,175 @@ labels:
 - {feats: {Number: Plur}, gloss: {en: 'plural'}, notes: {en: 'Kinder, Buabm, Heiser, Epfl: more than one. The article is di for every gender.'}}
 rules:
 - {id: 'rule:tian-would', gloss: {en: 'tat + infinitive: would …'}, notes: {en: 'I tat gearn kemmen: I would like to come. Tat is the old past of tian (to do); with another verb it is the dialect''s würde.'}}
+# Rules in a lexicon (docs/rules-design.md; docs/rules/bar.md): the classes the rules read, the notation, the
+# realisation rules and the rewrites. Every branch is REVIEW until the owner signs it off, with its source: Moser
+# (2015) by headword or appendix section (or, where the library's notes, nabu/notes/bar/survey.md, give a form without
+# its headword, by their section), Weiß (1998) by page where he states it for Bavarian as a whole, the course where
+# neither has it (said so), or Claude's.
+classes:
+- {id: strong, pos: VERB, gloss: {en: 'participle in -n: gessn, gfohrn, kemmen'}, notes: {en: 'REVIEW: the strong verbs (and sein, an AUX): their participle ends in -n where the others end in -t (gmocht, gredt). Moser: the participles gebm, kemmen, gangen (the notes, §1.3).'}}
+- {id: e-i, pos: VERB, gloss: {en: 'e becomes i in the singular: i kimm, i iss, gib!'}, notes: {en: 'REVIEW: the stem''s e is i in the present singular and the command (Moser: kimm, gib, nimm; the notes, §1.3); Claude''s for essn and helfn, as German has it.'}}
+- {id: modal, pos: VERB, gloss: {en: 'the modals: er konn, er muaß, er will (no -t)'}, notes: {en: 'REVIEW: kinnen, miassn, derfn (AUX), welln, megn: no -t for he and she (Moser: muaß [akrat], will [ochn, joa²]); the participle is the infinitive (Weiß 50–54: the substitute infinitive; Moser: hat megn).'}}
+- {id: past, pos: VERB, gloss: {en: 'a past of its own: wor (sein)'}, notes: {en: 'REVIEW: sein (an AUX) alone keeps a simple past (Moser: war [Tschach, zivil], which the course writes wor).'}}
+- {id: subjunctive, pos: VERB, gloss: {en: 'a subjunctive of its own: hatt, tat'}, notes: {en: 'REVIEW: hobm (an AUX) and tian keep a subjunctive of their own (Moser: hatt [hobm, guatnkei]; tetn, Deutschn. [Fetz]); every other verb says it with tat (rule:tian-would).'}}
+- {id: pl-zero, pos: NOUN, gloss: {en: 'plural the same as the singular: Hund, Knedl, Zimmer'}, notes: {en: 'REVIEW: most masculines have no ending in the plural (Moser: Feler, Fetzer); the course''s Johr and Zimmer (neuter) too.'}}
+- {id: pl-er, pos: NOUN, gloss: {en: 'plural in -er: Kinder, Heiser'}, notes: {en: 'REVIEW: the neuter plural in -er, often with umlaut (Moser: Jecher, Keater, Boaner).'}}
+- {id: pl-n, pos: NOUN, gloss: {en: 'plural in -n: Tattn, Keschtn'}, notes: {en: 'REVIEW: most feminines, a final -e giving way to it (Moser: Basln, Achn; Tattn [Tatte]).'}}
+- {id: umlaut, pos: NOUN, gloss: {en: 'umlaut in the plural: Epfl, Teg, Heiser, Briader'}, notes: {en: 'REVIEW: a and o for e, u for i, au for ei, ua for ia: the dialect unrounds the umlaut (Moser: Fias [Fuas], Falbedn; Buchstaben und Lauten).'}}
+- {id: plural-only, pos: NOUN, gloss: {en: 'only plural: Leit'}, notes: {en: 'REVIEW: a noun with no singular.'}}
+- {id: ein, pos: DET, gloss: {en: 'a, koan, mei: -n for him (an, koan, mein)'}, notes: {en: 'REVIEW: the indefinite article, koan and the possessives: the masculine accusative and dative and the neuter dative add -n (Moser: an [a¹, an]; Weiß 46–48).'}}
+# What bar's lexical forms are: its spelling, letter for letter (an alphabet's notation names no vowel signs), with
+# `+` between a stem and what the rules add. Sets: L a letter, V a vowel, C a consonant, N a nasal; GE the letters
+# before which the participle's g- is not written (Moser: ge-, g-); OBS a plosive or f, after which -n takes an e
+# before -t (regnet); SIB the s-sounds before which an adjective's -s takes an e; UML a vowel the umlaut changes.
+notation:
+  sets:
+    L: "[a-zA-ZäöüÄÖÜß]"
+    V: "[aeiouäöüAEIOUÄÖÜ]"
+    C: "[bcdfghjklmnpqrstvwxzßBCDFGHJKLMNPQRSTVWXZ]"
+    N: "[mn]"
+    GE: "[bdgkptz]"
+    OBS: "[bdfgkpt]"
+    SIB: "[sßxz]"
+    UML: "[aAoOuU]"
+realisation:
+# Verbs. The present's endings (Moser: -sche [2sg]; es¹ [2pl -ts]; the labels): the bare stem for I, -sch, -t, -n
+# for we and they (the infinitive's shape), -ts for you (several). sein's past, the subjunctives and the modals take
+# the old preterite's endings: none for I and he.
+- id: 'rule:bar-past'  # REVIEW: wor, worsch, wor, worn (the course; Moser: war [Tschach])
+  when: {class: past, feats: {Mood: Ind, Tense: Past}}
+  blocks:
+  - suffix:
+    - {branch: 2sg, feats: {Person: '2', Number: Sing}, add: sch}
+    - {branch: 2pl, feats: {Person: '2', Number: Plur}, add: ts}  # Claude's
+    - {branch: pl, feats: {Number: Plur}, add: n}
+    - {branch: sg, feats: {Number: Sing}, add: ''}
+- id: 'rule:bar-subjunctive'  # REVIEW: hatt, hattsch, tat, tatn (the course; Moser: hatt [hobm], hatts [ameart])
+  when: {class: subjunctive, feats: {Mood: Sub}}
+  blocks:
+  - suffix:
+    - {branch: 2sg, feats: {Person: '2', Number: Sing}, add: sch}
+    - {branch: 2pl, feats: {Person: '2', Number: Plur}, add: ts}  # Claude's
+    - {branch: pl, feats: {Number: Plur}, add: n}
+    - {branch: sg, feats: {Number: Sing}, add: ''}
+- id: 'rule:bar-modal'  # REVIEW: i konn, du konnsch, er konn; mir kinnen (the course; Moser: muaß, muasch(e) [akrat, -sche])
+  when: {class: modal, feats: {Mood: Ind, Tense: Pres}}
+  blocks:
+  - suffix:
+    - {branch: 2sg, feats: {Person: '2', Number: Sing}, add: sch}
+    - {branch: 2pl, feats: {Person: '2', Number: Plur}, add: ts}
+    - {branch: pl, feats: {Number: Plur}, add: n}
+    - {branch: sg, feats: {Number: Sing}, add: ''}
+- id: 'rule:bar-present'  # REVIEW: the present (the labels; Moser: -sche, es¹)
+  when: {feats: {Mood: Ind, Tense: Pres}}
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Person: '1', Number: Sing}, add: ''}  # the bare stem: i red, i trink
+    - {branch: 2sg, feats: {Person: '2', Number: Sing}, add: sch}  # Moser: -sche (geasch, machsch)
+    - {branch: 3sg, feats: {Person: '3', Number: Sing}, add: t}  # geat (Moser: gian¹), hot
+    - {branch: 2pl, feats: {Person: '2', Number: Plur}, add: ts}  # Moser: es¹ (håbts)
+    - {branch: pl, feats: {Number: Plur}, add: n}  # mir redn, sie sein
+- id: 'rule:bar-imperative'  # REVIEW: the bare stem (Moser: gea, kimm, gib, schaug); -ts to several (Moser: kemmts [umma])
+  when: {feats: {Mood: Imp}}
+  blocks:
+  - suffix:
+    - {branch: 2sg, feats: {Number: Sing}, add: ''}
+    - {branch: 2pl, feats: {Number: Plur}, add: ts}
+- id: 'rule:bar-infinitive'  # REVIEW: -n (Moser), -en after a nasal (Moser: kemmen; the course: lernen, wohnen), -m after b (Moser: Fachausdrücke, Assimilation)
+  when: {feats: {VerbForm: Inf}}
+  blocks:
+  - suffix:
+    - {branch: inf, add: n}
+- id: 'rule:bar-participle-modal'  # REVIEW: a modal's participle is its infinitive (Weiß 50–54; Moser: hat megn [megn])
+  when: {class: modal, feats: {VerbForm: Part}}
+  blocks:
+  - suffix:
+    - {branch: inf, add: n}
+- id: 'rule:bar-participle-strong'  # REVIEW: g- … -n (Moser: ge-, g-, gi- [ge-]; gebm, kemmen: the notes, §1.3; the course: gessn, gfohrn)
+  when: {class: strong, feats: {VerbForm: Part}}
+  blocks:
+  - prefix:
+    - {branch: ge, add: g}
+  - suffix:
+    - {branch: n, add: n}
+- id: 'rule:bar-participle'  # REVIEW: g- … -t (the course: gmocht, gredt, gfrogt; Moser: gsagt [gach], ghabt [hobm])
+  when: {feats: {VerbForm: Part}}
+  blocks:
+  - prefix:
+    - {branch: ge, add: g}
+  - suffix:
+    - {branch: t, add: t}
+# Nouns: the noun shows no case (Weiß 44–48: only the plural is marked on it; the article shows the case); its plural
+# by its class. A noun of no class has no plural the rules give (none it could be checked against: the course writes
+# none).
+- id: 'rule:bar-plural-er'  # REVIEW: Kinder (the course), Heiser (the course's notes); Moser: Jecher [Joch]
+  when: {pos: NOUN, class: pl-er}
+  blocks:
+  - suffix:
+    - {branch: pl, feats: {Number: Plur}, add: er}
+    - {branch: sg, feats: {Number: Sing}, add: ''}
+- id: 'rule:bar-plural-n'  # REVIEW: Tattn (Moser: Tatte), Keschtn (the course)
+  when: {pos: NOUN, class: pl-n}
+  blocks:
+  - suffix:
+    - {branch: pl, feats: {Number: Plur}, add: n}
+    - {branch: sg, feats: {Number: Sing}, add: ''}
+- id: 'rule:bar-plural-zero'  # REVIEW: Hund, Berg, Knedl, Euro, Zimmer (the course); Moser: Feler, Fetzer
+  when: {pos: NOUN, class: pl-zero}
+  blocks:
+  - suffix:
+    - {branch: pl, feats: {Number: Plur}, add: ''}
+    - {branch: sg, feats: {Number: Sing}, add: ''}
+- id: 'rule:bar-plural-only'  # REVIEW: Leit (the course)
+  when: {pos: NOUN, class: plural-only}
+  blocks:
+  - suffix:
+    - {branch: pl, feats: {Number: Plur}, add: ''}
+- id: 'rule:bar-noun'  # REVIEW: no case on the noun (Weiß 44–48)
+  when: {pos: NOUN}
+  blocks:
+  - suffix:
+    - {branch: sg, feats: {Number: Sing}, add: ''}
+- id: 'rule:bar-name'  # REVIEW: no case on a name (Weiß 44–48)
+  when: {pos: PROPN}
+  blocks:
+  - suffix:
+    - {branch: sg, feats: {Number: Sing}, add: ''}
+# An attributive adjective's endings (Claude's, from the course's own: a guater Wein, a guate Suppe, a schians Madl,
+# an groaßn Morkt; the labels). A predicative adjective carries none.
+- id: 'rule:bar-adjective'
+  when: {pos: ADJ}
+  blocks:
+  - suffix:
+    - {branch: m, feats: {Case: Nom, Gender: Masc, Number: Sing}, add: er}
+    - {branch: m-acc, feats: {Case: 'Acc,Dat', Gender: Masc, Number: Sing}, add: n}
+    - {branch: f, feats: {Case: 'Acc,Nom', Gender: Fem, Number: Sing}, add: e}
+    - {branch: n, feats: {Case: 'Acc,Nom', Gender: Neut, Number: Sing}, add: s}
+# The indefinite article, koan and the possessives: -n for him and to or for him or it (Moser: an [a¹, an]); the rest
+# as they are. To or for her and the plural are each one's own (`forms`): ar, koane.
+- id: 'rule:bar-ein'
+  when: {pos: DET, class: ein}
+  blocks:
+  - suffix:
+    - {branch: m-acc, feats: {Case: 'Acc,Dat', Gender: Masc, Number: Sing}, add: n}
+    - {branch: n-dat, feats: {Case: Dat, Gender: Neut, Number: Sing}, add: n}
+    - {branch: nom, feats: {Case: Nom, Number: Sing}, add: ''}
+    - {branch: acc, feats: {Case: Acc, Gender: 'Fem,Neut', Number: Sing}, add: ''}
+phonology:  # in order, each once over the whole form
+- {id: 'rule:bar-e-i', when: {class: e-i, feats: {Mood: 'Imp,Ind', Number: Sing}}, find: e, after: ['#', '#{C}', '#{C}{C}'], to: i}  # REVIEW: the stem's first vowel (kemm: kimm; geb: gib)
+- {id: 'rule:bar-umlaut', branch: au, when: {class: umlaut, feats: {Number: Plur}}, find: au, to: ei}  # REVIEW: Haus, Heiser (the course's notes)
+- {id: 'rule:bar-umlaut', branch: ua, when: {class: umlaut, feats: {Number: Plur}}, find: ua, to: ia}  # REVIEW: Bruader, Briader (the course's notes)
+- {id: 'rule:bar-umlaut', branch: vowel, when: {class: umlaut, feats: {Number: Plur}}, find: '{UML}', after: ['#', '{C}'], before: '{C}', map: {a: e, A: E, o: e, O: E, u: i, U: I}}  # REVIEW: Apfl, Epfl; Tog, Teg (the course): a vowel alone, not in a diphthong
+- {id: 'rule:bar-ge', branch: plosive, find: g+, at: start, before: '{GE}', to: ''}  # REVIEW: no g- before b, d, g, k, p, t, z (Moser: ge-: buntn, pfiffn; the course: kemmen, trunkn, kaft, brocht, gongen)
+- {id: 'rule:bar-ge', branch: ver, find: g+, at: start, before: ver, to: ''}  # REVIEW: none before the unstressed ver- (Claude's, as in German)
+- {id: 'rule:bar-nasal', when: {feats: {VerbForm: 'Fin,Inf,Part'}}, find: +n, after: ['{N}', ng], to: +en}  # REVIEW: -en after a nasal (Moser: kemmen; the course: lernen, wohnen, singen, kinnen)
+- {id: 'rule:bar-assimilation', find: +n, after: b, to: +m}  # REVIEW: -n is -m after b (Moser: Fachausdrücke, Assimilation: gloubm; hobm, gebm)
+- {id: 'rule:bar-epenthesis', branch: t, when: {feats: {VerbForm: 'Fin,Part'}}, find: t+t, to: t+et}  # REVIEW: -et after t (the course: orbatet, gorbatet, koschtet)
+- {id: 'rule:bar-epenthesis', branch: nasal, when: {feats: {VerbForm: 'Fin,Part'}}, find: '{OBS}n+t', to: '{OBS}n+et'}  # REVIEW: and after a plosive and n (the course: regnet); not after r, l, h or n (lernt, wohnt)
+- {id: 'rule:bar-scht', find: st+, before: '{V}', to: scht+}  # REVIEW: st is scht inside a word (Moser: Buchstaben und Lauten; the course: koschtet beside kostn)
+- {id: 'rule:bar-sibilant', branch: sz, find: ß+sch, to: +sch}  # REVIEW: -sch takes in the stem's s-sound (Moser: muasch(e) [-sche])
+- {id: 'rule:bar-sibilant', branch: ss, find: ss+sch, to: +sch}  # REVIEW: Claude's, by the same
+- {id: 'rule:bar-sibilant', branch: sch, find: sch+sch, to: +sch}  # REVIEW: Claude's, by the same
+- {id: 'rule:bar-adjective-e', when: {pos: ADJ}, find: +s, after: ['{SIB}', sch], to: +es}  # REVIEW: -es after an s-sound (the course: groaßes, frisches; kolts, schians)
+- {id: 'rule:bar-plural-e', when: {pos: NOUN, feats: {Number: Plur}}, find: e+n, at: end, to: +n}  # REVIEW: a final e gives way to -n (Moser: Tatte, Tattn; Ache, Achn)
+- {id: 'rule:bar-degemination', find: n+n, at: end, to: n}  # REVIEW: n and -n at a word's end are one n (the course: koan for him, Keschtn)

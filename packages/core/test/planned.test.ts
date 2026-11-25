@@ -372,12 +372,38 @@ describe("a word's pronunciation in its sentence (ADR 0054, 0095, 0098)", () => 
     expect(asked.length).toBeGreaterThan(0);
     for (const ex of asked) {
       if (ex.template !== "vocalize-build") continue;
-      expect(ex.optionalBefore, ex.id).toEqual({ "\u0627": ["\u064E"], "\u0649": ["\u064E"] });
+      expect(ex.optionalBefore, ex.id).toEqual([
+        { marks: ["\u064E"], letters: ["\u0627", "\u0649"] },
+        { marks: ["\u0650"], letters: ["\u064A"], bare: true, unless: ["\u0652"] },
+        { marks: ["\u064F"], letters: ["\u0648"], bare: true, unless: ["\u0652"] },
+      ]);
       expect(gradeExercise(ex, { tag: "text", text: before(ex, "\u064E") ?? "" }, grader).verdict, ex.id).toBe("CORRECT");
       expect(gradeExercise(ex, { tag: "text", text: before(ex, "\u0650") ?? "" }, grader).verdict, ex.id).toBe("WRONG");
     }
     // Persian writes no fatha there, and its profile says nothing of it: a fatha before ا is off (conformance vowels/fa/extra).
-    expect(walked("fa").course.profiles.get("fa-Arab/standard")?.marks?.optionalBefore.size).toBe(0);
+    expect(walked("fa").course.profiles.get("fa-Arab/standard")?.marks?.optionalBefore.length).toBe(0);
+  });
+
+  it("so may a kasra before a bare ya that writes a long i (فيلِم, فِيلِم): never offered as a wrong vocalization", () => {
+    const { course } = walked("apc", "apc-Arab/standard");
+    const marks = course.profiles.get(course.orthography)?.marks;
+    if (marks === undefined) throw new Error("apc: no marks");
+    // Each vocalized word's first letter with no mark of its own before a bare ya, with a kasra put on it.
+    const kasra = (word: string): string | undefined => {
+      const gs = graphemes(word);
+      const bare = (g: string): boolean => g === withoutMarks(marks, g);
+      const at = gs.findIndex((g, i) => i + 1 < gs.length && bare(g) && gs[i + 1] === "\u064A");
+      return at < 0 ? undefined : gs.map((g, i) => (i === at ? `${g}\u0650`.normalize("NFC") : g)).join("");
+    };
+    const cards = planned("apc", "apc-Arab/standard", "vocalize").filter((ex) => ex.template === "vocalize" && kasra(surfaceOf(ex.vocalized)) !== undefined);
+    expect(cards.length).toBeGreaterThan(0);
+    for (const ex of cards) {
+      if (ex.template !== "vocalize") continue;
+      const word = surfaceOf(ex.vocalized);
+      const written = kasra(word) ?? "";
+      expect(gradeVowels(marks, word, written).verdict, `${ex.id}: ${written}`).toBe("CORRECT");
+      expect(ex.options.map(surfaceOf), ex.id).not.toContain(written);
+    }
   });
 
   it("and Cantonese a word's Jyutping to type: the sentence without ruby, every tone counting", () => {

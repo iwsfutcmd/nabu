@@ -1,5 +1,5 @@
 {
-  "$comment": "Realisation for Biblical Hebrew (docs/rules/hbo.md; docs/rules-design.md). realise/hbo-engine runs on zz, an invented fixture language given whole, for what the engine gained with hbo's rules: a lexeme's form that holds only before something in its token (`before`: a stem before a suffixed pronoun), a rewrite that holds only of a token in a context (`when: {context}`: bound by a maqaf, pause), and the free variants of a cell (`variant`, `variants`: ADR 0145, both accepted, the first shown). realise/hbo runs hbo's own rules and lexicon (lexicons/hbo/language.yaml, lexemes.yaml) with `spellings: false`, as the compiler's check of the tokens does: one vector or more per branch of every rule, each a form the course writes (its item in the note).",
+  "$comment": "Realisation for Biblical Hebrew (docs/rules/hbo.md; docs/rules-design.md). realise/hbo-engine runs on zz, an invented fixture language given whole, for what the engine gained with hbo's rules: a lexeme's form that holds only before something in its token (`before`: a stem before a suffixed pronoun), a rewrite that holds only of a token in a context (`when: {context}`: bound by a maqaf, pause), and a cell's free forms realised in a token (`variant` takes one of `free`: ADR 0145, both accepted, the first shown). realise/hbo runs hbo's own rules and lexicon (lexicons/hbo/language.yaml, lexemes.yaml) with `spellings: false`, as the compiler's check of the tokens does: one vector or more per branch of every rule, each a form the course writes (its item in the note).",
   "vectors": [
     {
       "id": "realise/hbo-engine/before/holds",
@@ -2759,7 +2759,10 @@
         "value": {
           "form": "le+dom",
           "alternatives": [
-            "la+dom"
+            {
+              "form": "la+dom",
+              "steps": []
+            }
           ]
         }
       },
@@ -3039,8 +3042,14 @@
         "value": {
           "form": "le+osk",
           "alternatives": [
-            "la+osk",
-            "lo+osk"
+            {
+              "form": "la+osk",
+              "steps": []
+            },
+            {
+              "form": "lo+osk",
+              "steps": []
+            }
           ]
         }
       },
@@ -4959,10 +4968,12 @@
         "value": {
           "form": "mah",
           "status": "pinned",
-          "variants": 2
+          "free": [
+            "meh"
+          ]
         }
       },
-      "note": "Two free variants of a cell: the first, and how many there are."
+      "note": "Two free forms of a cell: the first, and the other (`free`)."
     },
     {
       "id": "realise/hbo-engine/variant/second",
@@ -5231,10 +5242,12 @@
         "value": {
           "form": "meh",
           "status": "pinned",
-          "variants": 2
+          "free": [
+            "mah"
+          ]
         }
       },
-      "note": "`variant` realises another."
+      "note": "`variant` takes the other in its place."
     },
     {
       "id": "realise/hbo-engine/variant/token",
@@ -5506,7 +5519,9 @@
         "ok": true,
         "value": {
           "form": "meh",
-          "variants": 2
+          "free": [
+            "mah"
+          ]
         }
       },
       "note": "As a token."
@@ -9026,7 +9041,23 @@
           "status": "given",
           "steps": [],
           "alternatives": [
-            "בַ+גָּן"
+            {
+              "form": "בַ+גָּן",
+              "steps": [
+                {
+                  "rule": "rule:hbo-article",
+                  "branch": "double"
+                },
+                {
+                  "rule": "rule:hbo-article",
+                  "branch": "qamets"
+                },
+                {
+                  "rule": "rule:hbo-preposition",
+                  "branch": "article"
+                }
+              ]
+            }
           ]
         }
       },
@@ -9063,8 +9094,23 @@
             }
           ],
           "alternatives": [
-            "לָ+יְבֵמֶת",
-            "לַ+יְּבֵמֶת"
+            {
+              "form": "לָ+יְבֵמֶת",
+              "steps": []
+            },
+            {
+              "form": "לַ+יְּבֵמֶת",
+              "steps": [
+                {
+                  "rule": "rule:hbo-article",
+                  "branch": "double"
+                },
+                {
+                  "rule": "rule:hbo-preposition",
+                  "branch": "article"
+                }
+              ]
+            }
           ]
         }
       },

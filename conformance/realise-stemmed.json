@@ -1,0 +1,1010 @@
+{
+ "$comment": "A category whose lexical forms are stems (language.schema.json `stemmed`; docs/rules/bar.md): its citation cell is realised by the rules as any other, where elsewhere a string form in its citation cell is that form. realise/stemmed runs on zz, an invented fixture language given whole, and once on the same lexicon without the key.",
+ "vectors": [
+  {
+   "id": "realise/stemmed/citation-by-rule",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-bar-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "VERB": [
+       "Person",
+       "Number",
+       "VerbForm"
+      ],
+      "NOUN": [
+       "Number"
+      ]
+     },
+     "citation": {
+      "VERB": {
+       "VerbForm": "Inf"
+      },
+      "NOUN": {
+       "Number": "Sing"
+      }
+     },
+     "stemmed": [
+      "VERB"
+     ],
+     "notation": {
+      "sets": {
+       "V": "[aeiou]",
+       "C": "[bcdfghjklmnpqrstvwxyz]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-infinitive",
+       "when": {
+        "feats": {
+         "VerbForm": "Inf"
+        }
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "inf",
+           "add": "ar"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-present",
+       "when": {
+        "feats": {
+         "VerbForm": "Fin"
+        }
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "3sg",
+           "feats": {
+            "Person": "3",
+            "Number": "Sing"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-plural",
+       "when": {
+        "pos": "NOUN"
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "pl",
+           "feats": {
+            "Number": "Plur"
+           },
+           "add": "s"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-elision",
+       "find": "a+a",
+       "to": "+a"
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-bar-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:ir",
+       "pos": "VERB",
+       "form": "v",
+       "forms": [
+        {
+         "feats": {
+          "VerbForm": "Inf"
+         },
+         "form": "ir",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-bar-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:kasa",
+       "pos": "NOUN",
+       "form": "kasa"
+      },
+      {
+       "id": "lexeme:lav",
+       "pos": "VERB",
+       "form": "lav"
+      },
+      {
+       "id": "lexeme:pasa",
+       "pos": "VERB",
+       "form": "pasa"
+      }
+     ]
+    },
+    "lexeme": "lexeme:lav",
+    "cell": {
+     "VerbForm": "Inf"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "lav+ar",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-infinitive",
+       "branch": "inf"
+      }
+     ]
+    }
+   },
+   "note": "A category the language declares stemmed: its lexeme's string form is a stem, and its citation cell is realised by the rules as any other cell."
+  },
+  {
+   "id": "realise/stemmed/rewrites-run",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-bar-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "VERB": [
+       "Person",
+       "Number",
+       "VerbForm"
+      ],
+      "NOUN": [
+       "Number"
+      ]
+     },
+     "citation": {
+      "VERB": {
+       "VerbForm": "Inf"
+      },
+      "NOUN": {
+       "Number": "Sing"
+      }
+     },
+     "stemmed": [
+      "VERB"
+     ],
+     "notation": {
+      "sets": {
+       "V": "[aeiou]",
+       "C": "[bcdfghjklmnpqrstvwxyz]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-infinitive",
+       "when": {
+        "feats": {
+         "VerbForm": "Inf"
+        }
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "inf",
+           "add": "ar"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-present",
+       "when": {
+        "feats": {
+         "VerbForm": "Fin"
+        }
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "3sg",
+           "feats": {
+            "Person": "3",
+            "Number": "Sing"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-plural",
+       "when": {
+        "pos": "NOUN"
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "pl",
+           "feats": {
+            "Number": "Plur"
+           },
+           "add": "s"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-elision",
+       "find": "a+a",
+       "to": "+a"
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-bar-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:ir",
+       "pos": "VERB",
+       "form": "v",
+       "forms": [
+        {
+         "feats": {
+          "VerbForm": "Inf"
+         },
+         "form": "ir",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-bar-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:kasa",
+       "pos": "NOUN",
+       "form": "kasa"
+      },
+      {
+       "id": "lexeme:lav",
+       "pos": "VERB",
+       "form": "lav"
+      },
+      {
+       "id": "lexeme:pasa",
+       "pos": "VERB",
+       "form": "pasa"
+      }
+     ]
+    },
+    "lexeme": "lexeme:pasa",
+    "cell": {
+     "VerbForm": "Inf"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "pas+ar",
+     "steps": [
+      {
+       "rule": "rule:zz-infinitive",
+       "branch": "inf"
+      },
+      {
+       "rule": "rule:zz-elision"
+      }
+     ]
+    }
+   },
+   "note": "The rewrite rules run over a stem's citation cell too."
+  },
+  {
+   "id": "realise/stemmed/other-cell",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-bar-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "VERB": [
+       "Person",
+       "Number",
+       "VerbForm"
+      ],
+      "NOUN": [
+       "Number"
+      ]
+     },
+     "citation": {
+      "VERB": {
+       "VerbForm": "Inf"
+      },
+      "NOUN": {
+       "Number": "Sing"
+      }
+     },
+     "stemmed": [
+      "VERB"
+     ],
+     "notation": {
+      "sets": {
+       "V": "[aeiou]",
+       "C": "[bcdfghjklmnpqrstvwxyz]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-infinitive",
+       "when": {
+        "feats": {
+         "VerbForm": "Inf"
+        }
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "inf",
+           "add": "ar"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-present",
+       "when": {
+        "feats": {
+         "VerbForm": "Fin"
+        }
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "3sg",
+           "feats": {
+            "Person": "3",
+            "Number": "Sing"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-plural",
+       "when": {
+        "pos": "NOUN"
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "pl",
+           "feats": {
+            "Number": "Plur"
+           },
+           "add": "s"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-elision",
+       "find": "a+a",
+       "to": "+a"
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-bar-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:ir",
+       "pos": "VERB",
+       "form": "v",
+       "forms": [
+        {
+         "feats": {
+          "VerbForm": "Inf"
+         },
+         "form": "ir",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-bar-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:kasa",
+       "pos": "NOUN",
+       "form": "kasa"
+      },
+      {
+       "id": "lexeme:lav",
+       "pos": "VERB",
+       "form": "lav"
+      },
+      {
+       "id": "lexeme:pasa",
+       "pos": "VERB",
+       "form": "pasa"
+      }
+     ]
+    },
+    "lexeme": "lexeme:lav",
+    "cell": {
+     "Person": "3",
+     "Number": "Sing",
+     "VerbForm": "Fin"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "lav+a",
+     "steps": [
+      {
+       "rule": "rule:zz-present",
+       "branch": "3sg"
+      }
+     ]
+    }
+   },
+   "note": "Every other cell as before."
+  },
+  {
+   "id": "realise/stemmed/listed-form-first",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-bar-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "VERB": [
+       "Person",
+       "Number",
+       "VerbForm"
+      ],
+      "NOUN": [
+       "Number"
+      ]
+     },
+     "citation": {
+      "VERB": {
+       "VerbForm": "Inf"
+      },
+      "NOUN": {
+       "Number": "Sing"
+      }
+     },
+     "stemmed": [
+      "VERB"
+     ],
+     "notation": {
+      "sets": {
+       "V": "[aeiou]",
+       "C": "[bcdfghjklmnpqrstvwxyz]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-infinitive",
+       "when": {
+        "feats": {
+         "VerbForm": "Inf"
+        }
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "inf",
+           "add": "ar"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-present",
+       "when": {
+        "feats": {
+         "VerbForm": "Fin"
+        }
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "3sg",
+           "feats": {
+            "Person": "3",
+            "Number": "Sing"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-plural",
+       "when": {
+        "pos": "NOUN"
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "pl",
+           "feats": {
+            "Number": "Plur"
+           },
+           "add": "s"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-elision",
+       "find": "a+a",
+       "to": "+a"
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-bar-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:ir",
+       "pos": "VERB",
+       "form": "v",
+       "forms": [
+        {
+         "feats": {
+          "VerbForm": "Inf"
+         },
+         "form": "ir",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-bar-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:kasa",
+       "pos": "NOUN",
+       "form": "kasa"
+      },
+      {
+       "id": "lexeme:lav",
+       "pos": "VERB",
+       "form": "lav"
+      },
+      {
+       "id": "lexeme:pasa",
+       "pos": "VERB",
+       "form": "pasa"
+      }
+     ]
+    },
+    "lexeme": "lexeme:ir",
+    "cell": {
+     "VerbForm": "Inf"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ir",
+     "status": "listed",
+     "steps": []
+    }
+   },
+   "note": "Blocking comes first: a listed form of the citation cell is the whole answer."
+  },
+  {
+   "id": "realise/stemmed/category-not-stemmed",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-bar-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "VERB": [
+       "Person",
+       "Number",
+       "VerbForm"
+      ],
+      "NOUN": [
+       "Number"
+      ]
+     },
+     "citation": {
+      "VERB": {
+       "VerbForm": "Inf"
+      },
+      "NOUN": {
+       "Number": "Sing"
+      }
+     },
+     "stemmed": [
+      "VERB"
+     ],
+     "notation": {
+      "sets": {
+       "V": "[aeiou]",
+       "C": "[bcdfghjklmnpqrstvwxyz]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-infinitive",
+       "when": {
+        "feats": {
+         "VerbForm": "Inf"
+        }
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "inf",
+           "add": "ar"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-present",
+       "when": {
+        "feats": {
+         "VerbForm": "Fin"
+        }
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "3sg",
+           "feats": {
+            "Person": "3",
+            "Number": "Sing"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-plural",
+       "when": {
+        "pos": "NOUN"
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "pl",
+           "feats": {
+            "Number": "Plur"
+           },
+           "add": "s"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-elision",
+       "find": "a+a",
+       "to": "+a"
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-bar-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:ir",
+       "pos": "VERB",
+       "form": "v",
+       "forms": [
+        {
+         "feats": {
+          "VerbForm": "Inf"
+         },
+         "form": "ir",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-bar-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:kasa",
+       "pos": "NOUN",
+       "form": "kasa"
+      },
+      {
+       "id": "lexeme:lav",
+       "pos": "VERB",
+       "form": "lav"
+      },
+      {
+       "id": "lexeme:pasa",
+       "pos": "VERB",
+       "form": "pasa"
+      }
+     ]
+    },
+    "lexeme": "lexeme:kasa",
+    "cell": {
+     "Number": "Sing"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "kasa",
+     "status": "given",
+     "steps": []
+    }
+   },
+   "note": "A category the language does not declare stemmed: a string form in its citation cell is that form, no rule run."
+  },
+  {
+   "id": "realise/stemmed/not-declared",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-bar-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "VERB": [
+       "Person",
+       "Number",
+       "VerbForm"
+      ],
+      "NOUN": [
+       "Number"
+      ]
+     },
+     "citation": {
+      "VERB": {
+       "VerbForm": "Inf"
+      },
+      "NOUN": {
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "sets": {
+       "V": "[aeiou]",
+       "C": "[bcdfghjklmnpqrstvwxyz]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-infinitive",
+       "when": {
+        "feats": {
+         "VerbForm": "Inf"
+        }
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "inf",
+           "add": "ar"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-present",
+       "when": {
+        "feats": {
+         "VerbForm": "Fin"
+        }
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "3sg",
+           "feats": {
+            "Person": "3",
+            "Number": "Sing"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-plural",
+       "when": {
+        "pos": "NOUN"
+       },
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "pl",
+           "feats": {
+            "Number": "Plur"
+           },
+           "add": "s"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-elision",
+       "find": "a+a",
+       "to": "+a"
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-bar-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:ir",
+       "pos": "VERB",
+       "form": "v",
+       "forms": [
+        {
+         "feats": {
+          "VerbForm": "Inf"
+         },
+         "form": "ir",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-bar-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:kasa",
+       "pos": "NOUN",
+       "form": "kasa"
+      },
+      {
+       "id": "lexeme:lav",
+       "pos": "VERB",
+       "form": "lav"
+      },
+      {
+       "id": "lexeme:pasa",
+       "pos": "VERB",
+       "form": "pasa"
+      }
+     ]
+    },
+    "lexeme": "lexeme:lav",
+    "cell": {
+     "VerbForm": "Inf"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "lav",
+     "status": "given",
+     "steps": []
+    }
+   },
+   "note": "The same lexicon with no `stemmed`: the verb's string form is its citation form (what the engine did before the key)."
+  }
+ ]
+}

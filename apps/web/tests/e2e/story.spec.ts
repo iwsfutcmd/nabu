@@ -125,6 +125,7 @@ test("tap-for-gloss: vocalized apc-Arab words find their entries, whatever their
   for (let i = 0; i < 5 && (await kifak.count()) === 0; i += 1) await page.locator("[data-story-reader] [data-action=continue]").tap();
   await kifak.tap();
   await expect(kifak).toHaveAttribute("aria-pressed", "true");
+  // What it means opens in a dialog (ADR 0157).
   const panel = page.locator("[data-gloss-panel]");
   // كيفك is كيف "how" with the ending -ak "your (to a man)": an entry for each of its lexemes.
   const entry = panel.locator('[data-gloss-id="lexeme:kif"]');
@@ -139,13 +140,19 @@ test("tap-for-gloss: vocalized apc-Arab words find their entries, whatever their
   const line = await kifak.evaluate((el) => el.closest("[data-line]")?.getAttribute("data-line"));
   const index = await kifak.getAttribute("data-index");
   const word = page.locator(`[data-story-transcript] [data-line="${line ?? ""}"] button[data-index="${index ?? ""}"]`);
+  // Closed with its button: the word is no longer pressed.
+  await panel.locator("[data-action=close-gloss]").tap();
+  await expect(panel).toHaveCount(0);
+  await expect(word).toHaveAttribute("aria-pressed", "false");
   // Vowel marks off, from the header's display menu (P12).
   await page.locator("[data-story-reader] [data-action=display]").tap();
   await page.locator("[data-display-menu] [data-toggle=marks] [data-marks=hide]").tap();
   await page.keyboard.press("Escape");
   await expect(word).toHaveText("كيفك");
+  await word.tap();
   await expect(word).toHaveAttribute("aria-pressed", "true");
   await expect(entry).toBeVisible();
+  await expect(entry.locator("dt")).toHaveText("كيف");
 });
 
 test("vertical reading on a phone: the readings stay, only the Cantonese turns, Continue in sight (W6)", async ({ page }, info) => {

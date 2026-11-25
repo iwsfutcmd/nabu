@@ -50,6 +50,30 @@ input:
   extraKeys: ["\u045E", "\u049B", "\u0493", "\u04B3"]
 layout: { vertical: none }
 transliterate: { to: uz-Latn/standard, via: cldr-transform }
+# How a lexical form is written (docs/rules-design.md, section 3; docs/rules/uz.md): uz's notation is the Latin
+# alphabet (lexicons/uz/language.yaml), written here letter by letter, in order. REVIEW: the Cyrillic of the
+# 1940-1995 norm as the course writes it; every word of the course comes out so. No loan of the course keeps a
+# Russian spelling (ц, ь, щ): such a word would be spelled whole here, first.
+spell:
+  from: lexical
+  rules:
+    # y and e as one letter: е at a word's start and after a vowel (ер, поезд, қаер); after a consonant
+    # Cyrillic has no such letter, and йе is written (none in the course).
+    - { find: "[yY]e", at: start, map: { ye: е, Ye: Е } }
+    - { find: "[yY]e", after: "([aeiouAEIOU]|[oO]ʻ)", map: { ye: е, Ye: Е } }
+    # e alone at a word's start and after a vowel is э (эрта, эди, эмас); after a consonant е (кеча).
+    - { find: "[eE]", at: start, map: { e: э, E: Э } }
+    - { find: "[eE]", after: "([aeiouAEIOU]|[oO]ʻ)", map: { e: э, E: Э } }
+    # The letters written with a sign or two letters in Latin: oʻ ў, gʻ ғ (first: yoʻl is й + ў), sh ш, ch ч;
+    # then y with a, o, u as one letter (я, ё, ю: тайёр, самолёт); the tutuq belgisi ъ.
+    - { find: "[oOgG]ʻ", map: { "oʻ": ў, "Oʻ": Ў, "gʻ": ғ, "Gʻ": Ғ } }
+    - { find: "([sScC]h|SH|CH)", map: { sh: ш, Sh: Ш, SH: Ш, ch: ч, Ch: Ч, CH: Ч } }
+    - { find: "[yY][aouAOU]", map: { ya: я, yo: ё, yu: ю, Ya: Я, Yo: Ё, Yu: Ю, YA: Я, YO: Ё, YU: Ю } }
+    - { find: "ʼ", to: ъ }
+    # Then each letter: h is ҳ, x х, q қ, j ж.
+    - find: "[a-zA-Z]"
+      map: { a: а, b: б, d: д, e: е, f: ф, g: г, h: ҳ, i: и, j: ж, k: к, l: л, m: м, n: н, o: о, p: п, q: қ, r: р, s: с, t: т, u: у, v: в, x: х, y: й, z: з,
+             A: А, B: Б, D: Д, E: Е, F: Ф, G: Г, H: Ҳ, I: И, J: Ж, K: К, L: Л, M: М, N: Н, O: О, P: П, Q: Қ, R: Р, S: С, T: Т, U: У, V: В, X: Х, Y: Й, Z: З }
 # What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.
 # Nothing: Whisper writes Uzbek in Latin letters, so a transcript cannot be graded in Cyrillic.
 speech:

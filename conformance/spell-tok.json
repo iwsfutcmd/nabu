@@ -1,0 +1,65 @@
+{
+  "$comment": "Spelling a Toki Pona lexical form (docs/rules/tok.md): sitelen Lasina writes a form as it is (its `spell` has no rules; the notation names no vowel signs, its vowels being letters). A name keeps its capital; with `expected`, the course's spelling compared as the profile keys a word (the case policy folds a capital typed at a sentence's start). sitelen pona states no `spell`: a logograph is lexical.",
+  "vectors": [
+    {
+      "id": "spell/tok-latn/word",
+      "op": "spell",
+      "args": {
+        "profile": "tok-Latn/standard",
+        "form": "moku",
+        "expected": "moku"
+      },
+      "expected": {
+        "spelling": "moku",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "lexeme:moku."
+    },
+    {
+      "id": "spell/tok-latn/name",
+      "op": "spell",
+      "args": {
+        "profile": "tok-Latn/standard",
+        "form": "Sonja",
+        "expected": "Sonja"
+      },
+      "expected": {
+        "spelling": "Sonja",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "lexeme:sonja: a name keeps its capital."
+    },
+    {
+      "id": "spell/tok-latn/capital-at-start",
+      "op": "spell",
+      "args": {
+        "profile": "tok-Latn/standard",
+        "form": "mi",
+        "expected": "Mi"
+      },
+      "expected": {
+        "spelling": "mi",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "A capital at a sentence's start is no other spelling (match.case)."
+    },
+    {
+      "id": "spell/tok-latn/another-word",
+      "op": "spell",
+      "args": {
+        "profile": "tok-Latn/standard",
+        "form": "pona",
+        "expected": "pana"
+      },
+      "expected": {
+        "spelling": "pona",
+        "alternatives": [],
+        "expected": null
+      },
+      "note": "A letter apart is another word: neither the spelling nor an alternative."
+    }
+  ]
+}

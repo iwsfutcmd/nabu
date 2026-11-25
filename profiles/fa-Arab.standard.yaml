@@ -48,8 +48,19 @@ correspondences:
   - { says: h, written: [ه, ح], kind: fixed, note: sound-alike }
   - { says: ʔ, written: [ء, ع], kind: fixed, note: sound-alike }
   - { says: ɢ, written: [ق, غ], kind: fixed, note: sound-alike }
+# How the course's Persian spells a lexical form (lexicons/fa/language.yaml, `notation`; docs/rules/fa.md): the
+# letters with neither the vowel marks (the sound statement leaves them aside) nor the sign of a silent letter;
+# the ezafe's hamza on a final ه (خانهٔ) is kept, as the course writes it. Checked against each lexeme's first
+# spelling and every token by the compiler (`form.projection`, `form.unaccounted`, `nabu forms`). REVIEW.
+spell:
+  from: lexical
+  rules:
+    - {find: "[\u064b-\u0652\u0670\u06df]", to: ""}
 annotations:
-  - { id: vocalized, kind: vocalization, toggle: true, default: on-for-new-words }
+  # The marked text "Show vowel marks" shows: the form as it is, as courses/fa/vocalization.yaml marks the word,
+  # less the signs of no vowel and of a silent letter. REVIEW.
+  - { id: vocalized, kind: vocalization, toggle: true, default: on-for-new-words,
+      spell: { from: lexical, rules: [{find: "[\u0652\u06df]", to: ""}] } }
 input:
   keyboard: cldr-kbd:fa
   extraKeys: ["\u200C"]          # ZWNJ on the special-character bar

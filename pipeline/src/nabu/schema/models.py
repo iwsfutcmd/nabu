@@ -1469,6 +1469,14 @@ type LexicalAdditionalPropertyItem = Annotated[
 type LexicalAdditionalProperty = Annotated[list[LexicalAdditionalPropertyItem], Field(min_length=1)]
 
 
+type UnmarkedAdditionalPropertyItem = Annotated[str, Field(pattern="^[A-Z0-9][A-Za-z0-9]*$")]
+
+
+type UnmarkedAdditionalProperty = Annotated[
+    list[UnmarkedAdditionalPropertyItem], Field(min_length=1)
+]
+
+
 type PrincipalPartsAdditionalProperty1 = Annotated[list[UdFeatures], Field(min_length=1)]
 
 
@@ -1611,7 +1619,13 @@ class Exponent(BaseModel):
     )
     branch: Branch
     feats: UdFeatures | None = None
-    add: str
+    add: str | None = None
+    lexeme: Annotated[
+        LexemeId | None,
+        Field(
+            description="In place of `add`: an affix lexeme the exponent writes, in the allomorph its conditions choose by what it follows, as a token that lists it is realised (uz: the past -di, lexeme:past). One of `add` and `lexeme`."
+        ),
+    ] = None
     stem: StemChoice | None = None
     notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
 
@@ -1686,6 +1700,12 @@ class Condition(BaseModel):
         ),
     ] = None
     feats: Annotated[UdFeatures | None, Field(description="It has these feature values.")] = None
+    own: Annotated[
+        UdFeatures | None,
+        Field(
+            description="Of a realisation rule or a rewrite: the lexeme has these values of itself (a comma: one of them), as its entry stores them or else its language's defaults give them for a feature its category has of itself (`lexical`): a Slovak noun's gender and animacy, which choose its declension."
+        ),
+    ] = None
     context: Annotated[
         Slug | None,
         Field(
@@ -2578,7 +2598,7 @@ class Allomorph(BaseModel):
     free: Annotated[
         bool | None,
         Field(
-            description="Accepted wherever its conditions hold (or anywhere, with none) in place of the allomorph chosen there, which it never is of itself: a form the course writes where no condition tells it from the other (hbo בַּ, the preposition with an article its tokens do not list)."
+            description="true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (anywhere, with none): a scribe's other spelling of a suffix (chg's locative دا beside ده), or a form the course writes where no condition tells it from the other (hbo בַּ, the preposition with an article its tokens do not list). Never the one chosen: a token's realisation gives it as an alternative."
         ),
     ] = None
     spelled: Annotated[
@@ -2921,6 +2941,18 @@ class OptionalBeforeItem(BaseModel):
             description="The letters before which they may be written or not: whole letters, as NFC writes them (a plain alif, never one carrying a hamza)."
         ),
     ]
+    bare: Annotated[
+        bool | None,
+        Field(
+            description="Only where that letter, in the expected word, carries no mark of the set: a ya or waw that writes a long vowel. One with a mark of its own (مِيِّة, هُوّ) is a consonant, and the vowel before it counts."
+        ),
+    ] = None
+    unless: Annotated[
+        UnicodeSetPattern | None,
+        Field(
+            description="Marks of the set on the letter itself, in the expected word, that keep the marks counting: a sukun says the letter after begins a syllable, so it is a consonant (فاضْيين: fāḍyīn, never fāḍiyīn)."
+        ),
+    ] = None
 
 
 class Case(BaseModel):
@@ -5466,7 +5498,7 @@ class Marks(BaseModel):
     optionalBefore: Annotated[
         list[OptionalBeforeItem] | None,
         Field(
-            description="Marks a learner supplying a word's vowel marks (ADR 0054 as amended) may write or leave out on a letter, where the letter after it is one of `letters`: the fatha before the alif that writes its long a (مَرْحَبا and مَرْحَبَا are the same word). The same mark elsewhere counts as the others do.",
+            description="Marks a learner supplying a word's vowel marks (ADR 0054 as amended) may write or leave out on a letter, where the letter after it is one of `letters`: the fatha before the alif that writes its long a (مَرْحَبا and مَرْحَبَا are the same word), the kasra before a bare ya that writes its long i (فيلِم and فِيلِم). The same mark elsewhere counts as the others do.",
             min_length=1,
         ),
     ] = None
@@ -6440,6 +6472,12 @@ class Spell(BaseModel):
             description="What is spelled: a lexeme's lexical form, in its language's notation.",
         ),
     ]
+    boundaries: Annotated[
+        bool | None,
+        Field(
+            description="true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first."
+        ),
+    ] = None
     sets: Annotated[
         dict[
             Annotated[str, StringConstraints(pattern=r"^[A-Za-z][A-Za-z0-9-]*$")], UnicodeSetPattern
@@ -6909,6 +6947,24 @@ class LanguageDeclaration(BaseModel):
         dict[PartOfSpeech, UdFeatures] | None,
         Field(
             description="For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell."
+        ),
+    ] = None
+    stemmed: Annotated[
+        list[PartOfSpeech] | None,
+        Field(
+            description="The categories whose lexical form, where it is a string, is a stem and not a word (bar's verbs: red, kemm), so that their citation cell is realised by the rules as every other cell is (redn, kemmen) and the lemma is checked as the rules give it. Elsewhere a string form is its citation form, which no rule runs over.",
+            min_length=1,
+        ),
+    ] = None
+    unmarked: Annotated[
+        dict[
+            Annotated[str, StringConstraints(pattern=r"^[A-Z][A-Za-z0-9]*(\[[a-z0-9]+\])?$")],
+            UnmarkedAdditionalProperty,
+        ]
+        | None,
+        Field(
+            description="Each feature's unmarked values, which the course uses from the start and never introduces as a part (es: Mood Ind, VerbForm Fin, Number Sing): taught, where the compiler lists a paradigm's cells (docs/rules-design.md, stage 4), as a citation or bare cell's values are. Never a learner's part.",
+            min_length=1,
         ),
     ] = None
     principalParts: Annotated[

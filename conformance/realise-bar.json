@@ -1,0 +1,2778 @@
+{
+ "$comment": "South Tyrolean's rules (docs/rules/bar.md; lexicons/bar/language.yaml, lexemes.yaml): realise/bar runs bar's own rules and lexicon, a vector per branch of every realisation rule and rewrite, the listed and pinned forms, and the tokens that write two lexemes (afn, geat's), with `spellings: false` as the compiler's token check asks; each from a form the course writes, where the note names it, or else Moser's or Claude's (said so).",
+ "vectors": [
+  {
+   "id": "realise/bar/present/1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:redn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "red",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "1sg"
+      }
+     ]
+    }
+   },
+   "note": "u02: I red deitsch (s.u02)."
+  },
+  {
+   "id": "realise/bar/present/2sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:redn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "2",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "red+sch",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "2sg"
+      }
+     ]
+    }
+   },
+   "note": "u02: Redsch du walsch?"
+  },
+  {
+   "id": "realise/bar/present/3sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:redn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "3",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "red+t",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "3sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: redt."
+  },
+  {
+   "id": "realise/bar/present/2pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:redn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "2",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "red+ts",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "2pl"
+      }
+     ]
+    }
+   },
+   "note": "the course: Redts es …?"
+  },
+  {
+   "id": "realise/bar/present/pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:redn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "1",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "red+n",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "pl"
+      }
+     ]
+    }
+   },
+   "note": "the course: mir redn."
+  },
+  {
+   "id": "realise/bar/modal/sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kinnen",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "konn",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-modal",
+       "branch": "sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: i konn; the listed singular stem konn."
+  },
+  {
+   "id": "realise/bar/modal/sg-3",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:miassn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "3",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "muaß",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-modal",
+       "branch": "sg"
+      }
+     ]
+    }
+   },
+   "note": "no -t for he (Moser: muaß [akrat]); the course writes no 3sg of a modal."
+  },
+  {
+   "id": "realise/bar/modal/2sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:megn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "2",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "mog+sch",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-modal",
+       "branch": "2sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: Mogsch …?"
+  },
+  {
+   "id": "realise/bar/modal/2pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:welln",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "2",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "well+ts",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-modal",
+       "branch": "2pl"
+      }
+     ]
+    }
+   },
+   "note": "the course: wellts."
+  },
+  {
+   "id": "realise/bar/modal/pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kinnen",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "1",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "kinn+en",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-modal",
+       "branch": "pl"
+      },
+      {
+       "rule": "rule:bar-nasal"
+      }
+     ]
+    }
+   },
+   "note": "the course: mir kinnen; -en after a nasal."
+  },
+  {
+   "id": "realise/bar/past/sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:sein",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Past",
+       "VerbForm": "Fin",
+       "Person": "3",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "wor",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-past",
+       "branch": "sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: Wia wor dei Wochnend?"
+  },
+  {
+   "id": "realise/bar/past/2sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:sein",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Past",
+       "VerbForm": "Fin",
+       "Person": "2",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "wor+sch",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-past",
+       "branch": "2sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: worsch."
+  },
+  {
+   "id": "realise/bar/past/pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:sein",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Past",
+       "VerbForm": "Fin",
+       "Person": "1",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "wor+n",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-past",
+       "branch": "pl"
+      }
+     ]
+    }
+   },
+   "note": "the course: mir worn."
+  },
+  {
+   "id": "realise/bar/past/2pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:sein",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Past",
+       "VerbForm": "Fin",
+       "Person": "2",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "wor+ts",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-past",
+       "branch": "2pl"
+      }
+     ]
+    }
+   },
+   "note": "Claude's: es worts; the course writes none."
+  },
+  {
+   "id": "realise/bar/subjunctive/sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:tian",
+      "base": true,
+      "feats": {
+       "Mood": "Sub",
+       "Tense": "Past",
+       "VerbForm": "Fin",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "tat",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-subjunctive",
+       "branch": "sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: I tat gearn kemmen."
+  },
+  {
+   "id": "realise/bar/subjunctive/2sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:hobm",
+      "base": true,
+      "feats": {
+       "Mood": "Sub",
+       "Tense": "Past",
+       "VerbForm": "Fin",
+       "Person": "2",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "hatt+sch",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-subjunctive",
+       "branch": "2sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: Hattsch du gearn an Krapfn?"
+  },
+  {
+   "id": "realise/bar/subjunctive/pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:hobm",
+      "base": true,
+      "feats": {
+       "Mood": "Sub",
+       "Tense": "Past",
+       "VerbForm": "Fin",
+       "Person": "1",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "hatt+n",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-subjunctive",
+       "branch": "pl"
+      }
+     ]
+    }
+   },
+   "note": "the course: mir hattn."
+  },
+  {
+   "id": "realise/bar/subjunctive/2pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:tian",
+      "base": true,
+      "feats": {
+       "Mood": "Sub",
+       "Tense": "Past",
+       "VerbForm": "Fin",
+       "Person": "2",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "tat+ets",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-subjunctive",
+       "branch": "2pl"
+      },
+      {
+       "rule": "rule:bar-epenthesis",
+       "branch": "t"
+      }
+     ]
+    }
+   },
+   "note": "Claude's: es tatets (-et after t); the course writes none."
+  },
+  {
+   "id": "realise/bar/imperative/2sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:schaugn",
+      "base": true,
+      "feats": {
+       "Mood": "Imp",
+       "Number": "Sing",
+       "Person": "2",
+       "VerbForm": "Fin"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "schaug",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-imperative",
+       "branch": "2sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: Schaug!"
+  },
+  {
+   "id": "realise/bar/imperative/2pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kemmen",
+      "base": true,
+      "feats": {
+       "Mood": "Imp",
+       "Number": "Plur",
+       "Person": "2",
+       "VerbForm": "Fin"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "kemm+ts",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-imperative",
+       "branch": "2pl"
+      }
+     ]
+    }
+   },
+   "note": "Moser: kemmts [umma]; the course writes none."
+  },
+  {
+   "id": "realise/bar/infinitive/inf",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:fohrn",
+      "base": true,
+      "feats": {
+       "VerbForm": "Inf"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "fohr+n",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-infinitive",
+       "branch": "inf"
+      }
+     ]
+    }
+   },
+   "note": "the course: noch Meran fohrn."
+  },
+  {
+   "id": "realise/bar/participle/t",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:mochn",
+      "base": true,
+      "feats": {
+       "VerbForm": "Part"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "g+moch+t",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-participle",
+       "branch": "ge"
+      },
+      {
+       "rule": "rule:bar-participle",
+       "branch": "t"
+      }
+     ]
+    }
+   },
+   "note": "the course: gmocht."
+  },
+  {
+   "id": "realise/bar/participle-strong/n",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:fohrn",
+      "base": true,
+      "feats": {
+       "VerbForm": "Part"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "g+fohr+n",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-participle-strong",
+       "branch": "ge"
+      },
+      {
+       "rule": "rule:bar-participle-strong",
+       "branch": "n"
+      }
+     ]
+    }
+   },
+   "note": "the course: Ihr Freind isch noch Wien gfohrn."
+  },
+  {
+   "id": "realise/bar/participle-modal/inf",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:megn",
+      "base": true,
+      "feats": {
+       "VerbForm": "Part"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "meg+n",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-participle-modal",
+       "branch": "inf"
+      }
+     ]
+    }
+   },
+   "note": "Moser: hat megn [megn]; the course writes none."
+  },
+  {
+   "id": "realise/bar/plural-er/pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kind",
+      "base": true,
+      "feats": {
+       "Case": "Nom",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Kind+er",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-plural-er",
+       "branch": "pl"
+      }
+     ]
+    }
+   },
+   "note": "the course: Di Kinder sein untn."
+  },
+  {
+   "id": "realise/bar/plural-er/sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kind",
+      "base": true,
+      "feats": {
+       "Case": "Acc",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Kind",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-plural-er",
+       "branch": "sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: a Kind."
+  },
+  {
+   "id": "realise/bar/plural-n/pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:keschtn",
+      "base": true,
+      "feats": {
+       "Case": "Acc",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Keschtn",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-plural-n",
+       "branch": "pl"
+      },
+      {
+       "rule": "rule:bar-degemination"
+      }
+     ]
+    }
+   },
+   "note": "the course: Keschtn; -n and a final n are one (rule:bar-degemination)."
+  },
+  {
+   "id": "realise/bar/plural-n/sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:tatte",
+      "base": true,
+      "feats": {
+       "Case": "Dat",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Tatte",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-plural-n",
+       "branch": "sg"
+      }
+     ]
+    }
+   },
+   "note": "a singular as it is: Tatte."
+  },
+  {
+   "id": "realise/bar/plural-zero/pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:knedl",
+      "base": true,
+      "feats": {
+       "Case": "Acc",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Knedl",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-plural-zero",
+       "branch": "pl"
+      }
+     ]
+    }
+   },
+   "note": "the course: I iss gearn Knedl."
+  },
+  {
+   "id": "realise/bar/plural-zero/sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:hund",
+      "base": true,
+      "feats": {
+       "Case": "Acc",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Hund",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-plural-zero",
+       "branch": "sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: Mir hobm koan Hund."
+  },
+  {
+   "id": "realise/bar/plural-only/pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:leit",
+      "base": true,
+      "feats": {
+       "Case": "Dat",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Leit",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-plural-only",
+       "branch": "pl"
+      }
+     ]
+    }
+   },
+   "note": "Leit, with no singular; the course writes only its citation (Nom)."
+  },
+  {
+   "id": "realise/bar/noun/sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kuchl",
+      "base": true,
+      "feats": {
+       "Case": "Dat",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Kuchl",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-noun",
+       "branch": "sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: in der Kuchl."
+  },
+  {
+   "id": "realise/bar/name/sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:bozn",
+      "base": true,
+      "feats": {
+       "Case": "Dat",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Bozn",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-name",
+       "branch": "sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: va Bozn."
+  },
+  {
+   "id": "realise/bar/adjective/m",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:schian",
+      "base": true,
+      "feats": {
+       "Case": "Nom",
+       "Gender": "Masc",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "schian+er",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-adjective",
+       "branch": "m"
+      }
+     ]
+    }
+   },
+   "note": "the course: Do isch a schianer See."
+  },
+  {
+   "id": "realise/bar/adjective/m-acc",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:groaß",
+      "base": true,
+      "feats": {
+       "Case": "Acc",
+       "Gender": "Masc",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "groaß+n",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-adjective",
+       "branch": "m-acc"
+      }
+     ]
+    }
+   },
+   "note": "the course: an groaßn Morkt."
+  },
+  {
+   "id": "realise/bar/adjective/f",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:liab",
+      "base": true,
+      "feats": {
+       "Case": "Nom",
+       "Gender": "Fem",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "liab+e",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-adjective",
+       "branch": "f"
+      }
+     ]
+    }
+   },
+   "note": "the course: a liabe Frau."
+  },
+  {
+   "id": "realise/bar/adjective/n",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kolt",
+      "base": true,
+      "feats": {
+       "Case": "Acc",
+       "Gender": "Neut",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "kolt+s",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-adjective",
+       "branch": "n"
+      }
+     ]
+    }
+   },
+   "note": "the course: a kolts Bier."
+  },
+  {
+   "id": "realise/bar/ein/m-acc",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:a",
+      "base": true,
+      "feats": {
+       "Case": "Acc",
+       "Gender": "Masc",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "a+n",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-ein",
+       "branch": "m-acc"
+      }
+     ]
+    }
+   },
+   "note": "the course: I hon an Bruader."
+  },
+  {
+   "id": "realise/bar/ein/n-dat",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:a",
+      "base": true,
+      "feats": {
+       "Case": "Dat",
+       "Gender": "Neut",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "a+n",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-ein",
+       "branch": "n-dat"
+      }
+     ]
+    }
+   },
+   "note": "the course: in an Kondominium."
+  },
+  {
+   "id": "realise/bar/ein/nom",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:mei",
+      "base": true,
+      "feats": {
+       "Case": "Nom",
+       "Gender": "Fem",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "mei",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-ein",
+       "branch": "nom"
+      }
+     ]
+    }
+   },
+   "note": "the course: mei Oma."
+  },
+  {
+   "id": "realise/bar/ein/acc",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:a",
+      "base": true,
+      "feats": {
+       "Case": "Acc",
+       "Gender": "Neut",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "a",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-ein",
+       "branch": "acc"
+      }
+     ]
+    }
+   },
+   "note": "the course: a Bier."
+  },
+  {
+   "id": "realise/bar/e-i/1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kemmen",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "kimm",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "1sg"
+      },
+      {
+       "rule": "rule:bar-e-i"
+      }
+     ]
+    }
+   },
+   "note": "the course: i kimm."
+  },
+  {
+   "id": "realise/bar/e-i/imperative",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:gebm",
+      "base": true,
+      "feats": {
+       "Mood": "Imp",
+       "Number": "Sing",
+       "Person": "2",
+       "VerbForm": "Fin"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "gib",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-imperative",
+       "branch": "2sg"
+      },
+      {
+       "rule": "rule:bar-e-i"
+      }
+     ]
+    }
+   },
+   "note": "the course: Gib mir …"
+  },
+  {
+   "id": "realise/bar/e-i/3sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:essn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "3",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "iss+t",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "3sg"
+      },
+      {
+       "rule": "rule:bar-e-i"
+      }
+     ]
+    }
+   },
+   "note": "the course: er isst."
+  },
+  {
+   "id": "realise/bar/umlaut/vowel",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:apfl",
+      "base": true,
+      "feats": {
+       "Case": "Acc",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Epfl",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-plural-zero",
+       "branch": "pl"
+      },
+      {
+       "rule": "rule:bar-umlaut",
+       "branch": "vowel"
+      }
+     ]
+    }
+   },
+   "note": "the course: Epfl."
+  },
+  {
+   "id": "realise/bar/umlaut/vowel-o",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:tog",
+      "base": true,
+      "feats": {
+       "Case": "Acc",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Teg",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-plural-zero",
+       "branch": "pl"
+      },
+      {
+       "rule": "rule:bar-umlaut",
+       "branch": "vowel"
+      }
+     ]
+    }
+   },
+   "note": "the course: Teg."
+  },
+  {
+   "id": "realise/bar/umlaut/au",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:haus",
+      "base": true,
+      "feats": {
+       "Case": "Nom",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Heis+er",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-plural-er",
+       "branch": "pl"
+      },
+      {
+       "rule": "rule:bar-umlaut",
+       "branch": "au"
+      }
+     ]
+    }
+   },
+   "note": "the course's notes: Plural Heiser (haus)."
+  },
+  {
+   "id": "realise/bar/umlaut/ua",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:bruader",
+      "base": true,
+      "feats": {
+       "Case": "Nom",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Briader",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-plural-zero",
+       "branch": "pl"
+      },
+      {
+       "rule": "rule:bar-umlaut",
+       "branch": "ua"
+      }
+     ]
+    }
+   },
+   "note": "the course's notes: Briader (bruader)."
+  },
+  {
+   "id": "realise/bar/ge/plosive",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kafn",
+      "base": true,
+      "feats": {
+       "VerbForm": "Part"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "kaf+t",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-participle",
+       "branch": "ge"
+      },
+      {
+       "rule": "rule:bar-participle",
+       "branch": "t"
+      },
+      {
+       "rule": "rule:bar-ge",
+       "branch": "plosive"
+      }
+     ]
+    }
+   },
+   "note": "the course: kaft."
+  },
+  {
+   "id": "realise/bar/ge/plosive-strong",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kemmen",
+      "base": true,
+      "feats": {
+       "VerbForm": "Part"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "kemm+en",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-participle-strong",
+       "branch": "ge"
+      },
+      {
+       "rule": "rule:bar-participle-strong",
+       "branch": "n"
+      },
+      {
+       "rule": "rule:bar-ge",
+       "branch": "plosive"
+      },
+      {
+       "rule": "rule:bar-nasal"
+      }
+     ]
+    }
+   },
+   "note": "the course: i bin kemmen (with -en after a nasal)."
+  },
+  {
+   "id": "realise/bar/ge/ver",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:versteahn",
+      "base": true,
+      "feats": {
+       "VerbForm": "Part"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "verstond+n",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-participle-strong",
+       "branch": "ge"
+      },
+      {
+       "rule": "rule:bar-participle-strong",
+       "branch": "n"
+      },
+      {
+       "rule": "rule:bar-ge",
+       "branch": "ver"
+      }
+     ]
+    }
+   },
+   "note": "Claude's: verstondn (a listed stem); no ge- before ver-."
+  },
+  {
+   "id": "realise/bar/nasal/inf",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kemmen",
+      "base": true,
+      "feats": {
+       "VerbForm": "Inf"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "kemm+en",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-infinitive",
+       "branch": "inf"
+      },
+      {
+       "rule": "rule:bar-nasal"
+      }
+     ]
+    }
+   },
+   "note": "the course: kemmen."
+  },
+  {
+   "id": "realise/bar/nasal/ng",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:singen",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "1",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "sing+en",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "pl"
+      },
+      {
+       "rule": "rule:bar-nasal"
+      }
+     ]
+    }
+   },
+   "note": "the course: mir singen."
+  },
+  {
+   "id": "realise/bar/assimilation/pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:hobm",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "1",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "hob+m",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "pl"
+      },
+      {
+       "rule": "rule:bar-assimilation"
+      }
+     ]
+    }
+   },
+   "note": "the course: mir hobm."
+  },
+  {
+   "id": "realise/bar/assimilation/inf",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:hobm",
+      "base": true,
+      "feats": {
+       "VerbForm": "Inf"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "hob+m",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-infinitive",
+       "branch": "inf"
+      },
+      {
+       "rule": "rule:bar-assimilation"
+      }
+     ]
+    }
+   },
+   "note": "the lemma hobm (Moser: gloubm; Fachausdrücke: Assimilation)."
+  },
+  {
+   "id": "realise/bar/epenthesis/t",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:orbatn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "3",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "orbat+et",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "3sg"
+      },
+      {
+       "rule": "rule:bar-epenthesis",
+       "branch": "t"
+      }
+     ]
+    }
+   },
+   "note": "the course: orbatet."
+  },
+  {
+   "id": "realise/bar/epenthesis/t-participle",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:orbatn",
+      "base": true,
+      "feats": {
+       "VerbForm": "Part"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "g+orbat+et",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-participle",
+       "branch": "ge"
+      },
+      {
+       "rule": "rule:bar-participle",
+       "branch": "t"
+      },
+      {
+       "rule": "rule:bar-epenthesis",
+       "branch": "t"
+      }
+     ]
+    }
+   },
+   "note": "the course: gorbatet."
+  },
+  {
+   "id": "realise/bar/epenthesis/nasal",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:regnen",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "3",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "regn+et",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "3sg"
+      },
+      {
+       "rule": "rule:bar-epenthesis",
+       "branch": "nasal"
+      }
+     ]
+    }
+   },
+   "note": "the course: es regnet."
+  },
+  {
+   "id": "realise/bar/epenthesis/not-after-r",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:lernen",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "3",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "lern+t",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "3sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: lernt."
+  },
+  {
+   "id": "realise/bar/scht/3sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kostn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "3",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "koscht+et",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "3sg"
+      },
+      {
+       "rule": "rule:bar-epenthesis",
+       "branch": "t"
+      },
+      {
+       "rule": "rule:bar-scht"
+      }
+     ]
+    }
+   },
+   "note": "the course: Wiaviel koschtet …?"
+  },
+  {
+   "id": "realise/bar/sibilant/sz",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:miassn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "2",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "mua+sch",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-modal",
+       "branch": "2sg"
+      },
+      {
+       "rule": "rule:bar-sibilant",
+       "branch": "sz"
+      }
+     ]
+    }
+   },
+   "note": "Moser: muasch(e) [-sche]; the course writes none."
+  },
+  {
+   "id": "realise/bar/sibilant/ss",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:essn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "2",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "i+sch",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "2sg"
+      },
+      {
+       "rule": "rule:bar-e-i"
+      },
+      {
+       "rule": "rule:bar-sibilant",
+       "branch": "ss"
+      }
+     ]
+    }
+   },
+   "note": "Claude's: du isch; the course writes none (for the owner)."
+  },
+  {
+   "id": "realise/bar/sibilant/sch",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:ratschn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "2",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "rat+sch",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "2sg"
+      },
+      {
+       "rule": "rule:bar-sibilant",
+       "branch": "sch"
+      }
+     ]
+    }
+   },
+   "note": "Claude's: du ratsch; the course writes none."
+  },
+  {
+   "id": "realise/bar/adjective-e/n",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:groaß",
+      "base": true,
+      "feats": {
+       "Case": "Acc",
+       "Gender": "Neut",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "groaß+es",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-adjective",
+       "branch": "n"
+      },
+      {
+       "rule": "rule:bar-adjective-e"
+      }
+     ]
+    }
+   },
+   "note": "the course: a groaßes Haus."
+  },
+  {
+   "id": "realise/bar/adjective-e/sch",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:frisch",
+      "base": true,
+      "feats": {
+       "Case": "Nom",
+       "Gender": "Neut",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "frisch+es",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-adjective",
+       "branch": "n"
+      },
+      {
+       "rule": "rule:bar-adjective-e"
+      }
+     ]
+    }
+   },
+   "note": "the course: A frisches Brot."
+  },
+  {
+   "id": "realise/bar/plural-e/n",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:tatte",
+      "base": true,
+      "feats": {
+       "Case": "Nom",
+       "Number": "Plur"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Tatt+n",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-plural-n",
+       "branch": "pl"
+      },
+      {
+       "rule": "rule:bar-plural-e"
+      }
+     ]
+    }
+   },
+   "note": "Moser: Tatte, pl. Tattn [Tatte]; the course writes none."
+  },
+  {
+   "id": "realise/bar/degemination/ein",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:koan",
+      "base": true,
+      "feats": {
+       "Case": "Acc",
+       "Gender": "Masc",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "koan",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-ein",
+       "branch": "m-acc"
+      },
+      {
+       "rule": "rule:bar-degemination"
+      }
+     ]
+    }
+   },
+   "note": "the course: Mir hobm koan Hund."
+  },
+  {
+   "id": "realise/bar/listed/form",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:sein",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "bin",
+     "status": "listed",
+     "steps": []
+    }
+   },
+   "note": "Moser: bin; listed."
+  },
+  {
+   "id": "realise/bar/listed/stem",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:hobm",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "2",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ho+sch",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "2sg"
+      }
+     ]
+    }
+   },
+   "note": "the listed stem ho and -sch; the course: hosch."
+  },
+  {
+   "id": "realise/bar/listed/form-over-stem",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:hobm",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "hon",
+     "status": "listed",
+     "steps": []
+    }
+   },
+   "note": "the listed form hon, more specific than the stem ho."
+  },
+  {
+   "id": "realise/bar/listed/participle-stem",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:gian",
+      "base": true,
+      "feats": {
+       "VerbForm": "Part"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "gong+en",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:bar-participle-strong",
+       "branch": "ge"
+      },
+      {
+       "rule": "rule:bar-participle-strong",
+       "branch": "n"
+      },
+      {
+       "rule": "rule:bar-ge",
+       "branch": "plosive"
+      },
+      {
+       "rule": "rule:bar-nasal"
+      }
+     ]
+    }
+   },
+   "note": "the listed stem gong, no ge- before g, -en after ng."
+  },
+  {
+   "id": "realise/bar/listed/citation",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:gian",
+      "base": true,
+      "feats": {
+       "VerbForm": "Inf"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "gian",
+     "status": "listed",
+     "steps": []
+    }
+   },
+   "note": "the listed infinitive (Moser: gian)."
+  },
+  {
+   "id": "realise/bar/pinned/hoasst",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:hoaßn",
+      "base": true,
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "2",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "hoaß+t",
+     "status": "pinned",
+     "steps": []
+    }
+   },
+   "note": "pinned: the course's hoaßt; the rules give hoasch (for the owner)."
+  },
+  {
+   "id": "realise/bar/pinned/toerggelen",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:törggelen",
+      "base": true,
+      "feats": {
+       "VerbForm": "Inf"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "törggel+en",
+     "status": "pinned",
+     "steps": []
+    }
+   },
+   "note": "pinned: the course writes -en after l."
+  },
+  {
+   "id": "realise/bar/token/afn",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:af",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:der",
+      "feats": {
+       "Case": "Dat",
+       "Gender": "Masc",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "af+n",
+     "status": "given",
+     "steps": []
+    }
+   },
+   "note": "the course: afn Tisch; der's n written onto the preposition."
+  },
+  {
+   "id": "realise/bar/token/mitn",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:mit",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:der",
+      "feats": {
+       "Case": "Dat",
+       "Gender": "Masc",
+       "Number": "Sing"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "mit+n",
+     "status": "given",
+     "steps": []
+    }
+   },
+   "note": "the course: mitn Zug."
+  },
+  {
+   "id": "realise/bar/token/geats",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:gian",
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "3",
+       "Number": "Sing"
+      },
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:es.it",
+      "feats": {
+       "Case": "Nom"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "gea+t+'s",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "3sg"
+      }
+     ]
+    }
+   },
+   "note": "the course: Wia geat's?"
+  },
+  {
+   "id": "realise/bar/token/gips",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:gebm",
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "3",
+       "Number": "Sing"
+      },
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:es.it",
+      "feats": {
+       "Case": "Nom"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "gip+'s",
+     "status": "listed",
+     "steps": []
+    }
+   },
+   "note": "the course: Do gip's …; gip listed (Moser: gip [gebm])."
+  },
+  {
+   "id": "realise/bar/token/regnets",
+   "op": "realise-token",
+   "args": {
+    "lang": "bar",
+    "spellings": false,
+    "lexemes": [
+     {
+      "lexeme": "lexeme:regnen",
+      "feats": {
+       "Mood": "Ind",
+       "Tense": "Pres",
+       "VerbForm": "Fin",
+       "Person": "3",
+       "Number": "Sing"
+      },
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:es.it",
+      "feats": {
+       "Case": "Nom"
+      }
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "regn+et+'s",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:bar-present",
+       "branch": "3sg"
+      },
+      {
+       "rule": "rule:bar-epenthesis",
+       "branch": "nasal"
+      }
+     ]
+    }
+   },
+   "note": "the course: regnet's."
+  }
+ ]
+}

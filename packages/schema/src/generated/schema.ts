@@ -405,6 +405,10 @@ export type Slug3 = string;
  */
 export type UdFeatures7 = Readonly<Record<string, string>>;
 /**
+ * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
+ */
+export type UdFeatures8 = Readonly<Record<string, string>>;
+/**
  * Of a token: it stands in this context, which changes how it is said or written and is no feature value (hbo: `pause` and `nesiga`, as its `context` says; `bound`, joined to the next word by a maqaf). Read by a rewrite's `when`.
  */
 export type Slug4 = string;
@@ -723,13 +727,17 @@ export type UnicodeSetPattern3 = string;
  */
 export type UnicodeSetPattern4 = string;
 /**
+ * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
+ */
+export type UnicodeSetPattern5 = string;
+/**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
 export type NoteId1 = string;
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern5 = string;
+export type UnicodeSetPattern6 = string;
 /**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
@@ -755,7 +763,7 @@ export type TableRef = string;
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern6 = string;
+export type UnicodeSetPattern7 = string;
 /**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
@@ -776,11 +784,11 @@ export type SchemeId3 = string & { readonly __brand: "SchemeId" };
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern7 = string;
+export type UnicodeSetPattern8 = string;
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern8 = string;
+export type UnicodeSetPattern9 = string;
 /**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
@@ -795,7 +803,7 @@ export type SoundSource = SoundFromSpelling | SoundFromReading;
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern9 = string;
+export type UnicodeSetPattern10 = string;
 /**
  * A reading or annotation scheme, such as jyutping, pinyin, furigana or ipa.
  */
@@ -803,7 +811,7 @@ export type SchemeId4 = string & { readonly __brand: "SchemeId" };
 /**
  * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
  */
-export type UnicodeSetPattern10 = string;
+export type UnicodeSetPattern11 = string;
 /**
  * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
  */
@@ -3385,6 +3393,7 @@ export interface Condition {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly own?: UdFeatures8;
   readonly context?: Slug4;
 }
 /**
@@ -3398,7 +3407,7 @@ export interface Allomorph {
   readonly after?: Condition1;
   readonly before?: Condition2;
   /**
-   * Accepted wherever its conditions hold (or anywhere, with none) in place of the allomorph chosen there, which it never is of itself: a form the course writes where no condition tells it from the other (hbo בַּ, the preposition with an article its tokens do not list).
+   * true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (anywhere, with none): a scribe's other spelling of a suffix (chg's locative دا beside ده), or a form the course writes where no condition tells it from the other (hbo בַּ, the preposition with an article its tokens do not list). Never the one chosen: a token's realisation gives it as an alternative.
    */
   readonly free?: boolean;
   /**
@@ -3440,6 +3449,7 @@ export interface Condition1 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly own?: UdFeatures8;
   readonly context?: Slug4;
 }
 /**
@@ -3465,6 +3475,7 @@ export interface Condition2 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly own?: UdFeatures8;
   readonly context?: Slug4;
 }
 /**
@@ -3512,6 +3523,21 @@ export interface LanguageDeclaration {
    */
   readonly citation?: {
     readonly [k: string]: UdFeatures1;
+  };
+  /**
+   * The categories whose lexical form, where it is a string, is a stem and not a word (bar's verbs: red, kemm), so that their citation cell is realised by the rules as every other cell is (redn, kemmen) and the lemma is checked as the rules give it. Elsewhere a string form is its citation form, which no rule runs over.
+   *
+   * @minItems 1
+   */
+  readonly stemmed?: readonly PartOfSpeech[];
+  /**
+   * Each feature's unmarked values, which the course uses from the start and never introduces as a part (es: Mood Ind, VerbForm Fin, Number Sing): taught, where the compiler lists a paradigm's cells (docs/rules-design.md, stage 4), as a citation or bare cell's values are. Never a learner's part.
+   */
+  readonly unmarked?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
   };
   /**
    * For each category, the cells shown after its lemma wherever a word is presented as itself, in order (docs/rules-design.md, stage 4; the owner's answer 1: an apc verb is cited by its he-past, the he-present beside it). The compiler lists each among the category's cells and spells it from the rules; a lexeme the rules give no form for there shows none.
@@ -3750,7 +3776,11 @@ export interface RealisationRule {
 export interface Exponent {
   readonly branch: Branch1;
   readonly feats?: UdFeatures1;
-  readonly add: string;
+  readonly add?: string;
+  /**
+   * A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.
+   */
+  readonly lexeme?: string;
   readonly stem?: StemChoice;
   readonly notes?: {
     readonly [k: string]: string;
@@ -3801,6 +3831,7 @@ export interface Condition3 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly own?: UdFeatures8;
   readonly context?: Slug4;
 }
 /**
@@ -5468,17 +5499,22 @@ export interface MatchPolicy {
     readonly note?: NoteId;
     readonly optional?: UnicodeSetPattern1;
     /**
-     * Marks a learner supplying a word's vowel marks (ADR 0054 as amended) may write or leave out on a letter, where the letter after it is one of `letters`: the fatha before the alif that writes its long a (مَرْحَبا and مَرْحَبَا are the same word). The same mark elsewhere counts as the others do.
+     * Marks a learner supplying a word's vowel marks (ADR 0054 as amended) may write or leave out on a letter, where the letter after it is one of `letters`: the fatha before the alif that writes its long a (مَرْحَبا and مَرْحَبَا are the same word), the kasra before a bare ya that writes its long i (فيلِم and فِيلِم). The same mark elsewhere counts as the others do.
      *
      * @minItems 1
      */
     readonly optionalBefore?: readonly {
       readonly marks: UnicodeSetPattern2;
       readonly letters: UnicodeSetPattern3;
+      /**
+       * Only where that letter, in the expected word, carries no mark of the set: a ya or waw that writes a long vowel. One with a mark of its own (مِيِّة, هُوّ) is a consonant, and the vowel before it counts.
+       */
+      readonly bare?: boolean;
+      readonly unless?: UnicodeSetPattern4;
     }[];
-    readonly required?: UnicodeSetPattern4;
+    readonly required?: UnicodeSetPattern5;
     readonly requiredNote?: NoteId1;
-    readonly requiredLetters?: UnicodeSetPattern5;
+    readonly requiredLetters?: UnicodeSetPattern6;
     readonly requiredLettersNote?: NoteId2;
     /**
      * Marks that tell words apart (ADR 0076): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies.
@@ -5631,7 +5667,7 @@ export interface Join {
    * Its forms before a word that begins with a letter of `before` (Arabizi's sun letters), beside `forms`: in each, {next} (only at its end) is that letter written again (e{next}: essalame, es salame).
    */
   readonly assimilates?: {
-    readonly before: UnicodeSetPattern6;
+    readonly before: UnicodeSetPattern7;
     /**
      * @minItems 1
      */
@@ -5672,6 +5708,10 @@ export interface Spell {
    * What is spelled: a lexeme's lexical form, in its language's notation.
    */
   readonly from: "lexical";
+  /**
+   * true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first.
+   */
+  readonly boundaries?: boolean;
   /**
    * Named sets of this statement's own, beside the notation's.
    */
@@ -5909,12 +5949,12 @@ export interface CorrespondenceContext {
    * At the start or the end of the word.
    */
   readonly at?: "start" | "end";
-  readonly before?: UnicodeSetPattern7;
-  readonly after?: UnicodeSetPattern8;
+  readonly before?: UnicodeSetPattern8;
+  readonly after?: UnicodeSetPattern9;
 }
 export interface SoundFromSpelling {
   readonly from: "spelling";
-  readonly ignores?: UnicodeSetPattern9;
+  readonly ignores?: UnicodeSetPattern10;
 }
 export interface SoundFromReading {
   readonly from: "reading";
@@ -5948,7 +5988,7 @@ export interface Stress {
    */
   readonly default: readonly {
     readonly when?: {
-      readonly ends: UnicodeSetPattern10;
+      readonly ends: UnicodeSetPattern11;
     };
     readonly on: "last" | "penult";
   }[];
@@ -5965,6 +6005,10 @@ export interface Spell1 {
    * What is spelled: a lexeme's lexical form, in its language's notation.
    */
   readonly from: "lexical";
+  /**
+   * true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first.
+   */
+  readonly boundaries?: boolean;
   /**
    * Named sets of this statement's own, beside the notation's.
    */

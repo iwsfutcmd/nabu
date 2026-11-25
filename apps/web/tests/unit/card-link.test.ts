@@ -57,9 +57,11 @@ describe("card links", () => {
 
   it("refuses a card of another link format or bundle format", async () => {
     const exercise = card("fa");
-    expect(await decodeCard(await deflated(JSON.stringify({ format: 1, bundle: BUNDLE_FORMAT, exercise })))).toStrictEqual(exercise);
-    expect(await decodeCard(await deflated(JSON.stringify({ format: 2, bundle: BUNDLE_FORMAT, exercise })))).toBeUndefined();
-    expect(await decodeCard(await deflated(JSON.stringify({ format: 1, bundle: BUNDLE_FORMAT - 1, exercise })))).toBeUndefined();
-    expect(await decodeCard(await deflated(JSON.stringify({ format: 1, exercise })))).toBeUndefined();
+    expect(await decodeCard(await deflated(JSON.stringify({ format: 2, bundle: BUNDLE_FORMAT, exercise })))).toStrictEqual(exercise);
+    // Format 1 carried a vocalize-build card's optional marks by letter, before the rules had conditions.
+    expect(await decodeCard(await deflated(JSON.stringify({ format: 1, bundle: BUNDLE_FORMAT, exercise })))).toBeUndefined();
+    expect(await decodeCard(await deflated(JSON.stringify({ format: 3, bundle: BUNDLE_FORMAT, exercise })))).toBeUndefined();
+    expect(await decodeCard(await deflated(JSON.stringify({ format: 2, bundle: BUNDLE_FORMAT - 1, exercise })))).toBeUndefined();
+    expect(await decodeCard(await deflated(JSON.stringify({ format: 2, exercise })))).toBeUndefined();
   });
 });

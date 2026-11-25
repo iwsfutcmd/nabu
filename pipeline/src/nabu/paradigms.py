@@ -9,11 +9,17 @@ Python never realises or spells: every form comes from @nabu/core through core-c
 
 - a category is listed where the language's rules can say something of it: a realisation rule names
   it (`when.pos`), or names no category and every feature its `when` reads is one of the category's
-  dimensions (apc: VERB and AUX by aspect and mood, ADJ and NOUN by name; not PRON or INTJ);
-- its cells are those the course's tokens choose on lexemes of that category, cut to its dimensions,
+  dimensions (apc: VERB and AUX by aspect and mood, ADJ and NOUN by name; not PRON or INTJ), or
+  every feature its `when.own` reads is one the category has of itself (sk: NOUN and PROPN by
+  gender and animacy);
+- its cells are those the course's tokens choose on lexemes of that category (the values chosen on
+  the base, and those of each affix lexeme the token lists that the category's rules write: an
+  exponent's `lexeme`, uz's bor + past + past-1sg), cut to its dimensions,
   each value of them taught: a node introduces it, or it is the value of the category's citation or
   bare cell (a singular, a masculine), or the course introduces no value of its feature at all (apc
-  teaches no person: a person is given, never a part). Then the language's principal parts;
+  teaches no person: a person is given, never a part), or it is one of the feature's `unmarked`
+  values (language.yaml: es's Mood Ind, used from the start and never introduced). Then the
+  language's principal parts;
 - a lexeme the course writes, and never with a value chosen on it, does not inflect (apc's lezem,
   fi, badd): it has no paradigm;
 - each lexeme is realised `strict` (a cell no exponent of the rule names, or a phrase, gives
@@ -72,6 +78,7 @@ def _names(value: Any) -> dict[str, list[str]]:
 def _categories(declared: Mapping[str, Any]) -> list[str]:
     """The categories some realisation rule can say something of."""
     dims = _names(declared.get("dimensions"))
+    lexical = _names(declared.get("lexical"))
     out: list[str] = []
     for rule in _items(declared.get("realisation")):
         when = _table(_table(rule).get("when"))
@@ -79,6 +86,14 @@ def _categories(declared: Mapping[str, Any]) -> list[str]:
         if pos is not None:
             if str(pos) not in out:
                 out.append(str(pos))
+            continue
+        # A rule that reads the lexeme's own values (`own`: a Slovak noun's gender) speaks of each
+        # category that has those features of itself.
+        own = set(_table(when.get("own")))
+        if own:
+            for category, named in lexical.items():
+                if own <= set(named) and category not in out:
+                    out.append(category)
             continue
         names = set(_table(when.get("feats")))
         if not names:
@@ -105,6 +120,53 @@ def _base(written: Sequence[Mapping[str, Any]]) -> Mapping[str, Any] | None:
     return written[0] if len(written) == 1 else next((w for w in written if w.get("base")), None)
 
 
+def _lexeme_id(ident: object) -> str:
+    text = str(ident)
+    return text if text.startswith("lexeme:") else f"lexeme:{text}"
+
+
+def written_affixes(lang: Language) -> dict[str, dict[str, Feats]]:
+    """Per category, the affix lexemes its realisation rules write (an exponent's `lexeme`: uz's
+    past -di), each with the values it realises (its entry's `realises`). Empty for a language
+    whose exponents add text only (apc)."""
+    declared = _dumped(lang.declared)
+    out: dict[str, dict[str, Feats]] = {}
+    for rule in _items(declared.get("realisation")):
+        pos = _table(_table(rule).get("when")).get("pos")
+        if pos is None:
+            continue
+        for block in _items(_table(rule).get("blocks")):
+            for side in ("prefix", "suffix"):
+                for exponent in _items(_table(block).get(side)):
+                    named = _table(exponent).get("lexeme")
+                    entry = None if named is None else lang.get(_lexeme_id(named))
+                    if entry is not None and entry.realises:
+                        realised = {str(k): str(v) for k, v in dict(entry.realises).items()}
+                        out.setdefault(str(pos), {})[_lexeme_id(named)] = realised
+    return out
+
+
+def token_cell(
+    written: Sequence[Mapping[str, Any]],
+    category: str | None,
+    affixes: Mapping[str, Mapping[str, Feats]],
+) -> Feats:
+    """The cell a token writes its base in: the values chosen on the base, and the values each
+    affix lexeme it lists realises where its category's rules write that lexeme (uz's bor + past
+    + past-1sg: Tense=Past, Person=1, Number=Sing)."""
+    base = _base(written)
+    if base is None:
+        return {}
+    cell = _feats(base.get("feats"))
+    named = affixes.get(category or "", {})
+    if named:
+        for w in written:
+            if w is base:
+                continue
+            cell.update(named.get(_lexeme_id(w.get("lexeme")), {}))
+    return cell
+
+
 def cells_of(
     lang: Language, sites: Iterable[Site], taught: set[str], pos_of: Mapping[str, str]
 ) -> dict[str, list[Feats]]:
@@ -115,6 +177,7 @@ def cells_of(
     values = _names(declared.get("features"))
     citation = {k: _feats(v) for k, v in _table(declared.get("citation")).items()}
     bare = {k: _feats(v) for k, v in _table(declared.get("bare")).items()}
+    unmarked = _names(declared.get("unmarked"))
     introduced = {v.split("=", 1)[0] for v in taught}
 
     def is_taught(category: str, name: str, value: str) -> bool:
@@ -123,11 +186,13 @@ def cells_of(
             or name not in introduced
             or citation.get(category, {}).get(name) == v
             or bare.get(category, {}).get(name) == v
+            or v in unmarked.get(name, [])
             for v in value.split(",")
         )
 
     found: dict[str, dict[str, Feats]] = {}
     categories = _categories(declared)
+    affixes = written_affixes(lang)
 
     def add(category: str, feats: Feats) -> None:
         named = dims.get(category, [])
@@ -143,7 +208,7 @@ def cells_of(
         category = pos_of.get(str(base["lexeme"]))
         if category is None or category not in categories:
             continue
-        add(category, _feats(base.get("feats")))
+        add(category, token_cell(site.written, category, affixes))
     for category, parts in _table(declared.get("principalParts")).items():
         if category in categories:
             for feats in _items(parts):
@@ -272,11 +337,13 @@ def paradigms(
     # A lexeme the course writes, and never with a value chosen, is a word of its category that
     # does not inflect (apc's lezem, fi, badd: the rules would conjugate them): no paradigm.
     chosen: dict[str, bool] = {}
+    affixes = written_affixes(lang)
     for site in sites:
         base = _base(site.written)
         if base is not None:
             ident = str(base["lexeme"])
-            chosen[ident] = chosen.get(ident, False) or bool(base.get("feats"))
+            cell = token_cell(site.written, pos_of.get(ident), affixes)
+            chosen[ident] = chosen.get(ident, False) or bool(cell)
     wheres = [w for o in orthographies for w in _wheres(o, profiles.get(o))]
     if not cells or not wheres:
         return lexicon

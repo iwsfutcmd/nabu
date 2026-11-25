@@ -5,7 +5,8 @@
  *   #/ · #/<course>/<orthography> · #/<course>/<orthography>/<node | review | mistakes | placement>
  *   · #/<course>/<orthography>/story/<node> · #/<course>/<orthography>/roleplay/<scenario>
  *   · #/<course>/<orthography>/<words | sentences | reports | offline> (the course page's links)
- *   · #/<course>/<orthography>/<cards | audio | data> (debug mode: the card gallery, the audio check, the course's data)
+ *   · #/<course>/<orthography>/<cards | audio | data | rules> (debug mode: the card gallery, the audio check, the course's
+ *     data, the rules explorer)
  *
  * Local-first (§14.2): every learner event goes to the on-device log, and the
  * path, XP and the next session are projections of it, computed by @nabu/core.
@@ -48,7 +49,7 @@ import type { AnswerSubmitted, BundleNode, BundleUnit, LearnerEvent, SentenceRep
 import { CorrectIcon, CourseUiProvider, ExpandIcon, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse, type NextStep } from "@nabu/ui/player";
 import { StoryReader } from "@nabu/ui/story";
-import { Fragment, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type JSX, type MouseEvent } from "react";
+import { Fragment, lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type JSX, type MouseEvent } from "react";
 import { AnswerHelp, MissedHelp, RoleplayPage, ScenarioEntries, useAccount, useAiStatus, useSessionHelp, type AiStatus } from "./ai.tsx";
 import { judgeMayAccept } from "./judging.ts";
 import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
@@ -103,6 +104,9 @@ const DATA_ALIASES = bundleAliases(BUNDLES);
  */
 const OFFLINE = import.meta.env.PROD && offlineSupported() && !isNative();
 
+/** The rules explorer (debug mode): its own chunk, so the realisation engine never ships in the learner's. */
+const RulesPage = lazy(() => import("./Rules.tsx"));
+
 /** Debug mode (?debug=1, remembered on this device): every card says its kind; a gallery of every kind. */
 const DEBUG = debugMode;
 
@@ -118,6 +122,7 @@ export type Route =
   | { readonly tag: "card"; readonly course: string; readonly orthography: string; readonly code: string }
   | { readonly tag: "audio"; readonly course: string; readonly orthography: string }
   | { readonly tag: "data"; readonly course: string; readonly orthography: string; readonly view?: string | undefined; readonly entry?: string | undefined }
+  | { readonly tag: "rules"; readonly course: string; readonly orthography: string; readonly request?: string | undefined }
   | { readonly tag: "words"; readonly course: string; readonly orthography: string }
   | { readonly tag: "reports"; readonly course: string; readonly orthography: string }
   | { readonly tag: "offline"; readonly course: string; readonly orthography: string }
@@ -146,6 +151,8 @@ const parse = (hash: string): Route => {
   if (session === "audio") return { tag: "audio", course, orthography: unslug(orthography) };
   // The Data page's view and the lexeme open in it (#/es/es-Latn.standard/data/lexicon/lexeme%3Acasa).
   if (session === "data") return { tag: "data", course, orthography: unslug(orthography), view: node, entry };
+  // The rules explorer and what it explores (#/apc/apc-Arab.standard/rules/b%3Dlexeme%253Ashereb…).
+  if (session === "rules") return { tag: "rules", course, orthography: unslug(orthography), request: node };
   if (session === "words") return { tag: "words", course, orthography: unslug(orthography) };
   if (session === "reports") return { tag: "reports", course, orthography: unslug(orthography) };
   if (session === "offline") return { tag: "offline", course, orthography: unslug(orthography) };
@@ -175,6 +182,8 @@ export const href = (route: Route): string =>
             ? `#/${route.course}/${slug(route.orthography)}/card/${route.code}`
           : route.tag === "data"
             ? `#/${route.course}/${slug(route.orthography)}/data${route.view === undefined ? "" : `/${encodeURIComponent(route.view)}${route.entry === undefined ? "" : `/${encodeURIComponent(route.entry)}`}`}`
+          : route.tag === "rules"
+            ? `#/${route.course}/${slug(route.orthography)}/rules${route.request === undefined ? "" : `/${encodeURIComponent(route.request)}`}`
           : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "words" || route.tag === "reports" || route.tag === "offline"
             ? `#/${route.course}/${slug(route.orthography)}/${route.tag}`
             : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
@@ -923,6 +932,13 @@ const CoursePath = ({
         <p>
           <a className={styles.link} href={href({ tag: "data", course: course.id, orthography })} data-data-link="">
             {t.format("data.open")}
+          </a>
+        </p>
+      )}
+      {DEBUG && (
+        <p>
+          <a className={styles.link} href={href({ tag: "rules", course: course.id, orthography })} data-rules-link="">
+            {t.format("rules.open")}
           </a>
         </p>
       )}
@@ -1733,6 +1749,22 @@ export const App = (): JSX.Element => {
           aliases={DATA_ALIASES}
           at={(view, entry) => href({ tag: "data", course: course.id, orthography: course.orthography, view, entry })}
         />
+      </CourseUiProvider>
+    );
+  }
+  if (route.tag === "rules") {
+    const { course } = loaded.value;
+    return (
+      <CourseUiProvider course={course}>
+        <Suspense fallback={<Loading />}>
+          <RulesPage
+            loaded={loaded.value}
+            back={href({ tag: "course", course: course.id, orthography: course.orthography })}
+            encoded={route.request}
+            base={import.meta.env.BASE_URL}
+            at={(request) => href({ tag: "rules", course: course.id, orthography: course.orthography, request })}
+          />
+        </Suspense>
       </CourseUiProvider>
     );
   }
