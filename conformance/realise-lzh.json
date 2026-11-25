@@ -1,0 +1,45 @@
+{
+  "$comment": "Realisation in a language that does not inflect (docs/rules/lzh.md): Classical Chinese declares a notation and no realisation rules, so a token stands in its citation cell and is its lexeme's form.",
+  "vectors": [
+    {
+      "id": "realise/lzh/citation",
+      "op": "realise-token",
+      "args": {
+        "lang": "lzh",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:學"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "學",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "Every lzh token: its lexeme's form."
+    },
+    {
+      "id": "realise/lzh/homograph",
+      "op": "realise",
+      "args": {
+        "lang": "lzh",
+        "lexeme": "lexeme:之.de",
+        "cell": {}
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "之",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "Lexemes spelled alike take a suffix in their ids, not in their forms."
+    }
+  ]
+}
