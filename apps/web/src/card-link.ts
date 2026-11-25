@@ -8,7 +8,7 @@
 import { BUNDLE_FORMAT, TEMPLATES, type Exercise } from "@nabu/core/lesson";
 
 /** Raise when an exercise's shape changes so that an older link cannot be read as one. */
-const FORMAT = 1;
+const FORMAT = 2;
 
 const toBase64Url = (bytes: Uint8Array): string => {
   let binary = "";

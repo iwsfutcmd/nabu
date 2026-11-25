@@ -3,7 +3,8 @@
  * - **vowel marks** (`gradeVowels`): an abjad word with the marks the learner wrote in, against
  *   its vocalized form. The letters must stay as they are; each letter's marks must be the
  *   expected ones, except the profile's optional marks (sukun), and those optional before the
- *   letter that follows (a fatha before an alif), which may be written or not.
+ *   letter that follows (a fatha before an alif, a kasra before a bare ya), which may be written
+ *   or not.
  * - **a reading** (`gradeReading`): an ideographic word's romanization (Jyutping), syllable by
  *   syllable, spaces optional and case ignored, in a scheme whose data gives a syllable's shape
  *   (profiles/schemes, ADR 0109).
@@ -20,11 +21,23 @@ export interface VowelMarks {
   /** Marks a learner may write or leave out (sukun). */
   readonly optional: ReadonlySet<string>;
   /**
-   * Marks a learner may write or leave out on a letter before one of these letters (by the letter,
-   * NFC, without its vowel marks): the fatha before the alif that writes its long a (ADR 0054 as
-   * amended: مَرْحَبا, مَرْحَبَا). The same mark before any other letter counts.
+   * Marks a learner may write or leave out on a letter before certain letters: the fatha before the
+   * alif that writes its long a (ADR 0054 as amended: مَرْحَبا, مَرْحَبَا), the kasra before a bare ya
+   * (فيلِم, فِيلِم). The same mark anywhere else counts.
    */
-  readonly optionalBefore?: ReadonlyMap<string, ReadonlySet<string>> | undefined;
+  readonly optionalBefore?: readonly OptionalBefore[] | undefined;
+}
+
+/** A profile's `optionalBefore` rule, compiled. */
+export interface OptionalBefore {
+  /** The marks (NFD code points of the set). */
+  readonly marks: ReadonlySet<string>;
+  /** The letters after (NFC, without vowel marks). */
+  readonly letters: ReadonlySet<string>;
+  /** Only where that letter carries no mark of the set (a ya that writes a long vowel, not a consonant). */
+  readonly bare: boolean;
+  /** Marks on the letter itself that keep the marks counting (a sukun: the letter after is a consonant). */
+  readonly unless: ReadonlySet<string>;
 }
 
 export interface PronunciationGrade {
@@ -44,16 +57,35 @@ const baseOf = (marks: VowelMarks, grapheme: string): string =>
     .filter((c) => !marks.set.has(c))
     .join("");
 
+const NONE: ReadonlySet<string> = new Set();
+
+/** A grapheme's marks of the set (NFD). */
+const ownMarks = (marks: VowelMarks, grapheme: string): string[] => Array.from(grapheme.normalize("NFD")).filter((c) => marks.set.has(c));
+
 /**
- * A grapheme's marks that count, in canonical order: not the optional ones, nor those optional
- * before the grapheme that follows it (`next`, the next letter of its word).
+ * The marks optional on a letter of a word, as the word writes it (`letter`, with its marks), before
+ * the word's next letter (`next`, with its marks): those of each `optionalBefore` rule whose letters
+ * hold the next one, bare where the rule asks it, and the letter carrying none of the rule's `unless`.
+ * Read off the expected word, the same for an answer's letter in its place.
  */
-const marksOf = (marks: VowelMarks, grapheme: string, next: string | undefined): string => {
-  const before = next === undefined ? undefined : marks.optionalBefore?.get(baseOf(marks, next).normalize("NFC"));
-  return Array.from(grapheme.normalize("NFD"))
-    .filter((c) => marks.set.has(c) && !marks.optional.has(c) && before?.has(c) !== true)
-    .join("");
+const optionalHere = (marks: VowelMarks, letter: string, next: string | undefined): ReadonlySet<string> => {
+  if (next === undefined || marks.optionalBefore === undefined || marks.optionalBefore.length === 0) return NONE;
+  const after = baseOf(marks, next).normalize("NFC");
+  const nextBare = ownMarks(marks, next).length === 0;
+  const own = ownMarks(marks, letter);
+  const out = new Set<string>();
+  for (const rule of marks.optionalBefore) {
+    if (!rule.letters.has(after) || (rule.bare && !nextBare) || own.some((c) => rule.unless.has(c))) continue;
+    for (const m of rule.marks) out.add(m);
+  }
+  return out;
 };
+
+/** A grapheme's marks that count, in canonical order: not the optional ones, nor those optional where it stands (`here`). */
+const marksOf = (marks: VowelMarks, grapheme: string, here: ReadonlySet<string>): string =>
+  ownMarks(marks, grapheme)
+    .filter((c) => !marks.optional.has(c) && !here.has(c))
+    .join("");
 
 /** A text without its vowel marks. */
 export const withoutMarks = (marks: VowelMarks, text: string): string =>
@@ -64,7 +96,7 @@ export const withoutMarks = (marks: VowelMarks, text: string): string =>
 
 /** Whether a word has vowel marks for a learner to supply (sukun alone does not count). */
 export const hasVowelMarks = (marks: VowelMarks, vocalized: string): boolean =>
-  graphemes(vocalized.normalize("NFC")).some((g, i, gs) => marksOf(marks, g, gs[i + 1]) !== "");
+  graphemes(vocalized.normalize("NFC")).some((g, i, gs) => marksOf(marks, g, optionalHere(marks, g, gs[i + 1])) !== "");
 
 /** An abjad word with the learner's vowel marks against its vocalized form. */
 export const gradeVowels = (marks: VowelMarks | undefined, expected: string, answer: string): PronunciationGrade => {
@@ -75,8 +107,11 @@ export const gradeVowels = (marks: VowelMarks | undefined, expected: string, ans
   const letters = (gs: readonly string[]): string => gs.map(strip).join("");
   // A letter added, dropped or changed, or a mark with no letter: not the same word.
   if (got.length !== want.length || letters(got) !== letters(want) || got.some((g) => strip(g) === "")) return wrong("vocalize-letters");
-  // The letters are the same, so the expected word's next letter is the answer's too.
-  const off = want.flatMap((g, i) => (marksOf(marks, g, want[i + 1]) === marksOf(marks, got[i] ?? "", want[i + 1]) ? [] : [i]));
+  // The letters are the same; what is optional on each is read off the expected word.
+  const off = want.flatMap((g, i) => {
+    const here = optionalHere(marks, g, want[i + 1]);
+    return marksOf(marks, g, here) === marksOf(marks, got[i] ?? "", here) ? [] : [i];
+  });
   return off.length === 0 ? RIGHT : wrong("vocalize-marks", off);
 };
 
@@ -104,7 +139,7 @@ export const attestedMarks = (marks: VowelMarks, words: Iterable<string>): ((bas
       if (base === "") continue;
       const key = `${positionOf(i, gs.length)}|${base}`;
       const seen = counts.get(key) ?? new Map<string, number>();
-      const m = marksOf(marks, g, gs[i + 1]);
+      const m = marksOf(marks, g, optionalHere(marks, g, gs[i + 1]));
       seen.set(m, (seen.get(m) ?? 0) + 1);
       counts.set(key, seen);
     }
@@ -128,7 +163,7 @@ export const attestedMarks = (marks: VowelMarks, words: Iterable<string>): ((bas
 export const vocalizationVariants = (marks: VowelMarks, vocalized: string, attested: (base: string, position: LetterPosition) => readonly string[]): readonly string[] => {
   const word = vocalized.normalize("NFC");
   const gs = graphemes(word);
-  const own = gs.map((g, i) => marksOf(marks, g, gs[i + 1]));
+  const own = gs.map((g, i) => marksOf(marks, g, optionalHere(marks, g, gs[i + 1])));
   const others = gs.map((g, i) => attested(baseOf(marks, g), positionOf(i, gs.length)).filter((m) => m !== own[i]));
   const seen = new Set<string>([word]);
   const out: string[] = [];
