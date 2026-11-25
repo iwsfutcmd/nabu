@@ -310,7 +310,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Tappable words: `<T onTokenPress>`; never wrap tokens by hand.
 - A tapped word opens in a dialog (ADR 0157, `GlossDialog` in player/Gloss.tsx; its body `GlossContent` is what
   server-rendered tests read, since the modal portals): the word with its reading, its entries, and each entry's
-  forms from core `lexemeForms` (its paradigm's cells, else the forms the course writes, named by `labelOf`) with the
+  forms from core `lexemeForms` (its paradigm's cells, with the readings and other words of a cell the course writes,
+  then the forms the course writes outside them, named by `labelOf`) with the
   tapped word's own cell (`formCellAt`) marked. Never work out forms in UI code.
 
 ## Phase 7 notes (see docs/adr/0044)

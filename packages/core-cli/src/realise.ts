@@ -9,7 +9,7 @@
  * Each op answers with the result as a value ({ ok, value } or { ok: false, error }): a realisation
  * that fails is an answer, not a protocol error.
  */
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 import { compileLanguage, paradigm, realise, realiseToken, type CompiledLanguage, type WrittenLexeme } from "@nabu/core/lexicon";
 import type { LanguageDeclaration, Lexicon, UdFeatures } from "@nabu/schema";
@@ -70,7 +70,12 @@ const languageOf = (args: Args): CompiledLanguage => {
   const folder = args["lexicons"];
   if (folder !== undefined && typeof folder !== "string") throw new Error('"lexicons" must be a folder');
   const dir = folder ?? join(REPO, "lexicons");
-  const key = `lang\u0000${dir}\u0000${code}`;
+  // Keyed by the files' times and sizes too: a long-lived process (a test session's) sees an edit.
+  const stamp = (name: string): string => {
+    const at = statSync(join(dir, code, name));
+    return `${at.mtimeMs}:${at.size}`;
+  };
+  const key = `lang\u0000${dir}\u0000${code}\u0000${stamp("language.yaml")}\u0000${stamp("lexemes.yaml")}`;
   const cached = compiled.get(key);
   if (cached !== undefined) return cached;
   const read = (name: string): unknown => parse(readFileSync(join(dir, code, name), "utf8"));

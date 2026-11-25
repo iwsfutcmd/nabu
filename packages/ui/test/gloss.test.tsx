@@ -71,9 +71,9 @@ describe("a tapped word's dialog (ADR 0157)", () => {
     expect([...echale.matchAll(/formsOf/gu)]).toHaveLength(2);
   });
 
-  it("runs a form's several spellings in their own direction, so the rule between them falls between them (fa است, هست)", () => {
-    const fa = loadCourse("fa");
-    const html = render(<Content course={fa} tap={tapOf(fa, "lexeme:budan")} />);
+  it("runs a form's several spellings in their own direction, so the rule between them falls between them (hbo לֶךְ, לְכָה)", () => {
+    const hbo = loadCourse("hbo");
+    const html = render(<Content course={hbo} tap={tapOf(hbo, "lexeme:halakh")} />);
     const ways = [...html.matchAll(/<span[^>]*data-form-ways="(\d+)"[^>]*>/gu)];
     const several = ways.filter((m) => Number(m[1]) > 1);
     expect(several.length).toBeGreaterThan(0);

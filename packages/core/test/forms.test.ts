@@ -56,7 +56,20 @@ describe("a lexeme with a paradigm (apc)", () => {
     expect(forms?.rows.some((r) => !r.attested)).toBe(true);
   });
 
-  it("adds the forms the course writes outside the paradigm's cells after them (ra7's participle)", () => {
+  it("names a paradigm's form as the language does (es tengo), and keeps the pinned readings of the word the course writes (hbo בֵּן)", () => {
+    const es = loadCourse("es");
+    const tengo = lexemeForms(es, "lexeme:tener")?.rows.find((r) => r.texts.some((t) => surfaceOf(t) === "tengo"));
+    expect(tengo?.attested).toBe(true);
+    expect(surfaceOf(tengo?.label as TaggedText)).toBe("present tense: I (yo)");
+    const hbo = loadCourse("hbo");
+    expect(lexemeForms(hbo, "lexeme:ben")?.source).toBe("paradigm");
+    // Full and defective spellings of one reading stay one spelling beside the paradigm's (עֹמֵד, עוֹמֵד: ʿōmēḏ).
+    const participle = lexemeForms(hbo, "lexeme:amad")?.rows.find((r) => r.cell === "Gender=Masc;Number=Sing;VerbForm=Part");
+    expect(participle?.texts).toHaveLength(1);
+    expect(participle?.texts[0]?.tokens[0]?.readings).toBeDefined();
+  });
+
+  it("adds the forms the course writes outside the paradigm's cells after them, in the order of the language's labels (ra7's participle)", () => {
     const forms = lexemeForms(latn, "lexeme:ra7");
     const cells = latn.lexicon.cells?.["VERB"] ?? [];
     expect(forms?.rows.slice(0, cells.length).map((r) => r.cell)).toEqual(cells);
@@ -94,9 +107,13 @@ describe("a lexeme with a paradigm (apc)", () => {
   });
 });
 
-describe("a lexeme in a language without rules: the forms the course writes", () => {
-  it("names them as the language does, in the order of its labels (es tener)", () => {
-    const es = loadCourse("es");
+describe("a lexeme with no paradigm: the forms the course writes", () => {
+  it("names them as the language does, in the order of its labels (es tener, its lexicon's cells left out)", () => {
+    const full = loadCourse("es");
+    // es's rules give tener a paradigm; without the lexicon's cells it has none.
+    expect(lexemeForms(full, "lexeme:tener")?.source).toBe("paradigm");
+    const { cells: _cells, ...lexicon } = full.lexicon;
+    const es: CourseView = { ...full, lexicon };
     const forms = lexemeForms(es, "lexeme:tener");
     expect(forms?.source).toBe("written");
     const tengo = forms?.rows.find((r) => r.texts.some((t) => surfaceOf(t) === "tengo"));

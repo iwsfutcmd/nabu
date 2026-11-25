@@ -16,6 +16,8 @@
  */
 import type { BundleLexeme, LexemeId, SchemeId, TaggedText, Token, UdFeatures, WrittenLexeme } from "@nabu/schema";
 import { lexiconKey } from "../match/grade.ts";
+import { readingProjection } from "../profile/schemes.ts";
+import { compareByReading } from "../project/by-reading.ts";
 import type { CompiledProfile } from "../profile/index.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 import { labelOf, lexemesById, type CourseView } from "./course.ts";
@@ -120,7 +122,8 @@ interface Cell {
  * - spellings alike once folded and stripped of the profile's marks (vowel points, accents): بَدّ and
  *   بَدَّ, ἐστί, ἐστὶ and ἐστι, the marks a word takes from its neighbours;
  * - where the sound is a token's pinned reading (chg-Arab, hbo-Hebr), two whole tokens that pin the
- *   same reading, the scribes' letters free (عالمینکزلار and عالمینکیزلار, ʿāliminizlar);
+ *   same reading, the scribes' letters free (عالمینکزلار and عالمینکیزلار, ʿāliminizlar), or a
+ *   paradigm's form whose letters the scheme reads as such a token's reading (עֹמֵד beside עוֹמֵד);
  * - where it is the spelling's, two spellings apart only by free correspondences (bar -n/-en).
  * Anything else (es buen beside bueno, grc ἐστι beside ἐστιν) is two ways a learner should see.
  */
@@ -137,8 +140,18 @@ const sameForm = (profile: CompiledProfile | undefined): ((a: Way, b: Way) => bo
       : projection.from === "reading"
         ? (a, b) => {
             const reading = (w: Way): string | undefined => (w.witness === "whole" ? w.text.tokens[0]?.readings?.[projection.scheme as SchemeId]?.normalize("NFC") : undefined);
-            const r = reading(a);
-            return r !== undefined && r === reading(b);
+            const ra = reading(a);
+            const rb = reading(b);
+            if (ra !== undefined || rb !== undefined) {
+              if (ra !== undefined && rb !== undefined) return ra === rb;
+              // A paradigm's form pins no reading: it is one spelling of a word whose reading its letters
+              // spell, by the scheme's statement, the scribes' letters free (hbo עֹמֵד beside עוֹמֵד, ʿōmēḏ).
+              const scheme = readingProjection(projection.scheme);
+              const [read, unread] = ra !== undefined ? [a, b] : [b, a];
+              const c = scheme === undefined ? undefined : compareByReading(scheme, [ra ?? rb ?? ""], surfaceOf(read.text), surfaceOf(unread.text));
+              return c !== undefined && c.same && (c.differs.length === 0 || c.free);
+            }
+            return false;
           }
         : (a, b) => projection.compare(surfaceOf(a.text), surfaceOf(b.text)).free;
   return (a, b) => bare(a) === bare(b) || sounds(a, b);
@@ -150,7 +163,7 @@ const sameForm = (profile: CompiledProfile | undefined): ((a: Way, b: Way) => bo
  * those tokens; else the one way written most, the lexeme's letters with nothing after them before a
  * stem cut before a suffix.
  */
-const waysOf = (cell: Cell, same: (a: Way, b: Way) => boolean): readonly TaggedText[] => {
+const keptWays = (cell: Cell, same: (a: Way, b: Way) => boolean): readonly Way[] => {
   const all = [...cell.ways.values()];
   const best = Math.min(...all.map((w) => WITNESS_RANK[w.witness]));
   const kept: Way[] = [];
@@ -159,8 +172,29 @@ const waysOf = (cell: Cell, same: (a: Way, b: Way) => boolean): readonly TaggedT
     if (like === undefined) kept.push({ ...way });
     else like.count += way.count;
   }
-  const ordered = kept.sort((a, b) => b.count - a.count || a.first - b.first).map((w) => w.text);
+  const ordered = kept.sort((a, b) => b.count - a.count || a.first - b.first);
   return best === WITNESS_RANK.whole ? ordered : ordered.slice(0, 1);
+};
+
+const waysOf = (cell: Cell, same: (a: Way, b: Way) => boolean): readonly TaggedText[] => keptWays(cell, same).map((w) => w.text);
+
+/**
+ * A paradigm's form beside the ways the course writes its cell: the form first, with the pinned
+ * readings of a word the course writes that is one spelling of it (hbo בֵּן's), then the course's other
+ * words of the form (es buen beside bueno, sk vo beside v). A stem cut before a suffix is never one.
+ */
+const besideParadigm = (form: TaggedText, cell: Cell | undefined, same: (a: Way, b: Way) => boolean): readonly TaggedText[] => {
+  if (cell === undefined) return [form];
+  const way = (text: TaggedText): Way => ({ text, witness: "whole", count: 0, first: -1 });
+  // The readings of a word the course writes as the form is spelled; then the form is compared as that word is.
+  const like = [...cell.ways.values()].find((w) => w.witness === "whole" && same(way(form), w));
+  const readings = like?.text.tokens[0]?.readings;
+  const [token] = form.tokens;
+  const shown: TaggedText = readings === undefined || token === undefined ? form : { ...form, tokens: [{ ...token, readings }] };
+  const others = keptWays(cell, same)
+    .filter((w) => w.witness !== "stem" && !same(way(shown), w))
+    .map((w) => w.text);
+  return [shown, ...others];
 };
 
 /** Every form the course writes, by lexeme and cell, in one orthography. */
@@ -261,9 +295,9 @@ export const formCellAt = (course: CourseView, text: TaggedText, token: number, 
 
 /**
  * A lexeme's forms in an orthography: its paradigm's cells where the compiler lists one (in the
- * lexicon's order of cells, then any the course writes outside them), else the forms the course
- * writes, in the order the language's labels name them (a form it names none for first), then as the
- * course first writes them. Undefined for a lexeme the course does not have, one written only inside
+ * lexicon's order of cells), then the forms the course writes outside them (all of them where there is
+ * no paradigm), in the order the language's labels name them (a form it names none for first), then as
+ * the course first writes them. Undefined for a lexeme the course does not have, one written only inside
  * words (an ending: it has no forms of its own) or one written as several words (a phrase).
  */
 export const lexemeForms = (course: CourseView, lexeme: LexemeId, orthography: string = course.orthography): LexemeForms | undefined => {
@@ -277,6 +311,12 @@ export const lexemeForms = (course: CourseView, lexeme: LexemeId, orthography: s
   };
   const same = sameForm(course.profiles.get(orthography));
   const writtenRow = (cell: string, c: Cell): LexemeFormRow => ({ cell, feats: c.feats, label: labelled(c.feats).label, texts: waysOf(c, same), attested: true });
+  // Written forms go in the order the language's labels name them (a form it names none for first), then as the course first writes them.
+  const byLabel = (cells: readonly (readonly [string, Cell])[]): LexemeFormRow[] =>
+    cells
+      .map(([cell, c]) => ({ cell, c, at: labelled(c.feats).at }))
+      .sort((a, b) => a.at - b.at || a.c.first - b.c.first)
+      .map(({ cell, c }) => writtenRow(cell, c));
   const paradigm = formsOfLexeme(course.lexicon, entry, orthography);
   // A paradigm's form is a text in its lemma's language and orthography (as `principalParts` writes it).
   const like = entry.forms?.[orthography]?.[0];
@@ -288,14 +328,10 @@ export const lexemeForms = (course: CourseView, lexeme: LexemeId, orthography: s
         orthography: like.orthography,
         tokens: [{ kind: "lexical", surface: (f.marked ?? f.spelling).normalize("NFC"), tileGroup: 0, lexemes: [{ lexeme, feats: f.feats }] }],
       };
-      return { cell: f.cell, feats: f.feats, label: labelled(f.feats).label, texts: [text], attested: written.has(f.cell) };
+      return { cell: f.cell, feats: f.feats, label: labelled(f.feats).label, texts: besideParadigm(text, written.get(f.cell), same), attested: written.has(f.cell) };
     });
-    const outside = [...written].filter(([cell]) => !listed.has(cell)).sort(([, a], [, b]) => a.first - b.first);
-    return { lexeme, source: "paradigm", rows: [...rows, ...outside.map(([cell, c]) => writtenRow(cell, c))] };
+    const outside = byLabel([...written].filter(([cell]) => !listed.has(cell)));
+    return { lexeme, source: "paradigm", rows: [...rows, ...outside] };
   }
-  const rows = [...written]
-    .map(([cell, c]) => ({ cell, c, at: labelled(c.feats).at }))
-    .sort((a, b) => a.at - b.at || a.c.first - b.c.first)
-    .map(({ cell, c }) => writtenRow(cell, c));
-  return { lexeme, source: "written", rows };
+  return { lexeme, source: "written", rows: byLabel([...written]) };
 };
