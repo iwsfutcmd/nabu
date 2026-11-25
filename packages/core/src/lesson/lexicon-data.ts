@@ -251,6 +251,7 @@ const CODE_KEYS: ReadonlySet<string> = new Set([
   "cells",
   "principalParts",
   "stemmed",
+  "unmarked",
 ]);
 
 const childMode = (mode: Mode, key: string, value: unknown): Mode => {

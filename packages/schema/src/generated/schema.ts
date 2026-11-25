@@ -3487,6 +3487,15 @@ export interface LanguageDeclaration {
    */
   readonly stemmed?: readonly PartOfSpeech[];
   /**
+   * Each feature's unmarked values, which the course uses from the start and never introduces as a part (es: Mood Ind, VerbForm Fin, Number Sing): taught, where the compiler lists a paradigm's cells (docs/rules-design.md, stage 4), as a citation or bare cell's values are. Never a learner's part.
+   */
+  readonly unmarked?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
+  };
+  /**
    * For each category, the cells shown after its lemma wherever a word is presented as itself, in order (docs/rules-design.md, stage 4; the owner's answer 1: an apc verb is cited by its he-past, the he-present beside it). The compiler lists each among the category's cells and spells it from the rules; a lexeme the rules give no form for there shows none.
    */
   readonly principalParts?: {
