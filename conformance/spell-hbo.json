@@ -1,0 +1,404 @@
+{
+  "$comment": "Spelling hbo's lexical forms (docs/rules/hbo.md): hbo-Hebr/tiberian's `spell` statements, the orthography's (its letters, as grading keys a typed answer) and its vocalized layer's (the pointed text the course writes), over a form in hbo's notation (lexicons/hbo/language.yaml). One vector or more per rule, each with the course's word as `expected` (the spelling, or one of its free alternatives); a few constructed where the course has none.",
+  "vectors": [
+    {
+      "id": "spell/hbo/consonants/points",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "אָדָם",
+        "expected": "אָדָם"
+      },
+      "expected": {
+        "spelling": "אדם",
+        "expected": "spelling"
+      },
+      "note": "The points go: lexeme:adam."
+    },
+    {
+      "id": "spell/hbo/consonants/final-medial",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "שֵׁםִ+י",
+        "expected": "שְׁמִי"
+      },
+      "expected": {
+        "spelling": "שמי",
+        "expected": "spelling"
+      },
+      "note": "A final letter a suffix follows is medial; the letters only are compared (constructed: shem + -î)."
+    },
+    {
+      "id": "spell/hbo/consonants/medial-final",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "הָלַכ",
+        "expected": "הָלַךְ"
+      },
+      "expected": {
+        "spelling": "הלך",
+        "expected": "spelling"
+      },
+      "note": "A word's last letter takes its final form: lexeme:halakh, its radicals' medial כ."
+    },
+    {
+      "id": "spell/hbo/consonants/defective",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "גָדוֹל",
+        "expected": "גָּדֹל"
+      },
+      "expected": {
+        "spelling": "גדול",
+        "expected": "alternative"
+      },
+      "note": "Holem written with or without vav (free): lexeme:gadol, the course's defective גָּדֹל."
+    },
+    {
+      "id": "spell/hbo/consonants/plene",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "לֹא",
+        "expected": "לוֹא"
+      },
+      "expected": {
+        "spelling": "לא",
+        "expected": "alternative"
+      },
+      "note": "And plene where the form is defective: lexeme:lo, the course's לוֹא."
+    },
+    {
+      "id": "spell/hbo/consonants/plene-ta",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "נָתַתָּ",
+        "expected": "נָתַתָּה"
+      },
+      "expected": {
+        "spelling": "נתת",
+        "expected": "alternative"
+      },
+      "note": "The 2ms -tā also written -tâ (JM § 42f): s.04.24."
+    },
+    {
+      "id": "spell/hbo/vocalized/final-medial",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "שֵׁםִ+י",
+        "expected": "שֵׁמִי",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "שֵׁמִי",
+        "expected": "spelling"
+      },
+      "note": "A final letter a suffix follows is medial (constructed)."
+    },
+    {
+      "id": "spell/hbo/vocalized/medial-final",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "הָלַכ",
+        "expected": "הָלַךְ",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "הָלַךְ",
+        "expected": "spelling"
+      },
+      "note": "A word's last letter takes its final form, and a final kaf with no vowel its shewa: lexeme:halakh."
+    },
+    {
+      "id": "spell/hbo/vocalized/kaf-shewa",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "חֹשֶׁך",
+        "expected": "חֹשֶׁךְ",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "חֹשֶׁךְ",
+        "expected": "spelling"
+      },
+      "note": "The shewa under a final kaf: lexeme:hoshekh."
+    },
+    {
+      "id": "spell/hbo/vocalized/cluster",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "שָׁמַרְתּ",
+        "expected": "שָׁמַרְתְּ",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "שָׁמַרְתְּ",
+        "expected": "spelling"
+      },
+      "note": "The last letter of a final cluster takes the shewa (constructed: the 2fs qatal, JM § 42f)."
+    },
+    {
+      "id": "spell/hbo/vocalized/cluster-alef",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "גַיְא",
+        "expected": "גַּיְא",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "גַּיְא",
+        "expected": "spelling"
+      },
+      "note": "Never a quiescent alef: lexeme:gay."
+    },
+    {
+      "id": "spell/hbo/vocalized/furtive",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "רוּח",
+        "expected": "רוּחַ",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "רוּחַ",
+        "expected": "spelling"
+      },
+      "note": "The furtive patah after a long vowel (JM § 21c): lexeme:ruach."
+    },
+    {
+      "id": "spell/hbo/vocalized/furtive-not",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "שָׁמַע",
+        "expected": "שָׁמַע",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "שָׁמַע",
+        "expected": "spelling"
+      },
+      "note": "Not after patah: lexeme:shama's lemma."
+    },
+    {
+      "id": "spell/hbo/vocalized/begadkefat",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "בֹקֶר",
+        "expected": "בֹּקֶר",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "בֹּקֶר",
+        "expected": "spelling"
+      },
+      "note": "A word's first begadkefat has its dagesh lene: lexeme:boqer."
+    },
+    {
+      "id": "spell/hbo/vocalized/spirant",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "בֹקֶר",
+        "expected": "בֹקֶר",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "בֹּקֶר",
+        "expected": "alternative"
+      },
+      "note": "Or none, after a word that ends in a vowel (JM § 19; free, `spirant`): s.01.11 וָבֹקֶר's word."
+    },
+    {
+      "id": "spell/hbo/vocalized/begadkefat-vav",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "בוֹא",
+        "expected": "בּוֹא",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "בּוֹא",
+        "expected": "spelling"
+      },
+      "note": "Before a vowel letter too: lexeme:bo."
+    },
+    {
+      "id": "spell/hbo/vocalized/dagesh-conjunctive",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "זֶה",
+        "expected": "זֶּה",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "זֶה",
+        "expected": "alternative"
+      },
+      "note": "A first letter doubled after a word joined to it (JM § 18i; free, `dagesh-conjunctive`): מַה־זֶּה."
+    },
+    {
+      "id": "spell/hbo/vocalized/waw-before-stress",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "וְ+לַיְלָה",
+        "expected": "וָלַיְלָה",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "וְלַיְלָה",
+        "expected": "alternative"
+      },
+      "note": "וָ before a stressed syllable (JM § 104c-d; free): s.01.4 יוֹם וָלַיְלָה."
+    },
+    {
+      "id": "spell/hbo/vocalized/waw-before-stress-shureq",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "וּ+בֹקֶר",
+        "expected": "וָבֹקֶר",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "וּבֹקֶר",
+        "expected": "alternative"
+      },
+      "note": "Where the rules give וּ too: s.01.11 עֶרֶב וָבֹקֶר."
+    },
+    {
+      "id": "spell/hbo/vocalized/defective-o",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "גָדוֹל",
+        "expected": "גָּדֹל",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "גָּדוֹל",
+        "expected": "alternative"
+      },
+      "note": "Holem written with or without vav (free): lexeme:gadol."
+    },
+    {
+      "id": "spell/hbo/vocalized/plene-o",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "עֹמֵד",
+        "expected": "עוֹמֵד",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "עֹמֵד",
+        "expected": "alternative"
+      },
+      "note": "And plene: s.10.33 עוֹמֵד (the rules give עֹמֵד)."
+    },
+    {
+      "id": "spell/hbo/vocalized/defective-u",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "תְמִיתוּהוּ",
+        "expected": "תְמִיתֻהוּ",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "תְּמִיתוּהוּ",
+        "expected": "alternative"
+      },
+      "note": "Shureq or qibbuts (free): the course's תְמִיתֻהוּ."
+    },
+    {
+      "id": "spell/hbo/vocalized/plene-u",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "יְנַחֲמֻנִי",
+        "expected": "יְנַחֲמוּנִי",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "יְנַחֲמֻנִי",
+        "expected": "alternative"
+      },
+      "note": "And shureq for qibbuts (constructed)."
+    },
+    {
+      "id": "spell/hbo/vocalized/defective-i",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "וַיָּבִיאוּ",
+        "expected": "וַיָּבִאוּ",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "וַיָּבִיאוּ",
+        "expected": "alternative"
+      },
+      "note": "Hiriq with or without yod (free): s.16.17 וַיָּבִאוּ."
+    },
+    {
+      "id": "spell/hbo/vocalized/plene-i",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "דָוִד",
+        "expected": "דָּוִיד",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "דָּוִד",
+        "expected": "alternative"
+      },
+      "note": "And with yod (constructed: Chronicles' spelling)."
+    },
+    {
+      "id": "spell/hbo/vocalized/plene-ta",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "נָתַתָּ",
+        "expected": "נָתַתָּה",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "נָתַתָּ",
+        "expected": "alternative"
+      },
+      "note": "The 2ms -tā also written -tâ (JM § 42f): s.04.24."
+    },
+    {
+      "id": "spell/hbo/vocalized/carrier",
+      "op": "spell",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "form": "ـוֹ",
+        "expected": "וֹ",
+        "layer": "vocalized"
+      },
+      "expected": {
+        "spelling": "וֹ",
+        "expected": "spelling"
+      },
+      "note": "The carrier is never written: the 3ms -ô's own form."
+    }
+  ]
+}

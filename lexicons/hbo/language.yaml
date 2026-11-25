@@ -90,3 +90,430 @@ labels:
 rules:
 - {id: 'rule:nominal', gloss: {en: 'a noun sentence: no verb ''to be'' (הָאוֹר טוֹב ''the light is good'')'}, was: 'construction:nominal'}
 - {id: 'rule:yesh-le', gloss: {en: 'יֵשׁ לְ…: … has (there is to …); אֵין לְ…: … has no'}, was: 'construction:yesh-le'}
+# Rules in a lexicon (docs/rules/hbo.md; docs/rules-design.md): hbo's notation, root classes, stem templates,
+# realisation rules and rewrites, read by @nabu/core (`compileLanguage`, `realise`; core-cli realise, realise-token,
+# paradigm; conformance/realise-hbo.json); never shipped. Every rule and branch is REVIEW: drafted from Joüon and
+# Muraoka (2011, the second edition's sections: JM § n, page) and the course's own words (the Westminster Leningrad
+# Codex), awaiting Ben's sign-off.
+#
+# The notation is the Tiberian pointing as the course writes it (WLC: no accents, no meteg), letters with their
+# dagesh and shin or sin dot. What it leaves to the spelling (each profile's `spell`): a word's final letter forms,
+# the shewa under a final kaf and under the last of a final cluster, the furtive patah, and the dagesh lene of a
+# begadkefat that begins a word (a form writes ב, never בּ, first; the spelling writes it, or leaves it out after a
+# word that ends in a vowel, JM § 19, a free alternative). The sign of no vowel is the shewa, vocal or silent alike:
+# Tiberian writes one sign for both, and which a shewa is follows from where it stands (Khan I.2.8; the pinned
+# reading says it); the rules read it where they must (the dagesh lene after a silent shewa: after a short vowel).
+# A word's last consonant is bare. A suffix that begins with a vowel writes it on the carrier (U+0640), which puts
+# it on the letter the suffix joins; a stem that begins with the carrier gives its vowel to the person prefix.
+notation:
+  vowels: {i: "\u05B4", ee: "\u05B5", e: "\u05B6", a: "\u05B7", aa: "\u05B8", o: "\u05B9", u: "\u05BB", ha: "\u05B2", he: "\u05B1", ho: "\u05B3"}
+  # A long vowel as written: hiriq, tsere or segol and yod, qamets and he or alef (a quiescent alef takes no shewa
+  # before a suffix: קָרָאתָ), holem and shureq on their vav.
+  long: {i: "\u05B4י", ee: "\u05B5י", e: "\u05B6י", aa: "\u05B8ה", aa-alef: "\u05B8א", o: "ו\u05B9", u: "ו\u05BC"}
+  none: "\u05B0"
+  # A letter's marks: its shin or sin dot, its dagesh, then its point.
+  order: "[\u05C1 \u05C2 \u05BC \u05B0-\u05BB]"
+  sets:
+    L: "[א-ת]"
+    G: "[אהחע]"
+    GR: "[אהחער]"
+    AER: "[אער]"
+    HH: "[הח]"
+    # Letters that take a dagesh forte (not the gutturals or resh), and the begadkefat.
+    NG: "[בגדזטיכלמנספצקשתךםןףץ]"
+    BGD: "[בגדכפת]"
+    LAB: "[במפ]"
+    BKL: "[בכל]"
+    TN: "[תנ]"
+    Y: "[י]"
+    T: "[ת]"
+    N: "[נ]"
+    A: "[א]"
+    WY: "[וי]"
+    GF: "[חע]"
+    # A consonant that closes a syllable at a word's end (not a vowel letter).
+    CLOSE: "[בגדזחטכלמנסעפצקרשתךםןףץ]"
+    # Every letter but yod.
+    NY: "[א-טך-ת]"
+    # A letter's marks: each point with or without a dagesh and a shin or sin dot (a pattern matches marks
+    # exactly). FULL a full vowel, SHORT a short one (hiriq, segol, patah, qibbuts: a shewa after it is silent),
+    # ANYV any point, SHVND a shewa on a letter that is not doubled.
+    SHV: "[{\u05B0} {\u05B0\u05BC} {\u05B0\u05C1} {\u05B0\u05C2} {\u05B0\u05BC\u05C1} {\u05B0\u05BC\u05C2}]"
+    HSE: "[{\u05B1} {\u05B1\u05BC} {\u05B1\u05C1} {\u05B1\u05C2} {\u05B1\u05BC\u05C1} {\u05B1\u05BC\u05C2}]"
+    HPA: "[{\u05B2} {\u05B2\u05BC} {\u05B2\u05C1} {\u05B2\u05C2} {\u05B2\u05BC\u05C1} {\u05B2\u05BC\u05C2}]"
+    HQA: "[{\u05B3} {\u05B3\u05BC} {\u05B3\u05C1} {\u05B3\u05C2} {\u05B3\u05BC\u05C1} {\u05B3\u05BC\u05C2}]"
+    HIR: "[{\u05B4} {\u05B4\u05BC} {\u05B4\u05C1} {\u05B4\u05C2} {\u05B4\u05BC\u05C1} {\u05B4\u05BC\u05C2}]"
+    TSE: "[{\u05B5} {\u05B5\u05BC} {\u05B5\u05C1} {\u05B5\u05C2} {\u05B5\u05BC\u05C1} {\u05B5\u05BC\u05C2}]"
+    SEG: "[{\u05B6} {\u05B6\u05BC} {\u05B6\u05C1} {\u05B6\u05C2} {\u05B6\u05BC\u05C1} {\u05B6\u05BC\u05C2}]"
+    PAT: "[{\u05B7} {\u05B7\u05BC} {\u05B7\u05C1} {\u05B7\u05C2} {\u05B7\u05BC\u05C1} {\u05B7\u05BC\u05C2}]"
+    QAM: "[{\u05B8} {\u05B8\u05BC} {\u05B8\u05C1} {\u05B8\u05C2} {\u05B8\u05BC\u05C1} {\u05B8\u05BC\u05C2}]"
+    HOL: "[{\u05B9} {\u05B9\u05BC} {\u05B9\u05C1} {\u05B9\u05C2} {\u05B9\u05BC\u05C1} {\u05B9\u05BC\u05C2}]"
+    QIB: "[{\u05BB} {\u05BB\u05BC} {\u05BB\u05C1} {\u05BB\u05C2} {\u05BB\u05BC\u05C1} {\u05BB\u05BC\u05C2}]"
+    FULL: "[{\u05B4} {\u05B4\u05BC} {\u05B4\u05C1} {\u05B4\u05C2} {\u05B4\u05BC\u05C1} {\u05B4\u05BC\u05C2} {\u05B5} {\u05B5\u05BC} {\u05B5\u05C1} {\u05B5\u05C2} {\u05B5\u05BC\u05C1} {\u05B5\u05BC\u05C2} {\u05B6} {\u05B6\u05BC} {\u05B6\u05C1} {\u05B6\u05C2} {\u05B6\u05BC\u05C1} {\u05B6\u05BC\u05C2} {\u05B7} {\u05B7\u05BC} {\u05B7\u05C1} {\u05B7\u05C2} {\u05B7\u05BC\u05C1} {\u05B7\u05BC\u05C2} {\u05B8} {\u05B8\u05BC} {\u05B8\u05C1} {\u05B8\u05C2} {\u05B8\u05BC\u05C1} {\u05B8\u05BC\u05C2} {\u05B9} {\u05B9\u05BC} {\u05B9\u05C1} {\u05B9\u05C2} {\u05B9\u05BC\u05C1} {\u05B9\u05BC\u05C2} {\u05BB} {\u05BB\u05BC} {\u05BB\u05C1} {\u05BB\u05C2} {\u05BB\u05BC\u05C1} {\u05BB\u05BC\u05C2}]"
+    SHORT: "[{\u05B4} {\u05B4\u05BC} {\u05B4\u05C1} {\u05B4\u05C2} {\u05B4\u05BC\u05C1} {\u05B4\u05BC\u05C2} {\u05B6} {\u05B6\u05BC} {\u05B6\u05C1} {\u05B6\u05C2} {\u05B6\u05BC\u05C1} {\u05B6\u05BC\u05C2} {\u05B7} {\u05B7\u05BC} {\u05B7\u05C1} {\u05B7\u05C2} {\u05B7\u05BC\u05C1} {\u05B7\u05BC\u05C2} {\u05BB} {\u05BB\u05BC} {\u05BB\u05C1} {\u05BB\u05C2} {\u05BB\u05BC\u05C1} {\u05BB\u05BC\u05C2}]"
+    ANYV: "[{\u05B0} {\u05B0\u05BC} {\u05B0\u05C1} {\u05B0\u05C2} {\u05B0\u05BC\u05C1} {\u05B0\u05BC\u05C2} {\u05B1} {\u05B1\u05BC} {\u05B1\u05C1} {\u05B1\u05C2} {\u05B1\u05BC\u05C1} {\u05B1\u05BC\u05C2} {\u05B2} {\u05B2\u05BC} {\u05B2\u05C1} {\u05B2\u05C2} {\u05B2\u05BC\u05C1} {\u05B2\u05BC\u05C2} {\u05B3} {\u05B3\u05BC} {\u05B3\u05C1} {\u05B3\u05C2} {\u05B3\u05BC\u05C1} {\u05B3\u05BC\u05C2} {\u05B4} {\u05B4\u05BC} {\u05B4\u05C1} {\u05B4\u05C2} {\u05B4\u05BC\u05C1} {\u05B4\u05BC\u05C2} {\u05B5} {\u05B5\u05BC} {\u05B5\u05C1} {\u05B5\u05C2} {\u05B5\u05BC\u05C1} {\u05B5\u05BC\u05C2} {\u05B6} {\u05B6\u05BC} {\u05B6\u05C1} {\u05B6\u05C2} {\u05B6\u05BC\u05C1} {\u05B6\u05BC\u05C2} {\u05B7} {\u05B7\u05BC} {\u05B7\u05C1} {\u05B7\u05C2} {\u05B7\u05BC\u05C1} {\u05B7\u05BC\u05C2} {\u05B8} {\u05B8\u05BC} {\u05B8\u05C1} {\u05B8\u05C2} {\u05B8\u05BC\u05C1} {\u05B8\u05BC\u05C2} {\u05B9} {\u05B9\u05BC} {\u05B9\u05C1} {\u05B9\u05C2} {\u05B9\u05BC\u05C1} {\u05B9\u05BC\u05C2} {\u05BB} {\u05BB\u05BC} {\u05BB\u05C1} {\u05BB\u05C2} {\u05BB\u05BC\u05C1} {\u05BB\u05BC\u05C2}]"
+    SHVND: "[{\u05B0} {\u05B0\u05C1} {\u05B0\u05C2}]"
+# The stated classes the rewrites read (REVIEW; none ships).
+classes:
+- {id: qamets-after-article, pos: NOUN, notes: {en: 'REVIEW: a noun whose first vowel is qamets after the article (הָאָרֶץ, הָהָר, הָעָם, הַגָּן: JM § 35f): stated per noun, as the lexicon cannot say which.'}}
+- {id: alef-quiescent, pos: NOUN, notes: {en: 'REVIEW: אֱלֹהִים after בְּ, כְּ, לְ, וְ: its alef quiescent, the prefix with tsere (לֵאלֹהִים, וֵאלֹהֵי: JM § 103b).'}}
+- {id: alef-quiescent-verb, pos: VERB, notes: {en: 'REVIEW: אָמַר''s infinitive after לְ: לֵאמֹר (JM § 73f).'}}
+- {id: suffix-plene, pos: ADV, notes: {en: 'REVIEW: the course writes this word with the 2ms suffix''s plene ketiv -ḵâ (אַיֶּכָּה, Gn 3:9: JM § 94h n. 4).'}}
+- {id: suffix-hem, pos: ADP, notes: {en: 'REVIEW: the 3mp suffix -hem where -m would also do (עִמָּהֶם beside עִמָּם: JM § 103).'}}
+- {id: construct-same, pos: NOUN, notes: {en: 'REVIEW: a noun whose construct singular is its absolute: a monosyllable whose vowel does not reduce, or a segolate (קוֹל, שֵׁם, אֶרֶץ: JM § 92): stated per noun.'}}
+- {id: qere-adonay, pos: PROPN, notes: {en: 'REVIEW: יְהוָה, read ʾădōnāy (its qere): a prefix takes the vowel it would before אֲדֹנָי and the yod no shewa (לַיהוָה, בַּיהוָה, וַיהוָה; ADR 0084).'}}
+# A verb's root class: the first that holds, never stored (docs/lexical-forms/apc.md, 'A verb's form'; JM §§ 68-82).
+rootClasses:
+- {id: iii-he, radical: 3, in: "[ה]"}
+- {id: hollow, radical: 2, in: "{WY}"}
+- {id: geminate, same: [2, 3]}
+- {id: i-nun, radical: 1, in: "{N}"}
+- {id: i-yod, radical: 1, in: "{Y}"}
+- {id: iii-alef, radical: 3, in: "{A}"}
+- {id: sound}
+# Stem templates (JM's paradigms: P2 the regular verb, pp. 620-621; P16 the weak verbs, p. 640). Digits are the
+# radicals; {perf} the qal perfect's second vowel (a, ee, o: JM § 41), {impf} the qal imperfect's theme vowel (o, a,
+# ee: JM § 44c), {pfx} a I-yod verb's prefix vowel (ee: יֵשֵׁב; i: יִירָא, JM § 75c-d), {inf} a hollow verb's
+# infinitive vowel (u, o, i: JM § 80). The stems: perf (the perfect), perf-c and perf-v (before an ending that
+# begins with a consonant or a vowel), perf-3fs; impf, impf-v, wayy (the short form the wayyiqtol takes); impv,
+# impv-v; inf, infabs; ptc, ptc-fs, ptc-v, ptcp, ptcp-v. A template with no class is any class's.
+stems:
+# Qal: the perfect (JM § 42, P2 p. 620)
+- {id: perf, form: qal, template: "1\u05B82{perf}3"}  # שָׁמַר, אָהַב; יָרֵא, חָסֵר
+- {id: perf, form: qal, class: iii-alef, template: "1\u05B82\u05B83"}  # קָרָא, מָצָא, בָּרָא (JM § 78)
+- {id: perf, form: qal, class: iii-he, template: "1\u05B82\u05B8ה"}  # הָיָה, עָשָׂה (JM § 79)
+- {id: perf, form: qal, class: hollow, template: "1{perf}3"}  # קָם, סָר, בָּא; מֵת (JM § 80b-c)
+- {id: perf-c, form: qal, class: iii-he, template: "1\u05B82\u05B4י"}  # עָשִׂיתָ, עָשִׂית (JM § 79)
+- {id: perf-c, form: qal, class: hollow, template: "1\u05B73"}  # קַמְתָּ (JM § 80b-c)
+- {id: perf-c, form: qal, class: hollow, radical: 3, in: "{A}", template: "1\u05B83"}  # בָּאתָ, בָאת (JM § 80b-c, 78)
+- {id: perf-h, form: qal, template: "1\u05B02{perf}3"}  # שְׁמַרְתֶּם: the first vowel reduced before the heavy -tem, -ten (JM § 42f, P2 p. 620)
+- {id: perf-h, form: qal, radical: 1, in: "{G}", template: "1\u05B22{perf}3"}  # עֲמַדְתֶּם
+- {id: perf-h, form: qal, class: iii-he, template: "1\u05B02\u05B4י"}  # רְאִיתֶם
+- {id: perf-h, form: qal, class: iii-he, radical: 1, in: "{G}", template: "1\u05B22\u05B4י"}  # עֲשִׂיתֶם
+- {id: perf-v, form: qal, template: "1\u05B82\u05B03"}  # שָׁמְרָה, נָתְנָה
+- {id: perf-v, form: qal, radical: 2, in: "{G}", template: "1\u05B82\u05B23"}  # שָׁאֲלָה (JM § 69)
+- {id: perf-v, form: qal, class: iii-he, template: "1\u05B82"}  # הָיוּ (JM § 79)
+- {id: perf-v, form: qal, class: hollow, template: "1{perf}3"}  # שָׁבָה, קָמוּ (JM § 80b-c)
+- {id: perf-3fs, form: qal, class: iii-he, template: "1\u05B82\u05B0ת"}  # הָיְתָה, עָלְתָה (JM § 79d)
+# Qal: the imperfect (JM § 44, p. 124; P2 p. 620), its short form after wayyiqtol's vav (JM § 47)
+- {id: impf, form: qal, template: "ـ\u05B41\u05B02{impf}3"}  # יִשְׁמֹר, יִשְׁמַע, תִּגְנֹב
+- {id: impf, form: qal, radical: 1, in: "{A}", template: "ـ\u05B912{impf}3"}  # יֹאמַר, אֹכַל: the alef quiescent (JM § 73f)
+- {id: impf, form: qal, radical: 1, in: "[עה]", template: "ـ\u05B71\u05B22{impf}3"}  # יַעֲמֹד, יַהֲרֹג (JM § 68)
+- {id: impf, form: qal, radical: 1, in: "[ח]", template: "ـ\u05B61\u05B02{impf}3"}  # יֶחְסַר, אֶחְסָר (JM § 68)
+- {id: impf, form: qal, class: iii-alef, template: "ـ\u05B41\u05B02\u05B83"}  # יִקְרָא, יִמְצָא: a before the quiescent alef long (JM § 78)
+- {id: impf, form: qal, class: iii-he, template: "ـ\u05B41\u05B02\u05B6ה"}  # יִהְיֶה, יִרְאֶה (JM § 79)
+- {id: impf, form: qal, class: iii-he, radical: 1, in: "[ע]", template: "ـ\u05B71\u05B22\u05B6ה"}  # יַעֲשֶׂה, תַעֲנֶה
+- {id: impf, form: qal, class: hollow, template: "ـ\u05B81{long impf}3"}  # יָקוּם, אָמוּת, יָבוֹא, אָלִין (JM § 80)
+- {id: impf, form: qal, class: i-yod, template: "ـ\u05B52{impf}3"}  # יֵשֵׁב, יֵדַע, יֵצֵא (JM § 75)
+- {id: impf, form: qal, class: i-yod, vowels: {pfx: i}, template: "ـ\u05B412{impf}3"}  # יִירָא (JM § 75d)
+- {id: impf, form: qal, class: i-nun, template: "ـ\u05B42\u05BC{impf}3"}  # יִתֵּן, יִפֹּל, יִטַּע (JM § 72)
+- {id: impf, form: qal, class: i-nun, radical: 2, in: "{GR}", template: "ـ\u05B41\u05B02{impf}3"}  # תִּנְאַף: no assimilation before a guttural (JM § 72)
+- {id: impf-v, form: qal, template: "ـ\u05B41\u05B02\u05B03"}  # יִשְׁמְעוּ, תִּפְגְּעִי
+- {id: impf-v, form: qal, radical: 1, in: "{A}", template: "ـ\u05B912\u05B03"}  # יֹאמְרוּ
+- {id: impf-v, form: qal, class: iii-he, template: "ـ\u05B41\u05B02"}  # יִהְיוּ
+- {id: impf-v, form: qal, class: hollow, template: "ـ\u05B81{long impf}3"}  # תָּמוּתִי, תָּלִינִי
+- {id: impf-v, form: qal, class: i-yod, template: "ـ\u05B52\u05B03"}  # יֵדְעוּ, יֵצְאוּ
+- {id: impf-v, form: qal, class: i-yod, vowels: {pfx: i}, template: "ـ\u05B412\u05B03"}  # תִּירְאִי
+- {id: impf-v, form: qal, class: i-nun, template: "ـ\u05B42\u05B0\u05BC3"}  # יִתְּנוּ
+- {id: wayy, form: qal, radical: 1, in: "{A}", template: "ـ\u05B912\u05B63"}  # וַיֹּאמֶר: its stress drawn back (JM § 47, 73b)
+- {id: wayy, form: qal, class: iii-he, template: "ـ\u05B41\u05B62"}  # וַיִּבֶן: apocopated (JM § 79i)
+- {id: wayy, form: qal, class: iii-he, radical: 1, in: "[ע]", template: "ـ\u05B71\u05B72"}  # וַיַּעַל, וַיַּעַן (JM § 79i)
+- {id: wayy, form: qal, class: hollow, template: "ـ\u05B81\u05B83"}  # וַיָּקָם, וַיָּמָת, וַתָּשָׁב (JM § 80)
+- {id: wayy, form: qal, class: hollow, radical: 3, in: "{A}", template: "ـ\u05B81\u05B93"}  # וַיָּבֹא
+- {id: wayy, form: qal, class: i-yod, template: "ـ\u05B52\u05B63"}  # וַיֵּשֶׁב, וַיֵּרֶד, וַתֵּלֶד (JM § 75)
+- {id: wayy, form: qal, class: i-yod, radical: 3, in: "{A}", template: "ـ\u05B52\u05B53"}  # וַיֵּצֵא
+- {id: wayy, form: qal, class: i-yod, vowels: {impf: a}, template: "ـ\u05B52\u05B73"}  # וַיֵּדַע
+- {id: wayy, form: qal, class: i-yod, vowels: {pfx: i}, template: "ـ\u05B412{impf}3"}  # וָאִירָא (JM § 75d)
+# Qal: the imperative (JM § 48, P2 p. 620)
+- {id: impv, form: qal, template: "1\u05B02{impf}3"}  # שְׁמַע, קְרָא
+- {id: impv, form: qal, class: iii-alef, template: "1\u05B02\u05B83"}  # קְרָא (JM § 78)
+- {id: impv, form: qal, class: iii-he, template: "1\u05B02\u05B5ה"}  # רְאֵה, הְיֵה, שְׁתֵה (JM § 79)
+- {id: impv, form: qal, class: hollow, template: "1{long impf}3"}  # קוּם, שׁוּב (JM § 80)
+- {id: impv, form: qal, class: i-nun, template: "2{impf}3"}  # תֵּן, שַׁל (JM § 72)
+- {id: impv, form: qal, class: i-nun, vowels: {impf: o}, template: "1\u05B02\u05B93"}  # נְפֹל: an o-verb keeps its nun (JM § 72)
+- {id: impv, form: qal, class: i-yod, template: "2{impf}3"}  # שֵׁב, צֵא, דַּע (JM § 75)
+- {id: impv-v, form: qal, template: "1\u05B42\u05B03"}  # שִׁמְעִי, שִׁמְעוּ, גִּזְרוּ
+- {id: impv-v, form: qal, class: iii-he, template: "1\u05B02"}  # רְאִי, רְאוּ, שְׁתוּ
+- {id: impv-v, form: qal, class: hollow, template: "1{long impf}3"}  # קוּמִי, שׁוּבוּ
+- {id: impv-v, form: qal, class: i-nun, template: "2\u05B03"}  # תְּנִי, תְּנוּ
+- {id: impv-v, form: qal, class: i-yod, template: "2\u05B03"}  # שְׁבוּ
+# Qal: the infinitive construct (JM § 49)
+- {id: inf, form: qal, template: "1\u05B02\u05B93"}  # שְׁמֹר, שְׁאֹב
+- {id: inf, form: qal, radical: 1, in: "{A}", template: "1\u05B12\u05B93"}  # אֱכֹל, אֱמֹר
+- {id: inf, form: qal, radical: 1, in: "[עהח]", template: "1\u05B22\u05B93"}  # עֲזֹב (JM § 68)
+- {id: inf, form: qal, class: iii-he, template: "1\u05B02ו\u05B9ת"}  # רְאוֹת, הְיוֹת, בְּנוֹת (JM § 79)
+- {id: inf, form: qal, class: hollow, template: "1{long inf}3"}  # קוּם, בּוֹא, מוּת (JM § 80)
+- {id: inf, form: qal, class: i-yod, template: "2\u05B63\u05B6ת"}  # שֶׁבֶת, לֶדֶת (JM § 75)
+- {id: inf, form: qal, class: i-nun, radical: 3, in: "{G}", template: "2\u05B73\u05B7ת"}  # טַעַת, the nun gone (JM § 72)
+- {id: inf, form: qal, class: i-yod, radical: 3, in: "{G}", template: "2\u05B73\u05B7ת"}  # דַּעַת
+- {id: inf, form: qal, class: i-yod, radical: 3, in: "{A}", template: "2\u05B53ת"}  # צֵאת
+# Qal: the participles (JM § 50, P2 p. 620)
+- {id: ptc, form: qal, template: "1\u05B92\u05B53"}  # שֹׁמֵר, נֹתֵן, יֹשֵׁב
+- {id: ptc, form: qal, vowels: {perf: ee}, template: "1\u05B82\u05B53"}  # יָרֵא, חָסֵר: a stative's verbal adjective (JM § 50b)
+- {id: ptc, form: qal, class: iii-he, template: "1\u05B92\u05B6ה"}  # רֹעֶה, תֹּעֶה (JM § 79)
+- {id: ptc, form: qal, class: hollow, template: "1{perf}3"}  # בָּא, מֵת (JM § 80)
+- {id: ptc-fs, form: qal, template: "1\u05B92\u05B63\u05B6ת"}  # יֹשֶׁבֶת, עֹמֶדֶת, אֹמֶרֶת (JM § 89)
+- {id: ptc-fs, form: qal, radical: 3, in: "{G}", template: "1\u05B92\u05B73\u05B7ת"}  # שֹׁמַעַת
+- {id: ptc-fs, form: qal, class: iii-he, template: "1\u05B92\u05B8ה"}
+- {id: ptc-fs, form: qal, class: hollow, template: "1\u05B83\u05B8ה"}  # בָּאָה
+- {id: ptc-v, form: qal, template: "1\u05B92\u05B03"}  # רֹדְפִים
+- {id: ptc-v, form: qal, radical: 2, in: "{G}", template: "1\u05B92\u05B23"}  # צֹעֲקִים
+- {id: ptc-v, form: qal, class: iii-he, template: "1\u05B92"}  # רֹעִים
+- {id: ptc-v, form: qal, class: hollow, template: "1{perf}3"}  # בָּאִים
+- {id: ptcp, form: qal, template: "1\u05B82ו\u05BC3"}  # בָּרוּךְ, נָטוּעַ, יָלוּד (JM § 50c)
+- {id: ptcp-v, form: qal, template: "1\u05B02ו\u05BC3"}  # בְּרוּכָה
+# Piel (JM § 52, P2 p. 621): the second radical doubled; ח and ה not doubled, א ע ר not doubled and the vowel before
+# them long (JM § 69c, p. 169)
+- {id: perf, form: piel, template: "1\u05B42\u05BC{perf}3"}  # בִּקֵּשׁ, דִּבֶּר
+- {id: perf, form: piel, radical: 2, in: "{HH}", template: "1\u05B42{perf}3"}  # נִחַם, מִהַר, רִחֵף
+- {id: perf, form: piel, radical: 2, in: "{AER}", template: "1\u05B52{perf}3"}  # בֵּרַךְ, חֵרֵף
+- {id: perf, form: piel, class: iii-he, template: "1\u05B42\u05B8\u05BCה"}  # צִוָּה, נִסָּה, כִּלָּה (JM § 79)
+- {id: perf, form: piel, class: iii-he, radical: 2, in: "{AER}", template: "1\u05B52\u05B8ה"}  # עֵרָה
+- {id: perf-c, form: piel, template: "1\u05B42\u05B7\u05BC3"}  # דִּבַּרְתָּ, שִׁנַּנְתָּ
+- {id: perf-c, form: piel, radical: 2, in: "{HH}", template: "1\u05B42\u05B73"}
+- {id: perf-c, form: piel, radical: 2, in: "{AER}", template: "1\u05B52\u05B73"}
+- {id: perf-c, form: piel, class: iii-he, template: "1\u05B42\u05B4\u05BCי"}  # צִוִּיתִי
+- {id: perf-v, form: piel, template: "1\u05B42\u05B0\u05BC3"}  # דִּבְּרוּ
+- {id: perf-v, form: piel, class: iii-he, template: "1\u05B42\u05BC"}  # כִּלּוּ
+- {id: impf, form: piel, template: "ـ\u05B01\u05B72\u05B5\u05BC3"}  # יְדַבֵּר, תְּבַקֵּשׁ
+- {id: impf, form: piel, radical: 2, in: "{HH}", template: "ـ\u05B01\u05B72\u05B53"}  # יְנַהֵל, וַתְּמַהֵר
+- {id: impf, form: piel, radical: 2, in: "{AER}", template: "ـ\u05B01\u05B82\u05B53"}  # יְבָרֵךְ
+- {id: impf, form: piel, class: iii-he, template: "ـ\u05B01\u05B72\u05B6\u05BCה"}  # יְצַוֶּה
+- {id: impf-v, form: piel, template: "ـ\u05B01\u05B72\u05B0\u05BC3"}  # יְדַבְּרוּ
+- {id: impf-v, form: piel, radical: 2, in: "{HH}", template: "ـ\u05B01\u05B72\u05B23"}  # יְנַחֲמוּ
+- {id: wayy, form: piel, class: iii-he, template: "ـ\u05B01\u05B72"}  # וַיְצַו, וַתְּכַל, וַתְּעַר: apocopated (JM § 79i)
+- {id: impv, form: piel, template: "1\u05B72\u05B5\u05BC3"}  # דַּבֵּר
+- {id: impv, form: piel, radical: 2, in: "{HH}", template: "1\u05B72\u05B53"}
+- {id: impv-v, form: piel, template: "1\u05B72\u05B0\u05BC3"}  # דַּבְּרוּ
+- {id: impv-v, form: piel, radical: 2, in: "{HH}", template: "1\u05B72\u05B23"}  # נַחֲמוּ
+- {id: inf, form: piel, template: "1\u05B72\u05B5\u05BC3"}
+- {id: infabs, form: piel, template: "1\u05B72\u05B5\u05BC3"}  # כַּבֵּד (JM § 52)
+- {id: ptc, form: piel, template: "מ\u05B01\u05B72\u05B5\u05BC3"}  # מְבַקֵּשׁ
+- {id: ptc, form: piel, radical: 2, in: "{HH}", template: "מ\u05B01\u05B72\u05B53"}
+- {id: ptc, form: piel, class: iii-he, template: "מ\u05B01\u05B72\u05B6\u05BCה"}  # מְצַוֶּה
+- {id: ptc-fs, form: piel, template: "מ\u05B01\u05B72\u05B6\u05BC3\u05B6ת"}  # מְבַקֶּשֶׁת
+- {id: ptc-fs, form: piel, radical: 2, in: "{HH}", template: "מ\u05B01\u05B72\u05B63\u05B6ת"}  # מְרַחֶפֶת
+- {id: ptc-v, form: piel, template: "מ\u05B01\u05B72\u05B0\u05BC3"}
+# Hiphil (JM § 54, P2 p. 621; P16 p. 640)
+- {id: perf, form: hiphil, template: "ה\u05B41\u05B02\u05B4י3"}  # הִבְדִּיל, הִסְתִּיר, הִרְבִּיץ
+- {id: perf, form: hiphil, radical: 1, in: "{A}", template: "ה\u05B61\u05B12\u05B4י3"}  # הֶאֱרִיךְ (JM § 68)
+- {id: perf, form: hiphil, class: i-nun, template: "ה\u05B42\u05B4\u05BCי3"}  # הִגִּיד, הִבִּיט, הִפִּיל (JM § 72)
+- {id: perf, form: hiphil, class: hollow, template: "ה\u05B51\u05B4י3"}  # הֵמִית, הֵשִׁיב, הֵבִיא (JM § 80g)
+- {id: perf, form: hiphil, class: i-yod, template: "הו\u05B92\u05B4י3"}  # הוֹרִיד, הוֹצִיא, הוֹשִׁיעַ (JM § 75)
+- {id: perf, form: hiphil, class: iii-he, template: "ה\u05B41\u05B02\u05B8ה"}  # הִשְׁקָה, הִנְחָה (JM § 79)
+- {id: perf, form: hiphil, class: iii-he, radical: 1, in: "{G}", template: "ה\u05B61\u05B12\u05B8ה"}  # הֶעֱלָה
+- {id: perf, form: hiphil, class: iii-he, radical: 2, in: "{A}", template: "ה\u05B61\u05B02\u05B8ה"}  # הֶרְאָה
+- {id: perf-c, form: hiphil, template: "ה\u05B41\u05B02\u05B73"}
+- {id: perf-c, form: hiphil, class: i-yod, template: "הו\u05B92\u05B73"}
+- {id: perf-c, form: hiphil, class: i-yod, radical: 3, in: "{A}", template: "הו\u05B92\u05B53"}  # הוֹצֵאתִי (JM § 78)
+- {id: impf, form: hiphil, template: "ـ\u05B71\u05B02\u05B4י3"}  # יַרְבִּיץ, יַסְתִּיר
+- {id: impf, form: hiphil, class: i-nun, template: "ـ\u05B72\u05B4\u05BCי3"}  # יַגִּיד
+- {id: impf, form: hiphil, class: hollow, template: "ـ\u05B81\u05B4י3"}  # יָמִית
+- {id: impf, form: hiphil, class: i-yod, template: "ـו\u05B92\u05B4י3"}  # יוֹשִׁיעַ
+- {id: impf, form: hiphil, class: iii-he, template: "ـ\u05B71\u05B02\u05B6ה"}  # יַנְחֶה
+- {id: wayy, form: hiphil, template: "ـ\u05B71\u05B02\u05B53"}  # וַיַּבְדֵּל, וַיַּסְתֵּר: the short form (JM § 54c)
+- {id: wayy, form: hiphil, class: i-nun, template: "ـ\u05B72\u05B5\u05BC3"}  # וַיַּגֵּד
+- {id: wayy, form: hiphil, class: i-yod, template: "ـ\u05B92\u05B63"}  # וַתֹּרֶד (JM § 75)
+- {id: wayy, form: hiphil, class: hollow, template: "ـ\u05B81\u05B63"}  # וַיָּשֶׁב
+- {id: impv, form: hiphil, template: "ה\u05B71\u05B02\u05B53"}  # הַבְדֵּל
+- {id: impv, form: hiphil, class: i-nun, template: "ה\u05B72\u05B5\u05BC3"}  # הַגֵּד
+- {id: impv-v, form: hiphil, template: "ה\u05B71\u05B02\u05B4י3"}  # הַגְמִיאִי
+- {id: impv-v, form: hiphil, class: i-nun, template: "ה\u05B72\u05B4\u05BCי3"}  # הַגִּידִי
+- {id: inf, form: hiphil, template: "ה\u05B71\u05B02\u05B4י3"}  # הַבְדִּיל
+- {id: inf, form: hiphil, class: i-nun, template: "ה\u05B72\u05B4\u05BCי3"}  # הַבִּיט
+- {id: inf, form: hiphil, class: iii-he, template: "ה\u05B71\u05B02ו\u05B9ת"}  # הַשְׁקוֹת
+- {id: infabs, form: hiphil, class: hollow, template: "ה\u05B81\u05B53"}  # הָמֵת (JM § 80g)
+# Niphal (JM § 51, P2 p. 620)
+- {id: perf, form: niphal, template: "נ\u05B41\u05B02\u05B73"}  # נִקְבַּר, נִשְׁבַּר, נִכְמַר
+- {id: perf, form: niphal, radical: 1, in: "{G}", template: "נ\u05B61\u05B02\u05B73"}
+- {id: perf-v, form: niphal, template: "נ\u05B41\u05B02\u05B03"}  # נִכְמְרוּ
+- {id: perf, form: niphal, radical: 1, in: "{G}", class: iii-alef, template: "נ\u05B61\u05B02\u05B83"}  # נֶחְבָּא
+- {id: perf, form: niphal, class: iii-he, template: "נ\u05B41\u05B02\u05B8ה"}  # נִרְאָה (JM § 79)
+- {id: impf, form: niphal, template: "ـ\u05B41\u05B8\u05BC2\u05B53"}  # יִקָּבֵר
+- {id: impf, form: niphal, radical: 1, in: "{GR}", template: "ـ\u05B51\u05B82\u05B53"}  # וָאֵחָבֵא (JM § 68)
+- {id: impf, form: niphal, class: iii-he, template: "ـ\u05B41\u05B8\u05BC2\u05B6ה"}
+- {id: wayy, form: niphal, class: iii-he, radical: 1, in: "{GR}", template: "ـ\u05B51\u05B82"}  # וַיֵּרָא (JM § 79i)
+# Hithpael (JM § 53, P2 p. 621)
+- {id: perf, form: hithpael, template: "ה\u05B4ת\u05B01\u05B72\u05B5\u05BC3"}  # הִתְהַלֵּךְ, הִתְיַצֵּב
+- {id: impf, form: hithpael, template: "ـ\u05B4ת\u05B01\u05B72\u05B5\u05BC3"}  # וַיִּתְחַבֵּא
+- {id: ptc, form: hithpael, template: "מ\u05B4ת\u05B01\u05B72\u05B5\u05BC3"}  # מִתְהַלֵּךְ
+- {id: ptc-fs, form: hithpael, template: "מ\u05B4ת\u05B01\u05B72\u05B6\u05BC3\u05B6ת"}  # מִתְהַלֶּכֶת
+# Polel of a hollow verb (JM § 59a, 80h, p. 198)
+- {id: perf, form: polel, template: "1ו\u05B93\u05B53"}  # שׁוֹבֵב
+- {id: impf, form: polel, template: "ـ\u05B01ו\u05B93\u05B53"}  # יְשׁוֹבֵב
+realisation:
+- id: 'rule:hbo-participle-passive'  # the qal passive participle (JM § 50c)
+  when: {pos: VERB, feats: {VerbForm: Part, Voice: Pass}}
+  stem: ptcp
+  blocks:
+  - suffix:
+    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u05B8ה", stem: [ptcp-v, ptcp]}
+    - {branch: mp, feats: {Gender: Masc, Number: Plur}, add: "ـ\u05B4ים", stem: [ptcp-v, ptcp]}
+    - {branch: ms, feats: {Gender: Masc, Number: Sing}, add: ""}
+- id: 'rule:hbo-participle'  # the active participle, of each stem (JM § 50, 89)
+  when: {pos: VERB, feats: {VerbForm: Part}}
+  stem: ptc
+  blocks:
+  - suffix:
+    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "", stem: [ptc-fs]}
+    - {branch: mp, feats: {Gender: Masc, Number: Plur}, add: "ـ\u05B4ים", stem: [ptc-v, ptc]}
+    - {branch: fp, feats: {Gender: Fem, Number: Plur}, add: "ـו\u05B9ת", stem: [ptc-v, ptc]}
+    - {branch: ms, feats: {Gender: Masc, Number: Sing}, add: ""}
+- id: 'rule:hbo-infinitive-absolute'  # JM § 49
+  when: {pos: VERB, feats: {VerbForm: InfAbs}}
+  stem: infabs
+  blocks:
+  - suffix:
+    - {branch: absolute, add: ""}
+- id: 'rule:hbo-infinitive'  # the infinitive construct (JM § 49)
+  when: {pos: VERB, feats: {VerbForm: Inf}}
+  stem: inf
+  blocks:
+  - suffix:
+    - {branch: construct, add: ""}
+- id: 'rule:hbo-wayyiqtol'  # vav, the prefix doubled, and the short imperfect (JM § 47, pp. 128-130)
+  when: {pos: VERB, feats: {Tense: Past}}
+  stem: [wayy, impf]
+  blocks:
+  - prefix:  # who (JM § 44, p. 124; P2 p. 620)
+    - {branch: 1s, feats: {Person: '1', Number: Sing}, add: "א"}
+    - {branch: 1p, feats: {Person: '1', Number: Plur}, add: "נ"}
+    - {branch: 3fs, feats: {Person: '3', Gender: Fem, Number: Sing}, add: "ת"}
+    - {branch: 3fp, feats: {Person: '3', Gender: Fem, Number: Plur}, add: "ת"}
+    - {branch: '2', feats: {Person: '2'}, add: "ת"}
+    - {branch: '3', feats: {Person: '3'}, add: "י"}
+  - suffix:
+    - {branch: 2fs, feats: {Person: '2', Gender: Fem, Number: Sing}, add: "ـ\u05B4י", stem: [impf-v, impf]}
+    - {branch: mp, feats: {Gender: Masc, Number: Plur}, add: "ـו\u05BC", stem: [impf-v, impf]}
+    - {branch: fp, feats: {Gender: Fem, Number: Plur}, add: "נ\u05B8ה", stem: [impf]}
+  - prefix:
+    - {branch: vav, add: "ו\u05B7"}
+- id: 'rule:hbo-weqatal'  # vav and the perfect (JM § 43, 119)
+  when: {pos: VERB, feats: {Tense: Fut}}
+  stem: perf
+  blocks:
+  - suffix:  # JM § 42f, p. 121
+    - {branch: 1cs, feats: {Person: '1', Number: Sing}, add: "ת\u05B4י", stem: [perf-c, perf]}
+    - {branch: 1cp, feats: {Person: '1', Number: Plur}, add: "נו\u05BC", stem: [perf-c, perf]}
+    - {branch: 2ms, feats: {Person: '2', Gender: Masc, Number: Sing}, add: "ת\u05B8", stem: [perf-c, perf]}
+    - {branch: 2fs, feats: {Person: '2', Gender: Fem, Number: Sing}, add: "ת", stem: [perf-c, perf]}
+    - {branch: 2mp, feats: {Person: '2', Gender: Masc, Number: Plur}, add: "ת\u05B6ם", stem: [perf-h, perf-c, perf]}
+    - {branch: 2fp, feats: {Person: '2', Gender: Fem, Number: Plur}, add: "ת\u05B6ן", stem: [perf-h, perf-c, perf]}
+    - {branch: 3fs, feats: {Person: '3', Gender: Fem, Number: Sing}, add: "ـ\u05B8ה", stem: [perf-3fs, perf-v, perf]}
+    - {branch: 3cp, feats: {Person: '3', Number: Plur}, add: "ـו\u05BC", stem: [perf-v, perf]}
+    - {branch: 3ms, feats: {Person: '3'}, add: ""}
+  - prefix:
+    - {branch: vav, add: "ו\u05B0"}
+- id: 'rule:hbo-qatal'  # the perfect (JM § 42, p. 120ff; P2 p. 620)
+  when: {pos: VERB, feats: {Aspect: Perf}}
+  stem: perf
+  blocks:
+  - suffix:
+    - {branch: 1cs, feats: {Person: '1', Number: Sing}, add: "ת\u05B4י", stem: [perf-c, perf]}
+    - {branch: 1cp, feats: {Person: '1', Number: Plur}, add: "נו\u05BC", stem: [perf-c, perf]}
+    - {branch: 2ms, feats: {Person: '2', Gender: Masc, Number: Sing}, add: "ת\u05B8", stem: [perf-c, perf]}
+    - {branch: 2fs, feats: {Person: '2', Gender: Fem, Number: Sing}, add: "ת", stem: [perf-c, perf]}
+    - {branch: 2mp, feats: {Person: '2', Gender: Masc, Number: Plur}, add: "ת\u05B6ם", stem: [perf-h, perf-c, perf]}
+    - {branch: 2fp, feats: {Person: '2', Gender: Fem, Number: Plur}, add: "ת\u05B6ן", stem: [perf-h, perf-c, perf]}
+    - {branch: 3fs, feats: {Person: '3', Gender: Fem, Number: Sing}, add: "ـ\u05B8ה", stem: [perf-3fs, perf-v, perf]}
+    - {branch: 3cp, feats: {Person: '3', Number: Plur}, add: "ـו\u05BC", stem: [perf-v, perf]}
+    - {branch: 3ms, feats: {Person: '3'}, add: ""}
+- id: 'rule:hbo-yiqtol'  # the imperfect, indicative (JM § 44, p. 124; P2 p. 620); the jussive and cohortative cells name no person
+  when: {pos: VERB, feats: {Aspect: Imp, Mood: Ind}}
+  stem: impf
+  blocks:
+  - prefix:
+    - {branch: 1s, feats: {Person: '1', Number: Sing}, add: "א"}
+    - {branch: 1p, feats: {Person: '1', Number: Plur}, add: "נ"}
+    - {branch: 3fs, feats: {Person: '3', Gender: Fem, Number: Sing}, add: "ת"}
+    - {branch: 3fp, feats: {Person: '3', Gender: Fem, Number: Plur}, add: "ת"}
+    - {branch: '2', feats: {Person: '2'}, add: "ת"}
+    - {branch: '3', feats: {Person: '3'}, add: "י"}
+  - suffix:
+    - {branch: 2fs, feats: {Person: '2', Gender: Fem, Number: Sing}, add: "ـ\u05B4י", stem: [impf-v, impf]}
+    - {branch: mp, feats: {Gender: Masc, Number: Plur}, add: "ـו\u05BC", stem: [impf-v, impf]}
+    - {branch: fp, feats: {Gender: Fem, Number: Plur}, add: "נ\u05B8ה", stem: [impf]}
+- id: 'rule:hbo-imperative'  # JM § 48, pp. 130-132
+  when: {pos: VERB, feats: {Mood: Imp}}
+  stem: impv
+  blocks:
+  - suffix:
+    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u05B4י", stem: [impv-v, impv]}
+    - {branch: mp, feats: {Gender: Masc, Number: Plur}, add: "ـו\u05BC", stem: [impv-v, impv]}
+    - {branch: fp, feats: {Gender: Fem, Number: Plur}, add: "נ\u05B8ה", stem: [impv]}
+    - {branch: ms, add: ""}
+- id: 'rule:hbo-construct'  # a construct singular that is the absolute (JM § 92); bound by a maqaf, rule:hbo-maqaf shortens it (כָּל־, בֶּן־)
+  when: {pos: NOUN, class: construct-same, feats: {Definite: Cons}}
+  blocks:
+  - suffix:
+    - {branch: same, feats: {Number: Sing}, add: ""}
+- id: 'rule:hbo-adjective'  # an adjective's feminine and plurals where its stem keeps its vowels (טוֹב: JM § 89)
+  when: {pos: ADJ}
+  blocks:
+  - suffix:
+    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u05B8ה"}
+    - {branch: mp, feats: {Gender: Masc, Number: Plur}, add: "ـ\u05B4ים"}
+    - {branch: fp, feats: {Gender: Fem, Number: Plur}, add: "ـו\u05B9ת"}
+# Rewrites, in order, each once over the whole token (docs/rules-design.md, section 2).
+phonology:
+# The prefix conjugation's 1st person singular: א with segol where the others have hiriq, with hataf patah where they
+# have shewa (JM § 44, p. 124; P2 p. 620; § 52 for the piel).
+- {id: 'rule:hbo-prefix-alef', branch: qal, find: "א\u05B4+", after: ["#", "#ו{FULL}+"], before: "{NY}*", to: "א\u05B6+"}  # אֶשְׁמַע, אֶתֵּן
+- {id: 'rule:hbo-prefix-alef', branch: shewa, find: "א\u05B0+", to: "א\u05B2+"}  # אֲבָרֵךְ
+# The prefix's alef takes the first radical's quiescent alef (JM § 73f): אֹמַר, אֹכַל
+- {id: 'rule:hbo-quiescent-alef', find: "א\u05B9+א", to: "א\u05B9+"}
+# wayyiqtol (JM § 47, pp. 128-130): the prefix doubled after וַ, but a yod with shewa (וַיְדַבֵּר); before א, וָ.
+- {id: 'rule:hbo-wayyiqtol', branch: double, when: {feats: {Tense: Past}}, find: "ו\u05B7+{TN}{ANYV}", to: "ו\u05B7+{TN}\u05BC"}
+- {id: 'rule:hbo-wayyiqtol', branch: double, when: {feats: {Tense: Past}}, find: "ו\u05B7+{Y}{FULL}", to: "ו\u05B7+{Y}\u05BC"}
+- {id: 'rule:hbo-wayyiqtol', branch: alef, when: {feats: {Tense: Past}}, find: "ו\u05B7+", before: "א*", to: "ו\u05B8+"}
+# The article (JM § 35, p. 102): the next letter doubled; before א ע ר, which do not double, הָ.
+- {id: 'rule:hbo-article', branch: double, find: "ה\u05B7+{NG}*", after: ["#", "#{L}*+", "#{L}*+{L}*+"], to: "ה\u05B7+{NG}\u05BC"}
+- {id: 'rule:hbo-article', branch: alef, find: "ה\u05B7+", before: "{AER}*", to: "ה\u05B8+"}
+# The interrogative הֲ before a guttural: הַ (JM § 102l-o)
+- {id: 'rule:hbo-interrogative', find: "ה\u05B2+", after: ["#", "#{L}*+"], before: "{G}*", to: "ה\u05B7+"}
+# The relative שֶׁ: the next letter doubled (JM § 38)
+- {id: 'rule:hbo-relative', find: "ש\u05B6\u05C1+{NG}*", after: ["#", "#{L}*+"], to: "ש\u05B6\u05C1+{NG}\u05BC"}
+# A noun whose first vowel lengthens after the article (JM § 35f; stated per noun: qamets-after-article)
+- {id: 'rule:hbo-article', branch: qamets, when: {class: qamets-after-article}, find: "ה{ANYV}+{L}{SEG}", to: "ה{ANYV}+{L}\u05B8"}
+- {id: 'rule:hbo-article', branch: qamets, when: {class: qamets-after-article}, find: "ה{ANYV}+{L}{PAT}", to: "ה{ANYV}+{L}\u05B8"}
+# Before ח with qamets and ה with an unstressed qamets, הֶ (הֶחָי, הֶהָרִים); before the stressed הָ of a
+# monosyllable, הָ (הָהָר: JM § 35, p. 102). Stress is read off the shape: REVIEW.
+- {id: 'rule:hbo-article', branch: he, find: "ה\u05B7+", after: ["#", "#{L}*+"], before: ["ח{QAM}", "ה{QAM}{L}{ANYV}{L}"], to: "ה\u05B6+"}
+- {id: 'rule:hbo-article', branch: stressed, find: "ה\u05B7+", after: ["#", "#{L}*+"], before: "ה{QAM}", to: "ה\u05B8+"}
+# בְּ כְּ לְ before the article: the article's ה goes and they take its vowel (JM § 35e)
+- {id: 'rule:hbo-preposition', branch: article, find: "{BKL}\u05B0+ה{ANYV}+", to: "{BKL}{ANYV}+"}
+# The quiescent alef of אֱלֹהִים and אֱמֹר after a prefix (JM § 24, 73f): לֵאלֹהִים, וֵאלֹהֵי, לֵאמֹר
+- {id: 'rule:hbo-quiescent-alef', branch: prefix, when: {class: alef-quiescent}, find: "{L}\u05B0+א\u05B1", to: "{L}\u05B5+א"}
+- {id: 'rule:hbo-quiescent-alef', branch: prefix, when: {class: alef-quiescent-verb}, find: "{L}\u05B0+א\u05B1", to: "{L}\u05B5+א"}
+# A prefix before יְהוָה takes the vowel it would before its qere, אֲדֹנָי; the yod has no shewa (ADR 0084)
+- {id: 'rule:hbo-qere', when: {class: qere-adonay}, find: "{L}\u05B0+י\u05B0", to: "{L}\u05B7+י"}
+- {id: 'rule:hbo-qere', when: {class: qere-adonay}, find: "מ\u05B4+י\u05B0", to: "מ\u05B5+י"}
+# וְ (JM § 104c-d, p. 319): וּ before ב מ פ and a shewa; before יְ, וִי; before a hataf, its vowel.
+- {id: 'rule:hbo-conjunction', branch: yod, find: "ו\u05B0+י\u05B0", to: "ו\u05B4+י"}
+- {id: 'rule:hbo-conjunction', branch: he, find: "ו\u05B0+", before: "ה{SHV}", to: "ו\u05B6+"}
+- {id: 'rule:hbo-conjunction', branch: shureq, find: "ו\u05B0+", before: ["{LAB}*", "{L}{SHV}"], to: "ו\u05BC+"}
+- {id: 'rule:hbo-conjunction', branch: hataf, find: "ו\u05B0+", before: "{L}{HPA}", to: "ו\u05B7+"}
+- {id: 'rule:hbo-conjunction', branch: hataf, find: "ו\u05B0+", before: "{L}{HSE}", to: "ו\u05B6+"}
+- {id: 'rule:hbo-conjunction', branch: hataf, find: "ו\u05B0+", before: "{L}{HQA}", to: "ו\u05B8+"}
+# בְּ כְּ לְ (JM § 103b): before יְ, hiriq and the yod's shewa goes; before a shewa, hiriq; before a hataf, its vowel.
+- {id: 'rule:hbo-preposition', branch: yod, find: "{BKL}\u05B0+י\u05B0", to: "{BKL}\u05B4+י"}
+- {id: 'rule:hbo-preposition', branch: shewa, find: "{BKL}\u05B0+", before: "{L}{SHV}", to: "{BKL}\u05B4+"}
+- {id: 'rule:hbo-preposition', branch: hataf, find: "{BKL}\u05B0+", before: "{L}{HPA}", to: "{BKL}\u05B7+"}
+- {id: 'rule:hbo-preposition', branch: hataf, find: "{BKL}\u05B0+", before: "{L}{HSE}", to: "{BKL}\u05B6+"}
+- {id: 'rule:hbo-preposition', branch: hataf, find: "{BKL}\u05B0+", before: "{L}{HQA}", to: "{BKL}\u05B8+"}
+# מִן joined to its word: the next letter doubled (מִפְּנֵי); before a guttural or ר, מֵ (its allomorph) (JM § 103c-d)
+- {id: 'rule:hbo-min', find: "מ\u05B4+{NG}*", after: ["#", "#{L}*+"], to: "מ\u05B4+{NG}\u05BC"}
+# A begadkefat after a silent shewa (after a short vowel) has its dagesh lene: יִשְׁכַּב, שָׁמַרְתָּ, לִשְׁתּוֹת (JM § 19);
+# in a verb only (a noun's form writes its own)
+- {id: 'rule:hbo-dagesh-lene', when: {pos: VERB}, find: "{BGD}*", after: [".{SHORT}{L}{SHVND}+", ".{SHORT}+{L}{SHVND}"], to: "{BGD}\u05BC"}
+# and inside a perfect's stem (הִבְדִּיל, נִקְבַּר, נֶחְבָּא); never in a qal imperative's, whose shewa stood for a vowel (שִׁכְבִי: JM § 8e)
+- {id: 'rule:hbo-dagesh-lene', when: {pos: VERB, feats: {Aspect: Perf}}, find: "{BGD}*", after: ".{SHORT}{L}{SHVND}", to: "{BGD}\u05BC"}
+# A guttural before the 2fs -t takes a helping patah, the -t its shewa (יָדַעַתְּ: JM § 70)
+- {id: 'rule:hbo-guttural', branch: helping-vowel, when: {feats: {Person: '2', Gender: Fem, Number: Sing}}, find: "{GF}{SHV}+{T}*", at: end, to: "{GF}\u05B7+{T}\u05B0\u05BC"}
+# The energic nun of a stem before a suffix goes into the suffix's ך (JM § 61f: אַרְאֶךָּ, יְחֻנֶּךָּ)
+- {id: 'rule:hbo-energic', when: {pos: VERB}, find: "{N}{SHV}+ך\u05B8", to: "+ך\u05B8\u05BC"}
+# A third radical nun goes into the ending's ת (JM § 72, נָתַתָּ)
+- {id: 'rule:hbo-assimilation', when: {pos: VERB}, find: "{N}\u05B0+{T}*", to: "+{T}\u05BC"}
+# Bound to the next word by a maqaf, a last syllable's tsere is segol (JM § 13; אֶת־, אֶל־, לֶךְ־)
+- {id: 'rule:hbo-maqaf', branch: tsere, when: {context: bound}, find: "{L}{TSE}{CLOSE}", at: end, to: "{L}\u05B6{CLOSE}"}
+- {id: 'rule:hbo-maqaf', branch: holem, when: {context: bound}, find: "{L}{HOL}{CLOSE}", at: end, to: "{L}\u05B8{CLOSE}"}  # כָּל־ (qamets qatan)

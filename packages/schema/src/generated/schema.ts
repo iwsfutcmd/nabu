@@ -409,6 +409,10 @@ export type UdFeatures7 = Readonly<Record<string, string>>;
  */
 export type UdFeatures8 = Readonly<Record<string, string>>;
 /**
+ * Of a token: it stands in this context, which changes how it is said or written and is no feature value (hbo: `pause` and `nesiga`, as its `context` says; `bound`, joined to the next word by a maqaf). Read by a rewrite's `when`.
+ */
+export type Slug4 = string;
+/**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcId1 = string & { readonly __brand: "KcId" };
@@ -970,6 +974,7 @@ export interface NabuSchemaIndex {
   readonly KeyboardLayout: KeyboardLayout;
   readonly LanguageDeclaration: LanguageDeclaration;
   readonly Notation: Notation;
+  readonly Prosody: Prosody;
   readonly RootClass: RootClass;
   readonly Stem: Stem;
   readonly StemChoice: StemChoice;
@@ -979,7 +984,7 @@ export interface NabuSchemaIndex {
   readonly Exponent: Exponent;
   readonly Rewrite: Rewrite;
   readonly Context: Context;
-  readonly Condition: Condition2;
+  readonly Condition: Condition;
   readonly Default: Default;
   readonly FeatureLabel: FeatureLabel;
   readonly NamedRule: NamedRule;
@@ -3304,13 +3309,13 @@ export interface Logograph {
   };
 }
 /**
- * A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`.
+ * A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`. With `before`, it holds only where the rest of its token holds that condition, as an allomorph's `before` (a stem before a suffixed pronoun: hbo אַחֶי- in אַחֶיךָ), and is then more specific than a form of the same values without it; it never holds of a lexeme realised alone (a paradigm's cell). With no `feats`, it is for a token that chooses no value, never for a cell: an uninflected word's form (a preposition's stem before a suffix, hbo לָ- in לָנוּ; free variants, הִנֵּנִי beside הִנְנִי).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "LexemeForm".
  */
 export interface LexemeForm {
-  readonly feats: UdFeatures1;
+  readonly feats?: UdFeatures1;
   /**
    * The whole form, in the language's lexical-form notation (fue).
    */
@@ -3329,6 +3334,7 @@ export interface LexemeForm {
   readonly free?: boolean;
   readonly statement?: Provenance4;
   readonly scope?: Scope;
+  readonly before?: Condition;
   /**
    * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
    */
@@ -3371,37 +3377,10 @@ export interface Scope {
   readonly registers?: readonly RegisterId[];
 }
 /**
- * One form of a lexeme by context. With no condition it is the one used elsewhere, or one whose condition no one has stated yet. It has `form`, or the spellings pinned until its language has a lexical-form notation.
+ * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Allomorph".
- */
-export interface Allomorph {
-  readonly form?: string;
-  readonly after?: Condition;
-  readonly before?: Condition1;
-  /**
-   * true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (a scribe's other spelling of a suffix: chg's locative دا beside ده). Never the one chosen: a token's realisation gives it as an alternative.
-   */
-  readonly free?: boolean;
-  /**
-   * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
-   */
-  readonly spelled?: {
-    /**
-     * @minItems 1
-     */
-    readonly [k: string]: readonly string[];
-  };
-  /**
-   * Its reading in a scheme, pinned (ADR 0117) until the projection gives it.
-   */
-  readonly readings?: {
-    readonly [k: string]: string;
-  };
-}
-/**
- * What it stands after.
+ * via the `definition` "Condition".
  */
 export interface Condition {
   readonly pos?: PartOfSpeech;
@@ -3424,9 +3403,40 @@ export interface Condition {
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
   readonly own?: UdFeatures8;
+  readonly context?: Slug4;
 }
 /**
- * What it stands before.
+ * One form of a lexeme by context. With no condition it is the one used elsewhere, or one whose condition no one has stated yet. It has `form`, or the spellings pinned until its language has a lexical-form notation.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Allomorph".
+ */
+export interface Allomorph {
+  readonly form?: string;
+  readonly after?: Condition1;
+  readonly before?: Condition2;
+  /**
+   * true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (anywhere, with none): a scribe's other spelling of a suffix (chg's locative دا beside ده), or a form the course writes where no condition tells it from the other (hbo בַּ, the preposition with an article its tokens do not list). Never the one chosen: a token's realisation gives it as an alternative.
+   */
+  readonly free?: boolean;
+  /**
+   * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
+   */
+  readonly spelled?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
+  };
+  /**
+   * Its reading in a scheme, pinned (ADR 0117) until the projection gives it.
+   */
+  readonly readings?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
  */
 export interface Condition1 {
   readonly pos?: PartOfSpeech;
@@ -3449,6 +3459,33 @@ export interface Condition1 {
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
   readonly own?: UdFeatures8;
+  readonly context?: Slug4;
+}
+/**
+ * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
+ */
+export interface Condition2 {
+  readonly pos?: PartOfSpeech;
+  /**
+   * The lexical form ends in this (Spanish -a; uz -k).
+   */
+  readonly ends?: string;
+  /**
+   * The lexical form begins with this.
+   */
+  readonly starts?: string;
+  readonly class?: Slug3;
+  /**
+   * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
+   */
+  readonly endsIn?: string;
+  /**
+   * For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).
+   */
+  readonly startsIn?: string;
+  readonly feats?: UdFeatures7;
+  readonly own?: UdFeatures8;
+  readonly context?: Slug4;
 }
 /**
  * What a language declares beside its lexicon (lexicons/<lang>/language.yaml; ADR 0145, 0148): the varieties and registers a scope ranges over, the dimensions of each category, the features and values its tokens and lexemes carry, its defaults and its classes. A category is a UD tag: no category system is declared (the owner, round 6). Every statement here is content: drafted `llm:` and REVIEW until signed off.
@@ -3577,7 +3614,7 @@ export interface LanguageDeclaration {
  */
 export interface Default {
   readonly id: Slug;
-  readonly when: Condition2;
+  readonly when: Condition;
   readonly gives: UdFeatures1;
   /**
    * What a reviewer should know, by support language.
@@ -3585,34 +3622,6 @@ export interface Default {
   readonly notes?: {
     readonly [k: string]: string;
   };
-}
-/**
- * What a default, an allomorph or (later) a rule's branch looks at in a lexeme or a base (ADR 0148: a rule's conditions). Every key given must hold. A first, small set: it grows with the rule format, which is not designed yet.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Condition".
- */
-export interface Condition2 {
-  readonly pos?: PartOfSpeech;
-  /**
-   * The lexical form ends in this (Spanish -a; uz -k).
-   */
-  readonly ends?: string;
-  /**
-   * The lexical form begins with this.
-   */
-  readonly starts?: string;
-  readonly class?: Slug3;
-  /**
-   * Its lexical form (for an allomorph's `after`, what it follows) ends in what this pattern matches: a rewrite's pattern ({C}: a letter of the notation's set C).
-   */
-  readonly endsIn?: string;
-  /**
-   * For an allomorph's `before`: what it stands before (the rest of its token, as realised) begins with what this pattern matches ({K}: a letter of the notation's set K).
-   */
-  readonly startsIn?: string;
-  readonly feats?: UdFeatures7;
-  readonly own?: UdFeatures8;
 }
 /**
  * One class: a lexical feature a rule reads and no form gives (Spanish e-ie; the -go verbs).
@@ -3699,12 +3708,63 @@ export interface Notation {
    * The marks a letter may carry, in the order the notation names them (a shadda before the vowel), as a UnicodeSet. NFC orders marks by their combining class; a form is read in NFC with each run of marks put in this order (a mark NFC composes into its letter stays part of it), so a rule's pattern is written as the notation is, and the result is NFC again.
    */
   readonly order?: string;
+  readonly prosody?: Prosody;
   /**
    * Named sets of letters or marks a `spell` rule refers to as {name} (C: a consonant letter).
    */
   readonly sets: {
     readonly [k: string]: string;
   };
+  /**
+   * What a reviewer should know, by support language.
+   */
+  readonly notes?: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * What an accent rule (a rewrite's `accent`) reads of a lexical form: its syllables' nuclei, their length and the accent marks. Each letter is read as its canonical decomposition: a base letter and marks (Greek ά is α and an acute).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Prosody".
+ */
+export interface Prosody {
+  /**
+   * The base letters a syllable's nucleus is, as a UnicodeSet.
+   */
+  readonly vowels: string;
+  /**
+   * Vowels long whatever their marks (Greek η, ω).
+   */
+  readonly long?: string;
+  /**
+   * Marks that make a vowel long (a macron, the iota subscript, a circumflex).
+   */
+  readonly lengthen?: string;
+  /**
+   * Pairs of base letters, as a UnicodeSet of strings ({αι}), that make one long nucleus where the second follows the first in one morpheme with no mark of `apart`.
+   */
+  readonly diphthongs?: string;
+  /**
+   * Marks on a second vowel that keep it out of a diphthong (a diaeresis, a length mark).
+   */
+  readonly apart?: string;
+  /**
+   * Diphthongs counted short where nothing follows them in the word (Greek final -αι, -οι: CGCG 24.10).
+   */
+  readonly shortAtEnd?: string;
+  /**
+   * The acute's mark.
+   */
+  readonly acute: string;
+  /**
+   * The circumflex's mark.
+   */
+  readonly circumflex: string;
+  /**
+   * A letter of the notation (never spelled) before which a recessive accent recedes no further than one syllable: a compound verb's preverb, and the augment.
+   */
+  readonly limit?: string;
   /**
    * What a reviewer should know, by support language.
    */
@@ -3760,8 +3820,14 @@ export interface Stem {
  */
 export interface RealisationRule {
   readonly id: RuleId;
-  readonly when: Condition2;
+  readonly when: Condition;
   readonly stem?: StemChoice;
+  /**
+   * The endings a lexical form that is a string is cited with, of which the rule's blocks put another in place (Greek λόγος, -ος: λογ-): the first the form ends in is taken off before the blocks, and the rule realises the citation cell too (it is a realisation, ADR 0154). A form that ends in none is not realised by the rule.
+   *
+   * @minItems 1
+   */
+  readonly strip?: readonly string[];
   readonly blocks: readonly AffixBlock[];
   readonly notes?: {
     readonly [k: string]: string;
@@ -3795,7 +3861,14 @@ export interface Exponent {
 export interface Rewrite {
   readonly id: RuleId;
   readonly branch?: Branch1;
-  readonly find: string;
+  /**
+   * Required, but for an accent rule (`accent`).
+   */
+  readonly find?: string;
+  /**
+   * In place of `find`: a rule that places the word's pitch accent by the notation's `prosody`, counting syllables from the word's end (Greek, CGCG 24). recessive: every accent goes, and an acute stands as far from the end as the last syllable allows (the third syllable, or the second where the last is long), no further back than the last syllable before the notation's `limit`; a long second-to-last syllable before a short last takes the circumflex. persistent: the form's last accent stays on its syllable as far as the last syllable allows (else on the third, or the second, from the end), every other accent goes; on the second-to-last syllable it is a circumflex where that is long and the last short, an acute where not; a form with no accent is left so. oxytone: a form with no accent takes an acute on its last syllable. ultima: every accent goes, and the last syllable takes a circumflex where it is long, an acute where it is short. Taken where it changes the form.
+   */
+  readonly accent?: "recessive" | "persistent" | "oxytone" | "ultima";
   readonly to?: string;
   readonly map?: {
     readonly [k: string]: string;
@@ -3832,6 +3905,7 @@ export interface Condition3 {
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
   readonly own?: UdFeatures8;
+  readonly context?: Slug4;
 }
 /**
  * A generated lookup table an orthography profile refers to by id (profiles/tables/<id>.json): orthographic variant groups, character readings for the IME-homophone typo model, or a character set for script-mismatch detection.
@@ -5721,6 +5795,10 @@ export interface Spell {
    */
   readonly boundaries?: boolean;
   /**
+   * true: the rules read the form decomposed (NFD), each letter's marks apart from it and in the notation's `order`, so a rule can find a mark that NFC composes into its letter (Greek ά: α and an acute); the spelling is NFC again.
+   */
+  readonly decompose?: boolean;
+  /**
    * Named sets of this statement's own, beside the notation's.
    */
   readonly sets?: {
@@ -6017,6 +6095,10 @@ export interface Spell1 {
    * true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first.
    */
   readonly boundaries?: boolean;
+  /**
+   * true: the rules read the form decomposed (NFD), each letter's marks apart from it and in the notation's `order`, so a rule can find a mark that NFC composes into its letter (Greek ά: α and an acute); the spelling is NFC again.
+   */
+  readonly decompose?: boolean;
   /**
    * Named sets of this statement's own, beside the notation's.
    */

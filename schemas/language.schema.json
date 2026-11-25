@@ -157,6 +157,7 @@
           "type": "string",
           "pattern": "^\\[.*\\]$"
         },
+        "prosody": { "$ref": "#/$defs/Prosody" },
         "sets": {
           "description": "Named sets of letters or marks a `spell` rule refers to as {name} (C: a consonant letter).",
           "type": "object",
@@ -170,6 +171,25 @@
           "minProperties": 1,
           "additionalProperties": { "type": "string", "minLength": 1 }
         }
+      }
+    },
+    "Prosody": {
+      "title": "Prosody",
+      "description": "What an accent rule (a rewrite's `accent`) reads of a lexical form: its syllables' nuclei, their length and the accent marks. Each letter is read as its canonical decomposition: a base letter and marks (Greek ά is α and an acute).",
+      "type": "object",
+      "required": ["vowels", "acute", "circumflex"],
+      "additionalProperties": false,
+      "properties": {
+        "vowels": { "description": "The base letters a syllable's nucleus is, as a UnicodeSet.", "type": "string", "pattern": "^\\[.*\\]$" },
+        "long": { "description": "Vowels long whatever their marks (Greek η, ω).", "type": "string", "pattern": "^\\[.*\\]$" },
+        "lengthen": { "description": "Marks that make a vowel long (a macron, the iota subscript, a circumflex).", "type": "string", "pattern": "^\\[.*\\]$" },
+        "diphthongs": { "description": "Pairs of base letters, as a UnicodeSet of strings ({αι}), that make one long nucleus where the second follows the first in one morpheme with no mark of `apart`.", "type": "string", "pattern": "^\\[.*\\]$" },
+        "apart": { "description": "Marks on a second vowel that keep it out of a diphthong (a diaeresis, a length mark).", "type": "string", "pattern": "^\\[.*\\]$" },
+        "shortAtEnd": { "description": "Diphthongs counted short where nothing follows them in the word (Greek final -αι, -οι: CGCG 24.10).", "type": "string", "pattern": "^\\[.*\\]$" },
+        "acute": { "description": "The acute's mark.", "type": "string", "minLength": 1 },
+        "circumflex": { "description": "The circumflex's mark.", "type": "string", "minLength": 1 },
+        "limit": { "description": "A letter of the notation (never spelled) before which a recessive accent recedes no further than one syllable: a compound verb's preverb, and the augment.", "type": "string", "minLength": 1 },
+        "notes": { "description": "What a reviewer should know, by support language.", "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } }
       }
     },
     "RootClass": {
@@ -234,6 +254,12 @@
         "id": { "$ref": "common.schema.json#/$defs/RuleId" },
         "when": { "$ref": "#/$defs/Condition" },
         "stem": { "$ref": "#/$defs/StemChoice" },
+        "strip": {
+          "description": "The endings a lexical form that is a string is cited with, of which the rule's blocks put another in place (Greek λόγος, -ος: λογ-): the first the form ends in is taken off before the blocks, and the rule realises the citation cell too (it is a realisation, ADR 0154). A form that ends in none is not realised by the rule.",
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
         "blocks": { "type": "array", "items": { "$ref": "#/$defs/AffixBlock" } },
         "notes": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } }
       }
@@ -267,12 +293,16 @@
       "title": "Rewrite",
       "description": "One rewrite rule over the whole lexical form (docs/rules-design.md, section 2). Patterns match letters with their sets of marks, never code points in a row: a letter, {set} or [set] of letters, or . (any letter), then its marks exactly (none written: no marks; {set} or [set] of marks: one of them; *: any); + a boundary, +? one or none, # the form's edge (only in `after` and `before`). `to` writes the matched span again: the n-th {set}, [set], ., +? or set of marks of `to` copies the n-th of `find`, and marks written on a copied letter replace its vowel sign. `map` (in place of `to`) maps the letter `find` matches. `after` and `before` are what must stand before and after the span (several: any of them); `at` ties it to the form's start or end.",
       "type": "object",
-      "required": ["id", "find"],
+      "required": ["id"],
       "additionalProperties": false,
       "properties": {
         "id": { "$ref": "common.schema.json#/$defs/RuleId" },
         "branch": { "$ref": "#/$defs/Branch" },
-        "find": { "type": "string", "minLength": 1 },
+        "find": { "description": "Required, but for an accent rule (`accent`).", "type": "string", "minLength": 1 },
+        "accent": {
+          "description": "In place of `find`: a rule that places the word's pitch accent by the notation's `prosody`, counting syllables from the word's end (Greek, CGCG 24). recessive: every accent goes, and an acute stands as far from the end as the last syllable allows (the third syllable, or the second where the last is long), no further back than the last syllable before the notation's `limit`; a long second-to-last syllable before a short last takes the circumflex. persistent: the form's last accent stays on its syllable as far as the last syllable allows (else on the third, or the second, from the end), every other accent goes; on the second-to-last syllable it is a circumflex where that is long and the last short, an acute where not; a form with no accent is left so. oxytone: a form with no accent takes an acute on its last syllable. ultima: every accent goes, and the last syllable takes a circumflex where it is long, an acute where it is short. Taken where it changes the form.",
+          "enum": ["recessive", "persistent", "oxytone", "ultima"]
+        },
         "to": { "type": "string" },
         "map": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } },
         "before": { "$ref": "#/$defs/Context" },
@@ -332,6 +362,10 @@
         "own": {
           "description": "Of a realisation rule or a rewrite: the lexeme has these values of itself (a comma: one of them), as its entry stores them or else its language's defaults give them for a feature its category has of itself (`lexical`): a Slovak noun's gender and animacy, which choose its declension.",
           "$ref": "common.schema.json#/$defs/UdFeatures"
+        },
+        "context": {
+          "description": "Of a token: it stands in this context, which changes how it is said or written and is no feature value (hbo: `pause` and `nesiga`, as its `context` says; `bound`, joined to the next word by a maqaf). Read by a rewrite's `when`.",
+          "$ref": "common.schema.json#/$defs/Slug"
         }
       }
     },

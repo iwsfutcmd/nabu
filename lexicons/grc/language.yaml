@@ -31,6 +31,11 @@ bare:
   DET: {Gender: Masc, Case: Nom, Number: Sing}
   PRON: {Gender: Masc, Case: Nom, Number: Sing}
   VERB: {Mood: Ind, Tense: Pres, Person: '1', Number: Sing, VerbForm: Fin}
+# A verb is shown with its aorist and future after its present, the first of the principal parts CGCG lists (22.1:
+# λέγω, εἶπον, ἐρῶ); the rules give them for every verb with a stem of each (docs/rules/grc.md). REVIEW: the course's
+# aorist is Tense=Past with no Aspect (its imperfect is Aspect=Imp); the perfects and passives are not taught.
+principalParts:
+  VERB: [{Mood: Ind, Tense: Past, Person: '1', Number: Sing, VerbForm: Fin}, {Mood: Ind, Tense: Fut, Person: '1', Number: Sing, VerbForm: Fin}]
 features:
   Aspect: [Imp, Perf]
   Case: [Acc, Dat, Gen, Nom, Voc]
@@ -105,3 +110,591 @@ labels:
 - {feats: {Case: Dat, Number: Plur}, gloss: {en: 'the dative plural (masculine; also ἡμῖν): to, for (ἡμῖν, to us)'}, was: 'form:dat-pl'}
 rules:
 - {id: 'rule:esti-moi', gloss: {en: 'ἔστι μοι + a noun: I have (word for word, there is to me)'}, was: 'construction:esti-moi'}
+# Rules in a lexicon (docs/rules-design.md; docs/rules/grc.md): what grc's lexical forms are, and the rules that realise
+# them, read by @nabu/core (`realise`, `spell`), never shipped. Every branch is REVIEW until the owner signs it off.
+# Sources: van Emde Boas et al., The Cambridge Grammar of Classical Greek (2019), by section (CGCG 4.3 is chapter 4,
+# section 3); the course where it writes a form the rules do not give (said so).
+classes:
+- {id: third, pos: NOUN, gloss: {en: 'third declension: the stem shows in the genitive (νύξ, νυκτός)'}, notes: {en: 'REVIEW: CGCG 4.31-4.91. Masculine and feminine nouns and names; the stem is listed on each (its genitive''s), and the nominative is the lemma.'}}
+- {id: third-neuter, pos: NOUN, gloss: {en: 'third declension, neuter: one form as subject, object and when called (ὄνομα, ὀνόματος)'}, notes: {en: 'REVIEW: CGCG 4.40-4.41 (stems in ματ), 4.65 (stems in σ).'}}
+- {id: mobile, pos: NOUN, gloss: {en: 'a one-syllable stem: the genitive and dative take the accent on the ending (νυκτός, παισί)'}, notes: {en: 'REVIEW: CGCG 24.23-24.24. παῖς''s genitive plural παίδων is listed (24.23 n.1).'}}
+- {id: syncopated, pos: NOUN, gloss: {en: 'πατήρ, μήτηρ, θυγάτηρ: no ε in the genitive and dative singular, which take the accent on the ending (πατρός, μητρί)'}, notes: {en: 'REVIEW: CGCG 4.62-4.63. The stems are listed on each noun.'}}
+- {id: contract, pos: VERB, gloss: {en: 'a contract stem: its last vowel merges with an ending''s (ὁράω, ὁρῶ; ἀμελέω, ἀμελῶ)'}, notes: {en: 'REVIEW: CGCG 12.15-12.17, 1.58-1.63. Also the third-declension stems in σ, which lose it before a vowel (τείχε-ος, τείχους: 4.65), and a verb whose future stem contracts (μενῶ, ἐρῶ, ἑλληνιῶ: 15.32).'}}
+- {id: second-aorist, pos: VERB, gloss: {en: 'a thematic (second) aorist: the endings of the imperfect on a stem of its own (εἶπον, ἔσχον, ἦλθον)'}, notes: {en: 'REVIEW: CGCG 13.27-13.38. The stem is listed on each verb.'}}
+- {id: second-aorist-middle, pos: VERB, gloss: {en: 'a thematic aorist in the middle (ἐγενόμην, ἀφικόμην)'}, notes: {en: 'REVIEW: CGCG 13.28. Not every middle verb''s aorist is middle: ἔρχομαι''s is ἦλθον (22.9, no. 66), πορεύομαι''s ἐπορεύθην.'}}
+- {id: root-aorist, pos: VERB, gloss: {en: 'an aorist on a long-vowel stem with the endings -ν, -ς, -, -μεν, -τε, -σαν (κατέβην, ἐχάρην, ἐπορεύθην)'}, notes: {en: 'REVIEW: CGCG 13.39-13.50 (root aorists), 14 (the passive-form aorists of χαίρω, οἴομαι, πορεύομαι, which have the same endings).'}}
+- {id: liquid-aorist, pos: VERB, gloss: {en: 'an aorist with no σ: a stem in λ, μ, ν or ρ lengthens its vowel instead (ἔμεινα)'}, notes: {en: 'REVIEW: CGCG 13.24-13.26 (pseudo-sigmatic aorists).'}}
+- {id: future-middle, pos: VERB, gloss: {en: 'an active verb whose future is middle (ἀκούω, ἀκούσομαι)'}, notes: {en: 'REVIEW: CGCG 15.14, 15.40.'}}
+- {id: attic-future, pos: VERB, gloss: {en: 'a future with no σ, contracted (μενῶ, ἐρῶ, ἑλληνιῶ)'}, notes: {en: 'REVIEW: CGCG 15.32-15.38; the stem is listed on each verb.'}}
+- {id: attic-future-middle, pos: VERB, gloss: {en: 'a contracted future, and middle (βαδιοῦμαι)'}, notes: {en: 'REVIEW: CGCG 15.36, 15.40.'}}
+- {id: pronominal, pos: PRON, gloss: {en: 'declined as an adjective, but the neuter singular ends in -ο (αὐτό, ἄλλο, τό)'}, notes: {en: 'REVIEW: CGCG 7.10; the article (3.1) and ἄλλος (an adjective, its neuter ἄλλο) too.'}}
+- {id: two-ending, pos: ADJ, gloss: {en: 'one form for masculine and feminine (ὁ καὶ ἡ βάρβαρος)'}, notes: {en: 'REVIEW: CGCG 5.7-5.10.'}}
+- {id: sigma-stem, pos: ADJ, gloss: {en: 'a stem in σ: -ής, -ές, genitive -οῦς (ἀληθής, οἰκογενής)'}, notes: {en: 'REVIEW: CGCG 5.28-5.29; the contracted endings as the grammar gives them.'}}
+- {id: sigma-name, pos: PROPN, gloss: {en: 'a name in -ης on a stem in σ: genitive -ους, vocative -ες (Σωκράτης, Σωκράτους, Σώκρατες)'}, notes: {en: 'REVIEW: CGCG 4.65-4.66 (no plural), 24.26 (recessive: the vocative shows it).'}}
+- {id: contracted, pos: ADJ, gloss: {en: 'contracted: -οῦς, -ῆ, -οῦν (διπλοῦς, χρυσοῦς)'}, notes: {en: 'REVIEW: CGCG 5.5-5.6. The forms after ε, ι, ρ (ἀργυροῦς, -ᾶ) are not written: no lexeme of the course has them.'}}
+- {id: comparable, pos: ADJ, gloss: {en: 'compared with -ότερος, -ώτερος (σοφώτερος)'}, notes: {en: 'REVIEW: CGCG 5.36-5.38. An adjective not stated comparable has no comparative here (ordinals, ethnics, comparatives themselves): rule:grc-no-comparative.'}}
+# How grc writes a lexical form. A lexeme's form is its lemma as its Attic reading writes it (profiles/schemes/attic.yaml):
+# every α, ι, υ outside a diphthong marked long (ᾱ) or short (ᾰ) unless a circumflex or the iota subscript settles it,
+# the accents as the lemma has them (an acute where the course writes a grave). Three signs of the notation's own:
+# - "-" in a verb: where the augment goes (first, or after a compound's preverb: περῐ-μένω); a recessive accent goes no
+#   further back than the syllable before it (CGCG 24.19). Never spelled.
+# - "(ν)": the movable ν (ν ἐφελκυστικόν, CGCG 1.39), written or not.
+# - a grave (U+0300): the accent an enclitic or proclitic takes only where the sentence calls for it (εἰμὶ, οὒ: CGCG
+#   24.33-24.39); spelled as none, or as an acute.
+# `order`: a letter's marks in the order the readings write them (length, diaeresis, breathing, accent, subscript).
+notation:
+  order: "[\u0304 \u0306 \u0308 \u0313 \u0314 \u0301 \u0342 \u0300 \u0345]"
+  # What the accent rules (`phonology` entries with `accent`) read: a syllable's nucleus is a vowel, or a diphthong (a
+  # vowel and ι or υ written with no length mark or diaeresis, in one morpheme); η, ω and a vowel with a macron, the
+  # iota subscript or a circumflex are long; final -αι and -οι count short (CGCG 24.7-24.10).
+  prosody:
+    vowels: "[αεηιουωΑΕΗΙΟΥΩ]"
+    long: "[ηωΗΩ]"
+    lengthen: "[\u0304 \u0345]"
+    diphthongs: "[{αι}{ει}{οι}{υι}{αυ}{ευ}{ηυ}{ου}{Αι}{Ει}{Οι}{Αυ}{Ευ}{Ου}]"
+    apart: "[\u0304 \u0306 \u0308]"
+    shortAtEnd: "[{αι}{οι}]"
+    acute: "\u0301"
+    circumflex: "\u0342"
+    limit: "-"
+  sets:
+    # C a consonant; LAB, VEL, DEN the labial, velar and dental stops (ζ with them: CGCG 1.91); STOP any stop.
+    C: "[βγδζθκλμνξπρσςτφχψῥ]"
+    LAB: "[πβφ]"
+    VEL: "[κγχ]"
+    DEN: "[τδθζ]"
+    STOP: "[πβφτδθκγχ]"
+    # ER the letters after which a first-declension ending has ᾱ for η (CGCG 4.5), as a stem's last letter is written.
+    ER: "[εέὲιίὶῖῐῑϊρ]"
+    # FA a first-declension lemma's last vowel (η, ᾱ); OS a second-declension one's (ο); SH a short vowel (for
+    # -ώτερος: CGCG 5.38); EA a contract stem's vowel (ε, ᾰ).
+    FA: "[ηήᾱ]"
+    OS: "[οό]"
+    E: "[εέ]"
+    SH: "[εέὲοόὸᾰῐῠ]"
+    EA: "[εέᾰ]"
+realisation:
+# ---- Verbs (CGCG 11-15). A verb's form is its lemma, "-" where the augment goes; `strip` takes off its -ω or -ομαι.
+# Stems the language has no rule for (a second aorist's, a future's) are listed on the lexeme; the endings are these.
+# The course's cells: a finite verb's Mood, Tense (the aorist is Tense=Past with no Aspect, the imperfect Aspect=Imp,
+# the perfect Aspect=Perf with no Tense), Person and Number; the imperative names no aspect (the present's endings).
+- id: 'rule:grc-imperfect-middle'  # CGCG 11.22-11.30, 12.4: the secondary middle endings
+  when: {pos: VERB, ends: ομαι, feats: {Aspect: Imp, Tense: Past}}
+  strip: [ομαι]
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Person: '1', Number: Sing}, add: ομην}
+    - {branch: 2sg, feats: {Person: '2', Number: Sing}, add: ου}
+    - {branch: 3sg, feats: {Person: '3', Number: Sing}, add: ετο}
+    - {branch: 1pl, feats: {Person: '1', Number: Plur}, add: ομεθᾰ}
+    - {branch: 2pl, feats: {Person: '2', Number: Plur}, add: εσθε}
+    - {branch: 3pl, feats: {Person: '3', Number: Plur}, add: οντο}
+- id: 'rule:grc-imperfect'  # CGCG 12.3, 12.8: ἐπαίδευον
+  when: {pos: VERB, feats: {Aspect: Imp, Tense: Past}}
+  strip: [ω]
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Person: '1', Number: Sing}, add: ον}
+    - {branch: 2sg, feats: {Person: '2', Number: Sing}, add: ες}
+    - {branch: 3sg, feats: {Person: '3', Number: Sing}, add: ε(ν)}
+    - {branch: 1pl, feats: {Person: '1', Number: Plur}, add: ομεν}
+    - {branch: 2pl, feats: {Person: '2', Number: Plur}, add: ετε}
+    - {branch: 3pl, feats: {Person: '3', Number: Plur}, add: ον}
+- id: 'rule:grc-root-aorist'  # CGCG 13.39-13.40 (ἔβην), 14.2-14.3 (ἐπαιδεύθην, ἐχάρην): a listed stem in a long vowel
+  when: {pos: VERB, class: root-aorist, feats: {Tense: Past}}
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Mood: Ind, Person: '1', Number: Sing}, add: ν}
+    - {branch: 2sg, feats: {Mood: Ind, Person: '2', Number: Sing}, add: ς}
+    - {branch: 3sg, feats: {Mood: Ind, Person: '3', Number: Sing}, add: ''}
+    - {branch: 1pl, feats: {Mood: Ind, Person: '1', Number: Plur}, add: μεν}
+    - {branch: 2pl, feats: {Mood: Ind, Person: '2', Number: Plur}, add: τε}
+    - {branch: 3pl, feats: {Mood: Ind, Person: '3', Number: Plur}, add: σᾰν}
+    - {branch: sub-1sg, feats: {Mood: Sub, Person: '1', Number: Sing}, add: ω}
+    - {branch: sub-2sg, feats: {Mood: Sub, Person: '2', Number: Sing}, add: ῃς}
+    - {branch: sub-3sg, feats: {Mood: Sub, Person: '3', Number: Sing}, add: ῃ}
+    - {branch: sub-1pl, feats: {Mood: Sub, Person: '1', Number: Plur}, add: ωμεν}
+    - {branch: sub-2pl, feats: {Mood: Sub, Person: '2', Number: Plur}, add: ητε}
+    - {branch: sub-3pl, feats: {Mood: Sub, Person: '3', Number: Plur}, add: ωσῐ(ν)}
+- id: 'rule:grc-second-aorist-middle'  # CGCG 13.28: ἐγενόμην
+  when: {pos: VERB, class: second-aorist-middle, feats: {Tense: Past}}
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Mood: Ind, Person: '1', Number: Sing}, add: ομην}
+    - {branch: 2sg, feats: {Mood: Ind, Person: '2', Number: Sing}, add: ου}
+    - {branch: 3sg, feats: {Mood: Ind, Person: '3', Number: Sing}, add: ετο}
+    - {branch: 1pl, feats: {Mood: Ind, Person: '1', Number: Plur}, add: ομεθᾰ}
+    - {branch: 2pl, feats: {Mood: Ind, Person: '2', Number: Plur}, add: εσθε}
+    - {branch: 3pl, feats: {Mood: Ind, Person: '3', Number: Plur}, add: οντο}
+    - {branch: sub-1sg, feats: {Mood: Sub, Person: '1', Number: Sing}, add: ωμαι}
+    - {branch: sub-2sg, feats: {Mood: Sub, Person: '2', Number: Sing}, add: ῃ}
+    - {branch: sub-3sg, feats: {Mood: Sub, Person: '3', Number: Sing}, add: ηται}
+    - {branch: sub-1pl, feats: {Mood: Sub, Person: '1', Number: Plur}, add: ωμεθᾰ}
+    - {branch: sub-2pl, feats: {Mood: Sub, Person: '2', Number: Plur}, add: ησθε}
+    - {branch: sub-3pl, feats: {Mood: Sub, Person: '3', Number: Plur}, add: ωνται}
+- id: 'rule:grc-second-aorist'  # CGCG 13.27: ἔλιπον, the imperfect's endings on the aorist stem
+  when: {pos: VERB, class: second-aorist, feats: {Tense: Past}}
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Mood: Ind, Person: '1', Number: Sing}, add: ον}
+    - {branch: 2sg, feats: {Mood: Ind, Person: '2', Number: Sing}, add: ες}
+    - {branch: 3sg, feats: {Mood: Ind, Person: '3', Number: Sing}, add: ε(ν)}
+    - {branch: 1pl, feats: {Mood: Ind, Person: '1', Number: Plur}, add: ομεν}
+    - {branch: 2pl, feats: {Mood: Ind, Person: '2', Number: Plur}, add: ετε}
+    - {branch: 3pl, feats: {Mood: Ind, Person: '3', Number: Plur}, add: ον}
+    - {branch: sub-1sg, feats: {Mood: Sub, Person: '1', Number: Sing}, add: ω}
+    - {branch: sub-2sg, feats: {Mood: Sub, Person: '2', Number: Sing}, add: ῃς}
+    - {branch: sub-3sg, feats: {Mood: Sub, Person: '3', Number: Sing}, add: ῃ}
+    - {branch: sub-1pl, feats: {Mood: Sub, Person: '1', Number: Plur}, add: ωμεν}
+    - {branch: sub-2pl, feats: {Mood: Sub, Person: '2', Number: Plur}, add: ητε}
+    - {branch: sub-3pl, feats: {Mood: Sub, Person: '3', Number: Plur}, add: ωσῐ(ν)}
+- id: 'rule:grc-liquid-aorist'  # CGCG 13.24-13.26: ἔμεινα, a listed stem, no σ
+  when: {pos: VERB, class: liquid-aorist, feats: {Tense: Past}}
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Mood: Ind, Person: '1', Number: Sing}, add: ᾰ}
+    - {branch: 2sg, feats: {Mood: Ind, Person: '2', Number: Sing}, add: ᾰς}
+    - {branch: 3sg, feats: {Mood: Ind, Person: '3', Number: Sing}, add: ε(ν)}
+    - {branch: 1pl, feats: {Mood: Ind, Person: '1', Number: Plur}, add: ᾰμεν}
+    - {branch: 2pl, feats: {Mood: Ind, Person: '2', Number: Plur}, add: ᾰτε}
+    - {branch: 3pl, feats: {Mood: Ind, Person: '3', Number: Plur}, add: ᾰν}
+    - {branch: sub-1sg, feats: {Mood: Sub, Person: '1', Number: Sing}, add: ω}
+    - {branch: sub-2sg, feats: {Mood: Sub, Person: '2', Number: Sing}, add: ῃς}
+    - {branch: sub-3sg, feats: {Mood: Sub, Person: '3', Number: Sing}, add: ῃ}
+    - {branch: sub-1pl, feats: {Mood: Sub, Person: '1', Number: Plur}, add: ωμεν}
+    - {branch: sub-2pl, feats: {Mood: Sub, Person: '2', Number: Plur}, add: ητε}
+    - {branch: sub-3pl, feats: {Mood: Sub, Person: '3', Number: Plur}, add: ωσῐ(ν)}
+- id: 'rule:grc-aorist-middle'  # CGCG 13.5: ἐπαιδευσάμην
+  when: {pos: VERB, ends: ομαι, feats: {Tense: Past}}
+  strip: [ομαι]
+  blocks:
+  - suffix:
+    - {branch: s, add: σ}
+  - suffix:
+    - {branch: 1sg, feats: {Mood: Ind, Person: '1', Number: Sing}, add: ᾰμην}
+    - {branch: 2sg, feats: {Mood: Ind, Person: '2', Number: Sing}, add: ω}
+    - {branch: 3sg, feats: {Mood: Ind, Person: '3', Number: Sing}, add: ᾰτο}
+    - {branch: 1pl, feats: {Mood: Ind, Person: '1', Number: Plur}, add: ᾰμεθᾰ}
+    - {branch: 2pl, feats: {Mood: Ind, Person: '2', Number: Plur}, add: ᾰσθε}
+    - {branch: 3pl, feats: {Mood: Ind, Person: '3', Number: Plur}, add: ᾰντο}
+    - {branch: sub-1sg, feats: {Mood: Sub, Person: '1', Number: Sing}, add: ωμαι}
+    - {branch: sub-2sg, feats: {Mood: Sub, Person: '2', Number: Sing}, add: ῃ}
+    - {branch: sub-3sg, feats: {Mood: Sub, Person: '3', Number: Sing}, add: ηται}
+    - {branch: sub-1pl, feats: {Mood: Sub, Person: '1', Number: Plur}, add: ωμεθᾰ}
+    - {branch: sub-2pl, feats: {Mood: Sub, Person: '2', Number: Plur}, add: ησθε}
+    - {branch: sub-3pl, feats: {Mood: Sub, Person: '3', Number: Plur}, add: ωνται}
+- id: 'rule:grc-aorist'  # CGCG 13.4, 13.6-13.7: ἐπαίδευσα, the σ and the α
+  when: {pos: VERB, feats: {Tense: Past}}
+  strip: [ω]
+  blocks:
+  - suffix:
+    - {branch: s, add: σ}
+  - suffix:
+    - {branch: 1sg, feats: {Mood: Ind, Person: '1', Number: Sing}, add: ᾰ}
+    - {branch: 2sg, feats: {Mood: Ind, Person: '2', Number: Sing}, add: ᾰς}
+    - {branch: 3sg, feats: {Mood: Ind, Person: '3', Number: Sing}, add: ε(ν)}
+    - {branch: 1pl, feats: {Mood: Ind, Person: '1', Number: Plur}, add: ᾰμεν}
+    - {branch: 2pl, feats: {Mood: Ind, Person: '2', Number: Plur}, add: ᾰτε}
+    - {branch: 3pl, feats: {Mood: Ind, Person: '3', Number: Plur}, add: ᾰν}
+    - {branch: sub-1sg, feats: {Mood: Sub, Person: '1', Number: Sing}, add: ω}
+    - {branch: sub-2sg, feats: {Mood: Sub, Person: '2', Number: Sing}, add: ῃς}
+    - {branch: sub-3sg, feats: {Mood: Sub, Person: '3', Number: Sing}, add: ῃ}
+    - {branch: sub-1pl, feats: {Mood: Sub, Person: '1', Number: Plur}, add: ωμεν}
+    - {branch: sub-2pl, feats: {Mood: Sub, Person: '2', Number: Plur}, add: ητε}
+    - {branch: sub-3pl, feats: {Mood: Sub, Person: '3', Number: Plur}, add: ωσῐ(ν)}
+- id: 'rule:grc-attic-future-middle'  # CGCG 15.32-15.36: βαδιοῦμαι, a listed stem in ε, no σ, contracted
+  when: {pos: VERB, class: attic-future-middle, feats: {Tense: Fut}}
+  blocks:
+  - suffix: &middle
+    - {branch: 1sg, feats: {Mood: Ind, Person: '1', Number: Sing}, add: ομαι}
+    - {branch: 2sg, feats: {Mood: Ind, Person: '2', Number: Sing}, add: ῃ}
+    - {branch: 3sg, feats: {Mood: Ind, Person: '3', Number: Sing}, add: εται}
+    - {branch: 1pl, feats: {Mood: Ind, Person: '1', Number: Plur}, add: ομεθᾰ}
+    - {branch: 2pl, feats: {Mood: Ind, Person: '2', Number: Plur}, add: εσθε}
+    - {branch: 3pl, feats: {Mood: Ind, Person: '3', Number: Plur}, add: ονται}
+- id: 'rule:grc-attic-future'  # CGCG 15.32-15.36: μενῶ, ἐρῶ, νομιῶ
+  when: {pos: VERB, class: attic-future, feats: {Tense: Fut}}
+  blocks:
+  - suffix: &active
+    - {branch: 1sg, feats: {Mood: Ind, Person: '1', Number: Sing}, add: ω}
+    - {branch: 2sg, feats: {Mood: Ind, Person: '2', Number: Sing}, add: εις}
+    - {branch: 3sg, feats: {Mood: Ind, Person: '3', Number: Sing}, add: ει}
+    - {branch: 1pl, feats: {Mood: Ind, Person: '1', Number: Plur}, add: ομεν}
+    - {branch: 2pl, feats: {Mood: Ind, Person: '2', Number: Plur}, add: ετε}
+    - {branch: 3pl, feats: {Mood: Ind, Person: '3', Number: Plur}, add: ουσῐ(ν)}
+- id: 'rule:grc-future-middle'  # CGCG 15.3: a middle verb's future, σ and the middle endings
+  when: {pos: VERB, ends: ομαι, feats: {Tense: Fut}}
+  strip: [ομαι]
+  blocks:
+  - suffix:
+    - {branch: s, add: σ}
+  - suffix: *middle
+- id: 'rule:grc-middle-future'  # CGCG 15.14, 15.40: an active verb's middle future (ἀκούσομαι)
+  when: {pos: VERB, class: future-middle, feats: {Tense: Fut}}
+  strip: [ω]
+  blocks:
+  - suffix:
+    - {branch: s, add: σ}
+  - suffix: *middle
+- id: 'rule:grc-future'  # CGCG 15.2: παιδεύσω
+  when: {pos: VERB, feats: {Tense: Fut}}
+  strip: [ω]
+  blocks:
+  - suffix:
+    - {branch: s, add: σ}
+  - suffix: *active
+- id: 'rule:grc-present-middle'  # CGCG 12.4: a middle verb's present (παιδεύομαι; -ῃ, 11.23)
+  when: {pos: VERB, ends: ομαι, feats: {Tense: Pres}}
+  strip: [ομαι]
+  blocks:
+  - suffix: *middle
+- id: 'rule:grc-present-mp'  # CGCG 12.4: the middle-passive of an active verb, in a cell that says so (Voice=Mid)
+  when: {pos: VERB, feats: {Tense: Pres, Voice: Mid}}
+  strip: [ω]
+  blocks:
+  - suffix: *middle
+- id: 'rule:grc-present'  # CGCG 12.3, 12.7: παιδεύω
+  when: {pos: VERB, feats: {Tense: Pres}}
+  strip: [ω]
+  blocks:
+  - suffix: *active
+- id: 'rule:grc-imperative-middle'  # CGCG 11.29: παιδεύου (-ου from -εσο), παιδεύεσθε
+  when: {pos: VERB, ends: ομαι, feats: {Mood: Imp}}
+  strip: [ομαι]
+  blocks:
+  - suffix:
+    - {branch: 2sg, feats: {Person: '2', Number: Sing}, add: ου}
+    - {branch: 2pl, feats: {Person: '2', Number: Plur}, add: εσθε}
+- id: 'rule:grc-imperative'  # CGCG 11.29: παίδευε, παιδεύετε
+  when: {pos: VERB, feats: {Mood: Imp}}
+  strip: [ω]
+  blocks:
+  - suffix:
+    - {branch: 2sg, feats: {Person: '2', Number: Sing}, add: ε}
+    - {branch: 2pl, feats: {Person: '2', Number: Plur}, add: ετε}
+- id: 'rule:grc-infinitive-middle'  # CGCG 11.32: παιδεύεσθαι
+  when: {pos: VERB, ends: ομαι, feats: {VerbForm: Inf}}
+  strip: [ομαι]
+  blocks:
+  - suffix:
+    - {branch: present, add: εσθαι}
+- id: 'rule:grc-infinitive'  # CGCG 11.31: παιδεύειν (-ε-εν, a spurious diphthong: 12.12, 12.16)
+  when: {pos: VERB, feats: {VerbForm: Inf}}
+  strip: [ω]
+  blocks:
+  - suffix:
+    - {branch: present, add: ειν}
+# ---- Nouns, adjectives, pronouns, the article. A rule names no part of speech: it is chosen by a class, the lemma's
+# ending and the cell (a noun's cell has Case and Number; an adjective's, a pronoun's and the article's Gender too).
+- id: 'rule:grc-third'  # CGCG 4.31-4.35: a listed stem (the genitive's) and the endings; the nominative is the lemma
+  when: {class: third, feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}
+  blocks:
+  - suffix:
+    - {branch: nom-sg, feats: {Case: Nom, Number: Sing}, add: ''}
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: ος}
+    - {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: ῐ}
+    - {branch: acc-sg, feats: {Case: Acc, Number: Sing}, add: ᾰ}
+    - {branch: voc-sg, feats: {Case: Voc, Number: Sing}, add: ''}
+    - {branch: nom-pl, feats: {Case: 'Nom,Voc', Number: Plur}, add: ες}
+    - {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: ων}
+    - {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: σῐ(ν)}
+    - {branch: acc-pl, feats: {Case: Acc, Number: Plur}, add: ᾰς}
+- id: 'rule:grc-third-neuter'  # CGCG 4.40 (πρᾶγμα), 4.65 (γένος)
+  when: {class: third-neuter, feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}
+  blocks:
+  - suffix:
+    - {branch: sg, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, add: ''}
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: ος}
+    - {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: ῐ}
+    - {branch: pl, feats: {Case: 'Acc,Nom,Voc', Number: Plur}, add: ᾰ}
+    - {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: ων}
+    - {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: σῐ(ν)}
+- id: 'rule:grc-comparative'  # CGCG 5.36, 5.38: -ότερος, -ώτερος after a short syllable (rule:grc-comparative|omega)
+  when: {class: comparable, feats: {Degree: Cmp}}
+  strip: [ος, ός]
+  blocks:
+  - suffix:
+    - {branch: cmp, add: οτερ}
+  - suffix: &masculine
+    - {branch: nom-sg-m, feats: {Case: Nom, Gender: Masc, Number: Sing}, add: ος}
+    - {branch: voc-sg-m, feats: {Case: Voc, Gender: Masc, Number: Sing}, add: ε}
+    - {branch: acc-sg-m, feats: {Case: Acc, Gender: Masc, Number: Sing}, add: ον}
+    - {branch: gen-sg-mn, feats: {Case: Gen, Gender: 'Masc,Neut', Number: Sing}, add: ου}
+    - {branch: dat-sg-mn, feats: {Case: Dat, Gender: 'Masc,Neut', Number: Sing}, add: ῳ}
+    - {branch: nom-pl-m, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, add: οι}
+    - {branch: acc-pl-m, feats: {Case: Acc, Gender: Masc, Number: Plur}, add: ους}
+    - {branch: dat-pl-mn, feats: {Case: Dat, Gender: 'Masc,Neut', Number: Plur}, add: οις}
+    - {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: ων}
+  - suffix: &feminine
+    - {branch: nom-sg-f, feats: {Case: 'Nom,Voc', Gender: Fem, Number: Sing}, add: η}
+    - {branch: gen-sg-f, feats: {Case: Gen, Gender: Fem, Number: Sing}, add: ης}
+    - {branch: dat-sg-f, feats: {Case: Dat, Gender: Fem, Number: Sing}, add: ῃ}
+    - {branch: acc-sg-f, feats: {Case: Acc, Gender: Fem, Number: Sing}, add: ην}
+    - {branch: nom-pl-f, feats: {Case: 'Nom,Voc', Gender: Fem, Number: Plur}, add: αι}
+    - {branch: dat-pl-f, feats: {Case: Dat, Gender: Fem, Number: Plur}, add: αις}
+    - {branch: acc-pl-f, feats: {Case: Acc, Gender: Fem, Number: Plur}, add: ᾱς}
+  - suffix: &neuter
+    - {branch: sg-n, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, add: ον}
+    - {branch: pl-n, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Plur}, add: ᾰ}
+- id: 'rule:grc-no-comparative'  # REVIEW: an adjective not stated comparable has no comparative: no branch names a cell
+  when: {feats: {Degree: Cmp}}
+  blocks:
+  - suffix:
+    - {branch: none, feats: {Degree: Sup}, add: ''}
+- id: 'rule:grc-pronominal'  # CGCG 7.10 (αὐτός, αὐτή, αὐτό; ἄλλος, ἄλλο as it), 3.1 (the article on its stem τ-)
+  when: {class: pronominal, feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}
+  strip: [ος, ός]
+  blocks:
+  - suffix: *masculine
+  - suffix: *feminine
+  - suffix:
+    - {branch: sg-n, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, add: ο}
+    - {branch: pl-n, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Plur}, add: ᾰ}
+- id: 'rule:grc-sigma-adjective'  # CGCG 5.28-5.29: ἀληθής, ἀληθές, its endings contracted (ε-ος > οῦς)
+  when: {class: sigma-stem, feats: {Gender: 'Fem,Masc,Neut'}}
+  strip: [ής, ης]
+  blocks:
+  - suffix:
+    - {branch: nom-sg-mf, feats: {Case: Nom, Gender: 'Fem,Masc', Number: Sing}, add: ής}
+    - {branch: voc-sg-mf, feats: {Case: Voc, Gender: 'Fem,Masc', Number: Sing}, add: ές}
+    - {branch: acc-sg-mf, feats: {Case: Acc, Gender: 'Fem,Masc', Number: Sing}, add: ῆ}
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: οῦς}
+    - {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: εῖ}
+    - {branch: nom-pl-mf, feats: {Case: 'Nom,Voc', Gender: 'Fem,Masc', Number: Plur}, add: εῖς}
+    - {branch: acc-pl-mf, feats: {Case: Acc, Gender: 'Fem,Masc', Number: Plur}, add: εῖς}
+    - {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: ῶν}
+    - {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: έσῐ(ν)}
+    - {branch: sg-n, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, add: ές}
+    - {branch: pl-n, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Plur}, add: ῆ}
+- id: 'rule:grc-sigma-name'  # CGCG 4.65-4.66: Σωκράτης, Σωκράτους, Σωκράτει, Σωκράτη, Σώκρατες; no plural
+  when: {class: sigma-name, feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}
+  strip: [ης]
+  blocks:
+  - suffix:
+    - {branch: nom-sg, feats: {Case: Nom, Number: Sing}, add: ης}
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: ους}
+    - {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: ει}
+    - {branch: acc-sg, feats: {Case: Acc, Number: Sing}, add: η}
+    - {branch: voc-sg, feats: {Case: Voc, Number: Sing}, add: ες}
+- id: 'rule:grc-contracted'  # CGCG 5.5-5.6: χρυσοῦς, -ῆ, -οῦν, the endings contracted with the stem's ε or ο
+  when: {class: contracted, feats: {Gender: 'Fem,Masc,Neut'}}
+  strip: [οῦς]
+  blocks:
+  - suffix:
+    - {branch: nom-sg-m, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Sing}, add: οῦς}
+    - {branch: acc-sg-m, feats: {Case: Acc, Gender: Masc, Number: Sing}, add: οῦν}
+    - {branch: gen-sg-mn, feats: {Case: Gen, Gender: 'Masc,Neut', Number: Sing}, add: οῦ}
+    - {branch: dat-sg-mn, feats: {Case: Dat, Gender: 'Masc,Neut', Number: Sing}, add: ῷ}
+    - {branch: nom-pl-m, feats: {Case: 'Nom,Voc', Gender: Masc, Number: Plur}, add: οῖ}
+    - {branch: acc-pl-m, feats: {Case: Acc, Gender: Masc, Number: Plur}, add: οῦς}
+    - {branch: dat-pl-mn, feats: {Case: Dat, Gender: 'Masc,Neut', Number: Plur}, add: οῖς}
+    - {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: ῶν}
+    - {branch: nom-sg-f, feats: {Case: 'Nom,Voc', Gender: Fem, Number: Sing}, add: ῆ}
+    - {branch: gen-sg-f, feats: {Case: Gen, Gender: Fem, Number: Sing}, add: ῆς}
+    - {branch: dat-sg-f, feats: {Case: Dat, Gender: Fem, Number: Sing}, add: ῇ}
+    - {branch: acc-sg-f, feats: {Case: Acc, Gender: Fem, Number: Sing}, add: ῆν}
+    - {branch: nom-pl-f, feats: {Case: 'Nom,Voc', Gender: Fem, Number: Plur}, add: αῖ}
+    - {branch: dat-pl-f, feats: {Case: Dat, Gender: Fem, Number: Plur}, add: αῖς}
+    - {branch: acc-pl-f, feats: {Case: Acc, Gender: Fem, Number: Plur}, add: ᾶς}
+    - {branch: sg-n, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Sing}, add: οῦν}
+    - {branch: pl-n, feats: {Case: 'Acc,Nom,Voc', Gender: Neut, Number: Plur}, add: ᾶ}
+- id: 'rule:grc-two-ending'  # CGCG 5.7-5.8: ὁ καὶ ἡ βάρβαρος
+  when: {class: two-ending, feats: {Gender: 'Fem,Masc,Neut'}}
+  strip: [ος, ός]
+  blocks:
+  - suffix:
+    - {branch: nom-sg-mf, feats: {Case: Nom, Gender: 'Fem,Masc', Number: Sing}, add: ος}
+    - {branch: voc-sg-mf, feats: {Case: Voc, Gender: 'Fem,Masc', Number: Sing}, add: ε}
+    - {branch: acc-sg-mf, feats: {Case: Acc, Gender: 'Fem,Masc', Number: Sing}, add: ον}
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: ου}
+    - {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: ῳ}
+    - {branch: nom-pl-mf, feats: {Case: 'Nom,Voc', Gender: 'Fem,Masc', Number: Plur}, add: οι}
+    - {branch: acc-pl-mf, feats: {Case: Acc, Gender: 'Fem,Masc', Number: Plur}, add: ους}
+    - {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: οις}
+    - {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: ων}
+  - suffix: *neuter
+- id: 'rule:grc-adjective'  # CGCG 5.1-5.3: ἀγαθός, -ή, -όν; δίκαιος, -ᾱ, -ον (rule:grc-alpha)
+  when: {feats: {Gender: 'Fem,Masc,Neut'}, endsIn: '{OS}*ς'}
+  strip: [ος, ός]
+  blocks:
+  - suffix: *masculine
+  - suffix: *feminine
+  - suffix: *neuter
+- id: 'rule:grc-first'  # CGCG 4.3-4.6: τύχη, χώρᾱ (ᾱ after ε, ι, ρ: rule:grc-alpha)
+  when: {feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}, endsIn: '{FA}*'}
+  strip: [η, ή, ᾱ, ᾱ́]
+  blocks:
+  - suffix:
+    - {branch: nom-sg, feats: {Case: 'Nom,Voc', Number: Sing}, add: η}
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: ης}
+    - {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: ῃ}
+    - {branch: acc-sg, feats: {Case: Acc, Number: Sing}, add: ην}
+    - {branch: nom-pl, feats: {Case: 'Nom,Voc', Number: Plur}, add: αι}
+    - {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: ῶν}
+    - {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: αις}
+    - {branch: acc-pl, feats: {Case: Acc, Number: Plur}, add: ᾱς}
+- id: 'rule:grc-first-short'  # CGCG 4.3-4.5: θάλαττᾰ, θαλάττης
+  when: {feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}, ends: ᾰ}
+  strip: [ᾰ]
+  blocks:
+  - suffix:
+    - {branch: nom-sg, feats: {Case: 'Nom,Voc', Number: Sing}, add: ᾰ}
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: ης}
+    - {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: ῃ}
+    - {branch: acc-sg, feats: {Case: Acc, Number: Sing}, add: ᾰν}
+    - {branch: nom-pl, feats: {Case: 'Nom,Voc', Number: Plur}, add: αι}
+    - {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: ῶν}
+    - {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: αις}
+    - {branch: acc-pl, feats: {Case: Acc, Number: Plur}, add: ᾱς}
+- id: 'rule:grc-first-masculine'  # CGCG 4.8-4.12: πολίτης, νεανίᾱς; the vocative of -της in -ᾰ (rule:grc-first-vocative)
+  when: {feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}, endsIn: '{FA}*ς'}
+  strip: [ης, ής, ᾱς]
+  blocks:
+  - suffix:
+    - {branch: nom-sg, feats: {Case: Nom, Number: Sing}, add: ης}
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: ου}
+    - {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: ῃ}
+    - {branch: acc-sg, feats: {Case: Acc, Number: Sing}, add: ην}
+    - {branch: voc-sg, feats: {Case: Voc, Number: Sing}, add: η}
+    - {branch: nom-pl, feats: {Case: 'Nom,Voc', Number: Plur}, add: αι}
+    - {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: ῶν}
+    - {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: αις}
+    - {branch: acc-pl, feats: {Case: Acc, Number: Plur}, add: ᾱς}
+- id: 'rule:grc-second'  # CGCG 4.19-4.22: ἄνθρωπος, θεός (and feminines: ἡ ὁδός)
+  when: {feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}, endsIn: '{OS}*ς'}
+  strip: [ος, ός]
+  blocks:
+  - suffix:
+    - {branch: nom-sg, feats: {Case: Nom, Number: Sing}, add: ος}
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: ου}
+    - {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: ῳ}
+    - {branch: acc-sg, feats: {Case: Acc, Number: Sing}, add: ον}
+    - {branch: voc-sg, feats: {Case: Voc, Number: Sing}, add: ε}
+    - {branch: nom-pl, feats: {Case: 'Nom,Voc', Number: Plur}, add: οι}
+    - {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: ων}
+    - {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: οις}
+    - {branch: acc-pl, feats: {Case: Acc, Number: Plur}, add: ους}
+- id: 'rule:grc-second-neuter'  # CGCG 4.24: δῶρον
+  when: {feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}, endsIn: '{OS}*ν'}
+  strip: [ον, όν]
+  blocks:
+  - suffix:
+    - {branch: sg, feats: {Case: 'Acc,Nom,Voc', Number: Sing}, add: ον}
+    - {branch: gen-sg, feats: {Case: Gen, Number: Sing}, add: ου}
+    - {branch: dat-sg, feats: {Case: Dat, Number: Sing}, add: ῳ}
+    - {branch: pl, feats: {Case: 'Acc,Nom,Voc', Number: Plur}, add: ᾰ}
+    - {branch: gen-pl, feats: {Case: Gen, Number: Plur}, add: ων}
+    - {branch: dat-pl, feats: {Case: Dat, Number: Plur}, add: οις}
+phonology:  # in order, each once over the whole form
+# The augment, in the indicative of the past tenses (CGCG 11.35-11.40), where the form's "-" is: ε- before a
+# consonant; a vowel or diphthong lengthened (11.37-11.38). After a compound's preverb first (11.51), with no breathing
+# inside the word; then a simplex's, first in the word, with its breathing. The "-" stays after the augment, which a
+# recessive accent then goes no further back than (24.19).
+- {id: 'rule:grc-augment', branch: syllabic, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-{C}', after: '.', to: '+ε-{C}'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-{E}', after: '.', to: '+η-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-{OS}', after: '.', to: '+ω-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-ῐ', after: '.', to: '+ῑ-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-α[ιί]', after: '.', to: '+ῃ-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-ε[ιί]', after: '.', to: '+ῃ-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-ο[ιί]', after: '.', to: '+ῳ-'}
+- {id: 'rule:grc-augment', branch: syllabic, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-{C}', at: start, to: '+ἐ-{C}'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-ἐ', at: start, to: '+ἠ-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-ἑ', at: start, to: '+ἡ-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-ᾰ̓', at: start, to: '+ἠ-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-ᾰ̔', at: start, to: '+ἡ-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-ὀ', at: start, to: '+ὠ-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-ὁ', at: start, to: '+ὡ-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-ῐ̓', at: start, to: '+ῑ̓-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-ῐ̔', at: start, to: '+ῑ̔-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-α[ἰἴ]', at: start, to: '+ᾐ-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-ε[ἰἴ]', at: start, to: '+ᾐ-'}
+- {id: 'rule:grc-augment', branch: temporal, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: '-ο[ἰἴ]', at: start, to: '+ᾠ-'}
+# A preverb's last vowel goes before the augment (κατ-έ-βην, ἀπ-έ-δωκα), but περι's and προ's (CGCG 11.51).
+- {id: 'rule:grc-augment', branch: elision, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: 'ᾰ+ε-', to: '+ε-'}
+- {id: 'rule:grc-augment', branch: elision, when: {pos: VERB, feats: {Mood: Ind, Tense: Past}}, find: 'ο+ε-', to: '+ε-'}
+# A stop before σ (CGCG 1.91, 4.37, 4.42): a dental (and ζ) goes; a labial and σ are ψ, a velar and σ ξ. ν goes before
+# the dative plural's σ (4.51).
+- {id: 'rule:grc-sigma', branch: dental, find: '{DEN}+σ', to: '+σ'}
+- {id: 'rule:grc-sigma', branch: labial, find: '{LAB}+σ', to: '+ψ'}
+- {id: 'rule:grc-sigma', branch: velar, find: '{VEL}+σ', to: '+ξ'}
+- {id: 'rule:grc-sigma', branch: nasal, when: {feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}, find: 'ν+σ', to: '+σ'}
+# A contract stem's vowel is long before σ: ποιησ-, τιμησ- (CGCG 13.16, 15.16). Not written yet: ᾱ after ε, ι, ρ.
+- {id: 'rule:grc-contract-length', when: {pos: VERB, class: contract}, find: '{EA}*', before: '+σ', map: {ε: η, έ: η, ᾰ: η}}
+# ᾱ for η after ε, ι or ρ in a first-declension ending (CGCG 4.5, 4.9, 5.3).
+- {id: 'rule:grc-alpha', when: {feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}, find: '+η', after: '{ER}*', to: '+ᾱ'}
+- {id: 'rule:grc-alpha', when: {feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}, find: '+ῃ', after: '{ER}*', to: '+ᾳ'}
+# A masculine in -της is called with -ᾰ (πολῖτᾰ: CGCG 4.12).
+- {id: 'rule:grc-first-vocative', when: {feats: {Case: Voc}, endsIn: 'τ{FA}*ς'}, find: '+η', at: end, to: '+ᾰ'}
+# -ώτερος after a short syllable (a short vowel and one consonant): σοφώτερος, but δεινότερος (CGCG 5.38).
+- {id: 'rule:grc-comparative', branch: omega, when: {feats: {Degree: Cmp}}, find: '+ο', after: '{SH}*{C}', before: 'τερ', to: '+ω'}
+# The accent (CGCG 24): a finite verb's is recessive (24.16-24.19), and so are comparatives (24.32); a noun's,
+# an adjective's, a pronoun's and the article's persistent (24.14, 24.21), on the ending in the genitive and dative of
+# an oxytone of the first and second declension (a circumflex: 24.22) and of a one-syllable stem (24.23); an oxytone
+# whose cited ending gave way to another takes the acute on the new one (only such a lemma: an enclitic, τις, has none).
+# A name is recessive (24.26), which shows in a σ-stem's vocative (Σώκρατες).
+- {id: 'rule:grc-accent', branch: recessive, accent: recessive, when: {pos: VERB}}
+- {id: 'rule:grc-accent', branch: comparative, accent: recessive, when: {feats: {Degree: Cmp}}}
+- {id: 'rule:grc-accent', branch: vocative, accent: recessive, when: {class: sigma-name, feats: {Case: Voc}}}
+- {id: 'rule:grc-accent', branch: mobile, accent: ultima, when: {class: mobile, feats: {Case: 'Dat,Gen'}}}
+- {id: 'rule:grc-accent', branch: syncopated, accent: ultima, when: {class: syncopated, feats: {Case: 'Dat,Gen', Number: Sing}}}
+- {id: 'rule:grc-accent', branch: genitive-dative, accent: ultima, when: {ends: ός, feats: {Case: 'Dat,Gen'}}}
+- {id: 'rule:grc-accent', branch: genitive-dative, accent: ultima, when: {ends: όν, feats: {Case: 'Dat,Gen'}}}
+- {id: 'rule:grc-accent', branch: genitive-dative, accent: ultima, when: {ends: ή, feats: {Case: 'Dat,Gen'}}}
+- {id: 'rule:grc-accent', branch: genitive-dative, accent: ultima, when: {ends: ᾱ́, feats: {Case: 'Dat,Gen'}}}
+- {id: 'rule:grc-accent', branch: genitive-dative, accent: ultima, when: {ends: ὁ, feats: {Case: 'Dat,Gen'}}}
+- {id: 'rule:grc-accent', branch: oxytone, accent: oxytone, when: {ends: ός, feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}}
+- {id: 'rule:grc-accent', branch: oxytone, accent: oxytone, when: {ends: όν, feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}}
+- {id: 'rule:grc-accent', branch: oxytone, accent: oxytone, when: {ends: ή, feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}}
+- {id: 'rule:grc-accent', branch: oxytone, accent: oxytone, when: {ends: ᾱ́, feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}}
+- {id: 'rule:grc-accent', branch: oxytone, accent: oxytone, when: {ends: ὁ, feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}}
+- {id: 'rule:grc-accent', branch: oxytone, accent: oxytone, when: {ends: ής, feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}}
+- {id: 'rule:grc-accent', branch: persistent, accent: persistent, when: {feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}}
+# Contraction (CGCG 1.58-1.63, 12.15-12.17), the accent as it stood (24.12): on the first vowel, a circumflex on the
+# result; on the second, an acute; on neither, none. A stem's ᾰ with e-sounds is ᾱ, with genuine ει or ῃ ᾳ, with
+# o-sounds ω; ε with ε or ει is ει, with ο or ου ου, and goes into a long vowel. The infinitive's ει is spurious: ᾶν.
+# εε and εει contract in every verb (θεῖς, of θέω: 12.17); the rest only in a contract stem (class contract).
+- {id: 'rule:grc-contraction', branch: a-ein, when: {pos: VERB, class: contract, feats: {VerbForm: Inf}}, find: 'ᾰ́+ειν', to: '+ᾶν'}
+- {id: 'rule:grc-contraction', branch: a-ein, when: {pos: VERB, class: contract, feats: {VerbForm: Inf}}, find: 'ᾰ+ειν', to: '+ᾱν'}
+- {id: 'rule:grc-contraction', branch: a-o, when: {class: contract}, find: 'ᾰ́+ου', to: '+ῶ'}
+- {id: 'rule:grc-contraction', branch: a-o, when: {class: contract}, find: 'ᾰ+ου', to: '+ω'}
+- {id: 'rule:grc-contraction', branch: a-o, when: {class: contract}, find: 'ᾰ́+[οω]', to: '+ῶ'}
+- {id: 'rule:grc-contraction', branch: a-o, when: {class: contract}, find: 'ᾰ+[όώ]', to: '+ώ'}
+- {id: 'rule:grc-contraction', branch: a-o, when: {class: contract}, find: 'ᾰ+[οω]', to: '+ω'}
+- {id: 'rule:grc-contraction', branch: a-ei, when: {class: contract}, find: 'ᾰ́+ει', to: '+ᾷ'}
+- {id: 'rule:grc-contraction', branch: a-ei, when: {class: contract}, find: 'ᾰ+ει', to: '+ᾳ'}
+- {id: 'rule:grc-contraction', branch: a-ei, when: {class: contract}, find: 'ᾰ́+ῃ', to: '+ᾷ'}
+- {id: 'rule:grc-contraction', branch: a-ei, when: {class: contract}, find: 'ᾰ+ῃ', to: '+ᾳ'}
+# A 3sg's -ε(ν) contracted takes no movable ν (ἐτίμα, ἐποίει: CGCG 1.39, 12.3).
+- {id: 'rule:grc-contraction', branch: a-e, when: {class: contract}, find: 'ᾰ́+ε(ν)', to: '+ᾶ'}
+- {id: 'rule:grc-contraction', branch: a-e, when: {class: contract}, find: 'ᾰ+ε(ν)', to: '+ᾱ'}
+- {id: 'rule:grc-contraction', branch: a-e, when: {class: contract}, find: 'ᾰ́+[εη]', to: '+ᾶ'}
+- {id: 'rule:grc-contraction', branch: a-e, when: {class: contract}, find: 'ᾰ+[εη]', to: '+ᾱ'}
+- {id: 'rule:grc-contraction', branch: e-e, when: {pos: VERB}, find: 'έ+ε(ν)', to: '+εῖ'}
+- {id: 'rule:grc-contraction', branch: e-e, when: {pos: VERB}, find: 'ε+ε(ν)', to: '+ει'}
+- {id: 'rule:grc-contraction', branch: e-e, when: {pos: VERB}, find: 'έ+ει', to: '+εῖ'}
+- {id: 'rule:grc-contraction', branch: e-e, when: {pos: VERB}, find: 'ε+ει', to: '+ει'}
+- {id: 'rule:grc-contraction', branch: e-e, when: {pos: VERB}, find: 'έ+ε', to: '+εῖ'}
+- {id: 'rule:grc-contraction', branch: e-e, when: {pos: VERB}, find: 'ε+ε', to: '+ει'}
+- {id: 'rule:grc-contraction', branch: e-o, when: {class: contract}, find: 'έ+ου', to: '+οῦ'}
+- {id: 'rule:grc-contraction', branch: e-o, when: {class: contract}, find: 'ε+ου', to: '+ου'}
+- {id: 'rule:grc-contraction', branch: e-o, when: {class: contract}, find: 'έ+ο', to: '+οῦ'}
+- {id: 'rule:grc-contraction', branch: e-o, when: {class: contract}, find: 'ε+ό', to: '+ού'}
+- {id: 'rule:grc-contraction', branch: e-o, when: {class: contract}, find: 'ε+ο', to: '+ου'}
+- {id: 'rule:grc-contraction', branch: e-long, when: {class: contract}, find: 'έ+ω', to: '+ῶ'}
+- {id: 'rule:grc-contraction', branch: e-long, when: {class: contract}, find: 'ε+ώ', to: '+ώ'}
+- {id: 'rule:grc-contraction', branch: e-long, when: {class: contract}, find: 'ε+ω', to: '+ω'}
+- {id: 'rule:grc-contraction', branch: e-long, when: {class: contract}, find: 'έ+ῃ', to: '+ῇ'}
+- {id: 'rule:grc-contraction', branch: e-long, when: {class: contract}, find: 'ε+ῃ', to: '+ῃ'}
+- {id: 'rule:grc-contraction', branch: e-long, when: {class: contract}, find: 'έ+η', to: '+ῆ'}
+- {id: 'rule:grc-contraction', branch: e-long, when: {class: contract}, find: 'ε+η', to: '+η'}
+# A stem in σ that lost it (τείχε-, ὄρε-: CGCG 4.65-4.66): ε with ᾰ is η, with ῐ ει (and with ο ου, ω ω, above).
+- {id: 'rule:grc-contraction', branch: e-a, when: {class: contract, feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}, find: 'ε+ᾰ', to: '+η'}
+- {id: 'rule:grc-contraction', branch: e-i, when: {class: contract, feats: {Case: 'Acc,Dat,Gen,Nom,Voc'}}, find: 'ε+ῐ', to: '+ει'}
+# A root aorist's subjunctive (CGCG 13.40, 24.18): βῶ, βῆτε.
+- {id: 'rule:grc-contraction', branch: eta, when: {class: root-aorist, feats: {Mood: Sub}}, find: 'ή+ω', to: '+ῶ'}
+- {id: 'rule:grc-contraction', branch: eta, when: {class: root-aorist, feats: {Mood: Sub}}, find: 'ή+ῃ', to: '+ῇ'}
+- {id: 'rule:grc-contraction', branch: eta, when: {class: root-aorist, feats: {Mood: Sub}}, find: 'ή+η', to: '+ῆ'}
+- {id: 'rule:grc-contraction', branch: eta, when: {class: root-aorist, feats: {Mood: Sub}}, find: 'η+ώ', to: '+ώ'}
+- {id: 'rule:grc-contraction', branch: eta, when: {class: root-aorist, feats: {Mood: Sub}}, find: 'η+[ωῃη]', to: '+[ωῃη]'}
+# A word ends in no stop but κ (ἐκ, οὐκ): a stem's last stop goes where nothing follows it (παῖ, ἐλπί: CGCG 1.73, 4.44).
+- {id: 'rule:grc-final-stop', when: {feats: {Case: Voc}}, find: '{STOP}', at: end, to: ''}

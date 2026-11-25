@@ -1497,9 +1497,9 @@ type LongAdditionalProperty = Annotated[str, Field(min_length=1)]
 type SetsAdditionalProperty = Annotated[str, Field(pattern="^\\[.*\\]$")]
 
 
-class Notation(BaseModel):
+class Prosody(BaseModel):
     """
-    How the language writes a lexical form (ADR 0145; docs/lexical-forms/<lang>.md): the signs for its vowels, its long vowels and no vowel, the marks a letter carries in the order the notation names them, and the named sets a profile's `spell` refers to as {name}. Read by @nabu/core (`compileSpeller`); never shipped in a bundle.
+    What an accent rule (a rewrite's `accent`) reads of a lexical form: its syllables' nuclei, their length and the accent marks. Each letter is read as its canonical decomposition: a base letter and marks (Greek ά is α and an acute).
     """
 
     model_config = ConfigDict(
@@ -1507,39 +1507,53 @@ class Notation(BaseModel):
         frozen=True,
     )
     vowels: Annotated[
-        dict[str, VowelsAdditionalProperty] | None,
+        str,
         Field(
-            description="Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C). A notation whose vowels are letters (an alphabet's: es, sk, tok) names none.",
-            min_length=1,
+            description="The base letters a syllable's nucleus is, as a UnicodeSet.",
+            pattern="^\\[.*\\]$",
         ),
-    ] = None
+    ]
     long: Annotated[
-        dict[str, LongAdditionalProperty] | None,
-        Field(
-            description="Each long vowel as written: its sign and its length letter.", min_length=1
-        ),
-    ] = None
-    none: Annotated[
         str | None,
-        Field(description="The sign for no vowel after a consonant (a sukun).", min_length=1),
+        Field(description="Vowels long whatever their marks (Greek η, ω).", pattern="^\\[.*\\]$"),
     ] = None
-    order: Annotated[
+    lengthen: Annotated[
         str | None,
         Field(
-            description="The marks a letter may carry, in the order the notation names them (a shadda before the vowel), as a UnicodeSet. NFC orders marks by their combining class; a form is read in NFC with each run of marks put in this order (a mark NFC composes into its letter stays part of it), so a rule's pattern is written as the notation is, and the result is NFC again.",
+            description="Marks that make a vowel long (a macron, the iota subscript, a circumflex).",
             pattern="^\\[.*\\]$",
         ),
     ] = None
-    sets: Annotated[
-        dict[
-            Annotated[str, StringConstraints(pattern=r"^[A-Za-z][A-Za-z0-9-]*$")],
-            SetsAdditionalProperty,
-        ],
+    diphthongs: Annotated[
+        str | None,
         Field(
-            description="Named sets of letters or marks a `spell` rule refers to as {name} (C: a consonant letter).",
+            description="Pairs of base letters, as a UnicodeSet of strings ({αι}), that make one long nucleus where the second follows the first in one morpheme with no mark of `apart`.",
+            pattern="^\\[.*\\]$",
+        ),
+    ] = None
+    apart: Annotated[
+        str | None,
+        Field(
+            description="Marks on a second vowel that keep it out of a diphthong (a diaeresis, a length mark).",
+            pattern="^\\[.*\\]$",
+        ),
+    ] = None
+    shortAtEnd: Annotated[
+        str | None,
+        Field(
+            description="Diphthongs counted short where nothing follows them in the word (Greek final -αι, -οι: CGCG 24.10).",
+            pattern="^\\[.*\\]$",
+        ),
+    ] = None
+    acute: Annotated[str, Field(description="The acute's mark.", min_length=1)]
+    circumflex: Annotated[str, Field(description="The circumflex's mark.", min_length=1)]
+    limit: Annotated[
+        str | None,
+        Field(
+            description="A letter of the notation (never spelled) before which a recessive accent recedes no further than one syllable: a compound verb's preverb, and the augment.",
             min_length=1,
         ),
-    ]
+    ] = None
     notes: Annotated[
         dict[str, NotesAdditionalProperty] | None,
         Field(description="What a reviewer should know, by support language.", min_length=1),
@@ -1606,6 +1620,9 @@ type Branch = Annotated[
         title="Branch",
     ),
 ]
+
+
+type StripItem = Annotated[str, Field(min_length=1)]
 
 
 class Exponent(BaseModel):
@@ -1704,6 +1721,12 @@ class Condition(BaseModel):
         UdFeatures | None,
         Field(
             description="Of a realisation rule or a rewrite: the lexeme has these values of itself (a comma: one of them), as its entry stores them or else its language's defaults give them for a feature its category has of itself (`lexical`): a Slovak noun's gender and animacy, which choose its declension."
+        ),
+    ] = None
+    context: Annotated[
+        Slug | None,
+        Field(
+            description="Of a token: it stands in this context, which changes how it is said or written and is no feature value (hbo: `pause` and `nesiga`, as its `context` says; `bound`, joined to the next word by a maqaf). Read by a rewrite's `when`."
         ),
     ] = None
 
@@ -2592,7 +2615,7 @@ class Allomorph(BaseModel):
     free: Annotated[
         bool | None,
         Field(
-            description="true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (a scribe's other spelling of a suffix: chg's locative دا beside ده). Never the one chosen: a token's realisation gives it as an alternative."
+            description="true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (anywhere, with none): a scribe's other spelling of a suffix (chg's locative دا beside ده), or a form the course writes where no condition tells it from the other (hbo בַּ, the preposition with an article its tokens do not list). Never the one chosen: a token's realisation gives it as an alternative."
         ),
     ] = None
     spelled: Annotated[
@@ -4299,6 +4322,56 @@ class AudioVoice(BaseModel):
     ]
 
 
+class Notation(BaseModel):
+    """
+    How the language writes a lexical form (ADR 0145; docs/lexical-forms/<lang>.md): the signs for its vowels, its long vowels and no vowel, the marks a letter carries in the order the notation names them, and the named sets a profile's `spell` refers to as {name}. Read by @nabu/core (`compileSpeller`); never shipped in a bundle.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    vowels: Annotated[
+        dict[str, VowelsAdditionalProperty] | None,
+        Field(
+            description="Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C). A notation whose vowels are letters (an alphabet's: es, sk, tok) names none.",
+            min_length=1,
+        ),
+    ] = None
+    long: Annotated[
+        dict[str, LongAdditionalProperty] | None,
+        Field(
+            description="Each long vowel as written: its sign and its length letter.", min_length=1
+        ),
+    ] = None
+    none: Annotated[
+        str | None,
+        Field(description="The sign for no vowel after a consonant (a sukun).", min_length=1),
+    ] = None
+    order: Annotated[
+        str | None,
+        Field(
+            description="The marks a letter may carry, in the order the notation names them (a shadda before the vowel), as a UnicodeSet. NFC orders marks by their combining class; a form is read in NFC with each run of marks put in this order (a mark NFC composes into its letter stays part of it), so a rule's pattern is written as the notation is, and the result is NFC again.",
+            pattern="^\\[.*\\]$",
+        ),
+    ] = None
+    prosody: Prosody | None = None
+    sets: Annotated[
+        dict[
+            Annotated[str, StringConstraints(pattern=r"^[A-Za-z][A-Za-z0-9-]*$")],
+            SetsAdditionalProperty,
+        ],
+        Field(
+            description="Named sets of letters or marks a `spell` rule refers to as {name} (C: a consonant letter).",
+            min_length=1,
+        ),
+    ]
+    notes: Annotated[
+        dict[str, NotesAdditionalProperty] | None,
+        Field(description="What a reviewer should know, by support language.", min_length=1),
+    ] = None
+
+
 class Stem(BaseModel):
     """
     One stem template: a pattern's allomorph (ADR 0145). Digits are the base's radicals; {past} and {present} the short vowel signs of the vowels its Form leaves open, {long past} and {long present} their long vowels (the notation's); everything else is the pattern's own. It fits a base of its Form and class whose radical `radical` is in `in` and whose `vowels` are these, where it says so.
@@ -4367,7 +4440,15 @@ class Rewrite(BaseModel):
     )
     id: RuleId
     branch: Branch | None = None
-    find: Annotated[str, Field(min_length=1)]
+    find: Annotated[
+        str | None, Field(description="Required, but for an accent rule (`accent`).", min_length=1)
+    ] = None
+    accent: Annotated[
+        Literal["recessive", "persistent", "oxytone", "ultima"] | None,
+        Field(
+            description="In place of `find`: a rule that places the word's pitch accent by the notation's `prosody`, counting syllables from the word's end (Greek, CGCG 24). recessive: every accent goes, and an acute stands as far from the end as the last syllable allows (the third syllable, or the second where the last is long), no further back than the last syllable before the notation's `limit`; a long second-to-last syllable before a short last takes the circumflex. persistent: the form's last accent stays on its syllable as far as the last syllable allows (else on the third, or the second, from the end), every other accent goes; on the second-to-last syllable it is a circumflex where that is long and the last short, an acute where not; a form with no accent is left so. oxytone: a form with no accent takes an acute on its last syllable. ultima: every accent goes, and the last syllable takes a circumflex where it is long, an acute where it is short. Taken where it changes the form."
+        ),
+    ] = None
     to: str | None = None
     map: Annotated[dict[str, MapAdditionalProperty] | None, Field(min_length=1)] = None
     before: Context | None = None
@@ -5397,14 +5478,14 @@ type LexicalForm = Annotated[
 
 class LexemeForm(BaseModel):
     """
-    A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`.
+    A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`. With `before`, it holds only where the rest of its token holds that condition, as an allomorph's `before` (a stem before a suffixed pronoun: hbo אַחֶי- in אַחֶיךָ), and is then more specific than a form of the same values without it; it never holds of a lexeme realised alone (a paradigm's cell). With no `feats`, it is for a token that chooses no value, never for a cell: an uninflected word's form (a preposition's stem before a suffix, hbo לָ- in לָנוּ; free variants, הִנֵּנִי beside הִנְנִי).
     """
 
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
     )
-    feats: UdFeatures
+    feats: UdFeatures | None = None
     form: Annotated[
         str | None,
         Field(
@@ -5434,6 +5515,7 @@ class LexemeForm(BaseModel):
         ),
     ] = None
     scope: Scope | None = None
+    before: Condition | None = None
     spelled: Annotated[
         dict[OrthographyId, SpelledAdditionalProperty1] | None,
         Field(
@@ -6241,6 +6323,13 @@ class RealisationRule(BaseModel):
     id: RuleId
     when: Condition
     stem: StemChoice | None = None
+    strip: Annotated[
+        list[StripItem] | None,
+        Field(
+            description="The endings a lexical form that is a string is cited with, of which the rule's blocks put another in place (Greek λόγος, -ος: λογ-): the first the form ends in is taken off before the blocks, and the rule realises the citation cell too (it is a realisation, ADR 0154). A form that ends in none is not realised by the rule.",
+            min_length=1,
+        ),
+    ] = None
     blocks: list[AffixBlock]
     notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
 
@@ -6488,6 +6577,12 @@ class Spell(BaseModel):
         bool | None,
         Field(
             description="true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first."
+        ),
+    ] = None
+    decompose: Annotated[
+        bool | None,
+        Field(
+            description="true: the rules read the form decomposed (NFD), each letter's marks apart from it and in the notation's `order`, so a rule can find a mark that NFC composes into its letter (Greek ά: α and an acute); the spelling is NFC again."
         ),
     ] = None
     sets: Annotated[

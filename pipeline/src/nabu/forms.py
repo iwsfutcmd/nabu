@@ -110,11 +110,14 @@ def check(
     vocalization: Mapping[str, tuple[Mapping[str, str], Any]]
     | Mapping[str, tuple[Mapping[str, str], Any, Mapping[str, str]]],
     cli: CoreCli,
+    pointed: Iterable[str] = (),
 ) -> Report:
     """Every lexeme of the lexicon with its form spelled in each of the course's orthographies whose
     profile states `spell` (and in each layer that states one, against `vocalization`: per
     orthography its words, the marks pattern they are compared without and, optionally, its
-    entries by lexeme for a first spelling)."""
+    entries by lexeme for a first spelling). An orthography in `pointed` writes its marks in its
+    own text (hbo's points): a layer's spelling of a lemma is checked against its first spelling."""
+    marked_in_text = set(pointed)
     notation = lang.declared.notation
     spelling: list[tuple[str, str | None]] = []  # (orthography, layer)
     for orth in orthographies:
@@ -209,7 +212,12 @@ def check(
                 first = (spelled.get(orth) or [None])[0]
                 expected: str | None = first
                 where = orth
-                if layer is not None:
+                if layer is not None and orth in marked_in_text:
+                    where = f"{orth}{LAYER}{layer}"
+                    # The lemma as written is its marked text; an allomorph is a piece of a word,
+                    # checked where tokens write it.
+                    expected = first if allomorph is None else None
+                elif layer is not None:
                     where = f"{orth}{LAYER}{layer}"
                     found = vocalization.get(orth)
                     # An allomorph is a piece of a word: the vocalization marks words, never it (its
@@ -306,6 +314,9 @@ class Site:
     following: str | None = None
     #: What the token writes of its base lexeme (its part's surface, or the whole token's).
     base_surface: str | None = None
+    #: The contexts it stands in, which are no feature values: its `context` (hbo pause, nesiga),
+    #: and `bound` where a scheme's reading binds it to the next word (a maqaf).
+    context: tuple[str, ...] = ()
 
     @property
     def key(self) -> str:
@@ -397,12 +408,15 @@ def check_tokens(
     it, and the token is the word that spells as it is written. A token of several lexemes, none of
     them its base, is a token of equals (yue 十 + 八): each in its own cell, joined (core's
     `realiseToken`). Where blocking took one of several free forms of the cell (ADR 0145), each of
-    them may be the one the token writes; a token in its lexeme's own form, no rule taken, may be
-    written as any of the lexicon's spellings of it; a token's free variants (its lexemes' free
-    allomorphs) are tried after the form the rules choose. It is `given` where each spelling is the
+    them may be the one the token writes (each is spelled as it is, and the token is realised
+    around each again: core's `variant`, its other lexemes joined and the rewrites run); a token
+    in its lexeme's own form, no rule taken, may be written as any of the lexicon's spellings of
+    it; a token's free variants (its lexemes' free allomorphs) are tried after the form the rules
+    choose. It is `given` where each spelling is the
     course's or a free alternative of it (compared as core's `spelledAs` does; the marked layer
     exactly), `form` where blocking took a pinned or listed form of its lexeme to give it,
-    `unaccounted` otherwise, with the reason where the rules give nothing. None for a language
+    `unaccounted` otherwise, with the reason where the rules give nothing. Its contexts go to the
+    realiser (a rewrite may hold only of a token in one: hbo pause, bound). None for a language
     with neither realisation rules nor a notation: nothing is checked, nothing asked. A language
     that declares a notation and no rules (one that does not inflect: yue, lzh, tok) is checked
     all the same: each token stands in its citation cell, given by its lexeme's form."""
@@ -437,6 +451,8 @@ def check_tokens(
         }
         if site.following is not None:
             request["next"] = site.following
+        if site.context:
+            request["context"] = list(site.context)
         words = (
             len(entry.form.split(" ")) if entry is not None and isinstance(entry.form, str) else 1
         )
@@ -446,9 +462,20 @@ def check_tokens(
             candidates.append([request, *({**request, "word": k} for k in range(words))])
         else:
             candidates.append([request])
+    phrase = [len(c) > 1 for c in candidates]
     flat = [r for c in candidates for r in c]
     realised = iter(_batched(cli, flat))
     results: list[list[Any]] = [[next(realised) for _ in c] for c in candidates]
+    # The token realised around each other free form of its base's cell (core's `variant`): where
+    # the token writes more than its base, the free form's lexical form alone is not the token's.
+    more: list[tuple[int, dict[str, Any]]] = []
+    for n, c in enumerate(candidates):
+        for request, result in zip(c, results[n], strict=True):
+            free = cast(list[Any], result["value"].get("free") or []) if result["ok"] else []
+            more.extend((n, {**request, "variant": k}) for k in range(1, len(free) + 1))
+    for (n, request), result in zip(more, _batched(cli, [r for _, r in more]), strict=True):
+        candidates[n].append(request)
+        results[n].append(result)
     # (site, try, variant: 0 the form the rules choose, then each free variant's), what to spell.
     spell: list[tuple[int, int, int, Spelling, dict[str, Any]]] = []
     tried: dict[tuple[int, int], TokenCheck] = {}
@@ -492,7 +519,7 @@ def check_tokens(
                 if layer.spell is not None and site.marked is not None:
                     wheres.append((f"{site.orth}{LAYER}{layer.id}", layer.id, site.marked))
             # A phrase realised whole: the token is one word of its spelling.
-            part = len(results[n]) > 1 and j == 0
+            part = phrase[n] and j == 0
             forms = [form, *(f for f, _ in variants[(n, j)])]
             # Free forms of the cell (ADR 0145: both accepted, the first shown): any may be the
             # token's.

@@ -712,3 +712,56 @@ stays REVIEW. Three jobs landed together.
 - **Smaller:** the 287 wrong-form slips (ship or compute free variants of paradigm spellings, or give nouns
   cells); prepositions with the article typed apart (*3a l ba7r*); glosses for the rule ids (with stage 5's
   cards, since they ship); *wesel*'s command.
+
+## Every language (2026-11-25): stages 1 to 4 for the other eleven
+
+The owner asked for rules in every language's lexicon ("minimal for tok and ltc, but otherwise, yeah"). Each language
+went through stages 1 to 4 as apc did, in a session of its own, and was merged here; each has its as-built note in
+docs/rules/<lang>.md (counts, rules and branches, classes, engine changes, where the course and the rules disagree, the
+questions for the owner). Every rule, branch, class, listed form and statement is REVIEW. No token's text, spelling,
+reading, accept set or clip changed, but for two annotation fixes the coordinator approved (below).
+
+| | Tokens (both scripts) | By the rules | By a listed or pinned form | Notes |
+|---|---|---|---|---|
+| tok | 5,330 | all (citation cells) | 0 | no inflection; sitelen pona states no `spell` (a logograph is lexical) |
+| lzh | 1,954 | all (citation cells) | 0 | no inflection; the forms are the characters |
+| yue | 3,724 | all (citation cells) | 0 | a form pairs each character with its Jyutping (學hok6生saang1) |
+| bar | 2,071 | 1,669 | 402 | verbs stored as stems (`stemmed`); 260 of 263 pinned copies pruned |
+| uz | 2,504 | 2,504 | 0 (1 pinned) | affix lexemes written by exponents; Cyrillic spelled from the Latin |
+| fa | 1,700 | 1,547 | 153 (listed present stems) | the forms carry the short vowels as vocalization.yaml marks them |
+| chg | 2,689 | 2,481 | 208 free variants | the forms are the scribes' Arabic spellings; free allomorphs |
+| es | 11,152 | 9,863 | 1,289 | 813 of 835 pinned copies pruned; 7,494 paradigm spellings ship |
+| sk | 2,873 | 2,140 | 733 | 25 classes by declension and conjugation; all 530 pinned copies pruned |
+| grc | 1,282 | 839 | 443 | the accent placed by rule (recessive, persistent, oxytone, ultima) |
+| hbo | 2,452 | 1,543 | 909 | 113 verbs as radical forms over 152 stems; noun plurals pinned |
+
+**What the engine gained** (each additive, each with vectors on an invented language; apc's bundle is byte for byte
+what it was): a notation may name no vowel signs and a `spell` may have no rules (an alphabet's form is its spelling);
+the token check runs for a language with a notation and no rules (each token in its citation cell); a token of equals,
+no base marked (yue 四十), realised part by part; `stemmed` (a category's string forms are stems, the citation cell
+realised by rule: bar, uz); `strip` on a rule (a cited ending taken off first: grc); an exponent may write an affix
+lexeme (`Exponent.lexeme`, the token's allomorph chosen: uz); a lexeme beside the base realised in the values its token
+gives it (es buscarlos); a condition reads a stored form whole or up to its first boundary (sk by+ť, es levantar+se);
+`Condition.own` (a lexeme's own values: sk's declensions) and `Condition.context` (a token's context: hbo's pause,
+nesiga, maqaf); free forms of a cell (`LexemeForm.free`, `Realisation.free`, `RealiseOptions.variant`) and free
+allomorphs (`Allomorph.free`, `Realisation.alternatives`, the token's other allomorphs chosen again around one: chg,
+hbo), one mechanism each, unified in the hbo merge; an allomorph's condition may read its token's base (hbo's suffix
+series); `LexemeForm.before` (a stem that holds only before a suffix) and a form with no `feats`; accent rules (an
+`accent` rewrite reading the notation's `prosody`: grc); a `spell` that reads the form decomposed (`decompose`: grc) or
+keeps its boundaries for its rules (`boundaries`: chg's half-space); `unmarked` in language.yaml (values the course
+uses from the start and never introduces, read as taught where a paradigm's cells are listed: es, sk; bar declares
+none, so its present cells do not ship yet).
+
+**Course annotations changed** (the coordinator approved each; nothing a learner reads): es's twelve imperatives with
+an enclitic list it as échale does, and llámenme, Díganme are plural; fa's verb tokens choose their tense (Pres 170,
+Past 20), which splits a gap-fill's options by tense, and its existential هست chooses `Variant: Long`.
+
+**The rules explorer** (debug mode, `#/<course>/<orth>/rules`, CLAUDE.md "Rules explorer notes") puts any lexeme
+through its language's rules by hand, from the lexicon's own files, with the token check's verdict on every way the
+course writes it: the place to try a rule before the compiler sees it.
+
+**For the owner** (each language's note has its own list): bar's present cells (declare its `unmarked`?); fa's tense
+annotation and the present stem as a principal part; yue's paired notation; uz's eleven lemmas cited inflected; chg's
+harmony classes; grc's aorist `Aspect=Perf` (twelve pinned stems hang on it) and its principal parts; hbo's pausal
+`context` and the article after a preposition; es's and sk's regularised forms of suppletive or defective words, which
+are not words (stage 6 must decide before the label `regularised` is produced).
