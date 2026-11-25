@@ -452,8 +452,9 @@ points below land, and its chapter is cited where it does.
     - **u27 (keep going):** dall spelled ضلّ as it is said (Kline: Dall, written ظلّ), with yDall, ndall (a doubled
       verb whose present keeps its a); ballash, khallas; rje3t 2rit el ktab (I read it again), rej3et da22etli;
       ma 3ad seken hon; tele3 el mat3am msakkar (turned out).
-    - **u28 (without):** ma akalt shi illa khebz; ghayr, ghayrak, ghayrkon; bala sukkar; bedun basal, beduni,
-      bedunek (Kline: bidoun); w bas, bas hek; shu ghalye hal siyyara!, 2addesho kbir, 2addesha tayybe.
+    - **u28 (without):** ma akalt shi ella khebz (Kline: illa; the detach step would read illa's il as the article,
+      so the text writes ella and illa is accepted by e/i); ghayr, ghayrak, ghayrkon; bala sukkar; bedun basal,
+      beduni, bedunek (Kline: bidoun); w bas, bas hek; shu ghalye hal siyyara!, 2addesho kbir, 2addesha tayybe.
     - **u29 (while):** shefta hiyye w raj3a, weslet hiyye w ta3bane; lamma kent zghir, kent 7ebb el ba7r; ya Sami;
       dakhlak, dakhelkon (دخلك is also a woman's dakhlik; only the man's and the plural are taught); ya3ni, lek, w hek.
     - **u30 (mountains):** 3assoul, tayyoub (diminutives, Kline ch. 31), said to a boy; 3asal.
