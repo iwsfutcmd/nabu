@@ -1,0 +1,7 @@
+{
+  "$comment": "Spelling a lexical form (docs/rules-design.md; docs/rules/yue.md): a set's members matched as ranges, on an invented statement (spell/fixture).",
+  "vectors": [
+    {"id": "spell/fixture/set-ranges", "op": "spell", "args": {"profile": {"id": "und-Latn/fixture", "lang": "und-Latn", "segmentation": {"content": "hand-pinned", "runtime": "grapheme"}, "normalize": [], "spell": {"from": "lexical", "rules": [{"find": "{W}", "to": "X"}]}}, "notation": {"sets": {"W": "[a-ceg-h\\U00020000-\\U00020002]"}}, "form": "abcdefgh𠀀𠀂𠀃i"}, "expected": {"spelling": "XXXdXfXXXX𠀃i", "alternatives": []}, "note": "A set is matched as ranges of consecutive code points (a range, a single, a pair, a range beyond the BMP): the members and only they, as one escape each would match them. d, f, U+20003 and i are outside the set."},
+    {"id": "spell/fixture/set-ranges-context", "op": "spell", "args": {"profile": {"id": "und-Latn/fixture", "lang": "und-Latn", "segmentation": {"content": "hand-pinned", "runtime": "grapheme"}, "normalize": [], "spell": {"from": "lexical", "rules": [{"find": "{T}", "before": "{H}", "to": "{T} "}, {"find": "{H}", "to": ""}]}}, "notation": {"sets": {"H": "[\\u4e00-\\u9fff\\U00020000-\\U0002a6df]", "T": "[1-6]"}}, "form": "一a1𠀁b2鿿c3"}, "expected": {"spelling": "a1 b2 c3", "alternatives": []}, "note": "A large set (two whole blocks of ideographs, one beyond the BMP) in a rule's context and its find: U+4E00, U+20001 and U+9FFF, a range's first, inner and last members, are all matched."}
+  ]
+}
