@@ -19,7 +19,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "من چای می\u200cخواهم."
-      tokens: [{surface: من, lexeme: man}, {surface: چای, lexeme: chay}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: چای, lexeme: chay}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] [یک] چای می\u200cخواهم"
   translations:
     en: |-
@@ -32,7 +32,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "شما چه می\u200cخواهید؟"
-      tokens: [{surface: شما, lexeme: shoma}, {surface: چه, lexeme: che}, {surface: "می\u200cخواهید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: شما, lexeme: shoma}, {surface: چه, lexeme: che}, {surface: "می\u200cخواهید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: "[شما] (چه|چی) می\u200cخواهید\n[تو] (چه|چی) می\u200cخواهی\nشما چه چیزی می\u200cخواهید"
   translations:
     en: |-
@@ -43,7 +43,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "یک پیراهن می\u200cخواهم."
-      tokens: [{surface: یک, lexeme: yek}, {surface: پیراهن, lexeme: pirahan}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: یک, lexeme: yek}, {surface: پیراهن, lexeme: pirahan}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] یک پیراهن می\u200cخواهم\nپیراهن می\u200cخواهم"
   translations:
     en: |-
@@ -54,7 +54,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "علی کفش می\u200cخواهد."
-      tokens: [{surface: علی, lexeme: ali}, {surface: کفش, lexeme: kafsh}, {surface: "می\u200cخواهد", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true}, {lexeme: 3sg, surface: د}]}]
+      tokens: [{surface: علی, lexeme: ali}, {surface: کفش, lexeme: kafsh}, {surface: "می\u200cخواهد", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true, feats: {Tense: Pres}}, {lexeme: 3sg, surface: د}]}]
       reverse: "علی کفش می\u200cخواهد"
   translations:
     en: |-
@@ -79,7 +79,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "من یک کیف می\u200cخواهم."
-      tokens: [{surface: من, lexeme: man}, {surface: یک, lexeme: yek}, {surface: کیف, lexeme: kif}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: یک, lexeme: yek}, {surface: کیف, lexeme: kif}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] یک کیف می\u200cخواهم\nمن کیف می\u200cخواهم"
   translations:
     en: |-
@@ -104,7 +104,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "ما از بازار میوه می\u200cخریم."
-      tokens: [{surface: ما, lexeme: ma}, {surface: از, lexeme: az}, {surface: بازار, lexeme: bazar}, {surface: میوه, lexeme: mive}, {surface: "می\u200cخریم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kharidan, surface: خر, base: true}, {lexeme: 1pl, surface: یم}]}]
+      tokens: [{surface: ما, lexeme: ma}, {surface: از, lexeme: az}, {surface: بازار, lexeme: bazar}, {surface: میوه, lexeme: mive}, {surface: "می\u200cخریم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kharidan, surface: خر, base: true, feats: {Tense: Pres}}, {lexeme: 1pl, surface: یم}]}]
       reverse: "[ما] از بازار میوه می\u200cخریم"
   translations:
     en: |-
@@ -115,7 +115,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "این مغازه لباس\u200cهای قشنگ دارد."
-      tokens: [{surface: این, lexeme: in}, {surface: مغازه, lexeme: maghaze}, {surface: "لباس\u200cهای", lexemes: [{lexeme: lebas, surface: "لباس\u200c", base: true}, {lexeme: pl, surface: ها}, {lexeme: ezafe, surface: ی}]}, {surface: قشنگ, lexeme: ghashang}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: 3sg, surface: د}]}]
+      tokens: [{surface: این, lexeme: in}, {surface: مغازه, lexeme: maghaze}, {surface: "لباس\u200cهای", lexemes: [{lexeme: lebas, surface: "لباس\u200c", base: true}, {lexeme: pl, surface: ها}, {lexeme: ezafe, surface: ی}]}, {surface: قشنگ, lexeme: ghashang}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 3sg, surface: د}]}]
       reverse: "این مغازه لباس\u200cهای (قشنگ|قشنگی) دارد\nاین فروشگاه لباس\u200cهای قشنگ دارد\nاین مغازه لباس\u200cهای زیبا دارد"
   translations:
     en: |-
@@ -127,7 +127,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "من می\u200cخواهم یک کتاب بخرم."
-      tokens: [{surface: من, lexeme: man}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true}, {lexeme: 1sg, surface: م}]}, {surface: یک, lexeme: yek}, {surface: کتاب, lexeme: ketab}, {surface: بخرم, lexemes: [{lexeme: subj, surface: ب}, {lexeme: kharidan, surface: خر, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}, {surface: یک, lexeme: yek}, {surface: کتاب, lexeme: ketab}, {surface: بخرم, lexemes: [{lexeme: subj, surface: ب}, {lexeme: kharidan, surface: خر, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] می\u200cخواهم یک کتاب بخرم\nمن می\u200cخواهم کتاب بخرم"
   translations:
     en: |-
@@ -139,7 +139,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "می\u200cخواهم به بازار بروم."
-      tokens: [{surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true}, {lexeme: 1sg, surface: م}]}, {surface: به, lexeme: be}, {surface: بازار, lexeme: bazar}, {surface: بروم, lexemes: [{lexeme: subj, surface: ب}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}, {surface: به, lexeme: be}, {surface: بازار, lexeme: bazar}, {surface: بروم, lexemes: [{lexeme: subj, surface: ب}, {lexeme: raftan, surface: رو, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] می\u200cخواهم [به] بازار بروم"
   translations:
     en: |-
@@ -151,7 +151,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "تو چه می\u200cخواهی بخری؟"
-      tokens: [{surface: تو, lexeme: to}, {surface: چه, lexeme: che}, {surface: "می\u200cخواهی", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true}, {lexeme: 2sg, surface: ی}]}, {surface: بخری, lexemes: [{lexeme: subj, surface: ب}, {lexeme: kharidan, surface: خر, base: true}, {lexeme: 2sg, surface: ی}]}]
+      tokens: [{surface: تو, lexeme: to}, {surface: چه, lexeme: che}, {surface: "می\u200cخواهی", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true, feats: {Tense: Pres}}, {lexeme: 2sg, surface: ی}]}, {surface: بخری, lexemes: [{lexeme: subj, surface: ب}, {lexeme: kharidan, surface: خر, base: true, feats: {Tense: Pres}}, {lexeme: 2sg, surface: ی}]}]
       reverse: "[تو] (چه|چی) می\u200cخواهی بخری\n[شما] (چه|چی) می\u200cخواهید بخرید\nتو چه چیزی می\u200cخواهی بخری"
   translations:
     en: |-
@@ -177,7 +177,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: من رنگِ قرمز را دوست دارم.
-      tokens: [{surface: من, lexeme: man}, {surface: رنگِ, lexemes: [{lexeme: rang, surface: رنگِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: قرمز, lexeme: ghermez}, {surface: را, lexeme: ra}, {surface: دوست, lexeme: doost}, {surface: دارم, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: رنگِ, lexemes: [{lexeme: rang, surface: رنگِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: قرمز, lexeme: ghermez}, {surface: را, lexeme: ra}, {surface: دوست, lexeme: doost}, {surface: دارم, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] (رنگ قرمز|قرمز) [را] دوست دارم\nمن از رنگ قرمز خوشم می\u200cآید"
   translations:
     en: I like (the colour red|the color red|red).
@@ -201,7 +201,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "کفشِ سفید می\u200cخواهم."
-      tokens: [{surface: کفشِ, lexemes: [{lexeme: kafsh, surface: کفشِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: سفید, lexeme: sefid}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: کفشِ, lexemes: [{lexeme: kafsh, surface: کفشِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: سفید, lexeme: sefid}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] کفش سفید می\u200cخواهم"
   translations:
     en: |-
@@ -214,7 +214,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: پیراهنِ سیاه دارید؟
-      tokens: [{surface: پیراهنِ, lexemes: [{lexeme: pirahan, surface: پیراهنِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: سیاه, lexeme: siyah}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: پیراهنِ, lexemes: [{lexeme: pirahan, surface: پیراهنِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: سیاه, lexeme: siyah}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         [شما] پیراهن سیاه دارید
         [تو] پیراهن سیاه داری
@@ -244,7 +244,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "من یک شلوارِ سبز می\u200cخواهم."
-      tokens: [{surface: من, lexeme: man}, {surface: یک, lexeme: yek}, {surface: شلوارِ, lexemes: [{lexeme: shalvar, surface: شلوارِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: سبز, lexeme: sabz}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: یک, lexeme: yek}, {surface: شلوارِ, lexemes: [{lexeme: shalvar, surface: شلوارِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: سبز, lexeme: sabz}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] [یک] شلوار سبز می\u200cخواهم"
   translations:
     en: |-
@@ -258,7 +258,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: چه رنگی دوست دارید؟
-      tokens: [{surface: چه, lexeme: che}, {surface: رنگی, lexemes: [{lexeme: rang, surface: رنگ, base: true}, {lexeme: indef, surface: ی}]}, {surface: دوست, lexeme: doost}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: چه, lexeme: che}, {surface: رنگی, lexemes: [{lexeme: rang, surface: رنگ, base: true}, {lexeme: indef, surface: ی}]}, {surface: دوست, lexeme: doost}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: "[شما] (چه|چی) رنگی دوست دارید\n[تو] (چه|چی) رنگی دوست داری\nاز چه رنگی خوشتان می\u200cآید"
   translations:
     en: |-
@@ -272,7 +272,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: رنگِ دیگری دارید؟
-      tokens: [{surface: رنگِ, lexemes: [{lexeme: rang, surface: رنگِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: دیگری, lexemes: [{lexeme: digar, surface: دیگر, base: true}, {lexeme: indef, surface: ی}]}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: رنگِ, lexemes: [{lexeme: rang, surface: رنگِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: دیگری, lexemes: [{lexeme: digar, surface: دیگر, base: true}, {lexeme: indef, surface: ی}]}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         [شما] رنگ دیگری دارید
         [تو] رنگ دیگری داری
@@ -288,7 +288,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "من علی را می\u200cبینم."
-      tokens: [{surface: من, lexeme: man}, {surface: علی, lexeme: ali}, {surface: را, lexeme: ra}, {surface: "می\u200cبینم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: didan, surface: بین, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: علی, lexeme: ali}, {surface: را, lexeme: ra}, {surface: "می\u200cبینم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: didan, surface: بین, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] علی را می\u200cبینم"
   translations:
     en: I (see|can see) Ali.
@@ -298,7 +298,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "می\u200cتوانم این را ببینم؟"
-      tokens: [{surface: "می\u200cتوانم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: tavanestan, surface: توان, base: true}, {lexeme: 1sg, surface: م}]}, {surface: این, lexeme: in}, {surface: را, lexeme: ra}, {surface: ببینم, lexemes: [{lexeme: subj, surface: ب}, {lexeme: didan, surface: بین, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: "می\u200cتوانم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: tavanestan, surface: توان, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}, {surface: این, lexeme: in}, {surface: را, lexeme: ra}, {surface: ببینم, lexemes: [{lexeme: subj, surface: ب}, {lexeme: didan, surface: بین, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] می\u200cتوانم این را ببینم\nآیا می\u200cتوانم این را ببینم\nمی\u200cشود این را ببینم\nمی\u200cتوانم این یکی را ببینم"
   translations:
     en: |-
@@ -337,7 +337,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "ارزان\u200cتر دارید؟"
-      tokens: [{surface: "ارزان\u200cتر", lexemes: [{lexeme: arzan, surface: "ارزان\u200c", base: true}, {lexeme: comp, surface: تر}]}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: "ارزان\u200cتر", lexemes: [{lexeme: arzan, surface: "ارزان\u200c", base: true}, {lexeme: comp, surface: تر}]}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: "[شما] ارزان\u200cتر دارید\n[تو] ارزان\u200cتر داری\nآیا ارزان\u200cتر دارید"
   translations:
     en: |-
@@ -349,7 +349,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "پول را به شما می\u200cدهم."
-      tokens: [{surface: پول, lexeme: pool}, {surface: را, lexeme: ra}, {surface: به, lexeme: be}, {surface: شما, lexeme: shoma}, {surface: "می\u200cدهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: dadan, surface: ده, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: پول, lexeme: pool}, {surface: را, lexeme: ra}, {surface: به, lexeme: be}, {surface: شما, lexeme: shoma}, {surface: "می\u200cدهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: dadan, surface: ده, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] پول را به (شما|تو) می\u200cدهم\nمن پول را به شما خواهم داد"
   translations:
     en: |-
@@ -362,7 +362,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "تخفیف می\u200cدهید؟"
-      tokens: [{surface: تخفیف, lexeme: takhfif}, {surface: "می\u200cدهید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: dadan, surface: ده, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: تخفیف, lexeme: takhfif}, {surface: "می\u200cدهید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: dadan, surface: ده, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: "[شما] تخفیف می\u200cدهید\n[تو] تخفیف می\u200cدهی\nآیا تخفیف می\u200cدهید"
   translations:
     en: (Will|Can|Do|Would) you give [me] a discount?
@@ -371,7 +371,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "خیلی گران است! ارزان\u200cتر نمی\u200cدهید؟"
-      tokens: [{surface: خیلی, lexeme: kheyli}, {surface: گران, lexeme: geran}, {surface: است, lexeme: budan}, {surface: "ارزان\u200cتر", lexemes: [{lexeme: arzan, surface: "ارزان\u200c", base: true}, {lexeme: comp, surface: تر}]}, {surface: "نمی\u200cدهید", lexemes: [{lexeme: neg, surface: ن}, {lexeme: mi, surface: "می\u200c"}, {lexeme: dadan, surface: ده, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: خیلی, lexeme: kheyli}, {surface: گران, lexeme: geran}, {surface: است, lexeme: budan}, {surface: "ارزان\u200cتر", lexemes: [{lexeme: arzan, surface: "ارزان\u200c", base: true}, {lexeme: comp, surface: تر}]}, {surface: "نمی\u200cدهید", lexemes: [{lexeme: neg, surface: ن}, {lexeme: mi, surface: "می\u200c"}, {lexeme: dadan, surface: ده, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: "خیلی گران است ارزان\u200cتر نمی\u200cدهید\nخیلی گران است ارزان\u200cتر نمی\u200cدهی\nخیلی گران است شما ارزان\u200cتر نمی\u200cدهید"
   translations:
     en: It('s| is) (very|too|really) expensive! (Won't|Can't) you (make it|sell it|give it to me) cheaper?
@@ -380,7 +380,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "این را می\u200cخرم."
-      tokens: [{surface: این, lexeme: in}, {surface: را, lexeme: ra}, {surface: "می\u200cخرم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kharidan, surface: خر, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: این, lexeme: in}, {surface: را, lexeme: ra}, {surface: "می\u200cخرم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kharidan, surface: خر, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] این را می\u200cخرم\nاین یکی را می\u200cخرم"
   translations:
     en: I('ll| will) (buy|take) this [one].
@@ -392,7 +392,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "شما چه می\u200cخواهید بخرید؟"
-      tokens: [{surface: شما, lexeme: shoma}, {surface: چه, lexeme: che}, {surface: "می\u200cخواهید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true}, {lexeme: 2pl, surface: ید}]}, {surface: بخرید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: kharidan, surface: خر, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: شما, lexeme: shoma}, {surface: چه, lexeme: che}, {surface: "می\u200cخواهید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}, {surface: بخرید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: kharidan, surface: خر, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: "[شما] (چه|چی) می\u200cخواهید بخرید\nشما چه چیزی می\u200cخواهید بخرید"
   translations:
     en: |-
@@ -419,7 +419,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: "سلام خانم، بفرمایید! چه می\u200cخواهید؟"
-          tokens: [{surface: سلام, lexeme: salam}, {surface: خانم, lexeme: khanom}, {surface: بفرمایید, lexeme: befarmayid}, {surface: چه, lexeme: che}, {surface: "می\u200cخواهید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true}, {lexeme: 2pl, surface: ید}]}]
+          tokens: [{surface: سلام, lexeme: salam}, {surface: خانم, lexeme: khanom}, {surface: بفرمایید, lexeme: befarmayid}, {surface: چه, lexeme: che}, {surface: "می\u200cخواهید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       translations:
         en: Hello, madam, come in! What would you like?
   - line:
@@ -427,7 +427,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: "سلام. یک پیراهن می\u200cخواهم."
-          tokens: [{surface: سلام, lexeme: salam}, {surface: یک, lexeme: yek}, {surface: پیراهن, lexeme: pirahan}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true}, {lexeme: 1sg, surface: م}]}]
+          tokens: [{surface: سلام, lexeme: salam}, {surface: یک, lexeme: yek}, {surface: پیراهن, lexeme: pirahan}, {surface: "می\u200cخواهم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: khastan, surface: خواه, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       translations:
         en: Hello. I'd like a shirt.
   - line:
@@ -435,7 +435,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: چه رنگی دوست دارید؟
-          tokens: [{surface: چه, lexeme: che}, {surface: رنگی, lexemes: [{lexeme: rang, surface: رنگ, base: true}, {lexeme: indef, surface: ی}]}, {surface: دوست, lexeme: doost}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: 2pl, surface: ید}]}]
+          tokens: [{surface: چه, lexeme: che}, {surface: رنگی, lexemes: [{lexeme: rang, surface: رنگ, base: true}, {lexeme: indef, surface: ی}]}, {surface: دوست, lexeme: doost}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       translations:
         en: What colour do you like?
   - line:
@@ -480,7 +480,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: "خیلی گران است! تخفیف می\u200cدهید؟"
-          tokens: [{surface: خیلی, lexeme: kheyli}, {surface: گران, lexeme: geran}, {surface: است, lexeme: budan}, {surface: تخفیف, lexeme: takhfif}, {surface: "می\u200cدهید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: dadan, surface: ده, base: true}, {lexeme: 2pl, surface: ید}]}]
+          tokens: [{surface: خیلی, lexeme: kheyli}, {surface: گران, lexeme: geran}, {surface: است, lexeme: budan}, {surface: تخفیف, lexeme: takhfif}, {surface: "می\u200cدهید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: dadan, surface: ده, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       translations:
         en: That's very expensive! Will you give me a discount?
   - line:
@@ -505,7 +505,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: "بله، خوب است. این را می\u200cخرم."
-          tokens: [{surface: بله, lexeme: bale}, {surface: خوب, lexeme: khub}, {surface: است, lexeme: budan}, {surface: این, lexeme: in}, {surface: را, lexeme: ra}, {surface: "می\u200cخرم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kharidan, surface: خر, base: true}, {lexeme: 1sg, surface: م}]}]
+          tokens: [{surface: بله, lexeme: bale}, {surface: خوب, lexeme: khub}, {surface: است, lexeme: budan}, {surface: این, lexeme: in}, {surface: را, lexeme: ra}, {surface: "می\u200cخرم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kharidan, surface: خر, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       translations:
         en: Yes, that's fine. I'll take it.
   - line:

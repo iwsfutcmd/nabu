@@ -28,7 +28,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "من در تهران زندگی می\u200cکنم."
-      tokens: [{surface: من, lexeme: man}, {surface: در, lexeme: dar}, {surface: تهران, lexeme: tehran}, {surface: زندگی, lexeme: zendegi}, {surface: "می\u200cکنم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kardan, surface: کن, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: در, lexeme: dar}, {surface: تهران, lexeme: tehran}, {surface: زندگی, lexeme: zendegi}, {surface: "می\u200cکنم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: kardan, surface: کن, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] (در|توی) تهران زندگی می\u200cکنم"
   translations:
     en: |-
@@ -186,7 +186,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "من با مترو به دانشگاه می\u200cروم."
-      tokens: [{surface: من, lexeme: man}, {surface: با, lexeme: ba}, {surface: مترو, lexeme: metro}, {surface: به, lexeme: be}, {surface: دانشگاه, lexeme: daneshgah}, {surface: "می\u200cروم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: با, lexeme: ba}, {surface: مترو, lexeme: metro}, {surface: به, lexeme: be}, {surface: دانشگاه, lexeme: daneshgah}, {surface: "می\u200cروم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] با مترو [به] دانشگاه می\u200cروم\nمن دارم با مترو به دانشگاه می\u200cروم"
   translations:
     en: |-
@@ -197,7 +197,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "ما با اتوبوس می\u200cرویم."
-      tokens: [{surface: ما, lexeme: ma}, {surface: با, lexeme: ba}, {surface: اتوبوس, lexeme: otobus}, {surface: "می\u200cرویم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 1pl, surface: یم}]}]
+      tokens: [{surface: ما, lexeme: ma}, {surface: با, lexeme: ba}, {surface: اتوبوس, lexeme: otobus}, {surface: "می\u200cرویم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true, feats: {Tense: Pres}}, {lexeme: 1pl, surface: یم}]}]
       reverse: "[ما] با اتوبوس می\u200cرویم\nما داریم با اتوبوس می\u200cرویم"
   translations:
     en: |-
@@ -211,7 +211,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "با تاکسی می\u200cآیید؟"
-      tokens: [{surface: با, lexeme: ba}, {surface: تاکسی, lexeme: taksi}, {surface: "می\u200cآیید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: amadan, surface: آی, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: با, lexeme: ba}, {surface: تاکسی, lexeme: taksi}, {surface: "می\u200cآیید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: amadan, surface: آی, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: "[شما] با تاکسی می\u200cآیید\n[تو] با تاکسی می\u200cآیی\nآیا با تاکسی می\u200cآیید"
   translations:
     en: |-
@@ -240,7 +240,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "من پیاده می\u200cروم."
-      tokens: [{surface: من, lexeme: man}, {surface: پیاده, lexeme: piyade}, {surface: "می\u200cروم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: پیاده, lexeme: piyade}, {surface: "می\u200cروم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] پیاده می\u200cروم\nمن دارم پیاده می\u200cروم"
   translations:
     en: |-
@@ -254,7 +254,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: با مترو بروید.
-      tokens: [{surface: با, lexeme: ba}, {surface: مترو, lexeme: metro}, {surface: بروید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: با, lexeme: ba}, {surface: مترو, lexeme: metro}, {surface: بروید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: raftan, surface: رو, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: با مترو (بروید|برو)
   translations:
     en: |-
@@ -265,7 +265,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: مستقیم بروید.
-      tokens: [{surface: مستقیم, lexeme: mostaghim}, {surface: بروید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: مستقیم, lexeme: mostaghim}, {surface: بروید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: raftan, surface: رو, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: مستقیم (بروید|برو)
   translations:
     en: Go straight [ahead|on].
@@ -274,7 +274,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: اینجا بپیچید.
-      tokens: [{surface: اینجا, lexeme: inja}, {surface: بپیچید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: pichidan, surface: پیچ, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: اینجا, lexeme: inja}, {surface: بپیچید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: pichidan, surface: پیچ, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: اینجا (بپیچید|بپیچ)
   translations:
     en: Turn here.
@@ -283,7 +283,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: به راست بپیچید.
-      tokens: [{surface: به, lexeme: be}, {surface: راست, lexeme: rast}, {surface: بپیچید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: pichidan, surface: پیچ, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: به, lexeme: be}, {surface: راست, lexeme: rast}, {surface: بپیچید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: pichidan, surface: پیچ, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         (به راست|به سمت راست|راست) (بپیچید|بپیچ)
         سمت راست بپیچید
@@ -294,7 +294,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: به چپ بپیچید.
-      tokens: [{surface: به, lexeme: be}, {surface: چپ, lexeme: chap}, {surface: بپیچید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: pichidan, surface: پیچ, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: به, lexeme: be}, {surface: چپ, lexeme: chap}, {surface: بپیچید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: pichidan, surface: پیچ, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         (به چپ|به سمت چپ|چپ) (بپیچید|بپیچ)
         سمت چپ بپیچید
@@ -319,7 +319,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: مستقیم بروید، بعد به راست بپیچید.
-      tokens: [{surface: مستقیم, lexeme: mostaghim}, {surface: بروید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 2pl, surface: ید}]}, {surface: بعد, lexeme: bad}, {surface: به, lexeme: be}, {surface: راست, lexeme: rast}, {surface: بپیچید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: pichidan, surface: پیچ, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: مستقیم, lexeme: mostaghim}, {surface: بروید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: raftan, surface: رو, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}, {surface: بعد, lexeme: bad}, {surface: به, lexeme: be}, {surface: راست, lexeme: rast}, {surface: بپیچید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: pichidan, surface: پیچ, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         مستقیم بروید (بعد|بعدش) (به راست|به سمت راست|راست) بپیچید
         مستقیم برو (بعد|بعدش) (به راست|به سمت راست|راست) بپیچ
@@ -396,7 +396,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: نزدیک است. مستقیم بروید، بعد به چپ بپیچید.
-          tokens: [{surface: نزدیک, lexeme: nazdik}, {surface: است, lexeme: budan}, {surface: مستقیم, lexeme: mostaghim}, {surface: بروید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 2pl, surface: ید}]}, {surface: بعد, lexeme: bad}, {surface: به, lexeme: be}, {surface: چپ, lexeme: chap}, {surface: بپیچید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: pichidan, surface: پیچ, base: true}, {lexeme: 2pl, surface: ید}]}]
+          tokens: [{surface: نزدیک, lexeme: nazdik}, {surface: است, lexeme: budan}, {surface: مستقیم, lexeme: mostaghim}, {surface: بروید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: raftan, surface: رو, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}, {surface: بعد, lexeme: bad}, {surface: به, lexeme: be}, {surface: چپ, lexeme: chap}, {surface: بپیچید, lexemes: [{lexeme: subj, surface: ب}, {lexeme: pichidan, surface: پیچ, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
       translations:
         en: It's close. Go straight ahead, then turn left.
   - choose:
