@@ -122,11 +122,11 @@
       "title": "Notation",
       "description": "How the language writes a lexical form (ADR 0145; docs/lexical-forms/<lang>.md): the signs for its vowels, its long vowels and no vowel, the marks a letter carries in the order the notation names them, and the named sets a profile's `spell` refers to as {name}. Read by @nabu/core (`compileSpeller`); never shipped in a bundle.",
       "type": "object",
-      "required": ["vowels", "sets"],
+      "required": ["sets"],
       "additionalProperties": false,
       "properties": {
         "vowels": {
-          "description": "Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C).",
+          "description": "Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C). A notation whose vowels are letters (an alphabet's: es, sk, tok) names none.",
           "type": "object",
           "minProperties": 1,
           "additionalProperties": { "type": "string", "minLength": 1 }

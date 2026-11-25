@@ -1256,7 +1256,7 @@
           "propertyNames": { "pattern": "^[A-Za-z][A-Za-z0-9-]*$" },
           "additionalProperties": { "$ref": "#/$defs/UnicodeSetPattern" }
         },
-        "rules": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/SpellRule" } }
+        "rules": { "description": "None where the orthography writes the form as it is (its boundaries dropped).", "type": "array", "items": { "$ref": "#/$defs/SpellRule" } }
       }
     },
     "SpellRule": {
