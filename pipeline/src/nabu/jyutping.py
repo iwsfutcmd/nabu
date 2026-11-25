@@ -5,7 +5,10 @@ character name and lexicon entry's spelling in it comes from the Hong Kong chara
 lexical token's pinned Jyutping becomes the word, its characters the word's ruby (`characters`), and
 the text joins the words with spaces and Latin punctuation. `nabu jyutping <course>` writes it into
 the course's units and its language's lexicon; the compiler checks the two agree
-(`enrich.transliteration-mismatch`).
+(`enrich.transliteration-mismatch`). Where the language declares a notation
+(lexicons/yue/language.yaml), each lexeme's lexical form is written too, each character followed
+by its syllable: the form both orthographies' `spell` statements write the word from
+(docs/rules/yue.md).
 
 Accept sets (`reverse`) are converted too: each character of an alternative takes the reading the
 sentence pins for it, else the one the course pins for that word everywhere, else PyCantonese's.
@@ -513,14 +516,41 @@ def _strings(node: yaml.Node | None) -> list[str] | None:
     return [str(x.value) for x in node.value]
 
 
+def lexical_form(spelling: str, reading: str) -> str | None:
+    """A spelling's lexical form in yue's notation (lexicons/yue/language.yaml, `notation`): each
+    character followed by its syllable (學hok6生saang1), from which each orthography's `spell`
+    writes its word; None where the reading does not line up with the characters."""
+    parts = syllables(reading)
+    if len(parts) != len(spelling) or not all(HAN.fullmatch(c) for c in spelling):
+        return None
+    return "".join(c + s for c, s in zip(spelling, parts, strict=True))
+
+
+def _form_edit(spot: yaml.Node, spelled_key: yaml.Node, wanted: str) -> tuple[int, int, str] | None:
+    """The edit that makes a lexeme's (or an allomorph's) `form` say `wanted`: its value mended,
+    or the key written before `spelled`, on the same line in a flow mapping, else on its own."""
+    have = _pair(spot, "form")
+    if have is not None:
+        value = have[1]
+        if isinstance(value, yaml.ScalarNode) and value.value == wanted:
+            return None
+        return (value.start_mark.index, value.end_mark.index, _scalar_line(wanted))
+    at = spelled_key.start_mark.index
+    if getattr(spot, "flow_style", False):
+        return (at, at, f"form: {_scalar_line(wanted)}, ")
+    return (at, at, f"form: {_scalar_line(wanted)}\n{' ' * spelled_key.start_mark.column}")
+
+
 def rewrite_lexicon(
-    source: str, lex: Lexicon, at: tuple[str, ...] = ("lexemes",)
+    source: str, lex: Lexicon, at: tuple[str, ...] = ("lexemes",), forms: bool = False
 ) -> tuple[str, list[str]]:
     """A lexicon's text with the Jyutping of every spelling written in: wherever an entry, one of
     its allomorphs or one of its forms is spelled in characters (`spelled`), the same in
-    yue-Latn/jyutping, as the course's tokens read that lexeme. A spelling that already says so
-    is left exactly as it is written, and so is everything else. `at`: where the entries are
-    (a one-file course keeps them under own, lexicon, lexemes)."""
+    yue-Latn/jyutping, as the course's tokens read that lexeme. With `forms` (a language that
+    declares a notation), an entry's and an allomorph's lexical form too, from its first spelling
+    and that reading (`lexical_form`): the Jyutping in it is never written by hand either. What
+    already says so is left exactly as it is written, and so is everything else. `at`: where the
+    entries are (a one-file course keeps them under own, lexicon, lexemes)."""
     root = cast(yaml.Node | None, yaml.compose(source))  # pyright: ignore[reportUnknownMemberType]
     entries: yaml.Node | None = root
     for key in at:
@@ -532,14 +562,22 @@ def rewrite_lexicon(
         if not isinstance(ident, yaml.ScalarNode):
             continue
         lexeme = str(ident.value)
-        spots = [entry, *_items(_value(entry, "allomorphs")), *_items(_value(entry, "forms"))]
+        own = [entry, *_items(_value(entry, "allomorphs"))]
+        spots = [*own, *_items(_value(entry, "forms"))]
         for spot in spots:
             spelled = _value(spot, "spelled")
             hant = _pair(spelled, HANT)
-            forms = None if hant is None else _strings(hant[1])
-            if hant is None or not forms:
+            spellings = None if hant is None else _strings(hant[1])
+            if hant is None or not spellings:
                 continue
-            latin = [lexeme_reading(lexeme, f, lex, report) for f in forms]
+            latin = [lexeme_reading(lexeme, f, lex, report) for f in spellings]
+            # A pinned form (`forms`) is left as it is: a `form` there is a whole form of its cell.
+            mine = any(spot is o for o in own)
+            wanted = lexical_form(spellings[0], latin[0]) if forms and mine else None
+            spelled_key = cast(tuple[yaml.Node, yaml.Node], _pair(spot, "spelled"))[0]
+            edit = None if wanted is None else _form_edit(spot, spelled_key, wanted)
+            if edit is not None:
+                edits.append(edit)
             written = _pair(spelled, LATN)
             if written is not None:
                 if _strings(written[1]) == latin:
@@ -589,6 +627,16 @@ def _lexicon_file(course_file: Path, data: dict[str, Any]) -> tuple[Path, tuple[
     return lexicons_dir(course_file) / code / "lexemes.yaml", ("lexemes",)
 
 
+def _declares_notation(path: Path, at: tuple[str, ...]) -> bool:
+    """Whether the language of a lexicon file (lexicons/<lang>/lexemes.yaml) declares a notation
+    (its language.yaml): then its lexemes' forms are written too."""
+    declared = path.parent / "language.yaml"
+    if at != ("lexemes",) or not declared.is_file():
+        return False
+    data = yaml.safe_load(declared.read_text(encoding="utf-8"))
+    return isinstance(data, dict) and cast(dict[str, Any], data).get("notation") is not None
+
+
 def rewrite_course(course: Path) -> list[Rewritten]:
     """Every file of a course with its Jyutping written in: each unit (a units/ folder's, and
     those course.yaml names), and the lexicon its words are spelled in. Nothing is written here."""
@@ -618,7 +666,7 @@ def rewrite_course(course: Path) -> list[Rewritten]:
         path, at = found
         done = next((r for r in out if r.path == path), None)
         source = done.new if done is not None else path.read_text(encoding="utf-8")
-        new, unsure = rewrite_lexicon(source, lex, at)
+        new, unsure = rewrite_lexicon(source, lex, at, forms=_declares_notation(path, at))
         if done is not None:
             done.new, done.unsure = new, [*done.unsure, *unsure]
         else:
