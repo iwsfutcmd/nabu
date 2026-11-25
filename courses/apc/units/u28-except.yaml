@@ -27,10 +27,10 @@ sentences:
           feats: {Number: Sing}}]
       reverse: ما أكلت شي إلّا خبز
     apc-Latn/arabizi:
-      text: ma akalt shi illa khebz.
-      tokens: [{surface: ma, lexeme: ma}, {surface: akalt, lexeme: akal, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: shi, lexeme: shi}, {surface: illa, lexeme: illa}, {surface: khebz, lexeme: khebz,
+      text: ma akalt shi ella khebz.
+      tokens: [{surface: ma, lexeme: ma}, {surface: akalt, lexeme: akal, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: shi, lexeme: shi}, {surface: ella, lexeme: illa}, {surface: khebz, lexeme: khebz,
           feats: {Number: Sing}}]
-      reverse: ma akalt shi illa khebz
+      reverse: ma akalt shi ella khebz
   translations:
     en: |-
       I (didn't|did not) eat anything (except|but) bread.
@@ -46,10 +46,10 @@ sentences:
           lexeme: may, feats: {Number: Sing}}]
       reverse: ما بشرب شي إلّا مي
     apc-Latn/arabizi:
-      text: ma bishrab shi illa may.
-      tokens: [{surface: ma, lexeme: ma}, {surface: bishrab, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: shi, lexeme: shi}, {surface: illa, lexeme: illa}, {surface: may,
+      text: ma bishrab shi ella may.
+      tokens: [{surface: ma, lexeme: ma}, {surface: bishrab, lexeme: shereb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: shi, lexeme: shi}, {surface: ella, lexeme: illa}, {surface: may,
           lexeme: may, feats: {Number: Sing}}]
-      reverse: ma bishrab shi illa may
+      reverse: ma bishrab shi ella may
   translations:
     en: |-
       I (don't|do not) drink anything (except|but) water.
@@ -62,9 +62,9 @@ sentences:
       tokens: [{surface: ما, lexeme: ma}, {surface: في, lexeme: fi}, {surface: حدا, lexeme: 7ada}, {surface: هون, lexeme: hon}, {surface: إلّا, lexeme: illa}, {surface: أنا, lexeme: ana}]
       reverse: ما في حدا هون إلّا أنا
     apc-Latn/arabizi:
-      text: ma fi 7ada hon illa ana.
-      tokens: [{surface: ma, lexeme: ma}, {surface: fi, lexeme: fi}, {surface: 7ada, lexeme: 7ada}, {surface: hon, lexeme: hon}, {surface: illa, lexeme: illa}, {surface: ana, lexeme: ana}]
-      reverse: ma fi 7ada hon illa ana
+      text: ma fi 7ada hon ella ana.
+      tokens: [{surface: ma, lexeme: ma}, {surface: fi, lexeme: fi}, {surface: 7ada, lexeme: 7ada}, {surface: hon, lexeme: hon}, {surface: ella, lexeme: illa}, {surface: ana, lexeme: ana}]
+      reverse: ma fi 7ada hon ella ana
   translations:
     en: There('s| is) (no one|nobody) here (but|except) me.
 - id: s.except.4
@@ -76,10 +76,10 @@ sentences:
           lexeme: ra7, feats: {Aspect: Perf, Number: Plur, Person: '3'}}, {surface: إلّا, lexeme: illa}, {surface: سامي, lexeme: sami}]
       reverse: كلّ الناس راحوا إلّا سامي
     apc-Latn/arabizi:
-      text: kell el nes ra7o illa Sami.
+      text: kell el nes ra7o ella Sami.
       tokens: [{surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: nes, lexeme: nes, feats: {Number: Plur}, n: 3}, {surface: ra7o, lexeme: ra7, feats: {Aspect: Perf,
-            Number: Plur, Person: '3'}}, {surface: illa, lexeme: illa}, {surface: Sami, lexeme: sami}]
-      reverse: kell el nes ra7o illa Sami
+            Number: Plur, Person: '3'}}, {surface: ella, lexeme: illa}, {surface: Sami, lexeme: sami}]
+      reverse: kell el nes ra7o ella Sami
   translations:
     en: Everyone (went|left) except Sami.
 - id: s.except.5
@@ -429,8 +429,8 @@ stories:
           text: لأ، ما في إِلّا تَبّولِة.
           tokens: [{surface: لأ, lexeme: la2}, {surface: ما, lexeme: ma}, {surface: في, lexeme: fi}, {surface: إِلّا, lexeme: illa}, {surface: تَبّولِة, lexeme: tabbouleh, feats: {Number: Sing}}]
         apc-Latn/arabizi:
-          text: la2, ma fi illa tabboule.
-          tokens: [{surface: la2, lexeme: la2}, {surface: ma, lexeme: ma}, {surface: fi, lexeme: fi}, {surface: illa, lexeme: illa}, {surface: tabboule, lexeme: tabbouleh, feats: {Number: Sing}}]
+          text: la2, ma fi ella tabboule.
+          tokens: [{surface: la2, lexeme: la2}, {surface: ma, lexeme: ma}, {surface: fi, lexeme: fi}, {surface: ella, lexeme: illa}, {surface: tabboule, lexeme: tabbouleh, feats: {Number: Sing}}]
       translations:
         en: No, there's only tabbouleh.
   - choose:

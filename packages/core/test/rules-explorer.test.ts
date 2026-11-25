@@ -37,8 +37,10 @@ describe("rulesExplorer", () => {
     ]);
     const shereb = x.lexemes.find((l) => l.row.id.id === "lexeme:shereb");
     expect(shereb?.pos).toBe("VERB");
-    expect(shereb?.features.map((f) => f.feature)).toEqual(["Aspect", "Mood", "Person", "Gender", "Number"]);
+    expect(shereb?.features.map((f) => f.feature)).toEqual(["Aspect", "Voice", "Mood", "Person", "Gender", "Number"]);
     expect(shereb?.features[0]?.values).toEqual(["Imp", "Part", "Perf"]);
+    // The passive participle (units 26 on): Voice=Pass beside Aspect=Part.
+    expect(shereb?.features[1]?.values).toEqual(["Pass"]);
   });
 
   it("realises a verb in a cell, every rule and branch taken, and spells it", () => {
