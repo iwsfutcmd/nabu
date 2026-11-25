@@ -114,6 +114,13 @@ correspondences:
   # offers nothing).
   - { says: e, written: [e], rare: ["\u00E4"], kind: fixed, when: { after: "[bmpv]" }, note: sound-alike }
 layout: { vertical: none }
+# How a lexical form is written (docs/rules-design.md, section 3; lexicons/sk/language.yaml `notation`): as it is, its
+# boundaries dropped, but for the caron of ď ť ň ľ, which the spelling leaves out before e, i and í, and so before ia, ie
+# and iu (Mistrík 14): choď+i+ť is written chodiť, treť+í tretí, učiteľ+ia učitelia. REVIEW.
+spell:
+  from: lexical
+  rules:
+    - { find: "[ďťňľ]", before: "[eií]", map: { "ď": d, "ť": t, "ň": n, "ľ": l } }
 # What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.
 # Whisper writes Slovak (tier 1). Not the phones until a learner's recordings can check eSpeak NG's sk.
 speech:
