@@ -779,6 +779,10 @@ def format_tokens(report: TokenReport) -> list[str]:
     return lines
 
 
+def _full_id(ident: str) -> str:
+    return ident if ident.startswith("lexeme:") else f"lexeme:{ident}"
+
+
 def paradigm(
     report: TokenReport,
     lexeme: str,
@@ -799,6 +803,12 @@ def paradigm(
     if notation is None:
         return [f"{lang.code} declares no notation"]
     dumped = notation.model_dump(mode="json", by_alias=True, exclude_none=True)
+    from nabu.paradigms import token_cell, written_affixes
+
+    # A token's cell as the bundle's paradigms count it: its base's values, and those of the affix
+    # lexemes the category's rules write (uz); a token of nothing else writes the cell's form.
+    affixes = written_affixes(lang)
+    named = affixes.get(str(entry.pos), {})
     cells: dict[str, dict[str, str]] = {}
     written: dict[tuple[str, str], set[str]] = {}
     for c in report.checks:
@@ -809,13 +819,13 @@ def paradigm(
         other = lang.get(str(base["lexeme"]))
         if other is None or other.pos != entry.pos:
             continue
-        chosen = cast(dict[str, str], base.get("feats") or {})
-        feats = {str(k): str(v) for k, v in chosen.items()}
+        feats = token_cell(parts, str(entry.pos), affixes)
         if not feats:
             continue
         cell = form_key([(ident, feats)])
         cells.setdefault(cell, feats)
-        if str(base["lexeme"]) == ident and len(parts) == 1:
+        alone = all(p is base or _full_id(str(p["lexeme"])) in named for p in parts)
+        if str(base["lexeme"]) == ident and (len(parts) == 1 or alone):
             written.setdefault((cell, c.site.orth), set()).add(c.site.surface)
     # In the order the language declares its dimensions and their values (language.yaml).
     declared = lang.declared
