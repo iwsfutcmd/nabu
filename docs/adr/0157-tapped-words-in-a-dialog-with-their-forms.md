@@ -36,8 +36,11 @@ a word up before answering is still a hint (D16); nothing else about it changes.
 **The forms**, laid out in core (`@nabu/core/lesson` `lexemeForms`, `formCellAt`), never in UI code:
 - Where the lexeme has a paradigm in the orthography, every cell of its category in the lexicon's order of cells,
   each its paradigm's form (the marked text where the orthography has a marked layer, as principal parts are shown),
-  then any form the course writes outside those cells (apc ra7's participles). A row says whether a sentence or
-  story line writes it (`attested`); the dialog shows them alike.
+  then any form the course writes outside those cells (apc ra7's participles), in the order of the language's labels
+  as below. A row says whether a sentence or story line writes it (`attested`); the dialog shows them alike. Where the
+  course writes the cell, the form keeps the pinned readings of the word it writes that is one spelling of it (hbo
+  בֵּן), and the course's other words of the form follow it (es buen beside bueno; 2026-11-25, when every language's
+  rules gave it paradigms).
 - Otherwise the forms the course writes, in its sentences and story lines, in the order the language's labels name
   them (a form no label names first), then as the course first writes them.
 - A form is the lexeme with one set of feature values (ADR 0145): those its token chooses on it and, on a token's
