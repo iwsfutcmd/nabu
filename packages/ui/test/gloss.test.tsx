@@ -70,4 +70,15 @@ describe("a tapped word's dialog (ADR 0157)", () => {
     expect(tables(echale)).toEqual(["lexeme:echar", "lexeme:le"]);
     expect([...echale.matchAll(/formsOf/gu)]).toHaveLength(2);
   });
+
+  it("runs a form's several spellings in their own direction, so the rule between them falls between them (fa است, هست)", () => {
+    const fa = loadCourse("fa");
+    const html = render(<Content course={fa} tap={tapOf(fa, "lexeme:budan")} />);
+    const ways = [...html.matchAll(/<span[^>]*data-form-ways="(\d+)"[^>]*>/gu)];
+    const several = ways.filter((m) => Number(m[1]) > 1);
+    expect(several.length).toBeGreaterThan(0);
+    // Right to left inside left-to-right chrome: each run takes the script's direction, not the chrome's.
+    for (const [tag] of ways) expect(tag).toContain('dir="rtl"');
+    expect(html).toMatch(/^<div[^>]*dir="ltr"/u);
+  });
 });

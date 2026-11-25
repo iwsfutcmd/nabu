@@ -112,9 +112,16 @@
   font-weight: 400;
 }
 
-/* A form written more than one way: each way set off by a rule, no separator written. */
+/* A form written more than one way: one run in the text's own direction, each way after the first set
+   off by a rule on its start side, which that direction puts between the two; no separator written. */
+.formWays {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: var(--nabu-space-2);
+}
+
 .formVariant {
-  margin-inline-start: var(--nabu-space-2);
   padding-inline-start: var(--nabu-space-2);
   border-inline-start: 1px solid var(--nabu-color-line);
 }

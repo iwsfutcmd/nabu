@@ -10,6 +10,7 @@
 import { formCellAt, lexemeForms, otherReadingsAt, type CourseView, type LexemeForms } from "@nabu/core/lesson";
 import { courseGlossary, glossAt, glossLine, type Gloss } from "@nabu/core/story";
 import { wordAt } from "@nabu/core/text";
+import { directionOf } from "@nabu/i18n";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { useId, useMemo, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal } from "react-aria-components";
@@ -150,9 +151,13 @@ const FormsTable = ({ entry, named, ruby, marks }: { readonly entry: EntryForms;
                 data-attested={row.attested ? "" : undefined}
               >
                 <th scope="row" className={styles.form}>
-                  {row.texts.map((text, i) => (
-                    <T key={i} {...(i > 0 && { className: styles.formVariant })} text={text} ruby={ruby} marks={marks} />
-                  ))}
+                  {/* The ways a form is written, as one run in the text's own direction (from its script, as
+                      Headword sets its parts): each set off by a rule the stylesheet draws between them. */}
+                  <span className={styles.formWays} dir={directionOf((row.texts[0] ?? entry.gloss.form).lang)} data-form-ways={row.texts.length}>
+                    {row.texts.map((text, i) => (
+                      <T key={i} {...(i > 0 && { className: styles.formVariant })} text={text} ruby={ruby} marks={marks} />
+                    ))}
+                  </span>
                 </th>
                 <td className={styles.formLabel}>
                   {row.label !== undefined && <T text={row.label} />}

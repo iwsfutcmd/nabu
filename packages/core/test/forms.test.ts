@@ -138,3 +138,46 @@ describe("a lexeme in a language without rules: the forms the course writes", ()
     expect(lexemeForms(hbo, "lexeme:gan")?.rows).toHaveLength(1);
   });
 });
+
+describe("a form written more than one way", () => {
+  /** Each way a cell of a lexeme lists, as written. */
+  const ways = (course: CourseView, lexeme: string, cell: string): readonly string[] => surfaces(lexemeForms(course, lexeme)?.rows.find((r) => r.cell === cell)?.texts ?? []);
+
+  it("is one spelling where the profile reads both alike: chg's scribes' letters (ʿāliminizlar, written with and without ی)", () => {
+    const chg = loadCourse("chg");
+    const cell = "Number=Plur;Person[psor]=2;Polite=Form";
+    // The course writes it both ways, with one reading.
+    const written = writing(chg, "lexeme:alim").filter(({ text, at }) => formCellAt(chg, text, at, "lexeme:alim") === cell);
+    const spellings = new Set(written.map(({ text, at }) => text.tokens[at]?.surface.normalize("NFC")));
+    const readings = new Set(written.map(({ text, at }) => text.tokens[at]?.readings?.["schluessel" as never]));
+    expect(spellings.size).toBeGreaterThan(1);
+    expect(readings.size).toBe(1);
+    expect(ways(chg, "lexeme:alim", cell)).toHaveLength(1);
+  });
+
+  it("is one spelling where only the profile's marks tell them apart (apc's vowel marks, Attic accents)", () => {
+    const apc = loadCourse("apc", "apc-Arab/standard");
+    for (const lexeme of apc.lexicon.lexemes) for (const row of lexemeForms(apc, lexeme.id)?.rows ?? []) expect(row.texts, `${lexeme.id} ${row.cell}`).toHaveLength(1);
+    // ἐστί, ἐστὶ, ἐστι and ἐστίν, ἔστιν: the accent its neighbours give it; the movable ν is another way.
+    const grc = loadCourse("grc");
+    expect(ways(grc, "lexeme:eimi", "Mood=Ind;Number=Sing;Person=3;Tense=Pres;VerbForm=Fin")).toHaveLength(2);
+  });
+
+  it("keeps ways that are other words of the form: es buen beside bueno, sk vo beside v", () => {
+    expect(ways(loadCourse("es"), "lexeme:bueno", "Gender=Masc;Number=Sing")).toEqual(["bueno", "buen"]);
+    expect(ways(loadCourse("sk"), "lexeme:v", "")).toEqual(["v", "vo"]);
+  });
+
+  it("never lists a stem cut before a suffix beside the word itself (hbo בֵּן, not בְּנִ of בְּנִי)", () => {
+    const hbo = loadCourse("hbo");
+    const [ben, ...more] = lexemeForms(hbo, "lexeme:ben")?.rows.find((r) => r.cell === "Number=Sing")?.texts ?? [];
+    expect(more).toEqual([]);
+    expect(ben?.tokens[0]?.readings).toBeDefined();
+  });
+
+  it("has no forms where the lexeme is a phrase: each of its words is one word of it (buenas tardes)", () => {
+    const es = loadCourse("es");
+    expect(lexemeForms(es, "lexeme:buenas-tardes")).toBeUndefined();
+    expect(lexemeForms(loadCourse("apc", "apc-Arab/standard"), "lexeme:inshalla")).toBeUndefined();
+  });
+});
