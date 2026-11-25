@@ -11,8 +11,9 @@ id: grc-Grek/polytonic
 lang: grc-Grek
 exemplars: cldr:el
 # REVIEW: what CLDR 49's Modern Greek exemplars (polytonic letters are its auxiliary set) lack for Attic prose:
-# the ano teleia (U+0387, NFC U+00B7) and the elision apostrophe, and the letters filled in by the course build.
-exemplarsExtra: ["\u00b7", "\u2019", "ὀ", "ὁ", "ὅ", "ᾳ", "ᾷ", "ῃ", "ῇ", "ῲ", "ῴ", "ῷ"]
+# the ano teleia (U+0387, NFC U+00B7) and the elision apostrophe, and the letters filled in by the course build; ῳ, ὠ,
+# ᾠ, ᾤ and ῄ, which the rules' forms write (ἀνθρώπῳ, ὠφείλησα, ᾠήθην: docs/rules/grc.md).
+exemplarsExtra: ["\u00b7", "\u2019", "ὀ", "ὁ", "ὅ", "ᾳ", "ᾷ", "ῃ", "ῇ", "ῲ", "ῴ", "ῷ", "ῳ", "ὠ", "ᾠ", "ᾤ", "ῄ"]
 segmentation: { content: hand-pinned, runtime: grapheme }
 normalize:
   - nfc
