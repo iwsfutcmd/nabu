@@ -6986,6 +6986,13 @@ class LanguageDeclaration(BaseModel):
             description="For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell."
         ),
     ] = None
+    stemmed: Annotated[
+        list[PartOfSpeech] | None,
+        Field(
+            description="The categories whose lexical form, where it is a string, is a stem and not a word (bar's verbs: red, kemm), so that their citation cell is realised by the rules as every other cell is (redn, kemmen) and the lemma is checked as the rules give it. Elsewhere a string form is its citation form, which no rule runs over.",
+            min_length=1,
+        ),
+    ] = None
     principalParts: Annotated[
         dict[PartOfSpeech, PrincipalPartsAdditionalProperty1] | None,
         Field(
