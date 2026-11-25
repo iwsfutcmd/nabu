@@ -248,7 +248,7 @@ lexemes:
   - {feats: {Variant: Long}, form: هَست, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   allomorphs:
   - {form: هَست, before: {startsIn: '.*'}, spelled: {fa-Arab/standard: [هست]}}
-  - {form: ست, after: {endsIn: '[او]'}, spelled: {fa-Arab/standard: [ست]}}
+  - {form: ست, after: {endsIn: '.[اوی]'}, spelled: {fa-Arab/standard: [ست]}}
   - {form: اَست, spelled: {fa-Arab/standard: [است]}}
 - id: lexeme:chahar
   pos: NUM
@@ -489,7 +489,7 @@ lexemes:
   notes: {en: "Usually unwritten after a consonant (کتاب من, ketāb-e man); written ی after -hā (کتاب\u200cهای من)."}
   allomorphs:
   - {form: "ـٔ", after: {endsIn: "ه\u06df"}}
-  - {form: ی, after: {endsIn: '[او]'}, spelled: {fa-Arab/standard: [ی]}}
+  - {form: ی, after: {endsIn: '.[او]'}, spelled: {fa-Arab/standard: [ی]}}
   - {form: "ـِ"}
 - id: lexeme:farda
   pos: ADV
@@ -649,6 +649,7 @@ lexemes:
   notes: {en: 'رنگی: a colour; چه رنگی؟ what colour? On a noun with an adjective it goes on the adjective: شهرِ بزرگی, a big city.'}
   allomorphs:
   - {form: "\u200cای", after: {endsIn: "ه\u06df"}}
+  - {form: یی, after: {endsIn: '.[او]'}}
   - {form: ی, spelled: {fa-Arab/standard: [ی]}}
 - id: lexeme:inja
   pos: ADV
@@ -1116,6 +1117,7 @@ lexemes:
   gloss: {en: '-ān: plural (people and living things)'}
   notes: {en: "دوستان (friends) is more formal than دوست\u200cها."}
   allomorphs:
+  - {form: یان, after: {endsIn: '.ا'}}
   - {form: ان, spelled: {fa-Arab/standard: [ان]}}
 - id: lexeme:pool
   pos: NOUN
@@ -1134,6 +1136,7 @@ lexemes:
   notes: {en: "پدرم (pedar-am) means the same as پدرِ من. After a silent -e it is written \u200cام: خانه\u200cام."}
   allomorphs:
   - {form: "\u200cاَم", after: {endsIn: "ه\u06df"}}
+  - {form: یَم, after: {endsIn: '.[او]'}}
   - {form: "ـَم", spelled: {fa-Arab/standard: [م]}}
 - id: lexeme:poss-2sg
   pos: PRON
@@ -1142,6 +1145,7 @@ lexemes:
   notes: {en: 'اتاقت (otāq-at) means the same as اتاقِ تو. Spoken: -et (otāqet).'}
   allomorphs:
   - {form: "\u200cاَت", after: {endsIn: "ه\u06df"}}
+  - {form: یَت, after: {endsIn: '.[او]'}}
   - {form: "ـَت", spelled: {fa-Arab/standard: [ت]}}
 - id: lexeme:ra
   pos: PART
