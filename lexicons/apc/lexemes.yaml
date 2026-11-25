@@ -1094,6 +1094,12 @@ lexemes:
   spelled: {apc-Arab/standard: [جرّب], apc-Latn/arabizi: [jarrab]}
   forms:
   - {feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}, spelled: {apc-Arab/standard: [جرّب], apc-Latn/arabizi: [jarrb]}, status: pinned}
+- id: lexeme:jdid
+  pos: ADJ
+  gloss: {en: new}
+  notes: {en: 'Feminine: جديدة, jdide.'}
+  form: جْدِيد
+  spelled: {apc-Arab/standard: [جديد], apc-Latn/arabizi: [jdid]}
 - id: lexeme:jebne
   pos: NOUN
   gloss: {en: cheese}
@@ -1258,6 +1264,12 @@ lexemes:
   gloss: {en: very; a lot; too}
   form: "كْتِير"
   spelled: {apc-Arab/standard: [كتير], apc-Latn/arabizi: [ktir]}
+- id: lexeme:la
+  pos: ADP
+  gloss: {en: for; to}
+  notes: {en: 'Joined to its word in Arabic script (لكلّ, la kell).'}
+  form: لَ
+  spelled: {apc-Arab/standard: [ل], apc-Latn/arabizi: [la]}
 - id: lexeme:la-1sg
   pos: PRON
   feats: {Case: Dat, Number: Sing, Person: '1', PronType: Prs}
@@ -1310,6 +1322,12 @@ lexemes:
   notes: {en: 'lamma kent zghir: when I was little. In a question, when is emta.'}
   form: "لَمَّا"
   spelled: {apc-Arab/standard: [لمّا], apc-Latn/arabizi: [lamma]}
+- id: lexeme:law
+  pos: SCONJ
+  gloss: {en: if (unreal or doubtful)}
+  notes: {en: 'law for what is imagined (law ma3i masari: if I had money); iza for what may well happen.'}
+  form: لَو
+  spelled: {apc-Arab/standard: [لو], apc-Latn/arabizi: [law]}
 - id: lexeme:law-sama7t
   pos: INTJ
   gloss: {en: excuse me; please (to a man)}
@@ -1838,6 +1856,11 @@ lexemes:
   notes: {en: 'w rebe3: and a quarter (quarter past).'}
   form: "رِبِع"
   spelled: {apc-Arab/standard: [ربع], apc-Latn/arabizi: [rebe3]}
+- id: lexeme:rebe7
+  pos: VERB
+  gloss: {en: win}
+  form: {radicals: [ر, ب, ح], form: I, vowels: {past: i, present: a}, source: kline 154}
+  spelled: {apc-Arab/standard: [ربح], apc-Latn/arabizi: [rebe7]}
 - id: lexeme:resele
   pos: NOUN
   gloss: {en: message; letter}
@@ -2492,6 +2515,11 @@ lexemes:
   gloss: {en: right (side)}
   form: "يَمِين"
   spelled: {apc-Arab/standard: [يمين], apc-Latn/arabizi: [yamin]}
+- id: lexeme:yansib
+  pos: NOUN
+  gloss: {en: lottery}
+  form: يَانَصِيب
+  spelled: {apc-Arab/standard: [يانصيب], apc-Latn/arabizi: [yanasib]}
 - id: lexeme:yom
   pos: NOUN
   gloss: {en: day}
