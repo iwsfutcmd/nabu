@@ -1469,6 +1469,14 @@ type LexicalAdditionalPropertyItem = Annotated[
 type LexicalAdditionalProperty = Annotated[list[LexicalAdditionalPropertyItem], Field(min_length=1)]
 
 
+type UnmarkedAdditionalPropertyItem = Annotated[str, Field(pattern="^[A-Z0-9][A-Za-z0-9]*$")]
+
+
+type UnmarkedAdditionalProperty = Annotated[
+    list[UnmarkedAdditionalPropertyItem], Field(min_length=1)
+]
+
+
 type PrincipalPartsAdditionalProperty1 = Annotated[list[UdFeatures], Field(min_length=1)]
 
 
@@ -6902,6 +6910,17 @@ class LanguageDeclaration(BaseModel):
         list[PartOfSpeech] | None,
         Field(
             description="The categories whose lexical form, where it is a string, is a stem and not a word (bar's verbs: red, kemm), so that their citation cell is realised by the rules as every other cell is (redn, kemmen) and the lemma is checked as the rules give it. Elsewhere a string form is its citation form, which no rule runs over.",
+            min_length=1,
+        ),
+    ] = None
+    unmarked: Annotated[
+        dict[
+            Annotated[str, StringConstraints(pattern=r"^[A-Z][A-Za-z0-9]*(\[[a-z0-9]+\])?$")],
+            UnmarkedAdditionalProperty,
+        ]
+        | None,
+        Field(
+            description="Each feature's unmarked values, which the course uses from the start and never introduces as a part (es: Mood Ind, VerbForm Fin, Number Sing): taught, where the compiler lists a paradigm's cells (docs/rules-design.md, stage 4), as a citation or bare cell's values are. Never a learner's part.",
             min_length=1,
         ),
     ] = None

@@ -5,6 +5,7 @@ rules (ADR 0145), on a fixture (apc's own lexicon lists none the course could sh
 from __future__ import annotations
 
 import copy
+import dataclasses
 from pathlib import Path
 from typing import Any
 
@@ -13,9 +14,11 @@ import yaml
 from nabu import yamlio
 from nabu.analyzers import analyzers_by_tool
 from nabu.compiler import compile_course, load_profiles
-from nabu.paradigms import Refused, cell_key, in_script
+from nabu.forms import Site
+from nabu.lexicon import load_language
+from nabu.paradigms import Refused, cell_key, cells_of, in_script
 
-from .conftest import FIXTURES, CoreCli
+from .conftest import FIXTURES, ROOT, CoreCli
 
 PROFILES = load_profiles()
 ANALYZERS = analyzers_by_tool()
@@ -145,3 +148,23 @@ def test_a_spelling_that_begins_with_a_carrier_is_not_shipped() -> None:
         lambda _o, _t, _m: [],
         refused,
     )
+
+
+def test_an_unmarked_value_is_taught() -> None:
+    """A cell is listed only where each of its values is taught. A language's `unmarked` values (es
+    Mood Ind), used from the start and never introduced as a part, count as taught: without them
+    a course that introduces only the marked moods (Sub, Imp) lists no indicative cell."""
+    apc, _ = load_language(ROOT / "lexicons", "apc")
+    assert apc is not None
+    present = {"Aspect": "Imp", "Mood": "Ind", "Person": "1", "Number": "Sing"}
+    site = Site(
+        "s.1", ORTH, "f.yaml", 1, "bishrab", None, [{"lexeme": "lexeme:shereb", "feats": present}]
+    )
+    taught = {"Aspect=Imp", "Mood=Sub", "Person=1", "Number=Sing"}
+    pos_of = {"lexeme:shereb": "VERB"}
+    assert cells_of(apc, [site], taught, pos_of).get("VERB", []) == []
+    marked = dataclasses.replace(
+        apc, declared=apc.declared.model_copy(update={"unmarked": {"Mood": ["Ind"]}})
+    )
+    # The indicative 1sg, and apc's principal part (the he-present), indicative too.
+    assert present in cells_of(marked, [site], taught, pos_of)["VERB"]

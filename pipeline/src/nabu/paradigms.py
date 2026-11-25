@@ -13,7 +13,9 @@ Python never realises or spells: every form comes from @nabu/core through core-c
 - its cells are those the course's tokens choose on lexemes of that category, cut to its dimensions,
   each value of them taught: a node introduces it, or it is the value of the category's citation or
   bare cell (a singular, a masculine), or the course introduces no value of its feature at all (apc
-  teaches no person: a person is given, never a part). Then the language's principal parts;
+  teaches no person: a person is given, never a part), or it is one of the feature's `unmarked`
+  values (language.yaml: es's Mood Ind, used from the start and never introduced). Then the
+  language's principal parts;
 - a lexeme the course writes, and never with a value chosen on it, does not inflect (apc's lezem,
   fi, badd): it has no paradigm;
 - each lexeme is realised `strict` (a cell no exponent of the rule names, or a phrase, gives
@@ -115,6 +117,7 @@ def cells_of(
     values = _names(declared.get("features"))
     citation = {k: _feats(v) for k, v in _table(declared.get("citation")).items()}
     bare = {k: _feats(v) for k, v in _table(declared.get("bare")).items()}
+    unmarked = _names(declared.get("unmarked"))
     introduced = {v.split("=", 1)[0] for v in taught}
 
     def is_taught(category: str, name: str, value: str) -> bool:
@@ -123,6 +126,7 @@ def cells_of(
             or name not in introduced
             or citation.get(category, {}).get(name) == v
             or bare.get(category, {}).get(name) == v
+            or v in unmarked.get(name, [])
             for v in value.split(",")
         )
 
