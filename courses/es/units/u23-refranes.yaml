@@ -301,7 +301,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Dime con quién andas y te diré quién eres.
-      tokens: [{surface: Dime, lexemes: [{lexeme: decir, surface: Di, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: me, surface: me}]}, {surface: con, lexeme: con, n: 2, head: 3, rel: case}, {surface: quién, lexeme: quién, n: 3}, {surface: andas, lexeme: andar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: te, lexeme: te}, {surface: diré, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: quién, lexeme: quién}, {surface: eres, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
+      tokens: [{surface: Dime, lexemes: [{lexeme: decir, surface: Di, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: me, surface: me}]}, {surface: con, lexeme: con, n: 3, head: 4, rel: case}, {surface: quién, lexeme: quién, n: 4}, {surface: andas, lexeme: andar, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: y, lexeme: y}, {surface: te, lexeme: te}, {surface: diré, lexeme: decir, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}}, {surface: quién, lexeme: quién}, {surface: eres, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}]
       reverse: Dime con quién andas y te (diré|digo) quién eres
   translations:
     en: |-
@@ -337,7 +337,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Pásame el cuchillo para picar la cebolla.
-      tokens: [{surface: Pásame, lexemes: [{lexeme: pasar, surface: Pása, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: me, surface: me}]}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 2, head: 3, rel: det}, {surface: cuchillo, lexeme: cuchillo, feats: {Number: Sing}, n: 3}, {surface: para, lexeme: para}, {surface: picar, lexeme: picar, feats: {VerbForm: Inf}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 6, head: 7, rel: det}, {surface: cebolla, lexeme: cebolla, feats: {Number: Sing}, n: 7}]
+      tokens: [{surface: Pásame, lexemes: [{lexeme: pasar, surface: Pása, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: me, surface: me}]}, {surface: el, lexeme: el, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cuchillo, lexeme: cuchillo, feats: {Number: Sing}, n: 4}, {surface: para, lexeme: para}, {surface: picar, lexeme: picar, feats: {VerbForm: Inf}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 7, head: 8, rel: det}, {surface: cebolla, lexeme: cebolla, feats: {Number: Sing}, n: 8}]
       reverse: |-
         (Pásame|Dame|Alcánzame) el cuchillo para picar la cebolla
         Pásenme el cuchillo para picar la cebolla
@@ -417,7 +417,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: 'Asere, tírame un cabo: tengo que arreglar la máquina.'
-      tokens: [{surface: Asere, lexeme: asere, feats: {Number: Sing}}, {surface: tírame, lexemes: [{lexeme: tirar, surface: tíra, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: me, surface: me}]}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cabo, lexeme: cabo, feats: {Number: Sing}, n: 4}, {surface: tengo, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: arreglar, lexeme: arreglar, feats: {VerbForm: Inf}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 8, head: 9, rel: det}, {surface: máquina, lexeme: máquina, feats: {Number: Sing}, n: 9}]
+      tokens: [{surface: Asere, lexeme: asere, feats: {Number: Sing}}, {surface: tírame, lexemes: [{lexeme: tirar, surface: tíra, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: me, surface: me}]}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 4, head: 5, rel: det}, {surface: cabo, lexeme: cabo, feats: {Number: Sing}, n: 5}, {surface: tengo, lexeme: tener-que, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: tener-que}, {surface: arreglar, lexeme: arreglar, feats: {VerbForm: Inf}}, {surface: la, lexeme: el, feats: {Gender: Fem, Number: Sing}, n: 9, head: 10, rel: det}, {surface: máquina, lexeme: máquina, feats: {Number: Sing}, n: 10}]
       reverse: (Asere|Acere|Socio) (tírame un cabo|échame una mano|ayúdame) [yo] tengo que arreglar (la máquina|el carro)
   translations:
     en: '(Man|Buddy|Bro|Dude|Pal), (give me a hand|help me out|lend me a hand|throw me a rope): I (have to|need to|have got to|gotta) fix the car.'

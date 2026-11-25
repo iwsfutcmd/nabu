@@ -308,11 +308,9 @@ realisation:
     - {branch: masc-pl, feats: {Gender: Masc, Number: Plur}, add: o}
   - suffix:
     - {branch: pl, feats: {Number: Plur}, add: s}
-- id: 'rule:es-comparative'  # mayor, mejor, peor: no feminine ending; -es in the plural (mayores)
+- id: 'rule:es-comparative'  # mayor, mejor, peor: no feminine ending (una vida mejor); -es in the plural (mayores)
   when: {class: comparative, feats: {Number: 'Plur,Sing'}}
   blocks:
-  - suffix:
-    - {branch: fem, feats: {Gender: Fem}, add: ''}
   - suffix:
     - {branch: pl, feats: {Number: Plur}, add: s}
 - id: 'rule:es-o'  # a word in -o: -a for a feminine, -s for a plural (bueno, buena, buenos; hermano, hermana; lo, la, los)
@@ -329,22 +327,23 @@ realisation:
     - {branch: fem, feats: {Gender: Fem}, add: a}
   - suffix:
     - {branch: pl, feats: {Number: Plur}, add: s}
-- id: 'rule:es-nominal'  # any other: the same for a feminine (grande, feliz, mi), -s or -es for a plural (casas, ciudades)
+- id: 'rule:es-nominal'  # any other: -s or -es for a plural (casas, ciudades, grandes); the same for a feminine (grande, feliz, mi)
   when: {feats: {Number: 'Plur,Sing'}}
   blocks:
   - suffix:
-    - {branch: fem, feats: {Gender: Fem}, add: ''}
-  - suffix:
     - {branch: pl, feats: {Number: Plur}, add: s}
+  # No exponent for a feminine: a token's feminine is the word itself (no step), and a paradigm lists no feminine for
+  # it, nor any cell for a word that is one cell of its own (nosotros, ellos). So gran stands before a feminine noun
+  # as before a masculine one (una gran familia: the allomorph is chosen where no ending is).
 # The rewrites, in order, each once over the whole form. The contexts of a stressed stem: its last vowel before one to
 # three consonants and an ending of one syllable (-o, -a, -e, -as, -es, -an, -en): Spanish stresses a word that ends
 # in a vowel, n or s on its next-to-last syllable (the RAE's rule; profiles/es-Latn.standard.yaml `stress`).
 phonology:
 - {id: 'rule:es-reflexive', find: "+se+", to: "+"}  # a verb cited with se writes it as a word of its own beside its forms (me levanto; mudarme)
+- {id: 'rule:es-participle', branch: id, when: {feats: {VerbForm: Part}}, find: "[eií]r+", to: "+id+"}  # comido, vivido, oído (first: -ad- would leave esperar's er+ for it)
 - {id: 'rule:es-participle', branch: ad, when: {feats: {VerbForm: Part}}, find: "ar+", to: "+ad+"}  # hablado
-- {id: 'rule:es-participle', branch: id, when: {feats: {VerbForm: Part}}, find: "[eií]r+", to: "+id+"}  # comido, vivido, oído
 # The infinitive's -ar, -er or -ir gives way to the ending, but where the future and the conditional stand on it.
-- {id: 'rule:es-stem', when: {feats: {Tense: 'Imp,Past,Pres'}}, find: "[aeií]r+", to: "+"}
+- {id: 'rule:es-stem', when: {feats: {Mood: 'Ind,Sub', Tense: 'Imp,Past,Pres'}}, find: "[aeií]r+", to: "+"}
 - {id: 'rule:es-stem', when: {feats: {Mood: Imp}}, find: "[aeií]r+", to: "+"}
 - {id: 'rule:es-stem', when: {feats: {VerbForm: Ger}}, find: "[aeií]r+", to: "+"}
 - {id: 'rule:es-stem', branch: future, when: {feats: {Tense: Fut}}, find: "ír+", to: "ir+"}  # oír, oiré: the infinitive's accent goes
@@ -362,24 +361,24 @@ phonology:
 - {id: 'rule:es-stem-change', branch: o-ue, when: {class: o-ue}, find: "o", before: ["{C}+{V}#", "{C}+{V}s#", "{C}+{V}n#", "{C}{C}+{V}#", "{C}{C}+{V}s#", "{C}{C}+{V}n#", "{C}{C}{C}+{V}#", "{C}{C}{C}+{V}s#", "{C}{C}{C}+{V}n#", "{C}+{V}+", "{C}+{V}s+", "{C}+{V}n+", "{C}{C}+{V}+", "{C}{C}+{V}s+", "{C}{C}+{V}n+", "{C}{C}{C}+{V}+", "{C}{C}{C}+{V}s+", "{C}{C}{C}+{V}n+"], to: "ue"}  # puedo, vuelve, encuentres
 - {id: 'rule:es-stem-change', branch: u-ue, when: {class: u-ue}, find: "u", before: ["{C}+{V}#", "{C}+{V}s#", "{C}+{V}n#", "{C}{C}+{V}#", "{C}{C}+{V}s#", "{C}{C}+{V}n#", "{C}+{V}+", "{C}+{V}s+", "{C}+{V}n+", "{C}{C}+{V}+", "{C}{C}+{V}s+", "{C}{C}+{V}n+"], to: "ue"}  # juego
 - {id: 'rule:es-stem-change', branch: e-i, when: {class: e-i}, find: "e", before: ["+{V}#", "+{V}s#", "+{V}n#", "{C}+{V}#", "{C}+{V}s#", "{C}+{V}n#", "{C}{C}+{V}#", "{C}{C}+{V}s#", "{C}{C}+{V}n#", "{C}u+{V}#", "{C}u+{V}s#", "{C}u+{V}n#", "+{V}+", "+{V}s+", "+{V}n+", "{C}+{V}+", "{C}+{V}s+", "{C}+{V}n+", "{C}{C}+{V}+", "{C}{C}+{V}s+", "{C}{C}+{V}n+", "{C}u+{V}+", "{C}u+{V}s+", "{C}u+{V}n+"], to: "i"}  # pido, dice, consigue, fríe
-- {id: 'rule:es-stem-change', branch: hiatus, when: {class: hiatus}, find: "[iu]", before: ["+{V}#", "+{V}s#", "+{V}n#", "{C}+{V}#", "{C}+{V}s#", "{C}+{V}n#", "+{V}+", "+{V}s+", "+{V}n+", "{C}+{V}+", "{C}+{V}s+", "{C}+{V}n+"], map: {i: "í", u: "ú"}}  # reúne, envío
+- {id: 'rule:es-stem-change', branch: hiatus, when: {class: hiatus, feats: {Mood: 'Imp,Ind,Sub'}}, find: "[iu]", before: ["+{V}#", "+{V}s#", "+{V}n#", "{C}+{V}#", "{C}+{V}s#", "{C}+{V}n#", "+{V}+", "+{V}s+", "+{V}n+", "{C}+{V}+", "{C}+{V}s+", "{C}+{V}n+"], map: {i: "í", u: "ú"}}  # reúne, envío
 # A pronoun joined to a command leaves its stress where it was (dígame, cuéntame): each context also stands before one.
 # -ir verbs raise a stem's e or o before an ending in a (unstressed), ie or ió: pidió, sintió, durmiendo, sintamos.
-- {id: 'rule:es-raising', branch: e-i, when: {class: e-i}, find: "e", before: ["+am", "+á", "+ie", "+ió", "{C}+am", "{C}+á", "{C}+ie", "{C}+ió", "{C}{C}+am", "{C}{C}+á", "{C}{C}+ie", "{C}{C}+ió", "{C}u+am", "{C}u+á", "{C}u+ie", "{C}u+ió"], to: "i"}
-- {id: 'rule:es-raising', branch: e-i, when: {class: e-ie, endsIn: "[ií]r"}, find: "e", before: ["{C}+am", "{C}+á", "{C}+ie", "{C}+ió", "{C}{C}+am", "{C}{C}+á", "{C}{C}+ie", "{C}{C}+ió"], to: "i"}
-- {id: 'rule:es-raising', branch: o-u, when: {class: o-ue, endsIn: "[ií]r"}, find: "o", before: ["{C}+am", "{C}+á", "{C}+ie", "{C}+ió", "{C}{C}+am", "{C}{C}+á", "{C}{C}+ie", "{C}{C}+ió"], to: "u"}
+- {id: 'rule:es-raising', branch: e-i, when: {class: e-i}, find: "e", before: ["+am", "+á", "+ie", "+ió", "{C}+am", "{C}+á", "{C}+ie", "{C}+ió", "{C}{C}+am", "{C}{C}+á", "{C}{C}+ie", "{C}{C}+ió", "{C}u+am", "{C}u+á", "{C}u+ie", "{C}u+ió", "+ié", "{C}+ié", "{C}{C}+ié", "{C}u+ié"], to: "i"}
+- {id: 'rule:es-raising', branch: e-i, when: {class: e-ie, endsIn: "[ií]r"}, find: "e", before: ["{C}+am", "{C}+á", "{C}+ie", "{C}+ió", "{C}{C}+am", "{C}{C}+á", "{C}{C}+ie", "{C}{C}+ió", "{C}+ié", "{C}{C}+ié"], to: "i"}
+- {id: 'rule:es-raising', branch: o-u, when: {class: o-ue, endsIn: "[ií]r"}, find: "o", before: ["{C}+am", "{C}+á", "{C}+ie", "{C}+ió", "{C}{C}+am", "{C}{C}+á", "{C}{C}+ie", "{C}{C}+ió", "{C}+ié", "{C}{C}+ié"], to: "u"}
 - {id: 'rule:es-zco', when: {class: zco}, find: "c+", before: "[aoá]", to: "zc+"}  # conozco, agradezca
-# The plural: -s after a vowel; -es after a consonant; nothing on a word whose last syllable is unstressed and ends in s
+# The plural: -s after a vowel and after a consonant other than d l j n r s x y z ch (a loan: shoppings); -es after those; nothing on a word whose last syllable is unstressed and ends in s
 # or x (los jueves); -es after a stressed í or ú (ajíes: the RAE also takes ajís; REVIEW). With it the stress stays where
 # it was: an accent is written where it now falls on the third syllable from the end (jóvenes) and goes where the
 # last syllable is now the next to last (canciones, ingleses); an í or ú after a vowel keeps its (países).
 - {id: 'rule:es-plural', branch: same, when: {feats: {Number: Plur}}, find: "+s", at: end, after: ["{AV}{C}{U}s", "{AV}{C}{C}{U}s", "{AV}{C}{C}{C}{U}s", "{AV}{C}{U}x"], to: ""}
-- {id: 'rule:es-plural', branch: es, when: {feats: {Number: Plur}}, find: "+s", at: end, after: "{C}", to: "+es"}
+- {id: 'rule:es-plural', branch: es, when: {feats: {Number: Plur}}, find: "+s", at: end, after: ["[dljnrsxyz]", "ch"], to: "+es"}  # not after another consonant (shoppings, clubs: the Ortografía)
 - {id: 'rule:es-plural', branch: ies, when: {feats: {Number: Plur}}, find: "+s", at: end, after: "[íú]", to: "+es"}
 - {id: 'rule:es-plural', branch: accent-gain, when: {feats: {Number: Plur}}, find: "{U}", before: ["{C}{U}n+es#", "{C}{C}{U}n+es#"], map: {a: "á", e: "é", i: "í", o: "ó", u: "ú"}}
 - {id: 'rule:es-plural', branch: accent-loss, when: {feats: {Number: Plur}}, find: "[áéó]", before: ["n+es#", "s+es#"], map: {"á": a, "é": e, "ó": o}}
 - {id: 'rule:es-plural', branch: accent-loss, when: {feats: {Number: Plur}}, find: "[íú]", after: "{C}", before: ["n+es#", "s+es#"], map: {"í": i, "ú": u}}
-- {id: 'rule:es-final-vowel', when: {feats: {Gender: 'Fem,Masc,Neut'}}, find: "[aeo]+", before: "[aeo]", to: "+"}  # a word's last vowel gives way to its gender's: buena, esta, la
+- {id: 'rule:es-final-vowel', when: {feats: {Gender: 'Fem,Masc,Neut'}}, find: "[aeo]+", before: ["[aeo]#", "[aeo]+"], to: "+"}  # a word's last vowel gives way to its gender's: buena, esta, la
 # Spelling: the stem's last consonant keeps its sound before the ending's vowel (the Ortografía's c/qu, g/gu, g/j, z/c).
 - {id: 'rule:es-spelling', branch: c-qu, when: {ends: car}, find: "c+", before: "[eé]", to: "qu+"}  # busqué, apliqué
 - {id: 'rule:es-spelling', branch: g-gu, when: {ends: gar}, find: "g+", before: "[eé]", to: "gu+"}  # llegué, juegue, cuelgues
@@ -391,9 +390,9 @@ phonology:
 # cayó, construyendo, oyó).
 - {id: 'rule:es-y', branch: uir, when: {ends: uir}, find: "+", after: "{NGQ}u", before: "[aeoáó]", to: "y+"}
 - {id: 'rule:es-y', branch: oir, when: {ends: "oír"}, find: "+", after: "o", before: "e", to: "y+"}
-- {id: 'rule:es-y', branch: i-y, find: "+i", after: ["[aeo]", "{NGQ}u"], before: "[aeoó]", to: "+y"}
-- {id: 'rule:es-merge', branch: ii, find: "i+i", before: "[eó]", to: "i+"}  # frió, frieron, friendo: two i's are one
-- {id: 'rule:es-merge', branch: j, when: {class: strong}, find: "j+ie", to: "j+e"}  # dijeron, trajera
+- {id: 'rule:es-y', branch: i-y, find: "+i", after: ["[aeo]", "{NGQ}u"], before: "[aeoóé]", to: "+y"}
+- {id: 'rule:es-merge', branch: ii, find: "i+i", before: "[eéó]", to: "i+"}  # frió, frieron, friendo: two i's are one
+- {id: 'rule:es-merge', branch: j, when: {class: strong}, find: "j+i", before: "[eé]", to: "j+"}  # dijeron, trajera, dijéramos
 # Accents (the Ortografía, chapter 3): an i stressed beside a vowel (leímos, oído, freímos, fríe); a monosyllable none
 # (vi, vio, frio); an imperative's stressed vowel where a pronoun is joined to it (échale).
 - {id: 'rule:es-accent', branch: hiatus, find: "+i", after: "[aeo]", before: ["mos", "ste", "d", "s#"], to: "+í"}
