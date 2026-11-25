@@ -29206,6 +29206,48 @@
       "note": "s.long.20: the course writes مرتين, marrten (Kline p. 134: marten); the doubling stays."
     },
     {
+      "id": "realise/apc/imperfect/doubled-a",
+      "op": "realise-token",
+      "args": {
+        "lang": "apc",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:dall",
+            "base": true,
+            "feats": {
+              "Aspect": "Imp",
+              "Mood": "Sub",
+              "Number": "Plur",
+              "Person": "1"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "نْ+ضَلّ",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:apc-imperfect",
+              "branch": "doubled-a"
+            },
+            {
+              "rule": "rule:apc-imperfect",
+              "branch": "1pl"
+            },
+            {
+              "rule": "rule:apc-prefix-vowel",
+              "branch": "none"
+            }
+          ]
+        }
+      },
+      "note": "s.keep.1: the course writes نضل, ndall (Kline p. 71: nDall); a doubled verb whose present is in a keeps it."
+    },
+    {
       "id": "realise/apc/passive/sound",
       "op": "realise-token",
       "args": {
