@@ -435,7 +435,7 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
   if (winner !== undefined) {
     const listed = winner.status === "listed" ? (winner.form !== undefined ? `${lexeme.id}|form:${featsKey(winner.feats)}` : `${lexeme.id}|stem:${(winner.stem ?? "").normalize("NFC")}`) : undefined;
     if (winner.form !== undefined) return ok({ units: unitsOf(winner.form), status: winner.status, steps: [], whole: true, lexeme, ...(listed !== undefined && { listed }), ...(variants !== undefined && { variants }) });
-    if (winner.stem === undefined) return err({ kind: "spelled-only", feats: winner.feats });
+    if (winner.stem === undefined) return err({ kind: "spelled-only", feats: winner.feats ?? {} });
   }
 
   // 2. The rule, its exponents (which may choose the stem), the stem. A lexeme whose form is a

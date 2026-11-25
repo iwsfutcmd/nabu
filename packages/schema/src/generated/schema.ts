@@ -3292,13 +3292,13 @@ export interface Logograph {
   };
 }
 /**
- * A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`. With `before`, it holds only where the rest of its token holds that condition, as an allomorph's `before` (a stem before a suffixed pronoun: hbo אַחֶי- in אַחֶיךָ), and is then more specific than a form of the same values without it; it never holds of a lexeme realised alone (a paradigm's cell).
+ * A form or a stem of a lexeme that the language's written rules do not give, with the feature values it covers (ADR 0145: an irregular is stored once, with the features it covers; the most specific that fits wins). One of `form` and `stem`. With `before`, it holds only where the rest of its token holds that condition, as an allomorph's `before` (a stem before a suffixed pronoun: hbo אַחֶי- in אַחֶיךָ), and is then more specific than a form of the same values without it; it never holds of a lexeme realised alone (a paradigm's cell). With no `feats`, it is for every cell, the least specific: an uninflected word's form (a preposition's stem before a suffix, hbo לָ- in לָנוּ; free variants, הִנֵּנִי beside הִנְנִי).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "LexemeForm".
  */
 export interface LexemeForm {
-  readonly feats: UdFeatures1;
+  readonly feats?: UdFeatures1;
   /**
    * The whole form, in the language's lexical-form notation (fue).
    */
