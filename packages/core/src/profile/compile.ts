@@ -6,6 +6,7 @@
  */
 import type { DataTable, FormCondition, KeyboardLayout, OrthographyProfile, Policy } from "@nabu/schema";
 import { compileJoin, type CompiledJoin } from "../match/join.ts";
+import type { OptionalBefore } from "../match/pronounce.ts";
 import { compileNormalizer, literalMap, type StepFn } from "../normalize/steps.ts";
 import { err, ok, type Result } from "../result.ts";
 import { compileProjection, type Projection } from "../project/sound.ts";
@@ -55,9 +56,9 @@ export interface CompiledProfile {
     readonly optional: ReadonlySet<string>;
     /**
      * Marks a learner supplying the vowel marks may write or leave out on a letter before another
-     * (ADR 0054 as amended): by the letter after (NFC), the marks (the fatha before an alif).
+     * (ADR 0054 as amended): the fatha before an alif, the kasra before a bare ya.
      */
-    readonly optionalBefore: ReadonlyMap<string, ReadonlySet<string>>;
+    readonly optionalBefore: readonly OptionalBefore[];
     /** Marks an answer must write as the expected word does: never folded, never a typo (ADR 0134). */
     readonly required: ReadonlySet<string>;
     readonly requiredNote?: string | undefined;
@@ -191,19 +192,21 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
       const set = new Set(parseExemplarSet(match.marks.set));
       const optional = new Set(match.marks.optional === undefined ? [] : parseExemplarSet(match.marks.optional));
       const required = new Set(match.marks.required === undefined ? [] : parseExemplarSet(match.marks.required));
-      // By the letter after, the marks a learner may write or not on the letter before it.
-      const optionalBefore = new Map<string, Set<string>>();
-      for (const rule of match.marks.optionalBefore ?? []) {
-        const ms = parseExemplarSet(rule.marks);
-        for (const m of ms) if (!set.has(m)) throw new Error(`optionalBefore: ${JSON.stringify(m)} is not a mark of the set`);
+      // The marks a learner may write or not on a letter before one of `letters`, and when.
+      const ofTheSet = (field: string, pattern: string): Set<string> => {
+        const ms = parseExemplarSet(pattern);
+        for (const m of ms) if (!set.has(m)) throw new Error(`optionalBefore: ${field} ${JSON.stringify(m)} is not a mark of the set`);
+        return new Set(ms);
+      };
+      const optionalBefore: OptionalBefore[] = (match.marks.optionalBefore ?? []).map((rule) => {
+        const letters = new Set<string>();
         for (const letter of parseExemplarSet(rule.letters)) {
           const key = letter.normalize("NFC");
           if (Array.from(key.normalize("NFD")).some((c) => set.has(c))) throw new Error(`optionalBefore: ${JSON.stringify(letter)} is not a letter without vowel marks`);
-          const on = optionalBefore.get(key) ?? new Set<string>();
-          optionalBefore.set(key, on);
-          for (const m of ms) on.add(m);
+          letters.add(key);
         }
-      }
+        return { marks: ofTheSet("mark", rule.marks), letters, bare: rule.bare === true, unless: rule.unless === undefined ? new Set() : ofTheSet("unless", rule.unless) };
+      });
       // A letter of `requiredLetters` is its bare letter and the marks of the set it carries.
       const requiredOn = new Map<string, Set<string>>();
       for (const letter of match.marks.requiredLetters === undefined ? [] : parseExemplarSet(match.marks.requiredLetters)) {

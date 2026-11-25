@@ -9,7 +9,7 @@ import { literalAccept } from "../accept/notation.ts";
 import { glossUnits } from "../match/gloss.ts";
 import { compileAcceptSet, grade, type CompiledAcceptSet } from "../match/grade.ts";
 import { readingProjection, readingTag } from "../profile/schemes.ts";
-import { attestedMarks, gradeReading, gradeVowels, hasVowelMarks, letterVariants, readingFeatures, schemeSpelling, toneVariants, transcribable, typedByProfile, vocalizationVariants, withoutMarks, type VowelMarks } from "../match/pronounce.ts";
+import { attestedMarks, gradeReading, gradeVowels, hasVowelMarks, letterVariants, readingFeatures, schemeSpelling, toneVariants, transcribable, typedByProfile, vocalizationVariants, withoutMarks, type OptionalBefore, type VowelMarks } from "../match/pronounce.ts";
 import { graphemes } from "../text/graphemes.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 import { tilesOf } from "./tiles.ts";
@@ -37,6 +37,7 @@ import type {
   Transcribe,
   Vocalize,
   VocalizeBuild,
+  OptionalBeforeRule,
   Response,
   SelectImage,
   Speak,
@@ -2047,6 +2048,14 @@ export const makeVocalize = (ctx: MakeContext, s: BundleSentence): Vocalize | un
   };
 };
 
+/** A compiled `optionalBefore` rule as an exercise carries it (JSON). */
+const ruleOf = (r: OptionalBefore): OptionalBeforeRule => ({
+  marks: [...r.marks],
+  letters: [...r.letters],
+  ...(r.bare ? { bare: true as const } : {}),
+  ...(r.unless.size === 0 ? {} : { unless: [...r.unless] }),
+});
+
 /**
  * Vowel marks put on a word's letters (ADR 0137), where the profile asks for it (`input.markBuilder`):
  * the word a vocalize card would ask, its letters given and the profile's marks on buttons. The
@@ -2085,7 +2094,7 @@ export const makeVocalizeBuild = (ctx: MakeContext, s: BundleSentence): Vocalize
     letters,
     marks: [...marks.set],
     optional: [...marks.optional],
-    ...(marks.optionalBefore.size === 0 ? {} : { optionalBefore: Object.fromEntries([...marks.optionalBefore].map(([letter, ms]) => [letter, [...ms]])) }),
+    ...(marks.optionalBefore.length === 0 ? {} : { optionalBefore: marks.optionalBefore.map(ruleOf) }),
     combos: letters.map((l, i) => attested(l, i === 0 ? "initial" : i === letters.length - 1 ? "final" : "medial")),
   };
 };
@@ -2253,7 +2262,7 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
     case "vocalize-build": {
       if (response.tag !== "text") return mismatch(ex, response);
       // Letter by letter (ADR 0137): the marks each letter has, optional ones (sukun, a fatha before an alif) not counted.
-      const optionalBefore = new Map(Object.entries(ex.optionalBefore ?? {}).map(([letter, ms]) => [letter, new Set(ms)]));
+      const optionalBefore = (ex.optionalBefore ?? []).map((r) => ({ marks: new Set(r.marks), letters: new Set(r.letters), bare: r.bare === true, unless: new Set(r.unless ?? []) }));
       const g = gradeVowels({ set: new Set(ex.marks), optional: new Set(ex.optional), optionalBefore }, surfaceOf(ex.vocalized), response.text);
       return { verdict: g.verdict, notes: g.notes, solution: ex.vocalized };
     }

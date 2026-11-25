@@ -2909,6 +2909,18 @@ class OptionalBeforeItem(BaseModel):
             description="The letters before which they may be written or not: whole letters, as NFC writes them (a plain alif, never one carrying a hamza)."
         ),
     ]
+    bare: Annotated[
+        bool | None,
+        Field(
+            description="Only where that letter, in the expected word, carries no mark of the set: a ya or waw that writes a long vowel. One with a mark of its own (مِيِّة, هُوّ) is a consonant, and the vowel before it counts."
+        ),
+    ] = None
+    unless: Annotated[
+        UnicodeSetPattern | None,
+        Field(
+            description="Marks of the set on the letter itself, in the expected word, that keep the marks counting: a sukun says the letter after begins a syllable, so it is a consonant (فاضْيين: fāḍyīn, never fāḍiyīn)."
+        ),
+    ] = None
 
 
 class Case(BaseModel):
@@ -5453,7 +5465,7 @@ class Marks(BaseModel):
     optionalBefore: Annotated[
         list[OptionalBeforeItem] | None,
         Field(
-            description="Marks a learner supplying a word's vowel marks (ADR 0054 as amended) may write or leave out on a letter, where the letter after it is one of `letters`: the fatha before the alif that writes its long a (مَرْحَبا and مَرْحَبَا are the same word). The same mark elsewhere counts as the others do.",
+            description="Marks a learner supplying a word's vowel marks (ADR 0054 as amended) may write or leave out on a letter, where the letter after it is one of `letters`: the fatha before the alif that writes its long a (مَرْحَبا and مَرْحَبَا are the same word), the kasra before a bare ya that writes its long i (فيلِم and فِيلِم). The same mark elsewhere counts as the others do.",
             min_length=1,
         ),
     ] = None
