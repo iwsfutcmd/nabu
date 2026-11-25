@@ -143,7 +143,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - The web app stamps events (apps/web/src/clock.ts, session.ts) and keeps them in IndexedDB (store.ts).
 - A running lesson or story holds the route against Back and Forward (navigation.ts, ADR 0108): Back, or Android's
   back button, asks as the quit button does; a new navigation (a link, a typed address, a reminder, an e2e `goto`)
-  goes ahead. Leave a session with `leave()`, never `location.hash =`, so Back never plays it again. A reload, or
+  goes ahead. Leave a session with `leave()`, never `location.hash =`, so Back never plays it again. A session is
+  keyed by its route and the visit (`routeVisit`): leaving one for its own route (Keep practising after a review)
+  mounts a fresh session, never the finished one again (its buttons are spent). A reload, or
   opening a lesson left part-way, picks the session up: its plan is kept on the device until it ends
   (open-session.ts), and core `resume` folds the session's logged answers through the player. Never re-plan a
   session that is under way.
@@ -256,7 +258,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   vowel-marked text, each cloning its reference (beirut-m, beirut-f; `nabu audio cast`; recasting makes clips stale). Clips are CC-BY-NC-4.0
   (the weights are non-commercial). bfloat16; CPU ~15 s a clip, a T4 ~11 s; generation resumes. Live test: NABU_OMNIVOICE=1.
 - OmniVoice clips are trimmed to their speech (`trim_edges`: 80 ms before, 150 ms after); a clip cloned from a recorded
-  reference credits it (speaker, license, source).
+  reference credits it (speaker, license, source). OmniVoice sets a clip's length before it speaks and leaves no time for
+  a pause at a comma: a voice's `pauseTime` adds seconds per pause inside the text (`inner_pauses`, ADR 0058 amendment),
+  in those clips' identity alone. apc's woman's voice has 0.3; the man's none (it would remake approved lines).
 - Items said alike (one input, voice and settings) share one clip and file; a clip is kept only if its file matches its
   sha256, so `generate` or `prune` mends an index whose file was written over. `--check` runs Whisper on a GPU if it can.
 - uz's voice (ADR 0059): Navoiy (CosyVoice2) runs in its own uv project, pipeline/runtimes/cosyvoice (older torch and

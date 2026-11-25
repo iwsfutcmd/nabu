@@ -106,6 +106,9 @@ vocalization:
 # and cloning a reference (`nabu audio cast`). Two voices, a man's and a woman's: each item gets one at random
 # (seeded by its id), and a sentence or story character whose grammar says who speaks gets that one (ADR 0078).
 # The model's weights are CC-BY-NC (OmniVoice's training data), so its clips are too.
+# A word card ends with a full stop, as a sentence does (finalStop, ADR 0063). Given a bare word, both voices often
+# put a quiet lead-in before it and stopped mid-word, and read a final ة as -t (سِتِّة as sitt); with the stop, 44 of
+# 44 takes of the 22 word cards a listener rejected (2026-11-24) started and ended cleanly, and Whisper heard no -t.
 audio:
   # ADR 0091: a voice made for the language (Lahgtna): clips play everywhere, listening exercises included.
   quality: good
@@ -119,6 +122,7 @@ audio:
     orthography: apc-Arab/standard
     reading: text
     vowelMarks: true
+    finalStop: true
     license: CC-BY-NC-4.0
   - id: beirut-f
     provider: omnivoice
@@ -129,4 +133,10 @@ audio:
     orthography: apc-Arab/standard
     reading: text
     vowelMarks: true
+    finalStop: true
+    # OmniVoice's estimate of a line's length leaves almost no time for a pause at a comma or between sentences,
+    # and this voice pauses there longer than the man's: 24% of her lines with one such pause and 54% with two
+    # were cut off at the end (the man's: 5% and 14%). Each pause gets 0.3 s more (ADR 0058 amendment): 23 of 24
+    # of her cut lines then ended whole. Not on the man's voice, whose approved lines it would remake for few fixes.
+    pauseTime: 0.3
     license: CC-BY-NC-4.0

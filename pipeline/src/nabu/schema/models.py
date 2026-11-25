@@ -4219,6 +4219,14 @@ class AudioVoice(BaseModel):
     ] = None
     carrier: AudioCarrier | None = None
     pace: AudioPace | None = None
+    pauseTime: Annotated[
+        float | None,
+        Field(
+            description="OmniVoice: seconds added to the model's own estimate of a clip's length for each run of punctuation inside the text (a comma, a full stop between sentences, a question mark before more words). Its estimate leaves almost no time for the pauses they ask for, so a voice that pauses there runs out of time and its last word is cut off (ADR 0058 amendment). An item's clip changes only if its text has such punctuation.",
+            gt=0.0,
+            le=2.0,
+        ),
+    ] = None
     spoken: Annotated[
         dict[Annotated[str, StringConstraints(min_length=1)], SpokenAdditionalProperty] | None,
         Field(

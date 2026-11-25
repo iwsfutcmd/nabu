@@ -3,6 +3,7 @@
 - Status: Accepted (2026-11-18)
 - Date: 2026-11-05
 - Amends: [0040](0040-audio-pipeline.md), [0042](0042-hosted-tts-providers.md), [0053](0053-vocalization.md)
+- Amended 2026-11-24 (Proposed): time for pauses (below)
 
 ## Context
 
@@ -70,3 +71,34 @@ accepted non-commercial audio for apc (2026-11-05).
 - **Review.** The round-trip check (Whisper, CER) puts doubtful clips in the review queue
   (`nabu audio report`). A native speaker should still listen to the clips: Whisper writes
   Lebanese words in their MSA spelling (هيدا as هذا), so a high CER is not always a bad clip.
+
+## Amendment: time for pauses (2026-11-24)
+
+**Context.** A listener rejected lines whose last word was cut off (2026-11-24). OmniVoice decides a
+clip's length before it speaks, from a rule over the text (each Arabic letter 1.5, a space 0.2, a
+punctuation mark 0.5, scaled by the reference's pace). The rule leaves about a tenth of a second
+for a comma or a full stop between sentences. A voice that pauses there for longer runs out of time
+before the end. Measured on apc's clips (the last 10 ms within 25 dB of the loudest no more than
+140 ms before the end):
+
+| Lines | Woman's voice cut off | Man's voice cut off |
+| --- | --- | --- |
+| No pause inside | 2% of 299 | 0% of 383 |
+| One pause inside | 24% of 76 | 5% of 83 |
+| Two or more | 54% of 13 | 14% of 14 |
+
+The cut lines paused about 130 ms at each mark (the man's 360 ms) where the whole ones paused
+50 ms. None of the 33 lines the listener had marked right was cut this way.
+
+**Decision.** An OmniVoice voice may set `pauseTime`: seconds added to the model's own estimate for
+each run of punctuation before a space inside the text (`inner_pauses`), given to the model as the
+clip's length. The setting joins only the identity of the clips whose text has such a pause
+(`item_settings`), so other clips stay as they are. apc's woman's voice sets 0.3 s. Of her 24 cut
+lines, made again with the same seeds, 23 then ended whole. Scaling the whole estimate by 1.15
+instead left 6 still cut. The man's voice does not set it: it would remake 97 lines (13 of them
+approved by the listener) to mend about six.
+
+**Consequences.** Her 88 lines with a pause inside are made again and need listening to, the 4 she
+had approved among them. The rule's numbers belong to the OmniVoice package (`omnivoice-0.2.1` in
+the clips' version), so a new package can need another `pauseTime`.
+

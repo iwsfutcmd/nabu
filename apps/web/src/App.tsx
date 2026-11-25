@@ -79,7 +79,7 @@ import { PreferencesPage, storedSound, storeSound, type PreferencesBack, type Te
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
 import { UI_CATALOGS } from "./caches.ts";
 import { startNative } from "./native.ts";
-import { cameFrom, holdRoute, leave, openAddress, watchRoute } from "./navigation.ts";
+import { cameFrom, holdRoute, leave, openAddress, routeVisit, watchRoute } from "./navigation.ts";
 import { isOpenMessage } from "./caches.ts";
 import { closeOpen, keepOpen, reopen, type OpenSession } from "./open-session.ts";
 import { mostQuestions, PlacementIntro, PlacementResult } from "./Placement.tsx";
@@ -188,11 +188,15 @@ const cardLinkFor =
   async (ex: Exercise): Promise<string> =>
     `${window.location.origin}${window.location.pathname}?debug=1${href({ tag: "card", course: course.id, orthography: course.orthography, code: await encodeCard(ex) })}`;
 
-/** The route in the URL hash; a running session holds it (navigation.ts, S3). */
-const useRoute = (): Route => {
-  const [route, setRoute] = useState(() => parse(window.location.hash));
-  useEffect(() => watchRoute(() => setRoute(parse(window.location.hash))), []);
-  return route;
+/**
+ * The route in the URL hash, which a running session holds (navigation.ts, S3), and which visit to it this is
+ * (`routeVisit`): a session is keyed by both, so leaving one for its own route (another review after a review)
+ * opens a fresh session.
+ */
+const useRoute = (): { readonly route: Route; readonly visit: number } => {
+  const [at, setAt] = useState(() => ({ route: parse(window.location.hash), visit: routeVisit() }));
+  useEffect(() => watchRoute(() => setAt({ route: parse(window.location.hash), visit: routeVisit() })), []);
+  return at;
 };
 
 /**
@@ -1460,7 +1464,7 @@ interface Log {
 
 export const App = (): JSX.Element => {
   const t = useTranslator();
-  const route = useRoute();
+  const { route, visit } = useRoute();
   const [index, setIndex] = useState<readonly CourseIndexEntry[] | null>(null);
   const [indexFailed, setIndexFailed] = useState(false);
   // Loads that failed are tried again when the connection comes back, or when the learner asks.
@@ -1780,7 +1784,7 @@ export const App = (): JSX.Element => {
   if (route.tag === "story")
     return (
       <StorySession
-        key={href(route)}
+        key={`${href(route)}@${String(visit)}`}
         loaded={sessionCourse}
         node={route.node}
         state={log.state}
@@ -1796,7 +1800,7 @@ export const App = (): JSX.Element => {
     );
   return (
     <Session
-      key={href(route)}
+      key={`${href(route)}@${String(visit)}`}
       loaded={sessionCourse}
       request={route.request}
       state={log.state}
