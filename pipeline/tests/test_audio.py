@@ -153,7 +153,7 @@ def _said_by_a_woman(unit_file: Path, sentence_id: str) -> None:
 
 def _compiled(cli: CoreCli, course: Path):
     diags, compiled = compile_course(course, cli)
-    assert compiled is not None, [d.format() for d in diags.items]
+    assert compiled is not None, [d.format() for d in diags.items if d.severity == "error"]
     return diags, compiled
 
 
@@ -303,10 +303,20 @@ def test_prune_lets_the_stale_clips_go_and_keeps_the_rest(
     _, compiled = _compiled(core_cli, yue_copy)
     synthesize_course(yue_copy, compiled.content, YUE_VOICE)
     before = read_index(audio_dir(yue_copy)).clips
-    unit = yue_copy / "units" / "intro.yaml"
-    unit.write_text(
-        unit.read_text(encoding="utf-8").replace("zou2 san4", "zou2 san1"), encoding="utf-8"
-    )
+    # A word's reading is its lexeme's (yue's form pairs each character with its Jyutping): change
+    # both, in a copy of the lexicons, or the token check refuses the sentences.
+    lexicons = yue_copy.parent / "lexicons"
+    lexicons.unlink()
+    shutil.copytree(ROOT / "lexicons", lexicons)
+    # The lexicon's pictures are found beside it, as courses/ is beside lexicons/.
+    (yue_copy.parent / "courses").mkdir()
+    (yue_copy.parent / "courses" / "images").symlink_to(ROOT / "courses" / "images")
+    for path in (yue_copy / "units" / "intro.yaml", lexicons / "yue" / "lexemes.yaml"):
+        text = path.read_text(encoding="utf-8")
+        path.write_text(
+            text.replace("zou2 san4", "zou2 san1").replace("早zou2晨san4", "早zou2晨san1"),
+            encoding="utf-8",
+        )
     diags, compiled = _compiled(core_cli, yue_copy)
     stale = [d for d in diags.items if d.lint == "audio.stale"]
     assert stale
