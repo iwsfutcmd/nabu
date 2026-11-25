@@ -269,7 +269,7 @@ export const compileSpeller = (profile: OrthographyProfile, notation: Notation, 
       errors.push(`notation.order: ${(e as Error).message}`);
     }
   }
-  for (const [what, signs] of [["vowels", notation.vowels], ["long", notation.long ?? {}]] as const) {
+  for (const [what, signs] of [["vowels", notation.vowels ?? {}], ["long", notation.long ?? {}]] as const) {
     for (const [name, sign] of Object.entries(signs)) if (sign !== sign.normalize("NFC")) errors.push(`notation.${what}.${name} is not NFC`);
   }
   const rules = statement.rules.map((r, i) => compileRule(r, i, sets, errors));

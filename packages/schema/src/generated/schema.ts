@@ -3642,9 +3642,9 @@ export interface NamedRule {
  */
 export interface Notation {
   /**
-   * Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C).
+   * Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C). A notation whose vowels are letters (an alphabet's: es, sk, tok) names none.
    */
-  readonly vowels: {
+  readonly vowels?: {
     readonly [k: string]: string;
   };
   /**
@@ -5666,7 +5666,7 @@ export interface Spell {
     readonly [k: string]: UnicodeSetPattern;
   };
   /**
-   * @minItems 1
+   * None where the orthography writes the form as it is (its boundaries dropped).
    */
   readonly rules: readonly SpellRule[];
 }
@@ -5959,7 +5959,7 @@ export interface Spell1 {
     readonly [k: string]: UnicodeSetPattern;
   };
   /**
-   * @minItems 1
+   * None where the orthography writes the form as it is (its boundaries dropped).
    */
   readonly rules: readonly SpellRule[];
 }
