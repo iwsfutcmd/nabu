@@ -57,6 +57,28 @@ match:
 # ک گ غ, doubles) and which fixed is the scheme's. No `correspondences` here: the profile's own letters are not
 # read as sounds (a word's reading is pinned, never derived from its spelling).
 sound: { from: reading, scheme: schluessel }
+# How this orthography writes a lexical form of chg (lexicons/chg/language.yaml's notation; docs/rules/chg.md): the
+# letters as they are, the notation's own signs as letters, and where a suffix joins, which a realised form's
+# boundaries (+) show the rules (`boundaries`). REVIEW, every rule: Schluessel (2018), xxx, "Special Rules about
+# Joining Letters Together", and the course's own texts. Checked against each lexeme's first spelling and every token
+# by the compiler (`form.projection`, `form.unaccounted`, `nabu forms`).
+spell:
+  from: lexical
+  boundaries: true
+  sets:
+    JOIN: "[ئبپتثجچحخسشصضطظعغفقکگلمنهیي]"  # a letter that joins the one after it
+  rules:
+  - {find: "ە\\+\u0654", to: "ه\u0654"}  # the ezafe's hamza on a final vowel he (شجرهٔ šajarah-i; S 10.4)
+  - {find: "ە\\+", to: "ه\u200c"}  # a suffix after a vowel he: the he does not join it (S xxx, rule 3: دیوانه\u200cکه)
+  - {find: "ە", to: "ه"}
+  - {find: "ي\\+ی", to: "ي+ی", alternatives: [{id: double-once, to: "ی"}]}  # y and the -i after it, or one ye for both (سویی and سُوی süyi: the scheme's double written once)
+  - {find: "ي", to: "ی"}
+  - {find: "ه\\+", before: "{C}", to: "ه\u200c", alternatives: [{id: joined, to: "ه"}]}  # h joins only a vowel (S xxx, rule 4: گناه\u200cکار, گناهیمیز); the course's sentences join it (پادشاهنینک)
+  - {find: "ل\\+ل", to: "ل\u200cل"}  # two l's are not joined (S xxx, rule 2: قول\u200cلوق)
+  - {find: "چ\\+چ", to: "چ+چ", alternatives: [{id: double-once, to: "چ"}]}  # a double across a boundary, or once (یغاچی yaǧačči: the scheme's double written once)
+  - {find: "ت\\+ت", to: "ت+ت", alternatives: [{id: double-once, to: "ت"}]}  # (ایتیکه eyttikä)
+  - {find: "\\+", after: "{JOIN}", before: "[دت]ور", to: "\u200c", alternatives: [{id: joined, to: ""}]}  # the copula after a half-space (qattiq-dur), or joined (Türkdur, S 11.3; the present's -aydur)
+  - {find: "\\+", after: "{JOIN}", to: "", alternatives: [{id: half-space, to: "\u200c"}]}  # any other suffix joined, or after a half-space as the typescript often has it (S xxx, rule 5: 'difficult to predict')
 annotations:
   # Schluessel's transliteration of each word, as ruby over the whole word (the scheme's `ruby: word`): over the
   # words whose reading is still new until the learner chooses (ADR 0131), fading once a reading card shows it.

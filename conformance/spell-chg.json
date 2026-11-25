@@ -201,6 +201,525 @@
         "alternatives": []
       },
       "note": "Without `boundaries` they are dropped first, as before: the rule never sees one."
+    },
+    {
+      "id": "spell/chg/rule-01/shajara-i",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "شجرە+\u0654",
+        "expected": "شجره\u0654"
+      },
+      "expected": {
+        "spelling": "شجره\u0654",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 1 (ە + the ezafe's hamza → ه with the hamza): šajarah-i (s.09.38)."
+    },
+    {
+      "id": "spell/chg/rule-02/mewasi",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "میوە+سی",
+        "expected": "میوه\u200cسی"
+      },
+      "expected": {
+        "spelling": "میوه\u200cسی",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 2 (a suffix after a vowel he stands after a half-space): mewäsi (s.01.41)."
+    },
+    {
+      "id": "spell/chg/rule-02/kanarada",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "کنارە+دا",
+        "expected": "کناره\u200cدا"
+      },
+      "expected": {
+        "spelling": "کناره\u200cدا",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 2: kanarada (a story line; the locative's free دا)."
+    },
+    {
+      "id": "spell/chg/rule-03/alta",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "التە",
+        "expected": "الته"
+      },
+      "expected": {
+        "spelling": "الته",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 3 (a final vowel he is ه): altä, a lemma."
+    },
+    {
+      "id": "spell/chg/rule-04/suyi",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "سوي+ی",
+        "expected": "سویی"
+      },
+      "expected": {
+        "spelling": "سویی",
+        "alternatives": [
+          {
+            "spelling": "سوی\u200cی",
+            "by": [
+              "half-space"
+            ]
+          },
+          {
+            "spelling": "سوی",
+            "by": [
+              "double-once"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 4 (y and the -i after it, or one ye for both): süyi written in full (s.01.45)..."
+    },
+    {
+      "id": "spell/chg/rule-04/suyi-one-ye",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "سوي+ی",
+        "expected": "سُوی"
+      },
+      "expected": {
+        "spelling": "سویی",
+        "alternatives": [
+          {
+            "spelling": "سوی\u200cی",
+            "by": [
+              "half-space"
+            ]
+          },
+          {
+            "spelling": "سوی",
+            "by": [
+              "double-once"
+            ]
+          }
+        ],
+        "expected": "alternative"
+      },
+      "note": "... and with one ye (a story line, its damma passed over as the profile's marks are)."
+    },
+    {
+      "id": "spell/chg/rule-05/chay",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "چاي",
+        "expected": "چای"
+      },
+      "expected": {
+        "spelling": "چای",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 5 (a final consonant ye is ی): čay, a lemma."
+    },
+    {
+      "id": "spell/chg/rule-06/padishah-ning",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "پادشاه+نینک",
+        "expected": "پادشاهنینک"
+      },
+      "expected": {
+        "spelling": "پادشاه\u200cنینک",
+        "alternatives": [
+          {
+            "spelling": "پادشاهنینک",
+            "by": [
+              "joined"
+            ]
+          }
+        ],
+        "expected": "alternative"
+      },
+      "note": "Rule 6 (h before a consonant: a half-space, S xxx rule 4, or joined, as the course's sentences write it): pādišāhniŋ (s.10.30)."
+    },
+    {
+      "id": "spell/chg/rule-06/shah-ning",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "شاه+نینک",
+        "expected": "شاه\u200cنینک"
+      },
+      "expected": {
+        "spelling": "شاه\u200cنینک",
+        "alternatives": [
+          {
+            "spelling": "شاهنینک",
+            "by": [
+              "joined"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 6: Šāhniŋ after a half-space (a story line)."
+    },
+    {
+      "id": "spell/chg/rule-06/padishah-imiz",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "پادشاه+یمیز",
+        "expected": "پادشاهیمیز"
+      },
+      "expected": {
+        "spelling": "پادشاهیمیز",
+        "alternatives": [
+          {
+            "spelling": "پادشاه\u200cیمیز",
+            "by": [
+              "half-space"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 6 does not hold before a vowel letter: pādišāhimiz joined (S xxx rule 4: گناهیمیز); rule 10 gives the half-space as free."
+    },
+    {
+      "id": "spell/chg/rule-07/qulluq",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "قول+لوق",
+        "expected": "قول\u200cلوق"
+      },
+      "expected": {
+        "spelling": "قول\u200cلوق",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 7 (two l's are not joined): qulluq, S xxx's example. Constructed: no word of the course has two l's across a boundary."
+    },
+    {
+      "id": "spell/chg/rule-08/yaghachchi",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "یغاچ+چی",
+        "expected": "یغاچچی"
+      },
+      "expected": {
+        "spelling": "یغاچچی",
+        "alternatives": [
+          {
+            "spelling": "یغاچ\u200cچی",
+            "by": [
+              "half-space"
+            ]
+          },
+          {
+            "spelling": "یغاچی",
+            "by": [
+              "double-once"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 8 (čč across a boundary, or once): yaǧačči (s.15.22)..."
+    },
+    {
+      "id": "spell/chg/rule-08/yaghachi",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "یغاچ+چی",
+        "expected": "یغاچی"
+      },
+      "expected": {
+        "spelling": "یغاچچی",
+        "alternatives": [
+          {
+            "spelling": "یغاچ\u200cچی",
+            "by": [
+              "half-space"
+            ]
+          },
+          {
+            "spelling": "یغاچی",
+            "by": [
+              "double-once"
+            ]
+          }
+        ],
+        "expected": "alternative"
+      },
+      "note": "... written once (a story line)."
+    },
+    {
+      "id": "spell/chg/rule-09/eyttike",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "ایت+تی+کە",
+        "expected": "ایتتیکه"
+      },
+      "expected": {
+        "spelling": "ایتتیکه",
+        "alternatives": [
+          {
+            "spelling": "ایتتی\u200cکه",
+            "by": [
+              "half-space"
+            ]
+          },
+          {
+            "spelling": "ایت\u200cتیکه",
+            "by": [
+              "half-space"
+            ]
+          },
+          {
+            "spelling": "ایت\u200cتی\u200cکه",
+            "by": [
+              "half-space"
+            ]
+          },
+          {
+            "spelling": "ایتیکه",
+            "by": [
+              "double-once"
+            ]
+          },
+          {
+            "spelling": "ایتی\u200cکه",
+            "by": [
+              "double-once",
+              "half-space"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 9 (tt across a boundary, or once): eyttikä..."
+    },
+    {
+      "id": "spell/chg/rule-09/eytike",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "ایت+تی+کە",
+        "expected": "ایتیکه"
+      },
+      "expected": {
+        "spelling": "ایتتیکه",
+        "alternatives": [
+          {
+            "spelling": "ایتتی\u200cکه",
+            "by": [
+              "half-space"
+            ]
+          },
+          {
+            "spelling": "ایت\u200cتیکه",
+            "by": [
+              "half-space"
+            ]
+          },
+          {
+            "spelling": "ایت\u200cتی\u200cکه",
+            "by": [
+              "half-space"
+            ]
+          },
+          {
+            "spelling": "ایتیکه",
+            "by": [
+              "double-once"
+            ]
+          },
+          {
+            "spelling": "ایتی\u200cکه",
+            "by": [
+              "double-once",
+              "half-space"
+            ]
+          }
+        ],
+        "expected": "alternative"
+      },
+      "note": "... written once."
+    },
+    {
+      "id": "spell/chg/rule-10/shirindur",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "شیرین+دور",
+        "expected": "شیرین\u200cدور"
+      },
+      "expected": {
+        "spelling": "شیرین\u200cدور",
+        "alternatives": [
+          {
+            "spelling": "شیریندور",
+            "by": [
+              "joined"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 10 (the copula after a joining letter: a half-space, or joined): širindur (s.01.9)..."
+    },
+    {
+      "id": "spell/chg/rule-10/qilmaydur",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "قیل+ما+ی+دور",
+        "expected": "قیلمایدور"
+      },
+      "expected": {
+        "spelling": "قیلمای\u200cدور",
+        "alternatives": [
+          {
+            "spelling": "قیل\u200cمای\u200cدور",
+            "by": [
+              "half-space"
+            ]
+          },
+          {
+            "spelling": "قیلمایدور",
+            "by": [
+              "joined"
+            ]
+          },
+          {
+            "spelling": "قیل\u200cمایدور",
+            "by": [
+              "half-space",
+              "joined"
+            ]
+          }
+        ],
+        "expected": "alternative"
+      },
+      "note": "... joined after the present's -y (qilmaydur, s.05.16)."
+    },
+    {
+      "id": "spell/chg/rule-11/iqlimdindur",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "اقلیم+دین+دور",
+        "expected": "اقلیمدین\u200cدور"
+      },
+      "expected": {
+        "spelling": "اقلیمدین\u200cدور",
+        "alternatives": [
+          {
+            "spelling": "اقلیم\u200cدین\u200cدور",
+            "by": [
+              "half-space"
+            ]
+          },
+          {
+            "spelling": "اقلیمدیندور",
+            "by": [
+              "joined"
+            ]
+          },
+          {
+            "spelling": "اقلیم\u200cدیندور",
+            "by": [
+              "half-space",
+              "joined"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 11 (any other suffix after a joining letter: joined, or after a half-space): iqlīmdindur as the sentence writes it (s.06.38)..."
+    },
+    {
+      "id": "spell/chg/rule-11/iqlim-din-dur",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "اقلیم+دین+دور",
+        "expected": "اقلیم\u200cدین\u200cدور"
+      },
+      "expected": {
+        "spelling": "اقلیمدین\u200cدور",
+        "alternatives": [
+          {
+            "spelling": "اقلیم\u200cدین\u200cدور",
+            "by": [
+              "half-space"
+            ]
+          },
+          {
+            "spelling": "اقلیمدیندور",
+            "by": [
+              "joined"
+            ]
+          },
+          {
+            "spelling": "اقلیم\u200cدیندور",
+            "by": [
+              "half-space",
+              "joined"
+            ]
+          }
+        ],
+        "expected": "alternative"
+      },
+      "note": "... and as the story line, from Schluessel's typescript."
+    },
+    {
+      "id": "spell/chg/boundary/shaharda",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "شهر+دە",
+        "expected": "شهرده"
+      },
+      "expected": {
+        "spelling": "شهرده",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "A boundary no rule names (after ر, which joins nothing) is dropped: šahardä (s.02.20)."
+    },
+    {
+      "id": "spell/chg/lemma/al",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "ال-",
+        "expected": "ال-"
+      },
+      "expected": {
+        "spelling": "ال-",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "A verb's lemma keeps its citation hyphen (the lexicon's first spelling): al-."
     }
   ]
 }
