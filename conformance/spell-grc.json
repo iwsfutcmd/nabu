@@ -1,5 +1,5 @@
 {
- "$comment": "Spelling for grc (docs/rules/grc.md): spell/engine runs an invented profile over a decomposed `spell` statement; spell/grc runs grc-Grek/polytonic's own, one vector or more per rule and alternative.",
+ "$comment": "Spelling for grc (docs/rules/grc.md): spell/engine runs an invented profile over a decomposed `spell` statement; spell/grc runs grc-Grek/polytonic's own over the course's lexical forms (a realised form with its boundaries dropped), one vector or more per rule and alternative, `expected` the course's own spelling.",
  "vectors": [
   {
    "id": "spell/engine/decompose/mark-apart",
@@ -29,17 +29,17 @@
       "decompose": true,
       "rules": [
        {
-        "find": "̄",
+        "find": "\u0304",
         "to": ""
        },
        {
-        "find": "́",
+        "find": "\u0301",
         "before": "{NV}*$",
-        "to": "́",
+        "to": "\u0301",
         "alternatives": [
          {
           "id": "grave",
-          "to": "̀"
+          "to": "\u0300"
          }
         ]
        }
@@ -53,7 +53,7 @@
      "sets": {
       "V": "[aeiouy]"
      },
-     "order": "[̄ ́]"
+     "order": "[\u0304 \u0301]"
     },
     "form": "theós"
    },
@@ -97,17 +97,17 @@
       "from": "lexical",
       "rules": [
        {
-        "find": "̄",
+        "find": "\u0304",
         "to": ""
        },
        {
-        "find": "́",
+        "find": "\u0301",
         "before": "{NV}*$",
-        "to": "́",
+        "to": "\u0301",
         "alternatives": [
          {
           "id": "grave",
-          "to": "̀"
+          "to": "\u0300"
          }
         ]
        }
@@ -121,7 +121,7 @@
      "sets": {
       "V": "[aeiouy]"
      },
-     "order": "[̄ ́]"
+     "order": "[\u0304 \u0301]"
     },
     "form": "theós"
    },
@@ -159,17 +159,17 @@
       "decompose": true,
       "rules": [
        {
-        "find": "̄",
+        "find": "\u0304",
         "to": ""
        },
        {
-        "find": "́",
+        "find": "\u0301",
         "before": "{NV}*$",
-        "to": "́",
+        "to": "\u0301",
         "alternatives": [
          {
           "id": "grave",
-          "to": "̀"
+          "to": "\u0300"
          }
         ]
        }
@@ -183,7 +183,7 @@
      "sets": {
       "V": "[aeiouy]"
      },
-     "order": "[̄ ́]"
+     "order": "[\u0304 \u0301]"
     },
     "form": "lū́o"
    },
@@ -192,6 +192,796 @@
     "alternatives": []
    },
    "note": "A length mark NFC keeps beside its letter (ū́) and one it composes (ō) are both marks to a decomposed statement; the acute that is not last gets no grave."
+  },
+  {
+   "id": "spell/grc/rule-01/augment-place",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "ἐξ-έρχομαι",
+    "expected": "ἐξέρχομαι"
+   },
+   "expected": {
+    "spelling": "ἐξέρχομαι",
+    "alternatives": [
+     {
+      "spelling": "ἐξέρχομαί",
+      "by": [
+       "enclitic"
+      ]
+     },
+     {
+      "spelling": "ἐξέρχομαὶ",
+      "by": [
+       "enclitic",
+       "grave"
+      ]
+     }
+    ],
+    "expected": "spelling"
+   },
+   "note": "Rule 1 (the notation's \"-\", where the augment goes, is not written): lexeme:exerchomai's form."
+  },
+  {
+   "id": "spell/grc/rule-02/ou",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "οὒ",
+    "expected": "οὐ"
+   },
+   "expected": {
+    "spelling": "οὐ",
+    "alternatives": [
+     {
+      "spelling": "οὔ",
+      "by": [
+       "accented"
+      ]
+     },
+     {
+      "spelling": "οὒ",
+      "by": [
+       "accented",
+       "grave"
+      ]
+     },
+     {
+      "spelling": "οὐκ",
+      "by": [
+       "ouk"
+      ]
+     },
+     {
+      "spelling": "οὐχ",
+      "by": [
+       "ouk"
+      ]
+     }
+    ],
+    "expected": "spelling"
+   },
+   "note": "Rule 2 (οὐ): lexeme:ou, written οὐ before a consonant (CGCG 24.36), its grave not written (rule 6)."
+  },
+  {
+   "id": "spell/grc/rule-02/ouk",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "οὒ",
+    "expected": "οὐκ"
+   },
+   "expected": {
+    "spelling": "οὐ",
+    "alternatives": [
+     {
+      "spelling": "οὔ",
+      "by": [
+       "accented"
+      ]
+     },
+     {
+      "spelling": "οὒ",
+      "by": [
+       "accented",
+       "grave"
+      ]
+     },
+     {
+      "spelling": "οὐκ",
+      "by": [
+       "ouk"
+      ]
+     },
+     {
+      "spelling": "οὐχ",
+      "by": [
+       "ouk"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 2's alternative ouk: s.01.28 writes οὐκ before a smooth breathing."
+  },
+  {
+   "id": "spell/grc/rule-02/oukh",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "οὒ",
+    "expected": "οὐχ"
+   },
+   "expected": {
+    "spelling": "οὐ",
+    "alternatives": [
+     {
+      "spelling": "οὔ",
+      "by": [
+       "accented"
+      ]
+     },
+     {
+      "spelling": "οὒ",
+      "by": [
+       "accented",
+       "grave"
+      ]
+     },
+     {
+      "spelling": "οὐκ",
+      "by": [
+       "ouk"
+      ]
+     },
+     {
+      "spelling": "οὐχ",
+      "by": [
+       "ouk"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 2's alternative ouk: s.01.29 writes οὐχ before a rough breathing."
+  },
+  {
+   "id": "spell/grc/rule-03/ek",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "ἐκ",
+    "expected": "ἐξ"
+   },
+   "expected": {
+    "spelling": "ἐκ",
+    "alternatives": [
+     {
+      "spelling": "ἐξ",
+      "by": [
+       "ek"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 3's alternative ek: s.03.20 writes ἐξ before a vowel."
+  },
+  {
+   "id": "spell/grc/rule-04/esti",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "ἐστῐ̀(ν)",
+    "expected": "ἔστιν"
+   },
+   "expected": {
+    "spelling": "ἐστιν",
+    "alternatives": [
+     {
+      "spelling": "ἐστι",
+      "by": [
+       "nu"
+      ]
+     },
+     {
+      "spelling": "ἐστίν",
+      "by": [
+       "accented"
+      ]
+     },
+     {
+      "spelling": "ἐστὶν",
+      "by": [
+       "accented",
+       "grave"
+      ]
+     },
+     {
+      "spelling": "ἐστί",
+      "by": [
+       "accented",
+       "nu"
+      ]
+     },
+     {
+      "spelling": "ἐστὶ",
+      "by": [
+       "accented",
+       "grave",
+       "nu"
+      ]
+     },
+     {
+      "spelling": "ἔστιν",
+      "by": [
+       "esti"
+      ]
+     },
+     {
+      "spelling": "ἔστι",
+      "by": [
+       "esti",
+       "nu"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 4's alternative esti: s.01.28 writes ἔστιν after οὐκ (CGCG 24.34 n.1)."
+  },
+  {
+   "id": "spell/grc/rule-05/entauthoi",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "ἐνταῦθᾰ",
+    "expected": "ἐνταυθοῖ"
+   },
+   "expected": {
+    "spelling": "ἐνταῦθα",
+    "alternatives": [
+     {
+      "spelling": "ἐνταῦθά",
+      "by": [
+       "enclitic"
+      ]
+     },
+     {
+      "spelling": "ἐνταῦθὰ",
+      "by": [
+       "enclitic",
+       "grave"
+      ]
+     },
+     {
+      "spelling": "ἐνταῦθ’",
+      "by": [
+       "elision"
+      ]
+     },
+     {
+      "spelling": "ἐνταυθοῖ",
+      "by": [
+       "entauthoi"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 5's alternative entauthoi: the story not-one-woman writes ἐνταυθοῖ (REVIEW: one lexeme of the course, two words)."
+  },
+  {
+   "id": "spell/grc/rule-06/latent",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "εἰμῐ̀",
+    "expected": "εἰμι"
+   },
+   "expected": {
+    "spelling": "εἰμι",
+    "alternatives": [
+     {
+      "spelling": "εἰμ’",
+      "by": [
+       "elision"
+      ]
+     },
+     {
+      "spelling": "εἰμί",
+      "by": [
+       "accented"
+      ]
+     },
+     {
+      "spelling": "εἰμὶ",
+      "by": [
+       "accented",
+       "grave"
+      ]
+     }
+    ],
+    "expected": "spelling"
+   },
+   "note": "Rule 6 (the grave of an enclitic's latent accent is not written): s.02.42 writes εἰμι, εἰμί's listed 1sg."
+  },
+  {
+   "id": "spell/grc/rule-06/accented",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "ἐστῐ̀(ν)",
+    "expected": "ἐστίν"
+   },
+   "expected": {
+    "spelling": "ἐστιν",
+    "alternatives": [
+     {
+      "spelling": "ἐστι",
+      "by": [
+       "nu"
+      ]
+     },
+     {
+      "spelling": "ἐστίν",
+      "by": [
+       "accented"
+      ]
+     },
+     {
+      "spelling": "ἐστὶν",
+      "by": [
+       "accented",
+       "grave"
+      ]
+     },
+     {
+      "spelling": "ἐστί",
+      "by": [
+       "accented",
+       "nu"
+      ]
+     },
+     {
+      "spelling": "ἐστὶ",
+      "by": [
+       "accented",
+       "grave",
+       "nu"
+      ]
+     },
+     {
+      "spelling": "ἔστιν",
+      "by": [
+       "esti"
+      ]
+     },
+     {
+      "spelling": "ἔστι",
+      "by": [
+       "esti",
+       "nu"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 6's alternative accented: s.01.20 writes ἐστίν, the enclitic accented before another."
+  },
+  {
+   "id": "spell/grc/rule-07/elision-e",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "δέ",
+    "expected": "δ’"
+   },
+   "expected": {
+    "spelling": "δέ",
+    "alternatives": [
+     {
+      "spelling": "δὲ",
+      "by": [
+       "grave"
+      ]
+     },
+     {
+      "spelling": "δ’",
+      "by": [
+       "elision"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 7's alternative elision: s.05.34 writes δ’ (lexeme:de)."
+  },
+  {
+   "id": "spell/grc/rule-07/elision-e-verb",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "χαῖρε",
+    "expected": "χαῖρ’"
+   },
+   "expected": {
+    "spelling": "χαῖρε",
+    "alternatives": [
+     {
+      "spelling": "χαῖρέ",
+      "by": [
+       "enclitic"
+      ]
+     },
+     {
+      "spelling": "χαῖρὲ",
+      "by": [
+       "enclitic",
+       "grave"
+      ]
+     },
+     {
+      "spelling": "χαῖρ’",
+      "by": [
+       "elision"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 7's alternative elision: the story not-one-woman writes χαῖρ’ (χαίρω's imperative, realised -χαῖρ+ε)."
+  },
+  {
+   "id": "spell/grc/rule-07/elision-pronoun",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "ἥδε",
+    "expected": "ἥδ’"
+   },
+   "expected": {
+    "spelling": "ἥδε",
+    "alternatives": [
+     {
+      "spelling": "ἥδ’",
+      "by": [
+       "elision"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 7's alternative elision: the story not-one-woman writes ἥδ’ (ὅδε, Nom Fem Sing, as realised)."
+  },
+  {
+   "id": "spell/grc/rule-08/elision-a",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "ᾰ̓λλᾰ́",
+    "expected": "ἀλλ’"
+   },
+   "expected": {
+    "spelling": "ἀλλά",
+    "alternatives": [
+     {
+      "spelling": "ἀλλὰ",
+      "by": [
+       "grave"
+      ]
+     },
+     {
+      "spelling": "ἀλλ’",
+      "by": [
+       "elision"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 8's alternative elision: the story a-rooster writes ἀλλ’ (lexeme:alla, its short α marked)."
+  },
+  {
+   "id": "spell/grc/rule-09/nu",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "ἐστῐ̀(ν)",
+    "expected": "ἐστιν"
+   },
+   "expected": {
+    "spelling": "ἐστιν",
+    "alternatives": [
+     {
+      "spelling": "ἐστι",
+      "by": [
+       "nu"
+      ]
+     },
+     {
+      "spelling": "ἐστίν",
+      "by": [
+       "accented"
+      ]
+     },
+     {
+      "spelling": "ἐστὶν",
+      "by": [
+       "accented",
+       "grave"
+      ]
+     },
+     {
+      "spelling": "ἐστί",
+      "by": [
+       "accented",
+       "nu"
+      ]
+     },
+     {
+      "spelling": "ἐστὶ",
+      "by": [
+       "accented",
+       "grave",
+       "nu"
+      ]
+     },
+     {
+      "spelling": "ἔστιν",
+      "by": [
+       "esti"
+      ]
+     },
+     {
+      "spelling": "ἔστι",
+      "by": [
+       "esti",
+       "nu"
+      ]
+     }
+    ],
+    "expected": "spelling"
+   },
+   "note": "Rule 9 (the movable ν written): s.01.19 writes ἐστιν."
+  },
+  {
+   "id": "spell/grc/rule-09/no-nu",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "ἐστῐ̀(ν)",
+    "expected": "ἐστι"
+   },
+   "expected": {
+    "spelling": "ἐστιν",
+    "alternatives": [
+     {
+      "spelling": "ἐστι",
+      "by": [
+       "nu"
+      ]
+     },
+     {
+      "spelling": "ἐστίν",
+      "by": [
+       "accented"
+      ]
+     },
+     {
+      "spelling": "ἐστὶν",
+      "by": [
+       "accented",
+       "grave"
+      ]
+     },
+     {
+      "spelling": "ἐστί",
+      "by": [
+       "accented",
+       "nu"
+      ]
+     },
+     {
+      "spelling": "ἐστὶ",
+      "by": [
+       "accented",
+       "grave",
+       "nu"
+      ]
+     },
+     {
+      "spelling": "ἔστιν",
+      "by": [
+       "esti"
+      ]
+     },
+     {
+      "spelling": "ἔστι",
+      "by": [
+       "esti",
+       "nu"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 9's alternative nu (not written): s.02.12 writes ἐστι."
+  },
+  {
+   "id": "spell/grc/rule-10/length",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "ᾰ̓γορᾱ́",
+    "expected": "ἀγορά"
+   },
+   "expected": {
+    "spelling": "ἀγορά",
+    "alternatives": [
+     {
+      "spelling": "ἀγορὰ",
+      "by": [
+       "grave"
+      ]
+     }
+    ],
+    "expected": "spelling"
+   },
+   "note": "Rule 10 (a vowel's length is not written): lexeme:agora's form."
+  },
+  {
+   "id": "spell/grc/rule-11/enclitic-circumflex",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "Ᾰ̓θηναῖος",
+    "expected": "Ἀθηναῖός"
+   },
+   "expected": {
+    "spelling": "Ἀθηναῖος",
+    "alternatives": [
+     {
+      "spelling": "Ἀθηναῖός",
+      "by": [
+       "enclitic"
+      ]
+     },
+     {
+      "spelling": "Ἀθηναῖὸς",
+      "by": [
+       "enclitic",
+       "grave"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 11's alternative enclitic: a circumflex on the second syllable from the end takes an acute on the last before an enclitic; the course writes Ἀθηναῖός."
+  },
+  {
+   "id": "spell/grc/rule-11/enclitic-antepenult",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "οἴεται",
+    "expected": "οἴεταί"
+   },
+   "expected": {
+    "spelling": "οἴεται",
+    "alternatives": [
+     {
+      "spelling": "οἴεταί",
+      "by": [
+       "enclitic"
+      ]
+     },
+     {
+      "spelling": "οἴεταὶ",
+      "by": [
+       "enclitic",
+       "grave"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 11's alternative enclitic: an acute on the third syllable from the end; s.10.13 writes οἴεταί (οἴομαι's 3sg, realised -οἴ+εται)."
+  },
+  {
+   "id": "spell/grc/rule-11/no-enclitic",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "ᾰ̓́νθρωπος",
+    "expected": "ἄνθρωπος"
+   },
+   "expected": {
+    "spelling": "ἄνθρωπος",
+    "alternatives": [
+     {
+      "spelling": "ἄνθρωπός",
+      "by": [
+       "enclitic"
+      ]
+     },
+     {
+      "spelling": "ἄνθρωπὸς",
+      "by": [
+       "enclitic",
+       "grave"
+      ]
+     }
+    ],
+    "expected": "spelling"
+   },
+   "note": "Rule 11 (no enclitic after it): the acute stays where it is."
+  },
+  {
+   "id": "spell/grc/rule-12/grave",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "ᾰ̓δελφόν",
+    "expected": "ἀδελφὸν"
+   },
+   "expected": {
+    "spelling": "ἀδελφόν",
+    "alternatives": [
+     {
+      "spelling": "ἀδελφὸν",
+      "by": [
+       "grave"
+      ]
+     }
+    ],
+    "expected": "alternative"
+   },
+   "note": "Rule 12's alternative grave: s.02.14 writes ἀδελφὸν before another word."
+  },
+  {
+   "id": "spell/grc/rule-12/acute",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "ᾰ̓δελφόν",
+    "expected": "ἀδελφόν"
+   },
+   "expected": {
+    "spelling": "ἀδελφόν",
+    "alternatives": [
+     {
+      "spelling": "ἀδελφὸν",
+      "by": [
+       "grave"
+      ]
+     }
+    ],
+    "expected": "spelling"
+   },
+   "note": "Rule 12: the acute where nothing follows."
+  },
+  {
+   "id": "spell/grc/none/accent-moved",
+   "op": "spell",
+   "args": {
+    "profile": "grc-Grek/polytonic",
+    "form": "σοφός",
+    "expected": "σόφος"
+   },
+   "expected": {
+    "spelling": "σοφός",
+    "alternatives": [
+     {
+      "spelling": "σοφὸς",
+      "by": [
+       "grave"
+      ]
+     }
+    ],
+    "expected": null
+   },
+   "note": "No rule moves an accent: σόφος is neither the spelling of σοφός nor an alternative (null)."
   }
  ]
 }
