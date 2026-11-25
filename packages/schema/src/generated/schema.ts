@@ -2329,7 +2329,7 @@ export interface BundleClip {
   readonly orthography?: string;
 }
 /**
- * How a course's placement test probes (ADR 0077). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.
+ * How a course's placement test probes (ADR 0077, 0158). By default the learner types every probe, which checks spelling and accent marks too and cannot be guessed; `tiles` checks production with word tiles instead, for a course whose learners may have no keyboard for its script.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "PlacementPolicy".

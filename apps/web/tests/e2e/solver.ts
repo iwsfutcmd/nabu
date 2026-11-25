@@ -320,7 +320,17 @@ export const canMiss = (ex: Exercise): boolean =>
   ex.template === "listen-select" ||
   ex.template === "minimal-pair";
 
+/** Typed cards the solver can answer wrong (placement's probes, ADR 0158): it types a number. */
+export const canMissTyped = (ex: Exercise): boolean => ex.template === "translate-type.l1-l2" || ex.template === "complete-translation";
+
 const miss = async (page: Page, ex: Exercise, mode: Mode): Promise<void> => {
+  if (canMissTyped(ex)) {
+    // A number is no word of any course: wrong whatever the sentence, never a typo.
+    if (mode === "touch") await page.locator("[data-answer-input]").tap();
+    await page.keyboard.insertText("0");
+    await press(page, mode, "[data-action=check]");
+    return;
+  }
   if (!canMiss(ex) || !("answer" in ex) || !("options" in ex)) throw new Error(`cannot miss ${ex.template}`);
   await choose(page, mode, (ex.answer + 1) % ex.options.length);
 };

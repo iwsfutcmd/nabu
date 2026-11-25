@@ -8,6 +8,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { emptyLearnerState, placementOf, plan, replay } from "@nabu/core/learner";
 import { assembleCourse, createGrader, gradeExercise, MEDIA_ROLES, runTest, start, step, type CourseView, type Effect, type Exercise, type PlayerEvent, type PlayerState } from "@nabu/core/lesson";
+import { surfaceOf } from "@nabu/core/text";
 import type { BundleManifest, LearnerEvent, SessionCompleted } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { recorder } from "../../src/session.ts";
@@ -32,8 +33,10 @@ if (test === undefined) throw new Error("no placement test");
 const unitOf = new Map(course.units.flatMap((u) => u.sentences.map((s) => [s.id, u.id] as const)));
 const units = test.test.blocks.map((b) => b.id);
 
-/** A right response, or a wrong one by choice (placement's recognition probes are choices). */
+/** A right response (placement's probes are typed, ADR 0158), or a skip, which counts wrong. */
 const respond = (ex: Exercise, right: boolean): PlayerEvent[] => {
+  if ((ex.template === "translate-type.l1-l2" || ex.template === "complete-translation") && right)
+    return [{ tag: "input", draft: { tag: "text", text: surfaceOf(ex.template === "complete-translation" ? ex.blank : ex.canonical) } }, { tag: "submit" }];
   if ("answer" in ex && "options" in ex && typeof ex.answer === "number") return [{ tag: "input", draft: { tag: "choice", index: right ? ex.answer : (ex.answer + 1) % ex.options.length } }, { tag: "submit" }];
   if ((ex.template === "translate-tap.l1-l2" || ex.template === "translate-tap.l2-l1") && right) return [{ tag: "input", draft: { tag: "tiles", order: ex.solution } }, { tag: "submit" }];
   return [{ tag: "skip", reason: "skip" }];

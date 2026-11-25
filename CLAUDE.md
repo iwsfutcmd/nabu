@@ -548,7 +548,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (`marks.distinguishes`, the grader's lexicon). ñ is a letter, not a mark.
 - A finished placement seeds what the placed nodes introduce (ADR 0111): `seeded` on the event (`placedParts`), a card
   each in the fold (recognize; read-off for a feature value). Placement is adaptive (ADR 0077: a block per unit,
-  gallop then bisect, then node steps); `placement: {production: typed}` makes its production typed. The test is
+  gallop then bisect, then node steps) and strict (ADR 0158): every probe typed production, never a multiple choice
+  (`placement: {production: tiles}` opts out of typing), two probes right per lesson step, two checks of skipped units. The test is
   data and `runTest` a pure function: never make it stateful.
 - Two voices clone Cuban recordings (`nabu audio cast --recording`; a man's CC BY, a woman's CC0); clips are CC-BY-NC-4.0
   (OmniVoice weights) and credit the recording. Cut a reference on whole words, no breath at either end.

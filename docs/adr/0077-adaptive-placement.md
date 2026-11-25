@@ -5,6 +5,8 @@
 - Supersedes: the probe-every-node test of [0039](0039-placement-and-calibration.md) (placement v0)
 - Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0149](0149-script-first.md) (a
   placement over a script track)
+- Amended by [0158](0158-stricter-placement.md) (Proposed, 2026-11-25): typed production probes only, two per
+  lesson step, and checks of the units the search skipped
 
 ## Context
 

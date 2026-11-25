@@ -5,7 +5,7 @@ export { dueFacets, plan, plannable, PLANNER, practicableMistakes, predictExerci
 export { revised, revisionsOf, revisionVerdict, withRevisions } from "./revisions.ts";
 export { isOld, upgrade, upgradeLog, type RevisedAnswer } from "./upgrade.ts";
 export { pathNodes, pathOf, pathUnits, scriptPathOf, type NodeStatus, type NumberedEntry, type PathEntry, type PathNode, type PathUnit } from "./path.ts";
-export { BLOCK_SIZE, PASS_SHARE, placementOf, placementTest, type PlacementTest } from "./placement.ts";
+export { BLOCK_SIZE, CHECKS, PASS_SHARE, STEP_SIZE, placementOf, placementTest, type PlacementTest } from "./placement.ts";
 export {
   applyEvents,
   cardKey,

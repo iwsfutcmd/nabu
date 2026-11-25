@@ -62,7 +62,8 @@ provenance:
 # A Spanish verb is fusional: a new verb in a new tense is two new parts on one token (a lexeme and a
 # feature value), so a sentence may bring in two.
 iPlusOne: 2
-# Placement (ADR 0077) has production typed, so it also checks spelling and accent marks.
+# Placement (ADR 0077, 0158) has production typed, so it also checks spelling and accent marks (the default
+# since ADR 0158; stated here because heritage speakers most need it).
 placement:
   production: typed
 # Audio (ADR 0076, 0078): OmniVoice cloning two Cuban speakers from the archive of Radio La Voz de la

@@ -350,7 +350,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const orthography = course.orthography;
   if (request.mode === "placement") {
     const placement = placementTest(course, options.seed, exclude);
-    const all = placement.test.blocks.flatMap((b) => [...b.exercises, ...b.steps.map((s) => s.exercise)]);
+    const all = placement.test.blocks.flatMap((b) => [...b.exercises, ...b.steps.flatMap((s) => s.exercises)]);
     const predictions: Record<string, number> = Object.fromEntries(all.map((ex) => [ex.id, predictExercise(state, ex, orthography, now)]));
     const exercises = runTest(placement.test, new Map()).next;
     return { request, exercises, predictions: exercises.map((ex) => predictions[ex.id] as number), planner: PLANNER, placement: { ...placement, predictions } };

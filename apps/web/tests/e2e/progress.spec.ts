@@ -165,12 +165,12 @@ test("placement: a learner who knows the first units starts after them", async (
   await page.goto(pathUrl(course, SEED));
 
   // The test is adaptive (ADR 0077): what it asks depends on the answers. This learner knows the
-  // first two units, and misses what they can miss after that, so the questions are known ahead.
+  // first two units and misses everything after them, so the questions are known ahead.
   const planned = plan(course, emptyLearnerState(), { mode: "placement" }, { now: now.toISOString(), seed: SEED }).placement;
   if (planned === undefined) throw new Error("no placement test");
   const units = planned.test.blocks.map((b) => b.id);
   const unitOf = new Map(course.units.flatMap((u) => u.sentences.map((s) => [s.id, u.id] as const)));
-  const knows = (e: Exercise): boolean => units.indexOf(unitOf.get(e.item) ?? "") < 2 || !canMiss(e);
+  const knows = (e: Exercise): boolean => units.indexOf(unitOf.get(e.item) ?? "") < 2;
   const answers = new Map<string, boolean>();
   const asked: Exercise[] = [];
   for (let next = runTest(planned.test, answers).next; next.length > 0; next = runTest(planned.test, answers).next) {
@@ -180,11 +180,9 @@ test("placement: a learner who knows the first units starts after them", async (
   }
   const placed = placementOf(planned, answers);
   const path = pathNodes(course);
-  // The first two units, lessons and stories, then lessons of the third as far as its probes go
-  // (this solver can miss only multiple-choice questions, so its tiles are always right).
+  // The first two units, lessons and stories, and nothing more: every probe is typed (ADR 0158).
   const firstTwo = path.filter((n) => units.indexOf(n.unit.id) < 2).map((n) => n.node.id);
-  expect(placed.slice(0, firstTwo.length)).toEqual(firstTwo);
-  expect(placed.every((n) => path.findIndex((p) => p.node.id === n) < path.findIndex((p) => p.unit.id === units[3]))).toBe(true);
+  expect(placed).toEqual(firstTwo);
   const next = path.find((n) => !placed.includes(n.node.id));
   if (next === undefined) throw new Error("this learner should not place out of everything");
   const nodeAt = (id: string) => page.locator(`[data-lesson="${id}"], [data-story-node="${id}"]`);

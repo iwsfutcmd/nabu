@@ -28,6 +28,7 @@ import {
   type LearnerState,
   type PlanOptions,
 } from "../src/learner/index.ts";
+import { STEP_SIZE } from "../src/learner/placement.ts";
 import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
 import { cardGallery, createGrader, facetExclusions, gradeExercise, isLexeme, lessonNodes, lexemesInOrder, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise, type Facet, type LessonEvent } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
@@ -548,6 +549,7 @@ describe("placement (§9.5, ADR 0077)", () => {
   const nodes = lessonNodes(fa).map((n) => n.node.id);
   const placement = test.placement as NonNullable<typeof test.placement>;
   const unitOf = new Map(fa.units.flatMap((u) => u.sentences.map((s) => [s.id, u.id] as const)));
+  const nodeOfItem = new Map(fa.units.flatMap((u) => u.sentences.map((s) => [s.id, s.node] as const)));
   const units = [...new Set(lessonNodes(fa).map((n) => n.unit.id))];
   const events0 = eventFactory(fa, faBundle);
   events0.at(now);
@@ -563,34 +565,38 @@ describe("placement (§9.5, ADR 0077)", () => {
   };
   const knowsUnits = (k: number) => (ex: Exercise) => units.indexOf(unitOf.get(ex.item) ?? "") < k;
 
-  it("has a block of at most four probes per unit, production and recognition, without speaking", () => {
+  it("has a block of at most four probes per unit, all typed production, without speaking (ADR 0158)", () => {
     expect(placement.test.blocks.map((b) => b.id)).toEqual(units);
     for (const b of placement.test.blocks) {
       expect(b.exercises.length).toBeGreaterThan(0);
       expect(b.exercises.length).toBeLessThanOrEqual(4);
       expect(b.exercises.every((e) => unitOf.get(e.item) === b.id)).toBe(true);
-      // Into the target (tiles or typed) and out of it.
-      expect(b.exercises.some((e) => e.template.endsWith("l1-l2") || e.template === "complete-translation")).toBe(true);
-      expect(b.exercises.some((e) => e.template === "choose-translation" || e.template === "translate-tap.l2-l1")).toBe(true);
+      // Into the target, typed: never a multiple choice a learner could guess.
+      expect(b.exercises.every((e) => TEMPLATES[e.template].facet === "produce" && TEMPLATES[e.template].modality.input === "text")).toBe(true);
       expect(b.steps.map((s) => s.id)).toEqual(lessonNodes(fa).filter((n) => n.unit.id === b.id).map((n) => n.node.id));
+      // Two probes a lesson, each of the lesson's own sentences.
+      expect(b.steps.every((s) => s.exercises.length === STEP_SIZE && s.exercises.every((e) => nodeOfItem.get(e.item) === s.id))).toBe(true);
     }
-    const all = placement.test.blocks.flatMap((b) => [...b.exercises, ...b.steps.map((s) => s.exercise)]);
+    const all = placement.test.blocks.flatMap((b) => [...b.exercises, ...b.steps.flatMap((s) => s.exercises)]);
     expect(all.some((e) => e.template === "speak.tier-0" || e.template === "match-pairs" || TEMPLATES[e.template].modality.audioOut)).toBe(false);
     expect(Object.keys(placement.predictions).sort()).toEqual([...new Set(all.map((e) => e.id))].sort());
     expect(test.exercises).toEqual(placement.test.blocks[0]?.exercises);
     expect(plan(fa, emptyLearnerState(), { mode: "placement" }, { now, seed: 4 })).toEqual(test);
   });
 
-  it("places a learner after the units they know, asking far fewer questions than it has", () => {
+  it("places a learner after the units they know, asking fewer questions than it has", () => {
     const total = placement.test.blocks.reduce((n, b) => n + b.exercises.length, 0);
     for (let k = 0; k <= units.length; k++) {
       const { placed, asked } = take(knowsUnits(k));
       // A unit passed places out of its lessons and its story.
       expect(placed).toEqual(pathNodes(fa).filter((n) => units.indexOf(n.unit.id) < k).map((n) => n.node.id));
-      expect(asked).toBeLessThan(total / 2);
+      // Eleven units: the gallop, a bisection, two checks and a unit's steps take most of the blocks'
+      // questions; a longer course asks a smaller share.
+      expect(asked).toBeLessThan((total * 2) / 3);
     }
     // Two misses fail the first unit, and its first lesson's probe ends the test.
-    expect(take(() => false)).toEqual({ placed: [], asked: 3 });
+    expect(take(() => false).placed).toEqual([]);
+    expect(take(() => false).asked).toBeLessThanOrEqual(3);
   });
 
   it("places inside the first unit not passed, up to the first node missed", () => {
@@ -606,12 +612,17 @@ describe("placement (§9.5, ADR 0077)", () => {
     expect(pathOf(fa, state).filter((n) => n.status === "available").map((n) => n.node)).toEqual([fourth[2]?.node.id]);
   });
 
-  it("asks production typed where the course says (placement: {production: typed})", () => {
-    const typed = plan({ ...fa, placement: { production: "typed" } }, emptyLearnerState(), { mode: "placement" }, { now, seed: 4 }).placement;
-    const produced = (typed?.test.blocks ?? []).flatMap((b) => [...b.exercises, ...b.steps.map((s) => s.exercise)]).filter((e) => TEMPLATES[e.template].facet === "produce");
-    expect(produced.length).toBeGreaterThan(0);
-    expect(produced.every((e) => TEMPLATES[e.template].modality.input === "text")).toBe(true);
-    expect(placement.test.blocks.flatMap((b) => b.exercises).some((e) => e.template === "translate-tap.l1-l2")).toBe(true);
+  it("asks production typed, unless the course asks for tiles (placement: {production: tiles})", () => {
+    const produced = (test: typeof placement | undefined): readonly Exercise[] =>
+      (test?.test.blocks ?? []).flatMap((b) => [...b.exercises, ...b.steps.flatMap((s) => s.exercises)]);
+    expect(produced(placement).every((e) => TEMPLATES[e.template].modality.input === "text")).toBe(true);
+    const tiles = plan({ ...fa, placement: { production: "tiles" } }, emptyLearnerState(), { mode: "placement" }, { now, seed: 4 }).placement;
+    expect(produced(tiles).length).toBeGreaterThan(0);
+    expect(produced(tiles).every((e) => e.template === "translate-tap.l1-l2")).toBe(true);
+    // Where typing is ruled out, tiles; never a multiple choice.
+    const untyped = plan(fa, emptyLearnerState(), { mode: "placement" }, { now, seed: 4, exclude: new Set(["translate-type.l1-l2", "complete-translation"]) }).placement;
+    expect(produced(untyped).length).toBeGreaterThan(0);
+    expect(produced(untyped).some((e) => e.template === "choose-translation")).toBe(false);
   });
 
   it("marks placed nodes done in the projection, so the path opens after them", () => {
