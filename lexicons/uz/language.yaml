@@ -5,9 +5,20 @@ license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@c6cfd8081cf7', status: draft}
 varieties: [uz-UZ]
 registers: [formal, neutral, colloquial]
+# The features the realisation rules below inflect each category for (docs/rules/uz.md): an affix lexeme a
+# token lists stands for the values it realises (bor + past + past-1sg: Tense=Past, Person=1, Number=Sing).
 dimensions:
-  NOUN: [Number, Case]
-  VERB: [Tense, Person, Number]
+  NOUN: [Number, 'Person[psor]', 'Number[psor]', Polite, Case]
+  PRON: [Number, 'Person[psor]', Case]
+  ADJ: [Degree, 'Person[psor]']
+  VERB: [VerbForm, Polarity, Tense, Aspect, Mood, Person, Number, Polite]
+# A verb's lexical form is its stem (ich); its lemma, what a word card shows, is the infinitive in -moq, which
+# rule:uz-verb gives (Hancock-Parmer p. 39: the stem is the infinitive minus -moq).
+citation:
+  VERB: {VerbForm: Inf}
+# A lexical form of these is a stem: a citation cell is realised by the rules as any other (ich, ichmoq), and so
+# is a lemma the course cites in another cell (`citation` in lexemes.yaml: kuz, kuzda; bilmoq, bilmayman).
+stemmed: [VERB, NOUN, ADJ, PRON]
 features:
   Aspect: [Prog]
   Case: [Abl, Acc, Dat, Gen, Loc, Ter]
@@ -23,3 +34,89 @@ features:
   Polite: [Form]
   PronType: [Dem, Int, Neg, Prs, Tot]
   Tense: [Past, Pres]
+  VerbForm: [Inf]
+classes:
+- {id: vowel-drop, pos: NOUN, gloss: {en: 'a noun whose last vowel drops before an ending that begins with a vowel (singil, singlim; oʻgʻil, oʻgʻli)'}, notes: {en: 'REVIEW: Sjoberg (1963) 3.231 B, pp. 51-52: i, u, a in a final stressed syllable, after one or two consonants and before a sonant or a fricative (burun, burni; ogʻiz, ogʻzim; shahar, shahrim), not in every such word (kelin, kelini); Hancock-Parmer pp. 63-64 (fleeting vowels).'}}
+# How uz writes a lexical form (docs/rules/uz.md): Latin, as the official (1995) alphabet writes it, the
+# letter after o and g (U+02BB) and the tutuq belgisi (U+02BC) letters of their own, `+` a morpheme's edge.
+# Each profile's `spell` writes it in its orthography (uz-Latn as it is, uz-Cyrl letter by letter). Sets: V a
+# vowel letter (oʻ is o and its sign), C a consonant letter (a digraph is two: s h, c h, n g; the sign of oʻ
+# and gʻ, and the tutuq belgisi, are counted with them).
+notation:
+  sets:
+    V: "[aeiouAEIOU]"
+    C: "[bcdfghjklmnpqrstvxyzBCDFGHJKLMNPQRSTVXYZʻʼ]"
+# Rules in a lexicon (docs/rules-design.md; docs/rules/uz.md). The course writes an inflected word as its
+# lexemes, an affix lexeme a morpheme (bor + past + past-1sg); each affix's allomorphs are chosen by what they
+# follow (lexemes.yaml: `after`), so the rules below write those lexemes (`lexeme`) rather than text. They give
+# a lexeme in a cell (a lemma cited in another cell: kuzda, bilmayman; a paradigm's forms) as a token that
+# lists the same lexemes is given. Every branch is REVIEW until the owner signs it off. Sources:
+# Hancock-Parmer (HP), Uzbek Language Manual, by printed page; Sjoberg (1963), Uzbek Structural Grammar, by
+# page; the course where neither has the form (said so).
+realisation:
+- id: 'rule:uz-verb'  # HP pp. 39-41 (the present-future), 47 (commands), 48 (the definite past); Sjoberg pp. 97, 108-109
+  when: {pos: VERB}
+  blocks:
+  - suffix:
+    - {branch: neg, feats: {Polarity: Neg}, lexeme: 'lexeme:neg'}  # -ma (HP p. 41: kutmayman; p. 48: yozmadi)
+  - suffix:
+    - {branch: inf, feats: {VerbForm: Inf}, add: moq}  # the lemma: ichmoq (HP p. 39)
+    - {branch: past, feats: {Tense: Past}, lexeme: 'lexeme:past'}  # -di (HP p. 48)
+    - {branch: pres, feats: {Tense: Pres}, lexeme: 'lexeme:pres'}  # -a, -y after a vowel (HP p. 39)
+    - {branch: prog, feats: {Aspect: Prog}, lexeme: 'lexeme:prog'}  # -yap: the course (Sjoberg p. 108 has the older -moqta)
+    - {branch: des, feats: {Mood: Des}, lexeme: 'lexeme:want'}  # -moqchi (Sjoberg p. 109)
+  - suffix:
+    - {branch: past-1sg, feats: {Tense: Past, Person: '1', Number: Sing}, lexeme: 'lexeme:past-1sg'}  # -m (HP p. 48)
+    - {branch: past-1pl, feats: {Tense: Past, Person: '1', Number: Plur}, lexeme: 'lexeme:past-1pl'}  # -k
+    - {branch: past-2, feats: {Tense: Past, Person: '2', Polite: Form}, lexeme: 'lexeme:past-2'}  # -ngiz
+    - {branch: imp-2, feats: {Mood: Imp, Person: '2', Polite: Form}, lexeme: 'lexeme:imp'}  # -ing, -ng after a vowel (HP p. 47)
+    - {branch: 1sg, feats: {Person: '1', Number: Sing}, lexeme: 'lexeme:cop-1sg'}  # -man (HP p. 40; Sjoberg p. 97, set 1)
+    - {branch: 1pl, feats: {Person: '1', Number: Plur}, lexeme: 'lexeme:cop-1pl'}  # -miz
+    - {branch: '2', feats: {Person: '2', Polite: Form}, lexeme: 'lexeme:cop-2'}  # -siz
+    - {branch: '3', feats: {Tense: Pres, Person: '3'}, lexeme: 'lexeme:pres-3sg'}  # -di (HP p. 40)
+    - {branch: prog-3, feats: {Aspect: Prog, Person: '3'}, lexeme: 'lexeme:pres-3sg'}  # -ti after -yap: the course (uxlayapti)
+  - suffix:
+    - {branch: 2pl, feats: {Person: '2', Polite: Form, Number: Plur}, lexeme: 'lexeme:pl'}  # -lar after -siz, -ngiz: several people (Sjoberg p. 97)
+- id: 'rule:uz-noun'  # Sjoberg pp. 83-84; HP pp. 22, 57-61
+  when: {pos: NOUN}
+  blocks:
+  - suffix:
+    - {branch: pl, feats: {Number: Plur}, lexeme: 'lexeme:pl'}  # -lar
+  - suffix:  # the possessive: -im, -ing, -i, -imiz, -ingiz; after a vowel -m, -ng, -si, -miz, -ngiz (Sjoberg p. 83)
+    - {branch: poss-1sg, feats: {'Person[psor]': '1', 'Number[psor]': Sing}, lexeme: 'lexeme:poss-1sg'}
+    - {branch: poss-1pl, feats: {'Person[psor]': '1', 'Number[psor]': Plur}, lexeme: 'lexeme:poss-1pl'}
+    - {branch: poss-2, feats: {'Person[psor]': '2', Polite: Form}, lexeme: 'lexeme:poss-2'}
+    - {branch: poss-3, feats: {'Person[psor]': '3'}, lexeme: 'lexeme:poss-3'}
+  - suffix:  # the cases (Sjoberg p. 84; HP pp. 57-61)
+    - {branch: gen, feats: {Case: Gen}, lexeme: 'lexeme:gen'}
+    - {branch: dat, feats: {Case: Dat}, lexeme: 'lexeme:dat'}
+    - {branch: acc, feats: {Case: Acc}, lexeme: 'lexeme:acc'}
+    - {branch: loc, feats: {Case: Loc}, lexeme: 'lexeme:loc'}
+    - {branch: abl, feats: {Case: Abl}, lexeme: 'lexeme:abl'}
+    - {branch: ter, feats: {Case: Ter}, lexeme: 'lexeme:term'}
+# No ending for pronouns by rule: their stems are their own (u, unga, unda; bu, bunga; men, meni; ular, bular:
+# Sjoberg pp. 88-90), and which take -lar or a possessive is the pronoun's (sizlar, not menlar; hammasi, pinned).
+# A token that lists a pronoun and its endings is given as it is written all the same (lexemes.yaml: mening).
+- id: 'rule:uz-pronoun'
+  when: {pos: PRON}
+  blocks: []
+- id: 'rule:uz-adjective'  # the comparative -roq; the third person's -si on an adjective used as a noun (boshqasi: the course)
+  when: {pos: ADJ}
+  blocks:
+  - suffix:
+    - {branch: cmp, feats: {Degree: Cmp}, lexeme: 'lexeme:comp'}
+  - suffix:
+    - {branch: poss-3, feats: {'Person[psor]': '3'}, lexeme: 'lexeme:poss-3'}
+phonology:  # in order, each once over the whole form
+# The stem's last vowel, after one or two consonants (three units where the first vowel is oʻ: oʻgʻil), never
+# an ending's (singillarim): singil + im, singlim; oʻgʻil + i, oʻgʻli (Sjoberg pp. 51-52).
+- {id: 'rule:uz-vowel-drop', when: {class: vowel-drop}, find: "[aiu]{C}+", after: ["{V}{C}", "{V}{C}{C}", "{V}{C}{C}{C}"], before: "{V}", to: "{C}+"}
+# REVIEW: a noun of more than one syllable writes its last k as g, its last q as gʻ, before the possessive's i
+# (uzuk, uzugim; yongʻoq, yongʻogʻing: HP p. 10-11; Sjoberg p. 45-46 has it as voicing before any voiced sound,
+# which the spelling does not write in verbs: yoqadi). A word of one syllable keeps it (park, parkim): the
+# 1995 spelling rules, not in the library. No token of the course has it: a paradigm's forms do (mushugi).
+- {id: 'rule:uz-voicing', branch: k, when: {pos: NOUN}, find: "k+", after: ["{V}{C}{V}", "{V}{C}{C}{V}", "{V}{C}{C}{C}{V}"], before: "i", to: "g+"}
+- {id: 'rule:uz-voicing', branch: q, when: {pos: NOUN}, find: "q+", after: ["{V}{C}{V}", "{V}{C}{C}{V}", "{V}{C}{C}{C}{V}"], before: "i", to: "gʻ+"}
+# Not written (no word of the course needs them): gʻ and the dative written qq (togʻ, toqqa: HP p. 11); -lar
+# after a verb's third person; the second person singular (-san, -ding, -ng); the conditional -sa; the
+# participle -gan; bir + -ta written bitta (HP p. 28).

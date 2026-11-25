@@ -44,6 +44,9 @@ correspondences: []
 input:
   extraKeys: ["\u02BB", "\u02BC"]
 transliterate: { to: uz-Cyrl/standard, via: cldr-transform }       # powers script-convert exercises
+# How a lexical form is written (docs/rules-design.md, section 3; docs/rules/uz.md): uz's notation is this
+# orthography's letters (lexicons/uz/language.yaml), so a form is written as it is, its boundaries dropped.
+spell: { from: lexical, rules: [] }
 # What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.
 # Whisper writes Uzbek in Latin letters (tier 1); eSpeak NG's uz reads the spelling for the expected phones (tier 2).
 speech:

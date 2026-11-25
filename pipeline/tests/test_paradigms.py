@@ -13,9 +13,10 @@ import yaml
 from nabu import yamlio
 from nabu.analyzers import analyzers_by_tool
 from nabu.compiler import compile_course, load_profiles
-from nabu.paradigms import Refused, cell_key, in_script
+from nabu.lexicon import load_language
+from nabu.paradigms import Refused, cell_key, in_script, token_cell, written_affixes
 
-from .conftest import FIXTURES, CoreCli
+from .conftest import FIXTURES, ROOT, CoreCli
 
 PROFILES = load_profiles()
 ANALYZERS = analyzers_by_tool()
@@ -145,3 +146,29 @@ def test_a_spelling_that_begins_with_a_carrier_is_not_shipped() -> None:
         lambda _o, _t, _m: [],
         refused,
     )
+
+
+def test_a_token_s_affix_lexemes_give_its_cell() -> None:
+    """Where a language's rules write affix lexemes (an exponent's `lexeme`: uz), a token's cell
+    takes the values each affix it lists realises, when its category's rules write that affix; an
+    ending no rule of the category writes (a predicate's -man on a noun) is no value of it. A
+    language whose exponents add text (apc) derives nothing."""
+    uz, _ = load_language(ROOT / "lexicons", "uz")
+    apc, _ = load_language(ROOT / "lexicons", "apc")
+    assert uz is not None and apc is not None
+    affixes = written_affixes(uz)
+    assert affixes["VERB"]["lexeme:past"] == {"Tense": "Past"}
+    assert "lexeme:cop-1sg" not in affixes["NOUN"]
+    bordim = [
+        {"lexeme": "lexeme:bormoq", "base": True},
+        {"lexeme": "lexeme:past"},
+        {"lexeme": "lexeme:past-1sg"},
+    ]
+    assert token_cell(bordim, "VERB", affixes) == {"Tense": "Past", "Number": "Sing", "Person": "1"}
+    uydaman = [
+        {"lexeme": "lexeme:uy", "base": True},
+        {"lexeme": "lexeme:loc"},
+        {"lexeme": "lexeme:cop-1sg"},
+    ]
+    assert token_cell(uydaman, "NOUN", affixes) == {"Case": "Loc"}
+    assert written_affixes(apc) == {}
