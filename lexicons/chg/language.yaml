@@ -28,3 +28,21 @@ features:
   Tense: [Fut, Past, Pres]
   VerbForm: [Conv, Part]
   Voice: [Pass]
+# How chg writes a lexical form (docs/rules/chg.md): its Arabic spelling, the scribes' letters as the lexicon spells
+# the word, with three signs of its own: ە (U+06D5) a final he that writes a vowel (-a, -ä, -e: the letter of
+# Schluessel's typescript, which never joins what follows; 2018, xxx), ي (U+064A) a final ye that writes the
+# consonant y (öy, qoy-), and the hyphen of a stem cited bare (al-). A realised form keeps its boundaries (+), and
+# chg-Arab/standard's `spell` writes where a suffix joins (a half-space or none). Read by @nabu/core; never shipped.
+# Sets: L a letter; V a vowel letter a stem ends in; C a consonant letter; VL a voiceless consonant (Schluessel 3.3.1,
+# p. 13: p f t s š s̱ ṣ ṭ č ḥ k ḫ q h, ک among them though it also writes g).
+notation:
+  sets:
+    L: "[ء-غف-يپچژکگیە]"
+    V: "[اآویە]"
+    C: "[ءأؤإئبتثجحخدذرزژسشصضطظعغفقکگلمنهيپچ]"
+    VL: "[پفتثسشصطچحکخقه]"
+# Rules in a lexicon (docs/rules/chg.md). chg's tokens choose no feature values: every suffix is a lexeme of its own
+# in the token's `lexemes`, so there are no realisation rules; the suffixes' allomorphs and their conditions
+# (lexemes.yaml), this rewrite and chg-Arab/standard's `spell` are the rules. Every one is REVIEW.
+phonology:
+- {id: 'rule:chg-stem', find: "-", to: ""}  # a stem cited bare (al-, bar-) is written without its hyphen in a word

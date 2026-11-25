@@ -1,0 +1,199 @@
+{
+  "$comment": "Spelling an es lexical form (docs/rules/es.md): es-Latn/standard's `spell` statement is the identity, the form's boundaries dropped (Spanish's lexical form is its spelling), with the two clipped words the course writes beside their lemma as free spellings (REVIEW). `expected` is compared as the profile keys a typed word.",
+  "vectors": [
+    {
+      "id": "spell/es/identity/accents",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "form": "además",
+        "expected": "además"
+      },
+      "expected": {
+        "spelling": "además",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "lexeme:además: the form as it is, its accent a letter of it."
+    },
+    {
+      "id": "spell/es/identity/enye",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "form": "año",
+        "expected": "año"
+      },
+      "expected": {
+        "spelling": "año",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "lexeme:año: ñ is a letter."
+    },
+    {
+      "id": "spell/es/identity/apostrophe",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "form": "mi'jo",
+        "expected": "mi'jo"
+      },
+      "expected": {
+        "spelling": "mi'jo",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "lexeme:mijo: the apostrophe of mi'jo kept."
+    },
+    {
+      "id": "spell/es/identity/capital",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "form": "Habana",
+        "expected": "Habana"
+      },
+      "expected": {
+        "spelling": "Habana",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "lexeme:habana: a name keeps its capital."
+    },
+    {
+      "id": "spell/es/identity/phrase",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "form": "olla de presión",
+        "expected": "olla de presión"
+      },
+      "expected": {
+        "spelling": "olla de presión",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "lexeme:olla-de-presión: a phrase, its spaces kept."
+    },
+    {
+      "id": "spell/es/identity/diaeresis",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "form": "bilingüe",
+        "expected": "bilingüe"
+      },
+      "expected": {
+        "spelling": "bilingüe",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "lexeme:bilingüe: ü kept."
+    },
+    {
+      "id": "spell/es/boundary/reflexive",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "form": "levantar+se",
+        "expected": "levantarse"
+      },
+      "expected": {
+        "spelling": "levantarse",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "lexeme:levantarse: a stored boundary is dropped (the lemma)."
+    },
+    {
+      "id": "spell/es/boundary/realised",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "form": "busqu+é",
+        "expected": "busqué"
+      },
+      "expected": {
+        "spelling": "busqué",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "A realised form (buscar, pret-1sg) loses its boundaries."
+    },
+    {
+      "id": "spell/es/boundary/expected-case",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "form": "llam+o",
+        "expected": "Llamo"
+      },
+      "expected": {
+        "spelling": "llamo",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Compared as the profile keys a word: case folded (a sentence-initial token)."
+    },
+    {
+      "id": "spell/es/clipped/agromercado",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "form": "agromercado",
+        "expected": "agro"
+      },
+      "expected": {
+        "spelling": "agromercado",
+        "alternatives": [
+          {
+            "spelling": "agro",
+            "by": [
+              "clipped"
+            ]
+          }
+        ],
+        "expected": "alternative"
+      },
+      "note": "lexeme:agromercado: the course writes agro, a free spelling of it (REVIEW)."
+    },
+    {
+      "id": "spell/es/clipped/televisión",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "form": "televisión",
+        "expected": "tele"
+      },
+      "expected": {
+        "spelling": "televisión",
+        "alternatives": [
+          {
+            "spelling": "tele",
+            "by": [
+              "clipped"
+            ]
+          }
+        ],
+        "expected": "alternative"
+      },
+      "note": "lexeme:televisión: the course writes tele, a free spelling of it (REVIEW)."
+    },
+    {
+      "id": "spell/es/clipped/not-inside",
+      "op": "spell",
+      "args": {
+        "profile": "es-Latn/standard",
+        "form": "agromercados",
+        "expected": "agromercados"
+      },
+      "expected": {
+        "spelling": "agromercados",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The clipped spelling is of the whole word only: a plural keeps its letters."
+    }
+  ]
+}

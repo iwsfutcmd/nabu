@@ -405,6 +405,10 @@ export type Slug3 = string;
  */
 export type UdFeatures7 = Readonly<Record<string, string>>;
 /**
+ * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
+ */
+export type UdFeatures8 = Readonly<Record<string, string>>;
+/**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
 export type KcId1 = string & { readonly __brand: "KcId" };
@@ -3377,6 +3381,10 @@ export interface Allomorph {
   readonly after?: Condition;
   readonly before?: Condition1;
   /**
+   * true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (a scribe's other spelling of a suffix: chg's locative دا beside ده). Never the one chosen: a token's realisation gives it as an alternative.
+   */
+  readonly free?: boolean;
+  /**
    * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
    */
   readonly spelled?: {
@@ -3415,6 +3423,7 @@ export interface Condition {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly own?: UdFeatures8;
 }
 /**
  * What it stands before.
@@ -3439,6 +3448,7 @@ export interface Condition1 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly own?: UdFeatures8;
 }
 /**
  * What a language declares beside its lexicon (lexicons/<lang>/language.yaml; ADR 0145, 0148): the varieties and registers a scope ranges over, the dimensions of each category, the features and values its tokens and lexemes carry, its defaults and its classes. A category is a UD tag: no category system is declared (the owner, round 6). Every statement here is content: drafted `llm:` and REVIEW until signed off.
@@ -3485,6 +3495,21 @@ export interface LanguageDeclaration {
    */
   readonly citation?: {
     readonly [k: string]: UdFeatures1;
+  };
+  /**
+   * The categories whose lexical form, where it is a string, is a stem and not a word (bar's verbs: red, kemm), so that their citation cell is realised by the rules as every other cell is (redn, kemmen) and the lemma is checked as the rules give it. Elsewhere a string form is its citation form, which no rule runs over.
+   *
+   * @minItems 1
+   */
+  readonly stemmed?: readonly PartOfSpeech[];
+  /**
+   * Each feature's unmarked values, which the course uses from the start and never introduces as a part (es: Mood Ind, VerbForm Fin, Number Sing): taught, where the compiler lists a paradigm's cells (docs/rules-design.md, stage 4), as a citation or bare cell's values are. Never a learner's part.
+   */
+  readonly unmarked?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
   };
   /**
    * For each category, the cells shown after its lemma wherever a word is presented as itself, in order (docs/rules-design.md, stage 4; the owner's answer 1: an apc verb is cited by its he-past, the he-present beside it). The compiler lists each among the category's cells and spells it from the rules; a lexeme the rules give no form for there shows none.
@@ -3587,6 +3612,7 @@ export interface Condition2 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly own?: UdFeatures8;
 }
 /**
  * One class: a lexical feature a rule reads and no form gives (Spanish e-ie; the -go verbs).
@@ -3654,9 +3680,9 @@ export interface NamedRule {
  */
 export interface Notation {
   /**
-   * Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C).
+   * Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C). A notation whose vowels are letters (an alphabet's: es, sk, tok) names none.
    */
-  readonly vowels: {
+  readonly vowels?: {
     readonly [k: string]: string;
   };
   /**
@@ -3750,7 +3776,11 @@ export interface RealisationRule {
 export interface Exponent {
   readonly branch: Branch1;
   readonly feats?: UdFeatures1;
-  readonly add: string;
+  readonly add?: string;
+  /**
+   * A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.
+   */
+  readonly lexeme?: string;
   readonly stem?: StemChoice;
   readonly notes?: {
     readonly [k: string]: string;
@@ -3801,6 +3831,7 @@ export interface Condition3 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  readonly own?: UdFeatures8;
 }
 /**
  * A generated lookup table an orthography profile refers to by id (profiles/tables/<id>.json): orthographic variant groups, character readings for the IME-homophone typo model, or a character set for script-mismatch detection.
@@ -5686,13 +5717,17 @@ export interface Spell {
    */
   readonly from: "lexical";
   /**
+   * true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first.
+   */
+  readonly boundaries?: boolean;
+  /**
    * Named sets of this statement's own, beside the notation's.
    */
   readonly sets?: {
     readonly [k: string]: UnicodeSetPattern;
   };
   /**
-   * @minItems 1
+   * None where the orthography writes the form as it is (its boundaries dropped).
    */
   readonly rules: readonly SpellRule[];
 }
@@ -5979,13 +6014,17 @@ export interface Spell1 {
    */
   readonly from: "lexical";
   /**
+   * true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first.
+   */
+  readonly boundaries?: boolean;
+  /**
    * Named sets of this statement's own, beside the notation's.
    */
   readonly sets?: {
     readonly [k: string]: UnicodeSetPattern;
   };
   /**
-   * @minItems 1
+   * None where the orthography writes the form as it is (its boundaries dropped).
    */
   readonly rules: readonly SpellRule[];
 }

@@ -140,7 +140,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: اتاقِ من دو پنجره دارد.
-      tokens: [{surface: اتاقِ, lexemes: [{lexeme: otagh, surface: اتاقِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: دو, lexeme: do}, {surface: پنجره, lexeme: panjere}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: 3sg, surface: د}]}]
+      tokens: [{surface: اتاقِ, lexemes: [{lexeme: otagh, surface: اتاقِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: دو, lexeme: do}, {surface: پنجره, lexeme: panjere}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 3sg, surface: د}]}]
       reverse: |-
         (اتاق من|اتاقم) دو پنجره دارد
         اتاق من دو تا پنجره دارد
@@ -251,7 +251,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: اتاقم یک میز و یک صندلی دارد.
-      tokens: [{surface: اتاقم, lexemes: [{lexeme: otagh, surface: اتاق, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: یک, lexeme: yek}, {surface: میز, lexeme: miz}, {surface: و, lexeme: va}, {surface: یک, lexeme: yek}, {surface: صندلی, lexeme: sandali}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: 3sg, surface: د}]}]
+      tokens: [{surface: اتاقم, lexemes: [{lexeme: otagh, surface: اتاق, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: یک, lexeme: yek}, {surface: میز, lexeme: miz}, {surface: و, lexeme: va}, {surface: یک, lexeme: yek}, {surface: صندلی, lexeme: sandali}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 3sg, surface: د}]}]
       reverse: (اتاقم|اتاق من) یک میز و یک صندلی دارد
   translations:
     en: My room has a (table|desk) and a chair.
@@ -293,7 +293,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: در آشپزخانه یک میز هست.
-      tokens: [{surface: در, lexeme: dar}, {surface: آشپزخانه, lexeme: ashpazkhane}, {surface: یک, lexeme: yek}, {surface: میز, lexeme: miz}, {surface: هست, lexeme: budan}]
+      tokens: [{surface: در, lexeme: dar}, {surface: آشپزخانه, lexeme: ashpazkhane}, {surface: یک, lexeme: yek}, {surface: میز, lexeme: miz}, {surface: هست, lexeme: budan, feats: {Variant: Long}}]
       reverse: |-
         (در|توی) آشپزخانه یک میز (هست|است|وجود دارد)
         یک میز (در|توی) آشپزخانه (هست|است|وجود دارد)
@@ -307,7 +307,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: در خانه نان هست؟
-      tokens: [{surface: در, lexeme: dar}, {surface: خانه, lexeme: khane}, {surface: نان, lexeme: nan}, {surface: هست, lexeme: budan}]
+      tokens: [{surface: در, lexeme: dar}, {surface: خانه, lexeme: khane}, {surface: نان, lexeme: nan}, {surface: هست, lexeme: budan, feats: {Variant: Long}}]
       reverse: |-
         (در|توی) خانه نان هست
         آیا در خانه نان هست
@@ -334,7 +334,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: در یخچال میوه هست.
-      tokens: [{surface: در, lexeme: dar}, {surface: یخچال, lexeme: yakhchal}, {surface: میوه, lexeme: mive}, {surface: هست, lexeme: budan}]
+      tokens: [{surface: در, lexeme: dar}, {surface: یخچال, lexeme: yakhchal}, {surface: میوه, lexeme: mive}, {surface: هست, lexeme: budan, feats: {Variant: Long}}]
       reverse: (در|توی) یخچال میوه هست
   translations:
     en: |-
@@ -414,7 +414,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: اتاقِ من اینجاست. یک تخت و یک میز دارد.
-          tokens: [{surface: اتاقِ, lexemes: [{lexeme: otagh, surface: اتاقِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: اینجاست, lexemes: [{lexeme: inja, surface: اینجا, base: true}, {lexeme: budan, surface: ست}]}, {surface: یک, lexeme: yek}, {surface: تخت, lexeme: takht}, {surface: و, lexeme: va}, {surface: یک, lexeme: yek}, {surface: میز, lexeme: miz}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: 3sg, surface: د}]}]
+          tokens: [{surface: اتاقِ, lexemes: [{lexeme: otagh, surface: اتاقِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: اینجاست, lexemes: [{lexeme: inja, surface: اینجا, base: true}, {lexeme: budan, surface: ست}]}, {surface: یک, lexeme: yek}, {surface: تخت, lexeme: takht}, {surface: و, lexeme: va}, {surface: یک, lexeme: yek}, {surface: میز, lexeme: miz}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 3sg, surface: د}]}]
       translations:
         en: My room is here. It has a bed and a desk.
   - choose:

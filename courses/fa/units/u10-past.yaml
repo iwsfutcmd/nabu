@@ -56,7 +56,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: دیروز به دانشگاه رفتم.
-      tokens: [{surface: دیروز, lexeme: dirooz}, {surface: به, lexeme: be}, {surface: دانشگاه, lexeme: daneshgah}, {surface: رفتم, lexemes: [{lexeme: raftan, surface: رفت, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: دیروز, lexeme: dirooz}, {surface: به, lexeme: be}, {surface: دانشگاه, lexeme: daneshgah}, {surface: رفتم, lexemes: [{lexeme: raftan, surface: رفت, base: true, feats: {Tense: Past}}, {lexeme: 1sg, surface: م}]}]
       reverse: |-
         [من] دیروز [به] دانشگاه رفتم
         دیروز من [به] دانشگاه رفتم
@@ -70,7 +70,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: علی دیروز آمد.
-      tokens: [{surface: علی, lexeme: ali}, {surface: دیروز, lexeme: dirooz}, {surface: آمد, lexeme: amadan}]
+      tokens: [{surface: علی, lexeme: ali}, {surface: دیروز, lexeme: dirooz}, {surface: آمد, lexeme: amadan, feats: {Tense: Past}}]
       reverse: |-
         علی دیروز آمد
         دیروز علی آمد
@@ -84,7 +84,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: ما دیروز کباب خوردیم.
-      tokens: [{surface: ما, lexeme: ma}, {surface: دیروز, lexeme: dirooz}, {surface: کباب, lexeme: kabab}, {surface: خوردیم, lexemes: [{lexeme: khordan, surface: خورد, base: true}, {lexeme: 1pl, surface: یم}]}]
+      tokens: [{surface: ما, lexeme: ma}, {surface: دیروز, lexeme: dirooz}, {surface: کباب, lexeme: kabab}, {surface: خوردیم, lexemes: [{lexeme: khordan, surface: خورد, base: true, feats: {Tense: Past}}, {lexeme: 1pl, surface: یم}]}]
       reverse: |-
         [ما] دیروز کباب خوردیم
         دیروز ما کباب خوردیم
@@ -109,7 +109,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: دیشب یک فیلمِ ایرانی دیدم.
-      tokens: [{surface: دیشب, lexeme: dishab}, {surface: یک, lexeme: yek}, {surface: فیلمِ, lexemes: [{lexeme: film, surface: فیلمِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: ایرانی, lexeme: irani}, {surface: دیدم, lexemes: [{lexeme: didan, surface: دید, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: دیشب, lexeme: dishab}, {surface: یک, lexeme: yek}, {surface: فیلمِ, lexemes: [{lexeme: film, surface: فیلمِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: ایرانی, lexeme: irani}, {surface: دیدم, lexemes: [{lexeme: didan, surface: دید, base: true, feats: {Tense: Past}}, {lexeme: 1sg, surface: م}]}]
       reverse: |-
         [من] دیشب یک فیلم ایرانی دیدم
         دیشب یک فیلم ایرانی تماشا کردم
@@ -125,7 +125,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: دیروز کار نکردم.
-      tokens: [{surface: دیروز, lexeme: dirooz}, {surface: کار, lexeme: kar}, {surface: نکردم, lexemes: [{lexeme: neg, surface: ن}, {lexeme: kardan, surface: کرد, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: دیروز, lexeme: dirooz}, {surface: کار, lexeme: kar}, {surface: نکردم, lexemes: [{lexeme: neg, surface: ن}, {lexeme: kardan, surface: کرد, base: true, feats: {Tense: Past}}, {lexeme: 1sg, surface: م}]}]
       reverse: |-
         [من] دیروز کار نکردم
         دیروز من کار نکردم
@@ -139,7 +139,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: چه خریدی؟
-      tokens: [{surface: چه, lexeme: che}, {surface: خریدی, lexemes: [{lexeme: kharidan, surface: خرید, base: true}, {lexeme: 2sg, surface: ی}]}]
+      tokens: [{surface: چه, lexeme: che}, {surface: خریدی, lexemes: [{lexeme: kharidan, surface: خرید, base: true, feats: {Tense: Past}}, {lexeme: 2sg, surface: ی}]}]
       reverse: |-
         [تو] (چه|چی) خریدی
         [شما] (چه|چی) خریدید
@@ -152,7 +152,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: یک کتاب خریدم.
-      tokens: [{surface: یک, lexeme: yek}, {surface: کتاب, lexeme: ketab}, {surface: خریدم, lexemes: [{lexeme: kharidan, surface: خرید, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: یک, lexeme: yek}, {surface: کتاب, lexeme: ketab}, {surface: خریدم, lexemes: [{lexeme: kharidan, surface: خرید, base: true, feats: {Tense: Past}}, {lexeme: 1sg, surface: م}]}]
       reverse: |-
         [من] یک کتاب خریدم
         کتاب خریدم
@@ -164,7 +164,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: دیشب زود خوابیدم.
-      tokens: [{surface: دیشب, lexeme: dishab}, {surface: زود, lexeme: zud}, {surface: خوابیدم, lexemes: [{lexeme: khabidan, surface: خوابید, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: دیشب, lexeme: dishab}, {surface: زود, lexeme: zud}, {surface: خوابیدم, lexemes: [{lexeme: khabidan, surface: خوابید, base: true, feats: {Tense: Past}}, {lexeme: 1sg, surface: م}]}]
       reverse: |-
         [من] دیشب زود خوابیدم
         دیشب من زود خوابیدم
@@ -179,7 +179,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: هفتهٔ گذشته به اصفهان رفتیم.
-      tokens: [{surface: هفتهٔ, lexemes: [{lexeme: hafte, surface: هفتهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: گذشته, lexeme: gozashte}, {surface: به, lexeme: be}, {surface: اصفهان, lexeme: esfahan}, {surface: رفتیم, lexemes: [{lexeme: raftan, surface: رفت, base: true}, {lexeme: 1pl, surface: یم}]}]
+      tokens: [{surface: هفتهٔ, lexemes: [{lexeme: hafte, surface: هفتهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: گذشته, lexeme: gozashte}, {surface: به, lexeme: be}, {surface: اصفهان, lexeme: esfahan}, {surface: رفتیم, lexemes: [{lexeme: raftan, surface: رفت, base: true, feats: {Tense: Past}}, {lexeme: 1pl, surface: یم}]}]
       reverse: "[ما] هفت(هٔ|ه\u200cی|ه) گذشته به اصفهان رفتیم\nهفته پیش به اصفهان رفتیم\nهفته قبل به اصفهان رفتیم\nهفته گذشته ما به اصفهان رفتیم\nهفته گذشته اصفهان رفتیم"
   translations:
     en: |-
@@ -243,7 +243,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "باران می\u200cآید."
-      tokens: [{surface: باران, lexeme: baran}, {surface: "می\u200cآید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: amadan, surface: آی, base: true}, {lexeme: 3sg, surface: د}]}]
+      tokens: [{surface: باران, lexeme: baran}, {surface: "می\u200cآید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: amadan, surface: آی, base: true, feats: {Tense: Pres}}, {lexeme: 3sg, surface: د}]}]
       reverse: "باران می\u200cآید\nباران می\u200cبارد\nدارد باران می\u200cآید\nباران دارد می\u200cآید"
   translations:
     en: It('s| is) raining.
@@ -253,7 +253,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: دیروز برف آمد.
-      tokens: [{surface: دیروز, lexeme: dirooz}, {surface: برف, lexeme: barf}, {surface: آمد, lexeme: amadan}]
+      tokens: [{surface: دیروز, lexeme: dirooz}, {surface: برف, lexeme: barf}, {surface: آمد, lexeme: amadan, feats: {Tense: Past}}]
       reverse: |-
         دیروز برف آمد
         دیروز برف بارید
@@ -295,7 +295,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: من این فصل را دوست دارم.
-      tokens: [{surface: من, lexeme: man}, {surface: این, lexeme: in}, {surface: فصل, lexeme: fasl}, {surface: را, lexeme: ra}, {surface: دوست, lexeme: doost}, {surface: دارم, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: این, lexeme: in}, {surface: فصل, lexeme: fasl}, {surface: را, lexeme: ra}, {surface: دوست, lexeme: doost}, {surface: دارم, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
       reverse: '[من] این فصل را دوست دارم'
   translations:
     en: I (like|love) this season.
@@ -320,7 +320,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "در زمستان برف می\u200cآید."
-      tokens: [{surface: در, lexeme: dar}, {surface: زمستان, lexeme: zemestan}, {surface: برف, lexeme: barf}, {surface: "می\u200cآید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: amadan, surface: آی, base: true}, {lexeme: 3sg, surface: د}]}]
+      tokens: [{surface: در, lexeme: dar}, {surface: زمستان, lexeme: zemestan}, {surface: برف, lexeme: barf}, {surface: "می\u200cآید", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: amadan, surface: آی, base: true, feats: {Tense: Pres}}, {lexeme: 3sg, surface: د}]}]
       reverse: "[در] زمستان برف می\u200cآید\nدر زمستان برف می\u200cبارد"
   translations:
     en: |-
@@ -361,7 +361,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: ما به شمال رفتیم.
-      tokens: [{surface: ما, lexeme: ma}, {surface: به, lexeme: be}, {surface: شمال, lexeme: shomal}, {surface: رفتیم, lexemes: [{lexeme: raftan, surface: رفت, base: true}, {lexeme: 1pl, surface: یم}]}]
+      tokens: [{surface: ما, lexeme: ma}, {surface: به, lexeme: be}, {surface: شمال, lexeme: shomal}, {surface: رفتیم, lexemes: [{lexeme: raftan, surface: رفت, base: true, feats: {Tense: Past}}, {lexeme: 1pl, surface: یم}]}]
       reverse: '[ما] [به] شمال رفتیم'
   translations:
     en: |-
@@ -395,7 +395,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: آنجا خیلی عکس گرفتیم.
-      tokens: [{surface: آنجا, lexeme: anja}, {surface: خیلی, lexeme: kheyli}, {surface: عکس, lexeme: aks}, {surface: گرفتیم, lexemes: [{lexeme: gereftan, surface: گرفت, base: true}, {lexeme: 1pl, surface: یم}]}]
+      tokens: [{surface: آنجا, lexeme: anja}, {surface: خیلی, lexeme: kheyli}, {surface: عکس, lexeme: aks}, {surface: گرفتیم, lexemes: [{lexeme: gereftan, surface: گرفت, base: true, feats: {Tense: Past}}, {lexeme: 1pl, surface: یم}]}]
       reverse: "[ما] آنجا خیلی عکس گرفتیم\nما آنجا عکس\u200cهای زیادی گرفتیم\nآنجا ما خیلی عکس گرفتیم"
   translations:
     en: |-
@@ -424,7 +424,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: خوش آمدید!
-      tokens: [{surface: خوش, lexeme: khosh}, {surface: آمدید, lexemes: [{lexeme: amadan, surface: آمد, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: خوش, lexeme: khosh}, {surface: آمدید, lexemes: [{lexeme: amadan, surface: آمد, base: true, feats: {Tense: Past}}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         خوش آمدید
         خوش آمدی
@@ -438,7 +438,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: به شما خوش گذشت؟
-      tokens: [{surface: به, lexeme: be}, {surface: شما, lexeme: shoma}, {surface: خوش, lexeme: khosh}, {surface: گذشت, lexeme: gozashtan}]
+      tokens: [{surface: به, lexeme: be}, {surface: شما, lexeme: shoma}, {surface: خوش, lexeme: khosh}, {surface: گذشت, lexeme: gozashtan, feats: {Tense: Past}}]
       reverse: |-
         [به (شما|تو)] خوش گذشت
         آیا به شما خوش گذشت
@@ -452,7 +452,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: بله، خیلی خوش گذشت!
-      tokens: [{surface: بله, lexeme: bale}, {surface: خیلی, lexeme: kheyli}, {surface: خوش, lexeme: khosh}, {surface: گذشت, lexeme: gozashtan}]
+      tokens: [{surface: بله, lexeme: bale}, {surface: خیلی, lexeme: kheyli}, {surface: خوش, lexeme: khosh}, {surface: گذشت, lexeme: gozashtan, feats: {Tense: Past}}]
       reverse: (بله|آره) [به ما] خیلی خوش گذشت
   translations:
     en: |-
@@ -479,7 +479,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: چه خریدید؟
-      tokens: [{surface: چه, lexeme: che}, {surface: خریدید, lexemes: [{lexeme: kharidan, surface: خرید, base: true}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: چه, lexeme: che}, {surface: خریدید, lexemes: [{lexeme: kharidan, surface: خرید, base: true, feats: {Tense: Past}}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         [شما] (چه|چی) خریدید
         شما چه چیزی خریدید
@@ -514,7 +514,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: سلام! با خانواده به شمال رفتیم.
-          tokens: [{surface: سلام, lexeme: salam}, {surface: با, lexeme: ba}, {surface: خانواده, lexeme: khanevade}, {surface: به, lexeme: be}, {surface: شمال, lexeme: shomal}, {surface: رفتیم, lexemes: [{lexeme: raftan, surface: رفت, base: true}, {lexeme: 1pl, surface: یم}]}]
+          tokens: [{surface: سلام, lexeme: salam}, {surface: با, lexeme: ba}, {surface: خانواده, lexeme: khanevade}, {surface: به, lexeme: be}, {surface: شمال, lexeme: shomal}, {surface: رفتیم, lexemes: [{lexeme: raftan, surface: رفت, base: true, feats: {Tense: Past}}, {lexeme: 1pl, surface: یم}]}]
       translations:
         en: Hi! We went to the north with the family.
   - line:
@@ -522,7 +522,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: خوش گذشت؟
-          tokens: [{surface: خوش, lexeme: khosh}, {surface: گذشت, lexeme: gozashtan}]
+          tokens: [{surface: خوش, lexeme: khosh}, {surface: گذشت, lexeme: gozashtan, feats: {Tense: Past}}]
       translations:
         en: Did you have a good time?
   - line:
@@ -530,7 +530,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: بله، خیلی خوش گذشت! کنارِ دریا بودیم.
-          tokens: [{surface: بله, lexeme: bale}, {surface: خیلی, lexeme: kheyli}, {surface: خوش, lexeme: khosh}, {surface: گذشت, lexeme: gozashtan}, {surface: کنارِ, lexemes: [{lexeme: kenar, surface: کنارِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: دریا, lexeme: darya}, {surface: بودیم, lexemes: [{lexeme: budan, surface: بود, base: true, feats: {Tense: Past}}, {lexeme: 1pl, surface: یم}]}]
+          tokens: [{surface: بله, lexeme: bale}, {surface: خیلی, lexeme: kheyli}, {surface: خوش, lexeme: khosh}, {surface: گذشت, lexeme: gozashtan, feats: {Tense: Past}}, {surface: کنارِ, lexemes: [{lexeme: kenar, surface: کنارِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: دریا, lexeme: darya}, {surface: بودیم, lexemes: [{lexeme: budan, surface: بود, base: true, feats: {Tense: Past}}, {lexeme: 1pl, surface: یم}]}]
       translations:
         en: Yes, we had a great time! We were by the sea.
   - choose:
@@ -567,7 +567,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: خیلی عکس گرفتی؟
-          tokens: [{surface: خیلی, lexeme: kheyli}, {surface: عکس, lexeme: aks}, {surface: گرفتی, lexemes: [{lexeme: gereftan, surface: گرفت, base: true}, {lexeme: 2sg, surface: ی}]}]
+          tokens: [{surface: خیلی, lexeme: kheyli}, {surface: عکس, lexeme: aks}, {surface: گرفتی, lexemes: [{lexeme: gereftan, surface: گرفت, base: true, feats: {Tense: Past}}, {lexeme: 2sg, surface: ی}]}]
       translations:
         en: Did you take a lot of photos?
   - line:
@@ -575,7 +575,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: بله. این عکسِ دریاست. ببین!
-          tokens: [{surface: بله, lexeme: bale}, {surface: این, lexeme: in}, {surface: عکسِ, lexemes: [{lexeme: aks, surface: عکسِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: دریاست, lexemes: [{lexeme: darya, surface: دریا, base: true}, {lexeme: budan, surface: ست}]}, {surface: ببین, lexemes: [{lexeme: subj, surface: ب}, {lexeme: didan, surface: بین, base: true}]}]
+          tokens: [{surface: بله, lexeme: bale}, {surface: این, lexeme: in}, {surface: عکسِ, lexemes: [{lexeme: aks, surface: عکسِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: دریاست, lexemes: [{lexeme: darya, surface: دریا, base: true}, {lexeme: budan, surface: ست}]}, {surface: ببین, lexemes: [{lexeme: subj, surface: ب}, {lexeme: didan, surface: بین, base: true, feats: {Tense: Pres}}]}]
       translations:
         en: Yes. This is a photo of the sea. Look!
   - line:
@@ -592,7 +592,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: "تابستان هم به شمال می\u200cرویم."
-          tokens: [{surface: تابستان, lexeme: tabestan}, {surface: هم, lexeme: ham}, {surface: به, lexeme: be}, {surface: شمال, lexeme: shomal}, {surface: "می\u200cرویم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true}, {lexeme: 1pl, surface: یم}]}]
+          tokens: [{surface: تابستان, lexeme: tabestan}, {surface: هم, lexeme: ham}, {surface: به, lexeme: be}, {surface: شمال, lexeme: shomal}, {surface: "می\u200cرویم", lexemes: [{lexeme: mi, surface: "می\u200c"}, {lexeme: raftan, surface: رو, base: true, feats: {Tense: Pres}}, {lexeme: 1pl, surface: یم}]}]
       translations:
         en: We're going to the north in the summer too.
   - choose:

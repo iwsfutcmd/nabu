@@ -1,0 +1,63 @@
+{
+  "$comment": "Realisation in a language that does not inflect (docs/rules/tok.md): Toki Pona declares a notation and no realisation rules, so a token stands in its citation cell and is its lexeme's form, with no step; a cell with a value chosen has no rule.",
+  "vectors": [
+    {
+      "id": "realise/tok/citation",
+      "op": "realise-token",
+      "args": {
+        "lang": "tok",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:moku"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "moku",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "Every tok token: its lexeme's form."
+    },
+    {
+      "id": "realise/tok/name",
+      "op": "realise",
+      "args": {
+        "lang": "tok",
+        "lexeme": "lexeme:kanata",
+        "cell": {}
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "Kanata",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "ma Kanata."
+    },
+    {
+      "id": "realise/tok/no-rule",
+      "op": "realise",
+      "args": {
+        "lang": "tok",
+        "lexeme": "lexeme:jan",
+        "cell": {
+          "Number": "Plur"
+        }
+      },
+      "expected": {
+        "ok": false,
+        "error": {
+          "kind": "no-rule"
+        }
+      },
+      "note": "No token chooses a value: a cell with one has no rule."
+    }
+  ]
+}

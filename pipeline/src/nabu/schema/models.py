@@ -1469,6 +1469,14 @@ type LexicalAdditionalPropertyItem = Annotated[
 type LexicalAdditionalProperty = Annotated[list[LexicalAdditionalPropertyItem], Field(min_length=1)]
 
 
+type UnmarkedAdditionalPropertyItem = Annotated[str, Field(pattern="^[A-Z0-9][A-Za-z0-9]*$")]
+
+
+type UnmarkedAdditionalProperty = Annotated[
+    list[UnmarkedAdditionalPropertyItem], Field(min_length=1)
+]
+
+
 type PrincipalPartsAdditionalProperty1 = Annotated[list[UdFeatures], Field(min_length=1)]
 
 
@@ -1499,12 +1507,12 @@ class Notation(BaseModel):
         frozen=True,
     )
     vowels: Annotated[
-        dict[str, VowelsAdditionalProperty],
+        dict[str, VowelsAdditionalProperty] | None,
         Field(
-            description="Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C).",
+            description="Each short vowel and the sign that writes it after a consonant (apc: a fatha, e U+065C). A notation whose vowels are letters (an alphabet's: es, sk, tok) names none.",
             min_length=1,
         ),
-    ]
+    ] = None
     long: Annotated[
         dict[str, LongAdditionalProperty] | None,
         Field(
@@ -1611,7 +1619,13 @@ class Exponent(BaseModel):
     )
     branch: Branch
     feats: UdFeatures | None = None
-    add: str
+    add: str | None = None
+    lexeme: Annotated[
+        LexemeId | None,
+        Field(
+            description="In place of `add`: an affix lexeme the exponent writes, in the allomorph its conditions choose by what it follows, as a token that lists it is realised (uz: the past -di, lexeme:past). One of `add` and `lexeme`."
+        ),
+    ] = None
     stem: StemChoice | None = None
     notes: Annotated[dict[str, NotesAdditionalProperty] | None, Field(min_length=1)] = None
 
@@ -1686,6 +1700,12 @@ class Condition(BaseModel):
         ),
     ] = None
     feats: Annotated[UdFeatures | None, Field(description="It has these feature values.")] = None
+    own: Annotated[
+        UdFeatures | None,
+        Field(
+            description="Of a realisation rule or a rewrite: the lexeme has these values of itself (a comma: one of them), as its entry stores them or else its language's defaults give them for a feature its category has of itself (`lexical`): a Slovak noun's gender and animacy, which choose its declension."
+        ),
+    ] = None
 
 
 class Default(BaseModel):
@@ -2569,6 +2589,12 @@ class Allomorph(BaseModel):
     form: str | None = None
     after: Annotated[Condition | None, Field(description="What it stands after.")] = None
     before: Annotated[Condition | None, Field(description="What it stands before.")] = None
+    free: Annotated[
+        bool | None,
+        Field(
+            description="true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (a scribe's other spelling of a suffix: chg's locative دا beside ده). Never the one chosen: a token's realisation gives it as an alternative."
+        ),
+    ] = None
     spelled: Annotated[
         dict[OrthographyId, SpelledAdditionalProperty2] | None,
         Field(
@@ -6458,6 +6484,12 @@ class Spell(BaseModel):
             description="What is spelled: a lexeme's lexical form, in its language's notation.",
         ),
     ]
+    boundaries: Annotated[
+        bool | None,
+        Field(
+            description="true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first."
+        ),
+    ] = None
     sets: Annotated[
         dict[
             Annotated[str, StringConstraints(pattern=r"^[A-Za-z][A-Za-z0-9-]*$")], UnicodeSetPattern
@@ -6467,7 +6499,12 @@ class Spell(BaseModel):
             description="Named sets of this statement's own, beside the notation's.", min_length=1
         ),
     ] = None
-    rules: Annotated[list[SpellRule], Field(min_length=1)]
+    rules: Annotated[
+        list[SpellRule],
+        Field(
+            description="None where the orthography writes the form as it is (its boundaries dropped)."
+        ),
+    ]
 
 
 class TaggedText(BaseModel):
@@ -6922,6 +6959,24 @@ class LanguageDeclaration(BaseModel):
         dict[PartOfSpeech, UdFeatures] | None,
         Field(
             description="For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell."
+        ),
+    ] = None
+    stemmed: Annotated[
+        list[PartOfSpeech] | None,
+        Field(
+            description="The categories whose lexical form, where it is a string, is a stem and not a word (bar's verbs: red, kemm), so that their citation cell is realised by the rules as every other cell is (redn, kemmen) and the lemma is checked as the rules give it. Elsewhere a string form is its citation form, which no rule runs over.",
+            min_length=1,
+        ),
+    ] = None
+    unmarked: Annotated[
+        dict[
+            Annotated[str, StringConstraints(pattern=r"^[A-Z][A-Za-z0-9]*(\[[a-z0-9]+\])?$")],
+            UnmarkedAdditionalProperty,
+        ]
+        | None,
+        Field(
+            description="Each feature's unmarked values, which the course uses from the start and never introduces as a part (es: Mood Ind, VerbForm Fin, Number Sing): taught, where the compiler lists a paradigm's cells (docs/rules-design.md, stage 4), as a citation or bare cell's values are. Never a learner's part.",
+            min_length=1,
         ),
     ] = None
     principalParts: Annotated[

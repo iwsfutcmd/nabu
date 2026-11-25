@@ -35,3 +35,7 @@ layout: { vertical: vertical-rl, verticalScope: [prompt, reading, wordbank] }
 # The classics are set in a Ming (Song) face: Noto Serif CJK, Traditional Chinese, a quarter larger
 # than the text around them (characters at the size of Latin text are hard to read).
 fonts: { stack: [Noto Serif TC, Noto Serif CJK TC, Noto Sans HK], lineHeight: 1.7, scale: 1.25 }
+# How the characters write a lexical form (docs/rules/lzh.md): as it is. A form is the word in its characters, so the
+# statement has no rules; the compiler checks every lexeme's form and every token against it (`form.projection`,
+# `form.unaccounted`).
+spell: { from: lexical, rules: [] }

@@ -8,7 +8,7 @@ registers: [formal, neutral, colloquial]
 dimensions:
   NOUN: [Number]
   VERB: [Tense, Person, Number]
-  AUX: [Tense, Polarity]
+  AUX: [Tense, Polarity, Variant]
 features:
   Aspect: [Imp]
   Definite: [Ind]
@@ -20,7 +20,62 @@ features:
   Polarity: [Neg]
   Poss: ['Yes']
   PronType: [Dem, Int, Prs, Tot]
-  Tense: [Past]
+  Tense: [Past, Pres]
+  # REVIEW: the copula's independent version (هست, hast: Yousef 2018 p. 183-185), which the three
+  # existential هست tokens choose; its short version (است) is the unmarked one. Not UD's universal list: a
+  # language-specific feature, as UD's Variant is elsewhere (Czech short and long forms).
+  Variant: [Long]
 rules:
 - {id: 'rule:past', gloss: {en: 'the simple past: past stem + ending (رفتم, I went)'}, notes: {en: 'Each verb has a past stem: رفت- (go), آمد- (come), خورد- (eat), کرد- (do), خرید- (buy), دید- (see). He/she has no ending: رفت, he went. The negative adds na-: نرفتم.'}, was: 'construction:past'}
 - {id: 'rule:subjunctive', gloss: {en: 'the subjunctive: be- + present stem + ending after ''want'' and ''can'''}, notes: {en: "می\u200cخواهم یک کتاب بخرم: I want to buy a book. می\u200cتوانم ببینم؟ Can I see?"}, was: 'construction:subjunctive'}
+# How fa writes a lexical form (docs/rules/fa.md), read by @nabu/core `compileSpeller` for the profile's `spell`
+# and by `realise`; never shipped. A form is the word as courses/fa/vocalization.yaml marks it: the short vowels
+# a fatha, a kasra (a final -e's too) and a damma, a shadda, a tanvin; a long vowel its letter alone; a consonant
+# with no vowel bare. U+06DF marks a letter written and not said (as apc's does): the ه of a final -e (خانِه\u06df,
+# khāne; ده dah and ماه māh say theirs) and the و of خوا (خو\u06dfاهَر, khāhar; Yousef 2018 p. 22). The ZWNJ
+# (U+200C) is a letter of the form where an affix is written apart (می\u200c, \u200cها). The sign of no vowel (a
+# sukun) stands only where an affix joins a bare letter (the engine's join) and in rules; both spellings drop it.
+# Sets: L a letter; DT the last letter of every infinitive (all end in -dan or -tan: Yousef p. 158); NV what a
+# joined ending leaves on the letter before it (its fatha, or no vowel); AA a long a, the letter of a final -ā (Yousef p. 225).
+notation:
+  vowels: {a: "\u064e", e: "\u0650", o: "\u064f"}
+  none: "\u0652"
+  sets:
+    L: "[ء-يپچژکگی]"
+    DT: "[دت]"
+    NV: "[\u064e\u0652]"
+    AA: "[اآ]"
+# Rules in a lexicon (docs/rules-design.md; docs/rules/fa.md, which counts what they give). A token's other lexemes
+# (mi-, be-, na-, the person endings, the ezafe, -hā, -ān, -i, -tar, the possessives, the copula's -st) are its affixes:
+# each a lexeme with its allomorphs (lexemes.yaml), joined as the token lists them; nothing here adds them. A verb
+# token chooses its tense, and its tense its stem. Every branch is REVIEW. Source: Yousef (2018), by page.
+realisation:
+- id: 'rule:fa-past'  # the past stem, of every verb: the infinitive less -an (Yousef p. 158, 199): khordan, khord
+  when: {feats: {Tense: Past}, endsIn: "{DT}َن"}  # a verb cited by its infinitive (budan too, an AUX); gozashtan cites its past
+  blocks:
+  - suffix:
+    - {branch: stem, add: ""}  # the stem alone: the endings and na- are the token's own lexemes
+- id: 'rule:fa-present-idan'  # an -idan verb's present stem: what remains once -idan goes (Yousef p. 159: residan, res), unless a single letter would (didan, bin: the verb lists its own)
+  when: {pos: VERB, feats: {Tense: Pres}, endsIn: ".*.*یدَن"}
+  blocks: []
+- id: 'rule:fa-present-andan'  # an -āndan verb's present stem drops -dan (Yousef p. 159: māndan, mān)
+  when: {pos: VERB, feats: {Tense: Pres}, endsIn: "اندَن"}
+  blocks: []
+# Each once over the whole token, in order. An ending that begins with a short vowel has put it on the letter it
+# joins (NV: a fatha), any other a sign of no vowel; at the word's end the infinitive's ن is bare.
+phonology:
+- {id: 'rule:fa-past', branch: an, when: {feats: {Tense: Past}}, find: "{DT}َن{NV}", before: "+", to: "{DT}{NV}"}  # raftan + -am: raftam
+- {id: 'rule:fa-past', branch: an, when: {feats: {Tense: Past}}, find: "{DT}َن", at: end, to: "{DT}ْ"}  # āmadan: āmad
+- {id: 'rule:fa-present-idan', branch: stem, when: {pos: VERB, feats: {Tense: Pres}, endsIn: ".*.*یدَن"}, find: "{L}یدَن{NV}", before: "+", to: "{L}{NV}"}  # kharidan: mi-kharam
+- {id: 'rule:fa-present-idan', branch: stem, when: {pos: VERB, feats: {Tense: Pres}, endsIn: ".*.*یدَن"}, find: "{L}یدَن", at: end, to: "{L}"}  # bekhar
+- {id: 'rule:fa-present-andan', branch: stem, when: {pos: VERB, feats: {Tense: Pres}, endsIn: "اندَن"}, find: "اندَن{NV}", before: "+", to: "ان{NV}"}  # khāndan: mi-khānam
+- {id: 'rule:fa-present-andan', branch: stem, when: {pos: VERB, feats: {Tense: Pres}, endsIn: "اندَن"}, find: "اندَن", at: end, to: "ان"}
+# A present stem in -ā or -u takes the glide y before an ending (Yousef p. 225: mi-ā-yam). The course writes it ی
+# before -i too (mi-āyi); Yousef gives the hamza as common as well: not stated.
+- {id: 'rule:fa-glide', branch: y, when: {pos: VERB, feats: {Tense: Pres}}, find: "{AA}{NV}+", to: "{AA}ْی{NV}+"}  # mi-ā-yam
+- {id: 'rule:fa-glide', branch: y, when: {pos: VERB, feats: {Tense: Pres}}, find: "{L}و{NV}+", to: "{L}وْی{NV}+"}  # -u after a bare consonant (gu: mi-gu-yam); not the v of rav (رَو)
+# na- and be- before a stem in ā take the glide y, and the madd goes (Yousef p. 174: nayāmad; p. 245: biyā); after
+# rule:fa-glide, so the ā has no vowel left on it. Before a stem in a- or o- be- drops the alef (biyoft): no verb of
+# the course begins so; not written.
+- {id: 'rule:fa-prefix-y', branch: na, find: "نَ+آ*", to: "نَی+ا"}
+- {id: 'rule:fa-prefix-y', branch: be, find: "بِ+آ*", to: "بی+ا"}

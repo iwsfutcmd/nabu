@@ -1,0 +1,1631 @@
+{
+  "$comment": "Realisation in fa (docs/rules/fa.md; docs/rules-design.md, sections 2 and 4): fa's own rules and lexicon (lexicons/fa/language.yaml, lexemes.yaml), with `spellings: false`, as the compiler's check of the tokens runs them. One vector or more per branch of every rule and per allomorph of every affix, from the course's own tokens where it writes them (the note says where) and else from its lexemes in a cell the course does not write. A form keeps its boundaries (+); U+0652 is the sign of no vowel a join writes, U+06DF a letter written and not said; a realisation is spelled in spell-fa.json.",
+  "vectors": [
+    {
+      "id": "realise/fa/past/stem/vowel-ending",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:raftan",
+            "feats": {
+              "Tense": "Past"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "رَفتَ+م",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:fa-past",
+              "branch": "stem"
+            },
+            {
+              "rule": "rule:fa-past",
+              "branch": "an"
+            }
+          ]
+        }
+      },
+      "note": "rule:fa-past|stem and |an before an ending in a vowel (-am): u10-past s.past.4 رفتم."
+    },
+    {
+      "id": "realise/fa/past/stem/other-ending",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:khordan",
+            "feats": {
+              "Tense": "Past"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1pl"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "خُوردْ+یم",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:fa-past",
+              "branch": "stem"
+            },
+            {
+              "rule": "rule:fa-past",
+              "branch": "an"
+            }
+          ]
+        }
+      },
+      "note": "rule:fa-past|an before an ending in i (-im): u10-past خوردیم."
+    },
+    {
+      "id": "realise/fa/past/stem/alone",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:amadan",
+            "feats": {
+              "Tense": "Past"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "آمَدْ",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:fa-past",
+              "branch": "stem"
+            },
+            {
+              "rule": "rule:fa-past",
+              "branch": "an"
+            }
+          ]
+        }
+      },
+      "note": "rule:fa-past|an at a word's end: the 3sg past, no ending (u10-past آمد)."
+    },
+    {
+      "id": "realise/fa/past/stem/negative",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:neg"
+          },
+          {
+            "lexeme": "lexeme:kardan",
+            "feats": {
+              "Tense": "Past"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "نَ+کَردَ+م",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:fa-past",
+              "branch": "stem"
+            },
+            {
+              "rule": "rule:fa-past",
+              "branch": "an"
+            }
+          ]
+        }
+      },
+      "note": "na- before the past stem (u10-past نکردم)."
+    },
+    {
+      "id": "realise/fa/past/stem/copula",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:budan",
+            "feats": {
+              "Tense": "Past"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "بودَ+م",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:fa-past",
+              "branch": "stem"
+            },
+            {
+              "rule": "rule:fa-past",
+              "branch": "an"
+            }
+          ]
+        }
+      },
+      "note": "budan's past stem by the same rule (Yousef p. 186; u10-past s.past.1 بودم)."
+    },
+    {
+      "id": "realise/fa/past/citation",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:gozashtan",
+            "feats": {
+              "Tense": "Past"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "گُذَشت",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "gozashtan cites its 3sg past: no rule runs (u10-past خوش گذشت)."
+    },
+    {
+      "id": "realise/fa/present/idan/vowel-ending",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:mi"
+          },
+          {
+            "lexeme": "lexeme:kharidan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "می\u200c+خَرَ+م",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:fa-present-idan",
+              "branch": "stem"
+            }
+          ]
+        }
+      },
+      "note": "rule:fa-present-idan before -am (u09-shopping می\u200cخرم)."
+    },
+    {
+      "id": "realise/fa/present/idan/other-ending",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:subj"
+          },
+          {
+            "lexeme": "lexeme:pichidan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:2pl"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "بِ+پیچْ+ید",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:fa-present-idan",
+              "branch": "stem"
+            }
+          ]
+        }
+      },
+      "note": "rule:fa-present-idan before -id (u08-city بپیچید)."
+    },
+    {
+      "id": "realise/fa/present/idan/alone",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:subj"
+          },
+          {
+            "lexeme": "lexeme:kharidan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "بِ+خَر",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:fa-present-idan",
+              "branch": "stem"
+            }
+          ]
+        }
+      },
+      "note": "rule:fa-present-idan at a word's end: the singular imperative (Yousef p. 245); the course writes none."
+    },
+    {
+      "id": "realise/fa/present/idan/two-letters",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:mi"
+          },
+          {
+            "lexeme": "lexeme:khabidan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "می\u200c+خو\u06dfابَ+م",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:fa-present-idan",
+              "branch": "stem"
+            }
+          ]
+        }
+      },
+      "note": "khābidan: the silent و of خوا kept, -idan gone (u06-day می\u200cخوابم)."
+    },
+    {
+      "id": "realise/fa/present/andan/vowel-ending",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:mi"
+          },
+          {
+            "lexeme": "lexeme:khandan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "می\u200c+خو\u06dfانَ+م",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:fa-present-andan",
+              "branch": "stem"
+            }
+          ]
+        }
+      },
+      "note": "rule:fa-present-andan (u06-day می\u200cخوانم)."
+    },
+    {
+      "id": "realise/fa/present/andan/alone",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:subj"
+          },
+          {
+            "lexeme": "lexeme:khandan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "بِ+خو\u06dfان",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:fa-present-andan",
+              "branch": "stem"
+            }
+          ]
+        }
+      },
+      "note": "rule:fa-present-andan at a word's end; the course writes none."
+    },
+    {
+      "id": "realise/fa/present/listed/kardan",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:mi"
+          },
+          {
+            "lexeme": "lexeme:kardan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "می\u200c+کُنَ+م",
+          "status": "listed",
+          "steps": [],
+          "listed": "lexeme:kardan|form:Tense=Pres"
+        }
+      },
+      "note": "a listed present stem (kon: Yousef p. 217): lexeme:kardan|form:Tense=Pres (u06-day می\u200cکنم)."
+    },
+    {
+      "id": "realise/fa/present/listed/dashtan",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:dashtan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:3pl"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "دارَ+ند",
+          "status": "listed",
+          "steps": [],
+          "listed": "lexeme:dashtan|form:Tense=Pres"
+        }
+      },
+      "note": "dāshtan: its listed stem, no mi- (Yousef p. 188; u02-family دارند)."
+    },
+    {
+      "id": "realise/fa/present/listed/didan",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:subj"
+          },
+          {
+            "lexeme": "lexeme:didan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "بِ+بینَ+م",
+          "status": "listed",
+          "steps": [],
+          "listed": "lexeme:didan|form:Tense=Pres"
+        }
+      },
+      "note": "didan: an -idan verb whose rule would leave one letter lists its stem (Yousef p. 159; u09-shopping ببینم)."
+    },
+    {
+      "id": "realise/fa/present/listed/raftan",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:mi"
+          },
+          {
+            "lexeme": "lexeme:raftan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "می\u200c+رَوَ+م",
+          "status": "listed",
+          "steps": [],
+          "listed": "lexeme:raftan|form:Tense=Pres"
+        }
+      },
+      "note": "rav: its و after a vowel takes no glide (u06-day می\u200cروم)."
+    },
+    {
+      "id": "realise/fa/present/glide/vowel-ending",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:mi"
+          },
+          {
+            "lexeme": "lexeme:amadan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "می\u200c+آْیَ+م",
+          "status": "listed",
+          "steps": [
+            {
+              "rule": "rule:fa-glide",
+              "branch": "y"
+            }
+          ],
+          "listed": "lexeme:amadan|form:Tense=Pres"
+        }
+      },
+      "note": "rule:fa-glide|y after ā before -am (Yousef p. 225; u06-day می\u200cآیم)."
+    },
+    {
+      "id": "realise/fa/present/glide/i-ending",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:mi"
+          },
+          {
+            "lexeme": "lexeme:amadan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:2sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "می\u200c+آْیْ+ی",
+          "status": "listed",
+          "steps": [
+            {
+              "rule": "rule:fa-glide",
+              "branch": "y"
+            }
+          ],
+          "listed": "lexeme:amadan|form:Tense=Pres"
+        }
+      },
+      "note": "rule:fa-glide|y before -i, written ی (u06-day می\u200cآیی)."
+    },
+    {
+      "id": "realise/fa/present/prefix-y/be",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:subj"
+          },
+          {
+            "lexeme": "lexeme:amadan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "بی+ا",
+          "status": "listed",
+          "steps": [
+            {
+              "rule": "rule:fa-prefix-y",
+              "branch": "be"
+            }
+          ],
+          "listed": "lexeme:amadan|form:Tense=Pres"
+        }
+      },
+      "note": "rule:fa-prefix-y|be: biyā (Yousef p. 245); the course writes none."
+    },
+    {
+      "id": "realise/fa/present/prefix-y/be-glide",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:subj"
+          },
+          {
+            "lexeme": "lexeme:amadan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "بی+ایَ+م",
+          "status": "listed",
+          "steps": [
+            {
+              "rule": "rule:fa-glide",
+              "branch": "y"
+            },
+            {
+              "rule": "rule:fa-prefix-y",
+              "branch": "be"
+            }
+          ],
+          "listed": "lexeme:amadan|form:Tense=Pres"
+        }
+      },
+      "note": "rule:fa-glide then rule:fa-prefix-y|be: biyāyam; the course writes none."
+    },
+    {
+      "id": "realise/fa/past/prefix-y/na",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:neg"
+          },
+          {
+            "lexeme": "lexeme:amadan",
+            "feats": {
+              "Tense": "Past"
+            },
+            "base": true
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "نَی+امَدْ",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:fa-past",
+              "branch": "stem"
+            },
+            {
+              "rule": "rule:fa-past",
+              "branch": "an"
+            },
+            {
+              "rule": "rule:fa-prefix-y",
+              "branch": "na"
+            }
+          ]
+        }
+      },
+      "note": "rule:fa-prefix-y|na: nayāmad (Yousef p. 174); the course writes none."
+    },
+    {
+      "id": "realise/fa/present/mi",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:mi"
+          },
+          {
+            "lexeme": "lexeme:khordan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "می\u200c+خُورَ+م",
+          "status": "listed",
+          "steps": [],
+          "listed": "lexeme:khordan|form:Tense=Pres"
+        }
+      },
+      "note": "mi- written apart with its ZWNJ (u04-food می\u200cخورم)."
+    },
+    {
+      "id": "realise/fa/present/neg/before-mi",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:neg"
+          },
+          {
+            "lexeme": "lexeme:mi"
+          },
+          {
+            "lexeme": "lexeme:kardan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "نِ+می\u200c+کُنَ+م",
+          "status": "listed",
+          "steps": [],
+          "listed": "lexeme:kardan|form:Tense=Pres"
+        }
+      },
+      "note": "na- said ne- before mi- (Yousef p. 225; u06-day نمی\u200cکنم)."
+    },
+    {
+      "id": "realise/fa/present/neg/elsewhere",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:neg"
+          },
+          {
+            "lexeme": "lexeme:dashtan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "نَ+دارَ+م",
+          "status": "listed",
+          "steps": [],
+          "listed": "lexeme:dashtan|form:Tense=Pres"
+        }
+      },
+      "note": "na- (u04-food ندارم)."
+    },
+    {
+      "id": "realise/fa/present/ending/3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:mi"
+          },
+          {
+            "lexeme": "lexeme:kardan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:3sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "می\u200c+کُنَ+د",
+          "status": "listed",
+          "steps": [],
+          "listed": "lexeme:kardan|form:Tense=Pres"
+        }
+      },
+      "note": "-ad (u06-day می\u200cکند)."
+    },
+    {
+      "id": "realise/fa/present/ending/2pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:mi"
+          },
+          {
+            "lexeme": "lexeme:khastan",
+            "feats": {
+              "Tense": "Pres"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:2pl"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "می\u200c+خو\u06dfاهْ+ید",
+          "status": "listed",
+          "steps": [],
+          "listed": "lexeme:khastan|form:Tense=Pres"
+        }
+      },
+      "note": "-id after khāh, its و silent (u09-shopping می\u200cخواهید)."
+    },
+    {
+      "id": "realise/fa/infinitive",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:kardan"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "کَردَن",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "the infinitive: no value chosen, the lemma (u06-day زندگی کردن)."
+    },
+    {
+      "id": "realise/fa/copula/short",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:budan"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "اَست",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "the copula's 3sg present, apart: ast (Yousef p. 183-184; intro است)."
+    },
+    {
+      "id": "realise/fa/copula/stem-before-ending",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:budan",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "هَستَ+م",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "the independent version before an ending: hast + -am (Yousef p. 183; intro هستم)."
+    },
+    {
+      "id": "realise/fa/copula/st/a",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:inja",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:budan"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "اینجاْ+ست",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-st joined after ā (Yousef p. 184; u05-home اینجاست)."
+    },
+    {
+      "id": "realise/fa/copula/st/u",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:u",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:budan"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "اوْ+ست",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-st after u (Yousef p. 184: u-st); the course writes none."
+    },
+    {
+      "id": "realise/fa/copula/st/i",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:irani",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:budan"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ایرانیْ+ست",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-st after i (Yousef p. 184: āli-st); the course writes none."
+    },
+    {
+      "id": "realise/fa/copula/listed/long",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:budan",
+            "feats": {
+              "Variant": "Long"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "هَست",
+          "status": "listed",
+          "steps": [],
+          "listed": "lexeme:budan|form:Variant=Long"
+        }
+      },
+      "note": "the independent version's 3sg present, listed (u05-home در خانه نان هست)."
+    },
+    {
+      "id": "realise/fa/copula/listed/negative",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:budan",
+            "feats": {
+              "Polarity": "Neg"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "نیست",
+          "status": "listed",
+          "steps": [],
+          "listed": "lexeme:budan|form:Polarity=Neg"
+        }
+      },
+      "note": "the negative, listed (Yousef p. 183; u02-family نیست)."
+    },
+    {
+      "id": "realise/fa/copula/listed/negative-ending",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:budan",
+            "feats": {
+              "Polarity": "Neg"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "نیستَ+م",
+          "status": "listed",
+          "steps": [],
+          "listed": "lexeme:budan|form:Polarity=Neg"
+        }
+      },
+      "note": "nist + -am (Yousef p. 183); the course writes none."
+    },
+    {
+      "id": "realise/fa/ezafe/consonant",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:ketab",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:ezafe"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "کِتابِ",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "the ezafe's kasra on a consonant (u02-family کتابِ)."
+    },
+    {
+      "id": "realise/fa/ezafe/silent-e",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:khane",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:ezafe"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "خانِهٔ\u06df",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "a hamza on a silent -e's ه (Yousef p. 20, 50; u05-home خانهٔ)."
+    },
+    {
+      "id": "realise/fa/ezafe/a",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:ghaza",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:ezafe"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "غَذاْ+ی",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "ی after ā (Yousef p. 50; u04-food غذای)."
+    },
+    {
+      "id": "realise/fa/ezafe/plural",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:ketab",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pl"
+          },
+          {
+            "lexeme": "lexeme:ezafe"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "کِتابْ+\u200cهاْ+ی",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "ی after -hā (u02-family کتاب\u200cهای)."
+    },
+    {
+      "id": "realise/fa/ezafe/u",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:daneshju",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:ezafe"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "دانِشجوْ+ی",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "ی after u (Yousef p. 50); the course writes none."
+    },
+    {
+      "id": "realise/fa/plural/ha",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:bachche",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pl"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "بَچِّه\u06df+\u200cها",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-hā apart, after a silent -e as everywhere (Yousef p. 26-27; u02-family بچه\u200cها)."
+    },
+    {
+      "id": "realise/fa/plural/an",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:doost",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pl-an"
+          },
+          {
+            "lexeme": "lexeme:ezafe"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "دوستْ+انِ",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-ān joined, then the ezafe (Yousef p. 27; u02-family دوستانِ)."
+    },
+    {
+      "id": "realise/fa/plural/an/a",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:agha",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pl-an"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "آقاْ+یان",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-yān after ā (Yousef p. 27: āghāyān); the course writes none."
+    },
+    {
+      "id": "realise/fa/indefinite/consonant",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:rang",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:indef"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "رَنگْ+ی",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-i joined (u09-shopping رنگی)."
+    },
+    {
+      "id": "realise/fa/indefinite/silent-e",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:khane",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:indef"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "خانِه\u06df+\u200cای",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-i after a silent -e, apart with an alef (Yousef p. 37); the course writes none."
+    },
+    {
+      "id": "realise/fa/indefinite/a",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:ghaza",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:indef"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "غَذاْ+یی",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-i after ā: yi (Yousef p. 37); the course writes none."
+    },
+    {
+      "id": "realise/fa/comparative",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:geran",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:comp"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "گِرانْ+\u200cتَر",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-tar apart (u09-shopping گران\u200cتر)."
+    },
+    {
+      "id": "realise/fa/possessive/1sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:pedar",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:poss-1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "پِدَرَ+م",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-am (u02-family پدرم)."
+    },
+    {
+      "id": "realise/fa/possessive/1sg/silent-e",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:khane",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:poss-1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "خانِه\u06df+\u200cاَم",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-am after a silent -e, apart with an alef (Yousef p. 185); the course writes none."
+    },
+    {
+      "id": "realise/fa/possessive/1sg/a",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:agha",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:poss-1sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "آقاْ+یَم",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-yam after ā; the course writes none."
+    },
+    {
+      "id": "realise/fa/possessive/2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:otagh",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:poss-2sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "اُتاقَ+ت",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-at (u05-home اتاقت)."
+    },
+    {
+      "id": "realise/fa/possessive/2sg/silent-e",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:khane",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:poss-2sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "خانِه\u06df+\u200cاَت",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-at after a silent -e; the course writes none."
+    },
+    {
+      "id": "realise/fa/possessive/2sg/a",
+      "op": "realise-token",
+      "args": {
+        "lang": "fa",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:agha",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:poss-2sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "آقاْ+یَت",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "-yat after ā; the course writes none."
+    }
+  ]
+}

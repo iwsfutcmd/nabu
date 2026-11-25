@@ -1,0 +1,1773 @@
+{
+  "$comment": "Realisation on zz, an invented fixture language given whole (docs/rules/es.md, engine changes): a lexical form that stores a boundary (levantar+se: a clitic its citation carries) is read by a rule's `ends` and `endsIn` up to it, and is itself in its citation cell; a word a token writes beside its base, given values there and with no allomorph to choose, is realised in them (buscarlos: lo in the plural), its steps after the base's; one with an allomorph, or given no values, is as before.",
+  "vectors": [
+    {
+      "id": "realise/stored-boundary/ends",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Tense",
+              "Person",
+              "Number"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "notation": {
+            "sets": {
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-ir",
+              "when": {
+                "endsIn": "{C}ir",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "imos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-ar",
+              "when": {
+                "ends": "ar",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "amos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-pronoun",
+              "when": {
+                "pos": "PRON"
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-clitic",
+              "find": "+se+",
+              "to": "+"
+            },
+            {
+              "id": "rule:zz-stem",
+              "when": {
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "find": "[ai]r+",
+              "to": "+"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:clase",
+              "pos": "VERB",
+              "form": "clase"
+            },
+            {
+              "id": "lexeme:lavar",
+              "pos": "VERB",
+              "form": "lavar"
+            },
+            {
+              "id": "lexeme:lavarse",
+              "pos": "VERB",
+              "form": "lavar+se"
+            },
+            {
+              "id": "lexeme:vestirse",
+              "pos": "VERB",
+              "form": "vestir+se"
+            },
+            {
+              "id": "lexeme:lo",
+              "pos": "PRON",
+              "form": "lo"
+            },
+            {
+              "id": "lexeme:te",
+              "pos": "PRON",
+              "form": "te",
+              "allomorphs": [
+                {
+                  "form": "ti"
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:lavarse",
+        "cell": {
+          "Tense": "Pres",
+          "Person": "1",
+          "Number": "Sing"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "lav+o",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:zz-ar",
+              "branch": "1sg"
+            },
+            {
+              "rule": "rule:zz-clitic"
+            },
+            {
+              "rule": "rule:zz-stem"
+            }
+          ]
+        }
+      },
+      "note": "A form that stores a boundary (lavar+se) is read whole or up to its first boundary, either: up to it, it ends in ar, so rule:zz-ar is taken, before rule:zz-se (which its whole form would also fit)."
+    },
+    {
+      "id": "realise/stored-boundary/whole-form-elsewhere",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Tense",
+              "Person",
+              "Number"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "notation": {
+            "sets": {
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-ir",
+              "when": {
+                "endsIn": "{C}ir",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "imos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-ar",
+              "when": {
+                "ends": "ar",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "amos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-pronoun",
+              "when": {
+                "pos": "PRON"
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-clitic",
+              "find": "+se+",
+              "to": "+"
+            },
+            {
+              "id": "rule:zz-stem",
+              "when": {
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "find": "[ai]r+",
+              "to": "+"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:clase",
+              "pos": "VERB",
+              "form": "clase"
+            },
+            {
+              "id": "lexeme:lavar",
+              "pos": "VERB",
+              "form": "lavar"
+            },
+            {
+              "id": "lexeme:lavarse",
+              "pos": "VERB",
+              "form": "lavar+se"
+            },
+            {
+              "id": "lexeme:vestirse",
+              "pos": "VERB",
+              "form": "vestir+se"
+            },
+            {
+              "id": "lexeme:lo",
+              "pos": "PRON",
+              "form": "lo"
+            },
+            {
+              "id": "lexeme:te",
+              "pos": "PRON",
+              "form": "te",
+              "allomorphs": [
+                {
+                  "form": "ti"
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:clase",
+        "cell": {
+          "Tense": "Pres",
+          "Person": "1",
+          "Number": "Sing"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "clase+u",
+          "steps": [
+            {
+              "rule": "rule:zz-se",
+              "branch": "1sg"
+            }
+          ]
+        }
+      },
+      "note": "A form with no boundary is read whole, as before: clase ends in se."
+    },
+    {
+      "id": "realise/stored-boundary/no-boundary",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Tense",
+              "Person",
+              "Number"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "notation": {
+            "sets": {
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-ir",
+              "when": {
+                "endsIn": "{C}ir",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "imos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-ar",
+              "when": {
+                "ends": "ar",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "amos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-pronoun",
+              "when": {
+                "pos": "PRON"
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-clitic",
+              "find": "+se+",
+              "to": "+"
+            },
+            {
+              "id": "rule:zz-stem",
+              "when": {
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "find": "[ai]r+",
+              "to": "+"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:clase",
+              "pos": "VERB",
+              "form": "clase"
+            },
+            {
+              "id": "lexeme:lavar",
+              "pos": "VERB",
+              "form": "lavar"
+            },
+            {
+              "id": "lexeme:lavarse",
+              "pos": "VERB",
+              "form": "lavar+se"
+            },
+            {
+              "id": "lexeme:vestirse",
+              "pos": "VERB",
+              "form": "vestir+se"
+            },
+            {
+              "id": "lexeme:lo",
+              "pos": "PRON",
+              "form": "lo"
+            },
+            {
+              "id": "lexeme:te",
+              "pos": "PRON",
+              "form": "te",
+              "allomorphs": [
+                {
+                  "form": "ti"
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:lavar",
+        "cell": {
+          "Tense": "Pres",
+          "Person": "1",
+          "Number": "Plur"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "lav+amos",
+          "steps": [
+            {
+              "rule": "rule:zz-ar",
+              "branch": "1pl"
+            },
+            {
+              "rule": "rule:zz-stem"
+            }
+          ]
+        }
+      },
+      "note": "The plain verb takes the same rule."
+    },
+    {
+      "id": "realise/stored-boundary/ends-in",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Tense",
+              "Person",
+              "Number"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "notation": {
+            "sets": {
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-ir",
+              "when": {
+                "endsIn": "{C}ir",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "imos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-ar",
+              "when": {
+                "ends": "ar",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "amos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-pronoun",
+              "when": {
+                "pos": "PRON"
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-clitic",
+              "find": "+se+",
+              "to": "+"
+            },
+            {
+              "id": "rule:zz-stem",
+              "when": {
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "find": "[ai]r+",
+              "to": "+"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:clase",
+              "pos": "VERB",
+              "form": "clase"
+            },
+            {
+              "id": "lexeme:lavar",
+              "pos": "VERB",
+              "form": "lavar"
+            },
+            {
+              "id": "lexeme:lavarse",
+              "pos": "VERB",
+              "form": "lavar+se"
+            },
+            {
+              "id": "lexeme:vestirse",
+              "pos": "VERB",
+              "form": "vestir+se"
+            },
+            {
+              "id": "lexeme:lo",
+              "pos": "PRON",
+              "form": "lo"
+            },
+            {
+              "id": "lexeme:te",
+              "pos": "PRON",
+              "form": "te",
+              "allomorphs": [
+                {
+                  "form": "ti"
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:vestirse",
+        "cell": {
+          "Tense": "Pres",
+          "Person": "1",
+          "Number": "Plur"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "vest+imos",
+          "steps": [
+            {
+              "rule": "rule:zz-ir",
+              "branch": "1pl"
+            },
+            {
+              "rule": "rule:zz-clitic"
+            },
+            {
+              "rule": "rule:zz-stem"
+            }
+          ]
+        }
+      },
+      "note": "`endsIn` reads up to the boundary too: vestir+se ends in a consonant and ir, and rule:zz-ir comes before rule:zz-se."
+    },
+    {
+      "id": "realise/stored-boundary/citation",
+      "op": "realise",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Tense",
+              "Person",
+              "Number"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "notation": {
+            "sets": {
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-ir",
+              "when": {
+                "endsIn": "{C}ir",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "imos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-ar",
+              "when": {
+                "ends": "ar",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "amos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-pronoun",
+              "when": {
+                "pos": "PRON"
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-clitic",
+              "find": "+se+",
+              "to": "+"
+            },
+            {
+              "id": "rule:zz-stem",
+              "when": {
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "find": "[ai]r+",
+              "to": "+"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:clase",
+              "pos": "VERB",
+              "form": "clase"
+            },
+            {
+              "id": "lexeme:lavar",
+              "pos": "VERB",
+              "form": "lavar"
+            },
+            {
+              "id": "lexeme:lavarse",
+              "pos": "VERB",
+              "form": "lavar+se"
+            },
+            {
+              "id": "lexeme:vestirse",
+              "pos": "VERB",
+              "form": "vestir+se"
+            },
+            {
+              "id": "lexeme:lo",
+              "pos": "PRON",
+              "form": "lo"
+            },
+            {
+              "id": "lexeme:te",
+              "pos": "PRON",
+              "form": "te",
+              "allomorphs": [
+                {
+                  "form": "ti"
+                }
+              ]
+            }
+          ]
+        },
+        "lexeme": "lexeme:lavarse",
+        "cell": {
+          "VerbForm": "Inf"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "lavar+se",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "In its citation cell the form is itself, boundary and all: no rule runs (spelled lavarse)."
+    },
+    {
+      "id": "realise/token/part-in-its-cell",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Tense",
+              "Person",
+              "Number"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "notation": {
+            "sets": {
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-ir",
+              "when": {
+                "endsIn": "{C}ir",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "imos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-ar",
+              "when": {
+                "ends": "ar",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "amos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-pronoun",
+              "when": {
+                "pos": "PRON"
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-clitic",
+              "find": "+se+",
+              "to": "+"
+            },
+            {
+              "id": "rule:zz-stem",
+              "when": {
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "find": "[ai]r+",
+              "to": "+"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:clase",
+              "pos": "VERB",
+              "form": "clase"
+            },
+            {
+              "id": "lexeme:lavar",
+              "pos": "VERB",
+              "form": "lavar"
+            },
+            {
+              "id": "lexeme:lavarse",
+              "pos": "VERB",
+              "form": "lavar+se"
+            },
+            {
+              "id": "lexeme:vestirse",
+              "pos": "VERB",
+              "form": "vestir+se"
+            },
+            {
+              "id": "lexeme:lo",
+              "pos": "PRON",
+              "form": "lo"
+            },
+            {
+              "id": "lexeme:te",
+              "pos": "PRON",
+              "form": "te",
+              "allomorphs": [
+                {
+                  "form": "ti"
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:lavar",
+            "feats": {
+              "VerbForm": "Inf"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:lo",
+            "feats": {
+              "Number": "Plur"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "lavar+lo+s",
+          "steps": [
+            {
+              "rule": "rule:zz-pronoun",
+              "branch": "pl"
+            }
+          ]
+        }
+      },
+      "note": "A word the token writes beside its base, given values there and with no allomorph to choose, is realised in them (lavarlos: lo in the plural); its steps follow the base's."
+    },
+    {
+      "id": "realise/token/part-with-no-values",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Tense",
+              "Person",
+              "Number"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "notation": {
+            "sets": {
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-ir",
+              "when": {
+                "endsIn": "{C}ir",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "imos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-ar",
+              "when": {
+                "ends": "ar",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "amos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-pronoun",
+              "when": {
+                "pos": "PRON"
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-clitic",
+              "find": "+se+",
+              "to": "+"
+            },
+            {
+              "id": "rule:zz-stem",
+              "when": {
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "find": "[ai]r+",
+              "to": "+"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:clase",
+              "pos": "VERB",
+              "form": "clase"
+            },
+            {
+              "id": "lexeme:lavar",
+              "pos": "VERB",
+              "form": "lavar"
+            },
+            {
+              "id": "lexeme:lavarse",
+              "pos": "VERB",
+              "form": "lavar+se"
+            },
+            {
+              "id": "lexeme:vestirse",
+              "pos": "VERB",
+              "form": "vestir+se"
+            },
+            {
+              "id": "lexeme:lo",
+              "pos": "PRON",
+              "form": "lo"
+            },
+            {
+              "id": "lexeme:te",
+              "pos": "PRON",
+              "form": "te",
+              "allomorphs": [
+                {
+                  "form": "ti"
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:lavar",
+            "feats": {
+              "VerbForm": "Inf"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:lo"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "lavar+lo",
+          "steps": []
+        }
+      },
+      "note": "Given no values, it is its own form, as before."
+    },
+    {
+      "id": "realise/token/part-allomorph-kept",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Tense",
+              "Person",
+              "Number"
+            ]
+          },
+          "citation": {
+            "VERB": {
+              "VerbForm": "Inf"
+            }
+          },
+          "notation": {
+            "sets": {
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          },
+          "realisation": [
+            {
+              "id": "rule:zz-ir",
+              "when": {
+                "endsIn": "{C}ir",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "imos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-ar",
+              "when": {
+                "ends": "ar",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "o"
+                    },
+                    {
+                      "branch": "1pl",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Plur"
+                      },
+                      "add": "amos"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-pronoun",
+              "when": {
+                "pos": "PRON"
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "pl",
+                      "feats": {
+                        "Number": "Plur"
+                      },
+                      "add": "s"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "rule:zz-se",
+              "when": {
+                "ends": "se",
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "blocks": [
+                {
+                  "suffix": [
+                    {
+                      "branch": "1sg",
+                      "feats": {
+                        "Person": "1",
+                        "Number": "Sing"
+                      },
+                      "add": "u"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "phonology": [
+            {
+              "id": "rule:zz-clitic",
+              "find": "+se+",
+              "to": "+"
+            },
+            {
+              "id": "rule:zz-stem",
+              "when": {
+                "feats": {
+                  "Tense": "Pres"
+                }
+              },
+              "find": "[ai]r+",
+              "to": "+"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-es-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:clase",
+              "pos": "VERB",
+              "form": "clase"
+            },
+            {
+              "id": "lexeme:lavar",
+              "pos": "VERB",
+              "form": "lavar"
+            },
+            {
+              "id": "lexeme:lavarse",
+              "pos": "VERB",
+              "form": "lavar+se"
+            },
+            {
+              "id": "lexeme:vestirse",
+              "pos": "VERB",
+              "form": "vestir+se"
+            },
+            {
+              "id": "lexeme:lo",
+              "pos": "PRON",
+              "form": "lo"
+            },
+            {
+              "id": "lexeme:te",
+              "pos": "PRON",
+              "form": "te",
+              "allomorphs": [
+                {
+                  "form": "ti"
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:lavar",
+            "feats": {
+              "VerbForm": "Inf"
+            },
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:te",
+            "feats": {
+              "Number": "Plur"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "lavar+ti",
+          "steps": []
+        }
+      },
+      "note": "One with an allomorph to choose takes its allomorph, its values aside, as before."
+    }
+  ]
+}

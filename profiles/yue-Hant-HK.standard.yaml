@@ -22,6 +22,13 @@ match:
 # already: a homophone character typed for the expected one (唔洗 for 唔使) is the orthographic miss of the homophone
 # table above (PARTIAL), and spelling-choice cards take their options from it. Nothing else is stated as lost.
 correspondences: []
+# How the characters spell a lexical form (lexicons/yue/language.yaml, `notation`: each character followed by its
+# Jyutping; docs/rules/yue.md): the characters, each syllable's reading left out. Checked against each lexeme's first
+# spelling and every token (`form.projection`, `form.unaccounted`, `nabu forms`); never shipped. REVIEW.
+spell:
+  from: lexical
+  rules:
+    - {find: "{R}*{T}", to: ""}
 annotations:
   - { id: jyutping, kind: reading, scheme: jyutping, toggle: true, default: on-for-new-words, render: ruby, fade: by-facet }
 input:

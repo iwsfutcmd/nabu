@@ -1,7 +1,7 @@
 /**
  * The lexicon's own files beside the app (lexicon-source.ts): what the dev and preview servers serve
- * at lexicon-source/<course>.json is each course's lexemes.yaml and language.yaml, parsed, nothing
- * dropped; an unknown course, or a path that climbs out, is a 404, never the app's page; and the
+ * at lexicon-source/<course>.json is each course's lexemes.yaml and language.yaml and its
+ * orthographies' profiles, parsed, nothing dropped; an unknown course, or a path that climbs out, is a 404, never the app's page; and the
  * static site gets the same files.
  */
 import { mkdtempSync, readFileSync, rmSync } from "node:fs";
@@ -65,8 +65,10 @@ describe("lexicon-source", () => {
         const answer = served(course);
         expect(answer.status, course).toBe(200);
         expect(answer.type).toBe("application/json");
-        const lexicon = (yamlOf(`courses/${course}/course.yaml`) as { lexicon: string }).lexicon;
-        expect(JSON.parse(answer.body ?? "")).toEqual({ course, lexicon, lexemes: yamlOf(`lexicons/${lexicon}/lexemes.yaml`), language: yamlOf(`lexicons/${lexicon}/language.yaml`) });
+        const { lexicon, orthographies } = yamlOf(`courses/${course}/course.yaml`) as { lexicon: string; orthographies: readonly string[] };
+        // The profiles of the course's orthographies, `spell` statements and all (the rules explorer's).
+        const profiles = Object.fromEntries(orthographies.map((o) => [o, yamlOf(`profiles/${o.replace("/", ".")}.yaml`)]));
+        expect(JSON.parse(answer.body ?? "")).toEqual({ course, lexicon, lexemes: yamlOf(`lexicons/${lexicon}/lexemes.yaml`), language: yamlOf(`lexicons/${lexicon}/language.yaml`), profiles });
       }
     },
     SLOW,

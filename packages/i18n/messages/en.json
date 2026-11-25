@@ -3653,6 +3653,270 @@
     "words.rules.title": {
       "message": "Rules and forms you've met",
       "description": "The word list: heading of the section, after the words, that lists the grammar rules and the forms (tenses, persons, genders) the learner has met in the course."
+    },
+    "rules.title": {
+      "message": "Rules explorer",
+      "description": "Debug mode: title of the page where a lexeme of the course's language is put through the language's rules (a cell's feature values, other lexemes written onto it) and what they give is shown as it changes."
+    },
+    "rules.open": {
+      "message": "Explore the language's rules",
+      "description": "Debug mode: link on a course's page to the rules explorer."
+    },
+    "rules.intro": {
+      "message": "Pick a lexeme, set the values of its cell, write other lexemes onto it, and see what the language's rules and each orthography's spelling give, as you change it. It reads the lexicon's own files: edit them, then read them again. Nothing here is recorded.",
+      "description": "Debug mode, the rules explorer: what the page is, under its title."
+    },
+    "rules.reload": {
+      "message": "Read the files again",
+      "description": "Debug mode, the rules explorer: button that fetches the lexicon's files again, after the rules were edited."
+    },
+    "rules.loading": {
+      "message": "Reading the lexicon's files…",
+      "description": "Debug mode, the rules explorer: shown while the lexicon's files are fetched."
+    },
+    "rules.missing": {
+      "message": "The lexicon's own files are not beside the app, and the explorer reads nothing else.",
+      "description": "Debug mode, the rules explorer: the lexicon's files (lexicon-source) could not be fetched: a build that does not carry them."
+    },
+    "rules.problem.no-notation": {
+      "message": "The language declares no notation: it has no lexical forms to realise yet.",
+      "description": "Debug mode, the rules explorer: the course's language has no `notation` in its language file, so nothing can be realised."
+    },
+    "rules.problem.language": {
+      "message": "The language's rules do not compile:",
+      "description": "Debug mode, the rules explorer: before a list of errors (as code) from compiling the language's rules."
+    },
+    "rules.problem.spell": {
+      "message": "The spelling statement of {$orthography} does not compile:",
+      "description": "Debug mode, the rules explorer: before a list of errors (as code); orthography is an orthography's id (apc-Latn/arabizi), as code."
+    },
+    "rules.base": {
+      "message": "The base lexeme",
+      "description": "Debug mode, the rules explorer: heading of the part where the lexeme the others are written onto is picked."
+    },
+    "rules.search": {
+      "message": "Find a lexeme by its spelling, meaning or id",
+      "description": "Debug mode, the rules explorer: label of the search field that finds the base lexeme."
+    },
+    "rules.pick.none": {
+      "message": "No lexeme matches.",
+      "description": "Debug mode, the rules explorer: a search field found nothing."
+    },
+    "rules.pick.more": {
+      "message": ".input {$count :number}\n.match $count\none {{and {$count} more: narrow the search}}\n* {{and {$count} more: narrow the search}}",
+      "description": "Debug mode, the rules explorer: under the first matches of a search, how many more there are."
+    },
+    "rules.change": {
+      "message": "Pick another",
+      "description": "Debug mode, the rules explorer: button beside the chosen base lexeme that lets another be picked."
+    },
+    "rules.features": {
+      "message": "The values of its cell",
+      "description": "Debug mode, the rules explorer: heading of the part where each feature value of the base's cell is set (Tense, Person: code)."
+    },
+    "rules.features.none": {
+      "message": "Its part of speech has no features to set.",
+      "description": "Debug mode, the rules explorer: the base lexeme's category inflects for nothing."
+    },
+    "rules.feature.unset": {
+      "message": "none",
+      "description": "Debug mode, the rules explorer: the choice that leaves a feature out of the cell."
+    },
+    "rules.around": {
+      "message": "Lexemes written with it",
+      "description": "Debug mode, the rules explorer: heading of the part where other lexemes (a prefix, a clitic, a suffix) are written onto the base, as a token lists them."
+    },
+    "rules.before": {
+      "message": "Before it",
+      "description": "Debug mode, the rules explorer: the lexemes written before the base (a prefix, a proclitic), and the choice to add one there."
+    },
+    "rules.after": {
+      "message": "After it",
+      "description": "Debug mode, the rules explorer: the lexemes written after the base (a suffix, an enclitic), and the choice to add one there."
+    },
+    "rules.around.none": {
+      "message": "none",
+      "description": "Debug mode, the rules explorer: no lexeme is written on this side of the base."
+    },
+    "rules.add.side": {
+      "message": "Add on which side",
+      "description": "Debug mode, the rules explorer: label of the choice of where the next lexeme picked is written: before or after the base."
+    },
+    "rules.add": {
+      "message": "Find a lexeme to write onto it",
+      "description": "Debug mode, the rules explorer: label of the search field that finds a lexeme to add before or after the base."
+    },
+    "rules.move.earlier": {
+      "message": "Earlier",
+      "description": "Debug mode, the rules explorer: button that moves a written lexeme one place earlier in the token."
+    },
+    "rules.move.later": {
+      "message": "Later",
+      "description": "Debug mode, the rules explorer: button that moves a written lexeme one place later in the token."
+    },
+    "rules.remove": {
+      "message": "Remove",
+      "description": "Debug mode, the rules explorer: button that takes a lexeme off (one written onto the base, or the next word)."
+    },
+    "rules.next": {
+      "message": "The next word",
+      "description": "Debug mode, the rules explorer: the lexeme of the word after this one, which some endings are chosen by (a numeral's form before a noun)."
+    },
+    "rules.next.none": {
+      "message": "none",
+      "description": "Debug mode, the rules explorer: no next word is set."
+    },
+    "rules.next.pick": {
+      "message": "Find the next word's lexeme",
+      "description": "Debug mode, the rules explorer: label of the search field that sets the next word."
+    },
+    "rules.options": {
+      "message": "How blocking runs",
+      "description": "Debug mode, the rules explorer: heading of three switches that change which stored forms of a lexeme the rules may use."
+    },
+    "rules.option.blocking": {
+      "message": "Listed forms and classes (off: what a learner would regularise)",
+      "description": "Debug mode, the rules explorer: switch: use the lexeme's listed forms and stated classes."
+    },
+    "rules.option.pinned": {
+      "message": "Pinned forms (off: what the rules alone give)",
+      "description": "Debug mode, the rules explorer: switch: use the lexeme's pinned forms (rule debt)."
+    },
+    "rules.option.spellings": {
+      "message": "Forms that pin spellings only (the compiler's check passes them over)",
+      "description": "Debug mode, the rules explorer: switch: use stored forms that pin a spelling and no lexical form."
+    },
+    "rules.result": {
+      "message": "What the rules give",
+      "description": "Debug mode, the rules explorer: heading of the result, updated as anything above changes."
+    },
+    "rules.status.given": {
+      "message": "Given by the rules",
+      "description": "Debug mode, the rules explorer: the form is what the rules give."
+    },
+    "rules.status.pinned": {
+      "message": "A pinned form (rule debt)",
+      "description": "Debug mode, the rules explorer: the form is a pinned form of the lexeme: a rule should give it and none is written yet."
+    },
+    "rules.status.listed": {
+      "message": "A listed form",
+      "description": "Debug mode, the rules explorer: the form is a listed form or stem of the lexeme: the language has no rule for it."
+    },
+    "rules.form": {
+      "message": "Lexical form",
+      "description": "Debug mode, the rules explorer: label of the form the rules give, in the language's notation, its boundaries (+) shown."
+    },
+    "rules.steps": {
+      "message": "Rules taken",
+      "description": "Debug mode, the rules explorer: label of the list of rules and branches taken, in order (code)."
+    },
+    "rules.steps.none": {
+      "message": "none: the form as it is stored",
+      "description": "Debug mode, the rules explorer: no rule ran: a citation cell, or a whole stored form."
+    },
+    "rules.spellings": {
+      "message": "Spellings",
+      "description": "Debug mode, the rules explorer: label of the list of the form as each orthography spells it."
+    },
+    "rules.spelling.none": {
+      "message": "This orthography states no spelling: each word is written as itself (a logographic script).",
+      "description": "Debug mode, the rules explorer: an orthography has no spelling statement."
+    },
+    "rules.spelling.none.short": {
+      "message": "no statement",
+      "description": "Debug mode, the rules explorer: in the paradigm: an orthography has no spelling statement."
+    },
+    "rules.spelling.failed": {
+      "message": "Its spelling statement does not compile.",
+      "description": "Debug mode, the rules explorer: an orthography's spelling statement has errors (listed above)."
+    },
+    "rules.alternatives": {
+      "message": "Free alternatives",
+      "description": "Debug mode, the rules explorer: label of the other spellings the orthography takes as free, each with the variation it took (code)."
+    },
+    "rules.error.unknown-lexeme": {
+      "message": "The lexicon has no such lexeme.",
+      "description": "Debug mode, the rules explorer: what went wrong: a lexeme id that is not in the lexicon."
+    },
+    "rules.error.no-rule": {
+      "message": "No rule gives this cell.",
+      "description": "Debug mode, the rules explorer: what went wrong: no realisation rule holds of the cell and it is not the lexeme's citation cell."
+    },
+    "rules.error.tie": {
+      "message": "Two forms of the lexeme are as specific for this cell, and not both free.",
+      "description": "Debug mode, the rules explorer: what went wrong: two stored forms tie."
+    },
+    "rules.error.template": {
+      "message": "No stem template fits the base.",
+      "description": "Debug mode, the rules explorer: what went wrong: a root's Form and class have no template for the stem."
+    },
+    "rules.error.form": {
+      "message": "A lexeme has no lexical form the rules can realise.",
+      "description": "Debug mode, the rules explorer: what went wrong: a lexeme the token writes has no form."
+    },
+    "rules.error.spelled-only": {
+      "message": "The form found pins a spelling only, and no lexical form.",
+      "description": "Debug mode, the rules explorer: what went wrong: blocking found a stored form with a spelling and no form."
+    },
+    "rules.error.not-ready": {
+      "message": "Nothing can be realised until the language's files compile.",
+      "description": "Debug mode, the rules explorer: what went wrong: the language's notation or rules do not compile."
+    },
+    "rules.ways": {
+      "message": "How the course writes it",
+      "description": "Debug mode, the rules explorer: heading of the list of the ways the course's tokens write the base lexeme, each with what the rules give."
+    },
+    "rules.ways.none": {
+      "message": "No token of the course has it as its base.",
+      "description": "Debug mode, the rules explorer: the course writes the base lexeme nowhere."
+    },
+    "rules.way.items": {
+      "message": ".input {$count :number}\n.match $count\none {{in {$count} item}}\n* {{in {$count} items}}",
+      "description": "Debug mode, the rules explorer: how many sentences and story lines write a token this way."
+    },
+    "rules.way.explore": {
+      "message": "Explore this",
+      "description": "Debug mode, the rules explorer: button that loads a way the course writes the lexeme into the explorer."
+    },
+    "rules.verdict.spelling": {
+      "message": "the rules give it",
+      "description": "Debug mode, the rules explorer: a token is what the rules give, spelled as the orthography spells it."
+    },
+    "rules.verdict.alternative": {
+      "message": "a free alternative of what the rules give",
+      "description": "Debug mode, the rules explorer: a token is a free alternative of the rules' spelling."
+    },
+    "rules.verdict.differs": {
+      "message": "the rules give another spelling:",
+      "description": "Debug mode, the rules explorer: a token is not what the rules give; the rules' spelling follows."
+    },
+    "rules.verdict.unspelled": {
+      "message": "no spelling statement to compare with",
+      "description": "Debug mode, the rules explorer: the token's orthography states no spelling."
+    },
+    "rules.verdict.error": {
+      "message": "the rules give nothing",
+      "description": "Debug mode, the rules explorer: realising the token fails."
+    },
+    "rules.paradigm": {
+      "message": "Its paradigm",
+      "description": "Debug mode, the rules explorer: heading of the base lexeme's forms in each cell the course lists for its category."
+    },
+    "rules.paradigm.none": {
+      "message": "The course lists no cells for its part of speech.",
+      "description": "Debug mode, the rules explorer: the base's category has no cells."
+    },
+    "rules.paradigm.cell": {
+      "message": "Cell",
+      "description": "Debug mode, the rules explorer: header of the paradigm's first column: each row's feature values (code), a button that loads the cell."
+    },
+    "rules.variants": {
+      "message": "Free variants",
+      "description": "Debug mode, the rules explorer: label of the token's other forms that free allomorphs give (a scribe's other spelling of a suffix), each with its spellings."
+    },
+    "rules.verdict.variant": {
+      "message": "a free variant the rules allow",
+      "description": "Debug mode, the rules explorer: a token writes one of the free variants its lexemes' allomorphs give."
     }
   }
 }
