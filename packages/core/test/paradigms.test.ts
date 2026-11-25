@@ -97,12 +97,14 @@ describe("apc's paradigms", () => {
 
 describe("a course whose language has no rules", () => {
   it("lists no paradigms and grades as before", () => {
-    const es = loadCourse("es");
-    expect(es.lexicon.cells).toBeUndefined();
-    expect(paradigmForms(es.lexicon, es.orthography)).toEqual([]);
-    const verb = es.lexicon.lexemes.find((l) => l.pos === "VERB");
-    expect(principalParts(es.lexicon, verb, es.orthography)).toEqual([]);
+    // Toki Pona does not inflect: it has lexical forms and no realisation rules (docs/rules/tok.md).
+    const tok = loadCourse("tok");
+    expect(tok.lexicon.cells).toBeUndefined();
+    expect(paradigmForms(tok.lexicon, tok.orthography)).toEqual([]);
+    const verb = tok.lexicon.lexemes.find((l) => l.pos === "VERB");
+    expect(verb).toBeDefined();
+    expect(principalParts(tok.lexicon, verb, tok.orthography)).toEqual([]);
     // Its grading knows what its tokens write, nothing more.
-    expect(spellingsIn(es, es.orthography).words).toEqual(spellingsIn(withoutParadigms(es), es.orthography).words);
+    expect(spellingsIn(tok, tok.orthography).words).toEqual(spellingsIn(withoutParadigms(tok), tok.orthography).words);
   });
 });
