@@ -29,6 +29,9 @@ match:
       - { marks: "[\u064E]", letters: "[\u0627\u0649]" }
       - { marks: "[\u0650]", letters: "[\u064A]", bare: true, unless: "[\u0652]" }
       - { marks: "[\u064F]", letters: "[\u0648]", bare: true, unless: "[\u0652]" }
+    # REVIEW: and the kasra under an alif with a hamza below, which says i already (إِمّ, إمّ). A plain alif's kasra
+    # counts (اِسْمي), as does any vowel on أ.
+    optionalOn: [{ marks: "[\u0650]", letters: "[\u0625]" }]
     spelledIn: [apc-Latn/arabizi]
   # Arabizi writes the vowels these marks leave out: a vocalize card takes the word in Arabizi too (ADR 0095).
   equivalences:

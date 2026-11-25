@@ -193,6 +193,11 @@ export interface CharRead extends Common {
    * pinyin, jyutping, baxter): its read-script card is that tradition's. Absent otherwise.
    */
   readonly tradition?: SchemeId | undefined;
+  /**
+   * Who speaks and who is spoken to, where the sentence says (a word's marks or reading can be its
+   * person: كيفَك to a man, كيفِك to a woman), shown under its meaning.
+   */
+  readonly persons?: Persons | undefined;
 }
 
 /** A polyphonic character in a word; choose the reading it has there (行 in 銀行 vs 行路). */
@@ -233,6 +238,11 @@ export interface Vocalize extends Common {
    * `marks.spelledIn`: Arabizi for Lebanese Arabic): typing it so is a vocalization too.
    */
   readonly spelled?: TaggedText | undefined;
+  /**
+   * Who speaks and who is spoken to, where the sentence says (a word's marks or reading can be its
+   * person: كيفَك to a man, كيفِك to a woman), shown under its meaning.
+   */
+  readonly persons?: Persons | undefined;
 }
 
 /** A profile's `optionalBefore` rule as an exercise carries it (JSON): marks and letters NFC, `unless` marks. */
@@ -270,12 +280,19 @@ export interface VocalizeBuild extends Common {
    * Absent where the profile has none.
    */
   readonly optionalBefore?: readonly OptionalBeforeRule[] | undefined;
+  /** Marks a letter keyed may have or not, saying them already (the kasra under إ). Absent where the profile has none. */
+  readonly optionalOn?: Readonly<Record<string, readonly string[]>> | undefined;
   /**
    * For each letter, the marks the course's words give that letter where it stands (attested, as
    * the vocalize card's variants are; ADR 0098): while a letter's marks are part of a longer one,
    * it stays the letter being marked (a dagesh, then its vowel).
    */
   readonly combos: readonly (readonly string[])[];
+  /**
+   * Who speaks and who is spoken to, where the sentence says (a word's marks or reading can be its
+   * person: كيفَك to a man, كيفِك to a woman), shown under its meaning.
+   */
+  readonly persons?: Persons | undefined;
 }
 
 /** A Han word of a sentence, in context: type its reading (Jyutping) (ADR 0054; in context, ADR 0095). */
@@ -295,6 +312,11 @@ export interface Transcribe extends Common {
    * pinyin, jyutping, baxter): its read-script card is that tradition's. Absent otherwise.
    */
   readonly tradition?: SchemeId | undefined;
+  /**
+   * Who speaks and who is spoken to, where the sentence says (a word's marks or reading can be its
+   * person: كيفَك to a man, كيفِك to a woman), shown under its meaning.
+   */
+  readonly persons?: Persons | undefined;
 }
 
 /**

@@ -495,6 +495,59 @@
       "note": "A sukun on the letter says the bare ya after it begins a syllable, a consonant: a kasra there says fāḍiyīn, not fāḍyīn."
     },
     {
+      "id": "vowels/apc/kasra-under-hamza-below",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "إِمّ",
+        "answer": "إمّ"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [],
+        "off": []
+      },
+      "note": "The kasra under an alif with a hamza below may be left out (REVIEW): the hamza below says i already."
+    },
+    {
+      "id": "vowels/apc/kasra-on-plain-alif",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "اِسْمي",
+        "answer": "اسْمي"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          0
+        ]
+      },
+      "note": "A plain alif says no vowel of its own: its kasra counts."
+    },
+    {
+      "id": "vowels/apc/other-vowel-under-hamza-below",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "إِمّ",
+        "answer": "إَمّ"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          0
+        ]
+      },
+      "note": "Only the kasra: another vowel on إ counts."
+    },
+    {
       "id": "vowels/ar/right",
       "op": "grade-vowels",
       "args": {

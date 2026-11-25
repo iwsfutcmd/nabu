@@ -544,6 +544,20 @@
                 }
               }
             },
+            "optionalOn": {
+              "description": "Marks a learner supplying a word's vowel marks (ADR 0054 as amended) may write or leave out on one of `letters` itself, whose letter already says them: the kasra under an alif with a hamza below (إِمّ and إمّ: the hamza below says i). The same mark on any other letter counts.",
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["marks", "letters"],
+                "additionalProperties": false,
+                "properties": {
+                  "marks": { "$ref": "#/$defs/UnicodeSetPattern", "description": "The marks, of the set." },
+                  "letters": { "$ref": "#/$defs/UnicodeSetPattern", "description": "The letters that already say them: whole letters, as NFC writes them." }
+                }
+              }
+            },
             "required": {
               "$ref": "#/$defs/UnicodeSetPattern",
               "description": "Marks of the set an answer must write as the expected word does (ADR 0134): one left out, added, changed or moved is never folded away by the policy and never a typo, and the word is wrong (WRONG_WORD where it spells another word of the course, with `wordNote`). Chaghatay's transliteration: the vowel marks (ä ö ü ā ī ū ē à), which say what the Arabic script leaves out. Its consonant marks keep the policy, but for `requiredLetters`."

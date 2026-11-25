@@ -505,6 +505,7 @@ export const CharReadView = (
             sentence={ex.prompt}
             word={ex.word}
             translation={ex.translation ?? ex.prompt}
+            persons={ex.persons}
             ruby={false}
             ids={props.ids}
             taps={tapsOn(props, "sentence", ex.prompt, "answered")}
@@ -1291,6 +1292,7 @@ const WordInSentence = ({
   sentence,
   word,
   translation,
+  persons,
   ruby,
   ids,
   taps,
@@ -1298,6 +1300,8 @@ const WordInSentence = ({
   sentence: TaggedText;
   word: number;
   translation: TaggedText;
+  /** Who speaks and who is spoken to: a word's marks or reading can be its person (كيفَك, كيفِك). */
+  persons: Persons | undefined;
   ruby: false | undefined;
   ids: ViewProps["ids"];
   /** Tap-for-gloss on the sentence, once answered (P1): a gloss shows the word's marks and reading. */
@@ -1331,6 +1335,7 @@ const WordInSentence = ({
         data-pronounce-meaning=""
       >
         <T as="p" text={translation} />
+        <PersonsNote persons={persons} prompt={translation} />
       </div>
     </>
   );
@@ -1369,6 +1374,7 @@ export const VocalizeView = (props: Props<Vocalize>): JSX.Element => {
         sentence={ex.prompt}
         word={ex.word}
         translation={ex.translation}
+        persons={ex.persons}
         ruby={undefined}
         ids={props.ids}
         taps={tapsOn(props, "sentence", ex.prompt, "answered")}
@@ -1486,6 +1492,7 @@ export const VocalizeBuildView = (props: Props<VocalizeBuild>): JSX.Element => {
         sentence={ex.prompt}
         word={ex.word}
         translation={ex.translation}
+        persons={ex.persons}
         ruby={false}
         ids={props.ids}
         taps={tapsOn(props, "sentence", ex.prompt, "answered")}
@@ -1593,6 +1600,7 @@ export const TranscribeView = (props: Props<Transcribe>): JSX.Element => {
         sentence={ex.prompt}
         word={ex.word}
         translation={ex.translation}
+        persons={ex.persons}
         ruby={false}
         ids={props.ids}
         taps={tapsOn(props, "sentence", ex.prompt, "answered")}

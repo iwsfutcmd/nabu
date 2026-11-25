@@ -26,6 +26,8 @@ export interface VowelMarks {
    * (فيلِم, فِيلِم). The same mark anywhere else counts.
    */
   readonly optionalBefore?: readonly OptionalBefore[] | undefined;
+  /** Marks a learner may write or leave out on a letter that already says them (the kasra under إ), by the letter (NFC). */
+  readonly optionalOn?: ReadonlyMap<string, ReadonlySet<string>> | undefined;
 }
 
 /** A profile's `optionalBefore` rule, compiled. */
@@ -64,21 +66,27 @@ const ownMarks = (marks: VowelMarks, grapheme: string): string[] => Array.from(g
 
 /**
  * The marks optional on a letter of a word, as the word writes it (`letter`, with its marks), before
- * the word's next letter (`next`, with its marks): those of each `optionalBefore` rule whose letters
- * hold the next one, bare where the rule asks it, and the letter carrying none of the rule's `unless`.
- * Read off the expected word, the same for an answer's letter in its place.
+ * the word's next letter (`next`, with its marks): those the letter itself already says (`optionalOn`),
+ * and those of each `optionalBefore` rule whose letters hold the next one, bare where the rule asks it,
+ * and the letter carrying none of the rule's `unless`. Read off the expected word, the same for an
+ * answer's letter in its place.
  */
 const optionalHere = (marks: VowelMarks, letter: string, next: string | undefined): ReadonlySet<string> => {
-  if (next === undefined || marks.optionalBefore === undefined || marks.optionalBefore.length === 0) return NONE;
+  const rules = rulesHere(marks, letter, next);
+  const on = marks.optionalOn?.get(baseOf(marks, letter).normalize("NFC"));
+  if (rules.length === 0) return on ?? NONE;
+  const out = new Set<string>(on);
+  for (const rule of rules) for (const m of rule.marks) out.add(m);
+  return out;
+};
+
+/** The `optionalBefore` rules that hold on a letter before `next`: `next` writes a long vowel there. */
+const rulesHere = (marks: VowelMarks, letter: string, next: string | undefined): readonly OptionalBefore[] => {
+  if (next === undefined || marks.optionalBefore === undefined || marks.optionalBefore.length === 0) return [];
   const after = baseOf(marks, next).normalize("NFC");
   const nextBare = ownMarks(marks, next).length === 0;
   const own = ownMarks(marks, letter);
-  const out = new Set<string>();
-  for (const rule of marks.optionalBefore) {
-    if (!rule.letters.has(after) || (rule.bare && !nextBare) || own.some((c) => rule.unless.has(c))) continue;
-    for (const m of rule.marks) out.add(m);
-  }
-  return out;
+  return marks.optionalBefore.filter((rule) => rule.letters.has(after) && (!rule.bare || nextBare) && !own.some((c) => rule.unless.has(c)));
 };
 
 /** A grapheme's marks that count, in canonical order: not the optional ones, nor those optional where it stands (`here`). */
@@ -157,14 +165,25 @@ export const attestedMarks = (marks: VowelMarks, words: Iterable<string>): ((bas
 /**
  * Other vocalizations of a word's letters, for a multiple-choice vocalize card (ADR 0098): each gives
  * one letter (then two letters) other marks that letter takes in that place elsewhere (`attested`),
- * the word's marked letters first. Every one differs from the word in marks a learner must get right
- * (optional marks aside), so none is also correct. In a stable order: the caller picks.
+ * the word's marked letters first, never a letter that writes a long vowel or an unmarked one it
+ * lengthens. Every one differs from the word in marks a learner must get right (optional marks
+ * aside), so none is also correct. In a stable order: the caller picks.
  */
 export const vocalizationVariants = (marks: VowelMarks, vocalized: string, attested: (base: string, position: LetterPosition) => readonly string[]): readonly string[] => {
   const word = vocalized.normalize("NFC");
   const gs = graphemes(word);
   const own = gs.map((g, i) => marksOf(marks, g, optionalHere(marks, g, gs[i + 1])));
-  const others = gs.map((g, i) => attested(baseOf(marks, g), positionOf(i, gs.length)).filter((m) => m !== own[i]));
+  // A letter that writes a long vowel (an alif; a bare ya or waw, by the profile's optionalBefore) keeps its
+  // marks, and so does an unmarked letter before a ya or waw: a mark there gives another word's shape (كيّفَك
+  // kayyaf-, كَيفَك kayfak: a consonant, a diphthong), not another vocalization of this one.
+  const kept = new Set<number>();
+  for (const [i, g] of gs.entries()) {
+    const rules = rulesHere(marks, g, gs[i + 1]);
+    if (rules.length === 0) continue;
+    kept.add(i + 1);
+    if (own[i] === "" && rules.some((r) => r.bare)) kept.add(i);
+  }
+  const others = gs.map((g, i) => (kept.has(i) ? [] : attested(baseOf(marks, g), positionOf(i, gs.length)).filter((m) => m !== own[i])));
   const seen = new Set<string>([word]);
   const out: string[] = [];
   const add = (variant: readonly string[]): void => {

@@ -59,6 +59,8 @@ export interface CompiledProfile {
      * (ADR 0054 as amended): the fatha before an alif, the kasra before a bare ya.
      */
     readonly optionalBefore: readonly OptionalBefore[];
+    /** Marks a learner may write or leave out on a letter that already says them (the kasra under إ): by the letter (NFC). */
+    readonly optionalOn: ReadonlyMap<string, ReadonlySet<string>>;
     /** Marks an answer must write as the expected word does: never folded, never a typo (ADR 0134). */
     readonly required: ReadonlySet<string>;
     readonly requiredNote?: string | undefined;
@@ -195,7 +197,7 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
       // The marks a learner may write or not on a letter before one of `letters`, and when.
       const ofTheSet = (field: string, pattern: string): Set<string> => {
         const ms = parseExemplarSet(pattern);
-        for (const m of ms) if (!set.has(m)) throw new Error(`optionalBefore: ${field} ${JSON.stringify(m)} is not a mark of the set`);
+        for (const m of ms) if (!set.has(m)) throw new Error(`${field} ${JSON.stringify(m)} is not a mark of the set`);
         return new Set(ms);
       };
       const optionalBefore: OptionalBefore[] = (match.marks.optionalBefore ?? []).map((rule) => {
@@ -205,8 +207,17 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
           if (Array.from(key.normalize("NFD")).some((c) => set.has(c))) throw new Error(`optionalBefore: ${JSON.stringify(letter)} is not a letter without vowel marks`);
           letters.add(key);
         }
-        return { marks: ofTheSet("mark", rule.marks), letters, bare: rule.bare === true, unless: rule.unless === undefined ? new Set() : ofTheSet("unless", rule.unless) };
+        return { marks: ofTheSet("optionalBefore mark", rule.marks), letters, bare: rule.bare === true, unless: rule.unless === undefined ? new Set() : ofTheSet("optionalBefore unless", rule.unless) };
       });
+      const optionalOn = new Map<string, Set<string>>();
+      for (const rule of match.marks.optionalOn ?? []) {
+        const ms = ofTheSet("optionalOn mark", rule.marks);
+        for (const letter of parseExemplarSet(rule.letters)) {
+          const key = letter.normalize("NFC");
+          if (Array.from(key.normalize("NFD")).some((c) => set.has(c))) throw new Error(`optionalOn: ${JSON.stringify(letter)} is not a letter without vowel marks`);
+          optionalOn.set(key, new Set([...(optionalOn.get(key) ?? []), ...ms]));
+        }
+      }
       // A letter of `requiredLetters` is its bare letter and the marks of the set it carries.
       const requiredOn = new Map<string, Set<string>>();
       for (const letter of match.marks.requiredLetters === undefined ? [] : parseExemplarSet(match.marks.requiredLetters)) {
@@ -225,6 +236,7 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
         set,
         optional,
         optionalBefore,
+        optionalOn,
         required,
         requiredNote: match.marks.requiredNote,
         requiredOn,

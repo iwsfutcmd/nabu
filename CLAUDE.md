@@ -418,8 +418,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   sentence templates asking about one word (`word`, marked with `<T emphasis>`); only that word is credited; a lesson
   plans one where it can. Optional marks: the profile's `match.marks.optional`, and `optionalBefore` for marks optional
   before a letter (apc, ar: the fatha before ا or ى, never before a hamza's seat; the kasra before a `bare` ي and the
-  damma before a bare و, `unless` the letter has a sukun; ADR 0054 amendments); orthographies
-  that spell the vowels (apc: Arabizi), `match.marks.spelledIn`.
+  damma before a bare و, `unless` the letter has a sukun; ADR 0054 amendments), `optionalOn` for marks a letter
+  already says (the kasra under إ); orthographies that spell the vowels (apc: Arabizi), `match.marks.spelledIn`.
+  A wrong vocalization never touches a long vowel's letter or the unmarked letter before a ya or waw (other words'
+  shapes: كيّفَك, كَيفَك), and reading cards show the sentence's `persons` tags (كيفَك to a man, كيفِك to a woman).
 - Where a profile sets `input.markBuilder` (hbo, apc), `vocalize-build` asks the same word's marks put on its letters
   from buttons (ADR 0137), only once a vocalize card has shown them (`shown`); graded by `gradeVowels`. Never a text
   field for marks; never a list of marks in code (the letter stays chosen while the course attests more marks on it).

@@ -28,6 +28,9 @@ match:
       - { marks: "[\u064E]", letters: "[\u0627\u0649]" }
       - { marks: "[\u0650]", letters: "[\u064A]", bare: true, unless: "[\u0652]" }
       - { marks: "[\u064F]", letters: "[\u0648]", bare: true, unless: "[\u0652]" }
+    # REVIEW: and the kasra under an alif with a hamza below, which says i already (إِمّ, إمّ). A plain alif's kasra
+    # counts (اِسْمي), as does any vowel on أ.
+    optionalOn: [{ marks: "[\u0650]", letters: "[\u0625]" }]
   equivalences:
     - { id: persian-keyboard, map: { "\u06A9": "\u0643", "\u06CC": "\u064A" }, policy: accept }          # keheh/Farsi yeh typed on a Persian keyboard
     - { id: hamza-seat, map: { "\u0623": "\u0627", "\u0625": "\u0627", "\u0622": "\u0627", "\u0671": "\u0627" }, policy: accept-with-note, note: hamza }
