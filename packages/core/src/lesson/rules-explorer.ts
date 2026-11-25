@@ -28,7 +28,7 @@ export interface ExplorerLexeme {
   readonly row: LexemeRow;
   /** Its part of speech, where it has one (an affix has none). */
   readonly pos?: string | undefined;
-  /** Each feature a cell of it may set (its category's dimensions, its lexical features, what it chooses), with the language's values of it. */
+  /** Each feature a cell of it may set (its category's dimensions and what it chooses, never a lexical feature it does not choose), with the language's values of it. */
   readonly features: readonly { readonly feature: string; readonly values: readonly string[] }[];
   /**
    * The cell it is cited in, where it is first picked: its own `citation`, else its category's
@@ -188,10 +188,12 @@ export const rulesExplorer = (course: CourseView, source: LexiconSource): RulesE
   const lexemes = rows.map((row): ExplorerLexeme => {
     const entry = entries.get(row.id.id);
     const pos = typeof entry?.["pos"] === "string" ? entry["pos"] : row.lexeme?.pos;
-    const names = [...(pos === undefined ? [] : [...(dimensions[pos] ?? []), ...(lexicalFeatures[pos] ?? [])]), ...stringsOf(entry?.["chooses"])];
+    // A lexical feature (a noun's gender: قهوة's Fem) is the lexeme's own, stored or given by a default, never its
+    // cell's: only one it `chooses` (tío, tía) is set there. Its own value is shown with the lexeme, never offered.
+    const chooses = stringsOf(entry?.["chooses"]);
+    const own = new Set(pos === undefined ? [] : (lexicalFeatures[pos] ?? []).filter((f) => !chooses.includes(f)));
+    const names = [...(pos === undefined ? [] : (dimensions[pos] ?? [])), ...chooses].filter((f) => !own.has(f));
     const features = [...new Set(names)].map((feature) => ({ feature, values: stringsOf(values[feature]) }));
-    // A lexical feature (a noun's gender) is the lexeme's own, never its cell's, unless it chooses it.
-    const own = new Set(pos === undefined ? [] : (lexicalFeatures[pos] ?? []).filter((f) => !stringsOf(entry?.["chooses"]).includes(f)));
     const stated = isObject(entry?.["citation"]) ? entry["citation"] : pos === undefined ? undefined : citations[pos];
     const citation = Object.fromEntries(
       Object.entries(isObject(stated) ? stated : {}).filter(([k, v]) => typeof v === "string" && !own.has(k) && features.some((f) => f.feature === k)),

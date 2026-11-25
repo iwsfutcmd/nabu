@@ -162,6 +162,16 @@ describe("a cell's defaults", () => {
     expect(lexeme(es(), "lexeme:casa").citation).toEqual({ Number: "Sing" });
   });
 
+  it("never offers a lexical feature the lexeme does not choose: قهوة's gender is its own, tío's is chosen", () => {
+    const x = apc();
+    const ahwe = lexeme(x, "lexeme:ahwe");
+    expect(ahwe.features.map((f) => f.feature)).toEqual(["Number"]);
+    // Its own Fem gives قهوة with the cell's number alone.
+    const result = explore(x, ask("lexeme:ahwe", { Number: "Sing" }));
+    expect(result.ok && result.spellings.find((s) => s.orthography === "apc-Arab/standard" && s.layer === undefined)?.spelling?.tokens[0]?.surface).toBe("قهوة");
+    expect(lexeme(es(), "lexeme:tío").features.map((f) => f.feature)).toContain("Gender");
+  });
+
   it("drops the values no known cell combines with the one chosen (es: a finite verb has no gender)", () => {
     const x = es();
     const tener = lexeme(x, "lexeme:tener");
