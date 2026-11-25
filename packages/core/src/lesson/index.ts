@@ -12,6 +12,7 @@ export {
   requestOfToken,
   rulesExplorer,
   waysOf,
+  type Attached,
   type Explored,
   type ExploredError,
   type ExploredSpelling,

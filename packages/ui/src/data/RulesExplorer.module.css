@@ -79,6 +79,12 @@
   outline-offset: 2px;
 }
 
+.attachedItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+}
+
 .chosen,
 .attached,
 .way,

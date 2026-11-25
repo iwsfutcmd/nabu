@@ -56,7 +56,7 @@ describe("rulesExplorer", () => {
   });
 
   it("writes other lexemes onto the base, as a token lists them", () => {
-    const got = explore(apc(), ask("lexeme:bent", {}, { after: ["lexeme:poss-2pl"] }));
+    const got = explore(apc(), ask("lexeme:bent", {}, { after: [{ lexeme: "lexeme:poss-2pl" }] }));
     expect(got.ok && got.spellings.map((s) => s.spelling?.tokens[0]?.surface)).toEqual(["بنتكن", "بِنِتْكُن", "benetkon"]);
     // Arabizi leaves the helping vowel inside a word out, or writes it: bentkon is the other way.
     expect(got.ok && got.spellings[2]?.alternatives.map((a) => a.spelling.tokens[0]?.surface)).toContain("bentkon");
@@ -111,6 +111,16 @@ describe("rulesExplorer", () => {
     expect(got.ok && got.variants.length).toBeGreaterThan(0);
   });
 
+  it("realises a lexeme beside the base in the values the token gives it, as es's tokens are checked", () => {
+    const x = rulesExplorer(loadCourse("es", "es-Latn/standard"), sourceOf("es", ["es-Latn/standard"]));
+    expect(x.problems).toEqual([]);
+    const ways = x.lexemes.flatMap((l) => waysOf(x, l.row.id.id));
+    expect(ways.length).toBeGreaterThan(1000);
+    expect(ways.filter((w) => w.verdict === "differs" || w.verdict === "error").map((w) => `${w.items[0] ?? ""} ${w.text.tokens[0]?.surface ?? ""}`)).toEqual([]);
+    const beside = ways.find((w) => w.request.after.some((a) => a.feats !== undefined));
+    expect(beside).toBeDefined();
+  });
+
   it("says a language without a notation cannot be explored", () => {
     const x = rulesExplorer(loadCourse("yue", "yue-Hant-HK/standard"), { lexemes: { lexemes: [] }, language: {} });
     expect(x.problems).toEqual([{ kind: "no-notation" }]);
@@ -120,10 +130,13 @@ describe("rulesExplorer", () => {
 
 describe("encodeExplore and decodeExplore", () => {
   it("keep a request in an address, and back", () => {
-    const request = ask("lexeme:shereb", { Aspect: "Imp", Mood: "Ind" }, { before: ["lexeme:w"], after: ["lexeme:obj-1sg"], next: "lexeme:bet", blocking: false });
+    const request = ask("lexeme:shereb", { Aspect: "Imp", Mood: "Ind" }, { before: [{ lexeme: "lexeme:w" }], after: [{ lexeme: "lexeme:obj-1sg" }], next: "lexeme:bet", blocking: false });
     const encoded = encodeExplore(request);
     expect(encoded).toBe("b=lexeme%3Ashereb&f=Aspect%3DImp%3BMood%3DInd&p=lexeme%3Aw&s=lexeme%3Aobj-1sg&n=lexeme%3Abet&o=blocking");
     expect(decodeExplore(encoded)).toEqual(request);
+    // A lexeme beside the base with the values the token gives it (es buscarlos).
+    const los = ask("lexeme:buscar", { VerbForm: "Inf" }, { after: [{ lexeme: "lexeme:lo", feats: { Gender: "Masc", Number: "Plur" } }] });
+    expect(decodeExplore(encodeExplore(los))).toEqual(los);
     expect(decodeExplore("")).toBeUndefined();
     expect(decodeExplore("b=lexeme%3Abet")).toEqual(ask("lexeme:bet", {}));
   });

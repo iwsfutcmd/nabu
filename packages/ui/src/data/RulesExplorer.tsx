@@ -28,7 +28,9 @@ import {
   type ExplorerWay,
   type LexiconSource,
   type RulesExplorer as Explorer,
+  type Attached,
 } from "@nabu/core/lesson";
+import type { UdFeatures } from "@nabu/schema";
 import { useId, useMemo, useState, type JSX } from "react";
 import { Button, Checkbox, Input, Label, Radio, RadioGroup, SearchField } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
@@ -266,11 +268,46 @@ const Result = ({ t, result }: { t: Translator; result: Explored }): JSX.Element
   );
 };
 
-/** The lexemes written before or after the base, each movable and removable. */
-const Around = ({ t, explorer, ids, side, onChange }: { t: Translator; explorer: Explorer; ids: readonly string[]; side: "before" | "after"; onChange: (ids: readonly string[]) => void }): JSX.Element => {
+/** A cell's values: each feature a row of radios, "none" leaving it out. */
+const Cell = ({ t, features, feats, onChange }: { t: Translator; features: ExplorerLexeme["features"]; feats: UdFeatures; onChange: (feats: UdFeatures) => void }): JSX.Element => (
+  <>
+    {features.map(({ feature, values }) => (
+      <RadioGroup
+        key={feature}
+        className={styles.feature}
+        value={feats[feature] ?? ""}
+        onChange={(v) => {
+          const next = { ...feats };
+          if (v === "") delete next[feature];
+          else next[feature] = v;
+          onChange(next);
+        }}
+        orientation="horizontal"
+        data-feature={feature}
+      >
+        <Label className={styles.featureName}>
+          <Code value={feature} />
+        </Label>
+        <div className={list.radios}>
+          <Radio className={list.radio} value="" data-value="">
+            {t.format("rules.feature.unset")}
+          </Radio>
+          {values.map((v) => (
+            <Radio key={v} className={list.radio} value={v} data-value={v}>
+              <span className={data.chipCode}>{v}</span>
+            </Radio>
+          ))}
+        </div>
+      </RadioGroup>
+    ))}
+  </>
+);
+
+/** The lexemes written before or after the base, each movable and removable, each with the values the token gives it where its category has any. */
+const Around = ({ t, explorer, items, side, onChange }: { t: Translator; explorer: Explorer; items: readonly Attached[]; side: "before" | "after"; onChange: (items: readonly Attached[]) => void }): JSX.Element => {
   const byId = new Map(explorer.lexemes.map((l) => [l.row.id.id, l]));
   const move = (i: number, by: number): void => {
-    const next = [...ids];
+    const next = [...items];
     const [taken] = next.splice(i, 1);
     if (taken !== undefined) next.splice(i + by, 0, taken);
     onChange(next);
@@ -278,26 +315,36 @@ const Around = ({ t, explorer, ids, side, onChange }: { t: Translator; explorer:
   return (
     <div className={styles.pair} data-around={side}>
       <span className={list.muted}>{t.format(side === "before" ? "rules.before" : "rules.after")}</span>
-      {ids.length === 0 ? (
+      {items.length === 0 ? (
         <span className={list.muted}>{t.format("rules.around.none")}</span>
       ) : (
         <ol className={styles.around}>
-          {ids.map((id, i) => {
-            const lexeme = byId.get(id);
+          {items.map((item, i) => {
+            const lexeme = byId.get(item.lexeme);
             return (
-              <li key={`${id}-${String(i)}`} className={styles.attached} data-attached={id}>
-                {lexeme === undefined ? <Code value={id} /> : <LexemeLine lexeme={lexeme} />}
-                <span className={styles.actions}>
-                  <Button className={list.partsToggle} isDisabled={i === 0} onPress={() => move(i, -1)} data-action="rules-earlier">
-                    {t.format("rules.move.earlier")}
-                  </Button>
-                  <Button className={list.partsToggle} isDisabled={i === ids.length - 1} onPress={() => move(i, 1)} data-action="rules-later">
-                    {t.format("rules.move.later")}
-                  </Button>
-                  <Button className={list.partsToggle} onPress={() => onChange(ids.filter((_, k) => k !== i))} data-action="rules-remove">
-                    {t.format("rules.remove")}
-                  </Button>
+              <li key={`${item.lexeme}-${String(i)}`} className={styles.attachedItem} data-attached={item.lexeme}>
+                <span className={styles.attached}>
+                  {lexeme === undefined ? <Code value={item.lexeme} /> : <LexemeLine lexeme={lexeme} />}
+                  <span className={styles.actions}>
+                    <Button className={list.partsToggle} isDisabled={i === 0} onPress={() => move(i, -1)} data-action="rules-earlier">
+                      {t.format("rules.move.earlier")}
+                    </Button>
+                    <Button className={list.partsToggle} isDisabled={i === items.length - 1} onPress={() => move(i, 1)} data-action="rules-later">
+                      {t.format("rules.move.later")}
+                    </Button>
+                    <Button className={list.partsToggle} onPress={() => onChange(items.filter((_, k) => k !== i))} data-action="rules-remove">
+                      {t.format("rules.remove")}
+                    </Button>
+                  </span>
                 </span>
+                {lexeme !== undefined && lexeme.features.length > 0 && (
+                  <Cell
+                    t={t}
+                    features={lexeme.features}
+                    feats={item.feats ?? {}}
+                    onChange={(feats) => onChange(items.map((x, k) => (k === i ? (Object.keys(feats).length === 0 ? { lexeme: x.lexeme } : { lexeme: x.lexeme, feats }) : x)))}
+                  />
+                )}
               </li>
             );
           })}
@@ -389,42 +436,14 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
                   {t.format("rules.features")}
                 </h2>
                 {base.features.length === 0 && <p className={list.muted}>{t.format("rules.features.none")}</p>}
-                {base.features.map(({ feature, values }) => (
-                  <RadioGroup
-                    key={feature}
-                    className={styles.feature}
-                    value={request.feats[feature] ?? ""}
-                    onChange={(v) => {
-                      const feats = { ...request.feats };
-                      if (v === "") delete feats[feature];
-                      else feats[feature] = v;
-                      change({ feats });
-                    }}
-                    orientation="horizontal"
-                    data-feature={feature}
-                  >
-                    <Label className={styles.featureName}>
-                      <Code value={feature} />
-                    </Label>
-                    <div className={list.radios}>
-                      <Radio className={list.radio} value="" data-value="">
-                        {t.format("rules.feature.unset")}
-                      </Radio>
-                      {values.map((v) => (
-                        <Radio key={v} className={list.radio} value={v} data-value={v}>
-                          <span className={data.chipCode}>{v}</span>
-                        </Radio>
-                      ))}
-                    </div>
-                  </RadioGroup>
-                ))}
+                <Cell t={t} features={base.features} feats={request.feats} onChange={(feats) => change({ feats })} />
               </section>
               <section className={styles.part} aria-labelledby="rules-around">
                 <h2 className={data.partTitle} id="rules-around">
                   {t.format("rules.around")}
                 </h2>
-                <Around t={t} explorer={explorer} ids={request.before} side="before" onChange={(before) => change({ before })} />
-                <Around t={t} explorer={explorer} ids={request.after} side="after" onChange={(after) => change({ after })} />
+                <Around t={t} explorer={explorer} items={request.before} side="before" onChange={(before) => change({ before })} />
+                <Around t={t} explorer={explorer} items={request.after} side="after" onChange={(after) => change({ after })} />
                 <RadioGroup className={styles.feature} value={side} onChange={(v) => setSide(v === "before" ? "before" : "after")} orientation="horizontal" data-add-side={side}>
                   <Label className={list.label}>{t.format("rules.add.side")}</Label>
                   <div className={list.radios}>
@@ -441,7 +460,7 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
                   explorer={explorer}
                   label={t.format("rules.add")}
                   field="rules-add"
-                  onPick={(l) => change(side === "before" ? { before: [...request.before, l.row.id.id] } : { after: [...request.after, l.row.id.id] })}
+                  onPick={(l) => change(side === "before" ? { before: [...request.before, { lexeme: l.row.id.id }] } : { after: [...request.after, { lexeme: l.row.id.id }] })}
                 />
                 <div className={styles.pair} data-next={request.next ?? ""}>
                   <span className={list.muted}>{t.format("rules.next")}</span>

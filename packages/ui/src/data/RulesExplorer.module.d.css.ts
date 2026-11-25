@@ -5,6 +5,7 @@ declare const styles: {
   readonly alternatives: string;
   readonly around: string;
   readonly attached: string;
+  readonly attachedItem: string;
   readonly cell: string;
   readonly cellButton: string;
   readonly cells: string;

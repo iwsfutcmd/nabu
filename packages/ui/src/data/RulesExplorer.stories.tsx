@@ -65,7 +65,7 @@ export const Realised: Story = explorerStory("apc", "apc-Arab/standard", {
   base: "lexeme:shereb",
   feats: { Aspect: "Imp", Mood: "Ind", Person: "2", Gender: "Fem", Number: "Sing" },
   before: [],
-  after: ["lexeme:obj-1sg"],
+  after: [{ lexeme: "lexeme:obj-1sg" }],
   ...DEFAULTS,
 });
 

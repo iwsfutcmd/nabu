@@ -58,14 +58,20 @@ export interface RulesExplorer {
   readonly tags: Tags;
 }
 
+/** A lexeme written beside the base, with the values the token gives it where it gives any (es buscarlos: lo in the plural). */
+export interface Attached {
+  readonly lexeme: string;
+  readonly feats?: UdFeatures | undefined;
+}
+
 /** A realisation asked for: the base lexeme in its cell, the lexemes written before and after it, and how blocking runs. */
 export interface ExploreRequest {
   readonly base: string;
   readonly feats: UdFeatures;
   /** Written before the base, in order (a proclitic, a prefix). */
-  readonly before: readonly string[];
+  readonly before: readonly Attached[];
   /** Written after it, in order (a suffix, an enclitic). */
-  readonly after: readonly string[];
+  readonly after: readonly Attached[];
   /** The base of the next word, where an allomorph is chosen by it (`before: {pos}`). */
   readonly next?: string | undefined;
   /** false: listed forms and stated classes passed over, pinned ones kept (ADR 0145: what a learner would regularise). */
@@ -238,7 +244,8 @@ const detailsOf = (error: RealiseError): ExploredError["details"] => {
 /** The lexemes of a request, as a token lists them: those before the base, the base with its values, those after it. */
 const writtenOf = (request: ExploreRequest): readonly WrittenLexeme[] => {
   const base: WrittenLexeme = { lexeme: request.base, feats: request.feats, base: true };
-  return [...request.before.map((lexeme) => ({ lexeme })), base, ...request.after.map((lexeme) => ({ lexeme }))];
+  const beside = (a: Attached): WrittenLexeme => (a.feats === undefined || Object.keys(a.feats).length === 0 ? { lexeme: a.lexeme } : { lexeme: a.lexeme, feats: a.feats });
+  return [...request.before.map(beside), base, ...request.after.map(beside)];
 };
 
 /** A request realised and spelled, as the compiler's token check does it (`strict` as the bundle's paradigms are). */
@@ -289,6 +296,9 @@ const tokensOf = (text: TaggedText): readonly { readonly token: Token; readonly 
   return tokens.map((token, i) => ({ token, next: tokens.slice(i + 1).map(baseOf).find((b) => b !== undefined) }));
 };
 
+const attachedOf = (l: { readonly lexeme: string; readonly feats?: UdFeatures | undefined }): Attached =>
+  l.feats === undefined || Object.keys(l.feats).length === 0 ? { lexeme: l.lexeme } : { lexeme: l.lexeme, feats: l.feats };
+
 /** The request a token makes of the explorer: its lexemes around its base, the base's values, the next word's base. */
 export const requestOfToken = (token: Token, next: string | undefined): ExploreRequest | undefined => {
   const lexemes = token.lexemes ?? [];
@@ -298,8 +308,8 @@ export const requestOfToken = (token: Token, next: string | undefined): ExploreR
   return {
     base: base.lexeme,
     feats: base.feats ?? {},
-    before: lexemes.slice(0, at).map((l) => l.lexeme),
-    after: lexemes.slice(at + 1).map((l) => l.lexeme),
+    before: lexemes.slice(0, at).map(attachedOf),
+    after: lexemes.slice(at + 1).map(attachedOf),
     ...(next === undefined ? {} : { next }),
     ...EXPLORE_DEFAULTS,
   };
@@ -327,7 +337,8 @@ export const waysOf = (explorer: RulesExplorer, base: string): readonly Explorer
       const request = requestOfToken(token, next);
       if (request === undefined || request.base !== base) continue;
       // The next word is kept with the first way only: where it chooses an allomorph, the surface differs anyway.
-      const key = JSON.stringify([orthography, token.surface, request.before, request.after, cellKey(request.feats)]);
+      const side = (list: readonly Attached[]): readonly string[] => list.map((a) => `${a.lexeme}|${cellKey(a.feats ?? {})}`);
+      const key = JSON.stringify([orthography, token.surface, side(request.before), side(request.after), cellKey(request.feats)]);
       const way = found.get(key);
       if (way !== undefined) {
         if (!way.items.includes(item)) way.items.push(item);
@@ -355,10 +366,13 @@ export const waysOf = (explorer: RulesExplorer, base: string): readonly Explorer
       if (spelled?.spelling === undefined || profile === undefined || speller === undefined) return { ...w, verdict: "unspelled" };
       const surface = w.text.tokens[0]?.surface ?? "";
       const key = spellingKey(profile);
-      const as = spelledAs(spell(speller, result.form.tokens[0]?.surface ?? ""), surface, key);
+      const form = result.form.tokens[0]?.surface ?? "";
+      // A phrase lexeme written over several tokens (buenos días): each token is one word of it, as the compiler checks it.
+      const part = form.includes(" ") && !surface.includes(" ");
+      const as = spelledAs(spell(speller, form), surface, key, part);
       if (as !== undefined) return { ...w, verdict: as, spelled: spelled.spelling };
       // A free variant's spelling, as the compiler's check accepts it.
-      const variant = result.variants.some((v) => spelledAs(spell(speller, v.form.tokens[0]?.surface ?? ""), surface, key) !== undefined);
+      const variant = result.variants.some((v) => spelledAs(spell(speller, v.form.tokens[0]?.surface ?? ""), surface, key, part) !== undefined);
       return { ...w, verdict: variant ? "variant" : "differs", spelled: spelled.spelling };
     });
   byBase.set(base, out);
@@ -399,7 +413,8 @@ export const explorerParadigm = (explorer: RulesExplorer, lexeme: ExplorerLexeme
 
 /**
  * A request as the page's address keeps it, and back: URL search parameters (b the base, f its
- * values as a cell key, p and s the lexemes before and after it, n the next word, o the options
+ * values as a cell key, p and s the lexemes before and after it (each its id, and where the token gives
+ * it values, `|` and them as a cell key), n the next word, o the options
  * turned off). Ids are as the lexicon writes them.
  */
 export const encodeExplore = (request: ExploreRequest): string => {
@@ -407,12 +422,20 @@ export const encodeExplore = (request: ExploreRequest): string => {
   params.set("b", request.base);
   const feats = cellKey(request.feats);
   if (feats !== "") params.set("f", feats);
-  if (request.before.length > 0) params.set("p", request.before.join(","));
-  if (request.after.length > 0) params.set("s", request.after.join(","));
+  const side = (list: readonly Attached[]): string => list.map((a) => (a.feats === undefined || Object.keys(a.feats).length === 0 ? a.lexeme : `${a.lexeme}|${cellKey(a.feats)}`)).join(",");
+  if (request.before.length > 0) params.set("p", side(request.before));
+  if (request.after.length > 0) params.set("s", side(request.after));
   if (request.next !== undefined) params.set("n", request.next);
   const off = [...(request.blocking ? [] : ["blocking"]), ...(request.pinned ? [] : ["pinned"]), ...(request.spellings === EXPLORE_DEFAULTS.spellings ? [] : ["spellings"])];
   if (off.length > 0) params.set("o", off.join(","));
   return params.toString();
+};
+
+const attachedOfKey = (key: string): Attached => {
+  const bar = key.indexOf("|");
+  if (bar < 0) return { lexeme: key };
+  const feats = cellFeats(key.slice(bar + 1));
+  return Object.keys(feats).length === 0 ? { lexeme: key.slice(0, bar) } : { lexeme: key.slice(0, bar), feats };
 };
 
 export const decodeExplore = (encoded: string): ExploreRequest | undefined => {
@@ -425,8 +448,8 @@ export const decodeExplore = (encoded: string): ExploreRequest | undefined => {
   return {
     base,
     feats: cellFeats(params.get("f") ?? ""),
-    before: list("p"),
-    after: list("s"),
+    before: list("p").map(attachedOfKey),
+    after: list("s").map(attachedOfKey),
     ...(next === null || next === "" ? {} : { next }),
     blocking: !off.has("blocking"),
     pinned: !off.has("pinned"),

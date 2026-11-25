@@ -37,7 +37,7 @@ test("a lexeme is put through the rules as it is changed, kept in the address, a
   const course = loadCourse("apc", "apc-Arab/standard");
   const explorer = rulesExplorer(course, sourceOf("apc"));
   const cell = { Aspect: "Imp", Mood: "Ind", Person: "2", Gender: "Fem", Number: "Sing" };
-  const asked: ExploreRequest = { base: "lexeme:shereb", feats: cell, before: [], after: ["lexeme:obj-1sg"], ...EXPLORE_DEFAULTS };
+  const asked: ExploreRequest = { base: "lexeme:shereb", feats: cell, before: [], after: [{ lexeme: "lexeme:obj-1sg" }], ...EXPLORE_DEFAULTS };
   const expected = explore(explorer, asked);
   if (!expected.ok) throw new Error("apc's rules give shereb's 2fs present");
 
