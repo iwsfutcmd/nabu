@@ -520,13 +520,21 @@ export const realise = (lang: CompiledLanguage, lexeme: string, cell: UdFeatures
   return ok(realisation(built.value, rewritten.units, [...built.value.steps, ...rewritten.steps]));
 };
 
+/** The token's base lexeme and its cell, as an allomorph's condition may read them. */
+interface TokenBase {
+  readonly lexeme?: Lexeme;
+  readonly cell: UdFeatures;
+}
+
 /**
  * Whether a condition on what stands beside an allomorph holds. Of the text beside it in its token
  * (`units`: what it follows, for `after`, or stands before, for `before`): `endsIn`, `startsIn`,
  * `ends`, `starts`. Of the word beside it (`word`: for `before`, the next word's base lexeme, where
- * nothing follows in the token): `pos`, `class`. `feats` is never a context's.
+ * nothing follows in the token): `pos`, `class`. Of the token's base (`base`): `feats`, its cell's
+ * values (a suffix's series by its noun's number: hbo -ay, -êḵā); and, given its lexeme (for `after`,
+ * of a lexeme that follows the base), `pos` and `class` (a preposition's suffixes). `context` never.
  */
-const contextHolds = (lang: CompiledLanguage, c: Condition, units: readonly Unit[], word: Lexeme | undefined): boolean => {
+const contextHolds = (lang: CompiledLanguage, c: Condition, units: readonly Unit[], word: Lexeme | undefined, base?: TokenBase): boolean => {
   const textual = c.endsIn !== undefined || c.startsIn !== undefined || c.ends !== undefined || c.starts !== undefined;
   if (textual && units.length === 0) return false;
   if (c.endsIn !== undefined) {
@@ -540,23 +548,27 @@ const contextHolds = (lang: CompiledLanguage, c: Condition, units: readonly Unit
   const text = textOf(units);
   if (c.ends !== undefined && !text.endsWith(c.ends.normalize("NFC"))) return false;
   if (c.starts !== undefined && !text.startsWith(c.starts.normalize("NFC"))) return false;
-  if (c.pos !== undefined && (word === undefined || units.length > 0 || word.pos !== c.pos)) return false;
-  if (c.class !== undefined && (word === undefined || units.length > 0 || !(word.classes ?? []).includes(c.class))) return false;
-  return c.feats === undefined && c.context === undefined;
+  const subject = base?.lexeme ?? (units.length > 0 ? undefined : word);
+  if (c.pos !== undefined && (subject === undefined || subject.pos !== c.pos)) return false;
+  if (c.class !== undefined && (subject === undefined || !(subject.classes ?? []).includes(c.class))) return false;
+  if (c.feats !== undefined && (base === undefined || !hasValues(base.cell, c.feats))) return false;
+  return c.context === undefined;
 };
 
 /**
  * The allomorph of a lexeme written beside others: the first with a form whose conditions all hold,
  * `after` of what it follows (`preceding`), `before` of what it stands before (`following`, or the
- * next word, `next`, where nothing follows in the token); else the one with no condition; else the
+ * next word, `next`, where nothing follows in the token), both of the token's base (`base`, its
+ * lexeme given only where this lexeme follows it); else the one with no condition; else the
  * lexeme's own form.
  */
-const allomorphOf = (lang: CompiledLanguage, lexeme: Lexeme, preceding: readonly Unit[], following: readonly Unit[], next?: Lexeme): string | undefined => {
+const allomorphOf = (lang: CompiledLanguage, lexeme: Lexeme, preceding: readonly Unit[], following: readonly Unit[], next?: Lexeme, base?: TokenBase): string | undefined => {
   const all = (lexeme.allomorphs ?? []).filter((a) => a.form !== undefined);
+  const cell = base === undefined ? undefined : { cell: base.cell };
   const holds = (a: Allomorph): boolean =>
     (a.after !== undefined || a.before !== undefined) &&
-    (a.after === undefined || contextHolds(lang, a.after, preceding, undefined)) &&
-    (a.before === undefined || contextHolds(lang, a.before, following, following.length === 0 ? next : undefined));
+    (a.after === undefined || contextHolds(lang, a.after, preceding, undefined, base)) &&
+    (a.before === undefined || contextHolds(lang, a.before, following, following.length === 0 ? next : undefined, cell));
   const found = all.find(holds) ?? all.find((a) => a.after === undefined && a.before === undefined);
   return found?.form ?? (typeof lexeme.form === "string" ? lexeme.form : undefined);
 };
@@ -631,20 +643,21 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
     return units;
   };
   const baseLexeme = lexemes[baseAt] as Lexeme;
+  const cell = base.feats ?? {};
   const ownBase = !built.value.whole && built.value.steps.length === 0 && options.word === undefined && choosesByFollowing(baseLexeme);
   for (let pass = 0; pass < 2; pass++) {
     for (let k = baseAt + 1; k < written.length; k++) {
-      const f = allomorphOf(lang, lexemes[k] as Lexeme, joined(0, k), k + 1 < written.length ? (forms[k + 1] as readonly Unit[]) : [], k + 1 < written.length ? undefined : next);
+      const f = allomorphOf(lang, lexemes[k] as Lexeme, joined(0, k), k + 1 < written.length ? (forms[k + 1] as readonly Unit[]) : [], k + 1 < written.length ? undefined : next, { lexeme: baseLexeme, cell });
       if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
       forms[k] = unitsOf(f);
     }
     // The base's own form chosen by what follows (bad- before -na; 7da3shar before a noun).
     if (ownBase) {
-      const f = allomorphOf(lang, baseLexeme, [], baseAt + 1 < written.length ? (forms[baseAt + 1] as readonly Unit[]) : [], baseAt + 1 < written.length ? undefined : next);
+      const f = allomorphOf(lang, baseLexeme, [], baseAt + 1 < written.length ? (forms[baseAt + 1] as readonly Unit[]) : [], baseAt + 1 < written.length ? undefined : next, { cell });
       if (f !== undefined) forms[baseAt] = unitsOf(f);
     }
     for (let k = baseAt - 1; k >= 0; k--) {
-      const f = allomorphOf(lang, lexemes[k] as Lexeme, joined(0, k), joined(k + 1, written.length));
+      const f = allomorphOf(lang, lexemes[k] as Lexeme, joined(0, k), joined(k + 1, written.length), undefined, { cell });
       if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
       forms[k] = unitsOf(f);
     }
