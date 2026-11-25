@@ -289,13 +289,17 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
 
 // ------------------------------------------------------------------------------------------------
 
-/** Where `when` holds of a lexeme and a cell. A lexeme's classes are ignored with blocking off. */
+/**
+ * Where `when` holds of a lexeme and a cell. A lexeme's classes are ignored with blocking off. A
+ * lexical form that stores a boundary (es levantar+se: a clitic its citation form carries) is read
+ * by `ends`, `starts` and `endsIn` up to it: what it ends in is its base's ending.
+ */
 const conditionHolds = (lang: CompiledLanguage, when: Condition | undefined, lexeme: Lexeme, cell: UdFeatures, blocking: boolean): boolean => {
   if (when === undefined) return true;
   if (when.pos !== undefined && lexeme.pos !== when.pos) return false;
   if (when.feats !== undefined && !hasValues(cell, when.feats)) return false;
   if (when.class !== undefined && !(blocking && (lexeme.classes ?? []).includes(when.class))) return false;
-  const form = typeof lexeme.form === "string" ? lexeme.form.normalize("NFC") : undefined;
+  const form = typeof lexeme.form === "string" ? (lexeme.form.normalize("NFC").split("+")[0] as string) : undefined;
   if (when.ends !== undefined && !(form !== undefined && form.endsWith(when.ends.normalize("NFC")))) return false;
   if (when.starts !== undefined && !(form !== undefined && form.startsWith(when.starts.normalize("NFC")))) return false;
   if (when.endsIn !== undefined) {
@@ -610,7 +614,9 @@ const equals = (lang: CompiledLanguage, written: readonly WrittenLexeme[], optio
  * before and follow. Free allomorphs are never chosen: each one whose conditions hold where the
  * chosen forms put it gives the token an alternative (`alternatives`), every combination of them,
  * the token's other allomorphs chosen again around it (a scribe's ay- for eyt- takes -di, not -ti).
- * A token of several lexemes, none of them marked its base, is a token of equals (`equals`).
+ * A lexeme beside the base that the token gives values, and that has no allomorph to choose, is
+ * realised in them as a word of its own (es buscarlos: lo in the plural). A token of several lexemes,
+ * none of them marked its base, is a token of equals (`equals`).
  */
 export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLexeme[], options: RealiseOptions = {}): Result<Realisation, RealiseError> => {
   const baseAt = written.length === 1 ? 0 : written.findIndex((w) => w.base === true);
@@ -632,11 +638,37 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
     lexemes.push(lexeme);
   }
   const next = options.next === undefined ? undefined : lang.lexemes.get(lexemeId(options.next));
+  // A word the token writes beside its base, given values there and with no allomorph to choose
+  // (es buscarlos: lo in the plural), is realised in them as a word of its own, then joined.
+  const partOptions: RealiseOptions = {
+    ...(options.blocking !== undefined && { blocking: options.blocking }),
+    ...(options.spellings !== undefined && { spellings: options.spellings }),
+    ...(options.pinned !== undefined && { pinned: options.pinned }),
+  };
+  const own: (readonly Unit[] | undefined)[] = [];
+  const ownSteps: Step[] = [];
+  for (let k = 0; k < written.length; k++) {
+    const lexeme = lexemes[k] as Lexeme;
+    const feats = (written[k] as WrittenLexeme).feats ?? {};
+    if (k === baseAt || sizeOf(feats) === 0 || lexeme.pos === undefined || (lexeme.allomorphs ?? []).some((a) => a.form !== undefined)) {
+      own.push(undefined);
+      continue;
+    }
+    const made = realise(lang, lexeme.id, feats, partOptions);
+    if (!made.ok) return made;
+    own.push(unitsOf(made.value.form));
+    ownSteps.push(...made.value.steps);
+  }
   // Each lexeme's form, first with no context.
   const initial: (readonly Unit[])[] = [];
   for (let k = 0; k < written.length; k++) {
     if (k === baseAt) {
       initial.push(baseUnits);
+      continue;
+    }
+    const realised = own[k];
+    if (realised !== undefined) {
+      initial.push(realised);
       continue;
     }
     const f = allomorphOf(lang, lexemes[k] as Lexeme, [], []);
@@ -655,7 +687,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
     const pieces = [...start];
     for (let pass = 0; pass < 2; pass++) {
       for (let k = baseAt + 1; k < written.length; k++) {
-        if (fixed.has(k)) continue;
+        if (fixed.has(k) || own[k] !== undefined) continue;
         const f = allomorphOf(lang, lexemes[k] as Lexeme, joinedIn(pieces, 0, k), k + 1 < written.length ? (pieces[k + 1] as readonly Unit[]) : [], k + 1 < written.length ? undefined : next);
         if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
         pieces[k] = unitsOf(f);
@@ -666,7 +698,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
         if (f !== undefined) pieces[baseAt] = unitsOf(f);
       }
       for (let k = baseAt - 1; k >= 0; k--) {
-        if (fixed.has(k)) continue;
+        if (fixed.has(k) || own[k] !== undefined) continue;
         const f = allomorphOf(lang, lexemes[k] as Lexeme, joinedIn(pieces, 0, k), joinedIn(pieces, k + 1, written.length));
         if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
         pieces[k] = unitsOf(f);
@@ -687,7 +719,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   const finish = (units: readonly Unit[]): { readonly units: readonly Unit[]; readonly steps: readonly Step[] } => {
     if (built.value.whole && written.length === 1) return { units, steps: built.value.steps };
     const rewritten = rewrite(lang, units, built.value.lexeme, base.feats ?? {}, options.blocking ?? true);
-    return { units: rewritten.units, steps: [...built.value.steps, ...rewritten.steps] };
+    return { units: rewritten.units, steps: [...built.value.steps, ...ownSteps, ...rewritten.steps] };
   };
   const chosen = finish(assemble(forms));
   const made = realisation(built.value, chosen.units, chosen.steps);

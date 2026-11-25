@@ -409,7 +409,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Haz los frijoles hoy y cómelos mañana.
-      tokens: [{surface: Haz, lexeme: hacer, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}, n: 3}, {surface: hoy, lexeme: hoy}, {surface: y, lexeme: y}, {surface: cómelos, lexeme: comer, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: mañana, lexeme: mañana}]
+      tokens: [{surface: Haz, lexeme: hacer, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 2, head: 3, rel: det}, {surface: frijoles, lexeme: frijol, feats: {Number: Plur}, n: 3}, {surface: hoy, lexeme: hoy}, {surface: y, lexeme: y}, {surface: cómelos, lexemes: [{lexeme: comer, surface: cóme, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: lo, surface: los, feats: {Number: Plur}}]}, {surface: mañana, lexeme: mañana}]
       reverse: (Haz los frijoles hoy y cómelos|Haga los frijoles hoy y cómalos|Hagan los frijoles hoy y cómanlos) mañana
   translations:
     en: (Make|Cook) the beans today and eat them tomorrow.

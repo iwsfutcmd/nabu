@@ -72,7 +72,7 @@ sentences:
   forms:
     es-Latn/standard:
       text: Si ustedes tienen tiempo esta noche, llámenme por WhatsApp.
-      tokens: [{surface: Si, lexeme: si}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: tienen, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tiempo, lexeme: tiempo, feats: {Number: Sing}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 6}, {surface: llámenme, lexeme: llamar, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: por, lexeme: por, n: 8, head: 9, rel: case}, {surface: WhatsApp, lexeme: whatsapp, n: 9}]
+      tokens: [{surface: Si, lexeme: si}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: tienen, lexeme: tener, feats: {Mood: Ind, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: tiempo, lexeme: tiempo, feats: {Number: Sing}}, {surface: esta, lexeme: este, feats: {Gender: Fem, Number: Sing}, n: 5, head: 6, rel: det}, {surface: noche, lexeme: noche, feats: {Number: Sing}, n: 6}, {surface: llámenme, lexemes: [{lexeme: llamar, surface: llámen, base: true, feats: {Mood: Imp, Number: Plur, Person: '3', VerbForm: Fin}}, {lexeme: me, surface: me}]}, {surface: por, lexeme: por, n: 9, head: 10, rel: case}, {surface: WhatsApp, lexeme: whatsapp, n: 10}]
       reverse: |-
         Si [ustedes] tienen tiempo esta noche (llámenme|me llaman) por WhatsApp
         Llámenme por WhatsApp si tienen tiempo esta noche
@@ -471,7 +471,7 @@ stories:
       forms:
         es-Latn/standard:
           text: 'Díganme una cosa: ¿qué harían ustedes si pudieran?'
-          tokens: [{surface: Díganme, lexeme: decir, feats: {Mood: Imp, Number: Sing, Person: '3', VerbForm: Fin}}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 2, head: 3, rel: det}, {surface: cosa, lexeme: cosa, feats: {Number: Sing}, n: 3}, {surface: qué, lexeme: qué}, {surface: harían, lexeme: hacer, feats: {Mood: Cnd, Number: Plur, Person: '3', VerbForm: Fin}}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: si, lexeme: si}, {surface: pudieran, lexeme: poder, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}]
+          tokens: [{surface: Díganme, lexemes: [{lexeme: decir, surface: Dígan, base: true, feats: {Mood: Imp, Number: Plur, Person: '3', VerbForm: Fin}}, {lexeme: me, surface: me}]}, {surface: una, lexeme: un, feats: {Gender: Fem, Number: Sing}, n: 3, head: 4, rel: det}, {surface: cosa, lexeme: cosa, feats: {Number: Sing}, n: 4}, {surface: qué, lexeme: qué}, {surface: harían, lexeme: hacer, feats: {Mood: Cnd, Number: Plur, Person: '3', VerbForm: Fin}}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: si, lexeme: si}, {surface: pudieran, lexeme: poder, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Imp, VerbForm: Fin}}]
       translations:
         en: 'Tell me something: what would you all do if you could?'
   - line:

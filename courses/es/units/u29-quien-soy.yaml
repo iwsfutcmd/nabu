@@ -431,7 +431,7 @@ stories:
       forms:
         es-Latn/standard:
           text: ¡Dale, asere! ¿Y qué trabajo es?
-          tokens: [{surface: Dale, lexeme: dar, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: asere, lexeme: asere, feats: {Number: Sing}}, {surface: Y, lexeme: y}, {surface: qué, lexeme: qué}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
+          tokens: [{surface: Dale, lexemes: [{lexeme: dar, surface: Da, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: le, surface: le}]}, {surface: asere, lexeme: asere, feats: {Number: Sing}}, {surface: Y, lexeme: y}, {surface: qué, lexeme: qué}, {surface: trabajo, lexeme: trabajo, feats: {Number: Sing}}, {surface: es, lexeme: ser, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}]
       translations:
         en: Go for it, man! And what job is it?
   - line:
@@ -484,7 +484,7 @@ stories:
       forms:
         es-Latn/standard:
           text: Espérate, que abuela me está llamando. Te llamo para atrás en un momento.
-          tokens: [{surface: Espérate, lexeme: esperar, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: me, lexeme: me}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: llamando, lexeme: llamar, feats: {VerbForm: Ger}}, {surface: Te, lexeme: te}, {surface: llamo, lexeme: llamar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para}, {surface: atrás, lexeme: atrás}, {surface: en, lexeme: en, n: 11, head: 13, rel: case}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 12, head: 13, rel: det}, {surface: momento, lexeme: momento, feats: {Number: Sing}, n: 13}]
+          tokens: [{surface: Espérate, lexemes: [{lexeme: esperar, surface: Espéra, base: true, feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}}, {lexeme: te, surface: te}]}, {surface: que, lexeme: que}, {surface: abuela, lexeme: abuela, feats: {Number: Sing}}, {surface: me, lexeme: me}, {surface: está, lexeme: estar, feats: {Mood: Ind, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: llamando, lexeme: llamar, feats: {VerbForm: Ger}}, {surface: Te, lexeme: te}, {surface: llamo, lexeme: llamar, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: para, lexeme: para}, {surface: atrás, lexeme: atrás}, {surface: en, lexeme: en, n: 12, head: 14, rel: case}, {surface: un, lexeme: un, feats: {Gender: Masc, Number: Sing}, n: 13, head: 14, rel: det}, {surface: momento, lexeme: momento, feats: {Number: Sing}, n: 14}]
       translations:
         en: Hang on, Grandma's calling me. I'll call you back in a moment.
   - line:

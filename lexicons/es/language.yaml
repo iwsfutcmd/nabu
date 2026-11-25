@@ -30,6 +30,9 @@ bare:
   DET: {Gender: Masc, Number: Sing}
   VERB: {VerbForm: Inf}
   AUX: {VerbForm: Inf}
+# The values the course uses from its first sentence and never introduces as a part (the indicative, a finite verb, the
+# singular): taught, where the compiler lists a paradigm's cells (docs/rules/es.md, stage 4).
+unmarked: {Mood: [Ind], VerbForm: [Fin], Number: [Sing]}
 features:
   Gender: [Fem, Masc, Neut]
   Mood: [Cnd, Imp, Ind, Sub]
@@ -83,3 +86,319 @@ labels:
 - {feats: {Gender: Fem, Number: Plur, Tense: Past, VerbForm: Part}, gloss: {en: 'past participle (hablado, comido, hecho; he hablado)'}, notes: {en: '-ado for -ar verbs, -ido for -er and -ir verbs: jugado, comido, vivido. Cubans often drop the d (jugao, comío, ponchao); it is always written. Irregular: visto, hecho, dicho, vuelto, puesto, escrito. Hecho (done) has an h; echo (I throw) has none. After haber it never changes: Lili ha jugado, ellas han jugado.'}, was: 'form:part'}
 - {feats: {Gender: Masc, Number: Plur, Tense: Past, VerbForm: Part}, gloss: {en: 'past participle (hablado, comido, hecho; he hablado)'}, notes: {en: '-ado for -ar verbs, -ido for -er and -ir verbs: jugado, comido, vivido. Cubans often drop the d (jugao, comío, ponchao); it is always written. Irregular: visto, hecho, dicho, vuelto, puesto, escrito. Hecho (done) has an h; echo (I throw) has none. After haber it never changes: Lili ha jugado, ellas han jugado.'}, was: 'form:part'}
 - {feats: {Gender: Fem, Number: Sing, Tense: Past, VerbForm: Part}, gloss: {en: 'past participle (hablado, comido, hecho; he hablado)'}, notes: {en: '-ado for -ar verbs, -ido for -er and -ir verbs: jugado, comido, vivido. Cubans often drop the d (jugao, comío, ponchao); it is always written. Irregular: visto, hecho, dicho, vuelto, puesto, escrito. Hecho (done) has an h; echo (I throw) has none. After haber it never changes: Lili ha jugado, ellas han jugado.'}, was: 'form:part'}
+# Classes: lexical features the rules below read and no form gives (ADR 0145). Every one is REVIEW. Spanish's verbs
+# are -ar, -er or -ir by their infinitive's ending, which the rules read off the form: that is no class.
+classes:
+- {id: e-ie, pos: VERB, gloss: {en: 'e becomes ie when stressed (pensar: pienso, piensa)'}, notes: {en: 'REVIEW: the boot verbs, by the course''s forms (tener, querer, pensar, entender, sentir, venir).'}}
+- {id: o-ue, pos: VERB, gloss: {en: 'o becomes ue when stressed (poder: puedo, puede)'}, notes: {en: 'REVIEW: the boot verbs, by the course''s forms (poder, volver, contar, dormir, morir).'}}
+- {id: u-ue, pos: VERB, gloss: {en: 'u becomes ue when stressed (jugar: juego, juega)'}, notes: {en: 'REVIEW: jugar alone.'}}
+- {id: e-i, pos: VERB, gloss: {en: 'e becomes i (pedir: pido, pidió)'}, notes: {en: 'REVIEW: -ir verbs only (pedir, conseguir, decir, freír).'}}
+- {id: hiatus, pos: VERB, gloss: {en: 'a stressed i or u is written with its accent (reunirse: se reúne)'}, notes: {en: 'REVIEW: the -iar, -uar and -unir verbs that split the vowels (enviar: envío; reunir: reúne), against those that do not (cambiar: cambio, estudiar: estudio). The course has reunirse only.'}}
+- {id: go, pos: VERB, gloss: {en: '-go: tengo, salgo, hago, digo, traigo (and tenga, salga)'}, notes: {en: 'REVIEW: a g before an ending that begins with a or o: after l or n (tengo, salgo), in place of c (hago, digo), ig after a vowel (traigo, caigo, oigo).'}}
+- {id: zco, pos: VERB, gloss: {en: '-zco: conozco, agradezco (and conozca)'}, notes: {en: 'REVIEW: -cer and -cir verbs with a vowel before the c: zc before an ending that begins with a or o.'}}
+- {id: strong, pos: VERB, gloss: {en: 'a strong past: tuve, tuvo; dije, dijo (no accent on I and he/she)'}, notes: {en: 'REVIEW: the past on a stem of its own (a listed stem, lexeme:tener|stem:tuv), with -e, -iste, -o, -imos, -isteis, -ieron; its imperfect subjunctive on the same stem (tuviera). After j the i of -ieron and -iera goes (dijeron, trajera).'}}
+- {id: short-imperative, pos: VERB, gloss: {en: 'a short command for tú: ten, pon, ven, sal, haz'}, notes: {en: 'REVIEW: the command for tú without its -e (decir''s di is listed: no rule gives it).'}}
+- {id: short-masculine, pos: DET, gloss: {en: 'a masculine singular that is not the -o form: este, ese, un (estos, esto, unos)'}, notes: {en: 'REVIEW: its other forms are those of a word in -o: esta, estos, estas, esto; una, unos, unas.'}}
+- {id: comparative, pos: ADJ, gloss: {en: 'mayor, mejor, peor: the same for a feminine noun'}, notes: {en: 'REVIEW: an adjective in -or takes -a in the feminine (trabajadora, doctora), but not the comparatives.'}}
+# How es writes a lexical form (docs/rules-design.md, section 3). Spanish's lexical form is its spelling, as the RAE
+# and ASALE write the lemma (so an alphabet's notation names no vowel signs: its vowels are letters, its accents part
+# of them in NFC), with + a boundary the form stores: a reflexive verb's se (levantar+se), its citation's clitic,
+# written as a word of its own beside a finite form. es-Latn/standard's `spell` is the identity. Sets: C a consonant
+# letter (y too, as the plural counts it: rey, reyes), NGQ one other than g and q (after which u is no vowel), V the
+# vowel an ending after a stressed stem has (a, e, o), U an unaccented vowel, AV any vowel.
+notation:
+  sets:
+    C: "[bcdfghjklmnñpqrstvwxyz]"
+    NGQ: "[bcdfhjklmnñprstvwxyz]"
+    V: "[aeo]"
+    U: "[aeiou]"
+    AV: "[aeiouáéíóúü]"
+# Rules in a lexicon, stage 6 (docs/rules-design.md; docs/rules/es.md): es's verbs, nouns, adjectives, determiners,
+# pronouns and numerals. Every branch is REVIEW until the owner signs it off. Sources: the standard paradigms of the RAE
+# and ASALE (Nueva gramática, 2009, chapters 3-4; Ortografía, 2010, chapter 3 for the accents): no Spanish grammar is
+# in the reference library, so no page is cited; the course's own forms where it writes them. Where a cell leaves a
+# value out (hablaría: no Person; era: none), the exponent for the values it has applies.
+realisation:
+- id: 'rule:es-participle'  # the past participle, agreeing where it does (hablado, agradecida, hechos)
+  when: {feats: {VerbForm: Part}}
+  blocks:
+  - suffix:
+    - {branch: fem-sg, feats: {Gender: Fem, Number: Sing}, add: a}
+    - {branch: fem-pl, feats: {Gender: Fem, Number: Plur}, add: as}
+    - {branch: masc-pl, feats: {Gender: Masc, Number: Plur}, add: os}
+    - {branch: masc-sg, add: o}
+  # -ado, -ido from the infinitive's -ar, -er, -ir: rule:es-participle's rewrites below; an irregular participle is a
+  # listed stem (lexeme:hacer|stem:hech), on which the endings stand as they do on -ad-.
+- id: 'rule:es-strong-preterite'  # the strong past on its listed stem (tuve, tuviste, tuvo; estuve; dije)
+  when: {class: strong, feats: {Mood: Ind, Tense: Past}}
+  blocks:
+  - suffix:
+    - {branch: 1sg, feats: {Person: '1', Number: Sing}, add: e}
+    - {branch: 2sg, feats: {Person: '2', Number: Sing}, add: iste}
+    - {branch: 3sg, feats: {Person: '3', Number: Sing}, add: o}
+    - {branch: 1pl, feats: {Person: '1', Number: Plur}, add: imos}
+    - {branch: 2pl, feats: {Person: '2', Number: Plur}, add: isteis}
+    - {branch: 3pl, feats: {Person: '3', Number: Plur}, add: ieron}
+- id: 'rule:es-strong-subjunctive'  # the imperfect subjunctive on the strong stem, -iera whatever the infinitive (estuviera, tuviera)
+  when: {class: strong, feats: {Mood: Sub, Tense: Imp}}
+  blocks:
+  - suffix:
+    - {branch: sg, feats: {Number: Sing}, add: iera}
+    - {branch: 2sg, feats: {Person: '2', Number: Sing}, add: ieras}
+    - {branch: 1pl, feats: {Person: '1', Number: Plur}, add: iéramos}
+    - {branch: 2pl, feats: {Person: '2', Number: Plur}, add: ierais}
+    - {branch: 3pl, feats: {Person: '3', Number: Plur}, add: ieran}
+- id: 'rule:es-ar'  # the first conjugation (hablar)
+  when: {ends: ar, feats: {VerbForm: 'Fin,Ger'}}
+  blocks:
+  - suffix:
+    - {branch: pres-1sg, feats: {Mood: Ind, Tense: Pres, Person: '1', Number: Sing}, add: o}
+    - {branch: pres-2sg, feats: {Mood: Ind, Tense: Pres, Person: '2', Number: Sing}, add: as}
+    - {branch: pres-3sg, feats: {Mood: Ind, Tense: Pres, Person: '3', Number: Sing}, add: a}
+    - {branch: pres-1pl, feats: {Mood: Ind, Tense: Pres, Person: '1', Number: Plur}, add: amos}
+    - {branch: pres-2pl, feats: {Mood: Ind, Tense: Pres, Person: '2', Number: Plur}, add: áis}
+    - {branch: pres-3pl, feats: {Mood: Ind, Tense: Pres, Person: '3', Number: Plur}, add: an}
+    - {branch: impf-sg, feats: {Mood: Ind, Tense: Imp, Number: Sing}, add: aba}
+    - {branch: impf-2sg, feats: {Mood: Ind, Tense: Imp, Person: '2', Number: Sing}, add: abas}
+    - {branch: impf-1pl, feats: {Mood: Ind, Tense: Imp, Person: '1', Number: Plur}, add: ábamos}
+    - {branch: impf-2pl, feats: {Mood: Ind, Tense: Imp, Person: '2', Number: Plur}, add: abais}
+    - {branch: impf-3pl, feats: {Mood: Ind, Tense: Imp, Person: '3', Number: Plur}, add: aban}
+    - {branch: pret-1sg, feats: {Mood: Ind, Tense: Past, Person: '1', Number: Sing}, add: é}
+    - {branch: pret-2sg, feats: {Mood: Ind, Tense: Past, Person: '2', Number: Sing}, add: aste}
+    - {branch: pret-3sg, feats: {Mood: Ind, Tense: Past, Person: '3', Number: Sing}, add: ó}
+    - {branch: pret-1pl, feats: {Mood: Ind, Tense: Past, Person: '1', Number: Plur}, add: amos}
+    - {branch: pret-2pl, feats: {Mood: Ind, Tense: Past, Person: '2', Number: Plur}, add: asteis}
+    - {branch: pret-3pl, feats: {Mood: Ind, Tense: Past, Person: '3', Number: Plur}, add: aron}
+    - {branch: fut-1sg, feats: {Mood: Ind, Tense: Fut, Person: '1', Number: Sing}, add: é}
+    - {branch: fut-2sg, feats: {Mood: Ind, Tense: Fut, Person: '2', Number: Sing}, add: ás}
+    - {branch: fut-3sg, feats: {Mood: Ind, Tense: Fut, Person: '3', Number: Sing}, add: á}
+    - {branch: fut-1pl, feats: {Mood: Ind, Tense: Fut, Person: '1', Number: Plur}, add: emos}
+    - {branch: fut-2pl, feats: {Mood: Ind, Tense: Fut, Person: '2', Number: Plur}, add: éis}
+    - {branch: fut-3pl, feats: {Mood: Ind, Tense: Fut, Person: '3', Number: Plur}, add: án}
+    - {branch: cond-sg, feats: {Mood: Cnd, Number: Sing}, add: ía}
+    - {branch: cond-2sg, feats: {Mood: Cnd, Person: '2', Number: Sing}, add: ías}
+    - {branch: cond-1pl, feats: {Mood: Cnd, Person: '1', Number: Plur}, add: íamos}
+    - {branch: cond-2pl, feats: {Mood: Cnd, Person: '2', Number: Plur}, add: íais}
+    - {branch: cond-3pl, feats: {Mood: Cnd, Person: '3', Number: Plur}, add: ían}
+    - {branch: subj-sg, feats: {Mood: Sub, Tense: Pres, Number: Sing}, add: e}
+    - {branch: subj-2sg, feats: {Mood: Sub, Tense: Pres, Person: '2', Number: Sing}, add: es}
+    - {branch: subj-1pl, feats: {Mood: Sub, Tense: Pres, Person: '1', Number: Plur}, add: emos}
+    - {branch: subj-2pl, feats: {Mood: Sub, Tense: Pres, Person: '2', Number: Plur}, add: éis}
+    - {branch: subj-3pl, feats: {Mood: Sub, Tense: Pres, Person: '3', Number: Plur}, add: en}
+    - {branch: subj-impf-sg, feats: {Mood: Sub, Tense: Imp, Number: Sing}, add: ara}
+    - {branch: subj-impf-2sg, feats: {Mood: Sub, Tense: Imp, Person: '2', Number: Sing}, add: aras}
+    - {branch: subj-impf-1pl, feats: {Mood: Sub, Tense: Imp, Person: '1', Number: Plur}, add: áramos}
+    - {branch: subj-impf-2pl, feats: {Mood: Sub, Tense: Imp, Person: '2', Number: Plur}, add: arais}
+    - {branch: subj-impf-3pl, feats: {Mood: Sub, Tense: Imp, Person: '3', Number: Plur}, add: aran}
+    - {branch: imp-2sg, feats: {Mood: Imp, Person: '2', Number: Sing}, add: a}
+    - {branch: imp-neg-2sg, feats: {Mood: Imp, Person: '2', Number: Sing, Polarity: Neg}, add: es}
+    - {branch: imp-3sg, feats: {Mood: Imp, Person: '3', Number: Sing}, add: e}
+    - {branch: imp-3pl, feats: {Mood: Imp, Person: '3', Number: Plur}, add: en}
+    - {branch: imp-1pl, feats: {Mood: Imp, Person: '1', Number: Plur}, add: emos}
+    - {branch: imp-neg, feats: {Mood: Imp, Polarity: Neg}, add: e}  # usted, where the course leaves the person out (no abra)
+    - {branch: ger, feats: {VerbForm: Ger}, add: ando}
+- id: 'rule:es-er'  # the second conjugation (comer)
+  when: {ends: er, feats: {VerbForm: 'Fin,Ger'}}
+  blocks:
+  - suffix:
+    - {branch: pres-1sg, feats: {Mood: Ind, Tense: Pres, Person: '1', Number: Sing}, add: o}
+    - {branch: pres-2sg, feats: {Mood: Ind, Tense: Pres, Person: '2', Number: Sing}, add: es}
+    - {branch: pres-3sg, feats: {Mood: Ind, Tense: Pres, Person: '3', Number: Sing}, add: e}
+    - {branch: pres-1pl, feats: {Mood: Ind, Tense: Pres, Person: '1', Number: Plur}, add: emos}
+    - {branch: pres-2pl, feats: {Mood: Ind, Tense: Pres, Person: '2', Number: Plur}, add: éis}
+    - {branch: pres-3pl, feats: {Mood: Ind, Tense: Pres, Person: '3', Number: Plur}, add: en}
+    - {branch: impf-sg, feats: {Mood: Ind, Tense: Imp, Number: Sing}, add: ía}
+    - {branch: impf-2sg, feats: {Mood: Ind, Tense: Imp, Person: '2', Number: Sing}, add: ías}
+    - {branch: impf-1pl, feats: {Mood: Ind, Tense: Imp, Person: '1', Number: Plur}, add: íamos}
+    - {branch: impf-2pl, feats: {Mood: Ind, Tense: Imp, Person: '2', Number: Plur}, add: íais}
+    - {branch: impf-3pl, feats: {Mood: Ind, Tense: Imp, Person: '3', Number: Plur}, add: ían}
+    - {branch: pret-1sg, feats: {Mood: Ind, Tense: Past, Person: '1', Number: Sing}, add: í}
+    - {branch: pret-2sg, feats: {Mood: Ind, Tense: Past, Person: '2', Number: Sing}, add: iste}
+    - {branch: pret-3sg, feats: {Mood: Ind, Tense: Past, Person: '3', Number: Sing}, add: ió}
+    - {branch: pret-1pl, feats: {Mood: Ind, Tense: Past, Person: '1', Number: Plur}, add: imos}
+    - {branch: pret-2pl, feats: {Mood: Ind, Tense: Past, Person: '2', Number: Plur}, add: isteis}
+    - {branch: pret-3pl, feats: {Mood: Ind, Tense: Past, Person: '3', Number: Plur}, add: ieron}
+    - {branch: fut-1sg, feats: {Mood: Ind, Tense: Fut, Person: '1', Number: Sing}, add: é}
+    - {branch: fut-2sg, feats: {Mood: Ind, Tense: Fut, Person: '2', Number: Sing}, add: ás}
+    - {branch: fut-3sg, feats: {Mood: Ind, Tense: Fut, Person: '3', Number: Sing}, add: á}
+    - {branch: fut-1pl, feats: {Mood: Ind, Tense: Fut, Person: '1', Number: Plur}, add: emos}
+    - {branch: fut-2pl, feats: {Mood: Ind, Tense: Fut, Person: '2', Number: Plur}, add: éis}
+    - {branch: fut-3pl, feats: {Mood: Ind, Tense: Fut, Person: '3', Number: Plur}, add: án}
+    - {branch: cond-sg, feats: {Mood: Cnd, Number: Sing}, add: ía}
+    - {branch: cond-2sg, feats: {Mood: Cnd, Person: '2', Number: Sing}, add: ías}
+    - {branch: cond-1pl, feats: {Mood: Cnd, Person: '1', Number: Plur}, add: íamos}
+    - {branch: cond-2pl, feats: {Mood: Cnd, Person: '2', Number: Plur}, add: íais}
+    - {branch: cond-3pl, feats: {Mood: Cnd, Person: '3', Number: Plur}, add: ían}
+    - {branch: subj-sg, feats: {Mood: Sub, Tense: Pres, Number: Sing}, add: a}
+    - {branch: subj-2sg, feats: {Mood: Sub, Tense: Pres, Person: '2', Number: Sing}, add: as}
+    - {branch: subj-1pl, feats: {Mood: Sub, Tense: Pres, Person: '1', Number: Plur}, add: amos}
+    - {branch: subj-2pl, feats: {Mood: Sub, Tense: Pres, Person: '2', Number: Plur}, add: áis}
+    - {branch: subj-3pl, feats: {Mood: Sub, Tense: Pres, Person: '3', Number: Plur}, add: an}
+    - {branch: subj-impf-sg, feats: {Mood: Sub, Tense: Imp, Number: Sing}, add: iera}
+    - {branch: subj-impf-2sg, feats: {Mood: Sub, Tense: Imp, Person: '2', Number: Sing}, add: ieras}
+    - {branch: subj-impf-1pl, feats: {Mood: Sub, Tense: Imp, Person: '1', Number: Plur}, add: iéramos}
+    - {branch: subj-impf-2pl, feats: {Mood: Sub, Tense: Imp, Person: '2', Number: Plur}, add: ierais}
+    - {branch: subj-impf-3pl, feats: {Mood: Sub, Tense: Imp, Person: '3', Number: Plur}, add: ieran}
+    - {branch: imp-2sg, feats: {Mood: Imp, Person: '2', Number: Sing}, add: e}
+    - {branch: imp-neg-2sg, feats: {Mood: Imp, Person: '2', Number: Sing, Polarity: Neg}, add: as}
+    - {branch: imp-3sg, feats: {Mood: Imp, Person: '3', Number: Sing}, add: a}
+    - {branch: imp-3pl, feats: {Mood: Imp, Person: '3', Number: Plur}, add: an}
+    - {branch: imp-1pl, feats: {Mood: Imp, Person: '1', Number: Plur}, add: amos}
+    - {branch: imp-neg, feats: {Mood: Imp, Polarity: Neg}, add: a}
+    - {branch: ger, feats: {VerbForm: Ger}, add: iendo}
+- id: 'rule:es-ir'  # the third conjugation (vivir; oír, freír)
+  when: {endsIn: "[ií]r", feats: {VerbForm: 'Fin,Ger'}}
+  blocks:
+  - suffix:
+    - {branch: pres-1sg, feats: {Mood: Ind, Tense: Pres, Person: '1', Number: Sing}, add: o}
+    - {branch: pres-2sg, feats: {Mood: Ind, Tense: Pres, Person: '2', Number: Sing}, add: es}
+    - {branch: pres-3sg, feats: {Mood: Ind, Tense: Pres, Person: '3', Number: Sing}, add: e}
+    - {branch: pres-1pl, feats: {Mood: Ind, Tense: Pres, Person: '1', Number: Plur}, add: imos}
+    - {branch: pres-2pl, feats: {Mood: Ind, Tense: Pres, Person: '2', Number: Plur}, add: ís}
+    - {branch: pres-3pl, feats: {Mood: Ind, Tense: Pres, Person: '3', Number: Plur}, add: en}
+    - {branch: impf-sg, feats: {Mood: Ind, Tense: Imp, Number: Sing}, add: ía}
+    - {branch: impf-2sg, feats: {Mood: Ind, Tense: Imp, Person: '2', Number: Sing}, add: ías}
+    - {branch: impf-1pl, feats: {Mood: Ind, Tense: Imp, Person: '1', Number: Plur}, add: íamos}
+    - {branch: impf-2pl, feats: {Mood: Ind, Tense: Imp, Person: '2', Number: Plur}, add: íais}
+    - {branch: impf-3pl, feats: {Mood: Ind, Tense: Imp, Person: '3', Number: Plur}, add: ían}
+    - {branch: pret-1sg, feats: {Mood: Ind, Tense: Past, Person: '1', Number: Sing}, add: í}
+    - {branch: pret-2sg, feats: {Mood: Ind, Tense: Past, Person: '2', Number: Sing}, add: iste}
+    - {branch: pret-3sg, feats: {Mood: Ind, Tense: Past, Person: '3', Number: Sing}, add: ió}
+    - {branch: pret-1pl, feats: {Mood: Ind, Tense: Past, Person: '1', Number: Plur}, add: imos}
+    - {branch: pret-2pl, feats: {Mood: Ind, Tense: Past, Person: '2', Number: Plur}, add: isteis}
+    - {branch: pret-3pl, feats: {Mood: Ind, Tense: Past, Person: '3', Number: Plur}, add: ieron}
+    - {branch: fut-1sg, feats: {Mood: Ind, Tense: Fut, Person: '1', Number: Sing}, add: é}
+    - {branch: fut-2sg, feats: {Mood: Ind, Tense: Fut, Person: '2', Number: Sing}, add: ás}
+    - {branch: fut-3sg, feats: {Mood: Ind, Tense: Fut, Person: '3', Number: Sing}, add: á}
+    - {branch: fut-1pl, feats: {Mood: Ind, Tense: Fut, Person: '1', Number: Plur}, add: emos}
+    - {branch: fut-2pl, feats: {Mood: Ind, Tense: Fut, Person: '2', Number: Plur}, add: éis}
+    - {branch: fut-3pl, feats: {Mood: Ind, Tense: Fut, Person: '3', Number: Plur}, add: án}
+    - {branch: cond-sg, feats: {Mood: Cnd, Number: Sing}, add: ía}
+    - {branch: cond-2sg, feats: {Mood: Cnd, Person: '2', Number: Sing}, add: ías}
+    - {branch: cond-1pl, feats: {Mood: Cnd, Person: '1', Number: Plur}, add: íamos}
+    - {branch: cond-2pl, feats: {Mood: Cnd, Person: '2', Number: Plur}, add: íais}
+    - {branch: cond-3pl, feats: {Mood: Cnd, Person: '3', Number: Plur}, add: ían}
+    - {branch: subj-sg, feats: {Mood: Sub, Tense: Pres, Number: Sing}, add: a}
+    - {branch: subj-2sg, feats: {Mood: Sub, Tense: Pres, Person: '2', Number: Sing}, add: as}
+    - {branch: subj-1pl, feats: {Mood: Sub, Tense: Pres, Person: '1', Number: Plur}, add: amos}
+    - {branch: subj-2pl, feats: {Mood: Sub, Tense: Pres, Person: '2', Number: Plur}, add: áis}
+    - {branch: subj-3pl, feats: {Mood: Sub, Tense: Pres, Person: '3', Number: Plur}, add: an}
+    - {branch: subj-impf-sg, feats: {Mood: Sub, Tense: Imp, Number: Sing}, add: iera}
+    - {branch: subj-impf-2sg, feats: {Mood: Sub, Tense: Imp, Person: '2', Number: Sing}, add: ieras}
+    - {branch: subj-impf-1pl, feats: {Mood: Sub, Tense: Imp, Person: '1', Number: Plur}, add: iéramos}
+    - {branch: subj-impf-2pl, feats: {Mood: Sub, Tense: Imp, Person: '2', Number: Plur}, add: ierais}
+    - {branch: subj-impf-3pl, feats: {Mood: Sub, Tense: Imp, Person: '3', Number: Plur}, add: ieran}
+    - {branch: imp-2sg, feats: {Mood: Imp, Person: '2', Number: Sing}, add: e}
+    - {branch: imp-neg-2sg, feats: {Mood: Imp, Person: '2', Number: Sing, Polarity: Neg}, add: as}
+    - {branch: imp-3sg, feats: {Mood: Imp, Person: '3', Number: Sing}, add: a}
+    - {branch: imp-3pl, feats: {Mood: Imp, Person: '3', Number: Plur}, add: an}
+    - {branch: imp-1pl, feats: {Mood: Imp, Person: '1', Number: Plur}, add: amos}
+    - {branch: imp-neg, feats: {Mood: Imp, Polarity: Neg}, add: a}
+    - {branch: ger, feats: {VerbForm: Ger}, add: iendo}
+- id: 'rule:es-impersonal'  # hay: the impersonal present of haber, standing alone (its other tenses are listed: había, habrá)
+  when: {pos: VERB, feats: {VerbForm: Fin}}
+  blocks:
+  - suffix:
+    - {branch: pres-3sg, feats: {Mood: Ind, Tense: Pres, Person: '3', Number: Sing}, add: ''}
+# Nouns, adjectives, determiners, pronouns and numerals: every cell but the citation's names a number. A word that is
+# one cell of its own (ella, nosotros) says so with its `citation`; el's forms are listed.
+- id: 'rule:es-short-masculine'  # este, ese, un: the other forms are a word in -o's (esta, estos, esto; una, unos)
+  when: {class: short-masculine, feats: {Number: 'Plur,Sing'}}
+  blocks:
+  - suffix:
+    - {branch: fem, feats: {Gender: Fem}, add: a}
+    - {branch: neut, feats: {Gender: Neut}, add: o}
+    - {branch: masc-pl, feats: {Gender: Masc, Number: Plur}, add: o}
+  - suffix:
+    - {branch: pl, feats: {Number: Plur}, add: s}
+- id: 'rule:es-comparative'  # mayor, mejor, peor: no feminine ending (una vida mejor); -es in the plural (mayores)
+  when: {class: comparative, feats: {Number: 'Plur,Sing'}}
+  blocks:
+  - suffix:
+    - {branch: pl, feats: {Number: Plur}, add: s}
+- id: 'rule:es-o'  # a word in -o: -a for a feminine, -s for a plural (bueno, buena, buenos; hermano, hermana; lo, la, los)
+  when: {ends: o, feats: {Number: 'Plur,Sing'}}
+  blocks:
+  - suffix:
+    - {branch: fem, feats: {Gender: Fem}, add: a}
+  - suffix:
+    - {branch: pl, feats: {Number: Plur}, add: s}
+- id: 'rule:es-or'  # a word in -or: -a for a feminine (trabajadora, doctora), -es for a plural
+  when: {ends: or, feats: {Number: 'Plur,Sing'}}
+  blocks:
+  - suffix:
+    - {branch: fem, feats: {Gender: Fem}, add: a}
+  - suffix:
+    - {branch: pl, feats: {Number: Plur}, add: s}
+- id: 'rule:es-nominal'  # any other: -s or -es for a plural (casas, ciudades, grandes); the same for a feminine (grande, feliz, mi)
+  when: {feats: {Number: 'Plur,Sing'}}
+  blocks:
+  - suffix:
+    - {branch: pl, feats: {Number: Plur}, add: s}
+  # No exponent for a feminine: a token's feminine is the word itself (no step), and a paradigm lists no feminine for
+  # it, nor any cell for a word that is one cell of its own (nosotros, ellos). So gran stands before a feminine noun
+  # as before a masculine one (una gran familia: the allomorph is chosen where no ending is).
+# The rewrites, in order, each once over the whole form. The contexts of a stressed stem: its last vowel before one to
+# three consonants and an ending of one syllable (-o, -a, -e, -as, -es, -an, -en): Spanish stresses a word that ends
+# in a vowel, n or s on its next-to-last syllable (the RAE's rule; profiles/es-Latn.standard.yaml `stress`).
+phonology:
+- {id: 'rule:es-reflexive', find: "+se+", to: "+"}  # a verb cited with se writes it as a word of its own beside its forms (me levanto; mudarme)
+- {id: 'rule:es-participle', branch: id, when: {feats: {VerbForm: Part}}, find: "[eií]r+", to: "+id+"}  # comido, vivido, oído (first: -ad- would leave esperar's er+ for it)
+- {id: 'rule:es-participle', branch: ad, when: {feats: {VerbForm: Part}}, find: "ar+", to: "+ad+"}  # hablado
+# The infinitive's -ar, -er or -ir gives way to the ending, but where the future and the conditional stand on it.
+- {id: 'rule:es-stem', when: {feats: {Mood: 'Ind,Sub', Tense: 'Imp,Past,Pres'}}, find: "[aeií]r+", to: "+"}
+- {id: 'rule:es-stem', when: {feats: {Mood: Imp}}, find: "[aeií]r+", to: "+"}
+- {id: 'rule:es-stem', when: {feats: {VerbForm: Ger}}, find: "[aeií]r+", to: "+"}
+- {id: 'rule:es-stem', branch: future, when: {feats: {Tense: Fut}}, find: "ír+", to: "ir+"}  # oír, oiré: the infinitive's accent goes
+- {id: 'rule:es-stem', branch: future, when: {feats: {Mood: Cnd}}, find: "ír+", to: "ir+"}  # oiría
+- {id: 'rule:es-short-imperative', when: {class: short-imperative, feats: {Mood: Imp, Person: '2', Number: Sing}}, find: "+e", before: ["#", "+"], to: ""}  # ten, pon, ven, sal
+- {id: 'rule:es-short-imperative', branch: z, when: {class: short-imperative, feats: {Mood: Imp, Person: '2', Number: Sing}}, find: "c", at: end, to: "z"}  # haz: a final c's sound is written z
+# -go: in the present (indicative and subjunctive) and the commands, before an ending in a or o (not the strong past's vino).
+- {id: 'rule:es-go', branch: g, when: {class: go, feats: {Tense: Pres}}, find: "+", after: "[ln]", before: "[aoá]", to: "+g"}  # tengo, salgo, tenga
+- {id: 'rule:es-go', branch: g, when: {class: go, feats: {Mood: Imp}}, find: "+", after: "[ln]", before: "[aoá]", to: "+g"}  # venga, no salgas
+- {id: 'rule:es-go', branch: c, when: {class: go, feats: {Tense: Pres}}, find: "c+", before: "[aoá]", to: "g+"}  # hago, digo
+- {id: 'rule:es-go', branch: c, when: {class: go, feats: {Mood: Imp}}, find: "c+", before: "[aoá]", to: "g+"}  # haga, díganme
+- {id: 'rule:es-go', branch: ig, when: {class: go, feats: {Tense: Pres}}, find: "+", after: "[aeo]", before: "[aoá]", to: "+ig"}  # traigo, caigo, oigo
+- {id: 'rule:es-go', branch: ig, when: {class: go, feats: {Mood: Imp}}, find: "+", after: "[aeo]", before: "[aoá]", to: "+ig"}  # oigan
+- {id: 'rule:es-stem-change', branch: e-ie, when: {class: e-ie}, find: "e", before: ["{C}+{V}#", "{C}+{V}s#", "{C}+{V}n#", "{C}{C}+{V}#", "{C}{C}+{V}s#", "{C}{C}+{V}n#", "{C}{C}{C}+{V}#", "{C}{C}{C}+{V}s#", "{C}{C}{C}+{V}n#", "{C}+{V}+", "{C}+{V}s+", "{C}+{V}n+", "{C}{C}+{V}+", "{C}{C}+{V}s+", "{C}{C}+{V}n+", "{C}{C}{C}+{V}+", "{C}{C}{C}+{V}s+", "{C}{C}{C}+{V}n+"], to: "ie"}  # pienso, quieres, tienen
+- {id: 'rule:es-stem-change', branch: o-ue, when: {class: o-ue}, find: "o", before: ["{C}+{V}#", "{C}+{V}s#", "{C}+{V}n#", "{C}{C}+{V}#", "{C}{C}+{V}s#", "{C}{C}+{V}n#", "{C}{C}{C}+{V}#", "{C}{C}{C}+{V}s#", "{C}{C}{C}+{V}n#", "{C}+{V}+", "{C}+{V}s+", "{C}+{V}n+", "{C}{C}+{V}+", "{C}{C}+{V}s+", "{C}{C}+{V}n+", "{C}{C}{C}+{V}+", "{C}{C}{C}+{V}s+", "{C}{C}{C}+{V}n+"], to: "ue"}  # puedo, vuelve, encuentres
+- {id: 'rule:es-stem-change', branch: u-ue, when: {class: u-ue}, find: "u", before: ["{C}+{V}#", "{C}+{V}s#", "{C}+{V}n#", "{C}{C}+{V}#", "{C}{C}+{V}s#", "{C}{C}+{V}n#", "{C}+{V}+", "{C}+{V}s+", "{C}+{V}n+", "{C}{C}+{V}+", "{C}{C}+{V}s+", "{C}{C}+{V}n+"], to: "ue"}  # juego
+- {id: 'rule:es-stem-change', branch: e-i, when: {class: e-i}, find: "e", before: ["+{V}#", "+{V}s#", "+{V}n#", "{C}+{V}#", "{C}+{V}s#", "{C}+{V}n#", "{C}{C}+{V}#", "{C}{C}+{V}s#", "{C}{C}+{V}n#", "{C}u+{V}#", "{C}u+{V}s#", "{C}u+{V}n#", "+{V}+", "+{V}s+", "+{V}n+", "{C}+{V}+", "{C}+{V}s+", "{C}+{V}n+", "{C}{C}+{V}+", "{C}{C}+{V}s+", "{C}{C}+{V}n+", "{C}u+{V}+", "{C}u+{V}s+", "{C}u+{V}n+"], to: "i"}  # pido, dice, consigue, fríe
+- {id: 'rule:es-stem-change', branch: hiatus, when: {class: hiatus, feats: {Mood: 'Imp,Ind,Sub'}}, find: "[iu]", before: ["+{V}#", "+{V}s#", "+{V}n#", "{C}+{V}#", "{C}+{V}s#", "{C}+{V}n#", "+{V}+", "+{V}s+", "+{V}n+", "{C}+{V}+", "{C}+{V}s+", "{C}+{V}n+"], map: {i: "í", u: "ú"}}  # reúne, envío
+# A pronoun joined to a command leaves its stress where it was (dígame, cuéntame): each context also stands before one.
+# -ir verbs raise a stem's e or o before an ending in a (unstressed), ie or ió: pidió, sintió, durmiendo, sintamos.
+- {id: 'rule:es-raising', branch: e-i, when: {class: e-i}, find: "e", before: ["+am", "+á", "+ie", "+ió", "{C}+am", "{C}+á", "{C}+ie", "{C}+ió", "{C}{C}+am", "{C}{C}+á", "{C}{C}+ie", "{C}{C}+ió", "{C}u+am", "{C}u+á", "{C}u+ie", "{C}u+ió", "+ié", "{C}+ié", "{C}{C}+ié", "{C}u+ié"], to: "i"}
+- {id: 'rule:es-raising', branch: e-i, when: {class: e-ie, endsIn: "[ií]r"}, find: "e", before: ["{C}+am", "{C}+á", "{C}+ie", "{C}+ió", "{C}{C}+am", "{C}{C}+á", "{C}{C}+ie", "{C}{C}+ió", "{C}+ié", "{C}{C}+ié"], to: "i"}
+- {id: 'rule:es-raising', branch: o-u, when: {class: o-ue, endsIn: "[ií]r"}, find: "o", before: ["{C}+am", "{C}+á", "{C}+ie", "{C}+ió", "{C}{C}+am", "{C}{C}+á", "{C}{C}+ie", "{C}{C}+ió", "{C}+ié", "{C}{C}+ié"], to: "u"}
+- {id: 'rule:es-zco', when: {class: zco}, find: "c+", before: "[aoá]", to: "zc+"}  # conozco, agradezca
+# The plural: -s after a vowel and after a consonant other than d l j n r s x y z ch (a loan: shoppings); -es after those; nothing on a word whose last syllable is unstressed and ends in s
+# or x (los jueves); -es after a stressed í or ú (ajíes: the RAE also takes ajís; REVIEW). With it the stress stays where
+# it was: an accent is written where it now falls on the third syllable from the end (jóvenes) and goes where the
+# last syllable is now the next to last (canciones, ingleses); an í or ú after a vowel keeps its (países).
+- {id: 'rule:es-plural', branch: same, when: {feats: {Number: Plur}}, find: "+s", at: end, after: ["{AV}{C}{U}s", "{AV}{C}{C}{U}s", "{AV}{C}{C}{C}{U}s", "{AV}{C}{U}x"], to: ""}
+- {id: 'rule:es-plural', branch: es, when: {feats: {Number: Plur}}, find: "+s", at: end, after: ["[dljnrsxyz]", "ch"], to: "+es"}  # not after another consonant (shoppings, clubs: the Ortografía)
+- {id: 'rule:es-plural', branch: ies, when: {feats: {Number: Plur}}, find: "+s", at: end, after: "[íú]", to: "+es"}
+- {id: 'rule:es-plural', branch: accent-gain, when: {feats: {Number: Plur}}, find: "{U}", before: ["{C}{U}n+es#", "{C}{C}{U}n+es#"], map: {a: "á", e: "é", i: "í", o: "ó", u: "ú"}}
+- {id: 'rule:es-plural', branch: accent-loss, when: {feats: {Number: Plur}}, find: "[áéó]", before: ["n+es#", "s+es#"], map: {"á": a, "é": e, "ó": o}}
+- {id: 'rule:es-plural', branch: accent-loss, when: {feats: {Number: Plur}}, find: "[íú]", after: "{C}", before: ["n+es#", "s+es#"], map: {"í": i, "ú": u}}
+- {id: 'rule:es-final-vowel', when: {feats: {Gender: 'Fem,Masc,Neut'}}, find: "[aeo]+", before: ["[aeo]#", "[aeo]+"], to: "+"}  # a word's last vowel gives way to its gender's: buena, esta, la
+# Spelling: the stem's last consonant keeps its sound before the ending's vowel (the Ortografía's c/qu, g/gu, g/j, z/c).
+- {id: 'rule:es-spelling', branch: c-qu, when: {ends: car}, find: "c+", before: "[eé]", to: "qu+"}  # busqué, apliqué
+- {id: 'rule:es-spelling', branch: g-gu, when: {ends: gar}, find: "g+", before: "[eé]", to: "gu+"}  # llegué, juegue, cuelgues
+- {id: 'rule:es-spelling', branch: g-j, when: {ends: ger}, find: "g+", before: "[aoá]", to: "j+"}  # cojo, cojas
+- {id: 'rule:es-spelling', branch: g-j, when: {ends: gir}, find: "g+", before: "[aoá]", to: "j+"}  # elijo
+- {id: 'rule:es-spelling', branch: gu-g, when: {ends: guir}, find: "gu+", before: "[aoá]", to: "g+"}  # consigo
+- {id: 'rule:es-spelling', branch: z-c, find: "z+", before: "[eéií]", to: "c+"}  # hice, felices, realicé
+# y between vowels: -uir and oír put y before a, e, o (construyo, oyes); an unstressed i between vowels is y (leyó,
+# cayó, construyendo, oyó).
+- {id: 'rule:es-y', branch: uir, when: {ends: uir}, find: "+", after: "{NGQ}u", before: "[aeoáó]", to: "y+"}
+- {id: 'rule:es-y', branch: oir, when: {ends: "oír"}, find: "+", after: "o", before: "e", to: "y+"}
+- {id: 'rule:es-y', branch: i-y, find: "+i", after: ["[aeo]", "{NGQ}u"], before: "[aeoóé]", to: "+y"}
+- {id: 'rule:es-merge', branch: ii, find: "i+i", before: "[eéó]", to: "i+"}  # frió, frieron, friendo: two i's are one
+- {id: 'rule:es-merge', branch: j, when: {class: strong}, find: "j+i", before: "[eé]", to: "j+"}  # dijeron, trajera, dijéramos
+# Accents (the Ortografía, chapter 3): an i stressed beside a vowel (leímos, oído, freímos, fríe); a monosyllable none
+# (vi, vio, frio); an imperative's stressed vowel where a pronoun is joined to it (échale).
+- {id: 'rule:es-accent', branch: hiatus, find: "+i", after: "[aeo]", before: ["mos", "ste", "d", "s#"], to: "+í"}
+- {id: 'rule:es-accent', branch: hiatus, when: {class: e-i}, find: "i", before: ["+{V}#", "+{V}s#", "+{V}n#"], map: {i: "í"}}
+- {id: 'rule:es-accent', branch: monosyllable, find: "[íó]", at: end, after: ["#{C}+", "#{C}+i", "#{C}i+", "#{C}{C}i+"], map: {"í": i, "ó": o}}
+- {id: 'rule:es-accent', branch: enclitic, when: {feats: {Mood: Imp}}, find: "{U}", before: ["{C}+{V}+.", "{C}{C}+{V}+.", "{C}{C}{C}+{V}+.", "{C}+{V}n+.", "{C}{C}+{V}n+.", "{C}{C}{C}+{V}n+."], map: {a: "á", e: "é", i: "í", o: "ó", u: "ú"}}
