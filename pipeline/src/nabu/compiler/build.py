@@ -1026,11 +1026,24 @@ def _token_sites(ctx: Ctx, units: list[Unit]) -> list[lexical_forms.Site]:
         for _, written in tokens:
             if len(written) == 1 and phrase.get(str(written[0]["lexeme"])):
                 written[0] = {**written[0], "feats": phrase[str(written[0]["lexeme"])]}
+        # Whether only space stands between each token and the next: punctuation ends the phrase
+        # an allomorph chosen by the next word reads (es "Bueno, primo": no buen before the comma).
+        aligned, problem = tx.align(form.text, [{"surface": t.surface} for t, _ in tokens])
+        spaced: list[bool] = []
+        if problem is None:
+            authored = [k for k, a in enumerate(aligned) if "kind" not in a]
+            for n, k in enumerate(authored):
+                end = authored[n + 1] if n + 1 < len(authored) else len(aligned)
+                spaced.append(all(a.get("kind") == "space" for a in aligned[k + 1 : end]))
         for i, (t, written) in enumerate(tokens):
             if not written:
                 continue
             # The next token that writes a lexeme: its base, which an allomorph may be chosen by.
-            following = next((_base_of(w) for _, w in tokens[i + 1 :] if w), None)
+            following = (
+                next((_base_of(w) for _, w in tokens[i + 1 :] if w), None)
+                if not spaced or spaced[i]
+                else None
+            )
             marked = _marked_of(ctx, orth, t.surface, t.vocalized)
             parts = tk.written(t)
             base = parts[0] if len(parts) == 1 else next((p for p in parts if p.get("base")), None)

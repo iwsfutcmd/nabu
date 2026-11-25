@@ -273,7 +273,8 @@ class Site:
     surface: str
     marked: str | None
     written: list[dict[str, Any]]
-    #: The base lexeme of the next token of the same text, if any (an allomorph's `before`).
+    #: The base lexeme of the next token of the same text, if any, where only space stands between
+    #: them (an allomorph's `before`; punctuation ends the phrase).
     following: str | None = None
     #: What the token writes of its base lexeme (its part's surface, or the whole token's).
     base_surface: str | None = None
