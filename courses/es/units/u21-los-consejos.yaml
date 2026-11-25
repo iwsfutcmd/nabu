@@ -34,7 +34,7 @@ sentences:
       tokens: [{surface: Mi'jo, lexeme: mijo, feats: {Gender: Masc, Number: Sing}}, {surface: quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: me, lexeme: me}, {surface: llames, lexeme: llamar, feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}}, {surface: todos, lexeme: todo, feats: {Gender: Masc, Number: Plur}, n: 6, head: 8, rel: det}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 7, head: 8, rel: det}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}, n: 8}]
       reverse: (Mi'jo|Mi hijo|Mijito) [yo] quiero que me llames todos los domingos
   translations:
-    en: (Son|Honey|Sweetie|Sweetheart|Dear|Mijo), I want you to call me (every Sunday|on Sundays).
+    en: (Son|Honey|Sweetie|Sweetheart|Dear|Mijo), I want you to call me (every Sunday|[on] Sundays).
 - id: s.u21.3
   node: es.u21.quiero-que
   forms:
@@ -389,7 +389,7 @@ sentences:
       tokens: [{surface: Quiero, lexeme: querer, feats: {Mood: Ind, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}}, {surface: que, lexeme: que}, {surface: ustedes, lexeme: ustedes, feats: {Number: Plur}}, {surface: coman, lexeme: comer, feats: {Mood: Sub, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}}, {surface: juntos, lexeme: junto, feats: {Gender: Masc, Number: Plur}}, {surface: los, lexeme: el, feats: {Gender: Masc, Number: Plur}, n: 6, head: 7, rel: det}, {surface: domingos, lexeme: domingo, feats: {Number: Plur}, n: 7}]
       reverse: '[Yo] quiero que [ustedes] coman juntos los domingos'
   translations:
-    en: I want (you|you all|you guys) to eat together (on Sundays|every Sunday).
+    en: I want (you|you all|you guys) to eat together ([on] Sundays|every Sunday).
 - id: s.u21.33
   node: es.u21.la-familia
   forms:
