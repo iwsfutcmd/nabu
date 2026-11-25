@@ -1,0 +1,565 @@
+# Fixture course (apc), unit 26: passive participles (Kline, chapter 19). Form I verbs take ma- and a long u
+# (maftou7, maksour, maktoub, ma3rouf, ma7boub, ma2tou3, ma7tout, ma3zoum, mamnou3), Form II verbs m- and an a before
+# the last letter (msakkar); like adjectives they agree (maftou7a, ma3zoumin) and tell the state an action left
+# (el beb msakkar: the door is shut), with ken for the past (el beb ken msakkar). The verb's own forms stand beside
+# them (kasar el fenjen: he broke the cup). Drafted by an LLM (provenance llm:…, status draft) and checked against
+# Kline (2022), chapter 19: every sentence awaits a native speaker's review.
+id: u26-closed
+title:
+  en: Closed today
+cefr: B1
+nodes:
+- {id: apc.closed.open, kind: lesson, introduces: ['lexeme:sakkar', 'feature:Voice=Pass', 'lexeme:beb', 'lexeme:shebbek']}
+- {id: apc.closed.broken, kind: lesson, introduces: ['lexeme:kasar']}
+- {id: apc.closed.written, kind: lesson, introduces: ['lexeme:katab']}
+- {id: apc.closed.power, kind: lesson, introduces: ['lexeme:kahraba']}
+- {id: apc.closed.forbidden, kind: lesson, introduces: ['lexeme:mana3']}
+- {id: apc.closed.was, kind: lesson}
+- {id: apc.closed.story, kind: story}
+sentences:
+- id: s.closed.1
+  node: apc.closed.open
+  forms:
+    apc-Arab/standard:
+      text: المطعم مسكر اليوم.
+      tokens: [{surface: المطعم, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: mat3am, surface: مطعم, base: true, feats: {Number: Sing}, n: 2}]}, {surface: مسكر, lexeme: sakkar,
+          feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: yom, surface: يوم, base: true, feats: {
+                Number: Sing}, n: 5}]}]
+      reverse: المطعم مسكر اليوم
+    apc-Latn/arabizi:
+      text: el mat3am msakkar el yom.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}, n: 2}, {surface: msakkar, lexeme: sakkar, feats: {Aspect: Part, Gender: Masc,
+            Number: Sing, Voice: Pass}}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: yom, lexeme: yom, feats: {Number: Sing}, n: 5}]
+      reverse: el mat3am msakkar el yom
+  translations:
+    en: |-
+      The restaurant is closed today.
+      The restaurant's closed today.
+- id: s.closed.2
+  node: apc.closed.open
+  forms:
+    apc-Arab/standard:
+      text: الدكّانة مفتوحة؟
+      tokens: [{surface: الدكّانة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: dekkene, surface: دكّانة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: مفتوحة, lexeme: fata7,
+          feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}]
+      reverse: الدكّانة مفتوحة
+    apc-Latn/arabizi:
+      text: el dekkene maftu7a?
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: dekkene, lexeme: dekkene, feats: {Number: Sing}, n: 2}, {surface: maftu7a, lexeme: fata7, feats: {Aspect: Part, Gender: Fem,
+            Number: Sing, Voice: Pass}}]
+      reverse: el dekkene maftu7a
+  translations:
+    en: Is the (shop|store) open?
+- id: s.closed.3
+  node: apc.closed.open
+  forms:
+    apc-Arab/standard:
+      text: لأ، مش مفتوحة.
+      tokens: [{surface: لأ, lexeme: la2}, {surface: مش, lexeme: mish}, {surface: مفتوحة, lexeme: fata7, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}]
+      reverse: لأ مش مفتوحة
+    apc-Latn/arabizi:
+      text: la2, mish maftu7a.
+      tokens: [{surface: la2, lexeme: la2}, {surface: mish, lexeme: mish}, {surface: maftu7a, lexeme: fata7, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}]
+      reverse: la2 mish maftu7a
+  translations:
+    en: |-
+      No, it (isn't|is not) open.
+      No, it's not open.
+- id: s.closed.4
+  node: apc.closed.open
+  forms:
+    apc-Arab/standard:
+      text: الباب مسكر.
+      tokens: [{surface: الباب, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: beb, surface: باب, base: true, feats: {Number: Sing}, n: 2}]}, {surface: مسكر, lexeme: sakkar, feats: {
+            Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}]
+      reverse: الباب مسكر
+    apc-Latn/arabizi:
+      text: el beb msakkar.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: beb, lexeme: beb, feats: {Number: Sing}, n: 2}, {surface: msakkar, lexeme: sakkar, feats: {Aspect: Part, Gender: Masc, Number: Sing,
+            Voice: Pass}}]
+      reverse: el beb msakkar
+  translations:
+    en: |-
+      The door is (closed|shut).
+      The door's (closed|shut).
+- id: s.closed.5
+  node: apc.closed.open
+  forms:
+    apc-Arab/standard:
+      text: الشباك مفتوح.
+      tokens: [{surface: الشباك, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: shebbek, surface: شباك, base: true, feats: {Number: Sing}, n: 2}]}, {surface: مفتوح, lexeme: fata7,
+          feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}]
+      reverse: الشباك مفتوح
+    apc-Latn/arabizi:
+      text: el shebbek maftu7.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: shebbek, lexeme: shebbek, feats: {Number: Sing}, n: 2}, {surface: maftu7, lexeme: fata7, feats: {Aspect: Part, Gender: Masc,
+            Number: Sing, Voice: Pass}}]
+      reverse: el shebbek maftu7
+  translations:
+    en: |-
+      The window is open.
+      The window's open.
+- id: s.closed.6
+  node: apc.closed.open
+  forms:
+    apc-Arab/standard:
+      text: المطعم مفتوح كلّ يوم.
+      tokens: [{surface: المطعم, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: mat3am, surface: مطعم, base: true, feats: {Number: Sing}, n: 2}]}, {surface: مفتوح, lexeme: fata7,
+          feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}, {surface: كلّ, lexeme: kell}, {surface: يوم, lexeme: yom, feats: {Number: Sing}}]
+      reverse: المطعم مفتوح كلّ يوم
+    apc-Latn/arabizi:
+      text: el mat3am maftu7 kell yom.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}, n: 2}, {surface: maftu7, lexeme: fata7, feats: {Aspect: Part, Gender: Masc, Number: Sing,
+            Voice: Pass}}, {surface: kell, lexeme: kell}, {surface: yom, lexeme: yom, feats: {Number: Sing}}]
+      reverse: el mat3am maftu7 kell yom
+  translations:
+    en: |-
+      The restaurant is open every day.
+      The restaurant's open every day.
+- id: s.closed.7
+  node: apc.closed.broken
+  forms:
+    apc-Arab/standard:
+      text: الشباك مكسور.
+      tokens: [{surface: الشباك, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: shebbek, surface: شباك, base: true, feats: {Number: Sing}, n: 2}]}, {surface: مكسور, lexeme: kasar,
+          feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}]
+      reverse: الشباك مكسور
+    apc-Latn/arabizi:
+      text: el shebbek maksur.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: shebbek, lexeme: shebbek, feats: {Number: Sing}, n: 2}, {surface: maksur, lexeme: kasar, feats: {Aspect: Part, Gender: Masc,
+            Number: Sing, Voice: Pass}}]
+      reverse: el shebbek maksur
+  translations:
+    en: |-
+      The window is broken.
+      The window's broken.
+- id: s.closed.8
+  node: apc.closed.broken
+  forms:
+    apc-Arab/standard:
+      text: تلفوني مكسور.
+      tokens: [{surface: تلفوني, lexemes: [{lexeme: telefon, surface: تلفون, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: مكسور, lexeme: kasar, feats: {Aspect: Part, Gender: Masc,
+            Number: Sing, Voice: Pass}}]
+      reverse: تلفوني مكسور
+    apc-Latn/arabizi:
+      text: telefoni maksur.
+      tokens: [{surface: telefoni, lexemes: [{lexeme: telefon, surface: telefon, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: maksur, lexeme: kasar, feats: {Aspect: Part,
+            Gender: Masc, Number: Sing, Voice: Pass}}]
+      reverse: telefoni maksur
+  translations:
+    en: |-
+      My phone is broken.
+      My phone's broken.
+- id: s.closed.9
+  node: apc.closed.broken
+  forms:
+    apc-Arab/standard:
+      text: كسر الفنجان.
+      tokens: [{surface: كسر, lexeme: kasar, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: الفنجان, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: fenjen,
+              surface: فنجان, base: true, feats: {Number: Sing}, n: 3}]}]
+      reverse: كسر الفنجان
+    apc-Latn/arabizi:
+      text: kasar el fenjen.
+      tokens: [{surface: kasar, lexeme: kasar, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: fenjen, lexeme: fenjen, feats: {
+            Number: Sing}, n: 3}]
+      reverse: kasar el fenjen
+  translations:
+    en: He broke the cup.
+- id: s.closed.10
+  node: apc.closed.broken
+  forms:
+    apc-Arab/standard:
+      text: مين كسر الشباك؟
+      tokens: [{surface: مين, lexeme: meen}, {surface: كسر, lexeme: kasar, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: الشباك, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4,
+              rel: det}, {lexeme: shebbek, surface: شباك, base: true, feats: {Number: Sing}, n: 4}]}]
+      reverse: مين كسر الشباك
+    apc-Latn/arabizi:
+      text: meen kasar el shebbek?
+      tokens: [{surface: meen, lexeme: meen}, {surface: kasar, lexeme: kasar, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: shebbek,
+          lexeme: shebbek, feats: {Number: Sing}, n: 4}]
+      reverse: meen kasar el shebbek
+  translations:
+    en: Who broke the window?
+- id: s.closed.11
+  node: apc.closed.broken
+  tags:
+  - {persons: {speaker: f}}
+  forms:
+    apc-Arab/standard:
+      text: معليش، كسرت الفنجان.
+      tokens: [{surface: معليش, lexeme: ma3lesh}, {surface: كسرت, lexeme: kasar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: الفنجان, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4,
+              rel: det}, {lexeme: fenjen, surface: فنجان, base: true, feats: {Number: Sing}, n: 4}]}]
+      reverse: معليش كسرت الفنجان
+    apc-Latn/arabizi:
+      text: ma3lesh, kasart el fenjen.
+      tokens: [{surface: ma3lesh, lexeme: ma3lesh}, {surface: kasart, lexeme: kasar, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: fenjen,
+          lexeme: fenjen, feats: {Number: Sing}, n: 4}]
+      reverse: ma3lesh kasart el fenjen
+  translations:
+    en: Sorry, I broke the cup.
+- id: s.closed.12
+  node: apc.closed.written
+  forms:
+    apc-Arab/standard:
+      text: شو مكتوب هون؟
+      tokens: [{surface: شو, lexeme: shu}, {surface: مكتوب, lexeme: katab, feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}, {surface: هون, lexeme: hon}]
+      reverse: شو مكتوب هون
+    apc-Latn/arabizi:
+      text: shu maktub hon?
+      tokens: [{surface: shu, lexeme: shu}, {surface: maktub, lexeme: katab, feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}, {surface: hon, lexeme: hon}]
+      reverse: shu maktub hon
+  translations:
+    en: |-
+      What's written here?
+      What is written here?
+      What does it say here?
+- id: s.closed.13
+  node: apc.closed.written
+  forms:
+    apc-Arab/standard:
+      text: اسمه مكتوب عالباب.
+      tokens: [{surface: اسمه, lexemes: [{lexeme: esm, surface: اسم, base: true, feats: {Number: Sing}}, {lexeme: poss-3ms, surface: ه}]}, {surface: مكتوب, lexeme: katab, feats: {Aspect: Part, Gender: Masc,
+            Number: Sing, Voice: Pass}}, {surface: عالباب, lexemes: [{lexeme: 3a, surface: ع, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: beb, surface: باب, base: true,
+              feats: {Number: Sing}, n: 6}]}]
+      reverse: اسمه مكتوب عالباب
+    apc-Latn/arabizi:
+      text: esmo maktub 3al beb.
+      tokens: [{surface: esmo, lexemes: [{lexeme: esm, surface: esm, base: true, feats: {Number: Sing}}, {lexeme: poss-3ms, surface: o}]}, {surface: maktub, lexeme: katab, feats: {Aspect: Part, Gender: Masc,
+            Number: Sing, Voice: Pass}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, n: 4, head: 6, rel: case, base: true}, {lexeme: el, surface: l, n: 5, head: 6, rel: det}]}, {surface: beb, lexeme: beb,
+          feats: {Number: Sing}, n: 6}]
+      reverse: esmo maktub 3al beb
+  translations:
+    en: |-
+      His name is written on the door.
+      His name's written on the door.
+- id: s.closed.14
+  node: apc.closed.written
+  tags:
+  - {persons: {speaker: m}}
+  forms:
+    apc-Arab/standard:
+      text: كتبت اسمي هون.
+      tokens: [{surface: كتبت, lexeme: katab, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: اسمي, lexemes: [{lexeme: esm, surface: اسم, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg,
+              surface: ي}]}, {surface: هون, lexeme: hon}]
+      reverse: كتبت اسمي هون
+    apc-Latn/arabizi:
+      text: katabt esmi hon.
+      tokens: [{surface: katabt, lexeme: katab, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: esmi, lexemes: [{lexeme: esm, surface: esm, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg,
+              surface: i}]}, {surface: hon, lexeme: hon}]
+      reverse: katabt esmi hon
+  translations:
+    en: I wrote my name here.
+- id: s.closed.15
+  node: apc.closed.written
+  forms:
+    apc-Arab/standard:
+      text: هيدا المطعم كتير معروف.
+      tokens: [{surface: هيدا, lexeme: hayda}, {surface: المطعم, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: mat3am, surface: مطعم, base: true, feats: {Number: Sing}, n: 3}]},
+        {surface: كتير, lexeme: ktir}, {surface: معروف, lexeme: 3eref, feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}]
+      reverse: هيدا المطعم كتير معروف
+    apc-Latn/arabizi:
+      text: hayda el mat3am ktir ma3ruf.
+      tokens: [{surface: hayda, lexeme: hayda}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}, n: 3}, {surface: ktir, lexeme: ktir}, {surface: ma3ruf,
+          lexeme: 3eref, feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}]
+      reverse: hayda el mat3am ktir ma3ruf
+  translations:
+    en: |-
+      This restaurant is very (well-known|well known|famous).
+      This restaurant's very (well-known|well known|famous).
+- id: s.closed.16
+  node: apc.closed.written
+  forms:
+    apc-Arab/standard:
+      text: مايا محبوبة كتير.
+      tokens: [{surface: مايا, lexeme: maya}, {surface: محبوبة, lexeme: 7abb, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}, {surface: كتير, lexeme: ktir}]
+      reverse: مايا محبوبة كتير
+    apc-Latn/arabizi:
+      text: Maya ma7bube ktir.
+      tokens: [{surface: Maya, lexeme: maya}, {surface: ma7bube, lexeme: 7abb, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}, {surface: ktir, lexeme: ktir}]
+      reverse: Maya ma7bube ktir
+  translations:
+    en: |-
+      Maya is very (popular|well liked|well-liked|much loved).
+      Everyone loves Maya.
+- id: s.closed.17
+  node: apc.closed.power
+  forms:
+    apc-Arab/standard:
+      text: الكهربا مقطوعة.
+      tokens: [{surface: الكهربا, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: kahraba, surface: كهربا, base: true, feats: {Number: Sing}, n: 2}]}, {surface: مقطوعة, lexeme: 2ata3,
+          feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}]
+      reverse: الكهربا مقطوعة
+    apc-Latn/arabizi:
+      text: el kahraba ma2tu3a.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: kahraba, lexeme: kahraba, feats: {Number: Sing}, n: 2}, {surface: ma2tu3a, lexeme: 2ata3, feats: {Aspect: Part, Gender: Fem,
+            Number: Sing, Voice: Pass}}]
+      reverse: el kahraba ma2tu3a
+  translations:
+    en: |-
+      The (power|electricity) is (out|off|cut off).
+      The (power|electricity)'s (out|off|cut off).
+      There's no (power|electricity).
+- id: s.closed.18
+  node: apc.closed.power
+  forms:
+    apc-Arab/standard:
+      text: الأكل محطوط عالطاولة.
+      tokens: [{surface: الأكل, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: akl, surface: أكل, base: true, feats: {Number: Sing}, n: 2}]}, {surface: محطوط, lexeme: 7att, feats: {
+            Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}, {surface: عالطاولة, lexemes: [{lexeme: 3a, surface: ع, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det},
+            {lexeme: tawle, surface: طاولة, base: true, feats: {Number: Sing}, n: 6}]}]
+      reverse: الأكل محطوط عالطاولة
+    apc-Latn/arabizi:
+      text: el akl ma7tut 3al tawle.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: akl, lexeme: akl, feats: {Number: Sing}, n: 2}, {surface: ma7tut, lexeme: 7att, feats: {Aspect: Part, Gender: Masc, Number: Sing,
+            Voice: Pass}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, n: 4, head: 6, rel: case, base: true}, {lexeme: el, surface: l, n: 5, head: 6, rel: det}]}, {surface: tawle, lexeme: tawle,
+          feats: {Number: Sing}, n: 6}]
+      reverse: el akl ma7tut 3al tawle
+  translations:
+    en: |-
+      The food is (on|set on|laid out on) the table.
+      The food's (on|set on|laid out on) the table.
+- id: s.closed.19
+  node: apc.closed.power
+  tags:
+  - {persons: {addressee: pl}}
+  forms:
+    apc-Arab/standard:
+      text: إنتو معزومين عالعشا.
+      tokens: [{surface: إنتو, lexeme: ento}, {surface: معزومين, lexeme: 3azam, feats: {Aspect: Part, Number: Plur, Voice: Pass}}, {surface: عالعشا, lexemes: [{lexeme: 3a, surface: ع, n: 3, head: 5, rel: case},
+            {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: 3asha, surface: عشا, base: true, feats: {Number: Sing}, n: 5}]}]
+      reverse: '[إنتو] معزومين عالعشا'
+    apc-Latn/arabizi:
+      text: ento ma3zumin 3al 3asha.
+      tokens: [{surface: ento, lexeme: ento}, {surface: ma3zumin, lexeme: 3azam, feats: {Aspect: Part, Number: Plur, Voice: Pass}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, n: 3, head: 5, rel: case,
+              base: true}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: 3asha, lexeme: 3asha, feats: {Number: Sing}, n: 5}]
+      reverse: '[ento] ma3zumin 3al 3asha'
+  translations:
+    en: You('re| are) invited to dinner.
+- id: s.closed.20
+  node: apc.closed.power
+  tags:
+  - {persons: {addressee: f}}
+  forms:
+    apc-Arab/standard:
+      text: إنتي معزومة عالحفلة.
+      tokens: [{surface: إنتي, lexeme: enti}, {surface: معزومة, lexeme: 3azam, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}, {surface: عالحفلة, lexemes: [{lexeme: 3a, surface: ع, n: 3,
+              head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: 7afle, surface: حفلة, base: true, feats: {Number: Sing}, n: 5}]}]
+      reverse: '[إنتي] معزومة عالحفلة'
+    apc-Latn/arabizi:
+      text: enti ma3zume 3al 7afle.
+      tokens: [{surface: enti, lexeme: enti}, {surface: ma3zume, lexeme: 3azam, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, n: 3, head: 5,
+              rel: case, base: true}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: 7afle, lexeme: 7afle, feats: {Number: Sing}, n: 5}]
+      reverse: '[enti] ma3zume 3al 7afle'
+  translations:
+    en: You('re| are) invited to the party.
+- id: s.closed.21
+  node: apc.closed.power
+  tags:
+  - {persons: {addressee: m}}
+  forms:
+    apc-Arab/standard:
+      text: إنت معزوم عالحفلة.
+      tokens: [{surface: إنت, lexeme: enta}, {surface: معزوم, lexeme: 3azam, feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}, {surface: عالحفلة, lexemes: [{lexeme: 3a, surface: ع, n: 3,
+              head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: 7afle, surface: حفلة, base: true, feats: {Number: Sing}, n: 5}]}]
+      reverse: '[إنت] معزوم عالحفلة'
+    apc-Latn/arabizi:
+      text: enta ma3zum 3al 7afle.
+      tokens: [{surface: enta, lexeme: enta}, {surface: ma3zum, lexeme: 3azam, feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, n: 3, head: 5,
+              rel: case, base: true}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: 7afle, lexeme: 7afle, feats: {Number: Sing}, n: 5}]
+      reverse: '[enta] ma3zum 3al 7afle'
+  translations:
+    en: You('re| are) invited to the party.
+- id: s.closed.22
+  node: apc.closed.forbidden
+  forms:
+    apc-Arab/standard:
+      text: الأكل ممنوع هون.
+      tokens: [{surface: الأكل, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: akl, surface: أكل, base: true, feats: {Number: Sing}, n: 2}]}, {surface: ممنوع, lexeme: mana3, feats: {
+            Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}, {surface: هون, lexeme: hon}]
+      reverse: الأكل ممنوع هون
+    apc-Latn/arabizi:
+      text: el akl mamnu3 hon.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: akl, lexeme: akl, feats: {Number: Sing}, n: 2}, {surface: mamnu3, lexeme: mana3, feats: {Aspect: Part, Gender: Masc, Number: Sing,
+            Voice: Pass}}, {surface: hon, lexeme: hon}]
+      reverse: el akl mamnu3 hon
+  translations:
+    en: |-
+      (Food is|Food's|Eating is) (not allowed|forbidden) here.
+      No (food|eating) here.
+- id: s.closed.23
+  node: apc.closed.forbidden
+  forms:
+    apc-Arab/standard:
+      text: هيدا ممنوع!
+      tokens: [{surface: هيدا, lexeme: hayda}, {surface: ممنوع, lexeme: mana3, feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}]
+      reverse: هيدا ممنوع
+    apc-Latn/arabizi:
+      text: hayda mamnu3!
+      tokens: [{surface: hayda, lexeme: hayda}, {surface: mamnu3, lexeme: mana3, feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}]
+      reverse: hayda mamnu3
+  translations:
+    en: (That's|That is|This is) (not allowed|forbidden)!
+- id: s.closed.24
+  node: apc.closed.was
+  forms:
+    apc-Arab/standard:
+      text: الباب كان مسكر.
+      tokens: [{surface: الباب, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: beb, surface: باب, base: true, feats: {Number: Sing}, n: 2}]}, {surface: كان, lexeme: kan, feats: {
+            Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: مسكر, lexeme: sakkar, feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}]
+      reverse: الباب كان مسكر
+    apc-Latn/arabizi:
+      text: el beb ken msakkar.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: beb, lexeme: beb, feats: {Number: Sing}, n: 2}, {surface: ken, lexeme: kan, feats: {Aspect: Perf, Gender: Masc, Number: Sing,
+            Person: '3'}}, {surface: msakkar, lexeme: sakkar, feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}]
+      reverse: el beb ken msakkar
+  translations:
+    en: The door was (closed|shut).
+- id: s.closed.25
+  node: apc.closed.was
+  forms:
+    apc-Arab/standard:
+      text: الكهربا كانت مقطوعة كلّ النهار.
+      tokens: [{surface: الكهربا, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: kahraba, surface: كهربا, base: true, feats: {Number: Sing}, n: 2}]}, {surface: كانت, lexeme: kan,
+          feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: مقطوعة, lexeme: 2ata3, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}, {surface: كلّ, lexeme: kell}, {
+          surface: النهار, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: nhar, surface: نهار, base: true, feats: {Number: Sing}, n: 7}]}]
+      reverse: الكهربا كانت مقطوعة كلّ النهار
+    apc-Latn/arabizi:
+      text: el kahraba kenet ma2tu3a kell el nhar.
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: kahraba, lexeme: kahraba, feats: {Number: Sing}, n: 2}, {surface: kenet, lexeme: kan, feats: {Aspect: Perf, Gender: Fem, Number: Sing,
+            Person: '3'}}, {surface: ma2tu3a, lexeme: 2ata3, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}, {surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 6, head: 7, rel: det},
+        {surface: nhar, lexeme: nhar, feats: {Number: Sing}, n: 7}]
+      reverse: el kahraba kenet ma2tu3a kell el nhar
+  translations:
+    en: The (power|electricity) was (out|off|cut off) all day.
+stories:
+- id: apc.story.closed
+  node: apc.closed.story
+  title:
+    en: Closed today
+  provenance:
+    author: llm:claude@apc-b1
+    status: draft
+  characters:
+  - id: sami
+    speaker: m
+    name:
+      apc-Arab/standard: سامي
+      apc-Latn/arabizi: Sami
+  - id: maya
+    speaker: f
+    name:
+      apc-Arab/standard: مايا
+      apc-Latn/arabizi: Maya
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: يَلّا، ناكُل بِالمَطْعَم!
+          tokens: [{surface: يَلّا, lexeme: yalla}, {surface: ناكُل, lexeme: akal, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: بِالمَطْعَم, lexemes: [{lexeme: b, surface: بِ,
+                  n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: mat3am, surface: مَطْعَم, base: true, feats: {Number: Sing}, n: 5}]}]
+        apc-Latn/arabizi:
+          text: yalla, nekol bel mat3am!
+          tokens: [{surface: yalla, lexeme: yalla}, {surface: nekol, lexeme: akal, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: bel, lexemes: [{lexeme: b, surface: b, n: 3, head: 5,
+                  rel: case, base: true}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}, n: 5}]
+      translations:
+        en: Come on, let's eat at the restaurant!
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: المَطْعَم مْسَكَّر اليوم.
+          tokens: [{surface: المَطْعَم, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: mat3am, surface: مَطْعَم, base: true, feats: {Number: Sing}, n: 2}]}, {surface: مْسَكَّر, lexeme: sakkar,
+              feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: yom, surface: يوم, base: true, feats: {
+                    Number: Sing}, n: 5}]}]
+        apc-Latn/arabizi:
+          text: el mat3am msakkar el yom.
+          tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}, n: 2}, {surface: msakkar, lexeme: sakkar, feats: {Aspect: Part, Gender: Masc,
+                Number: Sing, Voice: Pass}}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: yom, lexeme: yom, feats: {Number: Sing}, n: 5}]
+      translations:
+        en: The restaurant's closed today.
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: والدِّكّانِة؟
+          tokens: [{surface: والدِّكّانِة, lexemes: [{lexeme: w, surface: و, n: 1}, {lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: dekkene, surface: دِّكّانِة, base: true, feats: {Number: Sing},
+                  n: 3}]}]
+        apc-Latn/arabizi:
+          text: w el dekkene?
+          tokens: [{surface: w, lexeme: w, n: 1}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: dekkene, lexeme: dekkene, feats: {Number: Sing}, n: 3}]
+      translations:
+        en: And the shop?
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: الدِّكّانِة مَفْتوحَة، بَسّ الكَهْرَبا مَقْطوعَة.
+          tokens: [{surface: الدِّكّانِة, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: dekkene, surface: دِّكّانِة, base: true, feats: {Number: Sing}, n: 2}]}, {surface: مَفْتوحَة,
+              lexeme: fata7, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}, {surface: بَسّ, lexeme: bas}, {surface: الكَهْرَبا, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det},
+                {lexeme: kahraba, surface: كَهْرَبا, base: true, feats: {Number: Sing}, n: 6}]}, {surface: مَقْطوعَة, lexeme: 2ata3, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}]
+        apc-Latn/arabizi:
+          text: el dekkene maftu7a, bas el kahraba ma2tu3a.
+          tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: dekkene, lexeme: dekkene, feats: {Number: Sing}, n: 2}, {surface: maftu7a, lexeme: fata7, feats: {Aspect: Part, Gender: Fem,
+                Number: Sing, Voice: Pass}}, {surface: bas, lexeme: bas}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: kahraba, lexeme: kahraba, feats: {Number: Sing}, n: 6}, {surface: ma2tu3a,
+              lexeme: 2ata3, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}]
+      translations:
+        en: The shop's open, but the power's out.
+  - choose:
+      prompt:
+        en: Why can't they eat at the restaurant?
+      options:
+      - en: It's closed today
+      - en: The power is out
+      - en: It's full
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: خَلَص، بِطْبُخ أَنا.
+          tokens: [{surface: خَلَص, lexeme: khalas}, {surface: بِطْبُخ, lexeme: tabakh, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: أَنا, lexeme: ana}]
+        apc-Latn/arabizi:
+          text: khalas, betbokh ana.
+          tokens: [{surface: khalas, lexeme: khalas}, {surface: betbokh, lexeme: tabakh, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: ana, lexeme: ana}]
+      translations:
+        en: OK then, I'll cook.
+  - line:
+      speaker: maya
+      ask: complete
+      gap: lexeme:kahraba
+      distractors:
+      - lexeme:dekkene
+      - lexeme:tanjara
+      forms:
+        apc-Arab/standard:
+          text: كيف؟ الكَهْرَبا مَقْطوعَة!
+          tokens: [{surface: كيف, lexeme: kif}, {surface: الكَهْرَبا, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: kahraba, surface: كَهْرَبا, base: true, feats: {Number: Sing},
+                  n: 3}]}, {surface: مَقْطوعَة, lexeme: 2ata3, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}]
+        apc-Latn/arabizi:
+          text: kif? el kahraba ma2tu3a!
+          tokens: [{surface: kif, lexeme: kif}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: kahraba, lexeme: kahraba, feats: {Number: Sing}, n: 3}, {surface: ma2tu3a, lexeme: 2ata3, feats: {
+                Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}]
+      translations:
+        en: How? The power's out!
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: خَلَص، مْناكُل خِبِز وجِبْنِة.
+          tokens: [{surface: خَلَص, lexeme: khalas}, {surface: مْناكُل, lexeme: akal, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: خِبِز, lexeme: khebz, feats: {Number: Sing}},
+            {surface: وجِبْنِة, lexemes: [{lexeme: w, surface: و}, {lexeme: jebne, surface: جِبْنِة, base: true, feats: {Number: Sing}}]}]
+        apc-Latn/arabizi:
+          text: khalas, mnekol khebz w jebne.
+          tokens: [{surface: khalas, lexeme: khalas}, {surface: mnekol, lexeme: akal, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: khebz, lexeme: khebz, feats: {Number: Sing}},
+            {surface: w, lexeme: w}, {surface: jebne, lexeme: jebne, feats: {Number: Sing}}]
+      translations:
+        en: OK then, we'll eat bread and cheese.
+  - choose:
+      prompt:
+        en: What will they eat?
+      options:
+      - en: Bread and cheese
+      - en: Tabbouleh
+      - en: Kibbeh
+      answer: 0

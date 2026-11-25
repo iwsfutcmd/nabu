@@ -665,6 +665,11 @@ lexemes:
   notes: {en: 'Usually with an ending (bayyi, my dad) or before a name (bayy Sami, Sami''s dad).'}
   form: "بَيّ"
   spelled: {apc-Arab/standard: [بيّ], apc-Latn/arabizi: [bayy]}
+- id: lexeme:beb
+  pos: NOUN
+  gloss: {en: door}
+  form: "ب\u065cاب"
+  spelled: {apc-Arab/standard: [باب], apc-Latn/arabizi: [beb]}
 - id: lexeme:beirut
   pos: PROPN
   feats: {Gender: Fem}
@@ -1158,6 +1163,13 @@ lexemes:
   gloss: {en: hungry}
   form: "جُوعَان"
   spelled: {apc-Arab/standard: [جوعان], apc-Latn/arabizi: [jou3an]}
+- id: lexeme:kahraba
+  pos: NOUN
+  feats: {Gender: Fem}
+  gloss: {en: electricity; the power}
+  notes: {en: 'el kahraba ma2tou3a: the power is out (feminine: ma2tou3a).'}
+  form: كَهْرَبَا
+  spelled: {apc-Arab/standard: [كهربا], apc-Latn/arabizi: [kahraba]}
 - id: lexeme:kam
   pos: DET
   feats: {PronType: Int}
@@ -1185,6 +1197,18 @@ lexemes:
   gloss: {en: January}
   form: "كَانُون ا\u06dfل\u06dfتّ\u065cانِي"  # the article's lam goes into the t (التّاني: the course)
   spelled: {apc-Arab/standard: [كانون التاني], apc-Latn/arabizi: [kanoun el tene]}
+- id: lexeme:kasar
+  pos: VERB
+  gloss: {en: break}
+  notes: {en: 'maksour: broken (maksoura, maksourin).'}
+  form: {radicals: [ك, س, ر], form: I, vowels: {past: a, present: i}, source: kline 80}
+  spelled: {apc-Arab/standard: [كسر], apc-Latn/arabizi: [kasar]}
+- id: lexeme:katab
+  pos: VERB
+  gloss: {en: write}
+  notes: {en: 'maktoub: written.'}
+  form: {radicals: [ك, ت, ب], form: I, vowels: {past: a, present: u}, source: kline 74}
+  spelled: {apc-Arab/standard: [كتب], apc-Latn/arabizi: [katab]}
 - id: lexeme:kbir
   pos: ADJ
   gloss: {en: big; old (of people); older}
@@ -1549,6 +1573,12 @@ lexemes:
   gloss: {en: man'oushe (flatbread with za'atar or cheese)}
   form: "مَنْقُوش\u065cة"
   spelled: {apc-Arab/standard: [منقوشة], apc-Latn/arabizi: [man2oushe]}
+- id: lexeme:mana3
+  pos: VERB
+  gloss: {en: forbid; not allow}
+  notes: {en: 'mamnou3: forbidden, not allowed (on signs: mamnou3 el tadkhin, no smoking).'}
+  form: {radicals: [م, ن, ع], form: I, vowels: {past: a, present: a}, source: the course; Kline p. 139-140 for the pattern}
+  spelled: {apc-Arab/standard: [منع], apc-Latn/arabizi: [mana3]}
 - id: lexeme:mara
   pos: NOUN
   gloss: {en: woman; wife}
@@ -2035,6 +2065,12 @@ lexemes:
   gloss: {en: evening out; party; get-together}
   form: "سَهْرَة"
   spelled: {apc-Arab/standard: [سهرة], apc-Latn/arabizi: [sahra]}
+- id: lexeme:sakkar
+  pos: VERB
+  gloss: {en: close; shut}
+  notes: {en: 'msakkar: closed, shut. The opposite of fata7 (open), maftou7.'}
+  form: {radicals: [س, ك, ر], form: II, source: kline 81}
+  spelled: {apc-Arab/standard: [سكّر], apc-Latn/arabizi: [sakkar]}
 - id: lexeme:salemtak
   pos: INTJ
   gloss: {en: get well soon (to a man)}
@@ -2171,6 +2207,11 @@ lexemes:
   gloss: {en: February}
   form: "شْبَاط"
   spelled: {apc-Arab/standard: [شباط], apc-Latn/arabizi: [shbat]}
+- id: lexeme:shebbek
+  pos: NOUN
+  gloss: {en: window}
+  form: "شِبّ\u065cاك"
+  spelled: {apc-Arab/standard: [شباك], apc-Latn/arabizi: [shebbek]}
 - id: lexeme:shef
   pos: VERB
   gloss: {en: see; watch}

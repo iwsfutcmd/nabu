@@ -29206,6 +29206,112 @@
       "note": "s.long.20: the course writes مرتين, marrten (Kline p. 134: marten); the doubling stays."
     },
     {
+      "id": "realise/apc/passive/sound",
+      "op": "realise-token",
+      "args": {
+        "lang": "apc",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:fata7",
+            "base": true,
+            "feats": {
+              "Aspect": "Part",
+              "Gender": "Fem",
+              "Number": "Sing",
+              "Voice": "Pass"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "مَفْتُوحَ+ة",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:apc-passive-participle",
+              "branch": "fs"
+            },
+            {
+              "rule": "rule:apc-feminine",
+              "branch": "a"
+            }
+          ]
+        }
+      },
+      "note": "s.closed.2: the course writes مفتوحة, maftu7a (Kline p. 139-140: maf3oul)."
+    },
+    {
+      "id": "realise/apc/passive/doubled",
+      "op": "realise-token",
+      "args": {
+        "lang": "apc",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:7abb",
+            "base": true,
+            "feats": {
+              "Aspect": "Part",
+              "Gender": "Fem",
+              "Number": "Sing",
+              "Voice": "Pass"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "مَحْبُوب\u065c+ة",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:apc-passive-participle",
+              "branch": "fs"
+            }
+          ]
+        }
+      },
+      "note": "s.closed.16: the course writes محبوبة, ma7bube; a doubled verb's radicals stand apart (Kline p. 140: ma7boub)."
+    },
+    {
+      "id": "realise/apc/passive/form-ii",
+      "op": "realise-token",
+      "args": {
+        "lang": "apc",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lexeme:sakkar",
+            "base": true,
+            "feats": {
+              "Aspect": "Part",
+              "Gender": "Masc",
+              "Number": "Sing",
+              "Voice": "Pass"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "مْسَكَّر",
+          "status": "given",
+          "steps": [
+            {
+              "rule": "rule:apc-passive-participle",
+              "branch": "ms"
+            }
+          ]
+        }
+      },
+      "note": "s.closed.4: the course writes مسكر, msakkar (Kline p. 141: mfa33al)."
+    },
+    {
       "id": "realise/apc/helping-vowel/glide",
       "op": "realise-token",
       "args": {

@@ -6,7 +6,7 @@ provenance: {author: 'llm:claude@3ba6648d6c32', status: draft}
 varieties: [apc-LB]
 registers: [colloquial]
 dimensions:
-  VERB: [Aspect, Mood, Person, Gender, Number]
+  VERB: [Aspect, Voice, Mood, Person, Gender, Number]
   AUX: [Aspect, Mood, Person, Gender, Number]
   NOUN: [Number]
   ADJ: [Gender, Number]
@@ -43,6 +43,7 @@ features:
   Polarity: [Neg]
   Poss: ['Yes']
   PronType: [Dem, Ind, Int, Prs, Rel, Tot]
+  Voice: [Pass]
 defaults:
 - {id: gender-ta, when: {ends: ة}, gives: {Gender: Fem}}
 - {id: gender-none, when: {pos: NOUN}, gives: {Gender: Masc}}
@@ -69,6 +70,7 @@ labels:
 - {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}, gloss: {en: '-t: you (past, to a man)'}, notes: {en: 'shu 3melt? What did you do? Spelled like ''I'': re7t, 3melt.'}, was: 'form:past-2ms'}
 - {feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}, gloss: {en: 'he (past): the bare verb'}, notes: {en: 'ra7: he went; akal: he ate.'}, was: 'form:past-3ms'}
 - {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}, gloss: {en: '-et: she (past)'}, notes: {en: 'ra7et: she went; kenet: she was. Arabic script: ت at the end (راحت).'}, was: 'form:past-3fs'}
+- {feats: {Aspect: Part, Voice: Pass}, gloss: {en: 'passive participle: done to it (maftou7, open; maksour, broken; msakkar, shut)'}, notes: {en: 'Form I: ma- and a long u (fata7 gives maftou7, kasar maksour); Form II: m- and an a before the last letter (sakkar gives msakkar). It agrees as an adjective does: maftou7a, maftou7in (Kline p. 139-142).'}}
 - {feats: {Aspect: Perf, Number: Plur, Person: '1'}, gloss: {en: '-na: we (past)'}, notes: {en: 're7na: we went; akalna: we ate.'}, was: 'form:past-1pl'}
 - {feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '2'}, gloss: {en: '-ti: you (past, to a woman)'}, notes: {en: 're7ti: you went; kenti: you were.'}, was: 'form:past-2fs'}
 - {feats: {Aspect: Perf, Number: Plur, Person: '2'}, gloss: {en: '-to: you (past, to several people)'}, notes: {en: 're7to: you went; akalto: you ate. Arabic script: توا (رحتوا).'}, was: 'form:past-2pl'}
@@ -164,10 +166,14 @@ stems:
 - {id: participle, form: I, class: hollow, template: "1\u065cايِ3", branch: hollow}  # keyin, neyem (Kline p. 123)
 - {id: participle, form: I, class: hollow, radical: 1, in: "{BACK}", template: "1َايِ3", branch: hollow-back-a}  # raye7, Sayer (Kline p. 123, img)
 - {id: participle, form: I, class: defective, template: "1\u065cا2ِي", branch: defective}  # meshe, 7eke, 2are (Kline p. 123, img)
+- {id: passive, form: I, template: "مَ1ْ2ُو3"}  # maktoub, maksour, ma3rouf; a doubled verb's radicals apart: ma7boub, ma7tout (Kline p. 139-140)
+- {id: passive, form: I, class: defective, template: "مَ1ْ2ِي", branch: defective}  # mashwe, ma7ke (Kline p. 140-141)
 - {id: perfect, form: II, template: "1َ2َّ3"}  # jarrab, fakkar, wa22af
 - {id: perfect, form: II, class: defective, template: "1َ2َّى"}  # ghanna
 - {id: imperfect, form: II, template: "1َ2ِّ3"}  # yjarreb, yfakker, ywa22ef
 - {id: imperfect, form: II, class: defective, template: "1َ2ِّي"}  # yghanne
+- {id: passive, form: II, template: "مْ1َ2َّ3"}  # msakkar, mbaddal (Kline p. 141)
+- {id: passive, form: II, class: defective, template: "مْ1َ2َّى"}  # msamma, mTaffa (Kline p. 141)
 - {id: perfect, form: III, template: "1\u065cا2َ3"}  # sefar, se3ad (Kline p. 83); REVIEW: e or a as the participle's (BACK)
 - {id: perfect, form: III, radical: 1, in: "{BACK}", template: "1َا2َ3"}  # 7afaZ (Kline p. 84)
 - {id: imperfect, form: III, template: "1\u065cا2ِ3"}  # ysefir (Kline p. 83)
@@ -220,6 +226,15 @@ realisation:
     - {branch: 2ms, add: ""}
   # REVIEW: Kline gives the command of a sound verb with no vowel before its cluster (dros, trok: p. 161, 164;
   # 'initial clusters are allowed in and around Beirut', p. 162-163); the course writes shrab, shrabo (eshrab, eshrabo accepted: the owner, 2026-11-23).
+- id: 'rule:apc-passive-participle'  # the passive participle (Kline p. 139-142): a form of its verb, as the active one is;
+  # none from a hollow Form I verb (Kline p. 140: Form VII stands in). Before the active participle's rule: the first that holds.
+  when: {feats: {Aspect: Part, Voice: Pass}}
+  stem: passive
+  blocks:
+  - suffix:
+    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u065cة"}  # -e, or -a (rule:apc-feminine): maftou7a, ma7boube
+    - {branch: pl, feats: {Number: Plur}, add: "ـِين"}  # -in: ma3zoumin
+    - {branch: ms, add: ""}
 - id: 'rule:apc-participle'  # the active participle, Form I (Kline p. 122-124, 130): a form of its verb (apc.md)
   when: {feats: {Aspect: Part}}
   stem: participle
