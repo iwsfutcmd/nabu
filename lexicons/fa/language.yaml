@@ -70,11 +70,12 @@ phonology:
 - {id: 'rule:fa-present-idan', branch: stem, when: {pos: VERB, feats: {Tense: Pres}, endsIn: ".*.*یدَن"}, find: "{L}یدَن", at: end, to: "{L}"}  # bekhar
 - {id: 'rule:fa-present-andan', branch: stem, when: {pos: VERB, feats: {Tense: Pres}, endsIn: "اندَن"}, find: "اندَن{NV}", before: "+", to: "ان{NV}"}  # khāndan: mi-khānam
 - {id: 'rule:fa-present-andan', branch: stem, when: {pos: VERB, feats: {Tense: Pres}, endsIn: "اندَن"}, find: "اندَن", at: end, to: "ان"}
-# na- and be- before a stem in ā take the glide y, and the madd goes (Yousef p. 174: nayāmad; p. 245: biyā). Before
-# a stem in a- or o- be- drops the alef (biyoft): no verb of the course begins so; not written.
-- {id: 'rule:fa-prefix-y', branch: na, find: "نَ+آ", to: "نَی+ا"}
-- {id: 'rule:fa-prefix-y', branch: be, find: "بِ+آ", to: "بی+ا"}
 # A present stem in -ā or -u takes the glide y before an ending (Yousef p. 225: mi-ā-yam). The course writes it ی
 # before -i too (mi-āyi); Yousef gives the hamza as common as well: not stated.
 - {id: 'rule:fa-glide', branch: y, when: {pos: VERB, feats: {Tense: Pres}}, find: "{AA}{NV}+", to: "{AA}ْی{NV}+"}  # mi-ā-yam
 - {id: 'rule:fa-glide', branch: y, when: {pos: VERB, feats: {Tense: Pres}}, find: "{L}و{NV}+", to: "{L}وْی{NV}+"}  # -u after a bare consonant (gu: mi-gu-yam); not the v of rav (رَو)
+# na- and be- before a stem in ā take the glide y, and the madd goes (Yousef p. 174: nayāmad; p. 245: biyā); after
+# rule:fa-glide, so the ā has no vowel left on it. Before a stem in a- or o- be- drops the alef (biyoft): no verb of
+# the course begins so; not written.
+- {id: 'rule:fa-prefix-y', branch: na, find: "نَ+آ*", to: "نَی+ا"}
+- {id: 'rule:fa-prefix-y', branch: be, find: "بِ+آ*", to: "بی+ا"}

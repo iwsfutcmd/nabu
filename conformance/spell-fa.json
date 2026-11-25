@@ -1,0 +1,1392 @@
+{
+  "$comment": "Spelling fa's lexical forms (docs/rules/fa.md): fa-Arab/standard's `spell` (the vowel marks, the sign of no vowel and U+06DF dropped; the ezafe's hamza kept) and its vocalized layer's (the signs of no vowel and of a silent letter dropped), over each realisation of realise-fa.json, against the course's spelling and its vocalization where it writes the token.",
+  "vectors": [
+    {
+      "id": "spell/fa-arab/past/stem/vowel-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "رَفتَ+م",
+        "expected": "رفتم"
+      },
+      "expected": {
+        "spelling": "رفتم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rule:fa-past|stem and |an before an ending in a vowel (-am): u10-past s.past.4 رفتم."
+    },
+    {
+      "id": "spell/fa-marked/past/stem/vowel-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "رَفتَ+م",
+        "layer": "vocalized",
+        "expected": "رَفتَم"
+      },
+      "expected": {
+        "spelling": "رَفتَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. rule:fa-past|stem and |an before an ending in a vowel (-am): u10-past s.past.4 رفتم."
+    },
+    {
+      "id": "spell/fa-arab/past/stem/other-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "خُوردْ+یم",
+        "expected": "خوردیم"
+      },
+      "expected": {
+        "spelling": "خوردیم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rule:fa-past|an before an ending in i (-im): u10-past خوردیم."
+    },
+    {
+      "id": "spell/fa-marked/past/stem/other-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "خُوردْ+یم",
+        "layer": "vocalized",
+        "expected": "خُوردیم"
+      },
+      "expected": {
+        "spelling": "خُوردیم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. rule:fa-past|an before an ending in i (-im): u10-past خوردیم."
+    },
+    {
+      "id": "spell/fa-arab/past/stem/alone",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "آمَدْ",
+        "expected": "آمد"
+      },
+      "expected": {
+        "spelling": "آمد",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rule:fa-past|an at a word's end: the he-past, no ending (u10-past آمد)."
+    },
+    {
+      "id": "spell/fa-marked/past/stem/alone",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "آمَدْ",
+        "layer": "vocalized",
+        "expected": "آمَد"
+      },
+      "expected": {
+        "spelling": "آمَد",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. rule:fa-past|an at a word's end: the he-past, no ending (u10-past آمد)."
+    },
+    {
+      "id": "spell/fa-arab/past/stem/negative",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "نَ+کَردَ+م",
+        "expected": "نکردم"
+      },
+      "expected": {
+        "spelling": "نکردم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. na- before the past stem (u10-past نکردم)."
+    },
+    {
+      "id": "spell/fa-marked/past/stem/negative",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "نَ+کَردَ+م",
+        "layer": "vocalized",
+        "expected": "نَکَردَم"
+      },
+      "expected": {
+        "spelling": "نَکَردَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. na- before the past stem (u10-past نکردم)."
+    },
+    {
+      "id": "spell/fa-arab/past/stem/copula",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "بودَ+م",
+        "expected": "بودم"
+      },
+      "expected": {
+        "spelling": "بودم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. budan's past stem by the same rule (Yousef p. 186; u10-past s.past.1 بودم)."
+    },
+    {
+      "id": "spell/fa-marked/past/stem/copula",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "بودَ+م",
+        "layer": "vocalized",
+        "expected": "بودَم"
+      },
+      "expected": {
+        "spelling": "بودَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. budan's past stem by the same rule (Yousef p. 186; u10-past s.past.1 بودم)."
+    },
+    {
+      "id": "spell/fa-arab/past/citation",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "گُذَشت",
+        "expected": "گذشت"
+      },
+      "expected": {
+        "spelling": "گذشت",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. gozashtan cites its he-past: no rule runs (u10-past خوش گذشت)."
+    },
+    {
+      "id": "spell/fa-marked/past/citation",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "گُذَشت",
+        "layer": "vocalized",
+        "expected": "گُذَشت"
+      },
+      "expected": {
+        "spelling": "گُذَشت",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. gozashtan cites its he-past: no rule runs (u10-past خوش گذشت)."
+    },
+    {
+      "id": "spell/fa-arab/present/idan/vowel-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+خَرَ+م",
+        "expected": "می\u200cخرم"
+      },
+      "expected": {
+        "spelling": "می\u200cخرم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rule:fa-present-idan before -am (u09-shopping می\u200cخرم)."
+    },
+    {
+      "id": "spell/fa-marked/present/idan/vowel-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+خَرَ+م",
+        "layer": "vocalized",
+        "expected": "می\u200cخَرَم"
+      },
+      "expected": {
+        "spelling": "می\u200cخَرَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. rule:fa-present-idan before -am (u09-shopping می\u200cخرم)."
+    },
+    {
+      "id": "spell/fa-arab/present/idan/other-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "بِ+پیچْ+ید",
+        "expected": "بپیچید"
+      },
+      "expected": {
+        "spelling": "بپیچید",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rule:fa-present-idan before -id (u08-city بپیچید)."
+    },
+    {
+      "id": "spell/fa-marked/present/idan/other-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "بِ+پیچْ+ید",
+        "layer": "vocalized",
+        "expected": "بِپیچید"
+      },
+      "expected": {
+        "spelling": "بِپیچید",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. rule:fa-present-idan before -id (u08-city بپیچید)."
+    },
+    {
+      "id": "spell/fa-arab/present/idan/alone",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "بِ+خَر",
+        "expected": "بخر"
+      },
+      "expected": {
+        "spelling": "بخر",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rule:fa-present-idan at a word's end: the singular imperative (Yousef p. 245); the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/present/idan/two-letters",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+خو\u06dfابَ+م",
+        "expected": "می\u200cخوابم"
+      },
+      "expected": {
+        "spelling": "می\u200cخوابم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. khābidan: the silent و of خوا kept, -idan gone (u06-day می\u200cخوابم)."
+    },
+    {
+      "id": "spell/fa-marked/present/idan/two-letters",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+خو\u06dfابَ+م",
+        "layer": "vocalized",
+        "expected": "می\u200cخوابَم"
+      },
+      "expected": {
+        "spelling": "می\u200cخوابَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. khābidan: the silent و of خوا kept, -idan gone (u06-day می\u200cخوابم)."
+    },
+    {
+      "id": "spell/fa-arab/present/andan/vowel-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+خو\u06dfانَ+م",
+        "expected": "می\u200cخوانم"
+      },
+      "expected": {
+        "spelling": "می\u200cخوانم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rule:fa-present-andan (u06-day می\u200cخوانم)."
+    },
+    {
+      "id": "spell/fa-marked/present/andan/vowel-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+خو\u06dfانَ+م",
+        "layer": "vocalized",
+        "expected": "می\u200cخوانَم"
+      },
+      "expected": {
+        "spelling": "می\u200cخوانَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. rule:fa-present-andan (u06-day می\u200cخوانم)."
+    },
+    {
+      "id": "spell/fa-arab/present/andan/alone",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "بِ+خو\u06dfان",
+        "expected": "بخوان"
+      },
+      "expected": {
+        "spelling": "بخوان",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rule:fa-present-andan at a word's end; the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/present/listed/kardan",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+کُنَ+م",
+        "expected": "می\u200cکنم"
+      },
+      "expected": {
+        "spelling": "می\u200cکنم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. a listed present stem (kon: Yousef p. 217): lexeme:kardan|form:Tense=Pres (u06-day می\u200cکنم)."
+    },
+    {
+      "id": "spell/fa-marked/present/listed/kardan",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+کُنَ+م",
+        "layer": "vocalized",
+        "expected": "می\u200cکُنَم"
+      },
+      "expected": {
+        "spelling": "می\u200cکُنَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. a listed present stem (kon: Yousef p. 217): lexeme:kardan|form:Tense=Pres (u06-day می\u200cکنم)."
+    },
+    {
+      "id": "spell/fa-arab/present/listed/dashtan",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "دارَ+ند",
+        "expected": "دارند"
+      },
+      "expected": {
+        "spelling": "دارند",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. dāshtan: its listed stem, no mi- (Yousef p. 188; u02-family دارند)."
+    },
+    {
+      "id": "spell/fa-marked/present/listed/dashtan",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "دارَ+ند",
+        "layer": "vocalized",
+        "expected": "دارَند"
+      },
+      "expected": {
+        "spelling": "دارَند",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. dāshtan: its listed stem, no mi- (Yousef p. 188; u02-family دارند)."
+    },
+    {
+      "id": "spell/fa-arab/present/listed/didan",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "بِ+بینَ+م",
+        "expected": "ببینم"
+      },
+      "expected": {
+        "spelling": "ببینم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. didan: an -idan verb whose rule would leave one letter lists its stem (Yousef p. 159; u09-shopping ببینم)."
+    },
+    {
+      "id": "spell/fa-marked/present/listed/didan",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "بِ+بینَ+م",
+        "layer": "vocalized",
+        "expected": "بِبینَم"
+      },
+      "expected": {
+        "spelling": "بِبینَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. didan: an -idan verb whose rule would leave one letter lists its stem (Yousef p. 159; u09-shopping ببینم)."
+    },
+    {
+      "id": "spell/fa-arab/present/listed/raftan",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+رَوَ+م",
+        "expected": "می\u200cروم"
+      },
+      "expected": {
+        "spelling": "می\u200cروم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rav: its و after a vowel takes no glide (u06-day می\u200cروم)."
+    },
+    {
+      "id": "spell/fa-marked/present/listed/raftan",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+رَوَ+م",
+        "layer": "vocalized",
+        "expected": "می\u200cرَوَم"
+      },
+      "expected": {
+        "spelling": "می\u200cرَوَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. rav: its و after a vowel takes no glide (u06-day می\u200cروم)."
+    },
+    {
+      "id": "spell/fa-arab/present/glide/vowel-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+آْیَ+م",
+        "expected": "می\u200cآیم"
+      },
+      "expected": {
+        "spelling": "می\u200cآیم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rule:fa-glide|y after ā before -am (Yousef p. 225; u06-day می\u200cآیم)."
+    },
+    {
+      "id": "spell/fa-marked/present/glide/vowel-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+آْیَ+م",
+        "layer": "vocalized",
+        "expected": "می\u200cآیَم"
+      },
+      "expected": {
+        "spelling": "می\u200cآیَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. rule:fa-glide|y after ā before -am (Yousef p. 225; u06-day می\u200cآیم)."
+    },
+    {
+      "id": "spell/fa-arab/present/glide/i-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+آْیْ+ی",
+        "expected": "می\u200cآیی"
+      },
+      "expected": {
+        "spelling": "می\u200cآیی",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rule:fa-glide|y before -i, written ی (u06-day می\u200cآیی)."
+    },
+    {
+      "id": "spell/fa-marked/present/glide/i-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+آْیْ+ی",
+        "layer": "vocalized",
+        "expected": "می\u200cآیی"
+      },
+      "expected": {
+        "spelling": "می\u200cآیی",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. rule:fa-glide|y before -i, written ی (u06-day می\u200cآیی)."
+    },
+    {
+      "id": "spell/fa-arab/present/prefix-y/be",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "بی+ا",
+        "expected": "بیا"
+      },
+      "expected": {
+        "spelling": "بیا",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rule:fa-prefix-y|be: biyā (Yousef p. 245); the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/present/prefix-y/be-glide",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "بی+ایَ+م",
+        "expected": "بیایم"
+      },
+      "expected": {
+        "spelling": "بیایم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rule:fa-glide then rule:fa-prefix-y|be: biyāyam; the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/past/prefix-y/na",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "نَی+امَدْ",
+        "expected": "نیامد"
+      },
+      "expected": {
+        "spelling": "نیامد",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. rule:fa-prefix-y|na: nayāmad (Yousef p. 174); the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/present/mi",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+خُورَ+م",
+        "expected": "می\u200cخورم"
+      },
+      "expected": {
+        "spelling": "می\u200cخورم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. mi- written apart with its ZWNJ (u04-food می\u200cخورم)."
+    },
+    {
+      "id": "spell/fa-marked/present/mi",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+خُورَ+م",
+        "layer": "vocalized",
+        "expected": "می\u200cخُورَم"
+      },
+      "expected": {
+        "spelling": "می\u200cخُورَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. mi- written apart with its ZWNJ (u04-food می\u200cخورم)."
+    },
+    {
+      "id": "spell/fa-arab/present/neg/before-mi",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "نِ+می\u200c+کُنَ+م",
+        "expected": "نمی\u200cکنم"
+      },
+      "expected": {
+        "spelling": "نمی\u200cکنم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. na- said ne- before mi- (Yousef p. 225; u06-day نمی\u200cکنم)."
+    },
+    {
+      "id": "spell/fa-marked/present/neg/before-mi",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "نِ+می\u200c+کُنَ+م",
+        "layer": "vocalized",
+        "expected": "نِمی\u200cکُنَم"
+      },
+      "expected": {
+        "spelling": "نِمی\u200cکُنَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. na- said ne- before mi- (Yousef p. 225; u06-day نمی\u200cکنم)."
+    },
+    {
+      "id": "spell/fa-arab/present/neg/elsewhere",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "نَ+دارَ+م",
+        "expected": "ندارم"
+      },
+      "expected": {
+        "spelling": "ندارم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. na- (u04-food ندارم)."
+    },
+    {
+      "id": "spell/fa-marked/present/neg/elsewhere",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "نَ+دارَ+م",
+        "layer": "vocalized",
+        "expected": "نَدارَم"
+      },
+      "expected": {
+        "spelling": "نَدارَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. na- (u04-food ندارم)."
+    },
+    {
+      "id": "spell/fa-arab/present/ending/3sg",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+کُنَ+د",
+        "expected": "می\u200cکند"
+      },
+      "expected": {
+        "spelling": "می\u200cکند",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -ad (u06-day می\u200cکند)."
+    },
+    {
+      "id": "spell/fa-marked/present/ending/3sg",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+کُنَ+د",
+        "layer": "vocalized",
+        "expected": "می\u200cکُنَد"
+      },
+      "expected": {
+        "spelling": "می\u200cکُنَد",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. -ad (u06-day می\u200cکند)."
+    },
+    {
+      "id": "spell/fa-arab/present/ending/2pl",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+خو\u06dfاهْ+ید",
+        "expected": "می\u200cخواهید"
+      },
+      "expected": {
+        "spelling": "می\u200cخواهید",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -id after khāh, its و silent (u09-shopping می\u200cخواهید)."
+    },
+    {
+      "id": "spell/fa-marked/present/ending/2pl",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "می\u200c+خو\u06dfاهْ+ید",
+        "layer": "vocalized",
+        "expected": "می\u200cخواهید"
+      },
+      "expected": {
+        "spelling": "می\u200cخواهید",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. -id after khāh, its و silent (u09-shopping می\u200cخواهید)."
+    },
+    {
+      "id": "spell/fa-arab/infinitive",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "کَردَن",
+        "expected": "کردن"
+      },
+      "expected": {
+        "spelling": "کردن",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. the infinitive: no value chosen, the lemma (u06-day زندگی کردن)."
+    },
+    {
+      "id": "spell/fa-marked/infinitive",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "کَردَن",
+        "layer": "vocalized",
+        "expected": "کَردَن"
+      },
+      "expected": {
+        "spelling": "کَردَن",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. the infinitive: no value chosen, the lemma (u06-day زندگی کردن)."
+    },
+    {
+      "id": "spell/fa-arab/copula/short",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "اَست",
+        "expected": "است"
+      },
+      "expected": {
+        "spelling": "است",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. the copula's he-present, apart: ast (Yousef p. 183-184; intro است)."
+    },
+    {
+      "id": "spell/fa-marked/copula/short",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "اَست",
+        "layer": "vocalized",
+        "expected": "اَست"
+      },
+      "expected": {
+        "spelling": "اَست",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. the copula's he-present, apart: ast (Yousef p. 183-184; intro است)."
+    },
+    {
+      "id": "spell/fa-arab/copula/stem-before-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "هَستَ+م",
+        "expected": "هستم"
+      },
+      "expected": {
+        "spelling": "هستم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. the independent version before an ending: hast + -am (Yousef p. 183; intro هستم)."
+    },
+    {
+      "id": "spell/fa-marked/copula/stem-before-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "هَستَ+م",
+        "layer": "vocalized",
+        "expected": "هَستَم"
+      },
+      "expected": {
+        "spelling": "هَستَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. the independent version before an ending: hast + -am (Yousef p. 183; intro هستم)."
+    },
+    {
+      "id": "spell/fa-arab/copula/st/a",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "اینجاْ+ست",
+        "expected": "اینجاست"
+      },
+      "expected": {
+        "spelling": "اینجاست",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -st joined after ā (Yousef p. 184; u05-home اینجاست)."
+    },
+    {
+      "id": "spell/fa-marked/copula/st/a",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "اینجاْ+ست",
+        "layer": "vocalized",
+        "expected": "اینجاست"
+      },
+      "expected": {
+        "spelling": "اینجاست",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. -st joined after ā (Yousef p. 184; u05-home اینجاست)."
+    },
+    {
+      "id": "spell/fa-arab/copula/st/u",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "اوْ+ست",
+        "expected": "اوست"
+      },
+      "expected": {
+        "spelling": "اوست",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -st after u (Yousef p. 184: u-st); the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/copula/st/i",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "ایرانیْ+ست",
+        "expected": "ایرانیست"
+      },
+      "expected": {
+        "spelling": "ایرانیست",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -st after i (Yousef p. 184: āli-st); the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/copula/listed/long",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "هَست",
+        "expected": "هست"
+      },
+      "expected": {
+        "spelling": "هست",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. the independent version's he-present, listed (u05-home در خانه نان هست)."
+    },
+    {
+      "id": "spell/fa-marked/copula/listed/long",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "هَست",
+        "layer": "vocalized",
+        "expected": "هَست"
+      },
+      "expected": {
+        "spelling": "هَست",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. the independent version's he-present, listed (u05-home در خانه نان هست)."
+    },
+    {
+      "id": "spell/fa-arab/copula/listed/negative",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "نیست",
+        "expected": "نیست"
+      },
+      "expected": {
+        "spelling": "نیست",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. the negative, listed (Yousef p. 183; u02-family نیست)."
+    },
+    {
+      "id": "spell/fa-marked/copula/listed/negative",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "نیست",
+        "layer": "vocalized",
+        "expected": "نیست"
+      },
+      "expected": {
+        "spelling": "نیست",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. the negative, listed (Yousef p. 183; u02-family نیست)."
+    },
+    {
+      "id": "spell/fa-arab/copula/listed/negative-ending",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "نیستَ+م",
+        "expected": "نیستم"
+      },
+      "expected": {
+        "spelling": "نیستم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. nist + -am (Yousef p. 183); the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/ezafe/consonant",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "کِتابِ",
+        "expected": "کتاب"
+      },
+      "expected": {
+        "spelling": "کتاب",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. the ezafe's kasra on a consonant (u02-family کتابِ)."
+    },
+    {
+      "id": "spell/fa-marked/ezafe/consonant",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "کِتابِ",
+        "layer": "vocalized",
+        "expected": "کِتابِ"
+      },
+      "expected": {
+        "spelling": "کِتابِ",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. the ezafe's kasra on a consonant (u02-family کتابِ)."
+    },
+    {
+      "id": "spell/fa-arab/ezafe/silent-e",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "خانِهٔ\u06df",
+        "expected": "خانهٔ"
+      },
+      "expected": {
+        "spelling": "خانهٔ",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. a hamza on a silent -e's ه (Yousef p. 20, 50; u05-home خانهٔ)."
+    },
+    {
+      "id": "spell/fa-marked/ezafe/silent-e",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "خانِهٔ\u06df",
+        "layer": "vocalized",
+        "expected": "خانِهٔ"
+      },
+      "expected": {
+        "spelling": "خانِهٔ",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. a hamza on a silent -e's ه (Yousef p. 20, 50; u05-home خانهٔ)."
+    },
+    {
+      "id": "spell/fa-arab/ezafe/a",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "غَذاْ+ی",
+        "expected": "غذای"
+      },
+      "expected": {
+        "spelling": "غذای",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. ی after ā (Yousef p. 50; u04-food غذای)."
+    },
+    {
+      "id": "spell/fa-marked/ezafe/a",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "غَذاْ+ی",
+        "layer": "vocalized",
+        "expected": "غَذای"
+      },
+      "expected": {
+        "spelling": "غَذای",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. ی after ā (Yousef p. 50; u04-food غذای)."
+    },
+    {
+      "id": "spell/fa-arab/ezafe/plural",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "کِتابْ+\u200cهاْ+ی",
+        "expected": "کتاب\u200cهای"
+      },
+      "expected": {
+        "spelling": "کتاب\u200cهای",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. ی after -hā (u02-family کتاب\u200cهای)."
+    },
+    {
+      "id": "spell/fa-marked/ezafe/plural",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "کِتابْ+\u200cهاْ+ی",
+        "layer": "vocalized",
+        "expected": "کِتاب\u200cهای"
+      },
+      "expected": {
+        "spelling": "کِتاب\u200cهای",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. ی after -hā (u02-family کتاب\u200cهای)."
+    },
+    {
+      "id": "spell/fa-arab/ezafe/u",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "دانِشجوْ+ی",
+        "expected": "دانشجوی"
+      },
+      "expected": {
+        "spelling": "دانشجوی",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. ی after u (Yousef p. 50); the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/plural/ha",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "بَچِّه\u06df+\u200cها",
+        "expected": "بچه\u200cها"
+      },
+      "expected": {
+        "spelling": "بچه\u200cها",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -hā apart, after a silent -e as everywhere (Yousef p. 26-27; u02-family بچه\u200cها)."
+    },
+    {
+      "id": "spell/fa-marked/plural/ha",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "بَچِّه\u06df+\u200cها",
+        "layer": "vocalized",
+        "expected": "بَچِّه\u200cها"
+      },
+      "expected": {
+        "spelling": "بَچِّه\u200cها",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. -hā apart, after a silent -e as everywhere (Yousef p. 26-27; u02-family بچه\u200cها)."
+    },
+    {
+      "id": "spell/fa-arab/plural/an",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "دوستْ+انِ",
+        "expected": "دوستان"
+      },
+      "expected": {
+        "spelling": "دوستان",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -ān joined, then the ezafe (Yousef p. 27; u02-family دوستانِ)."
+    },
+    {
+      "id": "spell/fa-marked/plural/an",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "دوستْ+انِ",
+        "layer": "vocalized",
+        "expected": "دوستانِ"
+      },
+      "expected": {
+        "spelling": "دوستانِ",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. -ān joined, then the ezafe (Yousef p. 27; u02-family دوستانِ)."
+    },
+    {
+      "id": "spell/fa-arab/plural/an/a",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "آقاْ+یان",
+        "expected": "آقایان"
+      },
+      "expected": {
+        "spelling": "آقایان",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -yān after ā (Yousef p. 27: āghāyān); the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/indefinite/consonant",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "رَنگْ+ی",
+        "expected": "رنگی"
+      },
+      "expected": {
+        "spelling": "رنگی",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -i joined (u09-shopping رنگی)."
+    },
+    {
+      "id": "spell/fa-marked/indefinite/consonant",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "رَنگْ+ی",
+        "layer": "vocalized",
+        "expected": "رَنگی"
+      },
+      "expected": {
+        "spelling": "رَنگی",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. -i joined (u09-shopping رنگی)."
+    },
+    {
+      "id": "spell/fa-arab/indefinite/silent-e",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "خانِه\u06df+\u200cای",
+        "expected": "خانه\u200cای"
+      },
+      "expected": {
+        "spelling": "خانه\u200cای",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -i after a silent -e, apart with an alef (Yousef p. 37); the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/indefinite/a",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "غَذاْ+یی",
+        "expected": "غذایی"
+      },
+      "expected": {
+        "spelling": "غذایی",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -i after ā: yi (Yousef p. 37); the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/comparative",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "گِرانْ+\u200cتَر",
+        "expected": "گران\u200cتر"
+      },
+      "expected": {
+        "spelling": "گران\u200cتر",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -tar apart (u09-shopping گران\u200cتر)."
+    },
+    {
+      "id": "spell/fa-marked/comparative",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "گِرانْ+\u200cتَر",
+        "layer": "vocalized",
+        "expected": "گِران\u200cتَر"
+      },
+      "expected": {
+        "spelling": "گِران\u200cتَر",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. -tar apart (u09-shopping گران\u200cتر)."
+    },
+    {
+      "id": "spell/fa-arab/possessive/1sg",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "پِدَرَ+م",
+        "expected": "پدرم"
+      },
+      "expected": {
+        "spelling": "پدرم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -am (u02-family پدرم)."
+    },
+    {
+      "id": "spell/fa-marked/possessive/1sg",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "پِدَرَ+م",
+        "layer": "vocalized",
+        "expected": "پِدَرَم"
+      },
+      "expected": {
+        "spelling": "پِدَرَم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. -am (u02-family پدرم)."
+    },
+    {
+      "id": "spell/fa-arab/possessive/1sg/silent-e",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "خانِه\u06df+\u200cاَم",
+        "expected": "خانه\u200cام"
+      },
+      "expected": {
+        "spelling": "خانه\u200cام",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -am after a silent -e, apart with an alef (Yousef p. 185); the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/possessive/1sg/a",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "آقاْ+یَم",
+        "expected": "آقایم"
+      },
+      "expected": {
+        "spelling": "آقایم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -yam after ā; the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/possessive/2sg",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "اُتاقَ+ت",
+        "expected": "اتاقت"
+      },
+      "expected": {
+        "spelling": "اتاقت",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -at (u05-home اتاقت)."
+    },
+    {
+      "id": "spell/fa-marked/possessive/2sg",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "اُتاقَ+ت",
+        "layer": "vocalized",
+        "expected": "اُتاقَت"
+      },
+      "expected": {
+        "spelling": "اُتاقَت",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The vocalized layer: the form less the signs of no vowel and of a silent letter, as courses/fa/vocalization.yaml marks the word. -at (u05-home اتاقت)."
+    },
+    {
+      "id": "spell/fa-arab/possessive/2sg/silent-e",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "خانِه\u06df+\u200cاَت",
+        "expected": "خانه\u200cات"
+      },
+      "expected": {
+        "spelling": "خانه\u200cات",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -at after a silent -e; the course writes none."
+    },
+    {
+      "id": "spell/fa-arab/possessive/2sg/a",
+      "op": "spell",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "form": "آقاْ+یَت",
+        "expected": "آقایت"
+      },
+      "expected": {
+        "spelling": "آقایت",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "fa-Arab/standard: marks and U+06DF dropped. -yat after ā; the course writes none."
+    }
+  ]
+}
