@@ -42,7 +42,7 @@ features:
   Person[psor]: ['2']
   Polarity: [Neg]
   Poss: ['Yes']
-  PronType: [Dem, Ind, Int, Prs, Tot]
+  PronType: [Dem, Ind, Int, Prs, Rel, Tot]
 defaults:
 - {id: gender-ta, when: {ends: ة}, gives: {Gender: Fem}}
 - {id: gender-none, when: {pos: NOUN}, gives: {Gender: Masc}}
