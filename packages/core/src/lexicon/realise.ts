@@ -562,7 +562,8 @@ const wordsOf = (units: readonly Unit[]): readonly (readonly Unit[])[] => {
  * them; the base's own form (where no rule made it) by what follows it in the token, or by the next
  * word (`options.next`) where nothing does; the lexemes before it, nearest first, by what they stand
  * before and follow. Free allomorphs are never chosen: each one whose conditions hold where the
- * chosen forms put it gives the token an alternative (`alternatives`), every combination of them.
+ * chosen forms put it gives the token an alternative (`alternatives`), every combination of them,
+ * the token's other allomorphs chosen again around it (a scribe's ay- for eyt- takes -di, not -ti).
  */
 export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLexeme[], options: RealiseOptions = {}): Result<Realisation, RealiseError> => {
   const baseAt = written.length === 1 ? 0 : written.findIndex((w) => w.base === true);
@@ -585,40 +586,50 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   }
   const next = options.next === undefined ? undefined : lang.lexemes.get(lexemeId(options.next));
   // Each lexeme's form, first with no context.
-  const forms: (readonly Unit[])[] = [];
+  const initial: (readonly Unit[])[] = [];
   for (let k = 0; k < written.length; k++) {
     if (k === baseAt) {
-      forms.push(baseUnits);
+      initial.push(baseUnits);
       continue;
     }
     const f = allomorphOf(lang, lexemes[k] as Lexeme, [], []);
     if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
-    forms.push(unitsOf(f));
+    initial.push(unitsOf(f));
   }
-  const joined = (from: number, to: number): readonly Unit[] => {
+  const joinedIn = (pieces: readonly (readonly Unit[])[], from: number, to: number): readonly Unit[] => {
     let units: readonly Unit[] = [];
-    for (let k = from; k < to; k++) units = units.length === 0 ? (forms[k] as readonly Unit[]) : join(lang, units, forms[k] as readonly Unit[], k <= baseAt ? "prefix" : "suffix");
+    for (let k = from; k < to; k++) units = units.length === 0 ? (pieces[k] as readonly Unit[]) : join(lang, units, pieces[k] as readonly Unit[], k <= baseAt ? "prefix" : "suffix");
     return units;
   };
   const baseLexeme = lexemes[baseAt] as Lexeme;
   const ownBase = !built.value.whole && built.value.steps.length === 0 && options.word === undefined && choosesByFollowing(baseLexeme);
-  for (let pass = 0; pass < 2; pass++) {
-    for (let k = baseAt + 1; k < written.length; k++) {
-      const f = allomorphOf(lang, lexemes[k] as Lexeme, joined(0, k), k + 1 < written.length ? (forms[k + 1] as readonly Unit[]) : [], k + 1 < written.length ? undefined : next);
-      if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
-      forms[k] = unitsOf(f);
+  /** Every place's allomorph chosen by its conditions, twice over, but the places `fixed` keeps (a free variant's). */
+  const choose = (start: readonly (readonly Unit[])[], fixed: ReadonlySet<number>): Result<readonly (readonly Unit[])[], RealiseError> => {
+    const pieces = [...start];
+    for (let pass = 0; pass < 2; pass++) {
+      for (let k = baseAt + 1; k < written.length; k++) {
+        if (fixed.has(k)) continue;
+        const f = allomorphOf(lang, lexemes[k] as Lexeme, joinedIn(pieces, 0, k), k + 1 < written.length ? (pieces[k + 1] as readonly Unit[]) : [], k + 1 < written.length ? undefined : next);
+        if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
+        pieces[k] = unitsOf(f);
+      }
+      // The base's own form chosen by what follows (bad- before -na; 7da3shar before a noun).
+      if (ownBase && !fixed.has(baseAt)) {
+        const f = allomorphOf(lang, baseLexeme, [], baseAt + 1 < written.length ? (pieces[baseAt + 1] as readonly Unit[]) : [], baseAt + 1 < written.length ? undefined : next);
+        if (f !== undefined) pieces[baseAt] = unitsOf(f);
+      }
+      for (let k = baseAt - 1; k >= 0; k--) {
+        if (fixed.has(k)) continue;
+        const f = allomorphOf(lang, lexemes[k] as Lexeme, joinedIn(pieces, 0, k), joinedIn(pieces, k + 1, written.length));
+        if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
+        pieces[k] = unitsOf(f);
+      }
     }
-    // The base's own form chosen by what follows (bad- before -na; 7da3shar before a noun).
-    if (ownBase) {
-      const f = allomorphOf(lang, baseLexeme, [], baseAt + 1 < written.length ? (forms[baseAt + 1] as readonly Unit[]) : [], baseAt + 1 < written.length ? undefined : next);
-      if (f !== undefined) forms[baseAt] = unitsOf(f);
-    }
-    for (let k = baseAt - 1; k >= 0; k--) {
-      const f = allomorphOf(lang, lexemes[k] as Lexeme, joined(0, k), joined(k + 1, written.length));
-      if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
-      forms[k] = unitsOf(f);
-    }
-  }
+    return ok(pieces);
+  };
+  const settled = choose(initial, new Set());
+  if (!settled.ok) return settled;
+  const forms = settled.value;
   // Joined: the base and what follows it, then each lexeme before it, nearest first; then the rewrites.
   const assemble = (pieces: readonly (readonly Unit[])[]): readonly Unit[] => {
     let units = pieces[baseAt] as readonly Unit[];
@@ -638,28 +649,35 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   const ownForm = !built.value.whole && built.value.steps.length === 0 && options.word === undefined;
   const places = forms.map((f, k): readonly (readonly Unit[])[] => {
     if (k === baseAt && !ownForm) return [];
-    const preceding = k === baseAt ? [] : joined(0, k);
-    const following = k < baseAt ? joined(k + 1, written.length) : k + 1 < written.length ? (forms[k + 1] as readonly Unit[]) : [];
+    const preceding = k === baseAt ? [] : joinedIn(forms, 0, k);
+    const following = k < baseAt ? joinedIn(forms, k + 1, written.length) : k + 1 < written.length ? (forms[k + 1] as readonly Unit[]) : [];
     const nextWord = k >= baseAt && k + 1 >= written.length ? next : undefined;
     return freeOf(lang, lexemes[k] as Lexeme, preceding, following, nextWord)
       .map(unitsOf)
       .filter((u) => textOf(u) !== textOf(f));
   });
   if (places.every((p) => p.length === 0)) return ok(made);
-  // Every choice at every place, the chosen forms first; past VARIANTS the later places keep theirs.
-  let picks: (readonly Unit[])[][] = [[...forms]];
+  // Every choice at every place, the chosen forms first (undefined: the place is chosen by its
+  // conditions around the free ones, as the language would); past VARIANTS the later places keep theirs.
+  let picks: (readonly Unit[] | undefined)[][] = [forms.map(() => undefined)];
   places.forEach((extra, k) => {
     if (extra.length === 0) return;
-    const grown: (readonly Unit[])[][] = [];
+    const grown: (readonly Unit[] | undefined)[][] = [];
     for (const pick of picks) {
-      for (const choice of [forms[k] as readonly Unit[], ...extra]) if (grown.length < VARIANTS) grown.push(pick.map((u, i) => (i === k ? choice : u)));
+      for (const choice of [undefined, ...extra]) if (grown.length < VARIANTS) grown.push(pick.map((u, i) => (i === k ? choice : u)));
     }
     picks = grown;
   });
   const seen = new Set([made.form]);
   const alternatives: { readonly form: string; readonly steps: readonly Step[] }[] = [];
   for (const pick of picks.slice(1)) {
-    const variant = finish(assemble(pick));
+    const fixed = new Set(pick.flatMap((u, k) => (u === undefined ? [] : [k])));
+    const around = choose(
+      forms.map((f, k) => pick[k] ?? f),
+      fixed,
+    );
+    if (!around.ok) continue;
+    const variant = finish(assemble(around.value));
     const form = textOf(variant.units);
     if (seen.has(form)) continue;
     seen.add(form);

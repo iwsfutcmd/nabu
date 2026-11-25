@@ -110,6 +110,34 @@
                   "free": true
                 }
               ]
+            },
+            {
+              "id": "lexeme:sem",
+              "pos": "NOUN",
+              "form": "sem",
+              "allomorphs": [
+                {
+                  "form": "set",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:ins",
+              "realises": {
+                "Case": "Ins"
+              },
+              "allomorphs": [
+                {
+                  "form": "tin",
+                  "after": {
+                    "endsIn": "{VL}"
+                  }
+                },
+                {
+                  "form": "din"
+                }
+              ]
             }
           ]
         },
@@ -246,6 +274,34 @@
                 {
                   "form": "dan",
                   "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sem",
+              "pos": "NOUN",
+              "form": "sem",
+              "allomorphs": [
+                {
+                  "form": "set",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:ins",
+              "realises": {
+                "Case": "Ins"
+              },
+              "allomorphs": [
+                {
+                  "form": "tin",
+                  "after": {
+                    "endsIn": "{VL}"
+                  }
+                },
+                {
+                  "form": "din"
                 }
               ]
             }
@@ -394,6 +450,34 @@
                   "free": true
                 }
               ]
+            },
+            {
+              "id": "lexeme:sem",
+              "pos": "NOUN",
+              "form": "sem",
+              "allomorphs": [
+                {
+                  "form": "set",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:ins",
+              "realises": {
+                "Case": "Ins"
+              },
+              "allomorphs": [
+                {
+                  "form": "tin",
+                  "after": {
+                    "endsIn": "{VL}"
+                  }
+                },
+                {
+                  "form": "din"
+                }
+              ]
             }
           ]
         },
@@ -534,6 +618,34 @@
                   "free": true
                 }
               ]
+            },
+            {
+              "id": "lexeme:sem",
+              "pos": "NOUN",
+              "form": "sem",
+              "allomorphs": [
+                {
+                  "form": "set",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:ins",
+              "realises": {
+                "Case": "Ins"
+              },
+              "allomorphs": [
+                {
+                  "form": "tin",
+                  "after": {
+                    "endsIn": "{VL}"
+                  }
+                },
+                {
+                  "form": "din"
+                }
+              ]
             }
           ]
         },
@@ -670,6 +782,34 @@
                   "free": true
                 }
               ]
+            },
+            {
+              "id": "lexeme:sem",
+              "pos": "NOUN",
+              "form": "sem",
+              "allomorphs": [
+                {
+                  "form": "set",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:ins",
+              "realises": {
+                "Case": "Ins"
+              },
+              "allomorphs": [
+                {
+                  "form": "tin",
+                  "after": {
+                    "endsIn": "{VL}"
+                  }
+                },
+                {
+                  "form": "din"
+                }
+              ]
             }
           ]
         },
@@ -704,6 +844,170 @@
         }
       },
       "note": "The base's own free allomorph too (where its form is its own), and every combination of the places' choices, the chosen forms first."
+    },
+    {
+      "id": "realise/free/rechosen",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number",
+              "Case"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfgklmnprstz]",
+              "VL": "[ptks]"
+            }
+          },
+          "phonology": [
+            {
+              "id": "rule:zz-voicing",
+              "find": "t+l",
+              "to": "d+l"
+            }
+          ]
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@rules-chg-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kat",
+              "pos": "NOUN",
+              "form": "kat"
+            },
+            {
+              "id": "lexeme:kala",
+              "pos": "NOUN",
+              "form": "kala"
+            },
+            {
+              "id": "lexeme:pir",
+              "pos": "NOUN",
+              "form": "pir",
+              "allomorphs": [
+                {
+                  "form": "per",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "allomorphs": [
+                {
+                  "form": "lar"
+                },
+                {
+                  "form": "ler",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:loc",
+              "realises": {
+                "Case": "Loc"
+              },
+              "allomorphs": [
+                {
+                  "form": "da"
+                },
+                {
+                  "form": "ta",
+                  "after": {
+                    "endsIn": "{VL}"
+                  },
+                  "free": true
+                },
+                {
+                  "form": "de",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:only-free",
+              "realises": {
+                "Case": "Abl"
+              },
+              "allomorphs": [
+                {
+                  "form": "dan",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sem",
+              "pos": "NOUN",
+              "form": "sem",
+              "allomorphs": [
+                {
+                  "form": "set",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:ins",
+              "realises": {
+                "Case": "Ins"
+              },
+              "allomorphs": [
+                {
+                  "form": "tin",
+                  "after": {
+                    "endsIn": "{VL}"
+                  }
+                },
+                {
+                  "form": "din"
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:sem",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:ins"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "sem+din",
+          "alternatives": [
+            {
+              "form": "set+tin",
+              "steps": []
+            }
+          ]
+        }
+      },
+      "note": "Where a free allomorph stands, the token's other allomorphs are chosen again around it: after the free set the instrumental is tin (after a voiceless consonant), not the din chosen after sem."
     },
     {
       "id": "realise/free/none-to-choose",
@@ -812,6 +1116,34 @@
                 {
                   "form": "dan",
                   "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sem",
+              "pos": "NOUN",
+              "form": "sem",
+              "allomorphs": [
+                {
+                  "form": "set",
+                  "free": true
+                }
+              ]
+            },
+            {
+              "id": "lexeme:ins",
+              "realises": {
+                "Case": "Ins"
+              },
+              "allomorphs": [
+                {
+                  "form": "tin",
+                  "after": {
+                    "endsIn": "{VL}"
+                  }
+                },
+                {
+                  "form": "din"
                 }
               ]
             }
