@@ -243,12 +243,15 @@
       "title": "Exponent",
       "description": "One exponent: the branch it is, the feature values it is for (a comma: one of them; none: elsewhere in its block) and what it adds, in the notation (an affix that begins with a vowel writes it on a carrier, a modifier letter such as the tatweel, and the vowel goes on the letter it joins). It may select the stem.",
       "type": "object",
-      "required": ["branch", "add"],
+      "required": ["branch"],
+      "if": { "properties": { "lexeme": false } },
+      "then": { "properties": { "add": { "type": "string" } }, "required": ["add"] },
       "additionalProperties": false,
       "properties": {
         "branch": { "$ref": "#/$defs/Branch" },
         "feats": { "$ref": "common.schema.json#/$defs/UdFeatures" },
         "add": { "type": "string" },
+        "lexeme": { "description": "In place of `add`: an affix lexeme the exponent writes, in the allomorph its conditions choose by what it follows, as a token that lists it is realised (uz: the past -di, lexeme:past). One of `add` and `lexeme`.", "$ref": "common.schema.json#/$defs/LexemeId" },
         "stem": { "$ref": "#/$defs/StemChoice" },
         "notes": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } }
       }

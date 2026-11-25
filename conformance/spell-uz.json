@@ -1,0 +1,505 @@
+{
+  "$comment": "Spelling uz's lexical forms (docs/rules/uz.md; docs/rules-design.md, stage 1): uz-Latn/standard writes a form as it is (boundaries dropped); uz-Cyrl/standard's statement letter by letter, one vector or more per rule, from the course's words or, where none has the case, a word constructed for it (said so). With `expected`, whether the course's spelling is the spelling.",
+  "vectors": [
+    {
+      "id": "spell/uz-latn/identity",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "form": "kel+di+m",
+        "expected": "keldim"
+      },
+      "expected": {
+        "spelling": "keldim",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The form as it is, boundaries dropped: the course's keldim."
+    },
+    {
+      "id": "spell/uz-latn/letters",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "form": "yoʻl",
+        "expected": "yoʻl"
+      },
+      "expected": {
+        "spelling": "yoʻl",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The letters after o and g as they are: yoʻl."
+    },
+    {
+      "id": "spell/uz-cyrl/ye-start",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "yer",
+        "expected": "ер"
+      },
+      "expected": {
+        "spelling": "ер",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "ye at a word's start: е (lexeme:yer)."
+    },
+    {
+      "id": "spell/uz-cyrl/ye-vowel",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "poyezd",
+        "expected": "поезд"
+      },
+      "expected": {
+        "spelling": "поезд",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "ye after a vowel: е (lexeme:poyezd)."
+    },
+    {
+      "id": "spell/uz-cyrl/ye-o-sign",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "boʻyek"
+      },
+      "expected": {
+        "spelling": "бўек",
+        "alternatives": []
+      },
+      "note": "ye after oʻ, a vowel: е (constructed: no word of the course has it)."
+    },
+    {
+      "id": "spell/uz-cyrl/ye-capital",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "Yevropa"
+      },
+      "expected": {
+        "spelling": "Европа",
+        "alternatives": []
+      },
+      "note": "Ye at a word's start: Е (constructed)."
+    },
+    {
+      "id": "spell/uz-cyrl/ye-consonant",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "obyekt"
+      },
+      "expected": {
+        "spelling": "обйект",
+        "alternatives": []
+      },
+      "note": "ye after a consonant: й and е, as the letters go (constructed; the norm writes объект, a loan's spelling this statement does not give)."
+    },
+    {
+      "id": "spell/uz-cyrl/e-start",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "erta",
+        "expected": "эрта"
+      },
+      "expected": {
+        "spelling": "эрта",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "e at a word's start: э (lexeme:erta)."
+    },
+    {
+      "id": "spell/uz-cyrl/e-stem",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "e-",
+        "expected": "э-"
+      },
+      "expected": {
+        "spelling": "э-",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The copula's stem e-: э- (lexeme:edi)."
+    },
+    {
+      "id": "spell/uz-cyrl/e-capital",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "Ergash"
+      },
+      "expected": {
+        "spelling": "Эргаш",
+        "alternatives": []
+      },
+      "note": "E at a word's start: Э (constructed)."
+    },
+    {
+      "id": "spell/uz-cyrl/e-vowel",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "aeroport",
+        "expected": "аэропорт"
+      },
+      "expected": {
+        "spelling": "аэропорт",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "e after a vowel: э (constructed: аэропорт)."
+    },
+    {
+      "id": "spell/uz-cyrl/e-consonant",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "kecha",
+        "expected": "кеча"
+      },
+      "expected": {
+        "spelling": "кеча",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "e after a consonant: е (lexeme:kecha)."
+    },
+    {
+      "id": "spell/uz-cyrl/o",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "oʻn",
+        "expected": "ўн"
+      },
+      "expected": {
+        "spelling": "ўн",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "oʻ: ў (lexeme:on)."
+    },
+    {
+      "id": "spell/uz-cyrl/o-capital",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "Oʻzbekiston",
+        "expected": "Ўзбекистон"
+      },
+      "expected": {
+        "spelling": "Ўзбекистон",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Oʻ: Ў (lexeme:ozbekiston)."
+    },
+    {
+      "id": "spell/uz-cyrl/g",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "yomgʻir",
+        "expected": "ёмғир"
+      },
+      "expected": {
+        "spelling": "ёмғир",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "gʻ: ғ (lexeme:yomgir)."
+    },
+    {
+      "id": "spell/uz-cyrl/g-capital",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "Gʻafur"
+      },
+      "expected": {
+        "spelling": "Ғафур",
+        "alternatives": []
+      },
+      "note": "Gʻ: Ғ (constructed)."
+    },
+    {
+      "id": "spell/uz-cyrl/yo-o",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "yoʻq",
+        "expected": "йўқ"
+      },
+      "expected": {
+        "spelling": "йўқ",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "y before oʻ: й (lexeme:yoq)."
+    },
+    {
+      "id": "spell/uz-cyrl/sh",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "osh",
+        "expected": "ош"
+      },
+      "expected": {
+        "spelling": "ош",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "sh: ш (lexeme:osh)."
+    },
+    {
+      "id": "spell/uz-cyrl/sh-capital",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "Shanba",
+        "expected": "Шанба"
+      },
+      "expected": {
+        "spelling": "Шанба",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Sh: Ш (the course's Shanba)."
+    },
+    {
+      "id": "spell/uz-cyrl/ch",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "choy",
+        "expected": "чой"
+      },
+      "expected": {
+        "spelling": "чой",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "ch: ч (lexeme:choy)."
+    },
+    {
+      "id": "spell/uz-cyrl/ch-capital",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "Chorshanba",
+        "expected": "Чоршанба"
+      },
+      "expected": {
+        "spelling": "Чоршанба",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Ch: Ч (the course's)."
+    },
+    {
+      "id": "spell/uz-cyrl/ya",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "Angliya",
+        "expected": "Англия"
+      },
+      "expected": {
+        "spelling": "Англия",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "ya: я (lexeme:angliya)."
+    },
+    {
+      "id": "spell/uz-cyrl/ya-capital",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "Yaxshi",
+        "expected": "Яхши"
+      },
+      "expected": {
+        "spelling": "Яхши",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Ya: Я (the course's)."
+    },
+    {
+      "id": "spell/uz-cyrl/yo",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "samolyot",
+        "expected": "самолёт"
+      },
+      "expected": {
+        "spelling": "самолёт",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "yo: ё (lexeme:samolyot)."
+    },
+    {
+      "id": "spell/uz-cyrl/yy",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "tayyor",
+        "expected": "тайёр"
+      },
+      "expected": {
+        "spelling": "тайёр",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "yy before o: й and ё (lexeme:tayyor)."
+    },
+    {
+      "id": "spell/uz-cyrl/yu",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "yuz",
+        "expected": "юз"
+      },
+      "expected": {
+        "spelling": "юз",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "yu: ю (lexeme:yuz)."
+    },
+    {
+      "id": "spell/uz-cyrl/tutuq",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "maʼno",
+        "expected": "маъно"
+      },
+      "expected": {
+        "spelling": "маъно",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The tutuq belgisi: ъ (constructed: маъно)."
+    },
+    {
+      "id": "spell/uz-cyrl/letters",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "bahor",
+        "expected": "баҳор"
+      },
+      "expected": {
+        "spelling": "баҳор",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "h: ҳ (lexeme:bahor)."
+    },
+    {
+      "id": "spell/uz-cyrl/letters-x",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "Xiva",
+        "expected": "Хива"
+      },
+      "expected": {
+        "spelling": "Хива",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "X: Х (lexeme:xiva)."
+    },
+    {
+      "id": "spell/uz-cyrl/letters-q",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "qahva",
+        "expected": "қаҳва"
+      },
+      "expected": {
+        "spelling": "қаҳва",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "q: қ (lexeme:qahva)."
+    },
+    {
+      "id": "spell/uz-cyrl/letters-j",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "juma",
+        "expected": "жума"
+      },
+      "expected": {
+        "spelling": "жума",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "j: ж (lexeme:juma)."
+    },
+    {
+      "id": "spell/uz-cyrl/y",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "Payshanba",
+        "expected": "Пайшанба"
+      },
+      "expected": {
+        "spelling": "Пайшанба",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "y alone: й (the course's)."
+    },
+    {
+      "id": "spell/uz-cyrl/realised",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "uxla+yap+ti",
+        "expected": "ухлаяпти"
+      },
+      "expected": {
+        "spelling": "ухлаяпти",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "A realised form, boundaries dropped: the course's uxlayapti."
+    },
+    {
+      "id": "spell/uz-cyrl/realised-ye",
+      "op": "spell",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "form": "ye+y+man",
+        "expected": "ейман"
+      },
+      "expected": {
+        "spelling": "ейман",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "The course's yeyman: ye at the start, then й."
+    }
+  ]
+}

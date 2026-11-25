@@ -3744,7 +3744,11 @@ export interface RealisationRule {
 export interface Exponent {
   readonly branch: Branch1;
   readonly feats?: UdFeatures1;
-  readonly add: string;
+  readonly add?: string;
+  /**
+   * A lexeme of a language's lexicon (ADR 0145): a meaning, a part of speech, lexical features and a paradigm; also a feature value with a meaning (PAST) and a function head (AGENT). Unique in its language.
+   */
+  readonly lexeme?: string;
   readonly stem?: StemChoice;
   readonly notes?: {
     readonly [k: string]: string;

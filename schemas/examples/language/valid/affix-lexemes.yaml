@@ -1,0 +1,21 @@
+# Rules that write affix lexemes (docs/rules/uz.md, cut down): an exponent names the lexeme it writes in
+# place of text, chosen in its allomorph as a token's would be.
+id: uz
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@rules-uz', status: draft}
+dimensions:
+  VERB: [VerbForm, Tense, Person, Number]
+citation:
+  VERB: {VerbForm: Inf}
+stemmed: [VERB]
+notation:
+  sets: {V: "[aeiou]"}
+realisation:
+  - id: 'rule:uz-verb'
+    when: {pos: VERB}
+    blocks:
+      - suffix:
+          - {branch: inf, feats: {VerbForm: Inf}, add: moq}
+          - {branch: past, feats: {Tense: Past}, lexeme: 'lexeme:past'}
+      - suffix:
+          - {branch: past-1sg, feats: {Tense: Past, Person: '1', Number: Sing}, lexeme: 'lexeme:past-1sg'}
