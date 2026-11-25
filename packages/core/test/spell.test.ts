@@ -60,6 +60,12 @@ describe("compileSpeller and spell", () => {
     expect(long.alternatives.length).toBe(4095);
   });
 
+  it("writes a form as it is where an alphabet's statement has no rules: its notation names no vowel sign", () => {
+    const alphabet = compileSpeller({ ...FIXTURE, spell: { from: "lexical", rules: [] } }, { sets: { L: "[a-z]" } });
+    expect(alphabet.ok).toBe(true);
+    if (alphabet.ok) expect(spell(alphabet.value, "be+de")).toEqual({ spelling: "bede", alternatives: [] });
+  });
+
   it("compares a spelling with the course's as the profile keys a word, a layer exactly", () => {
     const course = loadCourse("apc", "apc-Arab/standard");
     const z = speller(latn);
