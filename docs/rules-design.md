@@ -765,3 +765,17 @@ annotation and the present stem as a principal part; yue's paired notation; uz's
 harmony classes; grc's aorist `Aspect=Perf` (twelve pinned stems hang on it) and its principal parts; hbo's pausal
 `context` and the article after a preposition; es's and sk's regularised forms of suppletive or defective words, which
 are not words (stage 6 must decide before the label `regularised` is produced).
+
+## apc's units 21 to 30 (2026-11-25)
+
+Units 21–30 (ADR 0080's amendment) were written through the rules, and three gaps were filled where a unit needed a
+form the rules did not give (every branch REVIEW, each with a vector in conformance/realise.json):
+- `rule:apc-feminine-t` **doubled**: ة is t before a vowel-initial ending after a doubled letter, the doubling kept
+  (مَرّة, مَرّْتين marrten; Kline p. 134 writes marten).
+- `imperfect` **doubled-a**: a doubled verb whose present is in a keeps it (ضَلّ, yDall, nDall: Kline p. 71); dall is
+  the only one so far.
+- `rule:apc-passive-participle`: `{Aspect: Part, Voice: Pass}` (Voice a new feature, in `dimensions`), before the
+  active participle's rule, on a `passive` stem: Form I مَ1ْ2ُو3 (maftu7, ma7bub: a doubled verb's radicals apart),
+  its defective مَ1ْ2ِي, Form II مْ1َ2َّ3 (msakkar) and its defective; none from a hollow Form I verb (Kline p. 140).
+  It agrees as the active one does (-e/-a, -in).
+

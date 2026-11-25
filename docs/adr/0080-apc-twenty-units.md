@@ -118,3 +118,39 @@ do (ch. 2). The course had written them phonetically, ـو / ـا (بيّو, إ�
   the new words a native speaker should check first (REVIEW, apc 13).
 - **Not yet:** a `sources` field that cites the reference and page on each item (ADR 0079 leaves
   it for its own ADR). This ADR and REVIEW name the chapters instead.
+
+## Amendment (2026-11-25): units 21–30, B1
+
+A learner (the owner) placed out of all twenty units and asked for more. Ten more units take the rest of Kline's
+chapters, built in the lexical model: every token is a lexeme and the feature values it chooses, realised and spelled
+through apc's rules by a generator (kept in the reference library, `nabu/notes/apc/generator`, not the repo), then
+checked by the compiler as any course source is.
+
+| Unit | Theme | Grammar (Kline chapter) |
+|---|---|---|
+| u21-weather | the weather and the seasons | 3am tshatti (shatta, Form II), the seasons; kell, ba3d (some), wala (4, 13, 24) |
+| u22-kitchen | in the kitchen | the imperative to a man, a woman and several people; ma with the bare present; -li (22, 23) |
+| u23-who | the one who | yalli as subject and object, with its returning pronoun; the genitive construct; nafs (7, 9) |
+| u24-if-only | if only… | law with the b-present and with ken; iza; ya reit; ken lezem (15, 21) |
+| u25-how-long | how long? | sar with -la- and an ending (sarlo sa3a); ba3dni wasel (just), ba3dni ma akalt (not yet); shi marra, wala marra; 2abelma, ba3dma (4, 18) |
+| u26-closed | closed today | passive participles: maftu7, msakkar, maksur, ma3zum, mamnu3; ken with them (19) |
+| u27-keep-going | keep going | dall, sar 3am, ballash, khallas, rje3 + a verb, ma 3ad, tele3 (turn out) (10, 15) |
+| u28-except | without sugar | illa, ghayr (ghayrak), bala, bidoun, w bas; shu and 2addesh-a in exclamations (27, 28) |
+| u29-while | when I was little | hiyye w raj3a (the accusative of circumstance), lamma kent; ya; dakhlak; ya3ni, lek, w hek (26, 30) |
+| u30-mountains | a weekend in the mountains | 3assoul, tayyoub (diminutives); a review of units 21–29 (31) |
+
+- **Size.** 245 new sentences, 11 stories (no new scenarios), 46 lessons and 76 lexemes: the course has 906
+  sentences, 30 stories and 141 lessons.
+- **Facts, not sentences.** Where a Kline example would have been the natural sentence, it was changed (his Sarla sene
+  ma zaret emma became sarlo shahr ma zar teta); the book's sentences are not copied (ADR 0079).
+- **The rules grew where the units needed them** (docs/rules-design.md, "apc's units 21 to 30"), each with
+  conformance vectors: the passive participle (`Voice=Pass` beside `Aspect=Part`, a new feature value), a doubled verb
+  whose present is in a (yDall), and ة as t after a doubled letter (marra, marrten). Six dative endings joined -li and
+  -lak (-lo, -la, -lik, -lna, -lkon, -lon).
+- **Homographs.** Where a new form is spelled like an older word with other marks (صارلك, sarlak and sarlik), it is in
+  vocalization.yaml's `ambiguous` and every token pins its marks; elsewhere a sentence was reworded rather than make
+  a new homograph (دقلي, قرا, رجع, سافرت, وصلت, طلعت each already read one way).
+- **Persons** (ADR 0075): 36 sentences to a man, 20 to a woman, 15 to several people; a man speaking in 29, a woman
+  in 28.
+- **Drafts.** Everything new is an LLM draft and waits for a native speaker: courses/REVIEW.md (apc 14).
+

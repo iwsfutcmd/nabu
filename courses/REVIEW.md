@@ -431,6 +431,35 @@ points below land, and its chapter is cited where it does.
       letter (الجّيران, الجّايِة), as Kline counts it. The older marks (الجِمْعَة, بِالجَبَل) don't do
       that yet; changing them changes their clips.
     - **Persons:** 46 to a man, 33 to a woman, 19 to several people; a man speaking 14, a woman 13.
+14. **Units 21–30** (B1, [ADR 0080](../docs/adr/0080-apc-twenty-units.md), amendment of 2026-11-25). 245 new
+    sentences and eleven stories, every token put through the rules. Arabizi follows the rules' first spelling (sheti,
+    maftu7a, bedun, 3assul; i, ee, ou and the like are accepted), so Kline's maftou7, bidoun, 3assoul read a little
+    differently in the text: say if the default should change. Check first:
+    - **u21 (weather):** 3am tshatti, shatta (rain, Form II) in the feminine; el sheti (winter, also the rain),
+      el rabi3, el sayfiyye, el kharif; bardan (cold, of a person, no imāla); ba3d el nes (بعض), wala wa7ad.
+    - **u22 (kitchen):** ghassel / ghassli / ghasslo; 2ta3 / 2ta3i / 2ta3o; zid / zidi / zido; 7ett / 7etti (حطّ);
+      ma tensa / ma tensi (nisi pinned: نِسِي, nise); jibili.
+    - **u23 (the one who):** yalli with a returning pronoun (el ktab yalli 2rito); bet jeddo, esm el m3allem; nafs.
+    - **u24 (if only):** law ma3i masari, beshteri bet; law kent 3reft, kent re7t; ya reit; ken lezem
+      ru7 bakkir.
+    - **u25 (how long):** sarlo, sarla, sarlik, sarlna, sarlkon, sarlon (صارله … صارلهن); صارلك is now sarlak to a
+      man and sarlik to a woman, marked apart (sarlek is no longer accepted for a man); marrten (مرتين, Kline
+      marten); ba3dni wasel (just arrived), ba3do ma wesel (not yet); shi marra (ever), wala marra; saro ray7in;
+      2abelma, ba3dma written as one word (2abel ma, ba3d ma accepted where listed).
+    - **u26 (passive participles):** maftu7 / maftu7a, msakkar, maksur, maktub, ma3ruf, ma7bube, ma2tu3a (the
+      power), ma7tut, ma3zum / ma3zume / ma3zumin, mamnu3; el beb ken msakkar. Form II feminines (msakkra?) are
+      avoided: the rules would give msakkara.
+    - **u27 (keep going):** dall spelled ضلّ as it is said (Kline: Dall, written ظلّ), with yDall, ndall (a doubled
+      verb whose present keeps its a); ballash, khallas; rje3t 2rit el ktab (I read it again), rej3et da22etli;
+      ma 3ad seken hon; tele3 el mat3am msakkar (turned out).
+    - **u28 (without):** ma akalt shi illa khebz; ghayr, ghayrak, ghayrkon; bala sukkar; bedun basal, beduni,
+      bedunek (Kline: bidoun); w bas, bas hek; shu ghalye hal siyyara!, 2addesho kbir, 2addesha tayybe.
+    - **u29 (while):** shefta hiyye w raj3a, weslet hiyye w ta3bane; lamma kent zghir, kent 7ebb el ba7r; ya Sami;
+      dakhlak, dakhelkon (دخلك is also a woman's dakhlik; only the man's and the plural are taught); ya3ni, lek, w hek.
+    - **u30 (mountains):** 3assoul, tayyoub (diminutives, Kline ch. 31), said to a boy; 3asal.
+    - **Rules:** three new branches (REVIEW): ة as t after a doubled letter, a doubled verb's present in a, and the
+      passive participle. `cd pipeline && uv run nabu forms ../courses/apc` lists what the rules do not yet give.
+    - **Persons:** 36 to a man, 20 to a woman, 15 to several people; a man speaking 29, a woman 28.
 
 ## lzh (Classical Chinese)
 

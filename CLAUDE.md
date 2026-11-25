@@ -569,7 +569,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   and check every Arabic spelling on a page image (`pdftoppm -png -f N -l N`).
 
 ## apc twenty units notes (see docs/adr/0080)
-- apc has twenty units, checked against Kline (2022). Lexemes spelled alike take a suffix (ra7.fut, fi.can, men.than,
+- apc has thirty units, checked against Kline (2022); units 21–30 (B1) were put through the rules by a generator kept
+  in the reference library (`nabu/notes/apc/generator`), then edited as sources. Lexemes spelled alike take a suffix (ra7.fut, fi.can, men.than,
   ba3d.still, jem3a.uni); multi-word patterns are rules (lexicons/apc/language.yaml `rules`: rule:used-to,
   rule:was-doing, rule:shu-excl), named in a sentence's `uses`.
 - Spelling: -o/-a (his/her, him/her; enno, la2anno) are ـه/ـها as Kline writes them, ـو/ـا accepted; -on (their) is ـهن.
