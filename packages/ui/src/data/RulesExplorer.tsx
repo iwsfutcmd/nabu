@@ -234,7 +234,7 @@ const Problem = ({ t, problem }: { t: Translator; problem: ExplorerProblem }): J
 const Result = ({ t, result }: { t: Translator; result: Explored }): JSX.Element => {
   if (!result.ok)
     return (
-      <div className={styles.result} data-rules-result="error" data-error={result.error.kind} data-ink-container="rules-result">
+      <div className={styles.result} data-rules-result="error" data-error={result.error.kind}>
         <p className={styles.flat}>{t.format(ERROR_MESSAGES[result.error.kind])}</p>
         {result.error.details.length > 0 && (
           <p className={data.meta}>
@@ -246,7 +246,7 @@ const Result = ({ t, result }: { t: Translator; result: Explored }): JSX.Element
       </div>
     );
   return (
-    <div className={styles.result} data-rules-result="ok" data-status={result.status} data-ink-container="rules-result">
+    <div className={styles.result} data-rules-result="ok" data-status={result.status}>
       <p className={data.meta}>
         <span className={data.badge}>{t.format(STATUS_MESSAGES[result.status])}</span>
         {result.listed !== undefined && <Code value={result.listed} />}
@@ -471,8 +471,8 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
           </section>
           {base !== undefined && request !== undefined && (
             <>
-              {/* It scrolls within itself where it is long: focusable, so a keyboard can scroll it. */}
-              <section className={`${styles.part} ${styles.live}`} aria-labelledby="rules-result" aria-live="polite" tabIndex={0} data-rules-live="">
+              {/* It scrolls within itself where it is long: focusable, so a keyboard can scroll it; its own edges are what the clipping check reads. */}
+              <section className={`${styles.part} ${styles.live}`} aria-labelledby="rules-result" aria-live="polite" tabIndex={0} data-rules-live="" data-ink-container="rules-live">
                 <h2 className={data.partTitle} id="rules-result">
                   {t.format("rules.result")}
                 </h2>
