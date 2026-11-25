@@ -277,13 +277,17 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
 
 // ------------------------------------------------------------------------------------------------
 
-/** Where `when` holds of a lexeme and a cell. A lexeme's classes are ignored with blocking off. */
+/**
+ * Where `when` holds of a lexeme and a cell. A lexeme's classes are ignored with blocking off. A
+ * lexical form that stores a boundary (es levantar+se: a clitic its citation form carries) is read
+ * by `ends`, `starts` and `endsIn` up to it: what it ends in is its base's ending.
+ */
 const conditionHolds = (lang: CompiledLanguage, when: Condition | undefined, lexeme: Lexeme, cell: UdFeatures, blocking: boolean): boolean => {
   if (when === undefined) return true;
   if (when.pos !== undefined && lexeme.pos !== when.pos) return false;
   if (when.feats !== undefined && !hasValues(cell, when.feats)) return false;
   if (when.class !== undefined && !(blocking && (lexeme.classes ?? []).includes(when.class))) return false;
-  const form = typeof lexeme.form === "string" ? lexeme.form.normalize("NFC") : undefined;
+  const form = typeof lexeme.form === "string" ? (lexeme.form.normalize("NFC").split("+")[0] as string) : undefined;
   if (when.ends !== undefined && !(form !== undefined && form.endsWith(when.ends.normalize("NFC")))) return false;
   if (when.starts !== undefined && !(form !== undefined && form.startsWith(when.starts.normalize("NFC")))) return false;
   if (when.endsIn !== undefined) {
@@ -548,7 +552,8 @@ const wordsOf = (units: readonly Unit[]): readonly (readonly Unit[])[] => {
  * each sees the others' choices: the lexemes after the base by what they follow and what stands after
  * them; the base's own form (where no rule made it) by what follows it in the token, or by the next
  * word (`options.next`) where nothing does; the lexemes before it, nearest first, by what they stand
- * before and follow.
+ * before and follow. A lexeme beside the base that the token gives values, and that has no allomorph
+ * to choose, is realised in them as a word of its own (es buscarlos: lo in the plural).
  */
 export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLexeme[], options: RealiseOptions = {}): Result<Realisation, RealiseError> => {
   const baseAt = written.length === 1 ? 0 : written.findIndex((w) => w.base === true);
@@ -570,11 +575,37 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
     lexemes.push(lexeme);
   }
   const next = options.next === undefined ? undefined : lang.lexemes.get(lexemeId(options.next));
+  // A word the token writes beside its base, given values there and with no allomorph to choose
+  // (es buscarlos: lo in the plural), is realised in them as a word of its own, then joined.
+  const partOptions: RealiseOptions = {
+    ...(options.blocking !== undefined && { blocking: options.blocking }),
+    ...(options.spellings !== undefined && { spellings: options.spellings }),
+    ...(options.pinned !== undefined && { pinned: options.pinned }),
+  };
+  const own: (readonly Unit[] | undefined)[] = [];
+  const ownSteps: Step[] = [];
+  for (let k = 0; k < written.length; k++) {
+    const lexeme = lexemes[k] as Lexeme;
+    const feats = (written[k] as WrittenLexeme).feats ?? {};
+    if (k === baseAt || sizeOf(feats) === 0 || lexeme.pos === undefined || (lexeme.allomorphs ?? []).some((a) => a.form !== undefined)) {
+      own.push(undefined);
+      continue;
+    }
+    const made = realise(lang, lexeme.id, feats, partOptions);
+    if (!made.ok) return made;
+    own.push(unitsOf(made.value.form));
+    ownSteps.push(...made.value.steps);
+  }
   // Each lexeme's form, first with no context.
   const forms: (readonly Unit[])[] = [];
   for (let k = 0; k < written.length; k++) {
     if (k === baseAt) {
       forms.push(baseUnits);
+      continue;
+    }
+    const realised = own[k];
+    if (realised !== undefined) {
+      forms.push(realised);
       continue;
     }
     const f = allomorphOf(lang, lexemes[k] as Lexeme, [], []);
@@ -590,6 +621,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   const ownBase = !built.value.whole && built.value.steps.length === 0 && options.word === undefined && choosesByFollowing(baseLexeme);
   for (let pass = 0; pass < 2; pass++) {
     for (let k = baseAt + 1; k < written.length; k++) {
+      if (own[k] !== undefined) continue;
       const f = allomorphOf(lang, lexemes[k] as Lexeme, joined(0, k), k + 1 < written.length ? (forms[k + 1] as readonly Unit[]) : [], k + 1 < written.length ? undefined : next);
       if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
       forms[k] = unitsOf(f);
@@ -600,6 +632,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
       if (f !== undefined) forms[baseAt] = unitsOf(f);
     }
     for (let k = baseAt - 1; k >= 0; k--) {
+      if (own[k] !== undefined) continue;
       const f = allomorphOf(lang, lexemes[k] as Lexeme, joined(0, k), joined(k + 1, written.length));
       if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
       forms[k] = unitsOf(f);
@@ -611,7 +644,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   for (let k = baseAt - 1; k >= 0; k--) units = join(lang, forms[k] as readonly Unit[], units, "prefix");
   if (built.value.whole && written.length === 1) return ok(realisation(built.value, units, built.value.steps));
   const rewritten = rewrite(lang, units, built.value.lexeme, base.feats ?? {}, options.blocking ?? true);
-  return ok(realisation(built.value, rewritten.units, [...built.value.steps, ...rewritten.steps]));
+  return ok(realisation(built.value, rewritten.units, [...built.value.steps, ...ownSteps, ...rewritten.steps]));
 };
 
 /** A lexeme realised in each of `cells`. */
