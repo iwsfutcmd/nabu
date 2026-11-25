@@ -1123,8 +1123,9 @@ def _token_forms(
 ) -> list[lexical_forms.Site] | None:
     """Every token of the course against what the language's rules give (`form.unaccounted`,
     docs/rules-design.md stage 2): realised and spelled by @nabu/core. Only for a language with
-    realisation rules; the report is kept for `nabu forms`. The sites checked, for the paradigms."""
-    if not ctx.lang.declared.realisation:
+    realisation rules or a notation (a language that does not inflect: its tokens stand in their
+    citation cells); the report is kept for `nabu forms`. The sites checked, for the paradigms."""
+    if not ctx.lang.declared.realisation and ctx.lang.declared.notation is None:
         return None
     sites = _token_sites(ctx, units)
     report = lexical_forms.check_tokens(ctx.lang, sites, ctx.profiles, ctx.cli)
