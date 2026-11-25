@@ -51,6 +51,8 @@ export interface Speller {
   readonly id: string;
   readonly rules: readonly CompiledRule[];
   readonly order: ReadonlyMap<string, number>;
+  /** The rules read the form decomposed (NFD): a mark NFC composes into its letter stands apart. */
+  readonly decompose?: boolean;
 }
 
 /** The most spellings one form is taken through: past it, the later choices keep the rule's own `to`. */
@@ -274,7 +276,7 @@ export const compileSpeller = (profile: OrthographyProfile, notation: Notation, 
   }
   const rules = statement.rules.map((r, i) => compileRule(r, i, sets, errors));
   if (errors.length > 0) return err(errors);
-  return ok({ id, rules: rules as CompiledRule[], order });
+  return ok({ id, rules: rules as CompiledRule[], order, ...(statement.decompose === true && { decompose: true }) });
 };
 
 /** The form with each run of marks in the notation's order (NFC puts them by combining class). */
@@ -344,7 +346,7 @@ const plainer = (a: ReadonlySet<string>, b: ReadonlySet<string>): boolean =>
  * A realised form's boundaries (`+`) are dropped first: no orthography writes them.
  */
 export const spell = (speller: Speller, form: string): Spelled => {
-  let branches: Branch[] = [{ text: inOrder(form.replace(/\+/gu, "").normalize("NFC"), speller.order), by: new Set() }];
+  let branches: Branch[] = [{ text: inOrder(form.replace(/\+/gu, "").normalize(speller.decompose === true ? "NFD" : "NFC"), speller.order), by: new Set() }];
   for (const rule of speller.rules) {
     const next = new Map<string, Branch>();
     for (const branch of branches) {

@@ -1,0 +1,4125 @@
+{
+ "$comment": "Realisation for grc (docs/rules/grc.md): realise/engine runs zz, an invented language given whole, over the engine features grc needed (a rule's `strip`; accent rules, recessive and persistent, by the notation's `prosody`); realise/grc runs grc's own rules and lexicon (lexicons/grc), one vector per branch, from the course's own forms, with `spellings: false` as the compiler's token check.",
+ "vectors": [
+  {
+   "id": "realise/engine/strip/citation",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:logos",
+    "cell": {
+     "Case": "Nom",
+     "Number": "Sing"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "lóg+os",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-noun",
+       "branch": "nom-sg"
+      }
+     ]
+    }
+   },
+   "note": "A rule with `strip` takes the cited ending off and realises the citation cell too: the lemma is a realisation (ADR 0154), its boundary kept."
+  },
+  {
+   "id": "realise/engine/strip/other-cell",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:logos",
+    "cell": {
+     "Case": "Gen",
+     "Number": "Sing"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "lóg+ou",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-noun",
+       "branch": "gen-sg"
+      }
+     ]
+    }
+   },
+   "note": "The ending -os goes and -ou takes its place; the accent stays on the stem (the persistent rule changes nothing, so it is no step)."
+  },
+  {
+   "id": "realise/engine/strip/accented-ending",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:theos",
+    "cell": {
+     "Case": "Gen",
+     "Number": "Sing"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "the+ou",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-noun",
+       "branch": "gen-sg"
+      }
+     ]
+    }
+   },
+   "note": "The first ending of `strip` the form ends in goes, its accent with it: an oxytone's stem has none (the persistent rule leaves a form with no accent so)."
+  },
+  {
+   "id": "realise/engine/strip/no-ending",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:nyx",
+    "cell": {
+     "Case": "Gen",
+     "Number": "Sing"
+    }
+   },
+   "expected": {
+    "ok": false,
+    "error": {
+     "kind": "form",
+     "lexeme": "lexeme:nyx"
+    }
+   },
+   "note": "A form that ends in none of the rule's `strip` endings is not realised by the rule."
+  },
+  {
+   "id": "realise/engine/strip/listed-stem",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:parysatis",
+    "cell": {
+     "Case": "Gen",
+     "Number": "Sing"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "Parysatíd+ou",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:zz-noun",
+       "branch": "gen-sg"
+      },
+      {
+       "rule": "rule:zz-accent",
+       "branch": "persistent"
+      }
+     ]
+    }
+   },
+   "note": "A listed stem is the stem: nothing is stripped. The persistent accent stays on its syllable as far as the last allows: four from the end is too far, and with a long last syllable it moves to the second from the end."
+  },
+  {
+   "id": "realise/engine/persistent/limitation",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:anthropos",
+    "cell": {
+     "Case": "Gen",
+     "Number": "Sing"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "anthróp+ou",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-noun",
+       "branch": "gen-sg"
+      },
+      {
+       "rule": "rule:zz-accent",
+       "branch": "persistent"
+      }
+     ]
+    }
+   },
+   "note": "The rule of limitation: a long last syllable keeps an acute off the third syllable from the end (anthrópou)."
+  },
+  {
+   "id": "realise/engine/persistent/stays",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:anthropos",
+    "cell": {
+     "Case": "Nom",
+     "Number": "Plur"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ánthrop+a",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-noun",
+       "branch": "nom-pl"
+      }
+     ]
+    }
+   },
+   "note": "A short last syllable leaves the accent on the third from the end: nothing changes, so the accent rule is no step."
+  },
+  {
+   "id": "realise/engine/persistent/acute",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:doron",
+    "cell": {
+     "Case": "Gen",
+     "Number": "Sing"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "dór+ou",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-noun",
+       "branch": "gen-sg"
+      },
+      {
+       "rule": "rule:zz-accent",
+       "branch": "persistent"
+      }
+     ]
+    }
+   },
+   "note": "A circumflex on the second syllable from the end becomes an acute before a long last syllable."
+  },
+  {
+   "id": "realise/engine/persistent/circumflex",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:doron",
+    "cell": {
+     "Case": "Nom",
+     "Number": "Plur"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "dôr+a",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-noun",
+       "branch": "nom-pl"
+      }
+     ]
+    }
+   },
+   "note": "Before a short last syllable the accented long second syllable keeps its circumflex (the circumflex is a long vowel's)."
+  },
+  {
+   "id": "realise/engine/recessive/antepenult",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:lego",
+    "cell": {
+     "Mood": "Ind",
+     "Person": "1",
+     "Number": "Plur"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "-lég+omen",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-verb",
+       "branch": "1pl"
+      }
+     ]
+    }
+   },
+   "note": "Recessive: a short last syllable puts the acute on the third from the end, where the lemma had it: no change, no step."
+  },
+  {
+   "id": "realise/engine/recessive/citation",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:lego",
+    "cell": {
+     "Mood": "Ind",
+     "Person": "1",
+     "Number": "Sing"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "-lég+ō",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-verb",
+       "branch": "1sg"
+      }
+     ]
+    }
+   },
+   "note": "The citation cell realised by a stripping rule: the long last syllable puts the acute on the second from the end."
+  },
+  {
+   "id": "realise/engine/recessive/circumflex",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:lyo",
+    "cell": {
+     "Mood": "Imp",
+     "Person": "2",
+     "Number": "Sing"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "-lū̂+e",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-verb",
+       "branch": "imp"
+      },
+      {
+       "rule": "rule:zz-accent",
+       "branch": "recessive"
+      }
+     ]
+    }
+   },
+   "note": "A long second syllable before a short last takes the circumflex (λῦε)."
+  },
+  {
+   "id": "realise/engine/recessive/limit",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:perimeno",
+    "cell": {
+     "Mood": "Imp",
+     "Person": "2",
+     "Number": "Sing"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "perí-men+e",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-verb",
+       "branch": "imp"
+      },
+      {
+       "rule": "rule:zz-accent",
+       "branch": "recessive"
+      }
+     ]
+    }
+   },
+   "note": "The accent recedes onto the syllable before the limit, a preverb's last (περίμενε)."
+  },
+  {
+   "id": "realise/engine/recessive/limit-binds",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:apodo",
+    "cell": {
+     "Mood": "Imp",
+     "Person": "2",
+     "Number": "Sing"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "apó-d+e",
+     "status": "listed",
+     "steps": [
+      {
+       "rule": "rule:zz-verb",
+       "branch": "imp"
+      },
+      {
+       "rule": "rule:zz-accent",
+       "branch": "recessive"
+      }
+     ]
+    }
+   },
+   "note": "It goes no further back than that syllable, though a short last syllable would let it go to the third from the end (ἀπόδος, a listed stem)."
+  },
+  {
+   "id": "realise/engine/recessive/short-at-end",
+   "op": "realise",
+   "args": {
+    "language": {
+     "id": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "dimensions": {
+      "NOUN": [
+       "Case",
+       "Number"
+      ],
+      "VERB": [
+       "Mood",
+       "Person",
+       "Number"
+      ]
+     },
+     "citation": {
+      "NOUN": {
+       "Case": "Nom",
+       "Number": "Sing"
+      },
+      "VERB": {
+       "Mood": "Ind",
+       "Person": "1",
+       "Number": "Sing"
+      }
+     },
+     "notation": {
+      "order": "[̄ ́ ̂]",
+      "prosody": {
+       "vowels": "[aeiouy]",
+       "lengthen": "[̄]",
+       "diphthongs": "[{ai}{au}{ei}{eu}{oi}{ou}]",
+       "apart": "[̄ \\u0308]",
+       "shortAtEnd": "[{ai}{oi}]",
+       "acute": "́",
+       "circumflex": "̂",
+       "limit": "-"
+      },
+      "sets": {
+       "V": "[aeiouy]"
+      }
+     },
+     "realisation": [
+      {
+       "id": "rule:zz-verb",
+       "when": {
+        "pos": "VERB"
+       },
+       "strip": [
+        "omai",
+        "ō"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "1sg",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Sing"
+           },
+           "add": "ō"
+          },
+          {
+           "branch": "1pl",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "1",
+            "Number": "Plur"
+           },
+           "add": "omen"
+          },
+          {
+           "branch": "3pl-mid",
+           "feats": {
+            "Mood": "Ind",
+            "Person": "3",
+            "Number": "Plur",
+            "Voice": "Mid"
+           },
+           "add": "ontai"
+          },
+          {
+           "branch": "imp",
+           "feats": {
+            "Mood": "Imp"
+           },
+           "add": "e"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "id": "rule:zz-noun",
+       "when": {
+        "pos": "NOUN"
+       },
+       "strip": [
+        "os",
+        "ós"
+       ],
+       "blocks": [
+        {
+         "suffix": [
+          {
+           "branch": "nom-sg",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Sing"
+           },
+           "add": "os"
+          },
+          {
+           "branch": "gen-sg",
+           "feats": {
+            "Case": "Gen",
+            "Number": "Sing"
+           },
+           "add": "ou"
+          },
+          {
+           "branch": "nom-pl",
+           "feats": {
+            "Case": "Nom",
+            "Number": "Plur"
+           },
+           "add": "a"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "phonology": [
+      {
+       "id": "rule:zz-accent",
+       "branch": "recessive",
+       "accent": "recessive",
+       "when": {
+        "pos": "VERB"
+       }
+      },
+      {
+       "id": "rule:zz-accent",
+       "branch": "persistent",
+       "accent": "persistent",
+       "when": {
+        "pos": "NOUN"
+       }
+      }
+     ]
+    },
+    "lexicon": {
+     "language": "zz",
+     "license": "CC0-1.0",
+     "provenance": {
+      "author": "llm:claude@rules-grc-fixture",
+      "status": "draft"
+     },
+     "lexemes": [
+      {
+       "id": "lexeme:logos",
+       "pos": "NOUN",
+       "form": "lógos"
+      },
+      {
+       "id": "lexeme:anthropos",
+       "pos": "NOUN",
+       "form": "ánthropos"
+      },
+      {
+       "id": "lexeme:doron",
+       "pos": "NOUN",
+       "form": "dôros"
+      },
+      {
+       "id": "lexeme:parysatis",
+       "pos": "NOUN",
+       "form": "Parýsatis",
+       "forms": [
+        {
+         "feats": {
+          "Case": "Gen"
+         },
+         "stem": "Parýsatid",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:theos",
+       "pos": "NOUN",
+       "form": "theós"
+      },
+      {
+       "id": "lexeme:nyx",
+       "pos": "NOUN",
+       "form": "nýx"
+      },
+      {
+       "id": "lexeme:lego",
+       "pos": "VERB",
+       "form": "-légō"
+      },
+      {
+       "id": "lexeme:lyo",
+       "pos": "VERB",
+       "form": "-lū́ō"
+      },
+      {
+       "id": "lexeme:perimeno",
+       "pos": "VERB",
+       "form": "peri-ménō"
+      },
+      {
+       "id": "lexeme:apodo",
+       "pos": "VERB",
+       "form": "apo-dósō",
+       "forms": [
+        {
+         "feats": {
+          "Mood": "Imp"
+         },
+         "stem": "apo-d",
+         "status": "listed",
+         "statement": {
+          "author": "llm:claude@rules-grc-fixture",
+          "status": "draft"
+         }
+        }
+       ]
+      },
+      {
+       "id": "lexeme:paideuomai",
+       "pos": "VERB",
+       "form": "-paideúomai"
+      }
+     ]
+    },
+    "lexeme": "lexeme:paideuomai",
+    "cell": {
+     "Mood": "Ind",
+     "Person": "3",
+     "Number": "Plur",
+     "Voice": "Mid"
+    }
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "-paideú+ontai",
+     "status": "given",
+     "steps": [
+      {
+       "rule": "rule:zz-verb",
+       "branch": "3pl-mid"
+      }
+     ]
+    }
+   },
+   "note": "A final -ai counts short (shortAtEnd): the acute stands three syllables from the end, on the diphthong's second letter; the lemma had it there, so no step."
+  }
+ ]
+}

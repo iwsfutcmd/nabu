@@ -1,0 +1,197 @@
+{
+ "$comment": "Spelling for grc (docs/rules/grc.md): spell/engine runs an invented profile over a decomposed `spell` statement; spell/grc runs grc-Grek/polytonic's own, one vector or more per rule and alternative.",
+ "vectors": [
+  {
+   "id": "spell/engine/decompose/mark-apart",
+   "op": "spell",
+   "args": {
+    "profile": {
+     "id": "zz-Latn/fixture",
+     "lang": "zz-Latn",
+     "exemplars": "cldr:en",
+     "segmentation": {
+      "content": "whitespace",
+      "runtime": "grapheme"
+     },
+     "normalize": [
+      "nfc"
+     ],
+     "match": {
+      "case": {
+       "locale": "en"
+      }
+     },
+     "layout": {
+      "vertical": "none"
+     },
+     "spell": {
+      "from": "lexical",
+      "decompose": true,
+      "rules": [
+       {
+        "find": "̄",
+        "to": ""
+       },
+       {
+        "find": "́",
+        "before": "{NV}*$",
+        "to": "́",
+        "alternatives": [
+         {
+          "id": "grave",
+          "to": "̀"
+         }
+        ]
+       }
+      ],
+      "sets": {
+       "NV": "[b-df-hj-np-tv-xz\\u0300-\\u036f]"
+      }
+     }
+    },
+    "notation": {
+     "sets": {
+      "V": "[aeiouy]"
+     },
+     "order": "[̄ ́]"
+    },
+    "form": "theós"
+   },
+   "expected": {
+    "spelling": "theós",
+    "alternatives": [
+     {
+      "spelling": "theòs",
+      "by": [
+       "grave"
+      ]
+     }
+    ]
+   },
+   "note": "decompose: the rules read the form as NFD, so the acute NFC composes into ó is a mark a rule finds (a final acute's grave alternative); the spelling is NFC again."
+  },
+  {
+   "id": "spell/engine/decompose/off",
+   "op": "spell",
+   "args": {
+    "profile": {
+     "id": "zz-Latn/fixture-nfc",
+     "lang": "zz-Latn",
+     "exemplars": "cldr:en",
+     "segmentation": {
+      "content": "whitespace",
+      "runtime": "grapheme"
+     },
+     "normalize": [
+      "nfc"
+     ],
+     "match": {
+      "case": {
+       "locale": "en"
+      }
+     },
+     "layout": {
+      "vertical": "none"
+     },
+     "spell": {
+      "from": "lexical",
+      "rules": [
+       {
+        "find": "̄",
+        "to": ""
+       },
+       {
+        "find": "́",
+        "before": "{NV}*$",
+        "to": "́",
+        "alternatives": [
+         {
+          "id": "grave",
+          "to": "̀"
+         }
+        ]
+       }
+      ],
+      "sets": {
+       "NV": "[b-df-hj-np-tv-xz\\u0300-\\u036f]"
+      }
+     }
+    },
+    "notation": {
+     "sets": {
+      "V": "[aeiouy]"
+     },
+     "order": "[̄ ́]"
+    },
+    "form": "theós"
+   },
+   "expected": {
+    "spelling": "theós",
+    "alternatives": []
+   },
+   "note": "Without decompose the same statement sees ó as one letter: no acute to find, no alternative."
+  },
+  {
+   "id": "spell/engine/decompose/length",
+   "op": "spell",
+   "args": {
+    "profile": {
+     "id": "zz-Latn/fixture",
+     "lang": "zz-Latn",
+     "exemplars": "cldr:en",
+     "segmentation": {
+      "content": "whitespace",
+      "runtime": "grapheme"
+     },
+     "normalize": [
+      "nfc"
+     ],
+     "match": {
+      "case": {
+       "locale": "en"
+      }
+     },
+     "layout": {
+      "vertical": "none"
+     },
+     "spell": {
+      "from": "lexical",
+      "decompose": true,
+      "rules": [
+       {
+        "find": "̄",
+        "to": ""
+       },
+       {
+        "find": "́",
+        "before": "{NV}*$",
+        "to": "́",
+        "alternatives": [
+         {
+          "id": "grave",
+          "to": "̀"
+         }
+        ]
+       }
+      ],
+      "sets": {
+       "NV": "[b-df-hj-np-tv-xz\\u0300-\\u036f]"
+      }
+     }
+    },
+    "notation": {
+     "sets": {
+      "V": "[aeiouy]"
+     },
+     "order": "[̄ ́]"
+    },
+    "form": "lū́o"
+   },
+   "expected": {
+    "spelling": "lúo",
+    "alternatives": []
+   },
+   "note": "A length mark NFC keeps beside its letter (ū́) and one it composes (ō) are both marks to a decomposed statement; the acute that is not last gets no grave."
+  }
+ ]
+}
