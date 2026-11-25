@@ -51,6 +51,8 @@ export interface Speller {
   readonly id: string;
   readonly rules: readonly CompiledRule[];
   readonly order: ReadonlyMap<string, number>;
+  /** Whether a realised form's boundaries (+) stay for the rules (the statement's `boundaries`), to be dropped after them. */
+  readonly boundaries?: boolean;
 }
 
 /** The most spellings one form is taken through: past it, the later choices keep the rule's own `to`. */
@@ -292,7 +294,7 @@ export const compileSpeller = (profile: OrthographyProfile, notation: Notation, 
   }
   const rules = statement.rules.map((r, i) => compileRule(r, i, sets, errors));
   if (errors.length > 0) return err(errors);
-  return ok({ id, rules: rules as CompiledRule[], order });
+  return ok({ id, rules: rules as CompiledRule[], order, ...(statement.boundaries === true && { boundaries: true }) });
 };
 
 /** The form with each run of marks in the notation's order (NFC puts them by combining class). */
@@ -359,10 +361,13 @@ const plainer = (a: ReadonlySet<string>, b: ReadonlySet<string>): boolean =>
 
 /**
  * A lexical form spelled by a statement: its spelling, and the free spellings its alternatives give.
- * A realised form's boundaries (`+`) are dropped first: no orthography writes them.
+ * A realised form's boundaries (`+`) are dropped first: no orthography writes them. A statement
+ * with `boundaries` keeps them for its rules to name (where a suffix joins: a half-space) and drops
+ * them after.
  */
 export const spell = (speller: Speller, form: string): Spelled => {
-  let branches: Branch[] = [{ text: inOrder(form.replace(/\+/gu, "").normalize("NFC"), speller.order), by: new Set() }];
+  const kept = speller.boundaries === true ? form : form.replace(/\+/gu, "");
+  let branches: Branch[] = [{ text: inOrder(kept.normalize("NFC"), speller.order), by: new Set() }];
   for (const rule of speller.rules) {
     const next = new Map<string, Branch>();
     for (const branch of branches) {
@@ -373,10 +378,11 @@ export const spell = (speller: Speller, form: string): Spelled => {
     }
     branches = [...next.values()];
   }
-  const spelling = (branches[0] as Branch).text.normalize("NFC");
+  const unbounded = (text: string): string => (speller.boundaries === true ? text.replace(/\+/gu, "") : text).normalize("NFC");
+  const spelling = unbounded((branches[0] as Branch).text);
   const alternatives = new Map<string, ReadonlySet<string>>();
   for (const b of branches.slice(1)) {
-    const text = b.text.normalize("NFC");
+    const text = unbounded(b.text);
     if (text === spelling) continue;
     const had = alternatives.get(text);
     if (had === undefined || plainer(b.by, had)) alternatives.set(text, b.by);

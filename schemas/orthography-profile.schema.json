@@ -1249,6 +1249,7 @@
       "additionalProperties": false,
       "properties": {
         "from": { "description": "What is spelled: a lexeme's lexical form, in its language's notation.", "const": "lexical" },
+        "boundaries": { "description": "true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first.", "type": "boolean" },
         "sets": {
           "description": "Named sets of this statement's own, beside the notation's.",
           "type": "object",

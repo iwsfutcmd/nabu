@@ -2583,6 +2583,12 @@ class Allomorph(BaseModel):
     form: str | None = None
     after: Annotated[Condition | None, Field(description="What it stands after.")] = None
     before: Annotated[Condition | None, Field(description="What it stands before.")] = None
+    free: Annotated[
+        bool | None,
+        Field(
+            description="true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (a scribe's other spelling of a suffix: chg's locative دا beside ده). Never the one chosen: a token's realisation gives it as an alternative."
+        ),
+    ] = None
     spelled: Annotated[
         dict[OrthographyId, SpelledAdditionalProperty2] | None,
         Field(
@@ -6441,6 +6447,12 @@ class Spell(BaseModel):
             description="What is spelled: a lexeme's lexical form, in its language's notation.",
         ),
     ]
+    boundaries: Annotated[
+        bool | None,
+        Field(
+            description="true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first."
+        ),
+    ] = None
     sets: Annotated[
         dict[
             Annotated[str, StringConstraints(pattern=r"^[A-Za-z][A-Za-z0-9-]*$")], UnicodeSetPattern

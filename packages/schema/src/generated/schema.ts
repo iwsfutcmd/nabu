@@ -3365,6 +3365,10 @@ export interface Allomorph {
   readonly after?: Condition;
   readonly before?: Condition1;
   /**
+   * true: a form the language's writers use beside the one the conditions choose, where its own conditions hold (a scribe's other spelling of a suffix: chg's locative دا beside ده). Never the one chosen: a token's realisation gives it as an alternative.
+   */
+  readonly free?: boolean;
+  /**
    * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
    */
   readonly spelled?: {
@@ -5679,6 +5683,10 @@ export interface Spell {
    */
   readonly from: "lexical";
   /**
+   * true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first.
+   */
+  readonly boundaries?: boolean;
+  /**
    * Named sets of this statement's own, beside the notation's.
    */
   readonly sets?: {
@@ -5971,6 +5979,10 @@ export interface Spell1 {
    * What is spelled: a lexeme's lexical form, in its language's notation.
    */
   readonly from: "lexical";
+  /**
+   * true: a realised form's boundaries (+) stay for the rules to name, and are dropped after them: an orthography that writes where a suffix joins (chg's half-space). Without it they are dropped first.
+   */
+  readonly boundaries?: boolean;
   /**
    * Named sets of this statement's own, beside the notation's.
    */
