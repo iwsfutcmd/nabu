@@ -52,6 +52,16 @@ test("a lexeme is put through the rules as it is changed, kept in the address, a
   await expect(page.locator("[data-rules-page=apc]")).toBeVisible();
   const root = page.locator("[data-rules-explorer=apc]");
 
+  // The lexicon is browsed before anything is typed, a page at a time, and narrowed by its facets.
+  const base = root.locator('[data-picker="rules-base"]');
+  await expect(base.locator("[data-rules-found]")).toHaveAttribute("data-rules-found", String(explorer.lexemes.length));
+  await expect(base.locator("[data-pick]")).toHaveCount(Math.min(40, explorer.lexemes.length));
+  await base.locator("[data-action=lexicon-filter]").click();
+  await base.locator('[data-facet="pos"] [data-facet-value="VERB"]').click();
+  await expect(base.locator("[data-rules-found]")).toHaveAttribute("data-rules-found", String(explorer.lexemes.filter((l) => l.row.facets.pos.includes("VERB")).length));
+  // A lexeme to add is listed only once something is typed or chosen.
+  await expect(root.locator('[data-picker="rules-add"] [data-pick]')).toHaveCount(0);
+
   // The base is found by its id and picked.
   await root.locator("[data-field=rules-base]").fill("shereb");
   await root.locator('[data-pick="lexeme:shereb"]').click();

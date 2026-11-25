@@ -16,6 +16,7 @@ import styles from "./Data.module.css";
 
 const FACET_MESSAGES = {
   pos: "data.lexicon.facet.pos",
+  class: "data.lexicon.facet.class",
   kind: "data.lexicon.facet.kind",
   course: "data.lexicon.facet.course",
   feature: "data.lexicon.facet.feature",

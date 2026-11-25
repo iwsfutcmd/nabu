@@ -91,6 +91,7 @@ export interface LexemeRow {
  * The ways the Lexicon view narrows its list, each read off the lexicon, never a list in code:
  *
  * - `pos`: its part of speech as UD tags it, or `realises` for an affix that realises a feature value.
+ * - `class`: the inflection classes its entry states (`classes`: es e-ie, sk chlap), which its rules read.
  * - `kind`: `free`, or `bound` (written only inside words).
  * - `course`: `taught` (a node introduces it), `untaught` (in the bundle, introduced by none), or
  *   `file` (only the lexicon's file has it).
@@ -98,9 +99,9 @@ export interface LexemeRow {
  * - `has`, `lacks`: the keys its entry stores (forms, allomorphs, notes, image): the lexicon file's
  *   entry where the file is at hand, the bundle lexeme's otherwise.
  */
-export type LexiconFacet = "pos" | "kind" | "course" | "feature" | "has" | "lacks";
+export type LexiconFacet = "pos" | "class" | "kind" | "course" | "feature" | "has" | "lacks";
 
-export const LEXICON_FACETS: readonly LexiconFacet[] = ["pos", "kind", "course", "feature", "has", "lacks"];
+export const LEXICON_FACETS: readonly LexiconFacet[] = ["pos", "class", "kind", "course", "feature", "has", "lacks"];
 
 export type LexemeFacets = Readonly<Record<LexiconFacet, readonly string[]>>;
 
@@ -108,7 +109,7 @@ export type LexemeFacets = Readonly<Record<LexiconFacet, readonly string[]>>;
  * How a facet's chosen values combine. A lexeme has one value of an `any` facet, so it passes where
  * it has one of those chosen; it has several of an `all` facet, so it passes where it has every one.
  */
-export const FACET_COMBINE: Readonly<Record<LexiconFacet, "any" | "all">> = { pos: "any", kind: "any", course: "any", feature: "all", has: "all", lacks: "all" };
+export const FACET_COMBINE: Readonly<Record<LexiconFacet, "any" | "all">> = { pos: "any", class: "all", kind: "any", course: "any", feature: "all", has: "all", lacks: "all" };
 
 /** The values chosen on each facet; a facet with none chosen lets every lexeme through. */
 export type LexiconFilter = Readonly<Partial<Record<LexiconFacet, readonly string[]>>>;
@@ -192,6 +193,12 @@ const tagOf = (lang: string, orthography: string): Tag => ({ lang: lang as Tagge
 
 /** Text of one run: a string as language data, NFC at this boundary. */
 const tagged = (tag: Tag, value: string): TaggedText => ({ ...tag, tokens: [{ surface: value.normalize("NFC"), kind: "lexical" }] });
+
+/** A lexeme's inflection classes: its entry's (the file's), else its bundle lexeme's. */
+const classesOf = (entry: Readonly<Record<string, unknown>> | undefined, lexeme: BundleLexeme | undefined): readonly string[] => {
+  const stated = entry?.["classes"] ?? (lexeme as { readonly classes?: unknown } | undefined)?.classes;
+  return Array.isArray(stated) ? stated.filter((c): c is string => typeof c === "string") : [];
+};
 
 const isTaggedText = (value: unknown): value is TaggedText => isObject(value) && typeof value["lang"] === "string" && typeof value["orthography"] === "string" && Array.isArray(value["tokens"]);
 
@@ -589,6 +596,7 @@ export const lexiconData = (course: CourseView, source?: LexiconSource, aliases?
     const stored = Object.keys((source === undefined ? lexeme : entry) ?? {}).filter((key) => key !== "id");
     const facets: LexemeFacets = {
       pos: typeof pos === "string" ? [pos] : realises ? ["realises"] : [],
+      class: classesOf(entry, lexeme),
       kind: [bound ? "bound" : "free"],
       course: [lexeme === undefined ? "file" : at === undefined ? "untaught" : "taught"],
       feature: rowTags.filter((tag) => tag.includes("=")),
