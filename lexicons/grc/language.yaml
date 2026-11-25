@@ -105,3 +105,47 @@ labels:
 - {feats: {Case: Dat, Number: Plur}, gloss: {en: 'the dative plural (masculine; also ἡμῖν): to, for (ἡμῖν, to us)'}, was: 'form:dat-pl'}
 rules:
 - {id: 'rule:esti-moi', gloss: {en: 'ἔστι μοι + a noun: I have (word for word, there is to me)'}, was: 'construction:esti-moi'}
+# Rules in a lexicon (docs/rules-design.md; docs/rules/grc.md): what grc's lexical forms are, and the rules that realise
+# them, read by @nabu/core (`realise`, `spell`), never shipped. Every branch is REVIEW until the owner signs it off.
+# Sources: van Emde Boas et al., The Cambridge Grammar of Classical Greek (2019), by section (CGCG 4.3 is chapter 4,
+# section 3); the course where it writes a form the rules do not give (said so).
+# How grc writes a lexical form. A lexeme's form is its lemma as its Attic reading writes it (profiles/schemes/attic.yaml):
+# every α, ι, υ outside a diphthong marked long (ᾱ) or short (ᾰ) unless a circumflex or the iota subscript settles it,
+# the accents as the lemma has them (an acute where the course writes a grave). Three signs of the notation's own:
+# - "-" in a verb: where the augment goes (first, or after a compound's preverb: περῐ-μένω); a recessive accent goes no
+#   further back than the syllable before it (CGCG 24.19). Never spelled.
+# - "(ν)": the movable ν (ν ἐφελκυστικόν, CGCG 1.39), written or not.
+# - a grave (U+0300): the accent an enclitic or proclitic takes only where the sentence calls for it (εἰμὶ, οὒ: CGCG
+#   24.33-24.39); spelled as none, or as an acute.
+# `order`: a letter's marks in the order the readings write them (length, diaeresis, breathing, accent, subscript).
+notation:
+  order: "[\u0304 \u0306 \u0308 \u0313 \u0314 \u0301 \u0342 \u0300 \u0345]"
+  # What the accent rules (`phonology` entries with `accent`) read: a syllable's nucleus is a vowel, or a diphthong (a
+  # vowel and ι or υ written with no length mark or diaeresis, in one morpheme); η, ω and a vowel with a macron, the
+  # iota subscript or a circumflex are long; final -αι and -οι count short (CGCG 24.7-24.10).
+  prosody:
+    vowels: "[αεηιουωΑΕΗΙΟΥΩ]"
+    long: "[ηωΗΩ]"
+    lengthen: "[\u0304 \u0345]"
+    diphthongs: "[{αι}{ει}{οι}{υι}{αυ}{ευ}{ηυ}{ου}{Αι}{Ει}{Οι}{Αυ}{Ευ}{Ου}]"
+    apart: "[\u0304 \u0306 \u0308]"
+    shortAtEnd: "[{αι}{οι}]"
+    acute: "\u0301"
+    circumflex: "\u0342"
+    limit: "-"
+  sets:
+    # C a consonant; LAB, VEL, DEN the labial, velar and dental stops (ζ with them: CGCG 1.91); STOP any stop.
+    C: "[βγδζθκλμνξπρσςτφχψῥ]"
+    LAB: "[πβφ]"
+    VEL: "[κγχ]"
+    DEN: "[τδθζ]"
+    STOP: "[πβφτδθκγχ]"
+    # ER the letters after which a first-declension ending has ᾱ for η (CGCG 4.5), as a stem's last letter is written.
+    ER: "[εέὲιίὶῖῐῑϊρ]"
+    # FA a first-declension lemma's last vowel (η, ᾱ); OS a second-declension one's (ο); SH a short vowel (for
+    # -ώτερος: CGCG 5.38); EA a contract stem's vowel (ε, ᾰ).
+    FA: "[ηήᾱ]"
+    OS: "[οό]"
+    E: "[εέ]"
+    SH: "[εέὲοόὸᾰῐῠ]"
+    EA: "[εέᾰ]"
