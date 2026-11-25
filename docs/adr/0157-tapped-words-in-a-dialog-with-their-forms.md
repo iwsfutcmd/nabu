@@ -44,8 +44,16 @@ a word up before answering is still a hint (D16); nothing else about it changes.
   base, those its endings realise (uz ich·a·man: Tense=Pres, Number=Sing, Person=1; yue 佢·哋: Number=Plur), the
   whole token its text, readings and all. A clitic, an article or a suffixed pronoun written with it is another
   lexeme and left out (بَدّ of بَدّي). A word that starts a sentence is listed in lower case where the course writes
-  it so, or where its lemma is (¡Haz! is a form of hacer). Ways of writing a form that the profile compares alike
-  are one.
+  it so, or where its lemma is (¡Haz! is a form of hacer).
+- One form, one spelling, unless the course writes it otherwise (amended 2026-11-25, on the owner's report of
+  chg ʿāliminizlar shown twice). Ways the profile says are one spelling are merged, the most written kept: alike
+  once folded and stripped of the profile's marks (apc's vowel marks, Attic accents taken from a neighbour); the
+  same pinned reading where the sound is a token's reading (chg-Arab, hbo-Hebr: the scribes' letters,
+  عالمینکزلار and عالمینکیزلار); apart only by free correspondences where it is the spelling's. A stem cut
+  before a clitic or suffixed pronoun (בְּנִ of בְּנִי) stands for its form only where no token writes the form
+  as a word of its own, and then alone. A lexeme written as several words (buenas tardes, إن شاء الله) has no
+  table. What is left is another word of the form, shown beside it: es buen and bueno, sk v and vo, grc ἐκ and
+  ἐξ, chg dep and tep.
 - Each is named as the language names it (`labelOf`, with the lexeme's own values), and the form the tapped token
   stands in is marked ("this word", `aria-current`). A lexeme with one form, an ending (bound), a phrase or a part the
   script leaves unwritten has no table. Where a word writes several lexemes with forms (es échale), each table is

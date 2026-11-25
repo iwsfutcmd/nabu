@@ -14,8 +14,9 @@
  * Nothing is realised or spelled here: a paradigm's forms are the compiler's, the rest the course's
  * own tokens. Pure; built once per course view and orthography.
  */
-import type { BundleLexeme, LexemeId, TaggedText, Token, UdFeatures, WrittenLexeme } from "@nabu/schema";
+import type { BundleLexeme, LexemeId, SchemeId, TaggedText, Token, UdFeatures, WrittenLexeme } from "@nabu/schema";
 import { lexiconKey } from "../match/grade.ts";
+import type { CompiledProfile } from "../profile/index.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 import { labelOf, lexemesById, type CourseView } from "./course.ts";
 import { baseIdOf, bound, lexemesOf } from "./lexemes.ts";
@@ -29,7 +30,10 @@ export interface LexemeFormRow {
   readonly feats: UdFeatures;
   /** What the language calls it, in the support language, where it names it (`labelOf`, with the lexeme's own values). */
   readonly label?: TaggedText | undefined;
-  /** The form as the orthography writes it: one text a way, each one token naming the lexeme and the cell. */
+  /**
+   * The form as the orthography writes it, each a text of one token naming the lexeme and the cell: one
+   * text a way, the ways its profile states as one spelling merged (the most written kept), most written first.
+   */
   readonly texts: readonly TaggedText[];
   /** A sentence or story line of the course writes it (a paradigm's other cells are the rules' alone). */
   readonly attested: boolean;
@@ -54,11 +58,20 @@ const realising = (lexeme: BundleLexeme | undefined): lexeme is BundleLexeme & {
   lexeme !== undefined && lexeme.realises !== undefined && bound(lexeme);
 
 /** How a token writes one of its lexemes: the form's values, its letters, and whether nothing else is written with it. */
+/**
+ * How well a way of writing a form witnesses it: the whole token (the token writes the lexeme and its
+ * endings alone, readings and all); the lexeme's letters with nothing written after them (after an
+ * article or a preposition: מָּקוֹם of בַּמָּקוֹם); or a stem cut before a clitic or suffix (מְקוֹמ of
+ * מְקוֹמוֹ), the least.
+ */
+type Witness = "whole" | "final" | "stem";
+
+const WITNESS_RANK: Readonly<Record<Witness, number>> = { whole: 0, final: 1, stem: 2 };
+
 interface Written {
   readonly feats: UdFeatures;
   readonly text: TaggedText;
-  /** The token writes the lexeme and its endings alone: the form is the whole token, readings and all. */
-  readonly whole: boolean;
+  readonly witness: Witness;
 }
 
 const writtenIn = (lexemes: ReadonlyMap<string, BundleLexeme>, text: TaggedText, at: number, lexeme: LexemeId): Written | undefined => {
@@ -70,10 +83,9 @@ const writtenIn = (lexemes: ReadonlyMap<string, BundleLexeme>, text: TaggedText,
   const isBase = own.base === true || written.length === 1;
   const endings = isBase ? written.filter((l) => l !== own && realising(lexemes.get(l.lexeme))) : [];
   const feats: UdFeatures = endings.reduce<UdFeatures>((all, l) => ({ ...all, ...(lexemes.get(l.lexeme)?.realises ?? {}) }), { ...(own.feats ?? {}) });
-  const whole = written.every((l) => l === own || endings.includes(l));
-  if (whole) {
+  if (written.every((l) => l === own || endings.includes(l))) {
     const { tileGroup: _tile, ...alone } = token;
-    return { feats, text: { ...text, tokens: [{ ...alone, tileGroup: 0 }] }, whole };
+    return { feats, text: { ...text, tokens: [{ ...alone, tileGroup: 0 }] }, witness: "whole" };
   }
   // The lexeme's own letters and its endings', in the token's order: a token's lexemes' surfaces concatenate to its own.
   const surface = written
@@ -83,15 +95,73 @@ const writtenIn = (lexemes: ReadonlyMap<string, BundleLexeme>, text: TaggedText,
     .normalize("NFC");
   if (surface === "") return undefined;
   const alone: Token = { kind: "lexical", surface, tileGroup: 0, lexemes: [{ lexeme, ...(Object.keys(feats).length > 0 && { feats }) }] };
-  return { feats, text: { lang: text.lang, orthography: text.orthography, tokens: [alone] }, whole };
+  // Something the script writes after it that is no ending of its form: a clitic or a suffixed pronoun.
+  const after = written.slice(written.indexOf(own) + 1).some((l) => !endings.includes(l) && l.surface !== "");
+  return { feats, text: { lang: text.lang, orthography: text.orthography, tokens: [alone] }, witness: after ? "stem" : "final" };
 };
+
+/** One way the course writes a form: the text, how well it witnesses the form, how often. */
+interface Way {
+  text: TaggedText;
+  witness: Witness;
+  count: number;
+  readonly first: number;
+}
 
 interface Cell {
   readonly feats: UdFeatures;
   readonly first: number;
-  /** Each way it is written, by its comparison key: the text, and whether it is a whole token (a form's best witness). */
-  readonly ways: Map<string, { text: TaggedText; whole: boolean }>;
+  /** Each way it is written, by its comparison key. */
+  readonly ways: Map<string, Way>;
 }
+
+/**
+ * Whether two ways of writing a form are one spelling of it, as the orthography's profile states it:
+ * - spellings alike once folded and stripped of the profile's marks (vowel points, accents): بَدّ and
+ *   بَدَّ, ἐστί, ἐστὶ and ἐστι, the marks a word takes from its neighbours;
+ * - where the sound is a token's pinned reading (chg-Arab, hbo-Hebr), two whole tokens that pin the
+ *   same reading, the scribes' letters free (عالمینکزلار and عالمینکیزلار, ʿāliminizlar);
+ * - where it is the spelling's, two spellings apart only by free correspondences (bar -n/-en).
+ * Anything else (es buen beside bueno, grc ἐστι beside ἐστιν) is two ways a learner should see.
+ */
+const sameForm = (profile: CompiledProfile | undefined): ((a: Way, b: Way) => boolean) => {
+  if (profile === undefined) return () => false;
+  const bare = (w: Way): string => {
+    const folded = profile.fold(surfaceOf(w.text).normalize("NFC"));
+    return (profile.marks?.strip(folded) ?? folded).normalize("NFC");
+  };
+  const projection = profile.projection;
+  const sounds: (a: Way, b: Way) => boolean =
+    projection === undefined
+      ? () => false
+      : projection.from === "reading"
+        ? (a, b) => {
+            const reading = (w: Way): string | undefined => (w.witness === "whole" ? w.text.tokens[0]?.readings?.[projection.scheme as SchemeId]?.normalize("NFC") : undefined);
+            const r = reading(a);
+            return r !== undefined && r === reading(b);
+          }
+        : (a, b) => projection.compare(surfaceOf(a.text), surfaceOf(b.text)).free;
+  return (a, b) => bare(a) === bare(b) || sounds(a, b);
+};
+
+/**
+ * A form's ways as one list, most written first: the ways that are one spelling of it merged (the most
+ * written kept). Only the best witnesses count: where a token writes the form as a word of its own,
+ * those tokens; else the one way written most, the lexeme's letters with nothing after them before a
+ * stem cut before a suffix.
+ */
+const waysOf = (cell: Cell, same: (a: Way, b: Way) => boolean): readonly TaggedText[] => {
+  const all = [...cell.ways.values()];
+  const best = Math.min(...all.map((w) => WITNESS_RANK[w.witness]));
+  const kept: Way[] = [];
+  for (const way of all.filter((w) => WITNESS_RANK[w.witness] === best).sort((a, b) => b.count - a.count || a.first - b.first)) {
+    const like = kept.find((k) => same(k, way));
+    if (like === undefined) kept.push({ ...way });
+    else like.count += way.count;
+  }
+  const ordered = kept.sort((a, b) => b.count - a.count || a.first - b.first).map((w) => w.text);
+  return best === WITNESS_RANK.whole ? ordered : ordered.slice(0, 1);
+};
 
 /** Every form the course writes, by lexeme and cell, in one orthography. */
 type Index = ReadonlyMap<LexemeId, ReadonlyMap<string, Cell>>;
@@ -155,13 +225,19 @@ const indexOf = (course: CourseView, orthography: string): Index => {
         const cells = index.get(id) ?? new Map<string, Cell>();
         index.set(id, cells);
         const cell = cellOf(written.feats);
-        const entry: Cell = cells.get(cell) ?? { feats: written.feats, first: seen, ways: new Map<string, { text: TaggedText; whole: boolean }>() };
+        const entry: Cell = cells.get(cell) ?? { feats: written.feats, first: seen, ways: new Map<string, Way>() };
         cells.set(cell, entry);
         const key = keyOf(written.text);
         const way = entry.ways.get(key);
-        // The first way a form is written stands for it, unless a later token writes it alone.
-        if (way === undefined) entry.ways.set(key, { text: written.text, whole: written.whole });
-        else if (!way.whole && written.whole) entry.ways.set(key, { text: written.text, whole: true });
+        // The first way a form is written stands for it, unless a later token witnesses it better.
+        if (way === undefined) entry.ways.set(key, { text: written.text, witness: written.witness, count: 1, first: seen });
+        else {
+          way.count += 1;
+          if (WITNESS_RANK[written.witness] < WITNESS_RANK[way.witness]) {
+            way.text = written.text;
+            way.witness = written.witness;
+          }
+        }
         seen += 1;
       }
     }
@@ -169,6 +245,10 @@ const indexOf = (course: CourseView, orthography: string): Index => {
   byOrthography.set(orthography, index);
   return index;
 };
+
+/** A lexeme written as several words (buenas tardes, إن شاء الله): each of its tokens is one word of it, never a form. */
+const phrase = (lexeme: BundleLexeme, orthography: string): boolean =>
+  (lexeme.forms?.[orthography]?.[0]?.tokens.filter((t) => t.kind === "lexical").length ?? 0) > 1;
 
 /**
  * The cell a text's token writes a lexeme in (its values and its endings'), as `lexemeForms` keys its
@@ -183,19 +263,20 @@ export const formCellAt = (course: CourseView, text: TaggedText, token: number, 
  * A lexeme's forms in an orthography: its paradigm's cells where the compiler lists one (in the
  * lexicon's order of cells, then any the course writes outside them), else the forms the course
  * writes, in the order the language's labels name them (a form it names none for first), then as the
- * course first writes them. Undefined for a lexeme the course does not have, or one written only
- * inside words (an ending: it has no forms of its own).
+ * course first writes them. Undefined for a lexeme the course does not have, one written only inside
+ * words (an ending: it has no forms of its own) or one written as several words (a phrase).
  */
 export const lexemeForms = (course: CourseView, lexeme: LexemeId, orthography: string = course.orthography): LexemeForms | undefined => {
   const entry = lexemesById(course).get(lexeme);
-  if (entry === undefined || bound(entry)) return undefined;
+  if (entry === undefined || bound(entry) || phrase(entry, orthography)) return undefined;
   const written = indexOf(course, orthography).get(lexeme) ?? new Map<string, Cell>();
   const labels = course.lexicon.labels ?? [];
   const labelled = (feats: UdFeatures): { readonly label: TaggedText | undefined; readonly at: number } => {
     const label = labelOf(course, { ...(entry.feats ?? {}), ...feats }, entry.pos);
     return { label: label?.gloss[course.supportKey], at: label === undefined ? -1 : labels.indexOf(label) };
   };
-  const writtenRow = (cell: string, c: Cell): LexemeFormRow => ({ cell, feats: c.feats, label: labelled(c.feats).label, texts: [...c.ways.values()].map((w) => w.text), attested: true });
+  const same = sameForm(course.profiles.get(orthography));
+  const writtenRow = (cell: string, c: Cell): LexemeFormRow => ({ cell, feats: c.feats, label: labelled(c.feats).label, texts: waysOf(c, same), attested: true });
   const paradigm = formsOfLexeme(course.lexicon, entry, orthography);
   // A paradigm's form is a text in its lemma's language and orthography (as `principalParts` writes it).
   const like = entry.forms?.[orthography]?.[0];

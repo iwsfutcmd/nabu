@@ -7,6 +7,7 @@ declare const styles: {
   readonly form: string;
   readonly formLabel: string;
   readonly formVariant: string;
+  readonly formWays: string;
   readonly forms: string;
   readonly formsHeading: string;
   readonly formsOf: string;
