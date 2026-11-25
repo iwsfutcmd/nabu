@@ -373,8 +373,9 @@ def check_tokens(
     layer exactly), `form` where blocking took a pinned or listed form of its lexeme to give it,
     `unaccounted` otherwise, with the reason where the rules give nothing. Its contexts go to the
     realiser (a rewrite may hold only of a token in one). Where blocking took one of several free
-    variants of the base's cell (ADR 0145: both accepted), each is tried. None for a language with
-    no realisation rules: nothing is checked, nothing asked."""
+    variants of the base's cell (ADR 0145: both accepted), each is tried, and so is each form with a
+    lexeme's free allomorph in its place. None for a language with no realisation rules: nothing is
+    checked, nothing asked."""
     declared = lang.declared
     if not declared.realisation:
         return None
@@ -428,6 +429,12 @@ def check_tokens(
     for (n, request), result in zip(more, _batched(cli, [r for _, r in more]), strict=True):
         candidates[n].append(request)
         results[n].append(result)
+    # The token's forms with a lexeme's free allomorph in place of the one chosen: each another try.
+    for n in range(len(results)):
+        for result in list(results[n]):
+            for alt in result["value"].get("alternatives", []) if result["ok"] else []:
+                candidates[n].append(candidates[n][0])
+                results[n].append({"ok": True, "value": {**result["value"], "form": alt}})
     spell: list[tuple[int, int, Spelling, dict[str, Any]]] = []
     tried: dict[tuple[int, int], TokenCheck] = {}
     for n, site in enumerate(sites):

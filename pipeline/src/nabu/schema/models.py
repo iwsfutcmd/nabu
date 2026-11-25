@@ -2575,6 +2575,12 @@ class Allomorph(BaseModel):
     form: str | None = None
     after: Annotated[Condition | None, Field(description="What it stands after.")] = None
     before: Annotated[Condition | None, Field(description="What it stands before.")] = None
+    free: Annotated[
+        bool | None,
+        Field(
+            description="Accepted wherever its conditions hold (or anywhere, with none) in place of the allomorph chosen there, which it never is of itself: a form the course writes where no condition tells it from the other (hbo בַּ, the preposition with an article its tokens do not list)."
+        ),
+    ] = None
     spelled: Annotated[
         dict[OrthographyId, SpelledAdditionalProperty2] | None,
         Field(

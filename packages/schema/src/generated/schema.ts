@@ -3398,6 +3398,10 @@ export interface Allomorph {
   readonly after?: Condition1;
   readonly before?: Condition2;
   /**
+   * Accepted wherever its conditions hold (or anywhere, with none) in place of the allomorph chosen there, which it never is of itself: a form the course writes where no condition tells it from the other (hbo בַּ, the preposition with an article its tokens do not list).
+   */
+  readonly free?: boolean;
+  /**
    * Its spelling in an orthography, pinned where that orthography's projection is not written yet or does not give it (ADR 0148: a pinned spelling a projection cannot account for is a finding). The first is the one shown.
    */
   readonly spelled?: {

@@ -53,6 +53,11 @@ export interface Realisation {
    * first is shown): how many there are. `RealiseOptions.variant` realises another.
    */
   readonly variants?: number;
+  /**
+   * The token's other forms where one of its lexemes takes an allomorph marked `free` in place of the
+   * one chosen there: each is accepted too (realiseToken only).
+   */
+  readonly alternatives?: readonly string[];
 }
 
 export type RealiseError =
@@ -563,7 +568,7 @@ const contextHolds = (lang: CompiledLanguage, c: Condition, units: readonly Unit
  * lexeme's own form.
  */
 const allomorphOf = (lang: CompiledLanguage, lexeme: Lexeme, preceding: readonly Unit[], following: readonly Unit[], next?: Lexeme, base?: TokenBase): string | undefined => {
-  const all = (lexeme.allomorphs ?? []).filter((a) => a.form !== undefined);
+  const all = (lexeme.allomorphs ?? []).filter((a) => a.form !== undefined && a.free !== true);
   const cell = base === undefined ? undefined : { cell: base.cell };
   const holds = (a: Allomorph): boolean =>
     (a.after !== undefined || a.before !== undefined) &&
@@ -571,6 +576,22 @@ const allomorphOf = (lang: CompiledLanguage, lexeme: Lexeme, preceding: readonly
     (a.before === undefined || contextHolds(lang, a.before, following, following.length === 0 ? next : undefined, cell));
   const found = all.find(holds) ?? all.find((a) => a.after === undefined && a.before === undefined);
   return found?.form ?? (typeof lexeme.form === "string" ? lexeme.form : undefined);
+};
+
+/**
+ * A lexeme's free allomorphs that may stand where `allomorphOf` chose (marked `free`: never chosen
+ * of themselves): those with no condition, and those whose conditions hold there.
+ */
+const freeAllomorphsOf = (lang: CompiledLanguage, lexeme: Lexeme, preceding: readonly Unit[], following: readonly Unit[], next?: Lexeme, base?: TokenBase): readonly string[] => {
+  const cell = base === undefined ? undefined : { cell: base.cell };
+  return (lexeme.allomorphs ?? []).flatMap((a) =>
+    a.free === true &&
+    a.form !== undefined &&
+    (a.after === undefined || contextHolds(lang, a.after, preceding, undefined, base)) &&
+    (a.before === undefined || contextHolds(lang, a.before, following, following.length === 0 ? next : undefined, cell))
+      ? [a.form]
+      : [],
+  );
 };
 
 /** Whether a lexeme has an allomorph with a form chosen by what follows it. */
@@ -663,12 +684,35 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
     }
   }
   // Joined: the base and what follows it, then each lexeme before it, nearest first.
-  let units = forms[baseAt] as readonly Unit[];
-  for (let k = baseAt + 1; k < written.length; k++) units = join(lang, units, forms[k] as readonly Unit[], "suffix");
-  for (let k = baseAt - 1; k >= 0; k--) units = join(lang, forms[k] as readonly Unit[], units, "prefix");
+  const assemble = (fs: readonly (readonly Unit[])[]): readonly Unit[] => {
+    let units = fs[baseAt] as readonly Unit[];
+    for (let k = baseAt + 1; k < written.length; k++) units = join(lang, units, fs[k] as readonly Unit[], "suffix");
+    for (let k = baseAt - 1; k >= 0; k--) units = join(lang, fs[k] as readonly Unit[], units, "prefix");
+    return units;
+  };
+  const units = assemble(forms);
   if (built.value.whole && written.length === 1) return ok(realisation(built.value, units, built.value.steps));
   const rewritten = rewrite(lang, units, built.value.lexeme, base.feats ?? {}, options.blocking ?? true, options.context);
-  return ok(realisation(built.value, rewritten.units, [...built.value.steps, ...rewritten.steps]));
+  const made = realisation(built.value, rewritten.units, [...built.value.steps, ...rewritten.steps]);
+  // The token with a lexeme's free allomorph in place of the one chosen, each lexeme in turn.
+  if (!lexemes.some((l) => (l.allomorphs ?? []).some((a) => a.free === true))) return ok(made);
+  const alternatives: string[] = [];
+  for (let k = 0; k < written.length; k++) {
+    if (k === baseAt && !ownBase) continue;
+    const frees =
+      k > baseAt
+        ? freeAllomorphsOf(lang, lexemes[k] as Lexeme, joined(0, k), k + 1 < written.length ? (forms[k + 1] as readonly Unit[]) : [], k + 1 < written.length ? undefined : next, { lexeme: baseLexeme, cell })
+        : k === baseAt
+          ? freeAllomorphsOf(lang, baseLexeme, [], baseAt + 1 < written.length ? (forms[baseAt + 1] as readonly Unit[]) : [], baseAt + 1 < written.length ? undefined : next, { cell })
+          : freeAllomorphsOf(lang, lexemes[k] as Lexeme, joined(0, k), joined(k + 1, written.length), undefined, { cell });
+    for (const f of frees) {
+      const fs = [...forms];
+      fs[k] = unitsOf(f);
+      const text = textOf(rewrite(lang, assemble(fs), built.value.lexeme, cell, options.blocking ?? true, options.context).units);
+      if (text !== made.form && !alternatives.includes(text)) alternatives.push(text);
+    }
+  }
+  return ok(alternatives.length === 0 ? made : { ...made, alternatives });
 };
 
 /** A lexeme realised in each of `cells`. */
