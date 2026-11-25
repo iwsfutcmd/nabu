@@ -1,0 +1,7078 @@
+{
+  "$comment": "Realisation for es (docs/rules/es.md; docs/rules-design.md, stage 6): es's own rules and lexicon (lexicons/es/language.yaml, lexemes.yaml), one vector per branch of every rule: a token of the course that takes it, with `spellings: false` (forms that pin spellings only passed over, as the compiler's check of the tokens does), its form spelled as the course writes it (the note); or, where no token takes the branch, a course lexeme in a paradigm cell, its spelling written by hand (said in its note). The engine's own vectors for what es needed are in realise-es-engine.json.",
+  "vectors": [
+    {
+      "id": "realise/es/accent/enclitic",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "echar",
+            "base": true,
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "2",
+              "VerbForm": "Fin"
+            }
+          },
+          {
+            "lexeme": "le"
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "éch+a+le",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "imp-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-accent",
+              "branch": "enclitic"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.12: the course writes échale."
+    },
+    {
+      "id": "realise/es/accent/hiatus",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "freír",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "en"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "frí+e",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pres-3sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "e-i"
+            },
+            {
+              "rule": "rule:es-accent",
+              "branch": "hiatus"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.10: the course writes fríe."
+    },
+    {
+      "id": "realise/es/accent/monosyllable",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "ver",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "v+i",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pret-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-accent",
+              "branch": "monosyllable"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.21: the course writes vi."
+    },
+    {
+      "id": "realise/es/ar/cond-1pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:hablar",
+        "cell": {
+          "Mood": "Cnd",
+          "Person": "1",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "hablar+íamos",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "cond-1pl"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:hablar in a paradigm cell, hablaríamos (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ar/cond-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:hablar",
+        "cell": {
+          "Mood": "Cnd",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "hablar+íais",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "cond-2pl"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:hablar in a paradigm cell, hablaríais (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ar/cond-2sg",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:hablar",
+        "cell": {
+          "Mood": "Cnd",
+          "Person": "2",
+          "Number": "Sing",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "hablar+ías",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "cond-2sg"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:hablar in a paradigm cell, hablarías (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ar/cond-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "llamar",
+            "feats": {
+              "Mood": "Cnd",
+              "Number": "Plur",
+              "Person": "3",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "llamar+ían",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "cond-3pl"
+            }
+          ]
+        }
+      },
+      "note": "s.u29.35: the course writes llamarían."
+    },
+    {
+      "id": "realise/es/ar/cond-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "gustar",
+            "feats": {
+              "Mood": "Cnd",
+              "Number": "Sing",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "un"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "gustar+ía",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "cond-sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u19.19: the course writes gustaría."
+    },
+    {
+      "id": "realise/es/ar/fut-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "asar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Fut",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "asar+emos",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "fut-1pl"
+            }
+          ]
+        }
+      },
+      "note": "s.u20.12: the course writes Asaremos."
+    },
+    {
+      "id": "realise/es/ar/fut-1sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "preparar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Fut",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "preparar+é",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "fut-1sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u20.11: the course writes prepararé."
+    },
+    {
+      "id": "realise/es/ar/fut-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:hablar",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Fut",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "hablar+éis",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "fut-2pl"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:hablar in a paradigm cell, hablaréis (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ar/fut-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "comprar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Fut",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "a"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "comprar+ás",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "fut-2sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u20.28: the course writes comprarás."
+    },
+    {
+      "id": "realise/es/ar/fut-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "asar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Fut",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "asar+án",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "fut-3pl"
+            }
+          ]
+        }
+      },
+      "note": "s.u20.9: the course writes asarán."
+    },
+    {
+      "id": "realise/es/ar/fut-3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "estar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Fut",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "en"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "estar+á",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "fut-3sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u20.4: the course writes estará."
+    },
+    {
+      "id": "realise/es/ar/ger",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "trabajar",
+            "feats": {
+              "VerbForm": "Ger"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "trabaj+ando",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "ger"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u07.29: the course writes trabajando."
+    },
+    {
+      "id": "realise/es/ar/imp-1pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:hablar",
+        "cell": {
+          "Mood": "Imp",
+          "Person": "1",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "habl+emos",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "imp-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:hablar in a paradigm cell, hablemos (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ar/imp-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "picar",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "2",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "este"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "pic+a",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "imp-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.3: the course writes pica."
+    },
+    {
+      "id": "realise/es/ar/imp-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "llamar",
+            "base": true,
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Plur",
+              "Person": "3",
+              "VerbForm": "Fin"
+            }
+          },
+          {
+            "lexeme": "me"
+          }
+        ],
+        "next": "por"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "llám+en+me",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "imp-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-accent",
+              "branch": "enclitic"
+            }
+          ]
+        }
+      },
+      "note": "s.u28.5: the course writes llámenme."
+    },
+    {
+      "id": "realise/es/ar/imp-3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tomar",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "3",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "un"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tom+e",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "imp-3sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.26: the course writes Tome."
+    },
+    {
+      "id": "realise/es/ar/imp-neg",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:hablar",
+        "cell": {
+          "Mood": "Imp",
+          "Number": "Sing",
+          "VerbForm": "Fin",
+          "Polarity": "Neg"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "habl+e",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "imp-neg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:hablar in a paradigm cell, hable (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ar/imp-neg-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "echar",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "2",
+              "Polarity": "Neg",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "mucho"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ech+es",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "imp-neg-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.29: the course writes eches."
+    },
+    {
+      "id": "realise/es/ar/impf-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "montar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "bicicleta"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "mont+ábamos",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "impf-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u12.8: the course writes montábamos."
+    },
+    {
+      "id": "realise/es/ar/impf-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:hablar",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Imp",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "habl+abais",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "impf-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:hablar in a paradigm cell, hablabais (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ar/impf-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "empinar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "papalote"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "empin+abas",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "impf-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u12.23: the course writes empinabas."
+    },
+    {
+      "id": "realise/es/ar/impf-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "jugar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "a"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "jug+aban",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "impf-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u12.20: the course writes jugaban."
+    },
+    {
+      "id": "realise/es/ar/impf-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "gustar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "mucho"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "gust+aba",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "impf-sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u12.5: the course writes gustaba."
+    },
+    {
+      "id": "realise/es/ar/pres-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tomar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "café"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tom+amos",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pres-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u04.28: the course writes tomamos."
+    },
+    {
+      "id": "realise/es/ar/pres-1sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "llamarse",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "daniel"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "llam+o",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pres-1sg"
+            },
+            {
+              "rule": "rule:es-reflexive"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u01.28: the course writes llamo."
+    },
+    {
+      "id": "realise/es/ar/pres-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:hablar",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Pres",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "habl+áis",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pres-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:hablar in a paradigm cell, habláis (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ar/pres-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "llamarse",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "llam+as",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pres-2sg"
+            },
+            {
+              "rule": "rule:es-reflexive"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u01.29: the course writes llamas."
+    },
+    {
+      "id": "realise/es/ar/pres-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "gustar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "gust+an",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pres-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u04.10: the course writes gustan."
+    },
+    {
+      "id": "realise/es/ar/pres-3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "llamarse",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "usted"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "llam+a",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pres-3sg"
+            },
+            {
+              "rule": "rule:es-reflexive"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u01.31: the course writes llama."
+    },
+    {
+      "id": "realise/es/ar/pret-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "jugar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "dominó"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "jug+amos",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pret-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u09#3: the course writes jugamos."
+    },
+    {
+      "id": "realise/es/ar/pret-1sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "comprar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "un"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "compr+é",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pret-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.1: the course writes compré."
+    },
+    {
+      "id": "realise/es/ar/pret-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:hablar",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Past",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "habl+asteis",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pret-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:hablar in a paradigm cell, hablasteis (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ar/pret-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "comprar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "compr+aste",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pret-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.4: the course writes compraste."
+    },
+    {
+      "id": "realise/es/ar/pret-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "jugar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "dominó"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "jug+aron",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pret-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.34: the course writes Jugaron."
+    },
+    {
+      "id": "realise/es/ar/pret-3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "comprar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "mango"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "compr+ó",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pret-3sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.3: the course writes compró."
+    },
+    {
+      "id": "realise/es/ar/subj-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "estar",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "tan"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "est+emos",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "subj-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u22.20: the course writes estemos."
+    },
+    {
+      "id": "realise/es/ar/subj-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:hablar",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Pres",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "habl+éis",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "subj-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:hablar in a paradigm cell, habléis (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ar/subj-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "llamar",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "todo"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "llam+es",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "subj-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u21.2: the course writes llames."
+    },
+    {
+      "id": "realise/es/ar/subj-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "pelear",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "pele+en",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "subj-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u21.33: the course writes peleen."
+    },
+    {
+      "id": "realise/es/ar/subj-impf-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "perdonar",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "perdon+áramos",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "subj-impf-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u27#19: the course writes perdonáramos."
+    },
+    {
+      "id": "realise/es/ar/subj-impf-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:hablar",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Imp",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "habl+arais",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "subj-impf-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:hablar in a paradigm cell, hablarais (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ar/subj-impf-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "ganar",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "gan+aras",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "subj-impf-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u28.12: the course writes ganaras."
+    },
+    {
+      "id": "realise/es/ar/subj-impf-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "hablar",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "bien"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "habl+aran",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "subj-impf-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u28.25: the course writes hablaran."
+    },
+    {
+      "id": "realise/es/ar/subj-impf-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "hablar",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Sing",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "con"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "habl+ara",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "subj-impf-sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u27.15: the course writes hablara."
+    },
+    {
+      "id": "realise/es/ar/subj-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "hablar",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Sing",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "más"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "habl+e",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "subj-sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u21.1: the course writes hable."
+    },
+    {
+      "id": "realise/es/comparative/fem",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "peor",
+            "feats": {
+              "Gender": "Fem",
+              "Number": "Sing"
+            }
+          }
+        ],
+        "next": "canción"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "peor",
+          "steps": [
+            {
+              "rule": "rule:es-comparative",
+              "branch": "fem"
+            }
+          ]
+        }
+      },
+      "note": "s.u16.35: the course writes peor."
+    },
+    {
+      "id": "realise/es/comparative/pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "mayor",
+            "feats": {
+              "Gender": "Masc",
+              "Number": "Plur"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "mayor+es",
+          "steps": [
+            {
+              "rule": "rule:es-comparative",
+              "branch": "pl"
+            },
+            {
+              "rule": "rule:es-plural",
+              "branch": "es"
+            }
+          ]
+        }
+      },
+      "note": "s.u19.10: the course writes mayores."
+    },
+    {
+      "id": "realise/es/er/cond-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "traer",
+            "feats": {
+              "Mood": "Cnd",
+              "Number": "Plur",
+              "Person": "1",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "en"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "traer+íamos",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "cond-1pl"
+            }
+          ]
+        }
+      },
+      "note": "s.u28.23: the course writes traeríamos."
+    },
+    {
+      "id": "realise/es/er/cond-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Cnd",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "comer+íais",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "cond-2pl"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, comeríais (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/cond-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "poder",
+            "feats": {
+              "Mood": "Cnd",
+              "Number": "Sing",
+              "Person": "2",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "llamar"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "podr+ías",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "cond-2sg"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u19#11: the course writes podrías."
+    },
+    {
+      "id": "realise/es/er/cond-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "poder",
+            "feats": {
+              "Mood": "Cnd",
+              "Number": "Plur",
+              "Person": "3",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "venir"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "podr+ían",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "cond-3pl"
+            }
+          ]
+        }
+      },
+      "note": "s.u19.25: the course writes podrían."
+    },
+    {
+      "id": "realise/es/er/cond-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "poder",
+            "feats": {
+              "Mood": "Cnd",
+              "Number": "Sing",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "ayudar"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "podr+ía",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "cond-sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u19.21: the course writes podría."
+    },
+    {
+      "id": "realise/es/er/fut-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "comer",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Fut",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "lechón"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "comer+emos",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "fut-1pl"
+            }
+          ]
+        }
+      },
+      "note": "s.u20.13: the course writes Comeremos."
+    },
+    {
+      "id": "realise/es/er/fut-1sg",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Fut",
+          "Person": "1",
+          "Number": "Sing",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "comer+é",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "fut-1sg"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, comeré (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/fut-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Fut",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "comer+éis",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "fut-2pl"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, comeréis (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/fut-2sg",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Fut",
+          "Person": "2",
+          "Number": "Sing",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "comer+ás",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "fut-2sg"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, comerás (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/fut-3pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Fut",
+          "Person": "3",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "comer+án",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "fut-3pl"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, comerán (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/fut-3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "ser",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Fut",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "en"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ser+á",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "fut-3sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u20.2: the course writes será."
+    },
+    {
+      "id": "realise/es/er/ger",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "hacer",
+            "feats": {
+              "VerbForm": "Ger"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "hac+iendo",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "ger"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u07.31: the course writes haciendo."
+    },
+    {
+      "id": "realise/es/er/imp-1pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Imp",
+          "Person": "1",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+amos",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "imp-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, comamos (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/imp-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "revolver",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "2",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "revuelv+e",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "imp-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "o-ue"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.30: the course writes Revuelve."
+    },
+    {
+      "id": "realise/es/er/imp-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "comer",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Plur",
+              "Person": "3",
+              "VerbForm": "Fin"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+an",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "imp-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.23: the course writes Coman."
+    },
+    {
+      "id": "realise/es/er/imp-3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "comer",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "3",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "con"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+a",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "imp-3sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.24: the course writes coma."
+    },
+    {
+      "id": "realise/es/er/imp-neg",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Imp",
+          "Number": "Sing",
+          "VerbForm": "Fin",
+          "Polarity": "Neg"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+a",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "imp-neg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, coma (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/imp-neg-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "revolver",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "2",
+              "Polarity": "Neg",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "revuelv+as",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "imp-neg-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "o-ue"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.30: the course writes revuelvas."
+    },
+    {
+      "id": "realise/es/er/impf-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "ver",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ve+íamos",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "impf-1pl"
+            }
+          ]
+        }
+      },
+      "note": "s.u12.11: the course writes veíamos."
+    },
+    {
+      "id": "realise/es/er/impf-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Imp",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+íais",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "impf-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, comíais (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/impf-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tener",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "miedo"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ten+ías",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "impf-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u24#11: the course writes tenías."
+    },
+    {
+      "id": "realise/es/er/impf-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tener",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "gallina"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ten+ían",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "impf-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u12.17: the course writes tenían."
+    },
+    {
+      "id": "realise/es/er/impf-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tener",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "un"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ten+ía",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "impf-sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u12.2: the course writes tenía."
+    },
+    {
+      "id": "realise/es/er/pres-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tener",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "un"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ten+emos",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pres-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u02.26: the course writes Tenemos."
+    },
+    {
+      "id": "realise/es/er/pres-1sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tener",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "un"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ten+go",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pres-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-go",
+              "branch": "g"
+            }
+          ]
+        }
+      },
+      "note": "s.u02.9: the course writes Tengo."
+    },
+    {
+      "id": "realise/es/er/pres-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Pres",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+éis",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pres-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, coméis (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/pres-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tener",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "hermano"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tien+es",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pres-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "e-ie"
+            }
+          ]
+        }
+      },
+      "note": "s.u02.11: the course writes tienes."
+    },
+    {
+      "id": "realise/es/er/pres-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tener",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "hijo"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tien+en",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pres-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "e-ie"
+            }
+          ]
+        }
+      },
+      "note": "s.u02.31: the course writes tienen."
+    },
+    {
+      "id": "realise/es/er/pres-3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tener",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "un"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tien+e",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pres-3sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "e-ie"
+            }
+          ]
+        }
+      },
+      "note": "s.u02.12: the course writes tiene."
+    },
+    {
+      "id": "realise/es/er/pret-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "ver",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "v+imos",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pret-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.23: the course writes Vimos."
+    },
+    {
+      "id": "realise/es/er/pret-1sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "ver",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "v+i",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pret-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-accent",
+              "branch": "monosyllable"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.21: the course writes vi."
+    },
+    {
+      "id": "realise/es/er/pret-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Past",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+isteis",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pret-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, comisteis (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/pret-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "conocer",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "a"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "conoc+iste",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pret-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u13.22: the course writes conociste."
+    },
+    {
+      "id": "realise/es/er/pret-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "ver",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "v+ieron",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pret-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.24: the course writes vieron."
+    },
+    {
+      "id": "realise/es/er/pret-3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "ver",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "v+io",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pret-3sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-accent",
+              "branch": "monosyllable"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.22: the course writes vio."
+    },
+    {
+      "id": "realise/es/er/subj-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "poder",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "hablar"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "pod+amos",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "subj-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u22.21: the course writes podamos."
+    },
+    {
+      "id": "realise/es/er/subj-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Pres",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+áis",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "subj-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, comáis (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/subj-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "comer",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "bien"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+as",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "subj-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u21.8: the course writes comas."
+    },
+    {
+      "id": "realise/es/er/subj-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "comer",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "junto"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+an",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "subj-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u21.32: the course writes coman."
+    },
+    {
+      "id": "realise/es/er/subj-impf-1pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Imp",
+          "Person": "1",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+iéramos",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "subj-impf-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, comiéramos (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/subj-impf-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Imp",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+ierais",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "subj-impf-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, comierais (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/subj-impf-2sg",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Imp",
+          "Person": "2",
+          "Number": "Sing",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+ieras",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "subj-impf-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, comieras (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/subj-impf-3pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:comer",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Imp",
+          "Person": "3",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "com+ieran",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "subj-impf-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:comer in a paradigm cell, comieran (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/er/subj-impf-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "leer",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Sing",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "un"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "le+yera",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "subj-impf-sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-y",
+              "branch": "i-y"
+            }
+          ]
+        }
+      },
+      "note": "s.u27.14: the course writes leyera."
+    },
+    {
+      "id": "realise/es/er/subj-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "ser",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Sing",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "doctor"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "se+a",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "subj-sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u21.10: the course writes sea."
+    },
+    {
+      "id": "realise/es/final-vowel/rule",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "cubano",
+            "feats": {
+              "Gender": "Fem",
+              "Number": "Sing"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "cuban+a",
+          "steps": [
+            {
+              "rule": "rule:es-o",
+              "branch": "fem"
+            },
+            {
+              "rule": "rule:es-final-vowel"
+            }
+          ]
+        }
+      },
+      "note": "s.u01.43: the course writes cubana."
+    },
+    {
+      "id": "realise/es/go/c",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "decir",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "dig+as",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "subj-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-go",
+              "branch": "c"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "e-i"
+            }
+          ]
+        }
+      },
+      "note": "s.u21.16: the course writes digas."
+    },
+    {
+      "id": "realise/es/go/g",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tener",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "un"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ten+go",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pres-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-go",
+              "branch": "g"
+            }
+          ]
+        }
+      },
+      "note": "s.u02.9: the course writes Tengo."
+    },
+    {
+      "id": "realise/es/go/ig",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "oír",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "bien"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "o+igo",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pres-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-go",
+              "branch": "ig"
+            }
+          ]
+        }
+      },
+      "note": "s.u22.2: the course writes oigo."
+    },
+    {
+      "id": "realise/es/impersonal/pres-3sg",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:hay",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Pres",
+          "Person": "3",
+          "Number": "Sing",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "hay",
+          "steps": [
+            {
+              "rule": "rule:es-impersonal",
+              "branch": "pres-3sg"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:hay in a paradigm cell, hay (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/cond-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "abrir",
+            "feats": {
+              "Mood": "Cnd",
+              "Number": "Plur",
+              "Person": "1",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "otro"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "abrir+íamos",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "cond-1pl"
+            }
+          ]
+        }
+      },
+      "note": "s.u28.18: the course writes abriríamos."
+    },
+    {
+      "id": "realise/es/ir/cond-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Cnd",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "vivir+íais",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "cond-2pl"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, viviríais (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/cond-2sg",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Cnd",
+          "Person": "2",
+          "Number": "Sing",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "vivir+ías",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "cond-2sg"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, vivirías (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/cond-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "venir",
+            "feats": {
+              "Mood": "Cnd",
+              "Number": "Plur",
+              "Person": "3",
+              "VerbForm": "Fin"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "vendr+ían",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "cond-3pl"
+            }
+          ]
+        }
+      },
+      "note": "s.u19.30: the course writes vendrían."
+    },
+    {
+      "id": "realise/es/ir/cond-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "ir",
+            "feats": {
+              "Mood": "Cnd",
+              "Number": "Sing",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "con"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ir+ía",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "cond-sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u19.29: the course writes iría."
+    },
+    {
+      "id": "realise/es/ir/fut-1pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Fut",
+          "Person": "1",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "vivir+emos",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "fut-1pl"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, viviremos (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/fut-1sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "decir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Fut",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "quién"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "dir+é",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "fut-1sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u23.25: the course writes diré."
+    },
+    {
+      "id": "realise/es/ir/fut-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Fut",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "vivir+éis",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "fut-2pl"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, viviréis (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/fut-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "venir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Fut",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "con"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "vendr+ás",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "fut-2sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u20.18: the course writes vendrás."
+    },
+    {
+      "id": "realise/es/ir/fut-3pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Fut",
+          "Person": "3",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "vivir+án",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "fut-3pl"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, vivirán (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/fut-3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "venir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Fut",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "todo"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "vendr+á",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "fut-3sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u20.3: the course writes vendrá."
+    },
+    {
+      "id": "realise/es/ir/ger",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "dormir",
+            "feats": {
+              "VerbForm": "Ger"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "durm+iendo",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "ger"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-raising",
+              "branch": "o-u"
+            }
+          ]
+        }
+      },
+      "note": "s.u07.34: the course writes durmiendo."
+    },
+    {
+      "id": "realise/es/ir/imp-1pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Imp",
+          "Person": "1",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+amos",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "imp-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, vivamos (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/imp-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "venir",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "2",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "a"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ven",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "imp-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-short-imperative"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.1: the course writes ven."
+    },
+    {
+      "id": "realise/es/ir/imp-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "venir",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Plur",
+              "Person": "3",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "a"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ven+gan",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "imp-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-go",
+              "branch": "g"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.22: the course writes vengan."
+    },
+    {
+      "id": "realise/es/ir/imp-3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "venir",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "3",
+              "VerbForm": "Fin"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ven+ga",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "imp-3sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-go",
+              "branch": "g"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.24: the course writes Venga."
+    },
+    {
+      "id": "realise/es/ir/imp-neg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "abrir",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Polarity": "Neg",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "abr+a",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "imp-neg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.33: the course writes abra."
+    },
+    {
+      "id": "realise/es/ir/imp-neg-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "abrir",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "2",
+              "Polarity": "Neg",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "abr+as",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "imp-neg-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.32: the course writes abras."
+    },
+    {
+      "id": "realise/es/ir/impf-1pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Imp",
+          "Person": "1",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+íamos",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "impf-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, vivíamos (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/impf-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Imp",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+íais",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "impf-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, vivíais (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/impf-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "vivir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "cuando"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+ías",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "impf-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u12.6: the course writes vivías."
+    },
+    {
+      "id": "realise/es/ir/impf-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "vivir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "cerca"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+ían",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "impf-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u12.3: the course writes vivían."
+    },
+    {
+      "id": "realise/es/ir/impf-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "vivir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "en"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+ía",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "impf-sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u12.1: the course writes vivía."
+    },
+    {
+      "id": "realise/es/ir/pres-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "vivir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "en"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+imos",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pres-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u03.5: the course writes vivimos."
+    },
+    {
+      "id": "realise/es/ir/pres-1sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "vivir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "en"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+o",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pres-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u03.3: the course writes Vivo."
+    },
+    {
+      "id": "realise/es/ir/pres-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Pres",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+ís",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pres-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, vivís (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/pres-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "vivir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "en"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+es",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pres-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u03.4: the course writes vives."
+    },
+    {
+      "id": "realise/es/ir/pres-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "dormir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "todo"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "duerm+en",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pres-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "o-ue"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u14#14: the course writes duermen."
+    },
+    {
+      "id": "realise/es/ir/pres-3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "vivir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "en"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+e",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pres-3sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u03.6: the course writes vive."
+    },
+    {
+      "id": "realise/es/ir/pret-1pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Past",
+          "Person": "1",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+imos",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pret-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, vivimos (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/pret-1sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "abrir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "abr+í",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pret-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u14#10: the course writes abrí."
+    },
+    {
+      "id": "realise/es/ir/pret-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Past",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+isteis",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pret-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, vivisteis (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/pret-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "salir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "de"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "sal+iste",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pret-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u30#10: the course writes saliste."
+    },
+    {
+      "id": "realise/es/ir/pret-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "salir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "en"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "sal+ieron",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pret-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u24.19: the course writes salieron."
+    },
+    {
+      "id": "realise/es/ir/pret-3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "escribir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "anoche"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "escrib+ió",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pret-3sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u11.24: the course writes escribió."
+    },
+    {
+      "id": "realise/es/ir/subj-1pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Pres",
+          "Person": "1",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+amos",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "subj-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, vivamos (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/subj-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Pres",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+áis",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "subj-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, viváis (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/subj-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "sufrir",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "por"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "sufr+as",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "subj-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u21.15: the course writes sufras."
+    },
+    {
+      "id": "realise/es/ir/subj-3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "venir",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "pronto"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ven+gan",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "subj-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-go",
+              "branch": "g"
+            }
+          ]
+        }
+      },
+      "note": "s.u21.11: the course writes vengan."
+    },
+    {
+      "id": "realise/es/ir/subj-impf-1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "abrir",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "un"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "abr+iéramos",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "subj-impf-1pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u28.16: the course writes abriéramos."
+    },
+    {
+      "id": "realise/es/ir/subj-impf-2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Imp",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+ierais",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "subj-impf-2pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, vivierais (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/subj-impf-2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "vivir",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "aquí"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+ieras",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "subj-impf-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u28#4: the course writes vivieras."
+    },
+    {
+      "id": "realise/es/ir/subj-impf-3pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:vivir",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Imp",
+          "Person": "3",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+ieran",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "subj-impf-3pl"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:vivir in a paradigm cell, vivieran (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/ir/subj-impf-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "vivir",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Sing",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "en"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "viv+iera",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "subj-impf-sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u28.31: the course writes viviera."
+    },
+    {
+      "id": "realise/es/ir/subj-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "ir",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Sing",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "con"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "vay+a",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "subj-sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u21.7: the course writes vaya."
+    },
+    {
+      "id": "realise/es/merge/ii",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:freír",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Past",
+          "Person": "3",
+          "Number": "Sing",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "fri+o",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pret-3sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-raising",
+              "branch": "e-i"
+            },
+            {
+              "rule": "rule:es-merge",
+              "branch": "ii"
+            },
+            {
+              "rule": "rule:es-accent",
+              "branch": "monosyllable"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:freír in a paradigm cell, frio (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/merge/j",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "decir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "que"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "dij+eron",
+          "steps": [
+            {
+              "rule": "rule:es-strong-preterite",
+              "branch": "3pl"
+            },
+            {
+              "rule": "rule:es-merge",
+              "branch": "j"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u29#15: the course writes dijeron."
+    },
+    {
+      "id": "realise/es/nominal/fem",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "mi",
+            "feats": {
+              "Gender": "Fem",
+              "Number": "Sing"
+            }
+          }
+        ],
+        "next": "abuela"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "mi",
+          "steps": [
+            {
+              "rule": "rule:es-nominal",
+              "branch": "fem"
+            }
+          ]
+        }
+      },
+      "note": "s.u01.35: the course writes mi."
+    },
+    {
+      "id": "realise/es/nominal/pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "mi",
+            "feats": {
+              "Gender": "Masc",
+              "Number": "Plur"
+            }
+          }
+        ],
+        "next": "primo"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "mi+s",
+          "steps": [
+            {
+              "rule": "rule:es-nominal",
+              "branch": "pl"
+            }
+          ]
+        }
+      },
+      "note": "s.u02.27: the course writes mis."
+    },
+    {
+      "id": "realise/es/o/fem",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "cubano",
+            "feats": {
+              "Gender": "Fem",
+              "Number": "Sing"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "cuban+a",
+          "steps": [
+            {
+              "rule": "rule:es-o",
+              "branch": "fem"
+            },
+            {
+              "rule": "rule:es-final-vowel"
+            }
+          ]
+        }
+      },
+      "note": "s.u01.43: the course writes cubana."
+    },
+    {
+      "id": "realise/es/o/pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "hermano",
+            "feats": {
+              "Gender": "Masc",
+              "Number": "Plur"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "hermano+s",
+          "steps": [
+            {
+              "rule": "rule:es-o",
+              "branch": "pl"
+            }
+          ]
+        }
+      },
+      "note": "s.u02.11: the course writes hermanos."
+    },
+    {
+      "id": "realise/es/or/fem",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "doctor",
+            "feats": {
+              "Gender": "Fem",
+              "Number": "Sing"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "doctor+a",
+          "steps": [
+            {
+              "rule": "rule:es-or",
+              "branch": "fem"
+            }
+          ]
+        }
+      },
+      "note": "s.u18.15: the course writes doctora."
+    },
+    {
+      "id": "realise/es/or/pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "señor",
+            "feats": {
+              "Number": "Plur"
+            }
+          }
+        ],
+        "next": "que"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "señor+es",
+          "steps": [
+            {
+              "rule": "rule:es-or",
+              "branch": "pl"
+            },
+            {
+              "rule": "rule:es-plural",
+              "branch": "es"
+            }
+          ]
+        }
+      },
+      "note": "s.u25.11: the course writes señores."
+    },
+    {
+      "id": "realise/es/participle/ad",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "jugar",
+            "feats": {
+              "Tense": "Past",
+              "VerbForm": "Part"
+            }
+          }
+        ],
+        "next": "dominó"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "jug+ad+o",
+          "steps": [
+            {
+              "rule": "rule:es-participle",
+              "branch": "masc-sg"
+            },
+            {
+              "rule": "rule:es-participle",
+              "branch": "ad"
+            }
+          ]
+        }
+      },
+      "note": "s.u17.1: the course writes jugado."
+    },
+    {
+      "id": "realise/es/participle/fem-pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "cosechar",
+            "feats": {
+              "Gender": "Fem",
+              "Number": "Plur",
+              "Tense": "Past",
+              "VerbForm": "Part"
+            }
+          }
+        ],
+        "next": "uno"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "cosech+ad+as",
+          "steps": [
+            {
+              "rule": "rule:es-participle",
+              "branch": "fem-pl"
+            },
+            {
+              "rule": "rule:es-participle",
+              "branch": "ad"
+            }
+          ]
+        }
+      },
+      "note": "s.u26.12: the course writes cosechadas."
+    },
+    {
+      "id": "realise/es/participle/fem-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "agradecer",
+            "feats": {
+              "Gender": "Fem",
+              "Number": "Sing",
+              "Tense": "Past",
+              "VerbForm": "Part"
+            }
+          }
+        ],
+        "next": "con"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "agradec+id+a",
+          "steps": [
+            {
+              "rule": "rule:es-participle",
+              "branch": "fem-sg"
+            },
+            {
+              "rule": "rule:es-participle",
+              "branch": "id"
+            }
+          ]
+        }
+      },
+      "note": "s.u30.12: the course writes agradecida."
+    },
+    {
+      "id": "realise/es/participle/id",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "perder",
+            "feats": {
+              "Tense": "Past",
+              "VerbForm": "Part"
+            }
+          }
+        ],
+        "next": "dos"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "perd+id+o",
+          "steps": [
+            {
+              "rule": "rule:es-participle",
+              "branch": "masc-sg"
+            },
+            {
+              "rule": "rule:es-participle",
+              "branch": "id"
+            }
+          ]
+        }
+      },
+      "note": "s.u17.5: the course writes perdido."
+    },
+    {
+      "id": "realise/es/participle/masc-pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "hacer",
+            "feats": {
+              "Gender": "Masc",
+              "Number": "Plur",
+              "Tense": "Past",
+              "VerbForm": "Part"
+            }
+          }
+        ],
+        "next": "por"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "hech+os",
+          "steps": [
+            {
+              "rule": "rule:es-participle",
+              "branch": "masc-pl"
+            }
+          ]
+        }
+      },
+      "note": "s.u26.32: the course writes hechos."
+    },
+    {
+      "id": "realise/es/participle/masc-sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "jugar",
+            "feats": {
+              "Tense": "Past",
+              "VerbForm": "Part"
+            }
+          }
+        ],
+        "next": "dominó"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "jug+ad+o",
+          "steps": [
+            {
+              "rule": "rule:es-participle",
+              "branch": "masc-sg"
+            },
+            {
+              "rule": "rule:es-participle",
+              "branch": "ad"
+            }
+          ]
+        }
+      },
+      "note": "s.u17.1: the course writes jugado."
+    },
+    {
+      "id": "realise/es/plural/accent-gain",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:joven",
+        "cell": {
+          "Gender": "Masc",
+          "Number": "Plur"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "jóven+es",
+          "steps": [
+            {
+              "rule": "rule:es-nominal",
+              "branch": "pl"
+            },
+            {
+              "rule": "rule:es-plural",
+              "branch": "es"
+            },
+            {
+              "rule": "rule:es-plural",
+              "branch": "accent-gain"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:joven in a paradigm cell, jóvenes (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/plural/accent-loss",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tostón",
+            "feats": {
+              "Number": "Plur"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "toston+es",
+          "steps": [
+            {
+              "rule": "rule:es-nominal",
+              "branch": "pl"
+            },
+            {
+              "rule": "rule:es-plural",
+              "branch": "es"
+            },
+            {
+              "rule": "rule:es-plural",
+              "branch": "accent-loss"
+            }
+          ]
+        }
+      },
+      "note": "s.u04.12: the course writes tostones."
+    },
+    {
+      "id": "realise/es/plural/es",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "frijol",
+            "feats": {
+              "Number": "Plur"
+            }
+          }
+        ],
+        "next": "negro"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "frijol+es",
+          "steps": [
+            {
+              "rule": "rule:es-nominal",
+              "branch": "pl"
+            },
+            {
+              "rule": "rule:es-plural",
+              "branch": "es"
+            }
+          ]
+        }
+      },
+      "note": "s.u04.4: the course writes frijoles."
+    },
+    {
+      "id": "realise/es/plural/ies",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:ají",
+        "cell": {
+          "Number": "Plur"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ají+es",
+          "steps": [
+            {
+              "rule": "rule:es-nominal",
+              "branch": "pl"
+            },
+            {
+              "rule": "rule:es-plural",
+              "branch": "ies"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:ají in a paradigm cell, ajíes (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/plural/same",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "lunes",
+            "feats": {
+              "Number": "Plur"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "lunes",
+          "steps": [
+            {
+              "rule": "rule:es-nominal",
+              "branch": "pl"
+            },
+            {
+              "rule": "rule:es-plural",
+              "branch": "same"
+            }
+          ]
+        }
+      },
+      "note": "s.u07.17: the course writes lunes."
+    },
+    {
+      "id": "realise/es/raising/e-i",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "pedir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "que"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "pid+ió",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pret-3sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-raising",
+              "branch": "e-i"
+            }
+          ]
+        }
+      },
+      "note": "s.u27.14: the course writes pidió."
+    },
+    {
+      "id": "realise/es/raising/o-u",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "dormir",
+            "feats": {
+              "VerbForm": "Ger"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "durm+iendo",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "ger"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-raising",
+              "branch": "o-u"
+            }
+          ]
+        }
+      },
+      "note": "s.u07.34: the course writes durmiendo."
+    },
+    {
+      "id": "realise/es/reflexive/rule",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "llamarse",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "daniel"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "llam+o",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pres-1sg"
+            },
+            {
+              "rule": "rule:es-reflexive"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u01.28: the course writes llamo."
+    },
+    {
+      "id": "realise/es/short-imperative/rule",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "venir",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "2",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "a"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ven",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "imp-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-short-imperative"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.1: the course writes ven."
+    },
+    {
+      "id": "realise/es/short-imperative/z",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "hacer",
+            "feats": {
+              "Mood": "Imp",
+              "Number": "Sing",
+              "Person": "2",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "haz",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "imp-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-short-imperative"
+            },
+            {
+              "rule": "rule:es-short-imperative",
+              "branch": "z"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.34: the course writes Haz."
+    },
+    {
+      "id": "realise/es/short-masculine/fem",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "este",
+            "feats": {
+              "Gender": "Fem",
+              "Number": "Sing"
+            }
+          }
+        ],
+        "next": "ser"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "est+a",
+          "steps": [
+            {
+              "rule": "rule:es-short-masculine",
+              "branch": "fem"
+            },
+            {
+              "rule": "rule:es-final-vowel"
+            }
+          ]
+        }
+      },
+      "note": "s.u02.1: the course writes Esta."
+    },
+    {
+      "id": "realise/es/short-masculine/masc-pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "un",
+            "feats": {
+              "Gender": "Masc",
+              "Number": "Plur"
+            }
+          }
+        ],
+        "next": "consejo"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "un+o+s",
+          "steps": [
+            {
+              "rule": "rule:es-short-masculine",
+              "branch": "masc-pl"
+            },
+            {
+              "rule": "rule:es-short-masculine",
+              "branch": "pl"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u21#1: the course writes unos."
+    },
+    {
+      "id": "realise/es/short-masculine/neut",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "ese",
+            "feats": {
+              "Gender": "Neut",
+              "Number": "Sing"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "es+o",
+          "steps": [
+            {
+              "rule": "rule:es-short-masculine",
+              "branch": "neut"
+            },
+            {
+              "rule": "rule:es-final-vowel"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u23#5: the course writes eso."
+    },
+    {
+      "id": "realise/es/short-masculine/pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "un",
+            "feats": {
+              "Gender": "Masc",
+              "Number": "Plur"
+            }
+          }
+        ],
+        "next": "consejo"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "un+o+s",
+          "steps": [
+            {
+              "rule": "rule:es-short-masculine",
+              "branch": "masc-pl"
+            },
+            {
+              "rule": "rule:es-short-masculine",
+              "branch": "pl"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u21#1: the course writes unos."
+    },
+    {
+      "id": "realise/es/spelling/c-qu",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "aplicar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "para"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "apliqu+é",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pret-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-spelling",
+              "branch": "c-qu"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u29#3: the course writes Apliqué."
+    },
+    {
+      "id": "realise/es/spelling/g-gu",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "pagar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "diez"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "pagu+é",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pret-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-spelling",
+              "branch": "g-gu"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.2: the course writes pagué."
+    },
+    {
+      "id": "realise/es/spelling/g-j",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "coger",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "coj+o",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pres-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-spelling",
+              "branch": "g-j"
+            }
+          ]
+        }
+      },
+      "note": "s.u06.20: the course writes Cojo."
+    },
+    {
+      "id": "realise/es/spelling/gu-g",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:conseguir",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Pres",
+          "Person": "1",
+          "Number": "Sing",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "consig+o",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pres-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "e-i"
+            },
+            {
+              "rule": "rule:es-spelling",
+              "branch": "gu-g"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:conseguir in a paradigm cell, consigo (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/spelling/z-c",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "hacer",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "ayer"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "hic+iste",
+          "steps": [
+            {
+              "rule": "rule:es-strong-preterite",
+              "branch": "2sg"
+            },
+            {
+              "rule": "rule:es-spelling",
+              "branch": "z-c"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.27: the course writes hiciste."
+    },
+    {
+      "id": "realise/es/stem-change/e-i",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "freír",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "en"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "frí+e",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pres-3sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "e-i"
+            },
+            {
+              "rule": "rule:es-accent",
+              "branch": "hiatus"
+            }
+          ]
+        }
+      },
+      "note": "s.u14.10: the course writes fríe."
+    },
+    {
+      "id": "realise/es/stem-change/e-ie",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tener",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "hermano"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tien+es",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pres-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "e-ie"
+            }
+          ]
+        }
+      },
+      "note": "s.u02.11: the course writes tienes."
+    },
+    {
+      "id": "realise/es/stem-change/hiatus",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "reunirse",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "en"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "reún+e",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pres-3sg"
+            },
+            {
+              "rule": "rule:es-reflexive"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "hiatus"
+            }
+          ]
+        }
+      },
+      "note": "s.u24.33: the course writes reúne."
+    },
+    {
+      "id": "realise/es/stem-change/o-ue",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "acostarse",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "tarde"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "acuest+o",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pres-1sg"
+            },
+            {
+              "rule": "rule:es-reflexive"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "o-ue"
+            }
+          ]
+        }
+      },
+      "note": "s.u07.26: the course writes acuesto."
+    },
+    {
+      "id": "realise/es/stem-change/u-ue",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "jugar",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "dominó"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "jueg+as",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pres-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-stem-change",
+              "branch": "u-ue"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u09#15: the course writes juegas."
+    },
+    {
+      "id": "realise/es/stem/future",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:oír",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Fut",
+          "Person": "1",
+          "Number": "Sing",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "oir+é",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "fut-1sg"
+            },
+            {
+              "rule": "rule:es-stem",
+              "branch": "future"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:oír in a paradigm cell, oiré (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/stem/rule",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "llamarse",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "daniel"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "llam+o",
+          "steps": [
+            {
+              "rule": "rule:es-ar",
+              "branch": "pres-1sg"
+            },
+            {
+              "rule": "rule:es-reflexive"
+            },
+            {
+              "rule": "rule:es-stem"
+            }
+          ]
+        }
+      },
+      "note": "s.u01.28: the course writes llamo."
+    },
+    {
+      "id": "realise/es/strong-preterite/1pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "venir",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "1",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "a"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "vin+imos",
+          "steps": [
+            {
+              "rule": "rule:es-strong-preterite",
+              "branch": "1pl"
+            }
+          ]
+        }
+      },
+      "note": "s.u13.35: the course writes vinimos."
+    },
+    {
+      "id": "realise/es/strong-preterite/1sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "tener",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "suerte"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tuv+e",
+          "steps": [
+            {
+              "rule": "rule:es-strong-preterite",
+              "branch": "1sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.32: the course writes tuve."
+    },
+    {
+      "id": "realise/es/strong-preterite/2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:tener",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Past",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tuv+isteis",
+          "steps": [
+            {
+              "rule": "rule:es-strong-preterite",
+              "branch": "2pl"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:tener in a paradigm cell, tuvisteis (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/strong-preterite/2sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "hacer",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "ayer"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "hic+iste",
+          "steps": [
+            {
+              "rule": "rule:es-strong-preterite",
+              "branch": "2sg"
+            },
+            {
+              "rule": "rule:es-spelling",
+              "branch": "z-c"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.27: the course writes hiciste."
+    },
+    {
+      "id": "realise/es/strong-preterite/3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "hacer",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "ellos"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "hic+ieron",
+          "steps": [
+            {
+              "rule": "rule:es-strong-preterite",
+              "branch": "3pl"
+            },
+            {
+              "rule": "rule:es-spelling",
+              "branch": "z-c"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.33: the course writes hicieron."
+    },
+    {
+      "id": "realise/es/strong-preterite/3sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "hacer",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "café"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "hiz+o",
+          "steps": [
+            {
+              "rule": "rule:es-strong-preterite",
+              "branch": "3sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u09.28: the course writes hizo."
+    },
+    {
+      "id": "realise/es/strong-subjunctive/1pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:tener",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Imp",
+          "Person": "1",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tuv+iéramos",
+          "steps": [
+            {
+              "rule": "rule:es-strong-subjunctive",
+              "branch": "1pl"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:tener in a paradigm cell, tuviéramos (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/strong-subjunctive/2pl",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:tener",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Imp",
+          "Person": "2",
+          "Number": "Plur",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tuv+ierais",
+          "steps": [
+            {
+              "rule": "rule:es-strong-subjunctive",
+              "branch": "2pl"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:tener in a paradigm cell, tuvierais (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/strong-subjunctive/2sg",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:tener",
+        "cell": {
+          "Mood": "Sub",
+          "Tense": "Imp",
+          "Person": "2",
+          "Number": "Sing",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tuv+ieras",
+          "steps": [
+            {
+              "rule": "rule:es-strong-subjunctive",
+              "branch": "2sg"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:tener in a paradigm cell, tuvieras (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/strong-subjunctive/3pl",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "poder",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Plur",
+              "Person": "3",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "pud+ieran",
+          "steps": [
+            {
+              "rule": "rule:es-strong-subjunctive",
+              "branch": "3pl"
+            }
+          ]
+        }
+      },
+      "note": "es.story.u28#1: the course writes pudieran."
+    },
+    {
+      "id": "realise/es/strong-subjunctive/sg",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "querer",
+            "feats": {
+              "Mood": "Sub",
+              "Number": "Sing",
+              "Tense": "Imp",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "hablar"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "quis+iera",
+          "steps": [
+            {
+              "rule": "rule:es-strong-subjunctive",
+              "branch": "sg"
+            }
+          ]
+        }
+      },
+      "note": "s.u19.20: the course writes Quisiera."
+    },
+    {
+      "id": "realise/es/y/i-y",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "caerse",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "3",
+              "Tense": "Past",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "el"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "ca+yó",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pret-3sg"
+            },
+            {
+              "rule": "rule:es-reflexive"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-y",
+              "branch": "i-y"
+            }
+          ]
+        }
+      },
+      "note": "s.u22.8: the course writes cayó."
+    },
+    {
+      "id": "realise/es/y/oir",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "oír",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "2",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "oy+es",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pres-2sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-y",
+              "branch": "oir"
+            }
+          ]
+        }
+      },
+      "note": "s.u22.2: the course writes oyes."
+    },
+    {
+      "id": "realise/es/y/uir",
+      "op": "realise",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexeme": "lexeme:construir",
+        "cell": {
+          "Mood": "Ind",
+          "Tense": "Pres",
+          "Person": "1",
+          "Number": "Sing",
+          "VerbForm": "Fin"
+        }
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "construy+o",
+          "steps": [
+            {
+              "rule": "rule:es-ir",
+              "branch": "pres-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-y",
+              "branch": "uir"
+            }
+          ]
+        }
+      },
+      "note": "No token of the course takes this branch: lexeme:construir in a paradigm cell, construyo (the standard paradigm, written by hand)."
+    },
+    {
+      "id": "realise/es/zco/rule",
+      "op": "realise-token",
+      "args": {
+        "lang": "es",
+        "spellings": false,
+        "lexemes": [
+          {
+            "lexeme": "agradecer",
+            "feats": {
+              "Mood": "Ind",
+              "Number": "Sing",
+              "Person": "1",
+              "Tense": "Pres",
+              "VerbForm": "Fin"
+            }
+          }
+        ],
+        "next": "a"
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "agradezc+o",
+          "steps": [
+            {
+              "rule": "rule:es-er",
+              "branch": "pres-1sg"
+            },
+            {
+              "rule": "rule:es-stem"
+            },
+            {
+              "rule": "rule:es-zco"
+            }
+          ]
+        }
+      },
+      "note": "s.u30.11: the course writes agradezco."
+    }
+  ]
+}
