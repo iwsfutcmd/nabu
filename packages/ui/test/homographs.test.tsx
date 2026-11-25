@@ -7,7 +7,7 @@ import type { SchemeId, TaggedText } from "@nabu/schema";
 import type { JSX } from "react";
 import { describe, expect, it } from "vitest";
 import { ChoiceWords, HomographsProvider } from "../src/marks.tsx";
-import { GlossPanel, useOtherReadings } from "../src/player/Gloss.tsx";
+import { GlossContent, useOtherReadings } from "../src/player/Gloss.tsx";
 import { T } from "../src/T.tsx";
 import { loadCourse } from "./course.ts";
 import { render } from "./render.tsx";
@@ -28,7 +28,7 @@ const withHomograph = (course: CourseView, scheme: SchemeId): { readonly text: T
 
 const Panel = ({ course, text, at }: { readonly course: CourseView; readonly text: TaggedText; readonly at: number }): JSX.Element => {
   const also = useOtherReadings(course, { text, token: at }, SCHLUESSEL);
-  return <GlossPanel open glosses={[]} ruby={SCHLUESSEL} marks="show" also={also} />;
+  return <GlossContent course={course} tap={{ text, token: at }} glosses={[]} ruby={SCHLUESSEL} marks="show" also={also} onClose={() => undefined} />;
 };
 
 describe("homograph marks (ADR 0140)", () => {
@@ -66,8 +66,10 @@ describe("homograph marks (ADR 0140)", () => {
   });
 
   it("name the other readings in a tapped word's gloss, each with what it means", () => {
-    const html = render(<Panel course={chg} text={text} at={at} />);
-    expect(html).toContain("data-gloss-also");
+    const all = render(<Panel course={chg} text={text} at={at} />);
+    expect(all).toContain("data-gloss-also");
+    // The list of other readings (the dialog's title is the word with its own).
+    const html = all.slice(all.indexOf("data-gloss-also"));
     expect(html).toContain("Also read");
     const own = text.tokens[at]?.readings?.[SCHLUESSEL];
     const others = (homographsOf(chg, SCHLUESSEL).get(text.tokens[at]?.surface.normalize("NFC") ?? "") ?? []).filter((r) => r.reading !== own);

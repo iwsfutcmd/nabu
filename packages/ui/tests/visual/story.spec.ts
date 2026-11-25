@@ -1,9 +1,10 @@
 /**
  * Phase 6: the story reader in the visual matrix (gameplan §15): UI {en, en-XA, ar-XB} × target
- * {fa, yue-Hant-HK, uz-Latn, apc-Arab} × {horizontal, vertical where allowed}, on two screens:
- * reading (four lines, a translation open, a word glossed) and a question (building a line from
- * its tiles). Vertical cells are the reading screen: each line's text turns into columns, its
- * reading beside them, while names, buttons, translations and the chrome stay horizontal (§11.4,
+ * {fa, yue-Hant-HK, uz-Latn, apc-Arab} × {horizontal, vertical where allowed}, on three screens:
+ * reading (four lines, a translation open), glossed (the same with a word tapped: the dialog with
+ * what it means and its forms, ADR 0157) and a question (building a line from its tiles). Vertical
+ * cells are the reading screens: each line's text turns into columns, its reading beside them,
+ * while names, buttons, translations, the gloss dialog and the chrome stay horizontal (§11.4,
  * ADR 0118). Same structural checks as the player; pixels in the pinned container.
  */
 import AxeBuilder from "@axe-core/playwright";
@@ -11,12 +12,12 @@ import { expect, test } from "@playwright/test";
 import { comparesPixels, expectNoClipping, platformFonts, settle } from "./checks.ts";
 import { cellGlobals, cells, storyUrl } from "./matrix.ts";
 
-const SCREENS = ["reading", "question"] as const;
+const SCREENS = ["reading", "glossed", "question"] as const;
 const JYUTPING = "yue-Latn-HK-jyutping";
 
 for (const cell of cells()) {
   for (const screen of SCREENS) {
-    if (cell.writingMode !== "horizontal-tb" && screen !== "reading") continue;
+    if (cell.writingMode !== "horizontal-tb" && screen === "question") continue;
     test(`story: ${cell.ui} × ${cell.target} × ${cell.writingMode} × ${screen}`, async ({ page }) => {
       const errors: string[] = [];
       page.on("pageerror", (e) => errors.push(String(e)));
@@ -44,13 +45,13 @@ for (const cell of cells()) {
         expect([t.dir, t.computed]).toEqual([expected, expected]);
       }
 
-      if (screen === "reading") {
+      if (screen === "reading" || screen === "glossed") {
         const transcript = page.locator("[data-story-transcript]");
         await expect(transcript).toHaveAttribute("data-writing-mode", cell.writingMode);
         expect(await transcript.locator("[data-line]").count()).toBeGreaterThanOrEqual(4);
-        // Words are buttons for tap-for-gloss; one is open, and the panel explains it.
-        await expect(transcript.locator("button[aria-pressed=true]")).toHaveCount(1);
-        await expect(page.locator("[data-gloss-panel] [data-gloss-id]")).not.toHaveCount(0);
+        // Words are buttons for tap-for-gloss, which says so under the lines; the glossed screen has one tapped.
+        await expect(transcript.locator("button[aria-pressed=true]")).toHaveCount(screen === "glossed" ? 1 : 0);
+        await expect(page.locator("[data-story-reader] [data-gloss-hint]")).toBeVisible();
         await expect(transcript.locator("[data-action=translate][aria-expanded=true]")).toHaveCount(1);
         // Only the lines' text may turn: the transcript, the names, the buttons and the translations
         // stay horizontal, as the chrome does (ADR 0118).
@@ -85,6 +86,38 @@ for (const cell of cells()) {
         const region = page.locator("[data-target-region]");
         await expect(region).toHaveAttribute("dir", cell.targetDir);
         await expect(page.locator("[data-placed-tile]")).toHaveCount(1);
+      }
+
+      if (screen === "glossed") {
+        // The dialog is chrome: the UI's lang and direction, never vertical; each text in it is in its own.
+        const dialog = page.locator("[data-gloss-panel]");
+        await expect(dialog).toBeVisible();
+        await expect(dialog).toBeFocused();
+        const body = dialog.locator(":scope > div").first();
+        await expect(body).toHaveAttribute("dir", cell.uiDir);
+        expect(await dialog.evaluate((el) => getComputedStyle(el).writingMode)).toBe("horizontal-tb");
+        await expect(dialog.locator("[data-gloss-word] [data-nabu-text]").first()).toHaveAttribute("dir", cell.targetDir);
+        await expect(dialog.locator("[data-gloss-id]")).not.toHaveCount(0);
+        // The tapped word's forms, its own marked; written in the target's direction.
+        const forms = dialog.locator("[data-gloss-forms]");
+        await expect(forms).not.toHaveCount(0);
+        await expect(forms.locator("tr[data-current]")).toHaveCount(1);
+        for (const dir of await forms.locator("th [data-nabu-text]").evaluateAll((els) => els.map((e) => [e.getAttribute("dir"), getComputedStyle(e).direction]))) expect(dir).toEqual([cell.targetDir, cell.targetDir]);
+        // The whole dialog in sight, nothing running past its sides.
+        expect(await dialog.evaluate((el) => el.scrollWidth <= el.clientWidth)).toBe(true);
+        const box = await dialog.boundingBox();
+        const viewport = page.viewportSize();
+        expect(box!.x).toBeGreaterThanOrEqual(0);
+        expect(box!.y).toBeGreaterThanOrEqual(0);
+        expect(box!.x + box!.width).toBeLessThanOrEqual(viewport!.width);
+        expect(box!.y + box!.height).toBeLessThanOrEqual(viewport!.height);
+        const usedInDialog = await platformFonts(page, "[data-gloss-panel] :is(h2, h3, p, dt, dd, th, td, button, [data-kind], ruby, rt)");
+        expect(usedInDialog.filter((u) => !u.custom), "system-font fallback in the dialog").toEqual([]);
+        const axe = await new AxeBuilder({ page }).include("[data-gloss-panel]").analyze();
+        expect(axe.violations.filter((v) => v.impact === "serious" || v.impact === "critical").map((v) => `${v.id}: ${v.help}`)).toEqual([]);
+        expect(errors).toEqual([]);
+        if (comparesPixels) await expect(dialog).toHaveScreenshot(`story__${cell.name}__${screen}.png`);
+        return;
       }
 
       const used = await platformFonts(page, "[data-story-reader] :is(h2, p, dt, dd, label, button, [data-kind], ruby, rt)");

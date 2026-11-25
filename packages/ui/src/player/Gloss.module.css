@@ -1,21 +1,34 @@
-/* Tap-for-gloss (Phase 6, P1): what a tapped word means, in a live panel, not a floating
-   popover, so it reads the same in RTL, LTR and vertical text. Logical properties only. */
+/* Tap-for-gloss (Phase 6, P1; ADR 0157): what a tapped word means and its forms, in a modal dialog.
+   It is chrome: never vertical, in the UI's direction; each text in it takes its own from <T>.
+   Logical properties only. */
 
-.gloss {
+.dialog {
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
-  min-block-size: 4.5rem;
-  padding-block: var(--nabu-space-2);
-  padding-inline: var(--nabu-space-3);
-  border: 1px dashed var(--nabu-color-border);
-  border-radius: var(--nabu-radius-tile);
+  inline-size: min(36rem, 100%);
+  max-block-size: 100%;
+  padding: var(--nabu-space-5);
+  overflow: auto;
+  background-color: var(--nabu-color-surface);
+  border-radius: var(--nabu-radius-card);
+  outline: none;
+  overscroll-behavior: contain;
 }
 
-/* In a lesson the panel waits, empty and out of sight, until a word is tapped: it stays in the page
-   as a live region, so what appears in it is announced. */
-.gloss[data-quiet]:not([data-gloss-open]) {
-  min-block-size: 0;
-  padding: 0;
-  border: none;
+/* The dialog's content, in the chrome's lang and dir (it is portalled out of the app's root). */
+.dialogBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-3);
+}
+
+/* The tapped word, then the close button at the line's end. */
+.dialogHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--nabu-space-3);
 }
 
 .glossHint {
@@ -23,11 +36,10 @@
   color: var(--nabu-color-muted);
 }
 
-/* The tapped word, with its reading, above entries that are its parts (ADR 0131 amendment). */
+/* The tapped word as written, with its reading: the dialog's title. */
 .glossWord {
   margin: 0;
-  margin-block-end: var(--nabu-space-2);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 700;
 }
 
@@ -60,9 +72,71 @@
   color: var(--nabu-color-muted);
 }
 
+/* An entry's forms: each form, and what the language calls it. */
+.forms {
+  padding-block-start: var(--nabu-space-3);
+  border-block-start: 1px solid var(--nabu-color-border);
+}
+
+.formsHeading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--nabu-space-2);
+  margin: 0;
+  margin-block-end: var(--nabu-space-2);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.formsOf {
+  font-weight: 400;
+}
+
+.formsTable {
+  inline-size: 100%;
+  border-collapse: collapse;
+}
+
+.formsTable th,
+.formsTable td {
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-2);
+  text-align: start;
+  vertical-align: baseline;
+  border-block-end: 1px solid var(--nabu-color-track);
+}
+
+.form {
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+/* A form written more than one way: each way set off by a rule, no separator written. */
+.formVariant {
+  margin-inline-start: var(--nabu-space-2);
+  padding-inline-start: var(--nabu-space-2);
+  border-inline-start: 1px solid var(--nabu-color-line);
+}
+
+.formLabel {
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+}
+
+/* The form the tapped word stands in. */
+.currentForm th,
+.currentForm td {
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-info-bg);
+}
+
+.currentForm th {
+  font-weight: 700;
+}
+
 /* The same spelling's other readings (ADR 0140), under the tapped word's meaning. */
 .glossAlso {
-  margin-block-start: var(--nabu-space-2);
   padding-block-start: var(--nabu-space-2);
   border-block-start: 1px dashed var(--nabu-color-border);
 }
