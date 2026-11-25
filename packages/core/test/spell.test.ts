@@ -140,9 +140,9 @@ describe("apc's statements over its lexicon", () => {
  * too), e/ei, an initial ق written 2 or not, and the helping vowel in a final cluster (130 more).
  * Then 11 fewer (stage 3 of rules in a lexicon): the words the statement spells whole (bus, bas, nos,
  * sa77tein…) have no alternatives, the teens alone end in a silent r, and the clitics (el, b, w, hal)
- * have their forms.
+ * have their forms. Then 33 more: the lexemes of apc's units 21 to 25.
  */
-const FREE = 307;
+const FREE = 340;
 /**
  * Alternatives that took the article's forms (stated 2026-11-23 as the profile's join, `joins`: the
  * owner's answer to question 6) and grade as the same word, word by word: a statement of sounds compares
@@ -160,7 +160,9 @@ const JOINED = 125;
  * 3a 2albak waits only here: compared as one string, its albak does not begin it (graded word by word,
  * it is a variant). The two month names with an assimilated article (stage 3) add 13 that leave the
  * article out or write it neither as the spelling nor as a join takes it (kanoun tteni): compiler-only
- * alternatives, never graded.
+ * alternatives, never graded. apc's units 21 to 25 add 13 more: final clusters no line of the profile states yet (mel7,
+ * forn, sokhn, nafs: each waits until a line for it is proved to merge no two forms), ba3d.some's ba3ed, and 2abelma's
+ * cluster inside the word.
  */
 const WAITING: Readonly<Record<string, number>> = {
   "article": 4,
@@ -173,8 +175,9 @@ const WAITING: Readonly<Record<string, number>> = {
   "article+final-e-i+u-ou": 1,
   "article+i-ee": 1,
   "article+u-ou": 1,
-  "e-i+helping-vowel": 2,
-  "helping-vowel": 10,
-  "helping-vowel+o-u": 1,
+  "e-i+helping-vowel": 3,
+  "helping-vowel": 18,
+  "helping-vowel+o-u": 5,
+  "helping-vowel+q-initial": 1,
   "q-initial": 1,
 };
