@@ -8,6 +8,10 @@
  * write the base, each with the rules' verdict as the compiler's token check gives it (a way loads into
  * the explorer), and the base's paradigm over the cells the course lists (a cell loads too).
  *
+ * A lexeme is picked from the lexicon browsed (the base) or searched (one to add, the next word), each
+ * list narrowed by the Data page's lexicon facets: part of speech, free or bound, taught or not,
+ * features, the keys an entry stores or lacks.
+ *
  * Everything shown is laid out in core (`rulesExplorer`, `explore`, `waysOf`, `explorerParadigm`) from
  * the lexicon's own files, which the page passes in; ids, features, rules and branches are code, left
  * to right; every text goes through <T> in its own language and direction. The search fields follow
@@ -18,6 +22,8 @@ import {
   explore,
   EXPLORE_DEFAULTS,
   explorerParadigm,
+  lexiconFacets,
+  lexiconFilter,
   rulesExplorer,
   waysOf,
   type CourseView,
@@ -26,6 +32,7 @@ import {
   type ExplorerLexeme,
   type ExplorerProblem,
   type ExplorerWay,
+  type LexiconFilter,
   type LexiconSource,
   type RulesExplorer as Explorer,
   type Attached,
@@ -35,6 +42,7 @@ import { useId, useMemo, useState, type JSX } from "react";
 import { Button, Checkbox, Input, Label, Radio, RadioGroup, SearchField } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
 import { CheckIcon } from "../icons.tsx";
+import { LexiconFilters } from "./LexiconFilters.tsx";
 import { T } from "../T.tsx";
 import list from "../words/Words.module.css";
 import data from "./Data.module.css";
@@ -54,8 +62,8 @@ export interface RulesExplorerProps {
 
 type Translator = ReturnType<typeof useTranslator>;
 
-/** Lexemes listed under a search field at most. */
-const MATCHES = 12;
+/** Lexemes listed at first, and added by each "Show more". */
+const PAGE = 40;
 
 const STATUS_MESSAGES = { given: "rules.status.given", pinned: "rules.status.pinned", listed: "rules.status.listed" } as const;
 
@@ -98,27 +106,48 @@ const LexemeLine = ({ lexeme }: { lexeme: ExplorerLexeme }): JSX.Element => (
   </span>
 );
 
-/** A search field and the lexemes it finds, each a button that picks it. */
-const LexemePicker = ({ t, explorer, label, field, onPick }: { t: Translator; explorer: Explorer; label: string; field: string; onPick: (lexeme: ExplorerLexeme) => void }): JSX.Element => {
+/**
+ * A lexeme to pick: the lexicon browsed, a page at a time, narrowed by a search (letters, meaning or id:
+ * `dataMatcher`) and by the facets the Data page's Lexicon view reads off the lexicon (part of speech,
+ * free or bound, taught or not, features, the keys an entry stores or lacks: `lexiconFacets`), each
+ * lexeme a button that picks it. `browse`: the list shows before anything is typed or chosen (the
+ * base); else only once something is (a lexeme to add, the next word).
+ */
+const LexemePicker = ({ t, explorer, label, field, browse, onPick }: { t: Translator; explorer: Explorer; label: string; field: string; browse: boolean; onPick: (lexeme: ExplorerLexeme) => void }): JSX.Element => {
   const [typed, setTyped] = useState("");
   const [query, setQuery] = useState("");
   const [composing, setComposing] = useState(false);
+  const [filter, setFilter] = useState<LexiconFilter>({});
+  const [pages, setPages] = useState(1);
   const listId = useId();
-  const found = useMemo(() => {
-    if (query.trim() === "") return [];
+  const rows = useMemo(() => explorer.lexemes.map((l) => l.row), [explorer]);
+  const searched = useMemo(() => {
+    if (query.trim() === "") return explorer.lexemes;
     const matches = dataMatcher(explorer.course, query).lexicon;
     return explorer.lexemes.filter((l) => matches(l.row));
   }, [explorer, query]);
+  const facets = useMemo(() => lexiconFacets(rows, searched.map((l) => l.row), filter), [rows, searched, filter]);
+  const found = useMemo(() => {
+    const passes = lexiconFilter(filter);
+    return searched.filter((l) => passes(l.row));
+  }, [searched, filter]);
+  const filtered = Object.values(filter).some((values) => values.length > 0);
+  const listing = browse || query.trim() !== "" || filtered;
+  const shown = listing ? found.slice(0, pages * PAGE) : [];
+  const search = (value: string): void => {
+    setQuery(value);
+    setPages(1);
+  };
   return (
-    <div className={styles.picker}>
+    <div className={styles.picker} data-picker={field}>
       <SearchField
         className={list.search}
         value={typed}
         onChange={(v) => {
           setTyped(v);
-          if (!composing) setQuery(v);
+          if (!composing) search(v);
         }}
-        onClear={() => setQuery("")}
+        onClear={() => search("")}
       >
         <Label className={list.label}>{label}</Label>
         <Input
@@ -130,23 +159,36 @@ const LexemePicker = ({ t, explorer, label, field, onPick }: { t: Translator; ex
           onCompositionStart={() => setComposing(true)}
           onCompositionEnd={(e) => {
             setComposing(false);
-            setQuery(e.currentTarget.value);
+            search(e.currentTarget.value);
           }}
           data-field={field}
         />
       </SearchField>
+      <LexiconFilters
+        facets={facets}
+        filter={filter}
+        onChange={(next) => {
+          setFilter(next);
+          setPages(1);
+        }}
+      />
       <div id={listId}>
-        {query.trim() !== "" && found.length === 0 && <p className={list.muted}>{t.format("rules.pick.none")}</p>}
-        {found.length > 0 && (
+        {listing && (
+          <p className={list.count} role="status" data-rules-found={found.length}>
+            {t.format("data.found", { count: found.length, total: rows.length })}
+          </p>
+        )}
+        {listing && found.length === 0 && <p className={list.muted}>{t.format("rules.pick.none")}</p>}
+        {shown.length > 0 && (
           <ul className={styles.matches}>
-            {found.slice(0, MATCHES).map((l) => (
+            {shown.map((l) => (
               <li key={l.row.id.id}>
                 <Button
                   className={styles.match}
                   onPress={() => {
                     onPick(l);
                     setTyped("");
-                    setQuery("");
+                    search("");
                   }}
                   data-pick={l.row.id.id}
                 >
@@ -156,7 +198,11 @@ const LexemePicker = ({ t, explorer, label, field, onPick }: { t: Translator; ex
             ))}
           </ul>
         )}
-        {found.length > MATCHES && <p className={list.muted}>{t.format("rules.pick.more", { count: found.length - MATCHES })}</p>}
+        {found.length > shown.length && shown.length > 0 && (
+          <Button className={data.more} onPress={() => setPages((n) => n + 1)} data-action="rules-more">
+            {t.format("data.more", { count: found.length - shown.length })}
+          </Button>
+        )}
       </div>
     </div>
   );
@@ -412,7 +458,7 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
               {t.format("rules.base")}
             </h2>
             {base === undefined ? (
-              <LexemePicker t={t} explorer={explorer} label={t.format("rules.search")} field="rules-base" onPick={(l) => onRequest({ base: l.row.id.id, feats: {}, before: [], after: [], ...EXPLORE_DEFAULTS })} />
+              <LexemePicker t={t} explorer={explorer} label={t.format("rules.search")} field="rules-base" browse onPick={(l) => onRequest({ base: l.row.id.id, feats: {}, before: [], after: [], ...EXPLORE_DEFAULTS })} />
             ) : (
               <div className={styles.chosen} data-base={base.row.id.id}>
                 <LexemeLine lexeme={base} />
@@ -460,6 +506,7 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
                   explorer={explorer}
                   label={t.format("rules.add")}
                   field="rules-add"
+                  browse={false}
                   onPick={(l) => change(side === "before" ? { before: [...request.before, { lexeme: l.row.id.id }] } : { after: [...request.after, { lexeme: l.row.id.id }] })}
                 />
                 <div className={styles.pair} data-next={request.next ?? ""}>
@@ -482,7 +529,7 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
                     </span>
                   )}
                 </div>
-                <LexemePicker t={t} explorer={explorer} label={t.format("rules.next.pick")} field="rules-next" onPick={(l) => change({ next: l.row.id.id })} />
+                <LexemePicker t={t} explorer={explorer} label={t.format("rules.next.pick")} field="rules-next" browse={false} onPick={(l) => change({ next: l.row.id.id })} />
               </section>
               <section className={styles.part} aria-labelledby="rules-options">
                 <h2 className={data.partTitle} id="rules-options">

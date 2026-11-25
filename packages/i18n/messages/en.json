@@ -1538,6 +1538,10 @@
       "message": "In the course",
       "description": "Debug mode, the course data page, Lexicon view: filter by what the course does with a lexeme: whether a lesson teaches it, or only the lexicon's file has it."
     },
+    "data.lexicon.facet.class": {
+      "message": "Inflection class",
+      "description": "Debug mode, the course data page's Lexicon view and the rules explorer: filter by the inflection classes a lexeme's entry states, which the language's rules read (codes such as e-ie, o-ue, strong; shown as written)."
+    },
     "data.lexicon.facet.feature": {
       "message": "Features",
       "description": "Debug mode, the course data page, Lexicon view: filter by the feature values a lexeme has of itself or realises (UD features such as Gender=Fem, Tense=Past)."
@@ -3701,10 +3705,6 @@
     "rules.pick.none": {
       "message": "No lexeme matches.",
       "description": "Debug mode, the rules explorer: a search field found nothing."
-    },
-    "rules.pick.more": {
-      "message": ".input {$count :number}\n.match $count\none {{and {$count} more: narrow the search}}\n* {{and {$count} more: narrow the search}}",
-      "description": "Debug mode, the rules explorer: under the first matches of a search, how many more there are."
     },
     "rules.change": {
       "message": "Pick another",

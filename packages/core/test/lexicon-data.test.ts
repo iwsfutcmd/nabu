@@ -149,6 +149,7 @@ describe.each(COURSES)("the lexicon of %s (%s)", (id, orthography) => {
       const entry = entries.get(row.id.id) ?? {};
       const pos = row.lexeme?.pos ?? entry["pos"];
       expect(row.facets.pos, row.id.id).toEqual(typeof pos === "string" ? [pos] : "realises" in entry ? ["realises"] : []);
+      expect(row.facets.class, row.id.id).toEqual(Array.isArray(entry["classes"]) ? entry["classes"] : []);
       expect(row.facets.kind, row.id.id).toEqual([row.bound ? "bound" : "free"]);
       expect(row.facets.course, row.id.id).toEqual([row.lexeme === undefined ? "file" : course.units.some((u) => u.nodes.some((n) => n.introduces.includes(row.id.id))) ? "taught" : "untaught"]);
       expect(row.facets.feature, row.id.id).toEqual(row.tags.filter((t) => t.includes("=")));
