@@ -1,5 +1,5 @@
 {
- "$comment": "Modern Standard Arabic's verbs in the merge model (ADR 0158; docs/rules/arb.md): lexicons/arb merged with its affix lexemes, one vector per verb class and cell the owner can check (every cell of kataba; the weak classes where their rules fire). Every form is REVIEW.",
+ "$comment": "Modern Standard Arabic in the merge model (ADR 0158; docs/rules/arb.md): lexicons/arb merged with its affix lexemes, one vector per verb class and cell the owner can check (every cell of kataba; the weak classes where their rules fire). Every form is REVIEW.",
  "vectors": [
   {
    "id": "realise/arb/kataba/perf-3ms",
@@ -637,7 +637,9 @@
      "form": "كَاتِب",
      "missing": [
       "Gender",
-      "Number"
+      "Number",
+      "Case",
+      "Definite"
      ]
     }
    },
@@ -667,7 +669,9 @@
      "form": "مَكْتُوب",
      "missing": [
       "Gender",
-      "Number"
+      "Number",
+      "Case",
+      "Definite"
      ]
     }
    },
@@ -810,7 +814,9 @@
      "form": "ءَاكِل",
      "missing": [
       "Gender",
-      "Number"
+      "Number",
+      "Case",
+      "Definite"
      ]
     }
    },
@@ -869,7 +875,9 @@
      "form": "مَسْءُول",
      "missing": [
       "Gender",
-      "Number"
+      "Number",
+      "Case",
+      "Definite"
      ]
     }
    },
@@ -954,7 +962,9 @@
      "form": "قَارِء",
      "missing": [
       "Gender",
-      "Number"
+      "Number",
+      "Case",
+      "Definite"
      ]
     }
    },
@@ -1332,7 +1342,9 @@
      "form": "قَاءِل",
      "missing": [
       "Gender",
-      "Number"
+      "Number",
+      "Case",
+      "Definite"
      ]
     }
    },
@@ -1362,7 +1374,9 @@
      "form": "مَقُول",
      "missing": [
       "Gender",
-      "Number"
+      "Number",
+      "Case",
+      "Definite"
      ]
     }
    },
@@ -1978,7 +1992,9 @@
      "form": "مَرْمِيّ",
      "missing": [
       "Gender",
-      "Number"
+      "Number",
+      "Case",
+      "Definite"
      ]
     }
    },
@@ -2681,7 +2697,9 @@
      "form": "مَمْدُود",
      "missing": [
       "Gender",
-      "Number"
+      "Number",
+      "Case",
+      "Definite"
      ]
     }
    },
@@ -2847,7 +2865,9 @@
      "form": "مُعَلِّم",
      "missing": [
       "Gender",
-      "Number"
+      "Number",
+      "Case",
+      "Definite"
      ]
     }
    },
@@ -3361,7 +3381,9 @@
      "form": "مُجْتَمِع",
      "missing": [
       "Gender",
-      "Number"
+      "Number",
+      "Case",
+      "Definite"
      ]
     }
    },
@@ -3695,7 +3717,9 @@
      "form": "مُسْتَقْبَل",
      "missing": [
       "Gender",
-      "Number"
+      "Number",
+      "Case",
+      "Definite"
      ]
     }
    },
@@ -3758,6 +3782,1565 @@
     }
    },
    "note": "istafada, ind 3ms."
+  },
+  {
+   "id": "realise/arb/nominal/kitab-indef-nom",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kitab",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كِتَابٌ"
+    }
+   },
+   "note": "kitab indef nom."
+  },
+  {
+   "id": "realise/arb/nominal/kitab-indef-acc",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kitab",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:acc"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كِتَابً+ا"
+    }
+   },
+   "note": "kitab indef acc."
+  },
+  {
+   "id": "realise/arb/nominal/kitab-def-gen",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:al"
+     },
+     {
+      "lexeme": "lexeme:kitab",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:gen"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اَلْ+كِتَابِ"
+    }
+   },
+   "note": "kitab def gen."
+  },
+  {
+   "id": "realise/arb/nominal/kitab-dual-nom",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kitab",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:dual"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كِتَابَ+انِ"
+    }
+   },
+   "note": "kitab dual nom."
+  },
+  {
+   "id": "realise/arb/nominal/kitab-dual-gen-cons",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kitab",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:dual"
+     },
+     {
+      "lexeme": "lexeme:gen"
+     },
+     {
+      "lexeme": "lexeme:cons"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كِتَابَ+يْ"
+    }
+   },
+   "note": "kitab dual gen cons."
+  },
+  {
+   "id": "realise/arb/nominal/kitab-pl-nom",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kitab",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:pl"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كُتُبٌ"
+    }
+   },
+   "note": "kitab pl nom."
+  },
+  {
+   "id": "realise/arb/nominal/madrasa-pl-gen-indef",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:madrasa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:pl"
+     },
+     {
+      "lexeme": "lexeme:gen"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مَدَارِسَ"
+    }
+   },
+   "note": "madrasa pl gen indef."
+  },
+  {
+   "id": "realise/arb/nominal/madrasa-pl-gen-def",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:al"
+     },
+     {
+      "lexeme": "lexeme:madrasa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:pl"
+     },
+     {
+      "lexeme": "lexeme:gen"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اَلْ+مَدَارِسِ"
+    }
+   },
+   "note": "madrasa pl gen def."
+  },
+  {
+   "id": "realise/arb/nominal/sayyara-fpl-acc",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:sayyara",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:fpl-sound"
+     },
+     {
+      "lexeme": "lexeme:acc"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "سَيَّارَ+اتٍ"
+    }
+   },
+   "note": "sayyara fpl acc."
+  },
+  {
+   "id": "realise/arb/nominal/sayyara-dual-nom",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:sayyara",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:dual"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "سَيَّارَتَ+انِ"
+    }
+   },
+   "note": "sayyara dual nom."
+  },
+  {
+   "id": "realise/arb/nominal/muallim-mpl-nom",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:muallim",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:masc"
+     },
+     {
+      "lexeme": "lexeme:mpl-sound"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مُعَلِّمُ+ونَ"
+    }
+   },
+   "note": "muallim mpl nom."
+  },
+  {
+   "id": "realise/arb/nominal/muallim-mpl-gen-cons",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:muallim",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:masc"
+     },
+     {
+      "lexeme": "lexeme:mpl-sound"
+     },
+     {
+      "lexeme": "lexeme:gen"
+     },
+     {
+      "lexeme": "lexeme:cons"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مُعَلِّمِ+ي"
+    }
+   },
+   "note": "muallim mpl gen cons."
+  },
+  {
+   "id": "realise/arb/nominal/muallim-fem-acc",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:muallim",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:fem"
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:acc"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مُعَلِّمَ+ةً"
+    }
+   },
+   "note": "muallim fem acc."
+  },
+  {
+   "id": "realise/arb/nominal/kabir-fem-fpl-nom",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kabir",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:fem"
+     },
+     {
+      "lexeme": "lexeme:fpl-sound"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كَبِيرَ++اتٌ"
+    }
+   },
+   "note": "kabir fem fpl nom."
+  },
+  {
+   "id": "realise/arb/nominal/kabir-masc-pl-nom",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kabir",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:masc"
+     },
+     {
+      "lexeme": "lexeme:pl"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كِبَارٌ"
+    }
+   },
+   "note": "kabir masc pl nom."
+  },
+  {
+   "id": "realise/arb/nominal/arabi-indef-acc",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:arabi",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:masc"
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:acc"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "عَرَبِيًّ+ا"
+    }
+   },
+   "note": "arabi indef acc."
+  },
+  {
+   "id": "realise/arb/nominal/ahmar-fem-nom",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:ahmar",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:fem"
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "حَمْرَاءُ"
+    }
+   },
+   "note": "ahmar fem nom."
+  },
+  {
+   "id": "realise/arb/nominal/ahmar-fem-dual-gen",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:ahmar",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:fem"
+     },
+     {
+      "lexeme": "lexeme:dual"
+     },
+     {
+      "lexeme": "lexeme:gen"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "حَمْرَاوَ+يْنِ"
+    }
+   },
+   "note": "ahmar fem dual gen."
+  },
+  {
+   "id": "realise/arb/nominal/ahmad-gen",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:ahmad",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:gen"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ءَحْمَدَ"
+    }
+   },
+   "note": "ahmad gen."
+  },
+  {
+   "id": "realise/arb/nominal/muhammad-gen",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:muhammad",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:gen"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مُحَمَّدٍ"
+    }
+   },
+   "note": "muhammad gen."
+  },
+  {
+   "id": "realise/arb/nominal/sahra-fpl-nom",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:sahra",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:fpl-sound"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "صَحْرَاوَ+اتٌ"
+    }
+   },
+   "note": "sahra fpl nom."
+  },
+  {
+   "id": "realise/arb/nominal/sama-acc",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:sama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:acc"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "سَمَاءً"
+    }
+   },
+   "note": "sama acc."
+  },
+  {
+   "id": "realise/arb/nominal/qadi-nom",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:qadi",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "قَاضٍ"
+    }
+   },
+   "note": "qadi nom."
+  },
+  {
+   "id": "realise/arb/nominal/qadi-def-nom",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:al"
+     },
+     {
+      "lexeme": "lexeme:qadi",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اَلْ+قَاضِي"
+    }
+   },
+   "note": "qadi def nom."
+  },
+  {
+   "id": "realise/arb/nominal/qadi-acc",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:qadi",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:acc"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "قَاضِيً+ا"
+    }
+   },
+   "note": "qadi acc."
+  },
+  {
+   "id": "realise/arb/nominal/mana-nom",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:mana",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مَعْنًى"
+    }
+   },
+   "note": "mana nom."
+  },
+  {
+   "id": "realise/arb/nominal/bint-pl-acc",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:bint",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:pl"
+     },
+     {
+      "lexeme": "lexeme:acc"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "بَنَاتٍ"
+    }
+   },
+   "note": "bint pl acc."
+  },
+  {
+   "id": "realise/arb/nominal/shams-def",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:al"
+     },
+     {
+      "lexeme": "lexeme:shams",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اَل+شَّمْسُ"
+    }
+   },
+   "note": "shams def."
+  },
+  {
+   "id": "realise/arb/nominal/kitab-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kitab",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:cons"
+     },
+     {
+      "lexeme": "lexeme:poss-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كِتَابُ+هُ"
+    }
+   },
+   "note": "kitab 3ms."
+  },
+  {
+   "id": "realise/arb/nominal/kitab-gen-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kitab",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:gen"
+     },
+     {
+      "lexeme": "lexeme:cons"
+     },
+     {
+      "lexeme": "lexeme:poss-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كِتَابِ+هِ"
+    }
+   },
+   "note": "kitab gen 3ms."
+  },
+  {
+   "id": "realise/arb/nominal/kitab-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kitab",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:cons"
+     },
+     {
+      "lexeme": "lexeme:poss-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كِتَابِ+ي"
+    }
+   },
+   "note": "kitab 1sg."
+  },
+  {
+   "id": "realise/arb/nominal/kitab-dual-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kitab",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:dual"
+     },
+     {
+      "lexeme": "lexeme:gen"
+     },
+     {
+      "lexeme": "lexeme:cons"
+     },
+     {
+      "lexeme": "lexeme:poss-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كِتَابَ+يَّ"
+    }
+   },
+   "note": "kitab dual 1sg."
+  },
+  {
+   "id": "realise/arb/nominal/muallim-mpl-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:muallim",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:masc"
+     },
+     {
+      "lexeme": "lexeme:mpl-sound"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:cons"
+     },
+     {
+      "lexeme": "lexeme:poss-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مُعَلِّمِ+يَّ"
+    }
+   },
+   "note": "muallim mpl 1sg."
+  },
+  {
+   "id": "realise/arb/nominal/sayyara-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:sayyara",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:cons"
+     },
+     {
+      "lexeme": "lexeme:poss-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "سَيَّارَتُ+هُ"
+    }
+   },
+   "note": "sayyara 3ms."
+  },
+  {
+   "id": "realise/arb/nominal/fi-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:fi",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:poss-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "فِيَّ"
+    }
+   },
+   "note": "fi 1sg."
+  },
+  {
+   "id": "realise/arb/nominal/fi-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:fi",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:poss-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "فِي+هِ"
+    }
+   },
+   "note": "fi 3ms."
+  },
+  {
+   "id": "realise/arb/nominal/ala-3mpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:ala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:poss-3mpl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "عَلَي+هِمْ"
+    }
+   },
+   "note": "ala 3mpl."
+  },
+  {
+   "id": "realise/arb/nominal/li-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:li",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:poss-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "لَ+هُ"
+    }
+   },
+   "note": "li 3ms."
+  },
+  {
+   "id": "realise/arb/nominal/li-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:li",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:poss-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "لِ+ي"
+    }
+   },
+   "note": "li 1sg."
+  },
+  {
+   "id": "realise/arb/nominal/min-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:min",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:poss-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مِنِّي"
+    }
+   },
+   "note": "min 1sg."
+  },
+  {
+   "id": "realise/arb/nominal/kataba-obj-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     },
+     {
+      "lexeme": "lexeme:obj-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كَتَبَ+نِي"
+    }
+   },
+   "note": "kataba obj 1sg."
+  },
+  {
+   "id": "realise/arb/nominal/kataba-3mpl-obj-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3mpl"
+     },
+     {
+      "lexeme": "lexeme:obj-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كَتَبُ+و+هُ"
+    }
+   },
+   "note": "kataba 3mpl obj 3ms."
+  },
+  {
+   "id": "realise/arb/nominal/kataba-2mpl-obj-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-2mpl"
+     },
+     {
+      "lexeme": "lexeme:obj-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كَتَبْ+تُمُو+هُ"
+    }
+   },
+   "note": "kataba 2mpl obj 3ms."
+  },
+  {
+   "id": "realise/arb/nominal/rama-obj-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     },
+     {
+      "lexeme": "lexeme:obj-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+رْمِي+هِ"
+    }
+   },
+   "note": "rama obj 3ms."
+  },
+  {
+   "id": "realise/arb/nominal/wa-al-kitab",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:wa"
+     },
+     {
+      "lexeme": "lexeme:al"
+     },
+     {
+      "lexeme": "lexeme:kitab",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "وَ+الْ+كِتَابُ"
+    }
+   },
+   "note": "wa al kitab."
+  },
+  {
+   "id": "realise/arb/nominal/bi-al-bayt",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:bi"
+     },
+     {
+      "lexeme": "lexeme:al"
+     },
+     {
+      "lexeme": "lexeme:bayt",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:gen"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "بِ+الْ+بَيْتِ"
+    }
+   },
+   "note": "bi al bayt."
+  },
+  {
+   "id": "realise/arb/nominal/li-al-bayt",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:li"
+     },
+     {
+      "lexeme": "lexeme:al"
+     },
+     {
+      "lexeme": "lexeme:bayt",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:gen"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "لِ+لْ+بَيْتِ"
+    }
+   },
+   "note": "li al bayt."
+  },
+  {
+   "id": "realise/arb/nominal/li-al-lugha",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:li"
+     },
+     {
+      "lexeme": "lexeme:al"
+     },
+     {
+      "lexeme": "lexeme:lugha",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:gen"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "لِ+لُّغَةِ"
+    }
+   },
+   "note": "li al lugha."
+  },
+  {
+   "id": "realise/arb/nominal/sa-yaktubu",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:sa"
+     },
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "سَ+يَ+كْتُبُ"
+    }
+   },
+   "note": "sa yaktubu."
+  },
+  {
+   "id": "realise/arb/nominal/ptcp-pass-fem",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:fem"
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مَكْتُوبَ+ةٌ"
+    }
+   },
+   "note": "ptcp pass fem."
+  },
+  {
+   "id": "realise/arb/nominal/ptcp-defective",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     },
+     {
+      "lexeme": "lexeme:masc"
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:nom"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "رَامٍ"
+    }
+   },
+   "note": "ptcp defective."
+  },
+  {
+   "id": "realise/arb/nominal/ptcp-musamma-acc",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:samma",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:masc"
+     },
+     {
+      "lexeme": "lexeme:sing"
+     },
+     {
+      "lexeme": "lexeme:acc"
+     },
+     {
+      "lexeme": "lexeme:indef"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مُسَمًّى"
+    }
+   },
+   "note": "ptcp musamma acc."
   }
  ]
 }

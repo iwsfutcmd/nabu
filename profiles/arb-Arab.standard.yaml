@@ -30,13 +30,14 @@ spell:
     - {find: "\u0621", after: "\u0650", before: "[\u064B-\u0652\u0670\u06DF]*$", to: "\u0626"}
     - {find: "\u0621", after: "\u064E", before: "[\u064B-\u0652\u0670\u06DF]*$", to: "\u0623"}
     # Inside a word, the stronger of its own vowel and the one before it (i, then u, then a); after a long a, a
-    # hamza with a is on the line (tasāʾala); after a sukun, its own vowel's seat.
-    - {find: "\u0621", before: "\u0650", to: "\u0626"}
-    - {find: "\u0621", after: "(\u0650|\u064A\u0652?)", to: "\u0626"}
-    - {find: "\u0621", after: "\u0627", before: "\u064E", to: "\u0621"}
-    - {find: "\u0621", before: "\u064F", to: "\u0624"}
-    - {find: "\u0621", after: "\u064F", to: "\u0624"}
-    - {find: "\u0621", after: "[\u064E\u0652]", to: "\u0623"}
+    # hamza with a is on the line (tasāʾala); after a sukun, its own vowel's seat. Only where a letter follows: a hamza at
+    # the end after a long vowel or a sukun is on the line (ḥamrāʾu, samāʾi, maqrūʾ).
+    - {find: "\u0621", before: "\u0650[\u064B-\u0652\u0670\u06DF]*[\u0621-\u064A]", to: "\u0626"}
+    - {find: "\u0621", after: "(\u0650|\u064A\u0652?)", before: "[\u064B-\u0652\u0670\u06DF]*[\u0621-\u064A]", to: "\u0626"}
+    - {find: "\u0621", after: "\u0627", before: "\u064E[\u064B-\u0652\u0670\u06DF]*[\u0621-\u064A]", to: "\u0621"}
+    - {find: "\u0621", before: "\u064F[\u064B-\u0652\u0670\u06DF]*[\u0621-\u064A]", to: "\u0624"}
+    - {find: "\u0621", after: "\u064F", before: "[\u064B-\u0652\u0670\u06DF]*[\u0621-\u064A]", to: "\u0624"}
+    - {find: "\u0621", after: "[\u064E\u0652]", before: "[\u064B-\u0652\u0670\u06DF]*[\u0621-\u064A]", to: "\u0623"}
     - {find: "[\u064B-\u0652\u0670\u06DF]", to: ""}
 annotations:
   # Fully vocalized, as a grammar or a textbook writes it.
@@ -58,13 +59,14 @@ annotations:
         - {find: "\u0621", after: "\u0650", before: "[\u064B-\u0652\u0670\u06DF]*$", to: "\u0626"}
         - {find: "\u0621", after: "\u064E", before: "[\u064B-\u0652\u0670\u06DF]*$", to: "\u0623"}
         # Inside a word, the stronger of its own vowel and the one before it (i, then u, then a); after a long a, a
-        # hamza with a is on the line (tasāʾala); after a sukun, its own vowel's seat.
-        - {find: "\u0621", before: "\u0650", to: "\u0626"}
-        - {find: "\u0621", after: "(\u0650|\u064A\u0652?)", to: "\u0626"}
-        - {find: "\u0621", after: "\u0627", before: "\u064E", to: "\u0621"}
-        - {find: "\u0621", before: "\u064F", to: "\u0624"}
-        - {find: "\u0621", after: "\u064F", to: "\u0624"}
-        - {find: "\u0621", after: "[\u064E\u0652]", to: "\u0623"}
+        # hamza with a is on the line (tasāʾala); after a sukun, its own vowel's seat. Only where a letter follows: a hamza at
+    # the end after a long vowel or a sukun is on the line (ḥamrāʾu, samāʾi, maqrūʾ).
+        - {find: "\u0621", before: "\u0650[\u064B-\u0652\u0670\u06DF]*[\u0621-\u064A]", to: "\u0626"}
+        - {find: "\u0621", after: "(\u0650|\u064A\u0652?)", before: "[\u064B-\u0652\u0670\u06DF]*[\u0621-\u064A]", to: "\u0626"}
+        - {find: "\u0621", after: "\u0627", before: "\u064E[\u064B-\u0652\u0670\u06DF]*[\u0621-\u064A]", to: "\u0621"}
+        - {find: "\u0621", before: "\u064F[\u064B-\u0652\u0670\u06DF]*[\u0621-\u064A]", to: "\u0624"}
+        - {find: "\u0621", after: "\u064F", before: "[\u064B-\u0652\u0670\u06DF]*[\u0621-\u064A]", to: "\u0624"}
+        - {find: "\u0621", after: "[\u064E\u0652]", before: "[\u064B-\u0652\u0670\u06DF]*[\u0621-\u064A]", to: "\u0623"}
         # A letter written and not said (the alif after the plural's -ū) has no mark.
         - {find: "\u06DF", to: ""}
         # The y or w of a diphthong (ay, aw) has a sukun where no vowel follows it.

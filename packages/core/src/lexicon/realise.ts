@@ -430,8 +430,9 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
  * {C}n+ú+ť) or up to its first boundary (es levantar+se: a clitic its citation form carries, what
  * it ends in is its base's ending): either holds.
  */
-const conditionHolds = (lang: CompiledLanguage, when: Condition | undefined, lexeme: Lexeme, cell: UdFeatures, blocking: boolean, context: readonly string[] = []): boolean => {
+const conditionHolds = (lang: CompiledLanguage, when: Condition | undefined, lexeme: Lexeme, cell: UdFeatures, blocking: boolean, context: readonly string[] = [], present?: ReadonlySet<string>): boolean => {
   if (when === undefined) return true;
+  if (when.with !== undefined && (present === undefined || !when.with.every((id) => present.has(lexemeId(id))))) return false;
   if (when.context !== undefined && !context.includes(when.context)) return false;
   if (when.pos !== undefined && lexeme.pos !== when.pos) return false;
   if (when.feats !== undefined && !hasValues(cell, when.feats)) return false;
@@ -701,11 +702,11 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
 };
 
 /** The language's rewrite rules, in order, each once over the whole form: those whose `when` holds of the base lexeme in its cell. */
-const rewrite = (lang: CompiledLanguage, units: readonly Unit[], base: Lexeme, cell: UdFeatures, blocking: boolean, context: readonly string[] = []): { readonly units: readonly Unit[]; readonly steps: readonly Step[] } => {
+const rewrite = (lang: CompiledLanguage, units: readonly Unit[], base: Lexeme, cell: UdFeatures, blocking: boolean, context: readonly string[] = [], present?: ReadonlySet<string>): { readonly units: readonly Unit[]; readonly steps: readonly Step[] } => {
   let current = units;
   const steps: Step[] = [];
   for (const { rewrite: rw, accent, when } of lang.phonology) {
-    if (when !== undefined && !conditionHolds(lang, when, base, cell, blocking, context)) continue;
+    if (when !== undefined && !conditionHolds(lang, when, base, cell, blocking, context, present)) continue;
     if (accent !== undefined) {
       if (lang.prosody === undefined) continue;
       const placed = accentuate(current, accent.mode, lang.prosody);
@@ -742,6 +743,8 @@ export const realise = (lang: CompiledLanguage, lexeme: string, cell: UdFeatures
 interface TokenBase {
   readonly lexeme?: Lexeme;
   readonly cell: UdFeatures;
+  /** The lexemes the token writes (a condition's `with`). */
+  readonly lexemes?: ReadonlySet<string>;
 }
 
 /**
@@ -770,6 +773,7 @@ const contextHolds = (lang: CompiledLanguage, c: Condition, units: readonly Unit
   if (c.pos !== undefined && (subject === undefined || subject.pos !== c.pos)) return false;
   if (c.class !== undefined && (subject === undefined || !(subject.classes ?? []).includes(c.class))) return false;
   if (c.feats !== undefined && (base === undefined || !hasValues(base.cell, c.feats))) return false;
+  if (c.with !== undefined && (base?.lexemes === undefined || !c.with.every((id) => base.lexemes?.has(lexemeId(id)) === true))) return false;
   return c.context === undefined;
 };
 
@@ -781,7 +785,7 @@ const contextHolds = (lang: CompiledLanguage, c: Condition, units: readonly Unit
  */
 const allomorphHolds = (lang: CompiledLanguage, a: Allomorph, preceding: readonly Unit[], following: readonly Unit[], next?: Lexeme, base?: TokenBase): boolean =>
   (a.after === undefined || contextHolds(lang, a.after, preceding, undefined, base)) &&
-  (a.before === undefined || contextHolds(lang, a.before, following, following.length === 0 ? next : undefined, base === undefined ? undefined : { cell: base.cell }));
+  (a.before === undefined || contextHolds(lang, a.before, following, following.length === 0 ? next : undefined, base === undefined ? undefined : { cell: base.cell, ...(base.lexemes !== undefined && { lexemes: base.lexemes }) }));
 
 /**
  * The allomorph of a lexeme written beside others: the first with a form whose conditions all hold
@@ -873,11 +877,14 @@ const mergeOf = (
       by[feature] = lexeme.id;
     }
   }
-  const cell: UdFeatures = { ...(base.feats ?? {}), ...brought };
-  if (Object.keys(brought).length === 0 && selects === undefined && !strict) return ok({ cell });
+  if (Object.keys(brought).length === 0 && selects === undefined && !strict) return ok({ cell: { ...(base.feats ?? {}) } });
   const merged: Merged = { brought, ...(selects !== undefined && { selects }) };
-  if (!strict || baseLexeme === undefined) return ok({ cell, merged });
+  if (!strict || baseLexeme === undefined) return ok({ cell: { ...(base.feats ?? {}), ...brought }, merged });
+  // In a language that merges lexemes the word's values are its base's own too (a noun's gender, a name's
+  // number), and a lexeme may bring none of them again (no feminine onto a feminine noun).
   const own = lang.own.get(baseLexeme.id) ?? baseLexeme.feats ?? {};
+  for (const f of Object.keys(brought)) if (own[f] !== undefined) return err({ kind: "twice", feature: f, lexemes: [baseLexeme.id, by[f] as string] });
+  const cell: UdFeatures = { ...own, ...(base.feats ?? {}), ...brought };
   for (let k = 0; k < written.length; k++) {
     if (k === baseAt) continue;
     const lexeme = lang.lexemes.get(lexemeId((written[k] as WrittenLexeme).lexeme));
@@ -891,7 +898,7 @@ const mergeOf = (
   }
   const required = new Set<string>(baseLexeme.pos === undefined ? [] : (lang.declared.requires?.[baseLexeme.pos] ?? []));
   for (const w of written) for (const f of lang.lexemes.get(lexemeId(w.lexeme))?.requires ?? []) required.add(f);
-  const has = { ...own, ...cell };
+  const has = cell;
   const missing = [...required].filter((f) => has[f] === undefined);
   return ok({ cell, merged, ...(missing.length > 0 && { missing }) });
 };
@@ -1000,6 +1007,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   };
   const baseLexeme = lexemes[baseAt] as Lexeme;
   const cell = merging.value.cell;
+  const present: ReadonlySet<string> = new Set(lexemes.map((l) => l.id));
   const ownBase = !built.value.whole && built.value.steps.length === 0 && options.word === undefined && choosesByFollowing(baseLexeme);
   /** Every place's allomorph chosen by its conditions, twice over, but the places `fixed` keeps (a free variant's). */
   const choose = (start: readonly (readonly Unit[])[], fixed: ReadonlySet<number>): Result<readonly (readonly Unit[])[], RealiseError> => {
@@ -1007,18 +1015,18 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
     for (let pass = 0; pass < 2; pass++) {
       for (let k = baseAt + 1; k < written.length; k++) {
         if (fixed.has(k) || own[k] !== undefined || coveredAt(k)) continue;
-        const f = allomorphOf(lang, lexemes[k] as Lexeme, joinedIn(pieces, 0, k), k + 1 < written.length ? (pieces[k + 1] as readonly Unit[]) : [], k + 1 < written.length ? undefined : next, { lexeme: baseLexeme, cell });
+        const f = allomorphOf(lang, lexemes[k] as Lexeme, joinedIn(pieces, 0, k), k + 1 < written.length ? (pieces[k + 1] as readonly Unit[]) : [], k + 1 < written.length ? undefined : next, { lexeme: baseLexeme, cell, lexemes: present });
         if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
         pieces[k] = unitsOf(f);
       }
       // The base's own form chosen by what follows (bad- before -na; 7da3shar before a noun).
       if (ownBase && !fixed.has(baseAt)) {
-        const f = allomorphOf(lang, baseLexeme, [], baseAt + 1 < written.length ? (pieces[baseAt + 1] as readonly Unit[]) : [], baseAt + 1 < written.length ? undefined : next, { cell });
+        const f = allomorphOf(lang, baseLexeme, [], baseAt + 1 < written.length ? (pieces[baseAt + 1] as readonly Unit[]) : [], baseAt + 1 < written.length ? undefined : next, { cell, lexemes: present });
         if (f !== undefined) pieces[baseAt] = unitsOf(f);
       }
       for (let k = baseAt - 1; k >= 0; k--) {
         if (fixed.has(k) || own[k] !== undefined || coveredAt(k)) continue;
-        const f = allomorphOf(lang, lexemes[k] as Lexeme, joinedIn(pieces, 0, k), joinedIn(pieces, k + 1, written.length), undefined, { cell });
+        const f = allomorphOf(lang, lexemes[k] as Lexeme, joinedIn(pieces, 0, k), joinedIn(pieces, k + 1, written.length), undefined, { cell, lexemes: present });
         if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
         pieces[k] = unitsOf(f);
       }
@@ -1037,7 +1045,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   };
   const finish = (units: readonly Unit[]): { readonly units: readonly Unit[]; readonly steps: readonly Step[] } => {
     if (built.value.whole && written.length === 1) return { units, steps: built.value.steps };
-    const rewritten = rewrite(lang, units, built.value.lexeme, cell, options.blocking ?? true, options.context);
+    const rewritten = rewrite(lang, units, built.value.lexeme, cell, options.blocking ?? true, options.context, present);
     return { units: rewritten.units, steps: [...built.value.steps, ...ownSteps, ...rewritten.steps] };
   };
   const chosen = finish(assemble(forms));
@@ -1055,7 +1063,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
     const following = k < baseAt ? joinedIn(forms, k + 1, written.length) : k + 1 < written.length ? (forms[k + 1] as readonly Unit[]) : [];
     const nextWord = k >= baseAt && k + 1 >= written.length ? next : undefined;
     // The token's base, as `choose` gives it to each place.
-    const of: TokenBase = k > baseAt ? { lexeme: baseLexeme, cell } : { cell };
+    const of: TokenBase = k > baseAt ? { lexeme: baseLexeme, cell, lexemes: present } : { cell, lexemes: present };
     return freeOf(lang, lexemes[k] as Lexeme, preceding, following, nextWord, of)
       .map(unitsOf)
       .filter((u) => textOf(u) !== textOf(f));

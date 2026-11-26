@@ -35,6 +35,18 @@ lexical:
 requires:
   VERB:
   - VerbForm
+  NOUN:
+  - Number
+  - Case
+  - Definite
+  ADJ:
+  - Gender
+  - Number
+  - Case
+  - Definite
+  PROPN:
+  - Case
+  - Definite
 features:
   Aspect:
   - Perf
@@ -73,15 +85,22 @@ notation:
     a: َ
     i: ِ
     u: ُ
+    an: ً
+    in: ٍ
+    un: ٌ
   long:
     a: َا
     a-maqsura: َى
     i: ِي
     u: ُو
   none: ْ
-  order: "[ّ ً ٌ ٍ َ ِ ُ ْ \u06df]"
+  order: "[ّ ً ٌ ٍ َ ِ ُ ْ ٰ \u06df]"
   sets:
     C: '[ءبت-غف-نهوي]'
+    SUN: '[تثدذرزسشصضطظلن]'
+    TAN: '[ً ٌ ٍ]'
+    UNIN: '[ٌ ٍ]'
+    UI: '[ُ ِ]'
     V: '[َ ِ ُ]'
     AU: '[َ ُ]'
     A: '[َ {َّ}]'
@@ -1174,6 +1193,150 @@ stems:
   feats: *id006
   template: مُتَّ2َ3
 phonology:
+- id: rule:arb-article
+  branch: sun
+  find: لْ+{SUN}*
+  after: ا*
+  to: ل+{SUN}ّ
+  when:
+    with:
+    - lexeme:al
+- id: rule:arb-article
+  branch: li
+  find: ا*+?
+  after: لِ+
+  before: ل*
+  to: ''
+  when:
+    with:
+    - lexeme:al
+    - lexeme:li
+- id: rule:arb-article
+  branch: lil
+  find: ل+
+  after: لِ+
+  before: ل*
+  to: ''
+  when:
+    with:
+    - lexeme:al
+    - lexeme:li
+- id: rule:arb-article
+  branch: wasl
+  find: اَ
+  after: '{C}{V}+'
+  before: ل*
+  to: ا
+  when:
+    with:
+    - lexeme:al
+- id: rule:arb-ta-marbuta
+  branch: at
+  find: ة*+
+  after: '{C}{A}+?'
+  before: ات*
+  to: +
+- id: rule:arb-ta-marbuta
+  branch: t
+  find: ة*
+  before: +
+  map:
+    ة: ت
+- id: rule:arb-hamza-w
+  branch: dual
+  find: ء*
+  after: '{C}{A}ا'
+  before: +
+  map:
+    ء: و
+  when:
+    with:
+    - lexeme:dual
+- id: rule:arb-hamza-w
+  branch: plural
+  find: ء*
+  after: '{C}{A}ا'
+  before: +ا
+  map:
+    ء: و
+  when:
+    with:
+    - lexeme:fpl-sound
+- id: rule:arb-defective-noun
+  branch: in
+  find: '{C}{I}ي{UNIN}'
+  at: end
+  to: '{C}ٍ'
+- id: rule:arb-defective-noun
+  branch: an-acc
+  find: '{C}{A}يً+ا'
+  at: end
+  to: '{C}ًى'
+- id: rule:arb-defective-noun
+  branch: an
+  find: '{C}{A}ي{TAN}'
+  at: end
+  to: '{C}ًى'
+- id: rule:arb-my
+  branch: a
+  find: اِ+ي
+  to: ا+يَ
+  when:
+    with:
+    - lexeme:poss-1sg
+- id: rule:arb-my
+  branch: ay
+  find: يِ+ي
+  after: '{C}{A}+?'
+  to: يَّ
+  when:
+    with:
+    - lexeme:poss-1sg
+- id: rule:arb-my
+  branch: u
+  find: '{C}{U}+?وِ+ي'
+  to: '{C}ِ+?يَّ'
+  when:
+    with:
+    - lexeme:poss-1sg
+- id: rule:arb-my
+  branch: i
+  find: يِ+ي
+  after: '{C}{I}+?'
+  to: يَّ
+  when:
+    with:
+    - lexeme:poss-1sg
+- id: rule:arb-object
+  branch: alif
+  find: "ا\u06df+"
+  to: +
+  when:
+    pos: VERB
+- id: rule:arb-object
+  branch: tum
+  find: مْ+
+  after: تُ
+  to: مُو+
+  when:
+    pos: VERB
+    with:
+    - lexeme:perf-2mpl
+- id: rule:arb-preposition
+  branch: la
+  find: لِ+
+  before: '[كهن]*'
+  to: لَ+
+  when:
+    pos: ADP
+- id: rule:arb-preposition
+  branch: a
+  find: ي
+  at: end
+  after: '{C}{A}'
+  to: ى
+  when:
+    pos: ADP
 - id: rule:arb-viii
   branch: emphatic
   find: ت*
@@ -1219,7 +1382,7 @@ phonology:
       Aspect: Imp
 - id: rule:arb-defective
   branch: ay-end
-  find: ي{AU}
+  find: ي{V}
   at: end
   after: '{C}{A}'
   to: ى
@@ -1231,7 +1394,7 @@ phonology:
   to: ا
 - id: rule:arb-defective
   branch: iy-end
-  find: يُ
+  find: ي{UI}
   at: end
   after: '{C}{I}'
   to: ي
@@ -1283,6 +1446,18 @@ phonology:
   find: يِ+ي
   after: '{C}{A}'
   to: يْ
+- id: rule:arb-defective
+  branch: iy-suffix
+  find: ي{UI}
+  after: '{C}{I}'
+  before: +
+  to: ي
+- id: rule:arb-defective
+  branch: uw-suffix
+  find: وُ
+  after: '{C}{U}'
+  before: +
+  to: و
 - id: rule:arb-defective
   branch: long-i
   find: يْ

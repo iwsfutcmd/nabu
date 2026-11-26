@@ -3423,6 +3423,12 @@ export interface Condition {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  /**
+   * Of an allomorph or a rewrite: the token writes each of these lexemes (ADR 0158: a rule where lexemes meet). arb's case vowel is nothing in a word with the dual's or the sound plural's ending, which says the case itself.
+   *
+   * @minItems 1
+   */
+  readonly with?: readonly LexemeId[];
   readonly own?: UdFeatures8;
   readonly context?: Slug4;
 }
@@ -3479,6 +3485,12 @@ export interface Condition1 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  /**
+   * Of an allomorph or a rewrite: the token writes each of these lexemes (ADR 0158: a rule where lexemes meet). arb's case vowel is nothing in a word with the dual's or the sound plural's ending, which says the case itself.
+   *
+   * @minItems 1
+   */
+  readonly with?: readonly LexemeId[];
   readonly own?: UdFeatures8;
   readonly context?: Slug4;
 }
@@ -3505,6 +3517,12 @@ export interface Condition2 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  /**
+   * Of an allomorph or a rewrite: the token writes each of these lexemes (ADR 0158: a rule where lexemes meet). arb's case vowel is nothing in a word with the dual's or the sound plural's ending, which says the case itself.
+   *
+   * @minItems 1
+   */
+  readonly with?: readonly LexemeId[];
   readonly own?: UdFeatures8;
   readonly context?: Slug4;
 }
@@ -3935,6 +3953,12 @@ export interface Condition3 {
    */
   readonly startsIn?: string;
   readonly feats?: UdFeatures7;
+  /**
+   * Of an allomorph or a rewrite: the token writes each of these lexemes (ADR 0158: a rule where lexemes meet). arb's case vowel is nothing in a word with the dual's or the sound plural's ending, which says the case itself.
+   *
+   * @minItems 1
+   */
+  readonly with?: readonly LexemeId[];
   readonly own?: UdFeatures8;
   readonly context?: Slug4;
 }

@@ -1727,6 +1727,14 @@ class Condition(BaseModel):
         ),
     ] = None
     feats: Annotated[UdFeatures | None, Field(description="It has these feature values.")] = None
+    with_: Annotated[
+        list[LexemeId] | None,
+        Field(
+            alias="with",
+            description="Of an allomorph or a rewrite: the token writes each of these lexemes (ADR 0158: a rule where lexemes meet). arb's case vowel is nothing in a word with the dual's or the sound plural's ending, which says the case itself.",
+            min_length=1,
+        ),
+    ] = None
     own: Annotated[
         UdFeatures | None,
         Field(

@@ -375,6 +375,13 @@
           "description": "It has these feature values.",
           "$ref": "common.schema.json#/$defs/UdFeatures"
         },
+        "with": {
+          "description": "Of an allomorph or a rewrite: the token writes each of these lexemes (ADR 0158: a rule where lexemes meet). arb's case vowel is nothing in a word with the dual's or the sound plural's ending, which says the case itself.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "common.schema.json#/$defs/LexemeId" }
+        },
         "own": {
           "description": "Of a realisation rule or a rewrite: the lexeme has these values of itself (a comma: one of them), as its entry stores them or else its language's defaults give them for a feature its category has of itself (`lexical`): a Slovak noun's gender and animacy, which choose its declension.",
           "$ref": "common.schema.json#/$defs/UdFeatures"

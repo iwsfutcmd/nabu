@@ -984,9 +984,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Modern Standard Arabic (lexicons/arb, profiles/arb-Arab.standard.yaml; docs/rules/arb.md) is written in the merge
   model from the start, verbs first, for the owner to check: no course uses it. It opens in the rules explorer from
   Home in debug mode (#/lexicon/arb/rules: core `lexiconCourse`, apps/web lexicon-source.ts serves a lexicon no course
-  uses). docs/rules/arb-verbs.md is every cell (`node scripts/arb-verbs.ts` in packages/core: never by hand);
-  conformance/realise-arb.json and spell-arb.json pin 130 cells (`node scripts/arb-vectors.ts`, after a reviewer
-  has checked a change). A stem template may name the word's values (`feats`: the passive's stems).
+  uses). docs/rules/arb-verbs.md and arb-nominals.md are every cell (scripts/arb-verbs.ts, arb-nominals.ts in packages/core: never by hand);
+  conformance/realise-arb.json and spell-arb.json pin 182 tokens (`node scripts/arb-vectors.ts`, after a reviewer
+  has checked a change). A stem template may name the word's values (`feats`: the passive's stems); a condition may name
+  lexemes the token writes (`with`: the case vowel after the dual). In a merging language a word's own values join its
+  cell and no lexeme brings one again.
 - Until a language converts, its tokens still choose values; realiseToken reads the base's own choice for blocking
   and the citation, and an exponent whose values the token's lexemes bring is theirs (uz's past), never the rule's.
 

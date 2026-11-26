@@ -31,7 +31,11 @@ const profile = parse(
 ) as OrthographyProfile;
 const lang = compileLanguage(declared, lexicon);
 const plain = compileSpeller(profile, declared.notation ?? { sets: {} });
-const voc = compileSpeller(profile, declared.notation ?? { sets: {} }, "vocalized");
+const voc = compileSpeller(
+  profile,
+  declared.notation ?? { sets: {} },
+  "vocalized",
+);
 if (!lang.ok || !plain.ok || !voc.ok) throw new Error("compile");
 const CELLS: Record<string, readonly [readonly string[], readonly string[]]> = {
   "perf-3ms": [[], ["perf", "perf-3ms"]],
@@ -217,9 +221,117 @@ for (const [verb, cells] of Object.entries(PICK)) {
     }
   }
 }
+// Nouns, adjectives, names, suffixes and proclitics: a token's lexemes in order, its base marked by "*".
+const NOMINAL: Record<string, readonly string[]> = {
+  "kitab-indef-nom": ["*kitab", "sing", "nom", "indef"],
+  "kitab-indef-acc": ["*kitab", "sing", "acc", "indef"],
+  "kitab-def-gen": ["al", "*kitab", "sing", "gen"],
+  "kitab-dual-nom": ["*kitab", "dual", "nom", "indef"],
+  "kitab-dual-gen-cons": ["*kitab", "dual", "gen", "cons"],
+  "kitab-pl-nom": ["*kitab", "pl", "nom", "indef"],
+  "madrasa-pl-gen-indef": ["*madrasa", "pl", "gen", "indef"],
+  "madrasa-pl-gen-def": ["al", "*madrasa", "pl", "gen"],
+  "sayyara-fpl-acc": ["*sayyara", "fpl-sound", "acc", "indef"],
+  "sayyara-dual-nom": ["*sayyara", "dual", "nom", "indef"],
+  "muallim-mpl-nom": ["*muallim", "masc", "mpl-sound", "nom", "indef"],
+  "muallim-mpl-gen-cons": ["*muallim", "masc", "mpl-sound", "gen", "cons"],
+  "muallim-fem-acc": ["*muallim", "fem", "sing", "acc", "indef"],
+  "kabir-fem-fpl-nom": ["*kabir", "fem", "fpl-sound", "nom", "indef"],
+  "kabir-masc-pl-nom": ["*kabir", "masc", "pl", "nom", "indef"],
+  "arabi-indef-acc": ["*arabi", "masc", "sing", "acc", "indef"],
+  "ahmar-fem-nom": ["*ahmar", "fem", "sing", "nom", "indef"],
+  "ahmar-fem-dual-gen": ["*ahmar", "fem", "dual", "gen", "indef"],
+  "ahmad-gen": ["*ahmad", "gen", "indef"],
+  "muhammad-gen": ["*muhammad", "gen", "indef"],
+  "sahra-fpl-nom": ["*sahra", "fpl-sound", "nom", "indef"],
+  "sama-acc": ["*sama", "sing", "acc", "indef"],
+  "qadi-nom": ["*qadi", "sing", "nom", "indef"],
+  "qadi-def-nom": ["al", "*qadi", "sing", "nom"],
+  "qadi-acc": ["*qadi", "sing", "acc", "indef"],
+  "mana-nom": ["*mana", "sing", "nom", "indef"],
+  "bint-pl-acc": ["*bint", "pl", "acc", "indef"],
+  "shams-def": ["al", "*shams", "sing", "nom"],
+  "kitab-3ms": ["*kitab", "sing", "nom", "cons", "poss-3ms"],
+  "kitab-gen-3ms": ["*kitab", "sing", "gen", "cons", "poss-3ms"],
+  "kitab-1sg": ["*kitab", "sing", "nom", "cons", "poss-1sg"],
+  "kitab-dual-1sg": ["*kitab", "dual", "gen", "cons", "poss-1sg"],
+  "muallim-mpl-1sg": [
+    "*muallim",
+    "masc",
+    "mpl-sound",
+    "nom",
+    "cons",
+    "poss-1sg",
+  ],
+  "sayyara-3ms": ["*sayyara", "sing", "nom", "cons", "poss-3ms"],
+  "fi-1sg": ["*fi", "poss-1sg"],
+  "fi-3ms": ["*fi", "poss-3ms"],
+  "ala-3mpl": ["*ala", "poss-3mpl"],
+  "li-3ms": ["*li", "poss-3ms"],
+  "li-1sg": ["*li", "poss-1sg"],
+  "min-1sg": ["*min", "poss-1sg"],
+  "kataba-obj-1sg": ["*kataba", "perf", "perf-3ms", "obj-1sg"],
+  "kataba-3mpl-obj-3ms": ["*kataba", "perf", "perf-3mpl", "obj-3ms"],
+  "kataba-2mpl-obj-3ms": ["*kataba", "perf", "perf-2mpl", "obj-3ms"],
+  "rama-obj-3ms": ["impf-3", "*rama", "impf", "ms", "ind", "obj-3ms"],
+  "wa-al-kitab": ["wa", "al", "*kitab", "sing", "nom"],
+  "bi-al-bayt": ["bi", "al", "*bayt", "sing", "gen"],
+  "li-al-bayt": ["li", "al", "*bayt", "sing", "gen"],
+  "li-al-lugha": ["li", "al", "*lugha", "sing", "gen"],
+  "sa-yaktubu": ["sa", "impf-3", "*kataba", "impf", "ms", "ind"],
+  "ptcp-pass-fem": ["*kataba", "ptcp", "pass", "fem", "sing", "nom", "indef"],
+  "ptcp-defective": ["*rama", "ptcp", "masc", "sing", "nom", "indef"],
+  "ptcp-musamma-acc": [
+    "*samma",
+    "ptcp",
+    "pass",
+    "masc",
+    "sing",
+    "acc",
+    "indef",
+  ],
+};
+for (const [name, ids] of Object.entries(NOMINAL)) {
+  const lexemes = ids.map((id) =>
+    id.startsWith("*")
+      ? { lexeme: `lexeme:${id.slice(1)}`, base: true }
+      : { lexeme: `lexeme:${id}` },
+  );
+  const r = realiseToken(lang.value, lexemes);
+  if (!r.ok) throw new Error(name);
+  const { form, missing } = r.value;
+  realise.push({
+    id: `realise/arb/nominal/${name}`,
+    op: "realise-token",
+    args: { lang: "arb", lexemes },
+    expected: {
+      ok: true,
+      value: { form, ...(missing === undefined ? {} : { missing }) },
+    },
+    note: `${name.replaceAll("-", " ")}.`,
+  });
+  for (const [layer, speller] of [
+    ["vocalized", voc],
+    [undefined, plain],
+  ] as const) {
+    const spelling = spell(speller.value, form).spelling;
+    spelled.push({
+      id: `spell/arb/${layer ?? "plain"}/nominal/${name}`,
+      op: "spell",
+      args: {
+        profile: "arb-Arab/standard",
+        ...(layer === undefined ? {} : { layer }),
+        form,
+        expected: spelling,
+      },
+      expected: { spelling, alternatives: [], expected: "spelling" },
+      note: `${name.replaceAll("-", " ")}.`,
+    });
+  }
+}
 writeFileSync(
   `${ROOT}/conformance/realise-arb.json`,
-  `${JSON.stringify({ $comment: "Modern Standard Arabic's verbs in the merge model (ADR 0158; docs/rules/arb.md): lexicons/arb merged with its affix lexemes, one vector per verb class and cell the owner can check (every cell of kataba; the weak classes where their rules fire). Every form is REVIEW.", vectors: realise }, null, 1)}\n`,
+  `${JSON.stringify({ $comment: "Modern Standard Arabic in the merge model (ADR 0158; docs/rules/arb.md): lexicons/arb merged with its affix lexemes, one vector per verb class and cell the owner can check (every cell of kataba; the weak classes where their rules fire). Every form is REVIEW.", vectors: realise }, null, 1)}\n`,
 );
 writeFileSync(
   `${ROOT}/conformance/spell-arb.json`,

@@ -21,7 +21,7 @@ with its affix lexemes (ADR 0158), vocalized, then as written. Every form is REV
 | 1sg | أَكَلْتُ أكلت | أُكِلْتُ أكلت | آكُلُ آكل | آكُلَ آكل | آكُلْ آكل | أُوكَلُ أوكل |  |
 | 1pl | أَكَلْنَا أكلنا | أُكِلْنَا أكلنا | نَأْكُلُ نأكل | نَأْكُلَ نأكل | نَأْكُلْ نأكل | نُؤْكَلُ نؤكل |  |
 
-Participles: آكِل آكل (needs Gender, Number) · مَأْكُول مأكول (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): آكِلٌ آكل · مَأْكُولٌ مأكول
 
 ## allama (II): teach
 
@@ -41,7 +41,7 @@ Participles: آكِل آكل (needs Gender, Number) · مَأْكُول مأكو
 | 1sg | عَلَّمْتُ علمت | عُلِّمْتُ علمت | أُعَلِّمُ أعلم | أُعَلِّمَ أعلم | أُعَلِّمْ أعلم | أُعَلَّمُ أعلم |  |
 | 1pl | عَلَّمْنَا علمنا | عُلِّمْنَا علمنا | نُعَلِّمُ نعلم | نُعَلِّمَ نعلم | نُعَلِّمْ نعلم | نُعَلَّمُ نعلم |  |
 
-Participles: مُعَلِّم معلم (needs Gender, Number) · مُعَلَّم معلم (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُعَلِّمٌ معلم · مُعَلَّمٌ معلم
 
 ## aqama (IV): reside; hold (an event)
 
@@ -61,7 +61,7 @@ Participles: مُعَلِّم معلم (needs Gender, Number) · مُعَلَّ�
 | 1sg | أَقَمْتُ أقمت | أُقِمْتُ أقمت | أُقِيمُ أقيم | أُقِيمَ أقيم | أُقِمْ أقم | أُقَامُ أقام |  |
 | 1pl | أَقَمْنَا أقمنا | أُقِمْنَا أقمنا | نُقِيمُ نقيم | نُقِيمَ نقيم | نُقِمْ نقم | نُقَامُ نقام |  |
 
-Participles: مُقِيم مقيم (needs Gender, Number) · مُقَام مقام (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُقِيمٌ مقيم · مُقَامٌ مقام
 
 ## arsala (IV): send
 
@@ -81,7 +81,7 @@ Participles: مُقِيم مقيم (needs Gender, Number) · مُقَام مقا
 | 1sg | أَرْسَلْتُ أرسلت | أُرْسِلْتُ أرسلت | أُرْسِلُ أرسل | أُرْسِلَ أرسل | أُرْسِلْ أرسل | أُرْسَلُ أرسل |  |
 | 1pl | أَرْسَلْنَا أرسلنا | أُرْسِلْنَا أرسلنا | نُرْسِلُ نرسل | نُرْسِلَ نرسل | نُرْسِلْ نرسل | نُرْسَلُ نرسل |  |
 
-Participles: مُرْسِل مرسل (needs Gender, Number) · مُرْسَل مرسل (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُرْسِلٌ مرسل · مُرْسَلٌ مرسل
 
 ## ata (IV): give
 
@@ -101,7 +101,7 @@ Participles: مُرْسِل مرسل (needs Gender, Number) · مُرْسَل م
 | 1sg | أَعْطَيْتُ أعطيت | أُعْطِيتُ أعطيت | أُعْطِي أعطي | أُعْطِيَ أعطي | أُعْطِ أعط | أُعْطَى أعطى |  |
 | 1pl | أَعْطَيْنَا أعطينا | أُعْطِينَا أعطينا | نُعْطِي نعطي | نُعْطِيَ نعطي | نُعْطِ نعط | نُعْطَى نعطى |  |
 
-Participles: مُعْطِي معطي (needs Gender, Number) · مُعْطَيْ معطي (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُعْطٍ معط · مُعْطًى معطى
 
 ## baa (I): sell
 
@@ -121,7 +121,7 @@ Participles: مُعْطِي معطي (needs Gender, Number) · مُعْطَيْ 
 | 1sg | بِعْتُ بعت | بِعْتُ بعت | أَبِيعُ أبيع | أَبِيعَ أبيع | أَبِعْ أبع | أُبَاعُ أباع |  |
 | 1pl | بِعْنَا بعنا | بِعْنَا بعنا | نَبِيعُ نبيع | نَبِيعَ نبيع | نَبِعْ نبع | نُبَاعُ نباع |  |
 
-Participles: بَائِع بائع (needs Gender, Number) · مَبِيع مبيع (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): بَائِعٌ بائع · مَبِيعٌ مبيع
 
 ## daa (I): call
 
@@ -141,7 +141,7 @@ Participles: بَائِع بائع (needs Gender, Number) · مَبِيع مبي
 | 1sg | دَعَوْتُ دعوت | دُعِيتُ دعيت | أَدْعُو أدعو | أَدْعُوَ أدعو | أَدْعُ أدع | أُدْعَى أدعى |  |
 | 1pl | دَعَوْنَا دعونا | دُعِينَا دعينا | نَدْعُو ندعو | نَدْعُوَ ندعو | نَدْعُ ندع | نُدْعَى ندعى |  |
 
-Participles: دَاعِي داعي (needs Gender, Number) · مَدْعُوّ مدعو (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): دَاعِيٌ داعي · مَدْعُوٌّ مدعو
 
 ## darrasa (II): teach (a subject)
 
@@ -161,7 +161,7 @@ Participles: دَاعِي داعي (needs Gender, Number) · مَدْعُوّ م
 | 1sg | دَرَّسْتُ درست | دُرِّسْتُ درست | أُدَرِّسُ أدرس | أُدَرِّسَ أدرس | أُدَرِّسْ أدرس | أُدَرَّسُ أدرس |  |
 | 1pl | دَرَّسْنَا درسنا | دُرِّسْنَا درسنا | نُدَرِّسُ ندرس | نُدَرِّسَ ندرس | نُدَرِّسْ ندرس | نُدَرَّسُ ندرس |  |
 
-Participles: مُدَرِّس مدرس (needs Gender, Number) · مُدَرَّس مدرس (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُدَرِّسٌ مدرس · مُدَرَّسٌ مدرس
 
 ## farra (I): flee
 
@@ -181,7 +181,7 @@ Participles: مُدَرِّس مدرس (needs Gender, Number) · مُدَرَّ�
 | 1sg | فَرَرْتُ فررت | فُرِرْتُ فررت | أَفِرُّ أفر | أَفِرَّ أفر | أَفِرَّ أفر | أُفَرُّ أفر |  |
 | 1pl | فَرَرْنَا فررنا | فُرِرْنَا فررنا | نَفِرُّ نفر | نَفِرَّ نفر | نَفِرَّ نفر | نُفَرُّ نفر |  |
 
-Participles: فَارّ فار (needs Gender, Number) · مَفْرُور مفرور (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): فَارٌّ فار · مَفْرُورٌ مفرور
 
 ## fataha (I): open
 
@@ -201,7 +201,7 @@ Participles: فَارّ فار (needs Gender, Number) · مَفْرُور مفر
 | 1sg | فَتَحْتُ فتحت | فُتِحْتُ فتحت | أَفْتَحُ أفتح | أَفْتَحَ أفتح | أَفْتَحْ أفتح | أُفْتَحُ أفتح |  |
 | 1pl | فَتَحْنَا فتحنا | فُتِحْنَا فتحنا | نَفْتَحُ نفتح | نَفْتَحَ نفتح | نَفْتَحْ نفتح | نُفْتَحُ نفتح |  |
 
-Participles: فَاتِح فاتح (needs Gender, Number) · مَفْتُوح مفتوح (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): فَاتِحٌ فاتح · مَفْتُوحٌ مفتوح
 
 ## ijtamaa (VIII): meet, gather
 
@@ -221,7 +221,7 @@ Participles: فَاتِح فاتح (needs Gender, Number) · مَفْتُوح م
 | 1sg | اِجْتَمَعْتُ اجتمعت | اُجْتُمِعْتُ اجتمعت | أَجْتَمِعُ أجتمع | أَجْتَمِعَ أجتمع | أَجْتَمِعْ أجتمع | أُجْتَمَعُ أجتمع |  |
 | 1pl | اِجْتَمَعْنَا اجتمعنا | اُجْتُمِعْنَا اجتمعنا | نَجْتَمِعُ نجتمع | نَجْتَمِعَ نجتمع | نَجْتَمِعْ نجتمع | نُجْتَمَعُ نجتمع |  |
 
-Participles: مُجْتَمِع مجتمع (needs Gender, Number) · مُجْتَمَع مجتمع (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُجْتَمِعٌ مجتمع · مُجْتَمَعٌ مجتمع
 
 ## ikhtara (VIII): choose
 
@@ -241,7 +241,7 @@ Participles: مُجْتَمِع مجتمع (needs Gender, Number) · مُجْت�
 | 1sg | اِخْتَرْتُ اخترت | اُخْتِرْتُ اخترت | أَخْتَارُ أختار | أَخْتَارَ أختار | أَخْتَرْ أختر | أُخْتَارُ أختار |  |
 | 1pl | اِخْتَرْنَا اخترنا | اُخْتِرْنَا اخترنا | نَخْتَارُ نختار | نَخْتَارَ نختار | نَخْتَرْ نختر | نُخْتَارُ نختار |  |
 
-Participles: مُخْتَار مختار (needs Gender, Number) · مُخْتَار مختار (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُخْتَارٌ مختار · مُخْتَارٌ مختار
 
 ## inkasara (VII): break (intransitive)
 
@@ -261,7 +261,7 @@ Participles: مُخْتَار مختار (needs Gender, Number) · مُخْتَ�
 | 1sg | اِنْكَسَرْتُ انكسرت | اُنْكُسِرْتُ انكسرت | أَنْكَسِرُ أنكسر | أَنْكَسِرَ أنكسر | أَنْكَسِرْ أنكسر | أُنْكَسَرُ أنكسر |  |
 | 1pl | اِنْكَسَرْنَا انكسرنا | اُنْكُسِرْنَا انكسرنا | نَنْكَسِرُ ننكسر | نَنْكَسِرَ ننكسر | نَنْكَسِرْ ننكسر | نُنْكَسَرُ ننكسر |  |
 
-Participles: مُنْكَسِر منكسر (needs Gender, Number) · مُنْكَسَر منكسر (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُنْكَسِرٌ منكسر · مُنْكَسَرٌ منكسر
 
 ## ishtara (VIII): buy
 
@@ -281,7 +281,7 @@ Participles: مُنْكَسِر منكسر (needs Gender, Number) · مُنْك�
 | 1sg | اِشْتَرَيْتُ اشتريت | اُشْتُرِيتُ اشتريت | أَشْتَرِي أشتري | أَشْتَرِيَ أشتري | أَشْتَرِ أشتر | أُشْتَرَى أشترى |  |
 | 1pl | اِشْتَرَيْنَا اشترينا | اُشْتُرِينَا اشترينا | نَشْتَرِي نشتري | نَشْتَرِيَ نشتري | نَشْتَرِ نشتر | نُشْتَرَى نشترى |  |
 
-Participles: مُشْتَرِي مشتري (needs Gender, Number) · مُشْتَرَيْ مشتري (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُشْتَرٍ مشتر · مُشْتَرًى مشترى
 
 ## istabara (VIII): be patient
 
@@ -301,7 +301,7 @@ Participles: مُشْتَرِي مشتري (needs Gender, Number) · مُشْت�
 | 1sg | اِصْطَبَرْتُ اصطبرت | اُصْطُبِرْتُ اصطبرت | أَصْطَبِرُ أصطبر | أَصْطَبِرَ أصطبر | أَصْطَبِرْ أصطبر | أُصْطَبَرُ أصطبر |  |
 | 1pl | اِصْطَبَرْنَا اصطبرنا | اُصْطُبِرْنَا اصطبرنا | نَصْطَبِرُ نصطبر | نَصْطَبِرَ نصطبر | نَصْطَبِرْ نصطبر | نُصْطَبَرُ نصطبر |  |
 
-Participles: مُصْطَبِر مصطبر (needs Gender, Number) · مُصْطَبَر مصطبر (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُصْطَبِرٌ مصطبر · مُصْطَبَرٌ مصطبر
 
 ## istafada (X): benefit
 
@@ -321,7 +321,7 @@ Participles: مُصْطَبِر مصطبر (needs Gender, Number) · مُصْط�
 | 1sg | اِسْتَفَدْتُ استفدت | اُسْتُفِدْتُ استفدت | أَسْتَفِيدُ أستفيد | أَسْتَفِيدَ أستفيد | أَسْتَفِدْ أستفد | أُسْتَفَادُ أستفاد |  |
 | 1pl | اِسْتَفَدْنَا استفدنا | اُسْتُفِدْنَا استفدنا | نَسْتَفِيدُ نستفيد | نَسْتَفِيدَ نستفيد | نَسْتَفِدْ نستفد | نُسْتَفَادُ نستفاد |  |
 
-Participles: مُسْتَفِيد مستفيد (needs Gender, Number) · مُسْتَفَاد مستفاد (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُسْتَفِيدٌ مستفيد · مُسْتَفَادٌ مستفاد
 
 ## istaqbala (X): receive
 
@@ -341,7 +341,7 @@ Participles: مُسْتَفِيد مستفيد (needs Gender, Number) · مُس�
 | 1sg | اِسْتَقْبَلْتُ استقبلت | اُسْتُقْبِلْتُ استقبلت | أَسْتَقْبِلُ أستقبل | أَسْتَقْبِلَ أستقبل | أَسْتَقْبِلْ أستقبل | أُسْتَقْبَلُ أستقبل |  |
 | 1pl | اِسْتَقْبَلْنَا استقبلنا | اُسْتُقْبِلْنَا استقبلنا | نَسْتَقْبِلُ نستقبل | نَسْتَقْبِلَ نستقبل | نَسْتَقْبِلْ نستقبل | نُسْتَقْبَلُ نستقبل |  |
 
-Participles: مُسْتَقْبِل مستقبل (needs Gender, Number) · مُسْتَقْبَل مستقبل (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُسْتَقْبِلٌ مستقبل · مُسْتَقْبَلٌ مستقبل
 
 ## ittasala (VIII): get in touch
 
@@ -361,7 +361,7 @@ Participles: مُسْتَقْبِل مستقبل (needs Gender, Number) · مُ�
 | 1sg | اِتَّصَلْتُ اتصلت | اُتُّصِلْتُ اتصلت | أَتَّصِلُ أتصل | أَتَّصِلَ أتصل | أَتَّصِلْ أتصل | أُتَّصَلُ أتصل |  |
 | 1pl | اِتَّصَلْنَا اتصلنا | اُتُّصِلْنَا اتصلنا | نَتَّصِلُ نتصل | نَتَّصِلَ نتصل | نَتَّصِلْ نتصل | نُتَّصَلُ نتصل |  |
 
-Participles: مُتَّصِل متصل (needs Gender, Number) · مُتَّصَل متصل (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُتَّصِلٌ متصل · مُتَّصَلٌ متصل
 
 ## izdahara (VIII): flourish
 
@@ -381,7 +381,7 @@ Participles: مُتَّصِل متصل (needs Gender, Number) · مُتَّصَ�
 | 1sg | اِزْدَهَرْتُ ازدهرت | اُزْدُهِرْتُ ازدهرت | أَزْدَهِرُ أزدهر | أَزْدَهِرَ أزدهر | أَزْدَهِرْ أزدهر | أُزْدَهَرُ أزدهر |  |
 | 1pl | اِزْدَهَرْنَا ازدهرنا | اُزْدُهِرْنَا ازدهرنا | نَزْدَهِرُ نزدهر | نَزْدَهِرَ نزدهر | نَزْدَهِرْ نزدهر | نُزْدَهَرُ نزدهر |  |
 
-Participles: مُزْدَهِر مزدهر (needs Gender, Number) · مُزْدَهَر مزدهر (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُزْدَهِرٌ مزدهر · مُزْدَهَرٌ مزدهر
 
 ## jalasa (I): sit
 
@@ -401,7 +401,7 @@ Participles: مُزْدَهِر مزدهر (needs Gender, Number) · مُزْد�
 | 1sg | جَلَسْتُ جلست | جُلِسْتُ جلست | أَجْلِسُ أجلس | أَجْلِسَ أجلس | أَجْلِسْ أجلس | أُجْلَسُ أجلس |  |
 | 1pl | جَلَسْنَا جلسنا | جُلِسْنَا جلسنا | نَجْلِسُ نجلس | نَجْلِسَ نجلس | نَجْلِسْ نجلس | نُجْلَسُ نجلس |  |
 
-Participles: جَالِس جالس (needs Gender, Number) · مَجْلُوس مجلوس (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): جَالِسٌ جالس · مَجْلُوسٌ مجلوس
 
 ## kabura (I): grow big
 
@@ -421,7 +421,7 @@ Participles: جَالِس جالس (needs Gender, Number) · مَجْلُوس م
 | 1sg | كَبُرْتُ كبرت | كُبِرْتُ كبرت | أَكْبُرُ أكبر | أَكْبُرَ أكبر | أَكْبُرْ أكبر | أُكْبَرُ أكبر |  |
 | 1pl | كَبُرْنَا كبرنا | كُبِرْنَا كبرنا | نَكْبُرُ نكبر | نَكْبُرَ نكبر | نَكْبُرْ نكبر | نُكْبَرُ نكبر |  |
 
-Participles: كَابِر كابر (needs Gender, Number) · مَكْبُور مكبور (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): كَابِرٌ كابر · مَكْبُورٌ مكبور
 
 ## kataba (I): write
 
@@ -441,7 +441,7 @@ Participles: كَابِر كابر (needs Gender, Number) · مَكْبُور م
 | 1sg | كَتَبْتُ كتبت | كُتِبْتُ كتبت | أَكْتُبُ أكتب | أَكْتُبَ أكتب | أَكْتُبْ أكتب | أُكْتَبُ أكتب |  |
 | 1pl | كَتَبْنَا كتبنا | كُتِبْنَا كتبنا | نَكْتُبُ نكتب | نَكْتُبَ نكتب | نَكْتُبْ نكتب | نُكْتَبُ نكتب |  |
 
-Participles: كَاتِب كاتب (needs Gender, Number) · مَكْتُوب مكتوب (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): كَاتِبٌ كاتب · مَكْتُوبٌ مكتوب
 
 ## kataba-iii (III): correspond with
 
@@ -461,7 +461,7 @@ Participles: كَاتِب كاتب (needs Gender, Number) · مَكْتُوب م
 | 1sg | كَاتَبْتُ كاتبت | كُوتِبْتُ كوتبت | أُكَاتِبُ أكاتب | أُكَاتِبَ أكاتب | أُكَاتِبْ أكاتب | أُكَاتَبُ أكاتب |  |
 | 1pl | كَاتَبْنَا كاتبنا | كُوتِبْنَا كوتبنا | نُكَاتِبُ نكاتب | نُكَاتِبَ نكاتب | نُكَاتِبْ نكاتب | نُكَاتَبُ نكاتب |  |
 
-Participles: مُكَاتِب مكاتب (needs Gender, Number) · مُكَاتَب مكاتب (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُكَاتِبٌ مكاتب · مُكَاتَبٌ مكاتب
 
 ## khafa (I): fear
 
@@ -481,7 +481,7 @@ Participles: مُكَاتِب مكاتب (needs Gender, Number) · مُكَات�
 | 1sg | خِفْتُ خفت | خِفْتُ خفت | أَخَافُ أخاف | أَخَافَ أخاف | أَخَفْ أخف | أُخَافُ أخاف |  |
 | 1pl | خِفْنَا خفنا | خِفْنَا خفنا | نَخَافُ نخاف | نَخَافَ نخاف | نَخَفْ نخف | نُخَافُ نخاف |  |
 
-Participles: خَائِف خائف (needs Gender, Number) · مَخُوف مخوف (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): خَائِفٌ خائف · مَخُوفٌ مخوف
 
 ## laqiya (I): meet
 
@@ -501,7 +501,7 @@ Participles: خَائِف خائف (needs Gender, Number) · مَخُوف مخو
 | 1sg | لَقِيتُ لقيت | لُقِيتُ لقيت | أَلْقَى ألقى | أَلْقَى ألقى | أَلْقَ ألق | أُلْقَى ألقى |  |
 | 1pl | لَقِينَا لقينا | لُقِينَا لقينا | نَلْقَى نلقى | نَلْقَى نلقى | نَلْقَ نلق | نُلْقَى نلقى |  |
 
-Participles: لَاقِي لاقي (needs Gender, Number) · مَلْقِيّ ملقي (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): لَاقٍ لاق · مَلْقِيٌّ ملقي
 
 ## madda (I): extend
 
@@ -521,7 +521,7 @@ Participles: لَاقِي لاقي (needs Gender, Number) · مَلْقِيّ م
 | 1sg | مَدَدْتُ مددت | مُدِدْتُ مددت | أَمُدُّ أمد | أَمُدَّ أمد | أَمُدَّ أمد | أُمَدُّ أمد |  |
 | 1pl | مَدَدْنَا مددنا | مُدِدْنَا مددنا | نَمُدُّ نمد | نَمُدَّ نمد | نَمُدَّ نمد | نُمَدُّ نمد |  |
 
-Participles: مَادّ ماد (needs Gender, Number) · مَمْدُود ممدود (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مَادٌّ ماد · مَمْدُودٌ ممدود
 
 ## masha (I): walk
 
@@ -541,7 +541,7 @@ Participles: مَادّ ماد (needs Gender, Number) · مَمْدُود ممد
 | 1sg | مَشَيْتُ مشيت | مُشِيتُ مشيت | أَمْشِي أمشي | أَمْشِيَ أمشي | أَمْشِ أمش | أُمْشَى أمشى |  |
 | 1pl | مَشَيْنَا مشينا | مُشِينَا مشينا | نَمْشِي نمشي | نَمْشِيَ نمشي | نَمْشِ نمش | نُمْشَى نمشى |  |
 
-Participles: مَاشِي ماشي (needs Gender, Number) · مَمْشِيّ ممشي (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مَاشٍ ماش · مَمْشِيٌّ ممشي
 
 ## nama (I): sleep
 
@@ -561,7 +561,7 @@ Participles: مَاشِي ماشي (needs Gender, Number) · مَمْشِيّ م
 | 1sg | نِمْتُ نمت | نِمْتُ نمت | أَنَامُ أنام | أَنَامَ أنام | أَنَمْ أنم | أُنَامُ أنام |  |
 | 1pl | نِمْنَا نمنا | نِمْنَا نمنا | نَنَامُ ننام | نَنَامَ ننام | نَنَمْ ننم | نُنَامُ ننام |  |
 
-Participles: نَائِم نائم (needs Gender, Number) · مَنُوم منوم (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): نَائِمٌ نائم · مَنُومٌ منوم
 
 ## nasiya (I): forget
 
@@ -581,7 +581,7 @@ Participles: نَائِم نائم (needs Gender, Number) · مَنُوم منو
 | 1sg | نَسِيتُ نسيت | نُسِيتُ نسيت | أَنْسَى أنسى | أَنْسَى أنسى | أَنْسَ أنس | أُنْسَى أنسى |  |
 | 1pl | نَسِينَا نسينا | نُسِينَا نسينا | نَنْسَى ننسى | نَنْسَى ننسى | نَنْسَ ننس | نُنْسَى ننسى |  |
 
-Participles: نَاسِي ناسي (needs Gender, Number) · مَنْسِيّ منسي (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): نَاسٍ ناس · مَنْسِيٌّ منسي
 
 ## qala (I): say
 
@@ -601,7 +601,7 @@ Participles: نَاسِي ناسي (needs Gender, Number) · مَنْسِيّ م
 | 1sg | قُلْتُ قلت | قِلْتُ قلت | أَقُولُ أقول | أَقُولَ أقول | أَقُلْ أقل | أُقَالُ أقال |  |
 | 1pl | قُلْنَا قلنا | قِلْنَا قلنا | نَقُولُ نقول | نَقُولَ نقول | نَقُلْ نقل | نُقَالُ نقال |  |
 
-Participles: قَائِل قائل (needs Gender, Number) · مَقُول مقول (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): قَائِلٌ قائل · مَقُولٌ مقول
 
 ## qaraa (I): read
 
@@ -621,7 +621,7 @@ Participles: قَائِل قائل (needs Gender, Number) · مَقُول مقو
 | 1sg | قَرَأْتُ قرأت | قُرِئْتُ قرئت | أَقْرَأُ أقرأ | أَقْرَأَ أقرأ | أَقْرَأْ أقرأ | أُقْرَأُ أقرأ |  |
 | 1pl | قَرَأْنَا قرأنا | قُرِئْنَا قرئنا | نَقْرَأُ نقرأ | نَقْرَأَ نقرأ | نَقْرَأْ نقرأ | نُقْرَأُ نقرأ |  |
 
-Participles: قَارِئ قارئ (needs Gender, Number) · مَقْرُوء مقروء (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): قَارِئٌ قارئ · مَقْرُوءٌ مقروء
 
 ## rama (I): throw
 
@@ -641,7 +641,7 @@ Participles: قَارِئ قارئ (needs Gender, Number) · مَقْرُوء م
 | 1sg | رَمَيْتُ رميت | رُمِيتُ رميت | أَرْمِي أرمي | أَرْمِيَ أرمي | أَرْمِ أرم | أُرْمَى أرمى |  |
 | 1pl | رَمَيْنَا رمينا | رُمِينَا رمينا | نَرْمِي نرمي | نَرْمِيَ نرمي | نَرْمِ نرم | نُرْمَى نرمى |  |
 
-Participles: رَامِي رامي (needs Gender, Number) · مَرْمِيّ مرمي (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): رَامٍ رام · مَرْمِيٌّ مرمي
 
 ## saada (III): help
 
@@ -661,7 +661,7 @@ Participles: رَامِي رامي (needs Gender, Number) · مَرْمِيّ م
 | 1sg | سَاعَدْتُ ساعدت | سُوعِدْتُ سوعدت | أُسَاعِدُ أساعد | أُسَاعِدَ أساعد | أُسَاعِدْ أساعد | أُسَاعَدُ أساعد |  |
 | 1pl | سَاعَدْنَا ساعدنا | سُوعِدْنَا سوعدنا | نُسَاعِدُ نساعد | نُسَاعِدَ نساعد | نُسَاعِدْ نساعد | نُسَاعَدُ نساعد |  |
 
-Participles: مُسَاعِد مساعد (needs Gender, Number) · مُسَاعَد مساعد (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُسَاعِدٌ مساعد · مُسَاعَدٌ مساعد
 
 ## saala (I): ask
 
@@ -681,7 +681,7 @@ Participles: مُسَاعِد مساعد (needs Gender, Number) · مُسَاع�
 | 1sg | سَأَلْتُ سألت | سُئِلْتُ سئلت | أَسْأَلُ أسأل | أَسْأَلَ أسأل | أَسْأَلْ أسأل | أُسْأَلُ أسأل |  |
 | 1pl | سَأَلْنَا سألنا | سُئِلْنَا سئلنا | نَسْأَلُ نسأل | نَسْأَلَ نسأل | نَسْأَلْ نسأل | نُسْأَلُ نسأل |  |
 
-Participles: سَائِل سائل (needs Gender, Number) · مَسْؤُول مسؤول (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): سَائِلٌ سائل · مَسْؤُولٌ مسؤول
 
 ## samma (II): name
 
@@ -701,7 +701,7 @@ Participles: سَائِل سائل (needs Gender, Number) · مَسْؤُول م
 | 1sg | سَمَّيْتُ سميت | سُمِّيتُ سميت | أُسَمِّي أسمي | أُسَمِّيَ أسمي | أُسَمِّ أسم | أُسَمَّى أسمى |  |
 | 1pl | سَمَّيْنَا سمينا | سُمِّينَا سمينا | نُسَمِّي نسمي | نُسَمِّيَ نسمي | نُسَمِّ نسم | نُسَمَّى نسمى |  |
 
-Participles: مُسَمِّي مسمي (needs Gender, Number) · مُسَمَّيْ مسمي (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُسَمٍّ مسم · مُسَمًّى مسمى
 
 ## sara (I): walk, go
 
@@ -721,7 +721,7 @@ Participles: مُسَمِّي مسمي (needs Gender, Number) · مُسَمَّ�
 | 1sg | سِرْتُ سرت | سِرْتُ سرت | أَسِيرُ أسير | أَسِيرَ أسير | أَسِرْ أسر | أُسَارُ أسار |  |
 | 1pl | سِرْنَا سرنا | سِرْنَا سرنا | نَسِيرُ نسير | نَسِيرَ نسير | نَسِرْ نسر | نُسَارُ نسار |  |
 
-Participles: سَائِر سائر (needs Gender, Number) · مَسِير مسير (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): سَائِرٌ سائر · مَسِيرٌ مسير
 
 ## shariba (I): drink
 
@@ -741,7 +741,7 @@ Participles: سَائِر سائر (needs Gender, Number) · مَسِير مسي
 | 1sg | شَرِبْتُ شربت | شُرِبْتُ شربت | أَشْرَبُ أشرب | أَشْرَبَ أشرب | أَشْرَبْ أشرب | أُشْرَبُ أشرب |  |
 | 1pl | شَرِبْنَا شربنا | شُرِبْنَا شربنا | نَشْرَبُ نشرب | نَشْرَبَ نشرب | نَشْرَبْ نشرب | نُشْرَبُ نشرب |  |
 
-Participles: شَارِب شارب (needs Gender, Number) · مَشْرُوب مشروب (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): شَارِبٌ شارب · مَشْرُوبٌ مشروب
 
 ## taallama (V): learn
 
@@ -761,7 +761,7 @@ Participles: شَارِب شارب (needs Gender, Number) · مَشْرُوب م
 | 1sg | تَعَلَّمْتُ تعلمت | تُعُلِّمْتُ تعلمت | أَتَعَلَّمُ أتعلم | أَتَعَلَّمَ أتعلم | أَتَعَلَّمْ أتعلم | أُتَعَلَّمُ أتعلم |  |
 | 1pl | تَعَلَّمْنَا تعلمنا | تُعُلِّمْنَا تعلمنا | نَتَعَلَّمُ نتعلم | نَتَعَلَّمَ نتعلم | نَتَعَلَّمْ نتعلم | نُتَعَلَّمُ نتعلم |  |
 
-Participles: مُتَعَلِّم متعلم (needs Gender, Number) · مُتَعَلَّم متعلم (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُتَعَلِّمٌ متعلم · مُتَعَلَّمٌ متعلم
 
 ## takataba (VI): write to each other
 
@@ -781,7 +781,7 @@ Participles: مُتَعَلِّم متعلم (needs Gender, Number) · مُتَ�
 | 1sg | تَكَاتَبْتُ تكاتبت | تُكُوتِبْتُ تكوتبت | أَتَكَاتَبُ أتكاتب | أَتَكَاتَبَ أتكاتب | أَتَكَاتَبْ أتكاتب | أُتَكَاتَبُ أتكاتب |  |
 | 1pl | تَكَاتَبْنَا تكاتبنا | تُكُوتِبْنَا تكوتبنا | نَتَكَاتَبُ نتكاتب | نَتَكَاتَبَ نتكاتب | نَتَكَاتَبْ نتكاتب | نُتَكَاتَبُ نتكاتب |  |
 
-Participles: مُتَكَاتِب متكاتب (needs Gender, Number) · مُتَكَاتَب متكاتب (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): مُتَكَاتِبٌ متكاتب · مُتَكَاتَبٌ متكاتب
 
 ## wajada (I): find
 
@@ -801,7 +801,7 @@ Participles: مُتَكَاتِب متكاتب (needs Gender, Number) · مُت�
 | 1sg | وَجَدْتُ وجدت | وُجِدْتُ وجدت | أَجِدُ أجد | أَجِدَ أجد | أَجِدْ أجد | أُوجَدُ أوجد |  |
 | 1pl | وَجَدْنَا وجدنا | وُجِدْنَا وجدنا | نَجِدُ نجد | نَجِدَ نجد | نَجِدْ نجد | نُوجَدُ نوجد |  |
 
-Participles: وَاجِد واجد (needs Gender, Number) · مَوْجُود موجود (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): وَاجِدٌ واجد · مَوْجُودٌ موجود
 
 ## wasala (I): arrive
 
@@ -821,7 +821,7 @@ Participles: وَاجِد واجد (needs Gender, Number) · مَوْجُود م
 | 1sg | وَصَلْتُ وصلت | وُصِلْتُ وصلت | أَصِلُ أصل | أَصِلَ أصل | أَصِلْ أصل | أُوصَلُ أوصل |  |
 | 1pl | وَصَلْنَا وصلنا | وُصِلْنَا وصلنا | نَصِلُ نصل | نَصِلَ نصل | نَصِلْ نصل | نُوصَلُ نوصل |  |
 
-Participles: وَاصِل واصل (needs Gender, Number) · مَوْصُول موصول (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): وَاصِلٌ واصل · مَوْصُولٌ موصول
 
 ## zanna (I): think, suppose
 
@@ -841,7 +841,7 @@ Participles: وَاصِل واصل (needs Gender, Number) · مَوْصُول م
 | 1sg | ظَنَنْتُ ظننت | ظُنِنْتُ ظننت | أَظُنُّ أظن | أَظُنَّ أظن | أَظُنَّ أظن | أُظَنُّ أظن |  |
 | 1pl | ظَنَنَّا ظننا | ظُنِنَّا ظننا | نَظُنُّ نظن | نَظُنَّ نظن | نَظُنَّ نظن | نُظَنُّ نظن |  |
 
-Participles: ظَانّ ظان (needs Gender, Number) · مَظْنُون مظنون (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): ظَانٌّ ظان · مَظْنُونٌ مظنون
 
 ## zara (I): visit
 
@@ -861,4 +861,4 @@ Participles: ظَانّ ظان (needs Gender, Number) · مَظْنُون مظن
 | 1sg | زُرْتُ زرت | زِرْتُ زرت | أَزُورُ أزور | أَزُورَ أزور | أَزُرْ أزر | أُزَارُ أزار |  |
 | 1pl | زُرْنَا زرنا | زِرْنَا زرنا | نَزُورُ نزور | نَزُورَ نزور | نَزُرْ نزر | نُزَارُ نزار |  |
 
-Participles: زَائِر زائر (needs Gender, Number) · مَزُور مزور (needs Gender, Number)
+Participles (masculine singular, nominative, indefinite): زَائِرٌ زائر · مَزُورٌ مزور

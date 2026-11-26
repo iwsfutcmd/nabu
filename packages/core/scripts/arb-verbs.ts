@@ -130,7 +130,7 @@ for (const v of verbs) {
     const i = imp.get(cell[0]);
     out += `| ${cell[0]} | ${row.join(" | ")} | ${i === undefined ? "" : show(id, i)} |\n`;
   });
-  out += `\nParticiples: ${show(id, ["", [], ["ptcp"]])} · ${show(id, ["", [], ["ptcp", "pass"]])}\n`;
+  out += `\nParticiples (masculine singular, nominative, indefinite): ${show(id, ["", [], ["ptcp", "masc", "sing", "nom", "indef"]])} · ${show(id, ["", [], ["ptcp", "pass", "masc", "sing", "nom", "indef"]])}\n`;
 }
 if (process.argv[4] !== undefined) writeFileSync(process.argv[4], out);
 else console.log(out);

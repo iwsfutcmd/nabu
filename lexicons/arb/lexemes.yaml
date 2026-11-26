@@ -7,6 +7,75 @@ provenance: &id001
   author: llm:claude@arb-rules
   status: draft
 lexemes:
+- id: lexeme:acc
+  realises:
+    Case: Acc
+  'on':
+    pos: &id002
+    - NOUN
+    - ADJ
+    - PROPN
+    - VERB
+  gloss:
+    en: '-a: accusative'
+  allomorphs:
+  - form: ''
+    after: &id003
+      with:
+      - lexeme:dual
+  - form: ''
+    after: &id004
+      with:
+      - lexeme:mpl-sound
+  - form: ''
+    after:
+      with:
+      - lexeme:poss-1sg
+  - form: ـِ
+    after:
+      with:
+      - lexeme:fpl-sound
+  - form: ـِ
+    after:
+      class: plural-at
+      feats:
+        Number: Plur
+  - form: ـَ
+- id: lexeme:ahmad
+  pos: PROPN
+  feats:
+    Gender: Masc
+    Number: Sing
+  classes:
+  - diptote
+  gloss:
+    en: Ahmad
+  form: ءَحْمَد
+- id: lexeme:ahmar
+  pos: ADJ
+  classes:
+  - diptote
+  gloss:
+    en: red
+  form: ءَحْمَر
+  forms:
+  - feats:
+      Gender: Masc
+      Number: Plur
+    form: حُمْر
+    status: listed
+    statement: *id001
+  - feats:
+      Gender: Fem
+    form: حَمْرَاء
+    status: listed
+    statement: *id001
+  - feats:
+      Gender: Fem
+      Number: Plur
+    form: حُمْر
+    status: listed
+    statement: *id001
 - id: lexeme:akala
   pos: VERB
   gloss:
@@ -27,6 +96,43 @@ lexemes:
     stem: كُلْ
     status: listed
     statement: *id001
+- id: lexeme:akbar
+  pos: ADJ
+  classes:
+  - diptote
+  gloss:
+    en: bigger, biggest
+  form: ءَكْبَر
+  forms:
+  - feats:
+      Gender: Fem
+    form: كُبْرَي
+    status: listed
+    statement: *id001
+- id: lexeme:al
+  realises:
+    Definite: Def
+  'on':
+    pos:
+    - NOUN
+    - ADJ
+    - VERB
+  gloss:
+    en: 'al-: the'
+  notes:
+    en: Its l is the next letter doubled before a sun letter (ash-shamsu).
+  allomorphs:
+  - form: اَلْ
+- id: lexeme:ala
+  pos: ADP
+  gloss:
+    en: 'on'
+  form: عَلَي
+- id: lexeme:alladhi
+  pos: PRON
+  gloss:
+    en: who, which (masculine)
+  form: اَلَّذِي
 - id: lexeme:allama
   pos: VERB
   gloss:
@@ -38,6 +144,46 @@ lexemes:
     - م
     form: II
     source: ryding 2005
+- id: lexeme:allati
+  pos: PRON
+  gloss:
+    en: who, which (feminine)
+  form: اَلَّتِي
+- id: lexeme:an
+  pos: ADP
+  gloss:
+    en: about
+  form: عَنْ
+- id: lexeme:ana
+  pos: PRON
+  gloss:
+    en: I
+  form: ءَنَا
+- id: lexeme:anta
+  pos: PRON
+  gloss:
+    en: you (a man)
+  form: ءَنْتَ
+- id: lexeme:anti
+  pos: PRON
+  gloss:
+    en: you (a woman)
+  form: ءَنْتِ
+- id: lexeme:antum
+  pos: PRON
+  gloss:
+    en: you (men)
+  form: ءَنْتُمْ
+- id: lexeme:antuma
+  pos: PRON
+  gloss:
+    en: you (two)
+  form: ءَنْتُمَا
+- id: lexeme:antunna
+  pos: PRON
+  gloss:
+    en: you (women)
+  form: ءَنْتُنَّ
 - id: lexeme:aqama
   pos: VERB
   gloss:
@@ -49,6 +195,11 @@ lexemes:
     - م
     form: IV
     source: ryding 2005
+- id: lexeme:arabi
+  pos: ADJ
+  gloss:
+    en: Arab, Arabic
+  form: عَرَبِيّ
 - id: lexeme:arsala
   pos: VERB
   gloss:
@@ -85,6 +236,56 @@ lexemes:
       past: a
       present: i
     source: ryding 2005
+- id: lexeme:bayt
+  pos: NOUN
+  feats:
+    Gender: Masc
+  gloss:
+    en: house
+  form: بَيْت
+  forms:
+  - feats:
+      Number: Plur
+    form: بُيُوت
+    status: listed
+    statement: *id001
+- id: lexeme:bi
+  pos: ADP
+  'on':
+    has:
+      Case: Gen
+  gloss:
+    en: 'bi-: with, by'
+  form: بِ
+- id: lexeme:bint
+  pos: NOUN
+  feats:
+    Gender: Fem
+  classes:
+  - plural-at
+  gloss:
+    en: girl, daughter
+  form: بِنْت
+  forms:
+  - feats:
+      Number: Plur
+    form: بَنَات
+    status: listed
+    statement: *id001
+- id: lexeme:cons
+  realises:
+    Definite: Cons
+  'on':
+    pos:
+    - NOUN
+    - ADJ
+    - VERB
+  gloss:
+    en: construct state (zero)
+  notes:
+    en: 'The word owned by the next one, or by a suffix: no article, no tanwīn, and the dual''s and plural''s n gone.'
+  allomorphs:
+  - form: ''
 - id: lexeme:daa
   pos: VERB
   gloss:
@@ -110,6 +311,11 @@ lexemes:
     - س
     form: II
     source: ryding 2005
+- id: lexeme:dhalika
+  pos: PRON
+  gloss:
+    en: that
+  form: ذَٰلِكَ
 - id: lexeme:du
   realises:
     Number: Dual
@@ -121,6 +327,38 @@ lexemes:
     en: '-ā: two'
   allomorphs:
   - form: ـَا
+- id: lexeme:dual
+  realises:
+    Number: Dual
+  'on':
+    pos:
+    - ADJ
+    - NOUN
+    - VERB
+  gloss:
+    en: '-āni, -ayni: two'
+  notes:
+    en: Its case is in it (-āni with the nominative, -ayni otherwise); its n goes in the construct state.
+  allomorphs:
+  - form: ـَا
+    after:
+      feats:
+        Case: Nom
+        Definite: Cons
+  - form: ـَيْ
+    after:
+      feats:
+        Definite: Cons
+  - form: ـَانِ
+    after:
+      feats:
+        Case: Nom
+  - form: ـَيْنِ
+- id: lexeme:fa
+  pos: CCONJ
+  gloss:
+    en: 'fa-: so, and then'
+  form: فَ
 - id: lexeme:farra
   pos: VERB
   gloss:
@@ -149,6 +387,35 @@ lexemes:
       past: a
       present: a
     source: ryding 2005
+- id: lexeme:fatima
+  pos: PROPN
+  feats:
+    Gender: Fem
+    Number: Sing
+  classes:
+  - diptote
+  gloss:
+    en: Fatima
+  form: فَاطِمَة
+- id: lexeme:fem
+  realises:
+    Gender: Fem
+  'on':
+    pos:
+    - ADJ
+    - NOUN
+    - VERB
+  gloss:
+    en: '-a(t): feminine'
+  notes:
+    en: Written ة; t before another ending (kabīratun, kabīratāni).
+  allomorphs:
+  - form: ـَة
+- id: lexeme:fi
+  pos: ADP
+  gloss:
+    en: in
+  form: فِي
 - id: lexeme:fpl
   realises:
     Gender: Fem
@@ -157,7 +424,7 @@ lexemes:
     has:
       Person: 2,3
       VerbForm: Fin
-  selects: &id004
+  selects: &id012
   - short
   - stem
   - command
@@ -165,6 +432,22 @@ lexemes:
     en: '-na: women, several'
   allomorphs:
   - form: نَ
+- id: lexeme:fpl-sound
+  realises:
+    Number: Plur
+  'on':
+    pos:
+    - ADJ
+    - NOUN
+    - VERB
+    has:
+      Gender: Fem
+  gloss:
+    en: '-āt: the sound feminine plural'
+  notes:
+    en: Its accusative is its genitive (-ātin).
+  allomorphs:
+  - form: ـَات
 - id: lexeme:fs
   realises:
     Gender: Fem
@@ -177,6 +460,75 @@ lexemes:
     en: '-ī: you, a woman'
   allomorphs:
   - form: ـِي
+- id: lexeme:gen
+  realises:
+    Case: Gen
+  'on':
+    pos: *id002
+  gloss:
+    en: '-i: genitive'
+  allomorphs:
+  - form: ''
+    after: *id003
+  - form: ''
+    after: *id004
+  - form: ''
+    after:
+      with:
+      - lexeme:poss-1sg
+  - form: ـَ
+    after:
+      class: diptote
+      feats:
+        Number: Sing
+        Definite: Ind
+  - form: ـَ
+    after:
+      class: diptote-plural
+      feats:
+        Number: Plur
+        Definite: Ind
+  - form: ـِ
+- id: lexeme:hadha
+  pos: PRON
+  gloss:
+    en: this (a man, a thing)
+  form: هَٰذَا
+- id: lexeme:hadhihi
+  pos: PRON
+  gloss:
+    en: this (a woman, a thing)
+  form: هَٰذِهِ
+- id: lexeme:haulai
+  pos: PRON
+  gloss:
+    en: these (people)
+  form: هَٰءُلَاءِ
+- id: lexeme:hiya
+  pos: PRON
+  gloss:
+    en: she
+  form: هِيَ
+- id: lexeme:hum
+  pos: PRON
+  gloss:
+    en: they (men)
+  form: هُمْ
+- id: lexeme:huma
+  pos: PRON
+  gloss:
+    en: they (two)
+  form: هُمَا
+- id: lexeme:hunna
+  pos: PRON
+  gloss:
+    en: they (women)
+  form: هُنَّ
+- id: lexeme:huwa
+  pos: PRON
+  gloss:
+    en: he
+  form: هُوَ
 - id: lexeme:ijtamaa
   pos: VERB
   gloss:
@@ -199,13 +551,18 @@ lexemes:
     - ر
     form: VIII
     source: ryding 2005
+- id: lexeme:ila
+  pos: ADP
+  gloss:
+    en: to
+  form: ءِلَي
 - id: lexeme:imp
   realises:
     VerbForm: Fin
     Mood: Imp
     Person: '2'
   'on':
-    pos: &id002
+    pos: &id005
     - VERB
   requires:
   - Number
@@ -219,7 +576,7 @@ lexemes:
     VerbForm: Fin
     Aspect: Imp
   'on':
-    pos: *id002
+    pos: *id005
   requires:
   - Person
   - Number
@@ -236,7 +593,7 @@ lexemes:
     Person: '1'
     Number: Plur
   'on':
-    has: &id003
+    has: &id006
       Aspect: Imp
   gloss:
     en: 'na-: we (present)'
@@ -247,7 +604,7 @@ lexemes:
     Person: '1'
     Number: Sing
   'on':
-    has: *id003
+    has: *id006
   gloss:
     en: 'ʾa-: I (present)'
   allomorphs:
@@ -256,7 +613,7 @@ lexemes:
   realises:
     Person: '2'
   'on':
-    has: *id003
+    has: *id006
   gloss:
     en: 'ta-: you (present)'
   allomorphs:
@@ -265,7 +622,7 @@ lexemes:
   realises:
     Person: '3'
   'on':
-    has: *id003
+    has: *id006
   gloss:
     en: 'ya-: he, they (present)'
   allomorphs:
@@ -275,16 +632,29 @@ lexemes:
     Person: '3'
     Gender: Fem
   'on':
-    has: *id003
+    has: *id006
   gloss:
     en: 'ta-: she, they two women (present)'
   allomorphs:
   - form: ت
+- id: lexeme:imraa
+  pos: NOUN
+  feats:
+    Gender: Fem
+  gloss:
+    en: woman
+  form: اِمْرَءَة
+  forms:
+  - feats:
+      Number: Plur
+    form: نِسَاء
+    status: listed
+    statement: *id001
 - id: lexeme:ind
   realises:
     Mood: Ind
   'on':
-    has: *id003
+    has: *id006
   gloss:
     en: indicative
   allomorphs:
@@ -309,6 +679,66 @@ lexemes:
         Gender: Fem
         Number: Plur
   - form: ـُ
+- id: lexeme:inda
+  pos: ADP
+  gloss:
+    en: at, have
+  form: عِنْدَ
+- id: lexeme:indef
+  realises:
+    Definite: Ind
+  'on':
+    pos: *id002
+  gloss:
+    en: 'indefinite: -n (tanwīn)'
+  notes:
+    en: 'The case vowel doubled: -un, -an (written with an alif but after a ة or ءا), -in; none on a diptote, the dual or the sound masculine plural.'
+  allomorphs:
+  - form: ''
+    after: *id003
+  - form: ''
+    after: *id004
+  - form: ''
+    after:
+      class: diptote
+      feats:
+        Number: Sing
+  - form: ''
+    after:
+      class: diptote-plural
+      feats:
+        Number: Plur
+  - form: ـٍ
+    after:
+      with:
+      - lexeme:fpl-sound
+      feats:
+        Case: Acc
+  - form: ـٍ
+    after:
+      class: plural-at
+      feats:
+        Number: Plur
+        Case: Acc
+  - form: ـً
+    after:
+      endsIn: ة*
+      feats:
+        Case: Acc
+  - form: ـً
+    after:
+      endsIn: اء*
+      feats:
+        Case: Acc
+  - form: ـًا
+    after:
+      feats:
+        Case: Acc
+  - form: ـٌ
+    after:
+      feats:
+        Case: Nom
+  - form: ـٍ
 - id: lexeme:inkasara
   pos: VERB
   gloss:
@@ -386,6 +816,18 @@ lexemes:
     - ر
     form: VIII
     source: ryding 2005
+- id: lexeme:jadid
+  pos: ADJ
+  gloss:
+    en: new
+  form: جَدِيد
+  forms:
+  - feats:
+      Gender: Masc
+      Number: Plur
+    form: جُدُد
+    status: listed
+    statement: *id001
 - id: lexeme:jalasa
   pos: VERB
   gloss:
@@ -400,11 +842,16 @@ lexemes:
       past: a
       present: i
     source: ryding 2005
+- id: lexeme:jamil
+  pos: ADJ
+  gloss:
+    en: beautiful
+  form: جَمِيل
 - id: lexeme:jus
   realises:
     Mood: Jus
   'on':
-    has: *id003
+    has: *id006
   gloss:
     en: jussive
   allomorphs:
@@ -429,6 +876,26 @@ lexemes:
         Gender: Fem
         Number: Plur
   - form: ـْ
+- id: lexeme:ka
+  pos: ADP
+  'on':
+    has:
+      Case: Gen
+  gloss:
+    en: 'ka-: like'
+  form: كَ
+- id: lexeme:kabir
+  pos: ADJ
+  gloss:
+    en: big
+  form: كَبِير
+  forms:
+  - feats:
+      Gender: Masc
+      Number: Plur
+    form: كِبَار
+    status: listed
+    statement: *id001
 - id: lexeme:kabura
   pos: VERB
   gloss:
@@ -482,6 +949,34 @@ lexemes:
       past: i
       present: a
     source: ryding 2005
+- id: lexeme:kitab
+  pos: NOUN
+  feats:
+    Gender: Masc
+  gloss:
+    en: book
+  form: كِتَاب
+  forms:
+  - feats:
+      Number: Plur
+    form: كُتُب
+    status: listed
+    statement: *id001
+- id: lexeme:la
+  pos: PART
+  gloss:
+    en: no, not
+  form: لَا
+- id: lexeme:lam
+  pos: PART
+  gloss:
+    en: did not (with the jussive)
+  form: لَمْ
+- id: lexeme:lan
+  pos: PART
+  gloss:
+    en: will not (with the subjunctive)
+  form: لَنْ
 - id: lexeme:laqiya
   pos: VERB
   gloss:
@@ -496,6 +991,23 @@ lexemes:
       past: i
       present: a
     source: ryding 2005
+- id: lexeme:li
+  pos: ADP
+  gloss:
+    en: 'li-: for, to'
+  form: لِ
+- id: lexeme:lugha
+  pos: NOUN
+  feats:
+    Gender: Fem
+  gloss:
+    en: language
+  form: لُغَة
+- id: lexeme:maa
+  pos: ADP
+  gloss:
+    en: with
+  form: مَعَ
 - id: lexeme:madda
   pos: VERB
   gloss:
@@ -510,6 +1022,40 @@ lexemes:
       past: a
       present: u
     source: ryding 2005
+- id: lexeme:madrasa
+  pos: NOUN
+  feats:
+    Gender: Fem
+  classes:
+  - diptote-plural
+  gloss:
+    en: school
+  form: مَدْرَسَة
+  forms:
+  - feats:
+      Number: Plur
+    form: مَدَارِس
+    status: listed
+    statement: *id001
+- id: lexeme:mana
+  pos: NOUN
+  feats:
+    Gender: Masc
+  gloss:
+    en: meaning
+  form: مَعْنَي
+- id: lexeme:masc
+  realises:
+    Gender: Masc
+  'on':
+    pos:
+    - ADJ
+    - NOUN
+    - VERB
+  gloss:
+    en: masculine (zero)
+  allomorphs:
+  - form: ''
 - id: lexeme:masha
   pos: VERB
   gloss:
@@ -524,6 +1070,26 @@ lexemes:
       past: a
       present: i
     source: ryding 2005
+- id: lexeme:mashghul
+  pos: ADJ
+  gloss:
+    en: busy
+  form: مَشْغُول
+- id: lexeme:min
+  pos: ADP
+  gloss:
+    en: from
+  form: مِنْ
+- id: lexeme:misr
+  pos: PROPN
+  feats:
+    Gender: Fem
+    Number: Sing
+  classes:
+  - diptote
+  gloss:
+    en: Egypt
+  form: مِصْر
 - id: lexeme:mpl
   realises:
     Gender: Masc
@@ -540,6 +1106,33 @@ lexemes:
       feats:
         Mood: Imp
   - form: ـُو
+- id: lexeme:mpl-sound
+  realises:
+    Number: Plur
+  'on':
+    pos:
+    - ADJ
+    - NOUN
+    - VERB
+    has:
+      Gender: Masc
+  gloss:
+    en: '-ūna, -īna: the sound masculine plural'
+  allomorphs:
+  - form: ـُو
+    after:
+      feats:
+        Case: Nom
+        Definite: Cons
+  - form: ـِي
+    after:
+      feats:
+        Definite: Cons
+  - form: ـُونَ
+    after:
+      feats:
+        Case: Nom
+  - form: ـِينَ
 - id: lexeme:ms
   realises:
     Gender: Masc
@@ -552,6 +1145,26 @@ lexemes:
     en: a man (zero)
   allomorphs:
   - form: ''
+- id: lexeme:muallim
+  pos: NOUN
+  chooses:
+  - Gender
+  gloss:
+    en: teacher
+  form: مُعَلِّم
+- id: lexeme:muhammad
+  pos: PROPN
+  feats:
+    Gender: Masc
+    Number: Sing
+  gloss:
+    en: Muhammad
+  form: مُحَمَّد
+- id: lexeme:nahnu
+  pos: PRON
+  gloss:
+    en: we
+  form: نَحْنُ
 - id: lexeme:nama
   pos: VERB
   gloss:
@@ -580,11 +1193,204 @@ lexemes:
       past: i
       present: a
     source: ryding 2005
+- id: lexeme:nom
+  realises:
+    Case: Nom
+  'on':
+    pos: *id002
+  gloss:
+    en: '-u: nominative'
+  allomorphs:
+  - form: ''
+    after: *id003
+  - form: ''
+    after: *id004
+  - form: ''
+    after:
+      with:
+      - lexeme:poss-1sg
+  - form: ـُ
+- id: lexeme:obj-1pl
+  realises:
+    Person[obj]: '1'
+    Number[obj]: Plur
+  'on': &id007
+    pos:
+    - VERB
+    has:
+      VerbForm: Fin
+  gloss:
+    en: our, us
+  allomorphs:
+  - form: نَا
+- id: lexeme:obj-1sg
+  realises:
+    Person[obj]: '1'
+    Number[obj]: Sing
+  'on': *id007
+  gloss:
+    en: me
+  allomorphs:
+  - form: نِي
+- id: lexeme:obj-2du
+  realises:
+    Person[obj]: '2'
+    Number[obj]: Dual
+  'on': *id007
+  gloss:
+    en: your, you (two)
+  allomorphs:
+  - form: كُمَا
+- id: lexeme:obj-2fpl
+  realises:
+    Person[obj]: '2'
+    Number[obj]: Plur
+    Gender[obj]: Fem
+  'on': *id007
+  gloss:
+    en: your, you (women)
+  allomorphs:
+  - form: كُنَّ
+- id: lexeme:obj-2fs
+  realises:
+    Person[obj]: '2'
+    Number[obj]: Sing
+    Gender[obj]: Fem
+  'on': *id007
+  gloss:
+    en: your, you (a woman)
+  allomorphs:
+  - form: كِ
+- id: lexeme:obj-2mpl
+  realises:
+    Person[obj]: '2'
+    Number[obj]: Plur
+    Gender[obj]: Masc
+  'on': *id007
+  gloss:
+    en: your, you (men)
+  allomorphs:
+  - form: كُمْ
+- id: lexeme:obj-2ms
+  realises:
+    Person[obj]: '2'
+    Number[obj]: Sing
+    Gender[obj]: Masc
+  'on': *id007
+  gloss:
+    en: your, you (a man)
+  allomorphs:
+  - form: كَ
+- id: lexeme:obj-3du
+  realises:
+    Person[obj]: '3'
+    Number[obj]: Dual
+  'on': *id007
+  gloss:
+    en: their, them (two)
+  allomorphs:
+  - form: هُمَا
+    after:
+      pos: ADP
+      with:
+      - lexeme:li
+  - form: هِمَا
+    after: &id008
+      endsIn: '{C}{I}'
+  - form: هِمَا
+    after: &id009
+      endsIn: '{C}{I}ي'
+  - form: هِمَا
+    after: &id010
+      endsIn: '{C}{I}ي{UI}'
+  - form: هِمَا
+    after: &id011
+      endsIn: '{C}{A}ي'
+  - form: هُمَا
+- id: lexeme:obj-3fpl
+  realises:
+    Person[obj]: '3'
+    Number[obj]: Plur
+    Gender[obj]: Fem
+  'on': *id007
+  gloss:
+    en: their, them (women)
+  allomorphs:
+  - form: هُنَّ
+    after:
+      pos: ADP
+      with:
+      - lexeme:li
+  - form: هِنَّ
+    after: *id008
+  - form: هِنَّ
+    after: *id009
+  - form: هِنَّ
+    after: *id010
+  - form: هِنَّ
+    after: *id011
+  - form: هُنَّ
+- id: lexeme:obj-3fs
+  realises:
+    Person[obj]: '3'
+    Number[obj]: Sing
+    Gender[obj]: Fem
+  'on': *id007
+  gloss:
+    en: her
+  allomorphs:
+  - form: هَا
+- id: lexeme:obj-3mpl
+  realises:
+    Person[obj]: '3'
+    Number[obj]: Plur
+    Gender[obj]: Masc
+  'on': *id007
+  gloss:
+    en: their, them (men)
+  allomorphs:
+  - form: هُمْ
+    after:
+      pos: ADP
+      with:
+      - lexeme:li
+  - form: هِمْ
+    after: *id008
+  - form: هِمْ
+    after: *id009
+  - form: هِمْ
+    after: *id010
+  - form: هِمْ
+    after: *id011
+  - form: هُمْ
+- id: lexeme:obj-3ms
+  realises:
+    Person[obj]: '3'
+    Number[obj]: Sing
+    Gender[obj]: Masc
+  'on': *id007
+  gloss:
+    en: his, him
+  allomorphs:
+  - form: هُ
+    after:
+      pos: ADP
+      with:
+      - lexeme:li
+  - form: هِ
+    after: *id008
+  - form: هِ
+    after: *id009
+  - form: هِ
+    after: *id010
+  - form: هِ
+    after: *id011
+  - form: هُ
 - id: lexeme:pass
   realises:
     Voice: Pass
   'on':
-    pos: *id002
+    pos: *id005
   gloss:
     en: passive
   notes:
@@ -596,7 +1402,7 @@ lexemes:
     VerbForm: Fin
     Aspect: Perf
   'on':
-    pos: *id002
+    pos: *id005
   requires:
   - Person
   - Number
@@ -612,9 +1418,9 @@ lexemes:
     Person: '1'
     Number: Plur
   'on':
-    has: &id005
+    has: &id013
       Aspect: Perf
-  selects: *id004
+  selects: *id012
   gloss:
     en: '-nā: we (past)'
   allomorphs:
@@ -624,8 +1430,8 @@ lexemes:
     Person: '1'
     Number: Sing
   'on':
-    has: *id005
-  selects: *id004
+    has: *id013
+  selects: *id012
   gloss:
     en: '-tu: I (past)'
   allomorphs:
@@ -635,8 +1441,8 @@ lexemes:
     Person: '2'
     Number: Dual
   'on':
-    has: *id005
-  selects: *id004
+    has: *id013
+  selects: *id012
   gloss:
     en: '-tumā: you two (past)'
   allomorphs:
@@ -647,8 +1453,8 @@ lexemes:
     Gender: Fem
     Number: Plur
   'on':
-    has: *id005
-  selects: *id004
+    has: *id013
+  selects: *id012
   gloss:
     en: '-tunna: you, women (past)'
   allomorphs:
@@ -659,8 +1465,8 @@ lexemes:
     Gender: Fem
     Number: Sing
   'on':
-    has: *id005
-  selects: *id004
+    has: *id013
+  selects: *id012
   gloss:
     en: '-ti: you, a woman (past)'
   allomorphs:
@@ -671,8 +1477,8 @@ lexemes:
     Gender: Masc
     Number: Plur
   'on':
-    has: *id005
-  selects: *id004
+    has: *id013
+  selects: *id012
   gloss:
     en: '-tum: you, men (past)'
   allomorphs:
@@ -683,8 +1489,8 @@ lexemes:
     Gender: Masc
     Number: Sing
   'on':
-    has: *id005
-  selects: *id004
+    has: *id013
+  selects: *id012
   gloss:
     en: '-ta: you, a man (past)'
   allomorphs:
@@ -695,7 +1501,7 @@ lexemes:
     Gender: Fem
     Number: Dual
   'on':
-    has: *id005
+    has: *id013
   gloss:
     en: '-atā: they two, women (past)'
   allomorphs:
@@ -706,8 +1512,8 @@ lexemes:
     Gender: Fem
     Number: Plur
   'on':
-    has: *id005
-  selects: *id004
+    has: *id013
+  selects: *id012
   gloss:
     en: '-na: they, women (past)'
   allomorphs:
@@ -718,7 +1524,7 @@ lexemes:
     Gender: Fem
     Number: Sing
   'on':
-    has: *id005
+    has: *id013
   gloss:
     en: '-at: she (past)'
   allomorphs:
@@ -729,7 +1535,7 @@ lexemes:
     Gender: Masc
     Number: Dual
   'on':
-    has: *id005
+    has: *id013
   gloss:
     en: '-ā: they two, men (past)'
   allomorphs:
@@ -740,7 +1546,7 @@ lexemes:
     Gender: Masc
     Number: Plur
   'on':
-    has: *id005
+    has: *id013
   gloss:
     en: '-ū: they, men (past)'
   allomorphs:
@@ -751,19 +1557,210 @@ lexemes:
     Gender: Masc
     Number: Sing
   'on':
-    has: *id005
+    has: *id013
   gloss:
     en: '-a: he (past)'
   allomorphs:
   - form: ـَ
+- id: lexeme:pl
+  realises:
+    Number: Plur
+  'on':
+    pos:
+    - ADJ
+    - NOUN
+  gloss:
+    en: plural (a broken plural)
+  notes:
+    en: 'A zero morpheme: the word''s listed plural stands for it (kutub, madāris).'
+  allomorphs:
+  - form: ''
+- id: lexeme:poss-1pl
+  realises:
+    Person[psor]: '1'
+    Number[psor]: Plur
+  'on': &id014
+    pos:
+    - NOUN
+    - ADJ
+    - ADP
+    - VERB
+  gloss:
+    en: our, us
+  allomorphs:
+  - form: نَا
+- id: lexeme:poss-1sg
+  realises:
+    Person[psor]: '1'
+    Number[psor]: Sing
+  'on': *id014
+  gloss:
+    en: my, me
+  allomorphs:
+  - form: نِي
+    after:
+      endsIn: نْ
+  - form: ـِي
+- id: lexeme:poss-2du
+  realises:
+    Person[psor]: '2'
+    Number[psor]: Dual
+  'on': *id014
+  gloss:
+    en: your, you (two)
+  allomorphs:
+  - form: كُمَا
+- id: lexeme:poss-2fpl
+  realises:
+    Person[psor]: '2'
+    Number[psor]: Plur
+    Gender[psor]: Fem
+  'on': *id014
+  gloss:
+    en: your, you (women)
+  allomorphs:
+  - form: كُنَّ
+- id: lexeme:poss-2fs
+  realises:
+    Person[psor]: '2'
+    Number[psor]: Sing
+    Gender[psor]: Fem
+  'on': *id014
+  gloss:
+    en: your, you (a woman)
+  allomorphs:
+  - form: كِ
+- id: lexeme:poss-2mpl
+  realises:
+    Person[psor]: '2'
+    Number[psor]: Plur
+    Gender[psor]: Masc
+  'on': *id014
+  gloss:
+    en: your, you (men)
+  allomorphs:
+  - form: كُمْ
+- id: lexeme:poss-2ms
+  realises:
+    Person[psor]: '2'
+    Number[psor]: Sing
+    Gender[psor]: Masc
+  'on': *id014
+  gloss:
+    en: your, you (a man)
+  allomorphs:
+  - form: كَ
+- id: lexeme:poss-3du
+  realises:
+    Person[psor]: '3'
+    Number[psor]: Dual
+  'on': *id014
+  gloss:
+    en: their, them (two)
+  allomorphs:
+  - form: هُمَا
+    after:
+      pos: ADP
+      with:
+      - lexeme:li
+  - form: هِمَا
+    after: *id008
+  - form: هِمَا
+    after: *id009
+  - form: هِمَا
+    after: *id010
+  - form: هِمَا
+    after: *id011
+  - form: هُمَا
+- id: lexeme:poss-3fpl
+  realises:
+    Person[psor]: '3'
+    Number[psor]: Plur
+    Gender[psor]: Fem
+  'on': *id014
+  gloss:
+    en: their, them (women)
+  allomorphs:
+  - form: هُنَّ
+    after:
+      pos: ADP
+      with:
+      - lexeme:li
+  - form: هِنَّ
+    after: *id008
+  - form: هِنَّ
+    after: *id009
+  - form: هِنَّ
+    after: *id010
+  - form: هِنَّ
+    after: *id011
+  - form: هُنَّ
+- id: lexeme:poss-3fs
+  realises:
+    Person[psor]: '3'
+    Number[psor]: Sing
+    Gender[psor]: Fem
+  'on': *id014
+  gloss:
+    en: her
+  allomorphs:
+  - form: هَا
+- id: lexeme:poss-3mpl
+  realises:
+    Person[psor]: '3'
+    Number[psor]: Plur
+    Gender[psor]: Masc
+  'on': *id014
+  gloss:
+    en: their, them (men)
+  allomorphs:
+  - form: هُمْ
+    after:
+      pos: ADP
+      with:
+      - lexeme:li
+  - form: هِمْ
+    after: *id008
+  - form: هِمْ
+    after: *id009
+  - form: هِمْ
+    after: *id010
+  - form: هِمْ
+    after: *id011
+  - form: هُمْ
+- id: lexeme:poss-3ms
+  realises:
+    Person[psor]: '3'
+    Number[psor]: Sing
+    Gender[psor]: Masc
+  'on': *id014
+  gloss:
+    en: his, him
+  allomorphs:
+  - form: هُ
+    after:
+      pos: ADP
+      with:
+      - lexeme:li
+  - form: هِ
+    after: *id008
+  - form: هِ
+    after: *id009
+  - form: هِ
+    after: *id010
+  - form: هِ
+    after: *id011
+  - form: هُ
 - id: lexeme:ptcp
   realises:
     VerbForm: Part
   'on':
-    pos: *id002
+    pos: *id005
   requires:
   - Gender
   - Number
+  - Case
+  - Definite
   selects: participle
   gloss:
     en: participle
@@ -771,6 +1768,24 @@ lexemes:
     en: 'A zero morpheme: the participle''s stem (fāʿil, mufʿil …); with the passive, the passive participle (mafʿūl, mufʿal …).'
   allomorphs:
   - form: ''
+- id: lexeme:qad
+  pos: PART
+  gloss:
+    en: already, may
+  form: قَدْ
+- id: lexeme:qadi
+  pos: NOUN
+  feats:
+    Gender: Masc
+  gloss:
+    en: judge
+  form: قَاضِي
+  forms:
+  - feats:
+      Number: Plur
+    form: قُضَاة
+    status: listed
+    statement: *id001
 - id: lexeme:qala
   pos: VERB
   gloss:
@@ -785,6 +1800,26 @@ lexemes:
       past: a
       present: u
     source: ryding 2005
+- id: lexeme:qalb
+  pos: NOUN
+  feats:
+    Gender: Masc
+  gloss:
+    en: heart
+  form: قَلْب
+  forms:
+  - feats:
+      Number: Plur
+    form: قُلُوب
+    status: listed
+    statement: *id001
+- id: lexeme:qamar
+  pos: NOUN
+  feats:
+    Gender: Masc
+  gloss:
+    en: moon
+  form: قَمَر
 - id: lexeme:qaraa
   pos: VERB
   gloss:
@@ -799,6 +1834,19 @@ lexemes:
       past: a
       present: a
     source: ryding 2005
+- id: lexeme:rajul
+  pos: NOUN
+  feats:
+    Gender: Masc
+  gloss:
+    en: man
+  form: رَجُل
+  forms:
+  - feats:
+      Number: Plur
+    form: رِجَال
+    status: listed
+    statement: *id001
 - id: lexeme:rama
   pos: VERB
   gloss:
@@ -813,6 +1861,15 @@ lexemes:
       past: a
       present: i
     source: ryding 2005
+- id: lexeme:sa
+  pos: PART
+  'on':
+    has:
+      Aspect: Imp
+      Mood: Ind
+  gloss:
+    en: 'sa-: will'
+  form: سَ
 - id: lexeme:saada
   pos: VERB
   gloss:
@@ -838,6 +1895,34 @@ lexemes:
       past: a
       present: a
     source: ryding 2005
+- id: lexeme:saghir
+  pos: ADJ
+  gloss:
+    en: small
+  form: صَغِير
+  forms:
+  - feats:
+      Gender: Masc
+      Number: Plur
+    form: صِغَار
+    status: listed
+    statement: *id001
+- id: lexeme:sahra
+  pos: NOUN
+  feats:
+    Gender: Fem
+  classes:
+  - diptote
+  gloss:
+    en: desert
+  form: صَحْرَاء
+- id: lexeme:sama
+  pos: NOUN
+  feats:
+    Gender: Fem
+  gloss:
+    en: sky
+  form: سَمَاء
 - id: lexeme:samma
   pos: VERB
   gloss:
@@ -863,6 +1948,13 @@ lexemes:
       past: a
       present: i
     source: ryding 2005
+- id: lexeme:sayyara
+  pos: NOUN
+  feats:
+    Gender: Fem
+  gloss:
+    en: car
+  form: سَيَّارَة
 - id: lexeme:sg
   realises:
     Number: Sing
@@ -875,6 +1967,13 @@ lexemes:
     en: one (zero)
   allomorphs:
   - form: ''
+- id: lexeme:shams
+  pos: NOUN
+  feats:
+    Gender: Fem
+  gloss:
+    en: sun
+  form: شَمْس
 - id: lexeme:shariba
   pos: VERB
   gloss:
@@ -889,11 +1988,23 @@ lexemes:
       past: i
       present: a
     source: ryding 2005
+- id: lexeme:sing
+  realises:
+    Number: Sing
+  'on':
+    pos:
+    - ADJ
+    - NOUN
+    - VERB
+  gloss:
+    en: one (zero)
+  allomorphs:
+  - form: ''
 - id: lexeme:sub
   realises:
     Mood: Sub
   'on':
-    has: *id003
+    has: *id006
   gloss:
     en: subjunctive
   allomorphs:
@@ -940,6 +2051,30 @@ lexemes:
     - ب
     form: VI
     source: ryding 2005
+- id: lexeme:talib
+  pos: NOUN
+  chooses:
+  - Gender
+  gloss:
+    en: student
+  form: طَالِب
+  forms:
+  - feats:
+      Gender: Masc
+      Number: Plur
+    form: طُلَّاب
+    status: listed
+    statement: *id001
+- id: lexeme:tilka
+  pos: PRON
+  gloss:
+    en: that (feminine)
+  form: تِلْكَ
+- id: lexeme:wa
+  pos: CCONJ
+  gloss:
+    en: 'wa-: and'
+  form: وَ
 - id: lexeme:wajada
   pos: VERB
   gloss:
@@ -954,6 +2089,19 @@ lexemes:
       past: a
       present: i
     source: ryding 2005
+- id: lexeme:walad
+  pos: NOUN
+  feats:
+    Gender: Masc
+  gloss:
+    en: boy, child
+  form: وَلَد
+  forms:
+  - feats:
+      Number: Plur
+    form: ءَوْلَاد
+    status: listed
+    statement: *id001
 - id: lexeme:wasala
   pos: VERB
   gloss:
@@ -968,6 +2116,19 @@ lexemes:
       past: a
       present: i
     source: ryding 2005
+- id: lexeme:yawm
+  pos: NOUN
+  feats:
+    Gender: Masc
+  gloss:
+    en: day
+  form: يَوْم
+  forms:
+  - feats:
+      Number: Plur
+    form: ءَيَّام
+    status: listed
+    statement: *id001
 - id: lexeme:zanna
   pos: VERB
   gloss:
