@@ -99,9 +99,9 @@ export interface LexemeRow {
  * - `has`, `lacks`: the keys its entry stores (forms, allomorphs, notes, image): the lexicon file's
  *   entry where the file is at hand, the bundle lexeme's otherwise.
  */
-export type LexiconFacet = "pos" | "class" | "kind" | "course" | "feature" | "has" | "lacks";
+export type LexiconFacet = "pos" | "class" | "kind" | "course" | "dimension" | "feature" | "has" | "lacks";
 
-export const LEXICON_FACETS: readonly LexiconFacet[] = ["pos", "class", "kind", "course", "feature", "has", "lacks"];
+export const LEXICON_FACETS: readonly LexiconFacet[] = ["pos", "class", "kind", "course", "dimension", "feature", "has", "lacks"];
 
 export type LexemeFacets = Readonly<Record<LexiconFacet, readonly string[]>>;
 
@@ -109,7 +109,7 @@ export type LexemeFacets = Readonly<Record<LexiconFacet, readonly string[]>>;
  * How a facet's chosen values combine. A lexeme has one value of an `any` facet, so it passes where
  * it has one of those chosen; it has several of an `all` facet, so it passes where it has every one.
  */
-export const FACET_COMBINE: Readonly<Record<LexiconFacet, "any" | "all">> = { pos: "any", class: "all", kind: "any", course: "any", feature: "all", has: "all", lacks: "all" };
+export const FACET_COMBINE: Readonly<Record<LexiconFacet, "any" | "all">> = { pos: "any", class: "all", kind: "any", course: "any", dimension: "all", feature: "all", has: "all", lacks: "all" };
 
 /** The values chosen on each facet; a facet with none chosen lets every lexeme through. */
 export type LexiconFilter = Readonly<Partial<Record<LexiconFacet, readonly string[]>>>;
@@ -601,6 +601,8 @@ export const lexiconData = (course: CourseView, source?: LexiconSource, aliases?
       class: classesOf(entry, lexeme),
       kind: [bound ? "bound" : "free"],
       course: [lexeme === undefined ? "file" : at === undefined ? "untaught" : "taught"],
+      // The features it has a value of, whatever the value: what it brings to a word (VerbForm, Mood) or has of itself.
+      dimension: [...new Set(rowTags.filter((tag) => tag.includes("=")).map((tag) => tag.slice(0, tag.indexOf("="))))],
       feature: rowTags.filter((tag) => tag.includes("=")),
       has: stored,
       // Filled in once every entry's keys are known.

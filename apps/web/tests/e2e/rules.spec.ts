@@ -103,3 +103,24 @@ test("a lexeme is put through the rules as it is changed, kept in the address, a
   expect((await logOf(page, "apc")).length).toBe(before);
   expect(errors).toEqual([]);
 });
+
+test("a lexicon no course uses: what brings a feature is found by the feature's name", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(String(e)));
+  await page.goto("/?sound=off&debug=1#/lexicon/arb/rules");
+  const root = page.locator("[data-rules-explorer]");
+  await root.locator("[data-field=rules-base]").fill("kataba");
+  await root.locator('[data-pick="lexeme:kataba"]').click();
+  await expect(root.locator('[data-base="lexeme:kataba"]')).toBeVisible();
+  await expect(root.locator("[data-rules-missing]").first()).toHaveAttribute("data-rules-missing", /VerbForm/u);
+
+  // The lexemes that bring a VerbForm to it, whatever the value, without knowing their ids.
+  const add = root.locator('[data-picker="rules-add"]');
+  await add.locator("[data-action=lexicon-filter]").click();
+  await add.locator('[data-facet="dimension"] [data-facet-value="VerbForm"]').click();
+  await expect(add.locator("[data-pick]")).toHaveText([/.*/u, /.*/u, /.*/u, /.*/u]);
+  for (const id of ["perf", "impf", "imp", "ptcp"]) await expect(add.locator(`[data-pick="lexeme:${id}"]`)).toBeVisible();
+  await add.locator('[data-pick="lexeme:perf"]').click();
+  await expect(root.locator('[data-attached="lexeme:perf"]')).toBeVisible();
+  expect(errors).toEqual([]);
+});

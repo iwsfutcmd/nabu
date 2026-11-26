@@ -19,6 +19,7 @@ const FACET_MESSAGES = {
   class: "data.lexicon.facet.class",
   kind: "data.lexicon.facet.kind",
   course: "data.lexicon.facet.course",
+  dimension: "data.lexicon.facet.dimension",
   feature: "data.lexicon.facet.feature",
   has: "data.lexicon.facet.has",
   lacks: "data.lexicon.facet.lacks",

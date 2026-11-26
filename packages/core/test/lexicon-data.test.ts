@@ -153,6 +153,7 @@ describe.each(COURSES)("the lexicon of %s (%s)", (id, orthography) => {
       expect(row.facets.kind, row.id.id).toEqual([row.bound ? "bound" : "free"]);
       expect(row.facets.course, row.id.id).toEqual([row.lexeme === undefined ? "file" : course.units.some((u) => u.nodes.some((n) => n.introduces.includes(row.id.id))) ? "taught" : "untaught"]);
       expect(row.facets.feature, row.id.id).toEqual(row.tags.filter((t) => t.includes("=")));
+      expect(new Set(row.facets.dimension), row.id.id).toEqual(new Set(row.facets.feature.map((t) => t.split("=")[0])));
       // What it stores and what it lacks are every key some entry stores, between them.
       expect(new Set(row.facets.has), row.id.id).toEqual(new Set(Object.keys(entry).filter((k) => k !== "id")));
       expect(new Set([...row.facets.has, ...row.facets.lacks]), row.id.id).toEqual(keys);
