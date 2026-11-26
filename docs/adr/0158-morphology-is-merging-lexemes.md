@@ -74,6 +74,9 @@ A bound lexeme (`realises`, already in the schema) states:
 
 - **what it attaches to**: a category, and the values the stem must already have or must lack (`on`: es `-o` on
   `VERB` with `VerbForm=Fin, Mood=Ind, Tense=Pres` set and `Person` unset);
+- **which side of its base it stands** (`on.at`: `before` or `after`; the owner, 2026-11-26: "an affix should contain
+  within it where it attaches"): a prefix or proclitic before, a suffix, ending or zero morpheme after. Merged on
+  the other side it is an `attach` error, and the explorer never asks;
 - **what it brings** (`realises`: `Person=1, Number=Sing`), one value or several (a portmanteau: es `-o`);
 - **what it requires next** (`requires`): the owner's "finite-ness gives the output a further requirement of
   person and tense". es `fin` brings `VerbForm=Fin` and requires `Mood`; `ind` brings `Mood=Ind` and requires
@@ -133,7 +136,8 @@ gap-fill's `asks: form`, contrast sets' `forms`). They are never a part: `featur
 
 Pick a base; add lexemes before and after it. No switches. It shows the features the merge has so far, what is
 still required, and the rules that fired at each join; a word is spelled once complete (and shown incomplete
-before). What to add is offered by what attaches: only affixes whose `on` the word satisfies now.
+before). What to add is offered by what attaches: only affixes whose `on` the word satisfies now, each written on
+the side its `on.at` names (no side to choose).
 
 ## Worked examples
 

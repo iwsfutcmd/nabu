@@ -842,35 +842,46 @@ export const RulesExplorer = ({
                   side="after"
                   onChange={(after) => change({ after })}
                 />
-                <RadioGroup
-                  className={styles.feature}
-                  value={side}
-                  onChange={(v) => setSide(v === "before" ? "before" : "after")}
-                  orientation="horizontal"
-                  data-add-side={side}
-                >
-                  <Label className={list.label}>
-                    {t.format("rules.add.side")}
-                  </Label>
-                  <div className={list.radios}>
-                    <Radio className={list.radio} value="before">
-                      {t.format("rules.before")}
-                    </Radio>
-                    <Radio className={list.radio} value="after">
-                      {t.format("rules.after")}
-                    </Radio>
-                  </div>
-                </RadioGroup>
+                {!explorer.merging && (
+                  <RadioGroup
+                    className={styles.feature}
+                    value={side}
+                    onChange={(v) =>
+                      setSide(v === "before" ? "before" : "after")
+                    }
+                    orientation="horizontal"
+                    data-add-side={side}
+                  >
+                    <Label className={list.label}>
+                      {t.format("rules.add.side")}
+                    </Label>
+                    <div className={list.radios}>
+                      <Radio className={list.radio} value="before">
+                        {t.format("rules.before")}
+                      </Radio>
+                      <Radio className={list.radio} value="after">
+                        {t.format("rules.after")}
+                      </Radio>
+                    </div>
+                  </RadioGroup>
+                )}
                 <LexemePicker
                   t={t}
                   explorer={explorer}
                   label={t.format("rules.add")}
                   field="rules-add"
                   browse={false}
-                  among={attachable(explorer, side)}
+                  among={
+                    explorer.merging
+                      ? [
+                          ...attachable(explorer, "before"),
+                          ...attachable(explorer, "after"),
+                        ]
+                      : attachable(explorer, side)
+                  }
                   onPick={(l) =>
                     change(
-                      side === "before"
+                      (explorer.merging ? l.at : side) === "before"
                         ? {
                             before: [
                               ...request.before,

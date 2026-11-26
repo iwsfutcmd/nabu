@@ -2495,6 +2495,12 @@ class On(BaseModel):
     )
     pos: Annotated[list[PartOfSpeech] | None, Field(min_length=1)] = None
     has: UdFeatures | None = None
+    at: Annotated[
+        Literal["before", "after"] | None,
+        Field(
+            description="Which side of its base it stands (a prefix or proclitic before, a suffix, ending or zero morpheme after): merged on the other side it is an error."
+        ),
+    ] = None
 
 
 type Require = Annotated[str, Field(pattern="^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$")]

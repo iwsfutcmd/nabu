@@ -1156,6 +1156,199 @@
       "note": "The plural merges onto nouns only."
     },
     {
+      "id": "realise/merge/attach-at",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Aspect",
+              "Person",
+              "Number"
+            ],
+            "NOUN": [
+              "Number"
+            ]
+          },
+          "features": {
+            "Aspect": [
+              "Perf"
+            ],
+            "Person": [
+              "1",
+              "3"
+            ],
+            "Number": [
+              "Sing",
+              "Plur"
+            ]
+          },
+          "requires": {
+            "VERB": [
+              "Aspect"
+            ],
+            "NOUN": [
+              "Number"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          }
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kat",
+              "pos": "VERB",
+              "form": "kat"
+            },
+            {
+              "id": "lexeme:dom",
+              "pos": "NOUN",
+              "form": "dom",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "domy",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:perf",
+              "realises": {
+                "Aspect": "Perf"
+              },
+              "on": {
+                "pos": [
+                  "VERB"
+                ]
+              },
+              "requires": [
+                "Person",
+                "Number"
+              ],
+              "allomorphs": [
+                {
+                  "form": ""
+                }
+              ]
+            },
+            {
+              "id": "lexeme:1sg",
+              "realises": {
+                "Person": "1",
+                "Number": "Sing"
+              },
+              "on": {
+                "at": "after",
+                "pos": [
+                  "VERB"
+                ],
+                "has": {
+                  "Aspect": "Perf"
+                }
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:3sg",
+              "realises": {
+                "Person": "3",
+                "Number": "Sing"
+              },
+              "on": {
+                "pos": [
+                  "VERB"
+                ],
+                "has": {
+                  "Aspect": "Perf"
+                }
+              },
+              "allomorphs": [
+                {
+                  "form": ""
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sg",
+              "realises": {
+                "Number": "Sing"
+              },
+              "on": {
+                "pos": [
+                  "NOUN"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": ""
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "on": {
+                "pos": [
+                  "NOUN"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": "a"
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:1sg"
+          },
+          {
+            "lexeme": "lexeme:kat",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:perf"
+          }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "error": {
+          "kind": "attach",
+          "lexeme": "lexeme:1sg",
+          "at": "after"
+        }
+      },
+      "note": "An ending whose entry says it stands after its base (on.at) is not merged before it."
+    },
+    {
       "id": "realise/merge/twice",
       "op": "realise-token",
       "args": {

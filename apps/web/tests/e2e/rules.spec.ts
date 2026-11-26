@@ -104,7 +104,7 @@ test("a lexeme is put through the rules as it is changed, kept in the address, a
   expect(errors).toEqual([]);
 });
 
-test("a lexicon no course uses: what brings a feature is found by the feature's name", async ({ page }) => {
+test("a lexicon no course uses: what brings a feature is found by its name, and each lexeme stands where it says", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(String(e)));
   await page.goto("/?sound=off&debug=1#/lexicon/arb/rules");
@@ -120,7 +120,16 @@ test("a lexicon no course uses: what brings a feature is found by the feature's 
   await add.locator('[data-facet="dimension"] [data-facet-value="VerbForm"]').click();
   await expect(add.locator("[data-pick]")).toHaveText([/.*/u, /.*/u, /.*/u, /.*/u]);
   for (const id of ["perf", "impf", "imp", "ptcp"]) await expect(add.locator(`[data-pick="lexeme:${id}"]`)).toBeVisible();
-  await add.locator('[data-pick="lexeme:perf"]').click();
-  await expect(root.locator('[data-attached="lexeme:perf"]')).toBeVisible();
+  await add.locator('[data-pick="lexeme:impf"]').click();
+  await expect(root.locator('[data-attached="lexeme:impf"]')).toBeVisible();
+
+  // No side to choose: each lexeme says where it stands, and is written there (ya- before the verb).
+  await expect(root.locator("[data-add-side]")).toHaveCount(0);
+  await add.locator("[data-action=lexicon-filter-clear]").click();
+  await root.locator("[data-field=rules-add]").fill("impf-3");
+  await add.locator('[data-pick="lexeme:impf-3"]').click();
+  await expect(root.locator("[data-attached]")).toHaveCount(2);
+  await expect(root.locator('[data-around=before] [data-attached="lexeme:impf-3"]')).toBeVisible();
+  await expect(root.locator('[data-around=after] [data-attached="lexeme:impf"]')).toBeVisible();
   expect(errors).toEqual([]);
 });

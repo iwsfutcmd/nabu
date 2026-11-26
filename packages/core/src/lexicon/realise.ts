@@ -87,7 +87,7 @@ export type RealiseError =
   /** `RealiseOptions.variant` asked for a free variant the cell does not have. */
   | { readonly kind: "variant"; readonly variants: number }
   /** A lexeme merged where its `on` does not hold (ADR 0158): the base is not of its part of speech, or the word lacks a value it merges onto. */
-  | { readonly kind: "attach"; readonly lexeme: string; readonly pos?: readonly string[]; readonly has?: UdFeatures }
+  | { readonly kind: "attach"; readonly lexeme: string; readonly pos?: readonly string[]; readonly has?: UdFeatures; readonly at?: "before" | "after" }
   /** Two lexemes of a token bring the same feature (ADR 0158: no value is brought twice). */
   | { readonly kind: "twice"; readonly feature: string; readonly lexemes: readonly string[] };
 
@@ -890,6 +890,7 @@ const mergeOf = (
     const lexeme = lang.lexemes.get(lexemeId((written[k] as WrittenLexeme).lexeme));
     const on = lexeme?.on;
     if (lexeme === undefined || on === undefined) continue;
+    if (on.at !== undefined && (on.at === "before") !== k < baseAt) return err({ kind: "attach", lexeme: lexeme.id, at: on.at });
     if (on.pos !== undefined && (baseLexeme.pos === undefined || !on.pos.includes(baseLexeme.pos))) return err({ kind: "attach", lexeme: lexeme.id, pos: on.pos });
     // What the word has besides this lexeme's own values.
     const others: Record<string, string> = { ...own, ...(base.feats ?? {}) };

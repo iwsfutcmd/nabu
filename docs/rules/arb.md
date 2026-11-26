@@ -14,7 +14,8 @@ profiles/arb-Arab.standard.yaml are the sources now.
 - **A verb is its root, its Form and, in Form I, its vowels** (`{radicals, form, vowels: {past, present}}`): كتب I
   a/u. It has no person, tense or voice, and alone it is no word: VERB requires `VerbForm`.
 - **Everything else is a lexeme merged with it** (lexicons/arb/lexemes.yaml), each bringing its values (`realises`),
-  saying what it merges onto (`on`) and what the word then needs (`requires`):
+  saying what it merges onto and on which side (`on`, `at`: the person prefixes and the proclitics before, the rest
+  after) and what the word then needs (`requires`):
   - `perf` (∅: VerbForm=Fin, Aspect=Perf; needs Person, Number), `impf` (∅: …Aspect=Imp; needs Person, Number,
     Mood), `imp` (∅: Mood=Imp, Person=2; needs Number), `ptcp` (∅: VerbForm=Part; needs Gender, Number), `pass` (∅:
     Voice=Pass);

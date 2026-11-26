@@ -11,6 +11,7 @@ lexemes:
   realises:
     Case: Acc
   'on':
+    at: after
     pos: &id002
     - NOUN
     - ADJ
@@ -113,6 +114,7 @@ lexemes:
   realises:
     Definite: Def
   'on':
+    at: before
     pos:
     - NOUN
     - ADJ
@@ -252,6 +254,7 @@ lexemes:
 - id: lexeme:bi
   pos: ADP
   'on':
+    at: before
     has:
       Case: Gen
   gloss:
@@ -276,6 +279,7 @@ lexemes:
   realises:
     Definite: Cons
   'on':
+    at: after
     pos:
     - NOUN
     - ADJ
@@ -320,6 +324,7 @@ lexemes:
   realises:
     Number: Dual
   'on':
+    at: after
     has:
       Person: 2,3
       VerbForm: Fin
@@ -331,6 +336,7 @@ lexemes:
   realises:
     Number: Dual
   'on':
+    at: after
     pos:
     - ADJ
     - NOUN
@@ -356,6 +362,8 @@ lexemes:
   - form: ـَيْنِ
 - id: lexeme:fa
   pos: CCONJ
+  'on':
+    at: before
   gloss:
     en: 'fa-: so, and then'
   form: فَ
@@ -401,6 +409,7 @@ lexemes:
   realises:
     Gender: Fem
   'on':
+    at: after
     pos:
     - ADJ
     - NOUN
@@ -421,6 +430,7 @@ lexemes:
     Gender: Fem
     Number: Plur
   'on':
+    at: after
     has:
       Person: 2,3
       VerbForm: Fin
@@ -436,6 +446,7 @@ lexemes:
   realises:
     Number: Plur
   'on':
+    at: after
     pos:
     - ADJ
     - NOUN
@@ -453,6 +464,7 @@ lexemes:
     Gender: Fem
     Number: Sing
   'on':
+    at: after
     has:
       Person: '2'
       VerbForm: Fin
@@ -464,6 +476,7 @@ lexemes:
   realises:
     Case: Gen
   'on':
+    at: after
     pos: *id002
   gloss:
     en: '-i: genitive'
@@ -562,6 +575,7 @@ lexemes:
     Mood: Imp
     Person: '2'
   'on':
+    at: after
     pos: &id005
     - VERB
   requires:
@@ -576,6 +590,7 @@ lexemes:
     VerbForm: Fin
     Aspect: Imp
   'on':
+    at: after
     pos: *id005
   requires:
   - Person
@@ -593,6 +608,7 @@ lexemes:
     Person: '1'
     Number: Plur
   'on':
+    at: before
     has: &id006
       Aspect: Imp
   gloss:
@@ -604,6 +620,7 @@ lexemes:
     Person: '1'
     Number: Sing
   'on':
+    at: before
     has: *id006
   gloss:
     en: 'ʾa-: I (present)'
@@ -613,6 +630,7 @@ lexemes:
   realises:
     Person: '2'
   'on':
+    at: before
     has: *id006
   gloss:
     en: 'ta-: you (present)'
@@ -622,6 +640,7 @@ lexemes:
   realises:
     Person: '3'
   'on':
+    at: before
     has: *id006
   gloss:
     en: 'ya-: he, they (present)'
@@ -632,6 +651,7 @@ lexemes:
     Person: '3'
     Gender: Fem
   'on':
+    at: before
     has: *id006
   gloss:
     en: 'ta-: she, they two women (present)'
@@ -654,6 +674,7 @@ lexemes:
   realises:
     Mood: Ind
   'on':
+    at: after
     has: *id006
   gloss:
     en: indicative
@@ -688,6 +709,7 @@ lexemes:
   realises:
     Definite: Ind
   'on':
+    at: after
     pos: *id002
   gloss:
     en: 'indefinite: -n (tanwīn)'
@@ -851,6 +873,7 @@ lexemes:
   realises:
     Mood: Jus
   'on':
+    at: after
     has: *id006
   gloss:
     en: jussive
@@ -879,6 +902,7 @@ lexemes:
 - id: lexeme:ka
   pos: ADP
   'on':
+    at: before
     has:
       Case: Gen
   gloss:
@@ -993,6 +1017,8 @@ lexemes:
     source: ryding 2005
 - id: lexeme:li
   pos: ADP
+  'on':
+    at: before
   gloss:
     en: 'li-: for, to'
   form: لِ
@@ -1048,6 +1074,7 @@ lexemes:
   realises:
     Gender: Masc
   'on':
+    at: after
     pos:
     - ADJ
     - NOUN
@@ -1095,6 +1122,7 @@ lexemes:
     Gender: Masc
     Number: Plur
   'on':
+    at: after
     has:
       Person: 2,3
       VerbForm: Fin
@@ -1110,6 +1138,7 @@ lexemes:
   realises:
     Number: Plur
   'on':
+    at: after
     pos:
     - ADJ
     - NOUN
@@ -1138,6 +1167,7 @@ lexemes:
     Gender: Masc
     Number: Sing
   'on':
+    at: after
     has:
       Person: 2,3
       VerbForm: Fin
@@ -1197,6 +1227,7 @@ lexemes:
   realises:
     Case: Nom
   'on':
+    at: after
     pos: *id002
   gloss:
     en: '-u: nominative'
@@ -1215,6 +1246,7 @@ lexemes:
     Person[obj]: '1'
     Number[obj]: Plur
   'on': &id007
+    at: after
     pos:
     - VERB
     has:
@@ -1390,6 +1422,7 @@ lexemes:
   realises:
     Voice: Pass
   'on':
+    at: after
     pos: *id005
   gloss:
     en: passive
@@ -1402,6 +1435,7 @@ lexemes:
     VerbForm: Fin
     Aspect: Perf
   'on':
+    at: after
     pos: *id005
   requires:
   - Person
@@ -1418,6 +1452,7 @@ lexemes:
     Person: '1'
     Number: Plur
   'on':
+    at: after
     has: &id013
       Aspect: Perf
   selects: *id012
@@ -1430,6 +1465,7 @@ lexemes:
     Person: '1'
     Number: Sing
   'on':
+    at: after
     has: *id013
   selects: *id012
   gloss:
@@ -1441,6 +1477,7 @@ lexemes:
     Person: '2'
     Number: Dual
   'on':
+    at: after
     has: *id013
   selects: *id012
   gloss:
@@ -1453,6 +1490,7 @@ lexemes:
     Gender: Fem
     Number: Plur
   'on':
+    at: after
     has: *id013
   selects: *id012
   gloss:
@@ -1465,6 +1503,7 @@ lexemes:
     Gender: Fem
     Number: Sing
   'on':
+    at: after
     has: *id013
   selects: *id012
   gloss:
@@ -1477,6 +1516,7 @@ lexemes:
     Gender: Masc
     Number: Plur
   'on':
+    at: after
     has: *id013
   selects: *id012
   gloss:
@@ -1489,6 +1529,7 @@ lexemes:
     Gender: Masc
     Number: Sing
   'on':
+    at: after
     has: *id013
   selects: *id012
   gloss:
@@ -1501,6 +1542,7 @@ lexemes:
     Gender: Fem
     Number: Dual
   'on':
+    at: after
     has: *id013
   gloss:
     en: '-atā: they two, women (past)'
@@ -1512,6 +1554,7 @@ lexemes:
     Gender: Fem
     Number: Plur
   'on':
+    at: after
     has: *id013
   selects: *id012
   gloss:
@@ -1524,6 +1567,7 @@ lexemes:
     Gender: Fem
     Number: Sing
   'on':
+    at: after
     has: *id013
   gloss:
     en: '-at: she (past)'
@@ -1535,6 +1579,7 @@ lexemes:
     Gender: Masc
     Number: Dual
   'on':
+    at: after
     has: *id013
   gloss:
     en: '-ā: they two, men (past)'
@@ -1546,6 +1591,7 @@ lexemes:
     Gender: Masc
     Number: Plur
   'on':
+    at: after
     has: *id013
   gloss:
     en: '-ū: they, men (past)'
@@ -1557,6 +1603,7 @@ lexemes:
     Gender: Masc
     Number: Sing
   'on':
+    at: after
     has: *id013
   gloss:
     en: '-a: he (past)'
@@ -1566,6 +1613,7 @@ lexemes:
   realises:
     Number: Plur
   'on':
+    at: after
     pos:
     - ADJ
     - NOUN
@@ -1580,6 +1628,7 @@ lexemes:
     Person[psor]: '1'
     Number[psor]: Plur
   'on': &id014
+    at: after
     pos:
     - NOUN
     - ADJ
@@ -1755,6 +1804,7 @@ lexemes:
   realises:
     VerbForm: Part
   'on':
+    at: after
     pos: *id005
   requires:
   - Gender
@@ -1864,6 +1914,7 @@ lexemes:
 - id: lexeme:sa
   pos: PART
   'on':
+    at: before
     has:
       Aspect: Imp
       Mood: Ind
@@ -1959,6 +2010,7 @@ lexemes:
   realises:
     Number: Sing
   'on':
+    at: after
     has:
       Person: '3'
       Gender: Fem
@@ -1992,6 +2044,7 @@ lexemes:
   realises:
     Number: Sing
   'on':
+    at: after
     pos:
     - ADJ
     - NOUN
@@ -2004,6 +2057,7 @@ lexemes:
   realises:
     Mood: Sub
   'on':
+    at: after
     has: *id006
   gloss:
     en: subjunctive
@@ -2072,6 +2126,8 @@ lexemes:
   form: تِلْكَ
 - id: lexeme:wa
   pos: CCONJ
+  'on':
+    at: before
   gloss:
     en: 'wa-: and'
   form: وَ

@@ -3171,6 +3171,10 @@ export interface Lexeme {
      */
     readonly pos?: readonly PartOfSpeech[];
     readonly has?: UdFeatures1;
+    /**
+     * Which side of its base it stands (a prefix or proclitic before, a suffix, ending or zero morpheme after): merged on the other side it is an error.
+     */
+    readonly at?: "before" | "after";
   };
   /**
    * The features a word it is merged into must then have, brought by other lexemes (ADR 0158: finite-ness requires person and tense). A word is complete, and written, once every requirement its category and its lexemes raise is met.

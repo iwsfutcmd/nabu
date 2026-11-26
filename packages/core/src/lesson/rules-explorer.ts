@@ -35,6 +35,8 @@ export interface ExplorerLexeme {
    * (language.yaml: es's infinitive, apc's and hbo's 3ms perfect), its stored lexical values left out.
    */
   readonly citation: UdFeatures;
+  /** Which side of its base it stands, where its entry says (`on.at`, ADR 0158): it is written there, never asked. */
+  readonly at?: "before" | "after" | undefined;
 }
 
 /** An orthography (or one of its marked layers) the explorer spells in. */
@@ -205,7 +207,9 @@ export const rulesExplorer = (course: CourseView, source: LexiconSource): RulesE
     const citation = Object.fromEntries(
       Object.entries(isObject(stated) ? stated : {}).filter(([k, v]) => typeof v === "string" && !own.has(k) && features.some((f) => f.feature === k)),
     ) as UdFeatures;
-    return { row, pos, features, citation };
+    const on = entry?.["on"];
+    const at = isObject(on) && (on["at"] === "before" || on["at"] === "after") ? on["at"] : undefined;
+    return { row, pos, features, citation, ...(at !== undefined && { at }) };
   });
 
   const problems: ExplorerProblem[] = [];
@@ -266,6 +270,7 @@ const detailsOf = (error: RealiseError): ExploredError["details"] => {
         { key: "lexeme", value: error.lexeme },
         ...(error.pos === undefined ? [] : [{ key: "pos", value: error.pos.join(" | ") }]),
         ...(error.has === undefined ? [] : [{ key: "has", value: cellKey(error.has) }]),
+        ...(error.at === undefined ? [] : [{ key: "at", value: error.at }]),
       ];
     case "twice":
       return [
@@ -453,9 +458,12 @@ const attaching = new WeakMap<RulesExplorer, Readonly<Record<"before" | "after",
 /**
  * The lexemes that may be written with a base on one side: bound ones (an affix, a suffixed pronoun:
  * written only inside words), and any the course's tokens write beside a base on that side (a clitic:
- * the article, b-, w-). A free word no token writes inside another (apc إنت) is never offered.
+ * the article, b-, w-). A free word no token writes inside another (apc إنت) is never offered. In a
+ * language that merges lexemes, those whose entry says they stand on that side (`on.at`).
  */
 export const attachable = (explorer: RulesExplorer, side: "before" | "after"): readonly ExplorerLexeme[] => {
+  // A language that merges lexemes says where each stands (`on.at`): those, on that side.
+  if (explorer.merging) return explorer.lexemes.filter((l) => l.at === side);
   let found = attaching.get(explorer);
   if (found === undefined) {
     const seen = { before: new Set<string>(), after: new Set<string>() };

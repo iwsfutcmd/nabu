@@ -7,6 +7,7 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { parse } from "yaml";
 import {
+  attachable,
   explore,
   EXPLORE_DEFAULTS,
   lexiconCourse,
@@ -64,6 +65,60 @@ describe("lexiconCourse", () => {
       "يقل",
       "يَقُلْ",
     ]);
+  });
+
+  it("places each lexeme on the side its entry says, and refuses it on the other", () => {
+    const course = lexiconCourse(SOURCE, {
+      language: "arb",
+      support: "en-Latn/standard",
+      numberingSystems,
+    });
+    if (!course.ok) throw new Error(JSON.stringify(course.error));
+    const x = rulesExplorer(course.value, SOURCE);
+    // Every lexeme that merges onto another says where it stands.
+    const entries = (
+      SOURCE.lexemes as { lexemes: { id: string; on?: { at?: string } }[] }
+    ).lexemes;
+    expect(
+      entries
+        .filter((e) => e.on !== undefined && e.on.at === undefined)
+        .map((e) => e.id),
+    ).toEqual([]);
+    const ids = (side: "before" | "after"): readonly string[] =>
+      attachable(x, side).map((l) => l.row.id.id);
+    expect(ids("before")).toEqual(
+      expect.arrayContaining([
+        "lexeme:impf-3",
+        "lexeme:al",
+        "lexeme:wa",
+        "lexeme:sa",
+      ]),
+    );
+    expect(ids("before")).not.toContain("lexeme:perf");
+    expect(ids("after")).toEqual(
+      expect.arrayContaining([
+        "lexeme:perf",
+        "lexeme:impf",
+        "lexeme:poss-3ms",
+        "lexeme:nom",
+      ]),
+    );
+    expect(ids("after")).not.toContain("lexeme:impf-3");
+    // A person prefix written after the verb is no word.
+    const wrong = explore(x, {
+      base: "lexeme:kataba",
+      feats: {},
+      before: [],
+      after: [
+        { lexeme: "lexeme:impf" },
+        { lexeme: "lexeme:impf-3" },
+        { lexeme: "lexeme:ms" },
+        { lexeme: "lexeme:ind" },
+      ],
+      ...EXPLORE_DEFAULTS,
+    });
+    expect(wrong.ok).toBe(false);
+    expect(JSON.stringify(wrong)).toContain('"at"');
   });
 
   it("says so where the language has no orthography among the profiles", () => {
