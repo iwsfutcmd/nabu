@@ -61,6 +61,8 @@ export interface RulesExplorer {
   readonly compiled?: CompiledLanguage | undefined;
   readonly spellers: ReadonlyMap<string, Speller>;
   readonly tags: Tags;
+  /** The language merges lexemes (ADR 0158: it states `requires`): no lexeme has switches; a word's values are its lexemes'. */
+  readonly merging: boolean;
 }
 
 /** A lexeme written beside the base, with the values the token gives it where it gives any (es buscarlos: lo in the plural). */
@@ -121,6 +123,9 @@ export type Explored =
       readonly spellings: readonly ExploredSpelling[];
       /** The token's free variants (a scribe's other spelling of a suffix: a free allomorph), each form with its spellings. */
       readonly variants: readonly { readonly form: TaggedText; readonly spellings: readonly ExploredSpelling[] }[];
+      /** In a language that merges lexemes: the values the word's lexemes bring, and those it still needs (none: complete). */
+      readonly feats?: UdFeatures | undefined;
+      readonly missing?: readonly string[] | undefined;
     }
   | { readonly ok: false; readonly error: ExploredError };
 
@@ -183,6 +188,7 @@ export const rulesExplorer = (course: CourseView, source: LexiconSource): RulesE
   const lexicalFeatures = isObject(declared.lexical) ? (declared.lexical as Readonly<Record<string, readonly string[]>>) : {};
   const values = isObject(declared.features) ? (declared.features as Readonly<Record<string, readonly string[]>>) : {};
   const citations = isObject(declared.citation) ? (declared.citation as Readonly<Record<string, unknown>>) : {};
+  const merging = isObject(declared.requires);
 
   const rows = lexiconData(course, source).lexemes;
   const lexemes = rows.map((row): ExplorerLexeme => {
@@ -192,7 +198,8 @@ export const rulesExplorer = (course: CourseView, source: LexiconSource): RulesE
     // cell's: only one it `chooses` (tío, tía) is set there. Its own value is shown with the lexeme, never offered.
     const chooses = stringsOf(entry?.["chooses"]);
     const own = new Set(pos === undefined ? [] : (lexicalFeatures[pos] ?? []).filter((f) => !chooses.includes(f)));
-    const names = [...(pos === undefined ? [] : (dimensions[pos] ?? [])), ...chooses].filter((f) => !own.has(f));
+    // A language that merges lexemes (ADR 0158) has no switches: a word's values are what its lexemes bring.
+    const names = merging ? [] : [...(pos === undefined ? [] : (dimensions[pos] ?? [])), ...chooses].filter((f) => !own.has(f));
     const features = [...new Set(names)].map((feature) => ({ feature, values: stringsOf(values[feature]) }));
     const stated = isObject(entry?.["citation"]) ? entry["citation"] : pos === undefined ? undefined : citations[pos];
     const citation = Object.fromEntries(
@@ -231,7 +238,7 @@ export const rulesExplorer = (course: CourseView, source: LexiconSource): RulesE
     for (const annotation of profile?.annotations ?? []) if (annotation.spell !== undefined) add(annotation.id, annotation.spell);
   }
 
-  const explorer: RulesExplorer = { course, lexemes, orthographies, problems, compiled, spellers, tags: courseTags(course) };
+  const explorer: RulesExplorer = { course, lexemes, orthographies, problems, compiled, spellers, tags: courseTags(course), merging };
   bySource.set(source, explorer);
   return explorer;
 };
@@ -287,7 +294,7 @@ export const explore = (explorer: RulesExplorer, request: ExploreRequest, strict
     ...(strict ? { strict: true } : {}),
   });
   if (!result.ok) return { ok: false, error: { kind: result.error.kind, details: detailsOf(result.error) } };
-  const { form, status, steps, listed, alternatives } = result.value;
+  const { form, status, steps, listed, alternatives, feats, missing } = result.value;
   const support = explorer.course.supportKey;
   const glossOf = (rule: string): TaggedText | undefined => (explorer.course.lexicon.rules ?? []).find((r) => r.id === rule)?.gloss?.[support];
   const spellingsOf = (text: string): readonly ExploredSpelling[] =>
@@ -310,6 +317,8 @@ export const explore = (explorer: RulesExplorer, request: ExploreRequest, strict
     }),
     spellings,
     variants: (alternatives ?? []).map((a) => ({ form: tagged(explorer.tags.own(a.form), a.form), spellings: spellingsOf(a.form) })),
+    ...(feats === undefined ? {} : { feats }),
+    ...(missing === undefined ? {} : { missing }),
   };
 };
 

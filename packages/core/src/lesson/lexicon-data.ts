@@ -556,7 +556,9 @@ export const lexiconData = (course: CourseView, source?: LexiconSource, aliases?
     const sourceNode = entry === undefined ? undefined : toNode(entry, "auto", id, tags, into);
     const storedFeats = entry !== undefined && isObject(entry["feats"]) ? (entry["feats"] as UdFeatures) : undefined;
     const bundleNode = lexeme === undefined ? undefined : markFeats(toNode(lexeme, "auto", id, tags, into), entry === undefined ? undefined : (storedFeats ?? {}));
-    const bound = lexeme === undefined ? !isObject(entry?.["spelled"]) : isBound(lexeme);
+    // A lexeme only the file has is bound where it has no part of speech (an affix, a pattern: ADR 0158), or no
+    // spelling of its own; one of a language that merges lexemes is never spelled alone, so its part of speech decides.
+    const bound = lexeme === undefined ? entry?.["pos"] === undefined || (!isObject(entry["spelled"]) && !isObject(source?.language?.["requires"])) : isBound(lexeme);
     const word = wordsById.get(id);
     const at = introducedBy.get(id);
     const clip = course.audio[id];

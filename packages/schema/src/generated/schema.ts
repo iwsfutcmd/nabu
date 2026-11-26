@@ -433,6 +433,10 @@ export type KcId1 = string & { readonly __brand: "KcId" };
  */
 export type KcId2 = string & { readonly __brand: "KcId" };
 /**
+ * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
+ */
+export type UdFeatures9 = Readonly<Record<string, string>>;
+/**
  * Where the template is a thing a learner gets right or wrong of its own (a hollow verb's short past stem), the branch it is of the realisation rule that takes it: rule:apc-perfect|hollow-short.
  */
 export type Branch = string;
@@ -3832,6 +3836,7 @@ export interface Stem {
   readonly vowels?: {
     readonly [k: string]: string;
   };
+  readonly feats?: UdFeatures9;
   readonly template: string;
   readonly branch?: Branch;
   readonly notes?: {

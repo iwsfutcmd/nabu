@@ -4415,6 +4415,12 @@ class Stem(BaseModel):
         str | None, Field(alias="in", pattern="^(\\[.*\\]|\\{[A-Za-z][A-Za-z0-9]*\\})$")
     ] = None
     vowels: Annotated[dict[str, VowelsAdditionalProperty] | None, Field(min_length=1)] = None
+    feats: Annotated[
+        UdFeatures | None,
+        Field(
+            description="The values the word must have, as its lexemes bring them (ADR 0158: arb's passive stem is one in the perfect, another in the imperfect): a template with them is more specific than one without."
+        ),
+    ] = None
     template: Annotated[str, Field(min_length=1)]
     branch: Annotated[
         Branch | None,

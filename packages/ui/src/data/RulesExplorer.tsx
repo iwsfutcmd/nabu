@@ -24,6 +24,7 @@ import {
   explorerParadigm,
   fitCell,
   attachable,
+  cellKey,
   lexiconFacets,
   lexiconFilter,
   rulesExplorer,
@@ -41,7 +42,15 @@ import {
 } from "@nabu/core/lesson";
 import type { UdFeatures } from "@nabu/schema";
 import { useId, useMemo, useState, type JSX } from "react";
-import { Button, Checkbox, Input, Label, Radio, RadioGroup, SearchField } from "react-aria-components";
+import {
+  Button,
+  Checkbox,
+  Input,
+  Label,
+  Radio,
+  RadioGroup,
+  SearchField,
+} from "react-aria-components";
 import { useTranslator } from "../context.tsx";
 import { CheckIcon } from "../icons.tsx";
 import { LexiconFilters } from "./LexiconFilters.tsx";
@@ -67,7 +76,11 @@ type Translator = ReturnType<typeof useTranslator>;
 /** Lexemes listed at first, and added by each "Show more". */
 const PAGE = 40;
 
-const STATUS_MESSAGES = { given: "rules.status.given", pinned: "rules.status.pinned", listed: "rules.status.listed" } as const;
+const STATUS_MESSAGES = {
+  given: "rules.status.given",
+  pinned: "rules.status.pinned",
+  listed: "rules.status.listed",
+} as const;
 
 const ERROR_MESSAGES = {
   "unknown-lexeme": "rules.error.unknown-lexeme",
@@ -91,9 +104,19 @@ const VERDICT_MESSAGES = {
   error: "rules.verdict.error",
 } as const;
 
-const OPTION_MESSAGES = { blocking: "rules.option.blocking", pinned: "rules.option.pinned", spellings: "rules.option.spellings" } as const;
+const OPTION_MESSAGES = {
+  blocking: "rules.option.blocking",
+  pinned: "rules.option.pinned",
+  spellings: "rules.option.spellings",
+} as const;
 
-const Code = ({ value, ...marks }: { value: string; "data-rule-step"?: string }): JSX.Element => (
+const Code = ({
+  value,
+  ...marks
+}: {
+  value: string;
+  "data-rule-step"?: string;
+}): JSX.Element => (
   <code className={data.code} {...marks}>
     {value}
   </code>
@@ -102,8 +125,12 @@ const Code = ({ value, ...marks }: { value: string; "data-rule-step"?: string })
 /** A lexeme as a line: its lemma, its gloss, its id and tags as code. */
 const LexemeLine = ({ lexeme }: { lexeme: ExplorerLexeme }): JSX.Element => (
   <span className={styles.lexeme}>
-    {lexeme.row.form !== undefined && <T className={styles.lemma} text={lexeme.row.form} />}
-    {lexeme.row.gloss !== undefined && <T className={list.gloss} text={lexeme.row.gloss} />}
+    {lexeme.row.form !== undefined && (
+      <T className={styles.lemma} text={lexeme.row.form} />
+    )}
+    {lexeme.row.gloss !== undefined && (
+      <T className={list.gloss} text={lexeme.row.gloss} />
+    )}
     <Code value={lexeme.row.id.id} />
     {lexeme.row.tags.map((tag) => (
       <Code key={tag} value={tag} />
@@ -148,7 +175,15 @@ const LexemePicker = ({
     const matches = dataMatcher(explorer.course, query).lexicon;
     return among.filter((l) => matches(l.row));
   }, [explorer, among, query]);
-  const facets = useMemo(() => lexiconFacets(rows, searched.map((l) => l.row), filter), [rows, searched, filter]);
+  const facets = useMemo(
+    () =>
+      lexiconFacets(
+        rows,
+        searched.map((l) => l.row),
+        filter,
+      ),
+    [rows, searched, filter],
+  );
   const found = useMemo(() => {
     const passes = lexiconFilter(filter);
     return searched.filter((l) => passes(l.row));
@@ -196,11 +231,20 @@ const LexemePicker = ({
       />
       <div id={listId}>
         {listing && (
-          <p className={list.count} role="status" data-rules-found={found.length}>
-            {t.format("data.found", { count: found.length, total: rows.length })}
+          <p
+            className={list.count}
+            role="status"
+            data-rules-found={found.length}
+          >
+            {t.format("data.found", {
+              count: found.length,
+              total: rows.length,
+            })}
           </p>
         )}
-        {listing && found.length === 0 && <p className={list.muted}>{t.format("rules.pick.none")}</p>}
+        {listing && found.length === 0 && (
+          <p className={list.muted}>{t.format("rules.pick.none")}</p>
+        )}
         {shown.length > 0 && (
           <ul className={styles.matches}>
             {shown.map((l) => (
@@ -221,7 +265,11 @@ const LexemePicker = ({
           </ul>
         )}
         {found.length > shown.length && shown.length > 0 && (
-          <Button className={data.more} onPress={() => setPages((n) => n + 1)} data-action="rules-more">
+          <Button
+            className={data.more}
+            onPress={() => setPages((n) => n + 1)}
+            data-action="rules-more"
+          >
             {t.format("data.more", { count: found.length - shown.length })}
           </Button>
         )}
@@ -230,14 +278,25 @@ const LexemePicker = ({
   );
 };
 
-const Problem = ({ t, problem }: { t: Translator; problem: ExplorerProblem }): JSX.Element => (
+const Problem = ({
+  t,
+  problem,
+}: {
+  t: Translator;
+  problem: ExplorerProblem;
+}): JSX.Element => (
   <div className={data.notice} role="note" data-rules-problem={problem.kind}>
     <p className={styles.flat}>
       {problem.kind === "no-notation"
         ? t.format("rules.problem.no-notation")
         : problem.kind === "language"
           ? t.format("rules.problem.language")
-          : t.format("rules.problem.spell", { orthography: problem.layer === undefined ? problem.orthography : `${problem.orthography}#${problem.layer}` })}
+          : t.format("rules.problem.spell", {
+              orthography:
+                problem.layer === undefined
+                  ? problem.orthography
+                  : `${problem.orthography}#${problem.layer}`,
+            })}
     </p>
     {problem.kind !== "no-notation" && (
       <ul className={styles.errors}>
@@ -252,11 +311,23 @@ const Problem = ({ t, problem }: { t: Translator; problem: ExplorerProblem }): J
 );
 
 /** What the rules give, or what went wrong. */
-const Result = ({ t, result }: { t: Translator; result: Explored }): JSX.Element => {
+const Result = ({
+  t,
+  result,
+}: {
+  t: Translator;
+  result: Explored;
+}): JSX.Element => {
   if (!result.ok)
     return (
-      <div className={styles.result} data-rules-result="error" data-error={result.error.kind}>
-        <p className={styles.flat}>{t.format(ERROR_MESSAGES[result.error.kind])}</p>
+      <div
+        className={styles.result}
+        data-rules-result="error"
+        data-error={result.error.kind}
+      >
+        <p className={styles.flat}>
+          {t.format(ERROR_MESSAGES[result.error.kind])}
+        </p>
         {result.error.details.length > 0 && (
           <p className={data.meta}>
             {result.error.details.map((d) => (
@@ -267,9 +338,15 @@ const Result = ({ t, result }: { t: Translator; result: Explored }): JSX.Element
       </div>
     );
   return (
-    <div className={styles.result} data-rules-result="ok" data-status={result.status}>
+    <div
+      className={styles.result}
+      data-rules-result="ok"
+      data-status={result.status}
+    >
       <p className={data.meta}>
-        <span className={data.badge}>{t.format(STATUS_MESSAGES[result.status])}</span>
+        <span className={data.badge}>
+          {t.format(STATUS_MESSAGES[result.status])}
+        </span>
         {result.listed !== undefined && <Code value={result.listed} />}
       </p>
       <div className={styles.pair}>
@@ -278,6 +355,29 @@ const Result = ({ t, result }: { t: Translator; result: Explored }): JSX.Element
           <T className={styles.form} text={result.form} />
         </span>
       </div>
+      {result.feats !== undefined && (
+        <div className={styles.pair} data-rules-feats="">
+          <span className={list.muted}>{t.format("rules.merged")}</span>
+          {Object.keys(result.feats).length === 0 ? (
+            <span className={list.muted}>{t.format("rules.merged.none")}</span>
+          ) : (
+            <Code value={cellKey(result.feats)} />
+          )}
+        </div>
+      )}
+      {result.missing !== undefined && (
+        <div
+          className={styles.pair}
+          data-rules-missing={result.missing.join(" ")}
+        >
+          <span className={list.muted}>{t.format("rules.missing")}</span>
+          <span>
+            {result.missing.map((f) => (
+              <Code key={f} value={f} />
+            ))}
+          </span>
+        </div>
+      )}
       <div className={styles.pair}>
         <span className={list.muted}>{t.format("rules.steps")}</span>
         {result.steps.length === 0 ? (
@@ -286,39 +386,82 @@ const Result = ({ t, result }: { t: Translator; result: Explored }): JSX.Element
           <ol className={styles.steps}>
             {result.steps.map((s, i) => (
               <li key={i} className={styles.step}>
-                <Code value={s.branch === undefined ? s.rule : `${s.rule}|${s.branch}`} data-rule-step="" />
-                {s.gloss !== undefined && <T className={list.muted} text={s.gloss} />}
+                <Code
+                  value={
+                    s.branch === undefined ? s.rule : `${s.rule}|${s.branch}`
+                  }
+                  data-rule-step=""
+                />
+                {s.gloss !== undefined && (
+                  <T className={list.muted} text={s.gloss} />
+                )}
               </li>
             ))}
           </ol>
         )}
       </div>
-      <ul className={styles.spellings} aria-label={t.format("rules.spellings")}>
-        {result.spellings.map((s) => (
-          <li key={s.layer === undefined ? s.orthography : `${s.orthography}#${s.layer}`} className={styles.spelling} data-spelled={s.orthography} data-layer={s.layer}>
-            <Code value={s.layer === undefined ? s.orthography : `${s.orthography}#${s.layer}`} />
-            {s.spelling === undefined ? (
-              <span className={list.muted}>{t.format(s.spells ? "rules.spelling.failed" : "rules.spelling.none")}</span>
-            ) : (
-              <span data-spelling="">
-                <T className={styles.spelled} text={s.spelling} />
-              </span>
-            )}
-            {s.alternatives.length > 0 && (
-              <span className={styles.alternatives} aria-label={t.format("rules.alternatives")}>
-                {s.alternatives.map((a, i) => (
-                  <span key={i} className={styles.alternative} data-alternative="">
-                    <T text={a.spelling} />
-                    {a.by.map((v) => (
-                      <Code key={v} value={v} />
-                    ))}
-                  </span>
-                ))}
-              </span>
-            )}
-          </li>
-        ))}
-      </ul>
+      {/* An incomplete word is no word to write (the owner, ADR 0158): its spellings wait until it is complete. */}
+      {result.missing !== undefined ? (
+        <p className={list.muted} data-rules-incomplete="">
+          {t.format("rules.incomplete")}
+        </p>
+      ) : (
+        <ul
+          className={styles.spellings}
+          aria-label={t.format("rules.spellings")}
+        >
+          {result.spellings.map((s) => (
+            <li
+              key={
+                s.layer === undefined
+                  ? s.orthography
+                  : `${s.orthography}#${s.layer}`
+              }
+              className={styles.spelling}
+              data-spelled={s.orthography}
+              data-layer={s.layer}
+            >
+              <Code
+                value={
+                  s.layer === undefined
+                    ? s.orthography
+                    : `${s.orthography}#${s.layer}`
+                }
+              />
+              {s.spelling === undefined ? (
+                <span className={list.muted}>
+                  {t.format(
+                    s.spells ? "rules.spelling.failed" : "rules.spelling.none",
+                  )}
+                </span>
+              ) : (
+                <span data-spelling="">
+                  <T className={styles.spelled} text={s.spelling} />
+                </span>
+              )}
+              {s.alternatives.length > 0 && (
+                <span
+                  className={styles.alternatives}
+                  aria-label={t.format("rules.alternatives")}
+                >
+                  {s.alternatives.map((a, i) => (
+                    <span
+                      key={i}
+                      className={styles.alternative}
+                      data-alternative=""
+                    >
+                      <T text={a.spelling} />
+                      {a.by.map((v) => (
+                        <Code key={v} value={v} />
+                      ))}
+                    </span>
+                  ))}
+                </span>
+              )}
+            </li>
+          ))}
+        </ul>
+      )}
       {result.variants.length > 0 && (
         <div className={styles.pair} data-variants={result.variants.length}>
           <span className={list.muted}>{t.format("rules.variants")}</span>
@@ -326,7 +469,11 @@ const Result = ({ t, result }: { t: Translator; result: Explored }): JSX.Element
             {result.variants.map((v, i) => (
               <li key={i} className={styles.step} data-variant="">
                 <T className={styles.spelled} text={v.form} />
-                {v.spellings.map((s, k) => (s.spelling === undefined ? null : <T key={k} className={list.muted} text={s.spelling} />))}
+                {v.spellings.map((s, k) =>
+                  s.spelling === undefined ? null : (
+                    <T key={k} className={list.muted} text={s.spelling} />
+                  ),
+                )}
               </li>
             ))}
           </ul>
@@ -337,7 +484,19 @@ const Result = ({ t, result }: { t: Translator; result: Explored }): JSX.Element
 };
 
 /** A cell's values: each feature a row of radios, "none" leaving it out; a value set drops those no known cell combines it with (`fitCell`). */
-const Cell = ({ t, explorer, lexeme, feats, onChange }: { t: Translator; explorer: Explorer; lexeme: ExplorerLexeme; feats: UdFeatures; onChange: (feats: UdFeatures) => void }): JSX.Element => (
+const Cell = ({
+  t,
+  explorer,
+  lexeme,
+  feats,
+  onChange,
+}: {
+  t: Translator;
+  explorer: Explorer;
+  lexeme: ExplorerLexeme;
+  feats: UdFeatures;
+  onChange: (feats: UdFeatures) => void;
+}): JSX.Element => (
   <>
     {lexeme.features.map(({ feature, values }) => (
       <RadioGroup
@@ -372,7 +531,19 @@ const Cell = ({ t, explorer, lexeme, feats, onChange }: { t: Translator; explore
 );
 
 /** The lexemes written before or after the base, each movable and removable, each with the values the token gives it where its category has any. */
-const Around = ({ t, explorer, items, side, onChange }: { t: Translator; explorer: Explorer; items: readonly Attached[]; side: "before" | "after"; onChange: (items: readonly Attached[]) => void }): JSX.Element => {
+const Around = ({
+  t,
+  explorer,
+  items,
+  side,
+  onChange,
+}: {
+  t: Translator;
+  explorer: Explorer;
+  items: readonly Attached[];
+  side: "before" | "after";
+  onChange: (items: readonly Attached[]) => void;
+}): JSX.Element => {
   const byId = new Map(explorer.lexemes.map((l) => [l.row.id.id, l]));
   const move = (i: number, by: number): void => {
     const next = [...items];
@@ -382,7 +553,9 @@ const Around = ({ t, explorer, items, side, onChange }: { t: Translator; explore
   };
   return (
     <div className={styles.pair} data-around={side}>
-      <span className={list.muted}>{t.format(side === "before" ? "rules.before" : "rules.after")}</span>
+      <span className={list.muted}>
+        {t.format(side === "before" ? "rules.before" : "rules.after")}
+      </span>
       {items.length === 0 ? (
         <span className={list.muted}>{t.format("rules.around.none")}</span>
       ) : (
@@ -390,17 +563,39 @@ const Around = ({ t, explorer, items, side, onChange }: { t: Translator; explore
           {items.map((item, i) => {
             const lexeme = byId.get(item.lexeme);
             return (
-              <li key={`${item.lexeme}-${String(i)}`} className={styles.attachedItem} data-attached={item.lexeme}>
+              <li
+                key={`${item.lexeme}-${String(i)}`}
+                className={styles.attachedItem}
+                data-attached={item.lexeme}
+              >
                 <span className={styles.attached}>
-                  {lexeme === undefined ? <Code value={item.lexeme} /> : <LexemeLine lexeme={lexeme} />}
+                  {lexeme === undefined ? (
+                    <Code value={item.lexeme} />
+                  ) : (
+                    <LexemeLine lexeme={lexeme} />
+                  )}
                   <span className={styles.actions}>
-                    <Button className={list.partsToggle} isDisabled={i === 0} onPress={() => move(i, -1)} data-action="rules-earlier">
+                    <Button
+                      className={list.partsToggle}
+                      isDisabled={i === 0}
+                      onPress={() => move(i, -1)}
+                      data-action="rules-earlier"
+                    >
                       {t.format("rules.move.earlier")}
                     </Button>
-                    <Button className={list.partsToggle} isDisabled={i === items.length - 1} onPress={() => move(i, 1)} data-action="rules-later">
+                    <Button
+                      className={list.partsToggle}
+                      isDisabled={i === items.length - 1}
+                      onPress={() => move(i, 1)}
+                      data-action="rules-later"
+                    >
                       {t.format("rules.move.later")}
                     </Button>
-                    <Button className={list.partsToggle} onPress={() => onChange(items.filter((_, k) => k !== i))} data-action="rules-remove">
+                    <Button
+                      className={list.partsToggle}
+                      onPress={() => onChange(items.filter((_, k) => k !== i))}
+                      data-action="rules-remove"
+                    >
                       {t.format("rules.remove")}
                     </Button>
                   </span>
@@ -411,7 +606,17 @@ const Around = ({ t, explorer, items, side, onChange }: { t: Translator; explore
                     explorer={explorer}
                     lexeme={lexeme}
                     feats={item.feats ?? {}}
-                    onChange={(feats) => onChange(items.map((x, k) => (k === i ? (Object.keys(feats).length === 0 ? { lexeme: x.lexeme } : { lexeme: x.lexeme, feats }) : x)))}
+                    onChange={(feats) =>
+                      onChange(
+                        items.map((x, k) =>
+                          k === i
+                            ? Object.keys(feats).length === 0
+                              ? { lexeme: x.lexeme }
+                              : { lexeme: x.lexeme, feats }
+                            : x,
+                        ),
+                      )
+                    }
                   />
                 )}
               </li>
@@ -423,30 +628,95 @@ const Around = ({ t, explorer, items, side, onChange }: { t: Translator; explore
   );
 };
 
-const Way = ({ t, way, onExplore }: { t: Translator; way: ExplorerWay; onExplore: () => void }): JSX.Element => (
-  <li className={styles.way} data-way={way.orthography} data-verdict={way.verdict}>
+const Way = ({
+  t,
+  way,
+  onExplore,
+}: {
+  t: Translator;
+  way: ExplorerWay;
+  onExplore: () => void;
+}): JSX.Element => (
+  <li
+    className={styles.way}
+    data-way={way.orthography}
+    data-verdict={way.verdict}
+  >
     <T className={styles.spelled} text={way.text} />
     <Code value={way.orthography} />
-    <span className={data.badge}>{t.format(VERDICT_MESSAGES[way.verdict])}</span>
-    {way.verdict === "differs" && way.spelled !== undefined && <T className={list.muted} text={way.spelled} />}
-    <span className={list.muted}>{t.format("rules.way.items", { count: way.items.length })}</span>
+    <span className={data.badge}>
+      {t.format(VERDICT_MESSAGES[way.verdict])}
+    </span>
+    {way.verdict === "differs" && way.spelled !== undefined && (
+      <T className={list.muted} text={way.spelled} />
+    )}
+    <span className={list.muted}>
+      {t.format("rules.way.items", { count: way.items.length })}
+    </span>
     <Code value={way.items[0] ?? ""} />
-    <Button className={list.partsToggle} onPress={onExplore} data-action="rules-explore-way">
+    <Button
+      className={list.partsToggle}
+      onPress={onExplore}
+      data-action="rules-explore-way"
+    >
       {t.format("rules.way.explore")}
     </Button>
   </li>
 );
 
-export const RulesExplorer = ({ course, source, request, onRequest, onReload }: RulesExplorerProps): JSX.Element => {
+export const RulesExplorer = ({
+  course,
+  source,
+  request,
+  onRequest,
+  onReload,
+}: RulesExplorerProps): JSX.Element => {
   const t = useTranslator();
-  const explorer = useMemo(() => (source === null || source === undefined ? undefined : rulesExplorer(course, source)), [course, source]);
+  const explorer = useMemo(
+    () =>
+      source === null || source === undefined
+        ? undefined
+        : rulesExplorer(course, source),
+    [course, source],
+  );
   const [side, setSide] = useState<"before" | "after">("after");
-  const base = explorer === undefined || request === undefined ? undefined : explorer.lexemes.find((l) => l.row.id.id === request.base);
-  const result = useMemo(() => (explorer === undefined || request === undefined ? undefined : explore(explorer, request)), [explorer, request]);
-  const ways = useMemo(() => (explorer === undefined || base === undefined ? [] : waysOf(explorer, base.row.id.id)), [explorer, base]);
-  const options = request === undefined ? EXPLORE_DEFAULTS : { blocking: request.blocking, pinned: request.pinned, spellings: request.spellings };
-  const cells = useMemo(() => (explorer === undefined || base === undefined ? [] : explorerParadigm(explorer, base, options)), [explorer, base, options.blocking, options.pinned, options.spellings]);
-  const nextLexeme = explorer === undefined || request?.next === undefined ? undefined : explorer.lexemes.find((l) => l.row.id.id === request.next);
+  const base =
+    explorer === undefined || request === undefined
+      ? undefined
+      : explorer.lexemes.find((l) => l.row.id.id === request.base);
+  const result = useMemo(
+    () =>
+      explorer === undefined || request === undefined
+        ? undefined
+        : explore(explorer, request),
+    [explorer, request],
+  );
+  const ways = useMemo(
+    () =>
+      explorer === undefined || base === undefined
+        ? []
+        : waysOf(explorer, base.row.id.id),
+    [explorer, base],
+  );
+  const options =
+    request === undefined
+      ? EXPLORE_DEFAULTS
+      : {
+          blocking: request.blocking,
+          pinned: request.pinned,
+          spellings: request.spellings,
+        };
+  const cells = useMemo(
+    () =>
+      explorer === undefined || base === undefined
+        ? []
+        : explorerParadigm(explorer, base, options),
+    [explorer, base, options.blocking, options.pinned, options.spellings],
+  );
+  const nextLexeme =
+    explorer === undefined || request?.next === undefined
+      ? undefined
+      : explorer.lexemes.find((l) => l.row.id.id === request.next);
   const change = (patch: Partial<ExploreRequest>): void => {
     if (request !== undefined) onRequest({ ...request, ...patch });
   };
@@ -456,7 +726,11 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
       <p className={list.muted}>{t.format("rules.intro")}</p>
       {onReload !== undefined && (
         <p>
-          <Button className={list.partsToggle} onPress={onReload} data-action="rules-reload">
+          <Button
+            className={list.partsToggle}
+            onPress={onReload}
+            data-action="rules-reload"
+          >
             {t.format("rules.reload")}
           </Button>
         </p>
@@ -481,11 +755,34 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
               {t.format("rules.base")}
             </h2>
             {base === undefined ? (
-              <LexemePicker t={t} explorer={explorer} label={t.format("rules.search")} field="rules-base" browse onPick={(l) => onRequest({ base: l.row.id.id, feats: l.citation, before: [], after: [], ...EXPLORE_DEFAULTS })} />
+              <LexemePicker
+                t={t}
+                explorer={explorer}
+                label={t.format("rules.search")}
+                field="rules-base"
+                browse
+                onPick={(l) =>
+                  onRequest({
+                    base: l.row.id.id,
+                    feats: l.citation,
+                    before: [],
+                    after: [],
+                    ...EXPLORE_DEFAULTS,
+                  })
+                }
+              />
             ) : (
-              <div className={styles.chosen} data-base={base.row.id.id} data-ink-container="rules-base">
+              <div
+                className={styles.chosen}
+                data-base={base.row.id.id}
+                data-ink-container="rules-base"
+              >
                 <LexemeLine lexeme={base} />
-                <Button className={list.partsToggle} onPress={() => onRequest(undefined)} data-action="rules-change-base">
+                <Button
+                  className={list.partsToggle}
+                  onPress={() => onRequest(undefined)}
+                  data-action="rules-change-base"
+                >
                   {t.format("rules.change")}
                 </Button>
               </div>
@@ -494,27 +791,67 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
           {base !== undefined && request !== undefined && (
             <>
               {/* It scrolls within itself where it is long: focusable, so a keyboard can scroll it; its own edges are what the clipping check reads. */}
-              <section className={`${styles.part} ${styles.live}`} aria-labelledby="rules-result" aria-live="polite" tabIndex={0} data-rules-live="" data-ink-container="rules-live">
+              <section
+                className={`${styles.part} ${styles.live}`}
+                aria-labelledby="rules-result"
+                aria-live="polite"
+                tabIndex={0}
+                data-rules-live=""
+                data-ink-container="rules-live"
+              >
                 <h2 className={data.partTitle} id="rules-result">
                   {t.format("rules.result")}
                 </h2>
                 {result !== undefined && <Result t={t} result={result} />}
               </section>
-              <section className={styles.part} aria-labelledby="rules-cell">
-                <h2 className={data.partTitle} id="rules-cell">
-                  {t.format("rules.features")}
-                </h2>
-                {base.features.length === 0 && <p className={list.muted}>{t.format("rules.features.none")}</p>}
-                <Cell t={t} explorer={explorer} lexeme={base} feats={request.feats} onChange={(feats) => change({ feats })} />
-              </section>
+              {/* A language that merges lexemes has no switches: what the word has is its lexemes' (ADR 0158). */}
+              {!explorer.merging && (
+                <section className={styles.part} aria-labelledby="rules-cell">
+                  <h2 className={data.partTitle} id="rules-cell">
+                    {t.format("rules.features")}
+                  </h2>
+                  {base.features.length === 0 && (
+                    <p className={list.muted}>
+                      {t.format("rules.features.none")}
+                    </p>
+                  )}
+                  <Cell
+                    t={t}
+                    explorer={explorer}
+                    lexeme={base}
+                    feats={request.feats}
+                    onChange={(feats) => change({ feats })}
+                  />
+                </section>
+              )}
               <section className={styles.part} aria-labelledby="rules-around">
                 <h2 className={data.partTitle} id="rules-around">
                   {t.format("rules.around")}
                 </h2>
-                <Around t={t} explorer={explorer} items={request.before} side="before" onChange={(before) => change({ before })} />
-                <Around t={t} explorer={explorer} items={request.after} side="after" onChange={(after) => change({ after })} />
-                <RadioGroup className={styles.feature} value={side} onChange={(v) => setSide(v === "before" ? "before" : "after")} orientation="horizontal" data-add-side={side}>
-                  <Label className={list.label}>{t.format("rules.add.side")}</Label>
+                <Around
+                  t={t}
+                  explorer={explorer}
+                  items={request.before}
+                  side="before"
+                  onChange={(before) => change({ before })}
+                />
+                <Around
+                  t={t}
+                  explorer={explorer}
+                  items={request.after}
+                  side="after"
+                  onChange={(after) => change({ after })}
+                />
+                <RadioGroup
+                  className={styles.feature}
+                  value={side}
+                  onChange={(v) => setSide(v === "before" ? "before" : "after")}
+                  orientation="horizontal"
+                  data-add-side={side}
+                >
+                  <Label className={list.label}>
+                    {t.format("rules.add.side")}
+                  </Label>
                   <div className={list.radios}>
                     <Radio className={list.radio} value="before">
                       {t.format("rules.before")}
@@ -531,15 +868,34 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
                   field="rules-add"
                   browse={false}
                   among={attachable(explorer, side)}
-                  onPick={(l) => change(side === "before" ? { before: [...request.before, { lexeme: l.row.id.id }] } : { after: [...request.after, { lexeme: l.row.id.id }] })}
+                  onPick={(l) =>
+                    change(
+                      side === "before"
+                        ? {
+                            before: [
+                              ...request.before,
+                              { lexeme: l.row.id.id },
+                            ],
+                          }
+                        : {
+                            after: [...request.after, { lexeme: l.row.id.id }],
+                          },
+                    )
+                  }
                 />
                 <div className={styles.pair} data-next={request.next ?? ""}>
                   <span className={list.muted}>{t.format("rules.next")}</span>
                   {request.next === undefined ? (
-                    <span className={list.muted}>{t.format("rules.next.none")}</span>
+                    <span className={list.muted}>
+                      {t.format("rules.next.none")}
+                    </span>
                   ) : (
                     <span className={styles.attached}>
-                      {nextLexeme === undefined ? <Code value={request.next} /> : <LexemeLine lexeme={nextLexeme} />}
+                      {nextLexeme === undefined ? (
+                        <Code value={request.next} />
+                      ) : (
+                        <LexemeLine lexeme={nextLexeme} />
+                      )}
                       <Button
                         className={list.partsToggle}
                         onPress={() => {
@@ -553,25 +909,40 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
                     </span>
                   )}
                 </div>
-                <LexemePicker t={t} explorer={explorer} label={t.format("rules.next.pick")} field="rules-next" browse={false} onPick={(l) => change({ next: l.row.id.id })} />
+                <LexemePicker
+                  t={t}
+                  explorer={explorer}
+                  label={t.format("rules.next.pick")}
+                  field="rules-next"
+                  browse={false}
+                  onPick={(l) => change({ next: l.row.id.id })}
+                />
               </section>
               <section className={styles.part} aria-labelledby="rules-options">
                 <h2 className={data.partTitle} id="rules-options">
                   {t.format("rules.options")}
                 </h2>
                 <div className={data.chips}>
-                  {(["blocking", "pinned", "spellings"] as const).map((option) => (
-                    <Checkbox key={option} className={data.chip} isSelected={request[option]} onChange={(on) => change({ [option]: on })} data-option={option}>
-                      {({ isSelected }) => (
-                        <>
-                          <span className={data.box} aria-hidden="true">
-                            {isSelected && <CheckIcon size={14} />}
-                          </span>
-                          <span>{t.format(OPTION_MESSAGES[option])}</span>
-                        </>
-                      )}
-                    </Checkbox>
-                  ))}
+                  {(["blocking", "pinned", "spellings"] as const).map(
+                    (option) => (
+                      <Checkbox
+                        key={option}
+                        className={data.chip}
+                        isSelected={request[option]}
+                        onChange={(on) => change({ [option]: on })}
+                        data-option={option}
+                      >
+                        {({ isSelected }) => (
+                          <>
+                            <span className={data.box} aria-hidden="true">
+                              {isSelected && <CheckIcon size={14} />}
+                            </span>
+                            <span>{t.format(OPTION_MESSAGES[option])}</span>
+                          </>
+                        )}
+                      </Checkbox>
+                    ),
+                  )}
                 </div>
               </section>
               <section className={styles.part} aria-labelledby="rules-ways">
@@ -583,7 +954,12 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
                 ) : (
                   <ul className={styles.ways}>
                     {ways.map((w, i) => (
-                      <Way key={i} t={t} way={w} onExplore={() => onRequest(w.request)} />
+                      <Way
+                        key={i}
+                        t={t}
+                        way={w}
+                        onExplore={() => onRequest(w.request)}
+                      />
                     ))}
                   </ul>
                 )}
@@ -593,18 +969,42 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
                   {t.format("rules.paradigm")}
                 </h2>
                 {cells.length === 0 ? (
-                  <p className={list.muted}>{t.format("rules.paradigm.none")}</p>
+                  <p className={list.muted}>
+                    {t.format("rules.paradigm.none")}
+                  </p>
                 ) : (
                   <ul className={styles.cells}>
                     <li className={styles.cell} aria-hidden="true">
-                      <span className={list.muted}>{t.format("rules.paradigm.cell")}</span>
+                      <span className={list.muted}>
+                        {t.format("rules.paradigm.cell")}
+                      </span>
                       {explorer.orthographies.map((o) => (
-                        <Code key={o.layer === undefined ? o.orthography : `${o.orthography}#${o.layer}`} value={o.layer === undefined ? o.orthography : `${o.orthography}#${o.layer}`} />
+                        <Code
+                          key={
+                            o.layer === undefined
+                              ? o.orthography
+                              : `${o.orthography}#${o.layer}`
+                          }
+                          value={
+                            o.layer === undefined
+                              ? o.orthography
+                              : `${o.orthography}#${o.layer}`
+                          }
+                        />
                       ))}
                     </li>
                     {cells.map((c) => (
-                      <li key={c.cell} className={styles.cell} data-cell={c.cell} data-ok={c.result.ok ? "" : undefined}>
-                        <Button className={styles.cellButton} onPress={() => change({ feats: c.feats })} data-action="rules-explore-cell">
+                      <li
+                        key={c.cell}
+                        className={styles.cell}
+                        data-cell={c.cell}
+                        data-ok={c.result.ok ? "" : undefined}
+                      >
+                        <Button
+                          className={styles.cellButton}
+                          onPress={() => change({ feats: c.feats })}
+                          data-action="rules-explore-cell"
+                        >
                           <Code value={c.cell} />
                         </Button>
                         {c.result.ok ? (
@@ -614,11 +1014,17 @@ export const RulesExplorer = ({ course, source, request, onRequest, onReload }: 
                                 {t.format("rules.spelling.none.short")}
                               </span>
                             ) : (
-                              <T key={i} className={styles.spelled} text={s.spelling} />
+                              <T
+                                key={i}
+                                className={styles.spelled}
+                                text={s.spelling}
+                              />
                             ),
                           )
                         ) : (
-                          <span className={list.muted}>{t.format(ERROR_MESSAGES[c.result.error.kind])}</span>
+                          <span className={list.muted}>
+                            {t.format(ERROR_MESSAGES[c.result.error.kind])}
+                          </span>
                         )}
                       </li>
                     ))}

@@ -1,6 +1,7 @@
 export { cardGallery, cardId, sampleExercise, type GalleryCard } from "./gallery.ts";
 export { courseData, dataMatcher, type Carrier, type CourseData, type DataMatcher, type DataView, type EntryId, type FormRow, type LetterRow, type PinnedReading, type SentenceRow, type SentenceWord, type WordRow, type WrittenWord } from "./browse.ts";
 export { courseTags, FACET_COMBINE, isLexiconSource, LEXICON_FACETS, lexiconData, lexiconFacets, lexiconFilter, type DataField, type DataNode, type FacetValue, type FacetValues, type LexemeFacets, type LexemeRow, type LexiconData, type LexiconFacet, type LexiconFilter, type LexiconSource, type Tags } from "./lexicon-data.ts";
+export { lexiconCourse, type LexiconCourseError, type LexiconCourseOptions } from "./lexicon-course.ts";
 export {
   cellKey,
   cellsOf,

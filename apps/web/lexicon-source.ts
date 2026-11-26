@@ -78,6 +78,34 @@ export const lexiconSourceOf = (course: string, root: string = ROOT): LexiconSou
   return { course, lexicon, lexemes: read("lexemes.yaml"), language: read("language.yaml"), profiles: profilesOf(course, root) };
 };
 
+/** The lexicons no course names (lexicons/arb, ADR 0158: written so its rules can be checked first). */
+export const lexiconsWithoutCourse = (root: string = ROOT): readonly string[] => {
+  const used = new Set(readdirSync(join(root, "courses")).map((c) => lexiconOf(c, root)));
+  return readdirSync(join(root, "lexicons"))
+    .filter((l) => ID.test(l) && !used.has(l) && existsSync(join(root, "lexicons", l, "lexemes.yaml")))
+    .sort();
+};
+
+/** The support orthography a lexicon without a course is glossed in: its profile travels with the lexicon's. */
+const SUPPORT = "en-Latn.standard.yaml";
+
+/**
+ * A lexicon no course uses, as the rules explorer reads it: its files, the profiles of its language's
+ * orthographies (profiles/<lang>-*.yaml) and the support orthography's.
+ */
+export const standaloneSourceOf = (lexicon: string, root: string = ROOT): LexiconSourceFile | undefined => {
+  if (!lexiconsWithoutCourse(root).includes(lexicon)) return undefined;
+  const read = (path: string): unknown => parse(readFileSync(path, "utf8")) as unknown;
+  const profiles = Object.fromEntries(
+    readdirSync(join(root, "profiles"))
+      .filter((f) => f.startsWith(`${lexicon}-`) || f === SUPPORT)
+      .filter((f) => f.endsWith(".yaml"))
+      .sort()
+      .map((f) => [f.replace(/\.yaml$/u, "").replace(".", "/"), read(join(root, "profiles", f))]),
+  );
+  return { course: lexicon, lexicon, lexemes: read(join(root, "lexicons", lexicon, "lexemes.yaml")), language: read(join(root, "lexicons", lexicon, "language.yaml")), profiles };
+};
+
 const PREFIX = "/lexicon-source/";
 const FILE = /^([a-z][a-z0-9-]*)\.json$/u;
 
@@ -104,8 +132,14 @@ export const lexiconSourceMiddleware =
       next();
       return;
     }
-    const course = FILE.exec(path.slice(at + PREFIX.length))?.[1];
-    const data = course === undefined ? undefined : lexiconSourceOf(course, root);
+    const name = path.slice(at + PREFIX.length);
+    // The lexicons no course uses, for the home page's debug links.
+    if (name === "index.json") {
+      send(res, 200, JSON.stringify({ lexicons: lexiconsWithoutCourse(root) }));
+      return;
+    }
+    const course = FILE.exec(name)?.[1];
+    const data = course === undefined ? undefined : (lexiconSourceOf(course, root) ?? standaloneSourceOf(course, root));
     if (data === undefined) send(res, 404, "not found");
     else send(res, 200, JSON.stringify(data));
   };
@@ -126,7 +160,10 @@ export const writeLexiconSource = (out: string, root: string = ROOT): readonly s
   const courses = coursesWithLexicon(root);
   mkdirSync(out, { recursive: true });
   for (const course of courses) writeFileSync(join(out, `${course}.json`), JSON.stringify(lexiconSourceOf(course, root)));
-  return courses;
+  const standalone = lexiconsWithoutCourse(root);
+  for (const lexicon of standalone) writeFileSync(join(out, `${lexicon}.json`), JSON.stringify(standaloneSourceOf(lexicon, root)));
+  writeFileSync(join(out, "index.json"), JSON.stringify({ lexicons: standalone }));
+  return [...courses, ...standalone];
 };
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

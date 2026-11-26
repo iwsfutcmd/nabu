@@ -232,6 +232,10 @@
         "radical": { "type": "integer", "minimum": 1, "maximum": 5 },
         "in": { "type": "string", "pattern": "^(\\[.*\\]|\\{[A-Za-z][A-Za-z0-9]*\\})$" },
         "vowels": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } },
+        "feats": {
+          "description": "The values the word must have, as its lexemes bring them (ADR 0158: arb's passive stem is one in the perfect, another in the imperfect): a template with them is more specific than one without.",
+          "$ref": "common.schema.json#/$defs/UdFeatures"
+        },
         "template": { "type": "string", "minLength": 1 },
         "branch": {
           "description": "Where the template is a thing a learner gets right or wrong of its own (a hollow verb's short past stem), the branch it is of the realisation rule that takes it: rule:apc-perfect|hollow-short.",

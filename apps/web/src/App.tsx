@@ -123,6 +123,7 @@ export type Route =
   | { readonly tag: "audio"; readonly course: string; readonly orthography: string }
   | { readonly tag: "data"; readonly course: string; readonly orthography: string; readonly view?: string | undefined; readonly entry?: string | undefined }
   | { readonly tag: "rules"; readonly course: string; readonly orthography: string; readonly request?: string | undefined }
+  | { readonly tag: "lexicon-rules"; readonly lexicon: string; readonly request?: string | undefined }
   | { readonly tag: "words"; readonly course: string; readonly orthography: string }
   | { readonly tag: "reports"; readonly course: string; readonly orthography: string }
   | { readonly tag: "offline"; readonly course: string; readonly orthography: string }
@@ -143,6 +144,8 @@ const parse = (hash: string): Route => {
   // The review workspace (ADR 0074): #/review, and #/review/<course>/<orthography>.
   if (course === "review") return orthography === undefined || session === undefined ? { tag: "review" } : { tag: "review-course", course: orthography, orthography: unslug(session) };
   if (course === undefined || orthography === undefined) return { tag: "home" };
+  // The rules explorer over a lexicon no course uses (debug mode, ADR 0158): #/lexicon/arb/rules[/<request>].
+  if (course === "lexicon" && session === "rules") return { tag: "lexicon-rules", lexicon: orthography, request: node };
   if (session === undefined) return { tag: "course", course, orthography: unslug(orthography) };
   if (session === "sentences") return { tag: "sentences", course, orthography: unslug(orthography) };
   if (session === "cards") return { tag: "cards", course, orthography: unslug(orthography) };
@@ -172,6 +175,8 @@ export const href = (route: Route): string =>
         ? "#/review"
         : route.tag === "review-course"
           ? `#/review/${route.course}/${slug(route.orthography)}`
+        : route.tag === "lexicon-rules"
+          ? `#/lexicon/${route.lexicon}/rules${route.request === undefined ? "" : `/${encodeURIComponent(route.request)}`}`
       : route.tag === "course"
       ? `#/${route.course}/${slug(route.orthography)}`
       : route.tag === "story"
@@ -406,7 +411,42 @@ const Home = ({
           </a>
         )}
       </div>
+      {DEBUG && <StandaloneLexicons />}
     </main>
+  );
+};
+
+/** Debug mode: the rules explorer of each lexicon no course uses (lexicons/arb, ADR 0158), as lexicon-source/index.json lists them. */
+const StandaloneLexicons = (): JSX.Element | null => {
+  const t = useTranslator();
+  const [lexicons, setLexicons] = useState<readonly string[]>([]);
+  useEffect(() => {
+    let live = true;
+    fetch(`${import.meta.env.BASE_URL}lexicon-source/index.json`, { cache: "no-store" })
+      .then((r) => (r.ok ? (r.json() as Promise<unknown>) : null))
+      .then((v) => {
+        const listed = typeof v === "object" && v !== null && "lexicons" in v && Array.isArray(v.lexicons) ? v.lexicons.filter((l): l is string => typeof l === "string") : [];
+        if (live) setLexicons(listed);
+      })
+      .catch(() => undefined);
+    return () => {
+      live = false;
+    };
+  }, []);
+  if (lexicons.length === 0) return null;
+  return (
+    <section aria-labelledby="standalone-lexicons" data-standalone-lexicons="">
+      <h2 id="standalone-lexicons">{t.format("rules.lexicons")}</h2>
+      <ul className={styles.list}>
+        {lexicons.map((l) => (
+          <li key={l}>
+            <a className={styles.link} href={href({ tag: "lexicon-rules", lexicon: l })} data-lexicon-rules-link={l}>
+              {t.format("rules.lexicon.open", { lexicon: l })}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 };
 
@@ -1502,7 +1542,7 @@ export const App = (): JSX.Element => {
   // A failed load remembers the retry it was, so it is tried again only on the next one (never in a loop).
   const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string; attempt: number } | null>(null);
   // The route's course, if it has one (home and preferences have none).
-  const inCourse = route.tag === "home" || route.tag === "preferences" || route.tag === "review" ? null : route;
+  const inCourse = route.tag === "home" || route.tag === "preferences" || route.tag === "review" || route.tag === "lexicon-rules" ? null : route;
   const courseId = inCourse === null ? null : inCourse.course;
   // Where the learner left off (S1): each course's latest start, read on Home, and the course Home continues.
   const onHome = route.tag === "home";
@@ -1684,6 +1724,19 @@ export const App = (): JSX.Element => {
             state: log?.course === resumeAt.entry.id ? log.state : undefined,
           };
     return <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} online={online} onGoal={setGoal} studied={studied} leftOff={leftOff} />;
+  }
+  if (route.tag === "lexicon-rules") {
+    return (
+      <Suspense fallback={<Loading />}>
+        <RulesPage
+          lexicon={route.lexicon}
+          back={href({ tag: "home" })}
+          encoded={route.request}
+          base={import.meta.env.BASE_URL}
+          at={(request) => href({ tag: "lexicon-rules", lexicon: route.lexicon, request })}
+        />
+      </Suspense>
+    );
   }
   if (loaded?.key === courseKey && "error" in loaded) return <LoadFailed message={online ? "app.error.load" : "app.offline.unavailable"} home onRetry={() => setRetry((n) => n + 1)} />;
   if (loaded === null || loaded.key !== courseKey || "error" in loaded || store === null || log === null || log.course !== route.course) {

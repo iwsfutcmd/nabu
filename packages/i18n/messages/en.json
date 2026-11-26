@@ -3678,6 +3678,10 @@
       "message": "Reading the lexicon's files…",
       "description": "Debug mode, the rules explorer: shown while the lexicon's files are fetched."
     },
+    "rules.merged.none": {
+      "message": "nothing yet",
+      "description": "Debug mode, the rules explorer, in a language that merges lexemes: shown after 'What its lexemes bring' when the base stands alone and no lexeme has brought a value."
+    },
     "rules.missing": {
       "message": "The lexicon's own files are not beside the app, and the explorer reads nothing else.",
       "description": "Debug mode, the rules explorer: the lexicon's files (lexicon-source) could not be fetched: a build that does not carry them."
@@ -3869,6 +3873,30 @@
     "rules.error.twice": {
       "message": "Two lexemes bring the same feature.",
       "description": "Debug mode, the rules explorer: what went wrong: two of the lexemes merged bring a value of the same feature (person twice, say)."
+    },
+    "rules.merged": {
+      "message": "What its lexemes bring",
+      "description": "Debug mode, the rules explorer, in a language that merges lexemes: label before the feature values the word's lexemes bring (Aspect=Imp;Person=3, shown as code)."
+    },
+    "rules.missing": {
+      "message": "Still needed",
+      "description": "Debug mode, the rules explorer, in a language that merges lexemes: label before the features the word still needs a lexeme for (Person, Number, shown as code)."
+    },
+    "rules.incomplete": {
+      "message": "Not a word yet: a lexeme must bring each feature still needed before it is written.",
+      "description": "Debug mode, the rules explorer, in a language that merges lexemes: shown in place of the spellings while the word lacks a lexeme for a feature it needs."
+    },
+    "rules.lexicon.unavailable": {
+      "message": "This lexicon's files could not be read, or it has no orthography to spell in.",
+      "description": "Debug mode, the rules explorer over a lexicon no course uses: its files did not load, or none of the loaded profiles is an orthography of its language."
+    },
+    "rules.lexicons": {
+      "message": "Rules of lexicons no course uses yet",
+      "description": "Debug mode, the home page: heading over links to the rules explorer for each lexicon that no course uses (Modern Standard Arabic)."
+    },
+    "rules.lexicon.open": {
+      "message": "Rules explorer: {$lexicon}",
+      "description": "Debug mode, the home page: a link to the rules explorer over one lexicon no course uses. $lexicon is the lexicon's language code (arb), a code shown as it is."
     },
     "rules.error.not-ready": {
       "message": "Nothing can be realised until the language's files compile.",

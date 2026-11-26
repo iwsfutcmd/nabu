@@ -338,7 +338,9 @@ export const compileLanguage = (declared: LanguageDeclaration, lexicon: Lexicon)
     const vowels = Object.entries(stem.vowels ?? {});
     return {
       source: stem,
-      conditions: (members === undefined ? 0 : 1) + vowels.length,
+      // The word's values outweigh the base's own conditions: arb's assimilated passive (yūṣalu)
+      // over its imperfect by the verb's vowel (yaṣilu).
+      conditions: (members === undefined ? 0 : 1) + vowels.length + 10 * sizeOf(stem.feats),
       fits: (radicals: readonly string[], own: Readonly<Record<string, string>>) => (members === undefined || members.has(radicals[k] ?? "")) && vowels.every(([slot, v]) => own[slot] === v),
     };
   });
@@ -468,7 +470,7 @@ const fillTemplate = (lang: CompiledLanguage, template: string, base: RadicalFor
 };
 
 /** The stem of a base for a stem choice: the first of its ids the base has a template for. */
-const stemOf = (lang: CompiledLanguage, choice: StemChoice, base: RadicalForm): Result<{ readonly text: string; readonly branch?: string }, RealiseError> => {
+const stemOf = (lang: CompiledLanguage, choice: StemChoice, base: RadicalForm, cell: UdFeatures = {}): Result<{ readonly text: string; readonly branch?: string }, RealiseError> => {
   const root = rootClassOf(lang, base.radicals);
   const vowels = base.vowels ?? {};
   if (typeof choice === "object" && !Array.isArray(choice)) {
@@ -485,6 +487,7 @@ const stemOf = (lang: CompiledLanguage, choice: StemChoice, base: RadicalForm): 
       if (s.source.id !== id || s.source.form !== base.form) continue;
       if (s.source.class !== undefined && s.source.class !== root) continue;
       if (!s.fits(base.radicals, vowels)) continue;
+      if (s.source.feats !== undefined && !hasValues(cell, s.source.feats)) continue;
       const score = (s.source.class === undefined ? 0 : 100) + s.conditions;
       if (best === undefined || score > best.score) best = { template: s.source.template, score, branch: s.source.branch };
     }
@@ -627,8 +630,9 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
     if (winner?.stem !== undefined) return ok({ units: unitsOf(winner.stem), status: winner.status, steps: [], whole: false, lexeme, ...(winner.status === "listed" && { listed: `${lexeme.id}|stem:${winner.stem.normalize("NFC")}` }) });
     if (typeof form === "string") return ok({ units: unitsOf(form), status: "given", steps: [], whole: false, lexeme });
     if (isRadical(form)) {
-      if (merged?.selects === undefined) return err({ kind: "template", stem: "", root: rootClassOf(lang, form.radicals) ?? "" });
-      const made = stemOf(lang, merged.selects, form);
+      // Nothing has chosen a stem yet: the root alone, its radicals in a row (a word still incomplete: `missing`).
+      if (merged?.selects === undefined) return lang.declared.requires !== undefined ? ok({ units: unitsOf(form.radicals.join("")), status: "given", steps: [], whole: false, lexeme }) : err({ kind: "template", stem: "", root: rootClassOf(lang, form.radicals) ?? "" });
+      const made = stemOf(lang, merged.selects, form, cell);
       if (!made.ok) return made;
       return ok({ units: unitsOf(made.value.text), status: "given", steps: [], whole: false, lexeme });
     }
@@ -669,7 +673,7 @@ const build = (lang: CompiledLanguage, id: string, cell: UdFeatures, options: Re
     }
   } else if (isRadical(form)) {
     if (stemChoice === undefined) return err({ kind: "template", stem: "", root: rootClassOf(lang, form.radicals) ?? "" });
-    const made = stemOf(lang, stemChoice, form);
+    const made = stemOf(lang, stemChoice, form, cell);
     if (!made.ok) return made;
     stem = made.value.text;
     // A template that is a branch of its own (a hollow verb's short past stem) is a step of the rule.
