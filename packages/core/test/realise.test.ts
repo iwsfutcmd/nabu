@@ -163,3 +163,42 @@ describe("apc's rules", () => {
     expect(made.ok ? [] : made.error).toEqual([]);
   });
 });
+
+describe("merging lexemes (ADR 0158): a stem chosen by the lexeme that joins", () => {
+  const read = (path: string): unknown => parse(readFileSync(resolve(ROOT, path), "utf8")) as unknown;
+  const declared = read("lexicons/apc/language.yaml") as LanguageDeclaration;
+  const lexicon = read("lexicons/apc/lexemes.yaml") as Lexicon;
+  const rules = compileLanguage(declared, lexicon);
+  // apc's perfect as lexemes: the perfect (a zero morpheme that takes the perfect stem) and its 1sg and
+  // 3fs endings, the 1sg taking the short stem where the verb has one, as rule:apc-perfect's branches do.
+  const merging = compileLanguage(
+    { ...declared, realisation: [], requires: { VERB: ["Aspect"] } },
+    {
+      ...lexicon,
+      lexemes: [
+        ...lexicon.lexemes,
+        { id: "lexeme:zz-perf", realises: { Aspect: "Perf" }, on: { pos: ["VERB"] }, requires: ["Person", "Number"], selects: "perfect", allomorphs: [{ form: "" }] },
+        { id: "lexeme:zz-perf-1sg", realises: { Person: "1", Number: "Sing" }, on: { has: { Aspect: "Perf" } }, selects: ["perfect-short", "perfect"], allomorphs: [{ form: "ت" }] },
+        { id: "lexeme:zz-perf-3ms", realises: { Person: "3", Gender: "Masc", Number: "Sing" }, on: { has: { Aspect: "Perf" } }, allomorphs: [{ form: "" }] },
+      ],
+    },
+  );
+
+  it("gives the lexical form the cell's rules gave, for every verb of the course", () => {
+    if (!rules.ok || !merging.ok) throw new Error(JSON.stringify([rules, merging].flatMap((r) => (r.ok ? [] : r.error))));
+    const verbs = lexicon.lexemes.filter((l) => l.pos === "VERB" && typeof l.form === "object" && l.form !== null && "radicals" in l.form);
+    expect(verbs.length).toBeGreaterThan(20);
+    for (const verb of verbs) {
+      for (const [ending, cell] of [
+        ["lexeme:zz-perf-1sg", { Aspect: "Perf", Person: "1", Number: "Sing" }],
+        ["lexeme:zz-perf-3ms", { Aspect: "Perf", Person: "3", Gender: "Masc", Number: "Sing" }],
+      ] as const) {
+        const before = realise(rules.value, verb.id, cell, { strict: true });
+        if (!before.ok) continue;
+        const merged = realiseToken(merging.value, [{ lexeme: verb.id, base: true }, { lexeme: "lexeme:zz-perf" }, { lexeme: ending }]);
+        expect(merged.ok && merged.value.form.replace(/\+/gu, ""), `${verb.id} ${ending}`).toBe(before.value.form.replace(/\+/gu, ""));
+        expect(merged.ok && merged.value.missing).toBeUndefined();
+      }
+    }
+  });
+});

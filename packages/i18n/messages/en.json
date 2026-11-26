@@ -3862,6 +3862,14 @@
       "message": "The cell has no such free form.",
       "description": "Debug mode, the rules explorer: what went wrong: a free form of the cell was asked for that the cell does not have."
     },
+    "rules.error.attach": {
+      "message": "A lexeme cannot merge onto this word.",
+      "description": "Debug mode, the rules explorer: what went wrong: a lexeme was merged onto a word it does not attach to (another part of speech, or the word lacks a value the lexeme needs first)."
+    },
+    "rules.error.twice": {
+      "message": "Two lexemes bring the same feature.",
+      "description": "Debug mode, the rules explorer: what went wrong: two of the lexemes merged bring a value of the same feature (person twice, say)."
+    },
     "rules.error.not-ready": {
       "message": "Nothing can be realised until the language's files compile.",
       "description": "Debug mode, the rules explorer: what went wrong: the language's notation or rules do not compile."

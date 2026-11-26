@@ -52,6 +52,18 @@
       "propertyNames": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
       "additionalProperties": { "$ref": "common.schema.json#/$defs/UdFeatures" }
     },
+    "requires": {
+      "description": "For each category, the features every word of it must have before it is written (ADR 0158: a lexeme is merged with lexemes that bring them; apc VERB [Aspect]). A language that states this merges lexemes: its tokens list the lexemes that bring their values, and a token that leaves a requirement unmet is incomplete (`form.incomplete`).",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "common.schema.json#/$defs/PartOfSpeech" },
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$" }
+      }
+    },
     "stemmed": {
       "description": "The categories whose lexical form, where it is a string, is a stem and not a word (bar's verbs: red, kemm), so that their citation cell is realised by the rules as every other cell is (redn, kemmen) and the lemma is checked as the rules give it. Elsewhere a string form is its citation form, which no rule runs over.",
       "type": "array",

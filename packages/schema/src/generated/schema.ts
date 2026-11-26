@@ -382,6 +382,18 @@ export type PartOfSpeech1 =
  */
 export type UdFeatures4 = Readonly<Record<string, string>>;
 /**
+ * Which stem: a stem id; several, the first the base has a template for; or a pattern lexeme's templates (ADR 0145: a value head's pattern).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "StemChoice".
+ */
+export type StemChoice =
+  | Slug
+  | readonly Slug[]
+  | {
+      readonly pattern: LexemeId;
+    };
+/**
  * A word's lexical features as Universal Dependencies spells them, feature name to value (ADR 0132): NounType Clf for a classifier, PronType Dem, PartType Mod. Inflection is not here: it is the token's form signature. A word question offers only words with the answer's features, exactly.
  */
 export type UdFeatures5 = Readonly<Record<string, string>>;
@@ -424,18 +436,6 @@ export type KcId2 = string & { readonly __brand: "KcId" };
  * Where the template is a thing a learner gets right or wrong of its own (a hollow verb's short past stem), the branch it is of the realisation rule that takes it: rule:apc-perfect|hollow-short.
  */
 export type Branch = string;
-/**
- * Which stem: a stem id; several, the first the base has a template for; or a pattern lexeme's templates (ADR 0145: a value head's pattern).
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "StemChoice".
- */
-export type StemChoice =
-  | Slug
-  | readonly Slug[]
-  | {
-      readonly pattern: LexemeId;
-    };
 /**
  * One block of exponents: prefixes or suffixes.
  *
@@ -3148,7 +3148,7 @@ export interface Provenance3 {
   readonly reviewedAt?: string;
 }
 /**
- * One lexeme. What kind it is shows in what it has: a part of speech (casa, tener); `realises`, a value head, a feature value with a meaning (PAST, uz -ga); `head`, a function head (AGENT, a participle's pattern). An entry has one of the three.
+ * One lexeme. What kind it is shows in what it has: a part of speech (casa, tener); `realises`, a value head, a feature value with a meaning (PAST, uz -ga); `head`, a function head (AGENT, a participle's pattern). An entry has one of the three. A lexeme that merges onto a base (ADR 0158) may say what it merges onto (`on`), what the word then requires (`requires`) and which stem it makes the base take (`selects`: a stem id, several, the first the base has a template for, or a pattern's templates; of several lexemes that select, the last in the token wins: apc's perfect takes the perfect stem, its 1sg ending the short one).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "Lexeme".
@@ -3158,6 +3158,23 @@ export interface Lexeme {
   readonly pos?: PartOfSpeech1;
   readonly realises?: UdFeatures4;
   readonly head?: FunctionHead;
+  /**
+   * What it merges onto (ADR 0158): the part of speech of the word's base, and the values the word must already have from its other lexemes (es -o on a finite indicative present verb). A lexeme merged where its `on` does not hold is an error.
+   */
+  readonly on?: {
+    /**
+     * @minItems 1
+     */
+    readonly pos?: readonly PartOfSpeech[];
+    readonly has?: UdFeatures1;
+  };
+  /**
+   * The features a word it is merged into must then have, brought by other lexemes (ADR 0158: finite-ness requires person and tense). A word is complete, and written, once every requirement its category and its lexemes raise is met.
+   *
+   * @minItems 1
+   */
+  readonly requires?: readonly string[];
+  readonly selects?: StemChoice;
   readonly feats?: UdFeatures5;
   /**
    * Features its language declares lexical for its category that this lexeme's tokens choose instead: hermano, whose tokens are masculine or feminine. By ADR 0145 a noun's feminine is a derivative, and a lexeme of its own where it is listed; until that is decided for a lexeme, the value stays on its tokens, and the entry says so here.
@@ -3532,6 +3549,15 @@ export interface LanguageDeclaration {
    */
   readonly citation?: {
     readonly [k: string]: UdFeatures1;
+  };
+  /**
+   * For each category, the features every word of it must have before it is written (ADR 0158: a lexeme is merged with lexemes that bring them; apc VERB [Aspect]). A language that states this merges lexemes: its tokens list the lexemes that bring their values, and a token that leaves a requirement unmet is incomplete (`form.incomplete`).
+   */
+  readonly requires?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
   };
   /**
    * The categories whose lexical form, where it is a string, is a stem and not a word (bar's verbs: red, kemm), so that their citation cell is realised by the rules as every other cell is (redn, kemmen) and the lemma is checked as the rules give it. Elsewhere a string form is its citation form, which no rule runs over.

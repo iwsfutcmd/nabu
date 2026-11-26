@@ -254,6 +254,17 @@ const detailsOf = (error: RealiseError): ExploredError["details"] => {
       ];
     case "variant":
       return [{ key: "variants", value: String(error.variants) }];
+    case "attach":
+      return [
+        { key: "lexeme", value: error.lexeme },
+        ...(error.pos === undefined ? [] : [{ key: "pos", value: error.pos.join(" | ") }]),
+        ...(error.has === undefined ? [] : [{ key: "has", value: cellKey(error.has) }]),
+      ];
+    case "twice":
+      return [
+        { key: "feature", value: error.feature },
+        { key: "lexemes", value: error.lexemes.join(" | ") },
+      ];
   }
 };
 

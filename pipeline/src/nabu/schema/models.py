@@ -1469,6 +1469,16 @@ type LexicalAdditionalPropertyItem = Annotated[
 type LexicalAdditionalProperty = Annotated[list[LexicalAdditionalPropertyItem], Field(min_length=1)]
 
 
+type RequiresAdditionalPropertyItem = Annotated[
+    str, Field(pattern="^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$")
+]
+
+
+type RequiresAdditionalProperty = Annotated[
+    list[RequiresAdditionalPropertyItem], Field(min_length=1)
+]
+
+
 type UnmarkedAdditionalPropertyItem = Annotated[str, Field(pattern="^[A-Z0-9][A-Za-z0-9]*$")]
 
 
@@ -2464,6 +2474,22 @@ class GoalSetV1(BaseModel):
             le=7,
         ),
     ]
+
+
+class On(BaseModel):
+    """
+    What it merges onto (ADR 0158): the part of speech of the word's base, and the values the word must already have from its other lexemes (es -o on a finite indicative present verb). A lexeme merged where its `on` does not hold is an error.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    pos: Annotated[list[PartOfSpeech] | None, Field(min_length=1)] = None
+    has: UdFeatures | None = None
+
+
+type Require = Annotated[str, Field(pattern="^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$")]
 
 
 type SpelledAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
@@ -6373,7 +6399,7 @@ type LearnerEventV1 = Annotated[
 
 class Lexeme(BaseModel):
     """
-    One lexeme. What kind it is shows in what it has: a part of speech (casa, tener); `realises`, a value head, a feature value with a meaning (PAST, uz -ga); `head`, a function head (AGENT, a participle's pattern). An entry has one of the three.
+    One lexeme. What kind it is shows in what it has: a part of speech (casa, tener); `realises`, a value head, a feature value with a meaning (PAST, uz -ga); `head`, a function head (AGENT, a participle's pattern). An entry has one of the three. A lexeme that merges onto a base (ADR 0158) may say what it merges onto (`on`), what the word then requires (`requires`) and which stem it makes the base take (`selects`: a stem id, several, the first the base has a template for, or a pattern's templates; of several lexemes that select, the last in the token wins: apc's perfect takes the perfect stem, its 1sg ending the short one).
     """
 
     model_config = ConfigDict(
@@ -6389,6 +6415,20 @@ class Lexeme(BaseModel):
         Field(description="The dimension value it is (ADR 0145: a value head): {Case: Dat}."),
     ] = None
     head: FunctionHead | None = None
+    on: Annotated[
+        On | None,
+        Field(
+            description="What it merges onto (ADR 0158): the part of speech of the word's base, and the values the word must already have from its other lexemes (es -o on a finite indicative present verb). A lexeme merged where its `on` does not hold is an error."
+        ),
+    ] = None
+    requires: Annotated[
+        list[Require] | None,
+        Field(
+            description="The features a word it is merged into must then have, brought by other lexemes (ADR 0158: finite-ness requires person and tense). A word is complete, and written, once every requirement its category and its lexemes raise is met.",
+            min_length=1,
+        ),
+    ] = None
+    selects: StemChoice | None = None
     feats: Annotated[
         UdFeatures | None,
         Field(
@@ -7054,6 +7094,13 @@ class LanguageDeclaration(BaseModel):
         dict[PartOfSpeech, UdFeatures] | None,
         Field(
             description="For each category, the feature values of the form an entry is spelled in (ADR 0145: the lemma, one of a lexeme's forms by the language's convention): a Spanish verb's infinitive, an apc verb's he-past. A token with these values is written as its entry; every other form is given by a rule, pinned or listed. A feature the lexeme has of itself is left out of its own cell."
+        ),
+    ] = None
+    requires: Annotated[
+        dict[PartOfSpeech, RequiresAdditionalProperty] | None,
+        Field(
+            description="For each category, the features every word of it must have before it is written (ADR 0158: a lexeme is merged with lexemes that bring them; apc VERB [Aspect]). A language that states this merges lexemes: its tokens list the lexemes that bring their values, and a token that leaves a requirement unmet is incomplete (`form.incomplete`).",
+            min_length=1,
         ),
     ] = None
     stemmed: Annotated[

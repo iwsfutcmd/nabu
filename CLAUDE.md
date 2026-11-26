@@ -971,6 +971,19 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   apc's clips carry word timings (`nabu audio align`).
 - docs/lexical-forms/apc.yaml and apc-review.md are a frozen record.
 
+## Merging lexemes notes (see docs/adr/0158)
+- Morphology is merging lexemes (the owner, 2026-11-26): a lexeme has its category and its form, never a switch for
+  person, tense or case; every value a word has is brought by a lexeme merged with it (`realises`), zero morphemes
+  included (an empty allomorph). A bound lexeme says what it merges onto (`on`: the base's pos, values the word
+  must have), what the word then requires (`requires`: finite-ness requires person and number) and which stem it
+  makes the base take (`selects`, the last in the token winning). A language that states `requires` per category
+  merges: a token is incomplete while a requirement is unmet (`Realisation.missing`), a lexeme merged where its `on`
+  fails is `attach`, a feature brought twice `twice`; a form stored for the merged word covers the lexemes whose
+  values it has (a broken plural). Feature values are abstract: learners learn lexemes. The citation form is a
+  mnemonic, a named merge. Stage 1 (the engine, conformance/realise-merge.json) is built; apc converts next, then es.
+- Until a language converts, its tokens still choose values; realiseToken reads the base's own choice for blocking
+  and the citation, and an exponent whose values the token's lexemes bring is theirs (uz's past), never the rule's.
+
 ## Losses and labels notes (see docs/adr/0148, 0153)
 - A profile states what its orthography writes of the sound (`sound`, `stress`, `correspondences`; profiles/README.md,
   "The sound statement"): a letter no correspondence names says itself, so `[]` means nothing is lost. `kind: fixed`

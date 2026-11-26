@@ -77,6 +77,8 @@ const ERROR_MESSAGES = {
   form: "rules.error.form",
   "spelled-only": "rules.error.spelled-only",
   variant: "rules.error.variant",
+  attach: "rules.error.attach",
+  twice: "rules.error.twice",
   "not-ready": "rules.error.not-ready",
 } as const;
 

@@ -1,6 +1,6 @@
 # 0158. Morphology is merging lexemes
 
-- Status: Proposed
+- Status: Accepted (2026-11-26, the owner: "are we good? Can we get started?")
 - Date: 2026-11-26
 - Supersedes, once accepted: [0145](0145-lexical-model.md)'s realisation by cell (a lexeme realised "in a cell", a
   token choosing feature values on its lexeme) and the `realisation` blocks of [rules-design.md](../rules-design.md)

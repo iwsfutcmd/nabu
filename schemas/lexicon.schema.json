@@ -21,7 +21,7 @@
   "$defs": {
     "Lexeme": {
       "title": "Lexeme",
-      "description": "One lexeme. What kind it is shows in what it has: a part of speech (casa, tener); `realises`, a value head, a feature value with a meaning (PAST, uz -ga); `head`, a function head (AGENT, a participle's pattern). An entry has one of the three.",
+      "description": "One lexeme. What kind it is shows in what it has: a part of speech (casa, tener); `realises`, a value head, a feature value with a meaning (PAST, uz -ga); `head`, a function head (AGENT, a participle's pattern). An entry has one of the three. A lexeme that merges onto a base (ADR 0158) may say what it merges onto (`on`), what the word then requires (`requires`) and which stem it makes the base take (`selects`: a stem id, several, the first the base has a template for, or a pattern's templates; of several lexemes that select, the last in the token wins: apc's perfect takes the perfect stem, its 1sg ending the short one).",
       "type": "object",
       "required": ["id"],
       "additionalProperties": false,
@@ -36,6 +36,24 @@
           "$ref": "common.schema.json#/$defs/UdFeatures"
         },
         "head": { "$ref": "#/$defs/FunctionHead" },
+        "on": {
+          "description": "What it merges onto (ADR 0158): the part of speech of the word's base, and the values the word must already have from its other lexemes (es -o on a finite indicative present verb). A lexeme merged where its `on` does not hold is an error.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "properties": {
+            "pos": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/PartOfSpeech" } },
+            "has": { "$ref": "common.schema.json#/$defs/UdFeatures" }
+          }
+        },
+        "requires": {
+          "description": "The features a word it is merged into must then have, brought by other lexemes (ADR 0158: finite-ness requires person and tense). A word is complete, and written, once every requirement its category and its lexemes raise is met.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$" }
+        },
+        "selects": { "$ref": "language.schema.json#/$defs/StemChoice" },
         "feats": {
           "description": "Its lexical features. What Universal Dependencies says of the word (PronType: Dem, NumType: Card), and a feature its language declares lexical for its category only where no default gives it: mano {Gender: Fem}. Each of the second kind is a part to learn (ADR 0146).",
           "$ref": "common.schema.json#/$defs/UdFeatures"
