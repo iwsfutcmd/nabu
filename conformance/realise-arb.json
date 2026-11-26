@@ -1,0 +1,3763 @@
+{
+ "$comment": "Modern Standard Arabic's verbs in the merge model (ADR 0158; docs/rules/arb.md): lexicons/arb merged with its affix lexemes, one vector per verb class and cell the owner can check (every cell of kataba; the weak classes where their rules fire). Every form is REVIEW.",
+ "vectors": [
+  {
+   "id": "realise/arb/kataba/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كَتَبَ"
+    }
+   },
+   "note": "kataba, perf 3ms."
+  },
+  {
+   "id": "realise/arb/kataba/perf-3fs",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3fs"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كَتَبَ+تْ"
+    }
+   },
+   "note": "kataba, perf 3fs."
+  },
+  {
+   "id": "realise/arb/kataba/perf-3mpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3mpl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كَتَبُ+وا۟"
+    }
+   },
+   "note": "kataba, perf 3mpl."
+  },
+  {
+   "id": "realise/arb/kataba/perf-3fpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3fpl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كَتَبْ+نَ"
+    }
+   },
+   "note": "kataba, perf 3fpl."
+  },
+  {
+   "id": "realise/arb/kataba/perf-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كَتَبْ+تُ"
+    }
+   },
+   "note": "kataba, perf 1sg."
+  },
+  {
+   "id": "realise/arb/kataba/pass-perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كُتِبَ"
+    }
+   },
+   "note": "kataba, pass perf 3ms."
+  },
+  {
+   "id": "realise/arb/kataba/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+كْتُبُ"
+    }
+   },
+   "note": "kataba, ind 3ms."
+  },
+  {
+   "id": "realise/arb/kataba/ind-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-1sg"
+     },
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ءَ+كْتُبُ"
+    }
+   },
+   "note": "kataba, ind 1sg."
+  },
+  {
+   "id": "realise/arb/kataba/ind-2fs",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-2"
+     },
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:fs"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "تَ+كْتُبِ+ي+نَ"
+    }
+   },
+   "note": "kataba, ind 2fs."
+  },
+  {
+   "id": "realise/arb/kataba/ind-3mpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:mpl"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+كْتُبُ+و+نَ"
+    }
+   },
+   "note": "kataba, ind 3mpl."
+  },
+  {
+   "id": "realise/arb/kataba/ind-3fpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:fpl"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+كْتُبْ+نَ"
+    }
+   },
+   "note": "kataba, ind 3fpl."
+  },
+  {
+   "id": "realise/arb/kataba/ind-3mdu",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:du"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+كْتُبَ+ا+نِ"
+    }
+   },
+   "note": "kataba, ind 3mdu."
+  },
+  {
+   "id": "realise/arb/kataba/sub-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:sub"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+كْتُبَ"
+    }
+   },
+   "note": "kataba, sub 3ms."
+  },
+  {
+   "id": "realise/arb/kataba/sub-3mpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:mpl"
+     },
+     {
+      "lexeme": "lexeme:sub"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+كْتُبُ+و+ا۟"
+    }
+   },
+   "note": "kataba, sub 3mpl."
+  },
+  {
+   "id": "realise/arb/kataba/jus-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:jus"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+كْتُبْ"
+    }
+   },
+   "note": "kataba, jus 3ms."
+  },
+  {
+   "id": "realise/arb/kataba/jus-3fs",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3f"
+     },
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:sg"
+     },
+     {
+      "lexeme": "lexeme:jus"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "تَ+كْتُبْ"
+    }
+   },
+   "note": "kataba, jus 3fs."
+  },
+  {
+   "id": "realise/arb/kataba/pass-ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يُ+كْتَبُ"
+    }
+   },
+   "note": "kataba, pass ind 3ms."
+  },
+  {
+   "id": "realise/arb/kataba/imp-2ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اُكْتُبْ"
+    }
+   },
+   "note": "kataba, imp 2ms."
+  },
+  {
+   "id": "realise/arb/kataba/imp-2fs",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:fs"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اُكْتُبِ+ي"
+    }
+   },
+   "note": "kataba, imp 2fs."
+  },
+  {
+   "id": "realise/arb/kataba/imp-2mpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:mpl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اُكْتُبُ+وا۟"
+    }
+   },
+   "note": "kataba, imp 2mpl."
+  },
+  {
+   "id": "realise/arb/kataba/imp-2fpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:fpl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اُكْتُبْ+نَ"
+    }
+   },
+   "note": "kataba, imp 2fpl."
+  },
+  {
+   "id": "realise/arb/kataba/ptcp",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كَاتِب",
+     "missing": [
+      "Gender",
+      "Number"
+     ]
+    }
+   },
+   "note": "kataba, ptcp."
+  },
+  {
+   "id": "realise/arb/kataba/ptcp-pass",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:kataba",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مَكْتُوب",
+     "missing": [
+      "Gender",
+      "Number"
+     ]
+    }
+   },
+   "note": "kataba, ptcp pass."
+  },
+  {
+   "id": "realise/arb/jalasa/imp-2ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:jalasa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِجْلِسْ"
+    }
+   },
+   "note": "jalasa, imp 2ms."
+  },
+  {
+   "id": "realise/arb/akala/ind-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-1sg"
+     },
+     {
+      "lexeme": "lexeme:akala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ءَاكُلُ"
+    }
+   },
+   "note": "akala, ind 1sg."
+  },
+  {
+   "id": "realise/arb/akala/imp-2ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:akala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "كُلْ"
+    }
+   },
+   "note": "akala, imp 2ms."
+  },
+  {
+   "id": "realise/arb/akala/pass-ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:akala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يُ+ءْكَلُ"
+    }
+   },
+   "note": "akala, pass ind 3ms."
+  },
+  {
+   "id": "realise/arb/akala/ptcp",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:akala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ءَاكِل",
+     "missing": [
+      "Gender",
+      "Number"
+     ]
+    }
+   },
+   "note": "akala, ptcp."
+  },
+  {
+   "id": "realise/arb/saala/pass-perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:saala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "سُءِلَ"
+    }
+   },
+   "note": "saala, pass perf 3ms."
+  },
+  {
+   "id": "realise/arb/saala/ptcp-pass",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:saala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مَسْءُول",
+     "missing": [
+      "Gender",
+      "Number"
+     ]
+    }
+   },
+   "note": "saala, ptcp pass."
+  },
+  {
+   "id": "realise/arb/qaraa/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:qaraa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "قَرَءَ"
+    }
+   },
+   "note": "qaraa, perf 3ms."
+  },
+  {
+   "id": "realise/arb/qaraa/ind-2fs",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-2"
+     },
+     {
+      "lexeme": "lexeme:qaraa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:fs"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "تَ+قْرَءِ+ي+نَ"
+    }
+   },
+   "note": "qaraa, ind 2fs."
+  },
+  {
+   "id": "realise/arb/qaraa/ptcp",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:qaraa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "قَارِء",
+     "missing": [
+      "Gender",
+      "Number"
+     ]
+    }
+   },
+   "note": "qaraa, ptcp."
+  },
+  {
+   "id": "realise/arb/wasala/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:wasala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+صِلُ"
+    }
+   },
+   "note": "wasala, ind 3ms."
+  },
+  {
+   "id": "realise/arb/wasala/pass-ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:wasala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يُ+وصَلُ"
+    }
+   },
+   "note": "wasala, pass ind 3ms."
+  },
+  {
+   "id": "realise/arb/wasala/imp-2ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:wasala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "صِلْ"
+    }
+   },
+   "note": "wasala, imp 2ms."
+  },
+  {
+   "id": "realise/arb/qala/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:qala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "قَالَ"
+    }
+   },
+   "note": "qala, perf 3ms."
+  },
+  {
+   "id": "realise/arb/qala/perf-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:qala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "قُلْ+تُ"
+    }
+   },
+   "note": "qala, perf 1sg."
+  },
+  {
+   "id": "realise/arb/qala/pass-perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:qala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "قِيلَ"
+    }
+   },
+   "note": "qala, pass perf 3ms."
+  },
+  {
+   "id": "realise/arb/qala/pass-perf-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:qala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:perf-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "قِلْ+تُ"
+    }
+   },
+   "note": "qala, pass perf 1sg."
+  },
+  {
+   "id": "realise/arb/qala/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:qala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+قُولُ"
+    }
+   },
+   "note": "qala, ind 3ms."
+  },
+  {
+   "id": "realise/arb/qala/jus-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:qala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:jus"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+قُلْ"
+    }
+   },
+   "note": "qala, jus 3ms."
+  },
+  {
+   "id": "realise/arb/qala/ind-3fpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:qala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:fpl"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+قُلْ+نَ"
+    }
+   },
+   "note": "qala, ind 3fpl."
+  },
+  {
+   "id": "realise/arb/qala/imp-2ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:qala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "قُلْ"
+    }
+   },
+   "note": "qala, imp 2ms."
+  },
+  {
+   "id": "realise/arb/qala/imp-2fs",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:qala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:fs"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "قُولِ+ي"
+    }
+   },
+   "note": "qala, imp 2fs."
+  },
+  {
+   "id": "realise/arb/qala/ptcp",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:qala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "قَاءِل",
+     "missing": [
+      "Gender",
+      "Number"
+     ]
+    }
+   },
+   "note": "qala, ptcp."
+  },
+  {
+   "id": "realise/arb/qala/ptcp-pass",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:qala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مَقُول",
+     "missing": [
+      "Gender",
+      "Number"
+     ]
+    }
+   },
+   "note": "qala, ptcp pass."
+  },
+  {
+   "id": "realise/arb/khafa/perf-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:khafa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "خِفْ+تُ"
+    }
+   },
+   "note": "khafa, perf 1sg."
+  },
+  {
+   "id": "realise/arb/khafa/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:khafa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+خَافُ"
+    }
+   },
+   "note": "khafa, ind 3ms."
+  },
+  {
+   "id": "realise/arb/khafa/imp-2ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:khafa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "خَفْ"
+    }
+   },
+   "note": "khafa, imp 2ms."
+  },
+  {
+   "id": "realise/arb/baa/perf-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:baa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "بِعْ+تُ"
+    }
+   },
+   "note": "baa, perf 1sg."
+  },
+  {
+   "id": "realise/arb/baa/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:baa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+بِيعُ"
+    }
+   },
+   "note": "baa, ind 3ms."
+  },
+  {
+   "id": "realise/arb/baa/jus-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:baa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:jus"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+بِعْ"
+    }
+   },
+   "note": "baa, jus 3ms."
+  },
+  {
+   "id": "realise/arb/rama/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "رَمَى"
+    }
+   },
+   "note": "rama, perf 3ms."
+  },
+  {
+   "id": "realise/arb/rama/perf-3fs",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3fs"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "رَمَ+تْ"
+    }
+   },
+   "note": "rama, perf 3fs."
+  },
+  {
+   "id": "realise/arb/rama/perf-3mpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3mpl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "رَمَ+وْا۟"
+    }
+   },
+   "note": "rama, perf 3mpl."
+  },
+  {
+   "id": "realise/arb/rama/perf-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "رَمَي+تُ"
+    }
+   },
+   "note": "rama, perf 1sg."
+  },
+  {
+   "id": "realise/arb/rama/pass-perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "رُمِيَ"
+    }
+   },
+   "note": "rama, pass perf 3ms."
+  },
+  {
+   "id": "realise/arb/rama/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+رْمِي"
+    }
+   },
+   "note": "rama, ind 3ms."
+  },
+  {
+   "id": "realise/arb/rama/ind-3mpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:mpl"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+رْمُ+و+نَ"
+    }
+   },
+   "note": "rama, ind 3mpl."
+  },
+  {
+   "id": "realise/arb/rama/ind-2fs",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-2"
+     },
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:fs"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "تَ+رْمِ+ي+نَ"
+    }
+   },
+   "note": "rama, ind 2fs."
+  },
+  {
+   "id": "realise/arb/rama/ind-3fpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:fpl"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+رْمِي+نَ"
+    }
+   },
+   "note": "rama, ind 3fpl."
+  },
+  {
+   "id": "realise/arb/rama/sub-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:sub"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+رْمِيَ"
+    }
+   },
+   "note": "rama, sub 3ms."
+  },
+  {
+   "id": "realise/arb/rama/jus-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:jus"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+رْمِ"
+    }
+   },
+   "note": "rama, jus 3ms."
+  },
+  {
+   "id": "realise/arb/rama/pass-ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يُ+رْمَى"
+    }
+   },
+   "note": "rama, pass ind 3ms."
+  },
+  {
+   "id": "realise/arb/rama/imp-2ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِرْمِ"
+    }
+   },
+   "note": "rama, imp 2ms."
+  },
+  {
+   "id": "realise/arb/rama/imp-2fpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:fpl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِرْمِي+نَ"
+    }
+   },
+   "note": "rama, imp 2fpl."
+  },
+  {
+   "id": "realise/arb/rama/ptcp-pass",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:rama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مَرْمِيّ",
+     "missing": [
+      "Gender",
+      "Number"
+     ]
+    }
+   },
+   "note": "rama, ptcp pass."
+  },
+  {
+   "id": "realise/arb/daa/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:daa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "دَعَا"
+    }
+   },
+   "note": "daa, perf 3ms."
+  },
+  {
+   "id": "realise/arb/daa/perf-3fs",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:daa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3fs"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "دَعَ+تْ"
+    }
+   },
+   "note": "daa, perf 3fs."
+  },
+  {
+   "id": "realise/arb/daa/perf-3mpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:daa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3mpl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "دَعَ+وْا۟"
+    }
+   },
+   "note": "daa, perf 3mpl."
+  },
+  {
+   "id": "realise/arb/daa/perf-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:daa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "دَعَو+تُ"
+    }
+   },
+   "note": "daa, perf 1sg."
+  },
+  {
+   "id": "realise/arb/daa/pass-perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:daa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "دُعِيَ"
+    }
+   },
+   "note": "daa, pass perf 3ms."
+  },
+  {
+   "id": "realise/arb/daa/pass-perf-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:daa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:perf-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "دُعِي+تُ"
+    }
+   },
+   "note": "daa, pass perf 1sg."
+  },
+  {
+   "id": "realise/arb/daa/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:daa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+دْعُو"
+    }
+   },
+   "note": "daa, ind 3ms."
+  },
+  {
+   "id": "realise/arb/daa/ind-2fs",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-2"
+     },
+     {
+      "lexeme": "lexeme:daa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:fs"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "تَ+دْعِ+ي+نَ"
+    }
+   },
+   "note": "daa, ind 2fs."
+  },
+  {
+   "id": "realise/arb/daa/jus-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:daa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:jus"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+دْعُ"
+    }
+   },
+   "note": "daa, jus 3ms."
+  },
+  {
+   "id": "realise/arb/daa/pass-ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:daa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يُ+دْعَى"
+    }
+   },
+   "note": "daa, pass ind 3ms."
+  },
+  {
+   "id": "realise/arb/laqiya/perf-3mpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:laqiya",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3mpl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "لَقُ+وا۟"
+    }
+   },
+   "note": "laqiya, perf 3mpl."
+  },
+  {
+   "id": "realise/arb/laqiya/perf-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:laqiya",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "لَقِي+تُ"
+    }
+   },
+   "note": "laqiya, perf 1sg."
+  },
+  {
+   "id": "realise/arb/laqiya/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:laqiya",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+لْقَى"
+    }
+   },
+   "note": "laqiya, ind 3ms."
+  },
+  {
+   "id": "realise/arb/laqiya/ind-2fs",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-2"
+     },
+     {
+      "lexeme": "lexeme:laqiya",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:fs"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "تَ+لْقَيْ+نَ"
+    }
+   },
+   "note": "laqiya, ind 2fs."
+  },
+  {
+   "id": "realise/arb/laqiya/ind-3mpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:laqiya",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:mpl"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+لْقَ+وْ+نَ"
+    }
+   },
+   "note": "laqiya, ind 3mpl."
+  },
+  {
+   "id": "realise/arb/laqiya/jus-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:laqiya",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:jus"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+لْقَ"
+    }
+   },
+   "note": "laqiya, jus 3ms."
+  },
+  {
+   "id": "realise/arb/madda/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:madda",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مَدَّ"
+    }
+   },
+   "note": "madda, perf 3ms."
+  },
+  {
+   "id": "realise/arb/madda/perf-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:madda",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مَدَدْ+تُ"
+    }
+   },
+   "note": "madda, perf 1sg."
+  },
+  {
+   "id": "realise/arb/madda/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:madda",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+مُدُّ"
+    }
+   },
+   "note": "madda, ind 3ms."
+  },
+  {
+   "id": "realise/arb/madda/ind-3fpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:madda",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:fpl"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+مْدُدْ+نَ"
+    }
+   },
+   "note": "madda, ind 3fpl."
+  },
+  {
+   "id": "realise/arb/madda/jus-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:madda",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:jus"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+مُدَّ"
+    }
+   },
+   "note": "madda, jus 3ms."
+  },
+  {
+   "id": "realise/arb/madda/imp-2ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:madda",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مُدَّ"
+    }
+   },
+   "note": "madda, imp 2ms."
+  },
+  {
+   "id": "realise/arb/madda/imp-2fpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:madda",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:fpl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اُمْدُدْ+نَ"
+    }
+   },
+   "note": "madda, imp 2fpl."
+  },
+  {
+   "id": "realise/arb/madda/ptcp-pass",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:madda",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مَمْدُود",
+     "missing": [
+      "Gender",
+      "Number"
+     ]
+    }
+   },
+   "note": "madda, ptcp pass."
+  },
+  {
+   "id": "realise/arb/zanna/perf-3fpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:zanna",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3fpl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ظَنَنَّ"
+    }
+   },
+   "note": "zanna, perf 3fpl."
+  },
+  {
+   "id": "realise/arb/zanna/perf-1pl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:zanna",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-1pl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ظَنَنَّا"
+    }
+   },
+   "note": "zanna, perf 1pl."
+  },
+  {
+   "id": "realise/arb/allama/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:allama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "عَلَّمَ"
+    }
+   },
+   "note": "allama, perf 3ms."
+  },
+  {
+   "id": "realise/arb/allama/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:allama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يُ+عَلِّمُ"
+    }
+   },
+   "note": "allama, ind 3ms."
+  },
+  {
+   "id": "realise/arb/allama/ind-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-1sg"
+     },
+     {
+      "lexeme": "lexeme:allama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ءُ+عَلِّمُ"
+    }
+   },
+   "note": "allama, ind 1sg."
+  },
+  {
+   "id": "realise/arb/allama/ptcp",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:allama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مُعَلِّم",
+     "missing": [
+      "Gender",
+      "Number"
+     ]
+    }
+   },
+   "note": "allama, ptcp."
+  },
+  {
+   "id": "realise/arb/samma/perf-3fs",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:samma",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3fs"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "سَمَّ+تْ"
+    }
+   },
+   "note": "samma, perf 3fs."
+  },
+  {
+   "id": "realise/arb/samma/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:samma",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يُ+سَمِّي"
+    }
+   },
+   "note": "samma, ind 3ms."
+  },
+  {
+   "id": "realise/arb/samma/imp-2fpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:samma",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:fpl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "سَمِّي+نَ"
+    }
+   },
+   "note": "samma, imp 2fpl."
+  },
+  {
+   "id": "realise/arb/arsala/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:arsala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ءَرْسَلَ"
+    }
+   },
+   "note": "arsala, perf 3ms."
+  },
+  {
+   "id": "realise/arb/arsala/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:arsala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يُ+رْسِلُ"
+    }
+   },
+   "note": "arsala, ind 3ms."
+  },
+  {
+   "id": "realise/arb/arsala/imp-2ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:arsala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ءَرْسِلْ"
+    }
+   },
+   "note": "arsala, imp 2ms."
+  },
+  {
+   "id": "realise/arb/aqama/perf-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:aqama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ءَقَمْ+تُ"
+    }
+   },
+   "note": "aqama, perf 1sg."
+  },
+  {
+   "id": "realise/arb/aqama/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:aqama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يُ+قِيمُ"
+    }
+   },
+   "note": "aqama, ind 3ms."
+  },
+  {
+   "id": "realise/arb/aqama/jus-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:aqama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:jus"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يُ+قِمْ"
+    }
+   },
+   "note": "aqama, jus 3ms."
+  },
+  {
+   "id": "realise/arb/aqama/imp-2ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:aqama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ءَقِمْ"
+    }
+   },
+   "note": "aqama, imp 2ms."
+  },
+  {
+   "id": "realise/arb/ata/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:ata",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "ءَعْطَى"
+    }
+   },
+   "note": "ata, perf 3ms."
+  },
+  {
+   "id": "realise/arb/ata/ind-3mpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:ata",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:mpl"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يُ+عْطُ+و+نَ"
+    }
+   },
+   "note": "ata, ind 3mpl."
+  },
+  {
+   "id": "realise/arb/taallama/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:taallama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+تَعَلَّمُ"
+    }
+   },
+   "note": "taallama, ind 3ms."
+  },
+  {
+   "id": "realise/arb/taallama/pass-perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:taallama",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "تُعُلِّمَ"
+    }
+   },
+   "note": "taallama, pass perf 3ms."
+  },
+  {
+   "id": "realise/arb/inkasara/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:inkasara",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِنْكَسَرَ"
+    }
+   },
+   "note": "inkasara, perf 3ms."
+  },
+  {
+   "id": "realise/arb/inkasara/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:inkasara",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+نْكَسِرُ"
+    }
+   },
+   "note": "inkasara, ind 3ms."
+  },
+  {
+   "id": "realise/arb/ijtamaa/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:ijtamaa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِجْتَمَعَ"
+    }
+   },
+   "note": "ijtamaa, perf 3ms."
+  },
+  {
+   "id": "realise/arb/ijtamaa/ptcp",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:ijtamaa",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مُجْتَمِع",
+     "missing": [
+      "Gender",
+      "Number"
+     ]
+    }
+   },
+   "note": "ijtamaa, ptcp."
+  },
+  {
+   "id": "realise/arb/ikhtara/perf-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:ikhtara",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِخْتَرْ+تُ"
+    }
+   },
+   "note": "ikhtara, perf 1sg."
+  },
+  {
+   "id": "realise/arb/ikhtara/jus-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:ikhtara",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:jus"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+خْتَرْ"
+    }
+   },
+   "note": "ikhtara, jus 3ms."
+  },
+  {
+   "id": "realise/arb/ishtara/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:ishtara",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِشْتَرَى"
+    }
+   },
+   "note": "ishtara, perf 3ms."
+  },
+  {
+   "id": "realise/arb/ishtara/imp-2ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:ishtara",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِشْتَرِ"
+    }
+   },
+   "note": "ishtara, imp 2ms."
+  },
+  {
+   "id": "realise/arb/ishtara/imp-2fpl",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:ishtara",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:imp"
+     },
+     {
+      "lexeme": "lexeme:fpl"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِشْتَرِي+نَ"
+    }
+   },
+   "note": "ishtara, imp 2fpl."
+  },
+  {
+   "id": "realise/arb/ittasala/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:ittasala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِتَّصَلَ"
+    }
+   },
+   "note": "ittasala, perf 3ms."
+  },
+  {
+   "id": "realise/arb/ittasala/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:ittasala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+تَّصِلُ"
+    }
+   },
+   "note": "ittasala, ind 3ms."
+  },
+  {
+   "id": "realise/arb/izdahara/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:izdahara",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِزْدَهَرَ"
+    }
+   },
+   "note": "izdahara, perf 3ms."
+  },
+  {
+   "id": "realise/arb/istabara/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:istabara",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِصْطَبَرَ"
+    }
+   },
+   "note": "istabara, perf 3ms."
+  },
+  {
+   "id": "realise/arb/istaqbala/perf-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:istaqbala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-3ms"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِسْتَقْبَلَ"
+    }
+   },
+   "note": "istaqbala, perf 3ms."
+  },
+  {
+   "id": "realise/arb/istaqbala/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:istaqbala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+سْتَقْبِلُ"
+    }
+   },
+   "note": "istaqbala, ind 3ms."
+  },
+  {
+   "id": "realise/arb/istaqbala/ptcp-pass",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:istaqbala",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:ptcp"
+     },
+     {
+      "lexeme": "lexeme:pass"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "مُسْتَقْبَل",
+     "missing": [
+      "Gender",
+      "Number"
+     ]
+    }
+   },
+   "note": "istaqbala, ptcp pass."
+  },
+  {
+   "id": "realise/arb/istafada/perf-1sg",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:istafada",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:perf"
+     },
+     {
+      "lexeme": "lexeme:perf-1sg"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "اِسْتَفَدْ+تُ"
+    }
+   },
+   "note": "istafada, perf 1sg."
+  },
+  {
+   "id": "realise/arb/istafada/ind-3ms",
+   "op": "realise-token",
+   "args": {
+    "lang": "arb",
+    "lexemes": [
+     {
+      "lexeme": "lexeme:impf-3"
+     },
+     {
+      "lexeme": "lexeme:istafada",
+      "base": true
+     },
+     {
+      "lexeme": "lexeme:impf"
+     },
+     {
+      "lexeme": "lexeme:ms"
+     },
+     {
+      "lexeme": "lexeme:ind"
+     }
+    ]
+   },
+   "expected": {
+    "ok": true,
+    "value": {
+     "form": "يَ+سْتَفِيدُ"
+    }
+   },
+   "note": "istafada, ind 3ms."
+  }
+ ]
+}

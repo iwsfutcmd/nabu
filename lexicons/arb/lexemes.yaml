@@ -1,0 +1,998 @@
+# The lexicon of arb (schemas/lexicon.schema.json): every lexeme, sorted by id. Affixes are lexemes
+# (ADR 0158): each brings its values (`realises`), says what it merges onto (`on`) and what the word then
+# requires (`requires`).
+language: arb
+license: CC-BY-SA-4.0
+provenance: &id001
+  author: llm:claude@arb-rules
+  status: draft
+lexemes:
+- id: lexeme:akala
+  pos: VERB
+  gloss:
+    en: eat
+  form:
+    radicals:
+    - ء
+    - ك
+    - ل
+    form: I
+    vowels:
+      past: a
+      present: u
+    source: ryding 2005
+  forms:
+  - feats:
+      Mood: Imp
+    stem: كُلْ
+    status: listed
+    statement: *id001
+- id: lexeme:allama
+  pos: VERB
+  gloss:
+    en: teach
+  form:
+    radicals:
+    - ع
+    - ل
+    - م
+    form: II
+    source: ryding 2005
+- id: lexeme:aqama
+  pos: VERB
+  gloss:
+    en: reside; hold (an event)
+  form:
+    radicals:
+    - ق
+    - و
+    - م
+    form: IV
+    source: ryding 2005
+- id: lexeme:arsala
+  pos: VERB
+  gloss:
+    en: send
+  form:
+    radicals:
+    - ر
+    - س
+    - ل
+    form: IV
+    source: ryding 2005
+- id: lexeme:ata
+  pos: VERB
+  gloss:
+    en: give
+  form:
+    radicals:
+    - ع
+    - ط
+    - و
+    form: IV
+    source: ryding 2005
+- id: lexeme:baa
+  pos: VERB
+  gloss:
+    en: sell
+  form:
+    radicals:
+    - ب
+    - ي
+    - ع
+    form: I
+    vowels:
+      past: a
+      present: i
+    source: ryding 2005
+- id: lexeme:daa
+  pos: VERB
+  gloss:
+    en: call
+  form:
+    radicals:
+    - د
+    - ع
+    - و
+    form: I
+    vowels:
+      past: a
+      present: u
+    source: ryding 2005
+- id: lexeme:darrasa
+  pos: VERB
+  gloss:
+    en: teach (a subject)
+  form:
+    radicals:
+    - د
+    - ر
+    - س
+    form: II
+    source: ryding 2005
+- id: lexeme:du
+  realises:
+    Number: Dual
+  'on':
+    has:
+      Person: 2,3
+      VerbForm: Fin
+  gloss:
+    en: '-ā: two'
+  allomorphs:
+  - form: ـَا
+- id: lexeme:farra
+  pos: VERB
+  gloss:
+    en: flee
+  form:
+    radicals:
+    - ف
+    - ر
+    - ر
+    form: I
+    vowels:
+      past: a
+      present: i
+    source: ryding 2005
+- id: lexeme:fataha
+  pos: VERB
+  gloss:
+    en: open
+  form:
+    radicals:
+    - ف
+    - ت
+    - ح
+    form: I
+    vowels:
+      past: a
+      present: a
+    source: ryding 2005
+- id: lexeme:fpl
+  realises:
+    Gender: Fem
+    Number: Plur
+  'on':
+    has:
+      Person: 2,3
+      VerbForm: Fin
+  selects: &id004
+  - short
+  - stem
+  - command
+  gloss:
+    en: '-na: women, several'
+  allomorphs:
+  - form: نَ
+- id: lexeme:fs
+  realises:
+    Gender: Fem
+    Number: Sing
+  'on':
+    has:
+      Person: '2'
+      VerbForm: Fin
+  gloss:
+    en: '-ī: you, a woman'
+  allomorphs:
+  - form: ـِي
+- id: lexeme:ijtamaa
+  pos: VERB
+  gloss:
+    en: meet, gather
+  form:
+    radicals:
+    - ج
+    - م
+    - ع
+    form: VIII
+    source: ryding 2005
+- id: lexeme:ikhtara
+  pos: VERB
+  gloss:
+    en: choose
+  form:
+    radicals:
+    - خ
+    - ي
+    - ر
+    form: VIII
+    source: ryding 2005
+- id: lexeme:imp
+  realises:
+    VerbForm: Fin
+    Mood: Imp
+    Person: '2'
+  'on':
+    pos: &id002
+    - VERB
+  requires:
+  - Number
+  selects: command
+  gloss:
+    en: imperative
+  allomorphs:
+  - form: ''
+- id: lexeme:impf
+  realises:
+    VerbForm: Fin
+    Aspect: Imp
+  'on':
+    pos: *id002
+  requires:
+  - Person
+  - Number
+  - Mood
+  selects: stem
+  gloss:
+    en: imperfect (present)
+  notes:
+    en: 'A zero morpheme: the imperfect stem, a person prefix before it and a mood after it.'
+  allomorphs:
+  - form: ''
+- id: lexeme:impf-1pl
+  realises:
+    Person: '1'
+    Number: Plur
+  'on':
+    has: &id003
+      Aspect: Imp
+  gloss:
+    en: 'na-: we (present)'
+  allomorphs:
+  - form: ن
+- id: lexeme:impf-1sg
+  realises:
+    Person: '1'
+    Number: Sing
+  'on':
+    has: *id003
+  gloss:
+    en: 'ʾa-: I (present)'
+  allomorphs:
+  - form: ء
+- id: lexeme:impf-2
+  realises:
+    Person: '2'
+  'on':
+    has: *id003
+  gloss:
+    en: 'ta-: you (present)'
+  allomorphs:
+  - form: ت
+- id: lexeme:impf-3
+  realises:
+    Person: '3'
+  'on':
+    has: *id003
+  gloss:
+    en: 'ya-: he, they (present)'
+  allomorphs:
+  - form: ي
+- id: lexeme:impf-3f
+  realises:
+    Person: '3'
+    Gender: Fem
+  'on':
+    has: *id003
+  gloss:
+    en: 'ta-: she, they two women (present)'
+  allomorphs:
+  - form: ت
+- id: lexeme:ind
+  realises:
+    Mood: Ind
+  'on':
+    has: *id003
+  gloss:
+    en: indicative
+  allomorphs:
+  - form: نِ
+    after:
+      feats:
+        Number: Dual
+  - form: نَ
+    after:
+      feats:
+        Gender: Masc
+        Number: Plur
+  - form: نَ
+    after:
+      feats:
+        Person: '2'
+        Gender: Fem
+        Number: Sing
+  - form: ''
+    after:
+      feats:
+        Gender: Fem
+        Number: Plur
+  - form: ـُ
+- id: lexeme:inkasara
+  pos: VERB
+  gloss:
+    en: break (intransitive)
+  form:
+    radicals:
+    - ك
+    - س
+    - ر
+    form: VII
+    source: ryding 2005
+- id: lexeme:ishtara
+  pos: VERB
+  gloss:
+    en: buy
+  form:
+    radicals:
+    - ش
+    - ر
+    - ي
+    form: VIII
+    source: ryding 2005
+- id: lexeme:istabara
+  pos: VERB
+  gloss:
+    en: be patient
+  form:
+    radicals:
+    - ص
+    - ب
+    - ر
+    form: VIII
+    source: ryding 2005
+- id: lexeme:istafada
+  pos: VERB
+  gloss:
+    en: benefit
+  form:
+    radicals:
+    - ف
+    - ي
+    - د
+    form: X
+    source: ryding 2005
+- id: lexeme:istaqbala
+  pos: VERB
+  gloss:
+    en: receive
+  form:
+    radicals:
+    - ق
+    - ب
+    - ل
+    form: X
+    source: ryding 2005
+- id: lexeme:ittasala
+  pos: VERB
+  gloss:
+    en: get in touch
+  form:
+    radicals:
+    - و
+    - ص
+    - ل
+    form: VIII
+    source: ryding 2005
+- id: lexeme:izdahara
+  pos: VERB
+  gloss:
+    en: flourish
+  form:
+    radicals:
+    - ز
+    - ه
+    - ر
+    form: VIII
+    source: ryding 2005
+- id: lexeme:jalasa
+  pos: VERB
+  gloss:
+    en: sit
+  form:
+    radicals:
+    - ج
+    - ل
+    - س
+    form: I
+    vowels:
+      past: a
+      present: i
+    source: ryding 2005
+- id: lexeme:jus
+  realises:
+    Mood: Jus
+  'on':
+    has: *id003
+  gloss:
+    en: jussive
+  allomorphs:
+  - form: ''
+    after:
+      feats:
+        Number: Dual
+  - form: "ا\u06df"
+    after:
+      feats:
+        Gender: Masc
+        Number: Plur
+  - form: ''
+    after:
+      feats:
+        Person: '2'
+        Gender: Fem
+        Number: Sing
+  - form: ''
+    after:
+      feats:
+        Gender: Fem
+        Number: Plur
+  - form: ـْ
+- id: lexeme:kabura
+  pos: VERB
+  gloss:
+    en: grow big
+  form:
+    radicals:
+    - ك
+    - ب
+    - ر
+    form: I
+    vowels:
+      past: u
+      present: u
+    source: ryding 2005
+- id: lexeme:kataba
+  pos: VERB
+  gloss:
+    en: write
+  form:
+    radicals:
+    - ك
+    - ت
+    - ب
+    form: I
+    vowels:
+      past: a
+      present: u
+    source: ryding 2005
+- id: lexeme:kataba-iii
+  pos: VERB
+  gloss:
+    en: correspond with
+  form:
+    radicals:
+    - ك
+    - ت
+    - ب
+    form: III
+    source: ryding 2005
+- id: lexeme:khafa
+  pos: VERB
+  gloss:
+    en: fear
+  form:
+    radicals:
+    - خ
+    - و
+    - ف
+    form: I
+    vowels:
+      past: i
+      present: a
+    source: ryding 2005
+- id: lexeme:laqiya
+  pos: VERB
+  gloss:
+    en: meet
+  form:
+    radicals:
+    - ل
+    - ق
+    - ي
+    form: I
+    vowels:
+      past: i
+      present: a
+    source: ryding 2005
+- id: lexeme:madda
+  pos: VERB
+  gloss:
+    en: extend
+  form:
+    radicals:
+    - م
+    - د
+    - د
+    form: I
+    vowels:
+      past: a
+      present: u
+    source: ryding 2005
+- id: lexeme:masha
+  pos: VERB
+  gloss:
+    en: walk
+  form:
+    radicals:
+    - م
+    - ش
+    - ي
+    form: I
+    vowels:
+      past: a
+      present: i
+    source: ryding 2005
+- id: lexeme:mpl
+  realises:
+    Gender: Masc
+    Number: Plur
+  'on':
+    has:
+      Person: 2,3
+      VerbForm: Fin
+  gloss:
+    en: '-ū: men, several'
+  allomorphs:
+  - form: "ـُوا\u06df"
+    after:
+      feats:
+        Mood: Imp
+  - form: ـُو
+- id: lexeme:ms
+  realises:
+    Gender: Masc
+    Number: Sing
+  'on':
+    has:
+      Person: 2,3
+      VerbForm: Fin
+  gloss:
+    en: a man (zero)
+  allomorphs:
+  - form: ''
+- id: lexeme:nama
+  pos: VERB
+  gloss:
+    en: sleep
+  form:
+    radicals:
+    - ن
+    - و
+    - م
+    form: I
+    vowels:
+      past: i
+      present: a
+    source: ryding 2005
+- id: lexeme:nasiya
+  pos: VERB
+  gloss:
+    en: forget
+  form:
+    radicals:
+    - ن
+    - س
+    - ي
+    form: I
+    vowels:
+      past: i
+      present: a
+    source: ryding 2005
+- id: lexeme:pass
+  realises:
+    Voice: Pass
+  'on':
+    pos: *id002
+  gloss:
+    en: passive
+  notes:
+    en: 'A zero morpheme: the passive stem of the aspect or participle the word has (kutiba, yuktabu, maktūb).'
+  allomorphs:
+  - form: ''
+- id: lexeme:perf
+  realises:
+    VerbForm: Fin
+    Aspect: Perf
+  'on':
+    pos: *id002
+  requires:
+  - Person
+  - Number
+  selects: stem
+  gloss:
+    en: perfect (past)
+  notes:
+    en: 'A zero morpheme: the perfect stem, and its person endings after it.'
+  allomorphs:
+  - form: ''
+- id: lexeme:perf-1pl
+  realises:
+    Person: '1'
+    Number: Plur
+  'on':
+    has: &id005
+      Aspect: Perf
+  selects: *id004
+  gloss:
+    en: '-nā: we (past)'
+  allomorphs:
+  - form: نَا
+- id: lexeme:perf-1sg
+  realises:
+    Person: '1'
+    Number: Sing
+  'on':
+    has: *id005
+  selects: *id004
+  gloss:
+    en: '-tu: I (past)'
+  allomorphs:
+  - form: تُ
+- id: lexeme:perf-2du
+  realises:
+    Person: '2'
+    Number: Dual
+  'on':
+    has: *id005
+  selects: *id004
+  gloss:
+    en: '-tumā: you two (past)'
+  allomorphs:
+  - form: تُمَا
+- id: lexeme:perf-2fpl
+  realises:
+    Person: '2'
+    Gender: Fem
+    Number: Plur
+  'on':
+    has: *id005
+  selects: *id004
+  gloss:
+    en: '-tunna: you, women (past)'
+  allomorphs:
+  - form: تُنَّ
+- id: lexeme:perf-2fs
+  realises:
+    Person: '2'
+    Gender: Fem
+    Number: Sing
+  'on':
+    has: *id005
+  selects: *id004
+  gloss:
+    en: '-ti: you, a woman (past)'
+  allomorphs:
+  - form: تِ
+- id: lexeme:perf-2mpl
+  realises:
+    Person: '2'
+    Gender: Masc
+    Number: Plur
+  'on':
+    has: *id005
+  selects: *id004
+  gloss:
+    en: '-tum: you, men (past)'
+  allomorphs:
+  - form: تُمْ
+- id: lexeme:perf-2ms
+  realises:
+    Person: '2'
+    Gender: Masc
+    Number: Sing
+  'on':
+    has: *id005
+  selects: *id004
+  gloss:
+    en: '-ta: you, a man (past)'
+  allomorphs:
+  - form: تَ
+- id: lexeme:perf-3fdu
+  realises:
+    Person: '3'
+    Gender: Fem
+    Number: Dual
+  'on':
+    has: *id005
+  gloss:
+    en: '-atā: they two, women (past)'
+  allomorphs:
+  - form: ـَتَا
+- id: lexeme:perf-3fpl
+  realises:
+    Person: '3'
+    Gender: Fem
+    Number: Plur
+  'on':
+    has: *id005
+  selects: *id004
+  gloss:
+    en: '-na: they, women (past)'
+  allomorphs:
+  - form: نَ
+- id: lexeme:perf-3fs
+  realises:
+    Person: '3'
+    Gender: Fem
+    Number: Sing
+  'on':
+    has: *id005
+  gloss:
+    en: '-at: she (past)'
+  allomorphs:
+  - form: ـَتْ
+- id: lexeme:perf-3mdu
+  realises:
+    Person: '3'
+    Gender: Masc
+    Number: Dual
+  'on':
+    has: *id005
+  gloss:
+    en: '-ā: they two, men (past)'
+  allomorphs:
+  - form: ـَا
+- id: lexeme:perf-3mpl
+  realises:
+    Person: '3'
+    Gender: Masc
+    Number: Plur
+  'on':
+    has: *id005
+  gloss:
+    en: '-ū: they, men (past)'
+  allomorphs:
+  - form: "ـُوا\u06df"
+- id: lexeme:perf-3ms
+  realises:
+    Person: '3'
+    Gender: Masc
+    Number: Sing
+  'on':
+    has: *id005
+  gloss:
+    en: '-a: he (past)'
+  allomorphs:
+  - form: ـَ
+- id: lexeme:ptcp
+  realises:
+    VerbForm: Part
+  'on':
+    pos: *id002
+  requires:
+  - Gender
+  - Number
+  selects: participle
+  gloss:
+    en: participle
+  notes:
+    en: 'A zero morpheme: the participle''s stem (fāʿil, mufʿil …); with the passive, the passive participle (mafʿūl, mufʿal …).'
+  allomorphs:
+  - form: ''
+- id: lexeme:qala
+  pos: VERB
+  gloss:
+    en: say
+  form:
+    radicals:
+    - ق
+    - و
+    - ل
+    form: I
+    vowels:
+      past: a
+      present: u
+    source: ryding 2005
+- id: lexeme:qaraa
+  pos: VERB
+  gloss:
+    en: read
+  form:
+    radicals:
+    - ق
+    - ر
+    - ء
+    form: I
+    vowels:
+      past: a
+      present: a
+    source: ryding 2005
+- id: lexeme:rama
+  pos: VERB
+  gloss:
+    en: throw
+  form:
+    radicals:
+    - ر
+    - م
+    - ي
+    form: I
+    vowels:
+      past: a
+      present: i
+    source: ryding 2005
+- id: lexeme:saada
+  pos: VERB
+  gloss:
+    en: help
+  form:
+    radicals:
+    - س
+    - ع
+    - د
+    form: III
+    source: ryding 2005
+- id: lexeme:saala
+  pos: VERB
+  gloss:
+    en: ask
+  form:
+    radicals:
+    - س
+    - ء
+    - ل
+    form: I
+    vowels:
+      past: a
+      present: a
+    source: ryding 2005
+- id: lexeme:samma
+  pos: VERB
+  gloss:
+    en: name
+  form:
+    radicals:
+    - س
+    - م
+    - و
+    form: II
+    source: ryding 2005
+- id: lexeme:sara
+  pos: VERB
+  gloss:
+    en: walk, go
+  form:
+    radicals:
+    - س
+    - ي
+    - ر
+    form: I
+    vowels:
+      past: a
+      present: i
+    source: ryding 2005
+- id: lexeme:sg
+  realises:
+    Number: Sing
+  'on':
+    has:
+      Person: '3'
+      Gender: Fem
+      VerbForm: Fin
+  gloss:
+    en: one (zero)
+  allomorphs:
+  - form: ''
+- id: lexeme:shariba
+  pos: VERB
+  gloss:
+    en: drink
+  form:
+    radicals:
+    - ش
+    - ر
+    - ب
+    form: I
+    vowels:
+      past: i
+      present: a
+    source: ryding 2005
+- id: lexeme:sub
+  realises:
+    Mood: Sub
+  'on':
+    has: *id003
+  gloss:
+    en: subjunctive
+  allomorphs:
+  - form: ''
+    after:
+      feats:
+        Number: Dual
+  - form: "ا\u06df"
+    after:
+      feats:
+        Gender: Masc
+        Number: Plur
+  - form: ''
+    after:
+      feats:
+        Person: '2'
+        Gender: Fem
+        Number: Sing
+  - form: ''
+    after:
+      feats:
+        Gender: Fem
+        Number: Plur
+  - form: ـَ
+- id: lexeme:taallama
+  pos: VERB
+  gloss:
+    en: learn
+  form:
+    radicals:
+    - ع
+    - ل
+    - م
+    form: V
+    source: ryding 2005
+- id: lexeme:takataba
+  pos: VERB
+  gloss:
+    en: write to each other
+  form:
+    radicals:
+    - ك
+    - ت
+    - ب
+    form: VI
+    source: ryding 2005
+- id: lexeme:wajada
+  pos: VERB
+  gloss:
+    en: find
+  form:
+    radicals:
+    - و
+    - ج
+    - د
+    form: I
+    vowels:
+      past: a
+      present: i
+    source: ryding 2005
+- id: lexeme:wasala
+  pos: VERB
+  gloss:
+    en: arrive
+  form:
+    radicals:
+    - و
+    - ص
+    - ل
+    form: I
+    vowels:
+      past: a
+      present: i
+    source: ryding 2005
+- id: lexeme:zanna
+  pos: VERB
+  gloss:
+    en: think, suppose
+  form:
+    radicals:
+    - ظ
+    - ن
+    - ن
+    form: I
+    vowels:
+      past: a
+      present: u
+    source: ryding 2005
+- id: lexeme:zara
+  pos: VERB
+  gloss:
+    en: visit
+  form:
+    radicals:
+    - ز
+    - و
+    - ر
+    form: I
+    vowels:
+      past: a
+      present: u
+    source: ryding 2005

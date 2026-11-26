@@ -1,0 +1,74 @@
+# Modern Standard Arabic in Arabic script, as the rules in lexicons/arb spell it (ADR 0158). No course uses it yet: it is
+# for the rules explorer (debug mode), where the owner checks the rules. Policies and spelling rules are REVIEW.
+id: arb-Arab/standard
+lang: arb-Arab
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize:
+  - nfc
+  - fold-compat: arabic-presentation-forms
+  - remove: ["\u0640"]                 # tatweel
+  - digits: { canonical: latn, accept: [arab, arabext, latn] }
+  - punctuation: strip
+  - whitespace: collapse
+match:
+  case: none
+  marks:
+    set: "[\u064B-\u0652\u0670]"
+    policy: ignore
+# The standard spelling: the hamza on its seat, no vowel marks, no shadda.
+spell:
+  from: lexical
+  rules:
+    # Hamza (REVIEW: Ryding 2005, ch. 3; the seat rules, one at a time). ءَا is a madda where the hamza would sit on
+    # an alif (at the start, after a, after a sukun); after i or u it keeps its seat (quriʾā قرئا, suʾāl سؤال).
+    - {find: "\u0621\u064E\u0627", after: "(^|[\u064E\u0652])", to: "\u0622"}
+    # At the start of a word: أ before a or u, إ before i.
+    - {find: "\u0621", after: "^", before: "[\u064E\u064F]", to: "\u0623"}
+    - {find: "\u0621", after: "^", before: "\u0650", to: "\u0625"}
+    # At the end (nothing but marks after it): the seat of the vowel before; after a sukun or a long vowel, none.
+    - {find: "\u0621", after: "\u064F", before: "[\u064B-\u0652\u0670\u06DF]*$", to: "\u0624"}
+    - {find: "\u0621", after: "\u0650", before: "[\u064B-\u0652\u0670\u06DF]*$", to: "\u0626"}
+    - {find: "\u0621", after: "\u064E", before: "[\u064B-\u0652\u0670\u06DF]*$", to: "\u0623"}
+    # Inside a word, the stronger of its own vowel and the one before it (i, then u, then a); after a long a, a
+    # hamza with a is on the line (tasāʾala); after a sukun, its own vowel's seat.
+    - {find: "\u0621", before: "\u0650", to: "\u0626"}
+    - {find: "\u0621", after: "(\u0650|\u064A\u0652?)", to: "\u0626"}
+    - {find: "\u0621", after: "\u0627", before: "\u064E", to: "\u0621"}
+    - {find: "\u0621", before: "\u064F", to: "\u0624"}
+    - {find: "\u0621", after: "\u064F", to: "\u0624"}
+    - {find: "\u0621", after: "[\u064E\u0652]", to: "\u0623"}
+    - {find: "[\u064B-\u0652\u0670\u06DF]", to: ""}
+annotations:
+  # Fully vocalized, as a grammar or a textbook writes it.
+  - id: vocalized
+    kind: vocalization
+    toggle: true
+    default: "on"
+    spell:
+      from: lexical
+      rules:
+        # Hamza (REVIEW: Ryding 2005, ch. 3; the seat rules, one at a time). ءَا is a madda where the hamza would sit on
+    # an alif (at the start, after a, after a sukun); after i or u it keeps its seat (quriʾā قرئا, suʾāl سؤال).
+        - {find: "\u0621\u064E\u0627", after: "(^|[\u064E\u0652])", to: "\u0622"}
+        # At the start of a word: أ before a or u, إ before i.
+        - {find: "\u0621", after: "^", before: "[\u064E\u064F]", to: "\u0623"}
+        - {find: "\u0621", after: "^", before: "\u0650", to: "\u0625"}
+        # At the end (nothing but marks after it): the seat of the vowel before; after a sukun or a long vowel, none.
+        - {find: "\u0621", after: "\u064F", before: "[\u064B-\u0652\u0670\u06DF]*$", to: "\u0624"}
+        - {find: "\u0621", after: "\u0650", before: "[\u064B-\u0652\u0670\u06DF]*$", to: "\u0626"}
+        - {find: "\u0621", after: "\u064E", before: "[\u064B-\u0652\u0670\u06DF]*$", to: "\u0623"}
+        # Inside a word, the stronger of its own vowel and the one before it (i, then u, then a); after a long a, a
+        # hamza with a is on the line (tasāʾala); after a sukun, its own vowel's seat.
+        - {find: "\u0621", before: "\u0650", to: "\u0626"}
+        - {find: "\u0621", after: "(\u0650|\u064A\u0652?)", to: "\u0626"}
+        - {find: "\u0621", after: "\u0627", before: "\u064E", to: "\u0621"}
+        - {find: "\u0621", before: "\u064F", to: "\u0624"}
+        - {find: "\u0621", after: "\u064F", to: "\u0624"}
+        - {find: "\u0621", after: "[\u064E\u0652]", to: "\u0623"}
+        # A letter written and not said (the alif after the plural's -ū) has no mark.
+        - {find: "\u06DF", to: ""}
+        # The y or w of a diphthong (ay, aw) has a sukun where no vowel follows it.
+        - {find: "\u064A", after: "\u064E", before: "([\u0621-\u064A]|$)", to: "\u064A\u0652"}
+        - {find: "\u0648", after: "\u064E", before: "([\u0621-\u064A]|$)", to: "\u0648\u0652"}
+layout: { vertical: none }
+fonts: { stack: [Noto Naskh Arabic], lineHeight: 1.9 }

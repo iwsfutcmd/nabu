@@ -981,6 +981,12 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   fails is `attach`, a feature brought twice `twice`; a form stored for the merged word covers the lexemes whose
   values it has (a broken plural). Feature values are abstract: learners learn lexemes. The citation form is a
   mnemonic, a named merge. Stage 1 (the engine, conformance/realise-merge.json) is built; apc converts next, then es.
+- Modern Standard Arabic (lexicons/arb, profiles/arb-Arab.standard.yaml; docs/rules/arb.md) is written in the merge
+  model from the start, verbs first, for the owner to check: no course uses it. It opens in the rules explorer from
+  Home in debug mode (#/lexicon/arb/rules: core `lexiconCourse`, apps/web lexicon-source.ts serves a lexicon no course
+  uses). docs/rules/arb-verbs.md is every cell (`node scripts/arb-verbs.ts` in packages/core: never by hand);
+  conformance/realise-arb.json and spell-arb.json pin 130 cells (`node scripts/arb-vectors.ts`, after a reviewer
+  has checked a change). A stem template may name the word's values (`feats`: the passive's stems).
 - Until a language converts, its tokens still choose values; realiseToken reads the base's own choice for blocking
   and the citation, and an exponent whose values the token's lexemes bring is theirs (uz's past), never the rule's.
 
