@@ -13,7 +13,10 @@
   could provide it with one of those features. You could even say that a lexeme could not be outputted until all of
   those features are properly set. This could get tricky because, for example, an infinitive doesn't take person or
   tense in Spanish. but you could always say that 'finite-ness' gives the output a further requirement of person and
-  tense."
+  tense." And: "a lexeme's citation form is actually meaningless, it's just a mnemonic for a learner, really. a
+  written form only makes sense if the lexeme is fully realized, via merging with enough lexemes that the feature
+  slots are filled. some lexemes already have their feature slots filled so their written form happens to be their
+  citation form. 0-morphemes can exist, though."
 
 ## Context
 
@@ -55,6 +58,11 @@ would set: no person, tense, aspect, case or number on a verb or noun. **What st
 to it and no merge changes (question A): a noun's gender (قهوة is feminine), an sk verb's aspect partner, a
 class (`classes`) that says which allomorphs it takes.
 
+**A lexeme has no written form of its own.** Its lexical form is what rules work on; a written form exists only for
+a complete word (§3). A lexeme whose category raises no requirement (a particle, an adverb, a preposition, apc
+*marHaba*) is complete alone, so its written form happens to be its citation form; a verb or an inflecting noun is
+never written bare.
+
 ### 2. An affix is a lexeme that brings values and requirements
 
 A bound lexeme (`realises`, already in the schema) states:
@@ -91,7 +99,17 @@ listed.
 
 apc's 3ms perfect *shereb*, es 3sg *tiene*: the requirement for `Person` is met by a lexeme with an empty form
 (`3sg`, as fa's ezafe already is), so every value a word has comes from a lexeme and "the only thing that can happen
-is a merge" holds with no exception (question B).
+is a merge" holds with no exception (the owner: "0-morphemes can exist").
+
+### 5a. The citation form is a mnemonic
+
+What a word card shows as a lexeme's name (es *tener*, apc *shereb*, grc *λύω*) is not part of the morphology: it is
+a mnemonic for the learner, and it is a complete word like any other, the lexeme merged with the lexemes the language
+names for it. `language.yaml`'s `citation` changes from a cell to those lexemes (es VERB: `[inf]`; apc VERB:
+`[perf, 3, m, sg]`; grc VERB: `[pres, ind, act, 1sg]`); a lexeme's own `citation` (apc *khayef*, cited as its
+participle) does the same. The compiler realises it and ships it as the lemma; the lexicon's first `spelled` form,
+today the lemma by hand, becomes a check against that (or goes). A lexeme complete alone is cited as itself.
+`principalParts` are the same kind of thing: further named merges shown beside the citation, mnemonics too.
 
 ### 6. Features are derived, everywhere downstream
 
@@ -133,6 +151,8 @@ affix lexeme to attach go away, the lexemes themselves carrying `on` and `requir
   realiser's, so tokens need not spell them by hand (a token may list affixes without `surface`).
 - **Learners' state**: card keys of feature-value parts change if question D moves credit to affix lexemes; old
   events go through `upgrade` with an aliases table, as the lexical model's did.
+- **Lemmas and word cards**: every lemma becomes a realisation of the citation merges; where one differs from today's
+  hand-written first spelling, the compiler lists it for review (apc's verb lemmas already went this way, ADR 0154).
 - **Bundles**: format 6. `cells` and `paradigm` stay as a view the compiler works out (every complete combination of
   the category's affixes, cut to what the course teaches), so the dialog's forms and grading's "another form" keep
   their data.
@@ -142,7 +162,7 @@ affix lexeme to attach go away, the lexemes themselves carrying `on` and `requir
 
 - **A.** May a lexeme keep what is its own and never merged in: a noun's gender, sk's aspect partners (robiť /
   urobiť), a stem class? (Proposed: yes, as lexical values, never switches.)
-- **B.** Zero morphemes: lexemes with no surface (proposed), or does an unmet requirement take a stated default?
+- **B.** Answered (2026-11-26): zero morphemes exist, as lexemes with no surface.
 - **C.** Stem alternants and templatic patterns (es *tuv-*, apc's stems, hbo's binyanim): a rule at the join with
   the lexeme that triggers it (proposed), or a pattern lexeme merged with a root?
 - **D.** Credit: does a learner learn the affix lexeme (es `-o`, apc ـت) in place of the feature value
