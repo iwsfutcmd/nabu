@@ -16,7 +16,7 @@
   tense." And: "a lexeme's citation form is actually meaningless, it's just a mnemonic for a learner, really. a
   written form only makes sense if the lexeme is fully realized, via merging with enough lexemes that the feature
   slots are filled. some lexemes already have their feature slots filled so their written form happens to be their
-  citation form. 0-morphemes can exist, though."
+  citation form. 0-morphemes can exist, though." Then, on the questions below (A, C, D, E), the same day.
 
 ## Context
 
@@ -55,8 +55,13 @@ fa its person endings and the ezafe, and `phonology` rewrites already fire at bo
 
 A free lexeme has a `pos` and a lexical form, nothing else that inflection could change. No `feats` that a merge
 would set: no person, tense, aspect, case or number on a verb or noun. **What stays on a lexeme** is what belongs
-to it and no merge changes (question A): a noun's gender (قهوة is feminine), an sk verb's aspect partner, a
-class (`classes`) that says which allomorphs it takes.
+to it and no merge changes (the owner, A: yes): a class (`classes`) that says which allomorphs it takes, an sk
+verb's aspect partner, and gender where it is inherent.
+
+**Gender** (the owner): nearly every noun has an inherent gender (قهوة is feminine, es *casa*). Every adjective is
+underspecified for it, and so needs a gender lexeme (which may be zero) to be realizable. A noun that can change
+gender (es *amigo*/*amiga*, apc *m3allem*/*m3allme*) is underspecified like an adjective, and takes the same gender
+lexemes. Today's `chooses: [Gender]` (es tío) is that underspecification, stated.
 
 **A lexeme has no written form of its own.** Its lexical form is what rules work on; a written form exists only for
 a complete word (§3). A lexeme whose category raises no requirement (a particle, an adverb, a preposition, apc
@@ -87,9 +92,13 @@ The compiler checks every token is complete (a new `form.incomplete`, an error) 
 What a `realisation` branch did by feature value, a merge does by lexeme:
 
 - **adding text** is the affix's own form (es `-o`, apc ـت);
-- **a stem alternant** (es *tuv-* before the preterite, apc's perfect and imperfect stems, hbo's binyan
-  patterns) is a rule conditioned on the lexeme that joins: `when: {joins: lexeme:pret}` chooses tener's stem
-  `tuv` (question C);
+- **a pattern** (apc's measures and participle, hbo's binyanim) is a lexeme already (ADR 0145: "a pattern is a
+  head … its allomorphs are templates"; ADR 0150 shows one): a pattern lexeme merged with a root, the root's radicals
+  filling its slots. apc's perfect and imperfect stems are a pattern's allomorphs, chosen by the aspect lexeme it
+  merges with;
+- **a stem alternant** that is no pattern (es *tuv-* in the preterite, *teng-* before 1sg *-o*) is the lexeme's own
+  allomorph, chosen by the lexeme it merges with (an allomorph's `before` naming a lexeme, as today it names a
+  part of speech or a class), never a rule changing letters;
 - **sound change at the join** stays `phonology`, as now.
 
 Listed forms (blocking, ADR 0145) are keyed by the lexemes merged, not by a cell: *fue* is `ser + pret + 3sg`
@@ -111,12 +120,14 @@ participle) does the same. The compiler realises it and ships it as the lemma; t
 today the lemma by hand, becomes a check against that (or goes). A lexeme complete alone is cited as itself.
 `principalParts` are the same kind of thing: further named merges shown beside the citation, mnemonics too.
 
-### 6. Features are derived, everywhere downstream
+### 6. Features are abstract and derived; learners learn lexemes
 
 A token no longer writes `feats`; the compiler derives them from its lexemes' `realises` (as `token_cell` does for uz
-today) and ships them as now, so what reads a token's features (labels, gap-fill's `asks: form`, contrast sets'
-`forms`, word-parts cards, the paradigm a dialog shows) changes little. Whether a feature value stays a *part* a
-learner is credited for, or the affix lexeme takes its place, is question D.
+today). They are abstract (the owner, D: "feature values are abstract. learners learn lexemes"): they decide what can
+merge with what and whether a word is complete, and the compiler may still use them to group and name forms (labels,
+gap-fill's `asks: form`, contrast sets' `forms`). They are never a part: `feature:Tense=Past` and its `read-off` and
+`choose` skills go, and what a learner is credited for is the lexeme that brought the value (es's preterite and its
+1sg ending, apc ـت). A node introduces those lexemes; `iPlusOne` counts them.
 
 ### 7. The rules explorer becomes base + lexemes
 
@@ -134,8 +145,11 @@ Proposed: `tener` (VERB; requires `VerbForm`) + `fin` (∅; brings `VerbForm=Fin
 learns is the test. The infinitive *tener* is `tener` + `inf` (*-r*), complete with no Person or Tense.
 
 **apc *btishrabi*** (you, a woman, drink). Today: `shereb` with `{Aspect: Imp, Mood: Ind, Person: '2', Gender: Fem,
-Number: Sing}`. Proposed: `b-` (`Mood=Ind`, on `Aspect=Imp`) + `t-` (2nd person prefix) + `shereb` + `impf`
-(∅; `Aspect=Imp`: the imperfect stem *-shrab-* is the rule at this join) + `-i` (`Gender=Fem, Number=Sing`).
+Number: Sing}`. Proposed: the root *sh-r-b* merged with the form I pattern, whose imperfect allomorph (*-CCaC-*,
+the vowel the verb's class) the aspect lexeme `impf` (∅; `Aspect=Imp`) chooses; then `b-` (`Mood=Ind`, on
+`Aspect=Imp`), `t-` (the second person's prefix) and `-i` (`Gender=Fem, Number=Sing`). Whether the verb lexeme is the
+root with its pattern stored (as `RadicalForm` stores radicals and Form today) or the root and pattern are two
+lexemes on the token is for the conversion to settle with the owner, on apc's data.
 
 **uz *bordim*** is already this: `bormoq` + `past` + `past-1sg`; its `realisation` branches that only choose which
 affix lexeme to attach go away, the lexemes themselves carrying `on` and `requires`.
@@ -149,8 +163,10 @@ affix lexeme to attach go away, the lexemes themselves carrying `on` and `requir
   `form.unaccounted`. sk and grc (340 and 298 branches: case endings by declension class) are the largest.
 - **Units change**: 20,000 tokens across seven courses gain lexemes and lose `feats`. Surfaces per affix are the
   realiser's, so tokens need not spell them by hand (a token may list affixes without `surface`).
-- **Learners' state**: card keys of feature-value parts change if question D moves credit to affix lexemes; old
-  events go through `upgrade` with an aliases table, as the lexical model's did.
+- **Learners' state**: every `feature:` part goes (D). Old events go through `upgrade` with an aliases table, as the
+  lexical model's did: a feature value's cards become the card of the lexeme that brings it, where one lexeme does
+  (es `Tense=Past` → the preterite lexeme); where several do (`Person=1` → es `-o`, `-é`, apc ـت …), the old card is
+  dropped rather than guessed at, and the fold's next answers rebuild it.
 - **Lemmas and word cards**: every lemma becomes a realisation of the citation merges; where one differs from today's
   hand-written first spelling, the compiler lists it for review (apc's verb lemmas already went this way, ADR 0154).
 - **Bundles**: format 6. `cells` and `paradigm` stay as a view the compiler works out (every complete combination of
@@ -158,14 +174,14 @@ affix lexeme to attach go away, the lexemes themselves carrying `on` and `requir
   their data.
 - **What is learned as a rule** (ADR 0146) is unchanged: a `{rule, branch}` taken at a join is still a part.
 
-## Questions for the owner
+## The owner's answers (2026-11-26)
 
-- **A.** May a lexeme keep what is its own and never merged in: a noun's gender, sk's aspect partners (robiť /
-  urobiť), a stem class? (Proposed: yes, as lexical values, never switches.)
-- **B.** Answered (2026-11-26): zero morphemes exist, as lexemes with no surface.
-- **C.** Stem alternants and templatic patterns (es *tuv-*, apc's stems, hbo's binyanim): a rule at the join with
-  the lexeme that triggers it (proposed), or a pattern lexeme merged with a root?
-- **D.** Credit: does a learner learn the affix lexeme (es `-o`, apc ـت) in place of the feature value
-  (`feature:Person=1`), or both?
-- **E.** Order of work: apc first (as the rules were), then es; the explorer rebuilt against apc as soon as apc
-  converts.
+- **A.** Yes: a lexeme keeps what is its own. Nearly all nouns have an inherent gender; adjectives are
+  underspecified and need a gender lexeme (possibly zero); a noun that changes gender (*amigo*/*amiga*) is
+  underspecified like them (§1).
+- **B.** Zero morphemes exist, as lexemes with no surface (§5).
+- **C.** Patterns were settled by ADR 0145 and 0150: a pattern is a lexeme, a head whose allomorphs are templates
+  (§4). A stem alternant that is no pattern is proposed as the lexeme's allomorph chosen by the lexeme it merges
+  with (§4): to confirm.
+- **D.** Feature values are abstract; learners learn lexemes (§6).
+- **E.** apc first, then es; the explorer rebuilt against apc as soon as apc converts.
