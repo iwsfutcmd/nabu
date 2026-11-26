@@ -18,7 +18,7 @@
  * Pure: the caller fetches the files and passes them in. Built once per course and source.
  */
 import type { LanguageDeclaration, Lexicon, OrthographyProfile, TaggedText, Token, UdFeatures } from "@nabu/schema";
-import { compileLanguage, compileSpeller, realiseToken, spell, spelledAs, spellingKey, type CompiledLanguage, type RealiseError, type Speller, type WrittenLexeme } from "../lexicon/index.ts";
+import { compileLanguage, compileSpeller, mergeOrder, realiseToken, spell, spelledAs, spellingKey, type CompiledLanguage, type RealiseError, type Speller, type WrittenLexeme } from "../lexicon/index.ts";
 import type { CourseView } from "./course.ts";
 import { courseTags, lexiconData, type LexemeRow, type LexiconSource, type Tags } from "./lexicon-data.ts";
 import { cellFeats } from "./paradigms.ts";
@@ -271,6 +271,8 @@ const detailsOf = (error: RealiseError): ExploredError["details"] => {
         ...(error.pos === undefined ? [] : [{ key: "pos", value: error.pos.join(" | ") }]),
         ...(error.has === undefined ? [] : [{ key: "has", value: cellKey(error.has) }]),
         ...(error.at === undefined ? [] : [{ key: "at", value: error.at }]),
+        ...(error.needs === undefined ? [] : [{ key: "needs", value: error.needs.join(" | ") }]),
+        ...(error.complete === undefined ? [] : [{ key: "complete", value: "true" }]),
       ];
     case "twice":
       return [
@@ -484,6 +486,31 @@ export const attachable = (explorer: RulesExplorer, side: "before" | "after"): r
     attaching.set(explorer, found);
   }
   return found[side];
+};
+
+/**
+ * Where a request's lexemes are written, with `adding` among them (ADR 0158): in a language that merges lexemes,
+ * the order they merge in, each on its side, outward from the base (`mergeOrder`), ties as already written; elsewhere
+ * as they stand, `adding` last on the side asked.
+ */
+export const arrange = (
+  explorer: RulesExplorer,
+  request: Pick<ExploreRequest, "base" | "feats" | "before" | "after">,
+  adding?: string,
+  side: "before" | "after" = "after",
+): Pick<ExploreRequest, "before" | "after"> => {
+  const added: readonly Attached[] = adding === undefined ? [] : [{ lexeme: adding }];
+  if (!explorer.merging || explorer.compiled === undefined)
+    return side === "before" ? { before: [...request.before, ...added], after: request.after } : { before: request.before, after: [...request.after, ...added] };
+  const all = [...request.before, ...request.after, ...added];
+  const order = mergeOrder(explorer.compiled, request.base, request.feats, all.map((a) => a.lexeme));
+  const taken = new Set<number>();
+  const back = (id: string): Attached => {
+    const k = all.findIndex((a, i) => a.lexeme === id && !taken.has(i));
+    taken.add(k);
+    return all[k] as Attached;
+  };
+  return { before: order.before.map(back), after: order.after.map(back) };
 };
 
 const combos = new WeakMap<RulesExplorer, Map<string, readonly UdFeatures[]>>();

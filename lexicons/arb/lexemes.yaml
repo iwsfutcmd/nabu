@@ -12,6 +12,8 @@ lexemes:
     Case: Acc
   'on':
     at: after
+    needs:
+    - Number
     pos: &id002
     - NOUN
     - ADJ
@@ -255,6 +257,7 @@ lexemes:
   pos: ADP
   'on':
     at: before
+    complete: true
     has:
       Case: Gen
   gloss:
@@ -280,6 +283,8 @@ lexemes:
     Definite: Cons
   'on':
     at: after
+    needs:
+    - Case
     pos:
     - NOUN
     - ADJ
@@ -337,6 +342,8 @@ lexemes:
     Number: Dual
   'on':
     at: after
+    needs:
+    - Gender
     pos:
     - ADJ
     - NOUN
@@ -364,6 +371,7 @@ lexemes:
   pos: CCONJ
   'on':
     at: before
+    complete: true
   gloss:
     en: 'fa-: so, and then'
   form: فَ
@@ -477,6 +485,8 @@ lexemes:
     Case: Gen
   'on':
     at: after
+    needs:
+    - Number
     pos: *id002
   gloss:
     en: '-i: genitive'
@@ -675,6 +685,8 @@ lexemes:
     Mood: Ind
   'on':
     at: after
+    needs:
+    - Number
     has: *id006
   gloss:
     en: indicative
@@ -710,6 +722,8 @@ lexemes:
     Definite: Ind
   'on':
     at: after
+    needs:
+    - Case
     pos: *id002
   gloss:
     en: 'indefinite: -n (tanwīn)'
@@ -874,6 +888,8 @@ lexemes:
     Mood: Jus
   'on':
     at: after
+    needs:
+    - Number
     has: *id006
   gloss:
     en: jussive
@@ -903,6 +919,7 @@ lexemes:
   pos: ADP
   'on':
     at: before
+    complete: true
     has:
       Case: Gen
   gloss:
@@ -1019,6 +1036,9 @@ lexemes:
   pos: ADP
   'on':
     at: before
+    complete: true
+    has:
+      Case: Gen
   gloss:
     en: 'li-: for, to'
   form: لِ
@@ -1228,6 +1248,8 @@ lexemes:
     Case: Nom
   'on':
     at: after
+    needs:
+    - Number
     pos: *id002
   gloss:
     en: '-u: nominative'
@@ -1247,6 +1269,7 @@ lexemes:
     Number[obj]: Plur
   'on': &id007
     at: after
+    complete: true
     pos:
     - VERB
     has:
@@ -1614,6 +1637,8 @@ lexemes:
     Number: Plur
   'on':
     at: after
+    needs:
+    - Gender
     pos:
     - ADJ
     - NOUN
@@ -1629,6 +1654,7 @@ lexemes:
     Number[psor]: Plur
   'on': &id014
     at: after
+    complete: true
     pos:
     - NOUN
     - ADJ
@@ -1915,6 +1941,7 @@ lexemes:
   pos: PART
   'on':
     at: before
+    complete: true
     has:
       Aspect: Imp
       Mood: Ind
@@ -2045,6 +2072,8 @@ lexemes:
     Number: Sing
   'on':
     at: after
+    needs:
+    - Gender
     pos:
     - ADJ
     - NOUN
@@ -2058,6 +2087,8 @@ lexemes:
     Mood: Sub
   'on':
     at: after
+    needs:
+    - Number
     has: *id006
   gloss:
     en: subjunctive
@@ -2128,6 +2159,7 @@ lexemes:
   pos: CCONJ
   'on':
     at: before
+    complete: true
   gloss:
     en: 'wa-: and'
   form: وَ

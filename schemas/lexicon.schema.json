@@ -37,13 +37,15 @@
         },
         "head": { "$ref": "#/$defs/FunctionHead" },
         "on": {
-          "description": "What it merges onto (ADR 0158): the part of speech of the word's base, and the values the word must already have from its other lexemes (es -o on a finite indicative present verb). A lexeme merged where its `on` does not hold is an error.",
+          "description": "What it merges onto (ADR 0158): the part of speech of the word's base, and what the word must already have from the lexemes merged before it, nearer its base (es -o on a finite indicative present verb). Merging runs outward from the base, so these say the order: a lexeme merged where its `on` does not hold is an error.",
           "type": "object",
           "minProperties": 1,
           "additionalProperties": false,
           "properties": {
             "pos": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/PartOfSpeech" } },
             "has": { "$ref": "common.schema.json#/$defs/UdFeatures" },
+            "needs": { "description": "Features the word must have some value for already, whatever the value (arb's mood after the number ending: needs Number).", "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+            "complete": { "description": "Merges only onto a complete word: one whose every requirement is met (arb's pronoun suffixes onto ʾaktubu, never onto ʾaktub-; a proclitic onto a whole word).", "const": true },
             "at": { "description": "Which side of its base it stands (a prefix or proclitic before, a suffix, ending or zero morpheme after): merged on the other side it is an error.", "enum": ["before", "after"] }
           }
         },

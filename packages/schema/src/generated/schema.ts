@@ -3163,7 +3163,7 @@ export interface Lexeme {
   readonly realises?: UdFeatures4;
   readonly head?: FunctionHead;
   /**
-   * What it merges onto (ADR 0158): the part of speech of the word's base, and the values the word must already have from its other lexemes (es -o on a finite indicative present verb). A lexeme merged where its `on` does not hold is an error.
+   * What it merges onto (ADR 0158): the part of speech of the word's base, and what the word must already have from the lexemes merged before it, nearer its base (es -o on a finite indicative present verb). Merging runs outward from the base, so these say the order: a lexeme merged where its `on` does not hold is an error.
    */
   readonly on?: {
     /**
@@ -3171,6 +3171,16 @@ export interface Lexeme {
      */
     readonly pos?: readonly PartOfSpeech[];
     readonly has?: UdFeatures1;
+    /**
+     * Features the word must have some value for already, whatever the value (arb's mood after the number ending: needs Number).
+     *
+     * @minItems 1
+     */
+    readonly needs?: readonly string[];
+    /**
+     * Merges only onto a complete word: one whose every requirement is met (arb's pronoun suffixes onto ʾaktubu, never onto ʾaktub-; a proclitic onto a whole word).
+     */
+    readonly complete?: true;
     /**
      * Which side of its base it stands (a prefix or proclitic before, a suffix, ending or zero morpheme after): merged on the other side it is an error.
      */

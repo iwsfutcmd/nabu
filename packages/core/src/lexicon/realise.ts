@@ -86,8 +86,20 @@ export type RealiseError =
   | { readonly kind: "spelled-only"; readonly feats: UdFeatures }
   /** `RealiseOptions.variant` asked for a free variant the cell does not have. */
   | { readonly kind: "variant"; readonly variants: number }
-  /** A lexeme merged where its `on` does not hold (ADR 0158): the base is not of its part of speech, or the word lacks a value it merges onto. */
-  | { readonly kind: "attach"; readonly lexeme: string; readonly pos?: readonly string[]; readonly has?: UdFeatures; readonly at?: "before" | "after" }
+  /**
+   * A lexeme merged where its `on` does not hold (ADR 0158): on the wrong side of the base, onto another part of
+   * speech, or onto a word that lacks, from the lexemes merged before it (nearer its base), a value it merges onto
+   * (`has`), a value for a feature (`needs`) or a requirement met (`complete`).
+   */
+  | {
+      readonly kind: "attach";
+      readonly lexeme: string;
+      readonly pos?: readonly string[];
+      readonly has?: UdFeatures;
+      readonly at?: "before" | "after";
+      readonly needs?: readonly string[];
+      readonly complete?: true;
+    }
   /** Two lexemes of a token bring the same feature (ADR 0158: no value is brought twice). */
   | { readonly kind: "twice"; readonly feature: string; readonly lexemes: readonly string[] };
 
@@ -855,6 +867,67 @@ const equals = (lang: CompiledLanguage, written: readonly WrittenLexeme[], optio
  * and what is still required (`missing`: its category's requirements and its lexemes', less what the
  * base has of itself and what the token brings).
  */
+/** A word being merged (ADR 0158): its values and requirements so far, and whether a lexeme's `on` holds on it. */
+const mergingWord = (lang: CompiledLanguage, baseLexeme: Lexeme, start: UdFeatures): { readonly refuses: (id: string) => RealiseError | undefined; readonly merge: (id: string) => void } => {
+  const values: Record<string, string> = { ...start };
+  const required = new Set<string>(baseLexeme.pos === undefined ? [] : (lang.declared.requires?.[baseLexeme.pos] ?? []));
+  for (const f of baseLexeme.requires ?? []) required.add(f);
+  return {
+    refuses: (id: string): RealiseError | undefined => {
+      const lexeme = lang.lexemes.get(id);
+      const on = lexeme?.on;
+      if (lexeme === undefined || on === undefined) return undefined;
+      if (on.pos !== undefined && (baseLexeme.pos === undefined || !on.pos.includes(baseLexeme.pos))) return { kind: "attach", lexeme: lexeme.id, pos: on.pos };
+      if (on.has !== undefined && !hasValues(values, on.has)) return { kind: "attach", lexeme: lexeme.id, has: on.has };
+      if (on.needs !== undefined && on.needs.some((f) => values[f] === undefined)) return { kind: "attach", lexeme: lexeme.id, needs: on.needs };
+      if (on.complete === true && [...required].some((f) => values[f] === undefined)) return { kind: "attach", lexeme: lexeme.id, complete: true };
+      return undefined;
+    },
+    merge: (id: string): void => {
+      const lexeme = lang.lexemes.get(id);
+      Object.assign(values, lexeme?.realises ?? {});
+      for (const f of lexeme?.requires ?? []) required.add(f);
+    },
+  };
+};
+
+/**
+ * The order a base's lexemes are written in, before and after it (ADR 0158): merged outward, each onto the word as
+ * it stands where its `on` holds; where two on one side would, as they were picked, read from the start of the
+ * word (arb wa- and sa-, both onto a complete word: wa picked first is written first). A lexeme none of the orders can
+ * merge is put last on its side, for `realiseToken` to refuse. Each goes on the side its `on.at` names (after
+ * where it names none).
+ */
+export const mergeOrder = (
+  lang: CompiledLanguage,
+  base: string,
+  feats: UdFeatures,
+  picked: readonly string[],
+): { readonly before: readonly string[]; readonly after: readonly string[] } => {
+  const baseLexeme = lang.lexemes.get(lexemeId(base));
+  const before: string[] = [];
+  const after: string[] = [];
+  const sideOf = (id: string): "before" | "after" => (lang.lexemes.get(lexemeId(id))?.on?.at === "before" ? "before" : "after");
+  let rest = [...picked];
+  if (baseLexeme !== undefined) {
+    const word = mergingWord(lang, baseLexeme, { ...(lang.own.get(baseLexeme.id) ?? baseLexeme.feats ?? {}), ...feats });
+    for (;;) {
+      const fits = (id: string): boolean => word.refuses(lexemeId(id)) === undefined;
+      // Where two on one side could merge now, they are written as picked: after the base the first picked nearer
+      // it, before the base the last picked (wa then sa: wa-sa-yaktubu).
+      const k = rest.findIndex((id) => sideOf(id) === "after" && fits(id));
+      const j = k >= 0 ? k : rest.findLastIndex((id) => fits(id));
+      if (j < 0) break;
+      const id = rest[j] as string;
+      word.merge(lexemeId(id));
+      (sideOf(id) === "before" ? before : after).push(id);
+      rest = [...rest.slice(0, j), ...rest.slice(j + 1)];
+    }
+  }
+  for (const id of rest) (sideOf(id) === "before" ? before : after).push(id);
+  return { before: before.reverse(), after };
+};
+
 const mergeOf = (
   lang: CompiledLanguage,
   written: readonly WrittenLexeme[],
@@ -888,14 +961,21 @@ const mergeOf = (
   for (let k = 0; k < written.length; k++) {
     if (k === baseAt) continue;
     const lexeme = lang.lexemes.get(lexemeId((written[k] as WrittenLexeme).lexeme));
-    const on = lexeme?.on;
-    if (lexeme === undefined || on === undefined) continue;
-    if (on.at !== undefined && (on.at === "before") !== k < baseAt) return err({ kind: "attach", lexeme: lexeme.id, at: on.at });
-    if (on.pos !== undefined && (baseLexeme.pos === undefined || !on.pos.includes(baseLexeme.pos))) return err({ kind: "attach", lexeme: lexeme.id, pos: on.pos });
-    // What the word has besides this lexeme's own values.
-    const others: Record<string, string> = { ...own, ...(base.feats ?? {}) };
-    for (const [f, v] of Object.entries(brought)) if (by[f] !== lexeme.id) others[f] = v;
-    if (on.has !== undefined && !hasValues(others, on.has)) return err({ kind: "attach", lexeme: lexeme.id, has: on.has });
+    const at = lexeme?.on?.at;
+    if (lexeme !== undefined && at !== undefined && (at === "before") !== k < baseAt) return err({ kind: "attach", lexeme: lexeme.id, at });
+  }
+  // Merged outward from the base, each lexeme onto the word as it stands: the nearest unmerged one on either side
+  // whose `on` holds. What a word gains it keeps, so where any order merges every lexeme this one does.
+  const word = mergingWord(lang, baseLexeme, { ...own, ...(base.feats ?? {}) });
+  let left = baseAt - 1;
+  let right = baseAt + 1;
+  while (left >= 0 || right < written.length) {
+    const next = [right < written.length ? right : undefined, left >= 0 ? left : undefined].filter((k): k is number => k !== undefined);
+    const found = next.find((k) => word.refuses(lexemeId((written[k] as WrittenLexeme).lexeme)) === undefined);
+    if (found === undefined) return err(word.refuses(lexemeId((written[next[0] as number] as WrittenLexeme).lexeme)) as RealiseError);
+    word.merge(lexemeId((written[found] as WrittenLexeme).lexeme));
+    if (found === right) right++;
+    else left--;
   }
   const required = new Set<string>(baseLexeme.pos === undefined ? [] : (lang.declared.requires?.[baseLexeme.pos] ?? []));
   for (const w of written) for (const f of lang.lexemes.get(lexemeId(w.lexeme))?.requires ?? []) required.add(f);

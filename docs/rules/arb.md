@@ -15,7 +15,9 @@ profiles/arb-Arab.standard.yaml are the sources now.
   a/u. It has no person, tense or voice, and alone it is no word: VERB requires `VerbForm`.
 - **Everything else is a lexeme merged with it** (lexicons/arb/lexemes.yaml), each bringing its values (`realises`),
   saying what it merges onto and on which side (`on`, `at`: the person prefixes and the proclitics before, the rest
-  after) and what the word then needs (`requires`):
+  after) and what the word then needs (`requires`); merged outward from the base, each onto the word as it stands,
+  so what each merges onto is the order (a mood `needs` a Number, a case a Number, a state a Case, a number a Gender;
+  a pronoun suffix and a proclitic only onto a `complete` word):
   - `perf` (∅: VerbForm=Fin, Aspect=Perf; needs Person, Number), `impf` (∅: …Aspect=Imp; needs Person, Number,
     Mood), `imp` (∅: Mood=Imp, Person=2; needs Number), `ptcp` (∅: VerbForm=Part; needs Gender, Number), `pass` (∅:
     Voice=Pass);
@@ -96,6 +98,9 @@ a sukun is on the line whatever its case vowel (ḥamrāʾu, samāʾi); the tanw
 8. **Diptotes by class**: a word's class says it (`diptote`, `diptote-plural` for its broken plural), not its shape
    (mafāʿil): the shape would need no class, at the cost of a pattern that also matches words that are not.
 9. **Pronoun suffixes' features**: `Person[psor]` and `Person[obj]` (UD has the first; the second is ours).
-10. **Not built yet**: the five nouns (ʾabū, ʾakhū), the dual and plural of -ā nouns beyond the sound endings
+10. **wa- and fa- beside sa- or bi-**: all four merge onto a complete word, so nothing says which is outermost;
+    the explorer writes them as picked, and the engine takes sa-wa-yaktubu as well as wa-sa-yaktubu. A conjunction
+    taking a phrase where the others take a word would say it.
+11. **Not built yet**: the five nouns (ʾabū, ʾakhū), the dual and plural of -ā nouns beyond the sound endings
     (maʿānin), the numbers, Form IX and the quadriliterals, the verbal nouns, the article's wasla after a word ending
     in a vowel (fī l-bayt: one word apart, the spelling's).

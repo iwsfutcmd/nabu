@@ -2486,7 +2486,7 @@ class GoalSetV1(BaseModel):
 
 class On(BaseModel):
     """
-    What it merges onto (ADR 0158): the part of speech of the word's base, and the values the word must already have from its other lexemes (es -o on a finite indicative present verb). A lexeme merged where its `on` does not hold is an error.
+    What it merges onto (ADR 0158): the part of speech of the word's base, and what the word must already have from the lexemes merged before it, nearer its base (es -o on a finite indicative present verb). Merging runs outward from the base, so these say the order: a lexeme merged where its `on` does not hold is an error.
     """
 
     model_config = ConfigDict(
@@ -2495,6 +2495,19 @@ class On(BaseModel):
     )
     pos: Annotated[list[PartOfSpeech] | None, Field(min_length=1)] = None
     has: UdFeatures | None = None
+    needs: Annotated[
+        list[str] | None,
+        Field(
+            description="Features the word must have some value for already, whatever the value (arb's mood after the number ending: needs Number).",
+            min_length=1,
+        ),
+    ] = None
+    complete: Annotated[
+        Literal[True] | None,
+        Field(
+            description="Merges only onto a complete word: one whose every requirement is met (arb's pronoun suffixes onto ʾaktubu, never onto ʾaktub-; a proclitic onto a whole word)."
+        ),
+    ] = None
     at: Annotated[
         Literal["before", "after"] | None,
         Field(
@@ -6438,7 +6451,7 @@ class Lexeme(BaseModel):
     on: Annotated[
         On | None,
         Field(
-            description="What it merges onto (ADR 0158): the part of speech of the word's base, and the values the word must already have from its other lexemes (es -o on a finite indicative present verb). A lexeme merged where its `on` does not hold is an error."
+            description="What it merges onto (ADR 0158): the part of speech of the word's base, and what the word must already have from the lexemes merged before it, nearer its base (es -o on a finite indicative present verb). Merging runs outward from the base, so these say the order: a lexeme merged where its `on` does not hold is an error."
         ),
     ] = None
     requires: Annotated[

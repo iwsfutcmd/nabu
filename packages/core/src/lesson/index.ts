@@ -11,6 +11,7 @@ export {
   EXPLORE_DEFAULTS,
   explorerParadigm,
   fitCell,
+  arrange,
   attachable,
   requestOfToken,
   rulesExplorer,

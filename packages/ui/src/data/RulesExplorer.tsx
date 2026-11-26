@@ -23,6 +23,7 @@ import {
   EXPLORE_DEFAULTS,
   explorerParadigm,
   fitCell,
+  arrange,
   attachable,
   cellKey,
   lexiconFacets,
@@ -575,22 +576,27 @@ const Around = ({
                     <LexemeLine lexeme={lexeme} />
                   )}
                   <span className={styles.actions}>
-                    <Button
-                      className={list.partsToggle}
-                      isDisabled={i === 0}
-                      onPress={() => move(i, -1)}
-                      data-action="rules-earlier"
-                    >
-                      {t.format("rules.move.earlier")}
-                    </Button>
-                    <Button
-                      className={list.partsToggle}
-                      isDisabled={i === items.length - 1}
-                      onPress={() => move(i, 1)}
-                      data-action="rules-later"
-                    >
-                      {t.format("rules.move.later")}
-                    </Button>
+                    {/* A language that merges lexemes writes them in the order they merge in. */}
+                    {!explorer.merging && (
+                      <>
+                        <Button
+                          className={list.partsToggle}
+                          isDisabled={i === 0}
+                          onPress={() => move(i, -1)}
+                          data-action="rules-earlier"
+                        >
+                          {t.format("rules.move.earlier")}
+                        </Button>
+                        <Button
+                          className={list.partsToggle}
+                          isDisabled={i === items.length - 1}
+                          onPress={() => move(i, 1)}
+                          data-action="rules-later"
+                        >
+                          {t.format("rules.move.later")}
+                        </Button>
+                      </>
+                    )}
                     <Button
                       className={list.partsToggle}
                       onPress={() => onChange(items.filter((_, k) => k !== i))}
@@ -833,14 +839,18 @@ export const RulesExplorer = ({
                   explorer={explorer}
                   items={request.before}
                   side="before"
-                  onChange={(before) => change({ before })}
+                  onChange={(before) =>
+                    change(arrange(explorer, { ...request, before }))
+                  }
                 />
                 <Around
                   t={t}
                   explorer={explorer}
                   items={request.after}
                   side="after"
-                  onChange={(after) => change({ after })}
+                  onChange={(after) =>
+                    change(arrange(explorer, { ...request, after }))
+                  }
                 />
                 {!explorer.merging && (
                   <RadioGroup
@@ -880,18 +890,7 @@ export const RulesExplorer = ({
                       : attachable(explorer, side)
                   }
                   onPick={(l) =>
-                    change(
-                      (explorer.merging ? l.at : side) === "before"
-                        ? {
-                            before: [
-                              ...request.before,
-                              { lexeme: l.row.id.id },
-                            ],
-                          }
-                        : {
-                            after: [...request.after, { lexeme: l.row.id.id }],
-                          },
-                    )
+                    change(arrange(explorer, request, l.row.id.id, side))
                   }
                 />
                 <div className={styles.pair} data-next={request.next ?? ""}>

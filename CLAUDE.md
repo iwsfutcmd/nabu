@@ -975,7 +975,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Morphology is merging lexemes (the owner, 2026-11-26): a lexeme has its category and its form, never a switch for
   person, tense or case; every value a word has is brought by a lexeme merged with it (`realises`), zero morphemes
   included (an empty allomorph). A bound lexeme says what it merges onto (`on`: the base's pos, which side it stands, `at`, values the word
-  must have), what the word then requires (`requires`: finite-ness requires person and number) and which stem it
+  must have, `has`, a value for a feature, `needs`, or every requirement met, `complete`; merged outward from the base
+  onto the word as it stands, so these are the order on each side, never slots: core `mergeOrder`), what the word then requires (`requires`: finite-ness requires person and number) and which stem it
   makes the base take (`selects`, the last in the token winning). A language that states `requires` per category
   merges: a token is incomplete while a requirement is unmet (`Realisation.missing`), a lexeme merged where its `on`
   fails is `attach`, a feature brought twice `twice`; a form stored for the merged word covers the lexemes whose

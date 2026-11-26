@@ -131,5 +131,21 @@ test("a lexicon no course uses: what brings a feature is found by its name, and 
   await expect(root.locator("[data-attached]")).toHaveCount(2);
   await expect(root.locator('[data-around=before] [data-attached="lexeme:impf-3"]')).toBeVisible();
   await expect(root.locator('[data-around=after] [data-attached="lexeme:impf"]')).toBeVisible();
+
+  // Picked out of order, written in the order they merge in: the number ending before the mood, the object last.
+  for (const id of ["obj-3ms", "ind", "mpl"]) {
+    await root.locator("[data-field=rules-add]").fill(id);
+    await add.locator(`[data-pick="lexeme:${id}"]`).click();
+  }
+  await expect(root.locator("[data-around=after] [data-attached]")).toHaveCount(4);
+  expect(await root.locator("[data-around=after] [data-attached]").evaluateAll((els) => els.map((e) => e.getAttribute("data-attached")))).toEqual([
+    "lexeme:impf",
+    "lexeme:mpl",
+    "lexeme:ind",
+    "lexeme:obj-3ms",
+  ]);
+  await expect(root.locator("[data-action=rules-earlier]")).toHaveCount(0);
+  await expect(root.locator("[data-rules-live] [data-rules-result]")).toBeVisible();
+  await expect(root.locator("[data-rules-live] [data-rules-missing]")).toHaveCount(0);
   expect(errors).toEqual([]);
 });
