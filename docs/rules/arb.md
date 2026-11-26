@@ -101,6 +101,12 @@ a sukun is on the line whatever its case vowel (ḥamrāʾu, samāʾi); the tanw
 10. **wa- and fa- beside sa- or bi-**: all four merge onto a complete word, so nothing says which is outermost;
     the explorer writes them as picked, and the engine takes sa-wa-yaktubu as well as wa-sa-yaktubu. A conjunction
     taking a phrase where the others take a word would say it.
-11. **Not built yet**: the five nouns (ʾabū, ʾakhū), the dual and plural of -ā nouns beyond the sound endings
+11. **Which verb lexemes are null** (the owner, 2026-11-26: "for verbs at least, the null morpheme is imperative";
+    not settled where the morpheme is not clear-cut). Today `perf`, `impf`, `imp` and `ptcp` are all zero lexemes.
+    Proposed: the imperative alone stands for a gap the language has (no prefix where the imperfect has ya-, ta-: the
+    jussive without its prefix); the perfect's endings bring Aspect=Perf and the imperfect's prefixes Aspect=Imp
+    and its stem, so `perf` and `impf` go. `ptcp` (a pattern with no sound of its own) and `ms`, `sg` (yaktubu: no
+    ending beside -ūna, -ī) stay. Not built until the owner decides.
+12. **Not built yet**: the five nouns (ʾabū, ʾakhū), the dual and plural of -ā nouns beyond the sound endings
     (maʿānin), the numbers, Form IX and the quadriliterals, the verbal nouns, the article's wasla after a word ending
     in a vowel (fī l-bayt: one word apart, the spelling's).
