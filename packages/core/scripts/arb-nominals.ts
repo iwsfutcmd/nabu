@@ -145,7 +145,7 @@ for (const p of [
     show(["*ala", `poss-${p}`]),
     show(["*li", `poss-${p}`]),
     show(["*min", `poss-${p}`]),
-    show(["*kataba", "perf", "perf-3ms", `obj-${p}`]),
+    show(["*kataba", "perf-3ms", `obj-${p}`]),
   ];
   out += `| ${p} | ${cells.join(" | ")} |\n`;
 }
@@ -160,9 +160,9 @@ for (const [label, ids] of [
     "my teachers, genitive",
     ["*muallim", "masc", "mpl-sound", "gen", "cons", "poss-1sg"],
   ],
-  ["they wrote it", ["*kataba", "perf", "perf-3mpl", "obj-3ms"]],
-  ["you (men) wrote it", ["*kataba", "perf", "perf-2mpl", "obj-3ms"]],
-  ["he throws it", ["impf-3", "*rama", "impf", "ms", "ind", "obj-3ms"]],
+  ["they wrote it", ["*kataba", "perf-3mpl", "obj-3ms"]],
+  ["you (men) wrote it", ["*kataba", "perf-2mpl", "obj-3ms"]],
+  ["he throws it", ["impf-3", "*rama", "ms", "ind", "obj-3ms"]],
 ] as const) {
   out += `- ${label}: ${show(ids)}\n`;
 }
@@ -174,8 +174,8 @@ for (const [label, ids] of [
   ["for the language", ["li", "al", "*lugha", "sing", "gen"]],
   ["the sun", ["al", "*shams", "sing", "nom"]],
   ["like a man", ["ka", "*rajul", "sing", "gen", "indef"]],
-  ["he will write", ["sa", "impf-3", "*kataba", "impf", "ms", "ind"]],
-  ["so he wrote", ["fa", "*kataba", "perf", "perf-3ms"]],
+  ["he will write", ["sa", "impf-3", "*kataba", "ms", "ind"]],
+  ["so he wrote", ["fa", "*kataba", "perf-3ms"]],
   [
     "the writer (a participle)",
     ["al", "*kataba", "ptcp", "masc", "sing", "nom"],

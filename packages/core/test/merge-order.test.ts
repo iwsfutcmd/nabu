@@ -53,14 +53,14 @@ describe("mergeOrder", () => {
 
   it("refuses a word written in an order no merge allows: a suffix before the mood, the mood before the number", () => {
     const token = (...after: string[]): readonly WrittenLexeme[] => [{ lexeme: "lexeme:impf-3" }, { lexeme: "lexeme:kataba", base: true }, ...after.map((a) => ({ lexeme: `lexeme:${a}` }))];
-    expect(realiseToken(lang, token("impf", "mpl", "ind", "obj-3ms")).ok).toBe(true);
-    expect(realiseToken(lang, token("impf", "mpl", "obj-3ms", "ind"))).toMatchObject({ ok: false, error: { kind: "attach", lexeme: "lexeme:obj-3ms", complete: true } });
-    expect(realiseToken(lang, token("impf", "ind", "mpl"))).toMatchObject({ ok: false, error: { kind: "attach", lexeme: "lexeme:ind", needs: ["Number"] } });
+    expect(realiseToken(lang, token("mpl", "ind", "obj-3ms")).ok).toBe(true);
+    expect(realiseToken(lang, token("mpl", "obj-3ms", "ind"))).toMatchObject({ ok: false, error: { kind: "attach", lexeme: "lexeme:obj-3ms", complete: true } });
+    expect(realiseToken(lang, token("ind", "mpl"))).toMatchObject({ ok: false, error: { kind: "attach", lexeme: "lexeme:ind", needs: ["Number"] } });
   });
 
   it("writes two that both merge onto the word as they were picked, read from the start of the word", () => {
     const order = (...picked: string[]) => mergeOrder(lang, "lexeme:kataba", {}, picked.map((p) => `lexeme:${p}`));
-    expect(order("wa", "sa", "impf-3", "impf", "ms", "ind")).toEqual({ before: ["lexeme:wa", "lexeme:sa", "lexeme:impf-3"], after: ["lexeme:impf", "lexeme:ms", "lexeme:ind"] });
-    expect(order("ind", "obj-3ms", "ms", "impf", "impf-3").after).toEqual(["lexeme:impf", "lexeme:ms", "lexeme:ind", "lexeme:obj-3ms"]);
+    expect(order("wa", "sa", "impf-3", "ms", "ind")).toEqual({ before: ["lexeme:wa", "lexeme:sa", "lexeme:impf-3"], after: ["lexeme:ms", "lexeme:ind"] });
+    expect(order("ind", "obj-3ms", "ms", "impf-3").after).toEqual(["lexeme:ms", "lexeme:ind", "lexeme:obj-3ms"]);
   });
 });

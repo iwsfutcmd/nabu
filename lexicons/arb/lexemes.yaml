@@ -586,85 +586,111 @@ lexemes:
     Person: '2'
   'on':
     at: after
-    pos: &id005
+    pos: &id011
     - VERB
   requires:
   - Number
   selects: command
   gloss:
     en: imperative
-  allomorphs:
-  - form: ''
-- id: lexeme:impf
-  realises:
-    VerbForm: Fin
-    Aspect: Imp
-  'on':
-    at: after
-    pos: *id005
-  requires:
-  - Person
-  - Number
-  - Mood
-  selects: stem
-  gloss:
-    en: imperfect (present)
   notes:
-    en: 'A zero morpheme: the imperfect stem, a person prefix before it and a mood after it.'
+    en: 'The verb''s one null lexeme: no person prefix where the imperfect has one, on the command stem (the jussive without its prefix).'
   allomorphs:
   - form: ''
 - id: lexeme:impf-1pl
   realises:
+    VerbForm: Fin
+    Aspect: Imp
     Person: '1'
     Number: Plur
   'on':
     at: before
-    has: &id006
-      Aspect: Imp
+    pos:
+    - VERB
+  requires:
+  - Mood
+  selects: stem
   gloss:
     en: 'na-: we (present)'
+  notes:
+    en: 'The imperfect: its person, then the imperfect stem; a mood after it, and a number ending where the prefix brings no number.'
   allomorphs:
   - form: ن
 - id: lexeme:impf-1sg
   realises:
+    VerbForm: Fin
+    Aspect: Imp
     Person: '1'
     Number: Sing
   'on':
     at: before
-    has: *id006
+    pos:
+    - VERB
+  requires:
+  - Mood
+  selects: stem
   gloss:
     en: 'ʾa-: I (present)'
+  notes:
+    en: 'The imperfect: its person, then the imperfect stem; a mood after it, and a number ending where the prefix brings no number.'
   allomorphs:
   - form: ء
 - id: lexeme:impf-2
   realises:
+    VerbForm: Fin
+    Aspect: Imp
     Person: '2'
   'on':
     at: before
-    has: *id006
+    pos:
+    - VERB
+  requires:
+  - Number
+  - Mood
+  selects: stem
   gloss:
     en: 'ta-: you (present)'
+  notes:
+    en: 'The imperfect: its person, then the imperfect stem; a mood after it, and a number ending where the prefix brings no number.'
   allomorphs:
   - form: ت
 - id: lexeme:impf-3
   realises:
+    VerbForm: Fin
+    Aspect: Imp
     Person: '3'
   'on':
     at: before
-    has: *id006
+    pos:
+    - VERB
+  requires:
+  - Number
+  - Mood
+  selects: stem
   gloss:
     en: 'ya-: he, they (present)'
+  notes:
+    en: 'The imperfect: its person, then the imperfect stem; a mood after it, and a number ending where the prefix brings no number.'
   allomorphs:
   - form: ي
 - id: lexeme:impf-3f
   realises:
+    VerbForm: Fin
+    Aspect: Imp
     Person: '3'
     Gender: Fem
   'on':
     at: before
-    has: *id006
+    pos:
+    - VERB
+  requires:
+  - Number
+  - Mood
+  selects: stem
   gloss:
     en: 'ta-: she, they two women (present)'
+  notes:
+    en: 'The imperfect: its person, then the imperfect stem; a mood after it, and a number ending where the prefix brings no number.'
   allomorphs:
   - form: ت
 - id: lexeme:imraa
@@ -687,7 +713,8 @@ lexemes:
     at: after
     needs:
     - Number
-    has: *id006
+    has: &id005
+      Aspect: Imp
   gloss:
     en: indicative
   allomorphs:
@@ -890,7 +917,7 @@ lexemes:
     at: after
     needs:
     - Number
-    has: *id006
+    has: *id005
   gloss:
     en: jussive
   allomorphs:
@@ -1267,7 +1294,7 @@ lexemes:
   realises:
     Person[obj]: '1'
     Number[obj]: Plur
-  'on': &id007
+  'on': &id006
     at: after
     complete: true
     pos:
@@ -1282,7 +1309,7 @@ lexemes:
   realises:
     Person[obj]: '1'
     Number[obj]: Sing
-  'on': *id007
+  'on': *id006
   gloss:
     en: me
   allomorphs:
@@ -1291,7 +1318,7 @@ lexemes:
   realises:
     Person[obj]: '2'
     Number[obj]: Dual
-  'on': *id007
+  'on': *id006
   gloss:
     en: your, you (two)
   allomorphs:
@@ -1301,7 +1328,7 @@ lexemes:
     Person[obj]: '2'
     Number[obj]: Plur
     Gender[obj]: Fem
-  'on': *id007
+  'on': *id006
   gloss:
     en: your, you (women)
   allomorphs:
@@ -1311,7 +1338,7 @@ lexemes:
     Person[obj]: '2'
     Number[obj]: Sing
     Gender[obj]: Fem
-  'on': *id007
+  'on': *id006
   gloss:
     en: your, you (a woman)
   allomorphs:
@@ -1321,7 +1348,7 @@ lexemes:
     Person[obj]: '2'
     Number[obj]: Plur
     Gender[obj]: Masc
-  'on': *id007
+  'on': *id006
   gloss:
     en: your, you (men)
   allomorphs:
@@ -1331,7 +1358,7 @@ lexemes:
     Person[obj]: '2'
     Number[obj]: Sing
     Gender[obj]: Masc
-  'on': *id007
+  'on': *id006
   gloss:
     en: your, you (a man)
   allomorphs:
@@ -1340,7 +1367,7 @@ lexemes:
   realises:
     Person[obj]: '3'
     Number[obj]: Dual
-  'on': *id007
+  'on': *id006
   gloss:
     en: their, them (two)
   allomorphs:
@@ -1350,16 +1377,16 @@ lexemes:
       with:
       - lexeme:li
   - form: هِمَا
-    after: &id008
+    after: &id007
       endsIn: '{C}{I}'
   - form: هِمَا
-    after: &id009
+    after: &id008
       endsIn: '{C}{I}ي'
   - form: هِمَا
-    after: &id010
+    after: &id009
       endsIn: '{C}{I}ي{UI}'
   - form: هِمَا
-    after: &id011
+    after: &id010
       endsIn: '{C}{A}ي'
   - form: هُمَا
 - id: lexeme:obj-3fpl
@@ -1367,7 +1394,7 @@ lexemes:
     Person[obj]: '3'
     Number[obj]: Plur
     Gender[obj]: Fem
-  'on': *id007
+  'on': *id006
   gloss:
     en: their, them (women)
   allomorphs:
@@ -1377,20 +1404,20 @@ lexemes:
       with:
       - lexeme:li
   - form: هِنَّ
+    after: *id007
+  - form: هِنَّ
     after: *id008
   - form: هِنَّ
     after: *id009
   - form: هِنَّ
     after: *id010
-  - form: هِنَّ
-    after: *id011
   - form: هُنَّ
 - id: lexeme:obj-3fs
   realises:
     Person[obj]: '3'
     Number[obj]: Sing
     Gender[obj]: Fem
-  'on': *id007
+  'on': *id006
   gloss:
     en: her
   allomorphs:
@@ -1400,7 +1427,7 @@ lexemes:
     Person[obj]: '3'
     Number[obj]: Plur
     Gender[obj]: Masc
-  'on': *id007
+  'on': *id006
   gloss:
     en: their, them (men)
   allomorphs:
@@ -1410,20 +1437,20 @@ lexemes:
       with:
       - lexeme:li
   - form: هِمْ
+    after: *id007
+  - form: هِمْ
     after: *id008
   - form: هِمْ
     after: *id009
   - form: هِمْ
     after: *id010
-  - form: هِمْ
-    after: *id011
   - form: هُمْ
 - id: lexeme:obj-3ms
   realises:
     Person[obj]: '3'
     Number[obj]: Sing
     Gender[obj]: Masc
-  'on': *id007
+  'on': *id006
   gloss:
     en: his, him
   allomorphs:
@@ -1433,203 +1460,255 @@ lexemes:
       with:
       - lexeme:li
   - form: هِ
+    after: *id007
+  - form: هِ
     after: *id008
   - form: هِ
     after: *id009
   - form: هِ
     after: *id010
-  - form: هِ
-    after: *id011
   - form: هُ
 - id: lexeme:pass
   realises:
     Voice: Pass
   'on':
     at: after
-    pos: *id005
+    pos: *id011
   gloss:
     en: passive
   notes:
     en: 'A zero morpheme: the passive stem of the aspect or participle the word has (kutiba, yuktabu, maktūb).'
   allomorphs:
   - form: ''
-- id: lexeme:perf
+- id: lexeme:perf-1pl
   realises:
     VerbForm: Fin
     Aspect: Perf
-  'on':
-    at: after
-    pos: *id005
-  requires:
-  - Person
-  - Number
-  selects: stem
-  gloss:
-    en: perfect (past)
-  notes:
-    en: 'A zero morpheme: the perfect stem, and its person endings after it.'
-  allomorphs:
-  - form: ''
-- id: lexeme:perf-1pl
-  realises:
     Person: '1'
     Number: Plur
   'on':
     at: after
-    has: &id013
-      Aspect: Perf
+    pos:
+    - VERB
   selects: *id012
   gloss:
     en: '-nā: we (past)'
+  notes:
+    en: 'The perfect: its person and number at once, on the perfect stem.'
   allomorphs:
   - form: نَا
 - id: lexeme:perf-1sg
   realises:
+    VerbForm: Fin
+    Aspect: Perf
     Person: '1'
     Number: Sing
   'on':
     at: after
-    has: *id013
+    pos:
+    - VERB
   selects: *id012
   gloss:
     en: '-tu: I (past)'
+  notes:
+    en: 'The perfect: its person and number at once, on the perfect stem.'
   allomorphs:
   - form: تُ
 - id: lexeme:perf-2du
   realises:
+    VerbForm: Fin
+    Aspect: Perf
     Person: '2'
     Number: Dual
   'on':
     at: after
-    has: *id013
+    pos:
+    - VERB
   selects: *id012
   gloss:
     en: '-tumā: you two (past)'
+  notes:
+    en: 'The perfect: its person and number at once, on the perfect stem.'
   allomorphs:
   - form: تُمَا
 - id: lexeme:perf-2fpl
   realises:
+    VerbForm: Fin
+    Aspect: Perf
     Person: '2'
     Gender: Fem
     Number: Plur
   'on':
     at: after
-    has: *id013
+    pos:
+    - VERB
   selects: *id012
   gloss:
     en: '-tunna: you, women (past)'
+  notes:
+    en: 'The perfect: its person and number at once, on the perfect stem.'
   allomorphs:
   - form: تُنَّ
 - id: lexeme:perf-2fs
   realises:
+    VerbForm: Fin
+    Aspect: Perf
     Person: '2'
     Gender: Fem
     Number: Sing
   'on':
     at: after
-    has: *id013
+    pos:
+    - VERB
   selects: *id012
   gloss:
     en: '-ti: you, a woman (past)'
+  notes:
+    en: 'The perfect: its person and number at once, on the perfect stem.'
   allomorphs:
   - form: تِ
 - id: lexeme:perf-2mpl
   realises:
+    VerbForm: Fin
+    Aspect: Perf
     Person: '2'
     Gender: Masc
     Number: Plur
   'on':
     at: after
-    has: *id013
+    pos:
+    - VERB
   selects: *id012
   gloss:
     en: '-tum: you, men (past)'
+  notes:
+    en: 'The perfect: its person and number at once, on the perfect stem.'
   allomorphs:
   - form: تُمْ
 - id: lexeme:perf-2ms
   realises:
+    VerbForm: Fin
+    Aspect: Perf
     Person: '2'
     Gender: Masc
     Number: Sing
   'on':
     at: after
-    has: *id013
+    pos:
+    - VERB
   selects: *id012
   gloss:
     en: '-ta: you, a man (past)'
+  notes:
+    en: 'The perfect: its person and number at once, on the perfect stem.'
   allomorphs:
   - form: تَ
 - id: lexeme:perf-3fdu
   realises:
+    VerbForm: Fin
+    Aspect: Perf
     Person: '3'
     Gender: Fem
     Number: Dual
   'on':
     at: after
-    has: *id013
+    pos:
+    - VERB
+  selects: stem
   gloss:
     en: '-atā: they two, women (past)'
+  notes:
+    en: 'The perfect: its person and number at once, on the perfect stem.'
   allomorphs:
   - form: ـَتَا
 - id: lexeme:perf-3fpl
   realises:
+    VerbForm: Fin
+    Aspect: Perf
     Person: '3'
     Gender: Fem
     Number: Plur
   'on':
     at: after
-    has: *id013
+    pos:
+    - VERB
   selects: *id012
   gloss:
     en: '-na: they, women (past)'
+  notes:
+    en: 'The perfect: its person and number at once, on the perfect stem.'
   allomorphs:
   - form: نَ
 - id: lexeme:perf-3fs
   realises:
+    VerbForm: Fin
+    Aspect: Perf
     Person: '3'
     Gender: Fem
     Number: Sing
   'on':
     at: after
-    has: *id013
+    pos:
+    - VERB
+  selects: stem
   gloss:
     en: '-at: she (past)'
+  notes:
+    en: 'The perfect: its person and number at once, on the perfect stem.'
   allomorphs:
   - form: ـَتْ
 - id: lexeme:perf-3mdu
   realises:
+    VerbForm: Fin
+    Aspect: Perf
     Person: '3'
     Gender: Masc
     Number: Dual
   'on':
     at: after
-    has: *id013
+    pos:
+    - VERB
+  selects: stem
   gloss:
     en: '-ā: they two, men (past)'
+  notes:
+    en: 'The perfect: its person and number at once, on the perfect stem.'
   allomorphs:
   - form: ـَا
 - id: lexeme:perf-3mpl
   realises:
+    VerbForm: Fin
+    Aspect: Perf
     Person: '3'
     Gender: Masc
     Number: Plur
   'on':
     at: after
-    has: *id013
+    pos:
+    - VERB
+  selects: stem
   gloss:
     en: '-ū: they, men (past)'
+  notes:
+    en: 'The perfect: its person and number at once, on the perfect stem.'
   allomorphs:
   - form: "ـُوا\u06df"
 - id: lexeme:perf-3ms
   realises:
+    VerbForm: Fin
+    Aspect: Perf
     Person: '3'
     Gender: Masc
     Number: Sing
   'on':
     at: after
-    has: *id013
+    pos:
+    - VERB
+  selects: stem
   gloss:
     en: '-a: he (past)'
+  notes:
+    en: 'The perfect: its person and number at once, on the perfect stem.'
   allomorphs:
   - form: ـَ
 - id: lexeme:pl
@@ -1652,7 +1731,7 @@ lexemes:
   realises:
     Person[psor]: '1'
     Number[psor]: Plur
-  'on': &id014
+  'on': &id013
     at: after
     complete: true
     pos:
@@ -1668,7 +1747,7 @@ lexemes:
   realises:
     Person[psor]: '1'
     Number[psor]: Sing
-  'on': *id014
+  'on': *id013
   gloss:
     en: my, me
   allomorphs:
@@ -1680,7 +1759,7 @@ lexemes:
   realises:
     Person[psor]: '2'
     Number[psor]: Dual
-  'on': *id014
+  'on': *id013
   gloss:
     en: your, you (two)
   allomorphs:
@@ -1690,7 +1769,7 @@ lexemes:
     Person[psor]: '2'
     Number[psor]: Plur
     Gender[psor]: Fem
-  'on': *id014
+  'on': *id013
   gloss:
     en: your, you (women)
   allomorphs:
@@ -1700,7 +1779,7 @@ lexemes:
     Person[psor]: '2'
     Number[psor]: Sing
     Gender[psor]: Fem
-  'on': *id014
+  'on': *id013
   gloss:
     en: your, you (a woman)
   allomorphs:
@@ -1710,7 +1789,7 @@ lexemes:
     Person[psor]: '2'
     Number[psor]: Plur
     Gender[psor]: Masc
-  'on': *id014
+  'on': *id013
   gloss:
     en: your, you (men)
   allomorphs:
@@ -1720,7 +1799,7 @@ lexemes:
     Person[psor]: '2'
     Number[psor]: Sing
     Gender[psor]: Masc
-  'on': *id014
+  'on': *id013
   gloss:
     en: your, you (a man)
   allomorphs:
@@ -1729,7 +1808,7 @@ lexemes:
   realises:
     Person[psor]: '3'
     Number[psor]: Dual
-  'on': *id014
+  'on': *id013
   gloss:
     en: their, them (two)
   allomorphs:
@@ -1739,20 +1818,20 @@ lexemes:
       with:
       - lexeme:li
   - form: هِمَا
+    after: *id007
+  - form: هِمَا
     after: *id008
   - form: هِمَا
     after: *id009
   - form: هِمَا
     after: *id010
-  - form: هِمَا
-    after: *id011
   - form: هُمَا
 - id: lexeme:poss-3fpl
   realises:
     Person[psor]: '3'
     Number[psor]: Plur
     Gender[psor]: Fem
-  'on': *id014
+  'on': *id013
   gloss:
     en: their, them (women)
   allomorphs:
@@ -1762,20 +1841,20 @@ lexemes:
       with:
       - lexeme:li
   - form: هِنَّ
+    after: *id007
+  - form: هِنَّ
     after: *id008
   - form: هِنَّ
     after: *id009
   - form: هِنَّ
     after: *id010
-  - form: هِنَّ
-    after: *id011
   - form: هُنَّ
 - id: lexeme:poss-3fs
   realises:
     Person[psor]: '3'
     Number[psor]: Sing
     Gender[psor]: Fem
-  'on': *id014
+  'on': *id013
   gloss:
     en: her
   allomorphs:
@@ -1785,7 +1864,7 @@ lexemes:
     Person[psor]: '3'
     Number[psor]: Plur
     Gender[psor]: Masc
-  'on': *id014
+  'on': *id013
   gloss:
     en: their, them (men)
   allomorphs:
@@ -1795,20 +1874,20 @@ lexemes:
       with:
       - lexeme:li
   - form: هِمْ
+    after: *id007
+  - form: هِمْ
     after: *id008
   - form: هِمْ
     after: *id009
   - form: هِمْ
     after: *id010
-  - form: هِمْ
-    after: *id011
   - form: هُمْ
 - id: lexeme:poss-3ms
   realises:
     Person[psor]: '3'
     Number[psor]: Sing
     Gender[psor]: Masc
-  'on': *id014
+  'on': *id013
   gloss:
     en: his, him
   allomorphs:
@@ -1818,20 +1897,20 @@ lexemes:
       with:
       - lexeme:li
   - form: هِ
+    after: *id007
+  - form: هِ
     after: *id008
   - form: هِ
     after: *id009
   - form: هِ
     after: *id010
-  - form: هِ
-    after: *id011
   - form: هُ
 - id: lexeme:ptcp
   realises:
     VerbForm: Part
   'on':
     at: after
-    pos: *id005
+    pos: *id011
   requires:
   - Gender
   - Number
@@ -2089,7 +2168,7 @@ lexemes:
     at: after
     needs:
     - Number
-    has: *id006
+    has: *id005
   gloss:
     en: subjunctive
   allomorphs:

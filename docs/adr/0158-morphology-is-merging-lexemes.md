@@ -196,3 +196,8 @@ affix lexeme to attach go away, the lexemes themselves carrying `on` and `requir
   with (§4): to confirm.
 - **D.** Feature values are abstract; learners learn lexemes (§6).
 - **E.** apc first, then es; the explorer rebuilt against apc as soon as apc converts.
+- **Later (2026-11-26/27).** "For verbs at least, the null morpheme is imperative": a null lexeme stands where the
+  language has a gap (arb's imperative: no prefix where the imperfect has one), never for a tense or aspect that
+  other morphemes already mark. arb's perfect endings and imperfect prefixes bring their aspect themselves; `perf`
+  and `impf` are gone. A zero for an unmarked value beside marked ones stays (yaktubu's ms beside -ūna, -ī), as does a
+  pattern with no sound of its own (`ptcp`).

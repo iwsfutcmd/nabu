@@ -18,15 +18,18 @@ profiles/arb-Arab.standard.yaml are the sources now.
   after) and what the word then needs (`requires`); merged outward from the base, each onto the word as it stands,
   so what each merges onto is the order (a mood `needs` a Number, a case a Number, a state a Case, a number a Gender;
   a pronoun suffix and a proclitic only onto a `complete` word):
-  - `perf` (∅: VerbForm=Fin, Aspect=Perf; needs Person, Number), `impf` (∅: …Aspect=Imp; needs Person, Number,
-    Mood), `imp` (∅: Mood=Imp, Person=2; needs Number), `ptcp` (∅: VerbForm=Part; needs Gender, Number), `pass` (∅:
-    Voice=Pass);
-  - the perfect's thirteen endings, each a person, gender and number at once (`perf-1sg` -tu … `perf-3fpl` -na);
-  - the imperfect's prefixes (`impf-1sg` ʾa-, `impf-1pl` na-, `impf-2` ta-, `impf-3` ya-, `impf-3f` ta-: she, they
-    two women), its endings (`ms` ∅, `sg` ∅ after she's ta-, `fs` -ī, `du` -ā, `mpl` -ū, `fpl` -na) and its moods
-    (`ind` -u, -na after -ū and -ī, -ni after -ā, nothing after -na; `sub` -a, nothing after a long vowel, an
-    unsaid alif after -ū; `jus` no vowel, the same after a long vowel).
-  So يَكْتُبُونَ is ya- + katab + impf + -ū + ind; كُتِبْتُ is katab + perf + pass + -tu.
+  - the perfect's thirteen endings, each bringing the perfect (VerbForm=Fin, Aspect=Perf) with a person, gender and
+    number at once (`perf-1sg` -tu … `perf-3fpl` -na), on the perfect stem;
+  - the imperfect's five prefixes, each bringing the imperfect (VerbForm=Fin, Aspect=Imp) with its person (`impf-1sg`
+    ʾa-, `impf-1pl` na-, `impf-2` ta-, `impf-3` ya-, `impf-3f` ta-: she, they two women) and requiring a mood, and a
+    number where it brings none; on the imperfect stem. Then its endings (`ms` ∅, `sg` ∅ after she's ta-, `fs` -ī,
+    `du` -ā, `mpl` -ū, `fpl` -na) and its moods (`ind` -u, -na after -ū and -ī, -ni after -ā, nothing after -na;
+    `sub` -a, nothing after a long vowel, an unsaid alif after -ū; `jus` no vowel, the same after a long vowel);
+  - `imp` (∅: Mood=Imp, Person=2; needs Number), the verb's one null lexeme for its tense and mood (the owner,
+    2026-11-26/27): no prefix where the imperfect has one, on the command stem, the jussive without its prefix;
+  - `ptcp` (∅: VerbForm=Part; needs Gender, Number, Case, Definite: a pattern with no sound of its own) and `pass` (∅:
+    Voice=Pass).
+  So يَكْتُبُونَ is ya- + katab + -ū + ind; كُتِبْتُ is katab + pass + -tu; اُكْتُبْ is katab + imp + ms.
 - **Stems** (language.yaml `stems`): a template per Form, root class and the word's values (a template's `feats`,
   new with this language: the passive's stem differs in the perfect and the imperfect). An imperfect stem begins with
   the prefix's vowel (ya-, yu-), which the person prefix takes. The perfect's endings that begin with a consonant
@@ -101,12 +104,6 @@ a sukun is on the line whatever its case vowel (ḥamrāʾu, samāʾi); the tanw
 10. **wa- and fa- beside sa- or bi-**: all four merge onto a complete word, so nothing says which is outermost;
     the explorer writes them as picked, and the engine takes sa-wa-yaktubu as well as wa-sa-yaktubu. A conjunction
     taking a phrase where the others take a word would say it.
-11. **Which verb lexemes are null** (the owner, 2026-11-26: "for verbs at least, the null morpheme is imperative";
-    not settled where the morpheme is not clear-cut). Today `perf`, `impf`, `imp` and `ptcp` are all zero lexemes.
-    Proposed: the imperative alone stands for a gap the language has (no prefix where the imperfect has ya-, ta-: the
-    jussive without its prefix); the perfect's endings bring Aspect=Perf and the imperfect's prefixes Aspect=Imp
-    and its stem, so `perf` and `impf` go. `ptcp` (a pattern with no sound of its own) and `ms`, `sg` (yaktubu: no
-    ending beside -ūna, -ī) stay. Not built until the owner decides.
-12. **Not built yet**: the five nouns (ʾabū, ʾakhū), the dual and plural of -ā nouns beyond the sound endings
+11. **Not built yet**: the five nouns (ʾabū, ʾakhū), the dual and plural of -ā nouns beyond the sound endings
     (maʿānin), the numbers, Form IX and the quadriliterals, the verbal nouns, the article's wasla after a word ending
     in a vowel (fī l-bayt: one word apart, the spelling's).

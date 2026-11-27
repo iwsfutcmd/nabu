@@ -118,28 +118,23 @@ test("a lexicon no course uses: what brings a feature is found by its name, and 
   const add = root.locator('[data-picker="rules-add"]');
   await add.locator("[data-action=lexicon-filter]").click();
   await add.locator('[data-facet="dimension"] [data-facet-value="VerbForm"]').click();
-  await expect(add.locator("[data-pick]")).toHaveText([/.*/u, /.*/u, /.*/u, /.*/u]);
-  for (const id of ["perf", "impf", "imp", "ptcp"]) await expect(add.locator(`[data-pick="lexeme:${id}"]`)).toBeVisible();
-  await add.locator('[data-pick="lexeme:impf"]').click();
-  await expect(root.locator('[data-attached="lexeme:impf"]')).toBeVisible();
+  // The perfect's endings and the imperfect's prefixes bring it with their person; the imperative is null.
+  for (const id of ["perf-3ms", "perf-1sg", "impf-3", "impf-1pl", "imp", "ptcp"]) await expect(add.locator(`[data-pick="lexeme:${id}"]`)).toBeVisible();
+  await expect(add.locator('[data-pick="lexeme:ms"]')).toHaveCount(0);
 
   // No side to choose: each lexeme says where it stands, and is written there (ya- before the verb).
   await expect(root.locator("[data-add-side]")).toHaveCount(0);
-  await add.locator("[data-action=lexicon-filter-clear]").click();
-  await root.locator("[data-field=rules-add]").fill("impf-3");
   await add.locator('[data-pick="lexeme:impf-3"]').click();
-  await expect(root.locator("[data-attached]")).toHaveCount(2);
   await expect(root.locator('[data-around=before] [data-attached="lexeme:impf-3"]')).toBeVisible();
-  await expect(root.locator('[data-around=after] [data-attached="lexeme:impf"]')).toBeVisible();
+  await add.locator("[data-action=lexicon-filter-clear]").click();
 
   // Picked out of order, written in the order they merge in: the number ending before the mood, the object last.
   for (const id of ["obj-3ms", "ind", "mpl"]) {
     await root.locator("[data-field=rules-add]").fill(id);
     await add.locator(`[data-pick="lexeme:${id}"]`).click();
   }
-  await expect(root.locator("[data-around=after] [data-attached]")).toHaveCount(4);
+  await expect(root.locator("[data-around=after] [data-attached]")).toHaveCount(3);
   expect(await root.locator("[data-around=after] [data-attached]").evaluateAll((els) => els.map((e) => e.getAttribute("data-attached")))).toEqual([
-    "lexeme:impf",
     "lexeme:mpl",
     "lexeme:ind",
     "lexeme:obj-3ms",

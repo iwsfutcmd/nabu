@@ -51,7 +51,6 @@ describe("lexiconCourse", () => {
       feats: {},
       before: [{ lexeme: "lexeme:impf-3" }],
       after: [
-        { lexeme: "lexeme:impf" },
         { lexeme: "lexeme:ms" },
         { lexeme: "lexeme:jus" },
       ],
@@ -94,11 +93,11 @@ describe("lexiconCourse", () => {
         "lexeme:sa",
       ]),
     );
-    expect(ids("before")).not.toContain("lexeme:perf");
+    expect(ids("before")).not.toContain("lexeme:perf-3ms");
     expect(ids("after")).toEqual(
       expect.arrayContaining([
-        "lexeme:perf",
-        "lexeme:impf",
+        "lexeme:perf-3ms",
+        "lexeme:imp",
         "lexeme:poss-3ms",
         "lexeme:nom",
       ]),
@@ -110,7 +109,6 @@ describe("lexiconCourse", () => {
       feats: {},
       before: [],
       after: [
-        { lexeme: "lexeme:impf" },
         { lexeme: "lexeme:impf-3" },
         { lexeme: "lexeme:ms" },
         { lexeme: "lexeme:ind" },
