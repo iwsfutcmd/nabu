@@ -868,7 +868,11 @@ const equals = (lang: CompiledLanguage, written: readonly WrittenLexeme[], optio
  * base has of itself and what the token brings).
  */
 /** A word being merged (ADR 0158): its values and requirements so far, and whether a lexeme's `on` holds on it. */
-const mergingWord = (lang: CompiledLanguage, baseLexeme: Lexeme, start: UdFeatures): { readonly refuses: (id: string) => RealiseError | undefined; readonly merge: (id: string) => void } => {
+const mergingWord = (
+  lang: CompiledLanguage,
+  baseLexeme: Lexeme,
+  start: UdFeatures,
+): { readonly refuses: (id: string) => RealiseError | undefined; readonly merge: (id: string) => void; readonly has: (feature: string) => boolean } => {
   const values: Record<string, string> = { ...start };
   const required = new Set<string>(baseLexeme.pos === undefined ? [] : (lang.declared.requires?.[baseLexeme.pos] ?? []));
   for (const f of baseLexeme.requires ?? []) required.add(f);
@@ -888,7 +892,36 @@ const mergingWord = (lang: CompiledLanguage, baseLexeme: Lexeme, start: UdFeatur
       Object.assign(values, lexeme?.realises ?? {});
       for (const f of lexeme?.requires ?? []) required.add(f);
     },
+    has: (feature: string): boolean => values[feature] !== undefined,
   };
+};
+
+/**
+ * Of `candidates`, the lexemes that can merge onto the word a base and its lexemes make now (ADR 0158): their `on`
+ * holds on it as it stands, they bring no value it has already (`twice`), and the token does not write them yet.
+ * The word is merged as `mergeOrder` merges it; a lexeme of it that cannot merge yet is left out of it.
+ */
+export const mergeable = (lang: CompiledLanguage, base: string, feats: UdFeatures, written: readonly string[], candidates: readonly string[]): readonly string[] => {
+  const baseLexeme = lang.lexemes.get(lexemeId(base));
+  if (baseLexeme === undefined) return [];
+  const word = mergingWord(lang, baseLexeme, { ...(lang.own.get(baseLexeme.id) ?? baseLexeme.feats ?? {}), ...feats });
+  let rest = [...written];
+  for (;;) {
+    const k = rest.findIndex((id) => word.refuses(lexemeId(id)) === undefined);
+    if (k < 0) break;
+    word.merge(lexemeId(rest[k] as string));
+    rest = [...rest.slice(0, k), ...rest.slice(k + 1)];
+  }
+  const taken = new Set(written.map(lexemeId));
+  return candidates.filter((id) => {
+    const lexeme = lang.lexemes.get(lexemeId(id));
+    return (
+      lexeme !== undefined &&
+      !taken.has(lexeme.id) &&
+      word.refuses(lexeme.id) === undefined &&
+      Object.keys(lexeme.realises ?? {}).every((f) => !word.has(f))
+    );
+  });
 };
 
 /**

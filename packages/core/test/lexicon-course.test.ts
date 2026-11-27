@@ -7,6 +7,7 @@ import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { parse } from "yaml";
 import {
+  addable,
   attachable,
   explore,
   EXPLORE_DEFAULTS,
@@ -50,10 +51,7 @@ describe("lexiconCourse", () => {
       base: "lexeme:qala",
       feats: {},
       before: [{ lexeme: "lexeme:impf-3" }],
-      after: [
-        { lexeme: "lexeme:ms" },
-        { lexeme: "lexeme:jus" },
-      ],
+      after: [{ lexeme: "lexeme:ms" }, { lexeme: "lexeme:jus" }],
       ...EXPLORE_DEFAULTS,
     });
     if (!r.ok) throw new Error(JSON.stringify(r));
@@ -117,6 +115,45 @@ describe("lexiconCourse", () => {
     });
     expect(wrong.ok).toBe(false);
     expect(JSON.stringify(wrong)).toContain('"at"');
+  });
+
+  it("offers only what can merge onto the word as it stands", () => {
+    const course = lexiconCourse(SOURCE, {
+      language: "arb",
+      support: "en-Latn/standard",
+      numberingSystems,
+    });
+    if (!course.ok) throw new Error(JSON.stringify(course.error));
+    const x = rulesExplorer(course.value, SOURCE);
+    const offered = (
+      base: string,
+      before: string[],
+      after: string[],
+    ): readonly string[] =>
+      addable(x, {
+        base: `lexeme:${base}`,
+        feats: {},
+        before: before.map((l) => ({ lexeme: `lexeme:${l}` })),
+        after: after.map((l) => ({ lexeme: `lexeme:${l}` })),
+      }).map((l) => l.row.id.id.slice("lexeme:".length));
+    // A bare verb: what brings its tense and mood (and voice), nothing that needs a person, a number or a whole word.
+    const bare = offered("kataba", [], []);
+    expect(bare).toEqual(
+      expect.arrayContaining(["perf-3ms", "impf-3", "imp", "ptcp", "pass"]),
+    );
+    for (const id of ["ms", "ind", "obj-3ms", "wa", "nom"])
+      expect(bare).not.toContain(id);
+    // ya-: its number endings, no second tense, no mood before the number.
+    const ya = offered("kataba", ["impf-3"], []);
+    expect(ya).toEqual(expect.arrayContaining(["ms", "mpl", "pass"]));
+    for (const id of ["perf-3ms", "impf-2", "impf-3", "ind", "obj-3ms"])
+      expect(ya).not.toContain(id);
+    // yaktubūna: complete, so its pronoun suffixes and proclitics; no second mood.
+    const whole = offered("kataba", ["impf-3"], ["mpl", "ind"]);
+    expect(whole).toEqual(expect.arrayContaining(["obj-3ms", "wa", "sa"]));
+    for (const id of ["ind", "sub", "ms"]) expect(whole).not.toContain(id);
+    // A feminine noun takes no feminine.
+    expect(offered("sayyara", [], [])).not.toContain("fem");
   });
 
   it("says so where the language has no orthography among the profiles", () => {

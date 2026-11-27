@@ -976,7 +976,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   person, tense or case; every value a word has is brought by a lexeme merged with it (`realises`), zero morphemes
   included (an empty allomorph). A bound lexeme says what it merges onto (`on`: the base's pos, which side it stands, `at`, values the word
   must have, `has`, a value for a feature, `needs`, or every requirement met, `complete`; merged outward from the base
-  onto the word as it stands, so these are the order on each side, never slots: core `mergeOrder`), what the word then requires (`requires`: finite-ness requires person and number) and which stem it
+  onto the word as it stands, so these are the order on each side, never slots: core `mergeOrder`; the explorer
+  offers only what can merge onto the word now, `addable`), what the word then requires (`requires`: finite-ness requires person and number) and which stem it
   makes the base take (`selects`, the last in the token winning). A language that states `requires` per category
   merges: a token is incomplete while a requirement is unmet (`Realisation.missing`), a lexeme merged where its `on`
   fails is `attach`, a feature brought twice `twice`; a form stored for the merged word covers the lexemes whose

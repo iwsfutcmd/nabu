@@ -128,10 +128,17 @@ test("a lexicon no course uses: what brings a feature is found by its name, and 
   await expect(root.locator('[data-around=before] [data-attached="lexeme:impf-3"]')).toBeVisible();
   await add.locator("[data-action=lexicon-filter-clear]").click();
 
-  // Picked out of order, written in the order they merge in: the number ending before the mood, the object last.
-  for (const id of ["obj-3ms", "ind", "mpl"]) {
+  // Only what merges onto the word as it stands: no second tense, no mood before the number, no suffix before it is whole.
+  const offered = (id: string) => add.locator(`[data-pick="lexeme:${id}"]`);
+  await root.locator("[data-field=rules-add]").fill("perf-3ms");
+  await expect(offered("perf-3ms")).toHaveCount(0);
+  await root.locator("[data-field=rules-add]").fill("obj-3ms");
+  await expect(offered("obj-3ms")).toHaveCount(0);
+  await root.locator("[data-field=rules-add]").fill("ind");
+  await expect(offered("ind")).toHaveCount(0);
+  for (const id of ["mpl", "ind", "obj-3ms"]) {
     await root.locator("[data-field=rules-add]").fill(id);
-    await add.locator(`[data-pick="lexeme:${id}"]`).click();
+    await offered(id).click();
   }
   await expect(root.locator("[data-around=after] [data-attached]")).toHaveCount(3);
   expect(await root.locator("[data-around=after] [data-attached]").evaluateAll((els) => els.map((e) => e.getAttribute("data-attached")))).toEqual([

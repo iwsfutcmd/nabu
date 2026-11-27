@@ -18,7 +18,7 @@
  * Pure: the caller fetches the files and passes them in. Built once per course and source.
  */
 import type { LanguageDeclaration, Lexicon, OrthographyProfile, TaggedText, Token, UdFeatures } from "@nabu/schema";
-import { compileLanguage, compileSpeller, mergeOrder, realiseToken, spell, spelledAs, spellingKey, type CompiledLanguage, type RealiseError, type Speller, type WrittenLexeme } from "../lexicon/index.ts";
+import { compileLanguage, compileSpeller, mergeable, mergeOrder, realiseToken, spell, spelledAs, spellingKey, type CompiledLanguage, type RealiseError, type Speller, type WrittenLexeme } from "../lexicon/index.ts";
 import type { CourseView } from "./course.ts";
 import { courseTags, lexiconData, type LexemeRow, type LexiconSource, type Tags } from "./lexicon-data.ts";
 import { cellFeats } from "./paradigms.ts";
@@ -486,6 +486,30 @@ export const attachable = (explorer: RulesExplorer, side: "before" | "after"): r
     attaching.set(explorer, found);
   }
   return found[side];
+};
+
+/**
+ * What the add box offers for a request (ADR 0158): in a language that merges lexemes, only those that can merge onto
+ * the word as it stands (their `on` holds, they bring nothing it has, it does not write them yet: `mergeable`), each
+ * written on its own side; elsewhere those `attachable` on the side asked.
+ */
+export const addable = (
+  explorer: RulesExplorer,
+  request: Pick<ExploreRequest, "base" | "feats" | "before" | "after">,
+  side: "before" | "after" = "after",
+): readonly ExplorerLexeme[] => {
+  if (!explorer.merging || explorer.compiled === undefined) return attachable(explorer, side);
+  const candidates = explorer.lexemes.filter((l) => l.at !== undefined);
+  const can = new Set(
+    mergeable(
+      explorer.compiled,
+      request.base,
+      request.feats,
+      [...request.before, ...request.after].map((a) => a.lexeme),
+      candidates.map((l) => l.row.id.id),
+    ),
+  );
+  return candidates.filter((l) => can.has(l.row.id.id));
 };
 
 /**

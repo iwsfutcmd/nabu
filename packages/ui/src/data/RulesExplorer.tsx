@@ -23,8 +23,8 @@ import {
   EXPLORE_DEFAULTS,
   explorerParadigm,
   fitCell,
+  addable,
   arrange,
-  attachable,
   cellKey,
   lexiconFacets,
   lexiconFilter,
@@ -881,14 +881,7 @@ export const RulesExplorer = ({
                   label={t.format("rules.add")}
                   field="rules-add"
                   browse={false}
-                  among={
-                    explorer.merging
-                      ? [
-                          ...attachable(explorer, "before"),
-                          ...attachable(explorer, "after"),
-                        ]
-                      : attachable(explorer, side)
-                  }
+                  among={addable(explorer, request, side)}
                   onPick={(l) =>
                     change(arrange(explorer, request, l.row.id.id, side))
                   }
