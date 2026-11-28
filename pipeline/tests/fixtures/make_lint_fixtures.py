@@ -682,6 +682,17 @@ def _chg_unaccounted(c: Course) -> None:
     unit(c)["sentences"][0]["forms"][CHG_ORTH]["tokens"][0]["readings"] = {"schluessel": "kizil"}
 
 
+def _chg_misread(c: Course) -> None:
+    """qizil (its form, which spells قزل) read qizel: a reading Schluessel's statement
+    relates to the letters, which the form does not spell in his Latin."""
+    chg = yaml.safe_load(
+        (HERE.parents[2] / "lexicons" / "chg" / "language.yaml").read_text("utf-8")
+    )
+    c["own"]["language"]["notation"] = chg["notation"]
+    c["own"]["lexicon"]["lexemes"][0]["form"] = "qizil"
+    unit(c)["sentences"][0]["forms"][CHG_ORTH]["tokens"][0]["readings"] = {"schluessel": "qizel"}
+
+
 def _apc_form_otherwise(c: Course) -> None:
     """bet's form written with a diphthong (\u0628\u064e\u064a\u0652\u062a), which Arabizi's
     statement spells bayt, not the lexicon's bet."""
@@ -691,17 +702,25 @@ def _apc_form_otherwise(c: Course) -> None:
 APC_LANGUAGE: dict[str, Any] = yaml.safe_load(
     (HERE.parents[2] / "lexicons" / "apc" / "language.yaml").read_text(encoding="utf-8")
 )
+APC_LEXEMES: dict[str, Any] = {
+    str(e["id"]): e
+    for e in yaml.safe_load(
+        (HERE.parents[2] / "lexicons" / "apc" / "lexemes.yaml").read_text(encoding="utf-8")
+    )["lexemes"]
+}
 
 
 def _apc_shereb(c: Course, writes: str, form: dict[str, Any] | None = None) -> None:
     """apc's rules (lexicons/apc/language.yaml) and a verb, shereb (ش ر ب, past i, present a),
-    whose past 1sg the rules give shrebt; a sentence writes it `writes`, and shereb keeps `form`
-    (a pinned form of that cell), if given."""
+    whose past 1sg the rules give shrebt (shereb merged with perf-1sg, ADR 0158); a sentence
+    writes it `writes`, and shereb keeps `form` (a pinned form of that cell), if given."""
     language = c["own"]["language"]
-    for key in ("rootClasses", "stems", "realisation", "phonology"):
+    for key in ("rootClasses", "stems", "phonology"):
         language[key] = APC_LANGUAGE[key]
     language["dimensions"] = {"VERB": ["Aspect", "Person", "Number"]}
     language["features"] = {"Aspect": ["Perf"], "Number": ["Sing"], "Person": ["1"]}
+    language["requires"] = {"VERB": ["Number"]}
+    c["own"]["lexicon"]["lexemes"].append(APC_LEXEMES["lexeme:perf-1sg"])
     shereb: dict[str, Any] = {
         "id": "lexeme:shereb",
         "pos": "VERB",
@@ -729,8 +748,7 @@ def _apc_shereb(c: Course, writes: str, form: dict[str, Any] | None = None) -> N
                     "tokens": [
                         {
                             "surface": writes,
-                            "lexeme": "shereb",
-                            "feats": {"Aspect": "Perf", "Number": "Sing", "Person": "1"},
+                            "lexemes": [{"lexeme": "shereb", "base": True}, {"lexeme": "perf-1sg"}],
                         }
                     ],
                     "reverse": writes,
@@ -1315,6 +1333,10 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     "projection.unaccounted": (
         "\u0642\u0632\u0644 read kizil: Schluessel's statement writes k with \u06a9, never \u0642.",
         m(_chg_unaccounted, CHG),
+    ),
+    "form.reading": (
+        "qizil read qizel, where its form spells qizil in Schluessel's Latin.",
+        m(_chg_misread, CHG),
     ),
     "form.projection": (
         "bet's form spells bayt in Arabizi, where the lexicon spells it bet.",

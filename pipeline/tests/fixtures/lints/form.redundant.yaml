@@ -30,6 +30,23 @@ own:
       spelled:
         apc-Latn/arabizi:
         - bet
+    - id: lexeme:perf-1sg
+      realises:
+        Aspect: Perf
+        Person: '1'
+        Number: Sing
+      'on':
+        at: after
+        pos:
+        - VERB
+        - AUX
+      selects:
+      - perfect-short
+      - perfect
+      gloss:
+        en: '-t: I (past)'
+      allomorphs:
+      - form: ت
     - id: lexeme:shereb
       pos: VERB
       gloss:
@@ -214,16 +231,27 @@ own:
       template: 1ِ2ّ
     - id: imperfect
       form: I
+      class: doubled
+      vowels:
+        present: a
+      template: 1َ2ّ
+      branch: doubled-a
+    - id: imperfect
+      form: I
       class: defective
       template: 1ْ2{long present}
     - id: command
       form: I
       class: hamzated
+      feats:
+        Mood: Imp
       template: "2\u065dو3"
       branch: hamzated
     - id: command-v
       form: I
       class: hamzated
+      feats:
+        Mood: Imp
       template: 2ِ3
       branch: hamzated
     - id: participle
@@ -252,6 +280,14 @@ own:
       class: defective
       template: "1\u065cا2ِي"
       branch: defective
+    - id: passive
+      form: I
+      template: مَ1ْ2ُو3
+    - id: passive
+      form: I
+      class: defective
+      template: مَ1ْ2ِي
+      branch: defective
     - id: perfect
       form: II
       template: 1َ2َّ3
@@ -266,6 +302,13 @@ own:
       form: II
       class: defective
       template: 1َ2ِّي
+    - id: passive
+      form: II
+      template: مْ1َ2َّ3
+    - id: passive
+      form: II
+      class: defective
+      template: مْ1َ2َّى
     - id: perfect
       form: III
       template: "1\u065cا2َ3"
@@ -314,216 +357,6 @@ own:
       form: VIII
       class: defective
       template: 1ْتِ2ِي
-    realisation:
-    - id: rule:apc-perfect
-      when:
-        feats:
-          Aspect: Perf
-      stem: perfect
-      blocks:
-      - suffix:
-        - branch: 1sg
-          feats:
-            Person: '1'
-            Number: Sing
-          add: ت
-          stem:
-          - perfect-short
-          - perfect
-        - branch: 1pl
-          feats:
-            Person: '1'
-            Number: Plur
-          add: نَا
-          stem:
-          - perfect-ay
-          - perfect-short
-          - perfect
-        - branch: 2fs
-          feats:
-            Person: '2'
-            Gender: Fem
-            Number: Sing
-          add: تِي
-          stem:
-          - perfect-ay
-          - perfect-short
-          - perfect
-        - branch: 2pl
-          feats:
-            Person: '2'
-            Number: Plur
-          add: "تُوا\u06df"
-          stem:
-          - perfect-ay
-          - perfect-short
-          - perfect
-        - branch: 2ms
-          feats:
-            Person: '2'
-          add: ت
-          stem:
-          - perfect-short
-          - perfect
-        - branch: 3fs
-          feats:
-            Person: '3'
-            Gender: Fem
-            Number: Sing
-          add: ـِت
-        - branch: 3pl
-          feats:
-            Person: '3'
-            Number: Plur
-          add: "ـُوا\u06df"
-        - branch: 3ms
-          feats:
-            Person: '3'
-          add: ''
-    - id: rule:apc-imperfect
-      when:
-        feats:
-          Aspect: Imp
-      stem: imperfect
-      blocks:
-      - prefix:
-        - branch: 1sg-sub
-          feats:
-            Person: '1'
-            Number: Sing
-            Mood: Sub
-          add: ا
-        - branch: 1sg
-          feats:
-            Person: '1'
-            Number: Sing
-          add: ''
-        - branch: 1pl
-          feats:
-            Person: '1'
-            Number: Plur
-          add: ن
-        - branch: 3fs
-          feats:
-            Person: '3'
-            Gender: Fem
-            Number: Sing
-          add: ت
-        - branch: '2'
-          feats:
-            Person: '2'
-          add: ت
-        - branch: '3'
-          feats:
-            Person: '3'
-          add: ي
-      - prefix:
-        - branch: ind
-          feats:
-            Mood: Ind
-          add: ب
-      - suffix:
-        - branch: 2fs
-          feats:
-            Person: '2'
-            Gender: Fem
-            Number: Sing
-          add: ـِي
-        - branch: pl
-          feats:
-            Person: 2,3
-            Number: Plur
-          add: "ـُوا\u06df"
-    - id: rule:apc-command
-      when:
-        feats:
-          Mood: Imp
-      stem:
-      - command
-      - imperfect
-      blocks:
-      - suffix:
-        - branch: 2fs
-          feats:
-            Gender: Fem
-            Number: Sing
-          add: ـِي
-          stem:
-          - command-v
-          - command
-          - imperfect
-        - branch: pl
-          feats:
-            Number: Plur
-          add: "ـُوا\u06df"
-          stem:
-          - command-v
-          - command
-          - imperfect
-        - branch: 2ms
-          add: ''
-    - id: rule:apc-participle
-      when:
-        feats:
-          Aspect: Part
-      stem: participle
-      blocks:
-      - suffix:
-        - branch: fs
-          feats:
-            Gender: Fem
-            Number: Sing
-          add: "ـ\u065cة"
-        - branch: pl
-          feats:
-            Number: Plur
-          add: ـِين
-        - branch: ms
-          add: ''
-    - id: rule:apc-invariable
-      when:
-        pos: ADJ
-        class: invariable
-      blocks: []
-    - id: rule:apc-nisba
-      when:
-        pos: ADJ
-        class: nisba
-      blocks:
-      - suffix:
-        - branch: fs
-          feats:
-            Gender: Fem
-            Number: Sing
-          add: "ـّ\u065cة"
-        - branch: pl
-          feats:
-            Number: Plur
-          add: ـِّين
-    - id: rule:apc-adjective
-      when:
-        pos: ADJ
-      blocks:
-      - suffix:
-        - branch: fs
-          feats:
-            Gender: Fem
-            Number: Sing
-          add: "ـ\u065cة"
-        - branch: pl
-          feats:
-            Number: Plur
-          add: ـِين
-    - id: rule:apc-noun
-      when:
-        pos: NOUN
-      blocks:
-      - suffix:
-        - branch: fs
-          feats:
-            Gender: Fem
-            Number: Sing
-          add: "ـ\u065cة"
     phonology:
     - id: rule:apc-article
       branch: sun
@@ -560,7 +393,9 @@ own:
       branch: none
       find: ا+
       at: start
-      before: '{K}{V}'
+      before:
+      - '{K}{V}'
+      - '{GL}{V}'
       to: ''
     - id: rule:apc-prefix-vowel
       branch: ayn
@@ -591,6 +426,12 @@ own:
       - '#و+'
       - '#و+{P}*+'
       to: '{P}ْ+'
+    - id: rule:apc-defective
+      branch: adjective
+      when:
+        pos: ADJ
+      find: '{K}*ى{W}+'
+      to: '{K}{W}+'
     - id: rule:apc-syncope
       branch: vowel
       find: '{L}{IU}{L}{W}+'
@@ -662,6 +503,10 @@ own:
       find: "{L}[َ\u065c]+?ة{V}"
       to: '{L}ْ+?ت{V}'
     - id: rule:apc-feminine-t
+      branch: doubled
+      find: '{L}َّ+?ة{V}'
+      to: '{L}ّْ+?ت{V}'
+    - id: rule:apc-feminine-t
       branch: consonant
       find: ةْ+
       to: تْ+
@@ -681,6 +526,9 @@ own:
       - Sing
       Person:
       - '1'
+    requires:
+      VERB:
+      - Number
 units:
 - id: basics
   nodes:
@@ -708,11 +556,10 @@ units:
         text: shrebt
         tokens:
         - surface: shrebt
-          lexeme: shereb
-          feats:
-            Aspect: Perf
-            Number: Sing
-            Person: '1'
+          lexemes:
+          - lexeme: shereb
+            base: true
+          - lexeme: perf-1sg
         reverse: shrebt
     translations:
       en: I drank

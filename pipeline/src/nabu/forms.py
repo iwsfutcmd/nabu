@@ -321,6 +321,10 @@ class Site:
     #: merged into its base (apc's shereb + imp + pl.verb): what the realiser is given. `written`
     #: is the token as every other step reads it, those lexemes' values on its base.
     merged: list[dict[str, Any]] | None = None
+    #: Its pinned readings whose scheme's `latin` orthography states `spell` (chg's Schluessel,
+    #: whose reading the form is): (that orthography, the reading), each checked against what the
+    #: form spells there (`form.reading`).
+    readings: tuple[tuple[str, str], ...] = ()
 
     @property
     def key(self) -> str:
@@ -340,6 +344,9 @@ class Spelling:
     found: str | None
     #: A free form's spelling (another form of the cell, ADR 0145), not the first form's.
     free: bool = False
+    #: A pinned reading's (`Site.readings`): it never decides the verdict, only which form is the
+    #: token's where several spell as it is written, and `form.reading`.
+    reading: bool = False
 
 
 @dataclass(frozen=True)
@@ -361,7 +368,12 @@ class TokenCheck:
 
     @property
     def missed(self) -> list[Spelling]:
-        return [s for s in self.spellings if s.found is None]
+        return [s for s in self.spellings if s.found is None and not s.reading]
+
+    @property
+    def misread(self) -> list[Spelling]:
+        """Its pinned readings the form does not spell (`form.reading`)."""
+        return [s for s in self.spellings if s.found is None and s.reading]
 
 
 @dataclass(frozen=True)
@@ -381,6 +393,9 @@ class TokenReport:
                 1 for c in self.checks if c.variant is not None and c.verdict != "unaccounted"
             ),
             "unaccounted": verdicts.count("unaccounted"),
+            "read otherwise than the form spells": sum(
+                1 for c in self.checks if c.verdict != "unaccounted" and c.misread
+            ),
         }
 
 
@@ -516,12 +531,17 @@ def check_tokens(
             profile = profiles.get(site.orth)
             if profile is None or notation is None:
                 continue
-            wheres: list[tuple[str, str | None, str]] = []
+            # (where, the statement's profile, its layer, what the course has, a reading's).
+            wheres: list[tuple[str, str, str | None, str, bool]] = []
             if profile.spell is not None:
-                wheres.append((site.orth, None, site.surface))
+                wheres.append((site.orth, site.orth, None, site.surface, False))
             for layer in profile.annotations or []:
                 if layer.spell is not None and site.marked is not None:
-                    wheres.append((f"{site.orth}{LAYER}{layer.id}", layer.id, site.marked))
+                    wheres.append(
+                        (f"{site.orth}{LAYER}{layer.id}", site.orth, layer.id, site.marked, False)
+                    )
+            if wheres:
+                wheres.extend((latin, latin, None, read, True) for latin, read in site.readings)
             # A phrase realised whole: the token is one word of its spelling.
             part = phrase[n] and j == 0
             forms = [form, *(f for f, _ in variants[(n, j)])]
@@ -536,13 +556,14 @@ def check_tokens(
                 if entry is not None:
                     others_spelled = lang.spelled(entry, site.orth)[1:]
             for v, chosen in enumerate(forms):
-                for where, layer, expected in wheres:
+                for where, statement, layer, expected, reading in wheres:
                     # Around the form the rules choose only: a free variant stands as it is.
-                    others = [*free, *(others_spelled if layer is None else [])] if v == 0 else []
+                    own = others_spelled if layer is None and not reading else []
+                    others = [*free, *own] if v == 0 else []
                     for k, text in enumerate([chosen, *others]):
                         ask: dict[str, Any] = {
                             "op": "spell",
-                            "profile": site.orth,
+                            "profile": statement,
                             "notation": notation,
                             "form": text,
                             "expected": expected,
@@ -551,7 +572,8 @@ def check_tokens(
                             ask["layer"] = layer
                         if part:
                             ask["part"] = True
-                        spell.append((n, j, v, Spelling(where, "", [], expected, None, k > 0), ask))
+                        spelling = Spelling(where, "", [], expected, None, k > 0, reading)
+                        spell.append((n, j, v, spelling, ask))
     spelled = _batched(cli, [a for _, _, _, _, a in spell], results=True)
     found: dict[tuple[int, int, int], list[Spelling]] = {}
     for (n, j, v, s, _), result in zip(spell, spelled, strict=True):
@@ -561,6 +583,7 @@ def check_tokens(
             [str(a["spelling"]) for a in result["alternatives"]],
             s.expected,
             result.get("expected"),
+            reading=s.reading,
         )
         listed = found.setdefault((n, j, v), [])
         if s.free and listed and listed[-1].where == s.where:
@@ -579,18 +602,25 @@ def check_tokens(
             c = tried[(n, j)]
             spellings = found.get((n, j, 0), [])
             if c.verdict in ("given", "form"):
-                # The form the rules choose, else the first free variant that spells as written.
-                matched = next(
-                    (
+                # The form the rules choose, else the first free variant that spells as written;
+                # of those, the first that also spells the token's pinned readings.
+                tries = [
+                    (None, c.steps, spellings),
+                    *(
                         (f, steps, found.get((n, j, v), []))
                         for v, (f, steps) in enumerate(variants.get((n, j), []), start=1)
-                        if all(s.found is not None for s in found.get((n, j, v), []))
                     ),
-                    None,
+                ]
+                matched = next(
+                    (t for t in tries if all(s.found is not None for s in t[2])),
+                    next(
+                        (t for t in tries if all(s.found is not None or s.reading for s in t[2])),
+                        None,
+                    ),
                 )
-                if all(s.found is not None for s in spellings):
+                if matched is not None and matched[0] is None:
                     c = TokenCheck(
-                        c.site, c.verdict, c.reason, c.form, c.status, c.steps, spellings
+                        c.site, c.verdict, c.reason, c.form, c.status, c.steps, matched[2]
                     )
                 elif matched is not None:
                     f, steps, theirs = matched

@@ -214,6 +214,16 @@ _LINTS = [
         "rule bent to fit one token.",
     ),
     Lint(
+        "form.reading",
+        "warning",
+        3,
+        "A token's pinned reading, in a scheme whose `latin` orthography states `spell` (chg's "
+        "Schluessel: the lexical form is his reading with signs for what only the Arabic writes), "
+        "is not what the token's form spells there, nor a free alternative of it, though the form "
+        "spells the token's own text: the reading, the form or the Latin statement for a reviewer "
+        "to look at (docs/rules/chg.md); never a rule bent to fit one token.",
+    ),
+    Lint(
         "form.pinned-differs",
         "error",
         3,

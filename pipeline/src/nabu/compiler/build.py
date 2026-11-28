@@ -1156,6 +1156,12 @@ def _token_sites(ctx: Ctx, units: list[Unit]) -> list[lexical_forms.Site]:
             )
             parts = tk.written(t)
             base = parts[0] if len(parts) == 1 else next((p for p in parts if p.get("base")), None)
+            # Its readings in a scheme whose `latin` orthography spells forms (chg's Schluessel).
+            readings = tuple(
+                (latin, str(reading))
+                for scheme, reading in (t.readings or {}).items()
+                if (latin := _spelled_latin(ctx, str(scheme))) is not None
+            )
             base_surface = (
                 None
                 if base is None
@@ -1174,6 +1180,7 @@ def _token_sites(ctx: Ctx, units: list[Unit]) -> list[lexical_forms.Site]:
                     base_surface,
                     context,
                     ctx.merged.get(id(t)),
+                    readings,
                 )
             )
 
@@ -1227,6 +1234,16 @@ def _pinned_forms(ctx: Ctx, sites: list[lexical_forms.Site]) -> None:
             f"yet ({', '.join(sorted(debt))})",
             ctx.lang.declared_doc.loc(),
         )
+
+
+def _spelled_latin(ctx: Ctx, scheme: str) -> str | None:
+    """The scheme's `latin` orthography where its profile states `spell` (chg's Schluessel: the
+    lexical form is his reading), else None: a token's pinned reading in the scheme is then checked
+    against what its form spells there (`form.reading`)."""
+    s = schemes().get(scheme)
+    latin = None if s is None or s.latin is None else str(s.latin)
+    profile = None if latin is None else ctx.profiles.get(latin)
+    return latin if profile is not None and profile.spell is not None else None
 
 
 def _bound_by_reading(readings: Mapping[str, str] | None) -> bool:
@@ -1287,6 +1304,17 @@ def _token_forms(
             f"{form or 'nothing'}: {gave}",
             Loc(site.file, site.line),
         )
+    for c in report.checks:
+        if c.verdict == "unaccounted":
+            continue
+        form = lexical_forms.escaped(c.variant or c.form or "")
+        for s in c.misread:
+            ctx.diags.report(
+                "form.reading",
+                f"'{c.site.key} {s.where}': {c.site.item} reads {c.site.surface!r} as "
+                f"{s.expected!r}; its form {form} spells {s.spelling!r} there",
+                Loc(c.site.file, c.site.line),
+            )
     return sites
 
 
