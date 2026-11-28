@@ -80,12 +80,14 @@ A bound lexeme (`realises`, already in the schema) states:
 - **onto which hosts**, where they differ (`on.or`: further hosts, each with its own conditions, on the same side;
   apc's -e onto an adjective or a noun, or onto a verb only as its participle);
 - **what the word must have when it merges** (`on.has` values, `on.needs` a value for a feature whatever it is,
-  `on.complete` every requirement met, by the word or by what the lexeme brings itself). Merging runs outward from the base, each lexeme onto the word as it stands
+  `on.complete` every requirement met, by the word or by what the lexeme brings itself, `on.lacks` no value yet for
+  a feature: chg's possessive before a case, stem + plural + possessive + case, Schluessel 3.4). Merging runs outward from the base, each lexeme onto the word as it stands
   (the owner, 2026-11-26: "ʾaktab- simply cannot take a pronominal suffix, but ʾaktabu *can*"), so these conditions
   are the order on each side: nearer the base is merged earlier, and no slots are declared. Between the two sides
   the order does not matter (ʾa- + katab + -u is ʾaktabu either way). A token written in an order no merge allows is
   an `attach` error; the explorer writes picked lexemes in the order they merge in (`mergeOrder`), and two on one
-  side that could both merge at once (arb wa- and sa-, both onto a complete word) as they were picked;
+  side that could both merge at once (arb wa- and sa-, both onto a complete word) as they were picked, but one
+  that brings a value another of them `lacks` after it (chg's case after the plural);
 - **what it brings** (`realises`: `Person=1, Number=Sing`), one value or several (a portmanteau: es `-o`);
 - **what it requires next** (`requires`): the owner's "finite-ness gives the output a further requirement of
   person and tense". es `fin` brings `VerbForm=Fin` and requires `Mood`; `ind` brings `Mood=Ind` and requires

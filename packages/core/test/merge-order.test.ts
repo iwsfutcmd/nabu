@@ -4,7 +4,7 @@
  * lexemes given in any order, is put back by `mergeOrder` into an order that realises the same form; written
  * in an order no merge allows, it is refused.
  */
-import { readFileSync } from "node:fs";
+import { readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { parse } from "yaml";
@@ -56,6 +56,42 @@ describe("mergeOrder", () => {
     expect(realiseToken(lang, token("mpl", "ind", "obj-3ms")).ok).toBe(true);
     expect(realiseToken(lang, token("mpl", "obj-3ms", "ind"))).toMatchObject({ ok: false, error: { kind: "attach", lexeme: "lexeme:obj-3ms", complete: true } });
     expect(realiseToken(lang, token("ind", "mpl"))).toMatchObject({ ok: false, error: { kind: "attach", lexeme: "lexeme:ind", needs: ["Number"] } });
+  });
+
+  it("puts every chg token's lexemes, picked in any order, back as the token writes them (S 3.4: stem + plural + possessive + case)", () => {
+    const chg = compileLanguage(read("lexicons/chg/language.yaml") as never, read("lexicons/chg/lexemes.yaml") as never);
+    if (!chg.ok) throw new Error(String(chg.error));
+    // Every token of chg's units that writes a base and two lexemes or more, once; -mu stands before or after a
+    // person (mullāmusiz, yigitmänmu), so a token with it has two right orders and is left out.
+    const tokens = new Map<string, readonly WrittenLexeme[]>();
+    const visit = (node: unknown): void => {
+      if (Array.isArray(node)) return node.forEach(visit);
+      if (node === null || typeof node !== "object") return;
+      for (const [key, value] of Object.entries(node)) {
+        if (key === "lexemes" && Array.isArray(value)) {
+          const written = (value as { lexeme: string; base?: boolean }[]).map((l): WrittenLexeme => ({ lexeme: `lexeme:${l.lexeme}`, ...(l.base === true && { base: true }) }));
+          if (written.length > 2 && written.some((l) => l.base === true) && !written.some((l) => l.lexeme === "lexeme:q")) tokens.set(written.map((l) => l.lexeme).join(" "), written);
+        } else visit(value);
+      }
+    };
+    for (const unit of readdirSync(resolve(ROOT, "courses/chg/units"))) visit(read(`courses/chg/units/${unit}`));
+    expect(tokens.size).toBeGreaterThan(200);
+    const wrong: string[] = [];
+    for (const [key, written] of tokens) {
+      const as = realiseToken(chg.value, written);
+      if (!as.ok) {
+        wrong.push(`${key}: ✗ ${as.error.kind}`);
+        continue;
+      }
+      const base = written.find((l) => l.base === true) as WrittenLexeme;
+      for (const picked of ordersOf(written.filter((l) => l.base !== true).map((l) => l.lexeme))) {
+        const { before, after } = mergeOrder(chg.value, base.lexeme, {}, picked);
+        const r = realiseToken(chg.value, [...before.map((lexeme) => ({ lexeme })), base, ...after.map((lexeme) => ({ lexeme }))]);
+        const form = r.ok ? r.value.form : `✗ ${r.error.kind}`;
+        if (form !== as.value.form) wrong.push(`${key} picked ${picked.join(" ")}: ${form}`);
+      }
+    }
+    expect(wrong.slice(0, 20)).toEqual([]);
   });
 
   it("writes two that both merge onto the word as they were picked, read from the start of the word", () => {

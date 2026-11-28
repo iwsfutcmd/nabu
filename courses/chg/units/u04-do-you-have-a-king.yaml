@@ -10,10 +10,10 @@ title:
   en: Do you have a king?
 cefr: A1
 nodes:
-- {id: chg.u04.i-am, kind: lesson, introduces: ['lexeme:man', 'lexeme:p1s', 'lexeme:biz', 'lexeme:p1p', 'lexeme:musulman', 'lexeme:mulla', 'lexeme:siz', 'lexeme:p2', 'lexeme:yigit', 'lexeme:san', 'lexeme:p2s', 'lexeme:sizlar', 'lexeme:p2pl', 'lexeme:ular', 'lexeme:qiz']}
+- {id: chg.u04.i-am, kind: lesson, introduces: ['lexeme:man', 'lexeme:biz', 'lexeme:musulman', 'lexeme:mulla', 'lexeme:siz', 'lexeme:yigit', 'lexeme:san', 'lexeme:sizlar', 'lexeme:ular', 'lexeme:qiz', 'lexeme:cop.1s', 'lexeme:cop.1p', 'lexeme:cop.2', 'lexeme:cop.2s', 'lexeme:cop.2pl']}
 - {id: chg.u04.questions, kind: lesson, introduces: ['lexeme:nema', 'lexeme:kim', 'lexeme:q']}
 - {id: chg.u04.my-name, kind: lesson, introduces: ['lexeme:ata', 'lexeme:poss1s', 'lexeme:ana', 'lexeme:at.name', 'lexeme:tokhta', 'lexeme:khuma', 'lexeme:poss2', 'lexeme:poss2s', 'lexeme:poss1p']}
-- {id: chg.u04.our-king, kind: lesson, introduces: ['lexeme:padishah', 'lexeme:alim', 'lexeme:ham', 'lexeme:bil', 'lexeme:acc', 'lexeme:de', 'lexeme:p3pl', 'lexeme:sultan', 'lexeme:abu', 'lexeme:qubays']}
+- {id: chg.u04.our-king, kind: lesson, introduces: ['lexeme:padishah', 'lexeme:alim', 'lexeme:ham', 'lexeme:bil', 'lexeme:acc', 'lexeme:de', 'lexeme:p3pl', 'lexeme:sultan', 'lexeme:abu', 'lexeme:qubays', 'lexeme:p1s', 'lexeme:p1p', 'lexeme:p2', 'lexeme:poss2pl']}
 - {id: chg.u04.story, kind: story}
 sentences:
 - id: s.04.1
@@ -21,7 +21,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من تورکمن.
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: تورکمن, lexemes: [{lexeme: turk, surface: تورک, base: true}, {lexeme: p1s, surface: من}], readings: {schluessel: Türkmän}}]
+      tokens: [{surface: من, lexemes: [{lexeme: man, base: true}, {lexeme: nom}], readings: {schluessel: män}}, {surface: تورکمن, lexemes: [{lexeme: turk, surface: تورک, base: true}, {lexeme: nom}, {lexeme: cop.1s, surface: من}], readings: {schluessel: Türkmän}}]
       reverse: "[من] (تورکمن|ترکمن)\n[من] (تورک\u200cدورمن|ترک\u200cدورمن)"
   translations:
     en: I am a Turk.
@@ -30,7 +30,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیز تورکمیز.
-      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: تورکمیز, lexemes: [{lexeme: turk, surface: تورک, base: true}, {lexeme: p1p, surface: میز}], readings: {schluessel: Türkmiz}}]
+      tokens: [{surface: بیز, lexemes: [{lexeme: biz, base: true}, {lexeme: nom}], readings: {schluessel: biz}}, {surface: تورکمیز, lexemes: [{lexeme: turk, surface: تورک, base: true}, {lexeme: nom}, {lexeme: cop.1p, surface: میز}], readings: {schluessel: Türkmiz}}]
       reverse: "[بیز] (تورکمیز|ترکمیز)\n[بیز] (تورک\u200cدورمیز|ترک\u200cدورمیز)"
   translations:
     en: We are Turks.
@@ -39,7 +39,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من مسلمانمن.
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: مسلمانمن, lexemes: [{lexeme: musulman, surface: مسلمان, base: true}, {lexeme: p1s, surface: من}], readings: {schluessel: musulmānmän}}]
+      tokens: [{surface: من, lexemes: [{lexeme: man, base: true}, {lexeme: nom}], readings: {schluessel: män}}, {surface: مسلمانمن, lexemes: [{lexeme: musulman, surface: مسلمان, base: true}, {lexeme: nom}, {lexeme: cop.1s, surface: من}], readings: {schluessel: musulmānmän}}]
       reverse: "[من] مسلمانمن\n[من] مسلمان\u200cدورمن"
   translations:
     en: I am a Muslim.
@@ -48,7 +48,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول ملا.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: ملا, lexeme: mulla, readings: {schluessel: mullā}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: ملا, lexemes: [{lexeme: mulla, base: true}, {lexeme: nom}], readings: {schluessel: mullā}}]
       reverse: |-
         اول ملا
         اول ملادور
@@ -59,7 +59,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سیز ملاسیز.
-      tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: ملاسیز, lexemes: [{lexeme: mulla, surface: ملا, base: true}, {lexeme: p2, surface: سیز}], readings: {schluessel: mullāsiz}}]
+      tokens: [{surface: سیز, lexemes: [{lexeme: siz, base: true}, {lexeme: nom}], readings: {schluessel: siz}}, {surface: ملاسیز, lexemes: [{lexeme: mulla, surface: ملا, base: true}, {lexeme: nom}, {lexeme: cop.2, surface: سیز}], readings: {schluessel: mullāsiz}}]
       reverse: |-
         [سیز] ملاسیز
         [سن] ملاسن
@@ -72,7 +72,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اول یکیت\u200cدور."
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: "یکیت\u200cدور", lexemes: [{lexeme: yigit, surface: "یکیت\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: yigitdur}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: "یکیت\u200cدور", lexemes: [{lexeme: yigit, surface: "یکیت\u200c", base: true}, {lexeme: nom}, {lexeme: dur, surface: دور}], readings: {schluessel: yigitdur}}]
       reverse: "اول (یکیت\u200cدور|ییکیت\u200cدور)\nاول (یکیت|ییکیت)"
   translations:
     en: (He is|That is) a young man.
@@ -83,7 +83,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سن یکیتسن.
-      tokens: [{surface: سن, lexeme: san, readings: {schluessel: sän}}, {surface: یکیتسن, lexemes: [{lexeme: yigit, surface: یکیت, base: true}, {lexeme: p2s, surface: سن}], readings: {schluessel: yigitsän}}]
+      tokens: [{surface: سن, lexemes: [{lexeme: san, base: true}, {lexeme: nom}], readings: {schluessel: sän}}, {surface: یکیتسن, lexemes: [{lexeme: yigit, surface: یکیت, base: true}, {lexeme: nom}, {lexeme: cop.2s, surface: سن}], readings: {schluessel: yigitsän}}]
       reverse: |-
         [سن] (یکیتسن|ییکیتسن)
         [سیز] (یکیتسیز|ییکیتسیز)
@@ -96,7 +96,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سیزلار مسلمانسیزلار.
-      tokens: [{surface: سیزلار, lexeme: sizlar, readings: {schluessel: sizlär}}, {surface: مسلمانسیزلار, lexemes: [{lexeme: musulman, surface: مسلمان, base: true}, {lexeme: p2pl, surface: سیزلار}], readings: {schluessel: musulmānsizlär}}]
+      tokens: [{surface: سیزلار, lexemes: [{lexeme: sizlar, base: true}, {lexeme: nom}], readings: {schluessel: sizlär}}, {surface: مسلمانسیزلار, lexemes: [{lexeme: musulman, surface: مسلمان, base: true}, {lexeme: nom}, {lexeme: cop.2pl, surface: سیزلار}], readings: {schluessel: musulmānsizlär}}]
       reverse: |-
         [سیزلار] مسلمانسیزلار
         [سیز] مسلمانسیز
@@ -107,7 +107,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اولار تورک.
-      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: تورک, lexeme: turk, readings: {schluessel: Türk}}]
+      tokens: [{surface: اولار, lexemes: [{lexeme: ular, base: true}, {lexeme: nom}], readings: {schluessel: ular}}, {surface: تورک, lexemes: [{lexeme: turk, base: true}, {lexeme: nom}], readings: {schluessel: Türk}}]
       reverse: "(اولار|الار) (تورک|ترک)\n(اولار|الار) (تورکلار|ترکلار)\n(اولار|الار) (تورک\u200cدورلار|ترک\u200cدورلار)\n(اولار|الار) (تورک\u200cدور|ترک\u200cدور)"
   translations:
     en: They are Turks.
@@ -116,7 +116,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من قیز ایماسمن.
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: قیز, lexeme: qiz, readings: {schluessel: qiz}}, {surface: ایماسمن, lexemes: [{lexeme: emas, surface: ایماس, base: true}, {lexeme: p1s, surface: من}], readings: {schluessel: emäsmän}}]
+      tokens: [{surface: من, lexemes: [{lexeme: man, base: true}, {lexeme: nom}], readings: {schluessel: män}}, {surface: قیز, lexemes: [{lexeme: qiz, base: true}, {lexeme: nom}], readings: {schluessel: qiz}}, {surface: ایماسمن, lexemes: [{lexeme: emas, surface: ایماس, base: true}, {lexeme: cop.1s, surface: من}], readings: {schluessel: emäsmän}}]
       reverse: '[من] (قیز|قز) (ایماسمن|ایرماسمن)'
   translations:
     en: I am not a (girl|daughter).
@@ -125,7 +125,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیز کچیک ایماسمیز.
-      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: کچیک, lexeme: kichik, readings: {schluessel: kičik}}, {surface: ایماسمیز, lexemes: [{lexeme: emas, surface: ایماس, base: true}, {lexeme: p1p, surface: میز}], readings: {schluessel: emäsmiz}}]
+      tokens: [{surface: بیز, lexemes: [{lexeme: biz, base: true}, {lexeme: nom}], readings: {schluessel: biz}}, {surface: کچیک, lexeme: kichik, readings: {schluessel: kičik}}, {surface: ایماسمیز, lexemes: [{lexeme: emas, surface: ایماس, base: true}, {lexeme: cop.1p, surface: میز}], readings: {schluessel: emäsmiz}}]
       reverse: '[بیز] (کچیک|کیچیک) (ایماسمیز|ایرماسمیز)'
   translations:
     en: We are not (small|little|young).
@@ -134,7 +134,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول قیز بلادور.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: قیز, lexeme: qiz, readings: {schluessel: qiz}}, {surface: بلادور, lexemes: [{lexeme: bala, surface: بلا, base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: baladur}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: قیز, lexemes: [{lexeme: qiz, base: true}, {lexeme: nom}], readings: {schluessel: qiz}}, {surface: بلادور, lexemes: [{lexeme: bala, surface: بلا, base: true}, {lexeme: nom}, {lexeme: dur, surface: دور}], readings: {schluessel: baladur}}]
       reverse: |-
         اول (قیز|قز) (بلادور|بالادور)
         اول (قیز|قز) (بلا|بالا)
@@ -145,7 +145,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو نمه؟
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: نمه, lexeme: nema, readings: {schluessel: nemä}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: نمه, lexemes: [{lexeme: nema, base: true}, {lexeme: nom}], readings: {schluessel: nemä}}]
       reverse: "بو (نمه|نیمه)\nبو (نمه\u200cدور|نیمه\u200cدور)"
   translations:
     en: What is this?
@@ -154,7 +154,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول کیم؟
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کیم, lexeme: kim, readings: {schluessel: kim}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: کیم, lexemes: [{lexeme: kim, base: true}, {lexeme: nom}], readings: {schluessel: kim}}]
       reverse: "اول کیم\nاول کیم\u200cدور"
   translations:
     en: Who is (he|she|that)?
@@ -163,7 +163,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اویده نان بارمو؟
-      tokens: [{surface: اویده, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: öydä}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: بارمو, lexemes: [{lexeme: bar, surface: بار, base: true}, {lexeme: q, surface: مو}], readings: {schluessel: barmu}}]
+      tokens: [{surface: اویده, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: öydä}}, {surface: نان, lexemes: [{lexeme: nan, base: true}, {lexeme: nom}], readings: {schluessel: nan}}, {surface: بارمو, lexemes: [{lexeme: bar, surface: بار, base: true}, {lexeme: q, surface: مو}], readings: {schluessel: barmu}}]
       reverse: |-
         (اویده|اویدا) نان بارمو
         نان (اویده|اویدا) بارمو
@@ -174,7 +174,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو چای ایسیقمو؟
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایسیقمو, lexemes: [{lexeme: issiq, surface: ایسیق, base: true}, {lexeme: q, surface: مو}], readings: {schluessel: issiqmu}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}, {surface: ایسیقمو, lexemes: [{lexeme: issiq, surface: ایسیق, base: true}, {lexeme: q, surface: مو}], readings: {schluessel: issiqmu}}]
       reverse: بو چای ایسیقمو
   translations:
     en: Is this tea (hot|warm)?
@@ -183,7 +183,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سیز ملاموسیز؟
-      tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: ملاموسیز, lexemes: [{lexeme: mulla, surface: ملا, base: true}, {lexeme: q, surface: مو}, {lexeme: p2, surface: سیز}], readings: {schluessel: mullāmusiz}}]
+      tokens: [{surface: سیز, lexemes: [{lexeme: siz, base: true}, {lexeme: nom}], readings: {schluessel: siz}}, {surface: ملاموسیز, lexemes: [{lexeme: mulla, surface: ملا, base: true}, {lexeme: nom}, {lexeme: q, surface: مو}, {lexeme: cop.2, surface: سیز}], readings: {schluessel: mullāmusiz}}]
       reverse: |-
         [سیز] ملاموسیز
         [سن] ملاموسن
@@ -197,7 +197,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سن تورکموسن؟
-      tokens: [{surface: سن, lexeme: san, readings: {schluessel: sän}}, {surface: تورکموسن, lexemes: [{lexeme: turk, surface: تورک, base: true}, {lexeme: q, surface: مو}, {lexeme: p2s, surface: سن}], readings: {schluessel: Türkmusän}}]
+      tokens: [{surface: سن, lexemes: [{lexeme: san, base: true}, {lexeme: nom}], readings: {schluessel: sän}}, {surface: تورکموسن, lexemes: [{lexeme: turk, surface: تورک, base: true}, {lexeme: nom}, {lexeme: q, surface: مو}, {lexeme: cop.2s, surface: سن}], readings: {schluessel: Türkmusän}}]
       reverse: |-
         [سن] (تورکموسن|ترکموسن)
         [سیز] (تورکموسیز|ترکموسیز)
@@ -210,7 +210,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سیزلار مسلمانموسیزلار؟
-      tokens: [{surface: سیزلار, lexeme: sizlar, readings: {schluessel: sizlär}}, {surface: مسلمانموسیزلار, lexemes: [{lexeme: musulman, surface: مسلمان, base: true}, {lexeme: q, surface: مو}, {lexeme: p2pl, surface: سیزلار}], readings: {schluessel: musulmānmusizlär}}]
+      tokens: [{surface: سیزلار, lexemes: [{lexeme: sizlar, base: true}, {lexeme: nom}], readings: {schluessel: sizlär}}, {surface: مسلمانموسیزلار, lexemes: [{lexeme: musulman, surface: مسلمان, base: true}, {lexeme: nom}, {lexeme: q, surface: مو}, {lexeme: cop.2pl, surface: سیزلار}], readings: {schluessel: musulmānmusizlär}}]
       reverse: |-
         [سیزلار] مسلمانموسیزلار
         [سیز] مسلمانموسیز
@@ -221,7 +221,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من یکیتمنمو؟
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: یکیتمنمو, lexemes: [{lexeme: yigit, surface: یکیت, base: true}, {lexeme: p1s, surface: من}, {lexeme: q, surface: مو}], readings: {schluessel: yigitmänmu}}]
+      tokens: [{surface: من, lexemes: [{lexeme: man, base: true}, {lexeme: nom}], readings: {schluessel: män}}, {surface: یکیتمنمو, lexemes: [{lexeme: yigit, surface: یکیت, base: true}, {lexeme: nom}, {lexeme: cop.1s, surface: من}, {lexeme: q, surface: مو}], readings: {schluessel: yigitmänmu}}]
       reverse: '[من] (یکیتمنمو|ییکیتمنمو)'
   translations:
     en: Am I a young man?
@@ -230,7 +230,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شهرده نمه بار؟
-      tokens: [{surface: شهرده, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: šahardä}}, {surface: نمه, lexeme: nema, readings: {schluessel: nemä}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: شهرده, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: šahardä}}, {surface: نمه, lexemes: [{lexeme: nema, base: true}, {lexeme: nom}], readings: {schluessel: nemä}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: |-
         (شهرده|شهردا) (نمه|نیمه) بار
         (نمه|نیمه) (شهرده|شهردا) بار
@@ -241,7 +241,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: باغده کیم بار؟
-      tokens: [{surface: باغده, lexemes: [{lexeme: bagh, surface: باغ, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: bāǧda}}, {surface: کیم, lexeme: kim, readings: {schluessel: kim}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: باغده, lexemes: [{lexeme: bagh, surface: باغ, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: bāǧda}}, {surface: کیم, lexemes: [{lexeme: kim, base: true}, {lexeme: nom}], readings: {schluessel: kim}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: |-
         (باغده|باغدا) کیم بار
         کیم (باغده|باغدا) بار
@@ -253,7 +253,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو اتام.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: اتام, lexemes: [{lexeme: ata, surface: اتا, base: true}, {lexeme: poss1s, surface: م}], readings: {schluessel: atam}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: اتام, lexemes: [{lexeme: ata, surface: اتا, base: true}, {lexeme: poss1s, surface: م}, {lexeme: nom}], readings: {schluessel: atam}}]
       reverse: "بو (اتام|آتام)\nبو (اتام\u200cدور|آتام\u200cدور)"
   translations:
     en: This is my father.
@@ -262,7 +262,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو انام.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: انام, lexemes: [{lexeme: ana, surface: انا, base: true}, {lexeme: poss1s, surface: م}], readings: {schluessel: anam}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: انام, lexemes: [{lexeme: ana, surface: انا, base: true}, {lexeme: poss1s, surface: م}, {lexeme: nom}], readings: {schluessel: anam}}]
       reverse: "بو (انام|آنام)\nبو (انام\u200cدور|آنام\u200cدور)"
   translations:
     en: This is my mother.
@@ -271,7 +271,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اویوم کچیک.
-      tokens: [{surface: اویوم, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: poss1s, surface: وم}], readings: {schluessel: öyüm}}, {surface: کچیک, lexeme: kichik, readings: {schluessel: kičik}}]
+      tokens: [{surface: اویوم, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: poss1s, surface: وم}, {lexeme: nom}], readings: {schluessel: öyüm}}, {surface: کچیک, lexeme: kichik, readings: {schluessel: kičik}}]
       reverse: "اویوم (کچیک|کیچیک)\nاویوم (کچیک\u200cدور|کیچیک\u200cدور)"
   translations:
     en: My house is (small|little).
@@ -280,7 +280,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: آتیم توخته.
-      tokens: [{surface: آتیم, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: poss1s, surface: یم}], readings: {schluessel: atim}}, {surface: توخته, lexeme: tokhta, readings: {schluessel: Toḫta}}]
+      tokens: [{surface: آتیم, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: poss1s, surface: یم}, {lexeme: nom}], readings: {schluessel: atim}}, {surface: توخته, lexemes: [{lexeme: tokhta, base: true}, {lexeme: nom}], readings: {schluessel: Toḫta}}]
       reverse: "(آتیم|اتیم) توخته\n(آتیم|اتیم) توخته\u200cدور"
   translations:
     en: My name is Tokhta.
@@ -289,7 +289,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: آتیم خما.
-      tokens: [{surface: آتیم, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: poss1s, surface: یم}], readings: {schluessel: atim}}, {surface: خما, lexeme: khuma, readings: {schluessel: Ḫumā}}]
+      tokens: [{surface: آتیم, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: poss1s, surface: یم}, {lexeme: nom}], readings: {schluessel: atim}}, {surface: خما, lexemes: [{lexeme: khuma, base: true}, {lexeme: nom}], readings: {schluessel: Ḫumā}}]
       reverse: |-
         (آتیم|اتیم) خما
         (آتیم|اتیم) خمادور
@@ -300,7 +300,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: آتینکیز نمه؟
-      tokens: [{surface: آتینکیز, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: poss2, surface: ینکیز}], readings: {schluessel: atiŋiz}}, {surface: نمه, lexeme: nema, readings: {schluessel: nemä}}]
+      tokens: [{surface: آتینکیز, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: poss2, surface: ینکیز}, {lexeme: nom}], readings: {schluessel: atiŋiz}}, {surface: نمه, lexemes: [{lexeme: nema, base: true}, {lexeme: nom}], readings: {schluessel: nemä}}]
       reverse: "(آتینکیز|اتینکیز) (نمه|نیمه)\n(آتینک|اتینک) (نمه|نیمه)\n(آتینکیز|اتینکیز) (نمه\u200cدور|نیمه\u200cدور)\n(آتینک|اتینک) (نمه\u200cدور|نیمه\u200cدور)"
   translations:
     en: What is your name?
@@ -311,7 +311,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: آتینک نمه؟
-      tokens: [{surface: آتینک, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: poss2s, surface: ینک}], readings: {schluessel: atiŋ}}, {surface: نمه, lexeme: nema, readings: {schluessel: nemä}}]
+      tokens: [{surface: آتینک, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: poss2s, surface: ینک}, {lexeme: nom}], readings: {schluessel: atiŋ}}, {surface: نمه, lexemes: [{lexeme: nema, base: true}, {lexeme: nom}], readings: {schluessel: nemä}}]
       reverse: "(آتینک|اتینک) (نمه|نیمه)\n(آتینکیز|اتینکیز) (نمه|نیمه)\n(آتینک|اتینک) (نمه\u200cدور|نیمه\u200cدور)"
   translations:
     en: What is your name?
@@ -322,7 +322,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: انانک کیم؟
-      tokens: [{surface: انانک, lexemes: [{lexeme: ana, surface: انا, base: true}, {lexeme: poss2s, surface: نک}], readings: {schluessel: anaŋ}}, {surface: کیم, lexeme: kim, readings: {schluessel: kim}}]
+      tokens: [{surface: انانک, lexemes: [{lexeme: ana, surface: انا, base: true}, {lexeme: poss2s, surface: نک}, {lexeme: nom}], readings: {schluessel: anaŋ}}, {surface: کیم, lexemes: [{lexeme: kim, base: true}, {lexeme: nom}], readings: {schluessel: kim}}]
       reverse: "(انانک|آنانک) کیم\n(انانکیز|آنانکیز) کیم\n(انانک|آنانک) کیم\u200cدور"
   translations:
     en: Who is your mother?
@@ -331,7 +331,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اتانکیز ملامو؟
-      tokens: [{surface: اتانکیز, lexemes: [{lexeme: ata, surface: اتا, base: true}, {lexeme: poss2, surface: نکیز}], readings: {schluessel: ataŋiz}}, {surface: ملامو, lexemes: [{lexeme: mulla, surface: ملا, base: true}, {lexeme: q, surface: مو}], readings: {schluessel: mullāmu}}]
+      tokens: [{surface: اتانکیز, lexemes: [{lexeme: ata, surface: اتا, base: true}, {lexeme: poss2, surface: نکیز}, {lexeme: nom}], readings: {schluessel: ataŋiz}}, {surface: ملامو, lexemes: [{lexeme: mulla, surface: ملا, base: true}, {lexeme: nom}, {lexeme: q, surface: مو}], readings: {schluessel: mullāmu}}]
       reverse: |-
         (اتانکیز|آتانکیز) ملامو
         (اتانک|آتانک) ملامو
@@ -342,7 +342,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اویومیز باغده.
-      tokens: [{surface: اویومیز, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: poss1p, surface: ومیز}], readings: {schluessel: öyümiz}}, {surface: باغده, lexemes: [{lexeme: bagh, surface: باغ, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: bāǧda}}]
+      tokens: [{surface: اویومیز, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: poss1p, surface: ومیز}, {lexeme: nom}], readings: {schluessel: öyümiz}}, {surface: باغده, lexemes: [{lexeme: bagh, surface: باغ, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: bāǧda}}]
       reverse: "اویومیز (باغده|باغدا)\nاویومیز (باغده\u200cدور|باغدا\u200cدور)"
   translations:
     en: Our house is in the (garden|orchard).
@@ -351,7 +351,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شهریمیز کچیک.
-      tokens: [{surface: شهریمیز, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: poss1p, surface: یمیز}], readings: {schluessel: šaharimiz}}, {surface: کچیک, lexeme: kichik, readings: {schluessel: kičik}}]
+      tokens: [{surface: شهریمیز, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: poss1p, surface: یمیز}, {lexeme: nom}], readings: {schluessel: šaharimiz}}, {surface: کچیک, lexeme: kichik, readings: {schluessel: kičik}}]
       reverse: "شهریمیز (کچیک|کیچیک)\nشهریمیز (کچیک\u200cدور|کیچیک\u200cدور)"
   translations:
     en: Our (city|town) is (small|little).
@@ -360,7 +360,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: پادشاه.
-      tokens: [{surface: پادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}]
+      tokens: [{surface: پادشاه, lexemes: [{lexeme: padishah, base: true}, {lexeme: nom}], readings: {schluessel: pādišāh}}]
       reverse: "(پادشاه|بادشاه|فادشاه|شاه|ملک)"
   translations:
     en: (The|A) king.
@@ -369,7 +369,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: پادشاهیمیز بار.
-      tokens: [{surface: پادشاهیمیز, lexemes: [{lexeme: padishah, surface: پادشاه, base: true}, {lexeme: poss1p, surface: یمیز}], readings: {schluessel: pādišāhimiz}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: پادشاهیمیز, lexemes: [{lexeme: padishah, surface: پادشاه, base: true}, {lexeme: poss1p, surface: یمیز}, {lexeme: nom}], readings: {schluessel: pādišāhimiz}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: (پادشاهیمیز|بادشاهیمیز|فادشاهیمیز) بار
   translations:
     en: We have a king.
@@ -378,7 +378,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: پادشاهینکیزلار بارمو؟
-      tokens: [{surface: پادشاهینکیزلار, lexemes: [{lexeme: padishah, surface: پادشاه, base: true}, {lexeme: poss2, surface: ینکیز}, {lexeme: pl, surface: لار}], readings: {schluessel: pādišāhiŋizlar}}, {surface: بارمو, lexemes: [{lexeme: bar, surface: بار, base: true}, {lexeme: q, surface: مو}], readings: {schluessel: barmu}}]
+      tokens: [{surface: پادشاهینکیزلار, lexemes: [{lexeme: padishah, surface: پادشاه, base: true}, {lexeme: poss2pl, surface: ینکیزلار}, {lexeme: nom}], readings: {schluessel: pādišāhiŋizlar}}, {surface: بارمو, lexemes: [{lexeme: bar, surface: بار, base: true}, {lexeme: q, surface: مو}], readings: {schluessel: barmu}}]
       reverse: |-
         (پادشاهینکیزلار|بادشاهینکیزلار|فادشاهینکیزلار) بارمو
         (پادشاهینکیز|بادشاهینکیز|فادشاهینکیز) بارمو
@@ -389,7 +389,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: عالملار هم بار.
-      tokens: [{surface: عالملار, lexemes: [{lexeme: alim, surface: عالم, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: ʿālimlar}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: عالملار, lexemes: [{lexeme: alim, surface: عالم, base: true}, {lexeme: pl, surface: لار}, {lexeme: nom}], readings: {schluessel: ʿālimlar}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: |-
         عالملار هم بار
         عالملار هم باردور
@@ -400,7 +400,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: عالمینکیزلار هم بارمو؟
-      tokens: [{surface: عالمینکیزلار, lexemes: [{lexeme: alim, surface: عالم, base: true}, {lexeme: poss2, surface: ینکیز}, {lexeme: pl, surface: لار}], readings: {schluessel: ʿālimiŋizlar}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: بارمو, lexemes: [{lexeme: bar, surface: بار, base: true}, {lexeme: q, surface: مو}], readings: {schluessel: barmu}}]
+      tokens: [{surface: عالمینکیزلار, lexemes: [{lexeme: alim, surface: عالم, base: true}, {lexeme: poss2pl, surface: ینکیزلار}, {lexeme: nom}], readings: {schluessel: ʿālimiŋizlar}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: بارمو, lexemes: [{lexeme: bar, surface: بار, base: true}, {lexeme: q, surface: مو}], readings: {schluessel: barmu}}]
       reverse: |-
         عالمینکیزلار هم بارمو
         عالمینکیز هم بارمو
@@ -412,7 +412,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من بیلماسمن.
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: بیلماسمن, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: aor-neg, surface: ماس}, {lexeme: p1s, surface: من}], readings: {schluessel: bilmäsmän}}]
+      tokens: [{surface: من, lexemes: [{lexeme: man, base: true}, {lexeme: nom}], readings: {schluessel: män}}, {surface: بیلماسمن, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: aor-neg, surface: ماس}, {lexeme: p1s, surface: من}], readings: {schluessel: bilmäsmän}}]
       reverse: "[من] بیلماسمن\n[من] بیلمایمن"
   translations:
     en: I (do not|don't) know.
@@ -421,7 +421,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیز انی بیلماسمیز.
-      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: انی, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ani}}, {surface: بیلماسمیز, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: aor-neg, surface: ماس}, {lexeme: p1p, surface: میز}], readings: {schluessel: bilmäsmiz}}]
+      tokens: [{surface: بیز, lexemes: [{lexeme: biz, base: true}, {lexeme: nom}], readings: {schluessel: biz}}, {surface: انی, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ani}}, {surface: بیلماسمیز, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: aor-neg, surface: ماس}, {lexeme: p1p, surface: میز}], readings: {schluessel: bilmäsmiz}}]
       reverse: '[بیز] انی بیلماسمیز'
   translations:
     en: We (do not|don't) know (that|it).
@@ -430,7 +430,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سیز انی بیلماسسیز.
-      tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: انی, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ani}}, {surface: بیلماسسیز, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: aor-neg, surface: ماس}, {lexeme: p2, surface: سیز}], readings: {schluessel: bilmässiz}}]
+      tokens: [{surface: سیز, lexemes: [{lexeme: siz, base: true}, {lexeme: nom}], readings: {schluessel: siz}}, {surface: انی, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ani}}, {surface: بیلماسسیز, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: aor-neg, surface: ماس}, {lexeme: p2, surface: سیز}], readings: {schluessel: bilmässiz}}]
       reverse: |-
         [سیز] انی بیلماسسیز
         [سن] انی بیلماسسن
@@ -442,7 +442,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: آتینی توخته دیرلار.
-      tokens: [{surface: آتینی, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: atini}}, {surface: توخته, lexeme: tokhta, readings: {schluessel: Toḫta}}, {surface: دیرلار, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: aor, surface: ر}, {lexeme: p3pl, surface: لار}], readings: {schluessel: derlär}}]
+      tokens: [{surface: آتینی, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: atini}}, {surface: توخته, lexemes: [{lexeme: tokhta, base: true}, {lexeme: nom}], readings: {schluessel: Toḫta}}, {surface: دیرلار, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: aor, surface: ر}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: derlär}}]
       reverse: (آتینی|اتینی) توخته دیرلار
   translations:
     en: (They call him|His name is|They call her|Her name is) Tokhta.
@@ -451,7 +451,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: پادشاهیمیز سلطان.
-      tokens: [{surface: پادشاهیمیز, lexemes: [{lexeme: padishah, surface: پادشاه, base: true}, {lexeme: poss1p, surface: یمیز}], readings: {schluessel: pādišāhimiz}}, {surface: سلطان, lexeme: sultan, readings: {schluessel: sulṭān}}]
+      tokens: [{surface: پادشاهیمیز, lexemes: [{lexeme: padishah, surface: پادشاه, base: true}, {lexeme: poss1p, surface: یمیز}, {lexeme: nom}], readings: {schluessel: pādišāhimiz}}, {surface: سلطان, lexemes: [{lexeme: sultan, base: true}, {lexeme: nom}], readings: {schluessel: sulṭān}}]
       reverse: "(پادشاهیمیز|بادشاهیمیز|فادشاهیمیز) سلطان\n(پادشاهیمیز|بادشاهیمیز|فادشاهیمیز) سلطان\u200cدور"
   translations:
     en: Our king is a sultan.
@@ -460,7 +460,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سلطان ابو قبیس پادشاهیمیز.
-      tokens: [{surface: سلطان, lexeme: sultan, readings: {schluessel: sulṭān}}, {surface: ابو, lexeme: abu, readings: {schluessel: Abū}}, {surface: قبیس, lexeme: qubays, readings: {schluessel: Qubays}}, {surface: پادشاهیمیز, lexemes: [{lexeme: padishah, surface: پادشاه, base: true}, {lexeme: poss1p, surface: یمیز}], readings: {schluessel: pādišāhimiz}}]
+      tokens: [{surface: سلطان, lexemes: [{lexeme: sultan, base: true}, {lexeme: nom}], readings: {schluessel: sulṭān}}, {surface: ابو, lexemes: [{lexeme: abu, base: true}, {lexeme: nom}], readings: {schluessel: Abū}}, {surface: قبیس, lexemes: [{lexeme: qubays, base: true}, {lexeme: nom}], readings: {schluessel: Qubays}}, {surface: پادشاهیمیز, lexemes: [{lexeme: padishah, surface: پادشاه, base: true}, {lexeme: poss1p, surface: یمیز}, {lexeme: nom}], readings: {schluessel: pādišāhimiz}}]
       reverse: |-
         سلطان ابو قبیس (پادشاهیمیز|بادشاهیمیز|فادشاهیمیز)
         سلطان ابو قبیس (پادشاهیمیزدور|بادشاهیمیزدور|فادشاهیمیزدور)
@@ -486,7 +486,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: فادشاهینکزلار بارمو؟
-          tokens: [{surface: فادشاهینکزلار, lexemes: [{lexeme: padishah, surface: فادشاه, base: true}, {lexeme: poss2, surface: ینکز}, {lexeme: pl, surface: لار}], readings: {schluessel: ṗādišāhiŋizlar}}, {surface: بارمو, lexemes: [{lexeme: bar, surface: بار, base: true}, {lexeme: q, surface: مو}], readings: {schluessel: barmu}}]
+          tokens: [{surface: فادشاهینکزلار, lexemes: [{lexeme: padishah, surface: فادشاه, base: true}, {lexeme: poss2pl, surface: ینکزلار}, {lexeme: nom}], readings: {schluessel: ṗādišāhiŋizlar}}, {surface: بارمو, lexemes: [{lexeme: bar, surface: بار, base: true}, {lexeme: q, surface: مو}], readings: {schluessel: barmu}}]
       translations:
         en: “Do you have a king?
   - line:
@@ -494,7 +494,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: عالمینکزلار هم بارمو؟
-          tokens: [{surface: عالمینکزلار, lexemes: [{lexeme: alim, surface: عالم, base: true}, {lexeme: poss2, surface: ینکز}, {lexeme: pl, surface: لار}], readings: {schluessel: ʿālimiŋizlar}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: بارمو, lexemes: [{lexeme: bar, surface: بار, base: true}, {lexeme: q, surface: مو}], readings: {schluessel: barmu}}]
+          tokens: [{surface: عالمینکزلار, lexemes: [{lexeme: alim, surface: عالم, base: true}, {lexeme: poss2pl, surface: ینکزلار}, {lexeme: nom}], readings: {schluessel: ʿālimiŋizlar}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: بارمو, lexemes: [{lexeme: bar, surface: بار, base: true}, {lexeme: q, surface: مو}], readings: {schluessel: barmu}}]
       translations:
         en: Do you have scholars too?”
   - line:
@@ -502,7 +502,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: فادشاهمز بار.
-          tokens: [{surface: فادشاهمز, lexemes: [{lexeme: padishah, surface: فادشاه, base: true}, {lexeme: poss1p, surface: مز}], readings: {schluessel: ṗādišāhimiz}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+          tokens: [{surface: فادشاهمز, lexemes: [{lexeme: padishah, surface: فادشاه, base: true}, {lexeme: poss1p, surface: مز}, {lexeme: nom}], readings: {schluessel: ṗādišāhimiz}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       translations:
         en: “We have a king.
   - line:
@@ -515,7 +515,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "اتی\u200cنی سلطان ابو قبیس… دیرلار."
-          tokens: [{surface: "اتی\u200cنی", lexemes: [{lexeme: at.name, surface: ات, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: acc, surface: نی}], readings: {schluessel: atini}}, {surface: سلطان, lexeme: sultan, readings: {schluessel: sulṭān}}, {surface: ابو, lexeme: abu, readings: {schluessel: Abū}}, {surface: قبیس, lexeme: qubays, readings: {schluessel: Qubays}}, {surface: دیرلار, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: aor, surface: ر}, {lexeme: p3pl, surface: لار}], readings: {schluessel: derlär}}]
+          tokens: [{surface: "اتی\u200cنی", lexemes: [{lexeme: at.name, surface: ات, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: acc, surface: نی}], readings: {schluessel: atini}}, {surface: سلطان, lexemes: [{lexeme: sultan, base: true}, {lexeme: nom}], readings: {schluessel: sulṭān}}, {surface: ابو, lexemes: [{lexeme: abu, base: true}, {lexeme: nom}], readings: {schluessel: Abū}}, {surface: قبیس, lexemes: [{lexeme: qubays, base: true}, {lexeme: nom}], readings: {schluessel: Qubays}}, {surface: دیرلار, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: aor, surface: ر}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: derlär}}]
       translations:
         en: They call him Sultan Abu Qubays …
   - choose:
@@ -532,7 +532,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: پز انی پلماسمز.
-          tokens: [{surface: پز, lexeme: biz, readings: {schluessel: biz}}, {surface: انی, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ani}}, {surface: پلماسمز, lexemes: [{lexeme: bil, surface: پل, base: true}, {lexeme: aor-neg, surface: ماس}, {lexeme: p1p, surface: مز}], readings: {schluessel: bilmäsmiz}}]
+          tokens: [{surface: پز, lexemes: [{lexeme: biz, base: true}, {lexeme: nom}], readings: {schluessel: biz}}, {surface: انی, lexemes: [{lexeme: ul, surface: ا, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: ani}}, {surface: پلماسمز, lexemes: [{lexeme: bil, surface: پل, base: true}, {lexeme: aor-neg, surface: ماس}, {lexeme: p1p, surface: مز}], readings: {schluessel: bilmäsmiz}}]
       translations:
         en: We do not know that.”
   - choose:

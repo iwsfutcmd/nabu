@@ -21,7 +21,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: نان.
-      tokens: [{surface: نان, lexeme: nan, readings: {schluessel: nan}}]
+      tokens: [{surface: نان, lexemes: [{lexeme: nan, base: true}, {lexeme: nom}], readings: {schluessel: nan}}]
       reverse: نان
   translations:
     en: (Bread|The bread).
@@ -30,7 +30,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: چای.
-      tokens: [{surface: چای, lexeme: chay, readings: {schluessel: čay}}]
+      tokens: [{surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}]
       reverse: چای
   translations:
     en: (Tea|The tea).
@@ -39,7 +39,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: نان و چای.
-      tokens: [{surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}]
+      tokens: [{surface: نان, lexemes: [{lexeme: nan, base: true}, {lexeme: nom}], readings: {schluessel: nan}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}]
       reverse: نان و چای
   translations:
     en: (Bread|The bread) and (tea|the tea).
@@ -48,7 +48,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: توز.
-      tokens: [{surface: توز, lexeme: tuz, readings: {schluessel: tuz}}]
+      tokens: [{surface: توز, lexemes: [{lexeme: tuz, base: true}, {lexeme: nom}], readings: {schluessel: tuz}}]
       reverse: توز
   translations:
     en: (Salt|The salt).
@@ -57,7 +57,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قند.
-      tokens: [{surface: قند, lexeme: qand, readings: {schluessel: qand}}]
+      tokens: [{surface: قند, lexemes: [{lexeme: qand, base: true}, {lexeme: nom}], readings: {schluessel: qand}}]
       reverse: قند
   translations:
     en: (Sugar|The sugar).
@@ -66,7 +66,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: چای و قند.
-      tokens: [{surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: قند, lexeme: qand, readings: {schluessel: qand}}]
+      tokens: [{surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: قند, lexemes: [{lexeme: qand, base: true}, {lexeme: nom}], readings: {schluessel: qand}}]
       reverse: |-
         چای و قند
         قند و چای
@@ -77,7 +77,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سو.
-      tokens: [{surface: سو, lexeme: su, readings: {schluessel: su}}]
+      tokens: [{surface: سو, lexemes: [{lexeme: su, base: true}, {lexeme: nom}], readings: {schluessel: su}}]
       reverse: سو
   translations:
     en: (Water|The water).
@@ -86,7 +86,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: نان و توز.
-      tokens: [{surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: توز, lexeme: tuz, readings: {schluessel: tuz}}]
+      tokens: [{surface: نان, lexemes: [{lexeme: nan, base: true}, {lexeme: nom}], readings: {schluessel: nan}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: توز, lexemes: [{lexeme: tuz, base: true}, {lexeme: nom}], readings: {schluessel: tuz}}]
       reverse: |-
         نان و توز
         توز و نان
@@ -97,7 +97,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "قند شیرین\u200cدور."
-      tokens: [{surface: قند, lexeme: qand, readings: {schluessel: qand}}, {surface: "شیرین\u200cدور", lexemes: [{lexeme: shirin, surface: "شیرین\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: širindur}}]
+      tokens: [{surface: قند, lexemes: [{lexeme: qand, base: true}, {lexeme: nom}], readings: {schluessel: qand}}, {surface: "شیرین\u200cدور", lexemes: [{lexeme: shirin, surface: "شیرین\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: širindur}}]
       reverse: "قند شیرین\u200cدور"
   translations:
     en: '[The] sugar is sweet.'
@@ -106,7 +106,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "چای شیرین\u200cدور."
-      tokens: [{surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: "شیرین\u200cدور", lexemes: [{lexeme: shirin, surface: "شیرین\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: širindur}}]
+      tokens: [{surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}, {surface: "شیرین\u200cدور", lexemes: [{lexeme: shirin, surface: "شیرین\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: širindur}}]
       reverse: "چای شیرین\u200cدور"
   translations:
     en: '[The] tea is sweet.'
@@ -115,7 +115,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "توز اچیق\u200cدور."
-      tokens: [{surface: توز, lexeme: tuz, readings: {schluessel: tuz}}, {surface: "اچیق\u200cدور", lexemes: [{lexeme: acciq, surface: "اچیق\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: aččiqdur}}]
+      tokens: [{surface: توز, lexemes: [{lexeme: tuz, base: true}, {lexeme: nom}], readings: {schluessel: tuz}}, {surface: "اچیق\u200cدور", lexemes: [{lexeme: acciq, surface: "اچیق\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: aččiqdur}}]
       reverse: "توز اچیق\u200cدور"
   translations:
     en: '[The] salt is bitter.'
@@ -124,7 +124,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سوت.
-      tokens: [{surface: سوت, lexeme: sut, readings: {schluessel: süt}}]
+      tokens: [{surface: سوت, lexemes: [{lexeme: sut, base: true}, {lexeme: nom}], readings: {schluessel: süt}}]
       reverse: سوت
   translations:
     en: (Milk|The milk).
@@ -133,7 +133,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "سوت اق\u200cدور."
-      tokens: [{surface: سوت, lexeme: sut, readings: {schluessel: süt}}, {surface: "اق\u200cدور", lexemes: [{lexeme: aq, surface: "اق\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: aqdur}}]
+      tokens: [{surface: سوت, lexemes: [{lexeme: sut, base: true}, {lexeme: nom}], readings: {schluessel: süt}}, {surface: "اق\u200cدور", lexemes: [{lexeme: aq, surface: "اق\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: aqdur}}]
       reverse: "سوت اق\u200cدور"
   translations:
     en: '[The] milk is white.'
@@ -142,7 +142,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "قند اق\u200cدور."
-      tokens: [{surface: قند, lexeme: qand, readings: {schluessel: qand}}, {surface: "اق\u200cدور", lexemes: [{lexeme: aq, surface: "اق\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: aqdur}}]
+      tokens: [{surface: قند, lexemes: [{lexeme: qand, base: true}, {lexeme: nom}], readings: {schluessel: qand}}, {surface: "اق\u200cدور", lexemes: [{lexeme: aq, surface: "اق\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: aqdur}}]
       reverse: "قند اق\u200cدور"
   translations:
     en: '[The] sugar is white.'
@@ -151,7 +151,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: نان و سوت.
-      tokens: [{surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: سوت, lexeme: sut, readings: {schluessel: süt}}]
+      tokens: [{surface: نان, lexemes: [{lexeme: nan, base: true}, {lexeme: nom}], readings: {schluessel: nan}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: سوت, lexemes: [{lexeme: sut, base: true}, {lexeme: nom}], readings: {schluessel: süt}}]
       reverse: |-
         نان و سوت
         سوت و نان
@@ -162,7 +162,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "چای ایسیق\u200cدور."
-      tokens: [{surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: "ایسیق\u200cدور", lexemes: [{lexeme: issiq, surface: "ایسیق\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: issiqdur}}]
+      tokens: [{surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}, {surface: "ایسیق\u200cدور", lexemes: [{lexeme: issiq, surface: "ایسیق\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: issiqdur}}]
       reverse: "چای ایسیق\u200cدور"
   translations:
     en: '[The] tea is (hot|warm).'
@@ -171,7 +171,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "سو ساوق\u200cدور."
-      tokens: [{surface: سو, lexeme: su, readings: {schluessel: su}}, {surface: "ساوق\u200cدور", lexemes: [{lexeme: sawuq, surface: "ساوق\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: sawuqdur}}]
+      tokens: [{surface: سو, lexemes: [{lexeme: su, base: true}, {lexeme: nom}], readings: {schluessel: su}}, {surface: "ساوق\u200cدور", lexemes: [{lexeme: sawuq, surface: "ساوق\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: sawuqdur}}]
       reverse: "سو ساوق\u200cدور"
   translations:
     en: '[The] water is cold.'
@@ -180,7 +180,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سو ایسیق ایماس.
-      tokens: [{surface: سو, lexeme: su, readings: {schluessel: su}}, {surface: ایسیق, lexeme: issiq, readings: {schluessel: issiq}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
+      tokens: [{surface: سو, lexemes: [{lexeme: su, base: true}, {lexeme: nom}], readings: {schluessel: su}}, {surface: ایسیق, lexeme: issiq, readings: {schluessel: issiq}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
       reverse: سو ایسیق (ایماس|ایرماس)
   translations:
     en: '[The] water (is not|isn''t) (hot|warm).'
@@ -189,7 +189,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: چای ساوق ایماس.
-      tokens: [{surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ساوق, lexeme: sawuq, readings: {schluessel: sawuq}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
+      tokens: [{surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}, {surface: ساوق, lexeme: sawuq, readings: {schluessel: sawuq}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
       reverse: چای ساوق (ایماس|ایرماس)
   translations:
     en: '[The] tea (is not|isn''t) cold.'
@@ -198,7 +198,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "سوت یخشی\u200cدور."
-      tokens: [{surface: سوت, lexeme: sut, readings: {schluessel: süt}}, {surface: "یخشی\u200cدور", lexemes: [{lexeme: yakhshi, surface: "یخشی\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: yaḫšidur}}]
+      tokens: [{surface: سوت, lexemes: [{lexeme: sut, base: true}, {lexeme: nom}], readings: {schluessel: süt}}, {surface: "یخشی\u200cدور", lexemes: [{lexeme: yakhshi, surface: "یخشی\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: yaḫšidur}}]
       reverse: "سوت یخشی\u200cدور"
   translations:
     en: '[The] milk is good.'
@@ -207,7 +207,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "بو چای یخشی\u200cدور."
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: "یخشی\u200cدور", lexemes: [{lexeme: yakhshi, surface: "یخشی\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: yaḫšidur}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}, {surface: "یخشی\u200cدور", lexemes: [{lexeme: yakhshi, surface: "یخشی\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: yaḫšidur}}]
       reverse: "بو چای یخشی\u200cدور"
   translations:
     en: This tea is good.
@@ -216,7 +216,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو نان یخشی ایماس.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: یخشی, lexeme: yakhshi, readings: {schluessel: yaḫši}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: نان, lexemes: [{lexeme: nan, base: true}, {lexeme: nom}], readings: {schluessel: nan}}, {surface: یخشی, lexeme: yakhshi, readings: {schluessel: yaḫši}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
       reverse: بو نان یخشی (ایماس|ایرماس)
   translations:
     en: This bread (is not|isn't) good.
@@ -225,7 +225,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو سو ساوق ایماس.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: سو, lexeme: su, readings: {schluessel: su}}, {surface: ساوق, lexeme: sawuq, readings: {schluessel: sawuq}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: سو, lexemes: [{lexeme: su, base: true}, {lexeme: nom}], readings: {schluessel: su}}, {surface: ساوق, lexeme: sawuq, readings: {schluessel: sawuq}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
       reverse: بو سو ساوق (ایماس|ایرماس)
   translations:
     en: This water (is not|isn't) cold.
@@ -234,7 +234,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قرا چای.
-      tokens: [{surface: قرا, lexeme: qara, readings: {schluessel: qara}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}]
+      tokens: [{surface: قرا, lexeme: qara, readings: {schluessel: qara}}, {surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}]
       reverse: قرا چای
   translations:
     en: (Black tea|The black tea).
@@ -243,7 +243,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: کوک چای شیرین ایماس.
-      tokens: [{surface: کوک, lexeme: kok, readings: {schluessel: kök}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: شیرین, lexeme: shirin, readings: {schluessel: širin}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
+      tokens: [{surface: کوک, lexeme: kok, readings: {schluessel: kök}}, {surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}, {surface: شیرین, lexeme: shirin, readings: {schluessel: širin}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
       reverse: کوک چای شیرین (ایماس|ایرماس)
   translations:
     en: '[The] green tea (is not|isn''t) sweet.'
@@ -252,7 +252,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قرا چای اق چای ایماس.
-      tokens: [{surface: قرا, lexeme: qara, readings: {schluessel: qara}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: اق, lexeme: aq, readings: {schluessel: aq}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
+      tokens: [{surface: قرا, lexeme: qara, readings: {schluessel: qara}}, {surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}, {surface: اق, lexeme: aq, readings: {schluessel: aq}}, {surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
       reverse: قرا چای اق چای (ایماس|ایرماس)
   translations:
     en: '[The] black tea (is not|isn''t) (white tea|the white tea).'
@@ -261,7 +261,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قزل کوشت.
-      tokens: [{surface: قزل, lexeme: qizil, readings: {schluessel: qizil}}, {surface: کوشت, lexeme: gosht, readings: {schluessel: göšt}}]
+      tokens: [{surface: قزل, lexeme: qizil, readings: {schluessel: qizil}}, {surface: کوشت, lexemes: [{lexeme: gosht, base: true}, {lexeme: nom}], readings: {schluessel: göšt}}]
       reverse: (قزل|قیزیل) کوشت
   translations:
     en: (Red meat|The red meat).
@@ -270,7 +270,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "کوشت قیمت\u200cدور."
-      tokens: [{surface: کوشت, lexeme: gosht, readings: {schluessel: göšt}}, {surface: "قیمت\u200cدور", lexemes: [{lexeme: qimmat, surface: "قیمت\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: qimmätdur}}]
+      tokens: [{surface: کوشت, lexemes: [{lexeme: gosht, base: true}, {lexeme: nom}], readings: {schluessel: göšt}}, {surface: "قیمت\u200cدور", lexemes: [{lexeme: qimmat, surface: "قیمت\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: qimmätdur}}]
       reverse: "کوشت قیمت\u200cدور"
   translations:
     en: '[The] meat is (expensive|dear).'
@@ -279,7 +279,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: میوه.
-      tokens: [{surface: میوه, lexeme: mewa, readings: {schluessel: mewä}}]
+      tokens: [{surface: میوه, lexemes: [{lexeme: mewa, base: true}, {lexeme: nom}], readings: {schluessel: mewä}}]
       reverse: میوه
   translations:
     en: (Fruit|The fruit).
@@ -288,7 +288,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "میوه ارزان\u200cدور."
-      tokens: [{surface: میوه, lexeme: mewa, readings: {schluessel: mewä}}, {surface: "ارزان\u200cدور", lexemes: [{lexeme: arzan, surface: "ارزان\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: ärzandur}}]
+      tokens: [{surface: میوه, lexemes: [{lexeme: mewa, base: true}, {lexeme: nom}], readings: {schluessel: mewä}}, {surface: "ارزان\u200cدور", lexemes: [{lexeme: arzan, surface: "ارزان\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: ärzandur}}]
       reverse: "میوه (ارزان\u200cدور|آرزان\u200cدور)"
   translations:
     en: '[The] fruit is cheap.'
@@ -297,7 +297,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "قزل میوه شیرین\u200cدور."
-      tokens: [{surface: قزل, lexeme: qizil, readings: {schluessel: qizil}}, {surface: میوه, lexeme: mewa, readings: {schluessel: mewä}}, {surface: "شیرین\u200cدور", lexemes: [{lexeme: shirin, surface: "شیرین\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: širindur}}]
+      tokens: [{surface: قزل, lexeme: qizil, readings: {schluessel: qizil}}, {surface: میوه, lexemes: [{lexeme: mewa, base: true}, {lexeme: nom}], readings: {schluessel: mewä}}, {surface: "شیرین\u200cدور", lexemes: [{lexeme: shirin, surface: "شیرین\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: širindur}}]
       reverse: "(قزل|قیزیل) میوه شیرین\u200cدور"
   translations:
     en: '[The] red fruit is sweet.'
@@ -306,7 +306,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اش ایسیق\u200cدور."
-      tokens: [{surface: اش, lexeme: ash, readings: {schluessel: aš}}, {surface: "ایسیق\u200cدور", lexemes: [{lexeme: issiq, surface: "ایسیق\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: issiqdur}}]
+      tokens: [{surface: اش, lexemes: [{lexeme: ash, base: true}, {lexeme: nom}], readings: {schluessel: aš}}, {surface: "ایسیق\u200cدور", lexemes: [{lexeme: issiq, surface: "ایسیق\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: issiqdur}}]
       reverse: "اش ایسیق\u200cدور"
   translations:
     en: '[The] (food|rice|pilaf) is (hot|warm).'
@@ -315,7 +315,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو کوشت ارزان ایماس.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: کوشت, lexeme: gosht, readings: {schluessel: göšt}}, {surface: ارزان, lexeme: arzan, readings: {schluessel: ärzan}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: کوشت, lexemes: [{lexeme: gosht, base: true}, {lexeme: nom}], readings: {schluessel: göšt}}, {surface: ارزان, lexeme: arzan, readings: {schluessel: ärzan}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
       reverse: بو کوشت (ارزان|آرزان) (ایماس|ایرماس)
   translations:
     en: This meat (is not|isn't) cheap.
@@ -324,7 +324,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "بو شهر چونک\u200cدور."
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهر, lexeme: shahar, readings: {schluessel: šahar}}, {surface: "چونک\u200cدور", lexemes: [{lexeme: chong, surface: "چونک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: čoŋdur}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهر, lexemes: [{lexeme: shahar, base: true}, {lexeme: nom}], readings: {schluessel: šahar}}, {surface: "چونک\u200cدور", lexemes: [{lexeme: chong, surface: "چونک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: čoŋdur}}]
       reverse: "بو شهر چونک\u200cدور"
   translations:
     en: This (city|town) is (big|large).
@@ -333,7 +333,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "تاغ تولا چونک\u200cدور."
-      tokens: [{surface: تاغ, lexeme: tagh, readings: {schluessel: taǧ}}, {surface: تولا, lexeme: tola, readings: {schluessel: tola}}, {surface: "چونک\u200cدور", lexemes: [{lexeme: chong, surface: "چونک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: čoŋdur}}]
+      tokens: [{surface: تاغ, lexemes: [{lexeme: tagh, base: true}, {lexeme: nom}], readings: {schluessel: taǧ}}, {surface: تولا, lexeme: tola, readings: {schluessel: tola}}, {surface: "چونک\u200cدور", lexemes: [{lexeme: chong, surface: "چونک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: čoŋdur}}]
       reverse: "تاغ تولا چونک\u200cدور"
   translations:
     en: '[The] mountain is very (big|large).'
@@ -342,7 +342,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو شهر کچیک ایماس.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهر, lexeme: shahar, readings: {schluessel: šahar}}, {surface: کچیک, lexeme: kichik, readings: {schluessel: kičik}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهر, lexemes: [{lexeme: shahar, base: true}, {lexeme: nom}], readings: {schluessel: šahar}}, {surface: کچیک, lexeme: kichik, readings: {schluessel: kičik}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
       reverse: بو شهر (کچیک|کیچیک) (ایماس|ایرماس)
   translations:
     en: This (city|town) (is not|isn't) (small|little).
@@ -351,7 +351,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "بو ولایت کچیک\u200cدور."
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: ولایت, lexeme: wilayat, readings: {schluessel: wilāyat}}, {surface: "کچیک\u200cدور", lexemes: [{lexeme: kichik, surface: "کچیک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: kičikdur}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: ولایت, lexemes: [{lexeme: wilayat, base: true}, {lexeme: nom}], readings: {schluessel: wilāyat}}, {surface: "کچیک\u200cدور", lexemes: [{lexeme: kichik, surface: "کچیک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: kičikdur}}]
       reverse: "بو ولایت (کچیک\u200cدور|کیچیک\u200cدور)"
   translations:
     en: This (country|province|land) is (small|little).
@@ -360,7 +360,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "مختصر ولایت\u200cتور."
-      tokens: [{surface: مختصر, lexeme: mukhtasar, readings: {schluessel: muḫtaṣar}}, {surface: "ولایت\u200cتور", lexemes: [{lexeme: wilayat, surface: "ولایت\u200c", base: true}, {lexeme: dur, surface: تور}], readings: {schluessel: wilāyattur}}]
+      tokens: [{surface: مختصر, lexeme: mukhtasar, readings: {schluessel: muḫtaṣar}}, {surface: "ولایت\u200cتور", lexemes: [{lexeme: wilayat, surface: "ولایت\u200c", base: true}, {lexeme: nom}, {lexeme: dur, surface: تور}], readings: {schluessel: wilāyattur}}]
       reverse: "مختصر ولایت\u200cتور"
   translations:
     en: (It is|It's) a (small|modest) (country|province|land).
@@ -369,7 +369,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو تاغ بسیار چونک.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: تاغ, lexeme: tagh, readings: {schluessel: taǧ}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: چونک, lexeme: chong, readings: {schluessel: čoŋ}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: تاغ, lexemes: [{lexeme: tagh, base: true}, {lexeme: nom}], readings: {schluessel: taǧ}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: چونک, lexeme: chong, readings: {schluessel: čoŋ}}]
       reverse: "بو تاغ بسیار چونک\nبو تاغ بسیار چونک\u200cدور\nبو تاغ تولا (چونک\u200cدور|چونک)"
   translations:
     en: This mountain is very (big|large).
@@ -378,7 +378,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شهر بسیار لطیف.
-      tokens: [{surface: شهر, lexeme: shahar, readings: {schluessel: šahar}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: لطیف, lexeme: latif, readings: {schluessel: laṭīf}}]
+      tokens: [{surface: شهر, lexemes: [{lexeme: shahar, base: true}, {lexeme: nom}], readings: {schluessel: šahar}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: لطیف, lexeme: latif, readings: {schluessel: laṭīf}}]
       reverse: شهر بسیار لطیف
   translations:
     en: '[The] (city|town) is (very lovely|very fine|lovely|beautiful|very beautiful).'
@@ -387,7 +387,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "میوه\u200cسی فراوان."
-      tokens: [{surface: "میوه\u200cسی", lexemes: [{lexeme: mewa, surface: "میوه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: mewäsi}}, {surface: فراوان, lexeme: farawan, readings: {schluessel: farāwān}}]
+      tokens: [{surface: "میوه\u200cسی", lexemes: [{lexeme: mewa, surface: "میوه\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: mewäsi}}, {surface: فراوان, lexeme: farawan, readings: {schluessel: farāwān}}]
       reverse: "میوه\u200cسی فراوان\nمیوه\u200cسی فراوان\u200cدور"
   translations:
     en: (Its|The) fruit is (plentiful|abundant).
@@ -396,7 +396,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اشلیغ و میوه\u200cسی فراوان."
-      tokens: [{surface: اشلیغ, lexeme: ashligh, readings: {schluessel: ašliǧ}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: "میوه\u200cسی", lexemes: [{lexeme: mewa, surface: "میوه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: mewäsi}}, {surface: فراوان, lexeme: farawan, readings: {schluessel: farāwān}}]
+      tokens: [{surface: اشلیغ, lexemes: [{lexeme: ashligh, base: true}, {lexeme: nom}], readings: {schluessel: ašliǧ}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: "میوه\u200cسی", lexemes: [{lexeme: mewa, surface: "میوه\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: mewäsi}}, {surface: فراوان, lexeme: farawan, readings: {schluessel: farāwān}}]
       reverse: "اشلیغ و میوه\u200cسی فراوان\nاشلیغ و میوه\u200cسی فراوان\u200cدور"
   translations:
     en: (Its|The|) grain and (its|the|) fruit are (plentiful|abundant).
@@ -405,7 +405,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: هواسی خوب.
-      tokens: [{surface: هواسی, lexemes: [{lexeme: hawa, surface: هوا, base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: hawāsi}}, {surface: خوب, lexeme: khub, readings: {schluessel: ḫūb}}]
+      tokens: [{surface: هواسی, lexemes: [{lexeme: hawa, surface: هوا, base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: hawāsi}}, {surface: خوب, lexeme: khub, readings: {schluessel: ḫūb}}]
       reverse: "هواسی خوب\nهواسی خوب\u200cدور\nهواسی (یخشی\u200cدور|یخشی)"
   translations:
     en: (Its|The) (air|weather|climate) is (good|fine).
@@ -414,7 +414,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو شهر خوب. هواسی ساوق.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهر, lexeme: shahar, readings: {schluessel: šahar}}, {surface: خوب, lexeme: khub, readings: {schluessel: ḫūb}}, {surface: هواسی, lexemes: [{lexeme: hawa, surface: هوا, base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: hawāsi}}, {surface: ساوق, lexeme: sawuq, readings: {schluessel: sawuq}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهر, lexemes: [{lexeme: shahar, base: true}, {lexeme: nom}], readings: {schluessel: šahar}}, {surface: خوب, lexeme: khub, readings: {schluessel: ḫūb}}, {surface: هواسی, lexemes: [{lexeme: hawa, surface: هوا, base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: hawāsi}}, {surface: ساوق, lexeme: sawuq, readings: {schluessel: sawuq}}]
       reverse: بو شهر خوب هواسی ساوق
   translations:
     en: This (city|town) is (good|fine). (Its|The) (air|weather) is cold.
@@ -423,7 +423,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سویی ساوق.
-      tokens: [{surface: سویی, lexemes: [{lexeme: su, surface: سوی, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: suyi}}, {surface: ساوق, lexeme: sawuq, readings: {schluessel: sawuq}}]
+      tokens: [{surface: سویی, lexemes: [{lexeme: su, surface: سوی, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: suyi}}, {surface: ساوق, lexeme: sawuq, readings: {schluessel: sawuq}}]
       reverse: "سویی ساوق\nسویی ساوق\u200cدور"
   translations:
     en: (Its|The) water is cold.
@@ -432,7 +432,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ینه بیر شهر.
-      tokens: [{surface: ینه, lexeme: yana, readings: {schluessel: yänä}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: شهر, lexeme: shahar, readings: {schluessel: šahar}}]
+      tokens: [{surface: ینه, lexeme: yana, readings: {schluessel: yänä}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: شهر, lexemes: [{lexeme: shahar, base: true}, {lexeme: nom}], readings: {schluessel: šahar}}]
       reverse: |-
         ینه (بیر|بر) شهر
         ینه (بیر|بر) شهردور
@@ -443,7 +443,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر قصبه.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قصبه, lexeme: qasaba, readings: {schluessel: qaṣaba}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قصبه, lexemes: [{lexeme: qasaba, base: true}, {lexeme: nom}], readings: {schluessel: qaṣaba}}]
       reverse: (بیر|بر) قصبه
   translations:
     en: A (town|fortress).
@@ -452,7 +452,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اوش قصبه\u200cسی\u200cدور."
-      tokens: [{surface: اوش, lexeme: osh, readings: {schluessel: Oš}}, {surface: "قصبه\u200cسی\u200cدور", lexemes: [{lexeme: qasaba, surface: "قصبه\u200c", base: true}, {lexeme: poss3, surface: "سی\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: qaṣabasidur}}]
+      tokens: [{surface: اوش, lexemes: [{lexeme: osh, base: true}, {lexeme: nom}], readings: {schluessel: Oš}}, {surface: "قصبه\u200cسی\u200cدور", lexemes: [{lexeme: qasaba, surface: "قصبه\u200c", base: true}, {lexeme: poss3, surface: "سی\u200c"}, {lexeme: nom}, {lexeme: dur, surface: دور}], readings: {schluessel: qaṣabasidur}}]
       reverse: "اوش قصبه\u200cسی\u200cدور\nاوش قصبه\u200cسی"
   translations:
     en: (It is|It's) the town of Osh.
@@ -461,7 +461,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "بنفشه\u200cسی بسیار لطیف."
-      tokens: [{surface: "بنفشه\u200cسی", lexemes: [{lexeme: binafsha, surface: "بنفشه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: binafšasi}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: لطیف, lexeme: latif, readings: {schluessel: laṭīf}}]
+      tokens: [{surface: "بنفشه\u200cسی", lexemes: [{lexeme: binafsha, surface: "بنفشه\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: binafšasi}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: لطیف, lexeme: latif, readings: {schluessel: laṭīf}}]
       reverse: "بنفشه\u200cسی بسیار لطیف\nبنفشه\u200cسی تولا (لطیف\u200cدور|لطیف)\nبنفشه\u200cسی بسیار لطیف\u200cدور"
   translations:
     en: (Its|The) violets are (very lovely|very beautiful|very fine|lovely|beautiful).
@@ -480,14 +480,14 @@ stories:
       forms:
         chg-Arab/standard:
           text: مختصر ولایتتور.
-          tokens: [{surface: مختصر, lexeme: mukhtasar, readings: {schluessel: muḫtaṣar}}, {surface: ولایتتور, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: dur, surface: تور}], readings: {schluessel: wilāyattur}}]
+          tokens: [{surface: مختصر, lexeme: mukhtasar, readings: {schluessel: muḫtaṣar}}, {surface: ولایتتور, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: nom}, {lexeme: dur, surface: تور}], readings: {schluessel: wilāyattur}}]
       translations:
         en: It is a small country.
   - line:
       forms:
         chg-Arab/standard:
           text: "اشلیغ و میوه\u200cسی فراوان."
-          tokens: [{surface: اشلیغ, lexeme: ashligh, readings: {schluessel: ašliǧ}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: "میوه\u200cسی", lexemes: [{lexeme: mewa, surface: "میوه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: mewäsi}}, {surface: فراوان, lexeme: farawan, readings: {schluessel: farāwān}}]
+          tokens: [{surface: اشلیغ, lexemes: [{lexeme: ashligh, base: true}, {lexeme: nom}], readings: {schluessel: ašliǧ}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: "میوه\u200cسی", lexemes: [{lexeme: mewa, surface: "میوه\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: mewäsi}}, {surface: فراوان, lexeme: farawan, readings: {schluessel: farāwān}}]
       translations:
         en: Its grain and fruit are plentiful.
   - choose:
@@ -502,7 +502,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "ینه بیر اوش قصبه\u200cسی\u200cدور."
-          tokens: [{surface: ینه, lexeme: yana, readings: {schluessel: yänä}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: اوش, lexeme: osh, readings: {schluessel: Oš}}, {surface: "قصبه\u200cسی\u200cدور", lexemes: [{lexeme: qasaba, surface: "قصبه\u200c", base: true}, {lexeme: poss3, surface: "سی\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: qaṣabasidur}}]
+          tokens: [{surface: ینه, lexeme: yana, readings: {schluessel: yänä}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: اوش, lexemes: [{lexeme: osh, base: true}, {lexeme: nom}], readings: {schluessel: Oš}}, {surface: "قصبه\u200cسی\u200cدور", lexemes: [{lexeme: qasaba, surface: "قصبه\u200c", base: true}, {lexeme: poss3, surface: "سی\u200c"}, {lexeme: nom}, {lexeme: dur, surface: دور}], readings: {schluessel: qaṣabasidur}}]
       translations:
         en: Another is the town of Osh.
   - line:
@@ -510,14 +510,14 @@ stories:
       forms:
         chg-Arab/standard:
           text: هواسی خوب.
-          tokens: [{surface: هواسی, lexemes: [{lexeme: hawa, surface: هوا, base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: hawāsi}}, {surface: خوب, lexeme: khub, readings: {schluessel: ḫūb}}]
+          tokens: [{surface: هواسی, lexemes: [{lexeme: hawa, surface: هوا, base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: hawāsi}}, {surface: خوب, lexeme: khub, readings: {schluessel: ḫūb}}]
       translations:
         en: Its air is good.
   - line:
       forms:
         chg-Arab/standard:
           text: "بنفشه\u200cسی بسیار لطیف."
-          tokens: [{surface: "بنفشه\u200cسی", lexemes: [{lexeme: binafsha, surface: "بنفشه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: binafšasi}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: لطیف, lexeme: latif, readings: {schluessel: laṭīf}}]
+          tokens: [{surface: "بنفشه\u200cسی", lexemes: [{lexeme: binafsha, surface: "بنفشه\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: binafšasi}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: لطیف, lexeme: latif, readings: {schluessel: laṭīf}}]
       translations:
         en: Its violets are very lovely.
   - choose:

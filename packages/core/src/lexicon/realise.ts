@@ -1071,12 +1071,26 @@ export const mergeOrder = (
   let rest = [...picked];
   if (baseLexeme !== undefined) {
     const word = mergingWord(lang, baseLexeme, { ...(lang.own.get(baseLexeme.id) ?? baseLexeme.feats ?? {}), ...feats });
+    // What a lexeme must come before (`on.lacks`, on any host): a lexeme that brings one of those values waits for it.
+    const lacks = (id: string): readonly string[] => {
+      const on = lang.lexemes.get(lexemeId(id))?.on;
+      return on === undefined ? [] : [...(on.lacks ?? []), ...(on.or ?? []).flatMap((c) => c.lacks ?? [])];
+    };
+    const blocks = (id: string): boolean => {
+      const brings = lang.lexemes.get(lexemeId(id))?.realises ?? {};
+      return rest.some((other) => other !== id && lacks(other).some((f) => brings[f] !== undefined));
+    };
     for (;;) {
       const fits = (id: string): boolean => word.refuses(lexemeId(id)) === undefined;
       // Where two on one side could merge now, they are written as picked: after the base the first picked nearer
-      // it, before the base the last picked (wa then sa: wa-sa-yaktubu).
-      const k = rest.findIndex((id) => sideOf(id) === "after" && fits(id));
-      const j = k >= 0 ? k : rest.findLastIndex((id) => fits(id));
+      // it, before the base the last picked (wa then sa: wa-sa-yaktubu); but not one another must precede (chg's case
+      // after the plural and the possessive: their `lacks`).
+      const pick = (ok: (id: string) => boolean): number => {
+        const k = rest.findIndex((id) => sideOf(id) === "after" && ok(id));
+        return k >= 0 ? k : rest.findLastIndex((id) => ok(id));
+      };
+      const first = pick((id) => fits(id) && !blocks(id));
+      const j = first >= 0 ? first : pick(fits);
       if (j < 0) break;
       const id = rest[j] as string;
       word.merge(lexemeId(id));

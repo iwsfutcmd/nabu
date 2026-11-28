@@ -21,7 +21,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر یول.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: یول, lexeme: yol, readings: {schluessel: yol}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: یول, lexemes: [{lexeme: yol, base: true}, {lexeme: nom}], readings: {schluessel: yol}}]
       reverse: (بیر|بر) یول
   translations:
     en: A road.
@@ -30,7 +30,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "بو یول اوزون\u200cدور."
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یول, lexeme: yol, readings: {schluessel: yol}}, {surface: "اوزون\u200cدور", lexemes: [{lexeme: uzun, surface: "اوزون\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: uzundur}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یول, lexemes: [{lexeme: yol, base: true}, {lexeme: nom}], readings: {schluessel: yol}}, {surface: "اوزون\u200cدور", lexemes: [{lexeme: uzun, surface: "اوزون\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: uzundur}}]
       reverse: "بو یول اوزون\u200cدور\nبو یول اوزون"
   translations:
     en: This road is long.
@@ -39,7 +39,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: یول اوزون ایماس.
-      tokens: [{surface: یول, lexeme: yol, readings: {schluessel: yol}}, {surface: اوزون, lexeme: uzun, readings: {schluessel: uzun}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
+      tokens: [{surface: یول, lexemes: [{lexeme: yol, base: true}, {lexeme: nom}], readings: {schluessel: yol}}, {surface: اوزون, lexeme: uzun, readings: {schluessel: uzun}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
       reverse: یول اوزون (ایماس|ایرماس)
   translations:
     en: The road (is not|isn't) long.
@@ -48,7 +48,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تورت یغاچ.
-      tokens: [{surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: یغاچ, lexeme: yaghach, readings: {schluessel: yaǧač}}]
+      tokens: [{surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: یغاچ, lexemes: [{lexeme: yaghach, base: true}, {lexeme: nom}], readings: {schluessel: yaǧač}}]
       reverse: تورت (یغاچ|یاغاچ)
   translations:
     en: Four leagues.
@@ -57,7 +57,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اندجاندین تورت یغاچ یول\u200cدور."
-      tokens: [{surface: اندجاندین, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Andijāndin}}, {surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: یغاچ, lexeme: yaghach, readings: {schluessel: yaǧač}}, {surface: "یول\u200cدور", lexemes: [{lexeme: yol, surface: "یول\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: yoldur}}]
+      tokens: [{surface: اندجاندین, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Andijāndin}}, {surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: یغاچ, lexemes: [{lexeme: yaghach, base: true}, {lexeme: nom}], readings: {schluessel: yaǧač}}, {surface: "یول\u200cدور", lexemes: [{lexeme: yol, surface: "یول\u200c", base: true}, {lexeme: nom}, {lexeme: dur, surface: دور}], readings: {schluessel: yoldur}}]
       reverse: "(اندجاندین|اندجاندن) تورت (یغاچ|یاغاچ) یول\u200cدور\n(اندجاندین|اندجاندن) تورت (یغاچ|یاغاچ) یول"
   translations:
     en: It is four leagues (by road|'s journey) from Andijan.
@@ -66,7 +66,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو یول اوشقه بارور.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یول, lexeme: yol, readings: {schluessel: yol}}, {surface: اوشقه, lexemes: [{lexeme: osh, surface: اوش, base: true}, {lexeme: dat, surface: قه}], readings: {schluessel: Ošqa}}, {surface: بارور, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: barur}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یول, lexemes: [{lexeme: yol, base: true}, {lexeme: nom}], readings: {schluessel: yol}}, {surface: اوشقه, lexemes: [{lexeme: osh, surface: اوش, base: true}, {lexeme: dat, surface: قه}], readings: {schluessel: Ošqa}}, {surface: بارور, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: aor, surface: ور}, {lexeme: p3}], readings: {schluessel: barur}}]
       reverse: |-
         بو یول (اوشقه|اوشغه|اوشکه|اوشقا) بارور
         بو یول (اوشقه|اوشغه|اوشکه|اوشقا) بارادور
@@ -77,7 +77,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اندجاننینک شرق جنوبی طرفی\u200cدور."
-      tokens: [{surface: اندجاننینک, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Andijānniŋ}}, {surface: شرق, lexeme: sharq, readings: {schluessel: šarq}}, {surface: جنوبی, lexeme: janubi, readings: {schluessel: janūbī}}, {surface: "طرفی\u200cدور", lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: ṭarafidur}}]
+      tokens: [{surface: اندجاننینک, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Andijānniŋ}}, {surface: شرق, lexemes: [{lexeme: sharq, base: true}, {lexeme: nom}], readings: {schluessel: šarq}}, {surface: جنوبی, lexeme: janubi, readings: {schluessel: janūbī}}, {surface: "طرفی\u200cدور", lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: nom}, {lexeme: dur, surface: دور}], readings: {schluessel: ṭarafidur}}]
       reverse: "اندجاننینک شرق جنوبی طرفی\u200cدور\nاندجاننینک شرق جنوبی طرفی"
   translations:
     en: It is (to the southeast|on the southeast side) of Andijan.
@@ -86,7 +86,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول اوشقه باریبتور.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: اوشقه, lexemes: [{lexeme: osh, surface: اوش, base: true}, {lexeme: dat, surface: قه}], readings: {schluessel: Ošqa}}, {surface: باریبتور, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: narr, surface: یبتور}], readings: {schluessel: bariptur}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: اوشقه, lexemes: [{lexeme: osh, surface: اوش, base: true}, {lexeme: dat, surface: قه}], readings: {schluessel: Ošqa}}, {surface: باریبتور, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: narr, surface: یبتور}, {lexeme: p3}], readings: {schluessel: bariptur}}]
       reverse: اول (اوشقه|اوشغه|اوشکه|اوشقا) باریبتور
   translations:
     en: (He|She) went to Osh, (they say|it is told|it seems).
@@ -95,7 +95,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: خان بیر حجره سالیبتور.
-      tokens: [{surface: خان, lexeme: khan, readings: {schluessel: ḫan}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: سالیبتور, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: narr, surface: یبتور}], readings: {schluessel: saliptur}}]
+      tokens: [{surface: خان, lexemes: [{lexeme: khan, base: true}, {lexeme: nom}], readings: {schluessel: ḫan}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: حجره, lexemes: [{lexeme: hujra, base: true}, {lexeme: nom}], readings: {schluessel: ḥujra}}, {surface: سالیبتور, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: narr, surface: یبتور}, {lexeme: p3}], readings: {schluessel: saliptur}}]
       reverse: خان (بیر|بر) حجره سالیبتور
   translations:
     en: The khan built a (pavilion|room), (they say|it is told).
@@ -104,7 +104,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو یرده بیر تاغ توشوبتور.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یرده, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: yärdä}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: تاغ, lexeme: tagh, readings: {schluessel: taǧ}}, {surface: توشوبتور, lexemes: [{lexeme: tush, surface: توش, base: true}, {lexeme: narr, surface: وبتور}], readings: {schluessel: tüšüptur}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یرده, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: yärdä}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: تاغ, lexemes: [{lexeme: tagh, base: true}, {lexeme: nom}], readings: {schluessel: taǧ}}, {surface: توشوبتور, lexemes: [{lexeme: tush, surface: توش, base: true}, {lexeme: narr, surface: وبتور}, {lexeme: p3}], readings: {schluessel: tüšüptur}}]
       reverse: |-
         بو (یرده|یردا|یارده|یاردا) (بیر|بر) تاغ توشوبتور
         بو (یرده|یردا|یارده|یاردا) (بیر|بر) تاغ بار
@@ -115,7 +115,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قورغان شرق طرفیده واقع بولوبتور.
-      tokens: [{surface: قورغان, lexeme: qurghan, readings: {schluessel: qurǧan}}, {surface: شرق, lexeme: sharq, readings: {schluessel: šarq}}, {surface: طرفیده, lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: ṭarafida}}, {surface: واقع, lexeme: waqi, readings: {schluessel: wāqiʿ}}, {surface: بولوبتور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: narr, surface: وبتور}], readings: {schluessel: boluptur}}]
+      tokens: [{surface: قورغان, lexemes: [{lexeme: qurghan, base: true}, {lexeme: nom}], readings: {schluessel: qurǧan}}, {surface: شرق, lexemes: [{lexeme: sharq, base: true}, {lexeme: nom}], readings: {schluessel: šarq}}, {surface: طرفیده, lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: ṭarafida}}, {surface: واقع, lexeme: waqi, readings: {schluessel: wāqiʿ}}, {surface: بولوبتور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: narr, surface: وبتور}, {lexeme: p3}], readings: {schluessel: boluptur}}]
       reverse: قورغان شرق (طرفیده|طرفیدا) واقع بولوبتور
   translations:
     en: The fortress (lies|is situated) on the east side.
@@ -124,7 +124,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اولار کلمابتور.
-      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: کلمابتور, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: narr, surface: بتور}], readings: {schluessel: kälmäptur}}]
+      tokens: [{surface: اولار, lexemes: [{lexeme: ular, base: true}, {lexeme: nom}], readings: {schluessel: ular}}, {surface: کلمابتور, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: narr, surface: بتور}, {lexeme: p3}], readings: {schluessel: kälmäptur}}]
       reverse: (اولار|الار) (کلمابتور|کیلمابتور)
   translations:
     en: They (did not|didn't) come, (they say|it seems).
@@ -133,7 +133,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: محمود خان.
-      tokens: [{surface: محمود, lexeme: mahmud, readings: {schluessel: Maḥmūd}}, {surface: خان, lexeme: khan, readings: {schluessel: ḫan}}]
+      tokens: [{surface: محمود, lexemes: [{lexeme: mahmud, base: true}, {lexeme: nom}], readings: {schluessel: Maḥmūd}}, {surface: خان, lexemes: [{lexeme: khan, base: true}, {lexeme: nom}], readings: {schluessel: ḫan}}]
       reverse: محمود خان
   translations:
     en: Mahmud Khan.
@@ -142,7 +142,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سلطان محمود خان بیر حجره سالیبتور.
-      tokens: [{surface: سلطان, lexeme: sultan, readings: {schluessel: sulṭān}}, {surface: محمود, lexeme: mahmud, readings: {schluessel: Maḥmūd}}, {surface: خان, lexeme: khan, readings: {schluessel: ḫan}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: سالیبتور, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: narr, surface: یبتور}], readings: {schluessel: saliptur}}]
+      tokens: [{surface: سلطان, lexemes: [{lexeme: sultan, base: true}, {lexeme: nom}], readings: {schluessel: sulṭān}}, {surface: محمود, lexemes: [{lexeme: mahmud, base: true}, {lexeme: nom}], readings: {schluessel: Maḥmūd}}, {surface: خان, lexemes: [{lexeme: khan, base: true}, {lexeme: nom}], readings: {schluessel: ḫan}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: حجره, lexemes: [{lexeme: hujra, base: true}, {lexeme: nom}], readings: {schluessel: ḥujra}}, {surface: سالیبتور, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: narr, surface: یبتور}, {lexeme: p3}], readings: {schluessel: saliptur}}]
       reverse: سلطان محمود خان (بیر|بر) حجره سالیبتور
   translations:
     en: Sultan Mahmud Khan built a (pavilion|room).
@@ -151,7 +151,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سو اقادور.
-      tokens: [{surface: سو, lexeme: su, readings: {schluessel: su}}, {surface: اقادور, lexemes: [{lexeme: aq.flow, surface: اق, base: true}, {lexeme: pres, surface: ا}, {lexeme: dur, surface: دور}], readings: {schluessel: aqadur}}]
+      tokens: [{surface: سو, lexemes: [{lexeme: su, base: true}, {lexeme: nom}], readings: {schluessel: su}}, {surface: اقادور, lexemes: [{lexeme: aq.flow, surface: اق, base: true}, {lexeme: pres, surface: ا}, {lexeme: p3.dur, surface: دور}], readings: {schluessel: aqadur}}]
       reverse: سو اقادور
   translations:
     en: (The|) water (flows|is flowing).
@@ -160,7 +160,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اقار سو.
-      tokens: [{surface: اقار, lexemes: [{lexeme: aq.flow, surface: اق, base: true}, {lexeme: aor, surface: ار}], readings: {schluessel: aqar}}, {surface: سو, lexeme: su, readings: {schluessel: su}}]
+      tokens: [{surface: اقار, lexemes: [{lexeme: aq.flow, surface: اق, base: true}, {lexeme: aor, surface: ار}, {lexeme: p3}], readings: {schluessel: aqar}}, {surface: سو, lexemes: [{lexeme: su, base: true}, {lexeme: nom}], readings: {schluessel: su}}]
       reverse: |-
         اقار سو
         اقار سولار
@@ -171,7 +171,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اقار سویی فراوان\u200cدور."
-      tokens: [{surface: اقار, lexemes: [{lexeme: aq.flow, surface: اق, base: true}, {lexeme: aor, surface: ار}], readings: {schluessel: aqar}}, {surface: سویی, lexemes: [{lexeme: su, surface: سوی, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: suyi}}, {surface: "فراوان\u200cدور", lexemes: [{lexeme: farawan, surface: "فراوان\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: farāwāndur}}]
+      tokens: [{surface: اقار, lexemes: [{lexeme: aq.flow, surface: اق, base: true}, {lexeme: aor, surface: ار}, {lexeme: p3}], readings: {schluessel: aqar}}, {surface: سویی, lexemes: [{lexeme: su, surface: سوی, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: suyi}}, {surface: "فراوان\u200cدور", lexemes: [{lexeme: farawan, surface: "فراوان\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: farāwāndur}}]
       reverse: "اقار سویی فراوان\u200cدور\nاقار سویی فراوان"
   translations:
     en: Its running water is (plentiful|abundant).
@@ -180,7 +180,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بهار کلدی.
-      tokens: [{surface: بهار, lexeme: bahar, readings: {schluessel: bahār}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: käldi}}]
+      tokens: [{surface: بهار, lexemes: [{lexeme: bahar, base: true}, {lexeme: nom}], readings: {schluessel: bahār}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: käldi}}]
       reverse: بهار (کلدی|کیلدی)
   translations:
     en: (Spring|The spring) (came|has come).
@@ -189,7 +189,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بهاری بسیار یخشی بولور.
-      tokens: [{surface: بهاری, lexemes: [{lexeme: bahar, surface: بهار, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: bahāri}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: یخشی, lexeme: yakhshi, readings: {schluessel: yaḫši}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}], readings: {schluessel: bolur}}]
+      tokens: [{surface: بهاری, lexemes: [{lexeme: bahar, surface: بهار, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: bahāri}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: یخشی, lexeme: yakhshi, readings: {schluessel: yaḫši}}, {surface: بولور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}, {lexeme: p3}], readings: {schluessel: bolur}}]
       reverse: بهاری بسیار یخشی بولور
   translations:
     en: Its spring is very (good|fine|lovely).
@@ -198,7 +198,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر موزون تاغ.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: موزون, lexeme: mawzun, readings: {schluessel: mawzūn}}, {surface: تاغ, lexeme: tagh, readings: {schluessel: taǧ}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: موزون, lexeme: mawzun, readings: {schluessel: mawzūn}}, {surface: تاغ, lexemes: [{lexeme: tagh, base: true}, {lexeme: nom}], readings: {schluessel: taǧ}}]
       reverse: (بیر|بر) موزون تاغ
   translations:
     en: A well-(shaped|proportioned) mountain.
@@ -216,7 +216,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اول حجره مرتفع\u200cدور."
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: "مرتفع\u200cدور", lexemes: [{lexeme: murtafi, surface: "مرتفع\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: murtafiʿdur}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: حجره, lexemes: [{lexeme: hujra, base: true}, {lexeme: nom}], readings: {schluessel: ḥujra}}, {surface: "مرتفع\u200cدور", lexemes: [{lexeme: murtafi, surface: "مرتفع\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: murtafiʿdur}}]
       reverse: "اول حجره مرتفع\u200cدور\nاول حجره مرتفع"
   translations:
     en: That (pavilion|room) is (high|lofty).
@@ -225,7 +225,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اگرچه بو حجره کچیک، ولی یخشی.
-      tokens: [{surface: اگرچه, lexeme: agarcha, readings: {schluessel: ägärčä}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: کچیک, lexeme: kichik, readings: {schluessel: kičik}}, {surface: ولی, lexeme: wali, readings: {schluessel: walī}}, {surface: یخشی, lexeme: yakhshi, readings: {schluessel: yaḫši}}]
+      tokens: [{surface: اگرچه, lexeme: agarcha, readings: {schluessel: ägärčä}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: حجره, lexemes: [{lexeme: hujra, base: true}, {lexeme: nom}], readings: {schluessel: ḥujra}}, {surface: کچیک, lexeme: kichik, readings: {schluessel: kičik}}, {surface: ولی, lexeme: wali, readings: {schluessel: walī}}, {surface: یخشی, lexeme: yakhshi, readings: {schluessel: yaḫši}}]
       reverse: "اگرچه بو حجره (کچیک|کیچیک) ولی یخشی\nاگرچه بو حجره (کچیک\u200cدور|کیچیک\u200cدور) ولی یخشی\u200cدور"
   translations:
     en: Although this (pavilion|room) is (small|little), (it is good|yet it is good|it is fine).
@@ -234,7 +234,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اگرچه تاغ مرتفع، ولی یول اوزون ایماس.
-      tokens: [{surface: اگرچه, lexeme: agarcha, readings: {schluessel: ägärčä}}, {surface: تاغ, lexeme: tagh, readings: {schluessel: taǧ}}, {surface: مرتفع, lexeme: murtafi, readings: {schluessel: murtafiʿ}}, {surface: ولی, lexeme: wali, readings: {schluessel: walī}}, {surface: یول, lexeme: yol, readings: {schluessel: yol}}, {surface: اوزون, lexeme: uzun, readings: {schluessel: uzun}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
+      tokens: [{surface: اگرچه, lexeme: agarcha, readings: {schluessel: ägärčä}}, {surface: تاغ, lexemes: [{lexeme: tagh, base: true}, {lexeme: nom}], readings: {schluessel: taǧ}}, {surface: مرتفع, lexeme: murtafi, readings: {schluessel: murtafiʿ}}, {surface: ولی, lexeme: wali, readings: {schluessel: walī}}, {surface: یول, lexemes: [{lexeme: yol, base: true}, {lexeme: nom}], readings: {schluessel: yol}}, {surface: اوزون, lexeme: uzun, readings: {schluessel: uzun}}, {surface: ایماس, lexeme: emas, readings: {schluessel: emäs}}]
       reverse: اگرچه تاغ مرتفع ولی یول اوزون (ایماس|ایرماس)
   translations:
     en: Although the mountain is high, the road (is not|isn't) long.
@@ -243,7 +243,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو حجره بسیار یخشیراق واقع بولوبتور.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: یخشیراق, lexemes: [{lexeme: yakhshi, surface: یخشی, base: true}, {lexeme: cmp, surface: راق}], readings: {schluessel: yaḫširaq}}, {surface: واقع, lexeme: waqi, readings: {schluessel: wāqiʿ}}, {surface: بولوبتور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: narr, surface: وبتور}], readings: {schluessel: boluptur}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: حجره, lexemes: [{lexeme: hujra, base: true}, {lexeme: nom}], readings: {schluessel: ḥujra}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: یخشیراق, lexemes: [{lexeme: yakhshi, surface: یخشی, base: true}, {lexeme: cmp, surface: راق}], readings: {schluessel: yaḫširaq}}, {surface: واقع, lexeme: waqi, readings: {schluessel: wāqiʿ}}, {surface: بولوبتور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: narr, surface: وبتور}, {lexeme: p3}], readings: {schluessel: boluptur}}]
       reverse: بو حجره بسیار یخشیراق واقع بولوبتور
   translations:
     en: This (pavilion|room) is (placed|situated) much better.
@@ -252,7 +252,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اگرچه اول حجره موندین مرتفع\u200cدور، ولی بو حجره یخشیراق."
-      tokens: [{surface: اگرچه, lexeme: agarcha, readings: {schluessel: ägärčä}}, {surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: موندین, lexemes: [{lexeme: bu, surface: مون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: mundin}}, {surface: "مرتفع\u200cدور", lexemes: [{lexeme: murtafi, surface: "مرتفع\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: murtafiʿdur}}, {surface: ولی, lexeme: wali, readings: {schluessel: walī}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: یخشیراق, lexemes: [{lexeme: yakhshi, surface: یخشی, base: true}, {lexeme: cmp, surface: راق}], readings: {schluessel: yaḫširaq}}]
+      tokens: [{surface: اگرچه, lexeme: agarcha, readings: {schluessel: ägärčä}}, {surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: حجره, lexemes: [{lexeme: hujra, base: true}, {lexeme: nom}], readings: {schluessel: ḥujra}}, {surface: موندین, lexemes: [{lexeme: bu, surface: مون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: mundin}}, {surface: "مرتفع\u200cدور", lexemes: [{lexeme: murtafi, surface: "مرتفع\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: murtafiʿdur}}, {surface: ولی, lexeme: wali, readings: {schluessel: walī}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: حجره, lexemes: [{lexeme: hujra, base: true}, {lexeme: nom}], readings: {schluessel: ḥujra}}, {surface: یخشیراق, lexemes: [{lexeme: yakhshi, surface: یخشی, base: true}, {lexeme: cmp, surface: راق}], readings: {schluessel: yaḫširaq}}]
       reverse: "اگرچه اول حجره (موندین|موندن) مرتفع\u200cدور ولی بو حجره یخشیراق"
   translations:
     en: Although that (pavilion|room) is higher than this one, (this one is better|yet this one is better).
@@ -261,7 +261,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تمام شهر.
-      tokens: [{surface: تمام, lexeme: tamam, readings: {schluessel: tamām}}, {surface: شهر, lexeme: shahar, readings: {schluessel: šahar}}]
+      tokens: [{surface: تمام, lexeme: tamam, readings: {schluessel: tamām}}, {surface: شهر, lexemes: [{lexeme: shahar, base: true}, {lexeme: nom}], readings: {schluessel: šahar}}]
       reverse: تمام شهر
   translations:
     en: The whole (city|town).
@@ -270,7 +270,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شهرنینک محلاتی.
-      tokens: [{surface: شهرنینک, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: šaharniŋ}}, {surface: محلاتی, lexemes: [{lexeme: mahallat, surface: محلات, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: maḥallāti}}]
+      tokens: [{surface: شهرنینک, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: šaharniŋ}}, {surface: محلاتی, lexemes: [{lexeme: mahallat, surface: محلات, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: maḥallāti}}]
       reverse: شهرنینک محلاتی
   translations:
     en: The (quarters|suburbs) of the (city|town).
@@ -279,7 +279,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایاقیم.
-      tokens: [{surface: ایاقیم, lexemes: [{lexeme: ayaq, surface: ایاق, base: true}, {lexeme: poss1s, surface: یم}], readings: {schluessel: ayaqim}}]
+      tokens: [{surface: ایاقیم, lexemes: [{lexeme: ayaq, surface: ایاق, base: true}, {lexeme: poss1s, surface: یم}, {lexeme: nom}], readings: {schluessel: ayaqim}}]
       reverse: "ایاقیم\nایاغیم"
   translations:
     en: My foot.
@@ -297,7 +297,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تمام شهر و محلات ایاق آستیده.
-      tokens: [{surface: تمام, lexeme: tamam, readings: {schluessel: tamām}}, {surface: شهر, lexeme: shahar, readings: {schluessel: šahar}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: محلات, lexeme: mahallat, readings: {schluessel: maḥallāt}}, {surface: ایاق, lexeme: ayaq, readings: {schluessel: ayaq}}, {surface: آستیده, lexemes: [{lexeme: ast, surface: آست, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: astida}}]
+      tokens: [{surface: تمام, lexeme: tamam, readings: {schluessel: tamām}}, {surface: شهر, lexemes: [{lexeme: shahar, base: true}, {lexeme: nom}], readings: {schluessel: šahar}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: محلات, lexemes: [{lexeme: mahallat, base: true}, {lexeme: nom}], readings: {schluessel: maḥallāt}}, {surface: ایاق, lexemes: [{lexeme: ayaq, base: true}, {lexeme: nom}], readings: {schluessel: ayaq}}, {surface: آستیده, lexemes: [{lexeme: ast, surface: آست, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: astida}}]
       reverse: تمام شهر و محلات ایاق (آستیده|آستیدا)
   translations:
     en: The whole (city|town) and (its|the|) (quarters|suburbs) are at its feet.
@@ -311,21 +311,21 @@ stories:
       forms:
         chg-Arab/standard:
           text: "اندجان\u200cنینک شرق جنوبی طرفی\u200cدور."
-          tokens: [{surface: "اندجان\u200cنینک", lexemes: [{lexeme: andijan, surface: "اندجان\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Andijānniŋ}}, {surface: شرق, lexeme: sharq, readings: {schluessel: šarq}}, {surface: جنوبی, lexeme: janubi, readings: {schluessel: janūbī}}, {surface: "طرفی\u200cدور", lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: ṭarafidur}}]
+          tokens: [{surface: "اندجان\u200cنینک", lexemes: [{lexeme: andijan, surface: "اندجان\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Andijānniŋ}}, {surface: شرق, lexemes: [{lexeme: sharq, base: true}, {lexeme: nom}], readings: {schluessel: šarq}}, {surface: جنوبی, lexeme: janubi, readings: {schluessel: janūbī}}, {surface: "طرفی\u200cدور", lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: nom}, {lexeme: dur, surface: دور}], readings: {schluessel: ṭarafidur}}]
       translations:
         en: It lies to the southeast of Andijan.
   - line:
       forms:
         chg-Arab/standard:
           text: "اندجان\u200cدین تورت یغاچ یول\u200cدور."
-          tokens: [{surface: "اندجان\u200cدین", lexemes: [{lexeme: andijan, surface: "اندجان\u200c", base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Andijāndin}}, {surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: یغاچ, lexeme: yaghach, readings: {schluessel: yaǧač}}, {surface: "یول\u200cدور", lexemes: [{lexeme: yol, surface: "یول\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: yoldur}}]
+          tokens: [{surface: "اندجان\u200cدین", lexemes: [{lexeme: andijan, surface: "اندجان\u200c", base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Andijāndin}}, {surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: یغاچ, lexemes: [{lexeme: yaghach, base: true}, {lexeme: nom}], readings: {schluessel: yaǧač}}, {surface: "یول\u200cدور", lexemes: [{lexeme: yol, surface: "یول\u200c", base: true}, {lexeme: nom}, {lexeme: dur, surface: دور}], readings: {schluessel: yoldur}}]
       translations:
         en: It is four leagues' journey from Andijan.
   - line:
       forms:
         chg-Arab/standard:
           text: "اقار سُوی فراوان\u200cدور."
-          tokens: [{surface: اقار, lexemes: [{lexeme: aq.flow, surface: اق, base: true}, {lexeme: aor, surface: ار}], readings: {schluessel: aqar}}, {surface: سُوی, lexemes: [{lexeme: su, surface: سُو, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: süyi}}, {surface: "فراوان\u200cدور", lexemes: [{lexeme: farawan, surface: "فراوان\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: farāwāndur}}]
+          tokens: [{surface: اقار, lexemes: [{lexeme: aq.flow, surface: اق, base: true}, {lexeme: aor, surface: ار}, {lexeme: p3}], readings: {schluessel: aqar}}, {surface: سُوی, lexemes: [{lexeme: su, surface: سُو, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: süyi}}, {surface: "فراوان\u200cدور", lexemes: [{lexeme: farawan, surface: "فراوان\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: farāwāndur}}]
       translations:
         en: Its running water is plentiful.
   - line:
@@ -337,14 +337,14 @@ stories:
       forms:
         chg-Arab/standard:
           text: "قورغانی\u200cنینک شرق جنوبی جانبی\u200cدا بر موزون تاغ توشوبتور."
-          tokens: [{surface: "قورغانی\u200cنینک", lexemes: [{lexeme: qurghan, surface: قورغان, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: gen, surface: نینک}], readings: {schluessel: qurǧaniniŋ}}, {surface: شرق, lexeme: sharq, readings: {schluessel: šarq}}, {surface: جنوبی, lexeme: janubi, readings: {schluessel: janūbī}}, {surface: "جانبی\u200cدا", lexemes: [{lexeme: janib, surface: جانب, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: loc, surface: دا}], readings: {schluessel: jānibida}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: موزون, lexeme: mawzun, readings: {schluessel: mawzūn}}, {surface: تاغ, lexeme: tagh, readings: {schluessel: taǧ}}, {surface: توشوبتور, lexemes: [{lexeme: tush, surface: توش, base: true}, {lexeme: narr, surface: وبتور}], readings: {schluessel: tüšüptur}}]
+          tokens: [{surface: "قورغانی\u200cنینک", lexemes: [{lexeme: qurghan, surface: قورغان, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: gen, surface: نینک}], readings: {schluessel: qurǧaniniŋ}}, {surface: شرق, lexemes: [{lexeme: sharq, base: true}, {lexeme: nom}], readings: {schluessel: šarq}}, {surface: جنوبی, lexeme: janubi, readings: {schluessel: janūbī}}, {surface: "جانبی\u200cدا", lexemes: [{lexeme: janib, surface: جانب, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: loc, surface: دا}], readings: {schluessel: jānibida}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: موزون, lexeme: mawzun, readings: {schluessel: mawzūn}}, {surface: تاغ, lexemes: [{lexeme: tagh, base: true}, {lexeme: nom}], readings: {schluessel: taǧ}}, {surface: توشوبتور, lexemes: [{lexeme: tush, surface: توش, base: true}, {lexeme: narr, surface: وبتور}, {lexeme: p3}], readings: {schluessel: tüšüptur}}]
       translations:
         en: To the southeast of its fortress lies a well-shaped mountain.
   - line:
       forms:
         chg-Arab/standard:
           text: "بو تاغ\u200cنینک قله\u200cسی\u200cدا سلطان محمود خان بر حجره سالیب\u200cتور."
-          tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: "تاغ\u200cنینک", lexemes: [{lexeme: tagh, surface: "تاغ\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: taǧniŋ}}, {surface: "قله\u200cسی\u200cدا", lexemes: [{lexeme: qulla, surface: "قله\u200c", base: true}, {lexeme: poss3, surface: "سی\u200c"}, {lexeme: loc, surface: دا}], readings: {schluessel: qullasida}}, {surface: سلطان, lexeme: sultan, readings: {schluessel: Sulṭān}}, {surface: محمود, lexeme: mahmud, readings: {schluessel: Maḥmūd}}, {surface: خان, lexeme: khan, readings: {schluessel: Ḫan}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: "سالیب\u200cتور", lexemes: [{lexeme: sal, surface: "سالیب\u200c", base: true}, {lexeme: narr, surface: تور}], readings: {schluessel: saliptur}}]
+          tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: "تاغ\u200cنینک", lexemes: [{lexeme: tagh, surface: "تاغ\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: taǧniŋ}}, {surface: "قله\u200cسی\u200cدا", lexemes: [{lexeme: qulla, surface: "قله\u200c", base: true}, {lexeme: poss3, surface: "سی\u200c"}, {lexeme: loc, surface: دا}], readings: {schluessel: qullasida}}, {surface: سلطان, lexemes: [{lexeme: sultan, base: true}, {lexeme: nom}], readings: {schluessel: Sulṭān}}, {surface: محمود, lexemes: [{lexeme: mahmud, base: true}, {lexeme: nom}], readings: {schluessel: Maḥmūd}}, {surface: خان, lexemes: [{lexeme: khan, base: true}, {lexeme: nom}], readings: {schluessel: Ḫan}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: حجره, lexemes: [{lexeme: hujra, base: true}, {lexeme: nom}], readings: {schluessel: ḥujra}}, {surface: "سالیب\u200cتور", lexemes: [{lexeme: sal, surface: "سالیب\u200c", base: true}, {lexeme: narr, surface: تور}, {lexeme: p3}], readings: {schluessel: saliptur}}]
       translations:
         en: On the peak of this mountain Sultan Mahmud Khan built a pavilion.
   - choose:
@@ -359,7 +359,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "اکرچه اول حجره موندین مرتفع\u200cدور، ولی بو حجره بسیار یخشیراق واقع بولوبتور."
-          tokens: [{surface: اکرچه, lexeme: agarcha, readings: {schluessel: ägärčä}}, {surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: موندین, lexemes: [{lexeme: bu, surface: مون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: mundin}}, {surface: "مرتفع\u200cدور", lexemes: [{lexeme: murtafi, surface: "مرتفع\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: murtafiʿdur}}, {surface: ولی, lexeme: wali, readings: {schluessel: walī}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: یخشیراق, lexemes: [{lexeme: yakhshi, surface: یخشی, base: true}, {lexeme: cmp, surface: راق}], readings: {schluessel: yaḫširaq}}, {surface: واقع, lexeme: waqi, readings: {schluessel: wāqiʿ}}, {surface: بولوبتور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: narr, surface: وبتور}], readings: {schluessel: boluptur}}]
+          tokens: [{surface: اکرچه, lexeme: agarcha, readings: {schluessel: ägärčä}}, {surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: حجره, lexemes: [{lexeme: hujra, base: true}, {lexeme: nom}], readings: {schluessel: ḥujra}}, {surface: موندین, lexemes: [{lexeme: bu, surface: مون, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: mundin}}, {surface: "مرتفع\u200cدور", lexemes: [{lexeme: murtafi, surface: "مرتفع\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: murtafiʿdur}}, {surface: ولی, lexeme: wali, readings: {schluessel: walī}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: حجره, lexemes: [{lexeme: hujra, base: true}, {lexeme: nom}], readings: {schluessel: ḥujra}}, {surface: بسیار, lexeme: besyar, readings: {schluessel: besyār}}, {surface: یخشیراق, lexemes: [{lexeme: yakhshi, surface: یخشی, base: true}, {lexeme: cmp, surface: راق}], readings: {schluessel: yaḫširaq}}, {surface: واقع, lexeme: waqi, readings: {schluessel: wāqiʿ}}, {surface: بولوبتور, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: narr, surface: وبتور}, {lexeme: p3}], readings: {schluessel: boluptur}}]
       translations:
         en: Although that pavilion is higher than this one, this pavilion is placed much better.
   - line:
@@ -367,7 +367,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: تمام شهر و محلات ایاق آستیدا.
-          tokens: [{surface: تمام, lexeme: tamam, readings: {schluessel: tamām}}, {surface: شهر, lexeme: shahar, readings: {schluessel: šahar}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: محلات, lexeme: mahallat, readings: {schluessel: maḥallāt}}, {surface: ایاق, lexeme: ayaq, readings: {schluessel: ayaq}}, {surface: آستیدا, lexemes: [{lexeme: ast, surface: آست, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: astida}}]
+          tokens: [{surface: تمام, lexeme: tamam, readings: {schluessel: tamām}}, {surface: شهر, lexemes: [{lexeme: shahar, base: true}, {lexeme: nom}], readings: {schluessel: šahar}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: محلات, lexemes: [{lexeme: mahallat, base: true}, {lexeme: nom}], readings: {schluessel: maḥallāt}}, {surface: ایاق, lexemes: [{lexeme: ayaq, base: true}, {lexeme: nom}], readings: {schluessel: ayaq}}, {surface: آستیدا, lexemes: [{lexeme: ast, surface: آست, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: astida}}]
       translations:
         en: The whole city and its quarters lie at its feet.
   - choose:

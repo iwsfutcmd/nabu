@@ -728,6 +728,12 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   kim.that, yuz.face). A derived word is a lexeme of its own (the owner, 2026-11-28: its meaning is not wholly its
   parts'): qoychi, never qoy + ci; its entry names its `base` and `pattern`, its form is the rules' for them
   (docs/rules/chg.md).
+- chg merges (2026-11-28, docs/rules/chg.md): its suffixes say what they merge onto (`on`, `lacks` for the order: stem +
+  plural + possessive + case, S 3.4), a noun, name or pronoun requires a case, a verb a form, a finite tense a person;
+  the unmarked cells are zeros a token lists with no surface (`nom`, `p3`, `imp.sg`), folded into the base's values
+  and never a part. The present's -dur is the verb's person (`p3.dur`); a predicate's person is the copula's, a word of
+  its own (`dur`, `cop.1s` …, `cop.3pl` -durlar); -iŋizlar is `poss2pl`. A new chg token lists its zeros. Its labels
+  (language.yaml) name every paradigm cell: a new cell needs one.
 - Schluessel's book is CC BY-NC-ND: take facts from it (letters, suffixes, spellings, glosses), never his example
   sentences or the documents he composed (ch. 7). Stories are public-domain passages (Babur, the Tadhkira, Abu
   'l-Ghazi, Navai, Qasim Beg, the Prophets, a risāla) as he types them, in the source's spellings (فادشاه, پز, tep),
@@ -984,7 +990,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   merges: a token is incomplete while a requirement is unmet (`Realisation.missing`), a lexeme merged where its `on`
   fails is `attach`, a feature brought twice `twice`; a form stored for the merged word covers the lexemes whose
   values it has (a broken plural). Feature values are abstract: learners learn lexemes. The citation form is a
-  mnemonic, a named merge. Stage 1 (the engine, conformance/realise-merge.json) is built; apc is converted (below), es next.
+  mnemonic, a named merge. Stage 1 (the engine, conformance/realise-merge.json) is built; apc and chg are converted (below), es next.
 - apc merges (2026-11-28, ADR 0159 step 2; docs/rules/apc.md): its tokens list the lexemes that bring a verb's,
   adjective's or noun's values (`{lexeme: ind}, {lexeme: impf-3}, {lexeme: shereb, base: true}, {lexeme: pl.verb}`);
   one merged into its base has no `surface`, nor has a base that writes the whole token. The compiler folds them into

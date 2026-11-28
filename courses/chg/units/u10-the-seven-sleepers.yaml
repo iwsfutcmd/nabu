@@ -9,7 +9,7 @@ title:
   en: The Seven Sleepers
 cefr: A2
 nodes:
-- {id: chg.u10.it-is-said, kind: lesson, introduces: ['lexeme:mis', 'lexeme:ikan']}
+- {id: chg.u10.it-is-said, kind: lesson, introduces: ['lexeme:mis', 'lexeme:ikan', 'lexeme:cop.3pl']}
 - {id: chg.u10.named, kind: lesson, introduces: ['lexeme:yunan', 'lexeme:mulk', 'lexeme:afsus', 'lexeme:malik', 'lexeme:jabbar', 'lexeme:daqyanus', 'lexeme:atligh']}
 - {id: chg.u10.the-shepherd, kind: lesson, introduces: ['lexeme:qoychi', 'lexeme:it', 'lexeme:qach', 'lexeme:uchra', 'lexeme:qoshul']}
 - {id: chg.u10.the-cave, kind: lesson, introduces: ['lexeme:ghar', 'lexeme:raqim', 'lexeme:oyu', 'lexeme:oyghan', 'lexeme:ashab', 'lexeme:kahf']}
@@ -21,7 +21,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر پادشاه بار ایرمیش.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: پادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: ermiš}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: پادشاه, lexemes: [{lexeme: padishah, base: true}, {lexeme: nom}], readings: {schluessel: pādišāh}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}], readings: {schluessel: ermiš}}]
       reverse: (بیر|بر) (پادشاه|بادشاه|فادشاه) بار (ایرمیش|ایمیش)
   translations:
     en: (There was once a king|Once there was a king|There was a king, they say).
@@ -30,7 +30,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول کاشغرغه بارمیش.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کاشغرغه, lexemes: [{lexeme: kashghar, surface: کاشغر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Kašǧarǧa}}, {surface: بارمیش, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: barmiš}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: کاشغرغه, lexemes: [{lexeme: kashghar, surface: کاشغر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Kašǧarǧa}}, {surface: بارمیش, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}], readings: {schluessel: barmiš}}]
       reverse: اول (کاشغرغه|کاشغرکه|کاشغرقه|کاشغرغا) بارمیش
   translations:
     en: (He|She) went to Kashgar, (they say|it is said|apparently).
@@ -39,7 +39,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اولار کلمیشلار.
-      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: کلمیشلار, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3pl, surface: لار}], readings: {schluessel: kälmišlär}}]
+      tokens: [{surface: اولار, lexemes: [{lexeme: ular, base: true}, {lexeme: nom}], readings: {schluessel: ular}}, {surface: کلمیشلار, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: kälmišlär}}]
       reverse: |-
         (اولار|الار) (کلمیشلار|کیلمیشلار)
         (اولار|الار) (کلمیش|کیلمیش)
@@ -50,7 +50,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول بیر کتاب یازمیش.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کتاب, lexeme: kitab, readings: {schluessel: kitāb}}, {surface: یازمیش, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: yazmiš}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کتاب, lexemes: [{lexeme: kitab, base: true}, {lexeme: nom}], readings: {schluessel: kitāb}}, {surface: یازمیش, lexemes: [{lexeme: yaz, surface: یاز, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}], readings: {schluessel: yazmiš}}]
       reverse: اول (بیر|بر) کتاب یازمیش
   translations:
     en: (He|She) wrote a book, (they say|it is said|apparently).
@@ -59,7 +59,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو شهرده سو یوق ایرمیش.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهرده, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: šahardä}}, {surface: سو, lexeme: su, readings: {schluessel: su}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: ermiš}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهرده, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: šahardä}}, {surface: سو, lexemes: [{lexeme: su, base: true}, {lexeme: nom}], readings: {schluessel: su}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}], readings: {schluessel: ermiš}}]
       reverse: بو (شهرده|شهردا) سو یوق (ایرمیش|ایمیش)
   translations:
     en: There was no water in this (city|town), (they say|it is said|apparently).
@@ -68,7 +68,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اولار مسلمان ایکان.
-      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: مسلمان, lexeme: musulman, readings: {schluessel: musulmān}}, {surface: ایکان, lexeme: ikan, readings: {schluessel: ikän}}]
+      tokens: [{surface: اولار, lexemes: [{lexeme: ular, base: true}, {lexeme: nom}], readings: {schluessel: ular}}, {surface: مسلمان, lexemes: [{lexeme: musulman, base: true}, {lexeme: nom}], readings: {schluessel: musulmān}}, {surface: ایکان, lexeme: ikan, readings: {schluessel: ikän}}]
       reverse: "(اولار|الار) مسلمان ایکان\n(اولار|الار) مسلمان ایکان\u200cدورلار\nمسلمان ایکان\u200cدورلار\nمسلمان ایکان"
   translations:
     en: They (were|are) Muslims, it (turned out|turns out|seems).
@@ -77,7 +77,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "مسلمان ایکان\u200cدورلار."
-      tokens: [{surface: مسلمان, lexeme: musulman, readings: {schluessel: musulmān}}, {surface: "ایکان\u200cدورلار", lexemes: [{lexeme: ikan, surface: "ایکان\u200c", base: true}, {lexeme: dur, surface: دور}, {lexeme: p3pl, surface: لار}], readings: {schluessel: ikändurlar}}]
+      tokens: [{surface: مسلمان, lexemes: [{lexeme: musulman, base: true}, {lexeme: nom}], readings: {schluessel: musulmān}}, {surface: "ایکان\u200cدورلار", lexemes: [{lexeme: ikan, surface: "ایکان\u200c", base: true}, {lexeme: cop.3pl, surface: دورلار}], readings: {schluessel: ikändurlar}}]
       reverse: "مسلمان ایکان\u200cدورلار\nمسلمان ایکان\n(اولار|الار) مسلمان ایکان\u200cدورلار\n(اولار|الار) مسلمان ایکان"
   translations:
     en: They were Muslims, it turned out.
@@ -86,7 +86,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: توخته آتلیغ بیر کشی.
-      tokens: [{surface: توخته, lexeme: tokhta, readings: {schluessel: Toḫta}}, {surface: آتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
+      tokens: [{surface: توخته, lexemes: [{lexeme: tokhta, base: true}, {lexeme: nom}], readings: {schluessel: Toḫta}}, {surface: آتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کشی, lexemes: [{lexeme: kishi, base: true}, {lexeme: nom}], readings: {schluessel: kiši}}]
       reverse: "توخته (آتلیغ|اتلیغ) (بیر|بر) (کشی|کیشی)\nتوخته (تیکان|دیکان) (کشی|کیشی)"
   translations:
     en: A (man|person) named Tokhta.
@@ -95,7 +95,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: یونان.
-      tokens: [{surface: یونان, lexeme: yunan, readings: {schluessel: Yūnān}}]
+      tokens: [{surface: یونان, lexemes: [{lexeme: yunan, base: true}, {lexeme: nom}], readings: {schluessel: Yūnān}}]
       reverse: یونان
   translations:
     en: Greece.
@@ -104,7 +104,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: یونان ملکی.
-      tokens: [{surface: یونان, lexeme: yunan, readings: {schluessel: Yūnān}}, {surface: ملکی, lexemes: [{lexeme: mulk, surface: ملک, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: mulki}}]
+      tokens: [{surface: یونان, lexemes: [{lexeme: yunan, base: true}, {lexeme: nom}], readings: {schluessel: Yūnān}}, {surface: ملکی, lexemes: [{lexeme: mulk, surface: ملک, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: mulki}}]
       reverse: یونان ملکی
   translations:
     en: The kingdom of Greece.
@@ -113,7 +113,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: افسوس شهری.
-      tokens: [{surface: افسوس, lexeme: afsus, readings: {schluessel: Afsūs}}, {surface: شهری, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: šahari}}]
+      tokens: [{surface: افسوس, lexemes: [{lexeme: afsus, base: true}, {lexeme: nom}], readings: {schluessel: Afsūs}}, {surface: شهری, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: šahari}}]
       reverse: افسوس شهری
   translations:
     en: The city of Ephesus.
@@ -122,7 +122,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر ملک.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ملک, lexeme: malik, readings: {schluessel: malik}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ملک, lexemes: [{lexeme: malik, base: true}, {lexeme: nom}], readings: {schluessel: malik}}]
       reverse: "(بیر |بر |)(پادشاه|بادشاه|فادشاه|شاه|ملک)"
   translations:
     en: A king.
@@ -131,7 +131,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ملک جبار.
-      tokens: [{surface: ملک, lexemes: [{lexeme: malik, surface: ملک, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: malik-i}}, {surface: جبار, lexeme: jabbar, readings: {schluessel: jabbār}}]
+      tokens: [{surface: ملک, lexemes: [{lexeme: malik, surface: ملک, base: true}, {lexeme: nom}, {lexeme: ezafe, surface: ''}], readings: {schluessel: malik-i}}, {surface: جبار, lexeme: jabbar, readings: {schluessel: jabbār}}]
       reverse: ملک (جبار|جبّار)
   translations:
     en: A (tyrant king|tyrannical king|mighty king).
@@ -140,7 +140,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: دقیانوس آتلیغ بیر ملک بار ایرمیش.
-      tokens: [{surface: دقیانوس, lexeme: daqyanus, readings: {schluessel: Daqyānūs}}, {surface: آتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ملک, lexeme: malik, readings: {schluessel: malik}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: ermiš}}]
+      tokens: [{surface: دقیانوس, lexemes: [{lexeme: daqyanus, base: true}, {lexeme: nom}], readings: {schluessel: Daqyānūs}}, {surface: آتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ملک, lexemes: [{lexeme: malik, base: true}, {lexeme: nom}], readings: {schluessel: malik}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}], readings: {schluessel: ermiš}}]
       reverse: دقیانوس (آتلیغ|اتلیغ) (بیر|بر) ملک بار (ایرمیش|ایمیش)
   translations:
     en: (There was once|Once there was|There was) a king named Decius.
@@ -149,7 +149,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قویچی.
-      tokens: [{surface: قویچی, lexeme: qoychi, readings: {schluessel: qoyči}}]
+      tokens: [{surface: قویچی, lexemes: [{lexeme: qoychi, base: true}, {lexeme: nom}], readings: {schluessel: qoyči}}]
       reverse: قویچی
   translations:
     en: (A|The) shepherd.
@@ -158,7 +158,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قویچینینک ایتی بار.
-      tokens: [{surface: قویچینینک, lexemes: [{lexeme: qoychi, surface: قویچی, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: qoyčiniŋ}}, {surface: ایتی, lexemes: [{lexeme: it, surface: ایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: iti}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: قویچینینک, lexemes: [{lexeme: qoychi, surface: قویچی, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: qoyčiniŋ}}, {surface: ایتی, lexemes: [{lexeme: it, surface: ایت, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: iti}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: قویچینینک ایتی بار
   translations:
     en: The shepherd has a dog.
@@ -167,7 +167,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایت قاچتی.
-      tokens: [{surface: ایت, lexeme: it, readings: {schluessel: it}}, {surface: قاچتی, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: past, surface: تی}], readings: {schluessel: qačti}}]
+      tokens: [{surface: ایت, lexemes: [{lexeme: it, base: true}, {lexeme: nom}], readings: {schluessel: it}}, {surface: قاچتی, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: past, surface: تی}, {lexeme: p3}], readings: {schluessel: qačti}}]
       reverse: ایت قاچتی
   translations:
     en: The dog ran away.
@@ -176,7 +176,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شهردین قاچیب، تاغغه باردیلار.
-      tokens: [{surface: شهردین, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: šahardin}}, {surface: قاچیب, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qačip}}, {surface: تاغغه, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: taǧǧa}}, {surface: باردیلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: bardilar}}]
+      tokens: [{surface: شهردین, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: šahardin}}, {surface: قاچیب, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qačip}}, {surface: تاغغه, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: taǧǧa}}, {surface: باردیلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: bardilar}}]
       reverse: |-
         (شهردین|شهردن) قاچیب (تاغغه|تاغکه|تاغقه|تاغغا) باردیلار
         (شهردین|شهردن) قاچیب (تاغغه|تاغکه|تاغقه|تاغغا) باردی
@@ -196,7 +196,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قویچی اولارغه قوشولدی.
-      tokens: [{surface: قویچی, lexeme: qoychi, readings: {schluessel: qoyči}}, {surface: اولارغه, lexemes: [{lexeme: ular, surface: اولار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ularǧa}}, {surface: قوشولدی, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: qošuldi}}]
+      tokens: [{surface: قویچی, lexemes: [{lexeme: qoychi, base: true}, {lexeme: nom}], readings: {schluessel: qoyči}}, {surface: اولارغه, lexemes: [{lexeme: ular, surface: اولار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ularǧa}}, {surface: قوشولدی, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: qošuldi}}]
       reverse: قویچی (اولارغه|اولارکه|اولارقه|اولارغا|الارغه|الارکه|الارقه|الارغا) قوشولدی
   translations:
     en: The shepherd joined them.
@@ -205,7 +205,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایتی هم قوشولدی.
-      tokens: [{surface: ایتی, lexemes: [{lexeme: it, surface: ایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: iti}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: قوشولدی, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: qošuldi}}]
+      tokens: [{surface: ایتی, lexemes: [{lexeme: it, surface: ایت, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: iti}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: قوشولدی, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: qošuldi}}]
       reverse: ایتی هم قوشولدی
   translations:
     en: (His|Her) dog joined (them|) too.
@@ -214,7 +214,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر غار.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: غار, lexeme: ghar, readings: {schluessel: ǧār}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: غار, lexemes: [{lexeme: ghar, base: true}, {lexeme: nom}], readings: {schluessel: ǧār}}]
       reverse: (بیر|بر) غار
   translations:
     en: A cave.
@@ -223,7 +223,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: غارغه کیردیلار.
-      tokens: [{surface: غارغه, lexemes: [{lexeme: ghar, surface: غار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ǧārǧa}}, {surface: کیردیلار, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: kirdilär}}]
+      tokens: [{surface: غارغه, lexemes: [{lexeme: ghar, surface: غار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ǧārǧa}}, {surface: کیردیلار, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: kirdilär}}]
       reverse: |-
         (غارغه|غارکه|غارقه|غارغا) (کیردیلار|کردیلار)
         (غارغه|غارکه|غارقه|غارغا) (کیردی|کردی)
@@ -234,7 +234,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: رقیم آتلیغ غارغه کیرمیشلار.
-      tokens: [{surface: رقیم, lexeme: raqim, readings: {schluessel: Raqīm}}, {surface: آتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: غارغه, lexemes: [{lexeme: ghar, surface: غار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ǧārǧa}}, {surface: کیرمیشلار, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3pl, surface: لار}], readings: {schluessel: kirmišlär}}]
+      tokens: [{surface: رقیم, lexemes: [{lexeme: raqim, base: true}, {lexeme: nom}], readings: {schluessel: Raqīm}}, {surface: آتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: غارغه, lexemes: [{lexeme: ghar, surface: غار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ǧārǧa}}, {surface: کیرمیشلار, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: kirmišlär}}]
       reverse: |-
         رقیم (آتلیغ|اتلیغ) (غارغه|غارکه|غارقه|غارغا) (کیرمیشلار|کرمیشلار)
         رقیم (آتلیغ|اتلیغ) (غارغه|غارکه|غارقه|غارغا) (کیرمیش|کرمیش)
@@ -245,7 +245,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بلا اویودی.
-      tokens: [{surface: بلا, lexeme: bala, readings: {schluessel: bala}}, {surface: اویودی, lexemes: [{lexeme: oyu, surface: اویو, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: oyudi}}]
+      tokens: [{surface: بلا, lexemes: [{lexeme: bala, base: true}, {lexeme: nom}], readings: {schluessel: bala}}, {surface: اویودی, lexemes: [{lexeme: oyu, surface: اویو, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: oyudi}}]
       reverse: (بلا|بالا) (اویودی|اویقدی)
   translations:
     en: The child (slept|fell asleep).
@@ -254,7 +254,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اوچ ییل اویومیشلار.
-      tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: ییل, lexeme: yil, readings: {schluessel: yil}}, {surface: اویومیشلار, lexemes: [{lexeme: oyu, surface: اویو, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3pl, surface: لار}], readings: {schluessel: oyumišlar}}]
+      tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: ییل, lexemes: [{lexeme: yil, base: true}, {lexeme: nom}], readings: {schluessel: yil}}, {surface: اویومیشلار, lexemes: [{lexeme: oyu, surface: اویو, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: oyumišlar}}]
       reverse: |-
         اوچ (ییل|یل) (اویومیشلار|اویقمیشلار)
         اوچ (ییل|یل) (اویومیش|اویقمیش)
@@ -265,7 +265,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تانک اتقانده، اویغاندیم.
-      tokens: [{surface: تانک, lexeme: tang, readings: {schluessel: taŋ}}, {surface: اتقانده, lexemes: [{lexeme: at.shoot, surface: ات, base: true}, {lexeme: pcp, surface: قان}, {lexeme: loc, surface: ده}], readings: {schluessel: atqanda}}, {surface: اویغاندیم, lexemes: [{lexeme: oyghan, surface: اویغان, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: oyǧandim}}]
+      tokens: [{surface: تانک, lexemes: [{lexeme: tang, base: true}, {lexeme: nom}], readings: {schluessel: taŋ}}, {surface: اتقانده, lexemes: [{lexeme: at.shoot, surface: ات, base: true}, {lexeme: pcp, surface: قان}, {lexeme: loc, surface: ده}], readings: {schluessel: atqanda}}, {surface: اویغاندیم, lexemes: [{lexeme: oyghan, surface: اویغان, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: oyǧandim}}]
       reverse: تانک (اتقانده|اتقاندا) [من] اویغاندیم
   translations:
     en: When dawn broke, I woke up.
@@ -274,7 +274,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اصحاب کهف.
-      tokens: [{surface: اصحاب, lexemes: [{lexeme: ashab, surface: اصحاب, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: aṣḥāb-i}}, {surface: کهف, lexeme: kahf, readings: {schluessel: kahf}}]
+      tokens: [{surface: اصحاب, lexemes: [{lexeme: ashab, surface: اصحاب, base: true}, {lexeme: nom}, {lexeme: ezafe, surface: ''}], readings: {schluessel: aṣḥāb-i}}, {surface: کهف, lexemes: [{lexeme: kahf, base: true}, {lexeme: nom}], readings: {schluessel: kahf}}]
       reverse: اصحاب کهف
   translations:
     en: The Companions of the Cave.
@@ -283,7 +283,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تنکری تعالی.
-      tokens: [{surface: تنکری, lexeme: tangri, readings: {schluessel: Täŋri}}, {surface: تعالی, lexeme: taala, readings: {schluessel: taʿālà}}]
+      tokens: [{surface: تنکری, lexemes: [{lexeme: tangri, base: true}, {lexeme: nom}], readings: {schluessel: Täŋri}}, {surface: تعالی, lexeme: taala, readings: {schluessel: taʿālà}}]
       reverse: (تنکری|تانکری) تعالی
   translations:
     en: God (the Exalted|Most High).
@@ -292,7 +292,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: پادشاهنینک امری بیله.
-      tokens: [{surface: پادشاهنینک, lexemes: [{lexeme: padishah, surface: پادشاه, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: pādišāhniŋ}}, {surface: امری, lexemes: [{lexeme: amr, surface: امر, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: amri}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}]
+      tokens: [{surface: پادشاهنینک, lexemes: [{lexeme: padishah, surface: پادشاه, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: pādišāhniŋ}}, {surface: امری, lexemes: [{lexeme: amr, surface: امر, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: amri}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}]
       reverse: (پادشاهنینک|بادشاهنینک|فادشاهنینک) امری (بیله|بیلان|بیرله)
   translations:
     en: (By|At) the king's command.
@@ -301,7 +301,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: رفیقیم کلمادی.
-      tokens: [{surface: رفیقیم, lexemes: [{lexeme: rafiq, surface: رفیق, base: true}, {lexeme: poss1s, surface: یم}], readings: {schluessel: rafīqim}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}], readings: {schluessel: kälmädi}}]
+      tokens: [{surface: رفیقیم, lexemes: [{lexeme: rafiq, surface: رفیق, base: true}, {lexeme: poss1s, surface: یم}, {lexeme: nom}], readings: {schluessel: rafīqim}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: kälmädi}}]
       reverse: رفیقیم (کلمادی|کیلمادی)
   translations:
     en: My (friend|companion) (did not|didn't) come.
@@ -310,7 +310,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر رفیقینی بزارغه یباردی.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: رفیقینی, lexemes: [{lexeme: rafiq, surface: رفیق, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: rafīqini}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: یباردی, lexemes: [{lexeme: yebar, surface: یبار, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: yebardi}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: رفیقینی, lexemes: [{lexeme: rafiq, surface: رفیق, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: rafīqini}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: یباردی, lexemes: [{lexeme: yebar, surface: یبار, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: yebardi}}]
       reverse: (بیر|بر) رفیقینی (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) (یباردی|ییباردی)
   translations:
     en: (He|She) sent a (friend|companion) (of his|of hers|) to the (market|bazaar).
@@ -319,7 +319,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تنکری تعالی امری بیله اویغانمیشلار.
-      tokens: [{surface: تنکری, lexeme: tangri, readings: {schluessel: Täŋri}}, {surface: تعالی, lexeme: taala, readings: {schluessel: taʿālà}}, {surface: امری, lexemes: [{lexeme: amr, surface: امر, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: amri}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}, {surface: اویغانمیشلار, lexemes: [{lexeme: oyghan, surface: اویغان, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3pl, surface: لار}], readings: {schluessel: oyǧanmišlar}}]
+      tokens: [{surface: تنکری, lexemes: [{lexeme: tangri, base: true}, {lexeme: nom}], readings: {schluessel: Täŋri}}, {surface: تعالی, lexeme: taala, readings: {schluessel: taʿālà}}, {surface: امری, lexemes: [{lexeme: amr, surface: امر, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: amri}}, {surface: بیله, lexeme: bila, readings: {schluessel: bilä}}, {surface: اویغانمیشلار, lexemes: [{lexeme: oyghan, surface: اویغان, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: oyǧanmišlar}}]
       reverse: |-
         (تنکری|تانکری) تعالی امری (بیله|بیلان|بیرله) اویغانمیشلار
         (تنکری|تانکری) تعالی امری (بیله|بیلان|بیرله) اویغانمیش
@@ -330,7 +330,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تملیخا دیکان رفیق.
-      tokens: [{surface: تملیخا, lexeme: tamlikha, readings: {schluessel: Tamlīḫā}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: رفیق, lexeme: rafiq, readings: {schluessel: rafīq}}]
+      tokens: [{surface: تملیخا, lexemes: [{lexeme: tamlikha, base: true}, {lexeme: nom}], readings: {schluessel: Tamlīḫā}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: رفیق, lexemes: [{lexeme: rafiq, base: true}, {lexeme: nom}], readings: {schluessel: rafīq}}]
       reverse: تملیخا دیکان رفیق
   translations:
     en: A (friend|companion) (called|named) Tamlikha.
@@ -339,7 +339,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: رفیقلارین شهرغه یبارمیشلار.
-      tokens: [{surface: رفیقلارین, lexemes: [{lexeme: rafiq, surface: رفیق, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: ن}], readings: {schluessel: rafīqlarin}}, {surface: شهرغه, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: šahargä}}, {surface: یبارمیشلار, lexemes: [{lexeme: yebar, surface: یبار, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3pl, surface: لار}], readings: {schluessel: yebarmišlär}}]
+      tokens: [{surface: رفیقلارین, lexemes: [{lexeme: rafiq, surface: رفیق, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: ن}], readings: {schluessel: rafīqlarin}}, {surface: شهرغه, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: šahargä}}, {surface: یبارمیشلار, lexemes: [{lexeme: yebar, surface: یبار, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: yebarmišlär}}]
       reverse: رفیقلارین (شهرغه|شهرکه|شهرقه|شهرغا) (یبارمیشلار|ییبارمیشلار)
   translations:
     en: They sent their (friend|companion) to the (city|town), (they say|it is said).
@@ -353,14 +353,14 @@ stories:
       forms:
         chg-Arab/standard:
           text: یونان ملکیدا افسوس شهریدا دقیانوس اتلیغ ملک جبّار بار ایرمیش.
-          tokens: [{surface: یونان, lexeme: yunan, readings: {schluessel: Yūnān}}, {surface: ملکیدا, lexemes: [{lexeme: mulk, surface: ملک, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: mulkida}}, {surface: افسوس, lexeme: afsus, readings: {schluessel: Afsūs}}, {surface: شهریدا, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: šaharida}}, {surface: دقیانوس, lexeme: daqyanus, readings: {schluessel: Daqyānūs}}, {surface: اتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: ملک, lexemes: [{lexeme: malik, surface: ملک, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: malik-i}}, {surface: جبّار, lexeme: jabbar, readings: {schluessel: jabbār}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: ermiš}}]
+          tokens: [{surface: یونان, lexemes: [{lexeme: yunan, base: true}, {lexeme: nom}], readings: {schluessel: Yūnān}}, {surface: ملکیدا, lexemes: [{lexeme: mulk, surface: ملک, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: mulkida}}, {surface: افسوس, lexemes: [{lexeme: afsus, base: true}, {lexeme: nom}], readings: {schluessel: Afsūs}}, {surface: شهریدا, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: šaharida}}, {surface: دقیانوس, lexemes: [{lexeme: daqyanus, base: true}, {lexeme: nom}], readings: {schluessel: Daqyānūs}}, {surface: اتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: ملک, lexemes: [{lexeme: malik, surface: ملک, base: true}, {lexeme: nom}, {lexeme: ezafe, surface: ''}], readings: {schluessel: malik-i}}, {surface: جبّار, lexeme: jabbar, readings: {schluessel: jabbār}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}], readings: {schluessel: ermiš}}]
       translations:
         en: In the kingdom of Greece, in the city of Ephesus, there was a tyrant king named Decius.
   - line:
       forms:
         chg-Arab/standard:
           text: "و مسلمان ایکان\u200cدورلار."
-          tokens: [{surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: مسلمان, lexeme: musulman, readings: {schluessel: musulmān}}, {surface: "ایکان\u200cدورلار", lexemes: [{lexeme: ikan, surface: "ایکان\u200c", base: true}, {lexeme: dur, surface: دور}, {lexeme: p3pl, surface: لار}], readings: {schluessel: ikändurlar}}]
+          tokens: [{surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: مسلمان, lexemes: [{lexeme: musulman, base: true}, {lexeme: nom}], readings: {schluessel: musulmān}}, {surface: "ایکان\u200cدورلار", lexemes: [{lexeme: ikan, surface: "ایکان\u200c", base: true}, {lexeme: cop.3pl, surface: دورلار}], readings: {schluessel: ikändurlar}}]
       translations:
         en: And they were Muslims.
   - choose:
@@ -380,7 +380,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "شهرلاریدین قاچیب… بر قویچیغه اوچراب، قویچی داغی الارغه قوشولوب، قویچی\u200cنینک ایتی هم قوشولوب، رقیم اتلیغ غارغه کرمیشلار."
-          tokens: [{surface: شهرلاریدین, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}, {lexeme: abl, surface: دین}], readings: {schluessel: šaharlaridin}}, {surface: قاچیب, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qačip}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: قویچیغه, lexemes: [{lexeme: qoychi, surface: قویچی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: qoyčiǧa}}, {surface: اوچراب, lexemes: [{lexeme: uchra, surface: اوچرا, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: učrap}}, {surface: قویچی, lexeme: qoychi, readings: {schluessel: qoyči}}, {surface: داغی, lexeme: daghi, readings: {schluessel: daǧi}}, {surface: الارغه, lexemes: [{lexeme: ular, surface: الار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: alarǧa}}, {surface: قوشولوب, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: qošulup}}, {surface: "قویچی\u200cنینک", lexemes: [{lexeme: qoychi, surface: "قویچی\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: qoyčiniŋ}}, {surface: ایتی, lexemes: [{lexeme: it, surface: ایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: iti}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: قوشولوب, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: qošulup}}, {surface: رقیم, lexeme: raqim, readings: {schluessel: Raqīm}}, {surface: اتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: غارغه, lexemes: [{lexeme: ghar, surface: غار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ǧārǧa}}, {surface: کرمیشلار, lexemes: [{lexeme: kir, surface: کر, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3pl, surface: لار}], readings: {schluessel: kirmišlär}}]
+          tokens: [{surface: شهرلاریدین, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}, {lexeme: abl, surface: دین}], readings: {schluessel: šaharlaridin}}, {surface: قاچیب, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qačip}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: قویچیغه, lexemes: [{lexeme: qoychi, surface: قویچی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: qoyčiǧa}}, {surface: اوچراب, lexemes: [{lexeme: uchra, surface: اوچرا, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: učrap}}, {surface: قویچی, lexemes: [{lexeme: qoychi, base: true}, {lexeme: nom}], readings: {schluessel: qoyči}}, {surface: داغی, lexeme: daghi, readings: {schluessel: daǧi}}, {surface: الارغه, lexemes: [{lexeme: ular, surface: الار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: alarǧa}}, {surface: قوشولوب, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: qošulup}}, {surface: "قویچی\u200cنینک", lexemes: [{lexeme: qoychi, surface: "قویچی\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: qoyčiniŋ}}, {surface: ایتی, lexemes: [{lexeme: it, surface: ایت, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: iti}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: قوشولوب, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: qošulup}}, {surface: رقیم, lexemes: [{lexeme: raqim, base: true}, {lexeme: nom}], readings: {schluessel: Raqīm}}, {surface: اتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: غارغه, lexemes: [{lexeme: ghar, surface: غار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ǧārǧa}}, {surface: کرمیشلار, lexemes: [{lexeme: kir, surface: کر, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: kirmišlär}}]
       translations:
         en: They fled their city … they met a shepherd, and the shepherd joined them, and the shepherd's dog joined them too, and they went into a cave called Raqim.
   - choose:
@@ -395,7 +395,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: … اوچ یوز توقوز یل اویومیشلار.
-          tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: یل, lexeme: yil, readings: {schluessel: yil}}, {surface: اویومیشلار, lexemes: [{lexeme: oyu, surface: اویو, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3pl, surface: لار}], readings: {schluessel: oyumišlar}}]
+          tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: یل, lexemes: [{lexeme: yil, base: true}, {lexeme: nom}], readings: {schluessel: yil}}, {surface: اویومیشلار, lexemes: [{lexeme: oyu, surface: اویو, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: oyumišlar}}]
       translations:
         en: … they slept for three hundred and nine years.
   - line:
@@ -403,14 +403,14 @@ stories:
       forms:
         chg-Arab/standard:
           text: اصحاب کهف تنکری تعالی امری بله اویغانمیشلار.
-          tokens: [{surface: اصحاب, lexemes: [{lexeme: ashab, surface: اصحاب, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: aṣḥāb-i}}, {surface: کهف, lexeme: kahf, readings: {schluessel: kahf}}, {surface: تنکری, lexeme: tangri, readings: {schluessel: Täŋri}}, {surface: تعالی, lexeme: taala, readings: {schluessel: taʿālà}}, {surface: امری, lexemes: [{lexeme: amr, surface: امر, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: amri}}, {surface: بله, lexeme: bila, readings: {schluessel: billä}}, {surface: اویغانمیشلار, lexemes: [{lexeme: oyghan, surface: اویغان, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3pl, surface: لار}], readings: {schluessel: oyǧanmišlar}}]
+          tokens: [{surface: اصحاب, lexemes: [{lexeme: ashab, surface: اصحاب, base: true}, {lexeme: nom}, {lexeme: ezafe, surface: ''}], readings: {schluessel: aṣḥāb-i}}, {surface: کهف, lexemes: [{lexeme: kahf, base: true}, {lexeme: nom}], readings: {schluessel: kahf}}, {surface: تنکری, lexemes: [{lexeme: tangri, base: true}, {lexeme: nom}], readings: {schluessel: Täŋri}}, {surface: تعالی, lexeme: taala, readings: {schluessel: taʿālà}}, {surface: امری, lexemes: [{lexeme: amr, surface: امر, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: amri}}, {surface: بله, lexeme: bila, readings: {schluessel: billä}}, {surface: اویغانمیشلار, lexemes: [{lexeme: oyghan, surface: اویغان, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: oyǧanmišlar}}]
       translations:
         en: By the command of God the Exalted, the Companions of the Cave woke up.
   - line:
       forms:
         chg-Arab/standard:
           text: و تملیخا دیکان رفیقلارین شهرغه یبارمیشلار.
-          tokens: [{surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: تملیخا, lexeme: tamlikha, readings: {schluessel: Tamlīḫā}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: رفیقلارین, lexemes: [{lexeme: rafiq, surface: رفیق, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: ن}], readings: {schluessel: rafīqlarin}}, {surface: شهرغه, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: šaharǧa}}, {surface: یبارمیشلار, lexemes: [{lexeme: yebar, surface: یبار, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3pl, surface: لار}], readings: {schluessel: yebarmišlär}}]
+          tokens: [{surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: تملیخا, lexemes: [{lexeme: tamlikha, base: true}, {lexeme: nom}], readings: {schluessel: Tamlīḫā}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: رفیقلارین, lexemes: [{lexeme: rafiq, surface: رفیق, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: ن}], readings: {schluessel: rafīqlarin}}, {surface: شهرغه, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: šaharǧa}}, {surface: یبارمیشلار, lexemes: [{lexeme: yebar, surface: یبار, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: yebarmišlär}}]
       translations:
         en: And they sent their companion called Tamlikha to the city.
   - choose:

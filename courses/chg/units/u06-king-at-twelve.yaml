@@ -21,7 +21,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من بزارغه باردیم.
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: باردیم, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: bardim}}]
+      tokens: [{surface: من, lexemes: [{lexeme: man, base: true}, {lexeme: nom}], readings: {schluessel: män}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: باردیم, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: bardim}}]
       reverse: '[من] (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) باردیم'
   translations:
     en: I went to the (market|bazaar).
@@ -30,7 +30,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول کاشغردین کلدی.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کاشغردین, lexemes: [{lexeme: kashghar, surface: کاشغر, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Kašǧardin}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: käldi}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: کاشغردین, lexemes: [{lexeme: kashghar, surface: کاشغر, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Kašǧardin}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: käldi}}]
       reverse: اول (کاشغردین|کاشغردن) (کلدی|کیلدی)
   translations:
     en: (He|She) came from Kashgar.
@@ -39,7 +39,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من بیر کتاب الدیم.
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کتاب, lexeme: kitab, readings: {schluessel: kitāb}}, {surface: الدیم, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: aldim}}]
+      tokens: [{surface: من, lexemes: [{lexeme: man, base: true}, {lexeme: nom}], readings: {schluessel: män}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کتاب, lexemes: [{lexeme: kitab, base: true}, {lexeme: nom}], readings: {schluessel: kitāb}}, {surface: الدیم, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: aldim}}]
       reverse: '[من] (بیر|بر) کتاب (الدیم|آلدیم)'
   translations:
     en: I (bought|took|got) a book.
@@ -48,7 +48,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من چای ایچتیم.
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: ایچتیم, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: past, surface: تی}, {lexeme: pp1s, surface: م}], readings: {schluessel: ičtim}}]
+      tokens: [{surface: من, lexemes: [{lexeme: man, base: true}, {lexeme: nom}], readings: {schluessel: män}}, {surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}, {surface: ایچتیم, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: past, surface: تی}, {lexeme: pp1s, surface: م}], readings: {schluessel: ičtim}}]
       reverse: '[من] چای ایچتیم'
   translations:
     en: I drank (tea|the tea|some tea).
@@ -57,7 +57,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول پادشاه بولدی.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: پادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: boldi}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: پادشاه, lexemes: [{lexeme: padishah, base: true}, {lexeme: nom}], readings: {schluessel: pādišāh}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: boldi}}]
       reverse: اول (پادشاه|بادشاه|فادشاه) بولدی
   translations:
     en: (He|She) became (king|the king|ruler).
@@ -66,7 +66,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من تاغنی کوردوم.
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: تاغنی, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: taǧni}}, {surface: کوردوم, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1s, surface: م}], readings: {schluessel: kördüm}}]
+      tokens: [{surface: من, lexemes: [{lexeme: man, base: true}, {lexeme: nom}], readings: {schluessel: män}}, {surface: تاغنی, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: taǧni}}, {surface: کوردوم, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1s, surface: م}], readings: {schluessel: kördüm}}]
       reverse: '[من] تاغنی کوردوم'
   translations:
     en: I saw the mountain.
@@ -75,7 +75,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: خما بیبی بزارغه باردی.
-      tokens: [{surface: خما, lexeme: khuma, readings: {schluessel: Ḫumā}}, {surface: بیبی, lexeme: bibi, readings: {schluessel: bibi}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: باردی, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: bardi}}]
+      tokens: [{surface: خما, lexemes: [{lexeme: khuma, base: true}, {lexeme: nom}], readings: {schluessel: Ḫumā}}, {surface: بیبی, lexemes: [{lexeme: bibi, base: true}, {lexeme: nom}], readings: {schluessel: bibi}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: باردی, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: bardi}}]
       reverse: خما بیبی (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) باردی
   translations:
     en: Mrs. Huma went to the (market|bazaar).
@@ -84,7 +84,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول بیر اوی سالدی.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: اوی, lexeme: oy, readings: {schluessel: öy}}, {surface: سالدی, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: saldi}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: اوی, lexemes: [{lexeme: oy, base: true}, {lexeme: nom}], readings: {schluessel: öy}}, {surface: سالدی, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: saldi}}]
       reverse: اول (بیر|بر) اوی سالدی
   translations:
     en: (He|She) built a house.
@@ -93,7 +93,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیز اندجانغه باردوق.
-      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: اندجانغه, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Andijānǧa}}, {surface: باردوق, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: barduq}}]
+      tokens: [{surface: بیز, lexemes: [{lexeme: biz, base: true}, {lexeme: nom}], readings: {schluessel: biz}}, {surface: اندجانغه, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Andijānǧa}}, {surface: باردوق, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: barduq}}]
       reverse: '[بیز] (اندجانغه|اندجانکه|اندجانقه|اندجانغا) (باردوق|باردوک)'
   translations:
     en: We went to Andijan.
@@ -102,7 +102,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سیز نمه کوردینکیز؟
-      tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: نمه, lexeme: nema, readings: {schluessel: nemä}}, {surface: کوردینکیز, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: past, surface: دی}, {lexeme: pp2, surface: نکیز}], readings: {schluessel: kördiŋiz}}]
+      tokens: [{surface: سیز, lexemes: [{lexeme: siz, base: true}, {lexeme: nom}], readings: {schluessel: siz}}, {surface: نمه, lexemes: [{lexeme: nema, base: true}, {lexeme: nom}], readings: {schluessel: nemä}}, {surface: کوردینکیز, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: past, surface: دی}, {lexeme: pp2, surface: نکیز}], readings: {schluessel: kördiŋiz}}]
       reverse: |-
         [سیز] (نمه|نیمه) کوردینکیز
         [سن] (نمه|نیمه) کوردونک
@@ -116,7 +116,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سن نمه الدینک؟
-      tokens: [{surface: سن, lexeme: san, readings: {schluessel: sän}}, {surface: نمه, lexeme: nema, readings: {schluessel: nemä}}, {surface: الدینک, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: past, surface: دی}, {lexeme: pp2s, surface: نک}], readings: {schluessel: aldiŋ}}]
+      tokens: [{surface: سن, lexemes: [{lexeme: san, base: true}, {lexeme: nom}], readings: {schluessel: sän}}, {surface: نمه, lexemes: [{lexeme: nema, base: true}, {lexeme: nom}], readings: {schluessel: nemä}}, {surface: الدینک, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: past, surface: دی}, {lexeme: pp2s, surface: نک}], readings: {schluessel: aldiŋ}}]
       reverse: |-
         [سن] (نمه|نیمه) (الدینک|آلدینک)
         [سیز] (نمه|نیمه) (الدینکیز|آلدینکیز)
@@ -129,7 +129,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سیزلار قایده باردینکلار؟
-      tokens: [{surface: سیزلار, lexeme: sizlar, readings: {schluessel: sizlär}}, {surface: قایده, lexeme: qayda, readings: {schluessel: qayda}}, {surface: باردینکلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}, {lexeme: pp2pl, surface: نکلار}], readings: {schluessel: bardiŋlar}}]
+      tokens: [{surface: سیزلار, lexemes: [{lexeme: sizlar, base: true}, {lexeme: nom}], readings: {schluessel: sizlär}}, {surface: قایده, lexeme: qayda, readings: {schluessel: qayda}}, {surface: باردینکلار, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دی}, {lexeme: pp2pl, surface: نکلار}], readings: {schluessel: bardiŋlar}}]
       reverse: |-
         [سیزلار] (قایده|قیده|قایدا) باردینکلار
         [سیز] (قایده|قیده|قایدا) باردینکیز
@@ -140,7 +140,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اولار سمرقنددین کلدیلار.
-      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: سمرقنددین, lexemes: [{lexeme: samarqand, surface: سمرقند, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Samarqanddin}}, {surface: کلدیلار, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: käldilär}}]
+      tokens: [{surface: اولار, lexemes: [{lexeme: ular, base: true}, {lexeme: nom}], readings: {schluessel: ular}}, {surface: سمرقنددین, lexemes: [{lexeme: samarqand, surface: سمرقند, base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: Samarqanddin}}, {surface: کلدیلار, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: käldilär}}]
       reverse: |-
         (اولار|الار) (سمرقنددین|سمرقنددن) (کلدیلار|کیلدیلار)
         (اولار|الار) (سمرقنددین|سمرقنددن) (کلدی|کیلدی)
@@ -151,7 +151,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیز نان و کوشت الدوق.
-      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: کوشت, lexeme: gosht, readings: {schluessel: göšt}}, {surface: الدوق, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: alduq}}]
+      tokens: [{surface: بیز, lexemes: [{lexeme: biz, base: true}, {lexeme: nom}], readings: {schluessel: biz}}, {surface: نان, lexemes: [{lexeme: nan, base: true}, {lexeme: nom}], readings: {schluessel: nan}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: کوشت, lexemes: [{lexeme: gosht, base: true}, {lexeme: nom}], readings: {schluessel: göšt}}, {surface: الدوق, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: alduq}}]
       reverse: '[بیز] نان و کوشت (الدوق|الدوک|آلدوق|آلدوک)'
   translations:
     en: We (bought|got) bread and meat.
@@ -160,7 +160,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سیز کتابنی اوقودینکیزمو؟
-      tokens: [{surface: سیز, lexeme: siz, readings: {schluessel: siz}}, {surface: کتابنی, lexemes: [{lexeme: kitab, surface: کتاب, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: kitābni}}, {surface: اوقودینکیزمو, lexemes: [{lexeme: oqu, surface: اوقو, base: true}, {lexeme: past, surface: دی}, {lexeme: pp2, surface: نکیز}, {lexeme: q, surface: مو}], readings: {schluessel: oqudiŋizmu}}]
+      tokens: [{surface: سیز, lexemes: [{lexeme: siz, base: true}, {lexeme: nom}], readings: {schluessel: siz}}, {surface: کتابنی, lexemes: [{lexeme: kitab, surface: کتاب, base: true}, {lexeme: acc, surface: نی}], readings: {schluessel: kitābni}}, {surface: اوقودینکیزمو, lexemes: [{lexeme: oqu, surface: اوقو, base: true}, {lexeme: past, surface: دی}, {lexeme: pp2, surface: نکیز}, {lexeme: q, surface: مو}], readings: {schluessel: oqudiŋizmu}}]
       reverse: |-
         [سیز] کتابنی اوقودینکیزمو
         [سن] کتابنی اوقودونکمو
@@ -172,7 +172,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بلا قایده؟
-      tokens: [{surface: بلا, lexeme: bala, readings: {schluessel: bala}}, {surface: قایده, lexeme: qayda, readings: {schluessel: qayda}}]
+      tokens: [{surface: بلا, lexemes: [{lexeme: bala, base: true}, {lexeme: nom}], readings: {schluessel: bala}}, {surface: قایده, lexeme: qayda, readings: {schluessel: qayda}}]
       reverse: "(بلا|بالا) (قایده|قیده|قایدا)\n(بلا|بالا) (قایده\u200cدور|قیده\u200cدور|قایدادور)"
   translations:
     en: Where is the child?
@@ -181,7 +181,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من کورمادیم.
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: کورمادیم, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: körmädim}}]
+      tokens: [{surface: من, lexemes: [{lexeme: man, base: true}, {lexeme: nom}], readings: {schluessel: män}}, {surface: کورمادیم, lexemes: [{lexeme: kor, surface: کور, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: körmädim}}]
       reverse: '[من] کورمادیم'
   translations:
     en: I (did not|didn't) see (it|him|her).
@@ -190,7 +190,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول کلمادی.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}], readings: {schluessel: kälmädi}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: kälmädi}}]
       reverse: اول (کلمادی|کیلمادی)
   translations:
     en: (He|She) (did not|didn't) come.
@@ -199,7 +199,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیز شراب ایچمادوق.
-      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: شراب, lexeme: sharab, readings: {schluessel: šarāb}}, {surface: ایچمادوق, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: ičmäduq}}]
+      tokens: [{surface: بیز, lexemes: [{lexeme: biz, base: true}, {lexeme: nom}], readings: {schluessel: biz}}, {surface: شراب, lexemes: [{lexeme: sharab, base: true}, {lexeme: nom}], readings: {schluessel: šarāb}}, {surface: ایچمادوق, lexemes: [{lexeme: ich, surface: ایچ, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: ičmäduq}}]
       reverse: '[بیز] شراب (ایچمادوق|ایچمادوک)'
   translations:
     en: We (did not|didn't) drink wine.
@@ -210,7 +210,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سن بزارغه بارمادینکمو؟
-      tokens: [{surface: سن, lexeme: san, readings: {schluessel: sän}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: بارمادینکمو, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}, {lexeme: pp2s, surface: نک}, {lexeme: q, surface: مو}], readings: {schluessel: barmadiŋmu}}]
+      tokens: [{surface: سن, lexemes: [{lexeme: san, base: true}, {lexeme: nom}], readings: {schluessel: sän}}, {surface: بزارغه, lexemes: [{lexeme: bazar, surface: بزار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: bazārǧa}}, {surface: بارمادینکمو, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}, {lexeme: pp2s, surface: نک}, {lexeme: q, surface: مو}], readings: {schluessel: barmadiŋmu}}]
       reverse: |-
         [سن] (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارمادینکمو
         [سیز] (بزارغه|بزارکه|بزارقه|بزارغا|بازارغه|بازارکه|بازارقه|بازارغا) بارمادینکیزمو
@@ -221,7 +221,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اولار نماز اوقومادیلار.
-      tokens: [{surface: اولار, lexeme: ular, readings: {schluessel: ular}}, {surface: نماز, lexeme: namaz, readings: {schluessel: namāz}}, {surface: اوقومادیلار, lexemes: [{lexeme: oqu, surface: اوقو, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: oqumadilar}}]
+      tokens: [{surface: اولار, lexemes: [{lexeme: ular, base: true}, {lexeme: nom}], readings: {schluessel: ular}}, {surface: نماز, lexemes: [{lexeme: namaz, base: true}, {lexeme: nom}], readings: {schluessel: namāz}}, {surface: اوقومادیلار, lexemes: [{lexeme: oqu, surface: اوقو, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: oqumadilar}}]
       reverse: |-
         (اولار|الار) نماز اوقومادیلار
         (اولار|الار) نماز اوقومادی
@@ -232,7 +232,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول پادشاه بولمادی.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: پادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: بولمادی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}], readings: {schluessel: bolmadi}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: پادشاه, lexemes: [{lexeme: padishah, base: true}, {lexeme: nom}], readings: {schluessel: pādišāh}}, {surface: بولمادی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: bolmadi}}]
       reverse: اول (پادشاه|بادشاه|فادشاه) بولمادی
   translations:
     en: (He|She) (did not|didn't) become (king|the king|ruler).
@@ -259,7 +259,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول اون ایکی یاشته پادشاه بولدی.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: اون, lexeme: 'on', readings: {schluessel: 'on'}}, {surface: ایکی, lexeme: ikki, readings: {schluessel: ikki}}, {surface: یاشته, lexemes: [{lexeme: yash, surface: یاش, base: true}, {lexeme: loc, surface: ته}], readings: {schluessel: yašta}}, {surface: پادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: boldi}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: اون, lexeme: 'on', readings: {schluessel: 'on'}}, {surface: ایکی, lexeme: ikki, readings: {schluessel: ikki}}, {surface: یاشته, lexemes: [{lexeme: yash, surface: یاش, base: true}, {lexeme: loc, surface: ته}], readings: {schluessel: yašta}}, {surface: پادشاه, lexemes: [{lexeme: padishah, base: true}, {lexeme: nom}], readings: {schluessel: pādišāh}}, {surface: بولدی, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: boldi}}]
       reverse: اول اون (ایکی|اکی) (یاشته|یاشده|یاشتا) (پادشاه|بادشاه|فادشاه) بولدی
   translations:
     en: (He|She) became (king|the king|ruler) at (the age of twelve|twelve years of age|twelve).
@@ -268,7 +268,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ییکرمه کشی کلدی.
-      tokens: [{surface: ییکرمه, lexeme: yigirma, readings: {schluessel: yigirmä}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: käldi}}]
+      tokens: [{surface: ییکرمه, lexeme: yigirma, readings: {schluessel: yigirmä}}, {surface: کشی, lexemes: [{lexeme: kishi, base: true}, {lexeme: nom}], readings: {schluessel: kiši}}, {surface: کلدی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: past, surface: دی}, {lexeme: p3}], readings: {schluessel: käldi}}]
       reverse: (ییکرمه|یکرمی|ییکرمی) (کشی|کیشی) (کلدی|کیلدی)
   translations:
     en: Twenty (people|men) came.
@@ -277,7 +277,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اوتوز قوی بار.
-      tokens: [{surface: اوتوز, lexeme: ottuz, readings: {schluessel: ottuz}}, {surface: قوی, lexeme: qoy, readings: {schluessel: qoy}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: اوتوز, lexeme: ottuz, readings: {schluessel: ottuz}}, {surface: قوی, lexemes: [{lexeme: qoy, base: true}, {lexeme: nom}], readings: {schluessel: qoy}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: اوتوز قوی بار
   translations:
     en: There are thirty sheep.
@@ -286,7 +286,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قیرق کون.
-      tokens: [{surface: قیرق, lexeme: qirq, readings: {schluessel: qirq}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}]
+      tokens: [{surface: قیرق, lexeme: qirq, readings: {schluessel: qirq}}, {surface: کون, lexemes: [{lexeme: kun, base: true}, {lexeme: nom}], readings: {schluessel: kün}}]
       reverse: قیرق کون
   translations:
     en: Forty days.
@@ -295,7 +295,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: الیک ییل.
-      tokens: [{surface: الیک, lexeme: allik, readings: {schluessel: ällik}}, {surface: ییل, lexeme: yil, readings: {schluessel: yil}}]
+      tokens: [{surface: الیک, lexeme: allik, readings: {schluessel: ällik}}, {surface: ییل, lexemes: [{lexeme: yil, base: true}, {lexeme: nom}], readings: {schluessel: yil}}]
       reverse: (الیک|ایللیک) (ییل|یل)
   translations:
     en: Fifty years.
@@ -313,7 +313,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: یوز ییل.
-      tokens: [{surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: ییل, lexeme: yil, readings: {schluessel: yil}}]
+      tokens: [{surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: ییل, lexemes: [{lexeme: yil, base: true}, {lexeme: nom}], readings: {schluessel: yil}}]
       reverse: یوز (ییل|یل)
   translations:
     en: ((A|One) hundred|100) years.
@@ -322,7 +322,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر مینک آط.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: مینک, lexeme: ming, readings: {schluessel: miŋ}}, {surface: آط, lexeme: at, readings: {schluessel: aṭ}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: مینک, lexeme: ming, readings: {schluessel: miŋ}}, {surface: آط, lexemes: [{lexeme: at, base: true}, {lexeme: nom}], readings: {schluessel: aṭ}}]
       reverse: |-
         (بیر|بر) مینک (آط|آت|ات)
         مینک (آط|آت|ات)
@@ -342,7 +342,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: رمضان آیی.
-      tokens: [{surface: رمضان, lexeme: ramzan, readings: {schluessel: Ramżān}}, {surface: آیی, lexemes: [{lexeme: ay.month, surface: آی, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: ayi}}]
+      tokens: [{surface: رمضان, lexemes: [{lexeme: ramzan, base: true}, {lexeme: nom}], readings: {schluessel: Ramżān}}, {surface: آیی, lexemes: [{lexeme: ay.month, surface: آی, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: ayi}}]
       reverse: رمضان (آیی|ایی)
   translations:
     en: The month of Ramadan.
@@ -351,7 +351,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایکینچی کون.
-      tokens: [{surface: ایکینچی, lexeme: ikkinchi, readings: {schluessel: ikkinči}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}]
+      tokens: [{surface: ایکینچی, lexeme: ikkinchi, readings: {schluessel: ikkinči}}, {surface: کون, lexemes: [{lexeme: kun, base: true}, {lexeme: nom}], readings: {schluessel: kün}}]
       reverse: (ایکینچی|اکینچی) کون
   translations:
     en: The second day.
@@ -360,7 +360,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیشینچی آی.
-      tokens: [{surface: بیشینچی, lexeme: bashinchi, readings: {schluessel: bäšinči}}, {surface: آی, lexeme: ay.month, readings: {schluessel: ay}}]
+      tokens: [{surface: بیشینچی, lexeme: bashinchi, readings: {schluessel: bäšinči}}, {surface: آی, lexemes: [{lexeme: ay.month, base: true}, {lexeme: nom}], readings: {schluessel: ay}}]
       reverse: بیشینچی (آی|ای)
   translations:
     en: The fifth month.
@@ -369,7 +369,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تاریخ توقوز یوز ایکیده.
-      tokens: [{surface: تاریخ, lexemes: [{lexeme: tarikh, surface: تاریخ, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: tārīḫ-i}}, {surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: ایکیده, lexemes: [{lexeme: ikki, surface: ایکی, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: ikkidä}}]
+      tokens: [{surface: تاریخ, lexemes: [{lexeme: tarikh, surface: تاریخ, base: true}, {lexeme: nom}, {lexeme: ezafe, surface: ''}], readings: {schluessel: tārīḫ-i}}, {surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: ایکیده, lexemes: [{lexeme: ikki, surface: ایکی, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: ikkidä}}]
       reverse: تاریخ (توقوز|توقز) یوز (ایکیده|ایکیدا|اکیده|اکیدا)
   translations:
     en: In the year 902.
@@ -378,7 +378,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "فرغانه ولایتی بیشینچی اقلیمدین\u200cدور."
-      tokens: [{surface: فرغانه, lexeme: farghana, readings: {schluessel: Farǧāna}}, {surface: ولایتی, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: wilāyati}}, {surface: بیشینچی, lexeme: bashinchi, readings: {schluessel: bäšinči}}, {surface: "اقلیمدین\u200cدور", lexemes: [{lexeme: iqlim, surface: اقلیم, base: true}, {lexeme: abl, surface: "دین\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: iqlīmdindur}}]
+      tokens: [{surface: فرغانه, lexemes: [{lexeme: farghana, base: true}, {lexeme: nom}], readings: {schluessel: Farǧāna}}, {surface: ولایتی, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: wilāyati}}, {surface: بیشینچی, lexeme: bashinchi, readings: {schluessel: bäšinči}}, {surface: "اقلیمدین\u200cدور", lexemes: [{lexeme: iqlim, surface: اقلیم, base: true}, {lexeme: abl, surface: "دین\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: iqlīmdindur}}]
       reverse: "فرغانه ولایتی بیشینچی (اقلیمدین\u200cدور|اقلیمدن\u200cدور)"
   translations:
     en: (Ferghana|The (country|province) of Ferghana|(The |)Ferghana (country|province)) is in the fifth clime.
@@ -387,7 +387,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر ایوان.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ایوان, lexeme: aywan, readings: {schluessel: aywān}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ایوان, lexemes: [{lexeme: aywan, base: true}, {lexeme: nom}], readings: {schluessel: aywān}}]
       reverse: (بیر|بر) ایوان
   translations:
     en: A portico.
@@ -396,7 +396,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایوانلیق حجره.
-      tokens: [{surface: ایوانلیق, lexeme: aywanliq, readings: {schluessel: aywānliq}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}]
+      tokens: [{surface: ایوانلیق, lexeme: aywanliq, readings: {schluessel: aywānliq}}, {surface: حجره, lexemes: [{lexeme: hujra, base: true}, {lexeme: nom}], readings: {schluessel: ḥujra}}]
       reverse: ایوانلیق حجره
   translations:
     en: A ((pavilion|room) (with|having) a portico|(portico|porticoed) (pavilion|room)).
@@ -405,7 +405,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر حجره سالدیم.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: سالدیم, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: saldim}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: حجره, lexemes: [{lexeme: hujra, base: true}, {lexeme: nom}], readings: {schluessel: ḥujra}}, {surface: سالدیم, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: saldim}}]
       reverse: '[من] (بیر|بر) حجره سالدیم'
   translations:
     en: I built a (pavilion|room).
@@ -414,7 +414,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: رمضان آییده کاشغرغه باردوق.
-      tokens: [{surface: رمضان, lexeme: ramzan, readings: {schluessel: Ramżān}}, {surface: آییده, lexemes: [{lexeme: ay.month, surface: آی, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: ayida}}, {surface: کاشغرغه, lexemes: [{lexeme: kashghar, surface: کاشغر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Kašǧarǧa}}, {surface: باردوق, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: barduq}}]
+      tokens: [{surface: رمضان, lexemes: [{lexeme: ramzan, base: true}, {lexeme: nom}], readings: {schluessel: Ramżān}}, {surface: آییده, lexemes: [{lexeme: ay.month, surface: آی, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: ayida}}, {surface: کاشغرغه, lexemes: [{lexeme: kashghar, surface: کاشغر, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Kašǧarǧa}}, {surface: باردوق, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: barduq}}]
       reverse: رمضان (آییده|آییدا|اییده|اییدا) (کاشغرغه|کاشغرکه|کاشغرقه|کاشغرغا) (باردوق|باردوک)
   translations:
     en: In the month of Ramadan we went to Kashgar.
@@ -428,7 +428,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "رمضان ایی، تاریخ سیکیز یوز توقسان توقوزدا، فرغانه ولایتی\u200cده اون ایکی یاشته بادشاه بولدوم."
-          tokens: [{surface: رمضان, lexeme: ramzan, readings: {schluessel: Ramżān}}, {surface: ایی, lexemes: [{lexeme: ay.month, surface: ای, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: ayi}}, {surface: تاریخ, lexemes: [{lexeme: tarikh, surface: تاریخ, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: tārīḫ-i}}, {surface: سیکیز, lexeme: sakkiz, readings: {schluessel: säkkiz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: توقسان, lexeme: toqsan, readings: {schluessel: toqsan}}, {surface: توقوزدا, lexemes: [{lexeme: toqquz, surface: توقوز, base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: toqquzda}}, {surface: فرغانه, lexeme: farghana, readings: {schluessel: Farǧāna}}, {surface: "ولایتی\u200cده", lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: loc, surface: ده}], readings: {schluessel: wilāyatidä}}, {surface: اون, lexeme: 'on', readings: {schluessel: 'on'}}, {surface: ایکی, lexeme: ikki, readings: {schluessel: ikki}}, {surface: یاشته, lexemes: [{lexeme: yash, surface: یاش, base: true}, {lexeme: loc, surface: ته}], readings: {schluessel: yašta}}, {surface: بادشاه, lexeme: padishah, readings: {schluessel: pādišāh}}, {surface: بولدوم, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1s, surface: م}], readings: {schluessel: boldum}}]
+          tokens: [{surface: رمضان, lexemes: [{lexeme: ramzan, base: true}, {lexeme: nom}], readings: {schluessel: Ramżān}}, {surface: ایی, lexemes: [{lexeme: ay.month, surface: ای, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: ayi}}, {surface: تاریخ, lexemes: [{lexeme: tarikh, surface: تاریخ, base: true}, {lexeme: nom}, {lexeme: ezafe, surface: ''}], readings: {schluessel: tārīḫ-i}}, {surface: سیکیز, lexeme: sakkiz, readings: {schluessel: säkkiz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: توقسان, lexeme: toqsan, readings: {schluessel: toqsan}}, {surface: توقوزدا, lexemes: [{lexeme: toqquz, surface: توقوز, base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: toqquzda}}, {surface: فرغانه, lexemes: [{lexeme: farghana, base: true}, {lexeme: nom}], readings: {schluessel: Farǧāna}}, {surface: "ولایتی\u200cده", lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: loc, surface: ده}], readings: {schluessel: wilāyatidä}}, {surface: اون, lexeme: 'on', readings: {schluessel: 'on'}}, {surface: ایکی, lexeme: ikki, readings: {schluessel: ikki}}, {surface: یاشته, lexemes: [{lexeme: yash, surface: یاش, base: true}, {lexeme: loc, surface: ته}], readings: {schluessel: yašta}}, {surface: بادشاه, lexemes: [{lexeme: padishah, base: true}, {lexeme: nom}], readings: {schluessel: pādišāh}}, {surface: بولدوم, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1s, surface: م}], readings: {schluessel: boldum}}]
       translations:
         en: In the month of Ramadan, in the year 899, in the country of Ferghana, I became king at twelve years of age.
   - choose:
@@ -448,14 +448,14 @@ stories:
       forms:
         chg-Arab/standard:
           text: "فرغانه ولایتی بیشینجی اقلیم\u200cدین\u200cدور."
-          tokens: [{surface: فرغانه, lexeme: farghana, readings: {schluessel: Farǧāna}}, {surface: ولایتی, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: wilāyati}}, {surface: بیشینجی, lexeme: bashinchi, readings: {schluessel: bäšinči}}, {surface: "اقلیم\u200cدین\u200cدور", lexemes: [{lexeme: iqlim, surface: "اقلیم\u200c", base: true}, {lexeme: abl, surface: "دین\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: iqlīmdindur}}]
+          tokens: [{surface: فرغانه, lexemes: [{lexeme: farghana, base: true}, {lexeme: nom}], readings: {schluessel: Farǧāna}}, {surface: ولایتی, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: wilāyati}}, {surface: بیشینجی, lexeme: bashinchi, readings: {schluessel: bäšinči}}, {surface: "اقلیم\u200cدین\u200cدور", lexemes: [{lexeme: iqlim, surface: "اقلیم\u200c", base: true}, {lexeme: abl, surface: "دین\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: iqlīmdindur}}]
       translations:
         en: The country of Ferghana is of the fifth clime.
   - line:
       forms:
         chg-Arab/standard:
           text: "تاریخ توقوز یوز ایکی\u200cدا مین بیر ایوانلیق حجره سالدیم."
-          tokens: [{surface: تاریخ, lexemes: [{lexeme: tarikh, surface: تاریخ, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: tārīḫ-i}}, {surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: "ایکی\u200cدا", lexemes: [{lexeme: ikki, surface: "ایکی\u200c", base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: ikkidä}}, {surface: مین, lexeme: man, readings: {schluessel: men}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ایوانلیق, lexeme: aywanliq, readings: {schluessel: aywānliq}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: سالدیم, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: saldim}}]
+          tokens: [{surface: تاریخ, lexemes: [{lexeme: tarikh, surface: تاریخ, base: true}, {lexeme: nom}, {lexeme: ezafe, surface: ''}], readings: {schluessel: tārīḫ-i}}, {surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: "ایکی\u200cدا", lexemes: [{lexeme: ikki, surface: "ایکی\u200c", base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: ikkidä}}, {surface: مین, lexemes: [{lexeme: man, base: true}, {lexeme: nom}], readings: {schluessel: men}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ایوانلیق, lexeme: aywanliq, readings: {schluessel: aywānliq}}, {surface: حجره, lexemes: [{lexeme: hujra, base: true}, {lexeme: nom}], readings: {schluessel: ḥujra}}, {surface: سالدیم, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: saldim}}]
       translations:
         en: In the year 902 I built a pavilion with a portico.
   - choose:

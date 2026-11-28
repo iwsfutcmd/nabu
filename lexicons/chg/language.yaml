@@ -6,17 +6,38 @@ provenance: {author: 'llm:claude@fca6dfeecaf7', status: draft}
 varieties: [chg]
 registers: [formal]
 dimensions:
-  NOUN: [Number, Case]
-  VERB: [Tense, Person, Number]
+  NOUN: [Number, 'Person[psor]', 'Number[psor]', Polite, Case]
+  PROPN: [Number, 'Person[psor]', Case]
+  PRON: ['Person[psor]', 'Number[psor]', Case]
+  ADJ: [Degree, 'Person[psor]', Case]
+  NUM: ['Person[psor]', Case]
+  DET: [Case]
+  ADV: [Degree, Number, 'Person[psor]', Case]
+  VERB: [Voice, Polarity, VerbForm, Tense, Aspect, Mood, Evident, Person, Number, Polite, Case]
+  AUX: [Polarity, VerbForm, Tense, Aspect, Mood, Evident, Person, Number, Polite]
+# What a word requires before it is whole (ADR 0158; docs/rules/chg.md): a noun, a name or a pronoun a case (the
+# nominative's is nothing: Schluessel 3.3.6), a verb a form (a finite tense or mood, a converb, a participle); a
+# finite tense then requires a person (the past's, the present's, or the third person's nothing). REVIEW.
+# A noun, a name or a pronoun is cited in the nominative, a verb as its stem (its hyphen: bar-).
+citation:
+  NOUN: {Case: Nom}
+  PROPN: {Case: Nom}
+  PRON: {Case: Nom}
+requires:
+  NOUN: [Case]
+  PROPN: [Case]
+  PRON: [Case]
+  VERB: [VerbForm]
+  AUX: [VerbForm]
 features:
   Aspect: [Hab, Imp, Perf]
-  Case: [Abl, Acc, Dat, Equ, Gen, Loc]
+  Case: [Nom, Gen, Acc, Dat, Loc, Abl, Equ]
   Degree: [Cmp]
   Evident: [Nfh]
   Mood: [Cnd, Imp, Jus, Opt, Prp]
   NounType: [Clf]
   NumType: [Card, Ord]
-  Number: [Plur, Sing]
+  Number: [Sing, Plur]
   Number[psor]: [Plur, Sing]
   PartType: [Int]
   Person: ['1', '2', '3']
@@ -26,8 +47,99 @@ features:
   PronType: [Dem, Ind, Int, Neg, Prs, Tot]
   Reflex: ['Yes']
   Tense: [Fut, Past, Pres]
-  VerbForm: [Conv, Part]
+  VerbForm: [Fin, Conv, Part]
   Voice: [Pass]
+# What the paradigms call each form (the gloss dialog, the Data page): a label for each cell, named with
+# Schluessel's terms (2018: 3.3 the cases, 4 the possessives, 5-13 the verb). REVIEW, every one.
+labels:
+- {feats: {Case: Dat}, gloss: {en: 'dative (to, for)'}}
+- {feats: {Degree: Cmp}, gloss: {en: 'comparative (-raq)'}}
+- {feats: {Case: Loc, Number: Plur, 'Person[psor]': '3'}, gloss: {en: 'plural, his, her, its, their, locative (in, at)'}}
+- {feats: {Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, gloss: {en: 'past (-di): I'}}
+- {feats: {Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}, gloss: {en: 'past (-di): we'}}
+- {feats: {Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'past (-di): he, she, it (or they: -lar may be left out)'}}
+- {feats: {Evident: Nfh, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'reported past (-miš: it is said): he, she, it (or they: -lar may be left out)'}}
+- {feats: {Case: Loc}, gloss: {en: 'locative (in, at)'}}
+- {feats: {Case: Abl}, gloss: {en: 'ablative (from)'}}
+- {feats: {Case: Nom}, gloss: {en: 'nominative'}}
+- {feats: {Case: Gen}, gloss: {en: 'genitive (of)'}}
+- {feats: {Case: Acc}, gloss: {en: 'accusative (the object)'}}
+- {feats: {Case: Equ}, gloss: {en: 'equative (like, in the manner of)'}}
+- {feats: {Case: Nom, 'Number[psor]': Plur, 'Person[psor]': '1'}, gloss: {en: 'our, nominative'}}
+- {feats: {Case: Nom, 'Number[psor]': Sing, 'Person[psor]': '1'}, gloss: {en: 'my, nominative'}}
+- {feats: {Case: Gen, 'Number[psor]': Sing, 'Person[psor]': '1'}, gloss: {en: 'my, genitive (of)'}}
+- {feats: {Case: Dat, 'Number[psor]': Sing, 'Person[psor]': '1'}, gloss: {en: 'my, dative (to, for)'}}
+- {feats: {Case: Nom, 'Person[psor]': '2', Polite: Form}, gloss: {en: 'your (politely, or to several), nominative'}}
+- {feats: {Case: Nom, 'Number[psor]': Plur, 'Person[psor]': '2'}, gloss: {en: 'your (to several, or with respect), nominative'}}
+- {feats: {Case: Nom, 'Number[psor]': Sing, 'Person[psor]': '2'}, gloss: {en: 'your (to a friend), nominative'}}
+- {feats: {Case: Nom, 'Person[psor]': '3'}, gloss: {en: 'his, her, its, their, nominative'}}
+- {feats: {Case: Gen, 'Person[psor]': '3'}, gloss: {en: 'his, her, its, their, genitive (of)'}}
+- {feats: {Case: Acc, 'Person[psor]': '3'}, gloss: {en: 'his, her, its, their, accusative (the object)'}}
+- {feats: {Case: Dat, 'Person[psor]': '3'}, gloss: {en: 'his, her, its, their, dative (to, for)'}}
+- {feats: {Case: Loc, 'Person[psor]': '3'}, gloss: {en: 'his, her, its, their, locative (in, at)'}}
+- {feats: {Case: Abl, 'Person[psor]': '3'}, gloss: {en: 'his, her, its, their, ablative (from)'}}
+- {feats: {Case: Nom, Number: Plur}, gloss: {en: 'plural, nominative'}}
+- {feats: {Case: Acc, Number: Plur}, gloss: {en: 'plural, accusative (the object)'}}
+- {feats: {Case: Loc, Number: Plur, 'Number[psor]': Plur, 'Person[psor]': '1'}, gloss: {en: 'plural, our, locative (in, at)'}}
+- {feats: {Case: Nom, Number: Plur, 'Person[psor]': '3'}, gloss: {en: 'plural, his, her, its, their, nominative'}}
+- {feats: {Case: Acc, Number: Plur, 'Person[psor]': '3'}, gloss: {en: 'plural, his, her, its, their, accusative (the object)'}}
+- {feats: {Case: Abl, Number: Plur, 'Person[psor]': '3'}, gloss: {en: 'plural, his, her, its, their, ablative (from)'}}
+- {feats: {'Person[psor]': '3'}, gloss: {en: 'his, her, its, their'}}
+- {feats: {Mood: Cnd, Number: Sing, Person: '1', VerbForm: Fin}, gloss: {en: 'conditional (-sa: if, when): I'}}
+- {feats: {Mood: Cnd, Number: Sing, Person: '2', VerbForm: Fin}, gloss: {en: 'conditional (-sa: if, when): you (to one)'}}
+- {feats: {Mood: Cnd, Person: '3', VerbForm: Fin}, gloss: {en: 'conditional (-sa: if, when): he, she, it (or they: -lar may be left out)'}}
+- {feats: {Mood: Imp, Person: '2', VerbForm: Fin}, gloss: {en: 'imperative (-iŋ): you (politely, or to several)'}}
+- {feats: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}, gloss: {en: 'imperative (the stem alone): you (to one)'}}
+- {feats: {Mood: Jus, Person: '3', VerbForm: Fin}, gloss: {en: 'jussive (-sun): let him, her, them'}}
+- {feats: {Mood: Opt, Number: Sing, Person: '1', VerbForm: Fin}, gloss: {en: 'optative (-ayin): let me'}}
+- {feats: {Mood: Opt, Number: Plur, Person: '1', VerbForm: Fin}, gloss: {en: 'optative (-ali): let us'}}
+- {feats: {Aspect: Perf, Evident: Nfh, Number: Sing, Person: '2', VerbForm: Fin}, gloss: {en: 'narrative past (-ptur: it is told): you (to one)'}}
+- {feats: {Aspect: Perf, Evident: Nfh, Person: '3', VerbForm: Fin}, gloss: {en: 'narrative past (-ptur: it is told): he, she, it (or they: -lar may be left out)'}}
+- {feats: {Number: Sing, Person: '1', Tense: Fut, VerbForm: Fin}, gloss: {en: 'future (-ǧay): I'}}
+- {feats: {Number: Plur, Person: '1', Tense: Fut, VerbForm: Fin}, gloss: {en: 'future (-ǧay): we'}}
+- {feats: {Person: '2', Polite: Form, Tense: Past, VerbForm: Fin}, gloss: {en: 'past (-di): you (politely, or to several)'}}
+- {feats: {Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}, gloss: {en: 'past (-di): you (to one)'}}
+- {feats: {Number: Plur, Person: '2', Tense: Past, VerbForm: Fin}, gloss: {en: 'past (-di): you (to several)'}}
+- {feats: {Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'past (-di): they'}}
+- {feats: {Evident: Nfh, Number: Plur, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'reported past (-miš: it is said): they'}}
+- {feats: {Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present-future (-a): I'}}
+- {feats: {Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present-future (-a): we'}}
+- {feats: {Person: '2', Polite: Form, Tense: Pres, VerbForm: Fin}, gloss: {en: 'present-future (-a): you (politely, or to several)'}}
+- {feats: {Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present-future (-a): you (to one)'}}
+- {feats: {Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present-future (-a): you (to several)'}}
+- {feats: {Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present-future (-a): he, she, it (or they: -lar may be left out)'}}
+- {feats: {Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present-future (-a): they'}}
+- {feats: {Aspect: Hab, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'aorist (-ur: as a rule): I'}}
+- {feats: {Aspect: Hab, Person: '2', Polite: Form, Tense: Pres, VerbForm: Fin}, gloss: {en: 'aorist (-ur: as a rule): you (politely, or to several)'}}
+- {feats: {Aspect: Hab, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'aorist (-ur: as a rule): you (to several)'}}
+- {feats: {Aspect: Hab, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'aorist (-ur: as a rule): he, she, it (or they: -lar may be left out)'}}
+- {feats: {Aspect: Hab, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'aorist (-ur: as a rule): they'}}
+- {feats: {VerbForm: Conv}, gloss: {en: 'the -ǧač converb (as soon as)'}}
+- {feats: {Mood: Prp, VerbForm: Conv}, gloss: {en: 'the -ǧali converb (in order to)'}}
+- {feats: {Aspect: Imp, VerbForm: Conv}, gloss: {en: 'the -a converb (doing)'}}
+- {feats: {Aspect: Perf, VerbForm: Conv}, gloss: {en: 'the -p converb (having done, and then)'}}
+- {feats: {Aspect: Hab, Case: Loc, VerbForm: Part}, gloss: {en: 'aorist participle (-ur: who does), locative (in, at)'}}
+- {feats: {Tense: Past, VerbForm: Part}, gloss: {en: 'past participle (-ǧan: who did)'}}
+- {feats: {Case: Loc, Tense: Past, VerbForm: Part}, gloss: {en: 'past participle (-ǧan: who did), locative (in, at)'}}
+- {feats: {Number: Sing, Person: '1', Tense: Past, VerbForm: Part}, gloss: {en: 'past participle (-ǧan: who did): I'}}
+- {feats: {Aspect: Perf, Evident: Nfh, Person: '3', Polarity: Neg, VerbForm: Fin}, gloss: {en: 'negative narrative past (-ptur: it is told): he, she, it (or they: -lar may be left out)'}}
+- {feats: {Number: Sing, Person: '1', Polarity: Neg, Tense: Past, VerbForm: Fin}, gloss: {en: 'negative past (-di): I'}}
+- {feats: {Number: Plur, Person: '1', Polarity: Neg, Tense: Past, VerbForm: Fin}, gloss: {en: 'negative past (-di): we'}}
+- {feats: {Number: Sing, Person: '2', Polarity: Neg, Tense: Past, VerbForm: Fin}, gloss: {en: 'negative past (-di): you (to one)'}}
+- {feats: {Person: '3', Polarity: Neg, Tense: Past, VerbForm: Fin}, gloss: {en: 'negative past (-di): he, she, it (or they: -lar may be left out)'}}
+- {feats: {Number: Plur, Person: '3', Polarity: Neg, Tense: Past, VerbForm: Fin}, gloss: {en: 'negative past (-di): they'}}
+- {feats: {Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative present-future (-a): I'}}
+- {feats: {Number: Plur, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative present-future (-a): we'}}
+- {feats: {Number: Sing, Person: '2', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative present-future (-a): you (to one)'}}
+- {feats: {Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative present-future (-a): he, she, it (or they: -lar may be left out)'}}
+- {feats: {Number: Plur, Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative present-future (-a): they'}}
+- {feats: {Aspect: Hab, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative aorist (-mas): I'}}
+- {feats: {Aspect: Hab, Number: Plur, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative aorist (-mas): we'}}
+- {feats: {Aspect: Hab, Person: '2', Polarity: Neg, Polite: Form, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative aorist (-mas): you (politely, or to several)'}}
+- {feats: {Aspect: Hab, Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative aorist (-mas): he, she, it (or they: -lar may be left out)'}}
+- {feats: {Polarity: Neg, VerbForm: Conv}, gloss: {en: 'the -may converb (without doing)'}}
+- {feats: {Polarity: Neg, Tense: Past, VerbForm: Part}, gloss: {en: 'negative past participle (-ǧan: who did)'}}
+- {feats: {Person: '3', Tense: Past, VerbForm: Fin, Voice: Pass}, gloss: {en: 'passive past (-di): he, she, it (or they: -lar may be left out)'}}
 # How chg writes a lexical form (docs/rules/chg.md): its Arabic spelling, the scribes' letters as the lexicon spells
 # the word, with three signs of its own: ە (U+06D5) a final he that writes a vowel (-a, -ä, -e: the letter of
 # Schluessel's typescript, which never joins what follows; 2018, xxx), ي (U+064A) a final ye that writes the

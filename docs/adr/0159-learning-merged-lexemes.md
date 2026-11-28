@@ -57,7 +57,9 @@ answer could have held one of them.**
    lexemes back into the base's values, so bundles stayed byte-identical; the format rises with step 3, when what a
    learner is credited for becomes the lexemes.
    An old event's `feature:` parts map, through aliases.yaml, to the lexemes its own token wrote where that is known;
-   the rest is re-learned.
+   the rest is re-learned. chg followed the same day (docs/rules/chg.md): its suffixes were lexemes already; they
+   now say what they merge onto, its words what they require, and its unmarked cells are zeros (the nominative, the
+   third person, the bare imperative), so every base has all its cells; its bundle gained paradigms and labels.
 3. **A typed word read back as lexemes**: the bundle's paradigm keyed by the lexemes merged, not by cell, so the
    device looks a word up and never realises (Rules notes). Credit and misses per lexeme; feedback names the lexeme
    that stood in another's place, and a word that breaks an `on` condition says which.

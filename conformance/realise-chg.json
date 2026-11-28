@@ -1330,6 +1330,9 @@
             "lexeme": "lexeme:aor"
           },
           {
+            "lexeme": "lexeme:p3"
+          },
+          {
             "lexeme": "lexeme:p3pl"
           }
         ],
@@ -1400,6 +1403,9 @@
           },
           {
             "lexeme": "lexeme:aor"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -1431,6 +1437,9 @@
           },
           {
             "lexeme": "lexeme:aor"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -1462,6 +1471,9 @@
           },
           {
             "lexeme": "lexeme:aor-neg"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -1488,6 +1500,9 @@
           },
           {
             "lexeme": "lexeme:aor"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -1514,6 +1529,9 @@
           },
           {
             "lexeme": "lexeme:poss1s"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -1545,6 +1563,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -1568,6 +1589,9 @@
           {
             "lexeme": "lexeme:aw",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -1599,6 +1623,9 @@
           },
           {
             "lexeme": "lexeme:poss3"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -1630,6 +1657,9 @@
           },
           {
             "lexeme": "lexeme:poss1s"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -1687,6 +1717,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -1984,6 +2017,9 @@
           {
             "lexeme": "lexeme:biz",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -2015,6 +2051,9 @@
           {
             "lexeme": "lexeme:biz",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -2132,6 +2171,9 @@
           {
             "lexeme": "lexeme:chapan",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -2243,6 +2285,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -2269,11 +2314,11 @@
         "lang": "chg",
         "lexemes": [
           {
-            "lexeme": "lexeme:qoy",
+            "lexeme": "lexeme:qoychi",
             "base": true
           },
           {
-            "lexeme": "lexeme:ci"
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -2284,45 +2329,12 @@
           "form": "قوي+چی",
           "status": "given",
           "steps": [],
-          "alternatives": [
-            {
-              "form": "قوي+جی"
-            }
-          ]
-        }
-      },
-      "note": "lexeme:ci's allomorph 0 ('چی': the rules' choice), in قویچی qoyči (s.10.15). -či"
-    },
-    {
-      "id": "realise/chg/ci/1",
-      "op": "realise-token",
-      "args": {
-        "lang": "chg",
-        "lexemes": [
-          {
-            "lexeme": "lexeme:qoy",
-            "base": true
-          },
-          {
-            "lexeme": "lexeme:ci"
+          "feats": {
+            "Case": "Nom"
           }
-        ],
-        "spellings": false
-      },
-      "expected": {
-        "ok": true,
-        "value": {
-          "form": "قوي+چی",
-          "status": "given",
-          "steps": [],
-          "alternatives": [
-            {
-              "form": "قوي+جی"
-            }
-          ]
         }
       },
-      "note": "lexeme:ci's allomorph 1 ('جی': a free variant), in قویچی qoyči (s.10.15). ج for č (the scheme's free č as چ or ج)"
+      "note": "lexeme:ci's allomorph 0 ('چی': the rules' choice), in قویچی qoyči (s.10.15). -či Since 2026-11-28 the word is lexeme:qoychi, a lexeme of its own: its form is what the suffix's allomorph gave."
     },
     {
       "id": "realise/chg/cilik/0",
@@ -2331,11 +2343,8 @@
         "lang": "chg",
         "lexemes": [
           {
-            "lexeme": "lexeme:kun",
+            "lexeme": "lexeme:kunchuluk",
             "base": true
-          },
-          {
-            "lexeme": "lexeme:cilik"
           }
         ],
         "spellings": false
@@ -2345,10 +2354,11 @@
         "value": {
           "form": "کون+جلوک",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {}
         }
       },
-      "note": "lexeme:cilik's allomorph 0 ('جلوک': the rules' choice), in کونجلوک künčülük (s.13.16). -čülük, as the course writes it"
+      "note": "lexeme:cilik's allomorph 0 ('جلوک': the rules' choice), in کونجلوک künčülük (s.13.16). -čülük, as the course writes it Since 2026-11-28 the word is lexeme:kunchuluk, a lexeme of its own: its form is what the suffix's allomorph gave."
     },
     {
       "id": "realise/chg/cmp/0",
@@ -2456,6 +2466,9 @@
           },
           {
             "lexeme": "lexeme:cond"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -2493,6 +2506,9 @@
           },
           {
             "lexeme": "lexeme:cond"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -2691,11 +2707,8 @@
         "lang": "chg",
         "lexemes": [
           {
-            "lexeme": "lexeme:jangal",
+            "lexeme": "lexeme:jangaldaqi",
             "base": true
-          },
-          {
-            "lexeme": "lexeme:daki"
           }
         ],
         "spellings": false
@@ -2706,14 +2719,10 @@
           "form": "جانکال+داقی",
           "status": "given",
           "steps": [],
-          "alternatives": [
-            {
-              "form": "جنکال+داقی"
-            }
-          ]
+          "feats": {}
         }
       },
-      "note": "lexeme:daki's allomorph 0 ('داقی': the rules' choice), in جانکالداقی jaŋgaldaqi (s.13.26). S 14.13 (p. 144): -daki/-däki, written داقی"
+      "note": "lexeme:daki's allomorph 0 ('داقی': the rules' choice), in جانکالداقی jaŋgaldaqi (s.13.26). S 14.13 (p. 144): -daki/-däki, written داقی Since 2026-11-28 the word is lexeme:jangaldaqi, a lexeme of its own: its form is what the suffix's allomorph gave."
     },
     {
       "id": "realise/chg/dat/0",
@@ -3008,6 +3017,9 @@
             "lexeme": "lexeme:aor"
           },
           {
+            "lexeme": "lexeme:p3"
+          },
+          {
             "lexeme": "lexeme:p3pl"
           }
         ],
@@ -3046,6 +3058,9 @@
           },
           {
             "lexeme": "lexeme:aor"
+          },
+          {
+            "lexeme": "lexeme:p3"
           },
           {
             "lexeme": "lexeme:p3pl"
@@ -3145,6 +3160,9 @@
             "lexeme": "lexeme:past"
           },
           {
+            "lexeme": "lexeme:p3"
+          },
+          {
             "lexeme": "lexeme:p3pl"
           }
         ],
@@ -3200,6 +3218,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -3265,7 +3286,7 @@
             "lexeme": "lexeme:pres"
           },
           {
-            "lexeme": "lexeme:dur"
+            "lexeme": "lexeme:p3.dur"
           }
         ],
         "spellings": false
@@ -3342,6 +3363,9 @@
             "base": true
           },
           {
+            "lexeme": "lexeme:nom"
+          },
+          {
             "lexeme": "lexeme:ezafe"
           }
         ],
@@ -3366,6 +3390,9 @@
           {
             "lexeme": "lexeme:tarikh",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           },
           {
             "lexeme": "lexeme:ezafe"
@@ -4065,6 +4092,9 @@
             "lexeme": "lexeme:past"
           },
           {
+            "lexeme": "lexeme:p3"
+          },
+          {
             "lexeme": "lexeme:ke"
           }
         ],
@@ -4094,6 +4124,9 @@
           {
             "lexeme": "lexeme:kecha",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -4125,6 +4158,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -4207,6 +4243,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -4235,6 +4274,9 @@
           {
             "lexeme": "lexeme:kishi",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -4266,6 +4308,9 @@
           },
           {
             "lexeme": "lexeme:poss3"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -4321,14 +4366,14 @@
         "lang": "chg",
         "lexemes": [
           {
-            "lexeme": "lexeme:aw",
+            "lexeme": "lexeme:awla",
             "base": true
           },
           {
-            "lexeme": "lexeme:la"
+            "lexeme": "lexeme:past"
           },
           {
-            "lexeme": "lexeme:past"
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -4339,14 +4384,21 @@
           "form": "آو+لا+دی",
           "status": "given",
           "steps": [],
+          "feats": {
+            "Tense": "Past",
+            "VerbForm": "Fin",
+            "Person": "3"
+          },
+          "inflected": true,
           "alternatives": [
             {
-              "form": "او+لا+دی"
+              "form": "او+لا+دی",
+              "steps": []
             }
           ]
         }
       },
-      "note": "lexeme:la's allomorph 0 ('لا': the rules' choice), in آولادی awladi (s.16.3). S 15.18 (p. 161): the denominative -la/-lä"
+      "note": "lexeme:la's allomorph 0 ('لا': the rules' choice), in آولادی awladi (s.16.3). S 15.18 (p. 161): the denominative -la/-lä Since 2026-11-28 the word is lexeme:awla, a lexeme of its own: its form is what the suffix's allomorph gave."
     },
     {
       "id": "realise/chg/let/0",
@@ -4386,11 +4438,8 @@
         "lang": "chg",
         "lexemes": [
           {
-            "lexeme": "lexeme:aywan",
+            "lexeme": "lexeme:aywanliq",
             "base": true
-          },
-          {
-            "lexeme": "lexeme:liq"
           }
         ],
         "spellings": false
@@ -4398,88 +4447,13 @@
       "expected": {
         "ok": true,
         "value": {
-          "form": "ایوان+لیک",
+          "form": "ایوان+لیق",
           "status": "given",
           "steps": [],
-          "alternatives": [
-            {
-              "form": "ایوان+لیق"
-            },
-            {
-              "form": "ایوان+لیغ"
-            }
-          ]
+          "feats": {}
         }
       },
-      "note": "lexeme:liq's allomorph 0 ('لیک': the rules' choice), in ایوانلیق aywānliq (s.06.40). S 7.6 (p. 50-51): -liq/-lik/-luq/-lük; 'most scribes did not distinguish them in writing'; the course's commonest"
-    },
-    {
-      "id": "realise/chg/liq/1",
-      "op": "realise-token",
-      "args": {
-        "lang": "chg",
-        "lexemes": [
-          {
-            "lexeme": "lexeme:aywan",
-            "base": true
-          },
-          {
-            "lexeme": "lexeme:liq"
-          }
-        ],
-        "spellings": false
-      },
-      "expected": {
-        "ok": true,
-        "value": {
-          "form": "ایوان+لیک",
-          "status": "given",
-          "steps": [],
-          "alternatives": [
-            {
-              "form": "ایوان+لیق"
-            },
-            {
-              "form": "ایوان+لیغ"
-            }
-          ]
-        }
-      },
-      "note": "lexeme:liq's allomorph 1 ('لیق': a free variant), in ایوانلیق aywānliq (s.06.40). S 7.6.2 (p. 50-51): -liq after a back vowel"
-    },
-    {
-      "id": "realise/chg/liq/2",
-      "op": "realise-token",
-      "args": {
-        "lang": "chg",
-        "lexemes": [
-          {
-            "lexeme": "lexeme:aywan",
-            "base": true
-          },
-          {
-            "lexeme": "lexeme:liq"
-          }
-        ],
-        "spellings": false
-      },
-      "expected": {
-        "ok": true,
-        "value": {
-          "form": "ایوان+لیک",
-          "status": "given",
-          "steps": [],
-          "alternatives": [
-            {
-              "form": "ایوان+لیق"
-            },
-            {
-              "form": "ایوان+لیغ"
-            }
-          ]
-        }
-      },
-      "note": "lexeme:liq's allomorph 2 ('لیغ': a free variant), in ایوانلیق aywānliq (s.06.40). S 7.6.1 (p. 50): -liǧ, the attributive"
+      "note": "lexeme:liq's allomorph 0 ('لیک': the rules' choice), in ایوانلیق aywānliq (s.06.40). S 7.6 (p. 50-51): -liq/-lik/-luq/-lük; 'most scribes did not distinguish them in writing'; the course's commonest Since 2026-11-28 the word is lexeme:aywanliq, a lexeme of its own: its form is what the suffix's allomorph gave."
     },
     {
       "id": "realise/chg/loc/0",
@@ -4586,6 +4560,9 @@
           {
             "lexeme": "lexeme:man",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -4645,6 +4622,9 @@
           },
           {
             "lexeme": "lexeme:mis"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -4785,6 +4765,9 @@
           },
           {
             "lexeme": "lexeme:narr"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -4816,6 +4799,9 @@
           },
           {
             "lexeme": "lexeme:narr"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -4850,6 +4836,9 @@
           },
           {
             "lexeme": "lexeme:narr"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -4881,6 +4870,9 @@
           },
           {
             "lexeme": "lexeme:narr"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -4912,6 +4904,9 @@
           },
           {
             "lexeme": "lexeme:narr"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -5037,11 +5032,11 @@
         "lang": "chg",
         "lexemes": [
           {
-            "lexeme": "lexeme:shahar",
+            "lexeme": "lexeme:shahari",
             "base": true
           },
           {
-            "lexeme": "lexeme:nisba"
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -5052,14 +5047,12 @@
           "form": "شهر+ی",
           "status": "given",
           "steps": [],
-          "alternatives": [
-            {
-              "form": "شهری+ی"
-            }
-          ]
+          "feats": {
+            "Case": "Nom"
+          }
         }
       },
-      "note": "lexeme:nisba's allomorph 0 ('ی': the rules' choice), in شهری šaharī (s.07.34). S 11.6 (p. 93): -ī"
+      "note": "lexeme:nisba's allomorph 0 ('ی': the rules' choice), in شهری šaharī (s.07.34). S 11.6 (p. 93): -ī Since 2026-11-28 the word is lexeme:shahari, a lexeme of its own: its form is what the suffix's allomorph gave."
     },
     {
       "id": "realise/chg/oghul/0",
@@ -5073,6 +5066,9 @@
           },
           {
             "lexeme": "lexeme:poss3"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -5160,11 +5156,8 @@
         "lang": "chg",
         "lexemes": [
           {
-            "lexeme": "lexeme:ikki",
+            "lexeme": "lexeme:ikkinchi",
             "base": true
-          },
-          {
-            "lexeme": "lexeme:ord"
           }
         ],
         "spellings": false
@@ -5175,14 +5168,12 @@
           "form": "ایکی+نچی",
           "status": "given",
           "steps": [],
-          "alternatives": [
-            {
-              "form": "ایکی+ینجی"
-            }
-          ]
+          "feats": {
+            "NumType": "Ord"
+          }
         }
       },
-      "note": "lexeme:ord's allomorph 0 ('نچی', {\"after\": {\"endsIn\": \"{V}\"}}: the rules' choice), in ایکینچی ikkinči (s.06.35). S 7.3.2 (p. 47): -nči after a vowel"
+      "note": "lexeme:ord's allomorph 0 ('نچی', {\"after\": {\"endsIn\": \"{V}\"}}: the rules' choice), in ایکینچی ikkinči (s.06.35). S 7.3.2 (p. 47): -nči after a vowel Since 2026-11-28 the word is lexeme:ikkinchi, a lexeme of its own: its form is what the suffix's allomorph gave."
     },
     {
       "id": "realise/chg/ord/1",
@@ -5191,11 +5182,8 @@
         "lang": "chg",
         "lexemes": [
           {
-            "lexeme": "lexeme:tort",
+            "lexeme": "lexeme:tortunchi",
             "base": true
-          },
-          {
-            "lexeme": "lexeme:ord"
           }
         ],
         "spellings": false
@@ -5206,113 +5194,18 @@
           "form": "تورت+ونچی",
           "status": "given",
           "steps": [],
-          "alternatives": [
-            {
-              "form": "تورت+ونجی"
-            },
-            {
-              "form": "تورت+ینجی"
-            }
-          ]
-        }
-      },
-      "note": "lexeme:ord's allomorph 1 ('ونچی', {\"after\": {\"endsIn\": \"و{C}{C}\"}}: the rules' choice), in تورتونچی törtünči (s.12.22). -ünči after a stem whose last vowel is written و (tört: two consonants after it)"
-    },
-    {
-      "id": "realise/chg/ord/2",
-      "op": "realise-token",
-      "args": {
-        "lang": "chg",
-        "lexemes": [
-          {
-            "lexeme": "lexeme:ikki",
-            "base": true
+          "feats": {
+            "NumType": "Ord"
           },
-          {
-            "lexeme": "lexeme:ord"
-          }
-        ],
-        "spellings": false
-      },
-      "expected": {
-        "ok": true,
-        "value": {
-          "form": "ایکی+نچی",
-          "status": "given",
-          "steps": [],
           "alternatives": [
             {
-              "form": "ایکی+ینجی"
+              "form": "تورت+ونجی",
+              "steps": []
             }
           ]
         }
       },
-      "note": "lexeme:ord's allomorph 2 ('ینچی': the rules' choice), in ایکینچی ikkinči (s.06.35). -inči after a consonant"
-    },
-    {
-      "id": "realise/chg/ord/3",
-      "op": "realise-token",
-      "args": {
-        "lang": "chg",
-        "lexemes": [
-          {
-            "lexeme": "lexeme:tort",
-            "base": true
-          },
-          {
-            "lexeme": "lexeme:ord"
-          }
-        ],
-        "spellings": false
-      },
-      "expected": {
-        "ok": true,
-        "value": {
-          "form": "تورت+ونچی",
-          "status": "given",
-          "steps": [],
-          "alternatives": [
-            {
-              "form": "تورت+ونجی"
-            },
-            {
-              "form": "تورت+ینجی"
-            }
-          ]
-        }
-      },
-      "note": "lexeme:ord's allomorph 3 ('ونجی', {\"after\": {\"endsIn\": \"و{C}{C}\"}}: a free variant), in تورتونچی törtünči (s.12.22). ج for č"
-    },
-    {
-      "id": "realise/chg/ord/4",
-      "op": "realise-token",
-      "args": {
-        "lang": "chg",
-        "lexemes": [
-          {
-            "lexeme": "lexeme:ikki",
-            "base": true
-          },
-          {
-            "lexeme": "lexeme:ord"
-          }
-        ],
-        "spellings": false
-      },
-      "expected": {
-        "ok": true,
-        "value": {
-          "form": "ایکی+نچی",
-          "status": "given",
-          "steps": [],
-          "alternatives": [
-            {
-              "form": "ایکی+ینجی"
-            }
-          ]
-        }
-      },
-      "note": "lexeme:ord's allomorph 4 ('ینجی': a free variant), in ایکینچی ikkinči (s.06.35). ج for č"
+      "note": "lexeme:ord's allomorph 1 ('ونچی', {\"after\": {\"endsIn\": \"و{C}{C}\"}}: the rules' choice), in تورتونچی törtünči (s.12.22). -ünči after a stem whose last vowel is written و (tört: two consonants after it) Since 2026-11-28 the word is lexeme:tortunchi, a lexeme of its own: its form is what the suffix's allomorph gave."
     },
     {
       "id": "realise/chg/ota/0",
@@ -5328,7 +5221,7 @@
             "lexeme": "lexeme:pres"
           },
           {
-            "lexeme": "lexeme:dur"
+            "lexeme": "lexeme:p3.dur"
           }
         ],
         "spellings": false
@@ -5382,7 +5275,10 @@
             "base": true
           },
           {
-            "lexeme": "lexeme:p1p"
+            "lexeme": "lexeme:nom"
+          },
+          {
+            "lexeme": "lexeme:cop.1p"
           }
         ],
         "spellings": false
@@ -5419,7 +5315,10 @@
             "base": true
           },
           {
-            "lexeme": "lexeme:p1p"
+            "lexeme": "lexeme:nom"
+          },
+          {
+            "lexeme": "lexeme:cop.1p"
           }
         ],
         "spellings": false
@@ -5456,7 +5355,10 @@
             "base": true
           },
           {
-            "lexeme": "lexeme:p1s"
+            "lexeme": "lexeme:nom"
+          },
+          {
+            "lexeme": "lexeme:cop.1s"
           }
         ],
         "spellings": false
@@ -5487,7 +5389,10 @@
             "base": true
           },
           {
-            "lexeme": "lexeme:p2"
+            "lexeme": "lexeme:nom"
+          },
+          {
+            "lexeme": "lexeme:cop.2"
           }
         ],
         "spellings": false
@@ -5513,7 +5418,10 @@
             "base": true
           },
           {
-            "lexeme": "lexeme:p2pl"
+            "lexeme": "lexeme:nom"
+          },
+          {
+            "lexeme": "lexeme:cop.2pl"
           }
         ],
         "spellings": false
@@ -5539,7 +5447,10 @@
             "base": true
           },
           {
-            "lexeme": "lexeme:p2s"
+            "lexeme": "lexeme:nom"
+          },
+          {
+            "lexeme": "lexeme:cop.2s"
           }
         ],
         "spellings": false
@@ -5576,7 +5487,10 @@
             "base": true
           },
           {
-            "lexeme": "lexeme:p2s"
+            "lexeme": "lexeme:nom"
+          },
+          {
+            "lexeme": "lexeme:cop.2s"
           }
         ],
         "spellings": false
@@ -5616,6 +5530,9 @@
             "lexeme": "lexeme:aor"
           },
           {
+            "lexeme": "lexeme:p3"
+          },
+          {
             "lexeme": "lexeme:p3pl"
           }
         ],
@@ -5651,6 +5568,9 @@
           {
             "lexeme": "lexeme:padishah",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -5682,6 +5602,9 @@
           {
             "lexeme": "lexeme:padishah",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -5713,6 +5636,9 @@
           {
             "lexeme": "lexeme:pahlawan",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -5744,6 +5670,9 @@
           },
           {
             "lexeme": "lexeme:poss1s"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -5778,6 +5707,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -5818,6 +5750,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -6254,6 +6189,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -6316,6 +6254,9 @@
           },
           {
             "lexeme": "lexeme:pl"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6342,6 +6283,9 @@
           },
           {
             "lexeme": "lexeme:poss1p"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6385,6 +6329,9 @@
           },
           {
             "lexeme": "lexeme:poss1p"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6422,6 +6369,9 @@
           },
           {
             "lexeme": "lexeme:poss1p"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6459,6 +6409,9 @@
           },
           {
             "lexeme": "lexeme:poss1p"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6496,6 +6449,9 @@
           },
           {
             "lexeme": "lexeme:poss1p"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6533,6 +6489,9 @@
           },
           {
             "lexeme": "lexeme:poss1p"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6570,6 +6529,9 @@
           },
           {
             "lexeme": "lexeme:poss1s"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6596,6 +6558,9 @@
           },
           {
             "lexeme": "lexeme:poss1s"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6622,6 +6587,9 @@
           },
           {
             "lexeme": "lexeme:poss1s"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6648,6 +6616,9 @@
           },
           {
             "lexeme": "lexeme:poss1s"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6674,6 +6645,9 @@
           },
           {
             "lexeme": "lexeme:poss2"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6705,6 +6679,9 @@
           },
           {
             "lexeme": "lexeme:poss2"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6742,6 +6719,9 @@
           },
           {
             "lexeme": "lexeme:poss2"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6779,6 +6759,9 @@
           },
           {
             "lexeme": "lexeme:poss2s"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6805,6 +6788,9 @@
           },
           {
             "lexeme": "lexeme:poss2s"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6842,6 +6828,9 @@
           },
           {
             "lexeme": "lexeme:poss2s"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6879,6 +6868,9 @@
           },
           {
             "lexeme": "lexeme:poss3"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -6905,6 +6897,9 @@
           },
           {
             "lexeme": "lexeme:poss3"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -7149,7 +7144,7 @@
             "lexeme": "lexeme:pres"
           },
           {
-            "lexeme": "lexeme:dur"
+            "lexeme": "lexeme:p3.dur"
           }
         ],
         "spellings": false
@@ -7202,6 +7197,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -7228,6 +7226,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -7287,7 +7288,7 @@
             "lexeme": "lexeme:pres"
           },
           {
-            "lexeme": "lexeme:dur"
+            "lexeme": "lexeme:p3.dur"
           }
         ],
         "spellings": false
@@ -7460,6 +7461,9 @@
           {
             "lexeme": "lexeme:san",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -7514,6 +7518,9 @@
           {
             "lexeme": "lexeme:shahar",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -7607,6 +7614,9 @@
           },
           {
             "lexeme": "lexeme:poss3"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -7633,6 +7643,9 @@
           },
           {
             "lexeme": "lexeme:poss3"
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -7733,6 +7746,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -7756,6 +7772,9 @@
           {
             "lexeme": "lexeme:turk",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           },
           {
             "lexeme": "lexeme:dur"
@@ -7824,6 +7843,9 @@
           },
           {
             "lexeme": "lexeme:narr"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -7947,6 +7969,9 @@
           {
             "lexeme": "lexeme:ular",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -8004,6 +8029,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -8056,6 +8084,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -8082,6 +8113,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -8113,6 +8147,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -8267,6 +8304,9 @@
             "base": true
           },
           {
+            "lexeme": "lexeme:nom"
+          },
+          {
             "lexeme": "lexeme:dur"
           }
         ],
@@ -8328,6 +8368,9 @@
           {
             "lexeme": "lexeme:yil",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:nom"
           }
         ],
         "spellings": false
@@ -8359,6 +8402,9 @@
           },
           {
             "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:p3"
           }
         ],
         "spellings": false
@@ -8416,6 +8462,9 @@
           {
             "lexeme": "lexeme:al",
             "base": true
+          },
+          {
+            "lexeme": "lexeme:imp.sg"
           }
         ],
         "spellings": false
@@ -8432,7 +8481,7 @@
           ]
         }
       },
-      "note": "rule:chg-stem: a verb cited bare (ال- al-) is written without its hyphen where no suffix follows: the bare imperative al! 'take!' (S 12.4, p. 109). Constructed: no token of the course is a bare verb."
+      "note": "rule:chg-stem: a verb cited bare (ال- al-) is written without its hyphen where no suffix follows: the bare imperative al! 'take!' (S 12.4, p. 109). With the bare imperative's zero (imp.sg); the course's one bare imperative is käl! (s.03.40)."
     }
   ]
 }

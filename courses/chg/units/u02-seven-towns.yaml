@@ -20,7 +20,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: نان بار.
-      tokens: [{surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: نان, lexemes: [{lexeme: nan, base: true}, {lexeme: nom}], readings: {schluessel: nan}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: |-
         نان بار
         نان باردور
@@ -31,7 +31,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: چای یوق.
-      tokens: [{surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: "چای یوق\nچای یوق\u200cدور"
   translations:
     en: There is no tea.
@@ -40,7 +40,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سو بار، نان یوق.
-      tokens: [{surface: سو, lexeme: su, readings: {schluessel: su}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: سو, lexemes: [{lexeme: su, base: true}, {lexeme: nom}], readings: {schluessel: su}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: نان, lexemes: [{lexeme: nan, base: true}, {lexeme: nom}], readings: {schluessel: nan}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: سو بار نان یوق
   translations:
     en: There is water, (but|and) (there is no bread|no bread).
@@ -49,7 +49,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایسیق چای بار.
-      tokens: [{surface: ایسیق, lexeme: issiq, readings: {schluessel: issiq}}, {surface: چای, lexeme: chay, readings: {schluessel: čay}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: ایسیق, lexeme: issiq, readings: {schluessel: issiq}}, {surface: چای, lexemes: [{lexeme: chay, base: true}, {lexeme: nom}], readings: {schluessel: čay}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: |-
         ایسیق چای بار
         ایسیق چای باردور
@@ -60,7 +60,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ارزان کوشت یوق.
-      tokens: [{surface: ارزان, lexeme: arzan, readings: {schluessel: ärzan}}, {surface: کوشت, lexeme: gosht, readings: {schluessel: göšt}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: ارزان, lexeme: arzan, readings: {schluessel: ärzan}}, {surface: کوشت, lexemes: [{lexeme: gosht, base: true}, {lexeme: nom}], readings: {schluessel: göšt}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: "(ارزان|آرزان) کوشت یوق\n(ارزان|آرزان) کوشت یوق\u200cدور"
   translations:
     en: There is no cheap meat.
@@ -69,7 +69,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قند بار، سوت یوق.
-      tokens: [{surface: قند, lexeme: qand, readings: {schluessel: qand}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: سوت, lexeme: sut, readings: {schluessel: süt}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: قند, lexemes: [{lexeme: qand, base: true}, {lexeme: nom}], readings: {schluessel: qand}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: سوت, lexemes: [{lexeme: sut, base: true}, {lexeme: nom}], readings: {schluessel: süt}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: قند بار سوت یوق
   translations:
     en: There is sugar, (but|and) (there is no milk|no milk).
@@ -78,7 +78,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر تاغ بار.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: تاغ, lexeme: tagh, readings: {schluessel: taǧ}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: تاغ, lexemes: [{lexeme: tagh, base: true}, {lexeme: nom}], readings: {schluessel: taǧ}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: (بیر|بر) تاغ بار
   translations:
     en: There is a mountain.
@@ -87,7 +87,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایکی کشی بار.
-      tokens: [{surface: ایکی, lexeme: ikki, readings: {schluessel: ikki}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: ایکی, lexeme: ikki, readings: {schluessel: ikki}}, {surface: کشی, lexemes: [{lexeme: kishi, base: true}, {lexeme: nom}], readings: {schluessel: kiši}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: (ایکی|اکی) (کشی|کیشی) بار
   translations:
     en: There are two (people|persons|men).
@@ -96,7 +96,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اوچ قوی بار.
-      tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: قوی, lexeme: qoy, readings: {schluessel: qoy}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: قوی, lexemes: [{lexeme: qoy, base: true}, {lexeme: nom}], readings: {schluessel: qoy}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: اوچ قوی بار
   translations:
     en: There are three sheep.
@@ -105,7 +105,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تورت آط بار.
-      tokens: [{surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: آط, lexeme: at, readings: {schluessel: aṭ}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: تورت, lexeme: tort, readings: {schluessel: tört}}, {surface: آط, lexemes: [{lexeme: at, base: true}, {lexeme: nom}], readings: {schluessel: aṭ}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: تورت (آط|آت|ات) بار
   translations:
     en: There are four horses.
@@ -114,7 +114,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بش بلا بار.
-      tokens: [{surface: بش, lexeme: bash, readings: {schluessel: bäš}}, {surface: بلا, lexeme: bala, readings: {schluessel: bala}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: بش, lexeme: bash, readings: {schluessel: bäš}}, {surface: بلا, lexemes: [{lexeme: bala, base: true}, {lexeme: nom}], readings: {schluessel: bala}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: (بش|بیش) (بلا|بالا) بار
   translations:
     en: There are five children.
@@ -123,7 +123,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: الته قوی.
-      tokens: [{surface: الته, lexeme: alta, readings: {schluessel: altä}}, {surface: قوی, lexeme: qoy, readings: {schluessel: qoy}}]
+      tokens: [{surface: الته, lexeme: alta, readings: {schluessel: altä}}, {surface: قوی, lexemes: [{lexeme: qoy, base: true}, {lexeme: nom}], readings: {schluessel: qoy}}]
       reverse: (الته|آلته|التی) قوی
   translations:
     en: Six sheep.
@@ -132,7 +132,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: یتی شهر.
-      tokens: [{surface: یتی, lexeme: yatti, readings: {schluessel: yätti}}, {surface: شهر, lexeme: shahar, readings: {schluessel: šahar}}]
+      tokens: [{surface: یتی, lexeme: yatti, readings: {schluessel: yätti}}, {surface: شهر, lexemes: [{lexeme: shahar, base: true}, {lexeme: nom}], readings: {schluessel: šahar}}]
       reverse: (یتی|ییتی|یته) شهر
   translations:
     en: Seven (cities|towns).
@@ -141,7 +141,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سکز تاغ.
-      tokens: [{surface: سکز, lexeme: sakkiz, readings: {schluessel: säkkiz}}, {surface: تاغ, lexeme: tagh, readings: {schluessel: taǧ}}]
+      tokens: [{surface: سکز, lexeme: sakkiz, readings: {schluessel: säkkiz}}, {surface: تاغ, lexemes: [{lexeme: tagh, base: true}, {lexeme: nom}], readings: {schluessel: taǧ}}]
       reverse: (سکز|سیکیز|سکیز) تاغ
   translations:
     en: Eight mountains.
@@ -150,7 +150,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: توقوز آط یوق.
-      tokens: [{surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: آط, lexeme: at, readings: {schluessel: aṭ}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: آط, lexemes: [{lexeme: at, base: true}, {lexeme: nom}], readings: {schluessel: aṭ}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: (توقوز|توقز) (آط|آت|ات) یوق
   translations:
     en: There (are not|aren't) nine horses.
@@ -159,7 +159,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اون کشی بار.
-      tokens: [{surface: اون, lexeme: 'on', readings: {schluessel: 'on'}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: اون, lexeme: 'on', readings: {schluessel: 'on'}}, {surface: کشی, lexemes: [{lexeme: kishi, base: true}, {lexeme: nom}], readings: {schluessel: kiši}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: اون (کشی|کیشی) بار
   translations:
     en: There are ten (people|persons|men).
@@ -168,7 +168,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بلا یوق.
-      tokens: [{surface: بلا, lexeme: bala, readings: {schluessel: bala}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: بلا, lexemes: [{lexeme: bala, base: true}, {lexeme: nom}], readings: {schluessel: bala}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: (بلا|بالا) یوق
   translations:
     en: There (is no child|are no children).
@@ -177,7 +177,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اویده نان بار.
-      tokens: [{surface: اویده, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: öydä}}, {surface: نان, lexeme: nan, readings: {schluessel: nan}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: اویده, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: öydä}}, {surface: نان, lexemes: [{lexeme: nan, base: true}, {lexeme: nom}], readings: {schluessel: nan}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: |-
         (اویده|اویدا) نان بار
         نان (اویده|اویدا) بار
@@ -188,7 +188,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: باغده سو یوق.
-      tokens: [{surface: باغده, lexemes: [{lexeme: bagh, surface: باغ, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: bāǧda}}, {surface: سو, lexeme: su, readings: {schluessel: su}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: باغده, lexemes: [{lexeme: bagh, surface: باغ, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: bāǧda}}, {surface: سو, lexemes: [{lexeme: su, base: true}, {lexeme: nom}], readings: {schluessel: su}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: (باغده|باغدا) سو یوق
   translations:
     en: There is no water in the (garden|orchard).
@@ -197,7 +197,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شهرده بش باغ بار.
-      tokens: [{surface: شهرده, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: šahardä}}, {surface: بش, lexeme: bash, readings: {schluessel: bäš}}, {surface: باغ, lexeme: bagh, readings: {schluessel: bāǧ}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: شهرده, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: šahardä}}, {surface: بش, lexeme: bash, readings: {schluessel: bäš}}, {surface: باغ, lexemes: [{lexeme: bagh, base: true}, {lexeme: nom}], readings: {schluessel: bāǧ}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: (شهرده|شهردا) (بش|بیش) باغ بار
   translations:
     en: There are five (gardens|orchards) in the (city|town).
@@ -206,7 +206,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تاغده قوی بار.
-      tokens: [{surface: تاغده, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: taǧda}}, {surface: قوی, lexeme: qoy, readings: {schluessel: qoy}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: تاغده, lexemes: [{lexeme: tagh, surface: تاغ, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: taǧda}}, {surface: قوی, lexemes: [{lexeme: qoy, base: true}, {lexeme: nom}], readings: {schluessel: qoy}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: (تاغده|تاغدا) قوی بار
   translations:
     en: There are sheep on the mountain.
@@ -215,7 +215,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بلا اویده.
-      tokens: [{surface: بلا, lexeme: bala, readings: {schluessel: bala}}, {surface: اویده, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: öydä}}]
+      tokens: [{surface: بلا, lexemes: [{lexeme: bala, base: true}, {lexeme: nom}], readings: {schluessel: bala}}, {surface: اویده, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: öydä}}]
       reverse: "(بلا|بالا) (اویده|اویدا)\n(بلا|بالا) (اویده\u200cدور|اویدا\u200cدور)"
   translations:
     en: The child is (in the house|at home|in the room).
@@ -224,7 +224,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو یرده کشی یوق.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یرده, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: yärdä}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: یرده, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: yärdä}}, {surface: کشی, lexemes: [{lexeme: kishi, base: true}, {lexeme: nom}], readings: {schluessel: kiši}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: بو (یرده|یردا|یارده|یاردا) (کشی|کیشی) یوق
   translations:
     en: There is no one (in|at) this place.
@@ -233,7 +233,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اول شهرده آط یوق.
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: شهرده, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: šahardä}}, {surface: آط, lexeme: at, readings: {schluessel: aṭ}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: شهرده, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: šahardä}}, {surface: آط, lexemes: [{lexeme: at, base: true}, {lexeme: nom}], readings: {schluessel: aṭ}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: اول (شهرده|شهردا) (آط|آت|ات) یوق
   translations:
     en: There are no horses in that (city|town).
@@ -242,7 +242,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اول باغ چونک\u200cدور."
-      tokens: [{surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: باغ, lexeme: bagh, readings: {schluessel: bāǧ}}, {surface: "چونک\u200cدور", lexemes: [{lexeme: chong, surface: "چونک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: čoŋdur}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: باغ, lexemes: [{lexeme: bagh, base: true}, {lexeme: nom}], readings: {schluessel: bāǧ}}, {surface: "چونک\u200cدور", lexemes: [{lexeme: chong, surface: "چونک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: čoŋdur}}]
       reverse: "اول باغ چونک\u200cدور"
   translations:
     en: That (garden|orchard) is (big|large).
@@ -251,7 +251,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: جنوب طرفی.
-      tokens: [{surface: جنوب, lexeme: janub, readings: {schluessel: janūb}}, {surface: طرفی, lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: ṭarafi}}]
+      tokens: [{surface: جنوب, lexemes: [{lexeme: janub, base: true}, {lexeme: nom}], readings: {schluessel: janūb}}, {surface: طرفی, lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: ṭarafi}}]
       reverse: جنوب طرفی
   translations:
     en: (The|Its) south side.
@@ -260,7 +260,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شمال طرفیده تاغ بار.
-      tokens: [{surface: شمال, lexeme: shimal, readings: {schluessel: šimāl}}, {surface: طرفیده, lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: ṭarafida}}, {surface: تاغ, lexeme: tagh, readings: {schluessel: taǧ}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: شمال, lexemes: [{lexeme: shimal, base: true}, {lexeme: nom}], readings: {schluessel: šimāl}}, {surface: طرفیده, lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: ṭarafida}}, {surface: تاغ, lexemes: [{lexeme: tagh, base: true}, {lexeme: nom}], readings: {schluessel: taǧ}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: شمال (طرفیده|طرفیدا) تاغ بار
   translations:
     en: There are mountains on the north side.
@@ -269,7 +269,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شرق طرفیده شهر یوق.
-      tokens: [{surface: شرق, lexeme: sharq, readings: {schluessel: šarq}}, {surface: طرفیده, lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: ṭarafida}}, {surface: شهر, lexeme: shahar, readings: {schluessel: šahar}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: شرق, lexemes: [{lexeme: sharq, base: true}, {lexeme: nom}], readings: {schluessel: šarq}}, {surface: طرفیده, lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: ṭarafida}}, {surface: شهر, lexemes: [{lexeme: shahar, base: true}, {lexeme: nom}], readings: {schluessel: šahar}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: شرق (طرفیده|طرفیدا) شهر یوق
   translations:
     en: There (is no city|are no cities|is no town|are no towns) on the east side.
@@ -278,7 +278,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: غرب طرفیده تاغ یوق.
-      tokens: [{surface: غرب, lexeme: gharb, readings: {schluessel: ǧarb}}, {surface: طرفیده, lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: ṭarafida}}, {surface: تاغ, lexeme: tagh, readings: {schluessel: taǧ}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: غرب, lexemes: [{lexeme: gharb, base: true}, {lexeme: nom}], readings: {schluessel: ǧarb}}, {surface: طرفیده, lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: ده}], readings: {schluessel: ṭarafida}}, {surface: تاغ, lexemes: [{lexeme: tagh, base: true}, {lexeme: nom}], readings: {schluessel: taǧ}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: غرب (طرفیده|طرفیدا) تاغ یوق
   translations:
     en: There are no mountains on the west side.
@@ -287,7 +287,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شمال جانبی.
-      tokens: [{surface: شمال, lexeme: shimal, readings: {schluessel: šimāl}}, {surface: جانبی, lexemes: [{lexeme: janib, surface: جانب, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: jānibi}}]
+      tokens: [{surface: شمال, lexemes: [{lexeme: shimal, base: true}, {lexeme: nom}], readings: {schluessel: šimāl}}, {surface: جانبی, lexemes: [{lexeme: janib, surface: جانب, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: jānibi}}]
       reverse: شمال جانبی
   translations:
     en: (The|Its) north side.
@@ -296,7 +296,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر دروازه بار.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: دروازه, lexeme: darwaza, readings: {schluessel: darwāza}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: دروازه, lexemes: [{lexeme: darwaza, base: true}, {lexeme: nom}], readings: {schluessel: darwāza}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: (بیر|بر) دروازه بار
   translations:
     en: There is a gate.
@@ -305,7 +305,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اوچ دروازه\u200cسی بار."
-      tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: "دروازه\u200cسی", lexemes: [{lexeme: darwaza, surface: "دروازه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: darwāzasi}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: "دروازه\u200cسی", lexemes: [{lexeme: darwaza, surface: "دروازه\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: darwāzasi}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: "اوچ دروازه\u200cسی بار"
   translations:
     en: (It has|There are) three gates.
@@ -314,7 +314,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "یتی پاره قصبه\u200cسی بار."
-      tokens: [{surface: یتی, lexeme: yatti, readings: {schluessel: yätti}}, {surface: پاره, lexeme: para, readings: {schluessel: pāra}}, {surface: "قصبه\u200cسی", lexemes: [{lexeme: qasaba, surface: "قصبه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: qaṣabasi}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: یتی, lexeme: yatti, readings: {schluessel: yätti}}, {surface: پاره, lexemes: [{lexeme: para, base: true}, {lexeme: nom}], readings: {schluessel: pāra}}, {surface: "قصبه\u200cسی", lexemes: [{lexeme: qasaba, surface: "قصبه\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: qaṣabasi}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: "(یتی|ییتی|یته) پاره قصبه\u200cسی بار\n(یتی|ییتی|یته) قصبه\u200cسی بار"
   translations:
     en: (It has|There are) seven towns.
@@ -323,7 +323,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اندجان چونک شهردور.
-      tokens: [{surface: اندجان, lexeme: andijan, readings: {schluessel: Andijān}}, {surface: چونک, lexeme: chong, readings: {schluessel: čoŋ}}, {surface: شهردور, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: šahardur}}]
+      tokens: [{surface: اندجان, lexemes: [{lexeme: andijan, base: true}, {lexeme: nom}], readings: {schluessel: Andijān}}, {surface: چونک, lexeme: chong, readings: {schluessel: čoŋ}}, {surface: شهردور, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: nom}, {lexeme: dur, surface: دور}], readings: {schluessel: šahardur}}]
       reverse: اندجان چونک شهردور
   translations:
     en: Andijan is a (big|large) (city|town).
@@ -332,7 +332,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "شهرنینک دروازه\u200cسی."
-      tokens: [{surface: شهرنینک, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: šaharniŋ}}, {surface: "دروازه\u200cسی", lexemes: [{lexeme: darwaza, surface: "دروازه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: darwāzasi}}]
+      tokens: [{surface: شهرنینک, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: šaharniŋ}}, {surface: "دروازه\u200cسی", lexemes: [{lexeme: darwaza, surface: "دروازه\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: darwāzasi}}]
       reverse: "شهرنینک دروازه\u200cسی\nشهر دروازه\u200cسی"
   translations:
     en: The (city's|town's) gate.
@@ -341,7 +341,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اندجاننینک اوچ دروازه\u200cسی بار."
-      tokens: [{surface: اندجاننینک, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Andijānniŋ}}, {surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: "دروازه\u200cسی", lexemes: [{lexeme: darwaza, surface: "دروازه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: darwāzasi}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: اندجاننینک, lexemes: [{lexeme: andijan, surface: اندجان, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Andijānniŋ}}, {surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: "دروازه\u200cسی", lexemes: [{lexeme: darwaza, surface: "دروازه\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: darwāzasi}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: "اندجاننینک اوچ دروازه\u200cسی بار"
   translations:
     en: Andijan has three gates.
@@ -350,7 +350,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اوینینک باغی یوق.
-      tokens: [{surface: اوینینک, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: öyniŋ}}, {surface: باغی, lexemes: [{lexeme: bagh, surface: باغ, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: bāǧi}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: اوینینک, lexemes: [{lexeme: oy, surface: اوی, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: öyniŋ}}, {surface: باغی, lexemes: [{lexeme: bagh, surface: باغ, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: bāǧi}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: اوینینک باغی یوق
   translations:
     en: The house has no (garden|orchard).
@@ -359,7 +359,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: سیحون سویی.
-      tokens: [{surface: سیحون, lexeme: sayhun, readings: {schluessel: Sayḥūn}}, {surface: سویی, lexemes: [{lexeme: su, surface: سوی, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: suyi}}]
+      tokens: [{surface: سیحون, lexemes: [{lexeme: sayhun, base: true}, {lexeme: nom}], readings: {schluessel: Sayḥūn}}, {surface: سویی, lexemes: [{lexeme: su, surface: سوی, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: suyi}}]
       reverse: سیحون سویی
   translations:
     en: |-
@@ -370,7 +370,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "سیحون سویی چونک\u200cدور."
-      tokens: [{surface: سیحون, lexeme: sayhun, readings: {schluessel: Sayḥūn}}, {surface: سویی, lexemes: [{lexeme: su, surface: سوی, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: suyi}}, {surface: "چونک\u200cدور", lexemes: [{lexeme: chong, surface: "چونک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: čoŋdur}}]
+      tokens: [{surface: سیحون, lexemes: [{lexeme: sayhun, base: true}, {lexeme: nom}], readings: {schluessel: Sayḥūn}}, {surface: سویی, lexemes: [{lexeme: su, surface: سوی, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: suyi}}, {surface: "چونک\u200cدور", lexemes: [{lexeme: chong, surface: "چونک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: čoŋdur}}]
       reverse: "سیحون سویی چونک\u200cدور"
   translations:
     en: The Sayhun (river|water) is (big|large|great).
@@ -379,7 +379,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: فرغانه ولایتی.
-      tokens: [{surface: فرغانه, lexeme: farghana, readings: {schluessel: Farǧāna}}, {surface: ولایتی, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: wilāyati}}]
+      tokens: [{surface: فرغانه, lexemes: [{lexeme: farghana, base: true}, {lexeme: nom}], readings: {schluessel: Farǧāna}}, {surface: ولایتی, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: wilāyati}}]
       reverse: فرغانه ولایتی
   translations:
     en: (The (country|province|land) of Ferghana|(The |)Ferghana (country|province)).
@@ -388,7 +388,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اندجان فرغانه ولایتینینک شهری\u200cدور."
-      tokens: [{surface: اندجان, lexeme: andijan, readings: {schluessel: Andijān}}, {surface: فرغانه, lexeme: farghana, readings: {schluessel: Farǧāna}}, {surface: ولایتینینک, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: ی}, {lexeme: gen, surface: نینک}], readings: {schluessel: wilāyatiniŋ}}, {surface: "شهری\u200cدور", lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: šaharidur}}]
+      tokens: [{surface: اندجان, lexemes: [{lexeme: andijan, base: true}, {lexeme: nom}], readings: {schluessel: Andijān}}, {surface: فرغانه, lexemes: [{lexeme: farghana, base: true}, {lexeme: nom}], readings: {schluessel: Farǧāna}}, {surface: ولایتینینک, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: ی}, {lexeme: gen, surface: نینک}], readings: {schluessel: wilāyatiniŋ}}, {surface: "شهری\u200cدور", lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: nom}, {lexeme: dur, surface: دور}], readings: {schluessel: šaharidur}}]
       reverse: "اندجان فرغانه ولایتینینک شهری\u200cدور"
   translations:
     en: Andijan is a (city|town) of (the (country|province) of Ferghana|(the |)Ferghana (country|province)|Ferghana).
@@ -397,7 +397,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بو شهرنینک هواسی خوب.
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهرنینک, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: šaharniŋ}}, {surface: هواسی, lexemes: [{lexeme: hawa, surface: هوا, base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: hawāsi}}, {surface: خوب, lexeme: khub, readings: {schluessel: ḫūb}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهرنینک, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: šaharniŋ}}, {surface: هواسی, lexemes: [{lexeme: hawa, surface: هوا, base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: hawāsi}}, {surface: خوب, lexeme: khub, readings: {schluessel: ḫūb}}]
       reverse: "بو شهرنینک هواسی خوب\nبو شهرنینک هواسی خوب\u200cدور"
   translations:
     en: The (air|weather) of this (city|town) is (good|fine).
@@ -416,21 +416,21 @@ stories:
       forms:
         chg-Arab/standard:
           text: "ییتی پاره قصبه\u200cسی بار."
-          tokens: [{surface: ییتی, lexeme: yatti, readings: {schluessel: yätti}}, {surface: پاره, lexeme: para, readings: {schluessel: pāra}}, {surface: "قصبه\u200cسی", lexemes: [{lexeme: qasaba, surface: "قصبه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: qaṣabasi}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+          tokens: [{surface: ییتی, lexeme: yatti, readings: {schluessel: yätti}}, {surface: پاره, lexemes: [{lexeme: para, base: true}, {lexeme: nom}], readings: {schluessel: pāra}}, {surface: "قصبه\u200cسی", lexemes: [{lexeme: qasaba, surface: "قصبه\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: qaṣabasi}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       translations:
         en: It has seven towns.
   - line:
       forms:
         chg-Arab/standard:
           text: "بیشی سیحون سوی\u200cنینک جنوب طرفی."
-          tokens: [{surface: بیشی, lexemes: [{lexeme: bash, surface: بیش, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: Beši}}, {surface: سیحون, lexeme: sayhun, readings: {schluessel: Sayḥūn}}, {surface: "سوی\u200cنینک", lexemes: [{lexeme: su, surface: سو, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: gen, surface: نینک}], readings: {schluessel: suyiniŋ}}, {surface: جنوب, lexeme: janub, readings: {schluessel: janūb}}, {surface: طرفی, lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: ṭarafi}}]
+          tokens: [{surface: بیشی, lexemes: [{lexeme: bash, surface: بیش, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: Beši}}, {surface: سیحون, lexemes: [{lexeme: sayhun, base: true}, {lexeme: nom}], readings: {schluessel: Sayḥūn}}, {surface: "سوی\u200cنینک", lexemes: [{lexeme: su, surface: سو, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: gen, surface: نینک}], readings: {schluessel: suyiniŋ}}, {surface: جنوب, lexemes: [{lexeme: janub, base: true}, {lexeme: nom}], readings: {schluessel: janūb}}, {surface: طرفی, lexemes: [{lexeme: taraf, surface: طرف, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: ṭarafi}}]
       translations:
         en: Five are on the south side of the Sayhun river.
   - line:
       forms:
         chg-Arab/standard:
           text: ایکی شمال جانبی.
-          tokens: [{surface: ایکی, lexeme: ikki, readings: {schluessel: ikki}}, {surface: شمال, lexeme: shimal, readings: {schluessel: šimāl}}, {surface: جانبی, lexemes: [{lexeme: janib, surface: جانب, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: jānibi}}]
+          tokens: [{surface: ایکی, lexeme: ikki, readings: {schluessel: ikki}}, {surface: شمال, lexemes: [{lexeme: shimal, base: true}, {lexeme: nom}], readings: {schluessel: šimāl}}, {surface: جانبی, lexemes: [{lexeme: janib, surface: جانب, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: jānibi}}]
       translations:
         en: Two are on the north side.
   - choose:
@@ -445,7 +445,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "بیر اندجان\u200cدور."
-          tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: "اندجان\u200cدور", lexemes: [{lexeme: andijan, surface: "اندجان\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: Andijāndur}}]
+          tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: "اندجان\u200cدور", lexemes: [{lexeme: andijan, surface: "اندجان\u200c", base: true}, {lexeme: nom}, {lexeme: dur, surface: دور}], readings: {schluessel: Andijāndur}}]
       translations:
         en: One is Andijan.
   - line:
@@ -453,7 +453,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "اوچ دروازه\u200cسی بار."
-          tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: "دروازه\u200cسی", lexemes: [{lexeme: darwaza, surface: "دروازه\u200c", base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: darwāzasi}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+          tokens: [{surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: "دروازه\u200cسی", lexemes: [{lexeme: darwaza, surface: "دروازه\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: nom}], readings: {schluessel: darwāzasi}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       translations:
         en: It has three gates.
   - choose:

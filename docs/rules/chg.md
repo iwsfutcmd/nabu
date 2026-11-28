@@ -26,10 +26,9 @@ front or back"). Harmony, voicing and rounding are in the reading every token pi
 ## What there is
 
 - **No realisation rules.** chg's tokens choose no feature values: every suffix is an affix lexeme of its own in
-  the token's `lexemes` (ADR 0128 amendment). A base stands in its citation cell (its form); the suffixes are its
-  allomorphs; so there are no cells, no paradigms and no pinned or listed forms (a form is keyed by a cell, and no
-  token chooses one). `realisation` is absent; the token check runs because chg declares a notation (the
-  coordinator's b5f834a).
+  the token's `lexemes` (ADR 0128 amendment). `realisation` is absent. Since 2026-11-28 chg merges lexemes (below):
+  a cell is realised through the lexemes that bring it, so there are cells and paradigms but still no pinned or
+  listed forms.
 - **Allomorphs with conditions** (lexemes.yaml): 247 with a form. Affixes (the 51, and dur, ezafe, ke, q): 84 the
   rules choose (29 by a condition), 38 free. Stems: 65 chosen by a condition (each verb's stem before a suffix, its
   lemma without the hyphen; oǧul and köŋül before a vowel letter, S 4.5, p. 24; su's سوي before -i, S 3.3.5, p. 16;
@@ -78,6 +77,57 @@ the half-space after its he, یغاچ+چی the double written once); any other f
 (بیش+ینجی, ات+لیغ, او+لا). The generator realised every one of the 55 occurrences and found the surface among its
 spellings; the token check gives all 2,689 tokens as before. The borderline choices: the ordinals, -daki and the
 place-name -lik are counted as derivation here (each makes a word of another part of speech).
+
+## chg merges lexemes (ADR 0158; 2026-11-28)
+
+chg is the second course language in the merge model, after apc. Its suffixes were lexemes already (each with its
+letters in the token); what changed is that each now says what it merges onto, a word says what it requires, and the
+cells nothing writes are zero lexemes, so every base has all its cells (the owner: "Every base lexeme should have all
+cells filled, that's the whole point of inflectional vs. derivational"). Every line is REVIEW.
+
+**What a word requires** (language.yaml `requires`): a noun, a name or a pronoun a case; a verb a form (VerbForm: a
+finite tense or mood, a converb, a participle); a finite tense a person. emäs, turur and ikän never inflect
+(`requires: []`).
+
+**The zeros**: `nom`, the nominative (S 3.3.6: "unmarked in Chaghatay"); `p3`, a finite verb's third person (bardi,
+barur, barmiš: S 5.2.1, 6.3.2); `imp.sg`, the bare stem as the imperative to one (S 12.4: käl! "come!", the one
+sentence added, s.03.40, so that the present's first sentence brings in two new lexemes, not three). A bare
+noun is the nominative without a number: -lar is the plural, and a noun without it is unmarked for number (Turkic's
+general number: üč kün "three days").
+
+**The order** (each lexeme's `on`; S 3.4, p. 20: "stem + plural + possessive + case"): the plural before a
+possessive or a case (`lacks: [Case, Person[psor]]`), the possessive before a case and once, onto a pronoun only as
+öz (özüm, özimiz), a case onto a nominal or a participle; the passive, then the negative, then one tense, mood or
+non-finite form (`lacks` the values the others bring; the aorist never after the negative, whose aorist is -mas),
+then the person: the present's, the future's, a reported past's and a participle's set (-män, -miz, -siz,
+-sän, -sizlär), the past's and the conditional's (-m, -q, -ŋiz, -ŋ, -ŋlar), the present's -dur, or the zero; -lar
+after a third person for "they". -mu anywhere after the stem (before or after the person: mullāmusiz, yigitmänmu); -kä
+and the ezafe onto a whole word.
+
+**Two splits the reference makes** (S 5.2.1, p. 28: "the personal suffix -dur here works a little differently from the
+-dur that means 'is/are' … It cannot be replaced with emäs"):
+
+- the present-future's -dur is its third person (`p3.dur`: baradur, baradurlar), apart from the copula -dur (`dur`:
+  čay issiqdur);
+- on a predicate (Türkmän, mullāsiz, ikändurlar) the person is the copula's, a word of its own (`cop.1s`, `cop.1p`,
+  `cop.2`, `cop.2s`, `cop.2pl`, `cop.3pl`: UD's AUX, its own features); on a verb it is the verb's (p1s …). A noun
+  never takes a person's values. The copula's they is -durlar, one suffix as S's table gives it (-dur(lar)).
+
+And two of the course's segmentations were read again: -iŋizlar after a noun is the possessive your (of several, or
+with respect: `poss2pl`; S 6.1 gives the 2nd plural as -Vŋlar), pādišāhiŋizlar "your king", never -iŋiz with the
+noun's plural; the aorist with a case after it is its participle (`aor.ptcp`: alurda "while taking").
+
+**The tokens** list the zeros (`{lexeme: nom}`, `{lexeme: p3}`: no surface; the compiler folds them into the base's
+values, given, never a part: no node introduces a chg value). A converter wrote them: 1,048 noun, name and pronoun
+tokens took `nom`, 283 finite verbs `p3`, 41 present -dur became `p3.dur`, 12 predicates' persons the copula's, 2
+aorists the participle, 4 -iŋizlar the possessive. Every token gives the same surface (the token check: all 2,690
+given); every token's lexemes, picked in any order, merge back into the order it writes them
+(packages/core/test/merge-order.test.ts).
+
+**What ships.** The bundle has chg's cells and paradigms (312 lexemes: a noun's 26 cells, case by possessor by
+plural; a verb's 59), a noun, a name or a pronoun cited in the nominative (`citation`). language.yaml's `labels` name
+each cell for the gloss dialog and the Data page ("past (-di): I", "plural, his, her, its, their, accusative"), built
+from Schluessel's terms: REVIEW, every one. The lexicon bundle grew from 426 to 689 KB.
 
 ## Counts
 
