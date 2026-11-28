@@ -57,6 +57,28 @@ front or back"). Harmony, voicing and rounding are in the reading every token pi
   -ǧan/-gän کان, -ǧay کای, -liq لیک, -ǧač غاج; the past -ti after a voiceless consonant (the course always, S 6.3.1,
   p. 37: "sometimes"); the copula -dur after a voiceless consonant too (18 of 25).
 
+## Derived words are lexemes of their own (2026-11-28)
+
+The owner (2026-11-28): a derived word is "a lexeme of its own, since the meaning of the new word isn't 100%
+extractable from the root lexemes. That's the general rule." The course wrote 20 derived words as a base and a
+derivational suffix in the token (qoy + -či); each is now one lexeme, its token writing it alone or with its
+inflections (قویچینینک: qoychi + gen). The lexemes, with their sentences' glosses (all REVIEW):
+
+- ordinals (ADJ, NumType=Ord; `ord`): ikkinchi "second", bashinchi "fifth", tortunchi "fourth";
+- -liq/-lik (`liq`): aywanliq "with a portico", atligh "named", yarlik "from (a place)", bukharalik, samarqandlik,
+  ghurraliq "spotted" (ADJ); ahangarlik "blacksmithing" (NOUN, S's glossary), yaghachchilik "carpentry" (from
+  yaghachchi);
+- -či (`ci`): qoychi "shepherd", kemachi "boatman", yaghachchi "carpenter"; -čülük (`cilik`): kunchuluk "a day's";
+- -ī (`nisba`): shahari "city person", bazari "market person" (NOUN: bāzārīsida takes a possessive and a case),
+  janubi "southern" (ADJ); -daki (`daki`): jangaldaqi "in the wilderness"; -la (`la`): awla- "to hunt".
+
+Each records what it is made of (`base`, `pattern`: the suffix's lexeme, which stays in the lexicon as a pattern no
+token writes). Its form is what the rules realise for the old base and suffix, the boundary kept (کیمە+چی spells
+the half-space after its he, یغاچ+چی the double written once); any other form the course writes is a free allomorph
+(بیش+ینجی, ات+لیغ, او+لا). The generator realised every one of the 55 occurrences and found the surface among its
+spellings; the token check gives all 2,689 tokens as before. The borderline choices: the ordinals, -daki and the
+place-name -lik are counted as derivation here (each makes a word of another part of speech).
+
 ## Counts
 
 - 452 lexemes: 397 with a form of their own; 55 written only as allomorphs (`nabu forms` prints them "no form").
@@ -87,12 +109,12 @@ front or back"). Harmony, voicing and rounding are in the reading every token pi
 
 ## Where the course and the rules differ
 
-No token, spelling, lemma, reading or accept set changed. Eight allomorphs keep their spellings only: the course
-splits a token otherwise than the rules do, the token's text the same.
+No token, spelling, lemma, reading or accept set changed. Seven allomorphs keep their spellings only: the course
+splits a token otherwise than the rules do, the token's text the same (an eighth, yaǧačči's یغا, went with the
+derived words: yaghachchi is one lexeme now).
 - maŋa, saŋa: the course م + نکا, س + نکا; the rules من + کا (the dative after the pronoun's n, نک writing ŋ: S
   10.13, p. 85, منکا, مانکا).
 - saliptur: the course سالیب + تور; the rules سال + یب+تور (the narrative past is -ip + -tur, S 11.5, p. 93).
-- yaǧačči written یغاچی: the course یغا + چی; the rules یغاچ + چی with the double written once.
 - šajarah-i: the course شجرهٔ + (ezafe, empty); the rules شجرە + the ezafe's hamza.
 - süyi written سُوی: the course سُو + یی; the rules سوي + ی with one ye.
 
@@ -104,7 +126,7 @@ splits a token otherwise than the rules do, the token's text the same.
    base class (a small engine key), would make the harmonic spelling the rule's. Wanted?
 2. **The notation's ە and ي.** ە is Schluessel's own letter; ي writes nothing in any orthography (it tells a
    consonant y at a stem's end from a vowel). Keep, or mark y another way?
-3. **The eight segmentations** above: keep the course's parts, or align them with the rules (no text changes)?
+3. **The seven segmentations** above: keep the course's parts, or align them with the rules (no text changes)?
 4. **näččändä** (نچنده, 3 tokens) is written as the lexeme näččä alone; it reads as näččä + -n- + -dä (S 12.7,
    p. 111, the epenthetic n). A free allomorph meanwhile.
 5. **Half-space defaults.** h before a consonant after a half-space (S xxx, rule 4) against the course's sentences

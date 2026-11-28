@@ -725,7 +725,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Suffixes are affix lexemes (`realises` a feature value, `allomorphs` by spelling: dat, past, pres, mis …) in a
   token's `lexemes`, one per morpheme: bardim is bar- + past -di + pp1s -m (ADR 0128 amendment; the past and the
   conditional take the possessive-type person endings pp1s pp2s pp2 pp1p pp2pl, the present -män … p1s …; -lar is p3pl); verbs are cited as stems with a hyphen (bar-). Homographs take a suffix (bar.go, at.name,
-  kim.that, yuz.face).
+  kim.that, yuz.face). A derived word is a lexeme of its own (the owner, 2026-11-28: its meaning is not wholly its
+  parts'): qoychi, never qoy + ci; its entry names its `base` and `pattern`, its form is the rules' for them
+  (docs/rules/chg.md).
 - Schluessel's book is CC BY-NC-ND: take facts from it (letters, suffixes, spellings, glosses), never his example
   sentences or the documents he composed (ch. 7). Stories are public-domain passages (Babur, the Tadhkira, Abu
   'l-Ghazi, Navai, Qasim Beg, the Prophets, a risāla) as he types them, in the source's spellings (فادشاه, پز, tep),

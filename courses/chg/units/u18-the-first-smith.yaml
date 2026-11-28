@@ -10,7 +10,7 @@ title:
   en: The first smith
 cefr: B1
 nodes:
-- {id: chg.u18.the-craft, kind: lesson, introduces: ['lexeme:kasb', 'lexeme:ahangar']}
+- {id: chg.u18.the-craft, kind: lesson, introduces: ['lexeme:kasb', 'lexeme:ahangar', 'lexeme:ahangarlik', 'lexeme:yaghachchilik']}
 - {id: chg.u18.easy-and-hard, kind: lesson, introduces: ['lexeme:asan', 'lexeme:mushkil', 'lexeme:kar']}
 - {id: chg.u18.i-have-made, kind: lesson, introduces: ['lexeme:yarat', 'lexeme:jannat', 'lexeme:saat', 'lexeme:shul', 'lexeme:darhal']}
 - {id: chg.u18.the-command, kind: lesson, introduces: ['lexeme:farman', 'lexeme:juss', 'lexeme:dawud', 'lexeme:jibrail', 'lexeme:munajat', 'lexeme:parwardigar', 'lexeme:dargah', 'lexeme:haqq']}
@@ -39,7 +39,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اهنکرلیک.
-      tokens: [{surface: اهنکرلیک, lexemes: [{lexeme: ahangar, surface: اهنکر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: ahangirlik}}]
+      tokens: [{surface: اهنکرلیک, lexeme: ahangarlik, readings: {schluessel: ahangirlik}}]
       reverse: (اهنکرلیک|آهنگرلیک)
   translations:
     en: (Smithing|Blacksmithing).
@@ -48,7 +48,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اهنکرلیک بیر کسب.
-      tokens: [{surface: اهنکرلیک, lexemes: [{lexeme: ahangar, surface: اهنکر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: ahangirlik}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کسب, lexeme: kasb, readings: {schluessel: kasb}}]
+      tokens: [{surface: اهنکرلیک, lexeme: ahangarlik, readings: {schluessel: ahangirlik}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کسب, lexeme: kasb, readings: {schluessel: kasb}}]
       reverse: "(اهنکرلیک|آهنگرلیک) (بیر|بر) کسب\n(اهنکرلیک|آهنگرلیک) (بیر|بر) کسب\u200cدور"
   translations:
     en: (Smithing|Blacksmithing) is a (craft|trade|profession).
@@ -57,7 +57,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: یغاچچیلیک.
-      tokens: [{surface: یغاچچیلیک, lexemes: [{lexeme: yaghach, surface: یغاچ, base: true}, {lexeme: ci, surface: چی}, {lexeme: liq, surface: لیک}], readings: {schluessel: yaǧaččilik}}]
+      tokens: [{surface: یغاچچیلیک, lexeme: yaghachchilik, readings: {schluessel: yaǧaččilik}}]
       reverse: (یغاچچیلیک|یاغاچچیلیک)
   translations:
     en: (Carpentry|Woodworking).
@@ -66,7 +66,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: اتامنینک کسبی اهنکرلیک ایردی.
-      tokens: [{surface: اتامنینک, lexemes: [{lexeme: ata, surface: اتا, base: true}, {lexeme: poss1s, surface: م}, {lexeme: gen, surface: نینک}], readings: {schluessel: atamniŋ}}, {surface: کسبی, lexemes: [{lexeme: kasb, surface: کسب, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: kasbi}}, {surface: اهنکرلیک, lexemes: [{lexeme: ahangar, surface: اهنکر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: ahangirlik}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: erdi}}]
+      tokens: [{surface: اتامنینک, lexemes: [{lexeme: ata, surface: اتا, base: true}, {lexeme: poss1s, surface: م}, {lexeme: gen, surface: نینک}], readings: {schluessel: atamniŋ}}, {surface: کسبی, lexemes: [{lexeme: kasb, surface: کسب, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: kasbi}}, {surface: اهنکرلیک, lexeme: ahangarlik, readings: {schluessel: ahangirlik}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: erdi}}]
       reverse: (اتامنینک|آتامنینک) کسبی (اهنکرلیک|آهنگرلیک) (ایردی|ایدی)
   translations:
     en: My father's (craft|trade|profession) was (smithing|blacksmithing).
@@ -312,7 +312,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: حضرت جبرائیل… حضرت داودغه کلیب دیدیکه، «ای، داود! سنکا اهنکرلیک کسب فرمان بولدیلار.»
-          tokens: [{surface: حضرت, lexemes: [{lexeme: hazrat, surface: حضرت, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: ḥażrat-i}}, {surface: جبرائیل, lexeme: jibrail, readings: {schluessel: Jibrāʾīl}}, {surface: حضرت, lexemes: [{lexeme: hazrat, surface: حضرت, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: ḥażrat-i}}, {surface: داودغه, lexemes: [{lexeme: dawud, surface: داود, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Dāwudǧa}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: دیدیکه, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: past, surface: دی}, {lexeme: ke, surface: که}], readings: {schluessel: dedike}}, {surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: داود, lexeme: dawud, readings: {schluessel: Dāwud}}, {surface: سنکا, lexemes: [{lexeme: san, surface: سن, base: true}, {lexeme: dat, surface: کا}], readings: {schluessel: saŋa}}, {surface: اهنکرلیک, lexemes: [{lexeme: ahangar, surface: اهنکر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: ahangirlik}}, {surface: کسب, lexeme: kasb, readings: {schluessel: kasb}}, {surface: فرمان, lexeme: farman, readings: {schluessel: farmān}}, {surface: بولدیلار, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: boldilar}}]
+          tokens: [{surface: حضرت, lexemes: [{lexeme: hazrat, surface: حضرت, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: ḥażrat-i}}, {surface: جبرائیل, lexeme: jibrail, readings: {schluessel: Jibrāʾīl}}, {surface: حضرت, lexemes: [{lexeme: hazrat, surface: حضرت, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: ḥażrat-i}}, {surface: داودغه, lexemes: [{lexeme: dawud, surface: داود, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Dāwudǧa}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: دیدیکه, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: past, surface: دی}, {lexeme: ke, surface: که}], readings: {schluessel: dedike}}, {surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: داود, lexeme: dawud, readings: {schluessel: Dāwud}}, {surface: سنکا, lexemes: [{lexeme: san, surface: سن, base: true}, {lexeme: dat, surface: کا}], readings: {schluessel: saŋa}}, {surface: اهنکرلیک, lexeme: ahangarlik, readings: {schluessel: ahangirlik}}, {surface: کسب, lexeme: kasb, readings: {schluessel: kasb}}, {surface: فرمان, lexeme: farman, readings: {schluessel: farmān}}, {surface: بولدیلار, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: boldilar}}]
       translations:
         en: Jibrāʾīl came to Dawud and said, “Oh, Dawud! The craft of smithing has been commanded to you.”
   - choose:

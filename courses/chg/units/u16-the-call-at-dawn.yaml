@@ -9,7 +9,7 @@ title:
   en: The call at dawn
 cefr: B1
 nodes:
-- {id: chg.u16.the-hunt, kind: lesson, introduces: ['lexeme:aw', 'lexeme:la', 'lexeme:tora', 'lexeme:tughluq', 'lexeme:temur', 'lexeme:moghulistan', 'lexeme:ardawil', 'lexeme:bolghasun']}
+- {id: chg.u16.the-hunt, kind: lesson, introduces: ['lexeme:aw', 'lexeme:awla', 'lexeme:tora', 'lexeme:tughluq', 'lexeme:temur', 'lexeme:moghulistan', 'lexeme:ardawil', 'lexeme:bolghasun']}
 - {id: chg.u16.the-night, kind: lesson, introduces: ['lexeme:kecha', 'lexeme:kol', 'lexeme:yat.lie', 'lexeme:shaykh', 'lexeme:azan', 'lexeme:khanqa', 'lexeme:shahab', 'lexeme:uddin']}
 - {id: chg.u16.a-voice, kind: lesson, introduces: ['lexeme:qulaq', 'lexeme:khosh', 'lexeme:awaz', 'lexeme:pass', 'lexeme:beikhtiyar', 'lexeme:kongul', 'lexeme:yumsha']}
 - {id: chg.u16.go-and-bring, kind: lesson, introduces: ['lexeme:rikabdar', 'lexeme:buyru', 'lexeme:soz', 'lexeme:sor', 'lexeme:vol-1s', 'lexeme:munadagar']}
@@ -38,7 +38,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: آولادی.
-      tokens: [{surface: آولادی, lexemes: [{lexeme: aw, surface: آو, base: true}, {lexeme: la, surface: لا}, {lexeme: past, surface: دی}], readings: {schluessel: awladi}}]
+      tokens: [{surface: آولادی, lexemes: [{lexeme: awla, surface: آولا, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: awladi}}]
       reverse: (آولادی|اولادی)
   translations:
     en: (He|She) hunted.
@@ -47,7 +47,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: الته کون آولادیلار.
-      tokens: [{surface: الته, lexeme: alta, readings: {schluessel: altä}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: آولادیلار, lexemes: [{lexeme: aw, surface: آو, base: true}, {lexeme: la, surface: لا}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: awladilar}}]
+      tokens: [{surface: الته, lexeme: alta, readings: {schluessel: altä}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: آولادیلار, lexemes: [{lexeme: awla, surface: آولا, base: true}, {lexeme: past, surface: دی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: awladilar}}]
       reverse: |-
         (الته|آلته|التی) کون (آولادیلار|اولادیلار)
         (الته|آلته|التی) کون (آولادی|اولادی)
@@ -370,7 +370,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: الته کون اولاب کلیب، آی کولکه توشتی.
-          tokens: [{surface: الته, lexeme: alta, readings: {schluessel: altä}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: اولاب, lexemes: [{lexeme: aw, surface: او, base: true}, {lexeme: la, surface: لا}, {lexeme: cv-p, surface: ب}], readings: {schluessel: awlap}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: آی, lexeme: ay.month, readings: {schluessel: Ay}}, {surface: کولکه, lexemes: [{lexeme: kol, surface: کول, base: true}, {lexeme: dat, surface: که}], readings: {schluessel: Kölgä}}, {surface: توشتی, lexemes: [{lexeme: tush, surface: توش, base: true}, {lexeme: past, surface: تی}], readings: {schluessel: tüšti}}]
+          tokens: [{surface: الته, lexeme: alta, readings: {schluessel: altä}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: اولاب, lexemes: [{lexeme: awla, surface: اولا, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: awlap}}, {surface: کلیب, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: kelip}}, {surface: آی, lexeme: ay.month, readings: {schluessel: Ay}}, {surface: کولکه, lexemes: [{lexeme: kol, surface: کول, base: true}, {lexeme: dat, surface: که}], readings: {schluessel: Kölgä}}, {surface: توشتی, lexemes: [{lexeme: tush, surface: توش, base: true}, {lexeme: past, surface: تی}], readings: {schluessel: tüšti}}]
       translations:
         en: They hunted for six days, then came and camped at Moon Lake.
   - line:

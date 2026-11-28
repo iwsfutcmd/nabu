@@ -10,8 +10,8 @@ title:
 cefr: A2
 nodes:
 - {id: chg.u10.it-is-said, kind: lesson, introduces: ['lexeme:mis', 'lexeme:ikan']}
-- {id: chg.u10.named, kind: lesson, introduces: ['lexeme:yunan', 'lexeme:mulk', 'lexeme:afsus', 'lexeme:malik', 'lexeme:jabbar', 'lexeme:daqyanus']}
-- {id: chg.u10.the-shepherd, kind: lesson, introduces: ['lexeme:ci', 'lexeme:it', 'lexeme:qach', 'lexeme:uchra', 'lexeme:qoshul']}
+- {id: chg.u10.named, kind: lesson, introduces: ['lexeme:yunan', 'lexeme:mulk', 'lexeme:afsus', 'lexeme:malik', 'lexeme:jabbar', 'lexeme:daqyanus', 'lexeme:atligh']}
+- {id: chg.u10.the-shepherd, kind: lesson, introduces: ['lexeme:qoychi', 'lexeme:it', 'lexeme:qach', 'lexeme:uchra', 'lexeme:qoshul']}
 - {id: chg.u10.the-cave, kind: lesson, introduces: ['lexeme:ghar', 'lexeme:raqim', 'lexeme:oyu', 'lexeme:oyghan', 'lexeme:ashab', 'lexeme:kahf']}
 - {id: chg.u10.by-gods-command, kind: lesson, introduces: ['lexeme:tangri', 'lexeme:taala', 'lexeme:amr', 'lexeme:rafiq', 'lexeme:yebar', 'lexeme:tamlikha']}
 - {id: chg.u10.story, kind: story}
@@ -86,7 +86,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: توخته آتلیغ بیر کشی.
-      tokens: [{surface: توخته, lexeme: tokhta, readings: {schluessel: Toḫta}}, {surface: آتلیغ, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: liq, surface: لیغ}], readings: {schluessel: atliǧ}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
+      tokens: [{surface: توخته, lexeme: tokhta, readings: {schluessel: Toḫta}}, {surface: آتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
       reverse: "توخته (آتلیغ|اتلیغ) (بیر|بر) (کشی|کیشی)\nتوخته (تیکان|دیکان) (کشی|کیشی)"
   translations:
     en: A (man|person) named Tokhta.
@@ -140,7 +140,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: دقیانوس آتلیغ بیر ملک بار ایرمیش.
-      tokens: [{surface: دقیانوس, lexeme: daqyanus, readings: {schluessel: Daqyānūs}}, {surface: آتلیغ, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: liq, surface: لیغ}], readings: {schluessel: atliǧ}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ملک, lexeme: malik, readings: {schluessel: malik}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: ermiš}}]
+      tokens: [{surface: دقیانوس, lexeme: daqyanus, readings: {schluessel: Daqyānūs}}, {surface: آتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ملک, lexeme: malik, readings: {schluessel: malik}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: ermiš}}]
       reverse: دقیانوس (آتلیغ|اتلیغ) (بیر|بر) ملک بار (ایرمیش|ایمیش)
   translations:
     en: (There was once|Once there was|There was) a king named Decius.
@@ -149,7 +149,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قویچی.
-      tokens: [{surface: قویچی, lexemes: [{lexeme: qoy, surface: قوی, base: true}, {lexeme: ci, surface: چی}], readings: {schluessel: qoyči}}]
+      tokens: [{surface: قویچی, lexeme: qoychi, readings: {schluessel: qoyči}}]
       reverse: قویچی
   translations:
     en: (A|The) shepherd.
@@ -158,7 +158,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قویچینینک ایتی بار.
-      tokens: [{surface: قویچینینک, lexemes: [{lexeme: qoy, surface: قوی, base: true}, {lexeme: ci, surface: چی}, {lexeme: gen, surface: نینک}], readings: {schluessel: qoyčiniŋ}}, {surface: ایتی, lexemes: [{lexeme: it, surface: ایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: iti}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
+      tokens: [{surface: قویچینینک, lexemes: [{lexeme: qoychi, surface: قویچی, base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: qoyčiniŋ}}, {surface: ایتی, lexemes: [{lexeme: it, surface: ایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: iti}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}]
       reverse: قویچینینک ایتی بار
   translations:
     en: The shepherd has a dog.
@@ -187,7 +187,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر قویچیغه اوچرادوق.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قویچیغه, lexemes: [{lexeme: qoy, surface: قوی, base: true}, {lexeme: ci, surface: چی}, {lexeme: dat, surface: غه}], readings: {schluessel: qoyčiǧa}}, {surface: اوچرادوق, lexemes: [{lexeme: uchra, surface: اوچرا, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: učraduq}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: قویچیغه, lexemes: [{lexeme: qoychi, surface: قویچی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: qoyčiǧa}}, {surface: اوچرادوق, lexemes: [{lexeme: uchra, surface: اوچرا, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: učraduq}}]
       reverse: (بیر|بر) (قویچیغه|قویچیکه|قویچیقه|قویچیغا) (اوچرادوق|اوچرادوک)
   translations:
     en: We (met|came upon) a shepherd.
@@ -196,7 +196,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: قویچی اولارغه قوشولدی.
-      tokens: [{surface: قویچی, lexemes: [{lexeme: qoy, surface: قوی, base: true}, {lexeme: ci, surface: چی}], readings: {schluessel: qoyči}}, {surface: اولارغه, lexemes: [{lexeme: ular, surface: اولار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ularǧa}}, {surface: قوشولدی, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: qošuldi}}]
+      tokens: [{surface: قویچی, lexeme: qoychi, readings: {schluessel: qoyči}}, {surface: اولارغه, lexemes: [{lexeme: ular, surface: اولار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ularǧa}}, {surface: قوشولدی, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: qošuldi}}]
       reverse: قویچی (اولارغه|اولارکه|اولارقه|اولارغا|الارغه|الارکه|الارقه|الارغا) قوشولدی
   translations:
     en: The shepherd joined them.
@@ -234,7 +234,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: رقیم آتلیغ غارغه کیرمیشلار.
-      tokens: [{surface: رقیم, lexeme: raqim, readings: {schluessel: Raqīm}}, {surface: آتلیغ, lexemes: [{lexeme: at.name, surface: آت, base: true}, {lexeme: liq, surface: لیغ}], readings: {schluessel: atliǧ}}, {surface: غارغه, lexemes: [{lexeme: ghar, surface: غار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ǧārǧa}}, {surface: کیرمیشلار, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3pl, surface: لار}], readings: {schluessel: kirmišlär}}]
+      tokens: [{surface: رقیم, lexeme: raqim, readings: {schluessel: Raqīm}}, {surface: آتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: غارغه, lexemes: [{lexeme: ghar, surface: غار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ǧārǧa}}, {surface: کیرمیشلار, lexemes: [{lexeme: kir, surface: کیر, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3pl, surface: لار}], readings: {schluessel: kirmišlär}}]
       reverse: |-
         رقیم (آتلیغ|اتلیغ) (غارغه|غارکه|غارقه|غارغا) (کیرمیشلار|کرمیشلار)
         رقیم (آتلیغ|اتلیغ) (غارغه|غارکه|غارقه|غارغا) (کیرمیش|کرمیش)
@@ -353,7 +353,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: یونان ملکیدا افسوس شهریدا دقیانوس اتلیغ ملک جبّار بار ایرمیش.
-          tokens: [{surface: یونان, lexeme: yunan, readings: {schluessel: Yūnān}}, {surface: ملکیدا, lexemes: [{lexeme: mulk, surface: ملک, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: mulkida}}, {surface: افسوس, lexeme: afsus, readings: {schluessel: Afsūs}}, {surface: شهریدا, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: šaharida}}, {surface: دقیانوس, lexeme: daqyanus, readings: {schluessel: Daqyānūs}}, {surface: اتلیغ, lexemes: [{lexeme: at.name, surface: ات, base: true}, {lexeme: liq, surface: لیغ}], readings: {schluessel: atliǧ}}, {surface: ملک, lexemes: [{lexeme: malik, surface: ملک, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: malik-i}}, {surface: جبّار, lexeme: jabbar, readings: {schluessel: jabbār}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: ermiš}}]
+          tokens: [{surface: یونان, lexeme: yunan, readings: {schluessel: Yūnān}}, {surface: ملکیدا, lexemes: [{lexeme: mulk, surface: ملک, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: mulkida}}, {surface: افسوس, lexeme: afsus, readings: {schluessel: Afsūs}}, {surface: شهریدا, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: šaharida}}, {surface: دقیانوس, lexeme: daqyanus, readings: {schluessel: Daqyānūs}}, {surface: اتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: ملک, lexemes: [{lexeme: malik, surface: ملک, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: malik-i}}, {surface: جبّار, lexeme: jabbar, readings: {schluessel: jabbār}}, {surface: بار, lexeme: bar, readings: {schluessel: bar}}, {surface: ایرمیش, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: mis, surface: میش}], readings: {schluessel: ermiš}}]
       translations:
         en: In the kingdom of Greece, in the city of Ephesus, there was a tyrant king named Decius.
   - line:
@@ -380,7 +380,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "شهرلاریدین قاچیب… بر قویچیغه اوچراب، قویچی داغی الارغه قوشولوب، قویچی\u200cنینک ایتی هم قوشولوب، رقیم اتلیغ غارغه کرمیشلار."
-          tokens: [{surface: شهرلاریدین, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}, {lexeme: abl, surface: دین}], readings: {schluessel: šaharlaridin}}, {surface: قاچیب, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qačip}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: قویچیغه, lexemes: [{lexeme: qoy, surface: قوی, base: true}, {lexeme: ci, surface: چی}, {lexeme: dat, surface: غه}], readings: {schluessel: qoyčiǧa}}, {surface: اوچراب, lexemes: [{lexeme: uchra, surface: اوچرا, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: učrap}}, {surface: قویچی, lexemes: [{lexeme: qoy, surface: قوی, base: true}, {lexeme: ci, surface: چی}], readings: {schluessel: qoyči}}, {surface: داغی, lexeme: daghi, readings: {schluessel: daǧi}}, {surface: الارغه, lexemes: [{lexeme: ular, surface: الار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: alarǧa}}, {surface: قوشولوب, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: qošulup}}, {surface: "قویچی\u200cنینک", lexemes: [{lexeme: qoy, surface: قوی, base: true}, {lexeme: ci, surface: "چی\u200c"}, {lexeme: gen, surface: نینک}], readings: {schluessel: qoyčiniŋ}}, {surface: ایتی, lexemes: [{lexeme: it, surface: ایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: iti}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: قوشولوب, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: qošulup}}, {surface: رقیم, lexeme: raqim, readings: {schluessel: Raqīm}}, {surface: اتلیغ, lexemes: [{lexeme: at.name, surface: ات, base: true}, {lexeme: liq, surface: لیغ}], readings: {schluessel: atliǧ}}, {surface: غارغه, lexemes: [{lexeme: ghar, surface: غار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ǧārǧa}}, {surface: کرمیشلار, lexemes: [{lexeme: kir, surface: کر, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3pl, surface: لار}], readings: {schluessel: kirmišlär}}]
+          tokens: [{surface: شهرلاریدین, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}, {lexeme: abl, surface: دین}], readings: {schluessel: šaharlaridin}}, {surface: قاچیب, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qačip}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: قویچیغه, lexemes: [{lexeme: qoychi, surface: قویچی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: qoyčiǧa}}, {surface: اوچراب, lexemes: [{lexeme: uchra, surface: اوچرا, base: true}, {lexeme: cv-p, surface: ب}], readings: {schluessel: učrap}}, {surface: قویچی, lexeme: qoychi, readings: {schluessel: qoyči}}, {surface: داغی, lexeme: daghi, readings: {schluessel: daǧi}}, {surface: الارغه, lexemes: [{lexeme: ular, surface: الار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: alarǧa}}, {surface: قوشولوب, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: qošulup}}, {surface: "قویچی\u200cنینک", lexemes: [{lexeme: qoychi, surface: "قویچی\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: qoyčiniŋ}}, {surface: ایتی, lexemes: [{lexeme: it, surface: ایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: iti}}, {surface: هم, lexeme: ham, readings: {schluessel: häm}}, {surface: قوشولوب, lexemes: [{lexeme: qoshul, surface: قوشول, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: qošulup}}, {surface: رقیم, lexeme: raqim, readings: {schluessel: Raqīm}}, {surface: اتلیغ, lexeme: atligh, readings: {schluessel: atliǧ}}, {surface: غارغه, lexemes: [{lexeme: ghar, surface: غار, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: ǧārǧa}}, {surface: کرمیشلار, lexemes: [{lexeme: kir, surface: کر, base: true}, {lexeme: mis, surface: میش}, {lexeme: p3pl, surface: لار}], readings: {schluessel: kirmišlär}}]
       translations:
         en: They fled their city … they met a shepherd, and the shepherd joined them, and the shepherd's dog joined them too, and they went into a cave called Raqim.
   - choose:

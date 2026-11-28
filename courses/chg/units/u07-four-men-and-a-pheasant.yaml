@@ -13,7 +13,7 @@ nodes:
 - {id: chg.u07.as-a-rule, kind: lesson, introduces: ['lexeme:oltur']}
 - {id: chg.u07.can, kind: lesson, introduces: ['lexeme:cv-a', 'lexeme:tugat']}
 - {id: chg.u07.and-then, kind: lesson, introduces: ['lexeme:cv-p', 'lexeme:ye']}
-- {id: chg.u07.they-tell, kind: lesson, introduces: ['lexeme:andaq', 'lexeme:riwayat', 'lexeme:kim.that', 'lexeme:ishkina', 'lexeme:bila', 'lexeme:qalam', 'lexeme:lafaz', 'lexeme:rast', 'lexeme:nisba']}
+- {id: chg.u07.they-tell, kind: lesson, introduces: ['lexeme:andaq', 'lexeme:riwayat', 'lexeme:kim.that', 'lexeme:ishkina', 'lexeme:bila', 'lexeme:qalam', 'lexeme:lafaz', 'lexeme:rast', 'lexeme:shahari', 'lexeme:bazari']}
 - {id: chg.u07.story, kind: story}
 sentences:
 - id: s.07.1
@@ -332,7 +332,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: شهری کشی.
-      tokens: [{surface: شهری, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: nisba, surface: ی}], readings: {schluessel: šaharī}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
+      tokens: [{surface: شهری, lexeme: shahari, readings: {schluessel: šaharī}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
       reverse: شهری (کشی|کیشی)
   translations:
     en: A (city person|townsman|person of the city).
@@ -341,7 +341,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بازاری کشی.
-      tokens: [{surface: بازاری, lexemes: [{lexeme: bazar, surface: بازار, base: true}, {lexeme: nisba, surface: ی}], readings: {schluessel: bāzārī}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
+      tokens: [{surface: بازاری, lexeme: bazari, readings: {schluessel: bāzārī}}, {surface: کشی, lexeme: kishi, readings: {schluessel: kiši}}]
       reverse: بازاری (کشی|کیشی)
   translations:
     en: A (market person|person of the market|man of the bazaar).
@@ -398,7 +398,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "شهری و بازاری\u200cسیدا ترکی بیلماس کیشی یوقتور."
-          tokens: [{surface: شهری, lexemes: [{lexeme: shahar, surface: شهر, base: true}, {lexeme: nisba, surface: ی}], readings: {schluessel: šaharī}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: "بازاری\u200cسیدا", lexemes: [{lexeme: bazar, surface: بازار, base: true}, {lexeme: nisba, surface: "ی\u200c"}, {lexeme: poss3, surface: سی}, {lexeme: loc, surface: دا}], readings: {schluessel: bāzārīsida}}, {surface: ترکی, lexeme: turki, readings: {schluessel: Turkī}}, {surface: بیلماس, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: aor-neg, surface: ماس}], readings: {schluessel: bilmäs}}, {surface: کیشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: یوقتور, lexemes: [{lexeme: yoq, surface: یوق, base: true}, {lexeme: dur, surface: تور}], readings: {schluessel: yoqtur}}]
+          tokens: [{surface: شهری, lexeme: shahari, readings: {schluessel: šaharī}}, {surface: و, lexeme: wa, readings: {schluessel: wä}}, {surface: "بازاری\u200cسیدا", lexemes: [{lexeme: bazari, surface: "بازاری\u200c", base: true}, {lexeme: poss3, surface: سی}, {lexeme: loc, surface: دا}], readings: {schluessel: bāzārīsida}}, {surface: ترکی, lexeme: turki, readings: {schluessel: Turkī}}, {surface: بیلماس, lexemes: [{lexeme: bil, surface: بیل, base: true}, {lexeme: aor-neg, surface: ماس}], readings: {schluessel: bilmäs}}, {surface: کیشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: یوقتور, lexemes: [{lexeme: yoq, surface: یوق, base: true}, {lexeme: dur, surface: تور}], readings: {schluessel: yoqtur}}]
       translations:
         en: There is no one in its city or its market who does not know Turki.
   - line:

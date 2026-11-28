@@ -11,8 +11,8 @@ cefr: A2
 nodes:
 - {id: chg.u13.sons-and-daughters, kind: lesson, introduces: ['lexeme:oghul', 'lexeme:adam', 'lexeme:hazrat', 'lexeme:aj', 'lexeme:ibn', 'lexeme:anuq']}
 - {id: chg.u13.the-giant, kind: lesson, introduces: ['lexeme:adi', 'lexeme:kimarsa']}
-- {id: chg.u13.a-days-walk, kind: lesson, introduces: ['lexeme:yur', 'lexeme:cilik', 'lexeme:ara']}
-- {id: chg.u13.used-to, kind: lesson, introduces: ['lexeme:jangal', 'lexeme:daki', 'lexeme:alqat', 'lexeme:khorak']}
+- {id: chg.u13.a-days-walk, kind: lesson, introduces: ['lexeme:yur', 'lexeme:kunchuluk', 'lexeme:ara']}
+- {id: chg.u13.used-to, kind: lesson, introduces: ['lexeme:jangal', 'lexeme:jangaldaqi', 'lexeme:alqat', 'lexeme:khorak']}
 - {id: chg.u13.fish, kind: lesson, introduces: ['lexeme:baliq', 'lexeme:aftab', 'lexeme:pishur', 'lexeme:yot', 'lexeme:ustikhwan', 'lexeme:balke']}
 - {id: chg.u13.story, kind: story}
 sentences:
@@ -158,7 +158,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیر کونجلوک یول.
-      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کونجلوک, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: cilik, surface: جلوک}], readings: {schluessel: künčülük}}, {surface: یول, lexeme: yol, readings: {schluessel: yol}}]
+      tokens: [{surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: کونجلوک, lexeme: kunchuluk, readings: {schluessel: künčülük}}, {surface: یول, lexeme: yol, readings: {schluessel: yol}}]
       reverse: (بیر|بر) (کونجلوک|کونچلوک|کونچیلیک) یول
   translations:
     en: A day's (journey|walk).
@@ -248,7 +248,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: جانکالداقی آلقات.
-      tokens: [{surface: جانکالداقی, lexemes: [{lexeme: jangal, surface: جانکال, base: true}, {lexeme: daki, surface: داقی}], readings: {schluessel: jaŋgaldaqi}}, {surface: آلقات, lexeme: alqat, readings: {schluessel: alqat}}]
+      tokens: [{surface: جانکالداقی, lexeme: jangaldaqi, readings: {schluessel: jaŋgaldaqi}}, {surface: آلقات, lexeme: alqat, readings: {schluessel: alqat}}]
       reverse: (جانکالداقی|جنکلداقی) آلقات
   translations:
     en: The scrub (in|of) the wilderness.
@@ -371,7 +371,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "یول یورسه، بو ایاغی\u200cنینک اول ایاغی\u200cنینک اراسی بر کونجلوک یول ایردی."
-          tokens: [{surface: یول, lexeme: yol, readings: {schluessel: yul}}, {surface: یورسه, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: cond, surface: سه}], readings: {schluessel: yürsä}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: "ایاغی\u200cنینک", lexemes: [{lexeme: ayaq, surface: ایاغ, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: gen, surface: نینک}], readings: {schluessel: ayaǧiniŋ}}, {surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: "ایاغی\u200cنینک", lexemes: [{lexeme: ayaq, surface: ایاغ, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: gen, surface: نینک}], readings: {schluessel: ayaǧiniŋ}}, {surface: اراسی, lexemes: [{lexeme: ara, surface: ارا, base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: arasi}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: کونجلوک, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: cilik, surface: جلوک}], readings: {schluessel: künčülük}}, {surface: یول, lexeme: yol, readings: {schluessel: yol}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: erdi}}]
+          tokens: [{surface: یول, lexeme: yol, readings: {schluessel: yul}}, {surface: یورسه, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: cond, surface: سه}], readings: {schluessel: yürsä}}, {surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: "ایاغی\u200cنینک", lexemes: [{lexeme: ayaq, surface: ایاغ, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: gen, surface: نینک}], readings: {schluessel: ayaǧiniŋ}}, {surface: اول, lexeme: ul, readings: {schluessel: ul}}, {surface: "ایاغی\u200cنینک", lexemes: [{lexeme: ayaq, surface: ایاغ, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: gen, surface: نینک}], readings: {schluessel: ayaǧiniŋ}}, {surface: اراسی, lexemes: [{lexeme: ara, surface: ارا, base: true}, {lexeme: poss3, surface: سی}], readings: {schluessel: arasi}}, {surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: کونجلوک, lexeme: kunchuluk, readings: {schluessel: künčülük}}, {surface: یول, lexeme: yol, readings: {schluessel: yol}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: erdi}}]
       translations:
         en: When he walked, between this foot and that foot was a day's journey.
   - choose:
@@ -386,7 +386,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: خوراکی جانکالداقی آلقات ایردی.
-          tokens: [{surface: خوراکی, lexemes: [{lexeme: khorak, surface: خوراک, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: ḫorāki}}, {surface: جانکالداقی, lexemes: [{lexeme: jangal, surface: جانکال, base: true}, {lexeme: daki, surface: داقی}], readings: {schluessel: jaŋgaldaqi}}, {surface: آلقات, lexeme: alqat, readings: {schluessel: alqat}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: erdi}}]
+          tokens: [{surface: خوراکی, lexemes: [{lexeme: khorak, surface: خوراک, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: ḫorāki}}, {surface: جانکالداقی, lexeme: jangaldaqi, readings: {schluessel: jaŋgaldaqi}}, {surface: آلقات, lexeme: alqat, readings: {schluessel: alqat}}, {surface: ایردی, lexemes: [{lexeme: er, surface: ایر, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: erdi}}]
       translations:
         en: His food was the scrub of the wilderness.
   - line:

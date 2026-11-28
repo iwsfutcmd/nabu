@@ -13,7 +13,7 @@ nodes:
 - {id: chg.u06.we-went, kind: lesson, introduces: ['lexeme:pp1p', 'lexeme:pp2', 'lexeme:pp2s', 'lexeme:qayda', 'lexeme:pp2pl']}
 - {id: chg.u06.did-not, kind: lesson, introduces: [], reinforces: ['lexeme:neg']}
 - {id: chg.u06.numbers, kind: lesson, introduces: ['lexeme:yash', 'lexeme:yigirma', 'lexeme:ottuz', 'lexeme:qirq', 'lexeme:kun', 'lexeme:allik', 'lexeme:yil', 'lexeme:toqsan', 'lexeme:yuz', 'lexeme:ming']}
-- {id: chg.u06.dates, kind: lesson, introduces: ['lexeme:ramzan', 'lexeme:ay.month', 'lexeme:ord', 'lexeme:tarikh', 'lexeme:ezafe', 'lexeme:iqlim', 'lexeme:aywan', 'lexeme:liq', 'lexeme:hujra']}
+- {id: chg.u06.dates, kind: lesson, introduces: ['lexeme:ramzan', 'lexeme:ay.month', 'lexeme:ikkinchi', 'lexeme:bashinchi', 'lexeme:aywanliq', 'lexeme:tarikh', 'lexeme:ezafe', 'lexeme:iqlim', 'lexeme:aywan', 'lexeme:hujra']}
 - {id: chg.u06.story, kind: story}
 sentences:
 - id: s.06.1
@@ -351,7 +351,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایکینچی کون.
-      tokens: [{surface: ایکینچی, lexemes: [{lexeme: ikki, surface: ایکی, base: true}, {lexeme: ord, surface: نچی}], readings: {schluessel: ikkinči}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}]
+      tokens: [{surface: ایکینچی, lexeme: ikkinchi, readings: {schluessel: ikkinči}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}]
       reverse: (ایکینچی|اکینچی) کون
   translations:
     en: The second day.
@@ -360,7 +360,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیشینچی آی.
-      tokens: [{surface: بیشینچی, lexemes: [{lexeme: bash, surface: بیش, base: true}, {lexeme: ord, surface: ینچی}], readings: {schluessel: bäšinči}}, {surface: آی, lexeme: ay.month, readings: {schluessel: ay}}]
+      tokens: [{surface: بیشینچی, lexeme: bashinchi, readings: {schluessel: bäšinči}}, {surface: آی, lexeme: ay.month, readings: {schluessel: ay}}]
       reverse: بیشینچی (آی|ای)
   translations:
     en: The fifth month.
@@ -378,7 +378,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "فرغانه ولایتی بیشینچی اقلیمدین\u200cدور."
-      tokens: [{surface: فرغانه, lexeme: farghana, readings: {schluessel: Farǧāna}}, {surface: ولایتی, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: wilāyati}}, {surface: بیشینچی, lexemes: [{lexeme: bash, surface: بیش, base: true}, {lexeme: ord, surface: ینچی}], readings: {schluessel: bäšinči}}, {surface: "اقلیمدین\u200cدور", lexemes: [{lexeme: iqlim, surface: اقلیم, base: true}, {lexeme: abl, surface: "دین\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: iqlīmdindur}}]
+      tokens: [{surface: فرغانه, lexeme: farghana, readings: {schluessel: Farǧāna}}, {surface: ولایتی, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: wilāyati}}, {surface: بیشینچی, lexeme: bashinchi, readings: {schluessel: bäšinči}}, {surface: "اقلیمدین\u200cدور", lexemes: [{lexeme: iqlim, surface: اقلیم, base: true}, {lexeme: abl, surface: "دین\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: iqlīmdindur}}]
       reverse: "فرغانه ولایتی بیشینچی (اقلیمدین\u200cدور|اقلیمدن\u200cدور)"
   translations:
     en: (Ferghana|The (country|province) of Ferghana|(The |)Ferghana (country|province)) is in the fifth clime.
@@ -396,7 +396,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایوانلیق حجره.
-      tokens: [{surface: ایوانلیق, lexemes: [{lexeme: aywan, surface: ایوان, base: true}, {lexeme: liq, surface: لیق}], readings: {schluessel: aywānliq}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}]
+      tokens: [{surface: ایوانلیق, lexeme: aywanliq, readings: {schluessel: aywānliq}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}]
       reverse: ایوانلیق حجره
   translations:
     en: A ((pavilion|room) (with|having) a portico|(portico|porticoed) (pavilion|room)).
@@ -448,14 +448,14 @@ stories:
       forms:
         chg-Arab/standard:
           text: "فرغانه ولایتی بیشینجی اقلیم\u200cدین\u200cدور."
-          tokens: [{surface: فرغانه, lexeme: farghana, readings: {schluessel: Farǧāna}}, {surface: ولایتی, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: wilāyati}}, {surface: بیشینجی, lexemes: [{lexeme: bash, surface: بیش, base: true}, {lexeme: ord, surface: ینجی}], readings: {schluessel: bäšinči}}, {surface: "اقلیم\u200cدین\u200cدور", lexemes: [{lexeme: iqlim, surface: "اقلیم\u200c", base: true}, {lexeme: abl, surface: "دین\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: iqlīmdindur}}]
+          tokens: [{surface: فرغانه, lexeme: farghana, readings: {schluessel: Farǧāna}}, {surface: ولایتی, lexemes: [{lexeme: wilayat, surface: ولایت, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: wilāyati}}, {surface: بیشینجی, lexeme: bashinchi, readings: {schluessel: bäšinči}}, {surface: "اقلیم\u200cدین\u200cدور", lexemes: [{lexeme: iqlim, surface: "اقلیم\u200c", base: true}, {lexeme: abl, surface: "دین\u200c"}, {lexeme: dur, surface: دور}], readings: {schluessel: iqlīmdindur}}]
       translations:
         en: The country of Ferghana is of the fifth clime.
   - line:
       forms:
         chg-Arab/standard:
           text: "تاریخ توقوز یوز ایکی\u200cدا مین بیر ایوانلیق حجره سالدیم."
-          tokens: [{surface: تاریخ, lexemes: [{lexeme: tarikh, surface: تاریخ, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: tārīḫ-i}}, {surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: "ایکی\u200cدا", lexemes: [{lexeme: ikki, surface: "ایکی\u200c", base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: ikkidä}}, {surface: مین, lexeme: man, readings: {schluessel: men}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ایوانلیق, lexemes: [{lexeme: aywan, surface: ایوان, base: true}, {lexeme: liq, surface: لیق}], readings: {schluessel: aywānliq}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: سالدیم, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: saldim}}]
+          tokens: [{surface: تاریخ, lexemes: [{lexeme: tarikh, surface: تاریخ, base: true}, {lexeme: ezafe, surface: ''}], readings: {schluessel: tārīḫ-i}}, {surface: توقوز, lexeme: toqquz, readings: {schluessel: toqquz}}, {surface: یوز, lexeme: yuz, readings: {schluessel: yüz}}, {surface: "ایکی\u200cدا", lexemes: [{lexeme: ikki, surface: "ایکی\u200c", base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: ikkidä}}, {surface: مین, lexeme: man, readings: {schluessel: men}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: ایوانلیق, lexeme: aywanliq, readings: {schluessel: aywānliq}}, {surface: حجره, lexeme: hujra, readings: {schluessel: ḥujra}}, {surface: سالدیم, lexemes: [{lexeme: sal, surface: سال, base: true}, {lexeme: past, surface: دی}, {lexeme: pp1s, surface: م}], readings: {schluessel: saldim}}]
       translations:
         en: In the year 902 I built a pavilion with a portico.
   - choose:

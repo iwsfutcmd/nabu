@@ -12,7 +12,7 @@ cefr: B1
 nodes:
 - {id: chg.u15.the-flood, kind: lesson, introduces: ['lexeme:tufan', 'lexeme:halak', 'lexeme:amma', 'lexeme:yaqa', 'lexeme:tiz', 'lexeme:yat']}
 - {id: chg.u15.the-old-woman, kind: lesson, introduces: ['lexeme:mama', 'lexeme:yigla', 'lexeme:ay.voc', 'lexeme:hal', 'lexeme:bayan', 'lexeme:ke']}
-- {id: chg.u15.come-here, kind: lesson, introduces: ['lexeme:imp', 'lexeme:sanduq', 'lexeme:ettur']}
+- {id: chg.u15.come-here, kind: lesson, introduces: ['lexeme:imp', 'lexeme:sanduq', 'lexeme:ettur', 'lexeme:yaghachchi']}
 - {id: chg.u15.would-you, kind: lesson, introduces: ['lexeme:saqla', 'lexeme:bar.give', 'lexeme:amanat', 'lexeme:shu', 'lexeme:itimad']}
 - {id: chg.u15.story, kind: story}
 sentences:
@@ -210,7 +210,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: یغاچچی.
-      tokens: [{surface: یغاچچی, lexemes: [{lexeme: yaghach, surface: یغاچ, base: true}, {lexeme: ci, surface: چی}], readings: {schluessel: yaǧačči}}]
+      tokens: [{surface: یغاچچی, lexeme: yaghachchi, readings: {schluessel: yaǧačči}}]
       reverse: (یغاچچی|یاغاچچی)
   translations:
     en: A carpenter.
@@ -219,7 +219,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: یغاچچیغه بارینک!
-      tokens: [{surface: یغاچچیغه, lexemes: [{lexeme: yaghach, surface: یغاچ, base: true}, {lexeme: ci, surface: چی}, {lexeme: dat, surface: غه}], readings: {schluessel: yaǧaččiǧa}}, {surface: بارینک, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: imp, surface: ینک}], readings: {schluessel: bariŋ}}]
+      tokens: [{surface: یغاچچیغه, lexemes: [{lexeme: yaghachchi, surface: یغاچچی, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: yaǧaččiǧa}}, {surface: بارینک, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: imp, surface: ینک}], readings: {schluessel: bariŋ}}]
       reverse: (یغاچچیغه|یغاچچیکه|یغاچچیقه|یغاچچیغا|یاغاچچیغه|یاغاچچیکه|یاغاچچیقه|یاغاچچیغا) بارینک
   translations:
     en: (Go|Please go) to the carpenter!
@@ -375,7 +375,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: ماما ایتیکه، «یغاچی قاشیغه باریب، بیر صندوق ایتوروب، مینینک قاشیمغه الیب کلینک،» دیدی.
-          tokens: [{surface: ماما, lexeme: mama, readings: {schluessel: mama}}, {surface: ایتیکه, lexemes: [{lexeme: eyt, surface: ای, base: true}, {lexeme: past, surface: تی}, {lexeme: ke, surface: که}], readings: {schluessel: eyttike}}, {surface: یغاچی, lexemes: [{lexeme: yaghach, surface: یغا, base: true}, {lexeme: ci, surface: چی}], readings: {schluessel: yaǧačči}}, {surface: قاشیغه, lexemes: [{lexeme: qash.presence, surface: قاش, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: qašiǧa}}, {surface: باریب, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: barip}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: صندوق, lexeme: sanduq, readings: {schluessel: ṣandūq}}, {surface: ایتوروب, lexemes: [{lexeme: ettur, surface: ایتور, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: ettürüp}}, {surface: مینینک, lexemes: [{lexeme: man, surface: مین, base: true}, {lexeme: gen, surface: ینک}], readings: {schluessel: meniŋ}}, {surface: قاشیمغه, lexemes: [{lexeme: qash.presence, surface: قاش, base: true}, {lexeme: poss1s, surface: یم}, {lexeme: dat, surface: غه}], readings: {schluessel: qašimǧa}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: کلینک, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: imp, surface: ینک}], readings: {schluessel: keliŋ}}, {surface: دیدی, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: dedi}}]
+          tokens: [{surface: ماما, lexeme: mama, readings: {schluessel: mama}}, {surface: ایتیکه, lexemes: [{lexeme: eyt, surface: ای, base: true}, {lexeme: past, surface: تی}, {lexeme: ke, surface: که}], readings: {schluessel: eyttike}}, {surface: یغاچی, lexeme: yaghachchi, readings: {schluessel: yaǧačči}}, {surface: قاشیغه, lexemes: [{lexeme: qash.presence, surface: قاش, base: true}, {lexeme: poss3, surface: ی}, {lexeme: dat, surface: غه}], readings: {schluessel: qašiǧa}}, {surface: باریب, lexemes: [{lexeme: bar.go, surface: بار, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: barip}}, {surface: بیر, lexeme: bir, readings: {schluessel: bir}}, {surface: صندوق, lexeme: sanduq, readings: {schluessel: ṣandūq}}, {surface: ایتوروب, lexemes: [{lexeme: ettur, surface: ایتور, base: true}, {lexeme: cv-p, surface: وب}], readings: {schluessel: ettürüp}}, {surface: مینینک, lexemes: [{lexeme: man, surface: مین, base: true}, {lexeme: gen, surface: ینک}], readings: {schluessel: meniŋ}}, {surface: قاشیمغه, lexemes: [{lexeme: qash.presence, surface: قاش, base: true}, {lexeme: poss1s, surface: یم}, {lexeme: dat, surface: غه}], readings: {schluessel: qašimǧa}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: کلینک, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: imp, surface: ینک}], readings: {schluessel: keliŋ}}, {surface: دیدی, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: dedi}}]
       translations:
         en: The old woman said, “Go to the carpenter, have a box made, and bring it to me.”
   - line:

@@ -9,10 +9,10 @@ title:
   en: The Kalmyks came
 cefr: A2
 nodes:
-- {id: chg.u12.no-ferryman, kind: lesson, introduces: ['lexeme:kema', 'lexeme:darya', 'lexeme:yamatu']}
+- {id: chg.u12.no-ferryman, kind: lesson, introduces: ['lexeme:kema', 'lexeme:darya', 'lexeme:yamatu', 'lexeme:kemachi']}
 - {id: chg.u12.news-came, kind: lesson, introduces: ['lexeme:khabar', 'lexeme:nilkha', 'lexeme:lashkar', 'lexeme:qalmaq']}
 - {id: chg.u12.a-place-called, kind: lesson, introduces: ['lexeme:tash', 'lexeme:daban', 'lexeme:tara', 'lexeme:chapan', 'lexeme:bashin']}
-- {id: chg.u12.the-battle, kind: lesson, introduces: ['lexeme:qattiq', 'lexeme:urush', 'lexeme:ghalaba', 'lexeme:qash', 'lexeme:murataba']}
+- {id: chg.u12.the-battle, kind: lesson, introduces: ['lexeme:qattiq', 'lexeme:urush', 'lexeme:ghalaba', 'lexeme:qash', 'lexeme:murataba', 'lexeme:tortunchi']}
 - {id: chg.u12.story, kind: story}
 sentences:
 - id: s.12.1
@@ -29,7 +29,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "کیمه\u200cچی."
-      tokens: [{surface: "کیمه\u200cچی", lexemes: [{lexeme: kema, surface: "کیمه\u200c", base: true}, {lexeme: ci, surface: چی}], readings: {schluessel: kemäči}}]
+      tokens: [{surface: "کیمه\u200cچی", lexeme: kemachi, readings: {schluessel: kemäči}}]
       reverse: "(کیمه\u200cچی|کمه\u200cچی)"
   translations:
     en: A (ferryman|boatman).
@@ -38,7 +38,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "کیمه\u200cچی یوق."
-      tokens: [{surface: "کیمه\u200cچی", lexemes: [{lexeme: kema, surface: "کیمه\u200c", base: true}, {lexeme: ci, surface: چی}], readings: {schluessel: kemäči}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: "کیمه\u200cچی", lexeme: kemachi, readings: {schluessel: kemäči}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: "(کیمه\u200cچی|کمه\u200cچی) یوق\n(کیمه\u200cچی|کمه\u200cچی) یوق\u200cتور"
   translations:
     en: There is no (ferryman|boatman).
@@ -85,7 +85,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "یماتوغه کلسه، کیمه\u200cچی یوق."
-      tokens: [{surface: یماتوغه, lexemes: [{lexeme: yamatu, surface: یماتو, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Yamatuǧa}}, {surface: کلسه, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cond, surface: سه}], readings: {schluessel: kälsä}}, {surface: "کیمه\u200cچی", lexemes: [{lexeme: kema, surface: "کیمه\u200c", base: true}, {lexeme: ci, surface: چی}], readings: {schluessel: kemäči}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+      tokens: [{surface: یماتوغه, lexemes: [{lexeme: yamatu, surface: یماتو, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Yamatuǧa}}, {surface: کلسه, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cond, surface: سه}], readings: {schluessel: kälsä}}, {surface: "کیمه\u200cچی", lexeme: kemachi, readings: {schluessel: kemäči}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       reverse: "(یماتوغه|یماتوکه|یماتوقه|یماتوغا) (کلسه|کلسا|کیلسه|کیلسا) (کیمه\u200cچی|کمه\u200cچی) یوق"
   translations:
     en: When they came to Yamatu, there was no ferryman.
@@ -217,7 +217,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: تورتونچی کونی قاچتیلار.
-      tokens: [{surface: تورتونچی, lexemes: [{lexeme: tort, surface: تورت, base: true}, {lexeme: ord, surface: ونچی}], readings: {schluessel: törtünči}}, {surface: کونی, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: küni}}, {surface: قاچتیلار, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: past, surface: تی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: qačtilar}}]
+      tokens: [{surface: تورتونچی, lexeme: tortunchi, readings: {schluessel: törtünči}}, {surface: کونی, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: küni}}, {surface: قاچتیلار, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: past, surface: تی}, {lexeme: p3pl, surface: لار}], readings: {schluessel: qačtilar}}]
       reverse: |-
         تورتونچی کونی قاچتیلار
         تورتونچی کونی قاچتی
@@ -246,7 +246,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: ایکینچی مراتبه کلمادی.
-      tokens: [{surface: ایکینچی, lexemes: [{lexeme: ikki, surface: ایکی, base: true}, {lexeme: ord, surface: نچی}], readings: {schluessel: ikkinči}}, {surface: مراتبه, lexeme: murataba, readings: {schluessel: murātaba}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}], readings: {schluessel: kälmädi}}]
+      tokens: [{surface: ایکینچی, lexeme: ikkinchi, readings: {schluessel: ikkinči}}, {surface: مراتبه, lexeme: murataba, readings: {schluessel: murātaba}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}], readings: {schluessel: kälmädi}}]
       reverse: (ایکینچی|اکینچی) مراتبه (کلمادی|کیلمادی)
   translations:
     en: (They|He|She) (did not|didn't) come a second time.
@@ -260,7 +260,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "کوب کیشی قاچیب، بلالارینی الیب یماتوغه کلسه، کیمه\u200cجی یوق."
-          tokens: [{surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: کیشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: قاچیب, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qačip}}, {surface: بلالارینی, lexemes: [{lexeme: bala, surface: بلا, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: balalarini}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: یماتوغه, lexemes: [{lexeme: yamatu, surface: یماتو, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Yamatuǧa}}, {surface: کلسه, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cond, surface: سه}], readings: {schluessel: kälsä}}, {surface: "کیمه\u200cجی", lexemes: [{lexeme: kema, surface: "کیمه\u200c", base: true}, {lexeme: ci, surface: جی}], readings: {schluessel: kemäči}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
+          tokens: [{surface: کوب, lexeme: kop, readings: {schluessel: köp}}, {surface: کیشی, lexeme: kishi, readings: {schluessel: kiši}}, {surface: قاچیب, lexemes: [{lexeme: qach, surface: قاچ, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qačip}}, {surface: بلالارینی, lexemes: [{lexeme: bala, surface: بلا, base: true}, {lexeme: pl, surface: لار}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: نی}], readings: {schluessel: balalarini}}, {surface: الیب, lexemes: [{lexeme: al, surface: ال, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: alip}}, {surface: یماتوغه, lexemes: [{lexeme: yamatu, surface: یماتو, base: true}, {lexeme: dat, surface: غه}], readings: {schluessel: Yamatuǧa}}, {surface: کلسه, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: cond, surface: سه}], readings: {schluessel: kälsä}}, {surface: "کیمه\u200cجی", lexeme: kemachi, readings: {schluessel: kemäči}}, {surface: یوق, lexeme: yoq, readings: {schluessel: yoq}}]
       translations:
         en: Many people fled, and when they came to Yamatu with their children, there was no ferryman.
   - choose:
@@ -294,7 +294,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: … تاش دابان دیکان یرده اوچ کون قاتتیق اوروش قیلیب، تورتونجی کونی قالماقلار غلبه قیلمای قاشتی.
-          tokens: [{surface: تاش, lexeme: tash, readings: {schluessel: taš}}, {surface: دابان, lexeme: daban, readings: {schluessel: daban}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: یرده, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: yärdä}}, {surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: قاتتیق, lexeme: qattiq, readings: {schluessel: qattiq}}, {surface: اوروش, lexeme: urush, readings: {schluessel: uruš}}, {surface: قیلیب, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qilip}}, {surface: تورتونجی, lexemes: [{lexeme: tort, surface: تورت, base: true}, {lexeme: ord, surface: ونجی}], readings: {schluessel: törtünči}}, {surface: کونی, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: küni}}, {surface: قالماقلار, lexemes: [{lexeme: qalmaq, surface: قالماق, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: Qalmaqlar}}, {surface: غلبه, lexeme: ghalaba, readings: {schluessel: ǧalaba}}, {surface: قیلمای, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-may, surface: مای}], readings: {schluessel: qilmay}}, {surface: قاشتی, lexemes: [{lexeme: qash, surface: قاش, base: true}, {lexeme: past, surface: تی}], readings: {schluessel: qašti}}]
+          tokens: [{surface: تاش, lexeme: tash, readings: {schluessel: taš}}, {surface: دابان, lexeme: daban, readings: {schluessel: daban}}, {surface: دیکان, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: degän}}, {surface: یرده, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: loc, surface: ده}], readings: {schluessel: yärdä}}, {surface: اوچ, lexeme: uch, readings: {schluessel: üč}}, {surface: کون, lexeme: kun, readings: {schluessel: kün}}, {surface: قاتتیق, lexeme: qattiq, readings: {schluessel: qattiq}}, {surface: اوروش, lexeme: urush, readings: {schluessel: uruš}}, {surface: قیلیب, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-p, surface: یب}], readings: {schluessel: qilip}}, {surface: تورتونجی, lexeme: tortunchi, readings: {schluessel: törtünči}}, {surface: کونی, lexemes: [{lexeme: kun, surface: کون, base: true}, {lexeme: poss3, surface: ی}], readings: {schluessel: küni}}, {surface: قالماقلار, lexemes: [{lexeme: qalmaq, surface: قالماق, base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: Qalmaqlar}}, {surface: غلبه, lexeme: ghalaba, readings: {schluessel: ǧalaba}}, {surface: قیلمای, lexemes: [{lexeme: qil, surface: قیل, base: true}, {lexeme: cv-may, surface: مای}], readings: {schluessel: qilmay}}, {surface: قاشتی, lexemes: [{lexeme: qash, surface: قاش, base: true}, {lexeme: past, surface: تی}], readings: {schluessel: qašti}}]
       translations:
         en: … at a place called Tash Daban they fought hard for three days, and on the fourth day the Kalmyks fled without winning.
   - line:
@@ -302,7 +302,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: ایکینچی مراتبه کلمادی.
-          tokens: [{surface: ایکینچی, lexemes: [{lexeme: ikki, surface: ایکی, base: true}, {lexeme: ord, surface: نچی}], readings: {schluessel: ikkinči}}, {surface: مراتبه, lexeme: murataba, readings: {schluessel: murātaba}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}], readings: {schluessel: kälmädi}}]
+          tokens: [{surface: ایکینچی, lexeme: ikkinchi, readings: {schluessel: ikkinči}}, {surface: مراتبه, lexeme: murataba, readings: {schluessel: murātaba}}, {surface: کلمادی, lexemes: [{lexeme: kal, surface: کل, base: true}, {lexeme: neg, surface: ما}, {lexeme: past, surface: دی}], readings: {schluessel: kälmädi}}]
       translations:
         en: They did not come a second time.
   - choose:

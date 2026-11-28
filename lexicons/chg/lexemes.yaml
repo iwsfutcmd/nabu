@@ -69,6 +69,14 @@ lexemes:
   form: "اهنکر"
   spelled: {chg-Arab/standard: [اهنکر], chg-Latn/schluessel: [ahangir]}
   readings: {schluessel: ahangir}
+- id: lexeme:ahangarlik
+  pos: NOUN
+  gloss: {en: 'blacksmithing, the smith''s craft'}
+  base: lexeme:ahangar
+  pattern: lexeme:liq
+  form: "اهنکر+لیک"
+  spelled: {chg-Arab/standard: [اهنکرلیک], chg-Latn/schluessel: [ahangirlik]}
+  readings: {schluessel: ahangirlik}
 - id: lexeme:aj
   pos: PROPN
   gloss: {en: 'ʿĀj (ʿŪj), a giant of the time before the Flood'}
@@ -303,6 +311,16 @@ lexemes:
   form: "اتا"
   spelled: {chg-Arab/standard: [اتا], chg-Latn/schluessel: [ata]}
   readings: {schluessel: ata}
+- id: lexeme:atligh
+  pos: ADJ
+  gloss: {en: 'named, called'}
+  base: lexeme:at.name
+  pattern: lexeme:liq
+  form: "آت+لیغ"
+  spelled: {chg-Arab/standard: [آتلیغ], chg-Latn/schluessel: [atliǧ]}
+  readings: {schluessel: atliǧ}
+  allomorphs:
+  - {form: "ات+لیغ", free: true, spelled: {chg-Arab/standard: [اتلیغ]}}  # REVIEW: a scribe's other spelling, as the course writes it
 - id: lexeme:aw
   pos: NOUN
   gloss: {en: 'the hunt, hunting'}
@@ -326,6 +344,17 @@ lexemes:
   form: "اوی"
   spelled: {chg-Arab/standard: [اوی], chg-Latn/schluessel: [awī]}
   readings: {schluessel: awī}
+- id: lexeme:awla
+  pos: VERB
+  gloss: {en: to hunt}
+  base: lexeme:aw
+  pattern: lexeme:la
+  form: "آو+لا-"
+  spelled: {chg-Arab/standard: [آولا-], chg-Latn/schluessel: [awla-]}
+  readings: {schluessel: awla}
+  allomorphs:
+  - {form: "آو+لا", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [آولا]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "او+لا", free: true, spelled: {chg-Arab/standard: [اولا]}}  # REVIEW: a scribe's other spelling, as the course writes it
 - id: lexeme:ay.month
   pos: NOUN
   gloss: {en: month; moon}
@@ -356,6 +385,14 @@ lexemes:
   form: "ایوان"
   spelled: {chg-Arab/standard: [ایوان], chg-Latn/schluessel: [aywān]}
   readings: {schluessel: aywān}
+- id: lexeme:aywanliq
+  pos: ADJ
+  gloss: {en: with a portico}
+  base: lexeme:aywan
+  pattern: lexeme:liq
+  form: "ایوان+لیق"
+  spelled: {chg-Arab/standard: [ایوانلیق], chg-Latn/schluessel: [aywānliq]}
+  readings: {schluessel: aywānliq}
 - id: lexeme:azan
   pos: NOUN
   gloss: {en: the call to prayer}
@@ -462,6 +499,17 @@ lexemes:
   form: "باشین"
   spelled: {chg-Arab/standard: [باشین], chg-Latn/schluessel: [Bašin]}
   readings: {schluessel: Bašin}
+- id: lexeme:bashinchi
+  pos: ADJ
+  feats: {NumType: Ord}
+  gloss: {en: fifth}
+  base: lexeme:bash
+  pattern: lexeme:ord
+  form: "بیش+ینچی"
+  spelled: {chg-Arab/standard: [بیشینچی], chg-Latn/schluessel: [bäšinči]}
+  readings: {schluessel: bäšinči}
+  allomorphs:
+  - {form: "بیش+ینجی", free: true, spelled: {chg-Arab/standard: [بیشینجی]}}  # REVIEW: a scribe's other spelling, as the course writes it
 - id: lexeme:bayan
   pos: NOUN
   gloss: {en: 'explanation, account'}
@@ -477,6 +525,14 @@ lexemes:
   readings: {schluessel: bazār}
   allomorphs:
   - {form: "بازار", free: true, spelled: {chg-Arab/standard: [بازار]}}  # REVIEW: a scribe's other spelling
+- id: lexeme:bazari
+  pos: NOUN
+  gloss: {en: 'market person, man of the bazaar'}
+  base: lexeme:bazar
+  pattern: lexeme:nisba
+  form: "بازار+ی"
+  spelled: {chg-Arab/standard: [بازاری], chg-Latn/schluessel: [bāzārī]}
+  readings: {schluessel: bāzārī}
 - id: lexeme:behadd
   pos: ADV
   gloss: {en: 'endless; endlessly, beyond measure'}
@@ -584,6 +640,14 @@ lexemes:
   form: "بخارا"
   spelled: {chg-Arab/standard: [بخارا], chg-Latn/schluessel: [Buḫārā]}
   readings: {schluessel: Buḫārā}
+- id: lexeme:bukharalik
+  pos: ADJ
+  gloss: {en: 'of Bukhara, Bukharan'}
+  base: lexeme:bukhara
+  pattern: lexeme:liq
+  form: "بخارا+لیک"
+  spelled: {chg-Arab/standard: [بخارالیک], chg-Latn/schluessel: [Buḫārālik]}
+  readings: {schluessel: Buḫārālik}
 - id: lexeme:buyru
   pos: VERB
   gloss: {en: 'to order, command'}
@@ -946,6 +1010,14 @@ lexemes:
   form: "غرە"
   spelled: {chg-Arab/standard: [غره], chg-Latn/schluessel: [ǧurra]}
   readings: {schluessel: ǧurra}
+- id: lexeme:ghurraliq
+  pos: ADJ
+  gloss: {en: spotted}
+  base: lexeme:ghurra
+  pattern: lexeme:liq
+  form: "غرە+لیق"
+  spelled: {chg-Arab/standard: ["غره\u200cلیق"], chg-Latn/schluessel: [ǧurraliq]}
+  readings: {schluessel: ǧurraliq}
 - id: lexeme:gosht
   pos: NOUN
   gloss: {en: meat}
@@ -1062,6 +1134,15 @@ lexemes:
   form: "ایکی"
   spelled: {chg-Arab/standard: [ایکی], chg-Latn/schluessel: [ikki]}
   readings: {schluessel: ikki}
+- id: lexeme:ikkinchi
+  pos: ADJ
+  feats: {NumType: Ord}
+  gloss: {en: second}
+  base: lexeme:ikki
+  pattern: lexeme:ord
+  form: "ایکی+نچی"
+  spelled: {chg-Arab/standard: [ایکینچی], chg-Latn/schluessel: [ikkinči]}
+  readings: {schluessel: ikkinči}
 - id: lexeme:iman
   pos: NOUN
   gloss: {en: faith; the creed}
@@ -1147,6 +1228,14 @@ lexemes:
   readings: {schluessel: jaŋgal}
   allomorphs:
   - {form: "جنکال", free: true, spelled: {chg-Arab/standard: [جنکال]}}  # REVIEW: a scribe's other spelling
+- id: lexeme:jangaldaqi
+  pos: ADJ
+  gloss: {en: 'in the wilderness, of the wilderness'}
+  base: lexeme:jangal
+  pattern: lexeme:daki
+  form: "جانکال+داقی"
+  spelled: {chg-Arab/standard: [جانکالداقی], chg-Latn/schluessel: [jaŋgaldaqi]}
+  readings: {schluessel: jaŋgaldaqi}
 - id: lexeme:janib
   pos: NOUN
   gloss: {en: 'side, direction (a word of Arabic, as ṭaraf)'}
@@ -1165,6 +1254,14 @@ lexemes:
   form: "جنوب"
   spelled: {chg-Arab/standard: [جنوب], chg-Latn/schluessel: [janūb]}
   readings: {schluessel: janūb}
+- id: lexeme:janubi
+  pos: ADJ
+  gloss: {en: 'southern, south'}
+  base: lexeme:janub
+  pattern: lexeme:nisba
+  form: "جنوب+ی"
+  spelled: {chg-Arab/standard: [جنوبی], chg-Latn/schluessel: [janūbī]}
+  readings: {schluessel: janūbī}
 - id: lexeme:jawab
   pos: NOUN
   gloss: {en: 'answer, reply'}
@@ -1255,6 +1352,16 @@ lexemes:
   form: "کیمە"
   spelled: {chg-Arab/standard: [کیمه], chg-Latn/schluessel: [kemä]}
   readings: {schluessel: kemä}
+- id: lexeme:kemachi
+  pos: NOUN
+  gloss: {en: 'boatman, ferryman'}
+  base: lexeme:kema
+  pattern: lexeme:ci
+  form: "کیمە+چی"
+  spelled: {chg-Arab/standard: ["کیمه\u200cچی"], chg-Latn/schluessel: [kemäči]}
+  readings: {schluessel: kemäči}
+  allomorphs:
+  - {form: "کیمە+جی", free: true, spelled: {chg-Arab/standard: ["کیمه\u200cجی"]}}  # REVIEW: a scribe's other spelling, as the course writes it
 - id: lexeme:keng
   pos: ADJ
   gloss: {en: 'wide, broad'}
@@ -1441,6 +1548,14 @@ lexemes:
   form: "کون"
   spelled: {chg-Arab/standard: [کون], chg-Latn/schluessel: [kün]}
   readings: {schluessel: kün}
+- id: lexeme:kunchuluk
+  pos: ADJ
+  gloss: {en: 'a day''s, lasting a day'}
+  base: lexeme:kun
+  pattern: lexeme:cilik
+  form: "کون+جلوک"
+  spelled: {chg-Arab/standard: [کونجلوک], chg-Latn/schluessel: [künčülük]}
+  readings: {schluessel: künčülük}
 - id: lexeme:kursi
   pos: NOUN
   gloss: {en: chair; throne}
@@ -2242,6 +2357,14 @@ lexemes:
   readings: {schluessel: qoy}
   allomorphs:
   - {form: "قوي", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [قوی]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+- id: lexeme:qoychi
+  pos: NOUN
+  gloss: {en: shepherd}
+  base: lexeme:qoy
+  pattern: lexeme:ci
+  form: "قوي+چی"
+  spelled: {chg-Arab/standard: [قویچی], chg-Latn/schluessel: [qoyči]}
+  readings: {schluessel: qoyči}
 - id: lexeme:qubays
   pos: PROPN
   gloss: {en: Qubays (in the name Abū Qubays)}
@@ -2379,6 +2502,14 @@ lexemes:
   form: "سمرقند"
   spelled: {chg-Arab/standard: [سمرقند], chg-Latn/schluessel: [Samarqand]}
   readings: {schluessel: Samarqand}
+- id: lexeme:samarqandlik
+  pos: ADJ
+  gloss: {en: 'of Samarkand, Samarkandi'}
+  base: lexeme:samarqand
+  pattern: lexeme:liq
+  form: "سمرقند+لیک"
+  spelled: {chg-Arab/standard: [سمرقندلیک], chg-Latn/schluessel: [Samarqandlik]}
+  readings: {schluessel: Samarqandlik}
 - id: lexeme:san
   pos: PRON
   feats: {PronType: Prs}
@@ -2448,6 +2579,14 @@ lexemes:
   readings: {schluessel: šahar}
   allomorphs:
   - {form: "شهری", free: true, spelled: {chg-Arab/standard: [شهری]}}  # REVIEW: šahargä written شهریکه: the Tadhkira's scribe (S p. 137; the scheme lists it)
+- id: lexeme:shahari
+  pos: NOUN
+  gloss: {en: 'city person, townsman'}
+  base: lexeme:shahar
+  pattern: lexeme:nisba
+  form: "شهر+ی"
+  spelled: {chg-Arab/standard: [شهری], chg-Latn/schluessel: [šaharī]}
+  readings: {schluessel: šaharī}
 - id: lexeme:shajara
   pos: NOUN
   gloss: {en: 'tree; family tree, genealogy'}
@@ -2745,6 +2884,17 @@ lexemes:
   form: "تورت"
   spelled: {chg-Arab/standard: [تورت], chg-Latn/schluessel: [tört]}
   readings: {schluessel: tört}
+- id: lexeme:tortunchi
+  pos: ADJ
+  feats: {NumType: Ord}
+  gloss: {en: fourth}
+  base: lexeme:tort
+  pattern: lexeme:ord
+  form: "تورت+ونچی"
+  spelled: {chg-Arab/standard: [تورتونچی], chg-Latn/schluessel: [törtünči]}
+  readings: {schluessel: törtünči}
+  allomorphs:
+  - {form: "تورت+ونجی", free: true, spelled: {chg-Arab/standard: [تورتونجی]}}  # REVIEW: a scribe's other spelling, as the course writes it
 - id: lexeme:tufan
   pos: NOUN
   gloss: {en: the Flood (of Noah); a flood}
@@ -2935,8 +3085,22 @@ lexemes:
   form: "یغاچ"
   spelled: {chg-Arab/standard: [یغاچ], chg-Latn/schluessel: [yaǧač]}
   readings: {schluessel: yaǧač}
-  allomorphs:
-  - {spelled: {chg-Arab/standard: [یغا]}}  # REVIEW: the course's segmentation of a token the rules write otherwise (docs/rules/chg.md)
+- id: lexeme:yaghachchi
+  pos: NOUN
+  gloss: {en: carpenter}
+  base: lexeme:yaghach
+  pattern: lexeme:ci
+  form: "یغاچ+چی"
+  spelled: {chg-Arab/standard: [یغاچچی], chg-Latn/schluessel: [yaǧačči]}
+  readings: {schluessel: yaǧačči}
+- id: lexeme:yaghachchilik
+  pos: NOUN
+  gloss: {en: carpentry}
+  base: lexeme:yaghachchi
+  pattern: lexeme:liq
+  form: "یغاچ+چی+لیک"
+  spelled: {chg-Arab/standard: [یغاچچیلیک], chg-Latn/schluessel: [yaǧaččilik]}
+  readings: {schluessel: yaǧaččilik}
 - id: lexeme:yakhshi
   pos: ADJ
   gloss: {en: good}
@@ -2983,6 +3147,14 @@ lexemes:
   readings: {schluessel: yarat}
   allomorphs:
   - {form: "یرات", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [یرات]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+- id: lexeme:yarlik
+  pos: ADJ
+  gloss: {en: 'from (a place), of (a place)'}
+  base: lexeme:yar
+  pattern: lexeme:liq
+  form: "یر+لیک"
+  spelled: {chg-Arab/standard: [یرلیک], chg-Latn/schluessel: [yärlik]}
+  readings: {schluessel: yärlik}
 - id: lexeme:yaru
   pos: VERB
   gloss: {en: 'to grow light, shine'}

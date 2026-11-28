@@ -9,7 +9,7 @@ title:
   en: The red tent
 cefr: B1
 nodes:
-- {id: chg.u19.gold-and-red, kind: lesson, introduces: ['lexeme:altun', 'lexeme:kursi', 'lexeme:et', 'lexeme:baqish', 'lexeme:ghurra', 'lexeme:taygan']}
+- {id: chg.u19.gold-and-red, kind: lesson, introduces: ['lexeme:altun', 'lexeme:kursi', 'lexeme:et', 'lexeme:baqish', 'lexeme:ghurra', 'lexeme:taygan', 'lexeme:ghurraliq']}
 - {id: chg.u19.before-him, kind: lesson, introduces: ['lexeme:ald', 'lexeme:qol', 'lexeme:bagla']}
 - {id: chg.u19.seventy-seven, kind: lesson, introduces: ['lexeme:yatmish', 'lexeme:uratur']}
 - {id: chg.u19.face-to-face, kind: lesson, introduces: ['lexeme:mard', 'lexeme:sharr', 'lexeme:rubaru', 'lexeme:mawlana', 'lexeme:shubu']}
@@ -74,7 +74,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "غره غره\u200cلیق ایت."
-      tokens: [{surface: غره, lexeme: ghurra, readings: {schluessel: ǧurra}}, {surface: "غره\u200cلیق", lexemes: [{lexeme: ghurra, surface: "غره\u200c", base: true}, {lexeme: liq, surface: لیق}], readings: {schluessel: ǧurraliq}}, {surface: ایت, lexeme: it, readings: {schluessel: it}}]
+      tokens: [{surface: غره, lexeme: ghurra, readings: {schluessel: ǧurra}}, {surface: "غره\u200cلیق", lexeme: ghurraliq, readings: {schluessel: ǧurraliq}}, {surface: ایت, lexeme: it, readings: {schluessel: it}}]
       reverse: "غره غره\u200cلیق ایت"
   translations:
     en: A (spotted dog|dog with white spots|dog spotted all over).
@@ -291,7 +291,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "بر التون غره غره\u200cلیق تایغان الدیدا یاتیب\u200cدور."
-          tokens: [{surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: التون, lexeme: altun, readings: {schluessel: altun}}, {surface: غره, lexeme: ghurra, readings: {schluessel: ǧurra}}, {surface: "غره\u200cلیق", lexemes: [{lexeme: ghurra, surface: "غره\u200c", base: true}, {lexeme: liq, surface: لیق}], readings: {schluessel: ǧurraliq}}, {surface: تایغان, lexeme: taygan, readings: {schluessel: tayǧan}}, {surface: الدیدا, lexemes: [{lexeme: ald, surface: الد, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: aldida}}, {surface: "یاتیب\u200cدور", lexemes: [{lexeme: yat.lie, surface: یات, base: true}, {lexeme: narr, surface: "یب\u200cدور"}], readings: {schluessel: yatipdur}}]
+          tokens: [{surface: بر, lexeme: bir, readings: {schluessel: bir}}, {surface: التون, lexeme: altun, readings: {schluessel: altun}}, {surface: غره, lexeme: ghurra, readings: {schluessel: ǧurra}}, {surface: "غره\u200cلیق", lexeme: ghurraliq, readings: {schluessel: ǧurraliq}}, {surface: تایغان, lexeme: taygan, readings: {schluessel: tayǧan}}, {surface: الدیدا, lexemes: [{lexeme: ald, surface: الد, base: true}, {lexeme: poss3, surface: ی}, {lexeme: loc, surface: دا}], readings: {schluessel: aldida}}, {surface: "یاتیب\u200cدور", lexemes: [{lexeme: yat.lie, surface: یات, base: true}, {lexeme: narr, surface: "یب\u200cدور"}], readings: {schluessel: yatipdur}}]
       translations:
         en: A golden hunting dog with white spots lay before him.
   - choose:

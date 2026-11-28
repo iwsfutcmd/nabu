@@ -10,7 +10,7 @@ title:
 cefr: B1
 nodes:
 - {id: chg.u17.right-and-left, kind: lesson, introduces: ['lexeme:on.right', 'lexeme:yan', 'lexeme:sol', 'lexeme:pahlawan', 'lexeme:shah', 'lexeme:ziwar']}
-- {id: chg.u17.where-from, kind: lesson, introduces: ['lexeme:ne', 'lexeme:bukhara']}
+- {id: chg.u17.where-from, kind: lesson, introduces: ['lexeme:ne', 'lexeme:bukhara', 'lexeme:yarlik', 'lexeme:bukharalik', 'lexeme:samarqandlik']}
 - {id: chg.u17.since-we-came, kind: lesson, introduces: ['lexeme:gali']}
 - {id: chg.u17.we-shall, kind: lesson, introduces: ['lexeme:sayr', 'lexeme:alam', 'lexeme:ruy', 'lexeme:gay', 'lexeme:maqsud', 'lexeme:mudda']}
 - {id: chg.u17.your-answer, kind: lesson, introduces: ['lexeme:jawab', 'lexeme:alqissa']}
@@ -102,7 +102,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: نه یرلیک بولورسیز؟
-      tokens: [{surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: یرلیک, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: yärlik}}, {surface: بولورسیز, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2, surface: سیز}], readings: {schluessel: bolursiz}}]
+      tokens: [{surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: یرلیک, lexeme: yarlik, readings: {schluessel: yärlik}}, {surface: بولورسیز, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2, surface: سیز}], readings: {schluessel: bolursiz}}]
       reverse: "نه (یرلیک|یارلیک) (بولورسیز|بولورسن|بولورسیزلار)"
   translations:
     en: Where are you from?
@@ -113,7 +113,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: نه یرلیک بولورسیزلار؟
-      tokens: [{surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: یرلیک, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: yärlik}}, {surface: بولورسیزلار, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2pl, surface: سیزلار}], readings: {schluessel: bolursizlär}}]
+      tokens: [{surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: یرلیک, lexeme: yarlik, readings: {schluessel: yärlik}}, {surface: بولورسیزلار, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2pl, surface: سیزلار}], readings: {schluessel: bolursizlär}}]
       reverse: نه (یرلیک|یارلیک) بولورسیزلار
   translations:
     en: Where are you (all|) from?
@@ -122,7 +122,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: بیز بخارالیک.
-      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: بخارالیک, lexemes: [{lexeme: bukhara, surface: بخارا, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: Buḫārālik}}]
+      tokens: [{surface: بیز, lexeme: biz, readings: {schluessel: biz}}, {surface: بخارالیک, lexeme: bukharalik, readings: {schluessel: Buḫārālik}}]
       reverse: |-
         بیز بخارالیک
         بیز بخارالیکمیز
@@ -133,7 +133,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: من سمرقندلیک.
-      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: سمرقندلیک, lexemes: [{lexeme: samarqand, surface: سمرقند, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: Samarqandlik}}]
+      tokens: [{surface: من, lexeme: man, readings: {schluessel: män}}, {surface: سمرقندلیک, lexeme: samarqandlik, readings: {schluessel: Samarqandlik}}]
       reverse: |-
         من سمرقندلیک
         من سمرقندلیکمن
@@ -392,7 +392,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "القصّه، زیور شاه ایدی، «ای، یکت\u200cلار! نه یرلیک بولورسیزلار؟ موندا نچه یورورسیزلار؟» دیدی."
-          tokens: [{surface: القصّه, lexeme: alqissa, readings: {schluessel: al-qiṣṣa}}, {surface: زیور, lexeme: ziwar, readings: {schluessel: Zīwar}}, {surface: شاه, lexeme: shah, readings: {schluessel: Šāh}}, {surface: ایدی, lexemes: [{lexeme: eyt, surface: ای, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: aydi}}, {surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: "یکت\u200cلار", lexemes: [{lexeme: yigit, surface: "یکت\u200c", base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: yigitlär}}, {surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: یرلیک, lexemes: [{lexeme: yar, surface: یر, base: true}, {lexeme: liq, surface: لیک}], readings: {schluessel: yärlik}}, {surface: بولورسیزلار, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2pl, surface: سیزلار}], readings: {schluessel: bolursizlär}}, {surface: موندا, lexemes: [{lexeme: bu, surface: مون, base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: munda}}, {surface: نچه, lexeme: nachcha, readings: {schluessel: näččä}}, {surface: یورورسیزلار, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2pl, surface: سیزلار}], readings: {schluessel: yürürsizlär}}, {surface: دیدی, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: dedi}}]
+          tokens: [{surface: القصّه, lexeme: alqissa, readings: {schluessel: al-qiṣṣa}}, {surface: زیور, lexeme: ziwar, readings: {schluessel: Zīwar}}, {surface: شاه, lexeme: shah, readings: {schluessel: Šāh}}, {surface: ایدی, lexemes: [{lexeme: eyt, surface: ای, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: aydi}}, {surface: ای, lexeme: ay.voc, readings: {schluessel: ay}}, {surface: "یکت\u200cلار", lexemes: [{lexeme: yigit, surface: "یکت\u200c", base: true}, {lexeme: pl, surface: لار}], readings: {schluessel: yigitlär}}, {surface: نه, lexeme: ne, readings: {schluessel: ne}}, {surface: یرلیک, lexeme: yarlik, readings: {schluessel: yärlik}}, {surface: بولورسیزلار, lexemes: [{lexeme: bol, surface: بول, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2pl, surface: سیزلار}], readings: {schluessel: bolursizlär}}, {surface: موندا, lexemes: [{lexeme: bu, surface: مون, base: true}, {lexeme: loc, surface: دا}], readings: {schluessel: munda}}, {surface: نچه, lexeme: nachcha, readings: {schluessel: näččä}}, {surface: یورورسیزلار, lexemes: [{lexeme: yur, surface: یور, base: true}, {lexeme: aor, surface: ور}, {lexeme: p2pl, surface: سیزلار}], readings: {schluessel: yürürsizlär}}, {surface: دیدی, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: past, surface: دی}], readings: {schluessel: dedi}}]
       translations:
         en: 'Back to our story: Ziwar Shah said, “Oh, young men! Where are you from? How long will you be here?”'
   - choose:
