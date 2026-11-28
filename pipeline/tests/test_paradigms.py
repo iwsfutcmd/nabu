@@ -153,8 +153,9 @@ def test_a_spelling_that_begins_with_a_carrier_is_not_shipped() -> None:
 def test_a_token_s_affix_lexemes_give_its_cell() -> None:
     """Where a language's rules write affix lexemes (an exponent's `lexeme`: uz), a token's cell
     takes the values each affix it lists realises, when its category's rules write that affix; an
-    ending no rule of the category writes (a predicate's -man on a noun) is no value of it. A
-    language whose exponents add text (apc) derives nothing."""
+    ending no rule of the category writes (a predicate's -man on a noun) is no value of it. In a
+    language that merges lexemes (apc, ADR 0158), every lexeme that merges onto another gives its
+    values, for every category: shereb + perf-3fs is the she-past."""
     uz, _ = load_language(ROOT / "lexicons", "uz")
     apc, _ = load_language(ROOT / "lexicons", "apc")
     assert uz is not None and apc is not None
@@ -173,7 +174,20 @@ def test_a_token_s_affix_lexemes_give_its_cell() -> None:
         {"lexeme": "lexeme:cop-1sg"},
     ]
     assert token_cell(uydaman, "NOUN", affixes) == {"Case": "Loc"}
-    assert written_affixes(apc) == {}
+    merged = written_affixes(apc)
+    assert merged["VERB"]["lexeme:perf-3fs"] == {
+        "Aspect": "Perf",
+        "Person": "3",
+        "Gender": "Fem",
+        "Number": "Sing",
+    }
+    sharbet = [{"lexeme": "lexeme:shereb", "base": True}, {"lexeme": "lexeme:perf-3fs"}]
+    assert token_cell(sharbet, "VERB", merged) == {
+        "Aspect": "Perf",
+        "Gender": "Fem",
+        "Number": "Sing",
+        "Person": "3",
+    }
 
 
 def test_an_unmarked_value_is_taught() -> None:
