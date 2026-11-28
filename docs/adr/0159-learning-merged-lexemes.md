@@ -62,6 +62,8 @@ answer could have held one of them.**
    third person, the bare imperative), so every base has all its cells; its bundle gained paradigms and labels.
    uz followed (docs/rules/uz.md), as chg: its suffixes merge, its realisation rules are gone, its zeros are the
    nominative, the past's third person and the bare imperative, and its paradigms gained labels.
+   fa followed (docs/rules/fa.md): its tokens' chosen tense became zero lexemes that choose the stem, the copula's
+   negative and independent version lexemes, and its paradigms gained labels.
 3. **A typed word read back as lexemes**: the bundle's paradigm keyed by the lexemes merged, not by cell, so the
    device looks a word up and never realises (Rules notes). Credit and misses per lexeme; feedback names the lexeme
    that stood in another's place, and a word that breaks an `on` condition says which.

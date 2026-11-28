@@ -55,9 +55,10 @@ const NAMED: readonly (readonly [string, string | undefined, string, readonly st
   ["fa", undefined, "vocalize:s.5", ["lexeme:na", "lexeme:mamnun"], []],
   // Typed into Persian: the sentence only once answered.
   ["fa", undefined, "translate-type.l1-l2:s.5", [], ["lexeme:na", "lexeme:mamnun"]],
-  // هستم writes the copula and its ending: a pair each.
-  ["fa", undefined, "whole-parts:s.26", ["lexeme:mamnun", "lexeme:khub", "lexeme:budan", "lexeme:1sg"], []],
-  ["fa", undefined, "translate-tap.l1-l2:s.6", ["lexeme:budan", "lexeme:1sg", "lexeme:va", "lexeme:kheyli", "lexeme:maryam", "lexeme:salam"], []],
+  // هستم writes the copula and its ending: a pair each. Since fa merges, the copula is seen in its form (the present's
+  // zero brings its cell: docs/rules/fa.md), and the whole-parts card's tile is its lemma.
+  ["fa", undefined, "whole-parts:s.26", ["lexeme:mamnun", "lexeme:khub", "lexeme:budan|form:Tense=Pres;VerbForm=Fin", "lexeme:1sg", "lexeme:budan"], []],
+  ["fa", undefined, "translate-tap.l1-l2:s.6", ["lexeme:budan|form:Tense=Pres;VerbForm=Fin", "lexeme:1sg", "lexeme:va", "lexeme:kheyli", "lexeme:maryam", "lexeme:salam"], []],
   // Malika mening opam. with opam left out: opa is shown as its lemma, the answer adds its ending. A word in the
   // nominative is seen in that form since uz merges (its zero is folded into its values: docs/rules/uz.md).
   ["uz", "uz-Latn/standard", "parts-whole:s.family.9", ["lexeme:malika|form:Case=Nom", "lexeme:men", "lexeme:gen", "lexeme:opa"], ["lexeme:opa|form:Case=Nom", "lexeme:poss-1sg"]],

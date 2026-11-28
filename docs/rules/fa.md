@@ -83,6 +83,47 @@
   توان power, ده ten). The stems are three or four letters, and fa's typo leeway (maxRatio 0.15) gives no word
   within a letter of one a slip, so no slip lands on a stem.
 
+## fa merges lexemes (ADR 0158; 2026-11-28)
+
+fa is the fourth course language in the merge model (after apc, chg and uz). Its affixes were lexemes already; what
+the tokens still chose on their base (a verb's Tense, the copula's negative and its independent version) is now
+brought by lexemes, and the cells no ending writes are zeros. Every line is REVIEW (the owner was asleep).
+
+- **The tense is a zero** (`pres`, `past`: Tense and VerbForm=Fin): Persian shows it by the stem (Yousef p. 158), so the
+  zero carries no letters and the stem rules above choose the stem from the merged word's values. fa declares
+  `stemmed: [VERB, AUX]` for that: with the tense brought by a lexeme, the base chooses nothing itself, and without
+  `stemmed` it would count as standing in its citation cell and skip the rules.
+- **What a word requires** (language.yaml `requires`): a verb or the copula a form (a tense, or `inf`, the infinitive's
+  zero: the lexical form is the infinitive); a tense a person. Nouns require nothing. A verb is cited by its infinitive
+  (`citation`).
+- **The zeros**: `3sg.zero`, the third person singular where nothing is written (the past's رفت, the copula's است:
+  Yousef pp. 183, 200); `2sg.imp`, the imperative to one (ببین: be- + the stem alone, p. 244). The course writes the
+  imperative with the subjunctive's be- (`subj`), so the imperative's zero stands where the subjunctive has -i and brings
+  no mood of its own: a paradigm's 2sg subjunctive cell shows ببینی, and the one imperative token keeps its own form.
+- **The copula**: its negative نیست is `neg` + budan, which the listed form covers (as a broken plural covers its
+  lexemes); هست, its independent version, is budan + `long` (Variant=Long; the course's existential-hast is still a
+  lexeme the sentences `use`, written by no token: question 2 below). Its present stem هست is chosen by the person
+  (`before: {feats: …}`: هستم, هستی, هستند; است in the 3sg) instead of "something follows", which a zero would satisfy.
+  Its infinitive is listed (بودن), since its allomorphs are its present's.
+- **داشتن stores `Aspect: Imp`**: with the merge every verb has every cell its category lists, and داشتن took mi- and be-
+  (nemi-dāram, be-dāram: not Persian). Yousef: "to have (no mi- in pres. and progressive tenses)" (p. 210; p. 224; p. 232, its
+  past serves for the past progressive), so its forms are imperfective of themselves and mi- and be-, which lack
+  Aspect, never merge onto it (as sk's aspect partners store theirs). Its subjunctive (داشته باشم) is not written: its
+  be- cells are empty.
+- **The order** (each lexeme's `on`): the tense onto the stem, the person after it; mi- (it needs a tense) or be- (the
+  present's) before the stem, na- outside them (ne-mi-ravam); a noun's plural before the indefinite; -tar on an
+  adjective. The ezafe and the possessives are words of their own written onto their host: no `on`.
+- **The tokens**: a converter replaced each chosen value with its lexeme and listed the zeros: 365 present and 31 past
+  verb or copula tokens, 169 a third-person zero (163 the copula's), 3 نیست `neg`, 3 هست `long`, one `inf`, one `2sg.imp`.
+  The token check gives every token as before (1,547 by the rules, 153 by a listed form, none unaccounted); every
+  token is complete; every token's merging lexemes, picked in any order, merge back as written
+  (packages/core/test/merge-order-fa.test.ts). conformance/realise-fa.json lists the tokens so; every form is unchanged.
+- **What ships**: VERB 26 cells (past, mi- present, be- subjunctive, the present without mi-, the negatives, the
+  infinitive), AUX 11, NOUN 2, ADJ 2; `labels` for every cell, fa had none ("present (mi-): I"; the copula's under
+  `pos: AUX`, "was (بود-): we"). The bare present stems are no longer cells (question 4 below, settled by the merge).
+  Two gaps: the copula's 3sg present است is not listed (a zero and the base's own allomorph, so no rule runs there); the
+  present without mi- is listed for every verb, because dāram and khāham have it (its label says so).
+
 ## For the owner
 
 1. Verb tokens choosing Tense (Pres or Past), and the gap-fill pools that split by it.

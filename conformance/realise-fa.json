@@ -1,5 +1,5 @@
 {
-  "$comment": "Realisation in fa (docs/rules/fa.md; docs/rules-design.md, sections 2 and 4): fa's own rules and lexicon (lexicons/fa/language.yaml, lexemes.yaml), with `spellings: false`, as the compiler's check of the tokens runs them. One vector or more per branch of every rule and per allomorph of every affix, from the course's own tokens where it writes them (the note says where) and else from its lexemes in a cell the course does not write. A form keeps its boundaries (+); U+0652 is the sign of no vowel a join writes, U+06DF a letter written and not said; a realisation is spelled in spell-fa.json.",
+  "$comment": "Realisation in fa (docs/rules/fa.md; docs/rules-design.md, sections 2 and 4): fa's own rules and lexicon (lexicons/fa/language.yaml, lexemes.yaml), with `spellings: false`, as the compiler's check of the tokens runs them. One vector or more per branch of every rule and per allomorph of every affix, from the course's own tokens where it writes them (the note says where) and else from its lexemes in a cell the course does not write. A form keeps its boundaries (+); U+0652 is the sign of no vowel a join writes, U+06DF a letter written and not said; a realisation is spelled in spell-fa.json. Since fa merges lexemes (ADR 0158, 2026-11-28), a token's tense, the copula's negative and its independent version are the lexemes that bring them (the zeros pres, past, long; neg, which the listed نیست covers), with the zeros of the cells no ending writes (3sg.zero, 2sg.imp, inf); every expected form is unchanged.",
   "vectors": [
     {
       "id": "realise/fa/past/stem/vowel-ending",
@@ -10,10 +10,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:raftan",
-            "feats": {
-              "Tense": "Past"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:past"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -34,7 +34,14 @@
               "rule": "rule:fa-past",
               "branch": "an"
             }
-          ]
+          ],
+          "feats": {
+            "Tense": "Past",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "rule:fa-past|stem and |an before an ending in a vowel (-am): u10-past s.past.4 رفتم."
@@ -48,10 +55,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:khordan",
-            "feats": {
-              "Tense": "Past"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:past"
           },
           {
             "lexeme": "lexeme:1pl"
@@ -72,7 +79,14 @@
               "rule": "rule:fa-past",
               "branch": "an"
             }
-          ]
+          ],
+          "feats": {
+            "Tense": "Past",
+            "VerbForm": "Fin",
+            "Number": "Plur",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "rule:fa-past|an before an ending in i (-im): u10-past خوردیم."
@@ -86,9 +100,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:amadan",
-            "feats": {
-              "Tense": "Past"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:3sg.zero"
           }
         ]
       },
@@ -106,7 +124,13 @@
               "rule": "rule:fa-past",
               "branch": "an"
             }
-          ]
+          ],
+          "feats": {
+            "Tense": "Past",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "3"
+          }
         }
       },
       "note": "rule:fa-past|an at a word's end: the 3sg past, no ending (u10-past آمد)."
@@ -123,10 +147,10 @@
           },
           {
             "lexeme": "lexeme:kardan",
-            "feats": {
-              "Tense": "Past"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:past"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -147,7 +171,15 @@
               "rule": "rule:fa-past",
               "branch": "an"
             }
-          ]
+          ],
+          "feats": {
+            "Polarity": "Neg",
+            "Tense": "Past",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "na- before the past stem (u10-past نکردم)."
@@ -161,10 +193,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:budan",
-            "feats": {
-              "Tense": "Past"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:past"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -185,7 +217,14 @@
               "rule": "rule:fa-past",
               "branch": "an"
             }
-          ]
+          ],
+          "feats": {
+            "Tense": "Past",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "budan's past stem by the same rule (Yousef p. 186; u10-past s.past.1 بودم)."
@@ -199,9 +238,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:gozashtan",
-            "feats": {
-              "Tense": "Past"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:3sg.zero"
           }
         ]
       },
@@ -210,7 +253,13 @@
         "value": {
           "form": "گُذَشت",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "Tense": "Past",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "3"
+          }
         }
       },
       "note": "gozashtan cites its 3sg past: no rule runs (u10-past خوش گذشت)."
@@ -227,10 +276,10 @@
           },
           {
             "lexeme": "lexeme:kharidan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -247,7 +296,15 @@
               "rule": "rule:fa-present-idan",
               "branch": "stem"
             }
-          ]
+          ],
+          "feats": {
+            "Aspect": "Imp",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "rule:fa-present-idan before -am (u09-shopping می\u200cخرم)."
@@ -264,10 +321,10 @@
           },
           {
             "lexeme": "lexeme:pichidan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:2pl"
@@ -284,7 +341,15 @@
               "rule": "rule:fa-present-idan",
               "branch": "stem"
             }
-          ]
+          ],
+          "feats": {
+            "Mood": "Sub",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Plur",
+            "Person": "2"
+          },
+          "inflected": true
         }
       },
       "note": "rule:fa-present-idan before -id (u08-city بپیچید)."
@@ -301,10 +366,13 @@
           },
           {
             "lexeme": "lexeme:kharidan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
+          },
+          {
+            "lexeme": "lexeme:2sg.imp"
           }
         ]
       },
@@ -318,7 +386,15 @@
               "rule": "rule:fa-present-idan",
               "branch": "stem"
             }
-          ]
+          ],
+          "feats": {
+            "Mood": "Sub",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "2"
+          },
+          "inflected": true
         }
       },
       "note": "rule:fa-present-idan at a word's end: the singular imperative (Yousef p. 245); the course writes none."
@@ -335,10 +411,10 @@
           },
           {
             "lexeme": "lexeme:khabidan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -355,7 +431,15 @@
               "rule": "rule:fa-present-idan",
               "branch": "stem"
             }
-          ]
+          ],
+          "feats": {
+            "Aspect": "Imp",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "khābidan: the silent و of خوا kept, -idan gone (u06-day می\u200cخوابم)."
@@ -372,10 +456,10 @@
           },
           {
             "lexeme": "lexeme:khandan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -392,7 +476,15 @@
               "rule": "rule:fa-present-andan",
               "branch": "stem"
             }
-          ]
+          ],
+          "feats": {
+            "Aspect": "Imp",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "rule:fa-present-andan (u06-day می\u200cخوانم)."
@@ -409,10 +501,13 @@
           },
           {
             "lexeme": "lexeme:khandan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
+          },
+          {
+            "lexeme": "lexeme:2sg.imp"
           }
         ]
       },
@@ -426,7 +521,15 @@
               "rule": "rule:fa-present-andan",
               "branch": "stem"
             }
-          ]
+          ],
+          "feats": {
+            "Mood": "Sub",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "2"
+          },
+          "inflected": true
         }
       },
       "note": "rule:fa-present-andan at a word's end; the course writes none."
@@ -443,10 +546,10 @@
           },
           {
             "lexeme": "lexeme:kardan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -459,7 +562,15 @@
           "form": "می\u200c+کُنَ+م",
           "status": "listed",
           "steps": [],
-          "listed": "lexeme:kardan|form:Tense=Pres"
+          "listed": "lexeme:kardan|form:Tense=Pres",
+          "feats": {
+            "Aspect": "Imp",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "a listed present stem (kon: Yousef p. 217): lexeme:kardan|form:Tense=Pres (u06-day می\u200cکنم)."
@@ -473,10 +584,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:dashtan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:3pl"
@@ -489,7 +600,15 @@
           "form": "دارَ+ند",
           "status": "listed",
           "steps": [],
-          "listed": "lexeme:dashtan|form:Tense=Pres"
+          "listed": "lexeme:dashtan|form:Tense=Pres",
+          "feats": {
+            "Aspect": "Imp",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Plur",
+            "Person": "3"
+          },
+          "inflected": true
         }
       },
       "note": "dāshtan: its listed stem, no mi- (Yousef p. 188; u02-family دارند)."
@@ -506,10 +625,10 @@
           },
           {
             "lexeme": "lexeme:didan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -522,7 +641,15 @@
           "form": "بِ+بینَ+م",
           "status": "listed",
           "steps": [],
-          "listed": "lexeme:didan|form:Tense=Pres"
+          "listed": "lexeme:didan|form:Tense=Pres",
+          "feats": {
+            "Mood": "Sub",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "didan: an -idan verb whose rule would leave one letter lists its stem (Yousef p. 159; u09-shopping ببینم)."
@@ -539,10 +666,10 @@
           },
           {
             "lexeme": "lexeme:raftan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -555,7 +682,15 @@
           "form": "می\u200c+رَوَ+م",
           "status": "listed",
           "steps": [],
-          "listed": "lexeme:raftan|form:Tense=Pres"
+          "listed": "lexeme:raftan|form:Tense=Pres",
+          "feats": {
+            "Aspect": "Imp",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "rav: its و after a vowel takes no glide (u06-day می\u200cروم)."
@@ -572,10 +707,10 @@
           },
           {
             "lexeme": "lexeme:amadan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -593,7 +728,15 @@
               "branch": "y"
             }
           ],
-          "listed": "lexeme:amadan|form:Tense=Pres"
+          "listed": "lexeme:amadan|form:Tense=Pres",
+          "feats": {
+            "Aspect": "Imp",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "rule:fa-glide|y after ā before -am (Yousef p. 225; u06-day می\u200cآیم)."
@@ -610,10 +753,10 @@
           },
           {
             "lexeme": "lexeme:amadan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:2sg"
@@ -631,7 +774,15 @@
               "branch": "y"
             }
           ],
-          "listed": "lexeme:amadan|form:Tense=Pres"
+          "listed": "lexeme:amadan|form:Tense=Pres",
+          "feats": {
+            "Aspect": "Imp",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "2"
+          },
+          "inflected": true
         }
       },
       "note": "rule:fa-glide|y before -i, written ی (u06-day می\u200cآیی)."
@@ -648,10 +799,13 @@
           },
           {
             "lexeme": "lexeme:amadan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
+          },
+          {
+            "lexeme": "lexeme:2sg.imp"
           }
         ]
       },
@@ -666,7 +820,15 @@
               "branch": "be"
             }
           ],
-          "listed": "lexeme:amadan|form:Tense=Pres"
+          "listed": "lexeme:amadan|form:Tense=Pres",
+          "feats": {
+            "Mood": "Sub",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "2"
+          },
+          "inflected": true
         }
       },
       "note": "rule:fa-prefix-y|be: biyā (Yousef p. 245); the course writes none."
@@ -683,10 +845,10 @@
           },
           {
             "lexeme": "lexeme:amadan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -708,7 +870,15 @@
               "branch": "be"
             }
           ],
-          "listed": "lexeme:amadan|form:Tense=Pres"
+          "listed": "lexeme:amadan|form:Tense=Pres",
+          "feats": {
+            "Mood": "Sub",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "rule:fa-glide then rule:fa-prefix-y|be: biyāyam; the course writes none."
@@ -725,10 +895,13 @@
           },
           {
             "lexeme": "lexeme:amadan",
-            "feats": {
-              "Tense": "Past"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:past"
+          },
+          {
+            "lexeme": "lexeme:3sg.zero"
           }
         ]
       },
@@ -750,7 +923,15 @@
               "rule": "rule:fa-prefix-y",
               "branch": "na"
             }
-          ]
+          ],
+          "feats": {
+            "Polarity": "Neg",
+            "Tense": "Past",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "3"
+          },
+          "inflected": true
         }
       },
       "note": "rule:fa-prefix-y|na: nayāmad (Yousef p. 174); the course writes none."
@@ -767,10 +948,10 @@
           },
           {
             "lexeme": "lexeme:khordan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -783,7 +964,15 @@
           "form": "می\u200c+خُورَ+م",
           "status": "listed",
           "steps": [],
-          "listed": "lexeme:khordan|form:Tense=Pres"
+          "listed": "lexeme:khordan|form:Tense=Pres",
+          "feats": {
+            "Aspect": "Imp",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "mi- written apart with its ZWNJ (u04-food می\u200cخورم)."
@@ -803,10 +992,10 @@
           },
           {
             "lexeme": "lexeme:kardan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -819,7 +1008,16 @@
           "form": "نِ+می\u200c+کُنَ+م",
           "status": "listed",
           "steps": [],
-          "listed": "lexeme:kardan|form:Tense=Pres"
+          "listed": "lexeme:kardan|form:Tense=Pres",
+          "feats": {
+            "Polarity": "Neg",
+            "Aspect": "Imp",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "na- said ne- before mi- (Yousef p. 225; u06-day نمی\u200cکنم)."
@@ -836,10 +1034,10 @@
           },
           {
             "lexeme": "lexeme:dashtan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -852,7 +1050,16 @@
           "form": "نَ+دارَ+م",
           "status": "listed",
           "steps": [],
-          "listed": "lexeme:dashtan|form:Tense=Pres"
+          "listed": "lexeme:dashtan|form:Tense=Pres",
+          "feats": {
+            "Aspect": "Imp",
+            "Polarity": "Neg",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "na- (u04-food ندارم)."
@@ -869,10 +1076,10 @@
           },
           {
             "lexeme": "lexeme:kardan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:3sg"
@@ -885,7 +1092,15 @@
           "form": "می\u200c+کُنَ+د",
           "status": "listed",
           "steps": [],
-          "listed": "lexeme:kardan|form:Tense=Pres"
+          "listed": "lexeme:kardan|form:Tense=Pres",
+          "feats": {
+            "Aspect": "Imp",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "3"
+          },
+          "inflected": true
         }
       },
       "note": "-ad (u06-day می\u200cکند)."
@@ -902,10 +1117,10 @@
           },
           {
             "lexeme": "lexeme:khastan",
-            "feats": {
-              "Tense": "Pres"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:2pl"
@@ -918,7 +1133,15 @@
           "form": "می\u200c+خو\u06dfاهْ+ید",
           "status": "listed",
           "steps": [],
-          "listed": "lexeme:khastan|form:Tense=Pres"
+          "listed": "lexeme:khastan|form:Tense=Pres",
+          "feats": {
+            "Aspect": "Imp",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Plur",
+            "Person": "2"
+          },
+          "inflected": true
         }
       },
       "note": "-id after khāh, its و silent (u09-shopping می\u200cخواهید)."
@@ -931,7 +1154,11 @@
         "spellings": false,
         "lexemes": [
           {
-            "lexeme": "lexeme:kardan"
+            "lexeme": "lexeme:kardan",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:inf"
           }
         ]
       },
@@ -940,7 +1167,10 @@
         "value": {
           "form": "کَردَن",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "VerbForm": "Inf"
+          }
         }
       },
       "note": "the infinitive: no value chosen, the lemma (u06-day زندگی کردن)."
@@ -953,7 +1183,14 @@
         "spellings": false,
         "lexemes": [
           {
-            "lexeme": "lexeme:budan"
+            "lexeme": "lexeme:budan",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
+          },
+          {
+            "lexeme": "lexeme:3sg.zero"
           }
         ]
       },
@@ -962,7 +1199,13 @@
         "value": {
           "form": "اَست",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "3"
+          }
         }
       },
       "note": "the copula's 3sg present, apart: ast (Yousef p. 183-184; intro است)."
@@ -979,6 +1222,9 @@
             "base": true
           },
           {
+            "lexeme": "lexeme:pres"
+          },
+          {
             "lexeme": "lexeme:1sg"
           }
         ]
@@ -988,7 +1234,14 @@
         "value": {
           "form": "هَستَ+م",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "the independent version before an ending: hast + -am (Yousef p. 183; intro هستم)."
@@ -1014,7 +1267,10 @@
         "value": {
           "form": "اینجاْ+ست",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "PronType": "Dem"
+          }
         }
       },
       "note": "-st joined after ā (Yousef p. 184; u05-home اینجاست)."
@@ -1040,7 +1296,10 @@
         "value": {
           "form": "اوْ+ست",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "PronType": "Prs"
+          }
         }
       },
       "note": "-st after u (Yousef p. 184: u-st); the course writes none."
@@ -1066,7 +1325,8 @@
         "value": {
           "form": "ایرانیْ+ست",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {}
         }
       },
       "note": "-st after i (Yousef p. 184: āli-st); the course writes none."
@@ -1080,9 +1340,16 @@
         "lexemes": [
           {
             "lexeme": "lexeme:budan",
-            "feats": {
-              "Variant": "Long"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
+          },
+          {
+            "lexeme": "lexeme:long"
+          },
+          {
+            "lexeme": "lexeme:3sg.zero"
           }
         ]
       },
@@ -1092,7 +1359,14 @@
           "form": "هَست",
           "status": "listed",
           "steps": [],
-          "listed": "lexeme:budan|form:Variant=Long"
+          "listed": "lexeme:budan|form:Variant=Long",
+          "feats": {
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Variant": "Long",
+            "Number": "Sing",
+            "Person": "3"
+          }
         }
       },
       "note": "the independent version's 3sg present, listed (u05-home در خانه نان هست)."
@@ -1105,10 +1379,17 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:neg"
+          },
+          {
             "lexeme": "lexeme:budan",
-            "feats": {
-              "Polarity": "Neg"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
+          },
+          {
+            "lexeme": "lexeme:3sg.zero"
           }
         ]
       },
@@ -1118,7 +1399,15 @@
           "form": "نیست",
           "status": "listed",
           "steps": [],
-          "listed": "lexeme:budan|form:Polarity=Neg"
+          "listed": "lexeme:budan|form:Polarity=Neg",
+          "feats": {
+            "Polarity": "Neg",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "3"
+          },
+          "inflected": true
         }
       },
       "note": "the negative, listed (Yousef p. 183; u02-family نیست)."
@@ -1131,11 +1420,14 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:neg"
+          },
+          {
             "lexeme": "lexeme:budan",
-            "feats": {
-              "Polarity": "Neg"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pres"
           },
           {
             "lexeme": "lexeme:1sg"
@@ -1148,7 +1440,15 @@
           "form": "نیستَ+م",
           "status": "listed",
           "steps": [],
-          "listed": "lexeme:budan|form:Polarity=Neg"
+          "listed": "lexeme:budan|form:Polarity=Neg",
+          "feats": {
+            "Polarity": "Neg",
+            "Tense": "Pres",
+            "VerbForm": "Fin",
+            "Number": "Sing",
+            "Person": "1"
+          },
+          "inflected": true
         }
       },
       "note": "nist + -am (Yousef p. 183); the course writes none."
@@ -1174,7 +1474,8 @@
         "value": {
           "form": "کِتابِ",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {}
         }
       },
       "note": "the ezafe's kasra on a consonant (u02-family کتابِ)."
@@ -1200,7 +1501,8 @@
         "value": {
           "form": "خانِهٔ\u06df",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {}
         }
       },
       "note": "a hamza on a silent -e's ه (Yousef p. 20, 50; u05-home خانهٔ)."
@@ -1226,7 +1528,8 @@
         "value": {
           "form": "غَذاْ+ی",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {}
         }
       },
       "note": "ی after ā (Yousef p. 50; u04-food غذای)."
@@ -1255,7 +1558,11 @@
         "value": {
           "form": "کِتابْ+\u200cهاْ+ی",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "Number": "Plur"
+          },
+          "inflected": true
         }
       },
       "note": "ی after -hā (u02-family کتاب\u200cهای)."
@@ -1281,7 +1588,8 @@
         "value": {
           "form": "دانِشجوْ+ی",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {}
         }
       },
       "note": "ی after u (Yousef p. 50); the course writes none."
@@ -1307,7 +1615,11 @@
         "value": {
           "form": "بَچِّه\u06df+\u200cها",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "Number": "Plur"
+          },
+          "inflected": true
         }
       },
       "note": "-hā apart, after a silent -e as everywhere (Yousef p. 26-27; u02-family بچه\u200cها)."
@@ -1336,7 +1648,11 @@
         "value": {
           "form": "دوستْ+انِ",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "Number": "Plur"
+          },
+          "inflected": true
         }
       },
       "note": "-ān joined, then the ezafe (Yousef p. 27; u02-family دوستانِ)."
@@ -1362,7 +1678,11 @@
         "value": {
           "form": "آقاْ+یان",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "Number": "Plur"
+          },
+          "inflected": true
         }
       },
       "note": "-yān after ā (Yousef p. 27: āghāyān); the course writes none."
@@ -1388,7 +1708,11 @@
         "value": {
           "form": "رَنگْ+ی",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "Definite": "Ind"
+          },
+          "inflected": true
         }
       },
       "note": "-i joined (u09-shopping رنگی)."
@@ -1414,7 +1738,11 @@
         "value": {
           "form": "خانِه\u06df+\u200cای",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "Definite": "Ind"
+          },
+          "inflected": true
         }
       },
       "note": "-i after a silent -e, apart with an alef (Yousef p. 37); the course writes none."
@@ -1440,7 +1768,11 @@
         "value": {
           "form": "غَذاْ+یی",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "Definite": "Ind"
+          },
+          "inflected": true
         }
       },
       "note": "-i after ā: yi (Yousef p. 37); the course writes none."
@@ -1466,7 +1798,11 @@
         "value": {
           "form": "گِرانْ+\u200cتَر",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {
+            "Degree": "Cmp"
+          },
+          "inflected": true
         }
       },
       "note": "-tar apart (u09-shopping گران\u200cتر)."
@@ -1492,7 +1828,8 @@
         "value": {
           "form": "پِدَرَ+م",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {}
         }
       },
       "note": "-am (u02-family پدرم)."
@@ -1518,7 +1855,8 @@
         "value": {
           "form": "خانِه\u06df+\u200cاَم",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {}
         }
       },
       "note": "-am after a silent -e, apart with an alef (Yousef p. 185); the course writes none."
@@ -1544,7 +1882,8 @@
         "value": {
           "form": "آقاْ+یَم",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {}
         }
       },
       "note": "-yam after ā; the course writes none."
@@ -1570,7 +1909,8 @@
         "value": {
           "form": "اُتاقَ+ت",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {}
         }
       },
       "note": "-at (u05-home اتاقت)."
@@ -1596,7 +1936,8 @@
         "value": {
           "form": "خانِه\u06df+\u200cاَت",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {}
         }
       },
       "note": "-at after a silent -e; the course writes none."
@@ -1622,7 +1963,8 @@
         "value": {
           "form": "آقاْ+یَت",
           "status": "given",
-          "steps": []
+          "steps": [],
+          "feats": {}
         }
       },
       "note": "-yat after ā; the course writes none."

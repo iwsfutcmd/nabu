@@ -990,7 +990,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   merges: a token is incomplete while a requirement is unmet (`Realisation.missing`), a lexeme merged where its `on`
   fails is `attach`, a feature brought twice `twice`; a form stored for the merged word covers the lexemes whose
   values it has (a broken plural). Feature values are abstract: learners learn lexemes. The citation form is a
-  mnemonic, a named merge. Stage 1 (the engine, conformance/realise-merge.json) is built; apc, chg and uz are converted (below), es next.
+  mnemonic, a named merge. Stage 1 (the engine, conformance/realise-merge.json) is built; apc, chg, uz and fa are converted (below), es next.
 - apc merges (2026-11-28, ADR 0159 step 2; docs/rules/apc.md): its tokens list the lexemes that bring a verb's,
   adjective's or noun's values (`{lexeme: ind}, {lexeme: impf-3}, {lexeme: shereb, base: true}, {lexeme: pl.verb}`);
   one merged into its base has no `surface`, nor has a base that writes the whole token. The compiler folds them into
@@ -1006,6 +1006,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   a finite tense a person; the zeros are `nom`, `p3` (keldi) and `imp.sg` (ich!), the infinitive -moq is `inf`. Its
   realisation rules are gone (the rewrites stay). One set of person endings on verbs and predicates (Sjoberg's set 1).
   A new uz token lists its zeros; language.yaml's labels name every paradigm cell: a new cell needs one.
+- fa merges (2026-11-28, docs/rules/fa.md): a verb's tense is a zero (`pres`, `past`) that its stem rules read off the
+  merged word (`stemmed: [VERB, AUX]`); the third person singular where nothing is written is `3sg.zero` (raft, ast),
+  the bare imperative `2sg.imp`, the infinitive `inf`; نیست is neg + budan (its listed form covers neg), هست budan +
+  `long`; داشتن stores `Aspect: Imp` (no mi- or be-: Yousef p. 210). The ezafe and the possessives are words of their
+  own (no `on`). A new fa verb token lists its tense's zero.
 - What is learned (ADR 0159, the owner, 2026-11-28): lexemes only, zero ones included, never a feature value (values are
   names: labels, groupings, feedback's words); a rule branch is a memory under its lexeme. A card credits a lexeme only
   where the prompt decides it against the lexemes that could stand in its place (those merging onto the same word and
