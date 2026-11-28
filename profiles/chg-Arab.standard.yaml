@@ -57,28 +57,109 @@ match:
 # ک گ غ, doubles) and which fixed is the scheme's. No `correspondences` here: the profile's own letters are not
 # read as sounds (a word's reading is pinned, never derived from its spelling).
 sound: { from: reading, scheme: schluessel }
-# How this orthography writes a lexical form of chg (lexicons/chg/language.yaml's notation; docs/rules/chg.md): the
-# letters as they are, the notation's own signs as letters, and where a suffix joins, which a realised form's
-# boundaries (+) show the rules (`boundaries`). REVIEW, every rule: Schluessel (2018), xxx, "Special Rules about
-# Joining Letters Together", and the course's own texts. Checked against each lexeme's first spelling and every token
-# by the compiler (`form.projection`, `form.unaccounted`, `nabu forms`).
+# The scribes' Arabic from a lexical form, Schluessel's reading with the signs of what only the Arabic writes
+# (docs/rules/chg.md): a suffix's archiphonemes as the scribes write them, whatever its harmony (the dative غه, S 3.3.3,
+# with ک and ق free; the locative's d also ت after a voiceless sound, S 3.3.1); a word's first vowel on its alif (آ
+# with the madda sign); a vowel ending a stem as ە, a full ا or ی with the written sign; long vowels and rounded ones
+# written, a, ä, e and i not in a stem (written with the sign) and written in a suffix; a doubled consonant once inside
+# a morpheme; ŋ as نک; a half-space where the form has one (·) and after a vowel he before a suffix (S xxx, rule 3).
+# REVIEW, every rule: Schluessel (2018), xxx and xxxi, and the course's own texts.
 spell:
   from: lexical
   boundaries: true
   sets:
-    JOIN: "[ئبپتثجچحخسشصضطظعغفقکگلمنهیي]"  # a letter that joins the one after it
+    NS: "[bpṗtṭjčḥḫdẕrzžsṣšżẓʿǧfqkgŋlmnwhyʾaäeiïoöuüāīūēōàDGĞKAU\u00B7\\-\u0329\u0326\u0334\u0324\u032F\u0338\u0364\u0363\u0359\u035B\u0335\u0331\u0654اآیوەهئء\u0654بپفتطثجچحخدذرزژسشصضظعغفقککنکلمنوهی{s\u0331}]"
+    NV: "[bpṗtṭjčḥḫdẕrzžsṣšżẓʿǧfqkgŋlmnwhyʾDGĞKiīAU+\u00B7\\-\u0329\u0326\u0334\u0324\u032F\u0338\u0359\u035B\u0331{s\u0331}]"
+    SV: "[aäeiïoöuü]"
+    FS: "[\u0329\u0326\u032F]"
   rules:
-  - {find: "ە\\+\u0654", to: "ه\u0654"}  # the ezafe's hamza on a final vowel he (شجرهٔ šajarah-i; S 10.4)
-  - {find: "ە\\+", to: "ه\u200c"}  # a suffix after a vowel he: the he does not join it (S xxx, rule 3: دیوانه\u200cکه)
+  # a suffix's archiphonemes
+  - {find: "Ğ", to: "ǧ", alternatives: [{id: g-kaf, to: "k"}, {id: g-qaf, to: "q"}]}  # the dative غه whatever its harmony (S 3.3.3), free که and قه
+  - {find: "G", after: "{BV}{NV}*{VL}\\+", to: "q", alternatives: [{id: g-kaf, to: "k"}, {id: g-ghayn, to: "ǧ"}]}
+  - {find: "G", after: "{VL}\\+", to: "k", alternatives: [{id: g-qaf, to: "q"}, {id: g-ghayn, to: "ǧ"}]}
+  - {find: "G", after: "{BV}{NV}*\\+{NV}*", to: "ǧ", alternatives: [{id: g-kaf, to: "k"}, {id: g-qaf, to: "q"}]}
+  - {find: "G", after: "\\+{NS}*", to: "k", alternatives: [{id: g-ghayn, to: "ǧ"}, {id: g-qaf, to: "q"}]}
+  - {find: "K", after: "{BV}{NV}*\\+{NV}*", to: "q", alternatives: [{id: k-kaf, to: "k"}]}
+  - {find: "K", after: "\\+{NS}*", to: "k", alternatives: [{id: k-qaf, to: "q"}]}
+  - {find: "D", after: "{VL}\\+", to: "t", alternatives: [{id: d-dal, to: "d"}]}
+  - {find: "D", to: "d"}
+  - {find: "A", after: "\\+{NS}*", to: "a"}
+  - {find: "U", after: "\\+{NS}*", to: "u"}
+  - {find: "[\u0364\u0363]", to: ""}  # harmony is the Latin's: the Arabic has read it for G and K
+  # a name's capitals
+  - {find: "[AĀBČDFGǦHḤḪIĪJKLMNOQRSṢŠTṬUŪWYZẒŻÄÖÜEĒǴ]", map: {"A": "a", "Ā": "ā", "B": "b", "Č": "č", "D": "d", "F": "f", "G": "g", "Ǧ": "ǧ", "H": "h", "Ḥ": "ḥ", "Ḫ": "ḫ", "I": "i", "Ī": "ī", "J": "j", "K": "k", "L": "l", "M": "m", "N": "n", "O": "o", "Q": "q", "R": "r", "S": "s", "Ṣ": "ṣ", "Š": "š", "T": "t", "Ṭ": "ṭ", "U": "u", "Ū": "ū", "W": "w", "Y": "y", "Z": "z", "Ẓ": "ẓ", "Ż": "ż", "Ä": "ä", "Ö": "ö", "Ü": "ü", "E": "e", "Ē": "ē", "Ǵ": "ǵ"}}
+  - {find: "\\-", before: "{NS}", to: ""}  # hyphens unwritten, but a stem's citation hyphen (بار-)
+  # a double across a boundary: written twice, once a free spelling
+  - {find: "t\\+t", to: "t+t", alternatives: [{id: double-once, to: "t+"}]}
+  - {find: "d\\+d", to: "d+d", alternatives: [{id: double-once, to: "d+"}]}
+  - {find: "l\\+l", to: "l+l", alternatives: [{id: double-once, to: "l+"}]}
+  - {find: "n\\+n", to: "n+n", alternatives: [{id: double-once, to: "n+"}]}
+  - {find: "s\\+s", to: "s+s", alternatives: [{id: double-once, to: "s+"}]}
+  - {find: "q\\+q", to: "q+q", alternatives: [{id: double-once, to: "q+"}]}
+  - {find: "k\\+k", to: "k+k", alternatives: [{id: double-once, to: "k+"}]}
+  - {find: "m\\+m", to: "m+m", alternatives: [{id: double-once, to: "m+"}]}
+  - {find: "č\\+č", to: "č+č", alternatives: [{id: double-once, to: "č+"}]}
+  - {find: "y\\+i", to: "y+i", alternatives: [{id: double-once, to: "y+i\u0326"}]}  # y and the -i after it, or one ye for both (سویی, سُوی süyi)
+  # consonants written by their own signs, a double once inside a morpheme, ŋg as نک: on the form's own letters, before
+  # any vowel is left out
+  - {find: "ŋg", to: "ŋ"}
+  - {find: "[bpṗtṭjčḥḫdẕrzžsṣšżẓʿǧfqkgŋlmnwhyʾ]\u0326", to: ""}
+  - {find: "(bb\u0359|pp\u0359|ṗṗ\u0359|tt\u0359|ṭṭ\u0359|jj\u0359|čč\u0359|ḥḥ\u0359|ḫḫ\u0359|dd\u0359|ẕẕ\u0359|rr\u0359|zz\u0359|žž\u0359|ss\u0359|šš\u0359|ṣṣ\u0359|żż\u0359|ẓẓ\u0359|ʿʿ\u0359|ǧǧ\u0359|ff\u0359|qq\u0359|kk\u0359|gg\u0359|ŋŋ\u0359|ll\u0359|mm\u0359|nn\u0359|ww\u0359|hh\u0359|yy\u0359)", map: {"bb\u0359": "ب\u0651", "pp\u0359": "پ\u0651", "ṗṗ\u0359": "ف\u0651", "tt\u0359": "ت\u0651", "ṭṭ\u0359": "ط\u0651", "jj\u0359": "ج\u0651", "čč\u0359": "چ\u0651", "ḥḥ\u0359": "ح\u0651", "ḫḫ\u0359": "خ\u0651", "dd\u0359": "د\u0651", "ẕẕ\u0359": "ذ\u0651", "rr\u0359": "ر\u0651", "zz\u0359": "ز\u0651", "žž\u0359": "ژ\u0651", "ss\u0359": "س\u0651", "šš\u0359": "ش\u0651", "ṣṣ\u0359": "ص\u0651", "żż\u0359": "ض\u0651", "ẓẓ\u0359": "ظ\u0651", "ʿʿ\u0359": "ع\u0651", "ǧǧ\u0359": "غ\u0651", "ff\u0359": "ف\u0651", "qq\u0359": "ق\u0651", "kk\u0359": "ک\u0651", "gg\u0359": "ک\u0651", "ŋŋ\u0359": "نک\u0651", "ll\u0359": "ل\u0651", "mm\u0359": "م\u0651", "nn\u0359": "ن\u0651", "ww\u0359": "و\u0651", "hh\u0359": "ه\u0651", "yy\u0359": "ی\u0651"}}
+  - {find: "[bpṗtṭjčḥḫdẕrzžsšṣżẓʿǧfqkgŋlmnwhy]\u0329", map: {"b\u0329": "ب", "p\u0329": "پ", "ṗ\u0329": "ف", "t\u0329": "ت", "ṭ\u0329": "ط", "j\u0329": "ج", "č\u0329": "چ", "ḥ\u0329": "ح", "ḫ\u0329": "خ", "d\u0329": "د", "ẕ\u0329": "ذ", "r\u0329": "ر", "z\u0329": "ز", "ž\u0329": "ژ", "s\u0329": "س", "š\u0329": "ش", "ṣ\u0329": "ص", "ż\u0329": "ض", "ẓ\u0329": "ظ", "ʿ\u0329": "ع", "ǧ\u0329": "غ", "f\u0329": "ف", "q\u0329": "ق", "k\u0329": "ک", "g\u0329": "ک", "ŋ\u0329": "نک", "l\u0329": "ل", "m\u0329": "م", "n\u0329": "ن", "w\u0329": "و", "h\u0329": "ه", "y\u0329": "ی"}}
+  - {find: "(bb|pp|ṗṗ|tt|ṭṭ|jj|čč|ḥḥ|ḫḫ|dd|ẕẕ|rr|zz|žž|ss|šš|ṣṣ|żż|ẓẓ|ʿʿ|ǧǧ|ff|qq|kk|gg|ŋŋ|ll|mm|nn|ww|hh|yy)", map: {"bb": "b", "pp": "p", "ṗṗ": "ṗ", "tt": "t", "ṭṭ": "ṭ", "jj": "j", "čč": "č", "ḥḥ": "ḥ", "ḫḫ": "ḫ", "dd": "d", "ẕẕ": "ẕ", "rr": "r", "zz": "z", "žž": "ž", "ss": "s", "šš": "š", "ṣṣ": "ṣ", "żż": "ż", "ẓẓ": "ẓ", "ʿʿ": "ʿ", "ǧǧ": "ǧ", "ff": "f", "qq": "q", "kk": "k", "gg": "g", "ŋŋ": "ŋ", "ll": "l", "mm": "m", "nn": "n", "ww": "w", "hh": "h", "yy": "y"}}
+  # letters written and not said, the twins, a shadda and a damma written
+  - {find: "[iauhlʾyw]\u0338", map: {"i\u0338": "ی", "a\u0338": "ا", "u\u0338": "و", "h\u0338": "ه", "l\u0338": "ل", "ʾ\u0338": "\u0654", "y\u0338": "ی", "w\u0338": "و"}}
+  - {find: "[pbčjgktdz]\u0324", map: {"p\u0324": "ب", "b\u0324": "پ", "č\u0324": "ج", "j\u0324": "چ", "g\u0324": "گ", "k\u0324": "گ", "t\u0324": "د", "d\u0324": "ت", "z\u0324": "ژ"}}
+  - {find: "[uoöü]\u035B", to: "\u064Fو"}
+  # hamza seats
+  - {find: "ʾ", before: "[iīeē]", to: "ئ"}
+  - {find: "ʾ", to: "ء"}
+  # a word's first vowel (or after a half-space or a hyphen)
+  - {find: "[aä]\u0334", to: "آ"}
+  - {find: "ā", at: start, to: "آ"}
+  - {find: "ā", after: "[\u00B7]", to: "آ"}
+  - {find: "[eiïīēouöüūō]\u0326", at: start, to: "ا"}
+  - {find: "[eiïīēouöüūō]\u0326", after: "[\u00B7]", to: "ا"}
+  - {find: "[aä]", at: start, to: "ا"}
+  - {find: "[aä]", after: "[\u00B7]", to: "ا"}
+  - {find: "[eiïīē]", at: start, to: "ای"}
+  - {find: "[eiïīē]", after: "[\u00B7]", to: "ای"}
+  - {find: "[ouöüūō]", at: start, to: "او"}
+  - {find: "[ouöüūō]", after: "[\u00B7]", to: "او"}
+  # long vowels
+  - {find: "[āīūēōà]\u0326", to: ""}
+  - {find: "ā", to: "ا"}
+  - {find: "[īē]", to: "ی"}
+  - {find: "[ūō]", to: "و"}
+  - {find: "à", to: "ی"}
+  # a short vowel ending a stem (before a suffix, a hyphen, a half-space or the word's end)
+  - {find: "{SV}{FS}?", before: "[+\u00B7\\- ]", to: "{SV}{FS}\u0335"}
+  - {find: "{SV}{FS}?", at: end, to: "{SV}{FS}\u0335"}
+  - {find: "{SV}\u0326\u0335", to: ""}
+  - {find: "[aä]\u0329\u0335", to: "ا"}
+  - {find: "[aä]\u032F\u0335", to: "ی"}
+  - {find: "[ei]\u0329\u0335", to: "ی"}
+  - {find: "[aäe]\u0335", to: "ە"}
+  - {find: "[iï]\u0335", to: "ی"}
+  - {find: "[ouöü]\u0335", to: "و"}
+  # a short vowel inside a word: in a suffix written, in a stem a, ä, e and i not (but with the written sign)
+  - {find: "{SV}\u0326", to: ""}
+  - {find: "[aä]\u032F", to: "ی"}
+  - {find: "[ouöü]", to: "و"}
+  - {find: "[aä]", after: "\\+{NS}*", to: "ا"}
+  - {find: "[eiï]", after: "\\+{NS}*", to: "ی"}
+  - {find: "[aä]\u0329", to: "ا"}
+  - {find: "[eiï]\u0329", to: "ی"}
+  - {find: "[aäeiï]", to: ""}
+  # consonants: a double once inside a morpheme (written twice with the written sign on the second), ŋg as نک
+  - {find: "(s\u0331|[bpṗtṭjčḥḫdẕrzžsšṣżẓʿǧfqkgŋlmnwhy])", map: {"b": "ب", "p": "پ", "ṗ": "ف", "t": "ت", "ṭ": "ط", "s\u0331": "ث", "j": "ج", "č": "چ", "ḥ": "ح", "ḫ": "خ", "d": "د", "ẕ": "ذ", "r": "ر", "z": "ز", "ž": "ژ", "s": "س", "š": "ش", "ṣ": "ص", "ż": "ض", "ẓ": "ظ", "ʿ": "ع", "ǧ": "غ", "f": "ف", "q": "ق", "k": "ک", "g": "ک", "ŋ": "نک", "l": "ل", "m": "م", "n": "ن", "w": "و", "h": "ه", "y": "ی"}}
+  # the half-space after a vowel he before a suffix (S xxx, rule 3: the he never joins); hyphens unwritten but a stem's
+  # citation hyphen (بار-)
+  - {find: "ە\\+\u00B7", to: "ه\u00B7"}  # a suffix that brings its own half-space: one
+  - {find: "ە\\+", to: "ه\u200C"}
   - {find: "ە", to: "ه"}
-  - {find: "ي\\+ی", to: "ي+ی", alternatives: [{id: double-once, to: "ی"}]}  # y and the -i after it, or one ye for both (سویی and سُوی süyi: the scheme's double written once)
-  - {find: "ي", to: "ی"}
-  - {find: "ه\\+", before: "{C}", to: "ه\u200c", alternatives: [{id: joined, to: "ه"}]}  # h joins only a vowel (S xxx, rule 4: گناه\u200cکار, گناهیمیز); the course's sentences join it (پادشاهنینک)
-  - {find: "ل\\+ل", to: "ل\u200cل"}  # two l's are not joined (S xxx, rule 2: قول\u200cلوق)
-  - {find: "چ\\+چ", to: "چ+چ", alternatives: [{id: double-once, to: "چ"}]}  # a double across a boundary, or once (یغاچی yaǧačči: the scheme's double written once)
-  - {find: "ت\\+ت", to: "ت+ت", alternatives: [{id: double-once, to: "ت"}]}  # (ایتیکه eyttikä)
-  - {find: "\\+", after: "{JOIN}", before: "[دت]ور", to: "\u200c", alternatives: [{id: joined, to: ""}]}  # the copula after a half-space (qattiq-dur), or joined (Türkdur, S 11.3; the present's -aydur)
-  - {find: "\\+", after: "{JOIN}", to: "", alternatives: [{id: half-space, to: "\u200c"}]}  # any other suffix joined, or after a half-space as the typescript often has it (S xxx, rule 5: 'difficult to predict')
+  - {find: "·", to: "\u200C"}
+  - {find: "[\u0329\u0326\u0334\u0324\u032F\u0338\u0364\u0363\u0359\u035B\u0335]", to: ""}
 annotations:
   # Schluessel's transliteration of each word, as ruby over the whole word (the scheme's `ruby: word`): over the
   # words whose reading is still new until the learner chooses (ADR 0131), fading once a reading card shows it.

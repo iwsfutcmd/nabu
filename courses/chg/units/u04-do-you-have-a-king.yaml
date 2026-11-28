@@ -72,7 +72,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "اول یکیت\u200cدور."
-      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: "یکیت\u200cدور", lexemes: [{lexeme: yigit, surface: "یکیت\u200c", base: true}, {lexeme: nom}, {lexeme: dur, surface: دور}], readings: {schluessel: yigitdur}}]
+      tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: "یکیت\u200cدور", lexemes: [{lexeme: yigit, surface: "یکیت\u200c", base: true}, {lexeme: nom}, {lexeme: dur, surface: دور}], readings: {schluessel: yigit·dur}}]
       reverse: "اول (یکیت\u200cدور|ییکیت\u200cدور)\nاول (یکیت|ییکیت)"
   translations:
     en: (He is|That is) a young man.
@@ -515,7 +515,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "اتی\u200cنی سلطان ابو قبیس… دیرلار."
-          tokens: [{surface: "اتی\u200cنی", lexemes: [{lexeme: at.name, surface: ات, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: acc, surface: نی}], readings: {schluessel: atini}}, {surface: سلطان, lexemes: [{lexeme: sultan, base: true}, {lexeme: nom}], readings: {schluessel: sulṭān}}, {surface: ابو, lexemes: [{lexeme: abu, base: true}, {lexeme: nom}], readings: {schluessel: Abū}}, {surface: قبیس, lexemes: [{lexeme: qubays, base: true}, {lexeme: nom}], readings: {schluessel: Qubays}}, {surface: دیرلار, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: aor, surface: ر}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: derlär}}]
+          tokens: [{surface: "اتی\u200cنی", lexemes: [{lexeme: at.name, surface: ات, base: true}, {lexeme: poss3, surface: "ی\u200c"}, {lexeme: acc, surface: نی}], readings: {schluessel: ati·ni}}, {surface: سلطان, lexemes: [{lexeme: sultan, base: true}, {lexeme: nom}], readings: {schluessel: sulṭān}}, {surface: ابو, lexemes: [{lexeme: abu, base: true}, {lexeme: nom}], readings: {schluessel: Abū}}, {surface: قبیس, lexemes: [{lexeme: qubays, base: true}, {lexeme: nom}], readings: {schluessel: Qubays}}, {surface: دیرلار, lexemes: [{lexeme: de, surface: دی, base: true}, {lexeme: aor, surface: ر}, {lexeme: p3}, {lexeme: p3pl, surface: لار}], readings: {schluessel: derlär}}]
       translations:
         en: They call him Sultan Abu Qubays …
   - choose:

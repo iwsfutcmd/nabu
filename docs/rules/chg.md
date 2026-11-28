@@ -1,27 +1,60 @@
-# Rules in a lexicon: chg (Chaghatay), stages 1 to 4 as built (2026-11-25)
+# Rules in a lexicon: chg (Chaghatay), stages 1 to 4 as built (2026-11-25; the form Schluessel's reading since 2026-11-28)
 
 chg through the stages of [docs/rules-design.md](../rules-design.md), as apc went through them. Every rule,
 allomorph condition and spelling rule is REVIEW. S is Schluessel, *An Introduction to Chaghatay* (2018), by section
 and book page (PDF page = book page + 35; the Arabic checked on page images where cited from it).
 
-## What a lexical form is here
+## The form is Schluessel's reading (2026-11-28)
 
-**The Arabic spelling**: the lexeme's first chg-Arab/standard spelling, the scribes' letters as the lexicon writes
-the word, with three signs of the notation's own (`lexicons/chg/language.yaml`):
+The owner (2026-11-28): the form "should actually be Schluessel, because it's annotated in a way that reflects the
+consonantal spelling distinction, and greater vowel distinctions than the Arabic spelling", "any distinction in the
+Arab but not in the Latn" stored "with some additional diacritics", and a mark in the Latin for the half-space. So a
+lexeme's form is his reading (ṭ ṣ s̱ ẓ ż ḥ ʿ ẕ keep the Arabic's consonants apart, ṗ is the ف written for p) with
+signs for what only the Arabic writes, and both orthographies are spelled from it: chg-Arab/standard's `spell` (73
+rules) gives the scribes' letters, chg-Latn/schluessel's (18) the reading every token pins. Until then the form was
+the Arabic spelling, and this file argued that a reading could not give the scribes' spelling back (vowels written or
+left out word by word, ث س ص for s, the suffixes' spellings that do not follow the sound). The signs answer it: every
+place the Arabic departs from a default is marked in the form, and a scribe's other spelling of a suffix is a free
+allomorph.
 
-- **ە** (U+06D5) for a final he that writes a vowel (-a, -ä, -e): the letter of Schluessel's typescript, which
-  joins nothing after it (S xxx, rule 3). 36 forms (میوە, التە). A final he that writes h stays ه (پادشاه, شاه,
-  درکاه).
-- **ي** (U+064A) for a final ye that writes the consonant y: 7 forms (اوي öy, چاي čay, قوي- qoy-). No orthography
-  writes it: chg-Arab/standard spells it ی.
-- **the hyphen** of a stem cited bare: 59 verbs (ال- al-), their lemma as the lexicon spells it.
+**What the Arabic writes by default** (each REVIEW): consonants by their letters, a double once inside a morpheme and
+twice across a boundary (once free), ŋg as نک; in a stem short a, ä, e and i unwritten, o ö u ü written و, long vowels
+written; a stem's last a, ä or e as ە (the he of Schluessel's typescript, which joins nothing after it: a half-space
+before a suffix), its last i as ی; a word's first vowel on its alif (ا, آ for ā, ای, او); every vowel of a suffix.
 
-Why not a phonemic form close to Schluessel's reading, with the Arabic spelled from it: the reading cannot give the
-scribes' spelling back (vowels written or left out word by word, کشی and ایکی; ث س ص for s; پ or ف for p, a
-lemma's other spellings), so every lemma would be pinned; and the scribes' suffix spellings do not follow the sound
-(S 3.3.3, p. 14-15: the dative غه "regardless of vowel harmony", "the scribe's choice of written suffix may have no
-relationship to how it would sound"; xxxi: "it is not necessarily the case that certain consonants mark a vowel as
-front or back"). Harmony, voicing and rounding are in the reading every token pins; the rules here are the script's.
+**The signs**, each a combining mark no Latin letter composes with (NFC keeps it apart; `notation.order` sorts them):
+
+| Sign | Says | Lemma forms | E.g. |
+|---|---|---|---|
+| U+0329 ̩ | a vowel written where the default leaves it out (a ا, ä e i ی), a stem's last vowel written ا or ی for the he, a double written twice | 126 | na̩n نان, qara̩ قرا |
+| U+0326 ̦ | a vowel (or a consonant) not written where the default writes it | 42 | wä̦ و, u̦l̸d̦-Dīn الدین |
+| U+0334 ̴ | an initial a written آ | 8 | a̴ṭ آط |
+| U+0324 ̤ | a letter written as its twin (ب for p, پ b, ج č, چ j, گ g k, د t, ت d, ژ z) | 4 | b̤iz پز, the converb's -p̤ ب |
+| U+032F ̯ | a or ä written ی | 2 | yä̯tti ییتی, Mūsa̯ موسی |
+| U+0338 ̸ | a letter written and not said, its Latin letter naming the Arabic one (i ی, a ا, u و, h ه, l ل, ʾ a hamza above) | 1 | šahaͤri̸ شهری (an allomorph) |
+| U+0359 ͙, U+035B ͛ | a shadda; a damma | | jabb͙ār جبّار, sü͛y سُوی |
+| · (U+00B7) | the half-space (ZWNJ), in the reading too | | širin·dur (شیرین, the half-space, دور) |
+
+And two the Latin alone reads: ï, a back i (Schluessel writes i: qï̩z), and U+0364 or U+0363 on a vowel whose
+harmony is not what it looks (šahaͤr, front: šahargä): 11 stems carry one, each from its tokens' suffixes.
+
+**Suffixes** are written in archiphonemes the statements resolve: A (a/ä), U (u/ü), D (d/t), G (ǧ/g/q/k), K (q/k), by
+harmony (the stem's last full vowel; i is neutral) and voicing (after a voiceless consonant) in the Latin, and in the
+Arabic one letter (ە at a suffix's end; غ after a back stem, ک after a front one); Ğ is the dative's, غ in the Arabic
+whatever the harmony (S 3.3.3), ǧ g q k in the Latin. Where Schluessel's reading follows the scribe's letter instead
+(barduq باردوق, a back -duq after a front stem; öydä written اویدا), the suffix's other spellings are free allomorphs
+in plain letters (dA, di, du, kAn, gA, Du before -K), so the Arabic and the reading both come out as the course has
+them. A rule that gives one of them gives the other: the reading's half-space is where the Arabic's is.
+
+**The readings that changed** (no Arabic did): 129 took a · where the Arabic has a half-space (širin·dur, mewä·si),
+and two had a hyphen for it (bē-iḫtiyār, now bē·iḫtiyār); six that had ṗ where the Arabic writes پ have p (qopup ×4,
+Čapan, pišürdi: ṗ is ف), for a reviewer to check against the book. One differs from what its form spells:
+ḥaqqgä حقغه (s.18.30), where the rules give ḥaqqkä (the dative after a voiceless consonant, S 3.3.3). It stays
+Schluessel's, and `form.reading` names it.
+
+**The check.** The compiler realises every token and spells its form in the Arabic (`form.unaccounted`, an error, as
+before) and in the reading's Latin against the token's pinned reading (`form.reading`, a warning: a token whose
+scheme's `latin` orthography states `spell`; only Schluessel's does). All 2,690 tokens' Arabic, and 2,689 readings.
 
 ## What there is
 
@@ -29,11 +62,12 @@ front or back"). Harmony, voicing and rounding are in the reading every token pi
   the token's `lexemes` (ADR 0128 amendment). `realisation` is absent. Since 2026-11-28 chg merges lexemes (below):
   a cell is realised through the lexemes that bring it, so there are cells and paradigms but still no pinned or
   listed forms.
-- **Allomorphs with conditions** (lexemes.yaml): 247 with a form. Affixes (the 51, and dur, ezafe, ke, q): 84 the
-  rules choose (29 by a condition), 38 free. Stems: 65 chosen by a condition (each verb's stem before a suffix, its
-  lemma without the hyphen; oǧul and köŋül before a vowel letter, S 4.5, p. 24; su's سوي before -i, S 3.3.5, p. 16;
-  bu's mun-, ul's a- before a case, S 10.13, p. 85), 60 free (25 scribal spellings the course writes, 21 a lemma's
-  other spellings from its `spelled`, 14 other forms: bilän, ermäs, te-, ay-, näččändä, šahargä's شهری …).
+- **Allomorphs with conditions** (lexemes.yaml): 341, 178 of them free. Affixes: each in archiphonemes, with the
+  scribes' other spellings free (written in plain letters where the reading follows the letter, or with a leading ·
+  where a half-space stands before it). Stems: each verb's stem before a suffix (its lemma without the hyphen);
+  oǧul and köŋül before a vowel letter (S 4.5, p. 24); su's suy before -i (S 3.3.5, p. 16); bu's mun-, ul's a-, män's
+  and sän's ma-, sa- before the dative's ŋa (S 10.13, p. 85); a lemma's other spellings, and Latin-only variants
+  where the tokens read it otherwise (süy, kel), free.
 - **Free allomorphs** (`free: true`, new): a writer's other form where its conditions hold; never the one chosen.
   A token's realisation gives each combination as an alternative, the token's other allomorphs chosen again around
   it. They state Schluessel's "sometimes" and the scribes' variation: the locative ده, free دا and ته after a
@@ -41,20 +75,26 @@ front or back"). Harmony, voicing and rounding are in the reading every token pi
   -duq, free -dük (S 6.3.1, p. 36: "a scribe's choice … entirely random"); the copula -dur, free -tur after a
   voiceless consonant (S 11.3, p. 92, Babur's); -ǧan/-gän, -ǧay/-gäy, -liq/-lik/-liǧ, -ǧil/-gil, -ǧač/-gäč: one
   spelling chosen, the others free.
-- **One rewrite**: `rule:chg-stem`, the citation hyphen not written where no suffix follows (a bare imperative,
-  S 12.4, p. 109). No token of the course is a bare verb; its vector is constructed.
-- **chg-Arab/standard's `spell`** (`boundaries: true`, new): the letters as they are, and where a suffix joins.
-  11 rules, in order: the ezafe's hamza on a final vowel he (شجرهٔ, S 10.4, p. 77); a suffix after a vowel he after a
-  half-space (S xxx, rule 3); ە as ه; y and the -i after it, or one ye (سویی, سُوی); ي as ی; h before a consonant
-  after a half-space, or joined (S xxx, rule 4; the course's sentences join it); two l's apart (S xxx, rule 2;
-  constructed: no word of the course); čč and tt across a boundary, or once (یغاچی, ایتیکه: the scheme's double
-  written once); the copula after a joining letter after a half-space, or joined; any other suffix after a joining
-  letter joined, or after a half-space (S xxx, rule 5: "difficult to predict"). After a letter that joins nothing
-  the boundary is dropped: the course never writes a half-space there.
+- **One rewrite**: `rule:chg-stem`, the citation hyphen not written in a word (a stem before a suffix, the bare
+  imperative käl!, s.03.40; S 12.4, p. 109).
+- **chg-Arab/standard's `spell`** (`boundaries: true`): 73 rules, in order: a suffix's archiphonemes (the dative's
+  غ, G by harmony and voicing, K, D, A, U); harmony's signs dropped; a name's capitals; a double across a boundary
+  twice, or once (free); consonants by their letters, a double once inside a morpheme, ŋg as نک; a letter written and
+  not said, a twin, a shadda, a damma; hamza seats; a word's first vowel on its alif (after a half-space or a hyphen
+  too); long vowels; a stem's last vowel (ە, ی, or as its sign says); the vowels inside a word; the half-space after a
+  vowel he before a suffix (S xxx, rule 3: the he never joins), one where the suffix brings its own; the signs
+  dropped. Its 73 vectors (conformance/spell-chg.json) each take a course word the rule is needed for, or say that
+  the word is constructed (ten rules no course word needs: bäkkä, yollar, Mūsa …).
+- **chg-Latn/schluessel's `spell`**: 18 rules: the archiphonemes by harmony (the stem's last full vowel, i neutral)
+  and voicing; the half-space after a vowel he before a suffix; a letter written and not said dropped; the signs
+  dropped; ï as i.
 - **Defaults where Schluessel gives none** follow the course's commonest in that context: the aorist -ar after a
-  voiceless consonant (11 of 11), -ur elsewhere (29 of 30; S 10.7, p. 79: "a matter of preference or dialect");
-  -ǧan/-gän کان, -ǧay کای, -liq لیک, -ǧač غاج; the past -ti after a voiceless consonant (the course always, S 6.3.1,
-  p. 37: "sometimes"); the copula -dur after a voiceless consonant too (18 of 25).
+  voiceless consonant (11 of 11), -ur elsewhere (29 of 30; S 10.7, p. 79: "a matter of preference or dialect"); G by
+  harmony in the Arabic, غ after a back stem and ک after a front one (every -GAn, -GAy, -GAli and -GAč the course
+  writes but one); D as t after a voiceless consonant (the past: 31 of 34; the locative: 6 of 7; S 6.3.1, p. 37:
+  "sometimes"); the copula -dur after a half-space but after a letter that joins nothing (47 of 53), and joined after
+  it; the copula -dur after a voiceless consonant too (18 of 25). Since the forms became the reading, the paradigms'
+  unwritten cells follow these (a back stem's -ǧay غای where the old default was کای everywhere).
 
 ## Derived words are lexemes of their own (2026-11-28)
 
@@ -72,9 +112,9 @@ inflections (قویچینینک: qoychi + gen). The lexemes, with their sentence
   janubi "southern" (ADJ); -daki (`daki`): jangaldaqi "in the wilderness"; -la (`la`): awla- "to hunt".
 
 Each records what it is made of (`base`, `pattern`: the suffix's lexeme, which stays in the lexicon as a pattern no
-token writes). Its form is what the rules realise for the old base and suffix, the boundary kept (کیمە+چی spells
-the half-space after its he, یغاچ+چی the double written once); any other form the course writes is a free allomorph
-(بیش+ینجی, ات+لیغ, او+لا). The generator realised every one of the 55 occurrences and found the surface among its
+token writes). Its form is what the rules realise for the old base and suffix, the boundary kept (ke̩mä+či spells
+the half-space after its he); any other form the course writes is a free allomorph (yaǧa̩čči, the double written
+once). The generator realised every one of the 55 occurrences and found the surface among its
 spellings; the token check gives all 2,689 tokens as before. The borderline choices: the ordinals, -daki and the
 place-name -lik are counted as derivation here (each makes a word of another part of speech).
 
@@ -131,16 +171,21 @@ from Schluessel's terms: REVIEW, every one. The lexicon bundle grew from 426 to 
 
 ## Counts
 
-- 452 lexemes: 397 with a form of their own; 55 written only as allomorphs (`nabu forms` prints them "no form").
-  642 spellings checked (`form.projection`), 0 mismatched.
-- **2,689 tokens** (sentences and story lines, one orthography): 2,481 given by the forms the rules choose, 208 by a
-  free variant, 0 by a pinned or listed form, **0 unaccounted**.
-- The bundle is byte for byte what it was (manifest 321b6b84…): nothing ships of forms, rules or `spell`, and no
-  paradigm (no cells), so `form.spelling-script` has nothing to check and the lexicon file is unchanged. The compile
-  takes about 0.3 s more (7.1 s).
-- Vectors: conformance/realise-chg.json 233 (7 on an invented language; 226 chg, one per allomorph a token of the
-  course exercises, found by taking the allomorph out and seeing the token change, plus `rule:chg-stem`);
-  conformance/spell-chg.json 25 (4 on an invented profile; 21 chg, each rule of the statement from course words).
+Since the forms became the reading (2026-11-28; the counts of 2026-11-25 are in the file's history):
+
+- 484 lexemes: 417 with a form of their own, 236 of them with no sign (the reading as it is), 126 with a vowel written
+  where the default leaves it out, 42 with one left out; 67 written only as allomorphs (`nabu forms` prints them "no
+  form"). 572 spellings checked (`form.projection`), 0 mismatched.
+- **2,690 tokens** (sentences and story lines, one orthography): 2,488 given by the forms the rules choose, 202 by a
+  free variant, 0 by a pinned or listed form, **0 unaccounted**; 2,689 readings as their forms spell them (1
+  `form.reading`).
+- The bundle changed with the readings (the half-spaces) and with the paradigms' unwritten cells (the defaults above);
+  nothing ships of forms, rules or `spell`.
+- Vectors, made by a script from the course (regenerated, never edited by hand): conformance/realise-chg.json 294 (7
+  on an invented language; 287 chg, one per allomorph a token of the course needs, found by taking the allomorph out
+  and seeing the token change (a free one: its alternatives), plus `rule:chg-stem`); conformance/spell-chg.json 95 (4
+  on an invented profile; 73 for the Arabic's rules, 18 for the Latin's, each on the first course word the rule is
+  needed for, else the first it fires on, else a constructed word).
 
 ## Engine changes (each its own commit, additive; apc's realisations, vectors and bundle unchanged)
 
@@ -154,6 +199,9 @@ from Schluessel's terms: REVIEW, every one. The lexicon bundle grew from 426 to 
 - **A free variant's token chooses its other allomorphs again around it** (realise.ts): the scribe's ay- for eyt-
   takes -di after its y, not the -ti chosen after eyt-'s t; without it an alternative could be a form no writer
   writes (ičdiq).
+- **A zero is no neighbour** (realise.ts, 2026-11-28): an allomorph's `before` (and a free variant's) reads the next
+  piece that writes something, or the next word's base where none does: šajarahʾ̸ before nom's zero and the ezafe
+  (conformance realise/merge/zero-transparent).
 - Taken from the coordinator: fe8f0dd (a notation with no vowel signs; `spell` with no rules) and b5f834a (the token
   check for a language with a notation and no rules).
 
@@ -170,19 +218,22 @@ derived words: yaghachchi is one lexeme now).
 
 ## For the owner
 
-1. **Harmony.** A stem's harmony is lexical (S xxxi: "from a dictionary"). Where the course's spelling follows it
-   (-ǧan/-gän, -ǧay/-gäy, -liq/-lik, -q/-k, -ǧil/-gil: about 80 tokens) the rules choose one spelling and the other
-   is free. A class per stem (back, front; from its reading), and an allomorph condition that reads the token's
-   base class (a small engine key), would make the harmonic spelling the rule's. Wanted?
-2. **The notation's ە and ي.** ە is Schluessel's own letter; ي writes nothing in any orthography (it tells a
-   consonant y at a stem's end from a vowel). Keep, or mark y another way?
-3. **The seven segmentations** above: keep the course's parts, or align them with the rules (no text changes)?
-4. **näččändä** (نچنده, 3 tokens) is written as the lexeme näččä alone; it reads as näččä + -n- + -dä (S 12.7,
+1. **Harmony** (answered by the reading-based form, 2026-11-28): a stem's harmony is read from its last full vowel,
+   and a sign marks the 11 stems whose suffixes go the other way (šahaͤr: šahargä). Each sign came from the stem's
+   tokens; a stem with no harmonic suffix in the course has none, so its harmony is a guess from its vowels.
+2. **The signs** (the table above): each sign and the default it departs from is REVIEW, and so is which Arabic
+   departures are the form's (a sign) and which a scribe's other spelling (a free allomorph). ە and ي of the old
+   notation are gone: a stem's last vowel is ە by default, and y is y.
+3. **ḥaqqgä** (s.18.30): Schluessel reads the dative after ḥaqq voiced; the rules give ḥaqqkä. A misprint, or a
+   reading to keep (a free allomorph of the dative for it)?
+4. **The six ṗ readings** changed to p where the Arabic writes پ (qopup, Čapan, pišürdi): check against the book.
+5. **The seven segmentations** above: keep the course's parts, or align them with the rules (no text changes)?
+6. **näččändä** (نچنده, 3 tokens) is written as the lexeme näččä alone; it reads as näččä + -n- + -dä (S 12.7,
    p. 111, the epenthetic n). A free allomorph meanwhile.
-5. **Half-space defaults.** h before a consonant after a half-space (S xxx, rule 4) against the course's sentences
-   (پادشاهنینک joined), and the copula after a half-space against the present's -aydur joined (12 tokens): both
-   free. The defaults matter only when something is shown or shipped from the rules.
-6. **Defaults by the course's frequency** (above) where Schluessel says the choice is free: confirm, or take one of
+7. **Half-space defaults.** h before a consonant after a half-space (S xxx, rule 4) against the course's sentences
+   (پادشاهنینک joined): joined, the half-space free. The copula after a half-space (47 of 53), the present's -aydur
+   joined. The defaults are what the paradigms show for the cells no token writes.
+8. **Defaults by the course's frequency** (above) where Schluessel says the choice is free: confirm, or take one of
    his spellings as the norm everywhere.
 
 ## Not done

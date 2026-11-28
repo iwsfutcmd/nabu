@@ -722,6 +722,12 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   A line's readings stand level, a gap over its tallest word's ink, inside their box (ruby-lift.ts, ADR 0131 amendments).
 - Arabic as Schluessel's typescript spells it: ک ی, ŋ as نک, the copula -dur after a ZWNJ (\u200c), other suffixes
   joined, a ZWNJ after a final vowel ه; Persian punctuation added. The Latin is his reading, not letter for letter.
+- A lexeme's form is Schluessel's reading (the owner, 2026-11-28), with signs for what only the Arabic writes (a vowel
+  written or not where the default says otherwise, آ, a twin letter, a letter written and not said, a shadda, a damma;
+  · for the ZWNJ, in the readings too: širin·dur) and suffixes in archiphonemes (A U D G K Ğ); chg-Arab/standard's and
+  chg-Latn/schluessel's `spell` give the Arabic and the reading from it (docs/rules/chg.md, the table; all REVIEW). The
+  compiler checks a token's reading against its form (`form.reading`). conformance/realise-chg.json and spell-chg.json
+  are written by packages/core-cli/scripts/chg-vectors.ts: after a change, run it and read the diff.
 - Suffixes are affix lexemes (`realises` a feature value, `allomorphs` by spelling: dat, past, pres, mis …) in a
   token's `lexemes`, one per morpheme: bardim is bar- + past -di + pp1s -m (ADR 0128 amendment; the past and the
   conditional take the possessive-type person endings pp1s pp2s pp2 pp1p pp2pl, the present -män … p1s …; -lar is p3pl); verbs are cited as stems with a hyphen (bar-). Homographs take a suffix (bar.go, at.name,

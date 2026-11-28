@@ -7,6 +7,10 @@
   [0117](0117-pinned-readings-on-kc-forms.md) (a KC may give its own reading in a word scheme)
 - Decided, not yet built (ADRs 0145–0151, accepted 2026-11-20), to amend this: [0145](0145-lexical-model.md)
   (chg's pinned readings become projections)
+- 2026-11-28 (the owner): a chg lexeme's lexical form is Schluessel's reading, with signs for what only the Arabic
+  writes; chg-Arab/standard and the reading's chg-Latn/schluessel are both spelled from it, and the compiler checks
+  each token's pinned reading against its form (`form.reading`; docs/rules/chg.md). The readings stay pinned: the
+  step before 0145's projection. Still one orthography: chg-Latn/schluessel is the scheme's Latin, not the course's.
 
 ## Context
 

@@ -209,8 +209,9 @@ correspondences:
   - { says: q, written: [غ], kind: fixed, when: { after: "[ق]" } }
   # The Arabic article al- (القصه al-qiṣṣa), its l said as a sun letter after it (الدین ud-Dīn).
   - { says: d, written: [ل], kind: fixed, when: { before: "[د]" } }
-  # A hyphen binds a word to the next, or an ezafe -i to its noun (āwāz-i): written as nothing. A half-space
-  # before a suffix (Andijāndur) says nothing.
+  # A hyphen binds a word to the next, or an ezafe -i to its noun (āwāz-i): written as nothing. A half-space is ·
+  # in the reading (the owner, 2026-11-28: the Latin marks where the Arabic has its ZWNJ; Andijān·dur).
   - { says: "-", written: [""], kind: fixed }
-  - { says: "", written: ["\u200C"], kind: fixed }
+  - { says: "\u00B7", written: ["\u200C"], kind: fixed }
+  - { says: "", written: ["\u200C"], kind: fixed }  # (where the reading's punctuation is stripped, as a typed one's is)
 

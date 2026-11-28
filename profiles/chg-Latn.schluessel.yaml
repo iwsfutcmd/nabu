@@ -70,3 +70,33 @@ input:
   keyboard: cldr-kbd:en
   extraKeys: ["ä", "ö", "ü", "ā", "ī", "ū", "č", "š", "ž", "ǧ", "ḫ", "ŋ", "ḥ", "ṭ", "ṣ", "ẓ", "ż", "ź", "ṗ", "ʿ"]
 layout: { vertical: none }
+# Schluessel's reading from a lexical form (docs/rules/chg.md): the archiphonemes of a suffix by harmony (the last full
+# vowel before it, back or front; i is neutral and passed over, as Schluessel writes ï as i) and voicing (the letter
+# before the suffix), then every sign of what only the Arabic writes dropped, ï as i, and a half-space (·) where the
+# Arabic has one: written in the form, or after a stem's final vowel he before a suffix (the he never joins). REVIEW.
+spell:
+  from: lexical
+  boundaries: true
+  sets:
+    NV: "[bpṗtṭjčḥḫdẕrzžsṣšżẓʿǧfqkgŋlmnwhyʾDGĞKiīAU+\u00B7\\-\u0329\u0326\u0334\u0324\u032F\u0338\u0359\u035B\u0331{s\u0331}]"
+    HEV: "[aäe]"
+    HS: "[\u0364\u0363]"
+  rules:
+  - {find: "Ğ", to: "G"}  # the dative's G: said as any G (its Arabic is always غ)
+  - {find: "K", after: "{BV}{NV}*\\+{NV}*", to: "q"}
+  - {find: "K", after: "\\+{NV}*", to: "k"}
+  - {find: "G", after: "{BV}{NV}*{VL}\\+", to: "q"}
+  - {find: "G", after: "{VL}\\+", to: "k"}
+  - {find: "G", after: "{BV}{NV}*\\+{NV}*", to: "ǧ"}
+  - {find: "G", after: "\\+{NV}*", to: "g"}
+  - {find: "D", after: "{VL}\\+", to: "t"}
+  - {find: "D", after: "\\+{NV}*", to: "d"}
+  - {find: "A", after: "{BV}{NV}*\\+{NV}*", to: "a"}
+  - {find: "A", after: "\\+{NV}*", to: "ä"}
+  - {find: "U", after: "{BV}{NV}*\\+{NV}*", to: "u"}
+  - {find: "U", after: "\\+{NV}*", to: "ü"}
+  - {find: "\\+\u00B7", to: "\u00B7"}  # a suffix that brings its own half-space: one
+  - {find: "{HEV}{HS}?", after: "{L}[\u0331]?", before: "\\+", to: "{HEV}{HS}\u00B7"}  # a stem's final vowel he before a suffix: the half-space
+  - {find: "[bpṗtṭjčḥḫdẕrzžsṣšżẓʿǧfqkgŋlmnwhyʾaäeiïoöuüāīūēōà]\u0338", to: ""}  # a letter written and not said
+  - {find: "[\u0329\u0326\u0334\u0324\u032F\u0338\u0364\u0363\u0359\u035B]", to: ""}
+  - {find: "ï", to: "i"}

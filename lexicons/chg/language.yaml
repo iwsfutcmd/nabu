@@ -140,21 +140,32 @@ labels:
 - {feats: {Polarity: Neg, VerbForm: Conv}, gloss: {en: 'the -may converb (without doing)'}}
 - {feats: {Polarity: Neg, Tense: Past, VerbForm: Part}, gloss: {en: 'negative past participle (-ǧan: who did)'}}
 - {feats: {Person: '3', Tense: Past, VerbForm: Fin, Voice: Pass}, gloss: {en: 'passive past (-di): he, she, it (or they: -lar may be left out)'}}
-# How chg writes a lexical form (docs/rules/chg.md): its Arabic spelling, the scribes' letters as the lexicon spells
-# the word, with three signs of its own: ە (U+06D5) a final he that writes a vowel (-a, -ä, -e: the letter of
-# Schluessel's typescript, which never joins what follows; 2018, xxx), ي (U+064A) a final ye that writes the
-# consonant y (öy, qoy-), and the hyphen of a stem cited bare (al-). A realised form keeps its boundaries (+), and
-# chg-Arab/standard's `spell` writes where a suffix joins (a half-space or none). Read by @nabu/core; never shipped.
-# Sets: L a letter; V a vowel letter a stem ends in; C a consonant letter; VL a voiceless consonant (Schluessel 3.3.1,
-# p. 13: p f t s š s̱ ṣ ṭ č ḥ k ḫ q h, ک among them though it also writes g).
+# How chg writes a lexical form (docs/rules/chg.md, "The form is Schluessel's reading"; the owner, 2026-11-28): Schluessel's
+# reading (2018), which writes the Arabic letters' distinctions among the consonants (ṭ ṣ s̱ ẓ ż ḥ ʿ, ṗ for ف written for
+# p) and more vowels than the script, with signs of its own for what only the Arabic writes, each a mark no Latin letter
+# composes with: U+0329 a vowel written with its letter where the default leaves it out (in a stem a, ä, e, i; at a
+# stem's end a full ا or ی for the he); U+0326 a vowel (or a consonant) not written where the default writes it; U+0334
+# an initial a written آ; U+0324 a letter written as its twin (ب for p, ج for č, پ for b, گ for g, د for t); U+032F a or
+# ä written ی; U+0338 a letter written and not said (its Latin letter names the Arabic one: i ی, a ا, u و, h ه, l ل, ʾ
+# a hamza above); U+0359 a shadda, U+035B a damma written. And two sounds neither script writes: ï, a back i (Schluessel
+# writes i), U+0364 on a vowel that takes front harmony though it looks back (šahar+gä) and U+0363 on one that takes back
+# harmony though it looks front. · (U+00B7) is a half-space (ZWNJ), shown in the Latin too. In a suffix A, U, D, G, K
+# are archiphonemes: a/ä, u/ü, d/t, ǧ/g/q/k, q/k by harmony and voicing in the Latin, one letter in the Arabic (ە at the
+# end, غ or ک by harmony); Ğ is the dative's G, غ whatever the harmony (S 3.3.3). NJ: the letters whose Arabic joins
+# nothing after it (the copula's half-space). Read by @nabu/core; never shipped. REVIEW, all of it.
 notation:
+  order: "[\u0334\u0338\u0335\u0331\u0329\u0326\u0324\u032F\u0359\u0364\u0363\u035B]"
   sets:
-    L: "[ء-غف-يپچژکگیە]"
-    V: "[اآویە]"
-    C: "[ءأؤإئبتثجحخدذرزژسشصضطظعغفقکگلمنهيپچ]"
-    VL: "[پفتثسشصطچحکخقه]"
-# Rules in a lexicon (docs/rules/chg.md). chg's tokens choose no feature values: every suffix is a lexeme of its own
-# in the token's `lexemes`, so there are no realisation rules; the suffixes' allomorphs and their conditions
-# (lexemes.yaml), this rewrite and chg-Arab/standard's `spell` are the rules. Every one is REVIEW.
+    V: "[aäeiïoöuüāīūēōàAU]"
+    BV: "[aouāōūàïĀŪOŌ{e\u0363}{e\u0329\u0363}{e\u0326\u0363}{e\u032F\u0363}{ä\u0363}{ä\u0329\u0363}{ä\u0326\u0363}{ä\u032F\u0363}{i\u0363}{i\u0329\u0363}{i\u0326\u0363}{i\u032F\u0363}{ö\u0363}{ö\u0329\u0363}{ö\u0326\u0363}{ö\u032F\u0363}{ü\u0363}{ü\u0329\u0363}{ü\u0326\u0363}{ü\u032F\u0363}{ē\u0363}{ē\u0329\u0363}{ē\u0326\u0363}{ē\u032F\u0363}]"
+    FV: "[äöüeēÄÖÜEĒ{a\u0364}{a\u0329\u0364}{a\u0326\u0364}{a\u032F\u0364}{o\u0364}{o\u0329\u0364}{o\u0326\u0364}{o\u032F\u0364}{u\u0364}{u\u0329\u0364}{u\u0326\u0364}{u\u032F\u0364}{ā\u0364}{ā\u0329\u0364}{ā\u0326\u0364}{ā\u032F\u0364}{ū\u0364}{ū\u0329\u0364}{ū\u0326\u0364}{ū\u032F\u0364}{ō\u0364}{ō\u0329\u0364}{ō\u0326\u0364}{ō\u032F\u0364}]"
+    C: "[bpṗtṭjčḥḫdẕrzžsṣšżẓʿǧfqkgŋlmnwhyʾDGĞK{s\u0331}BČDFGǦHḤḪJKLMNQRSṢŠTṬWYZẒŻǴ]"
+    VL: "[pṗtṭkqčsṣšḥḫhfTČŠṢṬḤḪKQPF{s\u0331}]"
+    RV: "[oöuüūō]"
+    NJ: "[dẕrzžwāoöuüōū]"
+    I: "[iīï]"
+    L: "[bpṗtṭjčḥḫdẕrzžsṣšżẓʿǧfqkgŋlmnwhyʾaäeiïoöuüāīūēōàAĀBČDFGǦHḤḪIĪJKLMNOQRSṢŠTṬUŪWYZẒŻÄÖÜEĒǴDGĞK{s\u0331}]"
+# Rules in a lexicon (docs/rules/chg.md). Every one is REVIEW.
 phonology:
-- {id: 'rule:chg-stem', find: "-", to: ""}  # a stem cited bare (al-, bar-) is written without its hyphen in a word
+- {id: 'rule:chg-stem', find: "-+", to: "+"}  # a stem cited bare (al-, bar-) is written without its hyphen in a word
+- {id: 'rule:chg-stem', find: "-", at: end, to: ""}  # (the ezafe's and the article's hyphens stay: tārīḫ-i, al-qiṣṣa)

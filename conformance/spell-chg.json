@@ -1,5 +1,5 @@
 {
-  "$comment": "Spelling chg's lexical forms (docs/rules/chg.md): chg-Arab/standard's `spell` statement (profiles/chg-Arab.standard.yaml), run by @nabu/core over forms in chg's notation (lexicons/chg/language.yaml), realised ones with their boundaries (+), which the statement keeps for its rules (`boundaries: true`: where a suffix joins, after a half-space or not). spell/fixture/boundaries/* run a statement and notation of their own; spell/chg/* one vector or more per rule of chg-Arab/standard's statement, each a word of the course.",
+  "$comment": "Spelling chg's lexical forms (docs/rules/chg.md) both ways: chg-Arab/standard's and chg-Latn/schluessel's `spell` statements (profiles/), run by @nabu/core over forms in chg's notation (lexicons/chg/language.yaml), realised ones with their boundaries (+), which the statements keep for their rules (`boundaries: true`). spell/fixture/boundaries/* run a statement and notation of their own; spell/chg/arab/rule-<n> and spell/chg/latn/rule-<n> one vector per rule of each statement, the first course form whose spelling changes without it (else the first it fires on), its `expected` the course's own spelling (Arabic: the token's surface; Latin: Schluessel's reading) unless the note says the form is a free spelling or a constructed word for a rule no course word needs. Written by packages/core-cli/scripts/chg-vectors.ts from the course: regenerate them, never edit by hand.",
   "vectors": [
     {
       "id": "spell/fixture/boundaries/kept",
@@ -203,82 +203,541 @@
       "note": "Without `boundaries` they are dropped first, as before: the rule never sees one."
     },
     {
-      "id": "spell/chg/rule-01/shajara-i",
+      "id": "spell/chg/arab/rule-01",
       "op": "spell",
       "args": {
         "profile": "chg-Arab/standard",
-        "form": "شجرە+\u0654",
-        "expected": "شجره\u0654"
+        "form": "bazār+ĞA",
+        "expected": "بزارغه"
       },
       "expected": {
-        "spelling": "شجره\u0654",
+        "spelling": "بزارغه",
+        "alternatives": [
+          {
+            "spelling": "بزارکه",
+            "by": [
+              "g-kaf"
+            ]
+          },
+          {
+            "spelling": "بزارقه",
+            "by": [
+              "g-qaf"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 1 (the dative غه whatever its harmony (S 3.3.3), free که and قه): bazārǧa بزارغه (s.03.24)."
+    },
+    {
+      "id": "spell/chg/arab/rule-02",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "at+GAn+DA",
+        "expected": "اتقانده"
+      },
+      "expected": {
+        "spelling": "اتقانده",
+        "alternatives": [
+          {
+            "spelling": "اتکانده",
+            "by": [
+              "g-kaf"
+            ]
+          },
+          {
+            "spelling": "اتغانده",
+            "by": [
+              "g-ghayn"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 2 (a suffix's archiphonemes): atqanda اتقانده (s.08.20)."
+    },
+    {
+      "id": "spell/chg/arab/rule-03",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "bäk+GA",
+        "expected": "بککه"
+      },
+      "expected": {
+        "spelling": "بککه",
+        "alternatives": [
+          {
+            "spelling": "بکه",
+            "by": [
+              "double-once"
+            ]
+          },
+          {
+            "spelling": "بکقه",
+            "by": [
+              "g-qaf"
+            ]
+          },
+          {
+            "spelling": "بکغه",
+            "by": [
+              "g-ghayn"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 3 (a suffix's archiphonemes): bäkkä, to the bey بککه (constructed: no course word)."
+    },
+    {
+      "id": "spell/chg/arab/rule-04",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "al+GAn",
+        "expected": "الغان"
+      },
+      "expected": {
+        "spelling": "الغان",
+        "alternatives": [
+          {
+            "spelling": "الکان",
+            "by": [
+              "g-kaf"
+            ]
+          },
+          {
+            "spelling": "القان",
+            "by": [
+              "g-qaf"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 4 (a suffix's archiphonemes): alǧan الغان (s.08.22)."
+    },
+    {
+      "id": "spell/chg/arab/rule-05",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "käl+GAn",
+        "expected": "کلکان"
+      },
+      "expected": {
+        "spelling": "کلکان",
+        "alternatives": [
+          {
+            "spelling": "کلغان",
+            "by": [
+              "g-ghayn"
+            ]
+          },
+          {
+            "spelling": "کلقان",
+            "by": [
+              "g-qaf"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 5 (a suffix's archiphonemes): kälgän کلکان (s.08.19)."
+    },
+    {
+      "id": "spell/chg/arab/rule-06",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "yaḫši+rAK",
+        "expected": "یخشیراق"
+      },
+      "expected": {
+        "spelling": "یخشیراق",
+        "alternatives": [
+          {
+            "spelling": "یخشیراک",
+            "by": [
+              "k-kaf"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 6 (a suffix's archiphonemes): yaḫširaq یخشیراق (s.03.31)."
+    },
+    {
+      "id": "spell/chg/arab/rule-07",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "er+Dü+K",
+        "expected": "ایردوک"
+      },
+      "expected": {
+        "spelling": "ایردوک",
+        "alternatives": [
+          {
+            "spelling": "ایردوق",
+            "by": [
+              "k-qaf"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 7 (a suffix's archiphonemes): erdük ایردوک (s.17.16)."
+    },
+    {
+      "id": "spell/chg/arab/rule-08",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "ič+Di+m",
+        "expected": "ایچتیم"
+      },
+      "expected": {
+        "spelling": "ایچتیم",
+        "alternatives": [
+          {
+            "spelling": "ایچدیم",
+            "by": [
+              "d-dal"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 8 (a suffix's archiphonemes): ičtim ایچتیم (s.06.4)."
+    },
+    {
+      "id": "spell/chg/arab/rule-09",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "öy+DA",
+        "expected": "اویده"
+      },
+      "expected": {
+        "spelling": "اویده",
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 1 (ە + the ezafe's hamza → ه with the hamza): šajarah-i (s.09.38)."
+      "note": "Rule 9 (a suffix's archiphonemes): öydä اویده (s.02.18)."
     },
     {
-      "id": "spell/chg/rule-02/mewasi",
+      "id": "spell/chg/arab/rule-10",
       "op": "spell",
       "args": {
         "profile": "chg-Arab/standard",
-        "form": "میوە+سی",
-        "expected": "میوه\u200cسی"
+        "form": "öy+dA",
+        "expected": "اویده"
       },
       "expected": {
-        "spelling": "میوه\u200cسی",
+        "spelling": "اویده",
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 2 (a suffix after a vowel he stands after a half-space): mewäsi (s.01.41)."
+      "note": "Rule 10 (a suffix's archiphonemes): öydä اویده (s.02.18)."
     },
     {
-      "id": "spell/chg/rule-02/kanarada",
+      "id": "spell/chg/arab/rule-11",
       "op": "spell",
       "args": {
         "profile": "chg-Arab/standard",
-        "form": "کنارە+دا",
-        "expected": "کناره\u200cدا"
+        "form": "bol+Ur",
+        "expected": "بولور"
       },
       "expected": {
-        "spelling": "کناره\u200cدا",
+        "spelling": "بولور",
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 2: kanarada (a story line; the locative's free دا)."
+      "note": "Rule 11 (a suffix's archiphonemes): bolur بولور (s.03.10)."
     },
     {
-      "id": "spell/chg/rule-03/alta",
+      "id": "spell/chg/arab/rule-12",
       "op": "spell",
       "args": {
         "profile": "chg-Arab/standard",
-        "form": "التە",
-        "expected": "الته"
+        "form": "darwāzaͤ",
+        "expected": "دروازه"
       },
       "expected": {
-        "spelling": "الته",
+        "spelling": "دروازه",
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 3 (a final vowel he is ه): altä, a lemma."
+      "note": "Rule 12 (harmony is the Latin's: the Arabic has read it for G and K): darwāza دروازه (s.02.31)."
     },
     {
-      "id": "spell/chg/rule-04/suyi",
+      "id": "spell/chg/arab/rule-13",
       "op": "spell",
       "args": {
         "profile": "chg-Arab/standard",
-        "form": "سوي+ی",
+        "form": "Oš",
+        "expected": "اوش"
+      },
+      "expected": {
+        "spelling": "اوش",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 13 (a name's capitals): Oš اوش (s.01.48)."
+    },
+    {
+      "id": "spell/chg/arab/rule-14",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "tārīḫ+-i̦",
+        "expected": "تاریخ"
+      },
+      "expected": {
+        "spelling": "تاریخ",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 14 (hyphens unwritten, but a stem's citation hyphen (بار-)): tārīḫ-i تاریخ (s.06.37)."
+    },
+    {
+      "id": "spell/chg/arab/rule-15",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "wilāyaͤt+tur",
+        "expected": "ولایتتور"
+      },
+      "expected": {
+        "spelling": "ولایتتور",
+        "alternatives": [
+          {
+            "spelling": "ولایتور",
+            "by": [
+              "double-once"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 15 (a double across a boundary: written twice, once a free spelling): wilāyattur ولایتتور (u01-a-small-country.yaml)."
+    },
+    {
+      "id": "spell/chg/arab/rule-16",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "Samarqand+din",
+        "expected": "سمرقنددین"
+      },
+      "expected": {
+        "spelling": "سمرقنددین",
+        "alternatives": [
+          {
+            "spelling": "سمرقندین",
+            "by": [
+              "double-once"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 16 (a double across a boundary: written twice, once a free spelling): Samarqanddin سمرقنددین (s.03.19)."
+    },
+    {
+      "id": "spell/chg/arab/rule-17",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "yol+lAr",
+        "expected": "یوللار"
+      },
+      "expected": {
+        "spelling": "یوللار",
+        "alternatives": [
+          {
+            "spelling": "یولار",
+            "by": [
+              "double-once"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 17 (a double across a boundary: written twice, once a free spelling): yollar, roads یوللار (constructed: no course word)."
+    },
+    {
+      "id": "spell/chg/arab/rule-18",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "Andijān+niŋ",
+        "expected": "اندجاننینک"
+      },
+      "expected": {
+        "spelling": "اندجاننینک",
+        "alternatives": [
+          {
+            "spelling": "اندجانینک",
+            "by": [
+              "double-once"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 18 (a double across a boundary: written twice, once a free spelling): Andijānniŋ اندجاننینک (s.02.36)."
+    },
+    {
+      "id": "spell/chg/arab/rule-19",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "bi̩l+mAs+siz",
+        "expected": "بیلماسسیز"
+      },
+      "expected": {
+        "spelling": "بیلماسسیز",
+        "alternatives": [
+          {
+            "spelling": "بیلماسیز",
+            "by": [
+              "double-once"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 19 (a double across a boundary: written twice, once a free spelling): bilmässiz بیلماسسیز (s.04.41)."
+    },
+    {
+      "id": "spell/chg/arab/rule-20",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "ḫalāyiq+ĞA̩",
+        "expected": "خلایقغا"
+      },
+      "expected": {
+        "spelling": "خلایقغا",
+        "alternatives": [
+          {
+            "spelling": "خلایقکا",
+            "by": [
+              "g-kaf"
+            ]
+          },
+          {
+            "spelling": "خلایققا",
+            "by": [
+              "g-qaf"
+            ]
+          },
+          {
+            "spelling": "خلایقا",
+            "by": [
+              "double-once",
+              "g-qaf"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 20 (a double across a boundary: written twice, once a free spelling): ḫalāyiqqa خلایقغا (u14-a-coin-of-decius.yaml)."
+    },
+    {
+      "id": "spell/chg/arab/rule-21",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "bäk+GA",
+        "expected": "بککه"
+      },
+      "expected": {
+        "spelling": "بککه",
+        "alternatives": [
+          {
+            "spelling": "بکه",
+            "by": [
+              "double-once"
+            ]
+          },
+          {
+            "spelling": "بکقه",
+            "by": [
+              "g-qaf"
+            ]
+          },
+          {
+            "spelling": "بکغه",
+            "by": [
+              "g-ghayn"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 21 (a double across a boundary: written twice, once a free spelling): bäkkä, to the bey بککه (constructed: no course word)."
+    },
+    {
+      "id": "spell/chg/arab/rule-22",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "yum+mA",
+        "expected": "یوممه"
+      },
+      "expected": {
+        "spelling": "یوممه",
+        "alternatives": [
+          {
+            "spelling": "یومه",
+            "by": [
+              "double-once"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 22 (a double across a boundary: written twice, once a free spelling): yummä, not closing یوممه (constructed: no course word)."
+    },
+    {
+      "id": "spell/chg/arab/rule-23",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "qilič+čA",
+        "expected": "قلچچه"
+      },
+      "expected": {
+        "spelling": "قلچچه",
+        "alternatives": [
+          {
+            "spelling": "قلچه",
+            "by": [
+              "double-once"
+            ]
+          }
+        ],
+        "expected": "spelling"
+      },
+      "note": "Rule 23 (a double across a boundary: written twice, once a free spelling): qiličča, like a sword قلچچه (constructed: no course word)."
+    },
+    {
+      "id": "spell/chg/arab/rule-24",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "suy+i",
         "expected": "سویی"
       },
       "expected": {
         "spelling": "سویی",
         "alternatives": [
-          {
-            "spelling": "سوی\u200cی",
-            "by": [
-              "half-space"
-            ]
-          },
           {
             "spelling": "سوی",
             "by": [
@@ -288,27 +747,126 @@
         ],
         "expected": "spelling"
       },
-      "note": "Rule 4 (y and the -i after it, or one ye for both): süyi written in full (s.01.45)..."
+      "note": "Rule 24 (y and the -i after it, or one ye for both (سویی, سُوی süyi)): suyi سویی (s.01.45)."
     },
     {
-      "id": "spell/chg/rule-04/suyi-one-ye",
+      "id": "spell/chg/arab/rule-25",
       "op": "spell",
       "args": {
         "profile": "chg-Arab/standard",
-        "form": "سوي+ی",
+        "form": "ja̩ŋga̩l+DA",
+        "expected": "جانکالده"
+      },
+      "expected": {
+        "spelling": "جانکالده",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 25 (consonants written by their own signs, a double once inside a morpheme, ŋg as نک: on the form's own letters, before any vowel is left out): jaŋgalda جانکالده (s.13.23)."
+    },
+    {
+      "id": "spell/chg/arab/rule-26",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "u̦l̸d̦-Dīn",
+        "expected": "الدین"
+      },
+      "expected": {
+        "spelling": "الدین",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 26 (consonants written by their own signs, a double once inside a morpheme, ŋg as نک: on the form's own letters, before any vowel is left out): ud-Dīn الدین (s.16.19)."
+    },
+    {
+      "id": "spell/chg/arab/rule-27",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "jabb͙ār",
+        "expected": "جبّار"
+      },
+      "expected": {
+        "spelling": "جبّار",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 27 (consonants written by their own signs, a double once inside a morpheme, ŋg as نک: on the form's own letters, before any vowel is left out): jabbār جبّار (u10-the-seven-sleepers.yaml)."
+    },
+    {
+      "id": "spell/chg/arab/rule-28",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "qa̩tt̩i̩q",
+        "expected": "قاتتیق"
+      },
+      "expected": {
+        "spelling": "قاتتیق",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 28 (consonants written by their own signs, a double once inside a morpheme, ŋg as نک: on the form's own letters, before any vowel is left out): qattiq قاتتیق (u12-the-kalmyks-came.yaml)."
+    },
+    {
+      "id": "spell/chg/arab/rule-29",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "ačči̩q+·dur",
+        "expected": "اچیق\u200cدور"
+      },
+      "expected": {
+        "spelling": "اچیق\u200cدور",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 29 (consonants written by their own signs, a double once inside a morpheme, ŋg as نک: on the form's own letters, before any vowel is left out): aččiq·dur اچیق\u200cدور (s.01.11)."
+    },
+    {
+      "id": "spell/chg/arab/rule-30",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "šahaͤri̸+i̦+·dur",
+        "expected": "شهری\u200cدور"
+      },
+      "expected": {
+        "spelling": "شهری\u200cدور",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 30 (letters written and not said, the twins, a shadda and a damma written): šahari·dur شهری\u200cدور (s.02.41)."
+    },
+    {
+      "id": "spell/chg/arab/rule-31",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "b̤iz",
+        "expected": "پز"
+      },
+      "expected": {
+        "spelling": "پز",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 31 (letters written and not said, the twins, a shadda and a damma written): biz پز (u04-do-you-have-a-king.yaml)."
+    },
+    {
+      "id": "spell/chg/arab/rule-32",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "sü͛y+i",
         "expected": "سُوی"
       },
       "expected": {
-        "spelling": "سویی",
+        "spelling": "سُویی",
         "alternatives": [
           {
-            "spelling": "سوی\u200cی",
-            "by": [
-              "half-space"
-            ]
-          },
-          {
-            "spelling": "سوی",
+            "spelling": "سُوی",
             "by": [
               "double-once"
             ]
@@ -316,14 +874,539 @@
         ],
         "expected": "alternative"
       },
-      "note": "... and with one ye (a story line, its damma passed over as the profile's marks are)."
+      "note": "Rule 32 (letters written and not said, the twins, a shadda and a damma written): süyi سُوی (u11-the-pavilion-at-osh.yaml)."
     },
     {
-      "id": "spell/chg/rule-05/chay",
+      "id": "spell/chg/arab/rule-33",
       "op": "spell",
       "args": {
         "profile": "chg-Arab/standard",
-        "form": "چاي",
+        "form": "Jibrāʾīl",
+        "expected": "جبرائیل"
+      },
+      "expected": {
+        "spelling": "جبرائیل",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 33 (hamza seats): Jibrāʾīl جبرائیل (s.18.26)."
+    },
+    {
+      "id": "spell/chg/arab/rule-34",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "šayʾ",
+        "expected": "شیء"
+      },
+      "expected": {
+        "spelling": "شیء",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 34 (hamza seats): šayʾ, a thing شیء (constructed: no course word)."
+    },
+    {
+      "id": "spell/chg/arab/rule-35",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "a̴ṭ",
+        "expected": "آط"
+      },
+      "expected": {
+        "spelling": "آط",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 35 (a word's first vowel (or after a half-space or a hyphen)): aṭ آط (s.02.10)."
+    },
+    {
+      "id": "spell/chg/arab/rule-36",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "Ādam",
+        "expected": "آدم"
+      },
+      "expected": {
+        "spelling": "آدم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 36 (a word's first vowel (or after a half-space or a hyphen)): Ādam آدم (s.13.5)."
+    },
+    {
+      "id": "spell/chg/arab/rule-37",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "bē·āb",
+        "expected": "بی\u200cآب"
+      },
+      "expected": {
+        "spelling": "بی\u200cآب",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 37 (a word's first vowel (or after a half-space or a hyphen)): bē·āb, without water بی\u200cآب (constructed: no course word)."
+    },
+    {
+      "id": "spell/chg/arab/rule-38",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "e̦ͣyt+A̩+dur",
+        "expected": "ایتادور"
+      },
+      "expected": {
+        "spelling": "ایتادور",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 38 (a word's first vowel (or after a half-space or a hyphen)): eytadur ایتادور (s.05.39)."
+    },
+    {
+      "id": "spell/chg/arab/rule-39",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "bē·i̦ḫtiyār",
+        "expected": "بی\u200cاختیار"
+      },
+      "expected": {
+        "spelling": "بی\u200cاختیار",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 39 (a word's first vowel (or after a half-space or a hyphen)): bē·iḫtiyār بی\u200cاختیار (s.16.25)."
+    },
+    {
+      "id": "spell/chg/arab/rule-40",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "aq+·dur",
+        "expected": "اق\u200cدور"
+      },
+      "expected": {
+        "spelling": "اق\u200cدور",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 40 (a word's first vowel (or after a half-space or a hyphen)): aq·dur اق\u200cدور (s.01.13)."
+    },
+    {
+      "id": "spell/chg/arab/rule-41",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "bē·adab",
+        "expected": "بی\u200cادب"
+      },
+      "expected": {
+        "spelling": "بی\u200cادب",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 41 (a word's first vowel (or after a half-space or a hyphen)): bē·adab, ill-mannered بی\u200cادب (constructed: no course word)."
+    },
+    {
+      "id": "spell/chg/arab/rule-42",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "issi̩q+·dur",
+        "expected": "ایسیق\u200cدور"
+      },
+      "expected": {
+        "spelling": "ایسیق\u200cدور",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 42 (a word's first vowel (or after a half-space or a hyphen)): issiq·dur ایسیق\u200cدور (s.01.16)."
+    },
+    {
+      "id": "spell/chg/arab/rule-43",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "me̩wä+·i",
+        "expected": "میوه\u200cای"
+      },
+      "expected": {
+        "spelling": "میوه\u200cای",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 43 (a word's first vowel (or after a half-space or a hyphen)): mewä·i (a free spelling of mewä·si) میوه\u200cای (s.01.41)."
+    },
+    {
+      "id": "spell/chg/arab/rule-44",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "üč",
+        "expected": "اوچ"
+      },
+      "expected": {
+        "spelling": "اوچ",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 44 (a word's first vowel (or after a half-space or a hyphen)): üč اوچ (s.02.9)."
+    },
+    {
+      "id": "spell/chg/arab/rule-45",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "tüš+·Up̤+tur",
+        "expected": "توش\u200cاوبتور"
+      },
+      "expected": {
+        "spelling": "توش\u200cاوبتور",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 45 (a word's first vowel (or after a half-space or a hyphen)): tüš·üptur (a free spelling of tüšüptur) توش\u200cاوبتور (s.11.10)."
+    },
+    {
+      "id": "spell/chg/arab/rule-46",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "I̦brā̦hīm",
+        "expected": "ابرهیم"
+      },
+      "expected": {
+        "spelling": "ابرهیم",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 46 (long vowels): Ibrāhīm, written without its first vowel letter or ā ابرهیم (constructed: no course word)."
+    },
+    {
+      "id": "spell/chg/arab/rule-47",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "wilāyaͤt",
+        "expected": "ولایت"
+      },
+      "expected": {
+        "spelling": "ولایت",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 47 (long vowels): wilāyat ولایت (s.01.37)."
+    },
+    {
+      "id": "spell/chg/arab/rule-48",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "laṭīf",
+        "expected": "لطیف"
+      },
+      "expected": {
+        "spelling": "لطیف",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 48 (long vowels): laṭīf لطیف (s.01.40)."
+    },
+    {
+      "id": "spell/chg/arab/rule-49",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "ḫūb",
+        "expected": "خوب"
+      },
+      "expected": {
+        "spelling": "خوب",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 49 (long vowels): ḫūb خوب (s.01.43)."
+    },
+    {
+      "id": "spell/chg/arab/rule-50",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "taʿālà",
+        "expected": "تعالی"
+      },
+      "expected": {
+        "spelling": "تعالی",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 50 (long vowels): taʿālà تعالی (s.10.29)."
+    },
+    {
+      "id": "spell/chg/arab/rule-51",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "yaḫši+·dur",
+        "expected": "یخشی\u200cدور"
+      },
+      "expected": {
+        "spelling": "یخشی\u200cدور",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 51 (a short vowel ending a stem (before a suffix, a hyphen, a half-space or the word's end)): yaḫši·dur یخشی\u200cدور (s.01.20)."
+    },
+    {
+      "id": "spell/chg/arab/rule-52",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "yaḫši",
+        "expected": "یخشی"
+      },
+      "expected": {
+        "spelling": "یخشی",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 52 (a short vowel ending a stem (before a suffix, a hyphen, a half-space or the word's end)): yaḫši یخشی (s.01.22)."
+    },
+    {
+      "id": "spell/chg/arab/rule-53",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "wä̦",
+        "expected": "و"
+      },
+      "expected": {
+        "spelling": "و",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 53 (a short vowel ending a stem (before a suffix, a hyphen, a half-space or the word's end)): wä و (s.01.3)."
+    },
+    {
+      "id": "spell/chg/arab/rule-54",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "qara̩",
+        "expected": "قرا"
+      },
+      "expected": {
+        "spelling": "قرا",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 54 (a short vowel ending a stem (before a suffix, a hyphen, a half-space or the word's end)): qara قرا (s.01.24)."
+    },
+    {
+      "id": "spell/chg/arab/rule-55",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "Mūsa̯",
+        "expected": "موسی"
+      },
+      "expected": {
+        "spelling": "موسی",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 55 (a short vowel ending a stem (before a suffix, a hyphen, a half-space or the word's end)): Mūsa, Moses, written with ی موسی (constructed: no course word)."
+    },
+    {
+      "id": "spell/chg/arab/rule-56",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "de̩+r+lAr",
+        "expected": "دیرلار"
+      },
+      "expected": {
+        "spelling": "دیرلار",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 56 (a short vowel ending a stem (before a suffix, a hyphen, a half-space or the word's end)): derlär دیرلار (s.04.42)."
+    },
+    {
+      "id": "spell/chg/arab/rule-57",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "me̩wä",
+        "expected": "میوه"
+      },
+      "expected": {
+        "spelling": "میوه",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 57 (a short vowel ending a stem (before a suffix, a hyphen, a half-space or the word's end)): mewä میوه (s.01.29)."
+    },
+    {
+      "id": "spell/chg/arab/rule-58",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "ikki",
+        "expected": "ایکی"
+      },
+      "expected": {
+        "spelling": "ایکی",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 58 (a short vowel ending a stem (before a suffix, a hyphen, a half-space or the word's end)): ikki ایکی (s.02.8)."
+    },
+    {
+      "id": "spell/chg/arab/rule-59",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "su",
+        "expected": "سو"
+      },
+      "expected": {
+        "spelling": "سو",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 59 (a short vowel ending a stem (before a suffix, a hyphen, a half-space or the word's end)): su سو (s.01.7)."
+    },
+    {
+      "id": "spell/chg/arab/rule-60",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "sa̩wu̦q+·dur",
+        "expected": "ساوق\u200cدور"
+      },
+      "expected": {
+        "spelling": "ساوق\u200cدور",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 60 (a short vowel inside a word: in a suffix written, in a stem a, ä, e and i not (but with the written sign)): sawuq·dur ساوق\u200cدور (s.01.17)."
+    },
+    {
+      "id": "spell/chg/arab/rule-61",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "yä̯tti",
+        "expected": "ییتی"
+      },
+      "expected": {
+        "spelling": "ییتی",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 61 (a short vowel inside a word: in a suffix written, in a stem a, ä, e and i not (but with the written sign)): yätti ییتی (u02-seven-towns.yaml)."
+    },
+    {
+      "id": "spell/chg/arab/rule-62",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "tuz",
+        "expected": "توز"
+      },
+      "expected": {
+        "spelling": "توز",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 62 (a short vowel inside a word: in a suffix written, in a stem a, ä, e and i not (but with the written sign)): tuz توز (s.01.4)."
+    },
+    {
+      "id": "spell/chg/arab/rule-63",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "a̴ṭ+lAr",
+        "expected": "آطلار"
+      },
+      "expected": {
+        "spelling": "آطلار",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 63 (a short vowel inside a word: in a suffix written, in a stem a, ä, e and i not (but with the written sign)): aṭlar آطلار (s.03.1)."
+    },
+    {
+      "id": "spell/chg/arab/rule-64",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "šahaͤr+niŋ",
+        "expected": "شهرنینک"
+      },
+      "expected": {
+        "spelling": "شهرنینک",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 64 (a short vowel inside a word: in a suffix written, in a stem a, ä, e and i not (but with the written sign)): šaharniŋ شهرنینک (s.02.35)."
+    },
+    {
+      "id": "spell/chg/arab/rule-65",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "na̩n",
+        "expected": "نان"
+      },
+      "expected": {
+        "spelling": "نان",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 65 (a short vowel inside a word: in a suffix written, in a stem a, ä, e and i not (but with the written sign)): nan نان (s.01.1)."
+    },
+    {
+      "id": "spell/chg/arab/rule-66",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "ši̩ri̩n+·dur",
+        "expected": "شیرین\u200cدور"
+      },
+      "expected": {
+        "spelling": "شیرین\u200cدور",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 66 (a short vowel inside a word: in a suffix written, in a stem a, ä, e and i not (but with the written sign)): širin·dur شیرین\u200cدور (s.01.9)."
+    },
+    {
+      "id": "spell/chg/arab/rule-67",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "qand",
+        "expected": "قند"
+      },
+      "expected": {
+        "spelling": "قند",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 67 (a short vowel inside a word: in a suffix written, in a stem a, ä, e and i not (but with the written sign)): qand قند (s.01.5)."
+    },
+    {
+      "id": "spell/chg/arab/rule-68",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "ča̩y",
         "expected": "چای"
       },
       "expected": {
@@ -331,395 +1414,352 @@
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 5 (a final consonant ye is ی): čay, a lemma."
+      "note": "Rule 68 (consonants: a double once inside a morpheme (written twice with the written sign on the second), ŋg as نک): čay چای (s.01.2)."
     },
     {
-      "id": "spell/chg/rule-06/padishah-ning",
+      "id": "spell/chg/arab/rule-69",
       "op": "spell",
       "args": {
         "profile": "chg-Arab/standard",
-        "form": "پادشاه+نینک",
-        "expected": "پادشاهنینک"
+        "form": "me̩wä+·si",
+        "expected": "میوه\u200cسی"
       },
       "expected": {
-        "spelling": "پادشاه\u200cنینک",
-        "alternatives": [
-          {
-            "spelling": "پادشاهنینک",
-            "by": [
-              "joined"
-            ]
-          }
-        ],
-        "expected": "alternative"
-      },
-      "note": "Rule 6 (h before a consonant: a half-space, S xxx rule 4, or joined, as the course's sentences write it): pādišāhniŋ (s.10.30)."
-    },
-    {
-      "id": "spell/chg/rule-06/shah-ning",
-      "op": "spell",
-      "args": {
-        "profile": "chg-Arab/standard",
-        "form": "شاه+نینک",
-        "expected": "شاه\u200cنینک"
-      },
-      "expected": {
-        "spelling": "شاه\u200cنینک",
-        "alternatives": [
-          {
-            "spelling": "شاهنینک",
-            "by": [
-              "joined"
-            ]
-          }
-        ],
-        "expected": "spelling"
-      },
-      "note": "Rule 6: Šāhniŋ after a half-space (a story line)."
-    },
-    {
-      "id": "spell/chg/rule-06/padishah-imiz",
-      "op": "spell",
-      "args": {
-        "profile": "chg-Arab/standard",
-        "form": "پادشاه+یمیز",
-        "expected": "پادشاهیمیز"
-      },
-      "expected": {
-        "spelling": "پادشاهیمیز",
-        "alternatives": [
-          {
-            "spelling": "پادشاه\u200cیمیز",
-            "by": [
-              "half-space"
-            ]
-          }
-        ],
-        "expected": "spelling"
-      },
-      "note": "Rule 6 does not hold before a vowel letter: pādišāhimiz joined (S xxx rule 4: گناهیمیز); rule 10 gives the half-space as free."
-    },
-    {
-      "id": "spell/chg/rule-07/qulluq",
-      "op": "spell",
-      "args": {
-        "profile": "chg-Arab/standard",
-        "form": "قول+لوق",
-        "expected": "قول\u200cلوق"
-      },
-      "expected": {
-        "spelling": "قول\u200cلوق",
+        "spelling": "میوه\u200cسی",
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "Rule 7 (two l's are not joined): qulluq, S xxx's example. Constructed: no word of the course has two l's across a boundary."
+      "note": "Rule 69 (a suffix that brings its own half-space: one): mewä·si میوه\u200cسی (s.01.41)."
     },
     {
-      "id": "spell/chg/rule-08/yaghachchi",
+      "id": "spell/chg/arab/rule-70",
       "op": "spell",
       "args": {
         "profile": "chg-Arab/standard",
-        "form": "یغاچ+چی",
-        "expected": "یغاچچی"
+        "form": "me̩wä+si",
+        "expected": "میوه\u200cسی"
       },
       "expected": {
-        "spelling": "یغاچچی",
-        "alternatives": [
-          {
-            "spelling": "یغاچ\u200cچی",
-            "by": [
-              "half-space"
-            ]
-          },
-          {
-            "spelling": "یغاچی",
-            "by": [
-              "double-once"
-            ]
-          }
-        ],
-        "expected": "spelling"
-      },
-      "note": "Rule 8 (čč across a boundary, or once): yaǧačči (s.15.22)..."
-    },
-    {
-      "id": "spell/chg/rule-08/yaghachi",
-      "op": "spell",
-      "args": {
-        "profile": "chg-Arab/standard",
-        "form": "یغاچ+چی",
-        "expected": "یغاچی"
-      },
-      "expected": {
-        "spelling": "یغاچچی",
-        "alternatives": [
-          {
-            "spelling": "یغاچ\u200cچی",
-            "by": [
-              "half-space"
-            ]
-          },
-          {
-            "spelling": "یغاچی",
-            "by": [
-              "double-once"
-            ]
-          }
-        ],
-        "expected": "alternative"
-      },
-      "note": "... written once (a story line)."
-    },
-    {
-      "id": "spell/chg/rule-09/eyttike",
-      "op": "spell",
-      "args": {
-        "profile": "chg-Arab/standard",
-        "form": "ایت+تی+کە",
-        "expected": "ایتتیکه"
-      },
-      "expected": {
-        "spelling": "ایتتیکه",
-        "alternatives": [
-          {
-            "spelling": "ایتتی\u200cکه",
-            "by": [
-              "half-space"
-            ]
-          },
-          {
-            "spelling": "ایت\u200cتیکه",
-            "by": [
-              "half-space"
-            ]
-          },
-          {
-            "spelling": "ایت\u200cتی\u200cکه",
-            "by": [
-              "half-space"
-            ]
-          },
-          {
-            "spelling": "ایتیکه",
-            "by": [
-              "double-once"
-            ]
-          },
-          {
-            "spelling": "ایتی\u200cکه",
-            "by": [
-              "double-once",
-              "half-space"
-            ]
-          }
-        ],
-        "expected": "spelling"
-      },
-      "note": "Rule 9 (tt across a boundary, or once): eyttikä..."
-    },
-    {
-      "id": "spell/chg/rule-09/eytike",
-      "op": "spell",
-      "args": {
-        "profile": "chg-Arab/standard",
-        "form": "ایت+تی+کە",
-        "expected": "ایتیکه"
-      },
-      "expected": {
-        "spelling": "ایتتیکه",
-        "alternatives": [
-          {
-            "spelling": "ایتتی\u200cکه",
-            "by": [
-              "half-space"
-            ]
-          },
-          {
-            "spelling": "ایت\u200cتیکه",
-            "by": [
-              "half-space"
-            ]
-          },
-          {
-            "spelling": "ایت\u200cتی\u200cکه",
-            "by": [
-              "half-space"
-            ]
-          },
-          {
-            "spelling": "ایتیکه",
-            "by": [
-              "double-once"
-            ]
-          },
-          {
-            "spelling": "ایتی\u200cکه",
-            "by": [
-              "double-once",
-              "half-space"
-            ]
-          }
-        ],
-        "expected": "alternative"
-      },
-      "note": "... written once."
-    },
-    {
-      "id": "spell/chg/rule-10/shirindur",
-      "op": "spell",
-      "args": {
-        "profile": "chg-Arab/standard",
-        "form": "شیرین+دور",
-        "expected": "شیرین\u200cدور"
-      },
-      "expected": {
-        "spelling": "شیرین\u200cدور",
-        "alternatives": [
-          {
-            "spelling": "شیریندور",
-            "by": [
-              "joined"
-            ]
-          }
-        ],
-        "expected": "spelling"
-      },
-      "note": "Rule 10 (the copula after a joining letter: a half-space, or joined): širindur (s.01.9)..."
-    },
-    {
-      "id": "spell/chg/rule-10/qilmaydur",
-      "op": "spell",
-      "args": {
-        "profile": "chg-Arab/standard",
-        "form": "قیل+ما+ی+دور",
-        "expected": "قیلمایدور"
-      },
-      "expected": {
-        "spelling": "قیلمای\u200cدور",
-        "alternatives": [
-          {
-            "spelling": "قیل\u200cمای\u200cدور",
-            "by": [
-              "half-space"
-            ]
-          },
-          {
-            "spelling": "قیلمایدور",
-            "by": [
-              "joined"
-            ]
-          },
-          {
-            "spelling": "قیل\u200cمایدور",
-            "by": [
-              "half-space",
-              "joined"
-            ]
-          }
-        ],
-        "expected": "alternative"
-      },
-      "note": "... joined after the present's -y (qilmaydur, s.05.16)."
-    },
-    {
-      "id": "spell/chg/rule-11/iqlimdindur",
-      "op": "spell",
-      "args": {
-        "profile": "chg-Arab/standard",
-        "form": "اقلیم+دین+دور",
-        "expected": "اقلیمدین\u200cدور"
-      },
-      "expected": {
-        "spelling": "اقلیمدین\u200cدور",
-        "alternatives": [
-          {
-            "spelling": "اقلیم\u200cدین\u200cدور",
-            "by": [
-              "half-space"
-            ]
-          },
-          {
-            "spelling": "اقلیمدیندور",
-            "by": [
-              "joined"
-            ]
-          },
-          {
-            "spelling": "اقلیم\u200cدیندور",
-            "by": [
-              "half-space",
-              "joined"
-            ]
-          }
-        ],
-        "expected": "spelling"
-      },
-      "note": "Rule 11 (any other suffix after a joining letter: joined, or after a half-space): iqlīmdindur as the sentence writes it (s.06.38)..."
-    },
-    {
-      "id": "spell/chg/rule-11/iqlim-din-dur",
-      "op": "spell",
-      "args": {
-        "profile": "chg-Arab/standard",
-        "form": "اقلیم+دین+دور",
-        "expected": "اقلیم\u200cدین\u200cدور"
-      },
-      "expected": {
-        "spelling": "اقلیمدین\u200cدور",
-        "alternatives": [
-          {
-            "spelling": "اقلیم\u200cدین\u200cدور",
-            "by": [
-              "half-space"
-            ]
-          },
-          {
-            "spelling": "اقلیمدیندور",
-            "by": [
-              "joined"
-            ]
-          },
-          {
-            "spelling": "اقلیم\u200cدیندور",
-            "by": [
-              "half-space",
-              "joined"
-            ]
-          }
-        ],
-        "expected": "alternative"
-      },
-      "note": "... and as the story line, from Schluessel's typescript."
-    },
-    {
-      "id": "spell/chg/boundary/shaharda",
-      "op": "spell",
-      "args": {
-        "profile": "chg-Arab/standard",
-        "form": "شهر+دە",
-        "expected": "شهرده"
-      },
-      "expected": {
-        "spelling": "شهرده",
+        "spelling": "میوه\u200cسی",
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "A boundary no rule names (after ر, which joins nothing) is dropped: šahardä (s.02.20)."
+      "note": "Rule 70 (the half-space after a vowel he before a suffix (S xxx, rule 3: the he never joins); hyphens unwritten but a stem's citation hyphen (بار-)): mewä·si میوه\u200cسی (s.01.41)."
     },
     {
-      "id": "spell/chg/lemma/al",
+      "id": "spell/chg/arab/rule-71",
       "op": "spell",
       "args": {
         "profile": "chg-Arab/standard",
-        "form": "ال-",
-        "expected": "ال-"
+        "form": "yänä",
+        "expected": "ینه"
       },
       "expected": {
-        "spelling": "ال-",
+        "spelling": "ینه",
         "alternatives": [],
         "expected": "spelling"
       },
-      "note": "A verb's lemma keeps its citation hyphen (the lexicon's first spelling): al-."
+      "note": "Rule 71 (the half-space after a vowel he before a suffix (S xxx, rule 3: the he never joins); hyphens unwritten but a stem's citation hyphen (بار-)): yänä ینه (s.01.46)."
+    },
+    {
+      "id": "spell/chg/arab/rule-72",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "qi̩mmät+·dur",
+        "expected": "قیمت\u200cدور"
+      },
+      "expected": {
+        "spelling": "قیمت\u200cدور",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 72 (the half-space after a vowel he before a suffix (S xxx, rule 3: the he never joins); hyphens unwritten but a stem's citation hyphen (بار-)): qimmät·dur قیمت\u200cدور (s.01.28)."
+    },
+    {
+      "id": "spell/chg/arab/rule-73",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Arab/standard",
+        "form": "suy+i̦+·niŋ",
+        "expected": "سوی\u200cنینک"
+      },
+      "expected": {
+        "spelling": "سوی\u200cنینک",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 73 (the half-space after a vowel he before a suffix (S xxx, rule 3: the he never joins); hyphens unwritten but a stem's citation hyphen (بار-)): suyi·niŋ سوی\u200cنینک (u02-seven-towns.yaml)."
+    },
+    {
+      "id": "spell/chg/latn/rule-01",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "bazār+ĞA",
+        "expected": "bazārǧa"
+      },
+      "expected": {
+        "spelling": "bazārǧa",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 1 (the dative's G: said as any G (its Arabic is always غ)): bazārǧa بزارغه (s.03.24)."
+    },
+    {
+      "id": "spell/chg/latn/rule-02",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "yaḫši+rAK",
+        "expected": "yaḫširaq"
+      },
+      "expected": {
+        "spelling": "yaḫširaq",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 2: yaḫširaq یخشیراق (s.03.31)."
+    },
+    {
+      "id": "spell/chg/latn/rule-03",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "er+Dü+K",
+        "expected": "erdük"
+      },
+      "expected": {
+        "spelling": "erdük",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 3: erdük ایردوک (s.17.16)."
+    },
+    {
+      "id": "spell/chg/latn/rule-04",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "at+GAn+DA",
+        "expected": "atqanda"
+      },
+      "expected": {
+        "spelling": "atqanda",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 4: atqanda اتقانده (s.08.20)."
+    },
+    {
+      "id": "spell/chg/latn/rule-05",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "bäk+GA",
+        "expected": "bäkkä"
+      },
+      "expected": {
+        "spelling": "bäkkä",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 5: bäkkä, to the bey بککه (constructed: no course word)."
+    },
+    {
+      "id": "spell/chg/latn/rule-06",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "bāǧ+ĞA",
+        "expected": "bāǧǧa"
+      },
+      "expected": {
+        "spelling": "bāǧǧa",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 6: bāǧǧa باغغه (s.03.25)."
+    },
+    {
+      "id": "spell/chg/latn/rule-07",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "öy+ĞA",
+        "expected": "öygä"
+      },
+      "expected": {
+        "spelling": "öygä",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 7: öygä اویغه (s.03.27)."
+    },
+    {
+      "id": "spell/chg/latn/rule-08",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "ič+Di+m",
+        "expected": "ičtim"
+      },
+      "expected": {
+        "spelling": "ičtim",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 8: ičtim ایچتیم (s.06.4)."
+    },
+    {
+      "id": "spell/chg/latn/rule-09",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "öy+DA",
+        "expected": "öydä"
+      },
+      "expected": {
+        "spelling": "öydä",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 9: öydä اویده (s.02.18)."
+    },
+    {
+      "id": "spell/chg/latn/rule-10",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "bāǧ+DA",
+        "expected": "bāǧda"
+      },
+      "expected": {
+        "spelling": "bāǧda",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 10: bāǧda باغده (s.02.19)."
+    },
+    {
+      "id": "spell/chg/latn/rule-11",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "öy+dA",
+        "expected": "öydä"
+      },
+      "expected": {
+        "spelling": "öydä",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 11: öydä اویده (s.02.18)."
+    },
+    {
+      "id": "spell/chg/latn/rule-12",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "bol+Ur",
+        "expected": "bolur"
+      },
+      "expected": {
+        "spelling": "bolur",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 12: bolur بولور (s.03.10)."
+    },
+    {
+      "id": "spell/chg/latn/rule-13",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "öy+Um",
+        "expected": "öyüm"
+      },
+      "expected": {
+        "spelling": "öyüm",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 13: öyüm اویوم (s.04.25)."
+    },
+    {
+      "id": "spell/chg/latn/rule-14",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "me̩wä+·si",
+        "expected": "mewä·si"
+      },
+      "expected": {
+        "spelling": "mewä·si",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 14 (a suffix that brings its own half-space: one): mewä·si میوه\u200cسی (s.01.41)."
+    },
+    {
+      "id": "spell/chg/latn/rule-15",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "me̩wä+si",
+        "expected": "mewä·si"
+      },
+      "expected": {
+        "spelling": "mewä·si",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 15 (a stem's final vowel he before a suffix: the half-space): mewä·si میوه\u200cسی (s.01.41)."
+    },
+    {
+      "id": "spell/chg/latn/rule-16",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "šahaͤri̸+i̦+·dur",
+        "expected": "šahari·dur"
+      },
+      "expected": {
+        "spelling": "šahari·dur",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 16 (a letter written and not said): šahari·dur شهری\u200cدور (s.02.41)."
+    },
+    {
+      "id": "spell/chg/latn/rule-17",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "na̩n",
+        "expected": "nan"
+      },
+      "expected": {
+        "spelling": "nan",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 17: nan نان (s.01.1)."
+    },
+    {
+      "id": "spell/chg/latn/rule-18",
+      "op": "spell",
+      "args": {
+        "profile": "chg-Latn/schluessel",
+        "form": "qï̩z",
+        "expected": "qiz"
+      },
+      "expected": {
+        "spelling": "qiz",
+        "alternatives": [],
+        "expected": "spelling"
+      },
+      "note": "Rule 18: qiz قیز (s.04.10)."
     }
   ]
 }

@@ -318,7 +318,7 @@ sentences:
   forms:
     chg-Arab/standard:
       text: "بو شهر کینک\u200cدور."
-      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهر, lexemes: [{lexeme: shahar, base: true}, {lexeme: nom}], readings: {schluessel: šahar}}, {surface: "کینک\u200cدور", lexemes: [{lexeme: keng, surface: "کینک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: keŋdur}}]
+      tokens: [{surface: بو, lexeme: bu, readings: {schluessel: bu}}, {surface: شهر, lexemes: [{lexeme: shahar, base: true}, {lexeme: nom}], readings: {schluessel: šahar}}, {surface: "کینک\u200cدور", lexemes: [{lexeme: keng, surface: "کینک\u200c", base: true}, {lexeme: dur, surface: دور}], readings: {schluessel: keŋ·dur}}]
       reverse: "بو شهر (کینک\u200cدور|کنک\u200cدور)\nبو شهر (کینک|کنک)\nبو شهر (کینک|کنک) تورور"
   translations:
     en: This (city|town) is (wide|broad|big).
@@ -394,7 +394,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "اول سبب\u200cدین اوزیمز ایتدوق."
-          tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: "سبب\u200cدین", lexemes: [{lexeme: sabab, surface: "سبب\u200c", base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: sababdin}}, {surface: اوزیمز, lexemes: [{lexeme: oz, surface: اوز, base: true}, {lexeme: poss1p, surface: یمز}, {lexeme: nom}], readings: {schluessel: özimiz}}, {surface: ایتدوق, lexemes: [{lexeme: eyt, surface: ایت, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: aytduq}}]
+          tokens: [{surface: اول, lexemes: [{lexeme: ul, base: true}, {lexeme: nom}], readings: {schluessel: ul}}, {surface: "سبب\u200cدین", lexemes: [{lexeme: sabab, surface: "سبب\u200c", base: true}, {lexeme: abl, surface: دین}], readings: {schluessel: sabab·din}}, {surface: اوزیمز, lexemes: [{lexeme: oz, surface: اوز, base: true}, {lexeme: poss1p, surface: یمز}, {lexeme: nom}], readings: {schluessel: özimiz}}, {surface: ایتدوق, lexemes: [{lexeme: eyt, surface: ایت, base: true}, {lexeme: past, surface: دو}, {lexeme: pp1p, surface: ق}], readings: {schluessel: aytduq}}]
       translations:
         en: For that reason we told it ourselves.
   - choose:
@@ -409,7 +409,7 @@ stories:
       forms:
         chg-Arab/standard:
           text: "ترک\u200cنینک مثلی تورور: «اوکسوز اوز کندیکین کسار،» تیکان."
-          tokens: [{surface: "ترک\u200cنینک", lexemes: [{lexeme: turk, surface: "ترک\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Türkniŋ}}, {surface: مثلی, lexemes: [{lexeme: mithl, surface: مثل, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: mis̱li}}, {surface: تورور, lexeme: turur, readings: {schluessel: turur}}, {surface: اوکسوز, lexemes: [{lexeme: oksuz, base: true}, {lexeme: nom}], readings: {schluessel: öksüz}}, {surface: اوز, lexemes: [{lexeme: oz, base: true}, {lexeme: nom}], readings: {schluessel: öz}}, {surface: کندیکین, lexemes: [{lexeme: kindik, surface: کندیک, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: ن}], readings: {schluessel: kindikin}}, {surface: کسار, lexemes: [{lexeme: kes, surface: کس, base: true}, {lexeme: aor, surface: ار}, {lexeme: p3}], readings: {schluessel: kesär}}, {surface: تیکان, lexemes: [{lexeme: de, surface: تی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: tegän}}]
+          tokens: [{surface: "ترک\u200cنینک", lexemes: [{lexeme: turk, surface: "ترک\u200c", base: true}, {lexeme: gen, surface: نینک}], readings: {schluessel: Türk·niŋ}}, {surface: مثلی, lexemes: [{lexeme: mithl, surface: مثل, base: true}, {lexeme: poss3, surface: ی}, {lexeme: nom}], readings: {schluessel: mis̱li}}, {surface: تورور, lexeme: turur, readings: {schluessel: turur}}, {surface: اوکسوز, lexemes: [{lexeme: oksuz, base: true}, {lexeme: nom}], readings: {schluessel: öksüz}}, {surface: اوز, lexemes: [{lexeme: oz, base: true}, {lexeme: nom}], readings: {schluessel: öz}}, {surface: کندیکین, lexemes: [{lexeme: kindik, surface: کندیک, base: true}, {lexeme: poss3, surface: ی}, {lexeme: acc, surface: ن}], readings: {schluessel: kindikin}}, {surface: کسار, lexemes: [{lexeme: kes, surface: کس, base: true}, {lexeme: aor, surface: ار}, {lexeme: p3}], readings: {schluessel: kesär}}, {surface: تیکان, lexemes: [{lexeme: de, surface: تی, base: true}, {lexeme: pcp, surface: کان}], readings: {schluessel: tegän}}]
       translations:
         en: 'There is a proverb of the Turks that goes: “The orphan cuts his own navel cord.”'
   - choose:

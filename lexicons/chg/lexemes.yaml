@@ -9,11 +9,12 @@ lexemes:
   gloss: {en: '-din (-dan, -tin): from; than'}
   notes: {en: 'Where from: Andijāndin "from Andijan". With -raq it is "than": mundin yaḫširaq "better than this".'}
   allomorphs:
-  - {form: "دین", spelled: {chg-Arab/standard: [دین]}}  # REVIEW: S 3.3.2 (p. 14): -din, written دین whatever the harmony
+  - {form: "din"}  # REVIEW: S 3.3.2 (p. 14): -din (Schluessel reads it so after any stem)
+  - {form: "\u00B7din", free: true}  # REVIEW: after a half-space, as the course writes it
 - id: lexeme:abu
   pos: PROPN
   gloss: {en: 'Abu ("father of", in names)'}
-  form: "ابو"
+  form: "Abū"
   spelled: {chg-Arab/standard: [ابو], chg-Latn/schluessel: [Abū]}
   readings: {schluessel: Abū}
 - id: lexeme:acc
@@ -22,53 +23,55 @@ lexemes:
   gloss: {en: '-ni: the object, when it is definite'}
   notes: {en: 'A definite object takes -ni: ani bilmäsmiz "we do not know it". An indefinite one takes nothing: nan aladur "she buys bread". After -i it is often just -n.'}
   allomorphs:
-  - {form: "نی", spelled: {chg-Arab/standard: [نی]}}  # REVIEW: S 3.3.4 (p. 15)
-  - {form: "ن", after: {endsIn: "ی"}, free: true, spelled: {chg-Arab/standard: [ن]}}  # REVIEW: S 12.23 (p. 121): the accusative shortened to -n, after -i
+  - {form: "ni"}
+  - {form: "n", after: {endsIn: "{I}*"}, free: true}  # REVIEW: -n after the possessive -i (atin)
+  - {form: "\u00B7ni", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7n", after: {endsIn: "{I}*"}, free: true}  # REVIEW: after a half-space, as the course writes it
 - id: lexeme:acciq
   pos: ADJ
   gloss: {en: 'bitter; spicy, hot (of pepper)'}
-  form: "اچیق"
+  form: "ačči\u0329q"
   spelled: {chg-Arab/standard: [اچیق], chg-Latn/schluessel: [aččiq]}
   readings: {schluessel: aččiq}
 - id: lexeme:adam
   pos: PROPN
   gloss: {en: 'Adam (the first man); man, person'}
-  form: "آدم"
+  form: "Ādam"
   spelled: {chg-Arab/standard: [آدم], chg-Latn/schluessel: [Ādam]}
   readings: {schluessel: Ādam}
 - id: lexeme:adi
   pos: NOUN
   gloss: {en: giant (one of the people of ʿĀd)}
-  form: "عادی"
+  form: "ʿādī"
   spelled: {chg-Arab/standard: [عادی], chg-Latn/schluessel: [ʿādī]}
   readings: {schluessel: ʿādī}
 - id: lexeme:afsus
   pos: PROPN
   gloss: {en: Ephesus}
-  form: "افسوس"
+  form: "Afsūs"
   spelled: {chg-Arab/standard: [افسوس], chg-Latn/schluessel: [Afsūs]}
   readings: {schluessel: Afsūs}
 - id: lexeme:aftab
   pos: NOUN
   gloss: {en: sun (Persian)}
   image: {file: ../../courses/images/sun.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "آفتاب"
+  form: "āftāb"
   spelled: {chg-Arab/standard: [آفتاب], chg-Latn/schluessel: [āftāb]}
   readings: {schluessel: āftāb}
 - id: lexeme:agarcha
   pos: SCONJ
   gloss: {en: although}
   notes: {en: 'ägärčä …, walī … "although …, (yet) …".'}
-  form: "اگرچە"
+  form: "äg\u0324ärčä"
   spelled: {chg-Arab/standard: [اگرچه, اکرچه], chg-Latn/schluessel: [ägärčä]}
   readings: {schluessel: ägärčä}
   allomorphs:
-  - {form: "اکرچە", free: true, spelled: {chg-Arab/standard: [اکرچه]}}  # REVIEW: the lemma's other spelling
+  - {form: "ägärčä", free: true, spelled: {chg-Arab/standard: ["اکرچه"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:ahangar
   pos: NOUN
   gloss: {en: 'smith, blacksmith (Persian āhangar)'}
   notes: {en: ahangirlik "smithing"; the Turkic word is tömürči.}
-  form: "اهنکر"
+  form: "ahangir"
   spelled: {chg-Arab/standard: [اهنکر], chg-Latn/schluessel: [ahangir]}
   readings: {schluessel: ahangir}
 - id: lexeme:ahangarlik
@@ -76,126 +79,132 @@ lexemes:
   gloss: {en: 'blacksmithing, the smith''s craft'}
   base: lexeme:ahangar
   pattern: lexeme:liq
-  form: "اهنکر+لیک"
+  form: "ahangirli\u0329k"
   spelled: {chg-Arab/standard: [اهنکرلیک], chg-Latn/schluessel: [ahangirlik]}
   readings: {schluessel: ahangirlik}
 - id: lexeme:aj
   pos: PROPN
   gloss: {en: 'ʿĀj (ʿŪj), a giant of the time before the Flood'}
-  form: "عاج"
+  form: "ʿĀj"
   spelled: {chg-Arab/standard: [عاج], chg-Latn/schluessel: [ʿĀj]}
   readings: {schluessel: ʿĀj}
+  allomorphs:
+  - {form: "ʿāj", free: true, spelled: {chg-Arab/standard: ["عاج"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:ajab
   pos: NOUN
   gloss: {en: 'wonder; strange, wonderful'}
   notes: {en: ʿajab ermäs "it is no wonder".}
-  form: "عجب"
+  form: "ʿajab"
   spelled: {chg-Arab/standard: [عجب], chg-Latn/schluessel: [ʿajab]}
   readings: {schluessel: ʿajab}
 - id: lexeme:al
   pos: VERB
   gloss: {en: 'to take; to buy, get'}
-  form: "ال-"
+  form: "al-"
   spelled: {chg-Arab/standard: [ال-], chg-Latn/schluessel: [al-]}
   readings: {schluessel: al}
   allomorphs:
-  - {form: "ال", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [ال]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "al", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["ال"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:alam
   pos: NOUN
   gloss: {en: the world}
-  form: "عالم"
+  form: "ʿālam"
   spelled: {chg-Arab/standard: [عالم], chg-Latn/schluessel: [ʿālam]}
   readings: {schluessel: ʿālam}
 - id: lexeme:ald
   pos: NOUN
   gloss: {en: the front}
   notes: {en: X-niŋ aldida "in front of X"; aldida "before him".}
-  form: "الد"
+  form: "ald"
   spelled: {chg-Arab/standard: [الد], chg-Latn/schluessel: [ald]}
   readings: {schluessel: ald}
 - id: lexeme:alim
   pos: NOUN
   gloss: {en: 'scholar, learned man'}
-  form: "عالم"
+  form: "ʿālim"
   spelled: {chg-Arab/standard: [عالم], chg-Latn/schluessel: [ʿālim]}
   readings: {schluessel: ʿālim}
 - id: lexeme:allik
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: fifty}
-  form: "الیک"
+  form: "älli\u0329k"
   spelled: {chg-Arab/standard: [الیک, اللیک], chg-Latn/schluessel: [ällik]}
   readings: {schluessel: ällik}
   allomorphs:
-  - {form: "اللیک", free: true, spelled: {chg-Arab/standard: [اللیک]}}  # REVIEW: the lemma's other spelling
+  - {form: "äll\u0329i\u0329k", free: true, spelled: {chg-Arab/standard: ["اللیک"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:alqat
   pos: NOUN
   gloss: {en: 'scrub, bushes'}
-  form: "آلقات"
+  form: "a\u0334lqa\u0329t"
   spelled: {chg-Arab/standard: [آلقات], chg-Latn/schluessel: [alqat]}
   readings: {schluessel: alqat}
 - id: lexeme:alqissa
   pos: ADV
   gloss: {en: back to the story; in short (Arabic)}
-  form: "القصە"
+  form: "al-qiṣṣa"
   spelled: {chg-Arab/standard: [القصه], chg-Latn/schluessel: [al-qiṣṣa]}
   readings: {schluessel: al-qiṣṣa}
+  allomorphs:
+  - {form: "al-qiṣṣ\u0359a", free: true, spelled: {chg-Arab/standard: ["القص\u0651ه"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:alta
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: six}
-  form: "التە"
+  form: "altä"
   spelled: {chg-Arab/standard: [الته], chg-Latn/schluessel: [altä]}
   readings: {schluessel: altä}
 - id: lexeme:altun
   pos: NOUN
   gloss: {en: gold; golden}
-  form: "التون"
+  form: "altun"
   spelled: {chg-Arab/standard: [التون], chg-Latn/schluessel: [altun]}
   readings: {schluessel: altun}
 - id: lexeme:amanat
   pos: NOUN
   gloss: {en: 'a thing held in trust, a deposit'}
-  form: "امانت"
+  form: "amānat"
   spelled: {chg-Arab/standard: [امانت], chg-Latn/schluessel: [amānat]}
   readings: {schluessel: amānat}
 - id: lexeme:amma
   pos: CCONJ
   gloss: {en: 'but, however'}
-  form: "اما"
+  form: "ammā"
   spelled: {chg-Arab/standard: [اما], chg-Latn/schluessel: [ammā]}
   readings: {schluessel: ammā}
 - id: lexeme:amr
   pos: NOUN
   gloss: {en: 'command, order'}
-  form: "امر"
+  form: "amr"
   spelled: {chg-Arab/standard: [امر], chg-Latn/schluessel: [amr]}
   readings: {schluessel: amr}
 - id: lexeme:ana
   pos: NOUN
   gloss: {en: mother}
-  form: "انا"
+  form: "ana\u0329"
   spelled: {chg-Arab/standard: [انا], chg-Latn/schluessel: [ana]}
   readings: {schluessel: ana}
 - id: lexeme:andaq
   pos: ADV
   feats: {PronType: Dem}
   gloss: {en: 'so, thus, like that'}
-  form: "انداق"
+  form: "anda\u0329q"
   spelled: {chg-Arab/standard: [انداق], chg-Latn/schluessel: [andaq]}
   readings: {schluessel: andaq}
 - id: lexeme:andijan
   pos: PROPN
   gloss: {en: Andijan (the capital of Ferghana)}
-  form: "اندجان"
+  form: "Andijān"
   spelled: {chg-Arab/standard: [اندجان], chg-Latn/schluessel: [Andijān]}
   readings: {schluessel: Andijān}
 - id: lexeme:anuq
   pos: PROPN
   gloss: {en: 'ʿAnūq, a daughter of Adam and Eve, ʿĀj''s mother'}
-  form: "عنوق"
+  form: "ʿAnūq"
   spelled: {chg-Arab/standard: [عنوق], chg-Latn/schluessel: [ʿAnūq]}
   readings: {schluessel: ʿAnūq}
+  allomorphs:
+  - {form: "ʿanūq", free: true, spelled: {chg-Arab/standard: ["عنوق"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:aor
   realises: {Aspect: Hab, Tense: Pres, VerbForm: Fin}
   'on': {at: after, pos: [VERB, AUX], lacks: [Polarity, Tense, Aspect, Mood, VerbForm]}  # its negative is -mas (aor-neg), never -ma- + -ur
@@ -203,10 +212,10 @@ lexemes:
   gloss: {en: '-ur, -ar (-r after a vowel): does, will do; is, as a rule'}
   notes: {en: 'The aorist says what is so, or happens, as a rule or in general: üzümi yaḫši bolur "its grapes are (always) good". Babur describes his country in it.'}
   allomorphs:
-  - {form: "ر", after: {endsIn: "{V}"}, spelled: {chg-Arab/standard: [ر]}}  # REVIEW: S 10.7 (p. 79): -r after a vowel (der-)
-  - {form: "ار", after: {endsIn: "{VL}"}, spelled: {chg-Arab/standard: [ار]}}  # REVIEW: S 10.7 (p. 79): -ar/-är or -ur/-ür, 'a matter of preference or dialect'; the course writes -ar after a voiceless consonant (11 of 11)
-  - {form: "ور", spelled: {chg-Arab/standard: [ور]}}  # REVIEW: S 10.7 (p. 79): -ur/-ür; the course's elsewhere (29 of 30)
-  - {form: "ار", free: true, spelled: {chg-Arab/standard: [ار]}}  # REVIEW: S 10.7 (p. 79): -ar/-är beside -ur/-ür (yazar)
+  - {form: "r", after: {endsIn: "{V}*"}}  # REVIEW: S 10.7 (p. 79): -r after a vowel
+  - {form: "Ar", after: {endsIn: "{VL}*"}}  # REVIEW: -ar/-är after a voiceless consonant (the course's 11 of 11)
+  - {form: "Ur"}  # REVIEW: -ur/-ür: the course's elsewhere
+  - {form: "Ar", free: true}  # REVIEW: -ar/-är beside -ur/-ür (yazar)
 - id: lexeme:aor-neg
   realises: {Aspect: Hab, Polarity: Neg, Tense: Pres, VerbForm: Fin}
   'on': {at: after, pos: [VERB, AUX], lacks: [Polarity, Tense, Aspect, Mood, VerbForm]}
@@ -214,117 +223,117 @@ lexemes:
   gloss: {en: '-mas, -mäs: does not, will not; is not, as a rule'}
   notes: {en: 'The aorist''s negative: yaḫširaq našpati bolmas "there are no better pears". emäs "is not" is this form of the old verb e- "to be".'}
   allomorphs:
-  - {form: "ماس", spelled: {chg-Arab/standard: [ماس]}}  # REVIEW: S 10.7.1 (p. 80): -mas/-mäs, one spelling
+  - {form: "mAs"}  # REVIEW: S 10.7.1 (p. 80): -mas/-mäs
 - id: lexeme:aor.ptcp
   realises: {Aspect: Hab, VerbForm: Part}
   'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
   gloss: {en: '-ur, -ar (-r after a vowel): who does, which does; with -da: while doing'}
   notes: {en: 'The aorist as a participle, with a case after it: alurda "while taking".'}
   allomorphs:
-  - {form: "ر", after: {endsIn: "{V}"}, spelled: {chg-Arab/standard: [ر]}}  # REVIEW: S 10.7 (p. 79): -r after a vowel (der-)
-  - {form: "ار", after: {endsIn: "{VL}"}, spelled: {chg-Arab/standard: [ار]}}  # REVIEW: S 10.7 (p. 79): -ar/-är or -ur/-ür, 'a matter of preference or dialect'; the course writes -ar after a voiceless consonant (11 of 11)
-  - {form: "ور", spelled: {chg-Arab/standard: [ور]}}  # REVIEW: S 10.7 (p. 79): -ur/-ür; the course's elsewhere (29 of 30)
-  - {form: "ار", free: true, spelled: {chg-Arab/standard: [ار]}}  # REVIEW: S 10.7 (p. 79): -ar/-är beside -ur/-ür (yazar)
+  - {form: "r", after: {endsIn: "{V}*"}}
+  - {form: "Ar", after: {endsIn: "{VL}*"}}
+  - {form: "Ur"}
+  - {form: "Ar", free: true}
 - id: lexeme:aq
   pos: ADJ
   gloss: {en: white}
-  form: "اق"
+  form: "aq"
   spelled: {chg-Arab/standard: [اق], chg-Latn/schluessel: [aq]}
   readings: {schluessel: aq}
 - id: lexeme:aq.flow
   pos: VERB
   gloss: {en: to flow}
   notes: {en: 'aqar su "flowing water, running water": the aorist as an adjective. Spelled as aq "white".'}
-  form: "اق-"
+  form: "aq-"
   spelled: {chg-Arab/standard: [اق-], chg-Latn/schluessel: [aq-]}
   readings: {schluessel: aq}
   allomorphs:
-  - {form: "اق", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [اق]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "aq", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["اق"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:ara
   pos: NOUN
   gloss: {en: the space between}
   notes: {en: 'X-niŋ arasi "between X": bu ayaǧiniŋ ul ayaǧiniŋ arasi "between this foot and that foot".'}
-  form: "ارا"
+  form: "ara\u0329"
   spelled: {chg-Arab/standard: [ارا], chg-Latn/schluessel: [ara]}
   readings: {schluessel: ara}
 - id: lexeme:ardawil
   pos: PROPN
   gloss: {en: Erdabil (a town of the Tadhkira)}
-  form: "اردویل"
+  form: "Ardawīl"
   spelled: {chg-Arab/standard: [اردویل], chg-Latn/schluessel: [Ardawīl]}
   readings: {schluessel: Ardawīl}
 - id: lexeme:arta
   pos: NOUN
   gloss: {en: early morning; the next day}
   notes: {en: ärtäsi "the next morning".}
-  form: "ارتە"
+  form: "ärtä"
   spelled: {chg-Arab/standard: [ارته], chg-Latn/schluessel: [ärtä]}
   readings: {schluessel: ärtä}
 - id: lexeme:arzan
   pos: ADJ
   gloss: {en: cheap}
-  form: "ارزان"
+  form: "ärza\u0329n"
   spelled: {chg-Arab/standard: [ارزان], chg-Latn/schluessel: [ärzan]}
   readings: {schluessel: ärzan}
 - id: lexeme:asan
   pos: ADJ
   gloss: {en: easy}
-  form: "اسان"
+  form: "asān"
   spelled: {chg-Arab/standard: [اسان], chg-Latn/schluessel: [asān]}
   readings: {schluessel: asān}
 - id: lexeme:ash
   pos: NOUN
   gloss: {en: 'food; rice, pilaf'}
-  form: "اش"
+  form: "aš"
   spelled: {chg-Arab/standard: [اش], chg-Latn/schluessel: [aš]}
   readings: {schluessel: aš}
 - id: lexeme:ashab
   pos: NOUN
   gloss: {en: companions}
-  form: "اصحاب"
+  form: "aṣḥāb"
   spelled: {chg-Arab/standard: [اصحاب], chg-Latn/schluessel: [aṣḥāb]}
   readings: {schluessel: aṣḥāb}
 - id: lexeme:ashligh
   pos: NOUN
   gloss: {en: 'grain, food crops'}
-  form: "اشلیغ"
+  form: "ašli\u0329ǧ"
   spelled: {chg-Arab/standard: [اشلیغ], chg-Latn/schluessel: [ašliǧ]}
   readings: {schluessel: ašliǧ}
 - id: lexeme:ast
   pos: NOUN
   gloss: {en: 'the underside, the space below'}
   notes: {en: 'X-niŋ asti(da) "under X": ayaq astida "at its feet".'}
-  form: "آست"
+  form: "a\u0334st"
   spelled: {chg-Arab/standard: [آست], chg-Latn/schluessel: [ast]}
   readings: {schluessel: ast}
 - id: lexeme:at
   pos: NOUN
   gloss: {en: horse}
-  form: "آط"
+  form: "a\u0334ṭ"
   spelled: {chg-Arab/standard: [آط], chg-Latn/schluessel: [aṭ]}
   readings: {schluessel: aṭ}
 - id: lexeme:at.name
   pos: NOUN
   gloss: {en: name}
   notes: {en: 'at "name" is spelled آت, aṭ "horse" آط: Chaghatay keeps the Arabic letters to tell words apart (Schluessel, xxi).'}
-  form: "آت"
+  form: "a\u0334t"
   spelled: {chg-Arab/standard: [آت], chg-Latn/schluessel: [at]}
   readings: {schluessel: at}
   allomorphs:
-  - {form: "ات", free: true, spelled: {chg-Arab/standard: [ات]}}  # REVIEW: a scribe's other spelling
+  - {form: "at", free: true, spelled: {chg-Arab/standard: ["ات"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:at.shoot
   pos: VERB
   gloss: {en: to shoot; (of the dawn) to break}
   notes: {en: taŋ at- "dawn breaks".}
-  form: "ات-"
+  form: "at-"
   spelled: {chg-Arab/standard: [ات-], chg-Latn/schluessel: [at-]}
   readings: {schluessel: at}
   allomorphs:
-  - {form: "ات", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [ات]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "at", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["ات"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:ata
   pos: NOUN
   gloss: {en: father}
-  form: "اتا"
+  form: "ata\u0329"
   spelled: {chg-Arab/standard: [اتا], chg-Latn/schluessel: [ata]}
   readings: {schluessel: ata}
 - id: lexeme:atligh
@@ -332,32 +341,30 @@ lexemes:
   gloss: {en: 'named, called'}
   base: lexeme:at.name
   pattern: lexeme:liq
-  form: "آت+لیغ"
+  form: "a\u0334tli\u0329ǧ"
   spelled: {chg-Arab/standard: [آتلیغ], chg-Latn/schluessel: [atliǧ]}
   readings: {schluessel: atliǧ}
   allomorphs:
-  - {form: "ات+لیغ", free: true, spelled: {chg-Arab/standard: [اتلیغ]}}  # REVIEW: a scribe's other spelling, as the course writes it
+  - {form: "atli\u0329ǧ", free: true, spelled: {chg-Arab/standard: ["اتلیغ"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:aw
   pos: NOUN
   gloss: {en: 'the hunt, hunting'}
   notes: {en: awǧa bar- "to go hunting"; awla- "to hunt".}
-  form: "آو"
+  form: "a\u0334w"
   spelled: {chg-Arab/standard: [آو], chg-Latn/schluessel: [aw]}
   readings: {schluessel: aw}
-  allomorphs:
-  - {form: "او", free: true, spelled: {chg-Arab/standard: [او]}}  # REVIEW: a scribe's other spelling
 - id: lexeme:awaz
   pos: NOUN
   gloss: {en: 'sound, voice'}
   notes: {en: āwāz-i ḫoš "a pleasant voice".}
-  form: "آواز"
+  form: "āwāz"
   spelled: {chg-Arab/standard: [آواز], chg-Latn/schluessel: [āwāz]}
   readings: {schluessel: āwāz}
 - id: lexeme:awi
   pos: ADJ
   gloss: {en: 'for hunting, game (of birds)'}
   notes: {en: 'Spelled as öy "house": the context tells them apart.'}
-  form: "اوی"
+  form: "awī"
   spelled: {chg-Arab/standard: [اوی], chg-Latn/schluessel: [awī]}
   readings: {schluessel: awī}
 - id: lexeme:awla
@@ -365,40 +372,40 @@ lexemes:
   gloss: {en: to hunt}
   base: lexeme:aw
   pattern: lexeme:la
-  form: "آو+لا-"
+  form: "a\u0334wla\u0329-"
   spelled: {chg-Arab/standard: [آولا-], chg-Latn/schluessel: [awla-]}
   readings: {schluessel: awla}
   allomorphs:
-  - {form: "آو+لا", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [آولا]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
-  - {form: "او+لا", free: true, spelled: {chg-Arab/standard: [اولا]}}  # REVIEW: a scribe's other spelling, as the course writes it
+  - {form: "a\u0334wla\u0329", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["آولا"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "awla\u0329", free: true, spelled: {chg-Arab/standard: ["اولا"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:ay.month
   pos: NOUN
   gloss: {en: month; moon}
   image: {file: ../../courses/images/moon.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "آي"
+  form: "a\u0334y"
   spelled: {chg-Arab/standard: [آی], chg-Latn/schluessel: [ay]}
   readings: {schluessel: ay}
   allomorphs:
-  - {form: "اي", free: true, spelled: {chg-Arab/standard: [ای]}}  # REVIEW: a scribe's other spelling
+  - {form: "ay", free: true, spelled: {chg-Arab/standard: ["ای"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:ay.voc
   pos: INTJ
   gloss: {en: 'O!, oh! (calling someone)'}
   notes: {en: 'Before a name or a word for a person: ay oǧlum "oh, my son!".'}
-  form: "اي"
+  form: "ay"
   spelled: {chg-Arab/standard: [ای], chg-Latn/schluessel: [ay]}
   readings: {schluessel: ay}
 - id: lexeme:ayaq
   pos: NOUN
   gloss: {en: 'foot; bottom, foot (of a hill)'}
-  form: "ایاق"
+  form: "aya\u0329q"
   spelled: {chg-Arab/standard: [ایاق], chg-Latn/schluessel: [ayaq]}
   readings: {schluessel: ayaq}
   allomorphs:
-  - {form: "ایاغ", free: true, spelled: {chg-Arab/standard: [ایاغ]}}  # REVIEW: a scribe's other spelling
+  - {form: "aya\u0329ǧ", free: true, spelled: {chg-Arab/standard: ["ایاغ"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:aywan
   pos: NOUN
   gloss: {en: 'portico, porch'}
-  form: "ایوان"
+  form: "aywān"
   spelled: {chg-Arab/standard: [ایوان], chg-Latn/schluessel: [aywān]}
   readings: {schluessel: aywān}
 - id: lexeme:aywanliq
@@ -406,113 +413,113 @@ lexemes:
   gloss: {en: with a portico}
   base: lexeme:aywan
   pattern: lexeme:liq
-  form: "ایوان+لیق"
+  form: "aywānli\u0329q"
   spelled: {chg-Arab/standard: [ایوانلیق], chg-Latn/schluessel: [aywānliq]}
   readings: {schluessel: aywānliq}
 - id: lexeme:azan
   pos: NOUN
   gloss: {en: the call to prayer}
   notes: {en: azān oqu- "to give the call to prayer".}
-  form: "ازان"
+  form: "azān"
   spelled: {chg-Arab/standard: [ازان], chg-Latn/schluessel: [azān]}
   readings: {schluessel: azān}
 - id: lexeme:azim
   pos: ADJ
   gloss: {en: 'great, mighty'}
-  form: "عظیم"
+  form: "ʿaẓīm"
   spelled: {chg-Arab/standard: [عظیم], chg-Latn/schluessel: [ʿaẓīm]}
   readings: {schluessel: ʿaẓīm}
 - id: lexeme:azm
   pos: NOUN
   gloss: {en: 'resolve, intention'}
   notes: {en: 'ʿazm qil- "to set out (for)": safargä ʿazm qildi "he set out on a journey".'}
-  form: "عزم"
+  form: "ʿazm"
   spelled: {chg-Arab/standard: [عزم], chg-Latn/schluessel: [ʿazm]}
   readings: {schluessel: ʿazm}
 - id: lexeme:bagh
   pos: NOUN
   gloss: {en: 'garden, orchard'}
   image: {file: ../../courses/images/tree.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "باغ"
+  form: "bāǧ"
   spelled: {chg-Arab/standard: [باغ], chg-Latn/schluessel: [bāǧ]}
   readings: {schluessel: bāǧ}
 - id: lexeme:bagla
   pos: VERB
   gloss: {en: 'to tie, bind; to clasp'}
-  form: "باغلا-"
+  form: "ba\u0329ǧla\u0329-"
   spelled: {chg-Arab/standard: [باغلا-], chg-Latn/schluessel: [baǧla-]}
   readings: {schluessel: baǧla}
   allomorphs:
-  - {form: "باغلا", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [باغلا]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ba\u0329ǧla\u0329", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["باغلا"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:bahar
   pos: NOUN
   gloss: {en: spring (the season)}
-  form: "بهار"
+  form: "bahār"
   spelled: {chg-Arab/standard: [بهار], chg-Latn/schluessel: [bahār]}
   readings: {schluessel: bahār}
 - id: lexeme:bala
   pos: NOUN
   gloss: {en: child}
-  form: "بلا"
+  form: "bala\u0329"
   spelled: {chg-Arab/standard: [بلا], chg-Latn/schluessel: [bala]}
   readings: {schluessel: bala}
 - id: lexeme:baliq
   pos: NOUN
   gloss: {en: fish}
   image: {file: ../../courses/images/fish.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "بالیق"
+  form: "ba\u0329li\u0329q"
   spelled: {chg-Arab/standard: [بالیق], chg-Latn/schluessel: [baliq]}
   readings: {schluessel: baliq}
 - id: lexeme:balke
   pos: ADV
   gloss: {en: 'indeed, even; rather'}
-  form: "بلکە"
+  form: "balke"
   spelled: {chg-Arab/standard: [بلکه], chg-Latn/schluessel: [balke]}
   readings: {schluessel: balke}
 - id: lexeme:baqish
   pos: NOUN
   gloss: {en: 'frame, structure (of a tent)'}
-  form: "باقش"
+  form: "ba\u0329qiš"
   spelled: {chg-Arab/standard: [باقش], chg-Latn/schluessel: [baqiš]}
   readings: {schluessel: baqiš}
 - id: lexeme:bar
   pos: ADJ
   gloss: {en: 'there is, there are; exists'}
   notes: {en: 'bar says that something is there: nan bar "there is bread". Its opposite is yoq.'}
-  form: "بار"
+  form: "ba\u0329r"
   spelled: {chg-Arab/standard: [بار], chg-Latn/schluessel: [bar]}
   readings: {schluessel: bar}
 - id: lexeme:bar.give
   pos: VERB
   gloss: {en: 'to give; after -p, for someone (saqlap bär- "keep for someone")'}
   notes: {en: bär- and ber- are one verb; the -p converb before it does something for someone.}
-  form: "بیر-"
+  form: "bä\u032Fr-"
   spelled: {chg-Arab/standard: [بیر-], chg-Latn/schluessel: [bär-]}
   readings: {schluessel: bär}
   allomorphs:
-  - {form: "بیر", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [بیر]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
-  - {form: "بر", free: true, spelled: {chg-Arab/standard: [بر]}}  # REVIEW: a scribe's other spelling
+  - {form: "bä\u032Fr", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["بیر"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "bär", free: true, spelled: {chg-Arab/standard: ["بر"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:bar.go
   pos: VERB
   gloss: {en: to go}
-  form: "بار-"
+  form: "ba\u0329r-"
   spelled: {chg-Arab/standard: [بار-], chg-Latn/schluessel: [bar-]}
   readings: {schluessel: bar}
   allomorphs:
-  - {form: "بار", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [بار]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ba\u0329r", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["بار"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:bash
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: five}
-  form: "بش"
+  form: "bäš"
   spelled: {chg-Arab/standard: [بش], chg-Latn/schluessel: [bäš]}
   readings: {schluessel: bäš}
   allomorphs:
-  - {form: "بیش", free: true, spelled: {chg-Arab/standard: [بیش]}}  # REVIEW: a scribe's other spelling
+  - {form: "be\u0329š", free: true, spelled: {chg-Arab/standard: ["بیش"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:bashin
   pos: PROPN
   gloss: {en: Bashin (in Čaṗan Bašin)}
-  form: "باشین"
+  form: "Ba\u0329ši\u0329n"
   spelled: {chg-Arab/standard: [باشین], chg-Latn/schluessel: [Bašin]}
   readings: {schluessel: Bašin}
 - id: lexeme:bashinchi
@@ -521,139 +528,137 @@ lexemes:
   gloss: {en: fifth}
   base: lexeme:bash
   pattern: lexeme:ord
-  form: "بیش+ینچی"
+  form: "bä\u032Fši\u0329nči"
   spelled: {chg-Arab/standard: [بیشینچی], chg-Latn/schluessel: [bäšinči]}
   readings: {schluessel: bäšinči}
   allomorphs:
-  - {form: "بیش+ینجی", free: true, spelled: {chg-Arab/standard: [بیشینجی]}}  # REVIEW: a scribe's other spelling, as the course writes it
+  - {form: "bä\u032Fši\u0329nč\u0324i", free: true, spelled: {chg-Arab/standard: ["بیشینجی"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:bayan
   pos: NOUN
   gloss: {en: 'explanation, account'}
   notes: {en: 'bayān qil- "to explain, tell".'}
-  form: "بیان"
+  form: "bayān"
   spelled: {chg-Arab/standard: [بیان], chg-Latn/schluessel: [bayān]}
   readings: {schluessel: bayān}
 - id: lexeme:bazar
   pos: NOUN
   gloss: {en: 'market, bazaar'}
-  form: "بزار"
+  form: "bazār"
   spelled: {chg-Arab/standard: [بزار], chg-Latn/schluessel: [bazār]}
   readings: {schluessel: bazār}
-  allomorphs:
-  - {form: "بازار", free: true, spelled: {chg-Arab/standard: [بازار]}}  # REVIEW: a scribe's other spelling
 - id: lexeme:bazari
   pos: NOUN
   gloss: {en: 'market person, man of the bazaar'}
   base: lexeme:bazar
   pattern: lexeme:nisba
-  form: "بازار+ی"
+  form: "bāzārī"
   spelled: {chg-Arab/standard: [بازاری], chg-Latn/schluessel: [bāzārī]}
   readings: {schluessel: bāzārī}
 - id: lexeme:behadd
   pos: ADV
   gloss: {en: 'endless; endlessly, beyond measure'}
   notes: {en: The Persian bē- "without" and ḥadd "limit".}
-  form: "بیحد"
+  form: "bē-ḥadd"
   spelled: {chg-Arab/standard: [بیحد], chg-Latn/schluessel: [bē-ḥadd]}
   readings: {schluessel: bē-ḥadd}
 - id: lexeme:beikhtiyar
   pos: ADV
   gloss: {en: 'without thinking, despite oneself'}
   notes: {en: The Persian bē- "without" and iḫtiyār "choice".}
-  form: "بی\u200cاختیار"
-  spelled: {chg-Arab/standard: ["بی\u200cاختیار"], chg-Latn/schluessel: [bē-iḫtiyār]}
-  readings: {schluessel: bē-iḫtiyār}
+  form: "bē\u00B7i\u0326ḫtiyār"
+  spelled: {chg-Arab/standard: ["بی\u200cاختیار"], chg-Latn/schluessel: [bē·iḫtiyār]}
+  readings: {schluessel: bē·iḫtiyār}
 - id: lexeme:besyar
   pos: ADV
   gloss: {en: very (Persian)}
   notes: {en: A Persian word Babur uses for tola "very".}
-  form: "بسیار"
+  form: "besyār"
   spelled: {chg-Arab/standard: [بسیار], chg-Latn/schluessel: [besyār]}
   readings: {schluessel: besyār}
 - id: lexeme:bibi
   pos: NOUN
   gloss: {en: 'Mrs., lady (after a woman''s name)'}
-  form: "بیبی"
+  form: "bi\u0329bi"
   spelled: {chg-Arab/standard: [بیبی], chg-Latn/schluessel: [bibi]}
   readings: {schluessel: bibi}
 - id: lexeme:bil
   pos: VERB
   gloss: {en: to know}
-  form: "بیل-"
+  form: "bi\u0329l-"
   spelled: {chg-Arab/standard: [بیل-], chg-Latn/schluessel: [bil-]}
   readings: {schluessel: bil}
   allomorphs:
-  - {form: "بیل", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [بیل]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
-  - {form: "پل", free: true, spelled: {chg-Arab/standard: [پل]}}  # REVIEW: a scribe's other spelling
+  - {form: "bi\u0329l", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["بیل"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "b\u0324il", free: true, spelled: {chg-Arab/standard: ["پل"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:bila
   pos: ADP
   gloss: {en: with; by means of}
-  form: "بیلە"
+  form: "bi\u0329lä"
   spelled: {chg-Arab/standard: [بیله], chg-Latn/schluessel: [bilä]}
   readings: {schluessel: bilä}
   allomorphs:
-  - {form: "بیلان", free: true, spelled: {chg-Arab/standard: [بیلان]}}  # REVIEW: bilän, another form of it (S 7.7 (p. 51): bilän or birlä)
-  - {form: "بلان", free: true, spelled: {chg-Arab/standard: [بلان]}}  # REVIEW: bilän with its first i unwritten
-  - {form: "بلە", free: true, spelled: {chg-Arab/standard: [بله]}}  # REVIEW: billä, another form of it
-  - {form: "پلە", free: true, spelled: {chg-Arab/standard: [پله]}}  # REVIEW: billä with پ for b (the scheme's پ for b)
+  - {form: "bi\u0329lä\u0329n", free: true, spelled: {chg-Arab/standard: ["بیلان"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
+  - {form: "bilä\u0329n", free: true, spelled: {chg-Arab/standard: ["بلان"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
+  - {form: "billä", free: true, spelled: {chg-Arab/standard: ["بله"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
+  - {form: "b\u0324illä", free: true, spelled: {chg-Arab/standard: ["پله"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:binafsha
   pos: NOUN
   gloss: {en: violet (the flower)}
-  form: "بنفشە"
+  form: "binafša"
   spelled: {chg-Arab/standard: [بنفشه], chg-Latn/schluessel: [binafša]}
   readings: {schluessel: binafša}
 - id: lexeme:bir
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: 'one; a, an'}
-  form: "بیر"
+  form: "bi\u0329r"
   spelled: {chg-Arab/standard: [بیر, بر], chg-Latn/schluessel: [bir]}
   readings: {schluessel: bir}
   allomorphs:
-  - {form: "بر", free: true, spelled: {chg-Arab/standard: [بر]}}  # REVIEW: the lemma's other spelling
+  - {form: "bir", free: true, spelled: {chg-Arab/standard: ["بر"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:biz
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: we}
-  form: "بیز"
+  form: "bi\u0329z"
   spelled: {chg-Arab/standard: [بیز, پز], chg-Latn/schluessel: [biz]}
   readings: {schluessel: biz}
   allomorphs:
-  - {form: "بز", free: true, spelled: {chg-Arab/standard: [بز]}}  # REVIEW: a scribe's other spelling
-  - {form: "پز", free: true, spelled: {chg-Arab/standard: [پز]}}  # REVIEW: the lemma's other spelling
+  - {form: "b\u0324iz", free: true, spelled: {chg-Arab/standard: ["پز"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
+  - {form: "biz", free: true, spelled: {chg-Arab/standard: ["بز"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:biz-zarura
   pos: ADV
   gloss: {en: 'of necessity, needing to (Arabic)'}
-  form: "بضرورە"
+  form: "biżżarūra"
   spelled: {chg-Arab/standard: [بضروره], chg-Latn/schluessel: [biżżarūra]}
   readings: {schluessel: biżżarūra}
 - id: lexeme:bol
   pos: VERB
   gloss: {en: 'to be, to become; to be found, grow'}
-  form: "بول-"
+  form: "bol-"
   spelled: {chg-Arab/standard: [بول-], chg-Latn/schluessel: [bol-]}
   readings: {schluessel: bol}
   allomorphs:
-  - {form: "بول", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [بول]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "bol", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["بول"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:bolghasun
   pos: PROPN
   gloss: {en: Balasaghun (a town in what is now Kyrgyzstan)}
-  form: "بولغاسون"
+  form: "Bolǧa\u0329sun"
   spelled: {chg-Arab/standard: [بولغاسون], chg-Latn/schluessel: [Bolǧasun]}
   readings: {schluessel: Bolǧasun}
 - id: lexeme:bu
   pos: DET
   feats: {PronType: Dem}
   gloss: {en: this}
-  form: "بو"
+  form: "bu"
   spelled: {chg-Arab/standard: [بو], chg-Latn/schluessel: [bu]}
   readings: {schluessel: bu}
   allomorphs:
-  - {form: "مون", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [مون]}}  # REVIEW: S 10.13 (p. 85): bu's oblique stem mun- before a case (mundin)
+  - {form: "mun", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["مون"]}}  # REVIEW: as the course's tokens write it
 - id: lexeme:bukhara
   pos: PROPN
   gloss: {en: Bukhara}
-  form: "بخارا"
+  form: "Bu\u0326ḫārā"
   spelled: {chg-Arab/standard: [بخارا], chg-Latn/schluessel: [Buḫārā]}
   readings: {schluessel: Buḫārā}
 - id: lexeme:bukharalik
@@ -661,69 +666,69 @@ lexemes:
   gloss: {en: 'of Bukhara, Bukharan'}
   base: lexeme:bukhara
   pattern: lexeme:liq
-  form: "بخارا+لیک"
+  form: "Bu\u0326ḫārāli\u0329k"
   spelled: {chg-Arab/standard: [بخارالیک], chg-Latn/schluessel: [Buḫārālik]}
   readings: {schluessel: Buḫārālik}
 - id: lexeme:buyru
   pos: VERB
   gloss: {en: 'to order, command'}
-  form: "بویرو-"
+  form: "buyru-"
   spelled: {chg-Arab/standard: [بویرو-], chg-Latn/schluessel: [buyru-]}
   readings: {schluessel: buyru}
   allomorphs:
-  - {form: "بویرو", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [بویرو]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "buyru", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["بویرو"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:ca
   realises: {Case: Equ}
   'on': {at: after, pos: [NOUN, PROPN, PRON, ADJ, NUM, DET, ADV], or: [{pos: [VERB, AUX], has: {VerbForm: Part}}]}
   gloss: {en: '-čä: in the manner of; in a language'}
   notes: {en: Musulmānčä "as Muslims do"; Türkčä "in Turkic".}
   allomorphs:
-  - {form: "چە", spelled: {chg-Arab/standard: [چه]}}  # REVIEW: S 14.12 (p. 143): the equative -čä
+  - {form: "čA"}  # REVIEW: S 16.5: -čä
 - id: lexeme:chand
   pos: ADV
   feats: {PronType: Int}
   gloss: {en: how many; some (Persian)}
-  form: "چند"
+  form: "čand"
   spelled: {chg-Arab/standard: [چند], chg-Latn/schluessel: [čand]}
   readings: {schluessel: čand}
 - id: lexeme:chapan
   pos: PROPN
   gloss: {en: 'Chapan (in Čaṗan Bašin, a place in the Ili valley)'}
-  form: "چاپان"
-  spelled: {chg-Arab/standard: [چاپان, چافان], chg-Latn/schluessel: [Čaṗan]}
-  readings: {schluessel: Čaṗan}
+  form: "Ča\u0329pa\u0329n"
+  spelled: {chg-Arab/standard: [چاپان, چافان], chg-Latn/schluessel: [Čapan]}
+  readings: {schluessel: Čapan}
   allomorphs:
-  - {form: "چافان", free: true, spelled: {chg-Arab/standard: [چافان]}}  # REVIEW: the lemma's other spelling
+  - {form: "Ča\u0329ṗa\u0329n", free: true, spelled: {chg-Arab/standard: ["چافان"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:chay
   pos: NOUN
   gloss: {en: tea}
   image: {file: ../../courses/images/tea.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "چاي"
+  form: "ča\u0329y"
   spelled: {chg-Arab/standard: [چای], chg-Latn/schluessel: [čay]}
   readings: {schluessel: čay}
 - id: lexeme:chiq
   pos: VERB
   gloss: {en: 'to go out, come out; to climb'}
-  form: "چیق-"
+  form: "čï\u0329q-"
   spelled: {chg-Arab/standard: [چیق-], chg-Latn/schluessel: [čiq-]}
   readings: {schluessel: čiq}
   allomorphs:
-  - {form: "چیق", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [چیق]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
-  - {form: "جق", free: true, spelled: {chg-Arab/standard: [جق]}}  # REVIEW: a scribe's other spelling
+  - {form: "čï\u0329q", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["چیق"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "č\u0324ïq", free: true, spelled: {chg-Arab/standard: ["جق"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:chiqar
   pos: VERB
   gloss: {en: 'to take out, bring out'}
   notes: {en: 'čiq- "to go out" with the causative -ar: "to make go out".'}
-  form: "چیقار-"
+  form: "či\u0329qa\u0329r-"
   spelled: {chg-Arab/standard: [چیقار-], chg-Latn/schluessel: [čiqar-]}
   readings: {schluessel: čiqar}
   allomorphs:
-  - {form: "چیقار", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [چیقار]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
-  - {form: "جیقار", free: true, spelled: {chg-Arab/standard: [جیقار]}}  # REVIEW: a scribe's other spelling
+  - {form: "či\u0329qa\u0329r", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["چیقار"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "č\u0324i\u0329qa\u0329r", free: true, spelled: {chg-Arab/standard: ["جیقار"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:chong
   pos: ADJ
   gloss: {en: 'big, large; great'}
-  form: "چونک"
+  form: "čoŋ"
   spelled: {chg-Arab/standard: [چونک], chg-Latn/schluessel: [čoŋ]}
   readings: {schluessel: čoŋ}
 - id: lexeme:ci
@@ -731,21 +736,21 @@ lexemes:
   gloss: {en: '-či: a person who works with …'}
   notes: {en: 'qoy "sheep", qoyči "shepherd"; tömür "iron", tömürči "smith".'}
   allomorphs:
-  - {form: "چی", spelled: {chg-Arab/standard: [چی]}}  # REVIEW: -či
-  - {form: "جی", free: true, spelled: {chg-Arab/standard: [جی]}}  # REVIEW: ج for č (the scheme's free č as چ or ج)
+  - {form: "či"}
+  - {form: "č\u0324i", free: true}  # REVIEW: ج for č
 - id: lexeme:cilik
   head: {takes: [NOUN], makes: NOUN}
   gloss: {en: '-čilik, -čülük: a … ''s worth, lasting a …'}
   notes: {en: bir künčülük yol "a day's journey".}
   allomorphs:
-  - {form: "جلوک", spelled: {chg-Arab/standard: [جلوک]}}  # REVIEW: -čülük, as the course writes it
+  - {form: "č\u0324ü\u0326lük"}  # REVIEW: -čülük as the course writes it, جلوک
 - id: lexeme:cmp
   realises: {Degree: Cmp}
   'on': {at: after, pos: [ADJ, ADV], lacks: [Case]}
   gloss: {en: '-raq, -räk: more ..., -er'}
   notes: {en: 'yaḫši "good", yaḫširaq "better"; čoŋ "big", čoŋraq "bigger". What it is compared with takes -din: Andijāndin čoŋraq "bigger than Andijan".'}
   allomorphs:
-  - {form: "راق", spelled: {chg-Arab/standard: [راق]}}  # REVIEW: S 11.10 (p. 95): -raq/-räk, written راق
+  - {form: "rAK"}  # REVIEW: -raq/-räk
 - id: lexeme:cond
   realises: {Mood: Cnd, VerbForm: Fin}
   'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
@@ -753,10 +758,10 @@ lexemes:
   gloss: {en: '-sa, -sä: if, when'}
   notes: {en: 'desä "if one says, if you call": Kāfir desä, īmān eytadur "if you call them unbelievers, they say the creed". A person ending follows it as it follows the past: barsam "if I go", bärsäŋ "if you give".'}
   allomorphs:
-  - {form: "سا", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [سا]}}  # REVIEW: S 9.6 (p. 69-70): -sa before a person ending, its a written ا inside the word
-  - {form: "س", before: {startsIn: "{L}"}, free: true, spelled: {chg-Arab/standard: [س]}}  # REVIEW: or left unwritten (barsam)
-  - {form: "سە", spelled: {chg-Arab/standard: [سه]}}  # REVIEW: S 9.6 (p. 70): -sa/-sä at the end of the word
-  - {form: "سا", free: true, spelled: {chg-Arab/standard: [سا]}}  # REVIEW: or ا for the final a (the scheme: a final ه or ا for a)
+  - {form: "sA\u0329", before: {startsIn: "{L}*"}}  # REVIEW: -sa/-sä before a person ending, سا
+  - {form: "sA\u0326", before: {startsIn: "{L}*"}, free: true}  # REVIEW: its vowel unwritten, س
+  - {form: "sA"}  # REVIEW: S 13.1: -sa/-sä, سه
+  - {form: "sA\u0329", free: true}  # REVIEW: سا
 - id: lexeme:cop.1p
   pos: AUX
   feats: {Number: Plur, Person: '1'}
@@ -764,8 +769,8 @@ lexemes:
   gloss: {en: '-miz: we are (on the predicate: biz Türkmiz "we are Turks")'}
   notes: {en: 'The copula''s person, a word of its own on the predicate (S 5.2.1''s personal suffixes in a sentence "X is Y"; UD''s AUX).'}
   allomorphs:
-  - {form: "میز", spelled: {chg-Arab/standard: [میز]}}  # REVIEW: S 5.2.1 (p. 28): -miz
-  - {form: "مز", free: true, spelled: {chg-Arab/standard: [مز]}}  # REVIEW: its i unwritten
+  - {form: "miz"}
+  - {form: "mi\u0326z", free: true}  # REVIEW: its i unwritten
 - id: lexeme:cop.1s
   pos: AUX
   feats: {Number: Sing, Person: '1'}
@@ -773,7 +778,7 @@ lexemes:
   gloss: {en: '-män: I am (on the predicate: män Türkmän "I am a Turk"; the pronoun may be left out)'}
   notes: {en: 'The copula''s person, a word of its own on the predicate (S 5.2.1''s personal suffixes in a sentence "X is Y"; UD''s AUX).'}
   allomorphs:
-  - {form: "من", spelled: {chg-Arab/standard: [من]}}  # REVIEW: S 5.2.1 (p. 28): -män
+  - {form: "mä\u0326n"}  # REVIEW: S 5.2.1 (p. 28): -män, من
 - id: lexeme:cop.2
   pos: AUX
   feats: {Person: '2', Polite: Form}
@@ -781,7 +786,7 @@ lexemes:
   gloss: {en: '-siz: you are, politely, to one person or several (on the predicate)'}
   notes: {en: 'The copula''s person, a word of its own on the predicate (S 5.2.1''s personal suffixes in a sentence "X is Y"; UD''s AUX).'}
   allomorphs:
-  - {form: "سیز", spelled: {chg-Arab/standard: [سیز]}}  # REVIEW: S 5.2.1 (p. 28): -siz
+  - {form: "siz"}
 - id: lexeme:cop.2pl
   pos: AUX
   feats: {Number: Plur, Person: '2'}
@@ -789,7 +794,7 @@ lexemes:
   gloss: {en: '-sizlär: you are, to several people (on the predicate)'}
   notes: {en: 'The copula''s person, a word of its own on the predicate (S 5.2.1''s personal suffixes in a sentence "X is Y"; UD''s AUX).'}
   allomorphs:
-  - {form: "سیزلار", spelled: {chg-Arab/standard: [سیزلار]}}  # REVIEW: S 5.2.1 (p. 28): -sizlär
+  - {form: "sizlär"}
 - id: lexeme:cop.2s
   pos: AUX
   feats: {Number: Sing, Person: '2'}
@@ -797,8 +802,8 @@ lexemes:
   gloss: {en: '-sän: you are, to a friend, a child, God (on the predicate)'}
   notes: {en: 'The copula''s person, a word of its own on the predicate (S 5.2.1''s personal suffixes in a sentence "X is Y"; UD''s AUX).'}
   allomorphs:
-  - {form: "سن", spelled: {chg-Arab/standard: [سن]}}  # REVIEW: S 5.2.1 (p. 28): -sän
-  - {form: "سین", free: true, spelled: {chg-Arab/standard: [سین]}}  # REVIEW: written with ی (tapipsen)
+  - {form: "sä\u0326n"}  # REVIEW: -sän, سن
+  - {form: "sen", free: true}  # REVIEW: سین
 - id: lexeme:cop.3pl
   pos: AUX
   feats: {Number: Plur, Person: '3'}
@@ -806,43 +811,46 @@ lexemes:
   gloss: {en: '-durlar: they are (on the predicate: musulmān ikändurlar "they were Muslims, it turned out")'}
   notes: {en: 'The copula''s person, a word of its own on the predicate (S 5.2.1''s personal suffixes in a sentence "X is Y"; UD''s AUX).'}
   allomorphs:
-  - {form: "دورلار", spelled: {chg-Arab/standard: [دورلار]}}  # REVIEW: S 5.2.1 (p. 28): the third person plural -dur(lar)
-  - {form: "تورلار", after: {endsIn: "{VL}"}, free: true, spelled: {chg-Arab/standard: [تورلار]}}  # REVIEW: -tur after a voiceless consonant, as the copula's (S 11.3, p. 92)
+  - {form: "durlar", after: {endsIn: "{NJ}*"}}  # REVIEW: S 5.2.1: -dur(lar), joined after a letter that joins nothing
+  - {form: "\u00B7durlar"}  # REVIEW: after a half-space elsewhere, as the course writes it (2 of 2) and the copula
+  - {form: "durlar", free: true}
+  - {form: "turlar", after: {endsIn: "{VL}*"}, free: true}
+  - {form: "\u00B7turlar", after: {endsIn: "{VL}*"}, free: true}  # REVIEW: after a half-space, as the course writes it
 - id: lexeme:cv-a
   realises: {Aspect: Imp, VerbForm: Conv}
   'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
   gloss: {en: '-a, -ä (-y after a vowel): doing; with al-: can'}
   notes: {en: 'yazä alamän "I can write", tügätä almaydur "they cannot finish": the verb in -a, then al- "to take" in any tense.'}
   allomorphs:
-  - {form: "ی", after: {endsIn: "{V}"}, spelled: {chg-Arab/standard: [ی]}}  # REVIEW: S 11.9, 12.5 (p. 95, 109): -y after a vowel
-  - {form: "ا", spelled: {chg-Arab/standard: [ا]}}  # REVIEW: S 11.9, 12.5 (p. 95, 109): -a/-ä after a consonant
+  - {form: "y", after: {endsIn: "{V}*"}}  # REVIEW: -y after a vowel
+  - {form: "A\u0329"}  # REVIEW: -a/-ä, ا
 - id: lexeme:cv-may
   realises: {Polarity: Neg, VerbForm: Conv}
   'on': {at: after, pos: [VERB, AUX], lacks: [Polarity, Tense, Aspect, Mood, VerbForm]}
   gloss: {en: '-may, -mäy: without doing, not doing (and)'}
   notes: {en: 'Ties a "not" to the next verb: namāz ötämäy, roza tutmaydur "they do not pray, and they do not fast". Spelled as the negative present, without a person ending.'}
   allomorphs:
-  - {form: "مای", spelled: {chg-Arab/standard: [مای]}}  # REVIEW: S 9.8 (p. 71): -may/-mäy
+  - {form: "mAy"}  # REVIEW: -may/-mäy
 - id: lexeme:cv-p
   realises: {Aspect: Perf, VerbForm: Conv}
   'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
   gloss: {en: '-p, -ip, -up, -üp: and (then); having done'}
   notes: {en: 'Chaghatay joins sentences with -p, not wä: Bazārǧa barip, nan aldim "I went to the market and bought bread". The last verb carries the tense and the person.'}
   allomorphs:
-  - {form: "ب", after: {endsIn: "{V}"}, spelled: {chg-Arab/standard: [ب]}}  # REVIEW: S 7.8 (p. 51), 11.5 (p. 93): -p after a vowel
-  - {form: "وب", after: {endsIn: "و{C}"}, spelled: {chg-Arab/standard: [وب]}}  # REVIEW: S 6.2 (p. 35), 7.8: -up/-üp after a stem whose last vowel is written و
-  - {form: "یب", spelled: {chg-Arab/standard: [یب]}}  # REVIEW: S 7.8 (p. 51): -ip after a consonant
+  - {form: "p\u0324", after: {endsIn: "{V}*"}}  # REVIEW: S 11.4: -p after a vowel, written ب
+  - {form: "Up\u0324", after: {endsIn: "{RV}*{C}*"}}  # REVIEW: -up/-üp after a rounded stem, وب
+  - {form: "ip\u0324"}  # REVIEW: -ip, یب
 - id: lexeme:daban
   pos: NOUN
   gloss: {en: mountain pass}
   notes: {en: 'Taš Daban "the Stone Pass", a place in the Ili valley.'}
-  form: "دابان"
+  form: "da\u0329ba\u0329n"
   spelled: {chg-Arab/standard: [دابان], chg-Latn/schluessel: [daban]}
   readings: {schluessel: daban}
 - id: lexeme:daghi
   pos: ADV
   gloss: {en: 'also, too'}
-  form: "داغی"
+  form: "da\u0329ǧi"
   spelled: {chg-Arab/standard: [داغی], chg-Latn/schluessel: [daǧi]}
   readings: {schluessel: daǧi}
 - id: lexeme:daki
@@ -850,37 +858,37 @@ lexemes:
   gloss: {en: '-daki, -däki: that is in, of (a place)'}
   notes: {en: jaŋgaldaqi alqat "the scrub (that is) in the wilderness"; Kučadaki ḫwājalar "the khwajas in Kucha".}
   allomorphs:
-  - {form: "داقی", spelled: {chg-Arab/standard: [داقی]}}  # REVIEW: S 14.13 (p. 144): -daki/-däki, written داقی
+  - {form: "DAqi"}  # REVIEW: S 14.13 (p. 144): -daki/-däki, داقی
 - id: lexeme:daqyanus
   pos: PROPN
   gloss: {en: 'Decius (Roman emperor, 249-251)'}
-  form: "دقیانوس"
+  form: "Daqyānūs"
   spelled: {chg-Arab/standard: [دقیانوس], chg-Latn/schluessel: [Daqyānūs]}
   readings: {schluessel: Daqyānūs}
 - id: lexeme:dargah
   pos: NOUN
   gloss: {en: court; presence (of a king or of God)}
   notes: {en: dargāh-i ḥaqq "the presence of God".}
-  form: "درکاه"
+  form: "dargāh"
   spelled: {chg-Arab/standard: [درکاه], chg-Latn/schluessel: [dargāh]}
   readings: {schluessel: dargāh}
 - id: lexeme:darhal
   pos: ADV
   gloss: {en: 'immediately, at once (Persian dar ḥāl)'}
-  form: "درحال"
+  form: "darḥāl"
   spelled: {chg-Arab/standard: [درحال], chg-Latn/schluessel: [darḥāl]}
   readings: {schluessel: darḥāl}
 - id: lexeme:darwaza
   pos: NOUN
   gloss: {en: gate}
-  form: "دروازە"
+  form: "darwāza\u0364"
   spelled: {chg-Arab/standard: [دروازه], chg-Latn/schluessel: [darwāza]}
   readings: {schluessel: darwāza}
 - id: lexeme:darya
   pos: NOUN
   gloss: {en: river}
   image: {file: ../../courses/images/waves.svg, license: CC0-1.0, provenance: {author: 'llm:claude@waves-2026-11-22', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "دریا"
+  form: "daryā"
   spelled: {chg-Arab/standard: [دریا], chg-Latn/schluessel: [daryā]}
   readings: {schluessel: daryā}
 - id: lexeme:dat
@@ -889,148 +897,155 @@ lexemes:
   gloss: {en: '-ǧa, -gä (-qa, -kä): to, for'}
   notes: {en: 'Where to: šaharǧa "to the city". Scribes write it غه whatever the vowels (Kašǧarǧa, Ḫotangä), and قه or که after q or k.'}
   allomorphs:
-  - {form: "کا", after: {endsIn: "#[مس]ن"}, spelled: {chg-Arab/standard: [کا]}}  # REVIEW: S 10.13 (p. 85): the pronouns' dative maŋa منکا, saŋa سنکا: -ga after their n, نک writing ŋ
-  - {form: "غە", spelled: {chg-Arab/standard: [غه]}}  # REVIEW: S 3.3.3 (p. 14-15): غه the commonest written dative, whatever the harmony
-  - {form: "قە", after: {endsIn: "{VL}"}, free: true, spelled: {chg-Arab/standard: [قه]}}  # REVIEW: S 3.3.3 (p. 14): قه after a voiceless consonant, sometimes
-  - {form: "کە", free: true, spelled: {chg-Arab/standard: [که]}}  # REVIEW: S 3.3.3 (p. 14-15): the scribes' other spellings (غه قه غا قا که کا گه گا); the course writes که, غا, کا
-  - {form: "غا", free: true, spelled: {chg-Arab/standard: [غا]}}
-  - {form: "کا", free: true, spelled: {chg-Arab/standard: [کا]}}
+  - {form: "ŋA\u0329", after: {endsIn: "#[ms]{V}*"}}  # REVIEW: the pronouns' maŋa, saŋa (S 10.13, p. 85): نکا
+  - {form: "ĞA"}  # REVIEW: S 3.3.3 (p. 14-15): -ǧa/-gä (-qa/-kä), written غه whatever its harmony
+  - {form: "ĞA\u0329", free: true}  # REVIEW: the scribes' غا, کا
+  - {form: "gA", free: true}  # REVIEW: -gä after a voiceless consonant, as read (ḥaqqgä)
+  - {form: "\u00B7ŋA\u0329", after: {endsIn: "#[ms]{V}*"}, free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7ĞA", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7ĞA\u0329", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7gA", free: true}  # REVIEW: after a half-space, as the course writes it
   - {spelled: {chg-Arab/standard: [نکا]}}  # REVIEW: the course's segmentation of a token the rules write otherwise (docs/rules/chg.md)
 - id: lexeme:dawud
   pos: PROPN
   gloss: {en: Dawud (the prophet David)}
-  form: "داود"
+  form: "Dāwu\u0326d"
   spelled: {chg-Arab/standard: [داود], chg-Latn/schluessel: [Dāwud]}
   readings: {schluessel: Dāwud}
 - id: lexeme:de
   pos: VERB
   gloss: {en: to say; to call (a name)}
   notes: {en: 'de- ends a quotation, as English "he said": "…" dedi. With a name: Atini Toḫta derlär "they call him Tokhta".'}
-  form: "دی-"
+  form: "de\u0329-"
   spelled: {chg-Arab/standard: [دی-], chg-Latn/schluessel: [de-]}
   readings: {schluessel: de}
   allomorphs:
-  - {form: "دی", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [دی]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
-  - {form: "تی", free: true, spelled: {chg-Arab/standard: [تی]}}  # REVIEW: te-, Abu 'l-Ghazi's de- (tegän, tep)
+  - {form: "de\u0329", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["دی"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "te\u0329", free: true, spelled: {chg-Arab/standard: ["تی"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:diram
   pos: NOUN
   gloss: {en: 'silver coin, dirham'}
-  form: "دیرام"
+  form: "di\u0329ra\u0329m"
   spelled: {chg-Arab/standard: [دیرام], chg-Latn/schluessel: [diram]}
   readings: {schluessel: diram}
 - id: lexeme:dur
   pos: AUX
   'on': {at: after, pos: [NOUN, PROPN, PRON, ADJ, NUM, DET, ADV, AUX], complete: true}
   gloss: {en: '-dur (-tur after a voiceless consonant): is, are, on the end of a sentence'}
-  notes: {en: 'Chaghatay puts "is" at the end, as a suffix on the last word: čay issiqdur "the tea is hot". After p, t, s, š, č, k, q it is often -tur (wilāyattur). It may be left out: hawāsi ḫūb "its air is good". The Arabic script writes it joined or after a half-space: issiq-dur.'}
+  notes: {en: 'Chaghatay puts "is" at the end, as a suffix on the last word: čay issiqdur "the tea is hot". After p, t, s, š, č, k, q it is often -tur (wilāyattur). It may be left out: hawāsi ḫūb "its air is good". The Arabic script writes it after a half-space, sometimes joined: issiq·dur.'}
   allomorphs:
-  - {form: "دور", spelled: {chg-Arab/standard: [دور]}}  # REVIEW: S 1.3.1 (p. 1), 5.2.1 (p. 28): the copula and the present's third person -dur, after a voiceless consonant too (the course: 18 of 25)
-  - {form: "تور", after: {endsIn: "{VL}"}, free: true, spelled: {chg-Arab/standard: [تور]}}  # REVIEW: S 11.3 (p. 92): Babur's -tur, 'very common in earlier texts'; the course writes it only after a voiceless consonant (wilāyattur)
+  - {form: "dur", after: {endsIn: "{NJ}*"}}  # REVIEW: S 1.3.1, 11.3: the copula -dur, joined after a letter that joins nothing
+  - {form: "\u00B7dur"}  # REVIEW: after a half-space elsewhere, as the course writes it (47 of 53)
+  - {form: "dur", free: true}  # REVIEW: joined (6 of 53)
+  - {form: "tur", after: {endsIn: "{VL}*"}, free: true}  # REVIEW: Babur's -tur after a voiceless consonant (S 11.3)
+  - {form: "\u00B7tur", after: {endsIn: "{VL}*"}, free: true}  # REVIEW: after a half-space, as the course writes it
 - id: lexeme:el
   pos: NOUN
   gloss: {en: 'people, nation; the people of a place'}
-  form: "ایل"
+  form: "el"
   spelled: {chg-Arab/standard: [ایل], chg-Latn/schluessel: [el]}
   readings: {schluessel: el}
 - id: lexeme:elt
   pos: VERB
   gloss: {en: 'to take (someone), lead'}
-  form: "الت-"
+  form: "e\u0326lt-"
   spelled: {chg-Arab/standard: [الت-], chg-Latn/schluessel: [elt-]}
   readings: {schluessel: elt}
   allomorphs:
-  - {form: "الت", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [الت]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "e\u0326lt", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["الت"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:emas
   pos: AUX
   feats: {Polarity: Neg}
   requires: []
   gloss: {en: 'is not, are not'}
   notes: {en: 'emäs (or ermäs) stands where -dur would: čay issiq emäs "the tea is not hot".'}
-  form: "ایماس"
+  form: "emä\u0329s"
   spelled: {chg-Arab/standard: [ایماس], chg-Latn/schluessel: [emäs]}
   readings: {schluessel: emäs}
   allomorphs:
-  - {form: "ایرماس", free: true, spelled: {chg-Arab/standard: [ایرماس]}}  # REVIEW: ermäs: er- with -mäs (S 10.7.1, p. 80)
+  - {form: "ermä\u0329s", free: true, spelled: {chg-Arab/standard: ["ایرماس"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:er
   pos: AUX
   gloss: {en: 'to be (in the past: erdi "was")'}
   notes: {en: 'The old verb "to be" lives on in the past: erdim "I was", erdi "he, she, it was, there was"; bar erdi "there was"; emäs erdi "was not". Also written idi.'}
-  form: "ایر-"
+  form: "er-"
   spelled: {chg-Arab/standard: [ایر-], chg-Latn/schluessel: [er-]}
   readings: {schluessel: er}
   allomorphs:
-  - {form: "ایر", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [ایر]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "er", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["ایر"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "e\u0363r", free: true, spelled: {chg-Arab/standard: ["ایر"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:et
   pos: VERB
   gloss: {en: 'to make, do; to set up'}
   notes: {en: ettür- "to have made" is its causative.}
-  form: "ات-"
+  form: "e\u0326t-"
   spelled: {chg-Arab/standard: [ات-], chg-Latn/schluessel: [et-]}
   readings: {schluessel: et}
   allomorphs:
-  - {form: "ات", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [ات]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "e\u0326t", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["ات"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:ettur
   pos: VERB
   gloss: {en: to have (something) made}
   notes: {en: 'et- "to do, make" with the causative -tür: "to make (someone) make".'}
-  form: "ایتور-"
+  form: "ettür-"
   spelled: {chg-Arab/standard: [ایتور-], chg-Latn/schluessel: [ettür-]}
   readings: {schluessel: ettür}
   allomorphs:
-  - {form: "ایتور", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [ایتور]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ettür", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["ایتور"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:eyt
   pos: VERB
   gloss: {en: 'to say, tell'}
-  form: "ایت-"
+  form: "e\u0326\u0363yt-"
   spelled: {chg-Arab/standard: [ایت-], chg-Latn/schluessel: [eyt-]}
   readings: {schluessel: eyt}
   allomorphs:
-  - {form: "اي", free: true, spelled: {chg-Arab/standard: [ای]}}  # REVIEW: ay-, beside eyt- (S 10.10, p. 81: ayǧil)
-  - {form: "ایت", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [ایت]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "e\u0326\u0363yt", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["ایت"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ay", free: true, spelled: {chg-Arab/standard: ["ای"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
+  - {form: "ayt", free: true, spelled: {chg-Arab/standard: ["ایت"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
+  - {form: "e\u0326\u0363y", free: true, spelled: {chg-Arab/standard: ["ای"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:ezafe
   pos: PART
   'on': {at: after, pos: [NOUN, PROPN, ADJ, PRON], complete: true}
   gloss: {en: 'ezafe: the -i that links a noun to what describes or owns it'}
   notes: {en: 'The link of a Persian-style noun phrase: ḥażrat-i Ādam "the great Adam", āwāz-i ḫoš "a pleasant voice", dargāh-i ḥaqq "the presence of God". The script does not write it after a consonant; after a final ه it is a hamza on the ه (شجرهٔ šajarah-i); after a vowel it is -ye.'}
   allomorphs:
-  - {form: "\u0654", after: {endsIn: "ە"}}  # REVIEW: S 10.4 (p. 77): after a final vowel he, a hamza on it (šajarah-i شجرهٔ)
-  - {form: ""}  # REVIEW: S 10.4 (p. 77): unwritten after a consonant
+  - {form: "-i\u0326"}  # REVIEW: S 10.4 (p. 77): unwritten (after a final he, its hamza is the stem's: šajarahʾ, شجرهٔ)
 - id: lexeme:faqir
   pos: NOUN
   gloss: {en: poor man; the humble one}
-  form: "فقیر"
+  form: "faqīr"
   spelled: {chg-Arab/standard: [فقیر], chg-Latn/schluessel: [faqīr]}
   readings: {schluessel: faqīr}
 - id: lexeme:farawan
   pos: ADJ
   gloss: {en: 'plentiful, abundant'}
-  form: "فراوان"
+  form: "farāwān"
   spelled: {chg-Arab/standard: [فراوان], chg-Latn/schluessel: [farāwān]}
   readings: {schluessel: farāwān}
 - id: lexeme:farghana
   pos: PROPN
   gloss: {en: Ferghana (the valley and country of Babur)}
-  form: "فرغانە"
+  form: "Farǧāna"
   spelled: {chg-Arab/standard: [فرغانه], chg-Latn/schluessel: [Farǧāna]}
   readings: {schluessel: Farǧāna}
 - id: lexeme:farman
   pos: NOUN
   gloss: {en: 'order, command'}
   notes: {en: farmān boldi "an order was given".}
-  form: "فرمان"
+  form: "farmān"
   spelled: {chg-Arab/standard: [فرمان], chg-Latn/schluessel: [farmān]}
   readings: {schluessel: farmān}
 - id: lexeme:farsi
   pos: PROPN
   gloss: {en: Persian (the language)}
-  form: "فارسی"
+  form: "Fārsī"
   spelled: {chg-Arab/standard: [فارسی], chg-Latn/schluessel: [Fārsī]}
   readings: {schluessel: Fārsī}
 - id: lexeme:fikir
   pos: NOUN
   gloss: {en: thought; idea}
   notes: {en: 'fikir qil- "to think, consider".'}
-  form: "فکر"
+  form: "fikir"
   spelled: {chg-Arab/standard: [فکر], chg-Latn/schluessel: [fikir]}
   readings: {schluessel: fikir}
 - id: lexeme:gac
@@ -1039,16 +1054,14 @@ lexemes:
   gloss: {en: '-ǧač, -gäč (-qač, -käč): as soon as, when'}
   notes: {en: diram čiqarǧač "as soon as he took out a coin"; öygä kälgäč "as soon as he came home".}
   allomorphs:
-  - {form: "غاج", spelled: {chg-Arab/standard: [غاج]}}  # REVIEW: S 13.6 (p. 128): -ǧač/-gäč; the course's commonest
-  - {form: "قاج", after: {endsIn: "{VL}"}, spelled: {chg-Arab/standard: [قاج]}}  # REVIEW: after a voiceless consonant -qač
-  - {form: "کاج", free: true, spelled: {chg-Arab/standard: [کاج]}}  # REVIEW: -gäč: the front spelling, free (S xxxi: letters do not mark harmony)
+  - {form: "GAč\u0324"}  # REVIEW: -ǧač/-gäč, written with ج
 - id: lexeme:gali
   realises: {Mood: Prp, VerbForm: Conv}
   'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
   gloss: {en: '-ǧali, -gäli (-qali, -käli): in order to; since'}
   notes: {en: kälgäli näččä kün boldi "it has been some days since (we) came" (Schluessel 10).}
   allomorphs:
-  - {form: "کالی", spelled: {chg-Arab/standard: [کالی]}}  # REVIEW: S 10.8 (p. 80-81): -ǧali/-gäli/-qali/-käli by harmony and voicing; the course writes کالی (kälgäli)
+  - {form: "GAli"}  # REVIEW: -ǧali/-gäli
 - id: lexeme:gay
   realises: {Tense: Fut, VerbForm: Fin}
   'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
@@ -1056,41 +1069,41 @@ lexemes:
   gloss: {en: '-ǧay, -gäy (-qay, -käy): shall, will; let (with person endings: -ǧaymiz "we shall")'}
   notes: {en: 'yürgäymiz "we shall go about"; kälgäymän "I shall come"; with -mu, a question: barǧaymänmu? "shall I go?" (Schluessel 11.8, 15.3).'}
   allomorphs:
-  - {form: "کای", spelled: {chg-Arab/standard: [کای]}}  # REVIEW: S 11.8 (p. 95): -ǧay/-gäy; the course's commonest
-  - {form: "غای", free: true, spelled: {chg-Arab/standard: [غای]}}  # REVIEW: S 11.8 (p. 95): the back spelling
+  - {form: "GAy"}  # REVIEW: -ǧay/-gäy
 - id: lexeme:gen
   realises: {Case: Gen}
   'on': {at: after, pos: [NOUN, PROPN, PRON, ADJ, NUM, DET, ADV], or: [{pos: [VERB, AUX], has: {VerbForm: Part}}]}
   gloss: {en: '-niŋ: of, ''s'}
   notes: {en: 'The owner takes -niŋ, the thing owned -i/-si: šaharniŋ darwāzasi "the city''s gate". A name before what it names is no owner and takes no -niŋ, only the -i/-si: Sayḥūn suyi "the Sayhun river" (Babur: Sayḥūn daryāsi), Farǧāna wilāyati "the country of Ferghana", Ramżān ayi "the month of Ramadan". With -niŋ the name would own it: Sayḥūnniŋ suyi "the Sayhun''s water".'}
   allomorphs:
-  - {form: "ینک", after: {endsIn: "#[مس]ن"}, spelled: {chg-Arab/standard: [ینک]}}  # REVIEW: S 10.13 (p. 86): the pronouns' genitive meniŋ منینک, seniŋ: their n and the ending's written once
-  - {form: "ینک", after: {endsIn: "#[مس]ین"}, spelled: {chg-Arab/standard: [ینک]}}  # REVIEW: the same after män written مین (مینینک)
-  - {form: "نینک", spelled: {chg-Arab/standard: [نینک]}}  # REVIEW: S 3.3.5 (p. 15): -niŋ, نینک
+  - {form: "iŋ", after: {endsIn: "#[ms]{V}*n*"}}  # REVIEW: the pronouns' meniŋ, seniŋ
+  - {form: "niŋ"}  # REVIEW: S 3.3.4: -niŋ, نینک
+  - {form: "\u00B7iŋ", after: {endsIn: "#[ms]{V}*n*"}, free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7niŋ", free: true}  # REVIEW: after a half-space, as the course writes it
 - id: lexeme:ghalaba
   pos: NOUN
   gloss: {en: victory}
   notes: {en: ǧalaba qil- "to win".}
-  form: "غلبە"
+  form: "ǧalaba"
   spelled: {chg-Arab/standard: [غلبه], chg-Latn/schluessel: [ǧalaba]}
   readings: {schluessel: ǧalaba}
 - id: lexeme:ghar
   pos: NOUN
   gloss: {en: cave}
-  form: "غار"
+  form: "ǧār"
   spelled: {chg-Arab/standard: [غار], chg-Latn/schluessel: [ǧār]}
   readings: {schluessel: ǧār}
 - id: lexeme:gharb
   pos: NOUN
   gloss: {en: west}
-  form: "غرب"
+  form: "ǧarb"
   spelled: {chg-Arab/standard: [غرب], chg-Latn/schluessel: [ǧarb]}
   readings: {schluessel: ǧarb}
 - id: lexeme:ghurra
   pos: NOUN
   gloss: {en: (white) spot}
   notes: {en: ǧurra ǧurraliq "spotted all over".}
-  form: "غرە"
+  form: "ǧu\u0326rra"
   spelled: {chg-Arab/standard: [غره], chg-Latn/schluessel: [ǧurra]}
   readings: {schluessel: ǧurra}
 - id: lexeme:ghurraliq
@@ -1098,45 +1111,45 @@ lexemes:
   gloss: {en: spotted}
   base: lexeme:ghurra
   pattern: lexeme:liq
-  form: "غرە+لیق"
-  spelled: {chg-Arab/standard: ["غره\u200cلیق"], chg-Latn/schluessel: [ǧurraliq]}
-  readings: {schluessel: ǧurraliq}
+  form: "ǧu\u0326rra+liq"
+  spelled: {chg-Arab/standard: ["غره\u200cلیق"], chg-Latn/schluessel: [ǧurra·liq]}
+  readings: {schluessel: ǧurra·liq}
 - id: lexeme:gosht
   pos: NOUN
   gloss: {en: meat}
-  form: "کوشت"
+  form: "göšt"
   spelled: {chg-Arab/standard: [کوشت], chg-Latn/schluessel: [göšt]}
   readings: {schluessel: göšt}
 - id: lexeme:gunbad
   pos: NOUN
   gloss: {en: dome; domed shrine}
-  form: "کنبد"
+  form: "gu\u0326nbad"
   spelled: {chg-Arab/standard: [کنبد], chg-Latn/schluessel: [gunbad]}
   readings: {schluessel: gunbad}
 - id: lexeme:hal
   pos: NOUN
   gloss: {en: 'state, situation, condition'}
-  form: "حال"
+  form: "ḥāl"
   spelled: {chg-Arab/standard: [حال], chg-Latn/schluessel: [ḥāl]}
   readings: {schluessel: ḥāl}
 - id: lexeme:halak
   pos: ADJ
   gloss: {en: 'destroyed, perished'}
   notes: {en: 'halāk bol- "to perish, be killed".'}
-  form: "هلاک"
+  form: "halāk"
   spelled: {chg-Arab/standard: [هلاک], chg-Latn/schluessel: [halāk]}
   readings: {schluessel: halāk}
 - id: lexeme:ham
   pos: ADV
   gloss: {en: 'also, too; and'}
   notes: {en: 'häm comes after what it adds: ʿālimlar häm "scholars too".'}
-  form: "هم"
+  form: "häm"
   spelled: {chg-Arab/standard: [هم], chg-Latn/schluessel: [häm]}
   readings: {schluessel: häm}
 - id: lexeme:haqq
   pos: PROPN
   gloss: {en: 'God (the Truth); truth, right'}
-  form: "حق"
+  form: "ḥa\u0364qq"
   spelled: {chg-Arab/standard: [حق], chg-Latn/schluessel: [ḥaqq]}
   readings: {schluessel: ḥaqq}
 - id: lexeme:har
@@ -1144,26 +1157,26 @@ lexemes:
   feats: {PronType: Tot}
   gloss: {en: 'every, each'}
   notes: {en: 'här čand "however much, however many times".'}
-  form: "هر"
+  form: "här"
   spelled: {chg-Arab/standard: [هر], chg-Latn/schluessel: [här]}
   readings: {schluessel: här}
 - id: lexeme:hawa
   pos: NOUN
   gloss: {en: 'air; weather, climate'}
-  form: "هوا"
+  form: "hawā"
   spelled: {chg-Arab/standard: [هوا], chg-Latn/schluessel: [hawā]}
   readings: {schluessel: hawā}
 - id: lexeme:hayran
   pos: ADJ
   gloss: {en: 'amazed, astonished'}
-  form: "حیران"
+  form: "ḥayrān"
   spelled: {chg-Arab/standard: [حیران], chg-Latn/schluessel: [ḥayrān]}
   readings: {schluessel: ḥayrān}
 - id: lexeme:hazrat
   pos: NOUN
   gloss: {en: 'His Holiness, the great (before the name of a prophet or saint)'}
   notes: {en: 'With the ezafe: ḥażrat-i Ādam "the great Adam". Translations usually leave it out.'}
-  form: "حضرت"
+  form: "ḥażrat"
   spelled: {chg-Arab/standard: [حضرت], chg-Latn/schluessel: [ḥażrat]}
   readings: {schluessel: ḥażrat}
 - id: lexeme:hech
@@ -1171,51 +1184,52 @@ lexemes:
   feats: {PronType: Neg}
   gloss: {en: 'no, not any; ever'}
   notes: {en: 'With a negative verb: heč kiši tapmaduq "we found no one".'}
-  form: "هیچ"
+  form: "he\u0329č"
   spelled: {chg-Arab/standard: [هیچ], chg-Latn/schluessel: [heč]}
   readings: {schluessel: heč}
 - id: lexeme:hujra
   pos: NOUN
   gloss: {en: room; pavilion}
-  form: "حجرە"
+  form: "ḥu\u0326jra"
   spelled: {chg-Arab/standard: [حجره], chg-Latn/schluessel: [ḥujra]}
   readings: {schluessel: ḥujra}
 - id: lexeme:ibn
   pos: NOUN
   gloss: {en: 'son (of), in names'}
   notes: {en: 'ʿĀj ibn-i ʿAnūq "ʿĀj, son of ʿAnūq".'}
-  form: "ابن"
+  form: "i\u0326bn"
   spelled: {chg-Arab/standard: [ابن], chg-Latn/schluessel: [ibn]}
   readings: {schluessel: ibn}
 - id: lexeme:ich
   pos: VERB
   gloss: {en: to drink}
-  form: "ایچ-"
+  form: "ič-"
   spelled: {chg-Arab/standard: [ایچ-], chg-Latn/schluessel: [ič-]}
   readings: {schluessel: ič}
   allomorphs:
-  - {form: "ایچ", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [ایچ]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ič", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["ایچ"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ïč", free: true, spelled: {chg-Arab/standard: ["ایچ"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:ikan
   pos: AUX
   requires: []
   gloss: {en: 'it turns out; (they) were, it seems'}
   notes: {en: 'ikän says what one has found out: musulmān ikändurlar "they were Muslims, it turned out".'}
-  form: "ایکان"
+  form: "ikä\u0329n"
   spelled: {chg-Arab/standard: [ایکان], chg-Latn/schluessel: [ikän]}
   readings: {schluessel: ikän}
 - id: lexeme:ikkawlan
   pos: NUM
   gloss: {en: 'the two of them, both together'}
-  form: "ایکاولان"
+  form: "ikkä\u0329wlä\u0329n"
   spelled: {chg-Arab/standard: [ایکاولان, ایکولان], chg-Latn/schluessel: [ikkäwlän]}
   readings: {schluessel: ikkäwlän}
   allomorphs:
-  - {form: "ایکولان", free: true, spelled: {chg-Arab/standard: [ایکولان]}}  # REVIEW: the lemma's other spelling
+  - {form: "ikkäwlä\u0329n", free: true, spelled: {chg-Arab/standard: ["ایکولان"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:ikki
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: two}
-  form: "ایکی"
+  form: "ikki"
   spelled: {chg-Arab/standard: [ایکی], chg-Latn/schluessel: [ikki]}
   readings: {schluessel: ikki}
 - id: lexeme:ikkinchi
@@ -1224,14 +1238,14 @@ lexemes:
   gloss: {en: second}
   base: lexeme:ikki
   pattern: lexeme:ord
-  form: "ایکی+نچی"
+  form: "ikki\u0329nči"
   spelled: {chg-Arab/standard: [ایکینچی], chg-Latn/schluessel: [ikkinči]}
   readings: {schluessel: ikkinči}
 - id: lexeme:iman
   pos: NOUN
   gloss: {en: faith; the creed}
   notes: {en: 'īmān eyt- "to say the creed", to profess Islam.'}
-  form: "ایمان"
+  form: "īmān"
   spelled: {chg-Arab/standard: [ایمان], chg-Latn/schluessel: [īmān]}
   readings: {schluessel: īmān}
 - id: lexeme:imp
@@ -1240,109 +1254,110 @@ lexemes:
   gloss: {en: 'the imperative: -iŋ, -uŋ, -üŋ, -ŋ (politely, or to several); -ǧil, -gil (to one)'}
   notes: {en: 'keliŋ "come!", olturuŋ "sit down!", bariŋ "go!". Schluessel 12.4 gives the bare stem as the familiar imperative to one: käl! "come!".'}
   allomorphs:
-  - {form: "ینک", spelled: {chg-Arab/standard: [ینک]}}  # REVIEW: S 12.4 (p. 109): -iŋ, the plural or polite imperative, after a consonant
-  - {form: "ونک", after: {endsIn: "و{C}"}, spelled: {chg-Arab/standard: [ونک]}}  # REVIEW: -uŋ/-üŋ after a stem whose last vowel is written و (S 6.2, p. 35)
-  - {form: "کیل", free: true, spelled: {chg-Arab/standard: [کیل]}}  # REVIEW: S 10.10 (p. 81): -ǧil/-gil, to one person
-  - {form: "غیل", free: true, spelled: {chg-Arab/standard: [غیل]}}  # REVIEW: S 10.10 (p. 81): the back spelling
-  - {form: "کل", free: true, spelled: {chg-Arab/standard: [کل]}}  # REVIEW: -gil with its i unwritten
+  - {form: "iŋ"}  # REVIEW: S 12.4 (p. 109): -iŋ
+  - {form: "Uŋ", after: {endsIn: "{RV}*{C}*"}}  # REVIEW: -uŋ/-üŋ after a rounded stem
+  - {form: "Gil", free: true}  # REVIEW: S 10.10: -ǧil/-gil, to one
+  - {form: "Gi\u0326l", free: true}  # REVIEW: its i unwritten
 - id: lexeme:imp.sg
   realises: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}
   'on': {at: after, pos: [VERB], lacks: [Tense, Aspect, Mood, VerbForm]}
   gloss: {en: 'the imperative to one person you know well: the stem alone (käl! "come!")'}
   allomorphs:
-  - {form: ""}  # REVIEW: S 12.4 (p. 109): the bare stem; no token of the course has one
+  - {form: ""}  # REVIEW: S 12.4 (p. 109): the bare stem
 - id: lexeme:iqlim
   pos: NOUN
   gloss: {en: clime (one of the seven zones of the earth)}
-  form: "اقلیم"
+  form: "i\u0326qlīm"
   spelled: {chg-Arab/standard: [اقلیم], chg-Latn/schluessel: [iqlīm]}
   readings: {schluessel: iqlīm}
 - id: lexeme:ishik
   pos: NOUN
   gloss: {en: door; mouth (of a cave)}
-  form: "ایشیک"
+  form: "iši\u0329k"
   spelled: {chg-Arab/standard: [ایشیک], chg-Latn/schluessel: [išik]}
   readings: {schluessel: išik}
 - id: lexeme:ishit
   pos: VERB
   gloss: {en: to hear}
-  form: "ایشیت-"
+  form: "iši\u0329t-"
   spelled: {chg-Arab/standard: [ایشیت-], chg-Latn/schluessel: [išit-]}
   readings: {schluessel: išit}
   allomorphs:
-  - {form: "ایشیت", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [ایشیت]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
-  - {form: "اشت", free: true, spelled: {chg-Arab/standard: [اشت]}}  # REVIEW: a scribe's other spelling
+  - {form: "iši\u0329t", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["ایشیت"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "i\u0326šiti\u0326", free: true, spelled: {chg-Arab/standard: ["اشت"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:ishkina
   pos: NOUN
   gloss: {en: 'stew, soup (Persian eškene)'}
-  form: "اشکنە"
+  form: "i\u0326škina"
   spelled: {chg-Arab/standard: [اشکنه], chg-Latn/schluessel: [iškina]}
   readings: {schluessel: iškina}
 - id: lexeme:issiq
   pos: ADJ
   gloss: {en: 'hot, warm'}
-  form: "ایسیق"
+  form: "issi\u0329q"
   spelled: {chg-Arab/standard: [ایسیق], chg-Latn/schluessel: [issiq]}
   readings: {schluessel: issiq}
 - id: lexeme:ista
   pos: VERB
   gloss: {en: 'to want; to look for, seek'}
-  form: "ایستا-"
+  form: "istä\u0329-"
   spelled: {chg-Arab/standard: [ایستا-], chg-Latn/schluessel: [istä-]}
   readings: {schluessel: istä}
   allomorphs:
-  - {form: "ایستا", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [ایستا]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "istä\u0329", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["ایستا"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:it
   pos: NOUN
   gloss: {en: dog}
-  form: "ایت"
+  form: "it"
   spelled: {chg-Arab/standard: [ایت], chg-Latn/schluessel: [it]}
   readings: {schluessel: it}
 - id: lexeme:itimad
   pos: NOUN
   gloss: {en: 'trust, confidence'}
   notes: {en: kišigä iʿtimādim yoq "I trust no one".}
-  form: "اعتماد"
+  form: "i\u0326ʿtimād"
   spelled: {chg-Arab/standard: [اعتماد], chg-Latn/schluessel: [iʿtimād]}
   readings: {schluessel: iʿtimād}
 - id: lexeme:jabbar
   pos: ADJ
   gloss: {en: tyrannical; mighty}
-  form: "جبار"
+  form: "jabbār"
   spelled: {chg-Arab/standard: [جبار], chg-Latn/schluessel: [jabbār]}
   readings: {schluessel: jabbār}
+  allomorphs:
+  - {form: "jabb\u0359ār", free: true, spelled: {chg-Arab/standard: ["جب\u0651ار"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:jangal
   pos: NOUN
   gloss: {en: 'wilderness, scrubland'}
-  form: "جانکال"
+  form: "ja\u0329ŋga\u0329l"
   spelled: {chg-Arab/standard: [جانکال], chg-Latn/schluessel: [jaŋgal]}
   readings: {schluessel: jaŋgal}
   allomorphs:
-  - {form: "جنکال", free: true, spelled: {chg-Arab/standard: [جنکال]}}  # REVIEW: a scribe's other spelling
+  - {form: "jaŋga\u0329l", free: true, spelled: {chg-Arab/standard: ["جنکال"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:jangaldaqi
   pos: ADJ
   gloss: {en: 'in the wilderness, of the wilderness'}
   base: lexeme:jangal
   pattern: lexeme:daki
-  form: "جانکال+داقی"
+  form: "ja\u0329ŋga\u0329lda\u0329qi"
   spelled: {chg-Arab/standard: [جانکالداقی], chg-Latn/schluessel: [jaŋgaldaqi]}
   readings: {schluessel: jaŋgaldaqi}
 - id: lexeme:janib
   pos: NOUN
   gloss: {en: 'side, direction (a word of Arabic, as ṭaraf)'}
-  form: "جانب"
+  form: "jānib"
   spelled: {chg-Arab/standard: [جانب], chg-Latn/schluessel: [jānib]}
   readings: {schluessel: jānib}
 - id: lexeme:jannat
   pos: NOUN
   gloss: {en: Paradise}
-  form: "جنت"
+  form: "janna\u0364t"
   spelled: {chg-Arab/standard: [جنت], chg-Latn/schluessel: [jannat]}
   readings: {schluessel: jannat}
 - id: lexeme:janub
   pos: NOUN
   gloss: {en: south}
-  form: "جنوب"
+  form: "janūb"
   spelled: {chg-Arab/standard: [جنوب], chg-Latn/schluessel: [janūb]}
   readings: {schluessel: janūb}
 - id: lexeme:janubi
@@ -1350,19 +1365,21 @@ lexemes:
   gloss: {en: 'southern, south'}
   base: lexeme:janub
   pattern: lexeme:nisba
-  form: "جنوب+ی"
+  form: "janūbī"
   spelled: {chg-Arab/standard: [جنوبی], chg-Latn/schluessel: [janūbī]}
   readings: {schluessel: janūbī}
 - id: lexeme:jawab
   pos: NOUN
   gloss: {en: 'answer, reply'}
-  form: "جواب"
+  form: "jawāb"
   spelled: {chg-Arab/standard: [جواب], chg-Latn/schluessel: [jawāb]}
   readings: {schluessel: jawāb}
+  allomorphs:
+  - {form: "jawābi\u0326", free: true, spelled: {chg-Arab/standard: ["جواب"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:jibrail
   pos: PROPN
   gloss: {en: Jibrāʾīl (the archangel Gabriel)}
-  form: "جبرائیل"
+  form: "Jibrāʾīl"
   spelled: {chg-Arab/standard: [جبرائیل], chg-Latn/schluessel: [Jibrāʾīl]}
   readings: {schluessel: Jibrāʾīl}
 - id: lexeme:juss
@@ -1371,56 +1388,57 @@ lexemes:
   gloss: {en: '-sun, -sün: let him, her, them; may …'}
   notes: {en: 'farmān boldike, ul kälsun "the order came that he should come" (Schluessel 10.9).'}
   allomorphs:
-  - {form: "سون", spelled: {chg-Arab/standard: [سون]}}  # REVIEW: S 10.9 (p. 81): -sun, 'the only form of the suffix'
+  - {form: "sun"}  # REVIEW: -sun
 - id: lexeme:kafir
   pos: NOUN
   gloss: {en: 'unbeliever, infidel'}
-  form: "کافر"
+  form: "kāfir"
   spelled: {chg-Arab/standard: [کافر], chg-Latn/schluessel: [kāfir]}
   readings: {schluessel: kāfir}
 - id: lexeme:kahf
   pos: NOUN
   gloss: {en: cave (Arabic)}
   notes: {en: 'aṣḥāb-i kahf "the Companions of the Cave", the Seven Sleepers of Ephesus (Qur''ān 18).'}
-  form: "کهف"
+  form: "kahf"
   spelled: {chg-Arab/standard: [کهف], chg-Latn/schluessel: [kahf]}
   readings: {schluessel: kahf}
 - id: lexeme:kal
   pos: VERB
   gloss: {en: to come}
-  form: "کل-"
+  form: "käl-"
   spelled: {chg-Arab/standard: [کل-], chg-Latn/schluessel: [käl-]}
   readings: {schluessel: käl}
   allomorphs:
-  - {form: "کل", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [کل]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "käl", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["کل"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "kel", free: true, spelled: {chg-Arab/standard: ["کل"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:kanara
   pos: NOUN
   gloss: {en: 'edge, side; an out-of-the-way place'}
-  form: "کنارە"
+  form: "kanāra"
   spelled: {chg-Arab/standard: [کناره], chg-Latn/schluessel: [kanāra]}
   readings: {schluessel: kanāra}
 - id: lexeme:kanj
   pos: NOUN
   gloss: {en: treasure (Persian ganj)}
-  form: "کنج"
+  form: "kanj"
   spelled: {chg-Arab/standard: [کنج], chg-Latn/schluessel: [kanj]}
   readings: {schluessel: kanj}
 - id: lexeme:kar
   pos: NOUN
   gloss: {en: 'work, task; craft'}
-  form: "کار"
+  form: "kār"
   spelled: {chg-Arab/standard: [کار], chg-Latn/schluessel: [kār]}
   readings: {schluessel: kār}
 - id: lexeme:kasb
   pos: NOUN
   gloss: {en: 'craft, trade, profession'}
-  form: "کسب"
+  form: "kasb"
   spelled: {chg-Arab/standard: [کسب], chg-Latn/schluessel: [kasb]}
   readings: {schluessel: kasb}
 - id: lexeme:kashghar
   pos: PROPN
   gloss: {en: Kashgar}
-  form: "کاشغر"
+  form: "Ka\u0329šǧar"
   spelled: {chg-Arab/standard: [کاشغر], chg-Latn/schluessel: [Kašǧar]}
   readings: {schluessel: Kašǧar}
 - id: lexeme:ke
@@ -1429,20 +1447,20 @@ lexemes:
   gloss: {en: '-ke, -ki: that (after a verb of saying: eyttike "said (that)")'}
   notes: {en: 'The conjunction ke, written onto the verb before it; what follows is what was said, with or without dedi after it.'}
   allomorphs:
-  - {form: "کە", spelled: {chg-Arab/standard: [که]}}  # REVIEW: S 7.5, 12.19.2 (p. 48, 117): ke written onto the verb
+  - {form: "ke"}  # REVIEW: S 7.5, 12.19.2: ke written onto the verb
 - id: lexeme:kecha
   pos: NOUN
   gloss: {en: night}
-  form: "کیچە"
+  form: "ke\u0329čä"
   spelled: {chg-Arab/standard: [کیچه, کجه], chg-Latn/schluessel: [kečä]}
   readings: {schluessel: kečä}
   allomorphs:
-  - {form: "کجە", free: true, spelled: {chg-Arab/standard: [کجه]}}  # REVIEW: the lemma's other spelling
+  - {form: "keč\u0324ä", free: true, spelled: {chg-Arab/standard: ["کجه"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:kema
   pos: NOUN
   gloss: {en: boat; ferry}
   image: {file: ../../courses/images/ship.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "کیمە"
+  form: "ke\u0329mä"
   spelled: {chg-Arab/standard: [کیمه], chg-Latn/schluessel: [kemä]}
   readings: {schluessel: kemä}
 - id: lexeme:kemachi
@@ -1450,157 +1468,157 @@ lexemes:
   gloss: {en: 'boatman, ferryman'}
   base: lexeme:kema
   pattern: lexeme:ci
-  form: "کیمە+چی"
-  spelled: {chg-Arab/standard: ["کیمه\u200cچی"], chg-Latn/schluessel: [kemäči]}
-  readings: {schluessel: kemäči}
+  form: "ke\u0329mä+či"
+  spelled: {chg-Arab/standard: ["کیمه\u200cچی"], chg-Latn/schluessel: [kemä·či]}
+  readings: {schluessel: kemä·či}
   allomorphs:
-  - {form: "کیمە+جی", free: true, spelled: {chg-Arab/standard: ["کیمه\u200cجی"]}}  # REVIEW: a scribe's other spelling, as the course writes it
+  - {form: "ke\u0329mä+č\u0324i", free: true, spelled: {chg-Arab/standard: ["کیمه\u200Cجی"]}}  # REVIEW: ج for č
 - id: lexeme:keng
   pos: ADJ
   gloss: {en: 'wide, broad'}
-  form: "کینک"
+  form: "ke\u0329ŋ"
   spelled: {chg-Arab/standard: [کینک], chg-Latn/schluessel: [keŋ]}
   readings: {schluessel: keŋ}
 - id: lexeme:kes
   pos: VERB
   gloss: {en: to cut}
-  form: "کس-"
+  form: "kes-"
   spelled: {chg-Arab/standard: [کس-], chg-Latn/schluessel: [kes-]}
   readings: {schluessel: kes}
   allomorphs:
-  - {form: "کس", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [کس]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "kes", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["کس"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:keyin
   pos: ADP
   gloss: {en: 'after, later'}
   notes: {en: 'After a noun with -din: üč kündin keyin "after three days".'}
-  form: "کیین"
+  form: "keyi\u0329n"
   spelled: {chg-Arab/standard: [کیین, کین], chg-Latn/schluessel: [keyin]}
   readings: {schluessel: keyin}
   allomorphs:
-  - {form: "کین", free: true, spelled: {chg-Arab/standard: [کین]}}  # REVIEW: the lemma's other spelling
+  - {form: "keyin", free: true, spelled: {chg-Arab/standard: ["کین"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:khabar
   pos: NOUN
   gloss: {en: 'news, word'}
   notes: {en: ḫabar käldi "news came"; ḫabar bär- "to send word".}
-  form: "خبر"
+  form: "ḫabar"
   spelled: {chg-Arab/standard: [خبر], chg-Latn/schluessel: [ḫabar]}
   readings: {schluessel: ḫabar}
 - id: lexeme:khalayiq
   pos: NOUN
   gloss: {en: 'people, creatures (Arabic plural)'}
-  form: "خلایق"
+  form: "ḫalāyiq"
   spelled: {chg-Arab/standard: [خلایق], chg-Latn/schluessel: [ḫalāyiq]}
   readings: {schluessel: ḫalāyiq}
 - id: lexeme:khalq
   pos: NOUN
   gloss: {en: 'people, the folk'}
-  form: "خلق"
+  form: "ḫalq"
   spelled: {chg-Arab/standard: [خلق], chg-Latn/schluessel: [ḫalq]}
   readings: {schluessel: ḫalq}
 - id: lexeme:khan
   pos: NOUN
   gloss: {en: khan (a ruler's title)}
-  form: "خان"
+  form: "ḫa\u0329n"
   spelled: {chg-Arab/standard: [خان], chg-Latn/schluessel: [ḫan]}
   readings: {schluessel: ḫan}
 - id: lexeme:khanqa
   pos: NOUN
   gloss: {en: Sufi lodge}
-  form: "خانقە"
+  form: "ḫānqa"
   spelled: {chg-Arab/standard: [خانقه], chg-Latn/schluessel: [ḫānqa]}
   readings: {schluessel: ḫānqa}
 - id: lexeme:khat
   pos: NOUN
   gloss: {en: letter; writing}
-  form: "خط"
+  form: "ḫaṭ"
   spelled: {chg-Arab/standard: [خط], chg-Latn/schluessel: [ḫaṭ]}
   readings: {schluessel: ḫaṭ}
 - id: lexeme:khorak
   pos: NOUN
   gloss: {en: food}
-  form: "خوراک"
+  form: "ḫorāk"
   spelled: {chg-Arab/standard: [خوراک], chg-Latn/schluessel: [ḫorāk]}
   readings: {schluessel: ḫorāk}
 - id: lexeme:khosh
   pos: ADJ
   gloss: {en: 'pleasant, sweet; well'}
-  form: "خوش"
+  form: "ḫoš"
   spelled: {chg-Arab/standard: [خوش], chg-Latn/schluessel: [ḫoš]}
   readings: {schluessel: ḫoš}
 - id: lexeme:khub
   pos: ADJ
   gloss: {en: 'good, fine (Persian)'}
-  form: "خوب"
+  form: "ḫūb"
   spelled: {chg-Arab/standard: [خوب], chg-Latn/schluessel: [ḫūb]}
   readings: {schluessel: ḫūb}
 - id: lexeme:khuma
   pos: PROPN
   gloss: {en: Huma (a woman's name)}
-  form: "خما"
+  form: "Ḫu\u0326mā"
   spelled: {chg-Arab/standard: [خما], chg-Latn/schluessel: [Ḫumā]}
   readings: {schluessel: Ḫumā}
 - id: lexeme:kichik
   pos: ADJ
   gloss: {en: 'small, little; young'}
-  form: "کچیک"
+  form: "kiči\u0329k"
   spelled: {chg-Arab/standard: [کچیک], chg-Latn/schluessel: [kičik]}
   readings: {schluessel: kičik}
 - id: lexeme:kim
   pos: PRON
   feats: {PronType: Int}
   gloss: {en: 'who?'}
-  form: "کیم"
+  form: "ki\u0329m"
   spelled: {chg-Arab/standard: [کیم], chg-Latn/schluessel: [kim]}
   readings: {schluessel: kim}
 - id: lexeme:kim.that
   pos: SCONJ
   gloss: {en: that (introducing what is said or told)}
   notes: {en: 'As Persian ke: andaq riwāyat qildilar kim … "they tell that …". kim is also "who?".'}
-  form: "کیم"
+  form: "ki\u0329m"
   spelled: {chg-Arab/standard: [کیم, کم], chg-Latn/schluessel: [kim]}
   readings: {schluessel: kim}
   allomorphs:
-  - {form: "کم", free: true, spelled: {chg-Arab/standard: [کم]}}  # REVIEW: the lemma's other spelling
+  - {form: "kim", free: true, spelled: {chg-Arab/standard: ["کم"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:kimarsa
   pos: NOUN
   gloss: {en: 'someone, a person'}
-  form: "کمرسە"
+  form: "kimärsä"
   spelled: {chg-Arab/standard: [کمرسه], chg-Latn/schluessel: [kimärsä]}
   readings: {schluessel: kimärsä}
 - id: lexeme:kindik
   pos: NOUN
   gloss: {en: navel; navel cord}
-  form: "کندیک"
+  form: "kindi\u0329k"
   spelled: {chg-Arab/standard: [کندیک], chg-Latn/schluessel: [kindik]}
   readings: {schluessel: kindik}
 - id: lexeme:kir
   pos: VERB
   gloss: {en: 'to go in, enter'}
-  form: "کیر-"
+  form: "ki\u0329r-"
   spelled: {chg-Arab/standard: [کیر-], chg-Latn/schluessel: [kir-]}
   readings: {schluessel: kir}
   allomorphs:
-  - {form: "کیر", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [کیر]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
-  - {form: "کر", free: true, spelled: {chg-Arab/standard: [کر]}}  # REVIEW: a scribe's other spelling
+  - {form: "ki\u0329r", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["کیر"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "kir", free: true, spelled: {chg-Arab/standard: ["کر"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:kishi
   pos: NOUN
   gloss: {en: person; someone}
-  form: "کشی"
+  form: "kiši"
   spelled: {chg-Arab/standard: [کشی, کیشی], chg-Latn/schluessel: [kiši]}
   readings: {schluessel: kiši}
   allomorphs:
-  - {form: "کیشی", free: true, spelled: {chg-Arab/standard: [کیشی]}}  # REVIEW: the lemma's other spelling
+  - {form: "ki\u0329ši", free: true, spelled: {chg-Arab/standard: ["کیشی"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:kitab
   pos: NOUN
   gloss: {en: book}
   image: {file: ../../courses/images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "کتاب"
+  form: "kitāb"
   spelled: {chg-Arab/standard: [کتاب], chg-Latn/schluessel: [kitāb]}
   readings: {schluessel: kitāb}
 - id: lexeme:kok
   pos: ADJ
   gloss: {en: blue; green}
-  form: "کوک"
+  form: "kök"
   spelled: {chg-Arab/standard: [کوک], chg-Latn/schluessel: [kök]}
   readings: {schluessel: kök}
 - id: lexeme:kol
@@ -1608,37 +1626,37 @@ lexemes:
   gloss: {en: lake}
   notes: {en: Ay Köl "Moon Lake".}
   image: {file: ../../courses/images/waves.svg, license: CC0-1.0, provenance: {author: 'llm:claude@waves-2026-11-22', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "کول"
+  form: "köl"
   spelled: {chg-Arab/standard: [کول], chg-Latn/schluessel: [köl]}
   readings: {schluessel: köl}
 - id: lexeme:kongul
   pos: NOUN
   gloss: {en: 'heart, mind'}
   notes: {en: 'köŋül loses its second vowel before a vowel: köŋli "his heart".'}
-  form: "کونکول"
+  form: "köŋül"
   spelled: {chg-Arab/standard: [کونکول], chg-Latn/schluessel: [köŋül]}
   readings: {schluessel: köŋül}
   allomorphs:
-  - {form: "کونکل", before: {startsIn: "[وی]"}, spelled: {chg-Arab/standard: [کونکل]}}  # REVIEW: S 4.5 (p. 24): köŋül loses its second vowel before a vowel (köŋli)
+  - {form: "köŋl", before: {startsIn: "{V}*"}, spelled: {chg-Arab/standard: ["کونکل"]}}  # REVIEW: as the course's tokens write it
 - id: lexeme:kop
   pos: ADJ
   gloss: {en: 'many, much'}
-  form: "کوب"
+  form: "köp\u0324"
   spelled: {chg-Arab/standard: [کوب], chg-Latn/schluessel: [köp]}
   readings: {schluessel: köp}
 - id: lexeme:kor
   pos: VERB
   gloss: {en: to see}
-  form: "کور-"
+  form: "kör-"
   spelled: {chg-Arab/standard: [کور-], chg-Latn/schluessel: [kör-]}
   readings: {schluessel: kör}
   allomorphs:
-  - {form: "کور", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [کور]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "kör", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["کور"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:kun
   pos: NOUN
   gloss: {en: day; sun}
   image: {file: ../../courses/images/sun.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "کون"
+  form: "kün"
   spelled: {chg-Arab/standard: [کون], chg-Latn/schluessel: [kün]}
   readings: {schluessel: kün}
 - id: lexeme:kunchuluk
@@ -1646,13 +1664,13 @@ lexemes:
   gloss: {en: 'a day''s, lasting a day'}
   base: lexeme:kun
   pattern: lexeme:cilik
-  form: "کون+جلوک"
+  form: "künč\u0324ü\u0326lük"
   spelled: {chg-Arab/standard: [کونجلوک], chg-Latn/schluessel: [künčülük]}
   readings: {schluessel: künčülük}
 - id: lexeme:kursi
   pos: NOUN
   gloss: {en: chair; throne}
-  form: "کرسی"
+  form: "ku\u0326rsī"
   spelled: {chg-Arab/standard: [کرسی], chg-Latn/schluessel: [kursī]}
   readings: {schluessel: kursī}
 - id: lexeme:la
@@ -1660,23 +1678,23 @@ lexemes:
   gloss: {en: '-la, -lä: makes a verb of a noun'}
   notes: {en: aw "the hunt" gives awla- "to hunt"; söz "word" gives sözlä- "to speak" (Schluessel 15.18).}
   allomorphs:
-  - {form: "لا", spelled: {chg-Arab/standard: [لا]}}  # REVIEW: S 15.18 (p. 161): the denominative -la/-lä
+  - {form: "lA\u0329"}  # REVIEW: S 15.18: the denominative -la/-lä
 - id: lexeme:lafaz
   pos: NOUN
   gloss: {en: 'word, speech'}
-  form: "لفظ"
+  form: "lafaẓ"
   spelled: {chg-Arab/standard: [لفظ], chg-Latn/schluessel: [lafaẓ]}
   readings: {schluessel: lafaẓ}
 - id: lexeme:lashkar
   pos: NOUN
   gloss: {en: army; soldiers}
-  form: "لشکر"
+  form: "laškar"
   spelled: {chg-Arab/standard: [لشکر], chg-Latn/schluessel: [laškar]}
   readings: {schluessel: laškar}
 - id: lexeme:latif
   pos: ADJ
   gloss: {en: 'lovely, delicate, fine'}
-  form: "لطیف"
+  form: "laṭīf"
   spelled: {chg-Arab/standard: [لطیف], chg-Latn/schluessel: [laṭīf]}
   readings: {schluessel: laṭīf}
 - id: lexeme:let
@@ -1685,116 +1703,122 @@ lexemes:
   gloss: {en: '-ali, -äli (-li after a vowel): let us …!'}
   notes: {en: 'kiräli "let us go in", barali "let us go", turmayli "let us not stay".'}
   allomorphs:
-  - {form: "الی", spelled: {chg-Arab/standard: [الی]}}  # REVIEW: S 14.6 (p. 139): the voluntative -ali/-äli
+  - {form: "Ali"}  # REVIEW: -ali/-äli
 - id: lexeme:liq
   head: {takes: [NOUN, ADJ], makes: NOUN}
   gloss: {en: '-liq, -lik, -luq, -lük: with, having; of (a place); -ness'}
   notes: {en: aywānliq ḥujra "a pavilion with a portico"; Kašǧarliq "of Kashgar"; yaḫšiliq "goodness". Scribes write it -liq whatever the vowels.}
   allomorphs:
-  - {form: "لیک", spelled: {chg-Arab/standard: [لیک]}}  # REVIEW: S 7.6 (p. 50-51): -liq/-lik/-luq/-lük; 'most scribes did not distinguish them in writing'; the course's commonest
-  - {form: "لیق", free: true, spelled: {chg-Arab/standard: [لیق]}}  # REVIEW: S 7.6.2 (p. 50-51): -liq after a back vowel
-  - {form: "لیغ", free: true, spelled: {chg-Arab/standard: [لیغ]}}  # REVIEW: S 7.6.1 (p. 50): -liǧ, the attributive
+  - {form: "lik"}  # REVIEW: S 7.6: -lik
+  - {form: "liq", free: true}
+  - {form: "liǧ", free: true}
 - id: lexeme:loc
   realises: {Case: Loc}
   'on': {at: after, pos: [NOUN, PROPN, PRON, ADJ, NUM, DET, ADV], or: [{pos: [VERB, AUX], has: {VerbForm: Part}}]}
   gloss: {en: '-da, -dä (-ta, -tä after a voiceless consonant): in, at, on'}
   notes: {en: 'Where something is: öydä "in the house", taǧda "on the mountain". With bar it says what a place has: öydä nan bar "there is bread in the house".'}
   allomorphs:
-  - {form: "دە", spelled: {chg-Arab/standard: [ده]}}  # REVIEW: S 3.3.1 (p. 13): -da/-dä written ده
-  - {form: "تە", after: {endsIn: "{VL}"}, free: true, spelled: {chg-Arab/standard: [ته]}}  # REVIEW: S 3.3.1 (p. 13): ته after a voiceless consonant, sometimes
-  - {form: "دا", free: true, spelled: {chg-Arab/standard: [دا]}}  # REVIEW: دا: the scheme's final ا for a (اویدا)
+  - {form: "DA"}  # REVIEW: S 3.3.1 (p. 13): -da/-dä, -ta/-tä after a voiceless consonant
+  - {form: "DA\u0329", free: true}  # REVIEW: the scribes' دا
+  - {form: "dA", free: true}  # REVIEW: د after a voiceless consonant too, read d (sāʿatdä)
+  - {form: "dA\u0329", free: true}
+  - {form: "\u00B7DA", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7DA\u0329", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7dA", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7dA\u0329", free: true}  # REVIEW: after a half-space, as the course writes it
 - id: lexeme:mabad
   pos: NOUN
   gloss: {en: 'place of worship, shrine'}
-  form: "معبد"
+  form: "maʿbad"
   spelled: {chg-Arab/standard: [معبد], chg-Latn/schluessel: [maʿbad]}
   readings: {schluessel: maʿbad}
 - id: lexeme:madfun
   pos: ADJ
   gloss: {en: buried}
-  form: "مدفون"
+  form: "madfūn"
   spelled: {chg-Arab/standard: [مدفون], chg-Latn/schluessel: [madfūn]}
   readings: {schluessel: madfūn}
 - id: lexeme:mahallat
   pos: NOUN
   gloss: {en: 'quarters, suburbs (of a town)'}
-  form: "محلات"
+  form: "maḥallāt"
   spelled: {chg-Arab/standard: [محلات], chg-Latn/schluessel: [maḥallāt]}
   readings: {schluessel: maḥallāt}
 - id: lexeme:mahmud
   pos: PROPN
   gloss: {en: Mahmud (a man's name)}
-  form: "محمود"
+  form: "Maḥmūd"
   spelled: {chg-Arab/standard: [محمود], chg-Latn/schluessel: [Maḥmūd]}
   readings: {schluessel: Maḥmūd}
 - id: lexeme:majara
   pos: NOUN
   gloss: {en: 'event, adventure; trouble'}
   notes: {en: köp mājarādin soŋra "after much ado".}
-  form: "ماجرا"
+  form: "mājarā"
   spelled: {chg-Arab/standard: [ماجرا], chg-Latn/schluessel: [mājarā]}
   readings: {schluessel: mājarā}
 - id: lexeme:malik
   pos: NOUN
   gloss: {en: king}
-  form: "ملک"
+  form: "malik"
   spelled: {chg-Arab/standard: [ملک], chg-Latn/schluessel: [malik]}
   readings: {schluessel: malik}
 - id: lexeme:mama
   pos: NOUN
   gloss: {en: old woman; grandmother}
-  form: "ماما"
+  form: "ma\u0329ma\u0329"
   spelled: {chg-Arab/standard: [ماما], chg-Latn/schluessel: [mama]}
   readings: {schluessel: mama}
 - id: lexeme:man
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: I}
-  form: "من"
+  form: "män"
   spelled: {chg-Arab/standard: [من], chg-Latn/schluessel: [män]}
   readings: {schluessel: män}
   allomorphs:
-  - {form: "مین", free: true, spelled: {chg-Arab/standard: [مین]}}  # REVIEW: män written with ی
+  - {form: "me\u0329n", free: true, spelled: {chg-Arab/standard: ["مین"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
   - {spelled: {chg-Arab/standard: [م]}}  # REVIEW: the course's segmentation of a token the rules write otherwise (docs/rules/chg.md)
+  - {form: "ma\u0326", before: {startsIn: "[Ğŋ]*"}, spelled: {chg-Arab/standard: ["م"]}}  # REVIEW: before the dative's ŋa: maŋa, saŋa (S 10.13, p. 85)
 - id: lexeme:maqsud
   pos: NOUN
   gloss: {en: 'goal, intention, aim'}
-  form: "مقصود"
+  form: "maqṣūd"
   spelled: {chg-Arab/standard: [مقصود], chg-Latn/schluessel: [maqṣūd]}
   readings: {schluessel: maqṣūd}
 - id: lexeme:mard
   pos: NOUN
   gloss: {en: 'man, fellow (Persian)'}
-  form: "مرد"
+  form: "mard"
   spelled: {chg-Arab/standard: [مرد], chg-Latn/schluessel: [mard]}
   readings: {schluessel: mard}
 - id: lexeme:mawlana
   pos: NOUN
   gloss: {en: 'the Master, our master (a title of a Sufi saint)'}
-  form: "مولانا"
+  form: "Mawlānā"
   spelled: {chg-Arab/standard: [مولانا], chg-Latn/schluessel: [Mawlānā]}
   readings: {schluessel: Mawlānā}
 - id: lexeme:mawzun
   pos: ADJ
   gloss: {en: 'well-shaped, well-proportioned'}
-  form: "موزون"
+  form: "mawzūn"
   spelled: {chg-Arab/standard: [موزون], chg-Latn/schluessel: [mawzūn]}
   readings: {schluessel: mawzūn}
 - id: lexeme:mewa
   pos: NOUN
   gloss: {en: fruit}
-  form: "میوە"
+  form: "me\u0329wä"
   spelled: {chg-Arab/standard: [میوه], chg-Latn/schluessel: [mewä]}
   readings: {schluessel: mewä}
 - id: lexeme:ming
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: thousand}
-  form: "مینک"
+  form: "mi\u0329ŋ"
   spelled: {chg-Arab/standard: [مینک, منک], chg-Latn/schluessel: [miŋ]}
   readings: {schluessel: miŋ}
   allomorphs:
-  - {form: "منک", free: true, spelled: {chg-Arab/standard: [منک]}}  # REVIEW: the lemma's other spelling
+  - {form: "miŋ", free: true, spelled: {chg-Arab/standard: ["منک"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:mis
   realises: {Evident: Nfh, Tense: Past, VerbForm: Fin}
   'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
@@ -1802,94 +1826,96 @@ lexemes:
   gloss: {en: '-miš: did, it is said; (with er-) ermiš "was, they say"'}
   notes: {en: 'The past of what one has heard or read, not seen: kirmišlär "they went in, it is told". Navai tells the old story in it. bar ermiš "there was, once upon a time".'}
   allomorphs:
-  - {form: "میش", spelled: {chg-Arab/standard: [میش]}}  # REVIEW: S 13.3 (p. 125): -miš
+  - {form: "miš"}  # REVIEW: -miš
 - id: lexeme:mithl
   pos: NOUN
   gloss: {en: 'proverb, saying; likeness'}
-  form: "مثل"
+  form: "mis\u0331l"
   spelled: {chg-Arab/standard: [مثل], chg-Latn/schluessel: [mis̱l]}
   readings: {schluessel: mis̱l}
 - id: lexeme:moghulistan
   pos: PROPN
   gloss: {en: Moghulistan (the land of the eastern Chaghatay khans)}
-  form: "موغولستان"
+  form: "Moǧulistān"
   spelled: {chg-Arab/standard: [موغولستان], chg-Latn/schluessel: [Moǧulistān]}
   readings: {schluessel: Moǧulistān}
   allomorphs:
-  - {form: "موغالستان", free: true, spelled: {chg-Arab/standard: [موغالستان]}}  # REVIEW: the Tadhkira's scribe's spelling (S p. 159; the scheme lists it)
+  - {form: "Moǧa\u0338u\u0326listān", free: true, spelled: {chg-Arab/standard: ["موغالستان"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:mudda
   pos: NOUN
   gloss: {en: 'purpose, what one seeks'}
-  form: "مدعا"
+  form: "mu\u0326daʿʿā"
   spelled: {chg-Arab/standard: [مدعا], chg-Latn/schluessel: [mudaʿʿā]}
   readings: {schluessel: mudaʿʿā}
+  allomorphs:
+  - {form: "mu\u0326daʿʿ\u0359ā", free: true, spelled: {chg-Arab/standard: ["مدع\u0651ا"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:mukhtasar
   pos: ADJ
   gloss: {en: 'small, modest, minor'}
-  form: "مختصر"
+  form: "mu\u0326ḫtaṣar"
   spelled: {chg-Arab/standard: [مختصر], chg-Latn/schluessel: [muḫtaṣar]}
   readings: {schluessel: muḫtaṣar}
 - id: lexeme:mulk
   pos: NOUN
   gloss: {en: 'kingdom, realm'}
   notes: {en: 'Spelled as malik "king": the vowels are not written.'}
-  form: "ملک"
+  form: "mu\u0326lk"
   spelled: {chg-Arab/standard: [ملک], chg-Latn/schluessel: [mulk]}
   readings: {schluessel: mulk}
 - id: lexeme:mulla
   pos: NOUN
   gloss: {en: 'mullah, a learned man'}
-  form: "ملا"
+  form: "mu\u0326llā"
   spelled: {chg-Arab/standard: [ملا], chg-Latn/schluessel: [mullā]}
   readings: {schluessel: mullā}
 - id: lexeme:munadagar
   pos: NOUN
   gloss: {en: 'herald, crier (one who calls out)'}
-  form: "منادی\u200cکر"
-  spelled: {chg-Arab/standard: ["منادی\u200cکر"], chg-Latn/schluessel: [munādàgar]}
-  readings: {schluessel: munādàgar}
+  form: "mu\u0326nādà\u00B7ga\u0364r"
+  spelled: {chg-Arab/standard: ["منادی\u200cکر"], chg-Latn/schluessel: [munādà·gar]}
+  readings: {schluessel: munādà·gar}
 - id: lexeme:munajat
   pos: NOUN
   gloss: {en: prayer (to God)}
   notes: {en: munājāt qil- "to pray".}
-  form: "مناجات"
+  form: "mu\u0326nājāt"
   spelled: {chg-Arab/standard: [مناجات], chg-Latn/schluessel: [munājāt]}
   readings: {schluessel: munājāt}
 - id: lexeme:munasib
   pos: ADJ
   gloss: {en: 'fitting, suitable'}
-  form: "مناسب"
+  form: "mu\u0326nāsib"
   spelled: {chg-Arab/standard: [مناسب], chg-Latn/schluessel: [munāsib]}
   readings: {schluessel: munāsib}
 - id: lexeme:murataba
   pos: NOUN
   gloss: {en: 'time, occasion (Arabic marātib)'}
   notes: {en: ikkinči murātaba "a second time".}
-  form: "مراتبە"
+  form: "mu\u0326rātaba"
   spelled: {chg-Arab/standard: [مراتبه], chg-Latn/schluessel: [murātaba]}
   readings: {schluessel: murātaba}
 - id: lexeme:murtafi
   pos: ADJ
   gloss: {en: 'high, lofty'}
-  form: "مرتفع"
+  form: "mu\u0326rtafiʿ"
   spelled: {chg-Arab/standard: [مرتفع], chg-Latn/schluessel: [murtafiʿ]}
   readings: {schluessel: murtafiʿ}
 - id: lexeme:mushkil
   pos: ADJ
   gloss: {en: 'difficult, hard'}
-  form: "مشکل"
+  form: "mu\u0326škil"
   spelled: {chg-Arab/standard: [مشکل], chg-Latn/schluessel: [muškil]}
   readings: {schluessel: muškil}
 - id: lexeme:musulman
   pos: NOUN
   gloss: {en: Muslim}
-  form: "مسلمان"
+  form: "mu\u0326su\u0326lmā\u0364n"
   spelled: {chg-Arab/standard: [مسلمان], chg-Latn/schluessel: [musulmān]}
   readings: {schluessel: musulmān}
 - id: lexeme:mutahayyir
   pos: ADJ
   gloss: {en: 'bewildered, astonished'}
-  form: "متحیر"
+  form: "mu\u0326taḥayyir"
   spelled: {chg-Arab/standard: [متحیر], chg-Latn/schluessel: [mutaḥayyir]}
   readings: {schluessel: mutaḥayyir}
 - id: lexeme:nachcha
@@ -1897,23 +1923,23 @@ lexemes:
   feats: {PronType: Ind}
   gloss: {en: 'some, several; how many?'}
   notes: {en: näččändä kündin keyin "some days later". In the Tadhkira it is näččändä.}
-  form: "نچە"
+  form: "näččä"
   spelled: {chg-Arab/standard: [نچه], chg-Latn/schluessel: [näččä]}
   readings: {schluessel: näččä}
   allomorphs:
-  - {form: "نچندە", free: true, spelled: {chg-Arab/standard: [نچنده]}}  # REVIEW: näččändä, as the course writes it whole (näččä with -n- and -dä? S 12.7: a question for the owner)
-  - {form: "نجندە", free: true, spelled: {chg-Arab/standard: [نجنده]}}  # REVIEW: the same with ج for č
+  - {form: "näččändä", free: true, spelled: {chg-Arab/standard: ["نچنده"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
+  - {form: "näčč\u0324ändä", free: true, spelled: {chg-Arab/standard: ["نجنده"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:namaz
   pos: NOUN
   gloss: {en: the prayer (salat)}
-  form: "نماز"
+  form: "namāz"
   spelled: {chg-Arab/standard: [نماز], chg-Latn/schluessel: [namāz]}
   readings: {schluessel: namāz}
 - id: lexeme:nan
   pos: NOUN
   gloss: {en: bread}
   image: {file: ../../courses/images/bread.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "نان"
+  form: "na\u0329n"
   spelled: {chg-Arab/standard: [نان], chg-Latn/schluessel: [nan]}
   readings: {schluessel: nan}
 - id: lexeme:narr
@@ -1923,17 +1949,27 @@ lexemes:
   gloss: {en: '-ptur (-iptur, -uptur, -üptur): did, it is told; is (found)'}
   notes: {en: 'The narrative past: the -p converb and -tur. Babur describes his country in it, what is so and what was done there: bir mawzūn taǧ tüšüptur "a well-shaped mountain lies there"; bir ḥujra saliptur "he built a pavilion".'}
   allomorphs:
-  - {form: "ب+تور", after: {endsIn: "{V}"}, spelled: {chg-Arab/standard: [بتور]}}  # REVIEW: S 11.5 (p. 93): -p + -tur after a vowel
-  - {form: "وب+تور", after: {endsIn: "و{C}"}, spelled: {chg-Arab/standard: [وبتور]}}  # REVIEW: S 11.5 (p. 93): -up-, after a stem whose last vowel is written و
-  - {form: "یب+تور", spelled: {chg-Arab/standard: [یبتور]}}  # REVIEW: S 11.5 (p. 93): -ip- after a consonant; Babur's -tur for -dur (S 11.3)
-  - {form: "یب+دور", free: true, spelled: {chg-Arab/standard: [یبدور]}}  # REVIEW: S 11.5 (p. 93): -ipdur
-  - {form: "وب+دور", after: {endsIn: "و{C}"}, free: true, spelled: {chg-Arab/standard: [وبدور]}}
-  - {form: "یب", before: {startsIn: "{L}"}, free: true, spelled: {chg-Arab/standard: [یب]}}  # REVIEW: -ip with a person ending and no -tur (tapipsen: Navai)
+  - {form: "p\u0324+tur", after: {endsIn: "{V}*"}}
+  - {form: "Up\u0324+tur", after: {endsIn: "{RV}*{C}*"}}
+  - {form: "ip\u0324+tur"}  # REVIEW: S 11.5 (p. 93): -ip + -tur
+  - {form: "ip\u0324+dur", free: true}
+  - {form: "Up\u0324+dur", after: {endsIn: "{RV}*{C}*"}, free: true}
+  - {form: "ip\u0324", before: {startsIn: "{L}*"}, free: true}
+  - {form: "\u00B7p\u0324+tur", after: {endsIn: "{V}*"}, free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7Up\u0324+tur", after: {endsIn: "{RV}*{C}*"}, free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7ip\u0324+tur", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7ip\u0324+dur", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7Up\u0324+dur", after: {endsIn: "{RV}*{C}*"}, free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7ip\u0324", before: {startsIn: "{L}*"}, free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "ip\u0324+\u00B7dur", free: true}  # REVIEW: its -tur after a half-space
+  - {form: "ip\u0324+\u00B7tur", free: true}  # REVIEW: its -tur after a half-space
+  - {form: "Up\u0324+\u00B7dur", after: {endsIn: "{RV}*{C}*"}, free: true}  # REVIEW: its -tur after a half-space
+  - {form: "Up\u0324+\u00B7tur", after: {endsIn: "{RV}*{C}*"}, free: true}  # REVIEW: its -tur after a half-space
   - {spelled: {chg-Arab/standard: [تور]}}  # REVIEW: the course's segmentation of a token the rules write otherwise (docs/rules/chg.md)
 - id: lexeme:nashpati
   pos: NOUN
   gloss: {en: 'pear, pears'}
-  form: "ناشپاتی"
+  form: "na\u0329špa\u0329ti"
   spelled: {chg-Arab/standard: [ناشپاتی], chg-Latn/schluessel: [našpati]}
   readings: {schluessel: našpati}
 - id: lexeme:ne
@@ -1941,7 +1977,7 @@ lexemes:
   feats: {PronType: Int}
   gloss: {en: 'what?, which?'}
   notes: {en: 'ne yärlik? "from where?"; jawābiŋ ne? "what is your answer?".'}
-  form: "نە"
+  form: "ne"
   spelled: {chg-Arab/standard: [نه], chg-Latn/schluessel: [ne]}
   readings: {schluessel: ne}
 - id: lexeme:neg
@@ -1950,18 +1986,18 @@ lexemes:
   gloss: {en: '-ma-, -mä-: not (inside the verb)'}
   notes: {en: 'körmädim "I did not see", kälmädi "he did not come". The present-future after it is -y: qilmaydur "he does not do", bilmäymän "I do not know".'}
   allomorphs:
-  - {form: "ما", spelled: {chg-Arab/standard: [ما]}}  # REVIEW: S 6.3.2 (p. 37): -ma-/-mä-
+  - {form: "mA\u0329"}  # REVIEW: S 5.2.2: -ma-/-mä-, ما
 - id: lexeme:nema
   pos: PRON
   feats: {PronType: Int}
   gloss: {en: 'what?'}
-  form: "نمە"
+  form: "nemä"
   spelled: {chg-Arab/standard: [نمه], chg-Latn/schluessel: [nemä]}
   readings: {schluessel: nemä}
 - id: lexeme:nilkha
   pos: PROPN
   gloss: {en: Nilkha (a town in the Ili valley)}
-  form: "نیلخە"
+  form: "Ni\u0329lḫa"
   spelled: {chg-Arab/standard: [نیلخه], chg-Latn/schluessel: [Nilḫa]}
   readings: {schluessel: Nilḫa}
 - id: lexeme:nisba
@@ -1969,7 +2005,7 @@ lexemes:
   gloss: {en: '-ī: of, from (on Arabic and Persian words)'}
   notes: {en: 'šahar "city", šaharī "of the city"; bāzār, bāzārī "of the market".'}
   allomorphs:
-  - {form: "ی", spelled: {chg-Arab/standard: [ی]}}  # REVIEW: S 11.6 (p. 93): -ī
+  - {form: "ī"}  # REVIEW: S 11.6: -ī
 - id: lexeme:nom
   realises: {Case: Nom}
   'on': {at: after, pos: [NOUN, PROPN, PRON, ADJ, NUM, DET, ADV], or: [{pos: [VERB, AUX], has: {VerbForm: Part}}]}
@@ -1981,222 +2017,231 @@ lexemes:
   pos: NOUN
   gloss: {en: son; boy}
   notes: {en: 'oǧul loses its second vowel before a vowel: oǧli "his son", oǧlum "my son".'}
-  form: "اوغول"
+  form: "oǧul"
   spelled: {chg-Arab/standard: [اوغول], chg-Latn/schluessel: [oǧul]}
   readings: {schluessel: oǧul}
   allomorphs:
-  - {form: "اوغل", before: {startsIn: "[وی]"}, spelled: {chg-Arab/standard: [اوغل]}}  # REVIEW: S 4.5 (p. 24): oǧul loses its second vowel before a vowel (oǧli, oǧlum)
+  - {form: "oǧl", before: {startsIn: "{V}*"}, spelled: {chg-Arab/standard: ["اوغل"]}}  # REVIEW: as the course's tokens write it
 - id: lexeme:oksuz
   pos: NOUN
   gloss: {en: orphan}
-  form: "اوکسوز"
+  form: "öksüz"
   spelled: {chg-Arab/standard: [اوکسوز], chg-Latn/schluessel: [öksüz]}
   readings: {schluessel: öksüz}
 - id: lexeme:oltur
   pos: VERB
   gloss: {en: 'to sit; to stay, live'}
-  form: "اولتور-"
+  form: "oltur-"
   spelled: {chg-Arab/standard: [اولتور-], chg-Latn/schluessel: [oltur-]}
   readings: {schluessel: oltur}
   allomorphs:
-  - {form: "اولتور", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [اولتور]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "oltur", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["اولتور"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:on
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: ten}
-  form: "اون"
+  form: "on"
   spelled: {chg-Arab/standard: [اون], chg-Latn/schluessel: ['on']}
   readings: {schluessel: 'on'}
 - id: lexeme:on.right
   pos: ADJ
   gloss: {en: right (side)}
-  form: "اونک"
+  form: "oŋ"
   spelled: {chg-Arab/standard: [اونک], chg-Latn/schluessel: [oŋ]}
   readings: {schluessel: oŋ}
 - id: lexeme:oqu
   pos: VERB
   gloss: {en: to read; to recite}
-  form: "اوقو-"
+  form: "oqu-"
   spelled: {chg-Arab/standard: [اوقو-], chg-Latn/schluessel: [oqu-]}
   readings: {schluessel: oqu}
   allomorphs:
-  - {form: "اوقو", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [اوقو]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "oqu", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["اوقو"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:ord
   realises: {NumType: Ord}
   gloss: {en: '-nči, -inči, -unči, -ünči: -th (ordinal numbers)'}
   notes: {en: 'bäšinči "fifth", ikkinči "second", toqquzunči "ninth".'}
   allomorphs:
-  - {form: "نچی", after: {endsIn: "{V}"}, spelled: {chg-Arab/standard: [نچی]}}  # REVIEW: S 7.3.2 (p. 47): -nči after a vowel
-  - {form: "ونچی", after: {endsIn: "و{C}{C}"}, spelled: {chg-Arab/standard: [ونچی]}}  # REVIEW: -ünči after a stem whose last vowel is written و (tört: two consonants after it)
-  - {form: "ینچی", spelled: {chg-Arab/standard: [ینچی]}}  # REVIEW: -inči after a consonant
-  - {form: "ونجی", after: {endsIn: "و{C}{C}"}, free: true, spelled: {chg-Arab/standard: [ونجی]}}  # REVIEW: ج for č
-  - {form: "ینجی", free: true, spelled: {chg-Arab/standard: [ینجی]}}  # REVIEW: ج for č
+  - {form: "nči", after: {endsIn: "{V}*"}}
+  - {form: "Unči", after: {endsIn: "{RV}*{C}*{C}*"}}
+  - {form: "inči"}
+  - {form: "Unč\u0324i", after: {endsIn: "{RV}*{C}*{C}*"}, free: true}
+  - {form: "inč\u0324i", free: true}
 - id: lexeme:osh
   pos: PROPN
   gloss: {en: 'Osh (a town of Ferghana, now in Kyrgyzstan)'}
-  form: "اوش"
+  form: "Oš"
   spelled: {chg-Arab/standard: [اوش], chg-Latn/schluessel: [Oš]}
   readings: {schluessel: Oš}
 - id: lexeme:ota
   pos: VERB
   gloss: {en: 'to perform, fulfil (a duty)'}
-  form: "اوتا-"
+  form: "ötä\u0329-"
   spelled: {chg-Arab/standard: [اوتا-], chg-Latn/schluessel: [ötä-]}
   readings: {schluessel: ötä}
   allomorphs:
-  - {form: "اوتا", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [اوتا]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ötä\u0329", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["اوتا"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:ottuz
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: thirty}
-  form: "اوتوز"
+  form: "ottuz"
   spelled: {chg-Arab/standard: [اوتوز], chg-Latn/schluessel: [ottuz]}
   readings: {schluessel: ottuz}
 - id: lexeme:oy
   pos: NOUN
   gloss: {en: house; room}
   image: {file: ../../courses/images/house.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "اوي"
+  form: "öy"
   spelled: {chg-Arab/standard: [اوی], chg-Latn/schluessel: [öy]}
   readings: {schluessel: öy}
 - id: lexeme:oyghan
   pos: VERB
   gloss: {en: to wake up}
-  form: "اویغان-"
+  form: "oyǧa\u0329n-"
   spelled: {chg-Arab/standard: [اویغان-], chg-Latn/schluessel: [oyǧan-]}
   readings: {schluessel: oyǧan}
   allomorphs:
-  - {form: "اویغان", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [اویغان]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "oyǧa\u0329n", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["اویغان"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:oyqu
   pos: NOUN
   gloss: {en: sleep}
-  form: "اویقو"
+  form: "oyqu"
   spelled: {chg-Arab/standard: [اویقو], chg-Latn/schluessel: [oyqu]}
   readings: {schluessel: oyqu}
 - id: lexeme:oyu
   pos: VERB
   gloss: {en: to sleep}
-  form: "اویو-"
+  form: "oyu-"
   spelled: {chg-Arab/standard: [اویو-], chg-Latn/schluessel: [oyu-]}
   readings: {schluessel: oyu}
   allomorphs:
-  - {form: "اویو", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [اویو]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "oyu", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["اویو"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:oz
   pos: PRON
   feats: {PronType: Prs, Reflex: 'Yes'}
   gloss: {en: self; own}
   notes: {en: öz öyüm "my own house"; özüm "I myself"; özimiz aytduq "we told it ourselves".}
-  form: "اوز"
+  form: "öz"
   spelled: {chg-Arab/standard: [اوز], chg-Latn/schluessel: [öz]}
   readings: {schluessel: öz}
 - id: lexeme:ozga
   pos: ADJ
   gloss: {en: 'other, another; apart from'}
-  form: "اوزکە"
+  form: "özgä"
   spelled: {chg-Arab/standard: [اوزکه, اوزکا], chg-Latn/schluessel: [özgä]}
   readings: {schluessel: özgä}
   allomorphs:
-  - {form: "اوزکا", free: true, spelled: {chg-Arab/standard: [اوزکا]}}  # REVIEW: the lemma's other spelling
+  - {form: "özgä\u0329", free: true, spelled: {chg-Arab/standard: ["اوزکا"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:p1p
   realises: {Number: Plur, Person: '1'}
   'on': {at: after, pos: [VERB, AUX], has: {Tense: Pres}, lacks: [Person], or: [{pos: [VERB, AUX], has: {Tense: Fut}, lacks: [Person]}, {pos: [VERB, AUX], has: {Evident: Nfh}, lacks: [Person]}, {pos: [VERB, AUX], has: {VerbForm: Part}, lacks: [Person]}]}
   gloss: {en: '-miz: we (on the verb)'}
   notes: {en: 'tutamiz "we hold", bilmäsmiz "we do not know", yürgäymiz "let us walk". On a predicate (Türkmiz "we are Turks") it is the copula''s (cop.1p).'}
   allomorphs:
-  - {form: "میز", spelled: {chg-Arab/standard: [میز]}}  # REVIEW: S 5.2.1 (p. 28): -miz
-  - {form: "مز", free: true, spelled: {chg-Arab/standard: [مز]}}  # REVIEW: its i unwritten
+  - {form: "miz"}
+  - {form: "mi\u0326z", free: true}
+  - {form: "\u00B7miz", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7mi\u0326z", free: true}  # REVIEW: after a half-space, as the course writes it
 - id: lexeme:p1s
   realises: {Number: Sing, Person: '1'}
   'on': {at: after, pos: [VERB, AUX], has: {Tense: Pres}, lacks: [Person], or: [{pos: [VERB, AUX], has: {Tense: Fut}, lacks: [Person]}, {pos: [VERB, AUX], has: {Evident: Nfh}, lacks: [Person]}, {pos: [VERB, AUX], has: {VerbForm: Part}, lacks: [Person]}]}
   gloss: {en: '-män: I (on the verb)'}
   notes: {en: 'ičämän "I drink", oquymän "I read", yasaǧanmän "I made". On a predicate (Türkmän "I am a Turk") it is the copula''s (cop.1s).'}
   allomorphs:
-  - {form: "من", spelled: {chg-Arab/standard: [من]}}  # REVIEW: S 5.2.1 (p. 28): -män
+  - {form: "mä\u0326n"}  # REVIEW: S 5.2.1 (p. 28): -män, من
+  - {form: "\u00B7mä\u0326n", free: true}  # REVIEW: after a half-space, as the course writes it
 - id: lexeme:p2
   realises: {Person: '2', Polite: Form}
   'on': {at: after, pos: [VERB, AUX], has: {Tense: Pres}, lacks: [Person], or: [{pos: [VERB, AUX], has: {Tense: Fut}, lacks: [Person]}, {pos: [VERB, AUX], has: {Evident: Nfh}, lacks: [Person]}, {pos: [VERB, AUX], has: {VerbForm: Part}, lacks: [Person]}]}
   gloss: {en: '-siz: you, politely, to one person or several (on the verb)'}
   notes: {en: 'siz is the usual "you" in the texts: polite to one person, or to several.'}
   allomorphs:
-  - {form: "سیز", spelled: {chg-Arab/standard: [سیز]}}  # REVIEW: S 5.2.1 (p. 28): -siz
+  - {form: "siz"}
 - id: lexeme:p2pl
   realises: {Number: Plur, Person: '2'}
   'on': {at: after, pos: [VERB, AUX], has: {Tense: Pres}, lacks: [Person], or: [{pos: [VERB, AUX], has: {Tense: Fut}, lacks: [Person]}, {pos: [VERB, AUX], has: {Evident: Nfh}, lacks: [Person]}, {pos: [VERB, AUX], has: {VerbForm: Part}, lacks: [Person]}]}
   gloss: {en: '-sizlär: you, to several people (on the verb)'}
   allomorphs:
-  - {form: "سیزلار", spelled: {chg-Arab/standard: [سیزلار]}}  # REVIEW: S 5.2.1 (p. 28): -sizlär
+  - {form: "sizlär"}
 - id: lexeme:p2s
   realises: {Number: Sing, Person: '2'}
   'on': {at: after, pos: [VERB, AUX], has: {Tense: Pres}, lacks: [Person], or: [{pos: [VERB, AUX], has: {Tense: Fut}, lacks: [Person]}, {pos: [VERB, AUX], has: {Evident: Nfh}, lacks: [Person]}, {pos: [VERB, AUX], has: {VerbForm: Part}, lacks: [Person]}]}
   gloss: {en: '-sän: you, to a friend, a child, God (on the verb)'}
   notes: {en: 'sän is "you" to one person you know well; siz is the polite "you", to one person or several.'}
   allomorphs:
-  - {form: "سن", spelled: {chg-Arab/standard: [سن]}}  # REVIEW: S 5.2.1 (p. 28): -sän
-  - {form: "سین", free: true, spelled: {chg-Arab/standard: [سین]}}  # REVIEW: written with ی (tapipsen)
+  - {form: "sä\u0326n"}
+  - {form: "sen", free: true}
+  - {form: "\u00B7sä\u0326n", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7sen", free: true}  # REVIEW: after a half-space, as the course writes it
 - id: lexeme:p3
   realises: {Person: '3'}
   'on': {at: after, pos: [VERB, AUX], has: {Tense: Past, VerbForm: Fin}, lacks: [Person], or: [{pos: [VERB, AUX], has: {Aspect: Hab, VerbForm: Fin}, lacks: [Person]}, {pos: [VERB, AUX], has: {Evident: Nfh}, lacks: [Person]}, {pos: [VERB, AUX], has: {Tense: Fut}, lacks: [Person]}, {pos: [VERB, AUX], has: {Mood: Cnd}, lacks: [Person]}]}
   gloss: {en: 'he, she, it, they: no ending (the third person of a finite verb: bardi "went")'}
   notes: {en: 'bardi "he went", barur "he goes", barmiš "he went, they say": the third person has no ending; -lar may follow it for "they" (bardilar).'}
   allomorphs:
-  - {form: ""}  # REVIEW: S 5.2.1, 6.3.2 (p. 28, 37): the third person's ending is nothing, but in the present-future (-dur)
+  - {form: ""}  # REVIEW: S 5.2.1, 6.3.2: nothing, but in the present-future (-dur)
 - id: lexeme:p3.dur
   realises: {Person: '3'}
   'on': {at: after, pos: [VERB, AUX], has: {Tense: Pres}, lacks: [Person, Aspect]}
   gloss: {en: '-dur: he, she, it (in the present-future: baradur "goes")'}
   notes: {en: 'The present-future''s third person: baradur "he goes", baradurlar "they go". Schluessel (5.2.1) keeps it apart from the -dur that means "is": it cannot be replaced with emäs or take -mu.'}
   allomorphs:
-  - {form: "دور", spelled: {chg-Arab/standard: [دور]}}  # REVIEW: S 1.3.1 (p. 1), 5.2.1 (p. 28): the copula and the present's third person -dur, after a voiceless consonant too (the course: 18 of 25)
-  - {form: "تور", after: {endsIn: "{VL}"}, free: true, spelled: {chg-Arab/standard: [تور]}}  # REVIEW: S 11.3 (p. 92): Babur's -tur, 'very common in earlier texts'; the course writes it only after a voiceless consonant (wilāyattur)
+  - {form: "dur"}  # REVIEW: S 5.2.1 (p. 28): the present-future's -dur
+  - {form: "tur", after: {endsIn: "{VL}*"}, free: true}
+  - {form: "\u00B7dur", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7tur", after: {endsIn: "{VL}*"}, free: true}  # REVIEW: after a half-space, as the course writes it
 - id: lexeme:p3pl
   realises: {Number: Plur}
   'on': {at: after, pos: [VERB, AUX], has: {Person: '3'}, lacks: [Number]}
   gloss: {en: '-lar, -lär: they (after the third person: bardilar, baradurlar)'}
   notes: {en: 'derlär "they say, they call"; after the past, bardilar "they went". It may be left out: ular Türk "they are Turks", ular bardi "they went".'}
   allomorphs:
-  - {form: "لار", spelled: {chg-Arab/standard: [لار]}}  # REVIEW: S 3.2 (p. 12), 5.2.1: -lar/-lär, written لار
+  - {form: "lAr"}  # REVIEW: S 3.2, 5.2.1: -lar/-lär
+  - {form: "\u00B7lAr", free: true}  # REVIEW: after a half-space, as the course writes it
 - id: lexeme:padishah
   pos: NOUN
   gloss: {en: 'king, ruler, emperor'}
   notes: {en: 'The scribes write p as پ, ب or ف: پادشاه, بادشاه, فادشاه are one word. Schluessel writes the ف one ṗādišāh.'}
-  form: "پادشاه"
+  form: "pādišāh"
   spelled: {chg-Arab/standard: [پادشاه, بادشاه], chg-Latn/schluessel: [pādišāh]}
   readings: {schluessel: pādišāh}
   allomorphs:
-  - {form: "فادشاه", free: true, spelled: {chg-Arab/standard: [فادشاه]}}  # REVIEW: a scribe's other spelling
-  - {form: "بادشاه", free: true, spelled: {chg-Arab/standard: [بادشاه]}}  # REVIEW: the lemma's other spelling
+  - {form: "ṗādišāh", free: true, spelled: {chg-Arab/standard: ["فادشاه"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
+  - {form: "ṗādišāhi\u0326", free: true, spelled: {chg-Arab/standard: ["فادشاه"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
+  - {form: "p\u0324ādišāh", free: true, spelled: {chg-Arab/standard: ["بادشاه"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:pahlawan
   pos: NOUN
   gloss: {en: 'champion, hero, warrior'}
-  form: "پهلوان"
+  form: "pahlawān"
   spelled: {chg-Arab/standard: [پهلوان], chg-Latn/schluessel: [pahlawān]}
   readings: {schluessel: pahlawān}
   allomorphs:
-  - {form: "فهلوان", free: true, spelled: {chg-Arab/standard: [فهلوان]}}  # REVIEW: a scribe's other spelling
+  - {form: "ṗahlawān", free: true, spelled: {chg-Arab/standard: ["فهلوان"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:para
   pos: NOUN
   feats: {NounType: Clf}
   gloss: {en: 'piece (a counting word: yätti pāra qaṣaba "seven towns")'}
   notes: {en: 'Babur counts towns with pāra "piece": yätti pāra qaṣabasi bar "it has seven towns". Most counted nouns need no such word.'}
-  form: "پارە"
+  form: "pāra"
   spelled: {chg-Arab/standard: [پاره], chg-Latn/schluessel: [pāra]}
   readings: {schluessel: pāra}
 - id: lexeme:parwardigar
   pos: NOUN
   gloss: {en: 'the Lord, the Sustainer (God)'}
-  form: "پروردگار"
+  form: "parwardig\u0324ār"
   spelled: {chg-Arab/standard: [پروردگار], chg-Latn/schluessel: [parwardigār]}
   readings: {schluessel: parwardigār}
   allomorphs:
-  - {form: "فروردیکار", free: true, spelled: {chg-Arab/standard: [فروردیکار]}}  # REVIEW: a scribe's other spelling
+  - {form: "ṗarwardi\u0329gār", free: true, spelled: {chg-Arab/standard: ["فروردیکار"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:pass
   realises: {Voice: Pass}
   'on': {at: after, pos: [VERB], lacks: [Voice, Polarity, Tense, Aspect, Mood, VerbForm]}
   gloss: {en: '-il-, -l-, -n-: the passive'}
   notes: {en: 'išit- "to hear" gives išitil- "to be heard": qulaqiǧa āwāz išitildi "a voice reached his ear".'}
   allomorphs:
-  - {form: "یل", spelled: {chg-Arab/standard: [یل]}}  # REVIEW: S 8.3 (p. 58): -il- after a consonant
-  - {form: "ل", free: true, spelled: {chg-Arab/standard: [ل]}}  # REVIEW: its i unwritten (išitildi اشتلدی)
+  - {form: "il"}  # REVIEW: -il-
+  - {form: "l", free: true}
 - id: lexeme:past
   realises: {Tense: Past, VerbForm: Fin}
   'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
@@ -2204,101 +2249,115 @@ lexemes:
   gloss: {en: '-di, -du, -dü (-ti, -tu after a voiceless consonant): the past; alone, he, she, it did, or they did'}
   notes: {en: 'The simple past tells what happened: bardi "she went", boldi "he became". A person ending follows it (-m, -ŋ, -ŋiz, -q, -ŋlar, -lar): bardim "I went", barduq "we went", bardilar "they went". The scribes write -duq far more than -dük, whatever the vowels.'}
   allomorphs:
-  - {form: "تو", after: {endsIn: "{VL}"}, before: {startsIn: "[قک]#"}, spelled: {chg-Arab/standard: [تو]}}  # REVIEW: S 6.3.1 (p. 36-37): -tuq: t after a voiceless consonant
-  - {form: "دو", before: {startsIn: "[قک]#"}, spelled: {chg-Arab/standard: [دو]}}  # REVIEW: S 6.3.1 (p. 36): we -duq/-dük
-  - {form: "دو", after: {endsIn: "و{C}"}, before: {startsIn: "م#"}, spelled: {chg-Arab/standard: [دو]}}  # REVIEW: S 6.3.1 (p. 36): -dum after a stem whose last vowel is written و (roundedness harmony, S 6.2; -duŋ, -duŋlar likewise, which the course does not write)
-  - {form: "تی", after: {endsIn: "{VL}"}, spelled: {chg-Arab/standard: [تی]}}  # REVIEW: S 6.3.1 (p. 37): 'sometimes, when the end of the verb stem is voiceless ... ت'
-  - {form: "دی", spelled: {chg-Arab/standard: [دی]}}  # REVIEW: S 6.3.1 (p. 36): -di
-  - {form: "دی", before: {startsIn: "م#"}, free: true, spelled: {chg-Arab/standard: [دی]}}  # REVIEW: -dim after a rounded stem too
-  - {form: "دو", after: {endsIn: "{VL}"}, before: {startsIn: "[قک]#"}, free: true, spelled: {chg-Arab/standard: [دو]}}  # REVIEW: د after a voiceless consonant
+  - {form: "Du", before: {startsIn: "K#"}}  # REVIEW: -duq (-tuq) before -q/-k, as the letters read (S 6.3.2)
+  - {form: "Dü", before: {startsIn: "K#"}, free: true}  # REVIEW: -dük
+  - {form: "DU", after: {endsIn: "{RV}*{C}*"}, before: {startsIn: "m#"}}  # REVIEW: -dum/-düm after a rounded stem
+  - {form: "Di"}  # REVIEW: S 6.3.1 (p. 36-37): -di (-ti after a voiceless consonant)
+  - {form: "Di", before: {startsIn: "m#"}, free: true}
+  - {form: "DU", free: true}  # REVIEW: the scribes' دو
+  - {form: "di", free: true}  # REVIEW: د after a voiceless consonant too, read d
+  - {form: "du", free: true}  # REVIEW: (aytduq)
+  - {form: "\u00B7Du", before: {startsIn: "K#"}, free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7Dü", before: {startsIn: "K#"}, free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7DU", after: {endsIn: "{RV}*{C}*"}, before: {startsIn: "m#"}, free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7Di", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7Di", before: {startsIn: "m#"}, free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7DU", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7di", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7du", free: true}  # REVIEW: after a half-space, as the course writes it
 - id: lexeme:paytakht
   pos: NOUN
   gloss: {en: capital city}
-  form: "پای\u200cتخت"
-  spelled: {chg-Arab/standard: ["پای\u200cتخت"], chg-Latn/schluessel: [pāytaḫt]}
-  readings: {schluessel: pāytaḫt}
+  form: "pāy\u00B7taḫt"
+  spelled: {chg-Arab/standard: ["پای\u200cتخت"], chg-Latn/schluessel: [pāy·taḫt]}
+  readings: {schluessel: pāy·taḫt}
 - id: lexeme:pcp
   realises: {Tense: Past, VerbForm: Part}
   'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
   gloss: {en: '-ǧan, -gän (-qan, -kän): who did, which was; (with -da) when'}
   notes: {en: 'The past participle: kälgän kiši "the man who came". With -da it says when: taŋ atqanda "when dawn broke", šaharǧa kälgändä "when he came to the city".'}
   allomorphs:
-  - {form: "قان", after: {endsIn: "{VL}"}, spelled: {chg-Arab/standard: [قان]}}  # REVIEW: S 8.4 (p. 59): -qan after a voiceless consonant
-  - {form: "کان", spelled: {chg-Arab/standard: [کان]}}  # REVIEW: S 8.4 (p. 59): -ǧan/-gän by harmony, 'rules made to be broken'; the course's commonest
-  - {form: "غان", free: true, spelled: {chg-Arab/standard: [غان]}}  # REVIEW: S 8.4 (p. 59): -ǧan, the back spelling
-  - {form: "کان", after: {endsIn: "{VL}"}, free: true, spelled: {chg-Arab/standard: [کان]}}
+  - {form: "GAn"}  # REVIEW: -ǧan/-gän (-qan/-kan), written by harmony
+  - {form: "kAn", free: true}  # REVIEW: ک after a back stem, read k (yaratkan)
 - id: lexeme:pishur
   pos: VERB
   gloss: {en: to cook}
-  form: "پیشور-"
-  spelled: {chg-Arab/standard: [پیشور-], chg-Latn/schluessel: [ṗišür-]}
-  readings: {schluessel: ṗišür}
+  form: "pi\u0329šür-"
+  spelled: {chg-Arab/standard: [پیشور-], chg-Latn/schluessel: [pišür-]}
+  readings: {schluessel: pišür}
   allomorphs:
-  - {form: "فیشور", free: true, spelled: {chg-Arab/standard: [فیشور]}}  # REVIEW: a scribe's other spelling
-  - {form: "پیشور", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [پیشور]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "pi\u0329šür", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["پیشور"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ṗi\u0329šür", free: true, spelled: {chg-Arab/standard: ["فیشور"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:pl
   realises: {Number: Plur}
   'on': {at: after, pos: [NOUN, PROPN, PRON, ADV], lacks: [Case, 'Person[psor]']}
   gloss: {en: '-lar, -lär: the plural'}
   notes: {en: '-lar after a back vowel (a, o, u: atlar "horses"), -lär after a front one (ä, ö, ü, and mostly i, e: öylär "houses"); the script writes both لار. After a number the noun stays singular: üč aṭ "three horses".'}
   allomorphs:
-  - {form: "لار", spelled: {chg-Arab/standard: [لار]}}  # REVIEW: S 3.2 (p. 12): -lar/-lär, both written لار
+  - {form: "lAr"}  # REVIEW: S 3.2 (p. 12): -lar/-lär, لار
+  - {form: "\u00B7lAr", free: true}  # REVIEW: after a half-space, as the course writes it
 - id: lexeme:poss1p
   realises: {'Number[psor]': Plur, 'Person[psor]': '1'}
   'on': {at: after, pos: [NOUN, PROPN, NUM, ADV, ADJ], lacks: [Case, 'Person[psor]'], or: [{pos: [PRON], has: {Reflex: 'Yes'}, lacks: [Case, 'Person[psor]']}]}  # a pronoun only as öz (özüm)
   gloss: {en: '-miz (after a vowel), -imiz, -umiz, -ümiz: our'}
   notes: {en: pādišāhimiz "our king".}
   allomorphs:
-  - {form: "میز", after: {endsIn: "{V}"}, spelled: {chg-Arab/standard: [میز]}}  # REVIEW: S 6.1 (p. 34): -miz after a vowel
-  - {form: "یمیز", spelled: {chg-Arab/standard: [یمیز]}}  # REVIEW: S 6.1 (p. 34): -imiz after a consonant
-  - {form: "یمز", free: true, spelled: {chg-Arab/standard: [یمز]}}  # REVIEW: its second i unwritten
-  - {form: "مز", free: true, spelled: {chg-Arab/standard: [مز]}}
-  - {form: "ومیز", after: {endsIn: "و{C}"}, free: true, spelled: {chg-Arab/standard: [ومیز]}}  # REVIEW: -ümiz (the course; S 6.1, p. 34, has -imiz)
-  - {form: "یمیز", after: {endsIn: "{V}"}, free: true, spelled: {chg-Arab/standard: [یمیز]}}  # REVIEW: -yimiz after a loan's long vowel (S 3.3.5's exception, p. 16: līyi: mudaʿʿāymiz)
+  - {form: "miz", after: {endsIn: "{V}*"}}
+  - {form: "imiz"}
+  - {form: "imi\u0326z", free: true}
+  - {form: "mi\u0326z", free: true}
+  - {form: "Umiz", after: {endsIn: "{RV}*{C}*"}, free: true}
+  - {form: "imiz", after: {endsIn: "{V}*"}, free: true}
+  - {form: "ymiz", after: {endsIn: "{V}*"}, free: true}  # REVIEW: (mudaʿʿāymiz)
+  - {form: "ymi\u0326z", after: {endsIn: "{V}*"}, free: true}
 - id: lexeme:poss1s
   realises: {'Number[psor]': Sing, 'Person[psor]': '1'}
   'on': {at: after, pos: [NOUN, PROPN, NUM, ADV, ADJ], lacks: [Case, 'Person[psor]'], or: [{pos: [PRON], has: {Reflex: 'Yes'}, lacks: [Case, 'Person[psor]']}]}  # a pronoun only as öz (özüm)
   gloss: {en: '-m (after a vowel), -im, -um, -üm: my'}
   notes: {en: 'anam "my mother", atim "my name", öyüm "my house".'}
   allomorphs:
-  - {form: "م", after: {endsIn: "{V}"}, spelled: {chg-Arab/standard: [م]}}  # REVIEW: S 6.2 (p. 35): -m after a vowel
-  - {form: "وم", after: {endsIn: "و{C}"}, spelled: {chg-Arab/standard: [وم]}}  # REVIEW: S 6.2 (p. 35): -um/-üm after a stem whose last vowel is written و
-  - {form: "وم", after: {endsIn: "و{C}{C}"}, spelled: {chg-Arab/standard: [وم]}}
-  - {form: "یم", spelled: {chg-Arab/standard: [یم]}}  # REVIEW: S 6.2 (p. 35): -im
+  - {form: "m", after: {endsIn: "{V}*"}}  # REVIEW: S 6.1 (p. 34): -m after a vowel
+  - {form: "Um", after: {endsIn: "{RV}*{C}*"}}  # REVIEW: -um/-üm after a rounded stem
+  - {form: "Um", after: {endsIn: "{RV}*{C}*{C}*"}}
+  - {form: "im"}  # REVIEW: -im
 - id: lexeme:poss2
   realises: {'Person[psor]': '2', Polite: Form}
   'on': {at: after, pos: [NOUN, PROPN, NUM, ADV, ADJ], lacks: [Case, 'Person[psor]'], or: [{pos: [PRON], has: {Reflex: 'Yes'}, lacks: [Case, 'Person[psor]']}]}  # a pronoun only as öz (özüm)
   gloss: {en: '-ŋiz (after a vowel), -iŋiz, -uŋiz, -üŋiz: your, politely or to several'}
   notes: {en: 'atiŋiz "your name". With -lar after it, for several people or for respect, it is poss2pl: pādišāhiŋizlar "your king".'}
   allomorphs:
-  - {form: "نکیز", after: {endsIn: "{V}"}, spelled: {chg-Arab/standard: [نکیز]}}  # REVIEW: S 6.1 (p. 34): -ŋiz after a vowel
-  - {form: "ینکیز", spelled: {chg-Arab/standard: [ینکیز]}}  # REVIEW: S 6.1 (p. 34): -iŋiz
-  - {form: "ینکز", free: true, spelled: {chg-Arab/standard: [ینکز]}}  # REVIEW: its second i unwritten
+  - {form: "ŋiz", after: {endsIn: "{V}*"}}
+  - {form: "iŋiz"}
+  - {form: "iŋi\u0326z", free: true}
 - id: lexeme:poss2pl
   realises: {'Number[psor]': Plur, 'Person[psor]': '2'}
   'on': {at: after, pos: [NOUN, PROPN, NUM, ADV, ADJ], lacks: [Case, 'Person[psor]'], or: [{pos: [PRON], has: {Reflex: 'Yes'}, lacks: [Case, 'Person[psor]']}]}  # a pronoun only as öz (özüm)
   gloss: {en: '-iŋizlar, -ŋizlar (after a vowel): your (to several people, or with respect)'}
   notes: {en: 'pādišāhiŋizlar "your king", ʿālimiŋizlar "your scholars": the -lar is the possessor''s, not the noun''s (Schluessel 6.1 gives the 2nd person plural as -Vŋlar).'}
   allomorphs:
-  - {form: "نکیزلار", after: {endsIn: "{V}"}, spelled: {chg-Arab/standard: [نکیزلار]}}  # REVIEW: -ŋizlar after a vowel (no token)
-  - {form: "ینکیزلار", spelled: {chg-Arab/standard: [ینکیزلار]}}  # REVIEW: the course's -iŋizlar; S 6.1 (p. 34): -Vŋlar
-  - {form: "ینکزلار", free: true, spelled: {chg-Arab/standard: [ینکزلار]}}  # REVIEW: its second i unwritten
+  - {form: "ŋizlAr", after: {endsIn: "{V}*"}}
+  - {form: "iŋizlAr"}  # REVIEW: the course's -iŋizlar; S 6.1: -Vŋlar
+  - {form: "iŋi\u0326zlAr", free: true}
 - id: lexeme:poss2s
   realises: {'Number[psor]': Sing, 'Person[psor]': '2'}
   'on': {at: after, pos: [NOUN, PROPN, NUM, ADV, ADJ], lacks: [Case, 'Person[psor]'], or: [{pos: [PRON], has: {Reflex: 'Yes'}, lacks: [Case, 'Person[psor]']}]}  # a pronoun only as öz (özüm)
   gloss: {en: '-ŋ (after a vowel), -iŋ, -uŋ, -üŋ: your, to a friend'}
   allomorphs:
-  - {form: "نک", after: {endsIn: "{V}"}, spelled: {chg-Arab/standard: [نک]}}  # REVIEW: S 6.1 (p. 34): -ŋ after a vowel
-  - {form: "ینک", spelled: {chg-Arab/standard: [ینک]}}  # REVIEW: S 6.1 (p. 34): -iŋ
-  - {form: "نک", free: true, spelled: {chg-Arab/standard: [نک]}}  # REVIEW: its i unwritten
+  - {form: "ŋ", after: {endsIn: "{V}*"}}
+  - {form: "iŋ"}
+  - {form: "ŋ", free: true}
 - id: lexeme:poss3
   realises: {'Person[psor]': '3'}
   'on': {at: after, pos: [NOUN, PROPN, NUM, ADV, ADJ], lacks: [Case, 'Person[psor]'], or: [{pos: [PRON], has: {Reflex: 'Yes'}, lacks: [Case, 'Person[psor]']}]}  # a pronoun only as öz (özüm)
   gloss: {en: '-i (after a consonant), -si (after a vowel): his, her, its, their'}
   notes: {en: 'The thing owned takes the suffix: mewä "fruit", mewäsi "its fruit"; el "people", eli "its people". su "water" makes suyi.'}
   allomorphs:
-  - {form: "سی", after: {endsIn: "{V}"}, spelled: {chg-Arab/standard: [سی]}}  # REVIEW: S 3.3.5 (p. 15): -si after a vowel
-  - {form: "ی", spelled: {chg-Arab/standard: [ی]}}  # REVIEW: S 3.3.5 (p. 15): -i after a consonant
+  - {form: "si", after: {endsIn: "{V}*"}}  # REVIEW: S 6.1: -si after a vowel
+  - {form: "i"}  # REVIEW: -i
+  - {form: "i\u0326", free: true}  # REVIEW: its ی one with the stem's y (سُوی süyi)
+  - {form: "\u00B7si", after: {endsIn: "{V}*"}, free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7i", free: true}  # REVIEW: after a half-space, as the course writes it
+  - {form: "\u00B7i\u0326", free: true}  # REVIEW: after a half-space, as the course writes it
   - {spelled: {chg-Arab/standard: [یی]}}  # REVIEW: the course's segmentation of a token the rules write otherwise (docs/rules/chg.md)
 - id: lexeme:pp1p
   realises: {Number: Plur, Person: '1'}
@@ -2306,36 +2365,35 @@ lexemes:
   gloss: {en: '-q, -k: we (after the past -di and the conditional -sa)'}
   notes: {en: 'barduq "we went", barsaq "if we go". The scribes write -q far more than -k, whatever the vowels.'}
   allomorphs:
-  - {form: "ق", spelled: {chg-Arab/standard: [ق]}}  # REVIEW: S 6.3.1 (p. 36): -duq 'much more common than' -dük
-  - {form: "ک", free: true, spelled: {chg-Arab/standard: [ک]}}  # REVIEW: S 6.3.1 (p. 36): -dük, 'a scribe's choice ... entirely random'
+  - {form: "K"}  # REVIEW: S 6.3.2: -q/-k
 - id: lexeme:pp1s
   realises: {Number: Sing, Person: '1'}
   'on': {at: after, pos: [VERB, AUX], has: {Tense: Past, VerbForm: Fin}, lacks: [Person, Evident], or: [{pos: [VERB, AUX], has: {Mood: Cnd}, lacks: [Person]}]}
   gloss: {en: '-m: I (after the past -di and the conditional -sa)'}
   notes: {en: 'bardim "I went", barsam "if I go". These person endings follow the past and the conditional; -män, -sän, -siz, -miz, -sizlär follow the present and a predicate.'}
   allomorphs:
-  - {form: "م", spelled: {chg-Arab/standard: [م]}}  # REVIEW: S 6.3.1 (p. 36): -dim
+  - {form: "m"}
 - id: lexeme:pp2
   realises: {Person: '2', Polite: Form}
   'on': {at: after, pos: [VERB, AUX], has: {Tense: Past, VerbForm: Fin}, lacks: [Person, Evident], or: [{pos: [VERB, AUX], has: {Mood: Cnd}, lacks: [Person]}]}
   gloss: {en: '-ŋiz: you, politely or to several (after the past -di and the conditional -sa)'}
   notes: {en: 'bardiŋiz "you went".'}
   allomorphs:
-  - {form: "نکیز", spelled: {chg-Arab/standard: [نکیز]}}  # REVIEW: S 6.3.1 (p. 36): -diŋiz
+  - {form: "ŋiz"}
 - id: lexeme:pp2pl
   realises: {Number: Plur, Person: '2'}
   'on': {at: after, pos: [VERB, AUX], has: {Tense: Past, VerbForm: Fin}, lacks: [Person, Evident], or: [{pos: [VERB, AUX], has: {Mood: Cnd}, lacks: [Person]}]}
   gloss: {en: '-ŋlar: you, to several people (after the past -di and the conditional -sa)'}
   notes: {en: 'bardiŋlar "you (all) went".'}
   allomorphs:
-  - {form: "نکلار", spelled: {chg-Arab/standard: [نکلار]}}  # REVIEW: S 6.3.1 (p. 36): -diŋlar
+  - {form: "ŋlAr"}
 - id: lexeme:pp2s
   realises: {Number: Sing, Person: '2'}
   'on': {at: after, pos: [VERB, AUX], has: {Tense: Past, VerbForm: Fin}, lacks: [Person, Evident], or: [{pos: [VERB, AUX], has: {Mood: Cnd}, lacks: [Person]}]}
   gloss: {en: '-ŋ: you, to one person you know well (after the past -di and the conditional -sa)'}
   notes: {en: 'bardiŋ "you went". Asked after -sa it is a polite request (Schluessel 16.7): saqlap bärsäŋ? "would you keep it for me?".'}
   allomorphs:
-  - {form: "نک", spelled: {chg-Arab/standard: [نک]}}  # REVIEW: S 6.3.1 (p. 36): -diŋ
+  - {form: "ŋ"}
 - id: lexeme:pres
   realises: {Tense: Pres, VerbForm: Fin}
   'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
@@ -2343,8 +2401,8 @@ lexemes:
   gloss: {en: '-a, -ä (-y after a vowel): the present-future: does, is doing, will do'}
   notes: {en: 'The stem takes -a or -ä, then a person ending: baradur "goes, is going, will go" (-dur for he, she, it). Unit 5 has the other persons. After a vowel it is -y, as after the negative -ma-: qilmaydur "he does not do".'}
   allomorphs:
-  - {form: "ی", after: {endsIn: "{V}"}, spelled: {chg-Arab/standard: [ی]}}  # REVIEW: S 5.2.1 (p. 28): -y- after a vowel
-  - {form: "ا", spelled: {chg-Arab/standard: [ا]}}  # REVIEW: S 5.2.1 (p. 28): -a-/-ä- after a consonant
+  - {form: "y", after: {endsIn: "{V}*"}}  # REVIEW: S 5.2.1 (p. 28): -y- after a vowel
+  - {form: "A\u0329"}  # REVIEW: -a-/-ä-, ا
 - id: lexeme:q
   pos: PART
   feats: {PartType: Int}
@@ -2352,309 +2410,310 @@ lexemes:
   gloss: {en: '-mu: a yes-or-no question'}
   notes: {en: '-mu turns a statement into a question: barmu? "is there?". It comes before -siz and -sän (mullāmusiz? "are you a mullah?"), after -män and -miz (Türkmänmu? "am I a Turk?").'}
   allomorphs:
-  - {form: "مو", spelled: {chg-Arab/standard: [مو]}}  # REVIEW: S 4.2 (p. 20), 5.2.3 (p. 29): -mu
+  - {form: "mu"}  # REVIEW: S 4.2, 5.2.3: -mu
 - id: lexeme:qach
   pos: VERB
   gloss: {en: 'to flee, run away'}
-  form: "قاچ-"
+  form: "qa\u0329č-"
   spelled: {chg-Arab/standard: [قاچ-], chg-Latn/schluessel: [qač-]}
   readings: {schluessel: qač}
   allomorphs:
-  - {form: "قاچ", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [قاچ]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "qa\u0329č", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["قاچ"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:qalam
   pos: NOUN
   gloss: {en: pen; writing}
-  form: "قلم"
+  form: "qalam"
   spelled: {chg-Arab/standard: [قلم], chg-Latn/schluessel: [qalam]}
   readings: {schluessel: qalam}
 - id: lexeme:qalmaq
   pos: PROPN
   gloss: {en: 'Kalmyk, a western Mongol'}
-  form: "قالماق"
+  form: "Qa\u0329lma\u0329q"
   spelled: {chg-Arab/standard: [قالماق], chg-Latn/schluessel: [Qalmaq]}
   readings: {schluessel: Qalmaq}
 - id: lexeme:qand
   pos: NOUN
   gloss: {en: sugar}
-  form: "قند"
+  form: "qand"
   spelled: {chg-Arab/standard: [قند], chg-Latn/schluessel: [qand]}
   readings: {schluessel: qand}
 - id: lexeme:qara
   pos: ADJ
   gloss: {en: black}
-  form: "قرا"
+  form: "qara\u0329"
   spelled: {chg-Arab/standard: [قرا], chg-Latn/schluessel: [qara]}
   readings: {schluessel: qara}
 - id: lexeme:qasaba
   pos: NOUN
   gloss: {en: town; fortress town}
-  form: "قصبە"
+  form: "qaṣaba"
   spelled: {chg-Arab/standard: [قصبه], chg-Latn/schluessel: [qaṣaba]}
   readings: {schluessel: qaṣaba}
 - id: lexeme:qash
   pos: VERB
   gloss: {en: to flee (a spelling of qač-)}
   notes: {en: 'Qasim Beg writes qač- "to flee" as qaš-: qašti "they fled".'}
-  form: "قاش-"
+  form: "qa\u0329š-"
   spelled: {chg-Arab/standard: [قاش-], chg-Latn/schluessel: [qaš-]}
   readings: {schluessel: qaš}
   allomorphs:
-  - {form: "قاش", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [قاش]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "qa\u0329š", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["قاش"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:qash.presence
   pos: NOUN
   gloss: {en: presence; side (of a person)}
   notes: {en: 'pādišāh qašiǧa "before the king, to the king".'}
-  form: "قاش"
+  form: "qa\u0329š"
   spelled: {chg-Arab/standard: [قاش], chg-Latn/schluessel: [qaš]}
   readings: {schluessel: qaš}
 - id: lexeme:qattiq
   pos: ADJ
   gloss: {en: 'hard; fierce, heavy'}
-  form: "قاتیق"
+  form: "qa\u0329tti\u0329q"
   spelled: {chg-Arab/standard: [قاتیق, قاتتیق], chg-Latn/schluessel: [qattiq]}
   readings: {schluessel: qattiq}
   allomorphs:
-  - {form: "قاتتیق", free: true, spelled: {chg-Arab/standard: [قاتتیق]}}  # REVIEW: the lemma's other spelling
+  - {form: "qa\u0329tt\u0329i\u0329q", free: true, spelled: {chg-Arab/standard: ["قاتتیق"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:qayda
   pos: ADV
   feats: {PronType: Int}
   gloss: {en: 'where?'}
-  form: "قایدە"
+  form: "qa\u0329yda"
   spelled: {chg-Arab/standard: [قایده], chg-Latn/schluessel: [qayda]}
   readings: {schluessel: qayda}
 - id: lexeme:qil
   pos: VERB
   gloss: {en: to do; to make}
-  form: "قیل-"
+  form: "qï\u0329l-"
   spelled: {chg-Arab/standard: [قیل-], chg-Latn/schluessel: [qil-]}
   readings: {schluessel: qil}
   allomorphs:
-  - {form: "قیل", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [قیل]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
-  - {form: "قل", free: true, spelled: {chg-Arab/standard: [قل]}}  # REVIEW: a scribe's other spelling
+  - {form: "qï\u0329l", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["قیل"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "qïl", free: true, spelled: {chg-Arab/standard: ["قل"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:qimmat
   pos: ADJ
   gloss: {en: 'expensive, dear'}
-  form: "قیمت"
+  form: "qi\u0329mmät"
   spelled: {chg-Arab/standard: [قیمت], chg-Latn/schluessel: [qimmät]}
   readings: {schluessel: qimmät}
 - id: lexeme:qirghawul
   pos: NOUN
   gloss: {en: pheasant}
-  form: "قیرغاول"
+  form: "qi\u0329rǧa\u0329wu\u0326l"
   spelled: {chg-Arab/standard: [قیرغاول], chg-Latn/schluessel: [qirǧawul]}
   readings: {schluessel: qirǧawul}
 - id: lexeme:qirq
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: forty}
-  form: "قیرق"
+  form: "qi\u0329rq"
   spelled: {chg-Arab/standard: [قیرق], chg-Latn/schluessel: [qirq]}
   readings: {schluessel: qirq}
 - id: lexeme:qiz
   pos: NOUN
   gloss: {en: girl; daughter}
-  form: "قیز"
+  form: "qï\u0329z"
   spelled: {chg-Arab/standard: [قیز], chg-Latn/schluessel: [qiz]}
   readings: {schluessel: qiz}
 - id: lexeme:qizil
   pos: ADJ
   gloss: {en: red}
-  form: "قزل"
+  form: "qizil"
   spelled: {chg-Arab/standard: [قزل, قزیل], chg-Latn/schluessel: [qizil]}
   readings: {schluessel: qizil}
   allomorphs:
-  - {form: "قزیل", free: true, spelled: {chg-Arab/standard: [قزیل]}}  # REVIEW: the lemma's other spelling
+  - {form: "qizi\u0329l", free: true, spelled: {chg-Arab/standard: ["قزیل"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:qol
   pos: NOUN
   gloss: {en: hand; arm}
   notes: {en: qol baǧla- "to clasp one's hands" (standing to serve).}
-  form: "قول"
+  form: "qol"
   spelled: {chg-Arab/standard: [قول], chg-Latn/schluessel: [qol]}
   readings: {schluessel: qol}
 - id: lexeme:qon
   pos: VERB
   gloss: {en: 'to stop for the night, camp'}
-  form: "قون-"
+  form: "qon-"
   spelled: {chg-Arab/standard: [قون-], chg-Latn/schluessel: [qon-]}
   readings: {schluessel: qon}
   allomorphs:
-  - {form: "قون", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [قون]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "qon", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["قون"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:qop
   pos: VERB
   gloss: {en: 'to get up, rise'}
-  form: "قوپ-"
-  spelled: {chg-Arab/standard: [قوپ-], chg-Latn/schluessel: [qoṗ-]}
-  readings: {schluessel: qoṗ}
+  form: "qop-"
+  spelled: {chg-Arab/standard: [قوپ-], chg-Latn/schluessel: [qop-]}
+  readings: {schluessel: qop}
   allomorphs:
-  - {form: "قوپ", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [قوپ]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
-  - {form: "قوف", free: true, spelled: {chg-Arab/standard: [قوف]}}  # REVIEW: a scribe's other spelling
+  - {form: "qop", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["قوپ"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "qoṗ", free: true, spelled: {chg-Arab/standard: ["قوف"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:qoshul
   pos: VERB
   gloss: {en: to join (with -ǧa)}
-  form: "قوشول-"
+  form: "qošul-"
   spelled: {chg-Arab/standard: [قوشول-], chg-Latn/schluessel: [qošul-]}
   readings: {schluessel: qošul}
   allomorphs:
-  - {form: "قوشول", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [قوشول]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "qošul", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["قوشول"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:qoy
   pos: NOUN
   gloss: {en: sheep}
   image: {file: ../../courses/images/sheep.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "قوي"
+  form: "qoy"
   spelled: {chg-Arab/standard: [قوی], chg-Latn/schluessel: [qoy]}
   readings: {schluessel: qoy}
 - id: lexeme:qoy.put
   pos: VERB
   gloss: {en: 'to put, place; to give (a name)'}
   notes: {en: 'at qoy- "to name": "Šajara-i Türk" tep at qoyduq "we named it the Genealogy of the Turks".'}
-  form: "قوي-"
+  form: "qoy-"
   spelled: {chg-Arab/standard: [قوی-], chg-Latn/schluessel: [qoy-]}
   readings: {schluessel: qoy}
   allomorphs:
-  - {form: "قوي", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [قوی]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "qoy", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["قوی"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:qoychi
   pos: NOUN
   gloss: {en: shepherd}
   base: lexeme:qoy
   pattern: lexeme:ci
-  form: "قوي+چی"
+  form: "qoyči"
   spelled: {chg-Arab/standard: [قویچی], chg-Latn/schluessel: [qoyči]}
   readings: {schluessel: qoyči}
 - id: lexeme:qubays
   pos: PROPN
   gloss: {en: Qubays (in the name Abū Qubays)}
-  form: "قبیس"
+  form: "Qu\u0326bays"
   spelled: {chg-Arab/standard: [قبیس], chg-Latn/schluessel: [Qubays]}
   readings: {schluessel: Qubays}
 - id: lexeme:qulaq
   pos: NOUN
   gloss: {en: ear}
-  form: "قولاق"
+  form: "qula\u0329q"
   spelled: {chg-Arab/standard: [قولاق], chg-Latn/schluessel: [qulaq]}
   readings: {schluessel: qulaq}
 - id: lexeme:qulla
   pos: NOUN
   gloss: {en: 'peak, summit'}
-  form: "قلە"
+  form: "qu\u0326lla"
   spelled: {chg-Arab/standard: [قله], chg-Latn/schluessel: [qulla]}
   readings: {schluessel: qulla}
 - id: lexeme:qurghan
   pos: NOUN
   gloss: {en: 'fortress, castle'}
-  form: "قورغان"
+  form: "qurǧa\u0329n"
   spelled: {chg-Arab/standard: [قورغان], chg-Latn/schluessel: [qurǧan]}
   readings: {schluessel: qurǧan}
 - id: lexeme:qush
   pos: NOUN
   gloss: {en: bird}
   image: {file: ../../courses/images/bird.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "قوش"
+  form: "quš"
   spelled: {chg-Arab/standard: [قوش], chg-Latn/schluessel: [quš]}
   readings: {schluessel: quš}
 - id: lexeme:rafiq
   pos: NOUN
   gloss: {en: 'companion, friend'}
-  form: "رفیق"
+  form: "rafīq"
   spelled: {chg-Arab/standard: [رفیق], chg-Latn/schluessel: [rafīq]}
   readings: {schluessel: rafīq}
 - id: lexeme:ramzan
   pos: PROPN
   gloss: {en: Ramadan (the ninth month)}
-  form: "رمضان"
+  form: "Ramżān"
   spelled: {chg-Arab/standard: [رمضان], chg-Latn/schluessel: [Ramżān]}
   readings: {schluessel: Ramżān}
 - id: lexeme:raqim
   pos: PROPN
   gloss: {en: Raqim (the cave of the Sleepers)}
-  form: "رقیم"
+  form: "Raqīm"
   spelled: {chg-Arab/standard: [رقیم], chg-Latn/schluessel: [Raqīm]}
   readings: {schluessel: Raqīm}
 - id: lexeme:rast
   pos: ADJ
   gloss: {en: 'true, right, straight'}
-  form: "راست"
+  form: "rāst"
   spelled: {chg-Arab/standard: [راست], chg-Latn/schluessel: [rāst]}
   readings: {schluessel: rāst}
 - id: lexeme:rikabdar
   pos: NOUN
   gloss: {en: stirrup-holder (a khan's attendant)}
-  form: "رکابدار"
+  form: "rikābdār"
   spelled: {chg-Arab/standard: [رکابدار], chg-Latn/schluessel: [rikābdār]}
   readings: {schluessel: rikābdār}
 - id: lexeme:riwayat
   pos: NOUN
   gloss: {en: 'story, account'}
   notes: {en: 'riwāyat qil- "to tell, relate".'}
-  form: "روایت"
+  form: "riwāyat"
   spelled: {chg-Arab/standard: [روایت], chg-Latn/schluessel: [riwāyat]}
   readings: {schluessel: riwāyat}
 - id: lexeme:roza
   pos: NOUN
   gloss: {en: the fast (of Ramadan)}
-  form: "روزە"
+  form: "roza"
   spelled: {chg-Arab/standard: [روزه], chg-Latn/schluessel: [roza]}
   readings: {schluessel: roza}
 - id: lexeme:rubaru
   pos: ADV
   gloss: {en: face to face (Persian)}
   notes: {en: rū-ba-rūlarida "face to face with them".}
-  form: "روبرو"
+  form: "rū-ba\u0326-rū"
   spelled: {chg-Arab/standard: [روبرو], chg-Latn/schluessel: [rū-ba-rū]}
   readings: {schluessel: rū-ba-rū}
 - id: lexeme:ruy
   pos: NOUN
   gloss: {en: face (Persian)}
   notes: {en: rūy-i ʿālam "the face of the world".}
-  form: "روي"
+  form: "rūy"
   spelled: {chg-Arab/standard: [روی], chg-Latn/schluessel: [rūy]}
   readings: {schluessel: rūy}
 - id: lexeme:saat
   pos: NOUN
   gloss: {en: hour; moment}
-  form: "ساعت"
+  form: "sāʿa\u0364t"
   spelled: {chg-Arab/standard: [ساعت], chg-Latn/schluessel: [sāʿat]}
   readings: {schluessel: sāʿat}
 - id: lexeme:sabab
   pos: NOUN
   gloss: {en: 'reason, cause'}
   notes: {en: ul sababdin "for that reason".}
-  form: "سبب"
+  form: "sabab"
   spelled: {chg-Arab/standard: [سبب], chg-Latn/schluessel: [sabab]}
   readings: {schluessel: sabab}
 - id: lexeme:safar
   pos: NOUN
   gloss: {en: journey}
-  form: "سفر"
+  form: "safa\u0364r"
   spelled: {chg-Arab/standard: [سفر], chg-Latn/schluessel: [safar]}
   readings: {schluessel: safar}
 - id: lexeme:sajdat
   pos: NOUN
   gloss: {en: prostrations (in prayer)}
-  form: "سجدات"
+  form: "sajdāt"
   spelled: {chg-Arab/standard: [سجدات], chg-Latn/schluessel: [sajdāt]}
   readings: {schluessel: sajdāt}
 - id: lexeme:sakkiz
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: eight}
-  form: "سکز"
+  form: "säkkiz"
   spelled: {chg-Arab/standard: [سکز, سیکیز], chg-Latn/schluessel: [säkkiz]}
   readings: {schluessel: säkkiz}
   allomorphs:
-  - {form: "سیکیز", free: true, spelled: {chg-Arab/standard: [سیکیز]}}  # REVIEW: the lemma's other spelling
+  - {form: "sä\u032Fkki\u0329z", free: true, spelled: {chg-Arab/standard: ["سیکیز"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:sal
   pos: VERB
   gloss: {en: 'to put, throw; to build, set up'}
-  form: "سال-"
+  form: "sa\u0329l-"
   spelled: {chg-Arab/standard: [سال-], chg-Latn/schluessel: [sal-]}
   readings: {schluessel: sal}
   allomorphs:
-  - {form: "سال", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [سال]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "sa\u0329l", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["سال"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "sa\u0329li\u0329p\u0324", free: true, spelled: {chg-Arab/standard: ["سالیب"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
   - {spelled: {chg-Arab/standard: [سالیب]}}  # REVIEW: the course's segmentation of a token the rules write otherwise (docs/rules/chg.md)
 - id: lexeme:samarqand
   pos: PROPN
   gloss: {en: Samarkand}
-  form: "سمرقند"
+  form: "Samarqand"
   spelled: {chg-Arab/standard: [سمرقند], chg-Latn/schluessel: [Samarqand]}
   readings: {schluessel: Samarqand}
 - id: lexeme:samarqandlik
@@ -2662,150 +2721,155 @@ lexemes:
   gloss: {en: 'of Samarkand, Samarkandi'}
   base: lexeme:samarqand
   pattern: lexeme:liq
-  form: "سمرقند+لیک"
+  form: "Samarqandli\u0329k"
   spelled: {chg-Arab/standard: [سمرقندلیک], chg-Latn/schluessel: [Samarqandlik]}
   readings: {schluessel: Samarqandlik}
 - id: lexeme:san
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: you (to one person you know well)}
-  form: "سن"
+  form: "sän"
   spelled: {chg-Arab/standard: [سن], chg-Latn/schluessel: [sän]}
   readings: {schluessel: sän}
   allomorphs:
-  - {form: "سین", free: true, spelled: {chg-Arab/standard: [سین]}}  # REVIEW: sän written with ی
+  - {form: "se\u0329n", free: true, spelled: {chg-Arab/standard: ["سین"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
   - {spelled: {chg-Arab/standard: [س]}}  # REVIEW: the course's segmentation of a token the rules write otherwise (docs/rules/chg.md)
+  - {form: "sa\u0326", before: {startsIn: "[Ğŋ]*"}, spelled: {chg-Arab/standard: ["س"]}}  # REVIEW: before the dative's ŋa: maŋa, saŋa (S 10.13, p. 85)
 - id: lexeme:sanduq
   pos: NOUN
   gloss: {en: 'box, chest'}
-  form: "صندوق"
+  form: "ṣandūq"
   spelled: {chg-Arab/standard: [صندوق], chg-Latn/schluessel: [ṣandūq]}
   readings: {schluessel: ṣandūq}
 - id: lexeme:saqla
   pos: VERB
   gloss: {en: 'to keep, save, guard; to wait'}
-  form: "ساقلا-"
+  form: "sa\u0329qla\u0329-"
   spelled: {chg-Arab/standard: [ساقلا-], chg-Latn/schluessel: [saqla-]}
   readings: {schluessel: saqla}
   allomorphs:
-  - {form: "ساقلا", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [ساقلا]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "sa\u0329qla\u0329", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["ساقلا"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:sawuq
   pos: ADJ
   gloss: {en: cold}
-  form: "ساوق"
+  form: "sa\u0329wu\u0326q"
   spelled: {chg-Arab/standard: [ساوق], chg-Latn/schluessel: [sawuq]}
   readings: {schluessel: sawuq}
 - id: lexeme:sayhun
   pos: PROPN
   gloss: {en: 'the Sayhun, the Jaxartes (the Syr Darya)'}
-  form: "سیحون"
+  form: "Sayḥūn"
   spelled: {chg-Arab/standard: [سیحون], chg-Latn/schluessel: [Sayḥūn]}
   readings: {schluessel: Sayḥūn}
 - id: lexeme:sayr
   pos: NOUN
   gloss: {en: 'travel, journey'}
   notes: {en: sayr qil- "to travel".}
-  form: "سیر"
+  form: "sayr"
   spelled: {chg-Arab/standard: [سیر], chg-Latn/schluessel: [sayr]}
   readings: {schluessel: sayr}
 - id: lexeme:semiz
   pos: ADJ
   gloss: {en: fat}
-  form: "سیمیز"
+  form: "se\u0329mi\u0329z"
   spelled: {chg-Arab/standard: [سیمیز], chg-Latn/schluessel: [semiz]}
   readings: {schluessel: semiz}
 - id: lexeme:shah
   pos: NOUN
   gloss: {en: 'shah, king'}
-  form: "شاه"
+  form: "šāh"
   spelled: {chg-Arab/standard: [شاه], chg-Latn/schluessel: [šāh]}
   readings: {schluessel: šāh}
+  allomorphs:
+  - {form: "ša\u0329h", free: true, spelled: {chg-Arab/standard: ["شاه"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:shahab
   pos: PROPN
   gloss: {en: 'Shahab (in Šahāb ud-Dīn, a companion of Jalāl ud-Dīn)'}
-  form: "شهاب"
+  form: "Šahāb"
   spelled: {chg-Arab/standard: [شهاب], chg-Latn/schluessel: [Šahāb]}
   readings: {schluessel: Šahāb}
 - id: lexeme:shahar
   pos: NOUN
   gloss: {en: 'city, town'}
-  form: "شهر"
+  form: "šaha\u0364r"
   spelled: {chg-Arab/standard: [شهر], chg-Latn/schluessel: [šahar]}
   readings: {schluessel: šahar}
   allomorphs:
-  - {form: "شهری", free: true, spelled: {chg-Arab/standard: [شهری]}}  # REVIEW: šahargä written شهریکه: the Tadhkira's scribe (S p. 137; the scheme lists it)
+  - {form: "šaha\u0364ri\u0338", free: true, spelled: {chg-Arab/standard: ["شهری"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
+  - {form: "šahar", free: true, spelled: {chg-Arab/standard: ["شهر"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:shahari
   pos: NOUN
   gloss: {en: 'city person, townsman'}
   base: lexeme:shahar
   pattern: lexeme:nisba
-  form: "شهر+ی"
+  form: "šaharī"
   spelled: {chg-Arab/standard: [شهری], chg-Latn/schluessel: [šaharī]}
   readings: {schluessel: šaharī}
 - id: lexeme:shajara
   pos: NOUN
   gloss: {en: 'tree; family tree, genealogy'}
-  form: "شجرە"
+  form: "šajara"
   spelled: {chg-Arab/standard: [شجره], chg-Latn/schluessel: [šajara]}
   readings: {schluessel: šajara}
   allomorphs:
   - {spelled: {chg-Arab/standard: [شجرهٔ]}}  # REVIEW: the course's segmentation of a token the rules write otherwise (docs/rules/chg.md)
+  - {form: "šajarahʾ\u0338", before: {startsIn: "+?-*"}, spelled: {chg-Arab/standard: ["شجره\u0654"]}}  # REVIEW: before the ezafe: šajarah-i, its hamza on the he (S 10.4, p. 77)
 - id: lexeme:sharab
   pos: NOUN
   gloss: {en: wine}
-  form: "شراب"
+  form: "šarāb"
   spelled: {chg-Arab/standard: [شراب], chg-Latn/schluessel: [šarāb]}
   readings: {schluessel: šarāb}
 - id: lexeme:sharq
   pos: NOUN
   gloss: {en: east}
-  form: "شرق"
+  form: "šarq"
   spelled: {chg-Arab/standard: [شرق], chg-Latn/schluessel: [šarq]}
   readings: {schluessel: šarq}
 - id: lexeme:sharr
   pos: ADJ
   gloss: {en: grim; evil (Arabic)}
   notes: {en: šarr mard "a grim fellow".}
-  form: "شر"
+  form: "šarr"
   spelled: {chg-Arab/standard: [شر], chg-Latn/schluessel: [šarr]}
   readings: {schluessel: šarr}
 - id: lexeme:shaykh
   pos: NOUN
   gloss: {en: 'shaykh, sheikh (a Sufi master)'}
-  form: "شیخ"
+  form: "šayḫ"
   spelled: {chg-Arab/standard: [شیخ], chg-Latn/schluessel: [šayḫ]}
   readings: {schluessel: šayḫ}
 - id: lexeme:shimal
   pos: NOUN
   gloss: {en: north}
-  form: "شمال"
+  form: "šimāl"
   spelled: {chg-Arab/standard: [شمال], chg-Latn/schluessel: [šimāl]}
   readings: {schluessel: šimāl}
 - id: lexeme:shirin
   pos: ADJ
   gloss: {en: sweet}
-  form: "شیرین"
+  form: "ši\u0329ri\u0329n"
   spelled: {chg-Arab/standard: [شیرین], chg-Latn/schluessel: [širin]}
   readings: {schluessel: širin}
 - id: lexeme:shu
   pos: PRON
   feats: {PronType: Dem}
   gloss: {en: 'this, that (just mentioned)'}
-  form: "شو"
+  form: "šu"
   spelled: {chg-Arab/standard: [شو], chg-Latn/schluessel: [šu]}
   readings: {schluessel: šu}
 - id: lexeme:shubu
   pos: DET
   feats: {PronType: Dem}
   gloss: {en: this (very)}
-  form: "شبو"
+  form: "šu\u0326bu"
   spelled: {chg-Arab/standard: [شبو], chg-Latn/schluessel: [šubu]}
   readings: {schluessel: šubu}
 - id: lexeme:shukr
   pos: NOUN
   gloss: {en: 'thanks, gratitude'}
   notes: {en: sajdāt-i šukr "prostrations of thanks".}
-  form: "شکر"
+  form: "šu\u0326kr"
   spelled: {chg-Arab/standard: [شکر], chg-Latn/schluessel: [šukr]}
   readings: {schluessel: šukr}
 - id: lexeme:shul
@@ -2813,230 +2877,237 @@ lexemes:
   feats: {PronType: Dem}
   gloss: {en: that (very)}
   notes: {en: šul sāʿatdä "at that very hour".}
-  form: "شول"
+  form: "šul"
   spelled: {chg-Arab/standard: [شول], chg-Latn/schluessel: [šul]}
   readings: {schluessel: šul}
 - id: lexeme:siz
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: 'you (polite, to one person or several)'}
-  form: "سیز"
+  form: "si\u0329z"
   spelled: {chg-Arab/standard: [سیز], chg-Latn/schluessel: [siz]}
   readings: {schluessel: siz}
 - id: lexeme:sizlar
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: you (to several people)}
-  form: "سیزلار"
+  form: "si\u0329zlä\u0329r"
   spelled: {chg-Arab/standard: [سیزلار], chg-Latn/schluessel: [sizlär]}
   readings: {schluessel: sizlär}
 - id: lexeme:sol
   pos: ADJ
   gloss: {en: left (side)}
-  form: "سول"
+  form: "sol"
   spelled: {chg-Arab/standard: [سول], chg-Latn/schluessel: [sol]}
   readings: {schluessel: sol}
 - id: lexeme:songra
   pos: ADP
   gloss: {en: 'after, later (with -din)'}
   notes: {en: 'X-din soŋra "after X", as X-din keyin.'}
-  form: "سونکرە"
+  form: "soŋra"
   spelled: {chg-Arab/standard: [سونکره, سونکرا], chg-Latn/schluessel: [soŋra]}
   readings: {schluessel: soŋra}
   allomorphs:
-  - {form: "سونکرا", free: true, spelled: {chg-Arab/standard: [سونکرا]}}  # REVIEW: the lemma's other spelling
+  - {form: "soŋra\u0329", free: true, spelled: {chg-Arab/standard: ["سونکرا"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:sor
   pos: VERB
   gloss: {en: to ask}
   notes: {en: söz sor- "to ask (something)".}
-  form: "سور-"
+  form: "sor-"
   spelled: {chg-Arab/standard: [سور-], chg-Latn/schluessel: [sor-]}
   readings: {schluessel: sor}
   allomorphs:
-  - {form: "سور", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [سور]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "sor", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["سور"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:soz
   pos: NOUN
   gloss: {en: 'word; speech, something to say'}
-  form: "سوز"
+  form: "söz"
   spelled: {chg-Arab/standard: [سوز], chg-Latn/schluessel: [söz]}
   readings: {schluessel: söz}
 - id: lexeme:sozla
   pos: VERB
   gloss: {en: 'to speak, talk'}
-  form: "سوزلا-"
+  form: "sözlä\u0329-"
   spelled: {chg-Arab/standard: [سوزلا-], chg-Latn/schluessel: [sözlä-]}
   readings: {schluessel: sözlä}
   allomorphs:
-  - {form: "سوزلا", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [سوزلا]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "sözlä\u0329", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["سوزلا"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:su
   pos: NOUN
   gloss: {en: water}
   notes: {en: 'With "its" it is suyi (سویی), or süyi.'}
   image: {file: ../../courses/images/water.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "سو"
+  form: "su"
   spelled: {chg-Arab/standard: [سو], chg-Latn/schluessel: [su]}
   readings: {schluessel: su}
   allomorphs:
-  - {form: "سوي", before: {startsIn: "ی"}, spelled: {chg-Arab/standard: [سوی]}}  # REVIEW: S 3.3.5 (p. 16): su is written süyi سویی with its -i
-  - {form: "سوي", before: {startsIn: "سی"}, spelled: {chg-Arab/standard: [سوی]}}  # REVIEW: the same, before the -si it would take after a vowel
+  - {form: "suy", before: {startsIn: "[is]*"}, spelled: {chg-Arab/standard: ["سوی"]}}  # REVIEW: as the course's tokens write it
+  - {form: "sü\u035B", free: true, spelled: {chg-Arab/standard: ["س\u064Fو"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
+  - {form: "süy", before: {startsIn: "[is]*"}, free: true, spelled: {chg-Arab/standard: ["سوی"]}}  # REVIEW: süyi, the course's other reading of suyi
+  - {form: "sü\u035By", before: {startsIn: "[is]*"}, free: true, spelled: {chg-Arab/standard: ["س\u064Fوی"]}}  # REVIEW: süyi written سُوی, the possessive's ی the stem's y
+  - {form: "sü", free: true, spelled: {chg-Arab/standard: ["سو"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:sultan
   pos: NOUN
   gloss: {en: sultan}
-  form: "سلطان"
+  form: "su\u0326lṭān"
   spelled: {chg-Arab/standard: [سلطان], chg-Latn/schluessel: [sulṭān]}
   readings: {schluessel: sulṭān}
 - id: lexeme:sut
   pos: NOUN
   gloss: {en: milk}
-  form: "سوت"
+  form: "süt"
   spelled: {chg-Arab/standard: [سوت], chg-Latn/schluessel: [süt]}
   readings: {schluessel: süt}
 - id: lexeme:taala
   pos: ADJ
   gloss: {en: exalted (after the name of God)}
-  form: "تعالی"
+  form: "taʿālà"
   spelled: {chg-Arab/standard: [تعالی], chg-Latn/schluessel: [taʿālà]}
   readings: {schluessel: taʿālà}
 - id: lexeme:taam
   pos: NOUN
   gloss: {en: food (Arabic)}
-  form: "طعام"
+  form: "ṭaʿām"
   spelled: {chg-Arab/standard: [طعام], chg-Latn/schluessel: [ṭaʿām]}
   readings: {schluessel: ṭaʿām}
 - id: lexeme:tagh
   pos: NOUN
   gloss: {en: mountain}
   image: {file: ../../courses/images/mountain.svg, license: CC0-1.0, provenance: {author: 'llm:claude@chg-draft-v1', status: draft}, source: Drawn for Nabu (courses/images)}
-  form: "تاغ"
+  form: "ta\u0329ǧ"
   spelled: {chg-Arab/standard: [تاغ], chg-Latn/schluessel: [taǧ]}
   readings: {schluessel: taǧ}
 - id: lexeme:tamam
   pos: DET
   feats: {PronType: Tot}
   gloss: {en: 'all, whole; complete'}
-  form: "تمام"
+  form: "tamām"
   spelled: {chg-Arab/standard: [تمام], chg-Latn/schluessel: [tamām]}
   readings: {schluessel: tamām}
 - id: lexeme:tamlikha
   pos: PROPN
   gloss: {en: Tamlikha (one of the Seven Sleepers)}
-  form: "تملیخا"
+  form: "Tamlīḫā"
   spelled: {chg-Arab/standard: [تملیخا], chg-Latn/schluessel: [Tamlīḫā]}
   readings: {schluessel: Tamlīḫā}
 - id: lexeme:tang
   pos: NOUN
   gloss: {en: dawn}
-  form: "تانک"
+  form: "ta\u0329ŋ"
   spelled: {chg-Arab/standard: [تانک], chg-Latn/schluessel: [taŋ]}
   readings: {schluessel: taŋ}
 - id: lexeme:tangri
   pos: PROPN
   gloss: {en: God}
-  form: "تنکری"
+  form: "Täŋri"
   spelled: {chg-Arab/standard: [تنکری], chg-Latn/schluessel: [Täŋri]}
   readings: {schluessel: Täŋri}
 - id: lexeme:tap
   pos: VERB
   gloss: {en: to find}
-  form: "تاپ-"
+  form: "ta\u0329p-"
   spelled: {chg-Arab/standard: [تاپ-], chg-Latn/schluessel: [tap-]}
   readings: {schluessel: tap}
   allomorphs:
-  - {form: "تاپ", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [تاپ]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
-  - {form: "تاب", free: true, spelled: {chg-Arab/standard: [تاب]}}  # REVIEW: a scribe's other spelling
+  - {form: "ta\u0329p", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["تاپ"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ta\u0329p\u0324", free: true, spelled: {chg-Arab/standard: ["تاب"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:taqi
   pos: CCONJ
   gloss: {en: and; also; again}
   notes: {en: 'Abu ''l-Ghazi''s "and": taqi toqquz bāb qilduq "and we made nine chapters".'}
-  form: "تقی"
+  form: "taqi"
   spelled: {chg-Arab/standard: [تقی], chg-Latn/schluessel: [taqi]}
   readings: {schluessel: taqi}
 - id: lexeme:tara
   pos: PROPN
   gloss: {en: 'Tara (in Toqquz Tara, a place in the Ili valley)'}
-  form: "ترا"
+  form: "Tara\u0329"
   spelled: {chg-Arab/standard: [ترا], chg-Latn/schluessel: [Tara]}
   readings: {schluessel: Tara}
 - id: lexeme:taraf
   pos: NOUN
   gloss: {en: 'side, direction'}
-  form: "طرف"
+  form: "ṭaraf"
   spelled: {chg-Arab/standard: [طرف], chg-Latn/schluessel: [ṭaraf]}
   readings: {schluessel: ṭaraf}
 - id: lexeme:tarikh
   pos: NOUN
   gloss: {en: 'date, year (of an era); history'}
   notes: {en: 'tārīḫ-i 899 "the year 899", with the ezafe. Dates count the years of the Hijra (899 is 1494 CE).'}
-  form: "تاریخ"
+  form: "tārīḫ"
   spelled: {chg-Arab/standard: [تاریخ], chg-Latn/schluessel: [tārīḫ]}
   readings: {schluessel: tārīḫ}
 - id: lexeme:tash
   pos: NOUN
   gloss: {en: stone}
-  form: "تاش"
+  form: "ta\u0329š"
   spelled: {chg-Arab/standard: [تاش], chg-Latn/schluessel: [taš]}
   readings: {schluessel: taš}
 - id: lexeme:taygan
   pos: NOUN
   gloss: {en: 'hunting dog, greyhound'}
-  form: "تایغان"
+  form: "ta\u0329yǧa\u0329n"
   spelled: {chg-Arab/standard: [تایغان], chg-Latn/schluessel: [tayǧan]}
   readings: {schluessel: tayǧan}
 - id: lexeme:temur
   pos: PROPN
   gloss: {en: Temür (a name; "iron")}
-  form: "تمور"
+  form: "Temür"
   spelled: {chg-Arab/standard: [تمور], chg-Latn/schluessel: [Temür]}
   readings: {schluessel: Temür}
 - id: lexeme:til
   pos: NOUN
   gloss: {en: language; tongue}
-  form: "تیل"
+  form: "ti\u0329l"
   spelled: {chg-Arab/standard: [تیل], chg-Latn/schluessel: [til]}
   readings: {schluessel: til}
 - id: lexeme:tiz
   pos: NOUN
   gloss: {en: knee}
-  form: "تیز"
+  form: "ti\u0329z"
   spelled: {chg-Arab/standard: [تیز], chg-Latn/schluessel: [tiz]}
   readings: {schluessel: tiz}
+  allomorphs:
+  - {form: "tï\u0329z", free: true, spelled: {chg-Arab/standard: ["تیز"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:tokhta
   pos: PROPN
   gloss: {en: Tokhta (a man's name)}
-  form: "توختە"
+  form: "Toḫta"
   spelled: {chg-Arab/standard: [توخته], chg-Latn/schluessel: [Toḫta]}
   readings: {schluessel: Toḫta}
 - id: lexeme:tola
   pos: ADJ
   gloss: {en: 'very; many, much'}
-  form: "تولا"
+  form: "tola\u0329"
   spelled: {chg-Arab/standard: [تولا], chg-Latn/schluessel: [tola]}
   readings: {schluessel: tola}
 - id: lexeme:toqquz
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: nine}
-  form: "توقوز"
+  form: "toqquz"
   spelled: {chg-Arab/standard: [توقوز], chg-Latn/schluessel: [toqquz]}
   readings: {schluessel: toqquz}
+  allomorphs:
+  - {form: "toqq\u0359uz", free: true, spelled: {chg-Arab/standard: ["توق\u0651وز"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:toqsan
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: ninety}
-  form: "توقسان"
+  form: "toqsa\u0329n"
   spelled: {chg-Arab/standard: [توقسان], chg-Latn/schluessel: [toqsan]}
   readings: {schluessel: toqsan}
 - id: lexeme:tora
   pos: NOUN
   gloss: {en: 'lord, ruler (a title: the Tora)'}
-  form: "تورا"
+  form: "törä\u0329"
   spelled: {chg-Arab/standard: [تورا], chg-Latn/schluessel: [törä]}
   readings: {schluessel: törä}
 - id: lexeme:tort
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: four}
-  form: "تورت"
+  form: "tört"
   spelled: {chg-Arab/standard: [تورت], chg-Latn/schluessel: [tört]}
   readings: {schluessel: tört}
 - id: lexeme:tortunchi
@@ -3045,43 +3116,43 @@ lexemes:
   gloss: {en: fourth}
   base: lexeme:tort
   pattern: lexeme:ord
-  form: "تورت+ونچی"
+  form: "törtünči"
   spelled: {chg-Arab/standard: [تورتونچی], chg-Latn/schluessel: [törtünči]}
   readings: {schluessel: törtünči}
   allomorphs:
-  - {form: "تورت+ونجی", free: true, spelled: {chg-Arab/standard: [تورتونجی]}}  # REVIEW: a scribe's other spelling, as the course writes it
+  - {form: "törtünč\u0324i", free: true, spelled: {chg-Arab/standard: ["تورتونجی"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:tufan
   pos: NOUN
   gloss: {en: the Flood (of Noah); a flood}
-  form: "طوفان"
+  form: "ṭūfān"
   spelled: {chg-Arab/standard: [طوفان], chg-Latn/schluessel: [ṭūfān]}
   readings: {schluessel: ṭūfān}
 - id: lexeme:tugat
   pos: VERB
   gloss: {en: 'to finish, use up'}
-  form: "توکات-"
+  form: "tügä\u0329t-"
   spelled: {chg-Arab/standard: [توکات-], chg-Latn/schluessel: [tügät-]}
   readings: {schluessel: tügät}
   allomorphs:
-  - {form: "توکات", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [توکات]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "tügä\u0329t", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["توکات"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:tughluq
   pos: PROPN
   gloss: {en: 'Tughluq (in Tughluq Temür Khan, a khan of Moghulistan, died 1363)'}
-  form: "توغلوق"
+  form: "Tuǧluq"
   spelled: {chg-Arab/standard: [توغلوق], chg-Latn/schluessel: [Tuǧluq]}
   readings: {schluessel: Tuǧluq}
 - id: lexeme:turk
   pos: PROPN
   gloss: {en: 'Turk, Turkic; the Turks'}
-  form: "تورک"
+  form: "Türk"
   spelled: {chg-Arab/standard: [تورک, ترک], chg-Latn/schluessel: [Türk]}
   readings: {schluessel: Türk}
   allomorphs:
-  - {form: "ترک", free: true, spelled: {chg-Arab/standard: [ترک]}}  # REVIEW: the lemma's other spelling
+  - {form: "Tü\u0326rk", free: true, spelled: {chg-Arab/standard: ["ترک"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:turki
   pos: PROPN
   gloss: {en: 'Turki, the Turkic language'}
-  form: "ترکی"
+  form: "Tu\u0326rkī"
   spelled: {chg-Arab/standard: [ترکی], chg-Latn/schluessel: [Turkī]}
   readings: {schluessel: Turkī}
 - id: lexeme:turur
@@ -3089,53 +3160,53 @@ lexemes:
   requires: []
   gloss: {en: 'is, are (an older form of -dur)'}
   notes: {en: 'turur, the aorist of tur- "to stand", stands where later texts have -dur: mis̱li turur "there is a proverb".'}
-  form: "تورور"
+  form: "turur"
   spelled: {chg-Arab/standard: [تورور, ترور], chg-Latn/schluessel: [turur]}
   readings: {schluessel: turur}
   allomorphs:
-  - {form: "ترور", free: true, spelled: {chg-Arab/standard: [ترور]}}  # REVIEW: the lemma's other spelling
+  - {form: "tu\u0326rur", free: true, spelled: {chg-Arab/standard: ["ترور"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:tush
   pos: VERB
   gloss: {en: 'to fall; to dismount; to lie, be situated'}
   notes: {en: 'Babur: taǧ tüšüptur "a mountain lies there".'}
-  form: "توش-"
+  form: "tüš-"
   spelled: {chg-Arab/standard: [توش-], chg-Latn/schluessel: [tüš-]}
   readings: {schluessel: tüš}
   allomorphs:
-  - {form: "توش", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [توش]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "tüš", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["توش"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:tut
   pos: VERB
   gloss: {en: 'to hold, keep; to catch'}
-  form: "توت-"
+  form: "tut-"
   spelled: {chg-Arab/standard: [توت-], chg-Latn/schluessel: [tut-]}
   readings: {schluessel: tut}
   allomorphs:
-  - {form: "توت", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [توت]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "tut", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["توت"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:tuz
   pos: NOUN
   gloss: {en: salt}
-  form: "توز"
+  form: "tuz"
   spelled: {chg-Arab/standard: [توز], chg-Latn/schluessel: [tuz]}
   readings: {schluessel: tuz}
 - id: lexeme:uch
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: three}
-  form: "اوچ"
+  form: "üč"
   spelled: {chg-Arab/standard: [اوچ], chg-Latn/schluessel: [üč]}
   readings: {schluessel: üč}
 - id: lexeme:uchra
   pos: VERB
   gloss: {en: 'to meet, come upon (with -ǧa)'}
-  form: "اوچرا-"
+  form: "učra\u0329-"
   spelled: {chg-Arab/standard: [اوچرا-], chg-Latn/schluessel: [učra-]}
   readings: {schluessel: učra}
   allomorphs:
-  - {form: "اوچرا", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [اوچرا]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "učra\u0329", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["اوچرا"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:uddin
   pos: PROPN
   gloss: {en: '"of the faith" (in names: Šahāb ud-Dīn, Jalāl ud-Dīn)'}
-  form: "الدین"
+  form: "u\u0326l\u0338d\u0326-Dīn"
   spelled: {chg-Arab/standard: [الدین], chg-Latn/schluessel: [ud-Dīn]}
   readings: {schluessel: ud-Dīn}
 - id: lexeme:ul
@@ -3143,58 +3214,58 @@ lexemes:
   feats: {PronType: Prs}
   gloss: {en: 'that; he, she, it'}
   notes: {en: 'ul (or ol) is "that" before a noun: ul šahar "that city". Alone it is "he, she, it" (unit 4).'}
-  form: "اول"
+  form: "ul"
   spelled: {chg-Arab/standard: [اول], chg-Latn/schluessel: [ul]}
   readings: {schluessel: ul}
   allomorphs:
-  - {form: "ا", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [ا]}}  # REVIEW: S 10.13 (p. 85-86): ul's oblique stem a- before a case (ani, aŋa, anda, andin)
+  - {form: "a", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["ا"]}}  # REVIEW: as the course's tokens write it
 - id: lexeme:ular
   pos: PRON
   feats: {PronType: Prs}
   gloss: {en: they}
-  form: "اولار"
+  form: "ula\u0329r"
   spelled: {chg-Arab/standard: [اولار], chg-Latn/schluessel: [ular]}
   readings: {schluessel: ular}
   allomorphs:
-  - {form: "الار", free: true, spelled: {chg-Arab/standard: [الار]}}  # REVIEW: a scribe's other spelling
+  - {form: "ala\u0329r", free: true, spelled: {chg-Arab/standard: ["الار"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:ulugh
   pos: ADJ
   gloss: {en: 'great, big'}
-  form: "اولوغ"
+  form: "uluǧ"
   spelled: {chg-Arab/standard: [اولوغ], chg-Latn/schluessel: [uluǧ]}
   readings: {schluessel: uluǧ}
 - id: lexeme:uratur
   pos: VERB
   gloss: {en: 'to make (someone) stop, hold back'}
   notes: {en: urat- "to halt" with the causative -tur.}
-  form: "اوراتور-"
+  form: "ura\u0329tur-"
   spelled: {chg-Arab/standard: [اوراتور-], chg-Latn/schluessel: [uratur-]}
   readings: {schluessel: uratur}
   allomorphs:
-  - {form: "اوراتور", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [اوراتور]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ura\u0329tur", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["اوراتور"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:urush
   pos: NOUN
   gloss: {en: 'battle, fighting'}
   notes: {en: uruš qil- "to fight".}
-  form: "اوروش"
+  form: "uruš"
   spelled: {chg-Arab/standard: [اوروش], chg-Latn/schluessel: [uruš]}
   readings: {schluessel: uruš}
 - id: lexeme:ustikhwan
   pos: NOUN
   gloss: {en: bone; skeleton}
-  form: "اوستخوان"
+  form: "ustiḫwān"
   spelled: {chg-Arab/standard: [اوستخوان], chg-Latn/schluessel: [ustiḫwān]}
   readings: {schluessel: ustiḫwān}
 - id: lexeme:uzum
   pos: NOUN
   gloss: {en: 'grape, grapes'}
-  form: "اوزوم"
+  form: "üzüm"
   spelled: {chg-Arab/standard: [اوزوم], chg-Latn/schluessel: [üzüm]}
   readings: {schluessel: üzüm}
 - id: lexeme:uzun
   pos: ADJ
   gloss: {en: long}
-  form: "اوزون"
+  form: "uzun"
   spelled: {chg-Arab/standard: [اوزون], chg-Latn/schluessel: [uzun]}
   readings: {schluessel: uzun}
 - id: lexeme:vol-1s
@@ -3203,43 +3274,43 @@ lexemes:
   gloss: {en: '-ayin, -äyin: let me, I shall'}
   notes: {en: söz sorayin "let me ask (something)" (Schluessel 15.16); the first person of -ay.}
   allomorphs:
-  - {form: "این", spelled: {chg-Arab/standard: [این]}}  # REVIEW: S 15.16 (p. 161): the voluntative -ayin/-äyin
+  - {form: "Ayi\u0326n"}  # REVIEW: -ayin/-äyin, این
 - id: lexeme:wa
   pos: CCONJ
   gloss: {en: and (between words)}
   notes: {en: 'wä joins words: nan wä čay "bread and tea". Sentences are joined otherwise (with -p, unit 7).'}
-  form: "و"
+  form: "wä\u0326"
   spelled: {chg-Arab/standard: [و], chg-Latn/schluessel: [wä]}
   readings: {schluessel: wä}
 - id: lexeme:wafir
   pos: ADJ
   gloss: {en: 'abundant, ample'}
-  form: "وافر"
+  form: "wāfir"
   spelled: {chg-Arab/standard: [وافر], chg-Latn/schluessel: [wāfir]}
   readings: {schluessel: wāfir}
 - id: lexeme:wali
   pos: CCONJ
   gloss: {en: 'but, yet'}
-  form: "ولی"
+  form: "walī"
   spelled: {chg-Arab/standard: [ولی], chg-Latn/schluessel: [walī]}
   readings: {schluessel: walī}
 - id: lexeme:waqi
   pos: ADJ
   gloss: {en: situated; happening}
   notes: {en: 'wāqiʿ bol- "to lie, be situated; to happen": wāqiʿ boluptur "it lies".'}
-  form: "واقع"
+  form: "wāqiʿ"
   spelled: {chg-Arab/standard: [واقع], chg-Latn/schluessel: [wāqiʿ]}
   readings: {schluessel: wāqiʿ}
 - id: lexeme:wilayat
   pos: NOUN
   gloss: {en: 'country, province, land'}
-  form: "ولایت"
+  form: "wilāya\u0364t"
   spelled: {chg-Arab/standard: [ولایت], chg-Latn/schluessel: [wilāyat]}
   readings: {schluessel: wilāyat}
 - id: lexeme:yaghach
   pos: NOUN
   gloss: {en: 'league (a day''s march, some 8-10 km); wood'}
-  form: "یغاچ"
+  form: "yaǧa\u0329č"
   spelled: {chg-Arab/standard: [یغاچ], chg-Latn/schluessel: [yaǧač]}
   readings: {schluessel: yaǧač}
 - id: lexeme:yaghachchi
@@ -3247,253 +3318,259 @@ lexemes:
   gloss: {en: carpenter}
   base: lexeme:yaghach
   pattern: lexeme:ci
-  form: "یغاچ+چی"
+  form: "yaǧa\u0329čč\u0329i"
   spelled: {chg-Arab/standard: [یغاچچی], chg-Latn/schluessel: [yaǧačči]}
   readings: {schluessel: yaǧačči}
+  allomorphs:
+  - {form: "yaǧa\u0329čči", free: true, spelled: {chg-Arab/standard: ["یغاچی"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:yaghachchilik
   pos: NOUN
   gloss: {en: carpentry}
   base: lexeme:yaghachchi
   pattern: lexeme:liq
-  form: "یغاچ+چی+لیک"
+  form: "yaǧa\u0329čč\u0329i\u0329li\u0329k"
   spelled: {chg-Arab/standard: [یغاچچیلیک], chg-Latn/schluessel: [yaǧaččilik]}
   readings: {schluessel: yaǧaččilik}
 - id: lexeme:yakhshi
   pos: ADJ
   gloss: {en: good}
-  form: "یخشی"
+  form: "yaḫši"
   spelled: {chg-Arab/standard: [یخشی], chg-Latn/schluessel: [yaḫši]}
   readings: {schluessel: yaḫši}
 - id: lexeme:yamatu
   pos: PROPN
   gloss: {en: 'Yamatu (a ferry on the Ili, southeast of Ghulja)'}
-  form: "یماتو"
+  form: "Yama\u0329tu"
   spelled: {chg-Arab/standard: [یماتو], chg-Latn/schluessel: [Yamatu]}
   readings: {schluessel: Yamatu}
 - id: lexeme:yan
   pos: NOUN
   gloss: {en: side}
   notes: {en: X-niŋ yanida "beside X"; oŋ yanida "on his right".}
-  form: "یان"
+  form: "ya\u0329n"
   spelled: {chg-Arab/standard: [یان], chg-Latn/schluessel: [yan]}
   readings: {schluessel: yan}
 - id: lexeme:yana
   pos: ADV
   gloss: {en: 'again; another, one more'}
-  form: "ینە"
+  form: "yänä"
   spelled: {chg-Arab/standard: [ینه], chg-Latn/schluessel: [yänä]}
   readings: {schluessel: yänä}
 - id: lexeme:yaqa
   pos: NOUN
   gloss: {en: 'edge, side; bank (of a river)'}
   notes: {en: daryā yaqasida "on the bank of the river".}
-  form: "یقا"
+  form: "yaqa\u0329"
   spelled: {chg-Arab/standard: [یقا], chg-Latn/schluessel: [yaqa]}
   readings: {schluessel: yaqa}
 - id: lexeme:yar
   pos: NOUN
   gloss: {en: 'place; land, earth'}
-  form: "یر"
+  form: "yär"
   spelled: {chg-Arab/standard: [یر], chg-Latn/schluessel: [yär]}
   readings: {schluessel: yär}
+  allomorphs:
+  - {form: "yer", free: true, spelled: {chg-Arab/standard: ["یر"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:yarat
   pos: VERB
   gloss: {en: to create}
-  form: "یرات-"
+  form: "yara\u0329t-"
   spelled: {chg-Arab/standard: [یرات-], chg-Latn/schluessel: [yarat-]}
   readings: {schluessel: yarat}
   allomorphs:
-  - {form: "یرات", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [یرات]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "yara\u0329t", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["یرات"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:yarlik
   pos: ADJ
   gloss: {en: 'from (a place), of (a place)'}
   base: lexeme:yar
   pattern: lexeme:liq
-  form: "یر+لیک"
+  form: "yärli\u0329k"
   spelled: {chg-Arab/standard: [یرلیک], chg-Latn/schluessel: [yärlik]}
   readings: {schluessel: yärlik}
 - id: lexeme:yaru
   pos: VERB
   gloss: {en: 'to grow light, shine'}
-  form: "یارو-"
+  form: "ya\u0329ru-"
   spelled: {chg-Arab/standard: [یارو-], chg-Latn/schluessel: [yaru-]}
   readings: {schluessel: yaru}
   allomorphs:
-  - {form: "یارو", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [یارو]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ya\u0329ru", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["یارو"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:yasa
   pos: VERB
   gloss: {en: 'to make, build'}
-  form: "یاسا-"
+  form: "ya\u0329sa\u0329-"
   spelled: {chg-Arab/standard: [یاسا-], chg-Latn/schluessel: [yasa-]}
   readings: {schluessel: yasa}
   allomorphs:
-  - {form: "یاسا", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [یاسا]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ya\u0329sa\u0329", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["یاسا"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:yash
   pos: NOUN
   gloss: {en: year of age; young}
   notes: {en: on ikki yašta "at twelve years of age".}
-  form: "یاش"
+  form: "ya\u0329š"
   spelled: {chg-Arab/standard: [یاش], chg-Latn/schluessel: [yaš]}
   readings: {schluessel: yaš}
 - id: lexeme:yat
   pos: VERB
   gloss: {en: 'to reach, arrive'}
   notes: {en: 'With the dative: tizigä yätmädi "did not reach his knees".'}
-  form: "یت-"
+  form: "yät-"
   spelled: {chg-Arab/standard: [یت-], chg-Latn/schluessel: [yät-]}
   readings: {schluessel: yät}
   allomorphs:
-  - {form: "یت", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [یت]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "yät", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["یت"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:yat.lie
   pos: VERB
   gloss: {en: to lie (down)}
   notes: {en: yatar erdi "he was lying". Spelled as yät- "to reach".}
-  form: "یت-"
+  form: "yat-"
   spelled: {chg-Arab/standard: [یت-], chg-Latn/schluessel: [yat-]}
   readings: {schluessel: yat}
   allomorphs:
-  - {form: "یت", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [یت]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
-  - {form: "یات", free: true, spelled: {chg-Arab/standard: [یات]}}  # REVIEW: a scribe's other spelling
+  - {form: "yat", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["یت"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ya\u0329t", free: true, spelled: {chg-Arab/standard: ["یات"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:yatmish
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: seventy}
-  form: "یتمش"
+  form: "yätmiš"
   spelled: {chg-Arab/standard: [یتمش], chg-Latn/schluessel: [yätmiš]}
   readings: {schluessel: yätmiš}
 - id: lexeme:yatti
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: seven}
-  form: "یتی"
+  form: "yätti"
   spelled: {chg-Arab/standard: [یتی, ییتی], chg-Latn/schluessel: [yätti]}
   readings: {schluessel: yätti}
   allomorphs:
-  - {form: "یتە", free: true, spelled: {chg-Arab/standard: [یته]}}  # REVIEW: a scribe's other spelling
-  - {form: "ییتی", free: true, spelled: {chg-Arab/standard: [ییتی]}}  # REVIEW: the lemma's other spelling
+  - {form: "yättä", free: true, spelled: {chg-Arab/standard: ["یته"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
+  - {form: "yä\u032Ftti", free: true, spelled: {chg-Arab/standard: ["ییتی"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:yaz
   pos: VERB
   gloss: {en: to write}
-  form: "یاز-"
+  form: "ya\u0329z-"
   spelled: {chg-Arab/standard: [یاز-], chg-Latn/schluessel: [yaz-]}
   readings: {schluessel: yaz}
   allomorphs:
-  - {form: "یاز", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [یاز]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "ya\u0329z", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["یاز"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:ye
   pos: VERB
   gloss: {en: to eat}
-  form: "یی-"
+  form: "ye\u0329-"
   spelled: {chg-Arab/standard: [یی-], chg-Latn/schluessel: [ye-]}
   readings: {schluessel: ye}
   allomorphs:
-  - {form: "یی", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [یی]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
-  - {form: "ی", free: true, spelled: {chg-Arab/standard: [ی]}}  # REVIEW: yä- written with one ye (yär یر)
+  - {form: "ye\u0329", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["یی"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "yä\u0326", free: true, spelled: {chg-Arab/standard: ["ی"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:yebar
   pos: VERB
   gloss: {en: to send}
-  form: "یبار-"
+  form: "yeba\u0329\u0364r-"
   spelled: {chg-Arab/standard: [یبار-], chg-Latn/schluessel: [yebar-]}
   readings: {schluessel: yebar}
   allomorphs:
-  - {form: "یبار", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [یبار]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "yeba\u0329\u0364r", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["یبار"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:yigirma
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: twenty}
-  form: "ییکرمە"
+  form: "yi\u0329girmä"
   spelled: {chg-Arab/standard: [ییکرمه], chg-Latn/schluessel: [yigirmä]}
   readings: {schluessel: yigirmä}
 - id: lexeme:yigit
   pos: NOUN
   gloss: {en: young man}
-  form: "یکیت"
+  form: "yigi\u0329t"
   spelled: {chg-Arab/standard: [یکیت], chg-Latn/schluessel: [yigit]}
   readings: {schluessel: yigit}
   allomorphs:
-  - {form: "یکت", free: true, spelled: {chg-Arab/standard: [یکت]}}  # REVIEW: a scribe's other spelling
+  - {form: "yigit", free: true, spelled: {chg-Arab/standard: ["یکت"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:yigla
   pos: VERB
   gloss: {en: 'to weep, cry'}
-  form: "یغلا-"
+  form: "yiǧla\u0329-"
   spelled: {chg-Arab/standard: [یغلا-], chg-Latn/schluessel: [yiǧla-]}
   readings: {schluessel: yiǧla}
   allomorphs:
-  - {form: "یغلا", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [یغلا]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "yiǧla\u0329", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["یغلا"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:yil
   pos: NOUN
   gloss: {en: year}
-  form: "ییل"
+  form: "yi\u0329l"
   spelled: {chg-Arab/standard: [ییل, یل], chg-Latn/schluessel: [yil]}
   readings: {schluessel: yil}
   allomorphs:
-  - {form: "یل", free: true, spelled: {chg-Arab/standard: [یل]}}  # REVIEW: the lemma's other spelling
+  - {form: "yil", free: true, spelled: {chg-Arab/standard: ["یل"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:yol
   pos: NOUN
   gloss: {en: 'road, way; journey'}
-  form: "یول"
+  form: "yol"
   spelled: {chg-Arab/standard: [یول], chg-Latn/schluessel: [yol]}
   readings: {schluessel: yol}
+  allomorphs:
+  - {form: "yul", free: true, spelled: {chg-Arab/standard: ["یول"]}}  # REVIEW: a scribe's other spelling, or the course's other reading of it
 - id: lexeme:yoq
   pos: ADJ
   feats: {Polarity: Neg}
   gloss: {en: 'there is no, there are no; no'}
   notes: {en: 'yoq is the opposite of bar, not of -dur: nan yoq "there is no bread", but nan aq emäs "the bread is not white".'}
-  form: "یوق"
+  form: "yoq"
   spelled: {chg-Arab/standard: [یوق], chg-Latn/schluessel: [yoq]}
   readings: {schluessel: yoq}
 - id: lexeme:yot
   pos: VERB
   gloss: {en: to swallow}
-  form: "یوت-"
+  form: "yöt-"
   spelled: {chg-Arab/standard: [یوت-], chg-Latn/schluessel: [yöt-]}
   readings: {schluessel: yöt}
   allomorphs:
-  - {form: "یوت", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [یوت]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "yöt", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["یوت"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:yumsha
   pos: VERB
   gloss: {en: to soften}
-  form: "یومشا-"
+  form: "yumša\u0329-"
   spelled: {chg-Arab/standard: [یومشا-], chg-Latn/schluessel: [yumša-]}
   readings: {schluessel: yumša}
   allomorphs:
-  - {form: "یومشا", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [یومشا]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "yumša\u0329", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["یومشا"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:yunan
   pos: PROPN
   gloss: {en: Greece; the Greeks}
-  form: "یونان"
+  form: "Yūnān"
   spelled: {chg-Arab/standard: [یونان], chg-Latn/schluessel: [Yūnān]}
   readings: {schluessel: Yūnān}
 - id: lexeme:yur
   pos: VERB
   gloss: {en: 'to walk, go about'}
-  form: "یور-"
+  form: "yür-"
   spelled: {chg-Arab/standard: [یور-], chg-Latn/schluessel: [yür-]}
   readings: {schluessel: yür}
   allomorphs:
-  - {form: "یور", before: {startsIn: "{L}"}, spelled: {chg-Arab/standard: [یور]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
+  - {form: "yür", before: {startsIn: "{L}*"}, spelled: {chg-Arab/standard: ["یور"]}}  # REVIEW: the stem before a suffix, its citation hyphen not written
 - id: lexeme:yuz
   pos: NUM
   feats: {NumType: Card}
   gloss: {en: hundred; face}
-  form: "یوز"
+  form: "yüz"
   spelled: {chg-Arab/standard: [یوز], chg-Latn/schluessel: [yüz]}
   readings: {schluessel: yüz}
 - id: lexeme:yuz.face
   pos: NOUN
   gloss: {en: face; surface}
   notes: {en: yer yüzi "the face of the earth". Spelled as yüz "hundred".}
-  form: "یوز"
+  form: "yüz"
   spelled: {chg-Arab/standard: [یوز], chg-Latn/schluessel: [yüz]}
   readings: {schluessel: yüz}
 - id: lexeme:ziwar
   pos: PROPN
   gloss: {en: 'Ziwar (Zīwar Šāh, a king of the Tadhkira)'}
-  form: "زیور"
+  form: "Zīwar"
   spelled: {chg-Arab/standard: [زیور], chg-Latn/schluessel: [Zīwar]}
   readings: {schluessel: Zīwar}
 - id: lexeme:zurur
   pos: ADJ
   gloss: {en: 'necessary, urgent'}
-  form: "ضرور"
+  form: "żu\u0326rūr"
   spelled: {chg-Arab/standard: [ضرور], chg-Latn/schluessel: [żurūr]}
   readings: {schluessel: żurūr}
