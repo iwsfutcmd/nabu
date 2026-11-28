@@ -990,7 +990,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   merges: a token is incomplete while a requirement is unmet (`Realisation.missing`), a lexeme merged where its `on`
   fails is `attach`, a feature brought twice `twice`; a form stored for the merged word covers the lexemes whose
   values it has (a broken plural). Feature values are abstract: learners learn lexemes. The citation form is a
-  mnemonic, a named merge. Stage 1 (the engine, conformance/realise-merge.json) is built; apc and chg are converted (below), es next.
+  mnemonic, a named merge. Stage 1 (the engine, conformance/realise-merge.json) is built; apc, chg and uz are converted (below), es next.
 - apc merges (2026-11-28, ADR 0159 step 2; docs/rules/apc.md): its tokens list the lexemes that bring a verb's,
   adjective's or noun's values (`{lexeme: ind}, {lexeme: impf-3}, {lexeme: shereb, base: true}, {lexeme: pl.verb}`);
   one merged into its base has no `surface`, nor has a base that writes the whole token. The compiler folds them into
@@ -1001,6 +1001,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   citation. `on.or` names further hosts (apc -e: an adjective or a noun, a verb only as its participle); a base's
   `requires: []` is a word that never inflects. Pronouns, demonstratives, phrase interjections and the dual's base
   still choose values (REVIEW). A new apc sentence's tokens list lexemes, never `feats` on a verb, adjective or noun.
+- uz merges (2026-11-28, docs/rules/uz.md): as chg, its suffixes say what they merge onto (stem + plural + possessive +
+  case; a verb's negative, one tense or mood, then its person), a noun, name or pronoun requires a case, a verb a form,
+  a finite tense a person; the zeros are `nom`, `p3` (keldi) and `imp.sg` (ich!), the infinitive -moq is `inf`. Its
+  realisation rules are gone (the rewrites stay). One set of person endings on verbs and predicates (Sjoberg's set 1).
+  A new uz token lists its zeros; language.yaml's labels name every paradigm cell: a new cell needs one.
 - What is learned (ADR 0159, the owner, 2026-11-28): lexemes only, zero ones included, never a feature value (values are
   names: labels, groupings, feedback's words); a rule branch is a memory under its lexeme. A card credits a lexeme only
   where the prompt decides it against the lexemes that could stand in its place (those merging onto the same word and

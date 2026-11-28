@@ -151,29 +151,33 @@ def test_a_spelling_that_begins_with_a_carrier_is_not_shipped() -> None:
 
 
 def test_a_token_s_affix_lexemes_give_its_cell() -> None:
-    """Where a language's rules write affix lexemes (an exponent's `lexeme`: uz), a token's cell
-    takes the values each affix it lists realises, when its category's rules write that affix; an
-    ending no rule of the category writes (a predicate's -man on a noun) is no value of it. In a
-    language that merges lexemes (apc, ADR 0158), every lexeme that merges onto another gives its
-    values, for every category: shereb + perf-3fs is the she-past."""
+    """In a language that merges lexemes (ADR 0158: apc, uz), every lexeme that merges onto another
+    gives its values to a token's cell, for every category: uz's bor + past + past-1sg is the past's
+    I, with the finite form the past brings; a predicate's -man brings its person to the noun
+    (uydaman), which no NOUN cell keeps (a noun's dimensions hold no Person, and no lexeme brings
+    its Number alone); apc's shereb + perf-3fs is the she-past."""
     uz, _ = load_language(ROOT / "lexicons", "uz")
     apc, _ = load_language(ROOT / "lexicons", "apc")
     assert uz is not None and apc is not None
     affixes = written_affixes(uz)
-    assert affixes["VERB"]["lexeme:past"] == {"Tense": "Past"}
-    assert "lexeme:cop-1sg" not in affixes["NOUN"]
+    assert affixes["VERB"]["lexeme:past"] == {"Tense": "Past", "VerbForm": "Fin"}
     bordim = [
         {"lexeme": "lexeme:bormoq", "base": True},
         {"lexeme": "lexeme:past"},
         {"lexeme": "lexeme:past-1sg"},
     ]
-    assert token_cell(bordim, "VERB", affixes) == {"Tense": "Past", "Number": "Sing", "Person": "1"}
+    assert token_cell(bordim, "VERB", affixes) == {
+        "Tense": "Past",
+        "VerbForm": "Fin",
+        "Number": "Sing",
+        "Person": "1",
+    }
     uydaman = [
         {"lexeme": "lexeme:uy", "base": True},
         {"lexeme": "lexeme:loc"},
         {"lexeme": "lexeme:cop-1sg"},
     ]
-    assert token_cell(uydaman, "NOUN", affixes) == {"Case": "Loc"}
+    assert token_cell(uydaman, "NOUN", affixes) == {"Case": "Loc", "Number": "Sing", "Person": "1"}
     merged = written_affixes(apc)
     assert merged["VERB"]["lexeme:perf-3fs"] == {
         "Aspect": "Perf",

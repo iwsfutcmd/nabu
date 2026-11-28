@@ -58,9 +58,10 @@ const NAMED: readonly (readonly [string, string | undefined, string, readonly st
   // هستم writes the copula and its ending: a pair each.
   ["fa", undefined, "whole-parts:s.26", ["lexeme:mamnun", "lexeme:khub", "lexeme:budan", "lexeme:1sg"], []],
   ["fa", undefined, "translate-tap.l1-l2:s.6", ["lexeme:budan", "lexeme:1sg", "lexeme:va", "lexeme:kheyli", "lexeme:maryam", "lexeme:salam"], []],
-  // Malika mening opam. with opam left out: opa is shown as its lemma, the answer adds its ending.
-  ["uz", "uz-Latn/standard", "parts-whole:s.family.9", ["lexeme:malika", "lexeme:men", "lexeme:gen", "lexeme:opa"], ["lexeme:poss-1sg"]],
-  ["uz", "uz-Latn/standard", "whole-parts:s.family.2", ["lexeme:bu", "lexeme:ota", "lexeme:poss-1sg", "lexeme:oqituvchi", "lexeme:oila"], []],
+  // Malika mening opam. with opam left out: opa is shown as its lemma, the answer adds its ending. A word in the
+  // nominative is seen in that form since uz merges (its zero is folded into its values: docs/rules/uz.md).
+  ["uz", "uz-Latn/standard", "parts-whole:s.family.9", ["lexeme:malika|form:Case=Nom", "lexeme:men", "lexeme:gen", "lexeme:opa"], ["lexeme:opa|form:Case=Nom", "lexeme:poss-1sg"]],
+  ["uz", "uz-Latn/standard", "whole-parts:s.family.2", ["lexeme:bu|form:Case=Nom", "lexeme:ota|form:Case=Nom", "lexeme:poss-1sg", "lexeme:oqituvchi", "lexeme:ota", "lexeme:oila"], []],
   // A heard word's written options are on the card.
   ["uz", "uz-Latn/standard", "listen-select:lexeme:ha", ["lexeme:oqituvchi", "lexeme:salom", "lexeme:ha"], []],
   ["uz", "uz-Latn/standard", "complete-translation:s.5", ["lexeme:rahmat"], ["lexeme:yoq"]],

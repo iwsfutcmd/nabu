@@ -19,11 +19,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Akam keldi.
-      tokens: [{surface: Akam, lexemes: [{lexeme: aka, surface: Aka, base: true}, {lexeme: poss-1sg, surface: m}]}, {surface: keldi, lexemes: [{lexeme: kelmoq, surface: kel, base: true}, {lexeme: past, surface: di}]}]
+      tokens: [{surface: Akam, lexemes: [{lexeme: aka, surface: Aka, base: true}, {lexeme: poss-1sg, surface: m}, {lexeme: nom}]}, {surface: keldi, lexemes: [{lexeme: kelmoq, surface: kel, base: true}, {lexeme: past, surface: di}, {lexeme: p3}]}]
       reverse: '[Mening] akam keldi'
     uz-Cyrl/standard:
       text: Акам келди.
-      tokens: [{surface: Акам, lexemes: [{lexeme: aka, surface: Ака, base: true}, {lexeme: poss-1sg, surface: м}]}, {surface: келди, lexemes: [{lexeme: kelmoq, surface: кел, base: true}, {lexeme: past, surface: ди}]}]
+      tokens: [{surface: Акам, lexemes: [{lexeme: aka, surface: Ака, base: true}, {lexeme: poss-1sg, surface: м}, {lexeme: nom}]}, {surface: келди, lexemes: [{lexeme: kelmoq, surface: кел, base: true}, {lexeme: past, surface: ди}, {lexeme: p3}]}]
       reverse: '[Менинг] акам келди'
   translations:
     en: My (older|elder|big) brother (came|has come|is here|has arrived|arrived).
@@ -32,11 +32,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Men keldim!
-      tokens: [{surface: Men, lexeme: men}, {surface: keldim, lexemes: [{lexeme: kelmoq, surface: kel, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
+      tokens: [{surface: Men, lexemes: [{lexeme: men, base: true}, {lexeme: nom}]}, {surface: keldim, lexemes: [{lexeme: kelmoq, surface: kel, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
       reverse: '[Men] keldim'
     uz-Cyrl/standard:
       text: Мен келдим!
-      tokens: [{surface: Мен, lexeme: men}, {surface: келдим, lexemes: [{lexeme: kelmoq, surface: кел, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
+      tokens: [{surface: Мен, lexemes: [{lexeme: men, base: true}, {lexeme: nom}]}, {surface: келдим, lexemes: [{lexeme: kelmoq, surface: кел, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
       reverse: '[Мен] келдим'
   translations:
     en: |-
@@ -87,7 +87,7 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Siz kecha qayerga bordingiz?
-      tokens: [{surface: Siz, lexeme: siz}, {surface: kecha, lexeme: kecha}, {surface: qayerga, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: dat, surface: ga}]}, {surface: bordingiz, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: past, surface: di}, {lexeme: past-2, surface: ngiz}]}]
+      tokens: [{surface: Siz, lexemes: [{lexeme: siz, base: true}, {lexeme: nom}]}, {surface: kecha, lexeme: kecha}, {surface: qayerga, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: dat, surface: ga}]}, {surface: bordingiz, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: past, surface: di}, {lexeme: past-2, surface: ngiz}]}]
       reverse: |-
         [Siz] kecha qayerga bordingiz
         Kecha [siz] qayerga bordingiz
@@ -95,7 +95,7 @@ sentences:
         Kecha [sen] qayerga bording
     uz-Cyrl/standard:
       text: Сиз кеча қаерга бордингиз?
-      tokens: [{surface: Сиз, lexeme: siz}, {surface: кеча, lexeme: kecha}, {surface: қаерга, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: dat, surface: га}]}, {surface: бордингиз, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: past, surface: ди}, {lexeme: past-2, surface: нгиз}]}]
+      tokens: [{surface: Сиз, lexemes: [{lexeme: siz, base: true}, {lexeme: nom}]}, {surface: кеча, lexeme: kecha}, {surface: қаерга, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: dat, surface: га}]}, {surface: бордингиз, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: past, surface: ди}, {lexeme: past-2, surface: нгиз}]}]
       reverse: |-
         [Сиз] кеча қаерга бордингиз
         Кеча [сиз] қаерга бордингиз
@@ -108,11 +108,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Biz uyga bordik.
-      tokens: [{surface: Biz, lexeme: biz}, {surface: uyga, lexemes: [{lexeme: uy, surface: uy, base: true}, {lexeme: dat, surface: ga}]}, {surface: bordik, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: past, surface: di}, {lexeme: past-1pl, surface: k}]}]
+      tokens: [{surface: Biz, lexemes: [{lexeme: biz, base: true}, {lexeme: nom}]}, {surface: uyga, lexemes: [{lexeme: uy, surface: uy, base: true}, {lexeme: dat, surface: ga}]}, {surface: bordik, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: past, surface: di}, {lexeme: past-1pl, surface: k}]}]
       reverse: '[Biz] uyga (bordik|ketdik|qaytdik)'
     uz-Cyrl/standard:
       text: Биз уйга бордик.
-      tokens: [{surface: Биз, lexeme: biz}, {surface: уйга, lexemes: [{lexeme: uy, surface: уй, base: true}, {lexeme: dat, surface: га}]}, {surface: бордик, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1pl, surface: к}]}]
+      tokens: [{surface: Биз, lexemes: [{lexeme: biz, base: true}, {lexeme: nom}]}, {surface: уйга, lexemes: [{lexeme: uy, surface: уй, base: true}, {lexeme: dat, surface: га}]}, {surface: бордик, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1pl, surface: к}]}]
       reverse: '[Биз] уйга (бордик|кетдик|қайтдик)'
   translations:
     en: We went home.
@@ -142,7 +142,7 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Kecha nima qildingiz?
-      tokens: [{surface: Kecha, lexeme: kecha}, {surface: nima, lexeme: nima}, {surface: qildingiz, lexemes: [{lexeme: qilmoq, surface: qil, base: true}, {lexeme: past, surface: di}, {lexeme: past-2, surface: ngiz}]}]
+      tokens: [{surface: Kecha, lexeme: kecha}, {surface: nima, lexemes: [{lexeme: nima, base: true}, {lexeme: nom}]}, {surface: qildingiz, lexemes: [{lexeme: qilmoq, surface: qil, base: true}, {lexeme: past, surface: di}, {lexeme: past-2, surface: ngiz}]}]
       reverse: |-
         Kecha [siz] nima qildingiz
         [Siz] kecha nima qildingiz
@@ -150,7 +150,7 @@ sentences:
         [Sen] kecha nima qilding
     uz-Cyrl/standard:
       text: Кеча нима қилдингиз?
-      tokens: [{surface: Кеча, lexeme: kecha}, {surface: нима, lexeme: nima}, {surface: қилдингиз, lexemes: [{lexeme: qilmoq, surface: қил, base: true}, {lexeme: past, surface: ди}, {lexeme: past-2, surface: нгиз}]}]
+      tokens: [{surface: Кеча, lexeme: kecha}, {surface: нима, lexemes: [{lexeme: nima, base: true}, {lexeme: nom}]}, {surface: қилдингиз, lexemes: [{lexeme: qilmoq, surface: қил, base: true}, {lexeme: past, surface: ди}, {lexeme: past-2, surface: нгиз}]}]
       reverse: |-
         Кеча [сиз] нима қилдингиз
         [Сиз] кеча нима қилдингиз
@@ -163,14 +163,14 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Kecha osh pishirdim.
-      tokens: [{surface: Kecha, lexeme: kecha}, {surface: osh, lexeme: osh}, {surface: pishirdim, lexemes: [{lexeme: pishirmoq, surface: pishir, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
+      tokens: [{surface: Kecha, lexeme: kecha}, {surface: osh, lexemes: [{lexeme: osh, base: true}, {lexeme: nom}]}, {surface: pishirdim, lexemes: [{lexeme: pishirmoq, surface: pishir, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
       reverse: |-
         Kecha [men] osh (pishirdim|damladim|qildim)
         [Men] kecha osh (pishirdim|damladim|qildim)
         Kecha palov pishirdim
     uz-Cyrl/standard:
       text: Кеча ош пиширдим.
-      tokens: [{surface: Кеча, lexeme: kecha}, {surface: ош, lexeme: osh}, {surface: пиширдим, lexemes: [{lexeme: pishirmoq, surface: пишир, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
+      tokens: [{surface: Кеча, lexeme: kecha}, {surface: ош, lexemes: [{lexeme: osh, base: true}, {lexeme: nom}]}, {surface: пиширдим, lexemes: [{lexeme: pishirmoq, surface: пишир, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
       reverse: |-
         Кеча [мен] ош (пиширдим|дамладим|қилдим)
         [Мен] кеча ош (пиширдим|дамладим|қилдим)
@@ -184,7 +184,7 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Doʻstim bilan choy ichdik.
-      tokens: [{surface: Doʻstim, lexemes: [{lexeme: dost, surface: Doʻst, base: true}, {lexeme: poss-1sg, surface: im}]}, {surface: bilan, lexeme: bilan}, {surface: choy, lexeme: choy}, {surface: ichdik, lexemes: [{lexeme: ichmoq, surface: ich, base: true}, {lexeme: past, surface: di}, {lexeme: past-1pl, surface: k}]}]
+      tokens: [{surface: Doʻstim, lexemes: [{lexeme: dost, surface: Doʻst, base: true}, {lexeme: poss-1sg, surface: im}, {lexeme: nom}]}, {surface: bilan, lexeme: bilan}, {surface: choy, lexemes: [{lexeme: choy, base: true}, {lexeme: nom}]}, {surface: ichdik, lexemes: [{lexeme: ichmoq, surface: ich, base: true}, {lexeme: past, surface: di}, {lexeme: past-1pl, surface: k}]}]
       reverse: |-
         Doʻstim bilan choy ichdik
         Men doʻstim bilan choy (ichdim|ichdik)
@@ -192,7 +192,7 @@ sentences:
         (Men va doʻstim|Doʻstim va men|Doʻstim bilan men) choy ichdik
     uz-Cyrl/standard:
       text: Дўстим билан чой ичдик.
-      tokens: [{surface: Дўстим, lexemes: [{lexeme: dost, surface: Дўст, base: true}, {lexeme: poss-1sg, surface: им}]}, {surface: билан, lexeme: bilan}, {surface: чой, lexeme: choy}, {surface: ичдик, lexemes: [{lexeme: ichmoq, surface: ич, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1pl, surface: к}]}]
+      tokens: [{surface: Дўстим, lexemes: [{lexeme: dost, surface: Дўст, base: true}, {lexeme: poss-1sg, surface: им}, {lexeme: nom}]}, {surface: билан, lexeme: bilan}, {surface: чой, lexemes: [{lexeme: choy, base: true}, {lexeme: nom}]}, {surface: ичдик, lexemes: [{lexeme: ichmoq, surface: ич, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1pl, surface: к}]}]
       reverse: |-
         Дўстим билан чой ичдик
         Мен дўстим билан чой (ичдим|ичдик)
@@ -207,13 +207,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Kecha kino koʻrdim.
-      tokens: [{surface: Kecha, lexeme: kecha}, {surface: kino, lexeme: kino}, {surface: koʻrdim, lexemes: [{lexeme: kormoq, surface: koʻr, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
+      tokens: [{surface: Kecha, lexeme: kecha}, {surface: kino, lexemes: [{lexeme: kino, base: true}, {lexeme: nom}]}, {surface: koʻrdim, lexemes: [{lexeme: kormoq, surface: koʻr, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
       reverse: |-
         Kecha [men] (kino|film) koʻrdim
         [Men] kecha (kino|film) koʻrdim
     uz-Cyrl/standard:
       text: Кеча кино кўрдим.
-      tokens: [{surface: Кеча, lexeme: kecha}, {surface: кино, lexeme: kino}, {surface: кўрдим, lexemes: [{lexeme: kormoq, surface: кўр, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
+      tokens: [{surface: Кеча, lexeme: kecha}, {surface: кино, lexemes: [{lexeme: kino, base: true}, {lexeme: nom}]}, {surface: кўрдим, lexemes: [{lexeme: kormoq, surface: кўр, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
       reverse: |-
         Кеча [мен] (кино|фильм) кўрдим
         [Мен] кеча (кино|фильм) кўрдим
@@ -226,11 +226,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Bobur bilan uchrashdim.
-      tokens: [{surface: Bobur, lexeme: bobur}, {surface: bilan, lexeme: bilan}, {surface: uchrashdim, lexemes: [{lexeme: uchrashmoq, surface: uchrash, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
+      tokens: [{surface: Bobur, lexemes: [{lexeme: bobur, base: true}, {lexeme: nom}]}, {surface: bilan, lexeme: bilan}, {surface: uchrashdim, lexemes: [{lexeme: uchrashmoq, surface: uchrash, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
       reverse: '[Men] Bobur bilan uchrashdim'
     uz-Cyrl/standard:
       text: Бобур билан учрашдим.
-      tokens: [{surface: Бобур, lexeme: bobur}, {surface: билан, lexeme: bilan}, {surface: учрашдим, lexemes: [{lexeme: uchrashmoq, surface: учраш, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
+      tokens: [{surface: Бобур, lexemes: [{lexeme: bobur, base: true}, {lexeme: nom}]}, {surface: билан, lexeme: bilan}, {surface: учрашдим, lexemes: [{lexeme: uchrashmoq, surface: учраш, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
       reverse: '[Мен] Бобур билан учрашдим'
   translations:
     en: |-
@@ -241,11 +241,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Opamga telefon qildim.
-      tokens: [{surface: Opamga, lexemes: [{lexeme: opa, surface: Opa, base: true}, {lexeme: poss-1sg, surface: m}, {lexeme: dat, surface: ga}]}, {surface: telefon, lexeme: telefon}, {surface: qildim, lexemes: [{lexeme: qilmoq, surface: qil, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
+      tokens: [{surface: Opamga, lexemes: [{lexeme: opa, surface: Opa, base: true}, {lexeme: poss-1sg, surface: m}, {lexeme: dat, surface: ga}]}, {surface: telefon, lexemes: [{lexeme: telefon, base: true}, {lexeme: nom}]}, {surface: qildim, lexemes: [{lexeme: qilmoq, surface: qil, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
       reverse: '[Men] opamga (telefon|qoʻngʻiroq) qildim'
     uz-Cyrl/standard:
       text: Опамга телефон қилдим.
-      tokens: [{surface: Опамга, lexemes: [{lexeme: opa, surface: Опа, base: true}, {lexeme: poss-1sg, surface: м}, {lexeme: dat, surface: га}]}, {surface: телефон, lexeme: telefon}, {surface: қилдим, lexemes: [{lexeme: qilmoq, surface: қил, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
+      tokens: [{surface: Опамга, lexemes: [{lexeme: opa, surface: Опа, base: true}, {lexeme: poss-1sg, surface: м}, {lexeme: dat, surface: га}]}, {surface: телефон, lexemes: [{lexeme: telefon, base: true}, {lexeme: nom}]}, {surface: қилдим, lexemes: [{lexeme: qilmoq, surface: қил, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
       reverse: '[Мен] опамга (телефон|қўнғироқ) қилдим'
   translations:
     en: I (called|phoned|rang) my (older|elder|big) sister.
@@ -312,13 +312,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Men kecha ishlamadim.
-      tokens: [{surface: Men, lexeme: men}, {surface: kecha, lexeme: kecha}, {surface: ishlamadim, lexemes: [{lexeme: ishlamoq, surface: ishla, base: true}, {lexeme: neg, surface: ma}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
+      tokens: [{surface: Men, lexemes: [{lexeme: men, base: true}, {lexeme: nom}]}, {surface: kecha, lexeme: kecha}, {surface: ishlamadim, lexemes: [{lexeme: ishlamoq, surface: ishla, base: true}, {lexeme: neg, surface: ma}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
       reverse: |-
         [Men] kecha ishlamadim
         Kecha [men] ishlamadim
     uz-Cyrl/standard:
       text: Мен кеча ишламадим.
-      tokens: [{surface: Мен, lexeme: men}, {surface: кеча, lexeme: kecha}, {surface: ишламадим, lexemes: [{lexeme: ishlamoq, surface: ишла, base: true}, {lexeme: neg, surface: ма}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
+      tokens: [{surface: Мен, lexemes: [{lexeme: men, base: true}, {lexeme: nom}]}, {surface: кеча, lexeme: kecha}, {surface: ишламадим, lexemes: [{lexeme: ishlamoq, surface: ишла, base: true}, {lexeme: neg, surface: ма}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
       reverse: |-
         [Мен] кеча ишламадим
         Кеча [мен] ишламадим
@@ -404,11 +404,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Bobur ketdi.
-      tokens: [{surface: Bobur, lexeme: bobur}, {surface: ketdi, lexemes: [{lexeme: ketmoq, surface: ket, base: true}, {lexeme: past, surface: di}]}]
+      tokens: [{surface: Bobur, lexemes: [{lexeme: bobur, base: true}, {lexeme: nom}]}, {surface: ketdi, lexemes: [{lexeme: ketmoq, surface: ket, base: true}, {lexeme: past, surface: di}, {lexeme: p3}]}]
       reverse: Bobur ketdi
     uz-Cyrl/standard:
       text: Бобур кетди.
-      tokens: [{surface: Бобур, lexeme: bobur}, {surface: кетди, lexemes: [{lexeme: ketmoq, surface: кет, base: true}, {lexeme: past, surface: ди}]}]
+      tokens: [{surface: Бобур, lexemes: [{lexeme: bobur, base: true}, {lexeme: nom}]}, {surface: кетди, lexemes: [{lexeme: ketmoq, surface: кет, base: true}, {lexeme: past, surface: ди}, {lexeme: p3}]}]
       reverse: Бобур кетди
   translations:
     en: Bobur (left|has left|went away|has gone).
@@ -434,13 +434,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Oʻtgan hafta keldim.
-      tokens: [{surface: Oʻtgan, lexeme: otgan}, {surface: hafta, lexeme: hafta}, {surface: keldim, lexemes: [{lexeme: kelmoq, surface: kel, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
+      tokens: [{surface: Oʻtgan, lexeme: otgan}, {surface: hafta, lexemes: [{lexeme: hafta, base: true}, {lexeme: nom}]}, {surface: keldim, lexemes: [{lexeme: kelmoq, surface: kel, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
       reverse: |-
         [Men] oʻtgan hafta keldim
         Oʻtgan hafta [men] keldim
     uz-Cyrl/standard:
       text: Ўтган ҳафта келдим.
-      tokens: [{surface: Ўтган, lexeme: otgan}, {surface: ҳафта, lexeme: hafta}, {surface: келдим, lexemes: [{lexeme: kelmoq, surface: кел, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
+      tokens: [{surface: Ўтган, lexeme: otgan}, {surface: ҳафта, lexemes: [{lexeme: hafta, base: true}, {lexeme: nom}]}, {surface: келдим, lexemes: [{lexeme: kelmoq, surface: кел, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
       reverse: |-
         [Мен] ўтган ҳафта келдим
         Ўтган ҳафта [мен] келдим
@@ -453,13 +453,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Oʻtgan yili Samarqandga bordik.
-      tokens: [{surface: Oʻtgan, lexeme: otgan}, {surface: yili, lexemes: [{lexeme: yil, surface: yil, base: true}, {lexeme: poss-3, surface: i}]}, {surface: Samarqandga, lexemes: [{lexeme: samarqand, surface: Samarqand, base: true}, {lexeme: dat, surface: ga}]}, {surface: bordik, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: past, surface: di}, {lexeme: past-1pl, surface: k}]}]
+      tokens: [{surface: Oʻtgan, lexeme: otgan}, {surface: yili, lexemes: [{lexeme: yil, surface: yil, base: true}, {lexeme: poss-3, surface: i}, {lexeme: nom}]}, {surface: Samarqandga, lexemes: [{lexeme: samarqand, surface: Samarqand, base: true}, {lexeme: dat, surface: ga}]}, {surface: bordik, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: past, surface: di}, {lexeme: past-1pl, surface: k}]}]
       reverse: |-
         Oʻtgan (yili|yil) [biz] Samarqandga bordik
         [Biz] oʻtgan (yili|yil) Samarqandga bordik
     uz-Cyrl/standard:
       text: Ўтган йили Самарқандга бордик.
-      tokens: [{surface: Ўтган, lexeme: otgan}, {surface: йили, lexemes: [{lexeme: yil, surface: йил, base: true}, {lexeme: poss-3, surface: и}]}, {surface: Самарқандга, lexemes: [{lexeme: samarqand, surface: Самарқанд, base: true}, {lexeme: dat, surface: га}]}, {surface: бордик, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1pl, surface: к}]}]
+      tokens: [{surface: Ўтган, lexeme: otgan}, {surface: йили, lexemes: [{lexeme: yil, surface: йил, base: true}, {lexeme: poss-3, surface: и}, {lexeme: nom}]}, {surface: Самарқандга, lexemes: [{lexeme: samarqand, surface: Самарқанд, base: true}, {lexeme: dat, surface: га}]}, {surface: бордик, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1pl, surface: к}]}]
       reverse: |-
         Ўтган (йили|йил) [биз] Самарқандга бордик
         [Биз] ўтган (йили|йил) Самарқандга бордик
@@ -550,13 +550,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Osh juda mazali edi.
-      tokens: [{surface: Osh, lexeme: osh}, {surface: juda, lexeme: juda}, {surface: mazali, lexeme: mazali}, {surface: edi, lexemes: [{lexeme: edi, surface: e, base: true}, {lexeme: past, surface: di}]}]
+      tokens: [{surface: Osh, lexemes: [{lexeme: osh, base: true}, {lexeme: nom}]}, {surface: juda, lexeme: juda}, {surface: mazali, lexeme: mazali}, {surface: edi, lexemes: [{lexeme: edi, surface: e, base: true}, {lexeme: past, surface: di}, {lexeme: p3}]}]
       reverse: |-
         Osh juda mazali edi
         Palov juda mazali edi
     uz-Cyrl/standard:
       text: Ош жуда мазали эди.
-      tokens: [{surface: Ош, lexeme: osh}, {surface: жуда, lexeme: juda}, {surface: мазали, lexeme: mazali}, {surface: эди, lexemes: [{lexeme: edi, surface: э, base: true}, {lexeme: past, surface: ди}]}]
+      tokens: [{surface: Ош, lexemes: [{lexeme: osh, base: true}, {lexeme: nom}]}, {surface: жуда, lexeme: juda}, {surface: мазали, lexeme: mazali}, {surface: эди, lexemes: [{lexeme: edi, surface: э, base: true}, {lexeme: past, surface: ди}, {lexeme: p3}]}]
       reverse: |-
         Ош жуда мазали эди
         Палов жуда мазали эди
@@ -569,13 +569,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Sizlar kecha qayerga bordingizlar?
-      tokens: [{surface: Sizlar, lexemes: [{lexeme: siz, surface: Siz, base: true}, {lexeme: pl, surface: lar}]}, {surface: kecha, lexeme: kecha}, {surface: qayerga, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: dat, surface: ga}]}, {surface: bordingizlar, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: past, surface: di}, {lexeme: past-2, surface: ngiz}, {lexeme: pl, surface: lar}]}]
+      tokens: [{surface: Sizlar, lexemes: [{lexeme: siz, surface: Siz, base: true}, {lexeme: pl, surface: lar}, {lexeme: nom}]}, {surface: kecha, lexeme: kecha}, {surface: qayerga, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: dat, surface: ga}]}, {surface: bordingizlar, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: past, surface: di}, {lexeme: past-2, surface: ngiz}, {lexeme: pl, surface: lar}]}]
       reverse: |-
         [(Sizlar|Siz)] kecha qayerga (bordingizlar|bordingiz)
         Kecha [(sizlar|siz)] qayerga (bordingizlar|bordingiz)
     uz-Cyrl/standard:
       text: Сизлар кеча қаерга бордингизлар?
-      tokens: [{surface: Сизлар, lexemes: [{lexeme: siz, surface: Сиз, base: true}, {lexeme: pl, surface: лар}]}, {surface: кеча, lexeme: kecha}, {surface: қаерга, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: dat, surface: га}]}, {surface: бордингизлар, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: past, surface: ди}, {lexeme: past-2, surface: нгиз}, {lexeme: pl, surface: лар}]}]
+      tokens: [{surface: Сизлар, lexemes: [{lexeme: siz, surface: Сиз, base: true}, {lexeme: pl, surface: лар}, {lexeme: nom}]}, {surface: кеча, lexeme: kecha}, {surface: қаерга, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: dat, surface: га}]}, {surface: бордингизлар, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: past, surface: ди}, {lexeme: past-2, surface: нгиз}, {lexeme: pl, surface: лар}]}]
       reverse: |-
         [(Сизлар|Сиз)] кеча қаерга (бордингизлар|бордингиз)
         Кеча [(сизлар|сиз)] қаерга (бордингизлар|бордингиз)
@@ -624,10 +624,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Aziz, kecha qayerda edingiz?
-          tokens: [{surface: Aziz, lexeme: aziz}, {surface: kecha, lexeme: kecha}, {surface: qayerda, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: loc, surface: da}]}, {surface: edingiz, lexemes: [{lexeme: edi, surface: e, base: true}, {lexeme: past, surface: di}, {lexeme: past-2, surface: ngiz}]}]
+          tokens: [{surface: Aziz, lexemes: [{lexeme: aziz, base: true}, {lexeme: nom}]}, {surface: kecha, lexeme: kecha}, {surface: qayerda, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: loc, surface: da}]}, {surface: edingiz, lexemes: [{lexeme: edi, surface: e, base: true}, {lexeme: past, surface: di}, {lexeme: past-2, surface: ngiz}]}]
         uz-Cyrl/standard:
           text: Азиз, кеча қаерда эдингиз?
-          tokens: [{surface: Азиз, lexeme: aziz}, {surface: кеча, lexeme: kecha}, {surface: қаерда, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: loc, surface: да}]}, {surface: эдингиз, lexemes: [{lexeme: edi, surface: э, base: true}, {lexeme: past, surface: ди}, {lexeme: past-2, surface: нгиз}]}]
+          tokens: [{surface: Азиз, lexemes: [{lexeme: aziz, base: true}, {lexeme: nom}]}, {surface: кеча, lexeme: kecha}, {surface: қаерда, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: loc, surface: да}]}, {surface: эдингиз, lexemes: [{lexeme: edi, surface: э, base: true}, {lexeme: past, surface: ди}, {lexeme: past-2, surface: нгиз}]}]
       translations:
         en: Aziz, where were you yesterday?
   - line:
@@ -646,10 +646,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Samarqandgami? Nima qildingiz?
-          tokens: [{surface: Samarqandgami, lexemes: [{lexeme: samarqand, surface: Samarqand, base: true}, {lexeme: dat, surface: ga}, {lexeme: q, surface: mi}]}, {surface: Nima, lexeme: nima}, {surface: qildingiz, lexemes: [{lexeme: qilmoq, surface: qil, base: true}, {lexeme: past, surface: di}, {lexeme: past-2, surface: ngiz}]}]
+          tokens: [{surface: Samarqandgami, lexemes: [{lexeme: samarqand, surface: Samarqand, base: true}, {lexeme: dat, surface: ga}, {lexeme: q, surface: mi}]}, {surface: Nima, lexemes: [{lexeme: nima, base: true}, {lexeme: nom}]}, {surface: qildingiz, lexemes: [{lexeme: qilmoq, surface: qil, base: true}, {lexeme: past, surface: di}, {lexeme: past-2, surface: ngiz}]}]
         uz-Cyrl/standard:
           text: Самарқандгами? Нима қилдингиз?
-          tokens: [{surface: Самарқандгами, lexemes: [{lexeme: samarqand, surface: Самарқанд, base: true}, {lexeme: dat, surface: га}, {lexeme: q, surface: ми}]}, {surface: Нима, lexeme: nima}, {surface: қилдингиз, lexemes: [{lexeme: qilmoq, surface: қил, base: true}, {lexeme: past, surface: ди}, {lexeme: past-2, surface: нгиз}]}]
+          tokens: [{surface: Самарқандгами, lexemes: [{lexeme: samarqand, surface: Самарқанд, base: true}, {lexeme: dat, surface: га}, {lexeme: q, surface: ми}]}, {surface: Нима, lexemes: [{lexeme: nima, base: true}, {lexeme: nom}]}, {surface: қилдингиз, lexemes: [{lexeme: qilmoq, surface: қил, base: true}, {lexeme: past, surface: ди}, {lexeme: past-2, surface: нгиз}]}]
       translations:
         en: To Samarkand? What did you do?
   - line:
@@ -657,10 +657,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Doʻstim bilan uchrashdim.
-          tokens: [{surface: Doʻstim, lexemes: [{lexeme: dost, surface: Doʻst, base: true}, {lexeme: poss-1sg, surface: im}]}, {surface: bilan, lexeme: bilan}, {surface: uchrashdim, lexemes: [{lexeme: uchrashmoq, surface: uchrash, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
+          tokens: [{surface: Doʻstim, lexemes: [{lexeme: dost, surface: Doʻst, base: true}, {lexeme: poss-1sg, surface: im}, {lexeme: nom}]}, {surface: bilan, lexeme: bilan}, {surface: uchrashdim, lexemes: [{lexeme: uchrashmoq, surface: uchrash, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
         uz-Cyrl/standard:
           text: Дўстим билан учрашдим.
-          tokens: [{surface: Дўстим, lexemes: [{lexeme: dost, surface: Дўст, base: true}, {lexeme: poss-1sg, surface: им}]}, {surface: билан, lexeme: bilan}, {surface: учрашдим, lexemes: [{lexeme: uchrashmoq, surface: учраш, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
+          tokens: [{surface: Дўстим, lexemes: [{lexeme: dost, surface: Дўст, base: true}, {lexeme: poss-1sg, surface: им}, {lexeme: nom}]}, {surface: билан, lexeme: bilan}, {surface: учрашдим, lexemes: [{lexeme: uchrashmoq, surface: учраш, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
       translations:
         en: I met my friend.
   - line:
@@ -669,10 +669,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Biz osh yedik va choy ichdik.
-          tokens: [{surface: Biz, lexeme: biz}, {surface: osh, lexeme: osh}, {surface: yedik, lexemes: [{lexeme: yemoq, surface: ye, base: true}, {lexeme: past, surface: di}, {lexeme: past-1pl, surface: k}]}, {surface: va, lexeme: va}, {surface: choy, lexeme: choy}, {surface: ichdik, lexemes: [{lexeme: ichmoq, surface: ich, base: true}, {lexeme: past, surface: di}, {lexeme: past-1pl, surface: k}]}]
+          tokens: [{surface: Biz, lexemes: [{lexeme: biz, base: true}, {lexeme: nom}]}, {surface: osh, lexemes: [{lexeme: osh, base: true}, {lexeme: nom}]}, {surface: yedik, lexemes: [{lexeme: yemoq, surface: ye, base: true}, {lexeme: past, surface: di}, {lexeme: past-1pl, surface: k}]}, {surface: va, lexeme: va}, {surface: choy, lexemes: [{lexeme: choy, base: true}, {lexeme: nom}]}, {surface: ichdik, lexemes: [{lexeme: ichmoq, surface: ich, base: true}, {lexeme: past, surface: di}, {lexeme: past-1pl, surface: k}]}]
         uz-Cyrl/standard:
           text: Биз ош едик ва чой ичдик.
-          tokens: [{surface: Биз, lexeme: biz}, {surface: ош, lexeme: osh}, {surface: едик, lexemes: [{lexeme: yemoq, surface: е, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1pl, surface: к}]}, {surface: ва, lexeme: va}, {surface: чой, lexeme: choy}, {surface: ичдик, lexemes: [{lexeme: ichmoq, surface: ич, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1pl, surface: к}]}]
+          tokens: [{surface: Биз, lexemes: [{lexeme: biz, base: true}, {lexeme: nom}]}, {surface: ош, lexemes: [{lexeme: osh, base: true}, {lexeme: nom}]}, {surface: едик, lexemes: [{lexeme: yemoq, surface: е, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1pl, surface: к}]}, {surface: ва, lexeme: va}, {surface: чой, lexemes: [{lexeme: choy, base: true}, {lexeme: nom}]}, {surface: ичдик, lexemes: [{lexeme: ichmoq, surface: ич, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1pl, surface: к}]}]
       translations:
         en: We ate plov and drank tea.
   - choose:
@@ -715,10 +715,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Men kecha uyda edim. Kitob oʻqidim.
-          tokens: [{surface: Men, lexeme: men}, {surface: kecha, lexeme: kecha}, {surface: uyda, lexemes: [{lexeme: uy, surface: uy, base: true}, {lexeme: loc, surface: da}]}, {surface: edim, lexemes: [{lexeme: edi, surface: e, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}, {surface: Kitob, lexeme: kitob}, {surface: oʻqidim, lexemes: [{lexeme: oqimoq, surface: oʻqi, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
+          tokens: [{surface: Men, lexemes: [{lexeme: men, base: true}, {lexeme: nom}]}, {surface: kecha, lexeme: kecha}, {surface: uyda, lexemes: [{lexeme: uy, surface: uy, base: true}, {lexeme: loc, surface: da}]}, {surface: edim, lexemes: [{lexeme: edi, surface: e, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}, {surface: Kitob, lexemes: [{lexeme: kitob, base: true}, {lexeme: nom}]}, {surface: oʻqidim, lexemes: [{lexeme: oqimoq, surface: oʻqi, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
         uz-Cyrl/standard:
           text: Мен кеча уйда эдим. Китоб ўқидим.
-          tokens: [{surface: Мен, lexeme: men}, {surface: кеча, lexeme: kecha}, {surface: уйда, lexemes: [{lexeme: uy, surface: уй, base: true}, {lexeme: loc, surface: да}]}, {surface: эдим, lexemes: [{lexeme: edi, surface: э, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}, {surface: Китоб, lexeme: kitob}, {surface: ўқидим, lexemes: [{lexeme: oqimoq, surface: ўқи, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
+          tokens: [{surface: Мен, lexemes: [{lexeme: men, base: true}, {lexeme: nom}]}, {surface: кеча, lexeme: kecha}, {surface: уйда, lexemes: [{lexeme: uy, surface: уй, base: true}, {lexeme: loc, surface: да}]}, {surface: эдим, lexemes: [{lexeme: edi, surface: э, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}, {surface: Китоб, lexemes: [{lexeme: kitob, base: true}, {lexeme: nom}]}, {surface: ўқидим, lexemes: [{lexeme: oqimoq, surface: ўқи, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
       translations:
         en: I was at home yesterday. I read a book.
   - line:
