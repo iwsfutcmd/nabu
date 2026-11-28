@@ -67,6 +67,8 @@ EXPECTED_WARNINGS = {
         ("reading.inconsistent-pending", "سویی"),
         ("reading.inconsistent-pending", "شهرغه"),
         ("reading.inconsistent-pending", "تیزیغه"),
+        # ḥaqqgä (s.18.30): Schluessel reads the dative after qq voiced; the rules give ḥaqqkä.
+        ("form.reading", "lexeme:haqq+lexeme:dat chg-Latn/schluessel"),
     },
 }
 TOOLS = {
@@ -774,9 +776,10 @@ CHG_AR = "chg-Arab/standard"
 # orthography.
 CHG_LA = "chg-Latn/schluessel"
 # Schluessel's letters (2018, xii-xxxii), decomposed: a reading of the Arabic, one letter a sound.
-# A hyphen joins the Persian ezafe (tārīḫ-i) and bē- "without" to their words.
+# A hyphen joins the Persian ezafe (tārīḫ-i) to its word; a middle dot is where the Arabic has a
+# half-space (širin·dur, bē·iḫtiyār: docs/rules/chg.md).
 _LETTER = r"[a-zŋʿʾ\u0300\u0301\u0304\u0307\u0308\u030c\u0323\u032e\u0331]"
-SCHLUESSEL = regex.compile(rf"{_LETTER}+(?:-{_LETTER}+)*", regex.IGNORECASE)
+SCHLUESSEL = regex.compile(rf"{_LETTER}+(?:[-\u00b7]{_LETTER}+)*", regex.IGNORECASE)
 
 
 def test_chaghatay_is_arabic_with_schluessels_transliteration_as_ruby(core_cli: CoreCli) -> None:

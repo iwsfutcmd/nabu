@@ -87,6 +87,19 @@ def test_principal_parts(core_cli: CoreCli, tmp_path: Path) -> None:
     present = {"Aspect": "Perf", "Number": "Sing", "Person": "3"}
     course["own"]["language"]["principalParts"] = {"VERB": [present]}
     course["own"]["language"]["features"]["Person"] = ["1", "3"]
+    # The lexeme that brings the cell (ADR 0158: a cell is realised through the lexemes that bring
+    # it): the past's he, a zero, as apc's perf-3ms without its gender.
+    course["own"]["lexicon"]["lexemes"].append(
+        {
+            "id": "lexeme:perf-3sg",
+            "realises": present,
+            "on": {"at": "after", "pos": ["VERB"]},
+            "selects": "perfect",
+            "gloss": {"en": "he (past)"},
+            "allomorphs": [{"form": ""}],
+        }
+    )
+    course["own"]["lexicon"]["lexemes"].sort(key=lambda lx: str(lx["id"]))
     compiled = _compile(core_cli, tmp_path, course)
     lexicon = compiled.lexicon.model_dump(mode="json", by_alias=True, exclude_none=True)
     assert lexicon["cells"] == {"VERB": [cell_key(PAST_1SG), cell_key(present)]}
