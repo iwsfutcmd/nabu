@@ -2763,9 +2763,9 @@ export interface SourceToken {
 export interface TokenLexeme {
   readonly lexeme: LexemeName;
   /**
-   * Its letters in the token. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe).
+   * Its letters in the token. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe). Left out of a lexeme merged into its base in a language that merges lexemes (ADR 0158: apc's -o, b-, the zero of the he-past): its letters are inside the base's, as the rules spell them; and of the base where every other lexeme is one such (it writes the whole token).
    */
-  readonly surface: string;
+  readonly surface?: string;
   /**
    * The lexeme the token's others are merged onto (ADR 0145: every complex form is a base lexeme merged with another, one head per step): matbakh in b + el + matbakh, uy in uy + ga. It is what a question about the token asks (which lexeme, which form) and where its feature values are chosen. At most one; a token of two equals has none (yue 十 + 八).
    */
@@ -3182,14 +3182,29 @@ export interface Lexeme {
      */
     readonly complete?: true;
     /**
+     * Other hosts it merges onto, each with its own conditions, on the same side (`at`): it merges where `on` itself or any of these holds. apc's -e onto an adjective or a noun, or onto a verb only as a participle (`{pos: [VERB], has: {Aspect: Part}}`).
+     *
+     * @minItems 1
+     */
+    readonly or?: readonly {
+      /**
+       * @minItems 1
+       */
+      readonly pos?: readonly PartOfSpeech[];
+      readonly has?: UdFeatures1;
+      /**
+       * @minItems 1
+       */
+      readonly needs?: readonly string[];
+      readonly complete?: true;
+    }[];
+    /**
      * Which side of its base it stands (a prefix or proclitic before, a suffix, ending or zero morpheme after): merged on the other side it is an error.
      */
     readonly at?: "before" | "after";
   };
   /**
-   * The features a word it is merged into must then have, brought by other lexemes (ADR 0158: finite-ness requires person and tense). A word is complete, and written, once every requirement its category and its lexemes raise is met.
-   *
-   * @minItems 1
+   * The features a word it is merged into must then have, brought by other lexemes (ADR 0158: finite-ness requires person and tense). A word is complete, and written, once every requirement its category and its lexemes raise is met. On a base, what a word on it requires in place of its category's: `[]` for one that never inflects (apc badd, 3am).
    */
   readonly requires?: readonly string[];
   readonly selects?: StemChoice;

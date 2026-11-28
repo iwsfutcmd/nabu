@@ -13,6 +13,8 @@ export {
   fitCell,
   addable,
   arrange,
+  expandMerged,
+  opening,
   attachable,
   requestOfToken,
   rulesExplorer,

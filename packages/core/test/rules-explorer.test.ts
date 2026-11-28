@@ -8,7 +8,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 import { parse } from "yaml";
-import { decodeExplore, encodeExplore, explore, EXPLORE_DEFAULTS, attachable, explorerParadigm, fitCell, rulesExplorer, waysOf, type ExploreRequest, type LexiconSource, type RulesExplorer } from "../src/lesson/index.ts";
+import { decodeExplore, encodeExplore, explore, EXPLORE_DEFAULTS, addable, arrange, attachable, explorerParadigm, fitCell, opening, rulesExplorer, waysOf, type ExploreRequest, type LexiconSource, type RulesExplorer } from "../src/lesson/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -37,18 +37,22 @@ describe("rulesExplorer", () => {
     ]);
     const shereb = x.lexemes.find((l) => l.row.id.id === "lexeme:shereb");
     expect(shereb?.pos).toBe("VERB");
-    expect(shereb?.features.map((f) => f.feature)).toEqual(["Aspect", "Voice", "Mood", "Person", "Gender", "Number"]);
-    expect(shereb?.features[0]?.values).toEqual(["Imp", "Part", "Perf"]);
-    // The passive participle (units 26 on): Voice=Pass beside Aspect=Part.
-    expect(shereb?.features[1]?.values).toEqual(["Pass"]);
+    // apc merges lexemes (ADR 0158, 0159): a verb has no switches; its values are what its lexemes bring.
+    expect(x.merging).toBe(true);
+    expect(shereb?.features).toEqual([]);
   });
 
-  it("realises a verb in a cell, every rule and branch taken, and spells it", () => {
-    const got = explore(apc(), ask("lexeme:shereb", { Aspect: "Imp", Mood: "Ind", Person: "2", Gender: "Fem", Number: "Sing" }));
+  it("realises a verb merged with its lexemes, every rewrite taken, and spells it", () => {
+    const x = apc();
+    const merged = ask("lexeme:shereb", {}, { before: [{ lexeme: "lexeme:ind" }, { lexeme: "lexeme:impf-2" }], after: [{ lexeme: "lexeme:fs.verb" }] });
+    const got = explore(x, merged);
     expect(got.ok).toBe(true);
     if (!got.ok) return;
     expect(got.status).toBe("given");
-    expect(got.steps.map((s) => `${s.rule}|${s.branch ?? ""}`)).toContain("rule:apc-imperfect|ind");
+    expect(got.feats).toEqual({ Aspect: "Imp", Gender: "Fem", Mood: "Ind", Number: "Sing", Person: "2" });
+    // Asked by its values (a paradigm's cell, an older address), the same word: the values become its lexemes.
+    const byCell = explore(x, ask("lexeme:shereb", { Aspect: "Imp", Mood: "Ind", Person: "2", Gender: "Fem", Number: "Sing" }));
+    expect(byCell.ok && byCell.spellings.map((s) => s.spelling?.tokens[0]?.surface)).toEqual(got.spellings.map((s) => s.spelling?.tokens[0]?.surface));
     const spelled = Object.fromEntries(got.spellings.map((s) => [s.layer ?? s.orthography, s.spelling?.tokens[0]?.surface]));
     expect(spelled).toEqual({ "apc-Arab/standard": "بتشربي", vocalized: "بْتِشْرَبي", "apc-Latn/arabizi": "bteshrabi" });
     // The course's Arabizi is a free alternative of the statement's spelling, with the variation it took.
@@ -153,22 +157,24 @@ describe("a cell's defaults", () => {
     return found;
   };
 
-  it("opens a lexeme in its citation cell: es the infinitive, apc and hbo the 3ms perfect, a lexeme's own citation", () => {
+  it("opens a lexeme in its citation cell: es the infinitive, hbo the 3ms perfect, apc's as the lexemes of its merge", () => {
     expect(lexeme(es(), "lexeme:tener").citation).toEqual({ VerbForm: "Inf" });
-    expect(lexeme(apc(), "lexeme:shereb").citation).toEqual({ Aspect: "Perf", Person: "3", Gender: "Masc", Number: "Sing" });
     expect(lexeme(hbo(), "lexeme:halakh").citation).toMatchObject({ Aspect: "Perf", Person: "3", Gender: "Masc", Number: "Sing" });
-    expect(lexeme(apc(), "lexeme:khayef").citation).toEqual({ Aspect: "Part", Gender: "Masc", Number: "Sing" });
+    // apc merges lexemes: its citation is a merge (ADR 0158 §5a), the he-past's zero; a lexeme's own, the participle's.
+    const x = apc();
+    expect(opening(x, lexeme(x, "lexeme:shereb"))).toEqual({ feats: {}, before: [], after: [{ lexeme: "lexeme:perf-3ms" }] });
+    expect(opening(x, lexeme(x, "lexeme:khayef")).after.map((a) => a.lexeme)).toEqual(expect.arrayContaining(["lexeme:ptcp", "lexeme:ms"]));
+    expect(opening(es(), lexeme(es(), "lexeme:tener"))).toEqual({ feats: { VerbForm: "Inf" }, before: [], after: [] });
     // A noun's gender is its own, not its cell's.
     expect(lexeme(es(), "lexeme:casa").citation).toEqual({ Number: "Sing" });
   });
 
   it("never offers a lexical feature the lexeme does not choose: قهوة's gender is its own, tío's is chosen", () => {
     const x = apc();
-    const ahwe = lexeme(x, "lexeme:ahwe");
-    expect(ahwe.features.map((f) => f.feature)).toEqual(["Number"]);
-    // Its own Fem gives قهوة with the cell's number alone.
-    const result = explore(x, ask("lexeme:ahwe", { Number: "Sing" }));
+    // apc merges: قهوة's own Fem stands with sg, and no feminine is offered onto it (it would bring Gender twice).
+    const result = explore(x, ask("lexeme:ahwe", {}, { after: [{ lexeme: "lexeme:sg" }] }));
     expect(result.ok && result.spellings.find((s) => s.orthography === "apc-Arab/standard" && s.layer === undefined)?.spelling?.tokens[0]?.surface).toBe("قهوة");
+    expect(addable(x, ask("lexeme:ahwe", {})).map((l) => l.row.id.id)).not.toContain("lexeme:fs");
     expect(lexeme(es(), "lexeme:tío").features.map((f) => f.feature)).toContain("Gender");
   });
 
@@ -179,10 +185,11 @@ describe("a cell's defaults", () => {
     expect(fitCell(x, tener, { ...participle, VerbForm: "Fin" }, "VerbForm")).toEqual({ Number: "Sing", Tense: "Past", VerbForm: "Fin" });
     // A cell that fits is left as it is.
     expect(fitCell(x, tener, participle, "Gender")).toEqual(participle);
-    // apc: the participle has no person.
-    const y = apc();
-    const shereb = lexeme(y, "lexeme:shereb");
-    expect(fitCell(y, shereb, { Aspect: "Part", Person: "3", Gender: "Masc", Number: "Sing" }, "Aspect")).toEqual({ Aspect: "Part", Gender: "Masc", Number: "Sing" });
+    // hbo: the infinitive has no person.
+    const y = hbo();
+    const halakh = lexeme(y, "lexeme:halakh");
+    const fitted = fitCell(y, halakh, { ...halakh.citation, VerbForm: "Inf" }, "VerbForm");
+    expect(fitted["Person"]).toBeUndefined();
   });
 });
 
@@ -191,9 +198,24 @@ describe("what may be written with a base", () => {
     const x = apc();
     const ids = (side: "before" | "after"): readonly string[] => attachable(x, side).map((l) => l.row.id.id);
     expect(ids("after")).toContain("lexeme:obj-1sg");
+    // el- states no side (it follows a preposition in 3al): it stands where the course writes it more often.
     expect(ids("before")).toEqual(expect.arrayContaining(["lexeme:el", "lexeme:b", "lexeme:w"]));
     expect(ids("before")).not.toContain("lexeme:enta");
     expect(ids("after")).not.toContain("lexeme:enta");
     expect(ids("after").length).toBeLessThan(x.lexemes.length / 4);
+  });
+
+  it("writes apc's lexemes in the order they merge, the clitics outside: w-b-y-shrab-o-h", () => {
+    const x = apc();
+    const picked = ["lexeme:obj-3ms", "lexeme:pl.verb", "lexeme:impf-3", "lexeme:w", "lexeme:ind"].reduce(
+      (r, id) => ({ ...r, ...arrange(x, r, id) }),
+      ask("lexeme:shereb", {}),
+    );
+    expect(picked.before.map((a) => a.lexeme)).toEqual(["lexeme:w", "lexeme:ind", "lexeme:impf-3"]);
+    expect(picked.after.map((a) => a.lexeme)).toEqual(["lexeme:pl.verb", "lexeme:obj-3ms"]);
+    const got = explore(x, picked);
+    expect(got.ok && got.missing).toBeUndefined();
+    // The object suffix is offered only once the word is complete.
+    expect(addable(x, ask("lexeme:shereb", {}, { before: [{ lexeme: "lexeme:impf-3" }] })).map((l) => l.row.id.id)).not.toContain("lexeme:obj-3ms");
   });
 });

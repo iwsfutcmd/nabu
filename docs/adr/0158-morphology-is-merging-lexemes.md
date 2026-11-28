@@ -77,6 +77,8 @@ A bound lexeme (`realises`, already in the schema) states:
 - **which side of its base it stands** (`on.at`: `before` or `after`; the owner, 2026-11-26: "an affix should contain
   within it where it attaches"): a prefix or proclitic before, a suffix, ending or zero morpheme after. Merged on
   the other side it is an `attach` error, and the explorer never asks;
+- **onto which hosts**, where they differ (`on.or`: further hosts, each with its own conditions, on the same side;
+  apc's -e onto an adjective or a noun, or onto a verb only as its participle);
 - **what the word must have when it merges** (`on.has` values, `on.needs` a value for a feature whatever it is,
   `on.complete` every requirement met, by the word or by what the lexeme brings itself). Merging runs outward from the base, each lexeme onto the word as it stands
   (the owner, 2026-11-26: "ʾaktab- simply cannot take a pronominal suffix, but ʾaktabu *can*"), so these conditions
@@ -91,6 +93,8 @@ A bound lexeme (`realises`, already in the schema) states:
 - **its form** at the join (its allomorphs, as today, chosen by `before`, `startsIn`, the stem's class).
 
 ### 3. A category says what an output needs
+
+A base that never inflects states its own (`requires: []`: apc badd, 3am): it replaces its category's.
 
 `language.yaml` gives each category its first requirement (es `VERB: [VerbForm]`, apc `VERB: [Aspect]`, sk
 `NOUN: [Case, Number]`). A word is complete, and can be spelled, when every requirement its lexemes have raised is

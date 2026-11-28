@@ -1732,14 +1732,19 @@ lexemes:
     Person[psor]: '1'
     Number[psor]: Plur
     Definite: Cons
-  'on': &id013
+  'on':
     at: after
     complete: true
     pos:
     - NOUN
     - ADJ
     - ADP
-    - VERB
+    or:
+    - pos:
+      - VERB
+      has:
+        VerbForm: Part
+      complete: true
   gloss:
     en: our, us
   notes:
@@ -1751,7 +1756,19 @@ lexemes:
     Person[psor]: '1'
     Number[psor]: Sing
     Definite: Cons
-  'on': *id013
+  'on':
+    at: after
+    complete: true
+    pos:
+    - NOUN
+    - ADJ
+    - ADP
+    or:
+    - pos:
+      - VERB
+      has:
+        VerbForm: Part
+      complete: true
   gloss:
     en: my, me
   notes:
@@ -1766,7 +1783,19 @@ lexemes:
     Person[psor]: '2'
     Number[psor]: Dual
     Definite: Cons
-  'on': *id013
+  'on':
+    at: after
+    complete: true
+    pos:
+    - NOUN
+    - ADJ
+    - ADP
+    or:
+    - pos:
+      - VERB
+      has:
+        VerbForm: Part
+      complete: true
   gloss:
     en: your, you (two)
   notes:
@@ -1779,7 +1808,19 @@ lexemes:
     Number[psor]: Plur
     Gender[psor]: Fem
     Definite: Cons
-  'on': *id013
+  'on':
+    at: after
+    complete: true
+    pos:
+    - NOUN
+    - ADJ
+    - ADP
+    or:
+    - pos:
+      - VERB
+      has:
+        VerbForm: Part
+      complete: true
   gloss:
     en: your, you (women)
   notes:
@@ -1792,7 +1833,19 @@ lexemes:
     Number[psor]: Sing
     Gender[psor]: Fem
     Definite: Cons
-  'on': *id013
+  'on':
+    at: after
+    complete: true
+    pos:
+    - NOUN
+    - ADJ
+    - ADP
+    or:
+    - pos:
+      - VERB
+      has:
+        VerbForm: Part
+      complete: true
   gloss:
     en: your, you (a woman)
   notes:
@@ -1805,7 +1858,19 @@ lexemes:
     Number[psor]: Plur
     Gender[psor]: Masc
     Definite: Cons
-  'on': *id013
+  'on':
+    at: after
+    complete: true
+    pos:
+    - NOUN
+    - ADJ
+    - ADP
+    or:
+    - pos:
+      - VERB
+      has:
+        VerbForm: Part
+      complete: true
   gloss:
     en: your, you (men)
   notes:
@@ -1818,7 +1883,19 @@ lexemes:
     Number[psor]: Sing
     Gender[psor]: Masc
     Definite: Cons
-  'on': *id013
+  'on':
+    at: after
+    complete: true
+    pos:
+    - NOUN
+    - ADJ
+    - ADP
+    or:
+    - pos:
+      - VERB
+      has:
+        VerbForm: Part
+      complete: true
   gloss:
     en: your, you (a man)
   notes:
@@ -1830,7 +1907,19 @@ lexemes:
     Person[psor]: '3'
     Number[psor]: Dual
     Definite: Cons
-  'on': *id013
+  'on':
+    at: after
+    complete: true
+    pos:
+    - NOUN
+    - ADJ
+    - ADP
+    or:
+    - pos:
+      - VERB
+      has:
+        VerbForm: Part
+      complete: true
   gloss:
     en: their, them (two)
   notes:
@@ -1856,7 +1945,19 @@ lexemes:
     Number[psor]: Plur
     Gender[psor]: Fem
     Definite: Cons
-  'on': *id013
+  'on':
+    at: after
+    complete: true
+    pos:
+    - NOUN
+    - ADJ
+    - ADP
+    or:
+    - pos:
+      - VERB
+      has:
+        VerbForm: Part
+      complete: true
   gloss:
     en: their, them (women)
   notes:
@@ -1882,7 +1983,19 @@ lexemes:
     Number[psor]: Sing
     Gender[psor]: Fem
     Definite: Cons
-  'on': *id013
+  'on':
+    at: after
+    complete: true
+    pos:
+    - NOUN
+    - ADJ
+    - ADP
+    or:
+    - pos:
+      - VERB
+      has:
+        VerbForm: Part
+      complete: true
   gloss:
     en: her
   notes:
@@ -1895,7 +2008,19 @@ lexemes:
     Number[psor]: Plur
     Gender[psor]: Masc
     Definite: Cons
-  'on': *id013
+  'on':
+    at: after
+    complete: true
+    pos:
+    - NOUN
+    - ADJ
+    - ADP
+    or:
+    - pos:
+      - VERB
+      has:
+        VerbForm: Part
+      complete: true
   gloss:
     en: their, them (men)
   notes:
@@ -1921,7 +2046,19 @@ lexemes:
     Number[psor]: Sing
     Gender[psor]: Masc
     Definite: Cons
-  'on': *id013
+  'on':
+    at: after
+    complete: true
+    pos:
+    - NOUN
+    - ADJ
+    - ADP
+    or:
+    - pos:
+      - VERB
+      has:
+        VerbForm: Part
+      complete: true
   gloss:
     en: his, him
   notes:

@@ -127,11 +127,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: منيح!
-      tokens: [{surface: منيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: منيح, lexemes: [{lexeme: mni7, base: true}, {lexeme: ms}]}]
       reverse: (منيح|منيحة)
     apc-Latn/arabizi:
       text: mni7!
-      tokens: [{surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: mni7, lexemes: [{lexeme: mni7, base: true}, {lexeme: ms}]}]
       reverse: (mni7|mnih|mnee7|mni7a|mnee7a)
   translations:
     en: |-
@@ -146,13 +146,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: منيح، الحمدلله.
-      tokens: [{surface: منيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}, {surface: الحمدلله, lexeme: el7amdella}]
+      tokens: [{surface: منيح, lexemes: [{lexeme: mni7, base: true}, {lexeme: ms}]}, {surface: الحمدلله, lexeme: el7amdella}]
       reverse: |-
         منيح (الحمدلله|الحمد لله)
         الحمدلله منيح
     apc-Latn/arabizi:
       text: mni7, el7amdella.
-      tokens: [{surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}, {surface: el7amdella, lexeme: el7amdella}]
+      tokens: [{surface: mni7, lexemes: [{lexeme: mni7, base: true}, {lexeme: ms}]}, {surface: el7amdella, lexeme: el7amdella}]
       reverse: |-
         (mni7|mnih|mnee7) (el7amdella|l7amdella|el7amdellah|7amdella|el7amdulillah|al7amdulillah|alhamdulillah|elhamdella)
         el7amdella mni7
@@ -168,11 +168,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا منيح.
-      tokens: [{surface: أنا, lexeme: ana}, {surface: منيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: منيح, lexemes: [{lexeme: mni7, base: true}, {lexeme: ms}]}]
       reverse: '[أنا] منيح'
     apc-Latn/arabizi:
       text: ana mni7.
-      tokens: [{surface: ana, lexeme: ana}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: mni7, lexemes: [{lexeme: mni7, base: true}, {lexeme: ms}]}]
       reverse: '[ana] (mni7|mnih|mnee7)'
   translations:
     en: |-
@@ -185,11 +185,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: إنت منيح؟
-      tokens: [{surface: إنت, lexeme: enta}, {surface: منيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: إنت, lexeme: enta}, {surface: منيح, lexemes: [{lexeme: mni7, base: true}, {lexeme: ms}]}]
       reverse: '[إنت] منيح'
     apc-Latn/arabizi:
       text: enta mni7?
-      tokens: [{surface: enta, lexeme: enta}, {surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: enta, lexeme: enta}, {surface: mni7, lexemes: [{lexeme: mni7, base: true}, {lexeme: ms}]}]
       reverse: '[(enta|inta)] (mni7|mnih|mnee7)'
   translations:
     en: Are you (fine|good|well|OK|okay|all right|alright)?
@@ -247,13 +247,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: شو اسمك؟
-      tokens: [{surface: شو, lexeme: shu}, {surface: اسمك, lexemes: [{lexeme: esm, surface: اسم, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ك}]}]
+      tokens: [{surface: شو, lexeme: shu}, {surface: اسمك, lexemes: [{lexeme: esm, surface: اسم, base: true}, {lexeme: sg}, {lexeme: poss-2ms, surface: ك}]}]
       reverse: |-
         شو اسمك
         إنت شو اسمك
     apc-Latn/arabizi:
       text: shu esmak?
-      tokens: [{surface: shu, lexeme: shu}, {surface: esmak, lexemes: [{lexeme: esm, surface: esm, base: true, feats: {Number: Sing}}, {lexeme: poss-2ms, surface: ak}]}]
+      tokens: [{surface: shu, lexeme: shu}, {surface: esmak, lexemes: [{lexeme: esm, surface: esm, base: true}, {lexeme: sg}, {lexeme: poss-2ms, surface: ak}]}]
       reverse: |-
         (shu|sho) (esmak|ismak)
         enta shu esmak
@@ -264,13 +264,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: اسمي سامي.
-      tokens: [{surface: اسمي, lexemes: [{lexeme: esm, surface: اسم, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: ي}]}, {surface: سامي, lexeme: sami}]
+      tokens: [{surface: اسمي, lexemes: [{lexeme: esm, surface: اسم, base: true}, {lexeme: sg}, {lexeme: poss-1sg, surface: ي}]}, {surface: سامي, lexeme: sami}]
       reverse: |-
         اسمي سامي
         أنا اسمي سامي
     apc-Latn/arabizi:
       text: esmi Sami.
-      tokens: [{surface: esmi, lexemes: [{lexeme: esm, surface: esm, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg, surface: i}]}, {surface: Sami, lexeme: sami}]
+      tokens: [{surface: esmi, lexemes: [{lexeme: esm, surface: esm, base: true}, {lexeme: sg}, {lexeme: poss-1sg, surface: i}]}, {surface: Sami, lexeme: sami}]
       reverse: |-
         (esmi|ismi|esme|isme) Sami
         ana esmi Sami
@@ -296,11 +296,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: قهوة؟
-      tokens: [{surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}]
+      tokens: [{surface: قهوة, lexemes: [{lexeme: ahwe, base: true}, {lexeme: sg}]}]
       reverse: قهوة
     apc-Latn/arabizi:
       text: ahwe?
-      tokens: [{surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
+      tokens: [{surface: ahwe, lexemes: [{lexeme: ahwe, base: true}, {lexeme: sg}]}]
       reverse: (ahwe|2ahwe|ahwi|2ahwi)
   translations:
     en: |-
@@ -311,11 +311,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: شاي؟
-      tokens: [{surface: شاي, lexeme: shay, feats: {Number: Sing}}]
+      tokens: [{surface: شاي, lexemes: [{lexeme: shay, base: true}, {lexeme: sg}]}]
       reverse: شاي
     apc-Latn/arabizi:
       text: shay?
-      tokens: [{surface: shay, lexeme: shay, feats: {Number: Sing}}]
+      tokens: [{surface: shay, lexemes: [{lexeme: shay, base: true}, {lexeme: sg}]}]
       reverse: (shay|shai)
   translations:
     en: |-
@@ -326,11 +326,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بدّي قهوة.
-      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: قهوة, lexeme: ahwe, feats: {Number: Sing}}]
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: قهوة, lexemes: [{lexeme: ahwe, base: true}, {lexeme: sg}]}]
       reverse: (بدّي|أنا بدّي) قهوة
     apc-Latn/arabizi:
       text: baddi ahwe.
-      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: ahwe, lexemes: [{lexeme: ahwe, base: true}, {lexeme: sg}]}]
       reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (ahwe|2ahwe|ahwi|2ahwi)
   translations:
     en: |-
@@ -343,11 +343,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بدّك شاي؟
-      tokens: [{surface: بدّك, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}]
+      tokens: [{surface: بدّك, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: شاي, lexemes: [{lexeme: shay, base: true}, {lexeme: sg}]}]
       reverse: (بدّك|إنت بدّك) شاي
     apc-Latn/arabizi:
       text: baddak shay?
-      tokens: [{surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: shay, lexeme: shay, feats: {Number: Sing}}]
+      tokens: [{surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: shay, lexemes: [{lexeme: shay, base: true}, {lexeme: sg}]}]
       reverse: ((baddak|badak)|(enta|inta) (baddak|badak)) (shay|shai)
   translations:
     en: |-
@@ -376,13 +376,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: إيه، بدّي شاي.
-      tokens: [{surface: إيه, lexeme: eh}, {surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}]
+      tokens: [{surface: إيه, lexeme: eh}, {surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: شاي, lexemes: [{lexeme: shay, base: true}, {lexeme: sg}]}]
       reverse: |-
         إيه (بدّي|أنا بدّي) شاي
         إي بدّي شاي
     apc-Latn/arabizi:
       text: eh, baddi shay.
-      tokens: [{surface: eh, lexeme: eh}, {surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: shay, lexeme: shay, feats: {Number: Sing}}]
+      tokens: [{surface: eh, lexeme: eh}, {surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: shay, lexemes: [{lexeme: shay, base: true}, {lexeme: sg}]}]
       reverse: (eh|ee|e) ((baddi|badde|badi)|ana (baddi|badde|badi)) (shay|shai)
   translations:
     en: |-
@@ -415,11 +415,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بدّي شاي، شكرا.
-      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}, {surface: شكرا, lexeme: shukran}]
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: شاي, lexemes: [{lexeme: shay, base: true}, {lexeme: sg}]}, {surface: شكرا, lexeme: shukran}]
       reverse: (بدّي|أنا بدّي) شاي (شكرا|ميرسي)
     apc-Latn/arabizi:
       text: baddi shay, shukran.
-      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: shay, lexeme: shay, feats: {Number: Sing}}, {surface: shukran, lexeme: shukran}]
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: shay, lexemes: [{lexeme: shay, base: true}, {lexeme: sg}]}, {surface: shukran, lexeme: shukran}]
       reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (shay|shai) (shukran|shokran|merci)
   translations:
     en: |-
@@ -474,10 +474,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: مْنيح، الحَمْدِلله!
-          tokens: [{surface: مْنيح, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}, {surface: الحَمْدِلله, lexeme: el7amdella}]
+          tokens: [{surface: مْنيح, lexemes: [{lexeme: mni7, base: true}, {lexeme: ms}]}, {surface: الحَمْدِلله, lexeme: el7amdella}]
         apc-Latn/arabizi:
           text: mni7, el7amdella!
-          tokens: [{surface: mni7, lexeme: mni7, feats: {Gender: Masc, Number: Sing}}, {surface: el7amdella, lexeme: el7amdella}]
+          tokens: [{surface: mni7, lexemes: [{lexeme: mni7, base: true}, {lexeme: ms}]}, {surface: el7amdella, lexeme: el7amdella}]
       translations:
         en: Fine, thank God!
   - choose:
@@ -494,10 +494,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: شو بَدَّك؟ قَهْوِة؟
-          tokens: [{surface: شو, lexeme: shu}, {surface: بَدَّك, lexemes: [{lexeme: badd, surface: بَدَّ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: قَهْوِة, lexeme: ahwe, feats: {Number: Sing}}]
+          tokens: [{surface: شو, lexeme: shu}, {surface: بَدَّك, lexemes: [{lexeme: badd, surface: بَدَّ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: قَهْوِة, lexemes: [{lexeme: ahwe, base: true}, {lexeme: sg}]}]
         apc-Latn/arabizi:
           text: shu baddak? ahwe?
-          tokens: [{surface: shu, lexeme: shu}, {surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}}]
+          tokens: [{surface: shu, lexeme: shu}, {surface: baddak, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: ahwe, lexemes: [{lexeme: ahwe, base: true}, {lexeme: sg}]}]
       translations:
         en: What do you want? Coffee?
   - line:
@@ -510,10 +510,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: لأ، بَدّي شاي.
-          tokens: [{surface: لأ, lexeme: la2}, {surface: بَدّي, lexemes: [{lexeme: badd, surface: بَدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: شاي, lexeme: shay, feats: {Number: Sing}}]
+          tokens: [{surface: لأ, lexeme: la2}, {surface: بَدّي, lexemes: [{lexeme: badd, surface: بَدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: شاي, lexemes: [{lexeme: shay, base: true}, {lexeme: sg}]}]
         apc-Latn/arabizi:
           text: la2, baddi shay.
-          tokens: [{surface: la2, lexeme: la2}, {surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: shay, lexeme: shay, feats: {Number: Sing}}]
+          tokens: [{surface: la2, lexeme: la2}, {surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: shay, lexemes: [{lexeme: shay, base: true}, {lexeme: sg}]}]
       translations:
         en: No, I want tea.
   - line:

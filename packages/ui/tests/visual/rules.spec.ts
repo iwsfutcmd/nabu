@@ -1,6 +1,6 @@
 /**
  * The rules explorer (debug mode) in the visual matrix: UI {en, en-XA, ar-XB} × its stories on fixed
- * courses (apc's shereb with -ni written after it, apc's pinned a7mar, tok's moku with sitelen pona
+ * courses (apc's shereb merged with the present's lexemes and -ni, apc's pinned a7mar, tok's moku with sitelen pona
  * stating no spelling), horizontal (it is a page of lists, not set in columns). Every text keeps its
  * own language's direction whatever the chrome's; ids, features, rules and branches read left to
  * right; nothing is clipped, nothing overflows, no serious axe violation, no runtime error.

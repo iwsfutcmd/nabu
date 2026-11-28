@@ -1,9 +1,9 @@
 /**
  * The rules explorer (debug mode), on fixed courses whatever the toolbar's target, with the lexicon's
  * own files and the course's profiles as the repository has them (read at build time: the app gets the
- * same files from lexicon-source/ beside it): apc's shereb in the 2fs present with the 1sg object
- * suffix written after it (its rules, branches, three spellings with Arabizi's free alternatives, how
- * the course writes it, its paradigm); a word with a pinned form (apc a7mar's feminine); nothing picked
+ * same files from lexicon-source/ beside it): apc's shereb merged with the 2fs present's lexemes and the
+ * 1sg object suffix (what they bring, the rewrites, three spellings with Arabizi's free alternatives, how
+ * the course writes it, its paradigm); a word with a pinned form (apc a7mar with -e); nothing picked
  * yet; and tok, whose sitelen pona states no spelling. Each story keeps its own request, as the page
  * keeps it in its address.
  */
@@ -60,17 +60,20 @@ const explorerStory = (id: string, orthography: string, start: ExploreRequest | 
 
 const DEFAULTS = { blocking: true, pinned: true, spellings: false } as const;
 
-/** apc's shereb, 2fs present, with -ni written after it: the rules and branches taken, three spellings, Arabizi's free alternatives. */
+/**
+ * apc's shereb merged with the present's lexemes (b-, t-, -i: you, a woman) and -ni written after them (ADR 0158):
+ * what they bring, the rewrites taken, three spellings, Arabizi's free alternatives.
+ */
 export const Realised: Story = explorerStory("apc", "apc-Arab/standard", {
   base: "lexeme:shereb",
-  feats: { Aspect: "Imp", Mood: "Ind", Person: "2", Gender: "Fem", Number: "Sing" },
-  before: [],
-  after: [{ lexeme: "lexeme:obj-1sg" }],
+  feats: {},
+  before: [{ lexeme: "lexeme:ind" }, { lexeme: "lexeme:impf-2" }],
+  after: [{ lexeme: "lexeme:fs.verb" }, { lexeme: "lexeme:obj-1sg" }],
   ...DEFAULTS,
 });
 
-/** apc's a7mar "red" in the feminine: a pinned form (rule debt), not what a rule gives. */
-export const Pinned: Story = explorerStory("apc", "apc-Arab/standard", { base: "lexeme:a7mar", feats: { Gender: "Fem", Number: "Sing" }, before: [], after: [], ...DEFAULTS });
+/** apc's a7mar "red" with the feminine -e: a pinned form (rule debt) stands for the merged word, not what the lexemes give. */
+export const Pinned: Story = explorerStory("apc", "apc-Arab/standard", { base: "lexeme:a7mar", feats: {}, before: [], after: [{ lexeme: "lexeme:fs" }], ...DEFAULTS });
 
 /** Nothing picked yet: the search for a base. */
 export const Empty: Story = explorerStory("apc", "apc-Arab/standard", undefined);

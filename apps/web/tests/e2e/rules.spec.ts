@@ -36,8 +36,15 @@ test("a lexeme is put through the rules as it is changed, kept in the address, a
   page.on("pageerror", (e) => errors.push(String(e)));
   const course = loadCourse("apc", "apc-Arab/standard");
   const explorer = rulesExplorer(course, sourceOf("apc"));
-  const cell = { Aspect: "Imp", Mood: "Ind", Person: "2", Gender: "Fem", Number: "Sing" };
-  const asked: ExploreRequest = { base: "lexeme:shereb", feats: cell, before: [], after: [{ lexeme: "lexeme:obj-1sg" }], ...EXPLORE_DEFAULTS };
+  // apc merges lexemes (ADR 0158): you, a woman, drink me is shereb with the present's lexemes and -ni.
+  const merged = ["ind", "impf-2", "fs.verb", "obj-1sg"];
+  const asked: ExploreRequest = {
+    base: "lexeme:shereb",
+    feats: {},
+    before: [{ lexeme: "lexeme:ind" }, { lexeme: "lexeme:impf-2" }],
+    after: [{ lexeme: "lexeme:fs.verb" }, { lexeme: "lexeme:obj-1sg" }],
+    ...EXPLORE_DEFAULTS,
+  };
   const expected = explore(explorer, asked);
   if (!expected.ok) throw new Error("apc's rules give shereb's 2fs present");
 
@@ -67,11 +74,16 @@ test("a lexeme is put through the rules as it is changed, kept in the address, a
   await root.locator('[data-pick="lexeme:shereb"]').click();
   await expect(root.locator('[data-base="lexeme:shereb"]')).toBeVisible();
 
-  // Each value of its cell, then a suffix written after it: the result follows each change.
-  for (const [feature, value] of Object.entries(cell)) await root.locator(`[data-feature="${feature}"] [data-value="${value}"]`).click();
-  await root.locator("[data-field=rules-add]").fill("obj-1sg");
-  await root.locator('[data-pick="lexeme:obj-1sg"]').click();
-  await expect(root.locator('[data-attached="lexeme:obj-1sg"]')).toBeVisible();
+  // It opens as its citation, the he-past: shereb and the zero of perf-3ms. No switches to set.
+  await expect(root.locator('[data-attached="lexeme:perf-3ms"]')).toBeVisible();
+  await expect(root.locator("[data-feature]")).toHaveCount(0);
+  await root.locator('[data-attached="lexeme:perf-3ms"] [data-action=rules-remove]').click();
+  // The present's lexemes and -ni, each offered once it can merge and written where it merges: the result follows each change.
+  for (const id of ["impf-2", "fs.verb", "ind", "obj-1sg"]) {
+    await root.locator("[data-field=rules-add]").fill(id);
+    await root.locator(`[data-picker="rules-add"] [data-pick="lexeme:${id}"]`).click();
+  }
+  expect(await root.locator("[data-attached]").evaluateAll((els) => els.map((e) => e.getAttribute("data-attached")))).toEqual(merged.map((id) => `lexeme:${id}`));
   const live = root.locator("[data-rules-live]");
   await expect(live.locator("[data-rules-result]")).toHaveAttribute("data-status", "given");
   await expect(live.locator("[data-rule-step]")).toHaveText(expected.steps.map((s) => (s.branch === undefined ? s.rule : `${s.rule}|${s.branch}`)));

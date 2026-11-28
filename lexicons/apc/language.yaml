@@ -29,6 +29,13 @@ bare:
   PROPN: {Gender: Masc}
   ADJ: {Gender: Masc, Number: Sing}
   VERB: {Mood: Imp, Person: '2', Gender: Masc, Number: Sing}
+# What a word needs before it is one (ADR 0158): a verb or an auxiliary is no word until its number is set, by the
+# lexemes merged with it (lexemes.yaml: the past's endings, the present's prefixes and endings, the command, the
+# participle's endings). A base that never inflects states none of its own (badd, fi, lezem, 3am: `requires: []`).
+# Nouns, adjectives and pronouns require nothing yet: their tokens may stand as their lemma (REVIEW).
+requires:
+  VERB: [Number]
+  AUX: [Number]
 features:
   Aspect: [Imp, Part, Perf]
   Case: [Acc, Dat]
@@ -160,8 +167,8 @@ stems:
 - {id: imperfect, form: I, class: doubled, template: "1ِ2ّ"}  # y7ebb, yleff, yde22 (Kline p. 79)
 - {id: imperfect, form: I, class: doubled, vowels: {present: a}, template: "1َ2ّ", branch: doubled-a}  # yDall, nDall (Kline p. 71): a present in a keeps it (REVIEW)
 - {id: imperfect, form: I, class: defective, template: "1ْ2{long present}"}  # ye7ki, ye2ra (Kline p. 78)
-- {id: command, form: I, class: hamzated, template: "2\u065dو3", branch: hamzated}  # kol, khod (Kline p. 164): an o the course writes with و (كول, خود; Kline p. 163)
-- {id: command-v, form: I, class: hamzated, template: "2ِ3", branch: hamzated}  # kili, kilo (Kline p. 164: kele, kelo)
+- {id: command, form: I, class: hamzated, feats: {Mood: Imp}, template: "2\u065dو3", branch: hamzated}  # kol, khod (Kline p. 164): an o the course writes with و (كول, خود; Kline p. 163)
+- {id: command-v, form: I, class: hamzated, feats: {Mood: Imp}, template: "2ِ3", branch: hamzated}  # kili, kilo (Kline p. 164: kele, kelo)
 - {id: participle, form: I, template: "1\u065cا2ِ3"}  # keteb, seken, nezel
 - {id: participle, form: I, radical: 1, in: "{BACK}", template: "1َا2ِ3", branch: back-a}  # 2a3ed, wa2ef: a after a back radical (REVIEW)
 - {id: participle, form: I, class: hollow, template: "1\u065cايِ3", branch: hollow}  # keyin, neyem (Kline p. 123)
@@ -187,85 +194,12 @@ stems:
 - {id: imperfect, form: VIII, template: "1ْتِ2ِ3"}  # yeshte8el
 - {id: imperfect, form: VIII, class: hollow, template: "1ْت\u065cا3"}  # yrte7
 - {id: imperfect, form: VIII, class: defective, template: "1ْتِ2ِي"}  # yshtere (Kline p. 91); the course's eshtiri
-realisation:
-- id: 'rule:apc-perfect'  # the suffix conjugation (Kline p. 95-99)
-  when: {feats: {Aspect: Perf}}
-  stem: perfect
-  blocks:
-  - suffix:
-    - {branch: 1sg, feats: {Person: '1', Number: Sing}, add: "ت", stem: [perfect-short, perfect]}
-    - {branch: 1pl, feats: {Person: '1', Number: Plur}, add: "نَا", stem: [perfect-ay, perfect-short, perfect]}
-    - {branch: 2fs, feats: {Person: '2', Gender: Fem, Number: Sing}, add: "تِي", stem: [perfect-ay, perfect-short, perfect]}
-    - {branch: 2pl, feats: {Person: '2', Number: Plur}, add: "تُوا\u06df", stem: [perfect-ay, perfect-short, perfect]}  # -to; the alef is written and not said
-    - {branch: 2ms, feats: {Person: '2'}, add: "ت", stem: [perfect-short, perfect]}
-    - {branch: 3fs, feats: {Person: '3', Gender: Fem, Number: Sing}, add: "ـِت"}  # -et, on the long stem (Kline p. 60, 69: kenet, Saret)
-    - {branch: 3pl, feats: {Person: '3', Number: Plur}, add: "ـُوا\u06df"}  # -o (keno, Saro)
-    - {branch: 3ms, feats: {Person: '3'}, add: ""}  # he: the stem alone
-- id: 'rule:apc-imperfect'  # the prefix conjugation (Kline p. 100-104, 157-159)
-  when: {feats: {Aspect: Imp}}
-  stem: imperfect
-  blocks:
-  - prefix:  # who: the person prefix
-    - {branch: 1sg-sub, feats: {Person: '1', Number: Sing, Mood: Sub}, add: "ا"}  # Kline p. 157: (a)-, a vowel written with alef before a cluster; the alef goes before a vowel (rule:apc-prefix-vowel)
-    - {branch: 1sg, feats: {Person: '1', Number: Sing}, add: ""}  # b- alone (Kline p. 100)
-    - {branch: 1pl, feats: {Person: '1', Number: Plur}, add: "ن"}
-    - {branch: 3fs, feats: {Person: '3', Gender: Fem, Number: Sing}, add: "ت"}
-    - {branch: '2', feats: {Person: '2'}, add: "ت"}
-    - {branch: '3', feats: {Person: '3'}, add: "ي"}
-  - prefix:  # the indicative's b- (the future's ra7 and the negative's ma are lexemes of their own)
-    - {branch: ind, feats: {Mood: Ind}, add: "ب"}
-  - suffix:
-    - {branch: 2fs, feats: {Person: '2', Gender: Fem, Number: Sing}, add: "ـِي"}
-    - {branch: pl, feats: {Person: '2,3', Number: Plur}, add: "ـُوا\u06df"}
-- id: 'rule:apc-command'  # the command (Kline p. 161-166): the present's stem, no prefix
-  when: {feats: {Mood: Imp}}
-  stem: [command, imperfect]
-  blocks:
-  - suffix:
-    - {branch: 2fs, feats: {Gender: Fem, Number: Sing}, add: "ـِي", stem: [command-v, command, imperfect]}
-    - {branch: pl, feats: {Number: Plur}, add: "ـُوا\u06df", stem: [command-v, command, imperfect]}
-    - {branch: 2ms, add: ""}
-  # REVIEW: Kline gives the command of a sound verb with no vowel before its cluster (dros, trok: p. 161, 164;
-  # 'initial clusters are allowed in and around Beirut', p. 162-163); the course writes shrab, shrabo (eshrab, eshrabo accepted: the owner, 2026-11-23).
-- id: 'rule:apc-passive-participle'  # the passive participle (Kline p. 139-142): a form of its verb, as the active one is;
-  # none from a hollow Form I verb (Kline p. 140: Form VII stands in). Before the active participle's rule: the first that holds.
-  when: {feats: {Aspect: Part, Voice: Pass}}
-  stem: passive
-  blocks:
-  - suffix:
-    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u065cة"}  # -e, or -a (rule:apc-feminine): maftou7a, ma7boube
-    - {branch: pl, feats: {Number: Plur}, add: "ـِين"}  # -in: ma3zoumin
-    - {branch: ms, add: ""}
-- id: 'rule:apc-participle'  # the active participle, Form I (Kline p. 122-124, 130): a form of its verb (apc.md)
-  when: {feats: {Aspect: Part}}
-  stem: participle
-  blocks:
-  - suffix:
-    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u065cة"}  # -e, or -a (rule:apc-feminine)
-    - {branch: pl, feats: {Number: Plur}, add: "ـِين"}  # -in
-    - {branch: ms, add: ""}
-# Stage 3: nouns and adjectives (Kline p. 10-16). Uninflected words, and a lexeme in its citation cell (its category's
-# or its own `citation`: hayde, wlad), stand in it with no rule.
-- id: 'rule:apc-invariable'  # REVIEW: an adjective that does not agree: no ending (akbar, awwal: the course; Kline p. 14)
-  when: {pos: ADJ, class: invariable}
-  blocks: []
-- id: 'rule:apc-nisba'  # REVIEW: the nisba's feminine -iyye and plural -iyyin (Kline p. 10-11: lebnene, lebneniyye)
-  when: {pos: ADJ, class: nisba}
-  blocks:
-  - suffix:
-    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u0651\u065cة"}  # its ي doubled, then -e
-    - {branch: pl, feats: {Number: Plur}, add: "ـ\u0650\u0651ين"}
-- id: 'rule:apc-adjective'  # an adjective's feminine and plural (Kline p. 10, 16)
-  when: {pos: ADJ}
-  blocks:
-  - suffix:
-    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u065cة"}  # -e, or -a (rule:apc-feminine)
-    - {branch: pl, feats: {Number: Plur}, add: "ـ\u0650ين"}  # -in
-- id: 'rule:apc-noun'  # REVIEW: a noun whose tokens choose its gender, in the feminine (7abib, m3allem: Kline p. 10, 130)
-  when: {pos: NOUN}
-  blocks:
-  - suffix:
-    - {branch: fs, feats: {Gender: Fem, Number: Sing}, add: "ـ\u065cة"}
+# No realisation rules (ADR 0158, the owner's rulings of 2026-11-28): every value a verb, adjective or noun has is
+# brought by a lexeme merged with it (lexemes.yaml): the past's endings (perf-1sg -t … perf-3ms, the zero of the
+# he-past), the present's person prefixes (impf-1sg … impf-3fs), its mood (ind b-, sub the zero beside it) and
+# endings (fs.verb -i, pl.verb -o, ms.verb the zero), the command (imp, a zero), the participle (ptcp, pass) and the
+# agreement endings adjectives, participles and nouns share (fs -e, pl -in, ms and sg zeros). The rewrites below run
+# over the merged word. Kline (2022) p. 95-104, 122-142, 157-166 as before; every lexeme is REVIEW.
 phonology:  # in order, each once over the whole form
 - {id: 'rule:apc-article', branch: sun, find: "ل+{SUN}*", after: "ا\u06DF", to: "ل\u06DF+{SUN}\u0651"}  # the article's lam goes into a sun letter: said doubled, the lam written and not said (Kline p. 8-9)
 - {id: 'rule:apc-article', branch: wasl, find: "+ا\u0650", after: "ا\u06DFل", to: "+ا\u06DF"}  # a word's first alef with its vowel is not said after the article (الامتحان: the course)

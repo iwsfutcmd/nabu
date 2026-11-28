@@ -46,13 +46,28 @@
             "has": { "$ref": "common.schema.json#/$defs/UdFeatures" },
             "needs": { "description": "Features the word must have some value for already, whatever the value (arb's mood after the number ending: needs Number).", "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
             "complete": { "description": "Merges only onto a word it leaves complete: every requirement met by the word or by what this lexeme brings itself (arb's pronoun suffixes onto ʾaktubu, never onto ʾaktub-; the possessive brings the construct state a noun requires; a proclitic onto a whole word).", "const": true },
+            "or": {
+              "description": "Other hosts it merges onto, each with its own conditions, on the same side (`at`): it merges where `on` itself or any of these holds. apc's -e onto an adjective or a noun, or onto a verb only as a participle (`{pos: [VERB], has: {Aspect: Part}}`).",
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "minProperties": 1,
+                "additionalProperties": false,
+                "properties": {
+                  "pos": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/PartOfSpeech" } },
+                  "has": { "$ref": "common.schema.json#/$defs/UdFeatures" },
+                  "needs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+                  "complete": { "const": true }
+                }
+              }
+            },
             "at": { "description": "Which side of its base it stands (a prefix or proclitic before, a suffix, ending or zero morpheme after): merged on the other side it is an error.", "enum": ["before", "after"] }
           }
         },
         "requires": {
-          "description": "The features a word it is merged into must then have, brought by other lexemes (ADR 0158: finite-ness requires person and tense). A word is complete, and written, once every requirement its category and its lexemes raise is met.",
+          "description": "The features a word it is merged into must then have, brought by other lexemes (ADR 0158: finite-ness requires person and tense). A word is complete, and written, once every requirement its category and its lexemes raise is met. On a base, what a word on it requires in place of its category's: `[]` for one that never inflects (apc badd, 3am).",
           "type": "array",
-          "minItems": 1,
           "uniqueItems": true,
           "items": { "type": "string", "pattern": "^[A-Z][A-Za-z0-9]*(\\[[a-z0-9]+\\])?$" }
         },

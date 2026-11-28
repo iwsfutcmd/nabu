@@ -1120,11 +1120,11 @@ class TokenLexeme(BaseModel):
     )
     lexeme: LexemeName
     surface: Annotated[
-        str,
+        str | None,
         Field(
-            description="Its letters in the token. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe)."
+            description="Its letters in the token. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe). Left out of a lexeme merged into its base in a language that merges lexemes (ADR 0158: apc's -o, b-, the zero of the he-past): its letters are inside the base's, as the rules spell them; and of the base where every other lexeme is one such (it writes the whole token)."
         ),
-    ]
+    ] = None
     base: Annotated[
         Literal[True] | None,
         Field(
@@ -2484,6 +2484,17 @@ class GoalSetV1(BaseModel):
     ]
 
 
+class OrItem(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    pos: Annotated[list[PartOfSpeech] | None, Field(min_length=1)] = None
+    has: UdFeatures | None = None
+    needs: Annotated[list[str] | None, Field(min_length=1)] = None
+    complete: Literal[True] | None = None
+
+
 class On(BaseModel):
     """
     What it merges onto (ADR 0158): the part of speech of the word's base, and what the word must already have from the lexemes merged before it, nearer its base (es -o on a finite indicative present verb). Merging runs outward from the base, so these say the order: a lexeme merged where its `on` does not hold is an error.
@@ -2506,6 +2517,14 @@ class On(BaseModel):
         Literal[True] | None,
         Field(
             description="Merges only onto a word it leaves complete: every requirement met by the word or by what this lexeme brings itself (arb's pronoun suffixes onto ʾaktubu, never onto ʾaktub-; the possessive brings the construct state a noun requires; a proclitic onto a whole word)."
+        ),
+    ] = None
+    or_: Annotated[
+        list[OrItem] | None,
+        Field(
+            alias="or",
+            description="Other hosts it merges onto, each with its own conditions, on the same side (`at`): it merges where `on` itself or any of these holds. apc's -e onto an adjective or a noun, or onto a verb only as a participle (`{pos: [VERB], has: {Aspect: Part}}`).",
+            min_length=1,
         ),
     ] = None
     at: Annotated[
@@ -6457,8 +6476,7 @@ class Lexeme(BaseModel):
     requires: Annotated[
         list[Require] | None,
         Field(
-            description="The features a word it is merged into must then have, brought by other lexemes (ADR 0158: finite-ness requires person and tense). A word is complete, and written, once every requirement its category and its lexemes raise is met.",
-            min_length=1,
+            description="The features a word it is merged into must then have, brought by other lexemes (ADR 0158: finite-ness requires person and tense). A word is complete, and written, once every requirement its category and its lexemes raise is met. On a base, what a word on it requires in place of its category's: `[]` for one that never inflects (apc badd, 3am)."
         ),
     ] = None
     selects: StemChoice | None = None

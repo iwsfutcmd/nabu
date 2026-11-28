@@ -53,6 +53,9 @@ answer could have held one of them.**
    counts what the lexeme brings itself, so the suffix merges onto kitābu, which it completes.
 2. **apc's tokens list lexemes** (ADR 0158 E): a converter from today's chosen values to the lexemes that bring them,
    each token proven by `realiseToken` to give the same form; the compiler derives values; the bundle format rises.
+   Done 2026-11-28 (docs/rules/apc.md), with the owner's four rulings on apc's cuts: the compiler folds the merged
+   lexemes back into the base's values, so bundles stayed byte-identical; the format rises with step 3, when what a
+   learner is credited for becomes the lexemes.
    An old event's `feature:` parts map, through aliases.yaml, to the lexemes its own token wrote where that is known;
    the rest is re-learned.
 3. **A typed word read back as lexemes**: the bundle's paradigm keyed by the lexemes merged, not by cell, so the

@@ -25,6 +25,7 @@ import {
   fitCell,
   addable,
   arrange,
+  opening,
   cellKey,
   lexiconFacets,
   lexiconFilter,
@@ -770,9 +771,7 @@ export const RulesExplorer = ({
                 onPick={(l) =>
                   onRequest({
                     base: l.row.id.id,
-                    feats: l.citation,
-                    before: [],
-                    after: [],
+                    ...opening(explorer, l),
                     ...EXPLORE_DEFAULTS,
                   })
                 }

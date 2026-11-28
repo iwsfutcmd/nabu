@@ -390,12 +390,12 @@
       "title": "TokenLexeme",
       "description": "One lexeme of a token that writes several.",
       "type": "object",
-      "required": ["lexeme", "surface"],
+      "required": ["lexeme"],
       "additionalProperties": false,
       "properties": {
         "lexeme": { "$ref": "common.schema.json#/$defs/LexemeName" },
         "surface": {
-          "description": "Its letters in the token. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe).",
+          "description": "Its letters in the token. Empty for one the script does not write, or writes only as a mark on a letter it shares (ADR 0136: the ezafe). Left out of a lexeme merged into its base in a language that merges lexemes (ADR 0158: apc's -o, b-, the zero of the he-past): its letters are inside the base's, as the rules spell them; and of the base where every other lexeme is one such (it writes the whole token).",
           "type": "string"
         },
         "base": {

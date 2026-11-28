@@ -165,6 +165,12 @@ describe("lexiconCourse", () => {
     expect(offered("kitab", [], ["sing", "nom", "poss-3ms"])).not.toContain(
       "cons",
     );
+    // Onto a verb only as its participle (on.or): kātibuhu, never kataba with a possessive.
+    expect(offered("kataba", [], ["perf-3ms"])).toContain("obj-3ms");
+    expect(offered("kataba", [], ["perf-3ms"])).not.toContain("poss-3ms");
+    expect(offered("kataba", [], ["ptcp", "masc", "sing", "nom"])).toContain(
+      "poss-3ms",
+    );
     const written = (...ids: string[]) =>
       explore(x, {
         base: "lexeme:kitab",

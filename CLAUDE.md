@@ -582,11 +582,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   vowel or the silent ه of their (إِبْنْهُن, ebnon). "She" in the past has the speaker's shape (3ajbetni, 3azmetna).
 - A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
   and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
-- Gender and number as es's (ADR 0132 amendment): a noun's gender is its lexeme's, stored only where language.yaml's
-  `defaults` do not give it (teta, Beirut `feats: {Gender: Fem}`; ahwe, قهوة, by its ة); its token chooses its number
-  (ahwe `{Number: Sing}`, wlad `{Number: Plur}`); adjectives, hayde, hiyye, enti choose gender and number where they
-  agree (kbire `{Gender: Fem, Number: Sing}`); in both scripts alike. So `iPlusOne` is 2. The verb-prefix contrast
-  names verb forms (`forms`), so a noun's first letter stays a typo.
+- Gender and number (ADR 0132 amendment, then ADR 0159): a noun's gender is its lexeme's, stored only where
+  language.yaml's `defaults` do not give it (teta, Beirut `feats: {Gender: Fem}`; ahwe, قهوة, by its ة); its token
+  lists its number's lexeme (ahwe + `sg`, wlad + `pl.noun`); an adjective or participle lists its agreement (kbire:
+  kbir + `fs`; `ms`, `pl`); hayde, hiyye, enti still choose gender and number; in both scripts alike. So `iPlusOne`
+  is 2. The verb-prefix contrast names verb forms (`forms`), so a noun's first letter stays a typo.
 
 ## Biblical Hebrew notes (see docs/adr/0082–0084, 0089)
 - courses/hbo is Biblical Hebrew, never Modern: no voice may read its text. Voices read the pinned `tiberian`
@@ -982,7 +982,17 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   merges: a token is incomplete while a requirement is unmet (`Realisation.missing`), a lexeme merged where its `on`
   fails is `attach`, a feature brought twice `twice`; a form stored for the merged word covers the lexemes whose
   values it has (a broken plural). Feature values are abstract: learners learn lexemes. The citation form is a
-  mnemonic, a named merge. Stage 1 (the engine, conformance/realise-merge.json) is built; apc converts next, then es.
+  mnemonic, a named merge. Stage 1 (the engine, conformance/realise-merge.json) is built; apc is converted (below), es next.
+- apc merges (2026-11-28, ADR 0159 step 2; docs/rules/apc.md): its tokens list the lexemes that bring a verb's,
+  adjective's or noun's values (`{lexeme: ind}, {lexeme: impf-3}, {lexeme: shereb, base: true}, {lexeme: pl.verb}`);
+  one merged into its base has no `surface`, nor has a base that writes the whole token. The compiler folds them into
+  the base's values (`_fold_merged`: the lexicon's `realises`, no realising in Python) for every step but the token
+  check, which realises the lexemes (`Site.merged`); so bundles stayed byte-identical. A cell is realised through the
+  lexemes that bring it (core `mergeFor`, `realise` by cell); a cell none inflects (`Realisation.inflected`: writes a
+  letter, chooses the stem, or is a zero beside forms it writes elsewhere) is no-rule when strict, unless the
+  citation. `on.or` names further hosts (apc -e: an adjective or a noun, a verb only as its participle); a base's
+  `requires: []` is a word that never inflects. Pronouns, demonstratives, phrase interjections and the dual's base
+  still choose values (REVIEW). A new apc sentence's tokens list lexemes, never `feats` on a verb, adjective or noun.
 - What is learned (ADR 0159, the owner, 2026-11-28): lexemes only, zero ones included, never a feature value (values are
   names: labels, groupings, feedback's words); a rule branch is a memory under its lexeme. A card credits a lexeme only
   where the prompt decides it against the lexemes that could stand in its place (those merging onto the same word and

@@ -73,6 +73,7 @@ lexemes:
   spelled: {apc-Arab/standard: [قياس], apc-Latn/arabizi: [2yes]}
 - id: lexeme:3a
   pos: ADP
+  'on': {at: before}
   gloss: {en: to; on}
   notes: {en: 'Before el it is written 3al in Arabizi and عال in Arabic script: 3al bet, عالبيت (home, homeward).'}
   form: "عَ"
@@ -103,6 +104,7 @@ lexemes:
   spelled: {apc-Arab/standard: [عجب], apc-Latn/arabizi: [3ajab]}
 - id: lexeme:3am
   pos: AUX
+  requires: []
   gloss: {en: '-ing: right now (before a verb)'}
   notes: {en: '3am ta3mel: you''re doing (right now). The verb after 3am usually drops its b-; 3am bta3mel is heard too.'}
   form: "عَم"
@@ -212,6 +214,7 @@ lexemes:
   spelled: {apc-Arab/standard: [عرس], apc-Latn/arabizi: [3irs]}
 - id: lexeme:3mol-ma3rouf
   pos: VERB
+  requires: []
   gloss: {en: please (to a man)}
   notes: {en: 'Literally ''do a favour''. To a woman: عملي معروف, 3emli ma3rouf.'}
   form: "عْم\u065dول مَعْرُوف"
@@ -541,6 +544,7 @@ lexemes:
   - {form: "زَرْقَا", feats: {Gender: Fem, Number: Sing}, spelled: {apc-Arab/standard: [زرقا], apc-Latn/arabizi: [zar2a]}, status: pinned}  # REVIEW: rule debt: the colours' feminine fa3la (Kline p. 10, 14: 7amra, bayDa); a rule needs their radicals
 - id: lexeme:b
   pos: ADP
+  'on': {at: before}
   gloss: {en: in; at}
   notes: {en: 'Written joined in Arabic script: ببيروت, بالبيت (b + el). In Arabizi often bel: bel bet.'}
   spelled: {apc-Latn/arabizi: [b]}
@@ -612,6 +616,7 @@ lexemes:
   spelled: {apc-Arab/standard: [بحر], apc-Latn/arabizi: [ba7r]}
 - id: lexeme:badd
   pos: VERB
+  requires: []
   gloss: {en: 'want (with an ending: baddo, badda, badna)'}
   notes: {en: 'badd + the possessive ending says who wants: baddo (he), badda (she), badna (we), badkon (you, to several people): before -na and -kon the dd is said single, and is written بدنا, بدكن. Compare baddi, baddak.'}
   form: "بَدّ"
@@ -953,12 +958,14 @@ lexemes:
   spelled: {apc-Arab/standard: [فنجان], apc-Latn/arabizi: [fenjen]}
 - id: lexeme:fi
   pos: VERB
+  requires: []
   gloss: {en: there is; there are}
   notes: {en: 'ma fi: there isn''t, there''s no.'}
   form: "فِي"
   spelled: {apc-Arab/standard: [في], apc-Latn/arabizi: [fi]}
 - id: lexeme:fi.can
   pos: VERB
+  requires: []
   gloss: {en: 'can (with an ending: fiyyi, fik…)'}
   notes: {en: 'fi + the possessive ending says who can: fiyyi (I, also fini), fik (you, to a man), fiki (to a woman), fih (he), fiya (she), fina (we), fikon (you, several), fiyon (they). The verb after it has no b-: ma fiyyi nem, I can''t sleep. Without an ending, في is ''there is''.'}
   form: "فِي"
@@ -996,6 +1003,21 @@ lexemes:
   gloss: {en: dress}
   form: "فُسْتَان"
   spelled: {apc-Arab/standard: [فستان], apc-Latn/arabizi: [fostan]}
+- id: lexeme:fs
+  realises: {Gender: Fem, Number: Sing}
+  'on': {at: after, pos: [ADJ, NOUN], or: [{pos: [VERB], has: {Aspect: Part}}]}  # a verb only as its participle
+  gloss: {en: '-e, -a: one woman, one feminine thing (on an adjective, a participle, a noun)'}
+  allomorphs:
+  - {form: "ـ\u0651\u065cة", after: {class: nisba}}  # its ي doubled, then -e (lebneniyye)
+  - {form: '', after: {class: invariable}}  # akbar, awwal: no ending
+  - {form: "ـ\u065cة"}  # -e, or -a (rule:apc-feminine)
+- id: lexeme:fs.verb
+  realises: {Gender: Fem, Number: Sing}
+  'on': {at: after, has: {Person: '2'}}
+  selects: [command-v, command, imperfect]
+  gloss: {en: '-i: you, a woman (present, command)'}
+  allomorphs:
+  - {form: "ـِي"}
 - id: lexeme:furn
   pos: NOUN
   gloss: {en: oven; bakery}
@@ -1041,6 +1063,7 @@ lexemes:
   - {spelled: {apc-Arab/standard: [غرفت], apc-Latn/arabizi: [ghorft]}}
 - id: lexeme:hal
   pos: DET
+  'on': {at: before}
   feats: {PronType: Dem}
   gloss: {en: this (joined to a noun)}
   notes: {en: 'Written joined in Arabic script: هالجمعة, this week.'}
@@ -1120,6 +1143,62 @@ lexemes:
   notes: {en: 'ma akalt shi ella khebz: I ate nothing but bread. Kline writes illa: the e/i of Arabizi takes it.'}
   form: إِلَّا
   spelled: {apc-Arab/standard: [إلّا], apc-Latn/arabizi: [ella]}
+- id: lexeme:imp
+  realises: {Mood: Imp, Person: '2'}
+  'on': {at: after, pos: [VERB]}
+  requires: [Number]
+  selects: [command, imperfect]
+  gloss: {en: 'the command: the present stem, no prefix (Kline p. 161-166), a zero'}
+  allomorphs:
+  - {form: ''}
+- id: lexeme:impf-1pl
+  realises: {Aspect: Imp, Person: '1', Number: Plur}
+  'on': {at: before, pos: [VERB, AUX]}
+  requires: [Mood]
+  selects: imperfect
+  gloss: {en: 'n-: we (present)'}
+  allomorphs:
+  - {form: "ن"}
+- id: lexeme:impf-1sg
+  realises: {Aspect: Imp, Person: '1', Number: Sing}
+  'on': {at: before, pos: [VERB, AUX]}
+  requires: [Mood]
+  selects: imperfect
+  gloss: {en: 'a-: I (present); nothing after b- (bishrab)'}
+  allomorphs:
+  - {form: '', after: {with: [lexeme:ind]}}  # bishrab: b- alone (Kline p. 100)
+  - {form: "ا"}  # (a)-, written with alef before a cluster (Kline p. 157)
+- id: lexeme:impf-2
+  realises: {Aspect: Imp, Person: '2'}
+  'on': {at: before, pos: [VERB, AUX]}
+  requires: [Mood, Number]
+  selects: imperfect
+  gloss: {en: 't-: you (present)'}
+  allomorphs:
+  - {form: "ت"}
+- id: lexeme:impf-3
+  realises: {Aspect: Imp, Person: '3'}
+  'on': {at: before, pos: [VERB, AUX]}
+  requires: [Mood, Number]
+  selects: imperfect
+  gloss: {en: 'y-: he, they (present)'}
+  allomorphs:
+  - {form: "ي"}
+- id: lexeme:impf-3fs
+  realises: {Aspect: Imp, Person: '3', Gender: Fem, Number: Sing}
+  'on': {at: before, pos: [VERB, AUX]}
+  requires: [Mood]
+  selects: imperfect
+  gloss: {en: 't-: she (present)'}
+  allomorphs:
+  - {form: "ت"}
+- id: lexeme:ind
+  realises: {Mood: Ind}
+  'on': {at: before, has: {Aspect: Imp}, needs: [Person]}
+  gloss: {en: 'b-: the present indicative (bishrab, byishrab)'}
+  notes: {en: 'Before the person prefix; b- and n- are said and written mn- (rule:apc-bn).'}
+  allomorphs:
+  - {form: "ب"}
 - id: lexeme:inshalla
   pos: INTJ
   gloss: {en: God willing; hopefully}
@@ -1371,12 +1450,14 @@ lexemes:
   spelled: {apc-Arab/standard: [كتير], apc-Latn/arabizi: [ktir]}
 - id: lexeme:la
   pos: ADP
+  'on': {at: before}
   gloss: {en: for; to}
   notes: {en: 'Joined to its word in Arabic script (لكلّ, la kell).'}
   form: لَ
   spelled: {apc-Arab/standard: [ل], apc-Latn/arabizi: [la]}
 - id: lexeme:la-1pl
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Dat, Number: Plur, Person: '1', PronType: Prs}
   gloss: {en: '-lna: to us; for us (on a verb)'}
   notes: {en: 'sarlna: it''s been … for us. Arabic script: لنا joined to the verb (صارلنا).'}
@@ -1384,6 +1465,7 @@ lexemes:
   - {form: لْنَا, spelled: {apc-Arab/standard: [لنا], apc-Latn/arabizi: [lna]}}
 - id: lexeme:la-1sg
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Dat, Number: Sing, Person: '1', PronType: Prs}
   gloss: {en: '-li: to me; for me (on a verb)'}
   notes: {en: '2elli: tell me; de22elli: call me; b3atli: send me. Arabic script: لي joined to the verb (قلّي، دقّلي، بعتلي).'}
@@ -1394,6 +1476,7 @@ lexemes:
   - {form: "لِي"}  # -li after a consonant (b3atli, sarli: the course; Kline p. 43: -le)
 - id: lexeme:la-2fs
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Dat, Gender: Fem, Number: Sing, Person: '2', PronType: Prs}
   gloss: {en: '-lik: to you; for you (on a verb, to a woman)'}
   notes: {en: 'sarlik: it''s been … for you (a woman). Arabic script: لك joined to the verb, as -lak.'}
@@ -1401,6 +1484,7 @@ lexemes:
   - {form: لِك, spelled: {apc-Arab/standard: [لك], apc-Latn/arabizi: [lik]}}
 - id: lexeme:la-2ms
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Dat, Gender: Masc, Number: Sing, Person: '2', PronType: Prs}
   gloss: {en: '-lak: to you; for you (on a verb, to a man)'}
   notes: {en: 'sarlak: it''s been … for you; 2ellak: he told you. Arabic script: لك joined to the verb.'}
@@ -1409,6 +1493,7 @@ lexemes:
   - {form: "لَك"}  # -lak after a consonant (sarlak; Kline p. 43)
 - id: lexeme:la-2pl
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Dat, Number: Plur, Person: '2', PronType: Prs}
   gloss: {en: '-lkon: to you; for you (on a verb, to several people)'}
   notes: {en: 'sarlkon: it''s been … for you (several). Arabic script: لكن joined to the verb (صارلكن).'}
@@ -1416,6 +1501,7 @@ lexemes:
   - {form: لْكُن, spelled: {apc-Arab/standard: [لكن], apc-Latn/arabizi: [lkon]}}
 - id: lexeme:la-3fs
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Dat, Gender: Fem, Number: Sing, Person: '3', PronType: Prs}
   gloss: {en: '-la: to her; for her (on a verb)'}
   notes: {en: 'sarla: it''s been … for her (Kline: Sarla sene, a year). Arabic script: لها joined to the verb (صارلها).'}
@@ -1423,6 +1509,7 @@ lexemes:
   - {form: "لَه\u06dfا", spelled: {apc-Arab/standard: [لها], apc-Latn/arabizi: [la]}}
 - id: lexeme:la-3ms
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Dat, Gender: Masc, Number: Sing, Person: '3', PronType: Prs}
   gloss: {en: '-lo: to him; for him (on a verb)'}
   notes: {en: 'sarlo: it''s been … for him; 2ello: tell him. Arabic script: له joined to the verb (صارله).'}
@@ -1430,6 +1517,7 @@ lexemes:
   - {form: "لُه\u06df", spelled: {apc-Arab/standard: [له], apc-Latn/arabizi: [lo]}}
 - id: lexeme:la-3pl
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Dat, Number: Plur, Person: '3', PronType: Prs}
   gloss: {en: '-lon: to them; for them (on a verb)'}
   notes: {en: 'sarlon: it''s been … for them. Arabic script: لهن joined to the verb (صارلهن); the ه is silent, as in -on (their).'}
@@ -1511,6 +1599,7 @@ lexemes:
   spelled: {apc-Arab/standard: [لبناني], apc-Latn/arabizi: [lebnene]}
 - id: lexeme:lek
   pos: VERB
+  requires: []
   gloss: {en: look!; hey (to a man)}
   notes: {en: 'To draw attention: to a woman leke (ليكي), to several people leko (ليكوا).'}
   form: "ل\u065cيك"
@@ -1537,6 +1626,7 @@ lexemes:
   spelled: {apc-Arab/standard: [ليش], apc-Latn/arabizi: [lesh]}
 - id: lexeme:lezem
   pos: VERB
+  requires: []
   gloss: {en: must; have to; should}
   notes: {en: 'lezem + a verb without b-: lezem ru7, I have to go. ma lezem: you shouldn''t; lezem ma: you must not (Kline 2022).'}
   form: "ل\u065cازِم"
@@ -1771,6 +1861,18 @@ lexemes:
   notes: {en: 'A woman: مريضة, mrida.'}
   form: "مْرِيض"
   spelled: {apc-Arab/standard: [مريض], apc-Latn/arabizi: [mrid]}
+- id: lexeme:ms
+  realises: {Gender: Masc, Number: Sing}
+  'on': {at: after, pos: [ADJ, NOUN], or: [{pos: [VERB], has: {Aspect: Part}}]}  # a verb only as its participle
+  gloss: {en: 'one man, one masculine thing: no ending, a zero'}
+  allomorphs:
+  - {form: ''}
+- id: lexeme:ms.verb
+  realises: {Gender: Masc, Number: Sing}
+  'on': {at: after, has: {Person: '2,3'}}
+  gloss: {en: 'one man (present, command): no ending, a zero'}
+  allomorphs:
+  - {form: ''}
 - id: lexeme:mudir
   pos: NOUN
   gloss: {en: boss; manager; director}
@@ -1861,6 +1963,7 @@ lexemes:
   spelled: {apc-Arab/standard: [نصّ], apc-Latn/arabizi: [nos]}
 - id: lexeme:obj-1pl
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Acc, Number: Plur, Person: '1', PronType: Prs}
   gloss: {en: '-na: us (on a verb)'}
   notes: {en: '3azmetna: she invited us. Arabic script: نا (عزمتنا). The same ending as ''our''.'}
@@ -1868,6 +1971,7 @@ lexemes:
   - {form: "نَا", spelled: {apc-Arab/standard: [نا], apc-Latn/arabizi: [na]}}
 - id: lexeme:obj-1sg
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Acc, Number: Sing, Person: '1', PronType: Prs}
   gloss: {en: '-ni: me (on a verb)'}
   notes: {en: 'sme3tni: you heard me; fhemtni: you understood me. Arabic script: ني (سمعتني).'}
@@ -1875,6 +1979,7 @@ lexemes:
   - {form: "نِي", spelled: {apc-Arab/standard: [ني], apc-Latn/arabizi: [ni]}}
 - id: lexeme:obj-2fs
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Acc, Gender: Fem, Number: Sing, Person: '2', PronType: Prs}
   gloss: {en: '-ik: you (on a verb, to a woman)'}
   notes: {en: 'b7ebbik: I love you. Arabic script: the same ك as -ak.'}
@@ -1882,6 +1987,7 @@ lexemes:
   - {form: "ـِك", spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ik]}}
 - id: lexeme:obj-2ms
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Acc, Gender: Masc, Number: Sing, Person: '2', PronType: Prs}
   gloss: {en: '-ak: you (on a verb, to a man)'}
   notes: {en: 'b7ebbak: I love you; fhemtak: I understood you. Arabic script: ك.'}
@@ -1889,6 +1995,7 @@ lexemes:
   - {form: "ـَك", spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [ak]}}
 - id: lexeme:obj-2pl
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Acc, Number: Plur, Person: '2', PronType: Prs}
   gloss: {en: '-kon: you (on a verb, to several people)'}
   notes: {en: '3ajbetkon? Did you like it? Arabic script: كن.'}
@@ -1896,6 +2003,7 @@ lexemes:
   - {form: "كُن", spelled: {apc-Arab/standard: [كن], apc-Latn/arabizi: [kon]}}
 - id: lexeme:obj-3fs
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Acc, Gender: Fem, Number: Sing, Person: '3', PronType: Prs}
   gloss: {en: '-a: her; it (on a verb)'}
   notes: {en: 'shefta: I saw her. Arabic script: ها (شفتها), also written ا (شفتا).'}
@@ -1903,13 +2011,99 @@ lexemes:
   - {form: "ـَه\u06dfا", spelled: {apc-Arab/standard: [ها], apc-Latn/arabizi: [a]}}
 - id: lexeme:obj-3ms
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Case: Acc, Gender: Masc, Number: Sing, Person: '3', PronType: Prs}
   gloss: {en: '-o: him; it (on a verb)'}
   notes: {en: 'shefto: I saw him; ba3rfo: I know him. Arabic script: ه (شفته), also written و (شفتو).'}
   allomorphs:
   - {form: "ـُه\u06df", spelled: {apc-Arab/standard: [ه], apc-Latn/arabizi: [o]}}
+- id: lexeme:pass
+  realises: {Voice: Pass}
+  'on': {at: after, has: {Aspect: Part}}
+  selects: passive
+  gloss: {en: 'the passive participle (Kline p. 139-142), a zero: maktoub, msakkar'}
+  allomorphs:
+  - {form: ''}
+- id: lexeme:perf-1pl
+  realises: {Aspect: Perf, Person: '1', Number: Plur}
+  'on': {at: after, pos: [VERB, AUX]}
+  selects: [perfect-ay, perfect-short, perfect]
+  gloss: {en: '-na: we (past)'}
+  allomorphs:
+  - {form: "نَا"}
+- id: lexeme:perf-1sg
+  realises: {Aspect: Perf, Person: '1', Number: Sing}
+  'on': {at: after, pos: [VERB, AUX]}
+  selects: [perfect-short, perfect]
+  gloss: {en: '-t: I (past)'}
+  allomorphs:
+  - {form: "ت"}
+- id: lexeme:perf-2fs
+  realises: {Aspect: Perf, Person: '2', Gender: Fem, Number: Sing}
+  'on': {at: after, pos: [VERB, AUX]}
+  selects: [perfect-ay, perfect-short, perfect]
+  gloss: {en: '-te: you, a woman (past)'}
+  allomorphs:
+  - {form: "تِي"}
+- id: lexeme:perf-2ms
+  realises: {Aspect: Perf, Person: '2', Gender: Masc, Number: Sing}
+  'on': {at: after, pos: [VERB, AUX]}
+  selects: [perfect-short, perfect]
+  gloss: {en: '-t: you, a man (past)'}
+  allomorphs:
+  - {form: "ت"}
+- id: lexeme:perf-2pl
+  realises: {Aspect: Perf, Person: '2', Number: Plur}
+  'on': {at: after, pos: [VERB, AUX]}
+  selects: [perfect-ay, perfect-short, perfect]
+  gloss: {en: '-to: you, several (past)'}
+  allomorphs:
+  - {form: "تُوا\u06df"}
+- id: lexeme:perf-3fs
+  realises: {Aspect: Perf, Person: '3', Gender: Fem, Number: Sing}
+  'on': {at: after, pos: [VERB, AUX]}
+  selects: perfect
+  gloss: {en: '-et: she (past)'}
+  allomorphs:
+  - {form: "ـِت"}
+- id: lexeme:perf-3ms
+  realises: {Aspect: Perf, Person: '3', Gender: Masc, Number: Sing}
+  'on': {at: after, pos: [VERB, AUX]}
+  selects: perfect
+  gloss: {en: 'he (past): the stem alone, a zero'}
+  allomorphs:
+  - {form: ""}
+- id: lexeme:perf-3pl
+  realises: {Aspect: Perf, Person: '3', Number: Plur}
+  'on': {at: after, pos: [VERB, AUX]}
+  selects: perfect
+  gloss: {en: '-o: they (past)'}
+  allomorphs:
+  - {form: "ـُوا\u06df"}
+- id: lexeme:pl
+  realises: {Number: Plur}
+  'on': {at: after, pos: [ADJ], or: [{pos: [VERB], has: {Aspect: Part}}]}  # a verb only as its participle
+  gloss: {en: '-in: several (on an adjective or a participle)'}
+  allomorphs:
+  - {form: "ـ\u0650\u0651ين", after: {class: nisba}}
+  - {form: '', after: {class: invariable}}
+  - {form: "ـِين"}
+- id: lexeme:pl.noun
+  realises: {Number: Plur}
+  'on': {at: after, pos: [NOUN]}
+  gloss: {en: 'several (a noun): its plural is its own form (wlad) or a stored one, a zero'}
+  allomorphs:
+  - {form: ''}
+- id: lexeme:pl.verb
+  realises: {Number: Plur}
+  'on': {at: after, has: {Person: '2,3'}}
+  selects: [command-v, command, imperfect]
+  gloss: {en: '-o: you, they, several (present, command)'}
+  allomorphs:
+  - {form: "ـُوا\u06df"}
 - id: lexeme:poss-1pl
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Number: Plur, Person: '1', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-na: our'}
   notes: {en: 'betna: our house. Arabic script: نا joined to the noun (بيتنا).'}
@@ -1917,6 +2111,7 @@ lexemes:
   - {form: "نَا", spelled: {apc-Arab/standard: [نا], apc-Latn/arabizi: [na]}}
 - id: lexeme:poss-1sg
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Number: Sing, Person: '1', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-i: my (ending on a noun)'}
   notes: {en: 'Arabic script: ي joined to the noun (بيّي). Often heard and typed -e: bayye, emme.'}
@@ -1924,6 +2119,7 @@ lexemes:
   - {form: "ـِي", spelled: {apc-Arab/standard: [ي], apc-Latn/arabizi: [i]}}
 - id: lexeme:poss-2fs
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Gender: Fem, Number: Sing, Person: '2', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-ik: your (to a woman)'}
   notes: {en: 'Arabic script: the same ك as -ak, so كيفك reads kifak to a man and kifik to a woman.'}
@@ -1932,6 +2128,7 @@ lexemes:
   - {form: "كِي", after: {endsIn: ".*+?[اىي]"}, spelled: {apc-Arab/standard: [كي], apc-Latn/arabizi: [ki]}}  # after a vowel -ki (Kline p. 117: fike); fiki is fi + ki, whatever its tokens' parts say
 - id: lexeme:poss-2ms
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Gender: Masc, Number: Sing, Person: '2', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-ak: your (to a man)'}
   notes: {en: 'Arabic script: ك joined to the noun (بيّك). To a woman: -ik, written with the same ك.'}
@@ -1940,6 +2137,7 @@ lexemes:
   - {form: "ك", after: {endsIn: ".*+?[اىي]"}, spelled: {apc-Arab/standard: [ك], apc-Latn/arabizi: [k]}}
 - id: lexeme:poss-2pl
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Number: Plur, Person: '2', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-kon: your (to several people)'}
   notes: {en: 'kifkon? how are you (all)?; 3endkon: you have. Arabic script: كن joined to the word (كيفكن).'}
@@ -1947,6 +2145,7 @@ lexemes:
   - {form: "كُن", spelled: {apc-Arab/standard: [كن], apc-Latn/arabizi: [kon]}}
 - id: lexeme:poss-3fs
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Gender: Fem, Number: Sing, Person: '3', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-a: her'}
   notes: {en: 'Arabic script: ها joined to the noun (إمّها), also written ا (إمّا).'}
@@ -1955,6 +2154,7 @@ lexemes:
   - {spelled: {apc-Arab/standard: [ها], apc-Latn/arabizi: [ya]}}
 - id: lexeme:poss-3ms
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Gender: Masc, Number: Sing, Person: '3', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-o: his'}
   notes: {en: 'Arabic script: ه joined to the noun (بيّه), also written و (بيّو).'}
@@ -1962,11 +2162,19 @@ lexemes:
   - {form: "ـُه\u06df", spelled: {apc-Arab/standard: [ه], apc-Latn/arabizi: [o]}}
 - id: lexeme:poss-3pl
   pos: PRON
+  'on': {at: after, complete: true}
   feats: {Number: Plur, Person: '3', Poss: 'Yes', PronType: Prs}
   gloss: {en: '-on: their (ending on a noun)'}
   notes: {en: 'beton: their house; 3endon: they have. Arabic script: هن joined to the noun (بيتهن), as Kline (2022) writes it; also written ـن (بيتن).'}
   allomorphs:
   - {form: "ـُه\u06dfن", spelled: {apc-Arab/standard: [هن], apc-Latn/arabizi: ['on']}}  # -on: the vowel, then a silent ه (Kline p. 7-8, 41)
+- id: lexeme:ptcp
+  realises: {Aspect: Part}
+  'on': {at: after, pos: [VERB]}
+  selects: participle
+  gloss: {en: 'the participle (Kline p. 122-124, 130), a zero: keteb, raye7'}
+  allomorphs:
+  - {form: ''}
 - id: lexeme:ra2as
   pos: VERB
   gloss: {en: dance}
@@ -1989,6 +2197,7 @@ lexemes:
   spelled: {apc-Arab/standard: [راح], apc-Latn/arabizi: [ra7]}
 - id: lexeme:ra7.fut
   pos: AUX
+  requires: []
   gloss: {en: will; going to (before a verb)}
   notes: {en: 'ra7 ru7: I''ll go; ma ra7 ru7: I won''t go. The verb after ra7 has no b-. Also said la7, or 7a- (Kline 2022).'}
   form: "رَح"
@@ -2219,6 +2428,12 @@ lexemes:
   gloss: {en: six}
   form: "سِتّ\u065cة"
   spelled: {apc-Arab/standard: [ستّة], apc-Latn/arabizi: [sette]}
+- id: lexeme:sg
+  realises: {Number: Sing}
+  'on': {at: after, pos: [NOUN]}
+  gloss: {en: 'one (a noun): no ending, a zero'}
+  allomorphs:
+  - {form: ''}
 - id: lexeme:shabeb
   pos: NOUN
   gloss: {en: guys; young people; friends}
@@ -2381,6 +2596,12 @@ lexemes:
   - {feats: {Mood: Imp}, stem: "ا\u06dfسْتَنَّى", status: listed, statement: {author: 'llm:claude@rules-stage2', status: draft}}
   # REVIEW: the present's stem (yestanna), drafted as the course's other verbs' present is; the course writes no present of it.
   - {feats: {Aspect: Imp}, stem: "سْتَنَّى", status: listed, statement: {author: 'llm:claude@rules-verbs', status: draft}}
+- id: lexeme:sub
+  realises: {Mood: Sub}
+  'on': {at: before, has: {Aspect: Imp}, needs: [Person]}
+  gloss: {en: 'the subjunctive: no b- (bado yeshrab), a zero'}
+  allomorphs:
+  - {form: ''}
 - id: lexeme:sukkar
   pos: NOUN
   gloss: {en: sugar}
@@ -2589,6 +2810,7 @@ lexemes:
   spelled: {apc-Arab/standard: [تياب], apc-Latn/arabizi: [tyeb]}
 - id: lexeme:w
   pos: CCONJ
+  'on': {at: before, complete: true}
   gloss: {en: and}
   notes: {en: 'Written joined to the next word in Arabic script: وإنت.'}
   spelled: {apc-Latn/arabizi: [w]}

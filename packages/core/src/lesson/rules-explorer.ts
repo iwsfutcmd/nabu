@@ -18,7 +18,7 @@
  * Pure: the caller fetches the files and passes them in. Built once per course and source.
  */
 import type { LanguageDeclaration, Lexicon, OrthographyProfile, TaggedText, Token, UdFeatures } from "@nabu/schema";
-import { compileLanguage, compileSpeller, mergeable, mergeOrder, realiseToken, spell, spelledAs, spellingKey, type CompiledLanguage, type RealiseError, type Speller, type WrittenLexeme } from "../lexicon/index.ts";
+import { compileLanguage, compileSpeller, mergeable, mergeFor, mergeOrder, realiseToken, spell, spelledAs, spellingKey, type CompiledLanguage, type RealiseError, type Speller, type WrittenLexeme } from "../lexicon/index.ts";
 import type { CourseView } from "./course.ts";
 import { courseTags, lexiconData, type LexemeRow, type LexiconSource, type Tags } from "./lexicon-data.ts";
 import { cellFeats } from "./paradigms.ts";
@@ -35,8 +35,13 @@ export interface ExplorerLexeme {
    * (language.yaml: es's infinitive, apc's and hbo's 3ms perfect), its stored lexical values left out.
    */
   readonly citation: UdFeatures;
-  /** Which side of its base it stands, where its entry says (`on.at`, ADR 0158): it is written there, never asked. */
+  /**
+   * Which side of its base it stands, where its entry says (`on.at`, ADR 0158): it is written there, never asked;
+   * else the side the course writes it on more often.
+   */
   readonly at?: "before" | "after" | undefined;
+  /** In a language that merges lexemes, the cell it is cited in: the lexemes that bring it open it (`opening`). */
+  readonly citationCell?: UdFeatures | undefined;
 }
 
 /** An orthography (or one of its marked layers) the explorer spells in. */
@@ -193,6 +198,21 @@ export const rulesExplorer = (course: CourseView, source: LexiconSource): RulesE
   const merging = isObject(declared.requires);
 
   const rows = lexiconData(course, source).lexemes;
+  // How often the course writes each lexeme before and after a token's base.
+  const written = new Map<string, { before: number; after: number }>();
+  for (const unit of course.units) {
+    const texts = [...unit.sentences.flatMap((x) => Object.values(x.forms).map((f) => f.text)), ...(unit.stories ?? []).flatMap((st) => st.steps.flatMap((step) => ("line" in step && step.line !== undefined ? Object.values(step.line.forms) : [])))];
+    for (const text of texts)
+      for (const token of text.tokens) {
+        const request = requestOfToken(token, undefined);
+        if (request === undefined) continue;
+        for (const [list, side] of [[request.before, "before"], [request.after, "after"]] as const)
+          for (const a of list) {
+            const n = written.get(a.lexeme) ?? { before: 0, after: 0 };
+            written.set(a.lexeme, { ...n, [side]: n[side] + 1 });
+          }
+      }
+  }
   const lexemes = rows.map((row): ExplorerLexeme => {
     const entry = entries.get(row.id.id);
     const pos = typeof entry?.["pos"] === "string" ? entry["pos"] : row.lexeme?.pos;
@@ -208,8 +228,14 @@ export const rulesExplorer = (course: CourseView, source: LexiconSource): RulesE
       Object.entries(isObject(stated) ? stated : {}).filter(([k, v]) => typeof v === "string" && !own.has(k) && features.some((f) => f.feature === k)),
     ) as UdFeatures;
     const on = entry?.["on"];
-    const at = isObject(on) && (on["at"] === "before" || on["at"] === "after") ? on["at"] : undefined;
-    return { row, pos, features, citation, ...(at !== undefined && { at }) };
+    const stated2 = isObject(on) && (on["at"] === "before" || on["at"] === "after") ? on["at"] : undefined;
+    // One that states no side stands where the course writes it more often (apc el-: before a noun, after a
+    // preposition in 3al).
+    const sides = written.get(row.id.id);
+    const at = stated2 ?? (sides === undefined ? undefined : sides.before >= sides.after ? "before" : "after");
+    // In a language that merges lexemes the citation is a merge (ADR 0158 §5a): its cell, whose lexemes open it.
+    const merge = merging && isObject(stated) ? (Object.fromEntries(Object.entries(stated).filter(([, v]) => typeof v === "string")) as UdFeatures) : undefined;
+    return { row, pos, features, citation, ...(at !== undefined && { at }), ...(merge !== undefined && Object.keys(merge).length > 0 && { citationCell: merge }) };
   });
 
   const problems: ExplorerProblem[] = [];
@@ -293,7 +319,7 @@ const writtenOf = (request: ExploreRequest): readonly WrittenLexeme[] => {
 export const explore = (explorer: RulesExplorer, request: ExploreRequest, strict = false): Explored => {
   const lang = explorer.compiled;
   if (lang === undefined) return { ok: false, error: { kind: "not-ready", details: [] } };
-  const result = realiseToken(lang, writtenOf(request), {
+  const result = realiseToken(lang, writtenOf(expandMerged(explorer, request)), {
     blocking: request.blocking,
     pinned: request.pinned,
     spellings: request.spellings,
@@ -377,8 +403,9 @@ export const waysOf = (explorer: RulesExplorer, base: string): readonly Explorer
   const found = new Map<string, { orthography: string; text: TaggedText; request: ExploreRequest; items: string[] }>();
   const visit = (item: string, orthography: string, text: TaggedText): void => {
     for (const { token, next } of tokensOf(text)) {
-      const request = requestOfToken(token, next);
-      if (request === undefined || request.base !== base) continue;
+      const asked = requestOfToken(token, next);
+      if (asked === undefined || asked.base !== base) continue;
+      const request = expandMerged(explorer, asked);
       // The next word is kept with the first way only: where it chooses an allomorph, the surface differs anyway.
       const side = (list: readonly Attached[]): readonly string[] => list.map((a) => `${a.lexeme}|${cellKey(a.feats ?? {})}`);
       const key = JSON.stringify([orthography, token.surface, side(request.before), side(request.after), cellKey(request.feats)]);
@@ -489,6 +516,31 @@ export const attachable = (explorer: RulesExplorer, side: "before" | "after"): r
 };
 
 /**
+ * A request with the values chosen on its base written as the lexemes that bring them, in a language that merges
+ * lexemes (ADR 0158: `mergeFor`): they stand next to the base, the token's other lexemes (clitics) outside them. A
+ * compiled token still carries its base's values; so do a paradigm's cells and an older address. Unchanged where no
+ * merge gives the values (a pronoun that chooses them), or the language does not merge.
+ */
+export const expandMerged = <R extends Pick<ExploreRequest, "base" | "feats" | "before" | "after">>(explorer: RulesExplorer, request: R): R => {
+  if (!explorer.merging || explorer.compiled === undefined || Object.keys(request.feats).length === 0) return request;
+  const found = mergeFor(explorer.compiled, request.base, request.feats);
+  if (found === undefined) return request;
+  return {
+    ...request,
+    feats: {},
+    before: [...request.before, ...found.before.map((lexeme) => ({ lexeme }))],
+    after: [...found.after.map((lexeme) => ({ lexeme })), ...request.after],
+  };
+};
+
+/** Where a base opens when it is picked: its citation, as values or, in a language that merges lexemes, as the lexemes of its merge. */
+export const opening = (explorer: RulesExplorer, lexeme: ExplorerLexeme): Pick<ExploreRequest, "feats" | "before" | "after"> => {
+  if (!explorer.merging || lexeme.citationCell === undefined) return { feats: lexeme.citation, before: [], after: [] };
+  const { feats, before, after } = expandMerged(explorer, { base: lexeme.row.id.id, feats: lexeme.citationCell, before: [], after: [] });
+  return { feats, before, after };
+};
+
+/**
  * What the add box offers for a request (ADR 0158): in a language that merges lexemes, only those that can merge onto
  * the word as it stands (their `on` holds, they bring nothing it has, it does not write them yet: `mergeable`), each
  * written on its own side; elsewhere those `attachable` on the side asked.
@@ -526,7 +578,15 @@ export const arrange = (
   const added: readonly Attached[] = adding === undefined ? [] : [{ lexeme: adding }];
   if (!explorer.merging || explorer.compiled === undefined)
     return side === "before" ? { before: [...request.before, ...added], after: request.after } : { before: request.before, after: [...request.after, ...added] };
-  const all = [...request.before, ...request.after, ...added];
+  // One that states no side (`on`) is no merge: it stays on its side, outside those that merge (apc el-).
+  const lang = explorer.compiled;
+  const merges = (a: Attached): boolean => lang.lexemes.get(a.lexeme)?.on !== undefined;
+  const sideOf = (a: Attached, fallback: "before" | "after"): "before" | "after" => explorer.lexemes.find((l) => l.row.id.id === a.lexeme)?.at ?? fallback;
+  const outside = {
+    before: [...request.before.filter((a) => !merges(a)), ...added.filter((a) => !merges(a) && sideOf(a, side) === "before")],
+    after: [...request.after.filter((a) => !merges(a)), ...added.filter((a) => !merges(a) && sideOf(a, side) === "after")],
+  };
+  const all = [...request.before, ...request.after, ...added].filter(merges);
   const order = mergeOrder(explorer.compiled, request.base, request.feats, all.map((a) => a.lexeme));
   const taken = new Set<number>();
   const back = (id: string): Attached => {
@@ -534,7 +594,7 @@ export const arrange = (
     taken.add(k);
     return all[k] as Attached;
   };
-  return { before: order.before.map(back), after: order.after.map(back) };
+  return { before: [...outside.before, ...order.before.map(back)], after: [...order.after.map(back), ...outside.after] };
 };
 
 const combos = new WeakMap<RulesExplorer, Map<string, readonly UdFeatures[]>>();

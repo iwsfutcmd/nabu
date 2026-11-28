@@ -7,9 +7,10 @@ and `regularised` where realising with blocking off gives another form.
 Python never realises or spells: every form comes from @nabu/core through core-cli (`paradigm`,
 `spell`), in one batch for the course. What is decided here is only which cells are worth listing:
 
-- a category is listed where the language's rules can say something of it: a realisation rule names
-  it (`when.pos`), or names no category and every feature its `when` reads is one of the category's
-  dimensions (apc: VERB and AUX by aspect and mood, ADJ and NOUN by name; not PRON or INTJ), or
+- a category is listed where the language's rules can say something of it (in a language that
+  merges lexemes, ADR 0158: where some lexeme merges onto it, `merging_categories`): a realisation
+  rule names it (`when.pos`), or names no category and every feature its `when` reads is one of the
+  category's dimensions (uz: VERB by tense; not PRON or INTJ), or
   every feature its `when.own` reads is one the category has of itself (sk: NOUN and PROPN by
   gender and animacy);
 - its cells are those the course's tokens choose on lexemes of that category (the values chosen on
@@ -125,10 +126,49 @@ def _lexeme_id(ident: object) -> str:
     return text if text.startswith("lexeme:") else f"lexeme:{text}"
 
 
+def merging(lang: Language) -> bool:
+    """Whether the language merges lexemes (ADR 0158): it states what each category `requires`."""
+    return lang.declared.requires is not None
+
+
+def _merging_affixes(lang: Language) -> dict[str, Feats]:
+    """In a language that merges lexemes, every lexeme that merges onto another (`on`) and brings
+    values (`realises`), with those values."""
+    return {
+        str(entry.id): {str(k): str(v) for k, v in dict(entry.realises).items()}
+        for entry in lang.lexicon.lexemes
+        if entry.on is not None and entry.realises
+    }
+
+
+def merging_categories(lang: Language) -> list[str]:
+    """In a language that merges lexemes, the categories some lexeme merges onto: the parts of
+    speech its `on` names, or else those whose dimensions hold every feature its `on` reads."""
+    dims = _names(_dumped(lang.declared).get("dimensions"))
+    out: list[str] = []
+    for entry in lang.lexicon.lexemes:
+        on = entry.on
+        if on is None or not entry.realises:
+            continue
+        for host in [on, *(on.or_ or [])]:
+            named = [str(p) for p in host.pos or []]
+            if not named:
+                read = set(_table(_dumped(host).get("has"))) | {str(f) for f in host.needs or []}
+                named = [c for c, d in dims.items() if read and read <= set(d)]
+            for c in named:
+                if c not in out:
+                    out.append(c)
+    return out
+
+
 def written_affixes(lang: Language) -> dict[str, dict[str, Feats]]:
     """Per category, the affix lexemes its realisation rules write (an exponent's `lexeme`: uz's
     past -di), each with the values it realises (its entry's `realises`). Empty for a language
-    whose exponents add text only (apc)."""
+    whose exponents add text only. In a language that merges lexemes (ADR 0158), every lexeme
+    that merges onto another, for each category: what a token writes is its lexemes."""
+    if merging(lang):
+        affixes = _merging_affixes(lang)
+        return {c: affixes for c in merging_categories(lang)}
     declared = _dumped(lang.declared)
     out: dict[str, dict[str, Feats]] = {}
     for rule in _items(declared.get("realisation")):
@@ -191,7 +231,7 @@ def cells_of(
         )
 
     found: dict[str, dict[str, Feats]] = {}
-    categories = _categories(declared)
+    categories = merging_categories(lang) if merging(lang) else _categories(declared)
     affixes = written_affixes(lang)
 
     def add(category: str, feats: Feats) -> None:
@@ -279,12 +319,14 @@ def _key(request: Mapping[str, Any]) -> str:
 
 def _realised(result: Any) -> tuple[str | None, bool]:
     """A paradigm cell's answer: its lexical form (None where the rules give none) and whether any
-    rule was taken (a citation form takes none)."""
+    rule was taken, or a merged lexeme inflected it (a citation form takes none)."""
     r = _table(_table(result).get("result"))
     if not r.get("ok"):
         return None, False
     value = _table(r.get("value"))
-    return str(value.get("form")), bool(_items(value.get("steps")))
+    # In a language that merges lexemes, a merged lexeme that writes letters or chooses the stem is
+    # what a rule was (core's `inflected`): the he-past's zero, which chooses the past stem.
+    return str(value.get("form")), bool(_items(value.get("steps"))) or bool(value.get("inflected"))
 
 
 def in_script(
@@ -323,13 +365,14 @@ def paradigms(
     refused: list[Refused] | None = None,
 ) -> BundleLexicon:
     """The lexicon with its `cells` and `principalParts`, and each lexeme's `paradigm` and
-    `regularised`. Unchanged for a language with no realisation rules, or a course whose tokens
-    choose no cell worth listing. A form whose spelling (or marked text) has characters outside
-    its orthography's script (`outside(orthography, text, marked)`: the script audit's test) is
-    not shipped: null in the paradigm, left out of `regularised`, and added to `refused`."""
+    `regularised`. Unchanged for a language with no realisation rules (nor lexemes that merge), or
+    a course whose tokens choose no cell worth listing. A form whose spelling (or marked text) has
+    characters outside its orthography's script (`outside(orthography, text, marked)`: the script
+    audit's test) is not shipped: null in the paradigm, left out of `regularised`, and added to
+    `refused`."""
     declared = _dumped(lang.declared)
     notation = declared.get("notation")
-    if not _items(declared.get("realisation")) or notation is None:
+    if not (_items(declared.get("realisation")) or merging(lang)) or notation is None:
         return lexicon
     pos_of = {str(lx.id): str(lx.pos) for lx in lexicon.lexemes if lx.pos is not None}
     sites = list(sites)

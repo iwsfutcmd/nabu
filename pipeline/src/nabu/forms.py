@@ -317,6 +317,10 @@ class Site:
     #: The contexts it stands in, which are no feature values: its `context` (hbo pause, nesiga),
     #: and `bound` where a scheme's reading binds it to the next word (a maqaf).
     context: tuple[str, ...] = ()
+    #: In a language that merges lexemes (ADR 0158), every lexeme the token writes where some are
+    #: merged into its base (apc's shereb + imp + pl.verb): what the realiser is given. `written`
+    #: is the token as every other step reads it, those lexemes' values on its base.
+    merged: list[dict[str, Any]] | None = None
 
     @property
     def key(self) -> str:
@@ -446,7 +450,7 @@ def check_tokens(
         request: dict[str, Any] = {
             "op": "realise-token",
             **source,
-            "lexemes": parts,
+            "lexemes": site.merged or parts,
             "spellings": False,
         }
         if site.following is not None:
@@ -658,7 +662,7 @@ def check_pinned(
     from nabu.vocalization import unmarker
 
     declared = lang.declared
-    if declared.notation is None or not declared.realisation:
+    if declared.notation is None or not (declared.realisation or declared.requires is not None):
         return []
     source = language_args(lang)
     notation = declared.notation.model_dump(mode="json", by_alias=True, exclude_none=True)

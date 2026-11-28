@@ -21,15 +21,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: لازم نضل بالبيت اليوم.
-      tokens: [{surface: لازم, lexeme: lezem}, {surface: نضل, lexeme: dall, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: بالبيت, lexemes: [{lexeme: b, surface: ب, n: 3, head: 5,
-              rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 5}]}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال,
-              n: 6, head: 7, rel: det}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}, n: 7}]}]
+      tokens: [{surface: لازم, lexeme: lezem}, {surface: نضل, lexemes: [{lexeme: sub}, {lexeme: impf-1pl}, {lexeme: dall, base: true}]}, {surface: بالبيت, lexemes: [{lexeme: b, surface: ب, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: bet, surface: بيت, base: true, n: 5}, {lexeme: sg}]}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: yom, surface: يوم, base: true, n: 7}, {lexeme: sg}]}]
       reverse: لازم نضل بالبيت اليوم
     apc-Latn/arabizi:
       text: lezem ndall bel bet el yom.
-      tokens: [{surface: lezem, lexeme: lezem}, {surface: ndall, lexeme: dall, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: bel, lexemes: [{lexeme: b, surface: b, n: 3, head: 5,
-              rel: case, base: true}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 5}, {surface: el, lexeme: el, n: 6, head: 7, rel: det},
-        {surface: yom, lexeme: yom, feats: {Number: Sing}, n: 7}]
+      tokens: [{surface: lezem, lexeme: lezem}, {surface: ndall, lexemes: [{lexeme: sub}, {lexeme: impf-1pl}, {lexeme: dall, base: true}]}, {surface: bel, lexemes: [{lexeme: b, surface: b, n: 3, head: 5,
+              rel: case, base: true}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: bet, lexemes: [{lexeme: bet, base: true, n: 5}, {lexeme: sg}]}, {surface: el, lexeme: el, n: 6, head: 7, rel: det},
+        {surface: yom, lexemes: [{lexeme: yom, base: true, n: 7}, {lexeme: sg}]}]
       reverse: lezem ndall bel bet el yom
   translations:
     en: |-
@@ -40,14 +38,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ضل عم يدرس كلّ الليل.
-      tokens: [{surface: ضل, lexeme: dall, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: عم, lexeme: 3am}, {surface: يدرس, lexeme: daras, feats: {Aspect: Imp, Gender: Masc,
-            Mood: Sub, Number: Sing, Person: '3'}}, {surface: كلّ, lexeme: kell}, {surface: الليل, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: lel, surface: ليل, base: true, feats: {
-                Number: Sing}, n: 6}]}]
+      tokens: [{surface: ضل, lexemes: [{lexeme: dall, base: true}, {lexeme: perf-3ms}]}, {surface: عم, lexeme: 3am}, {surface: يدرس, lexemes: [{lexeme: sub}, {lexeme: impf-3}, {lexeme: daras, base: true}, {lexeme: ms.verb}]}, {surface: كلّ, lexeme: kell}, {surface: الليل, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: lel, surface: ليل, base: true, n: 6}, {lexeme: sg}]}]
       reverse: ضل عم يدرس كلّ الليل
     apc-Latn/arabizi:
       text: dall 3am yedros kell el lel.
-      tokens: [{surface: dall, lexeme: dall, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: 3am, lexeme: 3am}, {surface: yedros, lexeme: daras, feats: {Aspect: Imp, Gender: Masc,
-            Mood: Sub, Number: Sing, Person: '3'}}, {surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: lel, lexeme: lel, feats: {Number: Sing}, n: 6}]
+      tokens: [{surface: dall, lexemes: [{lexeme: dall, base: true}, {lexeme: perf-3ms}]}, {surface: 3am, lexeme: 3am}, {surface: yedros, lexemes: [{lexeme: sub}, {lexeme: impf-3}, {lexeme: daras, base: true}, {lexeme: ms.verb}]}, {surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: lel, lexemes: [{lexeme: lel, base: true, n: 6}, {lexeme: sg}]}]
       reverse: dall 3am yedros kell el lel
   translations:
     en: He kept (on|) studying all night.
@@ -56,14 +51,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ضلت عم تغني كلّ النهار.
-      tokens: [{surface: ضلت, lexeme: dall, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: عم, lexeme: 3am}, {surface: تغني, lexeme: ghanne, feats: {Aspect: Imp, Gender: Fem,
-            Mood: Sub, Number: Sing, Person: '3'}}, {surface: كلّ, lexeme: kell}, {surface: النهار, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: nhar, surface: نهار, base: true,
-              feats: {Number: Sing}, n: 6}]}]
+      tokens: [{surface: ضلت, lexemes: [{lexeme: dall, base: true}, {lexeme: perf-3fs}]}, {surface: عم, lexeme: 3am}, {surface: تغني, lexemes: [{lexeme: sub}, {lexeme: impf-3fs}, {lexeme: ghanne, base: true}]}, {surface: كلّ, lexeme: kell}, {surface: النهار, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: nhar, surface: نهار, base: true, n: 6}, {lexeme: sg}]}]
       reverse: ضلت عم تغني كلّ النهار
     apc-Latn/arabizi:
       text: dallet 3am tghanni kell el nhar.
-      tokens: [{surface: dallet, lexeme: dall, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: 3am, lexeme: 3am}, {surface: tghanni, lexeme: ghanne, feats: {Aspect: Imp, Gender: Fem,
-            Mood: Sub, Number: Sing, Person: '3'}}, {surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: nhar, lexeme: nhar, feats: {Number: Sing}, n: 6}]
+      tokens: [{surface: dallet, lexemes: [{lexeme: dall, base: true}, {lexeme: perf-3fs}]}, {surface: 3am, lexeme: 3am}, {surface: tghanni, lexemes: [{lexeme: sub}, {lexeme: impf-3fs}, {lexeme: ghanne, base: true}]}, {surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: nhar, lexemes: [{lexeme: nhar, base: true, n: 6}, {lexeme: sg}]}]
       reverse: dallet 3am tghanni kell el nhar
   translations:
     en: She kept (on|) singing all day.
@@ -74,11 +66,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ضل هون!
-      tokens: [{surface: ضل, lexeme: dall, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: هون, lexeme: hon}]
+      tokens: [{surface: ضل, lexemes: [{lexeme: dall, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: هون, lexeme: hon}]
       reverse: ضل هون
     apc-Latn/arabizi:
       text: dall hon!
-      tokens: [{surface: dall, lexeme: dall, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: hon, lexeme: hon}]
+      tokens: [{surface: dall, lexemes: [{lexeme: dall, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: hon, lexeme: hon}]
       reverse: dall hon
   translations:
     en: Stay here!
@@ -89,11 +81,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ضلي معي!
-      tokens: [{surface: ضلي, lexeme: dall, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true}, {lexeme: poss-1sg, surface: ي}]}]
+      tokens: [{surface: ضلي, lexemes: [{lexeme: dall, base: true}, {lexeme: imp}, {lexeme: fs.verb}]}, {surface: معي, lexemes: [{lexeme: ma3, surface: مع, base: true}, {lexeme: poss-1sg, surface: ي}]}]
       reverse: ضلي معي
     apc-Latn/arabizi:
       text: dalli ma3i!
-      tokens: [{surface: dalli, lexeme: dall, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true}, {lexeme: poss-1sg, surface: i}]}]
+      tokens: [{surface: dalli, lexemes: [{lexeme: dall, base: true}, {lexeme: imp}, {lexeme: fs.verb}]}, {surface: ma3i, lexemes: [{lexeme: ma3, surface: ma3, base: true}, {lexeme: poss-1sg, surface: i}]}]
       reverse: dalli ma3i
   translations:
     en: Stay with me!
@@ -104,15 +96,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ضليت بالبيت كلّ الجمعة.
-      tokens: [{surface: ضليت, lexeme: dall, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: بالبيت, lexemes: [{lexeme: b, surface: ب, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3,
-              head: 4, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 4}]}, {surface: كلّ, lexeme: kell}, {surface: الجمعة, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7,
-              rel: det}, {lexeme: jem3a, surface: جمعة, base: true, feats: {Number: Sing}, n: 7}]}]
+      tokens: [{surface: ضليت, lexemes: [{lexeme: dall, base: true}, {lexeme: perf-1sg}]}, {surface: بالبيت, lexemes: [{lexeme: b, surface: ب, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: bet, surface: بيت, base: true, n: 4}, {lexeme: sg}]}, {surface: كلّ, lexeme: kell}, {surface: الجمعة, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: jem3a, surface: جمعة, base: true, n: 7}, {lexeme: sg}]}]
       reverse: ضليت بالبيت كلّ الجمعة
     apc-Latn/arabizi:
       text: dallet bel bet kell el jem3a.
-      tokens: [{surface: dallet, lexeme: dall, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: bel, lexemes: [{lexeme: b, surface: b, n: 2, head: 4, rel: case, base: true}, {lexeme: el, surface: el,
-              n: 3, head: 4, rel: det}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 4}, {surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 6, head: 7, rel: det}, {surface: jem3a, lexeme: jem3a,
-          feats: {Number: Sing}, n: 7}]
+      tokens: [{surface: dallet, lexemes: [{lexeme: dall, base: true}, {lexeme: perf-1sg}]}, {surface: bel, lexemes: [{lexeme: b, surface: b, n: 2, head: 4, rel: case, base: true}, {lexeme: el, surface: el,
+              n: 3, head: 4, rel: det}]}, {surface: bet, lexemes: [{lexeme: bet, base: true, n: 4}, {lexeme: sg}]}, {surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 6, head: 7, rel: det}, {surface: jem3a, lexemes: [{lexeme: jem3a, base: true, n: 7}, {lexeme: sg}]}]
       reverse: dallet bel bet kell el jem3a
   translations:
     en: I stayed (at|) home all week.
@@ -121,13 +110,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بلش الفيلم.
-      tokens: [{surface: بلش, lexeme: ballash, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: الفيلم, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: film,
-              surface: فيلم, base: true, feats: {Number: Sing}, n: 3}]}]
+      tokens: [{surface: بلش, lexemes: [{lexeme: ballash, base: true}, {lexeme: perf-3ms}]}, {surface: الفيلم, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: film, surface: فيلم, base: true, n: 3}, {lexeme: sg}]}]
       reverse: بلش الفيلم
     apc-Latn/arabizi:
       text: ballash el film.
-      tokens: [{surface: ballash, lexeme: ballash, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: film, lexeme: film, feats: {
-            Number: Sing}, n: 3}]
+      tokens: [{surface: ballash, lexemes: [{lexeme: ballash, base: true}, {lexeme: perf-3ms}]}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: film, lexemes: [{lexeme: film, base: true, n: 3}, {lexeme: sg}]}]
       reverse: ballash el film
   translations:
     en: The (film|movie) (has started|started|has begun|began).
@@ -136,13 +123,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: إمتى بلش الدرس؟
-      tokens: [{surface: إمتى, lexeme: emta}, {surface: بلش, lexeme: ballash, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: الدرس, lexemes: [{lexeme: el, surface: ال, n: 3,
-              head: 4, rel: det}, {lexeme: dars, surface: درس, base: true, feats: {Number: Sing}, n: 4}]}]
+      tokens: [{surface: إمتى, lexeme: emta}, {surface: بلش, lexemes: [{lexeme: ballash, base: true}, {lexeme: perf-3ms}]}, {surface: الدرس, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: dars, surface: درس, base: true, n: 4}, {lexeme: sg}]}]
       reverse: إمتى بلش الدرس
     apc-Latn/arabizi:
       text: emta ballash el dars?
-      tokens: [{surface: emta, lexeme: emta}, {surface: ballash, lexeme: ballash, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: dars,
-          lexeme: dars, feats: {Number: Sing}, n: 4}]
+      tokens: [{surface: emta, lexeme: emta}, {surface: ballash, lexemes: [{lexeme: ballash, base: true}, {lexeme: perf-3ms}]}, {surface: el, lexeme: el, n: 3, head: 4, rel: det}, {surface: dars, lexemes: [{lexeme: dars, base: true, n: 4}, {lexeme: sg}]}]
       reverse: emta ballash el dars
   translations:
     en: When did the (class|lesson) (start|begin)?
@@ -151,12 +136,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بلشنا ندرس عربي.
-      tokens: [{surface: بلشنا, lexeme: ballash, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: ندرس, lexeme: daras, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: عربي,
+      tokens: [{surface: بلشنا, lexemes: [{lexeme: ballash, base: true}, {lexeme: perf-1pl}]}, {surface: ندرس, lexemes: [{lexeme: sub}, {lexeme: impf-1pl}, {lexeme: daras, base: true}]}, {surface: عربي,
           lexeme: 3arabe}]
       reverse: بلشنا ندرس عربي
     apc-Latn/arabizi:
       text: ballashna nedros 3arabe.
-      tokens: [{surface: ballashna, lexeme: ballash, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: nedros, lexeme: daras, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: 3arabe,
+      tokens: [{surface: ballashna, lexemes: [{lexeme: ballash, base: true}, {lexeme: perf-1pl}]}, {surface: nedros, lexemes: [{lexeme: sub}, {lexeme: impf-1pl}, {lexeme: daras, base: true}]}, {surface: 3arabe,
           lexeme: 3arabe}]
       reverse: ballashna nedros 3arabe
   translations:
@@ -166,15 +151,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: صار عم يشتغل بالمطعم.
-      tokens: [{surface: صار, lexeme: sar, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: عم, lexeme: 3am}, {surface: يشتغل, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc,
-            Mood: Sub, Number: Sing, Person: '3'}}, {surface: بالمطعم, lexemes: [{lexeme: b, surface: ب, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: mat3am, surface: مطعم,
-              base: true, feats: {Number: Sing}, n: 6}]}]
+      tokens: [{surface: صار, lexemes: [{lexeme: sar, base: true}, {lexeme: perf-3ms}]}, {surface: عم, lexeme: 3am}, {surface: يشتغل, lexemes: [{lexeme: sub}, {lexeme: impf-3}, {lexeme: eshteghel, base: true}, {lexeme: ms.verb}]}, {surface: بالمطعم, lexemes: [{lexeme: b, surface: ب, n: 4, head: 6, rel: case}, {lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: mat3am, surface: مطعم, base: true, n: 6}, {lexeme: sg}]}]
       reverse: صار عم يشتغل بالمطعم
     apc-Latn/arabizi:
       text: sar 3am yishteghel bel mat3am.
-      tokens: [{surface: sar, lexeme: sar, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: 3am, lexeme: 3am}, {surface: yishteghel, lexeme: eshteghel, feats: {Aspect: Imp, Gender: Masc,
-            Mood: Sub, Number: Sing, Person: '3'}}, {surface: bel, lexemes: [{lexeme: b, surface: b, n: 4, head: 6, rel: case, base: true}, {lexeme: el, surface: el, n: 5, head: 6, rel: det}]}, {surface: mat3am,
-          lexeme: mat3am, feats: {Number: Sing}, n: 6}]
+      tokens: [{surface: sar, lexemes: [{lexeme: sar, base: true}, {lexeme: perf-3ms}]}, {surface: 3am, lexeme: 3am}, {surface: yishteghel, lexemes: [{lexeme: sub}, {lexeme: impf-3}, {lexeme: eshteghel, base: true}, {lexeme: ms.verb}]}, {surface: bel, lexemes: [{lexeme: b, surface: b, n: 4, head: 6, rel: case, base: true}, {lexeme: el, surface: el, n: 5, head: 6, rel: det}]}, {surface: mat3am, lexemes: [{lexeme: mat3am, base: true, n: 6}, {lexeme: sg}]}]
       reverse: sar 3am yishteghel bel mat3am
   translations:
     en: |-
@@ -185,13 +166,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: صارت عم تقرا كتير.
-      tokens: [{surface: صارت, lexeme: sar, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: عم, lexeme: 3am}, {surface: تقرا, lexeme: 2ara, feats: {Aspect: Imp, Gender: Fem, Mood: Sub,
-            Number: Sing, Person: '3'}}, {surface: كتير, lexeme: ktir}]
+      tokens: [{surface: صارت, lexemes: [{lexeme: sar, base: true}, {lexeme: perf-3fs}]}, {surface: عم, lexeme: 3am}, {surface: تقرا, lexemes: [{lexeme: sub}, {lexeme: impf-3fs}, {lexeme: 2ara, base: true}]}, {surface: كتير, lexeme: ktir}]
       reverse: صارت عم تقرا كتير
     apc-Latn/arabizi:
       text: saret 3am te2ra ktir.
-      tokens: [{surface: saret, lexeme: sar, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: 3am, lexeme: 3am}, {surface: te2ra, lexeme: 2ara, feats: {Aspect: Imp, Gender: Fem,
-            Mood: Sub, Number: Sing, Person: '3'}}, {surface: ktir, lexeme: ktir}]
+      tokens: [{surface: saret, lexemes: [{lexeme: sar, base: true}, {lexeme: perf-3fs}]}, {surface: 3am, lexeme: 3am}, {surface: te2ra, lexemes: [{lexeme: sub}, {lexeme: impf-3fs}, {lexeme: 2ara, base: true}]}, {surface: ktir, lexeme: ktir}]
       reverse: saret 3am te2ra ktir
   translations:
     en: |-
@@ -204,13 +183,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: خلصت شغلي.
-      tokens: [{surface: خلصت, lexeme: khallas, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: شغلي, lexemes: [{lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}}, {lexeme: poss-1sg,
-              surface: ي}]}]
+      tokens: [{surface: خلصت, lexemes: [{lexeme: khallas, base: true}, {lexeme: perf-1sg}]}, {surface: شغلي, lexemes: [{lexeme: shoghl, surface: شغل, base: true}, {lexeme: sg}, {lexeme: poss-1sg, surface: ي}]}]
       reverse: خلصت شغلي
     apc-Latn/arabizi:
       text: khallast shoghli.
-      tokens: [{surface: khallast, lexeme: khallas, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: shoghli, lexemes: [{lexeme: shoghl, surface: shoghl, base: true, feats: {Number: Sing}},
-            {lexeme: poss-1sg, surface: i}]}]
+      tokens: [{surface: khallast, lexemes: [{lexeme: khallas, base: true}, {lexeme: perf-1sg}]}, {surface: shoghli, lexemes: [{lexeme: shoghl, surface: shoghl, base: true}, {lexeme: sg}, {lexeme: poss-1sg, surface: i}]}]
       reverse: khallast shoghli
   translations:
     en: |-
@@ -223,11 +200,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: خلصت؟
-      tokens: [{surface: خلصت, lexeme: khallas, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}]
+      tokens: [{surface: خلصت, lexemes: [{lexeme: khallas, base: true}, {lexeme: perf-2ms}]}]
       reverse: خلصت
     apc-Latn/arabizi:
       text: khallast?
-      tokens: [{surface: khallast, lexeme: khallas, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}]
+      tokens: [{surface: khallast, lexemes: [{lexeme: khallas, base: true}, {lexeme: perf-2ms}]}]
       reverse: khallast
   translations:
     en: |-
@@ -239,12 +216,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: لمّا خلصنا، طلعنا.
-      tokens: [{surface: لمّا, lexeme: lamma}, {surface: خلصنا, lexeme: khallas, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: طلعنا, lexeme: tele3, feats: {Aspect: Perf, Number: Plur, Person: '1'}}]
+      tokens: [{surface: لمّا, lexeme: lamma}, {surface: خلصنا, lexemes: [{lexeme: khallas, base: true}, {lexeme: perf-1pl}]}, {surface: طلعنا, lexemes: [{lexeme: tele3, base: true}, {lexeme: perf-1pl}]}]
       reverse: لمّا خلصنا طلعنا
     apc-Latn/arabizi:
       text: lamma khallasna, tle3na.
-      tokens: [{surface: lamma, lexeme: lamma}, {surface: khallasna, lexeme: khallas, feats: {Aspect: Perf, Number: Plur, Person: '1'}}, {surface: tle3na, lexeme: tele3, feats: {Aspect: Perf, Number: Plur,
-            Person: '1'}}]
+      tokens: [{surface: lamma, lexeme: lamma}, {surface: khallasna, lexemes: [{lexeme: khallas, base: true}, {lexeme: perf-1pl}]}, {surface: tle3na, lexemes: [{lexeme: tele3, base: true}, {lexeme: perf-1pl}]}]
       reverse: lamma khallasna tle3na
   translations:
     en: When we finished, we went out.
@@ -255,13 +231,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بعدني ما خلصت.
-      tokens: [{surface: بعدني, lexemes: [{lexeme: ba3d.still, surface: بعد, base: true}, {lexeme: obj-1sg, surface: ني}]}, {surface: ما, lexeme: ma}, {surface: خلصت, lexeme: khallas, feats: {Aspect: Perf,
-            Number: Sing, Person: '1'}}]
+      tokens: [{surface: بعدني, lexemes: [{lexeme: ba3d.still, surface: بعد, base: true}, {lexeme: obj-1sg, surface: ني}]}, {surface: ما, lexeme: ma}, {surface: خلصت, lexemes: [{lexeme: khallas, base: true}, {lexeme: perf-1sg}]}]
       reverse: بعدني ما خلصت
     apc-Latn/arabizi:
       text: ba3dni ma khallast.
-      tokens: [{surface: ba3dni, lexemes: [{lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: obj-1sg, surface: ni}]}, {surface: ma, lexeme: ma}, {surface: khallast, lexeme: khallas, feats: {Aspect: Perf,
-            Number: Sing, Person: '1'}}]
+      tokens: [{surface: ba3dni, lexemes: [{lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: obj-1sg, surface: ni}]}, {surface: ma, lexeme: ma}, {surface: khallast, lexemes: [{lexeme: khallas, base: true}, {lexeme: perf-1sg}]}]
       reverse: ba3dni ma khallast
   translations:
     en: |-
@@ -274,13 +248,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: رجعت قريت الكتاب.
-      tokens: [{surface: رجعت, lexeme: rje3, feats: {Aspect: Perf, Number: Sing, Person: '1'}, vocalized: رْجِعِت}, {surface: قريت, lexeme: 2ara, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: الكتاب,
-          lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: ktab, surface: كتاب, base: true, feats: {Number: Sing}, n: 4}]}]
+      tokens: [{surface: رجعت, lexemes: [{lexeme: rje3, base: true}, {lexeme: perf-1sg}], vocalized: رْجِعِت}, {surface: قريت, lexemes: [{lexeme: 2ara, base: true}, {lexeme: perf-1sg}]}, {surface: الكتاب, lexemes: [{lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: ktab, surface: كتاب, base: true, n: 4}, {lexeme: sg}]}]
       reverse: رجعت قريت الكتاب
     apc-Latn/arabizi:
       text: rje3t 2rit el ktab.
-      tokens: [{surface: rje3t, lexeme: rje3, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 2rit, lexeme: 2ara, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: el, lexeme: el,
-          n: 3, head: 4, rel: det}, {surface: ktab, lexeme: ktab, feats: {Number: Sing}, n: 4}]
+      tokens: [{surface: rje3t, lexemes: [{lexeme: rje3, base: true}, {lexeme: perf-1sg}]}, {surface: 2rit, lexemes: [{lexeme: 2ara, base: true}, {lexeme: perf-1sg}]}, {surface: el, lexeme: el,
+          n: 3, head: 4, rel: det}, {surface: ktab, lexemes: [{lexeme: ktab, base: true, n: 4}, {lexeme: sg}]}]
       reverse: rje3t 2rit el ktab
   translations:
     en: I read the book again.
@@ -289,13 +262,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: رجعت دقتلي.
-      tokens: [{surface: رجعت, lexeme: rje3, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}, vocalized: رِجْعِت}, {surface: دقتلي, lexemes: [{lexeme: de22, surface: دقت, base: true, feats: {
-                Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: لي}]}]
+      tokens: [{surface: رجعت, lexemes: [{lexeme: rje3, base: true}, {lexeme: perf-3fs}], vocalized: رِجْعِت}, {surface: دقتلي, lexemes: [{lexeme: de22, surface: دقت, base: true}, {lexeme: perf-3fs}, {lexeme: la-1sg, surface: لي}]}]
       reverse: رجعت دقتلي
     apc-Latn/arabizi:
       text: rej3et da22etli.
-      tokens: [{surface: rej3et, lexeme: rje3, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: da22etli, lexemes: [{lexeme: de22, surface: da22et, base: true, feats: {Aspect: Perf,
-                Gender: Fem, Number: Sing, Person: '3'}}, {lexeme: la-1sg, surface: li}]}]
+      tokens: [{surface: rej3et, lexemes: [{lexeme: rje3, base: true}, {lexeme: perf-3fs}]}, {surface: da22etli, lexemes: [{lexeme: de22, surface: da22et, base: true}, {lexeme: perf-3fs}, {lexeme: la-1sg, surface: li}]}]
       reverse: rej3et da22etli
   translations:
     en: She called me again.
@@ -306,13 +277,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: رح نرجع نزوركن.
-      tokens: [{surface: رح, lexeme: ra7.fut}, {surface: نرجع, lexeme: rje3, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: نزوركن, lexemes: [{lexeme: zar, surface: نزور, base: true,
-              feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {lexeme: obj-2pl, surface: كن}]}]
+      tokens: [{surface: رح, lexeme: ra7.fut}, {surface: نرجع, lexemes: [{lexeme: sub}, {lexeme: impf-1pl}, {lexeme: rje3, base: true}]}, {surface: نزوركن, lexemes: [{lexeme: sub}, {lexeme: impf-1pl}, {lexeme: zar, surface: نزور, base: true}, {lexeme: obj-2pl, surface: كن}]}]
       reverse: رح نرجع نزوركن
     apc-Latn/arabizi:
       text: ra7 nerja3 nzurkon.
-      tokens: [{surface: ra7, lexeme: ra7.fut}, {surface: nerja3, lexeme: rje3, feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {surface: nzurkon, lexemes: [{lexeme: zar, surface: nzur, base: true,
-              feats: {Aspect: Imp, Mood: Sub, Number: Plur, Person: '1'}}, {lexeme: obj-2pl, surface: kon}]}]
+      tokens: [{surface: ra7, lexeme: ra7.fut}, {surface: nerja3, lexemes: [{lexeme: sub}, {lexeme: impf-1pl}, {lexeme: rje3, base: true}]}, {surface: nzurkon, lexemes: [{lexeme: sub}, {lexeme: impf-1pl}, {lexeme: zar, surface: nzur, base: true}, {lexeme: obj-2pl, surface: kon}]}]
       reverse: ra7 nerja3 nzurkon
   translations:
     en: |-
@@ -325,14 +294,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: لازم ترجع تقرا الكتاب.
-      tokens: [{surface: لازم, lexeme: lezem}, {surface: ترجع, lexeme: rje3, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: تقرا, lexeme: 2ara, feats: {Aspect: Imp,
-            Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: الكتاب, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: ktab, surface: كتاب, base: true, feats: {Number: Sing},
-              n: 5}]}]
+      tokens: [{surface: لازم, lexeme: lezem}, {surface: ترجع, lexemes: [{lexeme: sub}, {lexeme: impf-2}, {lexeme: rje3, base: true}, {lexeme: ms.verb}]}, {surface: تقرا, lexemes: [{lexeme: sub}, {lexeme: impf-2}, {lexeme: 2ara, base: true}, {lexeme: ms.verb}]}, {surface: الكتاب, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: ktab, surface: كتاب, base: true, n: 5}, {lexeme: sg}]}]
       reverse: لازم ترجع تقرا الكتاب
     apc-Latn/arabizi:
       text: lezem terja3 te2ra el ktab.
-      tokens: [{surface: lezem, lexeme: lezem}, {surface: terja3, lexeme: rje3, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: te2ra, lexeme: 2ara, feats: {Aspect: Imp,
-            Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: ktab, lexeme: ktab, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: lezem, lexeme: lezem}, {surface: terja3, lexemes: [{lexeme: sub}, {lexeme: impf-2}, {lexeme: rje3, base: true}, {lexeme: ms.verb}]}, {surface: te2ra, lexemes: [{lexeme: sub}, {lexeme: impf-2}, {lexeme: 2ara, base: true}, {lexeme: ms.verb}]}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: ktab, lexemes: [{lexeme: ktab, base: true, n: 5}, {lexeme: sg}]}]
       reverse: lezem terja3 te2ra el ktab
   translations:
     en: You (have to|must) read the book again.
@@ -341,11 +307,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ما عاد ساكن هون.
-      tokens: [{surface: ما, lexeme: ma-3ad}, {surface: عاد, lexeme: ma-3ad}, {surface: ساكن, lexeme: seken, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: هون, lexeme: hon}]
+      tokens: [{surface: ما, lexeme: ma-3ad}, {surface: عاد, lexeme: ma-3ad}, {surface: ساكن, lexemes: [{lexeme: seken, base: true}, {lexeme: ptcp}, {lexeme: ms}]}, {surface: هون, lexeme: hon}]
       reverse: ما عاد ساكن هون
     apc-Latn/arabizi:
       text: ma 3ad seken hon.
-      tokens: [{surface: ma, lexeme: ma-3ad}, {surface: 3ad, lexeme: ma-3ad}, {surface: seken, lexeme: seken, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: hon, lexeme: hon}]
+      tokens: [{surface: ma, lexeme: ma-3ad}, {surface: 3ad, lexeme: ma-3ad}, {surface: seken, lexemes: [{lexeme: seken, base: true}, {lexeme: ptcp}, {lexeme: ms}]}, {surface: hon, lexeme: hon}]
       reverse: ma 3ad seken hon
   translations:
     en: |-
@@ -358,13 +324,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ما عاد بحبّ القهوة.
-      tokens: [{surface: ما, lexeme: ma-3ad}, {surface: عاد, lexeme: ma-3ad}, {surface: بحبّ, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: القهوة, lexemes: [{lexeme: el,
-              surface: ال, n: 4, head: 5, rel: det}, {lexeme: ahwe, surface: قهوة, base: true, feats: {Number: Sing}, n: 5}]}]
+      tokens: [{surface: ما, lexeme: ma-3ad}, {surface: عاد, lexeme: ma-3ad}, {surface: بحبّ, lexemes: [{lexeme: ind}, {lexeme: impf-1sg}, {lexeme: 7abb, base: true}]}, {surface: القهوة, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: ahwe, surface: قهوة, base: true, n: 5}, {lexeme: sg}]}]
       reverse: ما عاد بحبّ القهوة
     apc-Latn/arabizi:
       text: ma 3ad b7ebb el ahwe.
-      tokens: [{surface: ma, lexeme: ma-3ad}, {surface: 3ad, lexeme: ma-3ad}, {surface: b7ebb, lexeme: 7abb, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: el, lexeme: el, n: 4,
-          head: 5, rel: det}, {surface: ahwe, lexeme: ahwe, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: ma, lexeme: ma-3ad}, {surface: 3ad, lexeme: ma-3ad}, {surface: b7ebb, lexemes: [{lexeme: ind}, {lexeme: impf-1sg}, {lexeme: 7abb, base: true}]}, {surface: el, lexeme: el, n: 4,
+          head: 5, rel: det}, {surface: ahwe, lexemes: [{lexeme: ahwe, base: true, n: 5}, {lexeme: sg}]}]
       reverse: ma 3ad b7ebb el ahwe
   translations:
     en: |-
@@ -375,13 +340,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: طلع المطعم مسكر.
-      tokens: [{surface: طلع, lexeme: tele3, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: المطعم, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: mat3am,
-              surface: مطعم, base: true, feats: {Number: Sing}, n: 3}]}, {surface: مسكر, lexeme: sakkar, feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}]
+      tokens: [{surface: طلع, lexemes: [{lexeme: tele3, base: true}, {lexeme: perf-3ms}]}, {surface: المطعم, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: mat3am, surface: مطعم, base: true, n: 3}, {lexeme: sg}]}, {surface: مسكر, lexemes: [{lexeme: sakkar, base: true}, {lexeme: ptcp}, {lexeme: ms}, {lexeme: pass}]}]
       reverse: طلع المطعم مسكر
     apc-Latn/arabizi:
       text: tele3 el mat3am msakkar.
-      tokens: [{surface: tele3, lexeme: tele3, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '3'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: mat3am, lexeme: mat3am, feats: {
-            Number: Sing}, n: 3}, {surface: msakkar, lexeme: sakkar, feats: {Aspect: Part, Gender: Masc, Number: Sing, Voice: Pass}}]
+      tokens: [{surface: tele3, lexemes: [{lexeme: tele3, base: true}, {lexeme: perf-3ms}]}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: mat3am, lexemes: [{lexeme: mat3am, base: true, n: 3}, {lexeme: sg}]}, {surface: msakkar, lexemes: [{lexeme: sakkar, base: true}, {lexeme: ptcp}, {lexeme: ms}, {lexeme: pass}]}]
       reverse: tele3 el mat3am msakkar
   translations:
     en: |-
@@ -392,13 +355,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: طلعت الدكّانة مفتوحة.
-      tokens: [{surface: طلعت, lexeme: tele3, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: الدكّانة, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: dekkene,
-              surface: دكّانة, base: true, feats: {Number: Sing}, n: 3}]}, {surface: مفتوحة, lexeme: fata7, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}]
+      tokens: [{surface: طلعت, lexemes: [{lexeme: tele3, base: true}, {lexeme: perf-3fs}]}, {surface: الدكّانة, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: dekkene, surface: دكّانة, base: true, n: 3}, {lexeme: sg}]}, {surface: مفتوحة, lexemes: [{lexeme: fata7, base: true}, {lexeme: ptcp}, {lexeme: fs}, {lexeme: pass}]}]
       reverse: طلعت الدكّانة مفتوحة
     apc-Latn/arabizi:
       text: tel3et el dekkene maftu7a.
-      tokens: [{surface: tel3et, lexeme: tele3, feats: {Aspect: Perf, Gender: Fem, Number: Sing, Person: '3'}}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: dekkene, lexeme: dekkene, feats: {
-            Number: Sing}, n: 3}, {surface: maftu7a, lexeme: fata7, feats: {Aspect: Part, Gender: Fem, Number: Sing, Voice: Pass}}]
+      tokens: [{surface: tel3et, lexemes: [{lexeme: tele3, base: true}, {lexeme: perf-3fs}]}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: dekkene, lexemes: [{lexeme: dekkene, base: true, n: 3}, {lexeme: sg}]}, {surface: maftu7a, lexemes: [{lexeme: fata7, base: true}, {lexeme: ptcp}, {lexeme: fs}, {lexeme: pass}]}]
       reverse: tel3et el dekkene maftu7a
   translations:
     en: |-
@@ -429,12 +390,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: سامي، بَعْدَك عَم تِدْرُس؟
-          tokens: [{surface: سامي, lexeme: sami}, {surface: بَعْدَك, lexemes: [{lexeme: ba3d.still, surface: بَعْدَ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: عَم, lexeme: 3am}, {surface: تِدْرُس,
-              lexeme: daras, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}]
+          tokens: [{surface: سامي, lexeme: sami}, {surface: بَعْدَك, lexemes: [{lexeme: ba3d.still, surface: بَعْدَ, base: true}, {lexeme: poss-2ms, surface: ك}]}, {surface: عَم, lexeme: 3am}, {surface: تِدْرُس, lexemes: [{lexeme: sub}, {lexeme: impf-2}, {lexeme: daras, base: true}, {lexeme: ms.verb}]}]
         apc-Latn/arabizi:
           text: Sami, ba3dak 3am tedros?
-          tokens: [{surface: Sami, lexeme: sami}, {surface: ba3dak, lexemes: [{lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: 3am, lexeme: 3am}, {surface: tedros,
-              lexeme: daras, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}]
+          tokens: [{surface: Sami, lexeme: sami}, {surface: ba3dak, lexemes: [{lexeme: ba3d.still, surface: ba3d, base: true}, {lexeme: poss-2ms, surface: ak}]}, {surface: 3am, lexeme: 3am}, {surface: tedros, lexemes: [{lexeme: sub}, {lexeme: impf-2}, {lexeme: daras, base: true}, {lexeme: ms.verb}]}]
       translations:
         en: Sami, are you still studying?
   - line:
@@ -442,13 +401,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: إيه، ضَلّيت عَم اِدْرُس كِلّ اللّيل.
-          tokens: [{surface: إيه, lexeme: eh}, {surface: ضَلّيت, lexeme: dall, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: عَم, lexeme: 3am}, {surface: اِدْرُس, lexeme: daras, feats: {
-                Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: كِلّ, lexeme: kell}, {surface: اللّيل, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: lel, surface: لّيل,
-                  base: true, feats: {Number: Sing}, n: 7}]}]
+          tokens: [{surface: إيه, lexeme: eh}, {surface: ضَلّيت, lexemes: [{lexeme: dall, base: true}, {lexeme: perf-1sg}]}, {surface: عَم, lexeme: 3am}, {surface: اِدْرُس, lexemes: [{lexeme: sub}, {lexeme: impf-1sg}, {lexeme: daras, base: true}]}, {surface: كِلّ, lexeme: kell}, {surface: اللّيل, lexemes: [{lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: lel, surface: لّيل, base: true, n: 7}, {lexeme: sg}]}]
         apc-Latn/arabizi:
           text: eh, dallet 3am edros kell el lel.
-          tokens: [{surface: eh, lexeme: eh}, {surface: dallet, lexeme: dall, feats: {Aspect: Perf, Number: Sing, Person: '1'}}, {surface: 3am, lexeme: 3am}, {surface: edros, lexeme: daras, feats: {Aspect: Imp,
-                Mood: Sub, Number: Sing, Person: '1'}}, {surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 6, head: 7, rel: det}, {surface: lel, lexeme: lel, feats: {Number: Sing}, n: 7}]
+          tokens: [{surface: eh, lexeme: eh}, {surface: dallet, lexemes: [{lexeme: dall, base: true}, {lexeme: perf-1sg}]}, {surface: 3am, lexeme: 3am}, {surface: edros, lexemes: [{lexeme: sub}, {lexeme: impf-1sg}, {lexeme: daras, base: true}]}, {surface: kell, lexeme: kell}, {surface: el, lexeme: el, n: 6, head: 7, rel: det}, {surface: lel, lexemes: [{lexeme: lel, base: true, n: 7}, {lexeme: sg}]}]
       translations:
         en: Yes, I kept studying all night.
   - line:
@@ -456,10 +412,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: وخَلَّصِت؟
-          tokens: [{surface: وخَلَّصِت, lexemes: [{lexeme: w, surface: و}, {lexeme: khallas, surface: خَلَّصِت, base: true, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}]}]
+          tokens: [{surface: وخَلَّصِت, lexemes: [{lexeme: w, surface: و}, {lexeme: khallas, surface: خَلَّصِت, base: true}, {lexeme: perf-2ms}]}]
         apc-Latn/arabizi:
           text: w khallast?
-          tokens: [{surface: w, lexeme: w}, {surface: khallast, lexeme: khallas, feats: {Aspect: Perf, Gender: Masc, Number: Sing, Person: '2'}}]
+          tokens: [{surface: w, lexeme: w}, {surface: khallast, lexemes: [{lexeme: khallas, base: true}, {lexeme: perf-2ms}]}]
       translations:
         en: And have you finished?
   - line:
@@ -472,13 +428,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: لأ، لازِم اِرْجَع اِقْرا الكْتاب.
-          tokens: [{surface: لأ, lexeme: la2}, {surface: لازِم, lexeme: lezem}, {surface: اِرْجَع, lexeme: rje3, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: اِقْرا, lexeme: 2ara,
-              feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: الكْتاب, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: ktab, surface: كْتاب, base: true, feats: {
-                    Number: Sing}, n: 6}]}]
+          tokens: [{surface: لأ, lexeme: la2}, {surface: لازِم, lexeme: lezem}, {surface: اِرْجَع, lexemes: [{lexeme: sub}, {lexeme: impf-1sg}, {lexeme: rje3, base: true}]}, {surface: اِقْرا, lexemes: [{lexeme: sub}, {lexeme: impf-1sg}, {lexeme: 2ara, base: true}]}, {surface: الكْتاب, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: ktab, surface: كْتاب, base: true, n: 6}, {lexeme: sg}]}]
         apc-Latn/arabizi:
           text: la2, lezem erja3 e2ra el ktab.
-          tokens: [{surface: la2, lexeme: la2}, {surface: lezem, lexeme: lezem}, {surface: erja3, lexeme: rje3, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: e2ra, lexeme: 2ara,
-              feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: ktab, lexeme: ktab, feats: {Number: Sing}, n: 6}]
+          tokens: [{surface: la2, lexeme: la2}, {surface: lezem, lexeme: lezem}, {surface: erja3, lexemes: [{lexeme: sub}, {lexeme: impf-1sg}, {lexeme: rje3, base: true}]}, {surface: e2ra, lexemes: [{lexeme: sub}, {lexeme: impf-1sg}, {lexeme: 2ara, base: true}]}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: ktab, lexemes: [{lexeme: ktab, base: true, n: 6}, {lexeme: sg}]}]
       translations:
         en: No, I have to read the book again.
   - choose:
@@ -494,12 +447,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: أَنا رَح نام. ضَلّ عَم تِدْرُس!
-          tokens: [{surface: أَنا, lexeme: ana}, {surface: رَح, lexeme: ra7.fut}, {surface: نام, lexeme: nem, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: ضَلّ, lexeme: dall, feats: {
-                Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: عَم, lexeme: 3am}, {surface: تِدْرُس, lexeme: daras, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}]
+          tokens: [{surface: أَنا, lexeme: ana}, {surface: رَح, lexeme: ra7.fut}, {surface: نام, lexemes: [{lexeme: sub}, {lexeme: impf-1sg}, {lexeme: nem, base: true}]}, {surface: ضَلّ, lexemes: [{lexeme: dall, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: عَم, lexeme: 3am}, {surface: تِدْرُس, lexemes: [{lexeme: sub}, {lexeme: impf-2}, {lexeme: daras, base: true}, {lexeme: ms.verb}]}]
         apc-Latn/arabizi:
           text: ana ra7 nem. dall 3am tedros!
-          tokens: [{surface: ana, lexeme: ana}, {surface: ra7, lexeme: ra7.fut}, {surface: nem, lexeme: nem, feats: {Aspect: Imp, Mood: Sub, Number: Sing, Person: '1'}}, {surface: dall, lexeme: dall, feats: {
-                Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: 3am, lexeme: 3am}, {surface: tedros, lexeme: daras, feats: {Aspect: Imp, Gender: Masc, Mood: Sub, Number: Sing, Person: '2'}}]
+          tokens: [{surface: ana, lexeme: ana}, {surface: ra7, lexeme: ra7.fut}, {surface: nem, lexemes: [{lexeme: sub}, {lexeme: impf-1sg}, {lexeme: nem, base: true}]}, {surface: dall, lexemes: [{lexeme: dall, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: 3am, lexeme: 3am}, {surface: tedros, lexemes: [{lexeme: sub}, {lexeme: impf-2}, {lexeme: daras, base: true}, {lexeme: ms.verb}]}]
       translations:
         en: I'm going to sleep. Keep studying!
   - line:

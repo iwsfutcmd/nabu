@@ -68,6 +68,12 @@ export interface Realisation {
    * is incomplete: its form is shown (the rules explorer) but it is no word to write.
    */
   readonly missing?: readonly string[];
+  /**
+   * In a language that merges lexemes (ADR 0158): a lexeme merged with the base writes letters in the word,
+   * chooses its stem, or stands in a zero beside forms it writes elsewhere. A paradigm lists a cell where some
+   * lexeme is inflected there or a rewrite ran.
+   */
+  readonly inflected?: true;
   /** In a language that merges lexemes, the values the token's lexemes bring, its base's own and chosen ones with them. */
   readonly feats?: UdFeatures;
 }
@@ -744,6 +750,27 @@ const realisation = (built: Built, units: readonly Unit[], steps: readonly Step[
 
 /** A lexeme realised in a cell (its token's chosen values): the lexical form, boundaries kept. */
 export const realise = (lang: CompiledLanguage, lexeme: string, cell: UdFeatures, options: RealiseOptions = {}): Result<Realisation, RealiseError> => {
+  // In a language that merges lexemes (ADR 0158) a base has no cell of its own: it stands in one merged with the
+  // lexemes that bring it (`mergeFor`). Where none do, a paradigm lists nothing there; a caller asking otherwise has
+  // the values chosen on the base, as a token not yet converted chooses them.
+  const base = lang.declared.requires === undefined ? undefined : lang.lexemes.get(lexemeId(lexeme));
+  if (base !== undefined && base.on === undefined) {
+    const found = mergeFor(lang, lexeme, cell);
+    if (found === undefined && options.strict === true && Object.keys(cell).length > 0) return err({ kind: "no-rule", cell });
+    const written: readonly WrittenLexeme[] =
+      found === undefined
+        ? [{ lexeme, feats: cell, base: true }]
+        : [...found.before.map((l) => ({ lexeme: l })), { lexeme, base: true }, ...found.after.map((l) => ({ lexeme: l }))];
+    const got = realiseToken(lang, written, options);
+    // Listed strict, a cell its lexemes say nothing of (none writes a letter or chooses the stem, no rewrite runs,
+    // no stored form stands there) is no-rule, unless it is the citation cell: a noun's plural is never its singular.
+    if (options.strict === true && found !== undefined && got.ok && got.value.inflected !== true && got.value.steps.length === 0 && got.value.status === "given") {
+      const citation = base.citation ?? (base.pos === undefined ? undefined : lang.declared.citation?.[base.pos]);
+      const own = lang.own.get(base.id) ?? base.feats ?? {};
+      if (!Object.entries(cell).every(([k, v]) => own[k] === v || citation?.[k] === v)) return err({ kind: "no-rule", cell });
+    }
+    return got;
+  }
   const built = build(lang, lexeme, cell, options);
   if (!built.ok) return built;
   if (built.value.whole) return ok(realisation(built.value, built.value.units, built.value.steps));
@@ -757,6 +784,8 @@ interface TokenBase {
   readonly cell: UdFeatures;
   /** The lexemes the token writes (a condition's `with`). */
   readonly lexemes?: ReadonlySet<string>;
+  /** false: its stated classes passed over, as blocking off passes them over in rules (ADR 0145: what a learner would regularise). */
+  readonly blocking?: boolean;
 }
 
 /**
@@ -783,7 +812,9 @@ const contextHolds = (lang: CompiledLanguage, c: Condition, units: readonly Unit
   if (c.starts !== undefined && !text.startsWith(c.starts.normalize("NFC"))) return false;
   const subject = base?.lexeme ?? (units.length > 0 ? undefined : word);
   if (c.pos !== undefined && (subject === undefined || subject.pos !== c.pos)) return false;
-  if (c.class !== undefined && (subject === undefined || !(subject.classes ?? []).includes(c.class))) return false;
+  // The base's stated class counts only with blocking on (a learner regularising akbar says akbara); the next word's always.
+  const passedOver = base?.blocking === false && subject === base.lexeme;
+  if (c.class !== undefined && (subject === undefined || passedOver || !(subject.classes ?? []).includes(c.class))) return false;
   if (c.feats !== undefined && (base === undefined || !hasValues(base.cell, c.feats))) return false;
   if (c.with !== undefined && (base?.lexemes === undefined || !c.with.every((id) => base.lexemes?.has(lexemeId(id)) === true))) return false;
   return c.context === undefined;
@@ -867,6 +898,25 @@ const equals = (lang: CompiledLanguage, written: readonly WrittenLexeme[], optio
  * and what is still required (`missing`: its category's requirements and its lexemes', less what the
  * base has of itself and what the token brings).
  */
+/** Whether a lexeme writes letters in some allomorph: its zero, where it stands, is chosen beside them. */
+const writesSomewhere = (l: Lexeme): boolean => (l.allomorphs ?? []).some((a) => a.form !== undefined && a.form !== "");
+
+/** The conditions of one host a lexeme merges onto (its `on`, or one of `on.or`). */
+interface MergeConditions {
+  readonly pos?: readonly string[] | undefined;
+  readonly has?: UdFeatures | undefined;
+  readonly needs?: readonly string[] | undefined;
+  readonly complete?: true | undefined;
+}
+
+/**
+ * What a word on this base requires before any lexeme is merged with it (ADR 0158): its category's
+ * `requires`, or the base's own where it states them (a lexeme that never inflects: apc badd, 3am,
+ * `requires: []`).
+ */
+const baseRequires = (lang: CompiledLanguage, base: Lexeme): readonly string[] =>
+  base.requires ?? (base.pos === undefined ? [] : (lang.declared.requires?.[base.pos] ?? []));
+
 /** A word being merged (ADR 0158): its values and requirements so far, and whether a lexeme's `on` holds on it. */
 const mergingWord = (
   lang: CompiledLanguage,
@@ -874,21 +924,26 @@ const mergingWord = (
   start: UdFeatures,
 ): { readonly refuses: (id: string) => RealiseError | undefined; readonly merge: (id: string) => void; readonly has: (feature: string) => boolean } => {
   const values: Record<string, string> = { ...start };
-  const required = new Set<string>(baseLexeme.pos === undefined ? [] : (lang.declared.requires?.[baseLexeme.pos] ?? []));
-  for (const f of baseLexeme.requires ?? []) required.add(f);
+  const required = new Set<string>(baseRequires(lang, baseLexeme));
   return {
     refuses: (id: string): RealiseError | undefined => {
       const lexeme = lang.lexemes.get(id);
       const on = lexeme?.on;
       if (lexeme === undefined || on === undefined) return undefined;
-      if (on.pos !== undefined && (baseLexeme.pos === undefined || !on.pos.includes(baseLexeme.pos))) return { kind: "attach", lexeme: lexeme.id, pos: on.pos };
-      if (on.has !== undefined && !hasValues(values, on.has)) return { kind: "attach", lexeme: lexeme.id, has: on.has };
-      if (on.needs !== undefined && on.needs.some((f) => values[f] === undefined)) return { kind: "attach", lexeme: lexeme.id, needs: on.needs };
-      // Complete once it is merged: every requirement met by the word or by what this lexeme brings itself (arb's
-      // possessive suffix brings the construct state a noun requires).
-      if (on.complete === true && [...required].some((f) => values[f] === undefined && lexeme.realises?.[f] === undefined))
-        return { kind: "attach", lexeme: lexeme.id, complete: true };
-      return undefined;
+      // One host's conditions: why it refuses this lexeme, or nothing where it takes it.
+      const host = (c: MergeConditions): RealiseError | undefined => {
+        if (c.pos !== undefined && (baseLexeme.pos === undefined || !c.pos.includes(baseLexeme.pos))) return { kind: "attach", lexeme: lexeme.id, pos: c.pos };
+        if (c.has !== undefined && !hasValues(values, c.has)) return { kind: "attach", lexeme: lexeme.id, has: c.has };
+        if (c.needs !== undefined && c.needs.some((f) => values[f] === undefined)) return { kind: "attach", lexeme: lexeme.id, needs: c.needs };
+        // Complete once it is merged: every requirement met by the word or by what this lexeme brings itself (arb's
+        // possessive suffix brings the construct state a noun requires).
+        if (c.complete === true && [...required].some((f) => values[f] === undefined && lexeme.realises?.[f] === undefined))
+          return { kind: "attach", lexeme: lexeme.id, complete: true };
+        return undefined;
+      };
+      // `on` itself or any other host it names (`or`: apc's -e onto an adjective, or onto a verb as a participle).
+      const first = host(on);
+      return first === undefined || (on.or ?? []).some((c) => host(c) === undefined) ? undefined : first;
     },
     merge: (id: string): void => {
       const lexeme = lang.lexemes.get(id);
@@ -925,6 +980,71 @@ export const mergeable = (lang: CompiledLanguage, base: string, feats: UdFeature
       Object.keys(lexeme.realises ?? {}).every((f) => !word.has(f))
     );
   });
+};
+
+/**
+ * The lexemes that, merged with a base, give it a cell (ADR 0158): the affixes whose values make
+ * exactly the cell's values the base lacks of itself, each bringing values of the cell alone and none
+ * brought twice, that all merge (`on`), in the order `mergeOrder` writes them; the first such set
+ * found, trying the lexicon's lexemes in id order. A paradigm's cell, a citation and a token's chosen
+ * values are realised so in a language that merges lexemes. Undefined where no set gives the cell.
+ */
+export const mergeFor = (
+  lang: CompiledLanguage,
+  base: string,
+  cell: UdFeatures,
+): { readonly before: readonly string[]; readonly after: readonly string[] } | undefined => {
+  const baseLexeme = lang.lexemes.get(lexemeId(base));
+  if (baseLexeme === undefined) return undefined;
+  const own = lang.own.get(baseLexeme.id) ?? baseLexeme.feats ?? {};
+  const wanted = Object.fromEntries(Object.entries(cell).filter(([f, v]) => own[f] !== v)) as Record<string, string>;
+  if (Object.keys(wanted).length === 0) return { before: [], after: [] };
+  const affixes = [...lang.lexemes.values()]
+    .filter((l) => l.on !== undefined && l.realises !== undefined && Object.entries(l.realises).every(([f, v]) => wanted[f] === v))
+    .sort((a, b) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  const search = (left: readonly string[], chosen: readonly Lexeme[]): readonly Lexeme[] | undefined => {
+    const feature = left[0];
+    if (feature === undefined) {
+      const order = mergeOrder(lang, base, {}, chosen.map((l) => l.id));
+      return fullyMerges(lang, baseLexeme, own, order, chosen.length) ? chosen : undefined;
+    }
+    for (const affix of affixes) {
+      const brings = Object.keys(affix.realises ?? {});
+      if (!brings.includes(feature) || brings.some((f) => !left.includes(f))) continue;
+      const found = search(
+        left.filter((f) => !brings.includes(f)),
+        [...chosen, affix],
+      );
+      if (found !== undefined) return found;
+    }
+    return undefined;
+  };
+  const found = search(Object.keys(wanted).sort(), []);
+  return found === undefined ? undefined : mergeOrder(lang, base, {}, found.map((l) => l.id));
+};
+
+/** Whether every one of a set of lexemes merges onto a base, in the order given (`mergeOrder`'s). */
+const fullyMerges = (
+  lang: CompiledLanguage,
+  baseLexeme: Lexeme,
+  own: UdFeatures,
+  order: { readonly before: readonly string[]; readonly after: readonly string[] },
+  count: number,
+): boolean => {
+  const word = mergingWord(lang, baseLexeme, own);
+  let left = order.before.length - 1;
+  let right = 0;
+  let merged = 0;
+  while (left >= 0 || right < order.after.length) {
+    const next = [right < order.after.length ? order.after[right] : undefined, left >= 0 ? order.before[left] : undefined].filter((x): x is string => x !== undefined);
+    const id = next.find((x) => word.refuses(lexemeId(x)) === undefined);
+    if (id === undefined) return false;
+    word.merge(lexemeId(id));
+    merged++;
+    if (id === order.after[right]) right++;
+    else left--;
+  }
+  return merged === count;
 };
 
 /**
@@ -1013,8 +1133,8 @@ const mergeOf = (
     if (found === right) right++;
     else left--;
   }
-  const required = new Set<string>(baseLexeme.pos === undefined ? [] : (lang.declared.requires?.[baseLexeme.pos] ?? []));
-  for (const w of written) for (const f of lang.lexemes.get(lexemeId(w.lexeme))?.requires ?? []) required.add(f);
+  const required = new Set<string>(baseRequires(lang, baseLexeme));
+  for (let k = 0; k < written.length; k++) if (k !== baseAt) for (const f of lang.lexemes.get(lexemeId((written[k] as WrittenLexeme).lexeme))?.requires ?? []) required.add(f);
   const has = cell;
   const missing = [...required].filter((f) => has[f] === undefined);
   return ok({ cell, merged, ...(missing.length > 0 && { missing }) });
@@ -1132,7 +1252,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
     for (let pass = 0; pass < 2; pass++) {
       for (let k = baseAt + 1; k < written.length; k++) {
         if (fixed.has(k) || own[k] !== undefined || coveredAt(k)) continue;
-        const f = allomorphOf(lang, lexemes[k] as Lexeme, joinedIn(pieces, 0, k), k + 1 < written.length ? (pieces[k + 1] as readonly Unit[]) : [], k + 1 < written.length ? undefined : next, { lexeme: baseLexeme, cell, lexemes: present });
+        const f = allomorphOf(lang, lexemes[k] as Lexeme, joinedIn(pieces, 0, k), k + 1 < written.length ? (pieces[k + 1] as readonly Unit[]) : [], k + 1 < written.length ? undefined : next, { lexeme: baseLexeme, cell, lexemes: present, blocking: options.blocking ?? true });
         if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
         pieces[k] = unitsOf(f);
       }
@@ -1170,6 +1290,11 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
     ...realisation(built.value, chosen.units, chosen.steps),
     ...(merging.value.missing !== undefined && { missing: merging.value.missing }),
     ...(lang.declared.requires !== undefined && { feats: cell }),
+    // A lexeme merged with the base that writes letters here, chooses its stem, or stands in a zero beside forms
+    // it writes elsewhere (apc's -e on an invariable akbar): the word is inflected (a paradigm's cell says
+    // something), though no rewrite ran. A zero that is only ever a zero and chooses nothing says nothing (a
+    // noun's singular, its plural).
+    ...(lexemes.some((l, k) => k !== baseAt && l.on !== undefined && ((forms[k]?.length ?? 0) > 0 || l.selects !== undefined || writesSomewhere(l))) && { inflected: true as const }),
   };
   // Free variants: at each place, a free allomorph whose conditions hold where the chosen forms put it
   // (the base's only where its form is its own, no rule having made it).
@@ -1180,7 +1305,7 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
     const following = k < baseAt ? joinedIn(forms, k + 1, written.length) : k + 1 < written.length ? (forms[k + 1] as readonly Unit[]) : [];
     const nextWord = k >= baseAt && k + 1 >= written.length ? next : undefined;
     // The token's base, as `choose` gives it to each place.
-    const of: TokenBase = k > baseAt ? { lexeme: baseLexeme, cell, lexemes: present } : { cell, lexemes: present };
+    const of: TokenBase = k > baseAt ? { lexeme: baseLexeme, cell, lexemes: present, blocking: options.blocking ?? true } : { cell, lexemes: present };
     return freeOf(lang, lexemes[k] as Lexeme, preceding, following, nextWord, of)
       .map(unitsOf)
       .filter((u) => textOf(u) !== textOf(f));

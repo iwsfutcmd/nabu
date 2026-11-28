@@ -20544,12 +20544,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
-            "feats": {
-              "Aspect": "Perf",
-              "Number": "Sing",
-              "Person": "1"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-1sg"
           }
         ]
       },
@@ -20557,12 +20555,7 @@
         "ok": true,
         "value": {
           "form": "أَكَلْ+ت",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "1sg"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u09-past:s.past.3: the course writes أكلت, أَكَلِت, akalt."
@@ -20576,12 +20569,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
-            "feats": {
-              "Aspect": "Perf",
-              "Number": "Plur",
-              "Person": "1"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-1pl"
           }
         ]
       },
@@ -20589,12 +20580,7 @@
         "ok": true,
         "value": {
           "form": "أَكَلْ+نَا",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "1pl"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u09-past:s.past.18: the course writes أكلنا, أَكَلْنا, akalna."
@@ -20608,13 +20594,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:kan",
-            "feats": {
-              "Aspect": "Perf",
-              "Gender": "Fem",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-2fs"
           }
         ]
       },
@@ -20622,16 +20605,7 @@
         "ok": true,
         "value": {
           "form": "كِنْ+تِي",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "hollow-short"
-            },
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "2fs"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u09-past:s.past.28: the course writes كنتي, كِنْتي, kenti."
@@ -20645,12 +20619,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
-            "feats": {
-              "Aspect": "Perf",
-              "Number": "Plur",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-2pl"
           }
         ]
       },
@@ -20658,12 +20630,7 @@
         "ok": true,
         "value": {
           "form": "أَكَلْ+تُوا\u06df",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "2pl"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u09-past:s.past.37: the course writes أكلتوا, أَكَلْتوا, akalto."
@@ -20677,13 +20644,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:eshtara",
-            "feats": {
-              "Aspect": "Perf",
-              "Gender": "Masc",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-2ms"
           }
         ]
       },
@@ -20691,16 +20655,7 @@
         "ok": true,
         "value": {
           "form": "اِشْتَرِي+ت",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "defective-i"
-            },
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "2ms"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u09-past:s.past.8: the course writes اشتريت, اِشْتَريت, eshtarit."
@@ -20714,13 +20669,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
-            "feats": {
-              "Aspect": "Perf",
-              "Gender": "Fem",
-              "Number": "Sing",
-              "Person": "3"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-3fs"
           }
         ]
       },
@@ -20728,12 +20680,7 @@
         "ok": true,
         "value": {
           "form": "رَاحِ+ت",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "3fs"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u09-past:s.past.13: the course writes راحت, راحِت, ra7et."
@@ -20747,12 +20694,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
-            "feats": {
-              "Aspect": "Perf",
-              "Number": "Plur",
-              "Person": "3"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-3pl"
           }
         ]
       },
@@ -20760,12 +20705,7 @@
         "ok": true,
         "value": {
           "form": "رَاحُ+وا\u06df",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "3pl"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u11-people:s.ppl.38: the course writes راحوا, راحوا, ra7o."
@@ -20779,13 +20719,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
-            "feats": {
-              "Aspect": "Perf",
-              "Gender": "Masc",
-              "Number": "Sing",
-              "Person": "3"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-3ms"
           }
         ]
       },
@@ -20793,12 +20730,7 @@
         "ok": true,
         "value": {
           "form": "رَاح",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "3ms"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u09-past:s.past.12: the course writes راح, راح, ra7."
@@ -20811,13 +20743,13 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-1sg"
+          },
+          {
             "lexeme": "lexeme:sama3",
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Sub",
-              "Number": "Sing",
-              "Person": "1"
-            },
             "base": true
           }
         ]
@@ -20827,10 +20759,6 @@
         "value": {
           "form": "اِ+سْمَع",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1sg-sub"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "cluster"
@@ -20848,13 +20776,13 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:ind"
+          },
+          {
+            "lexeme": "lexeme:impf-1sg"
+          },
+          {
             "lexeme": "lexeme:akal",
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Ind",
-              "Number": "Sing",
-              "Person": "1"
-            },
             "base": true
           }
         ]
@@ -20863,20 +20791,7 @@
         "ok": true,
         "value": {
           "form": "ب\u065c+اكُل",
-          "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "hamzated"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1sg"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "ind"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u06-day:s.day.1: the course writes باكل, باكُل, bekol."
@@ -20889,13 +20804,13 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-1pl"
+          },
+          {
             "lexeme": "lexeme:ra7",
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Sub",
-              "Number": "Plur",
-              "Person": "1"
-            },
             "base": true
           }
         ]
@@ -20905,10 +20820,6 @@
         "value": {
           "form": "نْ+رُوح",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1pl"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "none"
@@ -20926,14 +20837,13 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-3fs"
+          },
+          {
             "lexeme": "lexeme:shereb",
-            "feats": {
-              "Aspect": "Imp",
-              "Gender": "Fem",
-              "Mood": "Sub",
-              "Number": "Sing",
-              "Person": "3"
-            },
             "base": true
           }
         ]
@@ -20943,10 +20853,6 @@
         "value": {
           "form": "تِ+شْرَب",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "3fs"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "cluster"
@@ -20964,15 +20870,17 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-2"
+          },
+          {
             "lexeme": "lexeme:shereb",
-            "feats": {
-              "Aspect": "Imp",
-              "Gender": "Masc",
-              "Mood": "Sub",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:ms.verb"
           }
         ]
       },
@@ -20981,10 +20889,6 @@
         "value": {
           "form": "تِ+شْرَب",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "2"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "cluster"
@@ -21002,15 +20906,17 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-3"
+          },
+          {
             "lexeme": "lexeme:ra7",
-            "feats": {
-              "Aspect": "Imp",
-              "Gender": "Masc",
-              "Mood": "Sub",
-              "Number": "Sing",
-              "Person": "3"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:ms.verb"
           }
         ]
       },
@@ -21019,10 +20925,6 @@
         "value": {
           "form": "يْ+رُوح",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "3"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "none"
@@ -21040,13 +20942,13 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:ind"
+          },
+          {
+            "lexeme": "lexeme:impf-1sg"
+          },
+          {
             "lexeme": "lexeme:akal",
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Ind",
-              "Number": "Sing",
-              "Person": "1"
-            },
             "base": true
           }
         ]
@@ -21055,20 +20957,7 @@
         "ok": true,
         "value": {
           "form": "ب\u065c+اكُل",
-          "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "hamzated"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1sg"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "ind"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u06-day:s.day.1: the course writes باكل, باكُل, bekol."
@@ -21081,15 +20970,17 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-2"
+          },
+          {
             "lexeme": "lexeme:ra7",
-            "feats": {
-              "Aspect": "Imp",
-              "Gender": "Fem",
-              "Mood": "Sub",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:fs.verb"
           }
         ]
       },
@@ -21098,14 +20989,6 @@
         "value": {
           "form": "تْ+رُوحِ+ي",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "2"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "2fs"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "none"
@@ -21123,14 +21006,17 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-3"
+          },
+          {
             "lexeme": "lexeme:tele3",
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Sub",
-              "Number": "Plur",
-              "Person": "3"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pl.verb"
           }
         ]
       },
@@ -21139,14 +21025,6 @@
         "value": {
           "form": "يِ+طْلَعُ+وا\u06df",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "3"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "pl"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "cluster"
@@ -21165,13 +21043,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:laff",
-            "feats": {
-              "Gender": "Fem",
-              "Mood": "Imp",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:imp"
+          },
+          {
+            "lexeme": "lexeme:fs.verb"
           }
         ]
       },
@@ -21179,12 +21057,7 @@
         "ok": true,
         "value": {
           "form": "لِفِّ+ي",
-          "steps": [
-            {
-              "rule": "rule:apc-command",
-              "branch": "2fs"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u18-getting-around:s.road.23: the course writes لفّي, لِفّي, liffi."
@@ -21198,12 +21071,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
-            "feats": {
-              "Mood": "Imp",
-              "Number": "Plur",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:imp"
+          },
+          {
+            "lexeme": "lexeme:pl.verb"
           }
         ]
       },
@@ -21211,16 +21085,7 @@
         "ok": true,
         "value": {
           "form": "كِلُ+وا\u06df",
-          "steps": [
-            {
-              "rule": "rule:apc-command",
-              "branch": "hamzated"
-            },
-            {
-              "rule": "rule:apc-command",
-              "branch": "pl"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u03-food:s.food.36: the course writes كلوا, كِلوا, kilo."
@@ -21234,13 +21099,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:laff",
-            "feats": {
-              "Gender": "Masc",
-              "Mood": "Imp",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:imp"
+          },
+          {
+            "lexeme": "lexeme:ms.verb"
           }
         ]
       },
@@ -21248,12 +21113,7 @@
         "ok": true,
         "value": {
           "form": "لِفّ",
-          "steps": [
-            {
-              "rule": "rule:apc-command",
-              "branch": "2ms"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u18-getting-around:s.road.22: the course writes لفّ, لِفّ, liff."
@@ -21267,12 +21127,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:seken",
-            "feats": {
-              "Aspect": "Part",
-              "Gender": "Fem",
-              "Number": "Sing"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:ptcp"
+          },
+          {
+            "lexeme": "lexeme:fs"
           }
         ]
       },
@@ -21281,10 +21142,6 @@
         "value": {
           "form": "س\u065cاكْن\u065c+ة",
           "steps": [
-            {
-              "rule": "rule:apc-participle",
-              "branch": "fs"
-            },
             {
               "rule": "rule:apc-syncope",
               "branch": "vowel"
@@ -21303,11 +21160,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:seken",
-            "feats": {
-              "Aspect": "Part",
-              "Number": "Plur"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:ptcp"
+          },
+          {
+            "lexeme": "lexeme:pl"
           }
         ]
       },
@@ -21316,10 +21175,6 @@
         "value": {
           "form": "س\u065cاكْنِ+ين",
           "steps": [
-            {
-              "rule": "rule:apc-participle",
-              "branch": "pl"
-            },
             {
               "rule": "rule:apc-syncope",
               "branch": "vowel"
@@ -21338,12 +21193,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:seken",
-            "feats": {
-              "Aspect": "Part",
-              "Gender": "Masc",
-              "Number": "Sing"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:ptcp"
+          },
+          {
+            "lexeme": "lexeme:ms"
           }
         ]
       },
@@ -21351,12 +21207,7 @@
         "ok": true,
         "value": {
           "form": "س\u065cاكِن",
-          "steps": [
-            {
-              "rule": "rule:apc-participle",
-              "branch": "ms"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u11-people:s.ppl.11: the course writes ساكن, ساكِن, seken."
@@ -21370,13 +21221,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:akal",
-            "feats": {
-              "Gender": "Masc",
-              "Mood": "Imp",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:imp"
+          },
+          {
+            "lexeme": "lexeme:ms.verb"
           }
         ]
       },
@@ -21384,16 +21235,7 @@
         "ok": true,
         "value": {
           "form": "ك\u065dول",
-          "steps": [
-            {
-              "rule": "rule:apc-command",
-              "branch": "hamzated"
-            },
-            {
-              "rule": "rule:apc-command",
-              "branch": "2ms"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u03-food:s.food.2: the course writes كول, كول, kol."
@@ -21406,13 +21248,13 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-1pl"
+          },
+          {
             "lexeme": "lexeme:akal",
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Sub",
-              "Number": "Plur",
-              "Person": "1"
-            },
             "base": true
           }
         ]
@@ -21421,16 +21263,7 @@
         "ok": true,
         "value": {
           "form": "ن\u065c+اكُل",
-          "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "hamzated"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1pl"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u12-trip:s.trip.2: the course writes ناكل, ناكُل, nekol."
@@ -21443,13 +21276,13 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-1sg"
+          },
+          {
             "lexeme": "lexeme:nem",
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Sub",
-              "Number": "Sing",
-              "Person": "1"
-            },
             "base": true
           }
         ]
@@ -21459,14 +21292,6 @@
         "value": {
           "form": "ن\u065cام",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "hollow-unchanged"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1sg-sub"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "none"
@@ -21485,13 +21310,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:kan",
-            "feats": {
-              "Aspect": "Perf",
-              "Gender": "Fem",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-2fs"
           }
         ]
       },
@@ -21499,16 +21321,7 @@
         "ok": true,
         "value": {
           "form": "كِنْ+تِي",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "hollow-short"
-            },
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "2fs"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u09-past:s.past.28: the course writes كنتي, كِنْتي, kenti."
@@ -21522,12 +21335,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:shereb",
-            "feats": {
-              "Aspect": "Perf",
-              "Number": "Plur",
-              "Person": "1"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-1pl"
           }
         ]
       },
@@ -21535,16 +21346,7 @@
         "ok": true,
         "value": {
           "form": "شْرِبْ+نَا",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "i-short"
-            },
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "1pl"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u09-past:apc.story.weekend#3: the course writes شْرِبْنا, شْرِبْنا, shrebna."
@@ -21558,13 +21360,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:eshtara",
-            "feats": {
-              "Aspect": "Perf",
-              "Gender": "Masc",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-2ms"
           }
         ]
       },
@@ -21572,16 +21371,7 @@
         "ok": true,
         "value": {
           "form": "اِشْتَرِي+ت",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "defective-i"
-            },
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "2ms"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u09-past:s.past.8: the course writes اشتريت, اِشْتَريت, eshtarit."
@@ -21595,13 +21385,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:eshtara",
-            "feats": {
-              "Aspect": "Perf",
-              "Gender": "Fem",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-2fs"
           }
         ]
       },
@@ -21609,16 +21396,7 @@
         "ok": true,
         "value": {
           "form": "اِشْتَرَيْ+تِي",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "defective-ay"
-            },
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "2fs"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u09-past:s.past.34: the course writes اشتريتي, اِشْتَرَيْتي, eshtarayti."
@@ -21632,12 +21410,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
-            "feats": {
-              "Aspect": "Part",
-              "Gender": "Masc",
-              "Number": "Sing"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:ptcp"
+          },
+          {
+            "lexeme": "lexeme:ms"
           }
         ]
       },
@@ -21645,16 +21424,7 @@
         "ok": true,
         "value": {
           "form": "رَايِح",
-          "steps": [
-            {
-              "rule": "rule:apc-participle",
-              "branch": "hollow-back-a"
-            },
-            {
-              "rule": "rule:apc-participle",
-              "branch": "ms"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u10-plans:s.plans.1: the course writes رايح, رايِح, raye7."
@@ -21668,13 +21438,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:de22",
-            "feats": {
-              "Aspect": "Perf",
-              "Gender": "Masc",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-2ms"
           }
         ]
       },
@@ -21682,16 +21449,7 @@
         "ok": true,
         "value": {
           "form": "دَقّ\u065cي+ت",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "doubled-e"
-            },
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "2ms"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u17-childhood:s.child.14: the course writes دقّيت, دَقّيت, da22et."
@@ -21705,12 +21463,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:2a3ed",
-            "feats": {
-              "Aspect": "Part",
-              "Gender": "Masc",
-              "Number": "Sing"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:ptcp"
+          },
+          {
+            "lexeme": "lexeme:ms"
           }
         ]
       },
@@ -21718,16 +21477,7 @@
         "ok": true,
         "value": {
           "form": "قَاعِد",
-          "steps": [
-            {
-              "rule": "rule:apc-participle",
-              "branch": "back-a"
-            },
-            {
-              "rule": "rule:apc-participle",
-              "branch": "ms"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u18-getting-around:s.road.14: the course writes قاعد, قاعِد, 2a3ed."
@@ -21740,13 +21490,13 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:ind"
+          },
+          {
+            "lexeme": "lexeme:impf-1sg"
+          },
+          {
             "lexeme": "lexeme:wesel",
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Ind",
-              "Number": "Sing",
-              "Person": "1"
-            },
             "base": true
           }
         ]
@@ -21755,20 +21505,7 @@
         "ok": true,
         "value": {
           "form": "بُ+وصَل",
-          "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "w-initial"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1sg"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "ind"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "u18-getting-around:s.road.21: the course writes بوصل, بوصَل, busal."
@@ -21781,13 +21518,13 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:ind"
+          },
+          {
+            "lexeme": "lexeme:impf-1pl"
+          },
+          {
             "lexeme": "lexeme:ra7",
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Ind",
-              "Number": "Plur",
-              "Person": "1"
-            },
             "base": true
           }
         ]
@@ -21797,14 +21534,6 @@
         "value": {
           "form": "مْ+نْ+رُوح",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1pl"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "ind"
-            },
             {
               "rule": "rule:apc-bn"
             },
@@ -21825,13 +21554,13 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-1sg"
+          },
+          {
             "lexeme": "lexeme:akal",
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Sub",
-              "Number": "Sing",
-              "Person": "1"
-            },
             "base": true
           }
         ]
@@ -21841,14 +21570,6 @@
         "value": {
           "form": "آ\u065c+كُل",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "hamzated"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1sg-sub"
-            },
             {
               "rule": "rule:apc-madda"
             }
@@ -21866,12 +21587,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:de22",
-            "feats": {
-              "Mood": "Imp",
-              "Number": "Plur",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:imp"
+          },
+          {
+            "lexeme": "lexeme:pl.verb"
           },
           {
             "lexeme": "lexeme:la-1sg"
@@ -21883,10 +21605,6 @@
         "value": {
           "form": "دِقُّ+و+لِي",
           "steps": [
-            {
-              "rule": "rule:apc-command",
-              "branch": "pl"
-            },
             {
               "rule": "rule:apc-silent-alef"
             }
@@ -21903,13 +21621,13 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-1pl"
+          },
+          {
             "lexeme": "lexeme:ra7",
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Sub",
-              "Number": "Plur",
-              "Person": "1"
-            },
             "base": true
           }
         ]
@@ -21919,10 +21637,6 @@
         "value": {
           "form": "نْ+رُوح",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1pl"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "none"
@@ -21940,15 +21654,17 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-2"
+          },
+          {
             "lexeme": "lexeme:3emel",
-            "feats": {
-              "Aspect": "Imp",
-              "Gender": "Masc",
-              "Mood": "Sub",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:ms.verb"
           }
         ]
       },
@@ -21957,10 +21673,6 @@
         "value": {
           "form": "تَ+عْمِل",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "2"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "ayn"
@@ -21978,13 +21690,13 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-1sg"
+          },
+          {
             "lexeme": "lexeme:sama3",
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Sub",
-              "Number": "Sing",
-              "Person": "1"
-            },
             "base": true
           }
         ]
@@ -21994,10 +21706,6 @@
         "value": {
           "form": "اِ+سْمَع",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1sg-sub"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "cluster"
@@ -22016,13 +21724,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:wesel",
-            "feats": {
-              "Aspect": "Perf",
-              "Gender": "Fem",
-              "Number": "Sing",
-              "Person": "3"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-3fs"
           }
         ]
       },
@@ -22031,10 +21736,6 @@
         "value": {
           "form": "وِصْلِ+ت",
           "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "3fs"
-            },
             {
               "rule": "rule:apc-syncope",
               "branch": "vowel"
@@ -22053,13 +21754,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:3azam",
-            "feats": {
-              "Aspect": "Perf",
-              "Gender": "Fem",
-              "Number": "Sing",
-              "Person": "3"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-3fs"
           },
           {
             "lexeme": "lexeme:obj-1pl"
@@ -22071,10 +21769,6 @@
         "value": {
           "form": "عَزْمِ+تْ+نَا",
           "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "3fs"
-            },
             {
               "rule": "rule:apc-syncope",
               "branch": "she"
@@ -22092,14 +21786,17 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-2"
+          },
+          {
             "lexeme": "lexeme:7aka",
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Sub",
-              "Number": "Plur",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:pl.verb"
           }
         ]
       },
@@ -22108,14 +21805,6 @@
         "value": {
           "form": "تِ+حْكُ+وا\u06df",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "2"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "pl"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "cluster"
@@ -22142,12 +21831,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:kan",
-            "feats": {
-              "Aspect": "Perf",
-              "Number": "Plur",
-              "Person": "1"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-1pl"
           }
         ]
       },
@@ -22156,14 +21843,6 @@
         "value": {
           "form": "كِ+نَّا",
           "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "hollow-short"
-            },
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "1pl"
-            },
             {
               "rule": "rule:apc-geminate"
             }
@@ -22181,12 +21860,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:ra7",
-            "feats": {
-              "Aspect": "Part",
-              "Gender": "Fem",
-              "Number": "Sing"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:ptcp"
+          },
+          {
+            "lexeme": "lexeme:fs"
           }
         ]
       },
@@ -22195,14 +21875,6 @@
         "value": {
           "form": "رَايْحَ+ة",
           "steps": [
-            {
-              "rule": "rule:apc-participle",
-              "branch": "hollow-back-a"
-            },
-            {
-              "rule": "rule:apc-participle",
-              "branch": "fs"
-            },
             {
               "rule": "rule:apc-syncope",
               "branch": "vowel"
@@ -22225,13 +21897,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:sama3",
-            "feats": {
-              "Aspect": "Perf",
-              "Gender": "Masc",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-2ms"
           },
           {
             "lexeme": "lexeme:obj-1sg"
@@ -22243,14 +21912,6 @@
         "value": {
           "form": "سْمِعِ+تْ+نِي",
           "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "i-short"
-            },
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "2ms"
-            },
             {
               "rule": "rule:apc-helping-vowel",
               "branch": "inside"
@@ -22269,13 +21930,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:stanna",
-            "feats": {
-              "Gender": "Fem",
-              "Mood": "Imp",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:imp"
+          },
+          {
+            "lexeme": "lexeme:fs.verb"
           }
         ]
       },
@@ -22284,10 +21945,6 @@
         "value": {
           "form": "ا\u06dfسْتَنِّ+ي",
           "steps": [
-            {
-              "rule": "rule:apc-command",
-              "branch": "2fs"
-            },
             {
               "rule": "rule:apc-defective",
               "branch": "ending"
@@ -22308,13 +21965,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:de22",
-            "feats": {
-              "Gender": "Fem",
-              "Mood": "Imp",
-              "Number": "Sing",
-              "Person": "2"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:imp"
+          },
+          {
+            "lexeme": "lexeme:fs.verb"
           },
           {
             "lexeme": "lexeme:la-1sg"
@@ -22325,12 +21982,7 @@
         "ok": true,
         "value": {
           "form": "دِقِّ+ي+لِي",
-          "steps": [
-            {
-              "rule": "rule:apc-command",
-              "branch": "2fs"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "The dative -li after a vowel (la-1sg's allomorph `after: {endsIn: .*+?[اىي]}`): دقّيلي, de22ili, as the course writes it."
@@ -22344,12 +21996,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:shef",
-            "feats": {
-              "Aspect": "Perf",
-              "Number": "Sing",
-              "Person": "1"
-            },
             "base": true
+          },
+          {
+            "lexeme": "lexeme:perf-1sg"
           },
           {
             "lexeme": "lexeme:obj-3fs"
@@ -22360,16 +22010,7 @@
         "ok": true,
         "value": {
           "form": "شِفْ+تَ+ه\u06dfا",
-          "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "hollow-short"
-            },
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "1sg"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "No helping vowel where the ending begins with a vowel: -a, her, puts its fatha on the past's -t (a carrier), so no cluster is left: شفتها, shefta (s.phone.20)."
@@ -29142,10 +28783,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:3ayle",
-            "base": true,
-            "feats": {
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:sg"
           },
           {
             "lexeme": "lexeme:poss-1sg"
@@ -29213,14 +28854,14 @@
         "spellings": false,
         "lexemes": [
           {
+            "lexeme": "lexeme:sub"
+          },
+          {
+            "lexeme": "lexeme:impf-1pl"
+          },
+          {
             "lexeme": "lexeme:dall",
-            "base": true,
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Sub",
-              "Number": "Plur",
-              "Person": "1"
-            }
+            "base": true
           }
         ]
       },
@@ -29230,14 +28871,6 @@
           "form": "نْ+ضَلّ",
           "status": "given",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "doubled-a"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1pl"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "none"
@@ -29256,13 +28889,16 @@
         "lexemes": [
           {
             "lexeme": "lexeme:fata7",
-            "base": true,
-            "feats": {
-              "Aspect": "Part",
-              "Gender": "Fem",
-              "Number": "Sing",
-              "Voice": "Pass"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:ptcp"
+          },
+          {
+            "lexeme": "lexeme:fs"
+          },
+          {
+            "lexeme": "lexeme:pass"
           }
         ]
       },
@@ -29272,10 +28908,6 @@
           "form": "مَفْتُوحَ+ة",
           "status": "given",
           "steps": [
-            {
-              "rule": "rule:apc-passive-participle",
-              "branch": "fs"
-            },
             {
               "rule": "rule:apc-feminine",
               "branch": "a"
@@ -29294,13 +28926,16 @@
         "lexemes": [
           {
             "lexeme": "lexeme:7abb",
-            "base": true,
-            "feats": {
-              "Aspect": "Part",
-              "Gender": "Fem",
-              "Number": "Sing",
-              "Voice": "Pass"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:ptcp"
+          },
+          {
+            "lexeme": "lexeme:fs"
+          },
+          {
+            "lexeme": "lexeme:pass"
           }
         ]
       },
@@ -29309,12 +28944,7 @@
         "value": {
           "form": "مَحْبُوب\u065c+ة",
           "status": "given",
-          "steps": [
-            {
-              "rule": "rule:apc-passive-participle",
-              "branch": "fs"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "s.closed.16: the course writes محبوبة, ma7bube; a doubled verb's radicals stand apart (Kline p. 140: ma7boub)."
@@ -29328,13 +28958,16 @@
         "lexemes": [
           {
             "lexeme": "lexeme:sakkar",
-            "base": true,
-            "feats": {
-              "Aspect": "Part",
-              "Gender": "Masc",
-              "Number": "Sing",
-              "Voice": "Pass"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:ptcp"
+          },
+          {
+            "lexeme": "lexeme:ms"
+          },
+          {
+            "lexeme": "lexeme:pass"
           }
         ]
       },
@@ -29343,12 +28976,7 @@
         "value": {
           "form": "مْسَكَّر",
           "status": "given",
-          "steps": [
-            {
-              "rule": "rule:apc-passive-participle",
-              "branch": "ms"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "s.closed.4: the course writes مسكر, msakkar (Kline p. 141: mfa33al)."
@@ -29362,10 +28990,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:3ayle",
-            "base": true,
-            "feats": {
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:sg"
           },
           {
             "lexeme": "lexeme:poss-1sg"
@@ -29400,10 +29028,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:zghir",
-            "feats": {
-              "Gender": "Fem",
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:fs"
           }
         ]
       },
@@ -29413,10 +29041,6 @@
           "form": "زْغِيرِ+ة",
           "status": "given",
           "steps": [
-            {
-              "rule": "rule:apc-adjective",
-              "branch": "fs"
-            },
             {
               "rule": "rule:apc-feminine",
               "branch": "e"
@@ -29435,10 +29059,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:zghir",
-            "feats": {
-              "Gender": "Fem",
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:fs"
           }
         ]
       },
@@ -29448,10 +29072,6 @@
           "form": "زْغِيرِ+ة",
           "status": "given",
           "steps": [
-            {
-              "rule": "rule:apc-adjective",
-              "branch": "fs"
-            },
             {
               "rule": "rule:apc-feminine",
               "branch": "e"
@@ -29473,10 +29093,10 @@
           },
           {
             "lexeme": "lexeme:shay",
-            "base": true,
-            "feats": {
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:sg"
           }
         ],
         "next": "lexeme:mni7"
@@ -29505,9 +29125,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:jou3an",
-            "feats": {
-              "Number": "Plur"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pl"
           }
         ]
       },
@@ -29516,12 +29137,7 @@
         "value": {
           "form": "جُوعَانِ+ين",
           "status": "given",
-          "steps": [
-            {
-              "rule": "rule:apc-adjective",
-              "branch": "pl"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "s.food.38: the course writes جوعانين, جوعانين. "
@@ -29535,10 +29151,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:m2akhkhar",
-            "feats": {
-              "Gender": "Fem",
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:fs"
           }
         ],
         "next": "lexeme:kell"
@@ -29549,10 +29165,6 @@
           "form": "مْأَخّْرَ+ة",
           "status": "given",
           "steps": [
-            {
-              "rule": "rule:apc-adjective",
-              "branch": "fs"
-            },
             {
               "rule": "rule:apc-syncope",
               "branch": "adjective"
@@ -29575,11 +29187,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:jar",
-            "base": true,
-            "feats": {
-              "Gender": "Fem",
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:fs"
           },
           {
             "lexeme": "lexeme:poss-1sg"
@@ -29592,10 +29203,6 @@
           "form": "جَارْ+تِ+ي",
           "status": "given",
           "steps": [
-            {
-              "rule": "rule:apc-noun",
-              "branch": "fs"
-            },
             {
               "rule": "rule:apc-feminine-t",
               "branch": "vowel"
@@ -29614,11 +29221,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:jar",
-            "base": true,
-            "feats": {
-              "Gender": "Fem",
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:fs"
           },
           {
             "lexeme": "lexeme:poss-1pl"
@@ -29631,10 +29237,6 @@
           "form": "جَار\u065c+تْ+نَا",
           "status": "given",
           "steps": [
-            {
-              "rule": "rule:apc-noun",
-              "branch": "fs"
-            },
             {
               "rule": "rule:apc-feminine-t",
               "branch": "consonant"
@@ -29653,10 +29255,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:lebnene",
-            "feats": {
-              "Gender": "Fem",
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:fs"
           }
         ]
       },
@@ -29665,12 +29267,7 @@
         "value": {
           "form": "لِبْن\u065cانِيّ\u065c+ة",
           "status": "given",
-          "steps": [
-            {
-              "rule": "rule:apc-nisba",
-              "branch": "fs"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "s.ppl.18: the course writes لبنانية, لِبْنانِيِّة. "
@@ -29684,9 +29281,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:lebnene",
-            "feats": {
-              "Number": "Plur"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pl"
           }
         ]
       },
@@ -29695,12 +29293,7 @@
         "value": {
           "form": "لِبْن\u065cانِيِّ+ين",
           "status": "given",
-          "steps": [
-            {
-              "rule": "rule:apc-nisba",
-              "branch": "pl"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "s.ppl.24: the course writes لبنانيين, لِبْنانِيّين. "
@@ -29714,13 +29307,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:2al",
-            "base": true,
-            "feats": {
-              "Gender": "Masc",
-              "Mood": "Imp",
-              "Number": "Sing",
-              "Person": "2"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:imp"
+          },
+          {
+            "lexeme": "lexeme:ms.verb"
           },
           {
             "lexeme": "lexeme:la-1sg"
@@ -29733,10 +29326,6 @@
           "form": "قِ+لِّي",
           "status": "given",
           "steps": [
-            {
-              "rule": "rule:apc-command",
-              "branch": "2ms"
-            },
             {
               "rule": "rule:apc-short-stem",
               "branch": "dative"
@@ -29759,13 +29348,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:2al",
-            "base": true,
-            "feats": {
-              "Gender": "Masc",
-              "Mood": "Imp",
-              "Number": "Sing",
-              "Person": "2"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:imp"
+          },
+          {
+            "lexeme": "lexeme:ms.verb"
           },
           {
             "lexeme": "lexeme:la-1sg"
@@ -29778,10 +29367,6 @@
           "form": "قِ+لِّي",
           "status": "given",
           "steps": [
-            {
-              "rule": "rule:apc-command",
-              "branch": "2ms"
-            },
             {
               "rule": "rule:apc-short-stem",
               "branch": "dative"
@@ -29807,10 +29392,10 @@
           },
           {
             "lexeme": "lexeme:emte7an",
-            "base": true,
-            "feats": {
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:sg"
           }
         ],
         "next": "lexeme:kan"
@@ -29839,10 +29424,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:akbar",
-            "feats": {
-              "Gender": "Fem",
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:fs"
           }
         ],
         "next": "lexeme:men.than"
@@ -29869,10 +29454,10 @@
           },
           {
             "lexeme": "lexeme:bet",
-            "base": true,
-            "feats": {
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:sg"
           }
         ]
       },
@@ -29901,10 +29486,10 @@
           },
           {
             "lexeme": "lexeme:bet",
-            "base": true,
-            "feats": {
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:sg"
           }
         ]
       },
@@ -29959,10 +29544,10 @@
           },
           {
             "lexeme": "lexeme:bet",
-            "base": true,
-            "feats": {
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:sg"
           }
         ]
       },
@@ -29987,14 +29572,14 @@
             "lexeme": "lexeme:w"
           },
           {
+            "lexeme": "lexeme:ind"
+          },
+          {
+            "lexeme": "lexeme:impf-1sg"
+          },
+          {
             "lexeme": "lexeme:shereb",
-            "base": true,
-            "feats": {
-              "Aspect": "Imp",
-              "Mood": "Ind",
-              "Number": "Sing",
-              "Person": "1"
-            }
+            "base": true
           }
         ],
         "next": "lexeme:ahwe"
@@ -30005,14 +29590,6 @@
           "form": "و+بِ+شْرَب",
           "status": "given",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1sg"
-            },
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "ind"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "cluster"
@@ -30188,13 +29765,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:de22",
-            "base": true,
-            "feats": {
-              "Gender": "Masc",
-              "Mood": "Imp",
-              "Number": "Sing",
-              "Person": "2"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:imp"
+          },
+          {
+            "lexeme": "lexeme:ms.verb"
           },
           {
             "lexeme": "lexeme:la-1sg"
@@ -30207,12 +29784,7 @@
         "value": {
           "form": "دِقِّ+لِّي",
           "status": "given",
-          "steps": [
-            {
-              "rule": "rule:apc-command",
-              "branch": "2ms"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "s.phone.6: the course writes دقّلي, دِقِّلّي. The dative after a doubled letter: -elli."
@@ -30226,13 +29798,13 @@
         "lexemes": [
           {
             "lexeme": "lexeme:b3at",
-            "base": true,
-            "feats": {
-              "Gender": "Masc",
-              "Mood": "Imp",
-              "Number": "Sing",
-              "Person": "2"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:imp"
+          },
+          {
+            "lexeme": "lexeme:ms.verb"
           },
           {
             "lexeme": "lexeme:la-1sg"
@@ -30245,12 +29817,7 @@
         "value": {
           "form": "بْعَتْ+لِي",
           "status": "given",
-          "steps": [
-            {
-              "rule": "rule:apc-command",
-              "branch": "2ms"
-            }
-          ]
+          "steps": []
         }
       },
       "note": "s.phone.29: the course writes بعتلي, بْعَتْلي. The dative after a consonant: -li (the allomorph with no condition)."
@@ -30293,10 +29860,10 @@
         "lexemes": [
           {
             "lexeme": "lexeme:bet",
-            "base": true,
-            "feats": {
-              "Number": "Sing"
-            }
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:sg"
           },
           {
             "lexeme": "lexeme:poss-3pl"
@@ -31443,10 +31010,6 @@
           "form": "اِ+سْتَنَّى",
           "steps": [
             {
-              "rule": "rule:apc-imperfect",
-              "branch": "1sg-sub"
-            },
-            {
               "rule": "rule:apc-wasl",
               "branch": "prefix"
             },
@@ -31475,12 +31038,8 @@
       "expected": {
         "ok": true,
         "value": {
-          "form": "ا۟سْتَنَّيْ+ت",
+          "form": "ا\u06dfسْتَنَّيْ+ت",
           "steps": [
-            {
-              "rule": "rule:apc-perfect",
-              "branch": "1sg"
-            },
             {
               "rule": "rule:apc-defective",
               "branch": "ay"
@@ -31506,13 +31065,9 @@
       "expected": {
         "ok": true,
         "value": {
-          "form": "أَحْلٜ+ة",
+          "form": "أَحْل\u065c+ة",
           "status": "given",
           "steps": [
-            {
-              "rule": "rule:apc-adjective",
-              "branch": "fs"
-            },
             {
               "rule": "rule:apc-defective",
               "branch": "adjective"
@@ -31564,10 +31119,6 @@
           "form": "وَقِّف",
           "status": "given",
           "steps": [
-            {
-              "rule": "rule:apc-imperfect",
-              "branch": "1sg-sub"
-            },
             {
               "rule": "rule:apc-prefix-vowel",
               "branch": "none"

@@ -10,7 +10,7 @@ from __future__ import annotations
 import hashlib
 import json
 import unicodedata
-from collections.abc import Callable, Mapping
+from collections.abc import Callable, Iterator, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, cast
@@ -37,6 +37,7 @@ from nabu.compiler.stories import LineForm, compile_stories
 from nabu.corecli import CoreCli
 from nabu.drills.rbnf import icu_version, spellout, transform
 from nabu.items import Content
+from nabu.lexicon import LEXEME
 from nabu.paradigms import Refused, paradigms
 from nabu.paths import I18N_GENERATED, PROFILES
 from nabu.projections import leftovers, unaccounted
@@ -49,6 +50,7 @@ from nabu.schema.models import (
     Persons,
     SentenceForm,
     SentenceSource,
+    SourceToken,
     UnitSource,
     VocalizationSource,
 )
@@ -140,6 +142,9 @@ class Ctx:
     analyzers: dict[str, Analyzer]
     #: The course's language: its lexicon and what it declares.
     lang: lx.Language
+    #: Tokens whose source lists lexemes merged into their base (ADR 0158: written with no surface),
+    #: by id(token): every lexeme they write, as the token check realises them (`_fold_merged`).
+    merged: dict[int, list[dict[str, Any]]] = field(default_factory=lambda: {})
     #: Rules the compiler names itself (a drill's), with what a learner is shown for each.
     made_rules: dict[str, dict[str, Any]] = field(default_factory=lambda: {})
     vocalization: dict[str, Vocalized] = field(default_factory=lambda: {})
@@ -779,6 +784,7 @@ def compile_course(
             units.append(Unit(doc.sub("units", i), item))
     if diags.errors:
         return diags, None
+    _fold_merged(ctx, units)
 
     for orth in [*course.orthographies, *course.support]:
         if orth not in ctx.profiles:
@@ -1015,6 +1021,87 @@ def _marked_of(ctx: Ctx, orth: str, surface: str, own: str | None) -> str | None
     return surface if letters != surface else None
 
 
+def _token_lists(node: Any) -> Iterator[list[Any]]:
+    """Every list of source tokens in a parsed unit, wherever it stands (sentences, story lines,
+    options). The models are frozen; the lists are not, so a token can be put back in its place."""
+    if isinstance(node, BaseModel):
+        for name in type(node).model_fields:
+            yield from _token_lists(getattr(node, name))
+    elif isinstance(node, dict):
+        for value in cast(dict[Any, Any], node).values():
+            yield from _token_lists(value)
+    elif isinstance(node, list):
+        items = cast(list[Any], node)
+        if any(isinstance(x, SourceToken) for x in items):
+            yield items
+        for value in items:
+            yield from _token_lists(value)
+
+
+def _fold_merged(ctx: Ctx, units: list[Unit]) -> None:
+    """Tokens of a language that merges lexemes (ADR 0158) list the lexemes merged into their base
+    with no surface of their own (apc شربوا: shereb + imp + pl.verb). Each such token is folded into
+    the shape every other step reads: its base's values are the values those lexemes bring
+    (`realises`, read from the lexicon), they leave the list, and a base that writes the whole token
+    is its only lexeme. What it wrote is kept (`ctx.merged`) for the token check, which realises the
+    lexemes themselves. Nothing realises here: the values are the lexicon's."""
+    if ctx.lang.declared.requires is None:
+        return
+    for unit in units:
+        for tokens in _token_lists(unit.source):
+            for k, t in enumerate(tokens):
+                if not isinstance(t, SourceToken):
+                    continue
+                folded = _folded(ctx, t)
+                if folded is not None:
+                    tokens[k] = folded
+
+
+def _folded(ctx: Ctx, t: SourceToken) -> SourceToken | None:
+    """A token's folded shape (`_fold_merged`), its lexemes kept in `ctx.merged`; None where it
+    merges none."""
+    parts = t.lexemes or []
+    merged = [
+        p
+        for p in parts
+        if p.surface is None
+        and not p.base
+        and (e := ctx.lang.get(f"{LEXEME}{p.lexeme}")) is not None
+        and e.on is not None
+    ]
+    base = next((p for p in parts if p.base), None)
+    if not merged or base is None:
+        return None
+    feats: dict[str, Any] = dict(base.feats or {})
+    for p in merged:
+        entry = ctx.lang.get(f"{LEXEME}{p.lexeme}")
+        feats.update(dict(entry.realises or {}) if entry is not None else {})
+    rest = [p for p in parts if p not in merged]
+    if len(rest) == 1 and base.surface is None:
+        folded = t.model_copy(
+            update={
+                "lexeme": base.lexeme,
+                "feats": feats or None,
+                "n": base.n,
+                "head": base.head,
+                "rel": base.rel,
+                "lexemes": None,
+            }
+        )
+    else:
+        new_base = base.model_copy(update={"feats": feats or None})
+        folded = t.model_copy(update={"lexemes": [new_base if p is base else p for p in rest]})
+    ctx.merged[id(folded)] = [
+        {
+            "lexeme": f"{LEXEME}{p.lexeme}",
+            **({"base": True} if p.base else {}),
+            **({"feats": {k: str(v) for k, v in p.feats.items()}} if p.feats else {}),
+        }
+        for p in parts
+    ]
+    return folded
+
+
 def _token_sites(ctx: Ctx, units: list[Unit]) -> list[lexical_forms.Site]:
     """Every authored token of the course's sentences and story lines, in each orthography, with
     where it is written and the lexemes it writes (drills, generated, are left out)."""
@@ -1086,6 +1173,7 @@ def _token_sites(ctx: Ctx, units: list[Unit]) -> list[lexical_forms.Site]:
                     following,
                     base_surface,
                     context,
+                    ctx.merged.get(id(t)),
                 )
             )
 

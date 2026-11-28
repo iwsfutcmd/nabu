@@ -68,7 +68,8 @@ profiles/arb-Arab.standard.yaml are the sources now.
 - **Of nouns and prepositions** (`poss-1sg` … `poss-3fpl`: whose) and **of verbs** (`obj-1sg` … `obj-3fpl`: whom),
   each a lexeme bringing `Person[psor]` or `Person[obj]` with its number and gender. -hu, -humā, -hum, -hunna are
   -hi … after i, ī or ay (fīhi, ʿalayhi, kitābihi, yarmīhi); -ī is -nī after min and ʿan (minnī), and on verbs
-  (katabanī). A possessive suffix brings the construct state itself (`Definite=Cons`: kitābuhu, kitābāya), so it merges
+  (katabanī). A possessive suffix merges onto a verb only as its participle (`on.or`: kātibuhu, never kataba +
+  `poss-3ms`). It brings the construct state itself (`Definite=Cons`: kitābuhu, kitābāya), so it merges
   onto no word with the article or tanwīn (`twice`); `cons` is the construct state of a noun owned by the next one
   (kitābu l-waladi). The suffix merges onto a word it leaves complete.
 - **Rules**: li- before a suffix is la- (lahu, but lī); ʿalā and ilā end in ay before one (ʿalayhi); the plural's
@@ -104,9 +105,6 @@ a sukun is on the line whatever its case vowel (ḥamrāʾu, samāʾi); the tanw
 9. **wa- and fa- beside sa- or bi-**: all four merge onto a complete word, so nothing says which is outermost;
     the explorer writes them as picked, and the engine takes sa-wa-yaktubu as well as wa-sa-yaktubu. A conjunction
     taking a phrase where the others take a word would say it.
-10. **A possessive suffix on a finite verb**: `poss-*` merges onto VERB for the participle (kātibuhu), so a finite
-    verb takes one too (kataba + `poss-3ms`). Keeping it to the participle needs an `on` that differs by host (a
-    participle's `has: {VerbForm: Part}`, a noun's none): not built.
-11. **Not built yet**: the five nouns (ʾabū, ʾakhū), the dual and plural of -ā nouns beyond the sound endings
+10. **Not built yet**: the five nouns (ʾabū, ʾakhū), the dual and plural of -ā nouns beyond the sound endings
     (maʿānin), the numbers, Form IX and the quadriliterals, the verbal nouns, the article's wasla after a word ending
     in a vowel (fī l-bayt: one word apart, the spelling's).

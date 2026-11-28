@@ -18,11 +18,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بدّي سرفيس.
-      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: سرفيس, lexeme: servees, feats: {Number: Sing}}]
+      tokens: [{surface: بدّي, lexemes: [{lexeme: badd, surface: بدّ, base: true}, {lexeme: poss-1sg, surface: ي}]}, {surface: سرفيس, lexemes: [{lexeme: servees, base: true}, {lexeme: sg}]}]
       reverse: (بدّي|أنا بدّي) (سرفيس|سيرفيس|سرڤيس)
     apc-Latn/arabizi:
       text: baddi servees.
-      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: servees, lexeme: servees, feats: {Number: Sing}}]
+      tokens: [{surface: baddi, lexemes: [{lexeme: badd, surface: badd, base: true}, {lexeme: poss-1sg, surface: i}]}, {surface: servees, lexemes: [{lexeme: servees, base: true}, {lexeme: sg}]}]
       reverse: |-
         (baddi|badde|badi) (servees|service|servis|srvis)
         ana baddi servees
@@ -36,13 +36,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: سرفيس؟ ع بيروت؟
-      tokens: [{surface: سرفيس, lexeme: servees, feats: {Number: Sing}}, {surface: ع, lexeme: 3a, n: 2, head: 3, rel: case}, {surface: بيروت, lexeme: beirut, n: 3}]
+      tokens: [{surface: سرفيس, lexemes: [{lexeme: servees, base: true}, {lexeme: sg}]}, {surface: ع, lexeme: 3a, n: 2, head: 3, rel: case}, {surface: بيروت, lexeme: beirut, n: 3}]
       reverse: |-
         (سرفيس|سيرفيس|سرڤيس) ع بيروت
         سرفيس على بيروت
     apc-Latn/arabizi:
       text: servees? 3a Beirut?
-      tokens: [{surface: servees, lexeme: servees, feats: {Number: Sing}}, {surface: 3a, lexeme: 3a, n: 2, head: 3, rel: case}, {surface: Beirut, lexeme: beirut, n: 3}]
+      tokens: [{surface: servees, lexemes: [{lexeme: servees, base: true}, {lexeme: sg}]}, {surface: 3a, lexeme: 3a, n: 2, head: 3, rel: case}, {surface: Beirut, lexeme: beirut, n: 3}]
       reverse: (servees|service|servis|srvis) (3a|3ala) (Beirut|Bayrut|Beyrouth)
   translations:
     en: (Service|Shared taxi)? To Beirut?
@@ -51,13 +51,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: منروح بالتاكسي.
-      tokens: [{surface: منروح, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: بالتاكسي, lexemes: [{lexeme: b, surface: ب, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: taxi, surface: تاكسي, base: true, feats: {Number: Sing}, n: 4}]}]
+      tokens: [{surface: منروح, lexemes: [{lexeme: ind}, {lexeme: impf-1pl}, {lexeme: ra7, base: true}]}, {surface: بالتاكسي, lexemes: [{lexeme: b, surface: ب, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: taxi, surface: تاكسي, base: true, n: 4}, {lexeme: sg}]}]
       reverse: |-
         (منروح|نحنا منروح) بالتاكسي
         رح نروح بالتاكسي
     apc-Latn/arabizi:
       text: mnru7 bel taxi.
-      tokens: [{surface: mnru7, lexeme: ra7, feats: {Aspect: Imp, Mood: Ind, Number: Plur, Person: '1'}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: el, n: 3, head: 4, rel: det}]}, {surface: taxi, lexeme: taxi, feats: {Number: Sing}, n: 4}]
+      tokens: [{surface: mnru7, lexemes: [{lexeme: ind}, {lexeme: impf-1pl}, {lexeme: ra7, base: true}]}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: el, n: 3, head: 4, rel: det}]}, {surface: taxi, lexemes: [{lexeme: taxi, base: true, n: 4}, {lexeme: sg}]}]
       reverse: |-
         (mnru7|mnro7) (bel|bil|b el) (taxi|taksi|taxe)
         ne7na mnru7 bel taxi
@@ -72,11 +72,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: التاكسي غالي.
-      tokens: [{surface: التاكسي, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: taxi, surface: تاكسي, base: true, feats: {Number: Sing}, n: 2}]}, {surface: غالي, lexeme: ghali, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
+      tokens: [{surface: التاكسي, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: taxi, surface: تاكسي, base: true, n: 2}, {lexeme: sg}]}, {surface: غالي, lexemes: [{lexeme: ghali, base: true, n: 3, head: 2, rel: amod}, {lexeme: ms}]}]
       reverse: التاكسي غالي
     apc-Latn/arabizi:
       text: el taxi ghali.
-      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: taxi, lexeme: taxi, feats: {Number: Sing}, n: 2}, {surface: ghali, lexeme: ghali, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: taxi, lexemes: [{lexeme: taxi, base: true, n: 2}, {lexeme: sg}]}, {surface: ghali, lexemes: [{lexeme: ghali, base: true, n: 3, head: 2, rel: amod}, {lexeme: ms}]}]
       reverse: (el|l|il) (taxi|taksi|taxe) (ghali|ghale)
   translations:
     en: |-
@@ -87,11 +87,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: وين الباص؟
-      tokens: [{surface: وين, lexeme: wen}, {surface: الباص, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: bus, surface: باص, base: true, feats: {Number: Sing}, n: 3}]}]
+      tokens: [{surface: وين, lexeme: wen}, {surface: الباص, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: bus, surface: باص, base: true, n: 3}, {lexeme: sg}]}]
       reverse: وين (الباص|البص)
     apc-Latn/arabizi:
       text: wen el bus?
-      tokens: [{surface: wen, lexeme: wen}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: bus, lexeme: bus, feats: {Number: Sing}, n: 3}]
+      tokens: [{surface: wen, lexeme: wen}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: bus, lexemes: [{lexeme: bus, base: true, n: 3}, {lexeme: sg}]}]
       reverse: (wen|wein) (el|l|il) (bus|bas|busS)
   translations:
     en: Where('s| is) the bus?
@@ -100,11 +100,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: الباص أرخص من التاكسي.
-      tokens: [{surface: الباص, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: bus, surface: باص, base: true, feats: {Number: Sing}, n: 2}]}, {surface: أرخص, lexeme: arkhas, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}, {surface: من, lexeme: men.than, n: 4, head: 6, rel: case}, {surface: التاكسي, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: taxi, surface: تاكسي, base: true, feats: {Number: Sing}, n: 6}]}]
+      tokens: [{surface: الباص, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: bus, surface: باص, base: true, n: 2}, {lexeme: sg}]}, {surface: أرخص, lexemes: [{lexeme: arkhas, base: true, n: 3, head: 2, rel: amod}, {lexeme: ms}]}, {surface: من, lexeme: men.than, n: 4, head: 6, rel: case}, {surface: التاكسي, lexemes: [{lexeme: el, surface: ال, n: 5, head: 6, rel: det}, {lexeme: taxi, surface: تاكسي, base: true, n: 6}, {lexeme: sg}]}]
       reverse: (الباص|البص) أرخص من التاكسي
     apc-Latn/arabizi:
       text: el bus arkhas men el taxi.
-      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: bus, lexeme: bus, feats: {Number: Sing}, n: 2}, {surface: arkhas, lexeme: arkhas, feats: {Gender: Masc, Number: Sing}, n: 3, head: 2, rel: amod}, {surface: men, lexeme: men.than, n: 4, head: 6, rel: case}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: taxi, lexeme: taxi, feats: {Number: Sing}, n: 6}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: bus, lexemes: [{lexeme: bus, base: true, n: 2}, {lexeme: sg}]}, {surface: arkhas, lexemes: [{lexeme: arkhas, base: true, n: 3, head: 2, rel: amod}, {lexeme: ms}]}, {surface: men, lexeme: men.than, n: 4, head: 6, rel: case}, {surface: el, lexeme: el, n: 5, head: 6, rel: det}, {surface: taxi, lexemes: [{lexeme: taxi, base: true, n: 6}, {lexeme: sg}]}]
       reverse: (el|l|il) (bus|bas|busS) (arkhas|arkhass|arkhes) (men|min|mn) (el|l|il) (taxi|taksi|taxe)
   translations:
     en: |-
@@ -115,11 +115,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا عالطريق.
-      tokens: [{surface: أنا, lexeme: ana}, {surface: عالطريق, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: tari2, surface: طريق, base: true, feats: {Number: Sing}, n: 4}]}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: عالطريق, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: tari2, surface: طريق, base: true, n: 4}, {lexeme: sg}]}]
       reverse: '[أنا] (عالطريق|ع الطريق|على الطريق)'
     apc-Latn/arabizi:
       text: ana 3al tari2.
-      tokens: [{surface: ana, lexeme: ana}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: tari2, lexeme: tari2, feats: {Number: Sing}, n: 4}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: tari2, lexemes: [{lexeme: tari2, base: true, n: 4}, {lexeme: sg}]}]
       reverse: '[ana] (3al|3a l|3a el) (tari2|tare2|tari)'
   translations:
     en: I('m| am) on (the|my) way.
@@ -128,13 +128,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: في عجقة كتير.
-      tokens: [{surface: في, lexeme: fi}, {surface: عجقة, lexeme: 3aj2a, feats: {Number: Sing}}, {surface: كتير, lexeme: ktir}]
+      tokens: [{surface: في, lexeme: fi}, {surface: عجقة, lexemes: [{lexeme: 3aj2a, base: true}, {lexeme: sg}]}, {surface: كتير, lexeme: ktir}]
       reverse: |-
         في عجقة كتير
         في كتير عجقة
     apc-Latn/arabizi:
       text: fi 3aj2a ktir.
-      tokens: [{surface: fi, lexeme: fi}, {surface: 3aj2a, lexeme: 3aj2a, feats: {Number: Sing}}, {surface: ktir, lexeme: ktir}]
+      tokens: [{surface: fi, lexeme: fi}, {surface: 3aj2a, lexemes: [{lexeme: 3aj2a, base: true}, {lexeme: sg}]}, {surface: ktir, lexeme: ktir}]
       reverse: |-
         fi (3aj2a|3aj2e|3aj2ah|3aja) (ktir|kteer)
         fi ktir 3aj2a
@@ -148,13 +148,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: ما في عجقة اليوم.
-      tokens: [{surface: ما, lexeme: ma}, {surface: في, lexeme: fi}, {surface: عجقة, lexeme: 3aj2a, feats: {Number: Sing}}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: yom, surface: يوم, base: true, feats: {Number: Sing}, n: 5}]}]
+      tokens: [{surface: ما, lexeme: ma}, {surface: في, lexeme: fi}, {surface: عجقة, lexemes: [{lexeme: 3aj2a, base: true}, {lexeme: sg}]}, {surface: اليوم, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: yom, surface: يوم, base: true, n: 5}, {lexeme: sg}]}]
       reverse: |-
         ما في عجقة اليوم
         اليوم ما في عجقة
     apc-Latn/arabizi:
       text: ma fi 3aj2a el yom.
-      tokens: [{surface: ma, lexeme: ma}, {surface: fi, lexeme: fi}, {surface: 3aj2a, lexeme: 3aj2a, feats: {Number: Sing}}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: yom, lexeme: yom, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: ma, lexeme: ma}, {surface: fi, lexeme: fi}, {surface: 3aj2a, lexemes: [{lexeme: 3aj2a, base: true}, {lexeme: sg}]}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: yom, lexemes: [{lexeme: yom, base: true, n: 5}, {lexeme: sg}]}]
       reverse: |-
         ma fi (3aj2a|3aj2e|3aj2ah|3aja) (el|l|il) (yom|youm)
         el yom ma fi 3aj2a
@@ -207,11 +207,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا جاي!
-      tokens: [{surface: أنا, lexeme: ana}, {surface: جاي, lexeme: jeye, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: جاي, lexemes: [{lexeme: jeye, base: true}, {lexeme: ms}]}]
       reverse: '[أنا] جاي'
     apc-Latn/arabizi:
       text: ana jey!
-      tokens: [{surface: ana, lexeme: ana}, {surface: jey, lexeme: jeye, feats: {Gender: Masc, Number: Sing}}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: jey, lexemes: [{lexeme: jeye, base: true}, {lexeme: ms}]}]
       reverse: '[ana] (jey|jeye|jay|jaye|jeyi)'
   translations:
     en: |-
@@ -224,11 +224,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا جاية!
-      tokens: [{surface: أنا, lexeme: ana}, {surface: جاية, lexeme: jeye, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: جاية, lexemes: [{lexeme: jeye, base: true}, {lexeme: fs}]}]
       reverse: '[أنا] جاية'
     apc-Latn/arabizi:
       text: ana jeye!
-      tokens: [{surface: ana, lexeme: ana}, {surface: jeye, lexeme: jeye, feats: {Gender: Fem, Number: Sing}}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: jeye, lexemes: [{lexeme: jeye, base: true}, {lexeme: fs}]}]
       reverse: '[ana] (jeye|jeyye|jaye|jeyi|jayye)'
   translations:
     en: |-
@@ -241,11 +241,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا قاعد بالبيت.
-      tokens: [{surface: أنا, lexeme: ana}, {surface: قاعد, lexeme: 2a3ed, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: بالبيت, lexemes: [{lexeme: b, surface: ب, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: bet, surface: بيت, base: true, feats: {Number: Sing}, n: 5}]}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: قاعد, lexemes: [{lexeme: 2a3ed, base: true}, {lexeme: ptcp}, {lexeme: ms}]}, {surface: بالبيت, lexemes: [{lexeme: b, surface: ب, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: bet, surface: بيت, base: true, n: 5}, {lexeme: sg}]}]
       reverse: '[أنا] قاعد بالبيت'
     apc-Latn/arabizi:
       text: ana 2a3ed bel bet.
-      tokens: [{surface: ana, lexeme: ana}, {surface: 2a3ed, lexeme: 2a3ed, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: bet, lexeme: bet, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: 2a3ed, lexemes: [{lexeme: 2a3ed, base: true}, {lexeme: ptcp}, {lexeme: ms}]}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: bet, lexemes: [{lexeme: bet, base: true, n: 5}, {lexeme: sg}]}]
       reverse: '[ana] (2a3ed|a3ed|2a3id|2e3id) (bel|bil|b el) (bet|beit)'
   translations:
     en: |-
@@ -258,13 +258,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: وين قاعدين؟
-      tokens: [{surface: وين, lexeme: wen}, {surface: قاعدين, lexeme: 2a3ed, feats: {Aspect: Part, Number: Plur}}]
+      tokens: [{surface: وين, lexeme: wen}, {surface: قاعدين, lexemes: [{lexeme: 2a3ed, base: true}, {lexeme: ptcp}, {lexeme: pl}]}]
       reverse: |-
         [إنتو] وين قاعدين
         وين إنتو قاعدين
     apc-Latn/arabizi:
       text: wen 2a3din?
-      tokens: [{surface: wen, lexeme: wen}, {surface: 2a3din, lexeme: 2a3ed, feats: {Aspect: Part, Number: Plur}}]
+      tokens: [{surface: wen, lexeme: wen}, {surface: 2a3din, lexemes: [{lexeme: 2a3ed, base: true}, {lexeme: ptcp}, {lexeme: pl}]}]
       reverse: |-
         [(ento|into)] (wen|wein) (2a3din|a3din|2a3deen|2a3dein)
         wen ento 2a3din
@@ -279,11 +279,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا قاعدة بالسيّارة.
-      tokens: [{surface: أنا, lexeme: ana}, {surface: قاعدة, lexeme: 2a3ed, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: بالسيّارة, lexemes: [{lexeme: b, surface: ب, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: siyyara, surface: سيّارة, base: true, feats: {Number: Sing}, n: 5}]}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: قاعدة, lexemes: [{lexeme: 2a3ed, base: true}, {lexeme: ptcp}, {lexeme: fs}]}, {surface: بالسيّارة, lexemes: [{lexeme: b, surface: ب, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: siyyara, surface: سيّارة, base: true, n: 5}, {lexeme: sg}]}]
       reverse: '[أنا] قاعدة بالسيّارة'
     apc-Latn/arabizi:
       text: ana 2a3de bel siyyara.
-      tokens: [{surface: ana, lexeme: ana}, {surface: 2a3de, lexeme: 2a3ed, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: siyyara, lexeme: siyyara, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: 2a3de, lexemes: [{lexeme: 2a3ed, base: true}, {lexeme: ptcp}, {lexeme: fs}]}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: siyyara, lexemes: [{lexeme: siyyara, base: true, n: 5}, {lexeme: sg}]}]
       reverse: '[ana] (2a3de|a3de|2a3di|2a3da) (bel|bil|b el) (siyyara|siyara|sayyara|sayara|syara)'
   translations:
     en: |-
@@ -294,11 +294,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: التاكسي واقف هون.
-      tokens: [{surface: التاكسي, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: taxi, surface: تاكسي, base: true, feats: {Number: Sing}, n: 2}]}, {surface: واقف, lexeme: wa2ef, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: هون, lexeme: hon}]
+      tokens: [{surface: التاكسي, lexemes: [{lexeme: el, surface: ال, n: 1, head: 2, rel: det}, {lexeme: taxi, surface: تاكسي, base: true, n: 2}, {lexeme: sg}]}, {surface: واقف, lexemes: [{lexeme: wa2ef, base: true}, {lexeme: ptcp}, {lexeme: ms}]}, {surface: هون, lexeme: hon}]
       reverse: التاكسي واقف هون
     apc-Latn/arabizi:
       text: el taxi wa2ef hon.
-      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: taxi, lexeme: taxi, feats: {Number: Sing}, n: 2}, {surface: wa2ef, lexeme: wa2ef, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: hon, lexeme: hon}]
+      tokens: [{surface: el, lexeme: el, n: 1, head: 2, rel: det}, {surface: taxi, lexemes: [{lexeme: taxi, base: true, n: 2}, {lexeme: sg}]}, {surface: wa2ef, lexemes: [{lexeme: wa2ef, base: true}, {lexeme: ptcp}, {lexeme: ms}]}, {surface: hon, lexeme: hon}]
       reverse: (el|l|il) (taxi|taksi|taxe) (wa2ef|wa2if|waaef|we2ef) (hon|hone|houn)
   translations:
     en: |-
@@ -311,11 +311,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: أنا واقف حدّ الدكّانة.
-      tokens: [{surface: أنا, lexeme: ana}, {surface: واقف, lexeme: wa2ef, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: حدّ, lexeme: 7add, n: 3, head: 5, rel: case}, {surface: الدكّانة, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: dekkene, surface: دكّانة, base: true, feats: {Number: Sing}, n: 5}]}]
+      tokens: [{surface: أنا, lexeme: ana}, {surface: واقف, lexemes: [{lexeme: wa2ef, base: true}, {lexeme: ptcp}, {lexeme: ms}]}, {surface: حدّ, lexeme: 7add, n: 3, head: 5, rel: case}, {surface: الدكّانة, lexemes: [{lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: dekkene, surface: دكّانة, base: true, n: 5}, {lexeme: sg}]}]
       reverse: '[أنا] واقف حدّ الدكّانة'
     apc-Latn/arabizi:
       text: ana wa2ef 7add el dekkene.
-      tokens: [{surface: ana, lexeme: ana}, {surface: wa2ef, lexeme: wa2ef, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: 7add, lexeme: 7add, n: 3, head: 5, rel: case}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: dekkene, lexeme: dekkene, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: ana, lexeme: ana}, {surface: wa2ef, lexemes: [{lexeme: wa2ef, base: true}, {lexeme: ptcp}, {lexeme: ms}]}, {surface: 7add, lexeme: 7add, n: 3, head: 5, rel: case}, {surface: el, lexeme: el, n: 4, head: 5, rel: det}, {surface: dekkene, lexemes: [{lexeme: dekkene, base: true, n: 5}, {lexeme: sg}]}]
       reverse: '[ana] (wa2ef|wa2if|waaef|we2ef) (7add|7ad|hadd) (el|l|il) (dekkene|dekene|dekkane|dikkene)'
   translations:
     en: |-
@@ -328,14 +328,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: نازل ع بيروت؟
-      tokens: [{surface: نازل, lexeme: nezel, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: ع, lexeme: 3a, n: 2, head: 3, rel: case}, {surface: بيروت, lexeme: beirut, n: 3}]
+      tokens: [{surface: نازل, lexemes: [{lexeme: nezel, base: true}, {lexeme: ptcp}, {lexeme: ms}]}, {surface: ع, lexeme: 3a, n: 2, head: 3, rel: case}, {surface: بيروت, lexeme: beirut, n: 3}]
       reverse: |-
         نازل ع بيروت
         إنت نازل ع بيروت
         نازل على بيروت
     apc-Latn/arabizi:
       text: nezel 3a Beirut?
-      tokens: [{surface: nezel, lexeme: nezel, feats: {Aspect: Part, Gender: Masc, Number: Sing}}, {surface: 3a, lexeme: 3a, n: 2, head: 3, rel: case}, {surface: Beirut, lexeme: beirut, n: 3}]
+      tokens: [{surface: nezel, lexemes: [{lexeme: nezel, base: true}, {lexeme: ptcp}, {lexeme: ms}]}, {surface: 3a, lexeme: 3a, n: 2, head: 3, rel: case}, {surface: Beirut, lexeme: beirut, n: 3}]
       reverse: |-
         (nezel|nazel|nezil|nazil) (3a|3ala) (Beirut|Bayrut|Beyrouth)
         enta nezel 3a Beirut
@@ -350,13 +350,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: رايحة عالشغل؟
-      tokens: [{surface: رايحة, lexeme: ra7, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: عالشغل, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: shoghl, surface: شغل, base: true, feats: {Number: Sing}, n: 4}]}]
+      tokens: [{surface: رايحة, lexemes: [{lexeme: ra7, base: true}, {lexeme: ptcp}, {lexeme: fs}]}, {surface: عالشغل, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: shoghl, surface: شغل, base: true, n: 4}, {lexeme: sg}]}]
       reverse: |-
         رايحة (عالشغل|ع الشغل|على الشغل)
         إنتي رايحة عالشغل
     apc-Latn/arabizi:
       text: ray7a 3al shoghl?
-      tokens: [{surface: ray7a, lexeme: ra7, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: shoghl, lexeme: shoghl, feats: {Number: Sing}, n: 4}]
+      tokens: [{surface: ray7a, lexemes: [{lexeme: ra7, base: true}, {lexeme: ptcp}, {lexeme: fs}]}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: shoghl, lexemes: [{lexeme: shoghl, base: true, n: 4}, {lexeme: sg}]}]
       reverse: |-
         (ray7a|rayi7a|ray7e|rey7a|raye7a|rayha) (3al|3a l|3a el) (shoghl|shoghol|shughl)
         enti ray7a 3al shoghl
@@ -370,11 +370,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: كيف بوصل عالبحر؟
-      tokens: [{surface: كيف, lexeme: kif}, {surface: بوصل, lexeme: wesel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: عالبحر, lexemes: [{lexeme: 3a, surface: ع, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: ba7r, surface: بحر, base: true, feats: {Number: Sing}, n: 5}]}]
+      tokens: [{surface: كيف, lexeme: kif}, {surface: بوصل, lexemes: [{lexeme: ind}, {lexeme: impf-1sg}, {lexeme: wesel, base: true}]}, {surface: عالبحر, lexemes: [{lexeme: 3a, surface: ع, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: ba7r, surface: بحر, base: true, n: 5}, {lexeme: sg}]}]
       reverse: كيف بوصل (عالبحر|ع البحر|على البحر)
     apc-Latn/arabizi:
       text: kif busal 3al ba7r?
-      tokens: [{surface: kif, lexeme: kif}, {surface: busal, lexeme: wesel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 5}]
+      tokens: [{surface: kif, lexeme: kif}, {surface: busal, lexemes: [{lexeme: ind}, {lexeme: impf-1sg}, {lexeme: wesel, base: true}]}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: ba7r, lexemes: [{lexeme: ba7r, base: true, n: 5}, {lexeme: sg}]}]
       reverse: (kif|keef) (busal|buwsal|bewsal|bisal) (3al|3a l|3a el) (ba7r|ba7er|bahr)
   translations:
     en: |-
@@ -387,11 +387,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: لفّ عاليمين!
-      tokens: [{surface: لفّ, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: عاليمين, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: yamin, surface: يمين, base: true, feats: {Number: Sing}, n: 4}]}]
+      tokens: [{surface: لفّ, lexemes: [{lexeme: laff, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: عاليمين, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: yamin, surface: يمين, base: true, n: 4}, {lexeme: sg}]}]
       reverse: لفّ (عاليمين|ع اليمين|على اليمين)
     apc-Latn/arabizi:
       text: liff 3al yamin!
-      tokens: [{surface: liff, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: yamin, lexeme: yamin, feats: {Number: Sing}, n: 4}]
+      tokens: [{surface: liff, lexemes: [{lexeme: laff, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: yamin, lexemes: [{lexeme: yamin, base: true, n: 4}, {lexeme: sg}]}]
       reverse: (liff|leff|lef|lif) (3al|3a l|3a el) (yamin|yamine|ymin)
   translations:
     en: |-
@@ -404,11 +404,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: لفّي عالشمال.
-      tokens: [{surface: لفّي, lexeme: laff, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: عالشمال, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: shmel, surface: شمال, base: true, feats: {Number: Sing}, n: 4}]}]
+      tokens: [{surface: لفّي, lexemes: [{lexeme: laff, base: true}, {lexeme: imp}, {lexeme: fs.verb}]}, {surface: عالشمال, lexemes: [{lexeme: 3a, surface: ع, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: shmel, surface: شمال, base: true, n: 4}, {lexeme: sg}]}]
       reverse: لفّي (عالشمال|ع الشمال|على الشمال)
     apc-Latn/arabizi:
       text: liffi 3al shmel.
-      tokens: [{surface: liffi, lexeme: laff, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: shmel, lexeme: shmel, feats: {Number: Sing}, n: 4}]
+      tokens: [{surface: liffi, lexemes: [{lexeme: laff, base: true}, {lexeme: imp}, {lexeme: fs.verb}]}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: l, n: 3, head: 4, rel: det}]}, {surface: shmel, lexemes: [{lexeme: shmel, base: true, n: 4}, {lexeme: sg}]}]
       reverse: (liffi|leffi|liffe|lifi) (3al|3a l|3a el) shmel
   translations:
     en: |-
@@ -421,13 +421,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: بعد الإشارة، لفّ عاليمين.
-      tokens: [{surface: بعد, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: الإشارة, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: ishara, surface: إشارة, base: true, feats: {Number: Sing}, n: 3}]}, {surface: لفّ, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: عاليمين, lexemes: [{lexeme: 3a, surface: ع, n: 5, head: 7, rel: case}, {lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: yamin, surface: يمين, base: true, feats: {Number: Sing}, n: 7}]}]
+      tokens: [{surface: بعد, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: الإشارة, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: ishara, surface: إشارة, base: true, n: 3}, {lexeme: sg}]}, {surface: لفّ, lexemes: [{lexeme: laff, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: عاليمين, lexemes: [{lexeme: 3a, surface: ع, n: 5, head: 7, rel: case}, {lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: yamin, surface: يمين, base: true, n: 7}, {lexeme: sg}]}]
       reverse: |-
         بعد الإشارة لفّ (عاليمين|ع اليمين|على اليمين)
         لفّ عاليمين بعد الإشارة
     apc-Latn/arabizi:
       text: ba3d el ishara, liff 3al yamin.
-      tokens: [{surface: ba3d, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: ishara, lexeme: ishara, feats: {Number: Sing}, n: 3}, {surface: liff, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: yamin, lexeme: yamin, feats: {Number: Sing}, n: 7}]
+      tokens: [{surface: ba3d, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: ishara, lexemes: [{lexeme: ishara, base: true, n: 3}, {lexeme: sg}]}, {surface: liff, lexemes: [{lexeme: laff, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: yamin, lexemes: [{lexeme: yamin, base: true, n: 7}, {lexeme: sg}]}]
       reverse: |-
         (ba3d|ba3ed) (el|l|il) (ishara|ishare|2ishara) (liff|leff|lef|lif) (3al|3a l|3a el) (yamin|yamine|ymin)
         liff 3al yamin ba3d el ishara
@@ -442,13 +442,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: وقّف هون، عمول معروف.
-      tokens: [{surface: وقّف, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: هون, lexeme: hon}, {surface: عمول, lexeme: 3mol-ma3rouf, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: معروف, lexeme: 3mol-ma3rouf}]
+      tokens: [{surface: وقّف, lexemes: [{lexeme: wa22ef, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: هون, lexeme: hon}, {surface: عمول, lexemes: [{lexeme: 3mol-ma3rouf, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: معروف, lexeme: 3mol-ma3rouf}]
       reverse: |-
         وقّف هون (عمول|اعمول|عمل) معروف
         عمول معروف وقّف هون
     apc-Latn/arabizi:
       text: wa22ef hon, 3mol ma3rouf.
-      tokens: [{surface: wa22ef, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: hon, lexeme: hon}, {surface: 3mol, lexeme: 3mol-ma3rouf, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
+      tokens: [{surface: wa22ef, lexemes: [{lexeme: wa22ef, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: hon, lexeme: hon}, {surface: 3mol, lexemes: [{lexeme: 3mol-ma3rouf, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
       reverse: |-
         (wa22ef|wa2af|wa22if|wa22af) (hon|hone|houn) (3mol|3mul|e3mol) (ma3rouf|ma3roof)
         3mol ma3rouf wa22ef hon
@@ -463,13 +463,13 @@ sentences:
   forms:
     apc-Arab/standard:
       text: وقّفي هون، عملي معروف.
-      tokens: [{surface: وقّفي, lexeme: wa22ef, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: هون, lexeme: hon}, {surface: عملي, lexeme: 3mol-ma3rouf, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: معروف, lexeme: 3mol-ma3rouf}]
+      tokens: [{surface: وقّفي, lexemes: [{lexeme: wa22ef, base: true}, {lexeme: imp}, {lexeme: fs.verb}]}, {surface: هون, lexeme: hon}, {surface: عملي, lexemes: [{lexeme: 3mol-ma3rouf, base: true}, {lexeme: imp}, {lexeme: fs.verb}]}, {surface: معروف, lexeme: 3mol-ma3rouf}]
       reverse: |-
         وقّفي هون عملي معروف
         عملي معروف وقّفي هون
     apc-Latn/arabizi:
       text: wa22fi hon, 3meli ma3rouf.
-      tokens: [{surface: wa22fi, lexeme: wa22ef, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: hon, lexeme: hon}, {surface: 3meli, lexeme: 3mol-ma3rouf, feats: {Gender: Fem, Mood: Imp, Number: Sing, Person: '2'}}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
+      tokens: [{surface: wa22fi, lexemes: [{lexeme: wa22ef, base: true}, {lexeme: imp}, {lexeme: fs.verb}]}, {surface: hon, lexeme: hon}, {surface: 3meli, lexemes: [{lexeme: 3mol-ma3rouf, base: true}, {lexeme: imp}, {lexeme: fs.verb}]}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
       reverse: |-
         (wa22fi|wa22efi|wa22ife|wa2fi) (hon|hone|houn) (3meli|3emli|3emle|3imli|a3mli) (ma3rouf|ma3roof)
         (3meli|3emli) ma3rouf wa22fi hon
@@ -484,11 +484,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: دغري، وبعدين لفّ عالشمال.
-      tokens: [{surface: دغري, lexeme: dighri}, {surface: وبعدين, lexemes: [{lexeme: w, surface: و}, {lexeme: ba3dein, surface: بعدين, base: true}]}, {surface: لفّ, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: عالشمال, lexemes: [{lexeme: 3a, surface: ع, n: 5, head: 7, rel: case}, {lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: shmel, surface: شمال, base: true, feats: {Number: Sing}, n: 7}]}]
+      tokens: [{surface: دغري, lexeme: dighri}, {surface: وبعدين, lexemes: [{lexeme: w, surface: و}, {lexeme: ba3dein, surface: بعدين, base: true}]}, {surface: لفّ, lexemes: [{lexeme: laff, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: عالشمال, lexemes: [{lexeme: 3a, surface: ع, n: 5, head: 7, rel: case}, {lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: shmel, surface: شمال, base: true, n: 7}, {lexeme: sg}]}]
       reverse: دغري (وبعدين|و بعدين) لفّ (عالشمال|ع الشمال|على الشمال)
     apc-Latn/arabizi:
       text: dighri, w ba3dein liff 3al shmel.
-      tokens: [{surface: dighri, lexeme: dighri}, {surface: w, lexeme: w}, {surface: ba3dein, lexeme: ba3dein}, {surface: liff, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: shmel, lexeme: shmel, feats: {Number: Sing}, n: 7}]
+      tokens: [{surface: dighri, lexeme: dighri}, {surface: w, lexeme: w}, {surface: ba3dein, lexeme: ba3dein}, {surface: liff, lexemes: [{lexeme: laff, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: shmel, lexemes: [{lexeme: shmel, base: true, n: 7}, {lexeme: sg}]}]
       reverse: |-
         (dighri|deghri|doghri|dughri) (w|wa) (ba3dein|ba3dain|ba3den) (liff|leff|lef|lif) (3al|3a l|3a el) shmel
         dighri ba3dein liff 3al shmel
@@ -505,11 +505,11 @@ sentences:
   forms:
     apc-Arab/standard:
       text: وقّفوا!
-      tokens: [{surface: وقّفوا, lexeme: wa22ef, feats: {Mood: Imp, Number: Plur, Person: '2'}}]
+      tokens: [{surface: وقّفوا, lexemes: [{lexeme: wa22ef, base: true}, {lexeme: imp}, {lexeme: pl.verb}]}]
       reverse: (وقّفوا|وقّفو)
     apc-Latn/arabizi:
       text: wa22fo!
-      tokens: [{surface: wa22fo, lexeme: wa22ef, feats: {Mood: Imp, Number: Plur, Person: '2'}}]
+      tokens: [{surface: wa22fo, lexemes: [{lexeme: wa22ef, base: true}, {lexeme: imp}, {lexeme: pl.verb}]}]
       reverse: (wa22fo|wa22efo|wa22fu|wa2fo)
   translations:
     en: Stop!
@@ -549,10 +549,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: أَنا بِالسِّرْفيس، جاي.
-          tokens: [{surface: أَنا, lexeme: ana}, {surface: بِالسِّرْفيس, lexemes: [{lexeme: b, surface: بِ, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: servees, surface: سِّرْفيس, base: true, feats: {Number: Sing}, n: 4}]}, {surface: جاي, lexeme: jeye, feats: {Gender: Masc, Number: Sing}}]
+          tokens: [{surface: أَنا, lexeme: ana}, {surface: بِالسِّرْفيس, lexemes: [{lexeme: b, surface: بِ, n: 2, head: 4, rel: case}, {lexeme: el, surface: ال, n: 3, head: 4, rel: det}, {lexeme: servees, surface: سِّرْفيس, base: true, n: 4}, {lexeme: sg}]}, {surface: جاي, lexemes: [{lexeme: jeye, base: true}, {lexeme: ms}]}]
         apc-Latn/arabizi:
           text: ana bel servees, jey.
-          tokens: [{surface: ana, lexeme: ana}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: el, n: 3, head: 4, rel: det}]}, {surface: servees, lexeme: servees, feats: {Number: Sing}, n: 4}, {surface: jey, lexeme: jeye, feats: {Gender: Masc, Number: Sing}}]
+          tokens: [{surface: ana, lexeme: ana}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 2, head: 4, rel: case}, {lexeme: el, surface: el, n: 3, head: 4, rel: det}]}, {surface: servees, lexemes: [{lexeme: servees, base: true, n: 4}, {lexeme: sg}]}, {surface: jey, lexemes: [{lexeme: jeye, base: true}, {lexeme: ms}]}]
       translations:
         en: I'm in the service, I'm coming.
   - line:
@@ -560,10 +560,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: في عَجْقَة؟
-          tokens: [{surface: في, lexeme: fi}, {surface: عَجْقَة, lexeme: 3aj2a, feats: {Number: Sing}}]
+          tokens: [{surface: في, lexeme: fi}, {surface: عَجْقَة, lexemes: [{lexeme: 3aj2a, base: true}, {lexeme: sg}]}]
         apc-Latn/arabizi:
           text: fi 3aj2a?
-          tokens: [{surface: fi, lexeme: fi}, {surface: 3aj2a, lexeme: 3aj2a, feats: {Number: Sing}}]
+          tokens: [{surface: fi, lexeme: fi}, {surface: 3aj2a, lexemes: [{lexeme: 3aj2a, base: true}, {lexeme: sg}]}]
       translations:
         en: Is there traffic?
   - line:
@@ -576,10 +576,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: إيه، في عَجْقَة كْتير!
-          tokens: [{surface: إيه, lexeme: eh}, {surface: في, lexeme: fi}, {surface: عَجْقَة, lexeme: 3aj2a, feats: {Number: Sing}}, {surface: كْتير, lexeme: ktir}]
+          tokens: [{surface: إيه, lexeme: eh}, {surface: في, lexeme: fi}, {surface: عَجْقَة, lexemes: [{lexeme: 3aj2a, base: true}, {lexeme: sg}]}, {surface: كْتير, lexeme: ktir}]
         apc-Latn/arabizi:
           text: eh, fi 3aj2a ktir!
-          tokens: [{surface: eh, lexeme: eh}, {surface: fi, lexeme: fi}, {surface: 3aj2a, lexeme: 3aj2a, feats: {Number: Sing}}, {surface: ktir, lexeme: ktir}]
+          tokens: [{surface: eh, lexeme: eh}, {surface: fi, lexeme: fi}, {surface: 3aj2a, lexemes: [{lexeme: 3aj2a, base: true}, {lexeme: sg}]}, {surface: ktir, lexeme: ktir}]
       translations:
         en: Yes, there's a lot of traffic!
   - choose:
@@ -595,10 +595,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: أَنا قاعْدِة بِالمَطْعَم حَدّ البَحِر.
-          tokens: [{surface: أَنا, lexeme: ana}, {surface: قاعْدِة, lexeme: 2a3ed, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: بِالمَطْعَم, lexemes: [{lexeme: b, surface: بِ, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: mat3am, surface: مَطْعَم, base: true, feats: {Number: Sing}, n: 5}]}, {surface: حَدّ, lexeme: 7add, n: 6, head: 8, rel: case}, {surface: البَحِر, lexemes: [{lexeme: el, surface: ال, n: 7, head: 8, rel: det}, {lexeme: ba7r, surface: بَحِر, base: true, feats: {Number: Sing}, n: 8}]}]
+          tokens: [{surface: أَنا, lexeme: ana}, {surface: قاعْدِة, lexemes: [{lexeme: 2a3ed, base: true}, {lexeme: ptcp}, {lexeme: fs}]}, {surface: بِالمَطْعَم, lexemes: [{lexeme: b, surface: بِ, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: mat3am, surface: مَطْعَم, base: true, n: 5}, {lexeme: sg}]}, {surface: حَدّ, lexeme: 7add, n: 6, head: 8, rel: case}, {surface: البَحِر, lexemes: [{lexeme: el, surface: ال, n: 7, head: 8, rel: det}, {lexeme: ba7r, surface: بَحِر, base: true, n: 8}, {lexeme: sg}]}]
         apc-Latn/arabizi:
           text: ana 2a3de bel mat3am 7add el ba7r.
-          tokens: [{surface: ana, lexeme: ana}, {surface: 2a3de, lexeme: 2a3ed, feats: {Aspect: Part, Gender: Fem, Number: Sing}}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}, n: 5}, {surface: 7add, lexeme: 7add, n: 6, head: 8, rel: case}, {surface: el, lexeme: el, n: 7, head: 8, rel: det}, {surface: ba7r, lexeme: ba7r, feats: {Number: Sing}, n: 8}]
+          tokens: [{surface: ana, lexeme: ana}, {surface: 2a3de, lexemes: [{lexeme: 2a3ed, base: true}, {lexeme: ptcp}, {lexeme: fs}]}, {surface: bel, lexemes: [{lexeme: b, surface: b, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: el, n: 4, head: 5, rel: det}]}, {surface: mat3am, lexemes: [{lexeme: mat3am, base: true, n: 5}, {lexeme: sg}]}, {surface: 7add, lexeme: 7add, n: 6, head: 8, rel: case}, {surface: el, lexeme: el, n: 7, head: 8, rel: det}, {surface: ba7r, lexemes: [{lexeme: ba7r, base: true, n: 8}, {lexeme: sg}]}]
       translations:
         en: I'm sitting in the restaurant by the sea.
   - line:
@@ -606,10 +606,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: كيف بوصَل عَالمَطْعَم؟
-          tokens: [{surface: كيف, lexeme: kif}, {surface: بوصَل, lexeme: wesel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: عَالمَطْعَم, lexemes: [{lexeme: 3a, surface: عَ, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: mat3am, surface: مَطْعَم, base: true, feats: {Number: Sing}, n: 5}]}]
+          tokens: [{surface: كيف, lexeme: kif}, {surface: بوصَل, lexemes: [{lexeme: ind}, {lexeme: impf-1sg}, {lexeme: wesel, base: true}]}, {surface: عَالمَطْعَم, lexemes: [{lexeme: 3a, surface: عَ, n: 3, head: 5, rel: case}, {lexeme: el, surface: ال, n: 4, head: 5, rel: det}, {lexeme: mat3am, surface: مَطْعَم, base: true, n: 5}, {lexeme: sg}]}]
         apc-Latn/arabizi:
           text: kif busal 3al mat3am?
-          tokens: [{surface: kif, lexeme: kif}, {surface: busal, lexeme: wesel, feats: {Aspect: Imp, Mood: Ind, Number: Sing, Person: '1'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: mat3am, lexeme: mat3am, feats: {Number: Sing}, n: 5}]
+          tokens: [{surface: kif, lexeme: kif}, {surface: busal, lexemes: [{lexeme: ind}, {lexeme: impf-1sg}, {lexeme: wesel, base: true}]}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 3, head: 5, rel: case}, {lexeme: el, surface: l, n: 4, head: 5, rel: det}]}, {surface: mat3am, lexemes: [{lexeme: mat3am, base: true, n: 5}, {lexeme: sg}]}]
       translations:
         en: How do I get to the restaurant?
   - line:
@@ -618,10 +618,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: بَعِد الإِشارَة، لِفّ عَاليَمين.
-          tokens: [{surface: بَعِد, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: الإِشارَة, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: ishara, surface: إِشارَة, base: true, feats: {Number: Sing}, n: 3}]}, {surface: لِفّ, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: عَاليَمين, lexemes: [{lexeme: 3a, surface: عَ, n: 5, head: 7, rel: case}, {lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: yamin, surface: يَمين, base: true, feats: {Number: Sing}, n: 7}]}]
+          tokens: [{surface: بَعِد, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: الإِشارَة, lexemes: [{lexeme: el, surface: ال, n: 2, head: 3, rel: det}, {lexeme: ishara, surface: إِشارَة, base: true, n: 3}, {lexeme: sg}]}, {surface: لِفّ, lexemes: [{lexeme: laff, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: عَاليَمين, lexemes: [{lexeme: 3a, surface: عَ, n: 5, head: 7, rel: case}, {lexeme: el, surface: ال, n: 6, head: 7, rel: det}, {lexeme: yamin, surface: يَمين, base: true, n: 7}, {lexeme: sg}]}]
         apc-Latn/arabizi:
           text: ba3d el ishara, liff 3al yamin.
-          tokens: [{surface: ba3d, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: ishara, lexeme: ishara, feats: {Number: Sing}, n: 3}, {surface: liff, lexeme: laff, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: yamin, lexeme: yamin, feats: {Number: Sing}, n: 7}]
+          tokens: [{surface: ba3d, lexeme: ba3d, n: 1, head: 3, rel: case}, {surface: el, lexeme: el, n: 2, head: 3, rel: det}, {surface: ishara, lexemes: [{lexeme: ishara, base: true, n: 3}, {lexeme: sg}]}, {surface: liff, lexemes: [{lexeme: laff, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: 3al, lexemes: [{lexeme: 3a, surface: 3a, base: true, n: 5, head: 7, rel: case}, {lexeme: el, surface: l, n: 6, head: 7, rel: det}]}, {surface: yamin, lexemes: [{lexeme: yamin, base: true, n: 7}, {lexeme: sg}]}]
       translations:
         en: After the traffic lights, turn right.
   - line:
@@ -629,10 +629,10 @@ stories:
       forms:
         apc-Arab/standard:
           text: وَقِّف هون، عْمول مَعْروف!
-          tokens: [{surface: وَقِّف, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: هون, lexeme: hon}, {surface: عْمول, lexeme: 3mol-ma3rouf, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: مَعْروف, lexeme: 3mol-ma3rouf}]
+          tokens: [{surface: وَقِّف, lexemes: [{lexeme: wa22ef, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: هون, lexeme: hon}, {surface: عْمول, lexemes: [{lexeme: 3mol-ma3rouf, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: مَعْروف, lexeme: 3mol-ma3rouf}]
         apc-Latn/arabizi:
           text: wa22ef hon, 3mol ma3rouf!
-          tokens: [{surface: wa22ef, lexeme: wa22ef, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: hon, lexeme: hon}, {surface: 3mol, lexeme: 3mol-ma3rouf, feats: {Gender: Masc, Mood: Imp, Number: Sing, Person: '2'}}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
+          tokens: [{surface: wa22ef, lexemes: [{lexeme: wa22ef, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: hon, lexeme: hon}, {surface: 3mol, lexemes: [{lexeme: 3mol-ma3rouf, base: true}, {lexeme: imp}, {lexeme: ms.verb}]}, {surface: ma3rouf, lexeme: 3mol-ma3rouf}]
       translations:
         en: Stop here, please! (to the driver)
   - choose:
