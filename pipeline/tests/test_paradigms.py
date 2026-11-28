@@ -99,7 +99,8 @@ def test_principal_parts(core_cli: CoreCli, tmp_path: Path) -> None:
             "allomorphs": [{"form": ""}],
         }
     )
-    course["own"]["lexicon"]["lexemes"].sort(key=lambda lx: str(lx["id"]))
+    lexemes: list[dict[str, Any]] = course["own"]["lexicon"]["lexemes"]
+    lexemes.sort(key=lambda lx: str(lx["id"]))
     compiled = _compile(core_cli, tmp_path, course)
     lexicon = compiled.lexicon.model_dump(mode="json", by_alias=True, exclude_none=True)
     assert lexicon["cells"] == {"VERB": [cell_key(PAST_1SG), cell_key(present)]}
