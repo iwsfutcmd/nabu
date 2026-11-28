@@ -162,7 +162,8 @@ describe("a form written more than one way", () => {
 
   it("is one spelling where the profile reads both alike: chg's scribes' letters (ʿāliminizlar, written with and without ی)", () => {
     const chg = loadCourse("chg");
-    const cell = "Number=Plur;Person[psor]=2;Polite=Form";
+    // -iŋizlar is the possessive "your, of several" (poss2pl), the word in the nominative (docs/rules/chg.md).
+    const cell = "Case=Nom;Number[psor]=Plur;Person[psor]=2";
     // The course writes it both ways, with one reading.
     const written = writing(chg, "lexeme:alim").filter(({ text, at }) => formCellAt(chg, text, at, "lexeme:alim") === cell);
     const spellings = new Set(written.map(({ text, at }) => text.tokens[at]?.surface.normalize("NFC")));
