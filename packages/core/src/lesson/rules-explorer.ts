@@ -526,12 +526,14 @@ export const expandMerged = <R extends Pick<ExploreRequest, "base" | "feats" | "
   if (!explorer.merging || explorer.compiled === undefined || Object.keys(request.feats).length === 0) return request;
   const found = mergeFor(explorer.compiled, request.base, request.feats);
   if (found === undefined) return request;
-  return {
+  const expanded = {
     ...request,
     feats: {},
     before: [...request.before, ...found.before.map((lexeme) => ({ lexeme }))],
     after: [...found.after.map((lexeme) => ({ lexeme })), ...request.after],
   };
+  // Each where it merges, among the lexemes the token writes (chg's nominative after the possessive, before -dur).
+  return { ...expanded, ...arrange(explorer, expanded) };
 };
 
 /** Where a base opens when it is picked: its citation, as values or, in a language that merges lexemes, as the lexemes of its merge. */

@@ -188,9 +188,11 @@ const besideParadigm = (form: TaggedText, cell: Cell | undefined, same: (a: Way,
   const way = (text: TaggedText): Way => ({ text, witness: "whole", count: 0, first: -1 });
   // The readings of a word the course writes as the form is spelled; then the form is compared as that word is.
   const like = [...cell.ways.values()].find((w) => w.witness === "whole" && same(way(form), w));
+  // Its readings and their ruby both (what <T> draws over it: chg's Schluessel).
   const readings = like?.text.tokens[0]?.readings;
+  const ruby = like?.text.tokens[0]?.ruby;
   const [token] = form.tokens;
-  const shown: TaggedText = readings === undefined || token === undefined ? form : { ...form, tokens: [{ ...token, readings }] };
+  const shown: TaggedText = readings === undefined || token === undefined ? form : { ...form, tokens: [{ ...token, readings, ...(ruby !== undefined && { ruby }) }] };
   const others = keptWays(cell, same)
     .filter((w) => w.witness !== "stem" && !same(way(shown), w))
     .map((w) => w.text);
