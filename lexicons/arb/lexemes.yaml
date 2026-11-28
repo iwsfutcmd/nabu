@@ -292,7 +292,7 @@ lexemes:
   gloss:
     en: construct state (zero)
   notes:
-    en: 'The word owned by the next one, or by a suffix: no article, no tanwīn, and the dual''s and plural''s n gone.'
+    en: 'The word owned by the next one (kitābu l-waladi): no article, no tanwīn, and the dual''s and plural''s n gone. A possessive suffix brings it itself.'
   allomorphs:
   - form: ''
 - id: lexeme:daa
@@ -1731,6 +1731,7 @@ lexemes:
   realises:
     Person[psor]: '1'
     Number[psor]: Plur
+    Definite: Cons
   'on': &id013
     at: after
     complete: true
@@ -1741,15 +1742,20 @@ lexemes:
     - VERB
   gloss:
     en: our, us
+  notes:
+    en: 'Its host is owned by it: the construct state (no article, no tanwīn, the dual''s and plural''s n gone) comes with it.'
   allomorphs:
   - form: نَا
 - id: lexeme:poss-1sg
   realises:
     Person[psor]: '1'
     Number[psor]: Sing
+    Definite: Cons
   'on': *id013
   gloss:
     en: my, me
+  notes:
+    en: 'Its host is owned by it: the construct state (no article, no tanwīn, the dual''s and plural''s n gone) comes with it.'
   allomorphs:
   - form: نِي
     after:
@@ -1759,9 +1765,12 @@ lexemes:
   realises:
     Person[psor]: '2'
     Number[psor]: Dual
+    Definite: Cons
   'on': *id013
   gloss:
     en: your, you (two)
+  notes:
+    en: 'Its host is owned by it: the construct state (no article, no tanwīn, the dual''s and plural''s n gone) comes with it.'
   allomorphs:
   - form: كُمَا
 - id: lexeme:poss-2fpl
@@ -1769,9 +1778,12 @@ lexemes:
     Person[psor]: '2'
     Number[psor]: Plur
     Gender[psor]: Fem
+    Definite: Cons
   'on': *id013
   gloss:
     en: your, you (women)
+  notes:
+    en: 'Its host is owned by it: the construct state (no article, no tanwīn, the dual''s and plural''s n gone) comes with it.'
   allomorphs:
   - form: كُنَّ
 - id: lexeme:poss-2fs
@@ -1779,9 +1791,12 @@ lexemes:
     Person[psor]: '2'
     Number[psor]: Sing
     Gender[psor]: Fem
+    Definite: Cons
   'on': *id013
   gloss:
     en: your, you (a woman)
+  notes:
+    en: 'Its host is owned by it: the construct state (no article, no tanwīn, the dual''s and plural''s n gone) comes with it.'
   allomorphs:
   - form: كِ
 - id: lexeme:poss-2mpl
@@ -1789,9 +1804,12 @@ lexemes:
     Person[psor]: '2'
     Number[psor]: Plur
     Gender[psor]: Masc
+    Definite: Cons
   'on': *id013
   gloss:
     en: your, you (men)
+  notes:
+    en: 'Its host is owned by it: the construct state (no article, no tanwīn, the dual''s and plural''s n gone) comes with it.'
   allomorphs:
   - form: كُمْ
 - id: lexeme:poss-2ms
@@ -1799,18 +1817,24 @@ lexemes:
     Person[psor]: '2'
     Number[psor]: Sing
     Gender[psor]: Masc
+    Definite: Cons
   'on': *id013
   gloss:
     en: your, you (a man)
+  notes:
+    en: 'Its host is owned by it: the construct state (no article, no tanwīn, the dual''s and plural''s n gone) comes with it.'
   allomorphs:
   - form: كَ
 - id: lexeme:poss-3du
   realises:
     Person[psor]: '3'
     Number[psor]: Dual
+    Definite: Cons
   'on': *id013
   gloss:
     en: their, them (two)
+  notes:
+    en: 'Its host is owned by it: the construct state (no article, no tanwīn, the dual''s and plural''s n gone) comes with it.'
   allomorphs:
   - form: هُمَا
     after:
@@ -1831,9 +1855,12 @@ lexemes:
     Person[psor]: '3'
     Number[psor]: Plur
     Gender[psor]: Fem
+    Definite: Cons
   'on': *id013
   gloss:
     en: their, them (women)
+  notes:
+    en: 'Its host is owned by it: the construct state (no article, no tanwīn, the dual''s and plural''s n gone) comes with it.'
   allomorphs:
   - form: هُنَّ
     after:
@@ -1854,9 +1881,12 @@ lexemes:
     Person[psor]: '3'
     Number[psor]: Sing
     Gender[psor]: Fem
+    Definite: Cons
   'on': *id013
   gloss:
     en: her
+  notes:
+    en: 'Its host is owned by it: the construct state (no article, no tanwīn, the dual''s and plural''s n gone) comes with it.'
   allomorphs:
   - form: هَا
 - id: lexeme:poss-3mpl
@@ -1864,9 +1894,12 @@ lexemes:
     Person[psor]: '3'
     Number[psor]: Plur
     Gender[psor]: Masc
+    Definite: Cons
   'on': *id013
   gloss:
     en: their, them (men)
+  notes:
+    en: 'Its host is owned by it: the construct state (no article, no tanwīn, the dual''s and plural''s n gone) comes with it.'
   allomorphs:
   - form: هُمْ
     after:
@@ -1887,9 +1920,12 @@ lexemes:
     Person[psor]: '3'
     Number[psor]: Sing
     Gender[psor]: Masc
+    Definite: Cons
   'on': *id013
   gloss:
     en: his, him
+  notes:
+    en: 'Its host is owned by it: the construct state (no article, no tanwīn, the dual''s and plural''s n gone) comes with it.'
   allomorphs:
   - form: هُ
     after:

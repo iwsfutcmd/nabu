@@ -2505,7 +2505,7 @@ class On(BaseModel):
     complete: Annotated[
         Literal[True] | None,
         Field(
-            description="Merges only onto a complete word: one whose every requirement is met (arb's pronoun suffixes onto ʾaktubu, never onto ʾaktub-; a proclitic onto a whole word)."
+            description="Merges only onto a word it leaves complete: every requirement met by the word or by what this lexeme brings itself (arb's pronoun suffixes onto ʾaktubu, never onto ʾaktub-; the possessive brings the construct state a noun requires; a proclitic onto a whole word)."
         ),
     ] = None
     at: Annotated[

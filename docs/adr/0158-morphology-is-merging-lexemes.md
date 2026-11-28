@@ -78,7 +78,7 @@ A bound lexeme (`realises`, already in the schema) states:
   within it where it attaches"): a prefix or proclitic before, a suffix, ending or zero morpheme after. Merged on
   the other side it is an `attach` error, and the explorer never asks;
 - **what the word must have when it merges** (`on.has` values, `on.needs` a value for a feature whatever it is,
-  `on.complete` every requirement met). Merging runs outward from the base, each lexeme onto the word as it stands
+  `on.complete` every requirement met, by the word or by what the lexeme brings itself). Merging runs outward from the base, each lexeme onto the word as it stands
   (the owner, 2026-11-26: "ʾaktab- simply cannot take a pronominal suffix, but ʾaktabu *can*"), so these conditions
   are the order on each side: nearer the base is merged earlier, and no slots are declared. Between the two sides
   the order does not matter (ʾa- + katab + -u is ʾaktabu either way). A token written in an order no merge allows is

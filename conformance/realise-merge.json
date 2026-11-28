@@ -1761,6 +1761,409 @@
       "note": "The same enclitic merged before the person ending: the word is not yet complete."
     },
     {
+      "id": "realise/merge/complete-by-itself",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Aspect",
+              "Person",
+              "Number"
+            ],
+            "NOUN": [
+              "Number"
+            ]
+          },
+          "features": {
+            "Aspect": [
+              "Perf"
+            ],
+            "Person": [
+              "1",
+              "3"
+            ],
+            "Number": [
+              "Sing",
+              "Plur"
+            ]
+          },
+          "requires": {
+            "VERB": [
+              "Aspect"
+            ],
+            "NOUN": [
+              "Number"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          }
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kat",
+              "pos": "VERB",
+              "form": "kat"
+            },
+            {
+              "id": "lexeme:dom",
+              "pos": "NOUN",
+              "form": "dom",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "domy",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:perf",
+              "realises": {
+                "Aspect": "Perf"
+              },
+              "on": {
+                "pos": [
+                  "VERB"
+                ]
+              },
+              "requires": [
+                "Person",
+                "Number"
+              ],
+              "allomorphs": [
+                {
+                  "form": ""
+                }
+              ]
+            },
+            {
+              "id": "lexeme:1sg",
+              "realises": {
+                "Person": "1",
+                "Number": "Sing"
+              },
+              "on": {
+                "pos": [
+                  "VERB"
+                ],
+                "has": {
+                  "Aspect": "Perf"
+                }
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:3sg",
+              "realises": {
+                "Person": "3",
+                "Number": "Sing"
+              },
+              "on": {
+                "pos": [
+                  "VERB"
+                ],
+                "has": {
+                  "Aspect": "Perf"
+                }
+              },
+              "allomorphs": [
+                {
+                  "form": ""
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sg",
+              "realises": {
+                "Number": "Sing"
+              },
+              "on": {
+                "pos": [
+                  "NOUN"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": ""
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "on": {
+                "pos": [
+                  "NOUN"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": "a"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pos",
+              "realises": {
+                "Number": "Sing"
+              },
+              "on": {
+                "at": "after",
+                "complete": true
+              },
+              "allomorphs": [
+                {
+                  "form": "es"
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:dom",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pos"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "dom+es"
+        }
+      },
+      "note": "A suffix onto a word it leaves complete (on.complete): it brings the Number the noun requires itself."
+    },
+    {
+      "id": "realise/merge/complete-not-yet",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Aspect",
+              "Person",
+              "Number"
+            ],
+            "NOUN": [
+              "Number"
+            ]
+          },
+          "features": {
+            "Aspect": [
+              "Perf"
+            ],
+            "Person": [
+              "1",
+              "3"
+            ],
+            "Number": [
+              "Sing",
+              "Plur"
+            ]
+          },
+          "requires": {
+            "VERB": [
+              "Aspect"
+            ],
+            "NOUN": [
+              "Number"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          }
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:kat",
+              "pos": "VERB",
+              "form": "kat"
+            },
+            {
+              "id": "lexeme:dom",
+              "pos": "NOUN",
+              "form": "dom",
+              "forms": [
+                {
+                  "feats": {
+                    "Number": "Plur"
+                  },
+                  "form": "domy",
+                  "status": "pinned"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:perf",
+              "realises": {
+                "Aspect": "Perf"
+              },
+              "on": {
+                "pos": [
+                  "VERB"
+                ]
+              },
+              "requires": [
+                "Person",
+                "Number"
+              ],
+              "allomorphs": [
+                {
+                  "form": ""
+                }
+              ]
+            },
+            {
+              "id": "lexeme:1sg",
+              "realises": {
+                "Person": "1",
+                "Number": "Sing"
+              },
+              "on": {
+                "pos": [
+                  "VERB"
+                ],
+                "has": {
+                  "Aspect": "Perf"
+                }
+              },
+              "allomorphs": [
+                {
+                  "form": "u"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:3sg",
+              "realises": {
+                "Person": "3",
+                "Number": "Sing"
+              },
+              "on": {
+                "pos": [
+                  "VERB"
+                ],
+                "has": {
+                  "Aspect": "Perf"
+                }
+              },
+              "allomorphs": [
+                {
+                  "form": ""
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sg",
+              "realises": {
+                "Number": "Sing"
+              },
+              "on": {
+                "pos": [
+                  "NOUN"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": ""
+                }
+              ]
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "on": {
+                "pos": [
+                  "NOUN"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": "a"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:en",
+              "on": {
+                "at": "after",
+                "complete": true
+              },
+              "allomorphs": [
+                {
+                  "form": "en"
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:dom",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:en"
+          }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "error": {
+          "kind": "attach",
+          "lexeme": "lexeme:en",
+          "complete": true
+        }
+      },
+      "note": "One that brings nothing, onto a noun with no Number yet: the word is not complete."
+    },
+    {
       "id": "realise/merge/needs-on",
       "op": "realise-token",
       "args": {

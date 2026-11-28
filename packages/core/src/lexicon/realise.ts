@@ -89,7 +89,7 @@ export type RealiseError =
   /**
    * A lexeme merged where its `on` does not hold (ADR 0158): on the wrong side of the base, onto another part of
    * speech, or onto a word that lacks, from the lexemes merged before it (nearer its base), a value it merges onto
-   * (`has`), a value for a feature (`needs`) or a requirement met (`complete`).
+   * (`has`), a value for a feature (`needs`) or a requirement met, by the word or the lexeme itself (`complete`).
    */
   | {
       readonly kind: "attach";
@@ -884,7 +884,10 @@ const mergingWord = (
       if (on.pos !== undefined && (baseLexeme.pos === undefined || !on.pos.includes(baseLexeme.pos))) return { kind: "attach", lexeme: lexeme.id, pos: on.pos };
       if (on.has !== undefined && !hasValues(values, on.has)) return { kind: "attach", lexeme: lexeme.id, has: on.has };
       if (on.needs !== undefined && on.needs.some((f) => values[f] === undefined)) return { kind: "attach", lexeme: lexeme.id, needs: on.needs };
-      if (on.complete === true && [...required].some((f) => values[f] === undefined)) return { kind: "attach", lexeme: lexeme.id, complete: true };
+      // Complete once it is merged: every requirement met by the word or by what this lexeme brings itself (arb's
+      // possessive suffix brings the construct state a noun requires).
+      if (on.complete === true && [...required].some((f) => values[f] === undefined && lexeme.realises?.[f] === undefined))
+        return { kind: "attach", lexeme: lexeme.id, complete: true };
       return undefined;
     },
     merge: (id: string): void => {

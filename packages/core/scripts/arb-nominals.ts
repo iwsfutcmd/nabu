@@ -140,7 +140,7 @@ for (const p of [
   "3fpl",
 ]) {
   const cells = [
-    show(["*kitab", "sing", "nom", "cons", `poss-${p}`]),
+    show(["*kitab", "sing", "nom", `poss-${p}`]),
     show(["*fi", `poss-${p}`]),
     show(["*ala", `poss-${p}`]),
     show(["*li", `poss-${p}`]),
@@ -151,14 +151,14 @@ for (const p of [
 }
 out += "\n## Before a suffix\n\n";
 for (const [label, ids] of [
-  ["his book, genitive", ["*kitab", "sing", "gen", "cons", "poss-3ms"]],
-  ["his car", ["*sayyara", "sing", "nom", "cons", "poss-3ms"]],
-  ["my two books", ["*kitab", "dual", "nom", "cons", "poss-1sg"]],
-  ["my two books, genitive", ["*kitab", "dual", "gen", "cons", "poss-1sg"]],
-  ["my teachers", ["*muallim", "masc", "mpl-sound", "nom", "cons", "poss-1sg"]],
+  ["his book, genitive", ["*kitab", "sing", "gen", "poss-3ms"]],
+  ["his car", ["*sayyara", "sing", "nom", "poss-3ms"]],
+  ["my two books", ["*kitab", "dual", "nom", "poss-1sg"]],
+  ["my two books, genitive", ["*kitab", "dual", "gen", "poss-1sg"]],
+  ["my teachers", ["*muallim", "masc", "mpl-sound", "nom", "poss-1sg"]],
   [
     "my teachers, genitive",
-    ["*muallim", "masc", "mpl-sound", "gen", "cons", "poss-1sg"],
+    ["*muallim", "masc", "mpl-sound", "gen", "poss-1sg"],
   ],
   ["they wrote it", ["*kataba", "perf-3mpl", "obj-3ms"]],
   ["you (men) wrote it", ["*kataba", "perf-2mpl", "obj-3ms"]],

@@ -68,7 +68,9 @@ profiles/arb-Arab.standard.yaml are the sources now.
 - **Of nouns and prepositions** (`poss-1sg` … `poss-3fpl`: whose) and **of verbs** (`obj-1sg` … `obj-3fpl`: whom),
   each a lexeme bringing `Person[psor]` or `Person[obj]` with its number and gender. -hu, -humā, -hum, -hunna are
   -hi … after i, ī or ay (fīhi, ʿalayhi, kitābihi, yarmīhi); -ī is -nī after min and ʿan (minnī), and on verbs
-  (katabanī). A possessed noun is in the construct state (`cons`).
+  (katabanī). A possessive suffix brings the construct state itself (`Definite=Cons`: kitābuhu, kitābāya), so it merges
+  onto no word with the article or tanwīn (`twice`); `cons` is the construct state of a noun owned by the next one
+  (kitābu l-waladi). The suffix merges onto a word it leaves complete.
 - **Rules**: li- before a suffix is la- (lahu, but lī); ʿalā and ilā end in ay before one (ʿalayhi); the plural's
   unsaid alif goes before an object suffix (katabūhu), and -tum is -tumū (katabtumūhu); a defective verb's long
   vowel before a suffix (yarmīhi).
@@ -96,14 +98,15 @@ a sukun is on the line whatever its case vowel (ḥamrāʾu, samāʾi); the tanw
 5. **Gender is not required** of a finite verb: the first person and the dual say none.
 6. **What is listed**: akala's imperative kul (akhadha's khudh and amara's mur when they are added); each broken
    plural, and a colour adjective's feminine (ḥamrāʾ) and an elative's (kubrā).
-7. **The article as a lexeme** (`al`, the definite state) and the construct state as a zero lexeme (`cons`), which a
-   possessed noun needs beside its suffix: or should a pronoun suffix bring the construct state itself?
-8. **Diptotes by class**: a word's class says it (`diptote`, `diptote-plural` for its broken plural), not its shape
+7. **Diptotes by class**: a word's class says it (`diptote`, `diptote-plural` for its broken plural), not its shape
    (mafāʿil): the shape would need no class, at the cost of a pattern that also matches words that are not.
-9. **Pronoun suffixes' features**: `Person[psor]` and `Person[obj]` (UD has the first; the second is ours).
-10. **wa- and fa- beside sa- or bi-**: all four merge onto a complete word, so nothing says which is outermost;
+8. **Pronoun suffixes' features**: `Person[psor]` and `Person[obj]` (UD has the first; the second is ours).
+9. **wa- and fa- beside sa- or bi-**: all four merge onto a complete word, so nothing says which is outermost;
     the explorer writes them as picked, and the engine takes sa-wa-yaktubu as well as wa-sa-yaktubu. A conjunction
     taking a phrase where the others take a word would say it.
+10. **A possessive suffix on a finite verb**: `poss-*` merges onto VERB for the participle (kātibuhu), so a finite
+    verb takes one too (kataba + `poss-3ms`). Keeping it to the participle needs an `on` that differs by host (a
+    participle's `has: {VerbForm: Part}`, a noun's none): not built.
 11. **Not built yet**: the five nouns (ʾabū, ʾakhū), the dual and plural of -ā nouns beyond the sound endings
     (maʿānin), the numbers, Form IX and the quadriliterals, the verbal nouns, the article's wasla after a word ending
     in a vowel (fī l-bayt: one word apart, the spelling's).

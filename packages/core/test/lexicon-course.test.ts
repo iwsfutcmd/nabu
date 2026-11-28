@@ -154,6 +154,36 @@ describe("lexiconCourse", () => {
     for (const id of ["ind", "sub", "ms"]) expect(whole).not.toContain(id);
     // A feminine noun takes no feminine.
     expect(offered("sayyara", [], [])).not.toContain("fem");
+    // A possessive suffix brings the construct state itself: onto kitābu, never onto al-kitābu or kitābun.
+    expect(offered("kitab", [], ["sing", "nom"])).toEqual(
+      expect.arrayContaining(["poss-3ms", "al", "indef", "cons"]),
+    );
+    expect(offered("kitab", ["al"], ["sing", "nom"])).not.toContain("poss-3ms");
+    expect(offered("kitab", [], ["sing", "nom", "indef"])).not.toContain(
+      "poss-3ms",
+    );
+    expect(offered("kitab", [], ["sing", "nom", "poss-3ms"])).not.toContain(
+      "cons",
+    );
+    const written = (...ids: string[]) =>
+      explore(x, {
+        base: "lexeme:kitab",
+        feats: {},
+        before: ids
+          .filter((i) => i === "al")
+          .map((l) => ({ lexeme: `lexeme:${l}` })),
+        after: ids
+          .filter((i) => i !== "al")
+          .map((l) => ({ lexeme: `lexeme:${l}` })),
+        ...EXPLORE_DEFAULTS,
+      });
+    expect(written("sing", "nom", "poss-3ms").ok).toBe(true);
+    expect(JSON.stringify(written("al", "sing", "nom", "poss-3ms"))).toContain(
+      '"twice"',
+    );
+    expect(
+      JSON.stringify(written("sing", "nom", "cons", "poss-3ms")),
+    ).toContain('"twice"');
   });
 
   it("says so where the language has no orthography among the profiles", () => {

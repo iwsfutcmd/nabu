@@ -975,7 +975,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Morphology is merging lexemes (the owner, 2026-11-26): a lexeme has its category and its form, never a switch for
   person, tense or case; every value a word has is brought by a lexeme merged with it (`realises`), zero morphemes
   included (an empty allomorph). A bound lexeme says what it merges onto (`on`: the base's pos, which side it stands, `at`, values the word
-  must have, `has`, a value for a feature, `needs`, or every requirement met, `complete`; merged outward from the base
+  must have, `has`, a value for a feature, `needs`, or every requirement met, counting what it brings itself, `complete`; merged outward from the base
   onto the word as it stands, so these are the order on each side, never slots: core `mergeOrder`; the explorer
   offers only what can merge onto the word now, `addable`), what the word then requires (`requires`: finite-ness requires person and number) and which stem it
   makes the base take (`selects`, the last in the token winning). A language that states `requires` per category
@@ -983,6 +983,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   fails is `attach`, a feature brought twice `twice`; a form stored for the merged word covers the lexemes whose
   values it has (a broken plural). Feature values are abstract: learners learn lexemes. The citation form is a
   mnemonic, a named merge. Stage 1 (the engine, conformance/realise-merge.json) is built; apc converts next, then es.
+- What is learned (ADR 0159, the owner, 2026-11-28): lexemes only, zero ones included, never a feature value (values are
+  names: labels, groupings, feedback's words); a rule branch is a memory under its lexeme. A card credits a lexeme only
+  where the prompt decides it against the lexemes that could stand in its place (those merging onto the same word and
+  bringing the same features, from the rules) and the answer could have held one; a zero only beside an audible one.
+  Not built yet: the ADR's order of work is apc's tokens, a typed word read back as lexemes, cards from competitors.
 - Modern Standard Arabic (lexicons/arb, profiles/arb-Arab.standard.yaml; docs/rules/arb.md) is written in the merge
   model from the start, verbs first, for the owner to check: no course uses it. It opens in the rules explorer from
   Home in debug mode (#/lexicon/arb/rules: core `lexiconCourse`, apps/web lexicon-source.ts serves a lexicon no course

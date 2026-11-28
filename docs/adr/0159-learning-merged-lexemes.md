@@ -1,6 +1,6 @@
 # 0159. Learning merged lexemes: lexemes only, each by contrast
 
-- Status: Proposed
+- Status: Accepted (2026-11-28, the owner: "Let's do it")
 - Date: 2026-11-28
 - Builds on [0158](0158-morphology-is-merging-lexemes.md) (morphology is merging lexemes). Amends, once accepted:
   [0146](0146-what-is-learned.md) (a feature value as a part, its `read-off` and `choose` skills),
@@ -49,7 +49,8 @@ answer could have held one of them.**
 ### 3. What this needs (the order of work)
 
 1. **arb's open questions that touch the model**, first the possessive suffix bringing `Definite=Cons` itself
-   (docs/rules/arb.md, question 7), which also refuses al- with a possessive (`twice`).
+   (docs/rules/arb.md, question 7), which also refuses al- with a possessive (`twice`). Done 2026-11-28: `on.complete`
+   counts what the lexeme brings itself, so the suffix merges onto kitābu, which it completes.
 2. **apc's tokens list lexemes** (ADR 0158 E): a converter from today's chosen values to the lexemes that bring them,
    each token proven by `realiseToken` to give the same form; the compiler derives values; the bundle format rises.
    An old event's `feature:` parts map, through aliases.yaml, to the lexemes its own token wrote where that is known;
