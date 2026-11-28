@@ -3498,6 +3498,239 @@
         }
       },
       "note": "A form stored for the merged word (an irregular plural) stands for the lexemes whose values it covers: the plural's -a is in it, not joined to it."
+    },
+    {
+      "id": "realise/merge/zero-transparent",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number",
+              "Definite"
+            ]
+          },
+          "features": {
+            "Number": [
+              "Sing"
+            ],
+            "Definite": [
+              "Def"
+            ]
+          },
+          "requires": {
+            "NOUN": [
+              "Number"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          }
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:def",
+              "realises": {
+                "Definite": "Def"
+              },
+              "on": {
+                "pos": [
+                  "NOUN"
+                ],
+                "has": {
+                  "Number": "Sing"
+                }
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sg",
+              "realises": {
+                "Number": "Sing"
+              },
+              "on": {
+                "pos": [
+                  "NOUN"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": ""
+                }
+              ]
+            },
+            {
+              "id": "lexeme:tap",
+              "pos": "NOUN",
+              "form": "tap",
+              "allomorphs": [
+                {
+                  "form": "tab",
+                  "before": {
+                    "startsIn": "{V}*"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:tap",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:sg"
+          },
+          {
+            "lexeme": "lexeme:def"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tab+i",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "A zero writes nothing, so what stands after it is what stands after the place before it: tap's allomorph tab before a vowel is chosen before sg's zero and -i (chg's šajarah before nom and the ezafe)."
+    },
+    {
+      "id": "realise/merge/zero-transparent/alone",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "NOUN": [
+              "Number",
+              "Definite"
+            ]
+          },
+          "features": {
+            "Number": [
+              "Sing"
+            ],
+            "Definite": [
+              "Def"
+            ]
+          },
+          "requires": {
+            "NOUN": [
+              "Number"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "V": "[aeiou]",
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          }
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:def",
+              "realises": {
+                "Definite": "Def"
+              },
+              "on": {
+                "pos": [
+                  "NOUN"
+                ],
+                "has": {
+                  "Number": "Sing"
+                }
+              },
+              "allomorphs": [
+                {
+                  "form": "i"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:sg",
+              "realises": {
+                "Number": "Sing"
+              },
+              "on": {
+                "pos": [
+                  "NOUN"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": ""
+                }
+              ]
+            },
+            {
+              "id": "lexeme:tap",
+              "pos": "NOUN",
+              "form": "tap",
+              "allomorphs": [
+                {
+                  "form": "tab",
+                  "before": {
+                    "startsIn": "{V}*"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:tap",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:sg"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "tap",
+          "status": "given",
+          "steps": []
+        }
+      },
+      "note": "Before the zero alone nothing follows: tap."
     }
   ]
 }

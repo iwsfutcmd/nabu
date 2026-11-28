@@ -1264,19 +1264,29 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   const cell = merging.value.cell;
   const present: ReadonlySet<string> = new Set(lexemes.map((l) => l.id));
   const ownBase = !built.value.whole && built.value.steps.length === 0 && options.word === undefined && choosesByFollowing(baseLexeme);
+  /**
+   * What stands after place k in the token: the next piece that writes something (a zero writes nothing, so what follows
+   * it is what follows: chg's šajarahʾ before nom ∅ and the ezafe), or the next word's base where none does.
+   */
+  const after = (pieces: readonly (readonly Unit[])[], k: number): { readonly units: readonly Unit[]; readonly next: Lexeme | undefined } => {
+    for (let j = k + 1; j < written.length; j++) if ((pieces[j] as readonly Unit[]).length > 0) return { units: pieces[j] as readonly Unit[], next: undefined };
+    return { units: [], next };
+  };
   /** Every place's allomorph chosen by its conditions, twice over, but the places `fixed` keeps (a free variant's). */
   const choose = (start: readonly (readonly Unit[])[], fixed: ReadonlySet<number>): Result<readonly (readonly Unit[])[], RealiseError> => {
     const pieces = [...start];
     for (let pass = 0; pass < 2; pass++) {
       for (let k = baseAt + 1; k < written.length; k++) {
         if (fixed.has(k) || own[k] !== undefined || coveredAt(k)) continue;
-        const f = allomorphOf(lang, lexemes[k] as Lexeme, joinedIn(pieces, 0, k), k + 1 < written.length ? (pieces[k + 1] as readonly Unit[]) : [], k + 1 < written.length ? undefined : next, { lexeme: baseLexeme, cell, lexemes: present, blocking: options.blocking ?? true });
+        const a = after(pieces, k);
+        const f = allomorphOf(lang, lexemes[k] as Lexeme, joinedIn(pieces, 0, k), a.units, a.next, { lexeme: baseLexeme, cell, lexemes: present, blocking: options.blocking ?? true });
         if (f === undefined) return err({ kind: "form", lexeme: (lexemes[k] as Lexeme).id });
         pieces[k] = unitsOf(f);
       }
       // The base's own form chosen by what follows (bad- before -na; 7da3shar before a noun).
       if (ownBase && !fixed.has(baseAt)) {
-        const f = allomorphOf(lang, baseLexeme, [], baseAt + 1 < written.length ? (pieces[baseAt + 1] as readonly Unit[]) : [], baseAt + 1 < written.length ? undefined : next, { cell, lexemes: present });
+        const a = after(pieces, baseAt);
+        const f = allomorphOf(lang, baseLexeme, [], a.units, a.next, { cell, lexemes: present });
         if (f !== undefined) pieces[baseAt] = unitsOf(f);
       }
       for (let k = baseAt - 1; k >= 0; k--) {
@@ -1320,8 +1330,9 @@ export const realiseToken = (lang: CompiledLanguage, written: readonly WrittenLe
   const places = forms.map((f, k): readonly (readonly Unit[])[] => {
     if (k === baseAt && !ownForm) return [];
     const preceding = k === baseAt ? [] : joinedIn(forms, 0, k);
-    const following = k < baseAt ? joinedIn(forms, k + 1, written.length) : k + 1 < written.length ? (forms[k + 1] as readonly Unit[]) : [];
-    const nextWord = k >= baseAt && k + 1 >= written.length ? next : undefined;
+    const a = after(forms, k);
+    const following = k < baseAt ? joinedIn(forms, k + 1, written.length) : a.units;
+    const nextWord = k >= baseAt ? a.next : undefined;
     // The token's base, as `choose` gives it to each place.
     const of: TokenBase = k > baseAt ? { lexeme: baseLexeme, cell, lexemes: present, blocking: options.blocking ?? true } : { cell, lexemes: present };
     return freeOf(lang, lexemes[k] as Lexeme, preceding, following, nextWord, of)
