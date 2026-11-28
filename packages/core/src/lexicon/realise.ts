@@ -95,7 +95,8 @@ export type RealiseError =
   /**
    * A lexeme merged where its `on` does not hold (ADR 0158): on the wrong side of the base, onto another part of
    * speech, or onto a word that lacks, from the lexemes merged before it (nearer its base), a value it merges onto
-   * (`has`), a value for a feature (`needs`) or a requirement met, by the word or the lexeme itself (`complete`).
+   * (`has`), a value for a feature (`needs`) or a requirement met, by the word or the lexeme itself (`complete`), or
+   * onto a word that has already a value it must come before (`lacks`: chg's possessive onto a word with a case).
    */
   | {
       readonly kind: "attach";
@@ -104,6 +105,7 @@ export type RealiseError =
       readonly has?: UdFeatures;
       readonly at?: "before" | "after";
       readonly needs?: readonly string[];
+      readonly lacks?: readonly string[];
       readonly complete?: true;
     }
   /** Two lexemes of a token bring the same feature (ADR 0158: no value is brought twice). */
@@ -906,6 +908,7 @@ interface MergeConditions {
   readonly pos?: readonly string[] | undefined;
   readonly has?: UdFeatures | undefined;
   readonly needs?: readonly string[] | undefined;
+  readonly lacks?: readonly string[] | undefined;
   readonly complete?: true | undefined;
 }
 
@@ -935,6 +938,7 @@ const mergingWord = (
         if (c.pos !== undefined && (baseLexeme.pos === undefined || !c.pos.includes(baseLexeme.pos))) return { kind: "attach", lexeme: lexeme.id, pos: c.pos };
         if (c.has !== undefined && !hasValues(values, c.has)) return { kind: "attach", lexeme: lexeme.id, has: c.has };
         if (c.needs !== undefined && c.needs.some((f) => values[f] === undefined)) return { kind: "attach", lexeme: lexeme.id, needs: c.needs };
+        if (c.lacks !== undefined && c.lacks.some((f) => values[f] !== undefined)) return { kind: "attach", lexeme: lexeme.id, lacks: c.lacks };
         // Complete once it is merged: every requirement met by the word or by what this lexeme brings itself (arb's
         // possessive suffix brings the construct state a noun requires).
         if (c.complete === true && [...required].some((f) => values[f] === undefined && lexeme.realises?.[f] === undefined))

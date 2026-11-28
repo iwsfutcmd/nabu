@@ -2492,6 +2492,7 @@ class OrItem(BaseModel):
     pos: Annotated[list[PartOfSpeech] | None, Field(min_length=1)] = None
     has: UdFeatures | None = None
     needs: Annotated[list[str] | None, Field(min_length=1)] = None
+    lacks: Annotated[list[str] | None, Field(min_length=1)] = None
     complete: Literal[True] | None = None
 
 
@@ -2510,6 +2511,13 @@ class On(BaseModel):
         list[str] | None,
         Field(
             description="Features the word must have some value for already, whatever the value (arb's mood after the number ending: needs Number).",
+            min_length=1,
+        ),
+    ] = None
+    lacks: Annotated[
+        list[str] | None,
+        Field(
+            description="Features the word must have no value for yet: what merges after this lexeme, farther from the base (chg's possessive before a case: stem + plural + possessive + case, Schluessel 3.4).",
             min_length=1,
         ),
     ] = None

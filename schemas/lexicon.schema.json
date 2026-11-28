@@ -45,6 +45,7 @@
             "pos": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/PartOfSpeech" } },
             "has": { "$ref": "common.schema.json#/$defs/UdFeatures" },
             "needs": { "description": "Features the word must have some value for already, whatever the value (arb's mood after the number ending: needs Number).", "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+            "lacks": { "description": "Features the word must have no value for yet: what merges after this lexeme, farther from the base (chg's possessive before a case: stem + plural + possessive + case, Schluessel 3.4).", "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
             "complete": { "description": "Merges only onto a word it leaves complete: every requirement met by the word or by what this lexeme brings itself (arb's pronoun suffixes onto ʾaktubu, never onto ʾaktub-; the possessive brings the construct state a noun requires; a proclitic onto a whole word).", "const": true },
             "or": {
               "description": "Other hosts it merges onto, each with its own conditions, on the same side (`at`): it merges where `on` itself or any of these holds. apc's -e onto an adjective or a noun, or onto a verb only as a participle (`{pos: [VERB], has: {Aspect: Part}}`).",
@@ -58,6 +59,7 @@
                   "pos": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "common.schema.json#/$defs/PartOfSpeech" } },
                   "has": { "$ref": "common.schema.json#/$defs/UdFeatures" },
                   "needs": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
+                  "lacks": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string" } },
                   "complete": { "const": true }
                 }
               }

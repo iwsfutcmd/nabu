@@ -2582,6 +2582,349 @@
       "note": "The same suffix merged before it: no Person yet."
     },
     {
+      "id": "realise/merge/lacks-on",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Aspect",
+              "Person",
+              "Number"
+            ],
+            "NOUN": [
+              "Number",
+              "Case",
+              "Person[psor]"
+            ]
+          },
+          "features": {
+            "Aspect": [
+              "Perf"
+            ],
+            "Person": [
+              "1",
+              "3"
+            ],
+            "Number": [
+              "Sing",
+              "Plur"
+            ],
+            "Case": [
+              "Nom",
+              "Dat"
+            ],
+            "Person[psor]": [
+              "1"
+            ]
+          },
+          "requires": {
+            "VERB": [
+              "Aspect"
+            ],
+            "NOUN": [
+              "Case"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          }
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:dom",
+              "pos": "NOUN",
+              "form": "dom"
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "on": {
+                "at": "after",
+                "pos": [
+                  "NOUN"
+                ],
+                "lacks": [
+                  "Case",
+                  "Person[psor]"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": "a"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poss1",
+              "realises": {
+                "Person[psor]": "1"
+              },
+              "on": {
+                "at": "after",
+                "pos": [
+                  "NOUN"
+                ],
+                "lacks": [
+                  "Case"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": "im"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:nom",
+              "realises": {
+                "Case": "Nom"
+              },
+              "on": {
+                "at": "after",
+                "pos": [
+                  "NOUN"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": ""
+                }
+              ]
+            },
+            {
+              "id": "lexeme:dat",
+              "realises": {
+                "Case": "Dat"
+              },
+              "on": {
+                "at": "after",
+                "pos": [
+                  "NOUN"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": "ga"
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:dom",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:pl"
+          },
+          {
+            "lexeme": "lexeme:poss1"
+          },
+          {
+            "lexeme": "lexeme:dat"
+          }
+        ]
+      },
+      "expected": {
+        "ok": true,
+        "value": {
+          "form": "dom+a+im+ga"
+        }
+      },
+      "note": "A suffix that must come before a case (on.lacks): stem + plural + possessive + case, as Chaghatay orders them (Schluessel 3.4)."
+    },
+    {
+      "id": "realise/merge/lacks-after",
+      "op": "realise-token",
+      "args": {
+        "language": {
+          "id": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "dimensions": {
+            "VERB": [
+              "Aspect",
+              "Person",
+              "Number"
+            ],
+            "NOUN": [
+              "Number",
+              "Case",
+              "Person[psor]"
+            ]
+          },
+          "features": {
+            "Aspect": [
+              "Perf"
+            ],
+            "Person": [
+              "1",
+              "3"
+            ],
+            "Number": [
+              "Sing",
+              "Plur"
+            ],
+            "Case": [
+              "Nom",
+              "Dat"
+            ],
+            "Person[psor]": [
+              "1"
+            ]
+          },
+          "requires": {
+            "VERB": [
+              "Aspect"
+            ],
+            "NOUN": [
+              "Case"
+            ]
+          },
+          "notation": {
+            "sets": {
+              "C": "[bcdfghjklmnpqrstvwxyz]"
+            }
+          }
+        },
+        "lexicon": {
+          "language": "zz",
+          "license": "CC0-1.0",
+          "provenance": {
+            "author": "llm:claude@merge-fixture",
+            "status": "draft"
+          },
+          "lexemes": [
+            {
+              "id": "lexeme:dom",
+              "pos": "NOUN",
+              "form": "dom"
+            },
+            {
+              "id": "lexeme:pl",
+              "realises": {
+                "Number": "Plur"
+              },
+              "on": {
+                "at": "after",
+                "pos": [
+                  "NOUN"
+                ],
+                "lacks": [
+                  "Case",
+                  "Person[psor]"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": "a"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:poss1",
+              "realises": {
+                "Person[psor]": "1"
+              },
+              "on": {
+                "at": "after",
+                "pos": [
+                  "NOUN"
+                ],
+                "lacks": [
+                  "Case"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": "im"
+                }
+              ]
+            },
+            {
+              "id": "lexeme:nom",
+              "realises": {
+                "Case": "Nom"
+              },
+              "on": {
+                "at": "after",
+                "pos": [
+                  "NOUN"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": ""
+                }
+              ]
+            },
+            {
+              "id": "lexeme:dat",
+              "realises": {
+                "Case": "Dat"
+              },
+              "on": {
+                "at": "after",
+                "pos": [
+                  "NOUN"
+                ]
+              },
+              "allomorphs": [
+                {
+                  "form": "ga"
+                }
+              ]
+            }
+          ]
+        },
+        "lexemes": [
+          {
+            "lexeme": "lexeme:dom",
+            "base": true
+          },
+          {
+            "lexeme": "lexeme:dat"
+          },
+          {
+            "lexeme": "lexeme:poss1"
+          }
+        ]
+      },
+      "expected": {
+        "ok": false,
+        "error": {
+          "kind": "attach",
+          "lexeme": "lexeme:poss1",
+          "lacks": [
+            "Case"
+          ]
+        }
+      },
+      "note": "The same possessive merged after the case: the word has a case already."
+    },
+    {
       "id": "realise/merge/twice",
       "op": "realise-token",
       "args": {

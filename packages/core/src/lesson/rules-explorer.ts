@@ -298,6 +298,7 @@ const detailsOf = (error: RealiseError): ExploredError["details"] => {
         ...(error.has === undefined ? [] : [{ key: "has", value: cellKey(error.has) }]),
         ...(error.at === undefined ? [] : [{ key: "at", value: error.at }]),
         ...(error.needs === undefined ? [] : [{ key: "needs", value: error.needs.join(" | ") }]),
+        ...(error.lacks === undefined ? [] : [{ key: "lacks", value: error.lacks.join(" | ") }]),
         ...(error.complete === undefined ? [] : [{ key: "complete", value: "true" }]),
       ];
     case "twice":

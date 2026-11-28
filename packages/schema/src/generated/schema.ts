@@ -3178,6 +3178,12 @@ export interface Lexeme {
      */
     readonly needs?: readonly string[];
     /**
+     * Features the word must have no value for yet: what merges after this lexeme, farther from the base (chg's possessive before a case: stem + plural + possessive + case, Schluessel 3.4).
+     *
+     * @minItems 1
+     */
+    readonly lacks?: readonly string[];
+    /**
      * Merges only onto a word it leaves complete: every requirement met by the word or by what this lexeme brings itself (arb's pronoun suffixes onto ʾaktubu, never onto ʾaktub-; the possessive brings the construct state a noun requires; a proclitic onto a whole word).
      */
     readonly complete?: true;
@@ -3196,6 +3202,10 @@ export interface Lexeme {
        * @minItems 1
        */
       readonly needs?: readonly string[];
+      /**
+       * @minItems 1
+       */
+      readonly lacks?: readonly string[];
       readonly complete?: true;
     }[];
     /**
