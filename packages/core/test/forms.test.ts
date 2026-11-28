@@ -140,7 +140,7 @@ describe("a lexeme with no paradigm: the forms the course writes", () => {
   it("takes the values a stem's endings realise as the form's, the whole word its text (uz ichaman, yue 佢哋)", () => {
     const uz = loadCourse("uz", "uz-Latn/standard");
     const ichaman = lexemeForms(uz, "lexeme:ichmoq")?.rows.find((r) => r.texts.some((t) => surfaceOf(t) === "ichaman"));
-    expect(ichaman?.feats).toEqual({ Number: "Sing", Person: "1", Tense: "Pres" });
+    expect(ichaman?.feats).toEqual({ Number: "Sing", Person: "1", Tense: "Pres", VerbForm: "Fin" });
     const yue = loadCourse("yue");
     const forms = lexemeForms(yue, "lexeme:佢");
     expect(forms?.rows.map((r) => r.cell)).toEqual(["", "Number=Plur"]);

@@ -19,13 +19,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Bugun havo issiq.
-      tokens: [{surface: Bugun, lexeme: bugun}, {surface: havo, lexeme: havo}, {surface: issiq, lexeme: issiq}]
+      tokens: [{surface: Bugun, lexeme: bugun}, {surface: havo, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: issiq, lexeme: issiq}]
       reverse: |-
         Bugun [havo] issiq
         Havo bugun issiq
     uz-Cyrl/standard:
       text: Бугун ҳаво иссиқ.
-      tokens: [{surface: Бугун, lexeme: bugun}, {surface: ҳаво, lexeme: havo}, {surface: иссиқ, lexeme: issiq}]
+      tokens: [{surface: Бугун, lexeme: bugun}, {surface: ҳаво, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: иссиқ, lexeme: issiq}]
       reverse: |-
         Бугун [ҳаво] иссиқ
         Ҳаво бугун иссиқ
@@ -39,13 +39,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Bugun havo qanday?
-      tokens: [{surface: Bugun, lexeme: bugun}, {surface: havo, lexeme: havo}, {surface: qanday, lexeme: qanday}]
+      tokens: [{surface: Bugun, lexeme: bugun}, {surface: havo, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: qanday, lexeme: qanday}]
       reverse: |-
         Bugun havo qanday
         Havo bugun qanday
     uz-Cyrl/standard:
       text: Бугун ҳаво қандай?
-      tokens: [{surface: Бугун, lexeme: bugun}, {surface: ҳаво, lexeme: havo}, {surface: қандай, lexeme: qanday}]
+      tokens: [{surface: Бугун, lexeme: bugun}, {surface: ҳаво, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: қандай, lexeme: qanday}]
       reverse: |-
         Бугун ҳаво қандай
         Ҳаво бугун қандай
@@ -58,13 +58,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Bugun havo sovuq.
-      tokens: [{surface: Bugun, lexeme: bugun}, {surface: havo, lexeme: havo}, {surface: sovuq, lexeme: sovuq}]
+      tokens: [{surface: Bugun, lexeme: bugun}, {surface: havo, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: sovuq, lexeme: sovuq}]
       reverse: |-
         Bugun [havo] sovuq
         Havo bugun sovuq
     uz-Cyrl/standard:
       text: Бугун ҳаво совуқ.
-      tokens: [{surface: Бугун, lexeme: bugun}, {surface: ҳаво, lexeme: havo}, {surface: совуқ, lexeme: sovuq}]
+      tokens: [{surface: Бугун, lexeme: bugun}, {surface: ҳаво, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: совуқ, lexeme: sovuq}]
       reverse: |-
         Бугун [ҳаво] совуқ
         Ҳаво бугун совуқ
@@ -78,13 +78,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Bugun yomgʻir yoʻq.
-      tokens: [{surface: Bugun, lexeme: bugun}, {surface: yomgʻir, lexeme: yomgir}, {surface: yoʻq, lexeme: yoq}]
+      tokens: [{surface: Bugun, lexeme: bugun}, {surface: yomgʻir, lexemes: [{lexeme: yomgir, base: true}, {lexeme: nom}]}, {surface: yoʻq, lexeme: yoq}]
       reverse: |-
         Bugun yomgʻir yoʻq
         Bugun yomgʻir yogʻmayapti
     uz-Cyrl/standard:
       text: Бугун ёмғир йўқ.
-      tokens: [{surface: Бугун, lexeme: bugun}, {surface: ёмғир, lexeme: yomgir}, {surface: йўқ, lexeme: yoq}]
+      tokens: [{surface: Бугун, lexeme: bugun}, {surface: ёмғир, lexemes: [{lexeme: yomgir, base: true}, {lexeme: nom}]}, {surface: йўқ, lexeme: yoq}]
       reverse: |-
         Бугун ёмғир йўқ
         Бугун ёмғир ёғмаяпти
@@ -97,11 +97,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Yomgʻir yogʻyapti.
-      tokens: [{surface: Yomgʻir, lexeme: yomgir}, {surface: yogʻyapti, lexemes: [{lexeme: yogmoq, surface: yogʻ, base: true}, {lexeme: prog, surface: yap}, {lexeme: pres-3sg, surface: ti}]}]
+      tokens: [{surface: Yomgʻir, lexemes: [{lexeme: yomgir, base: true}, {lexeme: nom}]}, {surface: yogʻyapti, lexemes: [{lexeme: yogmoq, surface: yogʻ, base: true}, {lexeme: prog, surface: yap}, {lexeme: pres-3sg, surface: ti}]}]
       reverse: Yomgʻir (yogʻyapti|yogʻayapti)
     uz-Cyrl/standard:
       text: Ёмғир ёғяпти.
-      tokens: [{surface: Ёмғир, lexeme: yomgir}, {surface: ёғяпти, lexemes: [{lexeme: yogmoq, surface: ёғ, base: true}, {lexeme: prog, surface: яп}, {lexeme: pres-3sg, surface: ти}]}]
+      tokens: [{surface: Ёмғир, lexemes: [{lexeme: yomgir, base: true}, {lexeme: nom}]}, {surface: ёғяпти, lexemes: [{lexeme: yogmoq, surface: ёғ, base: true}, {lexeme: prog, surface: яп}, {lexeme: pres-3sg, surface: ти}]}]
       reverse: Ёмғир (ёғяпти|ёғаяпти)
   translations:
     en: It('s| is) raining.
@@ -110,11 +110,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Qor yogʻyapti.
-      tokens: [{surface: Qor, lexeme: qor}, {surface: yogʻyapti, lexemes: [{lexeme: yogmoq, surface: yogʻ, base: true}, {lexeme: prog, surface: yap}, {lexeme: pres-3sg, surface: ti}]}]
+      tokens: [{surface: Qor, lexemes: [{lexeme: qor, base: true}, {lexeme: nom}]}, {surface: yogʻyapti, lexemes: [{lexeme: yogmoq, surface: yogʻ, base: true}, {lexeme: prog, surface: yap}, {lexeme: pres-3sg, surface: ti}]}]
       reverse: Qor (yogʻyapti|yogʻayapti)
     uz-Cyrl/standard:
       text: Қор ёғяпти.
-      tokens: [{surface: Қор, lexeme: qor}, {surface: ёғяпти, lexemes: [{lexeme: yogmoq, surface: ёғ, base: true}, {lexeme: prog, surface: яп}, {lexeme: pres-3sg, surface: ти}]}]
+      tokens: [{surface: Қор, lexemes: [{lexeme: qor, base: true}, {lexeme: nom}]}, {surface: ёғяпти, lexemes: [{lexeme: yogmoq, surface: ёғ, base: true}, {lexeme: prog, surface: яп}, {lexeme: pres-3sg, surface: ти}]}]
       reverse: Қор (ёғяпти|ёғаяпти)
   translations:
     en: It('s| is) snowing.
@@ -123,14 +123,14 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Yozda havo juda issiq.
-      tokens: [{surface: Yozda, lexemes: [{lexeme: yoz, surface: Yoz, base: true}, {lexeme: loc, surface: da}]}, {surface: havo, lexeme: havo}, {surface: juda, lexeme: juda}, {surface: issiq, lexeme: issiq}]
+      tokens: [{surface: Yozda, lexemes: [{lexeme: yoz, surface: Yoz, base: true}, {lexeme: loc, surface: da}]}, {surface: havo, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: juda, lexeme: juda}, {surface: issiq, lexeme: issiq}]
       reverse: |-
         Yozda [havo] juda issiq
         Yozda [havo] juda issiq boʻladi
         Havo yozda juda issiq
     uz-Cyrl/standard:
       text: Ёзда ҳаво жуда иссиқ.
-      tokens: [{surface: Ёзда, lexemes: [{lexeme: yoz, surface: Ёз, base: true}, {lexeme: loc, surface: да}]}, {surface: ҳаво, lexeme: havo}, {surface: жуда, lexeme: juda}, {surface: иссиқ, lexeme: issiq}]
+      tokens: [{surface: Ёзда, lexemes: [{lexeme: yoz, surface: Ёз, base: true}, {lexeme: loc, surface: да}]}, {surface: ҳаво, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: жуда, lexeme: juda}, {surface: иссиқ, lexeme: issiq}]
       reverse: |-
         Ёзда [ҳаво] жуда иссиқ
         Ёзда [ҳаво] жуда иссиқ бўлади
@@ -145,11 +145,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Qishda qor yogʻadi.
-      tokens: [{surface: Qishda, lexemes: [{lexeme: qish, surface: Qish, base: true}, {lexeme: loc, surface: da}]}, {surface: qor, lexeme: qor}, {surface: yogʻadi, lexemes: [{lexeme: yogmoq, surface: yogʻ, base: true}, {lexeme: pres, surface: a}, {lexeme: pres-3sg, surface: di}]}]
+      tokens: [{surface: Qishda, lexemes: [{lexeme: qish, surface: Qish, base: true}, {lexeme: loc, surface: da}]}, {surface: qor, lexemes: [{lexeme: qor, base: true}, {lexeme: nom}]}, {surface: yogʻadi, lexemes: [{lexeme: yogmoq, surface: yogʻ, base: true}, {lexeme: pres, surface: a}, {lexeme: pres-3sg, surface: di}]}]
       reverse: Qishda qor yogʻadi
     uz-Cyrl/standard:
       text: Қишда қор ёғади.
-      tokens: [{surface: Қишда, lexemes: [{lexeme: qish, surface: Қиш, base: true}, {lexeme: loc, surface: да}]}, {surface: қор, lexeme: qor}, {surface: ёғади, lexemes: [{lexeme: yogmoq, surface: ёғ, base: true}, {lexeme: pres, surface: а}, {lexeme: pres-3sg, surface: ди}]}]
+      tokens: [{surface: Қишда, lexemes: [{lexeme: qish, surface: Қиш, base: true}, {lexeme: loc, surface: да}]}, {surface: қор, lexemes: [{lexeme: qor, base: true}, {lexeme: nom}]}, {surface: ёғади, lexemes: [{lexeme: yogmoq, surface: ёғ, base: true}, {lexeme: pres, surface: а}, {lexeme: pres-3sg, surface: ди}]}]
       reverse: Қишда қор ёғади
   translations:
     en: |-
@@ -160,14 +160,14 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Bahorda havo yaxshi.
-      tokens: [{surface: Bahorda, lexemes: [{lexeme: bahor, surface: Bahor, base: true}, {lexeme: loc, surface: da}]}, {surface: havo, lexeme: havo}, {surface: yaxshi, lexeme: yaxshi}]
+      tokens: [{surface: Bahorda, lexemes: [{lexeme: bahor, surface: Bahor, base: true}, {lexeme: loc, surface: da}]}, {surface: havo, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: yaxshi, lexeme: yaxshi}]
       reverse: |-
         Bahorda havo yaxshi
         Bahorda havo yaxshi boʻladi
         Havo bahorda yaxshi
     uz-Cyrl/standard:
       text: Баҳорда ҳаво яхши.
-      tokens: [{surface: Баҳорда, lexemes: [{lexeme: bahor, surface: Баҳор, base: true}, {lexeme: loc, surface: да}]}, {surface: ҳаво, lexeme: havo}, {surface: яхши, lexeme: yaxshi}]
+      tokens: [{surface: Баҳорда, lexemes: [{lexeme: bahor, surface: Баҳор, base: true}, {lexeme: loc, surface: да}]}, {surface: ҳаво, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: яхши, lexeme: yaxshi}]
       reverse: |-
         Баҳорда ҳаво яхши
         Баҳорда ҳаво яхши бўлади
@@ -181,13 +181,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Kuzda uzum koʻp.
-      tokens: [{surface: Kuzda, lexemes: [{lexeme: kuz, surface: Kuz, base: true}, {lexeme: loc, surface: da}]}, {surface: uzum, lexeme: uzum}, {surface: koʻp, lexeme: kop}]
+      tokens: [{surface: Kuzda, lexemes: [{lexeme: kuz, surface: Kuz, base: true}, {lexeme: loc, surface: da}]}, {surface: uzum, lexemes: [{lexeme: uzum, base: true}, {lexeme: nom}]}, {surface: koʻp, lexeme: kop}]
       reverse: |-
         Kuzda uzum koʻp
         Kuzda uzum koʻp boʻladi
     uz-Cyrl/standard:
       text: Кузда узум кўп.
-      tokens: [{surface: Кузда, lexemes: [{lexeme: kuz, surface: Куз, base: true}, {lexeme: loc, surface: да}]}, {surface: узум, lexeme: uzum}, {surface: кўп, lexeme: kop}]
+      tokens: [{surface: Кузда, lexemes: [{lexeme: kuz, surface: Куз, base: true}, {lexeme: loc, surface: да}]}, {surface: узум, lexemes: [{lexeme: uzum, base: true}, {lexeme: nom}]}, {surface: кўп, lexeme: kop}]
       reverse: |-
         Кузда узум кўп
         Кузда узум кўп бўлади
@@ -200,13 +200,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Bahor chiroyli fasl.
-      tokens: [{surface: Bahor, lexeme: bahor}, {surface: chiroyli, lexeme: chiroyli}, {surface: fasl, lexeme: fasl}]
+      tokens: [{surface: Bahor, lexemes: [{lexeme: bahor, base: true}, {lexeme: nom}]}, {surface: chiroyli, lexeme: chiroyli}, {surface: fasl, lexemes: [{lexeme: fasl, base: true}, {lexeme: nom}]}]
       reverse: |-
         Bahor chiroyli fasl
         Bahor goʻzal fasl
     uz-Cyrl/standard:
       text: Баҳор чиройли фасл.
-      tokens: [{surface: Баҳор, lexeme: bahor}, {surface: чиройли, lexeme: chiroyli}, {surface: фасл, lexeme: fasl}]
+      tokens: [{surface: Баҳор, lexemes: [{lexeme: bahor, base: true}, {lexeme: nom}]}, {surface: чиройли, lexeme: chiroyli}, {surface: фасл, lexemes: [{lexeme: fasl, base: true}, {lexeme: nom}]}]
       reverse: |-
         Баҳор чиройли фасл
         Баҳор гўзал фасл
@@ -217,13 +217,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Sizga qaysi fasl yoqadi?
-      tokens: [{surface: Sizga, lexemes: [{lexeme: siz, surface: Siz, base: true}, {lexeme: dat, surface: ga}]}, {surface: qaysi, lexeme: qaysi}, {surface: fasl, lexeme: fasl}, {surface: yoqadi, lexemes: [{lexeme: yoqmoq, surface: yoq, base: true}, {lexeme: pres, surface: a}, {lexeme: pres-3sg, surface: di}]}]
+      tokens: [{surface: Sizga, lexemes: [{lexeme: siz, surface: Siz, base: true}, {lexeme: dat, surface: ga}]}, {surface: qaysi, lexeme: qaysi}, {surface: fasl, lexemes: [{lexeme: fasl, base: true}, {lexeme: nom}]}, {surface: yoqadi, lexemes: [{lexeme: yoqmoq, surface: yoq, base: true}, {lexeme: pres, surface: a}, {lexeme: pres-3sg, surface: di}]}]
       reverse: |-
         Sizga qaysi fasl yoqadi
         Senga qaysi fasl yoqadi
     uz-Cyrl/standard:
       text: Сизга қайси фасл ёқади?
-      tokens: [{surface: Сизга, lexemes: [{lexeme: siz, surface: Сиз, base: true}, {lexeme: dat, surface: га}]}, {surface: қайси, lexeme: qaysi}, {surface: фасл, lexeme: fasl}, {surface: ёқади, lexemes: [{lexeme: yoqmoq, surface: ёқ, base: true}, {lexeme: pres, surface: а}, {lexeme: pres-3sg, surface: ди}]}]
+      tokens: [{surface: Сизга, lexemes: [{lexeme: siz, surface: Сиз, base: true}, {lexeme: dat, surface: га}]}, {surface: қайси, lexeme: qaysi}, {surface: фасл, lexemes: [{lexeme: fasl, base: true}, {lexeme: nom}]}, {surface: ёқади, lexemes: [{lexeme: yoqmoq, surface: ёқ, base: true}, {lexeme: pres, surface: а}, {lexeme: pres-3sg, surface: ди}]}]
       reverse: |-
         Сизга қайси фасл ёқади
         Сенга қайси фасл ёқади
@@ -234,11 +234,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Menga yoz yoqadi.
-      tokens: [{surface: Menga, lexemes: [{lexeme: men, surface: Men, base: true}, {lexeme: dat, surface: ga}]}, {surface: yoz, lexeme: yoz}, {surface: yoqadi, lexemes: [{lexeme: yoqmoq, surface: yoq, base: true}, {lexeme: pres, surface: a}, {lexeme: pres-3sg, surface: di}]}]
+      tokens: [{surface: Menga, lexemes: [{lexeme: men, surface: Men, base: true}, {lexeme: dat, surface: ga}]}, {surface: yoz, lexemes: [{lexeme: yoz, base: true}, {lexeme: nom}]}, {surface: yoqadi, lexemes: [{lexeme: yoqmoq, surface: yoq, base: true}, {lexeme: pres, surface: a}, {lexeme: pres-3sg, surface: di}]}]
       reverse: Menga yoz yoqadi
     uz-Cyrl/standard:
       text: Менга ёз ёқади.
-      tokens: [{surface: Менга, lexemes: [{lexeme: men, surface: Мен, base: true}, {lexeme: dat, surface: га}]}, {surface: ёз, lexeme: yoz}, {surface: ёқади, lexemes: [{lexeme: yoqmoq, surface: ёқ, base: true}, {lexeme: pres, surface: а}, {lexeme: pres-3sg, surface: ди}]}]
+      tokens: [{surface: Менга, lexemes: [{lexeme: men, surface: Мен, base: true}, {lexeme: dat, surface: га}]}, {surface: ёз, lexemes: [{lexeme: yoz, base: true}, {lexeme: nom}]}, {surface: ёқади, lexemes: [{lexeme: yoqmoq, surface: ёқ, base: true}, {lexeme: pres, surface: а}, {lexeme: pres-3sg, surface: ди}]}]
       reverse: Менга ёз ёқади
   translations:
     en: |-
@@ -249,11 +249,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Men sayohat qilmoqchiman.
-      tokens: [{surface: Men, lexeme: men}, {surface: sayohat, lexeme: sayohat}, {surface: qilmoqchiman, lexemes: [{lexeme: qilmoq, surface: qil, base: true}, {lexeme: want, surface: moqchi}, {lexeme: cop-1sg, surface: man}]}]
+      tokens: [{surface: Men, lexemes: [{lexeme: men, base: true}, {lexeme: nom}]}, {surface: sayohat, lexemes: [{lexeme: sayohat, base: true}, {lexeme: nom}]}, {surface: qilmoqchiman, lexemes: [{lexeme: qilmoq, surface: qil, base: true}, {lexeme: want, surface: moqchi}, {lexeme: cop-1sg, surface: man}]}]
       reverse: '[Men] sayohat qilmoqchiman'
     uz-Cyrl/standard:
       text: Мен саёҳат қилмоқчиман.
-      tokens: [{surface: Мен, lexeme: men}, {surface: саёҳат, lexeme: sayohat}, {surface: қилмоқчиман, lexemes: [{lexeme: qilmoq, surface: қил, base: true}, {lexeme: want, surface: моқчи}, {lexeme: cop-1sg, surface: ман}]}]
+      tokens: [{surface: Мен, lexemes: [{lexeme: men, base: true}, {lexeme: nom}]}, {surface: саёҳат, lexemes: [{lexeme: sayohat, base: true}, {lexeme: nom}]}, {surface: қилмоқчиман, lexemes: [{lexeme: qilmoq, surface: қил, base: true}, {lexeme: want, surface: моқчи}, {lexeme: cop-1sg, surface: ман}]}]
       reverse: '[Мен] саёҳат қилмоқчиман'
   translations:
     en: |-
@@ -284,13 +284,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Kelasi hafta Samarqandga boraman.
-      tokens: [{surface: Kelasi, lexeme: kelasi}, {surface: hafta, lexeme: hafta}, {surface: Samarqandga, lexemes: [{lexeme: samarqand, surface: Samarqand, base: true}, {lexeme: dat, surface: ga}]}, {surface: boraman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1sg, surface: man}]}]
+      tokens: [{surface: Kelasi, lexeme: kelasi}, {surface: hafta, lexemes: [{lexeme: hafta, base: true}, {lexeme: nom}]}, {surface: Samarqandga, lexemes: [{lexeme: samarqand, surface: Samarqand, base: true}, {lexeme: dat, surface: ga}]}, {surface: boraman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1sg, surface: man}]}]
       reverse: |-
         (Kelasi|Keyingi) hafta [men] Samarqandga boraman
         [Men] (kelasi|keyingi) hafta Samarqandga boraman
     uz-Cyrl/standard:
       text: Келаси ҳафта Самарқандга бораман.
-      tokens: [{surface: Келаси, lexeme: kelasi}, {surface: ҳафта, lexeme: hafta}, {surface: Самарқандга, lexemes: [{lexeme: samarqand, surface: Самарқанд, base: true}, {lexeme: dat, surface: га}]}, {surface: бораман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1sg, surface: ман}]}]
+      tokens: [{surface: Келаси, lexeme: kelasi}, {surface: ҳафта, lexemes: [{lexeme: hafta, base: true}, {lexeme: nom}]}, {surface: Самарқандга, lexemes: [{lexeme: samarqand, surface: Самарқанд, base: true}, {lexeme: dat, surface: га}]}, {surface: бораман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1sg, surface: ман}]}]
       reverse: |-
         (Келаси|Кейинги) ҳафта [мен] Самарқандга бораман
         [Мен] (келаси|кейинги) ҳафта Самарқандга бораман
@@ -320,11 +320,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Oilam bilan boraman.
-      tokens: [{surface: Oilam, lexemes: [{lexeme: oila, surface: Oila, base: true}, {lexeme: poss-1sg, surface: m}]}, {surface: bilan, lexeme: bilan}, {surface: boraman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1sg, surface: man}]}]
+      tokens: [{surface: Oilam, lexemes: [{lexeme: oila, surface: Oila, base: true}, {lexeme: poss-1sg, surface: m}, {lexeme: nom}]}, {surface: bilan, lexeme: bilan}, {surface: boraman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1sg, surface: man}]}]
       reverse: '[Men] oilam bilan boraman'
     uz-Cyrl/standard:
       text: Оилам билан бораман.
-      tokens: [{surface: Оилам, lexemes: [{lexeme: oila, surface: Оила, base: true}, {lexeme: poss-1sg, surface: м}]}, {surface: билан, lexeme: bilan}, {surface: бораман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1sg, surface: ман}]}]
+      tokens: [{surface: Оилам, lexemes: [{lexeme: oila, surface: Оила, base: true}, {lexeme: poss-1sg, surface: м}, {lexeme: nom}]}, {surface: билан, lexeme: bilan}, {surface: бораман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1sg, surface: ман}]}]
       reverse: '[Мен] оилам билан бораман'
   translations:
     en: |-
@@ -352,7 +352,7 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Biletingiz bormi?
-      tokens: [{surface: Biletingiz, lexemes: [{lexeme: bilet, surface: Bilet, base: true}, {lexeme: poss-2, surface: ingiz}]}, {surface: bormi, lexemes: [{lexeme: bor, surface: bor, base: true}, {lexeme: q, surface: mi}]}]
+      tokens: [{surface: Biletingiz, lexemes: [{lexeme: bilet, surface: Bilet, base: true}, {lexeme: poss-2, surface: ingiz}, {lexeme: nom}]}, {surface: bormi, lexemes: [{lexeme: bor, surface: bor, base: true}, {lexeme: q, surface: mi}]}]
       reverse: |-
         [Sizning] biletingiz bormi
         [Sening] bileting bormi
@@ -362,7 +362,7 @@ sentences:
         Chiptang bormi
     uz-Cyrl/standard:
       text: Билетингиз борми?
-      tokens: [{surface: Билетингиз, lexemes: [{lexeme: bilet, surface: Билет, base: true}, {lexeme: poss-2, surface: ингиз}]}, {surface: борми, lexemes: [{lexeme: bor, surface: бор, base: true}, {lexeme: q, surface: ми}]}]
+      tokens: [{surface: Билетингиз, lexemes: [{lexeme: bilet, surface: Билет, base: true}, {lexeme: poss-2, surface: ингиз}, {lexeme: nom}]}, {surface: борми, lexemes: [{lexeme: bor, surface: бор, base: true}, {lexeme: q, surface: ми}]}]
       reverse: |-
         [Сизнинг] билетингиз борми
         [Сенинг] билетинг борми
@@ -380,7 +380,7 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Ikkita bilet bering.
-      tokens: [{surface: Ikkita, lexemes: [{lexeme: ikki, surface: Ikki, base: true}, {lexeme: count, surface: ta}]}, {surface: bilet, lexeme: bilet}, {surface: bering, lexemes: [{lexeme: bermoq, surface: ber, base: true}, {lexeme: imp, surface: ing}]}]
+      tokens: [{surface: Ikkita, lexemes: [{lexeme: ikki, surface: Ikki, base: true}, {lexeme: count, surface: ta}]}, {surface: bilet, lexemes: [{lexeme: bilet, base: true}, {lexeme: nom}]}, {surface: bering, lexemes: [{lexeme: bermoq, surface: ber, base: true}, {lexeme: imp, surface: ing}]}]
       reverse: |-
         [Menga] ikki(ta|) bilet (bering|ber)
         Ikkita chipta bering
@@ -388,7 +388,7 @@ sentences:
         Ikkita bilet bering, iltimos
     uz-Cyrl/standard:
       text: Иккита билет беринг.
-      tokens: [{surface: Иккита, lexemes: [{lexeme: ikki, surface: Икки, base: true}, {lexeme: count, surface: та}]}, {surface: билет, lexeme: bilet}, {surface: беринг, lexemes: [{lexeme: bermoq, surface: бер, base: true}, {lexeme: imp, surface: инг}]}]
+      tokens: [{surface: Иккита, lexemes: [{lexeme: ikki, surface: Икки, base: true}, {lexeme: count, surface: та}]}, {surface: билет, lexemes: [{lexeme: bilet, base: true}, {lexeme: nom}]}, {surface: беринг, lexemes: [{lexeme: bermoq, surface: бер, base: true}, {lexeme: imp, surface: инг}]}]
       reverse: |-
         [Менга] икки(та|) билет (беринг|бер)
         Иккита чипта беринг
@@ -403,13 +403,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Poyezd soat nechada ketadi?
-      tokens: [{surface: Poyezd, lexeme: poyezd}, {surface: soat, lexeme: soat}, {surface: nechada, lexemes: [{lexeme: necha, surface: necha, base: true}, {lexeme: loc, surface: da}]}, {surface: ketadi, lexemes: [{lexeme: ketmoq, surface: ket, base: true}, {lexeme: pres, surface: a}, {lexeme: pres-3sg, surface: di}]}]
+      tokens: [{surface: Poyezd, lexemes: [{lexeme: poyezd, base: true}, {lexeme: nom}]}, {surface: soat, lexemes: [{lexeme: soat, base: true}, {lexeme: nom}]}, {surface: nechada, lexemes: [{lexeme: necha, surface: necha, base: true}, {lexeme: loc, surface: da}]}, {surface: ketadi, lexemes: [{lexeme: ketmoq, surface: ket, base: true}, {lexeme: pres, surface: a}, {lexeme: pres-3sg, surface: di}]}]
       reverse: |-
         Poyezd soat nechada ketadi
         Poyezd soat nechada joʻnaydi
     uz-Cyrl/standard:
       text: Поезд соат нечада кетади?
-      tokens: [{surface: Поезд, lexeme: poyezd}, {surface: соат, lexeme: soat}, {surface: нечада, lexemes: [{lexeme: necha, surface: неча, base: true}, {lexeme: loc, surface: да}]}, {surface: кетади, lexemes: [{lexeme: ketmoq, surface: кет, base: true}, {lexeme: pres, surface: а}, {lexeme: pres-3sg, surface: ди}]}]
+      tokens: [{surface: Поезд, lexemes: [{lexeme: poyezd, base: true}, {lexeme: nom}]}, {surface: соат, lexemes: [{lexeme: soat, base: true}, {lexeme: nom}]}, {surface: нечада, lexemes: [{lexeme: necha, surface: неча, base: true}, {lexeme: loc, surface: да}]}, {surface: кетади, lexemes: [{lexeme: ketmoq, surface: кет, base: true}, {lexeme: pres, surface: а}, {lexeme: pres-3sg, surface: ди}]}]
       reverse: |-
         Поезд соат нечада кетади
         Поезд соат нечада жўнайди
@@ -437,11 +437,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Mehmonxona qayerda?
-      tokens: [{surface: Mehmonxona, lexeme: mehmonxona}, {surface: qayerda, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: loc, surface: da}]}]
+      tokens: [{surface: Mehmonxona, lexemes: [{lexeme: mehmonxona, base: true}, {lexeme: nom}]}, {surface: qayerda, lexemes: [{lexeme: qayer, surface: qayer, base: true}, {lexeme: loc, surface: da}]}]
       reverse: Mehmonxona qayerda
     uz-Cyrl/standard:
       text: Меҳмонхона қаерда?
-      tokens: [{surface: Меҳмонхона, lexeme: mehmonxona}, {surface: қаерда, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: loc, surface: да}]}]
+      tokens: [{surface: Меҳмонхона, lexemes: [{lexeme: mehmonxona, base: true}, {lexeme: nom}]}, {surface: қаерда, lexemes: [{lexeme: qayer, surface: қаер, base: true}, {lexeme: loc, surface: да}]}]
       reverse: Меҳмонхона қаерда
   translations:
     en: Where('s| is) the hotel?
@@ -450,11 +450,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Mehmonxona qimmat emas.
-      tokens: [{surface: Mehmonxona, lexeme: mehmonxona}, {surface: qimmat, lexeme: qimmat}, {surface: emas, lexeme: emas}]
+      tokens: [{surface: Mehmonxona, lexemes: [{lexeme: mehmonxona, base: true}, {lexeme: nom}]}, {surface: qimmat, lexeme: qimmat}, {surface: emas, lexeme: emas}]
       reverse: Mehmonxona qimmat emas
     uz-Cyrl/standard:
       text: Меҳмонхона қиммат эмас.
-      tokens: [{surface: Меҳмонхона, lexeme: mehmonxona}, {surface: қиммат, lexeme: qimmat}, {surface: эмас, lexeme: emas}]
+      tokens: [{surface: Меҳмонхона, lexemes: [{lexeme: mehmonxona, base: true}, {lexeme: nom}]}, {surface: қиммат, lexeme: qimmat}, {surface: эмас, lexeme: emas}]
       reverse: Меҳмонхона қиммат эмас
   translations:
     en: The hotel( isn't| is not|'s not) expensive.
@@ -463,7 +463,7 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Xona bormi?
-      tokens: [{surface: Xona, lexeme: xona}, {surface: bormi, lexemes: [{lexeme: bor, surface: bor, base: true}, {lexeme: q, surface: mi}]}]
+      tokens: [{surface: Xona, lexemes: [{lexeme: xona, base: true}, {lexeme: nom}]}, {surface: bormi, lexemes: [{lexeme: bor, surface: bor, base: true}, {lexeme: q, surface: mi}]}]
       reverse: |-
         Xona bormi
         Boʻsh xona bormi
@@ -472,7 +472,7 @@ sentences:
         Senda boʻsh xona bormi
     uz-Cyrl/standard:
       text: Хона борми?
-      tokens: [{surface: Хона, lexeme: xona}, {surface: борми, lexemes: [{lexeme: bor, surface: бор, base: true}, {lexeme: q, surface: ми}]}]
+      tokens: [{surface: Хона, lexemes: [{lexeme: xona, base: true}, {lexeme: nom}]}, {surface: борми, lexemes: [{lexeme: bor, surface: бор, base: true}, {lexeme: q, surface: ми}]}]
       reverse: |-
         Хона борми
         Бўш хона борми
@@ -490,13 +490,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Xona necha pul?
-      tokens: [{surface: Xona, lexeme: xona}, {surface: necha, lexeme: necha}, {surface: pul, lexeme: pul}]
+      tokens: [{surface: Xona, lexemes: [{lexeme: xona, base: true}, {lexeme: nom}]}, {surface: necha, lexeme: necha}, {surface: pul, lexemes: [{lexeme: pul, base: true}, {lexeme: nom}]}]
       reverse: |-
         Xona necha pul
         Xona qancha
     uz-Cyrl/standard:
       text: Хона неча пул?
-      tokens: [{surface: Хона, lexeme: xona}, {surface: неча, lexeme: necha}, {surface: пул, lexeme: pul}]
+      tokens: [{surface: Хона, lexemes: [{lexeme: xona, base: true}, {lexeme: nom}]}, {surface: неча, lexeme: necha}, {surface: пул, lexemes: [{lexeme: pul, base: true}, {lexeme: nom}]}]
       reverse: |-
         Хона неча пул
         Хона қанча
@@ -510,13 +510,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Buxoroda havo qanday edi?
-      tokens: [{surface: Buxoroda, lexemes: [{lexeme: buxoro, surface: Buxoro, base: true}, {lexeme: loc, surface: da}]}, {surface: havo, lexeme: havo}, {surface: qanday, lexeme: qanday}, {surface: edi, lexemes: [{lexeme: edi, surface: e, base: true}, {lexeme: past, surface: di}]}]
+      tokens: [{surface: Buxoroda, lexemes: [{lexeme: buxoro, surface: Buxoro, base: true}, {lexeme: loc, surface: da}]}, {surface: havo, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: qanday, lexeme: qanday}, {surface: edi, lexemes: [{lexeme: edi, surface: e, base: true}, {lexeme: past, surface: di}, {lexeme: p3}]}]
       reverse: |-
         Buxoroda havo qanday edi
         Havo Buxoroda qanday edi
     uz-Cyrl/standard:
       text: Бухорода ҳаво қандай эди?
-      tokens: [{surface: Бухорода, lexemes: [{lexeme: buxoro, surface: Бухоро, base: true}, {lexeme: loc, surface: да}]}, {surface: ҳаво, lexeme: havo}, {surface: қандай, lexeme: qanday}, {surface: эди, lexemes: [{lexeme: edi, surface: э, base: true}, {lexeme: past, surface: ди}]}]
+      tokens: [{surface: Бухорода, lexemes: [{lexeme: buxoro, surface: Бухоро, base: true}, {lexeme: loc, surface: да}]}, {surface: ҳаво, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: қандай, lexeme: qanday}, {surface: эди, lexemes: [{lexeme: edi, surface: э, base: true}, {lexeme: past, surface: ди}, {lexeme: p3}]}]
       reverse: |-
         Бухорода ҳаво қандай эди
         Ҳаво Бухорода қандай эди
@@ -529,13 +529,13 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Juda issiq edi.
-      tokens: [{surface: Juda, lexeme: juda}, {surface: issiq, lexeme: issiq}, {surface: edi, lexemes: [{lexeme: edi, surface: e, base: true}, {lexeme: past, surface: di}]}]
+      tokens: [{surface: Juda, lexeme: juda}, {surface: issiq, lexeme: issiq}, {surface: edi, lexemes: [{lexeme: edi, surface: e, base: true}, {lexeme: past, surface: di}, {lexeme: p3}]}]
       reverse: |-
         Juda issiq edi
         Havo juda issiq edi
     uz-Cyrl/standard:
       text: Жуда иссиқ эди.
-      tokens: [{surface: Жуда, lexeme: juda}, {surface: иссиқ, lexeme: issiq}, {surface: эди, lexemes: [{lexeme: edi, surface: э, base: true}, {lexeme: past, surface: ди}]}]
+      tokens: [{surface: Жуда, lexeme: juda}, {surface: иссиқ, lexeme: issiq}, {surface: эди, lexemes: [{lexeme: edi, surface: э, base: true}, {lexeme: past, surface: ди}, {lexeme: p3}]}]
       reverse: |-
         Жуда иссиқ эди
         Ҳаво жуда иссиқ эди
@@ -546,11 +546,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Sayohat qanday oʻtdi?
-      tokens: [{surface: Sayohat, lexeme: sayohat}, {surface: qanday, lexeme: qanday}, {surface: oʻtdi, lexemes: [{lexeme: otmoq, surface: oʻt, base: true}, {lexeme: past, surface: di}]}]
+      tokens: [{surface: Sayohat, lexemes: [{lexeme: sayohat, base: true}, {lexeme: nom}]}, {surface: qanday, lexeme: qanday}, {surface: oʻtdi, lexemes: [{lexeme: otmoq, surface: oʻt, base: true}, {lexeme: past, surface: di}, {lexeme: p3}]}]
       reverse: Sayohat(|ingiz|ing) qanday oʻtdi
     uz-Cyrl/standard:
       text: Саёҳат қандай ўтди?
-      tokens: [{surface: Саёҳат, lexeme: sayohat}, {surface: қандай, lexeme: qanday}, {surface: ўтди, lexemes: [{lexeme: otmoq, surface: ўт, base: true}, {lexeme: past, surface: ди}]}]
+      tokens: [{surface: Саёҳат, lexemes: [{lexeme: sayohat, base: true}, {lexeme: nom}]}, {surface: қандай, lexeme: qanday}, {surface: ўтди, lexemes: [{lexeme: otmoq, surface: ўт, base: true}, {lexeme: past, surface: ди}, {lexeme: p3}]}]
       reverse: Саёҳат(|ингиз|инг) қандай ўтди
   translations:
     en: |-
@@ -563,11 +563,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Sayohat juda yaxshi oʻtdi.
-      tokens: [{surface: Sayohat, lexeme: sayohat}, {surface: juda, lexeme: juda}, {surface: yaxshi, lexeme: yaxshi}, {surface: oʻtdi, lexemes: [{lexeme: otmoq, surface: oʻt, base: true}, {lexeme: past, surface: di}]}]
+      tokens: [{surface: Sayohat, lexemes: [{lexeme: sayohat, base: true}, {lexeme: nom}]}, {surface: juda, lexeme: juda}, {surface: yaxshi, lexeme: yaxshi}, {surface: oʻtdi, lexemes: [{lexeme: otmoq, surface: oʻt, base: true}, {lexeme: past, surface: di}, {lexeme: p3}]}]
       reverse: Sayohat juda yaxshi oʻtdi
     uz-Cyrl/standard:
       text: Саёҳат жуда яхши ўтди.
-      tokens: [{surface: Саёҳат, lexeme: sayohat}, {surface: жуда, lexeme: juda}, {surface: яхши, lexeme: yaxshi}, {surface: ўтди, lexemes: [{lexeme: otmoq, surface: ўт, base: true}, {lexeme: past, surface: ди}]}]
+      tokens: [{surface: Саёҳат, lexemes: [{lexeme: sayohat, base: true}, {lexeme: nom}]}, {surface: жуда, lexeme: juda}, {surface: яхши, lexeme: yaxshi}, {surface: ўтди, lexemes: [{lexeme: otmoq, surface: ўт, base: true}, {lexeme: past, surface: ди}, {lexeme: p3}]}]
       reverse: Саёҳат жуда яхши ўтди
   translations:
     en: |-
@@ -578,11 +578,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Koʻp rasm oldim.
-      tokens: [{surface: Koʻp, lexeme: kop}, {surface: rasm, lexeme: rasm}, {surface: oldim, lexemes: [{lexeme: olmoq, surface: ol, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
+      tokens: [{surface: Koʻp, lexeme: kop}, {surface: rasm, lexemes: [{lexeme: rasm, base: true}, {lexeme: nom}]}, {surface: oldim, lexemes: [{lexeme: olmoq, surface: ol, base: true}, {lexeme: past, surface: di}, {lexeme: past-1sg, surface: m}]}]
       reverse: '[Men] koʻp (rasm|surat) oldim'
     uz-Cyrl/standard:
       text: Кўп расм олдим.
-      tokens: [{surface: Кўп, lexeme: kop}, {surface: расм, lexeme: rasm}, {surface: олдим, lexemes: [{lexeme: olmoq, surface: ол, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
+      tokens: [{surface: Кўп, lexeme: kop}, {surface: расм, lexemes: [{lexeme: rasm, base: true}, {lexeme: nom}]}, {surface: олдим, lexemes: [{lexeme: olmoq, surface: ол, base: true}, {lexeme: past, surface: ди}, {lexeme: past-1sg, surface: м}]}]
       reverse: '[Мен] кўп (расм|сурат) олдим'
   translations:
     en: I took (a lot of|lots of|many) (photos|pictures).
@@ -591,11 +591,11 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Yoʻl uzoq.
-      tokens: [{surface: Yoʻl, lexeme: yol}, {surface: uzoq, lexeme: uzoq}]
+      tokens: [{surface: Yoʻl, lexemes: [{lexeme: yol, base: true}, {lexeme: nom}]}, {surface: uzoq, lexeme: uzoq}]
       reverse: Yoʻl uzoq
     uz-Cyrl/standard:
       text: Йўл узоқ.
-      tokens: [{surface: Йўл, lexeme: yol}, {surface: узоқ, lexeme: uzoq}]
+      tokens: [{surface: Йўл, lexemes: [{lexeme: yol, base: true}, {lexeme: nom}]}, {surface: узоқ, lexeme: uzoq}]
       reverse: Йўл узоқ
   translations:
     en: |-
@@ -606,14 +606,14 @@ sentences:
   forms:
     uz-Latn/standard:
       text: Oq yoʻl!
-      tokens: [{surface: Oq, lexeme: oq}, {surface: yoʻl, lexeme: yol}]
+      tokens: [{surface: Oq, lexeme: oq}, {surface: yoʻl, lexemes: [{lexeme: yol, base: true}, {lexeme: nom}]}]
       reverse: |-
         Oq yoʻl
         Yoʻlingiz boʻlsin
         Yoʻlingiz oq boʻlsin
     uz-Cyrl/standard:
       text: Оқ йўл!
-      tokens: [{surface: Оқ, lexeme: oq}, {surface: йўл, lexeme: yol}]
+      tokens: [{surface: Оқ, lexeme: oq}, {surface: йўл, lexemes: [{lexeme: yol, base: true}, {lexeme: nom}]}]
       reverse: |-
         Оқ йўл
         Йўлингиз бўлсин
@@ -648,10 +648,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Aziz, kelasi hafta Buxoroga bormoqchiman.
-          tokens: [{surface: Aziz, lexeme: aziz}, {surface: kelasi, lexeme: kelasi}, {surface: hafta, lexeme: hafta}, {surface: Buxoroga, lexemes: [{lexeme: buxoro, surface: Buxoro, base: true}, {lexeme: dat, surface: ga}]}, {surface: bormoqchiman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: want, surface: moqchi}, {lexeme: cop-1sg, surface: man}]}]
+          tokens: [{surface: Aziz, lexemes: [{lexeme: aziz, base: true}, {lexeme: nom}]}, {surface: kelasi, lexeme: kelasi}, {surface: hafta, lexemes: [{lexeme: hafta, base: true}, {lexeme: nom}]}, {surface: Buxoroga, lexemes: [{lexeme: buxoro, surface: Buxoro, base: true}, {lexeme: dat, surface: ga}]}, {surface: bormoqchiman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: want, surface: moqchi}, {lexeme: cop-1sg, surface: man}]}]
         uz-Cyrl/standard:
           text: Азиз, келаси ҳафта Бухорога бормоқчиман.
-          tokens: [{surface: Азиз, lexeme: aziz}, {surface: келаси, lexeme: kelasi}, {surface: ҳафта, lexeme: hafta}, {surface: Бухорога, lexemes: [{lexeme: buxoro, surface: Бухоро, base: true}, {lexeme: dat, surface: га}]}, {surface: бормоқчиман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: want, surface: моқчи}, {lexeme: cop-1sg, surface: ман}]}]
+          tokens: [{surface: Азиз, lexemes: [{lexeme: aziz, base: true}, {lexeme: nom}]}, {surface: келаси, lexeme: kelasi}, {surface: ҳафта, lexemes: [{lexeme: hafta, base: true}, {lexeme: nom}]}, {surface: Бухорога, lexemes: [{lexeme: buxoro, surface: Бухоро, base: true}, {lexeme: dat, surface: га}]}, {surface: бормоқчиман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: want, surface: моқчи}, {lexeme: cop-1sg, surface: ман}]}]
       translations:
         en: Aziz, I want to go to Bukhara next week.
   - line:
@@ -670,10 +670,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Ha, poyezdda. Bilet arzon.
-          tokens: [{surface: Ha, lexeme: ha}, {surface: poyezdda, lexemes: [{lexeme: poyezd, surface: poyezd, base: true}, {lexeme: loc, surface: da}]}, {surface: Bilet, lexeme: bilet}, {surface: arzon, lexeme: arzon}]
+          tokens: [{surface: Ha, lexeme: ha}, {surface: poyezdda, lexemes: [{lexeme: poyezd, surface: poyezd, base: true}, {lexeme: loc, surface: da}]}, {surface: Bilet, lexemes: [{lexeme: bilet, base: true}, {lexeme: nom}]}, {surface: arzon, lexeme: arzon}]
         uz-Cyrl/standard:
           text: Ҳа, поездда. Билет арзон.
-          tokens: [{surface: Ҳа, lexeme: ha}, {surface: поездда, lexemes: [{lexeme: poyezd, surface: поезд, base: true}, {lexeme: loc, surface: да}]}, {surface: Билет, lexeme: bilet}, {surface: арзон, lexeme: arzon}]
+          tokens: [{surface: Ҳа, lexeme: ha}, {surface: поездда, lexemes: [{lexeme: poyezd, surface: поезд, base: true}, {lexeme: loc, surface: да}]}, {surface: Билет, lexemes: [{lexeme: bilet, base: true}, {lexeme: nom}]}, {surface: арзон, lexeme: arzon}]
       translations:
         en: Yes, by train. The ticket is cheap.
   - line:
@@ -686,10 +686,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Buxoroda havo qanday?
-          tokens: [{surface: Buxoroda, lexemes: [{lexeme: buxoro, surface: Buxoro, base: true}, {lexeme: loc, surface: da}]}, {surface: havo, lexeme: havo}, {surface: qanday, lexeme: qanday}]
+          tokens: [{surface: Buxoroda, lexemes: [{lexeme: buxoro, surface: Buxoro, base: true}, {lexeme: loc, surface: da}]}, {surface: havo, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: qanday, lexeme: qanday}]
         uz-Cyrl/standard:
           text: Бухорода ҳаво қандай?
-          tokens: [{surface: Бухорода, lexemes: [{lexeme: buxoro, surface: Бухоро, base: true}, {lexeme: loc, surface: да}]}, {surface: ҳаво, lexeme: havo}, {surface: қандай, lexeme: qanday}]
+          tokens: [{surface: Бухорода, lexemes: [{lexeme: buxoro, surface: Бухоро, base: true}, {lexeme: loc, surface: да}]}, {surface: ҳаво, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: қандай, lexeme: qanday}]
       translations:
         en: What is the weather like in Bukhara?
   - line:
@@ -697,10 +697,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Hozir juda issiq. Yozda Buxoroda havo issiq.
-          tokens: [{surface: Hozir, lexeme: hozir}, {surface: juda, lexeme: juda}, {surface: issiq, lexeme: issiq}, {surface: Yozda, lexemes: [{lexeme: yoz, surface: Yoz, base: true}, {lexeme: loc, surface: da}]}, {surface: Buxoroda, lexemes: [{lexeme: buxoro, surface: Buxoro, base: true}, {lexeme: loc, surface: da}]}, {surface: havo, lexeme: havo}, {surface: issiq, lexeme: issiq}]
+          tokens: [{surface: Hozir, lexeme: hozir}, {surface: juda, lexeme: juda}, {surface: issiq, lexeme: issiq}, {surface: Yozda, lexemes: [{lexeme: yoz, surface: Yoz, base: true}, {lexeme: loc, surface: da}]}, {surface: Buxoroda, lexemes: [{lexeme: buxoro, surface: Buxoro, base: true}, {lexeme: loc, surface: da}]}, {surface: havo, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: issiq, lexeme: issiq}]
         uz-Cyrl/standard:
           text: Ҳозир жуда иссиқ. Ёзда Бухорода ҳаво иссиқ.
-          tokens: [{surface: Ҳозир, lexeme: hozir}, {surface: жуда, lexeme: juda}, {surface: иссиқ, lexeme: issiq}, {surface: Ёзда, lexemes: [{lexeme: yoz, surface: Ёз, base: true}, {lexeme: loc, surface: да}]}, {surface: Бухорода, lexemes: [{lexeme: buxoro, surface: Бухоро, base: true}, {lexeme: loc, surface: да}]}, {surface: ҳаво, lexeme: havo}, {surface: иссиқ, lexeme: issiq}]
+          tokens: [{surface: Ҳозир, lexeme: hozir}, {surface: жуда, lexeme: juda}, {surface: иссиқ, lexeme: issiq}, {surface: Ёзда, lexemes: [{lexeme: yoz, surface: Ёз, base: true}, {lexeme: loc, surface: да}]}, {surface: Бухорода, lexemes: [{lexeme: buxoro, surface: Бухоро, base: true}, {lexeme: loc, surface: да}]}, {surface: ҳаво, lexemes: [{lexeme: havo, base: true}, {lexeme: nom}]}, {surface: иссиқ, lexeme: issiq}]
       translations:
         en: It's very hot now. In summer it is hot in Bukhara.
   - choose:
@@ -716,10 +716,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Men ham bormoqchiman!
-          tokens: [{surface: Men, lexeme: men}, {surface: ham, lexeme: ham}, {surface: bormoqchiman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: want, surface: moqchi}, {lexeme: cop-1sg, surface: man}]}]
+          tokens: [{surface: Men, lexemes: [{lexeme: men, base: true}, {lexeme: nom}]}, {surface: ham, lexeme: ham}, {surface: bormoqchiman, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: want, surface: moqchi}, {lexeme: cop-1sg, surface: man}]}]
         uz-Cyrl/standard:
           text: Мен ҳам бормоқчиман!
-          tokens: [{surface: Мен, lexeme: men}, {surface: ҳам, lexeme: ham}, {surface: бормоқчиман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: want, surface: моқчи}, {lexeme: cop-1sg, surface: ман}]}]
+          tokens: [{surface: Мен, lexemes: [{lexeme: men, base: true}, {lexeme: nom}]}, {surface: ҳам, lexeme: ham}, {surface: бормоқчиман, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: want, surface: моқчи}, {lexeme: cop-1sg, surface: ман}]}]
       translations:
         en: I want to go too!
   - line:
@@ -728,10 +728,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Yaxshi! Biz Xivaga ham boramiz.
-          tokens: [{surface: Yaxshi, lexeme: yaxshi}, {surface: Biz, lexeme: biz}, {surface: Xivaga, lexemes: [{lexeme: xiva, surface: Xiva, base: true}, {lexeme: dat, surface: ga}]}, {surface: ham, lexeme: ham}, {surface: boramiz, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1pl, surface: miz}]}]
+          tokens: [{surface: Yaxshi, lexeme: yaxshi}, {surface: Biz, lexemes: [{lexeme: biz, base: true}, {lexeme: nom}]}, {surface: Xivaga, lexemes: [{lexeme: xiva, surface: Xiva, base: true}, {lexeme: dat, surface: ga}]}, {surface: ham, lexeme: ham}, {surface: boramiz, lexemes: [{lexeme: bormoq, surface: bor, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1pl, surface: miz}]}]
         uz-Cyrl/standard:
           text: Яхши! Биз Хивага ҳам борамиз.
-          tokens: [{surface: Яхши, lexeme: yaxshi}, {surface: Биз, lexeme: biz}, {surface: Хивага, lexemes: [{lexeme: xiva, surface: Хива, base: true}, {lexeme: dat, surface: га}]}, {surface: ҳам, lexeme: ham}, {surface: борамиз, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1pl, surface: миз}]}]
+          tokens: [{surface: Яхши, lexeme: yaxshi}, {surface: Биз, lexemes: [{lexeme: biz, base: true}, {lexeme: nom}]}, {surface: Хивага, lexemes: [{lexeme: xiva, surface: Хива, base: true}, {lexeme: dat, surface: га}]}, {surface: ҳам, lexeme: ham}, {surface: борамиз, lexemes: [{lexeme: bormoq, surface: бор, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1pl, surface: миз}]}]
       translations:
         en: Good! We'll go to Khiva too.
   - line:
@@ -739,10 +739,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Mehmonxona qimmatmi?
-          tokens: [{surface: Mehmonxona, lexeme: mehmonxona}, {surface: qimmatmi, lexemes: [{lexeme: qimmat, surface: qimmat, base: true}, {lexeme: q, surface: mi}]}]
+          tokens: [{surface: Mehmonxona, lexemes: [{lexeme: mehmonxona, base: true}, {lexeme: nom}]}, {surface: qimmatmi, lexemes: [{lexeme: qimmat, surface: qimmat, base: true}, {lexeme: q, surface: mi}]}]
         uz-Cyrl/standard:
           text: Меҳмонхона қимматми?
-          tokens: [{surface: Меҳмонхона, lexeme: mehmonxona}, {surface: қимматми, lexemes: [{lexeme: qimmat, surface: қиммат, base: true}, {lexeme: q, surface: ми}]}]
+          tokens: [{surface: Меҳмонхона, lexemes: [{lexeme: mehmonxona, base: true}, {lexeme: nom}]}, {surface: қимматми, lexemes: [{lexeme: qimmat, surface: қиммат, base: true}, {lexeme: q, surface: ми}]}]
       translations:
         en: Is the hotel expensive?
   - line:
@@ -750,10 +750,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Yoʻq, qimmat emas. Koʻp rasm olamiz!
-          tokens: [{surface: Yoʻq, lexeme: yoq}, {surface: qimmat, lexeme: qimmat}, {surface: emas, lexeme: emas}, {surface: Koʻp, lexeme: kop}, {surface: rasm, lexeme: rasm}, {surface: olamiz, lexemes: [{lexeme: olmoq, surface: ol, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1pl, surface: miz}]}]
+          tokens: [{surface: Yoʻq, lexeme: yoq}, {surface: qimmat, lexeme: qimmat}, {surface: emas, lexeme: emas}, {surface: Koʻp, lexeme: kop}, {surface: rasm, lexemes: [{lexeme: rasm, base: true}, {lexeme: nom}]}, {surface: olamiz, lexemes: [{lexeme: olmoq, surface: ol, base: true}, {lexeme: pres, surface: a}, {lexeme: cop-1pl, surface: miz}]}]
         uz-Cyrl/standard:
           text: Йўқ, қиммат эмас. Кўп расм оламиз!
-          tokens: [{surface: Йўқ, lexeme: yoq}, {surface: қиммат, lexeme: qimmat}, {surface: эмас, lexeme: emas}, {surface: Кўп, lexeme: kop}, {surface: расм, lexeme: rasm}, {surface: оламиз, lexemes: [{lexeme: olmoq, surface: ол, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1pl, surface: миз}]}]
+          tokens: [{surface: Йўқ, lexeme: yoq}, {surface: қиммат, lexeme: qimmat}, {surface: эмас, lexeme: emas}, {surface: Кўп, lexeme: kop}, {surface: расм, lexemes: [{lexeme: rasm, base: true}, {lexeme: nom}]}, {surface: оламиз, lexemes: [{lexeme: olmoq, surface: ол, base: true}, {lexeme: pres, surface: а}, {lexeme: cop-1pl, surface: миз}]}]
       translations:
         en: No, it's not expensive. We'll take lots of photos!
   - line:
@@ -761,10 +761,10 @@ stories:
       forms:
         uz-Latn/standard:
           text: Oq yoʻl, bolalarim!
-          tokens: [{surface: Oq, lexeme: oq}, {surface: yoʻl, lexeme: yol}, {surface: bolalarim, lexemes: [{lexeme: bola, surface: bola, base: true}, {lexeme: pl, surface: lar}, {lexeme: poss-1sg, surface: im}]}]
+          tokens: [{surface: Oq, lexeme: oq}, {surface: yoʻl, lexemes: [{lexeme: yol, base: true}, {lexeme: nom}]}, {surface: bolalarim, lexemes: [{lexeme: bola, surface: bola, base: true}, {lexeme: pl, surface: lar}, {lexeme: poss-1sg, surface: im}, {lexeme: nom}]}]
         uz-Cyrl/standard:
           text: Оқ йўл, болаларим!
-          tokens: [{surface: Оқ, lexeme: oq}, {surface: йўл, lexeme: yol}, {surface: болаларим, lexemes: [{lexeme: bola, surface: бола, base: true}, {lexeme: pl, surface: лар}, {lexeme: poss-1sg, surface: им}]}]
+          tokens: [{surface: Оқ, lexeme: oq}, {surface: йўл, lexemes: [{lexeme: yol, base: true}, {lexeme: nom}]}, {surface: болаларим, lexemes: [{lexeme: bola, surface: бола, base: true}, {lexeme: pl, surface: лар}, {lexeme: poss-1sg, surface: им}, {lexeme: nom}]}]
       translations:
         en: Have a good trip, my children!
   - choose:

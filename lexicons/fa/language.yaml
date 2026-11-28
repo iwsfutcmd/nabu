@@ -6,9 +6,23 @@ provenance: {author: 'llm:claude@136c8bd66194', status: draft}
 varieties: [fa-IR]
 registers: [formal, neutral, colloquial]
 dimensions:
-  NOUN: [Number]
-  VERB: [Tense, Person, Number]
-  AUX: [Tense, Polarity, Variant]
+  NOUN: [Number, Definite]
+  ADJ: [Degree, Number, Definite]
+  VERB: [VerbForm, Polarity, Mood, Aspect, Tense, Person, Number]
+  AUX: [VerbForm, Polarity, Variant, Tense, Person, Number]
+# A verb is cited by its infinitive (the lexical form itself: خوردن), the merge of inf (ADR 0158).
+citation:
+  VERB: {VerbForm: Inf}
+  AUX: {VerbForm: Inf}
+# What a word requires before it is whole (ADR 0158; docs/rules/fa.md): a verb or the copula a form (a tense, the
+# infinitive); a tense then requires a person (an ending, or the third person singular's nothing in the past and in
+# the copula's present). Nouns require nothing. REVIEW.
+requires:
+  VERB: [VerbForm]
+  AUX: [VerbForm]
+# A verb's lexical form is its infinitive, which its tense's stem rules below take apart: every cell, the citation's
+# too, is the rules' (the tense comes from a merged zero, so the base chooses nothing itself).
+stemmed: [VERB, AUX]
 features:
   Aspect: [Imp]
   Definite: [Ind]
@@ -25,9 +39,53 @@ features:
   # existential هست tokens choose; its short version (است) is the unmarked one. Not UD's universal list: a
   # language-specific feature, as UD's Variant is elsewhere (Czech short and long forms).
   Variant: [Long]
+  VerbForm: [Fin, Inf]
 rules:
 - {id: 'rule:past', gloss: {en: 'the simple past: past stem + ending (رفتم, I went)'}, notes: {en: 'Each verb has a past stem: رفت- (go), آمد- (come), خورد- (eat), کرد- (do), خرید- (buy), دید- (see). He/she has no ending: رفت, he went. The negative adds na-: نرفتم.'}, was: 'construction:past'}
 - {id: 'rule:subjunctive', gloss: {en: 'the subjunctive: be- + present stem + ending after ''want'' and ''can'''}, notes: {en: "می\u200cخواهم یک کتاب بخرم: I want to buy a book. می\u200cتوانم ببینم؟ Can I see?"}, was: 'construction:subjunctive'}
+# What the paradigms call each form (the gloss dialog, the Data page): a label for each cell, in Yousef's (2018)
+# terms (docs/rules/fa.md). REVIEW, every one.
+labels:
+- {feats: {Definite: Ind}, gloss: {en: 'indefinite (-i: a, one)'}}
+- {feats: {Degree: Cmp}, gloss: {en: 'comparative (-tar)'}}
+- {feats: {Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}, pos: AUX, gloss: {en: 'was (بود-): we'}}
+- {feats: {Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, pos: AUX, gloss: {en: 'was (بود-): I'}}
+- {feats: {Number: Plur, Person: '2', Tense: Past, VerbForm: Fin}, pos: AUX, gloss: {en: 'was (بود-): you (to several, or politely)'}}
+- {feats: {Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}, pos: AUX, gloss: {en: 'was (بود-): you (to one)'}}
+- {feats: {Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, pos: AUX, gloss: {en: 'was (بود-): he, she, it'}}
+- {feats: {Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, pos: AUX, gloss: {en: 'is (the copula): we'}}
+- {feats: {Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, pos: AUX, gloss: {en: 'is (the copula): I'}}
+- {feats: {Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, pos: AUX, gloss: {en: 'is (the copula): you (to several, or politely)'}}
+- {feats: {Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, pos: AUX, gloss: {en: 'is (the copula): you (to one)'}}
+- {feats: {Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, pos: AUX, gloss: {en: 'is (the copula): they'}}
+- {feats: {Number: Sing, Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}, pos: AUX, gloss: {en: 'negative is (the copula): he, she, it'}}
+- {feats: {Number: Plur}, gloss: {en: 'plural'}}
+- {feats: {Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}, gloss: {en: 'past: we'}}
+- {feats: {Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, gloss: {en: 'past: I'}}
+- {feats: {Number: Plur, Person: '2', Tense: Past, VerbForm: Fin}, gloss: {en: 'past: you (to several, or politely)'}}
+- {feats: {Number: Sing, Person: '2', Tense: Past, VerbForm: Fin}, gloss: {en: 'past: you (to one)'}}
+- {feats: {Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'past: he, she, it'}}
+- {feats: {Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present without mi- (دارم, خواهم: a few verbs; else literary): we'}}
+- {feats: {Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present without mi- (دارم, خواهم: a few verbs; else literary): I'}}
+- {feats: {Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present without mi- (دارم, خواهم: a few verbs; else literary): you (to several, or politely)'}}
+- {feats: {Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present without mi- (دارم, خواهم: a few verbs; else literary): you (to one)'}}
+- {feats: {Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present without mi- (دارم, خواهم: a few verbs; else literary): they'}}
+- {feats: {Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present without mi- (دارم, خواهم: a few verbs; else literary): he, she, it'}}
+- {feats: {Aspect: Imp, Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present (mi-): we'}}
+- {feats: {Aspect: Imp, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present (mi-): I'}}
+- {feats: {Aspect: Imp, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present (mi-): you (to several, or politely)'}}
+- {feats: {Aspect: Imp, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present (mi-): you (to one)'}}
+- {feats: {Aspect: Imp, Number: Plur, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present (mi-): they'}}
+- {feats: {Aspect: Imp, Number: Sing, Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present (mi-): he, she, it'}}
+- {feats: {Mood: Sub, Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'subjunctive (be-): I'}}
+- {feats: {Mood: Sub, Number: Plur, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'subjunctive (be-): you (to several, or politely)'}}
+- {feats: {Mood: Sub, Number: Sing, Person: '2', Tense: Pres, VerbForm: Fin}, gloss: {en: 'subjunctive (be-): you (to one)'}}
+- {feats: {Number: Sing, Person: '1', Polarity: Neg, Tense: Past, VerbForm: Fin}, gloss: {en: 'negative past: I'}}
+- {feats: {Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative present without mi- (دارم, خواهم: a few verbs; else literary): I'}}
+- {feats: {Number: Sing, Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative present without mi- (دارم, خواهم: a few verbs; else literary): he, she, it'}}
+- {feats: {Aspect: Imp, Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative present (mi-): I'}}
+- {feats: {Aspect: Imp, Number: Plur, Person: '2', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative present (mi-): you (to several, or politely)'}}
+- {feats: {VerbForm: Inf}, gloss: {en: 'infinitive'}}
 # How fa writes a lexical form (docs/rules/fa.md), read by @nabu/core `compileSpeller` for the profile's `spell`
 # and by `realise`; never shipped. A form is the word as courses/fa/vocalization.yaml marks it: the short vowels
 # a fatha, a kasra (a final -e's too) and a damma, a shadda, a tanvin; a long vowel its letter alone; a consonant
@@ -45,10 +103,12 @@ notation:
     DT: "[دت]"
     NV: "[\u064e\u0652]"
     AA: "[اآ]"
-# Rules in a lexicon (docs/rules-design.md; docs/rules/fa.md, which counts what they give). A token's other lexemes
-# (mi-, be-, na-, the person endings, the ezafe, -hā, -ān, -i, -tar, the possessives, the copula's -st) are its affixes:
-# each a lexeme with its allomorphs (lexemes.yaml), joined as the token lists them; nothing here adds them. A verb
-# token chooses its tense, and its tense its stem. Every branch is REVIEW. Source: Yousef (2018), by page.
+# Rules in a lexicon (docs/rules-design.md; docs/rules/fa.md, which counts what they give). fa merges lexemes (ADR
+# 0158, 2026-11-28): a token's other lexemes (mi-, be-, na-, the person endings, -hā, -ān, -i, -tar, and the zeros:
+# the tense, the third person singular where nothing is written, the singular imperative, the infinitive) each say
+# what they merge onto (lexemes.yaml `on`); the ezafe, the possessives and the copula's -st are words of their own,
+# written onto their host. A verb's tense is a zero lexeme (pres, past), and its tense chooses its stem by the rules
+# below, which read the merged word's values. Every branch is REVIEW. Source: Yousef (2018), by page.
 realisation:
 - id: 'rule:fa-past'  # the past stem, of every verb: the infinitive less -an (Yousef p. 158, 199): khordan, khord
   when: {feats: {Tense: Past}, endsIn: "{DT}َن"}  # a verb cited by its infinitive (budan too, an AUX); gozashtan cites its past

@@ -5,27 +5,43 @@ license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@c6cfd8081cf7', status: draft}
 varieties: [uz-UZ]
 registers: [formal, neutral, colloquial]
-# The features the realisation rules below inflect each category for (docs/rules/uz.md): an affix lexeme a
-# token lists stands for the values it realises (bor + past + past-1sg: Tense=Past, Person=1, Number=Sing).
+# The features each category inflects for (docs/rules/uz.md): an affix lexeme a token lists brings the values it
+# realises (bor + past + past-1sg: Tense=Past, Person=1, Number=Sing; ADR 0158).
 dimensions:
   NOUN: [Number, 'Person[psor]', 'Number[psor]', Polite, Case]
-  PRON: [Number, 'Person[psor]', Case]
+  PROPN: [Case]
+  PRON: ['Person[psor]', Case]
   ADJ: [Degree, 'Person[psor]']
+  NUM: [Case]
   VERB: [VerbForm, Polarity, Tense, Aspect, Mood, Person, Number, Polite]
-# A verb's lexical form is its stem (ich); its lemma, what a word card shows, is the infinitive in -moq, which
-# rule:uz-verb gives (Hancock-Parmer p. 39: the stem is the infinitive minus -moq).
+  AUX: [VerbForm, Polarity, Tense, Person, Number, Polite]
+# A verb's lexical form is its stem (ich); its lemma, what a word card shows, is the infinitive in -moq, the merge
+# of inf (Hancock-Parmer p. 39: the stem is the infinitive minus -moq). A noun, a name or a pronoun is cited in the
+# nominative.
 citation:
   VERB: {VerbForm: Inf}
+  NOUN: {Case: Nom}
+  PROPN: {Case: Nom}
+  PRON: {Case: Nom}
+# What a word requires before it is whole (ADR 0158; docs/rules/uz.md): a noun, a name or a pronoun a case (the
+# nominative's is nothing), a verb a form (a finite tense or mood, the infinitive); a finite tense then requires a
+# person (the set-1 endings of the present, -di, or the past's -m, -k, -ngiz, or the third person's nothing). REVIEW.
+requires:
+  NOUN: [Case]
+  PROPN: [Case]
+  PRON: [Case]
+  VERB: [VerbForm]
+  AUX: [VerbForm]
 # A lexical form of these is a stem: a citation cell is realised by the rules as any other (ich, ichmoq), and so
 # is a lemma the course cites in another cell (`citation` in lexemes.yaml: kuz, kuzda; bilmoq, bilmayman).
 stemmed: [VERB, NOUN, ADJ, PRON]
 features:
   Aspect: [Prog]
-  Case: [Abl, Acc, Dat, Gen, Loc, Ter]
+  Case: [Nom, Gen, Acc, Dat, Loc, Abl, Ter]
   Degree: [Cmp]
   Mood: [Des, Imp]
   NumType: [Card]
-  Number: [Plur, Sing]
+  Number: [Sing, Plur]
   Number[psor]: [Plur, Sing]
   PartType: [Int]
   Person: ['1', '2', '3']
@@ -34,9 +50,59 @@ features:
   Polite: [Form]
   PronType: [Dem, Int, Neg, Prs, Tot]
   Tense: [Past, Pres]
-  VerbForm: [Inf]
+  VerbForm: [Inf, Fin]
 classes:
 - {id: vowel-drop, pos: NOUN, gloss: {en: 'a noun whose last vowel drops before an ending that begins with a vowel (singil, singlim; oʻgʻil, oʻgʻli)'}, notes: {en: 'REVIEW: Sjoberg (1963) 3.231 B, pp. 51-52: i, u, a in a final stressed syllable, after one or two consonants and before a sonant or a fricative (burun, burni; ogʻiz, ogʻzim; shahar, shahrim), not in every such word (kelin, kelini); Hancock-Parmer pp. 63-64 (fleeting vowels).'}}
+# What the paradigms call each form (the gloss dialog, the Data page): a label for each cell, named with
+# Hancock-Parmer's and Sjoberg's terms (docs/rules/uz.md). REVIEW, every one.
+labels:
+- {feats: {'Person[psor]': '3'}, gloss: {en: 'his, her, its, their'}}
+- {feats: {Degree: Cmp}, gloss: {en: 'comparative (-roq)'}}
+- {feats: {Number: Sing, Person: '1'}, gloss: {en: 'I'}}
+- {feats: {Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}, gloss: {en: 'past (-di): I'}}
+- {feats: {Person: '2', Polite: Form, Tense: Past, VerbForm: Fin}, gloss: {en: 'past (-di): you (polite)'}}
+- {feats: {Person: '3', Tense: Past, VerbForm: Fin}, gloss: {en: 'past (-di): he, she, it'}}
+- {feats: {Case: Nom}, gloss: {en: 'nominative'}}
+- {feats: {Case: Gen}, gloss: {en: 'genitive (-ning: of, ''s)'}}
+- {feats: {Case: Acc}, gloss: {en: 'accusative (-ni: the definite object)'}}
+- {feats: {Case: Dat}, gloss: {en: 'dative (-ga: to, for)'}}
+- {feats: {Case: Loc}, gloss: {en: 'locative (-da: in, at)'}}
+- {feats: {Case: Abl}, gloss: {en: 'ablative (-dan: from)'}}
+- {feats: {Case: Nom, 'Number[psor]': Plur, 'Person[psor]': '1'}, gloss: {en: 'our, nominative'}}
+- {feats: {Case: Loc, 'Number[psor]': Plur, 'Person[psor]': '1'}, gloss: {en: 'our, locative (-da: in, at)'}}
+- {feats: {Case: Abl, 'Number[psor]': Plur, 'Person[psor]': '1'}, gloss: {en: 'our, ablative (-dan: from)'}}
+- {feats: {Case: Nom, 'Number[psor]': Sing, 'Person[psor]': '1'}, gloss: {en: 'my, nominative'}}
+- {feats: {Case: Gen, 'Number[psor]': Sing, 'Person[psor]': '1'}, gloss: {en: 'my, genitive (-ning: of, ''s)'}}
+- {feats: {Case: Dat, 'Number[psor]': Sing, 'Person[psor]': '1'}, gloss: {en: 'my, dative (-ga: to, for)'}}
+- {feats: {Case: Loc, 'Number[psor]': Sing, 'Person[psor]': '1'}, gloss: {en: 'my, locative (-da: in, at)'}}
+- {feats: {Case: Nom, 'Person[psor]': '2', Polite: Form}, gloss: {en: 'your (polite), nominative'}}
+- {feats: {Case: Gen, 'Person[psor]': '2', Polite: Form}, gloss: {en: 'your (polite), genitive (-ning: of, ''s)'}}
+- {feats: {Case: Acc, 'Person[psor]': '2', Polite: Form}, gloss: {en: 'your (polite), accusative (-ni: the definite object)'}}
+- {feats: {Case: Loc, 'Person[psor]': '2', Polite: Form}, gloss: {en: 'your (polite), locative (-da: in, at)'}}
+- {feats: {Case: Nom, 'Person[psor]': '3'}, gloss: {en: 'his, her, its, their, nominative'}}
+- {feats: {Case: Dat, 'Person[psor]': '3'}, gloss: {en: 'his, her, its, their, dative (-ga: to, for)'}}
+- {feats: {Case: Loc, 'Person[psor]': '3'}, gloss: {en: 'his, her, its, their, locative (-da: in, at)'}}
+- {feats: {Case: Nom, Number: Plur}, gloss: {en: 'plural, nominative'}}
+- {feats: {Case: Nom, Number: Plur, 'Number[psor]': Sing, 'Person[psor]': '1'}, gloss: {en: 'plural, my, nominative'}}
+- {feats: {Case: Ter}, gloss: {en: 'terminative (-gacha: up to, until)'}}
+- {feats: {Mood: Des, Number: Sing, Person: '1', VerbForm: Fin}, gloss: {en: 'wanting to (-moqchi): I'}}
+- {feats: {Mood: Des, Number: Plur, Person: '1', VerbForm: Fin}, gloss: {en: 'wanting to (-moqchi): we'}}
+- {feats: {Mood: Des, Person: '2', Polite: Form, VerbForm: Fin}, gloss: {en: 'wanting to (-moqchi): you (polite)'}}
+- {feats: {Mood: Imp, Person: '2', Polite: Form, VerbForm: Fin}, gloss: {en: 'imperative (-ing): please'}}
+- {feats: {Aspect: Prog, Number: Sing, Person: '1', VerbForm: Fin}, gloss: {en: 'present continuous (-yap): I'}}
+- {feats: {Aspect: Prog, Person: '2', Polite: Form, VerbForm: Fin}, gloss: {en: 'present continuous (-yap): you (polite)'}}
+- {feats: {Aspect: Prog, Number: Plur, Person: '2', Polite: Form, VerbForm: Fin}, gloss: {en: 'present continuous (-yap): you (to several)'}}
+- {feats: {Aspect: Prog, Person: '3', VerbForm: Fin}, gloss: {en: 'present continuous (-yap): he, she, it'}}
+- {feats: {Number: Plur, Person: '1', Tense: Past, VerbForm: Fin}, gloss: {en: 'past (-di): we'}}
+- {feats: {Number: Plur, Person: '2', Polite: Form, Tense: Past, VerbForm: Fin}, gloss: {en: 'past (-di): you (to several)'}}
+- {feats: {Number: Sing, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present-future (-a): I'}}
+- {feats: {Number: Plur, Person: '1', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present-future (-a): we'}}
+- {feats: {Person: '2', Polite: Form, Tense: Pres, VerbForm: Fin}, gloss: {en: 'present-future (-a): you (polite)'}}
+- {feats: {Number: Plur, Person: '2', Polite: Form, Tense: Pres, VerbForm: Fin}, gloss: {en: 'present-future (-a): you (to several)'}}
+- {feats: {Person: '3', Tense: Pres, VerbForm: Fin}, gloss: {en: 'present-future (-a): he, she, it'}}
+- {feats: {Number: Sing, Person: '1', Polarity: Neg, Tense: Past, VerbForm: Fin}, gloss: {en: 'negative past (-di): I'}}
+- {feats: {Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative present-future (-a): I'}}
+- {feats: {Person: '3', Polarity: Neg, Tense: Pres, VerbForm: Fin}, gloss: {en: 'negative present-future (-a): he, she, it'}}
 # How uz writes a lexical form (docs/rules/uz.md): Latin, as the official (1995) alphabet writes it, the
 # letter after o and g (U+02BB) and the tutuq belgisi (U+02BC) letters of their own, `+` a morpheme's edge.
 # Each profile's `spell` writes it in its orthography (uz-Latn as it is, uz-Cyrl letter by letter). Sets: V a
@@ -46,67 +112,14 @@ notation:
   sets:
     V: "[aeiouAEIOU]"
     C: "[bcdfghjklmnpqrstvxyzBCDFGHJKLMNPQRSTVXYZʻʼ]"
-# Rules in a lexicon (docs/rules-design.md; docs/rules/uz.md). The course writes an inflected word as its
-# lexemes, an affix lexeme a morpheme (bor + past + past-1sg); each affix's allomorphs are chosen by what they
-# follow (lexemes.yaml: `after`), so the rules below write those lexemes (`lexeme`) rather than text. They give
-# a lexeme in a cell (a lemma cited in another cell: kuzda, bilmayman; a paradigm's forms) as a token that
-# lists the same lexemes is given. Every branch is REVIEW until the owner signs it off. Sources:
-# Hancock-Parmer (HP), Uzbek Language Manual, by printed page; Sjoberg (1963), Uzbek Structural Grammar, by
-# page; the course where neither has the form (said so).
-realisation:
-- id: 'rule:uz-verb'  # HP pp. 39-41 (the present-future), 47 (commands), 48 (the definite past); Sjoberg pp. 97, 108-109
-  when: {pos: VERB}
-  blocks:
-  - suffix:
-    - {branch: neg, feats: {Polarity: Neg}, lexeme: 'lexeme:neg'}  # -ma (HP p. 41: kutmayman; p. 48: yozmadi)
-  - suffix:
-    - {branch: inf, feats: {VerbForm: Inf}, add: moq}  # the lemma: ichmoq (HP p. 39)
-    - {branch: past, feats: {Tense: Past}, lexeme: 'lexeme:past'}  # -di (HP p. 48)
-    - {branch: pres, feats: {Tense: Pres}, lexeme: 'lexeme:pres'}  # -a, -y after a vowel (HP p. 39)
-    - {branch: prog, feats: {Aspect: Prog}, lexeme: 'lexeme:prog'}  # -yap: the course (Sjoberg p. 108 has the older -moqta)
-    - {branch: des, feats: {Mood: Des}, lexeme: 'lexeme:want'}  # -moqchi (Sjoberg p. 109)
-  - suffix:
-    - {branch: past-1sg, feats: {Tense: Past, Person: '1', Number: Sing}, lexeme: 'lexeme:past-1sg'}  # -m (HP p. 48)
-    - {branch: past-1pl, feats: {Tense: Past, Person: '1', Number: Plur}, lexeme: 'lexeme:past-1pl'}  # -k
-    - {branch: past-2, feats: {Tense: Past, Person: '2', Polite: Form}, lexeme: 'lexeme:past-2'}  # -ngiz
-    - {branch: imp-2, feats: {Mood: Imp, Person: '2', Polite: Form}, lexeme: 'lexeme:imp'}  # -ing, -ng after a vowel (HP p. 47)
-    - {branch: 1sg, feats: {Person: '1', Number: Sing}, lexeme: 'lexeme:cop-1sg'}  # -man (HP p. 40; Sjoberg p. 97, set 1)
-    - {branch: 1pl, feats: {Person: '1', Number: Plur}, lexeme: 'lexeme:cop-1pl'}  # -miz
-    - {branch: '2', feats: {Person: '2', Polite: Form}, lexeme: 'lexeme:cop-2'}  # -siz
-    - {branch: '3', feats: {Tense: Pres, Person: '3'}, lexeme: 'lexeme:pres-3sg'}  # -di (HP p. 40)
-    - {branch: prog-3, feats: {Aspect: Prog, Person: '3'}, lexeme: 'lexeme:pres-3sg'}  # -ti after -yap: the course (uxlayapti)
-  - suffix:
-    - {branch: 2pl, feats: {Person: '2', Polite: Form, Number: Plur}, lexeme: 'lexeme:pl'}  # -lar after -siz, -ngiz: several people (Sjoberg p. 97)
-- id: 'rule:uz-noun'  # Sjoberg pp. 83-84; HP pp. 22, 57-61
-  when: {pos: NOUN}
-  blocks:
-  - suffix:
-    - {branch: pl, feats: {Number: Plur}, lexeme: 'lexeme:pl'}  # -lar
-  - suffix:  # the possessive: -im, -ing, -i, -imiz, -ingiz; after a vowel -m, -ng, -si, -miz, -ngiz (Sjoberg p. 83)
-    - {branch: poss-1sg, feats: {'Person[psor]': '1', 'Number[psor]': Sing}, lexeme: 'lexeme:poss-1sg'}
-    - {branch: poss-1pl, feats: {'Person[psor]': '1', 'Number[psor]': Plur}, lexeme: 'lexeme:poss-1pl'}
-    - {branch: poss-2, feats: {'Person[psor]': '2', Polite: Form}, lexeme: 'lexeme:poss-2'}
-    - {branch: poss-3, feats: {'Person[psor]': '3'}, lexeme: 'lexeme:poss-3'}
-  - suffix:  # the cases (Sjoberg p. 84; HP pp. 57-61)
-    - {branch: gen, feats: {Case: Gen}, lexeme: 'lexeme:gen'}
-    - {branch: dat, feats: {Case: Dat}, lexeme: 'lexeme:dat'}
-    - {branch: acc, feats: {Case: Acc}, lexeme: 'lexeme:acc'}
-    - {branch: loc, feats: {Case: Loc}, lexeme: 'lexeme:loc'}
-    - {branch: abl, feats: {Case: Abl}, lexeme: 'lexeme:abl'}
-    - {branch: ter, feats: {Case: Ter}, lexeme: 'lexeme:term'}
-# No ending for pronouns by rule: their stems are their own (u, unga, unda; bu, bunga; men, meni; ular, bular:
-# Sjoberg pp. 88-90), and which take -lar or a possessive is the pronoun's (sizlar, not menlar; hammasi, pinned).
-# A token that lists a pronoun and its endings is given as it is written all the same (lexemes.yaml: mening).
-- id: 'rule:uz-pronoun'
-  when: {pos: PRON}
-  blocks: []
-- id: 'rule:uz-adjective'  # the comparative -roq; the third person's -si on an adjective used as a noun (boshqasi: the course)
-  when: {pos: ADJ}
-  blocks:
-  - suffix:
-    - {branch: cmp, feats: {Degree: Cmp}, lexeme: 'lexeme:comp'}
-  - suffix:
-    - {branch: poss-3, feats: {'Person[psor]': '3'}, lexeme: 'lexeme:poss-3'}
+# Rules in a lexicon (docs/rules-design.md; docs/rules/uz.md). uz merges lexemes (ADR 0158, 2026-11-28): the
+# course writes an inflected word as its lexemes (bor + past + past-1sg), each affix says what it merges onto
+# (lexemes.yaml `on`: stem + plural + possessive + case; a verb's negative, then one tense or mood, then its
+# person), and a cell is realised through the lexemes that bring it. The realisation rules that wrote those
+# lexemes in a cell are gone (each branch is now an affix's `realises`; the infinitive's -moq is lexeme:inf).
+# Each affix's allomorphs are still chosen by what they follow (`after`); the rewrites below run over the merged
+# word. Sources: Hancock-Parmer (HP), Uzbek Language Manual, by printed page; Sjoberg (1963), Uzbek Structural
+# Grammar, by page. REVIEW, every one.
 phonology:  # in order, each once over the whole form
 # The stem's last vowel, after one or two consonants (three units where the first vowel is oʻ: oʻgʻil), never
 # an ending's (singillarim): singil + im, singlim; oʻgʻil + i, oʻgʻli (Sjoberg pp. 51-52).

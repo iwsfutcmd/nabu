@@ -19,7 +19,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این چای خیلی خوب است.
-      tokens: [{surface: این, lexeme: in}, {surface: چای, lexeme: chay}, {surface: خیلی, lexeme: kheyli}, {surface: خوب, lexeme: khub}, {surface: است, lexeme: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: چای, lexeme: chay}, {surface: خیلی, lexeme: kheyli}, {surface: خوب, lexeme: khub}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         این چای خیلی (خوب است|خوبه)
         این چای بسیار خوب است
@@ -41,7 +41,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: مریم با علی است.
-      tokens: [{surface: مریم, lexeme: maryam}, {surface: با, lexeme: ba}, {surface: علی, lexeme: ali}, {surface: است, lexeme: budan}]
+      tokens: [{surface: مریم, lexeme: maryam}, {surface: با, lexeme: ba}, {surface: علی, lexeme: ali}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         مریم با علی است
         مریم با علیه
@@ -82,7 +82,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: شما قهوه دارید؟
-      tokens: [{surface: شما, lexeme: shoma}, {surface: قهوه, lexeme: ghahve}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: شما, lexeme: shoma}, {surface: قهوه, lexeme: ghahve}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         [شما] قهوه دارید
         [تو] قهوه داری
@@ -106,7 +106,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: من چای دوست دارم.
-      tokens: [{surface: من, lexeme: man}, {surface: چای, lexeme: chay}, {surface: دوست, lexeme: doost}, {surface: دارم, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: چای, lexeme: chay}, {surface: دوست, lexeme: doost}, {surface: دارم, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] چای [را] دوست دارم\nمن از چای خوشم می\u200cآید"
   translations:
     en: |-
@@ -118,7 +118,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: تو قهوه دوست داری؟
-      tokens: [{surface: تو, lexeme: to}, {surface: قهوه, lexeme: ghahve}, {surface: دوست, lexeme: doost}, {surface: داری, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2sg, surface: ی}]}]
+      tokens: [{surface: تو, lexeme: to}, {surface: قهوه, lexeme: ghahve}, {surface: دوست, lexeme: doost}, {surface: داری, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 2sg, surface: ی}]}]
       reverse: "[تو] قهوه [را] دوست داری\n[شما] قهوه [را] دوست دارید\nآیا تو قهوه دوست داری\nاز قهوه خوشت می\u200cآید\nشما از قهوه خوشتان می\u200cآید"
   translations:
     en: Do you (like|love) coffee?
@@ -128,7 +128,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: نه، من قهوه دوست ندارم.
-      tokens: [{surface: نه, lexeme: na, vocalized: نَه}, {surface: من, lexeme: man}, {surface: قهوه, lexeme: ghahve}, {surface: دوست, lexeme: doost}, {surface: ندارم, lexemes: [{lexeme: neg, surface: ن}, {lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: نه, lexeme: na, vocalized: نَه}, {surface: من, lexeme: man}, {surface: قهوه, lexeme: ghahve}, {surface: دوست, lexeme: doost}, {surface: ندارم, lexemes: [{lexeme: neg, surface: ن}, {lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 1sg, surface: م}]}]
       reverse: "نه [من] قهوه [را] دوست ندارم\nخیر من قهوه دوست ندارم\nنه من از قهوه خوشم نمی\u200cآید"
   translations:
     en: No, I (don't|do not) like coffee.
@@ -138,7 +138,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: علی شیر دوست دارد.
-      tokens: [{surface: علی, lexeme: ali}, {surface: شیر, lexeme: shir}, {surface: دوست, lexeme: doost}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 3sg, surface: د}]}]
+      tokens: [{surface: علی, lexeme: ali}, {surface: شیر, lexeme: shir}, {surface: دوست, lexeme: doost}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 3sg, surface: د}]}]
       reverse: "علی شیر [را] دوست دارد\nعلی از شیر خوشش می\u200cآید"
   translations:
     en: Ali (likes|loves) milk.
@@ -150,7 +150,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: شما چای دوست دارید یا قهوه؟
-      tokens: [{surface: شما, lexeme: shoma}, {surface: چای, lexeme: chay}, {surface: دوست, lexeme: doost}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}, {surface: یا, lexeme: ya}, {surface: قهوه, lexeme: ghahve}]
+      tokens: [{surface: شما, lexeme: shoma}, {surface: چای, lexeme: chay}, {surface: دوست, lexeme: doost}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 2pl, surface: ید}]}, {surface: یا, lexeme: ya}, {surface: قهوه, lexeme: ghahve}]
       reverse: |-
         [شما] چای دوست دارید یا قهوه
         [شما] چای یا قهوه دوست دارید
@@ -189,7 +189,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این نان خیلی خوب است.
-      tokens: [{surface: این, lexeme: in}, {surface: نان, lexeme: nan}, {surface: خیلی, lexeme: kheyli}, {surface: خوب, lexeme: khub}, {surface: است, lexeme: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: نان, lexeme: nan}, {surface: خیلی, lexeme: kheyli}, {surface: خوب, lexeme: khub}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         این نان خیلی (خوب است|خوبه)
         این نان بسیار خوب است
@@ -211,7 +211,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: صبحانهٔ ما نان و پنیر است.
-      tokens: [{surface: صبحانهٔ, lexemes: [{lexeme: sobhane, surface: صبحانهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: ما, lexeme: ma}, {surface: نان, lexeme: nan}, {surface: و, lexeme: va}, {surface: پنیر, lexeme: panir}, {surface: است, lexeme: budan}]
+      tokens: [{surface: صبحانهٔ, lexemes: [{lexeme: sobhane, surface: صبحانهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: ما, lexeme: ma}, {surface: نان, lexeme: nan}, {surface: و, lexeme: va}, {surface: پنیر, lexeme: panir}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: "صبحان(هٔ|ه\u200cی|ه) ما نان و پنیر است\nصبحانه\u200cمان نان و پنیر است\nصبحانه ما نان و پنیره"
   translations:
     en: |-
@@ -225,7 +225,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: شما ماست دارید؟
-      tokens: [{surface: شما, lexeme: shoma}, {surface: ماست, lexeme: mast}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: شما, lexeme: shoma}, {surface: ماست, lexeme: mast}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         [شما] ماست دارید
         [تو] ماست داری
@@ -239,7 +239,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این غذا خیلی خوب است.
-      tokens: [{surface: این, lexeme: in}, {surface: غذا, lexeme: ghaza}, {surface: خیلی, lexeme: kheyli}, {surface: خوب, lexeme: khub}, {surface: است, lexeme: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: غذا, lexeme: ghaza}, {surface: خیلی, lexeme: kheyli}, {surface: خوب, lexeme: khub}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         این غذا خیلی (خوب است|خوبه)
         این غذا بسیار خوب است
@@ -250,7 +250,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این غذا خیلی خوشمزه است!
-      tokens: [{surface: این, lexeme: in}, {surface: غذا, lexeme: ghaza}, {surface: خیلی, lexeme: kheyli}, {surface: خوشمزه, lexeme: khoshmaze}, {surface: است, lexeme: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: غذا, lexeme: ghaza}, {surface: خیلی, lexeme: kheyli}, {surface: خوشمزه, lexeme: khoshmaze}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         این غذا خیلی خوشمزه است
         این غذا بسیار خوشمزه است
@@ -264,7 +264,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: من برنج دوست دارم.
-      tokens: [{surface: من, lexeme: man}, {surface: برنج, lexeme: berenj}, {surface: دوست, lexeme: doost}, {surface: دارم, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: برنج, lexeme: berenj}, {surface: دوست, lexeme: doost}, {surface: دارم, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] برنج [را] دوست دارم\nمن از برنج خوشم می\u200cآید"
   translations:
     en: I (like|love) rice.
@@ -274,7 +274,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: علی کباب دوست دارد.
-      tokens: [{surface: علی, lexeme: ali}, {surface: کباب, lexeme: kabab}, {surface: دوست, lexeme: doost}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 3sg, surface: د}]}]
+      tokens: [{surface: علی, lexeme: ali}, {surface: کباب, lexeme: kabab}, {surface: دوست, lexeme: doost}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 3sg, surface: د}]}]
       reverse: "علی کباب [را] دوست دارد\nعلی از کباب خوشش می\u200cآید"
   translations:
     en: Ali (likes|loves) (kebab|kebabs|kabob|kabobs).
@@ -285,7 +285,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: شما مرغ دارید؟
-      tokens: [{surface: شما, lexeme: shoma}, {surface: مرغ, lexeme: morgh}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: شما, lexeme: shoma}, {surface: مرغ, lexeme: morgh}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         [شما] مرغ دارید
         [تو] مرغ داری
@@ -299,7 +299,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: غذای ایرانی خیلی خوشمزه است.
-      tokens: [{surface: غذای, lexemes: [{lexeme: ghaza, surface: غذا, base: true}, {lexeme: ezafe, surface: ی}]}, {surface: ایرانی, lexeme: irani}, {surface: خیلی, lexeme: kheyli}, {surface: خوشمزه, lexeme: khoshmaze}, {surface: است, lexeme: budan}]
+      tokens: [{surface: غذای, lexemes: [{lexeme: ghaza, surface: غذا, base: true}, {lexeme: ezafe, surface: ی}]}, {surface: ایرانی, lexeme: irani}, {surface: خیلی, lexeme: kheyli}, {surface: خوشمزه, lexeme: khoshmaze}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         غذای ایرانی خیلی خوشمزه است
         غذای ایرانی بسیار خوشمزه است
@@ -327,7 +327,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: ما غذای ایرانی دوست داریم.
-      tokens: [{surface: ما, lexeme: ma}, {surface: غذای, lexemes: [{lexeme: ghaza, surface: غذا, base: true}, {lexeme: ezafe, surface: ی}]}, {surface: ایرانی, lexeme: irani}, {surface: دوست, lexeme: doost}, {surface: داریم, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 1pl, surface: یم}]}]
+      tokens: [{surface: ما, lexeme: ma}, {surface: غذای, lexemes: [{lexeme: ghaza, surface: غذا, base: true}, {lexeme: ezafe, surface: ی}]}, {surface: ایرانی, lexeme: irani}, {surface: دوست, lexeme: doost}, {surface: داریم, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 1pl, surface: یم}]}]
       reverse: "[ما] غذای ایرانی [را] دوست داریم\nما از غذای ایرانی خوشمان می\u200cآید"
   translations:
     en: |-
@@ -341,7 +341,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: شما میوه دوست دارید؟
-      tokens: [{surface: شما, lexeme: shoma}, {surface: میوه, lexeme: mive}, {surface: دوست, lexeme: doost}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: شما, lexeme: shoma}, {surface: میوه, lexeme: mive}, {surface: دوست, lexeme: doost}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 2pl, surface: ید}]}]
       reverse: "[شما] میوه [را] دوست دارید\n[تو] میوه [را] دوست داری\nآیا شما میوه دوست دارید\nاز میوه خوشتان می\u200cآید"
   translations:
     en: Do you (like|love) fruit?
@@ -351,7 +351,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: من سیب دوست دارم.
-      tokens: [{surface: من, lexeme: man}, {surface: سیب, lexeme: sib}, {surface: دوست, lexeme: doost}, {surface: دارم, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
+      tokens: [{surface: من, lexeme: man}, {surface: سیب, lexeme: sib}, {surface: دوست, lexeme: doost}, {surface: دارم, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 1sg, surface: م}]}]
       reverse: "[من] سیب [را] دوست دارم\nمن از سیب خوشم می\u200cآید"
   translations:
     en: I (like|love) apples.
@@ -360,7 +360,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "این سیب\u200cها خیلی خوب هستند."
-      tokens: [{surface: این, lexeme: in}, {surface: "سیب\u200cها", lexemes: [{lexeme: sib, surface: "سیب\u200c", base: true}, {lexeme: pl, surface: ها}]}, {surface: خیلی, lexeme: kheyli}, {surface: خوب, lexeme: khub}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 3pl, surface: ند}]}]
+      tokens: [{surface: این, lexeme: in}, {surface: "سیب\u200cها", lexemes: [{lexeme: sib, surface: "سیب\u200c", base: true}, {lexeme: pl, surface: ها}]}, {surface: خیلی, lexeme: kheyli}, {surface: خوب, lexeme: khub}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: pres}, {lexeme: 3pl, surface: ند}]}]
       reverse: "این سیب\u200cها خیلی (خوب هستند|خوبند|خوب است|خوبه)\nاین سیب\u200cها بسیار خوب هستند"
   translations:
     en: These apples are (very|really) (good|nice).
@@ -371,7 +371,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: پرتقال دارید؟
-      tokens: [{surface: پرتقال, lexeme: porteghal}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: پرتقال, lexeme: porteghal}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 2pl, surface: ید}]}]
       reverse: |-
         [شما] پرتقال دارید
         [تو] پرتقال داری
@@ -397,7 +397,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: شما قهوه دوست دارید؟
-      tokens: [{surface: شما, lexeme: shoma}, {surface: قهوه, lexeme: ghahve}, {surface: دوست, lexeme: doost}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2pl, surface: ید}]}]
+      tokens: [{surface: شما, lexeme: shoma}, {surface: قهوه, lexeme: ghahve}, {surface: دوست, lexeme: doost}, {surface: دارید, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 2pl, surface: ید}]}]
       reverse: "[شما] قهوه [را] دوست دارید\nآیا شما قهوه دوست دارید\nشما از قهوه خوشتان می\u200cآید"
   translations:
     en: Do you (like|love) coffee?
@@ -434,7 +434,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: ممنون! من چای خیلی دوست دارم.
-          tokens: [{surface: ممنون, lexeme: mamnun}, {surface: من, lexeme: man}, {surface: چای, lexeme: chay}, {surface: خیلی, lexeme: kheyli}, {surface: دوست, lexeme: doost}, {surface: دارم, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 1sg, surface: م}]}]
+          tokens: [{surface: ممنون, lexeme: mamnun}, {surface: من, lexeme: man}, {surface: چای, lexeme: chay}, {surface: خیلی, lexeme: kheyli}, {surface: دوست, lexeme: doost}, {surface: دارم, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 1sg, surface: م}]}]
       translations:
         en: Thank you! I really like tea.
   - line:
@@ -442,7 +442,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: چای با قند دوست داری؟
-          tokens: [{surface: چای, lexeme: chay}, {surface: با, lexeme: ba}, {surface: قند, lexeme: ghand}, {surface: دوست, lexeme: doost}, {surface: داری, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 2sg, surface: ی}]}]
+          tokens: [{surface: چای, lexeme: chay}, {surface: با, lexeme: ba}, {surface: قند, lexeme: ghand}, {surface: دوست, lexeme: doost}, {surface: داری, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 2sg, surface: ی}]}]
       translations:
         en: Do you like tea with sugar cubes?
   - line:
@@ -450,7 +450,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: بله، چای با قند خیلی خوب است.
-          tokens: [{surface: بله, lexeme: bale}, {surface: چای, lexeme: chay}, {surface: با, lexeme: ba}, {surface: قند, lexeme: ghand}, {surface: خیلی, lexeme: kheyli}, {surface: خوب, lexeme: khub}, {surface: است, lexeme: budan}]
+          tokens: [{surface: بله, lexeme: bale}, {surface: چای, lexeme: chay}, {surface: با, lexeme: ba}, {surface: قند, lexeme: ghand}, {surface: خیلی, lexeme: kheyli}, {surface: خوب, lexeme: khub}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       translations:
         en: Yes, tea with sugar cubes is very good.
   - choose:
@@ -466,7 +466,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: نان و پنیر هم داریم. بفرمایید!
-          tokens: [{surface: نان, lexeme: nan}, {surface: و, lexeme: va}, {surface: پنیر, lexeme: panir}, {surface: هم, lexeme: ham}, {surface: داریم, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 1pl, surface: یم}]}, {surface: بفرمایید, lexeme: befarmayid}]
+          tokens: [{surface: نان, lexeme: nan}, {surface: و, lexeme: va}, {surface: پنیر, lexeme: panir}, {surface: هم, lexeme: ham}, {surface: داریم, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 1pl, surface: یم}]}, {surface: بفرمایید, lexeme: befarmayid}]
       translations:
         en: We have bread and cheese too. Help yourself!
   - line:
@@ -479,7 +479,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: این پنیر خیلی خوشمزه است!
-          tokens: [{surface: این, lexeme: in}, {surface: پنیر, lexeme: panir}, {surface: خیلی, lexeme: kheyli}, {surface: خوشمزه, lexeme: khoshmaze}, {surface: است, lexeme: budan}]
+          tokens: [{surface: این, lexeme: in}, {surface: پنیر, lexeme: panir}, {surface: خیلی, lexeme: kheyli}, {surface: خوشمزه, lexeme: khoshmaze}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       translations:
         en: This cheese is very tasty!
   - line:
@@ -496,7 +496,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: این چای هم خیلی خوشمزه است. ممنون!
-          tokens: [{surface: این, lexeme: in}, {surface: چای, lexeme: chay}, {surface: هم, lexeme: ham}, {surface: خیلی, lexeme: kheyli}, {surface: خوشمزه, lexeme: khoshmaze}, {surface: است, lexeme: budan}, {surface: ممنون, lexeme: mamnun}]
+          tokens: [{surface: این, lexeme: in}, {surface: چای, lexeme: chay}, {surface: هم, lexeme: ham}, {surface: خیلی, lexeme: kheyli}, {surface: خوشمزه, lexeme: khoshmaze}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}, {surface: ممنون, lexeme: mamnun}]
       translations:
         en: This tea is delicious too. Thank you!
   - choose:

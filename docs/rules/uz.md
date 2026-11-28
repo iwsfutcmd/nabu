@@ -93,11 +93,54 @@ course has a voiced k or q; paradigms of nouns it does not inflect would.
 4. **The voicing rule's syllable count** and its exceptions (Arabic loans: ittifoqi) are not in the library.
 5. **Not written,** for want of a word that needs them: gʻ + -ga written -qqa (togʻ, toqqa: Hancock-Parmer p. 11);
    the second person singular (-san, -ding, -ng); -lar after a verb's third person; the conditional -sa; the
-   participle -gan; pronoun stems (unga, bunga, meni).
+   participle -gan. (Pronoun stems, unga, bunga, meni, are written since the merge: below.)
 6. **dimensions** in language.yaml now list what the rules inflect for (the Data page shows them).
 7. **Grading** now knows the paradigms (`paradigmWords`): a typed word in an unwritten cell of the answer's own
    lexeme is another form (bordik for bordim, once a typo). Not measured here: the acceptance runs are the
    coordinator's.
+
+## uz merges lexemes (ADR 0158; 2026-11-28)
+
+uz is the third course language in the merge model, after apc and chg. Its suffixes were lexemes already (bor + past +
+past-1sg); what changed is that each now says what it merges onto, a word says what it requires, and the cells
+nothing writes are zero lexemes, so every base has all its cells. Every line is REVIEW (the owner was asleep; these
+are the session's choices).
+
+- **What a word requires** (language.yaml `requires`): a noun, a name or a pronoun a case; a verb or an auxiliary a
+  form (VerbForm: a finite tense or mood, or the infinitive); a finite tense a person. emas never inflects
+  (`requires: []`). A noun, a name or a pronoun is cited in the nominative, a verb in the infinitive (`citation`).
+- **The zeros**: `nom`, the nominative (Sjoberg p. 84); `p3`, the past's third person (keldi, edi: HP p. 48);
+  `imp.sg`, the bare stem as the imperative to one (ich!, HP p. 47: the course's two bare verb tokens). A bare noun is
+  unmarked for number: -lar is the plural, as in chg.
+- **inf** (-moq) is a lexeme now: the realisation rule gave ichmoq by `add: moq`; a verb is cited as the merge of its
+  stem and inf. The realisation rules are gone (each branch was an affix's `realises`); the two rewrites (vowel drop,
+  voicing) stay and run over the merged word.
+- **The order** (each lexeme's `on`; Sjoberg pp. 83-84, HP pp. 22, 57-61): the plural before a possessive or a case,
+  the possessive before a case and once (onto a pronoun only as hamma: hammasi), a case onto a noun, a name, a pronoun
+  or a numeral; the negative, then one tense or mood (-di, -a, -yap, -moqchi, -ing, -moq), then the person: the set-1
+  endings (-man, -miz, -siz) after the present, -yap and -moqchi, -di after the present and -yap, the past's -m, -k,
+  -ngiz, or the zero; -lar after a second person (borasizlar, bordingizlar, yaxshimisizlar). -mi after the stem or a
+  person, -chi onto a whole word.
+- **One set of person endings** on verbs and predicates (Sjoberg p. 97's set 1: bor-a-man, talaba-man), unlike chg,
+  where the reference splits the present's -dur from the copula. On a predicate they merge onto a whole word (after
+  its case: uydaman) or onto emas (emasman), never onto edi (edim takes the past's -m). A predicate's -man brings
+  Person and Number to the noun, which no cell keeps: a cell is realised only by lexemes whose values all stand in it
+  (core `mergeFor`), and a noun's dimensions hold no Person.
+- **Pronoun stems**: with the merge, pronouns have paradigms (the cases the course writes on them), so u and bu take
+  un-, bun- before a case beginning with d or g (unga, unda, undan, ungacha; bunga …), and men, sen take -i for the
+  accusative (meni) as they take -ing for the genitive (Sjoberg pp. 88-90). shu is not in the lexicon.
+- **The tokens** list the zeros with no surface; the compiler folds them into the base's values, given, never a part
+  (no node introduces a uz value). A converter wrote them: 1,002 nominal tokens took `nom` (728 written alone), 14
+  past verbs and edi `p3`, the two bare stems `imp.sg`. The token check gives all 2,504 tokens as before (2,502 by the
+  rules, hamma's hammasi by its pinned form); every token is complete (none `missing`); every token's lexemes, picked
+  in any order, merge back as written (packages/core/test/merge-order-uz.test.ts; -mi's tokens left out, as -mu's in
+  chg).
+- **What ships**: the bundle's cells (VERB 21, NOUN 22, PRON 6, PROPN 5, AUX 4, NUM 3, ADJ 2; 148 lexemes with a
+  paradigm), now with `labels` naming every cell ("past (-di): I", "my, dative (-ga: to, for)"), which uz did not
+  have: REVIEW, every one. A bare imperative's cell is not listed (its zero writes nothing, so no lexeme's form is
+  ruled there); the lemma stays its infinitive.
+- **conformance/realise-uz.json**: each cell is now the word's whole cell (a finite verb's VerbForm=Fin and person, a
+  nominal's case), each token lists its zeros; every expected form is unchanged, the steps only the rewrites'.
 
 ## Sources
 

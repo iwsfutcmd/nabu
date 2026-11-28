@@ -5,16 +5,19 @@ provenance: {author: 'llm:claude@887599f213ef', status: draft}
 lexemes:
 - id: lexeme:abl
   realises: {Case: Abl}
+  'on': {at: after, pos: [NOUN, PROPN, PRON, NUM]}
   gloss: {en: '-dan: from; out of'}
   notes: {en: 'Qayerdansiz? Where are you from? Ishdan: from work.'}
   allomorphs:
   - {form: dan, spelled: {uz-Latn/standard: [dan], uz-Cyrl/standard: [дан]}}
 - id: lexeme:acc
   realises: {Case: Acc}
+  'on': {at: after, pos: [NOUN, PROPN, PRON, NUM]}
   gloss: {en: '-ni: the (definite object)'}
   notes: {en: 'Choyingizni iching: drink your tea. An object that is not definite takes nothing: choy iching.'}
   allomorphs:
   - {form: ni, spelled: {uz-Latn/standard: [ni], uz-Cyrl/standard: [ни]}}
+  - {form: i, after: {endsIn: "#[ms]en"}, spelled: {uz-Latn/standard: [i], uz-Cyrl/standard: [и]}}  # REVIEW: Sjoberg p. 89: meni, seni (as mening)
 - id: lexeme:aka
   pos: NOUN
   gloss: {en: older brother}
@@ -80,7 +83,7 @@ lexemes:
   pos: VERB
   gloss: {en: to know}
   form: "bil"
-  citation: {Number: Sing, Person: '1', Polarity: Neg, Tense: Pres}  # the course's lemma is this cell's form, not the bare word (for the owner)
+  citation: {Number: Sing, Person: '1', Polarity: Neg, Tense: Pres, VerbForm: Fin}  # the course's lemma is this cell's form, not the bare word (for the owner)
   spelled: {uz-Latn/standard: [bilmayman], uz-Cyrl/standard: [билмайман]}
   allomorphs:
   - {spelled: {uz-Latn/standard: [bil], uz-Cyrl/standard: [бил]}}  # its lexical form
@@ -141,6 +144,8 @@ lexemes:
   gloss: {en: this}
   form: "bu"
   spelled: {uz-Latn/standard: [bu], uz-Cyrl/standard: [бу]}
+  allomorphs:
+  - {form: bun, before: {startsIn: "[dg]"}, spelled: {uz-Latn/standard: [bun], uz-Cyrl/standard: [бун]}}  # REVIEW: Sjoberg p. 90: bunga, bunda, bundan (buning, buni)
 - id: lexeme:bugun
   pos: ADV
   gloss: {en: today}
@@ -178,6 +183,7 @@ lexemes:
   - {spelled: {uz-Latn/standard: [charcha], uz-Cyrl/standard: [чарча]}}  # its lexical form
 - id: lexeme:chi
   pos: PART
+  'on': {at: after, complete: true}
   gloss: {en: '-chi: and ...? what about ...?'}
   notes: {en: 'Sizchi? And you?'}
   allomorphs:
@@ -201,27 +207,32 @@ lexemes:
   spelled: {uz-Latn/standard: [choy], uz-Cyrl/standard: [чой]}
 - id: lexeme:comp
   realises: {Degree: Cmp}
+  'on': {at: after, pos: [ADJ, ADV], lacks: [Case, 'Person[psor]']}
   gloss: {en: '-roq: -er, more (comparative)'}
   notes: {en: 'Arzonroq: cheaper. Arzonroq qiling! Make it cheaper!'}
   allomorphs:
   - {form: roq, spelled: {uz-Latn/standard: [roq], uz-Cyrl/standard: [роқ]}}
 - id: lexeme:cop-1pl
   realises: {Number: Plur, Person: '1'}
+  'on': {at: after, pos: [VERB, AUX], has: {Tense: Pres}, lacks: [Person], or: [{pos: [VERB, AUX], has: {Aspect: Prog}, lacks: [Person]}, {pos: [VERB, AUX], has: {Mood: Des}, lacks: [Person]}, {pos: [NOUN, PROPN, PRON, ADJ, NUM, ADV], complete: true, lacks: [Person]}, {pos: [AUX], has: {Polarity: Neg}, complete: true, lacks: [Person]}]}
   gloss: {en: '-miz: we are (suffix on the predicate)'}
   allomorphs:
   - {form: miz, spelled: {uz-Latn/standard: [miz], uz-Cyrl/standard: [миз]}}
 - id: lexeme:cop-1sg
   realises: {Number: Sing, Person: '1'}
+  'on': {at: after, pos: [VERB, AUX], has: {Tense: Pres}, lacks: [Person], or: [{pos: [VERB, AUX], has: {Aspect: Prog}, lacks: [Person]}, {pos: [VERB, AUX], has: {Mood: Des}, lacks: [Person]}, {pos: [NOUN, PROPN, PRON, ADJ, NUM, ADV], complete: true, lacks: [Person]}, {pos: [AUX], has: {Polarity: Neg}, complete: true, lacks: [Person]}]}
   gloss: {en: '-man: I am (suffix on the predicate)'}
   allomorphs:
   - {form: man, spelled: {uz-Latn/standard: [man], uz-Cyrl/standard: [ман]}}
 - id: lexeme:cop-2
   realises: {Person: '2', Polite: Form}
+  'on': {at: after, pos: [VERB, AUX], has: {Tense: Pres}, lacks: [Person], or: [{pos: [VERB, AUX], has: {Aspect: Prog}, lacks: [Person]}, {pos: [VERB, AUX], has: {Mood: Des}, lacks: [Person]}, {pos: [NOUN, PROPN, PRON, ADJ, NUM, ADV], complete: true, lacks: [Person]}, {pos: [AUX], has: {Polarity: Neg}, complete: true, lacks: [Person]}]}
   gloss: {en: '-siz: you are (polite; suffix on the predicate)'}
   allomorphs:
   - {form: siz, spelled: {uz-Latn/standard: [siz], uz-Cyrl/standard: [сиз]}}
 - id: lexeme:count
   head: {takes: [NUM], makes: NUM}
+  'on': {at: after, pos: [NUM], lacks: [Case]}
   gloss: {en: '-ta: counting suffix'}
   notes: {en: 'Ikkita kitob: two books. Nechta? How many? Numbers work with or without it.'}
   allomorphs:
@@ -234,6 +245,7 @@ lexemes:
   spelled: {uz-Latn/standard: [dam], uz-Cyrl/standard: [дам]}
 - id: lexeme:dat
   realises: {Case: Dat}
+  'on': {at: after, pos: [NOUN, PROPN, PRON, NUM]}
   gloss: {en: '-ga: to, toward; for'}
   notes: {en: '-ka after k (parkka), -qa after q (qishloqqa). Men + -ga = menga: to me.'}
   allomorphs:
@@ -254,7 +266,7 @@ lexemes:
   pos: NOUN
   gloss: {en: friend}
   form: "doʻst"
-  citation: {'Number[psor]': Sing, 'Person[psor]': '1'}  # the course's lemma is this cell's form, not the bare word (for the owner)
+  citation: {Case: Nom, 'Number[psor]': Sing, 'Person[psor]': '1'}  # the course's lemma is this cell's form, not the bare word (for the owner)
   spelled: {uz-Latn/standard: [doʻstim], uz-Cyrl/standard: [дўстим]}
   allomorphs:
   - {spelled: {uz-Latn/standard: [doʻst], uz-Cyrl/standard: [дўст]}}  # its lexical form
@@ -280,6 +292,7 @@ lexemes:
 - id: lexeme:emas
   pos: AUX
   feats: {Polarity: Neg}
+  requires: []
   gloss: {en: not (with nouns and adjectives)}
   notes: {en: 'Men talaba emasman: I am not a student. The person suffix goes on emas.'}
   form: "emas"
@@ -317,6 +330,7 @@ lexemes:
   spelled: {uz-Latn/standard: [fasl], uz-Cyrl/standard: [фасл]}
 - id: lexeme:gen
   realises: {Case: Gen}
+  'on': {at: after, pos: [NOUN, PROPN, PRON, NUM]}
   gloss: {en: '-(n)ing: of, ''s'}
   notes: {en: men + -ning is written mening.}
   allomorphs:
@@ -348,7 +362,7 @@ lexemes:
   gloss: {en: all; everybody}
   notes: {en: 'Hammasi: all of it, everything.'}
   form: "hamma"
-  citation: {'Person[psor]': '3'}  # the course's lemma is this cell's form, not the bare word (for the owner)
+  citation: {Case: Nom, 'Person[psor]': '3'}  # the course's lemma is this cell's form, not the bare word (for the owner)
   spelled: {uz-Latn/standard: [hammasi], uz-Cyrl/standard: [ҳаммаси]}
   forms:
   - {feats: {'Person[psor]': '3'}, form: "hamma+si", status: pinned}  # rule debt: no rule for pronouns yet (language.yaml)
@@ -396,12 +410,25 @@ lexemes:
   form: "iltimos"
   spelled: {uz-Latn/standard: [iltimos], uz-Cyrl/standard: [илтимос]}
 - id: lexeme:imp
-  realises: {Mood: Imp, Person: '2', Polite: Form}
+  realises: {Mood: Imp, Person: '2', Polite: Form, VerbForm: Fin}
+  'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
   gloss: {en: '-(i)ng: please do (polite imperative)'}
   notes: {en: '-ing after a consonant (iching, oling), -ng after a vowel (yeng).'}
   allomorphs:
   - {form: ing, spelled: {uz-Latn/standard: [ing], uz-Cyrl/standard: [инг]}}
   - {form: ng, after: {endsIn: "{V}"}, spelled: {uz-Latn/standard: [ng], uz-Cyrl/standard: [нг]}}
+- id: lexeme:imp.sg
+  realises: {Mood: Imp, Number: Sing, Person: '2', VerbForm: Fin}
+  'on': {at: after, pos: [VERB], lacks: [Tense, Aspect, Mood, VerbForm]}
+  gloss: {en: 'the imperative to one person you know well: the stem alone (ich! "drink!")'}
+  allomorphs:
+  - {form: ""}  # REVIEW: HP p. 47: the familiar command is the stem
+- id: lexeme:inf
+  realises: {VerbForm: Inf}
+  'on': {at: after, pos: [VERB], lacks: [Polarity, Tense, Aspect, Mood, VerbForm]}
+  gloss: {en: '-moq: the infinitive, how a verb is cited (ichmoq "to drink")'}
+  allomorphs:
+  - {form: moq, spelled: {uz-Latn/standard: [moq], uz-Cyrl/standard: [моқ]}}  # REVIEW: HP p. 39: the stem is the infinitive minus -moq
 - id: lexeme:ish
   pos: NOUN
   gloss: {en: 'work, job'}
@@ -459,7 +486,7 @@ lexemes:
   gloss: {en: to forgive}
   notes: {en: 'Kechirasiz: excuse me; sorry (lit. you will forgive).'}
   form: "kechir"
-  citation: {Person: '2', Polite: Form, Tense: Pres}  # the course's lemma is this cell's form, not the bare word (for the owner)
+  citation: {Person: '2', Polite: Form, Tense: Pres, VerbForm: Fin}  # the course's lemma is this cell's form, not the bare word (for the owner)
   spelled: {uz-Latn/standard: [kechirasiz], uz-Cyrl/standard: [кечирасиз]}
   allomorphs:
   - {spelled: {uz-Latn/standard: [kechir], uz-Cyrl/standard: [кечир]}}  # its lexical form
@@ -565,6 +592,7 @@ lexemes:
   spelled: {uz-Latn/standard: [lekin], uz-Cyrl/standard: [лекин]}
 - id: lexeme:loc
   realises: {Case: Loc}
+  'on': {at: after, pos: [NOUN, PROPN, PRON, NUM]}
   gloss: {en: '-da: in, at, on'}
   notes: {en: 'Uyda: at home. Toshkentda: in Tashkent. Men uydaman: I am at home.'}
   allomorphs:
@@ -649,6 +677,7 @@ lexemes:
   - {form: nech, before: {startsIn: ta}, spelled: {uz-Latn/standard: [nech], uz-Cyrl/standard: [неч]}}  # REVIEW: nechta: the course
 - id: lexeme:neg
   realises: {Polarity: Neg}
+  'on': {at: after, pos: [VERB, AUX], lacks: [Polarity, Tense, Aspect, Mood, VerbForm]}
   gloss: {en: '-ma: not (on verbs)'}
   notes: {en: 'Ye + -ma + -y + -man = yemayman: I don''t eat.'}
   allomorphs:
@@ -659,6 +688,12 @@ lexemes:
   gloss: {en: what}
   form: "nima"
   spelled: {uz-Latn/standard: [nima], uz-Cyrl/standard: [нима]}
+- id: lexeme:nom
+  realises: {Case: Nom}
+  'on': {at: after, pos: [NOUN, PROPN, PRON, NUM]}
+  gloss: {en: 'the nominative: no ending (the subject; an object that is not definite)'}
+  allomorphs:
+  - {form: ""}  # REVIEW: the nominative has no ending (Sjoberg p. 84; HP p. 57)
 - id: lexeme:non
   pos: NOUN
   gloss: {en: bread (round flatbread)}
@@ -786,31 +821,42 @@ lexemes:
   gloss: {en: Uzbekistan}
   form: "Oʻzbekiston"
   spelled: {uz-Latn/standard: [Oʻzbekiston], uz-Cyrl/standard: [Ўзбекистон]}
+- id: lexeme:p3
+  realises: {Person: '3'}
+  'on': {at: after, pos: [VERB, AUX], has: {Tense: Past}, lacks: [Person], or: [{pos: [VERB, AUX], has: {Mood: Des}, lacks: [Person]}]}
+  gloss: {en: 'he, she, it: no ending (the past: keldi "came"; edi "was")'}
+  allomorphs:
+  - {form: ""}  # REVIEW: the past's third person has no ending (HP p. 48)
 - id: lexeme:park
   pos: NOUN
   gloss: {en: park}
   form: "park"
   spelled: {uz-Latn/standard: [park], uz-Cyrl/standard: [парк]}
 - id: lexeme:past
-  realises: {Tense: Past}
+  realises: {Tense: Past, VerbForm: Fin}
+  'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
+  requires: [Person]
   gloss: {en: '-di: past tense (he, she, it did)'}
   notes: {en: 'Keldi: he/she came. With a person ending: keldim, keldingiz, keldik.'}
   allomorphs:
   - {form: di, spelled: {uz-Latn/standard: [di], uz-Cyrl/standard: [ди]}}
 - id: lexeme:past-1pl
   realises: {Number: Plur, Person: '1'}
+  'on': {at: after, pos: [VERB, AUX], has: {Tense: Past}, lacks: [Person]}
   gloss: {en: '-k: we (past tense)'}
   notes: {en: 'Keldik: we came.'}
   allomorphs:
   - {form: k, spelled: {uz-Latn/standard: [k], uz-Cyrl/standard: [к]}}
 - id: lexeme:past-1sg
   realises: {Number: Sing, Person: '1'}
+  'on': {at: after, pos: [VERB, AUX], has: {Tense: Past}, lacks: [Person]}
   gloss: {en: '-m: I (past tense)'}
   notes: {en: 'Keldim: I came.'}
   allomorphs:
   - {form: m, spelled: {uz-Latn/standard: [m], uz-Cyrl/standard: [м]}}
 - id: lexeme:past-2
   realises: {Person: '2', Polite: Form}
+  'on': {at: after, pos: [VERB, AUX], has: {Tense: Past}, lacks: [Person]}
   gloss: {en: '-ngiz: you (past tense, polite)'}
   notes: {en: 'Keldingiz: you came.'}
   allomorphs:
@@ -839,6 +885,7 @@ lexemes:
   spelled: {uz-Latn/standard: [piyoz], uz-Cyrl/standard: [пиёз]}
 - id: lexeme:pl
   realises: {Number: Plur}
+  'on': {at: after, pos: [NOUN, PROPN, PRON, ADJ], lacks: [Case, 'Person[psor]', Person], or: [{pos: [VERB, AUX, NOUN, PROPN, PRON, ADJ], has: {Person: '2'}, lacks: [Number]}]}
   gloss: {en: '-lar: plural (-s)'}
   notes: {en: 'Not used after numbers: ikki kitob, two books.'}
   allomorphs:
@@ -850,6 +897,7 @@ lexemes:
   spelled: {uz-Latn/standard: [pomidor], uz-Cyrl/standard: [помидор]}
 - id: lexeme:poss-1pl
   realises: {'Number[psor]': Plur, 'Person[psor]': '1'}
+  'on': {at: after, pos: [NOUN, PROPN, ADJ], lacks: [Case, 'Person[psor]'], or: [{pos: [PRON], has: {PronType: Tot}, lacks: [Case, 'Person[psor]']}]}
   gloss: {en: '-(i)miz: our'}
   notes: {en: '-imiz after a consonant (uyimiz), -miz after a vowel (oilamiz).'}
   allomorphs:
@@ -857,18 +905,21 @@ lexemes:
   - {form: miz, after: {endsIn: "{V}"}, spelled: {uz-Latn/standard: [miz], uz-Cyrl/standard: [миз]}}
 - id: lexeme:poss-1sg
   realises: {'Number[psor]': Sing, 'Person[psor]': '1'}
+  'on': {at: after, pos: [NOUN, PROPN, ADJ], lacks: [Case, 'Person[psor]'], or: [{pos: [PRON], has: {PronType: Tot}, lacks: [Case, 'Person[psor]']}]}
   gloss: {en: '-(i)m: my'}
   allomorphs:
   - {form: m, after: {endsIn: "{V}"}, spelled: {uz-Latn/standard: [m], uz-Cyrl/standard: [м]}}
   - {form: im, spelled: {uz-Latn/standard: [im], uz-Cyrl/standard: [им]}}
 - id: lexeme:poss-2
   realises: {'Person[psor]': '2', Polite: Form}
+  'on': {at: after, pos: [NOUN, PROPN, ADJ], lacks: [Case, 'Person[psor]'], or: [{pos: [PRON], has: {PronType: Tot}, lacks: [Case, 'Person[psor]']}]}
   gloss: {en: '-(i)ngiz: your (polite)'}
   allomorphs:
   - {form: ingiz, spelled: {uz-Latn/standard: [ingiz], uz-Cyrl/standard: [ингиз]}}
   - {form: ngiz, after: {endsIn: "{V}"}, spelled: {uz-Latn/standard: [ngiz], uz-Cyrl/standard: [нгиз]}}
 - id: lexeme:poss-3
   realises: {'Person[psor]': '3'}
+  'on': {at: after, pos: [NOUN, PROPN, ADJ], lacks: [Case, 'Person[psor]'], or: [{pos: [PRON], has: {PronType: Tot}, lacks: [Case, 'Person[psor]']}]}
   gloss: {en: '-(s)i: his, her, its'}
   notes: {en: '-i after a consonant (ismi), -si after a vowel (onasi).'}
   allomorphs:
@@ -880,7 +931,9 @@ lexemes:
   form: "poyezd"
   spelled: {uz-Latn/standard: [poyezd], uz-Cyrl/standard: [поезд]}
 - id: lexeme:pres
-  realises: {Tense: Pres}
+  realises: {Tense: Pres, VerbForm: Fin}
+  'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
+  requires: [Person]
   gloss: {en: '-a / -y: present-future tense'}
   notes: {en: '-a after a consonant (ichaman), -y after a vowel (yeyman, ishlayman), then a person ending: -man I, -siz you, -di he/she, -miz we.'}
   allomorphs:
@@ -888,13 +941,16 @@ lexemes:
   - {form: y, after: {endsIn: "{V}"}, spelled: {uz-Latn/standard: [y], uz-Cyrl/standard: [й]}}
 - id: lexeme:pres-3sg
   realises: {Person: '3'}
+  'on': {at: after, pos: [VERB, AUX], has: {Tense: Pres}, lacks: [Person], or: [{pos: [VERB, AUX], has: {Aspect: Prog}, lacks: [Person]}]}
   gloss: {en: '-di: he, she, it (present tense)'}
   notes: {en: 'Ichadi: he/she drinks. After -yap it is -ti: uxlayapti.'}
   allomorphs:
   - {form: di, spelled: {uz-Latn/standard: [di], uz-Cyrl/standard: [ди]}}
   - {form: ti, after: {endsIn: yap}, spelled: {uz-Latn/standard: [ti], uz-Cyrl/standard: [ти]}}  # REVIEW: after -yap (uxlayapti): the course
 - id: lexeme:prog
-  realises: {Aspect: Prog}
+  realises: {Aspect: Prog, VerbForm: Fin}
+  'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
+  requires: [Person]
   gloss: {en: '-yap: right now (present continuous)'}
   notes: {en: 'Nima qilyapsiz? What are you doing? Kitob oʻqiyapman: I am reading. He/she: -yapti.'}
   allomorphs:
@@ -907,6 +963,7 @@ lexemes:
 - id: lexeme:q
   pos: PART
   feats: {PartType: Int}
+  'on': {at: after}
   gloss: {en: '-mi: yes/no question'}
   notes: {en: 'Bormi? Is there? Yaxshimisiz? Are you well?'}
   allomorphs:
@@ -1083,7 +1140,7 @@ lexemes:
   gloss: {en: younger sister}
   notes: {en: 'The second i drops before a vowel: singil + -im = singlim.'}
   form: "singil"
-  citation: {'Number[psor]': Sing, 'Person[psor]': '1'}  # the course's lemma is this cell's form, not the bare word (for the owner)
+  citation: {Case: Nom, 'Number[psor]': Sing, 'Person[psor]': '1'}  # the course's lemma is this cell's form, not the bare word (for the owner)
   spelled: {uz-Latn/standard: [singlim], uz-Cyrl/standard: [синглим]}
   forms:
   - {feats: {'Person[psor]': '3'}, stem: "singli", status: listed, statement: {author: 'llm:claude@rules-uz', status: draft}}  # REVIEW: singlisi, also singili (HP p. 63-64); oʻgʻli, burni drop the vowel alone
@@ -1156,6 +1213,7 @@ lexemes:
   spelled: {uz-Latn/standard: [telefon], uz-Cyrl/standard: [телефон]}
 - id: lexeme:term
   realises: {Case: Ter}
+  'on': {at: after, pos: [NOUN, PROPN, PRON, NUM]}
   gloss: {en: '-gacha: until, up to, as far as'}
   notes: {en: 'Toʻqqizdan beshgacha: from nine to five.'}
   allomorphs:
@@ -1189,7 +1247,7 @@ lexemes:
   gloss: {en: to be full (after eating)}
   notes: {en: 'Toʻydim: I''m full.'}
   form: "toʻy"
-  citation: {Number: Sing, Person: '1', Tense: Past}  # the course's lemma is this cell's form, not the bare word (for the owner)
+  citation: {Number: Sing, Person: '1', Tense: Past, VerbForm: Fin}  # the course's lemma is this cell's form, not the bare word (for the owner)
   spelled: {uz-Latn/standard: [toʻydim], uz-Cyrl/standard: [тўйдим]}
   allomorphs:
   - {spelled: {uz-Latn/standard: [toʻy], uz-Cyrl/standard: [тўй]}}  # its lexical form
@@ -1225,6 +1283,8 @@ lexemes:
   notes: {en: 'Uzbek has one third-person pronoun for he, she and it.'}
   form: "u"
   spelled: {uz-Latn/standard: [u], uz-Cyrl/standard: [у]}
+  allomorphs:
+  - {form: un, before: {startsIn: "[dg]"}, spelled: {uz-Latn/standard: [un], uz-Cyrl/standard: [ун]}}  # REVIEW: Sjoberg pp. 88-89: unga, unda, undan (uning, uni)
 - id: lexeme:uch
   pos: NUM
   feats: {NumType: Card}
@@ -1284,7 +1344,9 @@ lexemes:
   form: "va"
   spelled: {uz-Latn/standard: [va], uz-Cyrl/standard: [ва]}
 - id: lexeme:want
-  realises: {Mood: Des}
+  realises: {Mood: Des, VerbForm: Fin}
+  'on': {at: after, pos: [VERB, AUX], lacks: [Tense, Aspect, Mood, VerbForm]}
+  requires: [Person]
   gloss: {en: '-moqchi: want to; be going to'}
   notes: {en: 'Olmoqchiman: I want to buy. Bormoqchimiz: we want to go, we plan to go.'}
   allomorphs:

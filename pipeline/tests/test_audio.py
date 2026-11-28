@@ -854,13 +854,15 @@ def test_the_clip_of_a_form_is_kept_as_a_recording_is(tmp_path: Path, voice: _Vo
 def test_the_clip_of_a_form_ships_in_no_bundle(core_cli: CoreCli, tmp_path: Path) -> None:
     """The compiler knows a form's clip by the forms the course's tokens write: it is neither an
     unknown item nor in the bundle's audio, since no card says a form alone. fa's budan in the
-    past, as an earlier run left it (fa's own were dropped, 2026-11-22)."""
+    past (بود: its cell is the merged word's, the third person's zero folded in, since fa merges),
+    as an earlier run left it (fa's own were dropped, 2026-11-22)."""
     fa = tmp_path / "fa"
     shutil.copytree(ROOT / "courses" / "fa", fa)
     (tmp_path / "lexicons").symlink_to(ROOT / "lexicons")
-    _keep_a_clip(fa, "lexeme:budan|form:Tense=Past", b"a form budan writes")
+    bud = "lexeme:budan|form:Number=Sing;Person=3;Tense=Past;VerbForm=Fin"
+    _keep_a_clip(fa, bud, b"a form budan writes")
     forms = {c.item for c in read_index(audio_dir(fa)).clips if is_form(c.item)}
-    assert forms == {"lexeme:budan|form:Tense=Past"}
+    assert forms == {bud}
     diags, compiled = compile_course(fa, core_cli)
     assert compiled is not None
     assert not forms & set(compiled.audio_items)

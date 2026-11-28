@@ -5,35 +5,54 @@ provenance: {author: 'llm:claude@83a16c835c32', status: draft}
 lexemes:
 - id: lexeme:1pl
   realises: {Number: Plur, Person: '1'}
+  'on': {at: after, pos: [VERB, AUX], needs: [Tense], lacks: [Person]}
   gloss: {en: '-im: we (verb ending; هستیم: we are)'}
   allomorphs:
   - {form: یم, spelled: {fa-Arab/standard: [یم]}}
 - id: lexeme:1sg
   realises: {Number: Sing, Person: '1'}
+  'on': {at: after, pos: [VERB, AUX], needs: [Tense], lacks: [Person]}
   gloss: {en: '-am: I (verb ending)'}
   allomorphs:
   - {form: "ـَم", spelled: {fa-Arab/standard: [م]}}
 - id: lexeme:2pl
   realises: {Number: Plur, Person: '2'}
+  'on': {at: after, pos: [VERB, AUX], needs: [Tense], lacks: [Person]}
   gloss: {en: '-id: you, polite or more than one (verb ending)'}
   allomorphs:
   - {form: ید, spelled: {fa-Arab/standard: [ید]}}
 - id: lexeme:2sg
   realises: {Number: Sing, Person: '2'}
+  'on': {at: after, pos: [VERB, AUX], needs: [Tense], lacks: [Person]}
   gloss: {en: '-i: you, one person (verb ending)'}
   allomorphs:
   - {form: ی, spelled: {fa-Arab/standard: [ی]}}
+- id: lexeme:2sg.imp
+  realises: {Number: Sing, Person: '2'}
+  'on': {at: after, pos: [VERB], has: {Mood: Sub}, lacks: [Person]}
+  gloss: {en: 'you, telling one person: no ending (ببین, look!)'}
+  notes: {en: 'The imperative to one person is be- and the present stem alone (Yousef 2018 p. 244); to several it takes -id, as the subjunctive does: ببینید. The course writes the imperative with the subjunctive''s be- (subj), so this zero stands where the subjunctive has -i (ببینی).'}
+  allomorphs:
+  - {form: ""}  # REVIEW: Yousef p. 244
 - id: lexeme:3pl
   realises: {Number: Plur, Person: '3'}
+  'on': {at: after, pos: [VERB, AUX], needs: [Tense], lacks: [Person]}
   gloss: {en: '-and: they (verb ending)'}
   allomorphs:
   - {form: "ـَند", spelled: {fa-Arab/standard: [ند]}}
 - id: lexeme:3sg
   realises: {Number: Sing, Person: '3'}
+  'on': {at: after, pos: [VERB], has: {Tense: Pres}, lacks: [Person]}
   gloss: {en: '-ad: he, she, it (verb ending)'}
   notes: {en: 'دارد (dārad): has. In speech it is -e: داره (dāre).'}
   allomorphs:
   - {form: "ـَد", spelled: {fa-Arab/standard: [د]}}
+- id: lexeme:3sg.zero
+  realises: {Number: Sing, Person: '3'}
+  'on': {at: after, pos: [VERB, AUX], has: {Tense: Past}, lacks: [Person], or: [{pos: [AUX], has: {Tense: Pres}, lacks: [Person]}]}
+  gloss: {en: 'he, she, it: no ending (the past: رفت, he went; the copula: است, is)'}
+  allomorphs:
+  - {form: ""}  # REVIEW: Yousef p. 200 (the past's 3sg has none), p. 183 (the copula's)
 - id: lexeme:ab
   pos: NOUN
   gloss: {en: water}
@@ -246,8 +265,12 @@ lexemes:
   # independent version's 3sg present (hast, p. 183-185: existence, emphasis), which its tokens choose.
   - {feats: {Polarity: Neg}, form: نیست, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   - {feats: {Variant: Long}, form: هَست, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
+  # REVIEW: the copula's infinitive is its form (its allomorphs are its present's: است, هست, ست)
+  - {feats: {VerbForm: Inf}, form: بودَن, status: listed, statement: {author: 'llm:claude@rules-fa', status: draft}}
   allomorphs:
-  - {form: هَست, before: {startsIn: '.*'}, spelled: {fa-Arab/standard: [هست]}}
+  - {form: هَست, before: {feats: {Person: '1'}}, spelled: {fa-Arab/standard: [هست]}}  # REVIEW: Yousef p. 183: هستم, هستیم before an ending
+  - {form: هَست, before: {feats: {Person: '2'}}, spelled: {fa-Arab/standard: [هست]}}  # هستی, هستید
+  - {form: هَست, before: {feats: {Number: Plur, Person: '3'}}, spelled: {fa-Arab/standard: [هست]}}  # هستند; the 3sg is است
   - {form: ست, after: {endsIn: '.[اوی]'}, spelled: {fa-Arab/standard: [ست]}}
   - {form: اَست, spelled: {fa-Arab/standard: [است]}}
 - id: lexeme:chahar
@@ -316,6 +339,7 @@ lexemes:
   spelled: {fa-Arab/standard: [چیست]}
 - id: lexeme:comp
   realises: {Degree: Cmp}
+  'on': {at: after, pos: [ADJ, ADV], lacks: [Degree, Number, Definite]}
   gloss: {en: '-tar: -er, more (comparative)'}
   notes: {en: "Joined with a ZWNJ: گران\u200cتر, more expensive; ارزان\u200cتر, cheaper."}
   allomorphs:
@@ -382,6 +406,9 @@ lexemes:
   spelled: {fa-Arab/standard: [دریا]}
 - id: lexeme:dashtan
   pos: VERB
+  # REVIEW: no mi- in its present or progressive tenses (Yousef 2018 p. 210, 224; p. 232: its past serves for the past
+  # progressive): its forms are imperfective of themselves, so mi- and be- (which lack Aspect) never merge onto it.
+  feats: {Aspect: Imp}
   gloss: {en: to have (present stem دار-)}
   notes: {en: "No می\u200c in the present: دارم, داری, دارد, داریم, دارید, دارند. Age also uses داشتن: بیست سال دارم, I am twenty (literally 'I have twenty years')."}
   form: داشتَن
@@ -479,6 +506,7 @@ lexemes:
   spelled: {fa-Arab/standard: [اسم]}
 - id: lexeme:existential-hast
   pos: AUX
+  requires: []
   gloss: {en: 'هست: there is, there are'}
   notes: {en: 'در آشپزخانه یک میز هست: there is a table in the kitchen. The negative is نیست: نان نیست, there is no bread.'}
   form: هَست
@@ -573,7 +601,7 @@ lexemes:
   spelled: {fa-Arab/standard: [قیمت]}
 - id: lexeme:gozashtan
   pos: VERB
-  citation: {Tense: Past}  # its lemma is its 3sg past (گذشت), as the course teaches it: خوش گذشت
+  citation: {Number: Sing, Person: '3', Tense: Past, VerbForm: Fin}  # its lemma is its 3sg past (گذشت), as the course teaches it: خوش گذشت
   gloss: {en: to pass (of time) (past stem گذشت-)}
   notes: {en: 'به شما خوش گذشت؟ Did you have a good time? Literally ''did it pass pleasantly for you?'''}
   form: گُذَشت
@@ -645,12 +673,19 @@ lexemes:
   spelled: {fa-Arab/standard: [این]}
 - id: lexeme:indef
   realises: {Definite: Ind}
+  'on': {at: after, pos: [NOUN, ADJ, PROPN], lacks: [Definite]}
   gloss: {en: '-i: a, some, any (indefinite ending)'}
   notes: {en: 'رنگی: a colour; چه رنگی؟ what colour? On a noun with an adjective it goes on the adjective: شهرِ بزرگی, a big city.'}
   allomorphs:
   - {form: "\u200cای", after: {endsIn: "ه\u06df"}}
   - {form: یی, after: {endsIn: '.[او]'}}
   - {form: ی, spelled: {fa-Arab/standard: [ی]}}
+- id: lexeme:inf
+  realises: {VerbForm: Inf}
+  'on': {at: after, pos: [VERB, AUX], lacks: [Tense, VerbForm]}
+  gloss: {en: 'the infinitive: the verb as it is cited (خوردن, to eat)'}
+  allomorphs:
+  - {form: ""}  # REVIEW: the lexical form is the infinitive (Yousef p. 158)
 - id: lexeme:inja
   pos: ADV
   feats: {PronType: Dem}
@@ -866,6 +901,13 @@ lexemes:
   gloss: {en: 'clothes; garment; outfit, dress'}
   form: لِباس
   spelled: {fa-Arab/standard: [لباس]}
+- id: lexeme:long
+  realises: {Variant: Long}
+  'on': {at: after, pos: [AUX], lacks: [Variant]}
+  gloss: {en: 'the copula''s independent version: هست, there is (and is, with emphasis)'}
+  notes: {en: 'Yousef 2018 p. 183-185: هست says existence or stresses that something is; است is the usual copula.'}
+  allomorphs:
+  - {form: ""}  # REVIEW: its form is the copula's listed هست
 - id: lexeme:lotfan
   pos: INTJ
   gloss: {en: please}
@@ -938,6 +980,7 @@ lexemes:
   spelled: {fa-Arab/standard: [میدان]}
 - id: lexeme:mi
   realises: {Aspect: Imp}
+  'on': {at: before, pos: [VERB], needs: [Tense], lacks: [Polarity, Mood]}
   gloss: {en: 'mi-: present tense (verb prefix)'}
   notes: {en: "Joined with a ZWNJ: می\u200cکنم. The present also means 'I am doing' and often 'I will do'."}
   allomorphs:
@@ -998,6 +1041,7 @@ lexemes:
   spelled: {fa-Arab/standard: [نزدیک]}
 - id: lexeme:neg
   realises: {Polarity: Neg}
+  'on': {at: before, pos: [VERB, AUX]}
   gloss: {en: 'na-, ne-: not (verb prefix)'}
   notes: {en: "ندارم: I don't have. Before می\u200c it is ne-: نمی\u200cخورم, I don't eat."}
   allomorphs:
@@ -1071,6 +1115,14 @@ lexemes:
   gloss: {en: park}
   form: پارک
   spelled: {fa-Arab/standard: [پارک]}
+- id: lexeme:past
+  realises: {Tense: Past, VerbForm: Fin}
+  'on': {at: after, pos: [VERB, AUX], lacks: [Tense, VerbForm]}
+  requires: [Person]
+  gloss: {en: 'the past: no ending of its own (its stem: raft-am)'}
+  notes: {en: 'The past stem is the infinitive less -an (Yousef 2018 p. 158): رفتن, رفت. The past is a zero that chooses it; the person ending comes after it.'}
+  allomorphs:
+  - {form: ""}  # REVIEW: the tense is the stem's (Yousef p. 158)
 - id: lexeme:pedar
   pos: NOUN
   gloss: {en: father}
@@ -1108,12 +1160,14 @@ lexemes:
   spelled: {fa-Arab/standard: [پیاده]}
 - id: lexeme:pl
   realises: {Number: Plur}
+  'on': {at: after, pos: [NOUN, PRON, DET, ADJ, PROPN], lacks: [Number, Definite]}
   gloss: {en: '-hā: plural'}
   notes: {en: "Joined to the noun with a zero-width non-joiner: کتاب\u200cها, not کتابها or کتاب ها."}
   allomorphs:
   - {form: "\u200cها", spelled: {fa-Arab/standard: ["\u200cها"]}}
 - id: lexeme:pl-an
   realises: {Number: Plur}
+  'on': {at: after, pos: [NOUN, ADJ], lacks: [Number, Definite]}
   gloss: {en: '-ān: plural (people and living things)'}
   notes: {en: "دوستان (friends) is more formal than دوست\u200cها."}
   allomorphs:
@@ -1147,6 +1201,14 @@ lexemes:
   - {form: "\u200cاَت", after: {endsIn: "ه\u06df"}}
   - {form: یَت, after: {endsIn: '.[او]'}}
   - {form: "ـَت", spelled: {fa-Arab/standard: [ت]}}
+- id: lexeme:pres
+  realises: {Tense: Pres, VerbForm: Fin}
+  'on': {at: after, pos: [VERB, AUX], lacks: [Tense, VerbForm]}
+  requires: [Person]
+  gloss: {en: 'the present: no ending of its own (its stem: mi-khor-am)'}
+  notes: {en: "A Persian verb shows its tense by its stem (Yousef 2018 p. 158-159): خور in می\u200cخورم, خورد in خوردم. The present is a zero that chooses the present stem; the person ending comes after it."}
+  allomorphs:
+  - {form: ""}  # REVIEW: the tense is the stem's (Yousef p. 158)
 - id: lexeme:ra
   pos: PART
   gloss: {en: 'را: marks a definite object'}
@@ -1363,6 +1425,7 @@ lexemes:
   spelled: {fa-Arab/standard: [صحبت]}
 - id: lexeme:subj
   realises: {Mood: Sub}
+  'on': {at: before, pos: [VERB], has: {Tense: Pres}, lacks: [Polarity, Aspect]}
   gloss: {en: 'be-: imperative and subjunctive (verb prefix)'}
   notes: {en: 'بروید: go (polite)! بپیچید: turn! برو: go (to a friend)! The same form follows verbs like ''want'' and ''can''.'}
   allomorphs:

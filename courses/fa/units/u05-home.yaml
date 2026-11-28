@@ -19,7 +19,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این خانهٔ من است.
-      tokens: [{surface: این, lexeme: in}, {surface: خانهٔ, lexemes: [{lexeme: khane, surface: خانهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexeme: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: خانهٔ, lexemes: [{lexeme: khane, surface: خانهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: "این خان(هٔ|ه\u200cی|ه) من است\nاین خانه\u200cام است\nاین خانه\u200cی منه"
   translations:
     en: This is my (house|home).
@@ -28,7 +28,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: خانهٔ ما بزرگ است.
-      tokens: [{surface: خانهٔ, lexemes: [{lexeme: khane, surface: خانهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: ما, lexeme: ma}, {surface: بزرگ, lexeme: bozorg}, {surface: است, lexeme: budan}]
+      tokens: [{surface: خانهٔ, lexemes: [{lexeme: khane, surface: خانهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: ما, lexeme: ma}, {surface: بزرگ, lexeme: bozorg}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: "خان(هٔ|ه\u200cی|ه) ما (بزرگ است|بزرگه)\nخانه\u200cمان بزرگ است"
   translations:
     en: Our (house|home) is (big|large).
@@ -37,7 +37,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: خانهٔ علی کوچک است.
-      tokens: [{surface: خانهٔ, lexemes: [{lexeme: khane, surface: خانهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: علی, lexeme: ali}, {surface: کوچک, lexeme: kuchak}, {surface: است, lexeme: budan}]
+      tokens: [{surface: خانهٔ, lexemes: [{lexeme: khane, surface: خانهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: علی, lexeme: ali}, {surface: کوچک, lexeme: kuchak}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: "خان(هٔ|ه\u200cی|ه) علی کوچک است"
   translations:
     en: Ali's (house|home) is (small|little).
@@ -46,7 +46,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: آپارتمانِ ما کوچک است.
-      tokens: [{surface: آپارتمانِ, lexemes: [{lexeme: aparteman, surface: آپارتمانِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: ما, lexeme: ma}, {surface: کوچک, lexeme: kuchak}, {surface: است, lexeme: budan}]
+      tokens: [{surface: آپارتمانِ, lexemes: [{lexeme: aparteman, surface: آپارتمانِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: ما, lexeme: ma}, {surface: کوچک, lexeme: kuchak}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         آپارتمان ما کوچک است
         آپارتمانمان کوچک است
@@ -59,7 +59,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: خانهٔ شما خیلی قشنگ است!
-      tokens: [{surface: خانهٔ, lexemes: [{lexeme: khane, surface: خانهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: شما, lexeme: shoma}, {surface: خیلی, lexeme: kheyli}, {surface: قشنگ, lexeme: ghashang}, {surface: است, lexeme: budan}]
+      tokens: [{surface: خانهٔ, lexemes: [{lexeme: khane, surface: خانهٔ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: شما, lexeme: shoma}, {surface: خیلی, lexeme: kheyli}, {surface: قشنگ, lexeme: ghashang}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: "خان(هٔ|ه\u200cی|ه) (شما|تو) خیلی (قشنگ است|قشنگه)\n(خانه\u200cتان|خانه\u200cات) خیلی (قشنگ است|قشنگه)\nخانه شما بسیار قشنگ است\nخانه شما خیلی زیبا است"
   translations:
     en: |-
@@ -70,7 +70,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این خانه جدید است.
-      tokens: [{surface: این, lexeme: in}, {surface: خانه, lexeme: khane}, {surface: جدید, lexeme: jadid}, {surface: است, lexeme: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: خانه, lexeme: khane}, {surface: جدید, lexeme: jadid}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         این خانه جدید است
         این خانه جدیده
@@ -81,7 +81,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: آن خانه خیلی قدیمی است.
-      tokens: [{surface: آن, lexeme: an}, {surface: خانه, lexeme: khane}, {surface: خیلی, lexeme: kheyli}, {surface: قدیمی, lexeme: ghadimi}, {surface: است, lexeme: budan}]
+      tokens: [{surface: آن, lexeme: an}, {surface: خانه, lexeme: khane}, {surface: خیلی, lexeme: kheyli}, {surface: قدیمی, lexeme: ghadimi}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         آن خانه خیلی قدیمی است
         آن خانه بسیار قدیمی است
@@ -95,7 +95,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این اتاقِ من است.
-      tokens: [{surface: این, lexeme: in}, {surface: اتاقِ, lexemes: [{lexeme: otagh, surface: اتاقِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexeme: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: اتاقِ, lexemes: [{lexeme: otagh, surface: اتاقِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: این (اتاق من است|اتاقم است|اتاق منه|اتاقمه)
   translations:
     en: This is my room.
@@ -104,7 +104,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: اتاقِ من کوچک است، اما قشنگ است.
-      tokens: [{surface: اتاقِ, lexemes: [{lexeme: otagh, surface: اتاقِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: کوچک, lexeme: kuchak}, {surface: است, lexeme: budan}, {surface: اما, lexeme: amma}, {surface: قشنگ, lexeme: ghashang}, {surface: است, lexeme: budan}]
+      tokens: [{surface: اتاقِ, lexemes: [{lexeme: otagh, surface: اتاقِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: کوچک, lexeme: kuchak}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}, {surface: اما, lexeme: amma}, {surface: قشنگ, lexeme: ghashang}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         (اتاق من|اتاقم) کوچک است (اما|ولی) (قشنگ است|قشنگه)
         اتاق من کوچک است ولی زیبا است
@@ -117,7 +117,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: اتاقت خیلی قشنگ است!
-      tokens: [{surface: اتاقت, lexemes: [{lexeme: otagh, surface: اتاق, base: true}, {lexeme: poss-2sg, surface: ت}]}, {surface: خیلی, lexeme: kheyli}, {surface: قشنگ, lexeme: ghashang}, {surface: است, lexeme: budan}]
+      tokens: [{surface: اتاقت, lexemes: [{lexeme: otagh, surface: اتاق, base: true}, {lexeme: poss-2sg, surface: ت}]}, {surface: خیلی, lexeme: kheyli}, {surface: قشنگ, lexeme: ghashang}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         (اتاقت|اتاق تو|اتاقتان|اتاق شما) خیلی (قشنگ است|قشنگه)
         اتاقت بسیار قشنگ است
@@ -131,7 +131,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: آشپزخانه بزرگ است.
-      tokens: [{surface: آشپزخانه, lexeme: ashpazkhane}, {surface: بزرگ, lexeme: bozorg}, {surface: است, lexeme: budan}]
+      tokens: [{surface: آشپزخانه, lexeme: ashpazkhane}, {surface: بزرگ, lexeme: bozorg}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: آشپزخانه (بزرگ است|بزرگه)
   translations:
     en: The kitchen is (big|large).
@@ -140,7 +140,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: اتاقِ من دو پنجره دارد.
-      tokens: [{surface: اتاقِ, lexemes: [{lexeme: otagh, surface: اتاقِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: دو, lexeme: do}, {surface: پنجره, lexeme: panjere}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 3sg, surface: د}]}]
+      tokens: [{surface: اتاقِ, lexemes: [{lexeme: otagh, surface: اتاقِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: دو, lexeme: do}, {surface: پنجره, lexeme: panjere}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 3sg, surface: د}]}]
       reverse: |-
         (اتاق من|اتاقم) دو پنجره دارد
         اتاق من دو تا پنجره دارد
@@ -198,7 +198,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: پدرم در آشپزخانه است.
-      tokens: [{surface: پدرم, lexemes: [{lexeme: pedar, surface: پدر, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: در, lexeme: dar}, {surface: آشپزخانه, lexeme: ashpazkhane}, {surface: است, lexeme: budan}]
+      tokens: [{surface: پدرم, lexemes: [{lexeme: pedar, surface: پدر, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: در, lexeme: dar}, {surface: آشپزخانه, lexeme: ashpazkhane}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: (پدرم|پدر من) (در|توی) آشپزخانه است
   translations:
     en: My (father|dad) is in the kitchen.
@@ -207,7 +207,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: "بچه\u200cها در اتاق هستند."
-      tokens: [{surface: "بچه\u200cها", lexemes: [{lexeme: bachche, surface: "بچه\u200c", base: true}, {lexeme: pl, surface: ها}]}, {surface: در, lexeme: dar}, {surface: اتاق, lexeme: otagh}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 3pl, surface: ند}]}]
+      tokens: [{surface: "بچه\u200cها", lexemes: [{lexeme: bachche, surface: "بچه\u200c", base: true}, {lexeme: pl, surface: ها}]}, {surface: در, lexeme: dar}, {surface: اتاق, lexeme: otagh}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: pres}, {lexeme: 3pl, surface: ند}]}]
       reverse: "بچه\u200cها (در|توی) اتاق هستند"
   translations:
     en: The (children|kids) are in the room.
@@ -216,7 +216,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این میز خیلی بزرگ است.
-      tokens: [{surface: این, lexeme: in}, {surface: میز, lexeme: miz}, {surface: خیلی, lexeme: kheyli}, {surface: بزرگ, lexeme: bozorg}, {surface: است, lexeme: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: میز, lexeme: miz}, {surface: خیلی, lexeme: kheyli}, {surface: بزرگ, lexeme: bozorg}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         این میز خیلی (بزرگ است|بزرگه)
         این میز بسیار بزرگ است
@@ -229,7 +229,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: کتاب روی میز است.
-      tokens: [{surface: کتاب, lexeme: ketab}, {surface: روی, lexeme: ruye}, {surface: میز, lexeme: miz}, {surface: است, lexeme: budan}]
+      tokens: [{surface: کتاب, lexeme: ketab}, {surface: روی, lexeme: ruye}, {surface: میز, lexeme: miz}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         کتاب روی میز است
         کتاب روی میزه
@@ -240,7 +240,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: کتاب زیرِ میز است.
-      tokens: [{surface: کتاب, lexeme: ketab}, {surface: زیرِ, lexemes: [{lexeme: zir, surface: زیرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: میز, lexeme: miz}, {surface: است, lexeme: budan}]
+      tokens: [{surface: کتاب, lexeme: ketab}, {surface: زیرِ, lexemes: [{lexeme: zir, surface: زیرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: میز, lexeme: miz}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         کتاب زیر میز است
         کتاب زیر میزه
@@ -251,7 +251,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: اتاقم یک میز و یک صندلی دارد.
-      tokens: [{surface: اتاقم, lexemes: [{lexeme: otagh, surface: اتاق, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: یک, lexeme: yek}, {surface: میز, lexeme: miz}, {surface: و, lexeme: va}, {surface: یک, lexeme: yek}, {surface: صندلی, lexeme: sandali}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 3sg, surface: د}]}]
+      tokens: [{surface: اتاقم, lexemes: [{lexeme: otagh, surface: اتاق, base: true}, {lexeme: poss-1sg, surface: م}]}, {surface: یک, lexeme: yek}, {surface: میز, lexeme: miz}, {surface: و, lexeme: va}, {surface: یک, lexeme: yek}, {surface: صندلی, lexeme: sandali}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 3sg, surface: د}]}]
       reverse: (اتاقم|اتاق من) یک میز و یک صندلی دارد
   translations:
     en: My room has a (table|desk) and a chair.
@@ -260,7 +260,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: این تخت جدید است.
-      tokens: [{surface: این, lexeme: in}, {surface: تخت, lexeme: takht}, {surface: جدید, lexeme: jadid}, {surface: است, lexeme: budan}]
+      tokens: [{surface: این, lexeme: in}, {surface: تخت, lexeme: takht}, {surface: جدید, lexeme: jadid}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         این تخت جدید است
         این تختخواب جدید است
@@ -272,7 +272,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: تختِ من کنارِ پنجره است.
-      tokens: [{surface: تختِ, lexemes: [{lexeme: takht, surface: تختِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: کنارِ, lexemes: [{lexeme: kenar, surface: کنارِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: پنجره, lexeme: panjere}, {surface: است, lexeme: budan}]
+      tokens: [{surface: تختِ, lexemes: [{lexeme: takht, surface: تختِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: کنارِ, lexemes: [{lexeme: kenar, surface: کنارِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: پنجره, lexeme: panjere}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: (تخت من|تختم) کنار پنجره است
   translations:
     en: My bed is (next to|by|beside) the window.
@@ -281,7 +281,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: شیر در یخچال است.
-      tokens: [{surface: شیر, lexeme: shir}, {surface: در, lexeme: dar}, {surface: یخچال, lexeme: yakhchal}, {surface: است, lexeme: budan}]
+      tokens: [{surface: شیر, lexeme: shir}, {surface: در, lexeme: dar}, {surface: یخچال, lexeme: yakhchal}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         شیر (در|توی) یخچال است
         شیر توی یخچاله
@@ -293,7 +293,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: در آشپزخانه یک میز هست.
-      tokens: [{surface: در, lexeme: dar}, {surface: آشپزخانه, lexeme: ashpazkhane}, {surface: یک, lexeme: yek}, {surface: میز, lexeme: miz}, {surface: هست, lexeme: budan, feats: {Variant: Long}}]
+      tokens: [{surface: در, lexeme: dar}, {surface: آشپزخانه, lexeme: ashpazkhane}, {surface: یک, lexeme: yek}, {surface: میز, lexeme: miz}, {surface: هست, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: long}, {lexeme: 3sg.zero}]}]
       reverse: |-
         (در|توی) آشپزخانه یک میز (هست|است|وجود دارد)
         یک میز (در|توی) آشپزخانه (هست|است|وجود دارد)
@@ -307,7 +307,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: در خانه نان هست؟
-      tokens: [{surface: در, lexeme: dar}, {surface: خانه, lexeme: khane}, {surface: نان, lexeme: nan}, {surface: هست, lexeme: budan, feats: {Variant: Long}}]
+      tokens: [{surface: در, lexeme: dar}, {surface: خانه, lexeme: khane}, {surface: نان, lexeme: nan}, {surface: هست, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: long}, {lexeme: 3sg.zero}]}]
       reverse: |-
         (در|توی) خانه نان هست
         آیا در خانه نان هست
@@ -319,7 +319,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: نه، نان نیست.
-      tokens: [{surface: نه, lexeme: na, vocalized: نَه}, {surface: نان, lexeme: nan}, {surface: نیست, lexeme: budan, feats: {Polarity: Neg}}]
+      tokens: [{surface: نه, lexeme: na, vocalized: نَه}, {surface: نان, lexeme: nan}, {surface: نیست, lexemes: [{lexeme: neg}, {lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       reverse: |-
         نه نان نیست
         نه نان نداریم
@@ -334,7 +334,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: در یخچال میوه هست.
-      tokens: [{surface: در, lexeme: dar}, {surface: یخچال, lexeme: yakhchal}, {surface: میوه, lexeme: mive}, {surface: هست, lexeme: budan, feats: {Variant: Long}}]
+      tokens: [{surface: در, lexeme: dar}, {surface: یخچال, lexeme: yakhchal}, {surface: میوه, lexeme: mive}, {surface: هست, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: long}, {lexeme: 3sg.zero}]}]
       reverse: (در|توی) یخچال میوه هست
   translations:
     en: |-
@@ -369,7 +369,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: سلام! آپارتمانِ تو خیلی قشنگ است!
-          tokens: [{surface: سلام, lexeme: salam}, {surface: آپارتمانِ, lexemes: [{lexeme: aparteman, surface: آپارتمانِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: تو, lexeme: to}, {surface: خیلی, lexeme: kheyli}, {surface: قشنگ, lexeme: ghashang}, {surface: است, lexeme: budan}]
+          tokens: [{surface: سلام, lexeme: salam}, {surface: آپارتمانِ, lexemes: [{lexeme: aparteman, surface: آپارتمانِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: تو, lexeme: to}, {surface: خیلی, lexeme: kheyli}, {surface: قشنگ, lexeme: ghashang}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       translations:
         en: Hi! Your flat is really nice!
   - line:
@@ -382,7 +382,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: ممنون. آپارتمانِ من کوچک است، اما جدید است.
-          tokens: [{surface: ممنون, lexeme: mamnun}, {surface: آپارتمانِ, lexemes: [{lexeme: aparteman, surface: آپارتمانِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: کوچک, lexeme: kuchak}, {surface: است, lexeme: budan}, {surface: اما, lexeme: amma}, {surface: جدید, lexeme: jadid}, {surface: است, lexeme: budan}]
+          tokens: [{surface: ممنون, lexeme: mamnun}, {surface: آپارتمانِ, lexemes: [{lexeme: aparteman, surface: آپارتمانِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: کوچک, lexeme: kuchak}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}, {surface: اما, lexeme: amma}, {surface: جدید, lexeme: jadid}, {surface: است, lexemes: [{lexeme: budan, base: true}, {lexeme: pres}, {lexeme: 3sg.zero}]}]
       translations:
         en: Thanks. My flat is small, but it's new.
   - line:
@@ -414,7 +414,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: اتاقِ من اینجاست. یک تخت و یک میز دارد.
-          tokens: [{surface: اتاقِ, lexemes: [{lexeme: otagh, surface: اتاقِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: اینجاست, lexemes: [{lexeme: inja, surface: اینجا, base: true}, {lexeme: budan, surface: ست}]}, {surface: یک, lexeme: yek}, {surface: تخت, lexeme: takht}, {surface: و, lexeme: va}, {surface: یک, lexeme: yek}, {surface: میز, lexeme: miz}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true, feats: {Tense: Pres}}, {lexeme: 3sg, surface: د}]}]
+          tokens: [{surface: اتاقِ, lexemes: [{lexeme: otagh, surface: اتاقِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: من, lexeme: man}, {surface: اینجاست, lexemes: [{lexeme: inja, surface: اینجا, base: true}, {lexeme: budan, surface: ست}]}, {surface: یک, lexeme: yek}, {surface: تخت, lexeme: takht}, {surface: و, lexeme: va}, {surface: یک, lexeme: yek}, {surface: میز, lexeme: miz}, {surface: دارد, lexemes: [{lexeme: dashtan, surface: دار, base: true}, {lexeme: pres}, {lexeme: 3sg, surface: د}]}]
       translations:
         en: My room is here. It has a bed and a desk.
   - choose:
@@ -430,7 +430,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: "کتاب\u200cهای تو کجا هستند؟"
-          tokens: [{surface: "کتاب\u200cهای", lexemes: [{lexeme: ketab, surface: "کتاب\u200c", base: true}, {lexeme: pl, surface: ها}, {lexeme: ezafe, surface: ی}]}, {surface: تو, lexeme: to}, {surface: کجا, lexeme: koja}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 3pl, surface: ند}]}]
+          tokens: [{surface: "کتاب\u200cهای", lexemes: [{lexeme: ketab, surface: "کتاب\u200c", base: true}, {lexeme: pl, surface: ها}, {lexeme: ezafe, surface: ی}]}, {surface: تو, lexeme: to}, {surface: کجا, lexeme: koja}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: pres}, {lexeme: 3pl, surface: ند}]}]
       translations:
         en: Where are your books?
   - line:
@@ -439,7 +439,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: "کتاب\u200cهای من زیرِ تخت هستند!"
-          tokens: [{surface: "کتاب\u200cهای", lexemes: [{lexeme: ketab, surface: "کتاب\u200c", base: true}, {lexeme: pl, surface: ها}, {lexeme: ezafe, surface: ی}]}, {surface: من, lexeme: man}, {surface: زیرِ, lexemes: [{lexeme: zir, surface: زیرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: تخت, lexeme: takht}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: 3pl, surface: ند}]}]
+          tokens: [{surface: "کتاب\u200cهای", lexemes: [{lexeme: ketab, surface: "کتاب\u200c", base: true}, {lexeme: pl, surface: ها}, {lexeme: ezafe, surface: ی}]}, {surface: من, lexeme: man}, {surface: زیرِ, lexemes: [{lexeme: zir, surface: زیرِ, base: true}, {lexeme: ezafe, surface: ''}]}, {surface: تخت, lexeme: takht}, {surface: هستند, lexemes: [{lexeme: budan, surface: هست, base: true}, {lexeme: pres}, {lexeme: 3pl, surface: ند}]}]
       translations:
         en: My books are under the bed!
   - line:
